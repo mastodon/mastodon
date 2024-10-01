@@ -9,7 +9,7 @@ class REST::AnnouncementSerializer < ActiveModel::Serializer
   attribute :read, if: :current_user?
 
   has_many :mentions
-  has_many :statuses
+  has_many :statuses, serializer: REST::StatusSerializer
   has_many :tags, serializer: REST::StatusSerializer::TagSerializer
   has_many :emojis, serializer: REST::CustomEmojiSerializer
   has_many :reactions, serializer: REST::ReactionSerializer
@@ -23,7 +23,7 @@ class REST::AnnouncementSerializer < ActiveModel::Serializer
   end
 
   def read
-    object.announcement_mutes.where(account: current_user.account).exists?
+    object.announcement_mutes.exists?(account: current_user.account)
   end
 
   def content
@@ -47,18 +47,6 @@ class REST::AnnouncementSerializer < ActiveModel::Serializer
 
     def acct
       object.pretty_acct
-    end
-  end
-
-  class StatusSerializer < ActiveModel::Serializer
-    attributes :id, :url
-
-    def id
-      object.id.to_s
-    end
-
-    def url
-      ActivityPub::TagManager.instance.url_for(object)
     end
   end
 end

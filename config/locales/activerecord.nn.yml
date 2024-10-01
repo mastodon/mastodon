@@ -15,6 +15,12 @@ nn:
       user/invite_request:
         text: Grunn
     errors:
+      attributes:
+        domain:
+          invalid: er ikkje eit gyldig domenenamn
+      messages:
+        invalid_domain_on_line: "%{value} er ikkje gyldig i eit domenenamn"
+        too_many_lines: er over grensa på %{limit} liner
       models:
         account:
           attributes:
@@ -53,3 +59,7 @@ nn:
             position:
               elevated: kan ikkje vere høgare enn di noverande rolle
               own_role: kan ikkje endrast med di noverande rolle
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: kan ikkje inkludere hendingar du ikkje har rettar til

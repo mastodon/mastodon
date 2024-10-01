@@ -2,7 +2,8 @@ import React from 'react';
 
 import type { List } from 'immutable';
 
-import type { Account } from '../../types/resources';
+import type { Account } from 'mastodon/models/account';
+
 import { autoPlayGif } from '../initial_state';
 
 import { Skeleton } from './skeleton';
@@ -78,7 +79,7 @@ export class DisplayName extends React.PureComponent<Props> {
     } else if (account) {
       let acct = account.get('acct');
 
-      if (acct.indexOf('@') === -1 && localDomain) {
+      if (!acct.includes('@') && localDomain) {
         acct = `${acct}@${localDomain}`;
       }
 

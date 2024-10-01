@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './connection_pool/shared_connection_pool'
+require_relative 'connection_pool/shared_connection_pool'
 
 class RequestPool
   def self.current

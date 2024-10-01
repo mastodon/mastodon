@@ -7,7 +7,6 @@ oc:
     hosted_on: Mastodon albergat sus %{domain}
     title: A prepaus
   accounts:
-    follow: Sègre
     followers:
       one: Seguidor
       other: Seguidors
@@ -30,7 +29,6 @@ oc:
       created_msg: Nòta de moderacion ben creada !
       destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
-      add_email_domain_block: Metre lo domeni del corrièl en lista negra
       approve: Aprovar
       are_you_sure: Sètz segur ?
       avatar: Avatar
@@ -111,6 +109,7 @@ oc:
       role: Ròtle
       search: Cercar
       search_same_ip: Autres utilizaires amb la meteissa IP
+      security: Seguretat
       security_measures:
         only_password: Sonque senhal
         password_and_2fa: Senhal e 2FA
@@ -140,7 +139,6 @@ oc:
       action_types:
         approve_user: Aprobar l’utilizaire
         assigned_to_self_report: Assignar lo rapòrt
-        change_email_user: Cambiar l’adreça de l’utilizaire
         confirm_user: Confirmar l’utilizaire
         create_account_warning: Crear un avertiment
         create_announcement: Crear una anóncia
@@ -268,13 +266,10 @@ oc:
       view: Veire lo blocatge de domeni
     email_domain_blocks:
       add_new: Ajustar
-      created_msg: Blocatge del domeni de corrièl ben plaçat
       delete: Suprimir
       domain: Domeni
       new:
         create: Crear un blocatge
-        title: Nòu blocatge de domeni de corrièl
-      title: Blocatge de domeni de corrièl
     follow_recommendations:
       language: Per lenga
       status: Estat
@@ -395,7 +390,6 @@ oc:
           approved: Validacion necessària per s’inscriure
           none: Degun pòt pas se marcar
           open: Tot lo monde se pòt marcar
-      title: Paramètres del servidor
     site_uploads:
       delete: Suprimir lo fichièr enviat
     statuses:
@@ -430,7 +424,6 @@ oc:
       add_new: N’ajustar un nòu
       delete: Escafar
       edit_preset: Modificar lo tèxt predefinit d’avertiment
-      title: Gerir los tèxtes predefinits
     webhooks:
       delete: Suprimir
       disable: Desactivar
@@ -459,11 +452,8 @@ oc:
       body: Mastodon es traduch per de benevòls.
       guide_link_text: Tot lo monde pòt contribuïr.
     sensitive_content: Contengut sensible
-    toot_layout: Disposicion del tut
   application_mailer:
-    notification_preferences: Cambiar las preferéncias de corrièl
     salutation: "%{name},"
-    settings: 'Cambiar las preferéncias de corrièl : %{link}'
     view: 'Veire :'
     view_profile: Veire lo perfil
     view_status: Veire los estatuts
@@ -475,6 +465,9 @@ oc:
     warning: Mèfi ! Agachatz de partejar aquela donada amb degun !
     your_token: Vòstre geton d’accès
   auth:
+    confirmations:
+      clicking_this_link: en clicant aqueste ligam
+      welcome_title: La benvenguda %{name} !
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     description:
@@ -504,17 +497,6 @@ oc:
       account_status: Estat del compte
       functional: Vòstre compte es complètament foncional.
     use_security_key: Utilizar clau de seguretat
-  authorize_follow:
-    already_following: Seguètz ja aqueste compte
-    error: O planhèm, i a agut una error al moment de cercar lo compte
-    follow: Sègre
-    follow_request: 'Avètz demandat de sègre :'
-    following: 'Felicitacion ! Seguètz ara :'
-    post_follow:
-      close: O podètz tampar aquesta fenèstra.
-      return: Veire lo perfil a la persona
-      web: Tornar a l’interfàcia Web
-    title: Sègre %{acct}
   challenge:
     confirm: Contunhar
     hint_html: "<strong>Asutúcia :</strong> vos demandarem pas vòstre senhal de nòu d’aquí unas oras."
@@ -547,7 +529,6 @@ oc:
       before: 'Abans de contunhar, volgatz legir aquestas nòtas amb atencion :'
       caches: Lo contengut en cache suls autres servidors pòt demorar
       data_removal: Vòstras publicacions e las autras donadas seràn suprimidas per totjorn
-      email_change_html: Podètz <a href="%{path}">cambiar vòstra adreça electronia</a>sens suprimir vòstre compte
       irreversible: Poiretz pas restaurar o reactivar vòstre compte
       more_details_html: Per mai d’informacion, vejatz la <a href="%{terms_path}">politica de confidencialitat</a>.
       username_available: Vòstre nom d’utilizaire serà disponible de nòu
@@ -556,8 +537,6 @@ oc:
     strikes:
       title_actions:
         none: Avertiment
-  domain_validator:
-    invalid_domain: es pas un nom de domeni valid
   errors:
     '403': Avètz pas l’autorizacion de veire aquesta pagina.
     '404': La pagina que cercatz existís pas aquí.
@@ -669,7 +648,6 @@ oc:
   login_activities:
     authentication_methods:
       password: senhal
-      sign_in_token: còdi de seguretat mail
       webauthn: claus de seguretat
   media_attachments:
     validations:
@@ -731,9 +709,7 @@ oc:
     update:
       subject: "%{name} modifiquèt sa publicacion"
   notifications:
-    email_events: Eveniments per las notificacions per corrièl
     email_events_hint: 'Seleccionatz los eveniments que volètz recebre :'
-    other_settings: Autres paramètres de notificacion
   number:
     human:
       decimal_units:
@@ -837,12 +813,10 @@ oc:
     delete: Supression de compte
     development: Desvolopament
     edit_profile: Modificar lo perfil
-    export: Exportar de donadas
     featured_tags: Etiquetas en avant
     import: Importar de donadas
     import_and_export: Import e export
     migrate: Migracion de compte
-    notifications: Notificacions
     preferences: Preferéncias
     profile: Perfil
     relationships: Abonaments e seguidors
@@ -870,25 +844,11 @@ oc:
     edited_at_html: Modificat %{date}
     errors:
       in_reply_not_found: La publicacion que respondètz sembla pas mai exisitir.
-    open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
     pin_errors:
       limit: Avètz ja lo maximum de tuts penjats
       ownership: Se pòt pas penjar lo tut de qualqu’un mai
       reblog: Se pòt pas penjar un tut partejat
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} personas"
-      total_votes:
-        one: "%{count} vòte"
-        other: "%{count} vòtes"
-      vote: Votar
-    show_more: Ne veire mai
-    show_newer: Veire mai recents
-    show_older: Veire mai ancians
-    show_thread: Mostrar lo fil
-    sign_in_to_participate: Inscrivètz-vos per participar a la conversacion
     title: '%{name} : "%{quote}"'
     visibilities:
       direct: Dirècte
@@ -931,8 +891,6 @@ oc:
     min_reblogs: Gardar las publicacions partejadas al mens
     min_reblogs_hint: Suprimís pas vòstras publicacions qu’an agut aqueste nombre de partiment. Daissar blanc per suprimir las publicacions sens far cas als partiments
   stream_entries:
-    pinned: Tut penjat
-    reblogged: a partejat
     sensitive_content: Contengut sensible
   tags:
     does_not_match_previous_name: correspond pas al nom precedent
@@ -960,10 +918,7 @@ oc:
     recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. <strong>Gardatz los còdis en seguretat</strong>, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
     webauthn: Claus de seguretat
   user_mailer:
-    appeal_approved:
-      action: Anatz al vòstre compte
     backup_ready:
-      explanation: Avètz demandat una salvagarda complèta de vòstre compte Mastodon. Es prèsta per telecargament !
       subject: Vòstre archiu es prèst per telecargament
       title: Archiu per emportar
     warning:
@@ -981,18 +936,13 @@ oc:
         silence: Compte limitat
         suspend: Compte suspendut
     welcome:
-      edit_profile_action: Configuracion del perfil
       explanation: Vaquí qualques astúcias per vos preparar
-      final_action: Començar de publicar
-      full_handle: Vòstre escais-nom complèt
-      full_handle_hint: Es aquò que vos cal donar a vòstres amics per que pòscan vos escriure o sègre a partir d’un autre servidor.
       subject: Benvengut a Mastodon
       title: Vos desirem la benvenguda a bòrd %{name} !
   users:
     follow_limit_reached: Podètz pas sègre mai de %{limit} personas
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
     otp_lost_help_html: Se perdatz l’accès al dos, podètz benlèu contactar %{email}
-    seamless_external_login: Sètz connectat via un servici extèrn, los paramètres de senhal e de corrièl son doncas pas disponibles.
     signed_in_as: 'Session a :'
   verification:
     verification: Verificacion

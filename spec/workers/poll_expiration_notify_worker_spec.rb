@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PollExpirationNotifyWorker do
+RSpec.describe PollExpirationNotifyWorker do
   let(:worker) { described_class.new }
   let(:account) { Fabricate(:account, domain: remote? ? 'example.com' : nil) }
   let(:status) { Fabricate(:status, account: account) }
@@ -11,12 +11,6 @@ describe PollExpirationNotifyWorker do
   let(:poll_vote) { Fabricate(:poll_vote, poll: poll) }
 
   describe '#perform' do
-    around do |example|
-      Sidekiq::Testing.fake! do
-        example.run
-      end
-    end
-
     it 'runs without error for missing record' do
       expect { worker.perform(nil) }.to_not raise_error
     end

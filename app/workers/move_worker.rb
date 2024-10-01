@@ -72,7 +72,7 @@ class MoveWorker
   def queue_follow_unfollows!
     bypass_locked = @target_account.local?
 
-    @source_account.followers.local.select(:id).find_in_batches do |accounts|
+    @source_account.followers.local.select(:id).reorder(nil).find_in_batches do |accounts|
       UnfollowFollowWorker.push_bulk(accounts.map(&:id)) { |follower_id| [follower_id, @source_account.id, @target_account.id, bypass_locked] }
     rescue => e
       @deferred_error = e
@@ -123,7 +123,7 @@ class MoveWorker
   end
 
   def add_account_note_if_needed!(account, id)
-    unless AccountNote.where(account: account, target_account: @target_account).exists?
+    unless AccountNote.exists?(account: account, target_account: @target_account)
       text = I18n.with_locale(account.user&.locale.presence || I18n.default_locale) do
         I18n.t(id, acct: @source_account.acct)
       end

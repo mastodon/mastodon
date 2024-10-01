@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'webauthn/fake_client'
 
-describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
+RSpec.describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
   render_views
 
   let(:user) { Fabricate(:user) }
@@ -121,24 +121,12 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
             add_webauthn_credential(user)
           end
 
-          it 'returns http success' do
-            get :options
+          it 'includes existing credentials in list of excluded credentials', :aggregate_failures do
+            expect { get :options }.to_not change(user, :webauthn_id)
 
             expect(response).to have_http_status(200)
-          end
 
-          it 'stores the challenge on the session' do
-            get :options
-
-            expect(@controller.session[:webauthn_challenge]).to be_present
-          end
-
-          it 'does not change webauthn_id' do
-            expect { get :options }.to_not change(user, :webauthn_id)
-          end
-
-          it 'includes existing credentials in list of excluded credentials' do
-            get :options
+            expect(controller.session[:webauthn_challenge]).to be_present
 
             excluded_credentials_ids = response.parsed_body['excludeCredentials'].pluck('id')
             expect(excluded_credentials_ids).to match_array(user.webauthn_credentials.pluck(:external_id))
@@ -146,21 +134,11 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
         end
 
         context 'when user does not have webauthn enabled' do
-          it 'returns http success' do
+          it 'stores the challenge on the session and sets user webauthn_id', :aggregate_failures do
             get :options
 
             expect(response).to have_http_status(200)
-          end
-
-          it 'stores the challenge on the session' do
-            get :options
-
-            expect(@controller.session[:webauthn_challenge]).to be_present
-          end
-
-          it 'sets user webauthn_id' do
-            get :options
-
+            expect(controller.session[:webauthn_challenge]).to be_present
             expect(user.reload.webauthn_id).to be_present
           end
         end
@@ -216,73 +194,49 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
             add_webauthn_credential(user)
           end
 
-          context 'when creation succeeds' do
-            it 'returns http success' do
-              @controller.session[:webauthn_challenge] = challenge
+          it 'adds a new credential to user credentials and does not change webauthn_id when creation succeeds', :aggregate_failures do
+            controller.session[:webauthn_challenge] = challenge
 
+            expect do
               post :create, params: { credential: new_webauthn_credential, nickname: nickname }
+            end.to change { user.webauthn_credentials.count }.by(1)
+                                                             .and not_change(user, :webauthn_id)
 
-              expect(response).to have_http_status(200)
-            end
-
-            it 'adds a new credential to user credentials' do
-              @controller.session[:webauthn_challenge] = challenge
-
-              expect do
-                post :create, params: { credential: new_webauthn_credential, nickname: nickname }
-              end.to change { user.webauthn_credentials.count }.by(1)
-            end
-
-            it 'does not change webauthn_id' do
-              @controller.session[:webauthn_challenge] = challenge
-
-              expect do
-                post :create, params: { credential: new_webauthn_credential, nickname: nickname }
-              end.to_not change(user, :webauthn_id)
-            end
+            expect(response).to have_http_status(200)
           end
 
-          context 'when the nickname is already used' do
-            it 'fails' do
-              @controller.session[:webauthn_challenge] = challenge
+          it 'fails when the nickname is already used' do
+            controller.session[:webauthn_challenge] = challenge
 
-              post :create, params: { credential: new_webauthn_credential, nickname: 'USB Key' }
+            post :create, params: { credential: new_webauthn_credential, nickname: 'USB Key' }
 
-              expect(response).to have_http_status(422)
-              expect(flash[:error]).to be_present
-            end
+            expect(response).to have_http_status(422)
+            expect(flash[:error]).to be_present
           end
 
-          context 'when the credential already exists' do
-            before do
-              user2 = Fabricate(:user)
-              public_key_credential = WebAuthn::Credential.from_create(new_webauthn_credential)
-              Fabricate(:webauthn_credential,
-                        user_id: user2.id,
-                        external_id: public_key_credential.id,
-                        public_key: public_key_credential.public_key)
-            end
+          it 'fails when the credential already exists' do
+            public_key_credential = WebAuthn::Credential.from_create(new_webauthn_credential)
+            Fabricate(:webauthn_credential,
+                      user_id: Fabricate(:user).id,
+                      external_id: public_key_credential.id,
+                      public_key: public_key_credential.public_key)
 
-            it 'fails' do
-              @controller.session[:webauthn_challenge] = challenge
+            controller.session[:webauthn_challenge] = challenge
 
-              post :create, params: { credential: new_webauthn_credential, nickname: nickname }
+            post :create, params: { credential: new_webauthn_credential, nickname: nickname }
 
-              expect(response).to have_http_status(422)
-              expect(flash[:error]).to be_present
-            end
+            expect(response).to have_http_status(422)
+            expect(flash[:error]).to be_present
           end
         end
 
-        context 'when user have not enabled webauthn' do
-          context 'when creation succeeds' do
-            it 'creates a webauthn credential' do
-              @controller.session[:webauthn_challenge] = challenge
+        context 'when user have not enabled webauthn and creation succeeds' do
+          it 'creates a webauthn credential' do
+            controller.session[:webauthn_challenge] = challenge
 
-              expect do
-                post :create, params: { credential: new_webauthn_credential, nickname: nickname }
-              end.to change { user.webauthn_credentials.count }.by(1)
-            end
+            expect do
+              post :create, params: { credential: new_webauthn_credential, nickname: nickname }
+            end.to change { user.webauthn_credentials.count }.by(1)
           end
         end
       end
@@ -327,19 +281,13 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
             add_webauthn_credential(user)
           end
 
-          context 'when deletion succeeds' do
-            it 'redirects to 2FA methods list and shows flash success' do
+          it 'redirects to 2FA methods list and shows flash success and deletes the credential when deletion succeeds', :aggregate_failures do
+            expect do
               delete :destroy, params: { id: user.webauthn_credentials.take.id }
+            end.to change { user.webauthn_credentials.count }.by(-1)
 
-              expect(response).to redirect_to settings_two_factor_authentication_methods_path
-              expect(flash[:success]).to be_present
-            end
-
-            it 'deletes the credential' do
-              expect do
-                delete :destroy, params: { id: user.webauthn_credentials.take.id }
-              end.to change { user.webauthn_credentials.count }.by(-1)
-            end
+            expect(response).to redirect_to settings_two_factor_authentication_methods_path
+            expect(flash[:success]).to be_present
           end
         end
 

@@ -1,14 +1,15 @@
 name: Ruby Linting
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
     paths:
       - 'Gemfile*'
       - '.rubocop*.yml'
       - '.ruby-version'
-      - '.bundler-audit.yml'
+      - 'config/brakeman.ignore'
       - '**/*.rb'
       - '**/*.rake'
       - '.github/workflows/lint-ruby.yml'
@@ -18,7 +19,7 @@ on:
       - 'Gemfile*'
       - '.rubocop*.yml'
       - '.ruby-version'
-      - '.bundler-audit.yml'
+      - 'config/brakeman.ignore'
       - '**/*.rb'
       - '**/*.rake'
       - '.github/workflows/lint-ruby.yml'
@@ -27,24 +28,24 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
+    env:
+      BUNDLE_ONLY: development
+
     steps:
       - name: Clone repository
-        uses: actions/checkout@v3
-
-      - name: Install native Ruby dependencies
-        run: sudo apt-get install -y libicu-dev libidn11-dev
+        uses: actions/checkout@v4
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
           bundler-cache: true
 
       - name: Set-up RuboCop Problem Matcher
         uses: r7kamura/rubocop-problem-matchers-action@v1
 
       - name: Run rubocop
-        run: bundle exec rubocop
+        run: bin/rubocop
 
-      - name: Run bundler-audit
-        run: bundle exec bundler-audit
+      - name: Run brakeman
+        if: always() # Run both checks, even if the first failed
+        run: bin/brakeman

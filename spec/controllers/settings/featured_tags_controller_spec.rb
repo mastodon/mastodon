@@ -2,19 +2,13 @@
 
 require 'rails_helper'
 
-describe Settings::FeaturedTagsController do
+RSpec.describe Settings::FeaturedTagsController do
   render_views
-
-  shared_examples 'authenticate user' do
-    it 'redirects to sign_in page' do
-      expect(subject).to redirect_to new_user_session_path
-    end
-  end
 
   context 'when user is not signed in' do
     subject { post :create }
 
-    it_behaves_like 'authenticate user'
+    it { is_expected.to redirect_to new_user_session_path }
   end
 
   context 'when user is signed in' do
@@ -43,10 +37,20 @@ describe Settings::FeaturedTagsController do
     end
 
     describe 'GET to #index' do
+      let(:tag) { Fabricate(:tag) }
+
+      before do
+        status = Fabricate :status, account: user.account
+        status.tags << tag
+      end
+
       it 'responds with success' do
         get :index
 
         expect(response).to have_http_status(200)
+        expect(response.body).to include(
+          settings_featured_tags_path(featured_tag: { name: tag.name })
+        )
       end
     end
 

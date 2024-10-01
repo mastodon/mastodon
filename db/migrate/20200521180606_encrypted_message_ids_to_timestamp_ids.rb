@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EncryptedMessageIdsToTimestampIds < ActiveRecord::Migration[5.2]
   def up
     safety_assured do

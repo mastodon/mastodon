@@ -53,7 +53,6 @@ const messages = defineMessages({
 });
 
 const dateFormatOptions = {
-  hour12: false,
   year: 'numeric',
   month: 'short',
   day: '2-digit',
@@ -103,12 +102,12 @@ const getUnitDelay = (units: string) => {
 };
 
 export const timeAgoString = (
-  intl: IntlShape,
+  intl: Pick<IntlShape, 'formatDate' | 'formatMessage'>,
   date: Date,
   now: number,
   year: number,
   timeGiven: boolean,
-  short?: boolean
+  short?: boolean,
 ) => {
   const delta = now - date.getTime();
 
@@ -118,28 +117,28 @@ export const timeAgoString = (
     relativeTime = intl.formatMessage(messages.today);
   } else if (delta < 10 * SECOND) {
     relativeTime = intl.formatMessage(
-      short ? messages.just_now : messages.just_now_full
+      short ? messages.just_now : messages.just_now_full,
     );
   } else if (delta < 7 * DAY) {
     if (delta < MINUTE) {
       relativeTime = intl.formatMessage(
         short ? messages.seconds : messages.seconds_full,
-        { number: Math.floor(delta / SECOND) }
+        { number: Math.floor(delta / SECOND) },
       );
     } else if (delta < HOUR) {
       relativeTime = intl.formatMessage(
         short ? messages.minutes : messages.minutes_full,
-        { number: Math.floor(delta / MINUTE) }
+        { number: Math.floor(delta / MINUTE) },
       );
     } else if (delta < DAY) {
       relativeTime = intl.formatMessage(
         short ? messages.hours : messages.hours_full,
-        { number: Math.floor(delta / HOUR) }
+        { number: Math.floor(delta / HOUR) },
       );
     } else {
       relativeTime = intl.formatMessage(
         short ? messages.days : messages.days_full,
-        { number: Math.floor(delta / DAY) }
+        { number: Math.floor(delta / DAY) },
       );
     }
   } else if (date.getFullYear() === year) {
@@ -158,7 +157,7 @@ const timeRemainingString = (
   intl: IntlShape,
   date: Date,
   now: number,
-  timeGiven = true
+  timeGiven = true,
 ) => {
   const delta = date.getTime() - now;
 
@@ -192,7 +191,7 @@ const timeRemainingString = (
 interface Props {
   intl: IntlShape;
   timestamp: string;
-  year: number;
+  year?: number;
   futureDate?: boolean;
   short?: boolean;
 }
@@ -202,11 +201,6 @@ interface States {
 class RelativeTimestamp extends Component<Props, States> {
   state = {
     now: Date.now(),
-  };
-
-  static defaultProps = {
-    year: new Date().getFullYear(),
-    short: true,
   };
 
   _timer: number | undefined;
@@ -258,7 +252,13 @@ class RelativeTimestamp extends Component<Props, States> {
   }
 
   render() {
-    const { timestamp, intl, year, futureDate, short } = this.props;
+    const {
+      timestamp,
+      intl,
+      futureDate,
+      year = new Date().getFullYear(),
+      short = true,
+    } = this.props;
 
     const timeGiven = timestamp.includes('T');
     const date = new Date(timestamp);

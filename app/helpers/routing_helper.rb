@@ -3,11 +3,12 @@
 module RoutingHelper
   extend ActiveSupport::Concern
 
-  include Rails.application.routes.url_helpers
   include ActionView::Helpers::AssetTagHelper
   include Webpacker::Helper
 
   included do
+    include Rails.application.routes.url_helpers
+
     def default_url_options
       ActionMailer::Base.default_url_options
     end
@@ -23,8 +24,12 @@ module RoutingHelper
     Rails.configuration.action_controller.asset_host || root_url
   end
 
-  def full_pack_url(source, **options)
-    full_asset_url(asset_pack_path(source, **options))
+  def frontend_asset_path(source, **options)
+    asset_pack_path("media/#{source}", **options)
+  end
+
+  def frontend_asset_url(source, **options)
+    full_asset_url(frontend_asset_path(source, **options))
   end
 
   def use_storage?

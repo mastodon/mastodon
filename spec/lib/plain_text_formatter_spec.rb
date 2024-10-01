@@ -72,6 +72,14 @@ RSpec.describe PlainTextFormatter do
           expect(subject).to eq 'Lorem ipsum'
         end
       end
+
+      context 'when text contains HTML ruby tags' do
+        let(:status) { Fabricate(:status, account: remote_account, text: '<p>Lorem <ruby>明日 <rp>(</rp><rt>Ashita</rt><rp>)</rp></ruby> ipsum</p>') }
+
+        it 'strips the comment' do
+          expect(subject).to eq 'Lorem 明日 (Ashita) ipsum'
+        end
+      end
     end
   end
 end

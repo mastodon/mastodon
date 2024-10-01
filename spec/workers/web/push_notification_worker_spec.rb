@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Web::PushNotificationWorker do
+RSpec.describe Web::PushNotificationWorker do
   subject { described_class.new }
 
   let(:p256dh) { 'BN4GvZtEZiZuqFxSKVZfSfluwKBD7UxHNBmWkfiZfCtgDE8Bwh-_MtLXbBxTBAWH9r7IPKL0lhdcaqtL1dfxU5E=' }
@@ -23,8 +23,8 @@ describe Web::PushNotificationWorker do
 
   describe 'perform' do
     before do
-      allow_any_instance_of(subscription.class).to receive(:contact_email).and_return(contact_email)
-      allow_any_instance_of(subscription.class).to receive(:vapid_key).and_return(vapid_key)
+      allow(subscription).to receive_messages(contact_email: contact_email, vapid_key: vapid_key)
+      allow(Web::PushSubscription).to receive(:find).with(subscription.id).and_return(subscription)
       allow(Webpush::Encryption).to receive(:encrypt).and_return(payload)
       allow(JWT).to receive(:encode).and_return('jwt.encoded.payload')
 

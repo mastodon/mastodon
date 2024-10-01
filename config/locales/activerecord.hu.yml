@@ -15,12 +15,18 @@ hu:
       user/invite_request:
         text: Indoklás
     errors:
+      attributes:
+        domain:
+          invalid: nem egy érvényes domain név
+      messages:
+        invalid_domain_on_line: "%{value} nem egy érvényes domain név"
+        too_many_lines: túllépi a(z) %{limit} soros korlátot
       models:
         account:
           attributes:
             username:
               invalid: csak betűket, számokat vagy alávonást tartalmazhat
-              reserved: fenntartott
+              reserved: foglalt
         admin/webhook:
           attributes:
             url:
@@ -53,3 +59,7 @@ hu:
             position:
               elevated: nem lehet magasabb, mint a jelenlegi szereped
               own_role: nem megváltoztatható a jelenlegi szerepköröddel
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: nem lehet olyan eseményeket bevenni, melyekhez nincs jogosultságod

@@ -5,12 +5,13 @@ bn:
     contact_missing: নেই
     contact_unavailable: প্রযোজ্য নয়
     hosted_on: এই মাস্টাডনটি আছে %{domain} এ
+    title: পরিচিতি
   accounts:
-    follow: যুক্ত
     followers:
       one: যুক্ত আছে
       other: যারা যুক্ত হয়েছে
     following: যুক্ত করা
+    instance_actor_flash: এই অ্যাকাউন্টটি একটি ভার্চুয়াল সত্তা যা সার্ভারের প্রতিনিধিত্ব করতে ব্যবহৃত হয় এবং কোনও স্বতন্ত্র ব্যবহারকারী নয়। এটি ফেডারেশনের উদ্দেশ্যে ব্যবহার করা হয় এবং স্থগিত করা উচিত নয়.
     last_active: শেষ সক্রিয় ছিল
     link_verified_on: এই লিংকের মালিকানা শেষ চেক করা হয়  %{date} তারিখে
     nothing_here: এখানে কিছুই নেই!
@@ -29,22 +30,31 @@ bn:
       created_msg: প্রশাসনবস্তুত লেখাটি সঠিকভাবে তৈরী হয়েছে!
       destroyed_msg: প্রশাসনবস্তুত লেখাটি সঠিকভাবে মুছে ফেলা হয়েছে!
     accounts:
-      add_email_domain_block: নিষিদ্ধ করা ই-মেইল ডোমেইন
       approve: অনুমোদন দিন
+      approved_msg: "%{username}-এর অ্যাকাউন্ট সৃষ্টি আবেদন সফলভাবে অনুমোদিত হয়েছে"
       are_you_sure: আপনি কি নিশ্চিত ?
       avatar: অবতার
       by_domain: ওয়েবসাইট/কার্যক্ষেত্র
       change_email:
+        changed_msg: ইমেল সফলভাবে পরিবর্তিত হয়েছে!
         current_email: এখনকার ইমেইল
         label: ইমেইল পরিবর্তন
         new_email: নতুন ইমেইল
         submit: ইমেইল পরিবর্তন
         title: "%{username} এর ইমেইল পরিবর্তন"
+      change_role:
+        changed_msg: ভূমিকা সফলভাবে পরিবর্তিত!
+        label: ভূমিকা পরিবর্তন করুন
+        no_role: কোন ভূমিকা বরাদ্দ করা হয়নি
+        title: "%{username}-এর ভূমিকা পরিবর্তন করুন"
       confirm: নিশ্চিত করুন
       confirmed: নিশ্চিত হয়েছে
       confirming: নিশ্চিত করা হচ্ছে
+      custom: বিশেষ
+      delete: ডেটা মুছুন
       deleted: মুছে ফেলা হয়েছে
       demote: নিচের পদে দিন
+      destroyed_msg: "%{username}-এর ডেটা এখন সারিবদ্ধভাবে মুছে ফেলা হবে"
       disable: বন্ধ করুন
       disable_two_factor_authentication: দুই পদ্ধতির প্রমাণীকরণ(2FA) বন্ধ করুন
       disabled: বন্ধ করা হয়েছে
@@ -55,10 +65,12 @@ bn:
       email_status: ইমেইলের অবস্থা
       enable: চালু করুন
       enabled: চালু করুন
+      enabled_msg: "%{username}-এর অ্যাকাউন্ট সফলভাবে আনফ্রোজ করা হয়েছে"
       followers: অনুসরকারীরা
       follows: অনুসরণ করে
       header: শিরোলেখা
       inbox_url: চিঠি পাওয়ার বক্স লিংক
+      invite_request_text: যোগদানের কারণ
       invited_by: আমন্ত্রণ করেছে
       ip: আইপি(IP)
       joined: যোগ দিয়েছে
@@ -98,7 +110,6 @@ bn:
       reset_password: পাসওয়ার্ড পুনঃস্থাপন করুন
       resubscribe: পুনরায় সদস্যতা নিন
       search: অনুসন্ধান
-      search_same_email_domain: একই ইমেল ডোমেন সহ অন্যান্য ব্যবহারকারীরা
       search_same_ip: একই IP সহ অন্যান্য ব্যবহারকারীরা
       shared_inbox_url: ভাগ করা ইনবক্স URL
       show:
@@ -121,20 +132,17 @@ bn:
     action_logs:
       action_types:
         assigned_to_self_report: রিপোর্ট বরাদ্দ করুন
-        change_email_user: ব্যবহারকারী জন্য ইমেইল পরিবর্তন করুন
         confirm_user: ব্যবহারকারী নিশ্চিত করুন
         create_account_warning: সতর্কতা তৈরি করুন
         create_announcement: ঘোষণা তৈরি করুন
         create_custom_emoji: স্বনির্ধারিত ইমোজি তৈরি করুন
         create_domain_allow: ডোমেন অনুমোদন তৈরি করুন
         create_domain_block: ডোমেন ব্লক তৈরি করুন
-        create_email_domain_block: ইমেইল ডোমেন ব্লক তৈরি করুন
         demote_user: ব্যবহারকারী কে হীনপদস্থ করুন
         destroy_announcement: ঘোষণা মুছুন
         destroy_custom_emoji: স্বনির্ধারিত ইমোজি মুছুন
         destroy_domain_allow: ডোমেন অনুমোদন মুছুন
         destroy_domain_block: ডোমেন ব্লক মুছুন
-        destroy_email_domain_block: ইমেইল ডোমেন ব্লক মুছুন
         destroy_status: স্ট্যাটাস মুছুন
         disable_2fa_user: 2FA নিষ্ক্রিয় করুন
         disable_custom_emoji: স্বনির্ধারিত ইমোজি নিষ্ক্রিয় করুন

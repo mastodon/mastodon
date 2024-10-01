@@ -38,7 +38,7 @@ class BulkImportService < BaseService
     rows_by_acct = extract_rows_by_acct
 
     if @import.overwrite?
-      @account.following.find_each do |followee|
+      @account.following.reorder(nil).find_each do |followee|
         row = rows_by_acct.delete(followee.acct)
 
         if row.nil?
@@ -67,7 +67,7 @@ class BulkImportService < BaseService
     rows_by_acct = extract_rows_by_acct
 
     if @import.overwrite?
-      @account.blocking.find_each do |blocked_account|
+      @account.blocking.reorder(nil).find_each do |blocked_account|
         row = rows_by_acct.delete(blocked_account.acct)
 
         if row.nil?
@@ -93,7 +93,7 @@ class BulkImportService < BaseService
     rows_by_acct = extract_rows_by_acct
 
     if @import.overwrite?
-      @account.muting.find_each do |muted_account|
+      @account.muting.reorder(nil).find_each do |muted_account|
         row = rows_by_acct.delete(muted_account.acct)
 
         if row.nil?
@@ -162,10 +162,9 @@ class BulkImportService < BaseService
 
   def import_lists!
     rows = @import.rows.to_a
+    included_lists = rows.map { |row| row.data['list_name'] }.uniq
 
     if @import.overwrite?
-      included_lists = rows.map { |row| row.data['list_name'] }.uniq
-
       @account.owned_lists.where.not(title: included_lists).destroy_all
 
       # As list membership changes do not retroactively change timeline
@@ -173,6 +172,10 @@ class BulkImportService < BaseService
       @account.owned_lists.find_each do |list|
         list.list_accounts.destroy_all
       end
+    end
+
+    included_lists.each do |title|
+      @account.owned_lists.find_or_create_by!(title: title)
     end
 
     Import::RowWorker.push_bulk(rows) do |row|

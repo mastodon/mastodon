@@ -15,6 +15,12 @@ zh-TW:
       user/invite_request:
         text: 原因
     errors:
+      attributes:
+        domain:
+          invalid: 並非一個有效網域
+      messages:
+        invalid_domain_on_line: "%{value} 並非一個有效網域"
+        too_many_lines: 已超過行數限制 (%{limit} 行)
       models:
         account:
           attributes:
@@ -28,7 +34,7 @@ zh-TW:
         doorkeeper/application:
           attributes:
             website:
-              invalid: 不是有效的 URL
+              invalid: 不是有效的網址
         import:
           attributes:
             data:
@@ -41,7 +47,7 @@ zh-TW:
           attributes:
             email:
               blocked: 使用不被允許的電子郵件供應商
-              unreachable: 似乎不存在
+              unreachable: 該電子郵件地址似乎無法使用
             role_id:
               elevated: 不能高於您目前的角色
         user_role:
@@ -53,3 +59,7 @@ zh-TW:
             position:
               elevated: 不能高於您目前的角色
               own_role: 無法被您目前的角色更改
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: 無法包含您無存取權之事件

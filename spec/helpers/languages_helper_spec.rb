@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe LanguagesHelper do
+RSpec.describe LanguagesHelper do
   describe 'the SUPPORTED_LOCALES constant' do
     it 'includes all i18n locales' do
       expect(Set.new(described_class::SUPPORTED_LOCALES.keys + described_class::REGIONAL_LOCALE_NAMES.keys)).to include(*I18n.available_locales)
@@ -57,6 +57,32 @@ describe LanguagesHelper do
     context 'with a supported locale' do
       it 'finds the human readable standard name from a key' do
         expect(helper.standard_locale_name(:de)).to eq('German')
+      end
+    end
+  end
+
+  describe 'sorted_locales' do
+    context 'when sorting with native name' do
+      it 'returns Suomi after Gàidhlig' do
+        expect(described_class.sorted_locale_keys(%w(fi gd))).to eq(%w(gd fi))
+      end
+    end
+
+    context 'when sorting with diacritics' do
+      it 'returns Íslensk before Suomi' do
+        expect(described_class.sorted_locale_keys(%w(fi is))).to eq(%w(is fi))
+      end
+    end
+
+    context 'when sorting with non-Latin' do
+      it 'returns Suomi before Amharic' do
+        expect(described_class.sorted_locale_keys(%w(am fi))).to eq(%w(fi am))
+      end
+    end
+
+    context 'when sorting with local variants' do
+      it 'returns variant in-line' do
+        expect(described_class.sorted_locale_keys(%w(en eo en-GB))).to eq(%w(en en-GB eo))
       end
     end
   end

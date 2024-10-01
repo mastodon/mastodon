@@ -20,17 +20,16 @@ RSpec.describe 'Canonical Email Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns http success' do
-      subject
-
-      expect(response).to have_http_status(200)
-    end
-
     context 'when there is no canonical email block' do
       it 'returns an empty list' do
         subject
 
-        expect(body_as_json).to be_empty
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to be_empty
       end
     end
 
@@ -41,7 +40,12 @@ RSpec.describe 'Canonical Email Blocks' do
       it 'returns the correct canonical email hashes' do
         subject
 
-        expect(body_as_json.pluck(:canonical_email_hash)).to match_array(expected_email_hashes)
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body.pluck(:canonical_email_hash))
+          .to match_array(expected_email_hashes)
       end
 
       context 'with limit param' do
@@ -50,7 +54,7 @@ RSpec.describe 'Canonical Email Blocks' do
         it 'returns only the requested number of canonical email blocks' do
           subject
 
-          expect(body_as_json.size).to eq(params[:limit])
+          expect(response.parsed_body.size).to eq(params[:limit])
         end
       end
 
@@ -62,7 +66,7 @@ RSpec.describe 'Canonical Email Blocks' do
 
           canonical_email_blocks_ids = canonical_email_blocks.pluck(:id).map(&:to_s)
 
-          expect(body_as_json.pluck(:id)).to match_array(canonical_email_blocks_ids[2..])
+          expect(response.parsed_body.pluck(:id)).to match_array(canonical_email_blocks_ids[2..])
         end
       end
 
@@ -74,7 +78,7 @@ RSpec.describe 'Canonical Email Blocks' do
 
           canonical_email_blocks_ids = canonical_email_blocks.pluck(:id).map(&:to_s)
 
-          expect(body_as_json.pluck(:id)).to match_array(canonical_email_blocks_ids[..2])
+          expect(response.parsed_body.pluck(:id)).to match_array(canonical_email_blocks_ids[..2])
         end
       end
     end
@@ -92,19 +96,17 @@ RSpec.describe 'Canonical Email Blocks' do
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     context 'when the requested canonical email block exists' do
-      it 'returns http success' do
+      it 'returns the requested canonical email block data correctly', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'returns the requested canonical email block data correctly' do
-        subject
-
-        json = body_as_json
-
-        expect(json[:id]).to eq(canonical_email_block.id.to_s)
-        expect(json[:canonical_email_hash]).to eq(canonical_email_block.canonical_email_hash)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to include(
+            id: eq(canonical_email_block.id.to_s),
+            canonical_email_hash: eq(canonical_email_block.canonical_email_hash)
+          )
       end
     end
 
@@ -113,6 +115,8 @@ RSpec.describe 'Canonical Email Blocks' do
         get '/api/v1/admin/canonical_email_blocks/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -135,6 +139,8 @@ RSpec.describe 'Canonical Email Blocks' do
         subject
 
         expect(response).to have_http_status(400)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -142,30 +148,24 @@ RSpec.describe 'Canonical Email Blocks' do
       context 'when there is a matching canonical email block' do
         let!(:canonical_email_block) { CanonicalEmailBlock.create(params) }
 
-        it 'returns http success' do
+        it 'returns the expected canonical email hash', :aggregate_failures do
           subject
 
           expect(response).to have_http_status(200)
-        end
-
-        it 'returns the expected canonical email hash' do
-          subject
-
-          expect(body_as_json[0][:canonical_email_hash]).to eq(canonical_email_block.canonical_email_hash)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body.first[:canonical_email_hash]).to eq(canonical_email_block.canonical_email_hash)
         end
       end
 
       context 'when there is no matching canonical email block' do
-        it 'returns http success' do
+        it 'returns an empty list', :aggregate_failures do
           subject
 
           expect(response).to have_http_status(200)
-        end
-
-        it 'returns an empty list' do
-          subject
-
-          expect(body_as_json).to be_empty
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body).to be_empty
         end
       end
     end
@@ -183,16 +183,13 @@ RSpec.describe 'Canonical Email Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns http success' do
+    it 'returns the canonical_email_hash correctly', :aggregate_failures do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the canonical_email_hash correctly' do
-      subject
-
-      expect(body_as_json[:canonical_email_hash]).to eq(canonical_email_block.canonical_email_hash)
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body[:canonical_email_hash]).to eq(canonical_email_block.canonical_email_hash)
     end
 
     context 'when the required email param is not provided' do
@@ -202,38 +199,34 @@ RSpec.describe 'Canonical Email Blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
     context 'when the canonical_email_hash param is provided instead of email' do
       let(:params) { { canonical_email_hash: 'dd501ce4e6b08698f19df96f2f15737e48a75660b1fa79b6ff58ea25ee4851a4' } }
 
-      it 'returns http success' do
+      it 'returns the correct canonical_email_hash', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'returns the correct canonical_email_hash' do
-        subject
-
-        expect(body_as_json[:canonical_email_hash]).to eq(params[:canonical_email_hash])
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body[:canonical_email_hash]).to eq(params[:canonical_email_hash])
       end
     end
 
     context 'when both email and canonical_email_hash params are provided' do
       let(:params) { { email: 'example@email.com', canonical_email_hash: 'dd501ce4e6b08698f19df96f2f15737e48a75660b1fa79b6ff58ea25ee4851a4' } }
 
-      it 'returns http success' do
+      it 'ignores the canonical_email_hash param', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'ignores the canonical_email_hash param' do
-        subject
-
-        expect(body_as_json[:canonical_email_hash]).to eq(canonical_email_block.canonical_email_hash)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body[:canonical_email_hash]).to eq(canonical_email_block.canonical_email_hash)
       end
     end
 
@@ -246,6 +239,8 @@ RSpec.describe 'Canonical Email Blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -262,15 +257,12 @@ RSpec.describe 'Canonical Email Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns http success' do
+    it 'deletes the canonical email block', :aggregate_failures do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'deletes the canonical email block' do
-      subject
-
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(CanonicalEmailBlock.find_by(id: canonical_email_block.id)).to be_nil
     end
 
@@ -279,6 +271,8 @@ RSpec.describe 'Canonical Email Blocks' do
         delete '/api/v1/admin/canonical_email_blocks/0', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

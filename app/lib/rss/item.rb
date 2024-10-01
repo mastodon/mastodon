@@ -2,7 +2,7 @@
 
 class RSS::Item < RSS::Element
   def initialize
-    super()
+    super
 
     @root = create_element('item')
   end
@@ -20,7 +20,7 @@ class RSS::Item < RSS::Element
   end
 
   def pub_date(date)
-    append_element('pubDate', date.to_formatted_s(:rfc822))
+    append_element('pubDate', date.to_fs(:rfc822))
   end
 
   def description(str)

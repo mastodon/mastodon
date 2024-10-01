@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddMovedToAccountIdToAccounts < ActiveRecord::Migration[5.2]
   def change
     add_column :accounts, :moved_to_account_id, :bigint, null: true, default: nil

@@ -31,9 +31,6 @@
 # Ignore Vagrant files
 .vagrant/
 
-# Ignore Capistrano customizations
-/config/deploy/*
-
 # Ignore IDE files
 .vscode/
 .idea/
@@ -57,6 +54,13 @@
 # Ignore Docker option files
 docker-compose.override.yml
 
+# Ignore public
+/public/assets
+/public/emoji
+/public/packs
+/public/packs-test
+/public/system
+
 # Ignore emoji map file
 /app/javascript/mastodon/features/emoji/emoji_map.json
 
@@ -76,3 +80,6 @@ app/javascript/styles/mastodon/reset.scss
 
 # Ignore the generated AUTHORS.md
 AUTHORS.md
+
+# Process a few selected JS files
+!lint-staged.config.js

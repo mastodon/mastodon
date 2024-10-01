@@ -1,8 +1,5 @@
-inherits_from: .haml-lint_todo.yml
-
 exclude:
   - 'vendor/**/*'
-  - lib/templates/haml/scaffold/_form.html.haml
 
 require:
   - ./lib/linter/haml_middle_dot.rb
@@ -12,3 +9,7 @@ linters:
     enabled: true
   MiddleDot:
     enabled: true
+  LineLength:
+    max: 300
+  ViewLength:
+    max: 200 # Override default value of 100 inherited from rubocop

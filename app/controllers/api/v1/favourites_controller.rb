@@ -13,15 +13,15 @@ class Api::V1::FavouritesController < Api::BaseController
   private
 
   def load_statuses
-    cached_favourites
+    preloaded_favourites
   end
 
-  def cached_favourites
-    cache_collection(results.map(&:status), Status)
+  def preloaded_favourites
+    preload_collection(results.map(&:status), Status)
   end
 
   def results
-    @_results ||= account_favourites.joins(:status).eager_load(:status).to_a_paginated_by_id(
+    @results ||= account_favourites.joins(:status).eager_load(:status).to_a_paginated_by_id(
       limit_param(DEFAULT_STATUSES_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )
@@ -29,10 +29,6 @@ class Api::V1::FavouritesController < Api::BaseController
 
   def account_favourites
     current_account.favourites
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
   end
 
   def next_path
@@ -43,19 +39,11 @@ class Api::V1::FavouritesController < Api::BaseController
     api_v1_favourites_url pagination_params(min_id: pagination_since_id) unless results.empty?
   end
 
-  def pagination_max_id
-    results.last.id
-  end
-
-  def pagination_since_id
-    results.first.id
+  def pagination_collection
+    results
   end
 
   def records_continue?
     results.size == limit_param(DEFAULT_STATUSES_LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end

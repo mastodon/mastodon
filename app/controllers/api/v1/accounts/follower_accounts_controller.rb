@@ -21,16 +21,16 @@ class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
     return [] if hide_results?
 
     scope = default_accounts
-    scope = scope.where.not(id: current_account.excluded_from_timeline_account_ids) unless current_account.nil? || current_account.id == @account.id
+    scope = scope.not_excluded_by_account(current_account) unless current_account.nil? || current_account.id == @account.id
     scope.merge(paginated_follows).to_a
   end
 
   def hide_results?
-    @account.suspended? || (@account.hides_followers? && current_account&.id != @account.id) || (current_account && @account.blocking?(current_account))
+    @account.unavailable? || (@account.hides_followers? && current_account&.id != @account.id) || (current_account && @account.blocking?(current_account))
   end
 
   def default_accounts
-    Account.includes(:active_relationships, :account_stat).references(:active_relationships)
+    Account.includes(:active_relationships, :account_stat, :user).references(:active_relationships)
   end
 
   def paginated_follows
@@ -39,10 +39,6 @@ class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
       params[:max_id],
       params[:since_id]
     )
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
   end
 
   def next_path
@@ -63,9 +59,5 @@ class Api::V1::Accounts::FollowerAccountsController < Api::BaseController
 
   def records_continue?
     @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end

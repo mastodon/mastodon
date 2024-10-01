@@ -15,6 +15,12 @@ es:
       user/invite_request:
         text: Razón
     errors:
+      attributes:
+        domain:
+          invalid: no es un nombre de dominio válido
+      messages:
+        invalid_domain_on_line: "%{value} no es un nombre de dominio válido"
+        too_many_lines: excede el límite de %{limit} líneas
       models:
         account:
           attributes:
@@ -36,7 +42,7 @@ es:
         status:
           attributes:
             reblog:
-              taken: del estado ya existe
+              taken: de la publicación ya existe
         user:
           attributes:
             email:
@@ -53,3 +59,7 @@ es:
             position:
               elevated: no puede ser mayor que tu rol actual
               own_role: no se puede cambiar con tu rol actual
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: no puede incluir eventos para los que no tienes permisos

@@ -5,7 +5,6 @@ class FiltersController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_filter, only: [:edit, :update, :destroy]
-  before_action :set_body_classes
   before_action :set_cache_headers
 
   def index
@@ -25,7 +24,7 @@ class FiltersController < ApplicationController
     if @filter.save
       redirect_to filters_path
     else
-      render action: :new
+      render :new
     end
   end
 
@@ -33,7 +32,7 @@ class FiltersController < ApplicationController
     if @filter.update(resource_params)
       redirect_to filters_path
     else
-      render action: :edit
+      render :edit
     end
   end
 
@@ -50,10 +49,6 @@ class FiltersController < ApplicationController
 
   def resource_params
     params.require(:custom_filter).permit(:title, :expires_in, :filter_action, context: [], keywords_attributes: [:id, :keyword, :whole_word, :_destroy])
-  end
-
-  def set_body_classes
-    @body_classes = 'admin'
   end
 
   def set_cache_headers

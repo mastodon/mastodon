@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'The catch all route' do
+RSpec.describe 'The catch all route' do
   describe 'with a simple value' do
     it 'returns a 404 page as html' do
       get '/test'

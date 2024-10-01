@@ -55,7 +55,7 @@ export function toShortNumber(sourceNumber: number): ShortNumber {
  */
 export function pluralReady(
   sourceNumber: number,
-  division: DecimalUnits
+  division: DecimalUnits | null,
 ): number {
   if (division == null || division < DECIMAL_UNITS.HUNDRED) {
     return sourceNumber;
@@ -68,4 +68,12 @@ export function pluralReady(
 
 export function roundTo10(num: number): number {
   return Math.round(num * 0.1) / 0.1;
+}
+
+export function toCappedNumber(num: number, max = 99): string {
+  if (num > max) {
+    return `${max}+`;
+  } else {
+    return num.toString();
+  }
 }

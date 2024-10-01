@@ -10,10 +10,10 @@ export const POLL_FETCH_REQUEST = 'POLL_FETCH_REQUEST';
 export const POLL_FETCH_SUCCESS = 'POLL_FETCH_SUCCESS';
 export const POLL_FETCH_FAIL    = 'POLL_FETCH_FAIL';
 
-export const vote = (pollId, choices) => (dispatch, getState) => {
+export const vote = (pollId, choices) => (dispatch) => {
   dispatch(voteRequest());
 
-  api(getState).post(`/api/v1/polls/${pollId}/votes`, { choices })
+  api().post(`/api/v1/polls/${pollId}/votes`, { choices })
     .then(({ data }) => {
       dispatch(importFetchedPoll(data));
       dispatch(voteSuccess(data));
@@ -21,10 +21,10 @@ export const vote = (pollId, choices) => (dispatch, getState) => {
     .catch(err => dispatch(voteFail(err)));
 };
 
-export const fetchPoll = pollId => (dispatch, getState) => {
+export const fetchPoll = pollId => (dispatch) => {
   dispatch(fetchPollRequest());
 
-  api(getState).get(`/api/v1/polls/${pollId}`)
+  api().get(`/api/v1/polls/${pollId}`)
     .then(({ data }) => {
       dispatch(importFetchedPoll(data));
       dispatch(fetchPollSuccess(data));

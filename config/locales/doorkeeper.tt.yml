@@ -1,12 +1,48 @@
 ---
 tt:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        scopes: Рөхсәтләр
   doorkeeper:
     applications:
       buttons:
         cancel: Баш тарту
+        destroy: Бетерү
         edit: Үзгәртү
         submit: Җибәрү
       index:
+        application: Кушымта
         delete: Бетерү
         name: Исем
+        scopes: Рөхсәтләр
         show: Күрсәтү
+      show:
+        actions: Гамәлләр
+        application_id: Клиент ачкычы
+        scopes: Рөхсәтләр
+    authorizations:
+      buttons:
+        deny: Тыю
+    authorized_applications:
+      buttons:
+        revoke: Кире алу
+      confirmations:
+        revoke: Раслыйсызмы?
+      index:
+        scopes: Рөхсәтләр
+    grouped_scopes:
+      title:
+        blocks: Блоклаулар
+        bookmarks: Кыстыргычлар
+        conversations: Әңгәмәләр
+        filters: Сезгечләр
+        lists: Исемлекләр
+        notifications: Искәртүләр
+        push: Push-искәртүләр
+        search: Эзләү
+        statuses: Язмалар
+    layouts:
+      admin:
+        nav:
+          oauth2_provider: OAuth2 провайдеры

@@ -2,11 +2,14 @@
 
 class ActivityPub::ProcessCollectionService < BaseService
   include JsonLdHelper
+  include DomainControlHelper
 
   def call(body, actor, **options)
     @account = actor
     @json    = original_json = Oj.load(body, mode: :strict)
     @options = options
+
+    return unless @json.is_a?(Hash)
 
     begin
       @json = compact(@json) if @json['signature'].is_a?(Hash)
@@ -67,6 +70,9 @@ class ActivityPub::ProcessCollectionService < BaseService
   end
 
   def verify_account!
+    return unless @json['signature'].is_a?(Hash)
+    return if domain_not_allowed?(@json['signature']['creator'])
+
     @options[:relayed_through_actor] = @account
     @account = ActivityPub::LinkedDataSignature.new(@json).verify_actor!
     @account = nil unless @account.is_a?(Account)

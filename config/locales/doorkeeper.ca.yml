@@ -60,7 +60,7 @@ ca:
       error:
         title: S'ha produït un error
       new:
-        prompt_html: "%{client_name} vol permís per accedir el teu compte. És una aplicació de tercers. <strong>Si no hi confies, no hauries d'autoritzar-la.</strong>"
+        prompt_html: "%{client_name} demana accés al vostre compte. <strong>Només aproveu aquesta petició si reconeixeu i confieu en aquest origen.</strong>"
         review_permissions: Revisa els permisos
         title: Cal autorizació
       show:
@@ -83,6 +83,7 @@ ca:
         access_denied: El propietari del recurs o servidor d'autorizació ha denegat la petició.
         credential_flow_not_configured: Les credencials de contrasenya del propietari del recurs han fallat degut a que Doorkeeper.configure.resource_owner_from_credentials està sense configurar.
         invalid_client: La autentificació del client ha fallat perquè és un client desconegut o no està inclòsa l'autentificació del client o el mètode d'autenticació no està confirmat.
+        invalid_code_challenge_method: El mètode de desafiament de codi ha de ser S256, no es permet que sigui pla.
         invalid_grant: La concessió d'autorizació oferta és invàlida, ha vençut, s'ha revocat, no coincideix amb l'URI de redirecció utilizada en la petició d'autorizació, o fou emesa per a un altre client.
         invalid_redirect_uri: L'uri de redirecció inclòsa no és vàlida.
         invalid_request:
@@ -127,7 +128,7 @@ ca:
         bookmarks: Marcadors
         conversations: Converses
         crypto: Xifrat d'extrem a extrem
-        favourites: Preferits
+        favourites: Favorits
         filters: Filtres
         follow: Seguits, Silenciats i Blocats
         follows: Seguits
@@ -135,6 +136,7 @@ ca:
         media: Adjunts multimèdia
         mutes: Silenciats
         notifications: Notificacions
+        profile: El vostre perfil de Mastodon
         push: Notificacions push
         reports: Informes
         search: Cerca
@@ -150,11 +152,11 @@ ca:
       admin:read: llegeix totes les dades en el servidor
       admin:read:accounts: llegir informació confidencial de tots els comptes
       admin:read:canonical_email_blocks: llegeix informació sensible de tots els blocs canònics de correu-e
-      admin:read:domain_allows: llegeix informació sensible de tots els dominis permesos
-      admin:read:domain_blocks: llegeix informació sensible de tots els blocs de domini
-      admin:read:email_domain_blocks: llegeix informació sensible de tots els blocs de domini de correu-e
-      admin:read:ip_blocks: llegeix informació sensible de tots els blocs d'IP
-      admin:read:reports: llegir informació confidencial de tots els informes i comptes reportats
+      admin:read:domain_allows: llegeix informació confidencial de tots els dominis permesos
+      admin:read:domain_blocks: llegeix informació confidencial de tots els blocs de domini
+      admin:read:email_domain_blocks: llegeix informació confidencial de tots els blocs de domini de correu-e
+      admin:read:ip_blocks: llegeix informació confidencial de tots els blocs d'IP
+      admin:read:reports: llegeix informació confidencial de tots els informes i comptes reportats
       admin:write: modificar totes les dades en el servidor
       admin:write:accounts: fer l'acció de moderació en els comptes
       admin:write:canonical_email_blocks: executa accions de moderació en blocs canònics de correu-e
@@ -165,12 +167,13 @@ ca:
       admin:write:reports: fer l'acció de moderació en els informes
       crypto: usa xifrat d'extrem a extrem
       follow: modifica les relacions del compte
+      profile: només llegir la informació del perfil del vostre compte
       push: rebre notificacions push del teu compte
       read: llegir les dades del teu compte
       read:accounts: mira informació dels comptes
       read:blocks: mira els teus bloqueigs
       read:bookmarks: mira els teus marcadors
-      read:favourites: mira els teus preferits
+      read:favourites: mira els teus favorits
       read:filters: mira els teus filtres
       read:follows: mira els teus seguiments
       read:lists: mira les teves llistes
@@ -184,7 +187,7 @@ ca:
       write:blocks: bloca comptes i dominis
       write:bookmarks: marca tuts
       write:conversations: silencia i esborra converses
-      write:favourites: afavoreix tuts
+      write:favourites: tuts favorits
       write:filters: crea filtres
       write:follows: segueix gent
       write:lists: crea llistes

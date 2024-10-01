@@ -2,6 +2,7 @@
 
 const { basename, dirname, join, relative, resolve } = require('path');
 
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 const { sync } = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const extname = require('path-complete-extname');
@@ -34,6 +35,7 @@ module.exports = {
     chunkFilename: 'js/[name]-[chunkhash].chunk.js',
     hotUpdateChunkFilename: 'js/[id]-[hash].hot-update.js',
     hashFunction: 'sha256',
+    crossOriginLoading: 'anonymous',
     path: output.path,
     publicPath: output.publicPath,
   },
@@ -83,6 +85,9 @@ module.exports = {
       writeToDisk: true,
       publicPath: true,
     }),
+    new CircularDependencyPlugin({
+      failOnError: true,
+    })
   ],
 
   resolve: {
@@ -91,6 +96,9 @@ module.exports = {
       resolve(settings.source_path),
       'node_modules',
     ],
+    alias: {
+      "@": resolve(settings.source_path),
+    }
   },
 
   resolveLoader: {

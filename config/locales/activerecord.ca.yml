@@ -15,6 +15,12 @@ ca:
       user/invite_request:
         text: Motiu
     errors:
+      attributes:
+        domain:
+          invalid: no és un nom de domini vàlid
+      messages:
+        invalid_domain_on_line: "%{value} no és un nom de domini vàlid"
+        too_many_lines: sobrepassa el límit de %{limit} línies
       models:
         account:
           attributes:
@@ -24,11 +30,11 @@ ca:
         admin/webhook:
           attributes:
             url:
-              invalid: no és una URL vàlida
+              invalid: no és un enllaç vàlid
         doorkeeper/application:
           attributes:
             website:
-              invalid: no és una URL vàlida
+              invalid: no és un enllaç vàlid
         import:
           attributes:
             data:
@@ -53,3 +59,7 @@ ca:
             position:
               elevated: no pot ser superior al teu rol actual
               own_role: no es pot canviar amb el teu rol actual
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: no pots incloure esdeveniments que no en tens permisos

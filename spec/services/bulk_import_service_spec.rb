@@ -13,13 +13,6 @@ RSpec.describe BulkImportService do
   end
 
   describe '#call' do
-    around do |example|
-      Sidekiq::Testing.fake! do
-        example.run
-        Sidekiq::Worker.clear_all
-      end
-    end
-
     context 'when importing follows' do
       let(:import_type) { 'following' }
       let(:overwrite)   { false }
@@ -54,7 +47,7 @@ RSpec.describe BulkImportService do
 
         Import::RowWorker.drain
 
-        expect(FollowRequest.includes(:target_account).where(account: account).map(&:target_account).map(&:acct)).to contain_exactly('user@foo.bar', 'unknown@unknown.bar')
+        expect(FollowRequest.includes(:target_account).where(account: account).map { |follow_request| follow_request.target_account.acct }).to contain_exactly('user@foo.bar', 'unknown@unknown.bar')
       end
     end
 
@@ -102,7 +95,7 @@ RSpec.describe BulkImportService do
 
         Import::RowWorker.drain
 
-        expect(FollowRequest.includes(:target_account).where(account: account).map(&:target_account).map(&:acct)).to contain_exactly('user@foo.bar', 'unknown@unknown.bar')
+        expect(FollowRequest.includes(:target_account).where(account: account).map { |follow_request| follow_request.target_account.acct }).to contain_exactly('user@foo.bar', 'unknown@unknown.bar')
       end
     end
 
@@ -278,26 +271,27 @@ RSpec.describe BulkImportService do
       let(:import_type) { 'domain_blocking' }
       let(:overwrite)   { false }
 
-      let!(:rows) do
+      let(:rows) do
         [
           { 'domain' => 'blocked.com' },
-          { 'domain' => 'to_block.com' },
-        ].map { |data| import.rows.create!(data: data) }
+          { 'domain' => 'to-block.com' },
+        ]
       end
 
       before do
+        rows.each { |data| import.rows.create!(data: data) }
         account.block_domain!('alreadyblocked.com')
         account.block_domain!('blocked.com')
       end
 
       it 'blocks all the new domains' do
         subject.call(import)
-        expect(account.domain_blocks.pluck(:domain)).to contain_exactly('alreadyblocked.com', 'blocked.com', 'to_block.com')
+        expect(account.domain_blocks.pluck(:domain)).to contain_exactly('alreadyblocked.com', 'blocked.com', 'to-block.com')
       end
 
       it 'marks the import as finished' do
         subject.call(import)
-        expect(import.reload.finished?).to be true
+        expect(import.reload.state_finished?).to be true
       end
     end
 
@@ -305,26 +299,27 @@ RSpec.describe BulkImportService do
       let(:import_type) { 'domain_blocking' }
       let(:overwrite)   { true }
 
-      let!(:rows) do
+      let(:rows) do
         [
           { 'domain' => 'blocked.com' },
-          { 'domain' => 'to_block.com' },
-        ].map { |data| import.rows.create!(data: data) }
+          { 'domain' => 'to-block.com' },
+        ]
       end
 
       before do
+        rows.each { |data| import.rows.create!(data: data) }
         account.block_domain!('alreadyblocked.com')
         account.block_domain!('blocked.com')
       end
 
       it 'blocks all the new domains' do
         subject.call(import)
-        expect(account.domain_blocks.pluck(:domain)).to contain_exactly('blocked.com', 'to_block.com')
+        expect(account.domain_blocks.pluck(:domain)).to contain_exactly('blocked.com', 'to-block.com')
       end
 
       it 'marks the import as finished' do
         subject.call(import)
-        expect(import.reload.finished?).to be true
+        expect(import.reload.state_finished?).to be true
       end
     end
 
@@ -367,7 +362,7 @@ RSpec.describe BulkImportService do
 
         Import::RowWorker.drain
 
-        expect(account.bookmarks.map(&:status).map(&:uri)).to contain_exactly(already_bookmarked.uri, status.uri, bookmarked.uri, 'https://domain.unknown/foo')
+        expect(account.bookmarks.map { |bookmark| bookmark.status.uri }).to contain_exactly(already_bookmarked.uri, status.uri, bookmarked.uri, 'https://domain.unknown/foo')
       end
     end
 
@@ -410,7 +405,7 @@ RSpec.describe BulkImportService do
 
         Import::RowWorker.drain
 
-        expect(account.bookmarks.map(&:status).map(&:uri)).to contain_exactly(status.uri, bookmarked.uri, 'https://domain.unknown/foo')
+        expect(account.bookmarks.map { |bookmark| bookmark.status.uri }).to contain_exactly(status.uri, bookmarked.uri, 'https://domain.unknown/foo')
       end
     end
   end

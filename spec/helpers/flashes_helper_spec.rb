@@ -2,18 +2,25 @@
 
 require 'rails_helper'
 
-describe FlashesHelper do
+RSpec.describe FlashesHelper do
   describe 'user_facing_flashes' do
-    it 'returns user facing flashes' do
+    before do
+      # rubocop:disable Rails/I18nLocaleTexts
       flash[:alert] = 'an alert'
       flash[:error] = 'an error'
       flash[:notice] = 'a notice'
       flash[:success] = 'a success'
       flash[:not_user_facing] = 'a not user facing flash'
-      expect(helper.user_facing_flashes).to eq 'alert' => 'an alert',
-                                               'error' => 'an error',
-                                               'notice' => 'a notice',
-                                               'success' => 'a success'
+      # rubocop:enable Rails/I18nLocaleTexts
+    end
+
+    it 'returns user facing flashes' do
+      expect(helper.user_facing_flashes).to eq(
+        'alert' => 'an alert',
+        'error' => 'an error',
+        'notice' => 'a notice',
+        'success' => 'a success'
+      )
     end
   end
 end

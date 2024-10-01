@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe TranslateStatusService, type: :service do
+RSpec.describe TranslateStatusService do
   subject(:service) { described_class.new }
 
   let(:status) { Fabricate(:status, text: text, spoiler_text: spoiler_text, language: 'en', preloadable_poll: poll, media_attachments: media_attachments) }
@@ -29,8 +29,7 @@ RSpec.describe TranslateStatusService, type: :service do
         end
       end
 
-      allow(TranslationService).to receive(:configured?).and_return(true)
-      allow(TranslationService).to receive(:configured).and_return(translation_service)
+      allow(TranslationService).to receive_messages(configured?: true, configured: translation_service)
     end
 
     it 'returns translated status content' do

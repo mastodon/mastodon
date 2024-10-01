@@ -75,7 +75,9 @@ class TranslateStatusService < BaseService
 
       case source
       when :content
-        status_translation.content = unwrap_emoji_shortcodes(translation.text).to_html
+        node = unwrap_emoji_shortcodes(translation.text)
+        Sanitize.node!(node, Sanitize::Config::MASTODON_STRICT)
+        status_translation.content = node.to_html
       when :spoiler_text
         status_translation.spoiler_text = unwrap_emoji_shortcodes(translation.text).content
       when Poll::Option
@@ -98,7 +100,7 @@ class TranslateStatusService < BaseService
   end
 
   def unwrap_emoji_shortcodes(html)
-    fragment = Nokogiri::HTML.fragment(html)
+    fragment = Nokogiri::HTML5.fragment(html)
     fragment.css('span[translate="no"]').each do |element|
       element.remove_attribute('translate')
       element.replace(element.children) if element.attributes.empty?

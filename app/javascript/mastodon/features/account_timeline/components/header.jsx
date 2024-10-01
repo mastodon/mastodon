@@ -12,10 +12,10 @@ import InnerHeader from '../../account/components/header';
 import MemorialNote from './memorial_note';
 import MovedNote from './moved_note';
 
-export default class Header extends ImmutablePureComponent {
+class Header extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map,
+    account: ImmutablePropTypes.record,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
@@ -36,10 +36,6 @@ export default class Header extends ImmutablePureComponent {
     hidden: PropTypes.bool,
   };
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   handleFollow = () => {
     this.props.onFollow(this.props.account);
   };
@@ -49,11 +45,11 @@ export default class Header extends ImmutablePureComponent {
   };
 
   handleMention = () => {
-    this.props.onMention(this.props.account, this.context.router.history);
+    this.props.onMention(this.props.account);
   };
 
   handleDirect = () => {
-    this.props.onDirect(this.props.account, this.context.router.history);
+    this.props.onDirect(this.props.account);
   };
 
   handleReport = () => {
@@ -73,11 +69,7 @@ export default class Header extends ImmutablePureComponent {
   };
 
   handleBlockDomain = () => {
-    const domain = this.props.account.get('acct').split('@')[1];
-
-    if (!domain) return;
-
-    this.props.onBlockDomain(domain);
+    this.props.onBlockDomain(this.props.account);
   };
 
   handleUnblockDomain = () => {
@@ -159,3 +151,5 @@ export default class Header extends ImmutablePureComponent {
   }
 
 }
+
+export default Header;
