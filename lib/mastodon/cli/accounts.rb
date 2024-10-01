@@ -39,8 +39,7 @@ module Mastodon::CLI
         rotate_keys_for_account(Account.find_local(username))
         say('OK', :green)
       else
-        say('No account(s) given', :red)
-        exit(1)
+        fail_with_message 'No account(s) given'
       end
     end
 
@@ -74,10 +73,7 @@ module Mastodon::CLI
       if options[:role]
         role = UserRole.find_by(name: options[:role])
 
-        if role.nil?
-          say('Cannot find user role with that name', :red)
-          exit(1)
-        end
+        fail_with_message 'Cannot find user role with that name' if role.nil?
 
         role_id = role.id
       end
@@ -105,7 +101,7 @@ module Mastodon::CLI
       if user.save
         if options[:confirmed]
           user.confirmed_at = nil
-          user.confirm!
+          user.mark_email_as_confirmed!
         end
 
         user.approve! if options[:approve]
@@ -114,7 +110,6 @@ module Mastodon::CLI
         say("New password: #{password}")
       else
         report_errors(user.errors)
-        exit(1)
       end
     end
 
@@ -152,18 +147,12 @@ module Mastodon::CLI
     def modify(username)
       user = Account.find_local(username)&.user
 
-      if user.nil?
-        say('No user with such username', :red)
-        exit(1)
-      end
+      fail_with_message 'No user with such username' if user.nil?
 
       if options[:role]
         role = UserRole.find_by(name: options[:role])
 
-        if role.nil?
-          say('Cannot find user role with that name', :red)
-          exit(1)
-        end
+        fail_with_message 'Cannot find user role with that name' if role.nil?
 
         user.role_id = role.id
       elsif options[:remove_role]
@@ -185,7 +174,6 @@ module Mastodon::CLI
         say("New password: #{password}") if options[:reset_password]
       else
         report_errors(user.errors)
-        exit(1)
       end
     end
 
@@ -200,27 +188,19 @@ module Mastodon::CLI
     LONG_DESC
     def delete(username = nil)
       if username.present? && options[:email].present?
-        say('Use username or --email, not both', :red)
-        exit(1)
+        fail_with_message  'Use username or --email, not both'
       elsif username.blank? && options[:email].blank?
-        say('No username provided', :red)
-        exit(1)
+        fail_with_message 'No username provided'
       end
 
       account = nil
 
       if username.present?
         account = Account.find_local(username)
-        if account.nil?
-          say('No user with such username', :red)
-          exit(1)
-        end
+        fail_with_message 'No user with such username' if account.nil?
       else
         account = Account.left_joins(:user).find_by(user: { email: options[:email] })
-        if account.nil?
-          say('No user with such email', :red)
-          exit(1)
-        end
+        fail_with_message 'No user with such email' if account.nil?
       end
 
       say("Deleting user with #{account.statuses_count} statuses, this might take a while...#{dry_run_mode_suffix}")
@@ -243,23 +223,18 @@ module Mastodon::CLI
       username, domain = from_acct.split('@')
       from_account = Account.find_remote(username, domain)
 
-      if from_account.nil? || from_account.local?
-        say("No such account (#{from_acct})", :red)
-        exit(1)
-      end
+      fail_with_message "No such account (#{from_acct})" if from_account.nil? || from_account.local?
 
       username, domain = to_acct.split('@')
       to_account = Account.find_remote(username, domain)
 
-      if to_account.nil? || to_account.local?
-        say("No such account (#{to_acct})", :red)
-        exit(1)
-      end
+      fail_with_message "No such account (#{to_acct})" if to_account.nil? || to_account.local?
 
       if from_account.public_key != to_account.public_key && !options[:force]
-        say("Accounts don't have the same public key, might not be duplicates!", :red)
-        say('Override with --force', :red)
-        exit(1)
+        fail_with_message <<~ERROR
+          Accounts don't have the same public key, might not be duplicates!
+          Override with --force
+        ERROR
       end
 
       to_account.merge_with!(from_account)
@@ -277,7 +252,7 @@ module Mastodon::CLI
       domain configuration.
     LONG_DESC
     def fix_duplicates
-      Account.remote.select(:uri, 'count(*)').group(:uri).having('count(*) > 1').pluck(:uri).each do |uri|
+      Account.remote.duplicate_uris.pluck(:uri).each do |uri|
         say("Duplicates found for #{uri}")
         begin
           ActivityPub::FetchRemoteAccountService.new.call(uri) unless dry_run?
@@ -298,10 +273,7 @@ module Mastodon::CLI
     def backup(username)
       account = Account.find_local(username)
 
-      if account.nil?
-        say('No user with such username', :red)
-        exit(1)
-      end
+      fail_with_message 'No user with such username' if account.nil?
 
       backup = account.user.backups.create!
       BackupWorker.perform_async(backup.id)
@@ -323,7 +295,7 @@ module Mastodon::CLI
       skip_threshold = 7.days.ago
       skip_domains   = Concurrent::Set.new
 
-      query = Account.remote.where(protocol: :activitypub)
+      query = Account.remote.activitypub
       query = query.where(domain: domains) unless domains.empty?
 
       processed, culled = parallelize_with_progress(query.partitioned) do |account|
@@ -387,10 +359,7 @@ module Mastodon::CLI
           user, domain = user.split('@')
           account = Account.find_remote(user, domain)
 
-          if account.nil?
-            say('No such account', :red)
-            exit(1)
-          end
+          fail_with_message 'No such account' if account.nil?
 
           next if dry_run?
 
@@ -405,8 +374,7 @@ module Mastodon::CLI
 
         say("OK#{dry_run_mode_suffix}", :green)
       else
-        say('No account(s) given', :red)
-        exit(1)
+        fail_with_message 'No account(s) given'
       end
     end
 
@@ -416,10 +384,7 @@ module Mastodon::CLI
     def follow(username)
       target_account = Account.find_local(username)
 
-      if target_account.nil?
-        say('No such account', :red)
-        exit(1)
-      end
+      fail_with_message 'No such account' if target_account.nil?
 
       processed, = parallelize_with_progress(Account.local.without_suspended) do |account|
         FollowService.new.call(account, target_account, bypass_limit: true)
@@ -435,10 +400,7 @@ module Mastodon::CLI
       username, domain = acct.split('@')
       target_account = Account.find_remote(username, domain)
 
-      if target_account.nil?
-        say('No such account', :red)
-        exit(1)
-      end
+      fail_with_message 'No such account' if target_account.nil?
 
       processed, = parallelize_with_progress(target_account.followers.local) do |account|
         UnfollowService.new.call(account, target_account)
@@ -459,28 +421,20 @@ module Mastodon::CLI
       With the --followers option, the command removes all followers of the account.
     LONG_DESC
     def reset_relationships(username)
-      unless options[:follows] || options[:followers]
-        say('Please specify either --follows or --followers, or both', :red)
-        exit(1)
-      end
+      fail_with_message 'Please specify either --follows or --followers, or both' unless options[:follows] || options[:followers]
 
       account = Account.find_local(username)
 
-      if account.nil?
-        say('No such account', :red)
-        exit(1)
-      end
+      fail_with_message 'No such account' if account.nil?
 
       total     = 0
-      total    += Account.where(id: ::Follow.where(account: account).select(:target_account_id)).count if options[:follows]
-      total    += Account.where(id: ::Follow.where(target_account: account).select(:account_id)).count if options[:followers]
+      total    += account.following.reorder(nil).count if options[:follows]
+      total    += account.followers.reorder(nil).count if options[:followers]
       progress  = create_progress_bar(total)
       processed = 0
 
       if options[:follows]
-        scope = Account.where(id: ::Follow.where(account: account).select(:target_account_id))
-
-        scope.find_each do |target_account|
+        account.following.reorder(nil).find_each do |target_account|
           UnfollowService.new.call(account, target_account)
         rescue => e
           progress.log pastel.red("Error processing #{target_account.id}: #{e}")
@@ -493,9 +447,7 @@ module Mastodon::CLI
       end
 
       if options[:followers]
-        scope = Account.where(id: ::Follow.where(target_account: account).select(:account_id))
-
-        scope.find_each do |target_account|
+        account.followers.reorder(nil).find_each do |target_account|
           UnfollowService.new.call(target_account, account)
         rescue => e
           progress.log pastel.red("Error processing #{target_account.id}: #{e}")
@@ -519,6 +471,8 @@ module Mastodon::CLI
       account identified by its username.
     LONG_DESC
     def approve(username = nil)
+      fail_with_message 'Number must be positive' if options[:number]&.negative?
+
       if options[:all]
         User.pending.find_each(&:approve!)
         say('OK', :green)
@@ -528,16 +482,10 @@ module Mastodon::CLI
       elsif username.present?
         account = Account.find_local(username)
 
-        if account.nil?
-          say('No such account', :red)
-          exit(1)
-        end
+        fail_with_message 'No such account' if account.nil?
 
         account.user&.approve!
         say('OK', :green)
-      else
-        say('Number must be positive', :red) if options[:number]
-        exit(1)
       end
     end
 
@@ -554,17 +502,7 @@ module Mastodon::CLI
       - not muted/blocked by us
     LONG_DESC
     def prune
-      query = Account.remote.where.not(actor_type: %i(Application Service))
-      query = query.where('NOT EXISTS (SELECT 1 FROM mentions WHERE account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM favourites WHERE account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM statuses WHERE account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM follows WHERE account_id = accounts.id OR target_account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM blocks WHERE account_id = accounts.id OR target_account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM mutes WHERE target_account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM reports WHERE target_account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM follow_requests WHERE account_id = accounts.id OR target_account_id = accounts.id)')
-
-      _, deleted = parallelize_with_progress(query) do |account|
+      _, deleted = parallelize_with_progress(prunable_accounts) do |account|
         next if account.bot? || account.group?
         next if account.suspended?
         next if account.silenced?
@@ -591,56 +529,34 @@ module Mastodon::CLI
       redirects to a different account that the one specified.
     LONG_DESC
     def migrate(username)
-      if options[:replay].present? && options[:target].present?
-        say('Use --replay or --target, not both', :red)
-        exit(1)
-      end
+      fail_with_message 'Use --replay or --target, not both' if options[:replay].present? && options[:target].present?
 
-      if options[:replay].blank? && options[:target].blank?
-        say('Use either --replay or --target', :red)
-        exit(1)
-      end
+      fail_with_message 'Use either --replay or --target' if options[:replay].blank? && options[:target].blank?
 
       account = Account.find_local(username)
 
-      if account.nil?
-        say("No such account: #{username}", :red)
-        exit(1)
-      end
+      fail_with_message "No such account: #{username}" if account.nil?
 
       migration = nil
 
       if options[:replay]
         migration = account.migrations.last
-        if migration.nil?
-          say('The specified account has not performed any migration', :red)
-          exit(1)
-        end
+        fail_with_message 'The specified account has not performed any migration' if migration.nil?
 
-        unless options[:force] || migration.target_account_id == account.moved_to_account_id
-          say('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway', :red)
-          exit(1)
-        end
+        fail_with_message 'The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway' unless options[:force] || migration.target_account_id == account.moved_to_account_id
       end
 
       if options[:target]
         target_account = ResolveAccountService.new.call(options[:target])
 
-        if target_account.nil?
-          say("The specified target account could not be found: #{options[:target]}", :red)
-          exit(1)
-        end
+        fail_with_message "The specified target account could not be found: #{options[:target]}" if target_account.nil?
 
-        unless options[:force] || account.moved_to_account_id.nil? || account.moved_to_account_id == target_account.id
-          say('The specified account is redirecting to a different target account. Use --force if you want to change the migration target', :red)
-          exit(1)
-        end
+        fail_with_message 'The specified account is redirecting to a different target account. Use --force if you want to change the migration target' unless options[:force] || account.moved_to_account_id.nil? || account.moved_to_account_id == target_account.id
 
         begin
           migration = account.migrations.create!(acct: target_account.acct)
         rescue ActiveRecord::RecordInvalid => e
-          say("Error: #{e.message}", :red)
-          exit(1)
+          fail_with_message "Error: #{e.message}"
         end
       end
 
@@ -651,19 +567,44 @@ module Mastodon::CLI
 
     private
 
+    def prunable_accounts
+      Account
+        .remote
+        .non_automated
+        .where.not(referencing_account(Mention, :account_id))
+        .where.not(referencing_account(Favourite, :account_id))
+        .where.not(referencing_account(Status, :account_id))
+        .where.not(referencing_account(Follow, :account_id))
+        .where.not(referencing_account(Follow, :target_account_id))
+        .where.not(referencing_account(Block, :account_id))
+        .where.not(referencing_account(Block, :target_account_id))
+        .where.not(referencing_account(Mute, :target_account_id))
+        .where.not(referencing_account(Report, :target_account_id))
+        .where.not(referencing_account(FollowRequest, :account_id))
+        .where.not(referencing_account(FollowRequest, :target_account_id))
+    end
+
+    def referencing_account(model, attribute)
+      model
+        .where(model.arel_table[attribute].eq Account.arel_table[:id])
+        .select(1)
+        .arel
+        .exists
+    end
+
     def report_errors(errors)
-      errors.each do |error|
-        say('Failure/Error: ', :red)
-        say(error.attribute)
-        say("    #{error.type}", :red)
-      end
+      message = errors.map do |error|
+        <<~STRING
+          Failure/Error: #{error.attribute}
+              #{error.type}
+        STRING
+      end.join
+
+      fail_with_message message
     end
 
     def rotate_keys_for_account(account, delay = 0)
-      if account.nil?
-        say('No such account', :red)
-        exit(1)
-      end
+      fail_with_message 'No such account' if account.nil?
 
       old_key = account.private_key
       new_key = OpenSSL::PKey::RSA.new(2048)

@@ -1,0 +1,194 @@
+---
+ie:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nómine de aplication
+        redirect_uri: URI de redirection
+        scopes: Scopes
+        website: Situ web de aplication
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ne posse contener un fragment.
+              invalid_uri: deve esser un URI valid.
+              relative_uri: deve esser un URI absolut.
+              secured_uri: deve esser un URI de HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorisar
+        cancel: Anullar
+        destroy: Destructer
+        edit: Redacter
+        submit: Submisser
+      confirmations:
+        destroy: Es tu cert?
+      edit:
+        title: Modificar aplication
+      form:
+        error: Ups! Ples inspecter tui formul por possibil erras
+      help:
+        native_redirect_uri: Usar %{native_redirect_uri} por local provas
+        redirect_uri: Usar un linea per URI
+        scopes: Separar scopes con intersticies. Lassar blanc por usar li scopes predefinit.
+      index:
+        application: Aplication
+        callback_url: URL de retrovocada
+        delete: Deleter
+        empty: Tu have null aplicationes.
+        name: Nómine
+        new: Nov aplication
+        scopes: Scopes
+        show: Monstrar
+        title: Tui aplicationes
+      new:
+        title: Nov aplication
+      show:
+        actions: Actiones
+        application_id: Clave de client
+        callback_urls: URLs de retrovocada
+        scopes: Scopes
+        secret: Secrete de client
+        title: 'Aplication: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorisar
+        deny: Negar
+      error:
+        title: Alquo ha errat
+      new:
+        review_permissions: Inspecter permissiones
+        title: Autorisation besonat
+      show:
+        title: Copiar ti-ci code de autorisation e glutinar it al demanda.
+    authorized_applications:
+      buttons:
+        revoke: Revocar
+      confirmations:
+        revoke: Es tu cert?
+      index:
+        authorized_at: Autorisat ye %{date}
+        description_html: Hay aplicationes queles posse accesser tui conto tra li API. Si trova si aplicationes queles tu ne reconosse, o un aplication quel ha conduit se mal, tu posse revocar su accesse.
+        last_used_at: Ultimmen usat ye %{date}
+        never_used: Nequande usat
+        scopes: Permissiones
+        superapp: Intern
+        title: Tui autorisat aplicationes
+    errors:
+      messages:
+        access_denied: Demanda negat per li proprietario del ressurse o servitor de autorisation.
+        credential_flow_not_configured: Falliment de flution Resource Owner Pasword Credentials pro ínconfigurat Doorkeeper.configure.resource_owner_from_credentials.
+        invalid_client: Fallit autentification pro ínconosset client, manca de client-autentification, o ne subtenet metode de autentification.
+        invalid_grant: Li providet autorisation ó es ínvalid, expirat, revocat, ne acorda con li URI de redirection usat in li demanda de autorisation, ó ha esset emisset a un altri client.
+        invalid_redirect_uri: Li uri de redirection includet ne es valid.
+        invalid_request:
+          missing_param: 'Mancant postulat parametre: %{value}.'
+          request_not_authorized: Demanda besonant autorisation. Hay un mancant o ínvalid parametre besonat por autorisar li demanda.
+          unknown: Li petition manca un postulat parametre, include un ne apoyat parametre-valore, o es altrimen mal format.
+        invalid_resource_owner: Sive li credentiales de ressurse-proprietario providet es ínvalid, sive li ressurse-proprietario ne posse esser trovat
+        invalid_scope: Li scope demandat es ínvalid, ínconosset, o malformat.
+        invalid_token:
+          expired: Li access-clave expirat
+          revoked: Li access-clave esset revocat
+          unknown: Li accesse-clave es ínvalid
+        resource_owner_authenticator_not_configured: Sercha por Proprietario de Ressurse fallit pro ínconfigurat Doorkeeper.configure.resource_owner_authenticator.
+        server_error: Li servitor de autorisation incontrat un ínexpectat condition quel impedit it a plenar li demanda.
+        temporarily_unavailable: Li servitor de autorisation actualmen ne posse tractar li demanda pro un temporari supercargada o mantention del servitor.
+        unauthorized_client: Li client ne es autorisat a efectuar li demanda con ti-ci metode.
+        unsupported_grant_type: Li tip de autorisation concedet ne es subtenet per li autorisant servitor.
+        unsupported_response_type: Li autorisant servitor ne subtene ti-ci tip de response.
+    flash:
+      applications:
+        create:
+          notice: Aplication creat.
+        destroy:
+          notice: Aplication deletet.
+        update:
+          notice: Aplication actualisat.
+      authorized_applications:
+        destroy:
+          notice: Aplication revocat.
+    grouped_scopes:
+      access:
+        read: Accesse solmen por leer
+        read/write: Accesse por leer e scrir
+        write: Accesse solmen por scrir
+      title:
+        accounts: Contos
+        admin/accounts: Administration de contos
+        admin/all: Omni functiones administrativ
+        admin/reports: Administration de raportes
+        all: Plen accesse a tui conto Mastodon
+        blocks: Bloccas
+        bookmarks: Marcatores
+        conversations: Conversationes
+        crypto: Incription del cap al fine
+        favourites: Favorites
+        filters: Filtres
+        follow: Seques, silentias e bloccas
+        follows: Seque
+        lists: Listes
+        media: Medie-atachamentes
+        mutes: Silentias
+        notifications: Notificationes
+        push: Notificationes push
+        reports: Raportes
+        search: Serchar
+        statuses: Postas
+    layouts:
+      admin:
+        nav:
+          applications: Aplicationes
+          oauth2_provider: Provisor OAuth2
+      application:
+        title: Autorisation OAuth besonat
+    scopes:
+      admin:read: leer li tot data sur li servitor
+      admin:read:accounts: leer sensitiv information de omni contos
+      admin:read:canonical_email_blocks: leer sensitiv information pri omni canonic bloccas de e-posta
+      admin:read:domain_allows: leer sensitiv information pri omni permisses de dominia
+      admin:read:domain_blocks: leer sensitiv information pri omni bloccas de dominia
+      admin:read:email_domain_blocks: leer sensitiv information pri omni bloccas de dominia basat sur e-posta
+      admin:read:ip_blocks: leer sensitiv information pri omni bloccas de IP
+      admin:read:reports: leer sensitiv information pri omni raportes e raportat contos
+      admin:write: modificar li tot data sur li servitor
+      admin:write:accounts: far moderatori actiones sur contos
+      admin:write:canonical_email_blocks: far moderatori actiones sur canonic bloccas de e-posta
+      admin:write:domain_allows: far actiones de moderation sur permisses de dominia
+      admin:write:domain_blocks: far actiones de moderation sur bloccas de dominia
+      admin:write:email_domain_blocks: far actiones de moderation sur bloccas de dominia basat sur e-posta
+      admin:write:ip_blocks: fa moderatori actiones sur bloccas de IP
+      admin:write:reports: far moderatori actiones sur raportes
+      crypto: usar incription del cap al fine
+      follow: modifica li relationes del conto
+      push: reciver tui pussa-notificationes
+      read: lee omni datas de tui conto
+      read:accounts: vide li informationes pri li conto
+      read:blocks: vider tui bloccas
+      read:bookmarks: vider tui marcatores
+      read:favourites: vider tui favorites
+      read:filters: vider tui filtres
+      read:follows: vider tui sequitores
+      read:lists: vider tui listes
+      read:mutes: vider tui silentias
+      read:notifications: vider tui notificationes
+      read:reports: vider tui raportes
+      read:search: serchar in tui nómine
+      read:statuses: vider omni postas
+      write: modificar li tot data de tui conto
+      write:accounts: modifica tui profile
+      write:blocks: bloccar contos e dominias
+      write:bookmarks: marcar postas
+      write:conversations: silentiar e deleter conversationes
+      write:favourites: favorit postas
+      write:filters: crea filtres
+      write:follows: sequer homes
+      write:lists: crear listes
+      write:media: adcargar files de medie
+      write:mutes: silentiar persones e conversationes
+      write:notifications: aclarar tui notificationes
+      write:reports: raportar altri persones
+      write:statuses: publicar postas

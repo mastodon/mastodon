@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Trends::StatusesController do
+RSpec.describe Admin::Trends::StatusesController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }

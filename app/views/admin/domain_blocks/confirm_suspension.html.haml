@@ -2,7 +2,6 @@
   = t('.title', domain: Addressable::IDNA.to_unicode(@domain_block.domain))
 
 = simple_form_for @domain_block, url: admin_domain_blocks_path, method: :post do |f|
-
   %p.hint= t('.preamble_html', domain: Addressable::IDNA.to_unicode(@domain_block.domain))
   %ul.hint
     %li= t('.stop_communication')
@@ -15,7 +14,8 @@
 
   %hr.spacer
 
-  = react_admin_component :impact_report, domain: @domain_block.domain
+  = react_admin_component :impact_report,
+                          domain: @domain_block.domain
 
   .actions
     = link_to t('.cancel'), admin_instances_path, class: 'button button-tertiary'

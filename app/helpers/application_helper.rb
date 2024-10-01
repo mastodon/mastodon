@@ -28,14 +28,6 @@ module ApplicationHelper
     number_to_human(number, **options)
   end
 
-  def active_nav_class(*paths)
-    paths.any? { |path| current_page?(path) } ? 'active' : ''
-  end
-
-  def show_landing_strip?
-    !user_signed_in? && !single_user_mode?
-  end
-
   def open_registrations?
     Setting.registrations_mode == 'open'
   end
@@ -91,6 +83,14 @@ module ApplicationHelper
     end
   end
 
+  def html_title
+    safe_join(
+      [content_for(:page_title).to_s.chomp, title]
+      .compact_blank,
+      ' - '
+    )
+  end
+
   def title
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
@@ -102,40 +102,46 @@ module ApplicationHelper
   def can?(action, record)
     return false if record.nil?
 
-    policy(record).public_send("#{action}?")
+    policy(record).public_send(:"#{action}?")
   end
 
-  def fa_icon(icon, attributes = {})
-    class_names = attributes[:class]&.split(' ') || []
-    class_names << 'fa'
-    class_names += icon.split.map { |cl| "fa-#{cl}" }
-
-    content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
+  def material_symbol(icon, attributes = {})
+    safe_join(
+      [
+        inline_svg_tag(
+          "400-24px/#{icon}.svg",
+          class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
+          role: :img,
+          data: attributes[:data]
+        ),
+        ' ',
+      ]
+    )
   end
 
   def check_icon
-    content_tag(:svg, tag.path('fill-rule': 'evenodd', 'clip-rule': 'evenodd', d: 'M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z'), xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 20 20', fill: 'currentColor')
+    inline_svg_tag 'check.svg'
   end
 
   def visibility_icon(status)
     if status.public_visibility?
-      fa_icon('globe', title: I18n.t('statuses.visibilities.public'))
+      material_symbol('globe', title: I18n.t('statuses.visibilities.public'))
     elsif status.unlisted_visibility?
-      fa_icon('unlock', title: I18n.t('statuses.visibilities.unlisted'))
+      material_symbol('lock_open', title: I18n.t('statuses.visibilities.unlisted'))
     elsif status.private_visibility? || status.limited_visibility?
-      fa_icon('lock', title: I18n.t('statuses.visibilities.private'))
+      material_symbol('lock', title: I18n.t('statuses.visibilities.private'))
     elsif status.direct_visibility?
-      fa_icon('at', title: I18n.t('statuses.visibilities.direct'))
+      material_symbol('alternate_email', title: I18n.t('statuses.visibilities.direct'))
     end
   end
 
   def interrelationships_icon(relationships, account_id)
     if relationships.following[account_id] && relationships.followed_by[account_id]
-      fa_icon('exchange', title: I18n.t('relationships.mutual'), class: 'fa-fw active passive')
+      material_symbol('sync_alt', title: I18n.t('relationships.mutual'), class: 'active passive')
     elsif relationships.following[account_id]
-      fa_icon(locale_direction == 'ltr' ? 'arrow-right' : 'arrow-left', title: I18n.t('relationships.following'), class: 'fa-fw active')
+      material_symbol(locale_direction == 'ltr' ? 'arrow_right_alt' : 'arrow_left_alt', title: I18n.t('relationships.following'), class: 'active')
     elsif relationships.followed_by[account_id]
-      fa_icon(locale_direction == 'ltr' ? 'arrow-left' : 'arrow-right', title: I18n.t('relationships.followers'), class: 'fa-fw passive')
+      material_symbol(locale_direction == 'ltr' ? 'arrow_left_alt' : 'arrow_right_alt', title: I18n.t('relationships.followers'), class: 'passive')
     end
   end
 
@@ -153,6 +159,7 @@ module ApplicationHelper
 
   def body_classes
     output = body_class_string.split
+    output << content_for(:body_classes)
     output << "theme-#{current_theme.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
@@ -205,7 +212,7 @@ module ApplicationHelper
       state_params[:moved_to_account] = current_account.moved_to_account
     end
 
-    state_params[:owner] = Account.local.without_suspended.where('id > 0').first if single_user_mode?
+    state_params[:owner] = Account.local.without_suspended.without_internal.first if single_user_mode?
 
     json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
     # rubocop:disable Rails/OutputSafety
@@ -230,6 +237,10 @@ module ApplicationHelper
 
   def prerender_custom_emojis(html, custom_emojis, other_options = {})
     EmojiFormatter.new(html, custom_emojis, other_options.merge(animate: prefers_autoplay?)).to_s
+  end
+
+  def mascot_url
+    full_asset_url(instance_presenter.mascot&.file&.url || frontend_asset_path('images/elephant_ui_plane.svg'))
   end
 
   private

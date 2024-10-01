@@ -2,11 +2,11 @@
 
 module SignedRequestHelpers
   def get(path, headers: nil, sign_with: nil, **args)
-    return super path, headers: headers, **args if sign_with.nil?
+    return super(path, headers: headers, **args) if sign_with.nil?
 
     headers ||= {}
     headers['Date'] = Time.now.utc.httpdate
-    headers['Host'] = ENV.fetch('LOCAL_DOMAIN')
+    headers['Host'] = Rails.configuration.x.local_domain
     signed_headers = headers.merge('(request-target)' => "get #{path}").slice('(request-target)', 'Host', 'Date')
 
     key_id = ActivityPub::TagManager.instance.key_uri_for(sign_with)
@@ -16,6 +16,6 @@ module SignedRequestHelpers
 
     headers['Signature'] = "keyId=\"#{key_id}\",algorithm=\"rsa-sha256\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
 
-    super path, headers: headers, **args
+    super(path, headers: headers, **args)
   end
 end

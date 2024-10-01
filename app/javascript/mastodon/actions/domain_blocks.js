@@ -1,11 +1,15 @@
 import api, { getLinks } from '../api';
 
+import { blockDomainSuccess, unblockDomainSuccess } from "./domain_blocks_typed";
+import { openModal } from './modal';
+
+
+export * from "./domain_blocks_typed";
+
 export const DOMAIN_BLOCK_REQUEST = 'DOMAIN_BLOCK_REQUEST';
-export const DOMAIN_BLOCK_SUCCESS = 'DOMAIN_BLOCK_SUCCESS';
 export const DOMAIN_BLOCK_FAIL    = 'DOMAIN_BLOCK_FAIL';
 
 export const DOMAIN_UNBLOCK_REQUEST = 'DOMAIN_UNBLOCK_REQUEST';
-export const DOMAIN_UNBLOCK_SUCCESS = 'DOMAIN_UNBLOCK_SUCCESS';
 export const DOMAIN_UNBLOCK_FAIL    = 'DOMAIN_UNBLOCK_FAIL';
 
 export const DOMAIN_BLOCKS_FETCH_REQUEST = 'DOMAIN_BLOCKS_FETCH_REQUEST';
@@ -20,11 +24,11 @@ export function blockDomain(domain) {
   return (dispatch, getState) => {
     dispatch(blockDomainRequest(domain));
 
-    api(getState).post('/api/v1/domain_blocks', { domain }).then(() => {
+    api().post('/api/v1/domain_blocks', { domain }).then(() => {
       const at_domain = '@' + domain;
       const accounts = getState().get('accounts').filter(item => item.get('acct').endsWith(at_domain)).valueSeq().map(item => item.get('id'));
 
-      dispatch(blockDomainSuccess(domain, accounts));
+      dispatch(blockDomainSuccess({ domain, accounts }));
     }).catch(err => {
       dispatch(blockDomainFail(domain, err));
     });
@@ -35,14 +39,6 @@ export function blockDomainRequest(domain) {
   return {
     type: DOMAIN_BLOCK_REQUEST,
     domain,
-  };
-}
-
-export function blockDomainSuccess(domain, accounts) {
-  return {
-    type: DOMAIN_BLOCK_SUCCESS,
-    domain,
-    accounts,
   };
 }
 
@@ -58,10 +54,10 @@ export function unblockDomain(domain) {
   return (dispatch, getState) => {
     dispatch(unblockDomainRequest(domain));
 
-    api(getState).delete('/api/v1/domain_blocks', { params: { domain } }).then(() => {
+    api().delete('/api/v1/domain_blocks', { params: { domain } }).then(() => {
       const at_domain = '@' + domain;
       const accounts = getState().get('accounts').filter(item => item.get('acct').endsWith(at_domain)).valueSeq().map(item => item.get('id'));
-      dispatch(unblockDomainSuccess(domain, accounts));
+      dispatch(unblockDomainSuccess({ domain, accounts }));
     }).catch(err => {
       dispatch(unblockDomainFail(domain, err));
     });
@@ -75,14 +71,6 @@ export function unblockDomainRequest(domain) {
   };
 }
 
-export function unblockDomainSuccess(domain, accounts) {
-  return {
-    type: DOMAIN_UNBLOCK_SUCCESS,
-    domain,
-    accounts,
-  };
-}
-
 export function unblockDomainFail(domain, error) {
   return {
     type: DOMAIN_UNBLOCK_FAIL,
@@ -92,10 +80,10 @@ export function unblockDomainFail(domain, error) {
 }
 
 export function fetchDomainBlocks() {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(fetchDomainBlocksRequest());
 
-    api(getState).get('/api/v1/domain_blocks').then(response => {
+    api().get('/api/v1/domain_blocks').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(fetchDomainBlocksSuccess(response.data, next ? next.uri : null));
     }).catch(err => {
@@ -135,7 +123,7 @@ export function expandDomainBlocks() {
 
     dispatch(expandDomainBlocksRequest());
 
-    api(getState).get(url).then(response => {
+    api().get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(expandDomainBlocksSuccess(response.data, next ? next.uri : null));
     }).catch(err => {
@@ -164,3 +152,12 @@ export function expandDomainBlocksFail(error) {
     error,
   };
 }
+
+export const initDomainBlockModal = account => dispatch => dispatch(openModal({
+  modalType: 'DOMAIN_BLOCK',
+  modalProps: {
+    domain: account.get('acct').split('@')[1],
+    acct: account.get('acct'),
+    accountId: account.get('id'),
+  },
+}));

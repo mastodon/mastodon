@@ -20,17 +20,16 @@ RSpec.describe 'IP Blocks' do
     it_behaves_like 'forbidden for wrong role', ''
     it_behaves_like 'forbidden for wrong role', 'Moderator'
 
-    it 'returns http success' do
-      subject
-
-      expect(response).to have_http_status(200)
-    end
-
     context 'when there is no ip block' do
       it 'returns an empty body' do
         subject
 
-        expect(body_as_json).to be_empty
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to be_empty
       end
     end
 
@@ -58,7 +57,12 @@ RSpec.describe 'IP Blocks' do
       it 'returns the correct blocked ips' do
         subject
 
-        expect(body_as_json).to match_array(expected_response)
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to match_array(expected_response)
       end
 
       context 'with limit param' do
@@ -67,7 +71,7 @@ RSpec.describe 'IP Blocks' do
         it 'returns only the requested number of ip blocks' do
           subject
 
-          expect(body_as_json.size).to eq(params[:limit])
+          expect(response.parsed_body.size).to eq(params[:limit])
         end
       end
     end
@@ -88,10 +92,14 @@ RSpec.describe 'IP Blocks' do
       subject
 
       expect(response).to have_http_status(200)
-      json = body_as_json
+      expect(response.content_type)
+        .to start_with('application/json')
 
-      expect(json[:ip]).to eq("#{ip_block.ip}/#{ip_block.ip.prefix}")
-      expect(json[:severity]).to eq(ip_block.severity.to_s)
+      expect(response.parsed_body)
+        .to include(
+          ip: eq("#{ip_block.ip}/#{ip_block.ip.prefix}"),
+          severity: eq(ip_block.severity.to_s)
+        )
     end
 
     context 'when ip block does not exist' do
@@ -99,6 +107,8 @@ RSpec.describe 'IP Blocks' do
         get '/api/v1/admin/ip_blocks/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -118,11 +128,14 @@ RSpec.describe 'IP Blocks' do
       subject
 
       expect(response).to have_http_status(200)
-      json = body_as_json
-
-      expect(json[:ip]).to eq("#{params[:ip]}/32")
-      expect(json[:severity]).to eq(params[:severity])
-      expect(json[:comment]).to eq(params[:comment])
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body)
+        .to include(
+          ip: eq("#{params[:ip]}/32"),
+          severity: eq(params[:severity]),
+          comment: eq(params[:comment])
+        )
     end
 
     context 'when the required ip param is not provided' do
@@ -132,6 +145,8 @@ RSpec.describe 'IP Blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -142,6 +157,8 @@ RSpec.describe 'IP Blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -154,6 +171,8 @@ RSpec.describe 'IP Blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -164,6 +183,8 @@ RSpec.describe 'IP Blocks' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -177,22 +198,26 @@ RSpec.describe 'IP Blocks' do
     let(:params)    { { severity: 'sign_up_requires_approval', comment: 'Decreasing severity' } }
 
     it 'returns the correct ip block', :aggregate_failures do
-      subject
+      expect { subject }
+        .to change_severity_level
+        .and change_comment_value
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to match(hash_including({
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body).to match(hash_including({
         ip: "#{ip_block.ip}/#{ip_block.ip.prefix}",
         severity: 'sign_up_requires_approval',
         comment: 'Decreasing severity',
       }))
     end
 
-    it 'updates the severity correctly' do
-      expect { subject }.to change { ip_block.reload.severity }.from('no_access').to('sign_up_requires_approval')
+    def change_severity_level
+      change { ip_block.reload.severity }.from('no_access').to('sign_up_requires_approval')
     end
 
-    it 'updates the comment correctly' do
-      expect { subject }.to change { ip_block.reload.comment }.from('Spam').to('Decreasing severity')
+    def change_comment_value
+      change { ip_block.reload.comment }.from('Spam').to('Decreasing severity')
     end
 
     context 'when ip block does not exist' do
@@ -200,6 +225,8 @@ RSpec.describe 'IP Blocks' do
         put '/api/v1/admin/ip_blocks/-1', headers: headers, params: params
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -215,7 +242,9 @@ RSpec.describe 'IP Blocks' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to be_empty
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body).to be_empty
       expect(IpBlock.find_by(id: ip_block.id)).to be_nil
     end
 
@@ -224,6 +253,8 @@ RSpec.describe 'IP Blocks' do
         delete '/api/v1/admin/ip_blocks/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

@@ -12,6 +12,7 @@ de:
       last_attempt: Du hast nur noch einen Versuch, bevor dein Zugang gesperrt wird.
       locked: Dein Konto ist gesperrt.
       not_found_in_database: "%{authentication_keys} oder Passwort ungültig."
+      omniauth_user_creation_failure: Fehler beim Erstellen eines Kontos für diese Identität.
       pending: Dein Konto wird weiterhin überprüft.
       timeout: Deine Sitzung ist abgelaufen. Bitte melde dich erneut an, um fortzufahren.
       unauthenticated: Du musst dich anmelden oder registrieren, bevor du fortfahren kannst.
@@ -24,15 +25,15 @@ de:
         explanation_when_pending: Du hast dich für eine Einladung bei %{host} mit dieser E-Mail-Adresse beworben. Sobald du deine E-Mail-Adresse bestätigt hast, werden wir deine Anfrage überprüfen. Du kannst dich in dieser Zeit nicht anmelden. Wenn deine Anfrage abgelehnt wird, werden deine Daten entfernt – von dir ist keine weitere Handlung notwendig. Wenn du das nicht warst, dann kannst du diese E-Mail ignorieren.
         extra_html: Bitte beachte auch die <a href="%{terms_path}">Serverregeln</a> und <a href="%{policy_path}">unsere Datenschutzerklärung</a>.
         subject: 'Mastodon: Anleitung zum Bestätigen deines Kontos auf %{instance}'
-        title: Verifiziere E-Mail-Adresse
+        title: Verifiziere deine E-Mail-Adresse
       email_changed:
         explanation: 'Die E-Mail-Adresse deines Kontos wird geändert zu:'
-        extra: Wenn du deine E-Mail-Adresse nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Serververwaltung, wenn du aus deinem Konto ausgesperrt bist.
+        extra: Wenn du deine E-Mail-Adresse nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Administrator*innen des Servers, wenn du aus deinem Konto ausgesperrt bist.
         subject: 'Mastodon: E-Mail-Adresse geändert'
         title: Neue E-Mail-Adresse
       password_change:
         explanation: Das Passwort für dein Konto wurde geändert.
-        extra: Wenn du dein Passwort nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Serververwaltung, wenn du aus deinem Konto ausgesperrt bist.
+        extra: Wenn du dein Passwort nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Administrator*innen des Servers, wenn du aus deinem Konto ausgesperrt bist.
         subject: 'Mastodon: Passwort geändert'
         title: Passwort geändert
       reconfirmation_instructions:
@@ -47,16 +48,19 @@ de:
         subject: 'Mastodon: Anleitung zum Zurücksetzen deines Passworts'
         title: Passwort zurücksetzen
       two_factor_disabled:
-        explanation: Zwei-Faktor-Authentisierung (2FA) für dein Konto wurde deaktiviert. Eine Anmeldung ist jetzt nur noch mit E-Mail-Adresse und Passwort möglich.
-        subject: 'Mastodon: Zwei‐Faktor‐Authentisierung (2FA) deaktiviert'
+        explanation: Das Anmelden ist jetzt nur noch mit einer E-Mail-Adresse und einem Passwort möglich.
+        subject: 'Mastodon: Zwei‐Faktor‐Authentisierung deaktiviert'
+        subtitle: Zwei-Faktor-Authentisierung wurde für dein Konto deaktiviert.
         title: 2FA deaktiviert
       two_factor_enabled:
-        explanation: Die Zwei-Faktor-Authentisierung (2FA) wurde für dein Konto aktiviert. Das zeitbasierte Einmalpasswort, das von deiner TOTP-App generiert wird, muss bei jeder Anmeldung zusätzlich eingegeben werden.
-        subject: 'Mastodon: Zwei‐Faktor‐Authentisierung (2FA) aktiviert'
+        explanation: Für das Anmelden wird ein Token benötigt, das von der hinterlegten TOTP-App generiert wird.
+        subject: 'Mastodon: Zwei‐Faktor‐Authentisierung aktiviert'
+        subtitle: Zwei-Faktor-Authentisierung wurde für dein Konto aktiviert.
         title: 2FA aktiviert
       two_factor_recovery_codes_changed:
         explanation: Die vorherigen Wiederherstellungscodes wurden ungültig gemacht und es wurden neue erstellt.
         subject: 'Mastodon: Zwei-Faktor-Wiederherstellungscodes neu erstellt'
+        subtitle: Die vorherigen Wiederherstellungscodes wurden ungültig gemacht und es wurden neue erstellt.
         title: 2FA-Wiederherstellungscodes geändert
       unlock_instructions:
         subject: 'Mastodon: Anleitung zum Entsperren deines Kontos'
@@ -70,11 +74,13 @@ de:
           subject: 'Mastodon: Sicherheitsschlüssel entfernt'
           title: Einer deiner Sicherheitsschlüssel wurde entfernt
       webauthn_disabled:
-        explanation: Das Authentisieren mit Sicherheitsschlüsseln wurde für dein Konto deaktiviert. Die Anmeldung ist jetzt nur noch mit dem zeitbasierten Einmalpasswort möglich, das von deiner TOTP-App generiert wird.
+        explanation: Die Authentisierung mit Sicherheitsschlüsseln wurde für dein Konto deaktiviert.
+        extra: Das Anmelden ist jetzt nur noch mit Token aus der TOTP-App möglich, die im Konto hinterlegt wurde.
         subject: 'Mastodon: Authentisierung mit Sicherheitsschlüsseln deaktiviert'
         title: Sicherheitsschlüssel deaktiviert
       webauthn_enabled:
-        explanation: Die Authentisierung mit Sicherheitsschlüssel wurde für dein Konto aktiviert. Dein Sicherheitsschlüssel kann nun für die Anmeldung verwendet werden.
+        explanation: Die Authentisierung mit Sicherheitsschlüsseln wurde für dein Konto aktiviert.
+        extra: Dein Sicherheitsschlüssel kann jetzt zum Anmelden verwendet werden.
         subject: 'Mastodon: Authentisierung mit Sicherheitsschlüssel aktiviert'
         title: Sicherheitsschlüssel aktiviert
     omniauth_callbacks:

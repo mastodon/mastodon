@@ -23,7 +23,7 @@
             %td= update.version
             %td= t("admin.software_updates.types.#{update.type}")
             - if update.urgent?
-              %td.critical= t("admin.software_updates.critical_update")
+              %td.critical= t('admin.software_updates.critical_update')
             - else
               %td
             %td= table_link_to 'link', t('admin.software_updates.release_notes'), update.release_notes

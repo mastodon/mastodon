@@ -3,6 +3,8 @@
 Paperclip::DataUriAdapter.register
 Paperclip::ResponseWithLimitAdapter.register
 
+PATH = ':prefix_url:class/:attachment/:id_partition/:style/:filename'
+
 Paperclip.interpolates :filename do |attachment, style|
   if style == :original
     attachment.original_filename
@@ -11,15 +13,15 @@ Paperclip.interpolates :filename do |attachment, style|
   end
 end
 
-Paperclip.interpolates :prefix_path do |attachment, style|
+Paperclip.interpolates :prefix_path do |attachment, _style|
   if attachment.storage_schema_version >= 1 && attachment.instance.respond_to?(:local?) && !attachment.instance.local?
-    'cache' + File::SEPARATOR
+    "cache#{File::SEPARATOR}"
   else
     ''
   end
 end
 
-Paperclip.interpolates :prefix_url do |attachment, style|
+Paperclip.interpolates :prefix_url do |attachment, _style|
   if attachment.storage_schema_version >= 1 && attachment.instance.respond_to?(:local?) && !attachment.instance.local?
     'cache/'
   else
@@ -29,7 +31,7 @@ end
 
 Paperclip::Attachment.default_options.merge!(
   use_timestamp: false,
-  path: ':prefix_url:class/:attachment/:id_partition/:style/:filename',
+  path: PATH,
   storage: :fog
 )
 
@@ -39,6 +41,8 @@ if ENV['S3_ENABLED'] == 'true'
   s3_region   = ENV.fetch('S3_REGION')   { 'us-east-1' }
   s3_protocol = ENV.fetch('S3_PROTOCOL') { 'https' }
   s3_hostname = ENV.fetch('S3_HOSTNAME') { "s3-#{s3_region}.amazonaws.com" }
+
+  Paperclip::Attachment.default_options[:path] = ENV.fetch('S3_KEY_PREFIX') + "/#{PATH}" if ENV.has_key?('S3_KEY_PREFIX')
 
   Paperclip::Attachment.default_options.merge!(
     storage: :s3,
@@ -64,16 +68,16 @@ if ENV['S3_ENABLED'] == 'true'
       http_open_timeout: ENV.fetch('S3_OPEN_TIMEOUT') { '5' }.to_i,
       http_read_timeout: ENV.fetch('S3_READ_TIMEOUT') { '5' }.to_i,
       http_idle_timeout: 5,
-      retry_limit: 0,
+      retry_limit: ENV.fetch('S3_RETRY_LIMIT') { '0' }.to_i,
     }
   )
 
-  Paperclip::Attachment.default_options[:s3_permissions] = ->(*) { nil } if ENV['S3_PERMISSION'] == ''
+  Paperclip::Attachment.default_options[:s3_permissions] = ->(*) {} if ENV['S3_PERMISSION'] == ''
 
   if ENV.has_key?('S3_ENDPOINT')
     Paperclip::Attachment.default_options[:s3_options].merge!(
       endpoint: ENV['S3_ENDPOINT'],
-      force_path_style: ENV['S3_OVERRIDE_PATH_STYLE'] != 'true',
+      force_path_style: ENV['S3_OVERRIDE_PATH_STYLE'] != 'true'
     )
 
     Paperclip::Attachment.default_options[:url] = ':s3_path_url'
@@ -156,10 +160,11 @@ elsif ENV['AZURE_ENABLED'] == 'true'
     )
   end
 else
+  Rails.configuration.x.file_storage_root_path = ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system'))
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
-    path: File.join(ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')), ':prefix_path:class', ':attachment', ':id_partition', ':style', ':filename'),
-    url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + '/:prefix_url:class/:attachment/:id_partition/:style/:filename',
+    path: File.join(Rails.configuration.x.file_storage_root_path, ':prefix_path:class', ':attachment', ':id_partition', ':style', ':filename'),
+    url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + "/#{PATH}"
   )
 end
 

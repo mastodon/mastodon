@@ -20,6 +20,7 @@ export interface ApiAccountJSON {
   bot: boolean;
   created_at: string;
   discoverable: boolean;
+  indexable: boolean;
   display_name: string;
   emojis: ApiCustomEmojiJSON[];
   fields: ApiAccountFieldJSON[];
@@ -31,9 +32,9 @@ export interface ApiAccountJSON {
   id: string;
   last_status_at: string;
   locked: boolean;
-  noindex: boolean;
+  noindex?: boolean;
   note: string;
-  roles: ApiAccountJSON[];
+  roles?: ApiAccountJSON[];
   statuses_count: number;
   uri: string;
   url: string;
@@ -42,4 +43,5 @@ export interface ApiAccountJSON {
   suspended?: boolean;
   limited?: boolean;
   memorial?: boolean;
+  hide_collections: boolean;
 }

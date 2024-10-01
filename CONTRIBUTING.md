@@ -11,6 +11,15 @@ You can contribute in the following ways:
 
 If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
 
+Please review the org-level [contribution guidelines] for high-level acceptance
+criteria guidance.
+
+[contribution guidelines]: https://github.com/mastodon/.github/blob/main/CONTRIBUTING.md
+
+## API Changes and Additions
+
+Please note that any changes or additions made to the API should have an accompanying pull request on [our documentation repository](https://github.com/mastodon/documentation).
+
 ## Bug reports
 
 Bug reports and feature suggestions must use descriptive and concise titles and be submitted to [GitHub Issues](https://github.com/mastodon/mastodon/issues). Please use the search function to make sure that you are not submitting duplicates, and that a similar report or request has not already been resolved or rejected.

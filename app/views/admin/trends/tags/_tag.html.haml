@@ -4,13 +4,11 @@
 
   .batch-table__row__content.pending-account
     .pending-account__header
-      = link_to admin_tag_path(tag.id) do
-        = fa_icon 'hashtag'
-        = tag.display_name
+      = link_to tag.formatted_name, admin_tag_path(tag.id)
 
       %br/
 
-      = link_to tag_path(tag), target: '_blank' do
+      = link_to tag_path(tag), target: '_blank', rel: 'noopener noreferrer' do
         = t('admin.trends.tags.used_by_over_week', count: tag.history.reduce(0) { |sum, day| sum + day.accounts })
 
       - if tag.trendable? && (rank = Trends.tags.rank(tag.id))

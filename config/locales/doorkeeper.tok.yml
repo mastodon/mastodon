@@ -1,0 +1,51 @@
+---
+tok:
+  doorkeeper:
+    applications:
+      buttons:
+        cancel: o pini
+        destroy: o weka
+        edit: o ante
+        submit: o awen
+      confirmations:
+        destroy: ni li pona ala pona?
+      edit:
+        title: o ante e ilo nanpa
+      form:
+        error: 'pakala a! o lukin e ni: lipu sina li jo ala jo e pakala.'
+      index:
+        delete: o weka
+        empty: sina li jo e ilo nanpa ala.
+        name: nimi
+        new: o pali e ilo nanpa sin
+        title: ilo nanpa sina
+      new:
+        title: o pali e ilo nanpa sin
+      show:
+        title: ilo nanpa pi nimi %{name}
+    authorizations:
+      error:
+        title: pakala li lon.
+    authorized_applications:
+      confirmations:
+        revoke: ni li pona ala pona?
+      index:
+        scopes: ken
+    errors:
+      messages:
+        invalid_request:
+          missing_param: o pana e sona "%{value}".
+    flash:
+      applications:
+        create:
+          notice: sina pali e ilo nanpa.
+        destroy:
+          notice: sina weka e ilo nanpa.
+        update:
+          notice: sina ante e ilo nanpa.
+      authorized_applications:
+        destroy:
+          notice: sina weka e ilo nanpa tawa sina.
+    grouped_scopes:
+      access:
+        read: lukin taso

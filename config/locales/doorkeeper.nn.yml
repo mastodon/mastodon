@@ -60,7 +60,7 @@ nn:
       error:
         title: Ein feil har oppstått
       new:
-        prompt_html: "%{client_name} ønsker tilgang til kontoen din. Det er ein tredjepartsapplikasjon. <strong>Dersom du ikkje stolar på den, bør du ikkje autorisere det.</strong>"
+        prompt_html: "%{client_name} ynskjer tilgang til kontoen din. <strong>Godkjenn dette berre dersom du kjenner att og stolar på %{client_name}.</strong>"
         review_permissions: Sjå gjennom løyve
         title: Autorisasjon nødvendig
       show:
@@ -83,6 +83,7 @@ nn:
         access_denied: Ressurseigaren eller autorisasjonstenaren avviste førespurnaden.
         credential_flow_not_configured: Flyten «Resource Owner Password Credentials» kunne ikkje fullførast sidan «Doorkeeper.configure.resource_owner_from_credentials» ikkje er konfigurert.
         invalid_client: Klientautentisering feila på grunn av ukjent klient, ingen inkludert autentisering, eller ikkje støtta autentiseringsmetode.
+        invalid_code_challenge_method: Kodeutfordringsmetoden må vera S256, klartekst er ikkje støtta.
         invalid_grant: Autoriseringa er ugyldig, utløpt, oppheva, stemmer ikkje med omdirigerings-URIen eller var tildelt ein annan klient.
         invalid_redirect_uri: Omdirigerings-URLen er ikkje gyldig.
         invalid_request:
@@ -92,9 +93,9 @@ nn:
         invalid_resource_owner: Ressurseigardetaljane er ikkje gyldige, eller så er det ikkje mogleg å finna eigaren
         invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
         invalid_token:
-          expired: Tilgangsbeviset har gått ut på dato
-          revoked: Tilgangsbeviset har blitt oppheva
-          unknown: Tilgangsbeviset er ugyldig
+          expired: Innloggingsnykelen har gått ut på dato
+          revoked: Innloggingsnykelen er oppheva
+          unknown: Innloggngsnykelen er ugyldig
         resource_owner_authenticator_not_configured: Ressurseigar kunne ikkje finnast fordi Doorkeeper.configure.resource_owner_authenticator ikkje er konfigurert.
         server_error: Autoriseringstenaren støtte på ei uventa hending som hindra han i å svara på førespurnaden.
         temporarily_unavailable: Autoriseringstenaren kan ikkje hansama førespurnaden grunna kortvarig overbelastning eller tenarvedlikehald.
@@ -129,12 +130,13 @@ nn:
         crypto: Ende-til-ende-kryptering
         favourites: Favorittar
         filters: Filter
-        follow: Dei du fylgjer, målbind og blokkerer
+        follow: Dei du fylgjer, dempar og blokkerer
         follows: Fylgjer
         lists: Lister
         media: Mediavedlegg
-        mutes: Målbindingar
+        mutes: Dempingar
         notifications: Varsel
+        profile: Mastodon-profilen din
         push: Pushvarsel
         reports: Rapportar
         search: Søk
@@ -165,6 +167,7 @@ nn:
       admin:write:reports: utføre moderatorhandlingar på rapportar
       crypto: bruk ende-til-ende-kryptering
       follow: fylg, blokkér, avblokkér, avfylg brukarar
+      profile: les berre den grunnlejggande informasjonen til brukarkontoen din
       push: motta pushvarsla dine
       read: lese alle dine kontodata
       read:accounts: sjå informasjon om kontoar
@@ -183,13 +186,13 @@ nn:
       write:accounts: redigera profilen din
       write:blocks: blokker kontoar og domene
       write:bookmarks: bokmerk innlegg
-      write:conversations: målbind og slett samtalar
+      write:conversations: demp og slett samtalar
       write:favourites: favorittmarker innlegg
       write:filters: lag filter
       write:follows: fylg folk
       write:lists: lag lister
       write:media: last opp mediefiler
-      write:mutes: målbind folk og samtalar
+      write:mutes: demp folk og samtalar
       write:notifications: tøm varsla dine
       write:reports: rapporter andre folk
       write:statuses: publiser innlegg

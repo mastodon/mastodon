@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Reports::ActionsController do
+RSpec.describe Admin::Reports::ActionsController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
@@ -54,11 +54,14 @@ describe Admin::Reports::ActionsController do
   describe 'POST #create' do
     let(:target_account) { Fabricate(:account) }
     let(:statuses)       { [Fabricate(:status, account: target_account), Fabricate(:status, account: target_account)] }
-    let!(:media)         { Fabricate(:media_attachment, account: target_account, status: statuses[0]) }
     let(:report)         { Fabricate(:report, target_account: target_account, status_ids: statuses.map(&:id)) }
     let(:text)           { 'hello' }
     let(:common_params) do
       { report_id: report.id, text: text }
+    end
+
+    before do
+      _media = Fabricate(:media_attachment, account: target_account, status: statuses[0])
     end
 
     shared_examples 'common behavior' do
@@ -122,14 +125,17 @@ describe Admin::Reports::ActionsController do
         let(:action) { 'mark_as_sensitive' }
         let(:statuses) { [media_attached_status, media_attached_deleted_status] }
 
-        let!(:status) { Fabricate(:status, account: target_account) }
         let(:media_attached_status) { Fabricate(:status, account: target_account) }
-        let!(:media_attachment) { Fabricate(:media_attachment, account: target_account, status: media_attached_status) }
         let(:media_attached_deleted_status) { Fabricate(:status, account: target_account, deleted_at: 1.day.ago) }
-        let!(:media_attachment2) { Fabricate(:media_attachment, account: target_account, status: media_attached_deleted_status) }
         let(:last_media_attached_status) { Fabricate(:status, account: target_account) }
-        let!(:last_media_attachment) { Fabricate(:media_attachment, account: target_account, status: last_media_attached_status) }
-        let!(:last_status) { Fabricate(:status, account: target_account) }
+
+        before do
+          _last_media_attachment = Fabricate(:media_attachment, account: target_account, status: last_media_attached_status)
+          _last_status = Fabricate(:status, account: target_account)
+          _media_attachment = Fabricate(:media_attachment, account: target_account, status: media_attached_status)
+          _media_attachment2 = Fabricate(:media_attachment, account: target_account, status: media_attached_deleted_status)
+          _status = Fabricate(:status, account: target_account)
+        end
 
         it_behaves_like 'common behavior'
 

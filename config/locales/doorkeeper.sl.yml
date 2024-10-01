@@ -4,7 +4,7 @@ sl:
     attributes:
       doorkeeper/application:
         name: Ime programa
-        redirect_uri: Preusmeritev URI
+        redirect_uri: URI za preusmeritev
         scopes: Obsegi
         website: Spletišče programa
     errors:
@@ -19,7 +19,7 @@ sl:
   doorkeeper:
     applications:
       buttons:
-        authorize: Overi
+        authorize: Odobri
         cancel: Prekliči
         destroy: Uniči
         edit: Uredi
@@ -55,23 +55,22 @@ sl:
         title: 'Program: %{name}'
     authorizations:
       buttons:
-        authorize: Overi
+        authorize: Odobri
         deny: Zavrni
       error:
         title: Prišlo je do napake
       new:
-        prompt_html: "%{client_name} želi dovoljenje za dostop do vašega računa. Gre za zunanji program. <strong>Če mu ne zaupate, mu ne dodelite teh pravic.</strong>"
-        review_permissions: Preglej pravice
-        title: Potrebna je pooblastitev
+        review_permissions: Preglej dovoljenja
+        title: Potrebna je odobritev
       show:
-        title: Kopirajte to pooblastilno kodo in jo prilepite v program.
+        title: Kopirajte to odobritveno kodo in jo prilepite v program.
     authorized_applications:
       buttons:
         revoke: Prekliči
       confirmations:
         revoke: Ali ste prepričani?
       index:
-        authorized_at: Overjen(a) %{date}
+        authorized_at: Odobreno %{date}
         description_html: To so programi, ki lahko dostopajo do vašega računa prek vmesnika API. Če so na seznamu programi, ki jih ne prepoznate ali pa se čudno vedejo, lahko prekličete njihovo pravico do dostopa.
         last_used_at: Zadnjič uporabljeno %{date}
         never_used: Nikoli uporabljeno
@@ -80,14 +79,14 @@ sl:
         title: Vaši odobreni programi
     errors:
       messages:
-        access_denied: Lastnik virov ali strežnik pooblastil je zavrnil zahtevo.
+        access_denied: Lastnik virov ali odobritveni strežnik je zavrnil zahtevo.
         credential_flow_not_configured: Pretok geselskih pooblastil lastnika virov ni uspel, ker Doorkeeper.configure.resource_owner_from_credentials ni nastavljen.
-        invalid_client: Overitev odjemalca ni uspela zaradi neznanega odjemalca, zaradi nevključitve overitve odjemalca ali zaradi nepodprte metode overitve.
-        invalid_grant: Predložena odobritev za pooblastilo je neveljavna, potekla, preklicana, se ne ujema z URI preusmeritvijo, ki je uporabljena v zahtevi za pooblastilo ali je bila izdana drugemu odjemalcu.
+        invalid_client: Odobritev odjemalca ni uspela zaradi neznanega odjemalca, zaradi nevključitve odobritve odjemalca ali zaradi nepodprte metode odobritve.
+        invalid_grant: Predložena odobritev je neveljavna, je potekla, je preklicana, se ne ujema z URI-jem za preusmeritev uporabljenim v zahtevi za odobritev, ali pa je bila izdana drugemu odjemalcu.
         invalid_redirect_uri: URI za preusmeritev ni veljaven.
         invalid_request:
           missing_param: 'Zahtevani parameter manjka: %{value}.'
-          request_not_authorized: Zahtevo je potrebno overiti. Zahtevani parameter za overjanje zahteve manjka ali ni veljaven.
+          request_not_authorized: Zahtevo je potrebno odobriti. Zahtevani parameter za odobritev zahteve manjka ali ni veljaven.
           unknown: Zahtevku manjka zahtevani parameter, vključuje nepodprto vrednost parametra ali je nepravilno oblikovan.
         invalid_resource_owner: Predložene poverilnice lastnika virov niso veljavne ali pa lastnika virov ni mogoče najti
         invalid_scope: Zahtevani obseg je neveljaven, neznan ali nepravilen.
@@ -96,11 +95,11 @@ sl:
           revoked: Žeton za dostop je bil preklican
           unknown: Žeton za dostop je neveljaven
         resource_owner_authenticator_not_configured: Iskanje lastnika virov ni uspelo, ker Doorkeeper.configure.resource_owner_authenticator ni nastavljen.
-        server_error: Strežnik pooblastil je naletel na nepričakovano stanje, ki je preprečilo, da bi izpolnil zahtevo.
-        temporarily_unavailable: Strežnik pooblastil, zaradi začasne preobremenitve ali vzdrževanja, trenutno ne more obdelati zahteve.
-        unauthorized_client: Odjemalec nima pooblastila za izvajanje te zahteve po tej metodi.
-        unsupported_grant_type: Strežnik pooblastil ne podpira vrste odobritve pooblastila.
-        unsupported_response_type: Strežnik pooblastil ne podpira te vrste odziva.
+        server_error: Odobritveni strežnik je naletel na nepričakovano stanje, ki je preprečilo, da bi izpolnil zahtevo.
+        temporarily_unavailable: Odobritveni strežnik zaradi začasne preobremenitve ali vzdrževanja trenutno ne more obdelati zahteve.
+        unauthorized_client: Odjemalec nima odobritve za izvajanje te zahteve po tej metodi.
+        unsupported_grant_type: Odobritveni strežnik ne podpira zahtevane vrste odobritve.
+        unsupported_response_type: Odobritveni strežnik pooblastil ne podpira te vrste odziva.
     flash:
       applications:
         create:
@@ -135,6 +134,7 @@ sl:
         media: Predstavnostne priloge
         mutes: Utišani
         notifications: Obvestila
+        profile: Vaš profil Mastodon
         push: Potisna obvestila
         reports: Prijave
         search: Iskanje
@@ -145,7 +145,7 @@ sl:
           applications: Programi
           oauth2_provider: Ponudnik OAuth2
       application:
-        title: Potrebna je pooblastitev OAuth
+        title: Potrebna je odobritev OAuth
     scopes:
       admin:read: preberi vse podatke na strežniku
       admin:read:accounts: preberi občutljive informacije vseh računov
@@ -165,6 +165,7 @@ sl:
       admin:write:reports: izvedi moderirana dejanja na prijavah
       crypto: Uporabi šifriranje od konca do konca
       follow: spremeni razmerja med računi
+      profile: preberi le podatke profila računa
       push: prejmi potisna obvestila
       read: preberi vse podatke svojega računa
       read:accounts: oglejte si podrobnosti računov

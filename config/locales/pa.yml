@@ -1,1 +1,160 @@
+---
 pa:
+  about:
+    about_mastodon_html: ਭਵਿੱਖ ਦਾ ਸ਼ੋਸ਼ਲ ਨੈੱਟਵਰਕ ਹੈ। ਕੋਈ ਇਸ਼ਤਿਹਾਰ ਨਹੀਂ, ਕੋਈ ਵਪਾਰਕ ਨਿਗਰਾਨੀ ਨਹੀਂ, ਨੈਤਿਕ ਡਿਜ਼ਾਇਨ ਅਤੇ ਖਿੰਡਿਆ ਹੋਇਆ ਨੈੱਟਵਰਕ! ਮਸਟੋਡੋਨ ਨਾਲ ਆਪਣੇ ਡਾਟੇ ਨੂੰ ਆਪਣਾ ਹੀ ਰੱਖੋ!
+    contact_missing: ਸੈੱਟ ਨਹੀਂ ਹੈ
+    contact_unavailable: ਲਾਗ ਨਹੀਂ
+    hosted_on: "%{domain} ਉੱਤੇ ਹੋਸਟ ਕੀਤਾ ਮਸਟਾਡੋਨ"
+    title: ਇਸ ਬਾਰੇ
+  accounts:
+    following: ਫ਼ਾਲੋ ਕੀਤੇ ਜਾ ਰਹੇ
+    posts_tab_heading: ਪੋਸਟਾਂ
+  admin:
+    account_moderation_notes:
+      create: ਨੋਟ ਭੇਜੋ
+    accounts:
+      approve: ਮਨਜ਼ੂਰ
+      are_you_sure: ਪੱਕਾ?
+      avatar: ਅਵਤਾਰ
+      by_domain: ਡੋਮੇਨ
+      change_email:
+        changed_msg: ਈਮੇਲ ਨੂੰ ਕਾਮਯਾਬੀ ਨਾਲ ਬਦਲਿਆ ਗਿਆ!
+        current_email: ਮੌਜੂਦਾ ਈਮੇਲ
+        label: ਈਮੇਲ ਬਦਲੋ
+        new_email: ਨਵੀਂ ਈਮੇਲ
+        submit: ਈਮੇਲ ਨੂੰ ਬਦਲੋ
+        title: "%{username} ਲਈ ਈਮੇਲ ਨੂੰ ਬਦਲੋ"
+      confirm: ਤਸਦੀਕ
+      confirmed: ਤਸਦੀਕ ਕੀਤਾ
+      confirming: ਤਸਦੀਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ
+      custom: ਕਸਟਮ
+      delete: ਡਾਟੇ ਨੂੰ ਹਟਾਓ
+      deleted: ਹਟਾਇਆ
+      display_name: ਦਿਖਾਇਆ ਜਾਣ ਵਾਲਾ ਨਾਂ
+      domain: ਡੋਮੇਨ
+      moderation:
+        all: ਸਭ
+        suspended: ਸਸਪੈਂਡ ਕੀਤਾ
+      title: ਖਾਤੇ
+      username: ਵਰਤੋਂਕਾਰ-ਨਾਂ
+    ip_blocks:
+      delete: ਹਟਾਓ
+      expires_in:
+        '1209600': 2 ਹਫ਼ਤੇ
+        '15778476': 6 ਮਹੀਨੇ
+        '2629746': 1 ਮਹੀਨਾ
+        '31556952': 1 ਸਾਲ
+        '86400': 1 ਦਿਨ
+        '94670856': 3 ਸਾਲ
+    relays:
+      enable: ਸਮਰੱਥ
+      enabled: ਸਮਰੱਥ ਹੈ
+      save_and_enable: ਸੰਭਾਲੋ ਅਤੇ ਸਮਰੱਥ ਕਰੋ
+    reports:
+      are_you_sure: ਪੱਕਾ?
+      cancel: ਰੱਦ ਕਰੋ
+      comment:
+        none: ਕੋਈ ਨਹੀਂ
+      notes:
+        delete: ਹਟਾਓ
+    settings:
+      about:
+        title: ਇਸ ਬਾਰੇ
+    statuses:
+      deleted: ਹਟਾਏ
+      favourites: ਮਨਪਸੰਦ
+      history: ਵਰਜ਼ਨ ਅਤੀਤ
+      in_reply_to: ਇਸ ਨੂੰ ਜਵਾਬ ਦਿੱਤਾ ਜਾ ਰਿਹਾ ਹੈ
+      language: ਭਾਸ਼ਾ
+      media:
+        title: ਮੀਡੀਆ
+      metadata: ਮੇਟਾਡਾਟਾ
+    webhooks:
+      delete: ਹਟਾਓ
+      disable: ਅਸਮਰੱਥ
+      disabled: ਅਸਮਰੱਥ ਹੈ
+      enable: ਸਮਰੱਥ
+  application_mailer:
+    salutation: "%{name},"
+  applications:
+    logout: ਲਾਗ ਆਉਟ
+    your_token: ਤੁਹਾਡਾ ਪਹੁੰਚ ਟੋਕਨ
+  auth:
+    apply_for_account: ਖਾਤੇ ਲਈ ਬੇਨਤੀ
+    confirmations:
+      login_link: ਲਾਗ ਇਨ
+      welcome_title: "%{name}, ਜੀ ਆਇਆਂ ਨੂੰ!"
+    delete_account: ਖਾਤੇ ਨੂੰ ਹਟਾਓ
+    forgot_password: ਆਪਣਾ ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ ਹੋ?
+    log_in_with: ਇਸ ਨਾਲ ਲਾਗਇਨ ਕਰੋ
+    login: ਲਾਗ ਇਨ
+    logout: ਲਾਗ ਆਉਟ
+    rules:
+      accept: ਮਨਜ਼ੂਰ
+      back: ਪਿੱਛੇ
+  challenge:
+    confirm: ਜਾਰੀ ਰੱਖੋ
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}ਘੰ"
+      about_x_months: "%{count}ਮਹੀ"
+      about_x_years: "%{count}ਸਾ"
+      almost_x_years: "%{count}ਸ"
+      half_a_minute: ਹੁਣੇ ਹੀ
+      less_than_x_minutes: "%{count}ਮਿੰ"
+      less_than_x_seconds: ਹੁਣੇ ਹੀ
+      over_x_years: "%{count}ਸਾ"
+      x_days: "%{count}ਦਿ"
+      x_minutes: "%{count}ਮਿੰ"
+  deletes:
+    proceed: ਖਾਤੇ ਨੂੰ ਹਟਾਓ
+  disputes:
+    strikes:
+      title: "%{date} ਨੂੰ %{action}"
+  exports:
+    archive_takeout:
+      date: ਤਾਰੀਖ
+  filters:
+    contexts:
+      account: ਪਰੋਫਾਈਲ
+      home: ਹੋਮ ਅਤੇ ਸੂਚੀਆਂ
+      notifications: ਨੋਟੀਫਿਕੇਸ਼ਨ
+      thread: ਗੱਲਾਂਬਾਤਾਂ
+    index:
+      delete: ਹਟਾਓ
+  generic:
+    all: ਸਭ
+    copy: ਕਾਪੀ ਕਰੋ
+    delete: ਹਟਾਓ
+    today: ਅੱਜ
+  invites:
+    expires_in:
+      '43200': 12 ਘੰਟੇ
+      '604800': 1 ਹਫਤਾ
+      '86400': 1 ਦਿਨ
+    expires_in_prompt: ਕਦੇ ਨਹੀਂ
+  login_activities:
+    authentication_methods:
+      password: ਪਾਸਵਰਡ
+  notification_mailer:
+    follow:
+      subject: "%{name} ਹੁਣ ਤੁਹਾਨੂੰ ਫ਼ਾਲੋ ਕਰਦੇ ਹਨ"
+      title: ਨਵੇਂ ਫ਼ਾਲੋਅਰ
+    follow_request:
+      body: "%{name} ਨੇ ਤੁਹਾਨੂੰ ਫ਼ਾਲੋ ਕਰਨ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਹੈ"
+    mention:
+      action: ਜਵਾਬ ਦਿਓ
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: ਬਿ
+          million: ਮਿ
+  otp_authentication:
+    enable: ਸਮਰੱਥ
+    setup: ਸੈਟ ਅੱਪ

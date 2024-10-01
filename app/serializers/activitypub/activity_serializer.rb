@@ -5,8 +5,6 @@ class ActivityPub::ActivitySerializer < ActivityPub::Serializer
     case model.class.name
     when 'Status'
       ActivityPub::NoteSerializer
-    when 'DeliverToDeviceService::EncryptedMessage'
-      ActivityPub::EncryptedMessageSerializer
     else
       super
     end

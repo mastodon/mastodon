@@ -28,7 +28,7 @@ RSpec.describe CanonicalEmailBlock do
   end
 
   describe '.block?' do
-    let!(:canonical_email_block) { Fabricate(:canonical_email_block, email: 'foo@bar.com') }
+    before { Fabricate(:canonical_email_block, email: 'foo@bar.com') }
 
     it 'returns true for the same email' do
       expect(described_class.block?('foo@bar.com')).to be true

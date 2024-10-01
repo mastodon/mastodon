@@ -1,11 +1,12 @@
-import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { useCallback } from 'react';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { useDispatch } from 'react-redux';
 
-import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
+import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
+import { openModal } from 'mastodon/actions/modal';
+import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 
 const messages = defineMessages({
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
@@ -23,49 +24,40 @@ const messages = defineMessages({
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
 });
 
-class ActionBar extends PureComponent {
+export const ActionBar = () => {
+  const dispatch = useDispatch();
+  const intl = useIntl();
 
-  static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
-    onLogout: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
-  };
+  const handleLogoutClick = useCallback(() => {
+    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT' }));
+  }, [dispatch]);
 
-  handleLogout = () => {
-    this.props.onLogout();
-  };
+  let menu = [];
 
-  render () {
-    const { intl } = this.props;
+  menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
+  menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });
+  menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned' });
+  menu.push(null);
+  menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });
+  menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites' });
+  menu.push({ text: intl.formatMessage(messages.bookmarks), to: '/bookmarks' });
+  menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
+  menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags' });
+  menu.push(null);
+  menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
+  menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
+  menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
+  menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
+  menu.push(null);
+  menu.push({ text: intl.formatMessage(messages.logout), action: handleLogoutClick });
 
-    let menu = [];
-
-    menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
-    menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });
-    menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned' });
-    menu.push(null);
-    menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });
-    menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites' });
-    menu.push({ text: intl.formatMessage(messages.bookmarks), to: '/bookmarks' });
-    menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
-    menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags' });
-    menu.push(null);
-    menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
-    menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
-    menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
-    menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
-    menu.push(null);
-    menu.push({ text: intl.formatMessage(messages.logout), action: this.handleLogout });
-
-    return (
-      <div className='compose__action-bar'>
-        <div className='compose__action-bar-dropdown'>
-          <DropdownMenuContainer items={menu} icon='bars' size={18} direction='right' />
-        </div>
-      </div>
-    );
-  }
-
-}
-
-export default injectIntl(ActionBar);
+  return (
+    <DropdownMenuContainer
+      items={menu}
+      icon='bars'
+      iconComponent={MoreHorizIcon}
+      size={24}
+      direction='right'
+    />
+  );
+};

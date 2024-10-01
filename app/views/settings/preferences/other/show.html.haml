@@ -4,29 +4,58 @@
 - content_for :heading_actions do
   = button_tag t('generic.save_changes'), class: 'button', form: 'edit_preferences'
 
-= simple_form_for current_user, url: settings_preferences_other_path, html: { method: :put, id: 'edit_preferences' } do |f|
+= simple_form_for current_user, url: settings_preferences_other_path, html: { id: :edit_preferences } do |f|
   = render 'shared/error_messages', object: current_user
 
   = f.simple_fields_for :settings, current_user.settings do |ff|
     .fields-group
-      = ff.input :aggregate_reblogs, wrapper: :with_label, recommended: true, label: I18n.t('simple_form.labels.defaults.setting_aggregate_reblogs'), hint: I18n.t('simple_form.hints.defaults.setting_aggregate_reblogs')
+      = ff.input :aggregate_reblogs,
+                 hint: I18n.t('simple_form.hints.defaults.setting_aggregate_reblogs'),
+                 label: I18n.t('simple_form.labels.defaults.setting_aggregate_reblogs'),
+                 recommended: true,
+                 wrapper: :with_label
 
     %h4= t 'preferences.posting_defaults'
 
     .fields-row
       .fields-group.fields-row__column.fields-row__column-6
-        = ff.input :default_privacy, collection: Status.selectable_visibilities, wrapper: :with_label, include_blank: false, label_method: ->(visibility) { safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') }, required: false, hint: false, label: I18n.t('simple_form.labels.defaults.setting_default_privacy')
+        = ff.input :default_privacy,
+                   collection: Status.selectable_visibilities,
+                   hint: false,
+                   include_blank: false,
+                   label_method: ->(visibility) { safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') },
+                   label: I18n.t('simple_form.labels.defaults.setting_default_privacy'),
+                   required: false,
+                   wrapper: :with_label
 
       .fields-group.fields-row__column.fields-row__column-6
-        = ff.input :default_language, collection: [nil] + filterable_languages, wrapper: :with_label, label_method: ->(locale) { locale.nil? ? I18n.t('statuses.default_language') : native_locale_name(locale) }, required: false, include_blank: false, hint: false, label: I18n.t('simple_form.labels.defaults.setting_default_language')
+        = ff.input :default_language,
+                   collection: [nil] + filterable_languages,
+                   hint: false,
+                   include_blank: false,
+                   label_method: ->(locale) { locale.nil? ? I18n.t('statuses.default_language') : native_locale_name(locale) },
+                   label: I18n.t('simple_form.labels.defaults.setting_default_language'),
+                   required: false,
+                   wrapper: :with_label
 
     .fields-group
-      = ff.input :default_sensitive, wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_default_sensitive'), hint: I18n.t('simple_form.hints.defaults.setting_default_sensitive')
+      = ff.input :default_sensitive,
+                 hint: I18n.t('simple_form.hints.defaults.setting_default_sensitive'),
+                 label: I18n.t('simple_form.labels.defaults.setting_default_sensitive'),
+                 wrapper: :with_label
 
   %h4= t 'preferences.public_timelines'
 
   .fields-group
-    = f.input :chosen_languages, collection: filterable_languages, wrapper: :with_block_label, include_blank: false, label_method: ->(locale) { native_locale_name(locale) }, required: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+    = f.input :chosen_languages,
+              as: :check_boxes,
+              collection_wrapper_tag: 'ul',
+              collection: filterable_languages,
+              include_blank: false,
+              item_wrapper_tag: 'li',
+              label_method: ->(locale) { native_locale_name(locale) },
+              required: false,
+              wrapper: :with_block_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

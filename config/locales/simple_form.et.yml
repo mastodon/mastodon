@@ -3,6 +3,7 @@ et:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Kaitseb valede omistuste eest.
         discoverable: Su profiili ja avalikke postitusi võidakse Mastodoni erinevates piirkondades esile tõsta või soovitada ning su profiili soovitada teistele kasutajatele.
         display_name: Su täisnimi või naljanimi.
         fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
@@ -39,14 +40,14 @@ et:
         text: Otsust on võimalik vaidlustada vaid 1 kord
       defaults:
         autofollow: Inimesed, kes loovad konto selle kutse läbi, automaatselt jälgivad sind
-        avatar: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
+        avatar: WEBP, PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         bot: Teavita teisi, et see konto teeb enamjaolt automatiseeritud tegevusi ja ei pruugi olla järelvalve all
         context: Üks või mitu konteksti, mille vastu see filter peaks rakenduma
         current_password: Sisesta turvalisuse huvides oma siinse konto salasõna
         current_username: Kinnitamiseks palun sisesta oma konto kasutajanimi
         digest: Saadetakse ainult pärast pikka tegevusetuse perioodi ja ainult siis, kui on saadetud otsesõnumeid
         email: Sulle saadetakse e-posti teel kinnituskiri
-        header: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
+        header: WEBP, PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         inbox_url: Kopeeri soovitud vahendaja avalehe URL
         irreversible: Filtreeritud postitused kaovad taastamatult, isegi kui filter on hiljem eemaldatud
         locale: Kasutajaliidese, e-kirjade ja tõuketeadete keel
@@ -69,7 +70,7 @@ et:
         domain: See võib olla e-postiaadressis näha olev domeen või MX-kirje, mida aadress kasutab. Kontroll toimub liitumise käigus.
         with_dns_records: Püütakse lahendada selle domeeni DNS-kirjed ja ühtlasi blokeerida ka selle tulemused
       featured_tag:
-        name: 'Siin on mõned nendest siltidest mida sa oled kõige hiljutisemalt kasutanud:'
+        name: 'Siin on mõned nendest siltidest, mida oled viimati kasutanud:'
       filters:
         action: Tegevuse valik, kui postitus vastab filtrile
         actions:
@@ -77,13 +78,15 @@ et:
           warn: Varja filtreeritud sisu hoiatusega, nimetades filtri pealkirja
       form_admin_settings:
         activity_api_enabled: Kohalike postituste, aktiivsete kasutajate ja uute registreerumistr arv nädala kaupa grupeeritult
-        backups_retention_period: Talleta genereeritud kasutajaarhiivid määratud arv päevi.
+        app_icon: WEBP, PNG, GIF või JPG. Asendab mobiilsel seadmel äpi vaikeikooni kohandatud ikooniga.
+        backups_retention_period: Kasutajatel on võimalus genereerida oma postitustest hiljem allalaaditav arhiiv. Kui määrata positiivne arv, kustutatakse serveri talletusruumist need arhiivid määratud arvu päevade järel automaatselt.
         bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
-        content_cache_retention_period: Teiste serverite postitused kustutatakse pärast määratud päevade arvu, kui see on seatud positiivsele väärtusele. See võib olla pöördumatu.
-        custom_css: Kohandatud stiile on võimalik kasutada Mastodoni veebiliideses.
+        content_cache_retention_period: Kõik teiste serverite postitused (sealhulgas jagamised ja vastused) kustutatakse pärast määratud arvu päevade möödumist, sõltumata, kuidas kohalik kasutaja on nende postitustega interakteerunud. Hõlmatud on ka postitused, mille kohalik kasutaja on märkinud järjehoidjaks või lemmikuks. Ka eri instantside kasutajate vahelised privaatsed mainimised kaovad ja neid on võimatu taastada. See seadistus on mõeldud eriotstarbeliste instantside jaoks ja rikub paljude kasutajate ootusi, kui seda rakendatakse üldotstarbelise kasutuse puhul.
+        custom_css: Mastodoni veebiliideses on võimalik kasutada kohandatud stiile.
+        favicon: WEBP, PNG, GIF või JPG. Asendab Mastodoni vaike- favicon ikooni kohandatud ikooniga.
         mascot: Asendab kohandatud veebiliidese illustratsiooni.
-        media_cache_retention_period: Positiivse väärtuse korral kustutatakse allalaetud meediafailid määratud päevade möödudes. Vajadusel laaditakse need uuesti alla.
+        media_cache_retention_period: Kaugkasutajate tehtud postituste meediafailid salvestatakse teie serveri vahemällu. Kui see seadistus on seatud positiivsele väärtusele, kustutatakse meediumifailid määratud päevade möödumisel. Kui meediaandmeid küsitakse pärast nende kustutamist, laaditakse need uuesti alla, kui lähtesisu on veel saadaval. Kuna on olemas piirangud, kui tihti tohivad lingikaardid kolmandatelt saitidelt andmeid pärida, on soovitatav määrata väärtuseks vähemalt 14. Vastasel juhul ei uuendata linkide eelvaatekaarte nõudmise korral enne seda aega.
         peers_api_enabled: Domeeninimede loetelu, mida see server on Fediversumis kohanud. Mitte mingeid andmeid selle serveri födereerumise kohta antud serverite pole, vaid üksnes info, et sellest serverist ollakse teadlik. Seda kasutavad teenused, mis koguvad üldist födereerumise statistikat.
         profile_directory: Kasutajate kataloog kuvab nimekirja kasutajatest, kes on seda lubanud.
         require_invite_text: Kui liitumisi on tarvis kinnitada, oleks "Miks soovid liituda?" vastus vajalik
@@ -98,7 +101,7 @@ et:
         thumbnail: Umbes 2:1 mõõdus pilt serveri informatsiooni kõrval.
         timeline_preview: Sisenemata külastajatel on võimalik sirvida viimaseid avalikke postitusi serveril.
         trendable_by_default: Populaarse sisu ülevaatuse vahele jätmine. Pärast seda on siiski võimalik üksikuid üksusi trendidest eemaldada.
-        trends: Populaarsuse suunad näitavad millised postitused, sildid ja uudislood koguvad sinu serveris tähelepanu.
+        trends: Trendid näitavad, millised postitused, sildid ja uudislood koguvad sinu serveris tähelepanu.
         trends_as_landing_page: Näitab välja logitud kasutajatele ja külalistele serveri kirjelduse asemel populaarset sisu. Populaarne sisu (trendid) peab selleks olema sisse lülitatud.
       form_challenge:
         current_password: Turvalisse alasse sisenemine
@@ -116,6 +119,7 @@ et:
           sign_up_requires_approval: Uued liitumised vajavad kinnitamist
         severity: Valik, mis juhtub päringutega sellelt IP-aadressilt
       rule:
+        hint: Valikuline. Anna reegli kohta rohkem üksikasju
         text: Reegli või nõude kirjeldus selle serveri kasutajatele. Võimalikult lühidalt ja lihtsalt
       sessions:
         otp: 'Kaheastmelise autentimise kood telefonirakendusest või mõni taastekood:'
@@ -127,7 +131,7 @@ et:
         name: Saad muuta ainult tähtede suurtähelisust, näiteks selleks, et muuta seda loetavamaks
       user:
         chosen_languages: Keelte valimisel näidatakse avalikel ajajoontel ainult neis keeltes postitusi
-        role: See roll kontrollib, millised õigused kasutajal on
+        role: Rollid määravad, millised õigused kasutajal on.
       user_role:
         color: Rolli tähistamise värvus üle kasutajaliidese, RGB 16nd-formaadis
         highlighted: Teeb rolli avalikult nähtavaks
@@ -140,6 +144,7 @@ et:
         url: Kuhu sündmused saadetakse
     labels:
       account:
+        attribution_domains_as_text: Luba vaid kindlad veebilehed
         discoverable: Tõsta postitused ja profiil avastamise algoritmides esile
         fields:
           name: Nimetus
@@ -208,6 +213,7 @@ et:
         setting_default_privacy: Postituse nähtavus
         setting_default_sensitive: Alati märgista meedia tundlikuks
         setting_delete_modal: Näita kinnitusdialoogi enne postituse kustutamist
+        setting_disable_hover_cards: Keela profiili eelvaade kui hõljutada
         setting_disable_swiping: Keela pühkimisliigutused
         setting_display_media: Meedia kuvarežiim
         setting_display_media_default: Vaikimisi
@@ -239,11 +245,13 @@ et:
           warn: Peida hoiatusega
       form_admin_settings:
         activity_api_enabled: Avalda agregeeritud statistika kasutajaaktiivsuse kohta API-s
+        app_icon: Äpi ikoon
         backups_retention_period: Kasutajate arhiivi talletusperiood
         bootstrap_timeline_accounts: Alati soovita neid kontosid uutele kasutajatele
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
-        content_cache_retention_period: Meediapuhvri talletusperiood
+        content_cache_retention_period: Kaugsisu säilitamise aeg
         custom_css: Kohandatud CSS
+        favicon: Favicon
         mascot: Kohandatud maskott (kunagine)
         media_cache_retention_period: Meediapuhvri talletusperiood
         peers_api_enabled: Avalda avastatud serverite loetelu API kaudu
@@ -299,6 +307,7 @@ et:
           patch: Teata veaparandusuuendustest
         trending_tag: Uus trend vajab ülevaatust
       rule:
+        hint: Lisainfo
         text: Reegel
       settings:
         indexable: Kaasa profiilileht otsimootoritesse
@@ -307,7 +316,7 @@ et:
         listable: Luba sellel sildil ilmuda profiilide kataloogis
         name: Silt
         trendable: Luba sellel sildil trendida
-        usable: Luba postitustel seda silti kasutada
+        usable: Luba seda märksõna postitustes kasutada lokaalselt
       user:
         role: Roll
         time_zone: Ajavöönd

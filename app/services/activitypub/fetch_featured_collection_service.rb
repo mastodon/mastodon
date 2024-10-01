@@ -23,9 +23,9 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
 
     case collection['type']
     when 'Collection', 'CollectionPage'
-      collection['items']
+      as_array(collection['items'])
     when 'OrderedCollection', 'OrderedCollectionPage'
-      collection['orderedItems']
+      as_array(collection['orderedItems'])
     end
   end
 
@@ -37,6 +37,8 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
   end
 
   def process_items(items)
+    return if items.nil?
+
     process_note_items(items) if @options[:note]
     process_hashtag_items(items) if @options[:hashtag]
   end

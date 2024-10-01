@@ -14,7 +14,7 @@ export default class Settings {
       const encodedData = JSON.stringify(data);
       localStorage.setItem(key, encodedData);
       return data;
-    } catch (e) {
+    } catch {
       return null;
     }
   }
@@ -24,7 +24,7 @@ export default class Settings {
     try {
       const rawData = localStorage.getItem(key);
       return JSON.parse(rawData);
-    } catch (e) {
+    } catch {
       return null;
     }
   }
@@ -35,7 +35,8 @@ export default class Settings {
       const key = this.generateKey(id);
       try {
         localStorage.removeItem(key);
-      } catch (e) {
+      } catch {
+        // ignore if the key is not found
       }
     }
     return data;
@@ -47,3 +48,4 @@ export const pushNotificationsSetting = new Settings('mastodon_push_notification
 export const tagHistory = new Settings('mastodon_tag_history');
 export const bannerSettings = new Settings('mastodon_banner_settings');
 export const searchHistory = new Settings('mastodon_search_history');
+export const playerSettings = new Settings('mastodon_player');

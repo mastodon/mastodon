@@ -48,7 +48,7 @@ const ShortNumberCounter: React.FC<ShortNumberCounterProps> = ({ value }) => {
 
   const count = (
     <FormattedNumber
-      value={rawNumber}
+      value={rawNumber ?? 0}
       maximumFractionDigits={maxFractionDigits}
     />
   );

@@ -2,6 +2,9 @@
 id:
   simple_form:
     hints:
+      account:
+        discoverable: Postingan dan profil publik Anda mungkin ditampilkan atau direkomendasikan di berbagai area Mastodon dan profil Anda mungkin disarankan ke pengguna lain.
+        display_name: Nama lengkap Anda atau nama lucu Anda.
       account_alias:
         acct: Tentukan namapengguna@domain akun yang ingin Anda pindah
       account_migration:
@@ -29,14 +32,12 @@ id:
         text: Anda hanya dapat mengajukan banding peringatan sekali
       defaults:
         autofollow: Orang yang ingin mendaftar lewat undangan, otomatis mengikuti Anda
-        avatar: PNG, GIF atau JPG. Maksimal %{size}. Ukuran dikecilkan menjadi %{dimensions}px
         bot: Akun ini melakukan aksi otomatis dan mungkin tak termonitor
         context: Satu atau lebih konteks tempat saringan perlu diterapkan
         current_password: Untuk tujuan keamanan mohon masukkan kata sandi akun ini
         current_username: Untuk konfirmasi, mohon masukkan nama pengguna akun ini
         digest: Hanya kirim setelah lama tidak aktif dan hanya jika Anda menerima pesan personal atas absensi Anda
         email: Anda akan dikirimi email konfirmasi
-        header: PNG, GIF atau JPG. Maksimal %{size}. Ukuran dikecilkan menjadi %{dimensions}px
         inbox_url: Salin URL dari halaman depan relai yang ingin Anda pakai
         irreversible: Toot tersaring akan hilang permanen bahkan jika saringan dihapus kemudian
         locale: Bahasa antar muka pengguna, email, dan notifikasi dorong
@@ -65,13 +66,10 @@ id:
           hide: Sembunyikan konten yang disaring, seperti itu tidak ada
           warn: Sembunyikan konten yang disaring di belakang sebuah peringatan menyebutkan judul saringan
       form_admin_settings:
-        backups_retention_period: Simpan arsip pengguna yang dibuat untuk jumlah hari yang ditetapkan.
         bootstrap_timeline_accounts: Akun ini akan disematkan di atas rekomendasi ikut pengguna baru.
         closed_registrations_message: Ditampilkan ketika pendaftaran ditutup
-        content_cache_retention_period: Kiriman dari server lain akan dihapus setelah jumlah hari yang ditentukan jika nilai positif ditetapkan. Ini mungkin tidak dapat diurungkan.
         custom_css: Anda dapat menerapkan gaya kustom di versi web Mastodon.
         mascot: Menimpa ilustrasi di antarmuka web tingkat lanjut.
-        media_cache_retention_period: File media yang diunduh akan dihapus setelah beberapa hari yang ditentukan ketika ditetapkan ke nilai yang positif, dan diunduh ulang pada permintaan.
         profile_directory: Direktori profil mendaftarka semua pengguna yang ingin untuk dapat ditemukan.
         require_invite_text: Ketika pendaftaran membutuhkan persetujuan manual, buat masukan teks "Mengapa Anda ingin bergabung?" dibutuhkan daripada opsional
         site_contact_email: Bagaimana orang dapat menghubungi Anda untuk kebutuhan hukum atau dukungan.
@@ -109,7 +107,6 @@ id:
         name: Anda hanya dapat mengubahnya ke huruf kecil/besar, misalnya, agar lebih mudah dibaca
       user:
         chosen_languages: Ketika dicentang, hanya toot dalam bahasa yang dipilih yang akan ditampilkan di linimasa publik
-        role: Peran mengatur izin apa yang dimiliki pengguna
       user_role:
         color: Warna yang digunakan untuk peran di antarmuka pengguna, sebagai RGB dalam format hex
         highlighted: Ini membuat peran terlihat secara publik
@@ -218,7 +215,6 @@ id:
         backups_retention_period: Rentang retensi arsip pengguna
         bootstrap_timeline_accounts: Selalu rekomendasikan akun ini ke pengguna baru
         closed_registrations_message: Pesan kustom ketika pendaftaran tidak tersedia
-        content_cache_retention_period: Rentang retensi tembolok konten
         custom_css: CSS kustom
         mascot: Maskot kustom (lawas)
         media_cache_retention_period: Rentang retensi tembolok media
@@ -271,7 +267,6 @@ id:
         listable: Izinkan tagar ini muncul di penelusuran dan di direktori profil
         name: Tagar
         trendable: Izinkan tagar ini muncul di bawah tren
-        usable: Izinkan toot memakai tagar ini
       user:
         role: Peran
       user_role:

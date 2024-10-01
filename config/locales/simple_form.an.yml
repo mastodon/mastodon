@@ -31,14 +31,12 @@ an:
         text: Nomás puetz apelar una amonestación una vegada
       defaults:
         autofollow: Los usuarios que se rechistren per medio d'a invitación te seguirán automaticament
-        avatar: PNG, GIF u JPG. Maximo %{size}. Será escalau a %{dimensions}px
         bot: Esta cuenta executa prencipalment accions automatizadas y podría no estar monitorizada
         context: Un u multiples contextos en os quals ha d'aplicar-se lo filtro
         current_password: Per razons de seguranza per favor ingrese la clau d'a cuenta actual
         current_username: Pa confirmar, per favor ingrese lo nombre d'usuario d'a cuenta actual
         digest: Solo ninviau dimpués d'un largo periodo d'inactividat y nomás si has recibiu mensaches personals entre la tuya ausencia
         email: Se le ninviará un correu de confirmación
-        header: PNG, GIF u JPG. Maximo %{size}. Será escalau a %{dimensions}px
         inbox_url: Copia la URL d'a pachina prencipal d'o relés que quiers utilizar
         irreversible: Las publicacions filtradas desapareixerán irreversiblement, mesmo si este filtro ye eliminau mas abance
         locale: L'idioma d'a interficie d'usuario, correus y notificacions push
@@ -68,13 +66,10 @@ an:
           warn: Amagar lo conteniu filtrau dezaga d'una alvertencia mencionando lo titol d'o filtro
       form_admin_settings:
         activity_api_enabled: Conteyo de publicacions locals, usuarios activos y nuevos rechistros en periodos semanals
-        backups_retention_period: Mantener los fichers d'usuario cheneraus entre lo numero de días especificau.
         bootstrap_timeline_accounts: Estas cuentas amaneixerán en a parte superior d'as recomendacions d'os nuevos usuarios.
         closed_registrations_message: Amostrau quan los rechistros son zarraus
-        content_cache_retention_period: Las publicacions d'atros servidors s'eliminarán dimpués d'o numero especificau de días quan s'estableixca una valor positiva. Esto puede estar irreversible.
         custom_css: Puetz aplicar estilos personalizaus a la versión web de Mastodon.
         mascot: Reemplaza la ilustración en a interficie web abanzada.
-        media_cache_retention_period: Los fichers multimedia descargaus s'eliminarán dimpués d'o numero especificau de días quan s'estableixca una valor positiva, y se redescargarán baixo demanda.
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha trobau en o Fediverso. Aquí no s'incluye garra dato sobre si federas con un servidor determinau, nomás que lo tuyo servidor lo conoixe. Esto ye emplegau per los servicios que replegan estatisticas sobre la federación en un sentiu cheneral.
         profile_directory: Lo directorio de perfils lista a totz los usuarios que han optado per que la suya cuenta pueda estar descubierta.
         require_invite_text: Quan los rechistros requieren aprebación manual, fa obligatoria la dentrada de texto "Per qué quiers unir-te?" en cuenta d'opcional
@@ -113,7 +108,6 @@ an:
         name: Nomás se puede cambiar lo cajón d'as letras, per eixemplo, pa que sía mas leyible
       user:
         chosen_languages: Quan se marca, nomás s'amostrarán las publicacions en os idiomas triaus en as linias de tiempo publicas
-        role: Lo rol controla qué permisos tiene la usuaria
       user_role:
         color: Color que s'utilizará pa lo rol a lo largo d'a interficie d'usuario, como RGB en formato hexadecimal
         highlighted: Esto fa que lo rol sía publicament visible
@@ -223,7 +217,6 @@ an:
         backups_retention_period: Periodo de retención d'o fichero d'usuario
         bootstrap_timeline_accounts: Recomendar siempre estas cuentas a nuevos usuarios
         closed_registrations_message: Mensache personalizau quan los rechistros no son disponibles
-        content_cache_retention_period: Periodo de retención de caché de conteniu
         custom_css: CSS personalizau
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Periodo de retención de caché multimedia
@@ -277,7 +270,6 @@ an:
         listable: Permitir que esta etiqueta amaneixca en as busquedas y en o directorio d'o perfil
         name: Etiqueta
         trendable: Permitir que esta etiqueta amaneixca baixo tendencias
-        usable: Permitir a las publicacions usar esta etiqueta
       user:
         role: Rol
       user_role:

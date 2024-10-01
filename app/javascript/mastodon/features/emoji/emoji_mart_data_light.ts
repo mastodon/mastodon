@@ -29,23 +29,17 @@ const emojis: Emojis = {};
 
 // decompress
 Object.keys(shortCodesToEmojiData).forEach((shortCode) => {
-  const [_filenameData, searchData] = shortCodesToEmojiData[shortCode];
-  const native = searchData[0];
-  let short_names = searchData[1];
-  const search = searchData[2];
-  let unified = searchData[3];
+  const emojiData = shortCodesToEmojiData[shortCode];
+  if (!emojiData) return;
 
-  if (!unified) {
-    // unified name can be derived from unicodeToUnifiedName
-    unified = unicodeToUnifiedName(native);
-  }
+  const [_filenameData, searchData] = emojiData;
+  const [native, short_names, search, unified] = searchData;
 
-  if (short_names) short_names = [shortCode].concat(short_names);
   emojis[shortCode] = {
     native,
     search,
-    short_names,
-    unified,
+    short_names: short_names ? [shortCode].concat(short_names) : undefined,
+    unified: unified ?? unicodeToUnifiedName(native),
   };
 });
 

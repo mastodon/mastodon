@@ -5,7 +5,7 @@
   %h2= t('settings.profile')
   = render partial: 'settings/shared/profile_navigation'
 
-= simple_form_for @account, url: settings_profile_path, html: { method: :put, id: 'edit_profile' } do |f|
+= simple_form_for @account, url: settings_profile_path, html: { id: :edit_profile } do |f|
   = render 'shared/error_messages', object: @account
 
   %p.lead= t('edit_profile.hint_html')
@@ -15,10 +15,10 @@
   .fields-row
     .fields-row__column.fields-row__column-6
       .fields-group
-        = f.input :display_name, wrapper: :with_block_label, input_html: { maxlength: 30, data: { default: @account.username } }
+        = f.input :display_name, wrapper: :with_block_label, input_html: { maxlength: Account::DISPLAY_NAME_LENGTH_LIMIT, data: { default: @account.username } }
 
       .fields-group
-        = f.input :note, wrapper: :with_block_label, input_html: { maxlength: 500 }
+        = f.input :note, wrapper: :with_block_label, input_html: { maxlength: Account::NOTE_LENGTH_LIMIT }
 
     .fields-row__column.fields-group.fields-row__column-6
       .input.with_block_label
@@ -27,33 +27,39 @@
 
         = f.simple_fields_for :fields do |fields_f|
           .row
-            = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name'), input_html: { maxlength: 255 }
-            = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value'), input_html: { maxlength: 255 }
+            = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name'), input_html: { maxlength: Account::Field::MAX_CHARACTERS_LOCAL }
+            = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value'), input_html: { maxlength: Account::Field::MAX_CHARACTERS_LOCAL }
 
   .fields-row
     .fields-row__column.fields-row__column-6
       .fields-group
-        = f.input :avatar, wrapper: :with_block_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT))
+        = f.input :avatar,
+                  hint: t('simple_form.hints.defaults.avatar', dimensions: Account::Avatar::AVATAR_GEOMETRY, size: number_to_human_size(Account::Avatar::LIMIT)),
+                  input_html: { accept: Account::Avatar::IMAGE_MIME_TYPES.join(',') },
+                  wrapper: :with_block_label
 
     .fields-row__column.fields-row__column-6
       .fields-group
         = image_tag @account.avatar.url, class: 'fields-group__thumbnail', id: 'account_avatar-preview'
         - if @account.avatar.present?
           = link_to settings_profile_picture_path('avatar'), data: { method: :delete }, class: 'link-button link-button--destructive' do
-            = fa_icon 'trash fw'
+            = material_symbol 'delete'
             = t('generic.delete')
 
   .fields-row
     .fields-row__column.fields-row__column-6
       .fields-group
-        = f.input :header, wrapper: :with_block_label, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT))
+        = f.input :header,
+                  hint: t('simple_form.hints.defaults.header', dimensions: Account::Header::HEADER_GEOMETRY, size: number_to_human_size(Account::Header::LIMIT)),
+                  input_html: { accept: Account::Header::IMAGE_MIME_TYPES.join(',') },
+                  wrapper: :with_block_label
 
     .fields-row__column.fields-row__column-6
       .fields-group
         = image_tag @account.header.url, class: 'fields-group__thumbnail', id: 'account_header-preview'
         - if @account.header.present?
           = link_to settings_profile_picture_path('header'), data: { method: :delete }, class: 'link-button link-button--destructive' do
-            = fa_icon 'trash fw'
+            = material_symbol 'delete'
             = t('generic.delete')
 
   %h4= t('edit_profile.other')

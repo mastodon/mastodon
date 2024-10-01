@@ -23,11 +23,16 @@ class Mute < ApplicationRecord
 
   validates :account_id, uniqueness: { scope: :target_account_id }
 
-  after_commit :remove_blocking_cache
+  after_commit :invalidate_blocking_cache
+  after_commit :invalidate_follow_recommendations_cache
 
   private
 
-  def remove_blocking_cache
+  def invalidate_blocking_cache
     Rails.cache.delete("exclude_account_ids_for:#{account_id}")
+  end
+
+  def invalidate_follow_recommendations_cache
+    Rails.cache.delete("follow_recommendations/#{account_id}")
   end
 end

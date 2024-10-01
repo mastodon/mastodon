@@ -21,12 +21,12 @@ class Scheduler::SuspendedUserCleanupScheduler
   def perform
     return if Sidekiq::Queue.new('pull').size > MAX_PULL_SIZE
 
-    clean_suspended_accounts!
+    process_deletion_requests!
   end
 
   private
 
-  def clean_suspended_accounts!
+  def process_deletion_requests!
     # This should be fine because we only process a small amount of deletion requests at once and
     # `id` and `created_at` should follow the same order.
     AccountDeletionRequest.reorder(id: :asc).take(MAX_DELETIONS_PER_JOB).each do |deletion_request|

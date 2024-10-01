@@ -3,6 +3,7 @@ es:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protege frente atribuciones fraudulentas.
         discoverable: Tu perfil y publicaciones públicas pueden ser destacadas o recomendadas en varias áreas de Mastodon y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu apodo.
         fields: Tu carta de presentación, pronombres, edad, lo que quieras.
@@ -11,9 +12,9 @@ es:
         show_collections: Las personas podrán navegar a través de tus seguidos y seguidores. Esto no impide que las personas que sigues sepan que las estás siguiendo.
         unlocked: Las personas podrán seguirte sin pedir aprobación. Desmarca si deseas revisar las solicitudes de seguimiento y aceptar o rechazar nuevos seguidores.
       account_alias:
-        acct: Especifique su nombre de usuario@dominio de la cuenta de donde se desea migrar
+        acct: Especifica el nombre_de_usuario@dominio de la cuenta desde donde deseas migrar
       account_migration:
-        acct: Especifique el nombre de usuario@dominio de la cuenta de la cual se desea migrar
+        acct: Especifica el nombre_de_usuario@dominio de la cuenta hacia la que quieres migrar
       account_warning_preset:
         text: Puede usar sintaxis de publicaciones, como URLs, hashtags y menciones
         title: Opcional. No es visible para el destinatario
@@ -21,14 +22,14 @@ es:
         include_statuses: El usuario verá qué publicaciones han causado la acción de moderación o advertencia
         send_email_notification: El usuario recibirá una explicación de lo que ha sucedido con su cuenta
         text_html: Opcional. Puede usar sintaxis de publicaciones. Puede añadir <a href="%{path}">configuraciones predefinidas de advertencia</a> para ahorrar tiempo
-        type_html: Elige lo qué vas a hacer con <strong>%{acct}</strong>
+        type_html: Elige lo que vas a hacer con <strong>%{acct}</strong>
         types:
           disable: Evita que el usuario utilice su cuenta, pero no elimina ni oculta sus contenidos.
-          none: Utilizar esto para enviar una advertencia al usuario, sin poner en marcha ninguna otra acción.
+          none: Utiliza esto para enviar una advertencia al usuario, sin ejecutar ninguna otra acción.
           sensitive: Forzar que todos los archivos multimedia de este usuario sean marcados como sensibles.
           silence: Evita que el usuario pueda publicar con visibilidad pública, y oculta sus mensajes y notificaciones a personas que no lo siguen. Cierra todos los informes contra esta cuenta.
           suspend: Evita cualquier interacción desde o hacia esta cuenta y elimina su contenido. Reversible en 30 días. Cierra todos los informes contra esta cuenta.
-        warning_preset_id: Opcional. Aún puede añadir texto personalizado al final de la configuración predefinida
+        warning_preset_id: Opcional. Aún puedes añadir texto personalizado al final de la configuración predefinida
       announcement:
         all_day: Cuando está seleccionado solo se mostrarán las fechas del rango de tiempo
         ends_at: Opcional. El anuncio desaparecerá automáticamente en este momento
@@ -36,17 +37,17 @@ es:
         starts_at: Opcional. En caso de que su anuncio esté vinculado a un intervalo de tiempo específico
         text: Puedes usar la sintaxis de publicaciones. Por favor ten en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
       appeal:
-        text: Sólo puedes apelar una amonestación una vez
+        text: Solo puedes apelar la amonestación una vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
-        avatar: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
+        avatar: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         bot: Esta cuenta ejecuta principalmente acciones automatizadas y podría no ser monitorizada
         context: Uno o múltiples contextos en los que debe aplicarse el filtro
         current_password: Por razones de seguridad por favor ingrese la contraseña de la cuenta actual
         current_username: Para confirmar, por favor ingrese el nombre de usuario de la cuenta actual
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
         email: Se le enviará un correo de confirmación
-        header: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
+        header: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         inbox_url: Copia la URL de la página principal del relés que quieres utilizar
         irreversible: Las publicaciones filtradas desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
         locale: El idioma de la interfaz de usuario, correos y notificaciones push
@@ -77,13 +78,15 @@ es:
           warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
       form_admin_settings:
         activity_api_enabled: Conteo de publicaciones publicadas localmente, usuarios activos y registros nuevos cada semana
-        backups_retention_period: Mantener los archivos de usuario generados durante el número de días especificado.
+        app_icon: WEBP, PNG, GIF o JPG. Reemplaza el icono de aplicación predeterminado en dispositivos móviles con un icono personalizado.
+        backups_retention_period: Los usuarios tienen la capacidad de generar archivos de sus mensajes para descargar más adelante. Cuando se establece un valor positivo, estos archivos se eliminarán automáticamente del almacenamiento después del número de días especificado.
         bootstrap_timeline_accounts: Estas cuentas aparecerán en la parte superior de las recomendaciones de los nuevos usuarios.
         closed_registrations_message: Mostrado cuando los registros están cerrados
-        content_cache_retention_period: Las publicaciones de otros servidores se eliminarán después del número especificado de días cuando se establezca un valor positivo. Esto puede ser irreversible.
+        content_cache_retention_period: Todas las publicaciones de otros servidores (incluso impulsos y respuestas) se eliminarán después del número de días especificado, sin tener en cuenta la interacción del usuario local con esos mensajes. Esto incluye mensajes donde un usuario local los ha marcado como marcadores o favoritos. Las menciones privadas entre usuarios de diferentes instancias también se perderán sin posibilidad de recuperación. El uso de esta configuración está destinado a instancias de propósito especial, y rompe muchas expectativas de los usuarios cuando se implementa para un uso de propósito general.
         custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
+        favicon: WEBP, PNG, GIF o JPG. Reemplaza el favicon predeterminado de Mastodon con un icono personalizado.
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
-        media_cache_retention_period: Los archivos multimedia descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se redescargarán bajo demanda.
+        media_cache_retention_period: Los archivos multimedia de las publicaciones creadas por usuarios remotos se almacenan en caché en tu servidor. Cuando se establece un valor positivo, estos archivos se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlaces realizan peticiones a sitios de terceros, se recomienda establecer este valor a al menos 14 días, o las tarjetas de previsualización de enlaces no se actualizarán bajo demanda antes de ese momento.
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Aquí no se incluye ningún dato sobre si federas con un servidor determinado, solo que tu servidor lo conoce. Esto es utilizado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado por que su cuenta pueda ser descubierta.
         require_invite_text: Cuando los registros requieren aprobación manual, hace obligatoria la entrada de texto "¿Por qué quieres unirte?" en lugar de opcional
@@ -116,6 +119,7 @@ es:
           sign_up_requires_approval: Nuevos registros requerirán su aprobación
         severity: Elegir lo que pasará con las peticiones desde esta IP
       rule:
+        hint: Opcional. Proporciona más detalles sobre la regla
         text: Describe una norma o requisito para los usuarios de este servidor. Intenta hacerla corta y sencilla
       sessions:
         otp: 'Introduce el código de autenticación de dos factores generado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
@@ -127,7 +131,7 @@ es:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       user:
         chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
-        role: El rol controla qué permisos tiene el usuario
+        role: El rol controla qué permisos tiene el usuario.
       user_role:
         color: Color que se utilizará para el rol a lo largo de la interfaz de usuario, como RGB en formato hexadecimal
         highlighted: Esto hace que el rol sea públicamente visible
@@ -140,6 +144,7 @@ es:
         url: Donde los eventos serán enviados
     labels:
       account:
+        attribution_domains_as_text: Solo permitir sitios web específicos
         discoverable: Destacar perfil y publicaciones en algoritmos de descubrimiento
         fields:
           name: Etiqueta
@@ -208,6 +213,7 @@ es:
         setting_default_privacy: Privacidad de publicaciones
         setting_default_sensitive: Marcar siempre imágenes como sensibles
         setting_delete_modal: Mostrar diálogo de confirmación antes de borrar una publicación
+        setting_disable_hover_cards: Desactivar vista previa del perfil al pasar el cursor
         setting_disable_swiping: Deshabilitar movimientos de deslizamiento
         setting_display_media: Visualización multimedia
         setting_display_media_default: Por defecto
@@ -239,11 +245,13 @@ es:
           warn: Ocultar con una advertencia
       form_admin_settings:
         activity_api_enabled: Publicar estadísticas agregadas sobre la actividad del usuario con la API
+        app_icon: Icono de la app
         backups_retention_period: Período de retención del archivo de usuario
         bootstrap_timeline_accounts: Recomendar siempre estas cuentas a nuevos usuarios
         closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
-        content_cache_retention_period: Período de retención de caché de contenido
+        content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
+        favicon: Favicon
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de caché multimedia
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
@@ -299,6 +307,7 @@ es:
           patch: Notificar de actualizaciones de errores
         trending_tag: Una nueva tendencia requiere revisión
       rule:
+        hint: Información adicional
         text: Norma
       settings:
         indexable: Incluye la página de perfil en los buscadores
@@ -307,7 +316,7 @@ es:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en el directorio del perfil
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
-        usable: Permitir a las publicaciones usar esta etiqueta
+        usable: Permitir a las publicaciones usar esta etiqueta localmente
       user:
         role: Rol
         time_zone: Zona horaria

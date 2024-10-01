@@ -12,6 +12,7 @@ cy:
       last_attempt: Mae gennych un cyfle arall cyn i'ch cyfrif gael ei gloi.
       locked: Mae eich cyfrif wedi ei gloi.
       not_found_in_database: "%{authentication_keys} neu gyfrinair annilys."
+      omniauth_user_creation_failure: Gwall wrth greu cyfrif ar gyfer yr hunaniaeth hon.
       pending: Mae eich cyfrif dal o dan adolygiad.
       timeout: Mae eich sesiwn wedi dod i ben. Mewngofnodwch eto i barhau.
       unauthenticated: Mae angen i chi fewngofnodi neu gofrestru cyn parhau.
@@ -47,16 +48,19 @@ cy:
         subject: 'Mastodon: Ailosod cyfarwyddiadau cyfrinair'
         title: Ailosod cyfrinair
       two_factor_disabled:
-        explanation: Mae dilysiad dau ffactor ar gyfer eich cyfrif wedi'i analluogi. Mae modd mewngofnodi nawr gan ddefnyddio cyfeiriad e-bost a chyfrinair yn unig.
+        explanation: Mae modd mewngofnodi nawr gan ddefnyddio dim ond cyfeiriad e-bost a chyfrinair.
         subject: 'Mastodon: mae dilysu dau ffactor wedi''i alluogi'
+        subtitle: Mae dilysiad dau ffactor ar gyfer eich cyfrif wedi'i analluogi.
         title: Dilysu dau ffactor yn anabl
       two_factor_enabled:
-        explanation: Mae dilysu dau ffactor wedi'i alluogi ar gyfer eich cyfrif. Bydd angen tocyn a gynhyrchir gan yr ap TOTP pâr i fewngofnodi.
+        explanation: Bydd angen tocyn wedi'i gynhyrchu gan yr ap TOTP pâr i fewngofnodi.
         subject: 'Mastodon: mae dilysu dau ffactor wedi''i alluogi'
+        subtitle: Mae dilysiad dau ffactor wedi'i alluogi ar gyfer eich cyfrif.
         title: Mae dilysu dau ffactor wedi'i alluogi
       two_factor_recovery_codes_changed:
         explanation: Mae'r codau adfer blaenorol wedi'u hannilysu a chynhyrchwyd rhai newydd.
         subject: 'Mastodon: Mae codau adfer dau ffactor wedi''u hadfywio'
+        subtitle: Mae'r codau adfer blaenorol wedi'u hannilysu a rhai newydd wedi'u cynhyrchu.
         title: Newidiodd codau adfer 2FA
       unlock_instructions:
         subject: 'Mastodon: Cyfarwyddiadau datgloi'
@@ -70,11 +74,13 @@ cy:
           subject: 'Mastodon: Allwedd ddiogelwch wedi''i dileu'
           title: Mae un o'ch allweddi diogelwch wedi'i ddileu
       webauthn_disabled:
-        explanation: Mae dilysu gydag allweddi diogelwch wedi'i analluogi ar gyfer eich cyfrif. Mae mewngofnodi bellach yn bosibl gan ddefnyddio'r tocyn a gynhyrchir gan yr ap TOTP pâr yn unig.
+        explanation: Mae dilysu gydag allweddi diogelwch wedi'i analluogi ar gyfer eich cyfrif.
+        extra: Mae mewngofnodi bellach yn bosibl gan ddefnyddio'r tocyn wedi'i gynhyrchu gan yr ap TOTP pâr yn unig.
         subject: 'Mastodon: Dilysiad gydag allweddi diogelwch wedi''i analluogi'
         title: Allweddi diogelwch wedi'u hanalluogi
       webauthn_enabled:
-        explanation: Mae dilysiad allwedd diogelwch wedi'i alluogi ar gyfer eich cyfrif. Gellir defnyddio'ch allwedd ddiogelwch nawr ar gyfer mewngofnodi.
+        explanation: Mae dilysiad allwedd diogelwch wedi'i alluogi ar gyfer eich cyfrif.
+        extra: Mae modd defnyddio'ch allwedd ddiogelwch nawr i fewngofnodi.
         subject: 'Mastodon: Dilysiad allwedd diogelwch wedi''i alluogi'
         title: Allweddi diogelwch wedi'u galluogi
     omniauth_callbacks:
@@ -87,7 +93,7 @@ cy:
       updated: Mae eich cyfrinair wedi'i newid yn llwyddiannus. Rydych chi bellach wedi mewngofnodi.
       updated_not_active: Mae eich cyfrinair wedi ei newid yn llwyddiannus.
     registrations:
-      destroyed: Hwyl fawr! Mae eich cyfrif wedi ei ddiddymu'n llwyddiannus. Gobeithiwn eich gweld chi eto'n fuan.
+      destroyed: Hwyl fawr! Mae eich cyfrif wedi ei chanslo'n llwyddiannus. Gobeithiwn eich gweld chi eto'n fuan.
       signed_up: Croeso! Rydych wedi cofrestru'n llwyddiannus.
       signed_up_but_inactive: Yr ydych wedi cofrestru'n llwyddiannus. Fodd bynnag, ni allwn eich mewngofnodi achos nid yw eich cyfrif wedi ei hagor eto.
       signed_up_but_locked: Rydych chi wedi cofrestru'n llwyddiannus. Fodd bynnag, ni allem eich mewngofnodi oherwydd bod eich cyfrif wedi'i gloi.

@@ -19,17 +19,16 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
-      subject
-
-      expect(response).to have_http_status(200)
-    end
-
     context 'when there are no reports' do
       it 'returns an empty list' do
         subject
 
-        expect(body_as_json).to be_empty
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to be_empty
       end
     end
 
@@ -64,7 +63,12 @@ RSpec.describe 'Reports' do
       it 'returns all unresolved reports' do
         subject
 
-        expect(body_as_json).to match_array(expected_response)
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to match_array(expected_response)
       end
 
       context 'with resolved param' do
@@ -74,7 +78,7 @@ RSpec.describe 'Reports' do
         it 'returns only the resolved reports' do
           subject
 
-          expect(body_as_json).to match_array(expected_response)
+          expect(response.parsed_body).to match_array(expected_response)
         end
       end
 
@@ -85,7 +89,7 @@ RSpec.describe 'Reports' do
         it 'returns all unresolved reports filed by the specified account' do
           subject
 
-          expect(body_as_json).to match_array(expected_response)
+          expect(response.parsed_body).to match_array(expected_response)
         end
       end
 
@@ -96,7 +100,7 @@ RSpec.describe 'Reports' do
         it 'returns all unresolved reports targeting the specified account' do
           subject
 
-          expect(body_as_json).to match_array(expected_response)
+          expect(response.parsed_body).to match_array(expected_response)
         end
       end
 
@@ -106,7 +110,7 @@ RSpec.describe 'Reports' do
         it 'returns only the requested number of reports' do
           subject
 
-          expect(body_as_json.size).to eq(1)
+          expect(response.parsed_body.size).to eq(1)
         end
       end
     end
@@ -126,7 +130,9 @@ RSpec.describe 'Reports' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to include(
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body).to include(
         {
           id: report.id.to_s,
           action_taken: report.action_taken?,
@@ -151,13 +157,17 @@ RSpec.describe 'Reports' do
     let(:params)  { { category: 'spam' } }
 
     it 'updates the report category', :aggregate_failures do
-      expect { subject }.to change { report.reload.category }.from('other').to('spam')
+      expect { subject }
+        .to change { report.reload.category }.from('other').to('spam')
+        .and create_an_action_log
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
 
       report.reload
 
-      expect(body_as_json).to include(
+      expect(response.parsed_body).to include(
         {
           id: report.id.to_s,
           action_taken: report.action_taken?,
@@ -184,8 +194,12 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'marks report as resolved', :aggregate_failures do
-      expect { subject }.to change { report.reload.unresolved? }.from(true).to(false)
+      expect { subject }
+        .to change { report.reload.unresolved? }.from(true).to(false)
+        .and create_an_action_log
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
   end
 
@@ -200,8 +214,12 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'marks report as unresolved', :aggregate_failures do
-      expect { subject }.to change { report.reload.unresolved? }.from(false).to(true)
+      expect { subject }
+        .to change { report.reload.unresolved? }.from(false).to(true)
+        .and create_an_action_log
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
   end
 
@@ -216,8 +234,12 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'assigns report to the requesting user', :aggregate_failures do
-      expect { subject }.to change { report.reload.assigned_account_id }.from(nil).to(user.account.id)
+      expect { subject }
+        .to change { report.reload.assigned_account_id }.from(nil).to(user.account.id)
+        .and create_an_action_log
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
   end
 
@@ -232,8 +254,18 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong role', ''
 
     it 'unassigns report from assignee', :aggregate_failures do
-      expect { subject }.to change { report.reload.assigned_account_id }.from(user.account.id).to(nil)
+      expect { subject }
+        .to change { report.reload.assigned_account_id }.from(user.account.id).to(nil)
+        .and create_an_action_log
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
+  end
+
+  private
+
+  def create_an_action_log
+    change(Admin::ActionLog, :count).by(1)
   end
 end

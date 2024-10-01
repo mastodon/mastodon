@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::ReportNotesController do
+RSpec.describe Admin::ReportNotesController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
@@ -22,22 +22,22 @@ describe Admin::ReportNotesController do
         let(:account_id) { nil }
 
         context 'when create_and_resolve flag is on' do
-          let(:params) { { report_note: { content: 'test content', report_id: report.id }, create_and_resolve: nil } }
+          let(:params) { { report_note: { report_id: report.id, content: 'test content' }, create_and_resolve: nil } }
 
           it 'creates a report note and resolves report' do
             expect { subject }.to change(ReportNote, :count).by(1)
             expect(report.reload).to be_action_taken
-            expect(subject).to redirect_to admin_reports_path
+            expect(response).to redirect_to admin_reports_path
           end
         end
 
         context 'when create_and_resolve flag is false' do
-          let(:params) { { report_note: { content: 'test content', report_id: report.id } } }
+          let(:params) { { report_note: { report_id: report.id, content: 'test content' } } }
 
           it 'creates a report note and does not resolve report' do
             expect { subject }.to change(ReportNote, :count).by(1)
             expect(report.reload).to_not be_action_taken
-            expect(subject).to redirect_to admin_report_path(report)
+            expect(response).to redirect_to admin_report_path(report)
           end
         end
       end
@@ -47,33 +47,45 @@ describe Admin::ReportNotesController do
         let(:account_id) { user.account.id }
 
         context 'when create_and_unresolve flag is on' do
-          let(:params) { { report_note: { content: 'test content', report_id: report.id }, create_and_unresolve: nil } }
+          let(:params) { { report_note: { report_id: report.id, content: 'test content' }, create_and_unresolve: nil } }
 
           it 'creates a report note and unresolves report' do
             expect { subject }.to change(ReportNote, :count).by(1)
             expect(report.reload).to_not be_action_taken
-            expect(subject).to redirect_to admin_report_path(report)
+            expect(response).to redirect_to admin_report_path(report)
           end
         end
 
         context 'when create_and_unresolve flag is false' do
-          let(:params) { { report_note: { content: 'test content', report_id: report.id } } }
+          let(:params) { { report_note: { report_id: report.id, content: 'test content' } } }
 
           it 'creates a report note and does not unresolve report' do
             expect { subject }.to change(ReportNote, :count).by(1)
             expect(report.reload).to be_action_taken
-            expect(subject).to redirect_to admin_report_path(report)
+            expect(response).to redirect_to admin_report_path(report)
           end
         end
       end
     end
 
-    context 'when parameter is invalid' do
-      let(:params) { { report_note: { content: '', report_id: report.id } } }
+    context 'when content is too short' do
+      let(:params) { { report_note: { report_id: report.id, content: '' } } }
       let(:action_taken) { nil }
       let(:account_id) { nil }
 
       it 'renders admin/reports/show' do
+        expect { subject }.to_not change(ReportNote, :count)
+        expect(subject).to render_template 'admin/reports/show'
+      end
+    end
+
+    context 'when content is too long' do
+      let(:params) { { report_note: { report_id: report.id, content: 'test' * ReportNote::CONTENT_SIZE_LIMIT } } }
+      let(:action_taken) { nil }
+      let(:account_id) { nil }
+
+      it 'renders admin/reports/show' do
+        expect { subject }.to_not change(ReportNote, :count)
         expect(subject).to render_template 'admin/reports/show'
       end
     end
@@ -86,7 +98,7 @@ describe Admin::ReportNotesController do
 
     it 'deletes note' do
       expect { subject }.to change(ReportNote, :count).by(-1)
-      expect(subject).to redirect_to admin_report_path(report_note.report)
+      expect(response).to redirect_to admin_report_path(report_note.report)
     end
   end
 end
