@@ -5,11 +5,9 @@
   .announcements-list__item__action-bar
     .announcements-list__item__meta
       - if announcement.scheduled_at.present?
-        %time.formatted{ datetime: announcement.scheduled_at.iso8601, title: l(announcement.scheduled_at) }
-          = t('admin.announcements.scheduled_for', time: l(announcement.scheduled_at))
+        = t('admin.announcements.scheduled_for', time: l(announcement.scheduled_at))
       - else
-        %time.formatted{ datetime: announcement.created_at.iso8601, title: l(announcement.created_at) }
-          = l announcement.created_at
+        = l(announcement.created_at)
 
     %div
       - if can?(:update, announcement)
