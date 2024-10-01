@@ -2,5 +2,5 @@
 - if can?(:memorialize, account)
   = button_to t('admin.accounts.memorialize'),
               memorialize_admin_account_path(account.id),
-              class: 'button button--destructive',
+              class: [:button, 'button--destructive'],
               data: { confirm: t('admin.accounts.are_you_sure') }
