@@ -1,11 +1,6 @@
 -# locals: (account:)
 - if account.local?
-  - if !account.memorial? && account.user_approved? && can?(:memorialize, account)
-    = button_to t('admin.accounts.memorialize'),
-                memorialize_admin_account_path(account.id),
-                class: 'button button--destructive',
-                data: { confirm: t('admin.accounts.are_you_sure') }
-- elsif can?(:redownload, account)
-  = button_to t('admin.accounts.redownload'),
-              redownload_admin_account_path(account.id),
-              class: :button
+  - if !account.memorial? && account.user_approved?
+    = render 'admin/accounts/actions/memorial', account: account
+- else
+  = render 'admin/accounts/actions/redownload', account: account
