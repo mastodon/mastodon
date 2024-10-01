@@ -43,7 +43,11 @@
   - if @account.suspended?
     = render 'admin/accounts/buttons/suspended', account: @account, deletion_request: @deletion_request
   - else
-    = render 'admin/accounts/buttons', account: @account
+    .action-buttons
+      %div
+        = render 'admin/accounts/buttons/core', account: @account
+      %div
+        = render 'admin/accounts/buttons/extras', account: @account
 
   %hr.spacer/
 
