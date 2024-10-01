@@ -218,18 +218,22 @@ eo:
         update_custom_emoji: Ĝisdatigi proprajn emoĝiojn
         update_domain_block: Ĝigdatigi domajnan blokadon
         update_ip_block: Krei IP-regulon
+        update_report: Ĝisdatigo de Raporto
         update_status: Ĝisdatigi afiŝon
         update_user_role: Ĝisdatigi rolon
       actions:
         approve_appeal_html: "%{name} aprobis apelacion kontraŭ moderiga decido de %{target}"
         approve_user_html: "%{name} aprobis registriĝon de %{target}"
         assigned_to_self_report_html: "%{name} asignis signalon %{target} al si mem"
+        change_email_user_html: "%{name} ŝanĝis retadreson de uzanto %{target}"
         change_role_user_html: "%{name} ŝanĝis rolon de %{target}"
+        confirm_user_html: "%{name} konfirmis retadreson de uzanto %{target}"
         create_account_warning_html: "%{name} sendis averton al %{target}"
         create_announcement_html: "%{name} kreis novan anoncon %{target}"
         create_custom_emoji_html: "%{name} alŝutis novan emoĝion %{target}"
         create_domain_allow_html: "%{name} aldonis domajnon %{target} al la blanka listo"
         create_domain_block_html: "%{name} blokis domajnon %{target}"
+        create_email_domain_block_html: "%{name} blokis retpoŝtan domajnon %{target}"
         create_ip_block_html: "%{name} kreis regulon por IP %{target}"
         create_unavailable_domain_html: "%{name} ĉesis sendon al domajno %{target}"
         create_user_role_html: "%{name} kreis rolon de %{target}"
@@ -238,6 +242,7 @@ eo:
         destroy_custom_emoji_html: "%{name} forigis emoĝion %{target}"
         destroy_domain_allow_html: "%{name} forigis domajnon %{target} el la blanka listo"
         destroy_domain_block_html: "%{name} malblokis domajnon %{target}"
+        destroy_email_domain_block_html: "%{name} malblokis retpoŝtan domajnon %{target}"
         destroy_instance_html: "%{name} forigis domajnon %{target}"
         destroy_ip_block_html: "%{name} forigis regulon por IP %{target}"
         destroy_status_html: "%{name} forigis mesaĝojn de %{target}"
