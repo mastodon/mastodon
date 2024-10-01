@@ -5,7 +5,9 @@
   .announcements-list__item__action-bar
     .announcements-list__item__meta
       - if announcement.scheduled_at.present?
-        = t('admin.announcements.scheduled_for', time: l(announcement.scheduled_at))
+        = t 'admin.announcements.scheduled_for_html',
+            time: tag.time(l(announcement.scheduled_at), datetime: announcement.scheduled_at.iso8601, title: l(announcement.scheduled_at), class: :formatted)
+
       - else
         = l(announcement.created_at)
 
