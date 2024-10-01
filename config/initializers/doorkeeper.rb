@@ -9,16 +9,9 @@ Doorkeeper.configure do
     current_user || redirect_to(new_user_session_url)
   end
 
-  resource_owner_from_credentials do |_routes|
-    user   = User.authenticate_with_ldap(email: request.params[:username], password: request.params[:password]) if Devise.ldap_authentication
-    user ||= User.authenticate_with_pam(email: request.params[:username], password: request.params[:password]) if Devise.pam_authentication
-
-    if user.nil?
-      user = User.find_by(email: request.params[:username])
-      user = nil unless user&.valid_password?(request.params[:password])
-    end
-
-    user unless user&.otp_required_for_login?
+  # Disable Resource Owner Password Credentials Grant Flow
+  resource_owner_from_credentials do
+    nil
   end
 
   # Doorkeeper provides some administrative interfaces for managing OAuth
@@ -169,7 +162,7 @@ Doorkeeper.configure do
   #   http://tools.ietf.org/html/rfc6819#section-4.4.3
   #
 
-  grant_flows %w(authorization_code password client_credentials)
+  grant_flows %w(authorization_code client_credentials)
 
   # Under some circumstances you might want to have applications auto-approved,
   # so that the user skips the authorization step.

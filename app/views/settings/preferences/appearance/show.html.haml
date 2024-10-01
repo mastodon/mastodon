@@ -4,7 +4,7 @@
 - content_for :heading_actions do
   = button_tag t('generic.save_changes'), class: 'button', form: 'edit_user'
 
-= simple_form_for current_user, url: settings_preferences_appearance_path, html: { method: :put, id: 'edit_user' } do |f|
+= simple_form_for current_user, url: settings_preferences_appearance_path, html: { id: :edit_user } do |f|
   .fields-row
     .fields-group.fields-row__column.fields-row__column-6
       = f.input :locale,

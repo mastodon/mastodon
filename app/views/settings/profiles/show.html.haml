@@ -5,7 +5,7 @@
   %h2= t('settings.profile')
   = render partial: 'settings/shared/profile_navigation'
 
-= simple_form_for @account, url: settings_profile_path, html: { method: :put, id: 'edit_profile' } do |f|
+= simple_form_for @account, url: settings_profile_path, html: { id: :edit_profile } do |f|
   = render 'shared/error_messages', object: @account
 
   %p.lead= t('edit_profile.hint_html')
@@ -34,7 +34,7 @@
     .fields-row__column.fields-row__column-6
       .fields-group
         = f.input :avatar,
-                  hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(Account::Avatar::LIMIT)),
+                  hint: t('simple_form.hints.defaults.avatar', dimensions: Account::Avatar::AVATAR_GEOMETRY, size: number_to_human_size(Account::Avatar::LIMIT)),
                   input_html: { accept: Account::Avatar::IMAGE_MIME_TYPES.join(',') },
                   wrapper: :with_block_label
 
@@ -50,7 +50,7 @@
     .fields-row__column.fields-row__column-6
       .fields-group
         = f.input :header,
-                  hint: t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(Account::Header::LIMIT)),
+                  hint: t('simple_form.hints.defaults.header', dimensions: Account::Header::HEADER_GEOMETRY, size: number_to_human_size(Account::Header::LIMIT)),
                   input_html: { accept: Account::Header::IMAGE_MIME_TYPES.join(',') },
                   wrapper: :with_block_label
 
