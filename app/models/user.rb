@@ -71,7 +71,8 @@ class User < ApplicationRecord
   ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days.freeze
 
   devise :two_factor_authenticatable,
-         otp_secret_encryption_key: Rails.configuration.x.otp_secret
+         otp_secret_encryption_key: Rails.configuration.x.otp_secret,
+         otp_secret_length: 32
 
   include LegacyOtpSecret # Must be after the above `devise` line in order to override the legacy method
 
