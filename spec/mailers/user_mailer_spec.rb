@@ -51,6 +51,7 @@ RSpec.describe UserMailer do
     include_examples 'localized subject',
                      'devise.mailer.confirmation_instructions.subject',
                      instance: Rails.configuration.x.local_domain
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#reset_password_instructions' do
@@ -114,6 +115,8 @@ RSpec.describe UserMailer do
         .and(have_body_text(I18n.t('user_mailer.warning.title.suspend', acct: receiver.account.acct)))
         .and(have_body_text(strike.text))
     end
+
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#webauthn_credential_deleted' do
@@ -149,6 +152,7 @@ RSpec.describe UserMailer do
 
     include_examples 'localized subject',
                      'user_mailer.suspicious_sign_in.subject'
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#failed_2fa' do
@@ -167,6 +171,7 @@ RSpec.describe UserMailer do
 
     include_examples 'localized subject',
                      'user_mailer.failed_2fa.subject'
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#appeal_approved' do
@@ -191,6 +196,8 @@ RSpec.describe UserMailer do
         .and(have_subject(I18n.t('user_mailer.appeal_rejected.subject', date: I18n.l(appeal.created_at))))
         .and(have_body_text(I18n.t('user_mailer.appeal_rejected.title')))
     end
+
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#two_factor_enabled' do
