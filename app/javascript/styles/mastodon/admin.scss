@@ -226,6 +226,10 @@ $content-width: 840px;
           gap: 5px;
           white-space: nowrap;
 
+          @media screen and (max-width: $mobile-breakpoint) {
+            flex: 1 0 50%;
+          }
+
           &:hover,
           &:focus,
           &:active {
