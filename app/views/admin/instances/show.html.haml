@@ -3,9 +3,7 @@
 
 - if current_user.can?(:view_dashboard)
   - content_for :heading_actions do
-    = l(@time_period.first)
-    = ' - '
-    = l(@time_period.last)
+    = date_range(@time_period)
 
   - if @instance.persisted?
     = render 'dashboard', instance_domain: @instance.domain, period_end_at: @time_period.last, period_start_at: @time_period.first
