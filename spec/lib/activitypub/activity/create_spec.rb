@@ -145,11 +145,14 @@ RSpec.describe ActivityPub::Activity::Create do
       DistributionWorker.drain
       FeedInsertWorker.drain
 
-      # …it creates a status with an unknown parent
+      # …it creates a status
       status = Status.find_by(uri: invalid_mention_json[:id])
 
       # Check the process did not crash
       expect(status.nil?).to be false
+
+      # It has queued a mention resolve job
+      expect(MentionResolveWorker).to have_enqueued_sidekiq_job(status.id, invalid_mention_json[:tag][:href], anything)
     end
   end
 
