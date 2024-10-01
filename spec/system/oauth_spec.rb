@@ -179,7 +179,7 @@ RSpec.describe 'Using OAuth from an external app' do
     end
 
     context 'when the user has set up TOTP' do
-      let(:user) { Fabricate(:user, email: email, password: password, otp_required_for_login: true, otp_secret: User.generate_otp_secret(32)) }
+      let(:user) { Fabricate(:user, email: email, password: password, otp_required_for_login: true, otp_secret: User.generate_otp_secret) }
 
       it 'when accepting the authorization request' do
         params = { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
