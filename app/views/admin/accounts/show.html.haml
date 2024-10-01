@@ -40,7 +40,10 @@
         - else
           = render 'admin/accounts/remote_account', account: @account, domain_block: @domain_block
 
-  = render 'admin/accounts/buttons', account: @account, deletion_request: @deletion_request
+  - if @account.suspended?
+    = render 'admin/accounts/suspended_buttons', account: @account, deletion_request: @deletion_request
+  - else
+    = render 'admin/accounts/buttons', account: @account
 
   %hr.spacer/
 
