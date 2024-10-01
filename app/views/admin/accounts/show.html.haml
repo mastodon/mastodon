@@ -41,16 +41,16 @@
           = render 'admin/accounts/remote_account', account: @account, domain_block: @domain_block
 
   - if @account.suspended?
-    = render 'admin/accounts/buttons/suspended',
+    = render 'admin/accounts/actions/suspended',
              account: @account,
              deletion_request: @deletion_request
   - else
     .action-buttons
       %div
-        = render 'admin/accounts/buttons/core',
+        = render 'admin/accounts/actions/core',
                  account: @account
       %div
-        = render 'admin/accounts/buttons/extras',
+        = render 'admin/accounts/actions/extras',
                  account: @account
 
   %hr.spacer/
