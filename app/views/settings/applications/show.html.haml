@@ -23,7 +23,7 @@
 
 %hr/
 
-= simple_form_for @application, url: settings_application_path(@application), method: :put do |form|
+= simple_form_for @application, url: settings_application_path(@application) do |form|
   = render form
 
   .actions
