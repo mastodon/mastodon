@@ -13,7 +13,16 @@ module WellKnown
           render content_type: 'application/xrd+xml', formats: [:xml]
         end
 
-        format.json
+        format.json do
+          render json: {
+            links: [
+              {
+                rel: 'lrdd',
+                template: @webfinger_template,
+              },
+            ],
+          }
+        end
       end
     end
   end
