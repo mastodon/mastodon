@@ -1,0 +1,5 @@
+-# locals: (account:)
+- if can?(:warn, account)
+  = link_to t('admin.accounts.warn'),
+            new_admin_account_action_path(account.id, type: :none),
+            class: :button

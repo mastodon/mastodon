@@ -1,0 +1,5 @@
+-# locals: (account:)
+- if can?(:suspend, account)
+  = link_to t('admin.accounts.perform_full_suspension'),
+            new_admin_account_action_path(account.id, type: :suspend),
+            class: :button

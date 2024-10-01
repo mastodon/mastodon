@@ -1,55 +1,16 @@
 -# locals: (account:)
 - if account.local? && account.user_approved?
-  - if can?(:warn, account)
-    = link_to t('admin.accounts.warn'),
-              new_admin_account_action_path(account.id, type: 'none'),
-              class: :button
-  - if account.user_disabled?
-    - if can?(:enable, account.user)
-      = button_to t('admin.accounts.enable'),
-                  enable_admin_account_path(account.id),
-                  class: :button
-  - elsif can?(:disable, account.user)
-    = link_to t('admin.accounts.disable'),
-              new_admin_account_action_path(account.id, type: 'disable'),
-              class: :button
-- if account.sensitized?
-  - if can?(:unsensitive, account)
-    = button_to t('admin.accounts.undo_sensitized'),
-                unsensitive_admin_account_path(account.id),
-                class: :button
-- elsif !account.local? || account.user_approved?
-  - if can?(:sensitive, account)
-    = link_to t('admin.accounts.sensitive'),
-              new_admin_account_action_path(account.id, type: 'sensitive'),
-              class: 'button'
-- if account.silenced?
-  - if can?(:unsilence, account)
-    = button_to t('admin.accounts.undo_silenced'),
-                unsilence_admin_account_path(account.id),
-                class: :button
-- elsif !account.local? || account.user_approved?
-  - if can?(:silence, account)
-    = link_to t('admin.accounts.silence'),
-              new_admin_account_action_path(account.id, type: 'silence'),
-              class: :button
+  = render 'admin/accounts/buttons/warning', account: account
+  = render 'admin/accounts/buttons/disabled', account: account
+
+= render 'admin/accounts/buttons/sensitive', account: account
+
+= render 'admin/accounts/buttons/silenced', account: account
+
 - if account.local?
   - if account.user_pending?
-    - if can?(:approve, account.user)
-      = button_to t('admin.accounts.approve'),
-                  approve_admin_account_path(account.id),
-                  data: { confirm: t('admin.accounts.are_you_sure') },
-                  class: :button
-    - if can?(:reject, account.user)
-      = button_to t('admin.accounts.reject'),
-                  reject_admin_account_path(account.id),
-                  data: { confirm: t('admin.accounts.are_you_sure') },
-                  class: 'button button--destructive'
-  - if !account.user_confirmed? && can?(:confirm, account.user)
-    = button_to t('admin.accounts.confirm'),
-                admin_account_confirmation_path(account.id),
-                class: :button
-- if (!account.local? || account.user_approved?) && can?(:suspend, account)
-  = link_to t('admin.accounts.perform_full_suspension'),
-            new_admin_account_action_path(account.id, type: 'suspend'),
-            class: :button
+    = render 'admin/accounts/buttons/pending', account: account
+  - unless account.user_confirmed?
+    = render 'admin/accounts/buttons/confirmation', account: account
+- if !account.local? || account.user_approved?
+  = render 'admin/accounts/buttons/suspension', account: account

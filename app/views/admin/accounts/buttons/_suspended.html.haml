@@ -1,18 +1,22 @@
 -# locals: (account:, deletion_request:)
 %hr.spacer/
+
 %p.muted-hint
   - if account.suspension_origin_remote?
     = deletion_request.present? ? t('admin.accounts.remote_suspension_reversible_hint_html', date: content_tag(:strong, l(deletion_request.due_at.to_date))) : t('admin.accounts.remote_suspension_irreversible')
   - else
     = deletion_request.present? ? t('admin.accounts.suspension_reversible_hint_html', date: content_tag(:strong, l(deletion_request.due_at.to_date))) : t('admin.accounts.suspension_irreversible')
+
 - if can?(:unsuspend, account)
   = button_to t('admin.accounts.undo_suspension'),
               unsuspend_admin_account_path(account.id),
               class: :button
+
 - if can?(:redownload, account) && account.suspension_origin_remote?
   = button_to t('admin.accounts.redownload'),
               redownload_admin_account_path(account.id),
               class: :button
+
 - if deletion_request.present? && can?(:destroy, account)
   = link_to t('admin.accounts.delete'),
             admin_account_path(account.id),

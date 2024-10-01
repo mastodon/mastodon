@@ -1,0 +1,11 @@
+-# locals: (account:)
+- if account.sensitized?
+  - if can?(:unsensitive, account)
+    = button_to t('admin.accounts.undo_sensitized'),
+                unsensitive_admin_account_path(account.id),
+                class: :button
+- elsif !account.local? || account.user_approved?
+  - if can?(:sensitive, account)
+    = link_to t('admin.accounts.sensitive'),
+              new_admin_account_action_path(account.id, type: :sensitive),
+              class: 'button'

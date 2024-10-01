@@ -1,0 +1,5 @@
+-# locals: (account:)
+- if can?(:confirm, account.user)
+  = button_to t('admin.accounts.confirm'),
+              admin_account_confirmation_path(account.id),
+              class: :button
