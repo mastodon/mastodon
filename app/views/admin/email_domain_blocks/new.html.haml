@@ -16,7 +16,7 @@
               label: I18n.t('admin.email_domain_blocks.allow_registrations_with_approval'),
               wrapper: :with_label
 
-  - if defined?(@resolved_records)
+  - if defined?(@resolved_records) && @resolved_records.any?
     %p.hint= t('admin.email_domain_blocks.resolved_dns_records_hint_html')
 
     .batch-table
