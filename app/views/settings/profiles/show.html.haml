@@ -5,7 +5,7 @@
   %h2= t('settings.profile')
   = render partial: 'settings/shared/profile_navigation'
 
-= simple_form_for @account, url: settings_profile_path, html: { method: :put, id: 'edit_profile' } do |f|
+= simple_form_for @account, url: settings_profile_path, html: { id: :edit_profile } do |f|
   = render 'shared/error_messages', object: @account
 
   %p.lead= t('edit_profile.hint_html')
