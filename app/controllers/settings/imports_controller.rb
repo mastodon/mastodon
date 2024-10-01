@@ -7,10 +7,10 @@ class Settings::ImportsController < Settings::BaseController
   before_action :set_recent_imports, only: [:index]
 
   TYPE_TO_FILENAME_MAP = {
-    following: 'following_accounts_failures.csv',
-    blocking: 'blocked_accounts_failures.csv',
-    muting: 'muted_accounts_failures.csv',
-    domain_blocking: 'blocked_domains_failures.csv',
+    following: 'following_failures.csv',
+    blocking: 'blocks_failures.csv',
+    muting: 'mutes_failures.csv',
+    domain_blocking: 'blocked_domains.csv',
     bookmarks: 'bookmarks_failures.csv',
     lists: 'lists_failures.csv',
   }.freeze

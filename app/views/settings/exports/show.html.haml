@@ -9,21 +9,25 @@
         %td= number_to_human_size @export.total_storage
         %td
       %tr
-        %th= t('accounts.posts_tab_heading')
+        %th= t('exports.statuses')
         %td= number_with_delimiter @export.total_statuses
         %td
       %tr
-        %th= t('admin.accounts.follows')
+        %th= t('exports.follows')
         %td= number_with_delimiter @export.total_follows
-        %td= table_link_to 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
+        %td= table_link_to 'download', t('exports.csv'), settings_exports_following_index_path(format: :csv)
+      %tr
+        %th= t('exports.followers')
+        %td= number_with_delimiter @export.total_followers
+        %td
+      %tr
+        %th= t('exports.bookmarks')
+        %td= number_with_delimiter @export.total_bookmarks
+        %td= table_link_to 'download', t('exports.csv'), settings_exports_bookmarks_path(format: :csv)
       %tr
         %th= t('exports.lists')
         %td= number_with_delimiter @export.total_lists
         %td= table_link_to 'download', t('exports.csv'), settings_exports_lists_path(format: :csv)
-      %tr
-        %th= t('admin.accounts.followers')
-        %td= number_with_delimiter @export.total_followers
-        %td
       %tr
         %th= t('exports.mutes')
         %td= number_with_delimiter @export.total_mutes
@@ -36,10 +40,6 @@
         %th= t('exports.domain_blocks')
         %td= number_with_delimiter @export.total_domain_blocks
         %td= table_link_to 'download', t('exports.csv'), settings_exports_domain_blocks_path(format: :csv)
-      %tr
-        %th= t('exports.bookmarks')
-        %td= number_with_delimiter @export.total_bookmarks
-        %td= table_link_to 'download', t('exports.csv'), settings_exports_bookmarks_path(format: :csv)
 
 %hr.spacer/
 

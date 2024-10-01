@@ -30,6 +30,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'URL'
 
   inflect.singular 'data', 'data'
+  inflect.singular 'following', 'following'
 end
 
 # These inflection rules are supported but not enabled by default:

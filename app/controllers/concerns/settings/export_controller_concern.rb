@@ -28,6 +28,6 @@ module Settings::ExportControllerConcern
   end
 
   def export_filename
-    "#{controller_name}.csv"
+    File.basename(request.path)
   end
 end

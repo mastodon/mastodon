@@ -18,7 +18,7 @@ RSpec.describe 'Settings / Exports / Following Accounts' do
       end
 
       it 'returns a CSV with the accounts' do
-        get '/settings/exports/follows.csv'
+        get '/settings/exports/following.csv'
 
         expect(response)
           .to have_http_status(200)
@@ -34,7 +34,7 @@ RSpec.describe 'Settings / Exports / Following Accounts' do
 
     describe 'when signed out' do
       it 'returns unauthorized' do
-        get '/settings/exports/follows.csv'
+        get '/settings/exports/following.csv'
 
         expect(response)
           .to have_http_status(401)
