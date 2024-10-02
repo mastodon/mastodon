@@ -2,7 +2,7 @@
   %td
     .input-copy
       .input-copy__wrapper
-        %input{ type: :text, maxlength: '999', spellcheck: 'false', readonly: 'true', value: public_invite_url(invite_code: invite.code) }
+        = copyable_input value: public_invite_url(invite_code: invite.code)
       %button{ type: :button }= t('generic.copy')
 
   - if invite.valid_for_use?
