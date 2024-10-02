@@ -22,9 +22,17 @@ RSpec.describe Web::PushNotificationWorker do
   let(:payload) { { ciphertext: ciphertext, salt: salt, server_public_key: server_public_key, shared_secret: shared_secret } }
 
   describe 'perform' do
-    before do
+    around do |example|
+      original_private = Rails.configuration.x.vapid_private_key
+      original_public = Rails.configuration.x.vapid_public_key
       Rails.configuration.x.vapid_private_key = vapid_private_key
       Rails.configuration.x.vapid_public_key = vapid_public_key
+      example.run
+      Rails.configuration.x.vapid_private_key = original_private
+      Rails.configuration.x.vapid_public_key = original_public
+    end
+
+    before do
       Setting.site_contact_email = contact_email
 
       allow(Webpush::Encryption).to receive(:encrypt).and_return(payload)
