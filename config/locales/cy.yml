@@ -931,6 +931,9 @@ cy:
         message_html: Nid ydych wedi diffinio unrhyw reolau gweinydd.
       sidekiq_process_check:
         message_html: Does dim proses Sidekiq yn rhedeg ar gyfer y ciw(iau) %{value}. Adolygwch eich ffurfweddiad Sidekiq
+      software_version_check:
+        action: Gweld y diweddariadau sydd ar gael
+        message_html: Mae diweddariad Mastodon ar gael.
       software_version_critical_check:
         action: Gweld y diweddariadau sydd ar gael
         message_html: Mae diweddariad hanfodol Mastodon ar gael, diweddarwch cyn gynted â phosibl.
@@ -1796,6 +1799,7 @@ cy:
     delete: Dileu cyfrif
     development: Datblygu
     edit_profile: Golygu proffil
+    export: Allforio
     featured_tags: Prif hashnodau
     import: Mewnforio
     import_and_export: Mewnforio ac allforio
