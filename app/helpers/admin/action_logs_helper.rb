@@ -40,5 +40,6 @@ module Admin::ActionLogsHelper
     Admin::ActionLogFilter::ACTION_TYPE_MAP
       .keys
       .map { |key| [I18n.t("admin.action_logs.action_types.#{key}"), key] }
+      .sort_by(&:first)
   end
 end
