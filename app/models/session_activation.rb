@@ -62,9 +62,9 @@ class SessionActivation < ApplicationRecord
 
   def access_token_attributes
     {
-      application_id: Doorkeeper::Application.find_by(superapp: true)&.id,
+      application_id: Doorkeeper::Application.webapp.id,
       resource_owner_id: user_id,
-      scopes: 'read write follow',
+      scopes: Doorkeeper::Application.webapp.scopes.without('push'),
       expires_in: Doorkeeper.configuration.access_token_expires_in,
       use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?,
     }
