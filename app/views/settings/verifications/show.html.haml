@@ -16,7 +16,7 @@
 
   .input-copy.lead
     .input-copy__wrapper
-      = copyable_input value: link_to(Rails.application.class.module_parent_name, ActivityPub::TagManager.instance.url_for(@account), rel: :me)
+      = copyable_input value: link_to('Mastodon', ActivityPub::TagManager.instance.url_for(@account), rel: :me)
     %button{ type: :button }= t('generic.copy')
 
   %p.lead= t('verification.extra_instructions_html')
