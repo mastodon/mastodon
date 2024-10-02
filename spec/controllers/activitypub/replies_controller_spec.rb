@@ -8,12 +8,12 @@ RSpec.describe ActivityPub::RepliesController do
   let(:remote_reply_id) { 'https://foobar.com/statuses/1234' }
   let(:remote_querier) { nil }
 
-  let!(:reply1) { Fabricate(:status, thread: status, visibility: :public) }
-  let!(:reply2) { Fabricate(:status, thread: status, visibility: :public) }
-  let!(:reply3) { Fabricate(:status, thread: status, visibility: :private) }
-  let!(:reply4) { Fabricate(:status, account: status.account, thread: status, visibility: :public) }
-  let!(:reply5) { Fabricate(:status, account: status.account, thread: status, visibility: :private) }
-  let!(:reply6) { Fabricate(:status, account: remote_account, thread: status, visibility: :public, uri: remote_reply_id) }
+  let(:bob) { Fabricate(:account) }
+
+  let!(:local_bob_reply) { Fabricate(:status, account: bob, thread: status, visibility: :public) }
+  let!(:local_public_reply) { Fabricate(:status, thread: status, visibility: :public) }
+  let!(:public_self_reply) { Fabricate(:status, account: status.account, thread: status, visibility: :public) }
+  let!(:remote_public_reply) { Fabricate(:status, account: remote_account, thread: status, visibility: :public, uri: remote_reply_id) }
 
   shared_examples 'common behavior' do
     context 'when status is private' do
@@ -89,7 +89,11 @@ RSpec.describe ActivityPub::RepliesController do
               first: be_a(Hash).and(
                 include(
                   items: be_an(Array)
-                  .and(have_attributes(size: 1))
+                  .and(contain_exactly(
+                         a_hash_including(
+                           id: ActivityPub::TagManager.instance.uri_for(public_self_reply)
+                         )
+                       ))
                   .and(all(satisfy { |item| targets_public_collection?(item) }))
                 )
               )
@@ -132,12 +136,20 @@ RSpec.describe ActivityPub::RepliesController do
 
         context 'when blocking some of the repliers' do
           before do
-            status.account.block!(reply1.account)
-            status.account.block!(reply6.account)
+            status.account.block!(bob)
+            status.account.block!(remote_public_reply.account)
           end
 
           it "does not list the blocked user's replies" do
-            expect(page_json[:items].map { |item| item.is_a?(String) ? item : item[:id] }).to match_array([ActivityPub::TagManager.instance.uri_for(reply2)])
+            expect(response.parsed_body)
+              .to include(
+                first: be_a(Hash).and(
+                  include(items:
+                    contain_exactly(
+                      a_hash_including(id: ActivityPub::TagManager.instance.uri_for(local_public_reply))
+                    ))
+                )
+              )
           end
         end
 
@@ -145,7 +157,12 @@ RSpec.describe ActivityPub::RepliesController do
           expect(response.parsed_body)
             .to include(
               first: be_a(Hash).and(
-                include(items: be_an(Array).and(have_attributes(size: 3)))
+                include(items:
+                  contain_exactly(
+                    a_hash_including(id: ActivityPub::TagManager.instance.uri_for(local_bob_reply)),
+                    a_hash_including(id: ActivityPub::TagManager.instance.uri_for(local_public_reply)),
+                    ActivityPub::TagManager.instance.uri_for(remote_public_reply)
+                  ))
               )
             )
         end
@@ -195,6 +212,9 @@ RSpec.describe ActivityPub::RepliesController do
   before do
     stub_const 'ActivityPub::RepliesController::DESCENDANTS_LIMIT', 5
     allow(controller).to receive(:signed_request_actor).and_return(remote_querier)
+
+    Fabricate(:status, thread: status, visibility: :private)
+    Fabricate(:status, account: status.account, thread: status, visibility: :private)
   end
 
   describe 'GET #index' do
