@@ -3,9 +3,9 @@
 
 %p.muted-hint
   - if account.suspension_origin_remote?
-    = deletion_request.present? ? t('admin.accounts.remote_suspension_reversible_hint_html', date: content_tag(:strong, l(deletion_request.due_at.to_date))) : t('admin.accounts.remote_suspension_irreversible')
+    = remote_suspension_hint(deletion_request)
   - else
-    = deletion_request.present? ? t('admin.accounts.suspension_reversible_hint_html', date: content_tag(:strong, l(deletion_request.due_at.to_date))) : t('admin.accounts.suspension_irreversible')
+    = suspension_hint(deletion_request)
 
 - if can?(:unsuspend, account)
   = button_to t('admin.accounts.undo_suspension'),
@@ -20,6 +20,6 @@
 - if deletion_request.present? && can?(:destroy, account)
   = link_to t('admin.accounts.delete'),
             admin_account_path(account.id),
-            class: 'button button--destructive',
+            class: [:button, 'button--destructive'],
             data: { confirm: t('admin.accounts.are_you_sure') },
             method: :delete
