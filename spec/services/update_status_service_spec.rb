@@ -69,7 +69,7 @@ RSpec.describe UpdateStatusService do
 
     before do
       status.media_attachments << detached_media_attachment
-      subject.call(status, status.account_id, text: 'Foo', media_ids: [attached_media_attachment.id])
+      subject.call(status, status.account_id, text: 'Foo', media_ids: [attached_media_attachment.id.to_s])
     end
 
     it 'updates media attachments' do
@@ -95,7 +95,7 @@ RSpec.describe UpdateStatusService do
 
     before do
       status.media_attachments << media_attachment
-      subject.call(status, status.account_id, text: 'Foo', media_ids: [media_attachment.id], media_attributes: [{ id: media_attachment.id, description: 'New description' }])
+      subject.call(status, status.account_id, text: 'Foo', media_ids: [media_attachment.id.to_s], media_attributes: [{ id: media_attachment.id, description: 'New description' }])
     end
 
     it 'does not detach media attachment' do

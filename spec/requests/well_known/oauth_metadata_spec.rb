@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'The /.well-known/oauth-authorization-server request' do
+RSpec.describe 'The /.well-known/oauth-authorization-server request' do
   let(:protocol) { ENV.fetch('LOCAL_HTTPS', true) ? :https : :http }
 
   before do
@@ -21,7 +21,7 @@ describe 'The /.well-known/oauth-authorization-server request' do
     grant_types_supported = Doorkeeper.configuration.grant_flows.dup
     grant_types_supported << 'refresh_token' if Doorkeeper.configuration.refresh_token_enabled?
 
-    expect(body_as_json).to include(
+    expect(response.parsed_body).to include(
       issuer: root_url(protocol: protocol),
       service_documentation: 'https://docs.joinmastodon.org/',
       authorization_endpoint: oauth_authorization_url(protocol: protocol),

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe LanguagesHelper do
+RSpec.describe LanguagesHelper do
   describe 'the SUPPORTED_LOCALES constant' do
     it 'includes all i18n locales' do
       expect(Set.new(described_class::SUPPORTED_LOCALES.keys + described_class::REGIONAL_LOCALE_NAMES.keys)).to include(*I18n.available_locales)

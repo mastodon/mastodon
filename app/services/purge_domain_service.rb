@@ -16,12 +16,12 @@ class PurgeDomainService < BaseService
   end
 
   def purge_accounts!
-    Account.remote.where(domain: @domain).reorder(nil).find_each do |account|
+    Account.remote.where(domain: @domain).find_each do |account|
       DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true)
     end
   end
 
   def purge_emojis!
-    CustomEmoji.remote.where(domain: @domain).reorder(nil).find_each(&:destroy)
+    CustomEmoji.remote.where(domain: @domain).find_each(&:destroy)
   end
 end

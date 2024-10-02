@@ -3,10 +3,10 @@ ro:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Numele aplicației
+        name: Nume aplicație
         redirect_uri: URI de redirecționare
         scopes: Domenii
-        website: Pagina web a aplicației
+        website: Website aplicație
     errors:
       models:
         doorkeeper/application:
@@ -19,60 +19,59 @@ ro:
   doorkeeper:
     applications:
       buttons:
-        authorize: Autorizează
-        cancel: Anulează
-        destroy: Distruge
-        edit: Editează
-        submit: Trimite
+        authorize: Autorizare
+        cancel: Anulare
+        destroy: Distrugere
+        edit: Editare
+        submit: Trimitere
       confirmations:
-        destroy: Ești sigur?
+        destroy: Sunteți sigur?
       edit:
-        title: Editați aplicația
+        title: Editare aplicație
       form:
         error: Ups! Verificați formularul pentru posibile erori
       help:
         native_redirect_uri: Utilizați %{native_redirect_uri} pentru teste locale
-        redirect_uri: Folosește câte o linie per URI
+        redirect_uri: Folosiți câte o linie per URI
         scopes: Separați domeniile cu spații. Lăsați necompletat pentru a utiliza domeniile implicite.
       index:
         application: Aplicație
-        callback_url: URL pentru callback
-        delete: Șterge
+        callback_url: Callback URL
+        delete: Ștergere
         empty: Nu aveți aplicații.
         name: Nume
         new: Aplicație nouă
         scopes: Domenii
-        show: Arată
-        title: Aplicațiile tale
+        show: Afișare
+        title: Aplicațiile dvs.
       new:
         title: Aplicație nouă
       show:
         actions: Acțiuni
         application_id: Cheie client
-        callback_urls: URL-uri de callback
+        callback_urls: Callback URL-uri
         scopes: Domenii
-        secret: Codul secret al clientului
+        secret: Secretul clientului
         title: 'Aplicație: %{name}'
     authorizations:
       buttons:
-        authorize: Autorizează
-        deny: Interzice
+        authorize: Autorizare
+        deny: Refuzare
       error:
         title: A apărut o eroare
       new:
-        prompt_html: "%{client_name} dorește să îți acceseze contul. Este o aplicație terță. <strong>Dacă nu aveți încredere în ea, atunci nu ar trebui să o autorizați.</strong>"
-        review_permissions: Revizuiește permisiunile
+        review_permissions: Revizuiți permisiunile
         title: Autorizare necesară
       show:
         title: Copiați acest cod de autorizare și lipiți-l în aplicație.
     authorized_applications:
       buttons:
-        revoke: Revocați
+        revoke: Revocare
       confirmations:
-        revoke: Ești sigur?
+        revoke: Sunteți sigur?
       index:
         authorized_at: Autorizat pe %{date}
-        description_html: Acestea sunt aplicațiile care vă pot accesa contul folosind API. Dacă există aplicații pe care nu le recunoașteți, sau o aplicație se comportă necorespunzător, puteți revoca accesul.
+        description_html: Acestea sunt aplicațiile care vă pot accesa contul folosind API-ul. Dacă există aplicații pe care nu le recunoașteți, sau o aplicație se comportă necorespunzător, puteți revoca accesul.
         last_used_at: Utilizat ultima dată pe %{date}
         never_used: Nu a fost folosit niciodată
         scopes: Permisiuni
@@ -86,9 +85,9 @@ ro:
         invalid_grant: Acordarea autorizației furnizată este invalidă, expirată, revocată, nu corespunde URI-ului de redirecționare folosit în cererea de autorizare, sau a fost eliberat altui client.
         invalid_redirect_uri: Uri-ul de redirecționare inclus nu este valid.
         invalid_request:
-          missing_param: 'Lipseste parametrul necesar: %{value}.'
+          missing_param: 'Lipsește parametrul necesar: %{value}.'
           request_not_authorized: Solicitarea trebuie să fie autorizată. Parametrul necesar pentru solicitarea de autorizare lipsește sau este invalid.
-          unknown: Solicitarea nu are un parametru necesar, include un parametru nesuportat sau este dealtfel formatat incorect.
+          unknown: Solicitarea nu are un parametru necesar, include un parametru nesuportat sau este formatat incorect.
         invalid_resource_owner: Acreditările proprietarului de resurse nu sunt valide sau proprietarul de resurse nu poate fi găsit
         invalid_scope: Domeniul de aplicare solicitat este invalid, necunoscut sau incorect.
         invalid_token:
@@ -137,12 +136,12 @@ ro:
         notifications: Notificări
         push: Notificări push
         reports: Rapoarte
-        search: Caută
+        search: Căutare
         statuses: Postări
     layouts:
       admin:
         nav:
-          applications: Aplicaţii
+          applications: Aplicații
           oauth2_provider: Furnizor OAuth2
       application:
         title: Este necesară autorizarea OAuth
@@ -160,7 +159,7 @@ ro:
       read:accounts: vede informațiile privind conturile
       read:blocks: vede blocurile tale
       read:bookmarks: vede marcajele tale
-      read:favourites: vezi favoritele tale
+      read:favourites: vede favoritele tale
       read:filters: vede filtrele tale
       read:follows: vede urmăririle tale
       read:lists: vede listele tale
@@ -168,7 +167,7 @@ ro:
       read:notifications: vede notificările tale
       read:reports: vede raportările tale
       read:search: caută în numele tău
-      read:statuses: vede toate stările
+      read:statuses: vede toate postările
       write: modifică toate datele contului tău
       write:accounts: modifică profilul tău
       write:blocks: blochează conturile și domeniile

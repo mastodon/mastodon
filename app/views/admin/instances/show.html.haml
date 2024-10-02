@@ -3,77 +3,10 @@
 
 - if current_user.can?(:view_dashboard)
   - content_for :heading_actions do
-    = l(@time_period.first)
-    = ' - '
-    = l(@time_period.last)
+    = date_range(@time_period)
 
   - if @instance.persisted?
-    %p
-      = material_symbol 'info'
-      = t('admin.instances.totals_time_period_hint_html')
-
-    .dashboard
-      .dashboard__item
-        = react_admin_component :counter,
-                                end_at: @time_period.last,
-                                href: admin_accounts_path(origin: 'remote', by_domain: @instance.domain),
-                                label: t('admin.instances.dashboard.instance_accounts_measure'),
-                                measure: 'instance_accounts',
-                                params: { domain: @instance.domain },
-                                start_at: @time_period.first
-      .dashboard__item
-        = react_admin_component :counter,
-                                end_at: @time_period.last,
-                                label: t('admin.instances.dashboard.instance_statuses_measure'),
-                                measure: 'instance_statuses',
-                                params: { domain: @instance.domain },
-                                start_at: @time_period.first
-      .dashboard__item
-        = react_admin_component :counter,
-                                end_at: @time_period.last,
-                                label: t('admin.instances.dashboard.instance_media_attachments_measure'),
-                                measure: 'instance_media_attachments',
-                                params: { domain: @instance.domain },
-                                start_at: @time_period.first
-      .dashboard__item
-        = react_admin_component :counter,
-                                end_at: @time_period.last,
-                                label: t('admin.instances.dashboard.instance_follows_measure'),
-                                measure: 'instance_follows',
-                                params: { domain: @instance.domain },
-                                start_at: @time_period.first
-      .dashboard__item
-        = react_admin_component :counter,
-                                end_at: @time_period.last,
-                                label: t('admin.instances.dashboard.instance_followers_measure'),
-                                measure: 'instance_followers',
-                                params: { domain: @instance.domain },
-                                start_at: @time_period.first
-      .dashboard__item
-        = react_admin_component :counter,
-                                end_at: @time_period.last,
-                                href: admin_reports_path(by_target_domain: @instance.domain),
-                                label: t('admin.instances.dashboard.instance_reports_measure'),
-                                measure: 'instance_reports',
-                                params: { domain: @instance.domain },
-                                start_at: @time_period.first
-      .dashboard__item
-        = react_admin_component :dimension,
-                                dimension: 'instance_accounts',
-                                end_at: @time_period.last,
-                                label: t('admin.instances.dashboard.instance_accounts_dimension'),
-                                limit: 8,
-                                params: { domain: @instance.domain },
-                                start_at: @time_period.first
-      .dashboard__item
-        = react_admin_component :dimension,
-                                dimension: 'instance_languages',
-                                end_at: @time_period.last,
-                                label: t('admin.instances.dashboard.instance_languages_dimension'),
-                                limit: 8,
-                                params: { domain: @instance.domain },
-                                start_at: @time_period.first
-
+    = render 'dashboard', instance_domain: @instance.domain, period_end_at: @time_period.last, period_start_at: @time_period.first
   - else
     %p
       = t('admin.instances.unknown_instance')
@@ -88,7 +21,7 @@
   - if @instance.domain_allow
     = link_to t('admin.domain_allows.undo'), admin_domain_allow_path(@instance.domain_allow), class: 'button button--destructive', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
   - else
-    = link_to t('admin.domain_allows.add_new'), admin_domain_allows_path(domain_allow: { domain: @instance.domain }), class: 'button', method: :post
+    = button_to t('admin.domain_allows.add_new'), admin_domain_allows_path(domain_allow: { domain: @instance.domain }), class: :button
 - else
   %p= t('admin.instances.content_policies.description_html')
 
@@ -107,7 +40,7 @@
             %td= @instance.domain_block.policies.map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') }.join(' · ')
 
     = link_to t('admin.domain_blocks.edit'), edit_admin_domain_block_path(@instance.domain_block), class: 'button'
-    = link_to t('admin.domain_blocks.undo'), admin_domain_block_path(@instance.domain_block), class: 'button', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
+    = button_to t('admin.domain_blocks.undo'), admin_domain_block_path(@instance.domain_block), class: :button, data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
   - else
     = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @instance.domain), class: 'button'
 
@@ -137,16 +70,16 @@
       - if @instance.unavailable?
         %span.negative-hint
           = t('admin.instances.availability.failure_threshold_reached', date: l(@instance.unavailable_domain.created_at.to_date))
-          = link_to t('admin.instances.delivery.restart'), restart_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }
+          = button_to t('admin.instances.delivery.restart'), restart_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure') }
       - elsif @instance.exhausted_deliveries_days.empty?
         %span.positive-hint
           = t('admin.instances.availability.no_failures_recorded')
-          = link_to t('admin.instances.delivery.stop'), stop_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }
+          = button_to t('admin.instances.delivery.stop'), stop_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure') }
       - else
         %span.negative-hint
           = t('admin.instances.availability.failures_recorded', count: @instance.delivery_failure_tracker.days)
-          %span= link_to t('admin.instances.delivery.clear'), clear_delivery_errors_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post } unless @instance.exhausted_deliveries_days.empty?
-          %span= link_to t('admin.instances.delivery.stop'), stop_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }
+          %span= button_to t('admin.instances.delivery.clear'), clear_delivery_errors_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure') } unless @instance.exhausted_deliveries_days.empty?
+          %span= button_to t('admin.instances.delivery.stop'), stop_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure') }
 
   - if @instance.purgeable?
     %p= t('admin.instances.purge_description_html')

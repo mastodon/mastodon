@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe InstancePresenter do
+RSpec.describe InstancePresenter do
   let(:instance_presenter) { described_class.new }
 
   describe '#description' do

@@ -15,6 +15,12 @@ he:
       user/invite_request:
         text: סיבה
     errors:
+      attributes:
+        domain:
+          invalid: אינו שם מתחם קביל
+      messages:
+        invalid_domain_on_line: "%{value} אינו שם מתחם קביל"
+        too_many_lines: מעבר למגבלה של %{limit} שורות
       models:
         account:
           attributes:

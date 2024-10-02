@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::VoteSerializer do
+RSpec.describe ActivityPub::VoteSerializer do
   let(:serialization) { serialized_record_json(record, described_class) }
   let(:record) { Fabricate(:poll_vote) }
 

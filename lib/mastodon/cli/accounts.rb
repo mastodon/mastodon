@@ -252,7 +252,7 @@ module Mastodon::CLI
       domain configuration.
     LONG_DESC
     def fix_duplicates
-      Account.remote.select(:uri, 'count(*)').group(:uri).having('count(*) > 1').pluck(:uri).each do |uri|
+      Account.remote.duplicate_uris.pluck(:uri).each do |uri|
         say("Duplicates found for #{uri}")
         begin
           ActivityPub::FetchRemoteAccountService.new.call(uri) unless dry_run?
@@ -502,17 +502,7 @@ module Mastodon::CLI
       - not muted/blocked by us
     LONG_DESC
     def prune
-      query = Account.remote.where.not(actor_type: %i(Application Service))
-      query = query.where('NOT EXISTS (SELECT 1 FROM mentions WHERE account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM favourites WHERE account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM statuses WHERE account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM follows WHERE account_id = accounts.id OR target_account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM blocks WHERE account_id = accounts.id OR target_account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM mutes WHERE target_account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM reports WHERE target_account_id = accounts.id)')
-      query = query.where('NOT EXISTS (SELECT 1 FROM follow_requests WHERE account_id = accounts.id OR target_account_id = accounts.id)')
-
-      _, deleted = parallelize_with_progress(query) do |account|
+      _, deleted = parallelize_with_progress(prunable_accounts) do |account|
         next if account.bot? || account.group?
         next if account.suspended?
         next if account.silenced?
@@ -576,6 +566,31 @@ module Mastodon::CLI
     end
 
     private
+
+    def prunable_accounts
+      Account
+        .remote
+        .non_automated
+        .where.not(referencing_account(Mention, :account_id))
+        .where.not(referencing_account(Favourite, :account_id))
+        .where.not(referencing_account(Status, :account_id))
+        .where.not(referencing_account(Follow, :account_id))
+        .where.not(referencing_account(Follow, :target_account_id))
+        .where.not(referencing_account(Block, :account_id))
+        .where.not(referencing_account(Block, :target_account_id))
+        .where.not(referencing_account(Mute, :target_account_id))
+        .where.not(referencing_account(Report, :target_account_id))
+        .where.not(referencing_account(FollowRequest, :account_id))
+        .where.not(referencing_account(FollowRequest, :target_account_id))
+    end
+
+    def referencing_account(model, attribute)
+      model
+        .where(model.arel_table[attribute].eq Account.arel_table[:id])
+        .select(1)
+        .arel
+        .exists
+    end
 
     def report_errors(errors)
       message = errors.map do |error|

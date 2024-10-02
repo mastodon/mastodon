@@ -34,4 +34,4 @@
 = paginate @invites
 
 - if policy(:invite).deactivate_all?
-  = link_to t('admin.invites.deactivate_all'), deactivate_all_admin_invites_path, method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button'
+  = button_to t('admin.invites.deactivate_all'), deactivate_all_admin_invites_path, data: { confirm: t('admin.accounts.are_you_sure') }, class: :button

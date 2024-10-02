@@ -3,6 +3,7 @@ fi:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Suojaa vääriltä tunnustuksilta.
         discoverable: Julkisia julkaisujasi ja profiiliasi voidaan pitää esillä tai suositella Mastodonin eri alueilla ja profiiliasi voidaan ehdottaa toisille käyttäjille.
         display_name: Koko nimesi tai lempinimesi.
         fields: Verkkosivustosi, pronominisi, ikäsi ja mitä ikinä haluatkaan ilmoittaa.
@@ -130,7 +131,7 @@ fi:
         name: Voit esimerkiksi vaihtaa suur- ja pienaakkosten kesken helppolukuistaaksesi tekstiäsi
       user:
         chosen_languages: Jos valitset kieliä oheisesta luettelosta, vain niidenkieliset julkaisut näkyvät sinulle julkisilla aikajanoilla
-        role: Rooli vaikuttaa käyttäjän käyttöoikeuksiin
+        role: Rooli määrää, millaiset käyttöoikeudet käyttäjällä on.
       user_role:
         color: Väri, jota käytetään roolille kaikkialla käyttöliittymässä, RGB-heksadesimaalimuodossa
         highlighted: Tämä tekee roolista julkisesti näkyvän
@@ -143,6 +144,7 @@ fi:
         url: Mihin tapahtumat lähetetään
     labels:
       account:
+        attribution_domains_as_text: Salli vain tietyt verkkosivustot
         discoverable: Pidä profiiliasi ja julkaisujasi esillä löytämisalgoritmeissa
         fields:
           name: Nimike

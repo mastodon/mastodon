@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe MoveWorker do
+RSpec.describe MoveWorker do
   subject { described_class.new }
 
   let(:local_follower)   { Fabricate(:account, domain: nil) }

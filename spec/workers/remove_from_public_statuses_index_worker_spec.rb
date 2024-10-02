@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RemoveFromPublicStatusesIndexWorker do
+RSpec.describe RemoveFromPublicStatusesIndexWorker do
   describe '#perform' do
     let(:account) { Fabricate(:account, indexable: indexable) }
     let(:account_id) { account.id }

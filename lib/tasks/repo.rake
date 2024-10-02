@@ -49,24 +49,32 @@ namespace :repo do
       File.open(path, 'r') do |file|
         file.each_line do |line|
           if line.start_with?('-')
-            new_line = line.gsub(/[(]#([[:digit:]]+)[)]\Z/) do |pull_request_reference|
-              pull_request_number = pull_request_reference[2..-2]
+            new_line = line.gsub(/\(#([[:digit:]]+)(, #([[:digit:]]+))*\)\Z/) do |pull_requests_string|
+              pull_requests = pull_requests_string[1...-1].split(',').map { |pr_id| pr_id.strip[1...] }
               response = nil
 
-              loop do
-                response = HTTP.headers('Authorization' => "token #{ENV['GITHUB_API_TOKEN']}").get("https://api.github.com/repos/#{REPOSITORY_NAME}/pulls/#{pull_request_number}")
+              authors = pull_requests.map do |pull_request_number|
+                response = nil
 
-                if response.code == 403
-                  sleep_for = (response.headers['X-RateLimit-Reset'].to_i - Time.now.to_i).abs
-                  puts "Sleeping for #{sleep_for} seconds to get over rate limit"
-                  sleep sleep_for
-                else
-                  break
+                loop do
+                  response = HTTP.headers('Authorization' => "token #{ENV['GITHUB_API_TOKEN']}").get("https://api.github.com/repos/#{REPOSITORY_NAME}/pulls/#{pull_request_number}")
+
+                  if response.code == 403
+                    sleep_for = (response.headers['X-RateLimit-Reset'].to_i - Time.now.to_i).abs
+                    puts "Sleeping for #{sleep_for} seconds to get over rate limit"
+                    sleep sleep_for
+                  else
+                    break
+                  end
                 end
+
+                pull_request = Oj.load(response.to_s)
+                pull_request['user']['login']
               end
 
-              pull_request = Oj.load(response.to_s)
-              "([#{pull_request['user']['login']}](#{pull_request['html_url']}))"
+              authors.sort!.uniq!
+
+              "(#{pull_requests.map { |pr| "##{pr}" }.to_sentence} by #{authors.map { |author| "@#{author}" }.to_sentence})"
             end
 
             tmp.puts new_line
@@ -90,7 +98,7 @@ namespace :repo do
     missing_yaml_files = I18n.available_locales.reject { |locale| Rails.root.join('config', 'locales', "#{locale}.yml").exist? }
     missing_json_files = I18n.available_locales.reject { |locale| Rails.root.join('app', 'javascript', 'mastodon', 'locales', "#{locale}.json").exist? }
 
-    locales_in_files = Dir[Rails.root.join('config', 'locales', '*.yml')].map do |path|
+    locales_in_files = Rails.root.glob('config/locales/*.yml').map do |path|
       file_name = File.basename(path, '.yml')
       file_name.gsub(/\A(doorkeeper|devise|activerecord|simple_form)\./, '').to_sym
     end.uniq.compact

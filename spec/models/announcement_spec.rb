@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Announcement do
+RSpec.describe Announcement do
   describe 'Scopes' do
     context 'with published and unpublished records' do
       let!(:published) { Fabricate(:announcement, published: true) }
@@ -64,14 +64,7 @@ describe Announcement do
   end
 
   describe 'Validations' do
-    describe 'text' do
-      it 'validates presence of attribute' do
-        record = Fabricate.build(:announcement, text: nil)
-
-        expect(record).to_not be_valid
-        expect(record.errors[:text]).to be_present
-      end
-    end
+    it { is_expected.to validate_presence_of(:text) }
 
     describe 'ends_at' do
       it 'validates presence when starts_at is present' do

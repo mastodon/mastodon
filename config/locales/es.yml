@@ -7,7 +7,6 @@ es:
     hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
   accounts:
-    follow: Seguir
     followers:
       one: Seguidor
       other: Seguidores
@@ -25,6 +24,8 @@ es:
   admin:
     account_actions:
       action: Realizar acción
+      already_silenced: Esta cuenta ya ha sido limitada.
+      already_suspended: Esta cuenta ya ha sido suspendida.
       title: Moderar %{acct}
     account_moderation_notes:
       create: Crear
@@ -46,6 +47,7 @@ es:
         title: Cambiar el correo electrónico de %{username}
       change_role:
         changed_msg: "¡Rol cambiado con éxito!"
+        edit_roles: Administrar roles de usuario
         label: Cambiar rol
         no_role: Sin rol
         title: Cambiar rol para %{username}
@@ -602,6 +604,7 @@ es:
         suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y finalmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los informes contra esta cuenta.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este informe. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
+      actions_no_posts: Este informe no tiene ningún mensaje asociado para eliminar
       add_to_report: Añadir más al reporte
       already_suspended_badges:
         local: Ya suspendido en este servidor
@@ -872,6 +875,9 @@ es:
         message_html: No ha definido ninguna regla del servidor.
       sidekiq_process_check:
         message_html: No hay ningún proceso Sidekiq en ejecución para la(s) cola(s) %{value}. Por favor, revise su configuración de Sidekiq
+      software_version_check:
+        action: Ver actualizaciones disponibles
+        message_html: Hay disponible una actualización de Mastodon.
       software_version_critical_check:
         action: Ver actualizaciones disponibles
         message_html: Una actualización crítica de Mastodon está disponible, por favor actualiza lo antes posible.
@@ -898,6 +904,7 @@ es:
       name: Nombre
       newest: Más reciente
       oldest: Menos reciente
+      open: Ver públicamente
       reset: Reiniciar
       review: Estado de revisión
       search: Buscar
@@ -907,8 +914,8 @@ es:
     trends:
       allow: Permitir
       approved: Aprobadas
-      confirm_allow: "¿Estás seguro de que deseas permitir la etiqueta seleccionada?"
-      confirm_disallow: "¿Estás seguro de que deseas restringir la etiqueta seleccionada?"
+      confirm_allow: "¿Estás seguro de que deseas permitir las etiquetas seleccionadas?"
+      confirm_disallow: "¿Estás seguro de que deseas restringir las etiquetas seleccionadas?"
       disallow: No permitir
       links:
         allow: Permitir enlace
@@ -976,7 +983,7 @@ es:
         used_by_over_week:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
-      title: Recomendaciones y tendencias
+      title: Recomendaciones y Tendencias
       trending: En tendencia
     warning_presets:
       add_new: Añadir nuevo
@@ -1090,7 +1097,7 @@ es:
       proceed_to_login_html: Ahora puedes proceder a %{login_link}.
       redirect_to_app_html: Serás redirigido a la aplicación <strong>%{app_name}</strong>. Si esto no sucede, prueba %{clicking_this_link} o regresa manualmente a la aplicación.
       registration_complete: "¡Has completado tu registro en %{domain}!"
-      welcome_title: "¡Bienvenido, %{name}!"
+      welcome_title: "¡Te damos la bienvenida, %{name}!"
       wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
@@ -1156,6 +1163,12 @@ es:
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     use_security_key: Usar la clave de seguridad
+  author_attribution:
+    example_title: Texto de ejemplo
+    hint_html: Controla cómo se te dará atribución cuando se compartan enlaces en Mastodon.
+    more_from_html: Más de %{name}
+    s_blog: Blog de %{name}
+    title: Atribución del autor
   challenge:
     confirm: Continuar
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
@@ -1164,7 +1177,6 @@ es:
   crypto:
     errors:
       invalid_key: no es una clave Ed25519 o Curve25519 válida
-      invalid_signature: no es una firma Ed25519 válida
   date:
     formats:
       default: "%d %b %Y"
@@ -1230,8 +1242,6 @@ es:
       your_appeal_approved: Se aprobó tu apelación
       your_appeal_pending: Has enviado una apelación
       your_appeal_rejected: Tu apelación ha sido rechazada
-  domain_validator:
-    invalid_domain: no es un nombre de dominio válido
   edit_profile:
     basic_information: Información básica
     hint_html: "<strong>Personaliza lo que la gente ve en tu perfil público junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen contigo cuando completas tu perfil y foto."
@@ -1453,6 +1463,7 @@ es:
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a unapublicación que ya contenga imágenes
+      not_found: Archivos multimedia %{ids} no encontrados, o ya se encuentran adjuntos a otra publicación
       not_ready: No se pueden adjuntar archivos que no se han terminado de procesar. ¡Inténtalo de nuevo en un momento!
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
@@ -1684,7 +1695,7 @@ es:
     delete: Borrar cuenta
     development: Desarrollo
     edit_profile: Editar perfil
-    export: Exportar información
+    export: Exportar
     featured_tags: Hashtags destacados
     import: Importar
     import_and_export: Importar y exportar
@@ -1730,23 +1741,12 @@ es:
     edited_at_html: Editado %{date}
     errors:
       in_reply_not_found: La publicación a la que intentas responder no existe.
-    open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
       direct: Las publicaciones que son visibles solo para los usuarios mencionados no pueden fijarse
       limit: Ya has fijado el número máximo de publicaciones
       ownership: La publicación de otra persona no puede fijarse
       reblog: Un boost no puede fijarse
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} personas"
-      total_votes:
-        one: "%{count} voto"
-        other: "%{count} votos"
-      vote: Vota
-    show_more: Mostrar más
-    show_thread: Mostrar discusión
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Directa
@@ -1912,7 +1912,7 @@ es:
       follow_action: Seguir
       follow_step: Seguir a personas interesantes es de lo que trata Mastodon.
       follow_title: Personaliza tu línea de inicio
-      follows_subtitle: Seguir cuentas conocidas
+      follows_subtitle: Sigue a cuentas conocidas
       follows_title: A quién seguir
       follows_view_more: Ver más personas para seguir
       hashtags_recent_count:
@@ -1945,6 +1945,7 @@ es:
     instructions_html: Copia y pega el siguiente código en el HTML de tu sitio web. A continuación, añade la dirección de su sitio web en uno de los campos extra de tu perfil desde la pestaña "Editar perfil" y guarda los cambios.
     verification: Verificación
     verified_links: Tus enlaces verificados
+    website_verification: Verificación del sitio web
   webauthn_credentials:
     add: Agregar nueva clave de seguridad
     create:

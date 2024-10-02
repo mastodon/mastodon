@@ -15,6 +15,8 @@ be:
       user/invite_request:
         text: Прычына
     errors:
+      messages:
+        too_many_lines: перавышана абмежаванне ў %{limit} радкоў
       models:
         account:
           attributes:
