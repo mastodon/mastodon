@@ -1,0 +1,52 @@
+.report-header__card
+  .account-card
+    - if report.target_account.suspended?
+      .account-card__warning-badge
+        - if report.target_account.suspension_origin_local?
+          = t('admin.reports.already_suspended_badges.local')
+        - else
+          = t('admin.reports.already_suspended_badges.remote')
+    .account-card__header
+      = image_tag report.target_account.header.url, alt: ''
+    .account-card__title
+      .account-card__title__avatar
+        = image_tag report.target_account.avatar.url, alt: ''
+      .display-name
+        %bdi
+          %strong.emojify.p-name= display_name(report.target_account, custom_emojify: true)
+        %span
+          = acct(report.target_account)
+          = material_symbol('lock') if report.target_account.locked?
+    - if report.target_account.note.present?
+      .account-card__bio.emojify
+        = prerender_custom_emojis(account_bio_format(report.target_account), report.target_account.emojis)
+    .account-card__actions
+      .account-card__counters
+        .account-card__counters__item
+          = friendly_number_to_human report.target_account.statuses_count
+          %small= t('accounts.posts', count: report.target_account.statuses_count).downcase
+        .account-card__counters__item
+          = friendly_number_to_human report.target_account.followers_count
+          %small= t('accounts.followers', count: report.target_account.followers_count).downcase
+        .account-card__counters__item
+          = friendly_number_to_human report.target_account.following_count
+          %small= t('accounts.following', count: report.target_account.following_count).downcase
+      .account-card__actions__button
+        = link_to t('admin.reports.view_profile'), admin_account_path(report.target_account_id), class: 'button'
+  .report-header__details.report-header__details--horizontal
+    .report-header__details__item
+      .report-header__details__item__header
+        %strong= t('admin.accounts.joined')
+      .report-header__details__item__content
+        %time.time-ago{ datetime: report.target_account.created_at.iso8601, title: l(report.target_account.created_at) }= l report.target_account.created_at
+    .report-header__details__item
+      .report-header__details__item__header
+        %strong= t('accounts.last_active')
+      .report-header__details__item__content
+        - if report.target_account.last_status_at.present?
+          %time.time-ago{ datetime: report.target_account.last_status_at.to_date.iso8601, title: l(report.target_account.last_status_at.to_date) }= l report.target_account.last_status_at
+    .report-header__details__item
+      .report-header__details__item__header
+        %strong= t('admin.accounts.strikes')
+      .report-header__details__item__content
+        = report.target_account.previous_strikes_count

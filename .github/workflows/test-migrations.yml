@@ -1,0 +1,93 @@
+name: Historical data migration test
+
+on:
+  merge_group:
+  push:
+    branches:
+      - 'main'
+      - 'stable-*'
+    paths:
+      - 'Gemfile*'
+      - '.ruby-version'
+      - '**/*.rb'
+      - '.github/workflows/test-migrations.yml'
+      - 'lib/tasks/tests.rake'
+
+  pull_request:
+    paths:
+      - 'Gemfile*'
+      - '.ruby-version'
+      - '**/*.rb'
+      - '.github/workflows/test-migrations.yml'
+      - 'lib/tasks/tests.rake'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        postgres:
+          - 14-alpine
+          - 15-alpine
+
+    services:
+      postgres:
+        image: postgres:${{ matrix.postgres}}
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
+        ports:
+          - 5432:5432
+
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10ms
+          --health-timeout 3s
+          --health-retries 50
+        ports:
+          - 6379:6379
+
+    env:
+      DB_HOST: localhost
+      DB_USER: postgres
+      DB_PASS: postgres
+      DISABLE_SIMPLECOV: true
+      RAILS_ENV: test
+      BUNDLE_CLEAN: true
+      BUNDLE_FROZEN: true
+      BUNDLE_WITHOUT: 'development:production'
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
+
+      - name: Test "one step migration" flow
+        run: |
+          bin/rails db:drop
+          bin/rails db:create
+          bin/rails tests:migrations:prepare_database
+          bin/rails db:migrate
+          bin/rails tests:migrations:check_database
+
+      - name: Test "two step migration" flow
+        run: |
+          bin/rails db:drop
+          bin/rails db:create
+          SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails tests:migrations:prepare_database
+          SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails db:migrate
+          bin/rails db:migrate
+          bin/rails tests:migrations:check_database

@@ -46,6 +46,8 @@ module Mastodon::CLI
                           upgrade_storage_s3(progress, attachment, style)
                         when :fog
                           upgrade_storage_fog(progress, attachment, style)
+                        when :azure
+                          upgrade_storage_azure(progress, attachment, style)
                         when :filesystem
                           upgrade_storage_filesystem(progress, attachment, style)
                         end
@@ -101,8 +103,11 @@ module Mastodon::CLI
     end
 
     def upgrade_storage_fog(_progress, _attachment, _style)
-      say('The fog storage driver is not supported for this operation at this time', :red)
-      exit(1)
+      fail_with_message 'The fog storage driver is not supported for this operation at this time'
+    end
+
+    def upgrade_storage_azure(_progress, _attachment, _style)
+      fail_with_message 'The azure storage driver is not supported for this operation at this time'
     end
 
     def upgrade_storage_filesystem(progress, attachment, style)
@@ -118,27 +123,12 @@ module Mastodon::CLI
         progress.log("Moving #{previous_path} to #{upgraded_path}") if options[:verbose]
 
         begin
-          unless dry_run?
-            FileUtils.mkdir_p(File.dirname(upgraded_path))
-            FileUtils.mv(previous_path, upgraded_path)
-
-            begin
-              FileUtils.rmdir(File.dirname(previous_path), parents: true)
-            rescue Errno::ENOTEMPTY
-              # OK
-            end
-          end
+          move_previous_to_upgraded
         rescue => e
           progress.log(pastel.red("Error processing #{previous_path}: #{e}"))
           success = false
 
-          unless dry_run?
-            begin
-              FileUtils.rmdir(File.dirname(upgraded_path), parents: true)
-            rescue Errno::ENOTEMPTY
-              # OK
-            end
-          end
+          remove_directory
         end
       end
 
@@ -147,6 +137,29 @@ module Mastodon::CLI
       # all styles are updated
       attachment.instance_write(:storage_schema_version, previous_storage_schema_version)
       success
+    end
+
+    def move_previous_to_upgraded(previous_path, upgraded_path)
+      return if dry_run?
+
+      FileUtils.mkdir_p(File.dirname(upgraded_path))
+      FileUtils.mv(previous_path, upgraded_path)
+
+      begin
+        FileUtils.rmdir(File.dirname(previous_path), parents: true)
+      rescue Errno::ENOTEMPTY
+        # OK
+      end
+    end
+
+    def remove_directory(path)
+      return if dry_run?
+
+      begin
+        FileUtils.rmdir(File.dirname(path), parents: true)
+      rescue Errno::ENOTEMPTY
+        # OK
+      end
     end
   end
 end

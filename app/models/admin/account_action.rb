@@ -52,7 +52,7 @@ class Admin::AccountAction
       process_reports!
     end
 
-    process_email!
+    process_notification!
     process_queue!
   end
 
@@ -70,6 +70,14 @@ class Admin::AccountAction
         TYPES
       else
         TYPES - %w(none disable)
+      end
+    end
+
+    def disabled_types_for_account(account)
+      if account.suspended_locally?
+        %w(silence suspend)
+      elsif account.silenced?
+        %w(silence)
       end
     end
 
@@ -158,8 +166,11 @@ class Admin::AccountAction
     queue_suspension_worker! if type == 'suspend'
   end
 
-  def process_email!
-    UserMailer.warning(target_account.user, warning).deliver_later! if warnable?
+  def process_notification!
+    return unless warnable?
+
+    UserMailer.warning(target_account.user, warning).deliver_later!
+    LocalNotificationWorker.perform_async(target_account.id, warning.id, 'AccountWarning', 'moderation_warning')
   end
 
   def warnable?

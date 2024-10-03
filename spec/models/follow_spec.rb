@@ -9,17 +9,8 @@ RSpec.describe Follow do
   describe 'validations' do
     subject { described_class.new(account: alice, target_account: bob, rate_limit: true) }
 
-    it 'is invalid without an account' do
-      follow = Fabricate.build(:follow, account: nil)
-      follow.valid?
-      expect(follow).to model_have_error_on_field(:account)
-    end
-
-    it 'is invalid without a target_account' do
-      follow = Fabricate.build(:follow, target_account: nil)
-      follow.valid?
-      expect(follow).to model_have_error_on_field(:target_account)
-    end
+    it { is_expected.to belong_to(:account).required }
+    it { is_expected.to belong_to(:target_account).required }
 
     it 'is invalid if account already follows too many people' do
       alice.update(following_count: FollowLimitValidator::LIMIT)
@@ -36,16 +27,15 @@ RSpec.describe Follow do
     end
   end
 
-  describe 'recent' do
-    it 'sorts so that more recent follows comes earlier' do
-      follow0 = described_class.create!(account: alice, target_account: bob)
-      follow1 = described_class.create!(account: bob, target_account: alice)
+  describe '.recent' do
+    let!(:follow_earlier) { Fabricate(:follow) }
+    let!(:follow_later) { Fabricate(:follow) }
 
-      a = described_class.recent.to_a
+    it 'sorts with most recent follows first' do
+      results = described_class.recent
 
-      expect(a.size).to eq 2
-      expect(a[0]).to eq follow1
-      expect(a[1]).to eq follow0
+      expect(results.size).to eq 2
+      expect(results).to eq [follow_later, follow_earlier]
     end
   end
 

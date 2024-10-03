@@ -8,7 +8,7 @@ class Import::RowWorker
   sidekiq_retries_exhausted do |msg, _exception|
     ActiveRecord::Base.connection_pool.with_connection do
       # Increment the total number of processed items, and bump the state of the import if needed
-      bulk_import_id = BulkImportRow.where(id: msg['args'][0]).pick(:id)
+      bulk_import_id = BulkImportRow.where(id: msg['args'][0]).pick(:bulk_import_id)
       BulkImport.progress!(bulk_import_id) unless bulk_import_id.nil?
     end
   end

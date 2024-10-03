@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-class Api::V1::Statuses::FavouritesController < Api::BaseController
-  include Authorization
-
+class Api::V1::Statuses::FavouritesController < Api::V1::Statuses::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:favourites' }
   before_action :require_user!
-  before_action :set_status, only: [:create]
+  skip_before_action :set_status, only: [:destroy]
 
   def create
     FavouriteService.new.call(current_account, @status)
@@ -17,22 +15,16 @@ class Api::V1::Statuses::FavouritesController < Api::BaseController
 
     if fav
       @status = fav.status
+      count = [@status.favourites_count - 1, 0].max
       UnfavouriteWorker.perform_async(current_account.id, @status.id)
     else
       @status = Status.find(params[:status_id])
+      count = @status.favourites_count
       authorize @status, :show?
     end
 
-    render json: @status, serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new([@status], current_account.id, favourites_map: { @status.id => false })
-  rescue Mastodon::NotPermittedError
-    not_found
-  end
-
-  private
-
-  def set_status
-    @status = Status.find(params[:status_id])
-    authorize @status, :show?
+    relationships = StatusRelationshipsPresenter.new([@status], current_account.id, favourites_map: { @status.id => false }, attributes_map: { @status.id => { favourites_count: count } })
+    render json: @status, serializer: REST::StatusSerializer, relationships: relationships
   rescue Mastodon::NotPermittedError
     not_found
   end

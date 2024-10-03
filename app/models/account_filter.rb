@@ -21,7 +21,7 @@ class AccountFilter
   end
 
   def results
-    scope = Account.includes(:account_stat, user: [:ips, :invite_request]).without_instance_actor.reorder(nil)
+    scope = Account.includes(:account_stat, user: [:ips, :invite_request]).without_instance_actor
 
     relevant_params.each do |key, value|
       next if key.to_s == 'page'
@@ -104,15 +104,7 @@ class AccountFilter
   def order_scope(value)
     case value.to_s
     when 'active'
-      accounts_with_users
-        .left_joins(:account_stat)
-        .order(
-          Arel.sql(
-            <<~SQL.squish
-              COALESCE(users.current_sign_in_at, account_stats.last_status_at, to_timestamp(0)) DESC, accounts.id DESC
-            SQL
-          )
-        )
+      Account.by_recent_activity
     when 'recent'
       Account.recent
     else

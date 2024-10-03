@@ -1,43 +1,13 @@
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
+= content_for :heading do
+  = render 'application/mailer/heading', heading_title: t('notification_mailer.follow.title'), heading_subtitle: t('notification_mailer.follow.body', name: @account.pretty_acct), heading_image_url: frontend_asset_url('images/mailer-new/heading/user.png')
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-inner-card-td-without-padding
+            = render 'application/mailer/account', account: @account
+            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
               %tr
-                %td.content-cell.hero
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center.padded
-                              %table.hero-icon{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                                %tbody
-                                  %tr
-                                    %td
-                                      = image_tag full_pack_url('media/images/mailer/icon_person_add.png'), alt: ''
-
-                              %h1= t 'notification_mailer.follow.title'
-                              %p.lead= t('notification_mailer.follow.body', name: @account.pretty_acct)
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell.content-start
-                  %table.column{ cellspacing: 0, cellpadding: 0 }
-                    %tbody
-                      %tr
-                        %td.column-cell.button-cell
-                          %table.button{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                            %tbody
-                              %tr
-                                %td.button-primary
-                                  = link_to web_url("@#{@account.pretty_acct}") do
-                                    %span= t 'application_mailer.view_profile'
+                %td.email-padding-24.email-padding-top-0
+                  = render 'application/mailer/button', text: t('application_mailer.view_profile'), url: web_url("@#{@account.pretty_acct}")

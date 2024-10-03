@@ -15,6 +15,12 @@ vi:
       user/invite_request:
         text: Lý do
     errors:
+      attributes:
+        domain:
+          invalid: không phải là một tên miền hợp lệ
+      messages:
+        invalid_domain_on_line: "%{value} không phải là một tên miền hợp lệ"
+        too_many_lines: vượt quá giới hạn %{limit} dòng
       models:
         account:
           attributes:
@@ -53,3 +59,7 @@ vi:
             position:
               elevated: không thể cao hơn vai trò hiện tại của bạn
               own_role: không thể thay đổi vai trò hiện tại của bạn
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: không thể bao gồm các sự kiện mà bạn không có quyền

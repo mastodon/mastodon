@@ -19,33 +19,15 @@ class Web::PushSubscription < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :access_token, class_name: 'Doorkeeper::AccessToken', optional: true
 
-  has_one :session_activation, foreign_key: 'web_push_subscription_id', inverse_of: :web_push_subscription
+  has_one :session_activation, foreign_key: 'web_push_subscription_id', inverse_of: :web_push_subscription, dependent: nil
 
-  validates :endpoint, presence: true
+  validates :endpoint, presence: true, url: true
   validates :key_p256dh, presence: true
   validates :key_auth, presence: true
 
+  validates_with WebPushKeyValidator
+
   delegate :locale, to: :associated_user
-
-  def encrypt(payload)
-    Webpush::Encryption.encrypt(payload, key_p256dh, key_auth)
-  end
-
-  def audience
-    @audience ||= Addressable::URI.parse(endpoint).normalized_site
-  end
-
-  def crypto_key_header
-    p256ecdsa = vapid_key.public_key_for_push_header
-
-    "p256ecdsa=#{p256ecdsa}"
-  end
-
-  def authorization_header
-    jwt = JWT.encode({ aud: audience, exp: 24.hours.from_now.to_i, sub: "mailto:#{contact_email}" }, vapid_key.curve, 'ES256', typ: 'JWT')
-
-    "WebPush #{jwt}"
-  end
 
   def pushable?(notification)
     policy_allows_notification?(notification) && alert_enabled_for_notification_type?(notification)
@@ -73,7 +55,7 @@ class Web::PushSubscription < ApplicationRecord
 
   class << self
     def unsubscribe_for(application_id, resource_owner)
-      access_token_ids = Doorkeeper::AccessToken.where(application_id: application_id, resource_owner_id: resource_owner.id, revoked_at: nil).pluck(:id)
+      access_token_ids = Doorkeeper::AccessToken.where(application_id: application_id, resource_owner_id: resource_owner.id).not_revoked.pluck(:id)
       where(access_token_id: access_token_ids).delete_all
     end
   end
@@ -88,14 +70,6 @@ class Web::PushSubscription < ApplicationRecord
       expires_in: Doorkeeper.configuration.access_token_expires_in,
       use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
     )
-  end
-
-  def vapid_key
-    @vapid_key ||= Webpush::VapidKey.from_keys(Rails.configuration.x.vapid_public_key, Rails.configuration.x.vapid_private_key)
-  end
-
-  def contact_email
-    @contact_email ||= ::Setting.site_contact_email
   end
 
   def alert_enabled_for_notification_type?(notification)

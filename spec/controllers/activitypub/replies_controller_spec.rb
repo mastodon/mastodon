@@ -8,22 +8,6 @@ RSpec.describe ActivityPub::RepliesController do
   let(:remote_reply_id) { 'https://foobar.com/statuses/1234' }
   let(:remote_querier) { nil }
 
-  shared_examples 'cacheable response' do
-    it 'does not set cookies' do
-      expect(response.cookies).to be_empty
-      expect(response.headers['Set-Cookies']).to be_nil
-    end
-
-    it 'does not set sessions' do
-      response
-      expect(session).to be_empty
-    end
-
-    it 'returns public Cache-Control header' do
-      expect(response.headers['Cache-Control']).to include 'public'
-    end
-  end
-
   shared_examples 'common behavior' do
     context 'when status is private' do
       let(:parent_visibility) { :private }
@@ -82,31 +66,39 @@ RSpec.describe ActivityPub::RepliesController do
 
     context 'when status is public' do
       let(:parent_visibility) { :public }
-      let(:json) { body_as_json }
-      let(:page_json) { json[:first] }
 
-      it 'returns http success' do
-        expect(response).to have_http_status(200)
-      end
+      it 'returns http success and correct media type' do
+        expect(response)
+          .to have_http_status(200)
+          .and have_cacheable_headers
 
-      it 'returns application/activity+json' do
         expect(response.media_type).to eq 'application/activity+json'
       end
 
-      it_behaves_like 'cacheable response'
-
       context 'without only_other_accounts' do
         it "returns items with thread author's replies" do
-          expect(page_json).to be_a Hash
-          expect(page_json[:items]).to be_an Array
-          expect(page_json[:items].size).to eq 1
-          expect(page_json[:items].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
+          expect(response.parsed_body)
+            .to include(
+              first: be_a(Hash).and(
+                include(
+                  items: be_an(Array)
+                  .and(have_attributes(size: 1))
+                  .and(all(satisfy { |item| targets_public_collection?(item) }))
+                )
+              )
+            )
         end
 
         context 'when there are few self-replies' do
           it 'points next to replies from other people' do
-            expect(page_json).to be_a Hash
-            expect(Addressable::URI.parse(page_json[:next]).query.split('&')).to include('only_other_accounts=true', 'page=true')
+            expect(response.parsed_body)
+              .to include(
+                first: be_a(Hash).and(
+                  include(
+                    next: satisfy { |value| (parsed_uri_query_values(value) & %w(only_other_accounts=true page=true)).any? }
+                  )
+                )
+              )
           end
         end
 
@@ -116,8 +108,14 @@ RSpec.describe ActivityPub::RepliesController do
           end
 
           it 'points next to other self-replies' do
-            expect(page_json).to be_a Hash
-            expect(Addressable::URI.parse(page_json[:next]).query.split('&')).to include('only_other_accounts=false', 'page=true')
+            expect(response.parsed_body)
+              .to include(
+                first: be_a(Hash).and(
+                  include(
+                    next: satisfy { |value| (parsed_uri_query_values(value) & %w(only_other_accounts=false page=true)).any? }
+                  )
+                )
+              )
           end
         end
       end
@@ -126,27 +124,31 @@ RSpec.describe ActivityPub::RepliesController do
         let(:only_other_accounts) { 'true' }
 
         it 'returns items with other public or unlisted replies' do
-          expect(page_json).to be_a Hash
-          expect(page_json[:items]).to be_an Array
-          expect(page_json[:items].size).to eq 3
+          expect(response.parsed_body)
+            .to include(
+              first: be_a(Hash).and(
+                include(items: be_an(Array).and(have_attributes(size: 3)))
+              )
+            )
         end
 
         it 'only inlines items that are local and public or unlisted replies' do
-          inlined_replies = page_json[:items].select { |x| x.is_a?(Hash) }
-          public_collection = ActivityPub::TagManager::COLLECTIONS[:public]
-          expect(inlined_replies.all? { |item| item[:to].include?(public_collection) || item[:cc].include?(public_collection) }).to be true
-          expect(inlined_replies.all? { |item| ActivityPub::TagManager.instance.local_uri?(item[:id]) }).to be true
+          expect(inlined_replies)
+            .to all(satisfy { |item| targets_public_collection?(item) })
+            .and all(satisfy { |item| ActivityPub::TagManager.instance.local_uri?(item[:id]) })
         end
 
         it 'uses ids for remote toots' do
-          remote_replies = page_json[:items].select { |x| !x.is_a?(Hash) }
-          expect(remote_replies.all? { |item| item.is_a?(String) && !ActivityPub::TagManager.instance.local_uri?(item) }).to be true
+          expect(remote_replies)
+            .to all(satisfy { |item| item.is_a?(String) && !ActivityPub::TagManager.instance.local_uri?(item) })
         end
 
         context 'when there are few replies' do
           it 'does not have a next page' do
-            expect(page_json).to be_a Hash
-            expect(page_json[:next]).to be_nil
+            expect(response.parsed_body)
+              .to include(
+                first: be_a(Hash).and(not_include(next: be_present))
+              )
           end
         end
 
@@ -156,8 +158,14 @@ RSpec.describe ActivityPub::RepliesController do
           end
 
           it 'points next to other replies' do
-            expect(page_json).to be_a Hash
-            expect(Addressable::URI.parse(page_json[:next]).query.split('&')).to include('only_other_accounts=true', 'page=true')
+            expect(response.parsed_body)
+              .to include(
+                first: be_a(Hash).and(
+                  include(
+                    next: satisfy { |value| (parsed_uri_query_values(value) & %w(only_other_accounts=true page=true)).any? }
+                  )
+                )
+              )
           end
         end
       end
@@ -209,5 +217,34 @@ RSpec.describe ActivityPub::RepliesController do
         it_behaves_like 'disallowed access'
       end
     end
+  end
+
+  private
+
+  def inlined_replies
+    response
+      .parsed_body[:first][:items]
+      .select { |x| x.is_a?(Hash) }
+  end
+
+  def remote_replies
+    response
+      .parsed_body[:first][:items]
+      .reject { |x| x.is_a?(Hash) }
+  end
+
+  def parsed_uri_query_values(uri)
+    Addressable::URI
+      .parse(uri)
+      .query
+      .split('&')
+  end
+
+  def ap_public_collection
+    ActivityPub::TagManager::COLLECTIONS[:public]
+  end
+
+  def targets_public_collection?(item)
+    item[:to].include?(ap_public_collection) || item[:cc].include?(ap_public_collection)
   end
 end

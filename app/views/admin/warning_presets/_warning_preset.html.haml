@@ -7,4 +7,4 @@
       = truncate(warning_preset.text)
 
     %div
-      = table_link_to 'trash', t('admin.warning_presets.delete'), admin_warning_preset_path(warning_preset), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, warning_preset)
+      = table_link_to 'delete', t('admin.warning_presets.delete'), admin_warning_preset_path(warning_preset), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, warning_preset)

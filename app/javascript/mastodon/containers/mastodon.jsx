@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import { Helmet } from 'react-helmet';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { Provider as ReduxProvider } from 'react-redux';
 
@@ -12,12 +11,15 @@ import { fetchCustomEmojis } from 'mastodon/actions/custom_emojis';
 import { hydrateStore } from 'mastodon/actions/store';
 import { connectUserStream } from 'mastodon/actions/streaming';
 import ErrorBoundary from 'mastodon/components/error_boundary';
+import { Router } from 'mastodon/components/router';
 import UI from 'mastodon/features/ui';
+import { IdentityContext, createIdentityContext } from 'mastodon/identity_context';
 import initialState, { title as siteTitle } from 'mastodon/initial_state';
 import { IntlProvider } from 'mastodon/locales';
 import { store } from 'mastodon/store';
+import { isProduction } from 'mastodon/utils/environment';
 
-const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
+const title = isProduction() ? siteTitle : `${siteTitle} (Dev)`;
 
 const hydrateAction = hydrateStore(initialState);
 
@@ -26,32 +28,8 @@ if (initialState.meta.me) {
   store.dispatch(fetchCustomEmojis());
 }
 
-const createIdentityContext = state => ({
-  signedIn: !!state.meta.me,
-  accountId: state.meta.me,
-  disabledAccountId: state.meta.disabled_account_id,
-  accessToken: state.meta.access_token,
-  permissions: state.role ? state.role.permissions : 0,
-});
-
 export default class Mastodon extends PureComponent {
-
-  static childContextTypes = {
-    identity: PropTypes.shape({
-      signedIn: PropTypes.bool.isRequired,
-      accountId: PropTypes.string,
-      disabledAccountId: PropTypes.string,
-      accessToken: PropTypes.string,
-    }).isRequired,
-  };
-
   identity = createIdentityContext(initialState);
-
-  getChildContext() {
-    return {
-      identity: this.identity,
-    };
-  }
 
   componentDidMount() {
     if (this.identity.signedIn) {
@@ -72,19 +50,21 @@ export default class Mastodon extends PureComponent {
 
   render () {
     return (
-      <IntlProvider>
-        <ReduxProvider store={store}>
-          <ErrorBoundary>
-            <BrowserRouter>
-              <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
-                <Route path='/' component={UI} />
-              </ScrollContext>
-            </BrowserRouter>
+      <IdentityContext.Provider value={this.identity}>
+        <IntlProvider>
+          <ReduxProvider store={store}>
+            <ErrorBoundary>
+              <Router>
+                <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
+                  <Route path='/' component={UI} />
+                </ScrollContext>
+              </Router>
 
-            <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
-          </ErrorBoundary>
-        </ReduxProvider>
-      </IntlProvider>
+              <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
+            </ErrorBoundary>
+          </ReduxProvider>
+        </IntlProvider>
+      </IdentityContext.Provider>
     );
   }
 

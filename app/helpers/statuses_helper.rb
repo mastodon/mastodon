@@ -4,13 +4,12 @@ module StatusesHelper
   EMBEDDED_CONTROLLER = 'statuses'
   EMBEDDED_ACTION = 'embed'
 
-  def link_to_newer(url)
-    link_to t('statuses.show_newer'), url, class: 'load-more load-gap'
-  end
-
-  def link_to_older(url)
-    link_to t('statuses.show_older'), url, class: 'load-more load-gap'
-  end
+  VISIBLITY_ICONS = {
+    public: 'globe',
+    unlisted: 'lock_open',
+    private: 'lock',
+    direct: 'alternate_email',
+  }.freeze
 
   def nothing_here(extra_classes = '')
     content_tag(:div, class: "nothing-here #{extra_classes}") do
@@ -65,44 +64,8 @@ module StatusesHelper
     embedded_view? ? '_blank' : nil
   end
 
-  def style_classes(status, is_predecessor, is_successor, include_threads)
-    classes = ['entry']
-    classes << 'entry-predecessor' if is_predecessor
-    classes << 'entry-reblog' if status.reblog?
-    classes << 'entry-successor' if is_successor
-    classes << 'entry-center' if include_threads
-    classes.join(' ')
-  end
-
-  def microformats_classes(status, is_direct_parent, is_direct_child)
-    classes = []
-    classes << 'p-in-reply-to' if is_direct_parent
-    classes << 'p-repost-of' if status.reblog? && is_direct_parent
-    classes << 'p-comment' if is_direct_child
-    classes.join(' ')
-  end
-
-  def microformats_h_class(status, is_predecessor, is_successor, include_threads)
-    if is_predecessor || status.reblog? || is_successor
-      'h-cite'
-    elsif include_threads
-      ''
-    else
-      'h-entry'
-    end
-  end
-
-  def fa_visibility_icon(status)
-    case status.visibility
-    when 'public'
-      fa_icon 'globe fw'
-    when 'unlisted'
-      fa_icon 'unlock fw'
-    when 'private'
-      fa_icon 'lock fw'
-    when 'direct'
-      fa_icon 'at fw'
-    end
+  def visibility_icon(status)
+    VISIBLITY_ICONS[status.visibility.to_sym]
   end
 
   def embedded_view?

@@ -15,6 +15,12 @@ lv:
       user/invite_request:
         text: Iemesls
     errors:
+      attributes:
+        domain:
+          invalid: nav derīgs domēna nosaukums
+      messages:
+        invalid_domain_on_line: "%{value} nav derīgs domēna nosaukums"
+        too_many_lines: pārsniedz %{limit} līniju ierobežojumu
       models:
         account:
           attributes:
@@ -53,3 +59,7 @@ lv:
             position:
               elevated: nevar būt augstāka par tavu pašreizējo lomu
               own_role: nevar mainīt pret tavu pašreizējo lomu
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: nevar ietvert pasākumus, uz kuriem tev nav tiesību

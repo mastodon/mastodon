@@ -3,12 +3,12 @@ const easingOutQuint = (
   t: number,
   b: number,
   c: number,
-  d: number
+  d: number,
 ) => c * ((t = t / d - 1) * t * t * t * t + 1) + b;
 const scroll = (
   node: Element,
   key: 'scrollTop' | 'scrollLeft',
-  target: number
+  target: number,
 ) => {
   const startTime = Date.now();
   const offset = node[key];
@@ -39,10 +39,19 @@ const isScrollBehaviorSupported =
   'scrollBehavior' in document.documentElement.style;
 
 export const scrollRight = (node: Element, position: number) =>
-  isScrollBehaviorSupported
-    ? node.scrollTo({ left: position, behavior: 'smooth' })
-    : scroll(node, 'scrollLeft', position);
+  requestIdleCallback(() => {
+    if (isScrollBehaviorSupported) {
+      node.scrollTo({ left: position, behavior: 'smooth' });
+    } else {
+      scroll(node, 'scrollLeft', position);
+    }
+  });
+
 export const scrollTop = (node: Element) =>
-  isScrollBehaviorSupported
-    ? node.scrollTo({ top: 0, behavior: 'smooth' })
-    : scroll(node, 'scrollTop', 0);
+  requestIdleCallback(() => {
+    if (isScrollBehaviorSupported) {
+      node.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      scroll(node, 'scrollTop', 0);
+    }
+  });

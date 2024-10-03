@@ -1,187 +1,161 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { useCallback } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { useDispatch, useSelector } from 'react-redux';
 
+import {
+  changePollSettings,
+  changePollOption,
+  clearComposeSuggestions,
+  fetchComposeSuggestions,
+  selectComposeSuggestion,
+} from 'mastodon/actions/compose';
 import AutosuggestInput from 'mastodon/components/autosuggest_input';
-import { Icon }  from 'mastodon/components/icon';
-import { IconButton } from 'mastodon/components/icon_button';
 
 const messages = defineMessages({
-  option_placeholder: { id: 'compose_form.poll.option_placeholder', defaultMessage: 'Choice {number}' },
-  add_option: { id: 'compose_form.poll.add_option', defaultMessage: 'Add a choice' },
-  remove_option: { id: 'compose_form.poll.remove_option', defaultMessage: 'Remove this choice' },
-  poll_duration: { id: 'compose_form.poll.duration', defaultMessage: 'Poll duration' },
+  option_placeholder: { id: 'compose_form.poll.option_placeholder', defaultMessage: 'Option {number}' },
+  duration: { id: 'compose_form.poll.duration', defaultMessage: 'Poll length' },
+  type: { id: 'compose_form.poll.type', defaultMessage: 'Style' },
   switchToMultiple: { id: 'compose_form.poll.switch_to_multiple', defaultMessage: 'Change poll to allow multiple choices' },
   switchToSingle: { id: 'compose_form.poll.switch_to_single', defaultMessage: 'Change poll to allow for a single choice' },
   minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
   hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
   days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
+  singleChoice: { id: 'compose_form.poll.single', defaultMessage: 'Pick one' },
+  multipleChoice: { id: 'compose_form.poll.multiple', defaultMessage: 'Multiple choice' },
 });
 
-class OptionIntl extends PureComponent {
+const Select = ({ label, options, value, onChange }) => {
+  return (
+    <label className='compose-form__poll__select'>
+      <span className='compose-form__poll__select__label'>{label}</span>
 
-  static propTypes = {
-    title: PropTypes.string.isRequired,
-    lang: PropTypes.string,
-    index: PropTypes.number.isRequired,
-    isPollMultiple: PropTypes.bool,
-    autoFocus: PropTypes.bool,
-    onChange: PropTypes.func.isRequired,
-    onRemove: PropTypes.func.isRequired,
-    onToggleMultiple: PropTypes.func.isRequired,
-    suggestions: ImmutablePropTypes.list,
-    onClearSuggestions: PropTypes.func.isRequired,
-    onFetchSuggestions: PropTypes.func.isRequired,
-    onSuggestionSelected: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
-  };
+      <select className='compose-form__poll__select__value' value={value} onChange={onChange}>
+        {options.map((option, i) => (
+          <option key={i} value={option.value}>{option.label}</option>
+        ))}
+      </select>
+    </label>
+  );
+};
 
-  handleOptionTitleChange = e => {
-    this.props.onChange(this.props.index, e.target.value);
-  };
+Select.propTypes = {
+  label: PropTypes.node,
+  value: PropTypes.any,
+  onChange: PropTypes.func,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.node,
+    value: PropTypes.any,
+  })),
+};
 
-  handleOptionRemove = () => {
-    this.props.onRemove(this.props.index);
-  };
+const Option = ({ multipleChoice, index, title, autoFocus }) => {
+  const intl = useIntl();
+  const dispatch = useDispatch();
+  const suggestions = useSelector(state => state.getIn(['compose', 'suggestions']));
+  const lang = useSelector(state => state.getIn(['compose', 'language']));
+  const maxOptions = useSelector(state => state.getIn(['server', 'server', 'configuration', 'polls', 'max_options']));
 
+  const handleChange = useCallback(({ target: { value } }) => {
+    dispatch(changePollOption(index, value, maxOptions));
+  }, [dispatch, index, maxOptions]);
 
-  handleToggleMultiple = e => {
-    this.props.onToggleMultiple();
-    e.preventDefault();
-    e.stopPropagation();
-  };
+  const handleSuggestionsFetchRequested = useCallback(token => {
+    dispatch(fetchComposeSuggestions(token));
+  }, [dispatch]);
 
-  handleCheckboxKeypress = e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      this.handleToggleMultiple(e);
-    }
-  };
+  const handleSuggestionsClearRequested = useCallback(() => {
+    dispatch(clearComposeSuggestions());
+  }, [dispatch]);
 
-  onSuggestionsClearRequested = () => {
-    this.props.onClearSuggestions();
-  };
+  const handleSuggestionSelected = useCallback((tokenStart, token, value) => {
+    dispatch(selectComposeSuggestion(tokenStart, token, value, ['poll', 'options', index]));
+  }, [dispatch, index]);
 
-  onSuggestionsFetchRequested = (token) => {
-    this.props.onFetchSuggestions(token);
-  };
+  return (
+    <label className={classNames('poll__option editable', { empty: index > 1 && title.length === 0 })}>
+      <span className={classNames('poll__input', { checkbox: multipleChoice })} />
 
-  onSuggestionSelected = (tokenStart, token, value) => {
-    this.props.onSuggestionSelected(tokenStart, token, value, ['poll', 'options', this.props.index]);
-  };
+      <AutosuggestInput
+        placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
+        maxLength={50}
+        value={title}
+        lang={lang}
+        spellCheck
+        onChange={handleChange}
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={handleSuggestionsFetchRequested}
+        onSuggestionsClearRequested={handleSuggestionsClearRequested}
+        onSuggestionSelected={handleSuggestionSelected}
+        searchTokens={[':']}
+        autoFocus={autoFocus}
+      />
+    </label>
+  );
+};
 
-  render () {
-    const { isPollMultiple, title, lang, index, autoFocus, intl } = this.props;
+Option.propTypes = {
+  title: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  multipleChoice: PropTypes.bool,
+  autoFocus: PropTypes.bool,
+};
 
-    return (
-      <li>
-        <label className='poll__option editable'>
-          <span
-            className={classNames('poll__input', { checkbox: isPollMultiple })}
-            onClick={this.handleToggleMultiple}
-            onKeyPress={this.handleCheckboxKeypress}
-            role='button'
-            tabIndex={0}
-            title={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
-            aria-label={intl.formatMessage(isPollMultiple ? messages.switchToSingle : messages.switchToMultiple)}
-          />
+export const PollForm = () => {
+  const intl = useIntl();
+  const dispatch = useDispatch();
+  const poll = useSelector(state => state.getIn(['compose', 'poll']));
+  const options = poll?.get('options');
+  const expiresIn = poll?.get('expires_in');
+  const isMultiple = poll?.get('multiple');
 
-          <AutosuggestInput
-            placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
-            maxLength={50}
-            value={title}
-            lang={lang}
-            spellCheck
-            onChange={this.handleOptionTitleChange}
-            suggestions={this.props.suggestions}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            onSuggestionSelected={this.onSuggestionSelected}
-            searchTokens={[':']}
-            autoFocus={autoFocus}
-          />
-        </label>
+  const handleDurationChange = useCallback(({ target: { value } }) => {
+    dispatch(changePollSettings(value, isMultiple));
+  }, [dispatch, isMultiple]);
 
-        <div className='poll__cancel'>
-          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' onClick={this.handleOptionRemove} />
-        </div>
-      </li>
-    );
+  const handleTypeChange = useCallback(({ target: { value } }) => {
+    dispatch(changePollSettings(expiresIn, value === 'true'));
+  }, [dispatch, expiresIn]);
+
+  if (poll === null) {
+    return null;
   }
 
-}
+  return (
+    <div className='compose-form__poll'>
+      {options.map((title, i) => (
+        <Option
+          title={title}
+          key={i}
+          index={i}
+          multipleChoice={isMultiple}
+          autoFocus={i === 0}
+        />
+      ))}
 
-const Option = injectIntl(OptionIntl);
+      <div className='compose-form__poll__footer'>
+        <Select label={intl.formatMessage(messages.duration)} options={[
+          { value: 300, label: intl.formatMessage(messages.minutes, { number: 5 })},
+          { value: 1800, label: intl.formatMessage(messages.minutes, { number: 30 })},
+          { value: 3600, label: intl.formatMessage(messages.hours, { number: 1 })},
+          { value: 21600, label: intl.formatMessage(messages.hours, { number: 6 })},
+          { value: 43200, label: intl.formatMessage(messages.hours, { number: 12 })},
+          { value: 86400, label: intl.formatMessage(messages.days, { number: 1 })},
+          { value: 259200, label: intl.formatMessage(messages.days, { number: 3 })},
+          { value: 604800, label: intl.formatMessage(messages.days, { number: 7 })},
+        ]} value={expiresIn} onChange={handleDurationChange} />
 
-class PollForm extends ImmutablePureComponent {
+        <div className='compose-form__poll__footer__sep' />
 
-  static propTypes = {
-    options: ImmutablePropTypes.list,
-    lang: PropTypes.string,
-    expiresIn: PropTypes.number,
-    isMultiple: PropTypes.bool,
-    onChangeOption: PropTypes.func.isRequired,
-    onAddOption: PropTypes.func.isRequired,
-    onRemoveOption: PropTypes.func.isRequired,
-    onChangeSettings: PropTypes.func.isRequired,
-    suggestions: ImmutablePropTypes.list,
-    onClearSuggestions: PropTypes.func.isRequired,
-    onFetchSuggestions: PropTypes.func.isRequired,
-    onSuggestionSelected: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
-  };
-
-  handleAddOption = () => {
-    this.props.onAddOption('');
-  };
-
-  handleSelectDuration = e => {
-    this.props.onChangeSettings(e.target.value, this.props.isMultiple);
-  };
-
-  handleToggleMultiple = () => {
-    this.props.onChangeSettings(this.props.expiresIn, !this.props.isMultiple);
-  };
-
-  render () {
-    const { options, lang, expiresIn, isMultiple, onChangeOption, onRemoveOption, intl, ...other } = this.props;
-
-    if (!options) {
-      return null;
-    }
-
-    const autoFocusIndex = options.indexOf('');
-
-    return (
-      <div className='compose-form__poll-wrapper'>
-        <ul>
-          {options.map((title, i) => <Option title={title} lang={lang} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} onToggleMultiple={this.handleToggleMultiple} autoFocus={i === autoFocusIndex} {...other} />)}
-        </ul>
-
-        <div className='poll__footer'>
-          <button type='button' disabled={options.size >= 4} className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
-
-          {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-          <select value={expiresIn} onChange={this.handleSelectDuration}>
-            <option value={300}>{intl.formatMessage(messages.minutes, { number: 5 })}</option>
-            <option value={1800}>{intl.formatMessage(messages.minutes, { number: 30 })}</option>
-            <option value={3600}>{intl.formatMessage(messages.hours, { number: 1 })}</option>
-            <option value={21600}>{intl.formatMessage(messages.hours, { number: 6 })}</option>
-            <option value={43200}>{intl.formatMessage(messages.hours, { number: 12 })}</option>
-            <option value={86400}>{intl.formatMessage(messages.days, { number: 1 })}</option>
-            <option value={259200}>{intl.formatMessage(messages.days, { number: 3 })}</option>
-            <option value={604800}>{intl.formatMessage(messages.days, { number: 7 })}</option>
-          </select>
-        </div>
+        <Select label={intl.formatMessage(messages.type)} options={[
+          { value: false, label: intl.formatMessage(messages.singleChoice) },
+          { value: true, label: intl.formatMessage(messages.multipleChoice) },
+        ]} value={isMultiple} onChange={handleTypeChange} />
       </div>
-    );
-  }
-
-}
-
-export default injectIntl(PollForm);
+    </div>
+  );
+};

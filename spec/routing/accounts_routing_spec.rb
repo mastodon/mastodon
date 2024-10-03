@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Routes under accounts/' do
+RSpec.describe 'Routes under accounts/' do
   context 'with local username' do
     let(:username) { 'alice' }
 
@@ -47,6 +47,61 @@ describe 'Routes under accounts/' do
     end
   end
 
+  context 'with local username encoded at' do
+    include RSpec::Rails::RequestExampleGroup
+    let(:username) { 'alice' }
+
+    it 'routes /%40:username' do
+      get "/%40#{username}"
+      expect(response).to redirect_to("/@#{username}")
+    end
+
+    it 'routes /%40:username.json' do
+      get("/%40#{username}.json")
+      expect(response).to redirect_to("/@#{username}.json")
+    end
+
+    it 'routes /%40:username.rss' do
+      get("/%40#{username}.rss")
+      expect(response).to redirect_to("/@#{username}.rss")
+    end
+
+    it 'routes /%40:username/:id' do
+      get("/%40#{username}/123")
+      expect(response).to redirect_to("/@#{username}/123")
+    end
+
+    it 'routes /%40:username/:id/embed' do
+      get("/%40#{username}/123/embed")
+      expect(response).to redirect_to("/@#{username}/123/embed")
+    end
+
+    it 'routes /%40:username/following' do
+      get("/%40#{username}/following")
+      expect(response).to redirect_to("/@#{username}/following")
+    end
+
+    it 'routes /%40:username/followers' do
+      get("/%40#{username}/followers")
+      expect(response).to redirect_to("/@#{username}/followers")
+    end
+
+    it 'routes /%40:username/with_replies' do
+      get("/%40#{username}/with_replies")
+      expect(response).to redirect_to("/@#{username}/with_replies")
+    end
+
+    it 'routes /%40:username/media' do
+      get("/%40#{username}/media")
+      expect(response).to redirect_to("/@#{username}/media")
+    end
+
+    it 'routes /%40:username/tagged/:tag' do
+      get("/%40#{username}/tagged/foo")
+      expect(response).to redirect_to("/@#{username}/tagged/foo")
+    end
+  end
+
   context 'with remote username' do
     let(:username) { 'alice@example.com' }
 
@@ -80,6 +135,52 @@ describe 'Routes under accounts/' do
 
     it 'routes /@:username/tagged/:tag' do
       expect(get("/@#{username}/tagged/foo")).to route_to('home#index', username_with_domain: username, any: 'tagged/foo')
+    end
+  end
+
+  context 'with remote username encoded at' do
+    include RSpec::Rails::RequestExampleGroup
+    let(:username) { 'alice%40example.com' }
+    let(:username_decoded) { 'alice@example.com' }
+
+    it 'routes /%40:username' do
+      get("/%40#{username}")
+      expect(response).to redirect_to("/@#{username_decoded}")
+    end
+
+    it 'routes /%40:username/:id' do
+      get("/%40#{username}/123")
+      expect(response).to redirect_to("/@#{username_decoded}/123")
+    end
+
+    it 'routes /%40:username/:id/embed' do
+      get("/%40#{username}/123/embed")
+      expect(response).to redirect_to("/@#{username_decoded}/123/embed")
+    end
+
+    it 'routes /%40:username/following' do
+      get("/%40#{username}/following")
+      expect(response).to redirect_to("/@#{username_decoded}/following")
+    end
+
+    it 'routes /%40:username/followers' do
+      get("/%40#{username}/followers")
+      expect(response).to redirect_to("/@#{username_decoded}/followers")
+    end
+
+    it 'routes /%40:username/with_replies' do
+      get("/%40#{username}/with_replies")
+      expect(response).to redirect_to("/@#{username_decoded}/with_replies")
+    end
+
+    it 'routes /%40:username/media' do
+      get("/%40#{username}/media")
+      expect(response).to redirect_to("/@#{username_decoded}/media")
+    end
+
+    it 'routes /%40:username/tagged/:tag' do
+      get("/%40#{username}/tagged/foo")
+      expect(response).to redirect_to("/@#{username_decoded}/tagged/foo")
     end
   end
 end

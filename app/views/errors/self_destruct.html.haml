@@ -1,0 +1,20 @@
+- content_for :page_title do
+  = t('self_destruct.title')
+
+.simple_form
+  %h1.title= t('self_destruct.title')
+  %p.lead= t('self_destruct.lead_html', domain: Rails.configuration.x.local_domain)
+
+.form-footer
+  %ul.no-list
+    - if user_signed_in?
+      %li= link_to t('settings.account_settings'), edit_user_registration_path
+    - else
+      - if controller_name != 'sessions'
+        %li= link_to_login t('auth.login')
+
+      - if controller_name != 'passwords' && controller_name != 'registrations'
+        %li= link_to t('auth.forgot_password'), new_user_password_path
+
+    - if user_signed_in?
+      %li= link_to t('auth.logout'), destroy_user_session_path, data: { method: :delete }

@@ -15,6 +15,12 @@ gl:
       user/invite_request:
         text: Razón
     errors:
+      attributes:
+        domain:
+          invalid: non é un nome de dominio válido
+      messages:
+        invalid_domain_on_line: "%{value} non é un nome de dominio válido"
+        too_many_lines: superou o límite de %{limit} liñas
       models:
         account:
           attributes:
@@ -53,3 +59,7 @@ gl:
             position:
               elevated: non pode superar ao teu rol actual
               own_role: non pode ser modificado co teu rol actual
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: non podes incluír eventos para os que non tes permiso

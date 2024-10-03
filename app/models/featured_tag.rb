@@ -23,7 +23,7 @@ class FeaturedTag < ApplicationRecord
   validate :validate_tag_uniqueness, on: :create
   validate :validate_featured_tags_limit, on: :create
 
-  before_validation :strip_name
+  normalizes :name, with: ->(name) { name.strip.delete_prefix('#') }
 
   before_create :set_tag
   before_create :reset_data
@@ -45,22 +45,18 @@ class FeaturedTag < ApplicationRecord
   end
 
   def decrement(deleted_status_id)
-    update(statuses_count: [0, statuses_count - 1].max, last_status_at: account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag).where.not(id: deleted_status_id).select(:created_at).first&.created_at)
+    update(statuses_count: [0, statuses_count - 1].max, last_status_at: visible_tagged_account_statuses.where.not(id: deleted_status_id).pick(:created_at))
   end
 
   private
-
-  def strip_name
-    self.name = name&.strip&.gsub(/\A#/, '')
-  end
 
   def set_tag
     self.tag = Tag.find_or_create_by_names(name)&.first
   end
 
   def reset_data
-    self.statuses_count = account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag).count
-    self.last_status_at = account.statuses.where(visibility: %i(public unlisted)).tagged_with(tag).select(:created_at).first&.created_at
+    self.statuses_count = visible_tagged_account_statuses.count
+    self.last_status_at = visible_tagged_account_statuses.pick(:created_at)
   end
 
   def validate_featured_tags_limit
@@ -70,6 +66,14 @@ class FeaturedTag < ApplicationRecord
   end
 
   def validate_tag_uniqueness
-    errors.add(:name, :taken) if FeaturedTag.by_name(name).where(account_id: account_id).exists?
+    errors.add(:name, :taken) if tag_already_featured_for_account?
+  end
+
+  def tag_already_featured_for_account?
+    FeaturedTag.by_name(name).exists?(account_id: account_id)
+  end
+
+  def visible_tagged_account_statuses
+    account.statuses.distributable_visibility.tagged_with(tag)
   end
 end

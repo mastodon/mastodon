@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PublishScheduledStatusWorker do
+RSpec.describe PublishScheduledStatusWorker do
   subject { described_class.new }
 
   let(:scheduled_status) { Fabricate(:scheduled_status, params: { text: 'Hello world, future!' }) }

@@ -5,9 +5,10 @@ class MailSubscriptionsController < ApplicationController
 
   skip_before_action :require_functional!
 
-  before_action :set_body_classes
   before_action :set_user
   before_action :set_type
+
+  protect_from_forgery with: :null_session
 
   def show; end
 
@@ -20,10 +21,7 @@ class MailSubscriptionsController < ApplicationController
 
   def set_user
     @user = GlobalID::Locator.locate_signed(params[:token], for: 'unsubscribe')
-  end
-
-  def set_body_classes
-    @body_classes = 'lighter'
+    not_found unless @user
   end
 
   def set_type
@@ -35,7 +33,7 @@ class MailSubscriptionsController < ApplicationController
     when 'follow', 'reblog', 'favourite', 'mention', 'follow_request'
       "notification_emails.#{params[:type]}"
     else
-      raise ArgumentError
+      not_found
     end
   end
 end

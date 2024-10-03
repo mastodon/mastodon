@@ -75,7 +75,7 @@ class ImportService < BaseService
     if @import.overwrite?
       presence_hash = items.each_with_object({}) { |(id, extra), mapping| mapping[id] = [true, extra] }
 
-      overwrite_scope.find_each do |target_account|
+      overwrite_scope.reorder(nil).find_each do |target_account|
         if presence_hash[target_account.acct]
           items.delete(target_account.acct)
           extra = presence_hash[target_account.acct][1]

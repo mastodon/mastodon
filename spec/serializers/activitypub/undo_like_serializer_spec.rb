@@ -2,14 +2,8 @@
 
 require 'rails_helper'
 
-describe ActivityPub::UndoLikeSerializer do
-  let(:serialization) do
-    JSON.parse(
-      ActiveModelSerializers::SerializableResource.new(
-        record, serializer: described_class
-      ).to_json
-    )
-  end
+RSpec.describe ActivityPub::UndoLikeSerializer do
+  let(:serialization) { serialized_record_json(record, described_class) }
   let(:record) { Fabricate(:favourite) }
 
   describe 'type' do

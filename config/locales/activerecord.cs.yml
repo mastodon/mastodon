@@ -53,3 +53,7 @@ cs:
             position:
               elevated: nemůže být vyšší než vaše aktuální role
               own_role: nelze změnit s vaší aktuální rolí
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: nelze zahrnout události, k nimž nemáte práva
