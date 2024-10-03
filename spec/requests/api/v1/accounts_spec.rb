@@ -174,15 +174,10 @@ RSpec.describe '/api/v1/accounts' do
       it 'returns http forbidden and error message' do
         subject
 
-        error_msg = 'Following your own account is not allowed'
+        error_msg = I18n.t('accounts.self_follow_error')
 
         expect(response).to have_http_status(403)
-
-        expect(response.parsed_body)
-          .to include(
-            error: error_msg,
-            following: false
-          )
+        expect(response.parsed_body[:error]).to eq(error_msg)
       end
 
       it_behaves_like 'forbidden for wrong scope', 'read:accounts'

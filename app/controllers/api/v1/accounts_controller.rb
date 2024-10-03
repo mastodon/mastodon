@@ -48,8 +48,6 @@ class Api::V1::AccountsController < Api::BaseController
     options = @account.locked? || current_user.account.silenced? ? {} : { following_map: { @account.id => { reblogs: follow.show_reblogs?, notify: follow.notify?, languages: follow.languages } }, requested_map: { @account.id => false } }
 
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(**options)
-  rescue Mastodon::ValidationError
-    render json: { error: I18n.t('accounts.self_follow_error') }, status: 403
   end
 
   def block
@@ -105,7 +103,9 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def check_following_self
-    raise(Mastodon::ValidationError) if current_user.account.id == @account.id
+    if current_user.account.id == @account.id
+      render json: { error: I18n.t('accounts.self_follow_error') }, status: 403
+    end
   end
 
   def relationships(**options)
