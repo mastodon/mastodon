@@ -11,7 +11,27 @@ module Admin::AccountsHelper
     ]
   end
 
+  def remote_suspension_hint(deletion_request)
+    if deletion_request.present?
+      t('admin.accounts.remote_suspension_reversible_hint_html', date: due_date_for_hint(deletion_request))
+    else
+      t('admin.accounts.remote_suspension_irreversible')
+    end
+  end
+
+  def suspension_hint(deletion_request)
+    if deletion_request.present?
+      t('admin.accounts.suspension_reversible_hint_html', date: due_date_for_hint(deletion_request))
+    else
+      t('admin.accounts.suspension_irreversible')
+    end
+  end
+
   private
+
+  def due_date_for_hint(deletion_request)
+    tag.strong(l(deletion_request.due_at.to_date))
+  end
 
   def pending_user_count_label
     number_with_delimiter User.pending.count
