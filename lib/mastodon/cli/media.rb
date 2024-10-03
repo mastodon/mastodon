@@ -279,7 +279,7 @@ module Mastodon::CLI
     desc 'usage', 'Calculate disk space consumed by Mastodon'
     def usage
       print_table [
-        ['Object', 'Total Storage', 'Local Storage'],
+        %w(Object Total Local),
         *object_storage_summary,
       ]
     end
