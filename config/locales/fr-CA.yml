@@ -262,8 +262,10 @@ fr-CA:
         destroy_user_role_html: "%{name} a supprimé le rôle %{target}"
         disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} a désactivé l'authentification par jeton de courriel pour %{target}"
         disable_user_html: "%{name} a désactivé la connexion de l'utilisateur·rice %{target}"
         enable_custom_emoji_html: "%{name} a activé l'émoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} a activé l'authentification par jeton de courriel pour %{target}"
         enable_user_html: "%{name} a activé la connexion de l'utilisateur·rice %{target}"
         memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
         promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
@@ -876,6 +878,9 @@ fr-CA:
         message_html: Vous n'avez pas défini de règles pour le serveur.
       sidekiq_process_check:
         message_html: Aucun processus Sidekiq en cours d'exécution pour la/les file(s) d'attente %{value}. Veuillez vérifier votre configuration de Sidekiq
+      software_version_check:
+        action: Voir les mises à jour disponibles
+        message_html: Une mise à jour de Mastodon est disponible.
       software_version_critical_check:
         action: Voir les mises à jour disponibles
         message_html: Une mise à jour critique de Mastodon est disponible, veuillez mettre à jour le plus rapidement possible.
@@ -1447,6 +1452,7 @@ fr-CA:
     unsubscribe:
       action: Oui, me désabonner
       complete: Désabonné·e
+      confirmation_html: Êtes-vous sûr de vouloir vous désabonner de la réception de %{type} pour Mastodon sur %{domain} à votre adresse e-mail %{email} ? Vous pouvez toujours vous réabonner à partir de vos paramètres de <a href="%{settings_path}">notification par messagerie</a>.
       emails:
         notification_emails:
           favourite: e-mails de notifications de favoris
@@ -1692,7 +1698,7 @@ fr-CA:
     delete: Suppression du compte
     development: Développement
     edit_profile: Modifier le profil
-    export: Export de données
+    export: Exportation
     featured_tags: Hashtags mis en avant
     import: Import de données
     import_and_export: Import et export

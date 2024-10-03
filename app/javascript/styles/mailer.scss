@@ -168,6 +168,7 @@ table + p {
 
 // Utility classes
 .email-w-full {
+  table-layout: fixed;
   width: 100%;
 }
 
@@ -365,6 +366,7 @@ table + p {
 
 .email-header-card-banner-td {
   border-radius: 12px 12px 0 0;
+  width: 236px;
   height: 80px;
   background-color: #f3f2f5 !important;
   background-position: center !important;
@@ -522,6 +524,7 @@ table + p {
   height: 40px;
   text-align: center;
   mso-padding-alt: 0 35px;
+  word-break: normal;
 }
 
 .email-btn-a {
@@ -587,7 +590,10 @@ table + p {
   p {
     font-size: 14px;
     line-height: 20px;
+    margin-bottom: 20px;
     color: #17063b;
+    white-space: pre-wrap;
+    unicode-bidi: plaintext;
   }
 
   a {
@@ -596,6 +602,21 @@ table + p {
 
     &:hover {
       color: #563acc !important;
+    }
+  }
+
+  .invisible {
+    font-size: 0;
+    line-height: 0;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    position: absolute;
+  }
+
+  .ellipsis {
+    &::after {
+      content: '…';
     }
   }
 }

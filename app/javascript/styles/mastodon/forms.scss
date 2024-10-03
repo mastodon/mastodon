@@ -19,6 +19,10 @@ code {
   margin-bottom: 24px;
 }
 
+form.button_to {
+  display: inline-block;
+}
+
 .fade-out-top {
   position: relative;
   overflow: hidden;
@@ -312,6 +316,10 @@ code {
 
     ul {
       columns: 2;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        columns: 1;
+      }
     }
   }
 

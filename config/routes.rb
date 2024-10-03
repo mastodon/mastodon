@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   scope path: '.well-known' do
     scope module: :well_known do
       get 'oauth-authorization-server', to: 'oauth_metadata#show', as: :oauth_metadata, defaults: { format: 'json' }
-      get 'host-meta', to: 'host_meta#show', as: :host_meta, defaults: { format: 'xml' }
+      get 'host-meta', to: 'host_meta#show', as: :host_meta
       get 'nodeinfo', to: 'node_info#index', as: :nodeinfo, defaults: { format: 'json' }
       get 'webfinger', to: 'webfinger#show', as: :webfinger
     end

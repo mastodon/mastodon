@@ -608,6 +608,9 @@ lt:
         message_html: Tavo Elasticsearch klasteris turi tik vieną mazgą, <code>ES_PRESET</code> turėtų būti nustatyta į <code>single_node_cluster</code>.
       elasticsearch_running_check:
         message_html: Nepavyko prijungti prie Elasticsearch. Patikrink, ar ji veikia, arba išjunk viso teksto paiešką.
+      software_version_check:
+        action: Žiūrėti galimus naujinimus
+        message_html: Yra „Mastodon“ naujinimas.
     tags:
       moderation:
         not_trendable: Netendencinga
@@ -1090,7 +1093,7 @@ lt:
     delete: Paskyros trynimas
     development: Kūrimas
     edit_profile: Redaguoti profilį
-    export: Duomenų eksportas
+    export: Eksportuoti
     featured_tags: Rodomi saitažodžiai
     import: Importuoti
     import_and_export: Importas ir eksportas

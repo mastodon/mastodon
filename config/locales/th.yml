@@ -861,12 +861,15 @@ th:
         message_html: คุณไม่ได้กำหนดกฎของเซิร์ฟเวอร์ใด ๆ
       sidekiq_process_check:
         message_html: ไม่มีกระบวนการ Sidekiq ที่กำลังทำงานสำหรับคิว %{value} โปรดตรวจทานการกำหนดค่า Sidekiq ของคุณ
+      software_version_check:
+        action: ดูการอัปเดตที่พร้อมใช้งาน
+        message_html: มีการอัปเดต Mastodon ที่พร้อมใช้งาน
       software_version_critical_check:
         action: ดูการอัปเดตที่พร้อมใช้งาน
         message_html: มีการอัปเดต Mastodon สำคัญพร้อมใช้งาน โปรดอัปเดตโดยเร็วที่สุดเท่าที่จะเป็นไปได้
       software_version_patch_check:
         action: ดูการอัปเดตที่พร้อมใช้งาน
-        message_html: มีการอัปเดต Mastodon ที่แก้ไขข้อบกพร่องพร้อมใช้งาน
+        message_html: มีการอัปเดต Mastodon ที่แก้ไขข้อบกพร่องที่พร้อมใช้งาน
       upload_check_privacy_error:
         action: ตรวจสอบที่นี่สำหรับข้อมูลเพิ่มเติม
         message_html: "<strong>เว็บเซิร์ฟเวอร์ของคุณกำหนดค่าไม่ถูกต้อง ความเป็นส่วนตัวของผู้ใช้ของคุณตกอยู่ในความเสี่ยง</strong>"
@@ -1666,7 +1669,7 @@ th:
     delete: การลบบัญชี
     development: การพัฒนา
     edit_profile: แก้ไขโปรไฟล์
-    export: การส่งออกข้อมูล
+    export: ส่งออก
     featured_tags: แฮชแท็กที่น่าสนใจ
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก

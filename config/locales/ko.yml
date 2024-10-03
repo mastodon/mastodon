@@ -863,6 +863,9 @@ ko:
         message_html: 아직 서버 규칙을 정하지 않았습니다.
       sidekiq_process_check:
         message_html: "%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요"
+      software_version_check:
+        action: 사용 가능한 업데이트 보기
+        message_html: 마스토돈 업데이트가 있습니다.
       software_version_critical_check:
         action: 사용 가능한 업데이트 보기
         message_html: 긴급 마스토돈 업데이트가 있으니, 가능한 서둘러 업데이트 해주세요.
@@ -1668,7 +1671,7 @@ ko:
     delete: 계정 삭제
     development: 개발
     edit_profile: 프로필 편집
-    export: 데이터 내보내기
+    export: 내보내기
     featured_tags: 추천 해시태그
     import: 데이터 가져오기
     import_and_export: 가져오기 & 내보내기

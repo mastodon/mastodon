@@ -875,6 +875,9 @@ fi:
         message_html: Et ole määritellyt palvelimen sääntöjä lainkaan.
       sidekiq_process_check:
         message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
+      software_version_check:
+        action: Näytä saatavilla olevat päivitykset
+        message_html: Saatavilla on Mastodon-päivitys.
       software_version_critical_check:
         action: Näytä saatavilla olevat päivitykset
         message_html: Kriittinen Mastodon-päivitys on saatavilla. Tee päivitys mahdollisimman ripeästi.
@@ -1692,7 +1695,7 @@ fi:
     delete: Tilin poisto
     development: Kehitys
     edit_profile: Muokkaa profiilia
-    export: Vie tietoja
+    export: Vie
     featured_tags: Suositellut aihetunnisteet
     import: Tuo tietoja
     import_and_export: Tuonti ja vienti

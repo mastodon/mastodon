@@ -106,12 +106,13 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
           dispatch(processNewNotificationForGroups(notificationJSON));
           break;
         }
-        case 'notifications_merged':
+        case 'notifications_merged': {
           const state = getState();
           if (state.notifications.top || !state.notifications.mounted)
             dispatch(expandNotifications({ forceLoad: true, maxId: undefined }));
           dispatch(refreshStaleNotificationGroups());
           break;
+        }
         case 'conversation':
           // @ts-expect-error
           dispatch(updateConversations(JSON.parse(data.payload)));

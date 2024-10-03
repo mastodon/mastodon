@@ -4,7 +4,7 @@
 - content_for :heading_actions do
   = button_tag t('generic.save_changes'), class: 'button', form: 'edit_preferences'
 
-= simple_form_for current_user, url: settings_preferences_other_path, html: { method: :put, id: 'edit_preferences' } do |f|
+= simple_form_for current_user, url: settings_preferences_other_path, html: { id: :edit_preferences } do |f|
   = render 'shared/error_messages', object: current_user
 
   = f.simple_fields_for :settings, current_user.settings do |ff|

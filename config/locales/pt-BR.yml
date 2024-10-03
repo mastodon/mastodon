@@ -875,6 +875,9 @@ pt-BR:
         message_html: Você não definiu nenhuma regra de servidor.
       sidekiq_process_check:
         message_html: Nenhum processo Sidekiq rodando para a(s) fila(s) %{value}. Por favor, revise a sua configuração para Sidekiq
+      software_version_check:
+        action: Ver atualizações disponíveis
+        message_html: Uma atualização do Mastodon está disponível.
       software_version_critical_check:
         action: Ver atualizações disponíveis
         message_html: Uma atualização crítica do Mastodon está disponível. Por favor, atualize o mais rápido possível.
@@ -1692,7 +1695,7 @@ pt-BR:
     delete: Exclusão de conta
     development: Desenvolvimento
     edit_profile: Editar perfil
-    export: Exportar dados
+    export: Exportar
     featured_tags: Hashtags em destaque
     import: Importar
     import_and_export: Importar e exportar
@@ -1885,7 +1888,7 @@ pt-BR:
         none: Aviso
         sensitive: Conta marcada como sensível
         silence: Conta silenciada
-        suspend: Conta banida
+        suspend: Conta suspensa
     welcome:
       apps_android_action: Disponível no Google Play
       apps_ios_action: Disponível na App Store

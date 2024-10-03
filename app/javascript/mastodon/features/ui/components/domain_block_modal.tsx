@@ -30,9 +30,9 @@ export const DomainBlockModal: React.FC<{
 }> = ({ domain, accountId, acct }) => {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
-  const [preview, setPreview] = useState<DomainBlockPreviewResponse | null>(
-    null,
-  );
+  const [preview, setPreview] = useState<
+    DomainBlockPreviewResponse | 'error' | null
+  >(null);
 
   const handleClick = useCallback(() => {
     if (loading) {
@@ -65,6 +65,7 @@ export const DomainBlockModal: React.FC<{
         return '';
       })
       .catch(() => {
+        setPreview('error');
         setLoading(false);
       });
   }, [setPreview, setLoading, domain]);
@@ -89,7 +90,35 @@ export const DomainBlockModal: React.FC<{
         </div>
 
         <div className='safety-action-modal__bullet-points'>
-          {preview && preview.followers_count + preview.following_count > 0 && (
+          {preview &&
+            preview !== 'error' &&
+            preview.followers_count + preview.following_count > 0 && (
+              <div>
+                <div className='safety-action-modal__bullet-points__icon'>
+                  <Icon id='' icon={PersonRemoveIcon} />
+                </div>
+                <div>
+                  <strong>
+                    <FormattedMessage
+                      id='domain_block_modal.you_will_lose_num_followers'
+                      defaultMessage='You will lose {followersCount, plural, one {{followersCountDisplay} follower} other {{followersCountDisplay} followers}} and {followingCount, plural, one {{followingCountDisplay} person you follow} other {{followingCountDisplay} people you follow}}.'
+                      values={{
+                        followersCount: preview.followers_count,
+                        followersCountDisplay: (
+                          <ShortNumber value={preview.followers_count} />
+                        ),
+                        followingCount: preview.following_count,
+                        followingCountDisplay: (
+                          <ShortNumber value={preview.following_count} />
+                        ),
+                      }}
+                    />
+                  </strong>
+                </div>
+              </div>
+            )}
+
+          {preview === 'error' && (
             <div>
               <div className='safety-action-modal__bullet-points__icon'>
                 <Icon id='' icon={PersonRemoveIcon} />
@@ -97,18 +126,8 @@ export const DomainBlockModal: React.FC<{
               <div>
                 <strong>
                   <FormattedMessage
-                    id='domain_block_modal.you_will_lose_num_followers'
-                    defaultMessage='You will lose {followersCount, plural, one {{followersCountDisplay} follower} other {{followersCountDisplay} followers}} and {followingCount, plural, one {{followingCountDisplay} person you follow} other {{followingCountDisplay} people you follow}}.'
-                    values={{
-                      followersCount: preview.followers_count,
-                      followersCountDisplay: (
-                        <ShortNumber value={preview.followers_count} />
-                      ),
-                      followingCount: preview.following_count,
-                      followingCountDisplay: (
-                        <ShortNumber value={preview.following_count} />
-                      ),
-                    }}
+                    id='domain_block_modal.you_will_lose_relationships'
+                    defaultMessage='You will lose all followers and people you follow from this server.'
                   />
                 </strong>
               </div>
