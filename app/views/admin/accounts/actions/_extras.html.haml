@@ -1,0 +1,6 @@
+-# locals: (account:)
+- if account.local?
+  - if !account.memorial? && account.user_approved?
+    = render 'admin/accounts/actions/memorial', account: account
+- else
+  = render 'admin/accounts/actions/redownload', account: account

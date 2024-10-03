@@ -1,0 +1,16 @@
+-# locals: (account:)
+- if account.local? && account.user_approved?
+  = render 'admin/accounts/actions/warning', account: account
+  = render 'admin/accounts/actions/disabled', account: account
+
+= render 'admin/accounts/actions/sensitive', account: account
+
+= render 'admin/accounts/actions/silenced', account: account
+
+- if account.local?
+  - if account.user_pending?
+    = render 'admin/accounts/actions/pending', account: account
+  - unless account.user_confirmed?
+    = render 'admin/accounts/actions/confirmation', account: account
+- if !account.local? || account.user_approved?
+  = render 'admin/accounts/actions/suspension', account: account

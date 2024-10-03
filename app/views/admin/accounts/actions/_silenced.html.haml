@@ -1,0 +1,11 @@
+-# locals: (account:)
+- if account.silenced?
+  - if can?(:unsilence, account)
+    = button_to t('admin.accounts.undo_silenced'),
+                unsilence_admin_account_path(account.id),
+                class: :button
+- elsif !account.local? || account.user_approved?
+  - if can?(:silence, account)
+    = link_to t('admin.accounts.silence'),
+              new_admin_account_action_path(account.id, type: :silence),
+              class: :button
