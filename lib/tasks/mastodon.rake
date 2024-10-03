@@ -8,14 +8,6 @@ namespace :mastodon do
     prompt = TTY::Prompt.new
     env    = {}
 
-    # When the application code gets loaded, it runs `lib/mastodon/redis_configuration.rb`.
-    # This happens before application environment configuration and sets REDIS_URL etc.
-    # These variables are then used even when REDIS_HOST etc. are changed, so clear them
-    # out so they don't interfere with our new configuration.
-    ENV.delete('REDIS_URL')
-    ENV.delete('CACHE_REDIS_URL')
-    ENV.delete('SIDEKIQ_REDIS_URL')
-
     begin
       errors = false
 
@@ -532,6 +524,11 @@ namespace :mastodon do
           env.each_pair do |key, value|
             ENV[key] = value.to_s
           end
+
+          # Redis configuration happens very early when the application code is loaded.
+          # This happens before the `mastodon:setup` task runs, so we have to refresh it with
+          # the new environment variable values.
+          REDIS_CONFIGURATION.reset!
 
           require_relative '../../config/environment'
           disable_log_stdout!

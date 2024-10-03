@@ -7,6 +7,13 @@ class Mastodon::RedisConfiguration
     db: 0,
   }.freeze
 
+  def reset!
+    @base = nil
+    @sidekiq = nil
+    @cache = nil
+    @namespace = nil
+  end
+
   def base
     @base ||= setup_config(prefix: nil, defaults: DEFAULTS)
               .merge(namespace: base_namespace)
