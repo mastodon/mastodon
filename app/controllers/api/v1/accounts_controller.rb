@@ -103,9 +103,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def check_following_self
-    if current_user.account.id == @account.id
-      render json: { error: I18n.t('accounts.self_follow_error') }, status: 403
-    end
+    render json: { error: I18n.t('accounts.self_follow_error') }, status: 403 if current_user.account.id == @account.id
   end
 
   def relationships(**options)
