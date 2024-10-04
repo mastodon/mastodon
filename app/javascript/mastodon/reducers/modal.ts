@@ -1,10 +1,11 @@
 import type { Reducer } from '@reduxjs/toolkit';
 import { Record as ImmutableRecord, Stack } from 'immutable';
 
+import { timelineDelete } from 'mastodon/actions/timelines_typed';
+
 import { COMPOSE_UPLOAD_CHANGE_SUCCESS } from '../actions/compose';
 import type { ModalType } from '../actions/modal';
 import { openModal, closeModal } from '../actions/modal';
-import { TIMELINE_DELETE } from '../actions/timelines';
 
 export type ModalProps = Record<string, unknown>;
 interface Modal {
@@ -72,10 +73,10 @@ export const modalReducer: Reducer<State> = (state = initialState, action) => {
   // TODO: type those actions
   else if (action.type === COMPOSE_UPLOAD_CHANGE_SUCCESS)
     return popModal(state, { modalType: 'FOCAL_POINT', ignoreFocus: false });
-  else if (action.type === TIMELINE_DELETE)
+  else if (timelineDelete.match(action))
     return state.update('stack', (stack) =>
       stack.filterNot(
-        (modal) => modal.get('modalProps').statusId === action.id,
+        (modal) => modal.get('modalProps').statusId === action.payload.statusId,
       ),
     );
   else return state;

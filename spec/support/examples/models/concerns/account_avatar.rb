@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-shared_examples 'AccountAvatar' do |fabricator|
-  describe 'static avatars', :paperclip_processing do
+RSpec.shared_examples 'AccountAvatar' do |fabricator|
+  describe 'static avatars', :attachment_processing do
     describe 'when GIF' do
       it 'creates a png static style' do
         account = Fabricate(fabricator, avatar: attachment_fixture('avatar.gif'))
@@ -17,7 +17,7 @@ shared_examples 'AccountAvatar' do |fabricator|
     end
   end
 
-  describe 'base64-encoded files', :paperclip_processing do
+  describe 'base64-encoded files', :attachment_processing do
     let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('attachment.jpg').read)}" }
     let(:account) { Fabricate(fabricator, avatar: base64_attachment) }
 

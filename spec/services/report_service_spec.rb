@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ReportService, type: :service do
+RSpec.describe ReportService do
   subject { described_class.new }
 
   let(:source_account) { Fabricate(:account) }
@@ -23,7 +23,12 @@ RSpec.describe ReportService, type: :service do
       stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
     end
 
-    context 'when forward is true', :sidekiq_inline do
+    it 'does not have an application' do
+      report = subject.call(source_account, remote_account)
+      expect(report.application).to be_nil
+    end
+
+    context 'when forward is true', :inline_jobs do
       let(:forward) { true }
 
       it 'sends ActivityPub payload when forward is true' do
@@ -93,6 +98,15 @@ RSpec.describe ReportService, type: :service do
         subject.call(source_account, remote_account, forward: forward)
         expect(a_request(:post, 'http://example.com/inbox')).to_not have_been_made
       end
+    end
+  end
+
+  context 'when passed an application' do
+    let(:application) { Fabricate(:application) }
+
+    it 'has an application' do
+      report = subject.call(source_account, target_account, application: application)
+      expect(report.application).to eq application
     end
   end
 

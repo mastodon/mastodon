@@ -11,10 +11,11 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
     let!(:eve) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:mallory) { Fabricate(:account, discoverable: false, hide_collections: false) }
     let!(:eugen) { Fabricate(:account, discoverable: true, hide_collections: false) }
+    let!(:neil) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:john) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:jerk) { Fabricate(:account, discoverable: true, hide_collections: false) }
-    let!(:neil) { Fabricate(:account, discoverable: true, hide_collections: false) }
     let!(:larry) { Fabricate(:account, discoverable: true, hide_collections: false) }
+    let!(:morty) { Fabricate(:account, discoverable: true, hide_collections: false, memorial: true) }
 
     context 'with follows and blocks' do
       before do
@@ -27,8 +28,8 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
         # alice follows eve and mallory
         [john, mallory].each { |account| alice.follow!(account) }
 
-        # eugen follows eve, john, jerk, larry and neil
-        [eve, mallory, jerk, larry, neil].each { |account| eugen.follow!(account) }
+        # eugen follows eve, john, jerk, larry, neil and morty
+        [eve, mallory, jerk, larry, neil, morty].each { |account| eugen.follow!(account) }
       end
 
       it 'returns eligible accounts', :aggregate_failures do
@@ -51,6 +52,9 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
 
         # the suggestion for neil has already been rejected
         expect(results).to_not include([neil.id, :friends_of_friends])
+
+        # morty is not included because his account is in memoriam
+        expect(results).to_not include([morty.id, :friends_of_friends])
       end
     end
 
@@ -70,12 +74,30 @@ RSpec.describe AccountSuggestions::FriendsOfFriendsSource do
       end
 
       it 'returns eligible accounts in the expected order' do
-        expect(subject.get(bob)).to eq [
-          [eugen.id, :friends_of_friends], # followed by 2 friends, 3 followers total
-          [john.id, :friends_of_friends], # followed by 2 friends, 2 followers total
-          [neil.id, :friends_of_friends], # followed by 1 friend, 2 followers total
-          [jerk.id, :friends_of_friends], # followed by 1 friend, 1 follower total
+        expect(subject.get(bob)).to eq expected_results
+      end
+
+      it 'contains correct underlying source data' do
+        expect(source_query_values)
+          .to contain_exactly(
+            [john.id, 2, 2],  # Followed by 2 friends of bob (eve, mallory), 2 followers total (breaks tie)
+            [eugen.id, 2, 3], # Followed by 2 friends of bob (eve, mallory), 3 followers total
+            [jerk.id, 1, 1],  # Followed by 1 friends of bob (eve), 1 followers total (breaks tie)
+            [neil.id, 1, 2]   # Followed by 1 friends of bob (mallory), 2 followers total
+          )
+      end
+
+      def expected_results
+        [
+          [john.id, :friends_of_friends],
+          [eugen.id, :friends_of_friends],
+          [jerk.id, :friends_of_friends],
+          [neil.id, :friends_of_friends],
         ]
+      end
+
+      def source_query_values
+        subject.source_query(bob).to_a
       end
     end
   end

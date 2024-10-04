@@ -15,12 +15,51 @@ ga:
       user/invite_request:
         text: Fáth
     errors:
+      attributes:
+        domain:
+          invalid: nach ainm fearainn bailí é
+      messages:
+        invalid_domain_on_line: Ní ainm fearainn bailí é %{value}
+        too_many_lines: thar an teorainn de %{limit} línte
       models:
         account:
           attributes:
             username:
+              invalid: ní mór go mbeadh litreacha, uimhreacha agus pointí béime amháin
               reserved: in áirithe
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nach URL bailí é
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nach URL bailí é
         import:
           attributes:
             data:
               malformed: míchumtha
+        status:
+          attributes:
+            reblog:
+              taken: den phost cheana féin
+        user:
+          attributes:
+            email:
+              blocked: úsáideann soláthraí ríomhphoist dícheadaithe
+              unreachable: ní cosúil go bhfuil sé ann
+            role_id:
+              elevated: ní féidir leat a bheith níos airde ná do ról reatha
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: cuir san áireamh ceadanna nach bhfuil sábháilte don ról bunúsach
+              elevated: ní féidir ceadanna nach bhfuil ag do ról reatha a áireamh
+              own_role: ní féidir é a athrú le do ról reatha
+            position:
+              elevated: ní féidir leat a bheith níos airde ná do ról reatha
+              own_role: ní féidir é a athrú le do ról reatha
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: ní féidir imeachtaí nach bhfuil na cearta agat ina leith a chur san áireamh

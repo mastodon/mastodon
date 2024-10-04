@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe FeedInsertWorker do
+RSpec.describe FeedInsertWorker do
   subject { described_class.new }
 
   describe 'perform' do

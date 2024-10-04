@@ -50,6 +50,7 @@ export default function search(state = initialState, action) {
     return state.set('hidden', true);
   case SEARCH_FETCH_REQUEST:
     return state.withMutations(map => {
+      map.set('results', ImmutableMap());
       map.set('isLoading', true);
       map.set('submitted', true);
       map.set('type', action.searchType);
@@ -71,9 +72,10 @@ export default function search(state = initialState, action) {
     });
   case SEARCH_EXPAND_REQUEST:
     return state.set('type', action.searchType).set('isLoading', true);
-  case SEARCH_EXPAND_SUCCESS:
+  case SEARCH_EXPAND_SUCCESS: {
     const results = action.searchType === 'hashtags' ? ImmutableOrderedSet(fromJS(action.results.hashtags)) : action.results[action.searchType].map(item => item.id);
     return state.updateIn(['results', action.searchType], list => list.union(results)).set('isLoading', false);
+  }
   case SEARCH_HISTORY_UPDATE:
     return state.set('recent', ImmutableOrderedSet(fromJS(action.recent)));
   default:

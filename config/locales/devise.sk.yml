@@ -2,63 +2,66 @@
 sk:
   devise:
     confirmations:
-      confirmed: Tvoja emailová adresa bola úspešne overená.
-      send_instructions: O niekoľko minút obdržíš email s pokynmi ako potvrdiť svoj účet. Prosím, skontroluj si aj zložku spam, ak sa k tebe toto potvrdenie nedostalo.
-      send_paranoid_instructions: Ak sa tvoja emailová adresa nachádza v našej databázi, o niekoľko minút obdržíš email s pokynmi ako potvrdiť svoj účet. Prosím, skontroluj aj zložku spam, ak sa k tebe toto potvrdenie nedostalo.
+      confirmed: Vaša e-mailová adresa bola úspešne potvrdená.
+      send_instructions: O niekoľko minút obdržíte e-mail s pokynmi na potvrdenie svojho účtu. Prosíme, skontrolujte si aj zložku spam, ak ste tento e-mail nedostali.
+      send_paranoid_instructions: Ak sa vaša e-mailová adresa nachádza v našej databáze, o niekoľko minút obdržíte e-mail s pokynmi na potvrdenie svojho účtu. Prosíme, skontrolujte aj zložku spam, ste tento e-mail nedostali.
     failure:
-      already_authenticated: Už si prihlásený/á.
-      inactive: Tvoj účet ešte nebol potvrdený.
-      invalid: Nesprávny %{authentication_keys}, alebo heslo.
-      last_attempt: Máš posledný pokus pred zamknutím tvojho účtu.
-      locked: Tvoj účet je zamknutý.
-      not_found_in_database: Nesprávny %{authentication_keys}, alebo heslo.
+      already_authenticated: Už ste sa prihlásili.
+      inactive: Váš účet ešte nie je aktivovaný.
+      invalid: Nesprávny %{authentication_keys} alebo heslo.
+      last_attempt: Máte posledný pokus, potom bude váš účet uzamknutý.
+      locked: Váš účet bol uzamknutý.
+      not_found_in_database: Nesprávny %{authentication_keys} alebo heslo.
       omniauth_user_creation_failure: Chyba pri vytváraní účtu pre túto identitu.
-      pending: Tvoj účet je stále prehodnocovaný.
-      timeout: Tvoja aktívna sezóna vypršala. Pre pokračovanie sa prosím prihlás znovu.
-      unauthenticated: K pokračovaniu sa musíš zaregistrovať alebo prihlásiť.
-      unconfirmed: Pred pokračovaním musíš potvrdiť svoj email.
+      pending: Váš účet stále kontrolujeme.
+      timeout: Vaše aktívne prihlásenie vypršalo. Pre pokračovanie sa, prosím, prihláste znovu.
+      unauthenticated: Pred pokračovaním sa musíte prihlásiť alebo zaregistrovať.
+      unconfirmed: Pred pokračovaním musíte potvrdiť svoj e-mail.
     mailer:
       confirmation_instructions:
-        action: Potvrď emailovú adresu
-        action_with_app: Potvrď a vráť sa na %{app}
-        explanation: S touto emailovou adresou si si vytvoril/a účet na %{host}. Si iba jeden klik od jeho aktivácie. Pokiaľ si to ale nebol/a ty, prosím ignoruj tento email.
+        action: Overiť e-mailovú adresu
+        action_with_app: Potvrdiť a vrátiť sa do %{app}
+        explanation: S touto e-mailovou adresou ste si vytvorili účet na %{host}. Od aktivácie vás delí jediné kliknutie. Ak ste to neboli vy, tento e-mail ignorujte.
         explanation_when_pending: S touto e-mailovou adresou ste požiadali o pozvánku na %{host}. Po potvrdení vašej e-mailovej adresy vašu žiadosť skontrolujeme. Môžete sa prihlásiť, aby ste zmenili svoje údaje alebo vymazali svoje konto, ale kým nebude vaše konto schválené, nebudete mať prístup k väčšine funkcií. Ak bude vaša žiadosť zamietnutá, vaše údaje budú odstránené, takže sa od vás nebudú vyžadovať žiadne ďalšie kroky. Ak ste to neboli vy, tento e-mail ignorujte.
-        extra_html: Prosím, pozri sa aj na <a href="%{terms_path}"> pravidlá tohto servera,</a> a <a href="%{policy_path}"> naše užívaťeľské podiemky</a>.
+        extra_html: Prosím, pozrite sa aj na <a href="%{terms_path}"> pravidlá tohto servera</a> a <a href="%{policy_path}">naše pravidlá používania</a>.
         subject: 'Mastodon: Potvrdzovacie pokyny pre %{instance}'
-        title: Potvrď emailovú adresu
+        title: Overte svoj e-mail
       email_changed:
-        explanation: 'Emailová adresa tvojho účtu bude zmenená na:'
-        extra: Ak si nezmenil/a svoj email, je pravdepodobné, že niekto iný získal prístup k tvojmu účtu. Naliehavo preto prosím zmeň svoje heslo, alebo kontaktuj administrátora tohto serveru, pokiaľ si vymknutý/á zo svojho účtu.
-        subject: 'Mastodon: Emailová adresa bola zmenená'
-        title: Nová emailová adresa
+        explanation: 'E-mailová adresa vášho účtu bude zmenená na:'
+        extra: Ak ste svoj e-mail nezmenili vy, je pravdepodobné, že niekto iný získal prístup k vášmu účtu. Čo najskôr zmeňte svoje heslo alebo, pokiaľ sa neviete prihlásiť, kontaktujte administrátora serveru.
+        subject: 'Mastodon: E-mailová adresa bola zmenená'
+        title: Nová e-mailová adresa
       password_change:
-        explanation: Heslo k tvojmu účtu bolo zmenené.
-        extra: Ak si heslo nezmenil/a, je pravdepodobné, že niekto iný získal prístup k tvojmu účtu. Naliehavo preto prosím zmeň svoje heslo, alebo kontaktuj administrátora tohto serveru, pokiaľ si vymknutý/á zo svojho účtu.
+        explanation: Heslo k vášmu účtu bolo zmenené.
+        extra: Ak ste si heslo nezmenili vy, je pravdepodobné, že niekto iný získal prístup k vášmu účtu. Čo najskôr zmeňte svoje heslo alebo, pokiaľ sa neviete prihlásiť, kontaktujte administrátora serveru.
         subject: 'Mastodon: Heslo bolo zmenené'
         title: Heslo bolo zmenené
       reconfirmation_instructions:
-        explanation: Potvrď novú emailovú adresu na ktorú chceš zmeniť svoj email.
-        extra: Pokiaľ si túto akciu nevyžiadal/a, prosím ignoruj tento email. Emailová adresa pre tvoj Mastodon účet totiž nebude zmenená pokiaľ nepostúpiš na adresu uvedenú vyššie.
-        subject: 'Mastodon: Potvrď email pre %{instance}'
-        title: Over emailovú adresu
+        explanation: E-mail zmeníte potvrdením novej e-mailovej adresy.
+        extra: Pokiaľ ste túto akciu nevyžiadali vy, ignorujte tento email. E-mailová adresa pre váš účet na Mastodone totiž nebude zmenená, pokiaľ neprejdete na odkaz uvedený vyššie.
+        subject: 'Mastodon: Overte e-mail pre %{instance}'
+        title: Overte e-mailovú adresu
       reset_password_instructions:
-        action: Zmeň svoje heslo
-        explanation: Vyžiadal/a si si nové heslo pre svoj účet.
-        extra: Ak si túto akciu nevyžiadal/a, prosím ignoruj tento email. Tvoje heslo nebude zmenené pokiaľ nepostúpiš na adresu uvedenú vyššie a vytvoríš si nové.
+        action: Zmeniť heslo
+        explanation: Vyžiadali ste si pre svoj účet nové heslo.
+        extra: Ak ste túto akciu nevyžiadali vy, ignorujte tento email. Vaše heslo nebude zmenené, pokiaľ neprejdete na odkaz uvedený vyššie a nevytvoríte si nové heslo.
         subject: 'Mastodon: Pokyny pre obnovu hesla'
-        title: Nastav nové heslo
+        title: Obnova hesla
       two_factor_disabled:
-        explanation: Prihlásenie je teraz možné iba pomocou emailu a hesla.
+        explanation: Prihlásenie je teraz možné iba pomocou e-mailu a hesla.
         subject: 'Mastodon: Dvojfázové overovanie vypnuté'
-        subtitle: Dvoj-faktorové overenie bolo pre tvoj účet vypnuté.
-        title: Dvoj-faktorové overovanie vypnuté
+        subtitle: Dvojfázové overenie bolo pre váš účet vypnuté.
+        title: Dvojfaktorové overovanie vypnuté
       two_factor_enabled:
+        explanation: Na prihlásenie budete potrebovať kód vygenerovaný spárovanou aplikáciou pre overovanie.
         subject: 'Mastodon: Dvojfázové overovanie zapnuté'
-        title: Dvoj-faktorové overovanie zapnuté
+        subtitle: Dvojfázové overenie bolo pre váš účet zapnuté.
+        title: Dvojfaktorové overovanie zapnuté
       two_factor_recovery_codes_changed:
-        explanation: Predošlé obnovovacie kódy boli urobené neplatnými a boli vygenerované nové.
-        subject: 'Mastodon: dvojfázové zálohové kódy boli znovu vygenerované'
-        title: Obnovovacie kódy pre dvoj-faktorové overovanie zmenené
+        explanation: Predošlé obnovovacie kódy boli zneplatnené a boli vygenerované nové.
+        subject: 'Mastodon: Dvojfázové obnovovacie kódy boli znovu vygenerované'
+        subtitle: Predošlé obnovovacie kódy boli zneplatnené a boli vygenerované nové.
+        title: Obnovovacie kódy pre dvojfaktorové overovanie zmenené
       unlock_instructions:
         subject: 'Mastodon: Pokyny na odomknutie účtu'
       webauthn_credential:
@@ -71,46 +74,50 @@ sk:
           subject: 'Mastodon: Bezpečnostný kľúč odstránený'
           title: Jeden z vašich bezpečnostných kľúčov bol odstránený
       webauthn_disabled:
-        subject: 'Mastodon: Overovanie s vypnutými bezpečnostnými kľúčmi'
+        explanation: Overenie bezpečnostnými kľúčmi bolo pre váš účet vypnuté.
+        extra: Odteraz sa môžete prihlásiť iba pomocou kódu vygenerovaného spárovanou aplikáciou pre overovanie.
+        subject: 'Mastodon: Overovanie s bezpečnostnými kľúčmi vypnuté'
         title: Bezpečnostné kľúče sú vypnuté
       webauthn_enabled:
-        subject: 'Mastodon: Povolené overovanie bezpečnostného kľúča'
+        explanation: Overenie bezpečnostnými kľúčmi bolo pre váš účet zapnuté.
+        extra: Odteraz môžete na prihlásenie použiť svoj bezpečnostný kľúč.
+        subject: 'Mastodon: Povolené overovanie bezpečnostným kľúčom'
         title: Povolené bezpečnostné kľúče
     omniauth_callbacks:
-      failure: Nebolo možné ťa overiť z %{kind}, lebo "%{reason}".
+      failure: 'Nebolo možné vás overiť z %{kind}, uvedený dôvod: „%{reason}“.'
       success: Úspešné overenie z účtu %{kind}.
     passwords:
-      no_token: Túto stránku nemôžeš navštíviť, ak neprichádzaš z emailu s pokynmi na obnovu hesla. Pokiaľ prichádzaš z tohto emailu, prosím uisti sa že si použil/a celú URL adresu z emailu.
-      send_instructions: Ak sa tvoja emailová adresa nachádza v databázi, tak o niekoľko minút obdržíš email s pokynmi ako nastaviť nové heslo. Ak máš pocit, že si email neobdržal/a, prosím skontroluj aj svoju spam zložku.
-      send_paranoid_instructions: Ak sa tvoja emailová adresa nachádza v databázi, za chvíľu obdržíš odkaz pre obnovu hesla na svoj email. Skontroluj ale prosím aj svoj spam, ak tento email nevidíš.
-      updated: Tvoje heslo bolo úspešne zmenené. Teraz si prihlásený/á.
-      updated_not_active: Tvoje heslo bolo úspešne zmenené.
+      no_token: Túto stránku nemôžete navštíviť, ak vás sem nepresmeroval e-mail s pokynmi na obnovu hesla. Pokiaľ prichádzate z tohto e-mailu, uistite sa, že ste použili celú adresu URL z e-mailu.
+      send_instructions: Ak sa vaša emailová adresa nachádza v databáze, o niekoľko minút dostanete e-mail s pokynmi na nastavenie nového hesla. Ak ste ho nedostali, skontrolujte aj priečinok pre spam.
+      send_paranoid_instructions: Ak sa vaša emailová adresa nachádza v databáze, o niekoľko minút dostanete e-mail s pokynmi na nastavenie nového hesla. Ak ste ho nedostali, skontrolujte aj priečinok pre spam.
+      updated: Vaše heslo bolo úspešne zmenené. Teraz ste sa prihlásili.
+      updated_not_active: Vaše heslo bolo úspešne zmenené.
     registrations:
-      destroyed: Dovidenia! Tvoj účet bol úspešne zrušený. Dúfame ale, že ťa tu opäť niekedy uvidíme.
-      signed_up: Vitaj! Tvoja registrácia bola úspešná.
-      signed_up_but_inactive: Registrácia bola úspešná. Avšak, účet ešte nebol aktivovaný, takže ťa nemožno prihlásiť.
-      signed_up_but_locked: Registroval/a si sa úspešné. Avšak, tvoj účet je zamknutý, takže ťa nemožno prihlásiť.
-      signed_up_but_pending: Na tvoj email bola odoslaná správa s odkazom na potvrdenie. Po tom, čo naňho klikneš, bude tvoje uchádzanie posúdené. Budeš informovaný, ak sa tvoja požiadavka schváli.
-      signed_up_but_unconfirmed: Správa s odkazom na potvrdenie registrácie bola odoslaná na tvoj email. Pre aktváciu účtu, následuj prosím daný odkaz. Takisto ale skontroluj aj svoju spam zložku, pokiaľ sa ti zdá, že si tento email nedostal/a.
-      update_needs_confirmation: Účet bol úspešne pozmenený, ale ešte potrebujeme overiť tvoju novú emailovú adresu. Pre overenie prosím klikni na link v správe ktorú si dostal/a na email. Takisto ale skontroluj aj svoju spam zložku, ak sa ti zdá, že si tento email nedostal/a.
-      updated: Tvoj účet bol úspešne aktualizovaný.
+      destroyed: Dovidenia! Váš účet bol úspešne zrušený. Dúfame ale, že vás tu opäť niekedy uvidíme.
+      signed_up: Vitajte! Vaša registrácia bola úspešná.
+      signed_up_but_inactive: Registrácia bola úspešná. Avšak váš účet ešte nebol aktivovaný, takže sa nemôžete prihlásiť.
+      signed_up_but_locked: Registrácia bola úspešná. Avšak váš účet je zamknutý, takže sa nemôžete prihlásiť.
+      signed_up_but_pending: Na váš e-mail bola odoslaná správa s odkazom na overenie. Po kliknutí na odkaz vašu prihlášku skontrolujeme. O jej schválení vás budeme informovať.
+      signed_up_but_unconfirmed: Na váš e-mail bola odoslaná správa s odkazom na overenie. Svoj účet aktivujte kliknutím na odkaz. Ak ste e-mail nedostali, skontrolujte svoj priečinok pre spam.
+      update_needs_confirmation: Váš účet bol úspešne zmenený, ale ešte potrebujeme overiť vašu novú e-mailovú adresu. Overíte ju kliknutím na potvrdzovací odkaz zaslaný na váš e-mail. Ak ste e-mail nedostali, skontrolujte svoj priečinok pre spam.
+      updated: Váš účet bol úspešne aktualizovaný.
     sessions:
-      already_signed_out: Už si sa úspešne odhlásil/a.
-      signed_in: Prihlásil/a si sa úspešne.
-      signed_out: Odhlásil/a si sa úspešne.
+      already_signed_out: Úspešne ste sa odhlásili.
+      signed_in: Úspešne ste sa prihlásili.
+      signed_out: Úspešne ste sa odhlásili.
     unlocks:
-      send_instructions: O niekoľko minút obdržíš email s pokynmi, ako nastaviť nové heslo. Prosím, skontroluj ale aj svoju spam zložku, pokiaľ sa ti zdá, že si tento email nedostal/a.
-      send_paranoid_instructions: Ak tvoj účet existuje, o niekoľko minút obdržíš email s pokynmi ako si ho odomknúť. Prosím, skontroluj ale aj svoju spam zložku, pokiaľ sa ti zdá, že si tento email nedostal/a.
-      unlocked: Tvoj účet bol úspešne odomknutý. Pre pokračovanie sa prosím prihlás.
+      send_instructions: O niekoľko minút obdržíte e-mail s pokynmi na odomknutie svojho účtu. Prosíme, skontrolujte si aj zložku spam, ak ste tento e-mail nedostali.
+      send_paranoid_instructions: Ak váš účet existuje, o niekoľko minút obdržíte e-mail s pokynmi na jeho odomknutie. Prosíme, skontrolujte si aj zložku spam, ak ste tento e-mail nedostali.
+      unlocked: Váš účet bol úspešne odomknutý. Ak chcete pokračovať, prihláste sa.
   errors:
     messages:
-      already_confirmed: bol už potvrdený, skús sa prihlásiť
-      confirmation_period_expired: musí byť potvrdený do %{period}, prosím požiadaj o nový
-      expired: vypŕšal, prosím, vyžiadaj si nový
+      already_confirmed: bol už potvrdený, skúste sa prihlásiť
+      confirmation_period_expired: musí byť potvrdený do %{period}, požiadajte o nový
+      expired: vypršal, vyžiadajte si nový
       not_found: nenájdený
       not_locked: nebol zamknutý
       not_saved:
-        few: "%{count} chýb zabránilo uloženiu tohto %{resource}:"
-        many: "%{count} chýb zabránilo uloženiu tohto %{resource}:"
-        one: '1 chyba zabránila uloženiu tohto %{resource}:'
-        other: "%{count} chyby zabránili uloženiu tohto %{resource}:"
+        few: "%{count} chyby zabránili uloženiu tohto parametra %{resource}:"
+        many: "%{count} chýb zabránilo uloženiu tohto parametra %{resource}:"
+        one: '1 chyba zabránila uloženiu parametra %{resource}:'
+        other: "%{count} chýb zabránilo uloženiu tohto parametra %{resource}:"

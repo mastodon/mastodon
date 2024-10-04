@@ -55,10 +55,6 @@ class Api::V1::Lists::AccountsController < Api::BaseController
     params.permit(account_ids: [])
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     return if unlimited?
 
@@ -71,20 +67,12 @@ class Api::V1::Lists::AccountsController < Api::BaseController
     api_v1_list_accounts_url pagination_params(since_id: pagination_since_id) unless @accounts.empty?
   end
 
-  def pagination_max_id
-    @accounts.last.id
-  end
-
-  def pagination_since_id
-    @accounts.first.id
+  def pagination_collection
+    @accounts
   end
 
   def records_continue?
     @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 
   def unlimited?

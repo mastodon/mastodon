@@ -7,9 +7,6 @@ module Account::Associations
     # Local users
     has_one :user, inverse_of: :account, dependent: :destroy
 
-    # E2EE
-    has_many :devices, dependent: :destroy, inverse_of: :account
-
     # Timelines
     has_many :statuses, inverse_of: :account, dependent: :destroy
     has_many :favourites, inverse_of: :account, dependent: :destroy
@@ -62,7 +59,7 @@ module Account::Associations
     has_many :aliases, class_name: 'AccountAlias', dependent: :destroy, inverse_of: :account
 
     # Hashtags
-    has_and_belongs_to_many :tags
+    has_and_belongs_to_many :tags # rubocop:disable Rails/HasAndBelongsToMany
     has_many :featured_tags, -> { includes(:tag) }, dependent: :destroy, inverse_of: :account
 
     # Account deletion requests

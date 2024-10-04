@@ -4,27 +4,42 @@ module Admin::AccountModerationNotesHelper
   def admin_account_link_to(account, path: nil)
     return if account.nil?
 
-    link_to path || admin_account_path(account.id), class: name_tag_classes(account), title: account.acct do
-      safe_join([
-                  image_tag(account.avatar.url, width: 15, height: 15, alt: '', class: 'avatar'),
-                  content_tag(:span, account.acct, class: 'username'),
-                ], ' ')
-    end
+    link_to(
+      labeled_account_avatar(account),
+      path || admin_account_path(account.id),
+      class: class_names('name-tag', suspended: suspended_account?(account)),
+      title: account.acct
+    )
   end
 
   def admin_account_inline_link_to(account)
     return if account.nil?
 
-    link_to admin_account_path(account.id), class: name_tag_classes(account, true), title: account.acct do
-      content_tag(:span, account.acct, class: 'username')
-    end
+    link_to(
+      account_inline_text(account),
+      admin_account_path(account.id),
+      class: class_names('inline-name-tag', suspended: suspended_account?(account)),
+      title: account.acct
+    )
   end
 
   private
 
-  def name_tag_classes(account, inline = false)
-    classes = [inline ? 'inline-name-tag' : 'name-tag']
-    classes << 'suspended' if account.suspended? || (account.local? && account.user.nil?)
-    classes.join(' ')
+  def labeled_account_avatar(account)
+    safe_join(
+      [
+        image_tag(account.avatar.url, width: 15, height: 15, alt: '', class: 'avatar'),
+        account_inline_text(account),
+      ],
+      ' '
+    )
+  end
+
+  def account_inline_text(account)
+    content_tag(:span, account.acct, class: 'username')
+  end
+
+  def suspended_account?(account)
+    account.suspended? || (account.local? && account.user.nil?)
   end
 end

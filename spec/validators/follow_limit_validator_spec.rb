@@ -56,7 +56,7 @@ RSpec.describe FollowLimitValidator do
 
             follow.valid?
 
-            expect(follow.errors[:base]).to include(I18n.t('users.follow_limit_reached', limit: FollowLimitValidator::LIMIT))
+            expect(follow.errors[:base]).to include(I18n.t('users.follow_limit_reached', limit: described_class::LIMIT))
           end
         end
 

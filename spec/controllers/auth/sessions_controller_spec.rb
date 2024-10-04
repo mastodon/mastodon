@@ -123,7 +123,7 @@ RSpec.describe Auth::SessionsController do
           user.update(current_sign_in_at: 1.month.ago)
         end
 
-        it 'logs the user in and sends suspicious email and redirects home', :sidekiq_inline do
+        it 'logs the user in and sends suspicious email and redirects home', :inline_jobs do
           emails = capture_emails { subject }
 
           expect(response)
@@ -208,7 +208,7 @@ RSpec.describe Auth::SessionsController do
     context 'when using two-factor authentication' do
       context 'with OTP enabled as second factor' do
         let!(:user) do
-          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret)
         end
 
         let!(:recovery_codes) do
@@ -230,7 +230,7 @@ RSpec.describe Auth::SessionsController do
 
         context 'when using email and password after an unfinished log-in attempt to a 2FA-protected account' do
           let!(:other_user) do
-            Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+            Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret)
           end
 
           before do
@@ -263,7 +263,7 @@ RSpec.describe Auth::SessionsController do
             travel_to '2023-12-20T10:00:00Z'
           end
 
-          it 'does not log the user in, sets a flash message, and sends a suspicious sign in email', :sidekiq_inline do
+          it 'does not log the user in, sets a flash message, and sends a suspicious sign in email', :inline_jobs do
             emails = capture_emails do
               Auth::SessionsController::MAX_2FA_ATTEMPTS_PER_HOUR.times do
                 post :create, params: { user: { otp_attempt: '1234' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
@@ -342,7 +342,7 @@ RSpec.describe Auth::SessionsController do
 
       context 'with WebAuthn and OTP enabled as second factor' do
         let!(:user) do
-          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret)
         end
 
         let!(:webauthn_credential) do
@@ -402,53 +402,13 @@ RSpec.describe Auth::SessionsController do
           end
 
           it 'instructs the browser to redirect to home, logs the user in, and updates the sign count' do
-            expect(body_as_json[:redirect_path]).to eq(root_path)
+            expect(response.parsed_body[:redirect_path]).to eq(root_path)
 
             expect(controller.current_user).to eq user
 
             expect(webauthn_credential.reload.sign_count).to eq(sign_count)
           end
         end
-      end
-    end
-  end
-
-  describe 'GET #webauthn_options' do
-    subject { get :webauthn_options, session: { attempt_user_id: user.id } }
-
-    let!(:user) do
-      Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
-    end
-
-    context 'with WebAuthn and OTP enabled as second factor' do
-      let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
-
-      let(:fake_client) { WebAuthn::FakeClient.new(domain) }
-
-      before do
-        user.update(webauthn_id: WebAuthn.generate_user_id)
-        public_key_credential = WebAuthn::Credential.from_create(fake_client.create)
-        user.webauthn_credentials.create(
-          nickname: 'SecurityKeyNickname',
-          external_id: public_key_credential.id,
-          public_key: public_key_credential.public_key,
-          sign_count: '1000'
-        )
-        post :create, params: { user: { email: user.email, password: user.password } }
-      end
-
-      it 'returns http success' do
-        subject
-
-        expect(response).to have_http_status 200
-      end
-    end
-
-    context 'when WebAuthn not enabled' do
-      it 'returns http unauthorized' do
-        subject
-
-        expect(response).to have_http_status 401
       end
     end
   end

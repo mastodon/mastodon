@@ -1,7 +1,7 @@
 .content__heading__tabs
   = render_navigation renderer: :links do |primary|
     :ruby
-      primary.item :profile, safe_join([fa_icon('user fw'), t('settings.edit_profile')]), settings_profile_path
-      primary.item :privacy, safe_join([fa_icon('lock fw'), t('privacy.title')]), settings_privacy_path
-      primary.item :verification, safe_join([fa_icon('check fw'), t('verification.verification')]), settings_verification_path
-      primary.item :featured_tags, safe_join([fa_icon('hashtag fw'), t('settings.featured_tags')]), settings_featured_tags_path
+      primary.item :edit_profile, safe_join([material_symbol('person'), t('settings.edit_profile')]), settings_profile_path
+      primary.item :privacy_reach, safe_join([material_symbol('lock'), t('privacy.title')]), settings_privacy_path
+      primary.item :verification, safe_join([material_symbol('check'), t('verification.verification')]), settings_verification_path
+      primary.item :featured_tags, safe_join([material_symbol('tag'), t('settings.featured_tags')]), settings_featured_tags_path

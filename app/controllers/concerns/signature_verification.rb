@@ -66,7 +66,7 @@ module SignatureVerification
     compare_signed_string = build_signed_string(include_query_string: false)
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
-    actor = stoplight_wrap_request { actor_refresh_key!(actor) }
+    actor = stoplight_wrapper.run { actor_refresh_key!(actor) }
 
     raise SignatureVerificationError, "Could not refresh public key #{signature_params['keyId']}" if actor.nil?
 
@@ -226,10 +226,10 @@ module SignatureVerification
     end
 
     if key_id.start_with?('acct:')
-      stoplight_wrap_request { ResolveAccountService.new.call(key_id.delete_prefix('acct:'), suppress_errors: false) }
+      stoplight_wrapper.run { ResolveAccountService.new.call(key_id.delete_prefix('acct:'), suppress_errors: false) }
     elsif !ActivityPub::TagManager.instance.local_uri?(key_id)
       account   = ActivityPub::TagManager.instance.uri_to_actor(key_id)
-      account ||= stoplight_wrap_request { ActivityPub::FetchRemoteKeyService.new.call(key_id, suppress_errors: false) }
+      account ||= stoplight_wrapper.run { ActivityPub::FetchRemoteKeyService.new.call(key_id, suppress_errors: false) }
       account
     end
   rescue Mastodon::PrivateNetworkAddressError => e
@@ -238,12 +238,11 @@ module SignatureVerification
     raise SignatureVerificationError, e.message
   end
 
-  def stoplight_wrap_request(&block)
-    Stoplight("source:#{request.remote_ip}", &block)
+  def stoplight_wrapper
+    Stoplight("source:#{request.remote_ip}")
       .with_threshold(1)
       .with_cool_off_time(5.minutes.seconds)
       .with_error_handler { |error, handle| error.is_a?(HTTP::Error) || error.is_a?(OpenSSL::SSL::SSLError) ? handle.call(error) : raise(error) }
-      .run
   end
 
   def actor_refresh_key!(actor)

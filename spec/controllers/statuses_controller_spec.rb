@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusesController do
+RSpec.describe StatusesController do
   render_views
 
   describe 'GET #show' do
@@ -63,7 +63,7 @@ describe StatusesController do
           expect(response.headers).to include(
             'Vary' => 'Accept, Accept-Language, Cookie',
             'Cache-Control' => include('public'),
-            'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+            'Link' => include('activity+json')
           )
           expect(response.body).to include status.text
         end
@@ -72,17 +72,16 @@ describe StatusesController do
       context 'with JSON' do
         let(:format) { 'json' }
 
-        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
         it 'renders ActivityPub Note object successfully', :aggregate_failures do
           expect(response)
             .to have_http_status(200)
+            .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+
           expect(response.headers).to include(
-            'Vary' => 'Accept, Accept-Language, Cookie',
             'Content-Type' => include('application/activity+json'),
-            'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+            'Link' => include('activity+json')
           )
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to include(content: include(status.text))
         end
       end
@@ -169,7 +168,7 @@ describe StatusesController do
             expect(response.headers).to include(
               'Vary' => 'Accept, Accept-Language, Cookie',
               'Cache-Control' => include('private'),
-              'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              'Link' => include('activity+json')
             )
             expect(response.body).to include status.text
           end
@@ -185,9 +184,9 @@ describe StatusesController do
               'Vary' => 'Accept, Accept-Language, Cookie',
               'Cache-Control' => include('private'),
               'Content-Type' => include('application/activity+json'),
-              'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              'Link' => include('activity+json')
             )
-            expect(body_as_json)
+            expect(response.parsed_body)
               .to include(content: include(status.text))
           end
         end
@@ -213,7 +212,7 @@ describe StatusesController do
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
               expect(response.body).to include status.text
             end
@@ -229,9 +228,9 @@ describe StatusesController do
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
-              expect(body_as_json)
+              expect(response.parsed_body)
                 .to include(content: include(status.text))
             end
           end
@@ -279,7 +278,7 @@ describe StatusesController do
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
               expect(response.body).to include status.text
             end
@@ -295,9 +294,9 @@ describe StatusesController do
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
-              expect(body_as_json)
+              expect(response.parsed_body)
                 .to include(content: include(status.text))
             end
           end
@@ -371,7 +370,7 @@ describe StatusesController do
             expect(response.headers).to include(
               'Vary' => 'Accept, Accept-Language, Cookie',
               'Cache-Control' => include('private'),
-              'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              'Link' => include('activity+json')
             )
             expect(response.body).to include status.text
           end
@@ -380,17 +379,15 @@ describe StatusesController do
         context 'with JSON' do
           let(:format) { 'json' }
 
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
           it 'renders ActivityPub Note object successfully', :aggregate_failures do
             expect(response)
               .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
             expect(response.headers).to include(
-              'Vary' => 'Accept, Accept-Language, Cookie',
               'Content-Type' => include('application/activity+json'),
-              'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              'Link' => include('activity+json')
             )
-            expect(body_as_json)
+            expect(response.parsed_body)
               .to include(content: include(status.text))
           end
         end
@@ -415,7 +412,7 @@ describe StatusesController do
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
               expect(response.body).to include status.text
             end
@@ -431,10 +428,10 @@ describe StatusesController do
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
 
-              expect(body_as_json)
+              expect(response.parsed_body)
                 .to include(content: include(status.text))
             end
           end
@@ -482,7 +479,7 @@ describe StatusesController do
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
               expect(response.body).to include status.text
             end
@@ -498,9 +495,9 @@ describe StatusesController do
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
-              expect(body_as_json)
+              expect(response.parsed_body)
                 .to include(content: include(status.text))
             end
           end
@@ -782,9 +779,8 @@ describe StatusesController do
         expect(response.headers).to include(
           'Vary' => 'Accept, Accept-Language, Cookie',
           'Cache-Control' => include('public'),
-          'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+          'Link' => include('activity+json')
         )
-        expect(response.body).to include status.text
       end
     end
 

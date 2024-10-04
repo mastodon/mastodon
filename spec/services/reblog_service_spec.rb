@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ReblogService, type: :service do
+RSpec.describe ReblogService do
   let(:alice)  { Fabricate(:account, username: 'alice') }
 
   context 'when creates a reblog with appropriate visibility' do

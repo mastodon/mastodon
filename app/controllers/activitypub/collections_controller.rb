@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class ActivityPub::CollectionsController < ActivityPub::BaseController
-  include SignatureVerification
-  include AccountOwnedConcern
-
   vary_by -> { 'Signature' if authorized_fetch_mode? }
 
   before_action :require_account_signature!, if: :authorized_fetch_mode?
@@ -21,12 +18,10 @@ class ActivityPub::CollectionsController < ActivityPub::BaseController
   def set_items
     case params[:id]
     when 'featured'
-      @items = for_signed_account { cache_collection(@account.pinned_statuses, Status) }
+      @items = for_signed_account { preload_collection(@account.pinned_statuses, Status) }
       @items = @items.map { |item| item.distributable? ? item : ActivityPub::TagManager.instance.uri_for(item) }
     when 'tags'
       @items = for_signed_account { @account.featured_tags }
-    when 'devices'
-      @items = @account.devices
     else
       not_found
     end
@@ -34,7 +29,7 @@ class ActivityPub::CollectionsController < ActivityPub::BaseController
 
   def set_size
     case params[:id]
-    when 'featured', 'devices', 'tags'
+    when 'featured', 'tags'
       @size = @items.size
     else
       not_found
@@ -45,7 +40,7 @@ class ActivityPub::CollectionsController < ActivityPub::BaseController
     case params[:id]
     when 'featured'
       @type = :ordered
-    when 'devices', 'tags'
+    when 'tags'
       @type = :unordered
     else
       not_found

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ResolveAccountService, type: :service do
+RSpec.describe ResolveAccountService do
   subject { described_class.new }
 
   before do
@@ -195,7 +195,7 @@ RSpec.describe ResolveAccountService, type: :service do
       expect(account.uri).to eq 'https://ap.example.com/users/foo'
     end
 
-    it 'merges accounts', :sidekiq_inline do
+    it 'merges accounts', :inline_jobs do
       account = subject.call('foo@ap.example.com')
 
       expect(status.reload.account_id).to eq account.id
@@ -228,7 +228,7 @@ RSpec.describe ResolveAccountService, type: :service do
       rescue ActiveRecord::RecordNotUnique
         fail_occurred = true
       ensure
-        RedisConfiguration.pool.checkin if Thread.current[:redis]
+        RedisConnection.pool.checkin if Thread.current[:redis]
       end
     end
 
