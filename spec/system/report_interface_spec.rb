@@ -32,8 +32,6 @@ RSpec.describe 'report interface', :attachment_processing, :js, :streaming do
   it 'marks a report resolved from the show page actions area' do
     visit admin_report_path(report)
 
-    # puts page.body
-
     expect { resolve_report }
       .to change { report.reload.action_taken_at }.to(be_present).from(nil)
   end
