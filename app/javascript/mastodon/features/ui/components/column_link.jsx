@@ -15,7 +15,7 @@ const ColumnLink = ({ icon, activeIcon, iconComponent, activeIconComponent, text
 
   if (href) {
     return (
-      <a href={href} className={className} data-method={method} title={text} {...other}>
+      <a href={href} className={className} data-method={method} {...other}>
         {active ? activeIconElement : iconElement}
         <span>{text}</span>
         {badgeElement}
@@ -23,7 +23,7 @@ const ColumnLink = ({ icon, activeIcon, iconComponent, activeIconComponent, text
     );
   } else {
     return (
-      <NavLink to={to} className={className} title={text} exact {...other}>
+      <NavLink to={to} className={className} exact {...other}>
         {active ? activeIconElement : iconElement}
         <span>{text}</span>
         {badgeElement}
