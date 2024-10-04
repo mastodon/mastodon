@@ -206,50 +206,53 @@ function processNewNotification(
   groups: NotificationGroupsState['groups'],
   notification: ApiNotificationJSON,
 ) {
-  if (shouldGroupNotificationType(notification.type)) {
-    const existingGroupIndex = groups.findIndex(
-      (group) =>
-        group.type !== 'gap' && group.group_key === notification.group_key,
-    );
-
-    // In any case, we are going to add a group at the top
-    // If there is currently a gap at the top, now is the time to update it
-    if (groups.length > 0 && groups[0]?.type === 'gap') {
-      groups[0].maxId = notification.id;
-    }
-
-    if (existingGroupIndex > -1) {
-      const existingGroup = groups[existingGroupIndex];
-
-      if (
-        existingGroup &&
-        existingGroup.type !== 'gap' &&
-        !existingGroup.sampleAccountIds.includes(notification.account.id) // This can happen for example if you like, then unlike, then like again the same post
-      ) {
-        // Update the existing group
-        if (
-          existingGroup.sampleAccountIds.unshift(notification.account.id) >
-          NOTIFICATIONS_GROUP_MAX_AVATARS
-        )
-          existingGroup.sampleAccountIds.pop();
-
-        existingGroup.most_recent_notification_id = notification.id;
-        existingGroup.page_max_id = notification.id;
-        existingGroup.latest_page_notification_at = notification.created_at;
-        existingGroup.notifications_count += 1;
-
-        groups.splice(existingGroupIndex, 1);
-        mergeGapsAround(groups, existingGroupIndex);
-
-        groups.unshift(existingGroup);
-
-        return;
-      }
-    }
+  if (!shouldGroupNotificationType(notification.type)) {
+    notification = {
+      ...notification,
+      group_key: `ungrouped-${notification.id}`,
+    };
   }
 
-  // We have not found an existing group, create a new one
-  groups.unshift(createNotificationGroupFromNotificationJSON(notification));
+  const existingGroupIndex = groups.findIndex(
+    (group) =>
+      group.type !== 'gap' && group.group_key === notification.group_key,
+  );
+
+  // In any case, we are going to add a group at the top
+  // If there is currently a gap at the top, now is the time to update it
+  if (groups.length > 0 && groups[0]?.type === 'gap') {
+    groups[0].maxId = notification.id;
+  }
+
+  if (existingGroupIndex > -1) {
+    const existingGroup = groups[existingGroupIndex];
+
+    if (
+      existingGroup &&
+      existingGroup.type !== 'gap' &&
+      !existingGroup.sampleAccountIds.includes(notification.account.id) // This can happen for example if you like, then unlike, then like again the same post
+    ) {
+      // Update the existing group
+      if (
+        existingGroup.sampleAccountIds.unshift(notification.account.id) >
+        NOTIFICATIONS_GROUP_MAX_AVATARS
+      )
+        existingGroup.sampleAccountIds.pop();
+
+      existingGroup.most_recent_notification_id = notification.id;
+      existingGroup.page_max_id = notification.id;
+      existingGroup.latest_page_notification_at = notification.created_at;
+      existingGroup.notifications_count += 1;
+
+      groups.splice(existingGroupIndex, 1);
+      mergeGapsAround(groups, existingGroupIndex);
+
+      groups.unshift(existingGroup);
+    }
+  } else {
+    // We have not found an existing group, create a new one
+    groups.unshift(createNotificationGroupFromNotificationJSON(notification));
+  }
 }
 
 function trimNotifications(state: NotificationGroupsState) {
