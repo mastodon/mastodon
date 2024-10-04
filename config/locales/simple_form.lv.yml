@@ -86,6 +86,7 @@ lv:
         custom_css: Vari lietot pielāgotus stilus Mastodon tīmekļa versijā.
         favicon: WEBP, PNG, GIF vai JPG. Aizstāj noklusējuma Mastodon favikonu ar pielāgotu.
         mascot: Ignorē ilustrāciju uzlabotajā tīmekļa saskarnē.
+        media_cache_retention_period: Informācijas nesēju datnes no ierakstiem, kurus ir veikuši attālie lietotāji, tiek kešoti šajā serverī. Kad ir iestatīta apstiprinoša vērtība, informācijas nesēji tiks izdzēsti pēc norādītā dienu skaita. Ja informācijas nesēju dati tiks pieprasīti pēc tam, kad tie tika izdzēsti, tie tiks atkārtoti lejupielādēti, ja avota saturs joprojām būs pieejams. Saišu priekšskatījuma karšu vaicājumu biežuma ierobežojumu dēļ ir ieteicams iestatīt šo vērtību vismaz 14 dienas vai saišu priekšskatījuma kartes netiks atjauninātas pēc pieprasījuma pirms tā laika.
         peers_api_enabled: Domēna vārdu saraksts, ar kuriem šis serveris ir saskāries fediversā. Šeit nav iekļauti dati par to, vai tu veic federāciju ar noteiktu serveri, tikai tavs serveris par to zina. To izmanto dienesti, kas apkopo statistiku par federāciju vispārīgā nozīmē.
         profile_directory: Profilu direktorijā ir uzskaitīti visi lietotāji, kuri ir izvēlējušies būt atklājami.
         require_invite_text: 'Ja pierakstīšanai nepieciešama manuāla apstiprināšana, izdari tā, lai teksta: “Kāpēc vēlaties pievienoties?” ievade ir obligāta, nevis opcionāla'

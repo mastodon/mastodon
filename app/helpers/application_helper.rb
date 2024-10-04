@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  DANGEROUS_SCOPES = %w(
-    read
-    write
-    follow
-  ).freeze
-
   RTL_LOCALES = %i(
     ar
     ckb
@@ -95,8 +89,11 @@ module ApplicationHelper
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
 
-  def class_for_scope(scope)
-    'scope-danger' if DANGEROUS_SCOPES.include?(scope.to_s)
+  def label_for_scope(scope)
+    safe_join [
+      tag.samp(scope, class: { 'scope-danger' => SessionActivation::DEFAULT_SCOPES.include?(scope.to_s) }),
+      tag.span(t("doorkeeper.scopes.#{scope}"), class: :hint),
+    ]
   end
 
   def can?(action, record)
@@ -241,6 +238,10 @@ module ApplicationHelper
 
   def mascot_url
     full_asset_url(instance_presenter.mascot&.file&.url || frontend_asset_path('images/elephant_ui_plane.svg'))
+  end
+
+  def copyable_input(options = {})
+    tag.input(type: :text, maxlength: 999, spellcheck: false, readonly: true, **options)
   end
 
   private
