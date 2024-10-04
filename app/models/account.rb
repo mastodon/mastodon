@@ -44,7 +44,6 @@
 #  hide_collections              :boolean
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
-#  devices_url                   :string
 #  suspension_origin             :integer
 #  sensitized_at                 :datetime
 #  trendable                     :boolean
@@ -56,11 +55,12 @@
 
 class Account < ApplicationRecord
   self.ignored_columns += %w(
-    subscription_expires_at
-    secret
+    devices_url
+    hub_url
     remote_url
     salmon_url
-    hub_url
+    secret
+    subscription_expires_at
     trust_level
   )
 
@@ -68,8 +68,8 @@ class Account < ApplicationRecord
   DEFAULT_FIELDS_SIZE = 4
   INSTANCE_ACTOR_ID = -99
 
-  USERNAME_RE   = /[a-z0-9_]+([a-z0-9_.-]+[a-z0-9_]+)?/i
-  MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@[[:word:].-]+[[:word:]]+)?)}
+  USERNAME_RE   = /[a-z0-9_]+([.-]+[a-z0-9_]+)*/i
+  MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]]+([.-]+[[:word:]]+)*)?)}
   URL_PREFIX_RE = %r{\Ahttp(s?)://[^/]+}
   USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
   USERNAME_LENGTH_LIMIT = 30
@@ -257,6 +257,10 @@ class Account < ApplicationRecord
 
   def suspended?
     suspended_at.present? && !instance_actor?
+  end
+
+  def suspended_locally?
+    suspended? && suspension_origin_local?
   end
 
   def suspended_permanently?

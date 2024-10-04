@@ -30,6 +30,7 @@ ga:
   admin:
     account_actions:
       action: Déan gníomh
+      already_silenced: Tá teorainn leis an gcuntas seo cheana féin.
       already_suspended: Tá an cuntas seo curtha ar fionraí cheana féin.
       title: Dean gníomh modhnóireachta ar %{acct}
     account_moderation_notes:
@@ -916,6 +917,9 @@ ga:
         message_html: Níl aon rialacha freastalaí sainmhínithe agat.
       sidekiq_process_check:
         message_html: Níl próiseas Sidekiq ag rith don scuaine/(scuainí) %{value}. Déan athbhreithniú ar do chumraíocht Sidekiq
+      software_version_check:
+        action: Féach nuashonruithe atá ar fáil
+        message_html: Tá nuashonrú Mastodon ar fáil.
       software_version_critical_check:
         action: Féach nuashonruithe atá ar fáil
         message_html: Tá nuashonrú ríthábhachtach Mastodon ar fáil, nuashonraigh chomh tapa agus is féidir le do thoil.
@@ -1213,6 +1217,12 @@ ga:
       view_strikes: Féach ar stailceanna san am atá caite i gcoinne do chuntais
     too_fast: Cuireadh an fhoirm isteach róthapa, triail arís.
     use_security_key: Úsáid eochair shlándála
+  author_attribution:
+    example_title: Téacs samplach
+    hint_html: Rialú conas a chuirtear chun sochair tú nuair a roinntear naisc ar Mastodon.
+    more_from_html: Tuilleadh ó %{name}
+    s_blog: Blag %{name}
+    title: Leithdháil an údair
   challenge:
     confirm: Lean ar aghaidh
     hint_html: "<strong>Leid:</strong> Ní iarrfaimid do phasfhocal ort arís go ceann uair an chloig eile."
@@ -1221,7 +1231,6 @@ ga:
   crypto:
     errors:
       invalid_key: nach eochair bhailí Ed25519 nó Curve25519 í
-      invalid_signature: nach síniú bailí Ed25519 é
   date:
     formats:
       default: "%b %d, %Y"
@@ -1764,7 +1773,7 @@ ga:
     delete: Scriosadh cuntais
     development: Forbairt
     edit_profile: Cuir an phróifíl in eagar
-    export: Easpórtáil sonraí
+    export: Easpórtáil
     featured_tags: Haischlib faoi thrácht
     import: Iompórtáil
     import_and_export: Iompórtáil agus easpórtáil
@@ -2029,6 +2038,7 @@ ga:
     instructions_html: Cóipeáil agus greamaigh an cód thíos isteach i HTML do shuíomh Gréasáin. Ansin cuir seoladh do shuíomh Gréasáin isteach i gceann de na réimsí breise ar do phróifíl ón gcluaisín "Cuir próifíl in eagar" agus sábháil athruithe.
     verification: Fíorú
     verified_links: Do naisc fhíoraithe
+    website_verification: Fíorú láithreán gréasáin
   webauthn_credentials:
     add: Cuir eochair shlándála nua leis
     create:

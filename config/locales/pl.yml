@@ -903,6 +903,9 @@ pl:
         message_html: Nie zdefiniowano żadnych reguł serwera.
       sidekiq_process_check:
         message_html: Brak uruchomionego procesu Sidekiq dla kolejki(-ek) %{value}. Sprawdź konfigurację Sidekiq
+      software_version_check:
+        action: Pokaż dostępne aktualizacje
+        message_html: Dostępna aktualizacja Mastodona.
       software_version_critical_check:
         action: Pokaż dostępne aktualizacje
         message_html: Dostępna krytyczna aktualizacja Mastodona, zaktualizuj jak tylko będzie to możliwe.
@@ -1210,7 +1213,6 @@ pl:
   crypto:
     errors:
       invalid_key: nie jest prawidłowym kluczem Ed25519 lub Curve25519
-      invalid_signature: nie jest prawidłowym podpisem Ed25519
   date:
     formats:
       default: "%d. %b %Y"

@@ -22,6 +22,7 @@ vi:
   admin:
     account_actions:
       action: Thực hiện hành động
+      already_silenced: Tài khoản này đã bị hạn chế.
       already_suspended: Tài khoản này đã bị vô hiệu hóa.
       title: Áp đặt kiểm duyệt với %{acct}
     account_moderation_notes:
@@ -43,7 +44,7 @@ vi:
         submit: Thay đổi email
         title: Thay đổi email cho %{username}
       change_role:
-        changed_msg: Vai trò đã thay đổi thành công!
+        changed_msg: Đã cập nhật vai trò!
         edit_roles: Quản lý vai trò người dùng
         label: Đổi vai trò
         no_role: Chưa có vai trò
@@ -54,7 +55,7 @@ vi:
       custom: Tùy chỉnh
       delete: Xóa dữ liệu
       deleted: Đã xóa
-      demote: Xóa vai trò
+      demote: Hạ vai trò
       destroyed_msg: Dữ liệu %{username} sẽ được lên lịch xóa ngay bây giờ
       disable: Khóa
       disable_sign_in_token_auth: Tắt xác minh bằng email
@@ -90,7 +91,7 @@ vi:
       moderation:
         active: Hoạt động
         all: Tất cả
-        disabled: Đã tắt
+        disabled: Khóa đăng nhập
         pending: Chờ
         silenced: Hạn chế
         suspended: Vô hiệu hóa
@@ -107,7 +108,7 @@ vi:
       previous_strikes: Lịch sử kiểm duyệt
       previous_strikes_description_html:
         other: Người này bị cảnh cáo <strong>%{count}</strong> lần.
-      promote: Chỉ định vai trò
+      promote: Nâng vai trò
       protocol: Giao thức
       public: Công khai
       push_subscription_expires: Đăng ký PuSH hết hạn
@@ -152,8 +153,8 @@ vi:
       suspension_irreversible: Toàn bộ dữ liệu của người này sẽ bị xóa hết. Bạn vẫn có thể ngừng vô hiệu hóa nhưng dữ liệu sẽ không thể phục hồi.
       suspension_reversible_hint_html: Mọi dữ liệu của người này sẽ bị xóa sạch vào %{date}. Trước thời hạn này, dữ liệu vẫn có thể phục hồi. Nếu bạn muốn xóa dữ liệu của người này ngay lập tức, hãy tiếp tục.
       title: Tài khoản
-      unblock_email: Mở khóa địa chỉ email
-      unblocked_email_msg: Mở khóa thành công địa chỉ email của %{username}
+      unblock_email: Bỏ chặn địa chỉ email
+      unblocked_email_msg: Đã bỏ chặn địa chỉ email của %{username}
       unconfirmed_email: Email chưa được xác minh
       undo_sensitized: Đánh dấu bình thường
       undo_silenced: Bỏ hạn chế
@@ -169,42 +170,42 @@ vi:
     action_logs:
       action_types:
         approve_appeal: Chấp nhận kháng cáo
-        approve_user: Chấp nhận đăng ký
+        approve_user: Duyệt đăng ký
         assigned_to_self_report: Tự xử lý báo cáo
         change_email_user: Đổi email người dùng
         change_role_user: Đổi vai trò
         confirm_user: Xác minh
         create_account_warning: Cảnh cáo
         create_announcement: Tạo thông báo mới
-        create_canonical_email_block: Tạo chặn email
+        create_canonical_email_block: Chặn địa chỉ email
         create_custom_emoji: Tạo emoji
         create_domain_allow: Cho phép máy chủ
         create_domain_block: Chặn máy chủ
         create_email_domain_block: Tạo chặn tên miền email
-        create_ip_block: Tạo chặn IP mới
-        create_unavailable_domain: Máy chủ không khả dụng
+        create_ip_block: Chặn IP
+        create_unavailable_domain: Ngừng liên hợp
         create_user_role: Tạo vai trò
-        demote_user: Xóa vai trò
+        demote_user: Hạ vai trò
         destroy_announcement: Xóa thông báo
-        destroy_canonical_email_block: Bỏ chặn email
+        destroy_canonical_email_block: Bỏ chặn địa chỉ email
         destroy_custom_emoji: Xóa emoji
         destroy_domain_allow: Bỏ thanh trừng máy chủ
         destroy_domain_block: Bỏ chặn máy chủ
         destroy_email_domain_block: Bỏ chặn tên miền email
         destroy_instance: Thanh trừng máy chủ
-        destroy_ip_block: Xóa IP đã chặn
+        destroy_ip_block: Bỏ chặn IP
         destroy_status: Xóa tút
-        destroy_unavailable_domain: Xóa máy chủ không khả dụng
+        destroy_unavailable_domain: Tái liên hợp
         destroy_user_role: Xóa vai trò
         disable_2fa_user: Vô hiệu hóa 2FA
         disable_custom_emoji: Vô hiệu hóa emoji
         disable_sign_in_token_auth_user: Tắt xác minh bằng email cho người dùng
         disable_user: Vô hiệu hóa đăng nhập
-        enable_custom_emoji: Cho phép emoji
+        enable_custom_emoji: Duyệt emoji
         enable_sign_in_token_auth_user: Bật xác minh bằng email cho người dùng
-        enable_user: Bỏ vô hiệu hóa đăng nhập
+        enable_user: Cho phép đăng nhập
         memorialize_account: Đánh dấu tưởng niệm
-        promote_user: Chỉ định vai trò
+        promote_user: Nâng vai trò
         reject_appeal: Từ chối kháng cáo
         reject_user: Từ chối đăng ký
         remove_avatar_user: Xóa ảnh đại diện
@@ -212,11 +213,11 @@ vi:
         resend_user: Gửi lại email xác minh
         reset_password_user: Đặt lại mật khẩu
         resolve_report: Xử lý báo cáo
-        sensitive_account: Áp đặt nhạy cảm
-        silence_account: Áp đặt ẩn
-        suspend_account: Áp đặt vô hiệu hóa
+        sensitive_account: Gán nhạy cảm
+        silence_account: Gán ẩn
+        suspend_account: Gán vô hiệu hóa
         unassigned_report: Báo cáo chưa xử lý
-        unblock_email_account: Mở khóa địa chỉ email
+        unblock_email_account: Bỏ chặn địa chỉ email
         unsensitive_account: Bỏ nhạy cảm
         unsilence_account: Bỏ ẩn
         unsuspend_account: Bỏ vô hiệu hóa
@@ -228,7 +229,7 @@ vi:
         update_status: Cập nhật tút
         update_user_role: Cập nhật vai trò
       actions:
-        approve_appeal_html: "%{name} đã chấp nhận kháng cáo của %{target}"
+        approve_appeal_html: "%{name} đã duyệt kháng cáo của %{target}"
         approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
         assigned_to_self_report_html: "%{name} tự xử lý báo cáo %{target}"
         change_email_user_html: "%{name} đã thay đổi địa chỉ email của %{target}"
@@ -236,7 +237,7 @@ vi:
         confirm_user_html: "%{name} đã xác minh địa chỉ email của %{target}"
         create_account_warning_html: "%{name} đã cảnh cáo %{target}"
         create_announcement_html: "%{name} tạo thông báo mới %{target}"
-        create_canonical_email_block_html: "%{name} đã chặn email với hash %{target}"
+        create_canonical_email_block_html: "%{name} đã chặn địa chỉ email với hash %{target}"
         create_custom_emoji_html: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
         create_domain_allow_html: "%{name} kích hoạt liên hợp với %{target}"
         create_domain_block_html: "%{name} chặn máy chủ %{target}"
@@ -244,9 +245,9 @@ vi:
         create_ip_block_html: "%{name} đã chặn IP %{target}"
         create_unavailable_domain_html: "%{name} ngưng phân phối với máy chủ %{target}"
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
-        demote_user_html: "%{name} đã xóa vai trò của %{target}"
+        demote_user_html: "%{name} đã hạ vai trò của %{target}"
         destroy_announcement_html: "%{name} xóa thông báo %{target}"
-        destroy_canonical_email_block_html: "%{name} đã bỏ chặn email với hash %{target}"
+        destroy_canonical_email_block_html: "%{name} đã bỏ chặn địa chỉ email với hash %{target}"
         destroy_custom_emoji_html: "%{name} đã xóa emoji %{target}"
         destroy_domain_allow_html: "%{name} đã ngừng liên hợp với %{target}"
         destroy_domain_block_html: "%{name} bỏ chặn máy chủ %{target}"
@@ -260,11 +261,11 @@ vi:
         disable_custom_emoji_html: "%{name} đã ẩn emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} đã tắt xác minh email của %{target}"
         disable_user_html: "%{name} vô hiệu hóa đăng nhập %{target}"
-        enable_custom_emoji_html: "%{name} cho phép Emoji %{target}"
+        enable_custom_emoji_html: "%{name} cho phép emoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} đã bật xác minh email của %{target}"
         enable_user_html: "%{name} bỏ vô hiệu hóa đăng nhập %{target}"
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
-        promote_user_html: "%{name} chỉ định vai trò cho %{target}"
+        promote_user_html: "%{name} đã nâng vai trò của %{target}"
         reject_appeal_html: "%{name} đã từ chối kháng cáo của %{target}"
         reject_user_html: "%{name} đã từ chối đăng ký từ %{target}"
         remove_avatar_user_html: "%{name} đã xóa ảnh đại diện của %{target}"
@@ -276,7 +277,7 @@ vi:
         silence_account_html: "%{name} đã ẩn %{target}"
         suspend_account_html: "%{name} đã vô hiệu hóa %{target}"
         unassigned_report_html: "%{name} đã xử lý báo cáo %{target} chưa xử lí"
-        unblock_email_account_html: "%{name} mở khóa địa chỉ email của %{target}"
+        unblock_email_account_html: "%{name} bỏ chặn địa chỉ email của %{target}"
         unsensitive_account_html: "%{name} đánh dấu nội dung của %{target} là bình thường"
         unsilence_account_html: "%{name} đã bỏ ẩn %{target}"
         unsuspend_account_html: "%{name} đã bỏ vô hiệu hóa %{target}"
@@ -286,7 +287,7 @@ vi:
         update_ip_block_html: "%{name} cập nhật chặn IP %{target}"
         update_report_html: "%{name} cập nhật báo cáo %{target}"
         update_status_html: "%{name} cập nhật tút của %{target}"
-        update_user_role_html: "%{name} đã thay đổi vai trò %{target}"
+        update_user_role_html: "%{name} đã cập nhật vai trò %{target}"
       deleted_account: tài khoản đã xóa
       empty: Không tìm thấy bản ghi.
       filter_by_action: Theo hành động
@@ -327,7 +328,7 @@ vi:
       emoji: Emoji
       enable: Cho phép
       enabled: Đã cho phép
-      enabled_msg: Đã cho phép thành công Emoji này
+      enabled_msg: Đã cho phép emoji này xong
       image_hint: PNG hoặc GIF tối đa %{size}
       list: Danh sách
       listed: Liệt kê
@@ -691,7 +692,7 @@ vi:
         manage_announcements: Quản lý thông báo
         manage_announcements_description: Cho phép quản lý thông báo trên máy chủ
         manage_appeals: Quản lý kháng cáo
-        manage_appeals_description: Cho phép xem xét kháng cáo đối với các hành động kiểm duyệt
+        manage_appeals_description: Cho phép thành viên kháng cáo đối với các hành động kiểm duyệt
         manage_blocks: Quản lý chặn
         manage_blocks_description: Cho phép người dùng tự chặn các nhà cung cấp email và địa chỉ IP
         manage_custom_emojis: Quản lý emoji
@@ -703,7 +704,7 @@ vi:
         manage_reports: Quản lý báo cáo
         manage_reports_description: Cho phép xem xét các báo cáo và thực hiện hành động kiểm duyệt đối với chúng
         manage_roles: Quản lý vai trò
-        manage_roles_description: Cho phép quản lý và chỉ định các vai trò nhỏ hơn họ
+        manage_roles_description: Cho phép quản lý và nâng cấp các vai trò nhỏ hơn họ
         manage_rules: Quản lý nội quy máy chủ
         manage_rules_description: Cho phép thay đổi nội quy máy chủ
         manage_settings: Quản lý thiết lập
@@ -797,7 +798,7 @@ vi:
         patch: Bản vá - sửa lỗi và dễ dàng áp dụng các thay đổi
       version: Phiên bản
     statuses:
-      account: Tác giả
+      account: Người đăng
       application: Ứng dụng
       back_to_account: Quay lại trang tài khoản
       back_to_report: Quay lại trang báo cáo
@@ -816,7 +817,7 @@ vi:
       open: Mở tút
       original_status: Tút gốc
       reblogs: Lượt đăng lại
-      status_changed: Tút đã thay đổi
+      status_changed: Tút đã sửa
       title: Toàn bộ tút
       trending: Xu hướng
       visibility: Hiển thị
@@ -860,6 +861,9 @@ vi:
         message_html: Bạn chưa cập nhật nội quy máy chủ.
       sidekiq_process_check:
         message_html: Sidekiq không hoạt động khi truy vấn %{value}. Hãy kiểm tra lại cấu hình Sidekiq
+      software_version_check:
+        action: Bản cập nhật mới
+        message_html: Có bản cập nhật Mastodon mới.
       software_version_critical_check:
         action: Bản cập nhật mới
         message_html: Có bản cập nhật quan trọng của Mastodon, vui lòng cập nhật nhanh nhất có thể.
@@ -895,7 +899,7 @@ vi:
     title: Quản trị
     trends:
       allow: Cho phép
-      approved: Đã cho phép
+      approved: Đã duyệt
       confirm_allow: Bạn có chắc muốn cho phép những hashtag đã chọn?
       confirm_disallow: Bạn có chắc muốn cấm những hashtag đã chọn?
       disallow: Cấm
@@ -914,17 +918,17 @@ vi:
           no_publisher_selected: Không có nguồn đăng nào thay đổi vì không có nguồn đăng nào được chọn
         shared_by_over_week:
           other: "%{count} người chia sẻ tuần rồi"
-        title: Tin tức nổi bật
+        title: Xu hướng tin tức
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
       not_allowed_to_trend: Không được phép thành xu hướng
-      only_allowed: Chỉ cho phép
+      only_allowed: Đã cho phép
       pending_review: Đang chờ
       preview_card_providers:
         allowed: Tin tức từ nguồn này có thể lên xu hướng
         description_html: Đây là những nguồn mà từ đó các liên kết thường được chia sẻ trên máy chủ của bạn. Các liên kết sẽ không thể lên xu hướng trừ khi bạn cho phép nguồn. Sự cho phép (hoặc cấm) của bạn áp dụng luôn cho các tên miền phụ.
         rejected: Tin tức từ nguồn này không thể lên xu hướng
         title: Nguồn đăng
-      rejected: Đã cấm
+      rejected: Từ chối
       statuses:
         allow: Cho phép tút
         allow_account: Cho phép người đăng
@@ -935,11 +939,11 @@ vi:
         description_html: Đây là những tút đang được chia sẻ và yêu thích rất nhiều trên máy chủ của bạn. Nó có thể giúp người mới và người cũ tìm thấy nhiều người hơn để theo dõi. Không có tút nào được hiển thị công khai cho đến khi bạn cho phép người đăng và người cho phép đề xuất tài khoản của họ cho người khác. Bạn cũng có thể cho phép hoặc từ chối từng tút riêng.
         disallow: Cấm tút
         disallow_account: Cấm người đăng
-        no_status_selected: Không có tút xu hướng nào thay đổi vì không có tút nào được chọn
-        not_discoverable: Tác giả đã chọn không tham gia mục khám phá
+        no_status_selected: Bạn chưa chọn mục nào
+        not_discoverable: Người đăng đã chọn không tham gia mục khám phá
         shared_by:
           other: Được thích và đăng lại %{friendly_count} lần
-        title: Tút xu hướng
+        title: Xu hướng tút
       tags:
         current_score: Chỉ số gần đây %{score}
         dashboard:
@@ -955,9 +959,9 @@ vi:
         not_trendable: Không cho lên xu hướng
         not_usable: Không được phép dùng
         peaked_on_and_decaying: Đỉnh điểm %{date}, giờ đang giảm
-        title: Hashtag nổi bật
+        title: Xu hướng hashtag
         trendable: Cho phép lên xu hướng
-        trending_rank: 'Nổi bật #%{rank}'
+        trending_rank: 'Xu hướng #%{rank}'
         usable: Có thể dùng
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
         used_by_over_week:
@@ -1003,7 +1007,7 @@ vi:
         silence: hạn chế tài khoản của họ
         suspend: vô hiệu hóa tài khoản của họ
       body: "%{target} đã khiếu nại vì bị %{action_taken_by} %{type} vào %{date}. Họ cho biết:"
-      next_steps: Bạn có thể chấp nhận kháng cáo để hủy kiểm duyệt hoặc bỏ qua.
+      next_steps: Bạn có thể duyệt kháng cáo để hủy kiểm duyệt hoặc bỏ qua.
       subject: "%{username} đang khiếu nại quyết định kiểm duyệt trên %{instance}"
     new_critical_software_updates:
       body: Các phiên bản quan trọng mới của Mastodon đã được phát hành, bạn nên cập nhật càng sớm càng tốt!
@@ -1021,12 +1025,12 @@ vi:
     new_trends:
       body: 'Các mục sau đây cần được xem xét trước khi chúng hiển thị công khai:'
       new_trending_links:
-        title: Tin tức nổi bật
+        title: Xu hướng tin tức
       new_trending_statuses:
-        title: Tút nổi bật
+        title: Xu hướng tút
       new_trending_tags:
-        title: Hashtag nổi bật
-      subject: Nội dung nổi bật chờ duyệt trên %{instance}
+        title: Xu hướng hashtag
+      subject: Xu hướng chờ duyệt trên %{instance}
   aliases:
     add_new: Kết nối tài khoản
     created_msg: Tạo thành công một tên hiển thị mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
@@ -1036,7 +1040,7 @@ vi:
     remove: Bỏ liên kết bí danh
   appearance:
     advanced_web_interface: Bố cục
-    advanced_web_interface_hint: Bố cục nhiều cột cho phép bạn chuyển bố cục hiển thị thành nhiều cột khác nhau. Thích hợp với màn hình rộng.
+    advanced_web_interface_hint: Chia giao diện thành nhiều cột, phù hợp với màn hình rộng.
     animations_and_accessibility: Hiệu ứng
     confirmation_dialogs: Hộp thoại xác nhận
     discovery: Khám phá
@@ -1141,6 +1145,12 @@ vi:
       view_strikes: Xem những lần cảnh cáo cũ
     too_fast: Nghi vấn đăng ký spam, xin thử lại.
     use_security_key: Dùng khóa bảo mật
+  author_attribution:
+    example_title: Văn bản mẫu
+    hint_html: Kiểm soát cách bạn được ghi nhận khi chia sẻ liên kết trên Mastodon.
+    more_from_html: Thêm từ %{name}
+    s_blog: "%{name}'s Blog"
+    title: Ghi nhận người đăng
   challenge:
     confirm: Tiếp tục
     hint_html: "<strong>Mẹo:</strong> Chúng tôi sẽ không hỏi lại mật khẩu của bạn sau này."
@@ -1149,7 +1159,6 @@ vi:
   crypto:
     errors:
       invalid_key: không phải là mã khóa Ed25519 hoặc Curve25519 đúng
-      invalid_signature: không phải là chữ ký số Ed25519 đúng
   date:
     formats:
       default: "%-d %B, %Y"
@@ -1195,7 +1204,7 @@ vi:
       appealed_msg: Khiếu nại của bạn đã được gửi đi. Nếu nó được chấp nhận, bạn sẽ nhận được thông báo.
       appeals:
         submit: Gửi khiếu nại
-      approve_appeal: Chấp nhận kháng cáo
+      approve_appeal: Duyệt kháng cáo
       associated_report: Báo cáo đính kèm
       created_at: Ngày
       description_html: Đây là những cảnh cáo và áp đặt kiểm duyệt đối với bạn bởi đội ngũ %{instance}.
@@ -1256,7 +1265,7 @@ vi:
     add_new: Thêm mới
     errors:
       limit: Bạn đã đạt tới số lượng hashtag tối đa
-    hint_html: "<strong>Làm nổi bật những hashtag thường dùng.</strong> Một công cụ tuyệt vời để theo dõi các tác phẩm sáng tạo và dự án dài hạn của bạn, các hashtag thường dùng sẽ hiển thị nổi bật trên hồ sơ của bạn và cho phép truy cập nhanh vào các tút."
+    hint_html: "<strong>Làm nổi bật những hashtag thường dùng.</strong> Một công cụ tuyệt vời để theo dõi các tác phẩm sáng tạo và dự án dài hạn của bạn, cũng như giúp truy cập nhanh vào các tút."
   filters:
     contexts:
       account: Trang hồ sơ
@@ -1274,7 +1283,7 @@ vi:
       deprecated_api_multiple_keywords: Không thể thay đổi các tham số này từ ứng dụng này vì chúng áp dụng cho nhiều hơn một từ khóa bộ lọc. Sử dụng ứng dụng mới hơn hoặc giao diện web.
       invalid_context: Bối cảnh không hợp lệ hoặc không có
     index:
-      contexts: Bộ lọc %{contexts}
+      contexts: Lọc ở %{contexts}
       delete: Xóa bỏ
       empty: Chưa có bộ lọc nào.
       expires_in: Hết hạn trong %{distance}
@@ -1330,7 +1339,7 @@ vi:
       merge: Hợp nhất
       merge_long: Giữ hồ sơ hiện có và thêm hồ sơ mới
       overwrite: Ghi đè
-      overwrite_long: Thay thế các bản ghi hiện tại bằng những cái mới
+      overwrite_long: Thay thế các bản ghi hiện tại bằng các bản ghi mới
     overwrite_preambles:
       blocking_html: Bạn sắp <strong>thay thế danh sách chặn</strong> với <strong>%{total_items} tài khoản</strong> từ <strong>%{filename}</strong>.
       bookmarks_html: Bạn sắp <strong>thay thế lượt lưu</strong> với <strong>%{total_items} tút</strong> từ <strong>%{filename}</strong>.
@@ -1408,7 +1417,7 @@ vi:
     description_html: Nếu có lần đăng nhập đáng ngờ, hãy đổi ngay mật khẩu và bật xác minh 2 bước.
     empty: Không có lịch sử đăng nhập
     failed_sign_in_html: Đăng nhập thất bại bằng %{method} từ %{ip} (%{browser})
-    successful_sign_in_html: Đăng nhập thành công bằng %{method} từ %{ip} (%{browser})
+    successful_sign_in_html: Đăng nhập bằng %{method} từ %{ip} (%{browser})
     title: Lịch sử đăng nhập
   mail_subscriptions:
     unsubscribe:
@@ -1549,13 +1558,13 @@ vi:
     posting_defaults: Mặc định cho tút
     public_timelines: Bảng tin
   privacy:
-    hint_html: "<strong>Tùy chỉnh cách mọi người tìm thấy hồ sơ và các tút của bạn.</strong> Nhiều tính năng trong Mastodon có thể giúp bạn tiếp cận nhiều đối tượng hơn khi được bật. Hãy xem lại các cài đặt này để đảm bảo chúng phù hợp với bạn."
+    hint_html: "<strong>Tùy chỉnh cách mọi người tìm thấy hồ sơ và tút của bạn.</strong> Hãy đảm bảo các thiết lập sau phù hợp với bạn."
     privacy: Riêng tư
     privacy_hint_html: Kiểm soát mức độ chi tiết bạn muốn tiết lộ. Mọi người khám phá các hồ sơ thú vị và các ứng dụng thú vị bằng cách theo dõi những người khác và xem họ đăng từ ứng dụng nào, nhưng có thể bạn muốn ẩn nó đi.
     reach: Tiếp cận
     reach_hint_html: Kiểm soát cách bạn được khám phá và theo dõi. Bạn có muốn tút của mình xuất hiện trên màn hình Khám phá không? Bạn có muốn người khác nhìn thấy bạn trong các đề xuất theo dõi của họ không? Bạn muốn tự động chấp nhận tất cả những người theo dõi mới hay tự duyệt từng người theo dõi?
     search: Tìm kiếm
-    search_hint_html: Kiểm soát cách tìm thấy bạn. Bạn có muốn mọi người tìm thấy bạn bằng những gì bạn đã đăng công khai không? Bạn có muốn những người bên ngoài Mastodon tìm thấy hồ sơ của bạn khi tìm kiếm trên web không? Xin lưu ý rằng không thể đảm bảo loại trừ hoàn toàn khỏi tất cả các công cụ tìm kiếm đối với thông tin công khai.
+    search_hint_html: Kiểm soát cách tìm thấy bạn. Bạn có muốn mọi người tìm thấy bạn bằng những gì bạn đã đăng công khai không? Bạn có muốn những người bên ngoài Mastodon tìm thấy hồ sơ của bạn khi tìm kiếm trên web không? Lưu ý là không thể đảm bảo tránh khỏi các công cụ tìm kiếm đối với thông tin công khai.
     title: Riêng tư và tiếp cận
   privacy_policy:
     title: Chính sách bảo mật
@@ -1660,7 +1669,7 @@ vi:
     delete: Xóa tài khoản
     development: Lập trình
     edit_profile: Sửa hồ sơ
-    export: Xuất dữ liệu
+    export: Xuất
     featured_tags: Hashtag thường dùng
     import: Nhập dữ liệu
     import_and_export: Dữ liệu
@@ -1669,7 +1678,7 @@ vi:
     preferences: Chung
     profile: Hồ sơ
     relationships: Quan hệ
-    severed_relationships: Mối quan hệ bị cắt đứt
+    severed_relationships: Quan hệ bị cắt đứt
     statuses_cleanup: Tự động xóa tút cũ
     strikes: Lần cảnh cáo
     two_factor_authentication: Xác minh 2 bước
@@ -1682,7 +1691,7 @@ vi:
       user_domain_block: Bạn đã chặn %{target_name}
     lost_followers: Mất người theo dõi
     lost_follows: Mất người đang theo dõi
-    preamble: Bạn có thể mất số lượt theo dõi và người theo dõi khi chặn một máy chủ hoặc khi kiểm duyệt viên của bạn quyết định tạm dừng máy chủ từ xa. Khi điều đó xảy ra, bạn sẽ có thể tải xuống danh sách các mối quan hệ đã bị cắt đứt, để kiểm tra và nhập vào máy chủ khác.
+    preamble: Khi bạn hoặc kiểm duyệt viên máy chủ của bạn chặn một máy chủ, người bạn đang theo dõi và người theo dõi bạn có thể sẽ bị mất. Khi điều đó xảy ra, hãy vào đây tải xuống danh sách các mối quan hệ đã bị cắt đứt, và nhập thủ công.
     purged: Thông tin về máy chủ này đã bị quản trị viên máy chủ của bạn xóa sạch.
     type: Sự kiện
   statuses:
@@ -1763,7 +1772,7 @@ vi:
     contrast: Mastodon (Tương phản)
     default: Mastodon (Tối)
     mastodon-light: Mastodon (Sáng)
-    system: Tự động (chủ đề hệ thống)
+    system: Theo hệ thống
   time:
     formats:
       default: "%-d.%m.%Y %H:%M"
@@ -1826,14 +1835,14 @@ vi:
         spam: Spam
         violation: Nội dung vi phạm quy tắc cộng đồng
       explanation:
-        delete_statuses: Vài tút của bạn đã vi phạm nội quy máy chủ và tạm thời bị ẩn bởi kiểm duyệt viên của %{instance}.
+        delete_statuses: Tút của bạn đã vi phạm nội quy máy chủ và tạm thời bị ẩn bởi kiểm duyệt viên của %{instance}.
         disable: Bạn không còn có thể sử dụng tài khoản của mình, nhưng hồ sơ của bạn và dữ liệu khác vẫn còn nguyên. Bạn có thể yêu cầu sao lưu dữ liệu của mình, thay đổi cài đặt tài khoản hoặc xóa tài khoản của bạn.
         mark_statuses_as_sensitive: Vài tút của bạn đã bị kiểm duyệt viên %{instance} đánh dấu nhạy cảm. Mọi người cần nhấn vào media để xem nó. Bạn có thể tự đánh dấu tài khoản của bạn là nhạy cảm.
         sensitive: Từ giờ trở đi, tất cả các media của bạn bạn tải lên sẽ được đánh dấu là nhạy cảm và ẩn đằng sau cảnh báo nhấp chuột.
         silence: Bạn vẫn có thể sử dụng tài khoản của mình, nhưng chỉ những người đang theo dõi bạn mới thấy bài đăng của bạn. Bạn cũng bị loại khỏi các tính năng khám phá khác. Tuy nhiên, những người khác vẫn có thể theo dõi bạn.
         suspend: Bạn không còn có thể sử dụng tài khoản của bạn, hồ sơ và các dữ liệu khác không còn có thể truy cập được. Trong vòng 30 ngày, bạn vẫn có thể đăng nhập để yêu cầu bản sao dữ liệu của mình cho đến khi dữ liệu bị xóa hoàn toàn, nhưng chúng tôi sẽ giữ lại một số dữ liệu cơ bản để ngăn bạn thoát khỏi việc vô hiệu hóa.
       reason: 'Lý do:'
-      statuses: 'Tút lưu ý:'
+      statuses: 'Tút vi phạm:'
       subject:
         delete_statuses: Những tút %{acct} của bạn đã bị xóa bỏ
         disable: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
@@ -1899,19 +1908,20 @@ vi:
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
     signed_in_as: 'Đăng nhập bằng:'
   verification:
-    extra_instructions_html: <strong>Mẹo:</strong> Liên kết trên trang web của bạn có thể ẩn. Phần quan trọng là <code>rel="me"</code> ngăn chặn việc mạo danh trên các trang web có nội dung do người dùng tạo. Bạn thậm chí có thể sử dụng một thẻ <code>link</code> trên header của trang thay vì <code>a</code>, nhưng HTML phải có thể truy cập được mà không cần thực thi JavaScript.
+    extra_instructions_html: <strong>Mẹo:</strong> Có thể ẩn liên kết trên trang web của bạn. Quan trọng là <code>rel="me"</code> giúp ngăn chặn việc mạo danh trên các trang web có nội dung do người dùng tạo. Bạn cũng có thể sử dụng một thẻ <code>link</code> trên header của trang thay vì <code>a</code>, nhưng HTML phải có thể truy cập được mà không cần thực thi JavaScript.
     here_is_how: Cách thực hiện
     hint_html: "<strong>Xác minh danh tính trên Mastodon là dành cho tất cả mọi người.</strong> Dựa trên các tiêu chuẩn web mở, miễn phí bây giờ và mãi mãi. Tất cả những gì bạn cần là một trang web cá nhân để mọi người nhận ra bạn. Khi bạn liên kết đến trang web này từ hồ sơ của mình, chúng tôi sẽ kiểm tra xem trang web đó có liên kết lại với hồ sơ của bạn hay không và hiển thị một chỉ báo trực quan trên đó."
     instructions_html: Sao chép và dán mã bên dưới vào mã nguồn trang web của bạn. Sau đó, thêm địa chỉ trang web của bạn vào một trong các trường metadata trên hồ sơ của bạn từ tab "Sửa hồ sơ" và lưu thay đổi.
     verification: Xác minh
     verified_links: Những liên kết bạn đã xác minh
+    website_verification: Xác minh website
   webauthn_credentials:
     add: Thêm khóa bảo mật mới
     create:
       error: Có vấn đề khi thêm khóa bảo mật. Xin thử lại.
       success: Đã thêm khóa bảo mật mới thành công.
     delete: Xóa
-    delete_confirmation: Bạn thật sự muốn xóa khóa bảo mật này?
+    delete_confirmation: Bạn có chắc muốn xóa khóa bảo mật này?
     description_html: Nếu bạn kích hoạt <strong>khóa bảo mật</strong>, bạn sẽ cần dùng một trong những khóa bảo mật đó mỗi khi đăng nhập.
     destroy:
       error: Có vấn đề khi xóa khóa bảo mật. Xin thử lại.

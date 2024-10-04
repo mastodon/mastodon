@@ -543,7 +543,7 @@ gl:
       total_reported: Denuncias sobre eles
       total_storage: Adxuntos multimedia
       totals_time_period_hint_html: Os totais aquí mostrados inclúen todo o historial de datos.
-      unknown_instance: Actualmente non temos constancia deste rexistro no servidor.
+      unknown_instance: Actualmente non hai rexistro deste dominio no servidor.
     invites:
       deactivate_all: Desactivar todo
       filter:
@@ -602,7 +602,7 @@ gl:
         resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardarán avisos, e pecharase a denuncia.
         silence_description_html: A conta será visible só para quen xa a está a seguir ou quen a buscou manualmente, limitando moito o seu alcance. Pódese cambiar. Isto pecha tódalas denuncias acerca desta conta.
         suspend_description_html: A conta e todo o seu contido non serán accesible e finalmente eliminaranse, será imposible interactuar con ela. A decisión é reversible durante 30 días. Isto pecha tódalas denuncias sobre esta conta.
-      actions_description_html: Decide a acción a tomar para resolver esta denuncia. Se tomas accións punitivas contra a conta denunciada enviaraselle un correo, excepto se está indicada a categoría <strong>Spam</strong>.
+      actions_description_html: Decide a acción a tomar para resolver esta denuncia. Se tomas accións punitivas contra a conta denunciada enviaráselle un correo, excepto se está indicada a categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide a acción a tomar para resolver a denuncia. Isto só lle afecta ao xeito en que o <strong>teu</strong> servidor se comunica con esta conta remota e xestiona o seu contido.
       actions_no_posts: Esta denuncia non ten publicacións asociadas para eliminar
       add_to_report: Engadir máis á denuncia
@@ -875,6 +875,9 @@ gl:
         message_html: Non tes definidas regras para o servidor.
       sidekiq_process_check:
         message_html: Non hai procesos Sidekiq a funcionar para a cola(s) %{value}. Revisa a túa configuración para Sidekiq
+      software_version_check:
+        action: Ver as actualizacións dispoñibles
+        message_html: Hai dispoñible unha actualización para Mastodon.
       software_version_critical_check:
         action: Mira as actualizacións dispoñibles
         message_html: Hai unha actualización crítica de Mastodon dispoñible, actualiza axiña.
@@ -1174,7 +1177,6 @@ gl:
   crypto:
     errors:
       invalid_key: non é unha chave Ed25519 ou Curve25519 válida
-      invalid_signature: non é unha sinatura Ed25519 válida
   date:
     formats:
       default: "%d %b, %Y"
@@ -1693,7 +1695,7 @@ gl:
     delete: Eliminación da conta
     development: Desenvolvemento
     edit_profile: Editar perfil
-    export: Exportar datos
+    export: Exportar
     featured_tags: Cancelos destacados
     import: Importar
     import_and_export: Importar e exportar

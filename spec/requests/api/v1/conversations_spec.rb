@@ -26,6 +26,8 @@ RSpec.describe 'API V1 Conversations' do
           prev: api_v1_conversations_url(limit: 1, min_id: Status.first.id),
           next: api_v1_conversations_url(limit: 1, max_id: Status.first.id)
         )
+      expect(response.content_type)
+        .to start_with('application/json')
     end
 
     it 'returns conversations', :aggregate_failures do

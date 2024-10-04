@@ -875,6 +875,9 @@ hu:
         message_html: Még nem definiáltál egy szerver szabályt sem.
       sidekiq_process_check:
         message_html: Nincs Sidekiq folyamat, mely a %{value} sorhoz van rendelve. Kérlek, nézd át a Sidekiq beállításait
+      software_version_check:
+        action: Elérhető frissítések megtekintése
+        message_html: Egy Mastodon-frissítés elérhető.
       software_version_critical_check:
         action: Elérhető frissítések megtekintése
         message_html: Kritikus Mastodon frissítés érhető el, frissíts a lehető leggyorsabban.
@@ -1174,7 +1177,6 @@ hu:
   crypto:
     errors:
       invalid_key: érvénytelen Ed25519 vagy Curve25519 kulcs
-      invalid_signature: érvénytelen Ed25519 aláírás
   date:
     formats:
       default: "%Y. %b %d."
@@ -1693,7 +1695,7 @@ hu:
     delete: Fiók törlése
     development: Fejlesztőknek
     edit_profile: Profil szerkesztése
-    export: Adatok exportálása
+    export: Exportálás
     featured_tags: Kiemelt hashtagek
     import: Importálás
     import_and_export: Import és export

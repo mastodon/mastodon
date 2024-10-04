@@ -3,6 +3,11 @@
 module Reviewable
   extend ActiveSupport::Concern
 
+  included do
+    scope :reviewed, -> { where.not(reviewed_at: nil) }
+    scope :unreviewed, -> { where(reviewed_at: nil) }
+  end
+
   def requires_review?
     reviewed_at.nil?
   end

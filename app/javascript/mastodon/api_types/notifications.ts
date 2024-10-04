@@ -149,3 +149,12 @@ export interface ApiNotificationGroupsResultJSON {
   statuses: ApiStatusJSON[];
   notification_groups: ApiNotificationGroupJSON[];
 }
+
+export interface ApiNotificationRequestJSON {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  notifications_count: string;
+  account: ApiAccountJSON;
+  last_status?: ApiStatusJSON;
+}

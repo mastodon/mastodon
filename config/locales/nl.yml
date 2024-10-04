@@ -875,6 +875,9 @@ nl:
         message_html: Je hebt voor deze server geen regels opgesteld.
       sidekiq_process_check:
         message_html: Er draait geen Sidekiqproces voor de wachtrij(en) %{value}. Controleer je Sidekiqconfiguratie
+      software_version_check:
+        action: Beschikbare updates bekijken
+        message_html: Er is een Mastodon-update beschikbaar.
       software_version_critical_check:
         action: Bekijk de beschikbare updates
         message_html: Er is een kritieke update voor Mastodon beschikbaar. Update zo snel mogelijk.
@@ -1174,7 +1177,6 @@ nl:
   crypto:
     errors:
       invalid_key: is geen geldige Ed25519- of Curve25519-sleutel
-      invalid_signature: is geen geldige Ed25519-handtekening
   date:
     formats:
       default: "%d %b %Y"

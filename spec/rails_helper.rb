@@ -21,6 +21,7 @@ unless ENV['DISABLE_SIMPLECOV'] == 'true'
     add_group 'Libraries', 'lib'
     add_group 'Policies', 'app/policies'
     add_group 'Presenters', 'app/presenters'
+    add_group 'Search', 'app/chewy'
     add_group 'Serializers', 'app/serializers'
     add_group 'Services', 'app/services'
     add_group 'Validators', 'app/validators'
@@ -158,6 +159,11 @@ RSpec.configure do |config|
     # Use https and configured hostname in request spec requests
     integration_session.https!
     host! Rails.configuration.x.local_domain
+  end
+
+  config.before :each, type: :system do
+    # Align with capybara config so that rails helpers called from rspec use matching host
+    host! 'localhost:3000'
   end
 
   config.after do

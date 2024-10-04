@@ -22,6 +22,7 @@ th:
   admin:
     account_actions:
       action: ทำการกระทำ
+      already_silenced: มีการจำกัดบัญชีนี้ไปแล้ว
       already_suspended: มีการระงับบัญชีนี้ไปแล้ว
       title: ทำการกระทำการกลั่นกรองต่อ %{acct}
     account_moderation_notes:
@@ -860,12 +861,15 @@ th:
         message_html: คุณไม่ได้กำหนดกฎของเซิร์ฟเวอร์ใด ๆ
       sidekiq_process_check:
         message_html: ไม่มีกระบวนการ Sidekiq ที่กำลังทำงานสำหรับคิว %{value} โปรดตรวจทานการกำหนดค่า Sidekiq ของคุณ
+      software_version_check:
+        action: ดูการอัปเดตที่พร้อมใช้งาน
+        message_html: มีการอัปเดต Mastodon ที่พร้อมใช้งาน
       software_version_critical_check:
         action: ดูการอัปเดตที่พร้อมใช้งาน
         message_html: มีการอัปเดต Mastodon สำคัญพร้อมใช้งาน โปรดอัปเดตโดยเร็วที่สุดเท่าที่จะเป็นไปได้
       software_version_patch_check:
         action: ดูการอัปเดตที่พร้อมใช้งาน
-        message_html: มีการอัปเดต Mastodon ที่แก้ไขข้อบกพร่องพร้อมใช้งาน
+        message_html: มีการอัปเดต Mastodon ที่แก้ไขข้อบกพร่องที่พร้อมใช้งาน
       upload_check_privacy_error:
         action: ตรวจสอบที่นี่สำหรับข้อมูลเพิ่มเติม
         message_html: "<strong>เว็บเซิร์ฟเวอร์ของคุณกำหนดค่าไม่ถูกต้อง ความเป็นส่วนตัวของผู้ใช้ของคุณตกอยู่ในความเสี่ยง</strong>"
@@ -1141,6 +1145,12 @@ th:
       view_strikes: ดูการดำเนินการที่ผ่านมาต่อบัญชีของคุณ
     too_fast: ส่งแบบฟอร์มเร็วเกินไป ลองอีกครั้ง
     use_security_key: ใช้กุญแจความปลอดภัย
+  author_attribution:
+    example_title: ข้อความตัวอย่าง
+    hint_html: ควบคุมวิธีที่ให้เครดิตแก่คุณเมื่อมีการแบ่งปันลิงก์ใน Mastodon
+    more_from_html: เพิ่มเติมจาก %{name}
+    s_blog: บล็อกของ %{name}
+    title: การระบุแหล่งที่มาผู้สร้าง
   challenge:
     confirm: ดำเนินการต่อ
     hint_html: "<strong>เคล็ดลับ:</strong> เราจะไม่ถามรหัสผ่านของคุณกับคุณสำหรับชั่วโมงถัดไป"
@@ -1149,7 +1159,6 @@ th:
   crypto:
     errors:
       invalid_key: ไม่ใช่กุญแจ Ed25519 หรือ Curve25519 ที่ถูกต้อง
-      invalid_signature: ไม่ใช่ลายเซ็น Ed25519 ที่ถูกต้อง
   date:
     formats:
       default: "%d %b %Y"
@@ -1660,7 +1669,7 @@ th:
     delete: การลบบัญชี
     development: การพัฒนา
     edit_profile: แก้ไขโปรไฟล์
-    export: การส่งออกข้อมูล
+    export: ส่งออก
     featured_tags: แฮชแท็กที่น่าสนใจ
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
@@ -1905,6 +1914,7 @@ th:
     instructions_html: คัดลอกแล้ววางโค้ดด้านล่างลงใน HTML ของเว็บไซต์ของคุณ จากนั้นเพิ่มที่อยู่ของเว็บไซต์ของคุณลงในหนึ่งในช่องพิเศษในโปรไฟล์ของคุณจากแท็บ "แก้ไขโปรไฟล์" และบันทึกการเปลี่ยนแปลง
     verification: การตรวจสอบ
     verified_links: ลิงก์ที่ยืนยันแล้วของคุณ
+    website_verification: การตรวจสอบเว็บไซต์
   webauthn_credentials:
     add: เพิ่มกุญแจความปลอดภัยใหม่
     create:

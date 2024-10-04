@@ -874,8 +874,12 @@ lad:
         message_html: "<strong>Tu magazinaje de objektos es mal konfigurado. La privasita de tus utilizadores esta en riziko.</strong>"
     tags:
       moderation:
+        pending_review: Revizion esta asperando
         title: Estado
+        usable: Uzavle
       name: Nombre
+      newest: Mas muevos
+      oldest: Mas viejos
       reset: Reinisya
       review: Estado de revizion
       search: Bushka
@@ -1027,7 +1031,9 @@ lad:
       guide_link_text: Todos pueden kontribuir.
     sensitive_content: Kontenido sensivle
   application_mailer:
+    notification_preferences: Troka preferensyas de posta
     salutation: "%{name},"
+    settings: 'Troka preferensyas de posta: %{link}'
     unsubscribe: Dezabona
     view: 'Mira:'
     view_profile: Ve profil
@@ -1047,6 +1053,7 @@ lad:
       hint_html: Una koza mas! Tenemos ke konfirmar ke eres umano (para evitar spam!). Rezolve el CAPTCHA abasho i klika "Kontinua".
       title: Kontrolo de sigurita
     confirmations:
+      awaiting_review: Tu adreso de posta tiene sido konfirmado! La taifa de %{domain} esta revizando tu enrejistrasyon. Risiviras un meil si acheten tu kuento!
       awaiting_review_title: Estamos revizando tu enrejistramiento
       clicking_this_link: klikando en este atadijo
       login_link: konektate kon kuento
@@ -1054,6 +1061,7 @@ lad:
       redirect_to_app_html: Seras readresado a la aplikasyon <strong>%{app_name}</strong>. Si esto no afita, aprova %{clicking_this_link} o regresa manualmente a la aplikasyon.
       registration_complete: Tu enrejistrasyon en %{domain} ya esta kompletada!
       welcome_title: Bienvenido, %{name}!
+      wrong_email_hint: Si este adreso de posta es inkorekto, puedes trokarlo en las preferensyas del kuento.
     delete_account: Efasa kuento
     delete_account_html: Si keres supremir tu kuento, puedes <a href="%{path}">ir aki</a>. Seras pedido de una konfirmasyon.
     description:
@@ -1096,8 +1104,10 @@ lad:
     security: Sigurita
     set_new_password: Establese muevo kod
     setup:
+      email_below_hint_html: Mira en tu kuti de spam o solisita de muevo. Si el adreso de posta elektronika ke aparese aki es yerrado, puedes trokarlo aki.
       email_settings_hint_html: Klika el atadjiko ke te embimos para verifikar %{email}. Asperaremos aki.
       link_not_received: No risivites un atadijo?
+      new_confirmation_instructions_sent: Resiviras un muevo mesaj de posta elektronika kon el atadjio de konfirmasyon en unos minutos!
       title: Reviza tu kuti de arivo
     sign_in:
       preamble_html: Konektate kon tus kredensiales de <strong>%{domain}</strong>. Si tu kuento esta balabayado en otruno servidor, no puedras konektarte aki.
@@ -1109,11 +1119,14 @@ lad:
     status:
       account_status: Estado del kuento
       functional: Tu kuento esta kompletamente funksyonal.
+      pending: Tu solisitasyon esta asperando la revizion por muestros administradores. Esto puede tadrar algun tiempo. Arisiviras una posta elektronika si la solisitasyon sea achetada.
       redirecting_to: Tu kuento se topa inaktivo porke esta siendo readresado a %{acct}.
       self_destruct: Deke %{domain} va a serrarse, solo tendras akseso limitado a tu kuento.
       view_strikes: Ve amonestamientos pasados kontra tu kuento
     too_fast: Formulario enviado demaziado rapido, aprovalo de muevo.
     use_security_key: Uza la yave de sigurita
+  author_attribution:
+    more_from_html: Mas de %{name}
   challenge:
     confirm: Kontinua
     hint_html: "<strong>Konsejo:</strong> No retornaremos a demandarte por el kod durante la sigiente ora."
@@ -1122,7 +1135,6 @@ lad:
   crypto:
     errors:
       invalid_key: no es una yave Ed25519 o Curve25519 valida
-      invalid_signature: no es una firma Ed25519 valida
   date:
     formats:
       default: "%d %b %Y"
@@ -1151,6 +1163,9 @@ lad:
       before: 'Antes de kontinuar, por favor melda kon atensyon las sigientes notas:'
       caches: El kontenido ke tiene sido magazinado en kashe por otros sirvidores puede persistir
       data_removal: Tus publikasyones i el resto de datos se supremiran definitivamente
+      email_change_html: Puedes <a href="%{path}"> trokar tu adreso de posta elektronika</a> sin supremir tu kuento
+      email_contact_html: Si ainda no te tiene parvenido, puedes eskrivir a <a href="mailto:%{email}">%{email}</a> para pider ayuda
+      email_reconfirmation_html: Si no te tiene parvenido la posta de konfirmasyon, puedes <a href="%{path}"> retornar a solisitarlo</a>
       irreversible: No podras restaurar ni reaktivar tu kuento
       more_details_html: Para mas detalyos, ver <a href="%{terms_path}"> la politika de privasita</a>.
       username_available: Tu nombre de utilizador retornara a estar desponivle
@@ -1381,6 +1396,7 @@ lad:
     authentication_methods:
       otp: aplikasyon de autentifikasyon en dos pasos
       password: kod
+      sign_in_token: kodiche de sigurita por posta elektronika
       webauthn: yaves de sigurita
     description_html: Si ves una aktivita ke no rekoneses, konsidera trokar tu kod i kapasitar la autentifikasyon en dos pasos.
     empty: No ay estoria de autentifikasyon desponivle
@@ -1391,6 +1407,7 @@ lad:
     unsubscribe:
       action: Si, dezabona
       complete: Dezabonado
+      confirmation_html: Estas siguro de ke ya no keres risivir %{type} de Mastodon en %{domain} a tu posta elektronika %{email}? Syempre podras reabonarte dizde las <a href="%{settings_path}"> opsyones de avizos por posta.</a>.
       emails:
         notification_emails:
           favourite: avizos de favoritos por posta
@@ -1635,7 +1652,6 @@ lad:
     delete: Efasa kuento
     development: Dezvelopamiento
     edit_profile: Edita profil
-    export: Eksporta enformasyon
     featured_tags: Etiketas avaliadas
     import: Importo
     import_and_export: Importo i eksporto
@@ -1865,6 +1881,7 @@ lad:
     invalid_otp_token: Kodiche de dos pasos no valido
     otp_lost_help_html: Si pedriste akseso a los dos, puedes kontaktarte kon %{email}
     rate_limited: Demaziadas provas de autentifikasyon, aprova de muevo dempues.
+    seamless_external_login: Estas konektado por un servisyo eksterno i estonses la konfigurasyon de kod i konto de posta no estan disponivles.
     signed_in_as: 'Konektado komo:'
   verification:
     extra_instructions_html: <strong>Konsejo:</strong> El atadijo en tu web puede ser invizivle. La parte importante es <code>rel="me"</code>, ke evita la suplantasyon de identita en sitios kon kontenido jenerado por el utilizador. Puedes inkluzo uzar una etiketa <code>atadijo</code> en la kavesera de la pajina en vez de <code>a</code>, ama el HTML deve ser aksesivle sin exekutar JavaScript.

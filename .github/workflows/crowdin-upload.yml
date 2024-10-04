@@ -31,7 +31,7 @@ jobs:
           upload_sources: true
           upload_translations: false
           download_translations: false
-          crowdin_branch_name: main
+          crowdin_branch_name: ${{ github.base_ref || github.ref_name }}
 
         env:
           CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}

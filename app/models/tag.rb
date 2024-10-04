@@ -50,8 +50,6 @@ class Tag < ApplicationRecord
   validate :validate_name_change, if: -> { !new_record? && name_changed? }
   validate :validate_display_name_change, if: -> { !new_record? && display_name_changed? }
 
-  scope :reviewed, -> { where.not(reviewed_at: nil) }
-  scope :unreviewed, -> { where(reviewed_at: nil) }
   scope :pending_review, -> { unreviewed.where.not(requested_review_at: nil) }
   scope :usable, -> { where(usable: [true, nil]) }
   scope :not_usable, -> { where(usable: false) }
@@ -127,7 +125,7 @@ class Tag < ApplicationRecord
 
       query = Tag.matches_name(stripped_term)
       query = query.merge(Tag.listable) if options[:exclude_unlistable]
-      query = query.merge(matching_name(stripped_term).or(where.not(reviewed_at: nil))) if options[:exclude_unreviewed]
+      query = query.merge(matching_name(stripped_term).or(reviewed)) if options[:exclude_unreviewed]
 
       query.order(Arel.sql('length(name) ASC, name ASC'))
            .limit(limit)

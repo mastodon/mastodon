@@ -875,6 +875,9 @@ da:
         message_html: Ingen serverregler defineret.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-proces kører for %{value}-kø(er). Gennemgå Sidekiq-opsætningen
+      software_version_check:
+        action: Se tilgængelige opdateringer
+        message_html: En Mastodon-opdatering er tilgængelig.
       software_version_critical_check:
         action: Se tilgængelige opdateringer
         message_html: En kritisk Mastodon-opdatering er tilgængelig. Opdatér hurtigst muligt.
@@ -1174,7 +1177,6 @@ da:
   crypto:
     errors:
       invalid_key: er ikke en gyldig Ed25519- eller Curve25519-nøgle
-      invalid_signature: er ikke en gylidig Ed25519-signatur
   date:
     formats:
       default: "%d. %b %Y"
@@ -1693,7 +1695,7 @@ da:
     delete: Kontosletning
     development: Udvikling
     edit_profile: Redigér profil
-    export: Dataeksport
+    export: Eksport
     featured_tags: Udvalgte hashtags
     import: Import
     import_and_export: Import og eksport

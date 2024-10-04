@@ -903,6 +903,9 @@ uk:
         message_html: Ви не визначили будь-які правила сервера.
       sidekiq_process_check:
         message_html: Не працює процес Sidekiq для %{value} черги. Перегляньте конфігурації вашого Sidekiq
+      software_version_check:
+        action: Переглянути доступні оновлення
+        message_html: Доступне оновлення Mastodon.
       software_version_critical_check:
         action: Переглянути доступні оновлення
         message_html: Виявлено критичне оновлення Mastodon. Оновіться якнайшвидше.
@@ -1210,7 +1213,6 @@ uk:
   crypto:
     errors:
       invalid_key: не є припустимим ключем Ed25519 або Curve25519
-      invalid_signature: не є дійсним підписом Ed25519
   date:
     formats:
       default: "%b %d, %Y"
@@ -1745,7 +1747,7 @@ uk:
     delete: Видалення облікового запису
     development: Розробка
     edit_profile: Редагувати профіль
-    export: Експорт даних
+    export: Експорт
     featured_tags: Рекомендовані хештеґи
     import: Імпорт
     import_and_export: Імпорт та експорт

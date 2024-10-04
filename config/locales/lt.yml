@@ -421,9 +421,21 @@ lt:
       domain: Domenas
       new:
         create: Pridėto domeną
+    export_domain_allows:
+      new:
+        title: Importuoti domeno leidžiamus
+      no_file: Nėra pasirinkto failo
     export_domain_blocks:
       import:
         description_html: Netrukus importuosi domenų blokavimų sąrašą. Labai atidžiai peržiūrėk šį sąrašą, ypač jei ne tu jį sudarei.
+        existing_relationships_warning: Esami sekimo sąryšiai
+        private_comment_description_html: 'Kad būtų lengviau atsekti, iš kur importuoti blokavimai, importuoti blokavimai bus kuriami su šiuo privačiu komentaru: <q>%{comment}</q>'
+        private_comment_template: Importuota iš %{source}, %{date}
+        title: Importuoti domeno blokavimus
+      invalid_domain_block: 'Vienas ar daugiau domenų blokavimų buvo praleisti dėl toliau nurodytos (-ų) klaidos (-ų): %{error}'
+      new:
+        title: Importuoti domeno blokavimus
+      no_file: Nėra pasirinkto failo
     follow_recommendations:
       language: Kalbui
       status: Būsena
@@ -596,6 +608,9 @@ lt:
         message_html: Tavo Elasticsearch klasteris turi tik vieną mazgą, <code>ES_PRESET</code> turėtų būti nustatyta į <code>single_node_cluster</code>.
       elasticsearch_running_check:
         message_html: Nepavyko prijungti prie Elasticsearch. Patikrink, ar ji veikia, arba išjunk viso teksto paiešką.
+      software_version_check:
+        action: Žiūrėti galimus naujinimus
+        message_html: Yra „Mastodon“ naujinimas.
     tags:
       moderation:
         not_trendable: Netendencinga
@@ -853,18 +868,18 @@ lt:
   exports:
     archive_takeout:
       date: Data
-      download: Parsisiųsti archyvą
-      hint_html: Jūs galite prašyti savo <strong>įrašų bei medijos</strong> archyvo. Eksportuota informacija bus ActivityPub formatu, skaitoma suderintų programų. Galite prašyti archyvo, kas 7 dienas.
+      download: Atsisiųsti archyvą
+      hint_html: Gali paprašyti savo <strong>įrašų ir įkeltos medijos</strong> archyvo. Eksportuoti duomenys bus „ActivityPub“ formatu, kurį galima perskaityti bet kuria suderinama programine įranga. Archyvo galima prašyti kas 7 dienas.
       in_progress: Sudaromas archyvas...
       request: Prašyti savo archyvo
       size: Dydis
-    blocks: Jūs blokuojate
+    blocks: Blokuoji
     bookmarks: Žymės
     csv: CSV
-    domain_blocks: Domeno blokai
+    domain_blocks: Domeno blokavimai
     lists: Sąrašai
-    mutes: Jūs tildote
-    storage: Medijos sandėlis
+    mutes: Nutildei
+    storage: Medijos saugykla
   featured_tags:
     add_new: Pridėti naują
     hint_html: "<strong>Savo profilyje parodyk svarbiausius saitažodžius.</strong> Tai puikus įrankis kūrybiniams darbams ir ilgalaikiams projektams sekti, todėl svarbiausios saitažodžiai rodomi matomoje vietoje profilyje ir leidžia greitai pasiekti tavo paties įrašus."
@@ -904,7 +919,7 @@ lt:
       merge_long: Išsaugoti esančius įrašus ir pridėti naujus
       overwrite: Perrašyti
       overwrite_long: Pakeisti senus įrašus naujais
-    preface: Jūs galite importuoti informaciją iš kito serverio, tokią kaip sąrašą žmonių kuriuos sekate.
+    preface: Gali importuoti duomenis, kuriuos eksportavai iš kito serverio, pavyzdžiui, sekamų arba blokuojamų žmonių sąrašą.
     success: Jūsų informacija sėkmingai įkelta ir bus apdorota kaip įmanoma greičiau
     types:
       blocking: Blokuojamų sąrašas
@@ -955,6 +970,8 @@ lt:
   migrations:
     acct: Perkelta į
     cancel: Atšaukti nukreipimą
+    warning:
+      disabled_account: Po to tavo dabartine paskyra nebus galima naudotis visiškai. Tačiau turėsi prieigą prie duomenų eksporto ir pakartotinio aktyvavimo.
   moderation:
     title: Prižiūrėjimas
   notification_mailer:
@@ -1076,9 +1093,10 @@ lt:
     delete: Paskyros trynimas
     development: Kūrimas
     edit_profile: Redaguoti profilį
-    export: Duomenų eksportas
+    export: Eksportuoti
     featured_tags: Rodomi saitažodžiai
     import: Importuoti
+    import_and_export: Importas ir eksportas
     migrate: Paskyros migracija
     notifications: El. laiško pranešimai
     preferences: Nuostatos

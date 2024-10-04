@@ -15,6 +15,12 @@ el:
       user/invite_request:
         text: Αιτιολογία
     errors:
+      attributes:
+        domain:
+          invalid: δεν είναι έγκυρο όνομα τομέα
+      messages:
+        invalid_domain_on_line: το %{value} δεν είναι έγκυρο όνομα τομέα
+        too_many_lines: υπερβαίνει το όριο των %{limit} γραμμών
       models:
         account:
           attributes:

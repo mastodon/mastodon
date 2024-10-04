@@ -296,6 +296,7 @@ sq:
       filter_by_action: Filtroji sipas veprimit
       filter_by_user: Filtroji sipas përdoruesit
       title: Regjistër auditimesh
+      unavailable_instance: "(emër përkatësie jo i passhëm)"
     announcements:
       destroyed_msg: Lajmërimi u fshi me sukses!
       edit:
@@ -870,6 +871,9 @@ sq:
         message_html: S’keni përcaktuar ndonjë rregull shërbyesi.
       sidekiq_process_check:
         message_html: S’ka proces Sidekiq në punë për %{value} radhë. Ju lutemi, shqyrtoni formësimin tuaj për Sidekiq-un
+      software_version_check:
+        action: Shihni përditësimet e gatshme
+        message_html: Ka gati një përditësim Mastodon-i.
       software_version_critical_check:
         action: Shihni përditësimet e gatshme
         message_html: Ka të gatshëm një përditësim kritik të Mastodon-it, ju lutemi, përditësojeni sa më shpejt të jetë e mundur.
@@ -1166,7 +1170,6 @@ sq:
   crypto:
     errors:
       invalid_key: s’është kyç Ed25519 ose Curve25519 i vlefshëm
-      invalid_signature: s’është nënshkrim Ed25519 i vlefshëm
   date:
     formats:
       default: "%d %b, %Y"
@@ -1685,7 +1688,7 @@ sq:
     delete: Fshirje llogarie
     development: Zhvillim
     edit_profile: Përpunoni profilin
-    export: Eksportim të dhënash
+    export: Eksportim
     featured_tags: Hashtag-ë të zgjedhur
     import: Importo
     import_and_export: Importim dhe eksportim

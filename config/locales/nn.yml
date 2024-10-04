@@ -1,7 +1,7 @@
 ---
 nn:
   about:
-    about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
+    about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig dataene dine med Mastodon!'
     contact_missing: Ikkje sett
     contact_unavailable: I/T
     hosted_on: "%{domain} er vert for Mastodon"
@@ -39,7 +39,7 @@ nn:
       avatar: Bilete
       by_domain: Domene
       change_email:
-        changed_msg: Konto-e-posten er endra!
+        changed_msg: E-post for konto er endra!
         current_email: Noverande e-post
         label: Byt e-post
         new_email: Ny e-post
@@ -62,7 +62,7 @@ nn:
       disable: Slå av
       disable_sign_in_token_auth: Slå av e-post-token-autentisering
       disable_two_factor_authentication: Slå av 2FA
-      disabled: Slege av
+      disabled: Inaktiv
       display_name: Synleg namn
       domain: Domene
       edit: Rediger
@@ -875,6 +875,9 @@ nn:
         message_html: Du har ikke definert noen serverregler.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
+      software_version_check:
+        action: Sjå tilgjengelege oppdateringar
+        message_html: Ei Mastodon-oppdatering er tilgjengeleg.
       software_version_critical_check:
         action: Sjå tilgjengelege oppdateringar
         message_html: Ei kritisk oppdatering til Mastodon er tilgjengeleg. Oppdater så snart som mogleg.
@@ -1174,7 +1177,6 @@ nn:
   crypto:
     errors:
       invalid_key: er ikkje ein gild Ed25519 eller Curve25519 nykel
-      invalid_signature: er ikkje ein gild Ed25519-signatur
   date:
     formats:
       default: "%d. %b, %Y"
@@ -1693,7 +1695,7 @@ nn:
     delete: Kontosletting
     development: Utvikling
     edit_profile: Endr profil
-    export: Dataeksport
+    export: Eksporter
     featured_tags: Utvalgte emneknagger
     import: Hent inn
     import_and_export: Importer og eksporter

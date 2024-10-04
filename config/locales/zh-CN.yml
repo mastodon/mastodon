@@ -861,6 +861,9 @@ zh-CN:
         message_html: 你没有定义任何服务器规则。
       sidekiq_process_check:
         message_html: "%{value} 队列未运行任何 Sidekiq 进程。请检查你的 Sidekiq 配置"
+      software_version_check:
+        action: 查看可用更新
+        message_html: 有一个 Mastodon 更新可用。
       software_version_critical_check:
         action: 查看可用更新
         message_html: 有一个紧急Mastodon紧急更新可用，请尽快更新。
@@ -1156,7 +1159,6 @@ zh-CN:
   crypto:
     errors:
       invalid_key: 不是有效的 Ed25519 或者 Curve25519 密钥
-      invalid_signature: 不是有效的 Ed25519 签名
   date:
     formats:
       default: "%Y年%m月%d日"

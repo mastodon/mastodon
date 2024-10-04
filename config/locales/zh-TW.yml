@@ -863,6 +863,9 @@ zh-TW:
         message_html: 您尚未定義任何伺服器規則。
       sidekiq_process_check:
         message_html: 沒有佇列 %{value} 的 Sidekiq 行程，請檢查您的 Sidekiq 設定組態
+      software_version_check:
+        action: 檢視可取得的更新
+        message_html: 有可取得的 Mastodon 更新。
       software_version_critical_check:
         action: 檢視可取得的更新
         message_html: 有可取得的重要 Mastodon 更新，請立即升級。
@@ -1158,7 +1161,6 @@ zh-TW:
   crypto:
     errors:
       invalid_key: 這不是一把有效的 Ed25519 或 Curve25519 金鑰
-      invalid_signature: 這不是有效的 Ed25519 簽章
   date:
     formats:
       default: "%Y年%b月%d日"

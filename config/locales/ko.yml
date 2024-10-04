@@ -22,6 +22,7 @@ ko:
   admin:
     account_actions:
       action: 조치 취하기
+      already_silenced: 이 계정은 이미 제한되었습니다.
       already_suspended: 이 계정은 이미 정지되었습니다.
       title: "%{acct} 계정에 중재 취하기"
     account_moderation_notes:
@@ -862,6 +863,9 @@ ko:
         message_html: 아직 서버 규칙을 정하지 않았습니다.
       sidekiq_process_check:
         message_html: "%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요"
+      software_version_check:
+        action: 사용 가능한 업데이트 보기
+        message_html: 마스토돈 업데이트가 있습니다.
       software_version_critical_check:
         action: 사용 가능한 업데이트 보기
         message_html: 긴급 마스토돈 업데이트가 있으니, 가능한 서둘러 업데이트 해주세요.
@@ -1143,6 +1147,12 @@ ko:
       view_strikes: 내 계정에 대한 과거 중재 기록 보기
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
     use_security_key: 보안 키 사용
+  author_attribution:
+    example_title: 예시 텍스트
+    hint_html: 링크가 마스토돈에 공유될 때 내가 어떻게 표시될 지를 제어합니다.
+    more_from_html: "%{name}의 게시물 더 보기"
+    s_blog: "%{name}의 블로그"
+    title: 작성자 기여
   challenge:
     confirm: 계속
     hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
@@ -1151,7 +1161,6 @@ ko:
   crypto:
     errors:
       invalid_key: 유효하지 않은 Ed25519 또는 Curve25519 키
-      invalid_signature: 유효하지 않은 Ed25519 서명
   date:
     formats:
       default: "%Y-%m-%d"
@@ -1662,7 +1671,7 @@ ko:
     delete: 계정 삭제
     development: 개발
     edit_profile: 프로필 편집
-    export: 데이터 내보내기
+    export: 내보내기
     featured_tags: 추천 해시태그
     import: 데이터 가져오기
     import_and_export: 가져오기 & 내보내기
@@ -1907,6 +1916,7 @@ ko:
     instructions_html: 웹사이트에 아래 코드를 복사해 붙여 넣으세요. 그리고 "프로필 수정" 탭에서 그 웹사이트 주소를 프로필의 추가 필드 중 하나에 넣고 변경사항을 저장하세요.
     verification: 검증
     verified_links: 인증된 링크들
+    website_verification: 웹사이트 인증
   webauthn_credentials:
     add: 보안 키 추가
     create:

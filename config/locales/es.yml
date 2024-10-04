@@ -24,6 +24,8 @@ es:
   admin:
     account_actions:
       action: Realizar acción
+      already_silenced: Esta cuenta ya ha sido limitada.
+      already_suspended: Esta cuenta ya ha sido suspendida.
       title: Moderar %{acct}
     account_moderation_notes:
       create: Crear
@@ -45,6 +47,7 @@ es:
         title: Cambiar el correo electrónico de %{username}
       change_role:
         changed_msg: "¡Rol cambiado con éxito!"
+        edit_roles: Administrar roles de usuario
         label: Cambiar rol
         no_role: Sin rol
         title: Cambiar rol para %{username}
@@ -601,6 +604,7 @@ es:
         suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y finalmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los informes contra esta cuenta.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este informe. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
+      actions_no_posts: Este informe no tiene ningún mensaje asociado para eliminar
       add_to_report: Añadir más al reporte
       already_suspended_badges:
         local: Ya suspendido en este servidor
@@ -871,6 +875,9 @@ es:
         message_html: No ha definido ninguna regla del servidor.
       sidekiq_process_check:
         message_html: No hay ningún proceso Sidekiq en ejecución para la(s) cola(s) %{value}. Por favor, revise su configuración de Sidekiq
+      software_version_check:
+        action: Ver actualizaciones disponibles
+        message_html: Hay disponible una actualización de Mastodon.
       software_version_critical_check:
         action: Ver actualizaciones disponibles
         message_html: Una actualización crítica de Mastodon está disponible, por favor actualiza lo antes posible.
@@ -907,8 +914,8 @@ es:
     trends:
       allow: Permitir
       approved: Aprobadas
-      confirm_allow: "¿Estás seguro de que deseas permitir la etiqueta seleccionada?"
-      confirm_disallow: "¿Estás seguro de que deseas restringir la etiqueta seleccionada?"
+      confirm_allow: "¿Estás seguro de que deseas permitir las etiquetas seleccionadas?"
+      confirm_disallow: "¿Estás seguro de que deseas restringir las etiquetas seleccionadas?"
       disallow: No permitir
       links:
         allow: Permitir enlace
@@ -976,7 +983,7 @@ es:
         used_by_over_week:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
-      title: Recomendaciones y tendencias
+      title: Recomendaciones y Tendencias
       trending: En tendencia
     warning_presets:
       add_new: Añadir nuevo
@@ -1156,6 +1163,12 @@ es:
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     use_security_key: Usar la clave de seguridad
+  author_attribution:
+    example_title: Texto de ejemplo
+    hint_html: Controla cómo se te dará atribución cuando se compartan enlaces en Mastodon.
+    more_from_html: Más de %{name}
+    s_blog: Blog de %{name}
+    title: Atribución del autor
   challenge:
     confirm: Continuar
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
@@ -1164,7 +1177,6 @@ es:
   crypto:
     errors:
       invalid_key: no es una clave Ed25519 o Curve25519 válida
-      invalid_signature: no es una firma Ed25519 válida
   date:
     formats:
       default: "%d %b %Y"
@@ -1683,7 +1695,7 @@ es:
     delete: Borrar cuenta
     development: Desarrollo
     edit_profile: Editar perfil
-    export: Exportar información
+    export: Exportar
     featured_tags: Hashtags destacados
     import: Importar
     import_and_export: Importar y exportar
@@ -1933,6 +1945,7 @@ es:
     instructions_html: Copia y pega el siguiente código en el HTML de tu sitio web. A continuación, añade la dirección de su sitio web en uno de los campos extra de tu perfil desde la pestaña "Editar perfil" y guarda los cambios.
     verification: Verificación
     verified_links: Tus enlaces verificados
+    website_verification: Verificación del sitio web
   webauthn_credentials:
     add: Agregar nueva clave de seguridad
     create:

@@ -860,6 +860,8 @@ sv:
         message_html: Du har inte definierat några serverregler.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-process körs för kön/köerna %{value}. Vänligen kontrollera din Sidekiq-konfiguration
+      software_version_check:
+        message_html: En Mastodon-uppdatering är tillgänglig.
       software_version_critical_check:
         action: Se tillgängliga uppdateringar
         message_html: En kritisk uppdatering för Mastodon är tillgänglig. Uppdatera så snart som möjligt.
@@ -1128,7 +1130,6 @@ sv:
   crypto:
     errors:
       invalid_key: är inte en giltig Ed25519 eller Curve25519 nyckel
-      invalid_signature: är inte en giltig Ed25519 signatur
   date:
     formats:
       default: "%b %d, %Y"
@@ -1646,7 +1647,7 @@ sv:
     delete: Konto radering
     development: Utveckling
     edit_profile: Redigera profil
-    export: Exportera data
+    export: Export
     featured_tags: Utvalda hashtaggar
     import: Importera
     import_and_export: Import och export

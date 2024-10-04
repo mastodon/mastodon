@@ -875,6 +875,9 @@ it:
         message_html: Non hai definito alcuna regola del server.
       sidekiq_process_check:
         message_html: Nessun processo di Sidekiq in esecuzione per le code di %{value}. Sei pregato di revisionare la tua configurazione di Sidekiq
+      software_version_check:
+        action: Visualizza gli aggiornamenti disponibili
+        message_html: È disponibile un aggiornamento per Mastodon.
       software_version_critical_check:
         action: Visualizza gli aggiornamenti disponibili
         message_html: Un aggiornamento critico di Mastodon è disponibile, ti preghiamo di aggiornare il più rapidamente possibile.
@@ -1176,7 +1179,6 @@ it:
   crypto:
     errors:
       invalid_key: non è una chiave Ed25519 o Curve25519 valida
-      invalid_signature: non è una firma Ed25519 valida
   date:
     formats:
       default: "%d %b %Y"
@@ -1695,7 +1697,7 @@ it:
     delete: Cancellazione account
     development: Sviluppo
     edit_profile: Modifica profilo
-    export: Esportazione dati
+    export: Esporta
     featured_tags: Hashtag in evidenza
     import: Importa
     import_and_export: Importa ed esporta

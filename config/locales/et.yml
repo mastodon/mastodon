@@ -24,6 +24,7 @@ et:
   admin:
     account_actions:
       action: Täida tegevus
+      already_silenced: See konto on juba piiratud.
       already_suspended: See konto on juba peatatud.
       title: Rakenda moderaatori tegevus kasutajale %{acct}
     account_moderation_notes:
@@ -133,6 +134,7 @@ et:
       resubscribe: Telli taas
       role: Roll
       search: Otsi
+      search_same_email_domain: Muud kasutajad sama e-posti domeeniga
       search_same_ip: Teised kasutajad, kellel on sama IP
       security: Turvalisus
       security_measures:
@@ -173,21 +175,26 @@ et:
         approve_appeal: Rahulda vaidlustus
         approve_user: Kinnita kasutaja
         assigned_to_self_report: Määras Teavituse
+        change_email_user: Muuda kasutaja e-posti
         change_role_user: Muuda kasutaja rolli
         confirm_user: Kasutaja kinnitatud
         create_account_warning: Lisas hoiatuse
         create_announcement: Lisas teadaande
+        create_canonical_email_block: Loo e-posti blokeering
         create_custom_emoji: Lisas kohandatud emotikoni
         create_domain_allow: Lisas lubatud domeeni
         create_domain_block: Domeeni blokeerimine
+        create_email_domain_block: Loo e-posti domeeni blokeering
         create_ip_block: IP-reegli lisamine
         create_unavailable_domain: Kättesaamatu domeeni lisamine
         create_user_role: Loo roll
         demote_user: Alandas kasutaja
         destroy_announcement: Eemaldas teadaande
+        destroy_canonical_email_block: Kustuta e-posti blokeering
         destroy_custom_emoji: Eemaldas kohandatud emotikoni
         destroy_domain_allow: Eemaldas lubatud domeeni
         destroy_domain_block: Domeeniblokeeringu eemaldamine
+        destroy_email_domain_block: Kustuta e-posti domeeni blokeering
         destroy_instance: Domeeni kustutamine
         destroy_ip_block: IP-reegli kustutamine
         destroy_status: Kustuta postitus
@@ -228,20 +235,26 @@ et:
         approve_appeal_html: "%{name} kiitis heaks modereerimise otsuse vaidlustuse %{target} poolt"
         approve_user_html: "%{name} kiitis heaks registreerimise %{target} poolt"
         assigned_to_self_report_html: "%{name} määras raporti %{target} endale"
+        change_email_user_html: "%{name} muutis kasutaja %{target} e-postiaadressi"
         change_role_user_html: "%{name} muutis %{target} rolli"
+        confirm_user_html: "%{name} kinnitas kasutaja %{target} e-postiaadressi"
         create_account_warning_html: "%{name} saatis %{target} hoiatuse"
         create_announcement_html: "%{name} lõi uue teate %{target}"
+        create_canonical_email_block_html: "%{name} blokeeris e-posti räsiga %{target}"
         create_custom_emoji_html: "%{name} laadis üles uue emotikoni %{target}"
         create_domain_allow_html: "%{name} lubas föderatsiooni domeeniga %{target}"
         create_domain_block_html: "%{name} keelas domeeni %{target}"
+        create_email_domain_block_html: "%{name} blokeeris e-posti domeeni %{target}"
         create_ip_block_html: "%{name} lõi IP-aadressile %{target} reegli"
         create_unavailable_domain_html: "%{name} lõpetas edastamise domeeni %{target}"
         create_user_role_html: "%{name} lõi rolli %{target}"
         demote_user_html: "%{name} alandas kasutajat %{target}"
         destroy_announcement_html: "%{name} kustutas teadaande %{target}"
+        destroy_canonical_email_block_html: "%{name} eemaldas blokeeringu e-postilt räsiga %{target}"
         destroy_custom_emoji_html: "%{name} kustutas emotikoni %{target}"
         destroy_domain_allow_html: "%{name} keelas föderatsiooni domeeniga %{target}"
         destroy_domain_block_html: "%{name} lubas domeeni %{target}"
+        destroy_email_domain_block_html: "%{name} eemaldas blokeeringu e-posti domeenilt %{target}"
         destroy_instance_html: "%{name} kustutas domeeni %{target}"
         destroy_ip_block_html: "%{name} kustutas IP-aadressi %{target} reegli"
         destroy_status_html: "%{name} kustutas %{target} postituse"
@@ -260,6 +273,7 @@ et:
         reject_user_html: "%{name} lükkas %{target} liitumissoovi tagasi"
         remove_avatar_user_html: "%{name} eemaldas %{target} avatari"
         reopen_report_html: "%{name} taasavas raporti %{target}"
+        resend_user_html: "%{name} lähtestas %{target} kinnituskirja e-posti"
         reset_password_user_html: "%{name} lähtestas %{target} salasõna"
         resolve_report_html: "%{name} lahendas raporti %{target}"
         sensitive_account_html: "%{name} märkis %{target} meedia kui tundlik sisu"
@@ -420,6 +434,7 @@ et:
       attempts_over_week:
         one: "%{count} katse viimase nädala kestel"
         other: "%{count} liitumiskatset viimase nädala kestel"
+      created_msg: E-posti domeen edukalt blokeeritud
       delete: Kustuta
       dns:
         types:
@@ -428,8 +443,12 @@ et:
       new:
         create: Lisa domeen
         resolve: Domeeni lahendamine
+        title: Blokeeri uus e-posti domeen
+      no_email_domain_block_selected: Ühtegi e-posti domeeni blokeeringut ei muudetud, kuna ühtegi ei valitud
       not_permitted: Ei ole lubatud
+      resolved_dns_records_hint_html: Domeeninimi lahendatakse järgmistele MX-domeenidele, mis on lõppkokkuvõttes vastutavad e-kirjade vastuvõtmise eest. MX-domeeni blokeerimine blokeerib registreerimise mis tahes e-posti aadressilt, mis kasutab sama MX-domeeni, isegi kui nähtav domeeninimi on erinev. <strong>Ole ettevaatlik, et mitte blokeerida peamisi e-posti teenusepakkujaid.</strong>
       resolved_through_html: Lahendatud %{domain} kaudu
+      title: Blokeeritud e-posti domeenid
     export_domain_allows:
       new:
         title: Lubatud domeenide import
@@ -583,6 +602,7 @@ et:
         resolve_description_html: Raporteeritud konto suhtes ei võeta midagi ette, juhtumit ei registreerita ja raport suletakse.
         silence_description_html: Konto saab olema nähtav ainult senistele jälgijatele või otsestele pöördujatele, mõjutates avalikku levi. On tagasipööratav. Sulgeb kõik konto suhtes esitatud raportid.
         suspend_description_html: See konto ja kogu selle sisu muutub kättesaamatuks ning kustub lõpuks ja igasugune suhtlus sellega muutub võimatuks. Tagasipööratav 30 päeva jooksul. Lõpetab kõik selle konto kohta esitatud kaebused.
+      actions_description_html: Otsusta, milliseid meetmeid selle raporti lahendamiseks võtta. Kui võtad raporteeritud konto suhtes karistusmeetme, saadetakse talle e-posti teade, välja arvatud juhul, kui valid kategooria <strong>Rämps</strong>.
       actions_description_remote_html: Otsusta, mida teha selle raporti lahendamiseks. See mõjutab ainult seda, kuidas <strong>Sinu</strong> server selle kaugkontoga suhtleb ning selle sisu käsitleb.
       actions_no_posts: Selle raportiga pole seotud ühtegi postitust, mida kustutada
       add_to_report: Lisa raportile juurde
@@ -648,6 +668,7 @@ et:
         delete_data_html: Kustuta tänasest 30 päeva pärast kasutaja <strong>@%{acct}</strong> profiil ja sisu, kui vahepeal tema kontot ei taastata
         preview_preamble_html: "<strong>@%{acct}</strong> saab järgmise sisuga hoiatuse:"
         record_strike_html: Salvesta <strong>@%{acct}</strong> kohta juhtum, et aidata selle konto tulevaste rikkumiste puhul reageerida
+        send_email_html: Saada hoiatuskiri <strong>@%{acct}</strong>
         warning_placeholder: Valikuline täiendav põhjendus modereerimisele.
       target_origin: Raporteeritud konto päritolu
       title: Teavitused
@@ -687,6 +708,7 @@ et:
         manage_appeals: Vaidlustuste haldamine
         manage_appeals_description: Lubab kasutajail läbi vaadata modereerimisotsuste vaidlustusi
         manage_blocks: Keeldude haldamine
+        manage_blocks_description: Lubab kasutajatel blokeerida e-posti teenusepakkujaid ja IP-aadresse
         manage_custom_emojis: Halda isetehtud emotikone
         manage_custom_emojis_description: Lubab kasutajatel hallata serveris isetehtud emotikone
         manage_federation: Halda födereerumist
@@ -704,6 +726,7 @@ et:
         manage_taxonomies: Halda taksonoomiaid
         manage_taxonomies_description: Luba kasutajatel populaarset sisu üle vaadata ning uuendada siltide sätteid
         manage_user_access: Halda kasutajate ligipääsu
+        manage_user_access_description: Võimaldab kasutajatel keelata teiste kasutajate kaheastmelise autentimise, muuta oma e-posti aadressi ja lähtestada oma parooli
         manage_users: Kasutajate haldamine
         manage_users_description: Lubab kasutajail näha teiste kasutajate üksikasju ja teha nende suhtes modereerimisotsuseid
         manage_webhooks: Halda webhook'e
@@ -1137,6 +1160,12 @@ et:
       view_strikes: Vaata enda eelnevaid juhtumeid
     too_fast: Vorm esitatud liiga kiirelt, proovi uuesti.
     use_security_key: Kasuta turvavõtit
+  author_attribution:
+    example_title: Näidistekst
+    hint_html: Määra, kuidas sind krediteeritakse, kui linke Mastodonis jagatakse.
+    more_from_html: Rohkem kasutajalt %{name}
+    s_blog: Kasutaja %{name} blogi
+    title: Autori tunnustamine
   challenge:
     confirm: Jätka
     hint_html: "<strong>Nõuanne:</strong> Me ei küsi salasõna uuesti järgmise tunni jooksul."
@@ -1145,7 +1174,6 @@ et:
   crypto:
     errors:
       invalid_key: ei ole õige Ed25519 ega Curve25519 võti
-      invalid_signature: ei ole õige Ed25519 allkiri
   date:
     formats:
       default: "%d. %b %Y"
@@ -1418,6 +1446,16 @@ et:
     unsubscribe:
       action: Jah, lõpeta tellimine
       complete: Tellimine lõpetatud
+      confirmation_html: Kas oled kindel, et soovid loobuda %{type} tellimisest oma e-postiaadressile %{email} Mastodonist kohas %{domain}? Saad alati uuesti tellida oma <a href="%{settings_path}">e-posti teavituste seadetest</a>.
+      emails:
+        notification_emails:
+          favourite: lemmikuks märkimise teavituskirjade
+          follow: jälgimiste teavituskirjade
+          follow_request: jälgimistaotluste teavituskirjade
+          mention: mainimiste teavituskirjade
+          reblog: jagamiste teavituskirjade
+      resubscribe_html: Kui loobusid tellimisest ekslikult, saad uuesti tellida oma <a href="%{settings_path}">e-posti teavituste seadetest</a>.
+      success_html: Sa ei saa enam %{type} teateid oma e-postile %{email} Mastodonist kohas %{domain}.
       title: Loobu tellimisest
   media_attachments:
     validations:
@@ -1654,7 +1692,6 @@ et:
     delete: Konto kustutamine
     development: Arendus
     edit_profile: Muuda profiili
-    export: Andmete eksportimine
     featured_tags: Esile toodud sildid
     import: Impordi
     import_and_export: Import / eksport
@@ -1906,6 +1943,7 @@ et:
     instructions_html: Kopeeri ja kleebi allpool olev kood oma lehe HTML lähtekoodi. Seejärel lisa oma kodulehe aadress profiili "Muuda profiili" taabi ühte lisavälja ning salvesta muudatused.
     verification: Kinnitamine
     verified_links: Sinu kontrollitud lingid
+    website_verification: Veebilehe kontrollimine
   webauthn_credentials:
     add: Uue turvavõtme lisamine
     create:

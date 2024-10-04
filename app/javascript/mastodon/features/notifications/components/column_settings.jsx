@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { forceGroupedNotifications } from 'mastodon/initial_state';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_REPORTS } from 'mastodon/permissions';
 
 import ClearColumnButton from './clear_column_button';
@@ -36,7 +35,6 @@ class ColumnSettings extends PureComponent {
 
     const filterAdvancedStr = <FormattedMessage id='notifications.column_settings.filter_bar.advanced' defaultMessage='Display all categories' />;
     const unreadMarkersShowStr = <FormattedMessage id='notifications.column_settings.unread_notifications.highlight' defaultMessage='Highlight unread notifications' />;
-    const groupingShowStr = <FormattedMessage id='notifications.column_settings.beta.grouping' defaultMessage='Group notifications' />;
     const alertStr = <FormattedMessage id='notifications.column_settings.alert' defaultMessage='Desktop notifications' />;
     const showStr = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
     const soundStr = <FormattedMessage id='notifications.column_settings.sound' defaultMessage='Play sound' />;
@@ -67,18 +65,6 @@ class ColumnSettings extends PureComponent {
         )}
 
         <PolicyControls />
-
-        {!forceGroupedNotifications && (
-          <section role='group' aria-labelledby='notifications-beta'>
-            <h3 id='notifications-beta'>
-              <FormattedMessage id='notifications.column_settings.beta.category' defaultMessage='Experimental features' />
-            </h3>
-
-            <div className='column-settings__row'>
-              <SettingToggle id='unread-notification-markers' prefix='notifications' settings={settings} settingPath={['groupingBeta']} onChange={onChange} label={groupingShowStr} />
-            </div>
-          </section>
-        )}
 
         <section role='group' aria-labelledby='notifications-unread-markers'>
           <h3 id='notifications-unread-markers'>

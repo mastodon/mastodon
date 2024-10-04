@@ -60,7 +60,7 @@ vi:
       error:
         title: Một lỗi đã xảy ra
       new:
-        prompt_html: "%{client_name} yêu cầu truy cập tài khoản của bạn. Đây là ứng dụng của bên thứ ba. <strong>Nếu không tin tưởng, đừng cho phép nó.</strong>"
+        prompt_html: "%{client_name} cần được bạn cho phép truy cập vào tài khoản. <strong>Cho phép nếu bạn tin tưởng ứng dụng này.</strong>"
         review_permissions: Quyền truy cập
         title: Yêu cầu truy cập
       show:
@@ -71,7 +71,7 @@ vi:
       confirmations:
         revoke: Bạn có chắc không?
       index:
-        authorized_at: Cho phép %{date}
+        authorized_at: Cho phép vào %{date}
         description_html: Đây là những ứng dụng có thể truy cập tài khoản của bạn bằng API. Nếu có ứng dụng bạn không nhận ra ở đây hoặc ứng dụng hoạt động sai, bạn có thể thu hồi quyền truy cập của ứng dụng đó.
         last_used_at: Dùng lần cuối %{date}
         never_used: Chưa dùng
@@ -151,7 +151,7 @@ vi:
     scopes:
       admin:read: đọc mọi dữ liệu trên máy chủ
       admin:read:accounts: đọc thông tin nhạy cảm của tất cả các tài khoản
-      admin:read:canonical_email_blocks: đọc thông tin nhạy cảm của tất cả các khối email chuẩn
+      admin:read:canonical_email_blocks: đọc thông tin nhạy cảm của tất cả khối email chuẩn
       admin:read:domain_allows: đọc thông tin nhạy cảm của tất cả các tên miền cho phép
       admin:read:domain_blocks: đọc thông tin nhạy cảm của tất cả các tên miền chặn
       admin:read:email_domain_blocks: đọc thông tin nhạy cảm của tất cả các miền email chặn

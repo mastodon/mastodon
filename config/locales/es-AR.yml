@@ -875,6 +875,9 @@ es-AR:
         message_html: No definiste ninguna regla del servidor.
       sidekiq_process_check:
         message_html: No hay ningún proceso Sidekiq en ejecución para la/s cola/s %{value}. Por favor, revisá tu configuración de Sidekiq
+      software_version_check:
+        action: Ver actualizaciones disponibles
+        message_html: Hay disponible una actualización de Mastodon.
       software_version_critical_check:
         action: Ver actualizaciones disponibles
         message_html: Una actualización crítica de Mastodon está disponible; por favor, actualizá lo antes posible.
@@ -1174,7 +1177,6 @@ es-AR:
   crypto:
     errors:
       invalid_key: no es una clave Ed25519 o Curve25519 válida
-      invalid_signature: no es una firma Ed25519 válida
   date:
     formats:
       default: "%d de %b de %Y"
@@ -1693,7 +1695,7 @@ es-AR:
     delete: Eliminación de la cuenta
     development: Desarrollo
     edit_profile: Editar perfil
-    export: Exportación de datos
+    export: Exportar
     featured_tags: Etiquetas destacadas
     import: Importar
     import_and_export: Importación y exportación

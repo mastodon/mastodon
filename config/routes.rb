@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   scope path: '.well-known' do
     scope module: :well_known do
       get 'oauth-authorization-server', to: 'oauth_metadata#show', as: :oauth_metadata, defaults: { format: 'json' }
-      get 'host-meta', to: 'host_meta#show', as: :host_meta, defaults: { format: 'xml' }
+      get 'host-meta', to: 'host_meta#show', as: :host_meta
       get 'nodeinfo', to: 'node_info#index', as: :nodeinfo, defaults: { format: 'json' }
       get 'webfinger', to: 'webfinger#show', as: :webfinger
     end
@@ -126,6 +126,8 @@ Rails.application.routes.draw do
       end
 
       resources :replies, only: [:index], module: :activitypub
+      resources :likes, only: [:index], module: :activitypub
+      resources :shares, only: [:index], module: :activitypub
     end
 
     resources :followers, only: [:index], controller: :follower_accounts
@@ -134,7 +136,6 @@ Rails.application.routes.draw do
     scope module: :activitypub do
       resource :outbox, only: [:show]
       resource :inbox, only: [:create]
-      resource :claim, only: [:create]
       resources :collections, only: [:show]
       resource :followers_synchronization, only: [:show]
     end
