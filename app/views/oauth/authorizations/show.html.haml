@@ -3,5 +3,5 @@
     %p= t('doorkeeper.authorizations.show.title')
     .input-copy
       .input-copy__wrapper
-        %input.oauth-code{ type: 'text', spellcheck: 'false', readonly: true, value: params[:code] }
+        = copyable_input value: params[:code], class: 'oauth-code'
       %button{ type: :button }= t('generic.copy')
