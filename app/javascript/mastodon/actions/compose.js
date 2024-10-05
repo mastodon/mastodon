@@ -19,26 +19,26 @@ let fetchComposeSuggestionsAccountsController;
 /** @type {AbortController | undefined} */
 let fetchComposeSuggestionsTagsController;
 
-export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
-export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
-export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
-export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
-export const COMPOSE_REPLY           = 'COMPOSE_REPLY';
-export const COMPOSE_REPLY_CANCEL    = 'COMPOSE_REPLY_CANCEL';
-export const COMPOSE_DIRECT          = 'COMPOSE_DIRECT';
-export const COMPOSE_MENTION         = 'COMPOSE_MENTION';
-export const COMPOSE_RESET           = 'COMPOSE_RESET';
+export const COMPOSE_CHANGE = 'COMPOSE_CHANGE';
+export const COMPOSE_SUBMIT_REQUEST = 'COMPOSE_SUBMIT_REQUEST';
+export const COMPOSE_SUBMIT_SUCCESS = 'COMPOSE_SUBMIT_SUCCESS';
+export const COMPOSE_SUBMIT_FAIL = 'COMPOSE_SUBMIT_FAIL';
+export const COMPOSE_REPLY = 'COMPOSE_REPLY';
+export const COMPOSE_REPLY_CANCEL = 'COMPOSE_REPLY_CANCEL';
+export const COMPOSE_DIRECT = 'COMPOSE_DIRECT';
+export const COMPOSE_MENTION = 'COMPOSE_MENTION';
+export const COMPOSE_RESET = 'COMPOSE_RESET';
 
-export const COMPOSE_UPLOAD_REQUEST    = 'COMPOSE_UPLOAD_REQUEST';
-export const COMPOSE_UPLOAD_SUCCESS    = 'COMPOSE_UPLOAD_SUCCESS';
-export const COMPOSE_UPLOAD_FAIL       = 'COMPOSE_UPLOAD_FAIL';
-export const COMPOSE_UPLOAD_PROGRESS   = 'COMPOSE_UPLOAD_PROGRESS';
+export const COMPOSE_UPLOAD_REQUEST = 'COMPOSE_UPLOAD_REQUEST';
+export const COMPOSE_UPLOAD_SUCCESS = 'COMPOSE_UPLOAD_SUCCESS';
+export const COMPOSE_UPLOAD_FAIL = 'COMPOSE_UPLOAD_FAIL';
+export const COMPOSE_UPLOAD_PROGRESS = 'COMPOSE_UPLOAD_PROGRESS';
 export const COMPOSE_UPLOAD_PROCESSING = 'COMPOSE_UPLOAD_PROCESSING';
-export const COMPOSE_UPLOAD_UNDO       = 'COMPOSE_UPLOAD_UNDO';
+export const COMPOSE_UPLOAD_UNDO = 'COMPOSE_UPLOAD_UNDO';
 
-export const THUMBNAIL_UPLOAD_REQUEST  = 'THUMBNAIL_UPLOAD_REQUEST';
-export const THUMBNAIL_UPLOAD_SUCCESS  = 'THUMBNAIL_UPLOAD_SUCCESS';
-export const THUMBNAIL_UPLOAD_FAIL     = 'THUMBNAIL_UPLOAD_FAIL';
+export const THUMBNAIL_UPLOAD_REQUEST = 'THUMBNAIL_UPLOAD_REQUEST';
+export const THUMBNAIL_UPLOAD_SUCCESS = 'THUMBNAIL_UPLOAD_SUCCESS';
+export const THUMBNAIL_UPLOAD_FAIL = 'THUMBNAIL_UPLOAD_FAIL';
 export const THUMBNAIL_UPLOAD_PROGRESS = 'THUMBNAIL_UPLOAD_PROGRESS';
 
 export const COMPOSE_SUGGESTIONS_CLEAR = 'COMPOSE_SUGGESTIONS_CLEAR';
@@ -49,41 +49,41 @@ export const COMPOSE_SUGGESTION_TAGS_UPDATE = 'COMPOSE_SUGGESTION_TAGS_UPDATE';
 
 export const COMPOSE_TAG_HISTORY_UPDATE = 'COMPOSE_TAG_HISTORY_UPDATE';
 
-export const COMPOSE_MOUNT   = 'COMPOSE_MOUNT';
+export const COMPOSE_MOUNT = 'COMPOSE_MOUNT';
 export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 
-export const COMPOSE_SENSITIVITY_CHANGE  = 'COMPOSE_SENSITIVITY_CHANGE';
-export const COMPOSE_SPOILERNESS_CHANGE  = 'COMPOSE_SPOILERNESS_CHANGE';
+export const COMPOSE_SENSITIVITY_CHANGE = 'COMPOSE_SENSITIVITY_CHANGE';
+export const COMPOSE_SPOILERNESS_CHANGE = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
-export const COMPOSE_VISIBILITY_CHANGE   = 'COMPOSE_VISIBILITY_CHANGE';
-export const COMPOSE_COMPOSING_CHANGE    = 'COMPOSE_COMPOSING_CHANGE';
-export const COMPOSE_LANGUAGE_CHANGE     = 'COMPOSE_LANGUAGE_CHANGE';
+export const COMPOSE_VISIBILITY_CHANGE = 'COMPOSE_VISIBILITY_CHANGE';
+export const COMPOSE_COMPOSING_CHANGE = 'COMPOSE_COMPOSING_CHANGE';
+export const COMPOSE_LANGUAGE_CHANGE = 'COMPOSE_LANGUAGE_CHANGE';
 
 export const COMPOSE_EMOJI_INSERT = 'COMPOSE_EMOJI_INSERT';
 
-export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST';
-export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
-export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
+export const COMPOSE_UPLOAD_CHANGE_REQUEST = 'COMPOSE_UPLOAD_UPDATE_REQUEST';
+export const COMPOSE_UPLOAD_CHANGE_SUCCESS = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
+export const COMPOSE_UPLOAD_CHANGE_FAIL = 'COMPOSE_UPLOAD_UPDATE_FAIL';
 
-export const COMPOSE_POLL_ADD             = 'COMPOSE_POLL_ADD';
-export const COMPOSE_POLL_REMOVE          = 'COMPOSE_POLL_REMOVE';
-export const COMPOSE_POLL_OPTION_ADD      = 'COMPOSE_POLL_OPTION_ADD';
-export const COMPOSE_POLL_OPTION_CHANGE   = 'COMPOSE_POLL_OPTION_CHANGE';
-export const COMPOSE_POLL_OPTION_REMOVE   = 'COMPOSE_POLL_OPTION_REMOVE';
+export const COMPOSE_POLL_ADD = 'COMPOSE_POLL_ADD';
+export const COMPOSE_POLL_REMOVE = 'COMPOSE_POLL_REMOVE';
+export const COMPOSE_POLL_OPTION_ADD = 'COMPOSE_POLL_OPTION_ADD';
+export const COMPOSE_POLL_OPTION_CHANGE = 'COMPOSE_POLL_OPTION_CHANGE';
+export const COMPOSE_POLL_OPTION_REMOVE = 'COMPOSE_POLL_OPTION_REMOVE';
 export const COMPOSE_POLL_SETTINGS_CHANGE = 'COMPOSE_POLL_SETTINGS_CHANGE';
 
 export const INIT_MEDIA_EDIT_MODAL = 'INIT_MEDIA_EDIT_MODAL';
 
 export const COMPOSE_CHANGE_MEDIA_DESCRIPTION = 'COMPOSE_CHANGE_MEDIA_DESCRIPTION';
-export const COMPOSE_CHANGE_MEDIA_FOCUS       = 'COMPOSE_CHANGE_MEDIA_FOCUS';
-export const COMPOSE_CHANGE_MEDIA_ORDER       = 'COMPOSE_CHANGE_MEDIA_ORDER';
+export const COMPOSE_CHANGE_MEDIA_FOCUS = 'COMPOSE_CHANGE_MEDIA_FOCUS';
+export const COMPOSE_CHANGE_MEDIA_ORDER = 'COMPOSE_CHANGE_MEDIA_ORDER';
 
 export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
 export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
 
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
-  uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
+  uploadErrorPoll: { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
   open: { id: 'compose.published.open', defaultMessage: 'Open' },
   published: { id: 'compose.published.body', defaultMessage: 'Post published.' },
   saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
@@ -96,7 +96,7 @@ export const ensureComposeIsVisible = (getState) => {
 };
 
 export function setComposeToStatus(status, text, spoiler_text) {
-  return{
+  return {
     type: COMPOSE_SET_STATUS,
     status,
     text,
@@ -185,8 +185,8 @@ export function directCompose(account) {
 
 export function submitCompose() {
   return function (dispatch, getState) {
-    const status   = getState().getIn(['compose', 'text'], '');
-    const media    = getState().getIn(['compose', 'media_attachments']);
+    const status = getState().getIn(['compose', 'text'], '');
+    const media = getState().getIn(['compose', 'media_attachments']);
     const statusId = getState().getIn(['compose', 'id'], null);
 
     if ((!status || !status.length) && media.size === 0) {
@@ -324,7 +324,7 @@ export function uploadCompose(files) {
       data.append('file', file);
 
       api().post('/api/v2/media', data, {
-        onUploadProgress: function({ loaded }){
+        onUploadProgress: function ({ loaded }) {
           progress[i] = loaded;
           dispatch(uploadComposeProgress(progress.reduce((a, v) => a + v, 0), total));
         },
@@ -599,15 +599,15 @@ const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
 export function fetchComposeSuggestions(token) {
   return (dispatch, getState) => {
     switch (token[0]) {
-    case ':':
-      fetchComposeSuggestionsEmojis(dispatch, getState, token);
-      break;
-    case '#':
-      fetchComposeSuggestionsTags(dispatch, getState, token);
-      break;
-    default:
-      fetchComposeSuggestionsAccounts(dispatch, getState, token);
-      break;
+      case ':':
+        fetchComposeSuggestionsEmojis(dispatch, getState, token);
+        break;
+      case '#':
+        fetchComposeSuggestionsTags(dispatch, getState, token);
+        break;
+      default:
+        fetchComposeSuggestionsAccounts(dispatch, getState, token);
+        break;
     }
   };
 }
@@ -639,15 +639,15 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
     let completion, startPosition;
 
     if (suggestion.type === 'emoji') {
-      completion    = suggestion.native || suggestion.colons;
+      completion = suggestion.native || suggestion.colons;
       startPosition = position - 1;
 
       dispatch(useEmoji(suggestion));
     } else if (suggestion.type === 'hashtag') {
-      completion    = `#${suggestion.name}`;
+      completion = `#${suggestion.name}`;
       startPosition = position - 1;
     } else if (suggestion.type === 'account') {
-      completion    = getState().getIn(['accounts', suggestion.id, 'acct']);
+      completion = getState().getIn(['accounts', suggestion.id, 'acct']);
       startPosition = position;
     }
 
@@ -698,6 +698,11 @@ export function hydrateCompose() {
   };
 }
 
+// Escape special characters to avoid ReDos
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape characters that can broke the regex
+}
+
 function insertIntoTagHistory(recognizedTags, text) {
   return (dispatch, getState) => {
     const state = getState();
@@ -708,7 +713,9 @@ function insertIntoTagHistory(recognizedTags, text) {
     // complicated because of new normalization rules, it's no longer just
     // a case sensitivity issue
     const names = recognizedTags.map(tag => {
-      const matches = text.match(new RegExp(`#${tag.name}`, 'i'));
+      // Apply the escape to tag.name
+      const escapedTagName = escapeRegExp(tag.name);
+      const matches = text.match(new RegExp(`#${escapedTagName}`, 'i'));
 
       if (matches && matches.length > 0) {
         return matches[0].slice(1);
