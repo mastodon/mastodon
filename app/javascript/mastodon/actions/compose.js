@@ -698,6 +698,11 @@ export function hydrateCompose() {
   };
 }
 
+// Escape special characters to avoid ReDos
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escapa caracteres que pueden romper la regex
+}
+
 function insertIntoTagHistory(recognizedTags, text) {
   return (dispatch, getState) => {
     const state = getState();
@@ -708,7 +713,10 @@ function insertIntoTagHistory(recognizedTags, text) {
     // complicated because of new normalization rules, it's no longer just
     // a case sensitivity issue
     const names = recognizedTags.map(tag => {
-      const matches = text.match(new RegExp(`#${tag.name}`, 'i'));
+
+      // Apply escape to tag.name
+      const escapedTagName = escapeRegExp(tag.name);
+      const matches = text.match(new RegExp(`#${escapedTagName}`, 'i'));
 
       if (matches && matches.length > 0) {
         return matches[0].slice(1);
