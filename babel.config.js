@@ -13,6 +13,7 @@ module.exports = (api) => {
     include: [
       'transform-numeric-separator',
       'transform-optional-chaining',
+      'transform-logical-assignment-operators',
       'transform-nullish-coalescing-operator',
       'transform-class-properties',
     ],
