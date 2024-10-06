@@ -73,87 +73,100 @@ RSpec.describe MoveWorker do
     end
   end
 
-  shared_examples 'block and mute handling' do
-    it 'makes blocks and mutes carry over and adds a note' do
-      subject.perform(source_account.id, target_account.id)
-
-      expect(block_service).to have_received(:call).with(blocking_account, target_account)
-      expect(muting_account.muting?(target_account)).to be true
-
-      expect(
-        [note_account_comment, mute_account_comment]
-      ).to all include(source_account.acct)
-    end
-
-    def note_account_comment
-      AccountNote.find_by(account: blocking_account, target_account: target_account).comment
-    end
-
-    def mute_account_comment
-      AccountNote.find_by(account: muting_account, target_account: target_account).comment
-    end
-  end
-
-  shared_examples 'followers count handling' do
-    it 'updates the source and target account followers counts' do
-      subject.perform(source_account.id, target_account.id)
-
-      expect(source_account.reload.followers_count).to eq(source_account.passive_relationships.count)
-      expect(target_account.reload.followers_count).to eq(target_account.passive_relationships.count)
-    end
-  end
-
-  shared_examples 'lists handling' do
-    it 'puts the new account on the list and makes valid lists', :inline_jobs do
-      subject.perform(source_account.id, target_account.id)
-
-      expect(list.accounts.include?(target_account)).to be true
-      expect(ListAccount.all).to all be_valid
-    end
-  end
-
   shared_examples 'common tests' do
     include_examples 'user note handling'
-    include_examples 'block and mute handling'
-    include_examples 'followers count handling'
-    include_examples 'lists handling'
+
+    it 'handles data movement', :inline_jobs do
+      subject.perform(source_account.id, target_account.id)
+
+      expect_successful_list_movement
+      expect_successful_followers_movement
+      expect_successful_block_movement
+      expect_successful_mute_movement
+    end
 
     context 'when a local user already follows both source and target' do
-      before do
-        local_follower.request_follow!(target_account)
-      end
+      before { local_follower.request_follow!(target_account) }
 
       include_examples 'user note handling'
-      include_examples 'block and mute handling'
-      include_examples 'followers count handling'
-      include_examples 'lists handling'
+
+      it 'handles data movement', :inline_jobs do
+        subject.perform(source_account.id, target_account.id)
+
+        expect_successful_list_movement
+        expect_successful_followers_movement
+        expect_successful_block_movement
+        expect_successful_mute_movement
+      end
 
       context 'when the local user already has the target in a list' do
-        before do
-          list.accounts << target_account
-        end
+        before { list.accounts << target_account }
 
-        include_examples 'lists handling'
+        it 'handles list movement', :inline_jobs do
+          subject.perform(source_account.id, target_account.id)
+
+          expect_successful_list_movement
+        end
       end
     end
 
     context 'when a local follower already has a pending request to the target' do
-      before do
-        local_follower.follow!(target_account)
-      end
+      before { local_follower.follow!(target_account) }
 
       include_examples 'user note handling'
-      include_examples 'block and mute handling'
-      include_examples 'followers count handling'
-      include_examples 'lists handling'
+
+      it 'handles data movement', :inline_jobs do
+        subject.perform(source_account.id, target_account.id)
+
+        expect_successful_list_movement
+        expect_successful_followers_movement
+        expect_successful_block_movement
+        expect_successful_mute_movement
+      end
 
       context 'when the local user already has the target in a list' do
-        before do
-          list.accounts << target_account
-        end
+        before { list.accounts << target_account }
 
-        include_examples 'lists handling'
+        it 'handles list movement', :inline_jobs do
+          subject.perform(source_account.id, target_account.id)
+
+          expect_successful_list_movement
+        end
       end
+    end
+
+    def expect_successful_list_movement
+      expect(list.accounts)
+        .to include(target_account)
+      expect(ListAccount.all)
+        .to all be_valid
+    end
+
+    def expect_successful_followers_movement
+      expect(source_account.reload.followers_count)
+        .to eq(source_account.passive_relationships.count)
+      expect(target_account.reload.followers_count)
+        .to eq(target_account.passive_relationships.count)
+    end
+
+    def expect_successful_block_movement
+      expect(block_service)
+        .to have_received(:call).with(blocking_account, target_account)
+
+      expect(account_note_from(blocking_account).comment)
+        .to include(source_account.acct)
+    end
+
+    def expect_successful_mute_movement
+      expect(muting_account)
+        .to be_muting(target_account)
+      expect(account_note_from(muting_account).comment)
+        .to include(source_account.acct)
+    end
+
+    def account_note_from(account)
+      AccountNote
+        .find_by(account: account, target_account: target_account)
     end
   end
 
@@ -161,7 +174,9 @@ RSpec.describe MoveWorker do
     context 'when both accounts are distant' do
       it 'calls UnfollowFollowWorker' do
         subject.perform(source_account.id, target_account.id)
-        expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, false)
+
+        expect(UnfollowFollowWorker)
+          .to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, false)
       end
 
       include_examples 'common tests'
@@ -172,7 +187,9 @@ RSpec.describe MoveWorker do
 
       it 'calls UnfollowFollowWorker' do
         subject.perform(source_account.id, target_account.id)
-        expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, true)
+
+        expect(UnfollowFollowWorker)
+          .to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, true)
       end
 
       include_examples 'common tests'
@@ -184,15 +201,20 @@ RSpec.describe MoveWorker do
 
       it 'calls makes local followers follow the target account' do
         subject.perform(source_account.id, target_account.id)
-        expect(local_follower.following?(target_account)).to be true
+
+        expect(local_follower).to be_following(target_account)
       end
 
       include_examples 'common tests'
 
-      it 'does not allow the moved account to follow themselves' do
-        source_account.follow!(target_account)
-        subject.perform(source_account.id, target_account.id)
-        expect(target_account.following?(target_account)).to be false
+      context 'when source follows target' do
+        before { source_account.follow!(target_account) }
+
+        it 'does not allow the moved account to follow themselves' do
+          subject.perform(source_account.id, target_account.id)
+
+          expect(target_account).to_not be_following(target_account)
+        end
       end
     end
   end
