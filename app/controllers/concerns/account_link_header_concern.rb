@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AccountControllerConcern
+module AccountLinkHeaderConcern
   extend ActiveSupport::Concern
 
   included do

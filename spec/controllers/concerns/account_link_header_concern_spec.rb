@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountControllerConcern do
+RSpec.describe AccountLinkHeaderConcern do
   controller(ApplicationController) do
-    include AccountControllerConcern
+    include AccountLinkHeaderConcern
 
     def success
       @account = Account.last

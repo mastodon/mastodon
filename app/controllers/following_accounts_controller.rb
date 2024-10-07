@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FollowingAccountsController < ApplicationController
-  include AccountControllerConcern
+  include AccountLinkHeaderConcern
   include WebAppControllerConcern
   include AccountOwnedConcern
   include SignatureVerification
