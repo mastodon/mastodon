@@ -20,7 +20,7 @@ module Api::ErrorHandling
       render json: { error: 'Record not found' }, status: 404
     end
 
-    rescue_from HTTP::Error, Mastodon::UnexpectedResponseError do
+    rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS, Mastodon::UnexpectedResponseError) do
       render json: { error: 'Remote data could not be fetched' }, status: 503
     end
 
