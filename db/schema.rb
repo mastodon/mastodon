@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_16_190140) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_07_071624) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -1291,8 +1291,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_16_190140) do
   add_foreign_key "mentions", "statuses", on_delete: :cascade
   add_foreign_key "mutes", "accounts", column: "target_account_id", name: "fk_eecff219ea", on_delete: :cascade
   add_foreign_key "mutes", "accounts", name: "fk_b8d8daf315", on_delete: :cascade
-  add_foreign_key "notification_permissions", "accounts"
-  add_foreign_key "notification_permissions", "accounts", column: "from_account_id"
+  add_foreign_key "notification_permissions", "accounts", column: "from_account_id", on_delete: :cascade
+  add_foreign_key "notification_permissions", "accounts", on_delete: :cascade
   add_foreign_key "notification_policies", "accounts", on_delete: :cascade
   add_foreign_key "notification_requests", "accounts", column: "from_account_id", on_delete: :cascade
   add_foreign_key "notification_requests", "accounts", on_delete: :cascade
