@@ -877,6 +877,9 @@ is:
         message_html: Þú hefur ekki skilgreint neinar reglur fyrir netþjón.
       sidekiq_process_check:
         message_html: Ekkert Sidekiq-ferli er í gangi fyrir %{value} biðröð/biðraðir. Endilega athugaðu Sidekiq-uppsetninguna þína
+      software_version_check:
+        action: Skoða tiltækar uppfærslur
+        message_html: Uppfærsla er tiltæk fyrir Mastodon.
       software_version_critical_check:
         action: Skoða tiltækar uppfærslur
         message_html: Áríðandi uppfærsla Mastodon er tiltæk, uppfærðu eins fljótt og auðið er.
@@ -1696,6 +1699,7 @@ is:
     delete: Eyðing notandaaðgangs
     development: Þróun
     edit_profile: Breyta notandasniði
+    export: Flytja út
     featured_tags: Myllumerki með aukið vægi
     import: Flytja inn
     import_and_export: Inn- og útflutningur
