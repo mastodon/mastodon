@@ -133,7 +133,6 @@ RSpec.describe 'Using OAuth from an external app' do
     end
 
     it 'when accepting the authorization request' do
-      params = { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
       visit "/oauth/authorize?#{params.to_query}"
 
       # It presents the user with a log-in page
@@ -156,7 +155,6 @@ RSpec.describe 'Using OAuth from an external app' do
     end
 
     it 'when rejecting the authorization request' do
-      params = { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
       visit "/oauth/authorize?#{params.to_query}"
 
       # It presents the user with a log-in page
@@ -182,7 +180,6 @@ RSpec.describe 'Using OAuth from an external app' do
       let(:user) { Fabricate(:user, email: email, password: password, otp_required_for_login: true, otp_secret: User.generate_otp_secret) }
 
       it 'when accepting the authorization request' do
-        params = { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
         visit "/oauth/authorize?#{params.to_query}"
 
         # It presents the user with a log-in page
@@ -213,7 +210,6 @@ RSpec.describe 'Using OAuth from an external app' do
       end
 
       it 'when rejecting the authorization request' do
-        params = { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
         visit "/oauth/authorize?#{params.to_query}"
 
         # It presents the user with a log-in page
