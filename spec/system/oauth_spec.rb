@@ -31,7 +31,7 @@ RSpec.describe 'Using OAuth from an external app' do
         .to change { Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id) }.to(true)
 
       # Upon authorizing, it redirects to the apps' callback URL
-      expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+      expect(page).to redirect_to_callback_url
     end
 
     it 'when rejecting the authorization request' do
@@ -45,7 +45,7 @@ RSpec.describe 'Using OAuth from an external app' do
         .to_not change { Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id) }.from(false)
 
       # Upon denying, it redirects to the apps' callback URL
-      expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+      expect(page).to redirect_to_callback_url
     end
 
     # The tests in this context ensures that requests without PKCE parameters
@@ -152,7 +152,7 @@ RSpec.describe 'Using OAuth from an external app' do
         .to change { Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id) }.to(true)
 
       # Upon authorizing, it redirects to the apps' callback URL
-      expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+      expect(page).to redirect_to_callback_url
     end
 
     it 'when rejecting the authorization request' do
@@ -175,7 +175,7 @@ RSpec.describe 'Using OAuth from an external app' do
         .to_not change { Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id) }.from(false)
 
       # Upon denying, it redirects to the apps' callback URL
-      expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+      expect(page).to redirect_to_callback_url
     end
 
     context 'when the user has set up TOTP' do
@@ -209,7 +209,7 @@ RSpec.describe 'Using OAuth from an external app' do
           .to change { Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id) }.to(true)
 
         # Upon authorizing, it redirects to the apps' callback URL
-        expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+        expect(page).to redirect_to_callback_url
       end
 
       it 'when rejecting the authorization request' do
@@ -240,7 +240,7 @@ RSpec.describe 'Using OAuth from an external app' do
           .to_not change { Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id) }.from(false)
 
         # Upon denying, it redirects to the apps' callback URL
-        expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+        expect(page).to redirect_to_callback_url
       end
     end
     # TODO: external auth
@@ -259,5 +259,9 @@ RSpec.describe 'Using OAuth from an external app' do
 
   def oauth_deny_text
     I18n.t('doorkeeper.authorizations.buttons.deny')
+  end
+
+  def redirect_to_callback_url
+    have_current_path(/\A#{client_app.redirect_uri}/, url: true)
   end
 end
