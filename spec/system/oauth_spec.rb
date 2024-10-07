@@ -24,10 +24,10 @@ RSpec.describe 'Using OAuth from an external app' do
       subject
 
       # It presents the user with an authorization page
-      expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
+      expect(page).to have_content(oauth_authorize_text)
 
       # Upon authorizing, it redirects to the apps' callback URL
-      click_on I18n.t('doorkeeper.authorizations.buttons.authorize')
+      click_on oauth_authorize_text
       expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
 
       # It grants the app access to the account
@@ -38,10 +38,10 @@ RSpec.describe 'Using OAuth from an external app' do
       subject
 
       # It presents the user with an authorization page
-      expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.deny'))
+      expect(page).to have_content(oauth_deny_text)
 
       # Upon denying, it redirects to the apps' callback URL
-      click_on I18n.t('doorkeeper.authorizations.buttons.deny')
+      click_on oauth_deny_text
       expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
 
       # It does not grant the app access to the account
@@ -145,10 +145,10 @@ RSpec.describe 'Using OAuth from an external app' do
 
       # Logging in redirects to an authorization page
       fill_in_auth_details(email, password)
-      expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
+      expect(page).to have_content(oauth_authorize_text)
 
       # Upon authorizing, it redirects to the apps' callback URL
-      click_on I18n.t('doorkeeper.authorizations.buttons.authorize')
+      click_on oauth_authorize_text
       expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
 
       # It grants the app access to the account
@@ -168,10 +168,10 @@ RSpec.describe 'Using OAuth from an external app' do
 
       # Logging in redirects to an authorization page
       fill_in_auth_details(email, password)
-      expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
+      expect(page).to have_content(oauth_authorize_text)
 
       # Upon denying, it redirects to the apps' callback URL
-      click_on I18n.t('doorkeeper.authorizations.buttons.deny')
+      click_on oauth_deny_text
       expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
 
       # It does not grant the app access to the account
@@ -202,10 +202,10 @@ RSpec.describe 'Using OAuth from an external app' do
 
         # Filling in the correct TOTP code redirects to an app authorization page
         fill_in_otp_details(user.current_otp)
-        expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
+        expect(page).to have_content(oauth_authorize_text)
 
         # Upon authorizing, it redirects to the apps' callback URL
-        click_on I18n.t('doorkeeper.authorizations.buttons.authorize')
+        click_on oauth_authorize_text
         expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
 
         # It grants the app access to the account
@@ -233,10 +233,10 @@ RSpec.describe 'Using OAuth from an external app' do
 
         # Filling in the correct TOTP code redirects to an app authorization page
         fill_in_otp_details(user.current_otp)
-        expect(page).to have_content(I18n.t('doorkeeper.authorizations.buttons.authorize'))
+        expect(page).to have_content(oauth_authorize_text)
 
         # Upon denying, it redirects to the apps' callback URL
-        click_on I18n.t('doorkeeper.authorizations.buttons.deny')
+        click_on oauth_deny_text
         expect(page).to have_current_path(/\A#{client_app.redirect_uri}/, url: true)
 
         # It does not grant the app access to the account
@@ -251,5 +251,13 @@ RSpec.describe 'Using OAuth from an external app' do
   def fill_in_otp_details(value)
     fill_in 'user_otp_attempt', with: value
     click_on I18n.t('auth.login')
+  end
+
+  def oauth_authorize_text
+    I18n.t('doorkeeper.authorizations.buttons.authorize')
+  end
+
+  def oauth_deny_text
+    I18n.t('doorkeeper.authorizations.buttons.deny')
   end
 end
