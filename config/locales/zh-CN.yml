@@ -1341,19 +1341,31 @@ zh-CN:
       overwrite: 覆盖
       overwrite_long: 将当前记录替换为新记录
     overwrite_preambles:
-      blocking_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换你的屏蔽列表。
-      bookmarks_html: 你即将使用来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>替换你的书签。
-      domain_blocking_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个域名</strong>替换你的域名屏蔽列表。
-      following_html: 你即将从<strong> %{filename} </strong>关注<strong> %{total_items} 个账户</strong>，并停止关注其他任何人。
-      lists_html: 你即将用<strong> %{filename} </strong>的内容<strong>替换你的列表</strong>。新列表中将添加<strong> %{total_items} 个账户</strong>。
-      muting_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换你已隐藏的账户列表。
+      blocking_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>帐户<strong>替换你的屏蔽列表</strong>。
+      bookmarks_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 条</strong>嘟文<strong>替换你的书签</strong>。
+      domain_blocking_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>域名<strong>替换你的域名屏蔽列表</strong>。
+      following_html:
+        other: 你即将<strong>关注</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账户</strong>，并<strong>停止关注其他所有人</strong>。
+      lists_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的内容<strong>替换你的列表</strong>。最多将会有 <strong>%{count} 个账户</strong> 被添加到新列表。
+      muting_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>帐户<strong>替换你的已隐藏账户列表</strong>。
     preambles:
-      blocking_html: 你即将从<strong> %{filename} </strong>中<strong>封锁</strong>多达<strong> %{total_items} </strong>个账户。
-      bookmarks_html: 你即将把来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>添加到你的<strong>书签</strong>中。
-      domain_blocking_html: 你即将从<strong> %{filename} </strong>中<strong>屏蔽</strong><strong> %{total_items} 个域名</strong>。
-      following_html: 你即将从<strong> %{filename} </strong><strong>关注</strong>最多<strong> %{total_items} 个账户</strong>。
-      lists_html: 你即将从<strong> %{filename} </strong>中添加最多<strong> %{total_items} 个账户</strong>到你的<strong>列表</strong>中。如果没有可用列表，将创建新的列表。
-      muting_html: 你即将从<strong> %{filename} </strong>中<strong>隐藏</strong><strong> %{total_items} 个账户</strong>。
+      blocking_html:
+        other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
+      bookmarks_html:
+        other: 你即将把来自<strong> %{filename} </strong>的<strong> %{count} 篇嘟文</strong>添加到你的<strong>书签</strong>中。
+      domain_blocking_html:
+        other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个域名</strong>。
+      following_html:
+        other: 你即将<strong>关注</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
+      lists_html:
+        other: 你即将从<strong> %{filename} </strong>中添加最多<strong> %{count} 个账户</strong>到你的<strong>列表</strong>中。如果没有可用列表，将创建新的列表。
+      muting_html:
+        other: 你即将<strong>隐藏</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
     preface: 你可以在此导入你在其他实例导出的数据，比如你所关注或屏蔽的用户列表。
     recent_imports: 最近导入
     states:

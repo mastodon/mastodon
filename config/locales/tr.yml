@@ -1366,19 +1366,43 @@ tr:
       overwrite: Üzerine yaz
       overwrite_long: Mevcut kayıtları yenileriyle değiştir
     overwrite_preambles:
-      blocking_html: "<strong>Engel listenizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} hesapla</strong> değiştirmek üzeresiniz."
-      bookmarks_html: "<strong>Yerimlerinizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} gönderiyle</strong> değiştirmek üzeresiniz."
-      domain_blocking_html: "<strong>Alan adı engel listenizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} alan adıyla</strong> değiştirmek üzeresiniz."
-      following_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>takip etmeye</strong> başlamak ve <strong>diğer herkesi takipten çıkmak</strong> üzeresiniz."
-      lists_html: Listelerinizi <strong>%{filename}</strong> içeriğiyle <strong>değiştirmek</strong> üzeresiniz. Yeni listelere en fazla <strong>%{total_items} hesap</strong> eklenecek.
-      muting_html: "<strong>Sessize alınmış hesaplar listenizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} hesapla</strong> değiştirmek üzeresiniz."
+      blocking_html:
+        one: "<strong>Engelleme listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> ile değiştirmek üzeresiniz."
+        other: "<strong>Engelleme listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> ile değiştirmek üzeresiniz."
+      bookmarks_html:
+        one: "<strong>Yerimlerinizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} gönderi</strong> ile değiştirmek üzeresiniz."
+        other: "<strong>Yerimlerinizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} gönderi</strong> ile değiştirmek üzeresiniz."
+      domain_blocking_html:
+        one: "<strong>Alan adı engelleme listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} alan adı</strong> ile değiştirmek üzeresiniz."
+        other: "<strong>Alan adı engelleme listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} alan adı</strong> ile değiştirmek üzeresiniz."
+      following_html:
+        one: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesabı</strong> <strong>takip etmek</strong> ve <strong>diğer herkesin takibini bırakmak</strong> üzeresiniz."
+        other: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesabı</strong> <strong>takip etmek</strong> ve <strong>diğer herkesin takibini bırakmak</strong> üzeresiniz."
+      lists_html:
+        one: "<strong>Listelerinizi</strong>, <strong>%{filename}</strong> dosya içeriğiyle değiştirmek üzeresiniz. <strong>%{count} hesap</strong> yeni listelere eklenecektir."
+        other: "<strong>Listelerinizi</strong>, <strong>%{filename}</strong> dosya içeriğiyle değiştirmek üzeresiniz. <strong>%{count} hesap</strong> yeni listelere eklenecektir."
+      muting_html:
+        one: "<strong>Sessize alınmış hesap listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> ile değiştirmek üzeresiniz."
+        other: "<strong>Sessize alınmış hesap listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> ile değiştirmek üzeresiniz."
     preambles:
-      blocking_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>engellemek</strong> üzeresiniz."
-      bookmarks_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} gönderiyi</strong> <strong>yerimlerinize</strong> eklemek üzeresiniz."
-      domain_blocking_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} alan adını</strong> <strong>engellemek</strong> üzeresiniz."
-      following_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>takip etmek</strong> üzeresiniz."
-      lists_html: "<strong>Listelerinize</strong> <strong>%{filename}</strong> dosyasından en fazla <strong>%{total_items} hesap</strong> eklemek üzeresiniz. Eklenecek bir liste olmaması durumunda yeni listeler oluşturulacaktır."
-      muting_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>sessize almak</strong> üzeresiniz."
+      blocking_html:
+        one: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> <strong>engellemek</strong> üzeresiniz."
+        other: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> <strong>engellemek</strong> üzeresiniz."
+      bookmarks_html:
+        one: "<strong>Yerimlerinize</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} gönderi</strong> eklemek üzeresiniz."
+        other: "<strong>Yerimlerinize</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} gönderi</strong> eklemek üzeresiniz."
+      domain_blocking_html:
+        one: "<strong>%{filename}</strong> dosyasından <strong>%{count} alan adı</strong> <strong>engellemek</strong> üzeresiniz."
+        other: "<strong>%{filename}</strong> dosyasından <strong>%{count} alan adı</strong> <strong>engellemek</strong> üzeresiniz."
+      following_html:
+        one: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> <strong>takip etmek</strong> üzeresiniz."
+        other: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> <strong>takip etmek</strong> üzeresiniz."
+      lists_html:
+        one: "<strong>Listelerinize</strong>, <strong>%{filename}</strong> <strong>%{count} hesap</strong> eklemek üzeresiniz. Eklenecek liste yoksa yeni listeler oluşturulacaktır."
+        other: "<strong>Listelerinize</strong>, <strong>%{filename}</strong> <strong>%{count} hesap</strong> eklemek üzeresiniz. Eklenecek liste yoksa yeni listeler oluşturulacaktır."
+      muting_html:
+        one: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesabı</strong> <strong>sessize almak</strong> üzeresiniz."
+        other: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesabı</strong> <strong>sessize almak</strong> üzeresiniz."
     preface: Diğer sunucudan alarak oluşturduğunuz dosyalar sayesinde, bu sunucudaki hesabınıza takipçilerinizi aktarabilir veya istemediğiniz kişileri otomatik olarak engelleyebilirsiniz.
     recent_imports: Son içe aktarmalar
     states:

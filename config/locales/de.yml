@@ -1366,19 +1366,43 @@ de:
       overwrite: Überschreiben
       overwrite_long: Bestehende Datensätze durch neue ersetzen
     overwrite_preambles:
-      blocking_html: Du bist dabei, <strong>deine Liste blockierter Konten</strong> durch bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
-      bookmarks_html: Du bist dabei, <strong>deine Lesezeichen</strong> durch bis zu <strong>%{total_items} Beiträge</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
-      domain_blocking_html: Du bist dabei, <strong>deine Liste blockierter Domains</strong> durch bis zu <strong>%{total_items} Domains</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
-      following_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu folgen und <strong>niemand anderes zu folgen</strong>.
-      lists_html: Du bist dabei, <strong>deine Listen</strong> durch den Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Es werden bis zu <strong>%{total_items} Konten</strong> zu neuen Listen hinzugefügt.
-      muting_html: Du bist dabei, <strong>deine Liste stummgeschalteter Konten</strong> durch bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu ersetzen.
+      blocking_html:
+        one: Du bist dabei, <strong>deine Liste blockierter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konto</strong> zu ersetzen.
+        other: Du bist dabei, <strong>deine Liste blockierter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konten</strong> zu ersetzen.
+      bookmarks_html:
+        one: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beitrag</strong> zu ersetzen.
+        other: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beiträge</strong> zu ersetzen.
+      domain_blocking_html:
+        one: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domain</strong> zu ersetzen.
+        other: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domains</strong> zu ersetzen.
+      following_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong> und <strong>allen anderen zu entfolgen</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong> und <strong>allen anderen zu entfolgen</strong>.
+      lists_html:
+        one: Du bist dabei, <strong>deine Listen</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Konto</strong> wird zu neuen Listen hinzugefügt.
+        other: Du bist dabei, <strong>deine Listen</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Konten</strong> wird zu neuen Listen hinzugefügt.
+      muting_html:
+        one: Du bist dabei, <strong>deine Liste mit einem stummgeschalteten Konto</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konto</strong> zu ersetzen.
+        other: Du bist dabei, <strong>deine Liste stummgeschalteter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konten</strong> zu ersetzen.
     preambles:
-      blocking_html: Du bist dabei, bis zu <strong>%{total_items}%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
-      bookmarks_html: Du bist dabei, bis zu <strong>%{total_items} Beiträge</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
-      domain_blocking_html: Du bist dabei, bis zu <strong>%{total_items} Domains</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
-      following_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
-      lists_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Liste gibt, zu der etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
-      muting_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename} stummzuschalten</strong>.
+      blocking_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+      bookmarks_html:
+        one: Du bist dabei, bis zu <strong>%{count} Beitrag</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Beiträge</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
+      domain_blocking_html:
+        one: Du bist dabei, bis zu <strong>%{count} Domain</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Domains</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+      following_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
+      lists_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Listen gibt, zu denen etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Listen gibt, zu denen etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
+      muting_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename} stummzuschalten</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename} stummzuschalten</strong>.
     preface: Daten, die du von einem Mastodon-Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du blockiert hast.
     recent_imports: Zuletzt importiert
     states:
