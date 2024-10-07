@@ -24,6 +24,8 @@ fy:
   admin:
     account_actions:
       action: Aksje útfiere
+      already_silenced: Dizze account is al beheind.
+      already_suspended: Dizze account is al opskort.
       title: Moderaasjemaatregelen tsjin %{acct} nimme
     account_moderation_notes:
       create: Lit in opmerking efter
@@ -45,6 +47,7 @@ fy:
         title: E-mailadres foar %{username} wizigje
       change_role:
         changed_msg: Rol mei sukses wizige!
+        edit_roles: Brûkersrollen beheare
         label: Rol wizigje
         no_role: Gjin rol
         title: Rol fan %{username} wizigje
@@ -601,6 +604,7 @@ fy:
         suspend_description_html: De account en alle ynhâld sil net tagonklik wêze en úteinlik fuortsmiten wurde, en ynteraksje hjirmei sil net mooglik wêze. Binnen 30 dagen werom te draaien. Dit slút alle rapportaazjes oer dizze account.
       actions_description_html: Beslis hokker maatregel nommen wurde moat om dizze rapportaazje op te lossen. Wannear’t jo in (straf)maatregel tsjin it rapportearre account nimme, kriget de account in e-mailmelding, behalve wannear’t de <strong>spam</strong>-kategory keazen is.
       actions_description_remote_html: Beslút hokker aksje nommen wurde moat om dizze rapportaazje ôf te hanneljen. Dit hat allinnich ynfloed op hoe’t <strong>jo</strong> server kommunisearret mei dizze eksterne account en omgiet mei de ynhâld.
+      actions_no_posts: Dit rapport hat gjin byhearrende berjochten om fuort te smiten
       add_to_report: Mear oan de rapportaazje tafoegje
       already_suspended_badges:
         local: Al opskoarte op dizze server
@@ -871,6 +875,9 @@ fy:
         message_html: Jo hawwe foar dizze server gjin regels opsteld.
       sidekiq_process_check:
         message_html: Der draait gjin Sidekiq-proses foar de wachtrige(n) %{value}. Kontrolearje jo Sidekiq-konfiguraasje
+      software_version_check:
+        action: Beskikbere fernijingen besjen
+        message_html: Der is in Mastodon-fernijing beskikber.
       software_version_critical_check:
         action: Beskikbere fernijingen besjen
         message_html: Der is in kritike fernijing foar Mastodon beskikber. Wurkje sa gau as mooglik by.
@@ -1156,6 +1163,12 @@ fy:
       view_strikes: Besjoch de earder troch moderatoaren fêststelde skeiningen dy’t jo makke hawwe
     too_fast: Formulier is te fluch yntsjinne. Probearje it nochris.
     use_security_key: Befeiligingskaai brûke
+  author_attribution:
+    example_title: Faorbyldtekst
+    hint_html: Bepaal hoe’t wy jo fermelde, wannear’t jo keppelingen op Mastodon dield wurde.
+    more_from_html: Mear fan %{name}
+    s_blog: Weblog fan %{name}
+    title: Auteur-attribúsje
   challenge:
     confirm: Trochgean
     hint_html: "<strong>Tip:</strong> Wy freegje jo it kommende oere net mear nei jo wachtwurd."
@@ -1682,6 +1695,7 @@ fy:
     delete: Account fuortsmite
     development: Untwikkelers
     edit_profile: Profyl bewurkje
+    export: Eksportearje
     featured_tags: Utljochte hashtags
     import: Ymportearje
     import_and_export: Ymportearje en eksportearje
@@ -1931,6 +1945,7 @@ fy:
     instructions_html: Kopiearje en plak de ûndersteande koade yn de HTML fan jo website. Foegje dernei it adres fan jo website ta oan ien fan de ekstra fjilden op jo profyl op it ljepblêd ‘Profyl bewurkje’ en bewarje de wizigingen.
     verification: Ferifikaasje
     verified_links: Jo ferifiearre keppelingen
+    website_verification: Website-ferifikaasje
   webauthn_credentials:
     add: Nije befeiligingskaai tafoegje
     create:

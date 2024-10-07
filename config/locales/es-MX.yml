@@ -180,21 +180,21 @@ es-MX:
         confirm_user: Confirmar Usuario
         create_account_warning: Crear Advertencia
         create_announcement: Crear Anuncio
-        create_canonical_email_block: Crear Bloqueo de Correo Electrónico
+        create_canonical_email_block: Crear bloqueo de correo electrónico
         create_custom_emoji: Crear Emoji Personalizado
         create_domain_allow: Crear Permiso de Dominio
         create_domain_block: Crear Bloqueo de Dominio
-        create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
+        create_email_domain_block: Crear bloqueo de dominio de correo electrónico
         create_ip_block: Crear regla IP
         create_unavailable_domain: Crear Dominio No Disponible
         create_user_role: Crear rol
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
-        destroy_canonical_email_block: Eliminar Bloqueo de Correo Electrónico
+        destroy_canonical_email_block: Eliminar bloqueo de correo electrónico
         destroy_custom_emoji: Eliminar Emoji Personalizado
         destroy_domain_allow: Eliminar Permiso de Dominio
         destroy_domain_block: Eliminar Bloqueo de Dominio
-        destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
+        destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
         destroy_instance: Purgar dominio
         destroy_ip_block: Eliminar regla IP
         destroy_status: Eliminar Estado
@@ -876,8 +876,8 @@ es-MX:
       sidekiq_process_check:
         message_html: No hay ningún proceso Sidekiq en ejecución para la(s) cola(s) %{value}. Por favor, revise su configuración de Sidekiq
       software_version_check:
-        action: Ver actualizaciones disponibles
-        message_html: Hay disponible una actualización de Mastodon.
+        action: Ver las actualizaciones disponibles
+        message_html: Ya está disponible una actualización de Mastodon.
       software_version_critical_check:
         action: Ver actualizaciones disponibles
         message_html: Una actualización crítica de Mastodon está disponible, por favor actualice lo antes posible.
@@ -1453,8 +1453,8 @@ es-MX:
       emails:
         notification_emails:
           favourite: correos de notificación de favoritos
-          follow: correos de notificación de nuevos seguidores
-          follow_request: correos de notificación de solicitud de seguidor
+          follow: correos electrónicos de notificación de seguimiento
+          follow_request: correos electrónicos de solicitud de seguimiento
           mention: correos de notificación de menciones
           reblog: correos de notificación de impulsos
       resubscribe_html: Si te has dado de baja por error, puedes volver a darte de alta desde tus <a href="%{settings_path}">ajustes de notificaciones por correo</a>.
