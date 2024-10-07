@@ -5,6 +5,8 @@ class AccountsController < ApplicationController
   PAGE_SIZE_MAX = 200
 
   include AccountControllerConcern
+  include WebAppControllerConcern
+  include AccountOwnedConcern
   include SignatureAuthentication
 
   vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
