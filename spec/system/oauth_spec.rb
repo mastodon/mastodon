@@ -28,7 +28,7 @@ RSpec.describe 'Using OAuth from an external app' do
 
       # It grants the app access to the account
       expect { click_on oauth_authorize_text }
-        .to change { Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id) }.to(true)
+        .to change { user_has_grant_with_client_app? }.to(true)
 
       # Upon authorizing, it redirects to the apps' callback URL
       expect(page).to redirect_to_callback_url
@@ -42,7 +42,7 @@ RSpec.describe 'Using OAuth from an external app' do
 
       # It does not grant the app access to the account
       expect { click_on oauth_deny_text }
-        .to_not change { Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id) }.from(false)
+        .to_not change { user_has_grant_with_client_app? }.from(false)
 
       # Upon denying, it redirects to the apps' callback URL
       expect(page).to redirect_to_callback_url
@@ -149,7 +149,7 @@ RSpec.describe 'Using OAuth from an external app' do
 
       # It grants the app access to the account
       expect { click_on oauth_authorize_text }
-        .to change { Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id) }.to(true)
+        .to change { user_has_grant_with_client_app? }.to(true)
 
       # Upon authorizing, it redirects to the apps' callback URL
       expect(page).to redirect_to_callback_url
@@ -172,7 +172,7 @@ RSpec.describe 'Using OAuth from an external app' do
 
       # It does not grant the app access to the account
       expect { click_on oauth_deny_text }
-        .to_not change { Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id) }.from(false)
+        .to_not change { user_has_grant_with_client_app? }.from(false)
 
       # Upon denying, it redirects to the apps' callback URL
       expect(page).to redirect_to_callback_url
@@ -206,7 +206,7 @@ RSpec.describe 'Using OAuth from an external app' do
 
         # It grants the app access to the account
         expect { click_on oauth_authorize_text }
-          .to change { Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id) }.to(true)
+          .to change { user_has_grant_with_client_app? }.to(true)
 
         # Upon authorizing, it redirects to the apps' callback URL
         expect(page).to redirect_to_callback_url
@@ -237,7 +237,7 @@ RSpec.describe 'Using OAuth from an external app' do
 
         # It does not grant the app access to the account
         expect { click_on oauth_deny_text }
-          .to_not change { Doorkeeper::AccessGrant.exists?(application: client_app, resource_owner_id: user.id) }.from(false)
+          .to_not change { user_has_grant_with_client_app? }.from(false)
 
         # Upon denying, it redirects to the apps' callback URL
         expect(page).to redirect_to_callback_url
@@ -263,5 +263,13 @@ RSpec.describe 'Using OAuth from an external app' do
 
   def redirect_to_callback_url
     have_current_path(/\A#{client_app.redirect_uri}/, url: true)
+  end
+
+  def user_has_grant_with_client_app?
+    Doorkeeper::AccessGrant
+      .exists?(
+        application: client_app,
+        resource_owner_id: user.id
+      )
   end
 end
