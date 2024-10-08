@@ -16,15 +16,37 @@ RSpec.describe ActivityPub::DeliveryWorker do
   end
 
   describe 'perform' do
-    it 'performs a request' do
-      stub_request(:post, 'https://example.com/api').to_return(status: 200)
-      subject.perform(payload, sender.id, 'https://example.com/api', { synchronize_followers: true })
-      expect(a_request(:post, 'https://example.com/api').with(headers: { 'Collection-Synchronization' => "collectionId=\"#{account_followers_url(sender)}\", digest=\"somehash\", url=\"#{account_followers_synchronization_url(sender)}\"" })).to have_been_made.once
+    context 'when request succeeds' do
+      before { stub_request(:post, 'https://example.com/api').to_return(status: 200) }
+
+      it 'performs a request' do
+        subject.perform(payload, sender.id, 'https://example.com/api', { synchronize_followers: true })
+
+        expect(synchronization_request)
+          .to have_been_made.once
+      end
+
+      def synchronization_request
+        a_request(:post, 'https://example.com/api')
+          .with(headers: { 'Collection-Synchronization' => synchronization_headers })
+      end
+
+      def synchronization_headers
+        <<~HEADERS.squish.split.join(', ')
+          collectionId="#{account_followers_url(sender)}"
+          digest="somehash"
+          url="#{account_followers_synchronization_url(sender)}"
+        HEADERS
+      end
     end
 
-    it 'raises when request fails' do
-      stub_request(:post, 'https://example.com/api').to_return(status: 500)
-      expect { subject.perform(payload, sender.id, 'https://example.com/api') }.to raise_error Mastodon::UnexpectedResponseError
+    context 'when request fails' do
+      before { stub_request(:post, 'https://example.com/api').to_return(status: 500) }
+
+      it 'raises an error' do
+        expect { subject.perform(payload, sender.id, 'https://example.com/api') }
+          .to raise_error Mastodon::UnexpectedResponseError
+      end
     end
   end
 end

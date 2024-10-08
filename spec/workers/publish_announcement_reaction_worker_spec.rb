@@ -11,22 +11,28 @@ RSpec.describe PublishAnnouncementReactionWorker do
     let(:announcement) { Fabricate(:announcement) }
     let(:name) { 'name value' }
 
-    it 'sends the announcement and name to the service when subscribed' do
-      allow(redis).to receive(:exists?).and_return(true)
-      allow(redis).to receive(:publish)
+    context 'when subscribed' do
+      before { allow(redis).to receive(:exists?).and_return(true) }
 
-      worker.perform(announcement.id, name)
+      it 'sends the announcement and name to the service' do
+        allow(redis).to receive(:publish)
 
-      expect(redis).to have_received(:publish)
+        worker.perform(announcement.id, name)
+
+        expect(redis).to have_received(:publish)
+      end
     end
 
-    it 'does not send the announcement and name to the service when not subscribed' do
-      allow(redis).to receive(:exists?).and_return(false)
-      allow(redis).to receive(:publish)
+    context 'when not subscribed' do
+      before { allow(redis).to receive(:exists?).and_return(false) }
 
-      worker.perform(announcement.id, name)
+      it 'does not send the announcement and name to the service' do
+        allow(redis).to receive(:publish)
 
-      expect(redis).to_not have_received(:publish)
+        worker.perform(announcement.id, name)
+
+        expect(redis).to_not have_received(:publish)
+      end
     end
 
     it 'returns true for non-existent record' do
