@@ -624,6 +624,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_14_010506) do
     t.integer "thumbnail_file_size"
     t.datetime "thumbnail_updated_at", precision: nil
     t.string "thumbnail_remote_url"
+    t.virtual "combined_file_size", type: :integer, as: "(COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0))", stored: true
     t.index ["account_id", "status_id"], name: "index_media_attachments_on_account_id_and_status_id", order: { status_id: :desc }
     t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id", where: "(scheduled_status_id IS NOT NULL)"
     t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true, opclass: :text_pattern_ops, where: "(shortcode IS NOT NULL)"

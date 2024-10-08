@@ -316,7 +316,7 @@ module Mastodon::CLI
 
     def object_storage_summary
       [
-        [:attachments, MediaAttachment.sum(combined_media_sum), MediaAttachment.where(account: Account.local).sum(combined_media_sum)],
+        [:attachments, MediaAttachment.sum(:combined_file_size), MediaAttachment.where(account: Account.local).sum(:combined_file_size)],
         [:custom_emoji, CustomEmoji.sum(:image_file_size), CustomEmoji.local.sum(:image_file_size)],
         [:avatars, Account.sum(:avatar_file_size), Account.local.sum(:avatar_file_size)],
         [:headers, Account.sum(:header_file_size), Account.local.sum(:header_file_size)],
@@ -325,12 +325,6 @@ module Mastodon::CLI
         [:imports, Import.sum(:data_file_size), nil],
         [:settings, SiteUpload.sum(:file_file_size), nil],
       ].map { |label, total, local| [label.to_s.titleize, number_to_human_size(total), local.present? ? number_to_human_size(local) : nil] }
-    end
-
-    def combined_media_sum
-      Arel.sql(<<~SQL.squish)
-        COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)
-      SQL
     end
 
     PRELOADED_MODELS = %w(
