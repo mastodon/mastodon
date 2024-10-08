@@ -20,7 +20,7 @@ RSpec.describe 'Settings profile page' do
     fill_in display_name_field, with: 'New name'
     attach_file avatar_field, Rails.root.join('spec', 'fixtures', 'files', 'avatar.gif')
 
-    expect { click_on I18n.t('generic.save_changes') }
+    expect { click_on submit_button }
       .to change { account.reload.display_name }.to('New name')
       .and(change { account.reload.avatar.instance.avatar_file_name }.from(nil).to(be_present))
     expect(ActivityPub::UpdateDistributionWorker)
