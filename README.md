@@ -90,8 +90,8 @@ A **Vagrant** configuration is included for development purposes. To use it, com
 
 To set up **macOS** for native development, complete the following steps:
 
-- Install [Homebrew] and run `brew install postgresql@14 redis imagemagick
-libidn nvm` to install the required project dependencies
+- Install [Homebrew] and run `brew install postgresql@14 redis vips libidn nvm`
+  to install the required project dependencies
 - Use a Ruby version manager to activate the ruby in `.ruby-version` and run
   `nvm use` to activate the node version from `.nvmrc`
 - Run the `bin/setup` script, which will install the required ruby gems and node
