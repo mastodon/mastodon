@@ -48,8 +48,9 @@ export const loadingBarMiddleware = (
       let isRejected = false;
 
       if (
-        isAsyncThunkAction(action)
-        // TODO: once we get the first use-case for it, add a check for skipLoading
+        isAsyncThunkAction(action) &&
+        'useLoadingBar' in action.meta &&
+        action.meta.useLoadingBar
       ) {
         if (isThunkActionPending(action)) isPending = true;
         else if (isThunkActionFulfilled(action)) isFulfilled = true;

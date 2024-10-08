@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Auth::ChallengesController do
+RSpec.describe Auth::ChallengesController do
   render_views
 
   let(:password) { 'foobar12345' }

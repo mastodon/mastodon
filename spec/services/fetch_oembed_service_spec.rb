@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe FetchOEmbedService, type: :service do
+RSpec.describe FetchOEmbedService do
   subject { described_class.new }
 
   before do

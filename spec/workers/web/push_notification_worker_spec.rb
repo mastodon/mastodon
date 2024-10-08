@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Web::PushNotificationWorker do
+RSpec.describe Web::PushNotificationWorker do
   subject { described_class.new }
 
   let(:p256dh) { 'BN4GvZtEZiZuqFxSKVZfSfluwKBD7UxHNBmWkfiZfCtgDE8Bwh-_MtLXbBxTBAWH9r7IPKL0lhdcaqtL1dfxU5E=' }
@@ -22,27 +22,48 @@ describe Web::PushNotificationWorker do
   let(:payload) { { ciphertext: ciphertext, salt: salt, server_public_key: server_public_key, shared_secret: shared_secret } }
 
   describe 'perform' do
+    around do |example|
+      original_private = Rails.configuration.x.vapid_private_key
+      original_public = Rails.configuration.x.vapid_public_key
+      Rails.configuration.x.vapid_private_key = vapid_private_key
+      Rails.configuration.x.vapid_public_key = vapid_public_key
+      example.run
+      Rails.configuration.x.vapid_private_key = original_private
+      Rails.configuration.x.vapid_public_key = original_public
+    end
+
     before do
-      allow(subscription).to receive_messages(contact_email: contact_email, vapid_key: vapid_key)
-      allow(Web::PushSubscription).to receive(:find).with(subscription.id).and_return(subscription)
+      Setting.site_contact_email = contact_email
+
       allow(Webpush::Encryption).to receive(:encrypt).and_return(payload)
       allow(JWT).to receive(:encode).and_return('jwt.encoded.payload')
 
       stub_request(:post, endpoint).to_return(status: 201, body: '')
-
-      subject.perform(subscription.id, notification.id)
     end
 
     it 'calls the relevant service with the correct headers' do
-      expect(a_request(:post, endpoint).with(headers: {
-        'Content-Encoding' => 'aesgcm',
-        'Content-Type' => 'application/octet-stream',
-        'Crypto-Key' => "dh=BAgtUks5d90kFmxGevk9tH7GEmvz9DB0qcEMUsOBgKwMf-TMjsKIIG6LQvGcFAf6jcmAod15VVwmYwGIIxE4VWE;p256ecdsa=#{vapid_public_key.delete('=')}",
-        'Encryption' => 'salt=WJeVM-RY-F9351SVxTFx_g',
-        'Ttl' => '172800',
-        'Urgency' => 'normal',
-        'Authorization' => 'WebPush jwt.encoded.payload',
-      }, body: "+\xB8\xDBT}\u0013\xB6\xDD.\xF9\xB0\xA7\xC8Ҁ\xFD\x99#\xF7\xAC\x83\xA4\xDB,\u001F\xB5\xB9w\x85>\xF7\xADr")).to have_been_made
+      subject.perform(subscription.id, notification.id)
+
+      expect(web_push_endpoint_request)
+        .to have_been_made
+    end
+
+    def web_push_endpoint_request
+      a_request(
+        :post,
+        endpoint
+      ).with(
+        headers: {
+          'Content-Encoding' => 'aesgcm',
+          'Content-Type' => 'application/octet-stream',
+          'Crypto-Key' => "dh=BAgtUks5d90kFmxGevk9tH7GEmvz9DB0qcEMUsOBgKwMf-TMjsKIIG6LQvGcFAf6jcmAod15VVwmYwGIIxE4VWE;p256ecdsa=#{vapid_public_key.delete('=')}",
+          'Encryption' => 'salt=WJeVM-RY-F9351SVxTFx_g',
+          'Ttl' => '172800',
+          'Urgency' => 'normal',
+          'Authorization' => 'WebPush jwt.encoded.payload',
+        },
+        body: "+\xB8\xDBT}\u0013\xB6\xDD.\xF9\xB0\xA7\xC8Ҁ\xFD\x99#\xF7\xAC\x83\xA4\xDB,\u001F\xB5\xB9w\x85>\xF7\xADr"
+      )
     end
   end
 end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::SystemCheck::SoftwareVersionCheck do
+RSpec.describe Admin::SystemCheck::SoftwareVersionCheck do
   include RoutingHelper
 
   subject(:check) { described_class.new(user) }
@@ -51,8 +51,8 @@ describe Admin::SystemCheck::SoftwareVersionCheck do
         Fabricate(:software_update, version: '99.99.99', type: 'major', urgent: false)
       end
 
-      it 'returns true' do
-        expect(check.pass?).to be true
+      it 'returns false' do
+        expect(check.pass?).to be false
       end
     end
 

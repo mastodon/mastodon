@@ -20,7 +20,7 @@ class Scheduler::ScheduledStatusesScheduler
   end
 
   def due_statuses
-    ScheduledStatus.where('scheduled_at <= ?', Time.now.utc + PostStatusService::MIN_SCHEDULE_OFFSET)
+    ScheduledStatus.where(scheduled_at: ..Time.now.utc + PostStatusService::MIN_SCHEDULE_OFFSET)
   end
 
   def publish_scheduled_announcements!

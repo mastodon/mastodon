@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service do
+RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService do
   subject { described_class.new }
 
   let(:collection_url) { 'https://example.com/account/tags' }

@@ -17,7 +17,7 @@ RSpec.describe Disputes::AppealsController do
       let(:strike) { Fabricate(:account_warning, target_account: current_user.account) }
       let(:params) { { strike_id: strike.id, appeal: { text: 'Foo' } } }
 
-      it 'notifies staff about new appeal and redirects back to strike page', :sidekiq_inline do
+      it 'notifies staff about new appeal and redirects back to strike page', :inline_jobs do
         emails = capture_emails { subject }
 
         expect(emails.size)
@@ -36,7 +36,7 @@ RSpec.describe Disputes::AppealsController do
       let(:strike) { Fabricate(:account_warning, target_account: current_user.account) }
       let(:params) { { strike_id: strike.id, appeal: { text: '' } } }
 
-      it 'does not send email and renders strike show page', :sidekiq_inline do
+      it 'does not send email and renders strike show page', :inline_jobs do
         emails = capture_emails { subject }
 
         expect(emails).to be_empty

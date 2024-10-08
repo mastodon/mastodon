@@ -2,18 +2,23 @@
 
 require 'rails_helper'
 
-describe Settings::TwoFactorAuthentication::ConfirmationsController do
+RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
   render_views
 
   shared_examples 'renders :new' do
     it 'renders the new view' do
       subject
 
-      expect(assigns(:confirmation)).to be_instance_of Form::TwoFactorConfirmation
-      expect(assigns(:provision_url)).to eq 'otpauth://totp/cb6e6126.ngrok.io:local-part%40domain?secret=thisisasecretforthespecofnewview&issuer=cb6e6126.ngrok.io'
-      expect(assigns(:qrcode)).to be_instance_of RQRCode::QRCode
       expect(response).to have_http_status(200)
       expect(response).to render_template(:new)
+      expect(response.body)
+        .to include(qr_code_markup)
+    end
+
+    def qr_code_markup
+      RQRCode::QRCode.new(
+        'otpauth://totp/cb6e6126.ngrok.io:local-part%40domain?secret=thisisasecretforthespecofnewview&issuer=cb6e6126.ngrok.io'
+      ).as_svg(padding: 0, module_size: 4, use_path: true)
     end
   end
 
@@ -61,10 +66,10 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
             expect { post_create_with_options }
               .to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
 
-            expect(assigns(:recovery_codes)).to eq otp_backup_codes
             expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
             expect(response).to have_http_status(200)
             expect(response).to render_template('settings/two_factor_authentication/recovery_codes/index')
+            expect(response.body).to include(*otp_backup_codes)
           end
         end
 

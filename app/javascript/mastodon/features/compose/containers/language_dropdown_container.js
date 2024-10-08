@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 
 import { changeComposeLanguage } from 'mastodon/actions/compose';
-import { useLanguage } from 'mastodon/actions/languages';
 
 import LanguageDropdown from '../components/language_dropdown';
 
@@ -26,11 +25,6 @@ const mapDispatchToProps = dispatch => ({
 
   onChange (value) {
     dispatch(changeComposeLanguage(value));
-  },
-
-  onClose (value) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks -- this is not a react hook
-    dispatch(useLanguage(value));
   },
 
 });

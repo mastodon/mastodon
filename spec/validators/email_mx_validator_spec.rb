@@ -2,17 +2,17 @@
 
 require 'rails_helper'
 
-describe EmailMxValidator do
+RSpec.describe EmailMxValidator do
   describe '#validate' do
     let(:user) { instance_double(User, email: 'foo@example.com', sign_up_ip: '1.2.3.4', errors: instance_double(ActiveModel::Errors, add: nil)) }
     let(:resolv_dns_double) { instance_double(Resolv::DNS) }
 
     context 'with an e-mail domain that is explicitly allowed' do
       around do |block|
-        tmp = Rails.configuration.x.email_domains_whitelist
-        Rails.configuration.x.email_domains_whitelist = 'example.com'
+        tmp = Rails.configuration.x.email_domains_allowlist
+        Rails.configuration.x.email_domains_allowlist = 'example.com'
         block.call
-        Rails.configuration.x.email_domains_whitelist = tmp
+        Rails.configuration.x.email_domains_allowlist = tmp
       end
 
       it 'does not add errors if there are no DNS records' do
@@ -69,7 +69,7 @@ describe EmailMxValidator do
       expect(user.errors).to have_received(:add)
     end
 
-    it 'adds an error if the MX record is blacklisted' do
+    it 'adds an error if the MX record has an email domain block' do
       EmailDomainBlock.create!(domain: 'mail.example.com')
 
       configure_resolver(

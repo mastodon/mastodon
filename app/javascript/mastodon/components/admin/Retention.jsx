@@ -34,7 +34,7 @@ export default class Retention extends PureComponent {
   componentDidMount () {
     const { start_at, end_at, frequency } = this.props;
 
-    api().post('/api/v1/admin/retention', { start_at, end_at, frequency }).then(res => {
+    api(false).post('/api/v1/admin/retention', { start_at, end_at, frequency }).then(res => {
       this.setState({
         loading: false,
         data: res.data,

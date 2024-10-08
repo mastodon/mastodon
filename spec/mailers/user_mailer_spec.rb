@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe UserMailer do
+RSpec.describe UserMailer do
   let(:receiver) { Fabricate(:user) }
 
   describe '#confirmation_instructions' do
@@ -246,6 +246,12 @@ describe UserMailer do
 
   describe '#welcome' do
     let(:mail) { described_class.welcome(receiver) }
+
+    before do
+      # This is a bit hacky and low-level but this allows stubbing trending tags
+      tag_ids = Fabricate.times(5, :tag).pluck(:id)
+      allow(Trends.tags).to receive(:query).and_return(instance_double(Trends::Query, allowed: Tag.where(id: tag_ids)))
+    end
 
     it 'renders welcome mail' do
       expect(mail)

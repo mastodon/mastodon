@@ -109,6 +109,7 @@ module LanguagesHelper
     mn: ['Mongolian', 'Монгол хэл'].freeze,
     mr: ['Marathi', 'मराठी'].freeze,
     ms: ['Malay', 'Bahasa Melayu'].freeze,
+    'ms-Arab': ['Jawi Malay', 'بهاس ملايو'].freeze,
     mt: ['Maltese', 'Malti'].freeze,
     my: ['Burmese', 'ဗမာစာ'].freeze,
     na: ['Nauru', 'Ekakairũ Naoero'].freeze,
@@ -197,6 +198,8 @@ module LanguagesHelper
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,
     lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
+    moh: ['Mohawk', 'Kanienʼkéha'].freeze,
+    nds: ['Low German', 'Plattdüütsch'].freeze,
     pdc: ['Pennsylvania Dutch', 'Pennsilfaani-Deitsch'].freeze,
     sco: ['Scots', 'Scots'].freeze,
     sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,
@@ -236,9 +239,7 @@ module LanguagesHelper
 
   # Helper for self.sorted_locale_keys
   private_class_method def self.locale_name_for_sorting(locale)
-    if locale.blank? || locale == 'und'
-      '000'
-    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
+    if (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
       ASCIIFolding.new.fold(supported_locale[1]).downcase
     elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
       ASCIIFolding.new.fold(regional_locale).downcase

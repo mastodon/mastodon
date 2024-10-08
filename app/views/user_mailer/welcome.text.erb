@@ -53,7 +53,7 @@
 <%= t('user_mailer.welcome.hashtags_subtitle') %>
 
 <%- @tags.each do |tag| %>
-* #<%= tag.display_name %> · <%= t('user_mailer.welcome.hashtags_recent_count', people: number_with_delimiter(tag.history.aggregate(2.days.ago.to_date..Time.zone.today).accounts), days: 2) %>
+* #<%= tag.display_name %> · <%= t('user_mailer.welcome.hashtags_recent_count', people: number_with_delimiter(tag.history.aggregate(2.days.ago.to_date..Time.zone.today).accounts)) %>
   <%= tag_url(tag) %>
 <%- end %>
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Directories API' do
+RSpec.describe 'Directories API' do
   let(:user)    { Fabricate(:user, confirmed_at: nil) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)  { 'read:follows' }
@@ -82,8 +82,13 @@ describe 'Directories API' do
         get '/api/v1/directory', headers: headers
 
         expect(response).to have_http_status(200)
-        expect(body_as_json.size).to eq(2)
-        expect(body_as_json.pluck(:id)).to contain_exactly(eligible_remote_account.id.to_s, local_discoverable_account.id.to_s)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: eligible_remote_account.id.to_s),
+            hash_including(id: local_discoverable_account.id.to_s)
+          )
       end
     end
 
@@ -101,9 +106,13 @@ describe 'Directories API' do
         get '/api/v1/directory', headers: headers, params: { local: '1' }
 
         expect(response).to have_http_status(200)
-        expect(body_as_json.size).to eq(1)
-        expect(body_as_json.first[:id]).to include(local_account.id.to_s)
-        expect(response.body).to_not include(remote_account.id.to_s)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: local_account.id.to_s)
+          )
+          .and not_include(remote_account.id.to_s)
       end
     end
 
@@ -115,9 +124,13 @@ describe 'Directories API' do
         get '/api/v1/directory', headers: headers, params: { order: 'active' }
 
         expect(response).to have_http_status(200)
-        expect(body_as_json.size).to eq(2)
-        expect(body_as_json.first[:id]).to include(new_stat.account_id.to_s)
-        expect(body_as_json.second[:id]).to include(old_stat.account_id.to_s)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: new_stat.account_id.to_s),
+            hash_including(id: old_stat.account_id.to_s)
+          )
       end
     end
 
@@ -130,9 +143,13 @@ describe 'Directories API' do
         get '/api/v1/directory', headers: headers, params: { order: 'new' }
 
         expect(response).to have_http_status(200)
-        expect(body_as_json.size).to eq(2)
-        expect(body_as_json.first[:id]).to include(account_new.id.to_s)
-        expect(body_as_json.second[:id]).to include(account_old.id.to_s)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(id: account_new.id.to_s),
+            hash_including(id: account_old.id.to_s)
+          )
       end
     end
   end
