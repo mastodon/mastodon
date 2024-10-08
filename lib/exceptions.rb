@@ -41,5 +41,6 @@ module Mastodon
     HTTP::ConnectionError,
     HTTP::Error,
     HTTP::TimeoutError,
+    OpenSSL::SSL::SSLError,
   ].freeze
 end
