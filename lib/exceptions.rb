@@ -36,4 +36,10 @@ module Mastodon
       super()
     end
   end
+
+  HTTP_CONNECTION_ERRORS = [
+    HTTP::ConnectionError,
+    HTTP::Error,
+    HTTP::TimeoutError,
+  ].freeze
 end
