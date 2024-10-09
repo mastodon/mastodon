@@ -35,8 +35,8 @@ class SessionActivation < ApplicationRecord
       id && exists?(session_id: id)
     end
 
-    def activate(**options)
-      activation = create!(**options)
+    def activate(**)
+      activation = create!(**)
       purge_old
       activation
     end

@@ -42,8 +42,8 @@ class TranslationService::DeepL < TranslationService
     subtags.join('-')
   end
 
-  def request(verb, path, **options)
-    req = Request.new(verb, "#{base_url}#{path}", **options)
+  def request(verb, path, **)
+    req = Request.new(verb, "#{base_url}#{path}", **)
     req.add_headers(Authorization: "DeepL-Auth-Key #{@api_key}")
     req.perform do |res|
       case res.code

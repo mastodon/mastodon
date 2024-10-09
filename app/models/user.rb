@@ -405,8 +405,8 @@ class User < ApplicationRecord
     @pending_devise_notifications ||= []
   end
 
-  def render_and_send_devise_message(notification, *args, **kwargs)
-    devise_mailer.send(notification, self, *args, **kwargs).deliver_later
+  def render_and_send_devise_message(notification, *, **)
+    devise_mailer.send(notification, self, *, **).deliver_later
   end
 
   def set_approved

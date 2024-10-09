@@ -20,9 +20,9 @@ class ActivityPub::Activity
   end
 
   class << self
-    def factory(json, account, **options)
+    def factory(json, account, **)
       @json = json
-      klass&.new(json, account, **options)
+      klass&.new(json, account, **)
     end
 
     private
