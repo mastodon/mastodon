@@ -87,7 +87,7 @@ export const EmbeddedStatusContent: React.FC<{
       className={className}
       ref={handleContentRef}
       lang={language}
-      dangerouslySetInnerHTML={{ __html: content }}
+      dangerouslySetInnerHTML={{ __html: content.replace(/<\/p><p>/g, '\n\n') }}
     />
   );
 };
