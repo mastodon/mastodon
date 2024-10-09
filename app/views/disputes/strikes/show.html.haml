@@ -76,7 +76,7 @@
 
   = simple_form_for(@appeal, url: disputes_strike_appeal_path(@strike)) do |f|
     .fields-group
-      = f.input :text, wrapper: :with_label, input_html: { maxlength: 500 }
+      = f.input :text, wrapper: :with_label, input_html: { maxlength: Appeal::TEXT_LENGTH_LIMIT }
 
     .actions
       = f.button :button, t('disputes.strikes.appeals.submit'), type: :submit

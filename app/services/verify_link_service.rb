@@ -10,7 +10,7 @@ class VerifyLinkService < BaseService
     return unless link_back_present?
 
     field.mark_verified!
-  rescue OpenSSL::SSL::SSLError, HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, IPAddr::AddressFamilyError => e
+  rescue *Mastodon::HTTP_CONNECTION_ERRORS, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, IPAddr::AddressFamilyError => e
     Rails.logger.debug { "Error fetching link #{@url}: #{e}" }
     nil
   end

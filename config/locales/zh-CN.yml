@@ -7,7 +7,6 @@ zh-CN:
     hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     title: 关于本站
   accounts:
-    follow: 关注
     followers:
       other: 关注者
     following: 正在关注
@@ -20,10 +19,11 @@ zh-CN:
     posts:
       other: 嘟文
     posts_tab_heading: 嘟文
+    self_follow_error: 不可以关注自己
   admin:
     account_actions:
       action: 执行操作
-      already_silenced: 此帐户已受限。
+      already_silenced: 此账户已受限。
       already_suspended: 此帐户已被封禁。
       title: 在 %{acct} 上执行管理操作
     account_moderation_notes:
@@ -862,6 +862,9 @@ zh-CN:
         message_html: 你没有定义任何服务器规则。
       sidekiq_process_check:
         message_html: "%{value} 队列未运行任何 Sidekiq 进程。请检查你的 Sidekiq 配置"
+      software_version_check:
+        action: 查看可用更新
+        message_html: 有一个 Mastodon 更新可用。
       software_version_critical_check:
         action: 查看可用更新
         message_html: 有一个紧急Mastodon紧急更新可用，请尽快更新。
@@ -1143,6 +1146,12 @@ zh-CN:
       view_strikes: 查看针对你账号的记录
     too_fast: 表单提交过快，请重试。
     use_security_key: 使用安全密钥
+  author_attribution:
+    example_title: 示例文本
+    hint_html: 控制在 Mastodon 上分享的链接如何显示你的署名。
+    more_from_html: 来自 %{name} 的更多内容
+    s_blog: "%{name} 的博客"
+    title: 作者归属
   challenge:
     confirm: 继续
     hint_html: "<strong>注意：</strong>接下来一小时内我们不会再次要求你输入密码。"
@@ -1151,7 +1160,6 @@ zh-CN:
   crypto:
     errors:
       invalid_key: 不是有效的 Ed25519 或者 Curve25519 密钥
-      invalid_signature: 不是有效的 Ed25519 签名
   date:
     formats:
       default: "%Y年%m月%d日"
@@ -1217,8 +1225,6 @@ zh-CN:
       your_appeal_approved: 你的申诉已被批准
       your_appeal_pending: 你已提交申诉
       your_appeal_rejected: 你的申诉已被驳回
-  domain_validator:
-    invalid_domain: 不是一个有效的域名
   edit_profile:
     basic_information: 基本信息
     hint_html: "<strong>自定义公开资料和嘟文旁边显示的内容。</strong>当您填写完整的个人资料并设置了头像时，其他人更有可能关注您并与您互动。"
@@ -1336,19 +1342,31 @@ zh-CN:
       overwrite: 覆盖
       overwrite_long: 将当前记录替换为新记录
     overwrite_preambles:
-      blocking_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换你的屏蔽列表。
-      bookmarks_html: 你即将使用来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>替换你的书签。
-      domain_blocking_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个域名</strong>替换你的域名屏蔽列表。
-      following_html: 你即将从<strong> %{filename} </strong>关注<strong> %{total_items} 个账户</strong>，并停止关注其他任何人。
-      lists_html: 你即将用<strong> %{filename} </strong>的内容<strong>替换你的列表</strong>。新列表中将添加<strong> %{total_items} 个账户</strong>。
-      muting_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换你已隐藏的账户列表。
+      blocking_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>帐户<strong>替换你的屏蔽列表</strong>。
+      bookmarks_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 条</strong>嘟文<strong>替换你的书签</strong>。
+      domain_blocking_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>域名<strong>替换你的域名屏蔽列表</strong>。
+      following_html:
+        other: 你即将<strong>关注</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账户</strong>，并<strong>停止关注其他所有人</strong>。
+      lists_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的内容<strong>替换你的列表</strong>。最多将会有 <strong>%{count} 个账户</strong> 被添加到新列表。
+      muting_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>帐户<strong>替换你的已隐藏账户列表</strong>。
     preambles:
-      blocking_html: 你即将从<strong> %{filename} </strong>中<strong>封锁</strong>多达<strong> %{total_items} </strong>个账户。
-      bookmarks_html: 你即将把来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>添加到你的<strong>书签</strong>中。
-      domain_blocking_html: 你即将从<strong> %{filename} </strong>中<strong>屏蔽</strong><strong> %{total_items} 个域名</strong>。
-      following_html: 你即将从<strong> %{filename} </strong><strong>关注</strong>最多<strong> %{total_items} 个账户</strong>。
-      lists_html: 你即将从<strong> %{filename} </strong>中添加最多<strong> %{total_items} 个账户</strong>到你的<strong>列表</strong>中。如果没有可用列表，将创建新的列表。
-      muting_html: 你即将从<strong> %{filename} </strong>中<strong>隐藏</strong><strong> %{total_items} 个账户</strong>。
+      blocking_html:
+        other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
+      bookmarks_html:
+        other: 你即将把来自<strong> %{filename} </strong>的<strong> %{count} 篇嘟文</strong>添加到你的<strong>书签</strong>中。
+      domain_blocking_html:
+        other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个域名</strong>。
+      following_html:
+        other: 你即将<strong>关注</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
+      lists_html:
+        other: 你即将从<strong> %{filename} </strong>中添加最多<strong> %{count} 个账户</strong>到你的<strong>列表</strong>中。如果没有可用列表，将创建新的列表。
+      muting_html:
+        other: 你即将<strong>隐藏</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
     preface: 你可以在此导入你在其他实例导出的数据，比如你所关注或屏蔽的用户列表。
     recent_imports: 最近导入
     states:
@@ -1706,21 +1724,12 @@ zh-CN:
     edited_at_html: 编辑于 %{date}
     errors:
       in_reply_not_found: 你回复的嘟文似乎不存在
-    open_in_web: 在站内打开
     over_character_limit: 超过了 %{max} 字的限制
     pin_errors:
       direct: 仅对被提及的用户可见的帖子不能被置顶
       limit: 你所固定的嘟文数量已达到上限
       ownership: 不能置顶别人的嘟文
       reblog: 不能置顶转嘟
-    poll:
-      total_people:
-        other: "%{count} 人"
-      total_votes:
-        other: "%{count} 票"
-      vote: 投票
-    show_more: 显示更多
-    show_thread: 显示全部对话
     title: "%{name}：“%{quote}”"
     visibilities:
       direct: 私信
@@ -1918,6 +1927,7 @@ zh-CN:
     instructions_html: 将下面的代码复制并粘贴到你网站的HTML中。然后在“编辑个人资料”选项卡中的附加字段之一添加你网站的地址，并保存更改。
     verification: 验证
     verified_links: 你已验证的链接
+    website_verification: 网站验证
   webauthn_credentials:
     add: 添加新的安全密钥
     create:

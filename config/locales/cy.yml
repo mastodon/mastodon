@@ -7,7 +7,6 @@ cy:
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     title: Ynghylch
   accounts:
-    follow: Dilyn
     followers:
       few: Dilynwyr
       many: Dilynwyr
@@ -33,7 +32,7 @@ cy:
   admin:
     account_actions:
       action: Cyflawni gweithred
-      already_silenced: Mae'r cyfrif hwn eisoes wedi'i dewi.
+      already_silenced: Mae'r cyfrif hwn eisoes wedi'i gyfyngu.
       already_suspended: Mae'r cyfrif hwn eisoes wedi'i atal.
       title: Cyflawni gweithred cymedroli ar %{acct}
     account_moderation_notes:
@@ -932,6 +931,9 @@ cy:
         message_html: Nid ydych wedi diffinio unrhyw reolau gweinydd.
       sidekiq_process_check:
         message_html: Does dim proses Sidekiq yn rhedeg ar gyfer y ciw(iau) %{value}. Adolygwch eich ffurfweddiad Sidekiq
+      software_version_check:
+        action: Gweld y diweddariadau sydd ar gael
+        message_html: Mae diweddariad Mastodon ar gael.
       software_version_critical_check:
         action: Gweld y diweddariadau sydd ar gael
         message_html: Mae diweddariad hanfodol Mastodon ar gael, diweddarwch cyn gynted â phosibl.
@@ -1233,6 +1235,12 @@ cy:
       view_strikes: Gweld rybuddion y gorffennol yn erbyn eich cyfrif
     too_fast: Cafodd y ffurflen ei chyflwyno'n rhy gyflym, ceisiwch eto.
     use_security_key: Defnyddiwch allwedd diogelwch
+  author_attribution:
+    example_title: Testun enghreifftiol
+    hint_html: Rheolwch sut rydych chi'n cael eich canmol pan fydd dolenni'n cael eu rhannu ar Mastodon.
+    more_from_html: Mwy gan %{name}
+    s_blog: Blog %{name}
+    title: Priodoliad awdur
   challenge:
     confirm: Parhau
     hint_html: "<strong>Awgrym:</strong> Fyddwn ni ddim yn gofyn i chi am eich cyfrinair eto am yr awr nesaf."
@@ -1241,7 +1249,6 @@ cy:
   crypto:
     errors:
       invalid_key: ddim yn allwedd Ed25519 na Curve25519 dilys
-      invalid_signature: ddim yn llofnod Ed25519 dilys
   date:
     formats:
       default: "%b %d %Y"
@@ -1307,8 +1314,6 @@ cy:
       your_appeal_approved: Mae eich apêl wedi'i chymeradwyo
       your_appeal_pending: Rydych wedi cyflwyno apêl
       your_appeal_rejected: Mae eich apêl wedi'i gwrthod
-  domain_validator:
-    invalid_domain: ddim yn enw parth dilys
   edit_profile:
     basic_information: Gwybodaeth Sylfaenol
     hint_html: "<strong>Addaswch yr hyn y mae pobl yn ei weld ar eich proffil cyhoeddus ac wrth ymyl eich postiadau.</strong> Mae pobl eraill yn fwy tebygol o'ch dilyn yn ôl a rhyngweithio â chi pan fydd gennych broffil wedi'i lenwi a llun proffil."
@@ -1460,20 +1465,6 @@ cy:
       merge_long: Cadw'r cofnodion presennol ac ychwanegu rhai newydd
       overwrite: Trosysgrifio
       overwrite_long: Amnewid y cofnodion cyfredol gyda'r rhai newydd
-    overwrite_preambles:
-      blocking_html: Rydych ar fin <strong>amnewid eich rhestr rhwystro</strong> gyda hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
-      bookmarks_html: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{total_items} o bostiadau</strong> gan <strong>%{filename}</strong> .
-      domain_blocking_html: Rydych ar fin <strong>amnewid eich rhestr rhwystro parth</strong> gyda hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong> .
-      following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> a <strong>pheidio a ddilyn unrhyw un arall</strong> .
-      lists_html: Rydych ar fin <strong>amnewid eich rhestrau</strong> gyda chynnwys <strong>%{filename}</strong> . Bydd hyd at <strong>%{total_items} o gyfrifon</strong> yn cael eu hychwanegu at restrau newydd.
-      muting_html: Rydych ar fin <strong>amnewid eich rhestr o gyfrifon tawel</strong> gyda hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
-    preambles:
-      blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
-      bookmarks_html: Rydych ar fin ychwanegu hyd at <strong>%{total_items} o bostiadau</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong> .
-      domain_blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong> .
-      following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} cyfrif</strong> gan <strong>%{filename}</strong> .
-      lists_html: Rydych ar fin ychwanegu hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> at eich <strong>rhestrau</strong> . Bydd rhestrau newydd yn cael eu creu os nad oes rhestr i ychwanegu ati.
-      muting_html: Rydych ar fin <strong>anwybyddu</strong> hyd at <strong>%{total_items} cyfrif</strong> o <strong>%{filename}</strong>.
     preface: Gallwch fewnforio data rydych chi wedi'i allforio o weinydd arall, fel rhestr o'r bobl rydych chi'n eu dilyn neu'n eu blocio.
     recent_imports: Mewnforion diweddar
     states:
@@ -1794,7 +1785,7 @@ cy:
     delete: Dileu cyfrif
     development: Datblygu
     edit_profile: Golygu proffil
-    export: Allforio data
+    export: Allforio
     featured_tags: Prif hashnodau
     import: Mewnforio
     import_and_export: Mewnforio ac allforio
@@ -1856,31 +1847,12 @@ cy:
     edited_at_html: Wedi'i olygu %{date}
     errors:
       in_reply_not_found: Nid yw'n ymddangos bod y postiad rydych chi'n ceisio ei ateb yn bodoli.
-    open_in_web: Agor yn y we
     over_character_limit: wedi mynd y tu hwnt i'r terfyn nodau o %{max}
     pin_errors:
       direct: Nid oes modd pinio postiadau sy'n weladwy i ddefnyddwyr a grybwyllwyd yn unig
       limit: Rydych chi eisoes wedi pinio uchafswm nifer y postiadau
       ownership: Nid oes modd pinio postiad rhywun arall
       reblog: Nid oes modd pinio hwb
-    poll:
-      total_people:
-        few: "%{count} person"
-        many: "%{count} person"
-        one: "%{count} berson"
-        other: "%{count} person"
-        two: "%{count} person"
-        zero: "%{count} o bersonau"
-      total_votes:
-        few: "%{count} pleidlais"
-        many: "%{count} pleidlais"
-        one: "%{count} bleidlais"
-        other: "%{count} pleidlais"
-        two: "%{count} pleidlais"
-        zero: "%{count} o bleidleisiau"
-      vote: Pleidlais
-    show_more: Dangos mwy
-    show_thread: Dangos edefyn
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Uniongyrchol
@@ -2083,6 +2055,7 @@ cy:
     instructions_html: Copïwch a gludo'r cod isod i HTML eich gwefan. Yna ychwanegwch gyfeiriad eich gwefan i un o'r meysydd ychwanegol ar eich proffil o'r tab "Golygu proffil" a chadw'r newidiadau.
     verification: Dilysu
     verified_links: Eich dolenni wedi'u dilysu
+    website_verification: Gwirio gwefan
   webauthn_credentials:
     add: Ychwanegu allwedd ddiogelwch newydd
     create:

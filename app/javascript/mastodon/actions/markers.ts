@@ -2,7 +2,6 @@ import { debounce } from 'lodash';
 
 import type { MarkerJSON } from 'mastodon/api_types/markers';
 import { getAccessToken } from 'mastodon/initial_state';
-import { selectUseGroupedNotifications } from 'mastodon/selectors/settings';
 import type { AppDispatch, RootState } from 'mastodon/store';
 import { createAppAsyncThunk } from 'mastodon/store/typed_functions';
 
@@ -38,8 +37,7 @@ export const synchronouslySubmitMarkers = createAppAsyncThunk(
       });
 
       return;
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    } else if ('navigator' && 'sendBeacon' in navigator) {
+    } else if ('sendBeacon' in navigator) {
       // Failing that, we can use sendBeacon, but we have to encode the data as
       // FormData for DoorKeeper to recognize the token.
       const formData = new FormData();
@@ -65,7 +63,7 @@ export const synchronouslySubmitMarkers = createAppAsyncThunk(
       client.setRequestHeader('Content-Type', 'application/json');
       client.setRequestHeader('Authorization', `Bearer ${accessToken}`);
       client.send(JSON.stringify(params));
-    } catch (e) {
+    } catch {
       // Do not make the BeforeUnload handler error out
     }
   },
@@ -76,12 +74,7 @@ interface MarkerParam {
 }
 
 function getLastNotificationId(state: RootState): string | undefined {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return selectUseGroupedNotifications(state)
-    ? state.notificationGroups.lastReadId
-    : // @ts-expect-error state.notifications is not yet typed
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      state.getIn(['notifications', 'lastReadId']);
+  return state.notificationGroups.lastReadId;
 }
 
 const buildPostMarkersParams = (state: RootState) => {

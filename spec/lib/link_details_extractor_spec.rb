@@ -33,6 +33,14 @@ RSpec.describe LinkDetailsExtractor do
         expect(subject.canonical_url).to eq original_url
       end
     end
+
+    context 'when canonical URL is set to "undefined"' do
+      let(:url) { 'undefined' }
+
+      it 'ignores the canonical URLs' do
+        expect(subject.canonical_url).to eq original_url
+      end
+    end
   end
 
   context 'when only basic metadata is present' do

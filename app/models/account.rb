@@ -44,22 +44,23 @@
 #  hide_collections              :boolean
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
-#  devices_url                   :string
 #  suspension_origin             :integer
 #  sensitized_at                 :datetime
 #  trendable                     :boolean
 #  reviewed_at                   :datetime
 #  requested_review_at           :datetime
 #  indexable                     :boolean          default(FALSE), not null
+#  attribution_domains           :string           default([]), is an Array
 #
 
 class Account < ApplicationRecord
   self.ignored_columns += %w(
-    subscription_expires_at
-    secret
+    devices_url
+    hub_url
     remote_url
     salmon_url
-    hub_url
+    secret
+    subscription_expires_at
     trust_level
   )
 
@@ -67,8 +68,8 @@ class Account < ApplicationRecord
   DEFAULT_FIELDS_SIZE = 4
   INSTANCE_ACTOR_ID = -99
 
-  USERNAME_RE   = /[a-z0-9_]+([a-z0-9_.-]+[a-z0-9_]+)?/i
-  MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@[[:word:].-]+[[:word:]]+)?)}
+  USERNAME_RE   = /[a-z0-9_]+([.-]+[a-z0-9_]+)*/i
+  MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]]+([.-]+[[:word:]]+)*)?)}
   URL_PREFIX_RE = %r{\Ahttp(s?)://[^/]+}
   USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
   USERNAME_LENGTH_LIMIT = 30
@@ -88,6 +89,8 @@ class Account < ApplicationRecord
   include Account::Merging
   include Account::Search
   include Account::StatusesSearch
+  include Account::Suspensions
+  include Account::AttributionDomains
   include DomainMaterializable
   include DomainNormalizable
   include Paginable
@@ -111,10 +114,12 @@ class Account < ApplicationRecord
   validates :display_name, length: { maximum: DISPLAY_NAME_LENGTH_LIMIT }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, note_length: { maximum: NOTE_LENGTH_LIMIT }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: DEFAULT_FIELDS_SIZE }, if: -> { local? && will_save_change_to_fields? }
-  validates :uri, absence: true, if: :local?, on: :create
-  validates :inbox_url, absence: true, if: :local?, on: :create
-  validates :shared_inbox_url, absence: true, if: :local?, on: :create
-  validates :followers_url, absence: true, if: :local?, on: :create
+  with_options on: :create do
+    validates :uri, absence: true, if: :local?
+    validates :inbox_url, absence: true, if: :local?
+    validates :shared_inbox_url, absence: true, if: :local?
+    validates :followers_url, absence: true, if: :local?
+  end
 
   normalizes :username, with: ->(username) { username.squish }
 
@@ -123,9 +128,7 @@ class Account < ApplicationRecord
   scope :local, -> { where(domain: nil) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where.not(silenced_at: nil) }
-  scope :suspended, -> { where.not(suspended_at: nil) }
   scope :sensitized, -> { where.not(sensitized_at: nil) }
-  scope :without_suspended, -> { where(suspended_at: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
   scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
@@ -249,37 +252,6 @@ class Account < ApplicationRecord
 
   def unsilence!
     update!(silenced_at: nil)
-  end
-
-  def suspended?
-    suspended_at.present? && !instance_actor?
-  end
-
-  def suspended_permanently?
-    suspended? && deletion_request.nil?
-  end
-
-  def suspended_temporarily?
-    suspended? && deletion_request.present?
-  end
-
-  alias unavailable? suspended?
-  alias permanently_unavailable? suspended_permanently?
-
-  def suspend!(date: Time.now.utc, origin: :local, block_email: true)
-    transaction do
-      create_deletion_request!
-      update!(suspended_at: date, suspension_origin: origin)
-      create_canonical_email_block! if block_email
-    end
-  end
-
-  def unsuspend!
-    transaction do
-      deletion_request&.destroy!
-      update!(suspended_at: nil, suspension_origin: nil)
-      destroy_canonical_email_block!
-    end
   end
 
   def sensitized?

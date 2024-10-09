@@ -7,7 +7,6 @@ hu:
     hosted_on: "%{domain} Mastodon-kiszolgáló"
     title: Névjegy
   accounts:
-    follow: Követés
     followers:
       one: Követő
       other: Követő
@@ -25,7 +24,7 @@ hu:
   admin:
     account_actions:
       action: Művelet végrehajtása
-      already_silenced: Ezt a fiókot már elnémították.
+      already_silenced: Ezt a fiókot már korlátozták.
       already_suspended: Ezt a fiókot már felfüggesztették.
       title: 'Moderálási művelet végrehajtása ezen: %{acct}'
     account_moderation_notes:
@@ -876,6 +875,9 @@ hu:
         message_html: Még nem definiáltál egy szerver szabályt sem.
       sidekiq_process_check:
         message_html: Nincs Sidekiq folyamat, mely a %{value} sorhoz van rendelve. Kérlek, nézd át a Sidekiq beállításait
+      software_version_check:
+        action: Elérhető frissítések megtekintése
+        message_html: Egy Mastodon-frissítés elérhető.
       software_version_critical_check:
         action: Elérhető frissítések megtekintése
         message_html: Kritikus Mastodon frissítés érhető el, frissíts a lehető leggyorsabban.
@@ -1161,6 +1163,12 @@ hu:
       view_strikes: Fiókod ellen felrótt korábbi vétségek megtekintése
     too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
     use_security_key: Biztonsági kulcs használata
+  author_attribution:
+    example_title: Mintaszöveg
+    hint_html: Szabályozd, hogyan hivatkoznak rád, amikor linket osztanak meg Mastodonon.
+    more_from_html: 'Több tőle: %{name}'
+    s_blog: "%{name} blogja"
+    title: Szerző forrásmegjelölése
   challenge:
     confirm: Folytatás
     hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
@@ -1169,7 +1177,6 @@ hu:
   crypto:
     errors:
       invalid_key: érvénytelen Ed25519 vagy Curve25519 kulcs
-      invalid_signature: érvénytelen Ed25519 aláírás
   date:
     formats:
       default: "%Y. %b %d."
@@ -1235,8 +1242,6 @@ hu:
       your_appeal_approved: A fellebbezésedet jóváhagyták
       your_appeal_pending: Beküldtél egy fellebbezést
       your_appeal_rejected: A fellebbezésedet visszautasították
-  domain_validator:
-    invalid_domain: nem egy valódi domain név
   edit_profile:
     basic_information: Általános információk
     hint_html: "<strong>Tedd egyedivé, mi látnak mások a profilodon és a bejegyzéseid mellett.</strong> Mások nagyobb eséllyel követnek vissza és lépnek veled kapcsolatba, ha van kitöltött profilod és profilképed."
@@ -1361,19 +1366,43 @@ hu:
       overwrite: Felülírás
       overwrite_long: Lecseréljük újakkal a jelenlegi bejegyzéseket
     overwrite_preambles:
-      blocking_html: 'Arra készülsz, hogy <strong>lecseréld a letiltási listát</strong> legfeljebb <strong>%{total_items} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
-      bookmarks_html: 'Arra készülsz, hogy <strong>lecseréld a könyvjelzőket</strong> legfeljebb <strong>%{total_items} bejegyzésre</strong> a következőből: <strong>%{filename}</strong>.'
-      domain_blocking_html: 'Arra készülsz, hogy <strong>lecseréld a domain letiltási listát</strong> legfeljebb <strong>%{total_items} domainre</strong> a következőből: <strong>%{filename}</strong>.'
-      following_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>, és <strong>abbahagyd mindenki más követését</strong>.'
-      lists_html: Arra készülsz, hogy <strong>a listákat lecseréld</strong> a <strong>%{filename}</strong> tartalmával. Legfeljebb <strong>%{total_items} fiók</strong> kerül fel az új listákra.
-      muting_html: 'Arra készülsz, hogy <strong>lecseréld a némított fiókok listáját</strong> legfeljebb <strong>%{total_items} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
+      blocking_html:
+        one: 'Arra készülsz, hogy <strong>lecseréld a letiltási listát</strong> legfeljebb <strong>%{count} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy <strong>lecseréld a letiltási listát</strong> legfeljebb <strong>%{count} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
+      bookmarks_html:
+        one: 'Arra készülsz, hogy <strong>lecseréld a könyvjelzőket</strong> legfeljebb <strong>%{count} bejegyzésre</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy <strong>lecseréld a könyvjelzőket</strong> legfeljebb <strong>%{count} bejegyzésre</strong> a következőből: <strong>%{filename}</strong>.'
+      domain_blocking_html:
+        one: 'Arra készülsz, hogy <strong>lecseréld a domain letiltási listát</strong> legfeljebb <strong>%{count} domainre</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy <strong>lecseréld a domain letiltási listát</strong> legfeljebb <strong>%{count} domainre</strong> a következőből: <strong>%{filename}</strong>.'
+      following_html:
+        one: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>, és <strong>abbahagyd mindenki más követését</strong>.'
+        other: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>, és <strong>abbahagyd mindenki más követését</strong>.'
+      lists_html:
+        one: Arra készülsz, hogy <strong>a listákat lecseréld</strong> a <strong>%{filename}</strong> tartalmával. Legfeljebb <strong>%{count} fiók</strong> kerül fel az új listákra.
+        other: Arra készülsz, hogy <strong>a listákat lecseréld</strong> a <strong>%{filename}</strong> tartalmával. Legfeljebb <strong>%{count} fiók</strong> kerül fel az új listákra.
+      muting_html:
+        one: 'Arra készülsz, hogy <strong>lecseréld a némított fiókok listáját</strong> legfeljebb <strong>%{count} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy <strong>lecseréld a némított fiókok listáját</strong> legfeljebb <strong>%{count} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
     preambles:
-      blocking_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
-      bookmarks_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} bejegyzést</strong> adj hozzá a <strong>könyvjelzőkhöz</strong> a következőből: <strong>%{filename}</strong>.'
-      domain_blocking_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} domaint</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
-      following_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>.'
-      lists_html: Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> hozzáadj a <strong>%{filename}</strong> fájlból a <strong>listákhoz</strong>. Új listák jönnek létre, ha nincs hozzáadható lista.
-      muting_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>némíts</strong> a következőből: <strong>%{filename}</strong>.'
+      blocking_html:
+        one: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
+      bookmarks_html:
+        one: 'Arra készülsz, hogy legfeljebb <strong>%{count} bejegyzést</strong> adj hozzá a <strong>könyvjelzőkhöz</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy legfeljebb <strong>%{count} bejegyzést</strong> adj hozzá a <strong>könyvjelzőkhöz</strong> a következőből: <strong>%{filename}</strong>.'
+      domain_blocking_html:
+        one: 'Arra készülsz, hogy legfeljebb <strong>%{count} domaint</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy legfeljebb <strong>%{count} domaint</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
+      following_html:
+        one: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>.'
+      lists_html:
+        one: Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> hozzáadj a <strong>%{filename}</strong> fájlból a <strong>listákhoz</strong>. Új listák jönnek létre, ha nincs hozzáadható lista.
+        other: Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> hozzáadj a <strong>%{filename}</strong> fájlból a <strong>listákhoz</strong>. Új listák jönnek létre, ha nincs hozzáadható lista.
+      muting_html:
+        one: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>némíts</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>némíts</strong> a következőből: <strong>%{filename}</strong>.'
     preface: Itt importálhatod egy másik kiszolgálóról lementett adataidat, például követettjeid és letiltott felhasználóid listáját.
     recent_imports: Legutóbbi importálások
     states:
@@ -1690,7 +1719,7 @@ hu:
     delete: Fiók törlése
     development: Fejlesztőknek
     edit_profile: Profil szerkesztése
-    export: Adatok exportálása
+    export: Exportálás
     featured_tags: Kiemelt hashtagek
     import: Importálás
     import_and_export: Import és export
@@ -1736,23 +1765,12 @@ hu:
     edited_at_html: 'Szerkesztve: %{date}'
     errors:
       in_reply_not_found: Már nem létezik az a bejegyzés, melyre válaszolni szeretnél.
-    open_in_web: Megnyitás a weben
     over_character_limit: túllépted a maximális %{max} karakteres keretet
     pin_errors:
       direct: A csak a megemlített felhasználók számára látható bejegyzések nem tűzhetők ki
       limit: Elérted a kitűzhető bejegyzések maximális számát
       ownership: Nem tűzheted ki valaki más bejegyzését
       reblog: Megtolt bejegyzést nem tudsz kitűzni
-    poll:
-      total_people:
-        one: "%{count} személy"
-        other: "%{count} személy"
-      total_votes:
-        one: "%{count} szavazat"
-        other: "%{count} szavazat"
-      vote: Szavazás
-    show_more: Több megjelenítése
-    show_thread: Szál mutatása
     title: "%{name}: „%{quote}”"
     visibilities:
       direct: Közvetlen
@@ -1949,8 +1967,9 @@ hu:
     here_is_how: Itt van, hogyan kell
     hint_html: "<strong>A személyazonosságod ellenőrizhetősége a Mastodonon mindenki számára elérhető.</strong> Ez nyílt webes szabványok alapján, most és mindörökké szabadon és ingyenesen történik. Ehhez csak egy saját weboldalra van szükséged, mely alapján mások felismernek téged. Ha a profilodról erre a weboldalra hivatkozol, mi ellenőrizzük, hogy erről az oldalról visszahivatkozol-e a profilodra, és siker esetén erről vizuális jelzést is adunk a profilodon."
     instructions_html: Az alábbi kódot másold be a weboldalad HTML kódjába. Ezután add hozzá a weboldalad címét a profilod egyik extra mezőjéhez a "Profil szerkesztése" fülön és mentsd a változásokat.
-    verification: Hitelesítés
+    verification: Ellenőrzés
     verified_links: Ellenőrzött hivatkozásaid
+    website_verification: Weboldal ellenőrzése
   webauthn_credentials:
     add: Biztonsági kulcs hozzáadása
     create:

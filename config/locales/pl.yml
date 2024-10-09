@@ -7,7 +7,6 @@ pl:
     hosted_on: Mastodon prowadzony na %{domain}
     title: O nas
   accounts:
-    follow: Obserwuj
     followers:
       few: śledzących
       many: śledzących
@@ -26,10 +25,11 @@ pl:
       one: wpis
       other: Wpisów
     posts_tab_heading: Wpisy
+    self_follow_error: Nie możesz obserwować swojego konta
   admin:
     account_actions:
       action: Wykonaj działanie
-      already_silenced: To konto zostało już wyciszone.
+      already_silenced: To konto zostało już ograniczone.
       already_suspended: To konto zostało już zawieszone.
       title: Wykonaj działanie moderacyjne na %{acct}
     account_moderation_notes:
@@ -904,6 +904,9 @@ pl:
         message_html: Nie zdefiniowano żadnych reguł serwera.
       sidekiq_process_check:
         message_html: Brak uruchomionego procesu Sidekiq dla kolejki(-ek) %{value}. Sprawdź konfigurację Sidekiq
+      software_version_check:
+        action: Pokaż dostępne aktualizacje
+        message_html: Dostępna aktualizacja Mastodona.
       software_version_critical_check:
         action: Pokaż dostępne aktualizacje
         message_html: Dostępna krytyczna aktualizacja Mastodona, zaktualizuj jak tylko będzie to możliwe.
@@ -1197,6 +1200,12 @@ pl:
       view_strikes: Zobacz dawne ostrzeżenia nałożone na twoje konto
     too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
     use_security_key: Użyj klucza bezpieczeństwa
+  author_attribution:
+    example_title: Przykładowy tekst
+    hint_html: Kontroluj przypisy do twoich wpisów widoczne na Mastodonie.
+    more_from_html: Więcej od %{name}
+    s_blog: Blog %{name}
+    title: Przypis do autora
   challenge:
     confirm: Kontynuuj
     hint_html: "<strong>Informacja:</strong> Nie będziemy prosić Cię o ponowne podanie hasła przez następną godzinę."
@@ -1205,7 +1214,6 @@ pl:
   crypto:
     errors:
       invalid_key: nie jest prawidłowym kluczem Ed25519 lub Curve25519
-      invalid_signature: nie jest prawidłowym podpisem Ed25519
   date:
     formats:
       default: "%d. %b %Y"
@@ -1271,8 +1279,6 @@ pl:
       your_appeal_approved: Twoje odwołanie zostało zatwierdzone
       your_appeal_pending: Zgłosiłeś odwołanie
       your_appeal_rejected: Twoje odwołanie zostało odrzucone
-  domain_validator:
-    invalid_domain: nie jest prawidłową nazwą domeny
   edit_profile:
     basic_information: Podstawowe informacje
     hint_html: "<strong>Dostosuj to, co ludzie widzą na Twoim profilu publicznym i obok Twoich wpisów.</strong> Inne osoby są bardziej skłonne obserwować Cię i wchodzić z Tobą w interakcje, gdy masz wypełniony profil i zdjęcie profilowe."
@@ -1410,20 +1416,6 @@ pl:
       merge_long: Zachowaj obecne wpisy i dodaj nowe
       overwrite: Nadpisz
       overwrite_long: Zastąp obecne wpisy nowymi
-    overwrite_preambles:
-      blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
-      bookmarks_html: Zamierzasz <strong>zastąpić swoje zakładki</strong> maksymalnie <strong>%{total_items} wpisami</strong> z <strong>%{filename}</strong>.
-      domain_blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków domen</strong> maksymalnie <strong>%{total_items} domenami</strong> z <strong>%{filename}</strong>.
-      following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong> i <strong>przestać obserwować kogokolwiek innego</strong>.
-      lists_html: Zamierzasz <strong>zastąpić swoje listy</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
-      muting_html: Zamierzasz <strong>zastąpić swoją wyciszonych</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
-      bookmarks_html: Zamierzasz dodać maksymalnie <strong>%{total_items} wpisów</strong> do twoich <strong>zakładek</strong> z <strong>%{filename}</strong>.
-      domain_blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} domen</strong> z <strong>%{filename}</strong>.
-      following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
-      lists_html: Zamierzasz dodać maksymalnie <strong>%{total_items} kont</strong> do twoich <strong>list</strong> z <strong>%{filename}</strong>. Jeżeli nie ma list, nowe zostaną utworzone.
-      muting_html: Zamierzasz <strong>wyciszyć</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
     preface: Możesz zaimportować pewne dane (np. lista kont, które obserwujesz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
     recent_imports: Ostatnie importy
     states:
@@ -1796,27 +1788,12 @@ pl:
     edited_at_html: Edytowane %{date}
     errors:
       in_reply_not_found: Post, na który próbujesz odpowiedzieć, nie istnieje.
-    open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
       direct: Nie możesz przypiąć wpisu, który jest widoczny tylko dla wspomnianych użytkowników
       limit: Przekroczyłeś maksymalną liczbę przypiętych wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
-    poll:
-      total_people:
-        few: "%{count} osoby"
-        many: "%{count} osób"
-        one: "%{count} osoba"
-        other: "%{count} osoby"
-      total_votes:
-        few: "%{count} głosy"
-        many: "%{count} głosy"
-        one: "%{count} głos"
-        other: "%{count} głosy"
-      vote: Głosuj
-    show_more: Pokaż więcej
-    show_thread: Pokaż wątek
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Bezpośredni
@@ -2017,6 +1994,7 @@ pl:
     instructions_html: Skopiuj poniższy kod HTML i wklej go na swoją stronę. Potem dodaj link do twojej strony do jednego z wolnych pól na profilu z zakładki "Edytuj profil".
     verification: Weryfikacja
     verified_links: Twoje zweryfikowane linki
+    website_verification: Weryfikacja strony internetowej
   webauthn_credentials:
     add: Dodaj nowy klucz bezpieczeństwa
     create:

@@ -1,17 +1,6 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl } from 'react-intl';
-
-import FullscreenExitIcon from '@/material-icons/400-24px/fullscreen_exit.svg?react';
-import RectangleIcon from '@/material-icons/400-24px/rectangle.svg?react';
-import { IconButton } from 'mastodon/components/icon_button';
-
-const messages = defineMessages({
-  compress: { id: 'lightbox.compress', defaultMessage: 'Compress image view box' },
-  expand: { id: 'lightbox.expand', defaultMessage: 'Expand image view box' },
-});
-
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
 const NAV_BAR_HEIGHT = 66;
@@ -104,8 +93,7 @@ class ZoomableImage extends PureComponent {
     width: PropTypes.number,
     height: PropTypes.number,
     onClick: PropTypes.func,
-    zoomButtonHidden: PropTypes.bool,
-    intl: PropTypes.object.isRequired,
+    zoomedIn: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -131,8 +119,6 @@ class ZoomableImage extends PureComponent {
       translateX: null,
       translateY: null,
     },
-    zoomState: 'expand', // 'expand' 'compress'
-    navigationHidden: false,
     dragPosition: { top: 0, left: 0, x: 0, y: 0 },
     dragged: false,
     lockScroll: { x: 0, y: 0 },
@@ -169,35 +155,20 @@ class ZoomableImage extends PureComponent {
     this.container.addEventListener('DOMMouseScroll', handler);
     this.removers.push(() => this.container.removeEventListener('DOMMouseScroll', handler));
 
-    this.initZoomMatrix();
+    this._initZoomMatrix();
   }
 
   componentWillUnmount () {
-    this.removeEventListeners();
+    this._removeEventListeners();
   }
 
-  componentDidUpdate () {
-    this.setState({ zoomState: this.state.scale >= this.state.zoomMatrix.rate ? 'compress' : 'expand' });
-
-    if (this.state.scale === MIN_SCALE) {
-      this.container.style.removeProperty('cursor');
+  componentDidUpdate (prevProps) {
+    if (prevProps.zoomedIn !== this.props.zoomedIn) {
+      this._toggleZoom();
     }
   }
 
-  UNSAFE_componentWillReceiveProps () {
-    // reset when slide to next image
-    if (this.props.zoomButtonHidden) {
-      this.setState({
-        scale: MIN_SCALE,
-        lockTranslate: { x: 0, y: 0 },
-      }, () => {
-        this.container.scrollLeft = 0;
-        this.container.scrollTop = 0;
-      });
-    }
-  }
-
-  removeEventListeners () {
+  _removeEventListeners () {
     this.removers.forEach(listeners => listeners());
     this.removers = [];
   }
@@ -220,9 +191,6 @@ class ZoomableImage extends PureComponent {
   };
 
   mouseDownHandler = e => {
-    this.container.style.cursor = 'grabbing';
-    this.container.style.userSelect = 'none';
-
     this.setState({ dragPosition: {
       left: this.container.scrollLeft,
       top: this.container.scrollTop,
@@ -246,9 +214,6 @@ class ZoomableImage extends PureComponent {
   };
 
   mouseUpHandler = () => {
-    this.container.style.cursor = 'grab';
-    this.container.style.removeProperty('user-select');
-
     this.image.removeEventListener('mousemove', this.mouseMoveHandler);
     this.image.removeEventListener('mouseup', this.mouseUpHandler);
   };
@@ -276,13 +241,13 @@ class ZoomableImage extends PureComponent {
     const _MAX_SCALE = Math.max(MAX_SCALE, this.state.zoomMatrix.rate);
     const scale = clamp(MIN_SCALE, _MAX_SCALE, this.state.scale * distance / this.lastDistance);
 
-    this.zoom(scale, midpoint);
+    this._zoom(scale, midpoint);
 
     this.lastMidpoint = midpoint;
     this.lastDistance = distance;
   };
 
-  zoom(nextScale, midpoint) {
+  _zoom(nextScale, midpoint) {
     const { scale, zoomMatrix } = this.state;
     const { scrollLeft, scrollTop } = this.container;
 
@@ -318,14 +283,13 @@ class ZoomableImage extends PureComponent {
     if (dragged) return;
     const handler = this.props.onClick;
     if (handler) handler();
-    this.setState({ navigationHidden: !this.state.navigationHidden });
   };
 
   handleMouseDown = e => {
     e.preventDefault();
   };
 
-  initZoomMatrix = () => {
+  _initZoomMatrix = () => {
     const { width, height } = this.props;
     const { clientWidth, clientHeight } = this.container;
     const { offsetWidth, offsetHeight } = this.image;
@@ -357,10 +321,7 @@ class ZoomableImage extends PureComponent {
     });
   };
 
-  handleZoomClick = e => {
-    e.preventDefault();
-    e.stopPropagation();
-
+  _toggleZoom () {
     const { scale, zoomMatrix } = this.state;
 
     if ( scale >= zoomMatrix.rate ) {
@@ -394,10 +355,7 @@ class ZoomableImage extends PureComponent {
         this.container.scrollTop = zoomMatrix.scrollTop;
       });
     }
-
-    this.container.style.cursor = 'grab';
-    this.container.style.removeProperty('user-select');
-  };
+  }
 
   setContainerRef = c => {
     this.container = c;
@@ -408,52 +366,37 @@ class ZoomableImage extends PureComponent {
   };
 
   render () {
-    const { alt, lang, src, width, height, intl } = this.props;
-    const { scale, lockTranslate } = this.state;
+    const { alt, lang, src, width, height } = this.props;
+    const { scale, lockTranslate, dragged } = this.state;
     const overflow = scale === MIN_SCALE ? 'hidden' : 'scroll';
-    const zoomButtonShouldHide = this.state.navigationHidden || this.props.zoomButtonHidden || this.state.zoomMatrix.rate <= MIN_SCALE ? 'media-modal__zoom-button--hidden' : '';
-    const zoomButtonTitle = this.state.zoomState === 'compress' ? intl.formatMessage(messages.compress) : intl.formatMessage(messages.expand);
+    const cursor = scale === MIN_SCALE ? null : (dragged ? 'grabbing' : 'grab');
 
     return (
-      <>
-        <IconButton
-          className={`media-modal__zoom-button ${zoomButtonShouldHide}`}
-          title={zoomButtonTitle}
-          icon={this.state.zoomState}
-          iconComponent={this.state.zoomState === 'compress' ? FullscreenExitIcon : RectangleIcon}
-          onClick={this.handleZoomClick}
-          size={40}
+      <div
+        className='zoomable-image'
+        ref={this.setContainerRef}
+        style={{ overflow, cursor, userSelect: 'none' }}
+      >
+        <img
+          role='presentation'
+          ref={this.setImageRef}
+          alt={alt}
+          title={alt}
+          lang={lang}
+          src={src}
+          width={width}
+          height={height}
           style={{
-            fontSize: '30px', /* Fontawesome's fa-compress fa-expand is larger than fa-close */
+            transform: `scale(${scale}) translate(-${lockTranslate.x}px, -${lockTranslate.y}px)`,
+            transformOrigin: '0 0',
           }}
+          draggable={false}
+          onClick={this.handleClick}
+          onMouseDown={this.handleMouseDown}
         />
-        <div
-          className='zoomable-image'
-          ref={this.setContainerRef}
-          style={{ overflow }}
-        >
-          <img
-            role='presentation'
-            ref={this.setImageRef}
-            alt={alt}
-            title={alt}
-            lang={lang}
-            src={src}
-            width={width}
-            height={height}
-            style={{
-              transform: `scale(${scale}) translate(-${lockTranslate.x}px, -${lockTranslate.y}px)`,
-              transformOrigin: '0 0',
-            }}
-            draggable={false}
-            onClick={this.handleClick}
-            onMouseDown={this.handleMouseDown}
-          />
-        </div>
-      </>
+      </div>
     );
   }
-
 }
 
-export default injectIntl(ZoomableImage);
+export default ZoomableImage;

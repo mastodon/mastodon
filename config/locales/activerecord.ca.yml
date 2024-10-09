@@ -15,6 +15,12 @@ ca:
       user/invite_request:
         text: Motiu
     errors:
+      attributes:
+        domain:
+          invalid: no és un nom de domini vàlid
+      messages:
+        invalid_domain_on_line: "%{value} no és un nom de domini vàlid"
+        too_many_lines: sobrepassa el límit de %{limit} línies
       models:
         account:
           attributes:

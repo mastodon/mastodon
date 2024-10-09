@@ -43,6 +43,8 @@ RSpec.describe 'Lists' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match_array(expected_response)
     end
   end
@@ -60,6 +62,8 @@ RSpec.describe 'Lists' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match({
         id: list.id.to_s,
         title: list.title,
@@ -75,6 +79,8 @@ RSpec.describe 'Lists' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -83,6 +89,8 @@ RSpec.describe 'Lists' do
         get '/api/v1/lists/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -100,6 +108,8 @@ RSpec.describe 'Lists' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(response.parsed_body).to match(a_hash_including(title: 'my list', replies_policy: 'none', exclusive: true))
       expect(List.where(account: user.account).count).to eq(1)
     end
@@ -111,6 +121,8 @@ RSpec.describe 'Lists' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -121,6 +133,8 @@ RSpec.describe 'Lists' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -142,6 +156,8 @@ RSpec.describe 'Lists' do
         .and change_list_exclusive
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       list.reload
 
       expect(response.parsed_body).to match({
@@ -169,6 +185,8 @@ RSpec.describe 'Lists' do
         put '/api/v1/lists/-1', headers: headers, params: params
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -179,6 +197,8 @@ RSpec.describe 'Lists' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -196,6 +216,8 @@ RSpec.describe 'Lists' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(List.where(id: list.id)).to_not exist
     end
 
@@ -214,6 +236,8 @@ RSpec.describe 'Lists' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

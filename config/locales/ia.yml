@@ -7,7 +7,6 @@ ia:
     hosted_on: Mastodon albergate sur %{domain}
     title: A proposito
   accounts:
-    follow: Sequer
     followers:
       one: Sequitor
       other: Sequitores
@@ -25,7 +24,7 @@ ia:
   admin:
     account_actions:
       action: Exequer action
-      already_silenced: Iste conto jam ha essite silentiate.
+      already_silenced: Iste conto jam ha essite limitate.
       already_suspended: Iste conto jam ha essite suspendite.
       title: Exequer action de moderation sur %{acct}
     account_moderation_notes:
@@ -1147,6 +1146,10 @@ ia:
       view_strikes: Examinar le sanctiones passate contra tu conto
     too_fast: Formulario inviate troppo rapidemente. Tenta lo de novo.
     use_security_key: Usar clave de securitate
+  author_attribution:
+    example_title: Texto de exemplo
+    more_from_html: Plus de %{name}
+    s_blog: Blog de %{name}
   challenge:
     confirm: Continuar
     hint_html: "<strong>Consilio:</strong> Nos non te demandara tu contrasigno de novo in le proxime hora."
@@ -1155,7 +1158,6 @@ ia:
   crypto:
     errors:
       invalid_key: non es un clave Ed25519 o Curve25519 valide
-      invalid_signature: non es un signatura Ed25519 valide
   date:
     formats:
       default: "%d %b %Y"
@@ -1221,8 +1223,6 @@ ia:
       your_appeal_approved: Tu appello ha essite approbate
       your_appeal_pending: Tu ha submittite un appello
       your_appeal_rejected: Tu appello ha essite rejectate
-  domain_validator:
-    invalid_domain: non es un nomine de dominio valide
   edit_profile:
     basic_information: Information basic
     hint_html: "<strong>Personalisa lo que le personas vide sur tu profilo public e presso tu messages.</strong> Il es plus probabile que altere personas te seque e interage con te quando tu ha un profilo complete e un photo."
@@ -1346,20 +1346,6 @@ ia:
       merge_long: Conservar le registros existente e adder noves
       overwrite: Superscriber
       overwrite_long: Reimplaciar registros actual con le noves
-    overwrite_preambles:
-      blocking_html: Tu es sur le puncto de <strong>reimplaciar tu lista de blocadas</strong> per usque a <strong>%{total_items} contos</strong> proveniente de <strong>%{filename}</strong>.
-      bookmarks_html: Tu es sur le puncto de <strong>reimplaciar tu marcapaginas</strong> per usque a <strong>%{total_items} messages</strong> desde <strong>%{filename}</strong>.
-      domain_blocking_html: Tu es sur le puncto de <strong>reimplaciar tu lista de blocadas de dominio</strong> per usque a <strong>%{total_items} dominios</strong> proveniente de <strong>%{filename}</strong>.
-      following_html: Tu es sur le puncto de <strong>sequer</strong> usque a <strong>%{total_items} contos</strong> de <strong>%{filename}</strong> e <strong>cessar de sequer tote le alteres</strong>.
-      lists_html: Tu es sur le puncto de <strong>reimplaciar tu listas</strong> per le contento de <strong>%{filename}</strong>. Usque a <strong>%{total_items} contos</strong> essera addite a nove listas.
-      muting_html: Tu es sur le puncto de <strong>reimplaciar tu lista de contos silentiate</strong> con usque a <strong>%{total_items} contos</strong> desde <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Tu es sur le puncto de <strong>blocar</strong> usque a <strong>%{total_items} contos</strong> a partir de <strong>%{filename}</strong>.
-      bookmarks_html: Tu es sur le puncto de adder usque a <strong>%{total_items} messages</strong> desde <strong>%{filename}</strong> a tu <strong>marcapaginas</strong>.
-      domain_blocking_html: Tu es sur le puncto de <strong>blocar</strong> usque a <strong>%{total_items} dominios</strong> a partir de <strong>%{filename}</strong>.
-      following_html: Tu es sur le puncto de <strong>sequer</strong> usque a <strong>%{total_items} contos</strong> desde <strong>%{filename}</strong>.
-      lists_html: Tu es sur le puncto de adder usque <strong>%{total_items} contos</strong> desde <strong>%{filename}</strong> a tu <strong>listas</strong>. Nove listas essera create si il non ha un lista al qual adder los.
-      muting_html: Tu es sur le puncto de <strong>silentiar</strong> usque a <strong>%{total_items} contos</strong> desde <strong>%{filename}</strong>.
     preface: Tu pote importar datos que tu ha exportate de un altere servitor, como un lista de personas que tu seque o bloca.
     recent_imports: Importationes recente
     states:
@@ -1675,7 +1661,6 @@ ia:
     delete: Deletion de conto
     development: Disveloppamento
     edit_profile: Modificar profilo
-    export: Exportation de datos
     featured_tags: Hashtags in evidentia
     import: Importar
     import_and_export: Importar e exportar
@@ -1721,23 +1706,12 @@ ia:
     edited_at_html: Modificate le %{date}
     errors:
       in_reply_not_found: Le message a que tu tenta responder non pare exister.
-    open_in_web: Aperir sur le web
     over_character_limit: limite de characteres de %{max} excedite
     pin_errors:
       direct: Messages que es solo visibile a usatores mentionate non pote esser appunctate
       limit: Tu ha jam appunctate le maxime numero de messages
       ownership: Le message de alcuno altere non pote esser appunctate
       reblog: Un impulso non pote esser affixate
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} personas"
-      total_votes:
-        one: "%{count} voto"
-        other: "%{count} votos"
-      vote: Votar
-    show_more: Monstrar plus
-    show_thread: Monstrar discussion
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Directe
@@ -1936,6 +1910,7 @@ ia:
     instructions_html: Copia e colla le codice hic infra in le HTML de tu sito web. Alora adde le adresse de tu sito web in un del campos supplementari sur tu profilo desde le scheda “Modificar profilo” e salva le cambiamentos.
     verification: Verification
     verified_links: Tu ligamines verificate
+    website_verification: Verification de sito web
   webauthn_credentials:
     add: Adder un nove clave de securitate
     create:

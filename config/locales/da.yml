@@ -7,7 +7,6 @@ da:
     hosted_on: Mastodon hostet på %{domain}
     title: Om
   accounts:
-    follow: Følg
     followers:
       one: Følger
       other: tilhængere
@@ -22,10 +21,11 @@ da:
       one: Indlæg
       other: Indlæg
     posts_tab_heading: Indlæg
+    self_follow_error: Det er ikke tilladt at følge sin egen konto
   admin:
     account_actions:
       action: Udfør handling
-      already_silenced: Denne konto er allerede gjort tavs.
+      already_silenced: Denne konto er allerede blevet begrænset.
       already_suspended: Denne konto er allerede suspenderet.
       title: Udfør moderatorhandling på %{acct}
     account_moderation_notes:
@@ -876,6 +876,9 @@ da:
         message_html: Ingen serverregler defineret.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-proces kører for %{value}-kø(er). Gennemgå Sidekiq-opsætningen
+      software_version_check:
+        action: Se tilgængelige opdateringer
+        message_html: En Mastodon-opdatering er tilgængelig.
       software_version_critical_check:
         action: Se tilgængelige opdateringer
         message_html: En kritisk Mastodon-opdatering er tilgængelig. Opdatér hurtigst muligt.
@@ -1161,6 +1164,12 @@ da:
       view_strikes: Se tidligere anmeldelser af din konto
     too_fast: Formularen indsendt for hurtigt, forsøg igen.
     use_security_key: Brug sikkerhedsnøgle
+  author_attribution:
+    example_title: Eksempeltekst
+    hint_html: Styrer, hvordan man krediteres, når links deles på Mastodon.
+    more_from_html: Flere fra %{name}
+    s_blog: "%{name}s blog"
+    title: Forfattertilskrivning
   challenge:
     confirm: Fortsæt
     hint_html: "<strong>Tip:</strong> Du bliver ikke anmodet om din adgangskode igen den næste time."
@@ -1169,7 +1178,6 @@ da:
   crypto:
     errors:
       invalid_key: er ikke en gyldig Ed25519- eller Curve25519-nøgle
-      invalid_signature: er ikke en gylidig Ed25519-signatur
   date:
     formats:
       default: "%d. %b %Y"
@@ -1235,8 +1243,6 @@ da:
       your_appeal_approved: Din appel er godkendt
       your_appeal_pending: Du har indgivet en appel
       your_appeal_rejected: Din appel er afvist
-  domain_validator:
-    invalid_domain: er ikke et gyldigt domænenavn
   edit_profile:
     basic_information: Oplysninger
     hint_html: "<strong>Tilpas hvad folk ser på din offentlige profil og ved siden af dine indlæg.</strong> Andre personer vil mere sandsynligt følge dig tilbage og interagere med dig, når du har en udfyldt profil og et profilbillede."
@@ -1361,19 +1367,43 @@ da:
       overwrite: Overskriv
       overwrite_long: Erstat aktuelle poster med de nye
     overwrite_preambles:
-      blocking_html: Du er ved at <strong>erstatte bloklisten</strong> med op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
-      bookmarks_html: Du er ved at <strong>erstatte bogmærkelisten</strong> med op til <strong>%{total_items} emner</strong> fra <strong>%{filename}</strong>.
-      domain_blocking_html: Du er ved at <strong>erstatte domæneblokeringslisten</strong> med op til <strong>%{total_items} domæner</strong> fra <strong>%{filename}</strong>.
-      following_html: Du er ved at <strong>følge</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong> og <strong>stoppe med at følge alle andre</strong>.
-      lists_html: Du er ved at <strong>erstatte dine lister</strong> med indholdet af <strong>%{filename}</strong>. Op til <strong>%{total_items} konti</strong> tilføjes nye lister.
-      muting_html: Du er ved at <strong>erstatte listen over tavsgjorte konti</strong> med op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
+      blocking_html:
+        one: Man er ved at <strong>erstatte sin sortliste</strong> med <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>erstatte sin sortliste</strong> med optil <strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Man er ved at <strong>erstatte sine bogmærker</strong> med <strong>%{count} post</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>erstatte sine bogmærker</strong> med op til <strong>%{count} poster</strong> fra <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Man er ved at <strong>erstatte sin domænesortliste</strong> med <strong>%{count} domæne</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>erstatte sin domænesortliste</strong> med op til <strong>%{count} domæner</strong> fra <strong>%{filename}</strong>.
+      following_html:
+        one: Man er ved at <strong>følge</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong> og <strong>stoppe med at følge andre</strong>.
+        other: Man er ved at <strong>følge</strong> <strong>%{count} konti</strong> fra <strong>%{filename}</strong> og <strong>stoppe med at følge andre</strong>.
+      lists_html:
+        one: Man er ved at <strong>erstatte sine lister</strong> med indhold fra <strong>%{filename}</strong>. <strong>%{count} konto</strong> føjes til nye lister.
+        other: Man er ved at <strong>erstatte sine lister</strong> med indhold fra <strong>%{filename}</strong>. Op til <strong>%{count} konti</strong> føjes til nye lister.
+      muting_html:
+        one: Man er ved at <strong>sin liste over en tavsgjort konto</strong> med <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>sin liste over tavsgjorte konti</strong> med op til <strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Du er ved at <strong>blokere</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
-      bookmarks_html: Du er ved at føje op til <strong>%{total_items} indlæg</strong> fra <strong>%{filename}</strong> til <strong>bogmærkelisten</strong>.
-      domain_blocking_html: Du er ved at <strong>blokere</strong> op til <strong>%{total_items} domæner</strong> fra <strong>%{filename}</strong>.
-      following_html: Du er ved at <strong>følge</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
-      lists_html: Du er ved at tilføje op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong> til dine <strong>lister</strong>. Nye lister oprettes, hvis der ikke er nogen liste at føje konti til.
-      muting_html: Du er ved at <strong>tavsgøre</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
+      blocking_html:
+        one: Man er ved at <strong>blokere</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>blokere</strong> op til <strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Man er ved at tilføje <strong>%{count} post</strong> fra <strong>%{filename}</strong> til sine <strong>bogmærker</strong>.
+        other: Man er ved at tilføje <strong>%{count} poster</strong> fra <strong>%{filename}</strong> til sine <strong>bogmærker</strong>.
+      domain_blocking_html:
+        one: Man er ved at <strong>blokere</strong> <strong>%{count} domæne</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>blokere</strong> op til <strong>%{count} domæner</strong> fra <strong>%{filename}</strong>.
+      following_html:
+        one: Man er ved at <strong>følge</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>følge</strong> op til<strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
+      lists_html:
+        one: Man er ved at tilføje <strong>%{count} konto</strong> fra <strong>%{filename}</strong> til sine <strong>lister</strong>. Nye lister oprettes, hvis der ikke findes nogen liste at tilføje til.
+        other: Man er ved at tilføje <strong>%{count} konti</strong> fra <strong>%{filename}</strong> til sine <strong>lister</strong>. Nye lister oprettes, hvis der ikke findes nogen liste at tilføje til.
+      muting_html:
+        one: Man er ved at <strong>tavsgøre</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>tavsgøre</strong> op til <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
     preface: Du kan importere data, du har eksporteret fra en anden server, såsom en liste over folk du følger eller blokerer.
     recent_imports: Seneste importer
     states:
@@ -1690,7 +1720,7 @@ da:
     delete: Kontosletning
     development: Udvikling
     edit_profile: Redigér profil
-    export: Dataeksport
+    export: Eksport
     featured_tags: Udvalgte hashtags
     import: Import
     import_and_export: Import og eksport
@@ -1736,23 +1766,12 @@ da:
     edited_at_html: Redigeret %{date}
     errors:
       in_reply_not_found: Indlægget, der forsøges besvaret, ser ikke ud til at eksistere.
-    open_in_web: Åbn i webbrowser
     over_character_limit: grænsen på %{max} tegn overskredet
     pin_errors:
       direct: Indlæg, som kun kan ses af omtalte brugere, kan ikke fastgøres
       limit: Maksimalt antal indlæg allerede fastgjort
       ownership: Andres indlæg kan ikke fastgøres
       reblog: Et boost kan ikke fastgøres
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} personer"
-      total_votes:
-        one: "%{count} stemme"
-        other: "%{count} stemmer"
-      vote: Stem
-    show_more: Vis flere
-    show_thread: Vis tråd
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkte
@@ -1951,6 +1970,7 @@ da:
     instructions_html: Kopier og indsæt koden nedenfor i HTML på din hjemmeside. Tilføj derefter adressen på din hjemmeside i et af de ekstra felter på din profil på fanen "Redigér profil" og gem ændringer.
     verification: Bekræftelse
     verified_links: Dine bekræftede links
+    website_verification: Webstedsbekræftelse
   webauthn_credentials:
     add: Tilføj ny sikkerhedsnøgle
     create:

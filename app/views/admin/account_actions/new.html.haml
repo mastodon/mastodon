@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('admin.account_actions.title', acct: @account.pretty_acct)
 
-- if @account.suspended?
+- if @account.suspended_locally?
   .flash-message.alert
     = t('admin.account_actions.already_suspended')
 - elsif @account.silenced?

@@ -7,7 +7,6 @@ fy:
     hosted_on: Mastodon op %{domain}
     title: Oer
   accounts:
-    follow: Folgje
     followers:
       one: Folger
       other: Folgers
@@ -25,6 +24,8 @@ fy:
   admin:
     account_actions:
       action: Aksje útfiere
+      already_silenced: Dizze account is al beheind.
+      already_suspended: Dizze account is al opskort.
       title: Moderaasjemaatregelen tsjin %{acct} nimme
     account_moderation_notes:
       create: Lit in opmerking efter
@@ -46,6 +47,7 @@ fy:
         title: E-mailadres foar %{username} wizigje
       change_role:
         changed_msg: Rol mei sukses wizige!
+        edit_roles: Brûkersrollen beheare
         label: Rol wizigje
         no_role: Gjin rol
         title: Rol fan %{username} wizigje
@@ -602,6 +604,7 @@ fy:
         suspend_description_html: De account en alle ynhâld sil net tagonklik wêze en úteinlik fuortsmiten wurde, en ynteraksje hjirmei sil net mooglik wêze. Binnen 30 dagen werom te draaien. Dit slút alle rapportaazjes oer dizze account.
       actions_description_html: Beslis hokker maatregel nommen wurde moat om dizze rapportaazje op te lossen. Wannear’t jo in (straf)maatregel tsjin it rapportearre account nimme, kriget de account in e-mailmelding, behalve wannear’t de <strong>spam</strong>-kategory keazen is.
       actions_description_remote_html: Beslút hokker aksje nommen wurde moat om dizze rapportaazje ôf te hanneljen. Dit hat allinnich ynfloed op hoe’t <strong>jo</strong> server kommunisearret mei dizze eksterne account en omgiet mei de ynhâld.
+      actions_no_posts: Dit rapport hat gjin byhearrende berjochten om fuort te smiten
       add_to_report: Mear oan de rapportaazje tafoegje
       already_suspended_badges:
         local: Al opskoarte op dizze server
@@ -872,6 +875,9 @@ fy:
         message_html: Jo hawwe foar dizze server gjin regels opsteld.
       sidekiq_process_check:
         message_html: Der draait gjin Sidekiq-proses foar de wachtrige(n) %{value}. Kontrolearje jo Sidekiq-konfiguraasje
+      software_version_check:
+        action: Beskikbere fernijingen besjen
+        message_html: Der is in Mastodon-fernijing beskikber.
       software_version_critical_check:
         action: Beskikbere fernijingen besjen
         message_html: Der is in kritike fernijing foar Mastodon beskikber. Wurkje sa gau as mooglik by.
@@ -1157,6 +1163,12 @@ fy:
       view_strikes: Besjoch de earder troch moderatoaren fêststelde skeiningen dy’t jo makke hawwe
     too_fast: Formulier is te fluch yntsjinne. Probearje it nochris.
     use_security_key: Befeiligingskaai brûke
+  author_attribution:
+    example_title: Faorbyldtekst
+    hint_html: Bepaal hoe’t wy jo fermelde, wannear’t jo keppelingen op Mastodon dield wurde.
+    more_from_html: Mear fan %{name}
+    s_blog: Weblog fan %{name}
+    title: Auteur-attribúsje
   challenge:
     confirm: Trochgean
     hint_html: "<strong>Tip:</strong> Wy freegje jo it kommende oere net mear nei jo wachtwurd."
@@ -1165,7 +1177,6 @@ fy:
   crypto:
     errors:
       invalid_key: is gjin jildige Ed25519- of Curve25519-kaai
-      invalid_signature: is gjin jildige Ed25519-hantekening
   date:
     formats:
       default: "%d %b %Y"
@@ -1231,8 +1242,6 @@ fy:
       your_appeal_approved: Jo beswier is goedkard
       your_appeal_pending: Jo hawwe in beswier yntsjinne
       your_appeal_rejected: Jo beswier is ôfwêzen
-  domain_validator:
-    invalid_domain: is in ûnjildige domeinnamme
   edit_profile:
     basic_information: Algemiene ynformaasje
     hint_html: "<strong>Pas oan wat minsken op jo iepenbiere profyl en njonken jo berjochten sjogge.</strong> Oare minsken sille jo earder folgje en mei jo kommunisearje wannear’t jo profyl ynfolle is en jo in profylfoto hawwe."
@@ -1357,19 +1366,43 @@ fy:
       overwrite: Oerskriuwe
       overwrite_long: Aktuele gegevens mei de nije gegevens ferfange
     overwrite_preambles:
-      blocking_html: Jo steane op it punt om <strong>jo blokkearlist</strong> mei mear as <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> te ferfangen.
-      bookmarks_html: Jo steane op it punt om <strong>jo blêdwizers</strong> mei mear as <strong>%{total_items} artikelen</strong> fan <strong>%{filename}</strong> te ferfangen.
-      domain_blocking_html: Jo steane op it punt om <strong>jo domeinblokkearlist</strong> mei mear as <strong>%{total_items} domeinen</strong> fan <strong>%{filename}</strong> te ferfangen.
-      following_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> út <strong>%{filename}</strong> <strong>te folgjen</strong> en <strong>te stopjen mei folgjen fan alle oaren</strong>.
-      lists_html: Jo steane op it punt <strong>jo listen</strong> te ferfangen troch ynhâld fan <strong>%{filename}</strong>. Oant <strong>%{total_items} accounts</strong> sille oan nije listen tafoege wurde.
-      muting_html: Jo steane op it punt om <strong>jo list mei negearre accounts</strong> mei mear as <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te ferfangen.
+      blocking_html:
+        one: Jo steane op it punt om <strong>jo blokkearlist</strong> mei mear as <strong>%{count} account</strong> fan <strong>%{filename}</strong> te ferfangen.
+        other: Jo steane op it punt om <strong>jo blokkearlist</strong> mei mear as <strong>%{count} accounts</strong> fan <strong>%{filename}</strong> te ferfangen.
+      bookmarks_html:
+        one: Jo steane op it punt om <strong>jo blêdwizers</strong> mei mear as <strong>%{count} artikel</strong> fan <strong>%{filename}</strong> te ferfangen.
+        other: Jo steane op it punt om <strong>jo blêdwizers</strong> mei mear as <strong>%{count} artikelen</strong> fan <strong>%{filename}</strong> te ferfangen.
+      domain_blocking_html:
+        one: Jo steane op it punt om <strong>jo domeinblokkearlist</strong> mei mear as <strong>%{count} domein</strong> fan <strong>%{filename}</strong> te ferfangen.
+        other: Jo steane op it punt om <strong>jo domeinblokkearlist</strong> mei mear as <strong>%{count} domeinen</strong> fan <strong>%{filename}</strong> te ferfangen.
+      following_html:
+        one: Jo steane op it punt om <strong>%{count} account</strong> út <strong>%{filename}</strong> <strong>te folgjen</strong> en <strong>te stopjen mei folgjen fan alle oaren</strong>.
+        other: Jo steane op it punt om <strong>%{count} accounts</strong> út <strong>%{filename}</strong> <strong>te folgjen</strong> en <strong>te stopjen mei folgjen fan alle oaren</strong>.
+      lists_html:
+        one: Jo steane op it punt <strong>jo listen</strong> te ferfangen troch ynhâld fan <strong>%{filename}</strong>. Oant <strong>%{count} account</strong> sille oan nije listen tafoege wurde.
+        other: Jo steane op it punt <strong>jo listen</strong> te ferfangen troch ynhâld fan <strong>%{filename}</strong>. Oant <strong>%{count} accounts</strong> sille oan nije listen tafoege wurde.
+      muting_html:
+        one: Jo steane op it punt om <strong>jo list mei negearre accounts</strong> mei mear as <strong>%{count} account</strong> fan <strong>%{filename}</strong> út te ferfangen.
+        other: Jo steane op it punt om <strong>jo list mei negearre accounts</strong> mei mear as <strong>%{count} accounts</strong> fan <strong>%{filename}</strong> út te ferfangen.
     preambles:
-      blocking_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te <strong>blokkearjen</strong>.
-      bookmarks_html: Jo steane op it punt om <strong>%{total_items} berjochten</strong> fan <strong>%{filename}</strong> út oan jo <strong>blêdwizers</strong> ta te foegjen.
-      domain_blocking_html: Jo steane op it punt om <strong>%{total_items} domeinen</strong> fan <strong>%{filename}</strong> út te <strong>blokkearjen</strong>.
-      following_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te <strong>folgjen</strong>.
-      lists_html: Jo steane op it punt om oant <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> ta te foegjen oan jo <strong>listen</strong>. Nije listen wurde oanmakke as der gjin list is om oan ta te foegjen.
-      muting_html: Jo steane op it punt om <strong>%{total_items} accounts</strong> fan <strong>%{filename}</strong> út te <strong>negearjen</strong>.
+      blocking_html:
+        one: Jo steane op it punt om <strong>%{count} account</strong> fan <strong>%{filename}</strong> út te <strong>blokkearjen</strong>.
+        other: Jo steane op it punt om <strong>%{count} accounts</strong> fan <strong>%{filename}</strong> út te <strong>blokkearjen</strong>.
+      bookmarks_html:
+        one: Jo steane op it punt om <strong>%{count} berjocht</strong> fan <strong>%{filename}</strong> út oan jo <strong>blêdwizers</strong> ta te foegjen.
+        other: Jo steane op it punt om <strong>%{count} berjochten</strong> fan <strong>%{filename}</strong> út oan jo <strong>blêdwizers</strong> ta te foegjen.
+      domain_blocking_html:
+        one: Jo steane op it punt om <strong>%{count} domein</strong> fan <strong>%{filename}</strong> út te <strong>blokkearjen</strong>.
+        other: Jo steane op it punt om <strong>%{count} domeinen</strong> fan <strong>%{filename}</strong> út te <strong>blokkearjen</strong>.
+      following_html:
+        one: Jo steane op it punt om <strong>%{count} account</strong> fan <strong>%{filename}</strong> út te <strong>folgjen</strong>.
+        other: Jo steane op it punt om <strong>%{count} accounts</strong> fan <strong>%{filename}</strong> út te <strong>folgjen</strong>.
+      lists_html:
+        one: Jo steane op it punt om oant <strong>%{count} account</strong> fan <strong>%{filename}</strong> ta te foegjen oan jo <strong>listen</strong>. Nije listen wurde oanmakke as der gjin list is om oan ta te foegjen.
+        other: Jo steane op it punt om oant <strong>%{count} accounts</strong> fan <strong>%{filename}</strong> ta te foegjen oan jo <strong>listen</strong>. Nije listen wurde oanmakke as der gjin list is om oan ta te foegjen.
+      muting_html:
+        one: Jo steane op it punt om <strong>%{count} account</strong> fan <strong>%{filename}</strong> út te <strong>negearjen</strong>.
+        other: Jo steane op it punt om <strong>%{count} accounts</strong> fan <strong>%{filename}</strong> út te <strong>negearjen</strong>.
     preface: Jo kinne bepaalde gegevens, lykas de minsken dy’t jo folgje of blokkearre hawwe, nei jo account op dizze server ymportearje. Jo moatte dizze gegevens wol earst op de oarspronklike server eksportearje.
     recent_imports: Resinte ymports
     states:
@@ -1732,23 +1765,12 @@ fy:
     edited_at_html: Bewurke op %{date}
     errors:
       in_reply_not_found: It berjocht wêrop jo probearje te reagearjen liket net te bestean.
-    open_in_web: Yn de webapp iepenje
     over_character_limit: Oer de limyt fan %{max} tekens
     pin_errors:
       direct: Berjochten dy’t allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
       limit: Jo hawwe it maksimaal tal berjochten al fêstmakke
       ownership: In berjocht fan in oar kin net fêstmakke wurde
       reblog: In boost kin net fêstset wurde
-    poll:
-      total_people:
-        one: "%{count} persoan"
-        other: "%{count} persoanen"
-      total_votes:
-        one: "%{count} stim"
-        other: "%{count} stimmen"
-      vote: Stimme
-    show_more: Mear toane
-    show_thread: Petear toane
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkt
@@ -1947,6 +1969,7 @@ fy:
     instructions_html: Kopiearje en plak de ûndersteande koade yn de HTML fan jo website. Foegje dernei it adres fan jo website ta oan ien fan de ekstra fjilden op jo profyl op it ljepblêd ‘Profyl bewurkje’ en bewarje de wizigingen.
     verification: Ferifikaasje
     verified_links: Jo ferifiearre keppelingen
+    website_verification: Website-ferifikaasje
   webauthn_credentials:
     add: Nije befeiligingskaai tafoegje
     create:

@@ -77,7 +77,7 @@ pt-PT:
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
       form_admin_settings:
         activity_api_enabled: Contagem, em blocos semanais, de publicações locais, utilizadores ativos e novos registos
-        app_icon: WEBP, PNG, GIF ou JPG. Substitui o ícone padrão do aplicativo em dispositivos móveis por um ícone personalizado.
+        app_icon: WEBP, PNG, GIF ou JPG. Substitui o ícone padrão da aplicação em dispositivos móveis por um ícone personalizado.
         backups_retention_period: Os utilizadores têm a possibilidade de gerar arquivos das suas mensagens para descarregar mais tarde. Quando definido para um valor positivo, estes arquivos serão automaticamente eliminados do seu armazenamento após o número de dias especificado.
         bootstrap_timeline_accounts: Estas contas serão destacadas no topo das recomendações aos novos utilizadores.
         closed_registrations_message: Apresentado quando as inscrições estiverem encerradas
@@ -130,12 +130,13 @@ pt-PT:
         name: Só pode alterar a capitalização das letras, por exemplo, para torná-las mais legíveis
       user:
         chosen_languages: Quando selecionado, só serão mostradas nas cronologias públicas as publicações nos idiomas escolhidos
+        role: A função controla as permissões que o utilizador tem.
       user_role:
         color: Cor a ser utilizada para a função em toda a interface de utilizador, como RGB no formato hexadecimal
         highlighted: Isto torna a função visível publicamente
-        name: Nome público do cargo, se este estiver definido para ser apresentada com um emblema
+        name: Nome público da função, se esta estiver definida para ser apresentada com um emblema
         permissions_as_keys: Utilizadores com esta função terão acesso a...
-        position: Cargos mais altos decidem a resolução de conflitos em certas situações. Certas ações só podem ser executadas em cargos com uma menor prioridade
+        position: Funções mais altas decidem a resolução de conflitos em certas situações. Certas ações só podem ser executadas com certas funções com uma menor prioridade
       webhook:
         events: Selecione os eventos a enviar
         template: Componha o seu próprio conteúdo JSON utilizando a interpolação de variáveis. Deixar em branco para o JSON predefinido.
@@ -315,7 +316,7 @@ pt-PT:
         trendable: Permitir que esta etiqueta apareça nas tendências
         usable: Permitir que as publicações usem esta hashtag localmente
       user:
-        role: Cargo
+        role: Função
         time_zone: Fuso horário
       user_role:
         color: Cor do emblema

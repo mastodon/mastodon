@@ -7,7 +7,6 @@ eo:
     hosted_on: "%{domain} estas nodo de Mastodon"
     title: Pri
   accounts:
-    follow: Sekvi
     followers:
       one: Sekvanto
       other: Sekvantoj
@@ -22,15 +21,19 @@ eo:
       one: Afiŝo
       other: Mesaĝoj
     posts_tab_heading: Afiŝoj
+    self_follow_error: Sekvi vian propran konton ne estas permesita
   admin:
     account_actions:
       action: Plenumi agon
+      already_silenced: Ĉi tiu konto jam estis limigita.
+      already_suspended: Ĉi tiu konto jam estis suspendita.
       title: Plenumi kontrolan agon al %{acct}
     account_moderation_notes:
       create: Lasi noton
       created_msg: Noto de moderigado sukcese kreita!
       destroyed_msg: Noto de moderigado sukcese detruita!
     accounts:
+      add_email_domain_block: Bloki retpoŝtan domajnon
       approve: Aprobi
       approved_msg: Sukcese aprobis aliĝ-peton de %{username}
       are_you_sure: Ĉu vi certas?
@@ -45,6 +48,7 @@ eo:
         title: Ŝanĝi retadreson por %{username}
       change_role:
         changed_msg: Rolo sukcese ŝanĝita!
+        edit_roles: Administri uzantrolojn
         label: Ŝanĝi rolon
         no_role: Neniu rolo
         title: Ŝanĝi rolon por %{username}
@@ -215,18 +219,22 @@ eo:
         update_custom_emoji: Ĝisdatigi proprajn emoĝiojn
         update_domain_block: Ĝigdatigi domajnan blokadon
         update_ip_block: Krei IP-regulon
+        update_report: Ĝisdatigo de Raporto
         update_status: Ĝisdatigi afiŝon
         update_user_role: Ĝisdatigi rolon
       actions:
         approve_appeal_html: "%{name} aprobis apelacion kontraŭ moderiga decido de %{target}"
         approve_user_html: "%{name} aprobis registriĝon de %{target}"
         assigned_to_self_report_html: "%{name} asignis signalon %{target} al si mem"
+        change_email_user_html: "%{name} ŝanĝis retadreson de uzanto %{target}"
         change_role_user_html: "%{name} ŝanĝis rolon de %{target}"
+        confirm_user_html: "%{name} konfirmis retadreson de uzanto %{target}"
         create_account_warning_html: "%{name} sendis averton al %{target}"
         create_announcement_html: "%{name} kreis novan anoncon %{target}"
         create_custom_emoji_html: "%{name} alŝutis novan emoĝion %{target}"
         create_domain_allow_html: "%{name} aldonis domajnon %{target} al la blanka listo"
         create_domain_block_html: "%{name} blokis domajnon %{target}"
+        create_email_domain_block_html: "%{name} blokis retpoŝtan domajnon %{target}"
         create_ip_block_html: "%{name} kreis regulon por IP %{target}"
         create_unavailable_domain_html: "%{name} ĉesis sendon al domajno %{target}"
         create_user_role_html: "%{name} kreis rolon de %{target}"
@@ -235,6 +243,7 @@ eo:
         destroy_custom_emoji_html: "%{name} forigis emoĝion %{target}"
         destroy_domain_allow_html: "%{name} forigis domajnon %{target} el la blanka listo"
         destroy_domain_block_html: "%{name} malblokis domajnon %{target}"
+        destroy_email_domain_block_html: "%{name} malblokis retpoŝtan domajnon %{target}"
         destroy_instance_html: "%{name} forigis domajnon %{target}"
         destroy_ip_block_html: "%{name} forigis regulon por IP %{target}"
         destroy_status_html: "%{name} forigis mesaĝojn de %{target}"
@@ -272,6 +281,7 @@ eo:
       filter_by_action: Filtri per ago
       filter_by_user: Filtri per uzanto
       title: Ĵurnalo de revizo
+      unavailable_instance: "(domajna nomo nedisponebla)"
     announcements:
       destroyed_msg: Anonco sukcese forigita!
       edit:
@@ -409,6 +419,7 @@ eo:
       attempts_over_week:
         one: "%{count} provo ekde lasta semajno"
         other: "%{count} registroprovoj ekde lasta semajno"
+      created_msg: Sukcese blokita retpoŝta domajno
       delete: Forigi
       dns:
         types:
@@ -417,6 +428,7 @@ eo:
       new:
         create: Aldoni domajnon
         resolve: Solvi domajnon
+        title: Bloki novan retpoŝtan domajnon
       not_permitted: Ne permesita
       resolved_through_html: Solvis tra %{domain}
     export_domain_allows:
@@ -569,6 +581,7 @@ eo:
         silence_description_html: La konto estos videbla al nur personoj kiu jam sekvis ĝin au permane serĉo ĝin, ege limigante ĝian atingon. Malfermi ciujn raportojn kontra ĉi tiun konton.
         suspend_description_html: La konto kaj ciuj ĝiaj enhavoj estos neatingebla kaj poŝte forigitas, kaj interagi per ĝi estos neebla. Malfermi ciujn raportojn kontra ĉi tiu konto.
       actions_description_remote_html: Decidu kiun klopodon por solvi ĉi tiun raporton. Ĉi tiu efikas kiel nur <strong>via</strong> servilo komuniki per ĉi tiu fora konto kaj trakti ĝian enhavon.
+      actions_no_posts: Ĉi tiu raporto havas neniujn rilatajn afiŝojn por forigi
       add_to_report: Aldoni pli al raporto
       are_you_sure: Ĉu vi certas?
       assign_to_self: Asigni al mi
@@ -605,6 +618,7 @@ eo:
       report: 'Signalo #%{id}'
       reported_account: Signalita konto
       reported_by: Signalita de
+      reported_with_application: Raportita per aplikaĵo
       resolved: Solvitaj
       resolved_msg: Signalo sukcese solvita!
       skip_to_actions: Salti al agoj
@@ -801,6 +815,8 @@ eo:
         message_html: Estas pritraktataj datumbazaj migradoj. Bonvolu ekzekuti ilin por certigi, ke la apliko kondutas kiel atendite
       elasticsearch_preset:
         action: Legi dokumentaron
+      elasticsearch_preset_single_node:
+        action: Vidi dokumentadon
       elasticsearch_running_check:
         message_html: Ne eblas konekti Elasticsearch. Bonvolu kontroli ke ĝi funkcias, aǔ malŝaltu plentekstan serĉon
       elasticsearch_version_check:
@@ -811,6 +827,12 @@ eo:
         message_html: Vi ne difinis iujn servilajn regulojn.
       sidekiq_process_check:
         message_html: Neniu Sidekiq-procezo por la %{value} vico
+      software_version_check:
+        message_html: Mastodon-ĝisdatigo disponeblas.
+      software_version_critical_check:
+        action: Vidi disponeblajn ĝisdatigojn
+      software_version_patch_check:
+        action: Vidi disponeblajn ĝisdatigojn
       upload_check_privacy_error:
         action: Klaku ĉi tie por pliaj informoj
         message_html: "<strong>Via retservilo estas misagordita. La privateco de viaj uzantoj estas en risko.</strong>"
@@ -818,16 +840,27 @@ eo:
         action: Klaku ĉi tie por pliaj informoj
         message_html: "<strong>Via objektostokado estas misagordita. La privateco de viaj uzantoj estas en risko.</strong>"
     tags:
+      moderation:
+        title: Stato
+      name: Nomo
+      newest: Plej novaj
+      oldest: Plej malnovaj
       review: La statuso de la recenzo
+      search: Serĉi
+      title: Kradvortoj
       updated_msg: Kradvorto agordoj ĝisdatigis sukcese
     title: Administrado
     trends:
       allow: Permesi
       approved: Aprobita
+      confirm_allow: Ĉu vi certas, ke vi volas permesi elektitajn etikedojn?
+      confirm_disallow: Ĉu vi certas, ke vi volas malpermesi elektitajn etikedojn?
       disallow: Malpermesi
       links:
         allow: Permesi ligilon
         allow_provider: Permesi publikiganto
+        confirm_allow: Ĉu vi certas, ke vi volas permesi elektitajn ligilojn?
+        confirm_disallow: Ĉu vi certas, ke vi volas malpermesi elektitajn ligilojn?
         description_html: Ĉioj estas ligiloj kiuj nun diskonitajs multe de kontoj kiujn via servilo vidas. Ligiloj ne montritas publike se vi ne aprobis la publikiganton.
         disallow: Malpermesi ligilon
         disallow_provider: Malpermesi publikiganton
@@ -851,6 +884,8 @@ eo:
       statuses:
         allow: Permesi afiŝon
         allow_account: Permesi aŭtoron
+        confirm_allow_account: Ĉu vi certas, ke vi volas permesi elektitajn kontojn?
+        confirm_disallow_account: Ĉu vi certas, ke vi volas malpermesi elektitajn kontojn?
         description_html: Oni multe diskonigas kaj stelumas ĉi tiujn mesaĝojn nuntempe laŭ via servilo. Tio povas helpi novajn kaj revenantajn uzantojn trovi pli da homoj por sekvi. Mesaĝo estas montrita publike nur se vi aprobis la aŭtoron kaj se la aŭtoro aprobis ke ties konto estu proponita al aliaj. Vi ankaŭ povas permesi aŭ malakcepti specifajn mesaĝojn.
         disallow: Malpermesi afiŝon
         disallow_account: Malpermesi aŭtoron
@@ -929,6 +964,8 @@ eo:
       body: "%{reporter} signalis %{target}"
       body_remote: Iu de %{domain} signalis %{target}
       subject: Nova signalo por %{instance} (#%{id})
+    new_software_updates:
+      body: Novaj versioj de Mastodon estis publikigitaj, vi eble volas ĝisdatigi!
     new_trends:
       body: 'La eroj bezonas kontrolon antau ol ili povas montritas publike:'
       new_trending_links:
@@ -957,7 +994,9 @@ eo:
       guide_link_text: Ĉiu povas kontribui.
     sensitive_content: Tikla enhavo
   application_mailer:
+    notification_preferences: Ŝanĝi retpoŝtajn preferojn
     salutation: "%{name},"
+    settings: 'Ŝanĝi retpoŝtajn preferojn: %{link}'
     unsubscribe: Malabonu
     view: 'Vidi:'
     view_profile: Vidi profilon
@@ -976,8 +1015,11 @@ eo:
       help_html: Se vi havas problemojn solvi la CAPTCHA, vi povas kontakti nin per %{email} kaj ni povas helpi vin.
       title: Sekureckontrolo
     confirmations:
+      clicking_this_link: alklakante ĉi tiun ligilon
       login_link: ensaluti
+      registration_complete: Via registriĝo sur %{domain} nun finiĝis!
       welcome_title: Bonvenon, %{name}!
+      wrong_email_hint: Se tiu retadreso ne estas ĝusta, vi povas ŝanĝi ĝin en kontagordoj.
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
     description:
@@ -998,6 +1040,7 @@ eo:
     or_log_in_with: Aŭ saluti per
     privacy_policy_agreement_html: Mi legis kaj konsentis pri <a href="%{privacy_policy_path}" target="_blank">privatpolitiko</a>
     progress:
+      confirm: Konfirmi retadreson
       details: Viaj detaloj
       review: Niaj recenzoj
       rules: Akcepti regulojn
@@ -1034,6 +1077,11 @@ eo:
       view_strikes: Vidi antauaj admonoj kontra via konto
     too_fast: Formularo sendita tro rapide, klopodu denove.
     use_security_key: Uzi sekurecan ŝlosilon
+  author_attribution:
+    example_title: Ekzempla teksto
+    more_from_html: Pli de %{name}
+    s_blog: Blogo de %{name}
+    title: Atribuo de aŭtoro
   challenge:
     confirm: Daŭrigi
     hint_html: "<strong>Konsileto:</strong> Ni ne demandos pri via pasvorto ĝis 1 horo."
@@ -1042,7 +1090,6 @@ eo:
   crypto:
     errors:
       invalid_key: 올바른 Ed25519 혹은 Curve25519 키가 아닙니다
-      invalid_signature: 올바른 Ed25519 시그니처가 아닙니다
   date:
     formats:
       default: "%Y-%b-%d"
@@ -1105,8 +1152,6 @@ eo:
       your_appeal_approved: Via apelacio aprobitas
       your_appeal_pending: Vi sendis apelacion
       your_appeal_rejected: Via apelacio malakceptitas
-  domain_validator:
-    invalid_domain: ne estas valida domajna nomo
   edit_profile:
     basic_information: Baza informo
     other: Alia
@@ -1232,9 +1277,12 @@ eo:
       overwrite: Anstataŭigi
       overwrite_long: Anstataŭigi la nunajn registrojn per la novaj
     preface: Vi povas importi datumojn, kiujn vi eksportis el alia servilo, kiel liston de homoj, kiujn vi sekvas aŭ blokas.
+    recent_imports: Lastatempaj importoj
     states:
       finished: Finita
+      in_progress: Farata
       unconfirmed: Nekonfirmita
+    status: Stato
     success: Viaj datumoj estis sukcese alŝutitaj kaj estos traktitaj kiel planite
     titles:
       following: Importado de sekvaj kontoj
@@ -1522,7 +1570,6 @@ eo:
     delete: Konta forigo
     development: Evoluigado
     edit_profile: Redakti profilon
-    export: Eksporti datumojn
     featured_tags: Elstarigitaj kradvortoj
     import: Enporti
     import_and_export: Importi kaj eksporti
@@ -1534,6 +1581,9 @@ eo:
     strikes: Kontroladmonoj
     two_factor_authentication: Dufaktora aŭtentigo
     webauthn_authentication: Sekurecaj ŝlosiloj
+  severed_relationships:
+    lost_followers: Perditaj sekvantoj
+    type: Evento
   statuses:
     attached:
       audio:
@@ -1555,23 +1605,12 @@ eo:
     edited_at_html: Redaktis je %{date}
     errors:
       in_reply_not_found: Mesaĝo kiun vi provas respondi ŝajnas ne ekzisti.
-    open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
       direct: Mesaĝoj kiu videbla nun al la uzantoj ne povas alpinglitis
       limit: Vi jam atingis la maksimuman nombron de alpinglitaj mesaĝoj
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
-    poll:
-      total_people:
-        one: "%{count} persono"
-        other: "%{count} personoj"
-      total_votes:
-        one: "%{count} voĉdono"
-        other: "%{count} voĉdonoj"
-      vote: Voĉdoni
-    show_more: Montri pli
-    show_thread: Montri la mesaĝaron
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Rekta
@@ -1704,7 +1743,19 @@ eo:
         silence: Konto limigita
         suspend: Konto suspendita
     welcome:
+      apps_step: Elŝutu niajn oficialajn aplikaĵojn.
+      apps_title: Aplikaĵoj de Mastodon
+      edit_profile_action: Agordi
+      edit_profile_title: Agordi vian profilon
       explanation: Jen kelkaj konsiloj por helpi vin komenci
+      feature_action: Lerni pli
+      follow_action: Sekvi
+      hashtags_title: Popularaj kradvortoj
+      hashtags_view_more: Vidi pli da popularaj kradvortoj
+      post_step: Salutu la mondon per teksto, fotoj, filmetoj aŭ balotenketoj.
+      post_title: Faru vian unuan afiŝon
+      share_step: Sciigu viajn amikojn kiel trovi vin sur Mastodon.
+      sign_in_action: Ensaluti
       subject: Bonvenon en Mastodon
       title: Bonvenon, %{name}!
   users:

@@ -7,7 +7,6 @@ es:
     hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
   accounts:
-    follow: Seguir
     followers:
       one: Seguidor
       other: Seguidores
@@ -22,9 +21,12 @@ es:
       one: Publicación
       other: Publicaciones
     posts_tab_heading: Publicaciones
+    self_follow_error: No está permitido seguir tu propia cuenta
   admin:
     account_actions:
       action: Realizar acción
+      already_silenced: Esta cuenta ya ha sido limitada.
+      already_suspended: Esta cuenta ya ha sido suspendida.
       title: Moderar %{acct}
     account_moderation_notes:
       create: Crear
@@ -46,6 +48,7 @@ es:
         title: Cambiar el correo electrónico de %{username}
       change_role:
         changed_msg: "¡Rol cambiado con éxito!"
+        edit_roles: Administrar roles de usuario
         label: Cambiar rol
         no_role: Sin rol
         title: Cambiar rol para %{username}
@@ -602,6 +605,7 @@ es:
         suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y finalmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los informes contra esta cuenta.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este informe. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
+      actions_no_posts: Este informe no tiene ningún mensaje asociado para eliminar
       add_to_report: Añadir más al reporte
       already_suspended_badges:
         local: Ya suspendido en este servidor
@@ -872,6 +876,9 @@ es:
         message_html: No ha definido ninguna regla del servidor.
       sidekiq_process_check:
         message_html: No hay ningún proceso Sidekiq en ejecución para la(s) cola(s) %{value}. Por favor, revise su configuración de Sidekiq
+      software_version_check:
+        action: Ver actualizaciones disponibles
+        message_html: Hay disponible una actualización de Mastodon.
       software_version_critical_check:
         action: Ver actualizaciones disponibles
         message_html: Una actualización crítica de Mastodon está disponible, por favor actualiza lo antes posible.
@@ -908,8 +915,8 @@ es:
     trends:
       allow: Permitir
       approved: Aprobadas
-      confirm_allow: "¿Estás seguro de que deseas permitir la etiqueta seleccionada?"
-      confirm_disallow: "¿Estás seguro de que deseas restringir la etiqueta seleccionada?"
+      confirm_allow: "¿Estás seguro de que deseas permitir las etiquetas seleccionadas?"
+      confirm_disallow: "¿Estás seguro de que deseas restringir las etiquetas seleccionadas?"
       disallow: No permitir
       links:
         allow: Permitir enlace
@@ -977,7 +984,7 @@ es:
         used_by_over_week:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
-      title: Recomendaciones y tendencias
+      title: Recomendaciones y Tendencias
       trending: En tendencia
     warning_presets:
       add_new: Añadir nuevo
@@ -1157,6 +1164,12 @@ es:
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     use_security_key: Usar la clave de seguridad
+  author_attribution:
+    example_title: Texto de ejemplo
+    hint_html: Controla cómo se te dará atribución cuando se compartan enlaces en Mastodon.
+    more_from_html: Más de %{name}
+    s_blog: Blog de %{name}
+    title: Atribución del autor
   challenge:
     confirm: Continuar
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
@@ -1165,7 +1178,6 @@ es:
   crypto:
     errors:
       invalid_key: no es una clave Ed25519 o Curve25519 válida
-      invalid_signature: no es una firma Ed25519 válida
   date:
     formats:
       default: "%d %b %Y"
@@ -1231,8 +1243,6 @@ es:
       your_appeal_approved: Se aprobó tu apelación
       your_appeal_pending: Has enviado una apelación
       your_appeal_rejected: Tu apelación ha sido rechazada
-  domain_validator:
-    invalid_domain: no es un nombre de dominio válido
   edit_profile:
     basic_information: Información básica
     hint_html: "<strong>Personaliza lo que la gente ve en tu perfil público junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen contigo cuando completas tu perfil y foto."
@@ -1357,19 +1367,43 @@ es:
       overwrite: Sobrescribir
       overwrite_long: Reemplazar registros actuales con los nuevos
     overwrite_preambles:
-      blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos</strong> por hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
-      bookmarks_html: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{total_items} publicaciones</strong> provenientes de <strong>%{filename}</strong>.
-      domain_blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
-      following_html: Estás a punto de <strong>seguir</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
-      lists_html: Estás a punto de <strong>reemplazar tus listas</strong> con contenidos de <strong>%{filename}</strong>. Se añadirán <strong>%{total_items} cuentas</strong> a nuevas listas.
-      muting_html: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
+      blocking_html:
+        one: Estás a punto de <strong>reemplazar tu lista de bloqueos</strong> por <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>reemplazar tu lista de bloqueos</strong> por hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Estás a punto de <strong>reemplazar tus marcadores</strong> por <strong>%{count} publicación</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{count} publicaciones</strong> provenientes de <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por <strong>%{count} dominio</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{count} dominios</strong> provenientes de <strong>%{filename}</strong>.
+      following_html:
+        one: Estás a punto de <strong>seguir</strong> a <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
+        other: Estás a punto de <strong>seguir</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
+      lists_html:
+        one: Estás a punto de <strong>reemplazar tus listas</strong> con el contenido de <strong>%{filename}</strong>. Se añadirá <strong>%{count} cuenta</strong> a una nueva lista.
+        other: Estás a punto de <strong>reemplazar tus listas</strong> con el contenido de <strong>%{filename}</strong>. Se añadirán <strong>%{count} cuentas</strong> a nuevas listas.
+      muting_html:
+        one: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con <strong>%{count} cuenta</strong> proveninete de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
-      bookmarks_html: Está a punto de añadir hasta <strong>%{total_items} publicaciones</strong> proveninetes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
-      domain_blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
-      following_html: Estás a punto de <strong>seguir</strong> hasta <strong>cuentas%{total_items}</strong> provenientes de <strong>%{filename}</strong>.
-      lists_html: Estás a punto de añadir <strong>%{total_items} cuentas</strong> desde <strong>%{filename}</strong> a tus <strong>listas</strong>. Se crearán nuevas listas si no hay listas para añadirlas.
-      muting_html: Estás a punto de <strong>silenciar</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      blocking_html:
+        one: Estás a punto de <strong>bloquear</strong> a <strong>%{count} cuenta</strong> proveninete de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Está a punto de añadir <strong>%{count} publicación</strong> proveniente de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+        other: Está a punto de añadir hasta <strong>%{count} publicaciones</strong> provenientes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+      domain_blocking_html:
+        one: Estás a punto de <strong>bloquear</strong> <strong>%{count} dominio</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} dominios</strong> provenientes de <strong>%{filename}</strong>.
+      following_html:
+        one: Estás a punto de <strong>seguir</strong> a <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>seguir</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      lists_html:
+        one: Estás a punto de añadir <strong>%{count} cuenta</strong> desde <strong>%{filename}</strong> a tus <strong>listas</strong>. Se creará una nueva listas si no hay listas donde añadirla.
+        other: Estás a punto de añadir <strong>%{count} cuentas</strong> desde <strong>%{filename}</strong> a tus <strong>listas</strong>. Se crearán nuevas listas si no hay listas donde añadirlas.
+      muting_html:
+        one: Estás a punto de <strong>silenciar</strong> a <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>silenciar</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
     recent_imports: Importaciones recientes
     states:
@@ -1686,7 +1720,7 @@ es:
     delete: Borrar cuenta
     development: Desarrollo
     edit_profile: Editar perfil
-    export: Exportar información
+    export: Exportar
     featured_tags: Hashtags destacados
     import: Importar
     import_and_export: Importar y exportar
@@ -1732,23 +1766,12 @@ es:
     edited_at_html: Editado %{date}
     errors:
       in_reply_not_found: La publicación a la que intentas responder no existe.
-    open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
       direct: Las publicaciones que son visibles solo para los usuarios mencionados no pueden fijarse
       limit: Ya has fijado el número máximo de publicaciones
       ownership: La publicación de otra persona no puede fijarse
       reblog: Un boost no puede fijarse
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} personas"
-      total_votes:
-        one: "%{count} voto"
-        other: "%{count} votos"
-      vote: Vota
-    show_more: Mostrar más
-    show_thread: Mostrar discusión
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Directa
@@ -1947,6 +1970,7 @@ es:
     instructions_html: Copia y pega el siguiente código en el HTML de tu sitio web. A continuación, añade la dirección de su sitio web en uno de los campos extra de tu perfil desde la pestaña "Editar perfil" y guarda los cambios.
     verification: Verificación
     verified_links: Tus enlaces verificados
+    website_verification: Verificación del sitio web
   webauthn_credentials:
     add: Agregar nueva clave de seguridad
     create:

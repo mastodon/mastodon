@@ -10,10 +10,39 @@ RSpec.describe Account do
 
     let(:bob) { Fabricate(:account, username: 'bob') }
 
+    describe '#suspended_locally?' do
+      context 'when the account is not suspended' do
+        it 'returns false' do
+          expect(subject.suspended_locally?).to be false
+        end
+      end
+
+      context 'when the account is suspended locally' do
+        before do
+          subject.update!(suspended_at: 1.day.ago, suspension_origin: :local)
+        end
+
+        it 'returns true' do
+          expect(subject.suspended_locally?).to be true
+        end
+      end
+
+      context 'when the account is suspended remotely' do
+        before do
+          subject.update!(suspended_at: 1.day.ago, suspension_origin: :remote)
+        end
+
+        it 'returns false' do
+          expect(subject.suspended_locally?).to be false
+        end
+      end
+    end
+
     describe '#suspend!' do
       it 'marks the account as suspended and creates a deletion request' do
         expect { subject.suspend! }
           .to change(subject, :suspended?).from(false).to(true)
+          .and change(subject, :suspended_locally?).from(false).to(true)
           .and(change { AccountDeletionRequest.exists?(account: subject) }.from(false).to(true))
       end
 
@@ -744,6 +773,50 @@ RSpec.describe Account do
           .to not_change(subject, :note)
           .and(not_change(subject, :display_name))
       end
+    end
+  end
+
+  describe '#can_be_attributed_from?' do
+    subject { Fabricate(:account, attribution_domains: %w(example.com)) }
+
+    it 'returns true for a matching domain' do
+      expect(subject.can_be_attributed_from?('example.com')).to be true
+    end
+
+    it 'returns true for a subdomain of a domain' do
+      expect(subject.can_be_attributed_from?('foo.example.com')).to be true
+    end
+
+    it 'returns false for a non-matching domain' do
+      expect(subject.can_be_attributed_from?('hoge.com')).to be false
+    end
+  end
+
+  describe '#attribution_domains_as_text=' do
+    subject { Fabricate(:account) }
+
+    it 'sets attribution_domains accordingly' do
+      subject.attribution_domains_as_text = "hoge.com\nexample.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+
+    it 'strips leading "*."' do
+      subject.attribution_domains_as_text = "hoge.com\n*.example.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+
+    it 'strips the protocol if present' do
+      subject.attribution_domains_as_text = "http://hoge.com\nhttps://example.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+
+    it 'strips a combination of leading "*." and protocol' do
+      subject.attribution_domains_as_text = "http://*.hoge.com\nhttps://*.example.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
     end
   end
 

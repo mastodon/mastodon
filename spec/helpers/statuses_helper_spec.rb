@@ -36,14 +36,14 @@ RSpec.describe StatusesHelper do
     end
   end
 
-  describe 'fa_visibility_icon' do
+  describe 'visibility_icon' do
     context 'with a status that is public' do
       let(:status) { Status.new(visibility: 'public') }
 
       it 'returns the correct fa icon' do
-        result = helper.fa_visibility_icon(status)
+        result = helper.visibility_icon(status)
 
-        expect(result).to match('material-globe')
+        expect(result).to match('globe')
       end
     end
 
@@ -51,9 +51,9 @@ RSpec.describe StatusesHelper do
       let(:status) { Status.new(visibility: 'unlisted') }
 
       it 'returns the correct fa icon' do
-        result = helper.fa_visibility_icon(status)
+        result = helper.visibility_icon(status)
 
-        expect(result).to match('material-lock_open')
+        expect(result).to match('lock_open')
       end
     end
 
@@ -61,9 +61,9 @@ RSpec.describe StatusesHelper do
       let(:status) { Status.new(visibility: 'private') }
 
       it 'returns the correct fa icon' do
-        result = helper.fa_visibility_icon(status)
+        result = helper.visibility_icon(status)
 
-        expect(result).to match('material-lock')
+        expect(result).to match('lock')
       end
     end
 
@@ -71,9 +71,9 @@ RSpec.describe StatusesHelper do
       let(:status) { Status.new(visibility: 'direct') }
 
       it 'returns the correct fa icon' do
-        result = helper.fa_visibility_icon(status)
+        result = helper.visibility_icon(status)
 
-        expect(result).to match('material-alternate_email')
+        expect(result).to match('alternate_email')
       end
     end
   end

@@ -7,7 +7,6 @@ fr:
     hosted_on: Serveur Mastodon hébergé sur %{domain}
     title: À propos
   accounts:
-    follow: Suivre
     followers:
       one: Abonné·e
       other: Abonné·e·s
@@ -25,7 +24,7 @@ fr:
   admin:
     account_actions:
       action: Effectuer l'action
-      already_silenced: Ce compte est déjà limité.
+      already_silenced: Ce compte a déjà été limité.
       already_suspended: Ce compte est déjà suspendu.
       title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
@@ -135,7 +134,7 @@ fr:
       resubscribe: Se réabonner
       role: Rôle
       search: Rechercher
-      search_same_email_domain: Autres utilisateurs avec le même domaine de courriel
+      search_same_email_domain: Autres utilisateur·rice·s ayant le même domaine de messagerie
       search_same_ip: Autres utilisateur·rice·s avec la même IP
       security: Sécurité
       security_measures:
@@ -263,8 +262,10 @@ fr:
         destroy_user_role_html: "%{name} a supprimé le rôle %{target}"
         disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} a désactivé l'authentification par jeton de courriel pour %{target}"
         disable_user_html: "%{name} a désactivé la connexion de l'utilisateur·rice %{target}"
         enable_custom_emoji_html: "%{name} a activé l'émoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} a activé l'authentification par jeton de courriel pour %{target}"
         enable_user_html: "%{name} a activé la connexion de l'utilisateur·rice %{target}"
         memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
         promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
@@ -272,6 +273,7 @@ fr:
         reject_user_html: "%{name} a rejeté l’inscription de %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
         reopen_report_html: "%{name} a rouvert le signalement %{target}"
+        resend_user_html: "%{name} a renvoyé l'e-mail de confirmation pour %{target}"
         reset_password_user_html: "%{name} a réinitialisé le mot de passe de l'utilisateur·rice %{target}"
         resolve_report_html: "%{name} a résolu le signalement %{target}"
         sensitive_account_html: "%{name} a marqué le média de %{target} comme sensible"
@@ -286,6 +288,7 @@ fr:
         update_custom_emoji_html: "%{name} a mis à jour l'émoji %{target}"
         update_domain_block_html: "%{name} a mis à jour le blocage de domaine pour %{target}"
         update_ip_block_html: "%{name} a modifié la règle pour l'IP %{target}"
+        update_report_html: "%{name} a mis à jour le rapport de signalement %{target}"
         update_status_html: "%{name} a mis à jour le message de %{target}"
         update_user_role_html: "%{name} a changé le rôle %{target}"
       deleted_account: compte supprimé
@@ -426,7 +429,7 @@ fr:
       undo: Annuler le blocage de domaine
       view: Afficher les blocages de domaines
     email_domain_blocks:
-      add_new: Ajouter
+      add_new: Ajouter un nouveau
       allow_registrations_with_approval: Autoriser les inscriptions avec approbation
       attempts_over_week:
         one: "%{count} tentative au cours de la dernière semaine"
@@ -441,7 +444,12 @@ fr:
         create: Créer le blocage
         resolve: Résoudre le domaine
         title: Blocage d'un nouveau domaine de messagerie électronique
+      no_email_domain_block_selected: Aucun blocage de domaine de messagerie n'a été modifié comme aucun n'a été sélectionné
       not_permitted: Non autorisé
+      resolved_dns_records_hint_html: |-
+        Le nom de domaine se réfère aux domaines MX suivants, qui sont à leur tour responsables de la réception des courriels.
+
+        Le blocage d'un domaine MX empêchera l'inscription depuis toute adresse électronique ayant recours au même domaine MX, et ce même si le nom de domaine visible est différent. <strong>Veillez à ne pas bloquer les principaux fournisseurs de services de messagerie.</strong>
       resolved_through_html: Résolu par %{domain}
       title: Domaines de messagerie électronique bloqués
     export_domain_allows:
@@ -597,7 +605,9 @@ fr:
         resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
         silence_description_html: Le compte ne sera visible que par ceux qui le suivent déjà ou qui le recherchent manuellement, ce qui limite fortement sa portée. Cette action peut toujours être annulée. Cloture tous les signalements concernant ce compte.
         suspend_description_html: Le compte et tous ses contenus seront inaccessibles et finalement supprimés, et il sera impossible d'interagir avec lui. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
+      actions_description_html: Décidez de l'action à entreprendre pour résoudre ce signalement. Si vous prenez une mesure punitive à l'encontre du compte signalé, une notification par courrier électronique lui sera envoyée, excepté lorsque la catégorie <strong>Spam</strong> est sélectionnée.
       actions_description_remote_html: Décidez des mesures à prendre pour résoudre ce signalement. Cela n'affectera que la manière dont <strong>votre</strong> serveur communique avec ce compte distant et traite son contenu.
+      actions_no_posts: Ce signalement n'a pas de messages qui lui sont associés et qui devraient être supprimés
       add_to_report: Ajouter davantage au rapport
       already_suspended_badges:
         local: Déjà suspendu sur ce serveur
@@ -719,6 +729,7 @@ fr:
         manage_taxonomies: Gérer les taxonomies
         manage_taxonomies_description: Permet aux utilisateur⋅rice⋅s d'examiner les contenus tendance et de mettre à jour les paramètres des hashtags
         manage_user_access: Gérer l'accès utilisateur
+        manage_user_access_description: Permet aux utilisateur·rice·s de désactiver l'authentification à deux facteurs des autres utilisateur·rice·s, de modifier leur adresse électronique et de réinitialiser leur mot de passe
         manage_users: Gérer les utilisateur·rice·s
         manage_users_description: Permet aux utilisateur⋅rice⋅s de voir les détails des autres utilisateur⋅rice⋅s et d'effectuer des actions de modération en conséquence
         manage_webhooks: Gérer les points d’ancrage web
@@ -867,6 +878,9 @@ fr:
         message_html: Vous n'avez pas défini de règles pour le serveur.
       sidekiq_process_check:
         message_html: Aucun processus Sidekiq en cours d'exécution pour la/les file(s) d'attente %{value}. Veuillez vérifier votre configuration de Sidekiq
+      software_version_check:
+        action: Voir les mises à jour disponibles
+        message_html: Une mise à jour de Mastodon est disponible.
       software_version_critical_check:
         action: Voir les mises à jour disponibles
         message_html: Une mise à jour critique de Mastodon est disponible, veuillez mettre à jour le plus rapidement possible.
@@ -881,16 +895,19 @@ fr:
         message_html: "<strong>Votre serveur web est mal configuré. La confidentialité de vos utilisateurs est en péril.</strong>"
     tags:
       moderation:
+        not_trendable: Ne peut être en tendance
         not_usable: Non utilisable
         pending_review: En attente de traitement
         review_requested: Révision requise
         reviewed: Traité
         title: État
+        trendable: Peut s'afficher dans les tendances
         unreviewed: Non traité
         usable: Utilisable
       name: Nom
       newest: Plus récents
       oldest: Plus anciens
+      open: Afficher publiquement
       reset: Réinitialiser
       review: État du traitement
       search: Recherche
@@ -1149,6 +1166,12 @@ fr:
       view_strikes: Voir les sanctions précédemment appliquées à votre compte
     too_fast: Formulaire envoyé trop rapidement, veuillez réessayer.
     use_security_key: Utiliser la clé de sécurité
+  author_attribution:
+    example_title: Exemple de texte
+    hint_html: Déterminez la façon dont vous êtes crédité lorsque des liens sont partagés sur Mastodon.
+    more_from_html: Plus via %{name}
+    s_blog: Blog de %{name}
+    title: Attribution de l'auteur·e
   challenge:
     confirm: Continuer
     hint_html: "<strong>Astuce :</strong> Nous ne vous demanderons plus votre mot de passe pour la prochaine heure."
@@ -1157,7 +1180,6 @@ fr:
   crypto:
     errors:
       invalid_key: n’est pas une clé Ed25519 ou Curve25519 valide
-      invalid_signature: n’est pas une signature Ed25519 valide
   date:
     formats:
       default: "%d %b %Y"
@@ -1223,8 +1245,6 @@ fr:
       your_appeal_approved: Votre appel a été approuvé
       your_appeal_pending: Vous avez soumis un appel
       your_appeal_rejected: Votre appel a été rejeté
-  domain_validator:
-    invalid_domain: n’est pas un nom de domaine valide
   edit_profile:
     basic_information: Informations de base
     hint_html: "<strong>Personnalisez ce que les gens voient sur votre profil public et à côté de vos messages.</strong> Les autres personnes seront plus susceptibles de vous suivre et d’interagir avec vous lorsque vous avez un profil complet et une photo."
@@ -1348,20 +1368,6 @@ fr:
       merge_long: Garder les enregistrements existants et ajouter les nouveaux
       overwrite: Écraser
       overwrite_long: Remplacer les enregistrements actuels par les nouveaux
-    overwrite_preambles:
-      blocking_html: Vous allez <strong>remplacer votre liste de blocage</strong> par près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
-      bookmarks_html: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{total_items} posts</strong> tirés de <strong>%{filename}</strong>.
-      domain_blocking_html: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
-      following_html: Vous allez <strong>suivre</strong> jusqu’à <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
-      lists_html: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Près de <strong>%{total_items} comptes</strong> seront ajoutés à de nouvelles listes.
-      muting_html: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Vous allez <strong>bloquer</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
-      bookmarks_html: Vous allez ajouter près de <strong>%{total_items} messages</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
-      domain_blocking_html: Vous allez <strong>bloquer</strong> près de <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
-      following_html: Vous allez <strong>suivre</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
-      lists_html: Vous allez ajouter près de <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
-      muting_html: Vous allez <strong>masquer</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
     preface: Vous pouvez importer certaines données que vous avez exporté d’un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
     recent_imports: Récents imports
     states:
@@ -1432,6 +1438,16 @@ fr:
     unsubscribe:
       action: Oui, se désinscrire
       complete: Désinscrit
+      confirmation_html: Êtes-vous sûr de vouloir vous désabonner de la réception de %{type} pour Mastodon sur %{domain} à votre adresse e-mail %{email} ? Vous pouvez toujours vous réabonner à partir de vos paramètres de <a href="%{settings_path}">notification par messagerie</a>.
+      emails:
+        notification_emails:
+          favourite: e-mails de notifications de favoris
+          follow: e-mails de notifications d’abonnements
+          follow_request: e-mails de demandes d’abonnements
+          mention: e-mails de notifications de mentions
+          reblog: e-mails de notifications de partages
+      resubscribe_html: Si vous vous êtes désinscrit par erreur, vous pouvez vous réinscrire à partir de vos <a href="%{settings_path}">paramètres de notification par e-mail</a>.
+      success_html: Vous ne recevrez plus de %{type} pour Mastodon sur %{domain} à votre adresse e-mail à %{email}.
       title: Se désinscrire
   media_attachments:
     validations:
@@ -1668,7 +1684,7 @@ fr:
     delete: Suppression du compte
     development: Développement
     edit_profile: Modifier le profil
-    export: Export de données
+    export: Exportation
     featured_tags: Hashtags mis en avant
     import: Import de données
     import_and_export: Import et export
@@ -1714,23 +1730,12 @@ fr:
     edited_at_html: Modifié le %{date}
     errors:
       in_reply_not_found: Le message auquel vous essayez de répondre ne semble pas exister.
-    open_in_web: Ouvrir sur le web
     over_character_limit: limite de %{max} caractères dépassée
     pin_errors:
       direct: Les messages qui ne sont visibles que pour les utilisateur·rice·s mentionné·e·s ne peuvent pas être épinglés
       limit: Vous avez déjà épinglé le nombre maximum de messages
       ownership: Vous ne pouvez pas épingler un message ne vous appartenant pas
       reblog: Un partage ne peut pas être épinglé
-    poll:
-      total_people:
-        one: "%{count} personne"
-        other: "%{count} personnes"
-      total_votes:
-        one: "%{count} vote"
-        other: "%{count} votes"
-      vote: Voter
-    show_more: Déplier
-    show_thread: Afficher le fil de discussion
     title: "%{name} : « %{quote} »"
     visibilities:
       direct: Direct
@@ -1929,6 +1934,7 @@ fr:
     instructions_html: Copiez et collez le code ci-dessous dans le code HTML de votre site web. Ajoutez ensuite l’adresse de votre site dans l’un des champs supplémentaires de votre profil à partir de l‘onglet « Modifier le profil » et enregistrez les modifications.
     verification: Vérification
     verified_links: Vos liens vérifiés
+    website_verification: Vérification du site web
   webauthn_credentials:
     add: Ajouter une nouvelle clé de sécurité
     create:

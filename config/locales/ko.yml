@@ -7,7 +7,6 @@ ko:
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     title: 정보
   accounts:
-    follow: 팔로우
     followers:
       other: 팔로워
     following: 팔로잉
@@ -20,10 +19,11 @@ ko:
     posts:
       other: 게시물
     posts_tab_heading: 게시물
+    self_follow_error: 본인의 계정을 팔로우할 수는 없습니다
   admin:
     account_actions:
       action: 조치 취하기
-      already_silenced: 이 계정은 이미 침묵되었습니다.
+      already_silenced: 이 계정은 이미 제한되었습니다.
       already_suspended: 이 계정은 이미 정지되었습니다.
       title: "%{acct} 계정에 중재 취하기"
     account_moderation_notes:
@@ -864,6 +864,9 @@ ko:
         message_html: 아직 서버 규칙을 정하지 않았습니다.
       sidekiq_process_check:
         message_html: "%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요"
+      software_version_check:
+        action: 사용 가능한 업데이트 보기
+        message_html: 마스토돈 업데이트가 있습니다.
       software_version_critical_check:
         action: 사용 가능한 업데이트 보기
         message_html: 긴급 마스토돈 업데이트가 있으니, 가능한 서둘러 업데이트 해주세요.
@@ -1145,6 +1148,12 @@ ko:
       view_strikes: 내 계정에 대한 과거 중재 기록 보기
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
     use_security_key: 보안 키 사용
+  author_attribution:
+    example_title: 예시 텍스트
+    hint_html: 링크가 마스토돈에 공유될 때 내가 어떻게 표시될 지를 제어합니다.
+    more_from_html: "%{name}의 게시물 더 보기"
+    s_blog: "%{name}의 블로그"
+    title: 작성자 기여
   challenge:
     confirm: 계속
     hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
@@ -1153,7 +1162,6 @@ ko:
   crypto:
     errors:
       invalid_key: 유효하지 않은 Ed25519 또는 Curve25519 키
-      invalid_signature: 유효하지 않은 Ed25519 서명
   date:
     formats:
       default: "%Y-%m-%d"
@@ -1219,8 +1227,6 @@ ko:
       your_appeal_approved: 소명이 받아들여졌습니다
       your_appeal_pending: 소명을 제출했습니다
       your_appeal_rejected: 소명이 기각되었습니다
-  domain_validator:
-    invalid_domain: 올바른 도메인 네임이 아닙니다
   edit_profile:
     basic_information: 기본 정보
     hint_html: "<strong>사람들이 공개 프로필을 보고서 게시물을 볼 때를 위한 프로필을 꾸밉니다.</strong> 프로필과 프로필 사진을 채우면 다른 사람들이 나를 팔로우하고 나와 교류할 기회가 더 많아집니다."
@@ -1338,19 +1344,31 @@ ko:
       overwrite: 덮어쓰기
       overwrite_long: 기존 것을 모두 지우고 새로 추가
     overwrite_preambles:
-      blocking_html: 나의 <strong>차단 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 계정</strong>으로 덮어 씌우려고 합니다.
-      bookmarks_html: 나의 <strong>북마크</strong>를 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 게시물</strong>로 덮어 씌우려고 합니다.
-      domain_blocking_html: 나의 <strong>도메인 차단 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 도메인</strong>으로 덮어 씌우려고 합니다.
-      following_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 계정</strong>을 <strong>팔로우</strong>하고 <strong>나머지 계정을 팔로우 해제</strong>하려고 합니다."
-      lists_html: 나의 <strong>리스트</strong>를 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 계정</strong>으로 덮어 씌우려고 합니다.
-      muting_html: 나의 <strong>뮤트한 계정 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 계정</strong>으로 덮어 씌우려고 합니다.
+      blocking_html:
+        other: 나의 <strong>차단 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{count} 개의 계정</strong>으로 덮어 씌우려고 합니다.
+      bookmarks_html:
+        other: 나의 <strong>북마크</strong>를 <strong>%{filename}</strong>에서 가져온 <strong>%{count} 개의 게시물</strong>로 덮어 씌우려고 합니다.
+      domain_blocking_html:
+        other: 나의 <strong>도메인 차단 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{count} 개의 도메인</strong>으로 덮어 씌우려고 합니다.
+      following_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count} 개의 계정</strong>을 <strong>팔로우</strong>하고 <strong>나머지 계정을 팔로우 해제</strong>하려고 합니다."
+      lists_html:
+        other: 나의 <strong>리스트</strong>를 <strong>%{filename}</strong>에서 가져온 <strong>%{count} 개의 계정</strong>으로 덮어 씌우려고 합니다.
+      muting_html:
+        other: 나의 <strong>뮤트한 계정 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{count} 개의 계정</strong>으로 덮어 씌우려고 합니다.
     preambles:
-      blocking_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 계정</strong>을 차단하려고 합니다."
-      bookmarks_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 게시물</strong>을 북마크에 추가하려고 합니다."
-      domain_blocking_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 도메인</strong>을 차단하려고 합니다."
-      following_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 계정</strong>을 팔로우하려고 합니다."
-      lists_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 계정</strong>을 내 <strong>리스트</strong>에 추가하려고 합니다. 추가할 리스트가 존재하지 않으면 새로 생성될 것입니다."
-      muting_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 계정</strong>을 뮤트하려고 합니다."
+      blocking_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 계정</strong>을 차단하려고 합니다."
+      bookmarks_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 게시물</strong>을 북마크에 추가하려고 합니다."
+      domain_blocking_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 도메인</strong>을 차단하려고 합니다."
+      following_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 계정</strong>을 팔로우하려고 합니다."
+      lists_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 계정</strong>을 내 <strong>리스트</strong>에 추가하려고 합니다. 추가할 리스트가 존재하지 않으면 새로 생성될 것입니다."
+      muting_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 계정</strong>을 뮤트하려고 합니다."
     preface: 다른 서버에서 내보내기 한 파일에서 팔로우 / 차단 정보를 이 계정으로 불러올 수 있습니다.
     recent_imports: 최근의 가져오기
     states:
@@ -1666,7 +1684,7 @@ ko:
     delete: 계정 삭제
     development: 개발
     edit_profile: 프로필 편집
-    export: 데이터 내보내기
+    export: 내보내기
     featured_tags: 추천 해시태그
     import: 데이터 가져오기
     import_and_export: 가져오기 & 내보내기
@@ -1708,21 +1726,12 @@ ko:
     edited_at_html: "%{date}에 편집됨"
     errors:
       in_reply_not_found: 답장하려는 게시물이 존재하지 않습니다.
-    open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
       direct: 멘션된 사용자들에게만 보이는 게시물은 고정될 수 없습니다
       limit: 이미 너무 많은 게시물을 고정했습니다
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
-    poll:
-      total_people:
-        other: "%{count}명"
-      total_votes:
-        other: "%{count} 명 투표함"
-      vote: 투표
-    show_more: 더 보기
-    show_thread: 글타래 보기
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: 다이렉트
@@ -1920,6 +1929,7 @@ ko:
     instructions_html: 웹사이트에 아래 코드를 복사해 붙여 넣으세요. 그리고 "프로필 수정" 탭에서 그 웹사이트 주소를 프로필의 추가 필드 중 하나에 넣고 변경사항을 저장하세요.
     verification: 검증
     verified_links: 인증된 링크들
+    website_verification: 웹사이트 인증
   webauthn_credentials:
     add: 보안 키 추가
     create:

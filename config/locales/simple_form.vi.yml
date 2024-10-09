@@ -3,12 +3,13 @@ vi:
   simple_form:
     hints:
       account:
-        discoverable: Các tút và hồ sơ công khai của bạn có thể được giới thiệu hoặc đề xuất ở nhiều khu vực khác nhau của Mastodon và hồ sơ của bạn có thể được đề xuất cho những người dùng khác.
+        attribution_domains_as_text: Bảo vệ khỏi những sự gán ghép sai.
+        discoverable: Hồ sơ và tút công khai của bạn được đề xuất cho những người dùng Mastodon khác.
         display_name: Tên đầy đủ hoặc biệt danh đều được.
         fields: Trang blog của bạn, nghề nghiệp, tuổi hoặc bất cứ thứ gì.
-        indexable: Tút công khai của bạn sẽ xuất hiện khi tìm kiếm trên Mastodon. Những người đã tương tác với tút của bạn có thể tìm kiếm chúng.
-        note: 'Bạn có thể @nhắnriêng ai đó hoặc #hashtags.'
-        show_collections: Mọi người sẽ biết những bạn theo dõi và người theo dõi bạn. Những người bạn theo dõi sẽ vẫn thấy rằng bạn theo dõi họ.
+        indexable: Mọi người có thể tìm kiếm và tương tác với những tút công khai của bạn trên Mastodon.
+        note: 'Bạn có thể @aiđó hoặc #hashtags.'
+        show_collections: Mọi người sẽ biết những bạn theo dõi và người theo dõi bạn.
         unlocked: Mọi người sẽ theo dõi bạn mà không cần bạn cho phép.
       account_alias:
         acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
@@ -41,7 +42,7 @@ vi:
         autofollow: Những người đăng ký sẽ tự động theo dõi bạn
         avatar: WEBP, PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         bot: Tài khoản này tự động thực hiện các hành động và không được quản lý bởi người thật
-        context: Chọn một hoặc nhiều nơi mà bộ lọc sẽ áp dụng
+        context: Chọn những nơi mà bộ lọc sẽ áp dụng
         current_password: Vì mục đích bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
         digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
@@ -50,7 +51,7 @@ vi:
         inbox_url: Sao chép URL của máy chủ mà bạn muốn dùng
         irreversible: Các tút đã lọc sẽ không thể phục hồi, kể cả sau khi xóa bộ lọc
         locale: Ngôn ngữ của giao diện, email và thông báo đẩy
-        password: Dùng ít nhất 8 ký tự
+        password: Tối thiểu 8 ký tự
         phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
         scopes: Ứng dụng sẽ được phép truy cập những API nào. Nếu bạn chọn quyền cấp cao nhất, không cần chọn quyền nhỏ.
         setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì những lượt đăng lại sau sẽ không hiện trên bảng tin nữa
@@ -73,8 +74,8 @@ vi:
       filters:
         action: Chọn hành động sẽ thực hiện khi một tút khớp với bộ lọc
         actions:
-          hide: Ẩn hoàn toàn nội dung đã lọc, như thể nó không tồn tại
-          warn: Ẩn nội dung đã lọc đằng sau một cảnh báo đề cập đến tiêu đề của bộ lọc
+          hide: Ẩn hoàn toàn, như thể nó không tồn tại
+          warn: Hiện cảnh báo và bộ lọc
       form_admin_settings:
         activity_api_enabled: Số lượng tút được đăng trong máy chủ, người dùng đang hoạt động và đăng ký mới hàng tuần
         app_icon: WEBP, PNG, GIF hoặc JPG. Dùng biểu tượng tùy chỉnh trên thiết bị di động.
@@ -143,6 +144,7 @@ vi:
         url: Nơi những sự kiện được gửi đến
     labels:
       account:
+        attribution_domains_as_text: Chỉ cho phép các website đặc biệt
         discoverable: Cho phép khám phá hồ sơ
         fields:
           name: Nhãn
@@ -212,7 +214,7 @@ vi:
         setting_default_sensitive: Đánh dấu media nhạy cảm
         setting_delete_modal: Hỏi trước khi xóa tút
         setting_disable_hover_cards: Tắt thẻ xem trước hồ sơ
-        setting_disable_swiping: Không dùng chuyển động vuốt
+        setting_disable_swiping: Tắt thao tác vuốt
         setting_display_media: Media nhạy cảm
         setting_display_media_default: Mặc định
         setting_display_media_hide_all: Ẩn toàn bộ
@@ -224,7 +226,7 @@ vi:
         setting_theme: Giao diện
         setting_trends: Hiển thị xu hướng trong ngày
         setting_unfollow_modal: Hỏi trước khi bỏ theo dõi ai đó
-        setting_use_blurhash: Phủ màu media nhạy cảm
+        setting_use_blurhash: Làm mờ media nhạy cảm
         setting_use_pending_items: Không tự động cập nhật bảng tin
         severity: Mức độ nghiêm trọng
         sign_in_token_attempt: Mã an toàn
@@ -303,13 +305,13 @@ vi:
           label: Đã có phiên bản Mastodon mới
           none: Không bao giờ thông báo (không đề xuất)
           patch: Thông báo bản cập sửa lỗi
-        trending_tag: Phê duyệt nội dung nổi bật mới
+        trending_tag: Phê duyệt xu hướng mới
       rule:
         hint: Thông tin thêm
         text: Nội quy
       settings:
         indexable: Cho phép hiện hồ sơ trong công cụ tìm kiếm
-        show_application: Cho phép hiện ứng dụng dùng để đăng tút
+        show_application: Hiện ứng dụng dùng để đăng tút
       tag:
         listable: Cho phép xuất hiện trong tìm kiếm và đề xuất
         name: Hashtag

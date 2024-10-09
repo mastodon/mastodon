@@ -7,7 +7,6 @@ zh-TW:
     hosted_on: 於 %{domain} 託管之 Mastodon 站點
     title: 關於本站
   accounts:
-    follow: 跟隨
     followers:
       other: 跟隨者
     following: 正在跟隨
@@ -20,10 +19,11 @@ zh-TW:
     posts:
       other: 嘟文
     posts_tab_heading: 嘟文
+    self_follow_error: 無法跟隨您自己的帳號
   admin:
     account_actions:
       action: 執行動作
-      already_silenced: 此帳號已被靜音。
+      already_silenced: 此帳號已被限制。
       already_suspended: 此帳號已被停權。
       title: 對 %{acct} 執行站務動作
     account_moderation_notes:
@@ -864,6 +864,9 @@ zh-TW:
         message_html: 您尚未定義任何伺服器規則。
       sidekiq_process_check:
         message_html: 沒有佇列 %{value} 的 Sidekiq 行程，請檢查您的 Sidekiq 設定組態
+      software_version_check:
+        action: 檢視可取得的更新
+        message_html: 有可取得的 Mastodon 更新。
       software_version_critical_check:
         action: 檢視可取得的更新
         message_html: 有可取得的重要 Mastodon 更新，請立即升級。
@@ -1145,6 +1148,12 @@ zh-TW:
       view_strikes: 檢視針對您帳號過去的警示
     too_fast: 送出表單的速度太快跟不上，請稍後再試。
     use_security_key: 使用安全金鑰
+  author_attribution:
+    example_title: 範例文字
+    hint_html: 控制如何於 Mastodon 上分享連結時註明您的貢獻。
+    more_from_html: 來自 %{name} 之更多內容
+    s_blog: "%{name} 的部落格"
+    title: 作者署名
   challenge:
     confirm: 繼續
     hint_html: "<strong>温馨小提醒：</strong> 我們於接下來一小時內不會再要求您輸入密碼。"
@@ -1153,7 +1162,6 @@ zh-TW:
   crypto:
     errors:
       invalid_key: 這不是一把有效的 Ed25519 或 Curve25519 金鑰
-      invalid_signature: 這不是有效的 Ed25519 簽章
   date:
     formats:
       default: "%Y年%b月%d日"
@@ -1219,8 +1227,6 @@ zh-TW:
       your_appeal_approved: 您的申訴已被批准
       your_appeal_pending: 您已遞交申訴
       your_appeal_rejected: 您的申訴已被駁回
-  domain_validator:
-    invalid_domain: 並非一個有效網域
   edit_profile:
     basic_information: 基本資訊
     hint_html: "<strong>自訂人們能於您個人檔案及嘟文旁所見之內容。</strong>當您完成填寫個人檔案及設定大頭貼後，其他人們比較願意跟隨您並與您互動。"
@@ -1269,7 +1275,7 @@ zh-TW:
       home: 首頁時間軸
       notifications: 通知
       public: 公開時間軸
-      thread: 對話
+      thread: 討論串
     edit:
       add_keyword: 新增關鍵字
       keywords: 關鍵字
@@ -1338,19 +1344,31 @@ zh-TW:
       overwrite: 覆蓋
       overwrite_long: 以新的紀錄覆蓋目前紀錄
     overwrite_preambles:
-      blocking_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong> 以 <strong>取代您的封鎖帳號列表</strong>。
-      bookmarks_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個嘟文</strong> 以 <strong>取代您的書籤</strong>。
-      domain_blocking_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個網域</strong> 以 <strong>取代您的封鎖網域列表</strong>。
-      following_html: 您將要 <strong>跟隨</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong> 並且 <strong>取消跟隨其他所有人</strong>。
-      lists_html: 您將以 <strong>%{filename}</strong> 之內容<strong>取代您的列表</strong>。這將會新增 <strong>%{total_items} 個帳號</strong>至新列表。
-      muting_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong> 以 <strong>取代您的靜音帳號列表</strong>。
+      blocking_html:
+        other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個帳號</strong> 以 <strong>取代您的封鎖帳號列表</strong>。
+      bookmarks_html:
+        other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個嘟文</strong> 以 <strong>取代您的書籤</strong>。
+      domain_blocking_html:
+        other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個網域</strong> 以 <strong>取代您的封鎖網域列表</strong>。
+      following_html:
+        other: 您將要 <strong>跟隨</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{count} 個帳號</strong> 並且 <strong>取消跟隨其他所有人</strong>。
+      lists_html:
+        other: 您將以 <strong>%{filename}</strong> 之內容<strong>取代您的列表</strong>。這將會新增 <strong>%{count} 個帳號</strong>至新列表。
+      muting_html:
+        other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個帳號</strong> 以 <strong>取代您的靜音帳號列表</strong>。
     preambles:
-      blocking_html: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
-      bookmarks_html: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個嘟文</strong> 以 <strong>加入至您的書籤</strong>。
-      domain_blocking_html: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個網域</strong>。
-      following_html: 您將要 <strong>跟隨</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
-      lists_html: 您將自 <strong>%{filename}</strong> 新增 <strong>%{total_items} 個帳號</strong>至您的<strong>列表</strong>。若不存在列表用以新增帳號，則會建立新列表。
-      muting_html: 您將要 <strong>靜音</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{total_items} 個帳號</strong>。
+      blocking_html:
+        other: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{count} 個帳號</strong>。
+      bookmarks_html:
+        other: 您將要自 <strong>%{filename}</strong> 中之 <strong>%{count} 個嘟文</strong> 以 <strong>加入至您的書籤</strong>。
+      domain_blocking_html:
+        other: 您將要 <strong>封鎖</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{count} 個網域</strong>。
+      following_html:
+        other: 您將要 <strong>跟隨</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{count} 個帳號</strong>。
+      lists_html:
+        other: 您將自 <strong>%{filename}</strong> 新增 <strong>%{count} 個帳號</strong>至您的<strong>列表</strong>。若不存在列表用以新增帳號，則會建立新列表。
+      muting_html:
+        other: 您將要 <strong>靜音</strong> 自 <strong>%{filename}</strong> 中之 <strong>%{count} 個帳號</strong>。
     preface: 您能於此匯入您於其他伺服器所匯出的資料檔，包括跟隨中的使用者、封鎖的使用者名單等。
     recent_imports: 最近匯入的
     states:
@@ -1708,21 +1726,12 @@ zh-TW:
     edited_at_html: 編輯於 %{date}
     errors:
       in_reply_not_found: 您嘗試回覆的嘟文看起來不存在。
-    open_in_web: 以網頁開啟
     over_character_limit: 已超過 %{max} 字的限制
     pin_errors:
       direct: 無法釘選只有僅提及使用者可見之嘟文
       limit: 釘選嘟文的數量已達上限
       ownership: 不能釘選他人的嘟文
       reblog: 不能釘選轉嘟
-    poll:
-      total_people:
-        other: "%{count} 個人"
-      total_votes:
-        other: "%{count} 票"
-      vote: 投票
-    show_more: 顯示更多
-    show_thread: 顯示討論串
     title: "%{name}：「%{quote}」"
     visibilities:
       direct: 私訊
@@ -1920,6 +1929,7 @@ zh-TW:
     instructions_html: 複製及貼上以下程式碼至您個人網站之 HTML 中。接著透過「編輯個人檔案」將您網站網址加入您個人網站之額外欄位中，並儲存變更。
     verification: 驗證連結
     verified_links: 已驗證連結
+    website_verification: 網站驗證
   webauthn_credentials:
     add: 新增安全金鑰
     create:

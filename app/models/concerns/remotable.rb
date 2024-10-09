@@ -26,7 +26,7 @@ module Remotable
 
             public_send(:"#{attachment_name}=", ResponseWithLimit.new(response, limit))
           end
-        rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError => e
+        rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS => e
           Rails.logger.debug { "Error fetching remote #{attachment_name}: #{e}" }
           public_send(:"#{attachment_name}=", nil) if public_send(:"#{attachment_name}_file_name").present?
           raise e unless suppress_errors

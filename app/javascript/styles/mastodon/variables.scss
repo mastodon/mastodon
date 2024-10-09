@@ -111,4 +111,9 @@ $font-monospace: 'mastodon-font-monospace' !default;
   --surface-variant-active-background-color: #{lighten($ui-base-color, 4%)};
   --on-surface-color: #{transparentize($ui-base-color, 0.5)};
   --avatar-border-radius: 8px;
+  --media-outline-color: #{rgba(#fcf8ff, 0.15)};
+  --overlay-icon-shadow: drop-shadow(0 0 8px #{rgba($base-shadow-color, 0.25)});
+  --error-background-color: #{darken($error-red, 16%)};
+  --error-active-background-color: #{darken($error-red, 12%)};
+  --on-error-color: #fff;
 }
