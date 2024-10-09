@@ -8,7 +8,7 @@ AllCops:
     - lib/mastodon/migration_helpers.rb
   ExtraDetails: true
   NewCops: enable
-  TargetRubyVersion: 3.1 # Oldest supported ruby version
+  TargetRubyVersion: 3.2 # Oldest supported ruby version
 
 inherit_from:
   - .rubocop/layout.yml
