@@ -1,6 +1,6 @@
 = content_for :heading do
   = render 'application/mailer/heading',
-           image_url: frontend_asset_url('images/mailer-new/heading/appeal-approved.png'),
+           image_url: mail_header_image('appeal-approved.png'),
            subtitle: t('user_mailer.appeal_approved.subtitle'),
            title: t('user_mailer.appeal_approved.title')
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }

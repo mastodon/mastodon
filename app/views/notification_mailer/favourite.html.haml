@@ -1,6 +1,6 @@
 = content_for :heading do
   = render 'application/mailer/heading',
-           image_url: frontend_asset_url('images/mailer-new/heading/favorite.png'),
+           image_url: mail_header_image('favorite.png'),
            subtitle: t('notification_mailer.favourite.body', name: @account.pretty_acct),
            title: t('notification_mailer.favourite.title')
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }

@@ -120,6 +120,10 @@ module ApplicationHelper
     inline_svg_tag 'check.svg'
   end
 
+  def mail_header_image(icon = 'email.png')
+    frontend_asset_url("images/mailer-new/heading/#{icon}")
+  end
+
   def interrelationships_icon(relationships, account_id)
     if relationships.following[account_id] && relationships.followed_by[account_id]
       material_symbol('sync_alt', title: I18n.t('relationships.mutual'), class: 'active passive')
