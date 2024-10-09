@@ -3,12 +3,9 @@
            image_url: frontend_asset_url('images/mailer-new/heading/favorite.png'),
            subtitle: t('notification_mailer.favourite.body', name: @account.pretty_acct),
            title: t('notification_mailer.favourite.title')
-%td.email-body-padding-td
-  %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+%td.email-inner-card-td
+  = render 'status', status: @status, time_zone: @me.user_time_zone
+  %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: :presentation }
     %tr
-      %td.email-inner-card-td
-        = render 'status', status: @status, time_zone: @me.user_time_zone
-        %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-          %tr
-            %td.email-padding-top-24
-              = render 'application/mailer/button', text: t('application_mailer.view_status'), url: web_url("@#{@status.account.pretty_acct}/#{@status.id}")
+      %td.email-padding-top-24
+        = render 'application/mailer/button', text: t('application_mailer.view_status'), url: web_url("@#{@status.account.pretty_acct}/#{@status.id}")

@@ -3,12 +3,9 @@
            image_url: frontend_asset_url('images/mailer-new/heading/mention.png'),
            subtitle: t('notification_mailer.mention.body', name: @status.account.pretty_acct),
            title: t('notification_mailer.mention.title')
-%td.email-body-padding-td
-  %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+%td.email-inner-card-td
+  = render 'status', status: @status, time_zone: @me.user_time_zone
+  %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: :presentation }
     %tr
-      %td.email-inner-card-td
-        = render 'status', status: @status, time_zone: @me.user_time_zone
-        %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-          %tr
-            %td.email-padding-top-24
-              = render 'application/mailer/button', text: t('notification_mailer.mention.action'), url: web_url("@#{@status.account.pretty_acct}/#{@status.id}")
+      %td.email-padding-top-24
+        = render 'application/mailer/button', text: t('notification_mailer.mention.action'), url: web_url("@#{@status.account.pretty_acct}/#{@status.id}")

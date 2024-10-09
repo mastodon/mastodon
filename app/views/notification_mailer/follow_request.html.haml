@@ -3,12 +3,9 @@
            image_url: frontend_asset_url('images/mailer-new/heading/follow.png'),
            subtitle: t('notification_mailer.follow_request.body', name: @account.pretty_acct),
            title: t('notification_mailer.follow_request.title')
-%td.email-body-padding-td
-  %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+%td.email-inner-card-td-without-padding
+  = render 'application/mailer/account', account: @account
+  %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: :presentation }
     %tr
-      %td.email-inner-card-td-without-padding
-        = render 'application/mailer/account', account: @account
-        %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-          %tr
-            %td.email-padding-24.email-padding-top-0
-              = render 'application/mailer/button', text: t('notification_mailer.follow_request.action'), url: web_url('follow_requests')
+      %td.email-padding-24.email-padding-top-0
+        = render 'application/mailer/button', text: t('notification_mailer.follow_request.action'), url: web_url('follow_requests')
