@@ -2863,7 +2863,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .column {
-  width: 400px;
+  width: clamp(380px, calc((100% - 350px) / 4), 400px);
   position: relative;
   box-sizing: border-box;
   display: flex;
