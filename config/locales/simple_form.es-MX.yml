@@ -3,6 +3,7 @@ es-MX:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protege frente atribuciones fraudulentas.
         discoverable: Tu perfil y las publicaciones públicas pueden ser destacadas o recomendadas en varias áreas de Mastodon y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu nick.
         fields: Tu página de inicio, pronombres, edad, todo lo que quieras.
@@ -15,12 +16,12 @@ es-MX:
       account_migration:
         acct: Especifique el nombre de usuario@dominio de la cuenta a la cual desea migrar
       account_warning_preset:
-        text: Puede usar sintaxis de toots, como URLs, hashtags y menciones
+        text: Puede usar sintaxis de publicaciones, como URLs, etiquetas y menciones
         title: Opcional. No visible para el destinatario
       admin_account_action:
-        include_statuses: El usuario verá qué toots han causado la acción de moderación o advertencia
+        include_statuses: El usuario verá qué publicaciones han causado la acción de moderación o advertencia
         send_email_notification: El usuario recibirá una explicación de lo que sucedió con respecto a su cuenta
-        text_html: Opcional. Puede usar sintaxis de toots. Puede añadir <a href="%{path}">configuraciones predefinidas de advertencia</a> para ahorrar tiempo
+        text_html: Opcional. Puede usar sintaxis de publicaciones. Puede añadir <a href="%{path}">configuraciones predefinidas de advertencia</a> para ahorrar tiempo
         type_html: Elige qué hacer con <strong>%{acct}</strong>
         types:
           disable: Evitar que el usuario utilice su cuenta, pero no eliminar ni ocultar sus contenidos.
@@ -34,7 +35,7 @@ es-MX:
         ends_at: Opcional. El anuncio desaparecerá automáticamente en este momento
         scheduled_at: Dejar en blanco para publicar el anuncio inmediatamente
         starts_at: Opcional. En caso de que su anuncio esté vinculado a un intervalo de tiempo específico
-        text: Puedes usar la sintaxis toot. Por favor ten en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
+        text: Puedes usar la sintaxis de publicaciones. Por favor ten en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
       appeal:
         text: Sólo puede apelar una amonestación a la vez
       defaults:
@@ -48,12 +49,12 @@ es-MX:
         email: Se le enviará un correo de confirmación
         header: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         inbox_url: Copia la URL de la página principal del relés que quieres utilizar
-        irreversible: Los toots filtrados desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
+        irreversible: Las publicaciones filtradas desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
         locale: El idioma de la interfaz de usuario, correos y notificaciones push
         password: Utilice al menos 8 caracteres
-        phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de un toot
+        phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
-        setting_aggregate_reblogs: No mostrar nuevos retoots para los toots que han sido recientemente retooteados (sólo afecta a los retoots recibidos recientemente)
+        setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a las publicaciones recibidas recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
         setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un click
         setting_display_media_default: Ocultar contenido multimedia marcado como sensible
@@ -78,14 +79,14 @@ es-MX:
       form_admin_settings:
         activity_api_enabled: Conteo de publicaciones publicadas localmente, usuarios activos, y nuevos registros en periodos semanales
         app_icon: WEBP, PNG, GIF o JPG. Reemplaza el icono de aplicación predeterminado en dispositivos móviles con un icono personalizado.
-        backups_retention_period: Los usuarios tienen la capacidad de generar archivos de sus mensajes para descargar más adelante. Cuando se establece un valor positivo, estos archivos se eliminarán automáticamente del almacenamiento después del número de días especificado.
+        backups_retention_period: Los usuarios tienen la posibilidad de generar archivos de sus mensajes para descargarlos más adelante. Cuando se establece en un valor positivo, estos archivos se eliminarán automáticamente del almacenamiento después del número especificado de días.
         bootstrap_timeline_accounts: Estas cuentas aparecerán en la parte superior de las recomendaciones de los nuevos usuarios.
         closed_registrations_message: Mostrado cuando los registros están cerrados
-        content_cache_retention_period: Todas las publicaciones de otros servidores (incluso impulsos y respuestas) se eliminarán después del número de días especificado, sin tener en cuenta la interacción del usuario local con esos mensajes. Esto incluye mensajes donde un usuario local los ha marcado como marcadores o favoritos. Las menciones privadas entre usuarios de diferentes instancias también se perderán sin posibilidad de recuperación. El uso de esta configuración está destinado a instancias de propósito especial, y rompe muchas expectativas de los usuarios cuando se implementa para un uso de propósito general.
+        content_cache_retention_period: Todas las publicaciones de otros servidores (incluyendo impuestos y respuestas) serán borrados después del número de días especificado, sin tener en cuenta cualquier interacción del usuario local con esas publicaciones. Esto incluye los mensajes que un usuario local haya marcado como favoritos. Las menciones privadas entre usuarios de diferentes instancias también se perderán y será imposible restaurarlas. El uso de esta configuración está pensado para instancias de propósito especial y rompe muchas expectativas de los usuarios cuando se implementa para uso general.
         custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
-        favicon: WEBP, PNG, GIF o JPG. Reemplaza el favicon predeterminado de Mastodon con un icono personalizado.
+        favicon: WEBP, PNG, GIF o JPG. Reemplaza el icono predeterminado de Mastodon con un icono personalizado.
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
-        media_cache_retention_period: Los archivos multimedia de las publicaciones creadas por usuarios remotos se almacenan en caché en tu servidor. Cuando se establece un valor positivo, estos archivos se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlaces realizan peticiones a sitios de terceros, se recomienda establecer este valor a al menos 14 días, o las tarjetas de previsualización de enlaces no se actualizarán bajo demanda antes de ese momento.
+        media_cache_retention_period: Los archivos multimedia de las publicaciones realizadas por usuarios remotos se almacenan en caché en su servidor. Si se establece en un valor positivo, los archivos multimedia se eliminarán tras el número de días especificado. Si los datos multimedia se solicitan después de haber sido eliminados, se volverán a descargar, si el contenido de origen sigue estando disponible. Debido a las restricciones sobre la frecuencia con la que las tarjetas de previsualización de enlaces sondean sitios de terceros, se recomienda establecer este valor en al menos 14 días, o las tarjetas de previsualización de enlaces no se actualizarán bajo demanda antes de ese tiempo.
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el fediverso. Aquí no se incluye ningún dato sobre si usted federa con un servidor determinado, sólo que su servidor lo sabe. Esto es utilizado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado por que su cuenta pueda ser descubierta.
         require_invite_text: Cuando los registros requieren aprobación manual, hace obligatoria la entrada de texto "¿Por qué quieres unirte?" en lugar de opcional
@@ -129,8 +130,8 @@ es-MX:
       tag:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       user:
-        chosen_languages: Cuando se marca, solo se mostrarán los toots en los idiomas seleccionados en los timelines públicos
-        role: El rol controla qué permisos tiene el usuario
+        chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
+        role: El rol controla qué permisos tiene el usuario.
       user_role:
         color: Color que se utilizará para el rol a lo largo de la interfaz de usuario, como RGB en formato hexadecimal
         highlighted: Esto hace que el rol sea públicamente visible
@@ -143,6 +144,7 @@ es-MX:
         url: Donde los eventos serán enviados
     labels:
       account:
+        attribution_domains_as_text: Solo permitir sitios web específicos
         discoverable: Destacar el perfil y las publicaciones en el algoritmo de descubrimiento
         fields:
           name: Etiqueta
@@ -158,7 +160,7 @@ es-MX:
         text: Texto predefinido
         title: Título
       admin_account_action:
-        include_statuses: Incluir en el correo electrónico a los toots denunciados
+        include_statuses: Incluir en el correo electrónico a las publicaciones denunciadas
         send_email_notification: Notificar al usuario por correo electrónico
         text: Aviso personalizado
         type: Acción
@@ -203,20 +205,21 @@ es-MX:
         password: Contraseña
         phrase: Palabra clave o frase
         setting_advanced_layout: Habilitar interfaz web avanzada
-        setting_aggregate_reblogs: Agrupar retoots en las líneas de tiempo
+        setting_aggregate_reblogs: Agrupar impulsos en las líneas de tiempo
         setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
-        setting_boost_modal: Mostrar ventana de confirmación antes de un Retoot
+        setting_boost_modal: Mostrar ventana de confirmación antes de impulsar
         setting_default_language: Idioma de publicación
         setting_default_privacy: Privacidad de publicaciones
         setting_default_sensitive: Marcar siempre imágenes como sensibles
-        setting_delete_modal: Mostrar diálogo de confirmación antes de borrar un toot
+        setting_delete_modal: Mostrar diálogo de confirmación antes de borrar una publicación
+        setting_disable_hover_cards: Desactivar vista previa del perfil al pasar el cursor
         setting_disable_swiping: Deshabilitar movimientos de deslizamiento
         setting_display_media: Visualización multimedia
         setting_display_media_default: Por defecto
         setting_display_media_hide_all: Ocultar todo
         setting_display_media_show_all: Mostrar todo
-        setting_expand_spoilers: Siempre expandir los toots marcados con advertencias de contenido
+        setting_expand_spoilers: Siempre expandir las publicaciones marcadas con advertencias de contenido
         setting_hide_network: Ocultar tu red
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_system_font_ui: Utilizar la tipografía por defecto del sistema
@@ -242,11 +245,13 @@ es-MX:
           warn: Ocultar con una advertencia
       form_admin_settings:
         activity_api_enabled: Publicar estadísticas locales acerca de la actividad de usuario en la API
+        app_icon: Icono de la app
         backups_retention_period: Período de retención del archivo de usuario
         bootstrap_timeline_accounts: Recomendar siempre estas cuentas a nuevos usuarios
         closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
-        content_cache_retention_period: Período de retención de contenido remoto
+        content_cache_retention_period: Periodo de conservación de contenidos remotos
         custom_css: CSS personalizado
+        favicon: Favicon
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de caché multimedia
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
@@ -311,7 +316,7 @@ es-MX:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en el directorio del perfil
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
-        usable: Permitir a los toots usar esta etiqueta
+        usable: Permitir a las publicaciones usar esta etiqueta localmente
       user:
         role: Rol
         time_zone: Zona horaria

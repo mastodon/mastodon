@@ -9,13 +9,13 @@
 - if @strike.overruled?
   %p.hint
     %span.positive-hint
-      = fa_icon 'check'
+      = material_symbol 'check'
       &nbsp;
       = t 'disputes.strikes.appeal_approved'
 - elsif @appeal.persisted? && @appeal.rejected?
   %p.hint
     %span.negative-hint
-      = fa_icon 'times'
+      = material_symbol 'close'
       &nbsp;
       = t 'disputes.strikes.appeal_rejected'
 
@@ -76,7 +76,7 @@
 
   = simple_form_for(@appeal, url: disputes_strike_appeal_path(@strike)) do |f|
     .fields-group
-      = f.input :text, wrapper: :with_label, input_html: { maxlength: 500 }
+      = f.input :text, wrapper: :with_label, input_html: { maxlength: Appeal::TEXT_LENGTH_LIMIT }
 
     .actions
       = f.button :button, t('disputes.strikes.appeals.submit'), type: :submit

@@ -3,6 +3,7 @@ tr:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Sahte atıflardan korur.
         discoverable: Herkese açık gönderileriniz ve profiliniz Mastodon'un çeşitli kısımlarında öne çıkarılabilir veya önerilebilir ve profiliniz başka kullanıcılara önerilebilir.
         display_name: Tam adınız veya kullanıcı adınız.
         fields: Ana sayfanız, zamirleriniz, yaşınız, istediğiniz herhangi bir şey.
@@ -130,7 +131,7 @@ tr:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
       user:
         chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki gönderiler genel zaman çizelgelerinde görüntülenir
-        role: Rol, kullanıcıların sahip olduğu izinleri denetler
+        role: Rol, kullanıcıların sahip olduğu izinleri denetler.
       user_role:
         color: Arayüz boyunca rol için kullanılacak olan renk, hex biçiminde RGB
         highlighted: Bu rolü herkese açık hale getirir
@@ -143,6 +144,7 @@ tr:
         url: Olayların gönderileceği yer
     labels:
       account:
+        attribution_domains_as_text: Yalnızca belirli websitelerine izin ver
         discoverable: Profil ve gönderileri keşif algoritmalarında kullan
         fields:
           name: Etiket
@@ -211,6 +213,7 @@ tr:
         setting_default_privacy: Gönderi gizliliği
         setting_default_sensitive: Medyayı her zaman hassas olarak işaretle
         setting_delete_modal: Bir gönderiyi silmeden önce onay iletişim kutusu göster
+        setting_disable_hover_cards: Üstüne geldiğinde profil önizlemesini devre dışı bırak
         setting_disable_swiping: Kaydırma hareketlerini devre dışı bırak
         setting_display_media: Medya görüntüleme
         setting_display_media_default: Varsayılan
@@ -242,11 +245,13 @@ tr:
           warn: Uyarıyla gizle
       form_admin_settings:
         activity_api_enabled: API'deki kullanıcı etkinliği hakkında toplu istatistikler yayınlayın
+        app_icon: Uygulama simgesi
         backups_retention_period: Kullanıcı arşivi saklama süresi
         bootstrap_timeline_accounts: Bu hesapları yeni kullanıcılara her zaman öner
         closed_registrations_message: Kayıt olma mevcut değilken gösterilen özel ileti
         content_cache_retention_period: Uzak içerik saklama süresi
         custom_css: Özel CSS
+        favicon: Yer imi simgesi
         mascot: Özel maskot (eski)
         media_cache_retention_period: Medya önbelleği saklama süresi
         peers_api_enabled: API'de keşfedilen sunucuların listesini yayınla
@@ -285,7 +290,7 @@ tr:
           sign_up_requires_approval: Kayıtları sınırla
         severity: Kural
       notification_emails:
-        appeal: Birisi, bir yönetim kararına itiraz ediyor
+        appeal: Birisi, bir moderatör kararına itiraz ediyor
         digest: Özet e-postaları gönder
         favourite: Birisi gönderinizi beğendi
         follow: Biri seni takip etti
@@ -311,7 +316,7 @@ tr:
         listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
         name: Etiket
         trendable: Bu etiketin gündem altında görünmesine izin ver
-        usable: Gönderilerin bu etiketi kullanmasına izin ver
+        usable: Gönderilerin yerelde bu etiketi kullanmasına izin ver
       user:
         role: Rol
         time_zone: Zaman dilimi

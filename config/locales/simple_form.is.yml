@@ -3,6 +3,7 @@ is:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Ver fyrir fölskum tilvísunum í höfunda.
         discoverable: Opinberar færslur og notandasnið þitt geta birst eða verið mælt með á hinum ýmsu svæðum í Mastodon auk þess sem hægt er að mæla með þér við aðra notendur.
         display_name: Fullt nafn þitt eða eitthvað til gamans.
         fields: Heimasíðan þín, fornöfn, aldur eða eitthvað sem þú vilt koma á framfæri.
@@ -130,7 +131,7 @@ is:
         name: Þú getur aðeins breytt stafstöði mill há-/lágstafa, til gæmis til að gera þetta læsilegra
       user:
         chosen_languages: Þegar merkt er við þetta, birtast einungis færslur á völdum tungumálum á opinberum tímalínum
-        role: Hlutverk stýrir hvaða heimildir notandinn hefur
+        role: Hlutverk stýrir hvaða heimildir notandinn hefur.
       user_role:
         color: Litur sem notaður er fyrir hlutverkið allsstaðar í viðmótinu, sem RGB-gildi á hex-sniði
         highlighted: Þetta gerir hlutverk sýnilegt opinberlega
@@ -143,6 +144,7 @@ is:
         url: Hvert atburðir verða sendir
     labels:
       account:
+        attribution_domains_as_text: Einungis leyfa tiltekin vefsvæði
         discoverable: Hafa notandasnið og færslur með í reikniritum leitar
         fields:
           name: Skýring
@@ -211,6 +213,7 @@ is:
         setting_default_privacy: Gagnaleynd færslna
         setting_default_sensitive: Alltaf merkja myndefni sem viðkvæmt
         setting_delete_modal: Birta staðfestingarglugga áður en færslu er eytt
+        setting_disable_hover_cards: Gera óvirka forskoðun notandasniðs við yfirsvif
         setting_disable_swiping: Gera strokuhreyfingar óvirkar
         setting_display_media: Birting myndefnis
         setting_display_media_default: Sjálfgefið
@@ -242,11 +245,13 @@ is:
           warn: Fela með aðvörun
       form_admin_settings:
         activity_api_enabled: Birta samantektartölfræði um virkni notanda í API-kerfisviðmótinu
+        app_icon: Táknmynd forrits
         backups_retention_period: Tímalengd sem safni notandans er haldið eftir
         bootstrap_timeline_accounts: Alltaf mæla með þessum notendaaðgöngum fyrir nýja notendur
         closed_registrations_message: Sérsniðin skilaboð þegar ekki er hægt að nýskrá
         content_cache_retention_period: Tímabil sem á að geyma fjartengt efni
         custom_css: Sérsniðið CSS
+        favicon: Auðkennismynd
         mascot: Sérsniðið gæludýr (eldra)
         media_cache_retention_period: Tímalengd sem myndefni haldið
         peers_api_enabled: Birta lista yfir uppgötvaða netþjóna í API-kerfisviðmótinu
@@ -311,7 +316,7 @@ is:
         listable: Leyfa þessu myllumerki að birtast í leitum og í persónusniðamöppunni
         name: Myllumerki
         trendable: Leyfa þessu myllumerki að birtast undir vinsælu efni
-        usable: Leyfa færslum að nota þetta myllumerki
+        usable: Leyfa færslum að nota þetta myllumerki staðvært
       user:
         role: Hlutverk
         time_zone: Tímabelti

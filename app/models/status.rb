@@ -52,7 +52,7 @@ class Status < ApplicationRecord
   update_index('statuses', :proper)
   update_index('public_statuses', :proper)
 
-  enum :visibility, { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, suffix: :visibility
+  enum :visibility, { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, suffix: :visibility, validate: true
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
@@ -288,7 +288,7 @@ class Status < ApplicationRecord
     else
       map = media_attachments.index_by(&:id)
       ordered_media_attachment_ids.filter_map { |media_attachment_id| map[media_attachment_id] }
-    end
+    end.take(MEDIA_ATTACHMENTS_LIMIT)
   end
 
   def replies_count

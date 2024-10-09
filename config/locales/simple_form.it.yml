@@ -3,6 +3,7 @@ it:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protegge da false attribuzioni.
         discoverable: I tuoi post pubblici e il tuo profilo potrebbero essere presenti o consigliati in varie aree di Mastodon e il tuo profilo potrebbe essere suggerito ad altri utenti.
         display_name: Il tuo nome completo o il tuo soprannome.
         fields: La tua homepage, i pronomi, l'età, tutto quello che vuoi.
@@ -130,7 +131,7 @@ it:
         name: Puoi cambiare solo il minuscolo/maiuscolo delle lettere, ad esempio, per renderlo più leggibile
       user:
         chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline pubbliche vengono mostrati solo i toot nelle lingue selezionate
-        role: Il ruolo controlla quali permessi ha l'utente
+        role: Il ruolo controlla quali permessi ha l'utente.
       user_role:
         color: Colore da usare per il ruolo in tutta l'UI, come RGB in formato esadecimale
         highlighted: Rende il ruolo visibile
@@ -143,6 +144,7 @@ it:
         url: Dove gli eventi saranno inviati
     labels:
       account:
+        attribution_domains_as_text: Consenti solo siti web specifici
         discoverable: Include il profilo e i post negli algoritmi di scoperta
         fields:
           name: Etichetta
@@ -211,6 +213,7 @@ it:
         setting_default_privacy: Privacy dei post
         setting_default_sensitive: Segna sempre i media come sensibili
         setting_delete_modal: Mostra dialogo di conferma prima di eliminare un post
+        setting_disable_hover_cards: Disabilita l'anteprima del profilo al passaggio del mouse
         setting_disable_swiping: Disabilita i movimenti di scorrimento
         setting_display_media: Visualizzazione dei media
         setting_display_media_default: Predefinita
@@ -242,11 +245,13 @@ it:
           warn: Nascondi con avviso
       form_admin_settings:
         activity_api_enabled: Pubblica le statistiche aggregate sull'attività degli utenti nell'API
+        app_icon: Icona app
         backups_retention_period: Periodo di conservazione dell'archivio utente
         bootstrap_timeline_accounts: Consiglia sempre questi account ai nuovi utenti
         closed_registrations_message: Messaggio personalizzato quando le iscrizioni non sono disponibili
         content_cache_retention_period: Periodo di ritenzione del contenuto remoto
         custom_css: Personalizza CSS
+        favicon: Favicon
         mascot: Personalizza mascotte (legacy)
         media_cache_retention_period: Periodo di conservazione della cache multimediale
         peers_api_enabled: Pubblica l'elenco dei server scoperti nell'API
@@ -311,7 +316,7 @@ it:
         listable: Permetti a questo hashtag di apparire nella directory dei profili
         name: Hashtag
         trendable: Permetti a questo hashtag di apparire nelle tendenze
-        usable: Permetti ai post di usare questo hashtag
+        usable: Permetti ai post di utilizzare questo hashtag localmente
       user:
         role: Ruolo
         time_zone: Fuso orario

@@ -11,13 +11,14 @@ RSpec.describe VerifyLinkService do
 
     before do
       stub_request(:head, 'https://redirect.me/abc').to_return(status: 301, headers: { 'Location' => ActivityPub::TagManager.instance.url_for(account) })
+      stub_request(:head, 'http://unrelated-site.com').to_return(status: 301)
       stub_request(:get, 'http://example.com').to_return(status: 200, body: html)
       subject.call(field)
     end
 
     context 'when a link contains an <a> back' do
       let(:html) do
-        <<-HTML
+        <<~HTML
           <!doctype html>
           <body>
             <a href="#{ActivityPub::TagManager.instance.url_for(account)}" rel="me">Follow me on Mastodon</a>
@@ -30,9 +31,9 @@ RSpec.describe VerifyLinkService do
       end
     end
 
-    context 'when a link contains an <a rel="noopener noreferrer"> back' do
+    context 'when a link contains an <a rel="me noopener noreferrer"> back' do
       let(:html) do
-        <<-HTML
+        <<~HTML
           <!doctype html>
           <body>
             <a href="#{ActivityPub::TagManager.instance.url_for(account)}" rel="me noopener noreferrer" target="_blank">Follow me on Mastodon</a>
@@ -47,7 +48,7 @@ RSpec.describe VerifyLinkService do
 
     context 'when a link contains a <link> back' do
       let(:html) do
-        <<-HTML
+        <<~HTML
           <!doctype html>
           <head>
             <link type="text/html" href="#{ActivityPub::TagManager.instance.url_for(account)}" rel="me" />
@@ -62,7 +63,7 @@ RSpec.describe VerifyLinkService do
 
     context 'when a link goes through a redirect back' do
       let(:html) do
-        <<-HTML
+        <<~HTML
           <!doctype html>
           <head>
             <link type="text/html" href="https://redirect.me/abc" rel="me" />
@@ -113,13 +114,28 @@ RSpec.describe VerifyLinkService do
 
     context 'when link has no `href` attribute' do
       let(:html) do
-        <<-HTML
+        <<~HTML
           <!doctype html>
           <head>
             <link type="text/html" rel="me" />
           </head>
           <body>
             <a rel="me" target="_blank">Follow me on Mastodon</a>
+          </body>
+        HTML
+      end
+
+      it 'does not mark the field as verified' do
+        expect(field.verified?).to be false
+      end
+    end
+
+    context 'when a link contains a link to an unexpected URL' do
+      let(:html) do
+        <<~HTML
+          <!doctype html>
+          <body>
+            <a href="http://unrelated-site.com" rel="me">Follow me on Unrelated Site</a>
           </body>
         HTML
       end
@@ -141,7 +157,7 @@ RSpec.describe VerifyLinkService do
 
     context 'when a link contains an <a> back' do
       let(:html) do
-        <<-HTML
+        <<~HTML
           <!doctype html>
           <body>
             <a href="https://profile.example.com/alice" rel="me">Follow me on Mastodon</a>

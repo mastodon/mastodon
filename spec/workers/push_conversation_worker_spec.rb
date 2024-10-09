@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PushConversationWorker do
+RSpec.describe PushConversationWorker do
   let(:worker) { described_class.new }
 
   describe 'perform' do

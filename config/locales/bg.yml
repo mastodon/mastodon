@@ -7,12 +7,11 @@ bg:
     hosted_on: Mastodon е разположен на хост %{domain}
     title: Относно
   accounts:
-    follow: Последване
     followers:
       one: Последовател
       other: Последователи
     following: Следва
-    instance_actor_flash: Акаунтът е виртуално действащо лице, представляващо сървъра, а не отделен потребител. Използва се за федерацията и не бива да се спира.
+    instance_actor_flash: Акаунтът е виртуално действащо лице, представляващо сървъра, а не отделен потребител. Използва се за целите на федериране и не бива да се спира.
     last_active: последна дейност
     link_verified_on: Собствеността върху тази връзка е проверена на %{date}
     nothing_here: Тук няма нищо!
@@ -58,7 +57,6 @@ bg:
       demote: Понижаване
       destroyed_msg: Данните на %{username} вече са на опашка за незабавно изтриване
       disable: Замразяване
-      disable_sign_in_token_auth: Изключване на удостоверяването с маркер по имейл
       disable_two_factor_authentication: Изключване на 2факт. удостов.
       disabled: Замразено
       display_name: Име на показ
@@ -67,7 +65,6 @@ bg:
       email: Имейл
       email_status: Състояние на имейл
       enable: Размразяване
-      enable_sign_in_token_auth: Включване на удостоверяването с маркер по имейл
       enabled: Включено
       enabled_msg: Успешно размразяване на акаунта на %{username}
       followers: Последователи
@@ -132,7 +129,6 @@ bg:
       resubscribe: Абониране пак
       role: Роля
       search: Търсене
-      search_same_email_domain: Други потребители със същия домейн за имейл
       search_same_ip: Други потребители със същия IP
       security: Сигурност
       security_measures:
@@ -173,26 +169,21 @@ bg:
         approve_appeal: Одобряване на обжалването
         approve_user: Одобряване на потребител
         assigned_to_self_report: Назначете доклад
-        change_email_user: Промяна на имейл за потребител
         change_role_user: Промяна на роля за потребител
         confirm_user: Потвърждаване на потребител
         create_account_warning: Създаване на предупреждение
         create_announcement: Създаване на оповестяване
-        create_canonical_email_block: Създаване на блокировка на имейл
         create_custom_emoji: Създаване на персонализирано емоджи
         create_domain_allow: Създаване на позволение за домейна
         create_domain_block: Създаване на блокиране за домейна
-        create_email_domain_block: Създаване за блокиране на имейл домейна
         create_ip_block: Създаване на правило за IP
         create_unavailable_domain: Създаване на недостъпен домейн
         create_user_role: Създаване на роля
         demote_user: Понижаване на потребител
         destroy_announcement: Изтриване на оповестяване
-        destroy_canonical_email_block: Изтриване на блокировка за имейл
         destroy_custom_emoji: Изтриване на персонализирано емоджи
         destroy_domain_allow: Изтриване на позволението за домейн
         destroy_domain_block: Изтриване на блокирането за домейна
-        destroy_email_domain_block: Изтриване на блокирането за домейн на имейла
         destroy_instance: Чистка на домейна
         destroy_ip_block: Изтриване на правило за IP
         destroy_status: Изтриване на публикация
@@ -200,10 +191,8 @@ bg:
         destroy_user_role: Унищожаване на роля
         disable_2fa_user: Изкл. на 2факт.удостов.
         disable_custom_emoji: Деактивиране на персонализирано емоджи
-        disable_sign_in_token_auth_user: Изключване на удостоверяването с код по имейл за потребителя
         disable_user: Изключване на потребител
         enable_custom_emoji: Включване на персонализирано емоджи
-        enable_sign_in_token_auth_user: Включване на удостоверяването с код по имейл за потребителя
         enable_user: Активиране на потребител
         memorialize_account: Възпоменаване на акаунта
         promote_user: Повишаване на потребител
@@ -226,32 +215,27 @@ bg:
         update_custom_emoji: Обновяване на персонализираното емоджи
         update_domain_block: Обновяване на блокирането за домейна
         update_ip_block: Обновяване на правило за IP
+        update_report: Обновяване на доклада
         update_status: Обновяване на публикация
         update_user_role: Обновяване на ролята
       actions:
         approve_appeal_html: "%{name} одобри обжалването на решение за модериране от %{target}"
         approve_user_html: "%{name} одобри регистрирането от %{target}"
         assigned_to_self_report_html: "%{name} възложи на себе си доклад %{target}"
-        change_email_user_html: "%{name} промени адреса на имейла на потребителя %{target}"
         change_role_user_html: "%{name} промени ролята на %{target}"
-        confirm_user_html: "%{name} потвърди адреса на имейла на потребителя %{target}"
         create_account_warning_html: "%{name} изпрати предупреждение до %{target}"
         create_announcement_html: "%{name} създаде ново оповестяване %{target}"
-        create_canonical_email_block_html: "%{name} блокира имейл с хеш %{target}"
         create_custom_emoji_html: "%{name} качи ново емоджи %{target}"
         create_domain_allow_html: "%{name} позволи федерирането с домейн %{target}"
         create_domain_block_html: "%{name} блокира домейн %{target}"
-        create_email_domain_block_html: "%{name} блокира домейн на имейл %{target}"
         create_ip_block_html: "%{name} създаде правило за IP %{target}"
         create_unavailable_domain_html: "%{name} спря доставянето до домейн %{target}"
         create_user_role_html: "%{name} създаде роля %{target}"
         demote_user_html: "%{name} понижи потребителя %{target}"
         destroy_announcement_html: "%{name} изтри оповестяване %{target}"
-        destroy_canonical_email_block_html: "%{name} отблокира имейла с хеш %{target}"
         destroy_custom_emoji_html: "%{name} изтри емоджито %{target}"
         destroy_domain_allow_html: "%{name} забрани федерирация с домейн %{target}"
         destroy_domain_block_html: "%{name} отблокира домейн %{target}"
-        destroy_email_domain_block_html: "%{name} отблокира домейн на имейл %{target}"
         destroy_instance_html: "%{name} прочисти домейн %{target}"
         destroy_ip_block_html: "%{name} изтри правило за IP %{target}"
         destroy_status_html: "%{name} премахна публикация от %{target}"
@@ -259,10 +243,8 @@ bg:
         destroy_user_role_html: "%{name} изтри роля %{target}"
         disable_2fa_user_html: "%{name} изключи двуфакторното изискване за потребител %{target}"
         disable_custom_emoji_html: "%{name} изключи емоджито %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} деактивира удостоверението с код по имейл за %{target}"
         disable_user_html: "%{name} изключи влизането за потребител %{target}"
         enable_custom_emoji_html: "%{name} включи емоджито %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} активира удостоверението с код по имейл за %{target}"
         enable_user_html: "%{name} включи влизането за потребител %{target}"
         memorialize_account_html: "%{name} превърна акаунта на %{target} във възпоменателна страница"
         promote_user_html: "%{name} повиши потребителя %{target}"
@@ -270,7 +252,6 @@ bg:
         reject_user_html: "%{name} отхвърли регистрирането от %{target}"
         remove_avatar_user_html: "%{name} премахна аватара на %{target}"
         reopen_report_html: "%{name} отвори пак доклада на %{target}"
-        resend_user_html: "%{name} изпрати пак е-писмо за потвърждение за %{target}"
         reset_password_user_html: "%{name} нулира паролата на потребител %{target}"
         resolve_report_html: "%{name} разреши случая с доклада от %{target}"
         sensitive_account_html: "%{name} означи мултимедия на %{target} като деликатна"
@@ -431,7 +412,6 @@ bg:
       attempts_over_week:
         one: "%{count} опит за изминалата седмица"
         other: "%{count} опита за регистрация през изминалата седмица"
-      created_msg: Успешно блокиран домейн на е-поща
       delete: Изтриване
       dns:
         types:
@@ -440,12 +420,8 @@ bg:
       new:
         create: Добавяне на домейн
         resolve: Преобразуване на домейна
-        title: Блокиране на нов домейн на имейл
-      no_email_domain_block_selected: Няма промяна, тъй като няма избрани блокирания на имейл домейн
       not_permitted: Няма позволение
-      resolved_dns_records_hint_html: Името на домейна се преобразува към следните MX домейни, които са основно отговорни за получаване на имейл. Блокирането на MX домейн блокира записването от всеки имейл, използващ същия MX домейн, дори видимото име на домейна да е различно. <strong>Бъдете внимателни и не блокирайте често-срещани доставчици на имейл</strong>
       resolved_through_html: Преобразувано чрез %{domain}
-      title: Блокирани домейни на имейл
     export_domain_allows:
       new:
         title: Внасяне на позволенията на домейни
@@ -470,6 +446,9 @@ bg:
       title: Препоръки за следване
       unsuppress: Възстановяване на препоръките за следване
     instances:
+      audit_log:
+        title: Скорошни одитни дневници
+        view_all: Преглед на пълните одитни дневници
       availability:
         description_html:
           one: Ако доставянето до домейна не е успешно за <strong>%{count} ден</strong>, няма да има последващи опити, докато не се получи доставка <em>от</em> домейна.
@@ -596,7 +575,6 @@ bg:
         resolve_description_html: Няма да се предприеме действие срещу докладвания акаунт, няма да се записва нарушение и докладът ще се затвори.
         silence_description_html: Профилът ще е видим само за последователите му или търсещите го ръчно, което драстично ограничава обсега му. Настройката може да бъде отменена по всяко време. Затваря всички доклади срещу акаунта.
         suspend_description_html: Акаунтът и неговото съдържание ще бъдат недостъпни и евентуално изтрити и взаимодействието с него ще е невъзможно. Обрамотимо до 30 дни. Затваря всички доклади срещу този акаунт.
-      actions_description_html: Решете какво действие може да се предприеме, за да бъде отхвърлен докладът. Ако предприемете наказателно действие срещу докладвания акаунт, към него ще бъде изпратено известие по имейл, освен ако <strong>Спам</strong> категорията не е била избрана.
       actions_description_remote_html: Преценете с какво действие да решите този доклад. Това ще има ефекет върху това как <strong>вашият</strong> сървър комуникира с този отдалечен акаунт и се справя с неговото съдържание.
       add_to_report: Добавяне на още към доклада
       already_suspended_badges:
@@ -638,6 +616,7 @@ bg:
       report: 'Докладване на #%{id}'
       reported_account: Докладван акаунт
       reported_by: Докладвано от
+      reported_with_application: Докладвано с приложението
       resolved: Разрешено
       resolved_msg: Успешно разрешен доклад!
       skip_to_actions: Прескок към действия
@@ -660,7 +639,6 @@ bg:
         delete_data_html: Изтриване на профила и съдържанието на <strong>@%{acct}</strong> за 30 дни от сега, освен ако междувременно не получи спиране
         preview_preamble_html: "<strong>@%{acct}</strong> ще получи предупреждение със следното съдържание:"
         record_strike_html: Запис на предупреждение против <strong>@%{acct}</strong>, за да ви помогне при изострянето на бъдещи нарушения от този акаунт
-        send_email_html: Изпращане на предупредително е-писмо на <strong>@%{acct}</strong>
         warning_placeholder: Незадължителни допълнителни причини за модераторско действие.
       target_origin: Произход на докладвания акаунт
       title: Доклади
@@ -700,7 +678,6 @@ bg:
         manage_appeals: Управление на жалбите
         manage_appeals_description: Позволява на потребителите да разглеждат обжалвания срещу модераторски действия
         manage_blocks: Управляване на блокиранията
-        manage_blocks_description: Позволява на потребителите да блокират доставчици на е-поща и IP адреси
         manage_custom_emojis: Управляване на персонализирани емоджита
         manage_custom_emojis_description: Позволява на потребителите да управляват персонализирани емоджита в сървъра
         manage_federation: Управление на Федерацията
@@ -718,7 +695,6 @@ bg:
         manage_taxonomies: Управление на класификации
         manage_taxonomies_description: Позволяване на потребителите да преглеждат нашумяло съдържание и да обновяват настройките за хаштагове
         manage_user_access: Управление на потребителския достъп
-        manage_user_access_description: Позволяване на потребителите да изключват двуфакторното удостоверяване, да променят имейл адресите и да подновяват паролите на други потребители
         manage_users: Управление на потребителите
         manage_users_description: Позволяване на потребителите да виждат подробностите за други потребители и да извършват модераторски действия срещу тях
         manage_webhooks: Управление на уебкуките
@@ -793,7 +769,6 @@ bg:
       destroyed_msg: Успешно изтриване на качването на сайта!
     software_updates:
       critical_update: Критично важно - обновете бързо
-      description: Препоръчва се да държите осъвременена своята инсталация на Mastodon, за да се възползвате от най-новите поправки и функции. Освен това, понякога е много важно да се осъвременява навреме Mastodon, за да се избегне проблем с безопасността. Заради тези причини Mastodon проверява за обновление на всеки 30 минути и ви известява за това в съответствие с предпочитанията ви за известяване по имейла.
       documentation_link: Научете повече
       release_notes: Бележки към изданието
       title: Налични обновявания
@@ -880,7 +855,23 @@ bg:
         action: Щракнете тук за повече информация
         message_html: "<strong>Вашето съхранение на предмети е погрешно конфигурирано. Поверителността на потребителите ви е изложена на риск.</strong>"
     tags:
+      moderation:
+        not_trendable: Не изгряващо
+        not_usable: Не употребимо
+        pending_review: Чака се преглед
+        review_requested: Иска се преглед
+        reviewed: Прегледано
+        title: Състояние
+        trendable: Изгряващо
+        unreviewed: Непрегледано
+        usable: Употребимо
+      name: Име
+      newest: Най-нови
+      oldest: Най-стари
+      reset: Нулиране
       review: Преглед на състояние
+      search: Търсене
+      title: Хаштагове
       updated_msg: Успешно осъвременени настройки на хаштага
     title: Администрация
     trends:
@@ -890,6 +881,7 @@ bg:
       links:
         allow: Позволяване на връзка
         allow_provider: Позволяване на публикуващия
+        confirm_allow_provider: Наистина ли искате да позволите избраните доставчици?
         description_html: Това са връзки, които в момента са много пъти споделяни от акаунти, чиито публикации сървърът ви вижда. Може да помогне на потребителите ви да разберат какво се случва по света. Никоя връзка няма да се показва публично, докато не одобрите публикуващия. Може още и да одобрявате или отхвърляте отделни връзки.
         disallow: Забранявам връзката
         disallow_provider: Забраняване на публикуващия
@@ -945,7 +937,6 @@ bg:
         used_by_over_week:
           one: Употребено от един човек през последната седмица
           other: Използвано от %{count} души през последната седмица
-      title: Изгряващи
       trending: Изгряващи
     warning_presets:
       add_new: Добавяне на ново
@@ -1030,9 +1021,7 @@ bg:
       guide_link_text: Всеки може да участва.
     sensitive_content: Деликатно съдържание
   application_mailer:
-    notification_preferences: Промяна на предпочитанията за имейл
     salutation: "%{name},"
-    settings: 'Промяна на предпочитанията за имейл: %{link}'
     unsubscribe: Стоп на абонамента
     view: 'Преглед:'
     view_profile: Преглед на профила
@@ -1052,7 +1041,6 @@ bg:
       hint_html: Просто още едно нещо! Трябва да потвърдим, че сте човек (това е с цел предпазване на нежелани съобщения!). Разгадайте капчата долу и щракнете на "Продължаване".
       title: Проверка за сигурност
     confirmations:
-      awaiting_review: Вашият адрес на е-поща е потвърден! Служителите на %{domain} сега преглеждат регистрацията ви. Ще получите е-писмо, ако одобрят акаунта ви!
       awaiting_review_title: Вашата регистрация се преглежда
       clicking_this_link: щракване на тази връзка
       login_link: влизане
@@ -1060,7 +1048,6 @@ bg:
       redirect_to_app_html: Трябва да сте пренасочени към приложението <strong>%{app_name}</strong>. Ако не се случи това, то опитайте %{clicking_this_link} или ръчно се върнете към приложението.
       registration_complete: Вашата регистрация на %{domain} вече завърши!
       welcome_title: Добре дошли, %{name}!
-      wrong_email_hint: Ако този адрес на е-поща не е правилен, то може да го промените в настройки на акаунта.
     delete_account: Изтриване на акаунта
     delete_account_html: Ако желаете да изтриете акаунта си, може <a href="%{path}">да сторите това тук</a>. Ще ви се поиска потвърждение.
     description:
@@ -1081,7 +1068,6 @@ bg:
     or_log_in_with: Или влизане с помощта на
     privacy_policy_agreement_html: Прочетох и има съгласието ми за <a href="%{privacy_policy_path}" target="_blank">политиката за поверителност</a>
     progress:
-      confirm: Потвърждаване на имейл
       details: Вашите подробности
       review: Нашият преглед
       rules: Приемане на правилата
@@ -1103,10 +1089,8 @@ bg:
     security: Сигурност
     set_new_password: Задаване на нова парола
     setup:
-      email_below_hint_html: Проверете папката си за спам или поискайте друго. Може да поправите адреса на имейла си, ако е грешен.
       email_settings_hint_html: Щракнете на връзката за потвърждаване, която ви изпратихме до %{email}. Ще ви почакаме тук.
       link_not_received: Не получихте ли връзка?
-      new_confirmation_instructions_sent: За няколко минути ще получите ново е-писмо с връзка за потвърждение!
       title: Проверете входящата си поща
     sign_in:
       preamble_html: Влезте с идентификационните данни за <strong>%{domain}</strong>. Ако вашият акаунт е хостван на различен сървър, няма да можете да влезете в този.
@@ -1117,9 +1101,7 @@ bg:
       title: Първоначални настройки за %{domain}.
     status:
       account_status: Състояние на акаунта
-      confirming: Чакане завършването на потвърждение на имейла.
       functional: Вашият акаунт е в изправност.
-      pending: Вашето приложение чака преглед от нашия екип. Това може да отнеме време. Ще получите имейл, ако приложението е одобрено.
       redirecting_to: Вашият акаунт е бездеен, защото сега се пренасочва към %{acct}.
       self_destruct: Затваряйки %{domain}, ще получите само ограничен достъп до акаунта си.
       view_strikes: Преглед на предишните предупреждения против акаунта ви
@@ -1133,7 +1115,6 @@ bg:
   crypto:
     errors:
       invalid_key: не е валиден ключ Ed25519 или Curve25519
-      invalid_signature: не е валиден подпис Ed25519
   date:
     formats:
       default: "%b %d, %Y"
@@ -1162,9 +1143,6 @@ bg:
       before: 'Прочетете внимателно тези бележки преди да продължите:'
       caches: Съдържание, което може да е кеширано от други сървъри, може да се задържи
       data_removal: Ваши публикации и други данни ще бъдат завинаги премахнати
-      email_change_html: Може да <a href="%{path}">промените адреса на имейла си</a>, без да изтривате акаунта си
-      email_contact_html: Ако все още не сте го получили, обърнете се за помощ към <a href="mailto:%{email}">%{email}</a>
-      email_reconfirmation_html: Ако не сте получили имейл за потвърждение, можете да го <a href="%{path}">заявите отново</a>
       irreversible: Няма да може да възстановите или да задействате пак акаунта си
       more_details_html: За повече детайли прегледайте <a href="%{terms_path}">декларацията за поверителност</a>.
       username_available: Вашето потребителско име ще стане налично отново
@@ -1199,8 +1177,6 @@ bg:
       your_appeal_approved: Вашето обжалване е одобрено
       your_appeal_pending: Подадохте обжалване
       your_appeal_rejected: Вашето обжалване е отхвърлено
-  domain_validator:
-    invalid_domain: не е валидно име на домейн
   edit_profile:
     basic_information: Основна информация
     hint_html: "<strong>Персонализирайте какво хората виждат в обществения ви профил и до публикациите ви.</strong> Другите хора са по-склонни да ви последват и да взаимодействат с вас, когато имате попълнен профил и снимка на профила."
@@ -1324,20 +1300,6 @@ bg:
       merge_long: Пази текущите записи и добавя нови
       overwrite: Презаписване
       overwrite_long: Заменя текущите записи с новите
-    overwrite_preambles:
-      blocking_html: На път сте да <strong>замените списъка си с блокирани</strong> с до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong>.
-      bookmarks_html: На път сте да <strong>замените списъка си с отметки</strong> с до <strong>%{total_items} публикации</strong> от <strong>%{filename}</strong>.
-      domain_blocking_html: На път сте да <strong>замените списъка си с блокирани домейни</strong> с до <strong>%{total_items} домейна</strong> от <strong>%{filename}</strong>.
-      following_html: На път сте да <strong>последвате</strong> до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong> и <strong>да спрете да следвате някой друг</strong>.
-      lists_html: На път сте да <strong>замените списъците си</strong> със съдържание от <strong>%{filename}</strong>. До <strong>%{total_items} акаунта</strong> ще се добавят към новите списъци.
-      muting_html: На път сте да <strong>замените списъка си със заглушени акаунти</strong> с до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: На път сте да <strong>блокирате</strong> до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong>.
-      bookmarks_html: На път сте да добавите до <strong>%{total_items} публикации</strong> от <strong>%{filename}</strong> в <strong>отметките</strong> си.
-      domain_blocking_html: На път сте да <strong>блокирате</strong> до <strong>%{total_items} домейна</strong> от <strong>%{filename}</strong>.
-      following_html: На път сте да <strong>последвате</strong> до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong>.
-      lists_html: На път сте да добавите до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong> към вашите <strong>списъци</strong>. Нови списъци ще се сътворят, ако няма списъци за добавяне.
-      muting_html: На път сте да <strong>заглушите</strong> до <strong>%{total_items} акаунта</strong> от <strong>%{filename}</strong>.
     preface: Можеш да импортираш някои данни, като например всички хора, които следваш или блокираш в акаунта си на тази инстанция, от файлове, създадени чрез експорт в друга инстанция.
     recent_imports: Скорошни внасяния
     states:
@@ -1408,16 +1370,6 @@ bg:
     unsubscribe:
       action: Да, да се спре абонамента
       complete: Спрян абонамент
-      confirmation_html: Наистина ли искате да спрете абонамента от получаването на %{type} за Mastodon в %{domain} към имейла си при %{email}? Може винаги пак да се абонирате от своите <a href="%{settings_path}">настройки за известяване по е-поща</a>.
-      emails:
-        notification_emails:
-          favourite: е-писма за харесани известия
-          follow: е-писма с известия за последване
-          follow_request: е-писма със заявки за следване
-          mention: е-писма с известия за споменаване
-          reblog: е-писма с известия за раздуване
-      resubscribe_html: Ако погрешка сте спрели абонамента, то може пак да се абонирате от своите <a href="%{settings_path}">настройки за известия по е-поща</a>.
-      success_html: Повече няма да получавате %{type} за Mastodon в %{domain} към имейла си при %{email}.
       title: Спиране на абонамента
   media_attachments:
     validations:
@@ -1498,8 +1450,6 @@ bg:
     update:
       subject: "%{name} промени публикация"
   notifications:
-    administration_emails: Администраторски известия по имейла
-    email_events: Събития за известия по имейл
     email_events_hint: 'Изберете събития, за които искате да получавате известия:'
   number:
     human:
@@ -1653,12 +1603,10 @@ bg:
     delete: Изтриване на акаунта
     development: Разработка
     edit_profile: Редактирай профила си
-    export: Експортиране на данни
     featured_tags: Актуални хаштагове
     import: Импортиране
     import_and_export: Импортиране и експортиране
     migrate: Миграция на акаунта
-    notifications: Известия по имейла
     preferences: Предпочитания
     profile: Профил
     relationships: Последвания и последователи
@@ -1699,23 +1647,12 @@ bg:
     edited_at_html: Редактирано на %{date}
     errors:
       in_reply_not_found: Изглежда, че публикацията, на която се опитвате да отговорите, не съществува.
-    open_in_web: Отвори в уеб
     over_character_limit: прехвърлен лимит от %{max} символа
     pin_errors:
       direct: Публикациите, които са видими само за потребители споменати в тях, не могат да бъдат закачани
       limit: Вече сте закачили максималния брой публикации
       ownership: Публикация на някого другиго не може да бъде закачена
       reblog: Раздуване не може да бъде закачано
-    poll:
-      total_people:
-        one: "%{count} човек"
-        other: "%{count} души"
-      total_votes:
-        one: "%{count} глас"
-        other: "%{count} гласа"
-      vote: Гласуване
-    show_more: Покажи повече
-    show_thread: Показване на нишката
     title: "%{name}: „%{quote}“"
     visibilities:
       direct: Директно
@@ -1905,7 +1842,6 @@ bg:
     invalid_otp_token: Невалиден код
     otp_lost_help_html: Ако загубите достъп до двете, то може да се свържете с %{email}
     rate_limited: Премного опити за удостоверяване. Опитайте пак по-късно.
-    seamless_external_login: Влезли сте чрез външна услуга, така че настройките за парола и имейл не са налични.
     signed_in_as: 'Влезли като:'
   verification:
     extra_instructions_html: <strong>Съвет:</strong>Връзката в уебсайта ви може да е невидима. Важна част е <code>rel="me"</code>, която предотврятява имитирането на уебсайтове с породено от потребителите съдържание. Може дори да употребите етикет за <code>връзката</code> в заглавката на странице вместо <code>а</code>, но HTML трябва да достъпен без изпълнение на JavaScript.

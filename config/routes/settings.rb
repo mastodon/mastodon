@@ -26,9 +26,9 @@ namespace :settings do
     resources :follows, only: :index, controller: :following_accounts
     resources :blocks, only: :index, controller: :blocked_accounts
     resources :mutes, only: :index, controller: :muted_accounts
-    resources :lists, only: :index, controller: :lists
+    resources :lists, only: :index
     resources :domain_blocks, only: :index, controller: :blocked_domains
-    resources :bookmarks, only: :index, controller: :bookmarks
+    resources :bookmarks, only: :index
   end
 
   resources :two_factor_authentication_methods, only: [:index] do
@@ -60,7 +60,7 @@ namespace :settings do
 
   resource :delete, only: [:show, :destroy]
   resource :migration, only: [:show, :create]
-  resource :verification, only: :show
+  resource :verification, only: [:show, :update]
   resource :privacy, only: [:show, :update], controller: 'privacy'
 
   namespace :migration do

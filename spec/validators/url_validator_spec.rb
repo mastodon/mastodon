@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe URLValidator do
+RSpec.describe URLValidator do
   let(:record_class) do
     Class.new do
       include ActiveModel::Validations

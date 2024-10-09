@@ -60,7 +60,7 @@ gl:
       error:
         title: Algo fallou
       new:
-        prompt_html: "%{client_name} solicita permiso para acceder á túa conta. É unha aplicación de terceiros. <strong>Se non confías nela, non deberías autorizala.</strong>"
+        prompt_html: "%{client_name} solicita permiso para acceder á túa conta. <strong>Aproba esta solicitude só se recoñeces e confías da súa orixe.</strong>"
         review_permissions: Revisar permisos
         title: Autorización necesaria
       show:
@@ -69,7 +69,7 @@ gl:
       buttons:
         revoke: Retirar autorización
       confirmations:
-        revoke: Estás segura?
+        revoke: Tes certeza?
       index:
         authorized_at: Autorizada o %{date}
         description_html: Estas aplicacións poden acceder á túa conta usando a API. Se ves aplicacións que non recoñeces, ou hai comportamentos non consentidos dalgunha delas, podes revogar o acceso.
@@ -83,6 +83,7 @@ gl:
         access_denied: O propietario do recurso ou o servidor autorizado denegaron a petición.
         credential_flow_not_configured: O fluxo do Contrasinal de Credenciais do Dono do Recurso fallou debido a que Doorkeeper.configure.resource_owner_from_credentials non están configuradas.
         invalid_client: A autenticación do cliente fallou por ser un cliente descoñecido, non se incluíu autenticación do cliente, ou o método de autenticación non está soportado.
+        invalid_code_challenge_method: O método de desafío para o código debe ser S256, texto claro non ten soporte.
         invalid_grant: A validación da autorización proporcionada non é valida, caducou, foi rexeitada, non coincide a redirección URI utilizada na petición de autorización, ou foi proporcionada para outro cliente.
         invalid_redirect_uri: A uri de redirección incluída non é válida.
         invalid_request:

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RemovalWorker do
+RSpec.describe RemovalWorker do
   let(:worker) { described_class.new }
   let(:service) { instance_double(RemoveStatusService, call: true) }
 

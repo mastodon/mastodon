@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::DeletesController do
+RSpec.describe Settings::DeletesController do
   render_views
 
   describe 'GET #show' do
@@ -50,7 +50,7 @@ describe Settings::DeletesController do
           delete :destroy, params: { form_delete_confirmation: { password: 'petsmoldoggos' } }
         end
 
-        it 'removes user record and redirects', :aggregate_failures, :sidekiq_inline do
+        it 'removes user record and redirects', :aggregate_failures, :inline_jobs do
           expect(response).to redirect_to '/auth/sign_in'
           expect(User.find_by(id: user.id)).to be_nil
           expect(user.account.reload).to be_suspended

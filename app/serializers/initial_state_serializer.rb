@@ -110,6 +110,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       expand_spoilers: object_account_user.setting_expand_spoilers,
       reduce_motion: object_account_user.setting_reduce_motion,
       disable_swiping: object_account_user.setting_disable_swiping,
+      disable_hover_cards: object_account_user.setting_disable_hover_cards,
       advanced_layout: object_account_user.setting_advanced_layout,
       use_blurhash: object_account_user.setting_use_blurhash,
       use_pending_items: object_account_user.setting_use_pending_items,

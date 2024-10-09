@@ -7,7 +7,6 @@ ms:
     hosted_on: Mastodon dihoskan di %{domain}
     title: Perihal
   accounts:
-    follow: Ikut
     followers:
       other: Pengikut
     following: Mengikuti
@@ -29,7 +28,6 @@ ms:
       created_msg: Catatan penyederhanaan telah berjaya dicipta!
       destroyed_msg: Catatan penyederhanaan telah berjaya dipadam!
     accounts:
-      add_email_domain_block: Sekat domain e-mel
       approve: Luluskan
       approved_msg: Berjaya meluluskan permohonan pendaftaran %{username}
       are_you_sure: Adakah anda pasti?
@@ -56,7 +54,6 @@ ms:
       demote: Turunkan taraf
       destroyed_msg: Data %{username} kini menunggu giliran untuk dipadam sebentar lagi
       disable: Bekukan
-      disable_sign_in_token_auth: Nyahdaya pengesahan token e-mel
       disable_two_factor_authentication: Lumpuhkan 2FA
       disabled: Dibekukan
       display_name: Nama paparan
@@ -65,7 +62,6 @@ ms:
       email: E-mel
       email_status: Status e-mel
       enable: Nyahbekukan
-      enable_sign_in_token_auth: Dayakan pengesahan token e-mel
       enabled: Didayakan
       enabled_msg: Berjaya menyahbekukan akaun %{username}
       followers: Pengikut
@@ -129,7 +125,6 @@ ms:
       resubscribe: Langgan semula
       role: Peranan
       search: Cari
-      search_same_email_domain: Pengguna lain dengan domain e-mel yang sama
       search_same_ip: Pengguna lain dengan alamat IP yang sama
       security: Keselamatan
       security_measures:
@@ -170,26 +165,21 @@ ms:
         approve_appeal: Meluluskan Rayuan
         approve_user: Luluskan Pengguna
         assigned_to_self_report: Buat Laporan
-        change_email_user: Ubah E-mel untuk Pengguna
         change_role_user: Tukar Peranan Pengguna
         confirm_user: Sahkan Pengguna
         create_account_warning: Cipta Amaran
         create_announcement: Cipta Pengumuman
-        create_canonical_email_block: Cipta Penyekatan E-mel
         create_custom_emoji: Cipta Emoji Tersendiri
         create_domain_allow: Cipta Pelepasan Domain
         create_domain_block: Cipta Penyekatan Domain
-        create_email_domain_block: Cipta Penyekatan Domain E-mel
         create_ip_block: Cipta peraturan alamat IP
         create_unavailable_domain: Cipta Domain Tidak Tersedia
         create_user_role: Cipta Peranan
         demote_user: Turunkan Taraf Pengguna
         destroy_announcement: Padam Pengumuman
-        destroy_canonical_email_block: Padam Penyekatan E-mel
         destroy_custom_emoji: Padam Emoji Tersendiri
         destroy_domain_allow: Padam Pelepasan Domain
         destroy_domain_block: Padam Penyekatan Domain
-        destroy_email_domain_block: Padam penyekatan domain e-mel
         destroy_instance: Padamkan Domain
         destroy_ip_block: Padam peraturan alamat IP
         destroy_status: Padam Hantaran
@@ -197,10 +187,8 @@ ms:
         destroy_user_role: Padamkan Peranan
         disable_2fa_user: Nyahdayakan 2FA
         disable_custom_emoji: Nyahdayakan Emoji Tersendiri
-        disable_sign_in_token_auth_user: Melumpuhkan pengesahan token e-mel untuk pengguna
         disable_user: Nyahdayakan Pengguna
         enable_custom_emoji: Dayakan Emoji Tersendiri
-        enable_sign_in_token_auth_user: Mendayakan pengesahan token e-mel untuk pengguna
         enable_user: Dayakan Pengguna
         memorialize_account: Jadikan Akaun Kenangan
         promote_user: Naikkan Taraf Pengguna
@@ -229,26 +217,20 @@ ms:
         approve_appeal_html: "%{name} meluluskan rayuan keputusan penyederhanaan daripada %{target}"
         approve_user_html: "%{name} meluluskan pendaftaran daripada %{target}"
         assigned_to_self_report_html: "%{name} menugaskan laporan %{target} kepada dirinya sendiri"
-        change_email_user_html: "%{name} telah mengubah alamat e-mel pengguna %{target}"
         change_role_user_html: "%{name} mengubah peranan %{target}"
-        confirm_user_html: "%{name} telah mengesahkan alamat e-mel pengguna %{target}"
         create_account_warning_html: "%{name} telah memberi amaran kepada %{target}"
         create_announcement_html: "%{name} telah mencipta pengumuman baharu %{target}"
-        create_canonical_email_block_html: "%{name} menyekat e-mel dengan cincangan %{target}"
         create_custom_emoji_html: "%{name} telah memuat naik emoji baharu %{target}"
         create_domain_allow_html: "%{name} membenarkan persekutuan dengan domain %{target}"
         create_domain_block_html: "%{name} telah menyekat domain %{target}"
-        create_email_domain_block_html: "%{name} telah menyekat domain e-mel %{target}"
         create_ip_block_html: "%{name} telah mencipta peraturan alamat IP %{target}"
         create_unavailable_domain_html: "%{name} telah menghentikan penghantaran ke domain %{target}"
         create_user_role_html: "%{name} mewujudkan peranan %{target}"
         demote_user_html: "%{name} telah menurunkan taraf pengguna %{target}"
         destroy_announcement_html: "%{name} telah memadamkan pengumuman %{target}"
-        destroy_canonical_email_block_html: "%{name} telah menyahsekat e-mel dengan hash %{target}"
         destroy_custom_emoji_html: "%{name} telah memadam emoji %{target}"
         destroy_domain_allow_html: "%{name} telah membuang kebenaran persekutuan dengan domain %{target}"
         destroy_domain_block_html: "%{name} telah menyahsekat domain %{target}"
-        destroy_email_domain_block_html: "%{name} telah menyahsekat domain e-mel %{target}"
         destroy_instance_html: "%{name} telah memadam domain %{target}"
         destroy_ip_block_html: "%{name} telah memadamkan peraturan untuk alamat IP %{target}"
         destroy_status_html: "%{name} telah membuang hantaran oleh %{target}"
@@ -256,10 +238,8 @@ ms:
         destroy_user_role_html: "%{name} telah memadam peranan %{target}"
         disable_2fa_user_html: "%{name} menyahdayakan keperluan dua faktor bagi pengguna %{target}"
         disable_custom_emoji_html: "%{name} telah menyahdayakan emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} melumpuhkan pengesahan token e-mel untuk %{target}"
         disable_user_html: "%{name} telah menyahdayakan log masuk bagi pengguna %{target}"
         enable_custom_emoji_html: "%{name} telah mendayakan emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} mendayakan pengesahan token e-mel untuk %{target}"
         enable_user_html: "%{name} telah mendayakan log masuk untuk pengguna %{target}"
         memorialize_account_html: "%{name} telah mengubah akaun %{target} menjadi halaman kenangan"
         promote_user_html: "%{name} telah menaikkan taraf pengguna %{target}"
@@ -267,7 +247,6 @@ ms:
         reject_user_html: "%{name} menolak pendaftaran daripada %{target}"
         remove_avatar_user_html: "%{name} telah membuang avatar %{target}"
         reopen_report_html: "%{name} telah membuka semula laporan %{target}"
-        resend_user_html: "%{name} menghantar semula e-mel pengesahan untuk %{target}"
         reset_password_user_html: "%{name} telah menetapkan semula kata laluan pengguna %{target}"
         resolve_report_html: "%{name} telah menyelesaikan laporan %{target}"
         sensitive_account_html: "%{name} telah menanda media %{target} sebagai sensitif"
@@ -420,7 +399,6 @@ ms:
       add_new: Tambah baharu
       attempts_over_week:
         other: "%{count} cubaan pendaftaran sepanjang minggu lepas"
-      created_msg: Telah berjaya menyekat domain e-mel
       delete: Padam
       dns:
         types:
@@ -429,12 +407,8 @@ ms:
       new:
         create: Tambah domain
         resolve: Menyelesaikan domain
-        title: Sekat domain e-mel baharu
-      no_email_domain_block_selected: Tiada sekatan domain e-mel diubah kerana tiada yang dipilih
       not_permitted: Tidak dibenarkan
-      resolved_dns_records_hint_html: Nama domain diselesaikan kepada domain MX berikut, yang akhirnya bertanggungjawab untuk menerima e-mel. Menyekat domain MX akan menyekat pendaftaran daripada mana-mana alamat e-mel yang menggunakan domain MX yang sama, walaupun nama domain yang kelihatan berbeza. <strong>Berhati-hati untuk tidak menyekat penyedia e-mel utama.</strong>
       resolved_through_html: Diselesaikan melalui %{domain}
-      title: Domain e-mel disekat
     export_domain_allows:
       new:
         title: Import kebenaran domain
@@ -581,7 +555,6 @@ ms:
         resolve_description_html: Tiada tindakan akan diambil terhadap akaun yang dilaporkan, tiada pelanggaran direkodkan dan laporan akan ditutup.
         silence_description_html: Akaun itu akan kelihatan hanya kepada mereka yang telah mengikutinya atau mencarinya secara manual, mengehadkan capaiannya dengan teruk. Sentiasa boleh dikembalikan. Menutup semua laporan terhadap akaun ini.
         suspend_description_html: Akaun dan semua kandungannya akan tidak boleh diakses dan akhirnya dipadamkan, dan berinteraksi dengannya adalah mustahil. Boleh diterbalikkan dalam masa 30 hari. Menutup semua laporan terhadap akaun ini.
-      actions_description_html: Tentukan tindakan yang perlu diambil untuk menyelesaikan laporan ini. Jika anda mengambil tindakan menghukum terhadap akaun yang dilaporkan, pemberitahuan e-mel akan dihantar kepada mereka, kecuali apabila kategori <strong>Spam</strong> dipilih.
       actions_description_remote_html: Tentukan tindakan yang perlu diambil untuk menyelesaikan laporan ini. Ini hanya akan menjejaskan cara server<strong>anda</strong> berkomunikasi dengan akaun jauh ini dan mengendalikan kandungannya.
       add_to_report: Tambahkan lebih banyak pada laporan
       are_you_sure: Adakah anda pasti?
@@ -641,7 +614,6 @@ ms:
         delete_data_html: Padamkan profil dan kandungan <strong>@%{acct}</strong> 30 hari dari sekarang melainkan mereka dibatalkan penggantungan buat sementara waktu
         preview_preamble_html: "<strong>@%{acct}</strong> akan menerima amaran dengan kandungan berikut:"
         record_strike_html: Rakam bantahan terhadap <strong>@%{acct}</strong> untuk membantu anda mempertingkatkan tentang pelanggaran akaun ini pada masa hadapan
-        send_email_html: Hantar <strong>@%{acct}</strong> e-mel amaran
         warning_placeholder: Penaakulan tambahan pilihan untuk tindakan penyederhanaan.
       target_origin: Asalan akaun yang dilaporkan
       title: Laporan
@@ -679,7 +651,6 @@ ms:
         manage_appeals: Menguruskan rayuan
         manage_appeals_description: Membenarkan pengguna menyemak rayuan terhadap tindakan penyederhanaan
         manage_blocks: Menguruskan sekatan
-        manage_blocks_description: Membenarkan pengguna menyekat pembekal e-mel dan alamat IP
         manage_custom_emojis: Menguruskan emoji tersuai
         manage_custom_emojis_description: Membenarkan pengguna menguruskan emoji tersuai pada pelayan
         manage_federation: Menguruskan persekutuan
@@ -697,7 +668,6 @@ ms:
         manage_taxonomies: Uruskan Taksonomi
         manage_taxonomies_description: Membenarkan pengguna menyemak kandungan sohor kini dan mengemas kini tetapan tanda pagar
         manage_user_access: Uruskan Akses Pengguna
-        manage_user_access_description: Membenarkan pengguna melumpuhkan pengesahan dwifaktor pengguna lain, mengubah alamat e-mel dan menetapkan semula kata laluan mereka
         manage_users: Uruskan Pengguna
         manage_users_description: Membenarkan pengguna melihat butiran pengguna lain dan melaksanakan tindakan penyederhanaan terhadapnya
         manage_webhooks: Menguruskan webhook
@@ -768,7 +738,6 @@ ms:
       destroyed_msg: Muat naik tapak berjaya dihapuskan!
     software_updates:
       critical_update: Penting — sila kemas kini dengan segera
-      description: Disarankan untuk memastikan pemasangan Mastodon anda dikemas kini bagi mendapat manfaat daripada pembaikan dan ciri terkini. Selain itu, kadangkala penting untuk mengemas kini Mastodon tepat pada masanya untuk mengelakkan isu keselamatan. Atas sebab ini, Mastodon menyemak kemas kini setiap 30 minit dan akan memberitahu anda mengikut keutamaan pemberitahuan e-mel anda.
       documentation_link: Ketahui lebih lanjut
       release_notes: Catatan keluaran
       title: Kemas kini tersedia
@@ -917,7 +886,6 @@ ms:
         usage_comparison: Digunakan %{today} kali hari ini, berbanding %{yesterday} semalam
         used_by_over_week:
           other: Digunakan oleh %{count} orang sepanjang minggu lepas
-      title: Sohor kini
       trending: Sohor kini
     warning_presets:
       add_new: Tambah baharu
@@ -997,9 +965,7 @@ ms:
       guide_link_text: Sesiapa sahaja boleh memberi sumbangan.
     sensitive_content: Kandungan sensitif
   application_mailer:
-    notification_preferences: Tukar keutamaan e-mel
     salutation: "%{name},"
-    settings: 'Tukar pilihan e-mel: %{link}'
     unsubscribe: Nyahlanggan
     view: 'Lihat:'
     view_profile: Lihat profil
@@ -1018,8 +984,6 @@ ms:
       help_html: Jika anda menghadapi masalah menyelesaikan CAPTCHA, anda boleh menghubungi kami melalui %{email} dan kami boleh membantu anda.
       hint_html: Hanya satu perkara lagi! Kami perlu mengesahkan anda seorang manusia (ini supaya kami dapat mengelakkan spam!). Selesaikan CAPTCHA di bawah dan klik "Teruskan".
       title: Pemeriksaan keselamatan
-    confirmations:
-      wrong_email_hint: Jika alamat e-mel itu tidak betul, anda boleh menukarnya dalam tetapan akaun.
     delete_account: Padam akaun
     delete_account_html: Jika anda ingin memadamkan akaun anda, anda boleh <a href="%{path}">teruskan ke sini</a>. Anda akan diminta untuk pengesahan.
     description:
@@ -1040,7 +1004,6 @@ ms:
     or_log_in_with: Atau daftar masuk dengan
     privacy_policy_agreement_html: Saya telah membaca dan bersetuju menerima <a href="%{privacy_policy_path}" target="_blank">dasar privasi</a>
     progress:
-      confirm: Sahkan E-mel
       details: Maklumat anda
       review: Ulasan kami
       rules: Terima peraturan
@@ -1062,10 +1025,8 @@ ms:
     security: Keselamatan
     set_new_password: Tetapkan kata laluan baharu
     setup:
-      email_below_hint_html: Semak folder spam anda atau minta folder lain. Anda boleh membetulkan alamat e-mel anda jika ia salah.
       email_settings_hint_html: Klik pautan yang kami hantar kepada anda untuk mengesahkan %{email}. Kami akan tunggu di sini.
       link_not_received: Tidak mendapat pautan?
-      new_confirmation_instructions_sent: Anda akan menerima e-mel baharu dengan pautan pengesahan dalam beberapa minit!
       title: Semak peti masuk anda
     sign_in:
       preamble_html: Log masuk dengan bukti kelayakan <strong>%{domain}</strong> anda. Jika akaun anda dihoskan pada server lain, anda tidak akan dapat log masuk di sini.
@@ -1076,9 +1037,7 @@ ms:
       title: Mari sediakan anda pada %{domain}.
     status:
       account_status: Status akaun
-      confirming: Menunggu pengesahan e-mel untuk diselesaikan.
       functional: Akaun anda beroperasi sepenuhnya.
-      pending: Permohonan anda sedang menunggu semakan oleh kakitangan kami. Ini mungkin mengambil sedikit masa. Anda akan menerima e-mel sekiranya permohonan anda diluluskan.
       redirecting_to: Akaun anda tidak aktif kerana ia sedang mengubah hala ke %{acct}.
       self_destruct: Memandangkan %{domain} akan ditutup, anda hanya akan mendapat capaian terhad kepada akaun anda.
       view_strikes: Lihat pelanggaran yang lepas terhadap akaun anda
@@ -1092,7 +1051,6 @@ ms:
   crypto:
     errors:
       invalid_key: bukan kunci Ed25519 atau Curve25519 yang sah
-      invalid_signature: bukan tandatangan Ed25519 yang sah
   date:
     formats:
       default: "%b %d, %Y"
@@ -1121,9 +1079,6 @@ ms:
       before: 'Sebelum meneruskan, sila baca nota ini dengan teliti:'
       caches: Kandungan yang telah dicache oleh server lain mungkin berterusan
       data_removal: Pos anda dan data lain akan dialih keluar secara kekal
-      email_change_html: Anda boleh <a href="%{path}">menukar alamat e-mel anda</a> tanpa memadamkan akaun anda
-      email_contact_html: Jika ia masih tidak sampai, anda boleh menghantar e-mel kepada <a href="mailto:%{email}">%{email}</a> untuk mendapatkan bantuan
-      email_reconfirmation_html: Jika anda tidak menerima e-mel pengesahan, anda boleh <a href="%{path}">memintanya semula</a>
       irreversible: Anda tidak akan dapat memulihkan atau mengaktifkan semula akaun anda
       more_details_html: Untuk butiran lanjut, lihat <a href="%{terms_path}">dasar privasi</a>.
       username_available: Nama pengguna anda akan tersedia semula
@@ -1158,8 +1113,6 @@ ms:
       your_appeal_approved: Rayuan anda telah diluluskan
       your_appeal_pending: Anda telah menghantar rayuan
       your_appeal_rejected: Rayuan anda telah ditolak
-  domain_validator:
-    invalid_domain: bukan nama domain yang sah
   edit_profile:
     basic_information: Maklumat Asas
     hint_html: "<strong>Sesuaikan perkara yang orang lihat pada profil awam anda dan di sebelah siaran anda.</strong> Orang lain lebih berkemungkinan mengikuti anda kembali dan berinteraksi dengan anda apabila anda mempunyai profil dan gambar profil yang telah diisi."
@@ -1270,20 +1223,6 @@ ms:
       merge_long: Simpan rekod sedia ada dan tambah rekod baharu
       overwrite: Tulis ganti
       overwrite_long: Gantikan rekod semasa dengan yang baharu
-    overwrite_preambles:
-      blocking_html: Anda akan <strong>menggantikan senarai blok anda</strong> dengan sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
-      bookmarks_html: Anda akan <strong>menggantikan penanda halaman anda</strong> dengan sehingga <strong>%{total_items} siaran</strong> daripada <strong>%{filename}</strong>.
-      domain_blocking_html: Anda akan <strong>menggantikan senarai blok domain anda</strong> dengan sehingga <strong>%{total_items} domain</strong> daripada <strong>%{filename}</strong>.
-      following_html: Anda akan <strong>mengikuti</strong> sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong> dan <strong>berhenti mengikuti orang lain</strong>.
-      lists_html: Anda akan <strong>menggantikan senarai anda</strong> dengan kandungan <strong>%{filename}</strong>. Sehingga <strong>%{total_items} akaun</strong> akan ditambahkan pada senarai baharu.
-      muting_html: Anda akan <strong>menggantikan senarai akaun yang diredamkan</strong> dengan sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Anda akan <strong>menyekat</strong> sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
-      bookmarks_html: Anda akan menambah sehingga <strong>%{total_items} pos</strong> daripada <strong>%{filename}</strong> ke <strong>penanda halaman</strong> anda.
-      domain_blocking_html: Anda akan <strong>menyekat</strong> sehingga <strong>%{total_items} domain</strong> daripada <strong>%{filename}</strong>.
-      following_html: Anda akan <strong>mengikuti</strong> sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
-      lists_html: Anda akan menambah sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong> ke <strong>senarai</strong> anda. Senarai baharu akan dibuat jika tiada senarai untuk ditambah.
-      muting_html: Anda akan <strong>membisukan</strong> sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
     preface: Anda boleh mengimport data yang telah anda eksport dari server lain, seperti senarai orang yang anda ikuti atau sekat.
     recent_imports: Import terkini
     states:
@@ -1338,7 +1277,6 @@ ms:
     authentication_methods:
       otp: aplikasi pengesahan dua faktor
       password: kata laluan
-      sign_in_token: e-mel kod keselamatan
       webauthn: kunci keselamatan
     description_html: Jika anda melihat aktiviti yang anda tidak kenali, pertimbangkan untuk menukar kata laluan anda dan dayakan pengesahan dua faktor.
     empty: Tiada sejarah pengesahan tersedia
@@ -1349,16 +1287,6 @@ ms:
     unsubscribe:
       action: Ya, nyahlanggan
       complete: Menyahlanggan
-      confirmation_html: Adakah anda pasti mahu berhenti melanggan daripada menerima %{type} untuk Mastodon pada %{domain} ke e-mel anda di %{email}? Anda sentiasa boleh melanggan semula daripada <a href="%{settings_path}">tetapan pemberitahuan e-mel</a> anda.
-      emails:
-        notification_emails:
-          favourite: e-mel pemberitahuan kegemaran
-          follow: ikuti e-mel notifikasi
-          follow_request: ikuti e-mel permintaan
-          mention: menyebut e-mel pemberitahuan
-          reblog: meningkatkan e-mel notifikasi
-      resubscribe_html: Jika anda tersilap menyahlanggan, anda boleh melanggan semula daripada <a href="%{settings_path}">tetapan pemberitahuan e-mel</a> anda.
-      success_html: Anda tidak lagi akan menerima %{type} untuk Mastodon pada %{domain} ke e-mel anda di %{email}.
       title: Hentikan langganan
   media_attachments:
     validations:
@@ -1438,8 +1366,6 @@ ms:
     update:
       subject: "%{name} telah menyunting satu hantaran"
   notifications:
-    administration_emails: Notifikasi e-mel pentadbir
-    email_events: Acara untuk pemberitahuan e-mel
     email_events_hint: 'Pilih acara yang ingin anda terima pemberitahuan:'
   number:
     human:
@@ -1589,7 +1515,6 @@ ms:
     delete: Pemadaman akaun
     development: Pembangunan
     edit_profile: Sunting profil
-    export: Eksport data
     featured_tags: Tanda pagar terpilih
     import: Import
     import_and_export: Import dan eksport
@@ -1618,21 +1543,12 @@ ms:
     edited_at_html: Disunting %{date}
     errors:
       in_reply_not_found: Pos yang anda cuba balas nampaknya tidak wujud.
-    open_in_web: Buka dalam web
     over_character_limit: had aksara %{max} melebihi
     pin_errors:
       direct: Pos yang hanya boleh dilihat oleh pengguna yang disebut tidak boleh disematkan
       limit: Anda telah menyematkan bilangan maksimum pos
       ownership: Siaran orang lain tidak boleh disematkan
       reblog: Rangsangan tidak boleh disematkan
-    poll:
-      total_people:
-        other: "%{count} orang"
-      total_votes:
-        other: "%{count} undi"
-      vote: Undi
-    show_more: Tunjuk lebih banyak
-    show_thread: Tunjuk bebenang
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Terus
@@ -1772,7 +1688,6 @@ ms:
     go_to_sso_account_settings: Pergi ke tetapan akaun pembekal identiti anda
     invalid_otp_token: Kod dua faktor tidak sah
     otp_lost_help_html: Jika anda kehilangan akses kepada kedua-duanya, anda boleh menghubungi %{email}
-    seamless_external_login: Anda telah log masuk melalui perkhidmatan luaran, jadi kata laluan dan tetapan e-mel tidak tersedia.
     signed_in_as: 'Didaftar masuk sebagai:'
   verification:
     extra_instructions_html: <strong>Petua:</strong> Pautan di tapak web anda mungkin tidak kelihatan. Bahagian penting ialah <code>rel="me"</code> yang menghalang penyamaran pada tapak web dengan kandungan yang dijana pengguna. Anda juga boleh menggunakan tag <code>link</code> dalam pengepala halaman dan bukannya <code>a</code>, tetapi HTML mesti boleh diakses tanpa melaksanakan JavaScript.

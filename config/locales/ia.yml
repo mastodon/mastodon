@@ -7,7 +7,6 @@ ia:
     hosted_on: Mastodon albergate sur %{domain}
     title: A proposito
   accounts:
-    follow: Sequer
     followers:
       one: Sequitor
       other: Sequitores
@@ -25,6 +24,8 @@ ia:
   admin:
     account_actions:
       action: Exequer action
+      already_silenced: Iste conto jam ha essite limitate.
+      already_suspended: Iste conto jam ha essite suspendite.
       title: Exequer action de moderation sur %{acct}
     account_moderation_notes:
       create: Lassar un nota
@@ -46,6 +47,7 @@ ia:
         title: Cambiar e-mail pro %{username}
       change_role:
         changed_msg: Rolo cambiate con successo!
+        edit_roles: Gerer le regulas de usator
         label: Cambiar rolo
         no_role: Necun rolo
         title: Cambiar rolo pro %{username}
@@ -192,7 +194,7 @@ ia:
         destroy_custom_emoji: Deler emoji personalisate
         destroy_domain_allow: Deler permisso de dominio
         destroy_domain_block: Deler blocada de dominio
-        destroy_email_domain_block: Crear blocada de dominio de e-mail
+        destroy_email_domain_block: Deler blocada de dominio de e-mail
         destroy_instance: Purgar dominio
         destroy_ip_block: Deler le regula IP
         destroy_status: Deler message
@@ -226,6 +228,7 @@ ia:
         update_custom_emoji: Actualisar emoji personalisate
         update_domain_block: Actualisar blocada de dominio
         update_ip_block: Actualisar le regula IP
+        update_report: Actualisar le reporto
         update_status: Actualisar le message
         update_user_role: Actualisar rolo
       actions:
@@ -234,24 +237,24 @@ ia:
         assigned_to_self_report_html: "%{name} assignava reporto %{target} a se mesme"
         change_email_user_html: "%{name} cambiava le adresse de e-mail address del usator %{target}"
         change_role_user_html: "%{name} cambiava rolo de %{target}"
-        confirm_user_html: "%{name} confirmava le adresse de e-mail del usator %{target}"
+        confirm_user_html: "%{name} confirmava le adresse de e-mail del. usator %{target}"
         create_account_warning_html: "%{name} inviava un advertimento a %{target}"
         create_announcement_html: "%{name} creava un nove annuncio %{target}"
-        create_canonical_email_block_html: "%{name} blocava e-mail con le hash %{target}"
+        create_canonical_email_block_html: "%{name} blocava le e-mail con le hash %{target}"
         create_custom_emoji_html: "%{name} incargava le nove emoji %{target}"
         create_domain_allow_html: "%{name} permitteva federation con dominio %{target}"
         create_domain_block_html: "%{name} blocava dominio %{target}"
-        create_email_domain_block_html: "%{name} blocava dominio de e-mail %{target}"
+        create_email_domain_block_html: "%{name} blocava le dominio de e-mail %{target}"
         create_ip_block_html: "%{name} creava regula pro IP %{target}"
         create_unavailable_domain_html: "%{name} stoppava livration al dominio %{target}"
         create_user_role_html: "%{name} creava rolo de %{target}"
         demote_user_html: "%{name} degradava usator %{target}"
         destroy_announcement_html: "%{name} deleva annuncio %{target}"
-        destroy_canonical_email_block_html: "%{name} disblocava e-mail con le hash %{target}"
+        destroy_canonical_email_block_html: "%{name} disblocava le e-mail con le hash %{target}"
         destroy_custom_emoji_html: "%{name} deleva emoji %{target}"
         destroy_domain_allow_html: "%{name} impediva le federation con dominio %{target}"
         destroy_domain_block_html: "%{name} disblocava dominio %{target}"
-        destroy_email_domain_block_html: "%{name} disblocava dominio de e-mail %{target}"
+        destroy_email_domain_block_html: "%{name} disblocava le dominio de e-mail %{target}"
         destroy_instance_html: "%{name} purgava le dominio %{target}"
         destroy_ip_block_html: "%{name} deleva le regula pro IP %{target}"
         destroy_status_html: "%{name} removeva un message de %{target}"
@@ -431,7 +434,7 @@ ia:
       attempts_over_week:
         one: "%{count} tentativa de inscription in le ultime septimana"
         other: "%{count} tentativas de inscription in le ultime septimana"
-      created_msg: Le dominio de e-mail ha essite blocate
+      created_msg: Le dominio de e-mail ha essite blocate con successo
       delete: Deler
       dns:
         types:
@@ -596,7 +599,6 @@ ia:
         resolve_description_html: Necun mesura essera prendite contra le conto denunciate, necun sanction registrate, e le reporto essera claudite.
         silence_description_html: Iste conto essera visibile solmente a qui ja lo seque o manualmente lo cerca, limitante gravemente su portata. Pote sempre esser revertite. Claude tote le reportos contra iste conto.
         suspend_description_html: Le conto e tote su contento essera inaccessibile e finalmente delite, e interager con illo essera impossibile. Reversibile intra 30 dies. Claude tote le reportos contra iste conto.
-      actions_description_html: Decide qual mesura prender pro resolver iste reporto. Si tu prende un mesura punitive contra le conto reportate, le persona recipera un notification in e-mail, excepte si le categoria <strong>Spam</strong> es seligite.
       actions_description_remote_html: Decide qual mesura prender pro resolver iste reporto. Isto affectara solmente le maniera in que <strong>tu</strong> servitor communica con iste conto remote e gere su contento.
       add_to_report: Adder plus al reporto
       already_suspended_badges:
@@ -638,6 +640,7 @@ ia:
       report: 'Reporto #%{id}'
       reported_account: Conto reportate
       reported_by: Reportate per
+      reported_with_application: Signalate con le application
       resolved: Resolvite
       resolved_msg: Reporto resolvite con successo!
       skip_to_actions: Saltar al actiones
@@ -880,16 +883,32 @@ ia:
         action: Consulta hic pro plus information
         message_html: "<strong>Tu immagazinage de objectos es mal configurate. Le confidentialitate de tu usatores es in risco.</strong>"
     tags:
+      moderation:
+        not_trendable: Non pro tendentia
+        pending_review: Attende revision
+        title: Stato
+      name: Nomine
+      newest: Le plus nove
+      oldest: Le plus ancian
+      reset: Reinitialisar
       review: Revide le stato
+      search: Cercar
+      title: Hashtags
       updated_msg: Parametros de hashtag actualisate con successo
     title: Administration
     trends:
       allow: Permitter
       approved: Approbate
+      confirm_allow: Es tu secur que tu vole permitter le etiquettas seligite?
+      confirm_disallow: Es tu secur que tu vole cessar de permitter le etiquettas seligite?
       disallow: Refusar
       links:
         allow: Permitter ligamine
         allow_provider: Autorisar le publicator
+        confirm_allow: Es tu secur que tu vole permitter le ligamines seligite?
+        confirm_allow_provider: Es tu secur que tu vole permitter le fornitores seligite?
+        confirm_disallow: Es tu secur que tu vole cessar de permitter le ligamines seligite?
+        confirm_disallow_provider: Es tu secur que tu vole cessar de permitter le fornitores seligite?
         description_html: Istes es ligamines que es actualmente compartite multo per contos del quales tu servitor recipe messages. Illos pote adjutar tu usatores a discoperir lo que eveni in le mundo. Necun ligamine es monstrate publicamente usque tu autorisa le publicator. Tu pote tamben permitter o rejectar ligamines singule.
         disallow: Prohibir le ligamine
         disallow_provider: Prohibir le publicator
@@ -913,6 +932,8 @@ ia:
       statuses:
         allow: Permitter message
         allow_account: Permitter autor
+        confirm_allow_account: Es tu secur que tu vole permitter le contos seligite?
+        confirm_disallow_account: Es tu secur que tu vole cessar de permitter le contos seligite?
         description_html: Istes es le messages cognoscite sur tu servitor que al momento es multo compartite e marcate como favorite. Illos pote adjutar tu usatores nove e reveniente a trovar plus personas a sequer. Necun message es monstrate publicamente usque tu approba le autor, a condition que le autor permitte que su conto es suggerite a alteres. Tu pote tamben permitter o rejectar messages singule.
         disallow: Non permitter message
         disallow_account: Non permitter autor
@@ -945,7 +966,7 @@ ia:
         used_by_over_week:
           one: Usate per un persona in le ultime septimana
           other: Usate per %{count} personas in le ultime septimana
-      title: Tendentias
+      title: Recommendationes e tendentias
       trending: In tendentia
     warning_presets:
       add_new: Adder nove
@@ -1125,6 +1146,10 @@ ia:
       view_strikes: Examinar le sanctiones passate contra tu conto
     too_fast: Formulario inviate troppo rapidemente. Tenta lo de novo.
     use_security_key: Usar clave de securitate
+  author_attribution:
+    example_title: Texto de exemplo
+    more_from_html: Plus de %{name}
+    s_blog: Blog de %{name}
   challenge:
     confirm: Continuar
     hint_html: "<strong>Consilio:</strong> Nos non te demandara tu contrasigno de novo in le proxime hora."
@@ -1133,7 +1158,6 @@ ia:
   crypto:
     errors:
       invalid_key: non es un clave Ed25519 o Curve25519 valide
-      invalid_signature: non es un signatura Ed25519 valide
   date:
     formats:
       default: "%d %b %Y"
@@ -1199,8 +1223,6 @@ ia:
       your_appeal_approved: Tu appello ha essite approbate
       your_appeal_pending: Tu ha submittite un appello
       your_appeal_rejected: Tu appello ha essite rejectate
-  domain_validator:
-    invalid_domain: non es un nomine de dominio valide
   edit_profile:
     basic_information: Information basic
     hint_html: "<strong>Personalisa lo que le personas vide sur tu profilo public e presso tu messages.</strong> Il es plus probabile que altere personas te seque e interage con te quando tu ha un profilo complete e un photo."
@@ -1324,20 +1346,6 @@ ia:
       merge_long: Conservar le registros existente e adder noves
       overwrite: Superscriber
       overwrite_long: Reimplaciar registros actual con le noves
-    overwrite_preambles:
-      blocking_html: Tu es sur le puncto de <strong>reimplaciar tu lista de blocadas</strong> per usque a <strong>%{total_items} contos</strong> proveniente de <strong>%{filename}</strong>.
-      bookmarks_html: Tu es sur le puncto de <strong>reimplaciar tu marcapaginas</strong> per usque a <strong>%{total_items} messages</strong> desde <strong>%{filename}</strong>.
-      domain_blocking_html: Tu es sur le puncto de <strong>reimplaciar tu lista de blocadas de dominio</strong> per usque a <strong>%{total_items} dominios</strong> proveniente de <strong>%{filename}</strong>.
-      following_html: Tu es sur le puncto de <strong>sequer</strong> usque a <strong>%{total_items} contos</strong> de <strong>%{filename}</strong> e <strong>cessar de sequer tote le alteres</strong>.
-      lists_html: Tu es sur le puncto de <strong>reimplaciar tu listas</strong> per le contento de <strong>%{filename}</strong>. Usque a <strong>%{total_items} contos</strong> essera addite a nove listas.
-      muting_html: Tu es sur le puncto de <strong>reimplaciar tu lista de contos silentiate</strong> con usque a <strong>%{total_items} contos</strong> desde <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Tu es sur le puncto de <strong>blocar</strong> usque a <strong>%{total_items} contos</strong> a partir de <strong>%{filename}</strong>.
-      bookmarks_html: Tu es sur le puncto de adder usque a <strong>%{total_items} messages</strong> desde <strong>%{filename}</strong> a tu <strong>marcapaginas</strong>.
-      domain_blocking_html: Tu es sur le puncto de <strong>blocar</strong> usque a <strong>%{total_items} dominios</strong> a partir de <strong>%{filename}</strong>.
-      following_html: Tu es sur le puncto de <strong>sequer</strong> usque a <strong>%{total_items} contos</strong> desde <strong>%{filename}</strong>.
-      lists_html: Tu es sur le puncto de adder usque <strong>%{total_items} contos</strong> desde <strong>%{filename}</strong> a tu <strong>listas</strong>. Nove listas essera create si il non ha un lista al qual adder los.
-      muting_html: Tu es sur le puncto de <strong>silentiar</strong> usque a <strong>%{total_items} contos</strong> desde <strong>%{filename}</strong>.
     preface: Tu pote importar datos que tu ha exportate de un altere servitor, como un lista de personas que tu seque o bloca.
     recent_imports: Importationes recente
     states:
@@ -1653,7 +1661,6 @@ ia:
     delete: Deletion de conto
     development: Disveloppamento
     edit_profile: Modificar profilo
-    export: Exportation de datos
     featured_tags: Hashtags in evidentia
     import: Importar
     import_and_export: Importar e exportar
@@ -1699,23 +1706,12 @@ ia:
     edited_at_html: Modificate le %{date}
     errors:
       in_reply_not_found: Le message a que tu tenta responder non pare exister.
-    open_in_web: Aperir sur le web
     over_character_limit: limite de characteres de %{max} excedite
     pin_errors:
       direct: Messages que es solo visibile a usatores mentionate non pote esser appunctate
       limit: Tu ha jam appunctate le maxime numero de messages
       ownership: Le message de alcuno altere non pote esser appunctate
       reblog: Un impulso non pote esser affixate
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} personas"
-      total_votes:
-        one: "%{count} voto"
-        other: "%{count} votos"
-      vote: Votar
-    show_more: Monstrar plus
-    show_thread: Monstrar discussion
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Directe
@@ -1914,6 +1910,7 @@ ia:
     instructions_html: Copia e colla le codice hic infra in le HTML de tu sito web. Alora adde le adresse de tu sito web in un del campos supplementari sur tu profilo desde le scheda “Modificar profilo” e salva le cambiamentos.
     verification: Verification
     verified_links: Tu ligamines verificate
+    website_verification: Verification de sito web
   webauthn_credentials:
     add: Adder un nove clave de securitate
     create:

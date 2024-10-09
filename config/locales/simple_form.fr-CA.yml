@@ -3,6 +3,7 @@ fr-CA:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protège contre les fausses attributions.
         discoverable: Vos messages publics et votre profil peuvent être mis en avant ou recommandés dans diverses parties de Mastodon et votre profil peut être suggéré à d’autres utilisateurs.
         display_name: Votre nom complet ou votre nom cool.
         fields: Votre page d'accueil, pronoms, âge, tout ce que vous voulez.
@@ -77,10 +78,15 @@ fr-CA:
           warn: Cacher le contenu filtré derrière un avertissement mentionnant le nom du filtre
       form_admin_settings:
         activity_api_enabled: Nombre de messages publiés localement, de comptes actifs et de nouvelles inscriptions par tranche hebdomadaire
+        app_icon: WEBP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
+        backups_retention_period: Les utilisateur·rice·s ont la possibilité de générer des archives de leurs messages pour les télécharger plus tard. Lorsqu'elles sont définies à une valeur positive, ces archives seront automatiquement supprimées de votre stockage après le nombre de jours spécifié.
         bootstrap_timeline_accounts: Ces comptes seront épinglés en tête de liste des recommandations pour les nouveaux utilisateurs.
         closed_registrations_message: Affiché lorsque les inscriptions sont fermées
+        content_cache_retention_period: Tous les messages provenant d'autres serveurs (y compris les partages et les réponses) seront supprimés passé le nombre de jours spécifié, sans tenir compte de l'interaction de l'utilisateur·rice local·e avec ces messages. Cela inclut les messages qu'un·e utilisateur·rice aurait marqué comme signets ou comme favoris. Les mentions privées entre utilisateur·rice·s de différentes instances seront également perdues et impossibles à restaurer. L'utilisation de ce paramètre est destinée à des instances spécifiques et contrevient à de nombreuses attentes des utilisateurs lorsqu'elle est appliquée à des fins d'utilisation ordinaires.
         custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
+        favicon: WEBP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
         mascot: Remplace l'illustration dans l'interface Web avancée.
+        media_cache_retention_period: Les fichiers médias des messages publiés par des utilisateurs distants sont mis en cache sur votre serveur. Lorsque cette valeur est positive, les médias sont supprimés au terme du nombre de jours spécifié. Si les données des médias sont demandées après leur suppression, elles seront téléchargées à nouveau, dans la mesure où le contenu source est toujours disponible. En raison des restrictions concernant la fréquence à laquelle les cartes de prévisualisation des liens interrogent des sites tiers, il est recommandé de fixer cette valeur à au moins 14 jours, faute de quoi les cartes de prévisualisation des liens ne seront pas mises à jour à la demande avant cette échéance.
         peers_api_enabled: Une liste de noms de domaine que ce serveur a rencontrés dans le fédiverse. Aucune donnée indiquant si vous vous fédérez ou non avec un serveur particulier n'est incluse ici, seulement l'information que votre serveur connaît un autre serveur. Cette option est utilisée par les services qui collectent des statistiques sur la fédération en général.
         profile_directory: L'annuaire des profils répertorie tous les utilisateurs qui ont opté pour être découverts.
         require_invite_text: Lorsque les inscriptions nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
@@ -125,7 +131,7 @@ fr-CA:
         name: Vous ne pouvez modifier que la casse des lettres, par exemple, pour le rendre plus lisible
       user:
         chosen_languages: Lorsque coché, seuls les messages dans les langues sélectionnées seront affichés sur les fils publics
-        role: Le rôle définit quelles autorisations a l'utilisateur⋅rice
+        role: Le rôle définit quelles autorisations a l'utilisateur⋅rice.
       user_role:
         color: Couleur à attribuer au rôle dans l'interface, au format hexadécimal RVB
         highlighted: Cela rend le rôle visible publiquement
@@ -138,6 +144,7 @@ fr-CA:
         url: Là où les événements seront envoyés
     labels:
       account:
+        attribution_domains_as_text: Autoriser uniquement des sites Web spécifiques
         discoverable: Autoriser des algorithmes de découverte à mettre en avant votre profil et vos messages
         fields:
           name: Étiquette
@@ -206,6 +213,7 @@ fr-CA:
         setting_default_privacy: Confidentialité des messages
         setting_default_sensitive: Toujours marquer les médias comme sensibles
         setting_delete_modal: Demander confirmation avant de supprimer un message
+        setting_disable_hover_cards: Désactiver l'aperçu du profil au survol
         setting_disable_swiping: Désactiver les actions par glissement
         setting_display_media: Affichage des médias
         setting_display_media_default: Défaut
@@ -237,10 +245,13 @@ fr-CA:
           warn: Cacher derrière un avertissement
       form_admin_settings:
         activity_api_enabled: Publie des statistiques agrégées sur l'activité des utilisateur⋅rice⋅s dans l'API
+        app_icon: Icône de l'appli
         backups_retention_period: Période d'archivage utilisateur
         bootstrap_timeline_accounts: Toujours recommander ces comptes aux nouveaux utilisateurs
         closed_registrations_message: Message personnalisé lorsque les inscriptions ne sont pas disponibles
+        content_cache_retention_period: Durée de rétention du contenu distant
         custom_css: CSS personnalisé
+        favicon: Favicon
         mascot: Mascotte personnalisée (héritée)
         media_cache_retention_period: Durée de rétention des médias dans le cache
         peers_api_enabled: Publie la liste des serveurs découverts dans l'API
@@ -305,7 +316,7 @@ fr-CA:
         listable: Autoriser ce hashtag à apparaître dans les recherches et dans l’annuaire des profils
         name: Mot-clic
         trendable: Autoriser ce hashtag à apparaitre dans les tendances
-        usable: Autoriser les messages à utiliser ce hashtag
+        usable: Autoriser les messages à utiliser ce hashtag localement
       user:
         role: Rôle
         time_zone: Fuseau horaire

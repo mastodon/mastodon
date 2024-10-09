@@ -252,88 +252,83 @@ RSpec.describe Notification do
         ]
       end
 
-      context 'with a preloaded target status' do
-        it 'preloads mention' do
-          expect(subject[0].type).to eq :mention
-          expect(subject[0].association(:mention)).to be_loaded
-          expect(subject[0].mention.association(:status)).to be_loaded
+      context 'with a preloaded target status and a cached status' do
+        it 'preloads association records and replaces association records' do
+          expect(subject)
+            .to contain_exactly(
+              mention_attributes,
+              status_attributes,
+              reblog_attributes,
+              follow_attributes,
+              follow_request_attributes,
+              favourite_attributes,
+              poll_attributes
+            )
         end
 
-        it 'preloads status' do
-          expect(subject[1].type).to eq :status
-          expect(subject[1].association(:status)).to be_loaded
+        def mention_attributes
+          have_attributes(
+            type: :mention,
+            target_status: eq(mention.status).and(have_loaded_association(:account)),
+            mention: have_loaded_association(:status)
+          ).and(have_loaded_association(:mention))
         end
 
-        it 'preloads reblog' do
-          expect(subject[2].type).to eq :reblog
-          expect(subject[2].association(:status)).to be_loaded
-          expect(subject[2].status.association(:reblog)).to be_loaded
+        def status_attributes
+          have_attributes(
+            type: :status,
+            target_status: eq(status).and(have_loaded_association(:account))
+          ).and(have_loaded_association(:status))
         end
 
-        it 'preloads follow as nil' do
-          expect(subject[3].type).to eq :follow
-          expect(subject[3].target_status).to be_nil
+        def reblog_attributes
+          have_attributes(
+            type: :reblog,
+            status: have_loaded_association(:reblog),
+            target_status: eq(reblog.reblog).and(have_loaded_association(:account))
+          ).and(have_loaded_association(:status))
         end
 
-        it 'preloads follow_request as nill' do
-          expect(subject[4].type).to eq :follow_request
-          expect(subject[4].target_status).to be_nil
+        def follow_attributes
+          have_attributes(
+            type: :follow,
+            target_status: be_nil
+          )
         end
 
-        it 'preloads favourite' do
-          expect(subject[5].type).to eq :favourite
-          expect(subject[5].association(:favourite)).to be_loaded
-          expect(subject[5].favourite.association(:status)).to be_loaded
+        def follow_request_attributes
+          have_attributes(
+            type: :follow_request,
+            target_status: be_nil
+          )
         end
 
-        it 'preloads poll' do
-          expect(subject[6].type).to eq :poll
-          expect(subject[6].association(:poll)).to be_loaded
-          expect(subject[6].poll.association(:status)).to be_loaded
-        end
-      end
-
-      context 'with a cached status' do
-        it 'replaces mention' do
-          expect(subject[0].type).to eq :mention
-          expect(subject[0].target_status.association(:account)).to be_loaded
-          expect(subject[0].target_status).to eq mention.status
+        def favourite_attributes
+          have_attributes(
+            type: :favourite,
+            favourite: have_loaded_association(:status),
+            target_status: eq(favourite.status).and(have_loaded_association(:account))
+          ).and(have_loaded_association(:favourite))
         end
 
-        it 'replaces status' do
-          expect(subject[1].type).to eq :status
-          expect(subject[1].target_status.association(:account)).to be_loaded
-          expect(subject[1].target_status).to eq status
-        end
-
-        it 'replaces reblog' do
-          expect(subject[2].type).to eq :reblog
-          expect(subject[2].target_status.association(:account)).to be_loaded
-          expect(subject[2].target_status).to eq reblog.reblog
-        end
-
-        it 'replaces follow' do
-          expect(subject[3].type).to eq :follow
-          expect(subject[3].target_status).to be_nil
-        end
-
-        it 'replaces follow_request' do
-          expect(subject[4].type).to eq :follow_request
-          expect(subject[4].target_status).to be_nil
-        end
-
-        it 'replaces favourite' do
-          expect(subject[5].type).to eq :favourite
-          expect(subject[5].target_status.association(:account)).to be_loaded
-          expect(subject[5].target_status).to eq favourite.status
-        end
-
-        it 'replaces poll' do
-          expect(subject[6].type).to eq :poll
-          expect(subject[6].target_status.association(:account)).to be_loaded
-          expect(subject[6].target_status).to eq poll.status
+        def poll_attributes
+          have_attributes(
+            type: :poll,
+            poll: have_loaded_association(:status),
+            target_status: eq(poll.status).and(have_loaded_association(:account))
+          ).and(have_loaded_association(:poll))
         end
       end
     end
+  end
+end
+
+RSpec::Matchers.define :have_loaded_association do |association|
+  match do |record|
+    record.association(association).loaded?
+  end
+
+  failure_message do |record|
+    "expected #{record} to have loaded association #{association} but it did not."
   end
 end

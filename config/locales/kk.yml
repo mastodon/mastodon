@@ -6,7 +6,6 @@ kk:
     contact_unavailable: Белгісіз
     hosted_on: Mastodon орнатылған %{domain} доменінде
   accounts:
-    follow: Жазылу
     followers:
       one: Оқырман
       other: Оқырман
@@ -191,13 +190,10 @@ kk:
       view: Домен блокын көрсету
     email_domain_blocks:
       add_new: Жаңасын қосу
-      created_msg: Қаратізімге email домені қосылды
       delete: Өшіру
       domain: Домен
       new:
         create: Add dоmain
-        title: New e-mail blаcklist entry
-      title: E-mail қаратізімі
     instances:
       by_domain: Domаin
       delivery_available: Жеткізу қол жетімді
@@ -320,8 +316,6 @@ kk:
     discovery: Пікірталас
     sensitive_content: Нәзік контент
   application_mailer:
-    notification_preferences: Change e-mail prеferences
-    settings: 'Change e-mail preferеnces: %{link}'
     view: 'Viеw:'
     view_profile: Viеw Profile
     view_status: Viеw status
@@ -356,8 +350,6 @@ kk:
     set_new_password: Жаңа құпиясөз қою
     status:
       account_status: Аккаунт статусы
-      confirming: Электрондық поштаны растау аяқталуын күтуде.
-      pending: Сіздің өтінішіңіз біздің қызметкерлеріміздің қарауында. Бұл біраз уақыт алуы мүмкін. Өтінішіңіз мақұлданса, сізге электрондық пошта хабарламасы келеді.
       redirecting_to: Сіздің есептік жазбаңыз белсенді емес, себебі ол %{acct} жүйесіне қайта бағытталуда.
   challenge:
     confirm: Жалғастыру
@@ -388,15 +380,10 @@ kk:
       before: 'Жұмысты бастамас бұрын, осы жазбаларды мұқият оқып шығыңыз:'
       caches: Басқа серверлер кэштеген мазмұн сақталуы мүмкін
       data_removal: Сіздің жазбаларыңыз және басқа деректеріңіз толығымен жойылады
-      email_change_html: Аккаунтыңызды жоймай-ақ <a href="%{path}"> электрондық пошта мекенжайын өзгертуге болады </a>
-      email_contact_html: Егер әлі келмесе, көмек үшін <a href="mailto:%{email}">%{email} </a> мекен-жайына хат жібере аласыз
-      email_reconfirmation_html: Егер сіз растау электрондық хатын алмасаңыз, сіз <a href="%{path}"> оны қайтадан сұрай аласыз </a>
       irreversible: Аккаунтты қалпына келтіре немесе қайта белсендіре алмайсыз
       more_details_html: Қосымша мәліметтер алу үшін <a href="%{terms_path}"> құпиялылық саясатын </a> қараңыз.
       username_available: Аккаунтыңыз қайтадан қолжетімді болады
       username_unavailable: Логиніңіз қолжетімді болмайды
-  domain_validator:
-    invalid_domain: жарамды домен атауы емес
   errors:
     '400': Сіз жіберген сұрау жарамсыз немесе дұрыс емес.
     '403': Бұны көру үшін сізде рұқсат жоқ.
@@ -536,7 +523,6 @@ kk:
       subject: "%{name} жазбаңызды бөлісті"
       title: Жаңа бөлісім
   notifications:
-    email_events: E-mail ескертпелеріне шаралар
     email_events_hint: 'Ескертпе болып келетін шараларды таңда:'
   number:
     human:
@@ -637,7 +623,6 @@ kk:
     delete: Аккаунт өшіру
     development: Жасаушы топ
     edit_profile: Профиль өңдеу
-    export: Экспорт уақыты
     featured_tags: Таңдаулы хэштегтер
     import: Импорт
     import_and_export: Импорт/экспорт
@@ -660,22 +645,11 @@ kk:
     disallowed_hashtags:
       one: 'рұқсат етілмеген хэштег: %{tags}'
       other: 'рұқсат етілмеген хэштегтер: %{tags}'
-    open_in_web: Вебте ашу
     over_character_limit: "%{max} максимум таңбадан асып кетті"
     pin_errors:
       limit: Жабыстырылатын жазба саны максимумынан асты
       ownership: Біреудің жазбасы жабыстырылмайды
       reblog: Бөлісілген жазба жабыстырылмайды
-    poll:
-      total_people:
-        one: "%{count} адам"
-        other: "%{count} адам"
-      total_votes:
-        one: "%{count} дауыс"
-        other: "%{count} дауыс"
-      vote: Дауыс беру
-    show_more: Тағы әкел
-    show_thread: Тақырыпты көрсет
     visibilities:
       private: Тек оқырмандарға
       private_long: Тек оқырмандарға ғана көрінеді
@@ -723,7 +697,6 @@ kk:
     follow_limit_reached: Сіз %{limit} лимитінен көп адамға жазыла алмайсыз
     invalid_otp_token: Қате екі-факторлы код
     otp_lost_help_html: Егер кіру жолдарын жоғалтып алсаңыз, сізге %{email} арқылы жіберіледі
-    seamless_external_login: Сыртқы сервис арқылы кіріпсіз, сондықтан құпиясөз және электрондық пошта параметрлері қол жетімді емес.
     signed_in_as: 'Былай кірдіңіз:'
   verification:
     verification: Растау

@@ -6,7 +6,6 @@ ka:
     contact_unavailable: მიუწ.
     hosted_on: მასტოდონს მასპინძლობს %{domain}
   accounts:
-    follow: გაყევი
     following: მიჰყვება
     nothing_here: აქ არაფერია!
     pin_errors:
@@ -134,13 +133,10 @@ ka:
       undo: უკუქცევა
     email_domain_blocks:
       add_new: ახლის დამატება
-      created_msg: ელ-ფოსტის დომენი წარმატებით დაემატა შავ სიას
       delete: გაუქმება
       domain: დომენი
       new:
         create: დომენის დამატება
-        title: ელ-ფოსტის ახალი შენატანი შავ სიაში
-      title: ელ-ფოსტის შავი სია
     instances:
       title: ცნობილი ინსტანციები
     invites:
@@ -203,8 +199,6 @@ ka:
       body_remote: ვიღაცამ %{domain}-იდან დაარეპორტა %{target}
       subject: ახალი რეპორტი %{instance} (#%{id})-ზე
   application_mailer:
-    notification_preferences: შეცვალეთ ელ-ფოსტის პრეფერნსიები
-    settings: 'შეცვალეთ ელ-ფოსტის პრეფერენსიები: %{link}'
     view: 'ჩვენება:'
     view_profile: პროფილის ჩვენება
     view_status: სტატუსის ჩვენება
@@ -416,7 +410,6 @@ ka:
     delete: ანგარიშის გაუქმება
     development: დეველოპმენტი
     edit_profile: პროფილის ცვლილება
-    export: მონაცემის ექსპორტი
     import: იმპორტი
     migrate: ანგარიშის მიგრაცია
     preferences: პრეფერენციები
@@ -435,13 +428,11 @@ ka:
     disallowed_hashtags:
       one: 'მოიცავდა აკრძალულ ჰეშტეგს: %{tags}'
       other: 'მოიცავს აკრძალულ ჰეშტეგს: %{tags}'
-    open_in_web: ვებში გახნსა
     over_character_limit: ნიშნების ლიმიტი გადასცდა %{max}-ს
     pin_errors:
       limit: ტუტების მაქსიმალური რაოდენობა უკვე აპინეთ
       ownership: სხვისი ტუტი ვერ აიპინება
       reblog: ბუსტი ვერ აიპინება
-    show_more: მეტის ჩვენება
     visibilities:
       private: მხოლოდ-მიმდევრები
       private_long: აჩვენე მხოლოდ მიმდევრებს
@@ -475,5 +466,4 @@ ka:
   users:
     invalid_otp_token: არასწორი მეორე ფაქტორის კოდი
     otp_lost_help_html: თუ დაკარგეთ წვდომა ორივეზე, შესაძლოა დაუკავშირდეთ %{email}-ს
-    seamless_external_login: შესული ხართ გარე სერვისით, აქედან გამომდინარე პაროლი და ელ-ფოსტის მისამართი არაა ხელმისაწვდომი.
     signed_in_as: 'შესული ხართ როგორც:'

@@ -60,7 +60,7 @@ nl:
       error:
         title: Er is een fout opgetreden
       new:
-        prompt_html: "%{client_name} heeft toestemming nodig om toegang te krijgen tot jouw account. Het betreft een third-party-toepassing.<strong>Als je dit niet vertrouwt, moet je geen toestemming verlenen.</strong>"
+        prompt_html: "%{client_name} vraagt om toegang tot je account. <strong>Keur dit verzoek alleen goed als je deze bron herkent en vertrouwt.</strong>"
         review_permissions: Toestemmingen beoordelen
         title: Autorisatie vereist
       show:
@@ -83,6 +83,7 @@ nl:
         access_denied: De resource-eigenaar of autorisatie-server weigerde het verzoek.
         credential_flow_not_configured: De wachtwoordgegevens-flow van de resource-eigenaar is mislukt omdat Doorkeeper.configure.resource_owner_from_credentials niet is ingesteld.
         invalid_client: Clientverificatie is mislukt door een onbekende client, ontbrekende client-authenticatie of een niet ondersteunde authenticatie-methode.
+        invalid_code_challenge_method: De code challenge method moet S256 zijn, plain wordt niet ondersteund.
         invalid_grant: De verstrekte autorisatie is ongeldig, verlopen, ingetrokken, komt niet overeen met de redirect-URI die is opgegeven of werd uitgegeven aan een andere client.
         invalid_redirect_uri: De opgegeven redirect-URI is ongeldig.
         invalid_request:
@@ -129,7 +130,7 @@ nl:
         crypto: End-to-end-encryptie
         favourites: Favorieten
         filters: Filters
-        follow: Volgers, genegeerde en geblokkeerde gebruikers
+        follow: Gevolgde, genegeerde en geblokkeerde gebruikers
         follows: Volgend
         lists: Lijsten
         media: Mediabijlagen

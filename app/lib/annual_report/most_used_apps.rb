@@ -17,6 +17,6 @@ class AnnualReport::MostUsedApps < AnnualReport::Source
   private
 
   def most_used_apps
-    @account.statuses.reorder(nil).where(id: year_as_snowflake_range).joins(:application).group('oauth_applications.name').order(total: :desc).limit(SET_SIZE).pluck(Arel.sql('oauth_applications.name, count(*) as total'))
+    report_statuses.joins(:application).group('oauth_applications.name').order(total: :desc).limit(SET_SIZE).pluck(Arel.sql('oauth_applications.name, count(*) as total'))
   end
 end

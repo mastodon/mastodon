@@ -1,5 +1,7 @@
 import { useEffect, forwardRef } from 'react';
 
+import { FormattedMessage } from 'react-intl';
+
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
@@ -23,6 +25,11 @@ export const HoverCardAccount = forwardRef<
 
   const account = useAppSelector((state) =>
     accountId ? state.accounts.get(accountId) : undefined,
+  );
+
+  const note = useAppSelector(
+    (state) =>
+      state.relationships.getIn([accountId, 'note']) as string | undefined,
   );
 
   useEffect(() => {
@@ -53,6 +60,17 @@ export const HoverCardAccount = forwardRef<
               className='hover-card__bio'
             />
             <AccountFields fields={account.fields} limit={2} />
+            {note && note.length > 0 && (
+              <dl className='hover-card__note'>
+                <dt className='hover-card__note-label'>
+                  <FormattedMessage
+                    id='account.account_note_header'
+                    defaultMessage='Personal note'
+                  />
+                </dt>
+                <dd>{note}</dd>
+              </dl>
+            )}
           </div>
 
           <div className='hover-card__number'>

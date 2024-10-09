@@ -72,7 +72,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
         expect(status).to_not be_nil
         expect(status.url).to eq 'https://foo.bar/watch?v=12345'
-        expect(strip_tags(status.text)).to eq 'Nyan Cat 10 hours remixhttps://foo.bar/watch?v=12345'
+        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remix\n\nhttps://foo.bar/watch?v=12345"
       end
     end
 
@@ -105,7 +105,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
         expect(status).to_not be_nil
         expect(status.url).to eq 'https://foo.bar/watch?v=12345'
-        expect(strip_tags(status.text)).to eq 'Nyan Cat 10 hours remixhttps://foo.bar/watch?v=12345'
+        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remix\n\nhttps://foo.bar/watch?v=12345"
       end
     end
 
@@ -125,7 +125,58 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
         expect(status).to_not be_nil
         expect(status.url).to eq 'https://foo.bar/@foo/1234'
-        expect(strip_tags(status.text)).to eq "Let's change the worldhttps://foo.bar/@foo/1234"
+        expect(strip_tags(status.text)).to eq "Let's change the world\n\nhttps://foo.bar/@foo/1234"
+      end
+    end
+
+    context 'with Event object that contains a HTML summary' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'https://foo.bar/@foo/1234',
+          type: 'Event',
+          name: 'Fediverse Birthday Party',
+          startTime: '2024-01-31T20:00:00.000+01:00',
+          location: {
+            type: 'Place',
+            name: 'FooBar – The not converted location',
+          },
+          content: 'The not converted detailed description of the event object.',
+          summary: '<p>See you at the <strong>FooBar</strong>!</p><ul><li><strong>Doors:</strong> 8pm</li><li><strong>Music:</strong> 10pm</li></ul>',
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.url).to eq 'https://foo.bar/@foo/1234'
+        expect(status.text).to start_with "<h2>#{object[:name]}</h2>\n\n#{object[:summary]}\n\n"
+        expect(status.text).to include "href=\"#{object[:id]}\""
+      end
+    end
+
+    context 'with Article object that contains a HTML summary' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'https://foo.bar/blog/future-of-the-fediverse',
+          type: 'Article',
+          name: 'Future of the Fediverse',
+          content: 'Lorem Ipsum',
+          summary: '<p>Guest article by <a href="https://john.mastodon">John Mastodon</a></p><p>The fediverse is great reading this you will find out why!</p>',
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.url).to eq object[:id]
+        expect(status.text).to start_with "<h2>#{object[:name]}</h2>\n\n#{object[:summary]}\n\n"
+        expect(status.text).to include "href=\"#{object[:id]}\""
       end
     end
 
@@ -225,9 +276,9 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
     end
   end
 
-  context 'with statuses referencing other statuses', :sidekiq_inline do
+  context 'with statuses referencing other statuses', :inline_jobs do
     before do
-      stub_const 'ActivityPub::FetchRemoteStatusService::DISCOVERIES_PER_REQUEST', 5
+      stub_const 'ActivityPub::FetchRemoteStatusService::DISCOVERIES_PER_REQUEST', 3
     end
 
     context 'when using inReplyTo' do
@@ -243,7 +294,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
       end
 
       before do
-        8.times do |i|
+        5.times do |i|
           status_json = {
             '@context': 'https://www.w3.org/ns/activitystreams',
             id: "https://foo.bar/@foo/#{i}",
@@ -257,12 +308,10 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
         end
       end
 
-      it 'creates at least some statuses' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }.to change { sender.statuses.count }.by_at_least(2)
-      end
-
-      it 'creates no more account than the limit allows' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }.to change { sender.statuses.count }.by_at_most(5)
+      it 'creates statuses but not more than limit allows' do
+        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }
+          .to change { sender.statuses.count }.by_at_least(2)
+          .and change { sender.statuses.count }.by_at_most(3)
       end
     end
 
@@ -287,7 +336,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
       end
 
       before do
-        8.times do |i|
+        5.times do |i|
           status_json = {
             '@context': 'https://www.w3.org/ns/activitystreams',
             id: "https://foo.bar/@foo/#{i}",
@@ -309,12 +358,10 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
         end
       end
 
-      it 'creates at least some statuses' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }.to change { sender.statuses.count }.by_at_least(2)
-      end
-
-      it 'creates no more account than the limit allows' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }.to change { sender.statuses.count }.by_at_most(5)
+      it 'creates statuses but not more than limit allows' do
+        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }
+          .to change { sender.statuses.count }.by_at_least(2)
+          .and change { sender.statuses.count }.by_at_most(3)
       end
     end
   end

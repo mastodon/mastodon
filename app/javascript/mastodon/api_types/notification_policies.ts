@@ -1,10 +1,13 @@
 // See app/serializers/rest/notification_policy_serializer.rb
 
+export type NotificationPolicyValue = 'accept' | 'filter' | 'drop';
+
 export interface NotificationPolicyJSON {
-  filter_not_following: boolean;
-  filter_not_followers: boolean;
-  filter_new_accounts: boolean;
-  filter_private_mentions: boolean;
+  for_not_following: NotificationPolicyValue;
+  for_not_followers: NotificationPolicyValue;
+  for_new_accounts: NotificationPolicyValue;
+  for_private_mentions: NotificationPolicyValue;
+  for_limited_accounts: NotificationPolicyValue;
   summary: {
     pending_requests_count: number;
     pending_notifications_count: number;

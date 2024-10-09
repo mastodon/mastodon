@@ -5,14 +5,13 @@ el:
     contact_missing: Δεν έχει οριστεί
     contact_unavailable: Μη διαθέσιμο
     hosted_on: Το Mastodon φιλοξενείται στο %{domain}
-    title: Σχετικά με
+    title: Σχετικά
   accounts:
-    follow: Ακολούθησε
     followers:
       one: Ακόλουθος
       other: Ακόλουθοι
     following: Ακολουθείτε
-    instance_actor_flash: Αυτός ο λογαριασμός είναι εικονικός και χρησιμοποιείται για να αντιπροσωπεύει τον ίδιο τον διακομιστή και όχι κάποιον μεμονωμένο χρήστη. Χρησιμοποιείται για σκοπούς συναλλαγών και δεν πρέπει να ανασταλεί.
+    instance_actor_flash: Αυτός ο λογαριασμός είναι εικονικός και χρησιμοποιείται για να αντιπροσωπεύει τον ίδιο τον διακομιστή και όχι κάποιον μεμονωμένο χρήστη. Χρησιμοποιείται για σκοπούς ομοσπονδίας και δεν πρέπει να ανασταλεί.
     last_active: τελευταία ενεργός/ή
     link_verified_on: Η ιδιοκτησία αυτού του συνδέσμου ελέγχθηκε στις %{date}
     nothing_here: Δεν υπάρχει τίποτα εδώ!
@@ -25,6 +24,8 @@ el:
   admin:
     account_actions:
       action: Εκτέλεση ενέργειας
+      already_silenced: Αυτός ο λογαριασμός έχει ήδη περιοριστεί.
+      already_suspended: Αυτός ο λογαριασμός έχει ήδη ανασταλεί.
       title: Εκτέλεση ενέργειας συντονισμού στον %{acct}
     account_moderation_notes:
       create: Άφησε σημείωση
@@ -46,6 +47,7 @@ el:
         title: Αλλαγή email για %{username}
       change_role:
         changed_msg: Ο ρόλος άλλαξε επιτυχώς!
+        edit_roles: Διαχείριση ρόλων χρήστη
         label: Αλλαγή ρόλου
         no_role: Κανένας ρόλος
         title: Αλλαγή ρόλου για %{username}
@@ -58,7 +60,7 @@ el:
       demote: Υποβιβασμός
       destroyed_msg: Τα δεδομένα του/της %{username} εκκρεμούν για άμεση διαγραφή
       disable: Πάγωμα
-      disable_sign_in_token_auth: Απενεργοποίηση επαλήθευσης μέσω email
+      disable_sign_in_token_auth: Απενεργοποίηση επαλήθευσης διακριτικού email
       disable_two_factor_authentication: Απενεργοποίηση 2FA
       disabled: Παγωμένος
       display_name: Εμφανιζόμενο όνομα
@@ -67,7 +69,7 @@ el:
       email: Email
       email_status: Κατάσταση email
       enable: Ξεπάγωμα
-      enable_sign_in_token_auth: Ενεργοποίηση ελέγχου ταυτότητας μέσω e-mail
+      enable_sign_in_token_auth: Ενεργοποίηση ελέγχου ταυτότητας διακριτικού e-mail
       enabled: Ενεργοποιημένο
       enabled_msg: Επιτυχές ξεπάγωμα λογαριασμού του/της %{username}
       followers: Ακόλουθοι
@@ -132,7 +134,7 @@ el:
       resubscribe: Επανεγγραφή
       role: Ρόλος
       search: Αναζήτηση
-      search_same_email_domain: Άλλοι χρήστες με τον ίδιο τομέα e-mail
+      search_same_email_domain: Άλλοι χρήστες με τον ίδιο τομέα email
       search_same_ip: Υπόλοιποι χρήστες με την ίδια διεύθυνση IP
       security: Ασφάλεια
       security_measures:
@@ -159,7 +161,7 @@ el:
       unconfirmed_email: Ανεπιβεβαίωτο email
       undo_sensitized: Άρση ευαίσθητου
       undo_silenced: Άρση περιορισμού
-      undo_suspension: Αναίρεση παύσης
+      undo_suspension: Αναίρεση αναστολής
       unsilenced_msg: Επιτυχής άρση περιορισμών λογαριασμού του/της %{username}
       unsubscribe: Κατάργηση εγγραφής
       unsuspended_msg: Επιτυχής άρση αναστολής λογαριασμού του/της %{username}
@@ -167,32 +169,32 @@ el:
       view_domain: Προβολή περίληψης τομέα
       warn: Προειδοποίηση
       web: Διαδίκτυο
-      whitelisted: Εγκεκριμένοι για συναλλαγές
+      whitelisted: Εγκεκριμένοι για ομοσπονδία
     action_logs:
       action_types:
         approve_appeal: Έγκριση Έφεσης
         approve_user: Έγκριση Χρήστη
         assigned_to_self_report: Ανάθεση Αναφοράς
-        change_email_user: Αλλαγή email για χρήστη
+        change_email_user: Αλλαγή email για Χρήστη
         change_role_user: Αλλαγή του ρόλου του χρήστη
         confirm_user: Επιβεβαίωση Χρήστη
         create_account_warning: Δημιουργία Προειδοποίησης
         create_announcement: Δημιουργία Ανακοίνωσης
-        create_canonical_email_block: Δημιουργία αποκλεισμού e-mail
+        create_canonical_email_block: Δημιουργία Αποκλεισμού Email
         create_custom_emoji: Δημιουργία Προσαρμοσμένου Emoji
         create_domain_allow: Δημιουργία Αποδεκτού Τομέα
         create_domain_block: Δημιουργία Αποκλεισμού Τομέα
-        create_email_domain_block: Δημουργία Αποκλεισμού Τομέα email
+        create_email_domain_block: Δημιουργία Αποκλεισμού Τομέα Email
         create_ip_block: Δημιουργία κανόνα IP
         create_unavailable_domain: Δημιουργία Μη Διαθέσιμου Τομέα
-        create_user_role: Δημιουργία ρόλου
+        create_user_role: Δημιουργία Ρόλου
         demote_user: Υποβιβασμός Χρήστη
         destroy_announcement: Διαγραφή Ανακοίνωσης
-        destroy_canonical_email_block: Διαγραφή Αποκλεισμού email
+        destroy_canonical_email_block: Διαγραφή Αποκλεισμού Email
         destroy_custom_emoji: Διαγραφή Προσαρμοσμένου Emoji
         destroy_domain_allow: Διαγραφή Αποδεκτού Τομέα
         destroy_domain_block: Διαγραφή Αποκλεισμού Τομέα
-        destroy_email_domain_block: Διαγραφή Αποκλεισμένου Τομέα email
+        destroy_email_domain_block: Διαγραφή Αποκλεισμού Τομέα Email
         destroy_instance: Εκκαθάριση Τομέα
         destroy_ip_block: Διαγραφή κανόνα IP
         destroy_status: Διαγραφή Ανάρτησης
@@ -200,10 +202,10 @@ el:
         destroy_user_role: Καταστροφή Ρόλου
         disable_2fa_user: Απενεργοποίηση 2FA
         disable_custom_emoji: Απενεργοποίηση Προσαρμοσμένων Emoji
-        disable_sign_in_token_auth_user: Απενεργοποίηση Ελέγχου Ταυτότητας Μέσω E-mail για το Χρήστη
+        disable_sign_in_token_auth_user: Απενεργοποίηση Ελέγχου Ταυτότητας Διακριτικού Email για Χρήστη
         disable_user: Απενεργοποίηση Χρήστη
         enable_custom_emoji: Ενεργοποίηση Προσαρμοσμένων Emoji
-        enable_sign_in_token_auth_user: Ενεργοποίηση Ελέγχου Ταυτότητας Μέσω E-mail για το Χρήστη
+        enable_sign_in_token_auth_user: Ενεργοποίηση Ελέγχου Ταυτότητας Διακριτικού Email για Χρήστη
         enable_user: Ενεργοποίηση Χρήστη
         memorialize_account: Μετατροπή Λογαριασμού σε Εις Μνήμην
         promote_user: Προαγωγή Χρήστη
@@ -226,32 +228,31 @@ el:
         update_custom_emoji: Ενημέρωση Προσαρμοσμένου Emoji
         update_domain_block: Ενημέρωση Αποκλεισμού Τομέα
         update_ip_block: Ενημέρωση κανόνα IP
+        update_report: Ενημέρωση Αναφοράς
         update_status: Ενημέρωση Ανάρτησης
         update_user_role: Ενημέρωση ρόλου
       actions:
         approve_appeal_html: Ο/Η %{name} ενέκρινε την ένσταση της απόφασης των συντονιστών από %{target}
         approve_user_html: ο/η %{name} ενέκρινε την εγγραφή του %{target}
         assigned_to_self_report_html: Ο/Η %{name} ανάθεσε την αναφορά %{target} στον εαυτό του/της
-        change_email_user_html: Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
+        change_email_user_html: Ο χρήστης %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
         change_role_user_html: Ο/Η %{name} άλλαξε ρόλο του/της %{target}
-        confirm_user_html: Ο/Η %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}
+        confirm_user_html: Ο χρήστης %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}
         create_account_warning_html: Ο/Η %{name} έστειλε προειδοποίηση προς %{target}
         create_announcement_html: Ο/Η %{name} δημιούργησε νέα ανακοίνωση %{target}
-        create_canonical_email_block_html: Ο/Η %{name} απέκλεισε e-mail με το hash %{target}
+        create_canonical_email_block_html: Ο χρήστης %{name} απέκλεισε email με το hash %{target}
         create_custom_emoji_html: Ο/Η %{name} ανέβασε νέο emoji %{target}
         create_domain_allow_html: Ο/Η %{name} επέτρεψε την συναλλαγή με τον τομέα %{target}
         create_domain_block_html: Ο/Η %{name} απέκλεισε τον τομέα %{target}
-        create_email_domain_block_html: Ο/Η %{name} απέκλεισε τον τομέα email %{target}
+        create_email_domain_block_html: Ο χρήστης %{name} απέκλεισε τον τομέα email %{target}
         create_ip_block_html: Ο/Η %{name} δημιούργησε κανόνα για την IP %{target}
         create_unavailable_domain_html: Ο/Η %{name} σταμάτησε να τροφοδοτεί τον τομέα %{target}
         create_user_role_html: Ο/Η %{name} δημιούργησε ρόλο %{target}
         demote_user_html: Ο/Η %{name} υποβίβασε τον χρήστη %{target}
         destroy_announcement_html: Ο/Η %{name} διέγραψε την ανακοίνωση %{target}
-        destroy_canonical_email_block_html: Ο/Η %{name} επέτρεψε email με το hash %{target}
         destroy_custom_emoji_html: Ο/Η %{name} διέγραψε το emoji %{target}
         destroy_domain_allow_html: Ο/Η %{name} αφαίρεσε τον τομέα %{target} από τη λίστα εγκρίσεων
         destroy_domain_block_html: Ο/Η %{name} επέτρεψε τον τομέα %{target}
-        destroy_email_domain_block_html: Ο/Η %{name} ξεμπλόκαρε το email domain %{target}
         destroy_instance_html: Ο/Η %{name} εκκαθάρισε τον τομέα %{target}
         destroy_ip_block_html: Ο/Η %{name} διέγραψε τον κανόνα για την IP %{target}
         destroy_status_html: Ο/Η %{name} αφαίρεσε την ανάρτηση του/της %{target}
@@ -259,10 +260,8 @@ el:
         destroy_user_role_html: Ο/Η %{name} διέγραψε τον ρόλο του %{target}
         disable_2fa_user_html: Ο/Η %{name} απενεργοποίησε την απαίτηση για ταυτοποίηση δύο παραγόντων για τον χρήστη %{target}
         disable_custom_emoji_html: Ο/Η %{name} απενεργοποίησε το emoji %{target}
-        disable_sign_in_token_auth_user_html: Ο/Η %{name} απενεργοποίησε την ταυτοποίηση χαρακτηριστικού μέσω e-mail του %{target}
         disable_user_html: Ο/Η %{name} απενεργοποίησε τη σύνδεση για τον χρήστη %{target}
         enable_custom_emoji_html: Ο/Η %{name} ενεργοποίησε το emoji %{target}
-        enable_sign_in_token_auth_user_html: Ο/Η %{name} ενεργοποίησε την ταυτοποίηση χαρακτηριστικού μέσω e-mail του %{target}
         enable_user_html: Ο/Η %{name} ενεργοποίησε τη σύνδεση για τον χρήστη %{target}
         memorialize_account_html: O/H %{name} μετέτρεψε τον λογαριασμό του %{target} σε σελίδα εις μνήμην
         promote_user_html: Ο/Η %{name} προβίβασε το χρήστη %{target}
@@ -270,7 +269,6 @@ el:
         reject_user_html: ο/η %{name} απέρριψε την εγγραφή από %{target}
         remove_avatar_user_html: ο/η %{name} αφαίρεσε το άβαταρ του/της %{target}
         reopen_report_html: Ο/Η %{name} ξανάνοιξε την αναφορά %{target}
-        resend_user_html: Ο/Η %{name} έστειλε ξανά e-mail επιβεβαίωσης για τον/την %{target}
         reset_password_user_html: Ο/Η %{name} επανέφερε το συνθηματικό του χρήστη %{target}
         resolve_report_html: Ο/Η %{name} επέλυσε την αναφορά %{target}
         sensitive_account_html: Ο/Η %{name} επισήμανε τα πολυμέσα του/της %{target} ως ευαίσθητα
@@ -285,6 +283,7 @@ el:
         update_custom_emoji_html: Ο/Η %{name} ενημέρωσε το emoji %{target}
         update_domain_block_html: Ο/Η %{name} ενημέρωσε τον αποκλεισμό τομέα για %{target}
         update_ip_block_html: Ο/Η %{name} άλλαξε τον κανόνα για την IP %{target}
+        update_report_html: Ο χρήστης %{name} ενημέρωσε την αναφορά %{target}
         update_status_html: Ο/Η %{name} ενημέρωσε την ανάρτηση του/της %{target}
         update_user_role_html: Ο/Η %{name} άλλαξε τον ρόλο %{target}
       deleted_account: διαγεγραμμένος λογαριασμός
@@ -292,6 +291,7 @@ el:
       filter_by_action: Φιλτράρισμα ανά ενέργεια
       filter_by_user: Φιλτράρισμα ανά χρήστη
       title: Αρχείο ελέγχου
+      unavailable_instance: "(μη διαθέσιμο όνομα τομέα)"
     announcements:
       destroyed_msg: Επιτυχής διαγραφή ανακοίνωσης!
       edit:
@@ -429,7 +429,6 @@ el:
       attempts_over_week:
         one: "%{count} προσπάθεια την τελευταία εβδομάδα"
         other: "%{count} προσπάθειες εγγραφής την τελευταία εβδομάδα"
-      created_msg: Επιτυχής αποκλεισμού email τομέα
       delete: Διαγραφή
       dns:
         types:
@@ -438,12 +437,8 @@ el:
       new:
         create: Προσθήκη τομέα
         resolve: Επίλυση τομέα
-        title: Αποκλεισμός νέου τομέα email
-      no_email_domain_block_selected: Δεν άλλαξαν οι αποκλεισμοί τομέα καθώς δεν επιλέχθηκε κανένας
       not_permitted: Δεν επιτρέπεται
-      resolved_dns_records_hint_html: Το όνομα τομέα επιλύεται στους ακόλουθους τομείς MX, οι οποίοι είναι τελικά υπεύθυνοι για την αποδοχή των e-mail. Αποκλείοντας έναν τομέα MX θα μπλοκάρει τις εγγραφές από οποιαδήποτε διεύθυνση email που χρησιμοποιεί τον ίδιο τομέα MX, ακόμη και αν το ορατό όνομα τομέα είναι διαφορετικό. <strong>Προσέξτε να μην αποκλείσετε τους μεγάλους παρόχους ηλεκτρονικού ταχυδρομείου.</strong>
       resolved_through_html: Επιλύθηκε μέσω %{domain}
-      title: Αποκλεισμένοι τομείς email
     export_domain_allows:
       new:
         title: Εισαγωγή επιτρεπόμενων τομέων
@@ -468,6 +463,9 @@ el:
       title: Ακολούθησε τις προτάσεις
       unsuppress: Επαναφορά των συστάσεων ακολούθησης
     instances:
+      audit_log:
+        title: Πρόσφατα Αρχεία Ελέγχου
+        view_all: Δείτε πλήρη αρχεία καταγραφής ελέγχων
       availability:
         description_html:
           one: Εάν η παράδοση στον τομέα αποτύχει για <strong>%{count} ημέρα</strong>, δεν θα γίνουν περαιτέρω προσπάθειες παράδοσης εκτός αν μια παράδοση <em>από</em> τον τομέα ληφθεί.
@@ -594,9 +592,11 @@ el:
         resolve_description_html: Δεν θα ληφθούν μέτρα κατά του αναφερόμενου λογαριασμού, δεν θα καταγραφεί κανένα παράπτωμα, και η αναφορά θα κλείσει.
         silence_description_html: Ο λογαριασμός θα είναι ορατός μόνο σε εκείνους που ήδη τον ακολουθούν ή τον αναζητούν χειροκίνητα, περιορίζοντας κατά πολύ την εμβέλειά του. Η ενέργεια αυτή είναι αναστρέψιμη. Κλείνει όλες τις αναφορές εναντίον αυτού του λογαριασμού.
         suspend_description_html: Ο λογαριασμός και όλο το περιεχόμενό του θα είναι απρόσιτα και τελικά θα διαγραφούν και η αλληλεπίδραση με αυτόν θα είναι αδύνατη. Αναστρέψιμη εντός 30 ημερών. Κλείνει όλες τις αναφορές εναντίον αυτού του λογαριασμού.
-      actions_description_html: Αποφάσισε ποια μέτρα θα ληφθούν για την επίλυση αυτής της αναφοράς. Εάν προβείς σε τιμωρητική ενέργεια κατά του αναφερόμενου λογαριασμού, θα αποσταλεί ειδοποίηση μέσω ηλεκτρονικού ταχυδρομείου σε αυτόν, εκτός όταν η κατηγορία <strong>Σπαμ</strong> είναι επιλεγμένη.
       actions_description_remote_html: Αποφάσισε ποια μέτρα θα ληφθούν για την επίλυση αυτής της αναφοράς. Αυτό θα επηρεάσει μόνο το πώς <strong>ο δικός σας</strong> διακομιστής επικοινωνεί με αυτόν τον απομακρυσμένο λογαριασμό και χειρίζεται το περιεχόμενό του.
       add_to_report: Πρόσθεσε περισσότερα στην αναφορά
+      already_suspended_badges:
+        local: Ήδη σε αναστολή σε αυτόν τον διακομιστή
+        remote: Ήδη σε αναστολή στο διακομιστή του
       are_you_sure: Σίγουρα;
       assign_to_self: Ανάθεση σε μένα
       assigned: Αρμόδιος συντονιστής
@@ -633,6 +633,7 @@ el:
       report: 'Αναφορά #%{id}'
       reported_account: Αναφερόμενος λογαριασμός
       reported_by: Αναφέρθηκε από
+      reported_with_application: Αναφέρθηκε με την εφαρμογή
       resolved: Επιλύθηκε
       resolved_msg: Η αναφορά επιλύθηκε επιτυχώς!
       skip_to_actions: Μετάβαση στις ενέργειες
@@ -655,7 +656,6 @@ el:
         delete_data_html: Διάγραψε το προφίλ και το περιεχόμενο του <strong>@%{acct}</strong> σε 30 ημέρες από τώρα εκτός αν, εν τω μεταξύ, ανακληθεί η αναστολή
         preview_preamble_html: 'Ο <strong>@%{acct}</strong> θα λάβει μια προειδοποίηση με τα ακόλουθο περιεχόμενο:'
         record_strike_html: Κατάγραψε ένα παράπτωμα εναντίον του <strong>@%{acct}</strong> για να σε βοηθήσει να αποφασίσεις σε μελλοντικές παραβιάσεις από αυτόν τον λογαριασμό
-        send_email_html: Στείλε στον <strong>@%{acct}</strong> ένα προειδοποιητικό e-mail
         warning_placeholder: Προαιρετικές επιπλέον εξηγήσεις για αυτή την ενέργεια από την ομάδα συντονισμού.
       target_origin: Προέλευση του αναφερόμενου λογαριασμού
       title: Αναφορές
@@ -695,7 +695,6 @@ el:
         manage_appeals: Διαχείριση Εφέσεων
         manage_appeals_description: Επιτρέπει στους χρήστες να εξετάζουν τις εφέσεις κατά των ενεργειών της ομάδας συντονισμού
         manage_blocks: Διαχείριση Αποκλεισμών
-        manage_blocks_description: Επιτρέπει στους χρήστες να αποκλείουν παρόχους e-mail και διευθύνσεις IP
         manage_custom_emojis: Διαχείριση Προσαρμοσμένων Emojis
         manage_custom_emojis_description: Επιτρέπει στους χρήστες να διαχειρίζονται προσαρμοσμένα emojis στον διακομιστή
         manage_federation: Διαχείριση Συναλλαγών
@@ -713,7 +712,6 @@ el:
         manage_taxonomies: Διαχείριση Ταξινομιών
         manage_taxonomies_description: Επιτρέπει στους χρήστες να εξετάζουν το δημοφιλές περιεχόμενο και να ενημερώνουν τις ρυθμίσεις ετικέτας
         manage_user_access: Διαχείριση Πρόσβασης Χρήστη
-        manage_user_access_description: Επιτρέπει στους χρήστες να απενεργοποιούν την ταυτοποίηση δύο παραγόντων άλλων χρηστών, να αλλάξουν τη διεύθυνση ηλεκτρονικού ταχυδρομείου τους και να επαναφέρουν τον κωδικό πρόσβασής τους
         manage_users: Διαχείριση Χρηστών
         manage_users_description: Επιτρέπει στους χρήστες να βλέπουν τις λεπτομέρειες άλλων χρηστών και να εκτελούν ενέργειες συντονισμού εναντίον τους
         manage_webhooks: Διαχείριση Webhooks
@@ -744,7 +742,11 @@ el:
       branding:
         preamble: Η ταυτότητα του διακομιστή σου, τον διαφοροποιεί από άλλους διακομιστές του δικτύου. Αυτές οι πληροφορίες μπορεί να εμφανίζονται σε διάφορα περιβάλλοντα, όπως η ιστοσελίδα του Mastodon, εγγενείς εφαρμογές, σε προεπισκοπήσεις συνδέσμου σε άλλους ιστότοπους και εντός εφαρμογών μηνυμάτων και ούτω καθεξής. Γι' αυτό, είναι καλύτερο να διατηρούνται αυτές οι πληροφορίες σαφείς, σύντομες και συνοπτικές.
         title: Ταυτότητα
+      captcha_enabled:
+        desc_html: Αυτό βασίζεται σε εξωτερικά scripts από το hCaptcha, όπου υπάρχει ανησυχία πέρι ασφάλειας και ιδιωτηκότητας. Επιπρόσθετα, <strong> μπορεί να κάνει τη διαδικασία εγγραφής πολύ λιγότερο προσβάσιμη για κάποια άτομα (ειδικά αυτά με αναπηρίες)</strong>. Για αυτούς τους λόγους, παρακαλώ σκέψου άλλου τρόπους εγγραφής όπως με αποδοχή ή με πρόσκληση.
+        title: Απαιτείται από νέους χρήστες να λύσουν ένα CAPTCHA για να επιβεβαιώσουν τον λογαριασμό τους
       content_retention:
+        danger_zone: Επικίνδυνη Ζώνη
         preamble: Έλεγξε πώς αποθηκεύεται το περιεχόμενο που δημιουργείται από τους χρήστες στο Mastodon.
         title: Διατήρηση περιεχομένου
       default_noindex:
@@ -764,6 +766,7 @@ el:
         disabled: Για κανέναν
         users: Προς συνδεδεμένους τοπικούς χρήστες
       registrations:
+        moderation_recommandation: Παρακαλώ βεβαιώσου ότι έχεις μια επαρκής και ενεργή ομάδα συντονισμού πριν ανοίξεις τις εγγραφές για όλους!
         preamble: Έλεγξε ποιος μπορεί να δημιουργήσει ένα λογαριασμό στον διακομιστή σας.
         title: Εγγραφές
       registrations_mode:
@@ -771,9 +774,27 @@ el:
           approved: Απαιτείται έγκριση για εγγραφή
           none: Δεν μπορεί να εγγραφεί κανείς
           open: Μπορεί να εγγραφεί ο οποιοσδήποτε
+        warning_hint: Προτείνουμε τη χρήση του "Απαιτείται έγκριση για εγγραφή" εκτός αν ξέρεις ότι η ομάδα συντονισμού σου μπορεί να διαχειριστεί τις κακόβουλες και σπαμ εγγραφές σε εύλογο χρονικό διάστημα.
+      security:
+        authorized_fetch: Απαίτηση ταυτόποιησης από διακομιστές σε ομοσπονδία
+        authorized_fetch_hint: Η απαίτηση ελέγχου ταυτότητας από ομοσπονδιακούς διακομιστές επιτρέπει την αυστηρότερη επιβολή αποκλεισμού τόσο σε επίπεδο χρήστη όσο και σε επίπεδο διακομιστή. Ωστόσο, αυτό έχει το κόστος στην απόδοσης μειώνει την εμβέλεια των απαντήσεών σας και μπορεί να δημιουργήσει προβλήματα συμβατότητας με ορισμένες ομοσπονδιακές υπηρεσίες. Επιπλέον, αυτό δεν θα εμποδίσει τους αφοσιωμένους ηθοποιούς να ανακτήσουν τις δημόσιες αναρτήσεις και τους λογαριασμούς σας.
+        authorized_fetch_overridden_hint: Προς το παρόν, δε μπορείς να αλλάξεις αυτή την ρύθμιση επειδή παρακάμπτεται από μια μεταβλητή περιβάλλοντος.
+        federation_authentication: Επιβολή ομοσπονδιακής ταυτοποίησης
+      title: Ρυθμίσεις διακομιστή
     site_uploads:
       delete: Διαγραφή μεταφορτωμένου αρχείου
       destroyed_msg: Η μεταφόρτωση ιστότοπου διαγράφηκε επιτυχώς!
+    software_updates:
+      critical_update: Κρίσιμο - παρακαλώ ενημέρωσε γρήγορα
+      documentation_link: Μάθε περισσότερα
+      release_notes: Σημειώσεις έκδοσης
+      title: Διαθέσιμες ενημερώσεις
+      type: Τύπος
+      types:
+        major: Κύρια έκδοση
+        minor: Τυπική ενημέρωση
+        patch: Ενημέρωση επιδιόρθωσης - διορθώσεις σφαλμάτων και εύκολα εφαρμόσιμες αλλαγές
+      version: Έκδοση
     statuses:
       account: Συντάκτης
       application: Εφαρμογή
@@ -814,6 +835,20 @@ el:
     system_checks:
       database_schema_check:
         message_html: Υπάρχουν μετακινήσεις βάσεων δεδομένων που εκκρεμούν. Παρακαλώ εκτέλεσέ τες για να βεβαιωθείς ότι η εφαρμογή συμπεριφέρεται όπως αναμένεται
+      elasticsearch_health_red:
+        message_html: Το σύμπλεγμα Elasticsearch δεν είναι υγιές (κόκκινη κατάσταση), μη διαθέσιμες δυνατότητες αναζήτησης
+      elasticsearch_health_yellow:
+        message_html: Το σύμπλεγμα Elasticsearch δεν είναι υγιές (κίτρινη κατάσταση), ίσως θες να διαπιστώσεις την αιτία
+      elasticsearch_index_mismatch:
+        message_html: Οι αντιστοιχές δείκτη του Elasticsearch δεν είναι ενημερωμένες. Παρακαλώ εκτέλεσε το <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Δες το εγχειρίδιο
+        message_html: Το σύμπλεγμα Elasticsearch σου, έχει παραπάνω από ένα κόμβο, το Mastodon δεν είναι ρυθμισμένο για να τους χρησιμοποιεί.
+      elasticsearch_preset_single_node:
+        action: Δες το εγχειρίδιο
+        message_html: Το σύμπλεγμα Elasticsearch σου έχει μόνο ένα κόμβο, το <code>ES_PRESET</code> πρέπει να οριστεί ως <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Ο δείκτης του συστήματος Elasticsearch είναι ξεπερασμένος λόγω μιας αλλαγής ρύθμισης. Παρακαλώ εκτέλεσε <code>tootctl search deploy --reset-chewy</code> για να τον ενημερώσεις.
       elasticsearch_running_check:
         message_html: Δεν ήταν δυνατή η σύνδεση στο Elasticsearch. Παρακαλώ έλεγξε ότι εκτελείται ή απενεργοποίησε την αναζήτηση πλήρους κειμένου
       elasticsearch_version_check:
@@ -824,6 +859,12 @@ el:
         message_html: Δεν έχεις ορίσει κανέναν κανόνα διακομιστή.
       sidekiq_process_check:
         message_html: Καμία διεργασία Sidekiq δεν εκτελείται για την ουρά %{value}. Παρακαλώ έλεγξε τη διαμόρφωση του Sidekiq
+      software_version_critical_check:
+        action: Δες τις διαθέσιμες ενημερώσεις
+        message_html: Μια κρίσιμη ενημέρωση του Mastodon είναι διαθέσιμη, παρακαλώ ενήμερωσε το συντομότερο δυνατόν.
+      software_version_patch_check:
+        action: Δες τις διαθέσιμες ενημερώσεις
+        message_html: Μια ενημέρωση διόρθωσης σφαλμάτων του Mastodon είναι διαθέσιμη.
       upload_check_privacy_error:
         action: Δες εδώ για περισσότερες πληροφορίες
         message_html: "<strong>Ο διακομιστής σας δεν έχει ρυθμιστεί σωστά. Το απόρρητο των χρηστών σας κινδυνεύει.</strong>"
@@ -831,7 +872,23 @@ el:
         action: Δες εδώ για περισσότερες πληροφορίες
         message_html: "<strong>Ο χώρος αποθήκευσης αντικειμένων σου δεν έχει ρυθμιστεί σωστά. Το απόρρητο των χρηστών σου κινδυνεύει.</strong>"
     tags:
+      moderation:
+        not_trendable: Δε δημιουργεί τάσεις
+        not_usable: Μη χρησιμοποιήσιμη
+        pending_review: Εκκρεμεί αξιολόγηση
+        review_requested: Αιτήθηκε αξιολόγηση
+        reviewed: Αξιολογήθηκε
+        title: Κατάσταση
+        trendable: Πιθανό για τάσεις
+        unreviewed: Μη ελεγμένη
+        usable: Χρησιμοποιήσιμο
+      name: Όνομα
+      newest: Νεότερη όλων
+      oldest: Παλαιότερη όλων
+      reset: Επαναφορά
       review: Κατάσταση αξιολόγησης
+      search: Αναζήτηση
+      title: Ετικέτες
       updated_msg: Οι ρυθμίσεις των ετικετών ενημερώθηκαν επιτυχώς
     title: Διαχείριση
     trends:
@@ -896,13 +953,14 @@ el:
         used_by_over_week:
           one: Χρησιμοποιήθηκε από ένα άτομο την τελευταία εβδομάδα
           other: Χρησιμοποιήθηκε από %{count} άτομα την τελευταία εβδομάδα
-      title: Τάσεις
+      title: Προτάσεις και τάσεις
       trending: Τάσεις
     warning_presets:
       add_new: Πρόσθεση νέου
       delete: Διαγραφή
       edit_preset: Ενημέρωση προκαθορισμένης προειδοποίησης
       empty: Δεν έχετε ακόμη ορίσει κάποια προκαθορισμένη προειδοποίηση.
+      title: Προεπιλογές προειδοποίησης
     webhooks:
       add_new: Προσθήκη σημείου τερματισμού
       delete: Διαγραφή
@@ -924,6 +982,9 @@ el:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Λόγω έλλειψης πρόσφατης δραστηριότητας συντονιστών, οι εγγραφές στο %{instance} έχουν αλλάξει αυτόματα στην απαίτηση χειροκίνητης αξιολόγησης, για να αποτρέψει το %{instance} από το να χρησιμοποιηθεί ως πλατφόρμα για πιθανούς κακούς ηθοποιούς. Μπορείς να το αλλάξεις ξανά για να ανοίξετε εγγραφές ανά πάσα στιγμή.
+      subject: Οι εγγραφές για το %{instance} έχουν αλλάξει αυτόματα σε απαίτηση έγκρισης
     new_appeal:
       actions:
         delete_statuses: διαγραφή των αναρτήσεών του
@@ -936,6 +997,9 @@ el:
       body: 'Ο/Η %{target} κάνει έφεση στην απόφαση συντονισμού που έγινε από τον/την %{action_taken_by} στις %{date}, η οποία ήταν %{type}. Έγραψαν:'
       next_steps: Μπορείς να εγκρίνεις την έφεση για να αναιρέσεις την απόφαση της ομάδας συντονισμού ή να την αγνοήσεις.
       subject: Ο/Η %{username} κάνει έφεση σε μια απόφαση της ομάδας συντονισμού στον %{instance}
+    new_critical_software_updates:
+      body: Έχουν κυκλοφορήσει νέες κρίσιμες εκδόσεις του Mastodon, καλύτερα να ενημερώσεις το συντομότερο δυνατόν!
+      subject: Κρίσιμες ενημερώσεις Mastodon είναι διαθέσιμες για το %{instance}!
     new_pending_account:
       body: Τα στοιχεία του νέου λογαριασμού είναι παρακάτω. Μπορείς να εγκρίνεις ή να απορρίψεις αυτή την αίτηση.
       subject: Νέος λογαριασμός προς έγκριση στο %{instance} (%{username})
@@ -943,6 +1007,9 @@ el:
       body: Ο/Η %{reporter} ανέφερε τον/την %{target}
       body_remote: Κάποιος/α από τον τομέα %{domain} ανέφερε τον/την %{target}
       subject: Νέα αναφορά για %{instance} (#%{id})
+    new_software_updates:
+      body: Έχουν κυκλοφορήσει νέες εκδόσεις Mastodon, ίσως θέλεις να ενημερώσεις!
+      subject: Νέες εκδόσεις Mastodon είναι διαθέσιμες για το %{instance}!
     new_trends:
       body: 'Τα ακόλουθα στοιχεία χρειάζονται αξιολόγηση για να μπορούν να προβληθούν δημόσια:'
       new_trending_links:
@@ -973,7 +1040,7 @@ el:
   application_mailer:
     notification_preferences: Αλλαγή προτιμήσεων email
     salutation: "%{name},"
-    settings: 'Άλλαξε τις προτιμήσεις email: %{link}'
+    settings: 'Αλλαγή προτιμήσεων email: %{link}'
     unsubscribe: Κατάργηση εγγραφής
     view: 'Προβολή:'
     view_profile: Προβολή προφίλ
@@ -989,9 +1056,17 @@ el:
   auth:
     apply_for_account: Ζήτα έναν λογαριασμό
     captcha_confirmation:
+      help_html: Εάν αντιμετωπίζεις προβλήματα με την επίλυση του CAPTCHA, μπορείς να επικοινωνήσεις μαζί μας μέσω %{email} και μπορούμε να σε βοηθήσουμε.
+      hint_html: Και κάτι ακόμα! Πρέπει να επιβεβαιώσουμε ότι είσαι άνθρωπος (αυτό γίνεται για να κρατήσουμε μακριά το σπαμ!). Λύσε το CAPTCHA παρακάτω και κάνε κλικ "Συνέχεια".
       title: Ελεγχος ασφαλείας
     confirmations:
-      wrong_email_hint: Εάν αυτή η διεύθυνση email δεν είναι σωστή, μπορείς να την αλλάξεις στις ρυθμίσεις λογαριασμού.
+      awaiting_review_title: Η εγγραφή σου εξετάζεται
+      clicking_this_link: κάνοντας κλικ σε αυτόν τον σύνδεσμο
+      login_link: σύνδεση
+      proceed_to_login_html: Τώρα μπορείς να προχωρήσεις στο %{login_link}.
+      redirect_to_app_html: Θα πρέπει να μεταφέρθηκες στην εφαρμογή <strong>%{app_name}</strong>. Αν αυτό δεν συμβεί, δοκιμάσε το %{clicking_this_link} ή επέστρεψε χειροκίνητα στην εφαρμογή.
+      registration_complete: Η εγγραφή σου στο %{domain} έχει πλέον ολοκληρωθεί!
+      welcome_title: Καλώς ήρθες, %{name}!
     delete_account: Διαγραφή λογαριασμού
     delete_account_html: Αν θέλεις να διαγράψεις το λογαριασμό σου, μπορείς <a href="%{path}">να συνεχίσεις εδώ</a>. Θα σου ζητηθεί επιβεβαίωση.
     description:
@@ -1026,15 +1101,16 @@ el:
     rules:
       accept: Αποδοχή
       back: Πίσω
+      invited_by: 'Μπορείτε να συμμετάσχεις στο %{domain} χάρη στην πρόσκληση που έλαβες από:'
       preamble: Αυτά ορίζονται και επιβάλλονται από τους συντονιστές του%{domain}.
+      preamble_invited: Πριν συνεχίσεις, παρακαλώ δώσε προσοχή στους βασικούς κανόνες που έχουν οριστεί από τους συντονιστές του %{domain}.
       title: Ορισμένοι βασικοί κανόνες.
+      title_invited: Έχεις προσκληθεί.
     security: Ασφάλεια
     set_new_password: Ορισμός νέου συνθηματικού
     setup:
-      email_below_hint_html: Έλεγξε τον φάκελο ανεπιθύμητης αλληλογραφίας ή ζήτα καινούργιο. Μπορείς να διορθώσεις τη διεύθυνση email σου αν είναι λάθος.
       email_settings_hint_html: Πάτησε το σύνδεσμο που σου στείλαμε για να επαληθεύσεις το %{email}. Θα σε περιμένουμε εδώ.
       link_not_received: Δεν έλαβες τον σύνδεσμο;
-      new_confirmation_instructions_sent: Θα λάβεις ένα νέο e-mail με το σύνδεσμο επιβεβαίωσης σε λίγα λεπτά!
       title: Ελέγξτε τα εισερχόμενά σας
     sign_in:
       preamble_html: Συνδεθείτε με τα διαπιστευτήριά σας στον <strong>%{domain}</strong>. Αν ο λογαριασμός σας φιλοξενείται σε διαφορετικό διακομιστή, δε θα μπορείτε να συνδεθείτε εδώ.
@@ -1045,13 +1121,14 @@ el:
       title: Ας ξεκινήσουμε τις ρυθμίσεις στο %{domain}.
     status:
       account_status: Κατάσταση λογαριασμού
-      confirming: Αναμονή για ολοκλήρωση επιβεβαίωσης του email.
       functional: Ο λογαριασμός σας είναι πλήρως λειτουργικός.
-      pending: Η εφαρμογή σας εκκρεμεί έγκρισης, πιθανόν θα διαρκέσει κάποιο χρόνο. Θα λάβετε email αν εγκριθεί.
       redirecting_to: Ο λογαριασμός σου είναι ανενεργός γιατί επί του παρόντος ανακατευθύνει στον %{acct}.
+      self_destruct: Καθώς το %{domain} κλείνει, θα έχεις μόνο περιορισμένη πρόσβαση στον λογαριασμό σου.
       view_strikes: Προβολή προηγούμενων ποινών εναντίον του λογαριασμού σας
     too_fast: Η φόρμα υποβλήθηκε πολύ γρήγορα, προσπαθήστε ξανά.
     use_security_key: Χρήση κλειδιού ασφαλείας
+  author_attribution:
+    example_title: Δείγμα κειμένου
   challenge:
     confirm: Συνέχεια
     hint_html: "<strong>Συμβουλή:</strong> Δεν θα σου ζητήσουμε τον κωδικό ασφαλείας σου ξανά για την επόμενη ώρα."
@@ -1060,7 +1137,6 @@ el:
   crypto:
     errors:
       invalid_key: δεν είναι έγκυρο κλειδί Ed25519 ή Curve25519
-      invalid_signature: δεν είναι έγκυρη υπογραφή Ed25519
   date:
     formats:
       default: "%b %d, %Y"
@@ -1089,9 +1165,6 @@ el:
       before: 'Πριν συνεχίσεις, παρακαλούμε να διαβάσεις τις παρακάτω σημειώσεις προσεκτικά:'
       caches: Περιεχόμενο που έχει αποθηκευτεί προσωρινά σε άλλους διακομιστές ίσως παραμείνει
       data_removal: Οι αναρτήσεις σου και άλλα δεδομένα θα διαγραφούν οριστικά
-      email_change_html: Μπορείς να <a href="%{path}">αλλάξεις τη διεύθυνση email σου</a> χωρίς να διαγράψεις τον λογαριασμό σου
-      email_contact_html: Αν και πάλι δεν έρθει, μπορείς να στείλεις email προς <a href="mailto:%{email}">%{email}</a> για βοήθεια
-      email_reconfirmation_html: Αν δεν έχεις λάβει το email επιβεβαίωσης, μπορείς να το <a href="%{path}">ζητήσεις ξανά</a>
       irreversible: Δεν θα μπορείς να ανακτήσεις ή ενεργοποιήσεις ξανά το λογαριασμό σου
       more_details_html: Για περισσότερες πληροφορίες, δες την <a href="%{terms_path}">πολιτική απορρήτου</a>.
       username_available: Το όνομα χρήστη σου θα γίνει ξανά διαθέσιμο
@@ -1126,8 +1199,10 @@ el:
       your_appeal_approved: Η έφεση σου έχει εγκριθεί
       your_appeal_pending: Υπέβαλλες έφεση
       your_appeal_rejected: Η έφεση σου απορρίφθηκε
-  domain_validator:
-    invalid_domain: δεν είναι έγκυρο όνομα τομέα
+  edit_profile:
+    basic_information: Βασικές πληροφορίες
+    hint_html: "<strong>Τροποποίησε τί βλέπουν άτομα στο δημόσιο προφίλ σου και δίπλα στις αναρτήσεις σου.</strong> Είναι πιο πιθανό κάποιος να σε ακολουθήσει πίσω και να αλληλεπιδράσουν μαζί σου αν έχεις ολοκληρωμένο προφίλ και εικόνα προφίλ."
+    other: Άλλο
   errors:
     '400': Το αίτημα ήταν άκυρο ή με λάθος μορφή.
     '403': Δεν έχεις δικαίωμα πρόσβασης σε αυτή τη σελίδα.
@@ -1235,10 +1310,13 @@ el:
   imports:
     errors:
       empty: Κενό αρχείο CSV
+      incompatible_type: Μη συμβατό με τον επιλεγμένο τύπο εισαγωγής
       invalid_csv_file: 'Μη έγκυρο αρχείο CSV. Σφάλμα: %{error}'
       over_rows_processing_limit: περιέχει περισσότερες από %{count} γραμμές
       too_large: Το αρχείο είναι πολύ μεγάλο
     failures: Αποτυχίες
+    imported: Εισήχθη
+    mismatched_types_warning: Φαίνεται ότι έχεις επιλέξει λάθος τύπο για αυτήν την εισαγωγή, παρακαλώ έλεγξε ξανά.
     modes:
       merge: Συγχώνευση
       merge_long: Διατήρηση των εγγράφων που υπάρχουν και προσθήκη των νέων
@@ -1250,11 +1328,16 @@ el:
       finished: Ολοκληρώθηκε
       in_progress: Σε εξέλιξη
       scheduled: Προγραμματισμένη
+      unconfirmed: Μη επιβεβαιωμένη
     status: Κατάσταση
     success: Τα δεδομένα σου μεταφορτώθηκαν επιτυχώς και θα επεξεργαστούν σύντομα
     time_started: Ξεκίνησε στις
     titles:
+      blocking: Εισαγωγή αποκλεισμένων λογαριασμών
+      bookmarks: Εισαγωγή σελιδοδεικτών
+      domain_blocking: Εισαγωγή αποκλεισμένων τομέων
       following: Εισαγωγή λογαριασμών που ακολουθείτε
+      lists: Εισαγωγή λιστών
     type: Τύπος εισαγωγής
     type_groups:
       destructive: Μπλοκ & σίγαση
@@ -1263,6 +1346,7 @@ el:
       bookmarks: Σελιδοδείκτες
       domain_blocking: Λίστα αποκλεισμένων τομέων
       following: Λίστα ατόμων που ακολουθείτε
+      lists: Λίστες
       muting: Λίστα αποσιωπήσεων
     upload: Μεταμόρφωση
   invites:
@@ -1277,6 +1361,7 @@ el:
       '86400': 1 μέρα
     expires_in_prompt: Ποτέ
     generate: Δημιουργία συνδέσμου πρόσκλησης
+    invalid: Αυτή η πρόσκληση δεν είναι έγκυρη
     invited_by: 'Σε προσκάλεσε ο/η:'
     max_uses:
       one: 1 χρήσης
@@ -1294,13 +1379,17 @@ el:
     authentication_methods:
       otp: εφαρμογή ταυτοποίησης δύο παραγόντων
       password: συνθηματικό
-      sign_in_token: κωδικός ασφαλείας e-mail
       webauthn: κλειδιά ασφαλείας
     description_html: Αν δεις δραστηριότητα που δεν αναγνωρίζεις, σκεφτείς να αλλάξεις τον κωδικό πρόσβασής σου και να ενεργοποιήσεις τον έλεγχο ταυτότητας δύο παραγόντων.
     empty: Δεν υπάρχει διαθέσιμο ιστορικό ελέγχου ταυτότητας
     failed_sign_in_html: Αποτυχημένη προσπάθεια σύνδεσης με %{method} από %{ip} (%{browser})
     successful_sign_in_html: Επιτυχής σύνδεση με %{method} από %{ip} (%{browser})
     title: Ιστορικό ελέγχου ταυτότητας
+  mail_subscriptions:
+    unsubscribe:
+      action: Ναι, κατάργηση συνδρομής
+      complete: Η συνδρομή καταργήθηκε
+      title: Κατάργηση συνδρομής
   media_attachments:
     validations:
       images_and_video: Δεν γίνεται να προσθέσεις βίντεο σε ανάρτηση που ήδη περιέχει εικόνες
@@ -1421,12 +1510,18 @@ el:
     other: Άλλες
     posting_defaults: Προεπιλογές ανάρτησης
     public_timelines: Δημόσιες ροές
+  privacy:
+    privacy: Απόρρητο
+    search: Αναζήτηση
   privacy_policy:
     title: Πολιτική Απορρήτου
   reactions:
     errors:
       limit_reached: Το όριο διαφορετικών αντιδράσεων ξεπεράστηκε
       unrecognized_emoji: δεν είναι ένα αναγνωρισμένο emoji
+  redirects:
+    prompt: Αν εμπιστεύεστε αυτόν τον σύνδεσμο, κάντε κλικ σε αυτόν για να συνεχίσετε.
+    title: Αποχωρείτε από το %{instance}.
   relationships:
     activity: Δραστηριότητα λογαριασμού
     confirm_follow_selected_followers: Είσαι βέβαιος ότι θες να ακολουθήσεις τους επιλεγμένους ακόλουθους;
@@ -1462,6 +1557,9 @@ el:
     over_daily_limit: Έχεις υπερβεί το όριο των %{limit} προγραμματισμένων αναρτήσεων για εκείνη τη μέρα
     over_total_limit: Έχεις υπερβεί το όριο των %{limit} προγραμματισμένων αναρτήσεων
     too_soon: Η προγραμματισμένη ημερομηνία πρέπει να είναι στο μέλλον
+  self_destruct:
+    lead_html: Δυστυχώς, το <strong>%{domain}</strong> κλείνει οριστικά. Αν είχατε λογαριασμό εκεί, δεν θα μπορείτε να συνεχίσετε τη χρήση του, αλλά μπορείτε ακόμα να ζητήσετε ένα αντίγραφο ασφαλείας των δεδομένων σας.
+    title: Αυτός ο διακομιστής κλείνει οριστικά
   sessions:
     activity: Τελευταία δραστηριότητα
     browser: Φυλλομετρητής
@@ -1518,11 +1616,12 @@ el:
     delete: Διαγραφή λογαριασμού
     development: Ανάπτυξη
     edit_profile: Επεξεργασία προφίλ
-    export: Εξαγωγή δεδομένων
+    export: Εξαγωγή
     featured_tags: Παρεχόμενες ετικέτες
     import: Εισαγωγή
     import_and_export: Εισαγωγή και εξαγωγή
     migrate: Μετακόμιση λογαριασμού
+    notifications: Ειδοποιήσεις μέσω email
     preferences: Προτιμήσεις
     profile: Προφίλ
     relationships: Ακολουθείς και σε ακολουθούν
@@ -1530,6 +1629,12 @@ el:
     strikes: Παραπτώματα από ομάδα συντονισμού
     two_factor_authentication: Πιστοποίηση 2 παραγόντων
     webauthn_authentication: Κλειδιά ασφαλείας
+  severed_relationships:
+    download: Λήψη (%{count})
+    event_type:
+      account_suspension: Αναστολή λογαριασμού (%{target_name})
+      domain_block: Αναστολή διακομιστή (%{target_name})
+    type: Συμβάν
   statuses:
     attached:
       audio:
@@ -1551,23 +1656,12 @@ el:
     edited_at_html: Επεξεργάστηκε στις %{date}
     errors:
       in_reply_not_found: Η ανάρτηση στην οποία προσπαθείς να απαντήσεις δεν φαίνεται να υπάρχει.
-    open_in_web: Άνοιγμα στο διαδίκτυο
     over_character_limit: υπέρβαση μέγιστου ορίου %{max} χαρακτήρων
     pin_errors:
       direct: Αναρτήσεις που είναι ορατές μόνο στους αναφερόμενους χρήστες δεν μπορούν να καρφιτσωθούν
       limit: Έχεις ήδη καρφιτσώσει το μέγιστο αριθμό επιτρεπτών αναρτήσεων
       ownership: Δεν μπορείς να καρφιτσώσεις ανάρτηση κάποιου άλλου
       reblog: Οι ενισχύσεις δεν καρφιτσώνονται
-    poll:
-      total_people:
-        one: "%{count} άτομο"
-        other: "%{count} άτομα"
-      total_votes:
-        one: "%{count} ψήφος"
-        other: "%{count} ψήφοι"
-      vote: Ψήφισε
-    show_more: Δείξε περισσότερα
-    show_thread: Εμφάνιση νήματος
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Άμεση
@@ -1623,11 +1717,13 @@ el:
     contrast: Mastodon (Υψηλή αντίθεση)
     default: Mastodon (Σκοτεινό)
     mastodon-light: Mastodon (Ανοιχτόχρωμο)
+    system: Αυτόματο (θέμα συστήματος)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b %Y, %H:%M %Z"
   two_factor_authentication:
     add: Προσθήκη
     disable: Απενεργοποίηση 2FA
@@ -1660,6 +1756,9 @@ el:
       extra: Είναι τώρα έτοιμο για λήψη!
       subject: Το αρχείο σου είναι έτοιμο για λήψη
       title: Λήψη εφεδρικού αρχείου
+    failed_2fa:
+      subject: Αποτυχία ταυτοποίησης δεύτερου παράγοντα
+      title: Αποτυχία ελέγχου ταυτότητας δεύτερου παράγοντα
     suspicious_sign_in:
       change_password: άλλαξε τον κωδικό πρόσβασής σου
       details: 'Εδώ είναι οι λεπτομέρειες της σύνδεσης:'
@@ -1699,7 +1798,23 @@ el:
         silence: Περιορισμένος λογαριασμός
         suspend: Λογαριασμός σε αναστολή
     welcome:
+      apps_android_action: Απόκτησέ το στο Google Play
+      apps_ios_action: Λήψη από το AppStore
+      apps_step: Κατεβάστε τις επίσημες εφαρμογές μας.
+      apps_title: Εφαρμογές Mastodon
+      checklist_subtitle: 'Ας ξεκινήσουμε σε αυτό το νέο κοινωνικό σύνορο:'
+      checklist_title: Λίστα Καλωσορίσματος
+      edit_profile_action: Εξατομίκευση
+      edit_profile_step: Ενίσχυσε τις αλληλεπιδράσεις σου έχοντας ένα ολοκληρωμένο προφίλ.
+      edit_profile_title: Εξατομίκευση του προφίλ σου
       explanation: Μερικές συμβουλές για να ξεκινήσεις
+      feature_action: Μάθε περισσότερα
+      feature_audience: Το Mastodon σού παρέχει μια μοναδική δυνατότητα διαχείρισης του κοινού σου χωρίς μεσάζοντες. Το Mastodon όταν αναπτύσσεται στη δική σου υποδομή σού επιτρέπει να ακολουθείς και να ακολουθείσαι από οποιονδήποτε άλλο συνδεδεμένο διακομιστή Mastodon και κανείς δεν τον ελέγχει, εκτός από σένα.
+      feature_audience_title: Χτίσε το κοινό σου με σιγουριά
+      post_action: Σύνθεση
+      share_action: Κοινοποίηση
+      share_title: Μοιραστείτε το προφίλ σας στο Mastodon
+      sign_in_action: Σύνδεση
       subject: Καλώς ήρθες στο Mastodon
       title: Καλώς όρισες, %{name}!
   users:
@@ -1707,10 +1822,12 @@ el:
     go_to_sso_account_settings: Πήγαινε στις ρυθμίσεις λογαριασμού του παρόχου ταυτότητας σου
     invalid_otp_token: Άκυρος κωδικός πιστοποίησης 2 παραγόντων
     otp_lost_help_html: Αν χάσεις πρόσβαση και στα δύο, μπορείς να επικοινωνήσεις με %{email}
-    seamless_external_login: Επειδή έχεις συνδεθεί μέσω τρίτης υπηρεσίας, οι ρυθμίσεις συνθηματικού και email δεν είναι διαθέσιμες.
     signed_in_as: 'Έχεις συνδεθεί ως:'
   verification:
+    here_is_how: Δείτε πώς
     verification: Πιστοποίηση
+    verified_links: Οι επαληθευμένοι σύνδεσμοι σας
+    website_verification: Επαλήθευση ιστοτόπου
   webauthn_credentials:
     add: Προσθήκη νέου κλειδιού ασφαλείας
     create:

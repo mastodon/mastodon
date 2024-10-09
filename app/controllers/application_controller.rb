@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_theme
   helper_method :single_user_mode?
   helper_method :use_seamless_external_login?
-  helper_method :omniauth_only?
   helper_method :sso_account_settings
   helper_method :limited_federation_mode?
   helper_method :body_class_string
@@ -33,7 +32,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
   rescue_from Mastodon::RateLimitExceededError, with: :too_many_requests
 
-  rescue_from HTTP::Error, OpenSSL::SSL::SSLError, with: :internal_server_error
+  rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS, with: :internal_server_error)
   rescue_from Mastodon::RaceConditionError, Stoplight::Error::RedLight, ActiveRecord::SerializationFailure, with: :service_unavailable
 
   rescue_from Seahorse::Client::NetworkingError do |e|
@@ -135,10 +134,6 @@ class ApplicationController < ActionController::Base
 
   def use_seamless_external_login?
     Devise.pam_authentication || Devise.ldap_authentication
-  end
-
-  def omniauth_only?
-    ENV['OMNIAUTH_ONLY'] == 'true'
   end
 
   def sso_account_settings

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ConnectionPool::SharedTimedStack do
+RSpec.describe ConnectionPool::SharedTimedStack do
   subject { described_class.new(5) { |site| mini_connection_class.new(site) } }
 
   let(:mini_connection_class) do

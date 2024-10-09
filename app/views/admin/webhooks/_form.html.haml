@@ -13,7 +13,8 @@
                as: :check_boxes,
                collection_wrapper_tag: 'ul',
                item_wrapper_tag: 'li',
-               disabled: Webhook::EVENTS.filter { |event| !current_user.role.can?(Webhook.permission_for_event(event)) }
+               disabled: Webhook::EVENTS.filter { |event| !current_user.role.can?(Webhook.permission_for_event(event)) },
+               label_method: ->(event) { tag.samp(event) }
 
 .fields-group
   = form.input :template,

@@ -2,9 +2,7 @@
   = t('admin.dashboard.title')
 
 - content_for :heading_actions do
-  = l(@time_period.first)
-  = ' - '
-  = l(@time_period.last)
+  = date_range(@time_period)
 
 - unless @system_checks.empty?
   .flash-message-stack
@@ -56,19 +54,19 @@
 
   .dashboard__item
     = link_to admin_reports_path, class: 'dashboard__quick-access' do
-      %span= t('admin.dashboard.pending_reports_html', count: @pending_reports_count)
+      %span= t('admin.dashboard.pending_reports_html', count: @pending_reports_count.value)
       = material_symbol 'chevron_right'
 
     = link_to admin_accounts_path(status: 'pending'), class: 'dashboard__quick-access' do
-      %span= t('admin.dashboard.pending_users_html', count: @pending_users_count)
+      %span= t('admin.dashboard.pending_users_html', count: @pending_users_count.value)
       = material_symbol 'chevron_right'
 
     = link_to admin_trends_tags_path(status: 'pending_review'), class: 'dashboard__quick-access' do
-      %span= t('admin.dashboard.pending_tags_html', count: @pending_tags_count)
+      %span= t('admin.dashboard.pending_tags_html', count: @pending_tags_count.value)
       = material_symbol 'chevron_right'
 
     = link_to admin_disputes_appeals_path(status: 'pending'), class: 'dashboard__quick-access' do
-      %span= t('admin.dashboard.pending_appeals_html', count: @pending_appeals_count)
+      %span= t('admin.dashboard.pending_appeals_html', count: @pending_appeals_count.value)
       = material_symbol 'chevron_right'
   .dashboard__item
     = react_admin_component :dimension,

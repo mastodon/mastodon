@@ -7,7 +7,6 @@ id:
     hosted_on: Mastodon dihosting di %{domain}
     title: Tentang
   accounts:
-    follow: Ikuti
     followers:
       other: Pengikut
     following: Mengikuti
@@ -29,7 +28,6 @@ id:
       created_msg: Catatan moderasi berhasil dibuat!
       destroyed_msg: Catatan moderasi berhasil dihapus!
     accounts:
-      add_email_domain_block: Masukkan domain email ke daftar hitam
       approve: Terima
       approved_msg: Berhasil menerima pendaftaran %{username}
       are_you_sure: Anda yakin?
@@ -56,7 +54,6 @@ id:
       demote: Turunkan
       destroyed_msg: Data %{username} masuk antrean untuk dihapus segera
       disable: Nonaktifkan
-      disable_sign_in_token_auth: Nonaktifkan otentikasi token email
       disable_two_factor_authentication: Nonaktifkan 2FA
       disabled: Dinonaktifkan
       display_name: Nama
@@ -65,7 +62,6 @@ id:
       email: Email
       email_status: Status Email
       enable: Aktifkan
-      enable_sign_in_token_auth: Aktifkan otentikasi token email
       enabled: Diaktifkan
       enabled_msg: Berhasil mencairkan akun %{username}
       followers: Pengikut
@@ -129,7 +125,6 @@ id:
       resubscribe: Langganan ulang
       role: Peran
       search: Cari
-      search_same_email_domain: Pengguna lain dengan domain email yang sama
       search_same_ip: Pengguna lain dengan IP yang sama
       security: Keamanan
       security_measures:
@@ -170,26 +165,21 @@ id:
         approve_appeal: Setujui Banding
         approve_user: Setujui Pengguna
         assigned_to_self_report: Berikan laporan
-        change_email_user: Ubah Email untuk Pengguna
         change_role_user: Ubah Peran Pengguna
         confirm_user: Konfirmasi Pengguna
         create_account_warning: Buat Peringatan
         create_announcement: Buat Pengumuman
-        create_canonical_email_block: Buat Pemblokiran Surel
         create_custom_emoji: Buat Emoji Khusus
         create_domain_allow: Buat Izin Domain
         create_domain_block: Buat Blokir Domain
-        create_email_domain_block: Buat Email Blokir Domain
         create_ip_block: Buat aturan IP
         create_unavailable_domain: Buat Domain yang Tidak Tersedia
         create_user_role: Buah Peran
         demote_user: Turunkan Pengguna
         destroy_announcement: Hapus Pengumuman
-        destroy_canonical_email_block: Hapus Pemblokiran Surel
         destroy_custom_emoji: Hapus Emoji Khusus
         destroy_domain_allow: Hapus Izin Domain
         destroy_domain_block: Hapus Blokir Domain
-        destroy_email_domain_block: Hapus email blokir domain
         destroy_instance: Hapus Domain
         destroy_ip_block: Hapus aturan IP
         destroy_status: Hapus Status
@@ -197,10 +187,8 @@ id:
         destroy_user_role: Hapus Peran
         disable_2fa_user: Nonaktifkan 2FA
         disable_custom_emoji: Nonaktifkan Emoji Khusus
-        disable_sign_in_token_auth_user: Nonaktifkan Otentikasi Token Email untuk Pengguna
         disable_user: Nonaktifkan Pengguna
         enable_custom_emoji: Aktifkan Emoji Khusus
-        enable_sign_in_token_auth_user: Aktifkan Otentikasi Token Email untuk Pengguna
         enable_user: Aktifkan Pengguna
         memorialize_account: Kenang Akun
         promote_user: Promosikan Pengguna
@@ -229,26 +217,20 @@ id:
         approve_appeal_html: "%{name} menyetujui moderasi keputusan banding dari %{target}"
         approve_user_html: "%{name} menyetujui pendaftaran dari %{target}"
         assigned_to_self_report_html: "%{name} menugaskan laporan %{target} ke dirinya sendiri"
-        change_email_user_html: "%{name} mengubah alamat email pengguna %{target}"
         change_role_user_html: "%{name} mengubah peran %{target}"
-        confirm_user_html: "%{name} mengonfirmasi alamat email pengguna %{target}"
         create_account_warning_html: "%{name} mengirim peringatan untuk %{target}"
         create_announcement_html: "%{name} membuat pengumuman baru %{target}"
-        create_canonical_email_block_html: "%{name} memblokir surel dengan hash %{target}"
         create_custom_emoji_html: "%{name} mengunggah emoji baru %{target}"
         create_domain_allow_html: "%{name} mengizinkan penggabungan dengan domain %{target}"
         create_domain_block_html: "%{name} memblokir domain %{target}"
-        create_email_domain_block_html: "%{name} memblokir domain email %{target}"
         create_ip_block_html: "%{name} membuat aturan untuk IP %{target}"
         create_unavailable_domain_html: "%{name} menghentikan pengiriman ke domain %{target}"
         create_user_role_html: "%{name} membuat peran %{target}"
         demote_user_html: "%{name} menurunkan pengguna %{target}"
         destroy_announcement_html: "%{name} menghapus pengumuman %{target}"
-        destroy_canonical_email_block_html: "%{name} menghapus pemblokiran surel dengan hash %{target}"
         destroy_custom_emoji_html: "%{name} menghapus emoji %{target}"
         destroy_domain_allow_html: "%{name} membatalkan izin penggabungan dengan domain %{target}"
         destroy_domain_block_html: "%{name} membuka blokir domain %{target}"
-        destroy_email_domain_block_html: "%{name} membuka blokir domain email %{target}"
         destroy_instance_html: "%{name} menghapus domain %{target}"
         destroy_ip_block_html: "%{name} menghapus aturan untuk IP %{target}"
         destroy_status_html: "%{name} menghapus status %{target}"
@@ -256,10 +238,8 @@ id:
         destroy_user_role_html: "%{name} menghapus peran %{target}"
         disable_2fa_user_html: "%{name} mematikan syarat dua faktor untuk pengguna %{target}"
         disable_custom_emoji_html: "%{name} mematikan emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} menonaktifkan otentikasi token email untuk %{target}"
         disable_user_html: "%{name} mematikan login untuk pengguna %{target}"
         enable_custom_emoji_html: "%{name} mengaktifkan emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} mengaktifkan otentikasi token email untuk %{target}"
         enable_user_html: "%{name} mengaktifkan login untuk pengguna %{target}"
         memorialize_account_html: "%{name} mengubah akun %{target} jadi halaman memorial"
         promote_user_html: "%{name} mempromosikan pengguna %{target}"
@@ -267,7 +247,6 @@ id:
         reject_user_html: "%{name} menolak pendaftaran dari %{target}"
         remove_avatar_user_html: "%{name} menghapus avatar %{target}"
         reopen_report_html: "%{name} membuka ulang laporan %{target}"
-        resend_user_html: "%{name} mengirim ulang konfirmasi email untuk %{target}"
         reset_password_user_html: "%{name} mereset kata sandi pengguna %{target}"
         resolve_report_html: "%{name} menyelesaikan laporan %{target}"
         sensitive_account_html: "%{name} menandai media %{target} sebagai sensitif"
@@ -412,7 +391,6 @@ id:
       add_new: Tambah baru
       attempts_over_week:
         other: "%{count} upaya mendaftar selama seminggu terakhir"
-      created_msg: Berhasil memblokir domain email
       delete: Hapus
       dns:
         types:
@@ -421,11 +399,7 @@ id:
       new:
         create: Tambah domain
         resolve: Pembaruan domain
-        title: Blokir domain email baru
-      no_email_domain_block_selected: Tidak ada blokir domain email yang diubah sebab tidak ada yang dipilih
-      resolved_dns_records_hint_html: Pembaruan nama domain mengikuti domain MX, yang bertanggung jawab menerima email. Memblokir domain MX akan memblokir pendaftaran dari alamat email apapun yang menggunakan domain MX sama, meskipun nama domainnya beda. <strong>Hati-hati untuk tidak memblokir layanan email besar.</strong>
       resolved_through_html: Diperbarui melalui %{domain}
-      title: Domain email terblokir
     export_domain_allows:
       new:
         title: Impor izin domain
@@ -568,7 +542,6 @@ id:
         mark_as_sensitive_description_html: Media di dalam kiriman terlapor akan ditandai sebagai sensitif dan hukuman akan direkam untuk membantu menangani pelanggaran dari akun yang sama di masa mendatang.
         other_description_html: Lihat opsi lain untuk mengendalikan perilaku akun dan menyesuaikan komunikasi ke akun yang dilaporkan.
         resolve_description_html: Tidak ada tindakan untuk akun yang dilaporkan, tidak ada peringatan yang direkam, dan laporan akan ditutup.
-      actions_description_html: Memutuskan tindakan yang tepat untuk menyelesaikan laporan ini. Jika Anda memutuskan tindakan hukuman kepada akun terlapor, notifikasi email akan dikirim ke mereka, kecuali saat kategori <strong>Spam</strong> dipilih.
       add_to_report: Tambahkan lebih banyak untuk lapor
       are_you_sure: Apakah Anda yakin?
       assign_to_self: Tugaskan kpd saya
@@ -642,7 +615,6 @@ id:
         manage_appeals: Kelola Permintaan
         manage_appeals_description: Memungkinkan pengguna untuk meninjau permintaan terhadap tindakan moderasi
         manage_blocks: Kelola Pemblokiran
-        manage_blocks_description: Memungkinkan pengguna untuk memblokir penyedia surel dan alamat IP
         manage_custom_emojis: Kelola Emoji Kustom
         manage_custom_emojis_description: Memungkinkan pengguna untuk mengelola emoji kustom di server
         manage_federation: Kelola Federasi
@@ -660,7 +632,6 @@ id:
         manage_taxonomies: Kelola Taksonomi
         manage_taxonomies_description: Memungkinkan pengguna untuk meninjau konten tren dan memperbarui pengaturan tagar
         manage_user_access: Kelola Akses Pengguna
-        manage_user_access_description: Memungkinkan pengguna untuk menonaktifkan otentikasi dua faktor, mengubah alamat surel, dan mengatur ulang kata sandi pengguna lain
         manage_users: Kelola Pengguna
         manage_users_description: Memungkinkan pengguna untuk melihat detail pengguna lain dan melakukan tindakan moderasi terhadap mereka
         manage_webhooks: Kelola Webhook
@@ -830,7 +801,6 @@ id:
         usage_comparison: Digunakan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
         used_by_over_week:
           other: Digunakan oleh %{count} orang selama seminggu terakhir
-      title: Tren
       trending: Sedang tren
     warning_presets:
       add_new: Tambah baru
@@ -904,9 +874,7 @@ id:
       guide_link_text: Siapa saja bisa berkontribusi.
     sensitive_content: Konten sensitif
   application_mailer:
-    notification_preferences: Ubah pilihan email
     salutation: "%{name},"
-    settings: 'Ubah pilihan email: %{link}'
     view: 'Tampilan:'
     view_profile: Lihat profil
     view_status: Lihat status
@@ -955,9 +923,7 @@ id:
       title: Mari kita siapkan Anda di %{domain}.
     status:
       account_status: Status akun
-      confirming: Menunggu konfirmasi email diselesaikan.
       functional: Akun Anda kini beroperasi penuh.
-      pending: Permintaan Anda sedang ditinjau oleh staf kami. Ini mungkin butuh beberapa waktu. Anda akan menerima email jika permintaan Anda diterima.
       redirecting_to: Akun Anda tidak aktif karena sekarang dialihkan ke %{acct}.
       view_strikes: Lihat hukuman lalu yang pernah terjadi kepada akun Anda
     too_fast: Formulir dikirim terlalu cepat, coba lagi.
@@ -970,7 +936,6 @@ id:
   crypto:
     errors:
       invalid_key: bukan kunci Ed25519 atau Curve25519 yang valid
-      invalid_signature: bukan tanda tangan Ed25519 yang valid
   date:
     formats:
       default: "%d %b %Y"
@@ -999,9 +964,6 @@ id:
       before: 'Sebelum melanjutkan, silakan baca catatan ini dengan hati-hati:'
       caches: Konten yang telah tersimpan di server lain mungkin akan tetap di sana
       data_removal: Kiriman Anda dan data lainnya akan dihapus secara permanen
-      email_change_html: Anda dapat <a href="%{path}">mengubah alamat email Anda</a> tanpa perlu menghapus akun
-      email_contact_html: Jika pesan belum diterima, Anda dapat mengirim email ke <a href="mailto:%{email}">%{email}</a> untuk mencari bantuan
-      email_reconfirmation_html: Jika Anda tidak menerima email konfirmasi, <a href="%{path}">Anda dapat memintanya lagi</a>
       irreversible: Anda tidak akan bisa lagi mengembalikan atau mengaktifkan kembali akun Anda
       more_details_html: Lebih detailnya, lihat <a href="%{terms_path}">kebijakan privasi</a>.
       username_available: Nama pengguna Anda akan tersedia lagi
@@ -1036,8 +998,6 @@ id:
       your_appeal_approved: Banding Anda disetujui
       your_appeal_pending: Anda telah mengirim banding
       your_appeal_rejected: Banding Anda ditolak
-  domain_validator:
-    invalid_domain: bukan nama domain yang valid
   errors:
     '400': Permintaan yang dikirim tidak valid atau cacat.
     '403': Anda tidak mempunyai izin untuk melihat halaman ini.
@@ -1174,7 +1134,6 @@ id:
     authentication_methods:
       otp: aplikasi otentikasi dua-faktor
       password: kata sandi
-      sign_in_token: kode keamanan email
       webauthn: kunci keamanan
     description_html: Jika Anda melihat aktivitas tidak dikenal, pertimbangkan untuk mengubah kata sandi dan mengaktifkan otentikasi dua-faktor.
     empty: Riwayat otentikasi tidak tersedia
@@ -1260,7 +1219,6 @@ id:
     update:
       subject: "%{name} mengedit kiriman"
   notifications:
-    email_events: Event untuk notifikasi email
     email_events_hint: 'Pilih event yang ingin Anda terima notifikasinya:'
   number:
     human:
@@ -1389,7 +1347,6 @@ id:
     delete: Penghapusan akun
     development: Pengembangan
     edit_profile: Ubah profil
-    export: Expor data
     featured_tags: Tagar unggulan
     import: Impor
     import_and_export: Impor dan ekspor
@@ -1418,21 +1375,12 @@ id:
     edited_at_html: Diedit %{date}
     errors:
       in_reply_not_found: Status yang ingin Anda balas sudah tidak ada.
-    open_in_web: Buka di web
     over_character_limit: melebihi %{max} karakter
     pin_errors:
       direct: Kiriman yang hanya terlihat oleh pengguna yang disebutkan tidak dapat disematkan
       limit: Anda sudah mencapai jumlah maksimum kiriman yang dapat disematkan
       ownership: Kiriman orang lain tidak bisa disematkan
       reblog: Boost tidak bisa disematkan
-    poll:
-      total_people:
-        other: "%{count} orang"
-      total_votes:
-        other: "%{count} memilih"
-      vote: Pilih
-    show_more: Tampilkan selengkapnya
-    show_thread: Tampilkan utas
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Langsung
@@ -1565,7 +1513,6 @@ id:
     follow_limit_reached: Anda tidak dapat mengikuti lebih dari %{limit} orang
     invalid_otp_token: Kode dua faktor tidak cocok
     otp_lost_help_html: Jika Anda kehilangan akses keduanya, Anda dapat menghubungi %{email}
-    seamless_external_login: Anda masuk via layanan eksternal, sehingga pengaturan kata sandi dan email tidak tersedia.
     signed_in_as: 'Masuk sebagai:'
   verification:
     verification: Verifikasi

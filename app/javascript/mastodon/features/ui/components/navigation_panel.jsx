@@ -7,16 +7,17 @@ import { Link } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import BookmarksActiveIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
 import BookmarksIcon from '@/material-icons/400-24px/bookmarks.svg?react';
 import ExploreActiveIcon from '@/material-icons/400-24px/explore-fill.svg?react';
 import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
+import ModerationIcon from '@/material-icons/400-24px/gavel.svg?react';
 import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home.svg?react';
 import ListAltActiveIcon from '@/material-icons/400-24px/list_alt-fill.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
+import AdministrationIcon from '@/material-icons/400-24px/manufacturing.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
@@ -34,6 +35,8 @@ import { NavigationPortal } from 'mastodon/components/navigation_portal';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
+import { canManageReports, canViewAdminDashboard } from 'mastodon/permissions';
+import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
 
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
@@ -50,6 +53,8 @@ const messages = defineMessages({
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  administration: { id: 'navigation_bar.administration', defaultMessage: 'Administration' },
+  moderation: { id: 'navigation_bar.moderation', defaultMessage: 'Moderation' },
   followsAndFollowers: { id: 'navigation_bar.follows_and_followers', defaultMessage: 'Follows and followers' },
   about: { id: 'navigation_bar.about', defaultMessage: 'About' },
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
@@ -59,11 +64,13 @@ const messages = defineMessages({
 });
 
 const NotificationsLink = () => {
-  const count = useSelector(state => state.getIn(['notifications', 'unread']));
+
+  const count = useSelector(selectUnreadNotificationGroupsCount);
   const intl = useIntl();
 
   return (
     <ColumnLink
+      key='notifications'
       transparent
       to='/notifications'
       icon={<IconWithBadge id='bell' icon={NotificationsIcon} count={count} className='column-link__icon' />}
@@ -109,18 +116,21 @@ class NavigationPanel extends Component {
 
   render () {
     const { intl } = this.props;
-    const { signedIn, disabledAccountId } = this.props.identity;
+    const { signedIn, disabledAccountId, permissions } = this.props.identity;
 
     let banner = undefined;
 
-    if(transientSingleColumn)
-      banner = (<div className='switch-to-advanced'>
-        {intl.formatMessage(messages.openedInClassicInterface)}
-        {" "}
-        <a href={`/deck${location.pathname}`} className='switch-to-advanced__toggle'>
-          {intl.formatMessage(messages.advancedInterface)}
-        </a>
-      </div>);
+    if (transientSingleColumn) {
+      banner = (
+        <div className='switch-to-advanced'>
+          {intl.formatMessage(messages.openedInClassicInterface)}
+          {" "}
+          <a href={`/deck${location.pathname}`} className='switch-to-advanced__toggle'>
+            {intl.formatMessage(messages.advancedInterface)}
+          </a>
+        </div>
+      );
+    }
 
     return (
       <div className='navigation-panel'>
@@ -134,50 +144,57 @@ class NavigationPanel extends Component {
           </div>
         }
 
-        {signedIn && (
-          <>
-            <ColumnLink transparent to='/home' icon='home' iconComponent={HomeIcon} activeIconComponent={HomeActiveIcon} text={intl.formatMessage(messages.home)} />
-            <NotificationsLink />
-            <FollowRequestsLink />
-          </>
-        )}
+        <div className='navigation-panel__menu'>
+          {signedIn && (
+            <>
+              <ColumnLink transparent to='/home' icon='home' iconComponent={HomeIcon} activeIconComponent={HomeActiveIcon} text={intl.formatMessage(messages.home)} />
+              <NotificationsLink />
+              <FollowRequestsLink />
+            </>
+          )}
 
-        {trendsEnabled ? (
-          <ColumnLink transparent to='/explore' icon='explore' iconComponent={ExploreIcon} activeIconComponent={ExploreActiveIcon} text={intl.formatMessage(messages.explore)} />
-        ) : (
-          <ColumnLink transparent to='/search' icon='search' iconComponent={SearchIcon} text={intl.formatMessage(messages.search)} />
-        )}
+          {trendsEnabled ? (
+            <ColumnLink transparent to='/explore' icon='explore' iconComponent={ExploreIcon} activeIconComponent={ExploreActiveIcon} text={intl.formatMessage(messages.explore)} />
+          ) : (
+            <ColumnLink transparent to='/search' icon='search' iconComponent={SearchIcon} text={intl.formatMessage(messages.search)} />
+          )}
 
-        {(signedIn || timelinePreview) && (
-          <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' iconComponent={PublicIcon} text={intl.formatMessage(messages.firehose)} />
-        )}
+          {(signedIn || timelinePreview) && (
+            <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='globe' iconComponent={PublicIcon} text={intl.formatMessage(messages.firehose)} />
+          )}
 
-        {!signedIn && (
-          <div className='navigation-panel__sign-in-banner'>
+          {!signedIn && (
+            <div className='navigation-panel__sign-in-banner'>
+              <hr />
+              { disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner /> }
+            </div>
+          )}
+
+          {signedIn && (
+            <>
+              <ColumnLink transparent to='/conversations' icon='at' iconComponent={AlternateEmailIcon} text={intl.formatMessage(messages.direct)} />
+              <ColumnLink transparent to='/bookmarks' icon='bookmarks' iconComponent={BookmarksIcon} activeIconComponent={BookmarksActiveIcon} text={intl.formatMessage(messages.bookmarks)} />
+              <ColumnLink transparent to='/favourites' icon='star' iconComponent={StarIcon} activeIconComponent={StarActiveIcon} text={intl.formatMessage(messages.favourites)} />
+              <ColumnLink transparent to='/lists' icon='list-ul' iconComponent={ListAltIcon} activeIconComponent={ListAltActiveIcon} text={intl.formatMessage(messages.lists)} />
+
+              <ListPanel />
+
+              <hr />
+
+              <ColumnLink transparent href='/settings/preferences' icon='cog' iconComponent={SettingsIcon} text={intl.formatMessage(messages.preferences)} />
+
+              {canManageReports(permissions) && <ColumnLink optional transparent href='/admin/reports' icon='flag' iconComponent={ModerationIcon} text={intl.formatMessage(messages.moderation)} />}
+              {canViewAdminDashboard(permissions) && <ColumnLink optional transparent href='/admin/dashboard' icon='tachometer' iconComponent={AdministrationIcon} text={intl.formatMessage(messages.administration)} />}
+            </>
+          )}
+
+          <div className='navigation-panel__legal'>
             <hr />
-            { disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner /> }
+            <ColumnLink transparent to='/about' icon='ellipsis-h' iconComponent={MoreHorizIcon} text={intl.formatMessage(messages.about)} />
           </div>
-        )}
-
-        {signedIn && (
-          <>
-            <ColumnLink transparent to='/conversations' icon='at' iconComponent={AlternateEmailIcon} text={intl.formatMessage(messages.direct)} />
-            <ColumnLink transparent to='/bookmarks' icon='bookmarks' iconComponent={BookmarksIcon} activeIconComponent={BookmarksActiveIcon} text={intl.formatMessage(messages.bookmarks)} />
-            <ColumnLink transparent to='/favourites' icon='star' iconComponent={StarIcon} activeIconComponent={StarActiveIcon} text={intl.formatMessage(messages.favourites)} />
-            <ColumnLink transparent to='/lists' icon='list-ul' iconComponent={ListAltIcon} activeIconComponent={ListAltActiveIcon} text={intl.formatMessage(messages.lists)} />
-
-            <ListPanel />
-
-            <hr />
-
-            <ColumnLink transparent href='/settings/preferences' icon='cog' iconComponent={SettingsIcon} text={intl.formatMessage(messages.preferences)} />
-          </>
-        )}
-
-        <div className='navigation-panel__legal'>
-          <hr />
-          <ColumnLink transparent to='/about' icon='ellipsis-h' iconComponent={MoreHorizIcon} text={intl.formatMessage(messages.about)} />
         </div>
+
+        <div className='flex-spacer' />
 
         <NavigationPortal />
       </div>

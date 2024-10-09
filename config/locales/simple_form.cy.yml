@@ -3,6 +3,7 @@ cy:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Yn amddiffyn rhag priodoliadau ffug.
         discoverable: Mae'n bosibl y bydd eich postiadau cyhoeddus a'ch proffil yn cael sylw neu'n cael eu hargymell mewn gwahanol feysydd o Mastodon ac efallai y bydd eich proffil yn cael ei awgrymu i ddefnyddwyr eraill.
         display_name: Eich enw llawn neu'ch enw hwyl.
         fields: Eich tudalen cartref, rhagenwau, oed, neu unrhyw beth.
@@ -130,7 +131,7 @@ cy:
         name: Dim ond er mwyn ei gwneud yn fwy darllenadwy y gallwch chi newid y llythrennau, er enghraifft
       user:
         chosen_languages: Wedi eu dewis, dim ond tŵtiau yn yr ieithoedd hyn bydd yn cael eu harddangos mewn ffrydiau cyhoeddus
-        role: Mae'r rôl yn rheoli pa ganiatâd sydd gan y defnyddiwr
+        role: Mae'r rôl yn rheoli pa ganiatâd sydd gan y defnyddiwr.
       user_role:
         color: Lliw i'w ddefnyddio ar gyfer y rôl drwy'r UI, fel RGB mewn fformat hecs
         highlighted: Mae hyn yn gwneud y rôl yn weladwy i'r cyhoedd
@@ -143,6 +144,7 @@ cy:
         url: I ble bydd digwyddiadau'n cael eu hanfon
     labels:
       account:
+        attribution_domains_as_text: Dim ond yn caniatáu gwefannau penodol
         discoverable: Proffil nodwedd a phostiadau mewn algorithmau darganfod
         fields:
           name: Label
@@ -211,6 +213,7 @@ cy:
         setting_default_privacy: Preifatrwydd cyhoeddi
         setting_default_sensitive: Marcio cyfryngau fel eu bod yn sensitif bob tro
         setting_delete_modal: Dangos deialog cadarnhau cyn dileu postiad
+        setting_disable_hover_cards: Analluogi rhagolwg proffil ar lusgo
         setting_disable_swiping: Analluogi cynigion llusgo
         setting_display_media: Dangos cyfryngau
         setting_display_media_default: Rhagosodiad
@@ -242,11 +245,13 @@ cy:
           warn: Cuddio â rhybudd
       form_admin_settings:
         activity_api_enabled: Cyhoeddi ystadegau cyfanredol am weithgarwch defnyddwyr yn yr API
+        app_icon: Eicon ap
         backups_retention_period: Cyfnod cadw archif defnyddwyr
         bootstrap_timeline_accounts: Argymhellwch y cyfrifon hyn i ddefnyddwyr newydd bob amser
         closed_registrations_message: Neges bersonol pan nad yw cofrestriadau ar gael
         content_cache_retention_period: Cyfnod cadw cynnwys o bell
         custom_css: CSS cyfaddas
+        favicon: Favicon
         mascot: Mascot cyfaddas (hen)
         media_cache_retention_period: Cyfnod cadw storfa cyfryngau
         peers_api_enabled: Cyhoeddi rhestr o weinyddion a ddarganfuwyd yn yr API
@@ -311,7 +316,7 @@ cy:
         listable: Caniatáu i'r hashnod hwn ymddangos mewn chwiliadau ac awgrymiadau
         name: Hashnod
         trendable: Caniatáu i'r hashnod hwn ymddangos o dan bynciau llosg
-        usable: Caniatáu i bostiadau ddefnyddio'r hashnod hwn
+        usable: Caniatáu i bostiadau ddefnyddio'r hashnod hwn yn lleol
       user:
         role: Rôl
         time_zone: Cylchfa amser

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::SelfDestructScheduler do
+RSpec.describe Scheduler::SelfDestructScheduler do
   let(:worker) { described_class.new }
 
   describe '#perform' do

@@ -10,27 +10,28 @@ module SettingsHelper
   end
 
   def featured_tags_hint(recently_used_tags)
-    safe_join(
-      [
-        t('simple_form.hints.featured_tag.name'),
-        safe_join(
-          links_for_featured_tags(recently_used_tags),
-          ', '
-        ),
-      ],
-      ' '
-    )
+    recently_used_tags.present? &&
+      safe_join(
+        [
+          t('simple_form.hints.featured_tag.name'),
+          safe_join(
+            links_for_featured_tags(recently_used_tags),
+            ', '
+          ),
+        ],
+        ' '
+      )
   end
 
   def session_device_icon(session)
     device = session.detection.device
 
     if device.mobile?
-      'mobile'
+      'smartphone'
     elsif device.tablet?
       'tablet'
     else
-      'desktop'
+      'desktop_mac'
     end
   end
 

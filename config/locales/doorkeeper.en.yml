@@ -60,7 +60,7 @@ en:
       error:
         title: An error has occurred
       new:
-        prompt_html: "%{client_name} would like permission to access your account. It is a third-party application. <strong>If you do not trust it, then you should not authorize it.</strong>"
+        prompt_html: "%{client_name} would like permission to access your account. <strong>Only approve this request if you recognize and trust this source.</strong>"
         review_permissions: Review permissions
         title: Authorization required
       show:
@@ -83,6 +83,7 @@ en:
         access_denied: The resource owner or authorization server denied the request.
         credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
         invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
+        invalid_code_challenge_method: The code challenge method must be S256, plain is unsupported.
         invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
         invalid_redirect_uri: The redirect uri included is not valid.
         invalid_request:

@@ -60,7 +60,7 @@ es-MX:
       error:
         title: Ha ocurrido un error
       new:
-        prompt_html: "%{client_name} requiere permiso para acceder a tu cuenta. Es una aplicación de terceros. <strong>Si no confías en esta, no deberías autorizarla.</strong>"
+        prompt_html: A %{client_name} le gustaría obtener permiso para acceder a tu cuenta. <strong>Aprueba esta solicitud solo si reconoces y confías en esta fuente.</strong>
         review_permissions: Revisar permisos
         title: Se requiere autorización
       show:
@@ -83,6 +83,7 @@ es-MX:
         access_denied: El propietario del recurso o servidor de autorización denegó la petición.
         credential_flow_not_configured: Las credenciales de contraseña del propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_from_credentials está sin configurar.
         invalid_client: La autentificación del cliente falló ya que es un cliente desconocido, no está incluída la autentificación del cliente o el método de autentificación no es compatible.
+        invalid_code_challenge_method: El método de desafío de código debe ser S256, «plain» no está soportado.
         invalid_grant: La concesión de autorización ofrecida es inválida, venció, se revocó, no coincide con la URI de redirección utilizada en la petición de autorización, o fue emitida para otro cliente.
         invalid_redirect_uri: La URI de redirección incluida no es válida.
         invalid_request:
@@ -166,7 +167,7 @@ es-MX:
       admin:write:reports: realizar acciones de moderación en informes
       crypto: usar cifrado de extremo a extremo
       follow: seguir, bloquear, desbloquear y dejar de seguir cuentas
-      profile: leer sólo la información del perfil de tu cuenta
+      profile: leer solamente la información del perfil de tu cuenta
       push: recibir tus notificaciones push
       read: leer los datos de tu cuenta
       read:accounts: ver información de cuentas

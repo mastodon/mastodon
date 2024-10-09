@@ -25,7 +25,7 @@ fr:
         edit: Modifier
         submit: Envoyer
       confirmations:
-        destroy: Voulez-vous vraiment faire ça ?
+        destroy: En êtes-vous sûr ?
       edit:
         title: Modifier l’application
       form:
@@ -60,7 +60,7 @@ fr:
       error:
         title: Une erreur est survenue
       new:
-        prompt_html: "%{client_name} souhaite accéder à votre compte. Il s'agit d'une application tierce. <strong>Vous ne devriez pas l'y autoriser si vous ne lui faites pas confiance.</strong>"
+        prompt_html: "%{client_name} aimerait avoir la permission d'accéder à votre compte. <strong>Approuver cette demande uniquement si vous reconnaissez et faites confiance à cette source.</strong>"
         review_permissions: Examiner les autorisations
         title: Autorisation requise
       show:
@@ -69,7 +69,7 @@ fr:
       buttons:
         revoke: Révoquer
       confirmations:
-        revoke: Voulez-vous vraiment faire ça ?
+        revoke: En êtes-vous sûr ?
       index:
         authorized_at: Autorisée le %{date}
         description_html: Ces applications peuvent accéder à votre compte via l'API. Si vous voyez ici des applications que vous ne reconnaissez pas ou qui ne fonctionnent pas normalement, vous pouvez en révoquer les accès.
@@ -83,6 +83,7 @@ fr:
         access_denied: Le propriétaire de la ressource ou le serveur d’autorisation a refusé la requête.
         credential_flow_not_configured: Le flux des identifiants du mot de passe du propriétaire de la ressource a échoué car Doorkeeper.configure.resource_owner_from_credentials n’est pas configuré.
         invalid_client: L’authentification du client a échoué à cause d’un client inconnu, d’aucune authentification de client incluse ou d’une méthode d’authentification non prise en charge.
+        invalid_code_challenge_method: La méthode de contrôle du code doit être S256, le mode « en clair » n'est pas pris en charge.
         invalid_grant: L’autorisation accordée est invalide, expirée, annulée, ne concorde pas avec l’URL de redirection utilisée dans la requête d’autorisation, ou a été délivrée à un autre client.
         invalid_redirect_uri: L’URL de redirection n’est pas valide.
         invalid_request:

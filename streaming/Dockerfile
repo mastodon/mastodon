@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.8
+# syntax=docker/dockerfile:1.10
 
 # Please see https://docs.docker.com/engine/reference/builder for information about
 # the extended buildx capabilities used in this file.

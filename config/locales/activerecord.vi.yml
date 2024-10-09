@@ -15,6 +15,12 @@ vi:
       user/invite_request:
         text: Lý do
     errors:
+      attributes:
+        domain:
+          invalid: không phải là một tên miền hợp lệ
+      messages:
+        invalid_domain_on_line: "%{value} không phải là một tên miền hợp lệ"
+        too_many_lines: vượt quá giới hạn %{limit} dòng
       models:
         account:
           attributes:
