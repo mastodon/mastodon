@@ -237,15 +237,15 @@ class LinkDetailsExtractor
   end
 
   def link_tag(name)
-    head.xpath('//link[@rel][@href]').find { |el| el.kwattr_values('rel').any? { |v| name.casecmp?(v) } }&.attr('href')
+    head.at_xpath("//link[nokogiri:link_rel_include(@rel, '#{name}')]", NokogiriHandler)&.attr('href')
   end
 
   def opengraph_tag(name)
-    head.xpath('//meta[@content]').find { |el| name.casecmp?(el['property']) || name.casecmp?(el['name']) }&.attr('content')
+    head.at_xpath("//meta[nokogiri:casecmp(@property, '#{name}') or nokogiri:casecmp(@name, '#{name}')]", NokogiriHandler)&.attr('content')
   end
 
   def meta_tag(name)
-    head.xpath('//meta[@name][@content]').find { |el| name.casecmp?(el['name']) }&.attr('content')
+    head.at_xpath("//meta[nokogiri:casecmp(@name, '#{name}')]", NokogiriHandler)&.attr('content')
   end
 
   def structured_data
