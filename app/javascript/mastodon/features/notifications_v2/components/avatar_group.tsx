@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom';
-
 import { Avatar } from 'mastodon/components/avatar';
 import { NOTIFICATIONS_GROUP_MAX_AVATARS } from 'mastodon/models/notification_group';
 import { useAppSelector } from 'mastodon/store';
+import Permalink from 'mastodon/components/permalink';
 
 const AvatarWrapper: React.FC<{ accountId: string }> = ({ accountId }) => {
   const account = useAppSelector((state) => state.accounts.get(accountId));
@@ -10,13 +9,14 @@ const AvatarWrapper: React.FC<{ accountId: string }> = ({ accountId }) => {
   if (!account) return null;
 
   return (
-    <Link
+    <Permalink
+      href={account.url}
       to={`/@${account.acct}`}
       title={`@${account.acct}`}
       data-hover-card-account={account.id}
     >
       <Avatar account={account} size={28} />
-    </Link>
+    </Permalink>
   );
 };
 
