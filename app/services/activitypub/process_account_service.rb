@@ -127,13 +127,13 @@ class ActivityPub::ProcessAccountService < BaseService
     begin
       @account.avatar_remote_url = image_url('icon') || '' unless skip_download?
       @account.avatar = nil if @account.avatar_remote_url.blank?
-    rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+    rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadAvatarWorker.perform_in(rand(30..600).seconds, @account.id)
     end
     begin
       @account.header_remote_url = image_url('image') || '' unless skip_download?
       @account.header = nil if @account.header_remote_url.blank?
-    rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+    rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadHeaderWorker.perform_in(rand(30..600).seconds, @account.id)
     end
     @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
@@ -276,7 +276,7 @@ class ActivityPub::ProcessAccountService < BaseService
     total_items = collection.is_a?(Hash) && collection['totalItems'].present? && collection['totalItems'].is_a?(Numeric) ? collection['totalItems'] : nil
     has_first_page = collection.is_a?(Hash) && collection['first'].present?
     @collections[type] = [total_items, has_first_page]
-  rescue HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::LengthValidationError
+  rescue *Mastodon::HTTP_CONNECTION_ERRORS, Mastodon::LengthValidationError
     @collections[type] = [nil, nil]
   end
 

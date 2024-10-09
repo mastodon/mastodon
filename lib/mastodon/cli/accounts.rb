@@ -305,7 +305,7 @@ module Mastodon::CLI
 
         begin
           code = Request.new(:head, account.uri).perform(&:code)
-        rescue HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError, Mastodon::PrivateNetworkAddressError
+        rescue *Mastodon::HTTP_CONNECTION_ERRORS, Mastodon::PrivateNetworkAddressError
           skip_domains << account.domain
         end
 
