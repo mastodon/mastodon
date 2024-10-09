@@ -100,7 +100,7 @@ export function setupMetrics(channels, pgPool) {
       res.set('Content-Type', metrics.register.contentType);
       res.end(output);
     }).catch((err) => {
-      req.log.error(err, "Error collecting metrics");
+      req.log.error(err, 'Error collecting metrics');
       res.status(500).end();
     });
   };

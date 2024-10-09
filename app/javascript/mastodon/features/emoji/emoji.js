@@ -23,7 +23,7 @@ const lightEmoji = emojiFilenames(['👽', '⚾', '🐔', '☁️', '💨', '�
  * @returns {string}
  */
 const emojiFilename = (filename, colorScheme) => {
-  const borderedEmoji = colorScheme === "light" ? lightEmoji : darkEmoji;
+  const borderedEmoji = colorScheme === 'light' ? lightEmoji : darkEmoji;
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
@@ -104,7 +104,7 @@ const emojifyTextNode = (node, customEmojis) => {
       if(isSystemTheme) {
         let source = document.createElement('source');
         source.setAttribute('media', '(prefers-color-scheme: dark)');
-        source.setAttribute('srcset', `${assetHost}/emoji/${emojiFilename(filename, "dark")}.svg`);
+        source.setAttribute('srcset', `${assetHost}/emoji/${emojiFilename(filename, 'dark')}.svg`);
         replacement.appendChild(source);
       }
 
@@ -114,10 +114,10 @@ const emojifyTextNode = (node, customEmojis) => {
       img.setAttribute('alt', unicode_emoji);
       img.setAttribute('title', title);
 
-      let theme = "light";
+      let theme = 'light';
 
       if(!isSystemTheme && !document.body?.classList.contains('theme-mastodon-light'))
-        theme = "dark";
+        theme = 'dark';
 
       img.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename, theme)}.svg`);
       replacement.appendChild(img);
