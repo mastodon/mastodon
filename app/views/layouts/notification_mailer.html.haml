@@ -1,4 +1,6 @@
 - content_for :content do
-  = yield
+  %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: :presentation }
+    %tr
+      = yield
 
 = render template: 'layouts/mailer'
