@@ -7961,7 +7961,6 @@ noscript {
   justify-content: flex-start;
   gap: 15px;
   align-items: center;
-  border: 1px solid var(--background-border-color);
   border-top: 0;
 
   label {
@@ -7990,10 +7989,11 @@ noscript {
 
 .list-adder,
 .list-editor {
-  background: $ui-base-color;
+  backdrop-filter: var(--background-filter);
+  background: var(--modal-background-color);
+  border: 1px solid var(--modal-border-color);
   flex-direction: column;
   border-radius: 8px;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
   width: 380px;
   overflow: hidden;
 
@@ -8003,12 +8003,7 @@ noscript {
 }
 
 .list-adder {
-  &__account {
-    background: lighten($ui-base-color, 13%);
-  }
-
   &__lists {
-    background: lighten($ui-base-color, 13%);
     height: 50vh;
     border-radius: 0 0 8px 8px;
     overflow-y: auto;
@@ -8047,12 +8042,10 @@ noscript {
 
   .drawer__pager {
     height: 50vh;
-    border-radius: 4px;
+    border: 0;
   }
 
   .drawer__inner {
-    border-radius: 0 0 8px 8px;
-
     &.backdrop {
       width: calc(100% - 60px);
       box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
@@ -8061,6 +8054,7 @@ noscript {
   }
 
   &__accounts {
+    background: unset;
     overflow-y: auto;
   }
 
