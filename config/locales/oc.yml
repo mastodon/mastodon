@@ -7,7 +7,6 @@ oc:
     hosted_on: Mastodon albergat sus %{domain}
     title: A prepaus
   accounts:
-    follow: Sègre
     followers:
       one: Seguidor
       other: Seguidors
@@ -30,7 +29,6 @@ oc:
       created_msg: Nòta de moderacion ben creada !
       destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
-      add_email_domain_block: Metre lo domeni del corrièl en lista negra
       approve: Aprovar
       are_you_sure: Sètz segur ?
       avatar: Avatar
@@ -141,7 +139,6 @@ oc:
       action_types:
         approve_user: Aprobar l’utilizaire
         assigned_to_self_report: Assignar lo rapòrt
-        change_email_user: Cambiar l’adreça de l’utilizaire
         confirm_user: Confirmar l’utilizaire
         create_account_warning: Crear un avertiment
         create_announcement: Crear una anóncia
@@ -269,13 +266,10 @@ oc:
       view: Veire lo blocatge de domeni
     email_domain_blocks:
       add_new: Ajustar
-      created_msg: Blocatge del domeni de corrièl ben plaçat
       delete: Suprimir
       domain: Domeni
       new:
         create: Crear un blocatge
-        title: Nòu blocatge de domeni de corrièl
-      title: Blocatge de domeni de corrièl
     follow_recommendations:
       language: Per lenga
       status: Estat
@@ -459,9 +453,7 @@ oc:
       guide_link_text: Tot lo monde pòt contribuïr.
     sensitive_content: Contengut sensible
   application_mailer:
-    notification_preferences: Cambiar las preferéncias de corrièl
     salutation: "%{name},"
-    settings: 'Cambiar las preferéncias de corrièl : %{link}'
     view: 'Veire :'
     view_profile: Veire lo perfil
     view_status: Veire los estatuts
@@ -537,7 +529,6 @@ oc:
       before: 'Abans de contunhar, volgatz legir aquestas nòtas amb atencion :'
       caches: Lo contengut en cache suls autres servidors pòt demorar
       data_removal: Vòstras publicacions e las autras donadas seràn suprimidas per totjorn
-      email_change_html: Podètz <a href="%{path}">cambiar vòstra adreça electronia</a>sens suprimir vòstre compte
       irreversible: Poiretz pas restaurar o reactivar vòstre compte
       more_details_html: Per mai d’informacion, vejatz la <a href="%{terms_path}">politica de confidencialitat</a>.
       username_available: Vòstre nom d’utilizaire serà disponible de nòu
@@ -546,8 +537,6 @@ oc:
     strikes:
       title_actions:
         none: Avertiment
-  domain_validator:
-    invalid_domain: es pas un nom de domeni valid
   errors:
     '403': Avètz pas l’autorizacion de veire aquesta pagina.
     '404': La pagina que cercatz existís pas aquí.
@@ -659,7 +648,6 @@ oc:
   login_activities:
     authentication_methods:
       password: senhal
-      sign_in_token: còdi de seguretat mail
       webauthn: claus de seguretat
   media_attachments:
     validations:
@@ -721,7 +709,6 @@ oc:
     update:
       subject: "%{name} modifiquèt sa publicacion"
   notifications:
-    email_events: Eveniments per las notificacions per corrièl
     email_events_hint: 'Seleccionatz los eveniments que volètz recebre :'
   number:
     human:
@@ -826,7 +813,6 @@ oc:
     delete: Supression de compte
     development: Desvolopament
     edit_profile: Modificar lo perfil
-    export: Exportar de donadas
     featured_tags: Etiquetas en avant
     import: Importar de donadas
     import_and_export: Import e export
@@ -858,22 +844,11 @@ oc:
     edited_at_html: Modificat %{date}
     errors:
       in_reply_not_found: La publicacion que respondètz sembla pas mai exisitir.
-    open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
     pin_errors:
       limit: Avètz ja lo maximum de tuts penjats
       ownership: Se pòt pas penjar lo tut de qualqu’un mai
       reblog: Se pòt pas penjar un tut partejat
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} personas"
-      total_votes:
-        one: "%{count} vòte"
-        other: "%{count} vòtes"
-      vote: Votar
-    show_more: Ne veire mai
-    show_thread: Mostrar lo fil
     title: '%{name} : "%{quote}"'
     visibilities:
       direct: Dirècte
@@ -968,7 +943,6 @@ oc:
     follow_limit_reached: Podètz pas sègre mai de %{limit} personas
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
     otp_lost_help_html: Se perdatz l’accès al dos, podètz benlèu contactar %{email}
-    seamless_external_login: Sètz connectat via un servici extèrn, los paramètres de senhal e de corrièl son doncas pas disponibles.
     signed_in_as: 'Session a :'
   verification:
     verification: Verificacion

@@ -7,7 +7,6 @@
     hosted_on: Mastodon driftet på %{domain}
     title: Om
   accounts:
-    follow: Følg
     followers:
       one: Følger
       other: Følgere
@@ -31,7 +30,7 @@
       created_msg: Moderasjonsnotat laget uten problem!
       destroyed_msg: Moderasjonsnotat slettet uten problem!
     accounts:
-      add_email_domain_block: Svartelist E-postdomenet
+      add_email_domain_block: Blokker e-postdomenet
       approve: Godkjenn
       approved_msg: Godkjent %{username} sin registreringsapplikasjon
       are_you_sure: Er du sikker?
@@ -58,7 +57,6 @@
       demote: Degrader
       destroyed_msg: "%{username} sine data er nå i kø for å bli slettet minimum"
       disable: Deaktiver
-      disable_sign_in_token_auth: Deaktiver e-post token autentisering
       disable_two_factor_authentication: Skru av 2FA
       disabled: Deaktivert
       display_name: Visningsnavn
@@ -67,7 +65,6 @@
       email: E-post
       email_status: E-poststatus
       enable: Aktiver
-      enable_sign_in_token_auth: Aktiver godkjenning av e-post token
       enabled: Aktivert
       enabled_msg: Frossent %{username} sin konto
       followers: Følgere
@@ -132,7 +129,6 @@
       resubscribe: Abonner på nytt
       role: Rolle
       search: Søk
-      search_same_email_domain: Andre brukere med samme E-postdomene
       search_same_ip: Andre brukere med den samme IP-en
       security: Sikkerhet
       security_measures:
@@ -173,26 +169,21 @@
         approve_appeal: Godkjenn anke
         approve_user: Godkjenn bruker
         assigned_to_self_report: Tilordne rapport
-        change_email_user: Endre brukerens E-postadresse
         change_role_user: Endre rolle for brukeren
         confirm_user: Bekreft brukeren
         create_account_warning: Opprett en advarsel
         create_announcement: Opprett en kunngjøring
-        create_canonical_email_block: Opprett e-post-blokkering
         create_custom_emoji: Opprett en tilpasset emoji
         create_domain_allow: Opprett domene tillatt
         create_domain_block: Opprett domene-blokk
-        create_email_domain_block: Opprett e-post domeneblokk
         create_ip_block: Opprett IP-regel
         create_unavailable_domain: Opprett utilgjengelig domene
         create_user_role: Opprett rolle
         demote_user: Degrader bruker
         destroy_announcement: Slett kunngjøringen
-        destroy_canonical_email_block: Slett blokkering av e-post
         destroy_custom_emoji: Slett den tilpassede emojien
         destroy_domain_allow: Slett domenegodkjenning
         destroy_domain_block: Slett blokkering av domene
-        destroy_email_domain_block: Slett blokkering av e-postdomene
         destroy_instance: Slett domene
         destroy_ip_block: Slett IP-regel
         destroy_status: Slett statusen
@@ -200,10 +191,8 @@
         destroy_user_role: Slett rolle
         disable_2fa_user: Skru av 2-trinnsinnlogging
         disable_custom_emoji: Skru av tilpassede emojier
-        disable_sign_in_token_auth_user: Skru av e-post-tokenautentisering for bruker
         disable_user: Deaktiver bruker
         enable_custom_emoji: Skru på tilpassede emojier
-        enable_sign_in_token_auth_user: Skru på e-post-tokenautentisering for bruker
         enable_user: Aktiver bruker
         memorialize_account: Opprett minnekonto
         promote_user: Promoter bruker
@@ -232,26 +221,20 @@
         approve_appeal_html: "%{name} godkjente anken på moderering fra %{target}"
         approve_user_html: "%{name} godkjente registrering fra %{target}"
         assigned_to_self_report_html: "%{name} tildelte rapport %{target} til seg selv"
-        change_email_user_html: "%{name} endret e-postadressen til brukeren %{target}"
         change_role_user_html: "%{name} endret rolle for %{target}"
-        confirm_user_html: "%{name} bekreftet e-postadressen til brukeren %{target}"
         create_account_warning_html: "%{name} sendte en advarsel til %{target}"
         create_announcement_html: "%{name} opprettet ny kunngjøring %{target}"
-        create_canonical_email_block_html: "%{name} blokkerte e-post med hash %{target}"
         create_custom_emoji_html: "%{name} lastet opp ny emoji %{target}"
         create_domain_allow_html: "%{name} tillatt føderasjon med domenet %{target}"
         create_domain_block_html: "%{name} blokkert domene %{target}"
-        create_email_domain_block_html: "%{name} blokkert e-post domene %{target}"
         create_ip_block_html: "%{name} opprettet regel for IP %{target}"
         create_unavailable_domain_html: "%{name} stoppet levering til domenet %{target}"
         create_user_role_html: "%{name} opprettet rollen %{target}"
         demote_user_html: "%{name} degraderte bruker %{target}"
         destroy_announcement_html: "%{name} slettet kunngjøring %{target}"
-        destroy_canonical_email_block_html: "%{name} fjernet blokkering av e-post med hash %{target}"
         destroy_custom_emoji_html: "%{name} slettet emoji %{target}"
         destroy_domain_allow_html: "%{name} ikke tillatt føderasjon med domenet %{target}"
         destroy_domain_block_html: "%{name} fjernet blokkeringen av domenet %{target}"
-        destroy_email_domain_block_html: "%{name} fjernet blokkeringen av e-post-domenet %{target}"
         destroy_instance_html: "%{name} blokkert domene %{target}"
         destroy_ip_block_html: "%{name} slettet regel for IP %{target}"
         destroy_status_html: "%{name} fjernet innlegget av %{target}"
@@ -259,10 +242,8 @@
         destroy_user_role_html: "%{name} slettet %{target} -rolle"
         disable_2fa_user_html: "%{name} deaktiverte tofaktor-autentiseringskravet for bruker %{target}"
         disable_custom_emoji_html: "%{name} deaktiverte emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} deaktiverte autentisering med e-post-token for %{target}"
         disable_user_html: "%{name} deaktiverte innlogging for bruker %{target}"
         enable_custom_emoji_html: "%{name} aktiverte emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} aktiverte autentisering med e-post-token for %{target}"
         enable_user_html: "%{name} aktiverte innlogging for bruker %{target}"
         memorialize_account_html: "%{name} endret %{target}s konto til en minneside"
         promote_user_html: "%{name} forfremmet bruker %{target}"
@@ -270,7 +251,6 @@
         reject_user_html: "%{name} avslo registrering fra %{target}"
         remove_avatar_user_html: "%{name} fjernet %{target} sitt profilbilde"
         reopen_report_html: "%{name} gjenåpnet rapporten %{target}"
-        resend_user_html: "%{name} sendte e-postbekreftelse på nytt for %{target}"
         reset_password_user_html: "%{name} tilbakestille passordet for brukeren %{target}"
         resolve_report_html: "%{name} løst rapport %{target}"
         sensitive_account_html: "%{name} merket %{target}s innlegg som følsomt"
@@ -429,7 +409,6 @@
       attempts_over_week:
         one: "%{count} forsøk i løpet av den siste uken"
         other: "%{count} forsøk på å opprette konto i løpet av den siste uken"
-      created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Fjern
       dns:
         types:
@@ -438,12 +417,8 @@
       new:
         create: Legg til domene
         resolve: Løs domene
-        title: Ny blokkeringsoppføring av e-postdomene
-      no_email_domain_block_selected: Ingen e-postdomeneblokker ble endret da ingen ble valgt
       not_permitted: Ikke tillatt
-      resolved_dns_records_hint_html: Domenenavnet løser seg til følgende MX-domener som er til slutt ansvarlige for å motta e-post. Blokkering av et MX-domene vil blokkere signaler fra en hvilken som helst e-postadresse som bruker samme MX-domene, selv om det synlige domenenavnet er annerledes. <strong>Vær forsiktig så du ikke blokkerer store e-posttilbydere.</strong>
       resolved_through_html: Løst gjennom %{domain}
-      title: Blokkering av e-postdomene
     export_domain_allows:
       new:
         title: Importer domenetillatelser
@@ -594,7 +569,6 @@
         resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
         silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles. Lukker alle rapporter mot denne kontoen.
         suspend_description_html: Kontoen og alt dens innhold vil være utilgjengelig og til slutt slettet, og det vil ikke være mulig å bruke den. Reversibel innen 30 dager. Lukker alle rapporter mot denne kontoen.
-      actions_description_html: Velg hvilke tiltak som skal treffes for å løse denne rapporten. Dersom du tar noen entydige tiltak mot den oppgitte kontoen, blir det sendt en e-post til dem, unntatt når <strong>Søppelpost</strong> -kategorien er valgt.
       actions_description_remote_html: Velg hvilke tiltak som skal treffes for å løse denne rapporten. Dette påvirker bare hvordan <strong>din</strong> server kommuniserer med denne eksterne kontoen og håndterer innholdet.
       add_to_report: Legg til mer i rapporten
       are_you_sure: Er du sikker?
@@ -655,7 +629,6 @@
         delete_data_html: Slett <strong>@%{acct}</strong> sin profil og innhold 30 dager fra nå med mindre de blir suspendert i mellomtiden
         preview_preamble_html: "<strong>@%{acct}</strong> vil motta en advarsel med følgende innhold:"
         record_strike_html: Ta opp en streik mot <strong>@%{acct}</strong> for å hjelpe deg med å eskalere fremtidige brudd fra denne kontoen
-        send_email_html: Send <strong>@%{acct}</strong> en advarsels e-post
         warning_placeholder: Valgfritt ytterligere resonnement for moderasjonstiltaket.
       target_origin: Opprinnelse for innrapportert konto
       title: Rapporter
@@ -695,7 +668,6 @@
         manage_appeals: Behandle anker
         manage_appeals_description: Lar brukere gjennomgå anker mot modereringsaktiviteter
         manage_blocks: Behandle Blokker
-        manage_blocks_description: Lar brukere blokkere e-postleverandører og IP-adresser
         manage_custom_emojis: Administrer egendefinerte Emojier
         manage_custom_emojis_description: Lar brukere endre egendefinert emojis på serveren
         manage_federation: Administrer Føderasjon
@@ -713,7 +685,6 @@
         manage_taxonomies: Administrer taksonomier
         manage_taxonomies_description: Lar brukere gjennomgå populære innhold og oppdatere emneknagg innstillinger
         manage_user_access: Administrer Brukertilgang
-        manage_user_access_description: Lar brukere deaktivere andre brukeres 2-trinnsinnlogging, endre sin e-postadresse, og tilbakestille passordet deres
         manage_users: Behandle Brukere
         manage_users_description: Lar brukere se detaljer om andre brukere og utføre moderasjonshandlinger mot dem
         manage_webhooks: Administrer Webhooks
@@ -785,7 +756,6 @@
       destroyed_msg: Vellykket sletting av sideopplasting!
     software_updates:
       critical_update: Kritisk — vennligst oppdater raskt
-      description: "Det anbefales å holde Mastodon-installasjonen oppdatert for å dra nytte av nye rettelser og funksjoner. Dessuten er det av og til viktig å oppdatere Mastodon raskt for å unngå sikkerhetsproblemer. Derfor sjekker Mastodon om det finnes oppdateringer \nhvert 30. minutt, og varsler deg i henhold til dine valg for e-postvarsling."
       documentation_link: Finn ut mer
       release_notes: Informasjon om utgivelsen
       title: Tilgjengelige oppdateringer
@@ -937,7 +907,6 @@
         used_by_over_week:
           one: Brukt av en person i løpet av siste uke
           other: Brukes av %{count} personer i løpet av den siste uken
-      title: Trend
       trending: Trender
     warning_presets:
       add_new: Legg til ny
@@ -1020,9 +989,7 @@
       guide_link_text: Alle kan bidra.
     sensitive_content: Følsomt innhold
   application_mailer:
-    notification_preferences: Endre E-postinnstillingene
     salutation: "%{name},"
-    settings: 'Endre foretrukne e-postinnstillinger: %{link}'
     unsubscribe: Avslutt abonnement
     view: 'Se:'
     view_profile: Vis Profil
@@ -1042,7 +1009,6 @@
       hint_html: Bare en ting til! Vi må bekrefte at du er et menneske (dette er slik at vi kan holde spam ute!). Løs CAPTCHA nedenfor og klikk "Fortsett".
       title: Sikkerhetskontroll
     confirmations:
-      awaiting_review: Din e-post adresse er bekreftet! %{domain} ansatte gjennomgår nå registreringen din. Du vil motta en e-post hvis de godkjenner din konto!
       awaiting_review_title: Din registrering blir vurdert
       clicking_this_link: klikke på denne lenken
       login_link: logg inn
@@ -1050,7 +1016,6 @@
       redirect_to_app_html: Du burde bli omdirigert til <strong>%{app_name}</strong> -appen. Hvis det ikke skjedde, kan du prøve %{clicking_this_link} eller manuelt gå tilbake til appen.
       registration_complete: Registreringen på %{domain} er nå fullført!
       welcome_title: Velkommen, %{name}!
-      wrong_email_hint: Hvis e-postadressen ikke er riktig, kan du endre den i kontoinnstillingene.
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette kontoen din, kan du <a href="%{path}">gå hit</a>. Du vil bli spurt om bekreftelse.
     description:
@@ -1071,7 +1036,6 @@
     or_log_in_with: Eller logg inn med
     privacy_policy_agreement_html: Jeg har lest og godtar <a href="%{privacy_policy_path}" target="_blank">retningslinjer for personvern</a>
     progress:
-      confirm: Bekreft e-postadresse
       details: Dine opplysninger
       review: Vår gjennomgang
       rules: Godta regler
@@ -1093,10 +1057,8 @@
     security: Sikkerhet
     set_new_password: Angi nytt passord
     setup:
-      email_below_hint_html: Sjekk søppelpostmappen din, eller be om en ny. Du kan korrigere e-postadressen din hvis den er feil.
       email_settings_hint_html: Klikk på lenken vi sendte deg for å bekrefte %{email}. Vi venter her.
       link_not_received: Fikk du ikke lenken?
-      new_confirmation_instructions_sent: Du vil motta en ny e-post med bekreftelseslenken om noen minutter!
       title: Sjekk innboksen din
     sign_in:
       preamble_html: Logg inn med ditt <strong>%{domain}</strong> brukeropplysninger. Hvis kontoen din er plassert på en annen server, vil du ikke kunne logge inn her.
@@ -1107,9 +1069,7 @@
       title: La oss få deg satt i gang på %{domain}.
     status:
       account_status: Kontostatus
-      confirming: Venter på at e-postbekreftelsen er fullført.
       functional: Kontoen din er fullt operativt.
-      pending: Søknaden din avventer gjennomgang av våre medarbeidere. Dette kan ta litt tid. Du vil motta en e-post dersom søknaden din blir godkjent.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
       self_destruct: Siden %{domain} stenger, vil du kun ha begrenset tilgang til kontoen din.
       view_strikes: Vis tidligere advarsler mot kontoen din
@@ -1123,7 +1083,6 @@
   crypto:
     errors:
       invalid_key: er ikke en gyldig Ed25519- eller Curve25519-nøkkel
-      invalid_signature: er ikke en gyldig Ed25519-signatur
   date:
     formats:
       default: "%d. %b, %Y"
@@ -1152,9 +1111,6 @@
       before: 'Før du fortsetter, vennligst les disse notisene nøye:'
       caches: Innhold som har blitt mellomlagret av andre tjenere kan kanskje fortsette å eksistere
       data_removal: Dine innlegg og andre data vil bli permanent fjernet
-      email_change_html: Du kan <a href="%{path}">endre E-postadressen din</a> uten å måtte slette kontoen din
-      email_contact_html: Dersom det fortsatt ikke kommer, kan du sende en E-post til <a href="mailto:%{email}">%{email}</a> og be om hjelp
-      email_reconfirmation_html: Dersom du ikke mottar bekreftelses-E-posten, kan du <a href="%{path}">be om den igjen</a>
       irreversible: Du vil ikke kunne gjenopprette eller reaktivere kontoen din
       more_details_html: For mere detaljer, se <a href="%{terms_path}">privatlivsretningslinjene</a>.
       username_available: Brukernavnet ditt vil bli gjort tilgjengelig igjen
@@ -1189,8 +1145,6 @@
       your_appeal_approved: Anken din har blitt godkjent
       your_appeal_pending: Du har levert en anke
       your_appeal_rejected: Anken din har blitt avvist
-  domain_validator:
-    invalid_domain: er ikke et gyldig domenenavn
   edit_profile:
     basic_information: Grunnleggende informasjon
     hint_html: "<strong>Tilpass hva folk ser på din offentlige profil og ved siden av dine innlegg.</strong> Det er mer sannsynlig at andre mennesker følger deg tilbake og samhandler med deg når du har fylt ut en profil og et profilbilde."
@@ -1314,20 +1268,6 @@
       merge_long: Behold eksisterende og legg til nye
       overwrite: Overskriv
       overwrite_long: Erstatt gjeldende med de nye
-    overwrite_preambles:
-      blocking_html: Du er i ferd med å <strong>erstatte din blokkeringsliste</strong> med inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong>.
-      bookmarks_html: Du er i ferd med å <strong>erstatte dine bokmerker</strong> med inntil <strong>%{total_items} innlegg</strong> fra <strong>%{filename}</strong>.
-      domain_blocking_html: Du er i ferd med å <strong>erstatte din domene-blokkeringsliste</strong> med inntil <strong>%{total_items} domener</strong> fra <strong>%{filename}</strong>.
-      following_html: Du er i ferd med å <strong>følge</strong> inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong> og <strong>slutte å følge alle andre</strong>.
-      lists_html: Du er i ferd med å <strong>erstatte dine lister</strong> med innholdet i <strong>%{filename}</strong>. Inntil <strong>%{total_items} kontoer</strong> legges til i nye lister.
-      muting_html: Du er i ferd med å <strong>erstatte listen over dempede kontoer</strong> med inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Du er i ferd med å <strong>blokkere</strong> inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong>.
-      bookmarks_html: Du er i ferd med å legge til inntil <strong>%{total_items} innlegg</strong> fra <strong>%{filename}</strong> til dine <strong>bokmerker</strong>.
-      domain_blocking_html: Du er i ferd med å <strong>blokkere</strong> inntil <strong>%{total_items} domener</strong> fra <strong>%{filename}</strong>.
-      following_html: Du er i ferd med å <strong>følge</strong> inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong>.
-      lists_html: Du er i ferd med å legge inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong> til dine <strong>lister</strong>. Nye lister vil bli opprettet hvis det ikke finnes noen liste å legge til.
-      muting_html: Du er i ferd med å <strong>dempe</strong> inntil <strong>%{total_items} kontoer</strong> fra <strong>%{filename}</strong>.
     preface: Du kan importere data om brukere du følger eller blokkerer til kontoen din på denne instansen med eksportfiler fra andre instanser.
     recent_imports: Siste importer
     states:
@@ -1387,7 +1327,6 @@
     authentication_methods:
       otp: to-faktor autentiseringsapp
       password: passord
-      sign_in_token: e-post sikkerhetskode
       webauthn: sikkerhetsnøkler
     description_html: Hvis du ser aktivitet som du ikke gjenkjenner, bør du vurdere å endre passordet ditt og aktivere to-trinnsinnlogging.
     empty: Ingen innloggingshistorikk er tilgjengelig
@@ -1398,16 +1337,6 @@
     unsubscribe:
       action: Ja, avslutt abonnement
       complete: Abonnement avsluttet
-      confirmation_html: Er du sikker på at du vil slutte å motta %{type} fra Mastodon %{domain} i e-posten din på %{email}? Du kan når som helst gjenoppta i <a href="%{settings_path}">innstillinger for e-postvarsling</a>.
-      emails:
-        notification_emails:
-          favourite: e-poster om favorittmarkeringer
-          follow: e-poster om følgere
-          follow_request: e-poster om følgeforespørsler
-          mention: e-poster om nevninger
-          reblog: e-poster om fremhevinger
-      resubscribe_html: Hvis du har avsluttet abonnementet ved en feiltakelse, kan du abonnere på nytt i <a href="%{settings_path}">innstillinger for e-postvarsling</a>.
-      success_html: Du vil ikke lenger motta %{type} fra Mastodon på %{domain} i e-posten din på %{email}.
       title: Avslutt abonnement
   media_attachments:
     validations:
@@ -1488,8 +1417,6 @@
     update:
       subject: "%{name} redigerte et innlegg"
   notifications:
-    administration_emails: Administrators e-postvarslinger
-    email_events: E-postvarslinger for hendelser
     email_events_hint: 'Velg hendelser som du vil motta varslinger for:'
   number:
     human:
@@ -1643,7 +1570,6 @@
     delete: Kontosletting
     development: Utvikling
     edit_profile: Endre profil
-    export: Dataeksport
     featured_tags: Utvalgte emneknagger
     import: Importér
     import_and_export: Importer og eksporter
@@ -1676,23 +1602,12 @@
     edited_at_html: Redigert %{date}
     errors:
       in_reply_not_found: Posten du prøver å svare ser ikke ut til eksisterer.
-    open_in_web: Åpne i nettleser
     over_character_limit: grensen på %{max} tegn overskredet
     pin_errors:
       direct: Innlegg som bare er synlige for nevnte brukere kan ikke festes
       limit: Du har allerede festet det maksimale antall innlegg
       ownership: Kun egne innlegg kan festes
       reblog: En fremheving kan ikke festes
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} personer"
-      total_votes:
-        one: "%{count} stemme"
-        other: "%{count} stemmer"
-      vote: Stem
-    show_more: Vis mer
-    show_thread: Vis tråden
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Direkte
@@ -1866,7 +1781,6 @@
     invalid_otp_token: Ugyldig to-faktorkode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     rate_limited: For mange autentiseringsforsøk, prøv igjen senere.
-    seamless_external_login: Du er logget inn via en ekstern tjeneste, så passord og e-post innstillinger er ikke tilgjengelige.
     signed_in_as: 'Innlogget som:'
   verification:
     extra_instructions_html: <strong>Tips:</strong> Lenken på din nettside kan være usynlig. Den viktige delen er <code>rel="me"</code> som sikrer at nettsteder med brukergenerert innhold ikke kan utgi seg for å være deg. Du kan til og med bruke en <code>link</code> lenke i sidens topptekst i stedet for <code>a</code>, men HTML-koden må være tilgjengelig uten å kjøre JavaScript.

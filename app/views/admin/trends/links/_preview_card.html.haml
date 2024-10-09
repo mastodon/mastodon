@@ -4,12 +4,12 @@
 
   .batch-table__row__content.pending-account
     .pending-account__header
-      = link_to preview_card.title, url_for_preview_card(preview_card)
+      = link_to preview_card.title, url_for_preview_card(preview_card), lang: preview_card.language
 
       %br/
 
       - if preview_card.provider_name.present?
-        = preview_card.provider_name
+        %span{ lang: preview_card.language }= preview_card.provider_name
         ·
 
       - if preview_card.language.present?

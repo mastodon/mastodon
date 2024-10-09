@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Extractor do
+RSpec.describe Extractor do
   describe 'extract_mentions_or_lists_with_indices' do
     it 'returns an empty array if the given string does not have at signs' do
       text = 'a string without at signs'

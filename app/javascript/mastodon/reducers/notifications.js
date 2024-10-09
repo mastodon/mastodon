@@ -16,13 +16,13 @@ import {
 import {
   fetchMarkers,
 } from '../actions/markers';
+import { clearNotifications } from '../actions/notification_groups';
 import {
   notificationsUpdate,
   NOTIFICATIONS_EXPAND_SUCCESS,
   NOTIFICATIONS_EXPAND_REQUEST,
   NOTIFICATIONS_EXPAND_FAIL,
   NOTIFICATIONS_FILTER_SET,
-  NOTIFICATIONS_CLEAR,
   NOTIFICATIONS_SCROLL_TOP,
   NOTIFICATIONS_LOAD_PENDING,
   NOTIFICATIONS_MOUNT,
@@ -290,7 +290,7 @@ export default function notifications(state = initialState, action) {
   case authorizeFollowRequestSuccess.type:
   case rejectFollowRequestSuccess.type:
     return filterNotifications(state, [action.payload.id], 'follow_request');
-  case NOTIFICATIONS_CLEAR:
+  case clearNotifications.pending.type:
     return state.set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('hasMore', false);
   case timelineDelete.type:
     return deleteByStatus(state, action.payload.statusId);
@@ -298,9 +298,10 @@ export default function notifications(state = initialState, action) {
     return action.payload.timeline === 'home' ?
       state.update(action.payload.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items) :
       state;
-  case NOTIFICATIONS_MARK_AS_READ:
+  case NOTIFICATIONS_MARK_AS_READ: {
     const lastNotification = state.get('items').find(item => item !== null);
     return lastNotification ? recountUnread(state, lastNotification.get('id')) : state;
+  }
   case NOTIFICATIONS_SET_BROWSER_SUPPORT:
     return state.set('browserSupport', action.value);
   case NOTIFICATIONS_SET_BROWSER_PERMISSION:

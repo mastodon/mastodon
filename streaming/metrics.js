@@ -4,12 +4,12 @@ import metrics from 'prom-client';
 
 /**
  * @typedef StreamingMetrics
- * @property {metrics.Registry} register
  * @property {metrics.Gauge<"type">} connectedClients
  * @property {metrics.Gauge<"type" | "channel">} connectedChannels
  * @property {metrics.Gauge} redisSubscriptions
  * @property {metrics.Counter} redisMessagesReceived
  * @property {metrics.Counter<"type">} messagesSent
+ * @property {import('express').RequestHandler<{}>} requestHandler
  */
 
 /**
@@ -92,8 +92,21 @@ export function setupMetrics(channels, pgPool) {
   messagesSent.inc({ type: 'websocket' }, 0);
   messagesSent.inc({ type: 'eventsource' }, 0);
 
+  /**
+   * @type {import('express').RequestHandler<{}>}
+   */
+  const requestHandler = (req, res) => {
+    metrics.register.metrics().then((output) => {
+      res.set('Content-Type', metrics.register.contentType);
+      res.end(output);
+    }).catch((err) => {
+      req.log.error(err, "Error collecting metrics");
+      res.status(500).end();
+    });
+  };
+
   return {
-    register: metrics.register,
+    requestHandler,
     connectedClients,
     connectedChannels,
     redisSubscriptions,

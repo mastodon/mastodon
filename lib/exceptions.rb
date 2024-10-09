@@ -8,6 +8,7 @@ module Mastodon
   class LengthValidationError < ValidationError; end
   class DimensionsValidationError < ValidationError; end
   class StreamValidationError < ValidationError; end
+  class FilterValidationError < ValidationError; end
   class RaceConditionError < Error; end
   class RateLimitExceededError < Error; end
   class SyntaxError < Error; end
@@ -35,4 +36,11 @@ module Mastodon
       super()
     end
   end
+
+  HTTP_CONNECTION_ERRORS = [
+    HTTP::ConnectionError,
+    HTTP::Error,
+    HTTP::TimeoutError,
+    OpenSSL::SSL::SSLError,
+  ].freeze
 end

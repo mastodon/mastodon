@@ -130,7 +130,6 @@ sl:
         name: Spremenite lahko le npr. velikost črk (velike/male), da je bolj berljivo
       user:
         chosen_languages: Ko je označeno, bodo v javnih časovnicah prikazane samo objave v izbranih jezikih
-        role: Vloga nadzira, katere pravice ima uporabnik
       user_role:
         color: Barva, uporabljena za vlogo po celem up. vmesniku, podana v šestnajstiškem zapisu RGB
         highlighted: S tem je vloga javno vidna
@@ -211,6 +210,7 @@ sl:
         setting_default_privacy: Zasebnost objave
         setting_default_sensitive: Vedno označi medije kot občutljive
         setting_delete_modal: Pred brisanjem objave prikaži okno za pritrditev
+        setting_disable_hover_cards: Onemogoči predogled profila pod kazalcem
         setting_disable_swiping: Onemogoči poteze drsanja
         setting_display_media: Prikaz medijev
         setting_display_media_default: Privzeto
@@ -242,11 +242,13 @@ sl:
           warn: Skrij z opozorilom
       form_admin_settings:
         activity_api_enabled: Objavi združeno statistiko o dejavnosti uporabnikov v API-ju
+        app_icon: Ikona programa
         backups_retention_period: Obdobje hrambe arhivov uporabnikov
         bootstrap_timeline_accounts: Vedno priporočaj te račune novim uporabnikom
         closed_registrations_message: Sporočilo po meri, ko registracije niso na voljo
         content_cache_retention_period: Obdobje hranjenja vsebine z ostalih strežnikov
         custom_css: CSS po meri
+        favicon: Ikona spletne strani
         mascot: Maskota po meri (opuščeno)
         media_cache_retention_period: Obdobje hrambe predpomnilnika predstavnosti
         peers_api_enabled: Objavi seznam odkritih strežnikov v API-ju
@@ -311,7 +313,7 @@ sl:
         listable: Dovoli, da se ta ključnik pojavi v iskanjih in predlogih
         name: Ključnik
         trendable: Dovoli, da se ta ključnik pojavi med trendi
-        usable: Dovoli, da objave uporabljajo ta ključnik
+        usable: Dovoli, da objave krajevno uporabljajo ta ključnik
       user:
         role: Vloga
         time_zone: Časovni pas

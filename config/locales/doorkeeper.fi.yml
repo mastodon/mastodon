@@ -4,7 +4,7 @@ fi:
     attributes:
       doorkeeper/application:
         name: Sovelluksen nimi
-        redirect_uri: Uudelleenohjauksen URI
+        redirect_uri: Uudelleenohjaus-URI
         scopes: Oikeudet
         website: Sovelluksen verkkosivusto
     errors:
@@ -12,10 +12,10 @@ fi:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: ei voi sisältää osia.
+              fragment_present: ei voi sisältää ankkuria (#).
               invalid_uri: on oltava kelvollinen URI.
               relative_uri: on oltava täysi URI.
-              secured_uri: on oltava HTTPS/SSL-URI.
+              secured_uri: on oltava HTTPS-/SSL-URI.
   doorkeeper:
     applications:
       buttons:
@@ -31,7 +31,7 @@ fi:
       form:
         error: Hupsis! Tarkista, ettei lomakkeessasi ole virheitä
       help:
-        native_redirect_uri: Käytä %{native_redirect_uri} paikallisiin testeihin
+        native_redirect_uri: Käytä tunnistetta %{native_redirect_uri} paikallisiin testeihin
         redirect_uri: Lisää jokainen URI omalle rivilleen
         scopes: Erota oikeudet välilyönneillä. Jätä kenttä tyhjäksi, jos haluat käyttää oletusoikeuksia.
       index:
@@ -43,15 +43,15 @@ fi:
         new: Uusi sovellus
         scopes: Oikeudet
         show: Näytä
-        title: Omat sovellukset
+        title: Omat sovelluksesi
       new:
         title: Uusi sovellus
       show:
         actions: Toiminnot
-        application_id: Ohjelman tunnus
+        application_id: Asiakasohjelman tunnus
         callback_urls: Takaisinkutsu-URL:t
         scopes: Oikeudet
-        secret: Ohjelman salaisuus
+        secret: Asiakasohjelman salaisuus
         title: 'Sovellus: %{name}'
     authorizations:
       buttons:
@@ -60,14 +60,14 @@ fi:
       error:
         title: Tapahtui virhe
       new:
-        prompt_html: "%{client_name} pyytää lupaa käyttää tiliäsi. Se on kolmannen osapuolen sovellus. <strong>Jos et luota siihen, älä valtuuta sitä.</strong>"
+        prompt_html: "%{client_name} haluaisi käyttöoikeuden tiliisi. <strong>Hyväksy tämä pyyntö vain, jos tunnistat lähteen ja luotat siihen.</strong>"
         review_permissions: Tarkista käyttöoikeudet
         title: Valtuutus vaaditaan
       show:
         title: Kopioi tämä valtuutuskoodi ja liitä se sovellukseen.
     authorized_applications:
       buttons:
-        revoke: Hylkää
+        revoke: Poista
       confirmations:
         revoke: Oletko varma?
       index:
@@ -75,19 +75,20 @@ fi:
         description_html: Nämä sovellukset voivat käyttää tiliäsi ohjelmointirajapinnan kautta. Jos tässä on sovelluksia, joita et tunnista, tai sovellus toimii väärin, voit peruuttaa sen käyttöoikeuden.
         last_used_at: Käytetty viimeksi %{date}
         never_used: Ei käytetty
-        scopes: Oikeudet
+        scopes: Käyttöoikeudet
         superapp: Sisäinen
-        title: Valtuutetut sovellukset
+        title: Valtuuttamasi sovellukset
     errors:
       messages:
         access_denied: Resurssin omistaja tai valtuutuspalvelin hylkäsi pyynnön.
         credential_flow_not_configured: Resurssin omistajan salasanatietojen luku epäonnistui, koska asetusta Doorkeeper.configure.resource_owner_from_credentials ei ole konfiguroitu.
-        invalid_client: Asiakasohjelman valtuutus epäonnistui, koska asiakas on tuntematon, asiakkaan valtuutus ei ollut mukana tai valtuutustapaa ei tueta.
-        invalid_grant: Valtuutuslupa on virheellinen, umpeutunut, peruttu, valtuutuspyynnössä käytettyä uudelleenohjaus-URI:tä vastaamaton tai myönnetty toiselle asiakkaalle.
+        invalid_client: Asiakasohjelman todennus epäonnistui, koska asiakas on tuntematon, asiakkaan todennus ei ollut mukana tai todennustapaa ei tueta.
+        invalid_code_challenge_method: Koodihaastemenetelmän tulee olla S256 – selväkielistä ei tueta.
+        invalid_grant: Valtuutuslupa on virheellinen, vanhentunut, peruttu, valtuutuspyynnössä käytettyä uudelleenohjaus-URI:tä vastaamaton tai myönnetty toiselle asiakkaalle.
         invalid_redirect_uri: Uudelleenohjaus-URI on virheellinen.
         invalid_request:
           missing_param: 'Vaadittu parametri puuttuu: %{value}.'
-          request_not_authorized: Pyyntö on hyväksyttävä. Vaadittu parametri pyynnön hyväksymiseksi puuttuu tai on virheellinen.
+          request_not_authorized: Pyyntö on valtuutettava. Vaadittu parametri pyynnön valtuuttamiseksi puuttuu tai on virheellinen.
           unknown: Pyynnöstä puuttuu vaadittu parametri, se sisältää tukemattoman parametriarvon tai on muulla tavoin väärin muotoiltu.
         invalid_resource_owner: Annetut resurssin omistajan tunnnukset ovat virheelliset, tai resurssin omistajaa ei löydy
         invalid_scope: Pyydetyt oikeudet ovat virheellisiä, tuntemattomia tai väärin muotoiltuja.
@@ -129,8 +130,8 @@ fi:
         crypto: Päästä päähän -salaus
         favourites: Suosikit
         filters: Suodattimet
-        follow: Seuraamiset, mykistykset ja estot
-        follows: Seuraa
+        follow: Seuratut, mykistykset ja estot
+        follows: Seuratut
         lists: Listat
         media: Medialiitteet
         mutes: Mykistykset
@@ -139,7 +140,7 @@ fi:
         push: Puskuilmoitukset
         reports: Raportit
         search: Hae
-        statuses: Viestit
+        statuses: Julkaisut
     layouts:
       admin:
         nav:
@@ -157,18 +158,18 @@ fi:
       admin:read:ip_blocks: lue arkaluonteisia tietoja kaikista estetyistä IP-osoitteista
       admin:read:reports: lue arkaluonteisia tietoja kaikista raporteista ja raportoiduista tileistä
       admin:write: muokkaa kaikkia palvelimen tietoja
-      admin:write:accounts: suorita valvontatoimia tileille
-      admin:write:canonical_email_blocks: suorita valvontatoimia estetyille kanonisille sähköpostiosoitteille
-      admin:write:domain_allows: suorita valvontatoimia sallituille verkkotunnuksille
-      admin:write:domain_blocks: suorita valvontatoimia estetyille verkkotunnuksille
-      admin:write:email_domain_blocks: suorita valvontatoimia estetyille sähköpostiverkkotunnuksille
-      admin:write:ip_blocks: suorita valvontatoimia estetyille IP-osoitteille
-      admin:write:reports: suorita valvontatoimia raporteille
+      admin:write:accounts: suorita moderointitoimia tileille
+      admin:write:canonical_email_blocks: suorita moderointitoimia estetyille kanonisille sähköpostiosoitteille
+      admin:write:domain_allows: suorita moderointitoimia sallituille verkkotunnuksille
+      admin:write:domain_blocks: suorita moderointitoimia estetyille verkkotunnuksille
+      admin:write:email_domain_blocks: suorita moderointitoimia estetyille sähköpostiverkkotunnuksille
+      admin:write:ip_blocks: suorita moderointitoimia estetyille IP-osoitteille
+      admin:write:reports: suorita moderointitoimia raporteille
       crypto: käytä päästä päähän -salausta
-      follow: muokkaa tilin suhteita
+      follow: muokkaa tilin seurantasuhteita
       profile: lue vain tilisi profiilitietoja
-      push: vastaanota puskuilmoituksiasi
-      read: lue kaikkia tilin tietoja
+      push: vastaanota puskuilmoituksesi
+      read: lue kaikkia tilisi tietoja
       read:accounts: katso tilien tietoja
       read:blocks: katso estojasi
       read:bookmarks: katso kirjanmerkkejäsi
@@ -186,7 +187,7 @@ fi:
       write:blocks: estä tilejä ja verkkotunnuksia
       write:bookmarks: lisää julkaisuja kirjanmerkkeihin
       write:conversations: mykistä ja poista keskusteluja
-      write:favourites: suosikkijulkaisut
+      write:favourites: lisää julkaisuja suosikkeihin
       write:filters: luo suodattimia
       write:follows: seuraa käyttäjiä
       write:lists: luo listoja

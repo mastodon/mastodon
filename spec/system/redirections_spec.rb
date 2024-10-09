@@ -2,31 +2,35 @@
 
 require 'rails_helper'
 
-describe 'redirection confirmations' do
+RSpec.describe 'redirection confirmations' do
   let(:account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/users/foo', url: 'https://example.com/@foo') }
   let(:status)  { Fabricate(:status, account: account, uri: 'https://example.com/users/foo/statuses/1', url: 'https://example.com/@foo/1') }
 
-  context 'when a logged out user visits a local page for a remote account' do
-    it 'shows a confirmation page' do
-      visit "/@#{account.pretty_acct}"
+  context 'when logged out' do
+    describe 'a local page for a remote account' do
+      it 'shows a confirmation page with relevant content' do
+        visit "/@#{account.pretty_acct}"
 
-      # It explains about the redirect
-      expect(page).to have_content(I18n.t('redirects.title', instance: 'cb6e6126.ngrok.io'))
+        expect(page)
+          .to have_content(redirect_title) # Redirect explanation
+          .and have_link(account.url, href: account.url) # Appropriate account link
+          .and have_css('body', class: 'app-body')
+      end
+    end
 
-      # It features an appropriate link
-      expect(page).to have_link(account.url, href: account.url)
+    describe 'a local page for a remote status' do
+      it 'shows a confirmation page with relevant content' do
+        visit "/@#{account.pretty_acct}/#{status.id}"
+
+        expect(page)
+          .to have_content(redirect_title) # Redirect explanation
+          .and have_link(status.url, href: status.url) # Appropriate status link
+          .and have_css('body', class: 'app-body')
+      end
     end
   end
 
-  context 'when a logged out user visits a local page for a remote status' do
-    it 'shows a confirmation page' do
-      visit "/@#{account.pretty_acct}/#{status.id}"
-
-      # It explains about the redirect
-      expect(page).to have_content(I18n.t('redirects.title', instance: 'cb6e6126.ngrok.io'))
-
-      # It features an appropriate link
-      expect(page).to have_link(status.url, href: status.url)
-    end
+  def redirect_title
+    I18n.t('redirects.title', instance: 'cb6e6126.ngrok.io')
   end
 end

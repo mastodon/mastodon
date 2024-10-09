@@ -1,7 +1,8 @@
 import { useEffect, forwardRef } from 'react';
 
+import { FormattedMessage } from 'react-intl';
+
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 
 import { fetchAccount } from 'mastodon/actions/accounts';
 import { AccountBio } from 'mastodon/components/account_bio';
@@ -14,6 +15,7 @@ import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { domain } from 'mastodon/initial_state';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
+import Permalink from './permalink';
 
 export const HoverCardAccount = forwardRef<
   HTMLDivElement,
@@ -23,6 +25,11 @@ export const HoverCardAccount = forwardRef<
 
   const account = useAppSelector((state) =>
     accountId ? state.accounts.get(accountId) : undefined,
+  );
+
+  const note = useAppSelector(
+    (state) =>
+      state.relationships.getIn([accountId, 'note']) as string | undefined,
   );
 
   useEffect(() => {
@@ -42,10 +49,10 @@ export const HoverCardAccount = forwardRef<
     >
       {account ? (
         <>
-          <Link to={`/@${account.acct}`} className='hover-card__name'>
+          <Permalink href={account.url} to={`/@${account.acct}`} className='hover-card__name'>
             <Avatar account={account} size={46} />
             <DisplayName account={account} localDomain={domain} />
-          </Link>
+          </Permalink>
 
           <div className='hover-card__text-row'>
             <AccountBio
@@ -53,6 +60,17 @@ export const HoverCardAccount = forwardRef<
               className='hover-card__bio'
             />
             <AccountFields fields={account.fields} limit={2} />
+            {note && note.length > 0 && (
+              <dl className='hover-card__note'>
+                <dt className='hover-card__note-label'>
+                  <FormattedMessage
+                    id='account.account_note_header'
+                    defaultMessage='Personal note'
+                  />
+                </dt>
+                <dd>{note}</dd>
+              </dl>
+            )}
           </div>
 
           <div className='hover-card__number'>

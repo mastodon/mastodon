@@ -7,7 +7,6 @@ sr:
     hosted_on: Mastodon хостован на %{domain}
     title: О инстанци
   accounts:
-    follow: Запрати
     followers:
       few: Пратиоца
       one: Пратилац
@@ -60,7 +59,7 @@ sr:
       demote: Ражалуј
       destroyed_msg: Подаци корисника %{username} су неповратно стављени у ред за брисање
       disable: Замрзни
-      disable_sign_in_token_auth: Онемогући имејл аутентификацију
+      disable_sign_in_token_auth: Онемогући аутентификацију токена е-поште
       disable_two_factor_authentication: Искључи 2FA
       disabled: Замрзнут
       display_name: Име за приказ
@@ -69,7 +68,7 @@ sr:
       email: Е-пошта
       email_status: Статус е-поште
       enable: Омогући
-      enable_sign_in_token_auth: Омогући имејл аутентификацију
+      enable_sign_in_token_auth: Омогући аутентификацију токена е-поште
       enabled: Омогућен
       enabled_msg: Успешно одлеђен налог корисника %{username}
       followers: Пратиоци
@@ -176,7 +175,7 @@ sr:
         approve_appeal: Уважи жалбу
         approve_user: Одобри корисника
         assigned_to_self_report: Додели пријаву
-        change_email_user: Промени e-адресу корисника
+        change_email_user: Промени e-адресу за корисника
         change_role_user: Промени улогу корисника
         confirm_user: Потврди корисника
         create_account_warning: Креирај упозорење
@@ -185,7 +184,7 @@ sr:
         create_custom_emoji: Направи прилагођени емоџи
         create_domain_allow: Додај дозвољени домен
         create_domain_block: Додај блокирани домен
-        create_email_domain_block: Блокирај имејл домен
+        create_email_domain_block: Креирај блок домена е-поште
         create_ip_block: Направи IP услов
         create_unavailable_domain: Додај домен као недоступан
         create_user_role: Креирај улогу
@@ -195,7 +194,7 @@ sr:
         destroy_custom_emoji: Обриши прилагођени емоџи
         destroy_domain_allow: Обриши дозвољени домен
         destroy_domain_block: Обриши блокирани домен
-        destroy_email_domain_block: Избриши блок е-поште
+        destroy_email_domain_block: Избриши блок домена е-поште
         destroy_instance: Очисти домен
         destroy_ip_block: Обриши IP услов
         destroy_status: Избриши пост
@@ -203,10 +202,10 @@ sr:
         destroy_user_role: Уништи позицију
         disable_2fa_user: Онемогући двофакторску аутентификацију
         disable_custom_emoji: Онемогући прилагођене емоџије
-        disable_sign_in_token_auth_user: Онемогући имејл аутентификацију за корисника
+        disable_sign_in_token_auth_user: Онемогући аутентификацију токена е-поште за корисника
         disable_user: Онемогући корисника
         enable_custom_emoji: Омогући прилагођене емоџије
-        enable_sign_in_token_auth_user: Омогући имејл аутентификацију за корисника
+        enable_sign_in_token_auth_user: Омогући аутентификацију токена е-поште за корисника
         enable_user: Омогући корисника
         memorialize_account: Претвори у меморијални налог
         promote_user: Унапреди корисника
@@ -229,32 +228,33 @@ sr:
         update_custom_emoji: Ажурирај прилагођене емоџије
         update_domain_block: Ажурирај домен блок
         update_ip_block: Ажурирај IP услов
+        update_report: Ажурирај извештај
         update_status: Уреди објаву
         update_user_role: Уреди улогу
       actions:
         approve_appeal_html: "%{name} је уважио жалбу корисника %{target} на одлуку модератора"
         approve_user_html: "%{name} је одобрио/-ла регистрацију корисника %{target}"
         assigned_to_self_report_html: "%{name} је себи доделио/-ла пријаву %{target}"
-        change_email_user_html: "%{name} је променио/-ла имејл адресу корисника %{target}"
+        change_email_user_html: "%{name} је променио/ла адресу е-поште за корисника %{target}"
         change_role_user_html: "%{name} је променио/-ла овлашћења корисника %{target}"
-        confirm_user_html: "%{name} је потврдио/-ла имејл адресу корисника %{target}"
+        confirm_user_html: "%{name} је потврдио/ла адресу е-поште за корисника %{target}"
         create_account_warning_html: "%{name} је послао/-ла упозорење кориснику %{target}"
         create_announcement_html: "%{name} је направио/-ла ново саопштење %{target}"
-        create_canonical_email_block_html: "%{name} је блокирао/-ла имејл адресу са хешом %{target}"
+        create_canonical_email_block_html: "%{name} је блокирао/ла адресу е-поште са хешом %{target}"
         create_custom_emoji_html: "%{name} је отпремио/-ла нове емоџије %{target}"
         create_domain_allow_html: "%{name} је дозволио/-ла федерацију са доменом %{target}"
         create_domain_block_html: "%{name} је блокирао/-ла домен %{target}"
-        create_email_domain_block_html: "%{name} је блокирао/-ла имејл домен %{target}"
+        create_email_domain_block_html: "%{name} је блокирао/ла домен е-поште %{target}"
         create_ip_block_html: "%{name} је направио/-ла услов за IP адресе %{target}"
         create_unavailable_domain_html: "%{name} је обуставио/-ла испоручивање домену %{target}"
         create_user_role_html: "%{name} је направио/-ла %{target} позицију"
         demote_user_html: "%{name} је смањио овлашћења корисника %{target}"
         destroy_announcement_html: "%{name} је обрисао/-ла саопштење %{target}"
-        destroy_canonical_email_block_html: "%{name} је одблокирао/-ла имејл адресу са хешом %{target}"
+        destroy_canonical_email_block_html: "%{name} је одблокирао/ла адресу е-поште са хешом %{target}"
         destroy_custom_emoji_html: "%{name} је обрисао/-ла емоџи %{target}"
         destroy_domain_allow_html: "%{name} је забранио/-ла федерацију са доменом %{target}"
         destroy_domain_block_html: "%{name} је одблокирао/-ла домен %{target}"
-        destroy_email_domain_block_html: "%{name} је одблокирао/-ла имејл домен %{target}"
+        destroy_email_domain_block_html: "%{name} је одблокирао/ла домен е-поште %{target}"
         destroy_instance_html: "%{name} је очистио/-ла домен %{target}"
         destroy_ip_block_html: "%{name} је обрисао/-ла услов за IP адресе %{target}"
         destroy_status_html: "%{name} је избрисао/-ла објаву корисника %{target}"
@@ -262,10 +262,10 @@ sr:
         destroy_user_role_html: "%{name} је избрисао/-ла %{target} позицију"
         disable_2fa_user_html: "%{name} је онемогућио/-ла двофакторску аутентификацију за корисника %{target}"
         disable_custom_emoji_html: "%{name} је онемогућио/-ла емоџи %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} је онемогућио/-ла имејл аутентификацију за корисника %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} је онемогућио/ла аутентификацију токена е-поште за %{target}"
         disable_user_html: "%{name} је онемогућио/-ла пријављивање за корисника %{target}"
         enable_custom_emoji_html: "%{name} је омогућио/-ла емоџи %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} је омогућио/-ла имејл аутентификацију за %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} је омогућио/ла аутентификацију токена е-поште за %{target}"
         enable_user_html: "%{name} је омогућио/-ла пријављивање кориснику %{target}"
         memorialize_account_html: "%{name} је претворио/-ла налог корисника %{target} у меморијалну страницу"
         promote_user_html: "%{name} је унапредио/-ла корисника %{target}"
@@ -273,7 +273,7 @@ sr:
         reject_user_html: "%{name} је одбио/-ла регистрацију корисника %{target}"
         remove_avatar_user_html: "%{name} је уклонио аватар корисника %{target}"
         reopen_report_html: "%{name} је поново отворио/-ла пријаву %{target}"
-        resend_user_html: "%{name} је поново послао/-ла имејл за потврду кориснику %{target}"
+        resend_user_html: "%{name} је поништио/ла е-пошту за потврду за %{target}"
         reset_password_user_html: "%{name} је ресетовао/-ла лозинку корисника %{target}"
         resolve_report_html: "%{name} је решио/-ла пријаву %{target}"
         sensitive_account_html: "%{name} је означио/-ла медије налога %{target} као осетљиве"
@@ -439,7 +439,7 @@ sr:
         few: "%{count} покушаја током претходне недеље"
         one: "%{count} покушај током претходне недеље"
         other: "%{count} покушаја регистрације током претходне недеље"
-      created_msg: Успешно додао домен Е-поште на црну листу
+      created_msg: Успешно блокиран домен е-поште
       delete: Обриши
       dns:
         types:
@@ -448,12 +448,12 @@ sr:
       new:
         create: Додај домен
         resolve: Претвори домен
-        title: Нова ставка е-поштe у црној листи
-      no_email_domain_block_selected: Ниједан блок имејл домена није промењен јер ниједан није изабран
+        title: Блокирај нови домен е-поште
+      no_email_domain_block_selected: Ниједан блок домена е-поште није промењен јер ниједан није изабран
       not_permitted: Није дозвољено
-      resolved_dns_records_hint_html: Име домена се претвара у следеће MX домене, који су напослетку одговорни за прихватање електронске поште. Блокирање MX домена ће блокирати регистрације са сваке имејл адресе која користи тај MX домен, чак и у случају када се видљиво име домена разликује. <strong>Водите рачуна о томе да не блокирате велике имејл провајдере.</strong>
+      resolved_dns_records_hint_html: Име домена се претвара у следеће MX домене, који су напослетку одговорни за прихватање е-поште. Блокирање MX домена ће блокирати регистрације са сваке адресе е-поште која користи тај MX домен, чак и у случају када се видљиво име домена разликује. <strong>Водите рачуна о томе да не блокирате главне добављаче е-поште.</strong>
       resolved_through_html: Преусмерено кроз %{domain}
-      title: Црна листа E-поште
+      title: Блокирани домени е-поште
     export_domain_allows:
       new:
         title: Увези дозвољене домене
@@ -478,6 +478,9 @@ sr:
       title: Препоруке за праћење
       unsuppress: Врати препоруку за праћење
     instances:
+      audit_log:
+        title: Недавни записници
+        view_all: Погледај пуне записнике
       availability:
         description_html:
           few: Уколико испорука домену не успе ниједном током <strong>%{count} различитих дана</strong>, даљи покушаји испоруке неће бити иницирани осим уколико се не прими испорука <em>са</em> домена.
@@ -608,7 +611,7 @@ sr:
         resolve_description_html: Ниједна радња неће бити предузета против пријављеног налога, ниједан преступ није уписан и пријава ће бити затворена.
         silence_description_html: Налог ће бити видљив само онима који га већ прате или који га ручно потраже, што ће значајно ограничити његов домет. Ограничење се може повући у сваком тренутку. Затвара све пријаве поднете против овог налога.
         suspend_description_html: Налог и сви његови садржаји ће постати недоступни и у једном тренутку избрисани, а интеракција са налогом више неће бити могућа. Суспензија се може повући у року од 30 дана. Затвара све пријаве поднете против овог налога.
-      actions_description_html: Одлучите коју радњу да спроведете ради решавања ове пријаве. Уколико спроведете казнену радњу против пријављеног налога, власник налога ће бити обавештен путем и-мејла, осим уколико ознака <strong>„Непожељне поруке”</strong> није одабрана.
+      actions_description_html: Одлучите коју радњу да спроведете ради решавања ове пријаве. Уколико спроведете казнену радњу против пријављеног налога, власник налога ће бити обавештен путем е-поште, осим уколико ознака <strong>„Нежељене поруке”</strong> није одабрана.
       actions_description_remote_html: Одлучите коју радњу да предузмете ради решавања ове пријаве. Ово ће утицати само на то како <strong>Ваш</strong> сервер комуницира са овим удаљеним налогом и обрађује његов садржај.
       add_to_report: Додај још у пријаву
       already_suspended_badges:
@@ -672,7 +675,6 @@ sr:
         delete_data_html: Обриши профил и садржаје корисника <strong>@%{acct}</strong> за 30 дана осим уколико суспензија буде повучена у међувремену
         preview_preamble_html: "<strong>@%{acct}</strong> ће примити упозорење следеће садржине:"
         record_strike_html: Упишите прекршај на име <strong>@%{acct}</strong> да би Вам било лакше да у будућности интервенишете приликом даљих преступа са овог налога
-        send_email_html: Пошаљи имејл упозорења кориснику <strong>@%{acct}</strong>
         warning_placeholder: Опционо додатно образложење за модерацијску радњу.
       target_origin: Порекло пријављеног налога
       title: Пријаве
@@ -714,7 +716,6 @@ sr:
         manage_appeals: Надгледање жалби
         manage_appeals_description: Допушта корисницима да прегледају жалбе на модерацијске радње
         manage_blocks: Надгледање блокова
-        manage_blocks_description: Допушта корисницима да блокирају имејл провајдере и IP адресе
         manage_custom_emojis: Надлежност над прилагођеним емоџијима
         manage_custom_emojis_description: Даје корисницима контролу над прилагођеним емоџијима на серверу
         manage_federation: Надгледање федерације
@@ -732,7 +733,6 @@ sr:
         manage_taxonomies: Надгледање таксономија
         manage_taxonomies_description: Допушта корисницима да прегледају садржај у тренду и ажурирају поставке хеш ознака
         manage_user_access: Надлежност над корисничким приступом
-        manage_user_access_description: Допушта корисницима да онемогуће двофакторску аутентификацију других корисника, мењају им имејл адресе и ресетују им лозинке
         manage_users: Надлежност над корисницима
         manage_users_description: Допушта корисницима да прочитају детаље других корисника и извршавају модерацијске радње над њима
         manage_webhooks: Надлежност над webhook елементима
@@ -807,7 +807,6 @@ sr:
       destroyed_msg: Отпремање успешно обрисано!
     software_updates:
       critical_update: Критично — ажурирајте брзо
-      description: Препоручује се да своју Mastodon инсталацију одржавате ажурном како бисте имали користи од најновијих исправки и функција. Штавише, понекад је кључно ажурирати Mastodon на време како би се избегли безбедносни проблеми. Из ових разлога, Mastodon проверава да ли постоје ажурирања сваких 30 минута, и обавестиће вас у складу са вашим подешавањима обавештења путем е-поште.
       documentation_link: Сазнајте више
       release_notes: Белешке о издању
       title: Доступна ажурирања
@@ -962,7 +961,6 @@ sr:
           few: Коришћено од стране %{count} особе током претходне недеље
           one: Коришћено од стране једне особе током претходне недеље
           other: Коришћено од стране %{count} људи током претходне недеље
-      title: Трендови
       trending: У тренду
     warning_presets:
       add_new: Додај нови
@@ -1048,9 +1046,7 @@ sr:
       guide_link_text: Свако може допринети.
     sensitive_content: Осетљив садржај
   application_mailer:
-    notification_preferences: Промени преференце Е-поште
     salutation: Поштовани %{name},
-    settings: 'Промени подешавања е-поште: %{link}'
     unsubscribe: Одјави се
     view: 'Погледај:'
     view_profile: Погледај налог
@@ -1070,7 +1066,6 @@ sr:
       hint_html: Само још једна ствар! Морамо да потврдимо да сте људско биће (ово је да бисмо спречили нежељену пошту!). Решите CAPTCHA испод и кликните на „Настави”.
       title: Безбедоносна провера
     confirmations:
-      awaiting_review: Ваша адреса е-поште је потврђена! Особље %{domain} сада прегледа вашу регистрацију. Добићете е-пошту ако одобре ваш налог!
       awaiting_review_title: Ваша регистрација се прегледа
       clicking_this_link: кликом на ову везу
       login_link: пријави се
@@ -1078,7 +1073,6 @@ sr:
       redirect_to_app_html: Требало је да будете преусмерени на апликацију <strong>%{app_name}</strong>. Ако се то није десило, покушајте са %{clicking_this_link} или се ручно вратите у апликацију.
       registration_complete: Ваша регистрација на %{domain} је сада комплетирана!
       welcome_title: Добро дошли, %{name}!
-      wrong_email_hint: Ако та имејл адреса није исправна, можете је променити у подешавањима налога.
     delete_account: Брисање налога
     delete_account_html: Ако желите да избришете ваш налог, можете <a href="%{path}">наставити овде</a>. Од вас ће се тражити потврда.
     description:
@@ -1099,7 +1093,6 @@ sr:
     or_log_in_with: Или се пријавите са
     privacy_policy_agreement_html: Прочитао/-ла сам и сагласан/-а сам са <a href="%{privacy_policy_path}" target="_blank">политиком приватности</a>
     progress:
-      confirm: Потврдите е-пошту
       details: Ваши детаљи
       review: Наш преглед
       rules: Прихватите правила
@@ -1121,10 +1114,8 @@ sr:
     security: Безбедност
     set_new_password: Постави нову лозинку
     setup:
-      email_below_hint_html: Проверите своју фасциклу нежељене поште или затражите другу. Можете да исправите своју адресу е-поште ако је погрешна.
       email_settings_hint_html: Кликните на везу који смо вам послали да верификујете %{email}. Чекаћемо овде.
       link_not_received: Нисте добили везу?
-      new_confirmation_instructions_sent: За неколико минута примићете нову е-поруку са везом за потврду!
       title: Проверите своје пријемно сандуче
     sign_in:
       preamble_html: Пријавите се са својим подацима за <strong>%{domain}</strong>. Ако је ваш налог хостован на другом серверу, нећете моћи да се пријавите овде.
@@ -1135,9 +1126,7 @@ sr:
       title: Хајде да Вам наместимо налог на %{domain}.
     status:
       account_status: Статус налога
-      confirming: Чекање на потврду путем имејла.
       functional: Ваш налог је потпуно оперативан.
-      pending: Ваш захтев је на чекању за преглед од стране нашег особља. Ово може потрајати неко време. Примићете имејл поруку уколико Вам захтев буде одобрен.
       redirecting_to: Ваш налог је неактиван јер преусмерава на %{acct}.
       self_destruct: Пошто се %{domain} затвара, добићете само ограничен приступ свом налогу.
       view_strikes: Погледајте претходне преступе уписане на Ваше име
@@ -1151,7 +1140,6 @@ sr:
   crypto:
     errors:
       invalid_key: није валидан Ed25519 или Curve25519 кључ
-      invalid_signature: није валидан Ed25519 потпис
   date:
     formats:
       default: "%d. %b. %Y."
@@ -1180,9 +1168,6 @@ sr:
       before: 'Пре него што наставите, молимо Вас пажљиво прочитајте следеће напомене:'
       caches: Садржај који је кеширан на другим серверима може да остане нетакнут
       data_removal: Ваше објаве и други подаци ће бити трајно избрисани
-      email_change_html: Можете <a href="%{path}">променити своју имејл адресу</a> без брисања свог налога
-      email_contact_html: Ако порука и даље не стиже, можете послати мејл на <a href="mailto:%{email}">%{email}</a> за помоћ
-      email_reconfirmation_html: Уколико Вам имејл за потврду не стиже, можете га <a href="%{path}">поново затражити</a>
       irreversible: Нећете бити у могућности да вратите или реактивирате свој налог
       more_details_html: За више детаља, погледајте <a href="%{terms_path}">политику приватности</a>.
       username_available: Ваше корисничко име ће поново постати доступно
@@ -1217,8 +1202,6 @@ sr:
       your_appeal_approved: Ваша жалба је уважена
       your_appeal_pending: Приложили сте жалбу
       your_appeal_rejected: Ваша жалба је одбијена
-  domain_validator:
-    invalid_domain: нелегитимно име домена
   edit_profile:
     basic_information: Основне информације
     hint_html: "<strong>Прилагодите шта људи виде на вашем јавном профилу и поред ваших објава.</strong> Већа је вероватноћа да ће вас други пратити и комуницирати са вама када имате попуњен профил и слику профила."
@@ -1349,20 +1332,6 @@ sr:
       merge_long: Задржите постојеће записе и додајте нове
       overwrite: Замени
       overwrite_long: Замени тренутне записе новима
-    overwrite_preambles:
-      blocking_html: Управо ћете <strong>заменити своју листу блокираних</strong> са до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
-      bookmarks_html: Управо ћете <strong>заменити своје обележиваче</strong> са до <strong>%{total_items} објава</strong> из <strong>%{filename}</strong>.
-      domain_blocking_html: Управо ћете <strong>заменити своју листу блокираних домена</strong> са до <strong>%{total_items} домена</strong> из <strong>%{filename}</strong>.
-      following_html: Управо ћете <strong>пратити</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong> and <strong>и престати са праћењем било кога другог</strong>.
-      lists_html: Спремате се да <strong>замените своје листе</strong> садржајем од <strong>%{filename}</strong>. До <strong>%{total_items} налога</strong> ће бити додато на нове листе.
-      muting_html: Управо ћете <strong>заменити своју листу игнорисаних налога</strong> са до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Управо ћете <strong>блокирати</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
-      bookmarks_html: Управо ћете додати до <strong>%{total_items} објава</strong> из <strong>%{filename}</strong> у ваше <strong>обележиваче</strong>.
-      domain_blocking_html: Управо ћете <strong>блокирати</strong> до <strong>%{total_items} домена</strong> из <strong>%{filename}</strong>.
-      following_html: Управо ћете <strong>пратити</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
-      lists_html: Спремате се да додате до <strong>%{total_items} налога</strong> од <strong>%{filename}</strong> на своје <strong>листе</strong>. Нове листе ће бити креиране ако не постоји листа за додавање.
-      muting_html: Управо ћете <strong>игнорисати</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
     preface: Можете увести податке које сте извезли са друге инстанце, као што су листе људи које сте пратили или блокирали.
     recent_imports: Недавни увози
     states:
@@ -1423,7 +1392,6 @@ sr:
     authentication_methods:
       otp: апликација за двофакторску аутентификацију
       password: лозинка
-      sign_in_token: имејл сигурносни код
       webauthn: сигурносни кључеви
     description_html: Уколико приметите активност коју не препознајете, размислите о томе да промените своју лозинку и укључите двофакторску аутентификацију.
     empty: Историја аутентификације није доступна
@@ -1434,16 +1402,6 @@ sr:
     unsubscribe:
       action: Да, одјави ме
       complete: Одјављен
-      confirmation_html: Да ли сте сигурни да желите да се одјавите од примања %{type} за Mastodon на %{domain} на своју е-пошту на %{email}? Увек можете поново да се пријавите у својим <a href="%{settings_path}">подешавањима обавештења путем е-поште</a>.
-      emails:
-        notification_emails:
-          favourite: омиљене е-поште за обавештења
-          follow: омиљене е-поште за праћења
-          follow_request: е-поште за захтеве за праћења
-          mention: е-поште за обавештење помињања
-          reblog: е-поште за обавештење подржавања
-      resubscribe_html: Ако сте се грешком одјавили, можете поново да се пријавите у својим <a href="%{settings_path}">подешавањима обавештења путем е-поште</a>.
-      success_html: Више нећете добијати %{type} за Mastodon на %{domain} на своју е-пошту на %{email}.
       title: Одјави се
   media_attachments:
     validations:
@@ -1524,8 +1482,6 @@ sr:
     update:
       subject: "%{name} је уредио/-ла објаву"
   notifications:
-    administration_emails: Обавештења е-поштом од администратора
-    email_events: Догађаји за обавештења е-поштом
     email_events_hint: 'Изаберите дешавања за која желите да примате обавештења:'
   number:
     human:
@@ -1679,12 +1635,10 @@ sr:
     delete: Брисање налога
     development: Развој
     edit_profile: Уређивање профила
-    export: Извоз података
     featured_tags: Истакнуте хеш ознаке
     import: Увоз
     import_and_export: Увоз и извоз
     migrate: Пребацивање налога
-    notifications: Обавештења е-поштом
     preferences: Подешавања
     profile: Јавни профил
     relationships: Праћења и пратиоци
@@ -1729,25 +1683,12 @@ sr:
     edited_at_html: Уређено %{date}
     errors:
       in_reply_not_found: Објава на коју покушавате да одговорите наизглед не постоји.
-    open_in_web: Отвори у вебу
     over_character_limit: ограничење од %{max} карактера прекорачено
     pin_errors:
       direct: Објаве које су видљиве само поменутим корисницима не могу бити прикачене
       limit: Већ сте закачили максималан број објава
       ownership: Туђа објава се не може закачити
       reblog: Подршка не може да се прикачи
-    poll:
-      total_people:
-        few: "%{count} особе"
-        one: "%{count} особа"
-        other: "%{count} људи"
-      total_votes:
-        few: "%{count} гласа"
-        one: "%{count} глас"
-        other: "%{count} гласова"
-      vote: Гласајте
-    show_more: Прикажи још
-    show_thread: Прикажи низ
     title: "%{name}: „%{quote}”"
     visibilities:
       direct: Директно
@@ -1938,12 +1879,11 @@ sr:
     invalid_otp_token: Неисправни двофакторски код
     otp_lost_help_html: Ако изгубите приступ за оба, можете ступити у контакт са %{email}
     rate_limited: Превише покушаја аутентификације, покушајте поново касније.
-    seamless_external_login: Пријављени сте путем спољашње услуге, тако да лозинка и подешавања Е-поште нису доступни.
     signed_in_as: 'Пријављен/а као:'
   verification:
     extra_instructions_html: <strong>Савет:</strong>Веза на вашем веб сајту може да буде невидљива. Важан део је <code>rel="me"</code> који спречава лажно представљање на веб сајтовима са садржајем који генерише корисник. Можете чак да користите ознаку <code>везе</code> у заглављу странице уместо <code>а</code>, али HTML мора бити доступан без извршавања JavaScript-а.
     here_is_how: Ево како
-    hint_html: "<strong>Верификација вашег идентитета на Mastodon-у је за свакога.</strong> Засновано на отвореним веб стандардима, сада и заувек бесплатно. Све што вам треба је лични веб сајт по коме вас људи препознају. Када се повежете са овим веб сајтом са свог профила, проверићемо да ли је веб сајт повезан са вашим профилом и на њему ћемо приказати визуелни индикатор."
+    hint_html: "<strong>Свако може да верификује свој идентитет на Mastodon-у.</strong> Засновано на отвореним веб стандардима, сада и заувек бесплатно. Све што вам треба је лични веб сајт по коме вас људи препознају. Када се повежете са овим веб сајтом са свог профила, проверићемо да ли је веб сајт повезан са вашим профилом и на њему ћемо приказати визуелни индикатор."
     instructions_html: Копирајте и налепите код испод у HTML свог веб сајта. Затим додајте адресу свог веб сајта у једно од додатних поља на свом профилу са картице „Уреди профил” и сачувајте промене.
     verification: Верификација
     verified_links: Ваше верификоване везе

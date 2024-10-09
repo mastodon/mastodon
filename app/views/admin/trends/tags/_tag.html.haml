@@ -4,9 +4,7 @@
 
   .batch-table__row__content.pending-account
     .pending-account__header
-      = link_to admin_tag_path(tag.id) do
-        = material_symbol 'tag'
-        = tag.display_name
+      = link_to tag.formatted_name, admin_tag_path(tag.id)
 
       %br/
 

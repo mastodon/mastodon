@@ -3,6 +3,7 @@ hu:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Megvéd a hamis forrásmegjelölésektől.
         discoverable: A nyilvános bejegyzéseid és a profilod kiemelhető vagy ajánlható a Mastodon különböző területein, a profilod más felhasználóknak is javasolható.
         display_name: Teljes neved vagy vicces neved.
         fields: Weboldalad, megszólításaid, korod, bármi, amit szeretnél.
@@ -130,7 +131,7 @@ hu:
         name: Csak a kis/nagybetűséget változtathatod meg, pl. hogy olvashatóbb legyen
       user:
         chosen_languages: Ha aktív, csak a kiválasztott nyelvű bejegyzések jelennek majd meg a nyilvános idővonalon
-        role: A szerep szabályozza, hogy a felhasználó milyen jogosultságokkal rendelkezik
+        role: A szerep szabályozza, hogy a felhasználó milyen jogosultságokkal rendelkezik.
       user_role:
         color: A szerephez használandó szín mindenhol a felhasználói felületen, hexa RGB formátumban
         highlighted: Ez nyilvánosan láthatóvá teszi a szerepet
@@ -143,6 +144,7 @@ hu:
         url: Ahová az eseményket küldjük
     labels:
       account:
+        attribution_domains_as_text: Csak meghatározott weboldalak engedélyezése
         discoverable: Profil és bejegyzések szerepeltetése a felfedezési algoritmusokban
         fields:
           name: Címke
@@ -211,6 +213,7 @@ hu:
         setting_default_privacy: Bejegyzések láthatósága
         setting_default_sensitive: Minden médiafájl megjelölése kényesként
         setting_delete_modal: Megerősítés kérése bejegyzés törlése előtt
+        setting_disable_hover_cards: Profilelőnézet letiltása föléhúzás esetén
         setting_disable_swiping: Elhúzás művelet kikapcsolása
         setting_display_media: Média megjelenítése
         setting_display_media_default: Alapértelmezés
@@ -242,11 +245,13 @@ hu:
           warn: Elrejtés figyelmeztetéssel
       form_admin_settings:
         activity_api_enabled: Összesített statisztikák közzététele az API-ban a felhasználók aktivitásáról
+        app_icon: Alkalmazásikon
         backups_retention_period: Felhasználói archívum megtartási időszaka
         bootstrap_timeline_accounts: Mindig javasoljuk ezeket a fiókokat az új felhasználók számára
         closed_registrations_message: A feliratkozáskor megjelenő egyéni üzenet nem érhető el
         content_cache_retention_period: Távoli tartalmak megtartási időszaka
         custom_css: Egyéni CSS
+        favicon: Könyvjelzőikon
         mascot: Egyéni kabala (örökölt)
         media_cache_retention_period: Média-gyorsítótár megtartási időszaka
         peers_api_enabled: Felfedezett kiszolgálók listájának közzététele az API-ban
@@ -311,7 +316,7 @@ hu:
         listable: A hashtag megjelenhet a profiladatbázisban
         name: Hashtag
         trendable: A hashtag megjelenhet a felkapottak között
-        usable: Bejegyzések használhatják ezt a hashtaget
+        usable: A helyi bejegyzések használhatják ezt a hashtaget
       user:
         role: Szerep
         time_zone: Időzóna

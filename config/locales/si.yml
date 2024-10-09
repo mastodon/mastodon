@@ -7,7 +7,6 @@ si:
     hosted_on: "%{domain} හරහා සත්කාරකත්‍වය ලබයි"
     title: පිළිබඳව
   accounts:
-    follow: අනුගමනය
     followers:
       one: අනුගාමිකයා
       other: අනුගාමිකයින්
@@ -26,7 +25,6 @@ si:
     account_moderation_notes:
       create: සටහනක් තබන්න
     accounts:
-      add_email_domain_block: වි-තැපැල් වසම අවහිර කරන්න
       approve: අනුමැතිය
       approved_msg: "%{username}හි ලියාපදිංචි වීමේ යෙදුම සාර්ථකව අනුමත කරන ලදී"
       are_you_sure: ඔබට විශ්වාසද?
@@ -51,14 +49,12 @@ si:
       delete: දත්ත මකන්න
       deleted: මකා ඇත
       destroyed_msg: "%{username}හි දත්ත ඉක්මනින් මකා දැමීමට පෝලිම් කර ඇත"
-      disable_sign_in_token_auth: ඊමේල් ටෝකන් සත්‍යාපනය අක්‍රීය කරන්න
       disable_two_factor_authentication: 2FA අබල කරන්න
       display_name: ප්රදර්ශන නාමය
       domain: වසම
       edit: සංස්කරණය
       email: විද්‍යුත් තැපෑල
       email_status: වි-තැපෑලෙහි තත්වය
-      enable_sign_in_token_auth: විද්‍යුත් තැපෑල ටෝකන් සත්‍යාපනය සබල කරන්න
       enabled: සබල කර ඇත
       enabled_msg: "%{username}ගේ ගිණුම සාර්ථකව අත්හිටුවා ඇත"
       followers: අනුගාමිකයින්
@@ -115,7 +111,6 @@ si:
       resubscribe: නැවත දායක වන්න
       role: භූමිකාව
       search: සොයන්න
-      search_same_email_domain: එකම විද්‍යුත් තැපැල් වසම සහිත වෙනත් පරිශීලකයන්
       search_same_ip: එකම IP සහිත වෙනත් පරිශීලකයන්
       security: ආරක්‍ෂාව
       security_measures:
@@ -159,7 +154,6 @@ si:
         create_announcement: නිවේදනය සාදන්න
         create_custom_emoji: අභිරුචි ඉමොජි සාදන්න
         create_domain_allow: වසමකට ඉඩදීම සාදන්න
-        create_email_domain_block: ඊමේල් ඩොමේන් බ්ලොක් එකක් සාදන්න
         create_ip_block: අ.ජා.කෙ. නීතියක් සාදන්න
         create_unavailable_domain: ලබා ගත නොහැකි වසම සාදන්න
         create_user_role: භූමිකාව සාදන්න
@@ -168,16 +162,13 @@ si:
         destroy_custom_emoji: අභිරුචි ඉමොජි මකන්න
         destroy_domain_allow: වසම මකන්න ඉඩ දෙන්න
         destroy_domain_block: වසම් වාරණය මකන්න
-        destroy_email_domain_block: ඊමේල් ඩොමේන් බ්ලොක් එක මකන්න
         destroy_instance: වසම පිරිසිදු කරන්න
         destroy_ip_block: IP රීතිය මකන්න
         destroy_status: ලිපිය මකන්න
         destroy_unavailable_domain: ලබා ගත නොහැකි වසම මකන්න
         disable_2fa_user: 2FA අබල කරන්න
         disable_custom_emoji: අභිරුචි ඉමෝජි අබල කරන්න
-        disable_sign_in_token_auth_user: පරිශීලකයා සඳහා ඊමේල් ටෝකන් සත්‍යාපනය අක්‍රීය කරන්න
         enable_custom_emoji: අභිරුචි ඉමෝජි සබල කරන්න
-        enable_sign_in_token_auth_user: පරිශීලකයා සඳහා විද්‍යුත් තැපෑල ටෝකන් සත්‍යාපනය සක්‍රීය කරන්න
         enable_user: පරිශීලක සබල කරන්න
         memorialize_account: ගිණුම අනුස්මරණ කරන්න
         reject_appeal: අභියාචනය ප්‍රතික්ෂේප කරන්න
@@ -201,30 +192,24 @@ si:
       actions:
         approve_user_html: "%{name} අනුමත ලියාපදිංචිය %{target}සිට"
         assigned_to_self_report_html: "%{name} වාර්තාව %{target} තමන්ටම පවරා ඇත"
-        change_email_user_html: "%{name} පරිශීලක %{target}ගේ ඊමේල් ලිපිනය වෙනස් කළේය"
-        confirm_user_html: "%{name} පරිශීලකයාගේ තහවුරු කරන ලද විද්‍යුත් තැපැල් ලිපිනය %{target}"
         create_account_warning_html: "%{name} %{target}අනතුරු ඇඟවීමක් යවා ඇත"
         create_announcement_html: "%{name} නව නිවේදනයක් තනන %{target}"
         create_custom_emoji_html: "%{name} නව ඉමොජි %{target}උඩුගත කරන ලදී"
         create_domain_allow_html: "%{name} වසම %{target}සමඟ ෆෙඩරේෂණයට අවසර දී ඇත"
         create_domain_block_html: "%{name} අවහිර කළ වසම %{target}"
-        create_email_domain_block_html: "%{name} අවහිර කරන ලද විද්‍යුත් තැපැල් වසම %{target}"
         create_ip_block_html: "%{name} IP %{target}සඳහා රීතිය සාදන ලදී"
         create_unavailable_domain_html: "%{name} වසම %{target}වෙත බෙදා හැරීම නැවැත්වීය"
         demote_user_html: "%{name} පහත හෙලන ලද පරිශීලක %{target}"
         destroy_announcement_html: "%{name} මකා දැමූ නිවේදනය %{target}"
         destroy_domain_allow_html: වසම %{target}සමඟ %{name} අවසර නොදුන් සම්මේලනය
         destroy_domain_block_html: "%{name} අවහිර නොකළ වසම %{target}"
-        destroy_email_domain_block_html: "%{name} අවහිර නොකළ විද්‍යුත් තැපැල් වසම %{target}"
         destroy_instance_html: "%{name} පිරිසිදු කරන ලද වසම %{target}"
         destroy_ip_block_html: IP %{target}සඳහා %{name} මකා දැමූ රීතිය
         destroy_unavailable_domain_html: "%{name} වසම %{target}වෙත බෙදා හැරීම නැවත ආරම්භ විය"
         disable_2fa_user_html: "%{name} පරිශීලක %{target}සඳහා සාධක දෙකක අවශ්‍යතාවය අක්‍රීය කර ඇත"
         disable_custom_emoji_html: "%{name} ආබාධිත ඉමොජි %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} අක්‍රීය කරන ලද විද්‍යුත් තැපෑල ටෝකන් සත්‍යාපනය සඳහා %{target}"
         disable_user_html: "%{name} පරිශීලක %{target}සඳහා අබල කළ පිවිසුම"
         enable_custom_emoji_html: "%{name} සක්‍රීය ඉමොජි %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} %{target}විද්‍යුත් තැපෑල ටෝකන් සත්‍යාපනය සක්‍රීය කර ඇත"
         enable_user_html: පරිශීලක %{target}සඳහා %{name} සක්‍රීය පුරනය වීම
         memorialize_account_html: "%{name} %{target}ගේ ගිණුම සිහිවටන පිටුවක් බවට පත් කළේය"
         promote_user_html: "%{name} උසස් පරිශීලක %{target}"
@@ -363,7 +348,6 @@ si:
       attempts_over_week:
         one: පසුගිය සතිය පුරා %{count} උත්සාහයක්
         other: පසුගිය සතියේ ලියාපදිංචි වීමේ උත්සාහයන් %{count} ක්
-      created_msg: විද්‍යුත් තැපැල් වසම සාර්ථකව අවහිර කරන ලදී
       delete: මකන්න
       dns:
         types:
@@ -372,11 +356,7 @@ si:
       new:
         create: වසම එකතු කරන්න
         resolve: වසම විසඳන්න
-        title: නව විද්‍යුත් තැපැල් වසම අවහිර කරන්න
-      no_email_domain_block_selected: කිසිවක් තෝරා නොගත් බැවින් විද්‍යුත් තැපැල් වසම් වාරණ කිසිවක් වෙනස් කර නැත
-      resolved_dns_records_hint_html: ඩොමේන් නාමය පහත දැක්වෙන MX වසම් වලට විසඳයි, ඒවා අවසානයේ ඊමේල් පිළිගැනීම සඳහා වගකිව යුතුය. MX වසමක් අවහිර කිරීම දෘශ්‍ය වසම් නාමය වෙනස් වුවද, එකම MX වසම භාවිතා කරන ඕනෑම විද්‍යුත් තැපැල් ලිපිනයකින් ලියාපදිංචි වීම අවහිර කරයි. <strong>ප්‍රධාන විද්‍යුත් තැපැල් සපයන්නන් අවහිර නොකිරීමට ප්‍රවේශම් වන්න.</strong>
       resolved_through_html: "%{domain}හරහා විසඳා ඇත"
-      title: අවහිර කළ වි-තැපැල් වසම්
     follow_recommendations:
       description_html: "<strong>නව පරිශීලකයින්ට රසවත් අන්තර්ගතයන් ඉක්මනින් සොයා ගැනීමට උපකාර වන නිර්දේශ අනුගමනය කරන්න</strong>. පෞද්ගලීකරණය කළ පසු විපරම් නිර්දේශ සැකසීමට තරම් පරිශීලකයෙකු අන් අය සමඟ අන්තර් ක්‍රියා කර නොමැති විට, ඒ වෙනුවට මෙම ගිණුම් නිර්දේශ කෙරේ. දී ඇති භාෂාවක් සඳහා ඉහළම මෑත කාලීන නියැලීම් සහ ඉහළම දේශීය අනුගාමික සංඛ්‍යාව සහිත ගිණුම් මිශ්‍රණයකින් ඒවා දෛනික පදනමින් නැවත ගණනය කෙරේ."
       language: භාෂාව සඳහා
@@ -503,7 +483,6 @@ si:
       actions:
         other_description_html: ගිණුමේ හැසිරීම පාලනය කිරීම සහ වාර්තා කළ ගිණුමට සන්නිවේදනය අභිරුචිකරණය කිරීම සඳහා තවත් විකල්ප බලන්න.
         resolve_description_html: වාර්තා කරන ලද ගිණුමට එරෙහිව කිසිදු ක්‍රියාමාර්ගයක් නොගනු ඇත, වැඩ වර්ජනයක් වාර්තා නොකෙරේ, වාර්තාව වසා දමනු ඇත.
-      actions_description_html: මෙම වාර්තාව විසඳීමට ගත යුතු ක්‍රියාමාර්ගය තීරණය කරන්න. ඔබ වාර්තා කරන ලද ගිණුමට එරෙහිව දණ්ඩනීය ක්‍රියාමාර්ගයක් ගන්නේ නම්, <strong>Spam</strong> කාණ්ඩය තෝරාගත් විට හැර, ඔවුන්ට විද්‍යුත් තැපෑලෙන් දැනුම්දීමක් යවනු ලැබේ.
       add_to_report: වාර්තා කිරීමට තවත් එක් කරන්න
       are_you_sure: ඔබට විශ්වාසද?
       assign_to_self: මට පවරන්න
@@ -719,7 +698,6 @@ si:
         used_by_over_week:
           one: පසුගිය සතිය පුරා එක් පුද්ගලයෙකු විසින් භාවිතා කරන ලදී
           other: පසුගිය සතිය පුරා පුද්ගලයින් %{count} දෙනෙකු විසින් භාවිතා කරන ලදී
-      title: ප්රවණතා
       trending: ප්රවණතා
     warning_presets:
       add_new: අලුතින් එකතු කරන්න
@@ -788,9 +766,7 @@ si:
       guide_link_text: පරිවර්තකයින්ට දායක වීමට හැකිය.
     sensitive_content: සංවේදී අන්තර්ගත
   application_mailer:
-    notification_preferences: වි-තැපැල් අභිප්‍රේත වෙනස් කරන්න
     salutation: "%{name},"
-    settings: 'වි-තැපැල් අභිප්‍රේත වෙනස් කරන්න: %{link}'
     view: 'දැක්ම:'
     view_profile: පැතිකඩ බලන්න
     view_status: ලිපිය බලන්න
@@ -840,9 +816,7 @@ si:
       title: "%{domain} වෙත පිවිසෙන්න"
     status:
       account_status: ගිණුමේ තත්වය
-      confirming: විද්‍යුත් තැපෑල තහවුරු කිරීම සම්පූර්ණ කිරීම සඳහා රැඳී සිටිමින්.
       functional: ඔබගේ ගිණුම සම්පුර්ණයෙන්ම ක්‍රියාත්මකයි.
-      pending: ඔබගේ අයදුම්පත අපගේ කාර්ය මණ්ඩලය විසින් සමාලෝචනය කිරීමට බලාපොරොත්තු වේ. මෙය යම් කාලයක් ගත විය හැක. ඔබගේ අයදුම්පත අනුමත වුවහොත් ඔබට විද්‍යුත් තැපෑලක් ලැබෙනු ඇත.
       redirecting_to: එය දැනට %{acct}වෙත හරවා යවන බැවින් ඔබගේ ගිණුම අක්‍රියයි.
       view_strikes: ඔබගේ ගිණුමට එරෙහිව පසුගිය වර්ජන බලන්න
     too_fast: පෝරමය ඉතා වේගයෙන් ඉදිරිපත් කර ඇත, නැවත උත්සාහ කරන්න.
@@ -855,7 +829,6 @@ si:
   crypto:
     errors:
       invalid_key: වලංගු Ed25519 හෝ Curve25519 යතුරක් නොවේ
-      invalid_signature: වලංගු Ed25519 අත්සනක් නොවේ
   date:
     formats:
       default: "%Y %b %d"
@@ -884,9 +857,6 @@ si:
       before: 'ඉදිරියට යාමට පෙර, කරුණාකර මෙම සටහන් හොඳින් කියවන්න:'
       caches: වෙනත් සේවාදායකයන් විසින් හැඹිලිගත කර ඇති අන්තර්ගතය දිගටම පැවතිය හැක
       data_removal: ඔබගේ ලිපි සහ අනෙකුත් දත්ත සදහටම ඉවත් කෙරෙනු ඇත
-      email_change_html: ඔබට ඔබගේ ගිණුම මකා</a> <a href="%{path}">කළ හැක
-      email_contact_html: එය තවමත් නොපැමිණියේ නම්, ඔබට උදව් සඳහා <a href="mailto:%{email}">%{email}</a> විද්‍යුත් තැපෑලෙන් යැවිය හැක
-      email_reconfirmation_html: ඔබට තහවුරු කිරීමේ විද්‍යුත් තැපෑල නොලැබුනේ නම්, ඔබට එය <a href="%{path}">නැවත ඉල්ලා සිටිය හැක</a>
       irreversible: ඔබට ඔබගේ ගිණුම ප්‍රතිසාධනය කිරීමට හෝ නැවත සක්‍රිය කිරීමට නොහැකි වනු ඇත
       more_details_html: වැඩි විස්තර සඳහා, <a href="%{terms_path}">පෞද්ගලිකත්ව ප්‍රතිපත්තිය</a>බලන්න.
       username_available: ඔබගේ පරිශීලක නාමය නැවත ලබා ගත හැකි වනු ඇත
@@ -920,8 +890,6 @@ si:
       your_appeal_approved: ඔබගේ අභියාචනය අනුමත කර ඇත
       your_appeal_pending: ඔබ අභියාචනයක් ඉදිරිපත් කර ඇත
       your_appeal_rejected: ඔබගේ අභියාචනය ප්‍රතික්ෂේප කර ඇත
-  domain_validator:
-    invalid_domain: වලංගු ඩොමේන් නාමයක් නොවේ
   edit_profile:
     basic_information: මූලික තොරතුරු
     other: වෙනත්
@@ -1063,7 +1031,6 @@ si:
     authentication_methods:
       otp: ද්වි-සාධක සත්‍යාපන යෙදුම
       password: මුරපදය
-      sign_in_token: ඊමේල් ආරක්ෂක කේතය
       webauthn: ආරක්ෂක යතුරු
     description_html: ඔබ හඳුනා නොගත් ක්‍රියාකාරකම් ඔබ දුටුවහොත්, ඔබේ මුරපදය වෙනස් කිරීම සහ ද්වි-සාධක සත්‍යාපනය සක්‍රීය කිරීම සලකා බලන්න.
     empty: සත්‍යාපන ඉතිහාසයක් නොමැත
@@ -1141,7 +1108,6 @@ si:
     update:
       subject: "%{name} ලිපිය සංශෝධනය කළා"
   notifications:
-    email_events: ඊමේල් දැනුම්දීම් සඳහා සිදුවීම්
     email_events_hint: 'ඔබට දැනුම්දීම් ලැබීමට අවශ්‍ය සිදුවීම් තෝරන්න:'
   number:
     human:
@@ -1268,7 +1234,6 @@ si:
     delete: ගිණුම මැකීම
     development: සංවර්ධනය
     edit_profile: පැතිකඩ සංස්කරණය
-    export: දත්ත නිර්යාතය
     featured_tags: විශේෂාංගගත හැෂ් ටැග්
     import: ආයාතය
     import_and_export: ආයාත හා නිර්යාත
@@ -1299,22 +1264,11 @@ si:
     edited_at_html: සංස්කරණය %{date}
     errors:
       in_reply_not_found: ඔබ පිළිතුරු දීමට තැත් කරන ලිපිය නොපවතින බව පෙනෙයි.
-    open_in_web: වෙබයේ විවෘත කරන්න
     over_character_limit: අක්ෂර සීමාව %{max} ඉක්මවා ඇත
     pin_errors:
       direct: සඳහන් කළ අයට පමණක් පෙනෙන ලිපි ඇමිණීමට නොහැකිය
       limit: දැනටමත් මුදුනට ඇමිණිමට හැකි ලිපි සීමාවට ළඟා වී ඇත
       ownership: වෙනත් අයගේ ලිපි ඇමිණීමට නොහැකිය
-    poll:
-      total_people:
-        one: පුද්ගලයින් %{count}
-        other: පුද්ගලයින් %{count}
-      total_votes:
-        one: ඡන්ද %{count} යි
-        other: ඡන්ද %{count} යි
-      vote: ඡන්දය
-    show_more: තව පෙන්වන්න
-    show_thread: නූල් පෙන්වන්න
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: සෘජු
@@ -1436,7 +1390,6 @@ si:
     follow_limit_reached: ඔබට පුද්ගලයින් %{limit} කට වඩා අනුගමනය කළ නොහැක
     invalid_otp_token: වලංගු නොවන ද්වි-සාධක කේතය
     otp_lost_help_html: ඔබට දෙකටම ප්‍රවේශය අහිමි වුවහොත්, ඔබට %{email}සමඟ සම්බන්ධ විය හැක
-    seamless_external_login: ඔබ බාහිර සේවාවක් හරහා ලොග් වී ඇත, එබැවින් මුරපදය සහ ඊමේල් සැකසුම් නොමැත.
     signed_in_as: 'මෙසේ පුරනය වී ඇත:'
   verification:
     here_is_how: කෙසේදැයි මෙන්න

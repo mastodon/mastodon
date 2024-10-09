@@ -18,6 +18,7 @@
 #  category                   :integer          default("other"), not null
 #  action_taken_at            :datetime
 #  rule_ids                   :bigint(8)        is an Array
+#  application_id             :bigint(8)
 #
 
 class Report < ApplicationRecord
@@ -31,6 +32,7 @@ class Report < ApplicationRecord
   rate_limit by: :account, family: :reports
 
   belongs_to :account
+  belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
   with_options class_name: 'Account' do
     belongs_to :target_account

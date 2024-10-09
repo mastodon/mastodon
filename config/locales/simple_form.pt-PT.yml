@@ -52,7 +52,7 @@ pt-PT:
         locale: O idioma da interface de utilizador, e-mails e notificações push
         password: Use pelo menos 8 caracteres
         phrase: Será correspondido independentemente da capitalização ou do aviso de conteúdo duma publicação
-        scopes: Quais as API a que será concedido acesso. Se escolher uma abrangência de nível superior, não precisará de as seleccionar individualmente.
+        scopes: Quais as API a que a aplicação terá permissão para aceder. Se selecionar um âmbito de nível superior, não precisa de selecionar âmbitos individuais.
         setting_aggregate_reblogs: Não mostrar novos reforços de publicações recentemente reforçadas (só afecta publicações acabadas de reforçar)
         setting_always_send_emails: Normalmente as notificações por e-mail não serão enviadas quando estiver a utilizar ativamente o Mastodon
         setting_default_sensitive: Media problemática oculta por padrão, pode ser revelada com um clique
@@ -77,11 +77,11 @@ pt-PT:
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
       form_admin_settings:
         activity_api_enabled: Contagem, em blocos semanais, de publicações locais, utilizadores ativos e novos registos
-        app_icon: WEBP, PNG, GIF ou JPG. Substitui o ícone padrão do aplicativo em dispositivos móveis por um ícone personalizado.
+        app_icon: WEBP, PNG, GIF ou JPG. Substitui o ícone padrão da aplicação em dispositivos móveis por um ícone personalizado.
         backups_retention_period: Os utilizadores têm a possibilidade de gerar arquivos das suas mensagens para descarregar mais tarde. Quando definido para um valor positivo, estes arquivos serão automaticamente eliminados do seu armazenamento após o número de dias especificado.
         bootstrap_timeline_accounts: Estas contas serão destacadas no topo das recomendações aos novos utilizadores.
         closed_registrations_message: Apresentado quando as inscrições estiverem encerradas
-        content_cache_retention_period: Todas as publicações de outros servidores (incluindo boosts e respostas) serão eliminadas após o número de dias especificado, independentemente de qualquer interação do utilizador local com essas publicações. Isto inclui publicações em que um utilizador local as tenha marcado como favoritas ou adicionado aos items salvos. As menções privadas entre utilizadores de instâncias diferentes também se perderão e serão impossíveis de restaurar. A utilização desta definição destina-se a instâncias para fins especiais e quebra muitas expectativas dos utilizadores quando implementada para utilização geral.
+        content_cache_retention_period: Todas as publicações de outros servidores (incluindo boosts e respostas) serão eliminadas após o número de dias especificado, independentemente de qualquer interação do utilizador local com essas publicações. Isto inclui publicações em que um utilizador local as tenha marcado ou favoritado. As menções privadas entre utilizadores de instâncias diferentes também se perderão e serão impossíveis de restaurar. A utilização desta definição destina-se a instâncias para fins especiais e quebra muitas expectativas dos utilizadores quando implementada para utilização geral.
         custom_css: Pode aplicar estilos personalizados na versão web do Mastodon.
         favicon: WEBP, PNG, GIF ou JPG. Substitui o ícone de favorito padrão do Mastodon por um ícone personalizado.
         mascot: Sobrepõe-se à ilustração na interface web avançada.
@@ -99,9 +99,9 @@ pt-PT:
         theme: Tema que os visitantes e os novos utilizadores veem.
         thumbnail: Uma imagem de cerca de 2:1, apresentada ao lado da informação do seu servidor.
         timeline_preview: Os visitantes sem sessão iniciada poderão consultar as publicações públicas mais recentes disponíveis no servidor.
-        trendable_by_default: Ignorar a revisão manual do conteúdo em alta. Elementos em avulso poderão ainda assim ser retirados das tendências mesmo após a sua apresentação.
-        trends: As publicações em alta mostram quais as publicações, etiquetas e notícias que estão a ganhar destaque no seu servidor.
-        trends_as_landing_page: Mostrar conteúdo de tendências para usuários logados e visitantes em vez de uma descrição deste servidor. Requer que as tendências sejam ativadas.
+        trendable_by_default: Ignorar a revisão manual do conteúdo de tendências. Os itens individuais ainda podem ser removidos das tendências após a apresentação.
+        trends: As tendências mostram quais as publicações, etiquetas e notícias que estão a ganhar destaque no seu servidor.
+        trends_as_landing_page: Mostrar conteúdo de tendências a utilizadores e visitantes com sessão terminada em vez de uma descrição deste servidor. Requer que as tendências estejam ativadas.
       form_challenge:
         current_password: Está a entrar numa área segura
       imports:
@@ -129,14 +129,14 @@ pt-PT:
       tag:
         name: Só pode alterar a capitalização das letras, por exemplo, para torná-las mais legíveis
       user:
-        chosen_languages: Quando seleccionado, só serão mostradas nas cronologias públicas as publicações nos idiomas escolhidos
-        role: A função controla que permissões o utilizador tem
+        chosen_languages: Quando selecionado, só serão mostradas nas cronologias públicas as publicações nos idiomas escolhidos
+        role: A função controla as permissões que o utilizador tem.
       user_role:
         color: Cor a ser utilizada para a função em toda a interface de utilizador, como RGB no formato hexadecimal
         highlighted: Isto torna a função visível publicamente
-        name: Nome público do cargo, se este estiver definido para ser apresentada com um emblema
+        name: Nome público da função, se esta estiver definida para ser apresentada com um emblema
         permissions_as_keys: Utilizadores com esta função terão acesso a...
-        position: Cargos mais altos decidem a resolução de conflitos em certas situações. Certas ações só podem ser executadas em cargos com uma menor prioridade
+        position: Funções mais altas decidem a resolução de conflitos em certas situações. Certas ações só podem ser executadas com certas funções com uma menor prioridade
       webhook:
         events: Selecione os eventos a enviar
         template: Componha o seu próprio conteúdo JSON utilizando a interpolação de variáveis. Deixar em branco para o JSON predefinido.
@@ -211,6 +211,7 @@ pt-PT:
         setting_default_privacy: Privacidade da publicação
         setting_default_sensitive: Marcar sempre os media como problemáticos
         setting_delete_modal: Solicitar confirmação antes de eliminar uma publicação
+        setting_disable_hover_cards: Desativar visualização de perfil ao passar o cursor
         setting_disable_swiping: Desativar os movimentos de deslize
         setting_display_media: Visualização de media
         setting_display_media_default: Pré-definição
@@ -221,7 +222,7 @@ pt-PT:
         setting_reduce_motion: Reduz movimento em animações
         setting_system_font_ui: Usar o tipo de letra padrão do sistema
         setting_theme: Tema do sítio
-        setting_trends: Mostrar o que está hoje em alta
+        setting_trends: Mostrar as tendências de hoje
         setting_unfollow_modal: Solicitar confirmação antes de deixar de seguir alguém
         setting_use_blurhash: Mostrar gradientes coloridos para medias ocultas
         setting_use_pending_items: Modo lento
@@ -242,15 +243,17 @@ pt-PT:
           warn: Ocultar com um aviso
       form_admin_settings:
         activity_api_enabled: Publicar estatísticas agregadas sobre a atividade dos utilizadores na API
+        app_icon: Ícone da aplicação
         backups_retention_period: Período de retenção de arquivos de utilizador
         bootstrap_timeline_accounts: Recomendar sempre estas contas para novos utilizadores
         closed_registrations_message: Mensagem personalizada quando as inscrições não estiverem disponíveis
         content_cache_retention_period: Período de retenção de conteúdos remotos
         custom_css: CSS personalizado
+        favicon: Ícone de favoritos
         mascot: Mascote personalizada (legado)
         media_cache_retention_period: Período de retenção de ficheiros de media em cache
         peers_api_enabled: Publicar lista de servidores descobertos na API
-        profile_directory: Habilitar diretório de perfis
+        profile_directory: Ativar o diretório de perfis
         registrations_mode: Quem se pode inscrever
         require_invite_text: Requerer uma razão para entrar
         show_domain_blocks: Mostrar domínios bloqueados
@@ -265,8 +268,8 @@ pt-PT:
         theme: Tema predefinido
         thumbnail: Miniatura do servidor
         timeline_preview: Permitir acesso não autenticado às cronologias públicas
-        trendable_by_default: Permitir publicações em alta sem revisão prévia
-        trends: Activar publicações em alta
+        trendable_by_default: Permitir tendências sem revisão prévia
+        trends: Ativar tendências
         trends_as_landing_page: Usar tendências como página inicial
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
@@ -300,7 +303,7 @@ pt-PT:
           label: Está disponível uma nova versão do Mastodon
           none: Nunca notificar atualizações (não recomendado)
           patch: Notificar sobre atualizações de correções de problemas
-        trending_tag: Uma nova publicação em alta requer avaliação
+        trending_tag: Uma nova publicação em tendência requer revisão
       rule:
         hint: Informação Adicional
         text: Regra
@@ -310,10 +313,10 @@ pt-PT:
       tag:
         listable: Permitir que esta etiqueta apareça em pesquisas e no diretório de perfis
         name: Etiqueta
-        trendable: Permitir que esta etiqueta apareça em alta
-        usable: Permitir que as publicações usem esta etiqueta
+        trendable: Permitir que esta etiqueta apareça nas tendências
+        usable: Permitir que as publicações usem esta hashtag localmente
       user:
-        role: Cargo
+        role: Função
         time_zone: Fuso horário
       user_role:
         color: Cor do emblema

@@ -7,7 +7,7 @@ class Themes
   include Singleton
 
   THEME_COLORS = {
-    dark: '#191b22',
+    dark: '#181820',
     light: '#ffffff',
   }.freeze
 

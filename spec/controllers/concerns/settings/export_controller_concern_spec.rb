@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::ExportControllerConcern do
+RSpec.describe Settings::ExportControllerConcern do
   controller(ApplicationController) do
     include Settings::ExportControllerConcern
 

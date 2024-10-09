@@ -21,6 +21,8 @@
 
 class Tag < ApplicationRecord
   include Paginable
+  include Reviewable
+
   # rubocop:disable Rails/HasAndBelongsToMany
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
@@ -37,7 +39,7 @@ class Tag < ApplicationRecord
   HASHTAG_LAST_SEQUENCE = '([[:word:]_]*[[:alpha:]][[:word:]_]*)'
   HASHTAG_NAME_PAT = "#{HASHTAG_FIRST_SEQUENCE}|#{HASHTAG_LAST_SEQUENCE}"
 
-  HASHTAG_RE = %r{(?<![=/)\p{Alnum}])#(#{HASHTAG_NAME_PAT})}i
+  HASHTAG_RE = %r{(?<![=/)\p{Alnum}])#(#{HASHTAG_NAME_PAT})}
   HASHTAG_NAME_RE = /\A(#{HASHTAG_NAME_PAT})\z/i
   HASHTAG_INVALID_CHARS_RE = /[^[:alnum:]\u0E47-\u0E4E#{HASHTAG_SEPARATORS}]/
 
@@ -48,10 +50,9 @@ class Tag < ApplicationRecord
   validate :validate_name_change, if: -> { !new_record? && name_changed? }
   validate :validate_display_name_change, if: -> { !new_record? && display_name_changed? }
 
-  scope :reviewed, -> { where.not(reviewed_at: nil) }
-  scope :unreviewed, -> { where(reviewed_at: nil) }
   scope :pending_review, -> { unreviewed.where.not(requested_review_at: nil) }
   scope :usable, -> { where(usable: [true, nil]) }
+  scope :not_usable, -> { where(usable: false) }
   scope :listable, -> { where(listable: [true, nil]) }
   scope :trendable, -> { Setting.trendable_by_default ? where(trendable: [true, nil]) : where(trendable: true) }
   scope :not_trendable, -> { where(trendable: false) }
@@ -74,6 +75,10 @@ class Tag < ApplicationRecord
     attributes['display_name'] || name
   end
 
+  def formatted_name
+    "##{display_name}"
+  end
+
   def usable
     boolean_with_default('usable', true)
   end
@@ -91,22 +96,6 @@ class Tag < ApplicationRecord
   end
 
   alias trendable? trendable
-
-  def requires_review?
-    reviewed_at.nil?
-  end
-
-  def reviewed?
-    reviewed_at.present?
-  end
-
-  def requested_review?
-    requested_review_at.present?
-  end
-
-  def requires_review_notification?
-    requires_review? && !requested_review?
-  end
 
   def decaying?
     max_score_at && max_score_at >= Trends.tags.options[:max_score_cooldown].ago && max_score_at < 1.day.ago
@@ -132,9 +121,11 @@ class Tag < ApplicationRecord
 
     def search_for(term, limit = 5, offset = 0, options = {})
       stripped_term = term.strip
+      options.reverse_merge!({ exclude_unlistable: true, exclude_unreviewed: false })
 
-      query = Tag.listable.matches_name(stripped_term)
-      query = query.merge(matching_name(stripped_term).or(where.not(reviewed_at: nil))) if options[:exclude_unreviewed]
+      query = Tag.matches_name(stripped_term)
+      query = query.merge(Tag.listable) if options[:exclude_unlistable]
+      query = query.merge(matching_name(stripped_term).or(reviewed)) if options[:exclude_unreviewed]
 
       query.order(Arel.sql('length(name) ASC, name ASC'))
            .limit(limit)

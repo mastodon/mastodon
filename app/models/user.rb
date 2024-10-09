@@ -71,7 +71,8 @@ class User < ApplicationRecord
   ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days.freeze
 
   devise :two_factor_authenticatable,
-         otp_secret_encryption_key: Rails.configuration.x.otp_secret
+         otp_secret_encryption_key: Rails.configuration.x.otp_secret,
+         otp_secret_length: 32
 
   include LegacyOtpSecret # Must be after the above `devise` line in order to override the legacy method
 
@@ -100,7 +101,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, email_address: true
 
-  validates_with BlacklistedEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
+  validates_with UserEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
@@ -117,6 +118,7 @@ class User < ApplicationRecord
   scope :pending, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :unconfirmed, -> { where(confirmed_at: nil) }
   scope :enabled, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
   scope :active, -> { confirmed.signed_in_recently.account_not_suspended }
@@ -243,10 +245,6 @@ class User < ApplicationRecord
 
   def unconfirmed_or_pending?
     unconfirmed? || pending?
-  end
-
-  def inactive_message
-    approved? ? super : :pending
   end
 
   def approve!

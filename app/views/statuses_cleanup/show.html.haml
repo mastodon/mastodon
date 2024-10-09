@@ -14,6 +14,7 @@
                 wrapper: :with_label
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :min_status_age,
+                disabled: !@policy.enabled?,
                 collection: AccountStatusesCleanupPolicy::ALLOWED_MIN_STATUS_AGE.map(&:to_i),
                 hint: false,
                 include_blank: false,
@@ -28,11 +29,13 @@
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :keep_pinned,
+                disabled: !@policy.enabled?,
                 hint: t('statuses_cleanup.keep_pinned_hint'),
                 label: t('statuses_cleanup.keep_pinned'),
                 wrapper: :with_label
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :keep_direct,
+                disabled: !@policy.enabled?,
                 hint: t('statuses_cleanup.keep_direct_hint'),
                 label: t('statuses_cleanup.keep_direct'),
                 wrapper: :with_label
@@ -40,11 +43,13 @@
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :keep_self_fav,
+                disabled: !@policy.enabled?,
                 hint: t('statuses_cleanup.keep_self_fav_hint'),
                 label: t('statuses_cleanup.keep_self_fav'),
                 wrapper: :with_label
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :keep_self_bookmark,
+                disabled: !@policy.enabled?,
                 hint: t('statuses_cleanup.keep_self_bookmark_hint'),
                 label: t('statuses_cleanup.keep_self_bookmark'),
                 wrapper: :with_label
@@ -52,11 +57,13 @@
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :keep_polls,
+                disabled: !@policy.enabled?,
                 hint: t('statuses_cleanup.keep_polls_hint'),
                 label: t('statuses_cleanup.keep_polls'),
                 wrapper: :with_label
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :keep_media,
+                disabled: !@policy.enabled?,
                 hint: t('statuses_cleanup.keep_media_hint'),
                 label: t('statuses_cleanup.keep_media'),
                 wrapper: :with_label
@@ -66,12 +73,14 @@
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :min_favs,
+                disabled: !@policy.enabled?,
                 hint: t('statuses_cleanup.min_favs_hint'),
                 input_html: { min: 1, placeholder: t('statuses_cleanup.ignore_favs') },
                 label: t('statuses_cleanup.min_favs'),
                 wrapper: :with_label
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :min_reblogs,
+                disabled: !@policy.enabled?,
                 hint: t('statuses_cleanup.min_reblogs_hint'),
                 input_html: { min: 1, placeholder: t('statuses_cleanup.ignore_reblogs') },
                 label: t('statuses_cleanup.min_reblogs'),

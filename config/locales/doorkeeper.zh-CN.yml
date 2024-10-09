@@ -60,7 +60,7 @@ zh-CN:
       error:
         title: 发生错误
       new:
-        prompt_html: "%{client_name} 希望得到访问你账号的许可。这是一个第三方应用。<strong>如果你不信任它，那么你不应该授权它。</strong>"
+        prompt_html: "%{client_name} 请求获得访问您账户的权限。 <strong>请在确保自己了解并信任此来源后再批准该请求。</strong>"
         review_permissions: 检查权限
         title: 需要授权
       show:
@@ -83,6 +83,7 @@ zh-CN:
         access_denied: 资源所有者或验证服务器拒绝了此请求
         credential_flow_not_configured: 由于 Doorkeeper.configure.resource_owner_from_credentials 尚未配置，应用验证授权流程失败。
         invalid_client: 由于应用信息未知、未提交认证信息或使用了不支持的认证方式，认证失败
+        invalid_code_challenge_method: 代码验证方法必须是 S256，不支持明文。
         invalid_grant: 授权方式无效、过期或已被撤销、与授权请求中的回调地址不一致，或使用了其他应用的回调地址
         invalid_redirect_uri: 无效的登录回调地址
         invalid_request:
@@ -150,18 +151,18 @@ zh-CN:
     scopes:
       admin:read: 读取服务器上的所有数据
       admin:read:accounts: 读取所有账号的敏感信息
-      admin:read:canonical_email_blocks: 读取所有标准电子邮件块的敏感信息
+      admin:read:canonical_email_blocks: 读取所有已屏蔽邮箱的敏感信息
       admin:read:domain_allows: 读取所有域的敏感信息
       admin:read:domain_blocks: 读取所有域块的敏感信息
-      admin:read:email_domain_blocks: 读取所有电子邮件域块的敏感信息
+      admin:read:email_domain_blocks: 读取所有已屏蔽邮箱域名的敏感信息
       admin:read:ip_blocks: 读取所有IP块的敏感信息
       admin:read:reports: 读取所有举报和被举报账号的敏感信息
       admin:write: 修改服务器上的所有数据
       admin:write:accounts: 对账号执行管理操作
-      admin:write:canonical_email_blocks: 在标准电子邮件块上执行管理操作
+      admin:write:canonical_email_blocks: 对已屏蔽邮箱执行管理操作
       admin:write:domain_allows: 在域上执行管理操作
       admin:write:domain_blocks: 在域块上执行管理操作
-      admin:write:email_domain_blocks: 在电子邮件域块上执行管理操作
+      admin:write:email_domain_blocks: 对已屏蔽邮箱域名执行管理操作
       admin:write:ip_blocks: 在 IP 块上执行管理操作
       admin:write:reports: 对举报执行管理操作
       crypto: 使用端到端加密

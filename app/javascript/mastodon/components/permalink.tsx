@@ -6,7 +6,7 @@ interface Props
   className?: string;
   href: string;
   to: string;
-  onInterceptClick: () => boolean;
+  onInterceptClick?: () => boolean;
 }
 
 const Permalink: React.FC<Props> = (inProps) => {

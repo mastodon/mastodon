@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::AccountsStatusesCleanupScheduler do
+RSpec.describe Scheduler::AccountsStatusesCleanupScheduler do
   subject { described_class.new }
 
   let!(:account_alice) { Fabricate(:account, domain: nil, username: 'alice') }

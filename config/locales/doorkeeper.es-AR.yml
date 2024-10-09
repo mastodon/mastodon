@@ -60,7 +60,7 @@ es-AR:
       error:
         title: Ocurrió un error
       new:
-        prompt_html: "%{client_name} solicita permiso para acceder a tu cuenta. Es una aplicación de terceros. <strong>Si no confiás en ella, no deberías autorizarla.</strong>"
+        prompt_html: A %{client_name} le gustaría obtener permiso para acceder a tu cuenta. <strong>Aprobá esta solicitud solo si reconocés y confiás en esta fuente.</strong>
         review_permissions: Revisar permisos
         title: Autorización requerida
       show:
@@ -83,6 +83,7 @@ es-AR:
         access_denied: El propietario del recurso o servidor de autorización denegó la petición.
         credential_flow_not_configured: Las credenciales de contraseña del propietario del recurso fallaron debido a que "Doorkeeper.configure.resource_owner_from_credentials" está sin configurar.
         invalid_client: La autenticación del cliente falló debido a que es un cliente desconocido, o no está incluída la autenticación del cliente, o el método de autenticación no está soportado.
+        invalid_code_challenge_method: El método de desafío de código debe ser S256, «plain» no está soportado.
         invalid_grant: La concesión de autorización ofrecida no es válida, venció, se revocó, no coincide con la dirección web de redireccionamiento usada en la petición de autorización, o fue emitida para otro cliente.
         invalid_redirect_uri: La dirección web de redireccionamiento incluida no es válida.
         invalid_request:

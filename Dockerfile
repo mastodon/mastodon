@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.8
+# syntax=docker/dockerfile:1.10
 
 # This file is designed for production server deployment, not local development work
 # For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/README.md#docker
@@ -12,7 +12,7 @@ ARG BUILDPLATFORM=${BUILDPLATFORM}
 
 # Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.3.x"]
 # renovate: datasource=docker depName=docker.io/ruby
-ARG RUBY_VERSION="3.3.3"
+ARG RUBY_VERSION="3.3.5"
 # # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 # renovate: datasource=node-version depName=node
 ARG NODE_MAJOR_VERSION="20"
@@ -67,7 +67,9 @@ ENV \
 # Optimize jemalloc 5.x performance
   MALLOC_CONF="narenas:2,background_thread:true,thp:never,dirty_decay_ms:1000,muzzy_decay_ms:0" \
 # Enable libvips, should not be changed
-  MASTODON_USE_LIBVIPS=true
+  MASTODON_USE_LIBVIPS=true \
+# Sidekiq will touch tmp/sidekiq_process_has_started_and_will_begin_processing_jobs to indicate it is ready. This can be used for a readiness check in Kubernetes
+  MASTODON_SIDEKIQ_READY_FILENAME=sidekiq_process_has_started_and_will_begin_processing_jobs
 
 # Set default shell used for running commands
 SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
@@ -189,16 +191,19 @@ FROM build AS libvips
 
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
 # renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
-ARG VIPS_VERSION=8.15.2
+ARG VIPS_VERSION=8.15.3
 # libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
 WORKDIR /usr/local/libvips/src
+# Download and extract libvips source code
+ADD ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz /usr/local/libvips/src/
+RUN tar xf vips-${VIPS_VERSION}.tar.xz;
 
+WORKDIR /usr/local/libvips/src/vips-${VIPS_VERSION}
+
+# Configure and compile libvips
 RUN \
-  curl -sSL -o vips-${VIPS_VERSION}.tar.xz ${VIPS_URL}/v${VIPS_VERSION}/vips-${VIPS_VERSION}.tar.xz; \
-  tar xf vips-${VIPS_VERSION}.tar.xz; \
-  cd vips-${VIPS_VERSION}; \
   meson setup build --prefix /usr/local/libvips --libdir=lib -Ddeprecated=false -Dintrospection=disabled -Dmodules=disabled -Dexamples=false; \
   cd build; \
   ninja; \
@@ -209,16 +214,19 @@ FROM build AS ffmpeg
 
 # ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
 # renovate: datasource=repology depName=ffmpeg packageName=openpkg_current/ffmpeg
-ARG FFMPEG_VERSION=7.0.1
+ARG FFMPEG_VERSION=7.1
 # ffmpeg download URL, change with [--build-arg FFMPEG_URL="https://ffmpeg.org/releases"]
 ARG FFMPEG_URL=https://ffmpeg.org/releases
 
 WORKDIR /usr/local/ffmpeg/src
+# Download and extract ffmpeg source code
+ADD ${FFMPEG_URL}/ffmpeg-${FFMPEG_VERSION}.tar.xz /usr/local/ffmpeg/src/
+RUN tar xf ffmpeg-${FFMPEG_VERSION}.tar.xz;
 
+WORKDIR /usr/local/ffmpeg/src/ffmpeg-${FFMPEG_VERSION}
+
+# Configure and compile ffmpeg
 RUN \
-  curl -sSL -o ffmpeg-${FFMPEG_VERSION}.tar.xz ${FFMPEG_URL}/ffmpeg-${FFMPEG_VERSION}.tar.xz; \
-  tar xf ffmpeg-${FFMPEG_VERSION}.tar.xz; \
-  cd ffmpeg-${FFMPEG_VERSION}; \
   ./configure \
     --prefix=/usr/local/ffmpeg \
     --toolchain=hardened \

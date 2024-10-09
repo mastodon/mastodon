@@ -10,7 +10,7 @@ RSpec.describe 'Account actions' do
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   shared_examples 'a successful notification delivery' do
-    it 'notifies the user about the action taken', :sidekiq_inline do
+    it 'notifies the user about the action taken', :inline_jobs do
       emails = capture_emails { subject }
 
       expect(emails.size)
@@ -61,6 +61,8 @@ RSpec.describe 'Account actions' do
       it 'disables the target account' do
         expect { subject }.to change { target_account.reload.user_disabled? }.from(false).to(true)
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -75,6 +77,8 @@ RSpec.describe 'Account actions' do
       it 'marks the target account as sensitive' do
         expect { subject }.to change { target_account.reload.sensitized? }.from(false).to(true)
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -89,6 +93,8 @@ RSpec.describe 'Account actions' do
       it 'marks the target account as silenced' do
         expect { subject }.to change { target_account.reload.silenced? }.from(false).to(true)
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -103,6 +109,8 @@ RSpec.describe 'Account actions' do
       it 'marks the target account as suspended' do
         expect { subject }.to change { target_account.reload.suspended? }.from(false).to(true)
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -115,6 +123,8 @@ RSpec.describe 'Account actions' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -125,6 +135,8 @@ RSpec.describe 'Account actions' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -135,6 +147,8 @@ RSpec.describe 'Account actions' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

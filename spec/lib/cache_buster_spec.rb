@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe CacheBuster do
+RSpec.describe CacheBuster do
   subject { described_class.new(secret_header: secret_header, secret: secret, http_method: http_method) }
 
   let(:secret_header) { nil }

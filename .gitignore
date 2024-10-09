@@ -78,3 +78,5 @@ docker-compose.override.yml
 # but we want to use our GitHub Actions
 !/.github/workflows/actionlint.yml
 !/.github/workflows/push_docker_image.yml
+# Ignore local-only rspec configuration
+.rspec-local

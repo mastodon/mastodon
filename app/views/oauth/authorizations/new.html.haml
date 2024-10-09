@@ -13,7 +13,7 @@
       - grouped_scopes(@pre_auth.scopes).each do |scope|
         %li.permissions-list__item
           .permissions-list__item__icon
-            = fa_icon('check')
+            = material_symbol('check')
           .permissions-list__item__text
             .permissions-list__item__text__title
               = t(scope.key, scope: [:doorkeeper, :grouped_scopes, :title])
@@ -26,6 +26,8 @@
                             value: @pre_auth.client.uid
         = form.hidden_field :redirect_uri,
                             value: @pre_auth.redirect_uri
+        = form.hidden_field :code_challenge, value: @pre_auth.code_challenge
+        = form.hidden_field :code_challenge_method, value: @pre_auth.code_challenge_method
         = form.hidden_field :state,
                             value: @pre_auth.state
         = form.hidden_field :response_type,
@@ -40,6 +42,8 @@
                             value: @pre_auth.client.uid
         = form.hidden_field :redirect_uri,
                             value: @pre_auth.redirect_uri
+        = form.hidden_field :code_challenge, value: @pre_auth.code_challenge
+        = form.hidden_field :code_challenge_method, value: @pre_auth.code_challenge_method
         = form.hidden_field :state,
                             value: @pre_auth.state
         = form.hidden_field :response_type,

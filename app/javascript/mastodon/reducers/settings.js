@@ -1,8 +1,8 @@
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
 import { COLUMN_ADD, COLUMN_REMOVE, COLUMN_MOVE, COLUMN_PARAMS_CHANGE } from '../actions/columns';
+import { COMPOSE_LANGUAGE_CHANGE } from '../actions/compose';
 import { EMOJI_USE } from '../actions/emojis';
-import { LANGUAGE_USE } from '../actions/languages';
 import { LIST_DELETE_SUCCESS, LIST_FETCH_FAIL } from '../actions/lists';
 import { NOTIFICATIONS_FILTER_SET } from '../actions/notifications';
 import { SETTING_CHANGE, SETTING_SAVE } from '../actions/settings';
@@ -51,6 +51,7 @@ const initialState = ImmutableMap({
 
     dismissPermissionBanner: false,
     showUnread: true,
+    minimizeFilteredBanner: false,
 
     shows: ImmutableMap({
       follow: true,
@@ -174,7 +175,7 @@ export default function settings(state = initialState, action) {
     return changeColumnParams(state, action.uuid, action.path, action.value);
   case EMOJI_USE:
     return updateFrequentEmojis(state, action.emoji);
-  case LANGUAGE_USE:
+  case COMPOSE_LANGUAGE_CHANGE:
     return updateFrequentLanguages(state, action.language);
   case SETTING_SAVE:
     return state.set('saved', true);

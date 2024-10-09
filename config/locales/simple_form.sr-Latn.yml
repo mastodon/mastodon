@@ -130,7 +130,6 @@ sr-Latn:
         name: Mogu se samo promeniti mala slova u velika ili obrnuto, na primer, da bi bilo čitljivije
       user:
         chosen_languages: Kada je označeno, objave u izabranim jezicima će biti prikazane na javnoj vremenskoj liniji
-        role: Uloga kontroliše koje dozvole korisnik ima
       user_role:
         color: Boja koja će se koristiti za ulogu u celom korisničkom okruženju, kao RGB u heksadecimalnom formatu
         highlighted: Ovo čini ulogu javno vidljivom
@@ -211,6 +210,7 @@ sr-Latn:
         setting_default_privacy: Privatnost objava
         setting_default_sensitive: Uvek označi multimediju kao osetljivu
         setting_delete_modal: Prikaži dijalog za potvrdu pre brisanja objave
+        setting_disable_hover_cards: Onemogući pregled profila prelaskom kursora
         setting_disable_swiping: Onemogući pokrete prevlačenja
         setting_display_media: Prikaz medija
         setting_display_media_default: Podrazumevano
@@ -242,11 +242,13 @@ sr-Latn:
           warn: Sakrij uz upozorenje
       form_admin_settings:
         activity_api_enabled: Objavi prikupljenu statistiku o korisničkoj aktivnosti u API
+        app_icon: Ikonica aplikacije
         backups_retention_period: Period čuvanja korisničke arhive
         bootstrap_timeline_accounts: Uvek preporuči ove naloge novim korisnicima
         closed_registrations_message: Prilagođena poruka kada prijave nisu moguće
         content_cache_retention_period: Period zadržavanja udaljenog sadržaja
         custom_css: Prilagođeni CSS
+        favicon: Favikon
         mascot: Prilagođena maskota (nasleđe)
         media_cache_retention_period: Period čuvanja keša medija
         peers_api_enabled: Objavite listu otkrivenih servera u API
@@ -311,7 +313,7 @@ sr-Latn:
         listable: Dozvoli da se ova heš oznaka pojavljuje u pretragama i predlozima
         name: Heš oznaka
         trendable: Dozvoli da se ova heš oznaka pojavi u okviru trendova
-        usable: Dozvoli objavama da koriste ovu heš oznaku
+        usable: Dozvoli objavama da lokalno koriste ovu heš oznaku
       user:
         role: Uloga
         time_zone: Vremenska zona

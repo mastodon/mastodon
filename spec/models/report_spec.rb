@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Report do
+RSpec.describe Report do
   describe 'statuses' do
     it 'returns the statuses for the report' do
       status = Fabricate(:status)

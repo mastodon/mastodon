@@ -7,6 +7,7 @@ interface BaseProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   block?: boolean;
   secondary?: boolean;
+  dangerous?: boolean;
 }
 
 interface PropsChildren extends PropsWithChildren<BaseProps> {
@@ -26,6 +27,7 @@ export const Button: React.FC<Props> = ({
   disabled,
   block,
   secondary,
+  dangerous,
   className,
   title,
   text,
@@ -46,6 +48,7 @@ export const Button: React.FC<Props> = ({
       className={classNames('button', className, {
         'button-secondary': secondary,
         'button--block': block,
+        'button--dangerous': dangerous,
       })}
       disabled={disabled}
       onClick={handleClick}

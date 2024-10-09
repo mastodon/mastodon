@@ -12,7 +12,7 @@ class FetchResourceService < BaseService
     return if url.blank?
 
     process(url)
-  rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
+  rescue *Mastodon::HTTP_CONNECTION_ERRORS, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
     Rails.logger.debug { "Error fetching resource #{@url}: #{e}" }
     nil
   end
@@ -73,7 +73,7 @@ class FetchResourceService < BaseService
   end
 
   def process_html(response)
-    page      = Nokogiri::HTML(response.body_with_limit)
+    page      = Nokogiri::HTML5(response.body_with_limit)
     json_link = page.xpath('//link[@rel="alternate"]').find { |link| ACTIVITY_STREAM_LINK_TYPES.include?(link['type']) }
 
     process(json_link['href'], terminal: true) unless json_link.nil?

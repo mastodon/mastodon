@@ -1,12 +1,12 @@
 - if account.avatar?
   %tr
     %th= t('admin.accounts.avatar')
-    %td= table_link_to 'trash', t('admin.accounts.remove_avatar'), remove_avatar_admin_account_path(account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_avatar, account)
+    %td= table_link_to 'delete', t('admin.accounts.remove_avatar'), remove_avatar_admin_account_path(account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_avatar, account)
     %td
 - if account.header?
   %tr
     %th= t('admin.accounts.header')
-    %td= table_link_to 'trash', t('admin.accounts.remove_header'), remove_header_admin_account_path(account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_header, account)
+    %td= table_link_to 'delete', t('admin.accounts.remove_header'), remove_header_admin_account_path(account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_header, account)
     %td
 %tr
   %th= t('admin.accounts.role')
@@ -16,7 +16,7 @@
     - else
       = account.user_role&.name
   %td
-    = table_link_to 'vcard', t('admin.accounts.change_role.label'), admin_user_role_path(account.user) if can?(:change_role, account.user)
+    = table_link_to 'contact_mail', t('admin.accounts.change_role.label'), admin_user_role_path(account.user) if can?(:change_role, account.user)
 %tr
   %th{ rowspan: can?(:create, :email_domain_block) ? 3 : 2 }= t('admin.accounts.email')
   %td{ rowspan: can?(:create, :email_domain_block) ? 3 : 2 }= account.user_email
@@ -25,7 +25,7 @@
   %td= table_link_to 'search', t('admin.accounts.search_same_email_domain'), admin_accounts_path(email: "%@#{account.user_email.split('@').last}")
 - if can?(:create, :email_domain_block)
   %tr
-    %td= table_link_to 'ban', t('admin.accounts.add_email_domain_block'), new_admin_email_domain_block_path(_domain: account.user_email.split('@').last)
+    %td= table_link_to 'hide_source', t('admin.accounts.add_email_domain_block'), new_admin_email_domain_block_path(_domain: account.user_email.split('@').last)
 - if account.user_unconfirmed_email.present?
   %tr
     %th= t('admin.accounts.unconfirmed_email')
@@ -48,11 +48,11 @@
       = t 'admin.accounts.security_measures.only_password'
   %td
     - if account.user&.two_factor_enabled? && can?(:disable_2fa, account.user)
-      = table_link_to 'unlock', t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(account.user.id), method: :delete
+      = table_link_to 'lock_open', t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(account.user.id), method: :delete
 - if can?(:reset_password, account.user)
   %tr
     %td
-      = table_link_to 'key', t('admin.accounts.reset_password'), admin_account_reset_path(account.id), method: :create, data: { confirm: t('admin.accounts.are_you_sure') }
+      = table_link_to 'key', t('admin.accounts.reset_password'), admin_account_reset_path(account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
 %tr
   %th= t('simple_form.labels.defaults.locale')
   %td= standard_locale_name(account.user_locale)

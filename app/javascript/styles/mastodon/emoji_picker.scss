@@ -83,11 +83,6 @@
   max-height: 35vh;
   padding: 0 6px 6px;
   will-change: transform;
-
-  &::-webkit-scrollbar-track:hover,
-  &::-webkit-scrollbar-track:active {
-    background-color: rgba($base-overlay-background, 0.3);
-  }
 }
 
 .emoji-mart-search {
@@ -105,7 +100,7 @@
     width: 100%;
     background: $ui-base-color;
     color: $darker-text-color;
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
 
     &::-moz-focus-inner {
@@ -116,7 +111,6 @@
     &:focus {
       outline: none !important;
       border-width: 1px !important;
-      border-color: $ui-button-background-color;
     }
 
     &::-webkit-search-cancel-button {

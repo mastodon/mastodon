@@ -44,7 +44,7 @@ class ProcessMentionsService < BaseService
       if mention_undeliverable?(mentioned_account)
         begin
           mentioned_account = ResolveAccountService.new.call(Regexp.last_match(1))
-        rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
+        rescue Webfinger::Error, *Mastodon::HTTP_CONNECTION_ERRORS, Mastodon::UnexpectedResponseError
           mentioned_account = nil
         end
       end

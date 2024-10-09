@@ -18,7 +18,7 @@
       - if status.application
         = status.application.name
         ·
-      = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener noreferrer' do
+      = link_to ActivityPub::TagManager.instance.url_for(status.proper), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener noreferrer' do
         %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       - if status.edited?
         ·
@@ -30,10 +30,10 @@
         %span.negative-hint= t('admin.statuses.deleted')
       ·
       - if status.reblog?
-        = fa_icon('retweet fw')
+        = material_symbol('repeat_active')
         = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(status.proper.account))
       - else
-        = fa_visibility_icon(status)
+        = material_symbol visibility_icon(status)
         = t("statuses.visibilities.#{status.visibility}")
       - if status.proper.sensitive?
         ·

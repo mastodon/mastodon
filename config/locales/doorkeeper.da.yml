@@ -60,7 +60,7 @@ da:
       error:
         title: En fejl opstod
       new:
-        prompt_html: "%{client_name} ønsker tilladelse til at tilgå din konto. Den er en tredjepartsapplikation. <strong>Har du ikke tillid til den, bør den ikke godkendes.</strong>"
+        prompt_html: "%{client_name} vil ønsker tilladelse til at tilgå din konto. <strong>Godkend kun denne anmodning, hvis kilden genkendes, og man stoler på den.</strong>"
         review_permissions: Gennemgå tilladelser
         title: Godkendelse kræves
       show:
@@ -83,6 +83,7 @@ da:
         access_denied: Ressourceejeren eller godkendelsesserveren afviste anmodningen.
         credential_flow_not_configured: Ressourceejeradgangskodeakkreditiver-flow mislykkedes grundet ikke-opsat Doorkeeper.configure.resource_owner_from_credentials.
         invalid_client: Klientgodkendelse mislykkedes grundet en ukendt klient, ingen inkluderet klientgodkendelse eller uunderstøttet godkendelsesmetode.
+        invalid_code_challenge_method: Kodeudfordringsmetoden skal være S256, simpel (plain) er uunderstøttet.
         invalid_grant: Den leverede godkendelse er ugyldig, udløbet, ophævet, matcher ikke omdirigerings-URI'en brugt i godkendelsesanmodningen eller er udstedt til en anden klient.
         invalid_redirect_uri: Inkluderede ormdirigerings-URI er ugyldig.
         invalid_request:

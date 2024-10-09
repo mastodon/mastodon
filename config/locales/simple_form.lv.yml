@@ -3,6 +3,7 @@ lv:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Aizsargā no nepatiesa attiecinājuma.
         discoverable: Tavas publiskās ziņas un profils var tikt piedāvāti vai ieteikti dažādās Mastodon vietās, un tavs profils var tikt ieteikts citiem lietotājiem.
         display_name: Tavs pilnais vārds vai tavs joku vārds.
         fields: Tava mājas lapa, vietniekvārdi, vecums, viss, ko vēlies.
@@ -81,9 +82,11 @@ lv:
         backups_retention_period: Lietotājiem ir iespēja izveidot savu ierakstu arhīvu lejupielādēšanai vēlāk. Kad iestatīta pozitīva vērtība, šie arhīvi tiks automātiski izdzēsti no krātuves pēc norādītā dienu skaita.
         bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju ieteikumu augšdaļā.
         closed_registrations_message: Tiek rādīts, kad reģistrēšanās ir slēgta
+        content_cache_retention_period: Visi ieraksti no citiem serveriem (tajā skaitā pastiprinājumi un atbildes) tiks izdzēsti pēc norādītā dienu skaita, neņemot vērā vietēja lietotāja mijiedarbību ar šādiem ierakstiem. Tas ietver ierakstus, kurus vietējs lietotājs ir atzīmējis kā grāmatzīmi vai pievienojis izlasē. Tiks zaudēti arī privāti pieminējumi starp lietotājiem no dažādiem serveriem, un tos nebūs iespējams atgūt. Šī iestatījuma izmantošana ir paredzēta īpašam nolūkam paredzētiem serveriem un neatbilst tam, ko sagaida vairums lietotāju, kad pielietots vispārējas izmantošanas serveros.
         custom_css: Vari lietot pielāgotus stilus Mastodon tīmekļa versijā.
         favicon: WEBP, PNG, GIF vai JPG. Aizstāj noklusējuma Mastodon favikonu ar pielāgotu.
         mascot: Ignorē ilustrāciju uzlabotajā tīmekļa saskarnē.
+        media_cache_retention_period: Informācijas nesēju datnes no ierakstiem, kurus ir veikuši attālie lietotāji, tiek kešoti šajā serverī. Kad ir iestatīta apstiprinoša vērtība, informācijas nesēji tiks izdzēsti pēc norādītā dienu skaita. Ja informācijas nesēju dati tiks pieprasīti pēc tam, kad tie tika izdzēsti, tie tiks atkārtoti lejupielādēti, ja avota saturs joprojām būs pieejams. Saišu priekšskatījuma karšu vaicājumu biežuma ierobežojumu dēļ ir ieteicams iestatīt šo vērtību vismaz 14 dienas vai saišu priekšskatījuma kartes netiks atjauninātas pēc pieprasījuma pirms tā laika.
         peers_api_enabled: Domēna vārdu saraksts, ar kuriem šis serveris ir saskāries fediversā. Šeit nav iekļauti dati par to, vai tu veic federāciju ar noteiktu serveri, tikai tavs serveris par to zina. To izmanto dienesti, kas apkopo statistiku par federāciju vispārīgā nozīmē.
         profile_directory: Profilu direktorijā ir uzskaitīti visi lietotāji, kuri ir izvēlējušies būt atklājami.
         require_invite_text: 'Ja pierakstīšanai nepieciešama manuāla apstiprināšana, izdari tā, lai teksta: “Kāpēc vēlaties pievienoties?” ievade ir obligāta, nevis opcionāla'
@@ -128,7 +131,7 @@ lv:
         name: Tu vari mainīt tikai burtu lielumu, piemēram, lai tie būtu vieglāk lasāmi
       user:
         chosen_languages: Ja ieķeksēts, publiskos laika grafikos tiks parādītas tikai ziņas noteiktajās valodās
-        role: Loma kontrolē, kādas atļaujas ir lietotājam
+        role: Loma nosaka, kādas lietotājam ir atļaujas.
       user_role:
         color: Krāsa, kas jāizmanto lomai visā lietotāja saskarnē, kā RGB hex formātā
         highlighted: Tas padara lomu publiski redzamu
@@ -141,6 +144,7 @@ lv:
         url: Kur notikumi tiks nosūtīti
     labels:
       account:
+        attribution_domains_as_text: Ļaut tikai noteiktas tīmekļvietnes
         discoverable: Funkcijas profils un ziņas atklāšanas algoritmos
         fields:
           name: Marķējums
@@ -209,6 +213,7 @@ lv:
         setting_default_privacy: Publicēšanas privātums
         setting_default_sensitive: Atļaut atzīmēt multividi kā sensitīvu
         setting_delete_modal: Parādīt apstiprinājuma dialogu pirms ziņas dzēšanas
+        setting_disable_hover_cards: Atspējot profila priekšskatījumu pēc kursora novietošanas
         setting_disable_swiping: Atspējot vilkšanas kustības
         setting_display_media: Multivides rādīšana
         setting_display_media_default: Noklusējums
@@ -240,11 +245,13 @@ lv:
           warn: Paslēpt ar brīdinājumu
       form_admin_settings:
         activity_api_enabled: Publicējiet apkopotu statistiku par lietotāju darbībām API
+        app_icon: Lietotnes ikona
         backups_retention_period: Lietotāja arhīva glabāšanas periods
         bootstrap_timeline_accounts: Vienmēr iesaki šos kontus jaunajiem lietotājiem
         closed_registrations_message: Pielāgots ziņojums, ja reģistrēšanās nav pieejama
         content_cache_retention_period: Attālā satura paturēšanas laika posms
         custom_css: Pielāgots CSS
+        favicon: Favikona
         mascot: Pielāgots talismans (mantots)
         media_cache_retention_period: Multivides kešatmiņas saglabāšanas periods
         peers_api_enabled: Publicēt API atklāto serveru sarakstu
@@ -309,7 +316,7 @@ lv:
         listable: Atļaut šim tēmturim parādīties meklējumos un ieteikumos
         name: Tēmturis
         trendable: Atļaut šim tēmturim parādīties zem tendencēm
-        usable: Atļaut lietot ziņās šo tēmturi
+        usable: Ļaut ierakstos vietēji izmantot šo tēmturi
       user:
         role: Loma
         time_zone: Laika josla

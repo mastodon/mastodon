@@ -4,6 +4,13 @@ module StatusesHelper
   EMBEDDED_CONTROLLER = 'statuses'
   EMBEDDED_ACTION = 'embed'
 
+  VISIBLITY_ICONS = {
+    public: 'globe',
+    unlisted: 'lock_open',
+    private: 'lock',
+    direct: 'alternate_email',
+  }.freeze
+
   def nothing_here(extra_classes = '')
     content_tag(:div, class: "nothing-here #{extra_classes}") do
       t('accounts.nothing_here')
@@ -57,17 +64,8 @@ module StatusesHelper
     embedded_view? ? '_blank' : nil
   end
 
-  def fa_visibility_icon(status)
-    case status.visibility
-    when 'public'
-      fa_icon 'globe fw'
-    when 'unlisted'
-      fa_icon 'unlock fw'
-    when 'private'
-      fa_icon 'lock fw'
-    when 'direct'
-      fa_icon 'at fw'
-    end
+  def visibility_icon(status)
+    VISIBLITY_ICONS[status.visibility.to_sym]
   end
 
   def embedded_view?

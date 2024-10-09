@@ -6,7 +6,6 @@ co:
     contact_unavailable: Micca dispunibule
     hosted_on: Mastodon allughjatu nant’à %{domain}
   accounts:
-    follow: Siguità
     followers:
       one: Abbunatu·a
       other: Abbunati
@@ -30,7 +29,6 @@ co:
       created_msg: Nota di muderazione creata!
       destroyed_msg: Nota di muderazione sguassata!
     accounts:
-      add_email_domain_block: Mette u duminiu e-mail in lista nera
       approve: Appruvà
       approved_msg: A dumanda d'arregistramente di %{username} hè stata appruvata
       are_you_sure: Site sicuru·a?
@@ -50,7 +48,6 @@ co:
       demote: Ritrugradà
       destroyed_msg: I dati di %{username} sò avà in fila d'attesa per esse tolti da quì à pocu
       disable: Disattivà
-      disable_sign_in_token_auth: Disattivà l'autentificazione à codice e-mail
       disable_two_factor_authentication: Disattivà l’identificazione à 2 fattori
       disabled: Ghjacciatu
       display_name: Nome pubblicu
@@ -59,7 +56,6 @@ co:
       email: E-mail
       email_status: Statutu di l’e-mail
       enable: Riattivà
-      enable_sign_in_token_auth: Attivà l'autentificazione à codice e-mail
       enabled: Attivatu
       enabled_msg: U contu di %{username} hè statu riattivatu
       followers: Abbunati
@@ -112,7 +108,6 @@ co:
       reset_password: Riinizializà a chjave d’accessu
       resubscribe: Riabbunassi
       search: Cercà
-      search_same_email_domain: Altri utilizatori cù listessu duminiu d'e-mail
       search_same_ip: Altri utilizatori cù listessa IP
       security_measures:
         only_password: Solu a chjave d'accessu
@@ -147,14 +142,12 @@ co:
       action_types:
         approve_user: Appruvà l'utilizatore
         assigned_to_self_report: Assignà signalamentu
-        change_email_user: Mudificà l'E-mail di l'Utilizatore
         confirm_user: Cunfirmà Utilizatore
         create_account_warning: Creà avertimentu
         create_announcement: Creà Annunziu
         create_custom_emoji: Creà Emoji Persunalizata
         create_domain_allow: Creà Auturizazione di Duminiu
         create_domain_block: Creà Blucchime di Duminiu
-        create_email_domain_block: Creà Blucchime di Duminiu E-mail
         create_ip_block: Creà regula IP
         create_unavailable_domain: Creà duminiu micca dispunibule
         demote_user: Ritrugadà Utilizatore
@@ -162,16 +155,13 @@ co:
         destroy_custom_emoji: Toglie Emoji Persunalizata
         destroy_domain_allow: Toglie Auturizazione di Duminiu
         destroy_domain_block: Toglie Blucchime di Duminiu
-        destroy_email_domain_block: Toglie blucchime di duminiu e-mail
         destroy_ip_block: Toglie regula IP
         destroy_status: Toglie u statutu
         destroy_unavailable_domain: Toglie duminiu micca dispunibule
         disable_2fa_user: Disattivà l’identificazione à 2 fattori
         disable_custom_emoji: Disattivà Emoji Persunalizata
-        disable_sign_in_token_auth_user: Disattivà l'Autentificazione à Codice E-Mail
         disable_user: Disattivà Utilizatore
         enable_custom_emoji: Attivà Emoji Persunalizata
-        enable_sign_in_token_auth_user: Attivà l'Autentificazione à Codice E-Mail
         enable_user: Attivà utilizatore
         memorialize_account: Trasfurmà contu in mimuriale
         promote_user: Prumove Utilizatore
@@ -193,21 +183,17 @@ co:
         update_status: Cambià Statutu
       actions:
         assigned_to_self_report_html: "%{name} s’hè assignatu u signalamentu %{target}"
-        change_email_user_html: "%{name} hà cambiatu l’indirizzu e-mail di %{target}"
-        confirm_user_html: "%{name} hà cunfirmatu l’indirizzu e-mail di %{target}"
         create_account_warning_html: "%{name} hà mandatu un'avertimentu à %{target}"
         create_announcement_html: "%{name} hà creatu u novu annunziu %{target}"
         create_custom_emoji_html: "%{name} hà caricatu una nov’emoji %{target}"
         create_domain_allow_html: "%{name} hà messu u duminiu %{target} nant’a lista bianca"
         create_domain_block_html: "%{name} hà bluccatu u duminiu %{target}"
-        create_email_domain_block_html: "%{name} hà messu u duminiu e-mail %{target} nant’a lista nera"
         create_ip_block_html: "%{name} hà creatu a regula IP %{target}"
         create_unavailable_domain_html: "%{name} hà firmatu a distribuzione à u duminiu %{target}"
         demote_user_html: "%{name} hà ritrugradatu l’utilizatore %{target}"
         destroy_announcement_html: "%{name} hà sguassatu u novu annunziu %{target}"
         destroy_domain_allow_html: "%{name} hà sguassatu u duminiu %{target} da a lista bianca"
         destroy_domain_block_html: "%{name} hà sbluccatu u duminiu %{target}"
-        destroy_email_domain_block_html: "%{name} hà messu u duminiu e-mail %{target} nant’a lista bianca"
         destroy_ip_block_html: "%{name} hà toltu a regula IP %{target}"
         destroy_status_html: "%{name} hà toltu u statutu di %{target}"
         destroy_unavailable_domain_html: "%{name} hà riprincipiatu a distribuzione à u duminiu %{target}"
@@ -332,13 +318,10 @@ co:
       view: Vede blucchime di duminiu
     email_domain_blocks:
       add_new: Aghjunghje
-      created_msg: U blucchime di u duminiu d’e-mail hè attivu
       delete: Toglie
       domain: Duminiu
       new:
         create: Creà un blucchime
-        title: Nova iscrizzione nant’a lista nera e-mail
-      title: Lista nera e-mail
     follow_recommendations:
       language: Per a lingua
       status: Statutu
@@ -537,9 +520,7 @@ co:
       guide_link_text: Tuttu u mondu pò participà.
     sensitive_content: Cuntinutu sensibile
   application_mailer:
-    notification_preferences: Cambià e priferenze e-mail
     salutation: "%{name},"
-    settings: 'Cambià e priferenze e-mail: %{link}'
     view: 'Vede:'
     view_profile: Vede u prufile
     view_status: Vede u statutu
@@ -577,8 +558,6 @@ co:
     set_new_password: Creà una nova chjave d’accessu
     status:
       account_status: Statutu di u contu
-      confirming: In attesa di a cumplezzione di a cunfirmazione di l'e-mail.
-      pending: A vostra dumanda hè in attesa di rivista da a squadra di muderazione. Quessa pò piglià un certu tempu. Avete da riceve un'e-mail s'ella hè appruvata.
       redirecting_to: U vostru contu hè inattivu perchè riindirizza versu %{acct}.
     too_fast: Furmulariu mandatu troppu prestu, ripruvate.
     use_security_key: Utilizà a chjave di sicurità
@@ -590,7 +569,6 @@ co:
   crypto:
     errors:
       invalid_key: ùn hè micca una chjave Ed25519 o Curve25519 valida
-      invalid_signature: ùn hè micca una firma Ed25519 valida
   date:
     formats:
       default: "%d %b %Y"
@@ -619,15 +597,10 @@ co:
       before: 'Nanz''à cuntinuà, leghjete ste note attentamente:'
       caches: U cuntinutu indè u cache di l'altri servori sarà forse cunservatu
       data_removal: I vostri posti è dati saranu sguassati di manera permanente
-      email_change_html: Pudete <a href="%{path}">cambià u vostr'indirizzu e-mail</a> senza toglie u vostru contu
-      email_contact_html: S'ellu ùn hè sempre micca rimettu, pudete dumandà aiutu à <a href="mailto:%{email}">%{email}</a>
-      email_reconfirmation_html: S'e voi ùn ricevete micca l'e-mail di cunfirmazione, pudete <a href="%{path}">richiestà un'altru</a>
       irreversible: Ùn puderete micca ricuperà o riattivà u vostru contu
       more_details_html: Per più di ditagli, videte a <a href="%{terms_path}">pulitica di vita privata</a>.
       username_available: U vostru cugnome riduvinterà dispunibule
       username_unavailable: U vostru cugnome ùn sarà sempre micca dispunibule
-  domain_validator:
-    invalid_domain: ùn hè micca un nome di duminiu currettu
   errors:
     '400': A richiesta mandata ùn era micca valida o curretta.
     '403': Ùn site micca auturizatu·a à vede sta pagina.
@@ -734,7 +707,6 @@ co:
     authentication_methods:
       otp: app d'identificazione à dui fattori
       password: chjave d’accessu
-      sign_in_token: codice di sicurità d'un e-mail
       webauthn: chjave di sicurità
   media_attachments:
     validations:
@@ -806,7 +778,6 @@ co:
     status:
       subject: "%{name} hà appena pubblicatu"
   notifications:
-    email_events: Avvenimenti da nutificà cù l'e-mail
     email_events_hint: 'Selezziunate l''avvenimenti per quelli vulete riceve nutificazione:'
   number:
     human:
@@ -920,7 +891,6 @@ co:
     delete: Suppressione di u contu
     development: Sviluppu
     edit_profile: Mudificà u prufile
-    export: Spurtazione d’infurmazione
     featured_tags: Hashtag in vista
     import: Impurtazione
     import_and_export: Impurtazione è spurtazione
@@ -949,22 +919,11 @@ co:
       other: 'cuntene l’hashtag disattivati: %{tags}'
     errors:
       in_reply_not_found: U statutu à quellu avete pruvatu di risponde ùn sembra micca esiste.
-    open_in_web: Apre nant’à u web
     over_character_limit: site sopr’à a limita di %{max} caratteri
     pin_errors:
       limit: Avete digià puntarulatu u numeru massimale di statuti
       ownership: Pudete puntarulà solu unu di i vostri propii statuti
       reblog: Ùn pudete micca puntarulà una spartera
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} persone"
-      total_votes:
-        one: "%{count} votu"
-        other: "%{count} voti"
-      vote: Vutà
-    show_more: Vede di più
-    show_thread: Vede u filu
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direttu
@@ -1050,7 +1009,6 @@ co:
     follow_limit_reached: Ùn pidete seguità più di %{limit} conti
     invalid_otp_token: U codice d’identificazione ùn hè currettu
     otp_lost_help_html: S’è voi avete persu i dui, pudete cuntattà %{email}
-    seamless_external_login: Site cunnettatu·a dapoi un serviziu esternu, allora i parametri di chjave d’accessu è d’indirizzu e-mail ùn so micca dispunibili.
     signed_in_as: 'Cunnettatu·a cum’è:'
   verification:
     verification: Verificazione

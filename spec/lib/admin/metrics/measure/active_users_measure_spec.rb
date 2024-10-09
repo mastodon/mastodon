@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Metrics::Measure::ActiveUsersMeasure do
+RSpec.describe Admin::Metrics::Measure::ActiveUsersMeasure do
   subject { described_class.new(start_at, end_at, params) }
 
   let(:start_at) { 2.days.ago }

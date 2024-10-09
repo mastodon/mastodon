@@ -53,7 +53,7 @@ class ApproveAppealService < BaseService
 
   def undo_mark_statuses_as_sensitive!
     representative_account = Account.representative
-    @strike.statuses.includes(:media_attachments).find_each do |status|
+    @strike.statuses.kept.includes(:media_attachments).reorder(nil).find_each do |status|
       UpdateStatusService.new.call(status, representative_account.id, sensitive: false) if status.with_media?
     end
   end

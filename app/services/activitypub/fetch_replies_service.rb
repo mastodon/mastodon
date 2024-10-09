@@ -49,7 +49,7 @@ class ActivityPub::FetchRepliesService < BaseService
     rescue Mastodon::UnexpectedResponseError => e
       raise unless e.response && e.response.code == 401 && Addressable::URI.parse(collection_or_uri).query.present?
 
-      fetch_resource_without_id_validation(collection_or_uri, nil, true, request_options: { with_query_string: true })
+      fetch_resource_without_id_validation(collection_or_uri, nil, true, request_options: { omit_query_string: false })
     end
   end
 

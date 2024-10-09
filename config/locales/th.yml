@@ -7,7 +7,6 @@ th:
     hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
     title: เกี่ยวกับ
   accounts:
-    follow: ติดตาม
     followers:
       other: ผู้ติดตาม
     following: กำลังติดตาม
@@ -23,6 +22,8 @@ th:
   admin:
     account_actions:
       action: ทำการกระทำ
+      already_silenced: มีการจำกัดบัญชีนี้ไปแล้ว
+      already_suspended: มีการระงับบัญชีนี้ไปแล้ว
       title: ทำการกระทำการกลั่นกรองต่อ %{acct}
     account_moderation_notes:
       create: เขียนหมายเหตุ
@@ -44,6 +45,7 @@ th:
         title: เปลี่ยนอีเมลสำหรับ %{username}
       change_role:
         changed_msg: เปลี่ยนบทบาทสำเร็จ!
+        edit_roles: จัดการบทบาทผู้ใช้
         label: เปลี่ยนบทบาท
         no_role: ไม่มีบทบาท
         title: เปลี่ยนบทบาทสำหรับ %{username}
@@ -223,6 +225,7 @@ th:
         update_custom_emoji: อัปเดตอีโมจิที่กำหนดเอง
         update_domain_block: อัปเดตการปิดกั้นโดเมน
         update_ip_block: อัปเดตกฎ IP
+        update_report: อัปเดตรายงาน
         update_status: อัปเดตโพสต์
         update_user_role: อัปเดตบทบาท
       actions:
@@ -462,6 +465,9 @@ th:
       title: คำแนะนำการติดตาม
       unsuppress: คืนค่าคำแนะนำการติดตาม
     instances:
+      audit_log:
+        title: รายการบันทึกการตรวจสอบล่าสุด
+        view_all: ดูรายการบันทึกการตรวจสอบแบบเต็ม
       availability:
         description_html:
           other: หากการจัดส่งไปยังโดเมนล้มเหลวเป็นเวลา <strong>%{count} วันที่แตกต่างกัน</strong> โดยไม่สำเร็จ จะไม่ทำการพยายามจัดส่งเพิ่มเติมเว้นแต่จะได้รับการจัดส่ง <em>จาก</em> โดเมน
@@ -586,6 +592,7 @@ th:
         suspend_description_html: บัญชีและเนื้อหาของบัญชีทั้งหมดจะเข้าถึงไม่ได้และได้รับการลบในที่สุด และการโต้ตอบกับบัญชีจะเป็นไปไม่ได้ แปลงกลับได้ภายใน 30 วัน ปิดรายงานต่อบัญชีนี้ทั้งหมด
       actions_description_html: ตัดสินใจว่าการกระทำใดที่จะใช้เพื่อแก้ปัญหารายงานนี้ หากคุณใช้การกระทำที่เป็นการลงโทษต่อบัญชีที่รายงาน จะส่งการแจ้งเตือนอีเมลถึงเขา ยกเว้นเมื่อมีการเลือกหมวดหมู่ <strong>สแปม</strong>
       actions_description_remote_html: ตัดสินใจว่าการกระทำใดที่จะใช้เพื่อแก้ปัญหารายงานนี้ นี่จะมีผลต่อวิธีที่เซิร์ฟเวอร์ <strong>ของคุณ</strong> สื่อสารกับบัญชีระยะไกลนี้และจัดการเนื้อหาของบัญชีเท่านั้น
+      actions_no_posts: รายงานนี้ไม่มีโพสต์ที่เกี่ยวข้องใด ๆ ให้ลบ
       add_to_report: เพิ่มข้อมูลเพิ่มเติมไปยังรายงาน
       already_suspended_badges:
         local: ระงับในเซิร์ฟเวอร์นี้อยู่แล้ว
@@ -626,6 +633,7 @@ th:
       report: 'รายงาน #%{id}'
       reported_account: บัญชีที่ได้รับการรายงาน
       reported_by: รายงานโดย
+      reported_with_application: รายงานด้วยแอปพลิเคชัน
       resolved: แก้ปัญหาแล้ว
       resolved_msg: แก้ปัญหารายงานสำเร็จ!
       skip_to_actions: ข้ามไปยังการกระทำ
@@ -704,7 +712,7 @@ th:
         manage_taxonomies: จัดการอนุกรมวิธาน
         manage_taxonomies_description: อนุญาตให้ผู้ใช้ตรวจทานเนื้อหาที่กำลังนิยมและอัปเดตการตั้งค่าแฮชแท็ก
         manage_user_access: จัดการการเข้าถึงของผู้ใช้
-        manage_user_access_description: อนุญาตให้ผู้ใช้ปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยของผู้ใช้อื่น เปลี่ยนที่อยู่อีเมลของเขา และตั้งรหัสผ่านของเขาใหม่
+        manage_user_access_description: อนุญาตให้ผู้ใช้ปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยของผู้ใช้อื่น ๆ เปลี่ยนที่อยู่อีเมลของเขา และตั้งรหัสผ่านของเขาใหม่
         manage_users: จัดการผู้ใช้
         manage_users_description: อนุญาตให้ผู้ใช้ดูรายละเอียดของผู้ใช้อื่น ๆ และทำการกระทำการกลั่นกรองต่อผู้ใช้เหล่านั้น
         manage_webhooks: จัดการเว็บฮุค
@@ -853,12 +861,15 @@ th:
         message_html: คุณไม่ได้กำหนดกฎของเซิร์ฟเวอร์ใด ๆ
       sidekiq_process_check:
         message_html: ไม่มีกระบวนการ Sidekiq ที่กำลังทำงานสำหรับคิว %{value} โปรดตรวจทานการกำหนดค่า Sidekiq ของคุณ
+      software_version_check:
+        action: ดูการอัปเดตที่พร้อมใช้งาน
+        message_html: มีการอัปเดต Mastodon ที่พร้อมใช้งาน
       software_version_critical_check:
         action: ดูการอัปเดตที่พร้อมใช้งาน
         message_html: มีการอัปเดต Mastodon สำคัญพร้อมใช้งาน โปรดอัปเดตโดยเร็วที่สุดเท่าที่จะเป็นไปได้
       software_version_patch_check:
         action: ดูการอัปเดตที่พร้อมใช้งาน
-        message_html: มีการอัปเดต Mastodon ที่แก้ไขข้อบกพร่องพร้อมใช้งาน
+        message_html: มีการอัปเดต Mastodon ที่แก้ไขข้อบกพร่องที่พร้อมใช้งาน
       upload_check_privacy_error:
         action: ตรวจสอบที่นี่สำหรับข้อมูลเพิ่มเติม
         message_html: "<strong>เว็บเซิร์ฟเวอร์ของคุณกำหนดค่าไม่ถูกต้อง ความเป็นส่วนตัวของผู้ใช้ของคุณตกอยู่ในความเสี่ยง</strong>"
@@ -866,16 +877,39 @@ th:
         action: ตรวจสอบที่นี่สำหรับข้อมูลเพิ่มเติม
         message_html: "<strong>ที่เก็บข้อมูลวัตถุของคุณกำหนดค่าไม่ถูกต้อง ความเป็นส่วนตัวของผู้ใช้ของคุณตกอยู่ในความเสี่ยง</strong>"
     tags:
+      moderation:
+        not_trendable: ไม่สามารถขึ้นแนวโน้มได้
+        not_usable: ไม่สามารถใช้งานได้
+        pending_review: การตรวจทานที่รอดำเนินการ
+        review_requested: ต้องการการตรวจทาน
+        reviewed: ตรวจทานแล้ว
+        title: สถานะ
+        trendable: ขึ้นแนวโน้มได้
+        unreviewed: ไม่ได้รับการตรวจทาน
+        usable: ใช้งานได้
+      name: ชื่อ
+      newest: ใหม่ที่สุด
+      oldest: เก่าที่สุด
+      open: ดูแบบสาธารณะ
+      reset: รีเซ็ต
       review: สถานะการตรวจทาน
+      search: ค้นหา
+      title: แฮชแท็ก
       updated_msg: อัปเดตการตั้งค่าแฮชแท็กสำเร็จ
     title: การดูแล
     trends:
       allow: อนุญาต
       approved: อนุมัติแล้ว
+      confirm_allow: คุณแน่ใจหรือไม่ว่าต้องการอนุญาตแท็กที่เลือก?
+      confirm_disallow: คุณแน่ใจหรือไม่ว่าต้องการไม่อนุญาตแท็กที่เลือก?
       disallow: ไม่อนุญาต
       links:
         allow: อนุญาตลิงก์
         allow_provider: อนุญาตผู้เผยแพร่
+        confirm_allow: คุณแน่ใจหรือไม่ว่าต้องการอนุญาตลิงก์ที่เลือก?
+        confirm_allow_provider: คุณแน่ใจหรือไม่ว่าต้องการอนุญาตผู้ให้บริการที่เลือก?
+        confirm_disallow: คุณแน่ใจหรือไม่ว่าต้องการไม่อนุญาตลิงก์ที่เลือก?
+        confirm_disallow_provider: คุณแน่ใจหรือไม่ว่าต้องการไม่อนุญาตผู้ให้บริการที่เลือก?
         description_html: นี่คือลิงก์ที่กำลังได้รับการแบ่งปันเป็นจำนวนมากโดยบัญชีที่เซิร์ฟเวอร์ของคุณเห็นโพสต์จากในปัจจุบัน ลิงก์สามารถช่วยให้ผู้ใช้ของคุณค้นหาสิ่งที่กำลังเกิดขึ้นในโลก จะไม่แสดงลิงก์เป็นสาธารณะจนกว่าคุณจะอนุมัติผู้เผยแพร่ คุณยังสามารถอนุญาตหรือปฏิเสธลิงก์แต่ละรายการ
         disallow: ไม่อนุญาตลิงก์
         disallow_provider: ไม่อนุญาตผู้เผยแพร่
@@ -898,6 +932,10 @@ th:
       statuses:
         allow: อนุญาตโพสต์
         allow_account: อนุญาตผู้สร้าง
+        confirm_allow: คุณแน่ใจหรือไม่ว่าต้องการอนุญาตสถานะที่เลือก?
+        confirm_allow_account: คุณแน่ใจหรือไม่ว่าต้องการอนุญาตบัญชีที่เลือก?
+        confirm_disallow: คุณแน่ใจหรือไม่ว่าต้องการไม่อนุญาตสถานะที่เลือก?
+        confirm_disallow_account: คุณแน่ใจหรือไม่ว่าต้องการไม่อนุญาตบัญชีที่เลือก?
         description_html: นี่คือโพสต์ที่เซิร์ฟเวอร์ของคุณทราบเกี่ยวกับที่กำลังได้รับการแบ่งปันและชื่นชอบเป็นจำนวนมากในปัจจุบันในขณะนี้ โพสต์สามารถช่วยให้ผู้ใช้ใหม่และที่กลับมาของคุณค้นหาผู้คนเพิ่มเติมที่จะติดตาม จะไม่แสดงโพสต์เป็นสาธารณะจนกว่าคุณจะอนุมัติผู้สร้าง และผู้สร้างอนุญาตให้เสนอแนะบัญชีของเขาแก่ผู้อื่น คุณยังสามารถอนุญาตหรือปฏิเสธโพสต์แต่ละรายการ
         disallow: ไม่อนุญาตโพสต์
         disallow_account: ไม่อนุญาตผู้สร้าง
@@ -928,7 +966,7 @@ th:
         usage_comparison: ใช้ %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
         used_by_over_week:
           other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
-      title: แนวโน้ม
+      title: คำแนะนำและแนวโน้ม
       trending: กำลังนิยม
     warning_presets:
       add_new: เพิ่มใหม่
@@ -1107,6 +1145,12 @@ th:
       view_strikes: ดูการดำเนินการที่ผ่านมาต่อบัญชีของคุณ
     too_fast: ส่งแบบฟอร์มเร็วเกินไป ลองอีกครั้ง
     use_security_key: ใช้กุญแจความปลอดภัย
+  author_attribution:
+    example_title: ข้อความตัวอย่าง
+    hint_html: ควบคุมวิธีที่ให้เครดิตแก่คุณเมื่อมีการแบ่งปันลิงก์ใน Mastodon
+    more_from_html: เพิ่มเติมจาก %{name}
+    s_blog: บล็อกของ %{name}
+    title: การระบุแหล่งที่มาผู้สร้าง
   challenge:
     confirm: ดำเนินการต่อ
     hint_html: "<strong>เคล็ดลับ:</strong> เราจะไม่ถามรหัสผ่านของคุณกับคุณสำหรับชั่วโมงถัดไป"
@@ -1115,7 +1159,6 @@ th:
   crypto:
     errors:
       invalid_key: ไม่ใช่กุญแจ Ed25519 หรือ Curve25519 ที่ถูกต้อง
-      invalid_signature: ไม่ใช่ลายเซ็น Ed25519 ที่ถูกต้อง
   date:
     formats:
       default: "%d %b %Y"
@@ -1181,8 +1224,6 @@ th:
       your_appeal_approved: อนุมัติการอุทธรณ์ของคุณแล้ว
       your_appeal_pending: คุณได้ส่งการอุทธรณ์
       your_appeal_rejected: ปฏิเสธการอุทธรณ์ของคุณแล้ว
-  domain_validator:
-    invalid_domain: ไม่ใช่ชื่อโดเมนที่ถูกต้อง
   edit_profile:
     basic_information: ข้อมูลพื้นฐาน
     hint_html: "<strong>ปรับแต่งสิ่งที่ผู้คนเห็นในโปรไฟล์สาธารณะของคุณและถัดจากโพสต์ของคุณ</strong> ผู้คนอื่น ๆ มีแนวโน้มที่จะติดตามคุณกลับและโต้ตอบกับคุณมากขึ้นเมื่อคุณมีโปรไฟล์ที่กรอกแล้วและรูปภาพโปรไฟล์"
@@ -1299,20 +1340,6 @@ th:
       merge_long: เก็บระเบียนที่มีอยู่และเพิ่มระเบียนใหม่
       overwrite: เขียนทับ
       overwrite_long: แทนที่ระเบียนปัจจุบันด้วยระเบียนใหม่
-    overwrite_preambles:
-      blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นของคุณ</strong> ด้วยมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-      bookmarks_html: คุณกำลังจะ <strong>แทนที่ที่คั่นหน้าของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong>
-      domain_blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นโดเมนของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
-      following_html: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong> และ <strong>หยุดการติดตามคนอื่นใด</strong>
-      lists_html: คุณกำลังจะ <strong>แทนที่รายการของคุณ</strong> ด้วยเนื้อหาของ <strong>%{filename}</strong> จะเพิ่มมากถึง <strong>%{total_items} บัญชี</strong> ไปยังรายการใหม่
-      muting_html: คุณกำลังจะ <strong>แทนที่รายการบัญชีที่ซ่อนอยู่ของคุณ</strong> ด้วยมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-    preambles:
-      blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-      bookmarks_html: คุณกำลังจะเพิ่มมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>ที่คั่นหน้า</strong> ของคุณ
-      domain_blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
-      following_html: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-      lists_html: คุณกำลังจะเพิ่มมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>รายการ</strong> ของคุณ จะสร้างรายการใหม่หากไม่มีรายการที่จะเพิ่มไปยัง
-      muting_html: คุณกำลังจะ <strong>ซ่อน</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
     preface: คุณสามารถนำเข้าข้อมูลที่คุณได้ส่งออกจากเซิร์ฟเวอร์อื่น เช่น รายการผู้คนที่คุณกำลังติดตามหรือกำลังปิดกั้น
     recent_imports: การนำเข้าล่าสุด
     states:
@@ -1396,6 +1423,7 @@ th:
   media_attachments:
     validations:
       images_and_video: ไม่สามารถแนบวิดีโอกับโพสต์ที่มีภาพอยู่แล้ว
+      not_found: ไม่พบสื่อ %{ids} หรือได้แนบกับโพสต์อื่นไปแล้ว
       not_ready: ไม่สามารถแนบไฟล์ที่ยังประมวลผลไม่เสร็จ ลองอีกครั้งในอีกสักครู่!
       too_many: ไม่สามารถแนบมากกว่า 4 ไฟล์
   migrations:
@@ -1627,12 +1655,12 @@ th:
     delete: การลบบัญชี
     development: การพัฒนา
     edit_profile: แก้ไขโปรไฟล์
-    export: การส่งออกข้อมูล
+    export: ส่งออก
     featured_tags: แฮชแท็กที่น่าสนใจ
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
     migrate: การโยกย้ายบัญชี
-    notifications: การแจ้งเตือนทางอีเมล
+    notifications: การแจ้งเตือนอีเมล
     preferences: การกำหนดลักษณะ
     profile: โปรไฟล์สาธารณะ
     relationships: การติดตามและผู้ติดตาม
@@ -1669,21 +1697,12 @@ th:
     edited_at_html: แก้ไขเมื่อ %{date}
     errors:
       in_reply_not_found: ดูเหมือนว่าจะไม่มีโพสต์ที่คุณกำลังพยายามตอบกลับอยู่
-    open_in_web: เปิดในเว็บ
     over_character_limit: เกินขีดจำกัดตัวอักษรที่ %{max} แล้ว
     pin_errors:
       direct: ไม่สามารถปักหมุดโพสต์ที่ปรากฏแก่ผู้ใช้ที่กล่าวถึงเท่านั้น
       limit: คุณได้ปักหมุดโพสต์ถึงจำนวนสูงสุดไปแล้ว
       ownership: ไม่สามารถปักหมุดโพสต์ของคนอื่น
       reblog: ไม่สามารถปักหมุดการดัน
-    poll:
-      total_people:
-        other: "%{count} คน"
-      total_votes:
-        other: "%{count} การลงคะแนน"
-      vote: ลงคะแนน
-    show_more: แสดงเพิ่มเติม
-    show_thread: แสดงกระทู้
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: โดยตรง
@@ -1872,15 +1891,16 @@ th:
     invalid_otp_token: รหัสสองปัจจัยไม่ถูกต้อง
     otp_lost_help_html: หากคุณสูญเสียการเข้าถึงทั้งสองอย่าง คุณสามารถติดต่อ %{email}
     rate_limited: มีความพยายามในการรับรองความถูกต้องมากเกินไป ลองอีกครั้งในภายหลัง
-    seamless_external_login: คุณได้เข้าสู่ระบบผ่านบริการภายนอก ดังนั้นจึงไม่มีการตั้งค่ารหัสผ่านและอีเมล
+    seamless_external_login: คุณได้เข้าสู่ระบบผ่านบริการภายนอก ดังนั้นการตั้งค่ารหัสผ่านและอีเมลจึงไม่พร้อมใช้งาน
     signed_in_as: 'ลงชื่อเข้าเป็น:'
   verification:
-    extra_instructions_html: <strong>เคล็ดลับ:</strong> ลิงก์ในเว็บไซต์ของคุณสามารถเป็นแบบมองไม่เห็น ส่วนที่สำคัญคือ <code>rel="me"</code> ซึ่งป้องกันการแอบอ้างในเว็บไซต์ที่มีเนื้อหาที่ผู้ใช้สร้างขึ้น คุณยังสามารถใช้แท็ก <code>link</code> ในส่วนหัวของหน้าแทนที่จะเป็น <code>a</code> แต่ HTML ต้องเข้าถึงได้โดยไม่มีการประมวลผล JavaScript
+    extra_instructions_html: <strong>เคล็ดลับ:</strong> ลิงก์ในเว็บไซต์ของคุณสามารถเป็นแบบมองไม่เห็น ส่วนที่สำคัญคือ <code>rel="me"</code> ซึ่งป้องกันการแอบอ้างในเว็บไซต์ที่มีเนื้อหาที่ผู้ใช้สร้างขึ้น คุณยังสามารถใช้แท็ก <code>link</code> ในส่วนหัวของหน้าแทนที่จะเป็น <code>a</code> ได้อีกด้วย แต่ HTML ต้องเข้าถึงได้โดยไม่มีการประมวลผล JavaScript
     here_is_how: นี่คือวิธี
     hint_html: "<strong>การยืนยันตัวตนของคุณใน Mastodon มีไว้สำหรับทุกคน</strong> โดยอิงตามมาตรฐานเว็บแบบเปิด ฟรีตอนนี้และตลอดไป ทั้งหมดที่คุณจำเป็นต้องมีคือเว็บไซต์ส่วนบุคคลที่ผู้คนรู้จักคุณ เมื่อคุณเชื่อมโยงไปยังเว็บไซต์นี้จากโปรไฟล์ของคุณ เราจะตรวจสอบว่าเว็บไซต์เชื่อมโยงกลับไปยังโปรไฟล์ของคุณและแสดงตัวบ่งชี้ที่มองเห็นได้ในโปรไฟล์"
     instructions_html: คัดลอกแล้ววางโค้ดด้านล่างลงใน HTML ของเว็บไซต์ของคุณ จากนั้นเพิ่มที่อยู่ของเว็บไซต์ของคุณลงในหนึ่งในช่องพิเศษในโปรไฟล์ของคุณจากแท็บ "แก้ไขโปรไฟล์" และบันทึกการเปลี่ยนแปลง
     verification: การตรวจสอบ
     verified_links: ลิงก์ที่ยืนยันแล้วของคุณ
+    website_verification: การตรวจสอบเว็บไซต์
   webauthn_credentials:
     add: เพิ่มกุญแจความปลอดภัยใหม่
     create:

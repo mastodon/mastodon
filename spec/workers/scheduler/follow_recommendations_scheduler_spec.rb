@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::FollowRecommendationsScheduler do
+RSpec.describe Scheduler::FollowRecommendationsScheduler do
   let!(:target_accounts) do
     Fabricate.times(3, :account) do
       statuses(count: 6)

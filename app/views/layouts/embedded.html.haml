@@ -11,12 +11,11 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
-    = theme_style_tags Setting.theme # Use the admin-configured theme here, even if logged in
+    = theme_style_tags 'mastodon-light'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
     = preload_pack_asset "locale/#{I18n.locale}-json.js"
     = render_initial_state
-    = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+    = javascript_pack_tag 'embed', integrity: true, crossorigin: 'anonymous'
   %body.embed
     = yield
 

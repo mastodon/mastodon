@@ -157,7 +157,7 @@ module Mastodon::CLI
       when :filesystem
         require 'find'
 
-        root_path = ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')).gsub(':rails_root', Rails.root.to_s)
+        root_path = Rails.configuration.x.file_storage_root_path.gsub(':rails_root', Rails.root.to_s)
 
         Find.find(File.join(*[root_path, prefix].compact)) do |path|
           next if File.directory?(path)
@@ -177,7 +177,7 @@ module Mastodon::CLI
           attachment_name = path_segments[1].singularize
           file_name       = path_segments.last
 
-          next unless PRELOAD_MODEL_WHITELIST.include?(model_name)
+          next unless PRELOADED_MODELS.include?(model_name)
 
           record     = model_name.constantize.find_by(id: record_id)
           attachment = record&.public_send(attachment_name)
@@ -278,14 +278,10 @@ module Mastodon::CLI
 
     desc 'usage', 'Calculate disk space consumed by Mastodon'
     def usage
-      say("Attachments:\t#{number_to_human_size(media_attachment_storage_size)} (#{number_to_human_size(local_media_attachment_storage_size)} local)")
-      say("Custom emoji:\t#{number_to_human_size(CustomEmoji.sum(:image_file_size))} (#{number_to_human_size(CustomEmoji.local.sum(:image_file_size))} local)")
-      say("Preview cards:\t#{number_to_human_size(PreviewCard.sum(:image_file_size))}")
-      say("Avatars:\t#{number_to_human_size(Account.sum(:avatar_file_size))} (#{number_to_human_size(Account.local.sum(:avatar_file_size))} local)")
-      say("Headers:\t#{number_to_human_size(Account.sum(:header_file_size))} (#{number_to_human_size(Account.local.sum(:header_file_size))} local)")
-      say("Backups:\t#{number_to_human_size(Backup.sum(:dump_file_size))}")
-      say("Imports:\t#{number_to_human_size(Import.sum(:data_file_size))}")
-      say("Settings:\t#{number_to_human_size(SiteUpload.sum(:file_file_size))}")
+      print_table [
+        %w(Object Total Local),
+        *object_storage_summary,
+      ]
     end
 
     desc 'lookup URL', 'Lookup where media is displayed by passing a media URL'
@@ -300,7 +296,7 @@ module Mastodon::CLI
       model_name = path_segments.first.classify
       record_id  = path_segments[2...-2].join.to_i
 
-      fail_with_message "Cannot find corresponding model: #{model_name}" unless PRELOAD_MODEL_WHITELIST.include?(model_name)
+      fail_with_message "Cannot find corresponding model: #{model_name}" unless PRELOADED_MODELS.include?(model_name)
 
       record = model_name.constantize.find_by(id: record_id)
       record = record.status if record.respond_to?(:status)
@@ -318,23 +314,26 @@ module Mastodon::CLI
 
     private
 
-    def media_attachment_storage_size
-      MediaAttachment.sum(file_and_thumbnail_size_sql)
+    def object_storage_summary
+      [
+        [:attachments, MediaAttachment.sum(combined_media_sum), MediaAttachment.where(account: Account.local).sum(combined_media_sum)],
+        [:custom_emoji, CustomEmoji.sum(:image_file_size), CustomEmoji.local.sum(:image_file_size)],
+        [:avatars, Account.sum(:avatar_file_size), Account.local.sum(:avatar_file_size)],
+        [:headers, Account.sum(:header_file_size), Account.local.sum(:header_file_size)],
+        [:preview_cards, PreviewCard.sum(:image_file_size), nil],
+        [:backups, Backup.sum(:dump_file_size), nil],
+        [:imports, Import.sum(:data_file_size), nil],
+        [:settings, SiteUpload.sum(:file_file_size), nil],
+      ].map { |label, total, local| [label.to_s.titleize, number_to_human_size(total), local.present? ? number_to_human_size(local) : nil] }
     end
 
-    def local_media_attachment_storage_size
-      MediaAttachment.where(account: Account.local).sum(file_and_thumbnail_size_sql)
+    def combined_media_sum
+      Arel.sql(<<~SQL.squish)
+        COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)
+      SQL
     end
 
-    def file_and_thumbnail_size_sql
-      Arel.sql(
-        <<~SQL.squish
-          COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)
-        SQL
-      )
-    end
-
-    PRELOAD_MODEL_WHITELIST = %w(
+    PRELOADED_MODELS = %w(
       Account
       Backup
       CustomEmoji
@@ -356,7 +355,7 @@ module Mastodon::CLI
         model_name = segments.first.classify
         record_id  = segments[2...-2].join.to_i
 
-        next unless PRELOAD_MODEL_WHITELIST.include?(model_name)
+        next unless PRELOADED_MODELS.include?(model_name)
 
         preload_map[model_name] << record_id
       end

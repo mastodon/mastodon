@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe DomainBlockWorker do
+RSpec.describe DomainBlockWorker do
   subject { described_class.new }
 
   describe 'perform' do

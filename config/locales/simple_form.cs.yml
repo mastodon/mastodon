@@ -130,7 +130,6 @@ cs:
         name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
       user:
         chosen_languages: Po zaškrtnutí budou ve veřejných časových osách zobrazeny pouze příspěvky ve zvolených jazycích
-        role: Role určuje, která oprávnění má uživatel
       user_role:
         color: Barva, která má být použita pro roli v celém UI, jako RGB v hex formátu
         highlighted: Toto roli učiní veřejně viditelnou
@@ -211,6 +210,7 @@ cs:
         setting_default_privacy: Soukromí příspěvků
         setting_default_sensitive: Vždy označovat média jako citlivá
         setting_delete_modal: Před smazáním příspěvku zobrazovat potvrzovací dialog
+        setting_disable_hover_cards: Zakázat náhled profilu při přejetí myší
         setting_disable_swiping: Vypnout gesta přejetí prsty
         setting_display_media: Zobrazování médií
         setting_display_media_default: Výchozí
@@ -242,11 +242,13 @@ cs:
           warn: Skrýt s varováním
       form_admin_settings:
         activity_api_enabled: Zveřejnit souhrnné statistiky o aktivitě uživatele v API
+        app_icon: Ikona aplikace
         backups_retention_period: Doba uchovávání archivu uživatelů
         bootstrap_timeline_accounts: Vždy doporučovat tyto účty novým uživatelům
         closed_registrations_message: Vlastní zpráva, když přihlášení není k dispozici
         content_cache_retention_period: Doba uchovávání vzdáleného obsahu
         custom_css: Vlastní CSS
+        favicon: Favicon
         mascot: Vlastní maskot (zastaralé)
         media_cache_retention_period: Doba uchovávání mezipaměti médií
         peers_api_enabled: Zveřejnit seznam nalezených serverů v API
@@ -311,7 +313,7 @@ cs:
         listable: Povolit zobrazení tohoto hashtagu ve vyhledávání a návrzích
         name: Hashtag
         trendable: Povolit zobrazení tohoto hashtagu mezi populárními
-        usable: Povolit používat tento hashtag v příspěvcích
+        usable: Povolit příspěvkům používat tento hashtag lokálně
       user:
         role: Role
         time_zone: Časové pásmo

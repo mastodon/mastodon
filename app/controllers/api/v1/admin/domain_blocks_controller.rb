@@ -5,6 +5,7 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   include AccountableConcern
 
   LIMIT = 100
+  MAX_LIMIT = 500
 
   before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:domain_blocks' }, only: [:index, :show]
   before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:domain_blocks' }, except: [:index, :show]
@@ -59,16 +60,11 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   end
 
   def set_domain_blocks
-    @domain_blocks = filtered_domain_blocks.order(id: :desc).to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
+    @domain_blocks = DomainBlock.order(id: :desc).to_a_paginated_by_id(limit_param(LIMIT, MAX_LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 
   def set_domain_block
     @domain_block = DomainBlock.find(params[:id])
-  end
-
-  def filtered_domain_blocks
-    # TODO: no filtering yet
-    DomainBlock.all
   end
 
   def domain_block_params
@@ -88,7 +84,7 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   end
 
   def records_continue?
-    @domain_blocks.size == limit_param(LIMIT)
+    @domain_blocks.size == limit_param(LIMIT, MAX_LIMIT)
   end
 
   def resource_params
