@@ -6,7 +6,7 @@ ruby '>= 3.1.0'
 gem 'propshaft'
 gem 'puma', '~> 6.3'
 gem 'rack', '~> 2.2.7'
-gem 'rails', '~> 7.2.0'
+gem 'rails', '8.0.0.beta1'
 gem 'thor', '~> 1.2'
 
 gem 'dotenv'
@@ -29,7 +29,7 @@ gem 'browser', '< 6' # https://github.com/fnando/browser/issues/543
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.3'
 gem 'devise', '~> 4.9'
-gem 'devise-two-factor'
+gem 'devise-two-factor', github: 'mjankowski/devise-two-factor', branch: 'rails-8-relax-gemspec'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
