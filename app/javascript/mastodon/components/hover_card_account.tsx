@@ -3,7 +3,6 @@ import { useEffect, forwardRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 
 import { fetchAccount } from 'mastodon/actions/accounts';
 import { AccountBio } from 'mastodon/components/account_bio';
@@ -16,6 +15,7 @@ import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { domain } from 'mastodon/initial_state';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
+import Permalink from './permalink';
 
 export const HoverCardAccount = forwardRef<
   HTMLDivElement,
@@ -49,10 +49,10 @@ export const HoverCardAccount = forwardRef<
     >
       {account ? (
         <>
-          <Link to={`/@${account.acct}`} className='hover-card__name'>
+          <Permalink href={account.url} to={`/@${account.acct}`} className='hover-card__name'>
             <Avatar account={account} size={46} />
             <DisplayName account={account} localDomain={domain} />
-          </Link>
+          </Permalink>
 
           <div className='hover-card__text-row'>
             <AccountBio
