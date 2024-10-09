@@ -1,4 +1,4 @@
-<%= yield %>
+<%= content_for?(:content) ? yield(:content) : yield %>
 ---
 
 <%= t 'about.hosted_on', domain: site_hostname %>

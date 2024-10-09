@@ -1,0 +1,6 @@
+- content_for :content do
+  = raw t('application_mailer.salutation', name: display_name(@me))
+  \
+  = yield
+
+= render template: 'layouts/mailer'
