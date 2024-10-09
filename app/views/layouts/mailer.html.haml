@@ -61,7 +61,7 @@
                       %tr
                         %td.email-body-td
                           -# Content
-                          = yield
+                          = content_for?(:content) ? yield(:content) : yield
 
               /[if mso]
                 </td></tr></table>

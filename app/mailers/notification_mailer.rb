@@ -17,7 +17,7 @@ class NotificationMailer < ApplicationMailer
 
   default to: -> { email_address_with_name(@user.email, @me.username) }
 
-  layout 'mailer'
+  layout 'notification_mailer'
 
   def mention
     return if @status.blank?
