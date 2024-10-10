@@ -38,6 +38,17 @@
 
   %p.lead= t('author_attribution.hint_html')
 
+  %h4= t('verification.here_is_how')
+
+  %p.lead= t('author_attribution.instructions')
+
+  .input-copy.lead
+    .input-copy__wrapper
+      = copyable_input value: tag.meta(name: 'fediverse:creator', content: "@#{@account.local_username_and_domain}")
+    %button{ type: :button }= t('generic.copy')
+
+  %p.lead= t('author_attribution.then_instructions')
+
   .fields-row
     .fields-row__column.fields-row__column-6
       .fields-group
