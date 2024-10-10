@@ -173,6 +173,7 @@ class Account < ApplicationRecord
            :shows_application?,
            :prefers_noindex?,
            :time_zone,
+           :signed_in_today?,
            to: :user,
            prefix: true,
            allow_nil: true

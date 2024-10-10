@@ -27,7 +27,7 @@ module Admin::DashboardHelper
     timestamp = account.relevant_time
 
     return '-' if timestamp.nil?
-    return t('generic.today') if account.user_current_sign_in_at && account.user_current_sign_in_at >= 24.hours.ago
+    return t('generic.today') if account.user_signed_in_today?
 
     content_tag(:time, l(timestamp), class: 'time-ago', datetime: timestamp.iso8601, title: l(timestamp))
   end
