@@ -1,7 +1,7 @@
 ---
 nn:
   about:
-    about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
+    about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig dataene dine med Mastodon!'
     contact_missing: Ikkje sett
     contact_unavailable: I/T
     hosted_on: "%{domain} er vert for Mastodon"
@@ -21,6 +21,7 @@ nn:
       one: Tut
       other: Tut
     posts_tab_heading: Tut
+    self_follow_error: Det er ikkje tillate å følgje din eigen konto
   admin:
     account_actions:
       action: Utfør
@@ -39,7 +40,7 @@ nn:
       avatar: Bilete
       by_domain: Domene
       change_email:
-        changed_msg: Konto-e-posten er endra!
+        changed_msg: E-post for konto er endra!
         current_email: Noverande e-post
         label: Byt e-post
         new_email: Ny e-post
@@ -62,7 +63,7 @@ nn:
       disable: Slå av
       disable_sign_in_token_auth: Slå av e-post-token-autentisering
       disable_two_factor_authentication: Slå av 2FA
-      disabled: Slege av
+      disabled: Inaktiv
       display_name: Synleg namn
       domain: Domene
       edit: Rediger
@@ -875,6 +876,9 @@ nn:
         message_html: Du har ikke definert noen serverregler.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
+      software_version_check:
+        action: Sjå tilgjengelege oppdateringar
+        message_html: Ei Mastodon-oppdatering er tilgjengeleg.
       software_version_critical_check:
         action: Sjå tilgjengelege oppdateringar
         message_html: Ei kritisk oppdatering til Mastodon er tilgjengeleg. Oppdater så snart som mogleg.
@@ -1363,19 +1367,9 @@ nn:
       overwrite: Skriv over
       overwrite_long: Byt ut dei noverande oppføringane med dei nye
     overwrite_preambles:
-      blocking_html: Du skal til å <strong>byta ut blokkeringslista di</strong> med opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
-      bookmarks_html: Du skal til å <strong>byta ut bokmerka dine</strong> med opp til <strong>%{total_items} innlegg</strong> frå <strong>%{filename}</strong>.
-      domain_blocking_html: Du skal til å <strong>byta ut domeneblokkeringslista di</strong> med opp til <strong>%{total_items} domene</strong> frå <strong>%{filename}</strong>.
-      following_html: Du skal til å <strong>fylgja</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong> og <strong>slutta å fylgja alle andre</strong>.
-      lists_html: Du er i ferd med å <strong>erstatta listene dine</strong> med innhaldet i <strong>%{filename}</strong>. Opptil <strong>%{total_items} kontoar</strong> vil bli lagt til i nye lister.
-      muting_html: Du skal til å <strong>byta ut lista di over dempa brukarkontoar</strong> med opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Du skal til å <strong>blokkera</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
-      bookmarks_html: Du skal til å leggja til opp til <strong>%{total_items} innlegg</strong> frå <strong>%{filename}</strong> til <strong>bokmerka dine</strong>.
-      domain_blocking_html: Du skal til å <strong>blokkera</strong> opp til <strong>%{total_items} domene</strong> frå <strong>%{filename}</strong>.
-      following_html: Du skal til å <strong>fylgja</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
-      lists_html: Du er i ferd med å leggja til opptil <strong>%{total_items} kontoar</strong> frå <strong>%{filename}</strong> til i <strong>listene</strong> dine. Nye lister vil blir oppretta om ingen lister finst frå før.
-      muting_html: Du skal til å <strong>dempa</strong> opp til <strong>%{total_items} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+      blocking_html:
+        one: Du skal til å <strong>byta ut blokkeringslista di</strong> med opp til <strong>%{count} brukarkonto</strong> frå <strong>%{filename}</strong>.
+        other: Du skal til å <strong>byta ut blokkeringslista di</strong> med opp til <strong>%{count} brukarkontoar</strong> frå <strong>%{filename}</strong>.
     preface: Du kan henta inn data som du har eksportert frå ein annan tenar, som t.d. ei liste over folka du fylgjer eller blokkerer.
     recent_imports: Siste importar
     states:
@@ -1692,6 +1686,7 @@ nn:
     delete: Kontosletting
     development: Utvikling
     edit_profile: Endr profil
+    export: Eksporter
     featured_tags: Utvalgte emneknagger
     import: Hent inn
     import_and_export: Importer og eksporter

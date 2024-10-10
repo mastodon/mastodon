@@ -861,12 +861,15 @@ th:
         message_html: คุณไม่ได้กำหนดกฎของเซิร์ฟเวอร์ใด ๆ
       sidekiq_process_check:
         message_html: ไม่มีกระบวนการ Sidekiq ที่กำลังทำงานสำหรับคิว %{value} โปรดตรวจทานการกำหนดค่า Sidekiq ของคุณ
+      software_version_check:
+        action: ดูการอัปเดตที่พร้อมใช้งาน
+        message_html: มีการอัปเดต Mastodon ที่พร้อมใช้งาน
       software_version_critical_check:
         action: ดูการอัปเดตที่พร้อมใช้งาน
         message_html: มีการอัปเดต Mastodon สำคัญพร้อมใช้งาน โปรดอัปเดตโดยเร็วที่สุดเท่าที่จะเป็นไปได้
       software_version_patch_check:
         action: ดูการอัปเดตที่พร้อมใช้งาน
-        message_html: มีการอัปเดต Mastodon ที่แก้ไขข้อบกพร่องพร้อมใช้งาน
+        message_html: มีการอัปเดต Mastodon ที่แก้ไขข้อบกพร่องที่พร้อมใช้งาน
       upload_check_privacy_error:
         action: ตรวจสอบที่นี่สำหรับข้อมูลเพิ่มเติม
         message_html: "<strong>เว็บเซิร์ฟเวอร์ของคุณกำหนดค่าไม่ถูกต้อง ความเป็นส่วนตัวของผู้ใช้ของคุณตกอยู่ในความเสี่ยง</strong>"
@@ -1337,20 +1340,6 @@ th:
       merge_long: เก็บระเบียนที่มีอยู่และเพิ่มระเบียนใหม่
       overwrite: เขียนทับ
       overwrite_long: แทนที่ระเบียนปัจจุบันด้วยระเบียนใหม่
-    overwrite_preambles:
-      blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นของคุณ</strong> ด้วยมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-      bookmarks_html: คุณกำลังจะ <strong>แทนที่ที่คั่นหน้าของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong>
-      domain_blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นโดเมนของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
-      following_html: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong> และ <strong>หยุดการติดตามคนอื่นใด</strong>
-      lists_html: คุณกำลังจะ <strong>แทนที่รายการของคุณ</strong> ด้วยเนื้อหาของ <strong>%{filename}</strong> จะเพิ่มมากถึง <strong>%{total_items} บัญชี</strong> ไปยังรายการใหม่
-      muting_html: คุณกำลังจะ <strong>แทนที่รายการบัญชีที่ซ่อนอยู่ของคุณ</strong> ด้วยมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-    preambles:
-      blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-      bookmarks_html: คุณกำลังจะเพิ่มมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>ที่คั่นหน้า</strong> ของคุณ
-      domain_blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
-      following_html: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-      lists_html: คุณกำลังจะเพิ่มมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>รายการ</strong> ของคุณ จะสร้างรายการใหม่หากไม่มีรายการที่จะเพิ่มไปยัง
-      muting_html: คุณกำลังจะ <strong>ซ่อน</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
     preface: คุณสามารถนำเข้าข้อมูลที่คุณได้ส่งออกจากเซิร์ฟเวอร์อื่น เช่น รายการผู้คนที่คุณกำลังติดตามหรือกำลังปิดกั้น
     recent_imports: การนำเข้าล่าสุด
     states:
@@ -1666,6 +1655,7 @@ th:
     delete: การลบบัญชี
     development: การพัฒนา
     edit_profile: แก้ไขโปรไฟล์
+    export: ส่งออก
     featured_tags: แฮชแท็กที่น่าสนใจ
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก

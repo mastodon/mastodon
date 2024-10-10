@@ -96,10 +96,6 @@ module Mastodon
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware
 
-    initializer :deprecator do |app|
-      app.deprecators[:mastodon] = ActiveSupport::Deprecation.new('4.3', 'mastodon/mastodon')
-    end
-
     config.before_configuration do
       require 'mastodon/redis_configuration'
       ::REDIS_CONFIGURATION = Mastodon::RedisConfiguration.new

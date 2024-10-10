@@ -161,6 +161,11 @@ RSpec.configure do |config|
     host! Rails.configuration.x.local_domain
   end
 
+  config.before :each, type: :system do
+    # Align with capybara config so that rails helpers called from rspec use matching host
+    host! 'localhost:3000'
+  end
+
   config.after do
     Rails.cache.clear
     redis.del(redis.keys)

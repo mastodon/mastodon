@@ -19,6 +19,7 @@ zh-CN:
     posts:
       other: 嘟文
     posts_tab_heading: 嘟文
+    self_follow_error: 不可以关注自己
   admin:
     account_actions:
       action: 执行操作
@@ -861,6 +862,9 @@ zh-CN:
         message_html: 你没有定义任何服务器规则。
       sidekiq_process_check:
         message_html: "%{value} 队列未运行任何 Sidekiq 进程。请检查你的 Sidekiq 配置"
+      software_version_check:
+        action: 查看可用更新
+        message_html: 有一个 Mastodon 更新可用。
       software_version_critical_check:
         action: 查看可用更新
         message_html: 有一个紧急Mastodon紧急更新可用，请尽快更新。
@@ -1338,19 +1342,31 @@ zh-CN:
       overwrite: 覆盖
       overwrite_long: 将当前记录替换为新记录
     overwrite_preambles:
-      blocking_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换你的屏蔽列表。
-      bookmarks_html: 你即将使用来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>替换你的书签。
-      domain_blocking_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个域名</strong>替换你的域名屏蔽列表。
-      following_html: 你即将从<strong> %{filename} </strong>关注<strong> %{total_items} 个账户</strong>，并停止关注其他任何人。
-      lists_html: 你即将用<strong> %{filename} </strong>的内容<strong>替换你的列表</strong>。新列表中将添加<strong> %{total_items} 个账户</strong>。
-      muting_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换你已隐藏的账户列表。
+      blocking_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>帐户<strong>替换你的屏蔽列表</strong>。
+      bookmarks_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 条</strong>嘟文<strong>替换你的书签</strong>。
+      domain_blocking_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>域名<strong>替换你的域名屏蔽列表</strong>。
+      following_html:
+        other: 你即将<strong>关注</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账户</strong>，并<strong>停止关注其他所有人</strong>。
+      lists_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的内容<strong>替换你的列表</strong>。最多将会有 <strong>%{count} 个账户</strong> 被添加到新列表。
+      muting_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>帐户<strong>替换你的已隐藏账户列表</strong>。
     preambles:
-      blocking_html: 你即将从<strong> %{filename} </strong>中<strong>封锁</strong>多达<strong> %{total_items} </strong>个账户。
-      bookmarks_html: 你即将把来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>添加到你的<strong>书签</strong>中。
-      domain_blocking_html: 你即将从<strong> %{filename} </strong>中<strong>屏蔽</strong><strong> %{total_items} 个域名</strong>。
-      following_html: 你即将从<strong> %{filename} </strong><strong>关注</strong>最多<strong> %{total_items} 个账户</strong>。
-      lists_html: 你即将从<strong> %{filename} </strong>中添加最多<strong> %{total_items} 个账户</strong>到你的<strong>列表</strong>中。如果没有可用列表，将创建新的列表。
-      muting_html: 你即将从<strong> %{filename} </strong>中<strong>隐藏</strong><strong> %{total_items} 个账户</strong>。
+      blocking_html:
+        other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
+      bookmarks_html:
+        other: 你即将把来自<strong> %{filename} </strong>的<strong> %{count} 篇嘟文</strong>添加到你的<strong>书签</strong>中。
+      domain_blocking_html:
+        other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个域名</strong>。
+      following_html:
+        other: 你即将<strong>关注</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
+      lists_html:
+        other: 你即将从<strong> %{filename} </strong>中添加最多<strong> %{count} 个账户</strong>到你的<strong>列表</strong>中。如果没有可用列表，将创建新的列表。
+      muting_html:
+        other: 你即将<strong>隐藏</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
     preface: 你可以在此导入你在其他实例导出的数据，比如你所关注或屏蔽的用户列表。
     recent_imports: 最近导入
     states:
@@ -1666,6 +1682,7 @@ zh-CN:
     delete: 删除账户
     development: 开发
     edit_profile: 更改个人资料
+    export: 导出
     featured_tags: 精选的话题标签
     import: 导入
     import_and_export: 导入和导出

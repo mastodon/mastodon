@@ -25,6 +25,7 @@ pl:
       one: wpis
       other: Wpisów
     posts_tab_heading: Wpisy
+    self_follow_error: Nie możesz obserwować swojego konta
   admin:
     account_actions:
       action: Wykonaj działanie
@@ -903,6 +904,9 @@ pl:
         message_html: Nie zdefiniowano żadnych reguł serwera.
       sidekiq_process_check:
         message_html: Brak uruchomionego procesu Sidekiq dla kolejki(-ek) %{value}. Sprawdź konfigurację Sidekiq
+      software_version_check:
+        action: Pokaż dostępne aktualizacje
+        message_html: Dostępna aktualizacja Mastodona.
       software_version_critical_check:
         action: Pokaż dostępne aktualizacje
         message_html: Dostępna krytyczna aktualizacja Mastodona, zaktualizuj jak tylko będzie to możliwe.
@@ -1412,20 +1416,6 @@ pl:
       merge_long: Zachowaj obecne wpisy i dodaj nowe
       overwrite: Nadpisz
       overwrite_long: Zastąp obecne wpisy nowymi
-    overwrite_preambles:
-      blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
-      bookmarks_html: Zamierzasz <strong>zastąpić swoje zakładki</strong> maksymalnie <strong>%{total_items} wpisami</strong> z <strong>%{filename}</strong>.
-      domain_blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków domen</strong> maksymalnie <strong>%{total_items} domenami</strong> z <strong>%{filename}</strong>.
-      following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong> i <strong>przestać obserwować kogokolwiek innego</strong>.
-      lists_html: Zamierzasz <strong>zastąpić swoje listy</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
-      muting_html: Zamierzasz <strong>zastąpić swoją wyciszonych</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
-      bookmarks_html: Zamierzasz dodać maksymalnie <strong>%{total_items} wpisów</strong> do twoich <strong>zakładek</strong> z <strong>%{filename}</strong>.
-      domain_blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} domen</strong> z <strong>%{filename}</strong>.
-      following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
-      lists_html: Zamierzasz dodać maksymalnie <strong>%{total_items} kont</strong> do twoich <strong>list</strong> z <strong>%{filename}</strong>. Jeżeli nie ma list, nowe zostaną utworzone.
-      muting_html: Zamierzasz <strong>wyciszyć</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
     preface: Możesz zaimportować pewne dane (np. lista kont, które obserwujesz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
     recent_imports: Ostatnie importy
     states:
@@ -1744,6 +1734,7 @@ pl:
     delete: Usuń konto
     development: Tworzenie aplikacji
     edit_profile: Edytuj profil
+    export: Eksportowanie danych
     featured_tags: Wyróżnione hashtagi
     import: Importowanie danych
     import_and_export: Import i eksport

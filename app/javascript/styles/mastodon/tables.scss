@@ -137,6 +137,7 @@ a.table-action-link {
   padding: 0 10px;
   color: $darker-text-color;
   font-weight: 500;
+  white-space: nowrap;
 
   &:hover {
     color: $highlight-text-color;
@@ -357,6 +358,10 @@ a.table-action-link {
     background: var(--background-color);
 
     @media screen and (max-width: $no-gap-breakpoint) {
+      border-top: 1px solid var(--background-border-color);
+    }
+
+    &--no-toolbar {
       border-top: 1px solid var(--background-border-color);
     }
   }

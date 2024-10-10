@@ -953,6 +953,7 @@ el:
         used_by_over_week:
           one: Χρησιμοποιήθηκε από ένα άτομο την τελευταία εβδομάδα
           other: Χρησιμοποιήθηκε από %{count} άτομα την τελευταία εβδομάδα
+      title: Προτάσεις και τάσεις
       trending: Τάσεις
     warning_presets:
       add_new: Πρόσθεση νέου
@@ -1037,7 +1038,9 @@ el:
       guide_link_text: Μπορεί να συνεισφέρει ο οποιοσδήποτε.
     sensitive_content: Ευαίσθητο περιεχόμενο
   application_mailer:
+    notification_preferences: Αλλαγή προτιμήσεων email
     salutation: "%{name},"
+    settings: 'Αλλαγή προτιμήσεων email: %{link}'
     unsubscribe: Κατάργηση εγγραφής
     view: 'Προβολή:'
     view_profile: Προβολή προφίλ
@@ -1084,6 +1087,7 @@ el:
     or_log_in_with: Ή συνδέσου με
     privacy_policy_agreement_html: Έχω διαβάσει και συμφωνώ με την <a href="%{privacy_policy_path}" target="_blank">πολιτική απορρήτου</a>
     progress:
+      confirm: Επιβεβαίωση email
       details: Τα στοιχεία σας
       review: Η αξιολόγησή μας
       rules: Αποδοχή κανόνων
@@ -1123,6 +1127,8 @@ el:
       view_strikes: Προβολή προηγούμενων ποινών εναντίον του λογαριασμού σας
     too_fast: Η φόρμα υποβλήθηκε πολύ γρήγορα, προσπαθήστε ξανά.
     use_security_key: Χρήση κλειδιού ασφαλείας
+  author_attribution:
+    example_title: Δείγμα κειμένου
   challenge:
     confirm: Συνέχεια
     hint_html: "<strong>Συμβουλή:</strong> Δεν θα σου ζητήσουμε τον κωδικό ασφαλείας σου ξανά για την επόμενη ώρα."
@@ -1316,20 +1322,6 @@ el:
       merge_long: Διατήρηση των εγγράφων που υπάρχουν και προσθήκη των νέων
       overwrite: Αντικατάσταση
       overwrite_long: Αντικατάσταση των υπαρχόντων εγγράφων με τις καινούργιες
-    overwrite_preambles:
-      blocking_html: Πρόκειται να <strong>αντικαταστήσεις τη λίστα αποκλεισμών</strong> με έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
-      bookmarks_html: Πρόκειται να <strong>αντικαταστήσεις τους σελιδοδείκτες σου</strong> με έως και <strong>%{total_items} αναρτήσεις</strong> από το <strong>%{filename}</strong>.
-      domain_blocking_html: Πρόκειται να <strong>αντικαταστήσεις τη λίστα αποκλεισμών τομέων</strong> με έως και <strong>%{total_items} τομείς</strong> από το <strong>%{filename}</strong>.
-      following_html: Πρόκειται να <strong>ακολουθήσεις</strong> μέχρι <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong> και <strong>να σταματήσεις να ακολουθείς οποιονδήποτε άλλο</strong>.
-      lists_html: Πρόκειται να <strong>αντικαταστήσεις τις λίστες σου</strong> με περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{total_items} λογαριασμοί</strong> θα προστεθούν σε νέες λίστες.
-      muting_html: Πρόκειται να <strong>αντικαταστήσεις τη λίστα λογαριασμών σε σίγαση</strong> με έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Πρόκειται να <strong>αποκλείσεις</strong> έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
-      bookmarks_html: Πρόκειται να προσθέσεις μέχρι και <strong>%{total_items} αναρτήσεις</strong> από το <strong>%{filename}</strong> στους <strong>σελιδοδείκτες</strong> σου.
-      domain_blocking_html: Πρόκειται να <strong>αποκλείσεις</strong> έως και <strong>%{total_items} τομείς</strong> από το <strong>%{filename}</strong>.
-      following_html: Πρόκειται να <strong>ακολουθήσεις</strong> έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
-      lists_html: Πρόκειται να προσθέσεις μέχρι και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong> στις <strong>λίστες</strong> σου. Θα δημιουργηθούν νέες λίστες αν δεν υπάρχει λίστα για προσθήκη.
-      muting_html: Πρόκειται να <strong>κάνεις σίγαση</strong> σε έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
     preface: Μπορείς να εισάγεις τα δεδομένα που έχεις εξάγει από άλλο διακομιστή, όπως τη λίστα των ατόμων που ακολουθείς ή έχεις αποκλείσει.
     recent_imports: Πρόσφατες Εισαγωγές
     states:
@@ -1342,7 +1334,10 @@ el:
     time_started: Ξεκίνησε στις
     titles:
       blocking: Εισαγωγή αποκλεισμένων λογαριασμών
+      bookmarks: Εισαγωγή σελιδοδεικτών
+      domain_blocking: Εισαγωγή αποκλεισμένων τομέων
       following: Εισαγωγή λογαριασμών που ακολουθείτε
+      lists: Εισαγωγή λιστών
     type: Τύπος εισαγωγής
     type_groups:
       destructive: Μπλοκ & σίγαση
@@ -1351,6 +1346,7 @@ el:
       bookmarks: Σελιδοδείκτες
       domain_blocking: Λίστα αποκλεισμένων τομέων
       following: Λίστα ατόμων που ακολουθείτε
+      lists: Λίστες
       muting: Λίστα αποσιωπήσεων
     upload: Μεταμόρφωση
   invites:
@@ -1365,6 +1361,7 @@ el:
       '86400': 1 μέρα
     expires_in_prompt: Ποτέ
     generate: Δημιουργία συνδέσμου πρόσκλησης
+    invalid: Αυτή η πρόσκληση δεν είναι έγκυρη
     invited_by: 'Σε προσκάλεσε ο/η:'
     max_uses:
       one: 1 χρήσης
@@ -1388,6 +1385,11 @@ el:
     failed_sign_in_html: Αποτυχημένη προσπάθεια σύνδεσης με %{method} από %{ip} (%{browser})
     successful_sign_in_html: Επιτυχής σύνδεση με %{method} από %{ip} (%{browser})
     title: Ιστορικό ελέγχου ταυτότητας
+  mail_subscriptions:
+    unsubscribe:
+      action: Ναι, κατάργηση συνδρομής
+      complete: Η συνδρομή καταργήθηκε
+      title: Κατάργηση συνδρομής
   media_attachments:
     validations:
       images_and_video: Δεν γίνεται να προσθέσεις βίντεο σε ανάρτηση που ήδη περιέχει εικόνες
@@ -1467,6 +1469,7 @@ el:
     update:
       subject: "%{name} επεξεργάστηκε μια ανάρτηση"
   notifications:
+    email_events: Συμβάντα για ειδοποιήσεις μέσω email
     email_events_hint: 'Επέλεξε συμβάντα για τα οποία θέλεις να λαμβάνεις ειδοποιήσεις μέσω email:'
   number:
     human:
@@ -1507,12 +1510,18 @@ el:
     other: Άλλες
     posting_defaults: Προεπιλογές ανάρτησης
     public_timelines: Δημόσιες ροές
+  privacy:
+    privacy: Απόρρητο
+    search: Αναζήτηση
   privacy_policy:
     title: Πολιτική Απορρήτου
   reactions:
     errors:
       limit_reached: Το όριο διαφορετικών αντιδράσεων ξεπεράστηκε
       unrecognized_emoji: δεν είναι ένα αναγνωρισμένο emoji
+  redirects:
+    prompt: Αν εμπιστεύεστε αυτόν τον σύνδεσμο, κάντε κλικ σε αυτόν για να συνεχίσετε.
+    title: Αποχωρείτε από το %{instance}.
   relationships:
     activity: Δραστηριότητα λογαριασμού
     confirm_follow_selected_followers: Είσαι βέβαιος ότι θες να ακολουθήσεις τους επιλεγμένους ακόλουθους;
@@ -1548,6 +1557,9 @@ el:
     over_daily_limit: Έχεις υπερβεί το όριο των %{limit} προγραμματισμένων αναρτήσεων για εκείνη τη μέρα
     over_total_limit: Έχεις υπερβεί το όριο των %{limit} προγραμματισμένων αναρτήσεων
     too_soon: Η προγραμματισμένη ημερομηνία πρέπει να είναι στο μέλλον
+  self_destruct:
+    lead_html: Δυστυχώς, το <strong>%{domain}</strong> κλείνει οριστικά. Αν είχατε λογαριασμό εκεί, δεν θα μπορείτε να συνεχίσετε τη χρήση του, αλλά μπορείτε ακόμα να ζητήσετε ένα αντίγραφο ασφαλείας των δεδομένων σας.
+    title: Αυτός ο διακομιστής κλείνει οριστικά
   sessions:
     activity: Τελευταία δραστηριότητα
     browser: Φυλλομετρητής
@@ -1604,10 +1616,12 @@ el:
     delete: Διαγραφή λογαριασμού
     development: Ανάπτυξη
     edit_profile: Επεξεργασία προφίλ
+    export: Εξαγωγή
     featured_tags: Παρεχόμενες ετικέτες
     import: Εισαγωγή
     import_and_export: Εισαγωγή και εξαγωγή
     migrate: Μετακόμιση λογαριασμού
+    notifications: Ειδοποιήσεις μέσω email
     preferences: Προτιμήσεις
     profile: Προφίλ
     relationships: Ακολουθείς και σε ακολουθούν
@@ -1615,6 +1629,12 @@ el:
     strikes: Παραπτώματα από ομάδα συντονισμού
     two_factor_authentication: Πιστοποίηση 2 παραγόντων
     webauthn_authentication: Κλειδιά ασφαλείας
+  severed_relationships:
+    download: Λήψη (%{count})
+    event_type:
+      account_suspension: Αναστολή λογαριασμού (%{target_name})
+      domain_block: Αναστολή διακομιστή (%{target_name})
+    type: Συμβάν
   statuses:
     attached:
       audio:
@@ -1697,11 +1717,13 @@ el:
     contrast: Mastodon (Υψηλή αντίθεση)
     default: Mastodon (Σκοτεινό)
     mastodon-light: Mastodon (Ανοιχτόχρωμο)
+    system: Αυτόματο (θέμα συστήματος)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b %Y, %H:%M %Z"
   two_factor_authentication:
     add: Προσθήκη
     disable: Απενεργοποίηση 2FA
@@ -1789,6 +1811,10 @@ el:
       feature_action: Μάθε περισσότερα
       feature_audience: Το Mastodon σού παρέχει μια μοναδική δυνατότητα διαχείρισης του κοινού σου χωρίς μεσάζοντες. Το Mastodon όταν αναπτύσσεται στη δική σου υποδομή σού επιτρέπει να ακολουθείς και να ακολουθείσαι από οποιονδήποτε άλλο συνδεδεμένο διακομιστή Mastodon και κανείς δεν τον ελέγχει, εκτός από σένα.
       feature_audience_title: Χτίσε το κοινό σου με σιγουριά
+      post_action: Σύνθεση
+      share_action: Κοινοποίηση
+      share_title: Μοιραστείτε το προφίλ σας στο Mastodon
+      sign_in_action: Σύνδεση
       subject: Καλώς ήρθες στο Mastodon
       title: Καλώς όρισες, %{name}!
   users:
@@ -1798,7 +1824,10 @@ el:
     otp_lost_help_html: Αν χάσεις πρόσβαση και στα δύο, μπορείς να επικοινωνήσεις με %{email}
     signed_in_as: 'Έχεις συνδεθεί ως:'
   verification:
+    here_is_how: Δείτε πώς
     verification: Πιστοποίηση
+    verified_links: Οι επαληθευμένοι σύνδεσμοι σας
+    website_verification: Επαλήθευση ιστοτόπου
   webauthn_credentials:
     add: Προσθήκη νέου κλειδιού ασφαλείας
     create:

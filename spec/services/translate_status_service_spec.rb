@@ -32,20 +32,14 @@ RSpec.describe TranslateStatusService do
       allow(TranslationService).to receive_messages(configured?: true, configured: translation_service)
     end
 
-    it 'returns translated status content' do
-      expect(service.call(status, 'es').content).to eq '<p>Hola</p>'
-    end
-
-    it 'returns source language' do
-      expect(service.call(status, 'es').detected_source_language).to eq 'en'
-    end
-
-    it 'returns translation provider' do
-      expect(service.call(status, 'es').provider).to eq 'Dummy'
-    end
-
-    it 'returns original status' do
-      expect(service.call(status, 'es').status).to eq status
+    it 'returns translated status content and source language and provider and original status' do
+      expect(service.call(status, 'es'))
+        .to have_attributes(
+          content: '<p>Hola</p>',
+          detected_source_language: 'en',
+          provider: 'Dummy',
+          status: status
+        )
     end
 
     describe 'status has content with custom emoji' do
@@ -155,26 +149,16 @@ RSpec.describe TranslateStatusService do
         let!(:source_texts) { service.send(:source_texts) }
 
         it 'returns formatted poll options' do
-          expect(source_texts.size).to eq 3
-          expect(source_texts.values).to eq %w(<p>Hello</p> Blue Green)
-        end
-
-        it 'has a first key with content' do
-          expect(source_texts.keys.first).to eq :content
-        end
-
-        it 'has the first option in the second key with correct options' do
-          option1 = source_texts.keys.second
-          expect(option1).to be_a Poll::Option
-          expect(option1.id).to eq '0'
-          expect(option1.title).to eq 'Blue'
-        end
-
-        it 'has the second option in the third key with correct options' do
-          option2 = source_texts.keys.third
-          expect(option2).to be_a Poll::Option
-          expect(option2.id).to eq '1'
-          expect(option2.title).to eq 'Green'
+          expect(source_texts)
+            .to have_attributes(
+              size: 3,
+              values: %w(<p>Hello</p> Blue Green),
+              keys: contain_exactly(
+                eq(:content),
+                be_a(Poll::Option).and(have_attributes(id: '0', title: 'Blue')),
+                be_a(Poll::Option).and(have_attributes(id: '1', title: 'Green'))
+              )
+            )
         end
       end
     end

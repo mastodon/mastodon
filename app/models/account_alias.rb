@@ -35,7 +35,7 @@ class AccountAlias < ApplicationRecord
   def set_uri
     target_account = ResolveAccountService.new.call(acct)
     self.uri       = ActivityPub::TagManager.instance.uri_for(target_account) unless target_account.nil?
-  rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error
+  rescue Webfinger::Error, *Mastodon::HTTP_CONNECTION_ERRORS, Mastodon::Error
     # Validation will take care of it
   end
 

@@ -21,6 +21,7 @@ de:
       one: Beitrag
       other: Beiträge
     posts_tab_heading: Beiträge
+    self_follow_error: Es ist nicht erlaubt, deinem eigenen Konto zu folgen
   admin:
     account_actions:
       action: Aktion ausführen
@@ -79,7 +80,7 @@ de:
       invite_request_text: Begründung für das Beitreten
       invited_by: Eingeladen von
       ip: IP-Adresse
-      joined: Beigetreten
+      joined: Mitglied seit
       location:
         all: Alle
         local: Lokal
@@ -875,6 +876,9 @@ de:
         message_html: Du hast keine Serverregeln festgelegt.
       sidekiq_process_check:
         message_html: Kein Sidekiq-Prozess läuft für die %{value} Warteschlange(n). Bitte überprüfe deine Sidekiq-Konfiguration
+      software_version_check:
+        action: Verfügbare Updates ansehen
+        message_html: Ein Mastodon-Update ist verfügbar.
       software_version_critical_check:
         action: Verfügbare Updates ansehen
         message_html: Ein kritisches Mastodon-Update ist verfügbar – bitte aktualisiere so schnell wie möglich.
@@ -1363,19 +1367,43 @@ de:
       overwrite: Überschreiben
       overwrite_long: Bestehende Datensätze durch neue ersetzen
     overwrite_preambles:
-      blocking_html: Du bist dabei, <strong>deine Liste blockierter Konten</strong> durch bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
-      bookmarks_html: Du bist dabei, <strong>deine Lesezeichen</strong> durch bis zu <strong>%{total_items} Beiträge</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
-      domain_blocking_html: Du bist dabei, <strong>deine Liste blockierter Domains</strong> durch bis zu <strong>%{total_items} Domains</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
-      following_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu folgen und <strong>niemand anderes zu folgen</strong>.
-      lists_html: Du bist dabei, <strong>deine Listen</strong> durch den Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Es werden bis zu <strong>%{total_items} Konten</strong> zu neuen Listen hinzugefügt.
-      muting_html: Du bist dabei, <strong>deine Liste stummgeschalteter Konten</strong> durch bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu ersetzen.
+      blocking_html:
+        one: Du bist dabei, <strong>deine Liste blockierter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konto</strong> zu ersetzen.
+        other: Du bist dabei, <strong>deine Liste blockierter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konten</strong> zu ersetzen.
+      bookmarks_html:
+        one: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beitrag</strong> zu ersetzen.
+        other: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beiträge</strong> zu ersetzen.
+      domain_blocking_html:
+        one: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domain</strong> zu ersetzen.
+        other: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domains</strong> zu ersetzen.
+      following_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong> und <strong>allen anderen zu entfolgen</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong> und <strong>allen anderen zu entfolgen</strong>.
+      lists_html:
+        one: Du bist dabei, <strong>deine Listen</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Konto</strong> wird zu neuen Listen hinzugefügt.
+        other: Du bist dabei, <strong>deine Listen</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Konten</strong> wird zu neuen Listen hinzugefügt.
+      muting_html:
+        one: Du bist dabei, <strong>deine Liste mit einem stummgeschalteten Konto</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konto</strong> zu ersetzen.
+        other: Du bist dabei, <strong>deine Liste stummgeschalteter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konten</strong> zu ersetzen.
     preambles:
-      blocking_html: Du bist dabei, bis zu <strong>%{total_items}%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
-      bookmarks_html: Du bist dabei, bis zu <strong>%{total_items} Beiträge</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
-      domain_blocking_html: Du bist dabei, bis zu <strong>%{total_items} Domains</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
-      following_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
-      lists_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Liste gibt, zu der etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
-      muting_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename} stummzuschalten</strong>.
+      blocking_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+      bookmarks_html:
+        one: Du bist dabei, bis zu <strong>%{count} Beitrag</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Beiträge</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
+      domain_blocking_html:
+        one: Du bist dabei, bis zu <strong>%{count} Domain</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Domains</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+      following_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
+      lists_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Listen gibt, zu denen etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Listen gibt, zu denen etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
+      muting_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename} stummzuschalten</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename} stummzuschalten</strong>.
     preface: Daten, die du von einem Mastodon-Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du blockiert hast.
     recent_imports: Zuletzt importiert
     states:
@@ -1422,7 +1450,7 @@ de:
     max_uses:
       one: Eine Verwendung
       other: "%{count} Verwendungen"
-    max_uses_prompt: Keine Einschränkung
+    max_uses_prompt: Unbegrenzt
     prompt: Erstelle Einladungen und teile die dazugehörigen Links, um anderen einen Zugang zu diesem Server zu gewähren
     table:
       expires_at: Läuft ab
@@ -1692,6 +1720,7 @@ de:
     delete: Kontolöschung
     development: Entwicklung
     edit_profile: Profil bearbeiten
+    export: Exportieren
     featured_tags: Vorgestellte Hashtags
     import: Importieren
     import_and_export: Importieren und exportieren
@@ -1899,7 +1928,7 @@ de:
       feature_action: Mehr erfahren
       feature_audience: Mastodon bietet dir eine einzigartige Möglichkeit, deine Reichweite ohne Mittelsperson zu verwalten. Auf deiner eigenen Infrastruktur bereitgestellt, ermöglicht Mastodon es dir, jedem anderen Mastodon-Server zu folgen und von jedem anderen Server aus gefolgt zu werden. Ebenso steht Mastodon unter deiner Kontrolle.
       feature_audience_title: Baue deine Reichweite mit Vertrauen auf
-      feature_control: Du weißt am besten, was du auf deiner Startseite sehen möchtest. Keine Algorithmen oder Werbung, die deine Zeit verschwenden. Folge Nutzer*innen von jedem Mastodon-Server von einem einzelnen Konto aus und empfange deren Beiträge in chronologischer Reihenfolge. Mache Mastodon zu deinem ganz persönlichen Fleckchen im Internet.
+      feature_control: Du weißt am besten, was du auf deiner Startseite sehen möchtest. Keine Algorithmen oder Werbung, die deine Zeit verschwenden. Folge Nutzer*innen auf allen Mastodon-Servern von einem einzelnen Konto aus und empfange deren Beiträge in chronologischer Reihenfolge. Mache Mastodon zu deinem ganz persönlichen Fleckchen im Internet.
       feature_control_title: Behalte die Kontrolle über deine eigene Timeline
       feature_creativity: Mastodon unterstützt Audio-, Video- und Bildbeiträge, Beschreibungen, Umfragen, Inhaltswarnungen, animierte Avatare, benutzerdefinierte Emojis, das Zuschneiden von Vorschaubildern und vieles mehr, um dir zu helfen, dich online zu entfalten. Egal, ob du deine Kunst, deine Musik oder deinen Podcast veröffentlichst – Mastodon ist für dich da.
       feature_creativity_title: Einzigartige Kreativität

@@ -34,6 +34,7 @@ lv:
       created_msg: Moderācijas piezīme ir veiksmīgi izveidota!
       destroyed_msg: Moderācijas piezīme ir veiksmīgi iznīcināta!
     accounts:
+      add_email_domain_block: Liegt e-pasta domēnu
       approve: Apstiprināt
       approved_msg: Veiksmīgi apstiprināts %{username} reģistrēšanās pieteikums
       are_you_sure: Vai esi pārliecināts?
@@ -61,6 +62,7 @@ lv:
       demote: Pazemināt
       destroyed_msg: Lietotāja %{username} dati tagad ievietoti rindā, lai tos nekavējoties izdzēstu
       disable: Iesaldēt
+      disable_sign_in_token_auth: Atspējot autentificēšanos ar e-pasta pilnvaru
       disable_two_factor_authentication: Atspējot 2FA
       disabled: Iesaldēts
       display_name: Parādāmais vārds
@@ -69,6 +71,7 @@ lv:
       email: E-pasts
       email_status: E-pasta statuss
       enable: Atsaldēt
+      enable_sign_in_token_auth: Iespējot autentificēšanos ar e-pasta pilnvaru
       enabled: Iespējots
       enabled_msg: Veiksmīgi atsaldēts %{username} konts
       followers: Sekotāji
@@ -180,17 +183,21 @@ lv:
         confirm_user: Apstiprināt lietotāju
         create_account_warning: Izveidot Brīdinājumu
         create_announcement: Izveidot Paziņojumu
+        create_canonical_email_block: Izveidot e-pasta liegumu
         create_custom_emoji: Izveidot pielāgotu emocijzīmi
         create_domain_allow: Izveidot Domēna Atļauju
         create_domain_block: Izveidot Domēna Bloku
+        create_email_domain_block: Izveidot e-pasta domēna liegumu
         create_ip_block: Izveidot IP noteikumu
         create_unavailable_domain: Izveidot Nepieejamu Domēnu
         create_user_role: Izveidot lomu
         demote_user: Pazemināt Lietotāju
         destroy_announcement: Dzēst Paziņojumu
+        destroy_canonical_email_block: Izdzēst e-pasta liegumu
         destroy_custom_emoji: Dzēst pielāgoto emocijzīmi
         destroy_domain_allow: Dzēst Domēna Atļauju
         destroy_domain_block: Dzēst Domēna Bloku
+        destroy_email_domain_block: Izdzēst e-pasta domēna liegumu
         destroy_instance: Attīrīt domēnu
         destroy_ip_block: Dzēst IP noteikumu
         destroy_status: Izdzēst Rakstu
@@ -1337,20 +1344,6 @@ lv:
       merge_long: Saglabāt esošos ierakstus un pievienot jaunus
       overwrite: Pārrakstīt
       overwrite_long: Nomainīt pašreizējos ierakstus ar jauniem
-    overwrite_preambles:
-      blocking_html: Tu gatavojies <strong>aizstāt savu bloķēto sarakstu</strong> ar līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
-      bookmarks_html: Tu gatavojies <strong>aizstāt savas bloķētās izlases</strong> ar līdz pat <strong>%{total_items} ziņām</strong> no <strong>%{filename}</strong>.
-      domain_blocking_html: Tu gatavojies <strong>aizstāt savu bloķēto domēnu sarakstu</strong> ar līdz pat <strong>%{total_items} domēniem</strong> no <strong>%{filename}</strong>.
-      following_html: Tu gatavojies <strong>sekot</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong> un <strong>pārtrauksi sekot citiem</strong>.
-      lists_html: Tu gatavojies <strong>aizstāt savus sarakstus</strong> ar <strong>%{filename}</strong> saturu. Līdz <strong>%{total_items} kontiem</strong> tiks pievienoti jauni saraksti.
-      muting_html: Tu gatavojies <strong>aizstāt savu noklusināto kontu sarakstu</strong> ar līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Tu gatavojies <strong>bloķēt</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
-      bookmarks_html: Tu gatavojies pievienot līdz pat <strong>%{total_items} ziņām</strong> no <strong>%{filename}</strong> savām <strong>grāmatzīmēm</strong>.
-      domain_blocking_html: Tu gatavojies <strong>bloķēt</strong> līdz pat <strong>%{total_items} domēniem</strong> no <strong>%{filename}</strong>.
-      following_html: Tu gatavojies <strong>sekot</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
-      lists_html: Tu gatavojies pievienot līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong> saviem <strong>sarakstiem</strong>. Jauni saraksti tiks izveidoti, ja nav saraksta, ko pievienot.
-      muting_html: Tu gatavojies <strong>noklusināt</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
     preface: Tu vari ievietot datus, kurus esi izguvis no cita servera, kā, piemēram, cilvēku sarakstu, kuriem Tu seko vai kurus bloķē.
     recent_imports: Nesen importēts
     states:
