@@ -15,26 +15,26 @@ module Account::Search
 
   REPUTATION_SCORE_FUNCTION = <<~SQL.squish
     (
-        greatest(0, coalesce(s.followers_count, 0)) / (
-            greatest(0, coalesce(s.following_count, 0)) + 1.0
+        greatest(0, coalesce(account_stats.followers_count, 0)) / (
+            greatest(0, coalesce(account_stats.following_count, 0)) + 1.0
         )
     )
   SQL
 
   FOLLOWERS_SCORE_FUNCTION = <<~SQL.squish
     log(
-        greatest(0, coalesce(s.followers_count, 0)) + 2
+        greatest(0, coalesce(account_stats.followers_count, 0)) + 2
     )
   SQL
 
   TIME_DISTANCE_FUNCTION = <<~SQL.squish
     (
         case
-            when s.last_status_at is null then 0
+            when account_stats.last_status_at is null then 0
             else exp(
                 -1.0 * (
                     (
-                        greatest(0, abs(extract(DAY FROM age(s.last_status_at))) - 30.0)^2) /#{' '}
+                        greatest(0, abs(extract(DAY FROM age(account_stats.last_status_at))) - 30.0)^2) /#{' '}
                         (2.0 * ((-1.0 * 30^2) / (2.0 * ln(0.3)))
                     )
                 )
@@ -55,7 +55,7 @@ module Account::Search
       #{BOOST} * ts_rank_cd(#{TEXT_SEARCH_RANKS}, to_tsquery('simple', :tsquery), 32) AS rank
     FROM accounts
     LEFT JOIN users ON accounts.id = users.account_id
-    LEFT JOIN account_stats AS s ON accounts.id = s.account_id
+    LEFT JOIN account_stats ON accounts.id = account_stats.account_id
     WHERE to_tsquery('simple', :tsquery) @@ #{TEXT_SEARCH_RANKS}
       AND accounts.suspended_at IS NULL
       AND accounts.moved_to_account_id IS NULL
@@ -74,15 +74,15 @@ module Account::Search
     )
     SELECT
       accounts.*,
-      (count(f.id) + 1) * #{BOOST} * ts_rank_cd(#{TEXT_SEARCH_RANKS}, to_tsquery('simple', :tsquery), 32) AS rank
+      (count(follows.id) + 1) * #{BOOST} * ts_rank_cd(#{TEXT_SEARCH_RANKS}, to_tsquery('simple', :tsquery), 32) AS rank
     FROM accounts
-    LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id)
-    LEFT JOIN account_stats AS s ON accounts.id = s.account_id
+    LEFT OUTER JOIN follows ON (accounts.id = follows.account_id AND follows.target_account_id = :id)
+    LEFT JOIN account_stats ON accounts.id = account_stats.account_id
     WHERE accounts.id IN (SELECT * FROM first_degree)
       AND to_tsquery('simple', :tsquery) @@ #{TEXT_SEARCH_RANKS}
       AND accounts.suspended_at IS NULL
       AND accounts.moved_to_account_id IS NULL
-    GROUP BY accounts.id, s.id
+    GROUP BY accounts.id, account_stats.id
     ORDER BY rank DESC
     LIMIT :limit OFFSET :offset
   SQL
@@ -91,17 +91,17 @@ module Account::Search
     SELECT
       accounts.*,
       #{BOOST} * ts_rank_cd(#{TEXT_SEARCH_RANKS}, to_tsquery('simple', :tsquery), 32) AS rank,
-      count(f.id) AS followed
+      count(follows.id) AS followed
     FROM accounts
-    LEFT OUTER JOIN follows AS f ON
-      (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
+    LEFT OUTER JOIN follows ON
+      (accounts.id = follows.account_id AND follows.target_account_id = :id) OR (accounts.id = follows.target_account_id AND follows.account_id = :id)
     LEFT JOIN users ON accounts.id = users.account_id
-    LEFT JOIN account_stats AS s ON accounts.id = s.account_id
+    LEFT JOIN account_stats ON accounts.id = account_stats.account_id
     WHERE to_tsquery('simple', :tsquery) @@ #{TEXT_SEARCH_RANKS}
       AND accounts.suspended_at IS NULL
       AND accounts.moved_to_account_id IS NULL
       AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
-    GROUP BY accounts.id, s.id
+    GROUP BY accounts.id, account_stats.id
     ORDER BY followed DESC, rank DESC
     LIMIT :limit OFFSET :offset
   SQL
