@@ -2,22 +2,20 @@
 Rails/BulkChangeTable:
   Enabled: false # Conflicts with strong_migrations features
 
+Rails/CreateTableWithTimestamps:
+  Exclude:
+    - db/*migrate/* # TODO: Work through these in old migrations
+
+Rails/EnvironmentVariableAccess:
+  Enabled: false
+
 Rails/FilePath:
   EnforcedStyle: arguments
 
-Rails/HttpStatus:
-  EnforcedStyle: numeric
+Rails/ReversibleMigration:
+  Exclude:
+    - db/*migrate/* # TODO: Work through these in old migrations
 
-Rails/NegateInclude:
-  Enabled: false
-
-Rails/RakeEnvironment:
-  Exclude: # Tasks are doing local work which do not need full env loaded
-    - lib/tasks/auto_annotate_models.rake
-    - lib/tasks/emojis.rake
-    - lib/tasks/mastodon.rake
-    - lib/tasks/repo.rake
-    - lib/tasks/statistics.rake
-
-Rails/SkipsModelValidations:
-  Enabled: false
+Rails/ThreeStateBooleanColumn:
+  Exclude:
+    - db/*migrate/* # TODO: Work through these in old migrations
