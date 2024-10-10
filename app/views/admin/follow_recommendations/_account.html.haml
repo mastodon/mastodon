@@ -5,7 +5,7 @@
     %table.accounts-table
       %tbody
         %tr
-          %td= account_link_to account
+          %td= render 'shared/account', account: account
           %td.accounts-table__count.optional
             = friendly_number_to_human account.statuses_count
             %small= t('accounts.posts', count: account.statuses_count).downcase
