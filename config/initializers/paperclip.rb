@@ -35,7 +35,7 @@ Paperclip::Attachment.default_options.merge!(
   storage: :fog
 )
 
-if ENV['S3_ENABLED'] == 'true'
+if Rails.configuration.x.storage.s3_enabled
   require 'aws-sdk-s3'
 
   s3_region   = ENV.fetch('S3_REGION')   { 'us-east-1' }
@@ -115,7 +115,7 @@ if ENV['S3_ENABLED'] == 'true'
   end
 
   Paperclip::Storage::S3.prepend(Paperclip::Storage::S3Extensions)
-elsif ENV['SWIFT_ENABLED'] == 'true'
+elsif Rails.configuration.x.storage.swift_enabled
   require 'fog/openstack'
 
   Paperclip::Attachment.default_options.merge!(
@@ -139,7 +139,7 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
     fog_host: ENV['SWIFT_OBJECT_URL'],
     fog_public: true
   )
-elsif ENV['AZURE_ENABLED'] == 'true'
+elsif Rails.configuration.x.storage.azure_enabled
   require 'paperclip-azure'
 
   Paperclip::Attachment.default_options.merge!(
