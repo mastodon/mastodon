@@ -10,7 +10,7 @@ module Paperclip
     BINS = 10
 
     def make
-      background_palette, foreground_palette = Rails.configuration.x.use_vips ? palettes_from_libvips : palettes_from_imagemagick
+      background_palette, foreground_palette = palettes_from_libvips
 
       background_color   = background_palette.first || foreground_palette.first
       foreground_colors  = []
@@ -90,17 +90,6 @@ module Paperclip
 
       background_palette = palette_from_image(edge_image)
       foreground_palette = palette_from_image(image)
-      [background_palette, foreground_palette]
-    end
-
-    def palettes_from_imagemagick
-      depth = 8
-
-      # Determine background palette by getting colors close to the image's edge only
-      background_palette = palette_from_im_histogram(convert(':source -alpha set -gravity Center -region 75%x75% -fill None -colorize 100% -alpha transparent +region -format %c -colors :quantity -depth :depth histogram:info:', source: File.expand_path(@file.path), quantity: 10, depth: depth), 10)
-
-      # Determine foreground palette from the whole image
-      foreground_palette = palette_from_im_histogram(convert(':source -format %c -colors :quantity -depth :depth histogram:info:', source: File.expand_path(@file.path), quantity: 10, depth: depth), 10)
       [background_palette, foreground_palette]
     end
 
