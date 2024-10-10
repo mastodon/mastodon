@@ -4,16 +4,17 @@ require 'rails_helper'
 
 RSpec.describe Admin::DashboardHelper do
   describe 'relevant_account_timestamp' do
+    subject { helper.relevant_account_timestamp(account) }
+
     context 'with an account with older sign in' do
       let(:account) { Fabricate(:account) }
       let(:stamp) { 10.days.ago }
 
       it 'returns a time element' do
         account.user.update(current_sign_in_at: stamp)
-        result = helper.relevant_account_timestamp(account)
-
-        expect(result).to match('time-ago')
-        expect(result).to match(I18n.l(stamp))
+        expect(subject)
+          .to match('time-ago')
+          .and match(I18n.l(stamp))
       end
     end
 
@@ -22,9 +23,9 @@ RSpec.describe Admin::DashboardHelper do
 
       it 'returns a time element' do
         account.user.update(current_sign_in_at: 10.hours.ago)
-        result = helper.relevant_account_timestamp(account)
 
-        expect(result).to eq(I18n.t('generic.today'))
+        expect(subject)
+          .to eq(I18n.t('generic.today'))
       end
     end
 
@@ -34,10 +35,10 @@ RSpec.describe Admin::DashboardHelper do
       it 'returns a time element' do
         account.user.update(current_sign_in_at: nil)
         account.user.update(approved: false)
-        result = helper.relevant_account_timestamp(account)
 
-        expect(result).to match('time-ago')
-        expect(result).to match(I18n.l(account.user.created_at))
+        expect(subject)
+          .to match('time-ago')
+          .and match(I18n.l(account.user.created_at))
       end
     end
 
@@ -45,10 +46,9 @@ RSpec.describe Admin::DashboardHelper do
       let(:account) { Fabricate(:account, suspended_at: 5.days.ago, user: nil) }
 
       it 'returns a time element' do
-        result = helper.relevant_account_timestamp(account)
-
-        expect(result).to match('time-ago')
-        expect(result).to match(I18n.l(account.suspended_at))
+        expect(subject)
+          .to match('time-ago')
+          .and match(I18n.l(account.suspended_at))
       end
     end
 
@@ -59,10 +59,10 @@ RSpec.describe Admin::DashboardHelper do
       it 'returns a time element' do
         account.user.update(current_sign_in_at: nil)
         account.account_stat.update(last_status_at: stamp)
-        result = helper.relevant_account_timestamp(account)
 
-        expect(result).to match('time-ago')
-        expect(result).to match(I18n.l(stamp))
+        expect(subject)
+          .to match('time-ago')
+          .and match(I18n.l(stamp))
       end
     end
 
@@ -71,9 +71,9 @@ RSpec.describe Admin::DashboardHelper do
 
       it 'returns a time element' do
         account.user.update(current_sign_in_at: nil)
-        result = helper.relevant_account_timestamp(account)
 
-        expect(result).to eq('-')
+        expect(subject)
+          .to eq('-')
       end
     end
   end
