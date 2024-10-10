@@ -9,6 +9,7 @@ module Admin
     def index
       authorize :account, :index?
 
+      @state_counts = load_state_counts
       @accounts = filtered_accounts.page(params[:page])
       @form     = Form::AccountBatch.new
     end
@@ -159,6 +160,10 @@ module Admin
 
     def form_account_batch_params
       params.require(:form_account_batch).permit(:action, account_ids: [])
+    end
+
+    def load_state_counts
+      { pending: User.pending.async_count }
     end
 
     def action_from_button
