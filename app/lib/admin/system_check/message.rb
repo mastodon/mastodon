@@ -9,4 +9,8 @@ class Admin::SystemCheck::Message
     @action   = action
     @critical = critical
   end
+
+  def to_partial_path
+    'admin/system_checks/message'
+  end
 end
