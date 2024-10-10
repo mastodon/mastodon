@@ -18,7 +18,7 @@ module Remotable
           return
         end
 
-        return if !%w(http https).include?(parsed_url.scheme) || parsed_url.host.blank?
+        return if !URLValidator::VALID_SCHEMES.include?(parsed_url.scheme) || parsed_url.host.blank?
 
         begin
           Request.new(:get, url).perform do |response|

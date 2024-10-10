@@ -73,7 +73,7 @@ module User::Omniauthable
       user = User.new(user_params_from_auth(email, auth))
 
       begin
-        user.account.avatar_remote_url = auth.info.image if /\A#{URI::DEFAULT_PARSER.make_regexp(%w(http https))}\z/.match?(auth.info.image)
+        user.account.avatar_remote_url = auth.info.image if /\A#{URI::DEFAULT_PARSER.make_regexp(URLValidator::VALID_SCHEMES)}\z/.match?(auth.info.image)
       rescue Mastodon::UnexpectedResponseError
         user.account.avatar_remote_url = nil
       end
