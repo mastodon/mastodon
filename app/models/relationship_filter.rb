@@ -94,7 +94,7 @@ class RelationshipFilter
     when 'moved'
       Account.where.not(moved_to_account_id: nil)
     when 'primary'
-      Account.where(moved_to_account_id: nil)
+      Account.without_migrated
     else
       raise Mastodon::InvalidParameterError, "Unknown status: #{value}"
     end
