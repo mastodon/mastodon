@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module MediaComponentHelper
-  def render_video_component(status, **options)
+  def render_video_component(status, **)
     video = status.ordered_media_attachments.first
 
     meta = video.file.meta || {}
@@ -18,14 +18,14 @@ module MediaComponentHelper
       media: [
         serialize_media_attachment(video),
       ].as_json,
-    }.merge(**options)
+    }.merge(**)
 
     react_component :video, component_params do
       render partial: 'statuses/attachment_list', locals: { attachments: status.ordered_media_attachments }
     end
   end
 
-  def render_audio_component(status, **options)
+  def render_audio_component(status, **)
     audio = status.ordered_media_attachments.first
 
     meta = audio.file.meta || {}
@@ -38,19 +38,19 @@ module MediaComponentHelper
       foregroundColor: meta.dig('colors', 'foreground'),
       accentColor: meta.dig('colors', 'accent'),
       duration: meta.dig('original', 'duration'),
-    }.merge(**options)
+    }.merge(**)
 
     react_component :audio, component_params do
       render partial: 'statuses/attachment_list', locals: { attachments: status.ordered_media_attachments }
     end
   end
 
-  def render_media_gallery_component(status, **options)
+  def render_media_gallery_component(status, **)
     component_params = {
       sensitive: sensitive_viewer?(status, current_account),
       autoplay: prefers_autoplay?,
       media: status.ordered_media_attachments.map { |a| serialize_media_attachment(a).as_json },
-    }.merge(**options)
+    }.merge(**)
 
     react_component :media_gallery, component_params do
       render partial: 'statuses/attachment_list', locals: { attachments: status.ordered_media_attachments }
