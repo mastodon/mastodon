@@ -28,9 +28,12 @@ module Admin::DashboardHelper
   def relevant_account_timestamp(account)
     timestamp = account.relevant_time
 
-    return DASHBOARD_MISSING_CONTENT if timestamp.nil?
-    return t('generic.today') if account.user_signed_in_today?
-
-    content_tag(:time, l(timestamp), class: 'time-ago', datetime: timestamp.iso8601, title: l(timestamp))
+    if timestamp.nil?
+      DASHBOARD_MISSING_CONTENT
+    elsif account.user_signed_in_today?
+      t('generic.today')
+    else
+      tag.time(l(timestamp), class: 'time-ago', datetime: timestamp.iso8601, title: l(timestamp))
+    end
   end
 end
