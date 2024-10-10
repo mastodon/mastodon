@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class AccountMergingWorker
-  include Sidekiq::Worker
-
+class AccountMergingWorker < ApplicationWorker
   sidekiq_options queue: 'pull'
 
   def perform(account_id)

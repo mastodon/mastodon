@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class Scheduler::Trends::ReviewNotificationsScheduler
-  include Sidekiq::Worker
-
+class Scheduler::Trends::ReviewNotificationsScheduler < ApplicationWorker
   sidekiq_options retry: 0
 
   def perform

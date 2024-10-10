@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class MergeWorker
-  include Sidekiq::Worker
+class MergeWorker < ApplicationWorker
   include Redisable
   include DatabaseHelper
 
