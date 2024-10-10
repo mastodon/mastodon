@@ -13,7 +13,7 @@ module HomeHelper
         section = if account.nil?
                     content_tag(:div, class: 'account__display-name') do
                       content_tag(:div, class: 'account__avatar-wrapper') do
-                        image_tag(full_asset_url('avatars/original/missing.png', skip_pipeline: true), class: 'account__avatar')
+                        image_tag(full_asset_url('avatars/original/missing.png', skip_pipeline: true), class: 'account__avatar', size: 46)
                       end +
                         content_tag(:span, class: 'display-name') do
                           content_tag(:strong, t('about.contact_missing')) +
@@ -29,7 +29,7 @@ module HomeHelper
 
                     link_to(path || account_url, class: 'account__display-name') do
                       content_tag(:div, class: 'account__avatar-wrapper') do
-                        image_tag(full_asset_url(current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url), class: 'account__avatar', width: 46, height: 46)
+                        image_tag(full_asset_url(current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url), class: 'account__avatar', size: 46)
                       end +
                         content_tag(:span, class: 'display-name') do
                           content_tag(:bdi) do

@@ -10,7 +10,7 @@
             %span= t('link_preview.potentially_sensitive_content.label')
             %span.spoiler-button__overlay__action
               %span= t('link_preview.potentially_sensitive_content.action')
-      %canvas.status-card__image-preview{ 'data-blurhash': preview_card.blurhash, width: 32, height: 32 }
+      %canvas.status-card__image-preview{ 'data-blurhash': preview_card.blurhash, size: 32 }
       = image_tag preview_card.image.url, alt: '', class: 'status-card__image-image'
     = link_to preview_card.url, target: '_blank', rel: 'noopener', data: { confirm: t('link_preview.potentially_sensitive_content.confirm_visit') } do
       .status-card__content{ dir: 'auto' }
