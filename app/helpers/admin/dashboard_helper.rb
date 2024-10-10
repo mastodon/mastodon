@@ -24,22 +24,18 @@ module Admin::DashboardHelper
   end
 
   def relevant_account_timestamp(account)
-    timestamp, exact = if account.user_current_sign_in_at && account.user_current_sign_in_at < 24.hours.ago
-                         [account.user_current_sign_in_at, true]
-                       elsif account.user_current_sign_in_at
-                         [account.user_current_sign_in_at, false]
-                       elsif account.user_pending?
-                         [account.user_created_at, true]
-                       elsif account.suspended_at.present? && account.local? && account.user.nil?
-                         [account.suspended_at, true]
-                       elsif account.last_status_at.present?
-                         [account.last_status_at, true]
-                       else
-                         [nil, false]
-                       end
+    timestamp = if account.user_current_sign_in_at
+                  account.user_current_sign_in_at
+                elsif account.user_pending?
+                  account.user_created_at
+                elsif account.suspended_at.present? && account.local? && account.user.nil?
+                  account.suspended_at
+                elsif account.last_status_at.present?
+                  account.last_status_at
+                end
 
     return '-' if timestamp.nil?
-    return t('generic.today') unless exact
+    return t('generic.today') if account.user_current_sign_in_at && account.user_current_sign_in_at >= 24.hours.ago
 
     content_tag(:time, l(timestamp), class: 'time-ago', datetime: timestamp.iso8601, title: l(timestamp))
   end
