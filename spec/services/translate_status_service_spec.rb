@@ -33,7 +33,7 @@ RSpec.describe TranslateStatusService do
     end
 
     it 'returns translated status content and source language and provider and original status' do
-      expect(service.call(status, 'es'))
+      expect(service.call(status, nil, 'es'))
         .to have_attributes(
           content: '<p>Hola</p>',
           detected_source_language: 'en',
@@ -46,13 +46,13 @@ RSpec.describe TranslateStatusService do
       let(:text) { 'Hello & :highfive:' }
 
       it 'does not translate shortcode' do
-        expect(service.call(status, 'es').content).to eq '<p>Hola &amp; :highfive:</p>'
+        expect(service.call(status, nil, 'es').content).to eq '<p>Hola &amp; :highfive:</p>'
       end
     end
 
     describe 'status has no spoiler_text' do
       it 'returns an empty string' do
-        expect(service.call(status, 'es').spoiler_text).to eq ''
+        expect(service.call(status, nil, 'es').spoiler_text).to eq ''
       end
     end
 
@@ -60,7 +60,7 @@ RSpec.describe TranslateStatusService do
       let(:spoiler_text) { 'Hello & Hello!' }
 
       it 'translates the spoiler text' do
-        expect(service.call(status, 'es').spoiler_text).to eq 'Hola & Hola!'
+        expect(service.call(status, nil, 'es').spoiler_text).to eq 'Hola & Hola!'
       end
     end
 
@@ -68,7 +68,7 @@ RSpec.describe TranslateStatusService do
       let(:spoiler_text) { 'Hello :highfive:' }
 
       it 'does not translate shortcode' do
-        expect(service.call(status, 'es').spoiler_text).to eq 'Hola :highfive:'
+        expect(service.call(status, nil, 'es').spoiler_text).to eq 'Hola :highfive:'
       end
     end
 
@@ -76,7 +76,7 @@ RSpec.describe TranslateStatusService do
       let(:spoiler_text) { 'Hello :Hello:' }
 
       it 'translates the invalid shortcode' do
-        expect(service.call(status, 'es').spoiler_text).to eq 'Hola :Hola:'
+        expect(service.call(status, nil, 'es').spoiler_text).to eq 'Hola :Hola:'
       end
     end
 
@@ -84,7 +84,7 @@ RSpec.describe TranslateStatusService do
       let(:poll) { Fabricate(:poll, options: ['Hello 1', 'Hello 2']) }
 
       it 'translates the poll option title' do
-        status_translation = service.call(status, 'es')
+        status_translation = service.call(status, nil, 'es')
         expect(status_translation.poll_options.size).to eq 2
         expect(status_translation.poll_options.first.title).to eq 'Hola 1'
       end
@@ -94,7 +94,7 @@ RSpec.describe TranslateStatusService do
       let(:media_attachments) { [Fabricate(:media_attachment, description: 'Hello & :highfive:')] }
 
       it 'translates the media attachment description' do
-        status_translation = service.call(status, 'es')
+        status_translation = service.call(status, nil, 'es')
 
         media_attachment = status_translation.media_attachments.first
         expect(media_attachment.id).to eq media_attachments.first.id

@@ -9,7 +9,8 @@ class TranslationService::LibreTranslate < TranslationService
   end
 
   def translate(texts, source_language, target_language)
-    body = Oj.dump(q: texts, source: source_language.presence || 'auto', target: target_language, format: 'html', api_key: @api_key)
+    source_language = 'auto' if source_language.in? [nil, 'und']
+    body = Oj.dump(q: texts, source: source_language, target: target_language, format: 'html', api_key: @api_key)
     request(:post, '/translate', body: body) do |res|
       transform_response(res.body_with_limit, source_language)
     end
@@ -20,7 +21,7 @@ class TranslationService::LibreTranslate < TranslationService
       languages = Oj.load(res.body_with_limit).to_h do |language|
         [language['code'], language['targets'].without(language['code'])]
       end
-      languages[nil] = languages.values.flatten.uniq.sort
+      languages['und'] = languages.values.flatten.uniq.sort
       languages
     end
   end
