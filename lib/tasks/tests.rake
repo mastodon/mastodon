@@ -11,7 +11,7 @@ namespace :tests do
         '3_3_0' => 2020_12_18_054746,
       }.each do |release, version|
         ActiveRecord::Tasks::DatabaseTasks
-          .migration_connection
+          .migration_connection_pool
           .migration_context
           .migrate(version)
         Rake::Task["tests:migrations:populate_v#{release}"]
