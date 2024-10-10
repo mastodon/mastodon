@@ -225,6 +225,18 @@ class Account < ApplicationRecord
     Follow.where(target_account_id: id).count
   end
 
+  def relevant_time
+    if user_current_sign_in_at
+      user_current_sign_in_at
+    elsif user_pending?
+      user_created_at
+    elsif suspended_at.present? && local? && user.nil?
+      suspended_at
+    elsif last_status_at.present?
+      last_status_at
+    end
+  end
+
   def to_webfinger_s
     "acct:#{local_username_and_domain}"
   end
