@@ -7,6 +7,18 @@ GIT
       hkdf (~> 0.2)
       jwt (~> 2.0)
 
+GIT
+  remote: https://github.com/ruby-i18n/ruby-cldr.git
+  revision: 07ec0efb46db3a88ef8546066d389fc0b15a9738
+  ref: 07ec0efb46db3a88ef8546066d389fc0b15a9738
+  specs:
+    ruby-cldr (0.5.0)
+      i18n
+      nokogiri
+      psych (>= 4.0.0)
+      rubyzip
+      thor
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -1026,6 +1038,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-rspec_rails
+  ruby-cldr!
   ruby-prof
   ruby-progressbar (~> 1.13)
   ruby-vips (~> 2.2)

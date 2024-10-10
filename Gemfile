@@ -209,6 +209,8 @@ group :development, :test do
 
   # RSpec runner for rails
   gem 'rspec-rails', '~> 7.0'
+
+  gem 'ruby-cldr', require: 'cldr', github: 'ruby-i18n/ruby-cldr', ref: '07ec0efb46db3a88ef8546066d389fc0b15a9738'
 end
 
 group :production do

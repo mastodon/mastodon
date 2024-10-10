@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class InitialStateSerializer < ActiveModel::Serializer
+  include LanguagesHelper
   include RoutingHelper
 
   attributes :meta, :compose, :accounts,
@@ -81,7 +82,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   end
 
   def languages
-    LanguagesHelper::SUPPORTED_LOCALES.map { |(key, value)| [key, value[0], value[1]] }
+    LanguagesHelper::SUPPORTED_LOCALES.map { |(key, value)| [key, standard_locale_name(key), value] }
   end
 
   private

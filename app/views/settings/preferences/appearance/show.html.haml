@@ -11,7 +11,7 @@
                 collection: ui_languages,
                 hint: false,
                 include_blank: false,
-                label_method: ->(locale) { native_locale_name(locale) },
+                label_method: ->(locale) { compound_locale_name(locale) },
                 selected: I18n.locale,
                 wrapper: :with_label
     .fields-group.fields-row__column.fields-row__column-6
