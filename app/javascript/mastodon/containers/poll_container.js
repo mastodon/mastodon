@@ -8,19 +8,19 @@ import Poll from 'mastodon/components/poll';
 const mapDispatchToProps = (dispatch, { pollId }) => ({
   refresh: debounce(
     () => {
-      dispatch(fetchPoll(pollId));
+      dispatch(fetchPoll({ pollId }));
     },
     1000,
     { leading: true },
   ),
 
   onVote (choices) {
-    dispatch(vote(pollId, choices));
+    dispatch(vote({ pollId, choices }));
   },
 });
 
 const mapStateToProps = (state, { pollId }) => ({
-  poll: state.getIn(['polls', pollId]),
+  poll: state.polls.get(pollId),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Poll);
