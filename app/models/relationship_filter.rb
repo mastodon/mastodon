@@ -92,7 +92,7 @@ class RelationshipFilter
   def status_scope(value)
     case value
     when 'moved'
-      Account.where.not(moved_to_account_id: nil)
+      Account.migrated
     when 'primary'
       Account.where(moved_to_account_id: nil)
     else
