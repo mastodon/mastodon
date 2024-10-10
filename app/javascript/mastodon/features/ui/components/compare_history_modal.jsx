@@ -15,6 +15,7 @@ import InlineAccount from 'mastodon/components/inline_account';
 import MediaAttachments from 'mastodon/components/media_attachments';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import emojify from 'mastodon/features/emoji/emoji';
+import { sanitize } from 'mastodon/utils/sanitize';
 
 const mapStateToProps = (state, { statusId }) => ({
   language: state.getIn(['statuses', statusId, 'language']),
@@ -51,8 +52,8 @@ class CompareHistoryModal extends PureComponent {
       return obj;
     }, {});
 
-    const content = { __html: emojify(currentVersion.get('content'), emojiMap) };
-    const spoilerContent = { __html: emojify(escapeTextContentForBrowser(currentVersion.get('spoiler_text')), emojiMap) };
+    const content = { __html: sanitize(emojify(currentVersion.get('content'), emojiMap)) };
+    const spoilerContent = { __html: sanitize(emojify(escapeTextContentForBrowser(currentVersion.get('spoiler_text')), emojiMap)) };
 
     const formattedDate = <RelativeTimestamp timestamp={currentVersion.get('created_at')} short={false} />;
     const formattedName = <InlineAccount accountId={currentVersion.get('account')} />;
@@ -90,7 +91,7 @@ class CompareHistoryModal extends PureComponent {
 
                       <span
                         className='poll__option__text translate'
-                        dangerouslySetInnerHTML={{ __html: emojify(escapeTextContentForBrowser(option.get('title')), emojiMap) }}
+                        dangerouslySetInnerHTML={{ __html: sanitize(emojify(escapeTextContentForBrowser(option.get('title')), emojiMap)) }}
                         lang={language}
                       />
                     </li>
