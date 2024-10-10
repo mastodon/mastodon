@@ -16,7 +16,7 @@ RSpec.describe 'Accounts Pins API' do
   describe 'POST /api/v1/accounts/:account_id/pin' do
     subject { post "/api/v1/accounts/#{kevin.account.id}/pin", headers: headers }
 
-    it 'creates account_pin', :aggregate_failures do
+    it 'creates account_pin' do
       expect do
         subject
       end.to change { AccountPin.where(account: user.account, target_account: kevin.account).count }.by(1)
@@ -33,7 +33,7 @@ RSpec.describe 'Accounts Pins API' do
       Fabricate(:account_pin, account: user.account, target_account: kevin.account)
     end
 
-    it 'destroys account_pin', :aggregate_failures do
+    it 'destroys account_pin' do
       expect do
         subject
       end.to change { AccountPin.where(account: user.account, target_account: kevin.account).count }.by(-1)

@@ -17,7 +17,7 @@ RSpec.describe Settings::AliasesController do
       get :index
     end
 
-    it 'returns http success with private cache control headers', :aggregate_failures do
+    it 'returns http success with private cache control headers' do
       expect(response).to have_http_status(200)
       expect(response.headers['Cache-Control']).to include('private, no-store')
     end

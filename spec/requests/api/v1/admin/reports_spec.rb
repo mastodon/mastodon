@@ -126,7 +126,7 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns the requested report content', :aggregate_failures do
+    it 'returns the requested report content' do
       subject
 
       expect(response).to have_http_status(200)
@@ -156,7 +156,7 @@ RSpec.describe 'Reports' do
     let!(:report) { Fabricate(:report, category: :other) }
     let(:params)  { { category: 'spam' } }
 
-    it 'updates the report category', :aggregate_failures do
+    it 'updates the report category' do
       expect { subject }
         .to change { report.reload.category }.from('other').to('spam')
         .and create_an_action_log
@@ -193,7 +193,7 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'marks report as resolved', :aggregate_failures do
+    it 'marks report as resolved' do
       expect { subject }
         .to change { report.reload.unresolved? }.from(true).to(false)
         .and create_an_action_log
@@ -213,7 +213,7 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'marks report as unresolved', :aggregate_failures do
+    it 'marks report as unresolved' do
       expect { subject }
         .to change { report.reload.unresolved? }.from(false).to(true)
         .and create_an_action_log
@@ -233,7 +233,7 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'assigns report to the requesting user', :aggregate_failures do
+    it 'assigns report to the requesting user' do
       expect { subject }
         .to change { report.reload.assigned_account_id }.from(nil).to(user.account.id)
         .and create_an_action_log
@@ -253,7 +253,7 @@ RSpec.describe 'Reports' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'unassigns report from assignee', :aggregate_failures do
+    it 'unassigns report from assignee' do
       expect { subject }
         .to change { report.reload.assigned_account_id }.from(user.account.id).to(nil)
         .and create_an_action_log
