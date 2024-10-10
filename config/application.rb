@@ -109,6 +109,8 @@ module Mastodon
       end
     end
 
+    config.x.captcha = config_for(:captcha)
+
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
