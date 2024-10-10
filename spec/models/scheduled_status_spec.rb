@@ -5,31 +5,23 @@ require 'rails_helper'
 RSpec.describe ScheduledStatus do
   let(:account) { Fabricate(:account) }
 
-  describe 'validations' do
-    context 'when scheduled_at is less than minimum offset' do
-      subject { Fabricate.build(:scheduled_status, scheduled_at: 4.minutes.from_now, account: account) }
+  describe 'Validations' do
+    subject { Fabricate.build :scheduled_status }
 
-      it 'is not valid', :aggregate_failures do
-        expect(subject).to_not be_valid
-        expect(subject.errors[:scheduled_at]).to include(I18n.t('scheduled_statuses.too_soon'))
-      end
+    context 'when scheduled_at is less than minimum offset' do
+      it { is_expected.to_not allow_value(4.minutes.from_now).for(:scheduled_at).with_message(I18n.t('scheduled_statuses.too_soon')) }
     end
 
     context 'when account has reached total limit' do
-      subject { Fabricate.build(:scheduled_status, account: account) }
-
       before do
-        allow(account.scheduled_statuses).to receive(:count).and_return(described_class::TOTAL_LIMIT)
+        stub_const('ScheduledStatus::TOTAL_LIMIT', 0)
       end
 
-      it 'is not valid', :aggregate_failures do
-        expect(subject).to_not be_valid
-        expect(subject.errors[:base]).to include(I18n.t('scheduled_statuses.over_total_limit', limit: ScheduledStatus::TOTAL_LIMIT))
-      end
+      it { is_expected.to_not allow_value(account).for(:account).against(:base).with_message(I18n.t('scheduled_statuses.over_total_limit', limit: ScheduledStatus::TOTAL_LIMIT)) }
     end
 
     context 'when account has reached daily limit' do
-      subject { Fabricate.build(:scheduled_status, account: account, scheduled_at: base_time + 10.minutes) }
+      subject { Fabricate.build(:scheduled_status, scheduled_at: base_time + 10.minutes) }
 
       let(:base_time) { Time.current.change(hour: 12) }
 
@@ -41,10 +33,7 @@ RSpec.describe ScheduledStatus do
         end
       end
 
-      it 'is not valid', :aggregate_failures do
-        expect(subject).to_not be_valid
-        expect(subject.errors[:base]).to include(I18n.t('scheduled_statuses.over_daily_limit', limit: ScheduledStatus::DAILY_LIMIT))
-      end
+      it { is_expected.to_not allow_value(account).for(:account).against(:base).with_message(I18n.t('scheduled_statuses.over_daily_limit', limit: ScheduledStatus::DAILY_LIMIT)) }
     end
   end
 end

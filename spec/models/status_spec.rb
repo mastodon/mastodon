@@ -472,11 +472,13 @@ RSpec.describe Status do
     end
   end
 
-  describe 'validation' do
-    it 'disallow empty uri for remote status' do
-      alice.update(domain: 'example.com')
-      status = Fabricate.build(:status, uri: '', account: alice)
-      expect(status).to model_have_error_on_field(:uri)
+  describe 'Validations' do
+    context 'with a remote account' do
+      subject { Fabricate.build :status, account: remote_account }
+
+      let(:remote_account) { Fabricate :account, domain: 'example.com' }
+
+      it { is_expected.to_not allow_value('').for(:uri) }
     end
   end
 

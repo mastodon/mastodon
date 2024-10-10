@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Block do
-  describe 'validations' do
+  describe 'Associations' do
     it { is_expected.to belong_to(:account).required }
     it { is_expected.to belong_to(:target_account).required }
   end
