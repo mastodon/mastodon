@@ -41,6 +41,17 @@ RSpec.describe Admin::DashboardHelper do
       end
     end
 
+    context 'with a local account without a user that is suspended' do
+      let(:account) { Fabricate(:account, suspended_at: 5.days.ago, user: nil) }
+
+      it 'returns a time element' do
+        result = helper.relevant_account_timestamp(account)
+
+        expect(result).to match('time-ago')
+        expect(result).to match(I18n.l(account.suspended_at))
+      end
+    end
+
     context 'with an account with a last status value' do
       let(:account) { Fabricate(:account) }
       let(:stamp) { 5.minutes.ago }
