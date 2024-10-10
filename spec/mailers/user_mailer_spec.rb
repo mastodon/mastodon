@@ -3,6 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe UserMailer do
+  shared_examples 'delivery to memorialized user' do
+    context 'when user is not active for authentication' do
+      before { receiver.account.update(memorial: true) }
+
+      it 'does not deliver mail' do
+        emails = capture_emails { mail.deliver_now }
+        expect(emails).to be_empty
+      end
+    end
+  end
+
   let(:receiver) { Fabricate(:user) }
 
   describe '#confirmation_instructions' do
@@ -21,6 +32,7 @@ RSpec.describe UserMailer do
     include_examples 'localized subject',
                      'devise.mailer.confirmation_instructions.subject',
                      instance: Rails.configuration.x.local_domain
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#reconfirmation_instructions' do
@@ -39,6 +51,7 @@ RSpec.describe UserMailer do
     include_examples 'localized subject',
                      'devise.mailer.confirmation_instructions.subject',
                      instance: Rails.configuration.x.local_domain
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#reset_password_instructions' do
@@ -55,6 +68,7 @@ RSpec.describe UserMailer do
 
     include_examples 'localized subject',
                      'devise.mailer.reset_password_instructions.subject'
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#password_change' do
@@ -70,6 +84,7 @@ RSpec.describe UserMailer do
 
     include_examples 'localized subject',
                      'devise.mailer.password_change.subject'
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#email_changed' do
@@ -85,6 +100,7 @@ RSpec.describe UserMailer do
 
     include_examples 'localized subject',
                      'devise.mailer.email_changed.subject'
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#warning' do
@@ -99,6 +115,8 @@ RSpec.describe UserMailer do
         .and(have_body_text(I18n.t('user_mailer.warning.title.suspend', acct: receiver.account.acct)))
         .and(have_body_text(strike.text))
     end
+
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#webauthn_credential_deleted' do
@@ -115,6 +133,7 @@ RSpec.describe UserMailer do
 
     include_examples 'localized subject',
                      'devise.mailer.webauthn_credential.deleted.subject'
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#suspicious_sign_in' do
@@ -133,6 +152,7 @@ RSpec.describe UserMailer do
 
     include_examples 'localized subject',
                      'user_mailer.suspicious_sign_in.subject'
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#failed_2fa' do
@@ -151,6 +171,7 @@ RSpec.describe UserMailer do
 
     include_examples 'localized subject',
                      'user_mailer.failed_2fa.subject'
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#appeal_approved' do
@@ -175,6 +196,8 @@ RSpec.describe UserMailer do
         .and(have_subject(I18n.t('user_mailer.appeal_rejected.subject', date: I18n.l(appeal.created_at))))
         .and(have_body_text(I18n.t('user_mailer.appeal_rejected.title')))
     end
+
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#two_factor_enabled' do
@@ -186,6 +209,8 @@ RSpec.describe UserMailer do
         .and(have_subject(I18n.t('devise.mailer.two_factor_enabled.subject')))
         .and(have_body_text(I18n.t('devise.mailer.two_factor_enabled.explanation')))
     end
+
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#two_factor_disabled' do
@@ -197,6 +222,8 @@ RSpec.describe UserMailer do
         .and(have_subject(I18n.t('devise.mailer.two_factor_disabled.subject')))
         .and(have_body_text(I18n.t('devise.mailer.two_factor_disabled.explanation')))
     end
+
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#webauthn_enabled' do
@@ -208,6 +235,8 @@ RSpec.describe UserMailer do
         .and(have_subject(I18n.t('devise.mailer.webauthn_enabled.subject')))
         .and(have_body_text(I18n.t('devise.mailer.webauthn_enabled.explanation')))
     end
+
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#webauthn_disabled' do
@@ -219,6 +248,8 @@ RSpec.describe UserMailer do
         .and(have_subject(I18n.t('devise.mailer.webauthn_disabled.subject')))
         .and(have_body_text(I18n.t('devise.mailer.webauthn_disabled.explanation')))
     end
+
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#two_factor_recovery_codes_changed' do
@@ -230,6 +261,8 @@ RSpec.describe UserMailer do
         .and(have_subject(I18n.t('devise.mailer.two_factor_recovery_codes_changed.subject')))
         .and(have_body_text(I18n.t('devise.mailer.two_factor_recovery_codes_changed.explanation')))
     end
+
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#webauthn_credential_added' do
@@ -242,6 +275,8 @@ RSpec.describe UserMailer do
         .and(have_subject(I18n.t('devise.mailer.webauthn_credential.added.subject')))
         .and(have_body_text(I18n.t('devise.mailer.webauthn_credential.added.explanation')))
     end
+
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#welcome' do
@@ -259,6 +294,8 @@ RSpec.describe UserMailer do
         .and(have_subject(I18n.t('user_mailer.welcome.subject')))
         .and(have_body_text(I18n.t('user_mailer.welcome.explanation')))
     end
+
+    include_examples 'delivery to memorialized user'
   end
 
   describe '#backup_ready' do
@@ -271,5 +308,7 @@ RSpec.describe UserMailer do
         .and(have_subject(I18n.t('user_mailer.backup_ready.subject')))
         .and(have_body_text(I18n.t('user_mailer.backup_ready.explanation')))
     end
+
+    include_examples 'delivery to memorialized user'
   end
 end
