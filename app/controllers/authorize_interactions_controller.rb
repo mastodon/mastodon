@@ -38,7 +38,7 @@ class AuthorizeInteractionsController < ApplicationController
   end
 
   def uri_param_is_url?
-    parsed_uri.path && %w(http https).include?(parsed_uri.scheme)
+    parsed_uri.path && URLValidator::VALID_SCHEMES.include?(parsed_uri.scheme)
   end
 
   def parsed_uri

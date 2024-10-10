@@ -6,7 +6,7 @@ Rails.application.configure do
   if ENV['http_proxy'].present?
     proxy = URI.parse(ENV['http_proxy'])
 
-    raise "Unsupported proxy type: #{proxy.scheme}" unless %w(http https).include? proxy.scheme
+    raise "Unsupported proxy type: #{proxy.scheme}" unless URLValidator::VALID_SCHEMES.include? proxy.scheme
     raise 'No proxy host' unless proxy.host
 
     host = proxy.host
@@ -23,7 +23,7 @@ Rails.application.configure do
   if ENV['http_hidden_proxy'].present?
     proxy = URI.parse(ENV['http_hidden_proxy'])
 
-    raise "Unsupported proxy type: #{proxy.scheme}" unless %w(http https).include? proxy.scheme
+    raise "Unsupported proxy type: #{proxy.scheme}" unless URLValidator::VALID_SCHEMES.include? proxy.scheme
     raise 'No proxy host' unless proxy.host
 
     host = proxy.host

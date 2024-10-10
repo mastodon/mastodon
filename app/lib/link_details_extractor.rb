@@ -229,7 +229,7 @@ class LinkDetailsExtractor
 
     url = @original_url + Addressable::URI.parse(str)
 
-    return if url.host.blank? || !%w(http https).include?(url.scheme) || (same_origin_only && url.host != @original_url.host)
+    return if url.host.blank? || !URLValidator::VALID_SCHEMES.include?(url.scheme) || (same_origin_only && url.host != @original_url.host)
 
     url.to_s
   rescue Addressable::URI::InvalidURIError
