@@ -51,7 +51,7 @@
           %strong.status-card__title= t('author_attribution.example_title')
       .more-from-author
         = logo_as_symbol(:icon)
-        = t('author_attribution.more_from_html', name: link_to(root_url, class: 'story__details__shared__author-link') { image_tag(@account.avatar.url, class: 'account__avatar', width: 16, height: 16, alt: '') + tag.bdi(display_name(@account)) })
+        = t('author_attribution.more_from_html', name: link_to(root_url, class: 'story__details__shared__author-link') { image_tag(@account.avatar.url, class: 'account__avatar', size: 16, alt: '') + tag.bdi(display_name(@account)) })
 
   %h4= t('verification.here_is_how')
 
