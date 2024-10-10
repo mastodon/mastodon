@@ -6,7 +6,7 @@
       %tbody
         %tr
           %td
-            = account_link_to account, path: admin_account_path(account.id)
+            = render 'shared/account', account: account, path: admin_account_path(account.id)
           %td.accounts-table__count.optional
             - if account.unavailable? || account.user_pending?
               \-

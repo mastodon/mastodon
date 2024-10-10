@@ -9,38 +9,6 @@ RSpec.describe HomeHelper do
     end
   end
 
-  describe 'account_link_to' do
-    context 'with a missing account' do
-      let(:account) { nil }
-
-      it 'returns a button' do
-        result = helper.account_link_to(account)
-
-        expect(result).to match t('about.contact_missing')
-      end
-    end
-
-    context 'with a valid account' do
-      let(:account) { Fabricate(:account) }
-
-      before { helper.extend controller_helpers }
-
-      it 'returns a link to the account' do
-        result = helper.account_link_to(account)
-
-        expect(result).to match "@#{account.acct}"
-      end
-
-      private
-
-      def controller_helpers
-        Module.new do
-          def current_account = Account.last
-        end
-      end
-    end
-  end
-
   describe 'obscured_counter' do
     context 'with a value of less than zero' do
       let(:count) { -10 }
