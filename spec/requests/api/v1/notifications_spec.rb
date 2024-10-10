@@ -123,9 +123,15 @@ RSpec.describe 'Notifications' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(response.parsed_body.size).to eq 5
-        expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
-        expect(response.parsed_body.any? { |x| x[:filtered] }).to be false
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(type: 'reblog'),
+            hash_including(type: 'mention'),
+            hash_including(type: 'favourite'),
+            hash_including(type: 'favourite'),
+            hash_including(type: 'follow')
+          )
+          .and not_include(hash_including(filtered: true))
       end
     end
 
@@ -138,9 +144,15 @@ RSpec.describe 'Notifications' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(response.parsed_body.size).to eq 6
-        expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
-        expect(response.parsed_body.any? { |x| x[:filtered] }).to be true
+        expect(response.parsed_body)
+          .to contain_exactly(
+            hash_including(type: 'reblog'),
+            hash_including(type: 'mention'),
+            hash_including(type: 'mention', filtered: true),
+            hash_including(type: 'favourite'),
+            hash_including(type: 'favourite'),
+            hash_including(type: 'follow')
+          )
       end
     end
 
@@ -183,8 +195,11 @@ RSpec.describe 'Notifications' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(response.parsed_body.size).to_not eq 0
-        expect(body_json_types.uniq).to_not include 'mention'
+        expect(response.parsed_body)
+          .to be_present
+          .and not_include(
+            hash_including(type: 'mention')
+          )
       end
     end
 
@@ -197,7 +212,8 @@ RSpec.describe 'Notifications' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(body_json_types.uniq).to eq ['mention']
+        expect(response.parsed_body)
+          .to all(match hash_including(type: 'mention'))
       end
     end
 
@@ -218,10 +234,6 @@ RSpec.describe 'Notifications' do
             next: api_v1_notifications_url(limit: params[:limit], max_id: notifications[2].id)
           )
       end
-    end
-
-    def body_json_types
-      response.parsed_body.pluck(:type)
     end
   end
 
