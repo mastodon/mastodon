@@ -2,7 +2,7 @@
 
 module Elasticsearch
   module ClientExtensions
-    def verify_elasticsearch
+    def verify_elasticsearch(*_args, &_block)
       @verified = true
     end
   end
