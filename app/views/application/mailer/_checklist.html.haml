@@ -11,12 +11,12 @@
                     %tr
                       %td.email-checklist-icons-checkbox-td
                         - if defined?(checked) && checked
-                          = image_tag frontend_asset_url('images/mailer-new/welcome/checkbox-on.png'), alt: '', width: 20, height: 20
+                          = image_tag frontend_asset_url('images/mailer-new/welcome/checkbox-on.png'), alt: '', size: 20
                         - else
-                          = image_tag frontend_asset_url('images/mailer-new/welcome/checkbox-off.png'), alt: '', width: 20, height: 20
+                          = image_tag frontend_asset_url('images/mailer-new/welcome/checkbox-off.png'), alt: '', size: 20
                       %td.email-checklist-icons-step-td
                         - if defined?(key)
-                          = image_tag frontend_asset_url("images/mailer-new/welcome-icons/#{key}_step-#{checked ? 'on' : 'off'}.png"), alt: '', width: 40, height: 40
+                          = image_tag frontend_asset_url("images/mailer-new/welcome-icons/#{key}_step-#{checked ? 'on' : 'off'}.png"), alt: '', size: 40
                 %td.email-checklist-text-td
                   .email-desktop-flex
                     /[if mso]

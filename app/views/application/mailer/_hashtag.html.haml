@@ -15,6 +15,6 @@
                       %td.email-mini-hashtag-img-td
                         - accounts.each do |account|
                           %span.email-mini-hashtag-img-span
-                            = image_tag full_asset_url(account.avatar.url), alt: '', width: 16, height: 16
+                            = image_tag full_asset_url(account.avatar.url), alt: '', size: 16
                       %td
                         %p= recent_tag_usage(hashtag)
