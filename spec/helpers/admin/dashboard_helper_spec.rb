@@ -26,6 +26,7 @@ RSpec.describe Admin::DashboardHelper do
 
         expect(subject)
           .to eq(I18n.t('generic.today'))
+          .and not_include('time-ago')
       end
     end
 
@@ -74,6 +75,7 @@ RSpec.describe Admin::DashboardHelper do
 
         expect(subject)
           .to eq('-')
+          .and not_include('time-ago')
       end
     end
   end
