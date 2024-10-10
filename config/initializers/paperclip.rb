@@ -160,11 +160,18 @@ elsif ENV['AZURE_ENABLED'] == 'true'
     )
   end
 else
-  Rails.configuration.x.file_storage_root_path = ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system'))
+  path_suffix = ENV['TEST_ENV_NUMBER'].present? ? "test-env-#{ENV['TEST_ENV_NUMBER']}" : nil
+  default_root_url = ['/system', path_suffix].compact.join('/')
+
+  Rails.configuration.x.file_storage_root_path = ENV.fetch(
+    'PAPERCLIP_ROOT_PATH',
+    File.join(%w(:rails_root public system).push(path_suffix).compact)
+  )
+
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
     path: File.join(Rails.configuration.x.file_storage_root_path, ':prefix_path:class', ':attachment', ':id_partition', ':style', ':filename'),
-    url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + "/#{PATH}"
+    url: ENV.fetch('PAPERCLIP_ROOT_URL', default_root_url) + "/#{PATH}"
   )
 end
 
