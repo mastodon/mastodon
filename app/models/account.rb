@@ -65,6 +65,7 @@ class Account < ApplicationRecord
   )
 
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
+  REFRESH_DEADLINE = 6.hours
   DEFAULT_FIELDS_SIZE = 4
   INSTANCE_ACTOR_ID = -99
 
@@ -235,7 +236,7 @@ class Account < ApplicationRecord
   def schedule_refresh_if_stale!
     return unless last_webfingered_at.present? && last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
 
-    AccountRefreshWorker.perform_in(rand(6.hours.to_i), id)
+    AccountRefreshWorker.perform_in(rand(REFRESH_DEADLINE), id)
   end
 
   def refresh!
