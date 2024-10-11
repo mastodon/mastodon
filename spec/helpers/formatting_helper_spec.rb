@@ -12,8 +12,8 @@ RSpec.describe FormattingHelper do
       let(:status) { Fabricate.build :status, text: 'Hello world' }
 
       it 'renders the formatted elements' do
-        expect(subject)
-          .to eq('<p>Hello world</p>')
+        expect(parsed_result.css('p').first.text)
+          .to eq('Hello world')
       end
     end
 
@@ -23,12 +23,40 @@ RSpec.describe FormattingHelper do
       before { Fabricate :custom_emoji, shortcode: 'world' }
 
       it 'renders the formatted elements' do
-        expect(subject)
-          .to include('<p><strong>Content warning:</strong>This is a spoiler&lt;&gt;</p><hr>')
-          .and include('<p>Hello <img rel="emoji" draggable="false"')
-          .and include('emojo.png"> &lt;&gt;</p>')
-          .and include('<radio disabled="disabled">Yes&lt;&gt;</radio><br>')
+        expect(spoiler_node.css('strong').text)
+          .to eq('Content warning:')
+        expect(spoiler_node.text)
+          .to include('This is a spoiler<>')
+        expect(content_node.text)
+          .to eq('Hello  <>')
+        expect(content_node.css('img').first.to_h.symbolize_keys)
+          .to include(
+            rel: 'emoji',
+            title: ':world:'
+          )
+        expect(poll_node.css('radio').first.text)
+          .to eq('Yes<>')
+        expect(poll_node.css('radio').first.to_h.symbolize_keys)
+          .to include(
+            disabled: 'disabled'
+          )
       end
+
+      def spoiler_node
+        parsed_result.css('p').first
+      end
+
+      def content_node
+        parsed_result.css('p')[1]
+      end
+
+      def poll_node
+        parsed_result.css('p').last
+      end
+    end
+
+    def parsed_result
+      Nokogiri::HTML.fragment(subject)
     end
   end
 end
