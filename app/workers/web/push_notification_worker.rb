@@ -55,12 +55,8 @@ class Web::PushNotificationWorker
   end
 
   def push_notification_json
-    Oj.dump(serialized_notification_in_subscription_locale.as_json)
-  end
-
-  def serialized_notification_in_subscription_locale
     I18n.with_locale(@subscription.locale.presence || I18n.default_locale) do
-      serialized_notification
+      Oj.dump(serialized_notification.as_json)
     end
   end
 
