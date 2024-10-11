@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+require 'pundit/rspec'
+
+RSpec.describe AuditLogPolicy do
+  subject { described_class }
+
+  let(:admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+  let(:account) { Fabricate(:account) }
+
+  permissions :index? do
+    context 'with an admin' do
+      it { is_expected.to permit(admin, AccountWarning.new) }
+    end
+
+    context 'with a non-admin' do
+      it { is_expected.to_not permit(account, AccountWarning.new) }
+    end
+  end
+end

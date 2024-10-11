@@ -23,7 +23,7 @@ RSpec.describe AppealPolicy do
     end
   end
 
-  permissions :reject? do
+  permissions :reject?, :approve? do
     context 'with an admin' do
       context 'with a pending appeal' do
         before { allow(appeal).to receive(:pending?).and_return(true) }

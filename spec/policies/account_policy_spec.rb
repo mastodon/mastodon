@@ -24,7 +24,7 @@ RSpec.describe AccountPolicy do
     end
   end
 
-  permissions :show?, :unsilence?, :unsensitive?, :remove_avatar?, :remove_header? do
+  permissions :show?, :unsilence?, :unsensitive?, :remove_avatar?, :remove_header?, :sensitive?, :warn? do
     context 'when staff' do
       it 'permits' do
         expect(subject).to permit(admin, alice)
