@@ -31,6 +31,7 @@ class BulkImport < ApplicationRecord
     domain_blocking: 3,
     bookmarks: 4,
     lists: 5,
+    account_notes: 6,
   }
 
   enum :state, {

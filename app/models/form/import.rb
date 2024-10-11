@@ -19,6 +19,7 @@ class Form::Import
     domain_blocking: ['#domain'],
     bookmarks: ['#uri'],
     lists: ['List name', 'Account address'],
+    account_notes: ['Account address', 'Account note'],
   }.freeze
 
   KNOWN_FIRST_HEADERS = EXPECTED_HEADERS_BY_TYPE.values.map(&:first).uniq.freeze
@@ -32,6 +33,7 @@ class Form::Import
     '#domain' => 'domain',
     '#uri' => 'uri',
     'List name' => 'list_name',
+    'Account note' => 'comment',
   }.freeze
 
   class EmptyFileError < StandardError; end
@@ -55,6 +57,8 @@ class Form::Import
       :bookmarks
     elsif file_name_matches?('lists')
       :lists
+    elsif csv_headers_match?('Account note') || file_name_matches?('account_notes')
+      :account_notes
     end
   end
 
@@ -102,6 +106,8 @@ class Form::Import
       ['#uri']
     when :lists
       ['List name', 'Account address']
+    when :account_notes
+      ['Account address', 'Account note']
     end
   end
 
@@ -118,7 +124,7 @@ class Form::Import
         field.strip.gsub(/\A@/, '')
       when '#domain'
         field&.strip&.downcase
-      when '#uri', 'List name'
+      when '#uri', 'List name', 'Account note'
         field.strip
       else
         field
