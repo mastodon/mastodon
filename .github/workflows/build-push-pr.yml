@@ -39,6 +39,7 @@ jobs:
         latest=auto
       tags: |
         type=ref,event=pr
+        type=ref,event=pr,suffix=-${{ github.event.pull_request.head.sha }}
     secrets: inherit
 
   build-image-streaming:
