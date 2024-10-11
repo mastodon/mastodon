@@ -10,11 +10,11 @@ RSpec.describe DashboardPolicy do
 
   permissions :index? do
     context 'with an admin' do
-      it { is_expected.to permit(admin, AccountWarning.new) }
+      it { is_expected.to permit(admin, nil) }
     end
 
     context 'with a non-admin' do
-      it { is_expected.to_not permit(account, AccountWarning.new) }
+      it { is_expected.to_not permit(account, nil) }
     end
   end
 end

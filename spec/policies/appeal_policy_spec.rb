@@ -11,13 +11,13 @@ RSpec.describe AppealPolicy do
   permissions :index? do
     context 'with an admin' do
       it 'permits' do
-        expect(policy).to permit(admin, Tag)
+        expect(policy).to permit(admin, Appeal)
       end
     end
 
     context 'with a non-admin' do
       it 'denies' do
-        expect(policy).to_not permit(john, Tag)
+        expect(policy).to_not permit(john, Appeal)
       end
     end
   end

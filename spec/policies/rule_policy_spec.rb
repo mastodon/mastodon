@@ -10,13 +10,13 @@ RSpec.describe RulePolicy do
   permissions :index?, :create?, :update?, :destroy? do
     context 'with an admin' do
       it 'permits' do
-        expect(policy).to permit(admin, Tag)
+        expect(policy).to permit(admin, Rule)
       end
     end
 
     context 'with a non-admin' do
       it 'denies' do
-        expect(policy).to_not permit(john, Tag)
+        expect(policy).to_not permit(john, Rule)
       end
     end
   end
