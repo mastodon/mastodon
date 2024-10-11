@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pundit/rspec'
 
 RSpec.describe AccountWarningPolicy do
   subject { described_class }

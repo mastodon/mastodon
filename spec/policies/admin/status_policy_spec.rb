@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pundit/rspec'
 
 RSpec.describe Admin::StatusPolicy do
   let(:policy) { described_class }
