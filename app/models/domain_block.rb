@@ -87,18 +87,11 @@ class DomainBlock < ApplicationRecord
   end
 
   def public_domain
-    return domain unless obfuscate?
-
-    length        = domain.size
-    visible_ratio = length / 4
-
-    domain.chars.map.with_index do |chr, i|
-      if i > visible_ratio && i < length - visible_ratio && chr != '.'
-        '*'
-      else
-        chr
-      end
-    end.join
+    if obfuscate?
+      ObfuscatedDomainPresenter.new(domain).to_s
+    else
+      domain
+    end
   end
 
   def domain_digest
