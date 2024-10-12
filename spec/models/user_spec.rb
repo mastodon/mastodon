@@ -177,6 +177,39 @@ RSpec.describe User do
     end
   end
 
+  describe '#update_sign_in!' do
+    context 'with an existing user' do
+      let!(:user) { Fabricate :user, last_sign_in_at: 10.days.ago, current_sign_in_at: 1.hour.ago, sign_in_count: 123 }
+
+      context 'with new sign in false' do
+        it 'updates timestamps but not counts' do
+          expect { user.update_sign_in!(new_sign_in: false) }
+            .to change(user, :last_sign_in_at)
+            .and change(user, :current_sign_in_at)
+            .and not_change(user, :sign_in_count)
+        end
+      end
+
+      context 'with new sign in true' do
+        it 'updates timestamps and counts' do
+          expect { user.update_sign_in!(new_sign_in: true) }
+            .to change(user, :last_sign_in_at)
+            .and change(user, :current_sign_in_at)
+            .and change(user, :sign_in_count).by(1)
+        end
+      end
+    end
+
+    context 'with a new user' do
+      let(:user) { Fabricate.build :user }
+
+      it 'does not persist the user' do
+        expect { user.update_sign_in! }
+          .to_not change(user, :persisted?).from(false)
+      end
+    end
+  end
+
   describe '#confirmed?' do
     it 'returns true when a confirmed_at is set' do
       user = Fabricate.build(:user, confirmed_at: Time.now.utc)
