@@ -62,4 +62,42 @@ RSpec.describe StatusPin do
       end
     end
   end
+
+  describe 'Callbacks' do
+    describe 'Invalidating status via policy' do
+      subject { Fabricate :status_pin, status: Fabricate(:status, account: account), account: account }
+
+      context 'with a local account that owns the status and has a policy' do
+        let(:account) { Fabricate :account, domain: nil }
+
+        before do
+          Fabricate :account_statuses_cleanup_policy, account: account
+          account.statuses_cleanup_policy.record_last_inspected(subject.status.id + 1_024)
+        end
+
+        it 'calls the invalidator on destroy' do
+          expect { subject.destroy }
+            .to change(account.statuses_cleanup_policy, :last_inspected)
+        end
+      end
+
+      context 'with a local account that owns the status and does not have a policy' do
+        let(:account) { Fabricate :account, domain: nil }
+
+        it 'does not call the invalidator on destroy' do
+          expect { subject.destroy }
+            .to_not change(account, :updated_at)
+        end
+      end
+
+      context 'with a remote account' do
+        let(:account) { Fabricate :account, domain: 'host.example' }
+
+        it 'does not call the invalidator on destroy' do
+          expect { subject.destroy }
+            .to_not change(account, :updated_at)
+        end
+      end
+    end
+  end
 end
