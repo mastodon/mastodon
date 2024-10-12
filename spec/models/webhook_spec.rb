@@ -71,6 +71,22 @@ RSpec.describe Webhook do
     end
   end
 
+  describe '#required_permissions' do
+    subject { described_class.new(events:).required_permissions }
+
+    context 'with empty events' do
+      let(:events) { [] }
+
+      it { is_expected.to eq([]) }
+    end
+
+    context 'with multiple event types' do
+      let(:events) { %w(account.created account.updated status.created) }
+
+      it { is_expected.to eq %i(manage_users view_devops) }
+    end
+  end
+
   describe '#rotate_secret!' do
     it 'changes the secret' do
       expect { webhook.rotate_secret! }
