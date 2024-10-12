@@ -12,6 +12,8 @@ RSpec.describe Webhook do
 
     it { is_expected.to_not allow_values([], %w(account.invalid)).for(:events) }
 
+    it { is_expected.to_not allow_values('{{account }').for(:template) }
+
     context 'when current_account is assigned' do
       subject { Fabricate.build :webhook, current_account: account }
 
