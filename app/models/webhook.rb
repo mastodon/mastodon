@@ -38,7 +38,7 @@ class Webhook < ApplicationRecord
   validate :validate_template
 
   normalizes :events, with: ->(events) { events.filter_map { |event| event.strip.presence } }
-  before_validation :generate_secret
+  before_validation :generate_secret, unless: :secret?
 
   def rotate_secret!
     update!(secret: SecureRandom.hex(20))
@@ -99,6 +99,6 @@ class Webhook < ApplicationRecord
   end
 
   def generate_secret
-    self.secret = SecureRandom.hex(20) if secret.blank?
+    self.secret = SecureRandom.hex(20)
   end
 end
