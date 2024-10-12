@@ -35,6 +35,28 @@ RSpec.describe Webhook do
     end
   end
 
+  describe 'Callbacks' do
+    describe 'Generating a secret' do
+      context 'when secret exists already' do
+        subject { described_class.new(secret: 'secret') }
+
+        it 'does not override' do
+          expect { subject.valid? }
+            .to_not change(subject, :secret)
+        end
+      end
+
+      context 'when secret does not exist' do
+        subject { described_class.new(secret: nil) }
+
+        it 'does not override' do
+          expect { subject.valid? }
+            .to change(subject, :secret)
+        end
+      end
+    end
+  end
+
   describe '.permission_for_event' do
     subject { described_class.permission_for_event(event) }
 
