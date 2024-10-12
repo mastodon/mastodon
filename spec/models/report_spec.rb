@@ -177,6 +177,12 @@ RSpec.describe Report do
       it { is_expected.to_not allow_value(rule.id).for(:rule_ids) }
     end
 
+    context 'with extra rule ids on a violation' do
+      subject { Fabricate.build :report, category: :violation }
+
+      it { is_expected.to_not allow_value([nil, Fabricate(:rule).id]).for(:rule_ids) }
+    end
+
     def comment_over_limit
       'a' * described_class::COMMENT_SIZE_LIMIT * 2
     end
