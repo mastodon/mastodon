@@ -11,6 +11,22 @@ RSpec.describe Webhook do
     it { is_expected.to validate_presence_of(:events) }
 
     it { is_expected.to_not allow_values([], %w(account.invalid)).for(:events) }
+
+    context 'when current_account is assigned' do
+      subject { Fabricate.build :webhook, current_account: account }
+
+      context 'with account that has permissions' do
+        let(:account) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+
+        it { is_expected.to allow_values(%w(account.created)).for(:events) }
+      end
+
+      context 'with account lacking permissions' do
+        let(:account) { Fabricate :account }
+
+        it { is_expected.to_not allow_values(%w(account.created)).for(:events) }
+      end
+    end
   end
 
   describe 'Normalizations' do
