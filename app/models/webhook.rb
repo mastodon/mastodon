@@ -58,11 +58,11 @@ class Webhook < ApplicationRecord
 
   def self.permission_for_event(event)
     case event
-    when 'account.approved', 'account.created', 'account.updated'
+    when /account/
       :manage_users
-    when 'report.created', 'report.updated'
+    when /report/
       :manage_reports
-    when 'status.created', 'status.updated'
+    when /status/
       :view_devops
     end
   end
