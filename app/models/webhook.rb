@@ -34,7 +34,7 @@ class Webhook < ApplicationRecord
   validates :events, presence: true
 
   validate :events_validation_error, if: :invalid_events?
-  validate :validate_permissions
+  validate :validate_permissions, if: -> { defined?(@current_account) }
   validate :validate_template
 
   normalizes :events, with: ->(events) { events.filter_map { |event| event.strip.presence } }
@@ -80,7 +80,11 @@ class Webhook < ApplicationRecord
   end
 
   def validate_permissions
-    errors.add(:events, :invalid_permissions) if defined?(@current_account) && required_permissions.any? { |permission| !@current_account.user_role.can?(permission) }
+    errors.add(:events, :invalid_permissions) if current_account_role_lacking_permissions?
+  end
+
+  def current_account_role_lacking_permissions?
+    required_permissions.any? { |permission| !@current_account.user_role.can?(permission) }
   end
 
   def validate_template
