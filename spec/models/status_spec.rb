@@ -482,6 +482,46 @@ RSpec.describe Status do
     end
   end
 
+  describe 'Callbacks' do
+    describe 'Stripping content when required' do
+      context 'with a remote account' do
+        subject { Fabricate.build :status, local: false, account:, text: '   text   ', spoiler_text: '   spoiler   ' }
+
+        let(:account) { Fabricate.build :account, domain: 'host.example' }
+
+        it 'preserves content' do
+          expect { subject.valid? }
+            .to not_change(subject, :text)
+            .and not_change(subject, :spoiler_text)
+        end
+      end
+
+      context 'with a local account' do
+        let(:account) { Fabricate.build :account, domain: nil }
+
+        context 'with populated fields' do
+          subject { Fabricate.build :status, local: true, account:, text: '   text   ', spoiler_text: '   spoiler   ' }
+
+          it 'strips content' do
+            expect { subject.valid? }
+              .to change(subject, :text).to('text')
+              .and change(subject, :spoiler_text).to('spoiler')
+          end
+        end
+
+        context 'with empty fields' do
+          subject { Fabricate.build :status, local: true, account:, text: nil, spoiler_text: nil }
+
+          it 'preserves content' do
+            expect { subject.valid? }
+              .to not_change(subject, :text)
+              .and not_change(subject, :spoiler_text)
+          end
+        end
+      end
+    end
+  end
+
   describe 'after_create' do
     it 'saves ActivityPub uri as uri for local status' do
       status = described_class.create(account: alice, text: 'foo')
