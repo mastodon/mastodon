@@ -752,26 +752,42 @@ RSpec.describe Account do
     end
   end
 
-  describe '#prepare_contents' do
-    subject { Fabricate.build :account, domain: domain, note: '  padded note  ', display_name: '  padded name  ' }
+  describe 'Callbacks' do
+    describe 'Stripping content when required' do
+      context 'with a remote account' do
+        subject { Fabricate.build :account, domain: 'host.example', note: '   note   ', display_name: '   display name   ' }
 
-    context 'with local account' do
-      let(:domain) { nil }
-
-      it 'strips values' do
-        expect { subject.valid? }
-          .to change(subject, :note).to('padded note')
-          .and(change(subject, :display_name).to('padded name'))
+        it 'preserves content' do
+          expect { subject.valid? }
+            .to not_change(subject, :note)
+            .and not_change(subject, :display_name)
+        end
       end
-    end
 
-    context 'with remote account' do
-      let(:domain) { 'host.example' }
+      context 'with a local account' do
+        subject { Fabricate.build :account, domain: nil, note:, display_name: }
 
-      it 'preserves values' do
-        expect { subject.valid? }
-          .to not_change(subject, :note)
-          .and(not_change(subject, :display_name))
+        context 'with populated fields' do
+          let(:note) { '   note   ' }
+          let(:display_name) { '   display name   ' }
+
+          it 'strips content' do
+            expect { subject.valid? }
+              .to change(subject, :note).to('note')
+              .and change(subject, :display_name).to('display name')
+          end
+        end
+
+        context 'with empty fields' do
+          let(:note) { nil }
+          let(:display_name) { nil }
+
+          it 'preserves content' do
+            expect { subject.valid? }
+              .to not_change(subject, :note)
+              .and not_change(subject, :display_name)
+          end
+        end
       end
     end
   end
