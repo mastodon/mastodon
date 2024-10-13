@@ -8,6 +8,32 @@ RSpec.describe Block do
     it { is_expected.to belong_to(:target_account).required }
   end
 
+  describe '#local?' do
+    it { is_expected.to_not be_local }
+  end
+
+  describe 'Callbacks' do
+    describe 'Setting a URI' do
+      context 'when URI exists' do
+        subject { Fabricate.build :block, uri: 'https://uri/value' }
+
+        it 'does not change' do
+          expect { subject.save }
+            .to not_change(subject, :uri)
+        end
+      end
+
+      context 'when URI is blank' do
+        subject { Fabricate.build :follow, uri: nil }
+
+        it 'populates the value' do
+          expect { subject.save }
+            .to change(subject, :uri).to(be_present)
+        end
+      end
+    end
+  end
+
   it 'removes blocking cache after creation' do
     account = Fabricate(:account)
     target_account = Fabricate(:account)
