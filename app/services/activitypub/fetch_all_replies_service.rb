@@ -10,7 +10,7 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
     @allow_synchronous_requests = allow_synchronous_requests
     @filter_by_host = false
 
-    @items = collection_items(collection_or_uri)
+    @items = collection_items(collection_or_uri, fetch_all: true)
     @items = filtered_replies
     return if @items.nil?
 
@@ -25,6 +25,8 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
     return if @items.nil?
 
     # find all statuses that we *shouldn't* update the replies for, and use that as a filter
+    # Typically we assume this is smaller than the replies we *should* fetch,
+    # so we minimize the number of uris we should load here.
     uris = @items.map { |item| value_or_id(item) }
     dont_update = Status.where(uri: uris).shouldnt_fetch_replies.pluck(:uri)
 

@@ -11,7 +11,7 @@ class ActivityPub::FetchAllRepliesWorker
 
   sidekiq_options queue: 'pull', retry: 3
 
-  # Global max replies to fetch per request
+  # Global max replies to fetch per request (all replies, recursively)
   MAX_REPLIES = 1000
 
   def perform(parent_status_id, current_account_id = nil, options = {})
@@ -20,21 +20,21 @@ class ActivityPub::FetchAllRepliesWorker
     @current_account = @current_account_id.nil? ? nil : Account.find(@current_account_id)
     Rails.logger.debug { "FetchAllRepliesWorker - #{parent_status_id}: Fetching all replies for status: #{@parent_status}" }
 
-    all_replies = get_replies(@parent_status.uri, options)
-    got_replies = all_replies.length
-    until all_replies.empty? || got_replies >= MAX_REPLIES
-      next_reply = all_replies.pop
+    uris_to_fetch = get_replies(@parent_status.uri, options)
+    fetched_uris = uris_to_fetch
+    until uris_to_fetch.empty? || fetched_uris.length >= MAX_REPLIES
+      next_reply = uris_to_fetch.pop
       next if next_reply.nil?
 
-      new_replies = get_replies(next_reply, options)
-      next if new_replies.nil?
+      new_reply_uris = get_replies(next_reply, options)
+      next if new_reply_uris.nil?
 
-      got_replies += new_replies.length
-      all_replies.concat(new_replies)
+      uris_to_fetch.concat(new_reply_uris)
+      fetched_uris.concat(new_reply_uris)
     end
 
-    Rails.logger.debug { "FetchAllRepliesWorker - #{parent_status_id}: fetched #{got_replies} replies" }
-    got_replies
+    Rails.logger.debug { "FetchAllRepliesWorker - #{parent_status_id}: fetched #{fetched_uris.length} replies" }
+    fetched_uris
   end
 
   private
