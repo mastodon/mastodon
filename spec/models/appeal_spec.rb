@@ -15,6 +15,40 @@ RSpec.describe Appeal do
     end
   end
 
+  describe 'Query methods' do
+    describe '#pending?' do
+      subject { Fabricate.build :appeal, approved_at:, rejected_at: }
+
+      context 'with not approved and not rejected' do
+        let(:approved_at) { nil }
+        let(:rejected_at) { nil }
+
+        it { expect(subject).to be_pending }
+      end
+
+      context 'with approved and rejected' do
+        let(:approved_at) { 1.day.ago }
+        let(:rejected_at) { 1.day.ago }
+
+        it { expect(subject).to_not be_pending }
+      end
+
+      context 'with approved and not rejected' do
+        let(:approved_at) { 1.day.ago }
+        let(:rejected_at) { nil }
+
+        it { expect(subject).to_not be_pending }
+      end
+
+      context 'with not approved and rejected' do
+        let(:approved_at) { nil }
+        let(:rejected_at) { 1.day.ago }
+
+        it { expect(subject).to_not be_pending }
+      end
+    end
+  end
+
   describe 'Scopes' do
     describe '.approved' do
       let(:approved_appeal) { Fabricate(:appeal, approved_at: 10.days.ago) }
