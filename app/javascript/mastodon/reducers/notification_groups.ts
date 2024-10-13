@@ -559,7 +559,10 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
           compareId(state.lastReadId, mostRecentGroup.page_max_id) < 0
         )
           state.lastReadId = mostRecentGroup.page_max_id;
-        commitLastReadId(state);
+
+        // We don't call `commitLastReadId`, because that is conditional
+        // and we want to unconditionally update the state instead.
+        state.readMarkerId = state.lastReadId;
       })
       .addCase(fetchMarkers.fulfilled, (state, action) => {
         if (

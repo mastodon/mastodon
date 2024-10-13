@@ -26,6 +26,8 @@ class NotificationRequest < ApplicationRecord
 
   before_save :prepare_notifications_count
 
+  scope :without_suspended, -> { joins(:from_account).merge(Account.without_suspended) }
+
   def self.preload_cache_collection(requests)
     cached_statuses_by_id = yield(requests.filter_map(&:last_status)).index_by(&:id) # Call cache_collection in block
 

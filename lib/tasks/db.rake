@@ -8,7 +8,7 @@ namespace :db do
     desc 'Generate a set of keys for configuring Active Record encryption in a given environment'
     task :init do # rubocop:disable Rails/RakeEnvironment
       puts <<~MSG
-        Add these secret environment variables to your Mastodon environment (e.g. .env.production):#{' '}
+        Add the following secret environment variables to your Mastodon environment (e.g. .env.production), ensure they are shared across all your nodes and do not change them after they are set:#{' '}
 
         ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY=#{SecureRandom.alphanumeric(32)}
         ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT=#{SecureRandom.alphanumeric(32)}
