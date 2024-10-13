@@ -62,9 +62,9 @@ class Api::V1::StatusesController < Api::BaseController
     if !current_account.nil? && @status.should_fetch_replies?
       ActivityPub::FetchAllRepliesWorker.perform_async(
         @status.id,
+        current_account.id,
         {
           allow_synchronous_requests: true,
-          current_account_id: current_account.id,
         }
       )
     end
