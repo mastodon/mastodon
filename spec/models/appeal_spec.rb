@@ -47,6 +47,38 @@ RSpec.describe Appeal do
         it { expect(subject).to_not be_pending }
       end
     end
+
+    describe '#approved?' do
+      subject { Fabricate.build :appeal, approved_at: }
+
+      context 'with not approved' do
+        let(:approved_at) { nil }
+
+        it { expect(subject).to_not be_approved }
+      end
+
+      context 'with approved' do
+        let(:approved_at) { 1.day.ago }
+
+        it { expect(subject).to be_approved }
+      end
+    end
+
+    describe '#rejected?' do
+      subject { Fabricate.build :appeal, rejected_at: }
+
+      context 'with not rejected' do
+        let(:rejected_at) { nil }
+
+        it { expect(subject).to_not be_rejected }
+      end
+
+      context 'with rejected' do
+        let(:rejected_at) { 1.day.ago }
+
+        it { expect(subject).to be_rejected }
+      end
+    end
   end
 
   describe 'Scopes' do
