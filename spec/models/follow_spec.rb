@@ -53,4 +53,58 @@ RSpec.describe Follow do
       expect(account.requested?(target_account)).to be true
     end
   end
+
+  describe '#local?' do
+    it { is_expected.to_not be_local }
+  end
+
+  describe 'Callbacks' do
+    describe 'Setting a URI' do
+      context 'when URI exists' do
+        subject { Fabricate.build :follow, uri: 'https://uri/value' }
+
+        it 'does not change' do
+          expect { subject.save }
+            .to not_change(subject, :uri)
+        end
+      end
+
+      context 'when URI is blank' do
+        subject { Fabricate.build :follow, uri: nil }
+
+        it 'populates the value' do
+          expect { subject.save }
+            .to change(subject, :uri).to(be_present)
+        end
+      end
+    end
+
+    describe 'Maintaining counters' do
+      subject { Fabricate.build :follow, account:, target_account: }
+
+      let(:account) { Fabricate :account }
+      let(:target_account) { Fabricate :account }
+
+      before do
+        account.account_stat.update following_count: 123
+        target_account.account_stat.update followers_count: 123
+      end
+
+      describe 'saving the follow' do
+        it 'increments counters' do
+          expect { subject.save }
+            .to change(account, :following_count).by(1)
+            .and(change(target_account, :followers_count).by(1))
+        end
+      end
+
+      describe 'destroying the follow' do
+        it 'decrements counters' do
+          expect { subject.destroy }
+            .to change(account, :following_count).by(-1)
+            .and(change(target_account, :followers_count).by(-1))
+        end
+      end
+    end
+  end
 end
