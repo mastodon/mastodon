@@ -24,9 +24,15 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
   def filtered_replies
     return if @items.nil?
 
-    # find all statuses that we *shouldn't* update the replies for, and use that as a filter
-    # Typically we assume this is smaller than the replies we *should* fetch,
-    # so we minimize the number of uris we should load here.
+    # Find all statuses that we *shouldn't* update the replies for, and use that as a filter.
+    # We don't assume that we have the statuses before they're created,
+    # hence the negative filter -
+    # "keep all these uris except the ones we already have"
+    # instead of
+    # "keep all these uris that match some conditions on existing Status objects"
+    #
+    # Typically we assume the number of replies we *shouldn't* fetch is smaller than the
+    # replies we *should* fetch, so we also minimize the number of uris we should load here.
     uris = @items.map { |item| value_or_id(item) }
     dont_update = Status.where(uri: uris).shouldnt_fetch_replies.pluck(:uri)
 
