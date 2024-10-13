@@ -104,4 +104,26 @@ RSpec.describe DomainBlock do
       end
     end
   end
+
+  describe '#policies' do
+    subject { domain_block.policies }
+
+    context 'when severity is suspend' do
+      let(:domain_block) { Fabricate.build :domain_block, severity: :suspend }
+
+      it { is_expected.to eq(%i(suspend)) }
+    end
+
+    context 'when severity is noop' do
+      let(:domain_block) { Fabricate.build :domain_block, severity: :noop, reject_media: true }
+
+      it { is_expected.to eq(%i(reject_media)) }
+    end
+
+    context 'when severity is silence' do
+      let(:domain_block) { Fabricate.build :domain_block, severity: :silence, reject_reports: true }
+
+      it { is_expected.to eq(%i(silence reject_reports)) }
+    end
+  end
 end
