@@ -7,10 +7,16 @@ RSpec.describe Appeal do
     subject { Fabricate.build :appeal, strike: Fabricate(:account_warning) }
 
     it { is_expected.to validate_length_of(:text).is_at_most(described_class::TEXT_LENGTH_LIMIT) }
+
+    context 'with a strike created too long ago' do
+      let(:strike) { Fabricate.build :account_warning, created_at: 100.days.ago }
+
+      it { is_expected.to_not allow_values(strike).for(:strike).against(:base).on(:create) }
+    end
   end
 
-  describe 'scopes' do
-    describe 'approved' do
+  describe 'Scopes' do
+    describe '.approved' do
       let(:approved_appeal) { Fabricate(:appeal, approved_at: 10.days.ago) }
       let(:not_approved_appeal) { Fabricate(:appeal, approved_at: nil) }
 
@@ -20,7 +26,7 @@ RSpec.describe Appeal do
       end
     end
 
-    describe 'rejected' do
+    describe '.rejected' do
       let(:rejected_appeal) { Fabricate(:appeal, rejected_at: 10.days.ago) }
       let(:not_rejected_appeal) { Fabricate(:appeal, rejected_at: nil) }
 
@@ -30,7 +36,7 @@ RSpec.describe Appeal do
       end
     end
 
-    describe 'pending' do
+    describe '.pending' do
       let(:approved_appeal) { Fabricate(:appeal, approved_at: 10.days.ago) }
       let(:rejected_appeal) { Fabricate(:appeal, rejected_at: 10.days.ago) }
       let(:pending_appeal) { Fabricate(:appeal, rejected_at: nil, approved_at: nil) }
