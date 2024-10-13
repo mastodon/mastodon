@@ -5,6 +5,8 @@ class ActivityPub::FetchRepliesService < BaseService
 
   # Limit of fetched replies
   MAX_REPLIES = 5
+  # Limit when fetching all (to prevent infinite fetch attack)
+  FETCH_ALL_MAX_REPLIES = 500
 
   def call(parent_status, collection_or_uri, allow_synchronous_requests: true, request_id: nil, filter_by_host: true)
     @account = parent_status.account
@@ -21,7 +23,7 @@ class ActivityPub::FetchRepliesService < BaseService
 
   private
 
-  def collection_items(collection_or_uri)
+  def collection_items(collection_or_uri, fetch_all: false)
     collection = fetch_collection(collection_or_uri)
     return unless collection.is_a?(Hash)
 
@@ -39,8 +41,8 @@ class ActivityPub::FetchRepliesService < BaseService
 
       all_items.concat(as_array(items))
 
-      # Quit early if we are not fetching all replies
-      break if all_items.size >= MAX_REPLIES
+      # Quit early if we are not fetching all replies or we've reached the absolute max
+      break if (!fetch_all && all_items.size >= MAX_REPLIES) || (all_items.size >= FETCH_ALL_MAX_REPLIES)
 
       collection = collection['next'].present? ? fetch_collection(collection['next']) : nil
     end
