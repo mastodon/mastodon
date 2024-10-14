@@ -21,7 +21,9 @@ class ActivityPub::FetchAllRepliesWorker
     Rails.logger.debug { "FetchAllRepliesWorker - #{parent_status_id}: Fetching all replies for status: #{@parent_status}" }
 
     uris_to_fetch = get_replies(@parent_status.uri, options)
-    fetched_uris = uris_to_fetch
+    fetched_uris = uris_to_fetch.clone
+    return if uris_to_fetch.nil?
+
     until uris_to_fetch.empty? || fetched_uris.length >= MAX_REPLIES
       next_reply = uris_to_fetch.pop
       next if next_reply.nil?
@@ -40,18 +42,18 @@ class ActivityPub::FetchAllRepliesWorker
   private
 
   def get_replies(status_uri, options = {})
-    replies_uri = get_replies_uri(status_uri)
-    return if replies_uri.nil?
+    replies_collection_or_uri = get_replies_uri(status_uri)
+    return if replies_collection_or_uri.nil?
 
-    ActivityPub::FetchAllRepliesService.new.call(replies_uri, **options.deep_symbolize_keys)
+    ActivityPub::FetchAllRepliesService.new.call(replies_collection_or_uri, **options.deep_symbolize_keys)
   end
 
   def get_replies_uri(parent_status_uri)
     begin
       json_status = fetch_resource(parent_status_uri, true, @current_account)
-      replies_uri = json_status['replies']
-      Rails.logger.debug { "FetchAllRepliesWorker - #{@parent_status_id}: replies URI was nil" } if replies_uri.nil?
-      replies_uri
+      replies_collection_or_uri = json_status['replies']
+      Rails.logger.debug { "FetchAllRepliesWorker - #{@parent_status_id}: replies URI was nil" } if replies_collection_or_uri.nil?
+      replies_collection_or_uri
     rescue => e
       Rails.logger.error { "FetchAllRepliesWorker - #{@parent_status_id}: Got exception while resolving replies URI: #{e} - #{e.message}" }
       nil
