@@ -57,7 +57,7 @@ class BulkImportRowService
         .with_fallback { nil }
         .with_threshold(1)
         .with_cool_off_time(5.minutes.seconds)
-        .with_error_handler { |error, handle| error.is_a?(HTTP::Error) || error.is_a?(OpenSSL::SSL::SSLError) ? handle.call(error) : raise(error) }
+        .with_error_handler { |error, handle| Mastodon::HTTP_CONNECTION_ERRORS.any? { |error_class| error.is_a?(error_class) } ? handle.call(error) : raise(error) }
     else
       Stoplight('domain-blank')
     end
