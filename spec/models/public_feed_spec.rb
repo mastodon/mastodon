@@ -54,24 +54,20 @@ RSpec.describe PublicFeed do
       context 'without a viewer' do
         let(:viewer) { nil }
 
-        it 'includes remote instances statuses' do
-          expect(subject).to include(remote_status.id)
-        end
-
-        it 'includes local statuses' do
-          expect(subject).to include(local_status.id)
+        it 'includes remote instances statuses and local statuses' do
+          expect(subject)
+            .to include(remote_status.id)
+            .and include(local_status.id)
         end
       end
 
       context 'with a viewer' do
         let(:viewer) { Fabricate(:account, username: 'viewer') }
 
-        it 'includes remote instances statuses' do
-          expect(subject).to include(remote_status.id)
-        end
-
-        it 'includes local statuses' do
-          expect(subject).to include(local_status.id)
+        it 'includes remote instances statuses and local statuses' do
+          expect(subject)
+            .to include(remote_status.id)
+            .and include(local_status.id)
         end
       end
     end
