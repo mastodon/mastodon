@@ -33,7 +33,7 @@
                    collection: [nil] + filterable_languages,
                    hint: false,
                    include_blank: false,
-                   label_method: ->(locale) { locale.nil? ? I18n.t('statuses.default_language') : native_locale_name(locale) },
+                   label_method: ->(locale) { locale.nil? ? I18n.t('statuses.default_language') : compound_locale_name(locale) },
                    label: I18n.t('simple_form.labels.defaults.setting_default_language'),
                    required: false,
                    wrapper: :with_label
@@ -53,7 +53,7 @@
               collection: filterable_languages,
               include_blank: false,
               item_wrapper_tag: 'li',
-              label_method: ->(locale) { native_locale_name(locale) },
+              label_method: ->(locale) { compound_locale_name(locale) },
               required: false,
               wrapper: :with_block_label
 

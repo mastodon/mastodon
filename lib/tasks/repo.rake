@@ -100,12 +100,12 @@ namespace :repo do
 
     locales_in_files = Rails.root.glob('config/locales/*.yml').map do |path|
       file_name = File.basename(path, '.yml')
-      file_name.gsub(/\A(doorkeeper|devise|activerecord|simple_form)\./, '').to_sym
+      file_name.gsub(/\A(doorkeeper|devise|activerecord|languages|simple_form)\./, '').to_sym
     end.uniq.compact
 
     missing_available_locales = locales_in_files - I18n.available_locales
-    supported_locale_codes    = Set.new(LanguagesHelper::SUPPORTED_LOCALES.keys + LanguagesHelper::REGIONAL_LOCALE_NAMES.keys)
-    missing_locale_names      = I18n.available_locales.reject { |locale| supported_locale_codes.include?(locale) }
+    missing_locale_names      = LanguagesHelper::SUPPORTED_LOCALES.keys + LanguagesHelper::REGIONAL_LOCALE_NAMES.keys - I18n.t('languages').keys
+    missing_supported_locales = I18n.t('languages').keys - LanguagesHelper::SUPPORTED_LOCALES.keys - LanguagesHelper::REGIONAL_LOCALE_NAMES.keys
 
     critical = false
 
@@ -131,8 +131,23 @@ namespace :repo do
     end
 
     unless missing_locale_names.empty?
-      puts pastel.yellow("You are missing human-readable names for these locales: #{pastel.bold(missing_locale_names.join(', '))}")
-      puts pastel.yellow("Add them to app/helpers/languages_helper.rb or remove the locales from #{pastel.bold('I18n.available_locales')} in config/application.rb")
+      puts pastel.yellow("You are missing translations of the names of these languages: #{pastel.bold(missing_locale_names.join(', '))}")
+      puts pastel.yellow('Add them to config/locales/languages.en.yml or remove the locales from app/helpers/languages_helper.rb')
+      puts pastel.yellow("Run #{pastel.bold('rake cldr:build')} to populate with translations from CLDR")
+    end
+
+    unless missing_supported_locales.empty?
+      puts pastel.yellow("You have translations for these unsupported locales: #{pastel.bold(missing_supported_locales.join(', '))}")
+      puts pastel.yellow('Add them to app/helpers/languages_helper.rb or remove the entries from config/locale/en.yml')
+    end
+
+    LanguagesHelper::SUPPORTED_LOCALES.slice(*I18n.available_locales).each do |locale, name|
+      cldr_name = I18n.t(locale, scope: :languages, locale: locale, default: nil, fallback: nil)
+      next unless cldr_name && name != cldr_name
+
+      critical = true
+
+      puts pastel.yellow("The name for #{pastel.bold(locale)} in app/helpers/languages_helper.rb differs from that in config/locales/languages.#{locale}.yml")
     end
 
     if critical
