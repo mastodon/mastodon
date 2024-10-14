@@ -1,7 +1,8 @@
-name: Bug Report (Web Interface)
-description: If you are using Mastodon's web interface and something is not working as expected
-labels: ['status/to triage', 'area/web interface']
-type: Bug
+name: Deployment troubleshooting
+description: |
+  You are a server administrator and you are encountering a technical issue during installation, upgrade or operations of Mastodon.
+labels: ['status/to triage']
+type: 'Troubleshooting'
 body:
   - type: markdown
     attributes:
@@ -48,30 +49,26 @@ body:
     attributes:
       label: Mastodon version
       description: |
-        This is displayed at the bottom of the About page, eg. `v4.1.2+nightly-20230627`
-      placeholder: v4.1.2
+        This is displayed at the bottom of the About page, eg. `v4.4.0-alpha.1`
+      placeholder: v4.3.0
     validations:
-      required: true
-  - type: input
+      required: false
+  - type: textarea
     attributes:
-      label: Browser name and version
+      label: Environment
       description: |
-        What browser are you using when getting this bug? Please specify the version as well.
-      placeholder: Firefox 105.0.3
+        Details about your environment, like how Mastodon is deployed, if containers are used, version numbers, etc.
+      value: |
+        Please at least include those informations:
+        - Operating system: (eg. Ubuntu 22.04)
+        - Ruby version: (from `ruby --version`, eg. v3.3.5)
+        - Node.js version: (from `node --version`, eg. v20.18.0)
     validations:
-      required: true
-  - type: input
-    attributes:
-      label: Operating system
-      description: |
-        What OS are you running? Please specify the version as well.
-      placeholder: macOS 13.4.1
-    validations:
-      required: true
+      required: false
   - type: textarea
     attributes:
       label: Technical details
       description: |
-        Any additional technical details you may have. This can include the full error log, inspector's output…
+        Any additional technical details you may have, like logs or error traces
     validations:
       required: false
