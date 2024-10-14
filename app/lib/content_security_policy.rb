@@ -36,7 +36,7 @@ class ContentSecurityPolicy
   end
 
   def cdn_host_value
-    s3_alias_host || s3_cloudfront_host || azure_alias_host || s3_hostname_host || swift_object_url_host
+    s3_alias_host || s3_cloudfront_host || azure_alias_host || s3_hostname_host || swift_object_url
   end
 
   def paperclip_root_url
@@ -72,11 +72,12 @@ class ContentSecurityPolicy
     host_to_url ENV.fetch('S3_HOSTNAME', nil)
   end
 
-  def swift_object_url_host
-    swift_object_url = ENV.fetch('SWIFT_OBJECT_URL', nil)
-    return if swift_object_url.blank?
-
-    host_to_url Addressable::URI.parse(swift_object_url).host
+  def swift_object_url
+    url = ENV.fetch('SWIFT_OBJECT_URL', nil)
+    unless url =~ %r!/$!
+      url += "/"
+    end
+    url
   end
 
   def uri_from_configuration_and_string(host_string)
