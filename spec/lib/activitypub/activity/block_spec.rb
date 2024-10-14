@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Block do
+  subject { described_class.new(json, sender) }
+
   let(:sender)    { Fabricate(:account) }
   let(:recipient) { Fabricate(:account) }
 
@@ -18,8 +20,6 @@ RSpec.describe ActivityPub::Activity::Block do
 
   context 'when the recipient does not follow the sender' do
     describe '#perform' do
-      subject { described_class.new(json, sender) }
-
       before do
         subject.perform
       end
@@ -36,8 +36,6 @@ RSpec.describe ActivityPub::Activity::Block do
     end
 
     describe '#perform' do
-      subject { described_class.new(json, sender) }
-
       before do
         subject.perform
       end
@@ -55,8 +53,6 @@ RSpec.describe ActivityPub::Activity::Block do
     end
 
     describe '#perform' do
-      subject { described_class.new(json, sender) }
-
       before do
         subject.perform
       end
@@ -85,8 +81,6 @@ RSpec.describe ActivityPub::Activity::Block do
     end
 
     describe '#perform' do
-      subject { described_class.new(json, sender) }
-
       before do
         subject.perform
       end
