@@ -23,7 +23,8 @@ RSpec.describe ActivityPub::Activity::Block do
       it 'creates a block from sender to recipient' do
         subject.perform
 
-        expect(sender.blocking?(recipient)).to be true
+        expect(sender)
+          .to be_blocking(recipient)
       end
     end
 
@@ -33,8 +34,14 @@ RSpec.describe ActivityPub::Activity::Block do
       it 'creates a block from sender to recipient and sets uri to last received block activity' do
         subject.perform
 
-        expect(sender.blocking?(recipient)).to be true
-        expect(sender.block_relationships.find_by(target_account: recipient).uri).to eq 'foo'
+        expect(sender)
+          .to be_blocking(recipient)
+        expect(sender_blocking_recipient.uri)
+          .to eq 'foo'
+      end
+
+      def sender_blocking_recipient
+        sender.block_relationships.find_by(target_account: recipient)
       end
     end
 
@@ -44,8 +51,10 @@ RSpec.describe ActivityPub::Activity::Block do
       it 'creates a block from sender to recipient and ensures recipient not following sender' do
         subject.perform
 
-        expect(sender.blocking?(recipient)).to be true
-        expect(recipient.following?(sender)).to be false
+        expect(sender)
+          .to be_blocking(recipient)
+        expect(recipient)
+          .to_not be_following(sender)
       end
     end
 
@@ -68,8 +77,10 @@ RSpec.describe ActivityPub::Activity::Block do
       it 'does not create a block from sender to recipient and ensures recipient not following sender' do
         subject.perform
 
-        expect(sender.blocking?(recipient)).to be false
-        expect(recipient.following?(sender)).to be false
+        expect(sender)
+          .to_not be_blocking(recipient)
+        expect(recipient)
+          .to_not be_following(sender)
       end
     end
   end
