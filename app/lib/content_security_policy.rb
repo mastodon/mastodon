@@ -75,9 +75,7 @@ class ContentSecurityPolicy
   def swift_object_url
     url = ENV.fetch('SWIFT_OBJECT_URL', nil)
     return if url.nil?
-    unless url =~ %r!/$!
-      url += "/"
-    end
+    url += '/' unless url.end_with?('/')
     url
   end
 
