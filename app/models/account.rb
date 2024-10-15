@@ -177,6 +177,7 @@ class Account < ApplicationRecord
            allow_nil: true
 
   delegate :chosen_languages, to: :user, prefix: false, allow_nil: true
+  delegate :count, to: :passive_relationships, prefix: true
 
   update_index('accounts', :self)
 
@@ -218,10 +219,6 @@ class Account < ApplicationRecord
 
   def local_username_and_domain
     "#{username}@#{Rails.configuration.x.local_domain}"
-  end
-
-  def local_followers_count
-    Follow.where(target_account_id: id).count
   end
 
   def to_webfinger_s
