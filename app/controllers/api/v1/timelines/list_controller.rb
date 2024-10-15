@@ -10,7 +10,7 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
 
   def show
     render json: @statuses,
-           each_serializer: REST::StatusSerializer,
+           each_serializer: REST::ReactedStatusSerializer,
            relationships: StatusRelationshipsPresenter.new(@statuses, current_user.account_id)
   end
 

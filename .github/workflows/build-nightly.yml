@@ -1,8 +1,8 @@
 name: Build nightly container image
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 2 * * *' # run at 2 AM UTC
+#  schedule:
+#    - cron: '0 2 * * *' # run at 2 AM UTC
 
 permissions:
   contents: read

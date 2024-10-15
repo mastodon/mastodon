@@ -13,7 +13,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   has_one :role, serializer: REST::RoleSerializer
 
   def meta
-    store = default_meta_store
+    store = default_meta_store.merge(search_enabled: PoormansStatusesSearchService.enabled?)
 
     if object.current_account
       store[:me]                = object.current_account.id.to_s

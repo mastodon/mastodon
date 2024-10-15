@@ -20,6 +20,7 @@ class SearchService < BaseService
       elsif @query.present?
         results[:accounts] = perform_accounts_search! if account_searchable?
         results[:statuses] = perform_statuses_search! if status_searchable?
+        results[:statuses] = perform_poormans_statuses_search! if poormans_status_searchable?
         results[:hashtags] = perform_hashtags_search! if hashtag_searchable?
       end
     end
@@ -42,6 +43,18 @@ class SearchService < BaseService
 
   def perform_statuses_search!
     StatusesSearchService.new.call(
+      @query,
+      @account,
+      limit: @limit,
+      offset: @offset,
+      account_id: @options[:account_id],
+      min_id: @options[:min_id],
+      max_id: @options[:max_id]
+    )
+  end
+
+  def perform_poormans_statuses_search!
+    PoormansStatusesSearchService.new.call(
       @query,
       @account,
       limit: @limit,
@@ -83,6 +96,10 @@ class SearchService < BaseService
 
   def status_searchable?
     Chewy.enabled? && status_search? && @account.present?
+  end
+
+  def poormans_status_searchable?
+    !Chewy.enabled? && status_search? && @account.present?
   end
 
   def account_searchable?

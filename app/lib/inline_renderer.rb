@@ -10,7 +10,7 @@ class InlineRenderer
   def render
     case @template
     when :status
-      serializer = REST::StatusSerializer
+      serializer = REST::ReactedStatusSerializer
       preload_associations_for_status
     when :notification
       serializer = REST::NotificationSerializer

@@ -9,6 +9,7 @@
 #  updated_at :datetime         not null
 #  account_id :bigint(8)        not null
 #  status_id  :bigint(8)        not null
+#  emoji      :text
 #
 
 class Favourite < ApplicationRecord
@@ -18,6 +19,7 @@ class Favourite < ApplicationRecord
 
   belongs_to :account, inverse_of: :favourites
   belongs_to :status,  inverse_of: :favourites
+  belongs_to :custom_emoji, dependent: nil, optional: true
 
   has_one :notification, as: :activity, dependent: :destroy
 
@@ -35,12 +37,14 @@ class Favourite < ApplicationRecord
 
   def increment_cache_counters
     status&.increment_count!(:favourites_count)
+    status&.increment_emoji!(emoji)
   end
 
   def decrement_cache_counters
     return if association(:status).loaded? && status.marked_for_destruction?
 
     status&.decrement_count!(:favourites_count)
+    status&.decrement_emoji!(emoji)
   end
 
   def invalidate_cleanup_info

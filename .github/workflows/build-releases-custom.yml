@@ -1,0 +1,21 @@
+name: Build container release customized images
+on:
+  push:
+    tags:
+      - '*genya0407*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-image:
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      platforms: linux/arm64
+      use_native_arm64_builder: false
+      push_to_images: ghcr.io/genya0407/mastodon
+      # Do not use cache when building releases, so apt update is always ran and the release always contain the latest packages
+      cache: true
+    secrets: inherit

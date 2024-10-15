@@ -7,7 +7,7 @@ class REST::NotificationSerializer < ActiveModel::Serializer
   attribute :filtered, if: :filtered?
 
   belongs_to :from_account, key: :account, serializer: REST::AccountSerializer
-  belongs_to :target_status, key: :status, if: :status_type?, serializer: REST::StatusSerializer
+  belongs_to :target_status, key: :status, if: :status_type?, serializer: REST::ReactedStatusSerializer
   belongs_to :report, if: :report_type?, serializer: REST::ReportSerializer
   belongs_to :account_relationship_severance_event, key: :event, if: :relationship_severance_event?, serializer: REST::AccountRelationshipSeveranceEventSerializer
   belongs_to :account_warning, key: :moderation_warning, if: :moderation_warning_event?, serializer: REST::AccountWarningSerializer

@@ -16,6 +16,25 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def create_status
     return reject_payload! if unsupported_object_type? || non_matching_uri_hosts?(@account.uri, object_uri) || tombstone_exists? || !related_to_local_activity?
 
+    begin
+      quote_url = @json.dig('object', 'quoteUrl')
+      if quote_url
+        quoted_object = ActivityPub::Dereferencer.new(quote_url, permitted_origin: quote_url, signature_actor: signed_fetch_actor).object
+        quoted_account = ActivityPub::FetchRemoteAccountService.new.call(quoted_object['attributedTo'])
+        quote_json = {
+          'id' => "#{quoted_object['id']}/activity",
+          'actor' => quoted_object['attributedTo'],
+          'type' => 'Create',
+          'object' => quoted_object,
+        }
+        quoted_status = self.class.new(quote_json, quoted_account).perform
+        status_local_uri = "https://#{ENV.fetch('LOCAL_DOMAIN')}/@#{quoted_status.account.acct}/#{quoted_status.id}"
+        @json['object']['content'] = @json['object']['content'].gsub(%(href="#{quote_url}"), %(href="#{status_local_uri}"))
+      end
+    rescue => e
+      Rails.logger.warn("#{e}: #{JSON.generate(@json)}")
+    end
+
     with_redis_lock("create:#{object_uri}") do
       return if delete_arrived_first?(object_uri) || poll_vote?
 
@@ -53,7 +72,16 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     ApplicationRecord.transaction do
       @status = Status.create!(@params)
       attach_tags(@status)
+
+      if like_a_spam?
+        Rails.logger.warn { "Spam blocked: #{@status.account.acct.inspect} | #{@status.text.inspect}" }
+
+        @status = nil
+        raise ActiveRecord::Rollback
+      end
     end
+
+    return if @status.nil?
 
     resolve_thread(@status)
     resolve_unresolved_mentions(@status)
@@ -416,5 +444,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   rescue ActiveRecord::StaleObjectError
     poll.reload
     retry
+  end
+
+  SPAM_FILTER_MINIMUM_FOLLOWERS = ENV.fetch('SPAM_FILTER_MINIMUM_FOLLOWERS', 0).to_i
+  SPAM_FILTER_MINIMUM_CREATE_DAYS = ENV.fetch('SPAM_FILTER_MINIMUM_CREATE_DAYS', 1).to_i
+  SPAM_FILTER_MINIMUM_MENTIONS = ENV.fetch('SPAM_FILTER_MINIMUM_MENTIONS', 1).to_i
+  def like_a_spam?
+    !@status.account.local? &&
+      @status.account.followers_count <= SPAM_FILTER_MINIMUM_FOLLOWERS &&
+      @status.account.created_at > SPAM_FILTER_MINIMUM_CREATE_DAYS.day.ago &&
+      @mentions.count > SPAM_FILTER_MINIMUM_MENTIONS
   end
 end

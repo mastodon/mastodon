@@ -68,6 +68,7 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
   end
 
   def process_payload
+    Rails.logger.debug { { inbox_body: body }.to_json }
     ActivityPub::ProcessingWorker.perform_async(signed_request_actor.id, body, @account&.id, signed_request_actor.class.name)
   end
 end
