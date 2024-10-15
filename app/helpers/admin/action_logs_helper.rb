@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 module Admin::ActionLogsHelper
+  def action_log_description(action_log)
+    t "admin.action_logs.actions.#{action_log.action}_#{action_log.target_type.underscore}_html",
+      name: tag.span(action_log.account.username, class: :username),
+      target: tag.span(log_target(action_log), class: :target)
+  end
+
   def log_target(log)
     case log.target_type
     when 'Account'
