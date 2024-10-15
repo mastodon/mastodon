@@ -1,8 +1,8 @@
-name: Bug Report (server / API)
+name: Deployment troubleshooting
 description: |
-  There is a problem with the HTTP server, REST API, ActivityPub interaction, etc.
+  You are a server administrator and you are encountering a technical issue during installation, upgrade or operations of Mastodon.
 labels: ['status/to triage']
-type: 'Bug'
+type: 'Troubleshooting'
 body:
   - type: markdown
     attributes:
@@ -44,7 +44,7 @@ body:
       description: The address of the Mastodon instance where you experienced the issue
       placeholder: mastodon.social
     validations:
-      required: false
+      required: true
   - type: input
     attributes:
       label: Mastodon version
@@ -55,12 +55,20 @@ body:
       required: false
   - type: textarea
     attributes:
+      label: Environment
+      description: |
+        Details about your environment, like how Mastodon is deployed, if containers are used, version numbers, etc.
+      value: |
+        Please at least include those informations:
+        - Operating system: (eg. Ubuntu 22.04)
+        - Ruby version: (from `ruby --version`, eg. v3.3.5)
+        - Node.js version: (from `node --version`, eg. v20.18.0)
+    validations:
+      required: false
+  - type: textarea
+    attributes:
       label: Technical details
       description: |
         Any additional technical details you may have, like logs or error traces
-      value: |
-        If this is happening on your own Mastodon server, please fill out those:
-        - Ruby version: (from `ruby --version`, eg. v3.3.5)
-        - Node.js version: (from `node --version`, eg. v20.18.0)
     validations:
       required: false

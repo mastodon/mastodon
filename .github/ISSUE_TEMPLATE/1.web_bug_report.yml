@@ -1,6 +1,7 @@
 name: Bug Report (Web Interface)
-description: If you are using Mastodon's web interface and something is not working as expected
-labels: [bug, 'status/to triage', 'area/web interface']
+description: There is a problem using Mastodon's web interface.
+labels: ['status/to triage', 'area/web interface']
+type: Bug
 body:
   - type: markdown
     attributes:
@@ -47,8 +48,8 @@ body:
     attributes:
       label: Mastodon version
       description: |
-        This is displayed at the bottom of the About page, eg. `v4.1.2+nightly-20230627`
-      placeholder: v4.1.2
+        This is displayed at the bottom of the About page, eg. `v4.4.0-alpha.1`
+      placeholder: v4.3.0
     validations:
       required: true
   - type: input
@@ -56,7 +57,7 @@ body:
       label: Browser name and version
       description: |
         What browser are you using when getting this bug? Please specify the version as well.
-      placeholder: Firefox 105.0.3
+      placeholder: Firefox 131.0.0
     validations:
       required: true
   - type: input
@@ -64,7 +65,7 @@ body:
       label: Operating system
       description: |
         What OS are you running? Please specify the version as well.
-      placeholder: macOS 13.4.1
+      placeholder: macOS 15.0.1
     validations:
       required: true
   - type: textarea
