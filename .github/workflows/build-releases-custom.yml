@@ -3,33 +3,6 @@ on:
   push:
     tags:
       - '*genya0407*'
-  workflow_dispatch:
-    inputs:
-      platforms:
-        required: true
-        default: linux/arm64
-        type: string
-      cache:
-        type: boolean
-        default: false
-      use_native_arm64_builder:
-        type: boolean
-        default: false
-      push_to_images:
-        type: string
-        default: ghcr.io/genya0407/mastodon
-      version_prerelease:
-        type: string
-      version_metadata:
-        type: string
-      flavor:
-        type: string
-      tags:
-        type: string
-      labels:
-        type: string
-      file_to_build:
-        type: string
 
 jobs:
   build-image:
@@ -37,7 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Log in to the GitHub Container registry
-        if: contains(inputs.push_to_images, 'ghcr.io')
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -46,25 +18,14 @@ jobs:
 
       - uses: docker/metadata-action@v5
         id: meta
-        if: ${{ inputs.push_to_images != '' }}
         with:
-          images: ${{ inputs.push_to_images }}
-          flavor: ${{ inputs.flavor }}
+          images: ghcr.io/genya0407/mastodon
           tags: ${{ inputs.tags }}
-          labels: ${{ inputs.labels }}
 
       - uses: docker/build-push-action@v6
         with:
           context: .
-          file: ${{ inputs.file_to_build }}
-          build-args: |
-            MASTODON_VERSION_PRERELEASE=${{ inputs.version_prerelease }}
-            MASTODON_VERSION_METADATA=${{ inputs.version_metadata }}
-          platforms: ${{ inputs.platforms }}
+          platform: linux/arm64
           provenance: false
-          builder: ${{ steps.buildx.outputs.name || steps.buildx-native.outputs.name }}
-          push: ${{ inputs.push_to_images != '' }}
+          push: ghcr.io/genya0407/mastodon
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: ${{ inputs.cache && 'type=gha' || '' }}
-          cache-to: ${{ inputs.cache && 'type=gha,mode=max' || '' }}
