@@ -36,12 +36,8 @@ RSpec.describe ActivityPub::Activity::Block do
 
         expect(sender)
           .to be_blocking(recipient)
-        expect(sender_blocking_recipient.uri)
+        expect(sender.block_relationships.find_by(target_account: recipient).uri)
           .to eq 'foo'
-      end
-
-      def sender_blocking_recipient
-        sender.block_relationships.find_by(target_account: recipient)
       end
     end
 
