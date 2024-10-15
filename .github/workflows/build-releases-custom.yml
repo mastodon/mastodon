@@ -32,5 +32,5 @@ jobs:
           context: .
           platforms: linux/arm64
           provenance: false
-          push: ghcr.io/genya0407/mastodon
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
