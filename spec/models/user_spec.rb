@@ -387,23 +387,43 @@ RSpec.describe User do
     end
   end
 
-  describe 'token_for_app' do
+  describe '#token_for_app' do
     let(:user) { Fabricate(:user) }
-    let(:app) { Fabricate(:application, owner: user) }
 
-    it 'returns a token' do
-      expect(user.token_for_app(app)).to be_a(Doorkeeper::AccessToken)
+    context 'when user owns app but does not have tokens' do
+      let(:app) { Fabricate(:application, owner: user) }
+
+      it 'creates and returns a persisted token' do
+        expect { user.token_for_app(app) }
+          .to change(Doorkeeper::AccessToken.where(resource_owner_id: user.id, application: app), :count).by(1)
+      end
     end
 
-    it 'persists a token' do
-      t = user.token_for_app(app)
-      expect(user.token_for_app(app)).to eql(t)
+    context 'when user owns app and already has tokens' do
+      let(:app) { Fabricate(:application, owner: user) }
+      let!(:token) { Fabricate :access_token, application: app, resource_owner_id: user.id }
+
+      it 'returns a persisted token' do
+        expect(user.token_for_app(app))
+          .to be_a(Doorkeeper::AccessToken)
+          .and eq(token)
+      end
     end
 
-    it 'is nil if user does not own app' do
-      app.update!(owner: nil)
+    context 'when user does not own app' do
+      let(:app) { Fabricate(:application) }
 
-      expect(user.token_for_app(app)).to be_nil
+      it 'returns nil' do
+        expect(user.token_for_app(app))
+          .to be_nil
+      end
+    end
+
+    context 'when app is nil' do
+      it 'returns nil' do
+        expect(user.token_for_app(nil))
+          .to be_nil
+      end
     end
   end
 
