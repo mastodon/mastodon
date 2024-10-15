@@ -6,10 +6,14 @@ class AccountWarningPolicy < ApplicationPolicy
   end
 
   def appeal?
-    target? && record.created_at >= Appeal::MAX_STRIKE_AGE.ago
+    target? && eligible_for_appeal?
   end
 
   private
+
+  def eligible_for_appeal?
+    record.created_at >= Appeal::MAX_STRIKE_AGE.ago
+  end
 
   def target?
     record.target_account_id == current_account&.id
