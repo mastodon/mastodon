@@ -10,10 +10,16 @@ class UserRolePolicy < ApplicationPolicy
   end
 
   def update?
-    role.can?(:manage_roles) && (role.overrides?(record) || role.id == record.id)
+    role.can?(:manage_roles) && (role.overrides?(record) || self_editing?)
   end
 
   def destroy?
-    !record.everyone? && role.can?(:manage_roles) && role.overrides?(record) && role.id != record.id
+    !record.everyone? && role.can?(:manage_roles) && role.overrides?(record) && !self_editing?
+  end
+
+  private
+
+  def self_editing?
+    role.id == record.id
   end
 end
