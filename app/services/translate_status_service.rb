@@ -6,15 +6,16 @@ class TranslateStatusService < BaseService
   include ERB::Util
   include FormattingHelper
 
-  def call(status, target_language)
+  def call(status, source_language, target_language)
     @status = status
     @source_texts = source_texts
+    @source_language = source_language || @status.language.presence || 'und'
     @target_language = target_language
 
     raise Mastodon::NotPermittedError unless permitted?
 
-    status_translation = Rails.cache.fetch("v2:translations/#{@status.language}/#{@target_language}/#{content_hash}", expires_in: CACHE_TTL) do
-      translations = translation_backend.translate(@source_texts.values, @status.language, @target_language)
+    status_translation = Rails.cache.fetch("v3:translations/#{@source_language}/#{@target_language}/#{content_hash}", expires_in: CACHE_TTL) do
+      translations = translation_backend.translate(@source_texts.values, @source_language, @target_language)
       build_status_translation(translations)
     end
 
@@ -32,11 +33,11 @@ class TranslateStatusService < BaseService
   def permitted?
     return false unless @status.distributable? && TranslationService.configured?
 
-    languages[@status.language]&.include?(@target_language)
+    languages[@source_language]&.include?(@target_language)
   end
 
   def languages
-    Rails.cache.fetch('translation_service/languages', expires_in: 7.days, race_condition_ttl: 1.hour) { TranslationService.configured.languages }
+    Rails.cache.fetch('v2:translation_service/languages', expires_in: 7.days, race_condition_ttl: 1.hour) { TranslationService.configured.languages }
   end
 
   def content_hash
@@ -61,6 +62,7 @@ class TranslateStatusService < BaseService
 
   def build_status_translation(translations)
     status_translation = Translation.new(
+      source_language: @source_language,
       detected_source_language: translations.first&.detected_source_language,
       language: @target_language,
       provider: translations.first&.provider,
