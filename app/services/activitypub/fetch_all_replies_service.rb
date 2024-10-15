@@ -10,7 +10,7 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
     @allow_synchronous_requests = allow_synchronous_requests
     @filter_by_host = false
 
-    @items = collection_items(collection_or_uri, fetch_all: true)
+    @items = collection_items(collection_or_uri)
     @items = filtered_replies
     return if @items.nil?
 
