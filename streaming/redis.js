@@ -50,9 +50,9 @@ function getSentinelConfiguration(env, commonOptions) {
   return {
     db: redisDatabase,
     name: env.REDIS_SENTINEL_MASTER,
-    username: env.REDIS_USERNAME,
+    username: env.REDIS_USER,
     password: env.REDIS_PASSWORD,
-    sentinelUsername: env.REDIS_SENTINEL_USERNAME ?? env.REDIS_USERNAME,
+    sentinelUsername: env.REDIS_SENTINEL_USERNAME ?? env.REDIS_USER,
     sentinelPassword: env.REDIS_SENTINEL_PASSWORD ?? env.REDIS_PASSWORD,
     sentinels,
     ...commonOptions,
@@ -104,7 +104,7 @@ export function configFromEnv(env) {
     host: env.REDIS_HOST ?? '127.0.0.1',
     port: redisPort,
     db: redisDatabase,
-    username: env.REDIS_USERNAME,
+    username: env.REDIS_USER,
     password: env.REDIS_PASSWORD,
     ...commonOptions,
   };
