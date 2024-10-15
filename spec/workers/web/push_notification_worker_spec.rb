@@ -37,15 +37,29 @@ RSpec.describe Web::PushNotificationWorker do
 
       allow(Webpush::Encryption).to receive(:encrypt).and_return(payload)
       allow(JWT).to receive(:encode).and_return('jwt.encoded.payload')
-
-      stub_request(:post, endpoint).to_return(status: 201, body: '')
     end
 
     it 'calls the relevant service with the correct headers' do
+      stub_request(:post, endpoint).to_return(status: 201, body: '')
+
       subject.perform(subscription.id, notification.id)
 
       expect(web_push_endpoint_request)
         .to have_been_made
+    end
+
+    it 'raises when request fails' do
+      stub_request(:post, endpoint).to_return(status: 500)
+
+      expect { subject.perform(subscription.id, notification.id) }.to raise_error Mastodon::UnexpectedResponseError
+    end
+
+    it 'destroys the subscription if it returns 404' do
+      stub_request(:post, endpoint).to_return(status: 404)
+
+      subject.perform(subscription.id, notification.id)
+
+      expect { Web::PushSubscription.find(subscription.id) }.to raise_error ActiveRecord::RecordNotFound
     end
 
     def web_push_endpoint_request
