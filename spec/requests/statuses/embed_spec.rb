@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Status embed' do
   describe 'GET /users/:account_username/statuses/:id/embed' do
-    subject { get embed_account_status_path(account.username, status) }
+    subject { get "/users/#{account.username}/statuses/#{status.id}/embed" }
 
     let(:account) { Fabricate(:account) }
     let(:status)  { Fabricate(:status, account: account) }
