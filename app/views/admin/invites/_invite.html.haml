@@ -17,13 +17,15 @@
       = " / #{invite.max_uses}" unless invite.max_uses.nil?
     %td
       - if invite.expires_at.nil?
-        ∞
+        %span{ title: t('invites.expires_in_prompt') }
+          = invite_never_expires
       - else
         %time.formatted{ datetime: invite.expires_at.iso8601, title: l(invite.expires_at) }
           = l invite.expires_at
   - else
     %td{ colspan: 2 }
-      = t('invites.expired')
+      %span{ title: l(invite.expires_at) }
+        = t('invites.expired')
 
   %td
     - if invite.valid_for_use? && policy(invite).destroy?
