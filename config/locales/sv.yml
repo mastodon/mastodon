@@ -899,10 +899,15 @@ sv:
     trends:
       allow: Tillåt
       approved: Godkänd
+      confirm_disallow: Är du säker på att du vill förbjuda valda taggar?
       disallow: Neka
       links:
         allow: Tillåt länk
         allow_provider: Tillåt utgivare
+        confirm_allow: Är du säker på att du vill tillåta valda länkar?
+        confirm_allow_provider: Är du säker på att du vill tillåta valda leverantörer?
+        confirm_disallow: Är du säker på att du vill förbjuda valda länkar?
+        confirm_disallow_provider: Är du säker på att du vill förbjuda valda leverantörer?
         description_html: Detta är länkar som för närvarande delas mycket av konton som din server ser inlägg från. Det kan hjälpa dina användare att ta reda på vad som händer i världen. Inga länkar visas offentligt tills du godkänner utgivaren. Du kan också tillåta eller avvisa enskilda länkar.
         disallow: Blockera länk
         disallow_provider: Blockera utgivare
@@ -926,6 +931,10 @@ sv:
       statuses:
         allow: Tillåt inlägg
         allow_account: Godkänn författare
+        confirm_allow: Är du säker på att du vill tillåta valda statusar?
+        confirm_allow_account: Är du säker på att du vill tillåta valda konton?
+        confirm_disallow: Är du säker på att du vill förbjuda valda statusar?
+        confirm_disallow_account: Är du säker på att du vill förbjuda valda konton?
         description_html: Detta är inlägg som din server vet om som för närvarande delas och favoriseras mycket just nu. Det kan hjälpa dina nya och återvändande användare att hitta fler människor att följa. Inga inlägg visas offentligt förrän du godkänner författaren, och författaren tillåter att deras konto föreslås till andra. Du kan också tillåta eller avvisa enskilda inlägg.
         disallow: Tillåt inte inlägg
         disallow_account: Tillåt inte författare
@@ -1130,6 +1139,7 @@ sv:
       title: Låt oss få igång dig på %{domain}.
     status:
       account_status: Kontostatus
+      confirming: Väntar på att e-postbekräftelsen ska slutföras.
       functional: Ditt konto fungerar som det ska.
       pending: Din ansökan inväntar granskning. Detta kan ta tid. Du kommer att få ett e-postmeddelande om din ansökan har godkänts.
       redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
