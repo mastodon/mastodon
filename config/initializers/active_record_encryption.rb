@@ -10,7 +10,9 @@
     ENV[key] = SecureRandom.hex(64)
   end
 
-  value = ENV.fetch(key) do
+  value = ENV.fetch(key, '')
+
+  if value.blank?
     abort <<~MESSAGE
 
       Mastodon now requires that these variables are set:
