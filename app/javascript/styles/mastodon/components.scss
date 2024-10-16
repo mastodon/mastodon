@@ -11123,11 +11123,25 @@ noscript {
 
   p {
     margin-bottom: 8px;
+    font-weight: 500;
   }
 
   .link-button {
     font-size: inherit;
     line-height: inherit;
     font-weight: 500;
+  }
+
+  &--filter {
+    color: $darker-text-color;
+
+    p {
+      font-weight: normal;
+    }
+
+    .filter-name {
+      font-weight: 500;
+      color: $secondary-text-color;
+    }
   }
 }
