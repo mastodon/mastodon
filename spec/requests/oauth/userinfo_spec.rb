@@ -5,19 +5,13 @@ require 'rails_helper'
 RSpec.describe 'Oauth Userinfo Endpoint' do
   include RoutingHelper
 
-  describe 'GET /oauth/userinfo' do
-    subject do
-      get '/oauth/userinfo', headers: headers
-    end
+  let(:user)     { Fabricate(:user) }
+  let(:account)  { user.account }
+  let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:scopes)   { 'profile' }
+  let(:headers)  { { 'Authorization' => "Bearer #{token.token}" } }
 
-    let(:user)     { Fabricate(:user) }
-    let(:account)  { user.account }
-    let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-    let(:scopes)   { 'profile' }
-    let(:headers)  { { 'Authorization' => "Bearer #{token.token}" } }
-
-    it_behaves_like 'forbidden for wrong scope', 'read:accounts'
-
+  shared_examples 'returns successfully' do
     it 'returns http success' do
       subject
 
@@ -32,5 +26,26 @@ RSpec.describe 'Oauth Userinfo Endpoint' do
         picture: full_asset_url(account.unavailable? ? account.avatar.default_url : account.avatar_original_url),
       })
     end
+  end
+
+  describe 'GET /oauth/userinfo' do
+    subject do
+      get '/oauth/userinfo', headers: headers
+    end
+
+    it_behaves_like 'forbidden for wrong scope', 'read:accounts'
+    it_behaves_like 'returns successfully'
+  end
+
+  # As this is borrowed from OpenID, the specification says we must also support
+  # POST for the userinfo endpoint:
+  # https://openid.net/specs/openid-connect-core-1_0.html#UserInfo
+  describe 'POST /oauth/userinfo' do
+    subject do
+      post '/oauth/userinfo', headers: headers
+    end
+
+    it_behaves_like 'forbidden for wrong scope', 'read:accounts'
+    it_behaves_like 'returns successfully'
   end
 end
