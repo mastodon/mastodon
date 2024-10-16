@@ -120,8 +120,25 @@
         margin: 0 -8px;
         padding-top: 12px;
     }
-
     .status__action-bar__button-wrapper {
         flex-grow: 0;
+    }
+    .notification-ungrouped, .notification-group {
+        padding: 4px 4px 2px 4px;
+    }
+    .notification-ungrouped .status__content {
+        margin-inline-start: 0;
+        width: 100%;
+    }
+    .notification-ungrouped .status__action-bar {
+        margin-inline-start: 0;
+        width: 100%;
+    }
+    .notification-group__icon {
+        width: 24px;   
+    }
+    .notification-ungrouped__header {
+        margin-bottom: 4px;
+        padding-inline-start: 0;
     }
 }
