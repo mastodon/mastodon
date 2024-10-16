@@ -11,7 +11,7 @@ export const StatusBanner: React.FC<{
   expanded?: boolean;
   onClick?: () => void;
 }> = ({ children, variant, expanded, onClick }) => (
-  <div
+  <label
     className={
       variant === BannerVariant.Warning
         ? 'content-warning'
@@ -33,5 +33,5 @@ export const StatusBanner: React.FC<{
         />
       )}
     </button>
-  </div>
+  </label>
 );
