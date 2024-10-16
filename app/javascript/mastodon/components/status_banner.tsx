@@ -26,6 +26,11 @@ export const StatusBanner: React.FC<{
           id='content_warning.hide'
           defaultMessage='Hide post'
         />
+      ) : variant === BannerVariant.Warning ? (
+        <FormattedMessage
+          id='content_warning.show_more'
+          defaultMessage='Show more'
+        />
       ) : (
         <FormattedMessage
           id='content_warning.show'
