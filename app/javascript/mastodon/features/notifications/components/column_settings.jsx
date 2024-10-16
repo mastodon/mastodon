@@ -38,6 +38,7 @@ class ColumnSettings extends PureComponent {
     const alertStr = <FormattedMessage id='notifications.column_settings.alert' defaultMessage='Desktop notifications' />;
     const showStr = <FormattedMessage id='notifications.column_settings.show' defaultMessage='Show in column' />;
     const soundStr = <FormattedMessage id='notifications.column_settings.sound' defaultMessage='Play sound' />;
+    const groupStr = <FormattedMessage id='notifications.column_settings.group' defaultMessage='Group' />;
 
     const showPushSettings = pushSettings.get('browserSupport') && pushSettings.get('isSubscribed');
     const pushStr = showPushSettings && <FormattedMessage id='notifications.column_settings.push' defaultMessage='Push notifications' />;
@@ -94,6 +95,7 @@ class ColumnSettings extends PureComponent {
             {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'follow']} onChange={this.onPushChange} label={pushStr} />}
             <SettingToggle prefix='notifications' settings={settings} settingPath={['shows', 'follow']} onChange={onChange} label={showStr} />
             <SettingToggle prefix='notifications' settings={settings} settingPath={['sounds', 'follow']} onChange={onChange} label={soundStr} />
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['group', 'follow']} onChange={onChange} label={groupStr} />
           </div>
         </section>
 

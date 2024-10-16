@@ -78,6 +78,10 @@ const initialState = ImmutableMap({
       'admin.sign_up': true,
       'admin.report': true,
     }),
+
+    group: ImmutableMap({
+      follow: true
+    }),
   }),
 
   firehose: ImmutableMap({
