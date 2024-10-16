@@ -8,7 +8,7 @@ export const ContentWarning: React.FC<{
   <StatusBanner
     expanded={expanded}
     onClick={onClick}
-    variant={BannerVariant.Yellow}
+    variant={BannerVariant.Warning}
   >
     <p dangerouslySetInnerHTML={{ __html: text }} />
   </StatusBanner>
