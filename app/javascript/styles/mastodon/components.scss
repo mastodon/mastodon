@@ -11109,6 +11109,7 @@ noscript {
 }
 
 .content-warning {
+  display: block;
   box-sizing: border-box;
   background: rgba($ui-highlight-color, 0.05);
   color: $secondary-text-color;
@@ -11118,6 +11119,7 @@ noscript {
   position: relative;
   font-size: 15px;
   line-height: 22px;
+  cursor: pointer;
 
   p {
     margin-bottom: 8px;
