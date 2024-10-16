@@ -10,7 +10,7 @@ export const FilterWarning: React.FC<{
   <StatusBanner
     expanded={expanded}
     onClick={onClick}
-    variant={BannerVariant.Blue}
+    variant={BannerVariant.Filter}
   >
     <p>
       <FormattedMessage
