@@ -64,6 +64,10 @@ Rails.application.routes.draw do
                 tokens: 'oauth/tokens'
   end
 
+  namespace :oauth do
+    get 'userinfo', to: 'userinfo#show', defaults: { format: 'json' }
+  end
+
   scope path: '.well-known' do
     scope module: :well_known do
       get 'oauth-authorization-server', to: 'oauth_metadata#show', as: :oauth_metadata, defaults: { format: 'json' }
