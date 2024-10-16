@@ -19,6 +19,7 @@ import type { StatusLike } from 'mastodon/components/hashtag_bar';
 import { getHashtagBarForStatus } from 'mastodon/components/hashtag_bar';
 import { Icon } from 'mastodon/components/icon';
 import { IconLogo } from 'mastodon/components/logo';
+import Permalink from 'mastodon/components/permalink';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
 
@@ -311,8 +312,9 @@ export const DetailedStatus: React.FC<{
             />
           </div>
         )}
-        <a
+        <Permalink
           href={status.getIn(['account', 'url'])}
+          to={`/@${status.getIn(['account', 'acct'])}`}
           data-hover-card-account={status.getIn(['account', 'id'])}
           className='detailed-status__display-name'
         >
@@ -326,7 +328,7 @@ export const DetailedStatus: React.FC<{
               <IconLogo />
             </>
           )}
-        </a>
+        </Permalink>
 
         {status.get('spoiler_text').length > 0 && (
           <ContentWarning
