@@ -8,4 +8,8 @@ module InvitesHelper
   def invites_expires_options
     [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week]
   end
+
+  def invite_never_expires
+    '∞'
+  end
 end
