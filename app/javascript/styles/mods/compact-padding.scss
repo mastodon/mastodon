@@ -42,20 +42,6 @@
     flex-grow: 0;
   }
 
-  .notification-ungrouped, .notification-group {
-    padding: 8px;
-  }
-
-  .notification-ungrouped .status__content {
-      margin-inline-start: 0;
-      width: 100%;
-  }
-
-  .notification-ungrouped .status__action-bar {
-      margin-inline-start: 0;
-      width: 100%;
-  }
-
   .notification-group__icon {
       width: 24px;   
   }
@@ -64,4 +50,27 @@
       margin-bottom: 4px;
       padding-inline-start: 0;
   }
+
+  .notification-ungrouped, .notification-group {
+    padding: 8px;
+  }
+
+  .notification-ungrouped {
+    .attachment-list,
+    .audio-player,
+    .content-warning,
+    .filter-warning,
+    .hashtag-bar,
+    .media-gallery,
+    .more-from-author,
+    .picture-in-picture-placeholder,
+    .status-card,
+    .status__action-bar,
+    .status__content,
+    .video-player {
+        margin-inline-start: 0;
+        width: 100%;
+    }
+  }
+
 }
