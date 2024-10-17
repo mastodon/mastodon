@@ -8,6 +8,6 @@ class REST::CredentialApplicationSerializer < REST::ApplicationSerializer
   end
 
   def client_secret
-    object.secret
+    object.secret if object.confidential?
   end
 end
