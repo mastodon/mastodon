@@ -19,6 +19,11 @@ import { useAppSelector, useAppDispatch } from 'mastodon/store';
 import { EmbeddedStatusContent } from './embedded_status_content';
 
 export type Mention = RecordOf<{ url: string; acct: string }>;
+export type MediaAttachment = RecordOf<{
+  id: string;
+  type: string;
+  description?: string;
+}>;
 
 export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   statusId,
@@ -114,9 +119,14 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   const language = status.get('language') as string;
   const mentions = status.get('mentions') as ImmutableList<Mention>;
   const expanded = !status.get('hidden') || !contentWarning;
-  const mediaAttachmentsSize = (
-    status.get('media_attachments') as ImmutableList<unknown>
-  ).size;
+  const mediaAttachments = status.get(
+    'media_attachments',
+  ) as ImmutableList<MediaAttachment>;
+  const mediaAttachmentsWithDescription = mediaAttachments.filter(
+    (attachment) => !!attachment.get('description'),
+  );
+  const uncaptionedMediaCount =
+    mediaAttachments.size - mediaAttachmentsWithDescription.size;
 
   return (
     <div
@@ -150,26 +160,46 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         />
       )}
 
-      {expanded && (poll || mediaAttachmentsSize > 0) && (
-        <div className='notification-group__embedded-status__attachments reply-indicator__attachments'>
-          {!!poll && (
-            <>
-              <Icon icon={BarChart4BarsIcon} id='bar-chart-4-bars' />
-              <FormattedMessage
-                id='reply_indicator.poll'
-                defaultMessage='Poll'
-              />
-            </>
-          )}
-          {mediaAttachmentsSize > 0 && (
-            <>
-              <Icon icon={PhotoLibraryIcon} id='photo-library' />
-              <FormattedMessage
-                id='reply_indicator.attachments'
-                defaultMessage='{count, plural, one {# attachment} other {# attachments}}'
-                values={{ count: mediaAttachmentsSize }}
-              />
-            </>
+      {expanded && !!poll && (
+        <div
+          className='notification-group__embedded-status__attachments reply-indicator__attachments'
+          key='poll-indicator'
+        >
+          <Icon icon={BarChart4BarsIcon} id='bar-chart-4-bars' />
+          <FormattedMessage id='reply_indicator.poll' defaultMessage='Poll' />
+        </div>
+      )}
+
+      {expanded &&
+        mediaAttachmentsWithDescription.size > 0 &&
+        mediaAttachmentsWithDescription.map((attachment) => (
+          <div
+            className='notification-group__embedded-status__attachments reply-indicator__attachments'
+            key={`media-description-${attachment.get('id')}}`}
+          >
+            <Icon icon={PhotoLibraryIcon} id='photo-library' />
+            <span>{attachment.get('description')}</span>
+          </div>
+        ))}
+
+      {expanded && uncaptionedMediaCount > 0 && (
+        <div
+          className='notification-group__embedded-status__attachments reply-indicator__attachments'
+          key='uncaptioned-media-indicator'
+        >
+          <Icon icon={PhotoLibraryIcon} id='photo-library' />
+          {mediaAttachmentsWithDescription.size > 0 ? (
+            <FormattedMessage
+              id='reply_indicator.other_attachments'
+              defaultMessage='{count, plural, one {# other attachment} other {# other attachments}}'
+              values={{ count: uncaptionedMediaCount }}
+            />
+          ) : (
+            <FormattedMessage
+              id='reply_indicator.attachments'
+              defaultMessage='{count, plural, one {# attachment} other {# attachments}}'
+              values={{ count: uncaptionedMediaCount }}
+            />
           )}
         </div>
       )}
