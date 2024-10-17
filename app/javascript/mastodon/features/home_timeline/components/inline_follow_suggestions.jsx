@@ -129,8 +129,13 @@ export const InlineFollowSuggestions = ({ hidden }) => {
       return;
     }
 
-    setCanScrollLeft(bodyRef.current.scrollLeft > 0);
-    setCanScrollRight((bodyRef.current.scrollLeft + bodyRef.current.clientWidth) < bodyRef.current.scrollWidth);
+    if (getComputedStyle(bodyRef.current).direction === 'rtl') {
+      setCanScrollLeft((bodyRef.current.clientWidth - bodyRef.current.scrollLeft) < bodyRef.current.scrollWidth);
+      setCanScrollRight(bodyRef.current.scrollLeft < 0);
+    } else {
+      setCanScrollLeft(bodyRef.current.scrollLeft > 0);
+      setCanScrollRight((bodyRef.current.scrollLeft + bodyRef.current.clientWidth) < bodyRef.current.scrollWidth);
+    }
   }, [setCanScrollRight, setCanScrollLeft, bodyRef, suggestions]);
 
   const handleLeftNav = useCallback(() => {
@@ -146,8 +151,13 @@ export const InlineFollowSuggestions = ({ hidden }) => {
       return;
     }
 
-    setCanScrollLeft(bodyRef.current.scrollLeft > 0);
-    setCanScrollRight((bodyRef.current.scrollLeft + bodyRef.current.clientWidth) < bodyRef.current.scrollWidth);
+    if (getComputedStyle(bodyRef.current).direction === 'rtl') {
+      setCanScrollLeft((bodyRef.current.clientWidth - bodyRef.current.scrollLeft) < bodyRef.current.scrollWidth);
+      setCanScrollRight(bodyRef.current.scrollLeft < 0);
+    } else {
+      setCanScrollLeft(bodyRef.current.scrollLeft > 0);
+      setCanScrollRight((bodyRef.current.scrollLeft + bodyRef.current.clientWidth) < bodyRef.current.scrollWidth);
+    }
   }, [setCanScrollRight, setCanScrollLeft, bodyRef]);
 
   const handleDismiss = useCallback(() => {

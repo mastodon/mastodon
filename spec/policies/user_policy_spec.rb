@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pundit/rspec'
 
 RSpec.describe UserPolicy do
   subject { described_class }
@@ -109,6 +108,44 @@ RSpec.describe UserPolicy do
     context 'with !staff?' do
       it 'denies' do
         expect(subject).to_not permit(john, User)
+      end
+    end
+  end
+
+  permissions :approve?, :reject? do
+    context 'when admin' do
+      context 'when user is approved' do
+        it { is_expected.to_not permit(admin, User.new(approved: true)) }
+      end
+
+      context 'when user is not approved' do
+        it { is_expected.to permit(admin, User.new(approved: false)) }
+      end
+    end
+
+    context 'when not admin' do
+      it { is_expected.to_not permit(john, User.new) }
+    end
+  end
+
+  permissions :change_role? do
+    context 'when not admin' do
+      it { is_expected.to_not permit(john, User.new) }
+    end
+
+    context 'when admin' do
+      let(:user) { User.new(role: role) }
+
+      context 'when role of admin overrides user role' do
+        let(:role) { UserRole.new(position: admin.user.role.position - 10, id: 123) }
+
+        it { is_expected.to permit(admin, user) }
+      end
+
+      context 'when role of admin does not override user role' do
+        let(:role) { UserRole.new(position: admin.user.role.position + 10, id: 123) }
+
+        it { is_expected.to_not permit(admin, user) }
       end
     end
   end

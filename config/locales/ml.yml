@@ -4,18 +4,25 @@ ml:
     contact_missing: സജ്ജമാക്കിയിട്ടില്ല
     contact_unavailable: ലഭ്യമല്ല
   accounts:
+    followers:
+      one: പിന്തുടരാളി
+      other: പിന്തുടരുന്നവർ
     following: പിന്തുടരുന്നു
     last_active: അവസാനം സജീവമായിരുന്നത്
     link_verified_on: സന്ധിയുടെ ഉടമസ്ഥാവസ്‌കാശം %{date} ൽ പരിശോധിക്കപ്പെട്ടു
     nothing_here: ഇവിടെ ഒന്നുമില്ല!
     posts_tab_heading: ടൂട്ടുകൾ
   admin:
+    account_moderation_notes:
+      create: ഒരു കുറിപ്പു് വിടുക
     accounts:
+      add_email_domain_block: ഈ ഇ-തപാൽ മേഖല തടസ്സപെടുത്തുക
       approve: അംഗീകരിക്കുക
       are_you_sure: നിങ്ങൾക്ക് ഉറപ്പാണോ?
       avatar: അവതാർ
       by_domain: മേഖല
       change_email:
+        changed_msg: ഇ-തപാൽ ശരിയായിട്ടു് മാറ്റീ!
         current_email: ഇപ്പോഴത്തെ ഇലക്ട്രോണിക് കത്തിന്റെ മേൽവിലാസം
         label: മാറിയ ഇലക്ട്രോണിക് കത്തിന്റെ മേൽവിലാസം
         new_email: പുതിയ ഇലക്ട്രോണിക് കത്ത്
@@ -24,6 +31,7 @@ ml:
       confirm: നിജപ്പെടുത്തുക
       confirmed: നിജപ്പെടുത്തി
       confirming: സ്ഥിരീകരിക്കുന്നു
+      custom: സ്വന്തമായ ഭേദഗതി
       delete: ഡാറ്റ ഇല്ലാതാക്കുക
       deleted: മായിച്ചു
       demote: തരം താഴ്ത്തുക
@@ -34,7 +42,9 @@ ml:
       domain: മേഖല
       edit: തിരുത്തുക
       email: ഇമെയിൽ
+      email_status: ഇ-തപാൽ അവസ്ഥ
       header: തലക്കെട്ട്
+      inbox_url: ഇ-തപാല്പെട്ടി വിലാസം
       joined: ജോയിൻ ചെയ്‌തിരിക്കുന്നു
       location:
         all: എല്ലാം
@@ -46,9 +56,18 @@ ml:
         all: എല്ലാം
         suspended: താൽക്കാലികമായി നിർത്തി
         title: മധ്യസ്ഥന്‍
+      protocol: പെരുമാറ്റച്ചട്ടം
+      public: പൊതുവു്
+      remove_header: തലക്കെട്ടു് മാറ്റുക
+      resend_confirmation:
+        send: ഉറപ്പിക്കൽ-വിലാസം വീണ്ടും അയക്കുക
       reset: പുനഃക്രമീകരിക്കുക
       reset_password: പാസ്‌വേഡ് പുനഃക്രമീകരിക്കുക
       search: തിരയുക
+      security: സുരക്ഷ
+      security_measures:
+        only_password: രഹസ്യവാക്ക് മാത്രം
+      silence: അതിർ
       title: അക്കൗണ്ടുകൾ
       unconfirmed_email: സ്ഥിരീകരിക്കാത്ത ഇമെയിൽ
       username: ഉപയോക്തൃനാമം
