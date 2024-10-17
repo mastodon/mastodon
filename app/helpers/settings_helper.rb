@@ -51,7 +51,7 @@ module SettingsHelper
 
   def post_link_to_featured_tag(tag)
     link_to(
-      "##{tag.display_name}",
+      tag.formatted_name,
       settings_featured_tags_path(featured_tag: { name: tag.name }),
       method: :post
     )

@@ -115,14 +115,22 @@ RSpec.describe Tag do
   end
 
   describe '#formatted_name' do
-    it 'returns name with a proceeding hash symbol' do
-      tag = Fabricate(:tag, name: 'foo')
-      expect(tag.formatted_name).to eq '#foo'
+    context 'when display name is not present' do
+      let(:tag) { Fabricate.build :tag, name: 'foo' }
+
+      it 'returns name with a preceding hash symbol' do
+        expect(tag.formatted_name)
+          .to eq '#foo'
+      end
     end
 
-    it 'returns display_name with a proceeding hash symbol, if display name present' do
-      tag = Fabricate(:tag, name: 'foobar', display_name: 'FooBar')
-      expect(tag.formatted_name).to eq '#FooBar'
+    context 'when display name is present' do
+      let(:tag) { Fabricate.build :tag, name: 'foobar', display_name: 'FooBar' }
+
+      it 'returns display_name with a preceding hash symbol' do
+        expect(tag.formatted_name)
+          .to eq '#FooBar'
+      end
     end
   end
 

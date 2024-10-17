@@ -12,7 +12,7 @@ class ActivityPub::HashtagSerializer < ActivityPub::Serializer
   end
 
   def name
-    "##{object.display_name}"
+    object.formatted_name
   end
 
   def href

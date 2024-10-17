@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSS::Builder.build do |doc|
-  doc.title("##{@tag.display_name}")
+  doc.title(@tag.formatted_name)
   doc.description(I18n.t('rss.descriptions.tag', hashtag: @tag.display_name))
   doc.link(tag_url(@tag))
   doc.last_build_date(@statuses.first.created_at) if @statuses.any?

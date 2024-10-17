@@ -182,7 +182,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     end
 
     def name
-      "##{object.name}"
+      object.formatted_name
     end
   end
 

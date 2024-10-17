@@ -30,6 +30,8 @@ class FeaturedTag < ApplicationRecord
 
   scope :by_name, ->(name) { joins(:tag).where(tag: { name: HashtagNormalizer.new.normalize(name) }) }
 
+  delegate :formatted_name, to: :tag
+
   LIMIT = 10
 
   def sign?
