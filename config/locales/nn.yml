@@ -690,10 +690,10 @@ nn:
         moderation: Moderering
         special: Særskild
       delete: Slett
-      description_html: Med <strong>brukarrollar</strong> kan du kontrollera kva funksjonar og område av Mastodon brukarane dine har tilgong til.
+      description_html: Med <strong>brukarroller</strong> kan du kontrollera kva funksjonar og område av Mastodon brukarane dine har tilgang til.
       edit: Endr rollen '%{name}'
       everyone: Standard-tillatelser
-      everyone_full_description_html: Dette er <strong>grunnrollen</strong> som påverkar <strong>alle brukarar</strong>, jamvel dei utan ei tilsett rolle. Alle andre rollar arvar tillatingar frå denne.
+      everyone_full_description_html: Dette er <strong>grunnrolla</strong> som påverkar <strong>alle brukarar</strong>, jamvel dei utan ei tildelt rolle. Alle andre rollar arvar tilgangsløve frå denne.
       permissions_count:
         one: "%{count} tillatelse"
         other: "%{count} tillatelser"
@@ -719,7 +719,7 @@ nn:
         manage_reports: Handtere rapporteringar
         manage_reports_description: Let brukarar gjennomgå rapportar og utføre modereringshandlingar i samsvar med desse
         manage_roles: Handsam roller
-        manage_roles_description: Tillet at brukarar handsamar og tilset rollar under deira eiga
+        manage_roles_description: Tillet at brukarar handsamar og tildeler roller som er lågare enn dera eiga
         manage_rules: Handtere reglar
         manage_rules_description: Let brukarar endre reglane for tenaren
         manage_settings: Handtere innstillingar
@@ -738,7 +738,7 @@ nn:
         view_dashboard_description: Gir brukere tilgang til dashbordet og ulike metrikker
         view_devops: DevOps
         view_devops_description: Gir brukere tilgang til Sidekiq og pgHero-dashbord
-      title: Rollar
+      title: Roller
     rules:
       add_new: Legg til regel
       delete: Slett
@@ -1417,7 +1417,7 @@ nn:
       one: 1 bruk
       other: "%{count} bruk"
     max_uses_prompt: Inga grense
-    prompt: Generer og del lenkjer med andre for å gje tilgong til denne tenaren
+    prompt: Generer og del lenkjer med andre for å gje tilgang til denne tenaren
     table:
       expires_at: Vert ugyldig
       uses: Bruk
