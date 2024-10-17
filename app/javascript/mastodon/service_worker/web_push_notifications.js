@@ -1,3 +1,7 @@
+/// <reference no-default-lib="true"/>
+/// <reference lib="esnext" />
+/// <reference lib="webworker" />
+
 import { IntlMessageFormat } from 'intl-messageformat';
 
 import { unescape } from 'lodash';
