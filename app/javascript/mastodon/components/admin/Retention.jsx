@@ -92,7 +92,9 @@ export default class Retention extends PureComponent {
               </td>
 
               {data[0].data.slice(1).map((retention, i) => {
-                const average = data.reduce((sum, cohort, k) => cohort.data[i + 1] ? sum + (cohort.data[i + 1].rate - sum)/(k + 1) : sum, 0);
+                const sum_of_active = data.reduce((sum, cohort) => cohort.data[i + 1] ? sum + (cohort.data[i + 1].value * 1) : sum, 0);
+                const sum_of_new = data.reduce((sum, cohort) => cohort.data[0].value ? sum + (cohort.data[0].value * 1) : sum, 0);
+                const average = sum_of_active / sum_of_new;
 
                 return (
                   <td key={retention.date}>
