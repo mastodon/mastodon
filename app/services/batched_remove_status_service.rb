@@ -10,7 +10,7 @@ class BatchedRemoveStatusService < BaseService
   def call(statuses, **options)
     ActiveRecord::Associations::Preloader.new(
       records: statuses,
-      associations: options[:skip_side_effects] ? :reblogs : [:account, :tags, reblogs: :account]
+      associations: options[:skip_side_effects] ? :reblogs : [:account, :tags, { reblogs: :account }]
     ).call
 
     statuses_and_reblogs = statuses.flat_map { |status| [status] + status.reblogs }
