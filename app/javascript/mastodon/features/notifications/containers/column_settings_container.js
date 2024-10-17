@@ -56,11 +56,12 @@ const mapDispatchToProps = (dispatch) => ({
       } else {
         dispatch(changeSetting(['notifications', ...path], checked));
       }
-    } else if(path[0] === 'groupingBeta') {
-      dispatch(changeSetting(['notifications', ...path], checked));
-      dispatch(initializeNotifications());
     } else {
       dispatch(changeSetting(['notifications', ...path], checked));
+
+      if(path[0] === 'group' && path[1] === 'follow') {
+        dispatch(initializeNotifications());
+      }
     }
   },
 
