@@ -189,6 +189,10 @@ group :development do
 
   # Validate missing i18n keys
   gem 'i18n-tasks', '~> 1.0', require: false
+
+  # Ruby Language Server
+  gem 'ruby-lsp', '~> 0.20.1'
+  gem 'ruby-lsp-rails', '~> 0.3.19'
 end
 
 group :development, :test do
