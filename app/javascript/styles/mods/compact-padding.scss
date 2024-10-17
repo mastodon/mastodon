@@ -48,12 +48,13 @@
   }
 
   .notification-group__icon {
-      width: 24px;   
+    width: 24px;   
   }
 
   .notification-ungrouped__header {
-      margin-bottom: 4px;
-      padding-inline-start: 0;
+    margin-bottom: 0;
+    padding-inline-start: 0;
+    padding: 0 12px;
   }
 
   .notification-ungrouped, .notification-group {
@@ -73,8 +74,11 @@
     .status__action-bar,
     .status__content,
     .video-player {
-        margin-inline-start: 0;
-        width: 100%;
+      margin-inline-start: 0;
+      width: 100%;
+    }
+    .status {
+      padding: 6px 8px;
     }
   }
 
