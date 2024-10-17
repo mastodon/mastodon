@@ -263,8 +263,10 @@ sv:
         destroy_user_role_html: "%{name} raderade rollen %{target}"
         disable_2fa_user_html: "%{name} inaktiverade tvåfaktorsautentiseringskrav för användaren %{target}"
         disable_custom_emoji_html: "%{name} inaktiverade emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} inaktiverade e-posttokenautentisering för %{target}"
         disable_user_html: "%{name} stängde av inloggning för användaren %{target}"
         enable_custom_emoji_html: "%{name} aktiverade emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktiverade e-posttokenautentisering för %{target}"
         enable_user_html: "%{name} aktiverade inloggning för användaren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}'s konto till en minnessida"
         promote_user_html: "%{name} befordrade användaren %{target}"
@@ -272,6 +274,7 @@ sv:
         reject_user_html: "%{name} avvisade registrering från %{target}"
         remove_avatar_user_html: "%{name} tog bort %{target}'s avatar"
         reopen_report_html: "%{name} öppnade rapporten igen %{target}"
+        resend_user_html: "%{name} skickade bekräftelsemail för %{target} på nytt"
         reset_password_user_html: "%{name} återställ användarens lösenord %{target}"
         resolve_report_html: "%{name} löste rapporten %{target}"
         sensitive_account_html: "%{name} markerade %{target}'s media som känsligt"
@@ -432,6 +435,7 @@ sv:
       attempts_over_week:
         one: "%{count} försök under den senaste veckan"
         other: "%{count} registreringsförsök under den senaste veckan"
+      created_msg: Blockerade e-postdomänen
       delete: Radera
       dns:
         types:
@@ -440,8 +444,12 @@ sv:
       new:
         create: Skapa domän
         resolve: Slå upp domän
+        title: Blockera ny e-postdomän
+      no_email_domain_block_selected: Inga blockeringar av e-postdomäner ändrades eftersom inga valdes
       not_permitted: Ej tillåtet
+      resolved_dns_records_hint_html: Domännamnet ger uppslag till följande MX-domäner, vilka är ytterst ansvariga för att e-post tas emot. Att blockera en MX-domän blockerar även registreringar från alla e-postadresser som använder samma MX-domän, även om det synliga domännamnet är annorlunda. <strong>Var noga med att inte blockera stora e-postleverantörer.</strong>
       resolved_through_html: Uppslagen genom %{domain}
+      title: Blockerade e-postdomäner
     export_domain_allows:
       new:
         title: Importera domäntillåtelser
@@ -595,7 +603,9 @@ sv:
         resolve_description_html: Ingen åtgärd vidtas mot det rapporterade kontot, ingen prick registreras och rapporten stängs.
         silence_description_html: Kontot kommer endast synas för de som redan följer den eller manuellt söker på den, vilket dramatiskt minskar dess räckvidd. Kan alltid ångras. Stänger alla anmälningar mot detta konto.
         suspend_description_html: Kontot och allt dess innehåll kommer att vara oåtkomligt och så småningom tas bort, det kommer inte gå att interagera med kontot. Kan ångras inom 30 dagar. Stänger alla anmälningar mot detta konto.
+      actions_description_html: Välj vilken åtgärd som skall vidtas för att lösa denna rapport. Om du vidtar en bestraffningsåtgärd mot det rapporterade kontot kommer en e-postnotis att skickas till dem, förutom om du valt kategorin <strong>Skräppost</strong>.
       actions_description_remote_html: Bestäm vilka åtgärder som ska vidtas för att lösa denna rapport. Detta kommer bara att påverka hur <strong>din</strong> server kommunicerar med detta fjärrkonto och hanterar dess innehåll.
+      actions_no_posts: Denna rapport har inga associerade inlägg att ta bort
       add_to_report: Lägg till mer i rapporten
       already_suspended_badges:
         local: Redan avstängd på denna server
@@ -659,6 +669,7 @@ sv:
         delete_data_html: Ta bort <strong>@%{acct}</strong>s profil och innehåll om 30 dagar ifall deras avstängning inte tagits bort under tiden
         preview_preamble_html: "<strong>@%{acct}</strong> kommer få en varning med följande innehåll:"
         record_strike_html: Registrera en varning mot <strong>@%{acct}</strong> för att hjälpa dig eskalera vid framtida överträdelser från detta konto
+        send_email_html: Skicka <strong>@%{acct}</strong> ett varningsmejl
         warning_placeholder: Valfri ytterligare resonemang för modereringsåtgärd.
       target_origin: Ursprung för anmält konto
       title: Anmälningar
@@ -698,6 +709,7 @@ sv:
         manage_appeals: Hantera överklaganden
         manage_appeals_description: Tillåter användare att granska överklaganden av modereringsåtgärder
         manage_blocks: Hantera blockeringar
+        manage_blocks_description: Tillåter användare att blockera e-postleverantörer och IP-adresser
         manage_custom_emojis: Hantera egna emojier
         manage_custom_emojis_description: Tillåter användare att hantera egna emojier på servern
         manage_federation: Hantera federering
@@ -715,6 +727,7 @@ sv:
         manage_taxonomies: Hantera taxonomier
         manage_taxonomies_description: Tillåter användare att granska trendande innehåll och uppdatera inställningar för hashtaggar
         manage_user_access: Hantera användaråtkomst
+        manage_user_access_description: Tillåter användare att inaktivera andra användares tvåfaktorsautentisering, ändra deras e-postadress samt återställa deras lösenord
         manage_users: Hantera användare
         manage_users_description: Tillåter användare att granska användares data och utföra modereringsåtgärder på dessa
         manage_webhooks: Hantera webhooks
@@ -789,6 +802,7 @@ sv:
       destroyed_msg: Webbplatsuppladdningen har raderats!
     software_updates:
       critical_update: Kritiskt — vänligen uppdatera omgående
+      description: Det rekommenderas att hålla din Mastodon-installation uppdaterad för att ta nytta av de senaste fixarna och funktionerna. Dessutom är det ibland viktigt att uppdatera Mastodon i tid för att undvika säkerhetsproblem. Av dessa skäl kontrollerar Mastodon efter uppdateringar var 30:e minut och meddelar dig i enlighet med dina e-postaviseringsinställningar.
       documentation_link: Läs mer
       release_notes: Ändringslogg
       title: Tillgängliga uppdateringar
@@ -899,6 +913,7 @@ sv:
     trends:
       allow: Tillåt
       approved: Godkänd
+      confirm_allow: Är du säker på att du vill tillåta valda taggar?
       confirm_disallow: Är du säker på att du vill förbjuda valda taggar?
       disallow: Neka
       links:
@@ -1348,6 +1363,10 @@ sv:
       merge_long: Behåll befintliga uppgifter och lägg till nya
       overwrite: Skriv över
       overwrite_long: Ersätt de nuvarande uppgifterna med de nya
+    overwrite_preambles:
+      bookmarks_html:
+        one: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong>.
+        other: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong>.
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
     recent_imports: Nyligen importerade
     states:

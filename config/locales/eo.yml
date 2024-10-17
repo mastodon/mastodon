@@ -61,6 +61,7 @@ eo:
       demote: Degradi
       destroyed_msg: Datumoj de %{username} nun enviciĝis por esti forigita baldaǔ
       disable: Frostigi
+      disable_sign_in_token_auth: Malebligu retpoŝtan ĵeton-aŭtentikigon
       disable_two_factor_authentication: Malŝalti 2FA-n
       disabled: Frostigita
       display_name: Montrata nomo
@@ -69,6 +70,7 @@ eo:
       email: Retpoŝto
       email_status: Stato de retpoŝto
       enable: Malfrostigi
+      enable_sign_in_token_auth: Ebligu retpoŝtan ĵeton-aŭtentikigon
       enabled: Ebligita
       enabled_msg: Sukcese malfrostigis konton de %{username}
       followers: Sekvantoj
@@ -179,17 +181,21 @@ eo:
         confirm_user: Konfirmi uzanton
         create_account_warning: Krei averton
         create_announcement: Krei Anoncon
+        create_canonical_email_block: Krei retpoŝtan blokon
         create_custom_emoji: Krei Propran Emoĝion
         create_domain_allow: Krei Domajnan Permeson
         create_domain_block: Krei Blokadon De Domajno
+        create_email_domain_block: Krei retpoŝtan domajnan blokon
         create_ip_block: Krei IP-regulon
         create_unavailable_domain: Krei Nehaveblan Domajnon
         create_user_role: Krei Rolon
         demote_user: Malpromocii Uzanton
         destroy_announcement: Forigi Anoncon
+        destroy_canonical_email_block: Forigi retpoŝtan blokon
         destroy_custom_emoji: Forigi Propran Emoĝion
         destroy_domain_allow: Forigi Domajnan Permeson
         destroy_domain_block: Forigi blokadon de domajno
+        destroy_email_domain_block: Forigi retpoŝtan domajnan blokon
         destroy_instance: Forigi Domajnon
         destroy_ip_block: Forigi IP-regulon
         destroy_status: Forigi Afiŝon
@@ -433,6 +439,7 @@ eo:
         title: Bloki novan retpoŝtan domajnon
       not_permitted: Ne permesita
       resolved_through_html: Solvis tra %{domain}
+      title: Blokis retpoŝtajn domajnojn
     export_domain_allows:
       new:
         title: Importi domajnpermesojn
@@ -585,6 +592,9 @@ eo:
       actions_description_remote_html: Decidu kiun klopodon por solvi ĉi tiun raporton. Ĉi tiu efikas kiel nur <strong>via</strong> servilo komuniki per ĉi tiu fora konto kaj trakti ĝian enhavon.
       actions_no_posts: Ĉi tiu raporto havas neniujn rilatajn afiŝojn por forigi
       add_to_report: Aldoni pli al raporto
+      already_suspended_badges:
+        local: Jam malakceptita sur ĉi tiu servilo
+        remote: Jam malakceptita sur ilia servilo
       are_you_sure: Ĉu vi certas?
       assign_to_self: Asigni al mi
       assigned: Asignita kontrolanto
@@ -850,6 +860,7 @@ eo:
       name: Nomo
       newest: Plej novaj
       oldest: Plej malnovaj
+      open: Vidu publike
       reset: Restartigi
       review: La statuso de la recenzo
       search: Serĉi
@@ -1072,6 +1083,7 @@ eo:
     set_new_password: Elekti novan pasvorton
     setup:
       link_not_received: Ĉu vi ne ricevis ligilon?
+      new_confirmation_instructions_sent: Vi ricevos novan retpoŝton kun la konfirma ligilo post kelkaj minutoj!
       title: Kontrolu vian retpoŝta enirkesto
     sign_in:
       preamble_html: Ensalutu per via detaloj de <strong>%{domain}</strong>. Se via konto gastigantigas sur malsama servilo, vi ne povas ensaluti ĉi tie.
