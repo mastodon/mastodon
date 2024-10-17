@@ -18,6 +18,7 @@ require_relative 'search'
 require_relative 'settings'
 require_relative 'statuses'
 require_relative 'upgrade'
+require_relative 'version'
 
 module Mastodon::CLI
   class Main < Base
@@ -67,12 +68,6 @@ module Mastodon::CLI
     subcommand 'maintenance', Maintenance
 
     include Federation
-
-    map %w(--version -v) => :version
-
-    desc 'version', 'Show version'
-    def version
-      say(Mastodon::Version.to_s)
-    end
+    include Version
   end
 end
