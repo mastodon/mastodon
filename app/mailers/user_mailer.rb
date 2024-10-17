@@ -12,13 +12,13 @@ class UserMailer < Devise::Mailer
 
   before_action :set_instance
 
+  before_deliver :verify_active_resource
+
   default to: -> { @resource.email }
 
   def confirmation_instructions(user, token, *, **)
     @resource = user
     @token    = token
-
-    return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
       mail to: @resource.unconfirmed_email.presence || @resource.email,
@@ -31,8 +31,6 @@ class UserMailer < Devise::Mailer
     @resource = user
     @token    = token
 
-    return unless @resource.active_for_authentication?
-
     I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
     end
@@ -40,8 +38,6 @@ class UserMailer < Devise::Mailer
 
   def password_change(user, *, **)
     @resource = user
-
-    return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
@@ -51,8 +47,6 @@ class UserMailer < Devise::Mailer
   def email_changed(user, *, **)
     @resource = user
 
-    return unless @resource.active_for_authentication?
-
     I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
     end
@@ -60,8 +54,6 @@ class UserMailer < Devise::Mailer
 
   def two_factor_enabled(user, *, **)
     @resource = user
-
-    return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
@@ -71,8 +63,6 @@ class UserMailer < Devise::Mailer
   def two_factor_disabled(user, *, **)
     @resource = user
 
-    return unless @resource.active_for_authentication?
-
     I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
     end
@@ -80,8 +70,6 @@ class UserMailer < Devise::Mailer
 
   def two_factor_recovery_codes_changed(user, *, **)
     @resource = user
-
-    return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
@@ -91,8 +79,6 @@ class UserMailer < Devise::Mailer
   def webauthn_enabled(user, *, **)
     @resource = user
 
-    return unless @resource.active_for_authentication?
-
     I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
     end
@@ -100,8 +86,6 @@ class UserMailer < Devise::Mailer
 
   def webauthn_disabled(user, *, **)
     @resource = user
-
-    return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
@@ -112,8 +96,6 @@ class UserMailer < Devise::Mailer
     @resource = user
     @webauthn_credential = webauthn_credential
 
-    return unless @resource.active_for_authentication?
-
     I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: I18n.t('devise.mailer.webauthn_credential.added.subject')
     end
@@ -123,8 +105,6 @@ class UserMailer < Devise::Mailer
     @resource = user
     @webauthn_credential = webauthn_credential
 
-    return unless @resource.active_for_authentication?
-
     I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: I18n.t('devise.mailer.webauthn_credential.deleted.subject')
     end
@@ -132,8 +112,6 @@ class UserMailer < Devise::Mailer
 
   def welcome(user)
     @resource = user
-
-    return unless @resource.active_for_authentication?
 
     @suggestions = AccountSuggestions.new(@resource.account).get(5)
     @tags = Trends.tags.query.allowed.limit(5)
@@ -149,8 +127,6 @@ class UserMailer < Devise::Mailer
   def backup_ready(user, backup)
     @resource = user
     @backup   = backup
-
-    return unless @resource.active_for_authentication?
 
     I18n.with_locale(locale) do
       mail subject: default_i18n_subject
@@ -210,6 +186,10 @@ class UserMailer < Devise::Mailer
   end
 
   private
+
+  def verify_active_resource
+    throw(:abort) unless @resource.active_for_authentication?
+  end
 
   def default_devise_subject
     I18n.t(:subject, scope: ['devise.mailer', action_name])
