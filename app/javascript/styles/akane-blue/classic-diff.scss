@@ -1,0 +1,152 @@
+:root {
+    --dropdown-background-color: #444b5d;
+    --dropdown-border-color: #606984;
+}
+
+.reverse-nav .columns-area__panels .navigation-panel,
+.columns-area__panels .navigation-panel {
+    border-left: 0;
+    border-right: 0;
+}
+
+.account__header__bio {
+    .account__header__fields,
+    .account__header__fields .verified {
+        border: 0;
+        margin-top: 0;
+    }
+}
+
+.column > .scrollable,
+.column-subheading,
+.notification__filter-bar {
+    background: #282c37;
+    border-radius: 0 0 4px 4px;
+}
+
+.notification__filter-bar {
+    background: #1f232b;
+    border-radius: 0 0 4px 4px;
+}
+
+.column-header {
+    background: #313543;
+}
+
+.getting-started,
+.column-subheading,
+.link-footer p,
+.link-footer span,
+.compose-form__poll__select__label {
+    color: var(--dropdown-border-color);
+    overflow: auto;
+}
+
+.link-footer p a{
+    text-decoration: none;
+}
+
+.drawer__inner,
+.drawer__inner__mastodon,
+.drawer__header,
+.layout-multiple-columns .column-link {
+    background: var(--dropdown-background-color);
+}
+
+.compose-form {
+    .autosuggest-textarea__textarea,
+    .spoiler-input__input,
+    .poll__option input[type=text] {
+        background: #fff;
+        color: #000;
+    }
+}
+
+.search__input,
+.search__input::placeholder,
+.switch-to-advanced {
+    color: #fff;
+}
+
+.compose-form__highlightable {
+    background: #ebebeb;
+}
+
+.compose-form__poll .poll__input {
+    border-color: var(--dropdown-border-color);
+    height: 17px;
+    width: 17px;
+}
+
+
+.emoji-picker-dropdown__menu {
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, .3);
+    border: none;
+}
+
+.emoji-mart-bar:first-child {
+    background: #d9e1e8;
+}
+
+.emoji-mart-scroll,
+.emoji-mart-search {
+    background: #fff;
+    color: var(--dropdown-background-color);
+}
+
+.emoji-mart-search input,
+.emoji-mart-search input::placeholder {
+    background: #eef2f5;
+    color: var(--dropdown-background-color);
+}
+
+.language-dropdown__dropdown {
+    .emoji-mart-search input {
+        border: 1.5px solid #888;
+        background: var(--dropdown-background-color);
+        color: #fff;
+    }
+    .emoji-mart-search input::placeholder{
+        background: var(--dropdown-background-color);
+        color: #ccc;
+    }
+}
+
+.emoji-mart-search-icon svg {
+    fill: var(--dropdown-background-color);
+}
+
+.emoji-mart-anchor {
+    color: var(--dropdown-background-color);
+}
+
+.language-dropdown__dropdown {
+    background: var(--dropdown-border-color);
+}
+
+body.admin {
+    background: #1f232b;
+}
+
+.admin-wrapper .sidebar-wrapper__inner {
+    background: #282c37;
+}
+
+.admin-wrapper .sidebar ul .simple-navigation-active-leaf {
+    background: #56a7e1;
+    a {
+        color: #fff;
+    }
+}
+
+.simple_form select {
+    background: #131419;
+    border: 1px solid #0a0b0e;
+    border-radius: 4px;
+}
+
+.flash-message {
+    background: #393f4f;
+    border: none;
+    color: #dde3ec;
+}
