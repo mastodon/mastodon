@@ -13,6 +13,8 @@ class SearchQueryTransformer < Parslet::Transform
   ).freeze
 
   class Query
+    attr_reader :keywords
+
     def initialize(clauses, options = {})
       raise ArgumentError if options[:current_account].nil?
 
@@ -20,6 +22,7 @@ class SearchQueryTransformer < Parslet::Transform
       @options = options
 
       flags_from_clauses!
+      keywords_from_clauses!
     end
 
     def request
@@ -40,6 +43,10 @@ class SearchQueryTransformer < Parslet::Transform
 
     def flags_from_clauses!
       @flags = clauses_by_operator.fetch(:flag, []).to_h { |clause| [clause.prefix, clause.term] }
+    end
+
+    def keywords_from_clauses!
+      @keywords = must_clauses.flat_map(&:keywords).uniq
     end
 
     def must_clauses
@@ -128,6 +135,10 @@ class SearchQueryTransformer < Parslet::Transform
         { multi_match: { type: 'most_fields', query: @term, fields: ['text', 'text.stemmed'], operator: 'and' } }
       end
     end
+
+    def keywords
+      @term.split
+    end
   end
 
   class PhraseClause
@@ -140,6 +151,10 @@ class SearchQueryTransformer < Parslet::Transform
 
     def to_query
       { match_phrase: { text: { query: @phrase } } }
+    end
+
+    def keywords
+      @phrase.split
     end
   end
 
@@ -191,6 +206,10 @@ class SearchQueryTransformer < Parslet::Transform
       else
         { @type => { @filter => @term } }
       end
+    end
+
+    def keywords
+      []
     end
 
     private
