@@ -235,7 +235,7 @@ const startServer = async () => {
   app.get('/favicon.ico', (_req, res) => res.status(404).end());
 
   app.get('/api/v1/streaming/health', (_req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.writeHead(200, { 'Content-Type': 'text/plain', 'Cache-Control': 'private, no-store' });
     res.end('OK');
   });
 
@@ -858,7 +858,7 @@ const startServer = async () => {
     }
 
     res.setHeader('Content-Type', 'text/event-stream');
-    res.setHeader('Cache-Control', 'no-store');
+    res.setHeader('Cache-Control', 'private, no-store');
     res.setHeader('Transfer-Encoding', 'chunked');
 
     res.write(':)\n');
