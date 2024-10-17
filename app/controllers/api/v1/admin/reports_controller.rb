@@ -41,29 +41,37 @@ class Api::V1::Admin::ReportsController < Api::BaseController
 
   def assign_to_self
     authorize @report, :update?
-    @report.update!(assigned_account_id: current_account.id)
-    log_action :assigned_to_self, @report
+    unless @report.assigned_account_id == current_account.id
+      @report.update!(assigned_account_id: current_account.id)
+      log_action :assigned_to_self, @report
+    end
     render json: @report, serializer: REST::Admin::ReportSerializer
   end
 
   def unassign
     authorize @report, :update?
-    @report.update!(assigned_account_id: nil)
-    log_action :unassigned, @report
+    if @report.assigned_account_id
+      @report.update!(assigned_account_id: nil)
+      log_action :unassigned, @report
+    end
     render json: @report, serializer: REST::Admin::ReportSerializer
   end
 
   def reopen
     authorize @report, :update?
-    @report.unresolve!
-    log_action :reopen, @report
+    unless @report.unresolved?
+      @report.unresolve!
+      log_action :reopen, @report
+    end
     render json: @report, serializer: REST::Admin::ReportSerializer
   end
 
   def resolve
     authorize @report, :update?
-    @report.resolve!(current_account)
-    log_action :resolve, @report
+    unless @report.action_taken?
+      @report.resolve!(current_account)
+      log_action :resolve, @report
+    end
     render json: @report, serializer: REST::Admin::ReportSerializer
   end
 
