@@ -160,9 +160,9 @@ GEM
       activesupport
     cbor (0.5.9.8)
     charlock_holmes (0.7.9)
-    chewy (7.6.0)
-      activesupport (>= 5.2)
-      elasticsearch (>= 7.14.0, < 8)
+    chewy (8.0.0.pre.beta)
+      activesupport (>= 6.1)
+      elasticsearch (>= 8.14, < 9.0)
       elasticsearch-dsl
     childprocess (5.1.0)
       logger (~> 1.5)
@@ -214,16 +214,15 @@ GEM
       railties (>= 5)
     dotenv (3.1.4)
     drb (2.2.1)
-    elasticsearch (7.17.11)
-      elasticsearch-api (= 7.17.11)
-      elasticsearch-transport (= 7.17.11)
-    elasticsearch-api (7.17.11)
+    elastic-transport (8.3.5)
+      faraday (< 3)
+      multi_json
+    elasticsearch (8.15.0)
+      elastic-transport (~> 8.3)
+      elasticsearch-api (= 8.15.0)
+    elasticsearch-api (8.15.0)
       multi_json
     elasticsearch-dsl (0.1.10)
-    elasticsearch-transport (7.17.11)
-      base64
-      faraday (>= 1, < 3)
-      multi_json
     email_spec (2.3.0)
       htmlentities (~> 4.3.3)
       launchy (>= 2.1, < 4.0)
@@ -235,7 +234,7 @@ GEM
     fabrication (2.31.0)
     faker (3.4.2)
       i18n (>= 1.8.11, < 2)
-    faraday (1.10.3)
+    faraday (1.10.4)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -921,7 +920,7 @@ DEPENDENCIES
   bundler-audit (~> 0.9)
   capybara (~> 3.39)
   charlock_holmes (~> 0.7.7)
-  chewy (~> 7.3)
+  chewy (= 8.0.0.pre.beta)
   climate_control
   cocoon (~> 1.2)
   color_diff (~> 0.1)
