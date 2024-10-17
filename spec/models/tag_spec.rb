@@ -227,6 +227,27 @@ RSpec.describe Tag do
     end
   end
 
+  describe '#discoverable_public_status_accounts' do
+    let(:non_discoverable_account) { Fabricate :account, discoverable: false }
+    let(:private_status) { Fabricate :status, visibility: :private }
+    let(:public_status) { Fabricate :status, visibility: :public }
+    let(:public_status_from_non_discoverable_account) { Fabricate :status, visibility: :public, account: non_discoverable_account }
+    let(:tag) { Fabricate :tag }
+
+    before do
+      public_status.tags << tag
+      private_status.tags << tag
+      public_status_from_non_discoverable_account.tags << tag
+    end
+
+    it 'returns discoverable authors of public statuses tagged with the tag' do
+      expect(tag.discoverable_public_status_accounts)
+        .to include(public_status.account)
+        .and not_include(non_discoverable_account)
+        .and not_include(private_status.account)
+    end
+  end
+
   describe '.search_for' do
     it 'finds tag records with matching names' do
       tag = Fabricate(:tag, name: 'match')
