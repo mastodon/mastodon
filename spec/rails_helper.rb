@@ -93,6 +93,10 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 
+  config.define_derived_metadata do |meta|
+    meta[:aggregate_failures] = true
+  end
+
   # Set type to `cli` for all CLI specs
   config.define_derived_metadata(file_path: Regexp.new('spec/lib/mastodon/cli')) do |metadata|
     metadata[:type] = :cli

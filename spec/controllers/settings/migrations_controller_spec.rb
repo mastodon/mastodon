@@ -65,7 +65,7 @@ RSpec.describe Settings::MigrationsController do
       context 'when acct is the current account' do
         let(:acct) { user.account }
 
-        it 'does not update the moved account', :aggregate_failures do
+        it 'does not update the moved account' do
           subject
 
           expect(user.account.reload.moved_to_account_id).to be_nil
@@ -76,7 +76,7 @@ RSpec.describe Settings::MigrationsController do
       context 'when target account does not reference the account being moved from' do
         let(:acct) { Fabricate(:account, also_known_as: []) }
 
-        it 'does not update the moved account', :aggregate_failures do
+        it 'does not update the moved account' do
           subject
 
           expect(user.account.reload.moved_to_account_id).to be_nil
@@ -92,7 +92,7 @@ RSpec.describe Settings::MigrationsController do
           user.account.migrations.create!(acct: moved_to.acct)
         end
 
-        it 'does not update the moved account', :aggregate_failures do
+        it 'does not update the moved account' do
           subject
 
           expect(user.account.reload.moved_to_account_id).to be_nil

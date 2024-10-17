@@ -49,7 +49,7 @@ RSpec.describe 'Mutes' do
     context 'with max_id param' do
       let(:params) { { max_id: mutes[1].id } }
 
-      it 'queries mutes in range according to max_id', :aggregate_failures do
+      it 'queries mutes in range according to max_id' do
         subject
 
         expect(response.parsed_body)
@@ -60,7 +60,7 @@ RSpec.describe 'Mutes' do
     context 'with since_id param' do
       let(:params) { { since_id: mutes[0].id } }
 
-      it 'queries mutes in range according to since_id', :aggregate_failures do
+      it 'queries mutes in range according to since_id' do
         subject
 
         expect(response.parsed_body)

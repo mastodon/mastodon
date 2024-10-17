@@ -50,7 +50,7 @@ RSpec.describe 'Accounts show response' do
         let(:format) { 'html' }
 
         shared_examples 'common HTML response' do
-          it 'returns a standard HTML response', :aggregate_failures do
+          it 'returns a standard HTML response' do
             expect(response)
               .to have_http_status(200)
               .and render_template(:show)
@@ -111,7 +111,7 @@ RSpec.describe 'Accounts show response' do
             get short_account_path(username: account.username), headers: headers
           end
 
-          it 'returns a JSON version of the account', :aggregate_failures do
+          it 'returns a JSON version of the account' do
             expect(response)
               .to have_http_status(200)
               .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
@@ -139,7 +139,7 @@ RSpec.describe 'Accounts show response' do
             get short_account_path(username: account.username), headers: headers.merge({ 'Cookie' => '123' })
           end
 
-          it 'returns a private JSON version of the account', :aggregate_failures do
+          it 'returns a private JSON version of the account' do
             expect(response)
               .to have_http_status(200)
               .and have_attributes(
@@ -159,7 +159,7 @@ RSpec.describe 'Accounts show response' do
             get short_account_path(username: account.username), headers: headers, sign_with: remote_account
           end
 
-          it 'returns a JSON version of the account', :aggregate_failures do
+          it 'returns a JSON version of the account' do
             expect(response)
               .to have_http_status(200)
               .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
@@ -173,7 +173,7 @@ RSpec.describe 'Accounts show response' do
           context 'with authorized fetch mode' do
             let(:authorized_fetch_mode) { true }
 
-            it 'returns a private signature JSON version of the account', :aggregate_failures do
+            it 'returns a private signature JSON version of the account' do
               expect(response)
                 .to have_http_status(200)
                 .and have_attributes(
@@ -212,7 +212,7 @@ RSpec.describe 'Accounts show response' do
             get short_account_path(username: account.username, format: format)
           end
 
-          it 'responds with correct statuses', :aggregate_failures do
+          it 'responds with correct statuses' do
             expect(response)
               .to have_http_status(200)
               .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
@@ -231,7 +231,7 @@ RSpec.describe 'Accounts show response' do
             get short_account_with_replies_path(username: account.username, format: format)
           end
 
-          it 'responds with correct statuses with replies', :aggregate_failures do
+          it 'responds with correct statuses with replies' do
             expect(response)
               .to have_http_status(200)
               .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
@@ -251,7 +251,7 @@ RSpec.describe 'Accounts show response' do
             get short_account_media_path(username: account.username, format: format)
           end
 
-          it 'responds with correct statuses with media', :aggregate_failures do
+          it 'responds with correct statuses with media' do
             expect(response)
               .to have_http_status(200)
               .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
@@ -275,7 +275,7 @@ RSpec.describe 'Accounts show response' do
             get short_account_tag_path(username: account.username, tag: tag, format: format)
           end
 
-          it 'responds with correct statuses with a tag', :aggregate_failures do
+          it 'responds with correct statuses with a tag' do
             expect(response)
               .to have_http_status(200)
               .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
