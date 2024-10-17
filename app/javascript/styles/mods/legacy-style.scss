@@ -11,8 +11,11 @@
         padding: 0.5em 0.5em 0.5em 4.75em;
         position: relative;
     }
-    .status .status__info, .status__content {
+    .status .status__info {
         padding-bottom: 0.25em;
+    }
+    .status__content {
+        padding-bottom: 0;
     }
     .status--in-thread{
         padding-top: 0.5em;
@@ -82,8 +85,11 @@
         padding-left: 0;
     }
     .status__action-bar {
-        margin-top: 0.25em;
+        margin-top: 12px;
         justify-content: flex-start;
+    }
+    .status .status-card {
+        margin-top: 12px;
     }
     .status .media-gallery, .detailed-status .status-card, .detailed-status__meta {
         margin-top: 0.5em;
