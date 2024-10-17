@@ -6,7 +6,7 @@ class Scheduler::SuspendedUserCleanupScheduler
   # Each processed deletion request may enqueue an enormous
   # amount of jobs in the `pull` queue, so only enqueue when
   # the queue is empty or close to being so.
-  MAX_PULL_SIZE = 50
+  MAX_QUEUE_SIZE = 50
 
   # Since account deletion is very expensive, we want to avoid
   # overloading the server by queuing too much at once.
@@ -19,7 +19,7 @@ class Scheduler::SuspendedUserCleanupScheduler
   sidekiq_options retry: 0, lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform
-    return if Sidekiq::Queue.new('pull').size > MAX_PULL_SIZE
+    return if Sidekiq::Queue.new('low_priority').size > MAX_QUEUE_SIZE
 
     process_deletion_requests!
   end
