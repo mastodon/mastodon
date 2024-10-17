@@ -208,16 +208,16 @@ RSpec.describe Account do
       end
     end
 
-    context 'when last_webfingered_at is more than 24 hours before' do
-      let(:last_webfingered_at) { 25.hours.ago }
+    context 'when last_webfingered_at is before the threshold' do
+      let(:last_webfingered_at) { (described_class::STALE_THRESHOLD + 1.hour).ago }
 
       it 'returns true' do
         expect(account.possibly_stale?).to be true
       end
     end
 
-    context 'when last_webfingered_at is less than 24 hours before' do
-      let(:last_webfingered_at) { 23.hours.ago }
+    context 'when last_webfingered_at is after the threshold' do
+      let(:last_webfingered_at) { (described_class::STALE_THRESHOLD - 1.hour).ago }
 
       it 'returns false' do
         expect(account.possibly_stale?).to be false
