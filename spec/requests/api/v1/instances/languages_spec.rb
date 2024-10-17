@@ -14,7 +14,17 @@ RSpec.describe 'Languages' do
       expect(response.content_type)
         .to start_with('application/json')
       expect(response.parsed_body)
-        .to match_array(LanguagesHelper::SUPPORTED_LOCALES.map { |key, values| include(code: key.to_s, name: values.first, native_name: values.last) })
+        .to match_array(supported_locale_expectations)
+    end
+
+    def supported_locale_expectations
+      LanguagesHelper::SUPPORTED_LOCALES.map do |key, values|
+        include(
+          code: key.to_s,
+          name: values.first,
+          native_name: values.last
+        )
+      end
     end
   end
 end
