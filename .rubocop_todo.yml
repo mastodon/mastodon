@@ -100,12 +100,6 @@ Style/PreferredHashMethods:
     - 'config/initializers/paperclip.rb'
 
 # This cop supports safe autocorrection (--autocorrect).
-Style/RedundantConstantBase:
-  Exclude:
-    - 'config/environments/production.rb'
-    - 'config/initializers/sidekiq.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: WordRegex.
 # SupportedStyles: percent, brackets
 Style/WordArray:
