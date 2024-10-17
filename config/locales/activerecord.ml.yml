@@ -4,23 +4,37 @@ ml:
     attributes:
       poll:
         expires_at: സമയപരിധി
-        options: ചോയ്‌സുകൾ
+        options: തിരഞ്ഞെടുപ്പുകൾ
       user:
         agreement: സേവന ഉടമ്പടി
         email: ഇ-മെയിൽ വിലാസം
         locale: ഭാഷ
-        password: രഹസ്യവാചകം
+        password: രഹസ്യവാക്കു്
       user/account:
         username: ഉപയോക്തൃനാമം
       user/invite_request:
         text: കാരണം
     errors:
+      attributes:
+        domain:
+          invalid: ഇതൊരു തെറ്റിയ മേഖലപേരാണു്
+      messages:
+        invalid_domain_on_line: "%{value} ഒരു തെറ്റിയ മേഖലപേരാണു്"
+        too_many_lines: ഇതു് %{limit} വരിയതിരിന്റെ മേലെയാണു്
       models:
         account:
           attributes:
             username:
               invalid: അക്ഷരങ്ങളും, അക്കങ്ങളും, പിന്നെ അടിവരയും മാത്രം
               reserved: കരുതിവച്ചു
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ഇതൊരു തെറ്റിയ വിലാസമാണു്
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ഇതൊരു തെറ്റിയ വിലാസമാണു്
         status:
           attributes:
             reblog:
