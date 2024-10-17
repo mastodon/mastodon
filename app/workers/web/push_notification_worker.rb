@@ -8,6 +8,9 @@ class Web::PushNotificationWorker
   TTL     = 48.hours.to_s
   URGENCY = 'normal'
 
+  STOPLIGHT_FAILURE_THRESHOLD = 10
+  STOPLIGHT_COOLDOWN = 60
+
   def perform(subscription_id, notification_id)
     @subscription = Web::PushSubscription.find(subscription_id)
     @notification = Notification.find(notification_id)
@@ -18,9 +21,15 @@ class Web::PushNotificationWorker
 
     payload = web_push_request.encrypt(push_notification_json)
 
-    request_pool.with(web_push_request.audience) do |http_client|
-      request = Request.new(:post, web_push_request.endpoint, body: payload.fetch(:ciphertext), http_client: http_client)
+    perform_request(payload)
+  rescue ActiveRecord::RecordNotFound
+    true
+  end
 
+  private
+
+  def build_request(http_client, payload)
+    Request.new(:post, web_push_request.endpoint, body: payload.fetch(:ciphertext), http_client: http_client).tap do |request|
       request.add_headers(
         'Content-Type' => 'application/octet-stream',
         'Ttl' => TTL,
@@ -30,25 +39,26 @@ class Web::PushNotificationWorker
         'Crypto-Key' => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{web_push_request.crypto_key_header}",
         'Authorization' => web_push_request.authorization_header
       )
+    end
+  end
 
-      request.perform do |response|
-        # If the server responds with an error in the 4xx range
-        # that isn't about rate-limiting or timeouts, we can
-        # assume that the subscription is invalid or expired
-        # and must be removed
-
-        if (400..499).cover?(response.code) && ![408, 429].include?(response.code)
-          @subscription.destroy!
-        elsif !(200...300).cover?(response.code)
-          raise Mastodon::UnexpectedResponseError, response
+  def perform_request(payload)
+    stoplight_wrapper.run do
+      request_pool.with(web_push_request.audience) do |http_client|
+        build_request(http_client, payload).perform do |response|
+          # If the server responds with an error in the 4xx range
+          # that isn't about rate-limiting or timeouts, we can
+          # assume that the subscription is invalid or expired
+          # and must be removed
+          if (400..499).cover?(response.code) && ![408, 429].include?(response.code)
+            @subscription.destroy!
+          elsif !(200...300).cover?(response.code)
+            raise Mastodon::UnexpectedResponseError, response
+          end
         end
       end
     end
-  rescue ActiveRecord::RecordNotFound
-    true
   end
-
-  private
 
   def web_push_request
     @web_push_request || WebPushRequest.new(@subscription)
@@ -67,6 +77,12 @@ class Web::PushNotificationWorker
       scope: @subscription,
       scope_name: :current_push_subscription
     )
+  end
+
+  def stoplight_wrapper
+    Stoplight(web_push_request.endpoint)
+      .with_threshold(STOPLIGHT_FAILURE_THRESHOLD)
+      .with_cool_off_time(STOPLIGHT_COOLDOWN)
   end
 
   def request_pool
