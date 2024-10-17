@@ -47,7 +47,7 @@ class Notification < ApplicationRecord
       filterable: true,
     }.freeze,
     follow: {
-      filterable: true,
+      filterable: false,
     }.freeze,
     follow_request: {
       filterable: true,
