@@ -1,6 +1,10 @@
 - content_for :page_title do
   = @account.pretty_acct
 
+- content_for :heading_actions do
+  - unless @account.local?
+    = link_to t('admin.accounts.view_instance'), admin_instance_path(@account.domain), method: :post, class: 'button'
+
 - if @account.instance_actor?
   .flash-message.notice
     %strong= t('accounts.instance_actor_flash')
