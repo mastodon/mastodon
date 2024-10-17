@@ -180,6 +180,8 @@ class Account < ApplicationRecord
 
   update_index('accounts', :self)
 
+  attribute :trendable, default: -> { Setting.trendable_by_default }
+
   def local?
     domain.nil?
   end
@@ -268,10 +270,6 @@ class Account < ApplicationRecord
 
   def memorialize!
     update!(memorial: true)
-  end
-
-  def trendable?
-    boolean_with_default('trendable', Setting.trendable_by_default)
   end
 
   def sign?
