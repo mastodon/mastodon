@@ -1,0 +1,23 @@
+-# locals: (account: nil, path: nil)
+
+.account.account--minimal
+  .account__wrapper
+  - if account.nil?
+    .account__display_name
+      .account__avatar-wrapper
+        = image_tag(full_asset_url('avatars/original/missing.png', skip_pipeline: true), class: 'account__avatar', size: 46)
+      %span.display-name
+        %strong
+          = t('about.contact_missing')
+        %span.display-name__account
+          = t('about.contact_unavailable')
+  - else
+    = link_to(path || ActivityPub::TagManager.instance.url_for(account), class: 'account__display-name') do
+      .account__avatar-wrapper
+        = image_tag(full_asset_url(preferred_avatar(account)), class: 'account__avatar', size: 46)
+      %span.display-name
+        %bdi
+          %strong.display-name__html.emojify
+            = display_name(account, custom_emojify: true)
+        %span.display-name__account
+          @#{account.acct}
