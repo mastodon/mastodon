@@ -1,5 +1,8 @@
 = content_for :heading do
-  = render 'application/mailer/heading', heading_title: t('notification_mailer.follow_request.title'), heading_subtitle: t('notification_mailer.follow_request.body', name: @account.pretty_acct), heading_image_url: frontend_asset_url('images/mailer-new/heading/follow.png')
+  = render 'application/mailer/heading',
+           image_url: frontend_asset_url('images/mailer-new/heading/follow.png'),
+           subtitle: t('notification_mailer.follow_request.body', name: @account.pretty_acct),
+           title: t('notification_mailer.follow_request.title')
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-body-padding-td
