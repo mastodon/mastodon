@@ -1,0 +1,34 @@
+= form.input :report_id,
+             as: :hidden
+.fields-group
+  = form.input :type,
+               as: :radio_buttons,
+               collection: Admin::AccountAction.types_for_account(form.object.target_account),
+               disabled: Admin::AccountAction.disabled_types_for_account(form.object.target_account),
+               hint: t('simple_form.hints.admin_account_action.type_html', acct: form.object.target_account_pretty_acct),
+               include_blank: false,
+               label_method: ->(type) { account_action_type_label(type) },
+               wrapper: :with_block_label
+- if form.object.target_account_local?
+  %hr.spacer/
+  .fields-group
+    = form.input :send_email_notification,
+                 as: :boolean,
+                 wrapper: :with_label
+  - if params[:report_id].present?
+    .fields-group
+      = form.input :include_statuses,
+                   as: :boolean,
+                   wrapper: :with_label
+  %hr.spacer/
+  - unless warning_presets.empty?
+    .fields-group
+      = form.input :warning_preset_id,
+                   collection: warning_presets,
+                   label_method: ->(warning_preset) { [warning_preset.title.presence, truncate(warning_preset.text)].compact.join(' - ') },
+                   wrapper: :with_block_label
+  .fields-group
+    = form.input :text,
+                 as: :text,
+                 hint: t('simple_form.hints.admin_account_action.text_html', path: admin_warning_presets_path),
+                 wrapper: :with_block_label
