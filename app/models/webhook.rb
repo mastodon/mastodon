@@ -34,11 +34,11 @@ class Webhook < ApplicationRecord
   validates :events, presence: true
 
   validate :events_validation_error, if: :invalid_events?
-  validate :validate_permissions
+  validate :validate_permissions, if: -> { defined?(@current_account) }
   validate :validate_template
 
   normalizes :events, with: ->(events) { events.filter_map { |event| event.strip.presence } }
-  before_validation :generate_secret
+  before_validation :generate_secret, unless: :secret?
 
   def rotate_secret!
     update!(secret: SecureRandom.hex(20))
@@ -53,16 +53,18 @@ class Webhook < ApplicationRecord
   end
 
   def required_permissions
-    events.map { |event| Webhook.permission_for_event(event) }
+    events
+      .map { |event| Webhook.permission_for_event(event) }
+      .uniq
   end
 
   def self.permission_for_event(event)
     case event
-    when 'account.approved', 'account.created', 'account.updated'
+    when /account/
       :manage_users
-    when 'report.created', 'report.updated'
+    when /report/
       :manage_reports
-    when 'status.created', 'status.updated'
+    when /status/
       :view_devops
     end
   end
@@ -78,7 +80,11 @@ class Webhook < ApplicationRecord
   end
 
   def validate_permissions
-    errors.add(:events, :invalid_permissions) if defined?(@current_account) && required_permissions.any? { |permission| !@current_account.user_role.can?(permission) }
+    errors.add(:events, :invalid_permissions) if current_account_role_lacking_permissions?
+  end
+
+  def current_account_role_lacking_permissions?
+    required_permissions.any? { |permission| !@current_account.user_role.can?(permission) }
   end
 
   def validate_template
@@ -93,6 +99,6 @@ class Webhook < ApplicationRecord
   end
 
   def generate_secret
-    self.secret = SecureRandom.hex(20) if secret.blank?
+    self.secret = SecureRandom.hex(20)
   end
 end
