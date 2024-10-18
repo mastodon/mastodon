@@ -23,7 +23,7 @@ RSpec.describe 'Oauth Userinfo Endpoint' do
         name: account.display_name,
         preferred_username: account.username,
         profile: short_account_url(account),
-        picture: full_asset_url(account.unavailable? ? account.avatar.default_url : account.avatar_original_url),
+        picture: full_asset_url(account.avatar_original_url),
       })
     end
   end

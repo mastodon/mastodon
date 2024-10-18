@@ -14,7 +14,7 @@ class OauthUserinfoSerializer < ActiveModel::Serializer
   end
 
   def name
-    object.unavailable? ? '' : object.display_name
+    object.display_name
   end
 
   def preferred_username
@@ -26,6 +26,6 @@ class OauthUserinfoSerializer < ActiveModel::Serializer
   end
 
   def picture
-    full_asset_url(object.unavailable? ? object.avatar.default_url : object.avatar_original_url)
+    full_asset_url(object.avatar_original_url)
   end
 end
