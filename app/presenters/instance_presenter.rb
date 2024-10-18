@@ -2,7 +2,7 @@
 
 class InstancePresenter < ActiveModelSerializers::Model
   attributes :domain, :title, :version, :source_url,
-             :description, :languages, :rules, :contact
+             :description, :languages, :rules, :report_categories, :contact
 
   class ContactPresenter < ActiveModelSerializers::Model
     attributes :email, :account
@@ -48,6 +48,13 @@ class InstancePresenter < ActiveModelSerializers::Model
 
   def rules
     Rule.ordered
+  end
+
+  def report_categories
+    # We only return the `violation` category if we have rules to violate:
+    Report.categories.filter_map do |category, _value|
+      { name: category } unless category == 'violation' && Rule.count.zero?
+    end
   end
 
   def user_count
