@@ -22,7 +22,7 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import ColumnSettingsContainer from './containers/column_settings_container';
 
 const messages = defineMessages({
-  title: { id: 'column.public', defaultMessage: 'Federated timeline' },
+  title: { id: 'column.public', defaultMessage: 'Other servers' },
 });
 
 const mapStateToProps = (state, { columnId }) => {
