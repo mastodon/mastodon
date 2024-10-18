@@ -244,7 +244,7 @@ module ApplicationHelper
   private
 
   def app_store(platform)
-    Rails.configuration.x.mastodon.apps.detect { |store| store[:platform] == platform.to_s }
+    Rails.configuration.x.mastodon.apps[platform]
   end
 
   def storage_host_var
