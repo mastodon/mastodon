@@ -524,14 +524,3 @@ a.sparkline {
     color: $dark-text-color;
   }
 }
-
-@supports not selector(::-webkit-scrollbar) {
-  html {
-    scrollbar-color: rgba($action-button-color, 0.25)
-      var(--background-border-color);
-  }
-}
-
-::-webkit-scrollbar-thumb {
-  opacity: 0.25;
-}
