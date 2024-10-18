@@ -19,6 +19,15 @@ RSpec.describe Mastodon::CLI::Main do
       expect { subject }
         .to output_results(Mastodon::Version.to_s)
     end
+
+    context 'when in verbose mode' do
+      let(:options) { { verbose: true } }
+
+      it 'returns mastodon and more information' do
+        expect { subject }
+          .to output_results(Mastodon::Version.to_s, RUBY_VERSION)
+      end
+    end
   end
 
   describe '#self_destruct' do
