@@ -21,11 +21,11 @@ class BackupService < BaseService
     skeleton = serialize(collection_presenter, ActivityPub::CollectionSerializer)
     skeleton[:@context] = full_context
     skeleton[:orderedItems] = ['!PLACEHOLDER!']
-    skeleton = Oj.dump(skeleton)
+    skeleton = Oj.dump(skeleton, indent: 2)
     prepend, append = skeleton.split('"!PLACEHOLDER!"')
     add_comma = false
 
-    file.write(prepend)
+    file.write("#{prepend.rstrip}\n")
 
     account.statuses.with_includes.reorder(nil).find_in_batches do |statuses|
       file.write(',') if add_comma
@@ -41,8 +41,11 @@ class BackupService < BaseService
           end
         end
 
-        Oj.dump(item)
-      end.join(','))
+        json_str = Oj.dump(item, indent: 2)
+        json_str.lines.map do |line|
+          "    #{line.chomp}"
+        end.join("\n")
+      end.join(",\n"))
 
       GC.start
     end
@@ -104,7 +107,7 @@ class BackupService < BaseService
     download_to_zip(zipfile, account.avatar, "avatar#{File.extname(account.avatar.path)}") if account.avatar.exists?
     download_to_zip(zipfile, account.header, "header#{File.extname(account.header.path)}") if account.header.exists?
 
-    json = Oj.dump(actor)
+    json = Oj.dump(actor, indent: 2)
 
     zipfile.get_output_stream('actor.json') do |io|
       io.write(json)
@@ -115,7 +118,7 @@ class BackupService < BaseService
     skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'likes.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
     skeleton.delete(:totalItems)
     skeleton[:orderedItems] = ['!PLACEHOLDER!']
-    skeleton = Oj.dump(skeleton)
+    skeleton = Oj.dump(skeleton, indent: 2)
     prepend, append = skeleton.split('"!PLACEHOLDER!"')
 
     zipfile.get_output_stream('likes.json') do |io|
@@ -129,7 +132,7 @@ class BackupService < BaseService
 
         io.write(statuses.map do |status|
           Oj.dump(ActivityPub::TagManager.instance.uri_for(status))
-        end.join(','))
+        end.join(",\n    "))
 
         GC.start
       end
@@ -142,7 +145,7 @@ class BackupService < BaseService
     skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'bookmarks.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
     skeleton.delete(:totalItems)
     skeleton[:orderedItems] = ['!PLACEHOLDER!']
-    skeleton = Oj.dump(skeleton)
+    skeleton = Oj.dump(skeleton, indent: 2)
     prepend, append = skeleton.split('"!PLACEHOLDER!"')
 
     zipfile.get_output_stream('bookmarks.json') do |io|
@@ -155,7 +158,7 @@ class BackupService < BaseService
 
         io.write(statuses.map do |status|
           Oj.dump(ActivityPub::TagManager.instance.uri_for(status))
-        end.join(','))
+        end.join(",\n    "))
 
         GC.start
       end
