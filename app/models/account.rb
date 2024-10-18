@@ -103,7 +103,7 @@ class Account < ApplicationRecord
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
   # Remote user validations, also applies to internal actors
-  validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { (!local? || actor_type == 'Application') && will_save_change_to_username? }
+  validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { (remote? || actor_type == 'Application') && will_save_change_to_username? }
 
   # Remote user validations
   validates :uri, presence: true, unless: :local?, on: :create
@@ -182,6 +182,10 @@ class Account < ApplicationRecord
 
   def local?
     domain.nil?
+  end
+
+  def remote?
+    domain.present?
   end
 
   def moved?
