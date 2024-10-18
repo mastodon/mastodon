@@ -5,12 +5,20 @@ require 'rails_helper'
 RSpec.describe ApplicationHelper do
   describe 'body_classes' do
     context 'with a body class string from a controller' do
-      before { helper.extend controller_helpers }
+      before do
+        user = Fabricate :user
+        user.settings['web.use_system_font'] = true
+        user.settings['web.reduce_motion'] = true
+        user.save
 
-      it 'uses the controller body classes in the result' do
+        helper.extend controller_helpers
+      end
+
+      it 'uses the current theme and user settings classes in the result' do
         expect(helper.body_classes)
-          .to match(/modal-layout compose-standalone/)
-          .and match(/theme-default/)
+          .to match(/theme-default/)
+          .and match(/system-font/)
+          .and match(/reduce-motion/)
       end
 
       it 'includes values set via content_for' do
@@ -24,10 +32,8 @@ RSpec.describe ApplicationHelper do
 
       def controller_helpers
         Module.new do
-          def body_class_string = 'modal-layout compose-standalone'
-
           def current_account
-            @current_account ||= Fabricate(:account)
+            @current_account ||= Fabricate(:account, user: User.last)
           end
 
           def current_theme = 'default'
