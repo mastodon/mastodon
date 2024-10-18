@@ -25,6 +25,8 @@ class StatusesSearchService < BaseService
   private
 
   def status_search_results
+    return [] if contains_forbidden_terms?
+
     request             = parsed_query.request
     results             = request.collapse(field: :id).order(id: { order: :desc }).limit(@limit).offset(@offset).objects.compact
     account_ids         = results.map(&:account_id)
@@ -37,7 +39,7 @@ class StatusesSearchService < BaseService
   end
 
   def parsed_query
-    SearchQueryTransformer.new.apply(SearchQueryParser.new.parse(@query), current_account: @account)
+    @parsed_query ||= SearchQueryTransformer.new.apply(SearchQueryParser.new.parse(@query), current_account: @account)
   end
 
   def convert_deprecated_options!
@@ -59,5 +61,9 @@ class StatusesSearchService < BaseService
     end
 
     @query = "#{@query} #{syntax_options.join(' ')}".strip if syntax_options.any?
+  end
+
+  def contains_forbidden_terms?
+    Tag.where(usable: false).matching_name(parsed_query.keywords).exists?
   end
 end
