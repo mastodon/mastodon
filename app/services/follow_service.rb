@@ -82,7 +82,7 @@ class FollowService < BaseService
 
     LocalNotificationWorker.perform_async(@target_account.id, follow.id, follow.class.name, 'follow')
     MergeWorker.perform_async(@target_account.id, @source_account.id)
-
+    TriggerWebhookWorker.perform_async('follow.created', 'Follow', follow.id)
     follow
   end
 
