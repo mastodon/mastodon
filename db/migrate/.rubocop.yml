@@ -7,3 +7,8 @@ Naming/VariableNumber:
 Rails/CreateTableWithTimestamps:
   Include:
     - '*.rb'
+
+# Enabled here as workaround for https://docs.rubocop.org/rubocop/configuration.html#path-relativity
+Rails/ThreeStateBooleanColumn:
+  Include:
+    - '*.rb'
