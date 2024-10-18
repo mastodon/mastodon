@@ -1,0 +1,8 @@
+shared:
+  source:
+    base_url: <%= ENV.fetch('SOURCE_BASE_URL', nil) %>
+    repository: <%= ENV.fetch('GITHUB_REPOSITORY', 'mastodon/mastodon') %>
+    tag: <%= ENV.fetch('SOURCE_TAG', nil) %>
+  version:
+    metadata: <%= ENV.fetch('MASTODON_VERSION_METADATA', nil) %>
+    prerelease: <%= ENV.fetch('MASTODON_VERSION_PRERELEASE', nil) %>
