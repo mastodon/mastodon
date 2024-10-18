@@ -10,8 +10,10 @@ module Mastodon::CLI
       EmailDomainBlock.where(parent_id: nil).find_each do |entry|
         say(entry.domain.to_s, :white)
 
-        EmailDomainBlock.where(parent_id: entry.id).find_each do |child|
-          say("  #{child.domain}", :cyan)
+        shell.indent do
+          EmailDomainBlock.where(parent_id: entry.id).find_each do |child|
+            say(child.domain, :cyan)
+          end
         end
       end
     end
