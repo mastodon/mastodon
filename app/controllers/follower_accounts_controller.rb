@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 class FollowerAccountsController < ApplicationController
-  include AccountControllerConcern
+  include AccountLinkHeaderConcern
+  include WebAppControllerConcern
+  include AccountOwnedConcern
   include SignatureVerification
+
+  PER_PAGE = 12
 
   vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
 
@@ -38,7 +42,7 @@ class FollowerAccountsController < ApplicationController
 
     scope = Follow.where(target_account: @account)
     scope = scope.where.not(account_id: current_account.excluded_from_timeline_account_ids) if user_signed_in?
-    @follows = scope.recent.page(params[:page]).per(FOLLOW_PER_PAGE).preload(:account)
+    @follows = scope.recent.page(params[:page]).per(PER_PAGE).preload(:account)
   end
 
   def page_requested?
