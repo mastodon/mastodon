@@ -96,6 +96,8 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def related_applications
-    Rails.configuration.x.mastodon.apps
+    Rails.configuration.x.mastodon.apps.map do |key, values|
+      { platform: key, url: values[:url], id: values[:id] }
+    end
   end
 end
