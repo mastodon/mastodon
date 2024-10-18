@@ -23,6 +23,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
                methods: %i(post put delete get patch options)
       resource '/oauth/token', methods: [:post]
       resource '/oauth/revoke', methods: [:post]
+      resource '/oauth/userinfo', methods: [:get, :post]
     end
   end
 end
