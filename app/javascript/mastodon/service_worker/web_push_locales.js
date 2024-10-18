@@ -1,3 +1,7 @@
+/// <reference no-default-lib="true"/>
+/// <reference lib="esnext" />
+/// <reference lib="webworker" />
+
 /* eslint-disable import/no-commonjs --
    We need to use CommonJS here as its imported into a preval file (`emoji_compressed.js`) */
 
