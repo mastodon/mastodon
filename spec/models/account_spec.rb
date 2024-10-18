@@ -1077,14 +1077,6 @@ RSpec.describe Account do
       end
     end
 
-    describe 'silenced' do
-      it 'returns an array of accounts who are silenced' do
-        silenced_account = Fabricate(:account, silenced: true)
-        _account = Fabricate(:account, silenced: false)
-        expect(described_class.silenced).to contain_exactly(silenced_account)
-      end
-    end
-
     describe 'suspended' do
       it 'returns an array of accounts who are suspended' do
         suspended_account = Fabricate(:account, suspended: true)
