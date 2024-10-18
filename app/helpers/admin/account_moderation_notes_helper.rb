@@ -28,7 +28,7 @@ module Admin::AccountModerationNotesHelper
   def labeled_account_avatar(account)
     safe_join(
       [
-        image_tag(account.avatar.url, width: 15, height: 15, alt: '', class: 'avatar'),
+        image_tag(account.avatar.url, size: 15, alt: '', class: 'avatar'),
         account_inline_text(account),
       ],
       ' '
