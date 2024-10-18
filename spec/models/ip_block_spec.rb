@@ -7,6 +7,13 @@ RSpec.describe IpBlock do
     it { is_expected.to validate_presence_of(:ip) }
     it { is_expected.to validate_presence_of(:severity) }
 
+    it 'validates severity inclusion', :aggregate_failures do
+      ip_block = described_class.new(ip: '127.0.0.1', severity: :invalid)
+
+      expect(ip_block).to_not be_valid
+      expect(ip_block).to model_have_error_on_field(:severity)
+    end
+
     it 'validates ip uniqueness', :aggregate_failures do
       described_class.create!(ip: '127.0.0.1', severity: :no_access)
 
