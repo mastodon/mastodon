@@ -12,6 +12,11 @@ on:
 jobs:
   build-image:
     runs-on: codebuild-social-genya0407-link-${{ github.run_id }}-${{ github.run_attempt }}
+    strategy:
+      matrix:
+        image:
+          - { 'file': 'Dockerfile', name: 'mastodon' }
+          - { 'file': 'streaming/Dockerfile', name: 'mastodon-streaming' }
     steps:
       - uses: actions/checkout@v4
       - name: Log in to the GitHub Container registry
@@ -24,12 +29,13 @@ jobs:
       - uses: docker/metadata-action@v5
         id: meta
         with:
-          images: ghcr.io/genya0407/mastodon
+          images: ghcr.io/genya0407/mastodon/${{ matrix.image.name }}
           tags: ${{ inputs.tags }}
 
       - uses: docker/build-push-action@v6
         with:
           context: .
+          file: ${{ matrix.image.file }}
           platforms: linux/arm64
           provenance: false
           push: true
