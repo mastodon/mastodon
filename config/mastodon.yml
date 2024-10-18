@@ -1,4 +1,14 @@
 ---
 shared:
+  apps:
+    - id: org.joinmastodon.android
+      platform: f-droid
+      url: https://f-droid.org/en/packages/org.joinmastodon.android/
+    - id: id1571998974
+      platform: itunes
+      url: https://apps.apple.com/us/app/mastodon/id1571998974
+    - id: org.joinmastodon.android
+      platform: play
+      url: https://play.google.com/store/apps/details?id=org.joinmastodon.android
   self_destruct_value: <%= ENV.fetch('SELF_DESTRUCT', nil) %>
   software_update_url: <%= ENV.fetch('UPDATE_CHECK_URL', 'https://api.joinmastodon.org/update-check') %>
