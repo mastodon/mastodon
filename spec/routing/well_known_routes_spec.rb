@@ -21,4 +21,16 @@ RSpec.describe 'Well Known routes' do
         .to route_to('well_known/webfinger#show')
     end
   end
+
+  describe 'the nodeinfo routes' do
+    it 'routes to discovery (index) route' do
+      expect(get('/.well-known/nodeinfo'))
+        .to route_to('well_known/node_info#index', format: 'json')
+    end
+
+    it 'routes to the show route' do
+      expect(get('/nodeinfo/2.0'))
+        .to route_to('well_known/node_info#show')
+    end
+  end
 end
