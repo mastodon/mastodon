@@ -193,6 +193,7 @@ module LanguagesHelper
     ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
     cnr: ['Montenegrin', 'crnogorski'].freeze,
     csb: ['Kashubian', 'Kaszëbsczi'].freeze,
+    gsw: ['Swiss German', 'Schwiizertütsch'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,

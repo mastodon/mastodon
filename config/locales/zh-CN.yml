@@ -19,6 +19,7 @@ zh-CN:
     posts:
       other: 嘟文
     posts_tab_heading: 嘟文
+    self_follow_error: 不可以关注自己
   admin:
     account_actions:
       action: 执行操作
@@ -595,7 +596,7 @@ zh-CN:
       actions_no_posts: 该举报没有相关嘟文可供删除
       add_to_report: 增加更多举报内容
       already_suspended_badges:
-        local: 已经在此服务器上暂停
+        local: 已在此服务器上被封禁
         remote: 已在其所属服务器被封禁
       are_you_sure: 你确定吗？
       assign_to_self: 接管
@@ -1147,9 +1148,11 @@ zh-CN:
     use_security_key: 使用安全密钥
   author_attribution:
     example_title: 示例文本
-    hint_html: 控制在 Mastodon 上分享的链接如何显示你的署名。
+    hint_html: 你是否在 Mastodon 之外撰写新闻或博客文章？控制它们被分享到 Mastodon 时的署名方式。
+    instructions: 请确保将这段代码放在您文章的 HTML 中：
     more_from_html: 来自 %{name} 的更多内容
     s_blog: "%{name} 的博客"
+    then_instructions: 然后，在下面的文本框中添加你用于发布文章的域名。
     title: 作者归属
   challenge:
     confirm: 继续
@@ -1341,19 +1344,31 @@ zh-CN:
       overwrite: 覆盖
       overwrite_long: 将当前记录替换为新记录
     overwrite_preambles:
-      blocking_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换你的屏蔽列表。
-      bookmarks_html: 你即将使用来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>替换你的书签。
-      domain_blocking_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个域名</strong>替换你的域名屏蔽列表。
-      following_html: 你即将从<strong> %{filename} </strong>关注<strong> %{total_items} 个账户</strong>，并停止关注其他任何人。
-      lists_html: 你即将用<strong> %{filename} </strong>的内容<strong>替换你的列表</strong>。新列表中将添加<strong> %{total_items} 个账户</strong>。
-      muting_html: 你即将使用来自<strong> %{filename} </strong>的最多<strong> %{total_items} 个账户</strong>替换你已隐藏的账户列表。
+      blocking_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>帐户<strong>替换你的屏蔽列表</strong>。
+      bookmarks_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 条</strong>嘟文<strong>替换你的书签</strong>。
+      domain_blocking_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>域名<strong>替换你的域名屏蔽列表</strong>。
+      following_html:
+        other: 你即将<strong>关注</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账户</strong>，并<strong>停止关注其他所有人</strong>。
+      lists_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的内容<strong>替换你的列表</strong>。最多将会有 <strong>%{count} 个账户</strong> 被添加到新列表。
+      muting_html:
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>帐户<strong>替换你的已隐藏账户列表</strong>。
     preambles:
-      blocking_html: 你即将从<strong> %{filename} </strong>中<strong>封锁</strong>多达<strong> %{total_items} </strong>个账户。
-      bookmarks_html: 你即将把来自<strong> %{filename} </strong>的<strong> %{total_items} 篇嘟文</strong>添加到你的<strong>书签</strong>中。
-      domain_blocking_html: 你即将从<strong> %{filename} </strong>中<strong>屏蔽</strong><strong> %{total_items} 个域名</strong>。
-      following_html: 你即将从<strong> %{filename} </strong><strong>关注</strong>最多<strong> %{total_items} 个账户</strong>。
-      lists_html: 你即将从<strong> %{filename} </strong>中添加最多<strong> %{total_items} 个账户</strong>到你的<strong>列表</strong>中。如果没有可用列表，将创建新的列表。
-      muting_html: 你即将从<strong> %{filename} </strong>中<strong>隐藏</strong><strong> %{total_items} 个账户</strong>。
+      blocking_html:
+        other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
+      bookmarks_html:
+        other: 你即将把来自<strong> %{filename} </strong>的<strong> %{count} 篇嘟文</strong>添加到你的<strong>书签</strong>中。
+      domain_blocking_html:
+        other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个域名</strong>。
+      following_html:
+        other: 你即将<strong>关注</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
+      lists_html:
+        other: 你即将从<strong> %{filename} </strong>中添加最多<strong> %{count} 个账户</strong>到你的<strong>列表</strong>中。如果没有可用列表，将创建新的列表。
+      muting_html:
+        other: 你即将<strong>隐藏</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
     preface: 你可以在此导入你在其他实例导出的数据，比如你所关注或屏蔽的用户列表。
     recent_imports: 最近导入
     states:
@@ -1686,8 +1701,8 @@ zh-CN:
   severed_relationships:
     download: 下载 (%{count})
     event_type:
-      account_suspension: 账户被封禁 (%{target_name})
-      domain_block: 服务器被封禁 (%{target_name})
+      account_suspension: 封禁账户 (%{target_name})
+      domain_block: 封禁服务器 (%{target_name})
       user_domain_block: 你屏蔽了 %{target_name}
     lost_followers: 失去的关注者
     lost_follows: 失去的关注
@@ -1863,7 +1878,7 @@ zh-CN:
       apps_android_action: 从 Google Play 下载
       apps_ios_action: 从 App Store 下载
       apps_step: 下载我们的官方应用。
-      apps_title: Mastodon应用
+      apps_title: Mastodon 应用
       checklist_subtitle: 让我们带你开启这片社交新天地：
       checklist_title: 欢迎清单
       edit_profile_action: 个性化
@@ -1871,16 +1886,16 @@ zh-CN:
       edit_profile_title: 个性化你的个人资料
       explanation: 下面是几个小贴士，希望它们能帮到你
       feature_action: 了解更多
-      feature_audience: Mastodon为你提供了无需中间商即可管理受众的独特可能。Mastodon可被部署在你自己的基础设施上，允许你关注其它任何Mastodon在线服务器的用户，或被任何其他在线 Mastodon 服务器的用户关注，并且不受你之外的任何人控制。
+      feature_audience: Mastodon 为你提供了无需中间商即可管理受众的独特可能。Mastodon 可被部署在你自己的基础设施上，允许你关注其它任何 Mastodon 在线服务器的用户，或被任何其他在线 Mastodon 服务器的用户关注，并且不受你之外的任何人控制。
       feature_audience_title: 放手去建立起你的受众
       feature_control: 你最清楚你想在你自己的主页中看到什么动态。没有算法或广告浪费你的时间。你可以用一个账号关注任何 Mastodon 服务器上的任何人，并按时间顺序获得他们发布的嘟文，让你的互联网的角落更合自己的心意。
       feature_control_title: 掌控自己的时间线
-      feature_creativity: Mastodon支持音频、视频和图片、无障碍描述、投票、内容警告， 动画头像、自定义表情包、缩略图裁剪控制等功能，帮助你在网上尽情表达自己。无论你是要发布你的艺术作品、音乐还是播客，Mastodon 都能为你服务。
+      feature_creativity: Mastodon 支持音频、视频和图片、无障碍描述、投票、内容警告， 动画头像、自定义表情包、缩略图裁剪控制等功能，帮助你在网上尽情表达自己。无论你是要发布你的艺术作品、音乐还是播客，Mastodon 都能为你服务。
       feature_creativity_title: 无与伦比的创造力
-      feature_moderation: Mastodon将决策权交还给你。每个服务器都会创建自己的规则和条例，并在站点内施行，而不是像企业社交媒体那样居高临下，这使得它可以最灵活地响应不同人群的需求。加入一个你认同其规则的服务器，或托管你自己的服务器。
+      feature_moderation: Mastodon 将决策权交还给你。每个服务器都会创建自己的规则和条例，并在站点内施行，而不是像企业社交媒体那样居高临下，这使得它可以最灵活地响应不同人群的需求。加入一个你认同其规则的服务器，或托管你自己的服务器。
       feature_moderation_title: 管理，本应如此
       follow_action: 关注
-      follow_step: 关注有趣的人，这就是Mastodon的意义所在。
+      follow_step: 关注有趣的人，这就是 Mastodon 的意义所在。
       follow_title: 个性化你的首页动态
       follows_subtitle: 关注知名账户
       follows_title: 推荐关注
@@ -1894,8 +1909,8 @@ zh-CN:
       post_step: 向世界打个招呼吧。
       post_title: 发布你的第一条嘟文
       share_action: 分享
-      share_step: 让你的朋友知道如何在Mastodon找到你。
-      share_title: 分享你的Mastodon个人资料
+      share_step: 让你的朋友知道如何在 Mastodon 找到你。
+      share_title: 分享你的 Mastodon 个人资料
       sign_in_action: 登录
       subject: 欢迎来到 Mastodon
       title: "%{name}，欢迎你的加入！"

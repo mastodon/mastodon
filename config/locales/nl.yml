@@ -21,6 +21,7 @@ nl:
       one: Toot
       other: Berichten
     posts_tab_heading: Berichten
+    self_follow_error: Het volgen van je eigen account is niet toegestaan
   admin:
     account_actions:
       action: Actie uitvoeren
@@ -1165,9 +1166,11 @@ nl:
     use_security_key: Beveiligingssleutel gebruiken
   author_attribution:
     example_title: Voorbeeldtekst
-    hint_html: Bepaal hoe we je vermelden, wanneer jouw links op Mastodon worden gedeeld.
+    hint_html: Schrijf je nieuws- of blogartikelen buiten Mastodon? Bepaal hoe je geattribueerd wordt als deze gedeeld worden op Mastodon.
+    instructions: 'Zorg ervoor dat deze code in de HTML van je artikel zit:'
     more_from_html: Meer van %{name}
     s_blog: De weblog van %{name}
+    then_instructions: Voeg vervolgens de domeinnaam van de publicatie toe in het onderstaande veld.
     title: Auteur-attributie
   challenge:
     confirm: Doorgaan
@@ -1366,19 +1369,43 @@ nl:
       overwrite: Overschrijven
       overwrite_long: Huidige gegevens met de nieuwe gegevens vervangen
     overwrite_preambles:
-      blocking_html: Je staat op het punt <strong>jouw lijst met geblokkeerde accounts</strong> te vervangen door <strong>%{total_items} accounts</strong> vanuit <strong>%{filename}</strong>.
-      bookmarks_html: Je staat op het punt <strong>jouw bladwijzers</strong> te vervangen door <strong>%{total_items} berichten</strong> vanuit <strong>%{filename}</strong>.
-      domain_blocking_html: Je staat op het punt <strong>jouw lijst met geblokkeerde domeinen</strong> te vervangen door <strong>%{total_items} domeinen</strong> vanuit <strong>%{filename}</strong>.
-      following_html: Je staat op het punt om <strong>%{total_items} accounts</strong> <strong>te volgen</strong> vanuit <strong>%{filename}</strong> en <strong>te stoppen met het volgen van alle andere accounts</strong>.
-      lists_html: Je staat op het punt <strong>je lijsten</strong> te vervangen door inhoud van <strong>%{filename}</strong>. Er worden totaal <strong>%{total_items} accounts</strong> aan nieuwe lijsten toegevoegd.
-      muting_html: Je staat op het punt <strong>jouw lijst met genegeerde accounts</strong> te vervangen door <strong>%{total_items} accounts</strong> vanuit <strong>%{filename}</strong>.
+      blocking_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>blokkeerlijst te vervangen</strong> met in het totaal <strong>%{count} account</strong>.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>blokkeerlijst te vervangen</strong> met in het totaal <strong>%{count} accounts</strong>.
+      bookmarks_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>bladwijzers te vervangen</strong> met in het totaal <strong>%{count} bericht</strong>.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>bladwijzers te vervangen</strong> met in het totaal <strong>%{count} berichten</strong>.
+      domain_blocking_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>lijst met geblokkeerde domeinen te vervangen</strong> met in het totaal <strong>%{count} domein</strong>.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>lijst met geblokkeerde domeinen te vervangen</strong> met in het totaal <strong>%{count} domeinen</strong>.
+      following_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} account te volgen</strong> en <strong>de rest te ontvolgen</strong>.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} accounts te volgen</strong> en <strong>de rest te ontvolgen</strong>.
+      lists_html:
+        one: Je staat op het punt om met de inhoud van <strong>%{filename}</strong> je <strong>lijsten te vervangen</strong>. In het totaal wordt <strong>%{count} account</strong> aan de nieuwe lijst(en) toegevoegd.
+        other: Je staat op het punt om met de inhoud van <strong>%{filename}</strong> je <strong>lijsten te vervangen</strong>. In het totaal worden <strong>%{count} accounts</strong> aan de nieuwe lijst(en) toegevoegd.
+      muting_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>negeerlijst te vervangen</strong> met in het totaal <strong>%{count} account</strong>.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> je <strong>blokkeerlijst te vervangen</strong> met in het totaal <strong>%{count} accounts</strong>.
     preambles:
-      blocking_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>blokkeren</strong> vanuit <strong>%{filename}</strong>.
-      bookmarks_html: Je staat op het punt om <strong>%{total_items} berichten</strong> aan je <strong>bladwijzers</strong> toe te voegen vanuit <strong>%{filename}</strong>.
-      domain_blocking_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>negeren</strong> vanuit <strong>%{filename}</strong>.
-      following_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>volgen</strong> vanuit <strong>%{filename}</strong>.
-      lists_html: Je staat op het punt om tot <strong>%{total_items} accounts</strong> van <strong>%{filename}</strong> toe te voegen aan je <strong>lijsten</strong>. Nieuwe lijsten worden aangemaakt als er geen lijst is om aan toe te voegen.
-      muting_html: Je staat op het punt om <strong>%{total_items} accounts</strong> te <strong>negeren</strong> vanuit <strong>%{filename}</strong>.
+      blocking_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} account te blokkeren</strong>.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} accounts te blokkeren</strong>.
+      bookmarks_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} bericht</strong> aan je <strong>bladwijzers</strong> toe te voegen.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} berichten</strong> aan je <strong>bladwijzers</strong> toe te voegen.
+      domain_blocking_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} domein te blokkeren</strong>.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} domeinen te blokkeren</strong>.
+      following_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} account te volgen</strong>.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} accounts te volgen</strong>.
+      lists_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} account</strong> aan je <strong>lijsten</strong> toe te voegen. Er wordt een nieuwe lijst aangemaakt wanneer er geen lijst is om het aan toe te voegen.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} accounts</strong> aan je <strong>lijsten</strong> toe te voegen. Er worden nieuwe lijsten aangemaakt wanneer er geen lijsten zijn om ze aan toe te voegen.
+      muting_html:
+        one: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} account te negeren</strong>.
+        other: Je staat op het punt om vanuit <strong>%{filename}</strong> in het totaal <strong>%{count} accounts te negeren</strong>.
     preface: Je kunt bepaalde gegevens, zoals de mensen die jij volgt of hebt geblokkeerd, naar jouw account op deze server importeren. Je moet deze gegevens wel eerst op de oorspronkelijke server exporteren.
     recent_imports: Recent geïmporteerd
     states:
@@ -1526,8 +1553,8 @@ nl:
       title: Nieuw volgverzoek
     mention:
       action: Reageren
-      body: 'Jij bent door %{name} vermeld in:'
-      subject: Jij bent vermeld door %{name}
+      body: 'Je bent door %{name} vermeld in:'
+      subject: Je bent vermeld door %{name}
       title: Nieuwe vermelding
     poll:
       subject: Een peiling van %{name} is beëindigd

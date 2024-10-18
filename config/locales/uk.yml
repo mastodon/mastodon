@@ -25,6 +25,7 @@ uk:
       one: Допис
       other: Дописів
     posts_tab_heading: Дописів
+    self_follow_error: Ви не можете стежити за власним обліковим записом
   admin:
     account_actions:
       action: Виконати дію
@@ -1201,9 +1202,9 @@ uk:
     use_security_key: Використовувати ключ безпеки
   author_attribution:
     example_title: Зразок тексту
-    hint_html: Контроль авторства поширених посилань на Mastodon.
     more_from_html: Більше від %{name}
     s_blog: Блог %{name}
+    then_instructions: Потім додайте доменне ім'я публікації у поле нижче.
     title: Атрибути авторства
   challenge:
     confirm: Далі
@@ -1415,20 +1416,6 @@ uk:
       merge_long: Зберегти наявні записи та додати нові
       overwrite: Перезаписувати
       overwrite_long: Замінити наявні записи новими
-    overwrite_preambles:
-      blocking_html: Ви збираєтеся <strong>замінити ваш список блокування</strong> з <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong>.
-      bookmarks_html: Ви збираєтеся <strong>замінити ваші закладки</strong> з <strong>%{total_items} дописами</strong> з <strong>%{filename}</strong>.
-      domain_blocking_html: Ви збираєтеся <strong>замінити ваш список блокування доменів</strong> з <strong>%{total_items} доменами</strong> з <strong>%{filename}</strong>.
-      following_html: Ви збираєтеся <strong>слідкувати</strong> за <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong> і <strong>перестати слідкувати за всіма іншими</strong>.
-      lists_html: Ви збираєтеся <strong>замінити ваші списки</strong> вмістом з <strong>%{filename}</strong>. До нових списків буде додано до <strong>%{total_items} облікових записів</strong>.
-      muting_html: Ви збираєтеся <strong>замінити ваш список ігнорованих облікових записів</strong> з <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Ви збираєтеся <strong>заблокувати</strong> <strong>%{total_items} облікових записів</strong> з <strong>%{filename}</strong>.
-      bookmarks_html: Ви збираєтеся додати <strong>%{total_items} дописів</strong> з <strong>%{filename}</strong> до ваших <strong>закладок</strong>.
-      domain_blocking_html: Ви збираєтеся <strong>заблокувати</strong> <strong>%{total_items} доменів</strong> з <strong>%{filename}</strong>.
-      following_html: Ви збираєтеся <strong>слідкувати</strong> за <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong>.
-      lists_html: Ви збираєтеся додати до <strong>%{total_items} облікових записів</strong> з <strong>%{filename}</strong> до ваших <strong>списків</strong>. Нові списки будуть створені, якщо немає списку для додавання.
-      muting_html: Ви збираєтеся <strong>ігнорувати</strong> <strong>%{total_items} облікових записів</strong> з <strong>%{filename}</strong>.
     preface: Ви можете імпортувати дані, які ви експортували з іншого сервера, наприклад, список людей, яких ви відстежуєте або блокуєте.
     recent_imports: Останні імпорти
     states:

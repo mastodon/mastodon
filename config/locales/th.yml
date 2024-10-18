@@ -19,6 +19,7 @@ th:
     posts:
       other: โพสต์
     posts_tab_heading: โพสต์
+    self_follow_error: ไม่อนุญาตการติดตามบัญชีของคุณเอง
   admin:
     account_actions:
       action: ทำการกระทำ
@@ -1147,7 +1148,6 @@ th:
     use_security_key: ใช้กุญแจความปลอดภัย
   author_attribution:
     example_title: ข้อความตัวอย่าง
-    hint_html: ควบคุมวิธีที่ให้เครดิตแก่คุณเมื่อมีการแบ่งปันลิงก์ใน Mastodon
     more_from_html: เพิ่มเติมจาก %{name}
     s_blog: บล็อกของ %{name}
     title: การระบุแหล่งที่มาผู้สร้าง
@@ -1340,20 +1340,6 @@ th:
       merge_long: เก็บระเบียนที่มีอยู่และเพิ่มระเบียนใหม่
       overwrite: เขียนทับ
       overwrite_long: แทนที่ระเบียนปัจจุบันด้วยระเบียนใหม่
-    overwrite_preambles:
-      blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นของคุณ</strong> ด้วยมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-      bookmarks_html: คุณกำลังจะ <strong>แทนที่ที่คั่นหน้าของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong>
-      domain_blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นโดเมนของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
-      following_html: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong> และ <strong>หยุดการติดตามคนอื่นใด</strong>
-      lists_html: คุณกำลังจะ <strong>แทนที่รายการของคุณ</strong> ด้วยเนื้อหาของ <strong>%{filename}</strong> จะเพิ่มมากถึง <strong>%{total_items} บัญชี</strong> ไปยังรายการใหม่
-      muting_html: คุณกำลังจะ <strong>แทนที่รายการบัญชีที่ซ่อนอยู่ของคุณ</strong> ด้วยมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-    preambles:
-      blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-      bookmarks_html: คุณกำลังจะเพิ่มมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>ที่คั่นหน้า</strong> ของคุณ
-      domain_blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
-      following_html: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-      lists_html: คุณกำลังจะเพิ่มมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>รายการ</strong> ของคุณ จะสร้างรายการใหม่หากไม่มีรายการที่จะเพิ่มไปยัง
-      muting_html: คุณกำลังจะ <strong>ซ่อน</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
     preface: คุณสามารถนำเข้าข้อมูลที่คุณได้ส่งออกจากเซิร์ฟเวอร์อื่น เช่น รายการผู้คนที่คุณกำลังติดตามหรือกำลังปิดกั้น
     recent_imports: การนำเข้าล่าสุด
     states:

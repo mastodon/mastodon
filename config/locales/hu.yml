@@ -21,6 +21,7 @@ hu:
       one: Bejegyzés
       other: Bejegyzés
     posts_tab_heading: Bejegyzés
+    self_follow_error: A saját fiók nem követhető
   admin:
     account_actions:
       action: Művelet végrehajtása
@@ -1165,7 +1166,6 @@ hu:
     use_security_key: Biztonsági kulcs használata
   author_attribution:
     example_title: Mintaszöveg
-    hint_html: Szabályozd, hogyan hivatkoznak rád, amikor linket osztanak meg Mastodonon.
     more_from_html: 'Több tőle: %{name}'
     s_blog: "%{name} blogja"
     title: Szerző forrásmegjelölése
@@ -1366,19 +1366,43 @@ hu:
       overwrite: Felülírás
       overwrite_long: Lecseréljük újakkal a jelenlegi bejegyzéseket
     overwrite_preambles:
-      blocking_html: 'Arra készülsz, hogy <strong>lecseréld a letiltási listát</strong> legfeljebb <strong>%{total_items} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
-      bookmarks_html: 'Arra készülsz, hogy <strong>lecseréld a könyvjelzőket</strong> legfeljebb <strong>%{total_items} bejegyzésre</strong> a következőből: <strong>%{filename}</strong>.'
-      domain_blocking_html: 'Arra készülsz, hogy <strong>lecseréld a domain letiltási listát</strong> legfeljebb <strong>%{total_items} domainre</strong> a következőből: <strong>%{filename}</strong>.'
-      following_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>, és <strong>abbahagyd mindenki más követését</strong>.'
-      lists_html: Arra készülsz, hogy <strong>a listákat lecseréld</strong> a <strong>%{filename}</strong> tartalmával. Legfeljebb <strong>%{total_items} fiók</strong> kerül fel az új listákra.
-      muting_html: 'Arra készülsz, hogy <strong>lecseréld a némított fiókok listáját</strong> legfeljebb <strong>%{total_items} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
+      blocking_html:
+        one: 'Arra készülsz, hogy <strong>lecseréld a letiltási listát</strong> legfeljebb <strong>%{count} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy <strong>lecseréld a letiltási listát</strong> legfeljebb <strong>%{count} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
+      bookmarks_html:
+        one: 'Arra készülsz, hogy <strong>lecseréld a könyvjelzőket</strong> legfeljebb <strong>%{count} bejegyzésre</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy <strong>lecseréld a könyvjelzőket</strong> legfeljebb <strong>%{count} bejegyzésre</strong> a következőből: <strong>%{filename}</strong>.'
+      domain_blocking_html:
+        one: 'Arra készülsz, hogy <strong>lecseréld a domain letiltási listát</strong> legfeljebb <strong>%{count} domainre</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy <strong>lecseréld a domain letiltási listát</strong> legfeljebb <strong>%{count} domainre</strong> a következőből: <strong>%{filename}</strong>.'
+      following_html:
+        one: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>, és <strong>abbahagyd mindenki más követését</strong>.'
+        other: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>, és <strong>abbahagyd mindenki más követését</strong>.'
+      lists_html:
+        one: Arra készülsz, hogy <strong>a listákat lecseréld</strong> a <strong>%{filename}</strong> tartalmával. Legfeljebb <strong>%{count} fiók</strong> kerül fel az új listákra.
+        other: Arra készülsz, hogy <strong>a listákat lecseréld</strong> a <strong>%{filename}</strong> tartalmával. Legfeljebb <strong>%{count} fiók</strong> kerül fel az új listákra.
+      muting_html:
+        one: 'Arra készülsz, hogy <strong>lecseréld a némított fiókok listáját</strong> legfeljebb <strong>%{count} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy <strong>lecseréld a némított fiókok listáját</strong> legfeljebb <strong>%{count} fiókra</strong> a következőből: <strong>%{filename}</strong>.'
     preambles:
-      blocking_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
-      bookmarks_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} bejegyzést</strong> adj hozzá a <strong>könyvjelzőkhöz</strong> a következőből: <strong>%{filename}</strong>.'
-      domain_blocking_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} domaint</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
-      following_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>.'
-      lists_html: Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> hozzáadj a <strong>%{filename}</strong> fájlból a <strong>listákhoz</strong>. Új listák jönnek létre, ha nincs hozzáadható lista.
-      muting_html: 'Arra készülsz, hogy legfeljebb <strong>%{total_items} fiókot</strong> <strong>némíts</strong> a következőből: <strong>%{filename}</strong>.'
+      blocking_html:
+        one: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
+      bookmarks_html:
+        one: 'Arra készülsz, hogy legfeljebb <strong>%{count} bejegyzést</strong> adj hozzá a <strong>könyvjelzőkhöz</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy legfeljebb <strong>%{count} bejegyzést</strong> adj hozzá a <strong>könyvjelzőkhöz</strong> a következőből: <strong>%{filename}</strong>.'
+      domain_blocking_html:
+        one: 'Arra készülsz, hogy legfeljebb <strong>%{count} domaint</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy legfeljebb <strong>%{count} domaint</strong> <strong>letilts</strong> a következőből: <strong>%{filename}</strong>.'
+      following_html:
+        one: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>kövess</strong> a következőből: <strong>%{filename}</strong>.'
+      lists_html:
+        one: Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> hozzáadj a <strong>%{filename}</strong> fájlból a <strong>listákhoz</strong>. Új listák jönnek létre, ha nincs hozzáadható lista.
+        other: Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> hozzáadj a <strong>%{filename}</strong> fájlból a <strong>listákhoz</strong>. Új listák jönnek létre, ha nincs hozzáadható lista.
+      muting_html:
+        one: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>némíts</strong> a következőből: <strong>%{filename}</strong>.'
+        other: 'Arra készülsz, hogy legfeljebb <strong>%{count} fiókot</strong> <strong>némíts</strong> a következőből: <strong>%{filename}</strong>.'
     preface: Itt importálhatod egy másik kiszolgálóról lementett adataidat, például követettjeid és letiltott felhasználóid listáját.
     recent_imports: Legutóbbi importálások
     states:

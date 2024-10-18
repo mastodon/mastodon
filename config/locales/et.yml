@@ -21,6 +21,7 @@ et:
       one: Postitus
       other: Postitused
     posts_tab_heading: Postitused
+    self_follow_error: Omaenda konto jälgimine ei ole lubatud
   admin:
     account_actions:
       action: Täida tegevus
@@ -875,6 +876,9 @@ et:
         message_html: Serverireegleid pole defineeritud.
       sidekiq_process_check:
         message_html: Ühtegi Sidekiq protsessi pole %{value} järjekorra jaoks. Sidekiq seadistus vajab üle vaatamist
+      software_version_check:
+        action: Vaata saadaval uuendusi
+        message_html: Mastodoni uuendus on saadaval.
       software_version_critical_check:
         action: Vaata saadaolevaid uuendusi
         message_html: Saadaval on Mastodoni kriitiline uuendus, uuenda nii kiiresti kui võimalik.
@@ -1162,7 +1166,6 @@ et:
     use_security_key: Kasuta turvavõtit
   author_attribution:
     example_title: Näidistekst
-    hint_html: Määra, kuidas sind krediteeritakse, kui linke Mastodonis jagatakse.
     more_from_html: Rohkem kasutajalt %{name}
     s_blog: Kasutaja %{name} blogi
     title: Autori tunnustamine
@@ -1363,19 +1366,43 @@ et:
       overwrite: Kirjuta üle
       overwrite_long: Vaheta praegused andmed uute vastu
     overwrite_preambles:
-      blocking_html: Oled <strong>asendamas oma blokeeringute loetelu</strong> kuni <strong>%{total_items} kontoga </strong> kohast <strong>%{filename}</strong>.
-      bookmarks_html: Oled <strong>asendamas oma järjehoidjaid</strong> kuni <strong>%{total_items} postitusega </strong> kohast <strong>%{filename}</strong>.
-      domain_blocking_html: Oled <strong>asendamas oma domeenide blokeeringute loetelu </strong> kuni <strong>%{total_items} domeeniga </strong> kohast <strong>%{filename}</strong>.
-      following_html: Oled <strong>jälgima hakkamas</strong> kuni <strong>%{total_items} kontot</strong> kohast <strong>%{filename}</strong> ja <strong>lõpetad kõigi teiste jälgimise</strong>.
-      lists_html: Oled <strong>asendamas oma loetelusid</strong> faili <strong>%{filename}</strong> sisuga. Uutesse loeteludesse lisatakse kuni <strong>%{total_items} kontot</strong>.
-      muting_html: Oled <strong>asendamas oma vaigistatud kontode loetelu</strong> kuni <strong>%{total_items} kontoga </strong> kohast <strong>%{filename}</strong>.
+      blocking_html:
+        one: Oled <strong>asendamas oma blokeeringute loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} konto</strong>.
+        other: Oled <strong>asendamas oma blokeeringute loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} kontot</strong>.
+      bookmarks_html:
+        one: Oled <strong>asendamas oma järjehoidjad</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} postitus</strong>.
+        other: Oled <strong>asendamas oma järjehoidjad</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} postitust</strong>.
+      domain_blocking_html:
+        one: Oled <strong>asendamas oma domeenide blokeeringu loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} domeen</strong>.
+        other: Oled <strong>asendamas oma domeenide blokeeringu loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} domeen</strong>.
+      following_html:
+        one: Oled <strong>jälgima hakkamas</strong> kuni <strong>%{count} kontot</strong> failist <strong>%{filename}</strong> ja <strong>lõpetad kõigi teiste jälgimise</strong>.
+        other: Oled <strong>jälgima hakkamas</strong> kuni <strong>%{count} kontot</strong> failist <strong>%{filename}</strong> ja <strong>lõpetad kõigi teiste jälgimise</strong>.
+      lists_html:
+        one: Oled <strong>asendamas oma loetelusid</strong> faili <strong>%{filename}</strong> sisuga. Uutesse loeteludesse lisatakse kuni <strong>%{count} konto</strong>.
+        other: Oled <strong>asendamas oma loetelusid</strong> faili <strong>%{filename}</strong> sisuga. Uutesse loeteludesse lisatakse kuni <strong>%{count} kontot</strong>.
+      muting_html:
+        one: Oled <strong>asendamas oma vaigistatud kontode loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} konto</strong>.
+        other: Oled <strong>asendamas oma vaigistatud kontode loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} kontot</strong>.
     preambles:
-      blocking_html: Oled <strong>blokeerimas</strong> kuni <strong>%{total_items} kontoga </strong> kohast <strong>%{filename}</strong>.
-      bookmarks_html: Oled lisamas kuni <strong>%{total_items} postitust</strong> kohast <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
-      domain_blocking_html: Oled <strong>blokeerimas</strong> kuni <strong>%{total_items} domeeni</strong> kohast <strong>%{filename}</strong>.
-      following_html: Oled <strong>jälgima hakkamas</strong> kuni <strong>%{total_items} kontot</strong> kohast <strong>%{filename}</strong>.
-      lists_html: Oled lisamas oma <strong>loeteludesse</strong> failist <strong>%{filename}</strong> kuni <strong>%{total_items} kontot</strong>. Kui pole loetelusi, kuhu lisada, luuakse uued loetelud.
-      muting_html: Oled <strong>vaigistamas</strong> kuni <strong>%{total_items} kontot</strong> kohast <strong>%{filename}</strong>.
+      blocking_html:
+        one: Oled <strong>blokeerimas</strong> kuni <strong>%{count} konto</strong> failist <strong>%{filename}</strong>.
+        other: Oled <strong>blokeerimas</strong> kuni <strong>%{count} kontot</strong> failist <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Oled lisamas kuni <strong>%{count} postituse</strong> failist <strong>%{filename}</strong> oma <strong>järjehoidjatesse</strong>.
+        other: Oled lisamas kuni <strong>%{count} postitust</strong> failist <strong>%{filename}</strong> oma <strong>järjehoidjatesse</strong>.
+      domain_blocking_html:
+        one: Oled <strong>blokeerimas</strong> kuni <strong>%{count} domeeni</strong> failist <strong>%{filename}</strong>.
+        other: Oled <strong>blokeerimas</strong> kuni <strong>%{count} domeeni</strong> failist <strong>%{filename}</strong>.
+      following_html:
+        one: Oled <strong>jälgima hakkamas</strong> kuni <strong>%{count} konto</strong> failist <strong>%{filename}</strong>.
+        other: Oled <strong>jälgima hakkamas</strong> kuni <strong>%{count} kontot</strong> failist <strong>%{filename}</strong>.
+      lists_html:
+        one: Oled lisamas oma <strong>loeteludesse</strong> failist <strong>%{filename}</strong> kuni <strong>%{count} konto</strong>. Kui pole loetelusi, kuhu lisada, luuakse uued loetelud.
+        other: Oled lisamas oma <strong>loeteludesse</strong> failist <strong>%{filename}</strong> kuni <strong>%{count} kontot</strong>. Kui pole loetelusi, kuhu lisada, luuakse uued loetelud.
+      muting_html:
+        one: Oled <strong>vaigistamas</strong> kuni <strong>%{count} konto</strong> failist <strong>%{filename}</strong>.
+        other: Oled <strong>vaigistamas</strong> kuni <strong>%{count} kontot</strong> failist <strong>%{filename}</strong>.
     preface: Saad importida mistahes andmeid, mis on eksporditud teisest serverist. Näiteks nimekirja inimestest, keda jälgid ja keda blokeerid.
     recent_imports: Viimati imporditud
     states:
@@ -1692,6 +1719,7 @@ et:
     delete: Konto kustutamine
     development: Arendus
     edit_profile: Muuda profiili
+    export: Eksport
     featured_tags: Esile toodud sildid
     import: Impordi
     import_and_export: Import / eksport

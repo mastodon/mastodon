@@ -21,6 +21,7 @@ es-MX:
       one: Toot
       other: Toots
     posts_tab_heading: Toots
+    self_follow_error: No se permite seguir tu propia cuenta
   admin:
     account_actions:
       action: Realizar acción
@@ -180,21 +181,21 @@ es-MX:
         confirm_user: Confirmar Usuario
         create_account_warning: Crear Advertencia
         create_announcement: Crear Anuncio
-        create_canonical_email_block: Crear Bloqueo de Correo Electrónico
+        create_canonical_email_block: Crear bloqueo de correo electrónico
         create_custom_emoji: Crear Emoji Personalizado
         create_domain_allow: Crear Permiso de Dominio
         create_domain_block: Crear Bloqueo de Dominio
-        create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
+        create_email_domain_block: Crear bloqueo de dominio de correo electrónico
         create_ip_block: Crear regla IP
         create_unavailable_domain: Crear Dominio No Disponible
         create_user_role: Crear rol
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
-        destroy_canonical_email_block: Eliminar Bloqueo de Correo Electrónico
+        destroy_canonical_email_block: Eliminar bloqueo de correo electrónico
         destroy_custom_emoji: Eliminar Emoji Personalizado
         destroy_domain_allow: Eliminar Permiso de Dominio
         destroy_domain_block: Eliminar Bloqueo de Dominio
-        destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
+        destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
         destroy_instance: Purgar dominio
         destroy_ip_block: Eliminar regla IP
         destroy_status: Eliminar Estado
@@ -240,7 +241,7 @@ es-MX:
         confirm_user_html: "%{name} confirmó la dirección de correo electrónico del usuario %{target}"
         create_account_warning_html: "%{name} envió una advertencia a %{target}"
         create_announcement_html: "%{name} ha creado un nuevo anuncio %{target}"
-        create_canonical_email_block_html: "%{name} bloqueó el correo electrónico con el hash %{target}"
+        create_canonical_email_block_html: "%{name} ha bloqueado el correo electrónico con el hash %{target}"
         create_custom_emoji_html: "%{name} subió un nuevo emoji %{target}"
         create_domain_allow_html: "%{name} permitió la federación con el dominio %{target}"
         create_domain_block_html: "%{name} bloqueó el dominio %{target}"
@@ -250,7 +251,7 @@ es-MX:
         create_user_role_html: "%{name} creó el rol %{target}"
         demote_user_html: "%{name} degradó al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
-        destroy_canonical_email_block_html: "%{name} desbloqueó el correo electrónico con el hash %{target}"
+        destroy_canonical_email_block_html: "%{name} ha desbloqueado el correo electrónico con el hash %{target}"
         destroy_custom_emoji_html: "%{name} eliminó el emoji %{target}"
         destroy_domain_allow_html: "%{name} bloqueó la federación con el dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
@@ -262,10 +263,10 @@ es-MX:
         destroy_user_role_html: "%{name} eliminó el rol %{target}"
         disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} desactivó el emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} ha deshabilitado la autenticación por token de correo electrónico para %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} desactivó la autenticación por token de correo electrónico para %{target}"
         disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
         enable_custom_emoji_html: "%{name} activó el emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} ha habilitado la autenticación por token de correo electrónico para %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} activó autenticación por token de correo electrónico para %{target}"
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
         promote_user_html: "%{name} promoción al usuario %{target}"
@@ -273,7 +274,7 @@ es-MX:
         reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} eliminó el avatar de %{target}"
         reopen_report_html: "%{name} reabrió el informe %{target}"
-        resend_user_html: "%{name} ha reenviado el correo de confirmación para %{target}"
+        resend_user_html: "%{name} reenvió correo electrónico de confirmación para %{target}"
         reset_password_user_html: "%{name} reinició la contraseña del usuario %{target}"
         resolve_report_html: "%{name} resolvió el informe %{target}"
         sensitive_account_html: "%{name} marcó la multimedia de %{target} como sensible"
@@ -604,7 +605,7 @@ es-MX:
         suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y eventualmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los reportes contra esta cuenta.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este reporte. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
-      actions_no_posts: Este informe no tiene ningún mensaje asociado para eliminar
+      actions_no_posts: Este informe no tiene ninguna publicación asociada para eliminar
       add_to_report: Añadir más al reporte
       already_suspended_badges:
         local: Ya suspendido en este servidor
@@ -801,7 +802,7 @@ es-MX:
       destroyed_msg: "¡Carga del sitio eliminada con éxito!"
     software_updates:
       critical_update: Crítico — por favor actualiza rápidamente
-      description: Se recomienda mantener actualizada tu instalación de Mastodon para beneficiarte de las últimas correcciones y características. Además, a veces es crítico actualizar Mastodon de manera oportuna para evitar problemas de seguridad. Por estas razones, Mastodon comprueba si hay actualizaciones cada 30 minutos, y te notificará de acuerdo a tus preferencias de notificación por correo electrónico.
+      description: Se recomienda mantener tu instalación de Mastodon actualizada para beneficiarte de las últimas correcciones y características. Además, a veces es crítico actualizar Mastodon a tiempo para evitar problemas de seguridad. Por estas razones, Mastodon busca actualizaciones cada 30 minutos, y le notificará de acuerdo a sus preferencias de notificación por correo electrónico.
       documentation_link: Saber más
       release_notes: Notas de la versión
       title: Actualizaciones disponibles
@@ -876,8 +877,8 @@ es-MX:
       sidekiq_process_check:
         message_html: No hay ningún proceso Sidekiq en ejecución para la(s) cola(s) %{value}. Por favor, revise su configuración de Sidekiq
       software_version_check:
-        action: Ver actualizaciones disponibles
-        message_html: Hay disponible una actualización de Mastodon.
+        action: Ver las actualizaciones disponibles
+        message_html: Ya está disponible una actualización de Mastodon.
       software_version_critical_check:
         action: Ver actualizaciones disponibles
         message_html: Una actualización crítica de Mastodon está disponible, por favor actualice lo antes posible.
@@ -1165,9 +1166,11 @@ es-MX:
     use_security_key: Usar la clave de seguridad
   author_attribution:
     example_title: Texto de ejemplo
-    hint_html: Controla cómo se te dará atribución cuando se compartan enlaces en Mastodon.
+    hint_html: "¿Estás escribiendo artículos de noticias o blogs fuera de Mastodon? Controla cómo te acreditan cuando se comparten en Mastodon."
+    instructions: 'Asegúrate de que este código esté en el HTML de tu artículo:'
     more_from_html: Más de %{name}
     s_blog: Blog de %{name}
+    then_instructions: A continuación, añade el nombre de dominio de la publicación en el campo inferior.
     title: Atribución del autor
   challenge:
     confirm: Continuar
@@ -1366,19 +1369,43 @@ es-MX:
       overwrite: Sobrescribir
       overwrite_long: Reemplazar registros actuales con los nuevos
     overwrite_preambles:
-      blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos</strong> por hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
-      bookmarks_html: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{total_items} publicaciones</strong> provenientes de <strong>%{filename}</strong>.
-      domain_blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
-      following_html: Estás a punto de <strong>seguir</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
-      lists_html: Estás a punto de <strong>reemplazar tus listas</strong> con contenidos de <strong>%{filename}</strong>. <strong>%{total_items} cuentas</strong> se añadirán a listas nuevas.
-      muting_html: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
+      blocking_html:
+        one: Estás a punto de <strong>reemplazar tu lista de bloqueos</strong> por <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>reemplazar tu lista de bloqueos</strong> por hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Estás a punto de <strong>reemplazar tus marcadores</strong> por <strong>%{count} publicación</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{count} publicaciones</strong> provenientes de <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por <strong>%{count} dominio</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{count} dominios</strong> provenientes de <strong>%{filename}</strong>.
+      following_html:
+        one: Estás a punto de <strong>seguir</strong> a <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
+        other: Estás a punto de <strong>seguir</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
+      lists_html:
+        one: Estás a punto de <strong>reemplazar tus listas</strong> con el contenido de <strong>%{filename}</strong>. Se añadirá <strong>%{count} cuenta</strong> a una nueva lista.
+        other: Estás a punto de <strong>reemplazar tus listas</strong> con el contenido de <strong>%{filename}</strong>. Se añadirán <strong>%{count} cuentas</strong> a nuevas listas.
+      muting_html:
+        one: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con <strong>%{count} cuenta</strong> proveninete de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
-      bookmarks_html: Estás a punto de añadir hasta <strong>%{total_items} publicaciones</strong> proveninetes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
-      domain_blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
-      following_html: Estás a punto de <strong>seguir</strong> hasta <strong>cuentas%{total_items}</strong> provenientes de <strong>%{filename}</strong>.
-      lists_html: Estás a punto de añadir <strong>%{total_items} cuentas</strong> desde <strong>%{filename}</strong> a tus <strong>listas</strong>. Se crearán nuevas listas si no hay listas para añadirlas.
-      muting_html: Estás a punto de <strong>silenciar</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      blocking_html:
+        one: Estás a punto de <strong>bloquear</strong> a <strong>%{count} cuenta</strong> proveninete de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Está a punto de añadir <strong>%{count} publicación</strong> proveniente de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+        other: Está a punto de añadir hasta <strong>%{count} publicaciones</strong> provenientes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+      domain_blocking_html:
+        one: Estás a punto de <strong>bloquear</strong> <strong>%{count} dominio</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} dominios</strong> provenientes de <strong>%{filename}</strong>.
+      following_html:
+        one: Estás a punto de <strong>seguir</strong> a <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>seguir</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      lists_html:
+        one: Estás a punto de añadir <strong>%{count} cuenta</strong> desde <strong>%{filename}</strong> a tus <strong>listas</strong>. Se creará una nueva listas si no hay listas donde añadirla.
+        other: Estás a punto de añadir <strong>%{count} cuentas</strong> desde <strong>%{filename}</strong> a tus <strong>listas</strong>. Se crearán nuevas listas si no hay listas donde añadirlas.
+      muting_html:
+        one: Estás a punto de <strong>silenciar</strong> a <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>silenciar</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
     recent_imports: Importaciones recientes
     states:
@@ -1453,8 +1480,8 @@ es-MX:
       emails:
         notification_emails:
           favourite: correos de notificación de favoritos
-          follow: correos de notificación de nuevos seguidores
-          follow_request: correos de notificación de solicitud de seguidor
+          follow: correos electrónicos de notificación de seguimiento
+          follow_request: correos electrónicos de solicitud de seguimiento
           mention: correos de notificación de menciones
           reblog: correos de notificación de impulsos
       resubscribe_html: Si te has dado de baja por error, puedes volver a darte de alta desde tus <a href="%{settings_path}">ajustes de notificaciones por correo</a>.
@@ -1532,9 +1559,9 @@ es-MX:
     poll:
       subject: Una encuesta de %{name} ha terminado
     reblog:
-      body: "%{name} ha retooteado tu estado:"
-      subject: "%{name} ha retooteado tu estado"
-      title: Nueva difusión
+      body: 'Tu publicación fue impulsada por %{name}:'
+      subject: "%{name} ha impulsado tu publicación"
+      title: Nuevo impulso
     status:
       subject: "%{name} acaba de publicar"
     update:
@@ -1746,7 +1773,7 @@ es-MX:
       direct: Las publicaciones que son visibles solo para los usuarios mencionados no pueden fijarse
       limit: Ya has fijado el número máximo de publicaciones
       ownership: El toot de alguien más no puede fijarse
-      reblog: Un boost no puede fijarse
+      reblog: No se puede fijar una publicación impulsada
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Directa
@@ -1762,9 +1789,9 @@ es-MX:
     exceptions: Excepciones
     explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente, a lo largo de un tiempo, cuando el servidor no está ocupado. Por este motivo, puede que tus publicaciones sean borradas algo después de que alcancen el umbral de tiempo especificado.
     ignore_favs: Ignorar favoritos
-    ignore_reblogs: Ignorar reblogueos
+    ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Excepciones basadas en interacciones
-    interaction_exceptions_explanation: Ten en cuenta que no hay garantía de que se eliminen las publicaciones que están por debajo de los umbrales de favoritos o de reblogueos si los han superado en algún momento.
+    interaction_exceptions_explanation: Ten en cuenta que no se garantiza la eliminación de las publicaciones si bajan del umbral de favoritos o de impulso después de haberlos superado una vez.
     keep_direct: Mantener mensajes directos
     keep_direct_hint: No elimina ninguno de tus mensajes directos
     keep_media: Mantener publicaciones con multimedia adjunto
@@ -1789,7 +1816,7 @@ es-MX:
     min_age_label: Umbral de tiempo
     min_favs: Mantener mensajes con un número de favoritos mayor que
     min_favs_hint: No borra ninguna de las publicaciones que hayan recibido al menos esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
-    min_reblogs: Mantener publicaciones reblogueadas más de
+    min_reblogs: Mantener publicaciones impulsadas más de
     min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido reblogueadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de reblogueos
   stream_entries:
     sensitive_content: Contenido sensible
@@ -1897,7 +1924,7 @@ es-MX:
       checklist_subtitle: 'Comencemos en esta nueva frontera social:'
       checklist_title: Lista de bienvenida
       edit_profile_action: Personalizar
-      edit_profile_step: Aumenta tus interacciones con un perfil completo.
+      edit_profile_step: Aumenta tus interacciones completando tu perfil.
       edit_profile_title: Personaliza tu perfil
       explanation: Aquí hay algunos consejos para empezar
       feature_action: Leer más

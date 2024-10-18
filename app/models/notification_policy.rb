@@ -62,6 +62,6 @@ class NotificationPolicy < ApplicationRecord
   private
 
   def pending_notification_requests
-    @pending_notification_requests ||= notification_requests.limit(MAX_MEANINGFUL_COUNT).pick(Arel.sql('count(*), coalesce(sum(notifications_count), 0)::bigint'))
+    @pending_notification_requests ||= notification_requests.without_suspended.limit(MAX_MEANINGFUL_COUNT).pick(Arel.sql('count(*), coalesce(sum(notifications_count), 0)::bigint'))
   end
 end

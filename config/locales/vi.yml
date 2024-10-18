@@ -19,6 +19,7 @@ vi:
     posts:
       other: Tút
     posts_tab_heading: Tút
+    self_follow_error: Bạn không thể tự theo dõi chính bạn
   admin:
     account_actions:
       action: Thực hiện hành động
@@ -32,7 +33,7 @@ vi:
     accounts:
       add_email_domain_block: Chặn tên miền email
       approve: Phê duyệt
-      approved_msg: Đã phê duyệt đăng ký %{username}
+      approved_msg: Đã chấp nhận đăng ký %{username}
       are_you_sure: Bạn có chắc không?
       avatar: Ảnh đại diện
       by_domain: Máy chủ
@@ -131,7 +132,7 @@ vi:
       resubscribe: Đăng ký lại
       role: Vai trò
       search: Tìm kiếm
-      search_same_email_domain: Những người khác với cùng tên miền email
+      search_same_email_domain: Những người có cùng tên miền email
       search_same_ip: Tra cứu IP
       security: Bảo mật
       security_measures:
@@ -164,49 +165,49 @@ vi:
       unsuspended_msg: Đã kích hoạt lại %{username} thành công
       username: Tài khoản
       view_domain: Xem mô tả tài khoản này
-      warn: Nhắc
+      warn: Cảnh cáo
       web: Web
       whitelisted: Danh sách trắng
     action_logs:
       action_types:
-        approve_appeal: Chấp nhận kháng cáo
-        approve_user: Duyệt đăng ký
+        approve_appeal: Chấp nhận khiếu nại
+        approve_user: Chấp nhận đăng ký
         assigned_to_self_report: Tự xử lý báo cáo
         change_email_user: Đổi email người dùng
         change_role_user: Đổi vai trò
         confirm_user: Xác minh
         create_account_warning: Cảnh cáo
         create_announcement: Tạo thông báo mới
-        create_canonical_email_block: Chặn địa chỉ email
+        create_canonical_email_block: Chặn địa chỉ email biến thể
         create_custom_emoji: Tạo emoji
         create_domain_allow: Cho phép máy chủ
         create_domain_block: Chặn máy chủ
-        create_email_domain_block: Tạo chặn tên miền email
+        create_email_domain_block: Chặn tên miền email
         create_ip_block: Chặn IP
-        create_unavailable_domain: Ngừng liên hợp
+        create_unavailable_domain: Bỏ liên hợp
         create_user_role: Tạo vai trò
         demote_user: Hạ vai trò
         destroy_announcement: Xóa thông báo
-        destroy_canonical_email_block: Bỏ chặn địa chỉ email
+        destroy_canonical_email_block: Bỏ chặn địa chỉ email biến thể
         destroy_custom_emoji: Xóa emoji
-        destroy_domain_allow: Bỏ thanh trừng máy chủ
+        destroy_domain_allow: Bỏ máy chủ cho phép
         destroy_domain_block: Bỏ chặn máy chủ
         destroy_email_domain_block: Bỏ chặn tên miền email
         destroy_instance: Thanh trừng máy chủ
         destroy_ip_block: Bỏ chặn IP
         destroy_status: Xóa tút
-        destroy_unavailable_domain: Tái liên hợp
+        destroy_unavailable_domain: Cho phép liên hợp
         destroy_user_role: Xóa vai trò
         disable_2fa_user: Vô hiệu hóa 2FA
         disable_custom_emoji: Vô hiệu hóa emoji
         disable_sign_in_token_auth_user: Tắt xác minh bằng email cho người dùng
         disable_user: Vô hiệu hóa đăng nhập
-        enable_custom_emoji: Duyệt emoji
+        enable_custom_emoji: Cho phép emoji
         enable_sign_in_token_auth_user: Bật xác minh bằng email cho người dùng
         enable_user: Cho phép đăng nhập
-        memorialize_account: Đánh dấu tưởng niệm
+        memorialize_account: Gán tưởng niệm
         promote_user: Nâng vai trò
-        reject_appeal: Từ chối kháng cáo
+        reject_appeal: Từ chối khiếu nại
         reject_user: Từ chối đăng ký
         remove_avatar_user: Xóa ảnh đại diện
         reopen_report: Mở lại báo cáo
@@ -216,7 +217,7 @@ vi:
         sensitive_account: Gán nhạy cảm
         silence_account: Gán ẩn
         suspend_account: Gán vô hiệu hóa
-        unassigned_report: Báo cáo chưa xử lý
+        unassigned_report: Bỏ xử lý báo cáo
         unblock_email_account: Bỏ chặn địa chỉ email
         unsensitive_account: Bỏ nhạy cảm
         unsilence_account: Bỏ ẩn
@@ -229,64 +230,64 @@ vi:
         update_status: Cập nhật tút
         update_user_role: Cập nhật vai trò
       actions:
-        approve_appeal_html: "%{name} đã duyệt kháng cáo của %{target}"
+        approve_appeal_html: "%{name} đã chấp nhận khiếu nại từ %{target}"
         approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
-        assigned_to_self_report_html: "%{name} tự xử lý báo cáo %{target}"
+        assigned_to_self_report_html: "%{name} đã tự xử lý báo cáo %{target}"
         change_email_user_html: "%{name} đã thay đổi địa chỉ email của %{target}"
-        change_role_user_html: "%{name} đã thay đổi vai trò %{target}"
+        change_role_user_html: "%{name} đã thay đổi vai trò của %{target}"
         confirm_user_html: "%{name} đã xác minh địa chỉ email của %{target}"
         create_account_warning_html: "%{name} đã cảnh cáo %{target}"
-        create_announcement_html: "%{name} tạo thông báo mới %{target}"
-        create_canonical_email_block_html: "%{name} đã chặn địa chỉ email với hash %{target}"
+        create_announcement_html: "%{name} đã tạo thông báo %{target}"
+        create_canonical_email_block_html: "%{name} đã chặn địa chỉ email biến thể %{target}"
         create_custom_emoji_html: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
-        create_domain_allow_html: "%{name} kích hoạt liên hợp với %{target}"
-        create_domain_block_html: "%{name} chặn máy chủ %{target}"
+        create_domain_allow_html: "%{name} đã bật liên hợp với %{target}"
+        create_domain_block_html: "%{name} đã chặn máy chủ %{target}"
         create_email_domain_block_html: "%{name} đã chặn tên miền email %{target}"
         create_ip_block_html: "%{name} đã chặn IP %{target}"
-        create_unavailable_domain_html: "%{name} ngưng phân phối với máy chủ %{target}"
+        create_unavailable_domain_html: "%{name} đã bỏ liên hợp với máy chủ %{target}"
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
         demote_user_html: "%{name} đã hạ vai trò của %{target}"
-        destroy_announcement_html: "%{name} xóa thông báo %{target}"
-        destroy_canonical_email_block_html: "%{name} đã bỏ chặn địa chỉ email với hash %{target}"
+        destroy_announcement_html: "%{name} đã xóa thông báo %{target}"
+        destroy_canonical_email_block_html: "%{name} đã bỏ chặn địa chỉ email biến thể %{target}"
         destroy_custom_emoji_html: "%{name} đã xóa emoji %{target}"
         destroy_domain_allow_html: "%{name} đã ngừng liên hợp với %{target}"
-        destroy_domain_block_html: "%{name} bỏ chặn máy chủ %{target}"
+        destroy_domain_block_html: "%{name} đã bỏ chặn máy chủ %{target}"
         destroy_email_domain_block_html: "%{name} đã bỏ chặn email %{target}"
-        destroy_instance_html: "%{name} thanh trừng máy chủ %{target}"
-        destroy_ip_block_html: "%{name} bỏ chặn IP %{target}"
+        destroy_instance_html: "%{name} đã thanh trừng máy chủ %{target}"
+        destroy_ip_block_html: "%{name} đã bỏ chặn IP %{target}"
         destroy_status_html: "%{name} đã xóa tút của %{target}"
-        destroy_unavailable_domain_html: "%{name} tiếp tục phân phối với máy chủ %{target}"
+        destroy_unavailable_domain_html: "%{name} tiếp tục liên hợp với máy chủ %{target}"
         destroy_user_role_html: "%{name} đã xóa vai trò %{target}"
         disable_2fa_user_html: "%{name} đã vô hiệu hóa xác minh hai bước của %{target}"
         disable_custom_emoji_html: "%{name} đã ẩn emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} đã tắt xác minh email của %{target}"
-        disable_user_html: "%{name} vô hiệu hóa đăng nhập %{target}"
-        enable_custom_emoji_html: "%{name} cho phép emoji %{target}"
+        disable_user_html: "%{name} đã vô hiệu hóa đăng nhập %{target}"
+        enable_custom_emoji_html: "%{name} đã cho phép emoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} đã bật xác minh email của %{target}"
-        enable_user_html: "%{name} bỏ vô hiệu hóa đăng nhập %{target}"
+        enable_user_html: "%{name} đã bỏ vô hiệu hóa đăng nhập %{target}"
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
         promote_user_html: "%{name} đã nâng vai trò của %{target}"
-        reject_appeal_html: "%{name} đã từ chối kháng cáo của %{target}"
+        reject_appeal_html: "%{name} đã từ chối khiếu nại từ %{target}"
         reject_user_html: "%{name} đã từ chối đăng ký từ %{target}"
         remove_avatar_user_html: "%{name} đã xóa ảnh đại diện của %{target}"
-        reopen_report_html: "%{name} mở lại báo cáo %{target}"
+        reopen_report_html: "%{name} đã mở lại báo cáo %{target}"
         resend_user_html: "%{name} đã gửi lại email xác minh cho %{target}"
         reset_password_user_html: "%{name} đã đặt lại mật khẩu của %{target}"
         resolve_report_html: "%{name} đã xử lý báo cáo %{target}"
-        sensitive_account_html: "%{name} đánh dấu nội dung của %{target} là nhạy cảm"
+        sensitive_account_html: "%{name} đã gán nội dung của %{target} là nhạy cảm"
         silence_account_html: "%{name} đã ẩn %{target}"
         suspend_account_html: "%{name} đã vô hiệu hóa %{target}"
-        unassigned_report_html: "%{name} đã xử lý báo cáo %{target} chưa xử lí"
-        unblock_email_account_html: "%{name} bỏ chặn địa chỉ email của %{target}"
-        unsensitive_account_html: "%{name} đánh dấu nội dung của %{target} là bình thường"
+        unassigned_report_html: "%{name} đã thôi xử lý báo cáo %{target}"
+        unblock_email_account_html: "%{name} đã bỏ chặn địa chỉ email của %{target}"
+        unsensitive_account_html: "%{name} đã gán nội dung của %{target} là bình thường"
         unsilence_account_html: "%{name} đã bỏ ẩn %{target}"
         unsuspend_account_html: "%{name} đã bỏ vô hiệu hóa %{target}"
-        update_announcement_html: "%{name} cập nhật thông báo %{target}"
+        update_announcement_html: "%{name} đã cập nhật thông báo %{target}"
         update_custom_emoji_html: "%{name} đã cập nhật emoji %{target}"
-        update_domain_block_html: "%{name} cập nhật chặn máy chủ %{target}"
-        update_ip_block_html: "%{name} cập nhật chặn IP %{target}"
-        update_report_html: "%{name} cập nhật báo cáo %{target}"
-        update_status_html: "%{name} cập nhật tút của %{target}"
+        update_domain_block_html: "%{name} đã cập nhật chặn máy chủ %{target}"
+        update_ip_block_html: "%{name} đã cập nhật chặn IP %{target}"
+        update_report_html: "%{name} đã cập nhật báo cáo %{target}"
+        update_status_html: "%{name} đã cập nhật tút của %{target}"
         update_user_role_html: "%{name} đã cập nhật vai trò %{target}"
       deleted_account: tài khoản đã xóa
       empty: Không tìm thấy bản ghi.
@@ -353,7 +354,7 @@ vi:
       new_users: người mới
       opened_reports: báo cáo
       pending_appeals_html:
-        other: "<strong>%{count}</strong> kháng cáo đang chờ"
+        other: "<strong>%{count}</strong> khiếu nại đang chờ"
       pending_reports_html:
         other: "<strong>%{count}</strong> báo cáo đang chờ"
       pending_tags_html:
@@ -371,7 +372,7 @@ vi:
     disputes:
       appeals:
         empty: Không tìm thấy.
-        title: Kháng cáo
+        title: Khiếu nại
     domain_allows:
       add_new: Cho phép liên hợp với máy chủ
       created_msg: Máy chủ đã được kích hoạt liên hợp thành công
@@ -691,8 +692,8 @@ vi:
         invite_users_description: Cho phép mời những người mới vào máy chủ
         manage_announcements: Quản lý thông báo
         manage_announcements_description: Cho phép quản lý thông báo trên máy chủ
-        manage_appeals: Quản lý kháng cáo
-        manage_appeals_description: Cho phép thành viên kháng cáo đối với các hành động kiểm duyệt
+        manage_appeals: Quản lý khiếu nại
+        manage_appeals_description: Cho phép thành viên khiếu nại đối với các hành động kiểm duyệt
         manage_blocks: Quản lý chặn
         manage_blocks_description: Cho phép người dùng tự chặn các nhà cung cấp email và địa chỉ IP
         manage_custom_emojis: Quản lý emoji
@@ -818,7 +819,7 @@ vi:
       original_status: Tút gốc
       reblogs: Lượt đăng lại
       status_changed: Tút đã sửa
-      title: Toàn bộ tút
+      title: Tất cả tút
       trending: Xu hướng
       visibility: Hiển thị
       with_media: Có media
@@ -1007,7 +1008,7 @@ vi:
         silence: hạn chế tài khoản của họ
         suspend: vô hiệu hóa tài khoản của họ
       body: "%{target} đã khiếu nại vì bị %{action_taken_by} %{type} vào %{date}. Họ cho biết:"
-      next_steps: Bạn có thể duyệt kháng cáo để hủy kiểm duyệt hoặc bỏ qua.
+      next_steps: Bạn có thể chấp nhận khiếu nại để bỏ kiểm duyệt, hoặc không.
       subject: "%{username} đang khiếu nại quyết định kiểm duyệt trên %{instance}"
     new_critical_software_updates:
       body: Các phiên bản quan trọng mới của Mastodon đã được phát hành, bạn nên cập nhật càng sớm càng tốt!
@@ -1147,9 +1148,11 @@ vi:
     use_security_key: Dùng khóa bảo mật
   author_attribution:
     example_title: Văn bản mẫu
-    hint_html: Kiểm soát cách bạn được ghi nhận khi chia sẻ liên kết trên Mastodon.
-    more_from_html: Thêm từ %{name}
+    hint_html: Bạn là nhà báo hoặc blogger bên ngoài Mastodon? Kiểm soát cách bạn được ghi nhận khi chúng được chia sẻ trên Mastodon.
+    instructions: 'Đặt mã này trong HTML bài viết:'
+    more_from_html: Viết bởi %{name}
     s_blog: "%{name}'s Blog"
+    then_instructions: Sau đó, thêm URL của báo/blog trong trường bên dưới.
     title: Ghi nhận người đăng
   challenge:
     confirm: Tiếp tục
@@ -1204,12 +1207,12 @@ vi:
       appealed_msg: Khiếu nại của bạn đã được gửi đi. Nếu nó được chấp nhận, bạn sẽ nhận được thông báo.
       appeals:
         submit: Gửi khiếu nại
-      approve_appeal: Duyệt kháng cáo
+      approve_appeal: Chấp nhận khiếu nại
       associated_report: Báo cáo đính kèm
       created_at: Ngày
       description_html: Đây là những cảnh cáo và áp đặt kiểm duyệt đối với bạn bởi đội ngũ %{instance}.
       recipient: Người nhận
-      reject_appeal: Từ chối kháng cáo
+      reject_appeal: Từ chối khiếu nại
       status: 'Tút #%{id}'
       status_removed: Tút này đã được xóa khỏi hệ thống
       title: "%{action} từ %{date}"
@@ -1341,19 +1344,31 @@ vi:
       overwrite: Ghi đè
       overwrite_long: Thay thế các bản ghi hiện tại bằng các bản ghi mới
     overwrite_preambles:
-      blocking_html: Bạn sắp <strong>thay thế danh sách chặn</strong> với <strong>%{total_items} tài khoản</strong> từ <strong>%{filename}</strong>.
-      bookmarks_html: Bạn sắp <strong>thay thế lượt lưu</strong> với <strong>%{total_items} tút</strong> từ <strong>%{filename}</strong>.
-      domain_blocking_html: Bạn sắp <strong>thay thế danh sách máy chủ chặn</strong> với <strong>%{total_items} máy chủ</strong> từ <strong>%{filename}</strong>.
-      following_html: Bạn sắp <strong>theo dõi</strong> với <strong>%{total_items} người</strong> từ <strong>%{filename}</strong> và <strong>ngừng theo dõi bất kỳ ai</strong>.
-      lists_html: Bạn sắp <strong>thay thế các danh sách</strong> bằng nội dung từ <strong>%{filename}</strong>. Hơn <strong>%{total_items} tài khoản</strong> sẽ được thêm vào những danh sách mới.
-      muting_html: Bạn sắp <strong>thay thế danh sách ẩn</strong> với <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
+      blocking_html:
+        other: Bạn sắp <strong>thay thế danh sách chặn</strong> với <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
+      bookmarks_html:
+        other: Bạn sắp <strong>thay thế danh sách tút đã lưu</strong> với <strong>%{count} tút</strong> từ <strong>%{filename}</strong>.
+      domain_blocking_html:
+        other: Bạn sắp <strong>thay thế danh sách máy chủ chặn</strong> với <strong>%{count} máy chủ</strong> từ <strong>%{filename}</strong>.
+      following_html:
+        other: Bạn sắp <strong>theo dõi</strong> tới <strong>%{count} người</strong> từ <strong>%{filename}</strong> và <strong>ngừng theo dõi mọi người khác</strong>.
+      lists_html:
+        other: Bạn sắp <strong>thay thế danh sách</strong> với nội dung của <strong>%{filename}</strong>. Có <strong>%{count} người</strong> sẽ được thêm vào những danh sách mới.
+      muting_html:
+        other: Bạn sắp <strong>they thế danh sách người bạn chặn</strong> với <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Bạn sắp <strong>chặn</strong> tới <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
-      bookmarks_html: Bạn sắp thêm vào <strong>%{total_items} tút</strong> từ <strong>%{filename}</strong> vào <strong>lượt lưu</strong>.
-      domain_blocking_html: Bạn sắp <strong>chặn</strong> tới <strong>%{total_items} máy chủ</strong> từ <strong>%{filename}</strong>.
-      following_html: Bạn sắp <strong>theo dõi</strong> tới <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
-      lists_html: Bạn sắp thêm <strong>%{total_items} tài khoản</strong> từ <strong>%{filename}</strong> vào <strong>danh sách của bạn</strong>. Những danh sách mới sẽ được tạo nếu bạn chưa có danh sách nào.
-      muting_html: Bạn sắp <strong>ẩn</strong> lên tới <strong>%{total_items} người</strong> từ <strong>%{filename}</strong>.
+      blocking_html:
+        other: Bạn sắp <strong>chặn</strong> tới <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
+      bookmarks_html:
+        other: Bạn sắp thêm tới <strong>%{count} tút</strong> từ <strong>%{filename}</strong> vào <strong>danh sách tút đã lưu</strong>.
+      domain_blocking_html:
+        other: Bạn sắp <strong>chặn</strong> tới <strong>%{count} máy chủ</strong> từ <strong>%{filename}</strong>.
+      following_html:
+        other: Bạn sắp <strong>theo dõi</strong> tới <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
+      lists_html:
+        other: Bạn sắp thêm tới <strong>%{count} người</strong> từ <strong>%{filename}</strong> vào <strong>danh sách của bạn</strong>. Những danh sách mới sẽ được tạo nếu không có danh sách để thêm.
+      muting_html:
+        other: Bạn sắp <strong>ẩn</strong> tới <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
     preface: Bạn có thể nhập dữ liệu mà bạn đã xuất từ một máy chủ khác, chẳng hạn danh sách những người đang theo dõi hoặc chặn.
     recent_imports: Đã nhập gần đây
     states:
@@ -1373,10 +1388,10 @@ vi:
       muting: Đang nhập người đã ẩn
     type: Kiểu nhập
     type_groups:
-      constructive: Lượt theo dõi và những thứ đã lưu
-      destructive: Lượt chặn và ẩn
+      constructive: Theo dõi và lưu
+      destructive: Chặn và ẩn
     types:
-      blocking: Danh sách chặn
+      blocking: Danh sách người đã chặn
       bookmarks: Tút đã lưu
       domain_blocking: Danh sách máy chủ đã chặn
       following: Danh sách người theo dõi
@@ -1734,7 +1749,7 @@ vi:
     ignore_favs: Bỏ qua số lượt thích
     ignore_reblogs: Bỏ qua lượt đăng lại
     interaction_exceptions: Ngoại lệ dựa trên tương tác
-    interaction_exceptions_explanation: Lưu ý rằng không có gì đảm bảo rằng các tút sẽ bị xóa nếu chúng tụt dưới ngưỡng mức yêu thích hoặc đăng lại, dù đã từng đạt.
+    interaction_exceptions_explanation: Lưu ý là không có gì đảm bảo rằng các tút sẽ bị xóa nếu chúng bị giảm lượt thích hoặc đăng lại, dù đã từng đạt.
     keep_direct: Giữ lại tin nhắn
     keep_direct_hint: Không xóa tin nhắn của bạn
     keep_media: Giữ lại những tút có đính kèm media
@@ -1765,7 +1780,7 @@ vi:
     sensitive_content: NSFW
   strikes:
     errors:
-      too_late: Đã quá trễ để kháng cáo
+      too_late: Đã quá trễ để khiếu nại
   tags:
     does_not_match_previous_name: không khớp với tên trước
   themes:
@@ -1839,8 +1854,8 @@ vi:
         disable: Bạn không còn có thể sử dụng tài khoản của mình, nhưng hồ sơ của bạn và dữ liệu khác vẫn còn nguyên. Bạn có thể yêu cầu sao lưu dữ liệu của mình, thay đổi cài đặt tài khoản hoặc xóa tài khoản của bạn.
         mark_statuses_as_sensitive: Vài tút của bạn đã bị kiểm duyệt viên %{instance} đánh dấu nhạy cảm. Mọi người cần nhấn vào media để xem nó. Bạn có thể tự đánh dấu tài khoản của bạn là nhạy cảm.
         sensitive: Từ giờ trở đi, tất cả các media của bạn bạn tải lên sẽ được đánh dấu là nhạy cảm và ẩn đằng sau cảnh báo nhấp chuột.
-        silence: Bạn vẫn có thể sử dụng tài khoản của mình, nhưng chỉ những người đang theo dõi bạn mới thấy bài đăng của bạn. Bạn cũng bị loại khỏi các tính năng khám phá khác. Tuy nhiên, những người khác vẫn có thể theo dõi bạn.
-        suspend: Bạn không còn có thể sử dụng tài khoản của bạn, hồ sơ và các dữ liệu khác không còn có thể truy cập được. Trong vòng 30 ngày, bạn vẫn có thể đăng nhập để yêu cầu bản sao dữ liệu của mình cho đến khi dữ liệu bị xóa hoàn toàn, nhưng chúng tôi sẽ giữ lại một số dữ liệu cơ bản để ngăn bạn thoát khỏi việc vô hiệu hóa.
+        silence: Bạn vẫn có thể sử dụng tài khoản của mình và người khác vẫn có thể theo dõi bạn, nhưng chỉ những người đã theo dõi bạn mới thấy tút của bạn. Bạn cũng bị loại khỏi các tính năng khám phá khác.
+        suspend: Tài khoản của bạn, hồ sơ và các dữ liệu khác sẽ không thể truy cập được nữa. Bạn vẫn có thể đăng nhập để yêu cầu bản sao dữ liệu của mình cho đến khi dữ liệu bị xóa hoàn toàn trong vòng 30 ngày, nhưng chúng tôi sẽ giữ lại một số dữ liệu cơ bản để phòng khi bạn được bỏ vô hiệu hóa.
       reason: 'Lý do:'
       statuses: 'Tút vi phạm:'
       subject:

@@ -1,22 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 
-import { toServerSideType } from 'mastodon/utils/filters';
-
 import { me } from '../initial_state';
 
+import { getFilters } from './filters';
+
 export { makeGetAccount } from "./accounts";
-
-const getFilters = createSelector([state => state.get('filters'), (_, { contextType }) => contextType], (filters, contextType) => {
-  if (!contextType) {
-    return null;
-  }
-
-  const now = new Date();
-  const serverSideType = toServerSideType(contextType);
-
-  return filters.filter(filter => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || filter.get('expires_at') > now));
-});
 
 export const makeGetStatus = () => {
   return createSelector(

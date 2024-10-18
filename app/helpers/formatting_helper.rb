@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 module FormattingHelper
+  SYNDICATED_EMOJI_STYLES = <<~CSS.squish
+    height: 1.1em;
+    margin: -.2ex .15em .2ex;
+    object-fit: contain;
+    vertical-align: middle;
+    width: 1.1em;
+  CSS
+
   def html_aware_format(text, local, options = {})
     HtmlAwareFormatter.new(text, local, options).to_s
   end
@@ -23,33 +31,10 @@ module FormattingHelper
   end
 
   def rss_status_content_format(status)
-    html = status_content_format(status)
-
-    before_html = if status.spoiler_text?
-                    tag.p do
-                      tag.strong do
-                        I18n.t('rss.content_warning', locale: available_locale_or_nil(status.language) || I18n.default_locale)
-                      end
-
-                      status.spoiler_text
-                    end + tag.hr
-                  end
-
-    after_html = if status.preloadable_poll
-                   tag.p do
-                     safe_join(
-                       status.preloadable_poll.options.map do |o|
-                         tag.send(status.preloadable_poll.multiple? ? 'checkbox' : 'radio', o, disabled: true)
-                       end,
-                       tag.br
-                     )
-                   end
-                 end
-
     prerender_custom_emojis(
-      safe_join([before_html, html, after_html]),
+      wrapped_status_content_format(status),
       status.emojis,
-      style: 'width: 1.1em; height: 1.1em; object-fit: contain; vertical-align: middle; margin: -.2ex .15em .2ex'
+      style: SYNDICATED_EMOJI_STYLES
     ).to_str
   end
 
@@ -63,5 +48,48 @@ module FormattingHelper
     else
       html_aware_format(field.value, field.account.local?, with_rel_me: with_rel_me, with_domains: true, multiline: false)
     end
+  end
+
+  private
+
+  def wrapped_status_content_format(status)
+    safe_join [
+      rss_content_preroll(status),
+      status_content_format(status),
+      rss_content_postroll(status),
+    ]
+  end
+
+  def rss_content_preroll(status)
+    if status.spoiler_text?
+      safe_join [
+        tag.p { spoiler_with_warning(status) },
+        tag.hr,
+      ]
+    end
+  end
+
+  def spoiler_with_warning(status)
+    safe_join [
+      tag.strong { I18n.t('rss.content_warning', locale: available_locale_or_nil(status.language) || I18n.default_locale) },
+      status.spoiler_text,
+    ]
+  end
+
+  def rss_content_postroll(status)
+    if status.preloadable_poll
+      tag.p do
+        poll_option_tags(status)
+      end
+    end
+  end
+
+  def poll_option_tags(status)
+    safe_join(
+      status.preloadable_poll.options.map do |option|
+        tag.send(status.preloadable_poll.multiple? ? 'checkbox' : 'radio', option, disabled: true)
+      end,
+      tag.br
+    )
   end
 end

@@ -25,6 +25,7 @@ pl:
       one: wpis
       other: Wpisów
     posts_tab_heading: Wpisy
+    self_follow_error: Nie możesz obserwować swojego konta
   admin:
     account_actions:
       action: Wykonaj działanie
@@ -1201,9 +1202,11 @@ pl:
     use_security_key: Użyj klucza bezpieczeństwa
   author_attribution:
     example_title: Przykładowy tekst
-    hint_html: Kontroluj przypisy do twoich wpisów widoczne na Mastodonie.
+    hint_html: Piszesz wiadomości albo bloga poza Mastodonem? Kontroluj jak będą ci przypisywane podczas dizielenia się nimi na Mastodonie.
+    instructions: 'Upewnij się, że ten kod jest w HTMLu twojego artykułu:'
     more_from_html: Więcej od %{name}
     s_blog: Blog %{name}
+    then_instructions: Potem, dodaj domenę publikacji do pola poniżej.
     title: Przypis do autora
   challenge:
     confirm: Kontynuuj
@@ -1415,20 +1418,6 @@ pl:
       merge_long: Zachowaj obecne wpisy i dodaj nowe
       overwrite: Nadpisz
       overwrite_long: Zastąp obecne wpisy nowymi
-    overwrite_preambles:
-      blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
-      bookmarks_html: Zamierzasz <strong>zastąpić swoje zakładki</strong> maksymalnie <strong>%{total_items} wpisami</strong> z <strong>%{filename}</strong>.
-      domain_blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków domen</strong> maksymalnie <strong>%{total_items} domenami</strong> z <strong>%{filename}</strong>.
-      following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong> i <strong>przestać obserwować kogokolwiek innego</strong>.
-      lists_html: Zamierzasz <strong>zastąpić swoje listy</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
-      muting_html: Zamierzasz <strong>zastąpić swoją wyciszonych</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
-      bookmarks_html: Zamierzasz dodać maksymalnie <strong>%{total_items} wpisów</strong> do twoich <strong>zakładek</strong> z <strong>%{filename}</strong>.
-      domain_blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} domen</strong> z <strong>%{filename}</strong>.
-      following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
-      lists_html: Zamierzasz dodać maksymalnie <strong>%{total_items} kont</strong> do twoich <strong>list</strong> z <strong>%{filename}</strong>. Jeżeli nie ma list, nowe zostaną utworzone.
-      muting_html: Zamierzasz <strong>wyciszyć</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
     preface: Możesz zaimportować pewne dane (np. lista kont, które obserwujesz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
     recent_imports: Ostatnie importy
     states:

@@ -875,6 +875,9 @@ en-GB:
         message_html: You haven't defined any server rules.
       sidekiq_process_check:
         message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
+      software_version_check:
+        action: See available updates
+        message_html: A Mastodon update is available.
       software_version_critical_check:
         action: See available updates
         message_html: A critical Mastodon update is available, please update as quickly as possible.
@@ -1162,7 +1165,6 @@ en-GB:
     use_security_key: Use security key
   author_attribution:
     example_title: Sample text
-    hint_html: Control how you're credited when links are shared on Mastodon.
     more_from_html: More from %{name}
     s_blog: "%{name}'s Blog"
     title: Author attribution
@@ -1363,19 +1365,43 @@ en-GB:
       overwrite: Overwrite
       overwrite_long: Replace current records with the new ones
     overwrite_preambles:
-      blocking_html: You are about to <strong>replace your block list</strong> with up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
-      bookmarks_html: You are about to <strong>replace your bookmarks</strong> with up to <strong>%{total_items} posts</strong> from <strong>%{filename}</strong>.
-      domain_blocking_html: You are about to <strong>replace your domain block list</strong> with up to <strong>%{total_items} domains</strong> from <strong>%{filename}</strong>.
-      following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
-      lists_html: You are about to <strong>replace your lists</strong> with contents of <strong>%{filename}</strong>. Up to <strong>%{total_items} accounts</strong> will be added to new lists.
-      muting_html: You are about to <strong>replace your list of muted accounts</strong> with up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+      blocking_html:
+        one: You are about to <strong>replace your block list</strong> with up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
+        other: You are about to <strong>replace your block list</strong> with up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: You are about to <strong>replace your bookmarks</strong> with up to <strong>%{count} post</strong> from <strong>%{filename}</strong>.
+        other: You are about to <strong>replace your bookmarks</strong> with up to <strong>%{count} posts</strong> from <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: You are about to <strong>replace your domain block list</strong> with up to <strong>%{count} domain</strong> from <strong>%{filename}</strong>.
+        other: You are about to <strong>replace your domain block list</strong> with up to <strong>%{count} domains</strong> from <strong>%{filename}</strong>.
+      following_html:
+        one: You are about to <strong>follow</strong> up to <strong>%{count} account</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
+        other: You are about to <strong>follow</strong> up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
+      lists_html:
+        one: You are about to <strong>replace your lists</strong> with contents of <strong>%{filename}</strong>. Up to <strong>%{count} account</strong> will be added to new lists.
+        other: You are about to <strong>replace your lists</strong> with contents of <strong>%{filename}</strong>. Up to <strong>%{count} accounts</strong> will be added to new lists.
+      muting_html:
+        one: You are about to <strong>replace your list of muted account</strong> with up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
+        other: You are about to <strong>replace your list of muted accounts</strong> with up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong>.
     preambles:
-      blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
-      bookmarks_html: You are about to add up to <strong>%{total_items} posts</strong> from <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
-      domain_blocking_html: You are about to <strong>block</strong> up to <strong>%{total_items} domains</strong> from <strong>%{filename}</strong>.
-      following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
-      lists_html: You are about to add up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong> to your <strong>lists</strong>. New lists will be created if there is no list to add to.
-      muting_html: You are about to <strong>mute</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
+      blocking_html:
+        one: You are about to <strong>block</strong> up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
+        other: You are about to <strong>block</strong> up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: You are about to add up to <strong>%{count} post</strong> from <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
+        other: You are about to add up to <strong>%{count} posts</strong> from <strong>%{filename}</strong> to your <strong>bookmarks</strong>.
+      domain_blocking_html:
+        one: You are about to <strong>block</strong> up to <strong>%{count} domain</strong> from <strong>%{filename}</strong>.
+        other: You are about to <strong>block</strong> up to <strong>%{count} domains</strong> from <strong>%{filename}</strong>.
+      following_html:
+        one: You are about to <strong>follow</strong> up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
+        other: You are about to <strong>follow</strong> up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong>.
+      lists_html:
+        one: You are about to add up to <strong>%{count} account</strong> from <strong>%{filename}</strong> to your <strong>lists</strong>. New lists will be created if there is no list to add to.
+        other: You are about to add up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong> to your <strong>lists</strong>. New lists will be created if there is no list to add to.
+      muting_html:
+        one: You are about to <strong>mute</strong> up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
+        other: You are about to <strong>mute</strong> up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong>.
     preface: You can import data that you have exported from another server, such as a list of the people you are following or blocking.
     recent_imports: Recent imports
     states:

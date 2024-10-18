@@ -19,6 +19,7 @@ ko:
     posts:
       other: 게시물
     posts_tab_heading: 게시물
+    self_follow_error: 본인의 계정을 팔로우할 수는 없습니다
   admin:
     account_actions:
       action: 조치 취하기
@@ -192,7 +193,7 @@ ko:
         destroy_domain_allow: 도메인 허용 삭제
         destroy_domain_block: 도메인 차단 삭제
         destroy_email_domain_block: 이메일 도메인 차단 삭제
-        destroy_instance: 도메인 제거
+        destroy_instance: 도메인 퍼지하기
         destroy_ip_block: IP 규칙 삭제
         destroy_status: 게시물 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
@@ -525,7 +526,7 @@ ko:
         title: 중재
       private_comment: 비공개 주석
       public_comment: 공개 주석
-      purge: 제거
+      purge: 퍼지
       purge_description_html: 이 도메인이 영구적으로 오프라인 상태라고 생각되면, 스토리지에서 이 도메인의 모든 계정 레코드와 관련 데이터를 삭제할 수 있습니다. 이 작업은 시간이 좀 걸릴 수 있습니다.
       title: 연합
       total_blocked_by_us: 우리에게 차단 됨
@@ -1149,7 +1150,6 @@ ko:
     use_security_key: 보안 키 사용
   author_attribution:
     example_title: 예시 텍스트
-    hint_html: 링크가 마스토돈에 공유될 때 내가 어떻게 표시될 지를 제어합니다.
     more_from_html: "%{name}의 게시물 더 보기"
     s_blog: "%{name}의 블로그"
     title: 작성자 기여
@@ -1343,19 +1343,31 @@ ko:
       overwrite: 덮어쓰기
       overwrite_long: 기존 것을 모두 지우고 새로 추가
     overwrite_preambles:
-      blocking_html: 나의 <strong>차단 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 계정</strong>으로 덮어 씌우려고 합니다.
-      bookmarks_html: 나의 <strong>북마크</strong>를 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 게시물</strong>로 덮어 씌우려고 합니다.
-      domain_blocking_html: 나의 <strong>도메인 차단 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 도메인</strong>으로 덮어 씌우려고 합니다.
-      following_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 계정</strong>을 <strong>팔로우</strong>하고 <strong>나머지 계정을 팔로우 해제</strong>하려고 합니다."
-      lists_html: 나의 <strong>리스트</strong>를 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 계정</strong>으로 덮어 씌우려고 합니다.
-      muting_html: 나의 <strong>뮤트한 계정 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{total_items} 개의 계정</strong>으로 덮어 씌우려고 합니다.
+      blocking_html:
+        other: 나의 <strong>차단 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{count} 개의 계정</strong>으로 덮어 씌우려고 합니다.
+      bookmarks_html:
+        other: 나의 <strong>북마크</strong>를 <strong>%{filename}</strong>에서 가져온 <strong>%{count} 개의 게시물</strong>로 덮어 씌우려고 합니다.
+      domain_blocking_html:
+        other: 나의 <strong>도메인 차단 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{count} 개의 도메인</strong>으로 덮어 씌우려고 합니다.
+      following_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count} 개의 계정</strong>을 <strong>팔로우</strong>하고 <strong>나머지 계정을 팔로우 해제</strong>하려고 합니다."
+      lists_html:
+        other: 나의 <strong>리스트</strong>를 <strong>%{filename}</strong>에서 가져온 <strong>%{count} 개의 계정</strong>으로 덮어 씌우려고 합니다.
+      muting_html:
+        other: 나의 <strong>뮤트한 계정 목록</strong>을 <strong>%{filename}</strong>에서 가져온 <strong>%{count} 개의 계정</strong>으로 덮어 씌우려고 합니다.
     preambles:
-      blocking_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 계정</strong>을 차단하려고 합니다."
-      bookmarks_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 게시물</strong>을 북마크에 추가하려고 합니다."
-      domain_blocking_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 도메인</strong>을 차단하려고 합니다."
-      following_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 계정</strong>을 팔로우하려고 합니다."
-      lists_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 계정</strong>을 내 <strong>리스트</strong>에 추가하려고 합니다. 추가할 리스트가 존재하지 않으면 새로 생성될 것입니다."
-      muting_html: "<strong>%{filename}</strong>에서 가져온 <strong>%{total_items}개의 계정</strong>을 뮤트하려고 합니다."
+      blocking_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 계정</strong>을 차단하려고 합니다."
+      bookmarks_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 게시물</strong>을 북마크에 추가하려고 합니다."
+      domain_blocking_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 도메인</strong>을 차단하려고 합니다."
+      following_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 계정</strong>을 팔로우하려고 합니다."
+      lists_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 계정</strong>을 내 <strong>리스트</strong>에 추가하려고 합니다. 추가할 리스트가 존재하지 않으면 새로 생성될 것입니다."
+      muting_html:
+        other: "<strong>%{filename}</strong>에서 가져온 <strong>%{count}개의 계정</strong>을 뮤트하려고 합니다."
     preface: 다른 서버에서 내보내기 한 파일에서 팔로우 / 차단 정보를 이 계정으로 불러올 수 있습니다.
     recent_imports: 최근의 가져오기
     states:
@@ -1694,7 +1706,7 @@ ko:
     lost_followers: 잃은 팔로워
     lost_follows: 잃은 팔로우
     preamble: 내가 도메인을 차단하거나 중재진이 다른 서버를 정지하기로 결정했다면 내 팔로우와 팔로워를 잃게 됩니다. 그런 일이 일어났다면 그로 인해 단절된 관계들의 목록을 다운로드 받아 확인하고 다른 서버에서 불러올 수 있습니다.
-    purged: 이 서버에 대한 정보는 관리자에 의해 삭제되었습니다.
+    purged: 이 서버의 정보는 관리자가 퍼지하였습니다.
     type: 이벤트
   statuses:
     attached:

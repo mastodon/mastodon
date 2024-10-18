@@ -6,7 +6,7 @@ eo:
       send_instructions: Vi ricevos retmesaĝon kun instrukcioj por konfirmi vian retadreson ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
       send_paranoid_instructions: Se via retadreso ekzistas en nia datumbazo, vi ricevos retmesaĝon kun instrukcioj por konfirmi vian retadreson ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
     failure:
-      already_authenticated: Vi jam salutis.
+      already_authenticated: Vi jam ensalutis.
       inactive: Via konto ankoraŭ ne estas konfirmita.
       invalid: Nevalida %{authentication_keys} aŭ pasvorto.
       last_attempt: Vi ankoraŭ povas provi unufoje antaŭ ol via konto estos ŝlosita.
@@ -73,9 +73,11 @@ eo:
           title: Unu el viaj sekurecaj ŝlosiloj estis forigita
       webauthn_disabled:
         explanation: Aŭtentigo per sekurecaj ŝlosiloj estas malŝaltita por via konto.
+        extra: Ensaluto nun eblas uzante nur la ĵetonon generitan de la parigita tempbazita unufoja pasvorta aplikaĵo.
         subject: 'Mastodon: sekureca-ŝlosila aŭtentigo malebligita'
         title: Sekurecaj ŝlosiloj malaktivigitaj
       webauthn_enabled:
+        explanation: Sekurecŝlosila aŭtentigo estas ebligita por via konto.
         extra: Via sekureca ŝlosilo nun povas esti uzata por ensaluto.
         subject: 'Mastodon: sekureca-ŝlosila aŭtentigo ebligita'
         title: Sekurecaj ŝlosiloj aktivigitaj

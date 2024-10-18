@@ -1,7 +1,8 @@
 name: Bug Report (server / API)
 description: |
-  If something is not working as expected, but is not from using the web interface.
-labels: [bug, 'status/to triage']
+  There is a problem with the HTTP server, REST API, ActivityPub interaction, etc.
+labels: ['status/to triage']
+type: 'Bug'
 body:
   - type: markdown
     attributes:
@@ -48,8 +49,8 @@ body:
     attributes:
       label: Mastodon version
       description: |
-        This is displayed at the bottom of the About page, eg. `v4.1.2+nightly-20230627`
-      placeholder: v4.1.2
+        This is displayed at the bottom of the About page, eg. `v4.4.0-alpha.1`
+      placeholder: v4.3.0
     validations:
       required: false
   - type: textarea
@@ -59,7 +60,7 @@ body:
         Any additional technical details you may have, like logs or error traces
       value: |
         If this is happening on your own Mastodon server, please fill out those:
-        - Ruby version: (from `ruby --version`, eg. v3.1.2)
-        - Node.js version: (from `node --version`, eg. v18.16.0)
+        - Ruby version: (from `ruby --version`, eg. v3.3.5)
+        - Node.js version: (from `node --version`, eg. v20.18.0)
     validations:
       required: false

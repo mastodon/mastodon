@@ -21,6 +21,7 @@ sq:
       one: Mesazh
       other: Mesazhe
     posts_tab_heading: Mesazhe
+    self_follow_error: Ndjekja e llogarisë personale nuk lejohet
   admin:
     account_actions:
       action: Kryeje veprimin
@@ -1158,7 +1159,6 @@ sq:
     use_security_key: Përdor kyç sigurie
   author_attribution:
     example_title: Tekst shembull
-    hint_html: Kontrolloni se si vlerësoheni, kur ndahen lidhje me të tjerë në Mastodon.
     more_from_html: Më tepër nga %{name}
     s_blog: Blogu i %{name}
     title: Atribuim autorësh
@@ -1359,19 +1359,43 @@ sq:
       overwrite: Mbishkruaje
       overwrite_long: Zëvendësoji zërat ekzistues me të rinjtë
     overwrite_preambles:
-      blocking_html: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimeve</strong> me <strong>%{total_items} llogari</strong> nga <strong>%{filename}</strong>.
-      bookmarks_html: Ju ndan një hap nga <strong>zëvendësimi i faqerojtësve tuaj</strong> me <strong>%{total_items} postime</strong> nga <strong>%{filename}</strong>.
-      domain_blocking_html: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimit të përkatësive</strong> me <strong>%{total_items} përkatësi</strong> nga <strong>%{filename}</strong>.
-      following_html: Ju ndan një hap nga <strong>ndjekja</strong> e <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong> dhe <strong>reshtja së ndjekuri këdo tjetër</strong>.
-      lists_html: Ju ndan një hap nga <strong>zëvendësimi i listave tuaja</strong> me lëndë nga <strong>%{filename}</strong>. Te listat e reja do të shtohen deri në <strong>%{total_items} llogari</strong>.
-      muting_html: Ju ndan një hpa nga <strong>zëvendësimi i listës suaj të llogarive të heshtuara</strong> me <strong>%{total_items} llogari</strong> nga <strong>%{filename}</strong>.
+      blocking_html:
+        one: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimeve</strong>, me <strong>%{count} llogari</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimeve</strong>, me <strong>%{count} llogari</strong> nga <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Ju ndan një hap nga <strong>zëvendësimi i faqerojtësve tuaj</strong>, me <strong>%{count} postim</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>zëvendësimi i faqerojtësve tuaj</strong>, me <strong>%{count} postime</strong> nga <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimeve të përkatësive</strong>, me <strong>%{count} përkatësi</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimeve të përkatësive</strong>, me <strong>%{count} përkatësi</strong> nga <strong>%{filename}</strong>.
+      following_html:
+        one: Ju ndan një hap nga <strong>ndjekja</strong> e <strong>%{count} llogarie</strong> nga <strong>%{filename}</strong> dhe <strong>reshtja e ndjekjes së gjithkujt tjetër</strong>.
+        other: Ju ndan një hap nga <strong>ndjekja</strong> e deri <strong>%{count} llogarish</strong> nga <strong>%{filename}</strong> dhe <strong>reshtja e ndjekjes së gjithkujt tjetër</strong>.
+      lists_html:
+        one: Ju ndan një hap nga <strong>zëvendësimi i listave tuaja</strong> me lëndën e <strong>%{filename}</strong>. Te listat e reja do të shtohet deri <strong>%{count} llogari</strong>.
+        other: Ju ndan një hap nga <strong>zëvendësimi i listave tuaja</strong> me lëndën e <strong>%{filename}</strong>. Te listat e reja do të shtohet deri <strong>%{count} llogari</strong>.
+      muting_html:
+        one: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të llogarisë së heshtuar</strong> me <strong>%{count} llogari nga</strong> from <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të llogarive të heshtuara</strong> me <strong>%{count} llogari nga</strong> from <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Ju ndan një hap nga <strong>bllokimi</strong> i <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong>.
-      bookmarks_html: Ju ndan një hap nga shtimi te <strong>faqerojtësit</strong> tuaj i <strong>%{total_items} postimeve</strong> nga <strong>%{filename}</strong>.
-      domain_blocking_html: Ju ndan një hap nga <strong>bllokimi</strong> i <strong>%{total_items} përkatësive</strong> nga <strong>%{filename}</strong>.
-      following_html: Ju ndan një hap nga <strong>ndjekja</strong> e <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong>.
-      lists_html: Jui nda një hap nga shtimi te <strong>listat</strong> tuaja i deri <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong>. Nëse s’ka listë ku të shtohen, do të krijohen lista të reja.
-      muting_html: Ju ndan një hap nga <strong>heshtimi</strong> i <strong>%{total_items} llogarive</strong> nga <strong>%{filename}</strong>.
+      blocking_html:
+        one: Ju ndan një hap nga <strong>bllokimi</strong> i deri <strong>%{count} llogarie</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>bllokimi</strong> i deri <strong>%{count} llogarive</strong> nga <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Ju ndan një hap nga shtimi te <strong>faqerojtësit</strong> tuaj i deri <strong>%{count} postimi</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga shtimi te <strong>faqerojtësit</strong> tuaj i deri <strong>%{count} postimeve</strong> nga <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Ju ndan një hap nga <strong>bllokimi</strong> i deri <strong>%{count} përkatësie</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>bllokimi</strong> i deri <strong>%{count} përkatësive</strong> nga <strong>%{filename}</strong>.
+      following_html:
+        one: Ju ndan një hap nga <strong>ndjekja</strong> e deri <strong>%{count} llogarie</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>ndjekja</strong> e deri <strong>%{count} llogarive</strong> nga <strong>%{filename}</strong>.
+      lists_html:
+        one: Ju ndan një hap nga shtimi i deri <strong>%{count} llogarie</strong> nga <strong>%{filename}</strong> te <strong>listat</strong> tuaja. Nëse s’ka listë ku të shtohen, do të krijohen lista të reja.
+        other: Ju ndan një hap nga shtimi i deri <strong>%{count} llogarive</strong> nga <strong>%{filename}</strong> te <strong>listat</strong> tuaja. Nëse s’ka listë ku të shtohen, do të krijohen lista të reja.
+      muting_html:
+        one: Ju ndan një hap nga <strong>heshtimi</strong> i deri <strong>%{count} llogarie</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>heshtimi</strong> i deri <strong>%{count} llogarive</strong> nga <strong>%{filename}</strong>.
     preface: Mund të importoni të dhëna që keni eksportuar nga një shërbyes tjetër, bie fjala, një listë të personave që ndiqni ose bllokoni.
     recent_imports: Importime së fundi
     states:

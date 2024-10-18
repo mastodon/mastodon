@@ -1,7 +1,7 @@
 ---
 it:
   about:
-    about_mastodon_html: 'Il social network del futuro: Nessuna pubblicità, zero sorveglianza azienale, design etico e decentralizzazione! Sii il proprietario dei tuoi dati, con Mastodon!'
+    about_mastodon_html: 'Il social network del futuro: Nessuna pubblicità, zero sorveglianza aziendale, design etico e decentralizzazione! Sii il proprietario dei tuoi dati, con Mastodonte!'
     contact_missing: Non impostato
     contact_unavailable: N/D
     hosted_on: Mastodon ospitato su %{domain}
@@ -21,6 +21,7 @@ it:
       one: Toot
       other: Toot
     posts_tab_heading: Toot
+    self_follow_error: Seguire il tuo stesso profilo non è consentito
   admin:
     account_actions:
       action: Esegui azione
@@ -1167,9 +1168,11 @@ it:
     use_security_key: Usa la chiave di sicurezza
   author_attribution:
     example_title: Testo di esempio
-    hint_html: Controlla come sei viene accreditato quando i link sono condivisi su Mastodon.
+    hint_html: Stai scrivendo notizie o articoli di blog al di fuori di Mastodon? Controlla come vieni accreditato quando vengono condivisi su Mastodon.
+    instructions: 'Assicurati che questo codice sia presente nell''HTML del tuo articolo:'
     more_from_html: Altro da %{name}
     s_blog: Blog di %{name}
+    then_instructions: Quindi, aggiungi il nome di dominio della pubblicazione nel campo sottostante.
     title: Attribuzione autore
   challenge:
     confirm: Continua
@@ -1368,19 +1371,43 @@ it:
       overwrite: Sovrascrivi
       overwrite_long: Sostituisci record attuali con quelli nuovi
     overwrite_preambles:
-      blocking_html: Stai per <strong>sostituire la tua lista di blocchi</strong> con un massimo di <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
-      bookmarks_html: Stai per <strong>sostituire i tuoi segnalibri</strong> con un massimo di <strong>%{total_items} post</strong> da <strong>%{filename}</strong>.
-      domain_blocking_html: Stai per <strong>sostituire la tua lista di domini bloccati</strong> con un massimo di <strong>%{total_items} domini</strong> da <strong>%{filename}</strong>.
-      following_html: Stai per <strong>seguire</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong> e <strong>smettere di seguire chiunque altro</strong>.
-      lists_html: Stai per <strong>sostituire le tue liste</strong> con i contenuti di <strong>%{filename}</strong>. Fino a <strong>%{total_items} profili</strong> verranno aggiunti a nuove liste.
-      muting_html: Stai per <strong>sostituire la tua lista di account silenziati</strong> con un massimo di <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
+      blocking_html:
+        one: Stai per <strong>sostituire la tua lista di blocchi</strong> con <strong>%{count} account</strong> da <strong>%{filename}</strong>.
+        other: Stai per <strong>sostituire la tua lista di blocchi</strong> con <strong>%{count} account</strong> da <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Stai per <strong>sostituire i tuoi segnalibri</strong> con <strong>%{count} post</strong> da <strong>%{filename}</strong>.
+        other: Stai per <strong>sostituire i tuoi segnalibri</strong> con <strong>%{count} post</strong> da <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Stai per <strong>sostituire la tua lista di domini bloccati</strong> con <strong>%{count} dominio</strong> da <strong>%{filename}</strong>.
+        other: Stai per <strong>sostituire la tua lista di domini bloccati</strong> con <strong>%{count} domini</strong> da <strong>%{filename}</strong>.
+      following_html:
+        one: Stai per <strong>seguire</strong> <strong>%{count} account</strong> da <strong>%{filename}</strong> e <strong>smettere di seguire chiunque altro</strong>.
+        other: Stai per <strong>seguire</strong> <strong>%{count} account</strong> da <strong>%{filename}</strong> e <strong>smettere di seguire chiunque altro</strong>.
+      lists_html:
+        one: Stai per <strong>sostituire le tue liste</strong> con il contenuto di <strong>%{filename}</strong>. Verrà aggiunto <strong>%{count} account</strong> alle nuove liste.
+        other: Stai per <strong>sostituire le tue liste</strong> con il contenuto di <strong>%{filename}</strong>. Verranno aggiunti <strong>%{count} account</strong> alle nuove liste.
+      muting_html:
+        one: Stai per <strong>sostituire la lista degli account silenziati</strong> con <strong>%{count} account</strong> da <strong>%{filename}</strong>.
+        other: Stai per <strong>sostituire la lista degli account silenziati</strong> con <strong>%{count} account</strong> da <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Stai per <strong>bloccare</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
-      bookmarks_html: Stai per aggiungere fino a <strong>%{total_items} post</strong> da <strong>%{filename}</strong> ai tuoi <strong>segnalibri</strong>.
-      domain_blocking_html: Stai per <strong>bloccare</strong> fino a <strong>%{total_items} domini</strong> da <strong>%{filename}</strong>.
-      following_html: Stai per <strong>seguire</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
-      lists_html: Stai per aggiungere fino a <strong>%{total_items} profili</strong> da <strong>%{filename}</strong> alla tue <strong>liste</strong>. Le nuove liste saranno create se non c'è una lista a cui aggiungere.
-      muting_html: Stai per <strong>silenziare</strong> fino a <strong>%{total_items} account</strong> da <strong>%{filename}</strong>.
+      blocking_html:
+        one: Stai per <strong>bloccare</strong> <strong>%{count} account</strong> da <strong>%{filename}</strong>.
+        other: Stai per <strong>bloccare</strong> <strong>%{count} account</strong> da <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Stai per aggiungere <strong>%{count} post</strong> da <strong>%{filename}</strong> ai tuoi <strong>segnalibri</strong>.
+        other: Stai per aggiungere <strong>%{count} post</strong> da <strong>%{filename}</strong> ai tuoi <strong>segnalibri</strong>.
+      domain_blocking_html:
+        one: Stai per <strong>bloccare</strong> <strong>%{count} dominio</strong> da <strong>%{filename}</strong>.
+        other: Stai per <strong>bloccare</strong> <strong>%{count} domini</strong> da <strong>%{filename}</strong>.
+      following_html:
+        one: Stai per <strong>seguire</strong> <strong>%{count} account</strong> da <strong>%{filename}</strong>.
+        other: Stai per <strong>seguire</strong> <strong>%{count} account</strong> da <strong>%{filename}</strong>.
+      lists_html:
+        one: Stai per aggiungere <strong>%{count} account</strong> da <strong>%{filename}</strong> alle tue <strong>liste</strong>. Saranno create nuove liste, se non ce ne sono altre da aggiungere.
+        other: Stai per aggiungere <strong>%{count} account</strong> da <strong>%{filename}</strong> alle tue <strong>liste</strong>. Saranno create nuove liste, se non ce ne sono altre da aggiungere.
+      muting_html:
+        one: Stai per <strong>silenziare</strong> <strong>%{count} account</strong> da <strong>%{filename}</strong>.
+        other: Stai per <strong>silenziare</strong> <strong>%{count} account</strong> da <strong>%{filename}</strong>.
     preface: Puoi importare alcune informazioni, come le persone che segui o hai bloccato su questo server, da file creati da un'esportazione su un altro server.
     recent_imports: Importazioni recenti
     states:

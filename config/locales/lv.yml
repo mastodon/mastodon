@@ -23,6 +23,7 @@ lv:
       other: Ziņas
       zero: Ziņu
     posts_tab_heading: Ziņas
+    self_follow_error: Nav ļauts sekot savam kontam
   admin:
     account_actions:
       action: Veikt darbību
@@ -205,8 +206,10 @@ lv:
         destroy_user_role: Iznīcināt lomu
         disable_2fa_user: Atspējot 2FA
         disable_custom_emoji: Atspējot pielāgotu emocijzīmi
+        disable_sign_in_token_auth_user: Atspējot autentificēšanos ar e-pasta pilnvaru lietotājam
         disable_user: Atspējot Lietotāju
         enable_custom_emoji: Iespējot pielāgotu emocijzīmi
+        enable_sign_in_token_auth_user: Iespējot autentificēšanos ar e-pasta pilnvaru lietotājam
         enable_user: Ieslēgt Lietotāju
         memorialize_account: Saglabāt Kontu Piemiņai
         promote_user: Izceltt Lietotāju
@@ -1344,20 +1347,6 @@ lv:
       merge_long: Saglabāt esošos ierakstus un pievienot jaunus
       overwrite: Pārrakstīt
       overwrite_long: Nomainīt pašreizējos ierakstus ar jauniem
-    overwrite_preambles:
-      blocking_html: Tu gatavojies <strong>aizstāt savu bloķēto sarakstu</strong> ar līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
-      bookmarks_html: Tu gatavojies <strong>aizstāt savas bloķētās izlases</strong> ar līdz pat <strong>%{total_items} ziņām</strong> no <strong>%{filename}</strong>.
-      domain_blocking_html: Tu gatavojies <strong>aizstāt savu bloķēto domēnu sarakstu</strong> ar līdz pat <strong>%{total_items} domēniem</strong> no <strong>%{filename}</strong>.
-      following_html: Tu gatavojies <strong>sekot</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong> un <strong>pārtrauksi sekot citiem</strong>.
-      lists_html: Tu gatavojies <strong>aizstāt savus sarakstus</strong> ar <strong>%{filename}</strong> saturu. Līdz <strong>%{total_items} kontiem</strong> tiks pievienoti jauni saraksti.
-      muting_html: Tu gatavojies <strong>aizstāt savu noklusināto kontu sarakstu</strong> ar līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Tu gatavojies <strong>bloķēt</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
-      bookmarks_html: Tu gatavojies pievienot līdz pat <strong>%{total_items} ziņām</strong> no <strong>%{filename}</strong> savām <strong>grāmatzīmēm</strong>.
-      domain_blocking_html: Tu gatavojies <strong>bloķēt</strong> līdz pat <strong>%{total_items} domēniem</strong> no <strong>%{filename}</strong>.
-      following_html: Tu gatavojies <strong>sekot</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
-      lists_html: Tu gatavojies pievienot līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong> saviem <strong>sarakstiem</strong>. Jauni saraksti tiks izveidoti, ja nav saraksta, ko pievienot.
-      muting_html: Tu gatavojies <strong>noklusināt</strong> līdz pat <strong>%{total_items} kontiem</strong> no <strong>%{filename}</strong>.
     preface: Tu vari ievietot datus, kurus esi izguvis no cita servera, kā, piemēram, cilvēku sarakstu, kuriem Tu seko vai kurus bloķē.
     recent_imports: Nesen importēts
     states:

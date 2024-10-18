@@ -25,7 +25,7 @@ const messages = defineMessages({
   minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
   hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
   days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
-  singleChoice: { id: 'compose_form.poll.single', defaultMessage: 'Pick one' },
+  singleChoice: { id: 'compose_form.poll.single', defaultMessage: 'Single choice' },
   multipleChoice: { id: 'compose_form.poll.multiple', defaultMessage: 'Multiple choice' },
 });
 

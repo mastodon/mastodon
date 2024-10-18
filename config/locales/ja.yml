@@ -19,6 +19,7 @@ ja:
     posts:
       other: 投稿
     posts_tab_heading: 投稿
+    self_follow_error: 自分のアカウントをフォローすることはできません
   admin:
     account_actions:
       action: アクションを実行
@@ -45,6 +46,7 @@ ja:
         title: "%{username}さんのメールアドレスを変更"
       change_role:
         changed_msg: ロールを変更しました!
+        edit_roles: ユーザーのロールを管理
         label: ロールを変更
         no_role: ロールがありません
         title: "%{username}さんのロールを変更"
@@ -231,22 +233,22 @@ ja:
         approve_appeal_html: "%{name}さんが%{target}さんからの抗議を承認しました"
         approve_user_html: "%{name}さんが%{target}さんからの登録を承認しました"
         assigned_to_self_report_html: "%{name}さんが通報 %{target}を自身の担当に割り当てました"
-        change_email_user_html: "%{name}さんが%{target}さんのメールアドレスを変更しました"
+        change_email_user_html: "%{name} さんが %{target} さんのメールアドレスを変更しました"
         change_role_user_html: "%{name}さんが%{target}さんのロールを変更しました"
-        confirm_user_html: "%{name}さんが%{target}さんのメールアドレスを確認済みにしました"
+        confirm_user_html: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
         create_account_warning_html: "%{name}さんが%{target}さんに警告メールを送信しました"
         create_announcement_html: "%{name}さんが新しいお知らせ %{target}を作成しました"
-        create_canonical_email_block_html: "%{name}さんがメールアドレス (ハッシュ値: %{target}) をブロックしました"
+        create_canonical_email_block_html: "%{name} さんがメールアドレスのハッシュ値 %{target} をブロックしました"
         create_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を追加しました"
         create_domain_allow_html: "%{name}さんが%{target}の連合を許可しました"
         create_domain_block_html: "%{name}さんがドメイン %{target}をブロックしました"
-        create_email_domain_block_html: "%{name}さんがメールドメイン %{target} をブロックしました"
+        create_email_domain_block_html: "%{name} さんがメールドメイン %{target} をブロックしました"
         create_ip_block_html: "%{name}さんがIP %{target}のルールを作成しました"
         create_unavailable_domain_html: "%{name}がドメイン %{target}への配送を停止しました"
         create_user_role_html: "%{name}さんがロール『%{target}』を作成しました"
         demote_user_html: "%{name}さんが%{target}さんを降格しました"
         destroy_announcement_html: "%{name}さんがお知らせ %{target}を削除しました"
-        destroy_canonical_email_block_html: "%{name}さんがメールアドレス (ハッシュ値: %{target}) のブロックを外しました"
+        destroy_canonical_email_block_html: "%{name} さんがメールアドレスのハッシュ値 %{target} のブロックを外しました"
         destroy_custom_emoji_html: "%{name}さんがカスタム絵文字『%{target}』を削除しました"
         destroy_domain_allow_html: "%{name}さんが%{target}の連合許可を外しました"
         destroy_domain_block_html: "%{name}さんがドメイン %{target}のブロックを外しました"
@@ -269,7 +271,7 @@ ja:
         reject_user_html: "%{name}さんが%{target}さんからの登録を拒否しました"
         remove_avatar_user_html: "%{name}さんが%{target}さんのアイコンを削除しました"
         reopen_report_html: "%{name}さんが通報 %{target}を未解決に戻しました"
-        resend_user_html: "%{name}さんが %{target} の確認メールを再送信しました"
+        resend_user_html: "%{name} さんが %{target} の確認メールを再送信しました"
         reset_password_user_html: "%{name}さんが%{target}さんのパスワードをリセットしました"
         resolve_report_html: "%{name}さんが通報 %{target}を解決済みにしました"
         sensitive_account_html: "%{name}さんが%{target}さんのメディアを閲覧注意にマークしました"
@@ -284,7 +286,7 @@ ja:
         update_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を更新しました"
         update_domain_block_html: "%{name}さんが%{target}のドメインブロックを更新しました"
         update_ip_block_html: "%{name} さんがIP %{target} のルールを更新しました"
-        update_report_html: "%{name}さんが通報 %{target} を更新しました"
+        update_report_html: "%{name} さんが通報 %{target} を更新しました"
         update_status_html: "%{name}さんが%{target}さんの投稿を更新しました"
         update_user_role_html: "%{name}さんがロール『%{target}』を変更しました"
       deleted_account: 削除されたアカウント
@@ -860,6 +862,9 @@ ja:
         message_html: サーバーのルールを定義していません。
       sidekiq_process_check:
         message_html: "%{value}キューに対応するSidekiqプロセスがありません。Sidekiqの設定を確認してください。"
+      software_version_check:
+        action: 利用可能な更新を確認
+        message_html: Mastodonの更新が利用可能です。
       software_version_critical_check:
         action: 利用可能な更新を見る
         message_html: 緊急のMastodonアップデートがあります。速やかに適用してください。
@@ -1141,6 +1146,11 @@ ja:
       view_strikes: 過去のストライクを表示
     too_fast: フォームの送信が速すぎます。もう一度やり直してください。
     use_security_key: セキュリティキーを使用
+  author_attribution:
+    example_title: サンプルテキスト
+    more_from_html: "%{name} のその他の情報"
+    s_blog: "%{name} のブログ"
+    title: 著者の帰属
   challenge:
     confirm: 続ける
     hint_html: 以後1時間はパスワードの再入力を求めません
@@ -1331,19 +1341,31 @@ ja:
       overwrite: 上書き
       overwrite_long: 現在のレコードを新しいもので置き換えます
     overwrite_preambles:
-      blocking_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>で<strong>ブロックしたアカウントリストを置き換えます</strong>。"
-      bookmarks_html: "<strong>%{filename}</strong>の<strong>%{total_items}件の投稿</strong>で<strong>ブックマークの一覧を置き換えます</strong>。"
-      domain_blocking_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のドメイン</strong>で<strong>非表示にしたドメインリストを置き換えます</strong>。"
-      following_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>フォローします</strong>。また、<strong>この中に含まれていないアカウントのフォローを解除します</strong>。"
-      lists_html: "<strong>作成済みのリスト</strong>を<strong>%{filename}の内容で置き換えます</strong>。<strong>%{total_items}個のアカウント</strong>が新しいリストに追加されます。"
-      muting_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>で<strong>ミュートしたアカウントリストを置き換えます</strong>。"
+      blocking_html:
+        other: あなたは<strong>%{filename}</strong>から最大<strong>%{count}のアカウント</strong>で<strong>ブロックリストを置き換えようとしています</strong>。
+      bookmarks_html:
+        other: あなたは<strong>%{filename}</strong>から最大<strong>%{count}の投稿</strong>で<strong>ブックマークを置き換えようとしています</strong>。
+      domain_blocking_html:
+        other: あなたは<strong>%{filename}</strong>から最大<strong>%{count}のドメイン</strong>で<strong>ドメインブロックリストを置き換えようとしています</strong>。
+      following_html:
+        other: あなたは<strong>%{filename}</strong>から最大<strong>%{count}のアカウント</strong>を<strong>フォローし</strong>、<strong>他のすべてのユーザーのフォローを解除します</strong>。
+      lists_html:
+        other: あなたは<strong>%{filename}</strong>の内容で<strong>リストを置き換えようとしています</strong>。最大<strong>%{count}のアカウント</strong>が新しいリストに追加されます。
+      muting_html:
+        other: あなたは<strong>%{filename}</strong>から最大<strong>%{count}のアカウント</strong>で<strong>ミュートアカウントのリストを置き換えようとしています</strong>。
     preambles:
-      blocking_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>ブロックします</strong>。"
-      bookmarks_html: "<strong>%{filename}</strong>の<strong>%{total_items}件の投稿</strong>を<strong>ブックマークに追加します</strong>。"
-      domain_blocking_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のドメイン</strong>を<strong>非表示にします</strong>。"
-      following_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>フォローします</strong>。"
-      lists_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>リストに追加します</strong>。追加先のリストがない場合は新しく作成されます。"
-      muting_html: "<strong>%{filename}</strong>の<strong>%{total_items}個のアカウント</strong>を<strong>ミュートします</strong>。"
+      blocking_html:
+        other: あなたは<strong>%{filename}</strong>から最大<strong>%{count}のアカウント</strong>を<strong>ブロックしようとしています</strong>。
+      bookmarks_html:
+        other: あなたは<strong>%{filename}</strong>から最大<strong>%{count}の投稿</strong>を<strong>ブックマークに追加しようとしています</strong>。
+      domain_blocking_html:
+        other: あなたは<strong>%{filename}</strong>から最大<strong>%{count}のドメイン</strong>を<strong>ブロックしようとしています</strong>。
+      following_html:
+        other: あなたは<strong>%{filename}</strong>から最大<strong>%{count}のアカウント</strong>を<strong>フォローしようとしています</strong>。
+      lists_html:
+        other: あなたは<strong>%{filename}</strong>から最大<strong>%{count}のアカウント</strong>を<strong>リストに追加しようとしています</strong>。追加するリストがない場合は新しいリストが作成されます。
+      muting_html:
+        other: あなたは<strong>%{filename}</strong>から最大<strong>%{count}のアカウント</strong>を<strong>ミュートしようとしています</strong>。
     preface: 他のサーバーでエクスポートされたファイルから、フォロー/ブロックした情報をこのサーバー上のアカウントにインポートできます。
     recent_imports: 最近のインポート
     states:
@@ -1659,6 +1681,7 @@ ja:
     delete: アカウントの削除
     development: 開発
     edit_profile: プロフィールを編集
+    export: エクスポート
     featured_tags: 注目のハッシュタグ
     import: データのインポート
     import_and_export: インポート・エクスポート
@@ -1903,6 +1926,7 @@ ja:
     instructions_html: 以下のコードをコピーしてwebサイトのHTMLに貼り付けます。次に「プロフィールを編集」タブから、「プロフィール補足情報」のいずれかの欄にwebサイトのURLを記入し、「変更を保存」をクリックしてください。
     verification: 認証
     verified_links: 確認済みリンク
+    website_verification: ウェブサイトの認証
   webauthn_credentials:
     add: セキュリティキーを追加
     create:

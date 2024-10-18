@@ -21,6 +21,7 @@ da:
       one: Indlæg
       other: Indlæg
     posts_tab_heading: Indlæg
+    self_follow_error: Det er ikke tilladt at følge sin egen konto
   admin:
     account_actions:
       action: Udfør handling
@@ -1165,9 +1166,11 @@ da:
     use_security_key: Brug sikkerhedsnøgle
   author_attribution:
     example_title: Eksempeltekst
-    hint_html: Styrer, hvordan man krediteres, når links deles på Mastodon.
+    hint_html: Skriver du nyheder eller blogartikler uden for Mastodon? Styr, hvordan man bliver krediteret, når disse deles på Mastodon.
+    instructions: 'Sørg for, at denne kode er i artikelens HTML:'
     more_from_html: Flere fra %{name}
     s_blog: "%{name}s blog"
+    then_instructions: Tilføj dernæst publikationsdomænenavnet i feltet nedenfor.
     title: Forfattertilskrivning
   challenge:
     confirm: Fortsæt
@@ -1366,19 +1369,43 @@ da:
       overwrite: Overskriv
       overwrite_long: Erstat aktuelle poster med de nye
     overwrite_preambles:
-      blocking_html: Du er ved at <strong>erstatte bloklisten</strong> med op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
-      bookmarks_html: Du er ved at <strong>erstatte bogmærkelisten</strong> med op til <strong>%{total_items} emner</strong> fra <strong>%{filename}</strong>.
-      domain_blocking_html: Du er ved at <strong>erstatte domæneblokeringslisten</strong> med op til <strong>%{total_items} domæner</strong> fra <strong>%{filename}</strong>.
-      following_html: Du er ved at <strong>følge</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong> og <strong>stoppe med at følge alle andre</strong>.
-      lists_html: Du er ved at <strong>erstatte dine lister</strong> med indholdet af <strong>%{filename}</strong>. Op til <strong>%{total_items} konti</strong> tilføjes nye lister.
-      muting_html: Du er ved at <strong>erstatte listen over tavsgjorte konti</strong> med op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
+      blocking_html:
+        one: Man er ved at <strong>erstatte sin sortliste</strong> med <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>erstatte sin sortliste</strong> med optil <strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Man er ved at <strong>erstatte sine bogmærker</strong> med <strong>%{count} post</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>erstatte sine bogmærker</strong> med op til <strong>%{count} poster</strong> fra <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Man er ved at <strong>erstatte sin domænesortliste</strong> med <strong>%{count} domæne</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>erstatte sin domænesortliste</strong> med op til <strong>%{count} domæner</strong> fra <strong>%{filename}</strong>.
+      following_html:
+        one: Man er ved at <strong>følge</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong> og <strong>stoppe med at følge andre</strong>.
+        other: Man er ved at <strong>følge</strong> <strong>%{count} konti</strong> fra <strong>%{filename}</strong> og <strong>stoppe med at følge andre</strong>.
+      lists_html:
+        one: Man er ved at <strong>erstatte sine lister</strong> med indhold fra <strong>%{filename}</strong>. <strong>%{count} konto</strong> føjes til nye lister.
+        other: Man er ved at <strong>erstatte sine lister</strong> med indhold fra <strong>%{filename}</strong>. Op til <strong>%{count} konti</strong> føjes til nye lister.
+      muting_html:
+        one: Man er ved at <strong>sin liste over en tavsgjort konto</strong> med <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>sin liste over tavsgjorte konti</strong> med op til <strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Du er ved at <strong>blokere</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
-      bookmarks_html: Du er ved at føje op til <strong>%{total_items} indlæg</strong> fra <strong>%{filename}</strong> til <strong>bogmærkelisten</strong>.
-      domain_blocking_html: Du er ved at <strong>blokere</strong> op til <strong>%{total_items} domæner</strong> fra <strong>%{filename}</strong>.
-      following_html: Du er ved at <strong>følge</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
-      lists_html: Du er ved at tilføje op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong> til dine <strong>lister</strong>. Nye lister oprettes, hvis der ikke er nogen liste at føje konti til.
-      muting_html: Du er ved at <strong>tavsgøre</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
+      blocking_html:
+        one: Man er ved at <strong>blokere</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>blokere</strong> op til <strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Man er ved at tilføje <strong>%{count} post</strong> fra <strong>%{filename}</strong> til sine <strong>bogmærker</strong>.
+        other: Man er ved at tilføje <strong>%{count} poster</strong> fra <strong>%{filename}</strong> til sine <strong>bogmærker</strong>.
+      domain_blocking_html:
+        one: Man er ved at <strong>blokere</strong> <strong>%{count} domæne</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>blokere</strong> op til <strong>%{count} domæner</strong> fra <strong>%{filename}</strong>.
+      following_html:
+        one: Man er ved at <strong>følge</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>følge</strong> op til<strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
+      lists_html:
+        one: Man er ved at tilføje <strong>%{count} konto</strong> fra <strong>%{filename}</strong> til sine <strong>lister</strong>. Nye lister oprettes, hvis der ikke findes nogen liste at tilføje til.
+        other: Man er ved at tilføje <strong>%{count} konti</strong> fra <strong>%{filename}</strong> til sine <strong>lister</strong>. Nye lister oprettes, hvis der ikke findes nogen liste at tilføje til.
+      muting_html:
+        one: Man er ved at <strong>tavsgøre</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>tavsgøre</strong> op til <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
     preface: Du kan importere data, du har eksporteret fra en anden server, såsom en liste over folk du følger eller blokerer.
     recent_imports: Seneste importer
     states:

@@ -27,6 +27,7 @@ ga:
       other: Postálacha
       two: Postálacha
     posts_tab_heading: Postálacha
+    self_follow_error: Ní cheadaítear do chuntas féin a leanúint
   admin:
     account_actions:
       action: Déan gníomh
@@ -1219,7 +1220,6 @@ ga:
     use_security_key: Úsáid eochair shlándála
   author_attribution:
     example_title: Téacs samplach
-    hint_html: Rialú conas a chuirtear chun sochair tú nuair a roinntear naisc ar Mastodon.
     more_from_html: Tuilleadh ó %{name}
     s_blog: Blag %{name}
     title: Leithdháil an údair
@@ -1441,19 +1441,79 @@ ga:
       overwrite: Forscríobh
       overwrite_long: Cuir na cinn nua in ionad na dtaifead reatha
     overwrite_preambles:
-      blocking_html: Tá tú ar tí <strong>do liosta bloc</strong> a chur in ionad suas le <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong>.
-      bookmarks_html: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{total_items} postáil</strong> ó <strong>%{filename}</strong>.
-      domain_blocking_html: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{total_items} fearainn</strong> ó <strong>%{filename}</strong>.
-      following_html: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong> agus <strong>stop a leanúint aon duine eile</strong>.
-      lists_html: Tá tú ar tí <strong>do liostaí</strong> a chur in ionad inneachair <strong>%{filename}</strong>. Cuirfear suas le <strong>%{total_items} cuntas</strong> le liostaí nua.
-      muting_html: Tá tú ar tí <strong>do liosta cuntas balbhaithe</strong> a chur in ionad suas le <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong>.
+      blocking_html:
+        few: Tá tú ar tí <strong>do liosta bloc</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>do liosta bloc</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>do liosta bloc</strong> a chur in ionad suas le <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>do liosta bloc</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>do liosta bloc</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+      bookmarks_html:
+        few: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
+      domain_blocking_html:
+        few: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{count} fearainn</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{count} fearainn</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{count} fearainn</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{count} fearainn</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{count} fearainn</strong> ó <strong>%{filename}</strong>.
+      following_html:
+        few: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong> agus <strong>stop ag leanúint aon duine eile</strong>.
+        many: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong> agus <strong>stop ag leanúint aon duine eile</strong>.
+        one: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} chuntais</strong> ó <strong>%{filename}</strong> agus <strong>stop a leanúint aon duine eile</strong>.
+        other: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong> agus <strong>stop ag leanúint aon duine eile</strong>.
+        two: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong> agus <strong>stop ag leanúint aon duine eile</strong>.
+      lists_html:
+        few: Tá tú ar tí <strong>do liostaí</strong> a chur in ionad inneachair <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} cuntais</strong> le liostaí nua.
+        many: Tá tú ar tí <strong>do liostaí</strong> a chur in ionad inneachair <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} cuntais</strong> le liostaí nua.
+        one: Tá tú ar tí <strong>do liostaí</strong> a chur in ionad inneachair <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} cuntas</strong> le liostaí nua.
+        other: Tá tú ar tí <strong>do liostaí</strong> a chur in ionad inneachair <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} cuntais</strong> le liostaí nua.
+        two: Tá tú ar tí <strong>do liostaí</strong> a chur in ionad inneachair <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} cuntais</strong> le liostaí nua.
+      muting_html:
+        few: Tá tú ar tí <strong>do liosta cuntas balbhaithe</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>do liosta cuntas balbhaithe</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>do liosta cuntais balbhaithe</strong> a chur in ionad suas le <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>do liosta cuntas balbhaithe</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>do liosta cuntas balbhaithe</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Tá tú ar tí <strong>bloc</strong> suas le <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong>.
-      bookmarks_html: Tá tú ar tí <strong>%{total_items} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
-      domain_blocking_html: Tá tú ar tí <strong>bloc</strong> suas le <strong>%{total_items} fearainn</strong> ó <strong>%{filename}</strong>.
-      following_html: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong>.
-      lists_html: Tá tú ar tí <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong> a chur le do <strong>liostaí</strong>. Cruthófar liostaí nua mura bhfuil aon liosta le cur leis.
-      muting_html: Tá tú ar tí <strong>balbhú</strong> suas le <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong>.
+      blocking_html:
+        few: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>bac</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+      bookmarks_html:
+        few: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
+        many: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
+        one: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
+        other: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
+        two: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
+      domain_blocking_html:
+        few: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} bhfearainn</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} bhfearainn</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>bac</strong> suas go dtí <strong>%{count} fearann</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} bhfearainn</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} bhfearainn</strong> ó <strong>%{filename}</strong>.
+      following_html:
+        few: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+      lists_html:
+        few: Tá tú ar tí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong> a chur le do <strong>liostaí</strong>. Cruthófar liostaí nua mura bhfuil aon liosta le cur leis.
+        many: Tá tú ar tí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong> a chur le do <strong>liostaí</strong>. Cruthófar liostaí nua mura bhfuil aon liosta le cur leis.
+        one: Tá tú ar tí cuntas <strong>%{count}</strong> ó <strong>%{filename}</strong> a chur le do <strong>liostaí</strong>. Cruthófar liostaí nua mura bhfuil aon liosta le cur leis.
+        other: Tá tú ar tí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong> a chur le do <strong>liostaí</strong>. Cruthófar liostaí nua mura bhfuil aon liosta le cur leis.
+        two: Tá tú ar tí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong> a chur le do <strong>liostaí</strong>. Cruthófar liostaí nua mura bhfuil aon liosta le cur leis.
+      muting_html:
+        few: Tá tú ar tí <strong>balbhú</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>balbhú</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>balbhú</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>balbhú</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>balbhú</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
     preface: Is féidir leat sonraí a d’easpórtáil tú a allmhairiú ó fhreastalaí eile, mar shampla liosta de na daoine a bhfuil tú ag leanúint nó ag cur bac orthu.
     recent_imports: Allmhairí le déanaí
     states:
