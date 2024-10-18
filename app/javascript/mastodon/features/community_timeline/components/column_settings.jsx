@@ -21,9 +21,11 @@ class ColumnSettings extends PureComponent {
 
     return (
       <div className='column-settings'>
-        <div className='column-settings__row'>
-          <SettingToggle settings={settings} settingPath={['other', 'onlyMedia']} onChange={onChange} label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />} />
-        </div>
+        <section>
+          <div className='column-settings__row'>
+            <SettingToggle settings={settings} settingPath={['other', 'onlyMedia']} onChange={onChange} label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />} />
+          </div>
+        </section>
       </div>
     );
   }
