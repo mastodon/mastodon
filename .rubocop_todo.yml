@@ -54,11 +54,6 @@ Style/FormatStringToken:
     - 'config/initializers/devise.rb'
     - 'lib/paperclip/color_extractor.rb'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
-Style/GuardClause:
-  Enabled: false
-
 # This cop supports unsafe autocorrection (--autocorrect-all).
 Style/HashTransformValues:
   Exclude:

@@ -31,10 +31,10 @@ class ProcessHashtagsService < BaseService
 
     removed_tags = @previous_tags - @current_tags
 
-    unless removed_tags.empty?
-      @account.featured_tags.where(tag_id: removed_tags.map(&:id)).find_each do |featured_tag|
-        featured_tag.decrement(@status.id)
-      end
+    return if removed_tags.empty?
+
+    @account.featured_tags.where(tag_id: removed_tags.map(&:id)).find_each do |featured_tag|
+      featured_tag.decrement(@status.id)
     end
   end
 end
