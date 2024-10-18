@@ -69,6 +69,7 @@ class User < ApplicationRecord
   # RegenerationWorker jobs that need to be run when those people come
   # to check their feed
   ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days.freeze
+  DAILY_WINDOW = 24.hours
 
   devise :two_factor_authenticatable,
          otp_secret_encryption_key: Rails.configuration.x.otp_secret,
@@ -367,6 +368,10 @@ class User < ApplicationRecord
 
     # Finally, send a reset password prompt to the user
     send_reset_password_instructions
+  end
+
+  def signed_in_today?
+    current_sign_in_at && current_sign_in_at >= DAILY_WINDOW.ago
   end
 
   protected
