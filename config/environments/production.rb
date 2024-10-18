@@ -15,16 +15,13 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
-  config.action_controller.asset_host      = ENV['CDN_HOST'] if ENV['CDN_HOST'].present?
+  config.action_controller.asset_host = ENV['CDN_HOST'] if ENV['CDN_HOST'].present?
 
   # Ensures that a master key has been made available in ENV["RAILS_MASTER_KEY"], config/master.key, or an environment
   # key such as config/credentials/production.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
-
-  # Compress CSS using a preprocessor.
-  # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -42,6 +39,7 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
+  # Skip http-to-https redirect for the default health check endpoint.
   config.ssl_options = {
     redirect: {
       exclude: ->(request) { request.path.start_with?('/health') || request.headers['Host'].end_with?('.onion') || request.headers['Host'].end_with?('.i2p') },
@@ -60,7 +58,7 @@ Rails.application.configure do
   config.cache_store = :redis_cache_store, REDIS_CONFIGURATION.cache
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
-  # config.active_job.queue_adapter     = :resque
+  # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "mastodon_production"
 
   config.action_mailer.perform_caching = false
@@ -70,7 +68,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # English when a translation cannot be found).
+  # the I18n.default_locale when a translation cannot be found).
   # This setting would typically be `true` to use the `I18n.default_locale`.
   # Some locales are missing translation entries and would have errors:
   # https://github.com/mastodon/mastodon/pull/24727
