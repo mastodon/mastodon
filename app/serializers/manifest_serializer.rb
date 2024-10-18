@@ -96,22 +96,8 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def related_applications
-    [
-      {
-        platform: 'play',
-        url: 'https://play.google.com/store/apps/details?id=org.joinmastodon.android',
-        id: 'org.joinmastodon.android',
-      },
-      {
-        platform: 'itunes',
-        url: 'https://apps.apple.com/us/app/mastodon-for-iphone/id1571998974',
-        id: 'id1571998974',
-      },
-      {
-        platform: 'f-droid',
-        url: 'https://f-droid.org/en/packages/org.joinmastodon.android/',
-        id: 'org.joinmastodon.android',
-      },
-    ]
+    Rails.configuration.x.mastodon.apps.map do |key, values|
+      { platform: key, url: values[:url], id: values[:id] }
+    end
   end
 end
