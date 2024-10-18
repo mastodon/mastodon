@@ -88,6 +88,7 @@ class Account < ApplicationRecord
   include Account::Interactions
   include Account::Merging
   include Account::Search
+  include Account::Sensitizes
   include Account::StatusesSearch
   include Account::Suspensions
   include Account::AttributionDomains
@@ -128,7 +129,6 @@ class Account < ApplicationRecord
   scope :local, -> { where(domain: nil) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where.not(silenced_at: nil) }
-  scope :sensitized, -> { where.not(sensitized_at: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
   scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
@@ -252,18 +252,6 @@ class Account < ApplicationRecord
 
   def unsilence!
     update!(silenced_at: nil)
-  end
-
-  def sensitized?
-    sensitized_at.present?
-  end
-
-  def sensitize!(date = Time.now.utc)
-    update!(sensitized_at: date)
-  end
-
-  def unsensitize!
-    update!(sensitized_at: nil)
   end
 
   def memorialize!
