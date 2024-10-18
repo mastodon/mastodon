@@ -48,7 +48,7 @@ export function submitSearch(type) {
 
     api().get('/api/v2/search', {
       params: {
-        q: value,
+        q: value.replace(/^web\+ap:\/\//, 'https://'),
         resolve: signedIn,
         limit: 11,
         type,
@@ -101,7 +101,7 @@ export const expandSearch = type => (dispatch, getState) => {
 
   api().get('/api/v2/search', {
     params: {
-      q: value,
+      q: value.replace(/^web\+ap:\/\//, 'https://'),
       type,
       offset,
       limit: 11,
