@@ -237,7 +237,15 @@ module ApplicationHelper
     I18n.t 'user_mailer.welcome.hashtags_recent_count', people: number_with_delimiter(people), count: people
   end
 
+  def app_store_url(platform)
+    app_store(platform)[:url]
+  end
+
   private
+
+  def app_store(platform)
+    Rails.configuration.x.mastodon.apps.detect { |store| store[:platform] == platform.to_s }
+  end
 
   def storage_host_var
     ENV.fetch('S3_ALIAS_HOST', nil) || ENV.fetch('S3_CLOUDFRONT_HOST', nil) || ENV.fetch('AZURE_ALIAS_HOST', nil)
