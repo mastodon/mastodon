@@ -77,28 +77,4 @@ RSpec.describe StatusesHelper do
       end
     end
   end
-
-  describe '#stream_link_target' do
-    it 'returns nil if it is not an embedded view' do
-      set_not_embedded_view
-
-      expect(helper.stream_link_target).to be_nil
-    end
-
-    it 'returns _blank if it is an embedded view' do
-      set_embedded_view
-
-      expect(helper.stream_link_target).to eq '_blank'
-    end
-  end
-
-  def set_not_embedded_view
-    params[:controller] = "not_#{StatusesHelper::EMBEDDED_CONTROLLER}"
-    params[:action] = "not_#{StatusesHelper::EMBEDDED_ACTION}"
-  end
-
-  def set_embedded_view
-    params[:controller] = StatusesHelper::EMBEDDED_CONTROLLER
-    params[:action] = StatusesHelper::EMBEDDED_ACTION
-  end
 end
