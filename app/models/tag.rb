@@ -67,6 +67,10 @@ class Tag < ApplicationRecord
 
   update_index('tags', :self)
 
+  attribute :usable, default: true
+  attribute :listable, default: true
+  attribute :trendable, default: -> { Setting.trendable_by_default }
+
   def to_param
     name
   end
@@ -78,24 +82,6 @@ class Tag < ApplicationRecord
   def formatted_name
     "##{display_name}"
   end
-
-  def usable
-    boolean_with_default('usable', true)
-  end
-
-  alias usable? usable
-
-  def listable
-    boolean_with_default('listable', true)
-  end
-
-  alias listable? listable
-
-  def trendable
-    boolean_with_default('trendable', Setting.trendable_by_default)
-  end
-
-  alias trendable? trendable
 
   def decaying?
     max_score_at && max_score_at >= Trends.tags.options[:max_score_cooldown].ago && max_score_at < 1.day.ago

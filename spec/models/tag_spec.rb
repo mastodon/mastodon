@@ -5,6 +5,62 @@ require 'rails_helper'
 RSpec.describe Tag do
   include_examples 'Reviewable'
 
+  describe 'Defaults' do
+    describe 'usable' do
+      context 'without any values' do
+        it { is_expected.to be_usable }
+      end
+
+      context 'with an overriden value' do
+        subject { described_class.new usable: false }
+
+        it { is_expected.to_not be_usable }
+      end
+    end
+
+    describe 'listable' do
+      context 'without any values' do
+        it { is_expected.to be_listable }
+      end
+
+      context 'with an overriden value' do
+        subject { described_class.new listable: false }
+
+        it { is_expected.to_not be_listable }
+      end
+    end
+
+    describe 'trendable' do
+      context 'when default is true' do
+        before { Setting.trendable_by_default = true }
+
+        context 'without any value provided' do
+          it { is_expected.to be_trendable }
+        end
+
+        context 'when default value is overridden' do
+          subject { described_class.new trendable: false }
+
+          it { is_expected.to_not be_trendable }
+        end
+      end
+
+      context 'when default is false' do
+        before { Setting.trendable_by_default = false }
+
+        context 'without any value provided' do
+          it { is_expected.to_not be_trendable }
+        end
+
+        context 'when default value is overridden' do
+          subject { described_class.new trendable: true }
+
+          it { is_expected.to be_trendable }
+        end
+      end
+    end
+  end
+
   describe 'validations' do
     it 'invalid with #' do
       expect(described_class.new(name: '#hello_world')).to_not be_valid
