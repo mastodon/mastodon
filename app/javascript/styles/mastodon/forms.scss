@@ -112,6 +112,12 @@ code {
         color: $primary-text-color;
         display: block;
         width: auto;
+
+        &.boolean {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+        }
       }
 
       .label_input,
@@ -143,7 +149,6 @@ code {
       .overridden,
       .recommended,
       .not_recommended {
-        position: absolute;
         margin: 0 4px;
         margin-top: -2px;
       }
