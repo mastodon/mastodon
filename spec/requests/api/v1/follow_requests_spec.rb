@@ -32,7 +32,7 @@ RSpec.describe 'Follow requests' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:follows'
 
-    it 'returns the expected content from accounts requesting to follow', :aggregate_failures do
+    it 'returns the expected content from accounts requesting to follow' do
       subject
 
       expect(response).to have_http_status(200)
@@ -65,7 +65,7 @@ RSpec.describe 'Follow requests' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:follows'
 
-    it 'allows the requesting follower to follow', :aggregate_failures do
+    it 'allows the requesting follower to follow' do
       expect { subject }.to change { follower.following?(user.account) }.from(false).to(true)
       expect(response).to have_http_status(200)
       expect(response.content_type)
@@ -87,7 +87,7 @@ RSpec.describe 'Follow requests' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:follows'
 
-    it 'removes the follow request', :aggregate_failures do
+    it 'removes the follow request' do
       subject
 
       expect(response).to have_http_status(200)

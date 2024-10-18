@@ -24,7 +24,7 @@ RSpec.describe 'Apps' do
     end
 
     context 'with valid params' do
-      it 'creates an OAuth app', :aggregate_failures do
+      it 'creates an OAuth app' do
         subject
 
         expect(response).to have_http_status(200)
@@ -110,7 +110,7 @@ RSpec.describe 'Apps' do
     context 'with many duplicate scopes' do
       let(:scopes) { (%w(read) * 40).join(' ') }
 
-      it 'only saves the scope once', :aggregate_failures do
+      it 'only saves the scope once' do
         subject
 
         expect(response).to have_http_status(200)

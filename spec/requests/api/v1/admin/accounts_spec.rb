@@ -15,7 +15,7 @@ RSpec.describe 'Accounts' do
     end
 
     shared_examples 'a successful request' do
-      it 'returns the correct accounts', :aggregate_failures do
+      it 'returns the correct accounts' do
         subject
 
         expect(response).to have_http_status(200)
@@ -91,7 +91,7 @@ RSpec.describe 'Accounts' do
     context 'with limit param' do
       let(:params) { { limit: 2 } }
 
-      it 'returns only the requested number of accounts', :aggregate_failures do
+      it 'returns only the requested number of accounts' do
         subject
 
         expect(response).to have_http_status(200)
@@ -112,7 +112,7 @@ RSpec.describe 'Accounts' do
     it_behaves_like 'forbidden for wrong scope', 'read read:accounts admin:write admin:write:accounts'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns the requested account successfully', :aggregate_failures do
+    it 'returns the requested account successfully' do
       subject
 
       expect(response).to have_http_status(200)
@@ -149,7 +149,7 @@ RSpec.describe 'Accounts' do
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
 
-      it 'approves the user successfully', :aggregate_failures do
+      it 'approves the user successfully' do
         subject
 
         expect(response).to have_http_status(200)
@@ -158,7 +158,7 @@ RSpec.describe 'Accounts' do
         expect(account.reload.user_approved?).to be(true)
       end
 
-      it 'logs action', :aggregate_failures do
+      it 'logs action' do
         subject
 
         expect(latest_admin_action_log)
@@ -207,7 +207,7 @@ RSpec.describe 'Accounts' do
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
 
-      it 'removes the user successfully and logs action', :aggregate_failures do
+      it 'removes the user successfully and logs action' do
         subject
 
         expect(response).to have_http_status(200)
@@ -260,7 +260,7 @@ RSpec.describe 'Accounts' do
     it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'enables the user successfully', :aggregate_failures do
+    it 'enables the user successfully' do
       subject
 
       expect(response).to have_http_status(200)
@@ -295,7 +295,7 @@ RSpec.describe 'Accounts' do
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
 
-      it 'unsuspends the account successfully', :aggregate_failures do
+      it 'unsuspends the account successfully' do
         subject
 
         expect(response).to have_http_status(200)
@@ -340,7 +340,7 @@ RSpec.describe 'Accounts' do
     it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'unsensitizes the account successfully', :aggregate_failures do
+    it 'unsensitizes the account successfully' do
       subject
 
       expect(response).to have_http_status(200)
@@ -374,7 +374,7 @@ RSpec.describe 'Accounts' do
     it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'unsilences the account successfully', :aggregate_failures do
+    it 'unsilences the account successfully' do
       subject
 
       expect(response).to have_http_status(200)
@@ -409,7 +409,7 @@ RSpec.describe 'Accounts' do
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts read admin:read'
       it_behaves_like 'forbidden for wrong role', ''
 
-      it 'deletes the account successfully', :aggregate_failures do
+      it 'deletes the account successfully' do
         allow(Admin::AccountDeletionWorker).to receive(:perform_async)
         subject
 

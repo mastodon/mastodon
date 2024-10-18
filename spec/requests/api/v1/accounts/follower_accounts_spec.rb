@@ -17,7 +17,7 @@ RSpec.describe 'API V1 Accounts FollowerAccounts' do
   end
 
   describe 'GET /api/v1/accounts/:acount_id/followers' do
-    it 'returns accounts following the given account', :aggregate_failures do
+    it 'returns accounts following the given account' do
       get "/api/v1/accounts/#{account.id}/followers", params: { limit: 2 }, headers: headers
 
       expect(response).to have_http_status(200)
@@ -30,7 +30,7 @@ RSpec.describe 'API V1 Accounts FollowerAccounts' do
         )
     end
 
-    it 'does not return blocked users', :aggregate_failures do
+    it 'does not return blocked users' do
       user.account.block!(bob)
       get "/api/v1/accounts/#{account.id}/followers", params: { limit: 2 }, headers: headers
 

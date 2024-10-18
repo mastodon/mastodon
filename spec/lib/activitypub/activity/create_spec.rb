@@ -95,7 +95,7 @@ RSpec.describe ActivityPub::Activity::Create do
       follower.follow!(sender)
     end
 
-    it 'correctly processes posts and inserts them in timelines', :aggregate_failures do
+    it 'correctly processes posts and inserts them in timelines' do
       # Simulate a temporary failure preventing from fetching the parent post
       stub_request(:get, object_json[:id]).to_return(status: 500)
 
@@ -136,7 +136,7 @@ RSpec.describe ActivityPub::Activity::Create do
       expect(Notification.count).to eq 2
     end
 
-    it 'ignores unprocessable mention', :aggregate_failures do
+    it 'ignores unprocessable mention' do
       stub_request(:get, invalid_mention_json[:tag][:href]).to_raise(HTTP::ConnectionError)
       # When receiving the post that contains an invalid mention…
       described_class.new(activity_for_object(invalid_mention_json), sender, delivery: true).perform
@@ -174,7 +174,7 @@ RSpec.describe ActivityPub::Activity::Create do
           }
         end
 
-        it 'creates status with a valid creation date', :aggregate_failures do
+        it 'creates status with a valid creation date' do
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -194,7 +194,7 @@ RSpec.describe ActivityPub::Activity::Create do
           }
         end
 
-        it 'creates status with a valid creation date', :aggregate_failures do
+        it 'creates status with a valid creation date' do
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -215,7 +215,7 @@ RSpec.describe ActivityPub::Activity::Create do
           }
         end
 
-        it 'creates status with appropriate creation and edition dates', :aggregate_failures do
+        it 'creates status with appropriate creation and edition dates' do
           status = sender.statuses.first
 
           expect(status).to_not be_nil

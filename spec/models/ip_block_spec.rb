@@ -7,7 +7,7 @@ RSpec.describe IpBlock do
     it { is_expected.to validate_presence_of(:ip) }
     it { is_expected.to validate_presence_of(:severity) }
 
-    it 'validates ip uniqueness', :aggregate_failures do
+    it 'validates ip uniqueness' do
       described_class.create!(ip: '127.0.0.1', severity: :no_access)
 
       ip_block = described_class.new(ip: '127.0.0.1', severity: :no_access)

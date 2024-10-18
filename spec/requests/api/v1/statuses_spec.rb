@@ -52,7 +52,7 @@ RSpec.describe '/api/v1/statuses' do
           user.account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
         end
 
-        it 'returns filter information', :aggregate_failures do
+        it 'returns filter information' do
           subject
 
           expect(response).to have_http_status(200)
@@ -77,7 +77,7 @@ RSpec.describe '/api/v1/statuses' do
           filter.statuses.create!(status_id: status.id)
         end
 
-        it 'returns filter information', :aggregate_failures do
+        it 'returns filter information' do
           subject
 
           expect(response).to have_http_status(200)
@@ -101,7 +101,7 @@ RSpec.describe '/api/v1/statuses' do
           user.account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
         end
 
-        it 'returns filter information', :aggregate_failures do
+        it 'returns filter information' do
           subject
 
           expect(response).to have_http_status(200)
@@ -147,7 +147,7 @@ RSpec.describe '/api/v1/statuses' do
       it_behaves_like 'forbidden for wrong scope', 'read read:statuses'
 
       context 'with a basic status body' do
-        it 'returns rate limit headers', :aggregate_failures do
+        it 'returns rate limit headers' do
           subject
 
           expect(response).to have_http_status(200)
@@ -164,7 +164,7 @@ RSpec.describe '/api/v1/statuses' do
 
         let(:params) { { status: '@alice hm, @bob is really annoying lately', allowed_mentions: [alice.id] } }
 
-        it 'returns serialized extra accounts in body', :aggregate_failures do
+        it 'returns serialized extra accounts in body' do
           subject
 
           expect(response).to have_http_status(422)
@@ -177,7 +177,7 @@ RSpec.describe '/api/v1/statuses' do
       context 'with missing parameters' do
         let(:params) { {} }
 
-        it 'returns rate limit headers', :aggregate_failures do
+        it 'returns rate limit headers' do
           subject
 
           expect(response).to have_http_status(422)
@@ -193,7 +193,7 @@ RSpec.describe '/api/v1/statuses' do
           RateLimiter::FAMILIES[:statuses][:limit].times { rate_limiter.record! }
         end
 
-        it 'returns rate limit headers', :aggregate_failures do
+        it 'returns rate limit headers' do
           subject
 
           expect(response).to have_http_status(429)
@@ -235,7 +235,7 @@ RSpec.describe '/api/v1/statuses' do
         context 'when the scheduling time is less than 5 minutes' do
           let(:params) { { status: 'Hello world', scheduled_at: 4.minutes.from_now } }
 
-          it 'does not create a scheduled status', :aggregate_failures do
+          it 'does not create a scheduled status' do
             subject
 
             expect(response).to have_http_status(422)
@@ -257,7 +257,7 @@ RSpec.describe '/api/v1/statuses' do
 
       it_behaves_like 'forbidden for wrong scope', 'read read:statuses'
 
-      it 'removes the status', :aggregate_failures do
+      it 'removes the status' do
         subject
 
         expect(response).to have_http_status(200)
@@ -277,7 +277,7 @@ RSpec.describe '/api/v1/statuses' do
 
       it_behaves_like 'forbidden for wrong scope', 'read read:statuses'
 
-      it 'updates the status', :aggregate_failures do
+      it 'updates the status' do
         subject
 
         expect(response).to have_http_status(200)
