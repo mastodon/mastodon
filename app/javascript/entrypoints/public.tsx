@@ -327,31 +327,24 @@ Rails.delegate(document, '.input-copy button', 'click', ({ target }) => {
 
   if (!input) return;
 
-  const oldReadOnly = input.readOnly;
-
-  input.readOnly = false;
-  input.focus();
-  input.select();
-  input.setSelectionRange(0, input.value.length);
-
-  try {
-    if (document.execCommand('copy')) {
-      input.blur();
-
+  navigator.clipboard
+    .writeText(input.value)
+    .then(() => {
       const parent = target.parentElement;
 
-      if (!parent) return;
-      parent.classList.add('copied');
+      if (parent) {
+        parent.classList.add('copied');
 
-      setTimeout(() => {
-        parent.classList.remove('copied');
-      }, 700);
-    }
-  } catch (err) {
-    console.error(err);
-  }
+        setTimeout(() => {
+          parent.classList.remove('copied');
+        }, 700);
+      }
 
-  input.readOnly = oldReadOnly;
+      return true;
+    })
+    .catch((error: unknown) => {
+      console.error(error);
+    });
 });
 
 const toggleSidebar = () => {
