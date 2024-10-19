@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import type { JSX } from 'react';
 
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 

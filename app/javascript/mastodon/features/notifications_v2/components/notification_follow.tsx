@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
