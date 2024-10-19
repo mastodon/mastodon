@@ -117,6 +117,8 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.indexable               = @json['indexable'] || false
     @account.memorial                = @json['memorial'] || false
     @account.attribution_domains     = as_array(@json['attributionDomains'] || []).map { |item| value_or_id(item) }
+    @account.avatar_description      = @json['avatarDescription'] || ''
+    @account.header_description      = @json['headerDescription'] || ''
   end
 
   def set_fetchable_key!
@@ -127,12 +129,14 @@ class ActivityPub::ProcessAccountService < BaseService
     begin
       @account.avatar_remote_url = image_url('icon') || '' unless skip_download?
       @account.avatar = nil if @account.avatar_remote_url.blank?
+      @account.avatar_description = @json['avatarDescription'] || '' unless @account.avatar_remote_url.blank?
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadAvatarWorker.perform_in(rand(30..600).seconds, @account.id)
     end
     begin
       @account.header_remote_url = image_url('image') || '' unless skip_download?
       @account.header = nil if @account.header_remote_url.blank?
+      @account.header_description = @json['headerDescription'] || '' unless @account.header_remote_url.blank?
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadHeaderWorker.perform_in(rand(30..600).seconds, @account.id)
     end
