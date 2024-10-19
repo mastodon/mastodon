@@ -117,8 +117,6 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.indexable               = @json['indexable'] || false
     @account.memorial                = @json['memorial'] || false
     @account.attribution_domains     = as_array(@json['attributionDomains'] || []).map { |item| value_or_id(item) }
-    @account.avatar_description      = @json['avatarDescription'] || ''
-    @account.header_description      = @json['headerDescription'] || ''
   end
 
   def set_fetchable_key!
@@ -129,14 +127,14 @@ class ActivityPub::ProcessAccountService < BaseService
     begin
       @account.avatar_remote_url = image_url('icon') || '' unless skip_download?
       @account.avatar = nil if @account.avatar_remote_url.blank?
-      @account.avatar_description = @json['avatarDescription'] || '' unless @account.avatar_remote_url.blank?
+      @account.avatar_description = image_description('icon') || nil
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadAvatarWorker.perform_in(rand(30..600).seconds, @account.id)
     end
     begin
       @account.header_remote_url = image_url('image') || '' unless skip_download?
       @account.header = nil if @account.header_remote_url.blank?
-      @account.header_description = @json['headerDescription'] || '' unless @account.header_remote_url.blank?
+      @account.header_description = image_description('image') || nil
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadHeaderWorker.perform_in(rand(30..600).seconds, @account.id)
     end
@@ -199,6 +197,21 @@ class ActivityPub::ProcessAccountService < BaseService
     else
       @json['type']
     end
+  end
+
+  def image_description(key)
+    value = first_of_value(@json[key])
+
+    return if value.nil?
+
+    if value.is_a?(String)
+      value = fetch_resource_without_id_validation(value)
+      return if value.nil?
+    end
+
+    value = first_of_value(value['name']) if value.is_a?(Hash) && value['type'] == 'Image'
+    value = value['summary'] if value.is_a?(Hash)
+    value if value.is_a?(String)
   end
 
   def image_url(key)
