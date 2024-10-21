@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .dashboard__counters {
   display: flex;
   flex-wrap: wrap;
@@ -98,12 +100,12 @@
     }
 
     &.positive {
-      background: lighten($ui-base-color, 4%);
+      background: color.adjust($ui-base-color, $lightness: 4%);
       color: $valid-value-color;
     }
 
     &.negative {
-      background: lighten($ui-base-color, 4%);
+      background: color.adjust($ui-base-color, $lightness: 4%);
       color: $error-value-color;
     }
 
