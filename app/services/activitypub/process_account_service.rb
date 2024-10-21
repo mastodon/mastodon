@@ -206,7 +206,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
     if value.is_a?(String)
       value = fetch_resource_without_id_validation(value)
-      return if value.nil?
+      nil if value.nil?
     end
   end
 
