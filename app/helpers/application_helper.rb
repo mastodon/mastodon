@@ -237,14 +237,14 @@ module ApplicationHelper
     I18n.t 'user_mailer.welcome.hashtags_recent_count', people: number_with_delimiter(people), count: people
   end
 
-  def app_store_url(platform)
-    app_store(platform)[:url]
+  def app_store_location(platform)
+    app_store(platform)[:url].to_s
   end
 
   private
 
   def app_store(platform)
-    Rails.configuration.x.mastodon.apps[platform]
+    Rails.configuration.x.mastodon.apps[platform] || {}
   end
 
   def storage_host_var
