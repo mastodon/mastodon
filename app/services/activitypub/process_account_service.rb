@@ -199,7 +199,7 @@ class ActivityPub::ProcessAccountService < BaseService
     end
   end
 
-  def image_description(key)
+  def image(key)
     value = first_of_value(@json[key])
 
     return if value.nil?
@@ -208,21 +208,22 @@ class ActivityPub::ProcessAccountService < BaseService
       value = fetch_resource_without_id_validation(value)
       return if value.nil?
     end
+  end
 
-    value = first_of_value(value['name']) if value.is_a?(Hash) && value['type'] == 'Image'
-    value = value['summary'] if value.is_a?(Hash)
-    value if value.is_a?(String)
+  def image_description(key)
+    value = image(key)
+
+    return unless value.is_a(Hash)
+
+    max_length = (key == 'icon' ? Account::Avatar::MAX_DESCRIPTION_LENGTH : Account::Header::MAX_DESCRIPTION_LENGTH)
+
+    description = value['summary'].presence || value['name'].presence
+    description = description.strip[0...max_length] if description.present?
+    description
   end
 
   def image_url(key)
-    value = first_of_value(@json[key])
-
-    return if value.nil?
-
-    if value.is_a?(String)
-      value = fetch_resource_without_id_validation(value)
-      return if value.nil?
-    end
+    value = image(key)
 
     value = first_of_value(value['url']) if value.is_a?(Hash) && value['type'] == 'Image'
     value = value['href'] if value.is_a?(Hash)

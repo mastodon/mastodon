@@ -46,6 +46,7 @@
             = material_symbol 'delete'
             = t('generic.delete')
 
+  .fields-row
     .fields-row__column.fields-row__column-6
       .fields-group
         = f.input :avatar_description,
@@ -68,7 +69,8 @@
           = link_to settings_profile_picture_path('header'), data: { method: :delete }, class: 'link-button link-button--destructive' do
             = material_symbol 'delete'
             = t('generic.delete')
-
+  
+  .fields-row
     .fields-row__column.fields-row__column-6
       .fields-group
         = f.input :header_description,
