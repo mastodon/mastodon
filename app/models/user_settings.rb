@@ -37,6 +37,7 @@ class UserSettings
     setting :mod_webui_styles, default: 'default', in: %w(default compact legacy)
     setting :mod_reverse_nav, default: false
     setting :hide_translate_button, default: false
+    setting :crop_attachment_thumbnails_on_timeline, default: false
   end
 
   namespace :notification_emails do

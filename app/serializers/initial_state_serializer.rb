@@ -118,6 +118,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       webui_styles: object_account_user.setting_webui_styles,
       wider_column: object_account_user.setting_wider_column,
       hide_translate_button: object_account_user.setting_hide_translate_button,
+      crop_attachment_thumbnails_on_timeline: object_account_user.setting_crop_attachment_thumbnails_on_timeline,
     }
   end
 

@@ -14,7 +14,7 @@ import { AltTextBadge } from 'mastodon/components/alt_text_badge';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { formatTime } from 'mastodon/features/video';
 
-import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
+import { autoPlayGif, cropAttachmentThumbnailsOnTimeline, displayMedia, useBlurhash } from '../initial_state';
 
 class Item extends PureComponent {
 
@@ -57,7 +57,7 @@ class Item extends PureComponent {
     return this.props.autoplay || autoPlayGif;
   }
 
-  hoverToPlay () {
+  hoverToPlay() {
     const { attachment } = this.props;
     return !this.getAutoPlay() && ['gifv', 'video'].includes(attachment.get('type'));
   }
@@ -81,12 +81,12 @@ class Item extends PureComponent {
     this.setState({ loaded: true });
   };
 
-  render () {
+  render() {
     const { attachment, lang, index, size, standalone, displayWidth, visible } = this.props;
 
     let badges = [], thumbnail;
 
-    let width  = 50;
+    let width = 50;
     let height = 100;
 
     if (size === 1) {
@@ -116,21 +116,21 @@ class Item extends PureComponent {
         </div>
       );
     } else if (attachment.get('type') === 'image') {
-      const previewUrl   = attachment.get('preview_url');
+      const previewUrl = attachment.get('preview_url');
       const previewWidth = attachment.getIn(['meta', 'small', 'width']);
 
-      const originalUrl   = attachment.get('url');
+      const originalUrl = attachment.get('url');
       const originalWidth = attachment.getIn(['meta', 'original', 'width']);
 
       const hasSize = typeof originalWidth === 'number' && typeof previewWidth === 'number';
 
       const srcSet = hasSize ? `${originalUrl} ${originalWidth}w, ${previewUrl} ${previewWidth}w` : null;
-      const sizes  = hasSize && (displayWidth > 0) ? `${displayWidth * (width / 100)}px` : null;
+      const sizes = hasSize && (displayWidth > 0) ? `${displayWidth * (width / 100)}px` : null;
 
       const focusX = attachment.getIn(['meta', 'focus', 'x']) || 0;
       const focusY = attachment.getIn(['meta', 'focus', 'y']) || 0;
-      const x      = ((focusX /  2) + .5) * 100;
-      const y      = ((focusY / -2) + .5) * 100;
+      const x = ((focusX / 2) + .5) * 100;
+      const y = ((focusY / -2) + .5) * 100;
 
       thumbnail = (
         <a
@@ -221,6 +221,7 @@ class MediaGallery extends PureComponent {
     visible: PropTypes.bool,
     autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
+    standalone: PropTypes.bool,
   };
 
   state = {
@@ -228,15 +229,15 @@ class MediaGallery extends PureComponent {
     width: this.props.defaultWidth,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     window.addEventListener('resize', this.handleResize, { passive: true });
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (!is(nextProps.media, this.props.media) && nextProps.visible === undefined) {
       this.setState({ visible: displayMedia !== 'hide_all' && !nextProps.sensitive || displayMedia === 'show_all' });
     } else if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
@@ -272,7 +273,7 @@ class MediaGallery extends PureComponent {
     }
   };
 
-  _setDimensions () {
+  _setDimensions() {
     const width = this.node.offsetWidth;
 
     // offsetWidth triggers a layout, so only calculate when we need to
@@ -286,11 +287,20 @@ class MediaGallery extends PureComponent {
   }
 
   isFullSizeEligible() {
-    const { media } = this.props;
+    const { media, standalone } = this.props;
+    if (cropAttachmentThumbnailsOnTimeline) {
+      return media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']) && standalone;
+    }
+
     return media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
   }
 
-  render () {
+  isCropThumbnail() {
+    const { media, standalone } = this.props;
+    return media.size === 1 && cropAttachmentThumbnailsOnTimeline && standalone !== true;
+  }
+
+  render() {
     const { media, lang, sensitive, defaultWidth, autoplay } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
@@ -301,11 +311,13 @@ class MediaGallery extends PureComponent {
 
     if (this.isFullSizeEligible()) {
       style.aspectRatio = `${this.props.media.getIn([0, 'meta', 'small', 'aspect'])}`;
+    } else if (this.isCropThumbnail()) {
+      style.aspectRatio = '16 / 9';
     } else {
       style.aspectRatio = '3 / 2';
     }
 
-    const size     = media.size;
+    const size = media.size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
     if (this.isFullSizeEligible()) {
