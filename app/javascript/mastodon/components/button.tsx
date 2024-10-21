@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren, JSX } from 'react';
 import { useCallback } from 'react';
 
 import classNames from 'classnames';
