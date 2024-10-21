@@ -3,10 +3,12 @@
 module Status::FetchRepliesConcern
   extend ActiveSupport::Concern
 
-  # debounce fetching all replies to minimize DoS
-  FETCH_REPLIES_DEBOUNCE = 30.minutes
+  # enable/disable fetching all replies
+  FETCH_REPLIES_ENABLED = ENV.key?('FETCH_REPLIES_ENABLED') ? ENV['FETCH_REPLIES_ENABLED'] == 'true' : true
 
-  CREATED_RECENTLY_DEBOUNCE = 10.minutes
+  # debounce fetching all replies to minimize DoS
+  FETCH_REPLIES_DEBOUNCE = (ENV['FETCH_REPLIES_DEBOUNCE'] || 15).to_i.minutes
+  CREATED_RECENTLY_DEBOUNCE = (ENV['FETCH_REPLIES_CREATED_RECENTLY'] || 5).to_i.minutes
 
   included do
     scope :created_recently, -> { where(created_at: CREATED_RECENTLY_DEBOUNCE.ago..) }
@@ -20,7 +22,7 @@ module Status::FetchRepliesConcern
 
   def should_fetch_replies?
     # we aren't brand new, and we haven't fetched replies since the debounce window
-    !local? && created_at <= CREATED_RECENTLY_DEBOUNCE.ago && (
+    FETCH_REPLIES_ENABLED && !local? && created_at <= CREATED_RECENTLY_DEBOUNCE.ago && (
       fetched_replies_at.nil? || fetched_replies_at <= FETCH_REPLIES_DEBOUNCE.ago
     )
   end
