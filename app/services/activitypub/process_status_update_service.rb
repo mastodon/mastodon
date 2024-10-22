@@ -242,8 +242,10 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_counts!
-    likes = @json.dig(:likes, :totalItems)
-    shares = @json.dig(:shares, :totalItems)
+    likes = @status_parser.favourites_count
+    shares =  @status_parser.reblogs_count
+    return if likes.nil? && shares.nil?
+
     @status.status_stat.tap do |status_stat|
       status_stat.reblogs_count = shares unless shares.nil?
       status_stat.favourites_count = likes unless likes.nil?
