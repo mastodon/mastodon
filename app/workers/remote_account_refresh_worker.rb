@@ -13,8 +13,9 @@ class RemoteAccountRefreshWorker
 
     account_json = fetch_resource(account.uri, true)
 
-    ActivityPub::FetchRemoteAccountService.new.call(account.uri, account_json)
-    ActivityPub::AccountBackfillService.new.call(account, account_json)
+    fetched_account = ActivityPub::FetchRemoteAccountService.new.call(account.uri, prefetched_body: account_json)
+    ActivityPub::AccountBackfillService.new.call(account, prefetched_body: account_json)
+    fetched_account
   rescue Mastodon::UnexpectedResponseError => e
     response = e.response
 
