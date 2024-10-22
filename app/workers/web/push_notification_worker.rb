@@ -6,7 +6,7 @@ class Web::PushNotificationWorker
 
   sidekiq_options queue: 'push', retry: 5
 
-  TTL     = 48.hours.to_s
+  TTL     = 48.hours
   URGENCY = 'normal'
 
   def perform(subscription_id, notification_id)
@@ -24,7 +24,7 @@ class Web::PushNotificationWorker
 
       request.add_headers(
         'Content-Type' => 'application/octet-stream',
-        'Ttl' => TTL,
+        'Ttl' => TTL.to_s,
         'Urgency' => URGENCY,
         'Content-Encoding' => 'aesgcm',
         'Encryption' => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
