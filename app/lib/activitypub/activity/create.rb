@@ -53,6 +53,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     ApplicationRecord.transaction do
       @status = Status.create!(@params)
       attach_tags(@status)
+      attach_counts(@status)
     end
 
     resolve_thread(@status)
@@ -164,6 +165,18 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       mention.status = status
       mention.save
     end
+  end
+
+  def attach_counts(status)
+    likes = @json.dig(:likes, :totalItems)
+    shares = @json.dig(:shares, :totalItems)
+    return if likes.nil? && shares.nil?
+
+    status.status_stat.build(
+      reblogs_count: shares.nil? ? 0 : shares,
+      favourites_count: likes.nil? ? 0 : likes
+    )
+    status.save
   end
 
   def process_tags
