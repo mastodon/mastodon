@@ -48,6 +48,9 @@
 
     .fields-group
       = ff.input :'web.hide_translate_button', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_hide_translate_button')
+      
+    .fields-group
+      = ff.input :'web.crop_attachment_thumbnails_on_timeline', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.crop_attachment_thumbnails_on_timeline'), hint: I18n.t('simple_form.hints.defaults.crop_attachment_thumbnails_on_timeline')
 
     %h4= t 'appearance.advanced_web_interface'
 
