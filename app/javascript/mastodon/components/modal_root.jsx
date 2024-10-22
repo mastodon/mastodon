@@ -13,11 +13,14 @@ class ModalRoot extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     onClose: PropTypes.func.isRequired,
-    backgroundColor: PropTypes.shape({
-      r: PropTypes.number,
-      g: PropTypes.number,
-      b: PropTypes.number,
-    }),
+    backgroundColor: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        r: PropTypes.number,
+        g: PropTypes.number,
+        b: PropTypes.number,
+      }),
+    ]),
     ignoreFocus: PropTypes.bool,
     ...WithOptionalRouterPropTypes,
   };
@@ -141,14 +144,17 @@ class ModalRoot extends PureComponent {
 
     let backgroundColor = null;
 
-    if (this.props.backgroundColor) {
-      backgroundColor = multiply({ ...this.props.backgroundColor, a: 1 }, { r: 0, g: 0, b: 0, a: 0.7 });
+    if (this.props.backgroundColor && typeof this.props.backgroundColor === 'string') {
+      backgroundColor = this.props.backgroundColor;
+    } else if (this.props.backgroundColor) {
+      const darkenedColor = multiply({ ...this.props.backgroundColor, a: 1 }, { r: 0, g: 0, b: 0, a: 0.7 });
+      backgroundColor = `rgb(${darkenedColor.r}, ${darkenedColor.g}, ${darkenedColor.b})`;
     }
 
     return (
       <div className='modal-root' ref={this.setRef}>
         <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
-          <div role='presentation' className='modal-root__overlay' onClick={onClose} style={{ backgroundColor: backgroundColor ? `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, 0.9)` : null }} />
+          <div role='presentation' className='modal-root__overlay' onClick={onClose} style={{ backgroundColor }} />
           <div role='dialog' className='modal-root__container'>{children}</div>
         </div>
       </div>
