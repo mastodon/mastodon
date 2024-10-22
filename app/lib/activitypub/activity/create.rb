@@ -173,8 +173,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if likes.nil? && shares.nil?
 
     status.status_stat.tap do |status_stat|
-      status_stat.reblogs_count = shares.nil? ? 0 : shares
-      status_stat.favourites_count = likes.nil? ? 0 : likes
+      status_stat.untrusted_reblogs_count = shares unless shares.nil?
+      status_stat.untrusted_favourites_count = likes unless likes.nil?
       status_stat.save if status_stat.changed?
     end
   end

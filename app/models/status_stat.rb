@@ -18,6 +18,8 @@
 class StatusStat < ApplicationRecord
   belongs_to :status, inverse_of: :status_stat
 
+  before_validation :clamp_untrusted_counts
+
   def replies_count
     [attributes['replies_count'], 0].max
   end
@@ -28,5 +30,12 @@ class StatusStat < ApplicationRecord
 
   def favourites_count
     [attributes['favourites_count'], 0].max
+  end
+
+  private
+
+  def clamp_untrusted_counts
+    self.untrusted_favourites_count = untrusted_favourites_count.to_i.clamp(0, 1_000_000) if untrusted_favourites_count.present?
+    self.untrusted_reblogs_count = untrusted_reblogs_count.to_i.clamp(0, 1_000_000) if untrusted_reblogs_count.present?
   end
 end
