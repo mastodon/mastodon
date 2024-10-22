@@ -950,8 +950,8 @@ RSpec.describe ActivityPub::Activity::Create do
 
         it 'uses the counts from the created object' do
           status = sender.statuses.first
-          expect(status.favourites_count).to eq 50
-          expect(status.reblogs_count).to eq 100
+          expect(status.untrusted_favourites_count).to eq 50
+          expect(status.untrusted_reblogs_count).to eq 100
         end
       end
     end

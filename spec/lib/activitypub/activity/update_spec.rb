@@ -149,11 +149,11 @@ RSpec.describe ActivityPub::Activity::Update do
 
       shared_examples 'updates counts' do
         it 'updates the reblog count' do
-          expect(status.reblogs_count).to eq reblogs
+          expect(status.untrusted_reblogs_count).to eq reblogs
         end
 
         it 'updates the favourites count' do
-          expect(status.favourites_count).to eq favourites
+          expect(status.untrusted_favourites_count).to eq favourites
         end
       end
 

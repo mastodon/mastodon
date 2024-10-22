@@ -303,6 +303,16 @@ class Status < ApplicationRecord
     status_stat&.favourites_count || 0
   end
 
+  # Reblogs count received from an external instance
+  def untrusted_reblogs_count
+    status_stat&.untrusted_reblogs_count unless local?
+  end
+
+  # Favourites count received from an external instance
+  def untrusted_favourites_count
+    status_stat&.untrusted_favourites_count unless local?
+  end
+
   def increment_count!(key)
     update_status_stat!(key => public_send(key) + 1)
   end
