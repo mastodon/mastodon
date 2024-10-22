@@ -11,7 +11,10 @@ class ActivityPub::FetchRepliesService < BaseService
     @allow_synchronous_requests = allow_synchronous_requests
     @filter_by_host = filter_by_host
 
-    @items = collection_items(collection_or_uri)
+    return if @filter_by_host && non_matching_uri_hosts?(@account.uri, collection_or_uri)
+    return if @allow_synchronous_requests && !collection_or_uri.is_a?(Hash)
+
+    @items = collection_items(collection_or_uri, MAX_REPLIES)
     return if @items.nil?
 
     FetchReplyWorker.push_bulk(filtered_replies) { |reply_uri| [reply_uri, { 'request_id' => request_id }] }
@@ -20,53 +23,6 @@ class ActivityPub::FetchRepliesService < BaseService
   end
 
   private
-
-  def collection_items(collection_or_uri)
-    collection = fetch_collection(collection_or_uri)
-    return unless collection.is_a?(Hash)
-
-    collection = fetch_collection(collection['first']) if collection['first'].present?
-    return unless collection.is_a?(Hash)
-
-    all_items = []
-    while collection.is_a?(Hash)
-      items = case collection['type']
-              when 'Collection', 'CollectionPage'
-                collection['items']
-              when 'OrderedCollection', 'OrderedCollectionPage'
-                collection['orderedItems']
-              end
-
-      all_items.concat(as_array(items))
-
-      break if all_items.size > MAX_REPLIES
-
-      collection = collection['next'].present? ? fetch_collection(collection['next']) : nil
-    end
-
-    all_items
-  end
-
-  def fetch_collection(collection_or_uri)
-    return collection_or_uri if collection_or_uri.is_a?(Hash)
-    return unless @allow_synchronous_requests
-    return if @filter_by_host && non_matching_uri_hosts?(@account.uri, collection_or_uri)
-
-    # NOTE: For backward compatibility reasons, Mastodon signs outgoing
-    # queries incorrectly by default.
-    #
-    # While this is relevant for all URLs with query strings, this is
-    # the only code path where this happens in practice.
-    #
-    # Therefore, retry with correct signatures if this fails.
-    begin
-      fetch_resource_without_id_validation(collection_or_uri, nil, true)
-    rescue Mastodon::UnexpectedResponseError => e
-      raise unless e.response && e.response.code == 401 && Addressable::URI.parse(collection_or_uri).query.present?
-
-      fetch_resource_without_id_validation(collection_or_uri, nil, true, request_options: { omit_query_string: false })
-    end
-  end
 
   def filtered_replies
     if @filter_by_host

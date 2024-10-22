@@ -11,7 +11,7 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
     @filter_by_host = false
     @collection_or_uri = collection_or_uri
 
-    @items = collection_items(collection_or_uri)
+    @items = collection_items(collection_or_uri, MAX_REPLIES)
     @items = filtered_replies
     return if @items.nil?
 

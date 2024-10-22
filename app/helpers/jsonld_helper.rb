@@ -178,6 +178,44 @@ module JsonLdHelper
     end
   end
 
+  def collection_items(collection_or_uri, max_size = 100)
+    collection = fetch_collection(collection_or_uri)
+    return unless collection.is_a?(Hash)
+
+    collection = fetch_collection(collection['first']) if collection['first'].present?
+    return unless collection.is_a?(Hash)
+
+    all_items = []
+    while collection.is_a?(Hash)
+      items = case collection['type']
+              when 'Collection', 'CollectionPage'
+                collection['items']
+              when 'OrderedCollection', 'OrderedCollectionPage'
+                collection['orderedItems']
+              end
+
+      all_items.concat(as_array(items))
+
+      break if all_items.size > max_size
+
+      collection = collection['next'].present? ? fetch_collection(collection['next']) : nil
+    end
+
+    all_items
+  end
+
+  def fetch_collection(collection_or_uri)
+    return collection_or_uri if collection_or_uri.is_a?(Hash)
+
+    begin
+      fetch_resource_without_id_validation(collection_or_uri, nil, true)
+    rescue Mastodon::UnexpectedResponseError => e
+      raise unless e.response && e.response.code == 401 && Addressable::URI.parse(collection_or_uri).query.present?
+
+      fetch_resource_without_id_validation(collection_or_uri, nil, true, request_options: { omit_query_string: false })
+    end
+  end
+
   def valid_activitypub_content_type?(response)
     return true if response.mime_type == 'application/activity+json'
 
