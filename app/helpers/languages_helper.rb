@@ -162,7 +162,7 @@ module LanguagesHelper
     th: ['Thai', 'ไทย'].freeze,
     ti: ['Tigrinya', 'ትግርኛ'].freeze,
     tk: ['Turkmen', 'Türkmen'].freeze,
-    tl: ['Tagalog', 'Wikang Tagalog'].freeze,
+    tl: ['Tagalog', 'Tagalog'].freeze,
     tn: ['Tswana', 'Setswana'].freeze,
     to: ['Tonga', 'faka Tonga'].freeze,
     tr: ['Turkish', 'Türkçe'].freeze,
