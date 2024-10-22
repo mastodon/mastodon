@@ -977,6 +977,8 @@ eo:
       body: "%{target} apelacias kontroldecido de %{action_taken_by} de %{date}, kiu estas %{type}. Ĝi skribis:"
       next_steps: Vi povas aprobi apelacion por malfari kontroldecidon au ignori.
       subject: "%{username} apelacias kontroldecidon ĉe %{instance}"
+    new_critical_software_updates:
+      body: Novaj gravaj versioj de Mastodon estis publikigitaj, vi eble volas ĝisdatigi kiel eble plej baldaŭ!
     new_pending_account:
       body: La detaloj de la nova konto estas ĉi-sube. Vi povas akcepti aŭ malakcepti tiun aliĝilon.
       subject: Nova konto atendas por recenzo en %{instance} (%{username})
@@ -986,6 +988,7 @@ eo:
       subject: Nova signalo por %{instance} (#%{id})
     new_software_updates:
       body: Novaj versioj de Mastodon estis publikigitaj, vi eble volas ĝisdatigi!
+      subject: Novaj versioj de Mastodon disponeblas por %{instance}!
     new_trends:
       body: 'La eroj bezonas kontrolon antau ol ili povas montritas publike:'
       new_trending_links:
@@ -1033,6 +1036,7 @@ eo:
     apply_for_account: Peti konton
     captcha_confirmation:
       help_html: Se vi havas problemojn solvi la CAPTCHA, vi povas kontakti nin per %{email} kaj ni povas helpi vin.
+      hint_html: Nur unu plia afero! Ni devas konfirmi, ke vi estas homo (tio estas por ke ni povu konservi la spamon ekstere!). Solvu la CAPTCHA sube kaj alklaku "Daŭrigu".
       title: Sekureckontrolo
     confirmations:
       clicking_this_link: alklakante ĉi tiun ligilon
