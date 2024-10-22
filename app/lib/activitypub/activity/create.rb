@@ -168,15 +168,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def attach_counts(status)
-    likes = @json.dig(:likes, :totalItems)
-    shares = @json.dig(:shares, :totalItems)
+    likes = @status_parser.favourites_count
+    shares = @status_parser.reblogs_count
     return if likes.nil? && shares.nil?
 
-    status.status_stat.build(
-      reblogs_count: shares.nil? ? 0 : shares,
-      favourites_count: likes.nil? ? 0 : likes
-    )
-    status.save
+    status.status_stat.tap do |status_stat|
+      status_stat.reblogs_count = shares.nil? ? 0 : shares
+      status_stat.favourites_count = likes.nil? ? 0 : likes
+      status_stat.save if status_stat.changed?
+    end
   end
 
   def process_tags

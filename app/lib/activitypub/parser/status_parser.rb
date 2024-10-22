@@ -93,6 +93,14 @@ class ActivityPub::Parser::StatusParser
     lang.presence && NORMALIZED_LOCALE_NAMES.fetch(lang.downcase.to_sym, lang)
   end
 
+  def favourites_count
+    @object.dig(:likes, :totalItems)
+  end
+
+  def reblogs_count
+    @object.dig(:shares, :totalItems)
+  end
+
   private
 
   def raw_language_code
