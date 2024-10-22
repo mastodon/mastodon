@@ -7,19 +7,6 @@ RSpec.describe ActivityPub::AccountBackfillService do
 
   let!(:account) { Fabricate(:account, domain: 'other.com', outbox_url: 'http://other.com/alice/outbox') }
 
-  let(:actor) do
-    {
-      '@context': 'https://www.w3.org/ns/activitystreams',
-      id: 'https://other.com/alice',
-      type: 'Person',
-      preferredUsername: 'alice',
-      name: 'Alice',
-      summary: 'Foo bar',
-      inbox: 'http://other.com/alice/inbox',
-      outbox: 'http://other.com/alice/outbox',
-    }
-  end
-
   let!(:outbox) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
