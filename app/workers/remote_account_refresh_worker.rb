@@ -11,10 +11,8 @@ class RemoteAccountRefreshWorker
     account = Account.find_by(id: id)
     return if account.nil? || account.local?
 
-    account_json = fetch_resource(account.uri, true)
-
-    fetched_account = ActivityPub::FetchRemoteAccountService.new.call(account.uri, prefetched_body: account_json)
-    ActivityPub::AccountBackfillService.new.call(account, prefetched_body: account_json)
+    fetched_account = ActivityPub::FetchRemoteAccountService.new.call(account.uri)
+    ActivityPub::AccountBackfillService.new.call(fetched_account.is_a?(Account) ? fetched_account : account)
     fetched_account
   rescue Mastodon::UnexpectedResponseError => e
     response = e.response

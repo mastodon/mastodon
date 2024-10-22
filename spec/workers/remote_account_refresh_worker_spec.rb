@@ -27,18 +27,18 @@ RSpec.describe RemoteAccountRefreshWorker do
       account_backfill_service = instance_double(ActivityPub::AccountBackfillService, call: true)
       fetch_remote_account_service = instance_double(ActivityPub::FetchRemoteAccountService, call: true)
       allow(ActivityPub::AccountBackfillService).to receive(:new).and_return(account_backfill_service)
-      allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(fetch_remote_account_service, call: true)
+      allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(fetch_remote_account_service)
       subject.perform(account.id)
-      expect(fetch_remote_account_service).to have_received(:call).with(account.uri, { prefetched_body: account_object })
+      expect(fetch_remote_account_service).to have_received(:call).with(account.uri)
     end
 
     it 'triggers an account backfill' do
       account_backfill_service = instance_double(ActivityPub::AccountBackfillService, call: true)
       fetch_remote_account_service = instance_double(ActivityPub::FetchRemoteAccountService, call: true)
       allow(ActivityPub::AccountBackfillService).to receive(:new).and_return(account_backfill_service)
-      allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(fetch_remote_account_service, call: true)
+      allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(fetch_remote_account_service)
       subject.perform(account.id)
-      expect(account_backfill_service).to have_received(:call).with(account, { prefetched_body: account_object })
+      expect(account_backfill_service).to have_received(:call).with(account)
     end
   end
 end

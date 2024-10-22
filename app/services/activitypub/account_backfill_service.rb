@@ -3,36 +3,23 @@
 class ActivityPub::AccountBackfillService < BaseService
   include JsonLdHelper
 
-  MAX_STATUSES = (ENV['FETCH_REPLIES_MAX_SINGLE'] || 100).to_i
+  MAX_STATUSES = (ENV['ACCOUNT_BACKFILL_STATUSES'] || 100).to_i
 
-  def call(account, prefetched_body: nil, request_id: nil)
+  def call(account, request_id: nil)
     @account = account
-    @prefetched_body = prefetched_body
-    @json = account_json
-    return if account_outbox_uri.nil?
+    return if @account.nil? || @account.outbox_url.nil?
 
-    @items = collection_items(account_outbox_uri, MAX_STATUSES)
-
+    @items = collection_items(@account.outbox_url, MAX_STATUSES)
     return if @items.nil?
 
-    FetchReplyWorker.push_bulk(@items) { |reply_uri| [reply_uri, { 'request_id' => request_id }] }
+    FetchReplyWorker.push_bulk(@items) do |status_uri_or_body|
+      if status_uri_or_body&.fetch('type', '') == 'Note'
+        [status_uri_or_body['id'], { 'prefetched_body' => status_uri_or_body, 'request_id' => request_id }]
+      else
+        [status_uri_or_body, { 'request_id' => request_id }]
+      end
+    end
 
     @items
-  end
-
-  def account_json
-    begin
-      if @prefetched_body.nil?
-        fetch_resource(@account.uri, true)
-      else
-        body_to_json(@prefetched_body, compare_id: @account.uri)
-      end
-    rescue Oj::ParseError
-      raise Error, "Error parsing JSON-LD document #{@account.uri}"
-    end
-  end
-
-  def account_outbox_uri
-    @json.fetch(:outbox, nil)
   end
 end
