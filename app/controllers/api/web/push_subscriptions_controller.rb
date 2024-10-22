@@ -19,7 +19,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
 
   def destroy
     push_subscription = ::Web::PushSubscription.find_by_token_for(:unsubscribe, params[:id])
-    push_subscription.destroy
+    push_subscription&.destroy
 
     head 200
   end
