@@ -16,7 +16,12 @@ RSpec.describe 'Manifest' do
       expect(response.parsed_body)
         .to include(
           id: '/home',
-          name: 'Mastodon'
+          name: 'Mastodon',
+          related_applications: include(
+            include(platform: 'play', url: /play.google/),
+            include(platform: 'itunes', url: /apps.apple/),
+            include(platform: 'f-droid', url: /f-droid.org/)
+          )
         )
     end
   end
