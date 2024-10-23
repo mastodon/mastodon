@@ -340,7 +340,7 @@ class User < ApplicationRecord
     Doorkeeper::AccessGrant.by_resource_owner(self).update_all(revoked_at: Time.now.utc)
 
     Doorkeeper::AccessToken.by_resource_owner(self).in_batches do |batch|
-      batch.update_all(revoked_at: Time.now.utc)
+      batch.touch_all(:revoked_at)
       Web::PushSubscription.where(access_token_id: batch).delete_all
 
       # Revoke each access token for the Streaming API, since `update_all``
