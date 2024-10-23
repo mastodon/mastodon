@@ -77,8 +77,8 @@ class AttachmentBatch
           when :fog
             logger.debug { "Deleting #{attachment.path(style)}" }
 
+            retries = 0
             begin
-              retries ||= 0
               attachment.send(:directory).files.new(key: attachment.path(style)).destroy
             rescue => e
               if e.is_a?(Fog::OpenStack::Storage::NotFound)
