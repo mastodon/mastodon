@@ -85,7 +85,7 @@ class AttachmentBatch
                 logger.debug "Will ignore because file is not found #{attachment.path(style)}"
               else
                 sleep(5)
-                retry if (retries += 1) < 3
+                retry if (retries += 1) < MAX_RETRY
                 logger.error "Batch deletion from fog failed after #{e.message}"
                 raise e
               end
