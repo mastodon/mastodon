@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use 'sass:color';
 
 $no-columns-breakpoint: 890px;
 $sidebar-width: 300px;
@@ -39,7 +40,7 @@ $content-width: 840px;
     &__toggle {
       display: none;
       background: var(--background-color);
-      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 4%);
       align-items: center;
 
       &__logo {
@@ -233,7 +234,7 @@ $content-width: 840px;
           &:hover,
           &:focus,
           &:active {
-            background: lighten($ui-base-color, 4%);
+            background: color.adjust($ui-base-color, $lightness: 4%);
           }
 
           &.selected {
@@ -533,7 +534,7 @@ body,
 
       &:hover {
         color: $primary-text-color;
-        border-bottom: 2px solid lighten($ui-base-color, 5%);
+        border-bottom: 2px solid color.adjust($ui-base-color, $lightness: 5%);
       }
 
       &.selected {
@@ -788,7 +789,7 @@ a.inline-name-tag,
   &.suspended {
     .username {
       text-decoration: line-through;
-      color: lighten($error-red, 12%);
+      color: color.adjust($error-red, $lightness: 12%);
     }
 
     .avatar {
@@ -828,7 +829,7 @@ a.name-tag,
   }
 
   &.negative {
-    border-left-color: lighten($error-red, 12%);
+    border-left-color: color.adjust($error-red, $lightness: 12%);
   }
 
   &.warning {
@@ -1123,7 +1124,7 @@ a.name-tag,
 
   &.expired {
     .expiration {
-      color: lighten($error-red, 12%);
+      color: color.adjust($error-red, $lightness: 12%);
     }
 
     .permissions-list__item__icon {
@@ -1263,7 +1264,7 @@ a.name-tag,
     }
 
     path:last-child {
-      stroke: lighten($highlight-text-color, 6%) !important;
+      stroke: color.adjust($highlight-text-color, $lightness: 6%) !important;
       fill: none !important;
     }
   }
@@ -1281,9 +1282,9 @@ a.sparkline {
   background-color: var(--background-color);
   background-image: linear-gradient(
     90deg,
-    lighten($ui-base-color, 8%),
-    lighten($ui-base-color, 12%),
-    lighten($ui-base-color, 8%)
+    color.adjust($ui-base-color, $lightness: 8%),
+    color.adjust($ui-base-color, $lightness: 12%),
+    color.adjust($ui-base-color, $lightness: 8%)
   );
   background-size: 200px 100%;
   background-repeat: no-repeat;
@@ -1310,7 +1311,7 @@ a.sparkline {
   }
 
   &__item {
-    border-bottom: 1px solid lighten($ui-base-color, 4%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 4%);
 
     &__key {
       font-weight: 500;
@@ -1363,7 +1364,7 @@ a.sparkline {
 
   &__category {
     cursor: pointer;
-    border-bottom: 1px solid darken($ui-base-color, 8%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: -8%);
 
     &__label {
       padding: 15px;
@@ -1455,7 +1456,7 @@ a.sparkline {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      background: darken($ui-base-color, 8%);
+      background: color.adjust($ui-base-color, $lightness: -8%);
     }
   }
 
@@ -1473,7 +1474,7 @@ a.sparkline {
         margin: 0;
         width: 56px;
         height: 56px;
-        background-color: darken($ui-base-color, 8%);
+        background-color: color.adjust($ui-base-color, $lightness: -8%);
         border-radius: 8px;
         border: 1px solid $ui-base-color;
       }
@@ -1844,7 +1845,7 @@ a.sparkline {
       flex: 0 0 auto;
       width: 4px;
       height: 21px;
-      background: lighten($ui-base-color, 8%);
+      background: color.adjust($ui-base-color, $lightness: 8%);
       margin: 0 2px;
       border-radius: 2px;
 
@@ -1916,7 +1917,7 @@ a.sparkline {
     }
 
     .status {
-      border: 1px solid lighten($ui-base-color, 4%);
+      border: 1px solid color.adjust($ui-base-color, $lightness: 4%);
       background: $ui-base-color;
       border-radius: 4px;
     }

@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .card {
   & > a {
     display: block;
@@ -57,7 +59,7 @@
         display: block;
         margin: 0;
         border-radius: 4px;
-        background: darken($ui-base-color, 8%);
+        background: color.adjust($ui-base-color, $lightness: -8%);
         object-fit: cover;
       }
     }
@@ -139,7 +141,7 @@
 
   .disabled {
     cursor: default;
-    color: lighten($inverted-text-color, 10%);
+    color: color.adjust($inverted-text-color, $lightness: 10%);
   }
 
   @media screen and (width <= 700px) {
@@ -243,9 +245,9 @@
 }
 
 .simple_form .not_recommended {
-  color: lighten($error-red, 12%);
-  background-color: rgba(lighten($error-red, 12%), 0.1);
-  border-color: rgba(lighten($error-red, 12%), 0.5);
+  color: color.adjust($error-red, $lightness: 12%);
+  background-color: rgba(color.adjust($error-red, $lightness: 12%), 0.1);
+  border-color: rgba(color.adjust($error-red, $lightness: 12%), 0.5);
 }
 
 .account__header__fields {
@@ -253,14 +255,14 @@
   padding: 0;
   margin: 15px -15px -15px;
   border: 0 none;
-  border-top: 1px solid lighten($ui-base-color, 12%);
-  border-bottom: 1px solid lighten($ui-base-color, 12%);
+  border-top: 1px solid color.adjust($ui-base-color, $lightness: 12%);
+  border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 12%);
   font-size: 14px;
   line-height: 20px;
 
   dl {
     display: flex;
-    border-bottom: 1px solid lighten($ui-base-color, 12%);
+    border-bottom: 1px solid color.adjust($ui-base-color, $lightness: 12%);
   }
 
   dt,
@@ -279,7 +281,7 @@
     width: 120px;
     flex: 0 0 auto;
     color: $secondary-text-color;
-    background: rgba(darken($ui-base-color, 8%), 0.5);
+    background: rgba(color.adjust($ui-base-color, $lightness: -8%), 0.5);
   }
 
   dd {
@@ -352,7 +354,7 @@
 }
 
 .batch-table__row--muted {
-  color: lighten($ui-base-color, 26%);
+  color: color.adjust($ui-base-color, $lightness: 26%);
 }
 
 .batch-table__row--muted .pending-account__header,
@@ -361,7 +363,7 @@
   &,
   a,
   strong {
-    color: lighten($ui-base-color, 26%);
+    color: color.adjust($ui-base-color, $lightness: 26%);
   }
 }
 
@@ -373,7 +375,7 @@
   tbody td.accounts-table__extra,
   &__count,
   &__count small {
-    color: lighten($ui-base-color, 26%);
+    color: color.adjust($ui-base-color, $lightness: 26%);
   }
 }
 
