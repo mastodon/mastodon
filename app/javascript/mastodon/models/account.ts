@@ -56,6 +56,8 @@ export interface AccountShape
   note_plain: string | null;
   hidden: boolean;
   moved: string | null;
+  avatar_description: string;
+  header_description: string;
 }
 
 export type Account = RecordOf<AccountShape>;
@@ -98,6 +100,8 @@ export const accountDefaultValues: AccountShape = {
   // This comes from `ApiMutedAccountJSON`, but we should eventually
   // store that in a different object.
   mute_expires_at: null,
+  avatar_description: '',
+  header_description: ''
 };
 
 const AccountFactory = ImmutableRecord<AccountShape>(accountDefaultValues);

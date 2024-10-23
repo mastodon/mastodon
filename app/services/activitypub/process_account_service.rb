@@ -127,12 +127,14 @@ class ActivityPub::ProcessAccountService < BaseService
     begin
       @account.avatar_remote_url = image_url('icon') || '' unless skip_download?
       @account.avatar = nil if @account.avatar_remote_url.blank?
+      @account.avatar_description = image_description('icon') || nil
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadAvatarWorker.perform_in(rand(30..600).seconds, @account.id)
     end
     begin
       @account.header_remote_url = image_url('image') || '' unless skip_download?
       @account.header = nil if @account.header_remote_url.blank?
+      @account.header_description = image_description('image') || nil
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadHeaderWorker.perform_in(rand(30..600).seconds, @account.id)
     end
@@ -197,15 +199,31 @@ class ActivityPub::ProcessAccountService < BaseService
     end
   end
 
-  def image_url(key)
+  def image(key)
     value = first_of_value(@json[key])
 
     return if value.nil?
 
     if value.is_a?(String)
       value = fetch_resource_without_id_validation(value)
-      return if value.nil?
+      nil if value.nil?
     end
+  end
+
+  def image_description(key)
+    value = image(key)
+
+    return unless value.is_a(Hash)
+
+    max_length = (key == 'icon' ? Account::Avatar::MAX_DESCRIPTION_LENGTH : Account::Header::MAX_DESCRIPTION_LENGTH)
+
+    description = value['summary'].presence || value['name'].presence
+    description = description.strip[0...max_length] if description.present?
+    description
+  end
+
+  def image_url(key)
+    value = image(key)
 
     value = first_of_value(value['url']) if value.is_a?(Hash) && value['type'] == 'Image'
     value = value['href'] if value.is_a?(Hash)

@@ -8,6 +8,7 @@ module Account::Avatar
 
   AVATAR_DIMENSIONS = [400, 400].freeze
   AVATAR_GEOMETRY = [AVATAR_DIMENSIONS.first, AVATAR_DIMENSIONS.last].join('x')
+  MAX_DESCRIPTION_LENGTH = 1_500
 
   class_methods do
     def avatar_styles(file)
@@ -25,6 +26,8 @@ module Account::Avatar
     validates_attachment_content_type :avatar, content_type: IMAGE_MIME_TYPES
     validates_attachment_size :avatar, less_than: LIMIT
     remotable_attachment :avatar, LIMIT, suppress_errors: false
+
+    validates :avatar_description, length: { maximum: MAX_DESCRIPTION_LENGTH }
   end
 
   def avatar_original_url

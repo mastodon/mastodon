@@ -10,6 +10,8 @@ module Account::Header
   HEADER_GEOMETRY = [HEADER_DIMENSIONS.first, HEADER_DIMENSIONS.last].join('x')
   MAX_PIXELS = HEADER_DIMENSIONS.first * HEADER_DIMENSIONS.last
 
+  MAX_DESCRIPTION_LENGTH = 1_500
+
   class_methods do
     def header_styles(file)
       styles = { original: { pixels: MAX_PIXELS, file_geometry_parser: FastGeometryParser } }
@@ -26,6 +28,8 @@ module Account::Header
     validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
     validates_attachment_size :header, less_than: LIMIT
     remotable_attachment :header, LIMIT, suppress_errors: false
+
+    validates :header_description, length: { maximum: MAX_DESCRIPTION_LENGTH }
   end
 
   def header_original_url

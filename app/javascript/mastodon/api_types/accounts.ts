@@ -44,6 +44,8 @@ export interface BaseApiAccountJSON {
   limited?: boolean;
   memorial?: boolean;
   hide_collections: boolean;
+  avatar_description: string | null;
+  header_description: string | null;
 }
 
 // See app/serializers/rest/muted_account_serializer.rb

@@ -416,7 +416,7 @@ class Header extends ImmutablePureComponent {
             {info}
           </div>
 
-          {!(suspended || hidden) && <img src={autoPlayGif ? account.get('header') : account.get('header_static')} alt='' className='parallax' />}
+          {!(suspended || hidden) && <img src={autoPlayGif ? account.get('header') : account.get('header_static')} alt={account.get('header_description') ?? ''} className='parallax' />}
         </div>
 
         <div className='account__header__bar'>

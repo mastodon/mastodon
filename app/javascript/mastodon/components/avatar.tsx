@@ -59,7 +59,7 @@ export const Avatar: React.FC<Props> = ({
       style={style}
     >
       {src && !error && (
-        <img src={src} alt='' onLoad={handleLoad} onError={handleError} />
+        <img src={src} alt={account?.get('avatar_description') ?? ''} onLoad={handleLoad} onError={handleError} />
       )}
 
       {counter && (

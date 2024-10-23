@@ -49,6 +49,14 @@
   .fields-row
     .fields-row__column.fields-row__column-6
       .fields-group
+        = f.input :avatar_description,
+                  as: :text,
+                  hint: t('simple_form.hints.defaults.profile_picture_description'),
+                  wrapper: :with_block_label
+
+  .fields-row
+    .fields-row__column.fields-row__column-6
+      .fields-group
         = f.input :header,
                   hint: t('simple_form.hints.defaults.header', dimensions: Account::Header::HEADER_GEOMETRY, size: number_to_human_size(Account::Header::LIMIT)),
                   input_html: { accept: Account::Header::IMAGE_MIME_TYPES.join(',') },
@@ -61,6 +69,14 @@
           = link_to settings_profile_picture_path('header'), data: { method: :delete }, class: 'link-button link-button--destructive' do
             = material_symbol 'delete'
             = t('generic.delete')
+  
+  .fields-row
+    .fields-row__column.fields-row__column-6
+      .fields-group
+        = f.input :header_description,
+                  as: :text,
+                  hint: t('simple_form.hints.defaults.header_description'),
+                  wrapper: :with_block_label
 
   %h4= t('edit_profile.other')
 
