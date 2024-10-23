@@ -82,7 +82,7 @@ class AttachmentBatch
               attachment.send(:directory).files.new(key: attachment.path(style)).destroy
             rescue => e
               if e.is_a?(Fog::OpenStack::Storage::NotFound)
-                logger.debug { "Will ignore because file is not found #{attachment.path(style)}" }
+                logger.debug "Will ignore because file is not found #{attachment.path(style)}"
               else
                 sleep(5)
                 retry if (retries += 1) < 3
