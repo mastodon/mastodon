@@ -315,10 +315,14 @@ class Status < ApplicationRecord
 
   def increment_count!(key)
     update_status_stat!(key => public_send(key) + 1)
+    increment_count!(:untrusted_favourites_count) if key == :favourites_count && !untrusted_favourites_count.nil?
+    increment_count!(:untrusted_reblogs_count) if key == :reblogs_count && !untrusted_reblogs_count.nil?
   end
 
   def decrement_count!(key)
     update_status_stat!(key => [public_send(key) - 1, 0].max)
+    decrement_count!(:untrusted_favourites_count) if key == :favourites_count && !untrusted_favourites_count.nil?
+    decrement_count!(:untrusted_reblogs_count) if key == :reblogs_count && !untrusted_reblogs_count.nil?
   end
 
   def trendable?
