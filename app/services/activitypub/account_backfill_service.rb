@@ -3,7 +3,7 @@
 class ActivityPub::AccountBackfillService < BaseService
   include JsonLdHelper
 
-  MAX_STATUSES = (ENV['ACCOUNT_BACKFILL_STATUSES'] || 100).to_i
+  MAX_STATUSES = (ENV['ACCOUNT_BACKFILL_MAX_STATUSES'] || 500).to_i
 
   def call(account, request_id: nil)
     @account = account
@@ -13,10 +13,12 @@ class ActivityPub::AccountBackfillService < BaseService
     return if @items.nil?
 
     FetchReplyWorker.push_bulk(@items) do |status_uri_or_body|
-      if status_uri_or_body&.fetch('type', '') == 'Note'
-        [status_uri_or_body['id'], { 'prefetched_body' => status_uri_or_body, 'request_id' => request_id }]
+      if status_uri_or_body.is_a?(Hash) && status_uri_or_body.key?('object') && status_uri_or_body.key?('id')
+        # Re-add the minimally-acceptable @context, which gets stripped because this object comes inside a collection
+        status_uri_or_body['@context'] = ActivityPub::TagManager::CONTEXT unless status_uri_or_body.key?('@context')
+        [status_uri_or_body['id'], { prefetched_body: status_uri_or_body, request_id: request_id }]
       else
-        [status_uri_or_body, { 'request_id' => request_id }]
+        [status_uri_or_body, { request_id: request_id }]
       end
     end
 
