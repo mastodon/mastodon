@@ -11,8 +11,11 @@ class ActivityPub::FetchRepliesService < BaseService
     @allow_synchronous_requests = allow_synchronous_requests
     @filter_by_host = filter_by_host
 
-    return if @filter_by_host && non_matching_uri_hosts?(@account.uri, collection_or_uri)
-    return if @allow_synchronous_requests && !collection_or_uri.is_a?(Hash)
+    unless collection_or_uri.is_a?(Hash)
+      # If we dont have a prefetched collection, we have to make synchronous requests to get it
+      return unless @allow_synchronous_requests
+      return if @filter_by_host && non_matching_uri_hosts?(@account.uri, collection_or_uri)
+    end
 
     @items = collection_items(collection_or_uri, MAX_REPLIES)
     return if @items.nil?

@@ -179,6 +179,8 @@ module JsonLdHelper
   end
 
   def collection_items(collection_or_uri, max_size = 100)
+    return if collection_or_uri.nil? || collection_or_uri.blank?
+
     collection = fetch_collection(collection_or_uri)
     return unless collection.is_a?(Hash)
 
@@ -206,6 +208,14 @@ module JsonLdHelper
 
   def fetch_collection(collection_or_uri)
     return collection_or_uri if collection_or_uri.is_a?(Hash)
+
+    # NOTE: For backward compatibility reasons, Mastodon signs outgoing
+    # queries incorrectly by default.
+    #
+    # While this is relevant for all URLs with query strings, this is
+    # the only code path where this happens in practice.
+    #
+    # Therefore, retry with correct signatures if this fails.
 
     begin
       fetch_resource_without_id_validation(collection_or_uri, nil, true)
