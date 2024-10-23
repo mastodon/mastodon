@@ -5,6 +5,9 @@ class ActivityPub::AccountBackfillWorker
   include ExponentialBackoff
 
   def perform(account_id, options = {})
-    ActivityPub::AccountBackfillService.new.call(Account.find(account_id), **options.deep_symbolize_keys)
+    account = Account.find(account_id)
+    return if account.local?
+
+    ActivityPub::AccountBackfillService.new.call(account, **options.deep_symbolize_keys)
   end
 end
