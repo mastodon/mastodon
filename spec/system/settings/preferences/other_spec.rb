@@ -13,8 +13,8 @@ RSpec.describe 'Settings preferences other page' do
     expect(page)
       .to have_private_cache_control
 
-    check LanguagesHelper::SUPPORTED_LOCALES[:es].last
-    check LanguagesHelper::SUPPORTED_LOCALES[:fr].last
+    check language_field(:es)
+    check language_field(:fr)
     check mark_sensitive_field
 
     expect { save_changes }
@@ -30,5 +30,9 @@ RSpec.describe 'Settings preferences other page' do
 
   def mark_sensitive_field
     I18n.t('simple_form.labels.defaults.setting_default_sensitive')
+  end
+
+  def language_field(key)
+    LanguagesHelper::SUPPORTED_LOCALES[key].last
   end
 end
