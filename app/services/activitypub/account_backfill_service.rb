@@ -16,9 +16,9 @@ class ActivityPub::AccountBackfillService < BaseService
       if status_uri_or_body.is_a?(Hash) && status_uri_or_body.key?('object') && status_uri_or_body.key?('id')
         # Re-add the minimally-acceptable @context, which gets stripped because this object comes inside a collection
         status_uri_or_body['@context'] = ActivityPub::TagManager::CONTEXT unless status_uri_or_body.key?('@context')
-        [status_uri_or_body['id'], { prefetched_body: status_uri_or_body, request_id: request_id }]
+        [status_uri_or_body['id'], { prefetched_body: status_uri_or_body, request_id: request_id, on_behalf_of: @account.id }]
       else
-        [status_uri_or_body, { request_id: request_id }]
+        [status_uri_or_body, { request_id: request_id, on_behalf_of: @account.id }]
       end
     end
 
