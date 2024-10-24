@@ -1,0 +1,4 @@
+shared:
+  azure_enabled: <%= ENV.fetch('AZURE_ENABLED', 'false') %>
+  s3_enabled: <%= ENV.fetch('S3_ENABLED', 'false') %>
+  swift_enabled: <%= ENV.fetch('SWIFT_ENABLED', 'false') %>
