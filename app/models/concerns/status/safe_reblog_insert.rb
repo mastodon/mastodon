@@ -15,7 +15,9 @@ module Status::SafeReblogInsert
     #
     # The code is kept similar to ActiveRecord::Persistence code and calls it
     # directly when we are not handling a reblog.
-    def _insert_record(values, returning)
+    #
+    # https://github.com/rails/rails/blob/v7.2.1.1/activerecord/lib/active_record/persistence.rb#L238-L263
+    def _insert_record(connection, values, returning)
       return super unless values.is_a?(Hash) && values['reblog_of_id']&.value.present?
 
       primary_key = self.primary_key
@@ -30,14 +32,19 @@ module Status::SafeReblogInsert
 
       # The following line departs from stock ActiveRecord
       # Original code was:
-      # im.insert(values.transform_keys { |name| arel_table[name] })
+      # im = Arel::InsertManager.new(arel_table)
       # Instead, we use a custom builder when a reblog is happening:
       im = _compile_reblog_insert(values)
 
-      connection.insert(im, "#{self} Create", primary_key || false, primary_key_value, returning: returning).tap do |result|
-        # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
-        # For our purposes, it's equivalent to a foreign key constraint violation
-        raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id'].value}) is not present in table \"statuses\"" if result.nil?
+      with_connection do |_c|
+        connection.insert(
+          im, "#{self} Create", primary_key || false, primary_key_value,
+          returning: returning
+        ).tap do |result|
+          # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
+          # For our purposes, it's equivalent to a foreign key constraint violation
+          raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id'].value}) is not present in table \"statuses\"" if result.nil?
+        end
       end
     end
 
