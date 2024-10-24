@@ -4,6 +4,8 @@ module AccountableConcern
   extend ActiveSupport::Concern
 
   def log_action(action, target)
+    return unless target.previous_changes.any? || target.destroyed?
+
     Admin::ActionLog.create(
       account: current_account,
       action: action,
