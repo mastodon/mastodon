@@ -174,6 +174,7 @@ class Account < ApplicationRecord
            :shows_application?,
            :prefers_noindex?,
            :time_zone,
+           :signed_in_today?,
            to: :user,
            prefix: true,
            allow_nil: true
@@ -224,6 +225,18 @@ class Account < ApplicationRecord
 
   def local_followers_count
     Follow.where(target_account_id: id).count
+  end
+
+  def relevant_time
+    if user_current_sign_in_at
+      user_current_sign_in_at
+    elsif user_pending?
+      user_created_at
+    elsif suspended_at.present? && local? && user.nil?
+      suspended_at
+    elsif last_status_at.present?
+      last_status_at
+    end
   end
 
   def to_webfinger_s
