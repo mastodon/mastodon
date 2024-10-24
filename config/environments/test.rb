@@ -72,6 +72,9 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # disable logging in tests, for speed increases. Set to :info to bring back logging
+  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'warn').to_sym
 end
 
 Paperclip::Attachment.default_options[:path] = Rails.root.join('spec', 'test_files', ':class', ':id_partition', ':style.:extension')
