@@ -2364,15 +2364,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ts-transformer@npm:3.13.17":
-  version: 3.13.17
-  resolution: "@formatjs/ts-transformer@npm:3.13.17"
+"@formatjs/ts-transformer@npm:3.13.18":
+  version: 3.13.18
+  resolution: "@formatjs/ts-transformer@npm:3.13.18"
   dependencies:
     "@formatjs/icu-messageformat-parser": "npm:2.8.0"
-    "@types/json-stable-stringify": "npm:^1.0.32"
+    "@types/json-stable-stringify": "npm:1"
     "@types/node": "npm:14 || 16 || 17 || 18 || 20"
-    chalk: "npm:^4.0.0"
-    json-stable-stringify: "npm:^1.0.1"
+    chalk: "npm:4"
+    json-stable-stringify: "npm:1"
     tslib: "npm:^2.7.0"
     typescript: "npm:5"
   peerDependencies:
@@ -2380,7 +2380,7 @@ __metadata:
   peerDependenciesMeta:
     ts-jest:
       optional: true
-  checksum: 10c0/1619f771d8aa69cf63f05199ebc28b57a5e0850b64dc9c2bd0df73d8f388a3323c47f13bcc742a51a7560349591282d88695e6fb9a646b0e7d4f7d0b07e2c5c0
+  checksum: 10c0/13c76fae9d8c168f8f5e032319fd25e2960c3a9b80d36d14c2dce1fc50458618cd5fdd71c4249ce0aa8aeb9a56aaf8d48dd489eb609c6739d72cb044ebbf100b
   languageName: node
   linkType: hard
 
@@ -3619,7 +3619,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/hoist-non-react-statics@npm:^3.3.1":
+"@types/hoist-non-react-statics@npm:3, @types/hoist-non-react-statics@npm:^3.3.1":
   version: 3.3.5
   resolution: "@types/hoist-non-react-statics@npm:3.3.5"
   dependencies:
@@ -3712,10 +3712,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-stable-stringify@npm:^1.0.32":
-  version: 1.0.35
-  resolution: "@types/json-stable-stringify@npm:1.0.35"
-  checksum: 10c0/67b50a86478f932c932ba21515b80700a8844d55e0656b3abe2c32c41c1c405c70fcd10b30ff8f38d1869871af2deae63ffdea54ce72cc2ee92e94a9d1cf2b6f
+"@types/json-stable-stringify@npm:1, @types/json-stable-stringify@npm:^1.0.32":
+  version: 1.1.0
+  resolution: "@types/json-stable-stringify@npm:1.1.0"
+  checksum: 10c0/8f69944701510243cd3a83aa44363a8a4d366f11a659b258f69fb3ad0f94ab1e2533206a2c929ac7fd18784d201b663b3f02a45934f545c926f051d8cb4df095
   languageName: node
   linkType: hard
 
@@ -5131,8 +5131,8 @@ __metadata:
   linkType: hard
 
 "babel-plugin-formatjs@npm:^10.5.1":
-  version: 10.5.19
-  resolution: "babel-plugin-formatjs@npm:10.5.19"
+  version: 10.5.20
+  resolution: "babel-plugin-formatjs@npm:10.5.20"
   dependencies:
     "@babel/core": "npm:^7.25.0"
     "@babel/helper-plugin-utils": "npm:^7.25.0"
@@ -5140,12 +5140,12 @@ __metadata:
     "@babel/traverse": "npm:^7.25.0"
     "@babel/types": "npm:^7.25.0"
     "@formatjs/icu-messageformat-parser": "npm:2.8.0"
-    "@formatjs/ts-transformer": "npm:3.13.17"
+    "@formatjs/ts-transformer": "npm:3.13.18"
     "@types/babel__core": "npm:^7.20.5"
     "@types/babel__helper-plugin-utils": "npm:^7.10.3"
     "@types/babel__traverse": "npm:^7.20.6"
     tslib: "npm:^2.7.0"
-  checksum: 10c0/29d1e1fe8c97412a1c6c95dde3753ea28ddbe39040aaead90c67106422ce12dad363aee47a2729f685807bacf7f422ef607f015b325203a8201249b74e84bab3
+  checksum: 10c0/dab4c73748c81623a0e3d828307a1fdf37266255c9335f4f6db354f5fe284d4421469973613dbf97c6fde29e4d4d62b5ad4907111e759abcb3ecfcf302ea02f6
   languageName: node
   linkType: hard
 
@@ -5801,6 +5801,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chalk@npm:4, chalk@npm:^4.0, chalk@npm:^4.0.0, chalk@npm:^4.0.2, chalk@npm:^4.1.0":
+  version: 4.1.2
+  resolution: "chalk@npm:4.1.2"
+  dependencies:
+    ansi-styles: "npm:^4.1.0"
+    supports-color: "npm:^7.1.0"
+  checksum: 10c0/4a3fef5cc34975c898ffe77141450f679721df9dde00f6c304353fa9c8b571929123b26a0e4617bde5018977eb655b31970c297b91b63ee83bb82aeb04666880
+  languageName: node
+  linkType: hard
+
 "chalk@npm:^2.4.1, chalk@npm:^2.4.2":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
@@ -5819,16 +5829,6 @@ __metadata:
     ansi-styles: "npm:^4.1.0"
     supports-color: "npm:^7.1.0"
   checksum: 10c0/ee650b0a065b3d7a6fda258e75d3a86fc8e4effa55871da730a9e42ccb035bf5fd203525e5a1ef45ec2582ecc4f65b47eb11357c526b84dd29a14fb162c414d2
-  languageName: node
-  linkType: hard
-
-"chalk@npm:^4.0, chalk@npm:^4.0.0, chalk@npm:^4.0.2, chalk@npm:^4.1.0":
-  version: 4.1.2
-  resolution: "chalk@npm:4.1.2"
-  dependencies:
-    ansi-styles: "npm:^4.1.0"
-    supports-color: "npm:^7.1.0"
-  checksum: 10c0/4a3fef5cc34975c898ffe77141450f679721df9dde00f6c304353fa9c8b571929123b26a0e4617bde5018977eb655b31970c297b91b63ee83bb82aeb04666880
   languageName: node
   linkType: hard
 
@@ -9251,7 +9251,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hoist-non-react-statics@npm:^3.1.0, hoist-non-react-statics@npm:^3.3.0, hoist-non-react-statics@npm:^3.3.1, hoist-non-react-statics@npm:^3.3.2":
+"hoist-non-react-statics@npm:3, hoist-non-react-statics@npm:^3.1.0, hoist-non-react-statics@npm:^3.3.0, hoist-non-react-statics@npm:^3.3.1, hoist-non-react-statics@npm:^3.3.2":
   version: 3.3.2
   resolution: "hoist-non-react-statics@npm:3.3.2"
   dependencies:
@@ -11118,12 +11118,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json-stable-stringify@npm:^1.0.1":
-  version: 1.0.2
-  resolution: "json-stable-stringify@npm:1.0.2"
+"json-stable-stringify@npm:1, json-stable-stringify@npm:^1.0.1":
+  version: 1.1.1
+  resolution: "json-stable-stringify@npm:1.1.1"
   dependencies:
+    call-bind: "npm:^1.0.5"
+    isarray: "npm:^2.0.5"
     jsonify: "npm:^0.0.1"
-  checksum: 10c0/502d021c3c59c09587faa40d7693d77c00460fd6c68bae95d6e35804909ec8c4aec71b136d3a09df61a7ebf803eb6e820f23ede76b77e74b8b02c76afb2ada8c
+    object-keys: "npm:^1.1.1"
+  checksum: 10c0/3801e3eeccbd030afb970f54bea690a079cfea7d9ed206a1b17ca9367f4b7772c764bf77a48f03e56b50e5f7ee7d11c52339fe20d8d7ccead003e4ca69e4cfde
   languageName: node
   linkType: hard
 
@@ -14412,17 +14415,17 @@ __metadata:
   linkType: hard
 
 "react-intl@npm:^6.4.2":
-  version: 6.8.1
-  resolution: "react-intl@npm:6.8.1"
+  version: 6.8.2
+  resolution: "react-intl@npm:6.8.2"
   dependencies:
     "@formatjs/ecma402-abstract": "npm:2.2.0"
     "@formatjs/icu-messageformat-parser": "npm:2.8.0"
     "@formatjs/intl": "npm:2.10.9"
     "@formatjs/intl-displaynames": "npm:6.7.0"
     "@formatjs/intl-listformat": "npm:7.6.0"
-    "@types/hoist-non-react-statics": "npm:^3.3.1"
+    "@types/hoist-non-react-statics": "npm:3"
     "@types/react": "npm:^18.3.11"
-    hoist-non-react-statics: "npm:^3.3.2"
+    hoist-non-react-statics: "npm:3"
     intl-messageformat: "npm:10.7.1"
     tslib: "npm:^2.7.0"
   peerDependencies:
@@ -14431,7 +14434,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/4ffdf8fd6e82c10de7d1e195336c8bc98fab5f6bc7fde548f7df553caf05677d632977c3287e9b72915f8a01ed98ff8246fdfccea2f7048902f46a596a0db4b2
+  checksum: 10c0/7a37c600cb1159f0ad2c4ff7af0bcc118bdd7d1fd4848d7ed10988a6f2f2f2a0adcf30c6b55375b328532d1bbad5d68dfb36769c325f60b627238975e37ea680
   languageName: node
   linkType: hard
 
