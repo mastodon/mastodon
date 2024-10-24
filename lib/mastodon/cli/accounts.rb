@@ -320,10 +320,10 @@ module Mastodon::CLI
 
       say("Visited #{processed} accounts, removed #{culled}#{dry_run_mode_suffix}", :green)
 
-      unless skip_domains.empty?
-        say('The following domains were not available during the check:', :yellow)
-        skip_domains.each { |domain| say("    #{domain}") }
-      end
+      return if skip_domains.empty?
+
+      say('The following domains were not available during the check:', :yellow)
+      skip_domains.each { |domain| say("    #{domain}") }
     end
 
     option :all, type: :boolean
