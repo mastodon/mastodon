@@ -150,7 +150,15 @@ RSpec.describe 'Notifications' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(body_json_types).to include('reblog', 'mention', 'favourite', 'follow')
+        expect(response.parsed_body)
+          .to include(
+            notification_groups: contain_exactly(
+              hash_including(type: 'reblog'),
+              hash_including(type: 'mention'),
+              hash_including(type: 'favourite'),
+              hash_including(type: 'follow')
+            )
+          )
       end
     end
 
@@ -197,8 +205,9 @@ RSpec.describe 'Notifications' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(response.parsed_body.size).to_not eq 0
-        expect(body_json_types.uniq).to_not include 'mention'
+        expect(response.parsed_body)
+          .to be_present
+          .and not_include(hash_including(type: 'mention'))
       end
     end
 
@@ -211,8 +220,11 @@ RSpec.describe 'Notifications' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
-        expect(body_json_types.uniq).to eq ['mention']
-        expect(response.parsed_body.dig(:notification_groups, 0, :page_min_id)).to_not be_nil
+        expect(response.parsed_body)
+          .to include(
+            notification_groups: all(match hash_including(type: 'mention'))
+            .and(have_attributes(first: include(page_min_id: be_present)))
+          )
       end
     end
 
@@ -292,10 +304,6 @@ RSpec.describe 'Notifications' do
         expect(response.content_type)
           .to start_with('application/json')
       end
-    end
-
-    def body_json_types
-      response.parsed_body[:notification_groups].pluck(:type)
     end
   end
 
