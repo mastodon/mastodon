@@ -13,7 +13,7 @@
       %strong= t('admin.accounts.moderation.title')
       .input.select.optional
         = form.select :status,
-                      options_for_select(admin_accounts_moderation_options, params[:status]),
+                      options_for_select(admin_accounts_moderation_options(@state_counts), params[:status]),
                       prompt: I18n.t('generic.all')
     .filter-subset.filter-subset--with-select
       %strong= t('admin.accounts.role')
