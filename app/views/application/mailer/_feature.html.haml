@@ -1,3 +1,4 @@
+-# locals: (feature:, feature_iteration:, feature_btn_url: nil)
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-feature-wrapper-td
@@ -13,7 +14,7 @@
                     %td.email-column-td
                       %h2.email-h2= t("user_mailer.welcome.feature_#{feature}_title")
                       %p.email-p= t("user_mailer.welcome.feature_#{feature}")
-                      - if defined?(feature_btn_url)
+                      - if feature_btn_url
                         = link_to '', href: feature_btn_url, class: 'email-link-with-arrow' do
                           #{t('user_mailer.welcome.feature_action')} 
                           %span= '❯'
@@ -23,8 +24,7 @@
                 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
                   %tr
                     %td.email-column-td
-                      - if defined?(feature)
-                        %p{ class: ('email-desktop-text-right' if feature_iteration.index.even?) }
-                          = image_tag frontend_asset_url("images/mailer-new/welcome/feature_#{feature}.png"), alt: '', width: 240, height: 230
+                      %p{ class: ('email-desktop-text-right' if feature_iteration.index.even?) }
+                        = image_tag frontend_asset_url("images/mailer-new/welcome/feature_#{feature}.png"), alt: '', width: 240, height: 230
               /[if mso]
                 </td></tr></table>
