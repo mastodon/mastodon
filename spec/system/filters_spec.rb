@@ -8,6 +8,18 @@ RSpec.describe 'Filters' do
 
   before { sign_in(user) }
 
+  describe 'Viewing existing filters' do
+    before { Fabricate :custom_filter, account: user.account, phrase: 'Photography' }
+
+    it 'shows a list of user filters' do
+      visit filters_path
+
+      expect(page)
+        .to have_content('Photography')
+        .and have_private_cache_control
+    end
+  end
+
   describe 'Creating a filter' do
     it 'Populates a new filter from form' do
       navigate_to_filters
@@ -16,12 +28,22 @@ RSpec.describe 'Filters' do
       fill_in_filter_form
       expect(page).to have_content(filter_title)
     end
+
+    it 'Does not save with invalid values' do
+      navigate_to_filters
+      click_on I18n.t('filters.new.title')
+
+      expect { click_on I18n.t('filters.new.save') }
+        .to_not change(CustomFilter, :count)
+      expect(page)
+        .to have_content("can't be blank")
+    end
   end
 
   describe 'Editing an existing filter' do
     let(:new_title) { 'Change title value' }
 
-    before { Fabricate :custom_filter, account: user.account, title: filter_title }
+    let!(:custom_filter) { Fabricate :custom_filter, account: user.account, title: filter_title }
 
     it 'Updates the saved filter' do
       navigate_to_filters
@@ -32,6 +54,18 @@ RSpec.describe 'Filters' do
       click_on submit_button
 
       expect(page).to have_content(new_title)
+    end
+
+    it 'Does not save with invalid values' do
+      navigate_to_filters
+      click_on filter_title
+
+      fill_in filter_title_field, with: ''
+
+      expect { click_on submit_button }
+        .to_not(change { custom_filter.reload.updated_at })
+      expect(page)
+        .to have_content("can't be blank")
     end
   end
 
