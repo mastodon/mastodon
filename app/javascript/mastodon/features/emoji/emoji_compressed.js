@@ -25,7 +25,8 @@ if(data.compressed) {
 
 const emojiMartData = data;
 
-const excluded       = ['®', '©', '™'];
+const excluded       = ['®', '©', '™',
+                        '⬆', '↗', '➡', '↘', '⬇', '↙', '⬅', '↖', '↕', '↔', '↩', '↪', '⤴', '⤵'];
 const skinTones      = ['🏻', '🏼', '🏽', '🏾', '🏿'];
 const shortcodeMap   = {};
 
