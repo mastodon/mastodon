@@ -1,5 +1,5 @@
 - content_for :page_title do
-  #{display_name(@account)} (#{acct(@account)})
+  "#{display_name(@account).gsub(/:\w+:/, '').strip} (#{acct(@account)})".gsub(/\s+/, ' ')
 
 - content_for :header_tags do
   - if @account.user_prefers_noindex?
