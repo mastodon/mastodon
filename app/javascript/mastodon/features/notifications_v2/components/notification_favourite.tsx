@@ -33,6 +33,34 @@ const labelRenderer: LabelRenderer = (displayedName, total, seeMoreHref) => {
   );
 };
 
+const privateLabelRenderer: LabelRenderer = (
+  displayedName,
+  total,
+  seeMoreHref,
+) => {
+  if (total === 1)
+    return (
+      <FormattedMessage
+        id='notification.favourite_pm'
+        defaultMessage='{name} favorited your private mention'
+        values={{ name: displayedName }}
+      />
+    );
+
+  return (
+    <FormattedMessage
+      id='notification.favourite_pm.name_and_others_with_link'
+      defaultMessage='{name} and <a>{count, plural, one {# other} other {# others}}</a> favorited your private mention'
+      values={{
+        name: displayedName,
+        count: total - 1,
+        a: (chunks) =>
+          seeMoreHref ? <Link to={seeMoreHref}>{chunks}</Link> : chunks,
+      }}
+    />
+  );
+};
+
 export const NotificationFavourite: React.FC<{
   notification: NotificationGroupFavourite;
   unread: boolean;
@@ -44,6 +72,10 @@ export const NotificationFavourite: React.FC<{
         ?.acct,
   );
 
+  const isPrivateMention = useAppSelector(
+    (state) => state.statuses.getIn([statusId, 'visibility']) === 'direct',
+  );
+
   return (
     <NotificationGroupWithStatus
       type='favourite'
@@ -53,7 +85,7 @@ export const NotificationFavourite: React.FC<{
       statusId={notification.statusId}
       timestamp={notification.latest_page_notification_at}
       count={notification.notifications_count}
-      labelRenderer={labelRenderer}
+      labelRenderer={isPrivateMention ? privateLabelRenderer : labelRenderer}
       labelSeeMoreHref={
         statusAccount ? `/@${statusAccount}/${statusId}/favourites` : undefined
       }
