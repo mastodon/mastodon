@@ -5803,15 +5803,21 @@ a.status-card {
   z-index: 9999;
   pointer-events: none;
   user-select: none;
+  overflow: hidden;
 }
 
 .modal-root__modal {
   pointer-events: auto;
   user-select: text;
   display: flex;
+  overflow: auto;
+  max-width: 90vw;
+  max-height: 90vh;
 
   @media screen and (width <= $mobile-breakpoint) {
     margin-top: auto;
+    max-width: 100vw;
+    max-height: 80vh;
   }
 }
 
