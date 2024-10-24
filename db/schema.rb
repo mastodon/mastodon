@@ -932,11 +932,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_14_010506) do
   create_table "settings", force: :cascade do |t|
     t.string "var", null: false
     t.text "value"
-    t.string "thing_type"
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
-    t.bigint "thing_id"
-    t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
+    t.index ["var"], name: "index_settings_on_var", unique: true
   end
 
   create_table "severed_relationships", force: :cascade do |t|
