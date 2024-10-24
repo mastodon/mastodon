@@ -36,8 +36,13 @@ class IpBlock < ApplicationRecord
 
   class << self
     def blocked?(remote_ip)
-      blocked_ips_map = Rails.cache.fetch(CACHE_KEY) { FastIpMap.new(IpBlock.where(severity: :no_access).pluck(:ip)) }
       blocked_ips_map.include?(remote_ip)
+    end
+
+    private
+
+    def blocked_ips_map
+      Rails.cache.fetch(CACHE_KEY) { FastIpMap.new(severity_no_access.pluck(:ip)) }
     end
   end
 
