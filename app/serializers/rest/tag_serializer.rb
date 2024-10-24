@@ -3,9 +3,11 @@
 class REST::TagSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :name, :url, :history
+  attributes :id, :name, :url, :history
 
   attribute :following, if: :current_user?
+
+  delegate :id, to: :object
 
   def url
     tag_url(object)
