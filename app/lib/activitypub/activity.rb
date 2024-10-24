@@ -75,6 +75,14 @@ class ActivityPub::Activity
     @object_uri ||= uri_from_bearcap(value_or_id(@object))
   end
 
+  def object_actor_uri
+    @object_actor_uri ||= value_or_id(first_of_value(@object['attributedTo']))
+  end
+
+  def object_actor
+    @object_actor ||= Account.find_by(uri: object_actor_uri)
+  end
+
   def unsupported_object_type?
     @object.is_a?(String) || !(supported_object_type? || converted_object_type?)
   end
@@ -102,13 +110,9 @@ class ActivityPub::Activity
     return status unless status.nil?
 
     # If the boosted toot is embedded and it is a self-boost, handle it like a Create
-    unless unsupported_object_type?
-      actor_id = value_or_id(first_of_value(@object['attributedTo']))
-
-      if actor_id == @account.uri
-        virtual_object = { 'type' => 'Create', 'actor' => actor_id, 'object' => @object }
-        return ActivityPub::Activity.factory(virtual_object, @account, request_id: @options[:request_id]).perform
-      end
+    if !unsupported_object_type? && (object_actor_uri == @account.uri)
+      virtual_object = { 'type' => 'Create', 'actor' => object_actor_uri, 'object' => @object }
+      return ActivityPub::Activity.factory(virtual_object, @account, request_id: @options[:request_id]).perform
     end
 
     fetch_remote_original_status
