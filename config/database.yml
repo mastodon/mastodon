@@ -6,6 +6,7 @@ default: &default
   encoding: unicode
   sslmode: <%= ENV['DB_SSLMODE'] || "prefer" %>
   application_name: ''
+  advisory_locks: <%= ENV['DB_ADVISORY_LOCKS'] || 'true' %>
 
 development:
   primary:
@@ -61,4 +62,5 @@ production:
     host: <%= ENV['REPLICA_DB_HOST'] ||ENV['DB_HOST'] || 'localhost' %>
     port: <%= ENV['REPLICA_DB_PORT'] ||ENV['DB_PORT'] || 5432 %>
     prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
+    advisory_locks: <%= ENV['REPLICA_DB_ADVISORY_LOCKS'] || ENV['DB_ADVISORY_LOCKS'] || 'true' %>
     replica: true
