@@ -56,6 +56,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
 
     resolve_thread(@status)
+    fixup_thread(@status)
     resolve_unresolved_mentions(@status)
     fetch_replies(@status)
     distribute
@@ -303,6 +304,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return unless status.reply? && status.thread.nil? && Request.valid_url?(in_reply_to_uri)
 
     ThreadResolveWorker.perform_async(status.id, in_reply_to_uri, { 'request_id' => @options[:request_id] })
+  end
+
+  def fixup_thread(status)
+    ThreadRepair.new(status.uri).reattach_orphaned_children!(status)
   end
 
   def resolve_unresolved_mentions(status)
