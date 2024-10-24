@@ -136,7 +136,7 @@ class Request
         return false
       end
 
-      %w(http https).include?(parsed_url.scheme) && parsed_url.host.present?
+      URLValidator::VALID_SCHEMES.include?(parsed_url.scheme) && parsed_url.host.present?
     end
 
     def http_client
