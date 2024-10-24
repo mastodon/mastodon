@@ -542,7 +542,7 @@ sv:
       total_followed_by_them: Följs av dem
       total_followed_by_us: Följs av oss
       total_reported: Rapporter om dem
-      total_storage: Media-bilagor
+      total_storage: Mediebilagor
       totals_time_period_hint_html: Totalsummorna som visas nedan inkluderar data för all tid.
       unknown_instance: Det finns för närvarande inga uppgifter om denna domän på denna server.
     invites:
@@ -1364,9 +1364,21 @@ sv:
       overwrite: Skriv över
       overwrite_long: Ersätt de nuvarande uppgifterna med de nya
     overwrite_preambles:
+      blocking_html:
+        one: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} konto</strong> från <strong>%{filename}</strong>.
+        other: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} konton</strong> från <strong>%{filename}</strong>.
       bookmarks_html:
         one: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong>.
         other: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} domän</strong> från <strong>%{filename}</strong>.
+        other: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} domäner</strong> från <strong>%{filename}</strong>.
+      following_html:
+        one: Du är på väg till <strong>följ</strong> upp till <strong>%{count} konto</strong> från <strong>%{filename}</strong> och <strong>sluta följa någon annan</strong>.
+        other: Du är på väg till <strong>följ</strong> upp till <strong>%{count} konton</strong> från <strong>%{filename}</strong> och <strong>sluta följa någon annan</strong>.
+      lists_html:
+        one: Du är på väg att <strong>ersätta dina listor</strong> med innehållet i <strong>%{filename}</strong>. Upp till <strong>%{count} konto</strong> kommer att läggas till i nya listor.
+        other: Du är på väg att <strong>ersätta dina listor</strong> med innehållet i <strong>%{filename}</strong>. Upp till <strong>%{count} konton</strong> kommer att läggas till i nya listor.
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
     recent_imports: Nyligen importerade
     states:
