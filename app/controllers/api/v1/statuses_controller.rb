@@ -169,7 +169,7 @@ class Api::V1::StatusesController < Api::BaseController
         :multiple,
         :hide_totals,
         :expires_in,
-        options: [],
+        { options: [] },
       ]
     )
   end
