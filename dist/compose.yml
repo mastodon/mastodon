@@ -1,0 +1,103 @@
+# This is a Docker Compose file for deploying Mastodon. It is designed to be used with the `docker compose` command.
+# This file is designed as a starting point for your production server deployment, not local development work!
+# For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/README.md#docker
+
+# You should check the Docker image tag used for the web, sidekiq, and streaming containers to make sure you are running
+# the appropriate version for your deployment. Using `nightly` will deploy the in-development version of Mastodon, which is
+# not considered a stable release. Visit https://github.com/mastodon/mastodon/releases for currently released versions and tags.
+
+# Change the `image-tag` value to the desired version tag, e.g. `4.3.0`, `4.3.1`, etc.
+x-image-tag:
+  &image-tag nightly
+
+  # This is the Mastodon background worker. It processes jobs such fetching posts from other servers and sending e-mails.
+x-sidekiq-base: &sidekiq-base
+  # Remove the comments from this `build` section if you need to build the image from source.
+  # build:
+  #   context: .
+  #   dockerfile: Dockerfile
+  image: ghcr.io/mastodon/mastodon:*image-tag
+  env_file: .env.production
+  environment:
+    - DB_POOL=15
+  restart: always
+  command: bundle exec sidekiq -c 15
+  healthcheck:
+    test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+  networks:
+    - external_network
+    - internal_network
+  # S3 is optional but recommended for storing user-uploaded media files.
+  volumes:
+    - ./public/system:/mastodon/public/system
+
+services:
+  # This is the Mastodon web application. It serves the web interface and the REST API.
+  web:
+    # Remove the comments from this `build` section if you need to build the image from source.
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: ghcr.io/mastodon/mastodon:*image-tag
+    env_file: .env.production
+    environment:
+      - PORT=3000
+      - BIND=127.0.0.1
+    restart: always
+    command: bundle exec puma -C config/puma.rb
+    healthcheck:
+      # prettier-ignore
+      test:
+        ['CMD-SHELL',"curl -s --noproxy localhost localhost:3000/health | grep -q 'OK' || exit 1",]
+    networks:
+      - external_network
+      - internal_network
+    ports:
+      - '127.0.0.1:3000:3000'
+    # S3 is optional but recommended for storing user-uploaded media files.
+    volumes:
+      - ./public/system:/mastodon/public/system
+
+  # This is the Mastodon streaming API. It serves the streaming API used by the web interface.
+  streaming:
+    # Remove the comments from this `build` section if you need to build the image from source.
+    # build:
+    #   context: ./streaming
+    #   dockerfile: Dockerfile
+    image: ghcr.io/mastodon/mastodon-streaming:*image-tag
+    env_file: .env.production
+    environment:
+      - PORT=4000
+      - BIND=127.0.0.1
+    restart: always
+    command: node ./streaming/index.js
+    healthcheck:
+      # prettier-ignore
+      test:
+        ['CMD-SHELL',"curl -s --noproxy localhost localhost:4000/api/v1/streaming/health | grep -q 'OK' || exit 1"]
+    networks:
+      - external_network
+      - internal_network
+    ports:
+      - '127.0.0.1:4000:4000'
+
+  # You can run multiple Sidekiq processes to handle more jobs concurrently. The scheduler queue must only be run on one process.
+  # Please see https://docs.joinmastodon.org/admin/scaling/#sidekiq for more information.
+  sidekiq-1:
+    <<: *sidekiq-base
+    command: bundle exec sidekiq -c 15 -q default -q push -q ingress -q mailers -q pull -q scheduler
+
+  # Uncomment this block to run a second Sidekiq process, if needed.
+  # sidekiq-2:
+  #   <<: *sidekiq-base
+  #   command: bundle exec sidekiq -c 15 -q default -q push -q ingress -q mailers -q pull
+
+# Mastodon requires Redis for caching and Sidekiq job processing, and PostgreSQL for data storage.
+# Nginx is required for securely serving the web interface and streaming API to users.
+# Elasticsearch is optional but recommended for better search functionality.
+# You can use the official images for these services. Please refer to their documentation for more information.
+
+networks:
+  external_network:
+  internal_network:
+    internal: true
