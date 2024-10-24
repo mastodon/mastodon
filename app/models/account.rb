@@ -131,6 +131,7 @@ class Account < ApplicationRecord
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where.not(silenced_at: nil) }
   scope :sensitized, -> { where.not(sensitized_at: nil) }
+  scope :migrated, -> { where.not(moved_to_account_id: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
   scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
