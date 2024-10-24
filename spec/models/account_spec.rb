@@ -10,64 +10,6 @@ RSpec.describe Account do
 
     let(:bob) { Fabricate(:account, username: 'bob') }
 
-    describe '#suspended_locally?' do
-      context 'when the account is not suspended' do
-        it 'returns false' do
-          expect(subject.suspended_locally?).to be false
-        end
-      end
-
-      context 'when the account is suspended locally' do
-        before do
-          subject.update!(suspended_at: 1.day.ago, suspension_origin: :local)
-        end
-
-        it 'returns true' do
-          expect(subject.suspended_locally?).to be true
-        end
-      end
-
-      context 'when the account is suspended remotely' do
-        before do
-          subject.update!(suspended_at: 1.day.ago, suspension_origin: :remote)
-        end
-
-        it 'returns false' do
-          expect(subject.suspended_locally?).to be false
-        end
-      end
-    end
-
-    describe '#suspend!' do
-      it 'marks the account as suspended and creates a deletion request' do
-        expect { subject.suspend! }
-          .to change(subject, :suspended?).from(false).to(true)
-          .and change(subject, :suspended_locally?).from(false).to(true)
-          .and(change { AccountDeletionRequest.exists?(account: subject) }.from(false).to(true))
-      end
-
-      context 'when the account is of a local user' do
-        subject { local_user_account }
-
-        let!(:local_user_account) { Fabricate(:user, email: 'foo+bar@domain.org').account }
-
-        it 'creates a canonical domain block' do
-          subject.suspend!
-          expect(CanonicalEmailBlock.block?(subject.user_email)).to be true
-        end
-
-        context 'when a canonical domain block already exists for that email' do
-          before do
-            Fabricate(:canonical_email_block, email: subject.user_email)
-          end
-
-          it 'does not raise an error' do
-            expect { subject.suspend! }.to_not raise_error
-          end
-        end
-      end
-    end
-
     describe '#follow!' do
       it 'creates a follow' do
         follow = subject.follow!(bob)
@@ -1046,14 +988,6 @@ RSpec.describe Account do
         silenced_account = Fabricate(:account, silenced: true)
         _account = Fabricate(:account, silenced: false)
         expect(described_class.silenced).to contain_exactly(silenced_account)
-      end
-    end
-
-    describe 'suspended' do
-      it 'returns an array of accounts who are suspended' do
-        suspended_account = Fabricate(:account, suspended: true)
-        _account = Fabricate(:account, suspended: false)
-        expect(described_class.suspended).to contain_exactly(suspended_account)
       end
     end
 
