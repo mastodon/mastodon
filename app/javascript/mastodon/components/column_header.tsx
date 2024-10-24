@@ -10,6 +10,7 @@ import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
+import FollowedTagsList from 'mastodon/components/followed_tags_list';
 import type { IconProp } from 'mastodon/components/icon';
 import { Icon } from 'mastodon/components/icon';
 import { ButtonInTabsBar } from 'mastodon/features/ui/util/columns_context';
@@ -255,7 +256,11 @@ export const ColumnHeader: React.FC<Props> = ({
           <>
             {backButton}
 
-            <button onClick={handleTitleClick} className='column-header__title'>
+            <button
+              onClick={handleTitleClick}
+              className='column-header__title'
+              style={{ overflow: 'visible', paddingRight: '15px' }}
+            >
               {!backButton && (
                 <Icon
                   id={icon}
@@ -267,6 +272,8 @@ export const ColumnHeader: React.FC<Props> = ({
             </button>
           </>
         )}
+
+        {icon === 'home' ? <FollowedTagsList /> : null}
 
         {!hasTitle && backButton}
 
