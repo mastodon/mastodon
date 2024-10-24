@@ -106,6 +106,7 @@ class Status extends ImmutablePureComponent {
     onToggleHidden: PropTypes.func,
     onToggleCollapsed: PropTypes.func,
     onTranslate: PropTypes.func,
+    onUndoStatusTranslation: PropTypes.func,
     onInteractionModal: PropTypes.func,
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
@@ -200,8 +201,12 @@ class Status extends ImmutablePureComponent {
     this.props.onToggleCollapsed(this._properStatus(), isCollapsed);
   };
 
-  handleTranslate = () => {
-    this.props.onTranslate(this._properStatus());
+  handleTranslate = (sourceLanguage) => {
+    this.props.onTranslate(this._properStatus(), sourceLanguage);
+  };
+
+  handleUndoStatusTranslation = () => {
+    this.props.onUndoStatusTranslation(this._properStatus());
   };
 
   getAttachmentAspectRatio () {
@@ -574,6 +579,7 @@ class Status extends ImmutablePureComponent {
                   status={status}
                   onClick={this.handleClick}
                   onTranslate={this.handleTranslate}
+                  onUndoStatusTranslation={this.handleUndoStatusTranslation}
                   collapsible
                   onCollapsedToggle={this.handleCollapsedToggle}
                   {...statusContentProps}

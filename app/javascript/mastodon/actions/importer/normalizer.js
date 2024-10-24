@@ -101,6 +101,7 @@ export function normalizeStatusTranslation(translation, status) {
   const emojiMap = makeEmojiMap(status.get('emojis').toJS());
 
   const normalTranslation = {
+    source_language: translation.source_language,
     detected_source_language: translation.detected_source_language,
     language: translation.language,
     provider: translation.provider,
