@@ -147,6 +147,7 @@ module ApplicationHelper
     output << content_for(:body_classes)
     output << "theme-#{current_theme.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui
+    output << 'custom-scrollbars' unless current_account&.user&.setting_system_scrollbars_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'rtl' if locale_direction == 'rtl'
     output.compact_blank.join(' ')
