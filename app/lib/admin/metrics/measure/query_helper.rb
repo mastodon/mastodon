@@ -15,19 +15,37 @@ module Admin::Metrics::Measure::QueryHelper
     ActiveRecord::Base.sanitize_sql_array(sql_array)
   end
 
-  def generated_series_days
-    Arel.sql(
-      <<~SQL.squish
-        SELECT generate_series(:start_at::timestamp, :end_at::timestamp, '1 day')::date AS period
-      SQL
-    )
+  def sql_array
+    [sql_query_string, { start_at: @start_at, end_at: @end_at }]
   end
 
-  def account_domain_sql(include_subdomains)
-    if include_subdomains
-      "accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || :domain::text))"
+  def sql_query_string
+    <<~SQL.squish
+      SELECT axis.*, (
+        WITH data_source AS (#{data_source.to_sql})
+        SELECT #{select_target} FROM data_source
+      ) AS value
+      FROM (
+        SELECT generate_series(:start_at::timestamp, :end_at::timestamp, '1 day')::date AS period
+      ) AS axis
+    SQL
+  end
+
+  def select_target
+    Arel.star.count.to_sql
+  end
+
+  def matching_day(model, column)
+    <<~SQL.squish
+      DATE_TRUNC('day', #{model.table_name}.#{column})::date = axis.period
+    SQL
+  end
+
+  def account_domain_scope
+    if params[:include_subdomains]
+      Account.by_domain_and_subdomains(params[:domain])
     else
-      'accounts.domain = :domain::text'
+      Account.with_domain(params[:domain])
     end
   end
 end
