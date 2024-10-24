@@ -22,7 +22,7 @@ RSpec.describe 'Requests' do
     it_behaves_like 'forbidden for wrong scope', 'write write:notifications'
 
     context 'with no options' do
-      it 'returns http success', :aggregate_failures do
+      it 'returns http success' do
         subject
 
         expect(response).to have_http_status(200)
@@ -72,7 +72,7 @@ RSpec.describe 'Requests' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:notifications'
 
-    it 'returns http success and destroys the notification request', :aggregate_failures do
+    it 'returns http success and destroys the notification request' do
       expect { subject }.to change(NotificationRequest, :count).by(-1)
 
       expect(response).to have_http_status(200)
@@ -102,7 +102,7 @@ RSpec.describe 'Requests' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:notifications'
 
-    it 'returns http success and creates notification permission', :aggregate_failures do
+    it 'returns http success and creates notification permission' do
       subject
 
       expect(NotificationPermission.find_by(account: notification_request.account, from_account: notification_request.from_account)).to_not be_nil
@@ -121,7 +121,7 @@ RSpec.describe 'Requests' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:notifications'
 
-    it 'returns http success and destroys the notification request', :aggregate_failures do
+    it 'returns http success and destroys the notification request' do
       expect { subject }.to change(NotificationRequest, :count).by(-1)
 
       expect(response).to have_http_status(200)

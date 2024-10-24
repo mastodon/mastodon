@@ -44,7 +44,7 @@ RSpec.describe 'Home', :inline_jobs do
       context 'with limit param' do
         let(:params) { { limit: 1 } }
 
-        it 'returns only the requested number of statuses with pagination headers', :aggregate_failures do
+        it 'returns only the requested number of statuses with pagination headers' do
           subject
 
           expect(response.parsed_body.size).to eq(params[:limit])
@@ -91,7 +91,7 @@ RSpec.describe 'Home', :inline_jobs do
     context 'without a user context' do
       let(:token) { Fabricate(:accessible_access_token, resource_owner_id: nil, scopes: scopes) }
 
-      it 'returns http unprocessable entity', :aggregate_failures do
+      it 'returns http unprocessable entity' do
         subject
 
         expect(response)

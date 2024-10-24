@@ -13,7 +13,7 @@ RSpec.describe 'Credentials' do
       let(:token)   { Fabricate(:accessible_access_token, application: application) }
       let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-      it 'returns the app information correctly', :aggregate_failures do
+      it 'returns the app information correctly' do
         subject
 
         expect(response).to have_http_status(200)

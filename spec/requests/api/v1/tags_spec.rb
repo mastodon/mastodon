@@ -17,7 +17,7 @@ RSpec.describe 'Tags' do
       let!(:tag) { Fabricate(:tag) }
       let(:name) { tag.name }
 
-      it 'returns the tag', :aggregate_failures do
+      it 'returns the tag' do
         subject
 
         expect(response).to have_http_status(200)
@@ -63,7 +63,7 @@ RSpec.describe 'Tags' do
     it_behaves_like 'forbidden for wrong scope', 'read read:follows'
 
     context 'when the tag exists' do
-      it 'creates follow', :aggregate_failures do
+      it 'creates follow' do
         subject
 
         expect(response).to have_http_status(:success)
@@ -76,7 +76,7 @@ RSpec.describe 'Tags' do
     context 'when the tag does not exist' do
       let(:name) { 'hoge' }
 
-      it 'creates a new tag with the specified name', :aggregate_failures do
+      it 'creates a new tag with the specified name' do
         subject
 
         expect(response).to have_http_status(200)
@@ -127,7 +127,7 @@ RSpec.describe 'Tags' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:follows'
 
-    it 'removes the follow', :aggregate_failures do
+    it 'removes the follow' do
       subject
 
       expect(response).to have_http_status(200)

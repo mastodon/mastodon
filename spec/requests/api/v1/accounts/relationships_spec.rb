@@ -24,7 +24,7 @@ RSpec.describe 'GET /api/v1/accounts/relationships' do
   context 'when provided only one ID' do
     let(:params) { { id: simon.id } }
 
-    it 'returns JSON with correct data', :aggregate_failures do
+    it 'returns JSON with correct data' do
       subject
 
       expect(response)
@@ -47,7 +47,7 @@ RSpec.describe 'GET /api/v1/accounts/relationships' do
 
     context 'when there is returned JSON data' do
       context 'with default parameters' do
-        it 'returns an enumerable json with correct elements, excluding suspended accounts', :aggregate_failures do
+        it 'returns an enumerable json with correct elements, excluding suspended accounts' do
           subject
 
           expect(response)
@@ -69,7 +69,7 @@ RSpec.describe 'GET /api/v1/accounts/relationships' do
       context 'with `with_suspended` parameter' do
         let(:params) { { id: [simon.id, lewis.id, bob.id], with_suspended: true } }
 
-        it 'returns an enumerable json with correct elements, including suspended accounts', :aggregate_failures do
+        it 'returns an enumerable json with correct elements, including suspended accounts' do
           subject
 
           expect(response)

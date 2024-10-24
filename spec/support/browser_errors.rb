@@ -25,14 +25,12 @@ RSpec.configure do |config|
     end
 
     if errors.present?
-      aggregate_failures 'browser errrors' do
-        errors.each do |error|
-          expect(error.level).to_not eq('SEVERE'), error.message
-          next unless error.level == 'WARNING'
+      errors.each do |error|
+        expect(error.level).to_not eq('SEVERE'), error.message
+        next unless error.level == 'WARNING'
 
-          warn 'WARN: browser warning'
-          warn error.message
-        end
+        warn 'WARN: browser warning'
+        warn error.message
       end
     end
   end

@@ -121,7 +121,7 @@ RSpec.describe Settings::TwoFactorAuthentication::WebauthnCredentialsController 
             add_webauthn_credential(user)
           end
 
-          it 'includes existing credentials in list of excluded credentials', :aggregate_failures do
+          it 'includes existing credentials in list of excluded credentials' do
             expect { get :options }.to_not change(user, :webauthn_id)
 
             expect(response).to have_http_status(200)
@@ -134,7 +134,7 @@ RSpec.describe Settings::TwoFactorAuthentication::WebauthnCredentialsController 
         end
 
         context 'when user does not have webauthn enabled' do
-          it 'stores the challenge on the session and sets user webauthn_id', :aggregate_failures do
+          it 'stores the challenge on the session and sets user webauthn_id' do
             get :options
 
             expect(response).to have_http_status(200)
@@ -194,7 +194,7 @@ RSpec.describe Settings::TwoFactorAuthentication::WebauthnCredentialsController 
             add_webauthn_credential(user)
           end
 
-          it 'adds a new credential to user credentials and does not change webauthn_id when creation succeeds', :aggregate_failures do
+          it 'adds a new credential to user credentials and does not change webauthn_id when creation succeeds' do
             controller.session[:webauthn_challenge] = challenge
 
             expect do
@@ -281,7 +281,7 @@ RSpec.describe Settings::TwoFactorAuthentication::WebauthnCredentialsController 
             add_webauthn_credential(user)
           end
 
-          it 'redirects to 2FA methods list and shows flash success and deletes the credential when deletion succeeds', :aggregate_failures do
+          it 'redirects to 2FA methods list and shows flash success and deletes the credential when deletion succeeds' do
             expect do
               delete :destroy, params: { id: user.webauthn_credentials.take.id }
             end.to change { user.webauthn_credentials.count }.by(-1)

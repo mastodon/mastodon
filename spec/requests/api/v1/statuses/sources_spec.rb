@@ -18,7 +18,7 @@ RSpec.describe 'Sources' do
     it_behaves_like 'forbidden for wrong scope', 'write write:statuses'
 
     context 'with public status' do
-      it 'returns the source properties of the status', :aggregate_failures do
+      it 'returns the source properties of the status' do
         subject
 
         expect(response).to have_http_status(200)
@@ -51,7 +51,7 @@ RSpec.describe 'Sources' do
         user.account.follow!(status.account)
       end
 
-      it 'returns the source properties of the status', :aggregate_failures do
+      it 'returns the source properties of the status' do
         subject
 
         expect(response).to have_http_status(200)

@@ -75,7 +75,7 @@ RSpec.describe 'Confirmations' do
         context 'with email param' do
           let(:params) { { email: 'foo@bar.com' } }
 
-          it "updates the user's e-mail address", :aggregate_failures do
+          it "updates the user's e-mail address" do
             subject
 
             expect(response).to have_http_status(200)
@@ -121,7 +121,7 @@ RSpec.describe 'Confirmations' do
 
     context 'with an oauth token' do
       context 'when the account is not confirmed' do
-        it 'returns the confirmation status successfully', :aggregate_failures do
+        it 'returns the confirmation status successfully' do
           subject
 
           expect(response).to have_http_status(200)
@@ -134,7 +134,7 @@ RSpec.describe 'Confirmations' do
       context 'when the account is confirmed' do
         let(:confirmed_at) { Time.now.utc }
 
-        it 'returns the confirmation status successfully', :aggregate_failures do
+        it 'returns the confirmation status successfully' do
           subject
 
           expect(response).to have_http_status(200)
@@ -153,7 +153,7 @@ RSpec.describe 'Confirmations' do
       end
 
       context 'when the account is not confirmed' do
-        it 'returns the confirmation status successfully', :aggregate_failures do
+        it 'returns the confirmation status successfully' do
           subject
 
           expect(response).to have_http_status(200)
@@ -166,7 +166,7 @@ RSpec.describe 'Confirmations' do
       context 'when the account is confirmed' do
         let(:confirmed_at) { Time.now.utc }
 
-        it 'returns the confirmation status successfully', :aggregate_failures do
+        it 'returns the confirmation status successfully' do
           subject
 
           expect(response).to have_http_status(200)
