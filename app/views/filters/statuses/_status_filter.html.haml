@@ -23,7 +23,7 @@
         = image_tag(status.account.avatar.url, width: 15, height: 15, alt: '', class: 'avatar')
         .username= status.account.acct
       ·
-      = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener noreferrer' do
+      = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime', rel: 'noopener noreferrer' do
         %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       - if status.edited?
         ·
