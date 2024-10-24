@@ -45,6 +45,7 @@ ja:
         title: "%{username}さんのメールアドレスを変更"
       change_role:
         changed_msg: ロールを変更しました!
+        edit_roles: ユーザーのロールを管理
         label: ロールを変更
         no_role: ロールがありません
         title: "%{username}さんのロールを変更"
@@ -231,22 +232,22 @@ ja:
         approve_appeal_html: "%{name}さんが%{target}さんからの抗議を承認しました"
         approve_user_html: "%{name}さんが%{target}さんからの登録を承認しました"
         assigned_to_self_report_html: "%{name}さんが通報 %{target}を自身の担当に割り当てました"
-        change_email_user_html: "%{name}さんが%{target}さんのメールアドレスを変更しました"
+        change_email_user_html: "%{name} さんが %{target} さんのメールアドレスを変更しました"
         change_role_user_html: "%{name}さんが%{target}さんのロールを変更しました"
-        confirm_user_html: "%{name}さんが%{target}さんのメールアドレスを確認済みにしました"
+        confirm_user_html: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
         create_account_warning_html: "%{name}さんが%{target}さんに警告メールを送信しました"
         create_announcement_html: "%{name}さんが新しいお知らせ %{target}を作成しました"
-        create_canonical_email_block_html: "%{name}さんがメールアドレス (ハッシュ値: %{target}) をブロックしました"
+        create_canonical_email_block_html: "%{name} さんがメールアドレスのハッシュ値 %{target} をブロックしました"
         create_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を追加しました"
         create_domain_allow_html: "%{name}さんが%{target}の連合を許可しました"
         create_domain_block_html: "%{name}さんがドメイン %{target}をブロックしました"
-        create_email_domain_block_html: "%{name}さんがメールドメイン %{target} をブロックしました"
+        create_email_domain_block_html: "%{name} さんがメールドメイン %{target} をブロックしました"
         create_ip_block_html: "%{name}さんがIP %{target}のルールを作成しました"
         create_unavailable_domain_html: "%{name}がドメイン %{target}への配送を停止しました"
         create_user_role_html: "%{name}さんがロール『%{target}』を作成しました"
         demote_user_html: "%{name}さんが%{target}さんを降格しました"
         destroy_announcement_html: "%{name}さんがお知らせ %{target}を削除しました"
-        destroy_canonical_email_block_html: "%{name}さんがメールアドレス (ハッシュ値: %{target}) のブロックを外しました"
+        destroy_canonical_email_block_html: "%{name} さんがメールアドレスのハッシュ値 %{target} のブロックを外しました"
         destroy_custom_emoji_html: "%{name}さんがカスタム絵文字『%{target}』を削除しました"
         destroy_domain_allow_html: "%{name}さんが%{target}の連合許可を外しました"
         destroy_domain_block_html: "%{name}さんがドメイン %{target}のブロックを外しました"
@@ -269,7 +270,7 @@ ja:
         reject_user_html: "%{name}さんが%{target}さんからの登録を拒否しました"
         remove_avatar_user_html: "%{name}さんが%{target}さんのアイコンを削除しました"
         reopen_report_html: "%{name}さんが通報 %{target}を未解決に戻しました"
-        resend_user_html: "%{name}さんが %{target} の確認メールを再送信しました"
+        resend_user_html: "%{name} さんが %{target} の確認メールを再送信しました"
         reset_password_user_html: "%{name}さんが%{target}さんのパスワードをリセットしました"
         resolve_report_html: "%{name}さんが通報 %{target}を解決済みにしました"
         sensitive_account_html: "%{name}さんが%{target}さんのメディアを閲覧注意にマークしました"
@@ -284,7 +285,7 @@ ja:
         update_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を更新しました"
         update_domain_block_html: "%{name}さんが%{target}のドメインブロックを更新しました"
         update_ip_block_html: "%{name} さんがIP %{target} のルールを更新しました"
-        update_report_html: "%{name}さんが通報 %{target} を更新しました"
+        update_report_html: "%{name} さんが通報 %{target} を更新しました"
         update_status_html: "%{name}さんが%{target}さんの投稿を更新しました"
         update_user_role_html: "%{name}さんがロール『%{target}』を変更しました"
       deleted_account: 削除されたアカウント
@@ -860,6 +861,9 @@ ja:
         message_html: サーバーのルールを定義していません。
       sidekiq_process_check:
         message_html: "%{value}キューに対応するSidekiqプロセスがありません。Sidekiqの設定を確認してください。"
+      software_version_check:
+        action: 利用可能な更新を確認
+        message_html: Mastodonの更新が利用可能です。
       software_version_critical_check:
         action: 利用可能な更新を見る
         message_html: 緊急のMastodonアップデートがあります。速やかに適用してください。
@@ -1143,7 +1147,9 @@ ja:
     use_security_key: セキュリティキーを使用
   author_attribution:
     example_title: サンプルテキスト
+    more_from_html: "%{name} のその他の情報"
     s_blog: "%{name} のブログ"
+    title: 著者の帰属
   challenge:
     confirm: 続ける
     hint_html: 以後1時間はパスワードの再入力を求めません

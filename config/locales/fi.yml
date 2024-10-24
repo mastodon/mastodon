@@ -1165,9 +1165,11 @@ fi:
     use_security_key: Käytä suojausavainta
   author_attribution:
     example_title: Esimerkkiteksti
-    hint_html: Määrää, kuinka tulet tunnustetuksi, kun Mastodonissa jaetaan linkkejä.
+    hint_html: Kirjoitatko uutisia tai blogitekstejä Mastodonin ulkopuolella? Määrää, kuinka tulet tunnustetuksi, kun niitä jaetaan Mastodonissa.
+    instructions: 'Varmista, että artikkelisi HTML:ssä on tämä koodi:'
     more_from_html: Lisää tekijältä %{name}
     s_blog: Käyttäjän %{name} blogi
+    then_instructions: Lisää sitten julkaisun verkkotunnus seuraavaan tekstikenttään.
     title: Tekijän tunnustus
   challenge:
     confirm: Jatka
@@ -1940,7 +1942,7 @@ fi:
     signed_in_as: 'Kirjautunut tilillä:'
   verification:
     extra_instructions_html: <strong>Vinkki:</strong> Verkkosivustollasi oleva linkki voi olla myös näkymätön. Olennainen osuus on <code>rel="me"</code>, joka estää toiseksi henkilöksi tekeytymisen verkkosivustoilla, joilla on käyttäjien luomaa sisältöä. Voit käyttää jopa <code>link</code>-elementtiä sivun <code>head</code>-osassa elementin <code>a</code> sijaan, mutta HTML:n pitää olla käytettävissä ilman JavaScript-koodin suorittamista.
-    here_is_how: Näin voit tehdä sen
+    here_is_how: Näin se onnistuu
     hint_html: "<strong>Henkilöllisyyden vahvistaminen on Mastodonissa jokaisen käyttäjän ulottuvilla.</strong> Se perustuu avoimiin standardeihin ja on maksutonta nyt ja aina. Tarvitset vain henkilökohtaisen verkkosivuston, jonka perusteella sinut voidaan tunnistaa. Kun teet linkin tuolle verkkosivulle profiilistasi, tarkistamme, että verkkosivustolla on linkki takaisin profiiliisi, ja näytämme profiilissasi visuaalisen ilmaisimen."
     instructions_html: Kopioi ja liitä seuraava koodi verkkosivustosi HTML-lähdekoodiin. Lisää sitten verkkosivustosi osoite johonkin profiilisi lisäkentistä ”Muokkaa profiilia” -välilehdellä ja tallenna muutokset.
     verification: Vahvistus

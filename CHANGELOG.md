@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.1] - 2024-10-21
+
+### Added
+
+- Add more explicit explanations about author attribution and `fediverse:creator` (#32383 by @ClearlyClaire)
+- Add ability to group follow notifications in WebUI, can be disabled in the column settings (#32520 by @renchap)
+- Add back a 6 hours mute duration option (#32522 by @renchap)
+- Add note about not changing ActiveRecord encryption secrets once they are set (#32413, #32476, #32512, and #32537 by @ClearlyClaire and @mjankowski)
+
+### Changed
+
+- Change translation feature to translate to selected regional variant (e.g. pt-BR) if available (#32428 by @c960657)
+
+### Removed
+
+- Remove ability to get embed code for remote posts (#32578 by @ClearlyClaire)\
+  Getting the embed code is only reliable for local posts.\
+  It never worked for non-Mastodon servers, and stopped working correctly with the changes made in 4.3.0.\
+  We have therefore decided to remove the menu entry while we investigate solutions.
+
+### Fixed
+
+- Fix follow recommendation moderation page default language when using regional variant (#32580 by @ClearlyClaire)
+- Fix column-settings spacing in local timeline in advanced view (#32567 by @lindwurm)
+- Fix broken i18n in text welcome mailer tags area (#32571 by @mjankowski)
+- Fix missing or incorrect cache-control headers for Streaming server (#32551 by @ThisIsMissEm)
+- Fix only the first paragraph being displayed in some notifications (#32348 by @ClearlyClaire)
+- Fix reblog icons on account media view (#32506 by @tribela)
+- Fix Content-Security-Policy not allowing OpenStack SWIFT object storage URI (#32439 by @kenkiku1021)
+- Fix back arrow pointing to the incorrect direction in RTL languages (#32485 by @renchap)
+- Fix streaming server using `REDIS_USERNAME` instead of `REDIS_USER` (#32493 by @ThisIsMissEm)
+- Fix follow recommendation carrousel scrolling on RTL layouts (#32462 and #32505 by @ClearlyClaire)
+- Fix follow recommendation suppressions not applying immediately (#32392 by @ClearlyClaire)
+- Fix language of push notifications (#32415 by @ClearlyClaire)
+- Fix mute duration not being shown in list of muted accounts in web UI (#32388 by @ClearlyClaire)
+- Fix “Mark every notification as read” not updating the read marker if scrolled down (#32385 by @ClearlyClaire)
+- Fix “Mention” appearing for otherwise filtered posts (#32356 by @ClearlyClaire)
+- Fix notification requests from suspended accounts still being listed (#32354 by @ClearlyClaire)
+- Fix list edition modal styling (#32358 and #32367 by @ClearlyClaire and @vmstan)
+- Fix 4 columns barely not fitting on 1920px screen (#32361 by @ClearlyClaire)
+- Fix icon alignment in applications list (#32293 by @mjankowski)
+
 ## [4.3.0] - 2024-10-08
 
 The following changelog entries focus on changes visible to users, administrators, client developers or federated software developers, but there has also been a lot of code modernization, refactoring, and tooling work, in particular by @mjankowski.
@@ -67,7 +109,7 @@ The following changelog entries focus on changes visible to users, administrator
   ```html
   <meta name="fediverse:creator" content="username@domain" />
   ```
-  On the API side, this is represented by a new `authors` attribute to the `PreviewCard` entity: https://docs.joinmastodon.org/entities/PreviewCard/#authors\
+  On the API side, this is represented by a new `authors` attribute to the `PreviewCard` entity: https://docs.joinmastodon.org/entities/PreviewCard/#authors \
   Users can allow arbitrary domains to use `fediverse:creator` to credit them by visiting `/settings/verification`.\
   This is federated as a new `attributionDomains` property in the `http://joinmastodon.org/ns` namespace, containing an array of domain names: https://docs.joinmastodon.org/spec/activitypub/#properties-used-1
 - **Add in-app notifications for moderation actions and warnings** (#30065, #30082, and #30081 by @ClearlyClaire)\

@@ -3,7 +3,6 @@ eo:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Protektas kontraŭ falsaj atribuoj.
         discoverable: Viaj publikaj afiŝoj kaj profilo povas esti prezentitaj aŭ rekomenditaj en diversaj lokoj de Mastodon kaj via profilo povas esti proponita al aliaj uzantoj.
         display_name: Via plena nomo aŭ via kromnomo.
         fields: Via retpaĝo, pronomoj, aĝo, ĉio, kion vi volas.
@@ -76,6 +75,7 @@ eo:
           warn: Kaŝi la enhavon filtritan malantaŭ averto mencianta la nomon de la filtro
       form_admin_settings:
         activity_api_enabled: Nombroj de loke publikigitaj afiŝoj, aktivaj uzantoj kaj novaj registradoj en semajnaj siteloj
+        backups_retention_period: Uzantoj havas la kapablon generi arkivojn de siaj afiŝoj por elŝuti poste. Kiam estas agordita al pozitiva valoro, ĉi tiuj arkivoj estos aŭtomate forigitaj de via stokado post la specifita nombro da tagoj.
         bootstrap_timeline_accounts: Ĉi tiuj kontoj pinglitas al la supro de sekvorekomendoj de novaj uzantoj.
         closed_registrations_message: Montrita kiam registroj fermitas
         custom_css: Vi povas meti propajn stilojn en la retversio de Mastodon.
@@ -138,7 +138,6 @@ eo:
         url: Kien eventoj sendotas
     labels:
       account:
-        attribution_domains_as_text: Permesi nur specifajn retejojn
         discoverable: Elstarigi profilon kaj afiŝojn en eltrovantaj algoritmoj
         fields:
           name: Etikedo
@@ -243,6 +242,7 @@ eo:
         backups_retention_period: Uzantoarkivretendauro
         bootstrap_timeline_accounts: Ĉiam rekomendi ĉi tiujn kontojn al novaj uzantoj
         closed_registrations_message: Kutima mesaĝo kiam registroj ne estas disponeblaj
+        content_cache_retention_period: Retenperiodo de fora enhavo
         custom_css: Propa CSS
         favicon: Favorikono
         mascot: Propa maskoto

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pundit/rspec'
 
 RSpec.describe AccountModerationNotePolicy do
   subject { described_class }
@@ -12,13 +11,13 @@ RSpec.describe AccountModerationNotePolicy do
   permissions :create? do
     context 'when staff' do
       it 'grants to create' do
-        expect(subject).to permit(admin, described_class)
+        expect(subject).to permit(admin, AccountModerationNote)
       end
     end
 
     context 'when not staff' do
       it 'denies to create' do
-        expect(subject).to_not permit(john, described_class)
+        expect(subject).to_not permit(john, AccountModerationNote)
       end
     end
   end

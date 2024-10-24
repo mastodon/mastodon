@@ -875,6 +875,9 @@ et:
         message_html: Serverireegleid pole defineeritud.
       sidekiq_process_check:
         message_html: Ühtegi Sidekiq protsessi pole %{value} järjekorra jaoks. Sidekiq seadistus vajab üle vaatamist
+      software_version_check:
+        action: Vaata saadaval uuendusi
+        message_html: Mastodoni uuendus on saadaval.
       software_version_critical_check:
         action: Vaata saadaolevaid uuendusi
         message_html: Saadaval on Mastodoni kriitiline uuendus, uuenda nii kiiresti kui võimalik.
@@ -1162,7 +1165,6 @@ et:
     use_security_key: Kasuta turvavõtit
   author_attribution:
     example_title: Näidistekst
-    hint_html: Määra, kuidas sind krediteeritakse, kui linke Mastodonis jagatakse.
     more_from_html: Rohkem kasutajalt %{name}
     s_blog: Kasutaja %{name} blogi
     title: Autori tunnustamine
@@ -1692,6 +1694,7 @@ et:
     delete: Konto kustutamine
     development: Arendus
     edit_profile: Muuda profiili
+    export: Eksport
     featured_tags: Esile toodud sildid
     import: Impordi
     import_and_export: Import / eksport

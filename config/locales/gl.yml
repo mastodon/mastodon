@@ -1165,9 +1165,11 @@ gl:
     use_security_key: Usa chave de seguridade
   author_attribution:
     example_title: Texto de mostra
-    hint_html: Controla o xeito en que te acreditan cando se comparten ligazóns en Mastodon.
+    hint_html: Escribes novas ou artigos nun blog alleos a Mastodon? Xestiona o xeito en que podes dar crédito da túa autoría cando os compartes en Mastodon.
+    instructions: 'Pon coidado en que este código apareza no HTML do teu artigo:'
     more_from_html: Máis de %{name}
     s_blog: Blog de %{name}
+    then_instructions: Despois engade o nome de dominio da publicación no campo inferior.
     title: Atribución da autoría
   challenge:
     confirm: Continuar
@@ -1760,11 +1762,11 @@ gl:
     enabled: Borrar automáticamente publicacións antigas
     enabled_hint: Borra automáticamente as túas publicacións unha vez acadan certa lonxevidade, a menos que cumpran algunha destas excepcións
     exceptions: Excepcións
-    explanation: Como o borrado de publicacións consume moitos recursos, esta faise aos poucos cando o servidor non ten moita carga de traballo. Así, a eliminación das túas publicacións podería ser lixeiramente posterior a cando lle correspondería por idade.
+    explanation: O borrado de publicacións vaise facendo aos poucos cando o servidor non ten moito traballo, é unha tarefa que consume moitos recursos. Así, a eliminación das túas publicacións podería ser lixeiramente posterior a cando lle correspondería por antigüidade.
     ignore_favs: Ignorar favoritas
     ignore_reblogs: Ignorar promocións
     interaction_exceptions: Excepcións baseadas en interaccións
-    interaction_exceptions_explanation: Ten en conta que non hai garantía de que se eliminen as túas publicacións se baixan do límite de promocións e favorecementos se nalgún momento o superaron.
+    interaction_exceptions_explanation: Ten en conta que non hai garantía de que se eliminen as túas publicacións se baixan do límite de promocións ou favorecementos se nalgún momento o tivesen superado.
     keep_direct: Manter mensaxes directas
     keep_direct_hint: Non borrar ningunha das túas mensaxes directas
     keep_media: Manter publicacións que conteñen multimedia

@@ -901,6 +901,8 @@ ru:
         message_html: Вы не определили правила сервера.
       sidekiq_process_check:
         message_html: Ни один Sidekiq не запущен для %{value} очереди(-ей). Пожалуйста, просмотрите настройки Sidekiq
+      software_version_check:
+        message_html: Доступно обновление для Mastodon.
       software_version_critical_check:
         action: Посмотреть доступные обновления
         message_html: Доступно критическое обновление Mastodon, пожалуйста, обновитесь как можно скорее.
@@ -1196,7 +1198,6 @@ ru:
     use_security_key: Использовать ключ безопасности
   author_attribution:
     example_title: Образец текста
-    hint_html: Контролируйте, как вы будете отмечены при обмене ссылками на Mastodon.
     more_from_html: Больше от %{name}
     s_blog: "%{name}'S Блог"
     title: Авторская атрибуция
