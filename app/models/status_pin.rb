@@ -17,6 +17,8 @@ class StatusPin < ApplicationRecord
 
   validates_with StatusPinValidator
 
+  scope :latest, -> { reorder(created_at: :desc) }
+
   after_destroy :invalidate_cleanup_info
 
   def invalidate_cleanup_info
