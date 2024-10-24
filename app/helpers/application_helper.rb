@@ -120,6 +120,10 @@ module ApplicationHelper
     inline_svg_tag 'check.svg'
   end
 
+  def mail_header_image(icon = 'email.png')
+    frontend_asset_url("images/mailer-new/heading/#{icon}")
+  end
+
   def visibility_icon(status)
     if status.public_visibility?
       material_symbol('globe', title: I18n.t('statuses.visibilities.public'))
