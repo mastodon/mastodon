@@ -5,13 +5,12 @@ require 'rails_helper'
 RSpec.describe AccountStatusesCleanupPolicy do
   let(:account) { Fabricate(:account, username: 'alice', domain: nil) }
 
-  describe 'validation' do
-    it 'disallow remote accounts' do
-      account.update(domain: 'example.com')
-      account_statuses_cleanup_policy = Fabricate.build(:account_statuses_cleanup_policy, account: account)
-      account_statuses_cleanup_policy.valid?
-      expect(account_statuses_cleanup_policy).to model_have_error_on_field(:account)
-    end
+  describe 'Validations' do
+    subject { Fabricate.build :account_statuses_cleanup_policy }
+
+    let(:remote_account) { Fabricate(:account, domain: 'example.com') }
+
+    it { is_expected.to_not allow_value(remote_account).for(:account) }
   end
 
   describe 'save hooks' do
