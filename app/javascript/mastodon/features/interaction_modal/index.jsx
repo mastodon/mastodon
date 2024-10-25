@@ -381,7 +381,7 @@ class InteractionModal extends React.PureComponent {
     case 'vote':
       icon = <Icon id='tasks' icon={InsertChartIcon} />;
       title = <FormattedMessage id='interaction_modal.title.vote' defaultMessage="Vote in {name}'s poll" values={{ name }} />;
-      actionDescription = <FormattedMessage id='interaction_modal.description.vote' defaultMessage='With an account on Mastodon, you can vote in this poll and have your say.' />;
+      actionDescription = <FormattedMessage id='interaction_modal.description.vote' defaultMessage='With an account on Mastodon, you can vote in this poll.' />;
       break;
     }
 
