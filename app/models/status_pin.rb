@@ -21,6 +21,8 @@ class StatusPin < ApplicationRecord
 
   delegate :local?, to: :account, prefix: true
 
+  private
+
   def invalidate_cleanup_info
     account.statuses_cleanup_policy&.invalidate_last_inspected(status, :unpin)
   end
