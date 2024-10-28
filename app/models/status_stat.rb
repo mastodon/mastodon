@@ -11,8 +11,8 @@
 #  favourites_count           :bigint(8)        default(0), not null
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  untrusted_favourites_count :integer
-#  untrusted_reblogs_count    :integer
+#  untrusted_favourites_count :bigint(8)
+#  untrusted_reblogs_count    :bigint(8)
 #
 
 class StatusStat < ApplicationRecord
@@ -20,7 +20,7 @@ class StatusStat < ApplicationRecord
 
   before_validation :clamp_untrusted_counts
 
-  MAX_UNTRUSTED_COUNT = 1_000_000
+  MAX_UNTRUSTED_COUNT = 100_000_000
 
   def replies_count
     [attributes['replies_count'], 0].max
