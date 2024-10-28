@@ -83,10 +83,16 @@ class AttachmentBatch
             rescue Fog::OpenStack::Storage::NotFound
               logger.debug "Will ignore because file is not found #{attachment.path(style)}"
             rescue => e
-                sleep(5)
-                retry if (retries += 1) < MAX_RETRY
+              retries += 1
+
+              if retries < MAX_RETRY
+                logger.debug "Retry #{retries}/#{MAX_RETRY} after #{e.message}"
+                sleep 2**retries
+                retry
+              else
                 logger.error "Batch deletion from fog failed after #{e.message}"
                 raise e
+              end
             end
           when :azure
             logger.debug { "Deleting #{attachment.path(style)}" }
