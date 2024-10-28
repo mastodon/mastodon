@@ -45,7 +45,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def current_user?
-    defined?(current_user) && !current_user.nil?
+    !current_user.nil?
   end
 
   def show_application?

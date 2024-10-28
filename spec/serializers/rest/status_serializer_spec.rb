@@ -3,8 +3,18 @@
 require 'rails_helper'
 
 RSpec.describe REST::StatusSerializer do
-  subject { serialized_record_json(status, described_class) }
+  subject do
+    serialized_record_json(
+      status,
+      described_class,
+      options: {
+        scope: current_user,
+        scope_name: :current_user,
+      }
+    )
+  end
 
+  let(:current_user) { Fabricate(:user) }
   let(:alice) { Fabricate(:account, username: 'alice') }
   let(:bob)   { Fabricate(:account, username: 'bob', domain: 'other.com') }
   let(:status) { Fabricate(:status, account: alice) }
