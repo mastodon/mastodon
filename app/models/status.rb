@@ -314,19 +314,23 @@ class Status < ApplicationRecord
   end
 
   def increment_count!(key)
-    update = {}
-    update[key] = public_send(key) + 1
-    update[:untrusted_favourites_count] = untrusted_favourites_count + 1 if key == :favourites_count && !untrusted_favourites_count.nil?
-    update[:untrusted_reblogs_count] = untrusted_reblogs_count + 1 if key == :reblogs_count && !untrusted_reblogs_count.nil?
-    update_status_stat!(update)
+    if key == :favourites_count && !untrusted_favourites_count.nil?
+      update_status_stat!(favourites_count: favourites_count + 1, untrusted_favourites_count: untrusted_favourites_count + 1)
+    elsif key == :reblogs_count && !untrusted_reblogs_count.nil?
+      update_status_stat!(reblogs_count: reblogs_count + 1, untrusted_reblogs_count: untrusted_reblogs_count + 1)
+    else
+      update_status_stat!(key => public_send(key) + 1)
+    end
   end
 
   def decrement_count!(key)
-    update = {}
-    update[key] = [public_send(key) - 1, 0].max
-    update[:untrusted_favourites_count] = [untrusted_favourites_count - 1, 0].max if key == :favourites_count && !untrusted_favourites_count.nil?
-    update[:untrusted_reblogs_count] = [untrusted_reblogs_count - 1, 0].max if key == :reblogs_count && !untrusted_reblogs_count.nil?
-    update_status_stat!(update)
+    if key == :favourites_count && !untrusted_favourites_count.nil?
+      update_status_stat!(favourites_count: [favourites_count - 1, 0].max, untrusted_favourites_count: [untrusted_favourites_count - 1, 0].max)
+    elsif key == :reblogs_count && !untrusted_reblogs_count.nil?
+      update_status_stat!(reblogs_count: [reblogs_count - 1, 0].max, untrusted_reblogs_count: [untrusted_reblogs_count - 1, 0].max)
+    else
+      update_status_stat!(key => [public_send(key) - 1, 0].max)
+    end
   end
 
   def trendable?
