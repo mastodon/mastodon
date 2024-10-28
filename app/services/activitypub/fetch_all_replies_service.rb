@@ -41,7 +41,7 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
     Status.where(uri: uris).should_fetch_replies.touch_all(:fetched_replies_at)
 
     # Reject all statuses that we already have in the db
-    uris = uris.reject { |uri| dont_update.include?(uri) }.take(MAX_REPLIES)
+    uris = (uris - dont_update).take(MAX_REPLIES)
 
     Rails.logger.debug { "FetchAllRepliesService - #{@collection_or_uri}: Fetching filtered statuses: #{uris}" }
     uris
