@@ -43,6 +43,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         update_poll!
         update_immediate_attributes!
         update_metadata!
+        update_counts!
         create_edits!
       end
 
@@ -62,6 +63,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     with_redis_lock("create:#{@uri}") do
       update_poll!(allow_significant_changes: false)
       queue_poll_notifications!
+      update_counts!
     end
   end
 
@@ -236,6 +238,19 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       rescue Seahorse::Client::NetworkingError => e
         Rails.logger.warn "Error storing emoji: #{e}"
       end
+    end
+  end
+
+  def update_counts!
+    likes = @status_parser.favourites_count
+    shares =  @status_parser.reblogs_count
+    return if likes.nil? && shares.nil?
+
+    @status.status_stat.tap do |status_stat|
+      status_stat.untrusted_reblogs_count = shares unless shares.nil?
+      status_stat.untrusted_favourites_count = likes unless likes.nil?
+
+      status_stat.save if status_stat.changed?
     end
   end
 
