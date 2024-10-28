@@ -5,7 +5,7 @@ class ActivityPub::ImageSerializer < ActivityPub::Serializer
 
   context_extensions :focal_point
 
-  attributes :type, :media_type, :url
+  attributes :type, :media_type, :url, :name
   attribute :focal_point, if: :focal_point?
 
   def type
@@ -19,6 +19,8 @@ class ActivityPub::ImageSerializer < ActivityPub::Serializer
   def media_type
     object.content_type
   end
+
+  delegate :name, to: :object
 
   def focal_point?
     object.respond_to?(:meta) && object.meta.is_a?(Hash) && object.meta['focus'].is_a?(Hash)
