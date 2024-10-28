@@ -20,6 +20,8 @@ class StatusStat < ApplicationRecord
 
   before_validation :clamp_untrusted_counts
 
+  MAX_UNTRUSTED_COUNT = 1_000_000
+
   def replies_count
     [attributes['replies_count'], 0].max
   end
@@ -35,7 +37,7 @@ class StatusStat < ApplicationRecord
   private
 
   def clamp_untrusted_counts
-    self.untrusted_favourites_count = untrusted_favourites_count.to_i.clamp(0, 1_000_000) if untrusted_favourites_count.present?
-    self.untrusted_reblogs_count = untrusted_reblogs_count.to_i.clamp(0, 1_000_000) if untrusted_reblogs_count.present?
+    self.untrusted_favourites_count = untrusted_favourites_count.to_i.clamp(0, MAX_UNTRUSTED_COUNT) if untrusted_favourites_count.present?
+    self.untrusted_reblogs_count = untrusted_reblogs_count.to_i.clamp(0, MAX_UNTRUSTED_COUNT) if untrusted_reblogs_count.present?
   end
 end
