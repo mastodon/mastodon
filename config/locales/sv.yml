@@ -542,7 +542,7 @@ sv:
       total_followed_by_them: Följs av dem
       total_followed_by_us: Följs av oss
       total_reported: Rapporter om dem
-      total_storage: Media-bilagor
+      total_storage: Mediebilagor
       totals_time_period_hint_html: Totalsummorna som visas nedan inkluderar data för all tid.
       unknown_instance: Det finns för närvarande inga uppgifter om denna domän på denna server.
     invites:
@@ -893,6 +893,7 @@ sv:
         message_html: "<strong>Din objektlagring är felkonfigurerad. Sekretessen för dina användare är i riskzonen.</strong>"
     tags:
       moderation:
+        not_trendable: Kan inte trenda
         not_usable: Inte användbar
         pending_review: Väntar på granskning
         review_requested: Granskning begärd
@@ -904,6 +905,7 @@ sv:
       name: Namn
       newest: Nyaste
       oldest: Äldsta
+      open: Visa offentligt
       reset: Återställ
       review: Granskningsstatus
       search: Sök
@@ -1164,8 +1166,11 @@ sv:
     use_security_key: Använd säkerhetsnyckel
   author_attribution:
     example_title: Exempeltext
+    hint_html: Skriver du nyheter eller bloggartiklar utanför Mastodon? Kontrollera hur du får krediteras när de delas på Mastodon.
+    instructions: 'Se till att den här koden finns i din artikels HTML:'
     more_from_html: Mer från %{name}
     s_blog: "%{name}s blogg"
+    then_instructions: Lägg sedan till domännamnet för publikationen i fältet nedan.
     title: Författarattribution
   challenge:
     confirm: Fortsätt
@@ -1364,9 +1369,43 @@ sv:
       overwrite: Skriv över
       overwrite_long: Ersätt de nuvarande uppgifterna med de nya
     overwrite_preambles:
+      blocking_html:
+        one: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} konto</strong> från <strong>%{filename}</strong>.
+        other: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} konton</strong> från <strong>%{filename}</strong>.
       bookmarks_html:
         one: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong>.
         other: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} domän</strong> från <strong>%{filename}</strong>.
+        other: Du är på väg att <strong>ersätta din blockeringslista</strong> med upp till <strong>%{count} domäner</strong> från <strong>%{filename}</strong>.
+      following_html:
+        one: Du är på väg till <strong>följ</strong> upp till <strong>%{count} konto</strong> från <strong>%{filename}</strong> och <strong>sluta följa någon annan</strong>.
+        other: Du är på väg till <strong>följ</strong> upp till <strong>%{count} konton</strong> från <strong>%{filename}</strong> och <strong>sluta följa någon annan</strong>.
+      lists_html:
+        one: Du är på väg att <strong>ersätta dina listor</strong> med innehållet i <strong>%{filename}</strong>. Upp till <strong>%{count} konto</strong> kommer att läggas till i nya listor.
+        other: Du är på väg att <strong>ersätta dina listor</strong> med innehållet i <strong>%{filename}</strong>. Upp till <strong>%{count} konton</strong> kommer att läggas till i nya listor.
+      muting_html:
+        one: Du är på väg att <strong>ersätta din lista med tystade konton</strong> med upp till <strong>%{count} konto</strong> från <strong>%{filename}</strong>.
+        other: Du är på väg att <strong>ersätta din lista med tystade konton</strong> med upp till <strong>%{count} konton</strong> från <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        one: Du är på väg att <strong>blockera</strong> med upp till <strong>%{count} konto</strong> från <strong>%{filename}</strong>.
+        other: Du är på väg att <strong>blockera</strong> med upp till <strong>%{count} konton</strong> från <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Du håller på att lägga upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong> till dina <strong>bokmärken</strong>.
+        other: Du håller på att lägga upp till <strong>%{count} inlägg</strong> från <strong>%{filename}</strong> till dina <strong>bokmärken</strong>.
+      domain_blocking_html:
+        one: Du är på väg att <strong>blockera</strong> upp till <strong>%{count} domän</strong> från <strong>%{filename}</strong>.
+        other: Du är på väg att <strong>blockera</strong> upp till <strong>%{count} domäner</strong> från <strong>%{filename}</strong>.
+      following_html:
+        one: Du är på väg att <strong>följa</strong> upp till <strong>%{count} konto</strong> från <strong>%{filename}</strong>.
+        other: Du är på väg att <strong>följa</strong> upp till <strong>%{count} konton</strong> från <strong>%{filename}</strong>.
+      lists_html:
+        one: Du håller på att lägga upp till <strong>%{count} konto</strong> från <strong>%{filename}</strong> till dina <strong>listor</strong>. Nya listor kommer att skapas om det inte finns någon lista att lägga till.
+        other: Du håller på att lägga upp till <strong>%{count} konton</strong> från <strong>%{filename}</strong> till dina <strong>listor</strong>. Nya listor kommer att skapas om det inte finns någon lista att lägga till.
+      muting_html:
+        one: Du är på väg att <strong>tysta</strong> upp till <strong>%{count} konto</strong> från <strong>%{filename}</strong>.
+        other: Du är på väg att <strong>tysta</strong> upp till <strong>%{count} konton</strong> från <strong>%{filename}</strong>.
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
     recent_imports: Nyligen importerade
     states:

@@ -1166,8 +1166,11 @@ nn:
     use_security_key: Bruk sikkerhetsnøkkel
   author_attribution:
     example_title: Eksempeltekst
+    hint_html: Skriv du nyhende eller blogginnlegg utanfor Mastodon? Her kan du kontrollera korleis du blir kreditert når artiklane dine blir delte på Mastodon.
+    instructions: 'Sjå til at denne koden er i HTML-koden i artikkelen din:'
     more_from_html: Meir frå %{name}
     s_blog: Bloggen til %{name}
+    then_instructions: Så legg du til domenenamnet for publikasjonen i feltet under.
     title: Forfattarkreditering
   challenge:
     confirm: Hald fram
@@ -1369,6 +1372,37 @@ nn:
       blocking_html:
         one: Du skal til å <strong>byta ut blokkeringslista di</strong> med opp til <strong>%{count} brukarkonto</strong> frå <strong>%{filename}</strong>.
         other: Du skal til å <strong>byta ut blokkeringslista di</strong> med opp til <strong>%{count} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Du skal til å <strong>byta ut bokmerka dine</strong> med opp til <strong>%{count} innlegg</strong> frå <strong>%{filename}</strong>.
+        other: Du skal til å <strong>byta ut bokmerka dine</strong> med opp til <strong>%{count} innlegg</strong> frå <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Du skal til å <strong>byta ut domeneblokkeringslista di</strong> med opp til <strong>%{count} domene</strong> frå <strong>%{filename}</strong>.
+        other: Du skal til å <strong>byta ut domeneblokkeringslista di</strong> med opp til <strong>%{count} domene</strong> frå <strong>%{filename}</strong>.
+      following_html:
+        one: Du skal til å <strong>fylgja</strong> opp til <strong>%{count} brukarkonto</strong> frå <strong>%{filename}</strong> og <strong>slutta å fylgja alle andre</strong>.
+        other: Du skal til å <strong>fylgja</strong> opp til <strong>%{count} brukarkontoar</strong> frå <strong>%{filename}</strong> og <strong>slutta å fylgja alle andre</strong>.
+      muting_html:
+        one: Du skal til å <strong>byta ut lista di over dempa brukarkontoar</strong> med opp til <strong>%{count} brukarkonto</strong> frå <strong>%{filename}</strong>.
+        other: Du skal til å <strong>byta ut lista di over dempa brukarkontoar</strong> med opp til <strong>%{count} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        one: Du skal til å <strong>blokkera</strong> opp til <strong>%{count} brukarkonto</strong> frå <strong>%{filename}</strong>.
+        other: Du skal til å <strong>blokkera</strong> opp til <strong>%{count} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Du er i ferd med å leggja til opp til <strong>%{count} innlegg</strong> frå <strong>%{filename}</strong> til <strong>bokmerka dine</strong>.
+        other: Du er i ferd med å leggja til opp til <strong>%{count} innlegg</strong> frå <strong>%{filename}</strong> til <strong>bokmerka dine</strong>.
+      domain_blocking_html:
+        one: Du skal til å <strong>blokkera</strong> opp til <strong>%{count} domene</strong> frå <strong>%{filename}</strong>.
+        other: Du skal til å <strong>blokkera</strong> opp til <strong>%{count} domene</strong> frå <strong>%{filename}</strong>.
+      following_html:
+        one: Du er i ferd med å <strong>fylgja</strong> opp til <strong>%{count} brukarkonto</strong> frå <strong>%{filename}</strong>.
+        other: Du er i ferd med å <strong>fylgja</strong> opp til <strong>%{count} brukarkontoar</strong> frå <strong>%{filename}</strong>.
+      lists_html:
+        one: Du er i ferd med å leggja til opptil <strong>%{count} konto</strong> frå <strong>%{filename}</strong> til i <strong>listene</strong> dine. Nye lister vil blir oppretta om ingen lister finst frå før.
+        other: Du er i ferd med å leggja til opptil <strong>%{count} kontoar</strong> frå <strong>%{filename}</strong> til i <strong>listene</strong> dine. Nye lister vil blir oppretta om ingen lister finst frå før.
+      muting_html:
+        one: Du er i ferd med å <strong>dempa</strong> opp til <strong>%{count} brukarkonto</strong> frå <strong>%{filename}</strong>.
+        other: Du er i ferd med å <strong>dempa</strong> opp til <strong>%{count} brukarkontoar</strong> frå <strong>%{filename}</strong>.
     preface: Du kan henta inn data som du har eksportert frå ein annan tenar, som t.d. ei liste over folka du fylgjer eller blokkerer.
     recent_imports: Siste importar
     states:

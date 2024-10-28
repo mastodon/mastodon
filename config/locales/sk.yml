@@ -49,6 +49,7 @@ sk:
         title: Zmeň email pre %{username}
       change_role:
         changed_msg: Postavenie úspešne zmenené!
+        edit_roles: Spravuj role užívateľov
         label: Zmeň pozíciu
         no_role: Žiadna pozícia
         title: Zmeň pozíciu pre %{username}
@@ -61,6 +62,7 @@ sk:
       demote: Degraduj
       destroyed_msg: "%{username} je teraz zaradený do fronty na okamžité vymazanie"
       disable: Zablokuj
+      disable_sign_in_token_auth: Vypni overovanie e-mailovým tokenom
       disable_two_factor_authentication: Vypni dvoj-faktorové overovanie
       disabled: Blokovaný
       display_name: Ukáž meno
@@ -69,6 +71,7 @@ sk:
       email: Email
       email_status: Stav emailu
       enable: Povoľ
+      enable_sign_in_token_auth: Povoľ overovania e-mailovým tokenom
       enabled: Povolený
       enabled_msg: Úspešne rozmrazené konto %{username}
       followers: Sledujúci
@@ -822,6 +825,7 @@ sk:
       prefix_invited_by_user: "@%{name} ťa pozýva na tento Mastodon server!"
       prefix_sign_up: Zaregistruj sa na Mastodone už dnes!
       suffix: S účtom budeš môcť nasledovať ľudí, posielať príspevky, a vymieňať si správy s užívateľmi z hocijakého Mastodon servera a viac!
+    didnt_get_confirmation: Neobdržal/a si odkaz na potvrdenie?
     dont_have_your_security_key: Nemáš svoj bezpečnostný kľúč?
     forgot_password: Zabudnuté heslo?
     invalid_reset_password_token: Token na obnovu hesla vypršal. Prosím vypítaj si nový.
@@ -832,6 +836,7 @@ sk:
     migrate_account_html: Ak si želáš presmerovať tento účet na nejaký iný, môžeš si to <a href="%{path}">nastaviť tu</a>.
     or_log_in_with: Alebo prihlás s
     progress:
+      confirm: Potvrď email
       details: Tvoje údaje
       rules: Súhlas s pravidlami
     register: Zaregistruj sa
