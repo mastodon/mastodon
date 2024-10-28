@@ -415,9 +415,6 @@ class Status < ApplicationRecord
   def update_status_stat!(attrs)
     return if marked_for_destruction? || destroyed?
 
-    attrs[:untrusted_favourites_count] = attrs[:favourites_count] if attrs.key?(:favourites_count) && !untrusted_favourites_count.nil?
-    attrs[:untrusted_reblogs_count] = value if key == :favourites_count && !untrusted_favourites_count.nil?
-
     status_stat.update(attrs)
   end
 
