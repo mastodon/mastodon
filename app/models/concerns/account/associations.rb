@@ -35,6 +35,7 @@ module Account::Associations
       has_one :deletion_request, class_name: 'AccountDeletionRequest', inverse_of: :account
       has_one :follow_recommendation_suppression, inverse_of: :account
       has_one :notification_policy, inverse_of: :account
+      has_one :statuses_cleanup_policy, class_name: 'AccountStatusesCleanupPolicy', inverse_of: :account
       has_one :user, inverse_of: :account
     end
 
@@ -55,9 +56,6 @@ module Account::Associations
 
     # Follow recommendations
     has_one :follow_recommendation, inverse_of: :account, dependent: nil
-
-    # Account statuses cleanup policy
-    has_one :statuses_cleanup_policy, class_name: 'AccountStatusesCleanupPolicy', inverse_of: :account, dependent: :destroy
 
     # Imports
     has_many :bulk_imports, inverse_of: :account, dependent: :delete_all
