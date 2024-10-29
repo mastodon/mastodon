@@ -31,6 +31,7 @@ module Account::Associations
         has_many :scheduled_statuses
         has_many :status_pins
         has_many :statuses
+
         has_one :deletion_request, class_name: 'AccountDeletionRequest'
         has_one :follow_recommendation_suppression
         has_one :notification_policy
