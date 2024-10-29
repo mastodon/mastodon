@@ -46,8 +46,10 @@ class TextFormatter
       end
     end
 
-    MastodonOTELTracer.in_span('TextFormatter#to_s simple_format') do
-      html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
+    if multiline?
+      MastodonOTELTracer.in_span('TextFormatter#to_s simple_format') do
+        html = simple_format(html, {}, sanitize: false).delete("\n")
+      end
     end
 
     html.html_safe # rubocop:disable Rails/OutputSafety
