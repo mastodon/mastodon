@@ -14,13 +14,13 @@ module Account::Associations
       has_many :notification_requests, inverse_of: :account
       has_many :notifications, inverse_of: :account
       has_many :scheduled_statuses, inverse_of: :account
+      has_many :status_pins, inverse_of: :account
       has_many :statuses, inverse_of: :account
       has_one :notification_policy, inverse_of: :account
       has_one :user, inverse_of: :account
     end
 
     # Pinned statuses
-    has_many :status_pins, inverse_of: :account, dependent: :destroy
     has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status
 
     # Endorsements
