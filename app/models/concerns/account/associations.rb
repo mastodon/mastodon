@@ -6,36 +6,39 @@ module Account::Associations
   included do
     # Core associations
     with_options dependent: :destroy do
-      has_many :account_moderation_notes, inverse_of: :account
-      has_many :account_pins, inverse_of: :account
-      has_many :account_warnings, inverse_of: :account
-      has_many :aliases, class_name: 'AccountAlias', inverse_of: :account
-      has_many :bookmarks, inverse_of: :account
-      has_many :conversations, class_name: 'AccountConversation', inverse_of: :account
-      has_many :custom_filters, inverse_of: :account
-      has_many :favourites, inverse_of: :account
-      has_many :featured_tags, -> { includes(:tag) }, inverse_of: :account
-      has_many :list_accounts, inverse_of: :account
-      has_many :media_attachments, inverse_of: :account
-      has_many :mentions, inverse_of: :account
-      has_many :migrations, class_name: 'AccountMigration', inverse_of: :account
-      has_many :notification_permissions, inverse_of: :account
-      has_many :notification_requests, inverse_of: :account
-      has_many :notifications, inverse_of: :account
-      has_many :owned_lists, class_name: 'List', inverse_of: :account
-      has_many :polls, inverse_of: :account
-      has_many :report_notes, inverse_of: :account
-      has_many :reports, inverse_of: :account
-      has_many :scheduled_statuses, inverse_of: :account
-      has_many :status_pins, inverse_of: :account
-      has_many :statuses, inverse_of: :account
-      has_one :deletion_request, class_name: 'AccountDeletionRequest', inverse_of: :account
-      has_one :follow_recommendation_suppression, inverse_of: :account
-      has_one :notification_policy, inverse_of: :account
-      has_one :statuses_cleanup_policy, class_name: 'AccountStatusesCleanupPolicy', inverse_of: :account
-      has_one :user, inverse_of: :account
+      # Association where account owns record
+      with_options inverse_of: :account do
+        has_many :account_moderation_notes
+        has_many :account_pins
+        has_many :account_warnings
+        has_many :aliases, class_name: 'AccountAlias'
+        has_many :bookmarks
+        has_many :conversations, class_name: 'AccountConversation'
+        has_many :custom_filters
+        has_many :favourites
+        has_many :featured_tags, -> { includes(:tag) }
+        has_many :list_accounts
+        has_many :media_attachments
+        has_many :mentions
+        has_many :migrations, class_name: 'AccountMigration'
+        has_many :notification_permissions
+        has_many :notification_requests
+        has_many :notifications
+        has_many :owned_lists, class_name: 'List'
+        has_many :polls
+        has_many :report_notes
+        has_many :reports
+        has_many :scheduled_statuses
+        has_many :status_pins
+        has_many :statuses
+        has_one :deletion_request, class_name: 'AccountDeletionRequest'
+        has_one :follow_recommendation_suppression
+        has_one :notification_policy
+        has_one :statuses_cleanup_policy, class_name: 'AccountStatusesCleanupPolicy'
+        has_one :user
+      end
 
-      # Association where account is targeted
+      # Association where account is targeted by record
       with_options foreign_key: :target_account_id, inverse_of: :target_account do
         has_many :strikes, class_name: 'AccountWarning'
         has_many :targeted_moderation_notes, class_name: 'AccountModerationNote'
