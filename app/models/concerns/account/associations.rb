@@ -32,6 +32,7 @@ module Account::Associations
       has_many :strikes, class_name: 'AccountWarning', foreign_key: :target_account_id, inverse_of: :target_account
       has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, inverse_of: :target_account
       has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id, inverse_of: :target_account
+      has_one :deletion_request, class_name: 'AccountDeletionRequest', inverse_of: :account
       has_one :notification_policy, inverse_of: :account
       has_one :user, inverse_of: :account
     end
@@ -50,9 +51,6 @@ module Account::Associations
 
     # Hashtags
     has_and_belongs_to_many :tags # rubocop:disable Rails/HasAndBelongsToMany
-
-    # Account deletion requests
-    has_one :deletion_request, class_name: 'AccountDeletionRequest', inverse_of: :account, dependent: :destroy
 
     # Follow recommendations
     has_one :follow_recommendation, inverse_of: :account, dependent: nil
