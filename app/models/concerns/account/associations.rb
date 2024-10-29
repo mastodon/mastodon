@@ -16,15 +16,15 @@ module Account::Associations
       has_many :favourites, inverse_of: :account
       has_many :featured_tags, -> { includes(:tag) }, inverse_of: :account
       has_many :list_accounts, inverse_of: :account
-      has_many :media_attachments
+      has_many :media_attachments, inverse_of: :account
       has_many :mentions, inverse_of: :account
       has_many :migrations, class_name: 'AccountMigration', inverse_of: :account
       has_many :notification_permissions, inverse_of: :account
       has_many :notification_requests, inverse_of: :account
       has_many :notifications, inverse_of: :account
       has_many :owned_lists, class_name: 'List', inverse_of: :account
-      has_many :polls
-      has_many :report_notes
+      has_many :polls, inverse_of: :account
+      has_many :report_notes, inverse_of: :account
       has_many :reports, inverse_of: :account
       has_many :scheduled_statuses, inverse_of: :account
       has_many :status_pins, inverse_of: :account
