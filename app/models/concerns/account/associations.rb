@@ -47,25 +47,25 @@ module Account::Associations
       end
     end
 
-    # Pinned statuses
+    # Status records pinned by the account
     has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status
 
-    # Endorsements
+    # Account records endorsed (pinned) by the account
     has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
 
-    # Lists (that the account is on, not owned by the account)
+    # List records the account has been added to (not owned by the account)
     has_many :lists, through: :list_accounts
 
-    # Account migrations
+    # Account record where account has been migrated
     belongs_to :moved_to_account, class_name: 'Account', optional: true
 
-    # Hashtags
+    # Tag records applied to account
     has_and_belongs_to_many :tags # rubocop:disable Rails/HasAndBelongsToMany
 
-    # Follow recommendations
+    # FollowRecommendation for account (surfaced via view)
     has_one :follow_recommendation, inverse_of: :account, dependent: nil
 
-    # Imports
+    # BulkImport records owned by account
     has_many :bulk_imports, inverse_of: :account, dependent: :delete_all
   end
 end
