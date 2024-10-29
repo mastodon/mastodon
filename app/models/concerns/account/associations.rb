@@ -23,6 +23,7 @@ module Account::Associations
       has_many :scheduled_statuses, inverse_of: :account
       has_many :status_pins, inverse_of: :account
       has_many :statuses, inverse_of: :account
+      has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, inverse_of: :target_account
       has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id, inverse_of: :target_account
       has_one :notification_policy, inverse_of: :account
       has_one :user, inverse_of: :account
@@ -35,7 +36,6 @@ module Account::Associations
     has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
 
     # Moderation notes
-    has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy, inverse_of: :target_account
     has_many :account_warnings, dependent: :destroy, inverse_of: :account
     has_many :strikes, class_name: 'AccountWarning', foreign_key: :target_account_id, dependent: :destroy, inverse_of: :target_account
 
