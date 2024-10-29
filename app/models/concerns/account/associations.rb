@@ -13,11 +13,11 @@ module Account::Associations
       has_many :notifications, inverse_of: :account
       has_many :scheduled_statuses, inverse_of: :account
       has_many :statuses, inverse_of: :account
+      has_one :notification_policy, inverse_of: :account
       has_one :user, inverse_of: :account
     end
 
     # Notifications
-    has_one :notification_policy, inverse_of: :account, dependent: :destroy
     has_many :notification_permissions, inverse_of: :account, dependent: :destroy
     has_many :notification_requests, inverse_of: :account, dependent: :destroy
 
