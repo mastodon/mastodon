@@ -15,6 +15,7 @@ module Account::Associations
       has_many :notification_permissions, inverse_of: :account
       has_many :notification_requests, inverse_of: :account
       has_many :notifications, inverse_of: :account
+      has_many :polls
       has_many :scheduled_statuses, inverse_of: :account
       has_many :status_pins, inverse_of: :account
       has_many :statuses, inverse_of: :account
@@ -27,9 +28,6 @@ module Account::Associations
 
     # Endorsements
     has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
-
-    # Media
-    has_many :polls, dependent: :destroy
 
     # Report relationships
     has_many :reports, dependent: :destroy, inverse_of: :account
