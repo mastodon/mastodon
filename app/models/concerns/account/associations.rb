@@ -16,6 +16,7 @@ module Account::Associations
       has_many :notification_requests, inverse_of: :account
       has_many :notifications, inverse_of: :account
       has_many :polls
+      has_many :reports, inverse_of: :account
       has_many :scheduled_statuses, inverse_of: :account
       has_many :status_pins, inverse_of: :account
       has_many :statuses, inverse_of: :account
@@ -30,7 +31,6 @@ module Account::Associations
     has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
 
     # Report relationships
-    has_many :reports, dependent: :destroy, inverse_of: :account
     has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id, dependent: :destroy, inverse_of: :target_account
 
     has_many :report_notes, dependent: :destroy
