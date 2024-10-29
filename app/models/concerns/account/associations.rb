@@ -9,6 +9,7 @@ module Account::Associations
       has_many :account_pins, inverse_of: :account
       has_many :bookmarks, inverse_of: :account
       has_many :conversations, class_name: 'AccountConversation', inverse_of: :account
+      has_many :custom_filters, inverse_of: :account
       has_many :favourites, inverse_of: :account
       has_many :media_attachments
       has_many :mentions, inverse_of: :account
@@ -31,8 +32,6 @@ module Account::Associations
 
     # Endorsements
     has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
-
-    has_many :custom_filters, inverse_of: :account, dependent: :destroy
 
     # Moderation notes
     has_many :account_moderation_notes, dependent: :destroy, inverse_of: :account
