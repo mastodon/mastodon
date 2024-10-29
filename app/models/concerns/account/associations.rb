@@ -14,6 +14,7 @@ module Account::Associations
       has_many :conversations, class_name: 'AccountConversation', inverse_of: :account
       has_many :custom_filters, inverse_of: :account
       has_many :favourites, inverse_of: :account
+      has_many :featured_tags, -> { includes(:tag) }, inverse_of: :account
       has_many :list_accounts, inverse_of: :account
       has_many :media_attachments
       has_many :mentions, inverse_of: :account
@@ -49,7 +50,6 @@ module Account::Associations
 
     # Hashtags
     has_and_belongs_to_many :tags # rubocop:disable Rails/HasAndBelongsToMany
-    has_many :featured_tags, -> { includes(:tag) }, dependent: :destroy, inverse_of: :account
 
     # Account deletion requests
     has_one :deletion_request, class_name: 'AccountDeletionRequest', inverse_of: :account, dependent: :destroy
