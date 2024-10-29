@@ -10,6 +10,7 @@ module Account::Associations
       has_many :bookmarks, inverse_of: :account
       has_many :conversations, class_name: 'AccountConversation', inverse_of: :account
       has_many :favourites, inverse_of: :account
+      has_many :media_attachments
       has_many :mentions, inverse_of: :account
       has_many :notification_permissions, inverse_of: :account
       has_many :notification_requests, inverse_of: :account
@@ -28,7 +29,6 @@ module Account::Associations
     has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
 
     # Media
-    has_many :media_attachments, dependent: :destroy
     has_many :polls, dependent: :destroy
 
     # Report relationships
