@@ -10,7 +10,7 @@ Type=simple
 User=mastodon
 WorkingDirectory=/home/mastodon/live
 Environment="NODE_ENV=production"
-Environment="PORT=%i"
+Environment="PORT=%I"
 ExecStart=/usr/bin/node ./streaming
 TimeoutSec=15
 Restart=always
