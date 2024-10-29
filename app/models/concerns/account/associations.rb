@@ -6,11 +6,8 @@ module Account::Associations
   included do
     # Core associations
     with_options dependent: :destroy do
-      # TODO
+      has_one :user, inverse_of: :account
     end
-
-    # Local users
-    has_one :user, inverse_of: :account, dependent: :destroy
 
     # Timelines
     has_many :statuses, inverse_of: :account, dependent: :destroy
