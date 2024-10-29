@@ -7,6 +7,7 @@ module Account::Associations
     # Core associations
     with_options dependent: :destroy do
       has_many :bookmarks, inverse_of: :account
+      has_many :conversations, class_name: 'AccountConversation', inverse_of: :account
       has_many :favourites, inverse_of: :account
       has_many :mentions, inverse_of: :account
       has_many :statuses, inverse_of: :account
@@ -14,7 +15,6 @@ module Account::Associations
     end
 
     # Timelines
-    has_many :conversations, class_name: 'AccountConversation', dependent: :destroy, inverse_of: :account
     has_many :scheduled_statuses, inverse_of: :account, dependent: :destroy
 
     # Notifications
