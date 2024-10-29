@@ -531,6 +531,7 @@ eo:
       total_reported: Signaloj pri ili
       total_storage: Aŭdovidaj kunsendaĵoj
       totals_time_period_hint_html: Sumo montritas malsupre inkluzivas datumo ekde komenco.
+      unknown_instance: Nuntempe ne ekzistas registro pri ĉi tiu domajno sur ĉi tiu servilo.
     invites:
       deactivate_all: Malaktivigi ĉion
       filter:
@@ -763,6 +764,7 @@ eo:
         disabled: Al neniu
         users: Al salutintaj lokaj uzantoj
       registrations:
+        moderation_recommandation: Bonvolu certigi, ke vi havas taŭgan kaj reaktivan moderigan teamon antaŭ ol vi malfermas registriĝojn al ĉiuj!
         preamble: Regi kiu povas krei konton ĉe via servilo.
         title: Registriĝoj
       registrations_mode:
@@ -772,6 +774,7 @@ eo:
           open: Iu povas aliĝi
       security:
         authorized_fetch: Devigi aŭtentigon de frataraj serviloj
+        authorized_fetch_overridden_hint: Vi nuntempe ne povas ŝanĝi ĉi tiun agordon ĉar ĝi estas anstataŭita de mediovariablo.
       title: Agordoj de la servilo
     site_uploads:
       delete: Forigi elŝutitan dosieron
@@ -856,7 +859,12 @@ eo:
         message_html: "<strong>Via objektostokado estas misagordita. La privateco de viaj uzantoj estas en risko.</strong>"
     tags:
       moderation:
+        not_usable: Ne uzebla
+        review_requested: Revizio petita
+        reviewed: Reviziita
         title: Stato
+        unreviewed: Nereviziita
+        usable: Uzebla
       name: Nomo
       newest: Plej novaj
       oldest: Plej malnovaj
@@ -1039,6 +1047,7 @@ eo:
       hint_html: Nur unu plia afero! Ni devas konfirmi, ke vi estas homo (tio estas por ke ni povu konservi la spamon ekstere!). Solvu la CAPTCHA sube kaj alklaku "Daŭrigu".
       title: Sekureckontrolo
     confirmations:
+      awaiting_review_title: Via registriĝo estas reviziita
       clicking_this_link: alklakante ĉi tiun ligilon
       login_link: ensaluti
       registration_complete: Via registriĝo sur %{domain} nun finiĝis!
@@ -1104,8 +1113,11 @@ eo:
     use_security_key: Uzi sekurecan ŝlosilon
   author_attribution:
     example_title: Ekzempla teksto
+    hint_html: Ĉu vi skribas novaĵojn aŭ blogartikolojn ekster Mastodon? Kontrolu kiel vi estas kreditita kiam ili estas kunhavataj ĉe Mastodon.
+    instructions: 'Certigu, ke ĉi tiu kodo estas en la HTML de via artikolo:'
     more_from_html: Pli de %{name}
     s_blog: Blogo de %{name}
+    then_instructions: Poste, aldonu la domajnan nomon de la publikigado en la suba kampo.
     title: Atribuo de aŭtoro
   challenge:
     confirm: Daŭrigi
@@ -1504,6 +1516,7 @@ eo:
       unrecognized_emoji: ne estas rekonita emoĝio
   redirects:
     prompt: Se vi fidas ĉi tiun ligon, alklaku ĝin por daŭrigi.
+    title: Vi foriras %{instance}.
   relationships:
     activity: Konta aktiveco
     confirm_follow_selected_followers: Ĉu vi certas ke vi volas sekvi la elektitajn sekvantojn?
@@ -1699,6 +1712,7 @@ eo:
     contrast: Mastodon (Forta kontrasto)
     default: Mastodon (Malhela)
     mastodon-light: Mastodon (Hela)
+    system: Aŭtomata (uzu sisteman temon)
   time:
     formats:
       default: "%Y.%b.%d, %H:%M"
@@ -1737,6 +1751,10 @@ eo:
       extra: Estas nun preta por elŝuto!
       subject: Via arkivo estas preta por elŝutado
       title: Arkiva elŝuto
+    failed_2fa:
+      explanation: Iu provis ensaluti al via konto sed provizis nevalidan duan aŭtentikigfaktoron.
+      further_actions_html: Se ĉi tio ne estis vi, ni rekomendas ke vi %{action} tuj ĉar ĝi povas esti endanĝerigita.
+      subject: Malsukceso dum la dua aŭtentikigfaktoro
     suspicious_sign_in:
       change_password: ŝanĝi vian pasvorton
       details: 'Ĉi-sube estas detaloj pri la saluto:'
@@ -1776,6 +1794,8 @@ eo:
         silence: Konto limigita
         suspend: Konto suspendita
     welcome:
+      apps_android_action: Akiru ĝin ĉe Google Play
+      apps_ios_action: Elŝutu ĉe la App Store
       apps_step: Elŝutu niajn oficialajn aplikaĵojn.
       apps_title: Aplikaĵoj de Mastodon
       edit_profile_action: Agordi
@@ -1783,9 +1803,14 @@ eo:
       explanation: Jen kelkaj konsiloj por helpi vin komenci
       feature_action: Lerni pli
       follow_action: Sekvi
+      follow_step: Sekvi interesajn homojn estas pri kio Mastodon temas.
+      follows_subtitle: Sekvu konatajn kontojn
+      follows_title: Kiun sekvi
+      follows_view_more: Rigardu pli da homoj por sekvi
       hashtags_recent_count:
         one: "%{people} homo en la pasintaj 2 tagoj"
         other: "%{people} homoj en la pasintaj 2 tagoj"
+      hashtags_subtitle: Esploru kio estas tendenco ekde la pasintaj 2 tagoj
       hashtags_title: Popularaj kradvortoj
       hashtags_view_more: Vidi pli da popularaj kradvortoj
       post_action: Redakti
@@ -1811,6 +1836,7 @@ eo:
     instructions_html: Kopiu kaj algluu la jenan kodon en la HTML de via retejo. Poste aldonu la adreson de via retejo en unu el la kromaj kampoj de via profilo en la langeto "Redakti profilon" kaj konservu la ŝanĝojn.
     verification: Kontrolo
     verified_links: Via kontrolitaj ligiloj
+    website_verification: Reteja konfirmo
   webauthn_credentials:
     add: Aldoni novan sekurecan ŝlosilon
     create:
