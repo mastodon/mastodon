@@ -19,6 +19,7 @@ module Account::Associations
       has_many :notification_permissions, inverse_of: :account
       has_many :notification_requests, inverse_of: :account
       has_many :notifications, inverse_of: :account
+      has_many :owned_lists, class_name: 'List', inverse_of: :account
       has_many :polls
       has_many :report_notes
       has_many :reports, inverse_of: :account
@@ -42,7 +43,6 @@ module Account::Associations
     has_many :lists, through: :list_accounts
 
     # Lists (owned by the account)
-    has_many :owned_lists, class_name: 'List', dependent: :destroy, inverse_of: :account
 
     # Account migrations
     belongs_to :moved_to_account, class_name: 'Account', optional: true
