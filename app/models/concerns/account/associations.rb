@@ -4,6 +4,11 @@ module Account::Associations
   extend ActiveSupport::Concern
 
   included do
+    # Core associations
+    with_options dependent: :destroy do
+      # TODO
+    end
+
     # Local users
     has_one :user, inverse_of: :account, dependent: :destroy
 
