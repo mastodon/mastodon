@@ -13,6 +13,7 @@ module Account::Associations
       has_many :conversations, class_name: 'AccountConversation', inverse_of: :account
       has_many :custom_filters, inverse_of: :account
       has_many :favourites, inverse_of: :account
+      has_many :list_accounts, inverse_of: :account
       has_many :media_attachments
       has_many :mentions, inverse_of: :account
       has_many :notification_permissions, inverse_of: :account
@@ -38,7 +39,6 @@ module Account::Associations
     has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
 
     # Lists (that the account is on, not owned by the account)
-    has_many :list_accounts, inverse_of: :account, dependent: :destroy
     has_many :lists, through: :list_accounts
 
     # Lists (owned by the account)
