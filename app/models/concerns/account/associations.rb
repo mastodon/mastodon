@@ -33,6 +33,7 @@ module Account::Associations
       has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, inverse_of: :target_account
       has_many :targeted_reports, class_name: 'Report', foreign_key: :target_account_id, inverse_of: :target_account
       has_one :deletion_request, class_name: 'AccountDeletionRequest', inverse_of: :account
+      has_one :follow_recommendation_suppression, inverse_of: :account
       has_one :notification_policy, inverse_of: :account
       has_one :user, inverse_of: :account
     end
@@ -54,7 +55,6 @@ module Account::Associations
 
     # Follow recommendations
     has_one :follow_recommendation, inverse_of: :account, dependent: nil
-    has_one :follow_recommendation_suppression, inverse_of: :account, dependent: :destroy
 
     # Account statuses cleanup policy
     has_one :statuses_cleanup_policy, class_name: 'AccountStatusesCleanupPolicy', inverse_of: :account, dependent: :destroy
