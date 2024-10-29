@@ -9,6 +9,7 @@ module Account::Associations
       has_many :account_moderation_notes, inverse_of: :account
       has_many :account_pins, inverse_of: :account
       has_many :account_warnings, inverse_of: :account
+      has_many :aliases, class_name: 'AccountAlias', inverse_of: :account
       has_many :bookmarks, inverse_of: :account
       has_many :conversations, class_name: 'AccountConversation', inverse_of: :account
       has_many :custom_filters, inverse_of: :account
@@ -45,7 +46,6 @@ module Account::Associations
 
     # Account migrations
     belongs_to :moved_to_account, class_name: 'Account', optional: true
-    has_many :aliases, class_name: 'AccountAlias', dependent: :destroy, inverse_of: :account
 
     # Hashtags
     has_and_belongs_to_many :tags # rubocop:disable Rails/HasAndBelongsToMany
