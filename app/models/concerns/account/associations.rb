@@ -6,6 +6,7 @@ module Account::Associations
   included do
     # Core associations
     with_options dependent: :destroy do
+      has_many :account_pins, inverse_of: :account
       has_many :bookmarks, inverse_of: :account
       has_many :conversations, class_name: 'AccountConversation', inverse_of: :account
       has_many :favourites, inverse_of: :account
@@ -24,7 +25,6 @@ module Account::Associations
     has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status
 
     # Endorsements
-    has_many :account_pins, inverse_of: :account, dependent: :destroy
     has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
 
     # Media
