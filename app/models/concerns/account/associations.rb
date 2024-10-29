@@ -6,6 +6,7 @@ module Account::Associations
   included do
     # Core associations
     with_options dependent: :destroy do
+      has_many :account_moderation_notes, inverse_of: :account
       has_many :account_pins, inverse_of: :account
       has_many :bookmarks, inverse_of: :account
       has_many :conversations, class_name: 'AccountConversation', inverse_of: :account
@@ -34,7 +35,6 @@ module Account::Associations
     has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
 
     # Moderation notes
-    has_many :account_moderation_notes, dependent: :destroy, inverse_of: :account
     has_many :targeted_moderation_notes, class_name: 'AccountModerationNote', foreign_key: :target_account_id, dependent: :destroy, inverse_of: :target_account
     has_many :account_warnings, dependent: :destroy, inverse_of: :account
     has_many :strikes, class_name: 'AccountWarning', foreign_key: :target_account_id, dependent: :destroy, inverse_of: :target_account
