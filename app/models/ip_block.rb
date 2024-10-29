@@ -30,6 +30,9 @@ class IpBlock < ApplicationRecord
 
   after_commit :reset_cache
 
+  scope :containing, ->(value) { where('ip >>= ?', value) }
+  scope :contained_by, ->(value) { where('ip <<= ?', value) }
+
   def to_log_human_identifier
     "#{ip}/#{ip.prefix}"
   end

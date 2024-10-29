@@ -17,4 +17,7 @@ class UserIp < ApplicationRecord
   belongs_to :user
 
   scope :by_latest_used, -> { order(used_at: :desc) }
+
+  scope :containing, ->(value) { where('ip >>= ?', value) }
+  scope :contained_by, ->(value) { where('ip <<= ?', value) }
 end
