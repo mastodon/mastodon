@@ -10,6 +10,7 @@ module Account::Associations
       has_many :conversations, class_name: 'AccountConversation', inverse_of: :account
       has_many :favourites, inverse_of: :account
       has_many :mentions, inverse_of: :account
+      has_many :notification_permissions, inverse_of: :account
       has_many :notifications, inverse_of: :account
       has_many :scheduled_statuses, inverse_of: :account
       has_many :statuses, inverse_of: :account
@@ -18,7 +19,6 @@ module Account::Associations
     end
 
     # Notifications
-    has_many :notification_permissions, inverse_of: :account, dependent: :destroy
     has_many :notification_requests, inverse_of: :account, dependent: :destroy
 
     # Pinned statuses
