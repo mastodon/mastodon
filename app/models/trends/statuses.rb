@@ -78,7 +78,7 @@ class Trends::Statuses < Trends::Base
   end
 
   def request_review
-    StatusTrend.pluck('distinct language').flat_map do |language|
+    StatusTrend.locales.flat_map do |language|
       score_at_threshold = StatusTrend.where(language: language, allowed: true).by_rank.ranked_below(options[:review_threshold]).first&.score || 0
       status_trends      = StatusTrend.where(language: language, allowed: false).joins(:status).includes(status: :account)
 
