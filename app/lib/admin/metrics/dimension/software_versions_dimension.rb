@@ -106,7 +106,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
 
   def ffmpeg_version
     version_output = Terrapin::CommandLine.new(Rails.configuration.x.ffprobe_binary, '-show_program_version -v 0 -of json').run
-    version = Oj.load(version_output, mode: :strict, symbol_keys: true).dig(:program_version, :version)
+    version = JSON.parse(version_output, symbolize_names: true).dig(:program_version, :version)
 
     {
       key: 'ffmpeg',
