@@ -22,6 +22,6 @@ class AuthorizeFollowService < BaseService
   end
 
   def build_json(follow_request)
-    Oj.dump(serialize_payload(follow_request, ActivityPub::AcceptFollowSerializer))
+    JSON.dump(serialize_payload(follow_request, ActivityPub::AcceptFollowSerializer))
   end
 end
