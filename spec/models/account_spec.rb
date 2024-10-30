@@ -756,7 +756,9 @@ RSpec.describe Account do
     end
 
     describe 'attribution_domains' do
-      it { is_expected.to normalize(:attribution_domains).from(['example.com', 'example.com', 'example.net']).to(['example.com', 'example.net']) }
+      it { is_expected.to normalize(:attribution_domains).from(['example.com', ' example.com ', ' example.net ']).to(['example.com', 'example.net']) }
+      it { is_expected.to normalize(:attribution_domains).from(['https://example.com', 'http://example.net', '*.example.org']).to(['example.com', 'example.net', 'example.org']) }
+      it { is_expected.to normalize(:attribution_domains).from(['', ' ', nil]).to([]) }
     end
   end
 
@@ -800,7 +802,7 @@ RSpec.describe Account do
       it { is_expected.to_not allow_values(account_note_over_limit).for(:note) }
 
       it { is_expected.to allow_values([], ['example.com'], (1..100).to_a).for(:attribution_domains) }
-      it { is_expected.to_not allow_values([''], ['@'], (1..101).to_a).for(:attribution_domains) }
+      it { is_expected.to_not allow_values(['example com'], ['@'], (1..101).to_a).for(:attribution_domains) }
     end
 
     context 'when account is remote' do

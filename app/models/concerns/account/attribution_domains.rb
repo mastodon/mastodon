@@ -4,7 +4,7 @@ module Account::AttributionDomains
   extend ActiveSupport::Concern
 
   included do
-    normalizes :attribution_domains, with: ->(arr) { arr.uniq }
+    normalizes :attribution_domains, with: ->(arr) { arr.filter_map { |str| str.to_s.strip.delete_prefix('http://').delete_prefix('https://').delete_prefix('*.').presence }.uniq }
 
     validates :attribution_domains, domain: true, length: { maximum: 100 }, if: -> { local? && will_save_change_to_attribution_domains? }
   end
