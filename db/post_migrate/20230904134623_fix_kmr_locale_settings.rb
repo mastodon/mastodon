@@ -11,11 +11,11 @@ class FixKmrLocaleSettings < ActiveRecord::Migration[7.0]
     MigrationUser.reset_column_information
 
     MigrationUser.where.not(settings: [nil, '{}']).find_each do |user|
-      user_settings = Oj.load(user.settings)
+      user_settings = JSON.parse(user.settings)
       next unless user_settings['default_language'] == 'kmr'
 
       user_settings['default_language'] = 'ku'
-      user.update!(settings: Oj.dump(user_settings))
+      user.update!(settings: JSON.dump(user_settings))
     end
 
     MigrationUser.where.not(chosen_languages: nil).where('chosen_languages && ?', '{kmr}').find_each do |user|
