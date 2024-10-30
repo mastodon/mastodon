@@ -10,7 +10,7 @@ RSpec.describe AccountPin do
 
   describe 'Validations' do
     describe 'the follow relationship' do
-      subject { described_class.new account: account }
+      subject { Fabricate.build :account_pin, account: account }
 
       let(:account) { Fabricate :account }
       let(:target_account) { Fabricate :account }
