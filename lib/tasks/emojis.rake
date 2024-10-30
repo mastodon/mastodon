@@ -84,7 +84,7 @@ namespace :emojis do
 
     map = map.sort { |a, b| a[0].size <=> b[0].size }.to_h
 
-    File.write(dest, Oj.dump(map))
+    File.write(dest, JSON.dump(map))
     puts "Wrote emojo to destination! (#{dest})"
   end
 
@@ -94,7 +94,7 @@ namespace :emojis do
     emojis_light = '👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️🪽🪿'
     emojis_dark = '🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴🐞🕺📱📲🚲🪮🐦‍⬛'
 
-    map = Oj.load(File.read(src))
+    map = JSON.parse(File.read(src))
 
     emojis_light.each_grapheme_cluster do |emoji|
       gen_border map[emoji], 'black'
