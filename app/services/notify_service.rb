@@ -260,7 +260,7 @@ class NotifyService < BaseService
   end
 
   def push_to_streaming_api!
-    redis.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
+    redis.publish("timeline:#{@recipient.id}:notifications", JSON.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
   end
 
   def subscribed_to_streaming_api?

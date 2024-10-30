@@ -103,7 +103,7 @@ RSpec.describe ResolveAccountService do
   context 'with a legitimate webfinger redirection' do
     before do
       webfinger = { subject: 'acct:foo@ap.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo', type: 'application/activity+json' }] }
-      stub_request(:get, 'https://redirected.example.com/.well-known/webfinger?resource=acct:Foo@redirected.example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+      stub_request(:get, 'https://redirected.example.com/.well-known/webfinger?resource=acct:Foo@redirected.example.com').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
     end
 
     it 'returns new remote account' do
@@ -121,7 +121,7 @@ RSpec.describe ResolveAccountService do
   context 'with a misconfigured redirection' do
     before do
       webfinger = { subject: 'acct:Foo@redirected.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo', type: 'application/activity+json' }] }
-      stub_request(:get, 'https://redirected.example.com/.well-known/webfinger?resource=acct:Foo@redirected.example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+      stub_request(:get, 'https://redirected.example.com/.well-known/webfinger?resource=acct:Foo@redirected.example.com').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
     end
 
     it 'returns new remote account' do
@@ -139,9 +139,9 @@ RSpec.describe ResolveAccountService do
   context 'with too many webfinger redirections' do
     before do
       webfinger = { subject: 'acct:foo@evil.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo', type: 'application/activity+json' }] }
-      stub_request(:get, 'https://redirected.example.com/.well-known/webfinger?resource=acct:Foo@redirected.example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+      stub_request(:get, 'https://redirected.example.com/.well-known/webfinger?resource=acct:Foo@redirected.example.com').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
       webfinger2 = { subject: 'acct:foo@ap.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo', type: 'application/activity+json' }] }
-      stub_request(:get, 'https://evil.example.com/.well-known/webfinger?resource=acct:foo@evil.example.com').to_return(body: Oj.dump(webfinger2), headers: { 'Content-Type': 'application/jrd+json' })
+      stub_request(:get, 'https://evil.example.com/.well-known/webfinger?resource=acct:foo@evil.example.com').to_return(body: JSON.dump(webfinger2), headers: { 'Content-Type': 'application/jrd+json' })
     end
 
     it 'does not return a new remote account' do
@@ -150,7 +150,7 @@ RSpec.describe ResolveAccountService do
   end
 
   context 'with webfinger response subject missing a host value' do
-    let(:body) { Oj.dump({ subject: 'user@' }) }
+    let(:body) { JSON.dump({ subject: 'user@' }) }
     let(:url) { 'https://host.example/.well-known/webfinger?resource=acct:user@host.example' }
 
     before do

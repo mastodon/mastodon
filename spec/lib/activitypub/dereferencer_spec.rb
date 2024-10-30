@@ -12,7 +12,7 @@ RSpec.describe ActivityPub::Dereferencer do
     let(:uri) { nil }
 
     before do
-      stub_request(:get, 'https://example.com/foo').to_return(body: Oj.dump(object), headers: { 'Content-Type' => 'application/activity+json' })
+      stub_request(:get, 'https://example.com/foo').to_return(body: JSON.dump(object), headers: { 'Content-Type' => 'application/activity+json' })
     end
 
     context 'with a URI' do

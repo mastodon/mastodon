@@ -40,7 +40,7 @@ RSpec.describe RemoveStatusService, :inline_jobs do
         .to_not include(status.id)
 
       expect(redis)
-        .to have_received(:publish).with('timeline:public:media', Oj.dump(event: :delete, payload: status.id.to_s))
+        .to have_received(:publish).with('timeline:public:media', JSON.dump(event: :delete, payload: status.id.to_s))
 
       expect(delete_delivery(hank, status))
         .to have_been_made.once

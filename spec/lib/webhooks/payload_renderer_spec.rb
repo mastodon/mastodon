@@ -7,7 +7,7 @@ RSpec.describe Webhooks::PayloadRenderer do
 
   let(:event)   { Webhooks::EventPresenter.new(type, object) }
   let(:payload) { ActiveModelSerializers::SerializableResource.new(event, serializer: REST::Admin::WebhookEventSerializer, scope: nil, scope_name: :current_user).as_json }
-  let(:json)    { Oj.dump(payload) }
+  let(:json)    { JSON.dump(payload) }
 
   describe '#render' do
     context 'when event is account.approved' do

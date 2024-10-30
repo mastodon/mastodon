@@ -82,7 +82,7 @@ class BatchedRemoveStatusService < BaseService
   def unpush_from_public_timelines(status, pipeline)
     return unless status.public_visibility? && status.id > @status_id_cutoff
 
-    payload = Oj.dump(event: :delete, payload: status.id.to_s)
+    payload = JSON.dump(event: :delete, payload: status.id.to_s)
 
     pipeline.publish('timeline:public', payload)
     pipeline.publish(status.local? ? 'timeline:public:local' : 'timeline:public:remote', payload)

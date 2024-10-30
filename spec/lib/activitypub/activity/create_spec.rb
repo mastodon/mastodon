@@ -954,7 +954,7 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         before do
-          stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+          stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: JSON.dump({
             '@context': [
               'https://www.w3.org/ns/activitystreams',
               {
@@ -1088,7 +1088,7 @@ RSpec.describe ActivityPub::Activity::Create do
       before do
         stub_request(:get, object_json[:id])
           .with(headers: { Authorization: "Bearer #{token}" })
-          .to_return(body: Oj.dump(object_json), headers: { 'Content-Type': 'application/activity+json' })
+          .to_return(body: JSON.dump(object_json), headers: { 'Content-Type': 'application/activity+json' })
 
         subject.perform
       end

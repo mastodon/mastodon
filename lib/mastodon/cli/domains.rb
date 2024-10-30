@@ -140,13 +140,13 @@ module Mastodon::CLI
           Request.new(:get, "https://#{domain}/api/v1/instance").perform do |res|
             next unless res.code == 200
 
-            stats[domain] = Oj.load(res.to_s)
+            stats[domain] = JSON.parse(res.to_s)
           end
 
           Request.new(:get, "https://#{domain}/api/v1/instance/peers").perform do |res|
             next unless res.code == 200
 
-            Oj.load(res.to_s).reject { |peer| stats.key?(peer) }.each do |peer|
+            JSON.parse(res.to_s).reject { |peer| stats.key?(peer) }.each do |peer|
               pool.post(peer, &work_unit)
             end
           end
@@ -154,7 +154,7 @@ module Mastodon::CLI
           Request.new(:get, "https://#{domain}/api/v1/instance/activity").perform do |res|
             next unless res.code == 200
 
-            stats[domain]['activity'] = Oj.load(res.to_s)
+            stats[domain]['activity'] = JSON.parse(res.to_s)
           end
         rescue
           failed.increment
@@ -214,7 +214,7 @@ module Mastodon::CLI
 
     def stats_to_json(stats)
       stats.compact!
-      say(Oj.dump(stats))
+      say(JSON.dump(stats))
     end
   end
 end

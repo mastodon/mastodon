@@ -10,7 +10,7 @@ class Webhooks::PayloadRenderer
 
     def get(path)
       value  = @document.dig(*parse_path(path))
-      string = Oj.dump(value)
+      string = JSON.dump(value)
 
       # We want to make sure people can use the variable inside
       # other strings, so it can't be wrapped in quotes.
@@ -58,7 +58,7 @@ class Webhooks::PayloadRenderer
   /iox
 
   def initialize(json)
-    @document = DocumentTraverser.new(Oj.load(json))
+    @document = DocumentTraverser.new(JSON.parse(json))
   end
 
   def render(template)

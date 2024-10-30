@@ -56,7 +56,7 @@ RSpec.describe BackupService do
 
   def expect_outbox_export
     body = export_json_raw(:outbox)
-    json = Oj.load(body)
+    json = JSON.parse(body)
 
     aggregate_failures do
       expect(body.scan('@context').count).to eq 1
@@ -93,7 +93,7 @@ RSpec.describe BackupService do
   end
 
   def export_json(type)
-    Oj.load(export_json_raw(type))
+    JSON.parse(export_json_raw(type))
   end
 
   def include_create_item(status)

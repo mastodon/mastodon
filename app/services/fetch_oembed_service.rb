@@ -86,14 +86,14 @@ class FetchOEmbedService
     end
 
     validate(parse_for_format(body)) if body.present?
-  rescue Oj::ParseError, Ox::ParseError
+  rescue JSON::ParserError, Ox::ParseError
     nil
   end
 
   def parse_for_format(body)
     case @format
     when :json
-      Oj.load(body, mode: :strict)&.with_indifferent_access
+      JSON.parse(body)&.with_indifferent_access
     when :xml
       Ox.load(body, mode: :hash_no_attrs)&.with_indifferent_access&.dig(:oembed)
     end

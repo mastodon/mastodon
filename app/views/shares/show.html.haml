@@ -2,4 +2,4 @@
   = render_initial_state
   = javascript_pack_tag 'share', crossorigin: 'anonymous'
 
-#mastodon-compose{ data: { props: Oj.dump(default_props) } }
+#mastodon-compose{ data: { props: JSON.dump(default_props) } }

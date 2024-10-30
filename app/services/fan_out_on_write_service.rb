@@ -154,7 +154,7 @@ class FanOutOnWriteService < BaseService
   end
 
   def anonymous_payload
-    @anonymous_payload ||= Oj.dump(
+    @anonymous_payload ||= JSON.dump(
       event: update? ? :'status.update' : :update,
       payload: rendered_status
     )

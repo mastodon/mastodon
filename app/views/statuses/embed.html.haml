@@ -1,1 +1,1 @@
-#mastodon-status{ data: { props: Oj.dump(default_props.merge(id: @status.id.to_s)) } }
+#mastodon-status{ data: { props: JSON.dump(default_props.merge(id: @status.id.to_s)) } }

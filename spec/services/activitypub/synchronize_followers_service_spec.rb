@@ -53,7 +53,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
   describe '#call' do
     context 'when the endpoint is a Collection of actor URIs' do
       before do
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, collection_uri).to_return(status: 200, body: JSON.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'synchronizes followers'
@@ -70,7 +70,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       end
 
       before do
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, collection_uri).to_return(status: 200, body: JSON.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'synchronizes followers'
@@ -91,7 +91,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       end
 
       before do
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, collection_uri).to_return(status: 200, body: JSON.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'synchronizes followers'
@@ -100,7 +100,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
     context 'when the endpoint is a paginated Collection of actor URIs split across multiple pages' do
       before do
         stub_request(:get, 'https://example.com/partial-followers')
-          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: JSON.dump({
             '@context': 'https://www.w3.org/ns/activitystreams',
             type: 'Collection',
             id: 'https://example.com/partial-followers',
@@ -108,7 +108,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
           }))
 
         stub_request(:get, 'https://example.com/partial-followers/1')
-          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: JSON.dump({
             '@context': 'https://www.w3.org/ns/activitystreams',
             type: 'CollectionPage',
             id: 'https://example.com/partial-followers/1',
@@ -118,7 +118,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
           }))
 
         stub_request(:get, 'https://example.com/partial-followers/2')
-          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: JSON.dump({
             '@context': 'https://www.w3.org/ns/activitystreams',
             type: 'CollectionPage',
             id: 'https://example.com/partial-followers/2',
@@ -133,7 +133,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
     context 'when the endpoint is a paginated Collection of actor URIs split across, but one page errors out' do
       before do
         stub_request(:get, 'https://example.com/partial-followers')
-          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: JSON.dump({
             '@context': 'https://www.w3.org/ns/activitystreams',
             type: 'Collection',
             id: 'https://example.com/partial-followers',
@@ -141,7 +141,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
           }))
 
         stub_request(:get, 'https://example.com/partial-followers/1')
-          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: JSON.dump({
             '@context': 'https://www.w3.org/ns/activitystreams',
             type: 'CollectionPage',
             id: 'https://example.com/partial-followers/1',
@@ -183,7 +183,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
 
       before do
         stub_const('ActivityPub::SynchronizeFollowersService::MAX_COLLECTION_PAGES', 1)
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, collection_uri).to_return(status: 200, body: JSON.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it 'confirms pending follow request but does not remove extra followers' do

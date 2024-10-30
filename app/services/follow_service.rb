@@ -90,7 +90,7 @@ class FollowService < BaseService
   end
 
   def build_json(follow_request)
-    Oj.dump(serialize_payload(follow_request, ActivityPub::FollowSerializer))
+    JSON.dump(serialize_payload(follow_request, ActivityPub::FollowSerializer))
   end
 
   def follow_options

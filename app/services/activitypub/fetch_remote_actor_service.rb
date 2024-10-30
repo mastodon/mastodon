@@ -19,7 +19,7 @@ class ActivityPub::FetchRemoteActorService < BaseService
       else
         body_to_json(prefetched_body, compare_id: uri)
       end
-    rescue Oj::ParseError
+    rescue JSON::ParserError
       raise Error, "Error parsing JSON-LD document #{uri}"
     end
 
