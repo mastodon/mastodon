@@ -11,7 +11,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
   let(:follower) { Fabricate(:account, username: 'alice') }
   let(:follow) { nil }
-  let(:response) { { body: Oj.dump(object), headers: { 'content-type': 'application/activity+json' } } }
+  let(:response) { { body: JSON.dump(object), headers: { 'content-type': 'application/activity+json' } } }
   let(:existing_status) { nil }
 
   let(:note) do
@@ -352,7 +352,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
       end
 
       it 'creates statuses but not more than limit allows' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }
+        expect { subject.call(object[:id], prefetched_body: JSON.dump(object)) }
           .to change { sender.statuses.count }.by_at_least(2)
           .and change { sender.statuses.count }.by_at_most(3)
       end
@@ -402,7 +402,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
       end
 
       it 'creates statuses but not more than limit allows' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }
+        expect { subject.call(object[:id], prefetched_body: JSON.dump(object)) }
           .to change { sender.statuses.count }.by_at_least(2)
           .and change { sender.statuses.count }.by_at_most(3)
       end
