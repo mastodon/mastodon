@@ -196,7 +196,7 @@ module JsonLdHelper
     return if compare_id.present? && json['id'] != compare_id
 
     json
-  rescue Oj::ParseError
+  rescue JSON::ParserError
     nil
   end
 
