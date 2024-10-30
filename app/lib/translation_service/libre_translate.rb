@@ -55,7 +55,7 @@ class TranslationService::LibreTranslate < TranslationService
         provider: 'LibreTranslate'
       )
     end
-  rescue Oj::ParseError
+  rescue JSON::ParserError
     raise UnexpectedResponseError
   end
 end
