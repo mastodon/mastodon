@@ -10,7 +10,10 @@ class DomainValidator < ActiveModel::EachValidator
     return if value.blank?
 
     Array.wrap(value).each do |domain|
-      _, domain = domain.split('@') if options[:acct]
+      if options[:acct]
+        _, domain = domain.split('@')
+        next if domain.blank?
+      end
 
       record.errors.add(attribute, value.is_a?(Enumerable) ? :invalid_domain_on_line : :invalid, value: domain) unless compliant?(domain)
     end
