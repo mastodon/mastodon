@@ -151,7 +151,58 @@ module Mastodon::CLI
           end
         end
       when :fog
-        fail_with_message 'The fog storage driver is not supported for this operation at this time'
+        paperclip_instance = MediaAttachment.new.file
+        fog_directory = Paperclip::Attachment.default_options[:fog_directory]
+        connection = Fog::Storage.new(Paperclip::Attachment.default_options[:fog_credentials])
+        directory = connection.directories.get(fog_directory)
+
+        last_key = options[:start_after]
+
+        loop do
+          objects = begin
+            directory.files.all(prefix: prefix, marker: last_key, limit: 1000)
+          rescue => e
+            progress.log(pastel.red("Error fetching list of files: #{e}"))
+            progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
+            break
+          end
+
+          break if objects.empty?
+
+          last_key = objects.last.key
+          record_map = preload_records_from_mixed_objects(objects)
+
+          objects.each do |object|
+            path_segments = object.key.split('/')
+            path_segments.delete('cache')
+
+            unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
+              progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
+              next
+            end
+
+            model_name      = path_segments.first.classify
+            attachment_name = path_segments[1].singularize
+            record_id      = path_segments[2...-2].join.to_i
+            file_name      = path_segments.last
+            record         = record_map.dig(model_name, record_id)
+            attachment     = record&.public_send(attachment_name)
+
+            progress.increment
+
+            next unless attachment.blank? || !attachment.variant?(file_name)
+
+            begin
+              object.destroy unless dry_run?
+              reclaimed_bytes += object.content_length
+              removed += 1
+
+              progress.log("Found and removed orphan: #{object.key}")
+            rescue => e
+              progress.log(pastel.red("Error processing #{object.key}: #{e}"))
+            end
+          end
+        end
       when :azure
         fail_with_message 'The azure storage driver is not supported for this operation at this time'
       when :filesystem
