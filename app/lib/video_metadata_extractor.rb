@@ -9,7 +9,7 @@ class VideoMetadataExtractor
     @metadata = JSON.parse(ffmpeg_command_output, symbolize_names: true)
 
     parse_metadata
-  rescue Terrapin::ExitStatusError, Oj::ParseError
+  rescue Terrapin::ExitStatusError, JSON::ParserError
     @invalid = true
   rescue Terrapin::CommandNotFoundError
     raise Paperclip::Errors::CommandNotFoundError, 'Could not run the `ffprobe` command. Please install ffmpeg.'

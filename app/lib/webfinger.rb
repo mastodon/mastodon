@@ -57,7 +57,7 @@ class Webfinger
 
   def perform
     Response.new(@uri, body_from_webfinger)
-  rescue Oj::ParseError
+  rescue JSON::ParserError
     raise Webfinger::Error, "Invalid JSON in response for #{@uri}"
   rescue Addressable::URI::InvalidURIError
     raise Webfinger::Error, "Invalid URI for #{@uri}"

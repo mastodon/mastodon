@@ -86,7 +86,7 @@ class FetchOEmbedService
     end
 
     validate(parse_for_format(body)) if body.present?
-  rescue Oj::ParseError, Ox::ParseError
+  rescue JSON::ParserError, Ox::ParseError
     nil
   end
 
