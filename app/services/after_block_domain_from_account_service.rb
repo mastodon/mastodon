@@ -54,7 +54,7 @@ class AfterBlockDomainFromAccountService < BaseService
 
     return unless follow.account.activitypub?
 
-    ActivityPub::DeliveryWorker.perform_async(Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), @account.id, follow.account.inbox_url)
+    ActivityPub::DeliveryWorker.perform_async(JSON.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), @account.id, follow.account.inbox_url)
   end
 
   def notify_of_severed_relationships!

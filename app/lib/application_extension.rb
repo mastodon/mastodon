@@ -31,7 +31,7 @@ module ApplicationExtension
 
   def close_streaming_sessions(resource_owner = nil)
     # TODO: #28793 Combine into a single topic
-    payload = Oj.dump(event: :kill)
+    payload = JSON.dump(event: :kill)
     scope = access_tokens
     scope = scope.where(resource_owner_id: resource_owner.id) unless resource_owner.nil?
     scope.in_batches do |tokens|

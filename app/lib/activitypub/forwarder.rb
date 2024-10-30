@@ -20,7 +20,7 @@ class ActivityPub::Forwarder
   private
 
   def payload
-    @payload ||= Oj.dump(@json)
+    @payload ||= JSON.dump(@json)
   end
 
   def reblogged_by_account_ids

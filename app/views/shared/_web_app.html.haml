@@ -11,7 +11,7 @@
   = render_initial_state
   = javascript_pack_tag 'application', crossorigin: 'anonymous'
 
-.notranslate.app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
+.notranslate.app-holder#mastodon{ data: { props: JSON.dump(default_props) } }
   %noscript
     = image_tag frontend_asset_path('images/logo.svg'), alt: 'Mastodon'
 

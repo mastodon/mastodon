@@ -12,7 +12,7 @@ class PublishScheduledAnnouncementWorker
     @announcement.publish! unless @announcement.published?
 
     payload = InlineRenderer.render(@announcement, nil, :announcement)
-    payload = Oj.dump(event: :announcement, payload: payload)
+    payload = JSON.dump(event: :announcement, payload: payload)
 
     FeedManager.instance.with_active_accounts do |account|
       redis.publish("timeline:#{account.id}", payload) if redis.exists?("subscribed:timeline:#{account.id}")

@@ -114,7 +114,7 @@ class DeleteAccountService < BaseService
     # we have to force it to unfollow them.
 
     ActivityPub::DeliveryWorker.push_bulk(Follow.where(account: @account)) do |follow|
-      [Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), follow.target_account_id, @account.inbox_url]
+      [JSON.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), follow.target_account_id, @account.inbox_url]
     end
   end
 
@@ -126,7 +126,7 @@ class DeleteAccountService < BaseService
     # if the remote account gets un-suspended.
 
     ActivityPub::DeliveryWorker.push_bulk(Follow.where(target_account: @account)) do |follow|
-      [Oj.dump(serialize_payload(follow, ActivityPub::UndoFollowSerializer)), follow.account_id, @account.inbox_url]
+      [JSON.dump(serialize_payload(follow, ActivityPub::UndoFollowSerializer)), follow.account_id, @account.inbox_url]
     end
   end
 
@@ -285,7 +285,7 @@ class DeleteAccountService < BaseService
   end
 
   def delete_actor_json
-    @delete_actor_json ||= Oj.dump(serialize_payload(@account, ActivityPub::DeleteActorSerializer, signer: @account, always_sign: true))
+    @delete_actor_json ||= JSON.dump(serialize_payload(@account, ActivityPub::DeleteActorSerializer, signer: @account, always_sign: true))
   end
 
   def delivery_inboxes
