@@ -17,7 +17,7 @@ RSpec.describe ActivityPub::FetchRepliesWorker do
     }
   end
 
-  let(:json) { Oj.dump(payload) }
+  let(:json) { JSON.dump(payload) }
 
   describe 'perform' do
     it 'performs a request if the collection URI is from the same host' do
