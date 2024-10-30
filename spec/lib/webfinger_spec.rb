@@ -8,7 +8,7 @@ RSpec.describe Webfinger do
       let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/activity+json' }] } }
 
       it 'correctly parses the response' do
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
 
         response = described_class.new('acct:alice@example.com').perform
 
@@ -20,7 +20,7 @@ RSpec.describe Webfinger do
       let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"' }] } }
 
       it 'correctly parses the response' do
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
 
         response = described_class.new('acct:alice@example.com').perform
 
@@ -32,7 +32,7 @@ RSpec.describe Webfinger do
       let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/json"' }] } }
 
       it 'raises an error' do
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
 
         expect { described_class.new('acct:alice@example.com').perform }.to raise_error(Webfinger::Error)
       end
