@@ -3,6 +3,7 @@ lv:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Viens katrā līnijā. Aizsargā no nepatiesa attiecinājuma.
         discoverable: Tavas publiskās ziņas un profils var tikt piedāvāti vai ieteikti dažādās Mastodon vietās, un tavs profils var tikt ieteikts citiem lietotājiem.
         display_name: Tavs pilnais vārds vai tavs joku vārds.
         fields: Tava mājas lapa, vietniekvārdi, vecums, viss, ko vēlies.
@@ -18,7 +19,7 @@ lv:
         text: Vari izmantot ziņu sintaksi, piemēram, URL, atsauces un pieminējumus
         title: Neobligāts. Saņēmējam nav redzams
       admin_account_action:
-        include_statuses: Lietotājs redzēs, kuras ziņas izraisījušas moderācijas darbību vai brīdinājumu
+        include_statuses: Lietotājs redzēs, kuras ziņas izraisījušas satura pārraudzības darbību vai brīdinājumu
         send_email_notification: Lietotājs saņems paskaidrojumu par to, kas notika ar viņa kontu
         text_html: Neobligāts. Tu vari lietot ziņu sintaksi. Lai ietaupītu laiku, tu vari <a href="%{path}">pievienot brīdinājuma sākotnējos iestatījumus</a>
         type_html: Izvēlies, ko darīt ar <strong>%{acct}</strong>
@@ -143,6 +144,7 @@ lv:
         url: Kur notikumi tiks nosūtīti
     labels:
       account:
+        attribution_domains_as_text: Tīmekļvietnes, kurām ir tiesības uzskaitīt Tevi
         discoverable: Funkcijas profils un ziņas atklāšanas algoritmos
         fields:
           name: Marķējums

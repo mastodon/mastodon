@@ -164,6 +164,31 @@ RSpec.describe Status do
     end
   end
 
+  describe '#untrusted_reblogs_count' do
+    before do
+      alice.update(domain: 'example.com')
+      subject.status_stat.tap do |status_stat|
+        status_stat.untrusted_reblogs_count = 0
+        status_stat.save
+      end
+      subject.save
+    end
+
+    it 'is incremented by the number of reblogs' do
+      Fabricate(:status, account: bob, reblog: subject)
+      Fabricate(:status, account: alice, reblog: subject)
+
+      expect(subject.untrusted_reblogs_count).to eq 2
+    end
+
+    it 'is decremented when reblog is removed' do
+      reblog = Fabricate(:status, account: bob, reblog: subject)
+      expect(subject.untrusted_reblogs_count).to eq 1
+      reblog.destroy
+      expect(subject.untrusted_reblogs_count).to eq 0
+    end
+  end
+
   describe '#replies_count' do
     it 'is the number of replies' do
       Fabricate(:status, account: bob, thread: subject)
@@ -191,6 +216,31 @@ RSpec.describe Status do
       expect(subject.favourites_count).to eq 1
       favourite.destroy
       expect(subject.favourites_count).to eq 0
+    end
+  end
+
+  describe '#untrusted_favourites_count' do
+    before do
+      alice.update(domain: 'example.com')
+      subject.status_stat.tap do |status_stat|
+        status_stat.untrusted_favourites_count = 0
+        status_stat.save
+      end
+      subject.save
+    end
+
+    it 'is incremented by favorites' do
+      Fabricate(:favourite, account: bob, status: subject)
+      Fabricate(:favourite, account: alice, status: subject)
+
+      expect(subject.untrusted_favourites_count).to eq 2
+    end
+
+    it 'is decremented when favourite is removed' do
+      favourite = Fabricate(:favourite, account: bob, status: subject)
+      expect(subject.untrusted_favourites_count).to eq 1
+      favourite.destroy
+      expect(subject.untrusted_favourites_count).to eq 0
     end
   end
 

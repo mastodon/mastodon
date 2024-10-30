@@ -233,17 +233,7 @@ RSpec.describe Auth::RegistrationsController do
         Setting.registrations_mode = 'open'
         Fabricate(:email_domain_block, allow_with_approval: true, domain: 'mail.example.com')
         allow(User).to receive(:skip_mx_check?).and_return(false)
-
-        resolver = instance_double(Resolv::DNS, :timeouts= => nil)
-
-        allow(resolver).to receive(:getresources)
-          .with('example.com', Resolv::DNS::Resource::IN::MX)
-          .and_return([instance_double(Resolv::DNS::Resource::MX, exchange: 'mail.example.com')])
-        allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::A).and_return([])
-        allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
-        allow(resolver).to receive(:getresources).with('mail.example.com', Resolv::DNS::Resource::IN::A).and_return([instance_double(Resolv::DNS::Resource::IN::A, address: '2.3.4.5')])
-        allow(resolver).to receive(:getresources).with('mail.example.com', Resolv::DNS::Resource::IN::AAAA).and_return([instance_double(Resolv::DNS::Resource::IN::AAAA, address: 'fd00::2')])
-        allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+        configure_mx(domain: 'example.com', exchange: 'mail.example.com')
       end
 
       it 'creates unapproved user and redirects to setup' do

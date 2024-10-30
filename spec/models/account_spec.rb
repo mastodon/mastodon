@@ -10,64 +10,6 @@ RSpec.describe Account do
 
     let(:bob) { Fabricate(:account, username: 'bob') }
 
-    describe '#suspended_locally?' do
-      context 'when the account is not suspended' do
-        it 'returns false' do
-          expect(subject.suspended_locally?).to be false
-        end
-      end
-
-      context 'when the account is suspended locally' do
-        before do
-          subject.update!(suspended_at: 1.day.ago, suspension_origin: :local)
-        end
-
-        it 'returns true' do
-          expect(subject.suspended_locally?).to be true
-        end
-      end
-
-      context 'when the account is suspended remotely' do
-        before do
-          subject.update!(suspended_at: 1.day.ago, suspension_origin: :remote)
-        end
-
-        it 'returns false' do
-          expect(subject.suspended_locally?).to be false
-        end
-      end
-    end
-
-    describe '#suspend!' do
-      it 'marks the account as suspended and creates a deletion request' do
-        expect { subject.suspend! }
-          .to change(subject, :suspended?).from(false).to(true)
-          .and change(subject, :suspended_locally?).from(false).to(true)
-          .and(change { AccountDeletionRequest.exists?(account: subject) }.from(false).to(true))
-      end
-
-      context 'when the account is of a local user' do
-        subject { local_user_account }
-
-        let!(:local_user_account) { Fabricate(:user, email: 'foo+bar@domain.org').account }
-
-        it 'creates a canonical domain block' do
-          subject.suspend!
-          expect(CanonicalEmailBlock.block?(subject.user_email)).to be true
-        end
-
-        context 'when a canonical domain block already exists for that email' do
-          before do
-            Fabricate(:canonical_email_block, email: subject.user_email)
-          end
-
-          it 'does not raise an error' do
-            expect { subject.suspend! }.to_not raise_error
-          end
-        end
-      end
-    end
-
     describe '#follow!' do
       it 'creates a follow' do
         follow = subject.follow!(bob)
@@ -208,16 +150,16 @@ RSpec.describe Account do
       end
     end
 
-    context 'when last_webfingered_at is more than 24 hours before' do
-      let(:last_webfingered_at) { 25.hours.ago }
+    context 'when last_webfingered_at is before the threshold' do
+      let(:last_webfingered_at) { (described_class::STALE_THRESHOLD + 1.hour).ago }
 
       it 'returns true' do
         expect(account.possibly_stale?).to be true
       end
     end
 
-    context 'when last_webfingered_at is less than 24 hours before' do
-      let(:last_webfingered_at) { 23.hours.ago }
+    context 'when last_webfingered_at is after the threshold' do
+      let(:last_webfingered_at) { (described_class::STALE_THRESHOLD - 1.hour).ago }
 
       it 'returns false' do
         expect(account.possibly_stale?).to be false
@@ -752,26 +694,42 @@ RSpec.describe Account do
     end
   end
 
-  describe '#prepare_contents' do
-    subject { Fabricate.build :account, domain: domain, note: '  padded note  ', display_name: '  padded name  ' }
+  describe 'Callbacks' do
+    describe 'Stripping content when required' do
+      context 'with a remote account' do
+        subject { Fabricate.build :account, domain: 'host.example', note: '   note   ', display_name: '   display name   ' }
 
-    context 'with local account' do
-      let(:domain) { nil }
-
-      it 'strips values' do
-        expect { subject.valid? }
-          .to change(subject, :note).to('padded note')
-          .and(change(subject, :display_name).to('padded name'))
+        it 'preserves content' do
+          expect { subject.valid? }
+            .to not_change(subject, :note)
+            .and not_change(subject, :display_name)
+        end
       end
-    end
 
-    context 'with remote account' do
-      let(:domain) { 'host.example' }
+      context 'with a local account' do
+        subject { Fabricate.build :account, domain: nil, note:, display_name: }
 
-      it 'preserves values' do
-        expect { subject.valid? }
-          .to not_change(subject, :note)
-          .and(not_change(subject, :display_name))
+        context 'with populated fields' do
+          let(:note) { '   note   ' }
+          let(:display_name) { '   display name   ' }
+
+          it 'strips content' do
+            expect { subject.valid? }
+              .to change(subject, :note).to('note')
+              .and change(subject, :display_name).to('display name')
+          end
+        end
+
+        context 'with empty fields' do
+          let(:note) { nil }
+          let(:display_name) { nil }
+
+          it 'preserves content' do
+            expect { subject.valid? }
+              .to not_change(subject, :note)
+              .and not_change(subject, :display_name)
+          end
+        end
       end
     end
   end
@@ -826,22 +784,19 @@ RSpec.describe Account do
     end
   end
 
-  describe 'validations' do
+  describe 'Validations' do
     it { is_expected.to validate_presence_of(:username) }
 
-    context 'when is local' do
-      it 'is invalid if the username is not unique in case-insensitive comparison among local accounts' do
-        _account = Fabricate(:account, username: 'the_doctor')
-        non_unique_account = Fabricate.build(:account, username: 'the_Doctor')
-        non_unique_account.valid?
-        expect(non_unique_account).to model_have_error_on_field(:username)
+    context 'when account is local' do
+      subject { Fabricate.build :account, domain: nil }
+
+      context 'with an existing differently-cased username account' do
+        before { Fabricate :account, username: 'the_doctor' }
+
+        it { is_expected.to_not allow_value('the_Doctor').for(:username) }
       end
 
-      it 'is invalid if the username is reserved' do
-        account = Fabricate.build(:account, username: 'support')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
-      end
+      it { is_expected.to_not allow_value('support').for(:username) }
 
       it 'is valid when username is reserved but record has already been created' do
         account = Fabricate.build(:account, username: 'support')
@@ -849,9 +804,10 @@ RSpec.describe Account do
         expect(account.valid?).to be true
       end
 
-      it 'is valid if we are creating an instance actor account with a period' do
-        account = Fabricate.build(:account, id: described_class::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true, username: 'example.com')
-        expect(account.valid?).to be true
+      context 'with the instance actor' do
+        subject { Fabricate.build :account, id: described_class::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true }
+
+        it { is_expected.to allow_value('example.com').for(:username) }
       end
 
       it 'is valid if we are creating a possibly-conflicting instance actor account' do
@@ -860,81 +816,31 @@ RSpec.describe Account do
         expect(instance_account.valid?).to be true
       end
 
-      it 'is invalid if the username doesn\'t only contains letters, numbers and underscores' do
-        account = Fabricate.build(:account, username: 'the-doctor')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
-      end
+      it { is_expected.to_not allow_values('the-doctor', 'the.doctor').for(:username) }
 
-      it 'is invalid if the username contains a period' do
-        account = Fabricate.build(:account, username: 'the.doctor')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
-      end
+      it { is_expected.to validate_length_of(:username).is_at_most(described_class::USERNAME_LENGTH_LIMIT) }
+      it { is_expected.to validate_length_of(:display_name).is_at_most(described_class::DISPLAY_NAME_LENGTH_LIMIT) }
 
-      it 'is invalid if the username is longer than the character limit' do
-        account = Fabricate.build(:account, username: username_over_limit)
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
-      end
-
-      it 'is invalid if the display name is longer than the character limit' do
-        account = Fabricate.build(:account, display_name: display_name_over_limit)
-        account.valid?
-        expect(account).to model_have_error_on_field(:display_name)
-      end
-
-      it 'is invalid if the note is longer than the character limit' do
-        account = Fabricate.build(:account, note: account_note_over_limit)
-        account.valid?
-        expect(account).to model_have_error_on_field(:note)
-      end
+      it { is_expected.to_not allow_values(account_note_over_limit).for(:note) }
     end
 
-    context 'when is remote' do
-      it 'is invalid if the username is same among accounts in the same normalized domain' do
-        Fabricate(:account, domain: 'にゃん', username: 'username')
-        account = Fabricate.build(:account, domain: 'xn--r9j5b5b', username: 'username')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
+    context 'when account is remote' do
+      subject { Fabricate.build :account, domain: 'host.example' }
+
+      context 'when a normalized domain account exists' do
+        subject { Fabricate.build :account, domain: 'xn--r9j5b5b' }
+
+        before { Fabricate(:account, domain: 'にゃん', username: 'username') }
+
+        it { is_expected.to_not allow_values('username', 'Username').for(:username) }
       end
 
-      it 'is invalid if the username is not unique in case-insensitive comparison among accounts in the same normalized domain' do
-        Fabricate(:account, domain: 'にゃん', username: 'username')
-        account = Fabricate.build(:account, domain: 'xn--r9j5b5b', username: 'Username')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
-      end
+      it { is_expected.to allow_values('the-doctor', username_over_limit).for(:username) }
+      it { is_expected.to_not allow_values('the doctor').for(:username) }
 
-      it 'is valid even if the username contains hyphens' do
-        account = Fabricate.build(:account, domain: 'domain', username: 'the-doctor')
-        account.valid?
-        expect(account).to_not model_have_error_on_field(:username)
-      end
+      it { is_expected.to allow_values(display_name_over_limit).for(:display_name) }
 
-      it 'is invalid if the username doesn\'t only contains letters, numbers, underscores and hyphens' do
-        account = Fabricate.build(:account, domain: 'domain', username: 'the doctor')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
-      end
-
-      it 'is valid even if the username is longer than the character limit' do
-        account = Fabricate.build(:account, domain: 'domain', username: username_over_limit)
-        account.valid?
-        expect(account).to_not model_have_error_on_field(:username)
-      end
-
-      it 'is valid even if the display name is longer than the character limit' do
-        account = Fabricate.build(:account, domain: 'domain', display_name: display_name_over_limit)
-        account.valid?
-        expect(account).to_not model_have_error_on_field(:display_name)
-      end
-
-      it 'is valid even if the note is longer than the character limit' do
-        account = Fabricate.build(:account, domain: 'domain', note: account_note_over_limit)
-        account.valid?
-        expect(account).to_not model_have_error_on_field(:note)
-      end
+      it { is_expected.to allow_values(account_note_over_limit).for(:note) }
     end
 
     def username_over_limit
@@ -1082,14 +988,6 @@ RSpec.describe Account do
         silenced_account = Fabricate(:account, silenced: true)
         _account = Fabricate(:account, silenced: false)
         expect(described_class.silenced).to contain_exactly(silenced_account)
-      end
-    end
-
-    describe 'suspended' do
-      it 'returns an array of accounts who are suspended' do
-        suspended_account = Fabricate(:account, suspended: true)
-        _account = Fabricate(:account, suspended: false)
-        expect(described_class.suspended).to contain_exactly(suspended_account)
       end
     end
 

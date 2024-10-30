@@ -239,6 +239,7 @@ eo:
         confirm_user_html: "%{name} konfirmis retadreson de uzanto %{target}"
         create_account_warning_html: "%{name} sendis averton al %{target}"
         create_announcement_html: "%{name} kreis novan anoncon %{target}"
+        create_canonical_email_block_html: "%{name} blokis retpoŝtadreson per krado %{target}"
         create_custom_emoji_html: "%{name} alŝutis novan emoĝion %{target}"
         create_domain_allow_html: "%{name} aldonis domajnon %{target} al la blanka listo"
         create_domain_block_html: "%{name} blokis domajnon %{target}"
@@ -248,6 +249,7 @@ eo:
         create_user_role_html: "%{name} kreis rolon de %{target}"
         demote_user_html: "%{name} degradis uzanton %{target}"
         destroy_announcement_html: "%{name} forigis anoncon %{target}"
+        destroy_canonical_email_block_html: "%{name} malblokis retpoŝtadreson per krado %{target}"
         destroy_custom_emoji_html: "%{name} forigis emoĝion %{target}"
         destroy_domain_allow_html: "%{name} forigis domajnon %{target} el la blanka listo"
         destroy_domain_block_html: "%{name} malblokis domajnon %{target}"
@@ -282,6 +284,7 @@ eo:
         update_custom_emoji_html: "%{name} ĝisdatigis la emoĝion %{target}"
         update_domain_block_html: "%{name} ĝisdatigis domajnblokon por %{target}"
         update_ip_block_html: "%{name} ŝanĝis regulon por IP %{target}"
+        update_report_html: "%{name} ĝisdatigis la raporton %{target}"
         update_status_html: "%{name} ĝisdatigis afiŝon de %{target}"
         update_user_role_html: "%{name} ŝanĝis la rolon %{target}"
       deleted_account: forigita konto
@@ -531,6 +534,7 @@ eo:
       total_reported: Signaloj pri ili
       total_storage: Aŭdovidaj kunsendaĵoj
       totals_time_period_hint_html: Sumo montritas malsupre inkluzivas datumo ekde komenco.
+      unknown_instance: Nuntempe ne ekzistas registro pri ĉi tiu domajno sur ĉi tiu servilo.
     invites:
       deactivate_all: Malaktivigi ĉion
       filter:
@@ -763,6 +767,7 @@ eo:
         disabled: Al neniu
         users: Al salutintaj lokaj uzantoj
       registrations:
+        moderation_recommandation: Bonvolu certigi, ke vi havas taŭgan kaj reaktivan moderigan teamon antaŭ ol vi malfermas registriĝojn al ĉiuj!
         preamble: Regi kiu povas krei konton ĉe via servilo.
         title: Registriĝoj
       registrations_mode:
@@ -772,6 +777,7 @@ eo:
           open: Iu povas aliĝi
       security:
         authorized_fetch: Devigi aŭtentigon de frataraj serviloj
+        authorized_fetch_overridden_hint: Vi nuntempe ne povas ŝanĝi ĉi tiun agordon ĉar ĝi estas anstataŭita de mediovariablo.
       title: Agordoj de la servilo
     site_uploads:
       delete: Forigi elŝutitan dosieron
@@ -785,6 +791,7 @@ eo:
       types:
         major: Ĉefa eldono
         minor: Neĉefa eldono
+        patch: Eldono de flikaĵo — korektoj de eraroj kaj facile apliki ŝanĝojn
       version: Versio
     statuses:
       account: Skribanto
@@ -856,7 +863,12 @@ eo:
         message_html: "<strong>Via objektostokado estas misagordita. La privateco de viaj uzantoj estas en risko.</strong>"
     tags:
       moderation:
+        not_usable: Ne uzebla
+        review_requested: Revizio petita
+        reviewed: Reviziita
         title: Stato
+        unreviewed: Nereviziita
+        usable: Uzebla
       name: Nomo
       newest: Plej novaj
       oldest: Plej malnovaj
@@ -1039,6 +1051,7 @@ eo:
       hint_html: Nur unu plia afero! Ni devas konfirmi, ke vi estas homo (tio estas por ke ni povu konservi la spamon ekstere!). Solvu la CAPTCHA sube kaj alklaku "Daŭrigu".
       title: Sekureckontrolo
     confirmations:
+      awaiting_review_title: Via registriĝo estas reviziita
       clicking_this_link: alklakante ĉi tiun ligilon
       login_link: ensaluti
       registration_complete: Via registriĝo sur %{domain} nun finiĝis!
@@ -1097,6 +1110,7 @@ eo:
       title: Ni pretigu vin ĉe %{domain}.
     status:
       account_status: Statuso de la konto
+      confirming: Atendante ke retpoŝta konfirmo estos kompletigita.
       functional: Via konto estas tute funkcia.
       redirecting_to: Via konto estas neaktiva ĉar ĝi nun alidirektas al %{acct}.
       view_strikes: Vidi antauaj admonoj kontra via konto
@@ -1104,8 +1118,11 @@ eo:
     use_security_key: Uzi sekurecan ŝlosilon
   author_attribution:
     example_title: Ekzempla teksto
+    hint_html: Ĉu vi skribas novaĵojn aŭ blogartikolojn ekster Mastodon? Kontrolu kiel vi estas kreditita kiam ili estas kunhavataj ĉe Mastodon.
+    instructions: 'Certigu, ke ĉi tiu kodo estas en la HTML de via artikolo:'
     more_from_html: Pli de %{name}
     s_blog: Blogo de %{name}
+    then_instructions: Poste, aldonu la domajnan nomon de la publikigado en la suba kampo.
     title: Atribuo de aŭtoro
   challenge:
     confirm: Daŭrigi
@@ -1143,6 +1160,8 @@ eo:
       before: 'Antau ol dauri, legu ĉi tiujn notojn zorgeme:'
       caches: Enhavo kiu kaŝmemorigitas de aliaj serviloj eble restas
       data_removal: Viaj afiŝoj kaj aliaj informoj estos forigita por eterne
+      email_change_html: Vi povas <a href="%{path}">ŝanĝi vian retadreson</a> sen forigi vian konton
+      email_contact_html: Se ĝi ankoraŭ ne alvenas, vi povas retpoŝti al <a href="mailto:%{email}">%{email}</a> por helpo
       irreversible: Vi ne povas regajni au reaktivigi vian konton
       more_details_html: Por pli da detaloj, vidi la <a href="%{terms_path}">privatecan politikon</a>.
       username_available: Via uzantnomo iĝos denove disponebla
@@ -1504,6 +1523,7 @@ eo:
       unrecognized_emoji: ne estas rekonita emoĝio
   redirects:
     prompt: Se vi fidas ĉi tiun ligon, alklaku ĝin por daŭrigi.
+    title: Vi foriras %{instance}.
   relationships:
     activity: Konta aktiveco
     confirm_follow_selected_followers: Ĉu vi certas ke vi volas sekvi la elektitajn sekvantojn?
@@ -1699,6 +1719,7 @@ eo:
     contrast: Mastodon (Forta kontrasto)
     default: Mastodon (Malhela)
     mastodon-light: Mastodon (Hela)
+    system: Aŭtomata (uzu sisteman temon)
   time:
     formats:
       default: "%Y.%b.%d, %H:%M"
@@ -1737,6 +1758,10 @@ eo:
       extra: Estas nun preta por elŝuto!
       subject: Via arkivo estas preta por elŝutado
       title: Arkiva elŝuto
+    failed_2fa:
+      explanation: Iu provis ensaluti al via konto sed provizis nevalidan duan aŭtentikigfaktoron.
+      further_actions_html: Se ĉi tio ne estis vi, ni rekomendas ke vi %{action} tuj ĉar ĝi povas esti endanĝerigita.
+      subject: Malsukceso dum la dua aŭtentikigfaktoro
     suspicious_sign_in:
       change_password: ŝanĝi vian pasvorton
       details: 'Ĉi-sube estas detaloj pri la saluto:'
@@ -1776,6 +1801,8 @@ eo:
         silence: Konto limigita
         suspend: Konto suspendita
     welcome:
+      apps_android_action: Akiru ĝin ĉe Google Play
+      apps_ios_action: Elŝutu ĉe la App Store
       apps_step: Elŝutu niajn oficialajn aplikaĵojn.
       apps_title: Aplikaĵoj de Mastodon
       edit_profile_action: Agordi
@@ -1783,9 +1810,14 @@ eo:
       explanation: Jen kelkaj konsiloj por helpi vin komenci
       feature_action: Lerni pli
       follow_action: Sekvi
+      follow_step: Sekvi interesajn homojn estas pri kio Mastodon temas.
+      follows_subtitle: Sekvu konatajn kontojn
+      follows_title: Kiun sekvi
+      follows_view_more: Rigardu pli da homoj por sekvi
       hashtags_recent_count:
         one: "%{people} homo en la pasintaj 2 tagoj"
         other: "%{people} homoj en la pasintaj 2 tagoj"
+      hashtags_subtitle: Esploru kio estas tendenco ekde la pasintaj 2 tagoj
       hashtags_title: Popularaj kradvortoj
       hashtags_view_more: Vidi pli da popularaj kradvortoj
       post_action: Redakti
@@ -1811,6 +1843,7 @@ eo:
     instructions_html: Kopiu kaj algluu la jenan kodon en la HTML de via retejo. Poste aldonu la adreson de via retejo en unu el la kromaj kampoj de via profilo en la langeto "Redakti profilon" kaj konservu la ŝanĝojn.
     verification: Kontrolo
     verified_links: Via kontrolitaj ligiloj
+    website_verification: Reteja konfirmo
   webauthn_credentials:
     add: Aldoni novan sekurecan ŝlosilon
     create:

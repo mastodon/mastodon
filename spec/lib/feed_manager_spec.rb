@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe FeedManager do
+  subject { described_class.instance }
+
   before do |example|
     unless example.metadata[:skip_stub]
       stub_const 'FeedManager::MAX_ITEMS', 10
@@ -32,26 +34,26 @@ RSpec.describe FeedManager do
       it 'returns false for followee\'s status' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         bob.follow!(alice)
-        expect(described_class.instance.filter?(:home, status, bob)).to be false
+        expect(subject.filter?(:home, status, bob)).to be false
       end
 
       it 'returns false for reblog by followee' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reblog = Fabricate(:status, reblog: status, account: alice)
         bob.follow!(alice)
-        expect(described_class.instance.filter?(:home, reblog, bob)).to be false
+        expect(subject.filter?(:home, reblog, bob)).to be false
       end
 
       it 'returns true for post from account who blocked me' do
         status = Fabricate(:status, text: 'Hello, World', account: alice)
         alice.block!(bob)
-        expect(described_class.instance.filter?(:home, status, bob)).to be true
+        expect(subject.filter?(:home, status, bob)).to be true
       end
 
       it 'returns true for post from blocked account' do
         status = Fabricate(:status, text: 'Hello, World', account: alice)
         bob.block!(alice)
-        expect(described_class.instance.filter?(:home, status, bob)).to be true
+        expect(subject.filter?(:home, status, bob)).to be true
       end
 
       it 'returns true for reblog by followee of blocked account' do
@@ -59,7 +61,7 @@ RSpec.describe FeedManager do
         reblog = Fabricate(:status, reblog: status, account: alice)
         bob.follow!(alice)
         bob.block!(jeff)
-        expect(described_class.instance.filter?(:home, reblog, bob)).to be true
+        expect(subject.filter?(:home, reblog, bob)).to be true
       end
 
       it 'returns true for reblog by followee of muted account' do
@@ -67,7 +69,7 @@ RSpec.describe FeedManager do
         reblog = Fabricate(:status, reblog: status, account: alice)
         bob.follow!(alice)
         bob.mute!(jeff)
-        expect(described_class.instance.filter?(:home, reblog, bob)).to be true
+        expect(subject.filter?(:home, reblog, bob)).to be true
       end
 
       it 'returns true for reblog by followee of someone who is blocking recipient' do
@@ -75,14 +77,14 @@ RSpec.describe FeedManager do
         reblog = Fabricate(:status, reblog: status, account: alice)
         bob.follow!(alice)
         jeff.block!(bob)
-        expect(described_class.instance.filter?(:home, reblog, bob)).to be true
+        expect(subject.filter?(:home, reblog, bob)).to be true
       end
 
       it 'returns true for reblog from account with reblogs disabled' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reblog = Fabricate(:status, reblog: status, account: alice)
         bob.follow!(alice, reblogs: false)
-        expect(described_class.instance.filter?(:home, reblog, bob)).to be true
+        expect(subject.filter?(:home, reblog, bob)).to be true
       end
 
       it 'returns false for reply by followee to another followee' do
@@ -90,49 +92,49 @@ RSpec.describe FeedManager do
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
         bob.follow!(alice)
         bob.follow!(jeff)
-        expect(described_class.instance.filter?(:home, reply, bob)).to be false
+        expect(subject.filter?(:home, reply, bob)).to be false
       end
 
       it 'returns false for reply by followee to recipient' do
         status = Fabricate(:status, text: 'Hello world', account: bob)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
         bob.follow!(alice)
-        expect(described_class.instance.filter?(:home, reply, bob)).to be false
+        expect(subject.filter?(:home, reply, bob)).to be false
       end
 
       it 'returns false for reply by followee to self' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
         bob.follow!(alice)
-        expect(described_class.instance.filter?(:home, reply, bob)).to be false
+        expect(subject.filter?(:home, reply, bob)).to be false
       end
 
       it 'returns true for reply by followee to non-followed account' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
         bob.follow!(alice)
-        expect(described_class.instance.filter?(:home, reply, bob)).to be true
+        expect(subject.filter?(:home, reply, bob)).to be true
       end
 
       it 'returns true for the second reply by followee to a non-federated status' do
         reply        = Fabricate(:status, text: 'Reply 1', reply: true, account: alice)
         second_reply = Fabricate(:status, text: 'Reply 2', thread: reply, account: alice)
         bob.follow!(alice)
-        expect(described_class.instance.filter?(:home, second_reply, bob)).to be true
+        expect(subject.filter?(:home, second_reply, bob)).to be true
       end
 
       it 'returns false for status by followee mentioning another account' do
         bob.follow!(alice)
         jeff.follow!(alice)
         status = PostStatusService.new.call(alice, text: 'Hey @jeff')
-        expect(described_class.instance.filter?(:home, status, bob)).to be false
+        expect(subject.filter?(:home, status, bob)).to be false
       end
 
       it 'returns true for status by followee mentioning blocked account' do
         bob.block!(jeff)
         bob.follow!(alice)
         status = PostStatusService.new.call(alice, text: 'Hey @jeff')
-        expect(described_class.instance.filter?(:home, status, bob)).to be true
+        expect(subject.filter?(:home, status, bob)).to be true
       end
 
       it 'returns true for reblog of a personally blocked domain' do
@@ -140,19 +142,19 @@ RSpec.describe FeedManager do
         alice.follow!(jeff)
         status = Fabricate(:status, text: 'Hello world', account: bob)
         reblog = Fabricate(:status, reblog: status, account: jeff)
-        expect(described_class.instance.filter?(:home, reblog, alice)).to be true
+        expect(subject.filter?(:home, reblog, alice)).to be true
       end
 
       it 'returns true for German post when follow is set to English only' do
         alice.follow!(bob, languages: %w(en))
         status = Fabricate(:status, text: 'Hallo Welt', account: bob, language: 'de')
-        expect(described_class.instance.filter?(:home, status, alice)).to be true
+        expect(subject.filter?(:home, status, alice)).to be true
       end
 
       it 'returns false for German post when follow is set to German' do
         alice.follow!(bob, languages: %w(de))
         status = Fabricate(:status, text: 'Hallo Welt', account: bob, language: 'de')
-        expect(described_class.instance.filter?(:home, status, alice)).to be false
+        expect(subject.filter?(:home, status, alice)).to be false
       end
 
       it 'returns true for post from followee on exclusive list' do
@@ -161,7 +163,7 @@ RSpec.describe FeedManager do
         list.accounts << bob
         allow(List).to receive(:where).and_return(list)
         status = Fabricate(:status, text: 'I post a lot', account: bob)
-        expect(described_class.instance.filter?(:home, status, alice)).to be true
+        expect(subject.filter?(:home, status, alice)).to be true
       end
 
       it 'returns true for reblog from followee on exclusive list' do
@@ -171,7 +173,7 @@ RSpec.describe FeedManager do
         allow(List).to receive(:where).and_return(list)
         status = Fabricate(:status, text: 'I post a lot', account: bob)
         reblog = Fabricate(:status, reblog: status, account: jeff)
-        expect(described_class.instance.filter?(:home, reblog, alice)).to be true
+        expect(subject.filter?(:home, reblog, alice)).to be true
       end
 
       it 'returns false for post from followee on non-exclusive list' do
@@ -179,7 +181,7 @@ RSpec.describe FeedManager do
         alice.follow!(bob)
         list.accounts << bob
         status = Fabricate(:status, text: 'I post a lot', account: bob)
-        expect(described_class.instance.filter?(:home, status, alice)).to be false
+        expect(subject.filter?(:home, status, alice)).to be false
       end
 
       it 'returns false for reblog from followee on non-exclusive list' do
@@ -188,7 +190,7 @@ RSpec.describe FeedManager do
         list.accounts << jeff
         status = Fabricate(:status, text: 'I post a lot', account: bob)
         reblog = Fabricate(:status, reblog: status, account: jeff)
-        expect(described_class.instance.filter?(:home, reblog, alice)).to be false
+        expect(subject.filter?(:home, reblog, alice)).to be false
       end
     end
 
@@ -196,27 +198,27 @@ RSpec.describe FeedManager do
       it 'returns true for status that mentions blocked account' do
         bob.block!(jeff)
         status = PostStatusService.new.call(alice, text: 'Hey @jeff')
-        expect(described_class.instance.filter?(:mentions, status, bob)).to be true
+        expect(subject.filter?(:mentions, status, bob)).to be true
       end
 
       it 'returns true for status that replies to a blocked account' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
         bob.block!(jeff)
-        expect(described_class.instance.filter?(:mentions, reply, bob)).to be true
+        expect(subject.filter?(:mentions, reply, bob)).to be true
       end
 
       it 'returns false for status by limited account who recipient is not following' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         alice.silence!
-        expect(described_class.instance.filter?(:mentions, status, bob)).to be false
+        expect(subject.filter?(:mentions, status, bob)).to be false
       end
 
       it 'returns false for status by followed limited account' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         alice.silence!
         bob.follow!(alice)
-        expect(described_class.instance.filter?(:mentions, status, bob)).to be false
+        expect(subject.filter?(:mentions, status, bob)).to be false
       end
     end
   end
@@ -228,7 +230,7 @@ RSpec.describe FeedManager do
       members = Array.new(described_class::MAX_ITEMS) { |count| [count, count] }
       redis.zadd("feed:home:#{account.id}", members)
 
-      described_class.instance.push_to_home(account, status)
+      subject.push_to_home(account, status)
 
       expect(redis.zcard("feed:home:#{account.id}")).to eq described_class::MAX_ITEMS
     end
@@ -239,7 +241,7 @@ RSpec.describe FeedManager do
         reblogged = Fabricate(:status)
         reblog = Fabricate(:status, reblog: reblogged)
 
-        expect(described_class.instance.push_to_home(account, reblog)).to be true
+        expect(subject.push_to_home(account, reblog)).to be true
       end
 
       it 'does not save a new reblog of a recent status' do
@@ -247,9 +249,9 @@ RSpec.describe FeedManager do
         reblogged = Fabricate(:status)
         reblog = Fabricate(:status, reblog: reblogged)
 
-        described_class.instance.push_to_home(account, reblogged)
+        subject.push_to_home(account, reblogged)
 
-        expect(described_class.instance.push_to_home(account, reblog)).to be false
+        expect(subject.push_to_home(account, reblog)).to be false
       end
 
       it 'saves a new reblog of an old status' do
@@ -257,14 +259,14 @@ RSpec.describe FeedManager do
         reblogged = Fabricate(:status)
         reblog = Fabricate(:status, reblog: reblogged)
 
-        described_class.instance.push_to_home(account, reblogged)
+        subject.push_to_home(account, reblogged)
 
         # Fill the feed with intervening statuses
         described_class::REBLOG_FALLOFF.times do
-          described_class.instance.push_to_home(account, Fabricate(:status))
+          subject.push_to_home(account, Fabricate(:status))
         end
 
-        expect(described_class.instance.push_to_home(account, reblog)).to be true
+        expect(subject.push_to_home(account, reblog)).to be true
       end
 
       it 'does not save a new reblog of a recently-reblogged status' do
@@ -273,10 +275,10 @@ RSpec.describe FeedManager do
         reblogs = Array.new(2) { Fabricate(:status, reblog: reblogged) }
 
         # The first reblog will be accepted
-        described_class.instance.push_to_home(account, reblogs.first)
+        subject.push_to_home(account, reblogs.first)
 
         # The second reblog should be ignored
-        expect(described_class.instance.push_to_home(account, reblogs.last)).to be false
+        expect(subject.push_to_home(account, reblogs.last)).to be false
       end
 
       it 'saves a new reblog of a recently-reblogged status when previous reblog has been deleted' do
@@ -285,15 +287,15 @@ RSpec.describe FeedManager do
         old_reblog = Fabricate(:status, reblog: reblogged)
 
         # The first reblog should be accepted
-        expect(described_class.instance.push_to_home(account, old_reblog)).to be true
+        expect(subject.push_to_home(account, old_reblog)).to be true
 
         # The first reblog should be successfully removed
-        expect(described_class.instance.unpush_from_home(account, old_reblog)).to be true
+        expect(subject.unpush_from_home(account, old_reblog)).to be true
 
         reblog = Fabricate(:status, reblog: reblogged)
 
         # The second reblog should be accepted
-        expect(described_class.instance.push_to_home(account, reblog)).to be true
+        expect(subject.push_to_home(account, reblog)).to be true
       end
 
       it 'does not save a new reblog of a multiply-reblogged-then-unreblogged status' do
@@ -302,14 +304,14 @@ RSpec.describe FeedManager do
         reblogs = Array.new(3) { Fabricate(:status, reblog: reblogged) }
 
         # Accept the reblogs
-        described_class.instance.push_to_home(account, reblogs[0])
-        described_class.instance.push_to_home(account, reblogs[1])
+        subject.push_to_home(account, reblogs[0])
+        subject.push_to_home(account, reblogs[1])
 
         # Unreblog the first one
-        described_class.instance.unpush_from_home(account, reblogs[0])
+        subject.unpush_from_home(account, reblogs[0])
 
         # The last reblog should still be ignored
-        expect(described_class.instance.push_to_home(account, reblogs.last)).to be false
+        expect(subject.push_to_home(account, reblogs.last)).to be false
       end
 
       it 'saves a new reblog of a long-ago-reblogged status' do
@@ -318,15 +320,15 @@ RSpec.describe FeedManager do
         reblogs = Array.new(2) { Fabricate(:status, reblog: reblogged) }
 
         # The first reblog will be accepted
-        described_class.instance.push_to_home(account, reblogs.first)
+        subject.push_to_home(account, reblogs.first)
 
         # Fill the feed with intervening statuses
         described_class::REBLOG_FALLOFF.times do
-          described_class.instance.push_to_home(account, Fabricate(:status))
+          subject.push_to_home(account, Fabricate(:status))
         end
 
         # The second reblog should also be accepted
-        expect(described_class.instance.push_to_home(account, reblogs.last)).to be true
+        expect(subject.push_to_home(account, reblogs.last)).to be true
       end
     end
 
@@ -334,9 +336,9 @@ RSpec.describe FeedManager do
       account = Fabricate(:account)
       reblog = Fabricate(:status)
       status = Fabricate(:status, reblog: reblog)
-      described_class.instance.push_to_home(account, status)
+      subject.push_to_home(account, status)
 
-      expect(described_class.instance.push_to_home(account, reblog)).to be false
+      expect(subject.push_to_home(account, reblog)).to be false
     end
   end
 
@@ -359,9 +361,9 @@ RSpec.describe FeedManager do
     it "does not push when the given status's reblog is already inserted" do
       reblog = Fabricate(:status)
       status = Fabricate(:status, reblog: reblog)
-      described_class.instance.push_to_list(list, status)
+      subject.push_to_list(list, status)
 
-      expect(described_class.instance.push_to_list(list, reblog)).to be false
+      expect(subject.push_to_list(list, reblog)).to be false
     end
 
     context 'when replies policy is set to no replies' do
@@ -371,19 +373,19 @@ RSpec.describe FeedManager do
 
       it 'pushes statuses that are not replies' do
         status = Fabricate(:status, text: 'Hello world', account: bob)
-        expect(described_class.instance.push_to_list(list, status)).to be true
+        expect(subject.push_to_list(list, status)).to be true
       end
 
       it 'pushes statuses that are replies to list owner' do
         status = Fabricate(:status, text: 'Hello world', account: owner)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: bob)
-        expect(described_class.instance.push_to_list(list, reply)).to be true
+        expect(subject.push_to_list(list, reply)).to be true
       end
 
       it 'does not push replies to another member of the list' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: bob)
-        expect(described_class.instance.push_to_list(list, reply)).to be false
+        expect(subject.push_to_list(list, reply)).to be false
       end
     end
 
@@ -394,25 +396,25 @@ RSpec.describe FeedManager do
 
       it 'pushes statuses that are not replies' do
         status = Fabricate(:status, text: 'Hello world', account: bob)
-        expect(described_class.instance.push_to_list(list, status)).to be true
+        expect(subject.push_to_list(list, status)).to be true
       end
 
       it 'pushes statuses that are replies to list owner' do
         status = Fabricate(:status, text: 'Hello world', account: owner)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: bob)
-        expect(described_class.instance.push_to_list(list, reply)).to be true
+        expect(subject.push_to_list(list, reply)).to be true
       end
 
       it 'pushes replies to another member of the list' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: bob)
-        expect(described_class.instance.push_to_list(list, reply)).to be true
+        expect(subject.push_to_list(list, reply)).to be true
       end
 
       it 'does not push replies to someone not a member of the list' do
         status = Fabricate(:status, text: 'Hello world', account: eve)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: bob)
-        expect(described_class.instance.push_to_list(list, reply)).to be false
+        expect(subject.push_to_list(list, reply)).to be false
       end
     end
 
@@ -423,25 +425,25 @@ RSpec.describe FeedManager do
 
       it 'pushes statuses that are not replies' do
         status = Fabricate(:status, text: 'Hello world', account: bob)
-        expect(described_class.instance.push_to_list(list, status)).to be true
+        expect(subject.push_to_list(list, status)).to be true
       end
 
       it 'pushes statuses that are replies to list owner' do
         status = Fabricate(:status, text: 'Hello world', account: owner)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: bob)
-        expect(described_class.instance.push_to_list(list, reply)).to be true
+        expect(subject.push_to_list(list, reply)).to be true
       end
 
       it 'pushes replies to another member of the list' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: bob)
-        expect(described_class.instance.push_to_list(list, reply)).to be true
+        expect(subject.push_to_list(list, reply)).to be true
       end
 
       it 'pushes replies to someone not a member of the list' do
         status = Fabricate(:status, text: 'Hello world', account: eve)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: bob)
-        expect(described_class.instance.push_to_list(list, reply)).to be true
+        expect(subject.push_to_list(list, reply)).to be true
       end
     end
   end
@@ -451,9 +453,9 @@ RSpec.describe FeedManager do
       account = Fabricate(:account, id: 0)
       reblog = Fabricate(:status)
       status = Fabricate(:status, reblog: reblog)
-      described_class.instance.push_to_home(account, status)
+      subject.push_to_home(account, status)
 
-      described_class.instance.merge_into_home(account, reblog.account)
+      subject.merge_into_home(account, reblog.account)
 
       expect(redis.zscore('feed:home:0', reblog.id)).to be_nil
     end
@@ -466,14 +468,14 @@ RSpec.describe FeedManager do
       reblogged = Fabricate(:status)
       status    = Fabricate(:status, reblog: reblogged)
 
-      described_class.instance.push_to_home(receiver, reblogged)
-      described_class::REBLOG_FALLOFF.times { described_class.instance.push_to_home(receiver, Fabricate(:status)) }
-      described_class.instance.push_to_home(receiver, status)
+      subject.push_to_home(receiver, reblogged)
+      described_class::REBLOG_FALLOFF.times { subject.push_to_home(receiver, Fabricate(:status)) }
+      subject.push_to_home(receiver, status)
 
       # The reblogging status should show up under normal conditions.
       expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to include(status.id.to_s)
 
-      described_class.instance.unpush_from_home(receiver, status)
+      subject.unpush_from_home(receiver, status)
 
       # Restore original status
       expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to_not include(status.id.to_s)
@@ -484,12 +486,12 @@ RSpec.describe FeedManager do
       reblogged = Fabricate(:status)
       status    = Fabricate(:status, reblog: reblogged)
 
-      described_class.instance.push_to_home(receiver, status)
+      subject.push_to_home(receiver, status)
 
       # The reblogging status should show up under normal conditions.
       expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to eq [status.id.to_s]
 
-      described_class.instance.unpush_from_home(receiver, status)
+      subject.unpush_from_home(receiver, status)
 
       expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to be_empty
     end
@@ -499,14 +501,14 @@ RSpec.describe FeedManager do
       reblogs   = Array.new(3) { Fabricate(:status, reblog: reblogged) }
 
       reblogs.each do |reblog|
-        described_class.instance.push_to_home(receiver, reblog)
+        subject.push_to_home(receiver, reblog)
       end
 
       # The reblogging status should show up under normal conditions.
       expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to eq [reblogs.first.id.to_s]
 
       reblogs[0...-1].each do |reblog|
-        described_class.instance.unpush_from_home(receiver, reblog)
+        subject.unpush_from_home(receiver, reblog)
       end
 
       expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to eq [reblogs.last.id.to_s]
@@ -515,10 +517,10 @@ RSpec.describe FeedManager do
     it 'sends push updates' do
       status = Fabricate(:status)
 
-      described_class.instance.push_to_home(receiver, status)
+      subject.push_to_home(receiver, status)
 
       allow(redis).to receive_messages(publish: nil)
-      described_class.instance.unpush_from_home(receiver, status)
+      subject.unpush_from_home(receiver, status)
 
       deletion = Oj.dump(event: :delete, payload: status.id.to_s)
       expect(redis).to have_received(:publish).with("timeline:#{receiver.id}", deletion)
@@ -532,9 +534,9 @@ RSpec.describe FeedManager do
     it 'leaves a tagged status' do
       status = Fabricate(:status)
       status.tags << tag
-      described_class.instance.push_to_home(receiver, status)
+      subject.push_to_home(receiver, status)
 
-      described_class.instance.unmerge_tag_from_home(tag, receiver)
+      subject.unmerge_tag_from_home(tag, receiver)
 
       expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to_not include(status.id.to_s)
     end
@@ -545,9 +547,9 @@ RSpec.describe FeedManager do
 
       status = Fabricate(:status, account: followee)
       status.tags << tag
-      described_class.instance.push_to_home(receiver, status)
+      subject.push_to_home(receiver, status)
 
-      described_class.instance.unmerge_tag_from_home(tag, receiver)
+      subject.unmerge_tag_from_home(tag, receiver)
 
       expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to include(status.id.to_s)
     end
@@ -555,9 +557,9 @@ RSpec.describe FeedManager do
     it 'remains a tagged status written by receiver' do
       status = Fabricate(:status, account: receiver)
       status.tags << tag
-      described_class.instance.push_to_home(receiver, status)
+      subject.push_to_home(receiver, status)
 
-      described_class.instance.unmerge_tag_from_home(tag, receiver)
+      subject.unmerge_tag_from_home(tag, receiver)
 
       expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to include(status.id.to_s)
     end
@@ -588,7 +590,7 @@ RSpec.describe FeedManager do
     end
 
     it 'correctly cleans the home timeline' do
-      described_class.instance.clear_from_home(account, target_account)
+      subject.clear_from_home(account, target_account)
 
       expect(redis.zrange("feed:home:#{account.id}", 0, -1)).to eq [status_from_followed_account_first.id.to_s, status_from_followed_account_next.id.to_s]
     end
