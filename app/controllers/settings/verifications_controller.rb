@@ -18,7 +18,15 @@ class Settings::VerificationsController < Settings::BaseController
   private
 
   def account_params
-    params.require(:account).permit(:attribution_domains_as_text)
+    params.require(:account).permit(:attribution_domains).tap do |params|
+      params[:attribution_domains] = params[:attribution_domains]&.lines&.map do |line|
+        line
+          .strip
+          .delete_prefix('http://')
+          .delete_prefix('https://')
+          .delete_prefix('*.')
+      end
+    end
   end
 
   def set_account
