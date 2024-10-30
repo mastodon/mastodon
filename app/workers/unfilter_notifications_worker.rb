@@ -39,7 +39,7 @@ class UnfilterNotificationsWorker
   end
 
   def push_streaming_event!
-    redis.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notifications_merged, payload: '1'))
+    redis.publish("timeline:#{@recipient.id}:notifications", JSON.dump(event: :notifications_merged, payload: '1'))
   end
 
   def subscribed_to_streaming_api?

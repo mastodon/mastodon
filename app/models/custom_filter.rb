@@ -112,8 +112,8 @@ class CustomFilter < ApplicationRecord
     @should_invalidate_cache = false
 
     Rails.cache.delete("filters:v3:#{account_id}")
-    redis.publish("timeline:#{account_id}", Oj.dump(event: :filters_changed))
-    redis.publish("timeline:system:#{account_id}", Oj.dump(event: :filters_changed))
+    redis.publish("timeline:#{account_id}", JSON.dump(event: :filters_changed))
+    redis.publish("timeline:system:#{account_id}", JSON.dump(event: :filters_changed))
   end
 
   private

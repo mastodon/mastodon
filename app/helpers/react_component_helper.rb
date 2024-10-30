@@ -2,7 +2,7 @@
 
 module ReactComponentHelper
   def react_component(name, props = {}, &block)
-    data = { component: name.to_s.camelcase, props: Oj.dump(props) }
+    data = { component: name.to_s.camelcase, props: JSON.dump(props) }
     if block.nil?
       div_tag_with_data(data)
     else
@@ -11,7 +11,7 @@ module ReactComponentHelper
   end
 
   def react_admin_component(name, props = {})
-    data = { 'admin-component': name.to_s.camelcase, props: Oj.dump(props) }
+    data = { 'admin-component': name.to_s.camelcase, props: JSON.dump(props) }
     div_tag_with_data(data)
   end
 
