@@ -151,11 +151,9 @@ module Mastodon::CLI
           end
         end
       when :fog
-        paperclip_instance = MediaAttachment.new.file
         fog_directory = Paperclip::Attachment.default_options[:fog_directory]
         connection = Fog::Storage.new(Paperclip::Attachment.default_options[:fog_credentials])
         directory = connection.directories.get(fog_directory)
-
         last_key = options[:start_after]
 
         loop do
