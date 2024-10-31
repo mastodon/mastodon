@@ -86,6 +86,12 @@ class ActivityPub::TagManager
     account_status_shares_url(target.account, target)
   end
 
+  def following_uri_for(target, ...)
+    raise ArgumentError, 'target must be a local account' unless target.local?
+
+    account_following_index_url(target, ...)
+  end
+
   def followers_uri_for(target)
     target.local? ? account_followers_url(target) : target.followers_url.presence
   end
@@ -99,7 +105,7 @@ class ActivityPub::TagManager
     when 'public'
       [COLLECTIONS[:public]]
     when 'unlisted', 'private'
-      [account_followers_url(status.account)]
+      [followers_uri_for(status.account)]
     when 'direct', 'limited'
       if status.account.silenced?
         # Only notify followers if the account is locally silenced
@@ -133,7 +139,7 @@ class ActivityPub::TagManager
 
     case status.visibility
     when 'public'
-      cc << account_followers_url(status.account)
+      cc << followers_uri_for(status.account)
     when 'unlisted'
       cc << COLLECTIONS[:public]
     end

@@ -44,7 +44,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   delegate :suspended?, :instance_actor?, to: :object
 
   def id
-    object.instance_actor? ? instance_actor_url : account_url(object)
+    ActivityPub::TagManager.instance.uri_for(object)
   end
 
   def type
