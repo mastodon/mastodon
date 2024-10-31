@@ -239,6 +239,7 @@ eo:
         confirm_user_html: "%{name} konfirmis retadreson de uzanto %{target}"
         create_account_warning_html: "%{name} sendis averton al %{target}"
         create_announcement_html: "%{name} kreis novan anoncon %{target}"
+        create_canonical_email_block_html: "%{name} blokis retpoŝtadreson per krado %{target}"
         create_custom_emoji_html: "%{name} alŝutis novan emoĝion %{target}"
         create_domain_allow_html: "%{name} aldonis domajnon %{target} al la blanka listo"
         create_domain_block_html: "%{name} blokis domajnon %{target}"
@@ -248,6 +249,7 @@ eo:
         create_user_role_html: "%{name} kreis rolon de %{target}"
         demote_user_html: "%{name} degradis uzanton %{target}"
         destroy_announcement_html: "%{name} forigis anoncon %{target}"
+        destroy_canonical_email_block_html: "%{name} malblokis retpoŝtadreson per krado %{target}"
         destroy_custom_emoji_html: "%{name} forigis emoĝion %{target}"
         destroy_domain_allow_html: "%{name} forigis domajnon %{target} el la blanka listo"
         destroy_domain_block_html: "%{name} malblokis domajnon %{target}"
@@ -282,6 +284,7 @@ eo:
         update_custom_emoji_html: "%{name} ĝisdatigis la emoĝion %{target}"
         update_domain_block_html: "%{name} ĝisdatigis domajnblokon por %{target}"
         update_ip_block_html: "%{name} ŝanĝis regulon por IP %{target}"
+        update_report_html: "%{name} ĝisdatigis la raporton %{target}"
         update_status_html: "%{name} ĝisdatigis afiŝon de %{target}"
         update_user_role_html: "%{name} ŝanĝis la rolon %{target}"
       deleted_account: forigita konto
@@ -788,6 +791,7 @@ eo:
       types:
         major: Ĉefa eldono
         minor: Neĉefa eldono
+        patch: Eldono de flikaĵo — korektoj de eraroj kaj facile apliki ŝanĝojn
       version: Versio
     statuses:
       account: Skribanto
@@ -1106,6 +1110,7 @@ eo:
       title: Ni pretigu vin ĉe %{domain}.
     status:
       account_status: Statuso de la konto
+      confirming: Atendante ke retpoŝta konfirmo estos kompletigita.
       functional: Via konto estas tute funkcia.
       redirecting_to: Via konto estas neaktiva ĉar ĝi nun alidirektas al %{acct}.
       view_strikes: Vidi antauaj admonoj kontra via konto
@@ -1155,6 +1160,8 @@ eo:
       before: 'Antau ol dauri, legu ĉi tiujn notojn zorgeme:'
       caches: Enhavo kiu kaŝmemorigitas de aliaj serviloj eble restas
       data_removal: Viaj afiŝoj kaj aliaj informoj estos forigita por eterne
+      email_change_html: Vi povas <a href="%{path}">ŝanĝi vian retadreson</a> sen forigi vian konton
+      email_contact_html: Se ĝi ankoraŭ ne alvenas, vi povas retpoŝti al <a href="mailto:%{email}">%{email}</a> por helpo
       irreversible: Vi ne povas regajni au reaktivigi vian konton
       more_details_html: Por pli da detaloj, vidi la <a href="%{terms_path}">privatecan politikon</a>.
       username_available: Via uzantnomo iĝos denove disponebla
