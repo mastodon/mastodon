@@ -9,8 +9,6 @@ class ApplicationMailer < ActionMailer::Base
 
   after_action :set_autoreply_headers!
 
-  rescue_from UncaughtThrowError, with: -> {}
-
   protected
 
   def locale_for_account(account, &block)

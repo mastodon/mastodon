@@ -6,12 +6,12 @@ class NotificationMailer < ApplicationMailer
          :routing
 
   before_action :process_params
-  with_options only: %i(mention favourite reblog) do
-    before_action :set_status
+  with_options only: %i(favourite mention reblog) do
     after_action :thread_by_conversation!
+    before_action :set_status
+    before_action :verify_status_presence
   end
   before_action :set_account, only: [:follow, :favourite, :reblog, :follow_request]
-  before_action :verify_status_presence, only: %i(favourite mention reblog)
   after_action :set_list_headers!
 
   before_deliver :verify_functional_user
@@ -73,7 +73,10 @@ class NotificationMailer < ApplicationMailer
   end
 
   def verify_status_presence
-    throw(:abort) if @status.blank?
+    if @status.blank?
+      self.perform_deliveries = false
+      self.response_body = :do_not_deliver
+    end
   end
 
   def set_list_headers!
