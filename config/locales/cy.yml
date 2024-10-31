@@ -29,6 +29,7 @@ cy:
       two: Postiadau
       zero: Postiadau
     posts_tab_heading: Postiadau
+    self_follow_error: Chewch chi ddim dilyn eich cyfrif eich hun
   admin:
     account_actions:
       action: Cyflawni gweithred
@@ -918,7 +919,7 @@ cy:
         message_html: Mae gan eich clwstwr Elasticsearch fwy nag un nod, ond nid yw Mastodon wedi'i ffurfweddu i'w defnyddio.
       elasticsearch_preset_single_node:
         action: Darllenwch y ddogfennaeth
-        message_html: Dim ond un nod sydd gan eich clwstwr Elasticsearch, mae angen gosod <code>ES_PRESET</code> i <code>single_node_cluster</code> .
+        message_html: Dim ond un nod sydd gan eich clwstwr Elasticsearch, mae angen gosod <code>ES_PRESET</code> i <code>single_node_cluster</code>.
       elasticsearch_reset_chewy:
         message_html: Mae eich mynegai system Elasticsearch wedi dyddio oherwydd newid gosodiad. Rhedwch chwiliad <code>tootctl search deploy --reset-chewy</code> i'w ddiweddaru.
       elasticsearch_running_check:
@@ -931,6 +932,9 @@ cy:
         message_html: Nid ydych wedi diffinio unrhyw reolau gweinydd.
       sidekiq_process_check:
         message_html: Does dim proses Sidekiq yn rhedeg ar gyfer y ciw(iau) %{value}. Adolygwch eich ffurfweddiad Sidekiq
+      software_version_check:
+        action: Gweld y diweddariadau sydd ar gael
+        message_html: Mae diweddariad Mastodon ar gael.
       software_version_critical_check:
         action: Gweld y diweddariadau sydd ar gael
         message_html: Mae diweddariad hanfodol Mastodon ar gael, diweddarwch cyn gynted â phosibl.
@@ -1059,7 +1063,7 @@ cy:
     webhooks:
       add_new: Ychwanegu diweddbwynt
       delete: Dileu
-      description_html: Mae <strong>bachyn gwe</strong> yn galluogi Mastodon i wthio <strong>hysbysiadau amser real</strong> am ddigwyddiadau a ddewiswyd i'ch cais eich hun, fel y gall eich cais <strong>ysgogi ymatebion yn awtomatig</strong> .
+      description_html: Mae <strong>bachyn gwe</strong> yn galluogi Mastodon i wthio <strong>hysbysiadau amser real</strong> am ddigwyddiadau a ddewiswyd i'ch cais eich hun, fel y gall eich cais <strong>ysgogi ymatebion yn awtomatig</strong>.
       disable: Analluogi
       disabled: Wedi'i analluogi
       edit: Golygu diweddbwynt
@@ -1123,7 +1127,7 @@ cy:
     created_msg: Wedi creu enw arall yn llwyddiannus. Gallwch nawr ddechrau symud o'r hen gyfrif.
     deleted_msg: Wedi tynnu enw arall yn llwyddiannus. Ni fydd symud o'r cyfrif hynny i'r cyfrif hon yn bosib.
     empty: Nid oes gennych enwau eraill.
-    hint_html: Os ydych chi am symud o gyfrif arall i'r un hwn, gallwch greu enw arall yma, sy'n ofynnol cyn y gallwch symud ymlaen i symud dilynwyr o'r hen gyfrif i'r un hwn. Mae'r weithred hon ynddo'i hun yn <strong>ddiniwed ac yn wrthdroadwy</strong>. <strong>Mae'r mudo cyfrif yn cael ei wneud o'r hen gyfrif</strong> .
+    hint_html: Os ydych chi am symud o gyfrif arall i'r un hwn, gallwch greu enw arall yma, sy'n ofynnol cyn y gallwch symud ymlaen i symud dilynwyr o'r hen gyfrif i'r un hwn. Mae'r weithred hon ynddo'i hun yn <strong>ddiniwed ac yn wrthdroadwy</strong>. <strong>Mae'r mudo cyfrif yn cael ei wneud o'r hen gyfrif</strong>.
     remove: Dadgysylltu'r enw arall
   appearance:
     advanced_web_interface: Rhyngwyneb gwe uwch
@@ -1234,9 +1238,11 @@ cy:
     use_security_key: Defnyddiwch allwedd diogelwch
   author_attribution:
     example_title: Testun enghreifftiol
-    hint_html: Rheolwch sut rydych chi'n cael eich canmol pan fydd dolenni'n cael eu rhannu ar Mastodon.
+    hint_html: Ydych chi'n ysgrifennu erthyglau newyddion neu flog y tu allan i Mastodon? Rheolwch sut y byddwch yn cael eich cydnabod pan fyddan nhw'n cael eu rhannu ar Mastodon.
+    instructions: 'Gwnewch yn siŵr fod y cod hwn yn HTML eich erthygl:'
     more_from_html: Mwy gan %{name}
     s_blog: Blog %{name}
+    then_instructions: Yna, ychwanegwch enw parth y cyhoeddiad yn y maes isod.
     title: Priodoliad awdur
   challenge:
     confirm: Parhau
@@ -1364,7 +1370,7 @@ cy:
       add_keyword: Ychwanegu allweddair
       keywords: Allweddeiriau
       statuses: Postiadau unigol
-      statuses_hint_html: Mae'r hidlydd hwn yn berthnasol i ddewis postiadau unigol pa un ai a ydynt yn cyfateb i'r allweddeiriau isod. <a href="%{path}">Adolygu neu ddileu postiadau o'r hidlydd</a> .
+      statuses_hint_html: Mae'r hidlydd hwn yn berthnasol i ddewis postiadau unigol pa un ai a ydynt yn cyfateb i'r allweddeiriau isod. <a href="%{path}">Adolygu neu ddileu postiadau o'r hidlydd</a>.
       title: Golygu hidlydd
     errors:
       deprecated_api_multiple_keywords: Nid oes modd newid y paramedrau hyn o'r cais hwn oherwydd eu bod yn berthnasol i fwy nag un allweddair hidlo. Defnyddiwch raglen fwy diweddar neu'r rhyngwyneb gwe.
@@ -1463,19 +1469,91 @@ cy:
       overwrite: Trosysgrifio
       overwrite_long: Amnewid y cofnodion cyfredol gyda'r rhai newydd
     overwrite_preambles:
-      blocking_html: Rydych ar fin <strong>amnewid eich rhestr rhwystro</strong> gyda hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
-      bookmarks_html: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{total_items} o bostiadau</strong> gan <strong>%{filename}</strong> .
-      domain_blocking_html: Rydych ar fin <strong>amnewid eich rhestr rhwystro parth</strong> gyda hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong> .
-      following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> a <strong>pheidio a ddilyn unrhyw un arall</strong> .
-      lists_html: Rydych ar fin <strong>amnewid eich rhestrau</strong> gyda chynnwys <strong>%{filename}</strong> . Bydd hyd at <strong>%{total_items} o gyfrifon</strong> yn cael eu hychwanegu at restrau newydd.
-      muting_html: Rydych ar fin <strong>amnewid eich rhestr o gyfrifon tawel</strong> gyda hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
+      blocking_html:
+        few: Rydych ar fin <strong>amnewid eich rhestr rhwystro</strong> gyda hyd at <strong>%{count} o gyfrifon</strong> o <strong>%{filename}</strong>.
+        many: Rydych ar fin <strong>amnewid eich rhestr rhwystro</strong> gyda hyd at <strong>%{count} o gyfrifon</strong> o <strong>%{filename}</strong>.
+        one: Rydych ar fin <strong>amnewid eich rhestr rhwystro</strong> gyda hyd at <strong>%{count} o gyfrifon</strong> o <strong>%{filename}</strong>.
+        other: Rydych ar fin <strong>amnewid eich rhestr rhwystro</strong> gyda hyd at <strong>%{count} o gyfrifon</strong> o <strong>%{filename}</strong>.
+        two: Rydych ar fin <strong>amnewid eich rhestr rhwystro</strong> gyda hyd at <strong>%{count} o gyfrifon</strong> o <strong>%{filename}</strong>.
+        zero: Rydych ar fin <strong>amnewid eich rhestr rhwystro</strong> gyda hyd at <strong>%{count} o gyfrifon</strong> o <strong>%{filename}</strong>.
+      bookmarks_html:
+        few: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{count} postiadau</strong> gan <strong>%{filename}</strong>.
+        many: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{count} postiadau</strong> gan <strong>%{filename}</strong>.
+        one: Rydych ar fin <strong>disodli eich nodau tudalen</strong> gyda hyd at <strong>%{count} postiad</strong> o <strong>%{filename}</strong>.
+        other: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{count} postiadau</strong> gan <strong>%{filename}</strong>.
+        two: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{count} postiadau</strong> gan <strong>%{filename}</strong>.
+        zero: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{count} postiadau</strong> gan <strong>%{filename}</strong>.
+      domain_blocking_html:
+        few: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+        many: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+        one: Rydych ar fin <strong>disodli eich rhestr blociau parth</strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+        other: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+        two: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong.
+        zero: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+      following_html:
+        few: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{count} cyfrif</strong> gan <strong>%{filename}</strong> a <strong>pheidio â dilyn unrhyw un arall</strong>.
+        many: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{count} cyfrif</strong> gan <strong>%{filename}</strong> a <strong>pheidio â dilyn unrhyw un arall</strong>.
+        one: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{count} gyfrif</strong> o <strong>%{filename}</strong> a <strong>rhoi'r gorau i ddilyn unrhyw un arall</strong>.
+        other: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{count} cyfrif</strong> gan <strong>%{filename}</strong> a <strong>pheidio â dilyn unrhyw un arall</strong>.
+        two: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{count} cyfrif</strong> gan <strong>%{filename}</strong> a <strong>pheidio â dilyn unrhyw un arall</strong>.
+        zero: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{count} cyfrif</strong> gan <strong>%{filename}</strong> a <strong>pheidio â dilyn unrhyw un arall</strong>.
+      lists_html:
+        few: Rydych ar fin <strong>amnewid eich rhestrau</strong> gyda chynnwys <strong>%{filename}</strong>. Bydd hyd at <strong>%{count} cyfrif</strong> yn cael eu hychwanegu at restrau newydd.
+        many: Rydych ar fin <strong>amnewid eich rhestrau</strong> gyda chynnwys <strong>%{filename}</strong>. Bydd hyd at <strong>%{count} cyfrif</strong> yn cael eu hychwanegu at restrau newydd.
+        one: Rydych ar fin <strong>amnewid eich rhestrau</strong> gyda chynnwys <strong>%{filename}</strong>. Bydd hyd at <strong>%{count} cyfrif</strong> yn cael eu hychwanegu at restrau newydd.
+        other: Rydych ar fin <strong>amnewid eich rhestrau</strong> gyda chynnwys <strong>%{filename}</strong>. Bydd hyd at <strong>%{count} cyfrif</strong> yn cael eu hychwanegu at restrau newydd.
+        two: Rydych ar fin <strong>amnewid eich rhestrau</strong> gyda chynnwys <strong>%{filename}</strong>. Bydd hyd at <strong>%{count} cyfrif</strong> yn cael eu hychwanegu at restrau newydd.
+        zero: Rydych ar fin <strong>amnewid eich rhestrau</strong> gyda chynnwys <strong>%{filename}</strong>. Bydd hyd at <strong>%{count} cyfrif</strong> yn cael eu hychwanegu at restrau newydd.
+      muting_html:
+        few: Rydych ar fin <strong>amnewid eich rhestr o gyfrifon tawel</strong> gyda hyd at <strong>%{count} o gyfrifon</strong> o <strong>%{filename}</strong>.
+        many: Rydych ar fin <strong>amnewid eich rhestr o gyfrifon tawel</strong> gyda hyd at <strong>%{count} o gyfrifon</strong> o <strong>%{filename}</strong>.
+        one: Rydych ar fin <strong>disodli eich rhestr o gyfrifon wedi'u tewi</strong> am hyd at <strong>%{count} gyfrif</strong> o <strong>%{filename}</strong>.
+        other: Rydych ar fin <strong>amnewid eich rhestr o gyfrifon tawel</strong> gyda hyd at <strong>%{count} o gyfrifon</strong> o <strong>%{filename}</strong>.
+        two: Rydych ar fin <strong>amnewid eich rhestr o gyfrifon tawel</strong> gyda hyd at <strong>%{count} o gyfrifon</strong> o <strong>%{filename}</strong>.
+        zero: Rydych ar fin <strong>amnewid eich rhestr o gyfrifon tawel</strong> gyda hyd at <strong>%{count} o gyfrifon</strong> o <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
-      bookmarks_html: Rydych ar fin ychwanegu hyd at <strong>%{total_items} o bostiadau</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong> .
-      domain_blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong> .
-      following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} cyfrif</strong> gan <strong>%{filename}</strong> .
-      lists_html: Rydych ar fin ychwanegu hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> at eich <strong>rhestrau</strong> . Bydd rhestrau newydd yn cael eu creu os nad oes rhestr i ychwanegu ati.
-      muting_html: Rydych ar fin <strong>anwybyddu</strong> hyd at <strong>%{total_items} cyfrif</strong> o <strong>%{filename}</strong>.
+      blocking_html:
+        few: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong>.
+        many: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong>.
+        one: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong>.
+        other: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong>.
+        two: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong>.
+        zero: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong>.
+      bookmarks_html:
+        few: Rydych ar fin ychwanegu hyd at <strong>%{count} pbostiad</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong>.
+        many: Rydych ar fin ychwanegu hyd at <strong>%{count} pbostiad</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong>.
+        one: Rydych ar fin ychwanegu hyd at <strong>%{count} pbostiad</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong>.
+        other: Rydych ar fin ychwanegu hyd at <strong>%{count} pbostiad</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong>.
+        two: Rydych ar fin ychwanegu hyd at <strong>%{count} pbostiad</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong>.
+        zero: Rydych ar fin ychwanegu hyd at <strong>%{count} pbostiad</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong>.
+      domain_blocking_html:
+        few: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+        many: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+        one: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+        other: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+        two: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+        zero: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+      following_html:
+        few: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{count} cyfrif</strong> gan <strong>%{filename}</strong>.
+        many: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{count} cyfrif</strong> gan <strong>%{filename}</strong>.
+        one: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{count} gyfrif</strong> o <strong>%{filename}</strong>.
+        other: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{count} cyfrif</strong> gan <strong>%{filename}</strong>.
+        two: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{count} cyfrif</strong> gan <strong>%{filename}</strong>.
+        zero: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{count} cyfrif</strong> gan <strong>%{filename}</strong>.
+      lists_html:
+        few: Rydych ar fin ychwanegu hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong> at eich <strong>rhestrau</strong>. Bydd rhestrau newydd yn cael eu creu os nad oes rhestr i ychwanegu ati.
+        many: Rydych ar fin ychwanegu hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong> at eich <strong>rhestrau</strong>. Bydd rhestrau newydd yn cael eu creu os nad oes rhestr i ychwanegu ati.
+        one: Rydych ar fin ychwanegu hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong> at eich <strong>rhestrau</strong>. Bydd rhestrau newydd yn cael eu creu os nad oes rhestr i ychwanegu ati.
+        other: Rydych ar fin ychwanegu hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong> at eich <strong>rhestrau</strong>. Bydd rhestrau newydd yn cael eu creu os nad oes rhestr i ychwanegu ati.
+        two: Rydych ar fin ychwanegu hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong> at eich <strong>rhestrau</strong>. Bydd rhestrau newydd yn cael eu creu os nad oes rhestr i ychwanegu ati.
+        zero: Rydych ar fin ychwanegu hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong> at eich <strong>rhestrau</strong>. Bydd rhestrau newydd yn cael eu creu os nad oes rhestr i ychwanegu ati.
+      muting_html:
+        few: Rydych ar fin <strong>tewi</strong> hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong>.
+        many: Rydych ar fin <strong>tewi</strong> hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong>.
+        one: Rydych ar fin <strong>tewi</strong> hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong>.
+        other: Rydych ar fin <strong>tewi</strong> hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong>.
+        two: Rydych ar fin <strong>tewi</strong> hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong>.
+        zero: Rydych ar fin <strong>tewi</strong> hyd at <strong>%{count} cyfrif</strong> o <strong>%{filename}</strong>.
     preface: Gallwch fewnforio data rydych chi wedi'i allforio o weinydd arall, fel rhestr o'r bobl rydych chi'n eu dilyn neu'n eu blocio.
     recent_imports: Mewnforion diweddar
     states:
@@ -1558,7 +1636,7 @@ cy:
           follow_request: e-byst ceisiadau dilyn
           mention: e-byst hysbysu crybwylliadau
           reblog: e-byst hysbysiadau hybu
-      resubscribe_html: Os ydych wedi dad-danysgrifio trwy gamgymeriad, gallwch ail-danysgrifio drwy'ch <a href="%{settings_path}">gosodiadau hysbysu e-bost</a> .
+      resubscribe_html: Os ydych wedi dad-danysgrifio trwy gamgymeriad, gallwch ail-danysgrifio drwy'ch <a href="%{settings_path}">gosodiadau hysbysu e-bost</a>.
       success_html: Ni fyddwch bellach yn derbyn %{type} ar gyfer Mastodon ar %{domain} i'ch e-bost am %{email}.
       title: Dad-danysgrifio
   media_attachments:
@@ -1580,7 +1658,7 @@ cy:
       on_cooldown: Rydych ar amser allan
     followers_count: Dilynwyr ar adeg y symud
     incoming_migrations: Symud o gyfrif wahanol
-    incoming_migrations_html: I symud o gyfrif arall i'r un hwn, yn gyntaf mae angen i chi <a href="%{path}">greu enwarall (alias) cyfrif</a> .
+    incoming_migrations_html: I symud o gyfrif arall i'r un hwn, yn gyntaf mae angen i chi <a href="%{path}">greu enwarall (alias) cyfrif</a>.
     moved_msg: Mae eich cyfrif bellach yn ailgyfeirio i %{acct} ac mae eich dilynwyr yn cael eu symud drosodd.
     not_redirecting: Nid yw eich cyfrif yn ailgyfeirio i unrhyw gyfrif arall ar hyn o bryd.
     on_cooldown: Rydych chi wedi mudo'ch cyfrif yn ddiweddar. Bydd y swyddogaeth hon ar gael eto ymhen %{count} diwrnod.
@@ -1595,7 +1673,7 @@ cy:
       cooldown: Ar ôl symud, bydd yna cyfnod aros na fydd modd i chi symud eto
       disabled_account: Ni fydd modd defnyddio'ch cyfrif cyfredol yn llawn wedyn. Fodd bynnag, bydd gennych fynediad i allforio data yn ogystal ag ail agor.
       followers: Bydd y weithred hon yn symud yr holl ddilynwyr o'r cyfrif cyfredol i'r cyfrif newydd
-      only_redirect_html: Fel arall, <a href="%{path}">dim ond ailgyfeiriad y gallwch chi ei osod ar eich proffil</a> .
+      only_redirect_html: Fel arall, <a href="%{path}">dim ond ailgyfeiriad y gallwch chi ei osod ar eich proffil</a>.
       other_data: Ni fydd unrhyw data arall yn cael ei symud yn awtomatig
       redirect: Bydd proffil eich cyfrif presennol yn cael ei diweddaru gyda hysbysiad ailgyfeirio ac yn cael ei eithrio o chwiliadau
   moderation:
@@ -1796,6 +1874,7 @@ cy:
     delete: Dileu cyfrif
     development: Datblygu
     edit_profile: Golygu proffil
+    export: Allforio
     featured_tags: Prif hashnodau
     import: Mewnforio
     import_and_export: Mewnforio ac allforio

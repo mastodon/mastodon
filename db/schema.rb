@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_16_190140) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_22_214312) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,7 +21,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_16_190140) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id", "uri"], name: "index_account_aliases_on_account_id_and_uri", unique: true
-    t.index ["account_id"], name: "index_account_aliases_on_account_id"
   end
 
   create_table "account_conversations", force: :cascade do |t|
@@ -99,7 +98,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_16_190140) do
     t.integer "followers_count", default: 0, null: false
     t.integer "following_count", default: 0, null: false
     t.index ["account_id", "relationship_severance_event_id"], name: "idx_on_account_id_relationship_severance_event_id_7bd82bf20e", unique: true
-    t.index ["account_id"], name: "index_account_relationship_severance_events_on_account_id"
     t.index ["relationship_severance_event_id"], name: "idx_on_relationship_severance_event_id_403f53e707"
   end
 
@@ -397,7 +395,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_16_190140) do
     t.datetime "updated_at", null: false
     t.index ["custom_filter_id"], name: "index_custom_filter_statuses_on_custom_filter_id"
     t.index ["status_id", "custom_filter_id"], name: "index_custom_filter_statuses_on_status_id_and_custom_filter_id", unique: true
-    t.index ["status_id"], name: "index_custom_filter_statuses_on_status_id"
   end
 
   create_table "custom_filters", force: :cascade do |t|
@@ -1011,6 +1008,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_16_190140) do
     t.bigint "favourites_count", default: 0, null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.bigint "untrusted_favourites_count"
+    t.bigint "untrusted_reblogs_count"
     t.index ["status_id"], name: "index_status_stats_on_status_id", unique: true
   end
 
@@ -1202,7 +1201,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_16_190140) do
     t.datetime "updated_at", precision: nil, null: false
     t.index ["external_id"], name: "index_webauthn_credentials_on_external_id", unique: true
     t.index ["user_id", "nickname"], name: "index_webauthn_credentials_on_user_id_and_nickname", unique: true
-    t.index ["user_id"], name: "index_webauthn_credentials_on_user_id"
   end
 
   create_table "webhooks", force: :cascade do |t|
@@ -1291,8 +1289,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_16_190140) do
   add_foreign_key "mentions", "statuses", on_delete: :cascade
   add_foreign_key "mutes", "accounts", column: "target_account_id", name: "fk_eecff219ea", on_delete: :cascade
   add_foreign_key "mutes", "accounts", name: "fk_b8d8daf315", on_delete: :cascade
-  add_foreign_key "notification_permissions", "accounts"
-  add_foreign_key "notification_permissions", "accounts", column: "from_account_id"
+  add_foreign_key "notification_permissions", "accounts", column: "from_account_id", on_delete: :cascade
+  add_foreign_key "notification_permissions", "accounts", on_delete: :cascade
   add_foreign_key "notification_policies", "accounts", on_delete: :cascade
   add_foreign_key "notification_requests", "accounts", column: "from_account_id", on_delete: :cascade
   add_foreign_key "notification_requests", "accounts", on_delete: :cascade

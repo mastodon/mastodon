@@ -12,15 +12,15 @@ RSpec.describe AuthorizeFollowService do
 
     before do
       FollowRequest.create(account: bob, target_account: sender)
+    end
+
+    it 'removes follow request and creates follow relation' do
       subject.call(bob, sender)
-    end
 
-    it 'removes follow request' do
-      expect(bob.requested?(sender)).to be false
-    end
-
-    it 'creates follow relation' do
-      expect(bob.following?(sender)).to be true
+      expect(bob)
+        .to_not be_requested(sender)
+      expect(bob)
+        .to be_following(sender)
     end
   end
 
@@ -30,19 +30,17 @@ RSpec.describe AuthorizeFollowService do
     before do
       FollowRequest.create(account: bob, target_account: sender)
       stub_request(:post, bob.inbox_url).to_return(status: 200)
+    end
+
+    it 'removes follow request, creates follow relation, send accept activity', :inline_jobs do
       subject.call(bob, sender)
-    end
 
-    it 'removes follow request' do
-      expect(bob.requested?(sender)).to be false
-    end
-
-    it 'creates follow relation' do
-      expect(bob.following?(sender)).to be true
-    end
-
-    it 'sends an accept activity', :inline_jobs do
-      expect(a_request(:post, bob.inbox_url)).to have_been_made.once
+      expect(bob)
+        .to_not be_requested(sender)
+      expect(bob)
+        .to be_following(sender)
+      expect(a_request(:post, bob.inbox_url))
+        .to have_been_made.once
     end
   end
 end

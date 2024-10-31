@@ -60,6 +60,7 @@ lv:
       error:
         title: Radās kļūda
       new:
+        prompt_html: "%{client_name} vēlas atļauju piekļūt Tavam kontam. <strong>Apstiprini šo pieprasījumu tikai tad, ja atpazīsti un uzticies šim avotam!</strong>"
         review_permissions: Pārskatīt atļaujas
         title: Nepieciešama autorizācija
       show:
@@ -119,9 +120,9 @@ lv:
         write: Tikai rakstīšanas piekļuve
       title:
         accounts: Konti
-        admin/accounts: Kontu administrēšana
+        admin/accounts: Kontu pārvaldīšana
         admin/all: Visas administrēšanas funkcijas
-        admin/reports: Ziņojumu administrēšana
+        admin/reports: Ziņojumu pārvaldīšana
         all: Pilna piekļuve tavam Mastodon kontam
         blocks: Bloķētie
         bookmarks: Grāmatzīmes
@@ -157,13 +158,13 @@ lv:
       admin:read:ip_blocks: lasīt sensitīvu informāciju par visiem IP blokiem
       admin:read:reports: lasīt sensitīvu informāciju no visiem pārskatiem un kontiem, par kuriem ziņots
       admin:write: modificēt visus datus uz servera
-      admin:write:accounts: veikt moderācijas darbības kontos
-      admin:write:canonical_email_blocks: veikt regulēšanas darbības kanoniskajos e-pasta blokos
-      admin:write:domain_allows: veikt moderēšanas darbības domēna atļaujā
-      admin:write:domain_blocks: veikt moderēšanas darbības domēna blokos
-      admin:write:email_domain_blocks: veikt moderēšanas darbības e-pasta domēna blokos
-      admin:write:ip_blocks: veikt moderēšanas darbības IP blokos
-      admin:write:reports: veikt moderācijas darbības pārskatos
+      admin:write:accounts: veikt satura pārraudzības darbības kontos
+      admin:write:canonical_email_blocks: veikt satura pārraudzības darbības kanoniskajos e-pasta blokos
+      admin:write:domain_allows: veikt satura pārraudzības darbības domēna atļaujā
+      admin:write:domain_blocks: veikt satura pārraudzības darbības domēna blokos
+      admin:write:email_domain_blocks: veikt satura pārraudzības darbības e-pasta domēna blokos
+      admin:write:ip_blocks: veikt satura pārraudzības darbības IP blokos
+      admin:write:reports: veikt satura pārraudzības darbības pārskatos
       crypto: lieto pilnīgu šifrēšanu
       follow: mainīt konta attiecības
       profile: lasīt tikai Tava konta profila informāciju

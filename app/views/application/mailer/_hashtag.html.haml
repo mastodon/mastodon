@@ -17,5 +17,4 @@
                           %span.email-mini-hashtag-img-span
                             = image_tag full_asset_url(account.avatar.url), alt: '', width: 16, height: 16
                       %td
-                        - people = hashtag.history.aggregate(2.days.ago.to_date..Time.zone.today).accounts
-                        %p= t('user_mailer.welcome.hashtags_recent_count', people: number_with_delimiter(people), count: people)
+                        %p= recent_tag_usage(hashtag)

@@ -2,10 +2,11 @@
 
 class Web::PushNotificationWorker
   include Sidekiq::Worker
+  include RoutingHelper
 
   sidekiq_options queue: 'push', retry: 5
 
-  TTL     = 48.hours.to_s
+  TTL     = 48.hours
   URGENCY = 'normal'
 
   def perform(subscription_id, notification_id)
@@ -16,19 +17,20 @@ class Web::PushNotificationWorker
     # in the meantime, so we have to double-check before proceeding
     return unless @notification.activity.present? && @subscription.pushable?(@notification)
 
-    payload = @subscription.encrypt(push_notification_json)
+    payload = web_push_request.encrypt(push_notification_json)
 
-    request_pool.with(@subscription.audience) do |http_client|
-      request = Request.new(:post, @subscription.endpoint, body: payload.fetch(:ciphertext), http_client: http_client)
+    request_pool.with(web_push_request.audience) do |http_client|
+      request = Request.new(:post, web_push_request.endpoint, body: payload.fetch(:ciphertext), http_client: http_client)
 
       request.add_headers(
         'Content-Type' => 'application/octet-stream',
-        'Ttl' => TTL,
+        'Ttl' => TTL.to_s,
         'Urgency' => URGENCY,
         'Content-Encoding' => 'aesgcm',
         'Encryption' => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
-        'Crypto-Key' => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{@subscription.crypto_key_header}",
-        'Authorization' => @subscription.authorization_header
+        'Crypto-Key' => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{web_push_request.crypto_key_header}",
+        'Authorization' => web_push_request.authorization_header,
+        'Unsubscribe-URL' => subscription_url
       )
 
       request.perform do |response|
@@ -50,20 +52,30 @@ class Web::PushNotificationWorker
 
   private
 
-  def push_notification_json
-    json = I18n.with_locale(@subscription.locale.presence || I18n.default_locale) do
-      ActiveModelSerializers::SerializableResource.new(
-        @notification,
-        serializer: Web::NotificationSerializer,
-        scope: @subscription,
-        scope_name: :current_push_subscription
-      ).as_json
-    end
+  def web_push_request
+    @web_push_request || WebPushRequest.new(@subscription)
+  end
 
-    Oj.dump(json)
+  def push_notification_json
+    I18n.with_locale(@subscription.locale.presence || I18n.default_locale) do
+      Oj.dump(serialized_notification.as_json)
+    end
+  end
+
+  def serialized_notification
+    ActiveModelSerializers::SerializableResource.new(
+      @notification,
+      serializer: Web::NotificationSerializer,
+      scope: @subscription,
+      scope_name: :current_push_subscription
+    )
   end
 
   def request_pool
     RequestPool.current
+  end
+
+  def subscription_url
+    api_web_push_subscription_url(id: @subscription.generate_token_for(:unsubscribe))
   end
 end

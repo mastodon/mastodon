@@ -30,17 +30,25 @@ sc:
       created_msg: As creadu una nota de moderatzione.
       destroyed_msg: As cantzelladu una nota de moderatzione.
     accounts:
+      add_email_domain_block: Bloca domìniu de posta eletrònica
       approve: Aprova
       approved_msg: Sa dimanda de registru de %{username} est istada aprovada
       are_you_sure: Seguru?
       avatar: Immàgine de profilu
       by_domain: Domìniu
       change_email:
+        changed_msg: Indiritzu eletrònicu de su contu modificadu!
         current_email: Indiritzu eletrònicu atuale
         label: Muda s'indiritzu eletrònicu
         new_email: Indiritzu eletrònicu nou
         submit: Muda s'indiritzu eletrònicu
         title: Muda s'indiritzu eletrònicu de %{username}
+      change_role:
+        changed_msg: Ruolu modificadu.
+        edit_roles: Gesti is ruolos de utente
+        label: Modifica su ruolu
+        no_role: Nissunu ruolu
+        title: Modifica su ruolu de %{username}
       confirm: Cunfirma
       confirmed: Cunfirmadu
       confirming: Cunfirmende
@@ -91,6 +99,7 @@ sc:
       most_recent_ip: IP prus reghente
       no_account_selected: Perunu contu est istadu mudadu, dae chi non nd'as seletzionadu
       no_limits_imposed: Sena lìmites
+      no_role_assigned: Nissunu ruolu assignadu
       not_subscribed: Sena sutiscritzione
       pending: De revisionare
       perform_full_suspension: Suspèndidu
@@ -108,12 +117,19 @@ sc:
       removed_header_msg: S'immàgine de intestatzione de %{username} est istada bogada
       resend_confirmation:
         already_confirmed: Custa persone est giai cunfirmada
+        send: Torra a imbiare su ligòngiu de cunfirmatzione
+        success: Ligòngiu de cunfirmatzione imbiadu.
       reset: Reseta
       reset_password: Reseta sa crae
       resubscribe: Torra a sutascrìere
+      role: Ruolu
       search: Chirca
+      search_same_email_domain: Àteras persones cun su pròpiu domìniu de posta
       search_same_ip: Àteras persones cun sa pròpiu IP
       security: Seguresa
+      security_measures:
+        only_password: Crae isceti
+        password_and_2fa: Crae e 2FA
       sensitive: Sensìbile
       sensitized: Marcadu comente sensìbile
       shared_inbox_url: URL de intrada cumpartzida
@@ -129,6 +145,8 @@ sc:
       suspension_irreversible: Is datos de custu contu sunt istados cantzellados in manera irreversìbile. Podes bogare sa suspensione a su contu pro chi si potzat impreare, ma no at a recuperare datu perunu de is chi teniat in antis.
       suspension_reversible_hint_html: Su contu est istadu suspèndidu, e is datos ant a èssere cantzelladu de su totu su %{date}. Finas a tando, su contu si podet ripristinare sena efetu malu perunu. Si boles cantzellare totu is datos de su contu immediatamente ddu podes fàghere inoghe in bassu.
       title: Contos
+      unblock_email: Isbloca s'indiritzu de posta eletrònica
+      unblocked_email_msg: Posta eletrònica de %{username} isblocada
       unconfirmed_email: Posta eletrònica sena cunfirmare
       undo_sensitized: Boga sa marcadura comente sensìbile
       undo_silenced: Non pòngias a sa muda
@@ -143,21 +161,31 @@ sc:
       whitelisted: Federatzione permìtida
     action_logs:
       action_types:
+        approve_user: Aprova s'utente
         assigned_to_self_report: Assigna s'informe
+        change_email_user: Muda s'indiritzu eletrònicu pro s'utente
+        change_role_user: Muda su ruolu de s'utente
         confirm_user: Cunfirma s'utente
         create_account_warning: Crea un'avisu
         create_announcement: Crea un'annùntziu
+        create_canonical_email_block: Crea unu blocu de posta eletrònica
         create_custom_emoji: Crea un'emoji personalizadu
         create_domain_allow: Crea unu domìniu permìtidu
         create_domain_block: Crea unu blocu de domìniu
+        create_email_domain_block: Crea unu blocu de domìniu de posta eletrònica
         create_ip_block: Crea una règula IP
+        create_unavailable_domain: Crea unu domìniu no a disponimentu
+        create_user_role: Crea unu ruolu
         demote_user: Degrada s'utente
         destroy_announcement: Cantzella s'annùntziu
+        destroy_canonical_email_block: Cantzella su blocu de posta eletrònica
         destroy_custom_emoji: Cantzella s'emoji personalizadu
         destroy_domain_allow: Cantzella su domìniu permìtidu
         destroy_domain_block: Cantzella su blocu de domìniu
+        destroy_email_domain_block: Cantzella su blocu de domìniu de posta eletrònica
         destroy_ip_block: Cantzella sa règula IP
         destroy_status: Cantzella s'istadu
+        destroy_unavailable_domain: Cantzella su domìniu no a disponimentu
         disable_2fa_user: Disativa 2FA
         disable_custom_emoji: Disativa s'emoji personalizadu
         disable_user: Disativa utente
@@ -165,23 +193,33 @@ sc:
         enable_user: Ativa utente
         memorialize_account: Torra in unu contu de regordu
         promote_user: Promove utente
+        reject_user: Refuda s'utente
         remove_avatar_user: Cantzella immàgine de profilu
         reopen_report: Torra a abèrrere s'informe
+        resend_user: Torra a imbiare messàgiu eletrònicu de cunfirmatzione
         reset_password_user: Reseta sa crae
         resolve_report: Isorve s'informe
         sensitive_account: Marca is cuntenutos multimediales in su contu tuo comente sensìbiles
         silence_account: Pone custu contu a sa muda
         suspend_account: Suspende custu contu
         unassigned_report: Boga s'assignatzione de custu informe
+        unblock_email_account: Isbloca s'indiritzu de posta eletrònica
         unsensitive_account: Boga sa marcadura "sensìbiles" a is elementos multimediales in su contu tuo
         unsilence_account: Boga custu contu de is contos a sa muda
         unsuspend_account: Boga custu contu de is contos suspèndidos
         update_announcement: Atualiza s'annùntziu
         update_custom_emoji: Atualiza s'emoji personalizadu
         update_domain_block: Atualiza blocu de domìniu
+        update_ip_block: Atualiza sa règula IP
+        update_report: Atualiza s'informe
         update_status: Atualiza s'istadu
+        update_user_role: Atualiza su ruolu
       actions:
+        approve_user_html: "%{name} at aprovadu su registru de %{target}"
         assigned_to_self_report_html: "%{name} s'est auto-assignadu s'informe %{target}"
+        change_email_user_html: "%{name} at mudadu s'indiritzu de posta eletrònica de s'utente %{target}"
+        change_role_user_html: "%{name} at mudadu su ruolu de %{target}"
+        confirm_user_html: "%{name} at cunfirmadu s'indiritzu de posta eletrònica de s'utente %{target}"
         create_account_warning_html: "%{name} at imbiadu un'avisu a %{target}"
         create_announcement_html: "%{name} at creadu un'annùntziu nou %{target}"
         create_custom_emoji_html: "%{name} at carrigadu un'emoji nou %{target}"
@@ -291,6 +329,8 @@ sc:
       confirm_suspension:
         cancel: Annulla
         confirm: Suspende
+        remove_all_data: Custu at a cantzellare totu su cuntenutu, elementos multimediales e datos de profilu pro is contos de custu domìniu dae su serbidore tuo.
+        stop_communication: Su serbidore tuo at a tzessare sa comunicatzione cun custos serbidores.
         title: Cunfirma su blocu de domìniu de %{domain}
       created_msg: Protzessende su blocu de domìniu
       destroyed_msg: Su blocu de domìniu est istadu iscontzadu
@@ -361,9 +401,12 @@ sc:
       dashboard:
         instance_accounts_dimension: Contos prus sighidos
         instance_accounts_measure: contos sarvados
+        instance_languages_dimension: Limbas printzipales
         instance_reports_measure: informes a subra de àtere
+        instance_statuses_measure: publicatziones sarvadas
       delivery:
         all: Totus
+        unavailable: No a disponimentu
       delivery_available: Sa cunsigna est a disponimentu
       empty: Perunu domìniu agatadu.
       known_accounts:

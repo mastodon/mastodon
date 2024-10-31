@@ -25,6 +25,7 @@ he:
       other: הודעות
       two: הודעותיים
     posts_tab_heading: הודעות
+    self_follow_error: בלתי אפשרי לך לעקוב אחרי חשבונך
   admin:
     account_actions:
       action: בצע/י פעולה
@@ -903,6 +904,9 @@ he:
         message_html: לא הוגדרו שום כללי שרת.
       sidekiq_process_check:
         message_html: שום הליכי Sidekiq לא רצים עבור %{value} תור(ות). בחנו בבקשה את הגדרות Sidekiq
+      software_version_check:
+        action: ראו עדכונים זמינים
+        message_html: עדכון מסטודון זמין כעת.
       software_version_critical_check:
         action: ראו עדכונים זמינים
         message_html: יצא עדכון קריטי למסטודון, נא לעדכן את תוכנת מסטודון בהקדם האפשרי.
@@ -1198,9 +1202,11 @@ he:
     use_security_key: שימוש במפתח אבטחה
   author_attribution:
     example_title: טקסט לדוגמה
-    hint_html: בחירה איך תקבלו קרדיטציה כאשר קישורים משותפים דרך מסטודון.
+    hint_html: האם יש לך בלוג או טור חדשות שמתפרסם מחוץ למסטודון? ניתן לשלוט איך יוצג הקרדיט שלך כשמשתפים את הלינק במסטודון.
+    instructions: 'ודאו כי הקוד הזה נכלל בקוד ה־HTML של המאמרים שלכם:'
     more_from_html: עוד מאת %{name}
     s_blog: הבלוג של %{name}
+    then_instructions: לאחר מכן, הוסיפו את שם המתחם של האתר המפרסם בשדה למטה.
     title: ייחוס למפרסם
   challenge:
     confirm: המשך
@@ -1413,19 +1419,67 @@ he:
       overwrite: דריסה
       overwrite_long: החלף רשומות נוכחיות בחדשות
     overwrite_preambles:
-      blocking_html: אתם עומדים <strong>להחליף את רשימת החסימות</strong> עד כדי <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
-      bookmarks_html: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>%{total_items} הודעות</strong> מהקובץ <strong>%{filename}</strong>.
-      domain_blocking_html: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>%{total_items} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
-      following_html: אתם עומדים <strong>לעקוב</strong> עד כדי <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
-      lists_html: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{total_items} חשבונות</strong> יתווספו לרשימות חדשות.
-      muting_html: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> עד כדי <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+      blocking_html:
+        many: אתם עומדים <strong>להחליף את רשימת החסימות</strong> עד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>להחליף את רשימת החסימות</strong> <strong>%{count} בחשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>להחליף את רשימת החסימות</strong> עד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>להחליף את רשימת החסימות</strong> בעד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+      bookmarks_html:
+        many: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>להחליף את רשימת הסימניות</strong><strong> בהודעה אחת</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>שתי הודעות</strong> מהקובץ <strong>%{filename}</strong>.
+      domain_blocking_html:
+        many: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> <strong>בשרת אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>שני שרתים</strong> מהקובץ <strong>%{filename}</strong>.
+      following_html:
+        many: אתם עומדים <strong>לעקוב אחרי</strong> עד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
+        one: אתם עומדים <strong>לעקוב</strong> אחרי <strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
+        other: אתם עומדים <strong>לעקוב אחרי</strong> עד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
+        two: אתם עומדים <strong>לעקוב אחרי</strong> עד כדי <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
+      lists_html:
+        many: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} חשבונות</strong> יתווספו לרשימות חדשות.
+        one: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>חשבון אחד</strong> יתווסף לרשימות חדשות.
+        other: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} חשבונות</strong> יתווספו לרשימות חדשות.
+        two: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>שני חשבונות</strong> יתווספו לרשימות חדשות.
+      muting_html:
+        many: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> בעד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> ב<strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> בעד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> בעד כדי <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
     preambles:
-      blocking_html: אתם עומדים <strong>לחסום</strong> עד <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
-      bookmarks_html: אתם עומדים <strong>להוסיף</strong> עד <strong>%{total_items} הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
-      domain_blocking_html: אתם עומדים <strong>לחסום</strong> עד כדי <strong>%{total_items} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
-      following_html: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
-      lists_html: הפעולה הבאה תוסיף עד <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
-      muting_html: אתם עומדים <strong>להשתיק</strong> עד <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+      blocking_html:
+        many: אתם עומדים <strong>לחסום</strong> עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>לחסום</strong><strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>לחסום</strong> עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>לחסום</strong> עד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+      bookmarks_html:
+        many: אתם עומדים להוסיף עד <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
+        one: אתם עומדים <strong>להוסיף</strong><strong>הודעה אחת</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
+        other: אתם עומדים להוסיף עד <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
+        two: אתם עומדים <strong>להוסיף</strong> עד <strong>שתי הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
+      domain_blocking_html:
+        many: אתם עומדים <strong>לחסום</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>לחסום</strong> עד <strong>שרת אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>לחסום</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>לחסום</strong> עד כדי <strong>שני שרתים</strong> מהקובץ <strong>%{filename}</strong>.
+      following_html:
+        many: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+      lists_html:
+        many: הפעולה הבאה תוסיף עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
+        one: הפעולה הבאה תוסיף עד <strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
+        other: הפעולה הבאה תוסיף עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
+        two: הפעולה הבאה תוסיף עד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
+      muting_html:
+        many: אתם עומדים <strong>להשתיק</strong> עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>להשתיק</strong> עד <strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>להשתיק</strong> עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>להשתיק</strong> עד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
     preface: ניתן ליבא מידע מסויים כגון כל הנעקבים או המשתמשים החסומים לתוך חשבונך על שרת זה, מתוך קבצים שנוצרו על ידי יצוא משרת אחר כגון רשימת הנעקבים והחסומים שלך.
     recent_imports: ייבואים אחרונים
     states:
@@ -1744,6 +1798,7 @@ he:
     delete: מחיקת חשבון
     development: פיתוח
     edit_profile: עריכת פרופיל
+    export: ייצוא
     featured_tags: תגיות נבחרות
     import: יבוא
     import_and_export: יבוא ויצוא

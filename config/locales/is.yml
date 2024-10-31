@@ -21,6 +21,7 @@ is:
       one: Færsla
       other: Færslur
     posts_tab_heading: Færslur
+    self_follow_error: Ekki er leyft að fylgjast með eigin aðgangi
   admin:
     account_actions:
       action: Framkvæma aðgerð
@@ -877,6 +878,9 @@ is:
         message_html: Þú hefur ekki skilgreint neinar reglur fyrir netþjón.
       sidekiq_process_check:
         message_html: Ekkert Sidekiq-ferli er í gangi fyrir %{value} biðröð/biðraðir. Endilega athugaðu Sidekiq-uppsetninguna þína
+      software_version_check:
+        action: Skoða tiltækar uppfærslur
+        message_html: Uppfærsla er tiltæk fyrir Mastodon.
       software_version_critical_check:
         action: Skoða tiltækar uppfærslur
         message_html: Áríðandi uppfærsla Mastodon er tiltæk, uppfærðu eins fljótt og auðið er.
@@ -1166,9 +1170,11 @@ is:
     use_security_key: Nota öryggislykil
   author_attribution:
     example_title: Sýnitexti
-    hint_html: Stýrðu hvernig framlög þín birtast þegar tenglum er deilt á Mastodon.
+    hint_html: Ertu að skrifa fréttir eða bloggfærslur utan Mastodon? Stýrðu því hvernig vitnað er í þig þegar þeim er deilt á Mastodon.
+    instructions: 'Gakktu úr skugga um að þessi kóði sé í HTML greinarinnar þinnar:'
     more_from_html: Meira frá %{name}
     s_blog: Bloggsvæði hjá %{name}
+    then_instructions: Síðan skaltu bæta lénsheiti útgefandans í reitinn hér fyrir neðan.
     title: Framlag höfundar
   challenge:
     confirm: Halda áfram
@@ -1367,19 +1373,43 @@ is:
       overwrite: Skrifa yfir
       overwrite_long: Skipta út fyrirliggjandi færslum með þeim nýju
     overwrite_preambles:
-      blocking_html: Þú er í þann mund að fara að <strong>skipta út útilokanalistanum þínum</strong> með allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
-      bookmarks_html: Þú er í þann mund að fara að <strong>skipta út bókamerkjunum þínum</strong> með allt að <strong>%{total_items} færslum</strong> úr <strong>%{filename}</strong>.
-      domain_blocking_html: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokuð lén</strong> með allt að <strong>%{total_items} lénum</strong> úr <strong>%{filename}</strong>.
-      following_html: Þú er í þann mund að fara að <strong>fylgjast með</strong> allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong> og <strong>hætta að fylgjast með öllum öðrum</strong>.
-      lists_html: Þú ert í þann mund að fara að <strong>skipta út listunum þínum</strong> með efninu úr <strong>%{filename}</strong>. Allt að <strong>%{total_items} aðgöngum</strong> verður bætt við nýju listana.
-      muting_html: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokaða aðganga</strong> með allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
+      blocking_html:
+        one: Þú er í þann mund að fara að <strong>skipta út útilokanalistanum þínum</strong> með allt að <strong>%{count} aðgangi</strong> úr <strong>%{filename}</strong>.
+        other: Þú er í þann mund að fara að <strong>skipta út útilokanalistanum þínum</strong> með allt að <strong>%{count} aðgöngum</strong> úr <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Þú er í þann mund að fara að <strong>skipta út bókamerkjunum þínum</strong> með allt að <strong>%{count} færslu</strong> úr <strong>%{filename}</strong>.
+        other: Þú er í þann mund að fara að <strong>skipta út bókamerkjunum þínum</strong> með allt að <strong>%{count} færslum</strong> úr <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokuð lén</strong> með allt að <strong>%{count} léni</strong> úr <strong>%{filename}</strong>.
+        other: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokuð lén</strong> með allt að <strong>%{count} lénum</strong> úr <strong>%{filename}</strong>.
+      following_html:
+        one: Þú er í þann mund að fara að <strong>fylgjast með</strong> allt að <strong>%{count} aðgangi</strong> úr <strong>%{filename}</strong> og <strong>hætta að fylgjast með öllum öðrum</strong>.
+        other: Þú er í þann mund að fara að <strong>fylgjast með</strong> allt að <strong>%{count} aðgöngum</strong> úr <strong>%{filename}</strong> og <strong>hætta að fylgjast með öllum öðrum</strong>.
+      lists_html:
+        one: Þú ert í þann mund að fara að <strong>skipta út listunum þínum</strong> með efninu úr <strong>%{filename}</strong>. Allt að <strong>%{count} aðgangi</strong> verður bætt við nýju listana.
+        other: Þú ert í þann mund að fara að <strong>skipta út listunum þínum</strong> með efninu úr <strong>%{filename}</strong>. Allt að <strong>%{count} aðgöngum</strong> verður bætt við nýju listana.
+      muting_html:
+        one: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokaða aðganga</strong> með allt að <strong>%{count} aðgangi</strong> úr <strong>%{filename}</strong>.
+        other: Þú er í þann mund að fara að <strong>skipta út listanum þínum yfir útilokaða aðganga</strong> með allt að <strong>%{count} aðgöngum</strong> úr <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Þú er í þann mund að fara að <strong>útiloka</strong> allt að <strong>%{total_items} aðganga</strong> úr <strong>%{filename}</strong>.
-      bookmarks_html: Þú er í þann mund að fara að bæta við allt að <strong>%{total_items} færslum</strong> úr <strong>%{filename}</strong> við <strong>bókamerkin</strong> þín.
-      domain_blocking_html: Þú er í þann mund að fara að <strong>útiloka</strong> allt að <strong>%{total_items} lén</strong> úr <strong>%{filename}</strong>.
-      following_html: Þú er í þann mund að fara að <strong>fylgjast með</strong> allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong>.
-      lists_html: Þú ert í þann mund að fara að bæta við allt að <strong>%{total_items} aðgöngum</strong> úr <strong>%{filename}</strong> við <strong>listana</strong> þína. Nýir listar verða útbúnir ef ekki finnst neinn listi til að bæta í.
-      muting_html: Þú er í þann mund að fara að <strong>þagga</strong> allt að <strong>%{total_items} aðganga</strong> úr <strong>%{filename}</strong>.
+      blocking_html:
+        one: Þú ert í þann mund að <strong>útiloka</strong> allt að <strong>%{count} aðgang</strong> úr <strong>%{filename}</strong>.
+        other: Þú ert í þann mund að <strong>útiloka</strong> allt að <strong>%{count} aðganga</strong> úr <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Þú er í þann mund að fara að bæta við allt að <strong>%{count} færslu</strong> úr <strong>%{filename}</strong> við <strong>bókamerkin</strong> þín.
+        other: Þú er í þann mund að fara að bæta við allt að <strong>%{count} færslum</strong> úr <strong>%{filename}</strong> við <strong>bókamerkin</strong> þín.
+      domain_blocking_html:
+        one: Þú ert í þann mund að <strong>útiloka</strong> allt að <strong>%{count} lén</strong> úr <strong>%{filename}</strong>.
+        other: Þú er í þann mund að fara að <strong>útiloka</strong> allt að <strong>%{count} lén</strong> úr <strong>%{filename}</strong>.
+      following_html:
+        one: Þú ert að fara að <strong>fylgjast með</strong> allt að <strong>%{count} aðgangi</strong> úr <strong>%{filename}</strong>.
+        other: Þú er að fara að <strong>fylgjast með</strong> allt að <strong>%{count} aðgöngum</strong> úr <strong>%{filename}</strong>.
+      lists_html:
+        one: Þú ert í þann mund að fara að bæta við allt að <strong>%{count} aðgangi</strong> úr <strong>%{filename}</strong> við <strong>listana</strong> þína. Nýir listar verða útbúnir ef ekki finnst neinn listi til að bæta í.
+        other: Þú ert í þann mund að fara að bæta við allt að <strong>%{count} aðgöngum</strong> úr <strong>%{filename}</strong> við <strong>listana</strong> þína. Nýir listar verða útbúnir ef ekki finnst neinn listi til að bæta í.
+      muting_html:
+        one: Þú ert að fara að <strong>þagga niður í</strong> allt að <strong>%{count} aðgangi</strong> úr <strong>%{filename}</strong>.
+        other: Þú ert að fara að <strong>þagga niður í</strong> allt að <strong>%{count} aðgöngum</strong> úr <strong>%{filename}</strong>.
     preface: Þú getur flutt inn gögn sem þú hefur flutt út frá öðrum vefþjóni, svo sem lista yfir fólk sem þú fylgist með eða útilokar.
     recent_imports: Nýlega flutt inn
     states:
@@ -1696,6 +1726,7 @@ is:
     delete: Eyðing notandaaðgangs
     development: Þróun
     edit_profile: Breyta notandasniði
+    export: Flytja út
     featured_tags: Myllumerki með aukið vægi
     import: Flytja inn
     import_and_export: Inn- og útflutningur

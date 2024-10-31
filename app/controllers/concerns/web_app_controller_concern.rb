@@ -13,7 +13,7 @@ module WebAppControllerConcern
       policy = ContentSecurityPolicy.new
 
       if policy.sso_host.present?
-        p.form_action policy.sso_host
+        p.form_action policy.sso_host, -> { "https://#{request.host}/auth/auth/" }
       else
         p.form_action :none
       end

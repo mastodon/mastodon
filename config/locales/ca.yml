@@ -21,6 +21,7 @@ ca:
       one: Tut
       other: Tuts
     posts_tab_heading: Tuts
+    self_follow_error: No es permet seguir el compte propi
   admin:
     account_actions:
       action: Realitza l'acció
@@ -446,6 +447,7 @@ ca:
         title: Blocar el nou domini de correu-e
       no_email_domain_block_selected: No s'han canviat els bloqueigs de domini perquè no se n'ha seleccionat cap
       not_permitted: No permés
+      resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, que són els responsables finals per a acceptar els correus. Blocar un domini MX blocarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible sigui diferent. <strong>Vigileu de no blocar els grans proveïdors de correu.</strong>
       resolved_through_html: Resolt mitjançant %{domain}
       title: Dominis de correu-e blocats
     export_domain_allows:
@@ -800,6 +802,7 @@ ca:
       destroyed_msg: La càrrega al lloc s'ha suprimit correctament!
     software_updates:
       critical_update: Crítica - si us plau, actualitza ràpidament
+      description: Es recomana de mantenir actualizada la instal·lació de Mastodon per a beneficiar-se de les darreres correccions i característiques. A més, de vegades és fonamental actualitzar-la per a evitar problemes de seguretat. Per això Mastodon comprova si hi ha actualitzacions cada 30 minuts i us notificarà d'acord amb les preferències de notificacions de correu electrònic.
       documentation_link: Més informació
       release_notes: Notes de llançament
       title: Actualitzacions disponibles
@@ -1155,6 +1158,7 @@ ca:
       account_status: Estat del compte
       confirming: Esperant que es completi la confirmació del correu-e.
       functional: El teu compte està completament operatiu.
+      pending: La vostra sol·licitud està pendent de revisió pel nostre personal. Això pot trigar una mica. Rebreu un correu electrònic quan s'aprovi.
       redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
       self_destruct: Com que %{domain} tanca, només tindreu accés limitat al vostre compte.
       view_strikes: Veure accions del passat contra el teu compte
@@ -1162,7 +1166,6 @@ ca:
     use_security_key: Usa clau de seguretat
   author_attribution:
     example_title: Text d'exemple
-    hint_html: Controleu com se us acredita quan els enllaços es comparteixen a Mastodon.
     more_from_html: Més de %{name}
     s_blog: Blog de %{name}
     title: Atribució d'autor
@@ -1202,6 +1205,9 @@ ca:
       before: 'Abans de procedir, llegiu amb cura aquestes notes:'
       caches: El contingut que ha estat memoritzat en la memòria cau per altres servidors pot persistir
       data_removal: Els teus tuts i altres dades seran permanentment eliminades
+      email_change_html: Podeu <a href="%{path}">canviar l'adreça de correu </a> sense eliminar el vostre compte
+      email_contact_html: Si encara no arriba, podeu enviar un correu-e a <a href="mailto:%{email}">%{email}</a> per a demanar ajuda
+      email_reconfirmation_html: Si no rebeu el correu electrònic de confirmació <a href="%{path}">, podeu tornar-lo a demanar</a>
       irreversible: No seràs capaç de restaurar o reactivar el teu compte
       more_details_html: Per a més detalls, llegeix la <a href="%{terms_path}">política de privadesa</a>.
       username_available: El teu nom d'usuari esdevindrà altre cop disponible
@@ -1359,20 +1365,6 @@ ca:
       merge_long: Mantenir els registres existents i afegir-ne de nous
       overwrite: Sobreescriu
       overwrite_long: Reemplaça els registres actuals amb els nous
-    overwrite_preambles:
-      blocking_html: Ets a punt per a <strong>reemplaçar la teva llista de bloquejos</strong> de fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
-      bookmarks_html: Ets a punt de <strong>reemplaçar els teus marcadors</strong> de fins a <strong>%{total_items} tuts</strong> des de <strong>%{filename}</strong>.
-      domain_blocking_html: Ets a punt de <strong>reemplaçar la teva llista de dominis bloquejats</strong> de fins a <strong>%{total_items} dominis</strong> des de <strong>%{filename}</strong>.
-      following_html: Ets a punt de <strong>seguir</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong> i <strong>deixar de seguir a la resta</strong>.
-      lists_html: Estàs a punt de <strong>reemplaçar les teves llistes</strong> amb contactes de <strong>%{filename}</strong>. S'afegiran fins a <strong>%{total_items} comptes</strong> a les noves llistes.
-      muting_html: Ets a punt de <strong>reemplaçar la teva llista de comptes silenciats</strong> de fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Ets a punt de <strong>bloquejar</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
-      bookmarks_html: Ets a punt d'afegir fins a <strong>%{total_items} tuts</strong> des de <strong>%{filename}</strong> als teus <strong>marcadors</strong>.
-      domain_blocking_html: Ets a punt de <strong>bloquejar</strong> fins a <strong>%{total_items} dominis</strong> des de <strong>%{filename}</strong>.
-      following_html: Ets a punt de <strong>seguir</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
-      lists_html: Estàs a punt d'afegir <strong>%{total_items} comptes</strong> de <strong>%{filename}</strong> a les teves <strong>llistes</strong>. Es crearan noves llistes si no hi ha cap llista on afegir-los.
-      muting_html: Ets a punt de <strong>silenciar</strong> fins a <strong>%{total_items} comptes</strong> des de <strong>%{filename}</strong>.
     preface: Pots importar algunes les dades que has exportat des d'un altre servidor, com ara el llistat de les persones que estàs seguint o bloquejant.
     recent_imports: Importacions recents
     states:

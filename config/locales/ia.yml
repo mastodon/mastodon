@@ -21,6 +21,7 @@ ia:
       one: Message
       other: Messages
     posts_tab_heading: Messages
+    self_follow_error: Sequer tu proprie conto non es permittite
   admin:
     account_actions:
       action: Exequer action
@@ -473,6 +474,9 @@ ia:
       title: Recommendationes de contos a sequer
       unsuppress: Restaurar recommendation de sequimento
     instances:
+      audit_log:
+        title: Registros de controlo recente
+        view_all: Vider registros de controlo integre
       availability:
         description_html:
           one: Si le livration al dominio falle <strong>%{count} die</strong> sin succeder, necun tentativa ulterior de livration essera facite, excepte si es recipite un livration <em>ab</em> le dominio.
@@ -599,7 +603,9 @@ ia:
         resolve_description_html: Necun mesura essera prendite contra le conto denunciate, necun sanction registrate, e le reporto essera claudite.
         silence_description_html: Iste conto essera visibile solmente a qui ja lo seque o manualmente lo cerca, limitante gravemente su portata. Pote sempre esser revertite. Claude tote le reportos contra iste conto.
         suspend_description_html: Le conto e tote su contento essera inaccessibile e finalmente delite, e interager con illo essera impossibile. Reversibile intra 30 dies. Claude tote le reportos contra iste conto.
+      actions_description_html: Decider que mesuras prender pro resolver iste reporto. Si tu prende un mesura punitive contra le conto reportate, un aviso email les sera inviate, salvo quando le categoria <strong>Spam</strong> es seligite.
       actions_description_remote_html: Decide qual mesura prender pro resolver iste reporto. Isto affectara solmente le maniera in que <strong>tu</strong> servitor communica con iste conto remote e gere su contento.
+      actions_no_posts: Iste reporto non ha alcun message associate a deler
       add_to_report: Adder plus al reporto
       already_suspended_badges:
         local: Ja suspendite sur iste servitor
@@ -870,6 +876,9 @@ ia:
         message_html: Tu non ha definite alcun regula de servitor.
       sidekiq_process_check:
         message_html: Necun processo Sidekiq es active pro le cauda(s) %{value}. Per favor verifica tu configuration de Sidekiq
+      software_version_check:
+        action: Vider le actualisationes disponibile
+        message_html: Un actualisation de Mastodon es disponibile.
       software_version_critical_check:
         action: Vider le actualisationes disponibile
         message_html: Un actualisation critic de Mastodon es disponibile. Per favor actualisa lo le plus tosto possibile.
@@ -885,11 +894,18 @@ ia:
     tags:
       moderation:
         not_trendable: Non pro tendentia
+        not_usable: Non usabile
         pending_review: Attende revision
+        review_requested: Revision demandate
+        reviewed: Revidite
         title: Stato
+        trendable: De tendentia
+        unreviewed: Non revidite
+        usable: Usabile
       name: Nomine
       newest: Le plus nove
       oldest: Le plus ancian
+      open: Vider publicamente
       reset: Reinitialisar
       review: Revide le stato
       search: Cercar
@@ -932,7 +948,9 @@ ia:
       statuses:
         allow: Permitter message
         allow_account: Permitter autor
+        confirm_allow: Desira tu vermente permitter le statos seligite?
         confirm_allow_account: Es tu secur que tu vole permitter le contos seligite?
+        confirm_disallow: Desira tu vermente impedir le statos seligite?
         confirm_disallow_account: Es tu secur que tu vole cessar de permitter le contos seligite?
         description_html: Istes es le messages cognoscite sur tu servitor que al momento es multo compartite e marcate como favorite. Illos pote adjutar tu usatores nove e reveniente a trovar plus personas a sequer. Necun message es monstrate publicamente usque tu approba le autor, a condition que le autor permitte que su conto es suggerite a alteres. Tu pote tamben permitter o rejectar messages singule.
         disallow: Non permitter message
@@ -1150,6 +1168,7 @@ ia:
     example_title: Texto de exemplo
     more_from_html: Plus de %{name}
     s_blog: Blog de %{name}
+    title: Attribution de autor
   challenge:
     confirm: Continuar
     hint_html: "<strong>Consilio:</strong> Nos non te demandara tu contrasigno de novo in le proxime hora."
@@ -1347,19 +1366,43 @@ ia:
       overwrite: Superscriber
       overwrite_long: Reimplaciar registros actual con le noves
     overwrite_preambles:
-      blocking_html: Tu es sur le puncto de <strong>reimplaciar tu lista de blocadas</strong> per usque a <strong>%{total_items} contos</strong> proveniente de <strong>%{filename}</strong>.
-      bookmarks_html: Tu es sur le puncto de <strong>reimplaciar tu marcapaginas</strong> per usque a <strong>%{total_items} messages</strong> desde <strong>%{filename}</strong>.
-      domain_blocking_html: Tu es sur le puncto de <strong>reimplaciar tu lista de blocadas de dominio</strong> per usque a <strong>%{total_items} dominios</strong> proveniente de <strong>%{filename}</strong>.
-      following_html: Tu es sur le puncto de <strong>sequer</strong> usque a <strong>%{total_items} contos</strong> de <strong>%{filename}</strong> e <strong>cessar de sequer tote le alteres</strong>.
-      lists_html: Tu es sur le puncto de <strong>reimplaciar tu listas</strong> per le contento de <strong>%{filename}</strong>. Usque a <strong>%{total_items} contos</strong> essera addite a nove listas.
-      muting_html: Tu es sur le puncto de <strong>reimplaciar tu lista de contos silentiate</strong> con usque a <strong>%{total_items} contos</strong> desde <strong>%{filename}</strong>.
+      blocking_html:
+        one: Tu va <strong>reimplaciar tu lista de blocada</strong> con usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>reimplaciar tu lista de blocada</strong> con usque <strong>%{count} contos</strong> ab <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Tu va <strong>reimplaciar tu marcapaginas</strong> con usque <strong>%{count} message</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>reimplaciar tu marcapaginas</strong> con usque <strong>%{count} messages</strong> ab <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Tu va <strong>reimplaciar tu blocada lista de dominios blocate</strong> con usque <strong>%{count} dominio</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>reimplaciar tu lista de dominios blocate</strong> con usque <strong>%{count} dominios</strong> ab <strong>%{filename}</strong>.
+      following_html:
+        one: Tu va <strong>sequer</strong> usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong> e <strong>cessar de sequer ulle altere</strong>.
+        other: Tu va <strong>sequer</strong> usque <strong>%{count} contos</strong> ab <strong>%{filename}</strong> e <strong>cessar de sequer ulle altere</strong>.
+      lists_html:
+        one: Tu va <strong>reimplaciar tu listas</strong> con contentos ab <strong>%{filename}</strong>. Usque <strong>%{count} conto</strong> sera addite al nove listas.
+        other: Tu va <strong>reimplaciar tu listas</strong> con contentos ab <strong>%{filename}</strong>. Usque <strong>%{count} contos</strong> sera addite a nove listas.
+      muting_html:
+        one: Tu va <strong>reimplaciar tu lista de conto silentiate</strong> con usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>reimplaciar tu lista de contos silentiate</strong> con usque <strong>%{count} contos</strong> ab <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Tu es sur le puncto de <strong>blocar</strong> usque a <strong>%{total_items} contos</strong> a partir de <strong>%{filename}</strong>.
-      bookmarks_html: Tu es sur le puncto de adder usque a <strong>%{total_items} messages</strong> desde <strong>%{filename}</strong> a tu <strong>marcapaginas</strong>.
-      domain_blocking_html: Tu es sur le puncto de <strong>blocar</strong> usque a <strong>%{total_items} dominios</strong> a partir de <strong>%{filename}</strong>.
-      following_html: Tu es sur le puncto de <strong>sequer</strong> usque a <strong>%{total_items} contos</strong> desde <strong>%{filename}</strong>.
-      lists_html: Tu es sur le puncto de adder usque <strong>%{total_items} contos</strong> desde <strong>%{filename}</strong> a tu <strong>listas</strong>. Nove listas essera create si il non ha un lista al qual adder los.
-      muting_html: Tu es sur le puncto de <strong>silentiar</strong> usque a <strong>%{total_items} contos</strong> desde <strong>%{filename}</strong>.
+      blocking_html:
+        one: Tu va <strong>blocar</strong> usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>blocar</strong> usque <strong>%{count} contos</strong> de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Tu va adder usque <strong>%{count} message</strong> ab <strong>%{filename}</strong> a tu <strong>marcapaginas</strong>.
+        other: Tu va adder usque <strong>%{count} messages</strong> ab <strong>%{filename}</strong> a tu <strong>marcapaginas</strong>.
+      domain_blocking_html:
+        one: Tu va <strong>blocar</strong> usque <strong>%{count} dominio</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>blocar</strong> usque <strong>%{count} dominios</strong> ab <strong>%{filename}</strong>.
+      following_html:
+        one: Tu va <strong>sequer</strong> usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>sequer</strong> usque <strong>%{count} contos</strong> de <strong>%{filename}</strong>.
+      lists_html:
+        one: Tu va adder usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong> a tu <strong>lista</strong>. Nove listas sera create si il non ha lista a adder.
+        other: Tu va adder usque <strong>%{count} contos</strong> ab <strong>%{filename}</strong> a tu <strong>lista</strong>. Nove listas sera create si il non ha lista a adder.
+      muting_html:
+        one: Tu va <strong>silentiar</strong> usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>silentiar</strong> usque <strong>%{count} contos</strong> ab <strong>%{filename}</strong>.
     preface: Tu pote importar datos que tu ha exportate de un altere servitor, como un lista de personas que tu seque o bloca.
     recent_imports: Importationes recente
     states:
@@ -1444,6 +1487,7 @@ ia:
   media_attachments:
     validations:
       images_and_video: Impossibile annexar un video a un message que jam contine imagines
+      not_found: Medios %{ids} non trovate o jam attachate a un altere message
       not_ready: Impossibile annexar files que non ha ancora essite processate. Retenta post un momento!
       too_many: Impossibile annexar plus de 4 files
   migrations:
@@ -1675,6 +1719,7 @@ ia:
     delete: Deletion de conto
     development: Disveloppamento
     edit_profile: Modificar profilo
+    export: Exportar
     featured_tags: Hashtags in evidentia
     import: Importar
     import_and_export: Importar e exportar

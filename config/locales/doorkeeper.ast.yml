@@ -50,7 +50,9 @@ ast:
       confirmations:
         revoke: "¿De xuru que quies facer esta aición?"
       index:
+        authorized_at: 'Data d''autorización: %{date}'
         description_html: Estes son les aplicaciones que puen acceder a la cuenta cola API. Si equí hai aplicaciones que nun conoces o hai dalguna aplicación que nun funciona correutamente, pues revocar el so accesu.
+        last_used_at: 'Últimu usu: %{date}'
         never_used: Enxamás s'usó
         scopes: Permisos
         title: Les aplicaciones qu'autoricesti

@@ -901,6 +901,8 @@ ru:
         message_html: Вы не определили правила сервера.
       sidekiq_process_check:
         message_html: Ни один Sidekiq не запущен для %{value} очереди(-ей). Пожалуйста, просмотрите настройки Sidekiq
+      software_version_check:
+        message_html: Доступно обновление для Mastodon.
       software_version_critical_check:
         action: Посмотреть доступные обновления
         message_html: Доступно критическое обновление Mastodon, пожалуйста, обновитесь как можно скорее.
@@ -1196,7 +1198,6 @@ ru:
     use_security_key: Использовать ключ безопасности
   author_attribution:
     example_title: Образец текста
-    hint_html: Контролируйте, как вы будете отмечены при обмене ссылками на Mastodon.
     more_from_html: Больше от %{name}
     s_blog: "%{name}'S Блог"
     title: Авторская атрибуция
@@ -1410,20 +1411,6 @@ ru:
       merge_long: Сохранить имеющиеся данные и добавить новые.
       overwrite: Перезаписать
       overwrite_long: Перезаписать имеющиеся данные новыми.
-    overwrite_preambles:
-      blocking_html: Вы собираетесь <strong>заменить свой блок-лист</strong> на <strong>%{total_items} аккаунтов</strong> из <strong>%{filename}</strong>.
-      bookmarks_html: Вы собираетесь <strong>заменить свои закладки</strong> на <strong>%{total_items} постов</strong> из <strong>%{filename}</strong>.
-      domain_blocking_html: Вы собираетесь <strong>заменить ваш список блокировки доменов</strong> на <strong>%{total_items} доменов</strong> из <strong>%{filename}</strong>.
-      following_html: Вы собираетесь <strong>следить</strong> за <strong>%{total_items} аккаунтами</strong> из <strong>%{filename}</strong> и <strong>прекратить следить за всеми остальными</strong>.
-      lists_html: Вы собираетесь <strong>заменить ваши списки</strong> содержимым <strong>%{filename}</strong>. До <strong>%{total_items} аккаунты</strong> будут добавлены в новые списки.
-      muting_html: Вы собираетесь <strong>заменить список отключенных аккаунтов</strong> на <strong>%{total_items} аккаунтов</strong> из <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Вы собираетесь <strong>заблокировать</strong> до <strong>%{total_items} аккаунтов</strong> из <strong>%{filename}</strong>.
-      bookmarks_html: Вы собираетесь добавить до <strong>%{total_items} постов</strong> из <strong>%{filename}</strong> в свои <strong>закладки</strong>.
-      domain_blocking_html: Вы собираетесь <strong>блокировать</strong> до <strong>%{total_items} доменов</strong> от <strong>%{filename}</strong>.
-      following_html: Вы собираетесь <strong>следовать</strong> за <strong>%{total_items} аккаунтами</strong> из <strong>%{filename}</strong>.
-      lists_html: Вы собираетесь добавить до <strong>%{total_items} аккаунтов</strong> от <strong>%{filename}</strong> к вашим <strong>спискам</strong>. Новые списки будут созданы, если нет списка для добавления.
-      muting_html: Вы собираетесь <strong>отключить</strong> до <strong>%{total_items} аккаунтов</strong> из <strong>%{filename}</strong>.
     preface: Вы можете загрузить некоторые данные, например, списки людей, на которых Вы подписаны или которых блокируете, в Вашу учётную запись на этом узле из файлов, экспортированных с другого узла.
     recent_imports: Недавно импортированное
     states:

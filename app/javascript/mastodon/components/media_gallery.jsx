@@ -196,7 +196,7 @@ class Item extends PureComponent {
 
         {visible && thumbnail}
 
-        {badges && (
+        {visible && badges && (
           <div className='media-gallery__item__badges'>
             {badges}
           </div>
@@ -336,13 +336,13 @@ class MediaGallery extends PureComponent {
 
     return (
       <div className={`media-gallery media-gallery--layout-${size}`} style={style} ref={this.handleRef}>
+        {children}
+
         {(!visible || uncached) && (
           <div className={classNames('spoiler-button', { 'spoiler-button--click-thru': uncached })}>
             {spoilerButton}
           </div>
         )}
-
-        {children}
 
         {(visible && !uncached) && (
           <div className='media-gallery__actions'>

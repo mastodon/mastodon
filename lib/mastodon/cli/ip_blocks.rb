@@ -5,7 +5,7 @@ require_relative 'base'
 
 module Mastodon::CLI
   class IpBlocks < Base
-    option :severity, required: true, enum: %w(no_access sign_up_requires_approval sign_up_block), desc: 'Severity of the block'
+    option :severity, required: true, enum: IpBlock.severities.keys, desc: 'Severity of the block'
     option :comment, aliases: [:c], desc: 'Optional comment'
     option :duration, aliases: [:d], type: :numeric, desc: 'Duration of the block in seconds'
     option :force, type: :boolean, aliases: [:f], desc: 'Overwrite existing blocks'

@@ -3,7 +3,7 @@ lv:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Aizsargā no nepatiesa attiecinājuma.
+        attribution_domains_as_text: Viens katrā līnijā. Aizsargā no nepatiesa attiecinājuma.
         discoverable: Tavas publiskās ziņas un profils var tikt piedāvāti vai ieteikti dažādās Mastodon vietās, un tavs profils var tikt ieteikts citiem lietotājiem.
         display_name: Tavs pilnais vārds vai tavs joku vārds.
         fields: Tava mājas lapa, vietniekvārdi, vecums, viss, ko vēlies.
@@ -19,7 +19,7 @@ lv:
         text: Vari izmantot ziņu sintaksi, piemēram, URL, atsauces un pieminējumus
         title: Neobligāts. Saņēmējam nav redzams
       admin_account_action:
-        include_statuses: Lietotājs redzēs, kuras ziņas izraisījušas moderācijas darbību vai brīdinājumu
+        include_statuses: Lietotājs redzēs, kuras ziņas izraisījušas satura pārraudzības darbību vai brīdinājumu
         send_email_notification: Lietotājs saņems paskaidrojumu par to, kas notika ar viņa kontu
         text_html: Neobligāts. Tu vari lietot ziņu sintaksi. Lai ietaupītu laiku, tu vari <a href="%{path}">pievienot brīdinājuma sākotnējos iestatījumus</a>
         type_html: Izvēlies, ko darīt ar <strong>%{acct}</strong>
@@ -86,6 +86,7 @@ lv:
         custom_css: Vari lietot pielāgotus stilus Mastodon tīmekļa versijā.
         favicon: WEBP, PNG, GIF vai JPG. Aizstāj noklusējuma Mastodon favikonu ar pielāgotu.
         mascot: Ignorē ilustrāciju uzlabotajā tīmekļa saskarnē.
+        media_cache_retention_period: Informācijas nesēju datnes no ierakstiem, kurus ir veikuši attālie lietotāji, tiek kešoti šajā serverī. Kad ir iestatīta apstiprinoša vērtība, informācijas nesēji tiks izdzēsti pēc norādītā dienu skaita. Ja informācijas nesēju dati tiks pieprasīti pēc tam, kad tie tika izdzēsti, tie tiks atkārtoti lejupielādēti, ja avota saturs joprojām būs pieejams. Saišu priekšskatījuma karšu vaicājumu biežuma ierobežojumu dēļ ir ieteicams iestatīt šo vērtību vismaz 14 dienas vai saišu priekšskatījuma kartes netiks atjauninātas pēc pieprasījuma pirms tā laika.
         peers_api_enabled: Domēna vārdu saraksts, ar kuriem šis serveris ir saskāries fediversā. Šeit nav iekļauti dati par to, vai tu veic federāciju ar noteiktu serveri, tikai tavs serveris par to zina. To izmanto dienesti, kas apkopo statistiku par federāciju vispārīgā nozīmē.
         profile_directory: Profilu direktorijā ir uzskaitīti visi lietotāji, kuri ir izvēlējušies būt atklājami.
         require_invite_text: 'Ja pierakstīšanai nepieciešama manuāla apstiprināšana, izdari tā, lai teksta: “Kāpēc vēlaties pievienoties?” ievade ir obligāta, nevis opcionāla'
@@ -143,7 +144,7 @@ lv:
         url: Kur notikumi tiks nosūtīti
     labels:
       account:
-        attribution_domains_as_text: Ļaut tikai noteiktas tīmekļvietnes
+        attribution_domains_as_text: Tīmekļvietnes, kurām ir tiesības uzskaitīt Tevi
         discoverable: Funkcijas profils un ziņas atklāšanas algoritmos
         fields:
           name: Marķējums

@@ -226,6 +226,10 @@ $content-width: 840px;
           gap: 5px;
           white-space: nowrap;
 
+          @media screen and (max-width: $mobile-breakpoint) {
+            flex: 1 0 50%;
+          }
+
           &:hover,
           &:focus,
           &:active {
@@ -1025,6 +1029,12 @@ a.name-tag,
   color: var(--user-role-accent);
 }
 
+.applications-list {
+  .icon {
+    vertical-align: middle;
+  }
+}
+
 .announcements-list,
 .filters-list {
   border: 1px solid var(--background-border-color);
@@ -1052,6 +1062,10 @@ a.name-tag,
       .account-role {
         vertical-align: middle;
       }
+    }
+
+    .icon {
+      vertical-align: middle;
     }
 
     a.announcements-list__item__title {

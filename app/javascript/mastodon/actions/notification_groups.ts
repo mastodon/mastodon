@@ -8,6 +8,7 @@ import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import type {
   ApiNotificationGroupJSON,
   ApiNotificationJSON,
+  NotificationType,
 } from 'mastodon/api_types/notifications';
 import { allNotificationTypes } from 'mastodon/api_types/notifications';
 import type { ApiStatusJSON } from 'mastodon/api_types/statuses';
@@ -15,6 +16,7 @@ import { usePendingItems } from 'mastodon/initial_state';
 import type { NotificationGap } from 'mastodon/reducers/notification_groups';
 import {
   selectSettingsNotificationsExcludedTypes,
+  selectSettingsNotificationsGroupFollows,
   selectSettingsNotificationsQuickFilterActive,
   selectSettingsNotificationsShows,
 } from 'mastodon/selectors/settings';
@@ -68,13 +70,19 @@ function dispatchAssociatedRecords(
     dispatch(importFetchedStatuses(fetchedStatuses));
 }
 
-const supportedGroupedNotificationTypes = ['favourite', 'reblog'];
+function selectNotificationGroupedTypes(state: RootState) {
+  const types: NotificationType[] = ['favourite', 'reblog'];
+
+  if (selectSettingsNotificationsGroupFollows(state)) types.push('follow');
+
+  return types;
+}
 
 export const fetchNotifications = createDataLoadingThunk(
   'notificationGroups/fetch',
   async (_params, { getState }) =>
     apiFetchNotificationGroups({
-      grouped_types: supportedGroupedNotificationTypes,
+      grouped_types: selectNotificationGroupedTypes(getState()),
       exclude_types: getExcludedTypes(getState()),
     }),
   ({ notifications, accounts, statuses }, { dispatch }) => {
@@ -98,7 +106,7 @@ export const fetchNotificationsGap = createDataLoadingThunk(
   'notificationGroups/fetchGap',
   async (params: { gap: NotificationGap }, { getState }) =>
     apiFetchNotificationGroups({
-      grouped_types: supportedGroupedNotificationTypes,
+      grouped_types: selectNotificationGroupedTypes(getState()),
       max_id: params.gap.maxId,
       exclude_types: getExcludedTypes(getState()),
     }),
@@ -115,7 +123,7 @@ export const pollRecentNotifications = createDataLoadingThunk(
   'notificationGroups/pollRecentNotifications',
   async (_params, { getState }) => {
     return apiFetchNotificationGroups({
-      grouped_types: supportedGroupedNotificationTypes,
+      grouped_types: selectNotificationGroupedTypes(getState()),
       max_id: undefined,
       exclude_types: getExcludedTypes(getState()),
       // In slow mode, we don't want to include notifications that duplicate the already-displayed ones
@@ -164,7 +172,10 @@ export const processNewNotificationForGroups = createAppAsyncThunk(
 
     dispatchAssociatedRecords(dispatch, [notification]);
 
-    return notification;
+    return {
+      notification,
+      groupedTypes: selectNotificationGroupedTypes(state),
+    };
   },
 );
 

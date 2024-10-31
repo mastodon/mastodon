@@ -144,8 +144,10 @@ namespace :admin do
   end
 
   resources :users, only: [] do
-    resource :two_factor_authentication, only: [:destroy], controller: 'users/two_factor_authentications'
-    resource :role, only: [:show, :update], controller: 'users/roles'
+    scope module: :users do
+      resource :two_factor_authentication, only: [:destroy]
+      resource :role, only: [:show, :update]
+    end
   end
 
   resources :custom_emojis, only: [:index, :new, :create] do

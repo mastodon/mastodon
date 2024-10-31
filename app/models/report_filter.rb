@@ -18,11 +18,23 @@ class ReportFilter
   def results
     scope = Report.unresolved
 
-    params.each do |key, value|
+    relevant_params.each do |key, value|
       scope = scope.merge scope_for(key, value)
     end
 
     scope
+  end
+
+  private
+
+  def relevant_params
+    params.tap do |args|
+      args.delete(:target_origin) if origin_is_remote_and_domain_present?
+    end
+  end
+
+  def origin_is_remote_and_domain_present?
+    params[:target_origin] == 'remote' && params[:by_target_domain].present?
   end
 
   def scope_for(key, value)

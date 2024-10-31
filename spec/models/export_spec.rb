@@ -3,66 +3,104 @@
 require 'rails_helper'
 
 RSpec.describe Export do
+  subject { described_class.new(account) }
+
   let(:account) { Fabricate(:account) }
   let(:target_accounts) do
-    [{}, { username: 'one', domain: 'local.host' }].map(&method(:Fabricate).curry(2).call(:account))
+    [
+      Fabricate(:account),
+      Fabricate(:account, username: 'one', domain: 'local.host'),
+    ]
   end
 
-  describe 'to_csv' do
-    it 'returns a csv of the blocked accounts' do
-      target_accounts.each { |target_account| account.block!(target_account) }
+  describe '#to_bookmarks_csv' do
+    before { Fabricate.times(2, :bookmark, account: account) }
 
-      export = described_class.new(account).to_blocked_accounts_csv
-      results = export.strip.split
+    let(:export) { CSV.parse(subject.to_bookmarks_csv) }
 
-      expect(results.size).to eq 2
-      expect(results.first).to eq 'one@local.host'
+    it 'returns a csv of bookmarks' do
+      expect(export)
+        .to contain_exactly(
+          include(/statuses/),
+          include(/statuses/)
+        )
     end
+  end
+
+  describe '#to_blocked_accounts_csv' do
+    before { target_accounts.each { |target_account| account.block!(target_account) } }
+
+    let(:export) { CSV.parse(subject.to_blocked_accounts_csv) }
+
+    it 'returns a csv of the blocked accounts' do
+      expect(export)
+        .to contain_exactly(
+          include('one@local.host'),
+          include(be_present)
+        )
+    end
+  end
+
+  describe '#to_muted_accounts_csv' do
+    before { target_accounts.each { |target_account| account.mute!(target_account) } }
+
+    let(:export) { CSV.parse(subject.to_muted_accounts_csv) }
 
     it 'returns a csv of the muted accounts' do
-      target_accounts.each { |target_account| account.mute!(target_account) }
-
-      export = described_class.new(account).to_muted_accounts_csv
-      results = export.strip.split("\n")
-
-      expect(results.size).to eq 3
-      expect(results.first).to eq 'Account address,Hide notifications'
-      expect(results.second).to eq 'one@local.host,true'
+      expect(export)
+        .to contain_exactly(
+          contain_exactly('Account address', 'Hide notifications'),
+          include('one@local.host', 'true'),
+          include(be_present)
+        )
     end
+  end
+
+  describe '#to_following_accounts_csv' do
+    before { target_accounts.each { |target_account| account.follow!(target_account) } }
+
+    let(:export) { CSV.parse(subject.to_following_accounts_csv) }
 
     it 'returns a csv of the following accounts' do
-      target_accounts.each { |target_account| account.follow!(target_account) }
-
-      export = described_class.new(account).to_following_accounts_csv
-      results = export.strip.split("\n")
-
-      expect(results.size).to eq 3
-      expect(results.first).to eq 'Account address,Show boosts,Notify on new posts,Languages'
-      expect(results.second).to eq 'one@local.host,true,false,'
+      expect(export)
+        .to contain_exactly(
+          contain_exactly('Account address', 'Show boosts', 'Notify on new posts', 'Languages'),
+          include('one@local.host', 'true', 'false', be_blank),
+          include(be_present)
+        )
     end
   end
 
-  describe 'total_storage' do
-    it 'returns the total size of the media attachments' do
-      media_attachment = Fabricate(:media_attachment, account: account)
-      expect(described_class.new(account).total_storage).to eq media_attachment.file_file_size || 0
+  describe '#to_lists_csv' do
+    before do
+      target_accounts.each do |target_account|
+        account.follow!(target_account)
+        Fabricate(:list, account: account).accounts << target_account
+      end
+    end
+
+    let(:export) { CSV.parse(subject.to_lists_csv) }
+
+    it 'returns a csv of the lists' do
+      expect(export)
+        .to contain_exactly(
+          include('one@local.host'),
+          include(be_present)
+        )
     end
   end
 
-  describe 'total_follows' do
-    it 'returns the total number of the followed accounts' do
-      target_accounts.each { |target_account| account.follow!(target_account) }
-      expect(described_class.new(account.reload).total_follows).to eq 2
-    end
+  describe '#to_blocked_domains_csv' do
+    before { Fabricate.times(2, :account_domain_block, account: account) }
 
-    it 'returns the total number of the blocked accounts' do
-      target_accounts.each { |target_account| account.block!(target_account) }
-      expect(described_class.new(account.reload).total_blocks).to eq 2
-    end
+    let(:export) { CSV.parse(subject.to_blocked_domains_csv) }
 
-    it 'returns the total number of the muted accounts' do
-      target_accounts.each { |target_account| account.mute!(target_account) }
-      expect(described_class.new(account.reload).total_mutes).to eq 2
+    it 'returns a csv of the blocked domains' do
+      expect(export)
+        .to contain_exactly(
+          include(/example/),
+          include(/example/)
+        )
     end
   end
 end

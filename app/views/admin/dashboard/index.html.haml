@@ -2,9 +2,7 @@
   = t('admin.dashboard.title')
 
 - content_for :heading_actions do
-  = l(@time_period.first)
-  = ' - '
-  = l(@time_period.last)
+  = date_range(@time_period)
 
 - unless @system_checks.empty?
   .flash-message-stack

@@ -346,7 +346,7 @@ namespace :api, format: false do
   namespace :web do
     resource :settings, only: [:update]
     resources :embeds, only: [:show]
-    resources :push_subscriptions, only: [:create] do
+    resources :push_subscriptions, only: [:create, :destroy] do
       member do
         put :update
       end

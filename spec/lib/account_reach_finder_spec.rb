@@ -38,16 +38,23 @@ RSpec.describe AccountReachFinder do
   end
 
   describe '#inboxes' do
-    it 'includes the preferred inbox URL of followers' do
-      expect(described_class.new(account).inboxes).to include(*[ap_follower_example_com, ap_follower_example_org, ap_follower_with_shared].map(&:preferred_inbox_url))
+    subject { described_class.new(account).inboxes }
+
+    it 'includes the preferred inbox URL of followers and recently mentioned accounts but not unrelated users' do
+      expect(subject)
+        .to include(*follower_inbox_urls)
+        .and include(*mentioned_account_inbox_urls)
+        .and not_include(unrelated_account.preferred_inbox_url)
     end
 
-    it 'includes the preferred inbox URL of recently-mentioned accounts' do
-      expect(described_class.new(account).inboxes).to include(*[ap_mentioned_with_shared, ap_mentioned_example_com, ap_mentioned_example_org].map(&:preferred_inbox_url))
+    def follower_inbox_urls
+      [ap_follower_example_com, ap_follower_example_org, ap_follower_with_shared]
+        .map(&:preferred_inbox_url)
     end
 
-    it 'does not include the inbox of unrelated users' do
-      expect(described_class.new(account).inboxes).to_not include(unrelated_account.preferred_inbox_url)
+    def mentioned_account_inbox_urls
+      [ap_mentioned_with_shared, ap_mentioned_example_com, ap_mentioned_example_org]
+        .map(&:preferred_inbox_url)
     end
   end
 end
