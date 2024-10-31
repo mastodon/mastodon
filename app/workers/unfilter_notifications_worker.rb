@@ -58,6 +58,6 @@ class UnfilterNotificationsWorker
   end
 
   def subscribed_to_streaming_api?
-    redis.exists?("subscribed:timeline:#{@recipient.id}") || redis.exists?("subscribed:timeline:#{@recipient.id}:notifications")
+    Timeline.subscribed?("timeline:#{@recipient.id}") || Timeline.subscribed?("timeline:#{@recipient.id}:notifications")
   end
 end

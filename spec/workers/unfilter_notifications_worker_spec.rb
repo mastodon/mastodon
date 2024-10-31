@@ -14,14 +14,14 @@ RSpec.describe UnfilterNotificationsWorker do
     follow_request = sender.request_follow!(recipient)
     Fabricate(:notification, filtered: true, from_account: sender, account: recipient, type: :follow_request, activity: follow_request)
     allow(redis).to receive(:publish)
-    allow(redis).to receive(:exists?).and_return(false)
+    allow(Timeline).to receive(:subscribed?).and_return(false)
   end
 
   shared_examples 'shared behavior' do
     context 'when this is the last pending merge job and the user is subscribed to streaming' do
       before do
         redis.set("notification_unfilter_jobs:#{recipient.id}", 1)
-        allow(redis).to receive(:exists?).with("subscribed:timeline:#{recipient.id}").and_return(true)
+        allow(Timeline).to receive(:subscribed?).with("timeline:#{recipient.id}").and_return(true)
       end
 
       it 'unfilters notifications, adds private messages to conversations, and pushes to redis' do
@@ -37,7 +37,7 @@ RSpec.describe UnfilterNotificationsWorker do
     context 'when this is not last pending merge job and the user is subscribed to streaming' do
       before do
         redis.set("notification_unfilter_jobs:#{recipient.id}", 2)
-        allow(redis).to receive(:exists?).with("subscribed:timeline:#{recipient.id}").and_return(true)
+        allow(Timeline).to receive(:subscribed?).with("timeline:#{recipient.id}").and_return(true)
       end
 
       it 'unfilters notifications, adds private messages to conversations, and does not push to redis' do
