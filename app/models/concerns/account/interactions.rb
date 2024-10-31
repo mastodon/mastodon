@@ -215,8 +215,10 @@ module Account::Interactions
   def local_followers_hash
     Rails.cache.fetch("followers_hash:#{id}:local") do
       digest = "\x00" * 32
-      followers.where(domain: nil).pluck_each(:username) do |username|
-        Xorcist.xor!(digest, Digest::SHA256.digest(ActivityPub::TagManager.instance.uri_for_username(username)))
+      # TODO
+      followers.where(domain: nil).pluck_each('false as numeric_ap_id', :id, :username) do |numeric_ap_id, id, username|
+        uri = numeric_ap_id ? ActivityPub::TagManager.instance.uri_for_account_id(id) : ActivityPub::TagManager.instance.uri_for_username(username)
+        Xorcist.xor!(digest, Digest::SHA256.digest(uri))
       end
       digest.unpack1('H*')
     end
