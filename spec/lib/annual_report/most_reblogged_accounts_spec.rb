@@ -32,7 +32,7 @@ RSpec.describe AnnualReport::MostRebloggedAccounts do
         expect(subject.generate)
           .to include(
             most_reblogged_accounts: contain_exactly(
-              include(account_id: other_account.id, count: 2)
+              include(account_id: other_account.id.to_s, count: 2)
             )
           )
       end

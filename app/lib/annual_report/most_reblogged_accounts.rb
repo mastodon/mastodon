@@ -7,7 +7,7 @@ class AnnualReport::MostRebloggedAccounts < AnnualReport::Source
     {
       most_reblogged_accounts: most_reblogged_accounts.map do |(account_id, count)|
                                  {
-                                   account_id: account_id,
+                                   account_id: account_id.to_s,
                                    count: count,
                                  }
                                end,

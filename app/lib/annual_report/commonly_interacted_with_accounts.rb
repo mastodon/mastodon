@@ -7,7 +7,7 @@ class AnnualReport::CommonlyInteractedWithAccounts < AnnualReport::Source
     {
       commonly_interacted_with_accounts: commonly_interacted_with_accounts.map do |(account_id, count)|
                                            {
-                                             account_id: account_id,
+                                             account_id: account_id.to_s,
                                              count: count,
                                            }
                                          end,
