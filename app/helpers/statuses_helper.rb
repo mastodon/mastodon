@@ -12,7 +12,7 @@ module StatusesHelper
   }.freeze
 
   def nothing_here(extra_classes = '')
-    content_tag(:div, class: "nothing-here #{extra_classes}") do
+    tag.div(class: ['nothing-here', extra_classes]) do
       t('accounts.nothing_here')
     end
   end

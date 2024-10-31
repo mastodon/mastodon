@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 3.1.0'
+ruby '>= 3.2.0'
 
 gem 'propshaft'
 gem 'puma', '~> 6.3'
@@ -16,10 +16,10 @@ gem 'pghero'
 
 gem 'aws-sdk-s3', '~> 1.123', require: false
 gem 'blurhash', '~> 0.1'
-gem 'fog-core', '<= 2.5.0'
+gem 'fog-core', '<= 2.6.0'
 gem 'fog-openstack', '~> 1.0', require: false
+gem 'jd-paperclip-azure', '~> 3.0', require: false
 gem 'kt-paperclip', '~> 7.2'
-gem 'md-paperclip-azure', '~> 2.2', require: false
 gem 'ruby-vips', '~> 2.2', require: false
 
 gem 'active_model_serializers', '~> 0.10'
@@ -61,7 +61,7 @@ gem 'irb', '~> 1.8'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
-gem 'mime-types', '~> 3.5.0', require: 'mime/types/columnar'
+gem 'mime-types', '~> 3.6.0', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.15'
 gem 'oj', '~> 3.14'
 gem 'ox', '~> 2.14'
@@ -111,8 +111,8 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-http_client', '~> 0.22.3', require: false
   gem 'opentelemetry-instrumentation-net_http', '~> 0.22.4', require: false
   gem 'opentelemetry-instrumentation-pg', '~> 0.29.0', require: false
-  gem 'opentelemetry-instrumentation-rack', '~> 0.24.1', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.31.0', require: false
+  gem 'opentelemetry-instrumentation-rack', '~> 0.25.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.32.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.25.3', require: false
   gem 'opentelemetry-instrumentation-sidekiq', '~> 0.25.2', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false

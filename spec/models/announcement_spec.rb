@@ -67,18 +67,30 @@ RSpec.describe Announcement do
     it { is_expected.to validate_presence_of(:text) }
 
     describe 'ends_at' do
-      it 'validates presence when starts_at is present' do
-        record = Fabricate.build(:announcement, starts_at: 1.day.ago)
+      context 'when starts_at is present' do
+        subject { Fabricate.build :announcement, starts_at: 1.day.ago }
 
-        expect(record).to_not be_valid
-        expect(record.errors[:ends_at]).to be_present
+        it { is_expected.to validate_presence_of(:ends_at) }
       end
 
-      it 'does not validate presence when starts_at is missing' do
-        record = Fabricate.build(:announcement, starts_at: nil)
+      context 'when starts_at is missing' do
+        subject { Fabricate.build :announcement, starts_at: nil }
 
-        expect(record).to be_valid
-        expect(record.errors[:ends_at]).to_not be_present
+        it { is_expected.to_not validate_presence_of(:ends_at) }
+      end
+    end
+
+    describe 'starts_at' do
+      context 'when ends_at is present' do
+        subject { Fabricate.build :announcement, ends_at: 1.day.ago }
+
+        it { is_expected.to validate_presence_of(:starts_at) }
+      end
+
+      context 'when ends_at is missing' do
+        subject { Fabricate.build :announcement, ends_at: nil }
+
+        it { is_expected.to_not validate_presence_of(:starts_at) }
       end
     end
   end

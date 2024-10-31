@@ -61,6 +61,7 @@ RSpec.describe Web::PushNotificationWorker do
           'Ttl' => '172800',
           'Urgency' => 'normal',
           'Authorization' => 'WebPush jwt.encoded.payload',
+          'Unsubscribe-URL' => %r{/api/web/push_subscriptions/},
         },
         body: "+\xB8\xDBT}\u0013\xB6\xDD.\xF9\xB0\xA7\xC8Ҁ\xFD\x99#\xF7\xAC\x83\xA4\xDB,\u001F\xB5\xB9w\x85>\xF7\xADr"
       )
