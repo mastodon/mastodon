@@ -44,7 +44,7 @@ namespace :db do
 
   task pre_migration_check: :environment do
     version = ActiveRecord::Base.connection.database_version
-    abort 'This version of Mastodon requires PostgreSQL 12.0 or newer. Please update PostgreSQL before updating Mastodon.' if version < 120_000
+    abort 'This version of Mastodon requires PostgreSQL 13.0 or newer. Please update PostgreSQL before updating Mastodon.' if version < 130_000
   end
 
   Rake::Task['db:migrate'].enhance(['db:pre_migration_check'])
