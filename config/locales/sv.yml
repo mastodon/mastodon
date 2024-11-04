@@ -59,7 +59,7 @@ sv:
       delete: Radera data
       deleted: Raderad
       demote: Degradera
-      destroyed_msg: "%{username}'s data har nu lagts till kön för att raderas omedelbart"
+      destroyed_msg: "%{username}s data har nu lagts till kön för att raderas omedelbart"
       disable: inaktivera
       disable_sign_in_token_auth: Inaktivera autentisering med pollett via e-post
       disable_two_factor_authentication: Inaktivera 2FA
@@ -72,7 +72,7 @@ sv:
       enable: Aktivera
       enable_sign_in_token_auth: Aktivera autentisering med pollett via e-post
       enabled: Aktiverad
-      enabled_msg: Uppfrysningen av %{username}'s konto lyckades
+      enabled_msg: Uppfrysningen av %{username}s konto lyckades
       followers: Följare
       follows: Följs
       header: Rubrik
@@ -268,21 +268,21 @@ sv:
         enable_custom_emoji_html: "%{name} aktiverade emoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktiverade e-posttokenautentisering för %{target}"
         enable_user_html: "%{name} aktiverade inloggning för användaren %{target}"
-        memorialize_account_html: "%{name} gjorde %{target}'s konto till en minnessida"
+        memorialize_account_html: "%{name} gjorde %{target}s konto till en minnessida"
         promote_user_html: "%{name} befordrade användaren %{target}"
         reject_appeal_html: "%{name} avvisade överklagande av modereringsbeslut från %{target}"
         reject_user_html: "%{name} avvisade registrering från %{target}"
-        remove_avatar_user_html: "%{name} tog bort %{target}'s avatar"
+        remove_avatar_user_html: "%{name} tog bort %{target}s avatar"
         reopen_report_html: "%{name} öppnade rapporten igen %{target}"
         resend_user_html: "%{name} skickade bekräftelsemail för %{target} på nytt"
         reset_password_user_html: "%{name} återställ användarens lösenord %{target}"
         resolve_report_html: "%{name} löste rapporten %{target}"
-        sensitive_account_html: "%{name} markerade %{target}'s media som känsligt"
-        silence_account_html: "%{name} begränsade %{target}'s konto"
+        sensitive_account_html: "%{name} markerade %{target}s media som känsligt"
+        silence_account_html: "%{name} begränsade %{target}s konto"
         suspend_account_html: "%{name} stängde av %{target}s konto"
         unassigned_report_html: "%{name} tog bort tilldelning av rapporten %{target}"
         unblock_email_account_html: "%{name} avblockerade %{target}s e-postadress"
-        unsensitive_account_html: "%{name} avmarkerade %{target}'s media som känsligt"
+        unsensitive_account_html: "%{name} avmarkerade %{target}s media som känsligt"
         unsilence_account_html: "%{name} tog bort begränsning av %{target}s konto"
         unsuspend_account_html: "%{name} ångrade avstängningen av %{target}s konto"
         update_announcement_html: "%{name} uppdaterade kungörelsen %{target}"
@@ -569,7 +569,7 @@ sv:
       no_ip_block_selected: Inga IP-regler ändrades då inga var valda
       title: IP-regler
     relationships:
-      title: "%{acct}'s relationer"
+      title: "%{acct}s relationer"
     relays:
       add_new: Lägg till nytt relä
       delete: Radera
@@ -899,7 +899,7 @@ sv:
         review_requested: Granskning begärd
         reviewed: Granskat
         title: Status
-        trendable:
+        trendable: Kan trenda
         unreviewed: Ogranskad
         usable: Användbar
       name: Namn
@@ -1826,8 +1826,8 @@ sv:
   tags:
     does_not_match_previous_name: matchar inte det föregående namnet
   themes:
-    contrast: Hög kontrast
-    default: Mastodon
+    contrast: Mastodon (Hög kontrast)
+    default: Mastodon (Mörk)
     mastodon-light: Mastodon (ljust)
     system: Automatisk (använd systemtema)
   time:
