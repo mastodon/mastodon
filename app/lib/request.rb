@@ -113,6 +113,7 @@ class Request
     begin
       yield response if block_given?
     ensure
+      response.truncated_body if http_client.persistent? && !response.connection.finished_request?
       http_client.close unless http_client.persistent? && response.connection.finished_request?
     end
   end

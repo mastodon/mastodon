@@ -99,30 +99,38 @@ RSpec.describe Request do
     end
 
     context 'with persistent connection' do
-      before { stub_request(:get, 'http://example.com').to_return(body: SecureRandom.random_bytes(100.kilobytes)) }
+      before { stub_request(:get, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.megabytes)) }
 
       let(:http_client) { described_class.http_client.persistent('http://example.com') }
       let(:options) { { http_client: http_client } }
 
-      it 'leaves connection open after complete response' do
+      it 'leaves connection open after completely consumed response' do
         allow(http_client).to receive(:close)
 
-        subject.perform(&:truncated_body)
+        subject.perform { |response| response.truncated_body(3.megabytes) }
 
         expect(http_client).to_not have_received(:close)
       end
 
-      it 'closes connection after aborted response' do
+      it 'leaves connection open after nearly consumed response' do
         allow(http_client).to receive(:close)
 
-        subject.perform { |response| response.truncated_body(1.kilobyte) }
+        subject.perform { |response| response.truncated_body(1.8.megabytes) }
+
+        expect(http_client).to_not have_received(:close)
+      end
+
+      it 'closes connection after unconsumed response' do
+        allow(http_client).to receive(:close)
+
+        subject.perform
 
         expect(http_client).to have_received(:close)
       end
 
       it 'yields response' do
         subject.perform do |response|
-          expect(response.body_with_limit.size).to eq 100.kilobytes
+          expect(response.body_with_limit(2.megabytes).size).to eq 2.megabytes
         end
       end
     end
