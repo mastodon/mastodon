@@ -92,8 +92,28 @@ class ActivityPub::TagManager
     account_following_index_url(target, ...)
   end
 
-  def followers_uri_for(target)
-    target.local? ? account_followers_url(target) : target.followers_url.presence
+  def followers_uri_for(target, ...)
+    return target.followers_url.presence unless target.local?
+
+    account_followers_url(target, ...)
+  end
+
+  def collection_uri_for(target, ...)
+    raise NotImplementedError unless target.local?
+
+    account_collection_url(target, ...)
+  end
+
+  def inbox_uri_for(target)
+    raise NotImplementedError unless target.local?
+
+    target.instance_actor? ? instance_actor_inbox_url : account_inbox_url(target)
+  end
+
+  def outbox_uri_for(target, ...)
+    raise NotImplementedError unless target.local?
+
+    target.instance_actor? ? instance_actor_outbox_url(...) : account_outbox_url(target, ...)
   end
 
   # Primary audience of a status
