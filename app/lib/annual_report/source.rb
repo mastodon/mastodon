@@ -8,6 +8,14 @@ class AnnualReport::Source
     @year = year
   end
 
+  def self.prepare(_year)
+    # Use this method if any pre-calculations must be made before individual annual reports are generated
+  end
+
+  def generate
+    raise NotImplementedError
+  end
+
   protected
 
   def report_statuses
