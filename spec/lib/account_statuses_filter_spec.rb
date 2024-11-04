@@ -52,36 +52,24 @@ RSpec.describe AccountStatusesFilter do
     end
 
     shared_examples 'filter params' do
-      context 'with only_media param' do
-        let(:params) { { only_media: true } }
+      it 'respects param options in results' do
+        expect(results_for(only_media: true))
+          .to all(satisfy(&:with_media?))
 
-        it 'returns only statuses with media' do
-          expect(subject.all?(&:with_media?)).to be true
-        end
+        expect(results_for(tagged: tag.name))
+          .to all(satisfy { |status| status.tags.include?(tag) })
+
+        expect(results_for(exclude_replies: true))
+          .to all(satisfy { |status| !status.reply? })
+
+        expect(results_for(exclude_reblogs: true))
+          .to all(satisfy { |status| !status.reblog? })
       end
 
-      context 'with tagged param' do
-        let(:params) { { tagged: tag.name } }
-
-        it 'returns only statuses with tag' do
-          expect(subject.all? { |s| s.tags.include?(tag) }).to be true
-        end
-      end
-
-      context 'with exclude_replies param' do
-        let(:params) { { exclude_replies: true } }
-
-        it 'returns only statuses that are not replies' do
-          expect(subject.none?(&:reply?)).to be true
-        end
-      end
-
-      context 'with exclude_reblogs param' do
-        let(:params) { { exclude_reblogs: true } }
-
-        it 'returns only statuses that are not reblogs' do
-          expect(subject.none?(&:reblog?)).to be true
-        end
+      def results_for(params)
+        described_class
+          .new(account, current_account, params)
+          .results
       end
     end
 
