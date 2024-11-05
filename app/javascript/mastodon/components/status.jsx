@@ -393,13 +393,16 @@ class Status extends ImmutablePureComponent {
     };
 
     let media, statusAvatar, prepend, rebloggedByText;
+    const matchedFilters = status.get('matched_filters');
+    const expanded = (!matchedFilters || this.state.showDespiteFilter) && (!status.get('hidden') || status.get('spoiler_text').length === 0);
 
     if (hidden) {
       return (
         <HotKeys handlers={handlers} tabIndex={unfocusable ? null : -1}>
           <div ref={this.handleRef} className={classNames('status__wrapper', { focusable: !this.props.muted })} tabIndex={unfocusable ? null : 0}>
             <span>{status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}</span>
-            <span>{status.get('content')}</span>
+            {status.get('spoiler_text').length > 0 && (<span>{status.get('spoiler_text')}</span>)}
+            {expanded && <span>{status.get('content')}</span>}
           </div>
         </HotKeys>
       );
@@ -408,7 +411,6 @@ class Status extends ImmutablePureComponent {
     const connectUp = previousId && previousId === status.get('in_reply_to_id');
     const connectToRoot = rootId && rootId === status.get('in_reply_to_id');
     const connectReply = nextInReplyToId && nextInReplyToId === status.get('id');
-    const matchedFilters = status.get('matched_filters');
 
     if (featured) {
       prepend = (
@@ -538,7 +540,6 @@ class Status extends ImmutablePureComponent {
     }
 
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
-    const expanded = (!matchedFilters || this.state.showDespiteFilter) && (!status.get('hidden') || status.get('spoiler_text').length === 0);
 
     return (
       <HotKeys handlers={handlers} tabIndex={unfocusable ? null : -1}>
