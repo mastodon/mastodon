@@ -8,6 +8,19 @@ class ActivityPub::Activity
   SUPPORTED_TYPES = %w(Note Question).freeze
   CONVERTED_TYPES = %w(Image Audio Video Article Page Event).freeze
 
+  module Trace
+    def perform(...)
+      MastodonOTELTracer.in_span(self.class.name) do
+        super
+      end
+    end
+  end
+
+  def self.inherited(subclass)
+    super
+    subclass.prepend Trace
+  end
+
   def initialize(json, account, **options)
     @json    = json
     @account = account
