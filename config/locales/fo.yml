@@ -1368,6 +1368,44 @@ fo:
       merge_long: Varðveit verandi teigarøð og legg nýggjar afturat
       overwrite: Skriva omaná
       overwrite_long: Legg nýggj teigarøð inn fyri tey verandi
+    overwrite_preambles:
+      blocking_html:
+        one: Tú ert í ferð við at <strong>útskifta blokeringslistan hjá tær</strong> við upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>útskifta blokeringslistan hjá tær</strong> við upp til <strong>%{count} kontum</strong> frá <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Tú ert í ferð við at <strong>útskifta tíni bókamerki</strong> við upp til <strong>%{count} posti</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>útskifta tíni bókamerki</strong> við upp til <strong>%{count} postum</strong> frá <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Tú ert í ferð við at <strong>útskifta navnaøkisblokeringslistan hjá tær</strong> við upp til <strong>%{count} navnaøki</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>útskifta navnaøkisblokeringslistan hjá tær</strong> við upp til <strong>%{count} navnaøkjum</strong> frá <strong>%{filename}</strong>.
+      following_html:
+        one: Tú ert í ferð við at <strong>fylgja</strong> upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong> og <strong>at gevast at fylgja øðrum</strong>.
+        other: Tú ert í ferð við at <strong>fylgja</strong> upp til <strong>%{count} kontum</strong> frá <strong>%{filename}</strong> og <strong>at gevast at fylgja øðrum</strong>.
+      lists_html:
+        one: Tú ert í ferð við at <strong>skifta listarnar hjá tær út</strong> við tað, sum er í <strong>%{filename}</strong>. Upp til <strong>%{count} konta</strong> verður løgd afturat nýggjum listum.
+        other: Tú ert í ferð við at <strong>skifta listarnar hjá tær út</strong> við tað, sum er í <strong>%{filename}</strong>. Upp til <strong>%{count} kontur</strong> verða lagdar afturat nýggjum listum.
+      muting_html:
+        one: Tú ert í ferð við at <strong>útskifta listan hjá tær við doyvdum kontum</strong> við upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>útskifta listan hjá tær við doyvdum kontum</strong> við upp til <strong>%{count} kontum</strong> frá <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        one: Tú ert í ferð við at <strong>blokera</strong> upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>blokera</strong> upp til <strong>%{count} kontur</strong> frá <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Tú ert í ferð við at leggja upp til <strong>%{count} post</strong> frá <strong>%{filename}</strong> afturat tínum <strong>bókamerkjum</strong>.
+        other: Tú ert í ferð við at leggja upp til <strong>%{count} postar</strong> frá <strong>%{filename}</strong> afturat tínum <strong>bókamerkjum</strong>.
+      domain_blocking_html:
+        one: Tú ert í ferð við at <strong>blokera</strong> upp til <strong>%{count} navnaøki</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>blokera</strong> upp til <strong>%{count} navnaøki</strong> frá <strong>%{filename}</strong>.
+      following_html:
+        one: Tú ert í ferð við at <strong>fylgja</strong> upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>fylgja</strong> upp til <strong>%{count} kontur</strong> frá <strong>%{filename}</strong>.
+      lists_html:
+        one: Tú ert í ferð við at leggja upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong> afturat tínum <strong>listum</strong>. Nýggir listar verða stovnaðir, um eingin listi er at leggja afturat.
+        other: Tú ert í ferð við at leggja upp til <strong>%{count} kontur</strong> frá <strong>%{filename}</strong> afturat tínum <strong>listum</strong>. Nýggir listar verða stovnaðir, um eingin listi er at leggja afturat.
+      muting_html:
+        one: Tú ert í ferð við at <strong>doyva</strong> upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>doyva</strong> upp til <strong>%{count} kontur</strong> frá <strong>%{filename}</strong>.
     preface: Tú kanst innlesa dátur, sum tú hevur útlisið frá einum øðrum ambætara, so sum listar av fólki, sum tú fylgir ella blokerar.
     recent_imports: Feskar innflytingar
     states:
