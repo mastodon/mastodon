@@ -139,7 +139,7 @@ const mapDispatchToProps = (dispatch) => ({
       modalType: 'IMAGE',
       modalProps: {
         src: account.get('avatar'),
-        alt: '',
+        alt: account.get('avatar_description'),
       },
     }));
   },

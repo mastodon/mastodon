@@ -14,7 +14,6 @@ interface Props {
   animate?: boolean;
   counter?: number | string;
   counterBorderColor?: string;
-  showAltTag?: boolean;
 }
 
 export const Avatar: React.FC<Props> = ({
@@ -25,7 +24,6 @@ export const Avatar: React.FC<Props> = ({
   style: styleFromParent,
   counter,
   counterBorderColor,
-  showAltTag
 }) => {
   const { hovering, handleMouseEnter, handleMouseLeave } = useHovering(animate);
   const [loading, setLoading] = useState(true);
@@ -61,7 +59,7 @@ export const Avatar: React.FC<Props> = ({
       style={style}
     >
       {src && !error && (
-        <img src={src} alt={(showAltTag && account?.get('avatar_description')) || ''} onLoad={handleLoad} onError={handleError} />
+        <img src={src} alt={''} onLoad={handleLoad} onError={handleError} />
       )}
 
       {counter && (
