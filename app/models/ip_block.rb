@@ -17,6 +17,7 @@ class IpBlock < ApplicationRecord
   CACHE_KEY = 'blocked_ips'
 
   include Expireable
+  include InetContainer
   include Paginable
 
   enum :severity, {
@@ -29,9 +30,6 @@ class IpBlock < ApplicationRecord
   validates :ip, uniqueness: true
 
   after_commit :reset_cache
-
-  scope :containing, ->(value) { where('ip >>= ?', value) }
-  scope :contained_by, ->(value) { where('ip <<= ?', value) }
 
   def to_log_human_identifier
     "#{ip}/#{ip.prefix}"
