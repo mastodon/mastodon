@@ -1,16 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: custom_filter_statuses
-#
-#  id               :bigint(8)        not null, primary key
-#  custom_filter_id :bigint(8)        not null
-#  status_id        :bigint(8)        not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#
-
 class CustomFilterStatus < ApplicationRecord
   include CustomFilterCache
 

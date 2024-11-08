@@ -1,19 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: user_roles
-#
-#  id          :bigint(8)        not null, primary key
-#  name        :string           default(""), not null
-#  color       :string           default(""), not null
-#  position    :integer          default(0), not null
-#  permissions :bigint(8)        default(0), not null
-#  highlighted :boolean          default(FALSE), not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#
-
 class UserRole < ApplicationRecord
   FLAGS = {
     administrator: (1 << 0),

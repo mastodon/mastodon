@@ -1,15 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: scheduled_statuses
-#
-#  id           :bigint(8)        not null, primary key
-#  account_id   :bigint(8)
-#  scheduled_at :datetime
-#  params       :jsonb
-#
-
 class ScheduledStatus < ApplicationRecord
   include Paginable
 

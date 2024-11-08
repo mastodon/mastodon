@@ -1,24 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: account_statuses_cleanup_policies
-#
-#  id                 :bigint(8)        not null, primary key
-#  account_id         :bigint(8)        not null
-#  enabled            :boolean          default(TRUE), not null
-#  min_status_age     :integer          default(1209600), not null
-#  keep_direct        :boolean          default(TRUE), not null
-#  keep_pinned        :boolean          default(TRUE), not null
-#  keep_polls         :boolean          default(FALSE), not null
-#  keep_media         :boolean          default(FALSE), not null
-#  keep_self_fav      :boolean          default(TRUE), not null
-#  keep_self_bookmark :boolean          default(TRUE), not null
-#  min_favs           :integer
-#  min_reblogs        :integer
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#
 class AccountStatusesCleanupPolicy < ApplicationRecord
   include Redisable
 

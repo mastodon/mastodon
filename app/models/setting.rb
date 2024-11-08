@@ -1,18 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: settings
-#
-#  id         :bigint(8)        not null, primary key
-#  var        :string           not null
-#  value      :text
-#  thing_type :string
-#  created_at :datetime
-#  updated_at :datetime
-#  thing_id   :bigint(8)
-#
-
 # This file is derived from a fork of the `rails-settings-cached` gem available at
 # https://github.com/mastodon/rails-settings-cached/tree/v0.6.6-aliases-true, with
 # the original available at:

@@ -1,17 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: email_domain_blocks
-#
-#  id                  :bigint(8)        not null, primary key
-#  domain              :string           default(""), not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  parent_id           :bigint(8)
-#  allow_with_approval :boolean          default(FALSE), not null
-#
-
 class EmailDomainBlock < ApplicationRecord
   self.ignored_columns += %w(
     ips

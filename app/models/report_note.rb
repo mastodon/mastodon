@@ -1,17 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: report_notes
-#
-#  id         :bigint(8)        not null, primary key
-#  content    :text             not null
-#  report_id  :bigint(8)        not null
-#  account_id :bigint(8)        not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 class ReportNote < ApplicationRecord
   CONTENT_SIZE_LIMIT = 2_000
 

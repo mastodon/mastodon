@@ -1,19 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: account_conversations
-#
-#  id                      :bigint(8)        not null, primary key
-#  account_id              :bigint(8)
-#  conversation_id         :bigint(8)
-#  participant_account_ids :bigint(8)        default([]), not null, is an Array
-#  status_ids              :bigint(8)        default([]), not null, is an Array
-#  last_status_id          :bigint(8)
-#  lock_version            :integer          default(0), not null
-#  unread                  :boolean          default(FALSE), not null
-#
-
 class AccountConversation < ApplicationRecord
   include Redisable
 

@@ -1,22 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: preview_card_providers
-#
-#  id                  :bigint(8)        not null, primary key
-#  domain              :string           default(""), not null
-#  icon_file_name      :string
-#  icon_content_type   :string
-#  icon_file_size      :bigint(8)
-#  icon_updated_at     :datetime
-#  trendable           :boolean
-#  reviewed_at         :datetime
-#  requested_review_at :datetime
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#
-
 class PreviewCardProvider < ApplicationRecord
   include Paginable
   include DomainNormalizable

@@ -1,14 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: global_follow_recommendations
-#
-#  account_id :bigint(8)        primary key
-#  rank       :decimal(, )
-#  reason     :text             is an Array
-#
-
 class FollowRecommendation < ApplicationRecord
   include DatabaseViewRecord
 

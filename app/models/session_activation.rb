@@ -1,20 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: session_activations
-#
-#  id                       :bigint(8)        not null, primary key
-#  session_id               :string           not null
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
-#  user_agent               :string           default(""), not null
-#  ip                       :inet
-#  access_token_id          :bigint(8)
-#  user_id                  :bigint(8)        not null
-#  web_push_subscription_id :bigint(8)
-#
-
 class SessionActivation < ApplicationRecord
   include BrowserDetection
 

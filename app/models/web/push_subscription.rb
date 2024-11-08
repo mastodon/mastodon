@@ -1,20 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: web_push_subscriptions
-#
-#  id              :bigint(8)        not null, primary key
-#  endpoint        :string           not null
-#  key_p256dh      :string           not null
-#  key_auth        :string           not null
-#  data            :json
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  access_token_id :bigint(8)
-#  user_id         :bigint(8)
-#
-
 class Web::PushSubscription < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :access_token, class_name: 'Doorkeeper::AccessToken', optional: true

@@ -1,18 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: software_updates
-#
-#  id            :bigint(8)        not null, primary key
-#  version       :string           not null
-#  urgent        :boolean          default(FALSE), not null
-#  type          :integer          default("patch"), not null
-#  release_notes :string           default(""), not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#
-
 class SoftwareUpdate < ApplicationRecord
   self.inheritance_column = nil
 

@@ -1,34 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: media_attachments
-#
-#  id                          :bigint(8)        not null, primary key
-#  status_id                   :bigint(8)
-#  file_file_name              :string
-#  file_content_type           :string
-#  file_file_size              :integer
-#  file_updated_at             :datetime
-#  remote_url                  :string           default(""), not null
-#  created_at                  :datetime         not null
-#  updated_at                  :datetime         not null
-#  shortcode                   :string
-#  type                        :integer          default("image"), not null
-#  file_meta                   :json
-#  account_id                  :bigint(8)
-#  description                 :text
-#  scheduled_status_id         :bigint(8)
-#  blurhash                    :string
-#  processing                  :integer
-#  file_storage_schema_version :integer
-#  thumbnail_file_name         :string
-#  thumbnail_content_type      :string
-#  thumbnail_file_size         :integer
-#  thumbnail_updated_at        :datetime
-#  thumbnail_remote_url        :string
-#
-
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 

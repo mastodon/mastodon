@@ -1,21 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: notifications
-#
-#  id              :bigint(8)        not null, primary key
-#  activity_id     :bigint(8)        not null
-#  activity_type   :string           not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  account_id      :bigint(8)        not null
-#  from_account_id :bigint(8)        not null
-#  type            :string
-#  filtered        :boolean          default(FALSE), not null
-#  group_key       :string
-#
-
 class Notification < ApplicationRecord
   self.inheritance_column = nil
 

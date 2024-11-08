@@ -1,40 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: preview_cards
-#
-#  id                           :bigint(8)        not null, primary key
-#  url                          :string           default(""), not null
-#  title                        :string           default(""), not null
-#  description                  :string           default(""), not null
-#  image_file_name              :string
-#  image_content_type           :string
-#  image_file_size              :integer
-#  image_updated_at             :datetime
-#  type                         :integer          default("link"), not null
-#  html                         :text             default(""), not null
-#  author_name                  :string           default(""), not null
-#  author_url                   :string           default(""), not null
-#  provider_name                :string           default(""), not null
-#  provider_url                 :string           default(""), not null
-#  width                        :integer          default(0), not null
-#  height                       :integer          default(0), not null
-#  created_at                   :datetime         not null
-#  updated_at                   :datetime         not null
-#  embed_url                    :string           default(""), not null
-#  image_storage_schema_version :integer
-#  blurhash                     :string
-#  language                     :string
-#  max_score                    :float
-#  max_score_at                 :datetime
-#  trendable                    :boolean
-#  link_type                    :integer
-#  published_at                 :datetime
-#  image_description            :string           default(""), not null
-#  author_account_id            :bigint(8)
-#
-
 class PreviewCard < ApplicationRecord
   include Attachmentable
 

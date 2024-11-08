@@ -1,18 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: lists
-#
-#  id             :bigint(8)        not null, primary key
-#  account_id     :bigint(8)        not null
-#  title          :string           default(""), not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  replies_policy :integer          default("list"), not null
-#  exclusive      :boolean          default(FALSE), not null
-#
-
 class List < ApplicationRecord
   include Paginable
 

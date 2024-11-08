@@ -1,13 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: instances
-#
-#  domain         :string           primary key
-#  accounts_count :bigint(8)
-#
-
 class Instance < ApplicationRecord
   include DatabaseViewRecord
 

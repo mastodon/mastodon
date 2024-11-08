@@ -1,24 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: tags
-#
-#  id                  :bigint(8)        not null, primary key
-#  name                :string           default(""), not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  usable              :boolean
-#  trendable           :boolean
-#  listable            :boolean
-#  reviewed_at         :datetime
-#  requested_review_at :datetime
-#  last_status_at      :datetime
-#  max_score           :float
-#  max_score_at        :datetime
-#  display_name        :string
-#
-
 class Tag < ApplicationRecord
   include Paginable
   include Reviewable

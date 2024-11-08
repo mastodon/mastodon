@@ -1,21 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: account_warnings
-#
-#  id                :bigint(8)        not null, primary key
-#  account_id        :bigint(8)
-#  target_account_id :bigint(8)
-#  action            :integer          default("none"), not null
-#  text              :text             default(""), not null
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  report_id         :bigint(8)
-#  status_ids        :string           is an Array
-#  overruled_at      :datetime
-#
-
 class AccountWarning < ApplicationRecord
   enum :action, {
     none: 0,

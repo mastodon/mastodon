@@ -1,18 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: ip_blocks
-#
-#  id         :bigint(8)        not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  expires_at :datetime
-#  ip         :inet             default(#<IPAddr: IPv4:0.0.0.0/255.255.255.255>), not null
-#  severity   :integer          default(NULL), not null
-#  comment    :text             default(""), not null
-#
-
 class IpBlock < ApplicationRecord
   CACHE_KEY = 'blocked_ips'
 

@@ -1,18 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: mutes
-#
-#  id                 :bigint(8)        not null, primary key
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  account_id         :bigint(8)        not null
-#  target_account_id  :bigint(8)        not null
-#  hide_notifications :boolean          default(TRUE), not null
-#  expires_at         :datetime
-#
-
 class Mute < ApplicationRecord
   include Paginable
   include RelationshipCacheable

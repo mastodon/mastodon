@@ -1,21 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: invites
-#
-#  id         :bigint(8)        not null, primary key
-#  user_id    :bigint(8)        not null
-#  code       :string           default(""), not null
-#  expires_at :datetime
-#  max_uses   :integer
-#  uses       :integer          default(0), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  autofollow :boolean          default(FALSE), not null
-#  comment    :text
-#
-
 class Invite < ApplicationRecord
   include Expireable
 

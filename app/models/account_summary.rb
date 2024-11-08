@@ -1,14 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: account_summaries
-#
-#  account_id :bigint(8)        primary key
-#  language   :string
-#  sensitive  :boolean
-#
-
 class AccountSummary < ApplicationRecord
   include DatabaseViewRecord
 

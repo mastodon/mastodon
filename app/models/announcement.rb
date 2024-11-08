@@ -1,22 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: announcements
-#
-#  id           :bigint(8)        not null, primary key
-#  text         :text             default(""), not null
-#  published    :boolean          default(FALSE), not null
-#  all_day      :boolean          default(FALSE), not null
-#  scheduled_at :datetime
-#  starts_at    :datetime
-#  ends_at      :datetime
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  published_at :datetime
-#  status_ids   :bigint(8)        is an Array
-#
-
 class Announcement < ApplicationRecord
   scope :unpublished, -> { where(published: false) }
   scope :published, -> { where(published: true) }

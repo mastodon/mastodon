@@ -1,20 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: notification_policies
-#
-#  id                   :bigint(8)        not null, primary key
-#  account_id           :bigint(8)        not null
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  for_not_following    :integer          default("accept"), not null
-#  for_not_followers    :integer          default("accept"), not null
-#  for_new_accounts     :integer          default("accept"), not null
-#  for_private_mentions :integer          default("filter"), not null
-#  for_limited_accounts :integer          default("filter"), not null
-#
-
 class NotificationPolicy < ApplicationRecord
   self.ignored_columns += %w(
     filter_not_following

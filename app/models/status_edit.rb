@@ -1,22 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: status_edits
-#
-#  id                           :bigint(8)        not null, primary key
-#  status_id                    :bigint(8)        not null
-#  account_id                   :bigint(8)
-#  text                         :text             default(""), not null
-#  spoiler_text                 :text             default(""), not null
-#  created_at                   :datetime         not null
-#  updated_at                   :datetime         not null
-#  ordered_media_attachment_ids :bigint(8)        is an Array
-#  media_descriptions           :text             is an Array
-#  poll_options                 :string           is an Array
-#  sensitive                    :boolean
-#
-
 class StatusEdit < ApplicationRecord
   include RateLimitable
 

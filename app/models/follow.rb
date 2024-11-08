@@ -1,20 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: follows
-#
-#  id                :bigint(8)        not null, primary key
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  account_id        :bigint(8)        not null
-#  target_account_id :bigint(8)        not null
-#  show_reblogs      :boolean          default(TRUE), not null
-#  uri               :string
-#  notify            :boolean          default(FALSE), not null
-#  languages         :string           is an Array
-#
-
 class Follow < ApplicationRecord
   include Paginable
   include RelationshipCacheable

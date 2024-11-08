@@ -1,19 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: webhooks
-#
-#  id         :bigint(8)        not null, primary key
-#  url        :string           not null
-#  events     :string           default([]), not null, is an Array
-#  secret     :string           default(""), not null
-#  enabled    :boolean          default(TRUE), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  template   :text
-#
-
 class Webhook < ApplicationRecord
   EVENTS = %w(
     account.approved

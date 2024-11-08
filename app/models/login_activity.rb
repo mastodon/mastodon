@@ -1,20 +1,5 @@
 # frozen_string_literal: true
 
-# == Schema Information
-#
-# Table name: login_activities
-#
-#  id                    :bigint(8)        not null, primary key
-#  user_id               :bigint(8)        not null
-#  authentication_method :string
-#  provider              :string
-#  success               :boolean
-#  failure_reason        :string
-#  ip                    :inet
-#  user_agent            :string
-#  created_at            :datetime
-#
-
 class LoginActivity < ApplicationRecord
   include BrowserDetection
 
