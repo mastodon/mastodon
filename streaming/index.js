@@ -166,6 +166,15 @@ const startServer = async () => {
     // logger. This decorates the `request` object.
     attachWebsocketHttpLogger(request);
 
+    // Define the `request.ip` property
+    Object.defineProperty(request, 'ip', {
+      configurable: true,
+      enumerable: true,
+      get() {
+        return proxyaddr(this, trustProxy);
+      }
+    });
+
     request.log.info("HTTP Upgrade Requested");
 
     /** @param {Error} err */
@@ -354,28 +363,40 @@ const startServer = async () => {
   const isInScope = (req, necessaryScopes) =>
     req.scopes.some(scope => necessaryScopes.includes(scope));
 
+  const ACCESS_TOKEN_UPDATE_FREQUENCY = 24 * 60 * 60 * 1000;
+
   /**
+   * Fetches the account from the access token, updating access token usage if necessary.
+   * `req.ip` comes from `proxyaddr`
    * @param {string} token
-   * @param {any} req
+   * @param {http.IncomingMessage & { ip: string } & ResolvedAccount} req
    * @returns {Promise<ResolvedAccount>}
    */
   const accountFromToken = async (token, req) => {
-    const result = await pgPool.query('SELECT oauth_access_tokens.id, oauth_access_tokens.resource_owner_id, users.account_id, users.chosen_languages, oauth_access_tokens.scopes FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id WHERE oauth_access_tokens.token = $1 AND oauth_access_tokens.revoked_at IS NULL LIMIT 1', [token]);
+    const result = await pgPool.query('SELECT oauth_access_tokens.id, oauth_access_tokens.resource_owner_id, users.account_id, users.chosen_languages, oauth_access_tokens.scopes, oauth_access_tokens.last_used_at FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id WHERE oauth_access_tokens.token = $1 AND oauth_access_tokens.revoked_at IS NULL LIMIT 1', [token]);
 
-    if (result.rows.length === 0) {
+    if (result.rows.length === 0 || result.rows.length > 1) {
       throw new AuthenticationError('Invalid access token');
     }
 
-    req.accessTokenId = result.rows[0].id;
-    req.scopes = result.rows[0].scopes.split(' ');
-    req.accountId = result.rows[0].account_id;
-    req.chosenLanguages = result.rows[0].chosen_languages;
+    const accessToken = result.rows[0];
+
+    // Track the usage of the access token if necessary:
+    // This is the same code as: app/controllers/concerns/api/access_token_tracking_concern.rb
+    if (accessToken.last_used_at === null || accessToken.last_used_at < Date.now() - ACCESS_TOKEN_UPDATE_FREQUENCY) {
+      await pgPool.query('UPDATE "oauth_access_tokens" SET "last_used_at" = $2, "last_used_ip" = $3 WHERE "oauth_access_tokens"."id" = $1', [ accessToken.id, new Date(), req.ip ]);
+    }
+
+    req.accessTokenId = accessToken.id;
+    req.scopes = accessToken.scopes.split(' ');
+    req.accountId = accessToken.account_id;
+    req.chosenLanguages = accessToken.chosen_languages;
 
     return {
-      accessTokenId: result.rows[0].id,
-      scopes: result.rows[0].scopes.split(' '),
-      accountId: result.rows[0].account_id,
-      chosenLanguages: result.rows[0].chosen_languages,
+      accessTokenId: accessToken.id,
+      scopes: accessToken.scopes.split(' '),
+      accountId: accessToken.account_id,
+      chosenLanguages: accessToken.chosen_languages,
     };
   };
 
