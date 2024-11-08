@@ -103,6 +103,11 @@
           background-color: var(--goldenrod-2);
         }
       }
+
+      .status-card,
+      .hashtag-bar {
+        display: none;
+      }
     }
 
     &__followers {
@@ -237,7 +242,7 @@
       }
 
       &__number {
-        font-size: 61px;
+        font-size: 54px;
         font-weight: 600;
         line-height: 73px;
         color: var(--goldenrod-2);
@@ -306,7 +311,7 @@
 }
 
 .annual-report-modal {
-  max-width: 480px;
+  max-width: 600px;
   background: var(--indigo-1);
   border-radius: 16px;
   display: flex;
