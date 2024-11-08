@@ -9,6 +9,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import { JSDOM } from 'jsdom';
+import proxyaddr from 'proxy-addr';
 import { WebSocketServer } from 'ws';
 
 import * as Database from './database.js';
@@ -145,8 +146,13 @@ const startServer = async () => {
   });
 
   const app = express();
+  const trustProxy = proxyaddr.compile(
+    process.env.TRUSTED_PROXY_IP ?
+      process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) :
+      ['loopback', 'uniquelocal']
+  );
 
-  app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
+  app.set('trust proxy', trustProxy);
 
   app.use(httpLogger);
   app.use(cors());
