@@ -123,7 +123,7 @@ class Trends::Statuses < Trends::Base
       decaying_score = if score.zero? || !eligible?(status)
                          0
                        else
-                         score * (0.5**((at_time.to_f - status.created_at.to_f) / options[:score_halflife].to_f))
+                         score * (0.5**((at_time.to_f - [at_time.to_f, status.created_at.to_f].min) / options[:score_halflife].to_f))
                        end
 
       [decaying_score, status]
