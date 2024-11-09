@@ -1,0 +1,54 @@
+- target_account = report.first.target_account
+
+.batch-table__group.report-card
+  .report-card__profile
+    = account_link_to target_account, '', path: admin_account_path(target_account.id)
+    .report-card__profile__stats
+      = link_to t('admin.reports.account.notes', count: target_account.targeted_moderation_notes.count), admin_account_path(target_account.id)
+      %br/
+      - if target_account.suspended?
+        %span.red= t('admin.accounts.suspended')
+      - elsif target_account.silenced?
+        %span.red= t('admin.accounts.silenced')
+      - elsif target_account.user&.disabled?
+        %span.red= t('admin.accounts.disabled')
+      - else
+        %span.neutral= t('admin.accounts.no_limits_imposed')
+
+  - report.each do |report|
+    .batch-table__row
+      %label.batch-table__row__select.batch-checkbox
+        = f.check_box :report_ids, { multiple: true, include_hidden: false }, report.id
+      .batch-table__row__content
+        .report-card__item
+          = link_to admin_report_path(report), class: 'report-card__item__content' do
+            .one-line
+              %strong>= t(report.category, scope: 'admin.reports.categories')
+              \:
+              = report.comment.presence || t('admin.reports.comment.none')
+            .report-card__item__content__meta
+              %strong= t('admin.reports.report', id: report.id)
+              ·
+              - if report.account.instance_actor?
+                = t('admin.reports.reported_by_someone_from_html', name: content_tag(:strong, site_hostname))
+              - elsif report.account.local?
+                = t('admin.reports.reported_by_html', name: content_tag(:strong, report.account.acct))
+              - else
+                = t('admin.reports.reported_by_someone_from_html', name: content_tag(:strong, report.account.domain))
+              ·
+              = t('admin.reports.attached_statuses', count: report.status_ids.size)
+              ·
+              = t('admin.reports.attached_media_attachments', count: report.media_attachments_count)
+              - if report.forwarded?
+                ·
+                = t('admin.reports.forwarded_to', domain: target_account.domain)
+
+          .report-card__item__assigned
+            %time.time-ago{ datetime: report.created_at.iso8601, title: l(report.created_at) }= l report.created_at
+            %br/
+            - if report.action_taken?
+              = t('admin.reports.action_taken_by_html', name: admin_account_link_to(report.action_taken_by_account))
+            - elsif report.assigned_account.present?
+              = t('admin.reports.assigned_to_html', name: admin_account_link_to(report.assigned_account))
+            - else
+              = t('admin.reports.unassigned')

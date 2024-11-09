@@ -1,80 +1,68 @@
 - content_for :page_title do
   = t('admin.reports.title')
 
-.filters
-  .filter-subset
-    %strong= t('admin.reports.status')
-    %ul
-      %li= filter_link_to t('admin.reports.unresolved'), resolved: nil
-      %li= filter_link_to t('admin.reports.resolved'), resolved: '1'
-  .filter-subset
-    %strong= t('admin.reports.target_origin')
-    %ul
-      %li= filter_link_to t('admin.accounts.location.all'), target_origin: nil
-      %li= filter_link_to t('admin.accounts.location.local'), target_origin: 'local'
-      %li= filter_link_to t('admin.accounts.location.remote'), target_origin: 'remote'
-
 = form_with url: admin_reports_url, method: :get, class: :simple_form do |form|
-  .fields-group
-    - ReportFilter::KEYS.each do |key|
-      = form.hidden_field key, value: params[key] if params[key].present?
-
-    - %i(by_target_domain).each do |key|
-      .input.string.optional
-        = form.text_field key,
-                          value: params[key],
+  .filters
+    .filter-subset.filter-subset--with-select
+      %strong= t('admin.reports.status')
+      .input.select.optional
+        = form.select :status,
+                      options_for_select(admin_reports_status_options, params[:status])
+    .filter-subset.filter-subset--with-select
+      %strong= t('admin.reports.category')
+      .input.select.optional
+        = form.select :category,
+                      options_for_select(admin_reports_category_options, params[:category]),
+                      prompt: I18n.t('generic.all')
+    .filter-subset.filter-subset--with-select
+      %strong= t('admin.reports.target_origin')
+      .input.select.optional
+        = form.select :target_origin,
+                      options_for_select(admin_reports_target_origin_options, params[:target_origin]),
+                      prompt: t('admin.accounts.location.all')
+    .filter-subset.filter-subset--with-select
+      %strong= t('admin.reports.origin')
+      .input.select.optional
+        = form.text_field :by_domain,
+                          value: params[:by_domain],
                           class: 'string optional',
-                          placeholder: I18n.t("admin.reports.#{key}")
+                          placeholder: 'example.com'
 
-    .actions
-      %button.button= t('admin.accounts.search')
-      = link_to t('admin.accounts.reset'), admin_reports_path, class: 'button negative'
+= form_with model: @form, url: batch_admin_reports_path do |f|
+  = hidden_field_tag :page, params[:page] || 1
+  = hidden_field_tag :select_all_matching, '0'
 
-- @reports.group_by(&:target_account_id).each_value do |reports|
-  - target_account = reports.first.target_account
-  .report-card
-    .report-card__profile
-      = account_link_to target_account, '', path: admin_account_path(target_account.id)
-      .report-card__profile__stats
-        = link_to t('admin.reports.account.notes', count: target_account.targeted_moderation_notes.count), admin_account_path(target_account.id)
-        %br/
-        - if target_account.suspended?
-          %span.red= t('admin.accounts.suspended')
-        - elsif target_account.silenced?
-          %span.red= t('admin.accounts.silenced')
-        - elsif target_account.user&.disabled?
-          %span.red= t('admin.accounts.disabled')
-        - else
-          %span.neutral= t('admin.accounts.no_limits_imposed')
-    .report-card__summary
-      - reports.each do |report|
-        .report-card__summary__item
-          .report-card__summary__item__reported-by
-            - if report.account.instance_actor?
-              = site_hostname
-            - elsif report.account.local?
-              = admin_account_link_to report.account
-            - else
-              = report.account.domain
-          .report-card__summary__item__content
-            = link_to admin_report_path(report) do
-              .one-line= report.comment.presence || t('admin.reports.comment.none')
+  - ReportFilter::KEYS.each do |key|
+    = hidden_field_tag key, params[key] if params[key].present?
 
-              %span.report-card__summary__item__content__icon{ title: t('admin.accounts.statuses') }
-                = material_symbol('comment')
-                = report.status_ids.size
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        - if can?(:update, :report)
+          = f.button safe_join([material_symbol('person'), t('admin.reports.assign_to_self')]),
+                     class: 'table-action-link',
+                     data: { confirm: t('admin.reports.are_you_sure') },
+                     name: :assign_to_self,
+                     type: :submit
+          = f.button safe_join([material_symbol('done'), t('admin.reports.mark_as_resolved')]),
+                     class: 'table-action-link',
+                     data: { confirm: t('admin.reports.are_you_sure') },
+                     name: :resolve,
+                     type: :submit
+    - if @reports.total_count > @reports.size
+      .batch-table__select-all
+        .not-selected.active
+          %span= t('generic.all_items_on_page_selected_html', count: @reports.size)
+          %button{ type: 'button' }= t('generic.select_all_matching_items', count: @reports.total_count)
+        .selected
+          %span= t('generic.all_matching_items_selected_html', count: @reports.total_count)
+          %button{ type: 'button' }= t('generic.deselect')
+    .batch-table__body
+      - if @reports.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = render partial: 'report', collection: @reports.group_by(&:target_account_id).values, locals: { f: f }
 
-              %span.report-card__summary__item__content__icon{ title: t('admin.accounts.media_attachments') }
-                = material_symbol('photo_camera')
-                = report.media_attachments_count
-
-              - if report.forwarded?
-                ·
-                = t('admin.reports.forwarded_to', domain: target_account.domain)
-
-          .report-card__summary__item__assigned
-            - if report.assigned_account.present?
-              = admin_account_link_to report.assigned_account
-            - else
-              \-
 = paginate @reports

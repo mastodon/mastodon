@@ -21,7 +21,7 @@ RSpec.describe ReportFilter do
 
   describe 'with valid params' do
     it 'combines filters on Report' do
-      filter = described_class.new(account_id: '123', resolved: true, target_account_id: '456')
+      filter = described_class.new(account_id: '123', status: 'resolved', target_account_id: '456')
 
       allow(Report).to receive_messages(where: Report.none, resolved: Report.none)
       filter.results

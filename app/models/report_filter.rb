@@ -2,11 +2,13 @@
 
 class ReportFilter
   KEYS = %i(
-    resolved
+    status
     account_id
     target_account_id
     by_target_domain
+    by_domain
     target_origin
+    category
   ).freeze
 
   attr_reader :params
@@ -19,7 +21,7 @@ class ReportFilter
     scope = Report.unresolved
 
     relevant_params.each do |key, value|
-      scope = scope.merge scope_for(key, value)
+      scope = scope.merge scope_for(key, value.to_s.strip) if value.present?
     end
 
     scope
@@ -41,8 +43,12 @@ class ReportFilter
     case key.to_sym
     when :by_target_domain
       Report.where(target_account: Account.where(domain: value))
-    when :resolved
-      Report.resolved
+    when :by_domain
+      Report.where(account: Account.where(domain: value))
+    when :status
+      status_scope(value)
+    when :category
+      Report.where(category: value)
     when :account_id
       Report.where(account_id: value)
     when :target_account_id
@@ -55,13 +61,22 @@ class ReportFilter
   end
 
   def target_origin_scope(value)
-    case value.to_sym
-    when :local
+    case value
+    when 'local'
       Report.where(target_account: Account.local)
-    when :remote
+    when 'remote'
       Report.where(target_account: Account.remote)
     else
       raise Mastodon::InvalidParameterError, "Unknown value: #{value}"
+    end
+  end
+
+  def status_scope(value)
+    case value
+    when 'resolved'
+      Report.resolved
+    else
+      Report.unresolved
     end
   end
 end

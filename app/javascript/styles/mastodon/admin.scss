@@ -480,7 +480,7 @@ body,
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 0 24px;
 
   .filter-subset {
     flex: 0 0 auto;
@@ -860,16 +860,13 @@ a.name-tag,
 }
 
 .report-card {
-  background: var(--background-color);
-  border: 1px solid var(--background-border-color);
-  border-radius: 4px;
-  margin-bottom: 20px;
-
   &__profile {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
+    border: 1px solid var(--background-border-color);
+    border-top: 0;
 
     .account {
       padding: 0;
@@ -904,48 +901,64 @@ a.name-tag,
     }
   }
 
-  &__summary {
-    &__item {
-      display: flex;
-      justify-content: flex-start;
-      border-top: 1px solid var(--background-border-color);
+  &__item {
+    display: flex;
+    justify-content: flex-start;
+    line-height: 20px;
+    gap: 16px;
 
-      &__reported-by,
-      &__assigned {
-        padding: 15px;
-        flex: 0 0 auto;
-        box-sizing: border-box;
-        width: 150px;
-        color: $darker-text-color;
+    @media (width < 600px) {
+      gap: 8px;
+      flex-direction: column;
+    }
 
-        &,
-        .username {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+    &__assigned {
+      flex: 0 0 auto;
+      box-sizing: border-box;
+      width: 150px;
+      color: $dark-text-color;
+      text-align: end;
+
+      .name-tag {
+        margin: 0 2px;
       }
 
-      &__content {
-        flex: 1 1 auto;
-        max-width: calc(100% - 300px);
-
-        &__icon {
-          margin-inline-end: 4px;
-          font-weight: 500;
-        }
+      @media (width < 600px) {
+        text-align: start;
+        width: auto;
       }
 
-      &__content a {
-        display: block;
-        box-sizing: border-box;
-        width: 100%;
-        padding: 15px;
-        text-decoration: none;
-        color: $darker-text-color;
+      &,
+      .username {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
 
-        &:hover {
-          color: $highlight-text-color;
+    &__content {
+      display: block;
+      flex: 1 1 auto;
+      min-width: 0;
+      text-decoration: none;
+      color: $darker-text-color;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      strong {
+        font-weight: 600;
+      }
+
+      &:hover {
+        color: $highlight-text-color;
+      }
+
+      &__meta {
+        color: $dark-text-color;
+
+        @media (width < 600px) {
+          color: $darker-text-color;
         }
       }
     }
@@ -1731,6 +1744,9 @@ a.sparkline {
   float: right;
 
   a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     color: $ui-highlight-color;
     text-decoration: none;
 

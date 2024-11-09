@@ -596,6 +596,7 @@ en:
           other: "%{count} notes"
       action_log: Audit log
       action_taken_by: Action taken by
+      action_taken_by_html: Action taken by %{name}
       actions:
         delete_description_html: The reported posts will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
         mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
@@ -613,8 +614,19 @@ en:
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
-      by_target_domain: Domain of reported account
+      assigned_to_html: Assigned to %{name}
+      attached_media_attachments:
+        one: "%{count} media attachment"
+        other: "%{count} media attachments"
+      attached_statuses:
+        one: "%{count} post"
+        other: "%{count} posts"
       cancel: Cancel
+      categories:
+        legal: Legal
+        other: Other
+        spam: Spam
+        violation: Rule violation
       category: Category
       category_description_html: The reason this account and/or content was reported will be cited in communication with the reported account
       comment:
@@ -631,6 +643,7 @@ en:
       mark_as_sensitive: Mark as sensitive
       mark_as_unresolved: Mark as unresolved
       no_one_assigned: No one
+      no_report_selected: No reports were changed as none were selected
       notes:
         create: Add note
         create_and_resolve: Resolve with note
@@ -639,13 +652,13 @@ en:
         placeholder: Describe what actions have been taken, or any other related updates...
         title: Notes
       notes_description_html: View and leave notes to other moderators and your future self
+      origin: Origin of report
       processed_msg: 'Report #%{id} successfully processed'
-      quick_actions_description_html: 'Take a quick action or scroll down to see reported content:'
       remote_user_placeholder: the remote user from %{instance}
-      reopen: Reopen report
       report: 'Report #%{id}'
-      reported_account: Reported account
       reported_by: Reported by
+      reported_by_html: By %{name}
+      reported_by_someone_from_html: By someone from %{name}
       reported_with_application: Reported with application
       resolved: Resolved
       resolved_msg: Report successfully resolved!
@@ -674,9 +687,9 @@ en:
       target_origin: Origin of reported account
       title: Reports
       unassign: Unassign
+      unassigned: Unassigned
       unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Unresolved
-      updated_at: Updated
       view_profile: View profile
     roles:
       add_new: Add role

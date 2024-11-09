@@ -28,7 +28,7 @@ RSpec.describe Admin::ReportsController do
       specified = Fabricate(:report, action_taken_at: Time.now.utc, comment: 'First report')
       other = Fabricate(:report, action_taken_at: nil, comment: 'Second report')
 
-      get :index, params: { resolved: '1' }
+      get :index, params: { status: 'resolved' }
 
       expect(response).to have_http_status(200)
       expect(response.body)

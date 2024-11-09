@@ -97,6 +97,10 @@ namespace :admin do
       end
     end
 
+    collection do
+      post :batch
+    end
+
     member do
       post :assign_to_self
       post :unassign

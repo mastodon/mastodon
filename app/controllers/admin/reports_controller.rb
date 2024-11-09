@@ -2,11 +2,27 @@
 
 module Admin
   class ReportsController < BaseController
-    before_action :set_report, except: [:index]
+    before_action :set_report, except: [:index, :batch]
 
     def index
       authorize :report, :index?
       @reports = filtered_reports.page(params[:page])
+      @form    = Form::ReportBatch.new
+    end
+
+    def batch
+      authorize :report, :index?
+
+      @form = Form::ReportBatch.new(form_report_batch_params)
+      @form.current_account = current_account
+      @form.action = action_from_button
+      @form.select_all_matching = params[:select_all_matching]
+      @form.query = filtered_reports
+      @form.save
+    rescue ActionController::ParameterMissing
+      flash[:alert] = I18n.t('admin.reports.no_report_selected')
+    ensure
+      redirect_to admin_reports_path(filter_params)
     end
 
     def show
@@ -59,6 +75,18 @@ module Admin
 
     def set_report
       @report = Report.find(params[:id])
+    end
+
+    def form_report_batch_params
+      params.require(:form_report_batch).permit(:action, report_ids: [])
+    end
+
+    def action_from_button
+      if params[:resolve]
+        'resolve'
+      elsif params[:assign_to_self]
+        'assign_to_self'
+      end
     end
   end
 end
