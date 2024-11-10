@@ -482,7 +482,9 @@ class UI extends PureComponent {
     }
   };
 
-  handleHotkeyBack = () => {
+  handleHotkeyBack = e => {
+    e.preventDefault();
+
     const { history } = this.props;
 
     if (history.location?.state?.fromMastodon) {
