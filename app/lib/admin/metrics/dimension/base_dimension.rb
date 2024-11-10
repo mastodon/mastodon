@@ -39,6 +39,10 @@ class Admin::Metrics::Dimension::BaseDimension
     send(key) if respond_to?(key)
   end
 
+  def perform_for_cache!
+    Rails.cache.write(cache_key, perform_query, expires_in: CACHE_TTL)
+  end
+
   protected
 
   def load

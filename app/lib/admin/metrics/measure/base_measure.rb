@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Measure::BaseMeasure
-  CACHE_TTL = 5.minutes.freeze
+  CACHE_TTL = 3.hours.freeze
 
   def self.with_params?
     false
@@ -52,6 +52,10 @@ class Admin::Metrics::Measure::BaseMeasure
 
   def read_attribute_for_serialization(key)
     send(key) if respond_to?(key)
+  end
+
+  def perform_for_cache!
+    Rails.cache.write(cache_key, perform_queries, expires_in: CACHE_TTL)
   end
 
   protected

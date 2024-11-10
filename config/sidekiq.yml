@@ -67,3 +67,7 @@
       interval: 1 hour
       class: Scheduler::AutoCloseRegistrationsScheduler
       queue: scheduler
+    dashboard_cache_warmer_scheduler:
+      interval: 2 hours
+      class: Scheduler::Admin::DashboardCacheWarmerScheduler
+      queue: scheduler

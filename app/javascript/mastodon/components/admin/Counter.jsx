@@ -95,7 +95,7 @@ export default class Counter extends PureComponent {
 
         <div className='sparkline__graph'>
           {!loading && (
-            <Sparklines width={259} height={55} data={data[0].data.map(x => x.value * 1)}>
+            <Sparklines width={259} height={55} data={data[0].data.map(x => x.value * 1)} margin={0}>
               <SparklinesCurve />
             </Sparklines>
           )}

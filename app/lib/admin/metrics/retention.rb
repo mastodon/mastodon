@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Retention
-  CACHE_TTL = 5.minutes.freeze
+  CACHE_TTL = 1.day.freeze
 
   class Cohort < ActiveModelSerializers::Model
     attributes :period, :frequency, :data
@@ -28,6 +28,10 @@ class Admin::Metrics::Retention
 
   def cohorts
     load
+  end
+
+  def perform_for_cache!
+    Rails.cache.write(cache_key, perform_query, expires_in: CACHE_TTL)
   end
 
   protected
