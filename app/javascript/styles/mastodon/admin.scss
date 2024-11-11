@@ -1937,10 +1937,16 @@ a.sparkline {
   min-height: 100%;
 
   .status__prepend {
-    padding: 0;
-    padding-bottom: 15px;
+    padding: 0 0 15px;
+    gap: 4px;
+    align-items: center;
+  }
 
-    // fixes the alignment of the reblog icon:
-    align-items: baseline;
+  .status__content {
+    padding-top: 0;
+
+    summary {
+      display: list-item;
+    }
   }
 }

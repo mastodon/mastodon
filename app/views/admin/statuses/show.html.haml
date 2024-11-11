@@ -4,7 +4,7 @@
 - content_for :heading_actions do
   = form_with model: @status_batch_action, url: batch_admin_account_statuses_path(@account.id) do |f|
     = f.hidden_field :status_ids, { multiple: true, value: @status.id }
-    = f.button safe_join([fa_icon('flag'), t('admin.statuses.batch.report')]),
+    = f.button safe_join([material_symbol('flag'), t('admin.statuses.batch.report')]),
                class: 'button',
                data: { confirm: t('admin.reports.are_you_sure') },
                name: :report,
@@ -54,14 +54,14 @@
 %h3= t('admin.statuses.contents')
 
 .status__card
-  - if @status.reblog? || @status.reply?
+  - if @status.reblog?
     .status__prepend
-      - if @status.reblog?
-        = fa_icon('retweet fw')
-        = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(@status.proper.account))
-      - elsif @status.reply?
-        = fa_icon('reply fw')
-        = t('admin.statuses.replied_to_html', acct_link: admin_account_inline_link_to(@status.in_reply_to_account, path: admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id)))
+      = material_symbol('repeat')
+      = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(@status.proper.account, path: admin_account_status_path(@status.proper.account.id, @status.proper.id)))
+  - elsif @status.reply? && status.in_reply_to_id.present?
+    .status__prepend
+      = material_symbol('reply')
+      = t('admin.statuses.replied_to_html', acct_link: admin_account_inline_link_to(@status.in_reply_to_account, path: admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id)))
   .status__content><
     - if @status.proper.spoiler_text.blank?
       = prerender_custom_emojis(status_content_format(@status.proper), @status.proper.emojis)
@@ -89,7 +89,7 @@
         %span.negative-hint= t('admin.statuses.deleted')
       - unless @status.reblog?
         ·
-        = fa_visibility_icon(@status)
+        = material_symbol(visibility_icon(@status))
         = t("statuses.visibilities.#{@status.visibility}")
       - if @status.proper.sensitive?
         ·

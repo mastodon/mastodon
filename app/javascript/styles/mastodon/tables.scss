@@ -339,16 +339,12 @@ a.table-action-link {
     }
   }
 
-  .status__content {
-    padding-top: 0;
-
-    summary {
-      display: list-item;
-    }
-
-    strong {
-      font-weight: 700;
-    }
+  // Reset the status card to not have borders, background or padding when
+  // inline in the table of statuses
+  .status__card {
+    border: none;
+    background: none;
+    padding: 0;
   }
 
   .nothing-here {
