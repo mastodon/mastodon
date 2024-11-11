@@ -99,6 +99,7 @@ class Account < ApplicationRecord
   include DomainNormalizable
   include Paginable
   include Reviewable
+  include Taggable
 
   enum :protocol, { ostatus: 0, activitypub: 1 }
   enum :suspension_origin, { local: 0, remote: 1 }, prefix: true
