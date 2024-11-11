@@ -34,13 +34,13 @@ class CreateTaggings < ActiveRecord::Migration[7.1]
   end
 
   def restore_join_tables
-    create_table :statuses_tags, primary_key: [:tag_id, :status_id], force: :cascade do |t|
+    create_table :statuses_tags, primary_key: [:tag_id, :status_id], force: :cascade do |t| # rubocop:disable Rails/CreateTableWithTimestamps
       t.bigint :status_id, null: false
       t.bigint :tag_id, null: false
       t.index :status_id
     end
 
-    create_table :accounts_tags, primary_key: [:tag_id, :account_id], force: :cascade do |t|
+    create_table :accounts_tags, primary_key: [:tag_id, :account_id], force: :cascade do |t| # rubocop:disable Rails/CreateTableWithTimestamps
       t.bigint :account_id, null: false
       t.bigint :tag_id, null: false
       t.index [:account_id, :tag_id]
