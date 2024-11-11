@@ -51,6 +51,7 @@ class Admin::ActionLogFilter
     disable_user: { target_type: 'User', action: 'disable' }.freeze,
     enable_custom_emoji: { target_type: 'CustomEmoji', action: 'enable' }.freeze,
     enable_user: { target_type: 'User', action: 'enable' }.freeze,
+    forward_report: { target_type: 'Report', action: 'forward' }.freeze,
     memorialize_account: { target_type: 'Account', action: 'memorialize' }.freeze,
     promote_user: { target_type: 'User', action: 'promote' }.freeze,
     remove_avatar_user: { target_type: 'User', action: 'remove_avatar' }.freeze,

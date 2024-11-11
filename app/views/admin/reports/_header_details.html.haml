@@ -11,15 +11,12 @@
       - if report.account.instance_actor?
         = site_hostname
       - elsif report.account.local?
-        = admin_account_link_to report.account
+        - if report.application.present?
+          = t('admin.reports.reported_via_html', name: admin_account_link_to(report.account), app: report.application.name)
+        - else
+          = admin_account_link_to report.account
       - else
         = report.account.domain
-  - if report.application.present?
-    .report-header__details__item
-      .report-header__details__item__header
-        %strong= t('admin.reports.reported_with_application')
-      .report-header__details__item__content
-        = report.application.name
   .report-header__details__item
     .report-header__details__item__header
       %strong= t('admin.reports.status')
@@ -37,6 +34,8 @@
           = t('simple_form.yes')
         - else
           = t('simple_form.no')
+          —
+          = table_link_to 'cloud_sync', t('admin.reports.forward', domain: report.target_account.domain), forward_admin_report_path(report), method: :post, data: { confirm: t('admin.reports.are_you_sure') }
   - if report.action_taken_by_account.present?
     .report-header__details__item
       .report-header__details__item__header

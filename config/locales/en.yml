@@ -208,6 +208,7 @@ en:
         enable_custom_emoji: Enable Custom Emoji
         enable_sign_in_token_auth_user: Enable Email Token Authentication for User
         enable_user: Enable User
+        forward_report: Forward Report
         memorialize_account: Memorialize Account
         promote_user: Promote User
         reject_appeal: Reject Appeal
@@ -268,6 +269,7 @@ en:
         enable_custom_emoji_html: "%{name} enabled emoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} enabled email token authentication for %{target}"
         enable_user_html: "%{name} enabled login for user %{target}"
+        forward_report_html: "%{name} forwarded report %{target}"
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
         promote_user_html: "%{name} promoted user %{target}"
         reject_appeal_html: "%{name} rejected moderation decision appeal from %{target}"
@@ -624,7 +626,9 @@ en:
       confirm_action: Confirm moderation action against @%{acct}
       created_at: Reported
       delete_and_resolve: Delete posts
+      forward: Forward to %{domain}
       forwarded: Forwarded
+      forwarded_msg: Report successfully forwarded!
       forwarded_replies_explanation: This report is from a remote user and about remote content. It has been forwarded to you because the reported content is in reply to one of your users.
       forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
@@ -646,6 +650,7 @@ en:
       report: 'Report #%{id}'
       reported_account: Reported account
       reported_by: Reported by
+      reported_via_html: "%{name} via %{app}"
       reported_with_application: Reported with application
       resolved: Resolved
       resolved_msg: Report successfully resolved!

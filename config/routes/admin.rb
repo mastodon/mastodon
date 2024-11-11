@@ -102,6 +102,7 @@ namespace :admin do
       post :unassign
       post :reopen
       post :resolve
+      post :forward
     end
   end
 

@@ -47,6 +47,13 @@ module Admin
       redirect_to admin_reports_path, notice: I18n.t('admin.reports.resolved_msg')
     end
 
+    def forward
+      authorize @report, :update?
+      ForwardReportService.new.call(@report)
+      log_action :forward, @report
+      redirect_to admin_report_path(@report), notice: I18n.t('admin.reports.forwarded_msg')
+    end
+
     private
 
     def filtered_reports
