@@ -983,14 +983,6 @@ RSpec.describe Account do
       end
     end
 
-    describe 'silenced' do
-      it 'returns an array of accounts who are silenced' do
-        silenced_account = Fabricate(:account, silenced: true)
-        _account = Fabricate(:account, silenced: false)
-        expect(described_class.silenced).to contain_exactly(silenced_account)
-      end
-    end
-
     describe 'searchable' do
       let!(:suspended_local)        { Fabricate(:account, suspended: true, username: 'suspended_local') }
       let!(:suspended_remote)       { Fabricate(:account, suspended: true, domain: 'example.org', username: 'suspended_remote') }
