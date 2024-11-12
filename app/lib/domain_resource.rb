@@ -9,7 +9,7 @@ class DomainResource
     @domain = domain
   end
 
-  def mx_resources
+  def mx
     Resolv::DNS.open do |dns|
       dns.timeouts = TIMEOUT_LIMIT
       dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a

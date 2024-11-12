@@ -45,7 +45,7 @@ module Mastodon::CLI
         end
 
         other_domains = []
-        other_domains = DomainResource.new(domain).mx_resources if options[:with_dns_records]
+        other_domains = DomainResource.new(domain).mx if options[:with_dns_records]
 
         email_domain_block = EmailDomainBlock.new(domain: domain, other_domains: other_domains)
         email_domain_block.save!
