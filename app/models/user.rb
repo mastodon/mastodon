@@ -56,6 +56,7 @@ class User < ApplicationRecord
 
   include LanguagesHelper
   include Redisable
+  include User::Confirmation
   include User::HasSettings
   include User::LdapAuthenticable
   include User::Omniauthable
@@ -117,8 +118,6 @@ class User < ApplicationRecord
   scope :recent, -> { order(id: :desc) }
   scope :pending, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
-  scope :confirmed, -> { where.not(confirmed_at: nil) }
-  scope :unconfirmed, -> { where(confirmed_at: nil) }
   scope :enabled, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
   scope :active, -> { confirmed.signed_in_recently.account_not_suspended }
@@ -165,10 +164,6 @@ class User < ApplicationRecord
     end
   end
 
-  def confirmed?
-    confirmed_at.present?
-  end
-
   def invited?
     invite_id.present?
   end
@@ -191,20 +186,6 @@ class User < ApplicationRecord
 
   def to_log_route_param
     account_id
-  end
-
-  def confirm
-    wrap_email_confirmation do
-      super
-    end
-  end
-
-  # Mark current email as confirmed, bypassing Devise
-  def mark_email_as_confirmed!
-    wrap_email_confirmation do
-      skip_confirmation!
-      save!
-    end
   end
 
   def update_sign_in!(new_sign_in: false)
@@ -237,10 +218,6 @@ class User < ApplicationRecord
 
   def functional_or_moved?
     confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial?
-  end
-
-  def unconfirmed?
-    !confirmed?
   end
 
   def unconfirmed_or_pending?
@@ -422,25 +399,6 @@ class User < ApplicationRecord
   def grant_approval_on_confirmation?
     # Re-check approval on confirmation if the server has switched to open registrations
     open_registrations? && !sign_up_from_ip_requires_approval? && !sign_up_email_requires_approval?
-  end
-
-  def wrap_email_confirmation
-    new_user      = !confirmed?
-    self.approved = true if grant_approval_on_confirmation?
-
-    yield
-
-    if new_user
-      # Avoid extremely unlikely race condition when approving and confirming
-      # the user at the same time
-      reload unless approved?
-
-      if approved?
-        prepare_new_user!
-      else
-        notify_staff_about_pending_account!
-      end
-    end
   end
 
   def sign_up_from_ip_requires_approval?
