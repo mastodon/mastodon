@@ -45,12 +45,7 @@ module Mastodon::CLI
         end
 
         other_domains = []
-        if options[:with_dns_records]
-          Resolv::DNS.open do |dns|
-            dns.timeouts = 5
-            other_domains = dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }.compact_blank
-          end
-        end
+        other_domains = DomainResource.new(domain).mx_resources if options[:with_dns_records]
 
         email_domain_block = EmailDomainBlock.new(domain: domain, other_domains: other_domains)
         email_domain_block.save!
