@@ -334,13 +334,9 @@ class Request
       def check_private_address(address, host)
         addr = IPAddr.new(address.to_s)
 
-        return if Rails.env.development? || private_address_exceptions.any? { |range| range.include?(addr) }
+        return if Rails.env.development? || Rails.configuration.x.private_address_exceptions.any? { |range| range.include?(addr) }
 
         raise Mastodon::PrivateNetworkAddressError, host if PrivateAddressCheck.private_address?(addr)
-      end
-
-      def private_address_exceptions
-        @private_address_exceptions = (ENV['ALLOWED_PRIVATE_ADDRESSES'] || '').split(/(?:\s*,\s*|\s+)/).map { |addr| IPAddr.new(addr) }
       end
     end
   end
