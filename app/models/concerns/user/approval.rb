@@ -7,4 +7,8 @@ module User::Approval
     scope :approved, -> { where(approved: true) }
     scope :pending, -> { where(approved: false) }
   end
+
+  def pending?
+    !approved?
+  end
 end

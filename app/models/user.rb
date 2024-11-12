@@ -222,10 +222,6 @@ class User < ApplicationRecord
     prepare_returning_user!
   end
 
-  def pending?
-    !approved?
-  end
-
   def active_for_authentication?
     !account.memorial?
   end
