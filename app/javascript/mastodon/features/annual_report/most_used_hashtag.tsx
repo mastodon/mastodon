@@ -7,16 +7,17 @@ export const MostUsedHashtag: React.FC<{
 }> = ({ data }) => {
   const hashtag = data[0];
 
-  if (!hashtag) {
-    return (
-      <div className='annual-report__bento__box annual-report__summary__most-used-hashtag' />
-    );
-  }
-
   return (
     <div className='annual-report__bento__box annual-report__summary__most-used-hashtag'>
       <div className='annual-report__summary__most-used-hashtag__hashtag'>
-        #{hashtag.name}
+        {hashtag ? (
+          <>#{hashtag.name}</>
+        ) : (
+          <FormattedMessage
+            id='annual_report.summary.most_used_hashtag.none'
+            defaultMessage='None'
+          />
+        )}
       </div>
       <div className='annual-report__summary__most-used-hashtag__label'>
         <FormattedMessage

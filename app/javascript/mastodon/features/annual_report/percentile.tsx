@@ -22,9 +22,9 @@ export const Percentile: React.FC<{
           percentage: () => (
             <div className='annual-report__summary__percentile__number'>
               <FormattedNumber
-                value={percentile / 100}
+                value={Math.min(percentile, 99) / 100}
                 style='percent'
-                maximumFractionDigits={1}
+                maximumFractionDigits={percentile < 1 ? 1 : 0}
               />
             </div>
           ),
