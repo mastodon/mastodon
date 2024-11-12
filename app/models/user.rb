@@ -242,17 +242,6 @@ class User < ApplicationRecord
     unconfirmed? || pending?
   end
 
-  def approve!
-    return if approved?
-
-    update!(approved: true)
-
-    # Avoid extremely unlikely race condition when approving and confirming
-    # the user at the same time
-    reload unless confirmed?
-    prepare_new_user! if confirmed?
-  end
-
   def otp_enabled?
     otp_required_for_login
   end

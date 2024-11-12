@@ -11,4 +11,14 @@ module User::Approval
   def pending?
     !approved?
   end
+
+  def approve!
+    return if approved?
+
+    update!(approved: true)
+
+    # Handle scenario when approving and confirming a user at the same time
+    reload unless confirmed?
+    prepare_new_user! if confirmed?
+  end
 end
