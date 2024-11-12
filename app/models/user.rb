@@ -56,6 +56,7 @@ class User < ApplicationRecord
 
   include LanguagesHelper
   include Redisable
+  include User::Approval
   include User::HasSettings
   include User::LdapAuthenticable
   include User::Omniauthable
@@ -115,8 +116,6 @@ class User < ApplicationRecord
 
   scope :account_not_suspended, -> { joins(:account).merge(Account.without_suspended) }
   scope :recent, -> { order(id: :desc) }
-  scope :pending, -> { where(approved: false) }
-  scope :approved, -> { where(approved: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
   scope :unconfirmed, -> { where(confirmed_at: nil) }
   scope :enabled, -> { where(disabled: false) }
