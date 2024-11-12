@@ -127,7 +127,6 @@ class User < ApplicationRecord
   scope :matches_ip, ->(value) { left_joins(:ips).merge(IpBlock.contained_by(value)).group('users.id') }
 
   before_validation :sanitize_role
-  before_create :set_approved
   after_commit :send_pending_devise_notifications
   after_create_commit :trigger_webhooks
 
@@ -393,21 +392,6 @@ class User < ApplicationRecord
     devise_mailer.send(notification, self, *, **).deliver_later
   end
 
-  def set_approved
-    self.approved = begin
-      if sign_up_from_ip_requires_approval? || sign_up_email_requires_approval?
-        false
-      else
-        open_registrations? || valid_invitation? || external?
-      end
-    end
-  end
-
-  def grant_approval_on_confirmation?
-    # Re-check approval on confirmation if the server has switched to open registrations
-    open_registrations? && !sign_up_from_ip_requires_approval? && !sign_up_email_requires_approval?
-  end
-
   def wrap_email_confirmation
     new_user      = !confirmed?
     self.approved = true if grant_approval_on_confirmation?
@@ -425,25 +409,6 @@ class User < ApplicationRecord
         notify_staff_about_pending_account!
       end
     end
-  end
-
-  def sign_up_from_ip_requires_approval?
-    sign_up_ip.present? && IpBlock.severity_sign_up_requires_approval.containing(sign_up_ip.to_s).exists?
-  end
-
-  def sign_up_email_requires_approval?
-    return false if email.blank?
-
-    _, domain = email.split('@', 2)
-    return false if domain.blank?
-
-    records = []
-
-    # Doing this conditionally is not very satisfying, but this is consistent
-    # with the MX records validations we do and keeps the specs tractable.
-    records = DomainResource.new(domain).mx unless self.class.skip_mx_check?
-
-    EmailDomainBlock.requires_approval?(records + [domain], attempt_ip: sign_up_ip)
   end
 
   def open_registrations?
