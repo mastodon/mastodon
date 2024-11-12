@@ -225,7 +225,7 @@ namespace :api, format: false do
 
     resources :featured_tags, only: [:index, :create, :destroy]
 
-    resources :polls, only: [:create, :show] do
+    resources :polls, only: [:show] do
       resources :votes, only: :create, module: :polls
     end
 
