@@ -63,6 +63,26 @@ RSpec.describe Mastodon::CLI::EmailDomainBlocks do
           .and(change(EmailDomainBlock, :count).by(1))
       end
     end
+
+    context 'with --with-dns-records true' do
+      let(:domain) { 'host.example' }
+      let(:arguments) { [domain] }
+      let(:options) { { with_dns_records: true } }
+
+      before do
+        resolver = instance_double(Resolv::DNS)
+
+        allow(resolver).to receive(:getresources).with(domain, Resolv::DNS::Resource::IN::MX).and_return(%w(other.host))
+        allow(resolver).to receive(:timeouts=).and_return(nil)
+        allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+      end
+
+      it 'adds a new block for parent and children' do
+        expect { subject }
+          .to output_results('Added 2')
+          .and(change(EmailDomainBlock, :count).by(2))
+      end
+    end
   end
 
   describe '#remove' do
