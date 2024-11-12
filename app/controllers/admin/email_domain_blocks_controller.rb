@@ -58,12 +58,7 @@ module Admin
     private
 
     def set_resolved_records
-      @resolved_records = domain_resource.mx
-    end
-
-    def domain_resource
-      DomainResource
-        .new(@email_domain_block.domain)
+      @resolved_records = DomainResource.new(@email_domain_block.domain).mx
     end
 
     def resource_params
