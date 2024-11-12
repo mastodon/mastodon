@@ -12,7 +12,11 @@ class DomainResource
   def mx
     Resolv::DNS.open do |dns|
       dns.timeouts = TIMEOUT_LIMIT
-      dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a
+      dns
+        .getresources(domain, Resolv::DNS::Resource::IN::MX)
+        .to_a
+        .map { |mx| mx.exchange.to_s }
+        .compact_blank
     end
   end
 end
