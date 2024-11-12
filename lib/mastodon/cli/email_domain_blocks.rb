@@ -48,7 +48,7 @@ module Mastodon::CLI
         if options[:with_dns_records]
           Resolv::DNS.open do |dns|
             dns.timeouts = 5
-            other_domains = dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a
+            other_domains = dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }.compact_blank
           end
         end
 

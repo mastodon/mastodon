@@ -70,11 +70,7 @@ RSpec.describe Mastodon::CLI::EmailDomainBlocks do
       let(:options) { { with_dns_records: true } }
 
       before do
-        resolver = instance_double(Resolv::DNS)
-
-        allow(resolver).to receive(:getresources).with(domain, Resolv::DNS::Resource::IN::MX).and_return(%w(other.host))
-        allow(resolver).to receive(:timeouts=).and_return(nil)
-        allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+        configure_mx(domain: domain, exchange: 'other.host')
       end
 
       it 'adds a new block for parent and children' do
