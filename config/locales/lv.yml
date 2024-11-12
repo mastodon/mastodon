@@ -447,6 +447,7 @@ lv:
         resolve: Atrisināt domēnu
       not_permitted: Nav atļauta
       resolved_through_html: Atrisināts, izmantojot %{domain}
+      title: Bloķētie e-pasta domēni
     export_domain_allows:
       new:
         title: Importēt domēnu atļaujas
@@ -872,6 +873,8 @@ lv:
         message_html: Tu neesi definējis nevienu servera nosacījumu.
       sidekiq_process_check:
         message_html: Rindā(s) %{value} nedarbojas neviens Sidekiq process. Lūdzu, pārskati savu Sidekiq konfigurāciju
+      software_version_check:
+        action: Skatīt pieejamos atjauninājumus
       software_version_critical_check:
         action: Skatīt pieejamos atjauninājumus
         message_html: Ir pieejams kritisks Mastodon atjauninājums. Lūdzu, atjaunini to pēc iespējas ātrāk.
@@ -1668,6 +1671,8 @@ lv:
     webauthn_authentication: Drošības atslēgas
   severed_relationships:
     download: Lejupielādēt (%{count})
+    event_type:
+      user_domain_block: Jūs bloķējāt %{target_name}
     lost_followers: Zaudētie sekotāji
     lost_follows: Zaudētie sekojumi
     type: Notikums

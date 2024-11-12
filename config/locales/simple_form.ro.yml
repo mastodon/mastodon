@@ -3,11 +3,14 @@ ro:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Una pe linie. Protejează împotriva atribuirilor false.
         discoverable: Este posibil ca postările și profilul tău să fie recomandate în diferite zone ale Mastodon, iar profilul tău ar poate fi sugerat altor utilizatori.
+        display_name: Numele dvs. complet sau numele dvs. amuzant.
         fields: Pagina ta principală, pronumele tale, vârsta, sau orice îți dorești.
         indexable: Postările tale publice pot apărea în rezultatele căutărilor pe Mastodon. Persoanele care au interacționat cu postările tale vor putea să le caute oricând.
         note: 'Poți @menționa alte persoane sau #hashtag-uri.'
-        unlocked: Alte persoane vă vor putea urmări fără a solicita aprobare. Debifați dacă doriți să revizuiți cererile și să alegeți dacă doriți să acceptați sau să respingeți noii urmăritori.
+        show_collections: Oamenii vor putea să răsfoiască urmăriți și urmăritorii dvs. Oamenii pe care îi urmăriți vor vedea că îi urmăriți indiferent.
+        unlocked: Alte persoane vă vor putea urmări fără a solicita aprobare. Debifați dacă doriți să revizuiți cererile de urmărire și să alegeți dacă doriți să acceptați sau să respingeți noii urmăritori.
       account_alias:
         acct: Specificați numele de utilizator@domeniu al contului de la care doriți să treceți
       account_migration:
@@ -20,6 +23,12 @@ ro:
         send_email_notification: Utilizatorul va primi o explicație cu privire la ceea ce sa întâmplat cu contul lui
         text_html: Opțional. Poți utiliza sintaxe. Poți <a href="%{path}">adăuga avertismente predefinite</a> pentru a salva timp
         type_html: Alege ce se întâmplă cu <strong>%{acct}</strong>
+        types:
+          disable: Împiedicați utilizatorul să-și folosească contul, dar nu ștergeți sau ascundeți conținutul acestuia.
+          none: Utilizați acest lucru pentru a trimite o avertizare utilizatorului, fără a declanșa nicio altă acțiune.
+          sensitive: Forțează toate atașamentele media ale acestui utilizator să fie marcate ca sensibile.
+          silence: Împiedicați utilizatorul să poată posta cu vizibilitate publică, ascundeți postările și notificările de la persoanele care nu le urmăresc. Închide toate rapoartele pentru acest cont.
+          suspend: Preveniți orice interacțiune din sau către acest cont și ștergeți conținutul acestuia. Reversibil în 30 de zile. Închide toate rapoartele pentru acest cont.
         warning_preset_id: Opțional. Poți adăuga text personalizat la sfârșitul presetului
       announcement:
         all_day: Când este bifat, numai datele intervalului de timp vor fi afișate
@@ -27,6 +36,8 @@ ro:
         scheduled_at: Lăsați necompletat pentru a publica anunțul imediat
         starts_at: Opțional. În cazul în care anunțul tău este legat de un anumit interval de timp
         text: Poți folosi sintaxa de postare. Te rugăm să fii atent la spațiul pe care anunțul îl va ocupa pe ecranul utilizatorului
+      appeal:
+        text: Puteți contesta un avertisment o singură dată
       defaults:
         autofollow: Persoanele care se înregistrează datorită invitației tale te vor urmări automat
         avatar: WEBP, PNG, GIF sau JPG. Cel mult %{size}. Va fi redimensionată la %{dimensions}px
@@ -65,18 +76,64 @@ ro:
         actions:
           hide: Ascunde complet conținutul filtrat, ca și cum nu ar exista
           warn: Ascunde conținutul filtrat în spatele unui avertisment care menționează titlul filtrului
+      form_admin_settings:
+        activity_api_enabled: Numărul de postări publicate local, utilizatori activi și înregistrări noi în grupe săptămânale
+        app_icon: WEBP, PNG, GIF sau JPG. Înlocuiește pictograma implicită a aplicației pe dispozitivele mobile cu o pictogramă personalizată.
+        backups_retention_period: Utilizatorii au posibilitatea de a genera arhive ale postărilor lor pentru a le descărca mai târziu. Când este setat la o valoare pozitivă, aceste arhive vor fi șterse automat din spațiul dvs. de stocare după numărul de zile specificat.
+        bootstrap_timeline_accounts: Aceste conturi vor fi fixate în partea de sus a recomandărilor de urmărire ale noilor utilizatori.
+        closed_registrations_message: Afișat când înscrierile sunt închise
+        content_cache_retention_period: Toate postările de pe alte servere (inclusiv amplificarea și răspunsurile) vor fi șterse după numărul specificat de zile, fără a ține cont de interacțiunea utilizatorului local cu acele postări. Aceasta include postările în care un utilizator local le-a marcat ca marcaje sau favorite. Mențiunile private între utilizatorii din diferite instanțe se vor pierde și vor fi imposibil de restaurat. Utilizarea acestei setări este destinată cazurilor cu scop special și încalcă multe așteptări ale utilizatorilor atunci când este implementată pentru uz general.
+        custom_css: Puteți aplica stiluri personalizate pe versiunea web a Mastodon.
+        favicon: WEBP, PNG, GIF sau JPG. Suprascrie favicon-ul implicit Mastodon cu o pictogramă personalizată.
+        mascot: Suprascrie ilustrația din interfața web avansată.
+        media_cache_retention_period: Fișierele media din postările făcute de utilizatorii la distanță sunt stocate în cache pe serverul dvs. Când este setată la o valoare pozitivă, fișierele media vor fi ștearse după numărul specificat de zile. Dacă datele media sunt solicitate după ce sunt șterse, acestea vor fi re-descărcate, dacă conținutul sursă este încă disponibil. Din cauza restricțiilor cu privire la frecvența cu care cardurile de previzualizare a linkurilor interogează site-urile terțelor părți, se recomandă să setați această valoare la cel puțin 14 zile, sau cardurile de previzualizare a linkurilor nu vor fi actualizate la cerere înainte de această oră.
+        peers_api_enabled: O listă de nume de domenii pe care acest server le-a întâlnit în fediverse. Nu sunt incluse aici date despre dacă vă federați cu un anumit server, doar că serverul dvs. știe despre asta. Acesta este folosit de serviciile care colectează statistici despre federație în sens general.
+        profile_directory: Directorul de profil listează toți utilizatorii care au optat pentru a fi descoperibili.
+        require_invite_text: Când înscrierile necesită aprobare manuală, faceți introducerea textului „De ce doriți să vă alăturați?” obligatorie și nu opțională
+        site_contact_email: Cum vă pot contacta oamenii pentru întrebări juridice sau de asistență.
+        site_contact_username: Cum vă pot contacta oamenii pe Mastodon.
+        site_extended_description: Orice informație suplimentară care poate fi utilă vizitatorilor și utilizatorilor dvs. Poate fi structurată cu sintaxa Markdown.
+        site_short_description: O descriere scurtă pentru a ajuta la identificarea unică a serverului dvs. Cine-l conduce, pentru cine este?
+        site_terms: Utilizați propria politică de confidențialitate sau lăsați necompletat pentru a o utiliza pe cea implicit. Poate fi structurată cu sintaxa Markdown.
+        site_title: Cum se pot referi oamenii la serverul dvs. în afară de numele său de domeniu.
+        status_page_url: URL-ul unei pagini unde oamenii pot vedea starea acestui server în timpul unei întreruperi
+        theme: Tema pe care vizitatorii deconectați și utilizatorii noi o văd.
+        thumbnail: O imagine de aproximativ 2:1 afișată alături de informațiile serverului dvs.
+        timeline_preview: Vizitatorii deconectați vor putea să răsfoiască cele mai recente postări publice disponibile pe server.
+        trendable_by_default: Omiteți revizuirea manuală a conținutului în tendințe. Elementele individuale pot fi în continuare eliminate din tendințe după fapt.
+        trends: Tendințele arată ce postări, hashtag-uri și știri câștigă teren pe serverul dvs.
+        trends_as_landing_page: Afișați conținut în tendințe utilizatorilor deconectați și vizitatorilor în loc de o descriere a acestui server. Necesită ca tendințele să fie activate.
       form_challenge:
         current_password: Ați intrat într-o zonă securizată
       imports:
         data: Fișierul CSV exportat de la o altă instanță
       invite_request:
         text: Acest lucru ne va ajuta să revizuim cererea dvs
+      ip_block:
+        comment: Opțional. Amintiți-vă de ce ați adăugat această regulă.
+        expires_in: Adresele IP sunt o resursă finită, uneori sunt partajate și adesea se schimbă. Din acest motiv, blocurile IP nedefinite nu sunt recomandate.
+        ip: Introduceți o adresă IPv4 sau IPv6. Puteți bloca întregul spectru folosind sintaxa CIDR. Aveți grijă să nu vă blocați!
+        severities:
+          no_access: Blocați accesul la toate resursele
+          sign_up_block: Nu vor fi posibile înscrieri noi
+          sign_up_requires_approval: Înscrierile noi vor necesita aprobarea dvs.
+        severity: Alegeți ce se va întâmpla cu cererile de la acestă adresă IP
+      rule:
+        hint: Opțional. Oferiți mai multe detalii despre regulă
+        text: Descrieți o regulă sau o cerință pentru utilizatorii de pe acest server. Încercați să o faceți scurtă și simplă
       sessions:
         otp: 'Introdu codul pentru dubla protecție generat de telefonul mobil sau unul din codurile de rezervă:'
+        webauthn: Dacă este o cheie USB, asigurați-vă că o introduceți și, dacă este necesar, atingeți-o.
+      settings:
+        indexable: Pagina dvs. de profil poate apărea în rezultatele căutării pe Google, Bing și altele.
+        show_application: Veți putea întotdeauna să vedeți ce aplicație v-a publicat postarea.
       tag:
         name: Poți doar să schimbi caseta literelor, de exemplu, pentru a o face mai lizibilă
       user:
         chosen_languages: Doar postările în limbile selectate vor fi afișate în fluxurile publice
+        role: Rolul controlează ce permisiuni are utilizatorul.
+      user_role:
+        color: Culoare care va fi folosită pentru rol în întreaga interfață, ca RGB în format hexazecimal
     labels:
       account:
         fields:
