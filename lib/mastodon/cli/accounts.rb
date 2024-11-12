@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'set'
 require_relative 'base'
 
 module Mastodon::CLI
@@ -305,7 +304,7 @@ module Mastodon::CLI
 
         begin
           code = Request.new(:head, account.uri).perform(&:code)
-        rescue HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError, Mastodon::PrivateNetworkAddressError
+        rescue *Mastodon::HTTP_CONNECTION_ERRORS, Mastodon::PrivateNetworkAddressError
           skip_domains << account.domain
         end
 
@@ -322,7 +321,9 @@ module Mastodon::CLI
 
       unless skip_domains.empty?
         say('The following domains were not available during the check:', :yellow)
-        skip_domains.each { |domain| say("    #{domain}") }
+        shell.indent(2) do
+          skip_domains.each { |domain| say(domain) }
+        end
       end
     end
 

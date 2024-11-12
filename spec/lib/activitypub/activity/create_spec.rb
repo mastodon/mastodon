@@ -928,6 +928,32 @@ RSpec.describe ActivityPub::Activity::Create do
           expect(poll.votes.first).to be_nil
         end
       end
+
+      context 'with counts' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            likes: {
+              id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar', '/likes'].join,
+              type: 'Collection',
+              totalItems: 50,
+            },
+            shares: {
+              id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar', '/shares'].join,
+              type: 'Collection',
+              totalItems: 100,
+            },
+          }
+        end
+
+        it 'uses the counts from the created object' do
+          status = sender.statuses.first
+          expect(status.untrusted_favourites_count).to eq 50
+          expect(status.untrusted_reblogs_count).to eq 100
+        end
+      end
     end
 
     context 'when object URI uses bearcaps' do

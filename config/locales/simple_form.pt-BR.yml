@@ -3,14 +3,13 @@ pt-BR:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Protege de atribuições falsas.
+        attribution_domains_as_text: Um por linha. Protege de falsas atribuições.
         discoverable: Suas publicações e perfil públicos podem ser destaques ou recomendados em várias áreas de Mastodon, e seu perfil pode ser sugerido a outros usuários.
         display_name: Seu nome completo ou apelido.
         fields: Sua página inicial, pronomes, idade ou qualquer coisa que quiser.
         indexable: Suas publicações públicas podem aparecer nos resultados da pesquisa em Mastodon. As pessoas que interagiram com suas publicações podem conseguir pesquisá-las independentemente disso.
         note: 'Você pode @mencionar outras pessoas ou #hashtags.'
         show_collections: As pessoas poderão navegar entre os seus seguidores e seguidores. As pessoas que você segue verão que você as segue independentemente disso.
-        unlocked: As pessoas poderão te seguir sem pedir aprovação. Desmarque se você deseja revisar pedidos e escolher se aceita ou rejeita novos seguidores.
       account_alias:
         acct: Especifique o usuário@domínio de onde veio
       account_migration:
@@ -144,7 +143,7 @@ pt-BR:
         url: Aonde os eventos serão enviados
     labels:
       account:
-        attribution_domains_as_text: Permitir apenas sites específicos
+        attribution_domains_as_text: Sites permitidos para credenciar você
         discoverable: Destacar perfil e publicações nos algoritmos de descoberta
         fields:
           name: Rótulo

@@ -115,5 +115,69 @@ RSpec.describe ActivityPub::Activity::Update do
         expect(status.edited_at).to be_nil
       end
     end
+
+    context 'with a Note object' do
+      let(:updated) { nil }
+      let(:favourites) { 50 }
+      let(:reblogs) { 100 }
+
+      let!(:status) { Fabricate(:status, uri: 'https://example.com/statuses/poll', account: sender) }
+      let(:json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Update',
+          actor: sender.uri,
+          object: {
+            type: 'Note',
+            id: status.uri,
+            content: 'Foo',
+            updated: updated,
+            likes: {
+              id: "#{status.uri}/likes",
+              type: 'Collection',
+              totalItems: favourites,
+            },
+            shares: {
+              id: "#{status.uri}/shares",
+              type: 'Collection',
+              totalItems: reblogs,
+            },
+          },
+        }.with_indifferent_access
+      end
+
+      shared_examples 'updates counts' do
+        it 'updates the reblog count' do
+          expect(status.untrusted_reblogs_count).to eq reblogs
+        end
+
+        it 'updates the favourites count' do
+          expect(status.untrusted_favourites_count).to eq favourites
+        end
+      end
+
+      context 'with an implicit update' do
+        before do
+          status.update!(uri: ActivityPub::TagManager.instance.uri_for(status))
+          subject.perform
+        end
+
+        it_behaves_like 'updates counts'
+      end
+
+      context 'with an explicit update' do
+        let(:favourites) { 150 }
+        let(:reblogs) { 200 }
+        let(:updated) { Time.now.utc.iso8601 }
+
+        before do
+          status.update!(uri: ActivityPub::TagManager.instance.uri_for(status))
+          subject.perform
+        end
+
+        it_behaves_like 'updates counts'
+      end
+    end
   end
 end

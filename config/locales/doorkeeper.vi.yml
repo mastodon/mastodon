@@ -150,30 +150,30 @@ vi:
         title: Đăng nhập bằng OAuth
     scopes:
       admin:read: đọc mọi dữ liệu trên máy chủ
-      admin:read:accounts: đọc thông tin nhạy cảm của tất cả các tài khoản
-      admin:read:canonical_email_blocks: đọc thông tin nhạy cảm của tất cả khối email chuẩn
-      admin:read:domain_allows: đọc thông tin nhạy cảm của tất cả các tên miền cho phép
-      admin:read:domain_blocks: đọc thông tin nhạy cảm của tất cả các tên miền chặn
-      admin:read:email_domain_blocks: đọc thông tin nhạy cảm của tất cả các miền email chặn
-      admin:read:ip_blocks: đọc thông tin nhạy cảm của tất cả các IP chặn
+      admin:read:accounts: đọc thông tin nhạy cảm của mọi tài khoản
+      admin:read:canonical_email_blocks: đọc thông tin nhạy cảm của mọi khối email biến thể
+      admin:read:domain_allows: đọc thông tin nhạy cảm của mọi máy chủ liên hợp
+      admin:read:domain_blocks: đọc thông tin nhạy cảm của mọi máy chủ chặn
+      admin:read:email_domain_blocks: đọc thông tin nhạy cảm của mọi tên miền email chặn
+      admin:read:ip_blocks: đọc thông tin nhạy cảm của mọi IP chặn
       admin:read:reports: đọc thông tin của các báo cáo và các tài khoản bị báo cáo
       admin:write: sửa đổi tất cả dữ liệu trên máy chủ
       admin:write:accounts: áp đặt hành động kiểm duyệt trên tài khoản
-      admin:write:canonical_email_blocks: áp đặt kiểm duyệt đối với chặn email
+      admin:write:canonical_email_blocks: áp đặt kiểm duyệt đối với chặn email biến thể
       admin:write:domain_allows: áp đặt kiểm duyệt đối với các email cho phép
       admin:write:domain_blocks: áp đặt kiểm duyệt đối với các tên miền chặn
       admin:write:email_domain_blocks: áp đặt kiểm duyệt đối với các tên miền email chặn
       admin:write:ip_blocks: áp đặt kiểm duyệt với các IP chặn
       admin:write:reports: áp đặt kiểm duyệt với các báo cáo
       crypto: dùng mã hóa đầu cuối
-      follow: sửa đổi các mối quan hệ tài khoản
-      profile: chỉ đọc thông tin tài khoản cơ bản
+      follow: sửa đổi các mối quan hệ
+      profile: chỉ xem thông tin tài khoản cơ bản
       push: nhận thông báo đẩy
       read: đọc mọi dữ liệu tài khoản
       read:accounts: xem thông tin tài khoản
       read:blocks: xem những người đã chặn
       read:bookmarks: xem tút đã lưu
-      read:favourites: xem lượt thích
+      read:favourites: xem tút đã thích
       read:filters: xem bộ lọc
       read:follows: xem những người theo dõi
       read:lists: xem danh sách
@@ -182,7 +182,7 @@ vi:
       read:reports: xem báo cáo của bạn
       read:search: tìm kiếm
       read:statuses: xem toàn bộ tút
-      write: sửa đổi mọi dữ liệu tài khoản của bạn
+      write: sửa đổi mọi dữ liệu tài khoản
       write:accounts: sửa đổi trang hồ sơ
       write:blocks: chặn người và máy chủ
       write:bookmarks: sửa đổi những tút lưu
@@ -194,5 +194,5 @@ vi:
       write:media: tải lên tập tin
       write:mutes: ẩn người và thảo luận
       write:notifications: xóa thông báo
-      write:reports: báo cáo người khác
+      write:reports: báo cáo
       write:statuses: đăng tút

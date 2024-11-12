@@ -524,3 +524,21 @@ a.sparkline {
     color: $dark-text-color;
   }
 }
+
+.notification-group--annual-report {
+  .notification-group__icon,
+  .notification-group__main .link-button {
+    color: var(--indigo-3);
+  }
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: rgba($action-button-color, 0.25)
+      var(--background-border-color);
+  }
+}
+
+::-webkit-scrollbar-thumb {
+  opacity: 0.25;
+}

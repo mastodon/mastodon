@@ -1,0 +1,3 @@
+---
+shared:
+  software_update_url: <%= ENV.fetch('UPDATE_CHECK_URL', 'https://api.joinmastodon.org/update-check') %>

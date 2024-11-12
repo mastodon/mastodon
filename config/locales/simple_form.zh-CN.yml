@@ -3,14 +3,14 @@ zh-CN:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: 保护作品免受虚假署名。
+        attribution_domains_as_text: 每行一个域名。这样就可以保护作品免受虚假署名。
         discoverable: 您的公开嘟文和个人资料可能会在 Mastodon 的多个位置展示，您的个人资料可能会被推荐给其他用户。
         display_name: 你的全名或昵称。
         fields: 你的主页、人称代词、年龄，以及任何你想要添加的内容。
         indexable: 您的公开嘟文会出现在 Mastodon 的搜索结果中。无论是否勾选，与您的嘟文有过交互的人都可能通过搜索找到它们。
         note: '你可以提及 @其他人 或 #标签 。'
         show_collections: 人们将能够浏览您的关注和追随者。您关注的人会看到您关注他们。
-        unlocked: 人们将能够在不请求批准的情况下关注你。如果你希望审核关注请求并选择接受或拒绝新的粉丝，请取消勾选此项。
+        unlocked: 人们将能够在不请求批准的情况下关注你。如果你希望审核关注请求并选择接受或拒绝新的关注者，请取消勾选此项。
       account_alias:
         acct: 指定你想要迁移过来的原账号：用户名@站点域名
       account_migration:
@@ -144,7 +144,7 @@ zh-CN:
         url: 事件将被发往的目的地
     labels:
       account:
-        attribution_domains_as_text: 仅允许特定网站
+        attribution_domains_as_text: 授权展示你的署名的网站
         discoverable: 在发现算法中展示你的个人资料和嘟文
         fields:
           name: 标签

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class AccountReachFinder
+  RECENT_LIMIT = 2_000
+  STATUS_LIMIT = 200
+  STATUS_SINCE = 2.days
+
   def initialize(account)
     @account = account
   end
@@ -20,13 +24,27 @@ class AccountReachFinder
   end
 
   def recently_mentioned_inboxes
-    cutoff_id       = Mastodon::Snowflake.id_at(2.days.ago, with_random: false)
-    recent_statuses = @account.statuses.recent.where(id: cutoff_id...).limit(200)
-
-    Account.joins(:mentions).where(mentions: { status: recent_statuses }).inboxes.take(2000)
+    Account
+      .joins(:mentions)
+      .where(mentions: { status: recent_statuses })
+      .inboxes
+      .take(RECENT_LIMIT)
   end
 
   def relay_inboxes
     Relay.enabled.pluck(:inbox_url)
+  end
+
+  def oldest_status_id
+    Mastodon::Snowflake
+      .id_at(STATUS_SINCE.ago, with_random: false)
+  end
+
+  def recent_statuses
+    @account
+      .statuses
+      .recent
+      .where(id: oldest_status_id...)
+      .limit(STATUS_LIMIT)
   end
 end

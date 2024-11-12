@@ -3,13 +3,13 @@ sv:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: En per rad. Skyddar mot falska attributioner.
         discoverable: Dina offentliga inlägg och din profil kan komma att presenteras eller rekommenderas inom olika områden av Mastodon och din profil kan komma att föreslås till andra användare.
         display_name: Ditt fullständiga namn eller ditt roliga namn.
         fields: Din hemsida, ditt pronomen, din ålder, vadhelst du vill.
         indexable: Dina offentliga inlägg kan visas i sökresultat på Mastodon. Personer som har interagerat med dina inlägg kan söka dem oavsett.
         note: 'Du kan @nämna andra personer eller #hashtaggar.'
         show_collections: Andra kan se vem du följer och vem som följer dig. De du följer kan alltid se att du följer dem.
-        unlocked: Andra kommer att kunna följa dig utan att begära godkännande. Avmarkera om du vill granska följeslagare och välja om du vill acceptera eller avvisa nya följare.
       account_alias:
         acct: Ange användarnamn@domän för kontot som du vill flytta från
       account_migration:
@@ -73,7 +73,7 @@ sv:
       filters:
         action: Välj vilken åtgärd som ska utföras när ett inlägg matchar filtret
         actions:
-          hide: Dölj det filtrerade innehållet helt (beter sig som om det inte fanns)
+          hide: Dölj det filtrerade innehållet helt, beter sig som om det inte fanns
           warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
       form_admin_settings:
         activity_api_enabled: Antalet lokalt publicerade inlägg, aktiva användare och nya registrerade konton per vecka
@@ -143,6 +143,7 @@ sv:
         url: Dit händelser kommer skickas
     labels:
       account:
+        attribution_domains_as_text: Webbplatser som får kreditera dig
         discoverable: Presentera profil och inlägg med upptäcktsalgoritmer
         fields:
           name: Etikett

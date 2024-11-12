@@ -52,8 +52,6 @@ require_relative '../lib/action_dispatch/remote_ip_extensions'
 require_relative '../lib/stoplight/redis_data_store_extensions'
 require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
-require_relative '../lib/active_record/with_recursive'
-require_relative '../lib/arel/union_parenthesizing'
 require_relative '../lib/simple_navigation/item_extensions'
 
 Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
@@ -61,10 +59,7 @@ Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
 module Mastodon
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.1
-
-    # Explicitly set the cache format version to align with Rails version
-    config.active_support.cache_format_version = 7.1
+    config.load_defaults 7.2
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -96,10 +91,6 @@ module Mastodon
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware
 
-    initializer :deprecator do |app|
-      app.deprecators[:mastodon] = ActiveSupport::Deprecation.new('4.3', 'mastodon/mastodon')
-    end
-
     config.before_configuration do
       require 'mastodon/redis_configuration'
       ::REDIS_CONFIGURATION = Mastodon::RedisConfiguration.new
@@ -112,6 +103,10 @@ module Mastodon
         require_relative '../lib/paperclip/lazy_thumbnail'
       end
     end
+
+    config.x.captcha = config_for(:captcha)
+    config.x.mastodon = config_for(:mastodon)
+    config.x.translation = config_for(:translation)
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'

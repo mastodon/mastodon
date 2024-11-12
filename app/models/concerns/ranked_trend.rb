@@ -9,6 +9,10 @@ module RankedTrend
   end
 
   class_methods do
+    def locales
+      distinct.pluck(:language)
+    end
+
     def recalculate_ordered_rank
       connection
         .exec_update(<<~SQL.squish)

@@ -12,7 +12,7 @@ class FetchResourceService < BaseService
     return if url.blank?
 
     process(url)
-  rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
+  rescue *Mastodon::HTTP_CONNECTION_ERRORS, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
     Rails.logger.debug { "Error fetching resource #{@url}: #{e}" }
     nil
   end

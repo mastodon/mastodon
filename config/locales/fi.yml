@@ -21,6 +21,7 @@ fi:
       one: Julkaisu
       other: viestiä
     posts_tab_heading: Julkaisut
+    self_follow_error: Oman tilisi seuraaminen ei ole sallittua
   admin:
     account_actions:
       action: Suorita toimi
@@ -1165,9 +1166,11 @@ fi:
     use_security_key: Käytä suojausavainta
   author_attribution:
     example_title: Esimerkkiteksti
-    hint_html: Määrää, kuinka tulet tunnustetuksi, kun Mastodonissa jaetaan linkkejä.
+    hint_html: Kirjoitatko uutisia tai blogitekstejä Mastodonin ulkopuolella? Määrää, kuinka tulet tunnustetuksi, kun niitä jaetaan Mastodonissa.
+    instructions: 'Varmista, että artikkelisi HTML:ssä on tämä koodi:'
     more_from_html: Lisää tekijältä %{name}
     s_blog: Käyttäjän %{name} blogi
+    then_instructions: Lisää sitten julkaisun verkkotunnus seuraavaan tekstikenttään.
     title: Tekijän tunnustus
   challenge:
     confirm: Jatka
@@ -1366,19 +1369,43 @@ fi:
       overwrite: Korvaa
       overwrite_long: Korvaa nykyiset tietueet uusilla
     overwrite_preambles:
-      blocking_html: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{total_items} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
-      bookmarks_html: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{total_items} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
-      domain_blocking_html: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{total_items} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
-      following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
-      lists_html: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{total_items} tiliä</strong>.
-      muting_html: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{total_items} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+      blocking_html:
+        one: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
+      following_html:
+        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+      lists_html:
+        one: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tili</strong>.
+        other: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tiliä</strong>.
+      muting_html:
+        one: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
-      bookmarks_html: Olet aikeissa lisätä kaikkiaan <strong>%{total_items} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
-      domain_blocking_html: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{total_items} verkkotunnusta</strong> tiedostosta <strong>%{filename}</strong>.
-      following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
-      lists_html: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
-      muting_html: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+      blocking_html:
+        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisun</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
+        other: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
+      domain_blocking_html:
+        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnuksen</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnusta</strong> tiedostosta <strong>%{filename}</strong>.
+      following_html:
+        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+      lists_html:
+        one: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
+        other: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
+      muting_html:
+        one: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
     preface: Voit tuoda toiselta palvelimelta viemiäsi tietoja, kuten seuraamiesi tai estämiesi käyttäjien luettelon.
     recent_imports: Viimeksi tuotu
     states:
@@ -1940,7 +1967,7 @@ fi:
     signed_in_as: 'Kirjautunut tilillä:'
   verification:
     extra_instructions_html: <strong>Vinkki:</strong> Verkkosivustollasi oleva linkki voi olla myös näkymätön. Olennainen osuus on <code>rel="me"</code>, joka estää toiseksi henkilöksi tekeytymisen verkkosivustoilla, joilla on käyttäjien luomaa sisältöä. Voit käyttää jopa <code>link</code>-elementtiä sivun <code>head</code>-osassa elementin <code>a</code> sijaan, mutta HTML:n pitää olla käytettävissä ilman JavaScript-koodin suorittamista.
-    here_is_how: Näin voit tehdä sen
+    here_is_how: Näin se onnistuu
     hint_html: "<strong>Henkilöllisyyden vahvistaminen on Mastodonissa jokaisen käyttäjän ulottuvilla.</strong> Se perustuu avoimiin standardeihin ja on maksutonta nyt ja aina. Tarvitset vain henkilökohtaisen verkkosivuston, jonka perusteella sinut voidaan tunnistaa. Kun teet linkin tuolle verkkosivulle profiilistasi, tarkistamme, että verkkosivustolla on linkki takaisin profiiliisi, ja näytämme profiilissasi visuaalisen ilmaisimen."
     instructions_html: Kopioi ja liitä seuraava koodi verkkosivustosi HTML-lähdekoodiin. Lisää sitten verkkosivustosi osoite johonkin profiilisi lisäkentistä ”Muokkaa profiilia” -välilehdellä ja tallenna muutokset.
     verification: Vahvistus

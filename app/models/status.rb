@@ -127,6 +127,7 @@ class Status < ApplicationRecord
   }
   scope :distributable_visibility, -> { where(visibility: %i(public unlisted)) }
   scope :list_eligible_visibility, -> { where(visibility: %i(public unlisted private)) }
+  scope :not_direct_visibility, -> { where.not(visibility: :direct) }
 
   after_create_commit :trigger_create_webhooks
   after_update_commit :trigger_update_webhooks
@@ -303,12 +304,34 @@ class Status < ApplicationRecord
     status_stat&.favourites_count || 0
   end
 
+  # Reblogs count received from an external instance
+  def untrusted_reblogs_count
+    status_stat&.untrusted_reblogs_count unless local?
+  end
+
+  # Favourites count received from an external instance
+  def untrusted_favourites_count
+    status_stat&.untrusted_favourites_count unless local?
+  end
+
   def increment_count!(key)
-    update_status_stat!(key => public_send(key) + 1)
+    if key == :favourites_count && !untrusted_favourites_count.nil?
+      update_status_stat!(favourites_count: favourites_count + 1, untrusted_favourites_count: untrusted_favourites_count + 1)
+    elsif key == :reblogs_count && !untrusted_reblogs_count.nil?
+      update_status_stat!(reblogs_count: reblogs_count + 1, untrusted_reblogs_count: untrusted_reblogs_count + 1)
+    else
+      update_status_stat!(key => public_send(key) + 1)
+    end
   end
 
   def decrement_count!(key)
-    update_status_stat!(key => [public_send(key) - 1, 0].max)
+    if key == :favourites_count && !untrusted_favourites_count.nil?
+      update_status_stat!(favourites_count: [favourites_count - 1, 0].max, untrusted_favourites_count: [untrusted_favourites_count - 1, 0].max)
+    elsif key == :reblogs_count && !untrusted_reblogs_count.nil?
+      update_status_stat!(reblogs_count: [reblogs_count - 1, 0].max, untrusted_reblogs_count: [untrusted_reblogs_count - 1, 0].max)
+    else
+      update_status_stat!(key => [public_send(key) - 1, 0].max)
+    end
   end
 
   def trendable?

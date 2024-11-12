@@ -12,10 +12,10 @@ ARG BUILDPLATFORM=${BUILDPLATFORM}
 
 # Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.3.x"]
 # renovate: datasource=docker depName=docker.io/ruby
-ARG RUBY_VERSION="3.3.5"
+ARG RUBY_VERSION="3.3.6"
 # # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 # renovate: datasource=node-version depName=node
-ARG NODE_MAJOR_VERSION="20"
+ARG NODE_MAJOR_VERSION="22"
 # Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
 ARG DEBIAN_VERSION="bookworm"
 # Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
@@ -191,7 +191,7 @@ FROM build AS libvips
 
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
 # renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
-ARG VIPS_VERSION=8.15.3
+ARG VIPS_VERSION=8.16.0
 # libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 

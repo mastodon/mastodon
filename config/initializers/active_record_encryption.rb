@@ -10,7 +10,9 @@
     ENV[key] = SecureRandom.hex(64)
   end
 
-  value = ENV.fetch(key) do
+  value = ENV.fetch(key, '')
+
+  if value.blank?
     abort <<~MESSAGE
 
       Mastodon now requires that these variables are set:
@@ -20,6 +22,7 @@
         - ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY
 
       Run `bin/rails db:encryption:init` to generate new secrets and then assign the environment variables.
+      Do not change the secrets once they are set, as doing so may cause data loss and other issues that will be difficult or impossible to recover from.
     MESSAGE
   end
 

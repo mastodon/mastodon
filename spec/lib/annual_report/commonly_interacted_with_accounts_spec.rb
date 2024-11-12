@@ -32,7 +32,7 @@ RSpec.describe AnnualReport::CommonlyInteractedWithAccounts do
         expect(subject.generate)
           .to include(
             commonly_interacted_with_accounts: contain_exactly(
-              include(account_id: other_account.id, count: 2)
+              include(account_id: other_account.id.to_s, count: 2)
             )
           )
       end

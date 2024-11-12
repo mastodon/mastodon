@@ -29,6 +29,8 @@ class Web::PushSubscription < ApplicationRecord
 
   delegate :locale, to: :associated_user
 
+  generates_token_for :unsubscribe, expires_in: Web::PushNotificationWorker::TTL
+
   def pushable?(notification)
     policy_allows_notification?(notification) && alert_enabled_for_notification_type?(notification)
   end

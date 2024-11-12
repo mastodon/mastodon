@@ -21,6 +21,7 @@ es:
       one: Publicación
       other: Publicaciones
     posts_tab_heading: Publicaciones
+    self_follow_error: No está permitido seguir tu propia cuenta
   admin:
     account_actions:
       action: Realizar acción
@@ -1165,9 +1166,11 @@ es:
     use_security_key: Usar la clave de seguridad
   author_attribution:
     example_title: Texto de ejemplo
-    hint_html: Controla cómo se te dará atribución cuando se compartan enlaces en Mastodon.
+    hint_html: "¿Escribes noticias o artículos de blog fuera de Mastodon? Controla cómo se te acredita cuando se comparten en Mastodon."
+    instructions: 'Asegúrate de que este código está en el HTML de tu artículo:'
     more_from_html: Más de %{name}
     s_blog: Blog de %{name}
+    then_instructions: A continuación, añade el nombre de dominio de la publicación en el campo inferior.
     title: Atribución del autor
   challenge:
     confirm: Continuar
@@ -1366,19 +1369,43 @@ es:
       overwrite: Sobrescribir
       overwrite_long: Reemplazar registros actuales con los nuevos
     overwrite_preambles:
-      blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos</strong> por hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
-      bookmarks_html: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{total_items} publicaciones</strong> provenientes de <strong>%{filename}</strong>.
-      domain_blocking_html: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
-      following_html: Estás a punto de <strong>seguir</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
-      lists_html: Estás a punto de <strong>reemplazar tus listas</strong> con contenidos de <strong>%{filename}</strong>. Se añadirán <strong>%{total_items} cuentas</strong> a nuevas listas.
-      muting_html: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
+      blocking_html:
+        one: Estás a punto de <strong>reemplazar tu lista de bloqueos</strong> por <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>reemplazar tu lista de bloqueos</strong> por hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Estás a punto de <strong>reemplazar tus marcadores</strong> por <strong>%{count} publicación</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>reemplazar tus marcadores</strong> por hasta <strong>%{count} publicaciones</strong> provenientes de <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por <strong>%{count} dominio</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>reemplazar tu lista de bloqueos de dominio</strong> por hasta <strong>%{count} dominios</strong> provenientes de <strong>%{filename}</strong>.
+      following_html:
+        one: Estás a punto de <strong>seguir</strong> a <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
+        other: Estás a punto de <strong>seguir</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong> y <strong>dejar de seguir a cualquier otra cuenta</strong>.
+      lists_html:
+        one: Estás a punto de <strong>reemplazar tus listas</strong> con el contenido de <strong>%{filename}</strong>. Se añadirá <strong>%{count} cuenta</strong> a una nueva lista.
+        other: Estás a punto de <strong>reemplazar tus listas</strong> con el contenido de <strong>%{filename}</strong>. Se añadirán <strong>%{count} cuentas</strong> a nuevas listas.
+      muting_html:
+        one: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con <strong>%{count} cuenta</strong> proveninete de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>reemplazar tu lista de cuentas silenciadas</strong> con hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} cuentas</strong> proveninetes de <strong>%{filename}</strong>.
-      bookmarks_html: Está a punto de añadir hasta <strong>%{total_items} publicaciones</strong> proveninetes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
-      domain_blocking_html: Estás a punto de <strong>bloquear</strong> hasta <strong>%{total_items} dominios</strong> provenientes de <strong>%{filename}</strong>.
-      following_html: Estás a punto de <strong>seguir</strong> hasta <strong>cuentas%{total_items}</strong> provenientes de <strong>%{filename}</strong>.
-      lists_html: Estás a punto de añadir <strong>%{total_items} cuentas</strong> desde <strong>%{filename}</strong> a tus <strong>listas</strong>. Se crearán nuevas listas si no hay listas para añadirlas.
-      muting_html: Estás a punto de <strong>silenciar</strong> hasta <strong>%{total_items} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      blocking_html:
+        one: Estás a punto de <strong>bloquear</strong> a <strong>%{count} cuenta</strong> proveninete de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Está a punto de añadir <strong>%{count} publicación</strong> proveniente de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+        other: Está a punto de añadir hasta <strong>%{count} publicaciones</strong> provenientes de <strong>%{filename}</strong> a tus <strong>marcadores</strong>.
+      domain_blocking_html:
+        one: Estás a punto de <strong>bloquear</strong> <strong>%{count} dominio</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>bloquear</strong> hasta <strong>%{count} dominios</strong> provenientes de <strong>%{filename}</strong>.
+      following_html:
+        one: Estás a punto de <strong>seguir</strong> a <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>seguir</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
+      lists_html:
+        one: Estás a punto de añadir <strong>%{count} cuenta</strong> desde <strong>%{filename}</strong> a tus <strong>listas</strong>. Se creará una nueva listas si no hay listas donde añadirla.
+        other: Estás a punto de añadir <strong>%{count} cuentas</strong> desde <strong>%{filename}</strong> a tus <strong>listas</strong>. Se crearán nuevas listas si no hay listas donde añadirlas.
+      muting_html:
+        one: Estás a punto de <strong>silenciar</strong> a <strong>%{count} cuenta</strong> proveniente de <strong>%{filename}</strong>.
+        other: Estás a punto de <strong>silenciar</strong> hasta <strong>%{count} cuentas</strong> provenientes de <strong>%{filename}</strong>.
     preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
     recent_imports: Importaciones recientes
     states:

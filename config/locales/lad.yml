@@ -46,6 +46,7 @@ lad:
         title: Troka la posta elektronika de %{username}
       change_role:
         changed_msg: Rolo trokado kon sukseso!
+        edit_roles: Administra reglas de utilizadores
         label: Troka rolo
         no_role: Sin rolo
         title: Troka rolo para %{username}
@@ -595,6 +596,7 @@ lad:
         resolve_description_html: No se tomaran aksyones kontra el kuento denunsiado, no se enrejistrara el amonestamiento, i se serrara el raporto.
         silence_description_html: El profil sera vizivle solo para akeyos ke ya lo sigan o lo bushken manualmente, limitando seriamente su alkanse. Siempre puede ser revertido.
         suspend_description_html: El profil i todos sus kontenidos seran inaksesivles asta ke sean enfin supremidos. La enteraksion kon el kuento sera emposivle. Reversivle durante un tiempo de 30 diyas.
+      actions_description_html: Dechide kualas mizuras tomar para rezolver esta denunsia. Si tomas una aksion punitiva kontra el kuento denunsiada, se le embiara a dicho kuento un avizo por posta elektronika, ekseptado kuando se eskoja la kategoria <strong>Spam</strong>.
       actions_description_remote_html: Dechide ke fazer para rezolver este raporto. Esto solo va afektar komo <strong>tu</strong> sirvidor komunike kon este kuento remoto i ke faze kon su kontenido.
       add_to_report: Adjusta mas al raporto
       already_suspended_badges:
@@ -697,6 +699,7 @@ lad:
         manage_appeals: Administra apelasiones
         manage_appeals_description: Permete a los utilizadores revizar apelasiones kontra aksyones de moderasyon
         manage_blocks: Administra blokos
+        manage_blocks_description: Permete a los utilizadores blokar los prokuradores de posta elektronika i los adresos IP
         manage_custom_emojis: Administra emojis personalizados
         manage_custom_emojis_description: Permete a los utilizadores editar emojis personalizados en el sirvidor
         manage_federation: Administra federasyon
@@ -714,6 +717,7 @@ lad:
         manage_taxonomies: Administra etiketas
         manage_taxonomies_description: Permete a los utilizadores revizar el kontenido en trend i aktualizar la konfigurasyon de las etiketas
         manage_user_access: Administra akseso de utilizadores
+        manage_user_access_description: Permete a los utilizadores dezaktivar la autentifikasyon en dos pasos de otros utilizadores, trokar sus adreso de posta elektronika i restableser sus kod
         manage_users: Administra utilizadores
         manage_users_description: Permete a los utilizadores ver los peratim de otros utilizadores i realizar aksyones de moderasyon kontra eyos
         manage_webhooks: Administrar webhooks
@@ -787,6 +791,7 @@ lad:
       destroyed_msg: Dosya supremida kon sukseso!
     software_updates:
       critical_update: Kritiko – por favor aktualiza pishin
+      description: Rekomendamos ke mantengas aktualizada tu enstalasyon de Mastodon para benefisyar de las muevas koreksyones y funksyones. Ademas, a vezes es kritiko aktualizar Mastodon punktualmente para evitar problemas de sigurita. Por estas razones, Mastodon komprova si ay aktualizasyones kada 30 minutos, i te avizara de akodro a tus preferensyas de avizos por posta elektronika.
       documentation_link: Ambezate mas
       release_notes: Notas sovre la versyon
       title: Aktualizasyones desponivles
@@ -860,6 +865,9 @@ lad:
         message_html: No tienes definido dinguna regla del sirvidor.
       sidekiq_process_check:
         message_html: No ay dingun prosedura Sidekiq en egzekusion para la(s) kola(s) %{value}. Por favor, reviza tu konfigurasyon de Sidekiq
+      software_version_check:
+        action: Amostra aktualizasyones desponivles
+        message_html: Una aktualizasyon de Mastodon esta desponivle.
       software_version_critical_check:
         action: Amostra aktualizasyones desponivles
         message_html: Una aktualizasyon kritika de Mastodon esta desponivle. Por favor aktualiza pishin.
@@ -875,11 +883,14 @@ lad:
     tags:
       moderation:
         pending_review: Revizion esta asperando
+        reviewed: Revizado
         title: Estado
+        unreviewed: No revizado
         usable: Uzavle
       name: Nombre
       newest: Mas muevos
       oldest: Mas viejos
+      open: Ve puvlikamente
       reset: Reinisya
       review: Estado de revizion
       search: Bushka
@@ -1118,6 +1129,7 @@ lad:
       title: Kriya kuento de Mastodon en %{domain}.
     status:
       account_status: Estado del kuento
+      confirming: Bekleando konfirmasyon de posta elektronika.
       functional: Tu kuento esta kompletamente funksyonal.
       pending: Tu solisitasyon esta asperando la revizion por muestros administradores. Esto puede tadrar algun tiempo. Arisiviras una posta elektronika si la solisitasyon sea achetada.
       redirecting_to: Tu kuento se topa inaktivo porke esta siendo readresado a %{acct}.
@@ -1323,20 +1335,6 @@ lad:
       merge_long: Manten rejistros egzistentes i adjusta muevos
       overwrite: Sobreskrive
       overwrite_long: Mete muevos rejistros en vez de los aktuales
-    overwrite_preambles:
-      blocking_html: Estas a punto de <strong>substituyir tu lista de blokos</strong> por asta <strong>%{total_items} kuentos </strong> de <strong>%{filename}</strong>.
-      bookmarks_html: Estas a punto de <strong>substituyir tus markadores</strong> por asta <strong>%{total_items} publikasyones</strong> ke vinyeron de <strong>%{filename}</strong>.
-      domain_blocking_html: Estas a punto de <strong>substituyir tu lista de blokos de domeno</strong> por asta <strong>%{total_items} domenos </strong> de <strong>%{filename}</strong>.
-      following_html: Estas a punto de <strong>segir</strong> asta <strong>%{total_items} kuentos</strong> de <strong>%{filename}</strong> i <strong>deshar de segir todos los otros kuentos</strong>.
-      lists_html: Estas a punto de <strong>sustituyir tus listas</strong> con el kontenido de <strong>%{filename}</strong>. Asta <strong>%{total_items} kuentos</strong> seran adjustados a muevas listas.
-      muting_html: Estas a punto de <strong>substituyir tu lista de kuentos silensyados</strong> por asta <strong>%{total_items} kuentos </strong> de <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Estas a punto de <strong>blokar</strong> asta <strong>%{total_items} kuentos </strong> de <strong>%{filename}</strong>.
-      bookmarks_html: Estas a punto de adjustar asta <strong>%{total_items} publikasyones</strong> de <strong>%{filename}</strong> a tus <strong>markadores</strong>.
-      domain_blocking_html: Estas a punto de <strong>blokar</strong> asta <strong>%{total_items} domenos </strong> de <strong>%{filename}</strong>.
-      following_html: Estas a punto de <strong>segir</strong> asta <strong>%{total_items} kuentos </strong> de <strong>%{filename}</strong>.
-      lists_html: Estas a punto de adjustar <strong>%{total_items} kuentos</strong> dizde <strong>%{filename}</strong> a tus <strong>listas</strong>. Se kriyaran muevas listas si no ay listas para adjustarlas.
-      muting_html: Estas a punto de <strong>silensyar</strong> asta <strong>%{total_items} kuentos </strong> de <strong>%{filename}</strong>.
     preface: Puedes importar siertos datos, komo todas las personas a las kualas estas sigiendo o blokando en tu kuento en esta instansya, dizde dosyas eksportadas de otra instansya.
     recent_imports: Importasyones resyentes
     states:
@@ -1652,6 +1650,7 @@ lad:
     delete: Efasa kuento
     development: Dezvelopamiento
     edit_profile: Edita profil
+    export: Eksporto
     featured_tags: Etiketas avaliadas
     import: Importo
     import_and_export: Importo i eksporto
@@ -1890,6 +1889,7 @@ lad:
     instructions_html: Kopia i apega este kodiche en el HTML de tu sitio web. Estonses, adjusta el adreso de tu sitio web en uno de los kutis adisyonales de tu profil dizde la seksyon "Edita profil" i guadra los trokamyentos.
     verification: Verifikasyon
     verified_links: Tus atadijos verifikados
+    website_verification: Verifikasyon de sityo web
   webauthn_credentials:
     add: Adjusta mueva yave de sigurita
     create:

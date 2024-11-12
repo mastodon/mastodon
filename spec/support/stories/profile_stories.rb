@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ProfileStories
-  attr_reader :bob, :alice, :alice_bio
+  attr_reader :bob
 
   def fill_in_auth_details(email, password)
     fill_in 'user_email', with: email
@@ -29,18 +29,6 @@ module ProfileStories
     # This is a bit awkward, but this avoids code duplication.
     as_a_logged_in_user
     bob.update!(role: UserRole.find_by!(name: 'Admin'))
-  end
-
-  def with_alice_as_local_user
-    @alice_bio = '@alice and @bob are fictional characters commonly used as' \
-                 'placeholder names in #cryptology, as well as #science and' \
-                 'engineering 📖 literature. Not affiliated with @pepe.'
-
-    @alice = Fabricate(
-      :user,
-      email: 'alice@example.com', password: password, confirmed_at: confirmed_at,
-      account: Fabricate(:account, username: 'alice', note: @alice_bio)
-    )
   end
 
   def confirmed_at

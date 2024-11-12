@@ -21,6 +21,7 @@ fr-CA:
       one: Message
       other: Messages
     posts_tab_heading: Messages
+    self_follow_error: Il n'est pas possible de suivre votre propre compte
   admin:
     account_actions:
       action: Effectuer l'action
@@ -1168,7 +1169,6 @@ fr-CA:
     use_security_key: Utiliser la clé de sécurité
   author_attribution:
     example_title: Exemple de texte
-    hint_html: Déterminez la façon dont vous êtes crédité lorsque des liens sont partagés sur Mastodon.
     more_from_html: Plus via %{name}
     s_blog: Blog de %{name}
     title: Attribution de l'auteur·e
@@ -1369,19 +1369,43 @@ fr-CA:
       overwrite: Écraser
       overwrite_long: Remplacer les enregistrements actuels par les nouveaux
     overwrite_preambles:
-      blocking_html: Vous allez <strong>remplacer votre liste de blocages</strong> par jusqu'à <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
-      bookmarks_html: Vous allez <strong>remplacer vos signets</strong> par jusqu'à <strong>%{total_items} posts</strong> tirés de <strong>%{filename}</strong>.
-      domain_blocking_html: Vous allez <strong>remplacer votre liste de blocages de domaines</strong> par jusqu'à <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
-      following_html: Vous allez <strong>suivre</strong> jusqu’à <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
-      lists_html: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Jusqu'à <strong>%{total_items} comptes</strong> seront ajoutés à de nouvelles listes.
-      muting_html: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par jusqu'à <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+      blocking_html:
+        one: Vous allez <strong>remplacer votre liste de blocage</strong> par près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer votre liste de blocage</strong> par près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{count} post</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{count} posts</strong> tirés de <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{count} domaine</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{count} domaines</strong> tirés de <strong>%{filename}</strong>.
+      following_html:
+        one: Vous allez <strong>suivre</strong> jusqu’à <strong>%{count} compte</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
+        other: Vous allez <strong>suivre</strong> jusqu’à <strong>%{count} comptes</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
+      lists_html:
+        one: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Près de <strong>%{count} compte</strong> sera ajouté à de nouvelles listes.
+        other: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Près de <strong>%{count} comptes</strong> seront ajoutés à de nouvelles listes.
+      muting_html:
+        one: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Vous allez <strong>bloquer</strong> jusqu'à <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
-      bookmarks_html: Vous allez ajouter jusqu'à <strong>%{total_items} messages</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
-      domain_blocking_html: Vous allez <strong>bloquer</strong> jusqu'à <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
-      following_html: Vous allez <strong>suivre</strong> jusqu'à <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
-      lists_html: Vous allez ajouter jusqu'à <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées s'il n'y a aucune liste à laquelle les ajouter.
-      muting_html: Vous allez <strong>masquer</strong> jusqu'à <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+      blocking_html:
+        one: Vous allez <strong>bloquer</strong> près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>bloquer</strong> près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Vous allez ajouter près de <strong>%{count} message</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
+        other: Vous allez ajouter près de <strong>%{count} messages</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
+      domain_blocking_html:
+        one: Vous allez <strong>bloquer</strong> près de <strong>%{count} domaine</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>bloquer</strong> près de <strong>%{count} domaines</strong> tirés de <strong>%{filename}</strong>.
+      following_html:
+        one: Vous allez <strong>suivre</strong> près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>suivre</strong> près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+      lists_html:
+        one: Vous allez ajouter près de <strong>%{count} compte</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
+        other: Vous allez ajouter près de <strong>%{count} comptes</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
+      muting_html:
+        one: Vous allez <strong>masquer</strong> près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>masquer</strong> près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
     preface: Vous pouvez importer certaines données que vous avez exporté d’un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
     recent_imports: Importations récentes
     states:
