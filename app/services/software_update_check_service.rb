@@ -12,7 +12,7 @@ class SoftwareUpdateCheckService < BaseService
 
   def clean_outdated_updates!
     SoftwareUpdate.find_each do |software_update|
-      software_update.delete if Mastodon::Version.gem_version >= software_update.gem_version
+      software_update.delete if software_update.outdated?
     rescue ArgumentError
       software_update.delete
     end

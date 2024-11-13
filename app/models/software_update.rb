@@ -22,6 +22,10 @@ class SoftwareUpdate < ApplicationRecord
     Gem::Version.new(version)
   end
 
+  def outdated?
+    Mastodon::Version.gem_version >= gem_version
+  end
+
   class << self
     def check_enabled?
       Rails.configuration.x.mastodon.software_update_url.present?
