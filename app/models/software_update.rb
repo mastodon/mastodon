@@ -23,11 +23,11 @@ class SoftwareUpdate < ApplicationRecord
   end
 
   def outdated?
-    Mastodon::Version.gem_version >= gem_version
+    runtime_version >= gem_version
   end
 
   def pending?
-    gem_version > Mastodon::Version.gem_version
+    gem_version > runtime_version
   end
 
   class << self
@@ -44,5 +44,11 @@ class SoftwareUpdate < ApplicationRecord
     def urgent_pending?
       pending_to_a.any?(&:urgent?)
     end
+  end
+
+  private
+
+  def runtime_version
+    Mastodon::Version.gem_version
   end
 end
