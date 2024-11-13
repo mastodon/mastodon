@@ -19,9 +19,8 @@
         %li= filter_link_to t('admin.instances.moderation.allowed'), status: nil
       - else
         %li= filter_link_to t('admin.instances.moderation.all'), status: nil
-        %li= filter_link_to t('admin.instances.moderation.not_limited'), status: 'not_limited'
-        %li= filter_link_to t('admin.instances.moderation.noop'), status: 'noop'
-        %li= filter_link_to t('admin.instances.moderation.silenced'), status: 'silenced'
+        %li= filter_link_to t('admin.instances.moderation.unrestricted'), status: 'unrestricted'
+        %li= filter_link_to t('admin.instances.moderation.limited'), status: 'limited'
         %li= filter_link_to t('admin.instances.moderation.suspended'), status: 'suspended'
 
   .filter-subset

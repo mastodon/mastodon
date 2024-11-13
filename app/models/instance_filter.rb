@@ -7,6 +7,14 @@ class InstanceFilter
     availability
   ).freeze
 
+  # These are the valid input values for statuses:
+  STATUSES = %w(
+    allowed
+    suspended
+    limited
+    unrestricted
+  ).freeze
+
   attr_reader :params
 
   def initialize(params)
@@ -47,11 +55,9 @@ class InstanceFilter
       Instance.joins(:domain_allow).reorder(Arel.sql('domain_allows.id desc'))
     when :suspended
       Instance.joins(:domain_block).where(domain_blocks: { severity: :suspend }).reorder(Arel.sql('domain_blocks.id desc'))
-    when :silenced
-      Instance.joins(:domain_block).where(domain_blocks: { severity: :silence }).reorder(Arel.sql('domain_blocks.id desc'))
-    when :noop
-      Instance.joins(:domain_block).where(domain_blocks: { severity: :noop }).reorder(Arel.sql('domain_blocks.id desc'))
-    when :not_limited
+    when :limited
+      Instance.joins(:domain_block).where(domain_blocks: { severity: :silence }).or(Instance.joins(:domain_block).where(domain_blocks: { severity: :noop })).reorder(Arel.sql('domain_blocks.id desc'))
+    when :unrestricted
       # Finds all instances where there isn't a record in the domain_blocks table
       Instance.left_outer_joins(:domain_block).where(domain_blocks: { domain: nil })
     else
