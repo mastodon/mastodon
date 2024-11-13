@@ -187,6 +187,7 @@ fi:
         create_domain_block: Luo verkkotunnuksen esto
         create_email_domain_block: Luo sähköpostiverkkotunnuksen esto
         create_ip_block: Luo IP-sääntö
+        create_relay: Luo välittäjä
         create_unavailable_domain: Luo ei-saatavilla oleva verkkotunnus
         create_user_role: Luo rooli
         demote_user: Alenna käyttäjä
@@ -198,14 +199,17 @@ fi:
         destroy_email_domain_block: Poista sähköpostiverkkotunnuksen esto
         destroy_instance: Tyhjennä verkkotunnus
         destroy_ip_block: Poista IP-sääntö
+        destroy_relay: Poista välittäjä
         destroy_status: Poista julkaisu
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
         destroy_user_role: Hävitä rooli
         disable_2fa_user: Poista kaksivaiheinen todennus käytöstä
         disable_custom_emoji: Poista mukautettu emoji käytöstä
+        disable_relay: Poista välittäjä käytöstä
         disable_sign_in_token_auth_user: Poista sähköpostitunnuksella todennus käytöstä käyttäjältä
         disable_user: Poista tili käytöstä
         enable_custom_emoji: Ota mukautettu emoji käyttöön
+        enable_relay: Ota välittäjä käyttöön
         enable_sign_in_token_auth_user: Ota sähköpostitunnuksella todennus käyttöön käyttäjälle
         enable_user: Ota tili käyttöön
         memorialize_account: Muuta muistotiliksi
@@ -216,7 +220,7 @@ fi:
         reopen_report: Avaa raportti uudelleen
         resend_user: Lähetä vahvistusviesti uudelleen
         reset_password_user: Palauta salasana
-        resolve_report: Selvitä raportti
+        resolve_report: Ratkaise raportti
         sensitive_account: Pakota arkaluonteiseksi tiliksi
         silence_account: Rajoita tiliä
         suspend_account: Jäädytä tili
@@ -247,6 +251,7 @@ fi:
         create_domain_block_html: "%{name} esti verkkotunnuksen %{target}"
         create_email_domain_block_html: "%{name} esti sähköpostiverkkotunnuksen %{target}"
         create_ip_block_html: "%{name} loi säännön IP-osoitteelle %{target}"
+        create_relay_html: "%{name} loi välittäjän %{target}"
         create_unavailable_domain_html: "%{name} pysäytti toimituksen verkkotunnukseen %{target}"
         create_user_role_html: "%{name} loi roolin %{target}"
         demote_user_html: "%{name} alensi käyttäjän %{target}"
@@ -258,14 +263,17 @@ fi:
         destroy_email_domain_block_html: "%{name} kumosi sähköpostiverkkotunnuksen %{target} eston"
         destroy_instance_html: "%{name} tyhjensi verkkotunnuksen %{target}"
         destroy_ip_block_html: "%{name} poisti säännön IP-osoitteelta %{target}"
+        destroy_relay_html: "%{name} poisti välittäjän %{target}"
         destroy_status_html: "%{name} poisti käyttäjän %{target} julkaisun"
         destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
         destroy_user_role_html: "%{name} poisti roolin %{target}"
         disable_2fa_user_html: "%{name} poisti käyttäjältä %{target} vaatimuksen kaksivaiheiseen todentamiseen"
         disable_custom_emoji_html: "%{name} poisti emojin %{target} käytöstä"
+        disable_relay_html: "%{name} poisti välittäjän %{target} käytöstä"
         disable_sign_in_token_auth_user_html: "%{name} poisti sähköpostitunnuksella todennuksen käytöstä käyttäjältä %{target}"
         disable_user_html: "%{name} poisti kirjautumisen käytöstä käyttäjältä %{target}"
         enable_custom_emoji_html: "%{name} otti emojin %{target} käyttöön"
+        enable_relay_html: "%{name} otti välittäjän %{target} käyttöön"
         enable_sign_in_token_auth_user_html: "%{name} otti sähköpostitunnuksella todennuksen käyttöön käyttäjälle %{target}"
         enable_user_html: "%{name} otti kirjautumisen käyttöön käyttäjälle %{target}"
         memorialize_account_html: "%{name} muutti käyttäjän %{target} tilin muistosivuksi"
