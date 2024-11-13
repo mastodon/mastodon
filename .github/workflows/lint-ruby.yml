@@ -28,9 +28,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
-    env:
-      BUNDLE_ONLY: development
-
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
