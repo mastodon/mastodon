@@ -18,7 +18,7 @@ namespace :repo do
 
     url = "https://api.github.com/repos/#{REPOSITORY_NAME}/contributors?anon=1"
 
-    HttpLog.config.compact_log = true
+    HttpLog.config.compact_log = true if defined?(HttpLog)
 
     while url.present?
       response     = HTTP.get(url)
@@ -43,7 +43,7 @@ namespace :repo do
     path = Rails.root.join('CHANGELOG.md')
     tmp  = Tempfile.new
 
-    HttpLog.config.compact_log = true
+    HttpLog.config.compact_log = true if defined?(HttpLog)
 
     begin
       File.open(path, 'r') do |file|

@@ -187,6 +187,7 @@ de:
         create_domain_block: Domain sperren
         create_email_domain_block: E-Mail-Domain-Sperre erstellen
         create_ip_block: IP-Regel erstellen
+        create_relay: Relay erstellen
         create_unavailable_domain: Nicht verfügbare Domain erstellen
         create_user_role: Rolle erstellen
         demote_user: Benutzer*in herabstufen
@@ -198,14 +199,17 @@ de:
         destroy_email_domain_block: E-Mail-Domain-Sperre entfernen
         destroy_instance: Domain-Daten entfernen
         destroy_ip_block: IP-Regel löschen
+        destroy_relay: Relay löschen
         destroy_status: Beitrag entfernen
         destroy_unavailable_domain: Nicht-verfügbare Domain entfernen
         destroy_user_role: Rolle entfernen
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Eigenes Emoji deaktivieren
+        disable_relay: Relay deaktivieren
         disable_sign_in_token_auth_user: E-Mail-Token-Authentisierung für dieses Konto deaktivieren
         disable_user: Benutzer*in deaktivieren
         enable_custom_emoji: Eigenes Emoji aktivieren
+        enable_relay: Relay aktivieren
         enable_sign_in_token_auth_user: E-Mail-Token-Authentisierung für dieses Konto aktivieren
         enable_user: Benutzer*in aktivieren
         memorialize_account: Gedenkkonto
@@ -247,6 +251,7 @@ de:
         create_domain_block_html: "%{name} sperrte die Domain %{target}"
         create_email_domain_block_html: "%{name} sperrte die E-Mail-Domain %{target}"
         create_ip_block_html: "%{name} erstellte eine IP-Regel für %{target}"
+        create_relay_html: "%{name} erstellte ein Relay %{target}"
         create_unavailable_domain_html: "%{name} beendete die Zustellung an die Domain %{target}"
         create_user_role_html: "%{name} erstellte die Rolle %{target}"
         demote_user_html: "%{name} stufte %{target} herunter"
@@ -258,14 +263,17 @@ de:
         destroy_email_domain_block_html: "%{name} entsperrte die E-Mail-Domain %{target}"
         destroy_instance_html: "%{name} entfernte die Daten der Domain %{target} von diesem Server"
         destroy_ip_block_html: "%{name} entfernte eine IP-Regel für %{target}"
+        destroy_relay_html: "%{name} löschte das Relay %{target}"
         destroy_status_html: "%{name} entfernte einen Beitrag von %{target}"
         destroy_unavailable_domain_html: "%{name} nahm die Zustellung an die Domain %{target} wieder auf"
         destroy_user_role_html: "%{name} löschte die Rolle %{target}"
         disable_2fa_user_html: "%{name} deaktivierte die Zwei-Faktor-Authentisierung für %{target}"
         disable_custom_emoji_html: "%{name} deaktivierte das Emoji %{target}"
+        disable_relay_html: "%{name} deaktivierte das Relay %{target}"
         disable_sign_in_token_auth_user_html: "%{name} deaktivierte die E-Mail-Token-Authentisierung für %{target}"
         disable_user_html: "%{name} deaktivierte den Zugang für %{target}"
         enable_custom_emoji_html: "%{name} aktivierte das Emoji %{target}"
+        enable_relay_html: "%{name} aktivierte das Relay %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktivierte die E-Mail-Token-Authentisierung für %{target}"
         enable_user_html: "%{name} aktivierte den Zugang für %{target}"
         memorialize_account_html: "%{name} wandelte das Konto von %{target} in eine Gedenkseite um"

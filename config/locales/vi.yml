@@ -184,6 +184,7 @@ vi:
         create_domain_block: Chặn máy chủ
         create_email_domain_block: Chặn tên miền email
         create_ip_block: Chặn IP
+        create_relay: Tạo relay
         create_unavailable_domain: Bỏ liên hợp
         create_user_role: Tạo vai trò
         demote_user: Hạ vai trò
@@ -195,14 +196,17 @@ vi:
         destroy_email_domain_block: Bỏ chặn tên miền email
         destroy_instance: Thanh trừng máy chủ
         destroy_ip_block: Bỏ chặn IP
+        destroy_relay: Xóa relay
         destroy_status: Xóa tút
         destroy_unavailable_domain: Cho phép liên hợp
         destroy_user_role: Xóa vai trò
         disable_2fa_user: Vô hiệu hóa 2FA
         disable_custom_emoji: Vô hiệu hóa emoji
+        disable_relay: Tắt relay
         disable_sign_in_token_auth_user: Tắt xác minh bằng email cho người dùng
         disable_user: Vô hiệu hóa đăng nhập
         enable_custom_emoji: Cho phép emoji
+        enable_relay: Bật relay
         enable_sign_in_token_auth_user: Bật xác minh bằng email cho người dùng
         enable_user: Cho phép đăng nhập
         memorialize_account: Gán tưởng niệm
@@ -244,6 +248,7 @@ vi:
         create_domain_block_html: "%{name} đã chặn máy chủ %{target}"
         create_email_domain_block_html: "%{name} đã chặn tên miền email %{target}"
         create_ip_block_html: "%{name} đã chặn IP %{target}"
+        create_relay_html: "%{name} đã tạo relay %{target}"
         create_unavailable_domain_html: "%{name} đã bỏ liên hợp với máy chủ %{target}"
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
         demote_user_html: "%{name} đã hạ vai trò của %{target}"
@@ -255,14 +260,17 @@ vi:
         destroy_email_domain_block_html: "%{name} đã bỏ chặn email %{target}"
         destroy_instance_html: "%{name} đã thanh trừng máy chủ %{target}"
         destroy_ip_block_html: "%{name} đã bỏ chặn IP %{target}"
+        destroy_relay_html: "%{name} đã xóa relay %{target}"
         destroy_status_html: "%{name} đã xóa tút của %{target}"
         destroy_unavailable_domain_html: "%{name} tiếp tục liên hợp với máy chủ %{target}"
         destroy_user_role_html: "%{name} đã xóa vai trò %{target}"
         disable_2fa_user_html: "%{name} đã vô hiệu hóa xác minh hai bước của %{target}"
         disable_custom_emoji_html: "%{name} đã ẩn emoji %{target}"
+        disable_relay_html: "%{name} đã tắt relay %{target}"
         disable_sign_in_token_auth_user_html: "%{name} đã tắt xác minh email của %{target}"
         disable_user_html: "%{name} đã vô hiệu hóa đăng nhập %{target}"
         enable_custom_emoji_html: "%{name} đã cho phép emoji %{target}"
+        enable_relay_html: "%{name} đã bật relay %{target}"
         enable_sign_in_token_auth_user_html: "%{name} đã bật xác minh email của %{target}"
         enable_user_html: "%{name} đã bỏ vô hiệu hóa đăng nhập %{target}"
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"

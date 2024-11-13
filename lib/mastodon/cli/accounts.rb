@@ -321,7 +321,9 @@ module Mastodon::CLI
 
       unless skip_domains.empty?
         say('The following domains were not available during the check:', :yellow)
-        skip_domains.each { |domain| say("    #{domain}") }
+        shell.indent(2) do
+          skip_domains.each { |domain| say(domain) }
+        end
       end
     end
 

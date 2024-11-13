@@ -60,10 +60,10 @@ sv:
       deleted: Raderad
       demote: Degradera
       destroyed_msg: "%{username}s data har nu lagts till kön för att raderas omedelbart"
-      disable: inaktivera
+      disable: Inaktivera
       disable_sign_in_token_auth: Inaktivera autentisering med pollett via e-post
       disable_two_factor_authentication: Inaktivera 2FA
-      disabled: inaktiverad
+      disabled: Inaktiverad
       display_name: Visningsnamn
       domain: Domän
       edit: Redigera
@@ -142,7 +142,7 @@ sv:
         only_password: Endast lösenord
         password_and_2fa: Lösenord och 2FA
       sensitive: Känsligt
-      sensitized: markerad som känsligt
+      sensitized: Markerad som känsligt
       shared_inbox_url: Delad inkorg URL
       show:
         created_reports: Anmälningar som skapats av det här kontot
@@ -187,6 +187,7 @@ sv:
         create_domain_block: Skapa blockerad domän
         create_email_domain_block: Skapa E-post domän block
         create_ip_block: Skapa IP-regel
+        create_relay: Skapa ombud
         create_unavailable_domain: Skapa otillgänglig domän
         create_user_role: Skapa roll
         demote_user: Degradera användare
@@ -198,14 +199,17 @@ sv:
         destroy_email_domain_block: Ta bort E-post domän block
         destroy_instance: Rensa domänen
         destroy_ip_block: Radera IP-regel
+        destroy_relay: Radera ombud
         destroy_status: Radera inlägg
         destroy_unavailable_domain: Ta bort otillgänglig domän
         destroy_user_role: Förstör roll
         disable_2fa_user: Inaktivera 2FA
         disable_custom_emoji: Inaktivera egna emojis
+        disable_relay: Inaktivera ombud
         disable_sign_in_token_auth_user: Inaktivera autentisering med pollett via e-post för användare
         disable_user: Inaktivera användare
         enable_custom_emoji: Aktivera egna emojis
+        enable_relay: Aktivera ombud
         enable_sign_in_token_auth_user: Aktivera autentisering med pollett via e-post för användare
         enable_user: Aktivera användare
         memorialize_account: Minnesmärk konto
@@ -247,6 +251,7 @@ sv:
         create_domain_block_html: "%{name} blockerade domänen %{target}"
         create_email_domain_block_html: "%{name} blockerade e-post domänet%{target}"
         create_ip_block_html: "%{name} skapade regel för IP %{target}"
+        create_relay_html: "%{name} skapade ombudet %{target}"
         create_unavailable_domain_html: "%{name} stoppade leverans till domänen %{target}"
         create_user_role_html: "%{name} skapade rollen %{target}"
         demote_user_html: "%{name} nedgraderade användare %{target}"
@@ -258,14 +263,17 @@ sv:
         destroy_email_domain_block_html: "%{name} avblockerade e-post domänet %{target}"
         destroy_instance_html: "%{name} rensade domän %{target}"
         destroy_ip_block_html: "%{name} tog bort regel för IP %{target}"
+        destroy_relay_html: "%{name} tog bort ombudet %{target}"
         destroy_status_html: "%{name} tog bort inlägget av %{target}"
         destroy_unavailable_domain_html: "%{name} återupptog leverans till domänen %{target}"
         destroy_user_role_html: "%{name} raderade rollen %{target}"
         disable_2fa_user_html: "%{name} inaktiverade tvåfaktorsautentiseringskrav för användaren %{target}"
         disable_custom_emoji_html: "%{name} inaktiverade emoji %{target}"
+        disable_relay_html: "%{name} inaktiverade ombudet %{target}"
         disable_sign_in_token_auth_user_html: "%{name} inaktiverade e-posttokenautentisering för %{target}"
         disable_user_html: "%{name} stängde av inloggning för användaren %{target}"
         enable_custom_emoji_html: "%{name} aktiverade emoji %{target}"
+        enable_relay_html: "%{name} aktiverat ombudet %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktiverade e-posttokenautentisering för %{target}"
         enable_user_html: "%{name} aktiverade inloggning för användaren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto till en minnessida"
@@ -571,7 +579,7 @@ sv:
     relationships:
       title: "%{acct}s relationer"
     relays:
-      add_new: Lägg till nytt relä
+      add_new: Lägg till nytt ombud
       delete: Radera
       description_html: Ett <strong>federeringsombud</strong> är en mellanliggande server som utbyter höga antal offentliga inlägg mellan servrar som prenumererar på och publicerar till det. <strong>Det kan hjälpa små och medelstora servrar upptäcka innehåll från fediversumet</strong>, vilket annars skulle kräva att lokala användare manuellt följer personer på fjärrservrar.
       disable: Inaktivera
@@ -582,10 +590,10 @@ sv:
       inbox_url: Ombuds-URL
       pending: Väntar på ombudets godkännande
       save_and_enable: Spara och aktivera
-      setup: Konfigurera en relä-anslutning
-      signatures_not_enabled: Ombud fungerar inte korrekt medan säkert läge eller begränsat federeringsläge är aktiverade
+      setup: Konfigurera ett ombud
+      signatures_not_enabled: Ombud fungerar inte korrekt om säkert läge eller begränsat federeringsläge är aktiverade
       status: Status
-      title: Relä
+      title: Ombud
     report_notes:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
@@ -836,7 +844,7 @@ sv:
       title: Kontoinlägg
       trending: Trendande
       visibility: Synlighet
-      with_media: med media
+      with_media: Med media
     strikes:
       actions:
         delete_statuses: "%{name} raderade %{target}s inlägg"
@@ -1494,7 +1502,7 @@ sv:
       not_ready: Kan inte bifoga filer som inte har behandlats färdigt. Försök igen om ett ögonblick!
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
-    acct: användarnamn@domän av det nya kontot
+    acct: Flyttad till
     cancel: Avbryt omdirigering
     cancel_explanation: Avstängning av omdirigeringen kommer att återaktivera ditt nuvarande konto, men kommer inte att återskapa följare som har flyttats till det kontot.
     cancelled_msg: Avbröt omdirigeringen.
@@ -1703,7 +1711,7 @@ sv:
       ios: iOS
       kai_os: KaiOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       unknown_platform: Okänd plattform
       windows: Windows
       windows_mobile: Windows Mobile
@@ -1879,7 +1887,7 @@ sv:
       subject: Andra faktorns autentiseringsfel
       title: Misslyckad tvåfaktorsautentisering
     suspicious_sign_in:
-      change_password: Ändra ditt lösenord
+      change_password: ändra ditt lösenord
       details: 'Här är inloggningsdetaljerna:'
       explanation: Vi har upptäckt en inloggning till ditt konto från en ny IP-adress.
       further_actions_html: Om detta inte var du, rekommenderar vi att du snarast %{action} och aktiverar tvåfaktorsautentisering för att hålla ditt konto säkert.

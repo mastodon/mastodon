@@ -125,7 +125,7 @@ class User < ApplicationRecord
   scope :signed_in_recently, -> { where(current_sign_in_at: ACTIVE_DURATION.ago..) }
   scope :not_signed_in_recently, -> { where(current_sign_in_at: ...ACTIVE_DURATION.ago) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
-  scope :matches_ip, ->(value) { left_joins(:ips).where('user_ips.ip <<= ?', value).group('users.id') }
+  scope :matches_ip, ->(value) { left_joins(:ips).merge(IpBlock.contained_by(value)).group('users.id') }
 
   before_validation :sanitize_role
   before_create :set_approved
@@ -340,7 +340,7 @@ class User < ApplicationRecord
     Doorkeeper::AccessGrant.by_resource_owner(self).update_all(revoked_at: Time.now.utc)
 
     Doorkeeper::AccessToken.by_resource_owner(self).in_batches do |batch|
-      batch.update_all(revoked_at: Time.now.utc)
+      batch.touch_all(:revoked_at)
       Web::PushSubscription.where(access_token_id: batch).delete_all
 
       # Revoke each access token for the Streaming API, since `update_all``
@@ -444,7 +444,7 @@ class User < ApplicationRecord
   end
 
   def sign_up_from_ip_requires_approval?
-    sign_up_ip.present? && IpBlock.severity_sign_up_requires_approval.exists?(['ip >>= ?', sign_up_ip.to_s])
+    sign_up_ip.present? && IpBlock.severity_sign_up_requires_approval.containing(sign_up_ip.to_s).exists?
   end
 
   def sign_up_email_requires_approval?

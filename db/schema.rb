@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_04_082851) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -261,10 +261,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_04_082851) do
   end
 
   create_table "annual_report_statuses_per_account_counts", force: :cascade do |t|
-   t.integer "year", null: false
-   t.bigint "account_id", null: false
-   t.bigint "statuses_count", null: false
-   t.index ["year", "account_id"], name: "idx_on_year_account_id_ff3e167cef", unique: true
+    t.integer "year", null: false
+    t.bigint "account_id", null: false
+    t.bigint "statuses_count", null: false
+    t.index ["year", "account_id"], name: "idx_on_year_account_id_ff3e167cef", unique: true
   end
 
   create_table "appeals", force: :cascade do |t|
