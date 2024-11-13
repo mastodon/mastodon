@@ -26,6 +26,10 @@ class SoftwareUpdate < ApplicationRecord
     Mastodon::Version.gem_version >= gem_version
   end
 
+  def pending?
+    gem_version > Mastodon::Version.gem_version
+  end
+
   class << self
     def check_enabled?
       Rails.configuration.x.mastodon.software_update_url.present?
@@ -34,7 +38,7 @@ class SoftwareUpdate < ApplicationRecord
     def pending_to_a
       return [] unless check_enabled?
 
-      all.to_a.filter { |update| update.gem_version > Mastodon::Version.gem_version }
+      all.to_a.filter(&:pending?)
     end
 
     def urgent_pending?
