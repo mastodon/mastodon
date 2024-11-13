@@ -150,10 +150,6 @@ export function EmbedModal () {
   return import(/* webpackChunkName: "modals/embed_modal" */'../components/embed_modal');
 }
 
-export function ListEditor () {
-  return import(/* webpackChunkName: "features/list_editor" */'../../list_editor');
-}
-
 export function ListAdder () {
   return import(/*webpackChunkName: "features/list_adder" */'../../list_adder');
 }
@@ -220,4 +216,12 @@ export function LinkTimeline () {
 
 export function AnnualReportModal () {
   return import(/*webpackChunkName: "modals/annual_report_modal" */'../components/annual_report_modal');
+}
+
+export function ListEdit () {
+  return import(/*webpackChunkName: "features/lists" */'../../lists/new');
+}
+
+export function ListMembers () {
+  return import(/* webpackChunkName: "features/lists" */'../../lists/members');
 }

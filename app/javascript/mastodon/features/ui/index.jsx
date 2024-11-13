@@ -58,11 +58,13 @@ import {
   FollowedTags,
   LinkTimeline,
   ListTimeline,
+  Lists,
+  ListEdit,
+  ListMembers,
   Blocks,
   DomainBlocks,
   Mutes,
   PinnedStatuses,
-  Lists,
   Directory,
   Explore,
   Onboarding,
@@ -205,6 +207,9 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
             <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
             <WrappedRoute path='/links/:url' component={LinkTimeline} content={children} />
+            <WrappedRoute path='/lists/new' component={ListEdit} content={children} />
+            <WrappedRoute path='/lists/:id/edit' component={ListEdit} content={children} />
+            <WrappedRoute path='/lists/:id/members' component={ListMembers} content={children} />
             <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
             <WrappedRoute path='/notifications' component={NotificationsWrapper} content={children} exact />
             <WrappedRoute path='/notifications/requests' component={NotificationRequests} content={children} exact />
