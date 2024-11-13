@@ -49,3 +49,7 @@ jobs:
       - name: Run brakeman
         if: always() # Run both checks, even if the first failed
         run: bin/brakeman
+
+      - name: Check for unused routes
+        if: always()
+        run: bin/rails routes --unused
