@@ -50,5 +50,5 @@ jobs:
       - name: Check for unused routes
         if: always()
         env:
-          RAILS_ENV: development
+          RAILS_ENV: test
         run: bin/rails routes --unused
