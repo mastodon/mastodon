@@ -187,6 +187,7 @@ hu:
         create_domain_block: Domain tiltás létrehozása
         create_email_domain_block: E-mail-domain-tiltás létrehozása
         create_ip_block: IP szabály létrehozása
+        create_relay: Továbbító létrehozása
         create_unavailable_domain: Elérhetetlen domain létrehozása
         create_user_role: Szerepkör létrehozása
         demote_user: Felhasználó lefokozása
@@ -198,14 +199,17 @@ hu:
         destroy_email_domain_block: E-mail-domain-tiltás törlése
         destroy_instance: Domain végleges törlése
         destroy_ip_block: IP szabály törlése
+        destroy_relay: Továbbító törlése
         destroy_status: Bejegyzés törlése
         destroy_unavailable_domain: Elérhetetlen domain törlése
         destroy_user_role: Szerepkör eltávolítása
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
         disable_custom_emoji: Egyéni emodzsi letiltása
+        disable_relay: Továbbító letiltása
         disable_sign_in_token_auth_user: A felhasználó tokenes e-mail-hitelesítésének letiltása
         disable_user: Felhasználói letiltása
         enable_custom_emoji: Egyéni emodzsi engedélyezése
+        enable_relay: Továbbító engedélyezése
         enable_sign_in_token_auth_user: A felhasználó tokenes e-mail-hitelesítésének engedélyezése
         enable_user: Felhasználó engedélyezése
         memorialize_account: Fiók emlékké nyilvánítása
@@ -247,6 +251,7 @@ hu:
         create_domain_block_html: "%{name} letiltotta a %{target} domaint"
         create_email_domain_block_html: "%{name} letiltotta a(z) %{target} e-mail-domaint"
         create_ip_block_html: "%{name} létrehozta a(z) %{target} IP-címre vonatkozó szabályt"
+        create_relay_html: "%{name} létrehozta az átirányítót: %{target}"
         create_unavailable_domain_html: "%{name} leállította a kézbesítést a %{target} domainbe"
         create_user_role_html: "%{name} létrehozta a(z) %{target} szerepkört"
         demote_user_html: "%{name} lefokozta %{target} felhasználót"
@@ -258,14 +263,17 @@ hu:
         destroy_email_domain_block_html: "%{name} engedélyezte a(z) %{target} e-mail-domaint"
         destroy_instance_html: "%{name} véglegesen törölte a(z) %{target} domaint"
         destroy_ip_block_html: "%{name} törölte a(z) %{target} IP-címre vonatkozó szabályt"
+        destroy_relay_html: "%{name} törölte az átirányítót: %{target}"
         destroy_status_html: "%{name} eltávolította %{target} felhasználó bejegyzését"
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
         destroy_user_role_html: "%{name} törölte a(z) %{target} szerepkört"
         disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős hitelesítést %{target} felhasználó fiókján"
         disable_custom_emoji_html: "%{name} letiltotta az emodzsit: %{target}"
+        disable_relay_html: "%{name} letiltotta az átirányítót: %{target}"
         disable_sign_in_token_auth_user_html: "%{name} letiltotta a tokenes e-mail-hitelesítést %{target} felhasználóra"
         disable_user_html: "%{name} letiltotta %{target} felhasználó bejelentkezését"
         enable_custom_emoji_html: "%{name} engedélyezte az emodzsit: %{target}"
+        enable_relay_html: "%{name} engedélyezte az átirányítót: %{target}"
         enable_sign_in_token_auth_user_html: "%{name} engedélyezte a tokenes e-mail-hitelesítést %{target} felhasználóra"
         enable_user_html: "%{name} engedélyezte %{target} felhasználó bejelentkezését"
         memorialize_account_html: "%{name} emléket állított %{target} felhasználónak"

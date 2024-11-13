@@ -184,6 +184,7 @@ zh-CN:
         create_domain_block: 封禁新域名
         create_email_domain_block: 封禁新的邮箱域名
         create_ip_block: 新建 IP 规则
+        create_relay: 创建中继站
         create_unavailable_domain: 创建不可用域名
         create_user_role: 创建角色
         demote_user: 给用户降职
@@ -195,14 +196,17 @@ zh-CN:
         destroy_email_domain_block: 解除邮箱域名封禁
         destroy_instance: 删除实例
         destroy_ip_block: 删除 IP 规则
+        destroy_relay: 删除中继站
         destroy_status: 删除嘟文
         destroy_unavailable_domain: 删除不可用域名
         destroy_user_role: 销毁角色
         disable_2fa_user: 停用双因素认证
         disable_custom_emoji: 禁用自定义表情符号
+        disable_relay: 禁用中继站
         disable_sign_in_token_auth_user: 为用户禁用邮件令牌身份验证
         disable_user: 禁用用户
         enable_custom_emoji: 启用自定义表情符号
+        enable_relay: 启用中继站
         enable_sign_in_token_auth_user: 为用户启用邮件令牌身份验证
         enable_user: 启用用户
         memorialize_account: 将账户设为追悼模式
@@ -244,6 +248,7 @@ zh-CN:
         create_domain_block_html: "%{name} 屏蔽了域名 %{target}"
         create_email_domain_block_html: "%{name} 封禁了邮箱域名 %{target}"
         create_ip_block_html: "%{name} 为 IP %{target} 创建了规则"
+        create_relay_html: "%{name} 添加了中继站 %{target}"
         create_unavailable_domain_html: "%{name} 停止了向域名 %{target} 的投递"
         create_user_role_html: "%{name} 创建了 %{target} 角色"
         demote_user_html: "%{name} 对用户 %{target} 进行了降任操作"
@@ -255,14 +260,17 @@ zh-CN:
         destroy_email_domain_block_html: "%{name} 解封了邮箱域名 %{target}"
         destroy_instance_html: "%{name} 删除了实例 %{target}"
         destroy_ip_block_html: "%{name} 删除了 IP %{target} 的规则"
+        destroy_relay_html: "%{name} 删除了中继站 %{target}"
         destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
         destroy_user_role_html: "%{name} 删除了 %{target} 角色"
         disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双因素认证"
         disable_custom_emoji_html: "%{name} 停用了自定义表情 %{target}"
+        disable_relay_html: "%{name} 停用了中继站 %{target}"
         disable_sign_in_token_auth_user_html: "%{name} 为 %{target} 禁用了邮件令牌身份验证"
         disable_user_html: "%{name} 将用户 %{target} 设置为禁止登录"
         enable_custom_emoji_html: "%{name} 启用了自定义表情 %{target}"
+        enable_relay_html: "%{name} 启用了中继站 %{target}"
         enable_sign_in_token_auth_user_html: "%{name} 为 %{target} 启用了邮件令牌身份验证"
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼账户"

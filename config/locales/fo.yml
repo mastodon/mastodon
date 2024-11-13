@@ -187,6 +187,7 @@ fo:
         create_domain_block: Stovna navnaøkjablokering
         create_email_domain_block: Stovna t-post-økisnavnablokk
         create_ip_block: Stovna IP reglu
+        create_relay: Stovna reiðlag
         create_unavailable_domain: Stovna navnaøki, sum ikki er tøkt
         create_user_role: Stovna leiklut
         demote_user: Lækka brúkara í tign
@@ -198,14 +199,17 @@ fo:
         destroy_email_domain_block: Strika t-posta-økisnavnablokk
         destroy_instance: Reinsa navnaøki
         destroy_ip_block: Strika IP reglu
+        destroy_relay: Strika reiðlag
         destroy_status: Strika post
         destroy_unavailable_domain: Strika navnaøki, sum ikki er tøkt
         destroy_user_role: Bein burtur leiklut
         disable_2fa_user: Ger 2FA óvirkið
         disable_custom_emoji: Ger serligt kenslutekn óvirkið
+        disable_relay: Ger reiðlag óvirkið
         disable_sign_in_token_auth_user: Ger váttan við teldupostateknum óvirkna fyri brúkara
         disable_user: Ger brúkara óvirknan
         enable_custom_emoji: Ger serligt kenslutekn virkið
+        enable_relay: Ger reiðlag virkið
         enable_sign_in_token_auth_user: Ger váttan við teldupostateknum virkna fyri brúkara
         enable_user: Ger brúkara virknan
         memorialize_account: Minnst til Konto
@@ -247,6 +251,7 @@ fo:
         create_domain_block_html: "%{name} blokeraði navnaøkið %{target}"
         create_email_domain_block_html: "%{name} blokeraði teldupostanavnaøkið %{target}"
         create_ip_block_html: "%{name} gjørdi reglu fyri IP %{target}"
+        create_relay_html: "%{name} gjørdi eitt reiðlag %{target}"
         create_unavailable_domain_html: "%{name} steðgaði veiting til navnaøkið %{target}"
         create_user_role_html: "%{name} stovnaði %{target} leiklutin"
         demote_user_html: "%{name} lækkaði tignina hjá brúkaranum %{target}"
@@ -258,14 +263,17 @@ fo:
         destroy_email_domain_block_html: "%{name} leysgav teldupostanavnaøkið %{target}"
         destroy_instance_html: "%{name} reinsaði navnaøkið %{target}"
         destroy_ip_block_html: "%{name} slettaðar reglur fyri IP %{target}"
+        destroy_relay_html: "%{name} strikaði reiðlagið %{target}"
         destroy_status_html: "%{name} slettaði upplegg hjá %{target}"
         destroy_unavailable_domain_html: "%{name} tók upp aftir veiting til navnaøkið %{target}"
         destroy_user_role_html: "%{name} slettaði leiklutin hjá %{target}"
         disable_2fa_user_html: "%{name} slepti kravið um váttan í tveimum stigum fyri brúkaran %{target}"
         disable_custom_emoji_html: "%{name} gjørdi kensluteknið %{target} óvirkið"
+        disable_relay_html: "%{name} gjørdi reiðlagið %{target} óvirkið"
         disable_sign_in_token_auth_user_html: "%{name} gjørdi váttan við teldupostteknum óvirkna fyri %{target}"
         disable_user_html: "%{name} gjørdi innritan hjá brúkaranum %{target} óvirkna"
         enable_custom_emoji_html: "%{name} gjørdi kensluteknið %{target} virkið"
+        enable_relay_html: "%{name} gjørdi reiðlagið %{target} virkið"
         enable_sign_in_token_auth_user_html: "%{name} gjørdi váttan við teldupostteknum virkna fyri %{target}"
         enable_user_html: "%{name} gjørdi innritan virkna fyri brúkaran %{target}"
         memorialize_account_html: "%{name} broytti kontuna hjá %{target} til eina minnissíðu"

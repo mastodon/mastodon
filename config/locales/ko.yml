@@ -184,6 +184,7 @@ ko:
         create_domain_block: 도메인 차단 추가
         create_email_domain_block: 이메일 도메인 차단 생성
         create_ip_block: IP 규칙 만들기
+        create_relay: 릴레이 생성
         create_unavailable_domain: 사용 불가능한 도메인 생성
         create_user_role: 역할 생성
         demote_user: 사용자 강등
@@ -195,14 +196,17 @@ ko:
         destroy_email_domain_block: 이메일 도메인 차단 삭제
         destroy_instance: 도메인 퍼지하기
         destroy_ip_block: IP 규칙 삭제
+        destroy_relay: 릴레이 삭제
         destroy_status: 게시물 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
         destroy_user_role: 역할 삭제
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
+        disable_relay: 릴레이 비활성화
         disable_sign_in_token_auth_user: 사용자의 이메일 토큰 인증 비활성화
         disable_user: 사용자 비활성화
         enable_custom_emoji: 커스텀 에모지 활성화
+        enable_relay: 릴레이 활성화
         enable_sign_in_token_auth_user: 사용자의 이메일 토큰 인증 활성화
         enable_user: 사용자 활성화
         memorialize_account: 고인의 계정으로 전환
@@ -244,6 +248,7 @@ ko:
         create_domain_block_html: "%{name} 님이 도메인 %{target}를 차단했습니다"
         create_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}를 차단했습니다"
         create_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
+        create_relay_html: "%{name} 님이 릴레이 %{target}를 생성했습니다"
         create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
         create_user_role_html: "%{name} 님이 %{target} 역할을 생성했습니다"
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
@@ -255,14 +260,17 @@ ko:
         destroy_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}을 차단 해제하였습니다"
         destroy_instance_html: "%{name} 님이 도메인 %{target}를 제거했습니다"
         destroy_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 삭제하였습니다"
+        destroy_relay_html: "%{name} 님이 릴레이 %{target}를 삭제했습니다"
         destroy_status_html: "%{name} 님이 %{target} 님의 게시물을 삭제했습니다"
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         destroy_user_role_html: "%{name} 님이 %{target} 역할을 삭제했습니다"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target} 님의 2단계 인증을 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화했습니다"
+        disable_relay_html: "%{name} 님이 릴레이 %{target}를 비활성화했습니다"
         disable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 비활성화했습니다"
         disable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 비활성화했습니다"
         enable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 활성화했습니다"
+        enable_relay_html: "%{name} 님이 릴레이 %{target}를 활성화했습니다"
         enable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 활성화했습니다"
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화했습니다"
         memorialize_account_html: "%{name} 님이 %{target}의 계정을 고인의 계정 페이지로 전환했습니다"

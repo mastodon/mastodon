@@ -184,6 +184,7 @@ zh-TW:
         create_domain_block: 新增網域封鎖
         create_email_domain_block: 新增電子郵件網域封鎖
         create_ip_block: 新增IP規則
+        create_relay: 新增中繼
         create_unavailable_domain: 新增無法存取的網域
         create_user_role: 新增角色
         demote_user: 將用戶降級
@@ -195,14 +196,17 @@ zh-TW:
         destroy_email_domain_block: 刪除電子郵件網域封鎖
         destroy_instance: 清除網域
         destroy_ip_block: 刪除 IP 規則
+        destroy_relay: 刪除中繼
         destroy_status: 刪除狀態
         destroy_unavailable_domain: 刪除無法存取的網域
         destroy_user_role: 移除角色
         disable_2fa_user: 停用兩階段驗證
         disable_custom_emoji: 停用自訂 emoji 表情符號
+        disable_relay: 停用中繼
         disable_sign_in_token_auth_user: 停用使用者電子郵件 token 驗證
         disable_user: 停用帳號
         enable_custom_emoji: 啟用自訂 emoji 表情符號
+        enable_relay: 啟用中繼
         enable_sign_in_token_auth_user: 啟用使用者電子郵件 token 驗證
         enable_user: 啓用帳號
         memorialize_account: 設定成追悼帳號
@@ -244,6 +248,7 @@ zh-TW:
         create_domain_block_html: "%{name} 已封鎖網域 %{target}"
         create_email_domain_block_html: "%{name} 已封鎖電子郵件網域 %{target}"
         create_ip_block_html: "%{name} 已設定 IP %{target} 的規則"
+        create_relay_html: "%{name} 已新增中繼 %{target}"
         create_unavailable_domain_html: "%{name} 停止發送至網域 %{target}"
         create_user_role_html: "%{name} 已新增 %{target} 角色"
         demote_user_html: "%{name} 將使用者 %{target} 降級"
@@ -255,14 +260,17 @@ zh-TW:
         destroy_email_domain_block_html: "%{name} 已解除封鎖電子郵件網域 %{target}"
         destroy_instance_html: "%{name} 已清除網域 %{target}"
         destroy_ip_block_html: "%{name} 已刪除 IP %{target} 的規則"
+        destroy_relay_html: "%{name} 已刪除中繼 %{target}"
         destroy_status_html: "%{name} 已刪除 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 已恢復對網域 %{target} 的發送"
         destroy_user_role_html: "%{name} 已刪除 %{target} 角色"
         disable_2fa_user_html: "%{name} 已停用使用者 %{target} 的兩階段驗證 (2FA) "
         disable_custom_emoji_html: "%{name} 已停用自訂 emoji 表情符號 %{target}"
+        disable_relay_html: "%{name} 已停用中繼 %{target}"
         disable_sign_in_token_auth_user_html: "%{name} 已停用 %{target} 之使用者電子郵件 token 驗證"
         disable_user_html: "%{name} 將使用者 %{target} 設定為禁止登入"
         enable_custom_emoji_html: "%{name} 已啟用自訂 emoji 表情符號 %{target}"
+        enable_relay_html: "%{name} 已啟用中繼 %{target}"
         enable_sign_in_token_auth_user_html: "%{name} 已啟用 %{target} 之使用者電子郵件 token 驗證"
         enable_user_html: "%{name} 將使用者 %{target} 設定為允許登入"
         memorialize_account_html: "%{name} 將 %{target} 設定為追悼帳號"
@@ -560,7 +568,7 @@ zh-TW:
     relationships:
       title: "%{acct} 的關係"
     relays:
-      add_new: 新增中繼站
+      add_new: 新增中繼
       delete: 刪除
       description_html: "<strong>聯邦中繼站</strong> 是種中繼伺服器，會於訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器自聯邦宇宙中探索內容</strong>，而無須本地使用者手動跟隨遠端伺服器的其他使用者。"
       disable: 停用
