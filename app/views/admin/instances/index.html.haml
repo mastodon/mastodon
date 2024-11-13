@@ -27,6 +27,7 @@
     %strong= t('admin.instances.availability.title')
     %ul
       %li= filter_link_to t('admin.instances.delivery.all'), availability: nil
+      %li= filter_link_to t('admin.instances.delivery.available'), availability: 'available'
       %li= filter_link_to t('admin.instances.delivery.failing'), availability: 'failing'
       %li= filter_link_to t('admin.instances.delivery.unavailable'), availability: 'unavailable'
 
