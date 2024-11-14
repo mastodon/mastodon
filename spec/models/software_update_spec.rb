@@ -16,6 +16,16 @@ RSpec.describe SoftwareUpdate do
     end
   end
 
+  describe '.by_version' do
+    let!(:latest_update) { Fabricate :software_update, version: '4.0.0' }
+    let!(:older_update) { Fabricate :software_update, version: '3.0.0' }
+
+    it 'returns record in gem version order' do
+      expect(described_class.by_version)
+        .to eq([older_update, latest_update])
+    end
+  end
+
   describe '#pending?' do
     subject { described_class.new(version: update_version) }
 
