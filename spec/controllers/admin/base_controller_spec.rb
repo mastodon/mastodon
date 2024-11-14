@@ -10,8 +10,9 @@ RSpec.describe Admin::BaseController do
     end
   end
 
+  before { routes.draw { get 'success' => 'admin/base#success' } }
+
   it 'requires administrator or moderator' do
-    routes.draw { get 'success' => 'admin/base#success' }
     sign_in(Fabricate(:user))
     get :success
 
@@ -19,7 +20,6 @@ RSpec.describe Admin::BaseController do
   end
 
   it 'returns private cache control headers' do
-    routes.draw { get 'success' => 'admin/base#success' }
     sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Moderator')))
     get :success
 
@@ -27,14 +27,12 @@ RSpec.describe Admin::BaseController do
   end
 
   it 'renders admin layout as a moderator' do
-    routes.draw { get 'success' => 'admin/base#success' }
     sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Moderator')))
     get :success
     expect(response).to render_template layout: 'admin'
   end
 
   it 'renders admin layout as an admin' do
-    routes.draw { get 'success' => 'admin/base#success' }
     sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Admin')))
     get :success
     expect(response).to render_template layout: 'admin'
