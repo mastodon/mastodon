@@ -37,6 +37,10 @@ class SoftwareUpdate < ApplicationRecord
       Rails.configuration.x.mastodon.software_update_url.present?
     end
 
+    def by_version
+      all.sort_by(&:gem_version)
+    end
+
     def pending_to_a
       return [] unless check_enabled?
 
