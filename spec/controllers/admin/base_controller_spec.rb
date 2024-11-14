@@ -12,29 +12,42 @@ RSpec.describe Admin::BaseController do
 
   before { routes.draw { get 'success' => 'admin/base#success' } }
 
-  it 'requires administrator or moderator' do
-    sign_in(Fabricate(:user))
-    get :success
+  context 'when accessed by regular user' do
+    before { sign_in(Fabricate(:user)) }
 
-    expect(response).to have_http_status(403)
+    it 'returns forbidden' do
+      get :success
+
+      expect(response)
+        .to have_http_status(403)
+    end
   end
 
-  it 'returns private cache control headers' do
-    sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Moderator')))
-    get :success
+  context 'when accessed by moderator' do
+    before { sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Moderator'))) }
 
-    expect(response.headers['Cache-Control']).to include('private, no-store')
+    it 'returns http success, private cache control, and uses admin layout' do
+      get :success
+
+      expect(response)
+        .to have_http_status(200)
+      expect(response.headers['Cache-Control'])
+        .to include('private, no-store')
+      expect(response)
+        .to render_template layout: 'admin'
+    end
   end
 
-  it 'renders admin layout as a moderator' do
-    sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Moderator')))
-    get :success
-    expect(response).to render_template layout: 'admin'
-  end
+  context 'when accessed by admin' do
+    before { sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Admin'))) }
 
-  it 'renders admin layout as an admin' do
-    sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Admin')))
-    get :success
-    expect(response).to render_template layout: 'admin'
+    it 'returns http success and uses admin layout' do
+      get :success
+
+      expect(response)
+        .to have_http_status(200)
+      expect(response)
+        .to render_template layout: 'admin'
+    end
   end
 end
