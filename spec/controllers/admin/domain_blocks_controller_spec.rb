@@ -6,7 +6,7 @@ RSpec.describe Admin::DomainBlocksController do
   render_views
 
   before do
-    sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
+    sign_in Fabricate(:admin_user), scope: :user
   end
 
   describe 'GET #new' do

@@ -7,7 +7,7 @@ RSpec.describe Disputes::AppealsController do
 
   before { sign_in current_user, scope: :user }
 
-  let!(:admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let!(:admin) { Fabricate(:admin_user) }
 
   describe '#create' do
     subject { post :create, params: params }
