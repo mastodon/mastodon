@@ -279,11 +279,11 @@ RSpec.describe ApplicationHelper do
         expect(helper.html_title).to be_html_safe
       end
 
-      it 'removes extra new lines' do
+      it 'does not escape twice' do
         Setting.site_title = 'Site Title'
-        helper.content_for(:page_title, "Test Value\n")
+        helper.content_for(:page_title, '&quot;Test Value&quot;'.html_safe)
 
-        expect(helper.html_title).to eq 'Test Value - Site Title'
+        expect(helper.html_title).to eq '&quot;Test Value&quot; - Site Title'
         expect(helper.html_title).to be_html_safe
       end
     end
