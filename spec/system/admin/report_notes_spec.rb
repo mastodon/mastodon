@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin Report Notes' do
-  let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:user) { Fabricate(:admin_user) }
 
   before { sign_in user }
 

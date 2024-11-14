@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin Rules' do
   describe 'Managing rules' do
-    before { sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    before { sign_in Fabricate(:admin_user) }
 
     describe 'Viewing rules' do
       let!(:rule) { Fabricate :rule, text: 'This is a rule' }

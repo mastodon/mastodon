@@ -8,7 +8,7 @@ RSpec.describe Admin::AccountsController do
   before { sign_in current_user, scope: :user }
 
   describe 'GET #index' do
-    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let(:current_user) { Fabricate(:admin_user) }
     let(:params) do
       {
         origin: 'local',
@@ -53,7 +53,7 @@ RSpec.describe Admin::AccountsController do
   end
 
   describe 'GET #show' do
-    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let(:current_user) { Fabricate(:admin_user) }
 
     describe 'account moderation notes' do
       let(:account) { Fabricate(:account) }

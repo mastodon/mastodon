@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin Webhooks' do
   describe 'Managing webhooks' do
-    before { sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    before { sign_in Fabricate(:admin_user) }
 
     describe 'Viewing webhooks' do
       let!(:webhook) { Fabricate :webhook }

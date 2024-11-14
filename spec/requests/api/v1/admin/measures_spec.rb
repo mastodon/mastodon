@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin Measures' do
-  let(:user)    { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:user)    { Fabricate(:admin_user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
   let(:account) { Fabricate(:account) }

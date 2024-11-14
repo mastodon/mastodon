@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Dispute Appeals' do
   let(:user) { Fabricate(:user) }
-  let!(:admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let!(:admin) { Fabricate(:admin_user) }
 
   before { sign_in user }
 
