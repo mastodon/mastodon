@@ -397,6 +397,7 @@ class Status extends ImmutablePureComponent {
     const connectUp = previousId && previousId === status.get('in_reply_to_id');
     const connectToRoot = rootId && rootId === status.get('in_reply_to_id');
     const connectReply = nextInReplyToId && nextInReplyToId === status.get('id');
+    const matchedFilters = status.get('matched_filters');
 
     if (featured) {
       prepend = (
@@ -432,7 +433,6 @@ class Status extends ImmutablePureComponent {
       );
     }
 
-    const matchedFilters = status.get('matched_filters');
     const expanded = (!matchedFilters || this.state.showDespiteFilter) && (!status.get('hidden') || status.get('spoiler_text').length === 0);
 
     if (hidden) {
