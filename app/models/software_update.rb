@@ -18,6 +18,8 @@ class SoftwareUpdate < ApplicationRecord
 
   enum :type, { patch: 0, minor: 1, major: 2 }, suffix: :type
 
+  scope :urgent, -> { where(urgent: true) }
+
   def gem_version
     Gem::Version.new(version)
   end
