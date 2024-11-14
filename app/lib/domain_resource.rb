@@ -3,7 +3,7 @@
 class DomainResource
   attr_reader :domain
 
-  TIMEOUT_LIMIT = 5
+  RESOLVE_TIMEOUT = 5
 
   def initialize(domain)
     @domain = domain
@@ -11,7 +11,7 @@ class DomainResource
 
   def mx
     Resolv::DNS.open do |dns|
-      dns.timeouts = TIMEOUT_LIMIT
+      dns.timeouts = RESOLVE_TIMEOUT
       dns
         .getresources(domain, Resolv::DNS::Resource::IN::MX)
         .to_a
