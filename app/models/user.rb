@@ -457,13 +457,7 @@ class User < ApplicationRecord
 
     # Doing this conditionally is not very satisfying, but this is consistent
     # with the MX records validations we do and keeps the specs tractable.
-    unless self.class.skip_mx_check?
-      Resolv::DNS.open do |dns|
-        dns.timeouts = 5
-
-        records = dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }.compact_blank
-      end
-    end
+    records = DomainResource.new(domain).mx unless self.class.skip_mx_check?
 
     EmailDomainBlock.requires_approval?(records + [domain], attempt_ip: sign_up_ip)
   end
