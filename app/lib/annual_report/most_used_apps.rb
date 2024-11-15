@@ -17,6 +17,6 @@ class AnnualReport::MostUsedApps < AnnualReport::Source
   private
 
   def most_used_apps
-    report_statuses.joins(:application).group('oauth_applications.name').order(count_all: :desc).limit(SET_SIZE).count
+    report_statuses.joins(:application).group(oauth_applications: [:name]).order(count_all: :desc).limit(SET_SIZE).count
   end
 end
