@@ -89,6 +89,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner, dependent: nil
+  has_many :access_tokens, class_name: 'Doorkeeper::AccessToken', foreign_key: :resource_owner_id, dependent: nil, inverse_of: false
   has_many :backups, inverse_of: :user, dependent: nil
   has_many :invites, inverse_of: :user, dependent: nil
   has_many :markers, inverse_of: :user, dependent: :destroy
@@ -281,8 +282,7 @@ class User < ApplicationRecord
   end
 
   def applications_last_used
-    Doorkeeper::AccessToken
-      .where(resource_owner_id: id)
+    access_tokens
       .used
       .group(:application_id)
       .maximum(:last_used_at)
