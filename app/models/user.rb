@@ -283,7 +283,7 @@ class User < ApplicationRecord
   def applications_last_used
     Doorkeeper::AccessToken
       .where(resource_owner_id: id)
-      .where.not(last_used_at: nil)
+      .used
       .group(:application_id)
       .maximum(:last_used_at)
       .to_h
