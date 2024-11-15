@@ -65,7 +65,7 @@
   %p.lead= t('author_attribution.then_instructions')
 
   .fields-group
-    = f.input :attribution_domains_as_text, as: :text, wrapper: :with_block_label, input_html: { placeholder: "example1.com\nexample2.com\nexample3.com", rows: 4 }
+    = f.input :attribution_domains_as_text, as: :text, wrapper: :with_block_label, input_html: { placeholder: "example1.com\nexample2.com\nexample3.com", rows: 4, autocapitalize: 'none', autocorrect: 'off' }
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
