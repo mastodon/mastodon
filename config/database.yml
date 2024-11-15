@@ -62,3 +62,4 @@ production:
     port: <%= ENV['REPLICA_DB_PORT'] ||ENV['DB_PORT'] || 5432 %>
     prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
     replica: true
+    database_tasks: <%= ENV['REPLICA_DB_TASKS'] || 'true' %>
