@@ -280,6 +280,16 @@ class User < ApplicationRecord
     save!
   end
 
+  def applications_last_used
+    Doorkeeper::AccessToken
+      .select('DISTINCT ON (application_id) application_id, last_used_at')
+      .where(resource_owner_id: id)
+      .where.not(last_used_at: nil)
+      .order(application_id: :desc, last_used_at: :desc)
+      .pluck(:application_id, :last_used_at)
+      .to_h
+  end
+
   def token_for_app(app)
     return nil if app.nil? || app.owner != self
 
