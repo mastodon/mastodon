@@ -15,15 +15,33 @@ RSpec.describe ActivityPub::DeliveryWorker do
   end
 
   describe 'perform' do
-    it 'performs a request' do
-      stub_request(:post, url).to_return(status: 200)
-      subject.perform(payload, sender.id, url, { synchronize_followers: true })
-      expect(a_request(:post, url).with(headers: { 'Collection-Synchronization' => "collectionId=\"#{account_followers_url(sender)}\", digest=\"somehash\", url=\"#{account_followers_synchronization_url(sender)}\"" })).to have_been_made.once
+    context 'with successful request' do
+      before { stub_request(:post, url).to_return(status: 200) }
+
+      it 'performs a request to synchronize collection' do
+        subject.perform(payload, sender.id, url, { synchronize_followers: true })
+
+        expect(request_to_url)
+          .to have_been_made.once
+      end
+
+      def request_to_url
+        a_request(:post, url)
+          .with(
+            headers: {
+              'Collection-Synchronization' => "collectionId=\"#{account_followers_url(sender)}\", digest=\"somehash\", url=\"#{account_followers_synchronization_url(sender)}\"",
+            }
+          )
+      end
     end
 
-    it 'raises when request fails' do
-      stub_request(:post, url).to_return(status: 500)
-      expect { subject.perform(payload, sender.id, url) }.to raise_error Mastodon::UnexpectedResponseError
+    context 'with failing request' do
+      before { stub_request(:post, url).to_return(status: 500) }
+
+      it 'raises error' do
+        expect { subject.perform(payload, sender.id, url) }
+          .to raise_error Mastodon::UnexpectedResponseError
+      end
     end
   end
 end
