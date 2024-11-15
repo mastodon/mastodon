@@ -48,7 +48,7 @@ module Account::Associations
     end
 
     # Status records pinned by the account
-    has_many :pinned_statuses, -> { reorder('status_pins.created_at DESC') }, through: :status_pins, class_name: 'Status', source: :status
+    has_many :pinned_statuses, -> { reorder(status_pins: { created_at: :desc }) }, through: :status_pins, class_name: 'Status', source: :status
 
     # Account records endorsed (pinned) by the account
     has_many :endorsed_accounts, through: :account_pins, class_name: 'Account', source: :target_account
