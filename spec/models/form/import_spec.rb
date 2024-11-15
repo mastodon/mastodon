@@ -237,13 +237,7 @@ RSpec.describe Form::Import do
       let(:import_file) { file }
       let(:import_mode) { mode }
 
-      before do
-        subject.save
-      end
-
-      it 'creates the expected rows' do
-        expect(account.bulk_imports.first.rows.pluck(:data)).to match_array(expected_rows)
-      end
+      before { subject.save }
 
       context 'with a BulkImport' do
         let(:bulk_import) { account.bulk_imports.first }
@@ -261,6 +255,8 @@ RSpec.describe Form::Import do
               total_items: eq(bulk_import.rows.count),
               state_unconfirmed?: be(true)
             )
+          expect(bulk_import.rows.pluck(:data))
+            .to match_array(expected_rows)
         end
       end
     end
