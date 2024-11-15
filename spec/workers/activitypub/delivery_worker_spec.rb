@@ -29,7 +29,9 @@ RSpec.describe ActivityPub::DeliveryWorker do
         a_request(:post, url)
           .with(
             headers: {
-              'Collection-Synchronization' => "collectionId=\"#{account_followers_url(sender)}\", digest=\"somehash\", url=\"#{account_followers_synchronization_url(sender)}\"",
+              'Collection-Synchronization' => <<~VALUES.squish,
+                collectionId="#{account_followers_url(sender)}", digest="somehash", url="#{account_followers_synchronization_url(sender)}"
+              VALUES
             }
           )
       end
