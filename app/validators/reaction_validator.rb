@@ -23,6 +23,6 @@ class ReactionValidator < ActiveModel::Validator
   end
 
   def limit_reached?(reaction)
-    reaction.announcement.announcement_reactions.where.not(name: reaction.name).count('distinct name') >= LIMIT
+    reaction.announcement.announcement_reactions.where.not(name: reaction.name).distinct.count(:name) >= LIMIT
   end
 end
