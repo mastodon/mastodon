@@ -2,9 +2,16 @@
 
 RSpec.shared_examples 'AccountAvatar' do |fabricator|
   describe 'static avatars', :attachment_processing do
-    describe 'when GIF' do
+    describe 'with a square GIF' do
       it 'creates a png static style' do
         account = Fabricate(fabricator, avatar: attachment_fixture('avatar.gif'))
+        expect(account.avatar_static_url).to_not eq account.avatar_original_url
+      end
+    end
+
+    describe 'with a higher-than-wide GIF' do
+      it 'creates a png static style' do
+        account = Fabricate(fabricator, avatar: attachment_fixture('avatar-high.gif'))
         expect(account.avatar_static_url).to_not eq account.avatar_original_url
       end
     end
