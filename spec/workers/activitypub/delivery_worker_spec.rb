@@ -5,8 +5,6 @@ require 'rails_helper'
 RSpec.describe ActivityPub::DeliveryWorker do
   include RoutingHelper
 
-  subject { described_class.new }
-
   let(:sender)  { Fabricate(:account) }
   let(:payload) { 'test' }
 
