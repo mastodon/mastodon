@@ -14,7 +14,7 @@ lv:
       not_found_in_database: Nederīga %{authentication_keys} vai parole.
       omniauth_user_creation_failure: Kļūda šīs identitātes konta izveidošanā.
       pending: Tavs konts joprojām tiek pārskatīts.
-      timeout: Sesijair beigusies. Lūgums vēlreiz pieteikties, lai turpinātu.
+      timeout: Sesija ir beigusies. Lūgums vēlreiz pieteikties, lai turpinātu.
       unauthenticated: Lai turpinātu, jāpiesakās vai jāreģistrējas.
       unconfirmed: Lai turpinātu, jāapliecina sava e-pasta adrese.
     mailer:
@@ -90,13 +90,13 @@ lv:
       no_token: Tu nevari piekļūt šai lapai, ja neesi saņēmis paroles atiestatīšanas e-pasta ziņojumu. Ja ienāci no paroles atiestatīšanas e-pasta, lūdzu, pārliecinies, vai izmanto visu norādīto URL.
       send_instructions: Ja tava e-pasta adrese ir mūsu datu bāzē, pēc dažām minūtēm uz savu e-pasta adresi saņemsi paroles atkopšanas saiti. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
       send_paranoid_instructions: Ja tava e-pasta adrese ir mūsu datu bāzē, pēc dažām minūtēm uz savu e-pasta adresi saņemsi paroles atkopšanas saiti. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
-      updated: Tava parole tika veiksmīgi nomainīta. Tu tagad esi pieteicies.
+      updated: Tava parole tika veiksmīgi nomainīta. Tagad esi pieteicies.
       updated_not_active: Tava parole ir veiksmīgi nomainīta.
     registrations:
       destroyed: Visu labu! Tavs konts ir veiksmīgi atcelts. Mēs ceram tevi drīz atkal redzēt.
       signed_up: Laipni lūdzam! Tu esi veiksmīgi reģistrējies.
-      signed_up_but_inactive: Tava reģistrācija bija veiksmīga. Tomēr mēs nevarējām tevi pierakstīt, jo tavs konts vēl nav aktivizēts.
-      signed_up_but_locked: Tava reģistrācija bija veiksmīga. Tomēr mēs nevarējām tevi pierakstīt, jo tavs konts ir bloķēts.
+      signed_up_but_inactive: Tava reģistrācija bija veiksmīga. Tomēr mēs nevarējām Tevi pieteikt, jo Tavs konts vēl nav aktivizēts.
+      signed_up_but_locked: Tava reģistrācija bija veiksmīga. Tomēr mēs nevarējām Tevi pieteikt, jo Tavs konts ir slēgts.
       signed_up_but_pending: Uz tavu e-pasta adresi ir nosūtīts ziņojums ar apstiprinājuma saiti. Pēc noklikšķināšanas uz saites mēs izskatīsim tavu pieteikumu. Tu tiksi informēts, ja tas tiks apstiprināts.
       signed_up_but_unconfirmed: Uz tavu e-pasta adresi ir nosūtīts ziņojums ar apstiprinājuma saiti. Lūdzu, seko saitei, lai aktivizētu savu kontu. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
       update_needs_confirmation: Tu veiksmīgi atjaunināji savu kontu, taču mums ir jāverificē teva jaunā e-pasta adrese. Lūdzu, pārbaudi savu e-pastu un seko apstiprinājuma saitei, lai apstiprinātu savu jauno e-pasta adresi. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
@@ -111,7 +111,7 @@ lv:
       unlocked: Konts tika veiksmīgi atbloķēts. Lūgums pieteikties, lai turpinātu.
   errors:
     messages:
-      already_confirmed: jau tika apstiprināts, lūdzu, mēģini pierakstīties
+      already_confirmed: jau tika apstiprināts, lūgums mēģināt pieteikties
       confirmation_period_expired: jāapstiprina %{period} laikā, lūdzu, pieprasi jaunu
       expired: ir beidzies derīguma termiņš, lūdzu, pieprasi jaunu
       not_found: nav atrasts
