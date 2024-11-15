@@ -13,28 +13,30 @@ class ActivityPub::FetchAllRepliesWorker
 
   # Global max replies to fetch per request (all replies, recursively)
   MAX_REPLIES = (ENV['FETCH_REPLIES_MAX_GLOBAL'] || 1000).to_i
+  MAX_PAGES = (ENV['FETCH_REPLIES_MAX_PAGES'] || 500).to_i
 
   def perform(parent_status_id, options = {})
     @parent_status = Status.find(parent_status_id)
     Rails.logger.debug { "FetchAllRepliesWorker - #{@parent_status.uri}: Fetching all replies for status: #{@parent_status}" }
 
-    uris_to_fetch = get_replies(@parent_status.uri, options)
+    uris_to_fetch, n_pages = get_replies(@parent_status.uri, MAX_PAGES, options)
     return if uris_to_fetch.nil?
 
     @parent_status.touch(:fetched_replies_at)
     fetched_uris = uris_to_fetch.clone.to_set
 
-    until uris_to_fetch.empty? || fetched_uris.length >= MAX_REPLIES
+    until uris_to_fetch.empty? || fetched_uris.length >= MAX_REPLIES || n_pages >= MAX_PAGES
       next_reply = uris_to_fetch.pop
       next if next_reply.nil?
 
-      new_reply_uris = get_replies(next_reply, options)
+      new_reply_uris, new_n_pages = get_replies(next_reply, MAX_PAGES - n_pages, options)
       next if new_reply_uris.nil?
 
       new_reply_uris = new_reply_uris.reject { |uri| fetched_uris.include?(uri) }
 
       uris_to_fetch.concat(new_reply_uris)
       fetched_uris = fetched_uris.merge(new_reply_uris)
+      n_pages += new_n_pages
     end
 
     Rails.logger.debug { "FetchAllRepliesWorker - #{parent_status_id}: fetched #{fetched_uris.length} replies" }
@@ -43,11 +45,11 @@ class ActivityPub::FetchAllRepliesWorker
 
   private
 
-  def get_replies(status_uri, options = {})
+  def get_replies(status_uri, max_pages, options = {})
     replies_collection_or_uri = get_replies_uri(status_uri)
     return if replies_collection_or_uri.nil?
 
-    ActivityPub::FetchAllRepliesService.new.call(replies_collection_or_uri, **options.deep_symbolize_keys)
+    ActivityPub::FetchAllRepliesService.new.call(replies_collection_or_uri, max_pages, **options.deep_symbolize_keys)
   end
 
   def get_replies_uri(parent_status_uri)

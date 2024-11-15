@@ -122,20 +122,18 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
 
       stub_request(:get, item).to_return(status: 200, body: Oj.dump(empty_object), headers: { 'Content-Type': 'application/activity+json' })
     end
+
+    stub_request(:get, top_note_uri).to_return(status: 200, body: Oj.dump(top_object), headers: { 'Content-Type': 'application/activity+json' })
+    stub_request(:get, reply_note_uri).to_return(status: 200, body: Oj.dump(reply_object), headers: { 'Content-Type': 'application/activity+json' })
   end
 
   shared_examples 'fetches all replies' do
-    before do
-      stub_request(:get, top_note_uri).to_return(status: 200, body: Oj.dump(top_object), headers: { 'Content-Type': 'application/activity+json' })
-      stub_request(:get, reply_note_uri).to_return(status: 200, body: Oj.dump(reply_object), headers: { 'Content-Type': 'application/activity+json' })
-    end
-
     it 'fetches statuses recursively' do
       got_uris = subject.perform(status.id)
       expect(got_uris).to match_array(all_items)
     end
 
-    it 'respects the maxium limits set by not recursing after the max is reached' do
+    it 'respects the maximum limits set by not recursing after the max is reached' do
       stub_const('ActivityPub::FetchAllRepliesWorker::MAX_REPLIES', 5)
       got_uris = subject.perform(status.id)
       expect(got_uris).to match_array(top_items + top_items_paged)
@@ -249,6 +247,12 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
       end
 
       it_behaves_like 'fetches all replies'
+
+      it 'limits by max pages' do
+        stub_const('ActivityPub::FetchAllRepliesWorker::MAX_PAGES', 3)
+        got_uris = subject.perform(status.id)
+        expect(got_uris).to match_array(top_items + top_items_paged + nested_items)
+      end
     end
   end
 end
