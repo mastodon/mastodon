@@ -12,7 +12,7 @@
 
   .fields-group
     = f.input :expires_in,
-              collection: [1.day, 2.weeks, 1.month, 6.months, 1.year, 3.years].map(&:to_i),
+              collection: ip_blocks_expires_options.map(&:to_i),
               label_method: ->(i) { I18n.t("admin.ip_blocks.expires_in.#{i}") },
               prompt: I18n.t('invites.expires_in_prompt'),
               wrapper: :with_block_label
