@@ -199,6 +199,7 @@ cy:
         create_domain_block: Creu Gwaharddiad Parth
         create_email_domain_block: Creu Rhwystr Parth E-bost
         create_ip_block: Creu rheol IP
+        create_relay: Creu Cyfnewidiad
         create_unavailable_domain: Creu Parth Ddim ar Gael
         create_user_role: Creu Rôl
         demote_user: Diraddio Defnyddiwr
@@ -210,14 +211,17 @@ cy:
         destroy_email_domain_block: Dileu Rhwystr Parth E-bost
         destroy_instance: Clirio Parth
         destroy_ip_block: Dileu rheol IP
+        destroy_relay: Dileu Cyfnewidiad
         destroy_status: Dileu Postiad
         destroy_unavailable_domain: Dileu Parth Ddim ar Gael
         destroy_user_role: Dileu Rôl
         disable_2fa_user: Diffodd 2FA
         disable_custom_emoji: Analluogi Emoji Addasedig
+        disable_relay: Analluogi Cyfnewidiad
         disable_sign_in_token_auth_user: Analluogi Dilysu Tocyn E-bost Defnyddiwr
         disable_user: Analluogi Defnyddiwr
         enable_custom_emoji: Galluogi Emoji Addasedig
+        enable_relay: Galluogi Cyfnewidiad
         enable_sign_in_token_auth_user: Galluogi Dilysu Tocyn E-bost Defnyddiwr
         enable_user: Galluogi Defnyddiwr
         memorialize_account: Cofadeilio Cyfrif
@@ -259,6 +263,7 @@ cy:
         create_domain_block_html: Mae %{name} wedi rhwystro parth %{target}
         create_email_domain_block_html: Mae %{name} wedi rhwystro parth e-bost %{target}
         create_ip_block_html: Mae %{name} wedi creu rheol ar gyfer IP %{target}
+        create_relay_html: Creodd %{name} gyfnewidiad %{target}
         create_unavailable_domain_html: Mae %{name} wedi stopio danfon i barth %{target}
         create_user_role_html: Mae %{name} wedi creu rôl %{target}
         demote_user_html: Mae %{name} wedi israddio defnyddiwr %{target}
@@ -270,14 +275,17 @@ cy:
         destroy_email_domain_block_html: Mae %{name} wedi dad-rwystro parth e-bost %{target}
         destroy_instance_html: Mae %{name} wedi dileu parth %{target}
         destroy_ip_block_html: Mae %{name} dileu rheol ar gyfer IP %{target}
+        destroy_relay_html: Dileodd %{name} y cyfnewidiad %{target}
         destroy_status_html: Mae %{name} wedi tynnu postiad gan %{target}
         destroy_unavailable_domain_html: Mae %{name} wedi ailddechrau anfon i barth %{target}
         destroy_user_role_html: Mae %{name} wedi dileu rôl %{target}
         disable_2fa_user_html: Mae %{name} wedi analluogi gofyniad dau ffactor ar gyfer defnyddiwr %{target}
         disable_custom_emoji_html: Mae %{name} wedi analluogi emoji %{target}
+        disable_relay_html: Analluogodd %{name} y cyfnewidiad %{target}
         disable_sign_in_token_auth_user_html: Mae %{name} wedi analluogi dilysiad tocyn e-bost %{target}
         disable_user_html: Mae %{name} wedi analluogi mewngofnodi defnyddiwr %{target}
         enable_custom_emoji_html: Mae %{name} wedi analluogi emoji %{target}
+        enable_relay_html: Galluogodd %{name} y cyfnewidiad %{target}
         enable_sign_in_token_auth_user_html: Mae %{name} wedi galluogi dilysiad tocyn e-bost %{target}
         enable_user_html: Mae %{name} wedi galluogi mewngofnodi defnyddiwr %{target}
         memorialize_account_html: Newidiodd %{name} gyfrif %{target} i dudalen memoriam
@@ -889,7 +897,7 @@ cy:
       original_status: Postiad gwreiddiol
       reblogs: Ailflogiadau
       status_changed: Postiad wedi'i newid
-      title: Postiadau cyfrif
+      title: Postiadau cyfrif - @%{name}
       trending: Yn trendio
       visibility: Gwelededd
       with_media: Gyda chyfryngau

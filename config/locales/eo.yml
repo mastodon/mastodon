@@ -73,7 +73,7 @@ eo:
       enable_sign_in_token_auth: Ebligu retpoŝtan ĵeton-aŭtentikigon
       enabled: Ebligita
       enabled_msg: Sukcese malfrostigis konton de %{username}
-      followers: Sekvantoj
+      followers: Sekvoj
       follows: Sekvatoj
       header: Kapa bildo
       inbox_url: Enira URL
@@ -187,6 +187,7 @@ eo:
         create_domain_block: Krei Blokadon De Domajno
         create_email_domain_block: Krei retpoŝtan domajnan blokon
         create_ip_block: Krei IP-regulon
+        create_relay: Krei Relajson
         create_unavailable_domain: Krei Nehaveblan Domajnon
         create_user_role: Krei Rolon
         demote_user: Malpromocii Uzanton
@@ -198,13 +199,18 @@ eo:
         destroy_email_domain_block: Forigi retpoŝtan domajnan blokon
         destroy_instance: Forigi Domajnon
         destroy_ip_block: Forigi IP-regulon
+        destroy_relay: Forigi Relajson
         destroy_status: Forigi Afiŝon
         destroy_unavailable_domain: Forigi Nehaveblan Domajnon
         destroy_user_role: Detrui Rolon
         disable_2fa_user: Malebligi 2FA
         disable_custom_emoji: Malebligi proprajn emoĝiojn
+        disable_relay: Malebligi Relajson
+        disable_sign_in_token_auth_user: Malebligi aŭtentigon per retpoŝta ĵetono por la uzanto
         disable_user: Neebligi la uzanton
         enable_custom_emoji: Ebligi Propran Emoĝion
+        enable_relay: Ebligi Relajson
+        enable_sign_in_token_auth_user: Ebligi aŭtentigon per retpoŝta ĵetono por la uzanto
         enable_user: Ebligi uzanton
         memorialize_account: Memorigu Konton
         promote_user: Promocii Uzanton
@@ -245,6 +251,7 @@ eo:
         create_domain_block_html: "%{name} blokis domajnon %{target}"
         create_email_domain_block_html: "%{name} blokis retpoŝtan domajnon %{target}"
         create_ip_block_html: "%{name} kreis regulon por IP %{target}"
+        create_relay_html: "%{name} kreis relajson %{target}"
         create_unavailable_domain_html: "%{name} ĉesis sendon al domajno %{target}"
         create_user_role_html: "%{name} kreis rolon de %{target}"
         demote_user_html: "%{name} degradis uzanton %{target}"
@@ -256,13 +263,18 @@ eo:
         destroy_email_domain_block_html: "%{name} malblokis retpoŝtan domajnon %{target}"
         destroy_instance_html: "%{name} forigis domajnon %{target}"
         destroy_ip_block_html: "%{name} forigis regulon por IP %{target}"
+        destroy_relay_html: "%{name} forigis la relajson %{target}"
         destroy_status_html: "%{name} forigis mesaĝojn de %{target}"
         destroy_unavailable_domain_html: "%{name} restartigis sendon al domajno %{target}"
         destroy_user_role_html: "%{name} forigis rolon de %{target}"
         disable_2fa_user_html: "%{name} malebligis dufaktoran aŭtentigon por uzanto %{target}"
         disable_custom_emoji_html: "%{name} malebligis la emoĝion %{target}"
+        disable_relay_html: "%{name} malebligis la relajson %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} malebligis la aŭtentigon de retpoŝta ĵetono por %{target}"
         disable_user_html: "%{name} malebligis ensaluton por uzanto %{target}"
         enable_custom_emoji_html: "%{name} ebligis la emoĝion %{target}"
+        enable_relay_html: "%{name} ebligis la relajson %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ebligis la aŭtentigon de retpoŝta ĵetono por %{target}"
         enable_user_html: "%{name} ebligis ensaluton por uzanto %{target}"
         memorialize_account_html: "%{name} ŝanĝis la konton de %{target} al memora paĝo"
         promote_user_html: "%{name} plirangigis uzanton %{target}"
@@ -270,6 +282,7 @@ eo:
         reject_user_html: "%{name} malakceptis registriĝon de %{target}"
         remove_avatar_user_html: "%{name} forigis la profilbildon de %{target}"
         reopen_report_html: "%{name} remalfermis signalon %{target}"
+        resend_user_html: "%{name} resendis konfirman retmesaĝon por %{target}"
         reset_password_user_html: "%{name} restarigis la pasvorton de la uzanto %{target}"
         resolve_report_html: "%{name} solvis raporton %{target}"
         sensitive_account_html: "%{name} markis audovidaĵon de %{target} kiel tiklan"
@@ -440,6 +453,7 @@ eo:
         create: Aldoni domajnon
         resolve: Solvi domajnon
         title: Bloki novan retpoŝtan domajnon
+      no_email_domain_block_selected: Neniuj domajn blokoj ŝanĝiĝis ĉar nenio estis elektita
       not_permitted: Ne permesita
       resolved_through_html: Solvis tra %{domain}
       title: Blokis retpoŝtajn domajnojn
@@ -467,6 +481,8 @@ eo:
       title: Rekomendoj de sekvado
       unsuppress: Regajni sekvorekomendon
     instances:
+      audit_log:
+        title: Novaj Protokoloj Pri Ekzamenoj
       availability:
         description_html:
           one: Se sendo la domajno malsukcesis por <strong>%{count} dio</strong>, ne estas sendprovo plu escepte <em>de</em> la dojmano.
@@ -814,7 +830,7 @@ eo:
       original_status: Originala afiŝo
       reblogs: Reblogaĵoj
       status_changed: Afiŝo ŝanĝiĝis
-      title: Afiŝoj de la konto
+      title: Afiŝoj de la konto - @%{name}
       trending: Popularaĵoj
       visibility: Videbleco
       with_media: Kun aŭdovidaĵoj
@@ -1054,6 +1070,7 @@ eo:
       awaiting_review_title: Via registriĝo estas reviziita
       clicking_this_link: alklakante ĉi tiun ligilon
       login_link: ensaluti
+      proceed_to_login_html: Vi nun povas iri al %{login_link}.
       registration_complete: Via registriĝo sur %{domain} nun finiĝis!
       welcome_title: Bonvenon, %{name}!
       wrong_email_hint: Se tiu retadreso ne estas ĝusta, vi povas ŝanĝi ĝin en kontagordoj.
@@ -1329,6 +1346,7 @@ eo:
       unconfirmed: Nekonfirmita
     status: Stato
     success: Viaj datumoj estis sukcese alŝutitaj kaj estos traktitaj kiel planite
+    time_started: Komencis je
     titles:
       following: Importado de sekvaj kontoj
       lists: Importi listojn
@@ -1375,6 +1393,7 @@ eo:
     authentication_methods:
       otp: 2-faktora autentigprogramaro
       password: pasvorto
+      sign_in_token: retpoŝta sekureca kodo
       webauthn: sekurecaj ŝlosiloj
     description_html: Se vi vidas nerekonitan agon, eble ŝanĝu vian pasvorton.
     empty: Neniu autentighistorio disponebla
@@ -1385,6 +1404,9 @@ eo:
     unsubscribe:
       action: Jes, malabonu
       complete: Malabonita
+      emails:
+        notification_emails:
+          follow_request: retpoŝtajn petoj de sekvado
       title: Malaboni
   media_attachments:
     validations:
@@ -1725,6 +1747,7 @@ eo:
       default: "%Y.%b.%d, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
   translation:
     errors:
       quota_exceeded: La tutservila uzkvoto por la tradukservo estas superita.
@@ -1805,6 +1828,7 @@ eo:
       apps_ios_action: Elŝutu ĉe la App Store
       apps_step: Elŝutu niajn oficialajn aplikaĵojn.
       apps_title: Aplikaĵoj de Mastodon
+      checklist_title: Bonvenan Markolisto
       edit_profile_action: Agordi
       edit_profile_title: Agordi vian profilon
       explanation: Jen kelkaj konsiloj por helpi vin komenci
