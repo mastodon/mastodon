@@ -3,6 +3,60 @@
 require 'rails_helper'
 
 RSpec.describe SoftwareUpdate do
+  describe '#pending?' do
+    subject { described_class.new(version: update_version) }
+
+    before { allow(Mastodon::Version).to receive(:gem_version).and_return(Gem::Version.new(mastodon_version)) }
+
+    context 'when the runtime version is older than the update' do
+      let(:mastodon_version) { '4.0.0' }
+      let(:update_version) { '5.0.0' }
+
+      it { is_expected.to be_pending }
+    end
+
+    context 'when the runtime version is newer than the update' do
+      let(:mastodon_version) { '6.0.0' }
+      let(:update_version) { '5.0.0' }
+
+      it { is_expected.to_not be_pending }
+    end
+
+    context 'when the runtime version is same as the update' do
+      let(:mastodon_version) { '4.0.0' }
+      let(:update_version) { '4.0.0' }
+
+      it { is_expected.to_not be_pending }
+    end
+  end
+
+  describe '#outdated?' do
+    subject { described_class.new(version: update_version) }
+
+    before { allow(Mastodon::Version).to receive(:gem_version).and_return(Gem::Version.new(mastodon_version)) }
+
+    context 'when the runtime version is older than the update' do
+      let(:mastodon_version) { '4.0.0' }
+      let(:update_version) { '5.0.0' }
+
+      it { is_expected.to_not be_outdated }
+    end
+
+    context 'when the runtime version is newer than the update' do
+      let(:mastodon_version) { '6.0.0' }
+      let(:update_version) { '5.0.0' }
+
+      it { is_expected.to be_outdated }
+    end
+
+    context 'when the runtime version is same as the update' do
+      let(:mastodon_version) { '4.0.0' }
+      let(:update_version) { '4.0.0' }
+
+      it { is_expected.to be_outdated }
+    end
+  end
+
   describe '.pending_to_a' do
     before do
       allow(Mastodon::Version).to receive(:gem_version).and_return(Gem::Version.new(mastodon_version))

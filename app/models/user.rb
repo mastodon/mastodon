@@ -280,6 +280,15 @@ class User < ApplicationRecord
     save!
   end
 
+  def applications_last_used
+    Doorkeeper::AccessToken
+      .where(resource_owner_id: id)
+      .where.not(last_used_at: nil)
+      .group(:application_id)
+      .maximum(:last_used_at)
+      .to_h
+  end
+
   def token_for_app(app)
     return nil if app.nil? || app.owner != self
 
@@ -457,13 +466,7 @@ class User < ApplicationRecord
 
     # Doing this conditionally is not very satisfying, but this is consistent
     # with the MX records validations we do and keeps the specs tractable.
-    unless self.class.skip_mx_check?
-      Resolv::DNS.open do |dns|
-        dns.timeouts = 5
-
-        records = dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }.compact_blank
-      end
-    end
+    records = DomainResource.new(domain).mx unless self.class.skip_mx_check?
 
     EmailDomainBlock.requires_approval?(records + [domain], attempt_ip: sign_up_ip)
   end

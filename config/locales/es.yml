@@ -67,8 +67,8 @@ es:
       display_name: Nombre
       domain: Dominio
       edit: Editar
-      email: E-mail
-      email_status: E-mail Status
+      email: Correo electrónico
+      email_status: Estado del correo electrónico
       enable: Habilitar
       enable_sign_in_token_auth: Habilitar la autenticación por token de correo electrónico
       enabled: Habilitada
@@ -86,7 +86,7 @@ es:
         local: Local
         remote: Remoto
         title: Localización
-      login_status: Estado del login
+      login_status: Estado de inicio de sesión
       media_attachments: Multimedia
       memorialize: Convertir en memorial
       memorialized: Cuenta conmemorativa
@@ -102,7 +102,7 @@ es:
       moderation_notes: Notas de moderación
       most_recent_activity: Actividad más reciente
       most_recent_ip: IP más reciente
-      no_account_selected: Ninguna cuenta se cambió como ninguna fue seleccionada
+      no_account_selected: Ninguna cuenta se cambió, ya que ninguna fue seleccionada
       no_limits_imposed: Sin límites impuestos
       no_role_assigned: Ningún rol asignado
       not_subscribed: No se está suscrito
@@ -132,17 +132,17 @@ es:
         success: "¡Enlace de confirmación enviado con éxito!"
       reset: Reiniciar
       reset_password: Reiniciar contraseña
-      resubscribe: Re-suscribir
+      resubscribe: Volver a suscribirse
       role: Rol
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo
       search_same_ip: Otros usuarios con la misma IP
       security: Seguridad
       security_measures:
-        only_password: Sólo contraseña
+        only_password: Solo contraseña
         password_and_2fa: Contraseña y 2FA
       sensitive: Sensible
-      sensitized: marcado como sensible
+      sensitized: Marcada como sensible
       shared_inbox_url: URL de bandeja compartida
       show:
         created_reports: Reportes hechos por esta cuenta
@@ -161,10 +161,10 @@ es:
       unblocked_email_msg: Se ha desbloqueado correctamente la dirección de correo de %{username}
       unconfirmed_email: Correo electrónico sin confirmar
       undo_sensitized: Desmarcar como sensible
-      undo_silenced: Des-silenciar
-      undo_suspension: Des-suspender
+      undo_silenced: Dejar de silenciar
+      undo_suspension: Deshacer suspensión
       unsilenced_msg: Se quitó con éxito el límite de la cuenta %{username}
-      unsubscribe: Desuscribir
+      unsubscribe: Cancelar suscripción
       unsuspended_msg: Se quitó con éxito la suspensión de la cuenta de %{username}
       username: Nombre de usuario
       view_domain: Ver resumen del dominio
@@ -296,7 +296,7 @@ es:
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
-      title: Log de auditoría
+      title: Registro de auditoría
       unavailable_instance: "(nombre de dominio no disponible)"
     announcements:
       destroyed_msg: "¡Anuncio eliminado con éxito!"
@@ -338,7 +338,7 @@ es:
       listed: Listados
       new:
         title: Añadir nuevo emoji personalizado
-      no_emoji_selected: No se cambió ningún emoji ya que no se seleccionó ninguno
+      no_emoji_selected: No se cambió ningún emoji, ya que no se seleccionó ninguno
       not_permitted: No tienes permiso para realizar esta acción
       overwrite: Sobrescribir
       shortcode: Código de atajo
@@ -833,7 +833,7 @@ es:
       original_status: Publicación original
       reblogs: Impulsos
       status_changed: Publicación cambiada
-      title: Publicaciones de la cuenta
+      title: Publicaciones de la cuenta - @%{name}
       trending: En tendencia
       visibility: Visibilidad
       with_media: Con multimedia
