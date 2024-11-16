@@ -40,7 +40,7 @@ RSpec.describe SelfDestructHelper do
     context 'when SELF_DESTRUCT is set to value signed for the wrong domain' do
       around do |example|
         ClimateControl.modify(
-          SELF_DESTRUCT: Rails.application.message_verifier('self-destruct').generate('foo.com'),
+          SELF_DESTRUCT: Rails.application.message_verifier(described_class::VERIFY_PURPOSE).generate('foo.com'),
           LOCAL_DOMAIN: 'example.com'
         ) do
           example.run
@@ -55,7 +55,7 @@ RSpec.describe SelfDestructHelper do
     context 'when SELF_DESTRUCT is set to a correctly-signed value' do
       around do |example|
         ClimateControl.modify(
-          SELF_DESTRUCT: Rails.application.message_verifier('self-destruct').generate('example.com'),
+          SELF_DESTRUCT: Rails.application.message_verifier(described_class::VERIFY_PURPOSE).generate('example.com'),
           LOCAL_DOMAIN: 'example.com'
         ) do
           example.run
