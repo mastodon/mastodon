@@ -17,7 +17,7 @@
 
       %br/
 
-      = f.object.policies.map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') }.join(' · ')
+      = domain_block_policies(f.object)
       - if f.object.public_comment.present?
         ·
         = f.object.public_comment
