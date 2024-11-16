@@ -6,7 +6,7 @@ class FillAccountSuspensionOrigin < ActiveRecord::Migration[5.2]
   class MigrationAccount < ApplicationRecord
     self.table_name = :accounts
     scope :suspended, -> { where.not(suspended_at: nil) }
-    enum suspension_origin: { local: 0, remote: 1 }, _prefix: true
+    enum :suspension_origin, { local: 0, remote: 1 }, prefix: true
   end
 
   def up
