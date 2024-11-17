@@ -309,6 +309,23 @@ $content-width: 840px;
       font-weight: 500;
     }
 
+    .lead {
+      font-size: 17px;
+      line-height: 22px;
+      color: $secondary-text-color;
+      margin-bottom: 30px;
+
+      a {
+        color: $highlight-text-color;
+      }
+    }
+
+    p.with-icon {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
     .fields-group h6 {
       color: $primary-text-color;
       font-weight: 500;

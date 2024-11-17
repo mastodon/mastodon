@@ -21,6 +21,15 @@ module Admin
       @action_logs = Admin::ActionLogFilter.new(target_domain: @instance.domain).results.limit(LOGS_LIMIT)
     end
 
+    def availability
+      authorize :instance, :show?
+    end
+
+    def statistics
+      authorize :instance, :show?
+      @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
+    end
+
     def destroy
       authorize :instance, :destroy?
       Admin::DomainPurgeWorker.perform_async(@instance.domain)

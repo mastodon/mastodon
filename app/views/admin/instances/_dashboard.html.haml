@@ -48,19 +48,3 @@
                             measure: 'instance_reports',
                             params: { domain: instance_domain },
                             start_at: period_start_at
-  .dashboard__item
-    = react_admin_component :dimension,
-                            dimension: 'instance_accounts',
-                            end_at: period_end_at,
-                            label: t('admin.instances.dashboard.instance_accounts_dimension'),
-                            limit: 8,
-                            params: { domain: instance_domain },
-                            start_at: period_start_at
-  .dashboard__item
-    = react_admin_component :dimension,
-                            dimension: 'instance_languages',
-                            end_at: period_end_at,
-                            label: t('admin.instances.dashboard.instance_languages_dimension'),
-                            limit: 8,
-                            params: { domain: instance_domain },
-                            start_at: period_start_at

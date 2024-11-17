@@ -1,0 +1,6 @@
+.content__heading__tabs
+  = render_navigation renderer: :links do |primary|
+    :ruby
+      primary.item :overview, safe_join([material_symbol('cloud'), t('admin.instances.title')]), admin_instance_path(@instance)
+      primary.item :statistics, safe_join([material_symbol('trending_up'), t('admin.instances.statistics.title')]), statistics_admin_instance_path(@instance)
+      primary.item :availability, safe_join([material_symbol('warning'), t('admin.instances.availability.title')]), availability_admin_instance_path(@instance)
