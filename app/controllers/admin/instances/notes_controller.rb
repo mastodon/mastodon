@@ -12,7 +12,7 @@ class Admin::Instances::NotesController < Admin::BaseController
     if @instance_note.save
       redirect_to admin_instance_path(@instance.domain, anchor: helpers.dom_id(@instance_note)), notice: I18n.t('admin.instances.notes.created_msg')
     else
-      @instance_notes = @instance.notes.includes(:account).latest
+      @instance_notes = @instance.moderation_notes.includes(:account).latest
       @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
       @action_logs = Admin::ActionLogFilter.new(target_domain: @instance.domain).results.limit(5)
 

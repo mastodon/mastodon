@@ -13,8 +13,8 @@ module Admin
     def show
       authorize :instance, :show?
 
-      @instance_note  = @instance.notes.new
-      @instance_notes = @instance.notes.includes(:account).latest
+      @instance_note  = @instance.moderation_notes.new
+      @instance_notes = @instance.moderation_notes.includes(:account).latest
       @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
       @action_logs = Admin::ActionLogFilter.new(target_domain: @instance.domain).results.limit(5)
     end

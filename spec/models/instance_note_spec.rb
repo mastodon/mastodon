@@ -10,7 +10,7 @@ RSpec.describe InstanceNote do
       note1 = Fabricate(:instance_note, domain: 'example.org')
       note2 = Fabricate(:instance_note, domain: 'example.org')
 
-      expect(instance.notes.latest).to eq [note1, note2]
+      expect(instance.moderation_notes.latest).to eq [note1, note2]
     end
   end
 
