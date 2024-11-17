@@ -5446,6 +5446,17 @@ a.status-card {
 }
 
 .search__icon {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  top: 12px + 2px;
+  cursor: default;
+  pointer-events: none;
+  margin-inline-start: 16px - 2px;
+  width: 20px;
+  height: 20px;
+
   &::-moz-focus-inner {
     border: 0;
   }
@@ -5457,17 +5468,14 @@ a.status-card {
 
   .icon {
     position: absolute;
-    top: 12px + 2px;
-    display: inline-block;
+    top: 0;
+    inset-inline-start: 0;
     opacity: 0;
     transition: all 100ms linear;
     transition-property: transform, opacity;
     width: 20px;
     height: 20px;
     color: $darker-text-color;
-    cursor: default;
-    pointer-events: none;
-    margin-inline-start: 16px - 2px;
 
     &.active {
       pointer-events: auto;
@@ -8663,8 +8671,8 @@ noscript {
     border: 1px solid var(--background-border-color);
   }
 
-  .search .icon {
-    top: 9px;
+  .search__icon {
+    top: 10px;
     inset-inline-end: 10px;
     color: $dark-text-color;
   }
