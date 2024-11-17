@@ -2,6 +2,7 @@
 
 import fs from 'node:fs';
 import http from 'node:http';
+import net from 'node:net';
 import path from 'node:path';
 import url from 'node:url';
 
@@ -384,7 +385,20 @@ const startServer = async () => {
     // Track the usage of the access token if necessary:
     // This is the same code as: app/controllers/concerns/api/access_token_tracking_concern.rb
     if (accessToken.last_used_at === null || accessToken.last_used_at < Date.now() - ACCESS_TOKEN_UPDATE_FREQUENCY) {
-      await pgPool.query('UPDATE "oauth_access_tokens" SET "last_used_at" = $2, "last_used_ip" = $3 WHERE "oauth_access_tokens"."id" = $1', [ accessToken.id, new Date(), req.ip ]);
+      let query, variables = [];
+      if (req.ip && net.isIP(req.ip)) {
+        query = 'UPDATE "oauth_access_tokens" SET "last_used_at" = $2, "last_used_ip" = $3 WHERE "oauth_access_tokens"."id" = $1';
+        variables = [ accessToken.id, new Date(), req.ip ];
+      } else {
+        query = 'UPDATE "oauth_access_tokens" SET "last_used_at" = $2 WHERE "oauth_access_tokens"."id" = $1';
+        variables = [ accessToken.id, new Date() ];
+      }
+
+      try {
+        await pgPool.query(query, variables);
+      } catch (err) {
+        req.log.error(err, 'Error updating Access Token usage tracking');
+      }
     }
 
     req.accessTokenId = accessToken.id;
