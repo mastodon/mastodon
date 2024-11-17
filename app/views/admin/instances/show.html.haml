@@ -6,7 +6,7 @@
     = date_range(@time_period)
 
   - if @instance.persisted?
-    = render 'dashboard', instance_domain: @instance.domain, period_end_at: @time_period.last, period_start_at: @time_period.first
+    = render 'admin/instances/dashboard', instance_domain: @instance.domain, period_end_at: @time_period.last, period_start_at: @time_period.first
   - else
     %p
       = t('admin.instances.unknown_instance')
