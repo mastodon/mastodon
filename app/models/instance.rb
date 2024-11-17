@@ -21,6 +21,7 @@ class Instance < ApplicationRecord
     belongs_to :unavailable_domain
 
     has_many :accounts, dependent: nil
+    has_many :moderation_notes, class_name: 'InstanceNote', dependent: nil
   end
 
   scope :searchable, -> { where.not(domain: DomainBlock.select(:domain)) }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_17_181400) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -539,6 +539,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
     t.datetime "data_updated_at", precision: nil
     t.bigint "account_id", null: false
     t.boolean "overwrite", default: false, null: false
+  end
+
+  create_table "instance_notes", force: :cascade do |t|
+    t.string "domain"
+    t.bigint "account_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain"], name: "index_instance_notes_on_domain"
   end
 
   create_table "invites", force: :cascade do |t|

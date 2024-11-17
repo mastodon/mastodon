@@ -12,8 +12,20 @@ module Admin
 
     def show
       authorize :instance, :show?
+
+      @instance_note  = @instance.moderation_notes.new
+      @instance_notes = @instance.moderation_notes.includes(:account).latest
       @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
       @action_logs = Admin::ActionLogFilter.new(target_domain: @instance.domain).results.limit(5)
+    end
+
+    def availability
+      authorize :instance, :show?
+    end
+
+    def statistics
+      authorize :instance, :show?
+      @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
     end
 
     def destroy
