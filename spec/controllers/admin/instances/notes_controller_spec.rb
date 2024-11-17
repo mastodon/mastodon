@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Instances::NotesController do
+RSpec.describe Admin::Instances::NotesController do
   include ActionView::RecordIdentifier
 
   render_views
@@ -11,6 +11,7 @@ describe Admin::Instances::NotesController do
   let(:instance_domain) { 'mastodon.example' }
 
   before do
+    Fabricate(:account, domain: instance_domain)
     sign_in user, scope: :user
   end
 
