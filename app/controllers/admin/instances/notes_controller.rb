@@ -10,7 +10,7 @@ class Admin::Instances::NotesController < Admin::BaseController
     @instance_note = current_account.instance_notes.new(content: resource_params[:content], domain: @instance.domain)
 
     if @instance_note.save
-      redirect_to admin_instance_path(@instance.domain, anchor: helpers.dom_id(@instance_note)), notice: I18n.t('admin.instances.notes.created_msg')
+      redirect_to admin_instance_path(@instance.domain, anchor: helpers.dom_id(@instance_note)), notice: I18n.t('admin.instances.moderation_notes.created_msg')
     else
       @instance_notes = @instance.moderation_notes.includes(:account).latest
       @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
@@ -23,7 +23,7 @@ class Admin::Instances::NotesController < Admin::BaseController
   def destroy
     authorize @instance_note, :destroy?
     @instance_note.destroy!
-    redirect_to admin_instance_path(@instance_note.domain, anchor: 'instance_notes'), notice: I18n.t('admin.instances.notes.destroyed_msg')
+    redirect_to admin_instance_path(@instance_note.domain, anchor: 'instance_notes'), notice: I18n.t('admin.instances.moderation_notes.destroyed_msg')
   end
 
   private
