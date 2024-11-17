@@ -3,6 +3,7 @@
 class Admin::Instances::NotesController < Admin::BaseController
   before_action :set_instance, only: [:create]
   before_action :set_instance_note, only: [:destroy]
+  rescue_from ActiveRecord::RecordInvalid, with: :bad_request
 
   def create
     authorize :instance_note, :create?
@@ -35,7 +36,7 @@ class Admin::Instances::NotesController < Admin::BaseController
   end
 
   def set_instance
-    @instance = Instance.find_or_initialize_by(domain: TagManager.instance.normalize_domain(params[:instance_id]&.strip))
+    @instance = Instance.find_or_initialize_by_domain(params[:instance_id])
   end
 
   def set_instance_note

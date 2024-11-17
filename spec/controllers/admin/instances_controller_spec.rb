@@ -67,6 +67,16 @@ RSpec.describe Admin::InstancesController do
         expect(instance).to be_new_record
       end
     end
+
+    context 'with an invalid domain' do
+      subject { get :show, params: { id: ' ' } }
+
+      it 'returns http 400 for http and renders template' do
+        expect(subject).to render_template('errors/400', layout: 'error')
+
+        expect(response).to have_http_status(400)
+      end
+    end
   end
 
   describe 'POST #clear_delivery_errors' do

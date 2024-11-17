@@ -30,6 +30,14 @@ class Instance < ApplicationRecord
   scope :by_domain_and_subdomains, ->(domain) { where("reverse('.' || domain) LIKE reverse(?)", "%.#{domain}") }
   scope :with_domain_follows, ->(domains) { where(domain: domains).where(domain_account_follows) }
 
+  def self.find_or_initialize_by_domain(domain)
+    normalized_domain = TagManager.instance.normalize_domain(domain&.strip)
+
+    raise ActiveRecord::RecordInvalid if normalized_domain.blank?
+
+    Instance.find_or_initialize_by(domain: normalized_domain)
+  end
+
   def self.domain_account_follows
     Arel.sql(
       <<~SQL.squish

@@ -4,6 +4,7 @@ module Admin
   class InstancesController < BaseController
     before_action :set_instances, only: :index
     before_action :set_instance, except: :index
+    rescue_from ActiveRecord::RecordInvalid, with: :bad_request
 
     def index
       authorize :instance, :index?
@@ -53,7 +54,7 @@ module Admin
     private
 
     def set_instance
-      @instance = Instance.find_or_initialize_by(domain: TagManager.instance.normalize_domain(params[:id]&.strip))
+      @instance = Instance.find_or_initialize_by_domain(params[:id])
     end
 
     def set_instances
