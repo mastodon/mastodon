@@ -4,6 +4,7 @@ module Admin
   class InstancesController < BaseController
     before_action :set_instances, only: :index
     before_action :set_instance, except: :index
+    rescue_from ActiveRecord::RecordInvalid, with: :bad_request
 
     def index
       authorize :instance, :index?
@@ -12,6 +13,9 @@ module Admin
 
     def show
       authorize :instance, :show?
+
+      @instance_note  = @instance.moderation_notes.new
+      @instance_notes = @instance.moderation_notes.includes(:account).latest
       @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
       @action_logs = Admin::ActionLogFilter.new(target_domain: @instance.domain).results.limit(5)
     end
@@ -50,7 +54,7 @@ module Admin
     private
 
     def set_instance
-      @instance = Instance.find_or_initialize_by(domain: TagManager.instance.normalize_domain(params[:id]&.strip))
+      @instance = Instance.find_or_initialize_by_domain(params[:id])
     end
 
     def set_instances
