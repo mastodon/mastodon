@@ -3,19 +3,20 @@
 require 'rails_helper'
 
 RSpec.describe SelfDestructHelper do
-  describe 'self_destruct?' do
+  describe '#self_destruct?' do
+    before { Rails.configuration.x.mastodon.self_destruct_value = destruct_value }
+    after { Rails.configuration.x.mastodon.self_destruct_value = nil }
+
     context 'when SELF_DESTRUCT is unset' do
+      let(:destruct_value) { nil }
+
       it 'returns false' do
         expect(helper.self_destruct?).to be false
       end
     end
 
     context 'when SELF_DESTRUCT is set to an invalid value' do
-      around do |example|
-        ClimateControl.modify SELF_DESTRUCT: 'true' do
-          example.run
-        end
-      end
+      let(:destruct_value) { 'true' }
 
       it 'returns false' do
         expect(helper.self_destruct?).to be false
@@ -23,9 +24,10 @@ RSpec.describe SelfDestructHelper do
     end
 
     context 'when SELF_DESTRUCT is set to value signed for the wrong purpose' do
+      let(:destruct_value) { Rails.configuration.x.mastodon.self_destruct_value = Rails.application.message_verifier('foo').generate('example.com') }
+
       around do |example|
         ClimateControl.modify(
-          SELF_DESTRUCT: Rails.application.message_verifier('foo').generate('example.com'),
           LOCAL_DOMAIN: 'example.com'
         ) do
           example.run
@@ -38,9 +40,10 @@ RSpec.describe SelfDestructHelper do
     end
 
     context 'when SELF_DESTRUCT is set to value signed for the wrong domain' do
+      let(:destruct_value) { Rails.configuration.x.mastodon.self_destruct_value = Rails.application.message_verifier(described_class::VERIFY_PURPOSE).generate('foo.com') }
+
       around do |example|
         ClimateControl.modify(
-          SELF_DESTRUCT: Rails.application.message_verifier('self-destruct').generate('foo.com'),
           LOCAL_DOMAIN: 'example.com'
         ) do
           example.run
@@ -53,9 +56,10 @@ RSpec.describe SelfDestructHelper do
     end
 
     context 'when SELF_DESTRUCT is set to a correctly-signed value' do
+      let(:destruct_value) { Rails.configuration.x.mastodon.self_destruct_value = Rails.application.message_verifier(described_class::VERIFY_PURPOSE).generate('example.com') }
+
       around do |example|
         ClimateControl.modify(
-          SELF_DESTRUCT: Rails.application.message_verifier('self-destruct').generate('example.com'),
           LOCAL_DOMAIN: 'example.com'
         ) do
           example.run
