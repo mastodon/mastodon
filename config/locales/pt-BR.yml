@@ -826,8 +826,10 @@ pt-BR:
       back_to_account: Voltar para página da conta
       back_to_report: Voltar às denúncias
       batch:
+        add_to_report: 'Adicionar à denúncia #%{id}'
         remove_from_report: Remover da denúncia
         report: Denunciar
+      contents: Conteúdos
       deleted: Excluídos
       favourites: Favoritos
       history: Histórico de versões
@@ -836,13 +838,17 @@ pt-BR:
       media:
         title: Mídia
       metadata: Metadados
+      no_history: Esta publicação não foi editada
       no_status_selected: Nenhuma publicação foi modificada porque nenhuma estava selecionada
       open: Publicação aberta
       original_status: Publicação original
       reblogs: Reblogs
+      replied_to_html: Respondeu à %{acct_link}
       status_changed: Publicação alterada
+      status_title: Publicação de @%{name}
       title: Publicações da conta - @%{name}
       trending: Em alta
+      view_publicly: Ver publicamente
       visibility: Visibilidade
       with_media: Com mídia
     strikes:
@@ -1377,9 +1383,16 @@ pt-BR:
       overwrite: Sobrescrever
       overwrite_long: Substituir os registros atuais com os novos
     overwrite_preambles:
+      blocking_html:
+        one: Você está prestes a <strong>trocar seu bloco de listas</strong> com mais de <strong>%{count} conta</strong> de <strong>%{filename}</strong>.
+        other: Você está prestes a <strong>substituir sua lista de blocos</strong> com mais de <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
       bookmarks_html:
         one: Você está prestes a <strong>substituir seus salvos</strong> por até <strong>%{count} publicação</strong> de <strong>%{filename}</strong>.
         other: Você está prestes a <strong>substituir seus salvos</strong> por até <strong>%{count} publicações</strong> de <strong>%{filename}</strong>.
+    preambles:
+      muting_html:
+        one: Você está prestes a <strong>silenciar</strong> <strong>%{count}  conta</strong> de <strong>%{filename}</strong>.
+        other: Você está prestes a <strong>silenciar</strong> mais de <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
     preface: Você pode importar dados que você exportou de outro servidor, como a lista de pessoas que você segue ou bloqueou.
     recent_imports: Importações recentes
     states:

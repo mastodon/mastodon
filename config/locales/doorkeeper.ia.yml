@@ -60,6 +60,7 @@ ia:
       error:
         title: Un error ha occurrite
       new:
+        prompt_html: "%{client_name} vole haber le permission de acceder a tu conto. <strong>Solmente approba iste requesta si tu recognosce e confide in iste fonte.</strong>"
         review_permissions: Revider permissiones
         title: Autorisation necessari
       show:
@@ -82,6 +83,7 @@ ia:
         access_denied: Le proprietario del ressource o servitor de autorisation ha refusate le requesta.
         credential_flow_not_configured: Le processo de credentiales de contrasigno del proprietario del ressource ha fallite perque Doorkeeper.configure.resource_owner_from_credentials non es configurate.
         invalid_client: Le authentication del cliente ha fallite perque le cliente es incognite, necun authentication de cliente es includite, o le methodo de authentication non es supportate.
+        invalid_code_challenge_method: Le methodo de defia de codice debe esser S256. Le methodo simple (plain) non es supportate.
         invalid_grant: Le concession de autorisation fornite es invalide, expirate, revocate, non corresponde al URI de redirection usate in le requesta de autorisation, o ha essite emittite a un altere cliente.
         invalid_redirect_uri: Le URI de redirection includite non es valide.
         invalid_request:
