@@ -427,9 +427,9 @@ de:
       not_permitted: Du bist nicht berechtigt, diese Aktion durchzuführen
       obfuscate: Domain-Name verschleiern
       obfuscate_hint: Den Domain-Namen öffentlich nur teilweise bekannt geben, sofern die Liste der Domain-Beschränkungen aktiviert ist
-      private_comment: Interne bzw. nicht-öffentliche Notiz
+      private_comment: Nicht-öffentliche Notiz
       private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderator*innen.
-      public_comment: Öffentliche Notiz
+      public_comment: Öffentliche Begründung
       public_comment_hint: Öffentlicher Hinweis zu dieser Domain-Beschränkung, sofern das Veröffentlichen von Sperrlisten grundsätzlich aktiviert ist.
       reject_media: Mediendateien ablehnen
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
@@ -502,7 +502,7 @@ de:
       by_domain: Domain
       confirm_purge: Möchtest du die Daten von dieser Domain wirklich für immer löschen?
       content_policies:
-        comment: Interne Notiz
+        comment: Nicht-öffentliche Notiz
         description_html: Du kannst Inhaltsrichtlinien definieren, die auf alle Konten dieser Domain und einer ihrer Subdomains angewendet werden.
         limited_federation_mode_description_html: Du kannst auswählen, ob du eine Föderation mit dieser Domain erlaubst.
         policies:
@@ -826,8 +826,10 @@ de:
       back_to_account: Zurück zum Konto
       back_to_report: Zurück zur Seite mit den Meldungen
       batch:
+        add_to_report: Der Meldung Nr. %{id} hinzufügen
         remove_from_report: Von der Meldung entfernen
         report: Meldung
+      contents: Inhalte
       deleted: Gelöscht
       favourites: Favoriten
       history: Versionsverlauf
@@ -836,13 +838,17 @@ de:
       media:
         title: Medien
       metadata: Metadaten
+      no_history: Der Beitrag wurde nicht bearbeitet
       no_status_selected: Keine Beiträge wurden geändert, weil keine ausgewählt wurden
       open: Beitrag öffnen
       original_status: Ursprünglicher Beitrag
       reblogs: Geteilte Beiträge
+      replied_to_html: Antwortete %{acct_link}
       status_changed: Beitrag bearbeitet
-      title: Beiträge des Kontos - @%{name}
+      status_title: Beitrag von @%{name}
+      title: Beiträge des Kontos – @%{name}
       trending: Trends
+      view_publicly: Öffentlich anzeigen
       visibility: Sichtbarkeit
       with_media: Mit Medien
     strikes:

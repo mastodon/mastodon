@@ -193,6 +193,7 @@ he:
         create_domain_block: יצירת דומיין חסום
         create_email_domain_block: יצירת חסימת דומיין דוא"ל
         create_ip_block: יצירת כלל IP
+        create_relay: יצירת ממסר
         create_unavailable_domain: יצירת דומיין בלתי זמין
         create_user_role: יצירת תפקיד
         demote_user: הורדת משתמש בדרגה
@@ -204,14 +205,17 @@ he:
         destroy_email_domain_block: מחיקת חסימת דומיין דוא"ל
         destroy_instance: טיהור דומיין
         destroy_ip_block: מחיקת כלל IP
+        destroy_relay: מחיקת ממסר
         destroy_status: מחיקת הודעה
         destroy_unavailable_domain: מחיקת דומיין בלתי זמין
         destroy_user_role: מחיקת תפקיד
         disable_2fa_user: השעיית זיהוי דו-גורמי
         disable_custom_emoji: השעיית אמוג'י מיוחד
+        disable_relay: השבתת ממסר
         disable_sign_in_token_auth_user: השעיית אסימון הזדהות בדוא"ל של משתמש
         disable_user: השעיית משתמש
         enable_custom_emoji: הפעלת אמוג'י מיוחד
+        enable_relay: החייאת ממסר
         enable_sign_in_token_auth_user: הפעלת אסימון הזדהות בדוא"ל של משתמש
         enable_user: אפשור משתמש
         memorialize_account: הנצחת חשבון
@@ -253,6 +257,7 @@ he:
         create_domain_block_html: "%{name} חסם/ה את הדומיין %{target}"
         create_email_domain_block_html: '%{name} חסם/ה את דומיין הדוא"ל %{target}'
         create_ip_block_html: "%{name} יצר/ה כלל עבור IP %{target}"
+        create_relay_html: "%{name} יצרו את הממסר %{target}"
         create_unavailable_domain_html: "%{name} הפסיק/ה משלוח לדומיין %{target}"
         create_user_role_html: "%{name} יצר את התפקיד של %{target}"
         demote_user_html: "%{name} הוריד/ה בדרגה את המשתמש %{target}"
@@ -264,14 +269,17 @@ he:
         destroy_email_domain_block_html: '%{name} הסיר/ה חסימה מדומיין הדוא"ל %{target}'
         destroy_instance_html: "%{name} טיהר/ה את הדומיין %{target}"
         destroy_ip_block_html: "%{name} מחק/ה את הכלל עבור IP %{target}"
+        destroy_relay_html: "%{name} מחקו את הממסר %{target}"
         destroy_status_html: ההודעה של %{target} הוסרה ע"י %{name}
         destroy_unavailable_domain_html: "%{name} התחיל/ה מחדש משלוח לדומיין %{target}"
         destroy_user_role_html: "%{name} ביטל את התפקיד של %{target}"
         disable_2fa_user_html: "%{name} ביטל/ה את הדרישה לאימות דו-גורמי למשתמש %{target}"
         disable_custom_emoji_html: "%{name} השבית/ה את האמוג'י %{target}"
+        disable_relay_html: "%{name} השביתו את הממסר %{target}"
         disable_sign_in_token_auth_user_html: '%{name} השבית/ה את האימות בעזרת אסימון דוא"ל עבור %{target}'
         disable_user_html: "%{name} חסם/ה כניסה מהמשתמש/ת %{target}"
         enable_custom_emoji_html: "%{name} אפשר/ה את האמוג'י %{target}"
+        enable_relay_html: "%{name} החיו את הממסר %{target}"
         enable_sign_in_token_auth_user_html: '%{name} אפשר/ה אימות בעזרת אסימון דוא"ל עבור %{target}'
         enable_user_html: "%{name} אפשר/ה כניסה עבור המשתמש %{target}"
         memorialize_account_html: "%{name} הפך/ה את חשבונו של %{target} לדף הנצחה"
@@ -846,8 +854,10 @@ he:
       back_to_account: חזרה לדף החשבון
       back_to_report: חזרה לעמוד הדיווח
       batch:
+        add_to_report: להוסיף לדו"ח מספר %{id}
         remove_from_report: הסרה מהדיווח
         report: דווח
+      contents: תוכן
       deleted: מחוקים
       favourites: חיבובים
       history: היסטורית גרסאות
@@ -856,13 +866,17 @@ he:
       media:
         title: מדיה
       metadata: נתוני-מטא
+      no_history: הודעה זו לא נערכה
       no_status_selected: לא בוצעו שינויים בהודעות שכן לא נבחרו כאלו
       open: פתח הודעה
       original_status: הודעה מקורית
       reblogs: שיתופים
+      replied_to_html: בתגובה לחשבון %{acct_link}
       status_changed: הודעה שונתה
-      title: הודעות החשבון - @%{name}
+      status_title: פרסום מאת @%{name}
+      title: פרסומי החשבון - @%{name}
       trending: נושאים חמים
+      view_publicly: צפיה בפומבי
       visibility: נראות
       with_media: עם מדיה
     strikes:

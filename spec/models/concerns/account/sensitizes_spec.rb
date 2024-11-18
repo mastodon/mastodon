@@ -7,7 +7,7 @@ RSpec.describe Account::Sensitizes do
     describe '.sensitized' do
       let(:sensitized_account) { Fabricate :account, sensitized_at: 2.days.ago }
 
-      before { Fabricate :account, sensitized_at: false }
+      before { Fabricate :account, sensitized_at: nil }
 
       it 'returns an array of accounts who are sensitized' do
         expect(Account.sensitized)

@@ -184,6 +184,7 @@ ja:
         create_domain_block: ドメインブロックを作成
         create_email_domain_block: メールドメインブロックを作成
         create_ip_block: IPルールを作成
+        create_relay: リレーの追加
         create_unavailable_domain: 配送できないドメインを作成
         create_user_role: ロールを作成
         demote_user: ユーザーを降格
@@ -195,14 +196,17 @@ ja:
         destroy_email_domain_block: メールドメインブロックを削除
         destroy_instance: ドメインをブロックする
         destroy_ip_block: IPルールを削除
+        destroy_relay: リレーの削除
         destroy_status: 投稿を削除
         destroy_unavailable_domain: 配送できないドメインを削除
         destroy_user_role: ロールを削除
         disable_2fa_user: 二要素認証を無効化
         disable_custom_emoji: カスタム絵文字を無効化
+        disable_relay: リレーの無効化
         disable_sign_in_token_auth_user: ユーザのメールトークン認証を無効化
         disable_user: ユーザーを無効化
         enable_custom_emoji: カスタム絵文字を有効化
+        enable_relay: リレーの有効化
         enable_sign_in_token_auth_user: ユーザのメールトークン認証を有効化
         enable_user: ユーザーを有効化
         memorialize_account: 追悼アカウント化
@@ -244,6 +248,7 @@ ja:
         create_domain_block_html: "%{name}さんがドメイン %{target}をブロックしました"
         create_email_domain_block_html: "%{name} さんがメールドメイン %{target} をブロックしました"
         create_ip_block_html: "%{name}さんがIP %{target}のルールを作成しました"
+        create_relay_html: "%{name} さんがリレー %{target} を追加しました"
         create_unavailable_domain_html: "%{name}がドメイン %{target}への配送を停止しました"
         create_user_role_html: "%{name}さんがロール『%{target}』を作成しました"
         demote_user_html: "%{name}さんが%{target}さんを降格しました"
@@ -252,17 +257,20 @@ ja:
         destroy_custom_emoji_html: "%{name}さんがカスタム絵文字『%{target}』を削除しました"
         destroy_domain_allow_html: "%{name}さんが%{target}の連合許可を外しました"
         destroy_domain_block_html: "%{name}さんがドメイン %{target}のブロックを外しました"
-        destroy_email_domain_block_html: "%{name} がメールドメイン %{target} のブロックを外しました"
+        destroy_email_domain_block_html: "%{name} さんがメールドメイン %{target} のブロックを外しました"
         destroy_instance_html: "%{name}さんがドメイン %{target}をブロックしました"
         destroy_ip_block_html: "%{name}さんが IP %{target}のルールを削除しました"
+        destroy_relay_html: "%{name} さんがリレー %{target} を削除しました"
         destroy_status_html: "%{name}さんが%{target}さんの投稿を削除しました"
         destroy_unavailable_domain_html: "%{name}がドメイン %{target}への配送を再開しました"
         destroy_user_role_html: "%{name}さんがロール『%{target}』を削除しました"
         disable_2fa_user_html: "%{name}さんが%{target}さんの二要素認証を無効化しました"
         disable_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を無効化しました"
+        disable_relay_html: "%{name} さんがリレー %{target} を無効にしました"
         disable_sign_in_token_auth_user_html: "%{name} が %{target} のメールトークン認証を無効化しました"
         disable_user_html: "%{name}さんが%{target}さんのログインを無効化しました"
         enable_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を有効化しました"
+        enable_relay_html: "%{name} さんがリレー %{target} を有効にしました"
         enable_sign_in_token_auth_user_html: "%{name} が %{target} のメールトークン認証を有効化しました"
         enable_user_html: "%{name}さんが%{target}さんのログインを有効化しました"
         memorialize_account_html: "%{name}さんが%{target}さんを追悼アカウントページに登録しました"
@@ -804,8 +812,10 @@ ja:
       back_to_account: アカウントページに戻る
       back_to_report: 通報ページに戻る
       batch:
+        add_to_report: 'レポート #%{id} に追加'
         remove_from_report: 通報から削除
         report: 通報
+      contents: 投稿内容
       deleted: 削除済み
       favourites: お気に入り
       history: 更新履歴
@@ -814,13 +824,17 @@ ja:
       media:
         title: メディア
       metadata: メタデータ
+      no_history: この投稿は編集されていません
       no_status_selected: 何も選択されていないため、変更されていません
       open: 投稿を開く
       original_status: オリジナルの投稿
       reblogs: ブースト
+      replied_to_html: "%{acct_link}さんへの返信"
       status_changed: 投稿を変更しました
+      status_title: "@%{name} の投稿"
       title: 投稿一覧 - @%{name}
       trending: トレンド
+      view_publicly: 元の投稿を開く
       visibility: 公開範囲
       with_media: メディアあり
     strikes:
