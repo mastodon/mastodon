@@ -10,6 +10,6 @@ linters:
   MiddleDot:
     enabled: true
   LineLength:
-    max: 300
+    max: 256 # Override default value of 80 inherited from rubocop
   ViewLength:
-    max: 200 # Override default value of 100 inherited from rubocop
+    max: 128 # Override default value of 100 inherited from rubocop
