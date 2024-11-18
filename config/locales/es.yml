@@ -57,7 +57,7 @@ es:
       confirming: Confirmando
       custom: Personalizado
       delete: Eliminar datos
-      deleted: Borrado
+      deleted: Eliminado
       demote: Degradar
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Deshabilitar
@@ -116,7 +116,7 @@ es:
       protocol: Protocolo
       public: Público
       push_subscription_expires: Expiración de la suscripción PuSH
-      redownload: Refrescar avatar
+      redownload: Refrescar perfil
       redownloaded_msg: Se actualizó correctamente el perfil de %{username} desde el origen
       reject: Rechazar
       rejected_msg: La solicitud de registro de %{username} ha sido rechazada con éxito
@@ -187,6 +187,7 @@ es:
         create_domain_block: Crear Bloqueo de Dominio
         create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
         create_ip_block: Crear regla IP
+        create_relay: Crear Relé
         create_unavailable_domain: Crear Dominio No Disponible
         create_user_role: Crear Rol
         demote_user: Degradar Usuario
@@ -198,14 +199,17 @@ es:
         destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
         destroy_instance: Purgar Dominio
         destroy_ip_block: Eliminar regla IP
+        destroy_relay: Eliminar Relé
         destroy_status: Eliminar Publicación
         destroy_unavailable_domain: Eliminar Dominio No Disponible
         destroy_user_role: Destruir Rol
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizado
+        disable_relay: Desactivar Relé
         disable_sign_in_token_auth_user: Deshabilitar la Autenticación por Token de Correo Electrónico para el Usuario
         disable_user: Deshabilitar Usuario
         enable_custom_emoji: Habilitar Emoji Personalizado
+        enable_relay: Activar Relé
         enable_sign_in_token_auth_user: Habilitar la Autenticación por Token de Correo Electrónico para el Usuario
         enable_user: Habilitar Usuario
         memorialize_account: Transformar en Cuenta Conmemorativa
@@ -247,6 +251,7 @@ es:
         create_domain_block_html: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
         create_ip_block_html: "%{name} creó una regla para la IP %{target}"
+        create_relay_html: "%{name} creó un relé %{target}"
         create_unavailable_domain_html: "%{name} detuvo las entregas al dominio %{target}"
         create_user_role_html: "%{name} creó el rol %{target}"
         demote_user_html: "%{name} degradó al usuario %{target}"
@@ -258,14 +263,17 @@ es:
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
         destroy_instance_html: "%{name} purgó el dominio %{target}"
         destroy_ip_block_html: "%{name} eliminó una regla para la IP %{target}"
+        destroy_relay_html: "%{name} eliminó el relé %{target}"
         destroy_status_html: "%{name} eliminó la publicación de %{target}"
         destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
         destroy_user_role_html: "%{name} eliminó el rol %{target}"
         disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} desactivó el emoji %{target}"
+        disable_relay_html: "%{name} desactivó el relé %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ha deshabilitado la autenticación por token de correo electrónico para %{target}"
         disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
         enable_custom_emoji_html: "%{name} activó el emoji %{target}"
+        enable_relay_html: "%{name} activó el relé %{target}"
         enable_sign_in_token_auth_user_html: "%{name} ha habilitado la autenticación por token de correo electrónico para %{target}"
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
@@ -566,7 +574,7 @@ es:
         '94670856': 3 años
       new:
         title: Crear nueva regla IP
-      no_ip_block_selected: No se han cambiado reglas IP ya que no se ha seleccionado ninguna
+      no_ip_block_selected: No se han cambiado reglas IP, ya que no se ha seleccionado ninguna
       title: Reglas IP
     relationships:
       title: Relaciones de %{acct}
@@ -818,8 +826,10 @@ es:
       back_to_account: Volver a la cuenta
       back_to_report: Volver a la página del reporte
       batch:
+        add_to_report: 'Añadir al informe #%{id}'
         remove_from_report: Eliminar del reporte
         report: Reporte
+      contents: Contenidos
       deleted: Eliminado
       favourites: Favoritos
       history: Historial de versiones
@@ -828,13 +838,17 @@ es:
       media:
         title: Multimedia
       metadata: Metadatos
+      no_history: Esta publicación no ha sido editada
       no_status_selected: No se cambió ninguna publicación al no seleccionar ninguna
       open: Abrir publicación
       original_status: Publicación original
       reblogs: Impulsos
+      replied_to_html: Respondió a %{acct_link}
       status_changed: Publicación cambiada
+      status_title: Publicación de @%{name}
       title: Publicaciones de la cuenta - @%{name}
       trending: En tendencia
+      view_publicly: Ver públicamente
       visibility: Visibilidad
       with_media: Con multimedia
     strikes:
@@ -910,7 +924,7 @@ es:
       review: Estado de revisión
       search: Buscar
       title: Etiquetas
-      updated_msg: Hashtags actualizados exitosamente
+      updated_msg: La configuración de etiquetas se actualizó correctamente
     title: Administración
     trends:
       allow: Permitir
@@ -1109,7 +1123,7 @@ es:
     didnt_get_confirmation: "¿No recibiste un enlace de confirmación?"
     dont_have_your_security_key: "¿No tienes tu clave de seguridad?"
     forgot_password: "¿Olvidaste tu contraseña?"
-    invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
+    invalid_reset_password_token: El token de restablecimiento de contraseña no es válido o ha expirado. Por favor solicita uno nuevo.
     link_to_otp: Introduce un código de dos factores desde tu teléfono o un código de recuperación
     link_to_webauth: Utilice su dispositivo de clave de seguridad
     log_in_with: Iniciar sesión con
@@ -1258,7 +1272,7 @@ es:
     '422':
       content: Verificación de seguridad fallida. ¿Estás bloqueando algunas cookies?
       title: Verificación de seguridad fallida
-    '429': Asfixiado
+    '429': Demasiadas solicitudes
     '500':
       content: Lo sentimos, algo ha funcionado mal por nuestra parte.
       title: Esta página no es correcta
@@ -1446,7 +1460,7 @@ es:
       '604800': 1 semana
       '86400': 1 día
     expires_in_prompt: Nunca
-    generate: Generar
+    generate: Generar enlace de invitación
     invalid: Esta invitación no es válida
     invited_by: 'Fuiste invitado por:'
     max_uses:
@@ -1489,12 +1503,12 @@ es:
       title: Cancelar suscripición
   media_attachments:
     validations:
-      images_and_video: No se puede adjuntar un video a unapublicación que ya contenga imágenes
+      images_and_video: No se puede adjuntar un video a una publicación que ya contenga imágenes
       not_found: Archivos multimedia %{ids} no encontrados, o ya se encuentran adjuntos a otra publicación
       not_ready: No se pueden adjuntar archivos que no se han terminado de procesar. ¡Inténtalo de nuevo en un momento!
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
-    acct: username@domain de la nueva cuenta
+    acct: Movido a
     cancel: Cancelar redireccionamiento
     cancel_explanation: Al cancelar el redireccionamiento se reactivará tu cuenta actual, pero no recuperarás los seguidores que hayan sido trasladados a la otra cuenta.
     cancelled_msg: El redireccionamiento se ha cancelado correctamente.
@@ -1729,7 +1743,7 @@ es:
     migrate: Migración de cuenta
     notifications: Notificaciones por correo electrónico
     preferences: Preferencias
-    profile: Perfil
+    profile: Perfil público
     relationships: Siguiendo y seguidores
     severed_relationships: Relaciones cortadas
     statuses_cleanup: Eliminación automática de publicaciones
@@ -1773,11 +1787,11 @@ es:
       direct: Las publicaciones que son visibles solo para los usuarios mencionados no pueden fijarse
       limit: Ya has fijado el número máximo de publicaciones
       ownership: La publicación de otra persona no puede fijarse
-      reblog: Un boost no puede fijarse
+      reblog: Una publicación impulsada no puede fijarse
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Directa
-      private: Sólo mostrar a seguidores
+      private: Solo seguidores
       private_long: Solo mostrar a tus seguidores
       public: Pública
       public_long: Todos pueden ver
@@ -1826,8 +1840,8 @@ es:
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior
   themes:
-    contrast: Alto contraste
-    default: Mastodon
+    contrast: Mastodon (alto contraste)
+    default: Mastodon (oscuro)
     mastodon-light: Mastodon (claro)
     system: Automático (usar tema del sistema)
   time:
@@ -1847,7 +1861,7 @@ es:
     edit: Editar
     enabled: La autenticación de dos factores está activada
     enabled_success: Verificación de dos factores activada exitosamente
-    generate_recovery_codes: generar códigos de recuperación
+    generate_recovery_codes: Generar códigos de recuperación
     lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación, puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
     methods: Métodos de autenticación de doble factor
     otp: Aplicación de autenticación

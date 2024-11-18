@@ -196,6 +196,7 @@ ga:
         create_domain_block: Cruthaigh Bloc Fearainn
         create_email_domain_block: Cruthaigh Bloc Fearainn Ríomhphoist
         create_ip_block: Cruthaigh riail IP
+        create_relay: Cruthaigh Leaschraolacháin
         create_unavailable_domain: Cruthaigh Fearann ​​Gan Fáil
         create_user_role: Cruthaigh Ról
         demote_user: Ísligh úsáideoir
@@ -207,14 +208,17 @@ ga:
         destroy_email_domain_block: Scrios Bloc Fearainn Ríomhphoist
         destroy_instance: Fearann ​​Purge
         destroy_ip_block: Scrios riail IP
+        destroy_relay: Scrios Leaschraolacháin
         destroy_status: Scrios Postáil
         destroy_unavailable_domain: Scrios Fearann ​​Gan Fáil
         destroy_user_role: Scrios ról
         disable_2fa_user: Díchumasaigh 2FA
         disable_custom_emoji: Díchumasaigh Emoji Saincheaptha
+        disable_relay: Díchumasaigh Leaschraolacháin
         disable_sign_in_token_auth_user: Díchumasaigh Fíordheimhniú Comhartha Ríomhphoist don Úsáideoir
         disable_user: Díchumasaigh Úsáideoir
         enable_custom_emoji: Cumasaigh Emoji Saincheaptha
+        enable_relay: Cumasaigh Leaschraolacháin
         enable_sign_in_token_auth_user: Cumasaigh Fíordheimhniú Comhartha Ríomhphoist don Úsáideoir
         enable_user: Cumasaigh Úsáideoir
         memorialize_account: Cuntas Cuimhneacháin
@@ -256,6 +260,7 @@ ga:
         create_domain_block_html: "%{name} fearann ​​bactha %{target}"
         create_email_domain_block_html: Chuir %{name} fearann ​​ríomhphoist bactha %{target}
         create_ip_block_html: Chruthaigh %{name} riail don IP %{target}
+        create_relay_html: Chruthaigh %{name} athsheoladh %{target}
         create_unavailable_domain_html: Chuir %{name} deireadh leis an seachadadh chuig fearann ​​%{target}
         create_user_role_html: Chruthaigh %{name} %{target} ról
         demote_user_html: "%{name} úsáideoir scriosta %{target}"
@@ -267,14 +272,17 @@ ga:
         destroy_email_domain_block_html: "%{name} fearann ​​ríomhphoist díchoiscthe %{target}"
         destroy_instance_html: Glanadh %{name} fearann ​​%{target}
         destroy_ip_block_html: "%{name} scriosta riail le haghaidh IP %{target}"
+        destroy_relay_html: Scrios %{name} an athsheoladh %{target}
         destroy_status_html: Bhain %{name} postáil le %{target}
         destroy_unavailable_domain_html: D'athchrom %{name} ar an seachadadh chuig fearann ​​%{target}
         destroy_user_role_html: Scrios %{name} ról %{target}
         disable_2fa_user_html: Dhíchumasaigh %{name} riachtanas dhá fhachtóir don úsáideoir %{target}
         disable_custom_emoji_html: Dhíchumasaigh %{name} emoji %{target}
+        disable_relay_html: Dhíchumasaigh %{name} an athsheoladh %{target}
         disable_sign_in_token_auth_user_html: Dhíchumasaigh %{name} fíordheimhniú comhartha ríomhphoist le haghaidh %{target}
         disable_user_html: "%{name} logáil isteach díchumasaithe d'úsáideoir %{target}"
         enable_custom_emoji_html: "%{name} emoji cumasaithe %{target}"
+        enable_relay_html: Chuir %{name} an sealaíocht %{target} ar chumas
         enable_sign_in_token_auth_user_html: Chuir %{name} fíordheimhniú comhartha ríomhphoist ar chumas %{target}
         enable_user_html: "%{name} logáil isteach cumasaithe don úsáideoir %{target}"
         memorialize_account_html: Rinne %{name} cuntas %{target} a iompú ina leathanach cuimhneacháin
@@ -860,8 +868,10 @@ ga:
       back_to_account: Ar ais go leathanach cuntais
       back_to_report: Ar ais go leathanach tuairisce
       batch:
+        add_to_report: 'Cuir leis an tuairisc # %{id}'
         remove_from_report: Bain den tuairisc
         report: Tuairisc
+      contents: Ábhar
       deleted: Scriosta
       favourites: Toghanna
       history: Stair leagan
@@ -870,13 +880,17 @@ ga:
       media:
         title: Meáin
       metadata: Meiteashonraí
+      no_history: Níl an postáil seo curtha in eagar
       no_status_selected: Níor athraíodh aon phostáil mar níor roghnaíodh ceann ar bith
       open: Oscail postáil
       original_status: Bunphostáil
       reblogs: Athbhlaganna
+      replied_to_html: D'fhreagair %{acct_link}
       status_changed: Athraíodh postáil
-      title: Poist chuntais - @%{name}
+      status_title: Postáil le @ %{name}
+      title: Postálacha cuntais - @%{name}
       trending: Ag treochtáil
+      view_publicly: Féach go poiblí
       visibility: Infheictheacht
       with_media: Le meáin
     strikes:

@@ -187,6 +187,7 @@ es-AR:
         create_domain_block: Crear bloqueo de dominio
         create_email_domain_block: Crear bloqueo de dominio de correo electrónico
         create_ip_block: Crear regla de dirección IP
+        create_relay: Crear Relé
         create_unavailable_domain: Crear dominio no disponible
         create_user_role: Crear rol
         demote_user: Descender usuario
@@ -198,14 +199,17 @@ es-AR:
         destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
         destroy_instance: Purgar dominio
         destroy_ip_block: Eliminar regla de dirección IP
+        destroy_relay: Eliminar Relé
         destroy_status: Eliminar mensaje
         destroy_unavailable_domain: Eliminar dominio no disponible
         destroy_user_role: Destruir rol
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar emoji personalizado
+        disable_relay: Desactivar Relé
         disable_sign_in_token_auth_user: Deshabilitar autenticación de token por correo electrónico para el usuario
         disable_user: Deshabilitar usuario
         enable_custom_emoji: Habilitar emoji personalizado
+        enable_relay: Activar Relé
         enable_sign_in_token_auth_user: Habilitar autenticación de token por correo electrónico para el usuario
         enable_user: Habilitar usuario
         memorialize_account: Convertir en cuenta conmemorativa
@@ -247,6 +251,7 @@ es-AR:
         create_domain_block_html: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
         create_ip_block_html: "%{name} creó la regla para la dirección IP %{target}"
+        create_relay_html: "%{name} creó un relé %{target}"
         create_unavailable_domain_html: "%{name} detuvo la entrega al dominio %{target}"
         create_user_role_html: "%{name} creó el rol %{target}"
         demote_user_html: "%{name} bajó de nivel al usuario %{target}"
@@ -258,14 +263,17 @@ es-AR:
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
         destroy_instance_html: "%{name} purgó el dominio %{target}"
         destroy_ip_block_html: "%{name} eliminó la regla para la dirección IP %{target}"
+        destroy_relay_html: "%{name} eliminó el relé %{target}"
         destroy_status_html: "%{name} eliminó el mensaje de %{target}"
         destroy_unavailable_domain_html: "%{name} reanudó la entrega al dominio %{target}"
         destroy_user_role_html: "%{name} eliminó el rol %{target}"
         disable_2fa_user_html: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} deshabilitó el emoji %{target}"
+        disable_relay_html: "%{name} desactivó el relé %{target}"
         disable_sign_in_token_auth_user_html: "%{name} deshabilitó la autenticación de token por correo electrónico para %{target}"
         disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
         enable_custom_emoji_html: "%{name} habilitó el emoji %{target}"
+        enable_relay_html: "%{name} activó el relé %{target}"
         enable_sign_in_token_auth_user_html: "%{name} habilitó la autenticación de token por correo electrónico para %{target}"
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una cuenta conmemorativa"
@@ -818,8 +826,10 @@ es-AR:
       back_to_account: Volver a la página de la cuenta
       back_to_report: Volver a la página de la denuncia
       batch:
+        add_to_report: 'Añadir al informe #%{id}'
         remove_from_report: Quitar de la denuncia
         report: Denunciar
+      contents: Contenidos
       deleted: Eliminado
       favourites: Favoritos
       history: Historial de versiones
@@ -828,13 +838,17 @@ es-AR:
       media:
         title: Medios
       metadata: Metadatos
+      no_history: Esta publicación no ha sido editada
       no_status_selected: No se cambió ningún mensaje, ya que ninguno fue seleccionado
       open: Abrir mensaje
       original_status: Mensaje original
       reblogs: Adhesiones
+      replied_to_html: Respondió a %{acct_link}
       status_changed: Mensaje cambiado
-      title: Mensajes de la cuenta - @%{name}
+      status_title: Publicación de @%{name}
+      title: Publicaciones de la cuenta - @%{name}
       trending: En tendencia
+      view_publicly: Ver públicamente
       visibility: Visibilidad
       with_media: Con medios
     strikes:
