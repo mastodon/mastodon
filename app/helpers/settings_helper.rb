@@ -24,11 +24,11 @@ module SettingsHelper
   end
 
   def session_device_icon(session)
-    device = session.detection.device
+    browser = session.detection
 
-    if device.mobile?
+    if browser.mobile?
       'smartphone'
-    elsif device.tablet?
+    elsif browser.tablet?
       'tablet'
     else
       'desktop_mac'
