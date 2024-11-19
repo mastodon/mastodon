@@ -22,7 +22,7 @@
       - if @status.reply?
         %tr
           %th= t('admin.statuses.in_reply_to')
-          %td= admin_account_link_to @status.in_reply_to_account, path: admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id)
+          %td= admin_account_link_to @status.in_reply_to_account, path: @status.thread.present? ? admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id) : nil
       %tr
         %th= t('admin.statuses.application')
         %td= @status.application&.name
@@ -61,7 +61,7 @@
   - elsif @status.reply? && @status.in_reply_to_id.present?
     .status__prepend
       = material_symbol('reply')
-      = t('admin.statuses.replied_to_html', acct_link: admin_account_inline_link_to(@status.in_reply_to_account, path: admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id)))
+      = t('admin.statuses.replied_to_html', acct_link: admin_account_inline_link_to(@status.in_reply_to_account, path: @status.thread.present? ? admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id) : nil))
   .status__content><
     - if @status.proper.spoiler_text.blank?
       = prerender_custom_emojis(status_content_format(@status.proper), @status.proper.emojis)
