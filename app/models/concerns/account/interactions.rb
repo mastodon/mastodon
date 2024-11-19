@@ -107,7 +107,6 @@ module Account::Interactions
     has_many :muting, -> { order(mutes: { id: :desc }) }, through: :mute_relationships, source: :target_account
     has_many :muted_by, -> { order(mutes: { id: :desc }) }, through: :muted_by_relationships, source: :account
     has_many :conversation_mutes, dependent: :destroy
-    has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
     has_many :announcement_mutes, dependent: :destroy
   end
 

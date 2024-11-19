@@ -15,7 +15,8 @@ class AccountDomainBlock < ApplicationRecord
   include Paginable
   include DomainNormalizable
 
-  belongs_to :account
+  belongs_to :account, inverse_of: :domain_blocks
+
   validates :domain, presence: true, uniqueness: { scope: :account_id }, domain: true
 
   after_commit :invalidate_domain_blocking_cache

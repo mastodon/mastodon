@@ -15,6 +15,7 @@ module Account::Associations
         has_many :bookmarks
         has_many :conversations, class_name: 'AccountConversation'
         has_many :custom_filters
+        has_many :domain_blocks, class_name: 'AccountDomainBlock'
         has_many :favourites
         has_many :featured_tags, -> { includes(:tag) }
         has_many :list_accounts
