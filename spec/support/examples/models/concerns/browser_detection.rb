@@ -17,6 +17,18 @@ RSpec.shared_examples 'BrowserDetection' do
     end
   end
 
+  describe '#browser_mobile?' do
+    subject { described_class.new(user_agent: 'Mozilla/5.0 (iPhone)') }
+
+    it { is_expected.to be_browser_mobile }
+  end
+
+  describe '#browser_tablet?' do
+    subject { described_class.new(user_agent: 'Mozilla/5.0 (iPad)') }
+
+    it { is_expected.to be_browser_tablet }
+  end
+
   describe 'Callbacks' do
     describe 'populating the user_agent value' do
       subject { Fabricate.build described_class.name.underscore.to_sym, user_agent: nil }
