@@ -33,8 +33,15 @@ class FollowRequest < ApplicationRecord
 
   def authorize!
     follow = account.follow!(target_account, reblogs: show_reblogs, notify: notify, languages: languages, uri: uri, bypass_limit: true)
-    ListAccount.where(follow_request: self).update_all(follow_request_id: nil, follow_id: follow.id)
-    MergeWorker.perform_async(target_account.id, account.id) if account.local?
+
+    if account.local?
+      ListAccount.where(follow_request: self).update_all(follow_request_id: nil, follow_id: follow.id)
+      MergeWorker.perform_async(target_account.id, account.id, 'home')
+      MergeWorker.push_bulk(List.where(account: account).joins(:list_accounts).where(list_accounts: { account_id: target_account.id }).pluck(:id)) do |list_id|
+        [target_account.id, list_id, 'list']
+      end
+    end
+
     destroy!
   end
 
