@@ -142,6 +142,10 @@ class UserRole < ApplicationRecord
     other_role.nil? || position > other_role.position
   end
 
+  def enables_delivery?(role)
+    overrides?(role) && highlighted? && can?(*Flags::CATEGORIES[:moderation])
+  end
+
   def computed_permissions
     # If called on the everyone role, no further computation needed
     return permissions if everyone?
