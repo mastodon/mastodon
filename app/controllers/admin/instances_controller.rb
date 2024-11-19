@@ -40,7 +40,7 @@ module Admin
     def clear_delivery_errors
       authorize :delivery, :clear_delivery_errors?
       @instance.delivery_failure_tracker.clear_failures!
-      redirect_to admin_instance_path(@instance.domain)
+      redirect_to availability_admin_instance_path(@instance.domain)
     end
 
     def restart_delivery
@@ -51,14 +51,14 @@ module Admin
         log_action :destroy, @instance.unavailable_domain
       end
 
-      redirect_to admin_instance_path(@instance.domain)
+      redirect_to availability_admin_instance_path(@instance.domain)
     end
 
     def stop_delivery
       authorize :delivery, :stop_delivery?
       unavailable_domain = UnavailableDomain.create!(domain: @instance.domain)
       log_action :create, unavailable_domain
-      redirect_to admin_instance_path(@instance.domain)
+      redirect_to availability_admin_instance_path(@instance.domain)
     end
 
     private

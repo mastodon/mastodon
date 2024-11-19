@@ -1,9 +1,6 @@
 -# locals: (instance_domain:, period_end_at:, period_start_at:)
-%p
-  = material_symbol 'info'
-  = t('admin.instances.totals_time_period_hint_html')
 
-.dashboard
+.dashboard.dashboard--instance-overview
   .dashboard__item
     = react_admin_component :counter,
                             end_at: period_end_at,
@@ -48,3 +45,6 @@
                             measure: 'instance_reports',
                             params: { domain: instance_domain },
                             start_at: period_start_at
+  %p.dashboard__hint
+    = material_symbol 'info'
+    = t('admin.instances.totals_time_period_hint_html')

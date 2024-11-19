@@ -5,13 +5,8 @@
   %h2= t('admin.instances.instance.title', domain: @instance.domain)
   = render partial: 'admin/instances/shared/navigation', instance: @instance
 
-%p.lead= t('admin.instances.statistics.subtitle')
-
 - if @instance.persisted?
-  %p.with-icon
-    = material_symbol 'info'
-    = t('admin.instances.totals_time_period_hint_html')
-
+  %p.lead= t('admin.instances.statistics.subtitle', domain: @instance.domain)
   .dashboard
     .dashboard__item
       = react_admin_component :dimension,
@@ -30,4 +25,4 @@
                               end_at: @time_period.last,
                               limit: 8
 - else
-  %p= t('admin.instances.availability.unknown_instance')
+  %p.lead= t('admin.instances.availability.unknown_instance')

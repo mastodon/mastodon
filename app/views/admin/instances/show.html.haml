@@ -17,36 +17,49 @@
 
 %hr.spacer/
 
-%h3= t('admin.instances.content_policies.title')
+%h3= t('admin.instances.federation_policies.title')
 
 - if limited_federation_mode?
-  %p= t('admin.instances.content_policies.limited_federation_mode_description_html')
+  %p= t('admin.instances.federation_policies.limited_federation_mode_description_html')
 
   - if @instance.domain_allow
     = link_to t('admin.domain_allows.undo'), admin_domain_allow_path(@instance.domain_allow), class: 'button button--destructive', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
   - else
     = link_to t('admin.domain_allows.add_new'), admin_domain_allows_path(domain_allow: { domain: @instance.domain }), class: 'button', method: :post
 - else
-  %p= t('admin.instances.content_policies.description_html')
+  %p= t('admin.instances.federation_policies.description_html')
 
   - if @instance.domain_block
     .table-wrapper
       %table.table.horizontal-table
+        %thead
+          %tr
+            %th{ width: '28%' }
+            %th
         %tbody
           %tr
-            %th= t('admin.instances.content_policies.comment')
-            %td= @instance.domain_block.private_comment
+            %th= t('admin.instances.federation_policies.comment')
+            %td
+              - if @instance.domain_block.private_comment.present?
+                = @instance.domain_block.private_comment
+              - else
+                %em= t('admin.instances.federation_policies.no_comment')
           %tr
-            %th= t('admin.instances.content_policies.reason')
-            %td= @instance.domain_block.public_comment
+            %th= t('admin.instances.federation_policies.reason')
+            %td
+              - if @instance.domain_block.public_comment.present?
+                = @instance.domain_block.public_comment
+              - else
+                %em= t('admin.instances.federation_policies.no_comment')
           %tr
-            %th= t('admin.instances.content_policies.policy')
-            %td= @instance.domain_block.policies.map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') }.join(' · ')
+            %th= t('admin.instances.federation_policies.policy')
+            %td= @instance.domain_block.policies.map { |policy| t(policy, scope: 'admin.instances.federation_policies.policies') }.join(' · ')
 
-    = link_to t('admin.domain_blocks.edit'), edit_admin_domain_block_path(@instance.domain_block), class: 'button'
-    = link_to t('admin.domain_blocks.undo'), admin_domain_block_path(@instance.domain_block), class: 'button', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
-    - if @instance.purgeable?
-      = link_to t('admin.instances.purge'), admin_instance_path(@instance), data: { confirm: t('admin.instances.confirm_purge'), method: :delete }, class: 'button button--destructive'
+    .button-group
+      = link_to t('admin.domain_blocks.edit'), edit_admin_domain_block_path(@instance.domain_block), class: 'button'
+      = link_to t('admin.domain_blocks.undo'), admin_domain_block_path(@instance.domain_block), class: 'button button-secondary', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
+      - if @instance.purgeable?
+        = link_to t('admin.instances.federation_policies.purge_data'), admin_instance_path(@instance), data: { confirm: t('admin.instances.confirm_purge'), method: :delete }, class: 'button button-tertiary button--destructive button-group__button--end'
   - else
     = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @instance.domain), class: 'button'
 
@@ -54,12 +67,13 @@
   %hr.spacer/
 
   %h3= t('admin.instances.audit_log.title')
+  %p= t('admin.instances.audit_log.description')
   - if @action_logs.empty?
     %p= t('accounts.nothing_here')
   - else
     .report-notes
       = render partial: 'admin/action_logs/action_log', collection: @action_logs
-    = link_to t('admin.instances.audit_log.view_all'), admin_action_logs_path(target_domain: @instance.domain), class: 'button'
+    = link_to t('admin.instances.audit_log.view_all'), admin_action_logs_path(target_domain: @instance.domain), class: 'button button-secondary'
 
 %hr.spacer/
 
