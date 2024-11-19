@@ -3,13 +3,6 @@
 RSpec.shared_examples 'BrowserDetection' do
   subject { described_class.new(user_agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Safari/605.1.15') }
 
-  describe '#detection' do
-    it 'sets a Browser instance as detection' do
-      expect(subject.detection)
-        .to be_a(Browser::Safari)
-    end
-  end
-
   describe '#browser' do
     it 'returns browser name from id' do
       expect(subject.browser)

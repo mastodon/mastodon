@@ -7,10 +7,6 @@ module BrowserDetection
     before_save :assign_user_agent
   end
 
-  def detection
-    @detection ||= Browser.new(user_agent)
-  end
-
   delegate :mobile?,
            :tablet?,
            to: :detection,
@@ -25,6 +21,10 @@ module BrowserDetection
   end
 
   private
+
+  def detection
+    @detection ||= Browser.new(user_agent)
+  end
 
   def assign_user_agent
     self.user_agent ||= ''
