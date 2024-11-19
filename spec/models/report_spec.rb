@@ -108,15 +108,22 @@ RSpec.describe Report do
     let(:report) { Fabricate(:report, target_account_id: target_account.id, status_ids: [status.id], created_at: 3.days.ago, updated_at: 1.day.ago) }
     let(:target_account) { Fabricate(:account) }
     let(:status) { Fabricate(:status) }
+    let(:account_warning) { Fabricate(:account_warning, report_id: report.id) }
 
     before do
       Fabricate(:action_log, target_type: 'Report', account_id: target_account.id, target_id: report.id, created_at: 2.days.ago)
       Fabricate(:action_log, target_type: 'Account', account_id: target_account.id, target_id: report.target_account_id, created_at: 2.days.ago)
       Fabricate(:action_log, target_type: 'Status', account_id: target_account.id, target_id: status.id, created_at: 2.days.ago)
+      Fabricate(:action_log, target_type: 'AccountWarning', account_id: target_account.id, target_id: account_warning.id, created_at: 2.days.ago)
     end
 
-    it 'returns right logs' do
-      expect(action_logs.count).to eq 3
+    it 'returns expected logs' do
+      expect(action_logs)
+        .to have_attributes(count: 4)
+        .and include(have_attributes(target_type: 'Account'))
+        .and include(have_attributes(target_type: 'AccountWarning'))
+        .and include(have_attributes(target_type: 'Report'))
+        .and include(have_attributes(target_type: 'Status'))
     end
   end
 
