@@ -54,7 +54,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
 
   def alerts_enabled
     # Mobile devices do not support regular notifications, so we enable push notifications by default
-    active_session.detection.device.mobile? || active_session.detection.device.tablet?
+    active_session.browser_mobile? || active_session.browser_tablet?
   end
 
   def update_session_with_subscription
