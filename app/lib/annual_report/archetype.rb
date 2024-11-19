@@ -5,6 +5,9 @@ class AnnualReport::Archetype < AnnualReport::Source
   # each active user in a single year (2023)
   AVERAGE_PER_YEAR = 113
 
+  SCORE_MULTIPLIER = 2
+  SCORE_REDUCER = 0.1
+
   def generate
     {
       archetype: archetype,
@@ -16,11 +19,11 @@ class AnnualReport::Archetype < AnnualReport::Source
   def archetype
     if (standalone_count + replies_count + reblogs_count) < AVERAGE_PER_YEAR
       :lurker
-    elsif reblogs_count > (standalone_count * 2)
+    elsif reblogs_count > (standalone_count * SCORE_MULTIPLIER)
       :booster
-    elsif polls_count > (standalone_count * 0.1) # standalone_count includes posts with polls
+    elsif polls_count > (standalone_count * SCORE_REDUCER) # standalone_count includes posts with polls
       :pollster
-    elsif replies_count > (standalone_count * 2)
+    elsif replies_count > (standalone_count * SCORE_MULTIPLIER)
       :replier
     else
       :oracle
