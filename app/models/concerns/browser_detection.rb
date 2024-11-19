@@ -7,10 +7,12 @@ module BrowserDetection
     before_save :assign_user_agent
   end
 
-  delegate :mobile?,
-           :tablet?,
-           to: :detection,
-           prefix: :browser
+  delegate(
+    :mobile?,
+    :tablet?,
+    to: :detection,
+    prefix: :browser
+  )
 
   def browser
     detection.id
