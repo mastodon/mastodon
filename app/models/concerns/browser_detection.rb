@@ -18,8 +18,16 @@ module BrowserDetection
     detection.id
   end
 
+  def browser_name
+    browser.to_s.capitalize
+  end
+
   def platform
     detection.platform.id
+  end
+
+  def platform_name
+    platform.to_s.capitalize
   end
 
   private

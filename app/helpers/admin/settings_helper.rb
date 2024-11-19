@@ -56,8 +56,8 @@ module Admin::SettingsHelper
   def login_activity_browser_description(activity)
     t(
       'sessions.description',
-      browser: t(activity.browser, scope: 'sessions.browsers', default: activity.browser.to_s),
-      platform: t(activity.platform, scope: 'sessions.platforms', default: activity.platform.to_s)
+      browser: t(activity.browser, scope: 'sessions.browsers', default: activity.browser_name),
+      platform: t(activity.platform, scope: 'sessions.platforms', default: activity.platform_name)
     )
   end
 end

@@ -10,10 +10,24 @@ RSpec.shared_examples 'BrowserDetection' do
     end
   end
 
+  describe '#browser_name' do
+    it 'returns browser name from id' do
+      expect(subject.browser_name)
+        .to eq('Safari')
+    end
+  end
+
   describe '#platform' do
     it 'returns detected platform' do
       expect(subject.platform)
         .to eq(:mac)
+    end
+  end
+
+  describe '#platform_name' do
+    it 'returns detected platform' do
+      expect(subject.platform_name)
+        .to eq('Mac')
     end
   end
 
