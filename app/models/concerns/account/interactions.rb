@@ -88,9 +88,6 @@ module Account::Interactions
       has_many :remote_severed_relationships, foreign_key: 'remote_account_id', inverse_of: :remote_account
     end
 
-    # Account notes
-    has_many :account_notes, dependent: :destroy
-
     # Block relationships
     with_options class_name: 'Block', dependent: :destroy do
       has_many :block_relationships, foreign_key: 'account_id', inverse_of: :account
