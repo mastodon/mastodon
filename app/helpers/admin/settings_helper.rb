@@ -21,24 +21,21 @@ module Admin::SettingsHelper
   end
 
   def login_activity_method(activity)
-    content_tag(
-      :span,
+    tag.span(
       login_activity_method_string(activity),
       class: 'target'
     )
   end
 
   def login_activity_ip(activity)
-    content_tag(
-      :span,
+    tag.span(
       activity.ip,
       class: 'target'
     )
   end
 
   def login_activity_browser(activity)
-    content_tag(
-      :span,
+    tag.span(
       login_activity_browser_description(activity),
       class: 'target',
       title: activity.user_agent
