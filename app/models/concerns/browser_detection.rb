@@ -11,6 +11,11 @@ module BrowserDetection
     @detection ||= Browser.new(user_agent)
   end
 
+  delegate :mobile?,
+           :tablet?,
+           to: :detection,
+           prefix: :browser
+
   def browser
     detection.id
   end
