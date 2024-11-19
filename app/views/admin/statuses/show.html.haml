@@ -15,7 +15,7 @@
       - if @status.reply?
         %tr
           %th= t('admin.statuses.in_reply_to')
-          %td= admin_account_link_to @status.in_reply_to_account, path: admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id)
+          %td= admin_account_link_to @status.in_reply_to_account, path: @status.thread.present? ? admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id) : nil
       %tr
         %th= t('admin.statuses.application')
         %td= @status.application&.name
