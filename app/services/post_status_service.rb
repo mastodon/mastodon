@@ -36,6 +36,8 @@ class PostStatusService < BaseService
     @text        = @options[:text] || ''
     @in_reply_to = @options[:thread]
 
+    @antispam = Antispam.new
+
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
     validate_media!
@@ -55,6 +57,8 @@ class PostStatusService < BaseService
     end
 
     @status
+  rescue Antispam::SilentlyDrop => e
+    e.status
   end
 
   private
@@ -74,6 +78,7 @@ class PostStatusService < BaseService
     @status = @account.statuses.new(status_attributes)
     process_mentions_service.call(@status, save_records: false)
     safeguard_mentions!(@status)
+    @antispam.local_preflight_check!(@status)
 
     # The following transaction block is needed to wrap the UPDATEs to
     # the media attachments when the status is created
@@ -95,6 +100,7 @@ class PostStatusService < BaseService
 
   def schedule_status!
     status_for_validation = @account.statuses.build(status_attributes)
+    @antispam.local_preflight_check!(status_for_validation)
 
     if status_for_validation.valid?
       # Marking the status as destroyed is necessary to prevent the status from being
@@ -111,6 +117,8 @@ class PostStatusService < BaseService
     else
       raise ActiveRecord::RecordInvalid
     end
+  rescue Antispam::SilentlyDrop
+    @status = @account.scheduled_status.new(scheduled_status_attributes).tap(&:delete)
   end
 
   def postprocess_status!
