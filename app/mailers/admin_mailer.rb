@@ -21,6 +21,14 @@ class AdminMailer < ApplicationMailer
     end
   end
 
+  def new_report_note(report_note)
+    @report_note = report_note
+
+    locale_for_account(@me) do
+      mail subject: default_i18n_subject(instance: @instance, id: @report_note.report.id)
+    end
+  end
+
   def new_appeal(appeal)
     @appeal = appeal
 

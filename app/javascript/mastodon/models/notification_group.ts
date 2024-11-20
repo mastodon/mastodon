@@ -8,7 +8,10 @@ import type {
   NotificationType,
   NotificationWithStatusType,
 } from 'mastodon/api_types/notifications';
-import type { ApiReportJSON } from 'mastodon/api_types/reports';
+import type {
+  ApiReportJSON,
+  ApiReportNoteJSON,
+} from 'mastodon/api_types/reports';
 
 // Maximum number of avatars displayed in a notification group
 // This corresponds to the max lenght of `group.sampleAccountIds`
@@ -81,6 +84,14 @@ export interface NotificationGroupAdminReport
   report: Report;
 }
 
+interface ReportNote extends Omit<ApiReportNoteJSON, 'report'> {
+  report: Report;
+}
+export interface NotificationGroupAdminReportNote
+  extends BaseNotification<'admin.report_note'> {
+  reportNote: ReportNote;
+}
+
 export type NotificationGroup =
   | NotificationGroupFavourite
   | NotificationGroupReblog
@@ -94,6 +105,7 @@ export type NotificationGroup =
   | NotificationGroupSeveredRelationships
   | NotificationGroupAdminSignUp
   | NotificationGroupAdminReport
+  | NotificationGroupAdminReportNote
   | NotificationGroupAnnualReport;
 
 function createReportFromJSON(reportJSON: ApiReportJSON): Report {
@@ -101,6 +113,16 @@ function createReportFromJSON(reportJSON: ApiReportJSON): Report {
   return {
     targetAccountId: target_account.id,
     ...report,
+  };
+}
+
+function createReportNoteFromJSON(
+  reportNoteJSON: ApiReportNoteJSON,
+): ReportNote {
+  const { report, ...reportNote } = reportNoteJSON;
+  return {
+    report: createReportFromJSON(report),
+    ...reportNote,
   };
 }
 
@@ -151,6 +173,14 @@ export function createNotificationGroupFromJSON(
         report: createReportFromJSON(report),
         sampleAccountIds,
         ...groupWithoutTargetAccount,
+      };
+    }
+    case 'admin.report_note': {
+      const { report_note, ...groupWithoutReportNote } = group;
+      return {
+        reportNote: createReportNoteFromJSON(report_note),
+        sampleAccountIds,
+        ...groupWithoutReportNote,
       };
     }
     case 'severed_relationships':
@@ -207,6 +237,11 @@ export function createNotificationGroupFromNotificationJSON(
       return { ...group, statusId: notification.status?.id };
     case 'admin.report':
       return { ...group, report: createReportFromJSON(notification.report) };
+    case 'admin.report_note':
+      return {
+        ...group,
+        reportNote: createReportNoteFromJSON(notification.report_note),
+      };
     case 'severed_relationships':
       return {
         ...group,

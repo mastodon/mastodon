@@ -6,6 +6,7 @@ class NotifyService < BaseService
   # TODO: the severed_relationships and annual_report types probably warrants email notifications
   NON_EMAIL_TYPES = %i(
     admin.report
+    admin.report_note
     admin.sign_up
     update
     poll
@@ -23,6 +24,7 @@ class NotifyService < BaseService
     NON_FILTERABLE_TYPES = %i(
       admin.sign_up
       admin.report
+      admin.report_note
       poll
       update
       account_warning

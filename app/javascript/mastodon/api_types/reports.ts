@@ -14,3 +14,10 @@ export interface ApiReportJSON {
   rule_ids: string[];
   target_account: ApiAccountJSON;
 }
+
+export interface ApiReportNoteJSON {
+  id: string;
+  content: string;
+  created_at: string;
+  report: ApiReportJSON;
+}
