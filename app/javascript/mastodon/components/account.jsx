@@ -10,6 +10,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { EmptyAccount } from 'mastodon/components/empty_account';
+import { FollowButton } from 'mastodon/components/follow_button';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { VerifiedBadge } from 'mastodon/components/verified_badge';
 
@@ -35,12 +36,8 @@ const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
 });
 
-const Account = ({ size = 46, account, onFollow, onBlock, onMute, onMuteNotifications, hidden, minimal, defaultAction, withBio }) => {
+const Account = ({ size = 46, account, onBlock, onMute, onMuteNotifications, hidden, minimal, defaultAction, withBio }) => {
   const intl = useIntl();
-
-  const handleFollow = useCallback(() => {
-    onFollow(account);
-  }, [onFollow, account]);
 
   const handleBlock = useCallback(() => {
     onBlock(account);
@@ -74,13 +71,12 @@ const Account = ({ size = 46, account, onFollow, onBlock, onMute, onMuteNotifica
   let buttons;
 
   if (account.get('id') !== me && account.get('relationship', null) !== null) {
-    const following = account.getIn(['relationship', 'following']);
     const requested = account.getIn(['relationship', 'requested']);
     const blocking  = account.getIn(['relationship', 'blocking']);
     const muting  = account.getIn(['relationship', 'muting']);
 
     if (requested) {
-      buttons = <Button text={intl.formatMessage(messages.cancel_follow_request)} onClick={handleFollow} />;
+      buttons = <FollowButton accountId={account.get('id')} />;
     } else if (blocking) {
       buttons = <Button text={intl.formatMessage(messages.unblock)} onClick={handleBlock} />;
     } else if (muting) {
@@ -109,9 +105,11 @@ const Account = ({ size = 46, account, onFollow, onBlock, onMute, onMuteNotifica
       buttons = <Button text={intl.formatMessage(messages.mute)} onClick={handleMute} />;
     } else if (defaultAction === 'block') {
       buttons = <Button text={intl.formatMessage(messages.block)} onClick={handleBlock} />;
-    } else if (!account.get('suspended') && !account.get('moved') || following) {
-      buttons = <Button text={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={handleFollow} />;
+    } else {
+      buttons = <FollowButton accountId={account.get('id')} />;
     }
+  } else {
+    buttons = <FollowButton accountId={account.get('id')} />;
   }
 
   let muteTimeRemaining;
@@ -168,7 +166,6 @@ const Account = ({ size = 46, account, onFollow, onBlock, onMute, onMuteNotifica
 Account.propTypes = {
   size: PropTypes.number,
   account: ImmutablePropTypes.record,
-  onFollow: PropTypes.func,
   onBlock: PropTypes.func,
   onMute: PropTypes.func,
   onMuteNotifications: PropTypes.func,
