@@ -28,7 +28,7 @@ class Api::V1::Admin::Reports::NotesController < Api::BaseController
   end
 
   def create
-    authorize :report_note, :create?
+    authorize ReportNote, :create?
     authorize @report, :update? if truthy_param?(:resolve_report) || truthy_param?(:unresolve_report)
 
     @report_note = current_account.report_notes.new(report_note_params.merge(report_id: @report.id))
