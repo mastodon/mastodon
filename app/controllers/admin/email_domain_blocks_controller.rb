@@ -58,10 +58,7 @@ module Admin
     private
 
     def set_resolved_records
-      Resolv::DNS.open do |dns|
-        dns.timeouts = 5
-        @resolved_records = dns.getresources(@email_domain_block.domain, Resolv::DNS::Resource::IN::MX).to_a
-      end
+      @resolved_records = DomainResource.new(@email_domain_block.domain).mx
     end
 
     def resource_params

@@ -16,6 +16,7 @@ RSpec.describe SearchQueryTransformer do
       ['"2022-01-01"', '2022-01-01'],
       ['12345678', '12345678'],
       ['"12345678"', '12345678'],
+      ['"2024-10-31T23:47:20Z"', '2024-10-31T23:47:20Z'],
     ].each do |value, parsed|
       context "with #{operator}:#{value}" do
         let(:query) { "#{operator}:#{value}" }
@@ -34,7 +35,7 @@ RSpec.describe SearchQueryTransformer do
       let(:query) { "#{operator}:\"abc\"" }
 
       it 'raises an exception' do
-        expect { subject }.to raise_error(Mastodon::FilterValidationError, 'Invalid date abc')
+        expect { subject }.to raise_error(Date::Error)
       end
     end
   end

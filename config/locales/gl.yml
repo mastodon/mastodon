@@ -187,6 +187,7 @@ gl:
         create_domain_block: Crear bloquedo do Dominio
         create_email_domain_block: Crear Bloqueo de Dominio do correo
         create_ip_block: Crear regra IP
+        create_relay: Crear Repetidor
         create_unavailable_domain: Crear dominio Non dispoñible
         create_user_role: Crear Rol
         demote_user: Degradar usuaria
@@ -198,14 +199,17 @@ gl:
         destroy_email_domain_block: Eliminar bloqueo do dominio do correo
         destroy_instance: Purgar Dominio
         destroy_ip_block: Eliminar regra IP
+        destroy_relay: Eliminar Repetidor
         destroy_status: Eliminar publicación
         destroy_unavailable_domain: Eliminar dominio Non dispoñible
         destroy_user_role: Eliminar Rol
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
+        disable_relay: Desactivar Repetidor
         disable_sign_in_token_auth_user: Desactivar Autenticación por Token no Correo para a Usuaria
         disable_user: Desactivar usuaria
         enable_custom_emoji: Activar emoticona personalizada
+        enable_relay: Activar Repetidor
         enable_sign_in_token_auth_user: Activar Autenticación con Token no Correo para a Usuaria
         enable_user: Activar usuaria
         memorialize_account: Transformar en conta conmemorativa
@@ -247,6 +251,7 @@ gl:
         create_domain_block_html: "%{name} bloqueou o dominio %{target}"
         create_email_domain_block_html: "%{name} bloqueou o dominio de correo %{target}"
         create_ip_block_html: "%{name} creou regra para o IP %{target}"
+        create_relay_html: "%{name} creou un repetidor en %{target}"
         create_unavailable_domain_html: "%{name} deixou de interactuar co dominio %{target}"
         create_user_role_html: "%{name} creou o rol %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
@@ -258,14 +263,17 @@ gl:
         destroy_email_domain_block_html: "%{name} desbloqueou o dominio de correo %{target}"
         destroy_instance_html: "%{name} purgou o dominio %{target}"
         destroy_ip_block_html: "%{name} eliminou a regra para o IP %{target}"
+        destroy_relay_html: "%{name} eliminou o repetidor %{target}"
         destroy_status_html: "%{name} eliminou a publicación de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a interacción co dominio %{target}"
         destroy_user_role_html: "%{name} eliminou o rol %{target}"
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
+        disable_relay_html: "%{name} desactivou o repetidor %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desactivou a autenticación por token no email para %{target}"
         disable_user_html: "%{name} desactivou as credenciais para a usuaria %{target}"
         enable_custom_emoji_html: "%{name} activou o emoji %{target}"
+        enable_relay_html: "%{name} activou o repetidor %{target}"
         enable_sign_in_token_auth_user_html: "%{name} activou a autenticación con token no email para %{target}"
         enable_user_html: "%{name} activou as credenciais para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
@@ -818,8 +826,10 @@ gl:
       back_to_account: Volver a páxina da conta
       back_to_report: Volver a denuncias
       batch:
+        add_to_report: 'Engadir á denuncia #%{id}'
         remove_from_report: Eliminar da denuncia
         report: Denuncia
+      contents: Contidos
       deleted: Eliminado
       favourites: Favoritas
       history: Historial de versións
@@ -828,13 +838,17 @@ gl:
       media:
         title: Medios
       metadata: Metadatos
+      no_history: Esta publicación foi editada
       no_status_selected: Non se cambiou ningunha publicación xa que ningunha foi seleccionada
       open: Abrir publicación
       original_status: Publicación orixinal
       reblogs: Promocións
+      replied_to_html: Respondeu a %{acct_link}
       status_changed: Publicación editada
-      title: Publicacións da conta
+      status_title: Publicación de @%{name}
+      title: Publicacións da conta - @%{name}
       trending: Popular
+      view_publicly: Ver publicamente
       visibility: Visibilidade
       with_media: con medios
     strikes:

@@ -187,6 +187,7 @@ tr:
         create_domain_block: Engellenen Alan Adı Oluştur
         create_email_domain_block: E-Posta Alan Adı Engeli Oluştur
         create_ip_block: IP kuralı oluştur
+        create_relay: Aktarıcı Oluştur
         create_unavailable_domain: Mevcut Olmayan Alan Adı Oluştur
         create_user_role: Rol Oluştur
         demote_user: Kullanıcıyı Düşür
@@ -198,14 +199,17 @@ tr:
         destroy_email_domain_block: E-posta Alan Adı Engelini Sil
         destroy_instance: Alan adını temizle
         destroy_ip_block: IP kuralını sil
+        destroy_relay: Aktarıcı Sil
         destroy_status: Durumu Sil
         destroy_unavailable_domain: Mevcut Olmayan Alan Adı Sil
         destroy_user_role: Rolü Kaldır
         disable_2fa_user: 2AD Kapat
         disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
+        disable_relay: Aktarıcıyı Devre Dışı Bırak
         disable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı Devre Dışı Bırak
         disable_user: Kullanıcıyı Devre Dışı Bırak
         enable_custom_emoji: Özel İfadeyi Etkinleştir
+        enable_relay: Aktarıcıyı Etkinleştir
         enable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı Etkinleştir
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
@@ -247,6 +251,7 @@ tr:
         create_domain_block_html: "%{name}, %{target} alan adını engelledi"
         create_email_domain_block_html: "%{name}, %{target} e-posta alan adını engelledi"
         create_ip_block_html: "%{name}, %{target} IP adresi için kural oluşturdu"
+        create_relay_html: "%{name}, %{target} aktarıcısını oluşturdu"
         create_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı durdurdu"
         create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
         demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
@@ -258,14 +263,17 @@ tr:
         destroy_email_domain_block_html: "%{name}, %{target} e-posta alan adı engelini kaldırdı"
         destroy_instance_html: "%{name}, %{target} alan adını temizledi"
         destroy_ip_block_html: "%{name}, %{target} IP adresi kuralını sildi"
+        destroy_relay_html: "%{name}, %{target} aktarıcısını sildi"
         destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
         destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
         destroy_user_role_html: "%{name}, %{target} rolünü sildi"
         disable_2fa_user_html: "%{name}, %{target} kullanıcısının iki aşamalı doğrulama gereksinimini kapattı"
         disable_custom_emoji_html: "%{name}, %{target} emojisini devre dışı bıraktı"
+        disable_relay_html: "%{name}, %{target} aktarıcısını devre dışı bıraktı"
         disable_sign_in_token_auth_user_html: "%{name}, %{target} için e-posta token doğrulamayı devre dışı bıraktı"
         disable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı devre dışı bıraktı"
         enable_custom_emoji_html: "%{name}, %{target} emojisini etkinleştirdi"
+        enable_relay_html: "%{name}, %{target} aktarıcısını etkinleştirdi"
         enable_sign_in_token_auth_user_html: "%{name}, %{target} için e-posta token doğrulamayı etkinleştirdi"
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
@@ -818,8 +826,10 @@ tr:
       back_to_account: Hesap sayfasına geri dön
       back_to_report: Bildirim sayfasına geri dön
       batch:
+        add_to_report: "#%{id} raporuna ekle"
         remove_from_report: Bildirimden kaldır
         report: Bildirim
+      contents: İçerikler
       deleted: Silindi
       favourites: Favoriler
       history: Sürüm geçmişi
@@ -828,13 +838,17 @@ tr:
       media:
         title: Medya
       metadata: Üstveri
+      no_history: Bu gönderi düzenlenmemiş
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
       open: Gönderiyi aç
       original_status: Özgün gönderi
       reblogs: Yeniden Paylaşımlar
+      replied_to_html: Yanıtladı %{acct_link}
       status_changed: Gönderi değişti
-      title: Hesap durumları
+      status_title: "@%{name} gönderisi"
+      title: Hesap gönderileri - @%{name}
       trending: Öne çıkanlar
+      view_publicly: Herkese açık görüntüle
       visibility: Görünürlük
       with_media: Medya ile
     strikes:

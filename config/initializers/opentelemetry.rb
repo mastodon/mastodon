@@ -65,6 +65,13 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
                         "#{prefix}#{separator}#{$PROGRAM_NAME.split('/').last}"
                       end
     c.service_version = Mastodon::Version.to_s
+
+    if Mastodon::Version.source_commit.present?
+      c.resource = OpenTelemetry::SDK::Resources::Resource.create(
+        'vcs.repository.ref.revision' => Mastodon::Version.source_commit,
+        'vcs.repository.url.full' => Mastodon::Version.source_base_url
+      )
+    end
   end
 end
 

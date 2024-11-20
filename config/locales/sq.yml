@@ -187,6 +187,7 @@ sq:
         create_domain_block: Krijo Bllokim Përkatësie
         create_email_domain_block: Krijoni Bllokim Përkatësie Email-esh
         create_ip_block: Krijoni Rregull IP
+        create_relay: Krijoni Rele
         create_unavailable_domain: Krijo Përkatësi të Papërdorshme
         create_user_role: Krijoni Rol
         demote_user: Zhgradoje Përdoruesin
@@ -198,14 +199,17 @@ sq:
         destroy_email_domain_block: Fshini Bllokim Përkatësie Email-esh
         destroy_instance: Spastroje Përkatësinë
         destroy_ip_block: Fshini Rregull IP
+        destroy_relay: Fshije Relenë
         destroy_status: Fshi Gjendje
         destroy_unavailable_domain: Fshi Përkatësi të Papërdorshme
         destroy_user_role: Asgjësoje Rolin
         disable_2fa_user: Çaktivizo 2FA-në
         disable_custom_emoji: Çaktivizo Emotikon Vetjak
+        disable_relay: Çaktivizoje Relenë
         disable_sign_in_token_auth_user: Çaktivizoni për Përdoruesin Mirëfilltësim Me Token Email-i
         disable_user: Çaktivizo Përdorues
         enable_custom_emoji: Aktivizo Emotikon Vetjak
+        enable_relay: Aktivizoje Relenë
         enable_sign_in_token_auth_user: Aktivizoni për Përdoruesin Mirëfilltësim Me Token Email-i
         enable_user: Aktivizo Përdorues
         memorialize_account: Bëje Llogari Përkujtimore
@@ -247,6 +251,7 @@ sq:
         create_domain_block_html: "%{name} bllokoi përkatësinë %{target}"
         create_email_domain_block_html: "%{name} bllokoi përkatësinë email %{target}"
         create_ip_block_html: "%{name} krijoi rregull për IP-në %{target}"
+        create_relay_html: "%{name} krijoi një rele %{target}"
         create_unavailable_domain_html: "%{name} ndali dërgimin drejt përkatësisë %{target}"
         create_user_role_html: "%{name} krijoi rolin %{target}"
         demote_user_html: "%{name} zhgradoi përdoruesin %{target}"
@@ -258,14 +263,17 @@ sq:
         destroy_email_domain_block_html: "%{name} zhbllokoi përkatësi email %{target}"
         destroy_instance_html: "%{name} spastroi përkatësinë %{target}"
         destroy_ip_block_html: "%{name} fshiu rregull për IP-në %{target}"
+        destroy_relay_html: "%{name} fshiu relenë %{target}"
         destroy_status_html: "%{name} hoqi gjendje nga %{target}"
         destroy_unavailable_domain_html: "%{name} rinisi dërgimin drejt përkatësisë %{target}"
         destroy_user_role_html: "%{name} fshiu rolin %{target}"
         disable_2fa_user_html: "%{name} çaktivizoi domosdoshmërinë për dyfaktorësh për përdoruesin %{target}"
         disable_custom_emoji_html: "%{name} çaktivizoi emoxhin %{target}"
+        disable_relay_html: "%{name} çaktivizoi relenë %{target}"
         disable_sign_in_token_auth_user_html: "%{name} çaktivizoi mirëfilltësim me token email për %{target}"
         disable_user_html: "%{name} çaktivizoi hyrje për përdoruesin %{target}"
         enable_custom_emoji_html: "%{name} aktivizoi emoxhin %{target}"
+        enable_relay_html: "%{name} aktivizoi relenë %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktivizoi mirëfilltësim me token email për %{target}"
         enable_user_html: "%{name} aktivizoi hyrje për përdoruesin %{target}"
         memorialize_account_html: "%{name} e shndërroi llogarinë e %{target} në një faqe përkujtimore"
@@ -815,8 +823,10 @@ sq:
       back_to_account: Mbrapsht te faqja e llogarisë
       back_to_report: Mbrapsht te faqja e raportimit
       batch:
+        add_to_report: 'Shtoje te raportimi #%{id}'
         remove_from_report: Hiqe prej raportimit
         report: Raportojeni
+      contents: Lëndë
       deleted: E fshirë
       favourites: Të parapëlqyer
       history: Historik versioni
@@ -825,13 +835,17 @@ sq:
       media:
         title: Media
       metadata: Tejtëdhëna
+      no_history: Ky postim s’është përpunuar
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       open: Hape postimin
       original_status: Postim origjinal
       reblogs: Riblogime
+      replied_to_html: Iu përgjigj %{acct_link}
       status_changed: Postimi ndryshoi
-      title: Gjendje llogarish
+      status_title: Postim nga @%{name}
+      title: Postime llogarie - @%{name}
       trending: Në modë
+      view_publicly: Shiheni publikisht
       visibility: Dukshmëri
       with_media: Me media
     strikes:

@@ -187,6 +187,7 @@ is:
         create_domain_block: Búa til útilokun léns
         create_email_domain_block: Búa til útilokun tölvupóstléns
         create_ip_block: Búa til IP-reglu
+        create_relay: Búa til endurvarpa
         create_unavailable_domain: Útbúa lén sem ekki er tiltækt
         create_user_role: Útbúa hlutverk
         demote_user: Lækka notanda í tign
@@ -198,14 +199,17 @@ is:
         destroy_email_domain_block: Eyða útilokun tölvupóstléns
         destroy_instance: Henda léni
         destroy_ip_block: Eyða IP-reglu
+        destroy_relay: Eyða endurvarpa
         destroy_status: Eyða færslu
         destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
         destroy_user_role: Eyða hlutverki
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
+        disable_relay: Gera endurvarpa óvirkan
         disable_sign_in_token_auth_user: Gera óvirka auðkenningu með teikni í tölvupósti fyrir notandann
         disable_user: Gera notanda óvirkan
         enable_custom_emoji: Virkja sérsniðið tjáningartákn
+        enable_relay: Virkja endurvarpa
         enable_sign_in_token_auth_user: Gera virka auðkenningu með teikni í tölvupósti fyrir notandann
         enable_user: Virkja notanda
         memorialize_account: Gera aðgang að minningargrein
@@ -247,6 +251,7 @@ is:
         create_domain_block_html: "%{name} útilokaði lénið %{target}"
         create_email_domain_block_html: "%{name} útilokaði póstlénið %{target}"
         create_ip_block_html: "%{name} útbjó reglu fyrir IP-vistfangið %{target}"
+        create_relay_html: "%{name} bjó til endurvarpa %{target}"
         create_unavailable_domain_html: "%{name} stöðvaði afhendingu til lénsins %{target}"
         create_user_role_html: "%{name} útbjó %{target} hlutverk"
         demote_user_html: "%{name} lækkaði notandann %{target} í tign"
@@ -258,14 +263,17 @@ is:
         destroy_email_domain_block_html: "%{name} aflétti útilokun af póstléninu %{target}"
         destroy_instance_html: "%{name} henti léninu %{target}"
         destroy_ip_block_html: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
+        destroy_relay_html: "%{name} eyddi endurvarpanum %{target}"
         destroy_status_html: "%{name} fjarlægði færslu frá %{target}"
         destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
         destroy_user_role_html: "%{name} eyddi hlutverki %{target}"
         disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
         disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
+        disable_relay_html: "%{name} gerði endurvarpann %{target} óvirkan"
         disable_sign_in_token_auth_user_html: "%{name} gerði óvirka auðkenningu með teikni í tölvupósti fyrir %{target}"
         disable_user_html: "%{name} gerði innskráningu óvirka fyrir notandann %{target}"
         enable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} virkt"
+        enable_relay_html: "%{name} virkjaði endurvarpann %{target}"
         enable_sign_in_token_auth_user_html: "%{name} gerði virka auðkenningu með teikni í tölvupósti fyrir %{target}"
         enable_user_html: "%{name} gerði innskráningu virka fyrir notandann %{target}"
         memorialize_account_html: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
@@ -820,8 +828,10 @@ is:
       back_to_account: Fara aftur á síðu notandaaðgangsins
       back_to_report: Til baka á kærusíðu
       batch:
+        add_to_report: 'Bæta við skýrslu #%{id}'
         remove_from_report: Fjarlægja úr kæru
         report: Kæra
+      contents: Efni
       deleted: Eytt
       favourites: Eftirlæti
       history: Útgáfuferill
@@ -830,13 +840,17 @@ is:
       media:
         title: Myndefni
       metadata: Lýsigögn
+      no_history: Færslunni hefur ekki verið breytt
       no_status_selected: Engum færslum var breytt þar sem engar voru valdar
       open: Opna færslu
       original_status: Upprunaleg færsla
       reblogs: Endurbirtingar
+      replied_to_html: Svaraði til %{acct_link}
       status_changed: Færslu breytt
-      title: Færslur notandaaðgangs
+      status_title: Færsla frá @%{name}
+      title: Færslur notanda - @%{name}
       trending: Vinsælt
+      view_publicly: Skoða opinberlega
       visibility: Sýnileiki
       with_media: Með myndefni
     strikes:

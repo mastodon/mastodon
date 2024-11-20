@@ -187,6 +187,7 @@ da:
         create_domain_block: Opret domæneblokering
         create_email_domain_block: Opret e-maildomæneblokering
         create_ip_block: Opret IP-regel
+        create_relay: Opret Videresendelse
         create_unavailable_domain: Opret Utilgængeligt Domæne
         create_user_role: Opret rolle
         demote_user: Degradér bruger
@@ -198,14 +199,17 @@ da:
         destroy_email_domain_block: Slet e-maildomæneblokering
         destroy_instance: Udrens domæne
         destroy_ip_block: Slet IP-regel
+        destroy_relay: Slet Videresendelse
         destroy_status: Slet indlæg
         destroy_unavailable_domain: Slet Utilgængeligt Domæne
         destroy_user_role: Ødelæg rolle
         disable_2fa_user: Deaktivér 2FA
         disable_custom_emoji: Deaktivér tilpasset emoji
+        disable_relay: Deaktivér Videresendelse
         disable_sign_in_token_auth_user: Deaktivér e-mailtoken godkendelse for bruger
         disable_user: Deaktivér bruger
         enable_custom_emoji: Aktivér tilpasset emoji
+        enable_relay: Aktivér Relay
         enable_sign_in_token_auth_user: Aktivér e-mailtoken godkendelse for bruger
         enable_user: Aktivér bruger
         memorialize_account: Memoralisér konto
@@ -247,6 +251,7 @@ da:
         create_domain_block_html: "%{name} blokerede domænet %{target}"
         create_email_domain_block_html: "%{name} blokerede e-maildomænet %{target}"
         create_ip_block_html: "%{name} oprettede en regel for IP %{target}"
+        create_relay_html: "%{name} oprettede videresendelsen %{target}"
         create_unavailable_domain_html: "%{name} stoppede levering til domænet %{target}"
         create_user_role_html: "%{name} oprettede %{target}-rolle"
         demote_user_html: "%{name} degraderede brugeren %{target}"
@@ -258,14 +263,17 @@ da:
         destroy_email_domain_block_html: "%{name} afblokerede e-maildomænet %{target}"
         destroy_instance_html: "%{name} udrensede domænet %{target}"
         destroy_ip_block_html: "%{name} slettede en regel for IP %{target}"
+        destroy_relay_html: "%{name} oprettede videresendelsen %{target}"
         destroy_status_html: "%{name} fjernede indlægget fra %{target}"
         destroy_unavailable_domain_html: "%{name} genoptog levering til domænet %{target}"
         destroy_user_role_html: "%{name} slettede %{target}-rolle"
         disable_2fa_user_html: "%{name} deaktiverede tofaktorkravet for brugeren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverede emojien %{target}"
+        disable_relay_html: "%{name} deaktiverede videresendelsen %{target}"
         disable_sign_in_token_auth_user_html: "%{name} deaktiverede e-mailtoken godkendelsen for %{target}"
         disable_user_html: "%{name} deaktiverede indlogning for brugeren %{target}"
         enable_custom_emoji_html: "%{name} aktiverede emojien %{target}"
+        enable_relay_html: "%{name} aktiverede videresendelsen %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktiverede e-mailtoken godkendelse for %{target}"
         enable_user_html: "%{name} aktiverede indlogning for brugeren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto til en mindeside"
@@ -818,8 +826,10 @@ da:
       back_to_account: Retur til kontoside
       back_to_report: Retur til anmeldelsesside
       batch:
+        add_to_report: 'Føj til rapporten #%{id}'
         remove_from_report: Fjern fra anmeldelse
         report: Anmeldelse
+      contents: Indhold
       deleted: Slettet
       favourites: Favoritter
       history: Versionshistorik
@@ -828,13 +838,17 @@ da:
       media:
         title: Medier
       metadata: Metadata
+      no_history: Dette indlæg er ikke blevet redigeret
       no_status_selected: Ingen indlæg ændret (ingen valgt)
       open: Åbn indlæg
       original_status: Oprindeligt indlæg
       reblogs: Genblogninger
+      replied_to_html: Besvarede %{acct_link}
       status_changed: Indlæg ændret
-      title: Kontoindlæg
+      status_title: Indlæg fra @%{name}
+      title: Kontoindlæg - @%{name}
       trending: Populære
+      view_publicly: Vis offentligt
       visibility: Synlighed
       with_media: Med medier
     strikes:

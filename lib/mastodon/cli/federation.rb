@@ -76,7 +76,7 @@ module Mastodon::CLI
       def self_destruct_value
         Rails
           .application
-          .message_verifier('self-destruct')
+          .message_verifier(SelfDestructHelper::VERIFY_PURPOSE)
           .generate(Rails.configuration.x.local_domain)
       end
     end
