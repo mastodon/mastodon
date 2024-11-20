@@ -11,7 +11,7 @@ class Api::V1::Admin::Accounts::NotesController < Api::BaseController
   before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:accounts' }, only: [:index, :show]
   before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:accounts' }, except: [:index, :show]
   before_action :set_account
-  before_action :set_account_note, except: [:index, :create]
+  before_action :set_account_moderation_note, except: [:index, :create]
 
   rescue_from ArgumentError do |e|
     render json: { error: e.to_s }, status: 422
@@ -48,7 +48,7 @@ class Api::V1::Admin::Accounts::NotesController < Api::BaseController
     @account = Account.find(params[:account_id])
   end
 
-  def set_account_note
+  def set_account_moderation_note
     @account_moderation_note = AccountModerationNote.where(target_account_id: params[:account_id]).find(params[:id])
   end
 
