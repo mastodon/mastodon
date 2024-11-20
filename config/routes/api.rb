@@ -254,6 +254,8 @@ namespace :api, format: false do
           post :reopen
           post :resolve
         end
+
+        resources :notes, controller: 'reports/notes', except: [:new, :edit, :update]
       end
 
       resources :domain_allows, only: [:index, :show, :create, :destroy]
