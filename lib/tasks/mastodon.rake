@@ -358,7 +358,7 @@ namespace :mastodon do
 
       ip_retention_period_days = prompt.ask('How long should we store IP addresses in the database, for moderation purposes? (in days)') do |q|
         q.required true
-        q.default 31
+        q.default 365
         q.convert :int
       end
 
