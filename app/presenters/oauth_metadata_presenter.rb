@@ -65,7 +65,7 @@ class OauthMetadataPresenter < ActiveModelSerializers::Model
   end
 
   def code_challenge_methods_supported
-    %w(S256)
+    doorkeeper.pkce_code_challenge_methods_supported
   end
 
   private
