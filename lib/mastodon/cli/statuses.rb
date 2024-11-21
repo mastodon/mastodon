@@ -49,7 +49,6 @@ module Mastodon::CLI
 
       unless options[:continue] && ActiveRecord::Base.connection.table_exists?('statuses_to_be_deleted')
         ActiveRecord::Base.connection.add_index(:accounts, :id, name: :index_accounts_local, where: 'domain is null', algorithm: :concurrently, if_not_exists: true)
-        ActiveRecord::Base.connection.add_index(:status_pins, :status_id, name: :index_status_pins_status_id, algorithm: :concurrently, if_not_exists: true)
 
         say('Extract the deletion target from statuses... This might take a while...')
 
@@ -74,7 +73,6 @@ module Mastodon::CLI
         say('Removing temporary database indices to restore write performance...')
 
         ActiveRecord::Base.connection.remove_index(:accounts, name: :index_accounts_local, if_exists: true)
-        ActiveRecord::Base.connection.remove_index(:status_pins, name: :index_status_pins_status_id, if_exists: true)
       end
 
       say('Beginning statuses removal... This might take a while...')
@@ -106,7 +104,6 @@ module Mastodon::CLI
       say('Removing temporary database indices to restore write performance...')
 
       ActiveRecord::Base.connection.remove_index(:accounts, name: :index_accounts_local, if_exists: true)
-      ActiveRecord::Base.connection.remove_index(:status_pins, name: :index_status_pins_status_id, if_exists: true)
       ActiveRecord::Base.connection.remove_index(:media_attachments, name: :index_media_attachments_remote_url, if_exists: true)
     end
 
