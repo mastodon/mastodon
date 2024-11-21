@@ -4650,6 +4650,7 @@ a.status-card {
   border: 0;
   background: transparent;
   cursor: pointer;
+  text-decoration: none;
 
   .icon {
     width: 13px;
@@ -5063,7 +5064,8 @@ a.status-card {
   color: $dark-text-color;
   text-align: center;
   padding: 20px;
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 400;
   cursor: default;
   display: flex;
@@ -5082,6 +5084,17 @@ a.status-card {
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.empty-column-indicator {
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    inset-inline-start: 50%;
+    pointer-events: none;
+    transform: translate(100%, -100%) rotate(12deg);
+    transform-origin: center;
   }
 }
 
@@ -5776,7 +5789,7 @@ a.status-card {
 
 .modal-root {
   position: relative;
-  z-index: 9999;
+  z-index: 9998;
 }
 
 .modal-root__overlay {
@@ -6381,12 +6394,14 @@ a.status-card {
   border-radius: 16px;
 
   &__header {
+    box-sizing: border-box;
     border-bottom: 1px solid var(--modal-border-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: row-reverse;
     padding: 12px 24px;
+    min-height: 61px;
 
     &__title {
       font-size: 16px;
@@ -7991,92 +8006,6 @@ noscript {
   width: 100%;
   height: 100%;
   background: rgba($base-overlay-background, 0.5);
-}
-
-.list-adder,
-.list-editor {
-  backdrop-filter: var(--background-filter);
-  background: var(--modal-background-color);
-  border: 1px solid var(--modal-border-color);
-  flex-direction: column;
-  border-radius: 8px;
-  width: 380px;
-  overflow: hidden;
-
-  @media screen and (width <= 420px) {
-    width: 90%;
-  }
-}
-
-.list-adder {
-  &__lists {
-    height: 50vh;
-    border-radius: 0 0 8px 8px;
-    overflow-y: auto;
-  }
-
-  .list {
-    padding: 10px;
-    border-bottom: 1px solid var(--background-border-color);
-  }
-
-  .list__wrapper {
-    display: flex;
-  }
-
-  .list__display-name {
-    flex: 1 1 auto;
-    overflow: hidden;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-}
-
-.list-editor {
-  h4 {
-    padding: 15px 0;
-    background: lighten($ui-base-color, 13%);
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    border-radius: 8px 8px 0 0;
-  }
-
-  .drawer__pager {
-    height: 50vh;
-    border: 0;
-  }
-
-  .drawer__inner {
-    &.backdrop {
-      width: calc(100% - 60px);
-      box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-      border-radius: 0 0 0 8px;
-    }
-  }
-
-  &__accounts {
-    background: unset;
-    overflow-y: auto;
-  }
-
-  .account__display-name {
-    &:hover strong {
-      text-decoration: none;
-    }
-  }
-
-  .account__avatar {
-    cursor: default;
-  }
-
-  .search {
-    margin-bottom: 0;
-  }
 }
 
 .focal-point {
@@ -10142,7 +10071,7 @@ noscript {
   position: fixed;
   bottom: 2rem;
   inset-inline-start: 0;
-  z-index: 999;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -11149,4 +11078,88 @@ noscript {
       color: $secondary-text-color;
     }
   }
+}
+
+.lists__item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-inline-end: 13px;
+  border-bottom: 1px solid var(--background-border-color);
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 16px 13px;
+    flex: 1 1 auto;
+    font-size: 16px;
+    line-height: 24px;
+    color: $secondary-text-color;
+    text-decoration: none;
+
+    &:is(a):hover,
+    &:is(a):focus,
+    &:is(a):active {
+      color: $primary-text-color;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+
+      &::placeholder {
+        color: var(--input-placeholder-color);
+        opacity: 1;
+      }
+
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}
+
+.column-search-header {
+  display: flex;
+  border-radius: 4px 4px 0 0;
+  border: 1px solid var(--background-border-color);
+
+  .column-header__back-button.compact {
+    flex: 0 0 auto;
+    color: $primary-text-color;
+  }
+
+  input {
+    background: transparent;
+    border: 0;
+    color: $primary-text-color;
+    font-size: 16px;
+    display: block;
+    flex: 1 1 auto;
+
+    &::placeholder {
+      color: var(--input-placeholder-color);
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.column-footer {
+  padding: 16px;
+}
+
+.lists-scrollable {
+  min-height: 50vh;
 }
