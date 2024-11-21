@@ -602,7 +602,7 @@ zh-CN:
       actions_description_html: 决定采取何种措施处理此举报。如果对被举报账号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
       actions_description_remote_html: 决定采取何种行动来解决此举报。 这只会影响<strong>你的</strong>服务器如何与该远程账户的通信并处理其内容。
       actions_no_posts: 该举报没有相关嘟文可供删除
-      add_to_report: 增加更多举报内容
+      add_to_report: 添加更多内容到举报
       already_suspended_badges:
         local: 已在此服务器上被封禁
         remote: 已在其所属服务器被封禁
@@ -660,8 +660,8 @@ zh-CN:
           mark_as_sensitive_html: 将违规嘟文的媒体标记为敏感
           silence_html: 严格限制 <strong>@%{acct}</strong> 的影响力，方法是让他们的个人资料和内容仅对已经关注他们的人可见，或手动查找其个人资料时
           suspend_html: 暂停 <strong>@%{acct}</strong>，使他们的个人资料和内容无法访问，也无法与之互动
-        close_report: '将报告 #%{id} 标记为已解决'
-        close_reports_html: 将针对 <strong>@%{acct}</strong> 的<strong>所有</strong> 报告标记为已解决
+        close_report: '将举报 #%{id} 标记为已解决'
+        close_reports_html: 将针对 <strong>@%{acct}</strong> 的<strong>所有</strong>举报标记为已解决
         delete_data_html: 从现在起 30 天后删除 <strong>@%{acct}</strong> 的个人资料和内容，除非他们同时解除暂停。
         preview_preamble_html: "<strong>@%{acct}</strong> 将收到包含以下内容的警告："
         record_strike_html: 记录一次针对 <strong>@%{acct}</strong> 的警示，以帮助你在这个账户上的未来违规事件中得到重视。
@@ -766,7 +766,7 @@ zh-CN:
         follow_recommendations: 关注推荐
         preamble: 露出有趣的内容有助于新加入 Mastodon 的用户融入。可在这里控制多种发现功能如何在你的服务器上工作。
         profile_directory: 个人资料目录
-        public_timelines: 公共时间轴
+        public_timelines: 公共时间线
         publish_discovered_servers: 已公开实例的服务器
         publish_statistics: 发布统计数据
         title: 发现
@@ -813,7 +813,7 @@ zh-CN:
       back_to_report: 返回举报页
       batch:
         add_to_report: '添加到举报 #%{id}'
-        remove_from_report: 从报告中移除
+        remove_from_report: 从举报中移除
         report: 举报
       contents: 内容
       deleted: 已删除
@@ -1055,7 +1055,7 @@ zh-CN:
     remove: 取消关联别名
   appearance:
     advanced_web_interface: 高级 Web 界面
-    advanced_web_interface_hint: 如果你想使用整个屏幕宽度，高级 web 界面允许你配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。
+    advanced_web_interface_hint: 如果你想使用整个屏幕宽度，高级 web 界面允许你配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间线、任意数量的列表和话题标签。
     animations_and_accessibility: 动画与可访问性
     confirmation_dialogs: 确认对话框
     discovery: 发现
@@ -1286,9 +1286,9 @@ zh-CN:
   filters:
     contexts:
       account: 个人资料
-      home: 主页时间轴
+      home: 主页时间线
       notifications: 通知
-      public: 公共时间轴
+      public: 公共时间线
       thread: 对话
     edit:
       add_keyword: 添加关键词
@@ -1585,7 +1585,7 @@ zh-CN:
   preferences:
     other: 其他
     posting_defaults: 发布默认值
-    public_timelines: 公共时间轴
+    public_timelines: 公共时间线
   privacy:
     hint_html: "<strong>自定义你希望如何找到你的个人资料和嘟文。</strong>启用Mastodon中的各种功能可以帮助你扩大受众范围。请花点时间查看这些设置，确保它们适合你的使用情况。"
     privacy: 隐私
@@ -1699,7 +1699,7 @@ zh-CN:
     development: 开发
     edit_profile: 更改个人资料
     export: 导出
-    featured_tags: 精选的话题标签
+    featured_tags: 精选话题标签
     import: 导入
     import_and_export: 导入与导出
     migrate: 账户迁移
@@ -1752,9 +1752,9 @@ zh-CN:
       private: 仅关注者
       private_long: 只有关注你的用户能看到
       public: 公开
-      public_long: 所有人可见，并会出现在公共时间轴上
+      public_long: 所有人可见，并会出现在公共时间线上
       unlisted: 悄悄公开
-      unlisted_long: 所有人可见，但不会出现在公共时间轴上
+      unlisted_long: 对所有人可见，但不出现在公共时间线上
   statuses_cleanup:
     enabled: 自动删除旧嘟文
     enabled_hint: 达到指定过期时间后自动删除你的嘟文，除非满足下列条件之一
