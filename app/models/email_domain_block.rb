@@ -28,6 +28,8 @@ class EmailDomainBlock < ApplicationRecord
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
+  scope :parents, -> { where(parent_id: nil) }
+
   # Used for adding multiple blocks at once
   attr_accessor :other_domains
 
@@ -56,7 +58,7 @@ class EmailDomainBlock < ApplicationRecord
     end
 
     def blocking?(allow_with_approval: false)
-      blocks = EmailDomainBlock.where(domain: domains_with_variants, allow_with_approval: allow_with_approval).order(Arel.sql('char_length(domain) desc'))
+      blocks = EmailDomainBlock.where(domain: domains_with_variants, allow_with_approval: allow_with_approval).by_domain_length
       blocks.each { |block| block.history.add(@attempt_ip) } if @attempt_ip.present?
       blocks.any?
     end

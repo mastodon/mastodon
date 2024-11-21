@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module MediaComponentHelper
-  def render_video_component(status, **options)
+  def render_video_component(status, **)
     video = status.ordered_media_attachments.first
 
     meta = video.file.meta || {}
@@ -18,14 +18,14 @@ module MediaComponentHelper
       media: [
         serialize_media_attachment(video),
       ].as_json,
-    }.merge(**options)
+    }.merge(**)
 
     react_component :video, component_params do
       render partial: 'statuses/attachment_list', locals: { attachments: status.ordered_media_attachments }
     end
   end
 
-  def render_audio_component(status, **options)
+  def render_audio_component(status, **)
     audio = status.ordered_media_attachments.first
 
     meta = audio.file.meta || {}
@@ -38,42 +38,22 @@ module MediaComponentHelper
       foregroundColor: meta.dig('colors', 'foreground'),
       accentColor: meta.dig('colors', 'accent'),
       duration: meta.dig('original', 'duration'),
-    }.merge(**options)
+    }.merge(**)
 
     react_component :audio, component_params do
       render partial: 'statuses/attachment_list', locals: { attachments: status.ordered_media_attachments }
     end
   end
 
-  def render_media_gallery_component(status, **options)
+  def render_media_gallery_component(status, **)
     component_params = {
       sensitive: sensitive_viewer?(status, current_account),
       autoplay: prefers_autoplay?,
       media: status.ordered_media_attachments.map { |a| serialize_media_attachment(a).as_json },
-    }.merge(**options)
+    }.merge(**)
 
     react_component :media_gallery, component_params do
       render partial: 'statuses/attachment_list', locals: { attachments: status.ordered_media_attachments }
-    end
-  end
-
-  def render_card_component(status, **options)
-    component_params = {
-      sensitive: sensitive_viewer?(status, current_account),
-      card: serialize_status_card(status).as_json,
-    }.merge(**options)
-
-    react_component :card, component_params
-  end
-
-  def render_poll_component(status, **options)
-    component_params = {
-      disabled: true,
-      poll: serialize_status_poll(status).as_json,
-    }.merge(**options)
-
-    react_component :poll, component_params do
-      render partial: 'statuses/poll', locals: { status: status, poll: status.preloadable_poll, autoplay: prefers_autoplay? }
     end
   end
 
@@ -83,22 +63,6 @@ module MediaComponentHelper
     ActiveModelSerializers::SerializableResource.new(
       attachment,
       serializer: REST::MediaAttachmentSerializer
-    )
-  end
-
-  def serialize_status_card(status)
-    ActiveModelSerializers::SerializableResource.new(
-      status.preview_card,
-      serializer: REST::PreviewCardSerializer
-    )
-  end
-
-  def serialize_status_poll(status)
-    ActiveModelSerializers::SerializableResource.new(
-      status.preloadable_poll,
-      serializer: REST::PollSerializer,
-      scope: current_user,
-      scope_name: :current_user
     )
   end
 

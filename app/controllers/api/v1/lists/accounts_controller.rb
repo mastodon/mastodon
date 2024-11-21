@@ -15,17 +15,12 @@ class Api::V1::Lists::AccountsController < Api::BaseController
   end
 
   def create
-    ApplicationRecord.transaction do
-      list_accounts.each do |account|
-        @list.accounts << account
-      end
-    end
-
+    AddAccountsToListService.new.call(@list, Account.find(account_ids))
     render_empty
   end
 
   def destroy
-    ListAccount.where(list: @list, account_id: account_ids).destroy_all
+    RemoveAccountsFromListService.new.call(@list, Account.where(id: account_ids))
     render_empty
   end
 
@@ -43,20 +38,12 @@ class Api::V1::Lists::AccountsController < Api::BaseController
     end
   end
 
-  def list_accounts
-    Account.find(account_ids)
-  end
-
   def account_ids
     Array(resource_params[:account_ids])
   end
 
   def resource_params
     params.permit(account_ids: [])
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
   end
 
   def next_path
@@ -71,20 +58,12 @@ class Api::V1::Lists::AccountsController < Api::BaseController
     api_v1_list_accounts_url pagination_params(since_id: pagination_since_id) unless @accounts.empty?
   end
 
-  def pagination_max_id
-    @accounts.last.id
-  end
-
-  def pagination_since_id
-    @accounts.first.id
+  def pagination_collection
+    @accounts
   end
 
   def records_continue?
     @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 
   def unlimited?

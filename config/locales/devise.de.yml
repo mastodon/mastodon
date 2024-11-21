@@ -25,15 +25,15 @@ de:
         explanation_when_pending: Du hast dich für eine Einladung bei %{host} mit dieser E-Mail-Adresse beworben. Sobald du deine E-Mail-Adresse bestätigt hast, werden wir deine Anfrage überprüfen. Du kannst dich in dieser Zeit nicht anmelden. Wenn deine Anfrage abgelehnt wird, werden deine Daten entfernt – von dir ist keine weitere Handlung notwendig. Wenn du das nicht warst, dann kannst du diese E-Mail ignorieren.
         extra_html: Bitte beachte auch die <a href="%{terms_path}">Serverregeln</a> und <a href="%{policy_path}">unsere Datenschutzerklärung</a>.
         subject: 'Mastodon: Anleitung zum Bestätigen deines Kontos auf %{instance}'
-        title: Verifiziere E-Mail-Adresse
+        title: Verifiziere deine E-Mail-Adresse
       email_changed:
         explanation: 'Die E-Mail-Adresse deines Kontos wird geändert zu:'
-        extra: Wenn du deine E-Mail-Adresse nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Serververwaltung, wenn du aus deinem Konto ausgesperrt bist.
+        extra: Wenn du deine E-Mail-Adresse nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Administrator*innen des Servers, wenn du aus deinem Konto ausgesperrt bist.
         subject: 'Mastodon: E-Mail-Adresse geändert'
         title: Neue E-Mail-Adresse
       password_change:
         explanation: Das Passwort für dein Konto wurde geändert.
-        extra: Wenn du dein Passwort nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Serververwaltung, wenn du aus deinem Konto ausgesperrt bist.
+        extra: Wenn du dein Passwort nicht geändert hast, ist es wahrscheinlich, dass sich jemand Zugang zu deinem Konto verschafft hat. Bitte ändere sofort dein Passwort oder kontaktiere die Administrator*innen des Servers, wenn du aus deinem Konto ausgesperrt bist.
         subject: 'Mastodon: Passwort geändert'
         title: Passwort geändert
       reconfirmation_instructions:
@@ -49,12 +49,12 @@ de:
         title: Passwort zurücksetzen
       two_factor_disabled:
         explanation: Das Anmelden ist jetzt nur noch mit einer E-Mail-Adresse und einem Passwort möglich.
-        subject: 'Mastodon: Zwei‐Faktor‐Authentisierung (2FA) deaktiviert'
+        subject: 'Mastodon: Zwei‐Faktor‐Authentisierung deaktiviert'
         subtitle: Zwei-Faktor-Authentisierung wurde für dein Konto deaktiviert.
         title: 2FA deaktiviert
       two_factor_enabled:
         explanation: Für das Anmelden wird ein Token benötigt, das von der hinterlegten TOTP-App generiert wird.
-        subject: 'Mastodon: Zwei‐Faktor‐Authentisierung (2FA) aktiviert'
+        subject: 'Mastodon: Zwei‐Faktor‐Authentisierung aktiviert'
         subtitle: Zwei-Faktor-Authentisierung wurde für dein Konto aktiviert.
         title: 2FA aktiviert
       two_factor_recovery_codes_changed:

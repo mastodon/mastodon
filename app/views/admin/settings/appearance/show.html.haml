@@ -11,20 +11,29 @@
   %p.lead= t('admin.settings.appearance.preamble')
 
   .fields-group
-    = f.input :theme, collection: Themes.instance.names, label_method: ->(theme) { I18n.t("themes.#{theme}", default: theme) }, wrapper: :with_label, include_blank: false
+    = f.input :theme,
+              collection: Themes.instance.names,
+              include_blank: false,
+              label_method: ->(theme) { I18n.t("themes.#{theme}", default: theme) },
+              wrapper: :with_label
 
   .fields-group
-    = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }
+    = f.input :custom_css,
+              as: :text,
+              input_html: { rows: 8 },
+              wrapper: :with_block_label
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :mascot, as: :file, wrapper: :with_block_label
+      = f.input :mascot,
+                as: :file,
+                wrapper: :with_block_label
 
     .fields-row__column.fields-row__column-6.fields-group
       - if @admin_settings.mascot.persisted?
         = image_tag @admin_settings.mascot.file.url, class: 'fields-group__thumbnail'
         = link_to admin_site_upload_path(@admin_settings.mascot), data: { method: :delete }, class: 'link-button link-button--destructive' do
-          = fa_icon 'trash fw'
+          = material_symbol 'delete'
           = t('admin.site_uploads.delete')
 
   .actions

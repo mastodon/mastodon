@@ -5,7 +5,7 @@ require_relative 'base'
 module Mastodon::CLI
   class Maintenance < Base
     MIN_SUPPORTED_VERSION = 2019_10_01_213028
-    MAX_SUPPORTED_VERSION = 2023_09_07_150100
+    MAX_SUPPORTED_VERSION = 2023_10_23_105620
 
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
     # version of the code/database
@@ -26,6 +26,9 @@ module Mastodon::CLI
     class ListAccount < ApplicationRecord; end
     class PollVote < ApplicationRecord; end
     class Mention < ApplicationRecord; end
+    class Notification < ApplicationRecord; end
+    class NotificationPermission < ApplicationRecord; end
+    class NotificationRequest < ApplicationRecord; end
     class AccountDomainBlock < ApplicationRecord; end
     class AnnouncementReaction < ApplicationRecord; end
     class FeaturedTag < ApplicationRecord; end
@@ -39,9 +42,10 @@ module Mastodon::CLI
     class Webhook < ApplicationRecord; end
     class BulkImport < ApplicationRecord; end
     class SoftwareUpdate < ApplicationRecord; end
+    class SeveredRelationship < ApplicationRecord; end
 
     class DomainBlock < ApplicationRecord
-      enum severity: { silence: 0, suspend: 1, noop: 2 }
+      enum :severity, { silence: 0, suspend: 1, noop: 2 }
       scope :by_severity, -> { in_order_of(:severity, %w(noop silence suspend)).order(:domain) }
     end
 
@@ -107,6 +111,18 @@ module Mastodon::CLI
           end
         end
 
+        from_classes = [Notification]
+        from_classes << NotificationPermission if db_table_exists?(:notification_permissions)
+        from_classes << NotificationRequest if db_table_exists?(:notification_requests)
+
+        from_classes.each do |klass|
+          klass.where(from_account_id: other_account.id).find_each do |record|
+            record.update_attribute(:from_account_id, id)
+          rescue ActiveRecord::RecordNotUnique
+            next
+          end
+        end
+
         target_classes = [Follow, FollowRequest, Block, Mute, AccountModerationNote, AccountPin]
         target_classes << AccountNote if db_table_exists?(:account_notes)
 
@@ -127,6 +143,20 @@ module Mastodon::CLI
         if db_table_exists?(:appeals)
           Appeal.where(account_warning_id: other_account.id).find_each do |record|
             record.update_attribute(:account_warning_id, id)
+          end
+        end
+
+        if db_table_exists?(:severed_relationships)
+          SeveredRelationship.where(local_account_id: other_account.id).reorder(nil).find_each do |record|
+            record.update_attribute(:local_account_id, id)
+          rescue ActiveRecord::RecordNotUnique
+            next
+          end
+
+          SeveredRelationship.where(remote_account_id: other_account.id).reorder(nil).find_each do |record|
+            record.update_attribute(:remote_account_id, id)
+          rescue ActiveRecord::RecordNotUnique
+            next
           end
         end
       end
@@ -224,7 +254,7 @@ module Mastodon::CLI
 
       say 'Deduplicating accounts… for local accounts, you will be asked to chose which account to keep unchanged.'
 
-      find_duplicate_accounts.each do |row|
+      duplicate_record_ids(:accounts, "lower(username), COALESCE(lower(domain), '')").each do |row|
         accounts = Account.where(id: row['ids'].split(','))
 
         if accounts.first.local?
@@ -276,7 +306,7 @@ module Mastodon::CLI
     end
 
     def deduplicate_users_process_email
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users GROUP BY email HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:users, 'email').each do |row|
         users = User.where(id: row['ids'].split(',')).order(updated_at: :desc).includes(:account).to_a
         ref_user = users.shift
         say "Multiple users registered with e-mail address #{ref_user.email}.", :yellow
@@ -290,7 +320,7 @@ module Mastodon::CLI
     end
 
     def deduplicate_users_process_confirmation_token
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE confirmation_token IS NOT NULL GROUP BY confirmation_token HAVING count(*) > 1").each do |row|
+      duplicate_record_ids_without_nulls(:users, 'confirmation_token').each do |row|
         users = User.where(id: row['ids'].split(',')).order(created_at: :desc).includes(:account).to_a.drop(1)
         say "Unsetting confirmation token for those accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
 
@@ -302,7 +332,7 @@ module Mastodon::CLI
 
     def deduplicate_users_process_remember_token
       if migrator_version < 2022_01_18_183010
-        database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE remember_token IS NOT NULL GROUP BY remember_token HAVING count(*) > 1").each do |row|
+        duplicate_record_ids_without_nulls(:users, 'remember_token').each do |row|
           users = User.where(id: row['ids'].split(',')).order(updated_at: :desc).to_a.drop(1)
           say "Unsetting remember token for those accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
 
@@ -314,7 +344,7 @@ module Mastodon::CLI
     end
 
     def deduplicate_users_process_password_token
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE reset_password_token IS NOT NULL GROUP BY reset_password_token HAVING count(*) > 1").each do |row|
+      duplicate_record_ids_without_nulls(:users, 'reset_password_token').each do |row|
         users = User.where(id: row['ids'].split(',')).order(updated_at: :desc).includes(:account).to_a.drop(1)
         say "Unsetting password reset token for those accounts: #{users.map { |user| user.account.acct }.join(', ')}", :yellow
 
@@ -328,7 +358,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:account_domain_blocks, 'index_account_domain_blocks_on_account_id_and_domain')
 
       say 'Removing duplicate account domain blocks…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM account_domain_blocks GROUP BY account_id, domain HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:account_domain_blocks, 'account_id, domain').each do |row|
         AccountDomainBlock.where(id: row['ids'].split(',').drop(1)).delete_all
       end
 
@@ -342,7 +372,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:account_identity_proofs, 'index_account_proofs_on_account_and_provider_and_username')
 
       say 'Removing duplicate account identity proofs…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM account_identity_proofs GROUP BY account_id, provider, provider_username HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:account_identity_proofs, 'account_id, provider, provider_username').each do |row|
         AccountIdentityProof.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
 
@@ -356,7 +386,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:announcement_reactions, 'index_announcement_reactions_on_account_id_and_announcement_id')
 
       say 'Removing duplicate announcement reactions…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM announcement_reactions GROUP BY account_id, announcement_id, name HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:announcement_reactions, 'account_id, announcement_id, name').each do |row|
         AnnouncementReaction.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
 
@@ -368,7 +398,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:conversations, 'index_conversations_on_uri')
 
       say 'Deduplicating conversations…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM conversations WHERE uri IS NOT NULL GROUP BY uri HAVING count(*) > 1").each do |row|
+      duplicate_record_ids_without_nulls(:conversations, 'uri').each do |row|
         conversations = Conversation.where(id: row['ids'].split(',')).order(id: :desc).to_a
 
         ref_conversation = conversations.shift
@@ -391,7 +421,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:custom_emojis, 'index_custom_emojis_on_shortcode_and_domain')
 
       say 'Deduplicating custom_emojis…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM custom_emojis GROUP BY shortcode, domain HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:custom_emojis, 'shortcode, domain').each do |row|
         emojis = CustomEmoji.where(id: row['ids'].split(',')).order(id: :desc).to_a
 
         ref_emoji = emojis.shift
@@ -410,7 +440,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:custom_emoji_categories, 'index_custom_emoji_categories_on_name')
 
       say 'Deduplicating custom_emoji_categories…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM custom_emoji_categories GROUP BY name HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:custom_emoji_categories, 'name').each do |row|
         categories = CustomEmojiCategory.where(id: row['ids'].split(',')).order(id: :desc).to_a
 
         ref_category = categories.shift
@@ -429,7 +459,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:domain_allows, 'index_domain_allows_on_domain')
 
       say 'Deduplicating domain_allows…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM domain_allows GROUP BY domain HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:domain_allows, 'domain').each do |row|
         DomainAllow.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
 
@@ -441,7 +471,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:domain_blocks, 'index_domain_blocks_on_domain')
 
       say 'Deduplicating domain_blocks…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM domain_blocks GROUP BY domain HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:domain_blocks, 'domain').each do |row|
         domain_blocks = DomainBlock.where(id: row['ids'].split(',')).by_severity.reverse.to_a
 
         reject_media = domain_blocks.any?(&:reject_media?)
@@ -467,7 +497,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:unavailable_domains, 'index_unavailable_domains_on_domain')
 
       say 'Deduplicating unavailable_domains…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM unavailable_domains GROUP BY domain HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:unavailable_domains, 'domain').each do |row|
         UnavailableDomain.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
 
@@ -479,7 +509,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:email_domain_blocks, 'index_email_domain_blocks_on_domain')
 
       say 'Deduplicating email_domain_blocks…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM email_domain_blocks GROUP BY domain HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:email_domain_blocks, 'domain').each do |row|
         domain_blocks = EmailDomainBlock.where(id: row['ids'].split(',')).order(EmailDomainBlock.arel_table[:parent_id].asc.nulls_first).to_a
         domain_blocks.drop(1).each(&:destroy)
       end
@@ -492,7 +522,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:media_attachments, 'index_media_attachments_on_shortcode')
 
       say 'Deduplicating media_attachments…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM media_attachments WHERE shortcode IS NOT NULL GROUP BY shortcode HAVING count(*) > 1").each do |row|
+      duplicate_record_ids_without_nulls(:media_attachments, 'shortcode').each do |row|
         MediaAttachment.where(id: row['ids'].split(',').drop(1)).update_all(shortcode: nil)
       end
 
@@ -508,7 +538,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:preview_cards, 'index_preview_cards_on_url')
 
       say 'Deduplicating preview_cards…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM preview_cards GROUP BY url HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:preview_cards, 'url').each do |row|
         PreviewCard.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
 
@@ -520,7 +550,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:statuses, 'index_statuses_on_uri')
 
       say 'Deduplicating statuses…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM statuses WHERE uri IS NOT NULL GROUP BY uri HAVING count(*) > 1").each do |row|
+      duplicate_record_ids_without_nulls(:statuses, 'uri').each do |row|
         statuses = Status.where(id: row['ids'].split(',')).order(id: :asc).to_a
         ref_status = statuses.shift
         statuses.each do |status|
@@ -542,7 +572,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:tags, 'index_tags_on_name_lower_btree')
 
       say 'Deduplicating tags…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM tags GROUP BY lower((name)::text) HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:tags, 'lower((name)::text)').each do |row|
         tags = Tag.where(id: row['ids'].split(',')).order(Arel.sql('(usable::int + trendable::int + listable::int) desc')).to_a
         ref_tag = tags.shift
         tags.each do |tag|
@@ -565,7 +595,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:webauthn_credentials, 'index_webauthn_credentials_on_external_id')
 
       say 'Deduplicating webauthn_credentials…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM webauthn_credentials GROUP BY external_id HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:webauthn_credentials, 'external_id').each do |row|
         WebauthnCredential.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
 
@@ -579,7 +609,7 @@ module Mastodon::CLI
       remove_index_if_exists!(:webhooks, 'index_webhooks_on_url')
 
       say 'Deduplicating webhooks…'
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM webhooks GROUP BY url HAVING count(*) > 1").each do |row|
+      duplicate_record_ids(:webhooks, 'url').each do |row|
         Webhook.where(id: row['ids'].split(',')).order(id: :desc).drop(1).each(&:destroy)
       end
 
@@ -716,8 +746,23 @@ module Mastodon::CLI
       ActiveRecord::Migrator.current_version
     end
 
-    def find_duplicate_accounts
-      database_connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM accounts GROUP BY lower(username), COALESCE(lower(domain), '') HAVING count(*) > 1")
+    def duplicate_record_ids_without_nulls(table, group_by)
+      database_connection.select_all(<<~SQL.squish)
+        SELECT string_agg(id::text, ',') AS ids
+        FROM #{table}
+        WHERE #{group_by} IS NOT NULL
+        GROUP BY #{group_by}
+        HAVING COUNT(*) > 1
+      SQL
+    end
+
+    def duplicate_record_ids(table, group_by)
+      database_connection.select_all(<<~SQL.squish)
+        SELECT string_agg(id::text, ',') AS ids
+        FROM #{table}
+        GROUP BY #{group_by}
+        HAVING COUNT(*) > 1
+      SQL
     end
 
     def remove_index_if_exists!(table, name)

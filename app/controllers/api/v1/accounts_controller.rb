@@ -9,15 +9,22 @@ class Api::V1::AccountsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :follow, :write, :'write:blocks' }, only: [:block, :unblock]
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:create]
 
-  before_action :require_user!, except: [:show, :create]
-  before_action :set_account, except: [:create]
-  before_action :check_account_approval, except: [:create]
-  before_action :check_account_confirmation, except: [:create]
+  before_action :require_user!, except: [:index, :show, :create]
+  before_action :set_account, except: [:index, :create]
+  before_action :set_accounts, only: [:index]
+  before_action :check_account_approval, except: [:index, :create]
+  before_action :check_account_confirmation, except: [:index, :create]
   before_action :check_enabled_registrations, only: [:create]
+  before_action :check_accounts_limit, only: [:index]
+  before_action :check_following_self, only: [:follow]
 
   skip_before_action :require_authenticated_user!, only: :create
 
   override_rate_limit_headers :follow, family: :follows
+
+  def index
+    render json: @accounts, each_serializer: REST::AccountSerializer
+  end
 
   def show
     cache_if_unauthenticated!
@@ -79,6 +86,10 @@ class Api::V1::AccountsController < Api::BaseController
     @account = Account.find(params[:id])
   end
 
+  def set_accounts
+    @accounts = Account.where(id: account_ids).without_unapproved
+  end
+
   def check_account_approval
     raise(ActiveRecord::RecordNotFound) if @account.local? && @account.user_pending?
   end
@@ -87,8 +98,24 @@ class Api::V1::AccountsController < Api::BaseController
     raise(ActiveRecord::RecordNotFound) if @account.local? && !@account.user_confirmed?
   end
 
-  def relationships(**options)
-    AccountRelationshipsPresenter.new([@account], current_user.account_id, **options)
+  def check_accounts_limit
+    raise(Mastodon::ValidationError) if account_ids.size > DEFAULT_ACCOUNTS_LIMIT
+  end
+
+  def check_following_self
+    render json: { error: I18n.t('accounts.self_follow_error') }, status: 403 if current_user.account.id == @account.id
+  end
+
+  def relationships(**)
+    AccountRelationshipsPresenter.new([@account], current_user.account_id, **)
+  end
+
+  def account_ids
+    Array(accounts_params[:id]).uniq.map(&:to_i)
+  end
+
+  def accounts_params
+    params.permit(id: [])
   end
 
   def account_params

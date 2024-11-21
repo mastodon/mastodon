@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Account::Counters do
+RSpec.describe Account::Counters do
   let!(:account) { Fabricate(:account) }
 
   describe '#increment_count!' do
@@ -43,6 +43,19 @@ describe Account::Counters do
       end
 
       expect(account.statuses_count).to eq 5
+    end
+
+    it 'preserves last_status_at when decrementing statuses_count' do
+      account_stat = Fabricate(
+        :account_stat,
+        account: account,
+        last_status_at: 3.days.ago,
+        statuses_count: 10
+      )
+
+      expect { account.decrement_count!(:statuses_count) }
+        .to change(account_stat.reload, :statuses_count).by(-1)
+        .and not_change(account_stat.reload, :last_status_at)
     end
   end
 end

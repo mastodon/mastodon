@@ -21,7 +21,7 @@
     = f.simple_fields_for :account do |ff|
       = ff.input :username,
                  append: "@#{site_hostname}",
-                 input_html: { 'aria-label': t('simple_form.labels.defaults.username'), autocomplete: 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-zA-Z0-9_]+', maxlength: 30 },
+                 input_html: { 'aria-label': t('simple_form.labels.defaults.username'), autocomplete: 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-zA-Z0-9_]+', maxlength: Account::USERNAME_LENGTH_LIMIT },
                  label: false,
                  required: true,
                  wrapper: :with_label

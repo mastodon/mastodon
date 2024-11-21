@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe TagUnmergeWorker do
+RSpec.describe TagUnmergeWorker do
   subject { described_class.new }
 
   describe 'perform' do

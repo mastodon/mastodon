@@ -41,7 +41,7 @@ class Trends::PreviewCardProviderFilter
     when 'rejected'
       PreviewCardProvider.not_trendable
     when 'pending_review'
-      PreviewCardProvider.pending_review
+      PreviewCardProvider.unreviewed
     else
       raise Mastodon::InvalidParameterError, "Unknown status: #{value}"
     end

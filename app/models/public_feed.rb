@@ -29,7 +29,7 @@ class PublicFeed
     scope.merge!(media_only_scope) if media_only?
     scope.merge!(language_scope) if account&.chosen_languages.present?
 
-    scope.cache_ids.to_a_paginated_by_id(limit, max_id: max_id, since_id: since_id, min_id: min_id)
+    scope.to_a_paginated_by_id(limit, max_id: max_id, since_id: since_id, min_id: min_id)
   end
 
   private
@@ -61,7 +61,7 @@ class PublicFeed
   end
 
   def public_scope
-    Status.with_public_visibility.joins(:account).merge(Account.without_suspended.without_silenced)
+    Status.public_visibility.joins(:account).merge(Account.without_suspended.without_silenced)
   end
 
   def local_only_scope

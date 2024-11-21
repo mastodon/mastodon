@@ -11,7 +11,7 @@ export const fetchFeaturedTags = (id) => (dispatch, getState) => {
 
   dispatch(fetchFeaturedTagsRequest(id));
 
-  api(getState).get(`/api/v1/accounts/${id}/featured_tags`)
+  api().get(`/api/v1/accounts/${id}/featured_tags`)
     .then(({ data }) => dispatch(fetchFeaturedTagsSuccess(id, data)))
     .catch(err => dispatch(fetchFeaturedTagsFail(id, err)));
 };

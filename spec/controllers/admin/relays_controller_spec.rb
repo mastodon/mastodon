@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::RelaysController do
+RSpec.describe Admin::RelaysController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }

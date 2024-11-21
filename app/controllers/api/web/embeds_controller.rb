@@ -9,7 +9,7 @@ class Api::Web::EmbedsController < Api::Web::BaseController
     return not_found if @status.hidden?
 
     if @status.local?
-      render json: @status, serializer: OEmbedSerializer, width: 400
+      render json: @status, serializer: OEmbedSerializer
     else
       return not_found unless user_signed_in?
 

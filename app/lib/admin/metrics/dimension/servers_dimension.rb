@@ -30,10 +30,10 @@ class Admin::Metrics::Dimension::ServersDimension < Admin::Metrics::Dimension::B
   end
 
   def earliest_status_id
-    Mastodon::Snowflake.id_at(@start_at)
+    Mastodon::Snowflake.id_at(@start_at.beginning_of_day, with_random: false)
   end
 
   def latest_status_id
-    Mastodon::Snowflake.id_at(@end_at)
+    Mastodon::Snowflake.id_at(@end_at.end_of_day, with_random: false)
   end
 end

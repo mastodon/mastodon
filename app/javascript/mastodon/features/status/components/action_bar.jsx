@@ -4,7 +4,6 @@ import { PureComponent } from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
-import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -21,8 +20,8 @@ import RepeatActiveIcon from '@/svg-icons/repeat_active.svg?react';
 import RepeatDisabledIcon from '@/svg-icons/repeat_disabled.svg?react';
 import RepeatPrivateIcon from '@/svg-icons/repeat_private.svg?react';
 import RepeatPrivateActiveIcon from '@/svg-icons/repeat_private_active.svg?react';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
-import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import { IconButton } from '../../../components/icon_button';
 import DropdownMenuContainer from '../../../containers/dropdown_menu_container';
@@ -50,7 +49,7 @@ const messages = defineMessages({
   share: { id: 'status.share', defaultMessage: 'Share' },
   pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
   unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
-  embed: { id: 'status.embed', defaultMessage: 'Embed' },
+  embed: { id: 'status.embed', defaultMessage: 'Get embed code' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_status: { id: 'status.admin_status', defaultMessage: 'Open this post in the moderation interface' },
   admin_domain: { id: 'status.admin_domain', defaultMessage: 'Open moderation interface for {domain}' },
@@ -67,14 +66,10 @@ const mapStateToProps = (state, { status }) => ({
 });
 
 class ActionBar extends PureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     status: ImmutablePropTypes.map.isRequired,
-    relationship: ImmutablePropTypes.map,
+    relationship: ImmutablePropTypes.record,
     onReply: PropTypes.func.isRequired,
     onReblog: PropTypes.func.isRequired,
     onFavourite: PropTypes.func.isRequired,
@@ -94,7 +89,6 @@ class ActionBar extends PureComponent {
     onPin: PropTypes.func,
     onEmbed: PropTypes.func,
     intl: PropTypes.object.isRequired,
-    ...WithRouterPropTypes,
   };
 
   handleReplyClick = () => {
@@ -114,23 +108,23 @@ class ActionBar extends PureComponent {
   };
 
   handleDeleteClick = () => {
-    this.props.onDelete(this.props.status, this.props.history);
+    this.props.onDelete(this.props.status);
   };
 
   handleRedraftClick = () => {
-    this.props.onDelete(this.props.status, this.props.history, true);
+    this.props.onDelete(this.props.status, true);
   };
 
   handleEditClick = () => {
-    this.props.onEdit(this.props.status, this.props.history);
+    this.props.onEdit(this.props.status);
   };
 
   handleDirectClick = () => {
-    this.props.onDirect(this.props.status.get('account'), this.props.history);
+    this.props.onDirect(this.props.status.get('account'));
   };
 
   handleMentionClick = () => {
-    this.props.onMention(this.props.status.get('account'), this.props.history);
+    this.props.onMention(this.props.status.get('account'));
   };
 
   handleMuteClick = () => {
@@ -159,7 +153,7 @@ class ActionBar extends PureComponent {
     const { status, onBlockDomain } = this.props;
     const account = status.get('account');
 
-    onBlockDomain(account.get('acct').split('@')[1]);
+    onBlockDomain(account);
   };
 
   handleUnblockDomain = () => {
@@ -198,7 +192,7 @@ class ActionBar extends PureComponent {
 
   render () {
     const { status, relationship, intl } = this.props;
-    const { signedIn, permissions } = this.context.identity;
+    const { signedIn, permissions } = this.props.identity;
 
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
     const pinnableStatus     = ['public', 'unlisted', 'private'].includes(status.get('visibility'));
@@ -326,4 +320,4 @@ class ActionBar extends PureComponent {
 
 }
 
-export default withRouter(connect(mapStateToProps)(injectIntl(ActionBar)));
+export default connect(mapStateToProps)(withIdentity(injectIntl(ActionBar)));

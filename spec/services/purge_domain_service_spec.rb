@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PurgeDomainService, type: :service do
+RSpec.describe PurgeDomainService do
   subject { described_class.new }
 
   let(:domain) { 'obsolete.org' }

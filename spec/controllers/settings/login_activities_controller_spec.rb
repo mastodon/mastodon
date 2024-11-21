@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::LoginActivitiesController do
+RSpec.describe Settings::LoginActivitiesController do
   render_views
 
   let!(:user) { Fabricate(:user) }

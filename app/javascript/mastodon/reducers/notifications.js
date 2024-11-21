@@ -1,6 +1,7 @@
 import { fromJS, Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
 import { blockDomainSuccess } from 'mastodon/actions/domain_blocks';
+import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
 import {
   authorizeFollowRequestSuccess,
@@ -13,15 +14,15 @@ import {
   unfocusApp,
 } from '../actions/app';
 import {
-  MARKERS_FETCH_SUCCESS,
+  fetchMarkers,
 } from '../actions/markers';
+import { clearNotifications } from '../actions/notification_groups';
 import {
   notificationsUpdate,
   NOTIFICATIONS_EXPAND_SUCCESS,
   NOTIFICATIONS_EXPAND_REQUEST,
   NOTIFICATIONS_EXPAND_FAIL,
   NOTIFICATIONS_FILTER_SET,
-  NOTIFICATIONS_CLEAR,
   NOTIFICATIONS_SCROLL_TOP,
   NOTIFICATIONS_LOAD_PENDING,
   NOTIFICATIONS_MOUNT,
@@ -30,7 +31,7 @@ import {
   NOTIFICATIONS_SET_BROWSER_SUPPORT,
   NOTIFICATIONS_SET_BROWSER_PERMISSION,
 } from '../actions/notifications';
-import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from '../actions/timelines';
+import { disconnectTimeline } from '../actions/timelines';
 import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap({
@@ -48,13 +49,15 @@ const initialState = ImmutableMap({
   browserPermission: 'default',
 });
 
-const notificationToMap = notification => ImmutableMap({
+export const notificationToMap = notification => ImmutableMap({
   id: notification.id,
   type: notification.type,
   account: notification.account.id,
   created_at: notification.created_at,
   status: notification.status ? notification.status.id : null,
   report: notification.report ? fromJS(notification.report) : null,
+  event: notification.event ? fromJS(notification.event) : null,
+  moderation_warning: notification.moderation_warning ? fromJS(notification.moderation_warning) : null,
 });
 
 const normalizeNotification = (state, notification, usePendingItems) => {
@@ -254,8 +257,8 @@ const recountUnread = (state, last_read_id) => {
 
 export default function notifications(state = initialState, action) {
   switch(action.type) {
-  case MARKERS_FETCH_SUCCESS:
-    return action.markers.notifications ? recountUnread(state, action.markers.notifications.last_read_id) : state;
+  case fetchMarkers.fulfilled.type:
+    return action.payload.markers.notifications ? recountUnread(state, action.payload.markers.notifications.last_read_id) : state;
   case NOTIFICATIONS_MOUNT:
     return updateMounted(state);
   case NOTIFICATIONS_UNMOUNT:
@@ -287,17 +290,18 @@ export default function notifications(state = initialState, action) {
   case authorizeFollowRequestSuccess.type:
   case rejectFollowRequestSuccess.type:
     return filterNotifications(state, [action.payload.id], 'follow_request');
-  case NOTIFICATIONS_CLEAR:
+  case clearNotifications.pending.type:
     return state.set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('hasMore', false);
-  case TIMELINE_DELETE:
-    return deleteByStatus(state, action.id);
-  case TIMELINE_DISCONNECT:
-    return action.timeline === 'home' ?
-      state.update(action.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items) :
+  case timelineDelete.type:
+    return deleteByStatus(state, action.payload.statusId);
+  case disconnectTimeline.type:
+    return action.payload.timeline === 'home' ?
+      state.update(action.payload.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items) :
       state;
-  case NOTIFICATIONS_MARK_AS_READ:
+  case NOTIFICATIONS_MARK_AS_READ: {
     const lastNotification = state.get('items').find(item => item !== null);
     return lastNotification ? recountUnread(state, lastNotification.get('id')) : state;
+  }
   case NOTIFICATIONS_SET_BROWSER_SUPPORT:
     return state.set('browserSupport', action.value);
   case NOTIFICATIONS_SET_BROWSER_PERMISSION:

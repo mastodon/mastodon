@@ -22,12 +22,12 @@ lv:
         authorize: Autorizēt
         cancel: Atcelt
         destroy: Iznīcināt
-        edit: Rediģēt
+        edit: Labot
         submit: Apstiprināt
       confirmations:
-        destroy: Vai esi pārliecināts?
+        destroy: Vai tiešām?
       edit:
-        title: Rediģēt pieteikumu
+        title: Labot lietotni
       form:
         error: Hmm! Pārbaudi, vai tavā veidlapā nav kļūdu
       help:
@@ -60,7 +60,7 @@ lv:
       error:
         title: Radās kļūda
       new:
-        prompt_html: "%{client_name} vēlas saņemt atļauju piekļūt tavam kontam. Tā ir trešās puses lietojumprogramma. <strong>Ja tu tam neuzticies, tad nevajadzētu to autorizēt.</strong>"
+        prompt_html: "%{client_name} vēlas atļauju piekļūt Tavam kontam. <strong>Apstiprini šo pieprasījumu tikai tad, ja atpazīsti un uzticies šim avotam!</strong>"
         review_permissions: Pārskatīt atļaujas
         title: Nepieciešama autorizācija
       show:
@@ -69,10 +69,10 @@ lv:
       buttons:
         revoke: Atsaukt
       confirmations:
-        revoke: Vai esi pārliecināts?
+        revoke: Vai tiešām?
       index:
         authorized_at: Autorizētas %{date}
-        description_html: Šīs ir lietojumprogrammas, kas var piekļūt tavam kontam, izmantojot API. Ja ir lietojumprogrammas, kuras šeit neatpazīsti, vai lietojumprogramma nedarbojas pareizi, vari atsaukt tām piekļuvi.
+        description_html: Šīs ir lietotnes, kas var piekļūt Tavam kontam ar API. Ja šeit ir lietotnes, kuras neatpazīsti, vai lietotne darbojas ne tā, kā paredzēts, vari atsaukt tās piekļuvi.
         last_used_at: Pēdējo reizi lietotas %{date}
         never_used: Nekad nav lietotas
         scopes: Atļaujas
@@ -83,6 +83,7 @@ lv:
         access_denied: Resursa īpašnieks vai autorizācijas serveris pieprasījumu noraidīja.
         credential_flow_not_configured: Resursa īpašnieka paroles akreditācijas datu plūsma neizdevās, jo Doorkeeper.configure.resource_owner_from_credentials nebija konfigurēts.
         invalid_client: Klienta autentifikācija neizdevās nezināma klienta, klienta autentifikācijas vai neatbalstītas autentifikācijas metodes dēļ.
+        invalid_code_challenge_method: Koda izaicinājuma veidam jābūt S256, vienkāršs netiek atbalstīts.
         invalid_grant: Sniegtā autorizācijas piekrišana nav derīga, tai ir beidzies derīguma termiņš, tā ir atsaukta, tā neatbilst autorizācijas pieprasījumā izmantotajam novirzīšanas URI vai tika izsniegta citam klientam.
         invalid_redirect_uri: Iekļauts novirzīšanas uri nav derīgs.
         invalid_request:
@@ -119,9 +120,9 @@ lv:
         write: Tikai rakstīšanas piekļuve
       title:
         accounts: Konti
-        admin/accounts: Kontu administrēšana
+        admin/accounts: Kontu pārvaldīšana
         admin/all: Visas administrēšanas funkcijas
-        admin/reports: Ziņojumu administrēšana
+        admin/reports: Ziņojumu pārvaldīšana
         all: Pilna piekļuve tavam Mastodon kontam
         blocks: Bloķētie
         bookmarks: Grāmatzīmes
@@ -135,6 +136,7 @@ lv:
         media: Multividesu pielikumi
         mutes: Apklusinātie
         notifications: Paziņojumi
+        profile: Tavs Mastodon profils
         push: Uznirstošie paziņojumi
         reports: Ziņojumi
         search: Meklēt
@@ -156,15 +158,16 @@ lv:
       admin:read:ip_blocks: lasīt sensitīvu informāciju par visiem IP blokiem
       admin:read:reports: lasīt sensitīvu informāciju no visiem pārskatiem un kontiem, par kuriem ziņots
       admin:write: modificēt visus datus uz servera
-      admin:write:accounts: veikt moderācijas darbības kontos
-      admin:write:canonical_email_blocks: veikt regulēšanas darbības kanoniskajos e-pasta blokos
-      admin:write:domain_allows: veikt moderēšanas darbības domēna atļaujā
-      admin:write:domain_blocks: veikt moderēšanas darbības domēna blokos
-      admin:write:email_domain_blocks: veikt moderēšanas darbības e-pasta domēna blokos
-      admin:write:ip_blocks: veikt moderēšanas darbības IP blokos
-      admin:write:reports: veikt moderācijas darbības pārskatos
+      admin:write:accounts: veikt satura pārraudzības darbības kontos
+      admin:write:canonical_email_blocks: veikt satura pārraudzības darbības kanoniskajos e-pasta blokos
+      admin:write:domain_allows: veikt satura pārraudzības darbības domēna atļaujā
+      admin:write:domain_blocks: veikt satura pārraudzības darbības domēna blokos
+      admin:write:email_domain_blocks: veikt satura pārraudzības darbības e-pasta domēna blokos
+      admin:write:ip_blocks: veikt satura pārraudzības darbības IP blokos
+      admin:write:reports: veikt satura pārraudzības darbības pārskatos
       crypto: lieto pilnīgu šifrēšanu
       follow: mainīt konta attiecības
+      profile: lasīt tikai Tava konta profila informāciju
       push: saņemt savus push paziņojumus
       read: lasīt visus sava konta datus
       read:accounts: apskatīt kontu informāciju

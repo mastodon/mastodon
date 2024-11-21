@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::SystemCheck::ElasticsearchCheck do
+RSpec.describe Admin::SystemCheck::ElasticsearchCheck do
   subject(:check) { described_class.new(user) }
 
   let(:user) { Fabricate(:user) }
@@ -127,7 +127,7 @@ describe Admin::SystemCheck::ElasticsearchCheck do
   end
 
   def stub_elasticsearch_error
-    client = instance_double(Elasticsearch::Transport::Client)
+    client = instance_double(Elasticsearch::Client)
     allow(client).to receive(:info).and_raise(Elasticsearch::Transport::Transport::Error)
     allow(Chewy).to receive(:client).and_return(client)
   end

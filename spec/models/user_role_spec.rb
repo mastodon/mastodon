@@ -8,7 +8,7 @@ RSpec.describe UserRole do
   describe '#can?' do
     context 'with a single flag' do
       it 'returns true if any of them are present' do
-        subject.permissions = UserRole::FLAGS[:manage_reports]
+        subject.permissions = described_class::FLAGS[:manage_reports]
         expect(subject.can?(:manage_reports)).to be true
       end
 
@@ -19,7 +19,7 @@ RSpec.describe UserRole do
 
     context 'with multiple flags' do
       it 'returns true if any of them are present' do
-        subject.permissions = UserRole::FLAGS[:manage_users]
+        subject.permissions = described_class::FLAGS[:manage_users]
         expect(subject.can?(:manage_reports, :manage_users)).to be true
       end
 
@@ -51,7 +51,7 @@ RSpec.describe UserRole do
 
   describe '#permissions_as_keys' do
     before do
-      subject.permissions = UserRole::FLAGS[:invite_users] | UserRole::FLAGS[:view_dashboard] | UserRole::FLAGS[:manage_reports]
+      subject.permissions = described_class::FLAGS[:invite_users] | described_class::FLAGS[:view_dashboard] | described_class::FLAGS[:manage_reports]
     end
 
     it 'returns an array' do
@@ -70,7 +70,7 @@ RSpec.describe UserRole do
       let(:input) { %w(manage_users) }
 
       it 'sets permission flags' do
-        expect(subject.permissions).to eq UserRole::FLAGS[:manage_users]
+        expect(subject.permissions).to eq described_class::FLAGS[:manage_users]
       end
     end
 
@@ -78,7 +78,7 @@ RSpec.describe UserRole do
       let(:input) { %w(manage_users manage_reports) }
 
       it 'sets permission flags' do
-        expect(subject.permissions).to eq UserRole::FLAGS[:manage_users] | UserRole::FLAGS[:manage_reports]
+        expect(subject.permissions).to eq described_class::FLAGS[:manage_users] | described_class::FLAGS[:manage_reports]
       end
     end
 
@@ -86,7 +86,7 @@ RSpec.describe UserRole do
       let(:input) { %w(foo) }
 
       it 'does not set permission flags' do
-        expect(subject.permissions).to eq UserRole::Flags::NONE
+        expect(subject.permissions).to eq described_class::Flags::NONE
       end
     end
   end
@@ -96,7 +96,7 @@ RSpec.describe UserRole do
       subject { described_class.nobody }
 
       it 'returns none' do
-        expect(subject.computed_permissions).to eq UserRole::Flags::NONE
+        expect(subject.computed_permissions).to eq described_class::Flags::NONE
       end
     end
 
@@ -110,11 +110,11 @@ RSpec.describe UserRole do
 
     context 'when role has the administrator flag' do
       before do
-        subject.permissions = UserRole::FLAGS[:administrator]
+        subject.permissions = described_class::FLAGS[:administrator]
       end
 
       it 'returns all permissions' do
-        expect(subject.computed_permissions).to eq UserRole::Flags::ALL
+        expect(subject.computed_permissions).to eq described_class::Flags::ALL
       end
     end
 
@@ -135,11 +135,11 @@ RSpec.describe UserRole do
     end
 
     it 'has default permissions' do
-      expect(subject.permissions).to eq UserRole::FLAGS[:invite_users]
+      expect(subject.permissions).to eq described_class::FLAGS[:invite_users]
     end
 
     it 'has negative position' do
-      expect(subject.position).to eq(-1)
+      expect(subject.position).to eq(described_class::NOBODY_POSITION)
     end
   end
 
@@ -155,21 +155,21 @@ RSpec.describe UserRole do
     end
 
     it 'has no permissions' do
-      expect(subject.permissions).to eq UserRole::Flags::NONE
+      expect(subject.permissions).to eq described_class::Flags::NONE
     end
 
     it 'has negative position' do
-      expect(subject.position).to eq(-1)
+      expect(subject.position).to eq(described_class::NOBODY_POSITION)
     end
   end
 
   describe '#everyone?' do
-    it 'returns true when id is -99' do
-      subject.id = -99
+    it 'returns true when id matches the everyone id' do
+      subject.id = described_class::EVERYONE_ROLE_ID
       expect(subject.everyone?).to be true
     end
 
-    it 'returns false when id is not -99' do
+    it 'returns false when id does not match the everyone id' do
       subject.id = 123
       expect(subject.everyone?).to be false
     end

@@ -25,6 +25,10 @@ class Relay < ApplicationRecord
 
   alias enabled? accepted?
 
+  def to_log_human_identifier
+    inbox_url
+  end
+
   def enable!
     activity_id = ActivityPub::TagManager.instance.generate_uri_for(nil)
     payload     = Oj.dump(follow_activity(activity_id))

@@ -14,7 +14,7 @@
       - unless filter.keywords.empty?
         %li.permissions-list__item
           .permissions-list__item__icon
-            = fa_icon('paragraph')
+            = material_symbol('format_paragraph')
           .permissions-list__item__text
             .permissions-list__item__text__title
               = t('filters.index.keywords', count: filter.keywords.size)
@@ -25,7 +25,7 @@
       - unless filter.statuses.empty?
         %li.permissions-list__item
           .permissions-list__item__icon
-            = fa_icon('comment')
+            = material_symbol('chat')
           .permissions-list__item__text
             .permissions-list__item__text__title
               = t('filters.index.statuses', count: filter.statuses.size)
@@ -37,5 +37,5 @@
       = t('filters.index.contexts', contexts: filter.context.map { |context| I18n.t("filters.contexts.#{context}") }.join(', '))
 
     %div
-      = table_link_to 'pencil', t('filters.edit.title'), edit_filter_path(filter)
-      = table_link_to 'times', t('filters.index.delete'), filter_path(filter), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+      = table_link_to 'edit', t('filters.edit.title'), edit_filter_path(filter)
+      = table_link_to 'close', t('filters.index.delete'), filter_path(filter), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

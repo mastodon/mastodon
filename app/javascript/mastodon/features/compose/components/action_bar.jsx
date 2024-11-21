@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
-import { logOut } from 'mastodon/utils/log_out';
 
 const messages = defineMessages({
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
@@ -23,8 +22,6 @@ const messages = defineMessages({
   filters: { id: 'navigation_bar.filters', defaultMessage: 'Muted words' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
-  logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
-  logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
 });
 
 export const ActionBar = () => {
@@ -32,16 +29,8 @@ export const ActionBar = () => {
   const intl = useIntl();
 
   const handleLogoutClick = useCallback(() => {
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: intl.formatMessage(messages.logoutMessage),
-        confirm: intl.formatMessage(messages.logoutConfirm),
-        closeWhenConfirm: false,
-        onConfirm: () => logOut(),
-      },
-    }));
-  }, [dispatch, intl]);
+    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT' }));
+  }, [dispatch]);
 
   let menu = [];
 

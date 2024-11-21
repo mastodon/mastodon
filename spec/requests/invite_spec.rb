@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'invites' do
+RSpec.describe 'invites' do
   let(:invite) { Fabricate(:invite) }
 
   context 'when requesting a JSON document' do
@@ -12,7 +12,7 @@ describe 'invites' do
       expect(response).to have_http_status(200)
       expect(response.media_type).to eq 'application/json'
 
-      expect(body_as_json[:invite_code]).to eq invite.code
+      expect(response.parsed_body[:invite_code]).to eq invite.code
     end
   end
 

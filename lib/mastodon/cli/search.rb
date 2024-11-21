@@ -100,6 +100,14 @@ module Mastodon::CLI
       progress.finish
 
       say("Indexed #{added} records, de-indexed #{removed}", :green, true)
+    rescue Elasticsearch::Transport::Transport::ServerError => e
+      fail_with_message <<~ERROR
+        There was an issue connecting to the search server. Make sure the
+        server is configured and running correctly, and that the environment
+        variable settings match what the server is expecting.
+
+        #{e.message}
+      ERROR
     end
 
     private

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::Preferences::OtherController do
+RSpec.describe Settings::Preferences::OtherController do
   render_views
 
   let(:user) { Fabricate(:user, chosen_languages: []) }

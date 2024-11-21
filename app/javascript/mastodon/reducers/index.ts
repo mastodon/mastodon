@@ -7,8 +7,6 @@ import { accountsReducer } from './accounts';
 import accounts_map from './accounts_map';
 import alerts from './alerts';
 import announcements from './announcements';
-import blocks from './blocks';
-import boosts from './boosts';
 import compose from './compose';
 import contexts from './contexts';
 import conversations from './conversations';
@@ -19,16 +17,16 @@ import filters from './filters';
 import followed_tags from './followed_tags';
 import height_cache from './height_cache';
 import history from './history';
-import listAdder from './list_adder';
-import listEditor from './list_editor';
-import lists from './lists';
-import markers from './markers';
+import { listsReducer } from './lists';
+import { markersReducer } from './markers';
 import media_attachments from './media_attachments';
 import meta from './meta';
 import { modalReducer } from './modal';
-import mutes from './mutes';
+import { notificationGroupsReducer } from './notification_groups';
+import { notificationPolicyReducer } from './notification_policy';
+import { notificationRequestsReducer } from './notification_requests';
 import notifications from './notifications';
-import picture_in_picture from './picture_in_picture';
+import { pictureInPictureReducer } from './picture_in_picture';
 import polls from './polls';
 import push_notifications from './push_notifications';
 import { relationshipsReducer } from './relationships';
@@ -60,30 +58,28 @@ const reducers = {
   relationships: relationshipsReducer,
   settings,
   push_notifications,
-  mutes,
-  blocks,
-  boosts,
   server,
   contexts,
   compose,
   search,
   media_attachments,
   notifications,
+  notificationGroups: notificationGroupsReducer,
   height_cache,
   custom_emojis,
-  lists,
-  listEditor,
-  listAdder,
+  lists: listsReducer,
   filters,
   conversations,
   suggestions,
   polls,
   trends,
-  markers,
-  picture_in_picture,
+  markers: markersReducer,
+  picture_in_picture: pictureInPictureReducer,
   history,
   tags,
   followed_tags,
+  notificationPolicy: notificationPolicyReducer,
+  notificationRequests: notificationRequestsReducer,
 };
 
 // We want the root state to be an ImmutableRecord, which is an object with a defined list of keys,

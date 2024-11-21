@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Timelines::TagController < Api::V1::Timelines::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: :show, if: :require_auth?
+  before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :load_tag
 
   PERMITTED_PARAMS = %i(local limit only_media).freeze
@@ -23,11 +23,11 @@ class Api::V1::Timelines::TagController < Api::V1::Timelines::BaseController
   end
 
   def load_statuses
-    cached_tagged_statuses
+    preloaded_tagged_statuses
   end
 
-  def cached_tagged_statuses
-    @tag.nil? ? [] : cache_collection(tag_timeline_statuses, Status)
+  def preloaded_tagged_statuses
+    @tag.nil? ? [] : preload_collection(tag_timeline_statuses, Status)
   end
 
   def tag_timeline_statuses

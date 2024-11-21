@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Localized do
+RSpec.describe Localized do
   controller(ApplicationController) do
     include Localized
 
