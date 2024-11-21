@@ -5617,11 +5617,18 @@ a.status-card {
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
+
+          &:hover,
+          &:focus,
+          &:active,
+          &.selected {
+            color: $primary-text-color;
+          }
         }
 
         .icon-button {
           flex: 0;
-          padding: 10px 20px 10px 10px;
+          padding: 10px 19px 10px 10px;
           transition: none;
         }
 
@@ -5630,11 +5637,6 @@ a.status-card {
         &:active,
         &.selected {
           background: $ui-highlight-color;
-          color: $primary-text-color;
-
-          .icon-button {
-            color: $primary-text-color;
-          }
         }
 
         mark {
