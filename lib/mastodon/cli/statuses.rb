@@ -44,8 +44,6 @@ module Mastodon::CLI
 
       say('Creating temporary database indices...')
 
-      ActiveRecord::Base.connection.add_index(:media_attachments, :remote_url, name: :index_media_attachments_remote_url, where: 'remote_url is not null', algorithm: :concurrently, if_not_exists: true)
-
       max_id   = Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false)
 
       unless options[:continue] && ActiveRecord::Base.connection.table_exists?('statuses_to_be_deleted')
@@ -105,7 +103,6 @@ module Mastodon::CLI
       say('Removing temporary database indices to restore write performance...')
 
       ActiveRecord::Base.connection.remove_index(:accounts, name: :index_accounts_local, if_exists: true)
-      ActiveRecord::Base.connection.remove_index(:media_attachments, name: :index_media_attachments_remote_url, if_exists: true)
     end
 
     def remove_orphans_media_attachments
