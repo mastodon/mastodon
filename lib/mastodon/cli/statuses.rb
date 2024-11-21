@@ -40,12 +40,13 @@ module Mastodon::CLI
     def remove_statuses
       return if options[:skip_status_remove]
 
+      start_at = Time.now.to_f
+
       say('Creating temporary database indices...')
 
       ActiveRecord::Base.connection.add_index(:media_attachments, :remote_url, name: :index_media_attachments_remote_url, where: 'remote_url is not null', algorithm: :concurrently, if_not_exists: true)
 
       max_id   = Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false)
-      start_at = Time.now.to_f
 
       unless options[:continue] && ActiveRecord::Base.connection.table_exists?('statuses_to_be_deleted')
         ActiveRecord::Base.connection.add_index(:accounts, :id, name: :index_accounts_local, where: 'domain is null', algorithm: :concurrently, if_not_exists: true)
