@@ -362,7 +362,7 @@ namespace :mastodon do
         q.convert :int
       end
 
-      env['IP_RETENTION_PERIOD'] = (ip_retention_period_days * 86_400)
+      env['IP_RETENTION_PERIOD'] = ip_retention_period_days.days.to_i
 
       prompt.say "\n"
 
