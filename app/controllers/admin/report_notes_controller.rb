@@ -19,6 +19,14 @@ module Admin
           log_action :reopen, @report
         end
 
+        User.those_who_can(:manage_reports).includes(:account).find_each do |u|
+          # Prevent notifications to the author of the report note:
+          next if @report_note.account.id == u.account.id
+
+          LocalNotificationWorker.perform_async(u.account_id, @report_note.id, 'ReportNote', 'admin.report_note')
+          AdminMailer.with(recipient: u.account).new_report_note(@report_note).deliver_later if u.allows_report_emails?
+        end
+
         redirect_to after_create_redirect_path, notice: I18n.t('admin.report_notes.created_msg')
       else
         @report_notes = @report.notes.chronological.includes(:account)

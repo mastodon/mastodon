@@ -1052,6 +1052,9 @@ en:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
+    new_report_note:
+      body: "%{account} has added a report note to Report #%{report_id}:"
+      subject: "New report note for %{instance} (Report #%{id})"
     new_software_updates:
       body: New Mastodon versions have been released, you may want to update!
       subject: New Mastodon versions are available for %{instance}!

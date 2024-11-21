@@ -1,0 +1,5 @@
+<%= raw t('admin_mailer.new_report_note.body', report_id: @report_note.report.id, account: @report_note.account.pretty_acct) %>
+
+> <%= raw word_wrap(@report_note.content, break_sequence: "\n> ") %>
+
+<%= raw t('application_mailer.view')%> <%= admin_report_url(@report_note.report, anchor: dom_id(@report_note)) %>

@@ -3,7 +3,7 @@
 import type { AccountWarningAction } from 'mastodon/models/notification_group';
 
 import type { ApiAccountJSON } from './accounts';
-import type { ApiReportJSON } from './reports';
+import type { ApiReportJSON, ApiReportNoteJSON } from './reports';
 import type { ApiStatusJSON } from './statuses';
 
 // See app/model/notification.rb
@@ -18,6 +18,7 @@ export const allNotificationTypes = [
   'update',
   'admin.sign_up',
   'admin.report',
+  'admin.report_note',
   'moderation_warning',
   'severed_relationships',
   'annual_report',
@@ -39,6 +40,7 @@ export type NotificationType =
   | 'severed_relationships'
   | 'admin.sign_up'
   | 'admin.report'
+  | 'admin.report_note'
   | 'annual_report';
 
 export interface BaseNotificationJSON {
@@ -78,6 +80,16 @@ interface ReportNotificationGroupJSON extends BaseNotificationGroupJSON {
 interface ReportNotificationJSON extends BaseNotificationJSON {
   type: 'admin.report';
   report: ApiReportJSON;
+}
+
+interface ReportNoteNotificationGroupJSON extends BaseNotificationGroupJSON {
+  type: 'admin.report_note';
+  report_note: ApiReportNoteJSON;
+}
+
+interface ReportNoteNotificationJSON extends BaseNotificationJSON {
+  type: 'admin.report_note';
+  report_note: ApiReportNoteJSON;
 }
 
 type SimpleNotificationTypes = 'follow' | 'follow_request' | 'admin.sign_up';
@@ -144,6 +156,7 @@ interface AnnualReportNotificationGroupJSON extends BaseNotificationGroupJSON {
 export type ApiNotificationJSON =
   | SimpleNotificationJSON
   | ReportNotificationJSON
+  | ReportNoteNotificationJSON
   | AccountRelationshipSeveranceNotificationJSON
   | NotificationWithStatusJSON
   | ModerationWarningNotificationJSON;
@@ -151,6 +164,7 @@ export type ApiNotificationJSON =
 export type ApiNotificationGroupJSON =
   | SimpleNotificationGroupJSON
   | ReportNotificationGroupJSON
+  | ReportNoteNotificationGroupJSON
   | AccountRelationshipSeveranceNotificationGroupJSON
   | NotificationGroupWithStatusJSON
   | ModerationWarningNotificationGroupJSON

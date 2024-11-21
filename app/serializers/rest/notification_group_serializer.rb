@@ -11,6 +11,7 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
   attribute :sample_account_ids
   attribute :status_id, if: :status_type?
   belongs_to :report, if: :report_type?, serializer: REST::ReportSerializer
+  belongs_to :report_note, if: :report_note_type?, serializer: REST::ReportNoteSerializer
   belongs_to :account_relationship_severance_event, key: :event, if: :relationship_severance_event?, serializer: REST::AccountRelationshipSeveranceEventSerializer
   belongs_to :account_warning, key: :moderation_warning, if: :moderation_warning_event?, serializer: REST::AccountWarningSerializer
   belongs_to :generated_annual_report, key: :annual_report, if: :annual_report_event?, serializer: REST::AnnualReportEventSerializer
@@ -29,6 +30,10 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
 
   def report_type?
     object.type == :'admin.report'
+  end
+
+  def report_note_type?
+    object.type == :'admin.report_note'
   end
 
   def relationship_severance_event?
