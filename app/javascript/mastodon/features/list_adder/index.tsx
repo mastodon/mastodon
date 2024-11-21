@@ -77,6 +77,10 @@ const NewListItem: React.FC<{
   );
 
   const handleSubmit = useCallback(() => {
+    if (title.trim().length === 0) {
+      return;
+    }
+
     void dispatch(createList({ title })).then((result) => {
       if (isFulfilled(result)) {
         onCreate(result.payload);
@@ -97,14 +101,12 @@ const NewListItem: React.FC<{
           value={title}
           onChange={handleChange}
           maxLength={30}
+          required
           placeholder={intl.formatMessage(messages.newList)}
         />
       </label>
 
-      <Button
-        text={intl.formatMessage(messages.createList)}
-        onClick={handleSubmit}
-      />
+      <Button text={intl.formatMessage(messages.createList)} type='submit' />
     </form>
   );
 };
