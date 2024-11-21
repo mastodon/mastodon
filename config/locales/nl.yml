@@ -818,8 +818,10 @@ nl:
       back_to_account: Terug naar accountpagina
       back_to_report: Terug naar de rapportage
       batch:
+        add_to_report: 'Toevoegen aan rapport #%{id}'
         remove_from_report: Uit de rapportage verwijderen
         report: Rapportage
+      contents: Inhoud
       deleted: Verwijderd
       favourites: Favorieten
       history: Versiegeschiedenis
@@ -828,12 +830,14 @@ nl:
       media:
         title: Media
       metadata: Metagegevens
+      no_history: Dit bericht is niet bewerkt
       no_status_selected: Er werden geen berichten gewijzigd, omdat er geen enkele werd geselecteerd
       open: Bericht tonen
       original_status: Oorspronkelijk bericht
       reblogs: Boosts
       status_changed: Bericht veranderd
-      title: Berichten van account
+      status_title: Bericht van @%{name}
+      title: Accountberichten - @%{name}
       trending: Trending
       visibility: Zichtbaarheid
       with_media: Met media
@@ -1166,9 +1170,11 @@ nl:
     use_security_key: Beveiligingssleutel gebruiken
   author_attribution:
     example_title: Voorbeeldtekst
-    hint_html: Bepaal hoe we je vermelden, wanneer jouw links op Mastodon worden gedeeld.
+    hint_html: Schrijf je nieuws- of blogartikelen buiten Mastodon? Bepaal hoe je geattribueerd wordt als deze gedeeld worden op Mastodon.
+    instructions: 'Zorg ervoor dat deze code in de HTML van je artikel zit:'
     more_from_html: Meer van %{name}
     s_blog: De weblog van %{name}
+    then_instructions: Voeg vervolgens de domeinnaam van de publicatie toe in het onderstaande veld.
     title: Auteur-attributie
   challenge:
     confirm: Doorgaan

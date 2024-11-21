@@ -18,7 +18,7 @@ RSpec.describe TranslateStatusService do
   describe '#call' do
     before do
       translation_service = TranslationService.new
-      allow(translation_service).to receive(:languages).and_return({ 'en' => ['es'] })
+      allow(translation_service).to receive(:languages).and_return({ 'en' => ['es', 'es-MX'] })
       allow(translation_service).to receive(:translate) do |texts|
         texts.map do |text|
           TranslationService::Translation.new(
@@ -37,6 +37,7 @@ RSpec.describe TranslateStatusService do
         .to have_attributes(
           content: '<p>Hola</p>',
           detected_source_language: 'en',
+          language: 'es',
           provider: 'Dummy',
           status: status
         )
@@ -99,6 +100,16 @@ RSpec.describe TranslateStatusService do
         media_attachment = status_translation.media_attachments.first
         expect(media_attachment.id).to eq media_attachments.first.id
         expect(media_attachment.description).to eq 'Hola & :highfive:'
+      end
+    end
+
+    describe 'target language is regional' do
+      it 'uses regional variant' do
+        expect(service.call(status, 'es-MX').language).to eq 'es-MX'
+      end
+
+      it 'uses parent locale for unsupported regional variant' do
+        expect(service.call(status, 'es-XX').language).to eq 'es'
       end
     end
   end

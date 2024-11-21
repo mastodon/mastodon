@@ -387,23 +387,43 @@ RSpec.describe User do
     end
   end
 
-  describe 'token_for_app' do
+  describe '#token_for_app' do
     let(:user) { Fabricate(:user) }
-    let(:app) { Fabricate(:application, owner: user) }
 
-    it 'returns a token' do
-      expect(user.token_for_app(app)).to be_a(Doorkeeper::AccessToken)
+    context 'when user owns app but does not have tokens' do
+      let(:app) { Fabricate(:application, owner: user) }
+
+      it 'creates and returns a persisted token' do
+        expect { user.token_for_app(app) }
+          .to change(Doorkeeper::AccessToken.where(resource_owner_id: user.id, application: app), :count).by(1)
+      end
     end
 
-    it 'persists a token' do
-      t = user.token_for_app(app)
-      expect(user.token_for_app(app)).to eql(t)
+    context 'when user owns app and already has tokens' do
+      let(:app) { Fabricate(:application, owner: user) }
+      let!(:token) { Fabricate :access_token, application: app, resource_owner_id: user.id }
+
+      it 'returns a persisted token' do
+        expect(user.token_for_app(app))
+          .to be_a(Doorkeeper::AccessToken)
+          .and eq(token)
+      end
     end
 
-    it 'is nil if user does not own app' do
-      app.update!(owner: nil)
+    context 'when user does not own app' do
+      let(:app) { Fabricate(:application) }
 
-      expect(user.token_for_app(app)).to be_nil
+      it 'returns nil' do
+        expect(user.token_for_app(app))
+          .to be_nil
+      end
+    end
+
+    context 'when app is nil' do
+      it 'returns nil' do
+        expect(user.token_for_app(nil))
+          .to be_nil
+      end
     end
   end
 
@@ -576,6 +596,29 @@ RSpec.describe User do
       it 'returns the users with the role' do
         expect(described_class.those_who_can(:manage_blocks)).to eq([admin_user])
       end
+    end
+  end
+
+  describe '#applications_last_used' do
+    let!(:user) { Fabricate(:user) }
+
+    let!(:never_used_application) { Fabricate :application, owner: user }
+    let!(:application_one) { Fabricate :application, owner: user }
+    let!(:application_two) { Fabricate :application, owner: user }
+
+    before do
+      _other_user_token = Fabricate :access_token, last_used_at: 3.days.ago
+      _never_used_token = Fabricate :access_token, application: never_used_application, resource_owner_id: user.id, last_used_at: nil
+      _app_one_old_token = Fabricate :access_token, application: application_one, resource_owner_id: user.id, last_used_at: 5.days.ago
+      _app_one_new_token = Fabricate :access_token, application: application_one, resource_owner_id: user.id, last_used_at: 1.day.ago
+      _never_used_token = Fabricate :access_token, application: application_two, resource_owner_id: user.id, last_used_at: 5.days.ago
+    end
+
+    it 'returns a hash of unique applications with last used values' do
+      expect(user.applications_last_used)
+        .to include(application_one.id => be_within(1.0).of(1.day.ago))
+        .and include(application_two.id => be_within(1.0).of(5.days.ago))
+        .and not_include(never_used_application.id)
     end
   end
 end

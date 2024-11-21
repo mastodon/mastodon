@@ -32,7 +32,7 @@ end
 STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
 ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
 
-require File.expand_path('../config/environment', __dir__)
+require_relative '../config/environment'
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 
@@ -43,6 +43,7 @@ require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
 require 'email_spec/rspec'
+require 'pundit/rspec'
 require 'test_prof/recipes/rspec/before_all'
 
 Rails.root.glob('spec/support/**/*.rb').each { |f| require f }
@@ -112,6 +113,7 @@ RSpec.configure do |config|
   config.include ActiveSupport::Testing::TimeHelpers
   config.include Chewy::Rspec::Helpers
   config.include Redisable
+  config.include DomainHelpers
   config.include ThreadingHelpers
   config.include SignedRequestHelpers, type: :request
   config.include CommandLineHelpers, type: :cli

@@ -42,6 +42,7 @@ RSpec.describe 'Apps' do
             id: app.id.to_s,
             client_id: app.uid,
             client_secret: app.secret,
+            client_secret_expires_at: 0,
             name: client_name,
             website: website,
             scopes: ['read', 'write'],

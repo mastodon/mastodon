@@ -116,6 +116,7 @@ export const MuteModal = ({ accountId, acct }) => {
         <div className='safety-action-modal__bottom__collapsible'>
           <div className='safety-action-modal__field-group'>
             <RadioButtonLabel name='duration' value='0' label={intl.formatMessage(messages.indefinite)} currentValue={muteDuration} onChange={handleChangeMuteDuration} />
+            <RadioButtonLabel name='duration' value='21600' label={intl.formatMessage(messages.hours, { number: 6 })} currentValue={muteDuration} onChange={handleChangeMuteDuration} />
             <RadioButtonLabel name='duration' value='86400' label={intl.formatMessage(messages.hours, { number: 24 })} currentValue={muteDuration} onChange={handleChangeMuteDuration} />
             <RadioButtonLabel name='duration' value='604800' label={intl.formatMessage(messages.days, { number: 7 })} currentValue={muteDuration} onChange={handleChangeMuteDuration} />
             <RadioButtonLabel name='duration' value='2592000' label={intl.formatMessage(messages.days, { number: 30 })} currentValue={muteDuration} onChange={handleChangeMuteDuration} />

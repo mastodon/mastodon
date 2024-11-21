@@ -187,6 +187,7 @@ ca:
         create_domain_block: Crea un bloqueig de domini
         create_email_domain_block: Crea un blocatge del domini del correu electrònic
         create_ip_block: Crear regla IP
+        create_relay: Crea un repetidor
         create_unavailable_domain: Crea un domini no disponible
         create_user_role: Crea Rol
         demote_user: Degrada l'usuari
@@ -198,14 +199,17 @@ ca:
         destroy_email_domain_block: Elimina el blocatge del domini del correu electrònic
         destroy_instance: Purga Domini
         destroy_ip_block: Eliminar regla IP
+        destroy_relay: Esborra el repetidor
         destroy_status: Elimina la publicació
         destroy_unavailable_domain: Esborra domini no disponible
         destroy_user_role: Destrueix Rol
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
+        disable_relay: Desactiva el repetidor
         disable_sign_in_token_auth_user: Desactivar l'autenticació de token per correu-e per a l'usuari
         disable_user: Deshabilita l'usuari
         enable_custom_emoji: Activa l'emoji personalitzat
+        enable_relay: Activa el repetidor
         enable_sign_in_token_auth_user: Activar l'autenticació de token per correu-e per a l'usuari
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
@@ -247,6 +251,7 @@ ca:
         create_domain_block_html: "%{name} ha bloquejat el domini %{target}"
         create_email_domain_block_html: "%{name} ha blocat el domini de correu electrònic %{target}"
         create_ip_block_html: "%{name} ha creat una regla per a l'IP %{target}"
+        create_relay_html: "%{name} ha creat un repetidor %{target}"
         create_unavailable_domain_html: "%{name} ha aturat el lliurament al domini %{target}"
         create_user_role_html: "%{name} ha creat el rol %{target}"
         demote_user_html: "%{name} ha degradat l'usuari %{target}"
@@ -258,14 +263,17 @@ ca:
         destroy_email_domain_block_html: "%{name} ha desblocat el domini de correu electrònic %{target}"
         destroy_instance_html: "%{name} ha purgat el domini %{target}"
         destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
+        destroy_relay_html: "%{name} ha esborrat el repetidor %{target}"
         destroy_status_html: "%{name} ha eliminat el tut de %{target}"
         destroy_unavailable_domain_html: "%{name} ha représ el lliurament delivery al domini %{target}"
         destroy_user_role_html: "%{name} ha esborrat el rol %{target}"
         disable_2fa_user_html: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
         disable_custom_emoji_html: "%{name} ha desactivat l'emoji %{target}"
+        disable_relay_html: "%{name} ha desactivat el repetidor %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ha desactivat l'autenticació de token per correu-e per a %{target}"
         disable_user_html: "%{name} ha desactivat l'accés del usuari %{target}"
         enable_custom_emoji_html: "%{name} ha activat l'emoji %{target}"
+        enable_relay_html: "%{name} ha activat el repetidor %{target}"
         enable_sign_in_token_auth_user_html: "%{name} ha activat l'autenticació de token per correu-e per a %{target}"
         enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
         memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
@@ -833,7 +841,6 @@ ca:
       original_status: Publicació original
       reblogs: Impulsos
       status_changed: Publicació canviada
-      title: Estats del compte
       trending: Tendència
       visibility: Visibilitat
       with_media: Amb contingut multimèdia
@@ -1166,7 +1173,6 @@ ca:
     use_security_key: Usa clau de seguretat
   author_attribution:
     example_title: Text d'exemple
-    hint_html: Controleu com se us acredita quan els enllaços es comparteixen a Mastodon.
     more_from_html: Més de %{name}
     s_blog: Blog de %{name}
     title: Atribució d'autor

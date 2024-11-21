@@ -1,7 +1,5 @@
 - content_for :page_title do
-  = t('admin.statuses.title')
-  \-
-  @#{@account.pretty_acct}
+  = t('admin.statuses.title', name: @account.pretty_acct)
 
 .filters
   .filter-subset
@@ -33,11 +31,18 @@
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
         - unless @statuses.empty?
-          = f.button safe_join([material_symbol('flag'), t('admin.statuses.batch.report')]),
-                     class: 'table-action-link',
-                     data: { confirm: t('admin.reports.are_you_sure') },
-                     name: :report,
-                     type: :submit
+          - if params[:report_id]
+            = f.button safe_join([material_symbol('add'), t('admin.statuses.batch.add_to_report', id: params[:report_id])]),
+                       class: 'table-action-link',
+                       data: { confirm: t('admin.reports.are_you_sure') },
+                       name: :report,
+                       type: :submit
+          - else
+            = f.button safe_join([material_symbol('flag'), t('admin.statuses.batch.report')]),
+                       class: 'table-action-link',
+                       data: { confirm: t('admin.reports.are_you_sure') },
+                       name: :report,
+                       type: :submit
     .batch-table__body
       - if @statuses.empty?
         = nothing_here 'nothing-here--under-tabs'

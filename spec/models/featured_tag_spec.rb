@@ -126,16 +126,54 @@ RSpec.describe FeaturedTag do
   end
 
   describe '#decrement' do
-    it 'decreases the count and updates the last_status_at timestamp' do
-      tag = Fabricate :tag, name: 'test'
-      status = Fabricate :status, visibility: :public, created_at: 10.days.ago
-      status.tags << tag
+    let(:tag) { Fabricate(:tag, name: 'test') }
+    let(:account) { Fabricate(:account) }
+    let(:featured_tag) { Fabricate(:featured_tag, name: 'test', account: account) }
 
-      featured_tag = Fabricate :featured_tag, name: 'test', account: status.account
+    context 'when removing the last status using the tag' do
+      let(:status) { Fabricate(:status, visibility: :public, account: account, created_at: 10.days.ago) }
 
-      expect { featured_tag.decrement(status.id) }
-        .to change(featured_tag, :statuses_count).from(1).to(0)
-        .and change(featured_tag, :last_status_at).to(nil)
+      before do
+        status.tags << tag
+      end
+
+      it 'decreases the count and updates the last_status_at timestamp' do
+        expect { featured_tag.decrement(status) }
+          .to change(featured_tag, :statuses_count).from(1).to(0)
+          .and change(featured_tag, :last_status_at).to(nil)
+      end
+    end
+
+    context 'when removing a previous status using the tag' do
+      let(:previous_status) { Fabricate(:status, visibility: :public, account: account, created_at: 1.month.ago) }
+      let(:status) { Fabricate(:status, visibility: :public, account: account, created_at: 10.days.ago) }
+
+      before do
+        previous_status.tags << tag
+        status.tags << tag
+      end
+
+      it 'decreases the count and updates the last_status_at timestamp' do
+        expect { featured_tag.decrement(previous_status) }
+          .to change(featured_tag, :statuses_count).from(2).to(1)
+          .and not_change(featured_tag, :last_status_at)
+      end
+    end
+
+    context 'when removing the most recent use of the tag' do
+      let(:previous_status) { Fabricate(:status, visibility: :public, account: account, created_at: 1.month.ago) }
+      let(:status) { Fabricate(:status, visibility: :public, account: account, created_at: 10.days.ago) }
+
+      before do
+        previous_status.tags << tag
+        status.tags << tag
+      end
+
+      it 'decreases the count and updates the last_status_at timestamp' do
+        expect { featured_tag.decrement(status) }
+          .to change(featured_tag, :statuses_count).from(2).to(1)
+          .and change(featured_tag, :last_status_at)
+      end
     end
   end
 end
