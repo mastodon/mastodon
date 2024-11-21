@@ -237,7 +237,7 @@ class LinkDetailsExtractor
   end
 
   def link_tag(name)
-    document.xpath("//link[@rel=\"#{name}\"]").pick('href')
+    document.xpath("//link[nokogiri:link_rel_include(@rel, '#{name}')]", NokogiriHandler).pick('href')
   end
 
   def opengraph_tag(name)
