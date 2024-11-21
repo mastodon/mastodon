@@ -53,7 +53,7 @@ class Mastodon::SidekiqMiddleware
   end
 
   def clean_up_redis_socket!
-    RedisConfiguration.pool.checkin if Thread.current[:redis]
+    RedisConnection.pool.checkin if Thread.current[:redis]
     Thread.current[:redis] = nil
   end
 

@@ -21,6 +21,9 @@
 class BulkImport < ApplicationRecord
   self.inheritance_column = false
 
+  ARCHIVE_PERIOD = 1.week
+  CONFIRM_PERIOD = 10.minutes
+
   belongs_to :account
   has_many :rows, class_name: 'BulkImportRow', inverse_of: :bulk_import, dependent: :delete_all
 
@@ -41,6 +44,9 @@ class BulkImport < ApplicationRecord
   }, prefix: true
 
   validates :type, presence: true
+
+  scope :archival_completed, -> { where(created_at: ..ARCHIVE_PERIOD.ago) }
+  scope :confirmation_missed, -> { state_unconfirmed.where(created_at: ..CONFIRM_PERIOD.ago) }
 
   def self.progress!(bulk_import_id, imported: false)
     # Use `increment_counter` so that the incrementation is done atomically in the database

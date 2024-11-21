@@ -9,7 +9,9 @@ end
 
 RSpec::Matchers.define :match_json_values do |values|
   match do |string|
-    expect(json_str_to_hash(string))
+    parsed_json = JSON.parse(string, symbolize_names: true)
+
+    expect(parsed_json)
       .to include(values)
   end
 

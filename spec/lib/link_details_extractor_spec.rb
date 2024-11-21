@@ -33,6 +33,14 @@ RSpec.describe LinkDetailsExtractor do
         expect(subject.canonical_url).to eq original_url
       end
     end
+
+    context 'when canonical URL is set to "undefined"' do
+      let(:url) { 'undefined' }
+
+      it 'ignores the canonical URLs' do
+        expect(subject.canonical_url).to eq original_url
+      end
+    end
   end
 
   context 'when only basic metadata is present' do
@@ -118,6 +126,24 @@ RSpec.describe LinkDetailsExtractor do
         <body>
           <script type="application/ld+json">
             invalid LD+JSON
+          </script>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      include_examples 'structured data'
+    end
+
+    context 'with the first tag is null' do
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            null
           </script>
           <script type="application/ld+json">
             #{ld_json}

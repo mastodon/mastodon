@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/email_domain_blocks'
 
-describe Mastodon::CLI::EmailDomainBlocks do
+RSpec.describe Mastodon::CLI::EmailDomainBlocks do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }
@@ -61,6 +61,22 @@ describe Mastodon::CLI::EmailDomainBlocks do
         expect { subject }
           .to output_results('Added 1')
           .and(change(EmailDomainBlock, :count).by(1))
+      end
+    end
+
+    context 'with --with-dns-records true' do
+      let(:domain) { 'host.example' }
+      let(:arguments) { [domain] }
+      let(:options) { { with_dns_records: true } }
+
+      before do
+        configure_mx(domain: domain, exchange: 'other.host')
+      end
+
+      it 'adds a new block for parent and children' do
+        expect { subject }
+          .to output_results('Added 2')
+          .and(change(EmailDomainBlock, :count).by(2))
       end
     end
   end

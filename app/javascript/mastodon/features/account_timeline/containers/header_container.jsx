@@ -1,4 +1,4 @@
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
@@ -6,7 +6,6 @@ import { openURL } from 'mastodon/actions/search';
 
 import {
   followAccount,
-  unfollowAccount,
   unblockAccount,
   unmuteAccount,
   pinAccount,
@@ -24,11 +23,6 @@ import { initReport } from '../../../actions/reports';
 import { makeGetAccount, getAccountHidden } from '../../../selectors';
 import Header from '../components/header';
 
-const messages = defineMessages({
-  unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
-  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Block entire domain' },
-});
-
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
 
@@ -41,18 +35,11 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch, { intl }) => ({
+const mapDispatchToProps = (dispatch) => ({
 
   onFollow (account) {
     if (account.getIn(['relationship', 'following']) || account.getIn(['relationship', 'requested'])) {
-      dispatch(openModal({
-        modalType: 'CONFIRM',
-        modalProps: {
-          message: <FormattedMessage id='confirmations.unfollow.message' defaultMessage='Are you sure you want to unfollow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
-          confirm: intl.formatMessage(messages.unfollowConfirm),
-          onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
-        },
-      }));
+      dispatch(openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }));
     } else {
       dispatch(followAccount(account.get('id')));
     }
@@ -77,12 +64,12 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
-  onMention (account, router) {
-    dispatch(mentionCompose(account, router));
+  onMention (account) {
+    dispatch(mentionCompose(account));
   },
 
-  onDirect (account, router) {
-    dispatch(directCompose(account, router));
+  onDirect (account) {
+    dispatch(directCompose(account));
   },
 
   onReblogToggle (account) {

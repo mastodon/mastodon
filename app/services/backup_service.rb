@@ -19,8 +19,8 @@ class BackupService < BaseService
 
   def build_outbox_json!(file)
     skeleton = serialize(collection_presenter, ActivityPub::CollectionSerializer)
-    skeleton['@context'] = full_context
-    skeleton['orderedItems'] = ['!PLACEHOLDER!']
+    skeleton[:@context] = full_context
+    skeleton[:orderedItems] = ['!PLACEHOLDER!']
     skeleton = Oj.dump(skeleton)
     prepend, append = skeleton.split('"!PLACEHOLDER!"')
     add_comma = false
@@ -33,7 +33,7 @@ class BackupService < BaseService
 
       file.write(statuses.map do |status|
         item = serialize_payload(ActivityPub::ActivityPresenter.from_status(status), ActivityPub::ActivitySerializer)
-        item.delete('@context')
+        item.delete(:@context)
 
         unless item[:type] == 'Announce' || item[:object][:attachment].blank?
           item[:object][:attachment].each do |attachment|

@@ -4,9 +4,9 @@ pt-PT:
     attributes:
       doorkeeper/application:
         name: Nome da aplicação
-        redirect_uri: URI de redireccionamento
+        redirect_uri: URI de redirecionamento
         scopes: Âmbitos
-        website: Página na teia da aplicação
+        website: Site da aplicação
     errors:
       models:
         doorkeeper/application:
@@ -31,11 +31,11 @@ pt-PT:
       form:
         error: Ups! Verifique que o formulário não tem erros
       help:
-        native_redirect_uri: Usa %{native_redirect_uri} para testes locais
-        redirect_uri: Utiliza uma linha por URI
-        scopes: Separe as esferas de acção com espaços. Deixe em branco para usar autorizações predefinidas.
+        native_redirect_uri: Usar %{native_redirect_uri} para testes locais
+        redirect_uri: Usar uma linha por URI
+        scopes: Separe os âmbitos de aplicação com espaços. Deixe em branco para utilizar os âmbitos de aplicação predefinidos.
       index:
-        application: Aplicações
+        application: Aplicação
         callback_url: URL de retorno
         delete: Eliminar
         empty: Não tem aplicações.
@@ -48,31 +48,30 @@ pt-PT:
         title: Nova aplicação
       show:
         actions: Ações
-        application_id: Id de Aplicação
-        callback_urls: Callback urls
-        scopes: Autorizações
+        application_id: Chave da aplicação
+        callback_urls: URLs de retorno
+        scopes: Âmbitos
         secret: Segredo
         title: 'Aplicação: %{name}'
     authorizations:
       buttons:
-        authorize: Autorize
-        deny: Não autorize
+        authorize: Autorizar
+        deny: Negar
       error:
         title: Ocorreu um erro
       new:
-        prompt_html: "%{client_name} pretende ter permissão para aceder à sua conta. É uma aplicação de terceiros. <strong>Se não confia nesta aplicação, então não deve autorizá-la.</strong>"
         review_permissions: Rever permissões
-        title: Autorização é necessária
+        title: Autorização necessária
       show:
-        title: Copiar o código desta autorização e colar na aplicação.
+        title: Copie este código de autorização e cole-o na aplicação.
     authorized_applications:
       buttons:
         revoke: Revogar
       confirmations:
-        revoke: Tens a certeza?
+        revoke: Tem a certeza?
       index:
         authorized_at: Autorizado em %{date}
-        description_html: Estas são aplicações que podem aceder à sua conta utilizando a API. Se encontrar aqui aplicativos que não reconhece, ou um aplicativo está com mau funcionamento, pode revogar o seu acesso.
+        description_html: Estas são as aplicações que podem aceder à sua conta utilizando a API. Se houver aplicações que não reconhece aqui, ou se uma aplicação estiver a comportar-se mal, pode revogar o seu acesso.
         last_used_at: Última utilização em %{date}
         never_used: Nunca utilizado
         scopes: Permissões
@@ -81,14 +80,15 @@ pt-PT:
     errors:
       messages:
         access_denied: O proprietário do recurso ou servidor de autorização negou o pedido.
-        credential_flow_not_configured: As credenciais da palavra-passe do proprietário do recurso falhou devido a que Doorkeeper.configure.resource_owner_from_credentials não foram configuradas.
-        invalid_client: Autenticação do cliente falhou por causa de um cliente desconhecido, nenhum cliente de autenticação incluído ou método de autenticação não suportado.
+        credential_flow_not_configured: Falha no fluxo de credenciais da palavra-passe do proprietário do recurso porque Doorkeeper.configure.resource_owner_from_credentials não está configurado.
+        invalid_client: A autenticação do cliente falhou devido a cliente desconhecido, sem autenticação de cliente incluída ou método de autenticação não suportado.
+        invalid_code_challenge_method: O método de validação do código tem de ser S256, o método simples não é suportado.
         invalid_grant: A concessão de autorização fornecida é inválida, expirou, foi revogada, não corresponde à URI de redirecionamento usada no pedido de autorização ou foi emitida para outro cliente.
         invalid_redirect_uri: A URI de redirecionamento incluída não é válida.
         invalid_request:
           missing_param: 'Parâmetro requerido em falta: %{value}.'
-          request_not_authorized: O pedido precisa ser autorizado. O parâmetro requerido para autorização da solicitação está ausente ou é inválido.
-          unknown: A solicitação não possui um parâmetro requerido, inclui um valor de parâmetro não suportado ou tem outro tipo de formato incorreto.
+          request_not_authorized: O pedido tem de ser autorizado. O parâmetro necessário para autorizar o pedido está em falta ou é inválido.
+          unknown: O pedido não tem um parâmetro obrigatório, inclui um valor de parâmetro não suportado ou está mal formado.
         invalid_resource_owner: As credenciais do proprietário do recurso não são válidas ou o proprietário do recurso não pode ser encontrado
         invalid_scope: O âmbito solicitado é inválido, desconhecido ou tem um formato incorreto.
         invalid_token:
@@ -97,7 +97,7 @@ pt-PT:
           unknown: O token de acesso é inválido
         resource_owner_authenticator_not_configured: A procura pelo proprietário do recurso falhou porque Doorkeeper.configure.resource_owner_authenticator não foi configurado.
         server_error: O servidor de autorização encontrou uma condição inesperada que impediu o cumprimento do pedido .
-        temporarily_unavailable: O servidor de autorização não é capaz de lidar com o pedido devido a uma sobrecarga ou mantenimento do servidor.
+        temporarily_unavailable: O servidor de autorização não pode atualmente tratar o pedido devido a uma sobrecarga temporária ou à manutenção do servidor.
         unauthorized_client: O cliente não está autorizado a realizar esta solicitação usando este método.
         unsupported_grant_type: O tipo de concessão de autorização não é suportado pelo servidor de autorização.
         unsupported_response_type: O servidor de autorização não suporta este tipo de resposta.
@@ -124,12 +124,12 @@ pt-PT:
         admin/reports: Administração de denúncias
         all: Acesso total à sua conta Mastodon
         blocks: Bloqueios
-        bookmarks: Itens Salvos
+        bookmarks: Marcadores
         conversations: Conversas
-        crypto: Encriptação ponta-a-ponta
+        crypto: Encriptação ponta a ponta
         favourites: Favoritos
         filters: Filtros
-        follow: A seguir, a silenciar, e a bloquear
+        follow: A seguir, a silenciar e a bloquear
         follows: Seguidores
         lists: Listas
         media: Anexos de media
@@ -138,7 +138,7 @@ pt-PT:
         profile: O seu perfil Mastodon
         push: Notificações push
         reports: Denúncias
-        search: Pesquisa
+        search: Pesquisar
         statuses: Publicações
     layouts:
       admin:
@@ -164,14 +164,14 @@ pt-PT:
       admin:write:email_domain_blocks: executar ações de moderação no bloqueio de domínios de e-mail
       admin:write:ip_blocks: executar ações de moderação no bloqueio de IPs
       admin:write:reports: executar ações de moderação em denúncias
-      crypto: usa encriptação ponta-a-ponta
-      follow: siga, bloqueie, desbloqueie, e deixa de seguir contas
-      profile: apenas ler as informações do perfil da sua conta
+      crypto: usar encriptação ponta a ponta
+      follow: alterar relações de conta
+      profile: ler apenas as informações do perfil da sua conta
       push: receber as suas notificações push
-      read: tenha acesso aos dados da tua conta
+      read: ler todos os dados da sua conta
       read:accounts: ver as informações da conta
       read:blocks: ver os seus bloqueios
-      read:bookmarks: ver os seus favoritos
+      read:bookmarks: ver os seus marcadores
       read:favourites: ver os seus favoritos
       read:filters: ver os seus filtros
       read:follows: ver quem você segue
@@ -180,18 +180,18 @@ pt-PT:
       read:notifications: ver as suas notificações
       read:reports: ver as suas denúncias
       read:search: pesquisar em seu nome
-      read:statuses: ver todos os estados
-      write: publique por ti
-      write:accounts: modificar o seu perfil
+      read:statuses: ver todas as publicações
+      write: alterar todos os dados da sua conta
+      write:accounts: alterar o seu perfil
       write:blocks: bloquear contas e domínios
-      write:bookmarks: estado dos favoritos
+      write:bookmarks: marcar publicações
       write:conversations: silenciar e eliminar conversas
-      write:favourites: assinalar como favoritas
+      write:favourites: favoritar publicações
       write:filters: criar filtros
       write:follows: seguir pessoas
       write:lists: criar listas
-      write:media: carregar arquivos de media
+      write:media: enviar ficheiros de media
       write:mutes: silenciar pessoas e conversas
       write:notifications: limpar as suas notificações
       write:reports: denunciar outras pessoas
-      write:statuses: publicar estado
+      write:statuses: publicar publicações

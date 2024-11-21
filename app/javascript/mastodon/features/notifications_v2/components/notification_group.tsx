@@ -2,11 +2,14 @@ import { useMemo } from 'react';
 
 import { HotKeys } from 'react-hotkeys';
 
+import { navigateToProfile } from 'mastodon/actions/accounts';
+import { mentionComposeById } from 'mastodon/actions/compose';
 import type { NotificationGroup as NotificationGroupModel } from 'mastodon/models/notification_group';
-import { useAppSelector } from 'mastodon/store';
+import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { NotificationAdminReport } from './notification_admin_report';
 import { NotificationAdminSignUp } from './notification_admin_sign_up';
+import { NotificationAnnualReport } from './notification_annual_report';
 import { NotificationFavourite } from './notification_favourite';
 import { NotificationFollow } from './notification_follow';
 import { NotificationFollowRequest } from './notification_follow_request';
@@ -30,6 +33,13 @@ export const NotificationGroup: React.FC<{
     ),
   );
 
+  const dispatch = useAppDispatch();
+
+  const accountId =
+    notificationGroup?.type === 'gap'
+      ? undefined
+      : notificationGroup?.sampleAccountIds[0];
+
   const handlers = useMemo(
     () => ({
       moveUp: () => {
@@ -39,8 +49,16 @@ export const NotificationGroup: React.FC<{
       moveDown: () => {
         onMoveDown(notificationGroupId);
       },
+
+      openProfile: () => {
+        if (accountId) dispatch(navigateToProfile(accountId));
+      },
+
+      mention: () => {
+        if (accountId) dispatch(mentionComposeById(accountId));
+      },
     }),
-    [notificationGroupId, onMoveUp, onMoveDown],
+    [dispatch, notificationGroupId, accountId, onMoveUp, onMoveDown],
   );
 
   if (!notificationGroup || notificationGroup.type === 'gap') return null;
@@ -121,6 +139,14 @@ export const NotificationGroup: React.FC<{
     case 'moderation_warning':
       content = (
         <NotificationModerationWarning
+          unread={unread}
+          notification={notificationGroup}
+        />
+      );
+      break;
+    case 'annual_report':
+      content = (
+        <NotificationAnnualReport
           unread={unread}
           notification={notificationGroup}
         />

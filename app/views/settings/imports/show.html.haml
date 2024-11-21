@@ -5,9 +5,9 @@
   .flash-message.warning= t('imports.mismatched_types_warning')
 
 - if @bulk_import.overwrite?
-  %p.hint= t("imports.overwrite_preambles.#{@bulk_import.type}_html", filename: @bulk_import.original_filename, total_items: @bulk_import.total_items)
+  %p.hint= t("imports.overwrite_preambles.#{@bulk_import.type}_html", filename: @bulk_import.original_filename, count: @bulk_import.total_items)
 - else
-  %p.hint= t("imports.preambles.#{@bulk_import.type}_html", filename: @bulk_import.original_filename, total_items: @bulk_import.total_items)
+  %p.hint= t("imports.preambles.#{@bulk_import.type}_html", filename: @bulk_import.original_filename, count: @bulk_import.total_items)
 
 .simple_form
   .actions

@@ -44,8 +44,16 @@ class FeaturedTag < ApplicationRecord
     update(statuses_count: statuses_count + 1, last_status_at: timestamp)
   end
 
-  def decrement(deleted_status_id)
-    update(statuses_count: [0, statuses_count - 1].max, last_status_at: visible_tagged_account_statuses.where.not(id: deleted_status_id).select(:created_at).first&.created_at)
+  def decrement(deleted_status)
+    if statuses_count <= 1
+      update(statuses_count: 0, last_status_at: nil)
+    elsif last_status_at > deleted_status.created_at
+      update(statuses_count: statuses_count - 1)
+    else
+      # Fetching the latest status creation time can be expensive, so only perform it
+      # if we know we are deleting the latest status using this tag
+      update(statuses_count: statuses_count - 1, last_status_at: visible_tagged_account_statuses.where(id: ...deleted_status.id).pick(:created_at))
+    end
   end
 
   private
@@ -56,7 +64,7 @@ class FeaturedTag < ApplicationRecord
 
   def reset_data
     self.statuses_count = visible_tagged_account_statuses.count
-    self.last_status_at = visible_tagged_account_statuses.select(:created_at).first&.created_at
+    self.last_status_at = visible_tagged_account_statuses.pick(:created_at)
   end
 
   def validate_featured_tags_limit

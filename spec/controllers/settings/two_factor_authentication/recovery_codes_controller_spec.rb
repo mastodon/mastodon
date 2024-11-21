@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::TwoFactorAuthentication::RecoveryCodesController do
+RSpec.describe Settings::TwoFactorAuthentication::RecoveryCodesController do
   render_views
 
   describe 'POST #create' do
@@ -15,10 +15,11 @@ describe Settings::TwoFactorAuthentication::RecoveryCodesController do
       sign_in user, scope: :user
       post :create, session: { challenge_passed_at: Time.now.utc }
 
-      expect(assigns(:recovery_codes)).to eq otp_backup_codes
       expect(flash[:notice]).to eq 'Recovery codes successfully regenerated'
       expect(response).to have_http_status(200)
       expect(response).to render_template(:index)
+      expect(response.body)
+        .to include(*otp_backup_codes)
     end
 
     it 'redirects when not signed in' do

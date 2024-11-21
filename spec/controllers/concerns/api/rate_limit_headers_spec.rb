@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Api::RateLimitHeaders do
+RSpec.describe Api::RateLimitHeaders do
   controller(ApplicationController) do
     include Api::RateLimitHeaders
 

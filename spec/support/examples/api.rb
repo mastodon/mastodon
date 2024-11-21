@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_examples 'forbidden for wrong scope' do |wrong_scope|
+RSpec.shared_examples 'forbidden for wrong scope' do |wrong_scope|
   let(:scopes) { wrong_scope }
 
   it 'returns http forbidden' do
@@ -11,7 +11,7 @@ shared_examples 'forbidden for wrong scope' do |wrong_scope|
   end
 end
 
-shared_examples 'forbidden for wrong role' do |wrong_role|
+RSpec.shared_examples 'forbidden for wrong role' do |wrong_role|
   let(:role) { UserRole.find_by(name: wrong_role) }
 
   it 'returns http forbidden' do

@@ -7,7 +7,6 @@ pl:
     hosted_on: Mastodon prowadzony na %{domain}
     title: O nas
   accounts:
-    follow: Obserwuj
     followers:
       few: śledzących
       many: śledzących
@@ -26,9 +25,12 @@ pl:
       one: wpis
       other: Wpisów
     posts_tab_heading: Wpisy
+    self_follow_error: Nie możesz obserwować swojego konta
   admin:
     account_actions:
       action: Wykonaj działanie
+      already_silenced: To konto zostało już ograniczone.
+      already_suspended: To konto zostało już zawieszone.
       title: Wykonaj działanie moderacyjne na %{acct}
     account_moderation_notes:
       create: Pozostaw notatkę
@@ -50,6 +52,7 @@ pl:
         title: Zmień adres e-mail dla %{username}
       change_role:
         changed_msg: Pomyślnie zmieniono rolę!
+        edit_roles: Zarządzaj rolami użytkowników
         label: Zmień rolę
         no_role: Brak roli
         title: Zmień rolę dla %{username}
@@ -190,6 +193,7 @@ pl:
         create_domain_block: Utwórz blokadę domeny
         create_email_domain_block: Utwórz blokadę domeny e-mail
         create_ip_block: Utwórz regułę IP
+        create_relay: Utwórz przekaźnik
         create_unavailable_domain: Utwórz niedostępną domenę
         create_user_role: Utwórz rolę
         demote_user: Zdegraduj użytkownika
@@ -201,15 +205,18 @@ pl:
         destroy_email_domain_block: Usuń blokadę domeny e-mail
         destroy_instance: Wyczyść domenę
         destroy_ip_block: Usuń regułę IP
+        destroy_relay: Usuń przekaźnik
         destroy_status: Usuń wpis
         destroy_unavailable_domain: Usuń niedostępną domenę
         destroy_user_role: Zlikwiduj rolę
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
-        disable_sign_in_token_auth_user: Wyłącz uwierzytelnianie tokenu e-mail dla użytkownika
+        disable_relay: Wyłącz przekaźnik
+        disable_sign_in_token_auth_user: Wyłącz uwierzytelnianie tokenem przez e-mail dla użytkownika
         disable_user: Wyłącz użytkownika
         enable_custom_emoji: Włącz niestandardowe emoji
-        enable_sign_in_token_auth_user: Włącz uwierzytelnianie tokenu e-mail dla użytkownika
+        enable_relay: Włącz przekaźnik
+        enable_sign_in_token_auth_user: Włącz uwierzytelnianie tokenem przez e-mail dla użytkownika
         enable_user: Włącz użytkownika
         memorialize_account: Upamiętnij konto
         promote_user: Podnieś uprawnienia
@@ -244,32 +251,36 @@ pl:
         confirm_user_html: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
         create_account_warning_html: "%{name} wysłał(a) ostrzeżenie do %{target}"
         create_announcement_html: "%{name} utworzył(a) nowe ogłoszenie %{target}"
-        create_canonical_email_block_html: "%{name} zablokował e-mail z hasłem %{target}"
+        create_canonical_email_block_html: "%{name} zablokował(a) e-mail z hashem %{target}"
         create_custom_emoji_html: "%{name} dodał(a) nowe emoji %{target}"
         create_domain_allow_html: "%{name} dodał(a) na białą listę domenę %{target}"
         create_domain_block_html: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block_html: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
         create_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
+        create_relay_html: "%{name} utworzył przekaźnik %{target}"
         create_unavailable_domain_html: "%{name} przestał(a) doręczać na domenę %{target}"
         create_user_role_html: "%{name} utworzył rolę %{target}"
         demote_user_html: "%{name} zdegradował(a) użytkownika %{target}"
         destroy_announcement_html: "%{name} usunął(-ęła) ogłoszenie %{target}"
-        destroy_canonical_email_block_html: "%{name} odblokował(a) e-mail z hasłem %{target}"
+        destroy_canonical_email_block_html: "%{name} odblokował(a) e-mail z hashem %{target}"
         destroy_custom_emoji_html: "%{name} usunął emoji %{target}"
         destroy_domain_allow_html: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block_html: "%{name} odblokował(a) domenę %{target}"
         destroy_email_domain_block_html: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
         destroy_instance_html: "%{name} usunął domenę %{target}"
         destroy_ip_block_html: "%{name} usunął(-ęła) regułę dla IP %{target}"
+        destroy_relay_html: "%{name} usunął przekaźnik %{target}"
         destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
         destroy_user_role_html: "%{name} usunął rolę %{target}"
         disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwuskładnikowe użytkownikowi %{target}"
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} wyłączył/a uwierzytelnianie tokenem e-mail dla %{target}"
+        disable_relay_html: "%{name} wyłączył przekaźnik %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} wyłączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
         disable_user_html: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
         enable_custom_emoji_html: "%{name} włączył(a) emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} włączył/a uwierzytelnianie tokenem e-mail dla %{target}"
+        enable_relay_html: "%{name} włączył przekaźnik %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} włączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
         enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
         memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
         promote_user_html: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
@@ -462,7 +473,7 @@ pl:
       not_permitted: Brak uprawnień
       resolved_dns_records_hint_html: Nazwa domeny rozwiązuje się do następujących domen MX, które są ostatecznie odpowiedzialne za przyjmowanie wiadomości e-mail. Blokowanie domeny MX spowoduje zablokowanie rejestracji z dowolnego adresu e-mail, który używa tej samej domeny MX, nawet jeśli widoczna nazwa domeny jest inna. <strong>Uważaj, aby nie blokować głównych dostawców poczty elektronicznej.</strong>
       resolved_through_html: Rozwiązano przez %{domain}
-      title: Blokowanie domen e-mail
+      title: Zablokowane domeny e-mail
     export_domain_allows:
       new:
         title: Zaimportuj zezwolenia domen
@@ -487,6 +498,9 @@ pl:
       title: Polecane konta
       unsuppress: Przywróć polecenie obserwacji konta
     instances:
+      audit_log:
+        title: Niedawne zdarzenia z dzienniku
+        view_all: Pokaż pełny dziennik zdarzeń
       availability:
         description_html:
           few: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
@@ -623,6 +637,7 @@ pl:
         suspend_description_html: Konto i cała jego zawartość będą niedostępne i ostatecznie usunięte, a interakcja z nim będzie niemożliwa. Możliwość odwrócenia w ciągu 30 dni. Zamyka wszelkie zgłoszenia dotyczące tego konta.
       actions_description_html: Zdecyduj, jakie działania należy podjąć, aby rozstrzygnąć niniejsze zgłoszenie. Jeśli podejmiesz działania karne przeciwko zgłoszonemu kontowi, zostanie do nich wysłane powiadomienie e-mail, chyba że wybrano kategorię <strong>Spam</strong>.
       actions_description_remote_html: Zdecyduj, jakie działanie należy podjąć, aby rozwiązać to zgłoszenie. Będzie to miało wpływ jedynie na sposób, w jaki <strong>Twój</strong> serwer komunikuje się z tym kontem zdalnym i obsługuje jego zawartość.
+      actions_no_posts: Ten raport nie ma żadnych powiązanych wpisów do usunięcia
       add_to_report: Dodaj więcej do zgłoszenia
       already_suspended_badges:
         local: Już zawieszono na tym serwerze
@@ -839,8 +854,10 @@ pl:
       back_to_account: Wróć na konto
       back_to_report: Wróć do strony zgłoszenia
       batch:
+        add_to_report: 'Dodaj do raportu #%{id}'
         remove_from_report: Usuń ze zgłoszenia
         report: Zgłoszenie
+      contents: Zawartość
       deleted: Usunięto
       favourites: Ulubione
       history: Historia wersji
@@ -849,13 +866,17 @@ pl:
       media:
         title: Multimedia
       metadata: Metadane
+      no_history: Ten wpis nie był edytowany
       no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       open: Otwarty post
       original_status: Oryginalny post
       reblogs: Podbicia
+      replied_to_html: Odpowiedziano na %{acct_link}
       status_changed: Post zmieniony
-      title: Wpisy konta
+      status_title: Wpis @%{name}
+      title: Wpisy konta - @%{name}
       trending: Popularne
+      view_publicly: Wyświetl publicznie
       visibility: Widoczność
       with_media: Z zawartością multimedialną
     strikes:
@@ -897,6 +918,9 @@ pl:
         message_html: Nie zdefiniowano żadnych reguł serwera.
       sidekiq_process_check:
         message_html: Brak uruchomionego procesu Sidekiq dla kolejki(-ek) %{value}. Sprawdź konfigurację Sidekiq
+      software_version_check:
+        action: Pokaż dostępne aktualizacje
+        message_html: Dostępna aktualizacja Mastodona.
       software_version_critical_check:
         action: Pokaż dostępne aktualizacje
         message_html: Dostępna krytyczna aktualizacja Mastodona, zaktualizuj jak tylko będzie to możliwe.
@@ -910,16 +934,39 @@ pl:
         action: Kliknij tutaj, aby dowiedzieć się więcej
         message_html: "<strong>Pamięć obiektu jest nieprawidłowa. Prywatność twoich użytkowników jest zagrożona.</strong>"
     tags:
+      moderation:
+        not_trendable: Nie mogą trendować
+        not_usable: Nieużywalne
+        pending_review: Oczekuje na przejrzenie
+        review_requested: Prośba o przejrzenie
+        reviewed: Przejrzane
+        title: Status
+        trendable: Mogą trendować
+        unreviewed: Nieprzejrzane
+        usable: Używalne
+      name: Nazwa
+      newest: Najnowsze
+      oldest: Najstarsze
+      open: Zobacz w widoku publicznym
+      reset: Resetuj
       review: Stan przeglądu
+      search: Szukaj
+      title: Hashtagi
       updated_msg: Pomyślnie uaktualniono ustawienia hashtagów
     title: Administracja
     trends:
       allow: Zezwól
       approved: Zaakceptowano
+      confirm_allow: Czy na pewno chcesz zezwolić na zaznaczone tagi?
+      confirm_disallow: Czy na pewno chcesz zabronić zaznaczonych tagów?
       disallow: Niedozwolone
       links:
         allow: Zezwól na link
         allow_provider: Zezwalaj na wydawcę
+        confirm_allow: Czy na pewno chcesz zezwolić na zaznaczone linki?
+        confirm_allow_provider: Czy na pewno chcesz zezwolić na zaznaczonych dostawców?
+        confirm_disallow: Czy na pewno chcesz zabronić zaznaczonych linków?
+        confirm_disallow_provider: Czy na pewno chcesz zabronić zaznaczonych dostawców?
         description_html: Są to linki, które są obecnie często udostępniane przez konta, z których Twój serwer widzi posty. Może to pomóc Twoim użytkownikom dowiedzieć się, co dzieje się na świecie. Żadne linki nie są wyświetlane publicznie dopóki nie zaakceptujesz wydawcy. Możesz również zezwolić lub odrzucić indywidualne linki.
         disallow: Nie zezwalaj na link
         disallow_provider: Nie zezwalaj na wydawcę
@@ -945,6 +992,10 @@ pl:
       statuses:
         allow: Zezwól na post
         allow_account: Zezwól na autora
+        confirm_allow: Czy na pewno chcesz zezwolić na zaznaczone statusy?
+        confirm_allow_account: Czy na pewno chcesz zezwolić na zaznaczone konta?
+        confirm_disallow: Czy na pewno chcesz zabronić zaznaczonych statusów?
+        confirm_disallow_account: Czy na pewno chcesz zabronić zaznaczonych kont?
         description_html: Są to wpisy, o których Twój serwer wie i które są obecnie często udostępniane i dodawane do ulubionych. Może to pomóc nowym i powracającym użytkownikom znaleźć więcej osób do obserwacji. Żadne posty nie są wyświetlane publicznie, dopóki nie zatwierdzisz autora, a autor ustawi zezwolenie na wyświetlanie się w katalogu. Możesz również zezwolić lub odrzucić poszczególne posty.
         disallow: Nie zezwalaj na post
         disallow_account: Nie zezwalaj na autora
@@ -981,7 +1032,7 @@ pl:
           many: Użyte przez %{count} osób w ciągu ostatniego tygodnia
           one: Użyte przez jedną osobę w ciągu ostatniego tygodnia
           other: Użyte przez %{count} osób w ciągu ostatniego tygodnia
-      title: Na czasie
+      title: Rekomendacje i Trendy
       trending: Popularne
     warning_presets:
       add_new: Dodaj nowy
@@ -1070,7 +1121,7 @@ pl:
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
     salutation: "%{name},"
-    settings: 'Zmień ustawienia powiadamiania: %{link}'
+    settings: 'Zmień ustawienia e-maili: %{link}'
     unsubscribe: Anuluj subskrypcję
     view: 'Zobacz:'
     view_profile: Wyświetl profil
@@ -1119,7 +1170,7 @@ pl:
     or_log_in_with: Lub zaloguj się z użyciem
     privacy_policy_agreement_html: Przeczytałem/am i akceptuję <a href="%{privacy_policy_path}" target="_blank">politykę prywatności</a>
     progress:
-      confirm: Potwierdź e-mail
+      confirm: Potwierdź adres e-mail
       details: Twoje dane
       review: Nasza opinia
       rules: Akceptuj zasady
@@ -1163,6 +1214,14 @@ pl:
       view_strikes: Zobacz dawne ostrzeżenia nałożone na twoje konto
     too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
     use_security_key: Użyj klucza bezpieczeństwa
+  author_attribution:
+    example_title: Przykładowy tekst
+    hint_html: Piszesz wiadomości albo bloga poza Mastodonem? Kontroluj jak będą ci przypisywane podczas dizielenia się nimi na Mastodonie.
+    instructions: 'Upewnij się, że ten kod jest w HTMLu twojego artykułu:'
+    more_from_html: Więcej od %{name}
+    s_blog: Blog %{name}
+    then_instructions: Potem, dodaj domenę publikacji do pola poniżej.
+    title: Przypis do autora
   challenge:
     confirm: Kontynuuj
     hint_html: "<strong>Informacja:</strong> Nie będziemy prosić Cię o ponowne podanie hasła przez następną godzinę."
@@ -1171,7 +1230,6 @@ pl:
   crypto:
     errors:
       invalid_key: nie jest prawidłowym kluczem Ed25519 lub Curve25519
-      invalid_signature: nie jest prawidłowym podpisem Ed25519
   date:
     formats:
       default: "%d. %b %Y"
@@ -1237,8 +1295,6 @@ pl:
       your_appeal_approved: Twoje odwołanie zostało zatwierdzone
       your_appeal_pending: Zgłosiłeś odwołanie
       your_appeal_rejected: Twoje odwołanie zostało odrzucone
-  domain_validator:
-    invalid_domain: nie jest prawidłową nazwą domeny
   edit_profile:
     basic_information: Podstawowe informacje
     hint_html: "<strong>Dostosuj to, co ludzie widzą na Twoim profilu publicznym i obok Twoich wpisów.</strong> Inne osoby są bardziej skłonne obserwować Cię i wchodzić z Tobą w interakcje, gdy masz wypełniony profil i zdjęcie profilowe."
@@ -1376,20 +1432,6 @@ pl:
       merge_long: Zachowaj obecne wpisy i dodaj nowe
       overwrite: Nadpisz
       overwrite_long: Zastąp obecne wpisy nowymi
-    overwrite_preambles:
-      blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
-      bookmarks_html: Zamierzasz <strong>zastąpić swoje zakładki</strong> maksymalnie <strong>%{total_items} wpisami</strong> z <strong>%{filename}</strong>.
-      domain_blocking_html: Zamierzasz <strong>zastąpić swoją listę bloków domen</strong> maksymalnie <strong>%{total_items} domenami</strong> z <strong>%{filename}</strong>.
-      following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong> i <strong>przestać obserwować kogokolwiek innego</strong>.
-      lists_html: Zamierzasz <strong>zastąpić swoje listy</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
-      muting_html: Zamierzasz <strong>zastąpić swoją wyciszonych</strong> maksymalnie <strong>%{total_items} kontami</strong> z <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
-      bookmarks_html: Zamierzasz dodać maksymalnie <strong>%{total_items} wpisów</strong> do twoich <strong>zakładek</strong> z <strong>%{filename}</strong>.
-      domain_blocking_html: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{total_items} domen</strong> z <strong>%{filename}</strong>.
-      following_html: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
-      lists_html: Zamierzasz dodać maksymalnie <strong>%{total_items} kont</strong> do twoich <strong>list</strong> z <strong>%{filename}</strong>. Jeżeli nie ma list, nowe zostaną utworzone.
-      muting_html: Zamierzasz <strong>wyciszyć</strong> maksymalnie <strong>%{total_items} kont</strong> z <strong>%{filename}</strong>.
     preface: Możesz zaimportować pewne dane (np. lista kont, które obserwujesz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
     recent_imports: Ostatnie importy
     states:
@@ -1476,6 +1518,7 @@ pl:
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
+      not_found: Nie znaleziono mediów %{ids}, lub są już  dołączone do innego wpisu
       not_ready: Nie można załączyć plików których przetwarzanie nie zostało ukończone. Spróbuj ponownie za chwilę!
       too_many: Nie możesz załączyć więcej niż 4 plików
   migrations:
@@ -1761,27 +1804,12 @@ pl:
     edited_at_html: Edytowane %{date}
     errors:
       in_reply_not_found: Post, na który próbujesz odpowiedzieć, nie istnieje.
-    open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
       direct: Nie możesz przypiąć wpisu, który jest widoczny tylko dla wspomnianych użytkowników
       limit: Przekroczyłeś maksymalną liczbę przypiętych wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
-    poll:
-      total_people:
-        few: "%{count} osoby"
-        many: "%{count} osób"
-        one: "%{count} osoba"
-        other: "%{count} osoby"
-      total_votes:
-        few: "%{count} głosy"
-        many: "%{count} głosy"
-        one: "%{count} głos"
-        other: "%{count} głosy"
-      vote: Głosuj
-    show_more: Pokaż więcej
-    show_thread: Pokaż wątek
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Bezpośredni
@@ -1982,6 +2010,7 @@ pl:
     instructions_html: Skopiuj poniższy kod HTML i wklej go na swoją stronę. Potem dodaj link do twojej strony do jednego z wolnych pól na profilu z zakładki "Edytuj profil".
     verification: Weryfikacja
     verified_links: Twoje zweryfikowane linki
+    website_verification: Weryfikacja strony internetowej
   webauthn_credentials:
     add: Dodaj nowy klucz bezpieczeństwa
     create:

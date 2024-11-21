@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::RolesController do
+RSpec.describe Admin::RolesController do
   render_views
 
   let(:permissions)  { UserRole::Flags::NONE }

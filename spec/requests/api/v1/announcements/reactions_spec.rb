@@ -15,7 +15,9 @@ RSpec.describe 'API V1 Announcements Reactions' do
       it 'returns http unauthorized' do
         put "/api/v1/announcements/#{announcement.id}/reactions/#{escaped_emoji}"
 
-        expect(response).to have_http_status 401
+        expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -26,6 +28,8 @@ RSpec.describe 'API V1 Announcements Reactions' do
 
       it 'creates reaction', :aggregate_failures do
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(announcement.announcement_reactions.find_by(name: '😂', account: user.account)).to_not be_nil
       end
     end
@@ -39,7 +43,9 @@ RSpec.describe 'API V1 Announcements Reactions' do
     context 'without token' do
       it 'returns http unauthorized' do
         delete "/api/v1/announcements/#{announcement.id}/reactions/#{escaped_emoji}"
-        expect(response).to have_http_status 401
+        expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -50,6 +56,8 @@ RSpec.describe 'API V1 Announcements Reactions' do
 
       it 'creates reaction', :aggregate_failures do
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(announcement.announcement_reactions.find_by(name: '😂', account: user.account)).to be_nil
       end
     end

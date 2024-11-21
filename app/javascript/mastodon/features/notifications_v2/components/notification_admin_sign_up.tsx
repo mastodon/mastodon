@@ -6,13 +6,27 @@ import type { NotificationGroupAdminSignUp } from 'mastodon/models/notification_
 import type { LabelRenderer } from './notification_group_with_status';
 import { NotificationGroupWithStatus } from './notification_group_with_status';
 
-const labelRenderer: LabelRenderer = (values) => (
-  <FormattedMessage
-    id='notification.admin.sign_up'
-    defaultMessage='{name} signed up'
-    values={values}
-  />
-);
+const labelRenderer: LabelRenderer = (displayedName, total) => {
+  if (total === 1)
+    return (
+      <FormattedMessage
+        id='notification.admin.sign_up'
+        defaultMessage='{name} signed up'
+        values={{ name: displayedName }}
+      />
+    );
+
+  return (
+    <FormattedMessage
+      id='notification.admin.sign_up.name_and_others'
+      defaultMessage='{name} and {count, plural, one {# other} other {# others}} signed up'
+      values={{
+        name: displayedName,
+        count: total - 1,
+      }}
+    />
+  );
+};
 
 export const NotificationAdminSignUp: React.FC<{
   notification: NotificationGroupAdminSignUp;

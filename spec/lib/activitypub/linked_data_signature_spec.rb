@@ -95,16 +95,11 @@ RSpec.describe ActivityPub::LinkedDataSignature do
   describe '#sign!' do
     subject { described_class.new(raw_json).sign!(sender) }
 
-    it 'returns a hash' do
+    it 'returns a hash with a signature, the expected context, and the signature can be verified', :aggregate_failures do
       expect(subject).to be_a Hash
-    end
-
-    it 'contains signature' do
       expect(subject['signature']).to be_a Hash
       expect(subject['signature']['signatureValue']).to be_present
-    end
-
-    it 'can be verified again' do
+      expect(Array(subject['@context'])).to include('https://w3id.org/security/v1')
       expect(described_class.new(subject).verify_actor!).to eq sender
     end
   end

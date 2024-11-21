@@ -8,14 +8,14 @@ class AnnualReport::TopStatuses < AnnualReport::Source
 
     {
       top_statuses: {
-        by_reblogs: top_reblogs,
-        by_favourites: top_favourites,
-        by_replies: top_replies,
+        by_reblogs: top_reblogs&.to_s,
+        by_favourites: top_favourites&.to_s,
+        by_replies: top_replies&.to_s,
       },
     }
   end
 
   def base_scope
-    @account.statuses.public_visibility.joins(:status_stat).where(id: year_as_snowflake_range).reorder(nil)
+    report_statuses.public_visibility.joins(:status_stat)
   end
 end

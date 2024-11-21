@@ -3,13 +3,14 @@ it:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Uno per riga. Protegge da false attribuzioni.
         discoverable: I tuoi post pubblici e il tuo profilo potrebbero essere presenti o consigliati in varie aree di Mastodon e il tuo profilo potrebbe essere suggerito ad altri utenti.
         display_name: Il tuo nome completo o il tuo soprannome.
         fields: La tua homepage, i pronomi, l'età, tutto quello che vuoi.
         indexable: I tuoi post pubblici potrebbero apparire nei risultati di ricerca su Mastodon. Le persone che hanno interagito con i tuoi post potrebbero essere in grado di cercarli anche se non hai attivato questa impostazione.
         note: 'Puoi @menzionare altre persone o usare gli #hashtags.'
         show_collections: Le persone saranno in grado di navigare attraverso i tuoi seguaci e seguaci. Le persone che segui vedranno che li seguirai indipendentemente dalle tue impostazioni.
-        unlocked: Le persone saranno in grado di seguirti senza richiedere l'approvazione. Deseleziona se vuoi controllare le richieste di seguirti e scegli se accettare o rifiutare nuovi follower.
+        unlocked: Le persone potranno seguirti senza richiedere l'approvazione. Deseleziona questa opzione, se vuoi rivedere le richieste per poterti seguire e scegliere se accettare o rifiutare i nuovi seguaci.
       account_alias:
         acct: Indica il nomeutente@dominio dell'account dal quale vuoi trasferirti
       account_migration:
@@ -130,7 +131,7 @@ it:
         name: Puoi cambiare solo il minuscolo/maiuscolo delle lettere, ad esempio, per renderlo più leggibile
       user:
         chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline pubbliche vengono mostrati solo i toot nelle lingue selezionate
-        role: Il ruolo controlla quali permessi ha l'utente
+        role: Il ruolo controlla quali permessi ha l'utente.
       user_role:
         color: Colore da usare per il ruolo in tutta l'UI, come RGB in formato esadecimale
         highlighted: Rende il ruolo visibile
@@ -143,6 +144,7 @@ it:
         url: Dove gli eventi saranno inviati
     labels:
       account:
+        attribution_domains_as_text: Siti web autorizzati ad accreditarti
         discoverable: Include il profilo e i post negli algoritmi di scoperta
         fields:
           name: Etichetta
@@ -314,7 +316,7 @@ it:
         listable: Permetti a questo hashtag di apparire nella directory dei profili
         name: Hashtag
         trendable: Permetti a questo hashtag di apparire nelle tendenze
-        usable: Permetti ai post di usare questo hashtag
+        usable: Permetti ai post di utilizzare questo hashtag localmente
       user:
         role: Ruolo
         time_zone: Fuso orario

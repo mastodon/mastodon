@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::Trends::Links' do
+RSpec.describe 'Admin::Trends::Links' do
   let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
   before do

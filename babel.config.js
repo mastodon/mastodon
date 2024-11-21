@@ -68,7 +68,7 @@ module.exports = (api) => {
     plugins,
     overrides: [
       {
-        test: /tesseract\.js/,
+        test: [/tesseract\.js/, /fuzzysort\.js/],
         presets: [
           ['@babel/env', { ...envOptions, modules: 'commonjs' }],
         ],

@@ -10,7 +10,9 @@
     ENV[key] = SecureRandom.hex(64)
   end
 
-  value = ENV.fetch(key) do
+  value = ENV.fetch(key, '')
+
+  if value.blank?
     abort <<~MESSAGE
 
       Mastodon now requires that these variables are set:
@@ -20,6 +22,7 @@
         - ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY
 
       Run `bin/rails db:encryption:init` to generate new secrets and then assign the environment variables.
+      Do not change the secrets once they are set, as doing so may cause data loss and other issues that will be difficult or impossible to recover from.
     MESSAGE
   end
 
@@ -38,8 +41,4 @@ Rails.application.configure do
   config.active_record.encryption.key_derivation_salt = ENV.fetch('ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT')
   config.active_record.encryption.primary_key = ENV.fetch('ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY')
   config.active_record.encryption.support_sha1_for_non_deterministic_encryption = true
-
-  # TODO: https://github.com/rails/rails/issues/50604#issuecomment-1880990392
-  # Remove after updating to Rails 7.1.4
-  ActiveRecord::Encryption.configure(**config.active_record.encryption)
 end

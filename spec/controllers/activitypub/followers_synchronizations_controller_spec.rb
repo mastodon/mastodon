@@ -34,7 +34,6 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController do
     context 'with signature from example.com' do
       subject(:response) { get :show, params: { account_username: account.username } }
 
-      let(:body) { body_as_json }
       let(:remote_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/instance') }
 
       it 'returns http success and cache control and activity json types and correct items' do
@@ -42,7 +41,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController do
         expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
         expect(response.media_type).to eq 'application/activity+json'
 
-        expect(body[:orderedItems])
+        expect(response.parsed_body[:orderedItems])
           .to be_an(Array)
           .and contain_exactly(
             follower_example_com_instance_actor.uri,

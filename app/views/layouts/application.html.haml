@@ -21,11 +21,10 @@
       %link{ rel: 'mask-icon', href: frontend_asset_path('images/logo-symbol-icon.svg'), color: '#6364FF' }/
     %link{ rel: 'manifest', href: manifest_path(format: :json) }/
     = theme_color_tags current_theme
-    %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
+    %meta{ name: 'mobile-web-app-capable', content: 'yes' }/
 
     %title= html_title
 
-    = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
     = theme_style_tags current_theme
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
     = stylesheet_pack_tag 'inert', media: 'all', crossorigin: 'anonymous', id: 'inert-style'

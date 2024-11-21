@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::UpdateDistributionWorker do
+RSpec.describe ActivityPub::UpdateDistributionWorker do
   subject { described_class.new }
 
   let(:account)  { Fabricate(:account) }

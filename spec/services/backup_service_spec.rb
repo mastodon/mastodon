@@ -60,6 +60,7 @@ RSpec.describe BackupService do
 
     aggregate_failures do
       expect(body.scan('@context').count).to eq 1
+      expect(body.scan('orderedItems').count).to eq 1
       expect(json['@context']).to_not be_nil
       expect(json['type']).to eq 'OrderedCollection'
       expect(json['totalItems']).to eq 2

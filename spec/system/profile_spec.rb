@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Profile' do
+RSpec.describe 'Profile' do
   include ProfileStories
 
   subject { page }
@@ -11,10 +11,10 @@ describe 'Profile' do
 
   before do
     as_a_logged_in_user
-    with_alice_as_local_user
+    Fabricate(:user, account: Fabricate(:account, username: 'alice'))
   end
 
-  it 'I can view Annes public account' do
+  it 'I can view public account page for Alice' do
     visit account_path('alice')
 
     expect(subject).to have_title("alice (@alice@#{local_domain})")

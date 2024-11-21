@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Metrics::Measure do
+RSpec.describe Admin::Metrics::Measure do
   describe '.retrieve' do
     subject { described_class.retrieve(reports, start_at, end_at, params) }
 

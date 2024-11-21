@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::MoveDistributionWorker do
+RSpec.describe ActivityPub::MoveDistributionWorker do
   subject { described_class.new }
 
   let(:migration) { Fabricate(:account_migration) }

@@ -25,7 +25,7 @@
   .fields-group
     = f.input :site_short_description,
               as: :text,
-              input_html: { rows: 2, maxlength: 200 },
+              input_html: { rows: 2, maxlength: Form::AdminSettings::DESCRIPTION_LIMIT },
               wrapper: :with_block_label
 
   .fields-row
@@ -37,7 +37,7 @@
       - if @admin_settings.thumbnail.persisted?
         = image_tag @admin_settings.thumbnail.file.url(:'@1x'), class: 'fields-group__thumbnail'
         = link_to admin_site_upload_path(@admin_settings.thumbnail), data: { method: :delete }, class: 'link-button link-button--destructive' do
-          = fa_icon 'trash fw'
+          = material_symbol 'delete'
           = t('admin.site_uploads.delete')
 
   .fields-row
@@ -51,7 +51,7 @@
       - if @admin_settings.favicon.persisted?
         = image_tag @admin_settings.favicon.file.url('48'), class: 'fields-group__thumbnail'
         = link_to admin_site_upload_path(@admin_settings.favicon), data: { method: :delete }, class: 'link-button link-button--destructive' do
-          = fa_icon 'trash fw'
+          = material_symbol 'delete'
           = t('admin.site_uploads.delete')
 
   .fields-row
@@ -65,7 +65,7 @@
       - if @admin_settings.app_icon.persisted?
         = image_tag @admin_settings.app_icon.file.url('48'), class: 'fields-group__thumbnail'
         = link_to admin_site_upload_path(@admin_settings.app_icon), data: { method: :delete }, class: 'link-button link-button--destructive' do
-          = fa_icon 'trash fw'
+          = material_symbol 'delete'
           = t('admin.site_uploads.delete')
 
   .actions

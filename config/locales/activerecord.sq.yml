@@ -15,6 +15,12 @@ sq:
       user/invite_request:
         text: Arsye
     errors:
+      attributes:
+        domain:
+          invalid: s’është emër i vlefshëm përkatësie
+      messages:
+        invalid_domain_on_line: "%{value} s’është emër i vlefshëm përkatësie"
+        too_many_lines: është tej kufirit prej %{limit} rreshta
       models:
         account:
           attributes:

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Backups' do
+RSpec.describe 'Backups' do
   include RoutingHelper
 
   describe 'GET backups#download' do

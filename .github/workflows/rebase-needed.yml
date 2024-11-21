@@ -10,6 +10,7 @@ permissions:
 jobs:
   label-rebase-needed:
     runs-on: ubuntu-latest
+    if: github.repository == 'mastodon/mastodon'
 
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}

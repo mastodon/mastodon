@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PostProcessMediaWorker, :attachment_processing do
+RSpec.describe PostProcessMediaWorker, :attachment_processing do
   let(:worker) { described_class.new }
 
   describe '#perform' do

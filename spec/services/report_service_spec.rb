@@ -31,14 +31,13 @@ RSpec.describe ReportService do
     context 'when forward is true', :inline_jobs do
       let(:forward) { true }
 
-      it 'sends ActivityPub payload when forward is true' do
-        subject.call(source_account, remote_account, forward: forward)
-        expect(a_request(:post, 'http://example.com/inbox')).to have_been_made
-      end
-
-      it 'has an uri' do
+      it 'has a URI and sends ActivityPub payload' do
         report = subject.call(source_account, remote_account, forward: forward)
-        expect(report.uri).to_not be_nil
+
+        expect(report.uri)
+          .to_not be_nil
+        expect(a_request(:post, 'http://example.com/inbox'))
+          .to have_been_made
       end
 
       context 'when reporting a reply on a different remote server' do
@@ -122,13 +121,12 @@ RSpec.describe ReportService do
         status.mentions.create(account: source_account)
       end
 
-      it 'creates a report' do
-        expect { subject.call }.to change { target_account.targeted_reports.count }.from(0).to(1)
-      end
+      it 'creates a report and attaches the DM to the report' do
+        expect { subject.call }
+          .to change { target_account.targeted_reports.count }.from(0).to(1)
 
-      it 'attaches the DM to the report' do
-        subject.call
-        expect(target_account.targeted_reports.pluck(:status_ids)).to eq [[status.id]]
+        expect(target_account.targeted_reports.pluck(:status_ids))
+          .to eq [[status.id]]
       end
     end
 
@@ -146,13 +144,12 @@ RSpec.describe ReportService do
           status.mentions.create(account: source_account)
         end
 
-        it 'creates a report' do
-          expect { subject.call }.to change { target_account.targeted_reports.count }.from(0).to(1)
-        end
+        it 'creates a report and attaches DM to report' do
+          expect { subject.call }
+            .to change { target_account.targeted_reports.count }.from(0).to(1)
 
-        it 'attaches the DM to the report' do
-          subject.call
-          expect(target_account.targeted_reports.pluck(:status_ids)).to eq [[status.id]]
+          expect(target_account.targeted_reports.pluck(:status_ids))
+            .to eq [[status.id]]
         end
       end
 

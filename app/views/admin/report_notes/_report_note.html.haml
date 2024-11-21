@@ -13,6 +13,6 @@
   - if can?(:destroy, report_note)
     .report-notes__item__actions
       - if report_note.is_a?(AccountModerationNote)
-        = table_link_to 'trash', t('admin.reports.notes.delete'), admin_account_moderation_note_path(report_note), method: :delete
+        = table_link_to 'delete', t('admin.reports.notes.delete'), admin_account_moderation_note_path(report_note), method: :delete
       - else
-        = table_link_to 'trash', t('admin.reports.notes.delete'), admin_report_note_path(report_note), method: :delete
+        = table_link_to 'delete', t('admin.reports.notes.delete'), admin_report_note_path(report_note), method: :delete

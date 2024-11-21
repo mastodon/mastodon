@@ -11,9 +11,8 @@ import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?re
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import QuietTimeIcon from '@/material-icons/400-24px/quiet_time.svg?react';
+import { DropdownSelector } from 'mastodon/components/dropdown_selector';
 import { Icon }  from 'mastodon/components/icon';
-
-import { PrivacyDropdownMenu } from './privacy_dropdown_menu';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
@@ -143,7 +142,7 @@ class PrivacyDropdown extends PureComponent {
           {({ props, placement }) => (
             <div {...props}>
               <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>
-                <PrivacyDropdownMenu
+                <DropdownSelector
                   items={this.options}
                   value={value}
                   onClose={this.handleClose}

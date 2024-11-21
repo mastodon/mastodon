@@ -20,6 +20,7 @@ export const allNotificationTypes = [
   'admin.report',
   'moderation_warning',
   'severed_relationships',
+  'annual_report',
 ];
 
 export type NotificationWithStatusType =
@@ -37,7 +38,8 @@ export type NotificationType =
   | 'moderation_warning'
   | 'severed_relationships'
   | 'admin.sign_up'
-  | 'admin.report';
+  | 'admin.report'
+  | 'annual_report';
 
 export interface BaseNotificationJSON {
   id: string;
@@ -51,7 +53,7 @@ export interface BaseNotificationGroupJSON {
   group_key: string;
   notifications_count: number;
   type: NotificationType;
-  sample_accounts: ApiAccountJSON[];
+  sample_account_ids: string[];
   latest_page_notification_at: string; // FIXME: This will only be present if the notification group is returned in a paginated list, not requested directly
   most_recent_notification_id: string;
   page_min_id?: string;
@@ -60,12 +62,12 @@ export interface BaseNotificationGroupJSON {
 
 interface NotificationGroupWithStatusJSON extends BaseNotificationGroupJSON {
   type: NotificationWithStatusType;
-  status: ApiStatusJSON;
+  status_id: string | null;
 }
 
 interface NotificationWithStatusJSON extends BaseNotificationJSON {
   type: NotificationWithStatusType;
-  status: ApiStatusJSON;
+  status: ApiStatusJSON | null;
 }
 
 interface ReportNotificationGroupJSON extends BaseNotificationGroupJSON {
@@ -130,6 +132,15 @@ interface AccountRelationshipSeveranceNotificationJSON
   event: ApiAccountRelationshipSeveranceEventJSON;
 }
 
+export interface ApiAnnualReportEventJSON {
+  year: string;
+}
+
+interface AnnualReportNotificationGroupJSON extends BaseNotificationGroupJSON {
+  type: 'annual_report';
+  annual_report: ApiAnnualReportEventJSON;
+}
+
 export type ApiNotificationJSON =
   | SimpleNotificationJSON
   | ReportNotificationJSON
@@ -142,4 +153,20 @@ export type ApiNotificationGroupJSON =
   | ReportNotificationGroupJSON
   | AccountRelationshipSeveranceNotificationGroupJSON
   | NotificationGroupWithStatusJSON
-  | ModerationWarningNotificationGroupJSON;
+  | ModerationWarningNotificationGroupJSON
+  | AnnualReportNotificationGroupJSON;
+
+export interface ApiNotificationGroupsResultJSON {
+  accounts: ApiAccountJSON[];
+  statuses: ApiStatusJSON[];
+  notification_groups: ApiNotificationGroupJSON[];
+}
+
+export interface ApiNotificationRequestJSON {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  notifications_count: string;
+  account: ApiAccountJSON;
+  last_status?: ApiStatusJSON;
+}

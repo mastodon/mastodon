@@ -19,7 +19,9 @@
 class Notification < ApplicationRecord
   self.inheritance_column = nil
 
+  include Notification::Groups
   include Paginable
+  include Redisable
 
   LEGACY_TYPE_CLASS_MAP = {
     'Mention' => :mention,
@@ -62,6 +64,9 @@ class Notification < ApplicationRecord
     moderation_warning: {
       filterable: false,
     }.freeze,
+    annual_report: {
+      filterable: false,
+    }.freeze,
     'admin.sign_up': {
       filterable: false,
     }.freeze,
@@ -96,6 +101,7 @@ class Notification < ApplicationRecord
     belongs_to :report, inverse_of: false
     belongs_to :account_relationship_severance_event, inverse_of: false
     belongs_to :account_warning, inverse_of: false
+    belongs_to :generated_annual_report, inverse_of: false
   end
 
   validates :type, inclusion: { in: TYPES }
@@ -135,69 +141,6 @@ class Notification < ApplicationRecord
         scope.merge!(where(filtered: false)) unless include_filtered || from_account_id.present?
         scope.merge!(where(from_account_id: from_account_id)) if from_account_id.present?
         scope.merge!(where(type: requested_types)) unless requested_types.size == TYPES.size
-      end
-    end
-
-    # This returns notifications from the request page, but with at most one notification per group.
-    # Notifications that have no `group_key` each count as a separate group.
-    def paginate_groups_by_max_id(limit, max_id: nil, since_id: nil)
-      query = reorder(id: :desc)
-      query = query.where(id: ...max_id) if max_id.present?
-      query = query.where(id: (since_id + 1)...) if since_id.present?
-
-      unscoped
-        .with_recursive(
-          grouped_notifications: [
-            query
-              .select('notifications.*', "ARRAY[COALESCE(notifications.group_key, 'ungrouped-' || notifications.id)] groups")
-              .limit(1),
-            query
-              .joins('CROSS JOIN grouped_notifications')
-              .where('array_length(grouped_notifications.groups, 1) < :limit', limit: limit)
-              .where('notifications.id < grouped_notifications.id')
-              .where.not("COALESCE(notifications.group_key, 'ungrouped-' || notifications.id) = ANY(grouped_notifications.groups)")
-              .select('notifications.*', "array_append(grouped_notifications.groups, COALESCE(notifications.group_key, 'ungrouped-' || notifications.id))")
-              .limit(1),
-          ]
-        )
-        .from('grouped_notifications AS notifications')
-        .order(id: :desc)
-        .limit(limit)
-    end
-
-    # Differs from :paginate_groups_by_max_id in that it gives the results immediately following min_id,
-    # whereas since_id gives the items with largest id, but with since_id as a cutoff.
-    # Results will be in ascending order by id.
-    def paginate_groups_by_min_id(limit, max_id: nil, min_id: nil)
-      query = reorder(id: :asc)
-      query = query.where(id: (min_id + 1)...) if min_id.present?
-      query = query.where(id: ...max_id) if max_id.present?
-
-      unscoped
-        .with_recursive(
-          grouped_notifications: [
-            query
-              .select('notifications.*', "ARRAY[COALESCE(notifications.group_key, 'ungrouped-' || notifications.id)] groups")
-              .limit(1),
-            query
-              .joins('CROSS JOIN grouped_notifications')
-              .where('array_length(grouped_notifications.groups, 1) < :limit', limit: limit)
-              .where('notifications.id > grouped_notifications.id')
-              .where.not("COALESCE(notifications.group_key, 'ungrouped-' || notifications.id) = ANY(grouped_notifications.groups)")
-              .select('notifications.*', "array_append(grouped_notifications.groups, COALESCE(notifications.group_key, 'ungrouped-' || notifications.id))")
-              .limit(1),
-          ]
-        )
-        .from('grouped_notifications AS notifications')
-        .order(id: :asc)
-        .limit(limit)
-    end
-
-    def to_a_grouped_paginated_by_id(limit, options = {})
-      if options[:min_id].present?
-        paginate_groups_by_min_id(limit, min_id: options[:min_id], max_id: options[:max_id]).reverse
-      else
-        paginate_groups_by_max_id(limit, max_id: options[:max_id], since_id: options[:since_id]).to_a
       end
     end
 
@@ -255,7 +198,7 @@ class Notification < ApplicationRecord
       self.from_account_id = activity&.status&.account_id
     when 'Account'
       self.from_account_id = activity&.id
-    when 'AccountRelationshipSeveranceEvent', 'AccountWarning'
+    when 'AccountRelationshipSeveranceEvent', 'AccountWarning', 'GeneratedAnnualReport'
       # These do not really have an originating account, but this is mandatory
       # in the data model, and the recipient's account will by definition
       # always exist

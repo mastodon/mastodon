@@ -64,7 +64,6 @@ module.exports = defineConfig({
     'indent': ['error', 2],
     'jsx-quotes': ['error', 'prefer-single'],
     'semi': ['error', 'always'],
-    'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
     'no-console': [
       'warn',
@@ -316,7 +315,7 @@ module.exports = defineConfig({
       ],
 
       parserOptions: {
-        project: true,
+        projectService: true,
         tsconfigRootDir: __dirname,
       },
 

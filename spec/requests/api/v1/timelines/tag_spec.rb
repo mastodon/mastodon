@@ -8,22 +8,27 @@ RSpec.describe 'Tag' do
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  shared_examples 'a successful request to the tag timeline' do
-    it 'returns the expected statuses', :aggregate_failures do
-      subject
-
-      expect(response).to have_http_status(200)
-      expect(body_as_json.pluck(:id)).to match_array(expected_statuses.map { |status| status.id.to_s })
-    end
-  end
-
   describe 'GET /api/v1/timelines/tag/:hashtag' do
     subject do
       get "/api/v1/timelines/tag/#{hashtag}", headers: headers, params: params
     end
 
+    shared_examples 'a successful request to the tag timeline' do
+      it 'returns the expected statuses', :aggregate_failures do
+        subject
+
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body.pluck(:id))
+          .to match_array(expected_statuses.map { |status| status.id.to_s })
+          .and not_include(private_status.id)
+      end
+    end
+
     let(:account)         { Fabricate(:account) }
-    let!(:private_status) { PostStatusService.new.call(account, visibility: :private, text: '#life could be a dream') } # rubocop:disable RSpec/LetSetup
+    let!(:private_status) { PostStatusService.new.call(account, visibility: :private, text: '#life could be a dream') }
     let!(:life_status)    { PostStatusService.new.call(account, text: 'tell me what is my #life without your #love') }
     let!(:war_status)     { PostStatusService.new.call(user.account, text: '#war, war never changes') }
     let!(:love_status)    { PostStatusService.new.call(account, text: 'what is #love?') }
@@ -67,7 +72,7 @@ RSpec.describe 'Tag' do
       it 'returns only the requested number of statuses' do
         subject
 
-        expect(body_as_json.size).to eq(params[:limit])
+        expect(response.parsed_body.size).to eq(params[:limit])
       end
 
       it 'sets the correct pagination headers', :aggregate_failures do
@@ -78,6 +83,8 @@ RSpec.describe 'Tag' do
             prev: api_v1_timelines_tag_url(limit: params[:limit], min_id: love_status.id),
             next: api_v1_timelines_tag_url(limit: params[:limit], max_id: love_status.id)
           )
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -104,6 +111,8 @@ RSpec.describe 'Tag' do
           subject
 
           expect(response).to have_http_status(422)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::CustomEmojisController do
+RSpec.describe Admin::CustomEmojisController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }

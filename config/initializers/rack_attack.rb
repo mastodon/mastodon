@@ -142,7 +142,7 @@ class Rack::Attack
   end
 
   throttle('throttle_password_change/account', limit: 10, period: 10.minutes) do |req|
-    req.warden_user_id if req.put? || (req.patch? && req.path_matches?('/auth'))
+    req.warden_user_id if (req.put? || req.patch?) && (req.path_matches?('/auth') || req.path_matches?('/auth/password'))
   end
 
   self.throttled_responder = lambda do |request|
