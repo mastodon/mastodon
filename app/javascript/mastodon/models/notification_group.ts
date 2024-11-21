@@ -185,17 +185,16 @@ export function createNotificationGroupFromJSON(
 
 export function createNotificationGroupFromNotificationJSON(
   notification: ApiNotificationJSON,
-) {
+): NotificationGroup {
   const group = {
     sampleAccountIds: [notification.account.id],
     group_key: notification.group_key,
     notifications_count: 1,
-    type: notification.type,
     most_recent_notification_id: notification.id,
     page_min_id: notification.id,
     page_max_id: notification.id,
     latest_page_notification_at: notification.created_at,
-  } as NotificationGroup;
+  };
 
   switch (notification.type) {
     case 'favourite':
@@ -204,12 +203,21 @@ export function createNotificationGroupFromNotificationJSON(
     case 'mention':
     case 'poll':
     case 'update':
-      return { ...group, statusId: notification.status?.id };
+      return {
+        ...group,
+        type: notification.type,
+        statusId: notification.status?.id,
+      };
     case 'admin.report':
-      return { ...group, report: createReportFromJSON(notification.report) };
+      return {
+        ...group,
+        type: notification.type,
+        report: createReportFromJSON(notification.report),
+      };
     case 'severed_relationships':
       return {
         ...group,
+        type: notification.type,
         event: createAccountRelationshipSeveranceEventFromJSON(
           notification.event,
         ),
@@ -217,11 +225,15 @@ export function createNotificationGroupFromNotificationJSON(
     case 'moderation_warning':
       return {
         ...group,
+        type: notification.type,
         moderationWarning: createAccountWarningFromJSON(
           notification.moderation_warning,
         ),
       };
     default:
-      return group;
+      return {
+        ...group,
+        type: notification.type,
+      };
   }
 }
