@@ -56,7 +56,7 @@ class InstanceFilter
     when :suspended
       Instance.joins(:domain_block).where(domain_blocks: { severity: :suspend }).reorder(Arel.sql('domain_blocks.id desc'))
     when :limited
-      Instance.joins(:domain_block).where(domain_blocks: { severity: :silence }).or(Instance.joins(:domain_block).where(domain_blocks: { severity: :noop })).reorder(Arel.sql('domain_blocks.id desc'))
+      Instance.joins(:domain_block).where(domain_blocks: { severity: [:silence, :noop] }).reorder(Arel.sql('domain_blocks.id desc'))
     when :unrestricted
       # Finds all instances where there isn't a record in the domain_blocks table
       Instance.left_outer_joins(:domain_block).where(domain_blocks: { domain: nil })
