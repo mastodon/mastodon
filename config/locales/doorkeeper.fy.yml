@@ -60,7 +60,7 @@ fy:
       error:
         title: Der is in flater bard
       new:
-        prompt_html: "%{client_name} hat tastimming nedich om tagong te krijen ta jo account. It giet om in tapassing fan in tredde partij.<strong>As jo dit net fertrouwe, moatte jo gjin tastimming jaan.</strong>"
+        prompt_html: "%{client_name} freget om tagong ta jo account. <strong>Keur dit fersyk allinnich goed as jo dizze boarne werkenne en fertrouwe.</strong>"
         review_permissions: Tastimmingen beoardiele
         title: Autorisaasje fereaske
       show:
@@ -83,6 +83,7 @@ fy:
         access_denied: De boarne-eigener of autorisaasjeserver hat it fersyk wegere.
         credential_flow_not_configured: De wachtwurdgegevens-flow fan de boarne-eigener is mislearre, omdat Doorkeeper.configure.resource_owner_from_credentials net ynsteld is.
         invalid_client: Clientferifikaasje is mislearre troch in ûnbekende client, ûntbrekkende client-autentikaasje of in net stipe autentikaasjemetoade.
+        invalid_code_challenge_method: De koadechallengemetoade moat S256 wezen, plain wurdt net stipe.
         invalid_grant: De opjûne autorisaasje is ûnjildich, ferrûn, ynlutsen, komt net oerien mei de redirect-URI dy’t opjûn is of útjûn waard oan in oere client.
         invalid_redirect_uri: De opjûne redirect-URI is ûnjildich.
         invalid_request:

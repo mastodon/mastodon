@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/ip_blocks'
 
-describe Mastodon::CLI::IpBlocks do
+RSpec.describe Mastodon::CLI::IpBlocks do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }

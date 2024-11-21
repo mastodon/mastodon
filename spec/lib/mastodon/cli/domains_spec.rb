@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/domains'
 
-describe Mastodon::CLI::Domains do
+RSpec.describe Mastodon::CLI::Domains do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }

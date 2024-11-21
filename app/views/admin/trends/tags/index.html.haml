@@ -12,7 +12,7 @@
       %li= filter_link_to t('generic.all'), status: nil
       %li= filter_link_to t('admin.trends.approved'), status: 'approved'
       %li= filter_link_to t('admin.trends.rejected'), status: 'rejected'
-      %li= filter_link_to safe_join([t('admin.accounts.moderation.pending'), "(#{Tag.pending_review.count})"], ' '), status: 'pending_review'
+      %li= filter_link_to safe_join([t('admin.accounts.moderation.pending'), "(#{@pending_tags_count.value})"], ' '), status: 'pending_review'
 
 = form_with model: @form, url: batch_admin_trends_tags_path do |f|
   = hidden_field_tag :page, params[:page] || 1
@@ -27,12 +27,12 @@
       .batch-table__toolbar__actions
         = f.button safe_join([material_symbol('check'), t('admin.trends.allow')]),
                    class: 'table-action-link',
-                   data: { confirm: t('admin.reports.are_you_sure') },
+                   data: { confirm: t('admin.trends.confirm_allow') },
                    name: :approve,
                    type: :submit
         = f.button safe_join([material_symbol('close'), t('admin.trends.disallow')]),
                    class: 'table-action-link',
-                   data: { confirm: t('admin.reports.are_you_sure') },
+                   data: { confirm: t('admin.trends.confirm_disallow') },
                    name: :reject,
                    type: :submit
 

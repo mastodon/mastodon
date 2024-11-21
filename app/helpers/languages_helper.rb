@@ -162,7 +162,7 @@ module LanguagesHelper
     th: ['Thai', 'ไทย'].freeze,
     ti: ['Tigrinya', 'ትግርኛ'].freeze,
     tk: ['Turkmen', 'Türkmen'].freeze,
-    tl: ['Tagalog', 'Wikang Tagalog'].freeze,
+    tl: ['Tagalog', 'Tagalog'].freeze,
     tn: ['Tswana', 'Setswana'].freeze,
     to: ['Tonga', 'faka Tonga'].freeze,
     tr: ['Turkish', 'Türkçe'].freeze,
@@ -193,6 +193,7 @@ module LanguagesHelper
     ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
     cnr: ['Montenegrin', 'crnogorski'].freeze,
     csb: ['Kashubian', 'Kaszëbsczi'].freeze,
+    gsw: ['Swiss German', 'Schwiizertütsch'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,
@@ -242,9 +243,7 @@ module LanguagesHelper
 
   # Helper for self.sorted_locale_keys
   private_class_method def self.locale_name_for_sorting(locale)
-    if locale.blank? || locale == 'und'
-      '000'
-    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
+    if (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
       ASCIIFolding.new.fold(supported_locale[1]).downcase
     elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
       ASCIIFolding.new.fold(regional_locale).downcase

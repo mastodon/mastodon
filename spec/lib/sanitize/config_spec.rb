@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Sanitize::Config do
+RSpec.describe Sanitize::Config do
   describe '::MASTODON_STRICT' do
     subject { described_class::MASTODON_STRICT }
 

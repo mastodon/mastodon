@@ -27,6 +27,7 @@ RSpec.describe SoftwareUpdateCheckService do
     before do
       Fabricate(:software_update, version: '3.5.0', type: 'major', urgent: false)
       Fabricate(:software_update, version: '42.13.12', type: 'major', urgent: false)
+      Fabricate(:software_update, version: 'Malformed', type: 'major', urgent: false)
 
       owner_user.settings.update('notification_emails.software_updates': 'all')
       owner_user.save!
@@ -50,7 +51,7 @@ RSpec.describe SoftwareUpdateCheckService do
       end
 
       it 'deletes outdated update records but keeps valid update records' do
-        expect { subject.call }.to change { SoftwareUpdate.pluck(:version).sort }.from(['3.5.0', '42.13.12']).to(['42.13.12'])
+        expect { subject.call }.to change { SoftwareUpdate.pluck(:version).sort }.from(['3.5.0', '42.13.12', 'Malformed']).to(['42.13.12'])
       end
     end
 
@@ -85,7 +86,7 @@ RSpec.describe SoftwareUpdateCheckService do
       end
 
       it 'updates the list of known updates' do
-        expect { subject.call }.to change { SoftwareUpdate.pluck(:version).sort }.from(['3.5.0', '42.13.12']).to(['4.2.1', '4.3.0', '5.0.0'])
+        expect { subject.call }.to change { SoftwareUpdate.pluck(:version).sort }.from(['3.5.0', '42.13.12', 'Malformed']).to(['4.2.1', '4.3.0', '5.0.0'])
       end
 
       context 'when no update is urgent' do
@@ -124,9 +125,10 @@ RSpec.describe SoftwareUpdateCheckService do
 
   context 'when update checking is disabled' do
     around do |example|
-      ClimateControl.modify UPDATE_CHECK_URL: '' do
-        example.run
-      end
+      original = Rails.configuration.x.mastodon.software_update_url
+      Rails.configuration.x.mastodon.software_update_url = ''
+      example.run
+      Rails.configuration.x.mastodon.software_update_url = original
     end
 
     before do
@@ -148,9 +150,10 @@ RSpec.describe SoftwareUpdateCheckService do
     let(:update_check_url) { 'https://api.example.com/update_check' }
 
     around do |example|
-      ClimateControl.modify UPDATE_CHECK_URL: 'https://api.example.com/update_check' do
-        example.run
-      end
+      original = Rails.configuration.x.mastodon.software_update_url
+      Rails.configuration.x.mastodon.software_update_url = 'https://api.example.com/update_check'
+      example.run
+      Rails.configuration.x.mastodon.software_update_url = original
     end
 
     it_behaves_like 'when the feature is enabled'

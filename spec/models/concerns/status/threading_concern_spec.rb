@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Status::ThreadingConcern do
+RSpec.describe Status::ThreadingConcern do
   describe '#ancestors' do
     let!(:alice)  { Fabricate(:account, username: 'alice') }
     let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }

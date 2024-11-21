@@ -20,7 +20,7 @@ module AccountControllerConcern
         webfinger_account_link,
         actor_url_link,
       ]
-    )
+    ).to_s
   end
 
   def webfinger_account_link

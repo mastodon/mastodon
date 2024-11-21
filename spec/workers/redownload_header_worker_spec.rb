@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RedownloadHeaderWorker do
+RSpec.describe RedownloadHeaderWorker do
   let(:worker) { described_class.new }
 
   describe '#perform' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'API V1 Push Subscriptions' do
+RSpec.describe 'API V1 Push Subscriptions' do
   let(:user) { Fabricate(:user) }
   let(:endpoint) { 'https://fcm.googleapis.com/fcm/send/fiuH06a27qE:APA91bHnSiGcLwdaxdyqVXNDR9w1NlztsHb6lyt5WDKOC_Z_Q8BlFxQoR8tWFSXUIDdkyw0EdvxTu63iqamSaqVSevW5LfoFwojws8XYDXv_NRRLH6vo2CdgiN4jgHv5VLt2A8ah6lUX' }
   let(:keys) do
@@ -45,6 +45,8 @@ describe 'API V1 Push Subscriptions' do
       subject
 
       expect(response).to have_http_status(422)
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(endpoint_push_subscriptions.count).to eq(0)
       expect(endpoint_push_subscription).to be_nil
     end
@@ -65,7 +67,7 @@ describe 'API V1 Push Subscriptions' do
           access_token_id: eq(token.id)
         )
 
-      expect(body_as_json.with_indifferent_access)
+      expect(response.parsed_body.with_indifferent_access)
         .to include(
           { endpoint: create_payload[:subscription][:endpoint], alerts: {}, policy: 'all' }
         )
@@ -124,7 +126,7 @@ describe 'API V1 Push Subscriptions' do
         )
       end
 
-      expect(body_as_json.with_indifferent_access)
+      expect(response.parsed_body.with_indifferent_access)
         .to include(
           endpoint: create_payload[:subscription][:endpoint],
           alerts: alerts_payload[:data][:alerts],

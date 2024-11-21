@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'UnloggedBrowsing', :js, :streaming do
+RSpec.describe 'UnloggedBrowsing', :js, :streaming do
   subject { page }
 
   before do

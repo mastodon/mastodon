@@ -3,6 +3,8 @@
   = javascript_pack_tag 'public', crossorigin: 'anonymous'
   = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
+- content_for :body_classes, 'admin'
+
 - content_for :content do
   .admin-wrapper
     .sidebar-wrapper
@@ -17,8 +19,8 @@
                 = logo_as_symbol(:wordmark)
 
             = link_to '#', class: 'sidebar__toggle__icon', 'aria-label': t('navigation.toggle_menu'), 'aria-expanded': 'false' do
-              = fa_icon 'bars'
-              = fa_icon 'times'
+              = material_symbol 'menu'
+              = material_symbol 'close'
 
           = render_navigation
 

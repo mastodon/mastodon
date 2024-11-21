@@ -72,7 +72,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
         expect(status).to_not be_nil
         expect(status.url).to eq 'https://foo.bar/watch?v=12345'
-        expect(strip_tags(status.text)).to eq 'Nyan Cat 10 hours remixhttps://foo.bar/watch?v=12345'
+        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remix\n\nhttps://foo.bar/watch?v=12345"
       end
     end
 
@@ -105,7 +105,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
         expect(status).to_not be_nil
         expect(status.url).to eq 'https://foo.bar/watch?v=12345'
-        expect(strip_tags(status.text)).to eq 'Nyan Cat 10 hours remixhttps://foo.bar/watch?v=12345'
+        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remix\n\nhttps://foo.bar/watch?v=12345"
       end
     end
 
@@ -125,7 +125,58 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
         expect(status).to_not be_nil
         expect(status.url).to eq 'https://foo.bar/@foo/1234'
-        expect(strip_tags(status.text)).to eq "Let's change the worldhttps://foo.bar/@foo/1234"
+        expect(strip_tags(status.text)).to eq "Let's change the world\n\nhttps://foo.bar/@foo/1234"
+      end
+    end
+
+    context 'with Event object that contains a HTML summary' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'https://foo.bar/@foo/1234',
+          type: 'Event',
+          name: 'Fediverse Birthday Party',
+          startTime: '2024-01-31T20:00:00.000+01:00',
+          location: {
+            type: 'Place',
+            name: 'FooBar – The not converted location',
+          },
+          content: 'The not converted detailed description of the event object.',
+          summary: '<p>See you at the <strong>FooBar</strong>!</p><ul><li><strong>Doors:</strong> 8pm</li><li><strong>Music:</strong> 10pm</li></ul>',
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.url).to eq 'https://foo.bar/@foo/1234'
+        expect(status.text).to start_with "<h2>#{object[:name]}</h2>\n\n#{object[:summary]}\n\n"
+        expect(status.text).to include "href=\"#{object[:id]}\""
+      end
+    end
+
+    context 'with Article object that contains a HTML summary' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'https://foo.bar/blog/future-of-the-fediverse',
+          type: 'Article',
+          name: 'Future of the Fediverse',
+          content: 'Lorem Ipsum',
+          summary: '<p>Guest article by <a href="https://john.mastodon">John Mastodon</a></p><p>The fediverse is great reading this you will find out why!</p>',
+          attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.url).to eq object[:id]
+        expect(status.text).to start_with "<h2>#{object[:name]}</h2>\n\n#{object[:summary]}\n\n"
+        expect(status.text).to include "href=\"#{object[:id]}\""
       end
     end
 

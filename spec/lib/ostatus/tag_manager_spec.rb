@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe OStatus::TagManager do
+RSpec.describe OStatus::TagManager do
   describe '#unique_tag' do
     it 'returns a unique tag' do
       expect(described_class.instance.unique_tag(Time.utc(2000), 12, 'Status')).to eq 'tag:cb6e6126.ngrok.io,2000-01-01:objectId=12:objectType=Status'

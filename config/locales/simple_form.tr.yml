@@ -3,6 +3,7 @@ tr:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Her satırda bir tanesi. Sahte atıflardan korur.
         discoverable: Herkese açık gönderileriniz ve profiliniz Mastodon'un çeşitli kısımlarında öne çıkarılabilir veya önerilebilir ve profiliniz başka kullanıcılara önerilebilir.
         display_name: Tam adınız veya kullanıcı adınız.
         fields: Ana sayfanız, zamirleriniz, yaşınız, istediğiniz herhangi bir şey.
@@ -130,7 +131,7 @@ tr:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
       user:
         chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki gönderiler genel zaman çizelgelerinde görüntülenir
-        role: Rol, kullanıcıların sahip olduğu izinleri denetler
+        role: Rol, kullanıcıların sahip olduğu izinleri denetler.
       user_role:
         color: Arayüz boyunca rol için kullanılacak olan renk, hex biçiminde RGB
         highlighted: Bu rolü herkese açık hale getirir
@@ -143,6 +144,7 @@ tr:
         url: Olayların gönderileceği yer
     labels:
       account:
+        attribution_domains_as_text: Size atıf verebilecek websiteleri
         discoverable: Profil ve gönderileri keşif algoritmalarında kullan
         fields:
           name: Etiket
@@ -288,7 +290,7 @@ tr:
           sign_up_requires_approval: Kayıtları sınırla
         severity: Kural
       notification_emails:
-        appeal: Birisi, bir yönetim kararına itiraz ediyor
+        appeal: Birisi, bir moderatör kararına itiraz ediyor
         digest: Özet e-postaları gönder
         favourite: Birisi gönderinizi beğendi
         follow: Biri seni takip etti
@@ -314,7 +316,7 @@ tr:
         listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
         name: Etiket
         trendable: Bu etiketin gündem altında görünmesine izin ver
-        usable: Gönderilerin bu etiketi kullanmasına izin ver
+        usable: Gönderilerin yerelde bu etiketi kullanmasına izin ver
       user:
         role: Rol
         time_zone: Zaman dilimi

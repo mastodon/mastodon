@@ -13,9 +13,10 @@ import {
 import type { IconProp } from 'mastodon/components/icon';
 import { Icon } from 'mastodon/components/icon';
 import Status from 'mastodon/containers/status_container';
+import { getStatusHidden } from 'mastodon/selectors/filters';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { NamesList } from './names_list';
+import { DisplayedName } from './displayed_name';
 import type { LabelRenderer } from './notification_group_with_status';
 
 export const NotificationWithStatus: React.FC<{
@@ -23,7 +24,7 @@ export const NotificationWithStatus: React.FC<{
   icon: IconProp;
   iconId: string;
   accountIds: string[];
-  statusId: string;
+  statusId: string | undefined;
   count: number;
   labelRenderer: LabelRenderer;
   unread: boolean;
@@ -40,15 +41,18 @@ export const NotificationWithStatus: React.FC<{
   const dispatch = useAppDispatch();
 
   const label = useMemo(
-    () =>
-      labelRenderer({
-        name: <NamesList accountIds={accountIds} total={count} />,
-      }),
+    () => labelRenderer(<DisplayedName accountIds={accountIds} />, count),
     [labelRenderer, accountIds, count],
   );
 
   const isPrivateMention = useAppSelector(
     (state) => state.statuses.getIn([statusId, 'visibility']) === 'direct',
+  );
+
+  const isFiltered = useAppSelector(
+    (state) =>
+      statusId &&
+      getStatusHidden(state, { id: statusId, contextType: 'notifications' }),
   );
 
   const handlers = useMemo(
@@ -75,6 +79,8 @@ export const NotificationWithStatus: React.FC<{
     }),
     [dispatch, statusId],
   );
+
+  if (!statusId || isFiltered) return null;
 
   return (
     <HotKeys handlers={handlers}>

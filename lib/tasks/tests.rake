@@ -11,7 +11,7 @@ namespace :tests do
         '3_3_0' => 2020_12_18_054746,
       }.each do |release, version|
         ActiveRecord::Tasks::DatabaseTasks
-          .migration_connection
+          .migration_connection_pool
           .migration_context
           .migrate(version)
         Rake::Task["tests:migrations:populate_v#{release}"]
@@ -107,8 +107,8 @@ namespace :tests do
       end
 
       policy = NotificationPolicy.find_by(account: User.find(1).account)
-      unless policy.filter_private_mentions == false && policy.filter_not_following == true
-        puts 'Notification policy not migrated as expected'
+      unless policy.for_private_mentions == 'accept' && policy.for_not_following == 'filter'
+        puts "Notification policy not migrated as expected: #{policy.for_private_mentions.inspect}, #{policy.for_not_following.inspect}"
         exit(1)
       end
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::Trends::ReviewNotificationsScheduler do
+RSpec.describe Scheduler::Trends::ReviewNotificationsScheduler do
   let(:worker) { described_class.new }
 
   describe 'perform' do

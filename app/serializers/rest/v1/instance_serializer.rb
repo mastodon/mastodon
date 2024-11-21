@@ -48,14 +48,6 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
     { streaming_api: Rails.configuration.x.streaming_api_base_url }
   end
 
-  def usage
-    {
-      users: {
-        active_month: instance_presenter.active_user_count(4),
-      },
-    }
-  end
-
   def configuration
     {
       accounts: {
@@ -69,7 +61,7 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
       },
 
       media_attachments: {
-        supported_mime_types: MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES + MediaAttachment::AUDIO_MIME_TYPES,
+        supported_mime_types: MediaAttachment.supported_mime_types,
         image_size_limit: MediaAttachment::IMAGE_LIMIT,
         image_matrix_limit: Attachmentable::MAX_MATRIX_LIMIT,
         video_size_limit: MediaAttachment::VIDEO_LIMIT,

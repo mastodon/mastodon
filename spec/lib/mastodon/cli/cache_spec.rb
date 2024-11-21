@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/cache'
 
-describe Mastodon::CLI::Cache do
+RSpec.describe Mastodon::CLI::Cache do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }

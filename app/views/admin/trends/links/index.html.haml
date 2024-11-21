@@ -39,22 +39,22 @@
       .batch-table__toolbar__actions
         = f.button safe_join([material_symbol('check'), t('admin.trends.links.allow')]),
                    class: 'table-action-link',
-                   data: { confirm: t('admin.reports.are_you_sure') },
+                   data: { confirm: t('admin.trends.links.confirm_allow') },
                    name: :approve,
                    type: :submit
         = f.button safe_join([material_symbol('check'), t('admin.trends.links.allow_provider')]),
                    class: 'table-action-link',
-                   data: { confirm: t('admin.reports.are_you_sure') },
+                   data: { confirm: t('admin.trends.links.confirm_allow_provider') },
                    name: :approve_providers,
                    type: :submit
         = f.button safe_join([material_symbol('close'), t('admin.trends.links.disallow')]),
                    class: 'table-action-link',
-                   data: { confirm: t('admin.reports.are_you_sure') },
+                   data: { confirm: t('admin.trends.links.confirm_disallow') },
                    name: :reject,
                    type: :submit
         = f.button safe_join([material_symbol('close'), t('admin.trends.links.disallow_provider')]),
                    class: 'table-action-link',
-                   data: { confirm: t('admin.reports.are_you_sure') },
+                   data: { confirm: t('admin.trends.links.confirm_disallow_provider') },
                    name: :reject_providers,
                    type: :submit
     .batch-table__body

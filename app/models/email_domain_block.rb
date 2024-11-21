@@ -28,6 +28,8 @@ class EmailDomainBlock < ApplicationRecord
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
+  scope :parents, -> { where(parent_id: nil) }
+
   # Used for adding multiple blocks at once
   attr_accessor :other_domains
 
