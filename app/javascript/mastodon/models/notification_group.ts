@@ -17,6 +17,7 @@ export const NOTIFICATIONS_GROUP_MAX_AVATARS = 8;
 interface BaseNotificationGroup
   extends Omit<BaseNotificationGroupJSON, 'sample_account_ids'> {
   sampleAccountIds: string[];
+  partial: boolean;
 }
 
 interface BaseNotificationWithStatus<Type extends NotificationWithStatusType>
@@ -142,6 +143,7 @@ export function createNotificationGroupFromJSON(
       return {
         statusId: statusId ?? undefined,
         sampleAccountIds,
+        partial: false,
         ...groupWithoutStatus,
       };
     }
@@ -150,12 +152,14 @@ export function createNotificationGroupFromJSON(
       return {
         report: createReportFromJSON(report),
         sampleAccountIds,
+        partial: false,
         ...groupWithoutTargetAccount,
       };
     }
     case 'severed_relationships':
       return {
         ...group,
+        partial: false,
         event: createAccountRelationshipSeveranceEventFromJSON(group.event),
         sampleAccountIds,
       };
@@ -163,6 +167,7 @@ export function createNotificationGroupFromJSON(
       const { moderation_warning, ...groupWithoutModerationWarning } = group;
       return {
         ...groupWithoutModerationWarning,
+        partial: false,
         moderationWarning: createAccountWarningFromJSON(moderation_warning),
         sampleAccountIds,
       };
@@ -171,6 +176,7 @@ export function createNotificationGroupFromJSON(
       const { annual_report, ...groupWithoutAnnualReport } = group;
       return {
         ...groupWithoutAnnualReport,
+        partial: false,
         annualReport: createAnnualReportEventFromJSON(annual_report),
         sampleAccountIds,
       };
@@ -178,6 +184,7 @@ export function createNotificationGroupFromJSON(
     default:
       return {
         sampleAccountIds,
+        partial: false,
         ...group,
       };
   }
@@ -194,6 +201,7 @@ export function createNotificationGroupFromNotificationJSON(
     page_min_id: notification.id,
     page_max_id: notification.id,
     latest_page_notification_at: notification.created_at,
+    partial: true,
   };
 
   switch (notification.type) {
