@@ -14,7 +14,7 @@ class Trends::TagFilter
 
   def results
     scope = if params[:status] == 'pending_review'
-              Tag.unscoped
+              Tag.unscoped.order(id: :desc)
             else
               trending_scope
             end

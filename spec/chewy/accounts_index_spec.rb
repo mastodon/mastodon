@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AccountsIndex do
+RSpec.describe AccountsIndex do
   describe 'Searching the index' do
     before do
       mock_elasticsearch_response(described_class, raw_response)

@@ -25,15 +25,13 @@ RSpec.describe ActivityPub::CollectionsController do
       context 'without signature' do
         let(:remote_account) { nil }
 
-        it 'returns http success and correct media type' do
-          expect(response).to have_http_status(200)
+        it 'returns http success and correct media type and correct items' do
+          expect(response)
+            .to have_http_status(200)
+            .and have_cacheable_headers
           expect(response.media_type).to eq 'application/activity+json'
-        end
 
-        it_behaves_like 'cacheable response'
-
-        it 'returns orderedItems with correct items' do
-          expect(body_as_json[:orderedItems])
+          expect(response.parsed_body[:orderedItems])
             .to be_an(Array)
             .and have_attributes(size: 3)
             .and include(ActivityPub::TagManager.instance.uri_for(private_pinned))
@@ -66,15 +64,14 @@ RSpec.describe ActivityPub::CollectionsController do
         let(:remote_account) { Fabricate(:account, domain: 'example.com') }
 
         context 'when getting a featured resource' do
-          it 'returns http success and correct media type' do
-            expect(response).to have_http_status(200)
+          it 'returns http success and correct media type and expected items' do
+            expect(response)
+              .to have_http_status(200)
+              .and have_cacheable_headers
+
             expect(response.media_type).to eq 'application/activity+json'
-          end
 
-          it_behaves_like 'cacheable response'
-
-          it 'returns orderedItems with expected items' do
-            expect(body_as_json[:orderedItems])
+            expect(response.parsed_body[:orderedItems])
               .to be_an(Array)
               .and have_attributes(size: 3)
               .and include(ActivityPub::TagManager.instance.uri_for(private_pinned))
@@ -92,16 +89,14 @@ RSpec.describe ActivityPub::CollectionsController do
               account.block!(remote_account)
             end
 
-            it 'returns http success and correct media type and cache headers' do
+            it 'returns http success and correct media type and cache headers and empty items' do
               expect(response).to have_http_status(200)
               expect(response.media_type).to eq 'application/activity+json'
               expect(response.headers['Cache-Control']).to include 'private'
-            end
 
-            it 'returns empty orderedItems' do
-              expect(body_as_json[:orderedItems])
+              expect(response.parsed_body[:orderedItems])
                 .to be_an(Array)
-                .and have_attributes(size: 0)
+                .and be_empty
             end
           end
 
@@ -110,16 +105,14 @@ RSpec.describe ActivityPub::CollectionsController do
               account.block_domain!(remote_account.domain)
             end
 
-            it 'returns http success and correct media type and cache headers' do
+            it 'returns http success and correct media type and cache headers and empty items' do
               expect(response).to have_http_status(200)
               expect(response.media_type).to eq 'application/activity+json'
               expect(response.headers['Cache-Control']).to include 'private'
-            end
 
-            it 'returns empty orderedItems' do
-              expect(body_as_json[:orderedItems])
+              expect(response.parsed_body[:orderedItems])
                 .to be_an(Array)
-                .and have_attributes(size: 0)
+                .and be_empty
             end
           end
         end

@@ -3,7 +3,6 @@
 class ActivityPub::FetchRemoteActorService < BaseService
   include JsonLdHelper
   include DomainControlHelper
-  include WebfingerHelper
 
   class Error < StandardError; end
 
@@ -45,21 +44,20 @@ class ActivityPub::FetchRemoteActorService < BaseService
   private
 
   def check_webfinger!
-    webfinger                            = webfinger!("acct:#{@username}@#{@domain}")
+    webfinger = Webfinger.new("acct:#{@username}@#{@domain}").perform
     confirmed_username, confirmed_domain = split_acct(webfinger.subject)
 
     if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
-      raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.link('self', 'href') != @uri
+      raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.self_link_href != @uri
 
       return
     end
 
-    webfinger                            = webfinger!("acct:#{confirmed_username}@#{confirmed_domain}")
+    webfinger = Webfinger.new("acct:#{confirmed_username}@#{confirmed_domain}").perform
     @username, @domain                   = split_acct(webfinger.subject)
 
     raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{@uri} (stopped at #{@username}@#{@domain})" unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
-
-    raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.link('self', 'href') != @uri
+    raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.self_link_href != @uri
   rescue Webfinger::RedirectError => e
     raise Error, e.message
   rescue Webfinger::Error => e

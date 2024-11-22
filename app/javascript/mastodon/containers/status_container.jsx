@@ -1,4 +1,4 @@
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
@@ -6,27 +6,23 @@ import {
   unmuteAccount,
   unblockAccount,
 } from '../actions/accounts';
-import { showAlertForError } from '../actions/alerts';
 import { initBlockModal } from '../actions/blocks';
-import { initBoostModal } from '../actions/boosts';
 import {
   replyCompose,
   mentionCompose,
   directCompose,
 } from '../actions/compose';
 import {
-  blockDomain,
+  initDomainBlockModal,
   unblockDomain,
 } from '../actions/domain_blocks';
 import {
   initAddFilter,
 } from '../actions/filters';
 import {
-  reblog,
-  favourite,
+  toggleReblog,
+  toggleFavourite,
   bookmark,
-  unreblog,
-  unfavourite,
   unbookmark,
   pin,
   unpin,
@@ -39,28 +35,15 @@ import {
   muteStatus,
   unmuteStatus,
   deleteStatus,
-  hideStatus,
-  revealStatus,
+  toggleStatusSpoilers,
   toggleStatusCollapse,
   editStatus,
   translateStatus,
   undoStatusTranslation,
 } from '../actions/statuses';
 import Status from '../components/status';
-import { boostModal, deleteModal } from '../initial_state';
+import { deleteModal } from '../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
-
-const messages = defineMessages({
-  deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
-  deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
-  redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
-  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned.' },
-  replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
-  replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  editConfirm: { id: 'confirmations.edit.confirm', defaultMessage: 'Edit' },
-  editMessage: { id: 'confirmations.edit.message', defaultMessage: 'Editing now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Block entire domain' },
-});
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
@@ -75,48 +58,26 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
+const mapDispatchToProps = (dispatch, { contextType }) => ({
 
-  onReply (status, router) {
+  onReply (status) {
     dispatch((_, getState) => {
       let state = getState();
 
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: intl.formatMessage(messages.replyMessage),
-            confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: () => dispatch(replyCompose(status, router)) },
-        }));
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }));
       } else {
-        dispatch(replyCompose(status, router));
+        dispatch(replyCompose(status));
       }
     });
   },
 
-  onModalReblog (status, privacy) {
-    if (status.get('reblogged')) {
-      dispatch(unreblog(status));
-    } else {
-      dispatch(reblog(status, privacy));
-    }
-  },
-
   onReblog (status, e) {
-    if ((e && e.shiftKey) || !boostModal) {
-      this.onModalReblog(status);
-    } else {
-      dispatch(initBoostModal({ status, onReblog: this.onModalReblog }));
-    }
+    dispatch(toggleReblog(status.get('id'), e.shiftKey));
   },
 
   onFavourite (status) {
-    if (status.get('favourited')) {
-      dispatch(unfavourite(status));
-    } else {
-      dispatch(favourite(status));
-    }
+    dispatch(toggleFavourite(status.get('id')));
   },
 
   onBookmark (status) {
@@ -138,42 +99,25 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   onEmbed (status) {
     dispatch(openModal({
       modalType: 'EMBED',
-      modalProps: {
-        id: status.get('id'),
-        onError: error => dispatch(showAlertForError(error)),
-      },
+      modalProps: { id: status.get('id') },
     }));
   },
 
-  onDelete (status, history, withRedraft = false) {
+  onDelete (status, withRedraft = false) {
     if (!deleteModal) {
-      dispatch(deleteStatus(status.get('id'), history, withRedraft));
+      dispatch(deleteStatus(status.get('id'), withRedraft));
     } else {
-      dispatch(openModal({
-        modalType: 'CONFIRM',
-        modalProps: {
-          message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
-          confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-          onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
-        },
-      }));
+      dispatch(openModal({ modalType: 'CONFIRM_DELETE_STATUS', modalProps: { statusId: status.get('id'), withRedraft } }));
     }
   },
 
-  onEdit (status, history) {
+  onEdit (status) {
     dispatch((_, getState) => {
       let state = getState();
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: intl.formatMessage(messages.editMessage),
-            confirm: intl.formatMessage(messages.editConfirm),
-            onConfirm: () => dispatch(editStatus(status.get('id'), history)),
-          },
-        }));
+        dispatch(openModal({ modalType: 'CONFIRM_EDIT_STATUS', modalProps: { statusId: status.get('id') } }));
       } else {
-        dispatch(editStatus(status.get('id'), history));
+        dispatch(editStatus(status.get('id')));
       }
     });
   },
@@ -186,12 +130,12 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     }
   },
 
-  onDirect (account, router) {
-    dispatch(directCompose(account, router));
+  onDirect (account) {
+    dispatch(directCompose(account));
   },
 
-  onMention (account, router) {
-    dispatch(mentionCompose(account, router));
+  onMention (account) {
+    dispatch(mentionCompose(account));
   },
 
   onOpenMedia (statusId, media, index, lang) {
@@ -242,26 +186,15 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onToggleHidden (status) {
-    if (status.get('hidden')) {
-      dispatch(revealStatus(status.get('id')));
-    } else {
-      dispatch(hideStatus(status.get('id')));
-    }
+    dispatch(toggleStatusSpoilers(status.get('id')));
   },
 
   onToggleCollapsed (status, isCollapsed) {
     dispatch(toggleStatusCollapse(status.get('id'), isCollapsed));
   },
 
-  onBlockDomain (domain) {
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
-        confirm: intl.formatMessage(messages.blockDomainConfirm),
-        onConfirm: () => dispatch(blockDomain(domain)),
-      },
-    }));
+  onBlockDomain (account) {
+    dispatch(initDomainBlockModal(account));
   },
 
   onUnblockDomain (domain) {
@@ -269,7 +202,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   deployPictureInPicture (status, type, mediaProps) {
-    dispatch(deployPictureInPicture(status.get('id'), status.getIn(['account', 'id']), type, mediaProps));
+    dispatch(deployPictureInPicture({statusId: status.get('id'), accountId: status.getIn(['account', 'id']), playerType: type, props: mediaProps}));
   },
 
   onInteractionModal (type, status) {

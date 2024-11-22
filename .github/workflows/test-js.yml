@@ -1,9 +1,10 @@
 name: JavaScript Testing
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
     paths:
       - 'package.json'
       - 'yarn.lock'
@@ -38,5 +39,5 @@ jobs:
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
 
-      - name: Jest testing
+      - name: JavaScript testing
         run: yarn jest --reporters github-actions summary

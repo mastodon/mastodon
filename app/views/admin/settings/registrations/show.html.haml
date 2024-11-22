@@ -14,17 +14,32 @@
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :registrations_mode, collection: %w(open approved none), wrapper: :with_label, include_blank: false, label_method: ->(mode) { I18n.t("admin.settings.registrations_mode.modes.#{mode}") }, warning_hint: I18n.t('admin.settings.registrations_mode.warning_hint')
+      = f.input :registrations_mode,
+                collection: %w(open approved none),
+                include_blank: false,
+                label_method: ->(mode) { I18n.t("admin.settings.registrations_mode.modes.#{mode}") },
+                warning_hint: I18n.t('admin.settings.registrations_mode.warning_hint'),
+                wrapper: :with_label
 
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :require_invite_text, as: :boolean, wrapper: :with_label, disabled: !approved_registrations?
+      = f.input :require_invite_text,
+                as: :boolean,
+                disabled: !approved_registrations?,
+                wrapper: :with_label
 
   - if captcha_available?
     .fields-group
-      = f.input :captcha_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.captcha_enabled.title'), hint: t('admin.settings.captcha_enabled.desc_html')
+      = f.input :captcha_enabled,
+                as: :boolean,
+                hint: t('admin.settings.captcha_enabled.desc_html'),
+                label: t('admin.settings.captcha_enabled.title'),
+                wrapper: :with_label
 
   .fields-group
-    = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, input_html: { rows: 2 }
+    = f.input :closed_registrations_message,
+              as: :text,
+              input_html: { rows: 2 },
+              wrapper: :with_block_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

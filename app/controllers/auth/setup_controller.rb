@@ -5,7 +5,6 @@ class Auth::SetupController < ApplicationController
 
   before_action :authenticate_user!
   before_action :require_unconfirmed_or_pending!
-  before_action :set_body_classes
   before_action :set_user
 
   skip_before_action :require_functional!
@@ -33,10 +32,6 @@ class Auth::SetupController < ApplicationController
 
   def set_user
     @user = current_user
-  end
-
-  def set_body_classes
-    @body_classes = 'lighter'
   end
 
   def user_params

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe MoveWorker do
+RSpec.describe MoveWorker do
   subject { described_class.new }
 
   let(:local_follower)   { Fabricate(:account, domain: nil) }
@@ -104,7 +104,7 @@ describe MoveWorker do
   end
 
   shared_examples 'lists handling' do
-    it 'puts the new account on the list and makes valid lists', :sidekiq_inline do
+    it 'puts the new account on the list and makes valid lists', :inline_jobs do
       subject.perform(source_account.id, target_account.id)
 
       expect(list.accounts.include?(target_account)).to be true

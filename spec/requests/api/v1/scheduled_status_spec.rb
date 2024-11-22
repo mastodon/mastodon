@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Scheduled Statuses' do
+RSpec.describe 'Scheduled Statuses' do
   let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
@@ -14,6 +14,8 @@ describe 'Scheduled Statuses' do
 
         expect(response)
           .to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -25,6 +27,19 @@ describe 'Scheduled Statuses' do
       it_behaves_like 'forbidden for wrong scope', 'write write:statuses'
     end
 
+    context 'with an application token' do
+      let(:token) { Fabricate(:accessible_access_token, resource_owner_id: nil, scopes: 'read:statuses') }
+
+      it 'returns http unprocessable entity' do
+        get api_v1_scheduled_statuses_path, headers: headers
+
+        expect(response)
+          .to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
+      end
+    end
+
     context 'with correct scope' do
       let(:scopes) { 'read:statuses' }
 
@@ -34,8 +49,10 @@ describe 'Scheduled Statuses' do
 
           expect(response)
             .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to_not be_present
         end
       end
@@ -48,8 +65,10 @@ describe 'Scheduled Statuses' do
 
           expect(response)
             .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to be_present
             .and have_attributes(
               first: include(id: scheduled_status.id.to_s)

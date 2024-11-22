@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::SystemCheck::SidekiqProcessCheck do
+RSpec.describe Admin::SystemCheck::SidekiqProcessCheck do
   subject(:check) { described_class.new(user) }
 
   let(:user) { Fabricate(:user) }

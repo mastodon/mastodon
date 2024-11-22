@@ -35,40 +35,11 @@ module Account::Counters
     raise ArgumentError, "Invalid key #{key}" unless ALLOWED_COUNTER_KEYS.include?(key)
     raise ArgumentError, 'Do not call update_count! on dirty objects' if association(:account_stat).loaded? && account_stat&.changed? && account_stat.changed_attribute_names_to_save == %w(id)
 
-    value = value.to_i
-    default_value = value.positive? ? value : 0
-
-    # We do an upsert using manually written SQL, as Rails' upsert method does
-    # not seem to support writing expressions in the UPDATE clause, but only
-    # re-insert the provided values instead.
-    # Even ARel seem to be missing proper handling of upserts.
-    sql = if value.positive? && key == :statuses_count
-            <<-SQL.squish
-              INSERT INTO account_stats(account_id, #{key}, created_at, updated_at, last_status_at)
-                VALUES (:account_id, :default_value, now(), now(), now())
-              ON CONFLICT (account_id) DO UPDATE
-              SET #{key} = account_stats.#{key} + :value,
-                  last_status_at = now(),
-                  updated_at = now()
-              RETURNING id;
-            SQL
-          else
-            <<-SQL.squish
-              INSERT INTO account_stats(account_id, #{key}, created_at, updated_at)
-                VALUES (:account_id, :default_value, now(), now())
-              ON CONFLICT (account_id) DO UPDATE
-              SET #{key} = account_stats.#{key} + :value,
-                  updated_at = now()
-              RETURNING id;
-            SQL
-          end
-
-    sql = AccountStat.sanitize_sql([sql, account_id: id, default_value: default_value, value: value])
-    account_stat_id = AccountStat.connection.exec_query(sql)[0]['id']
+    result = updated_account_stat(key, value.to_i)
 
     # Reload account_stat if it was loaded, taking into account newly-created unsaved records
     if association(:account_stat).loaded?
-      account_stat.id = account_stat_id if account_stat.new_record?
+      account_stat.id = result.first['id'] if account_stat.new_record?
       account_stat.reload
     end
   end
@@ -78,6 +49,28 @@ module Account::Counters
   end
 
   private
+
+  def updated_account_stat(key, value)
+    AccountStat.upsert(
+      initial_values(key, value),
+      on_duplicate: Arel.sql(
+        duplicate_values(key, value).join(', ')
+      ),
+      unique_by: :account_id
+    )
+  end
+
+  def initial_values(key, value)
+    { :account_id => id, key => [value, 0].max }.tap do |values|
+      values.merge!(last_status_at: Time.current) if key == :statuses_count
+    end
+  end
+
+  def duplicate_values(key, value)
+    ["#{key} = (account_stats.#{key} + #{value})", 'updated_at = CURRENT_TIMESTAMP'].tap do |values|
+      values << 'last_status_at = CURRENT_TIMESTAMP' if key == :statuses_count && value.positive?
+    end
+  end
 
   def save_account_stat
     return unless association(:account_stat).loaded? && account_stat&.changed?

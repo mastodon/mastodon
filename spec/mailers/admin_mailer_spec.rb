@@ -125,4 +125,22 @@ RSpec.describe AdminMailer do
         .and(have_header('X-Priority', '1'))
     end
   end
+
+  describe '.auto_close_registrations' do
+    let(:recipient) { Fabricate(:account, username: 'Bob') }
+    let(:mail) { described_class.with(recipient: recipient).auto_close_registrations }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
+
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(deliver_to(recipient.user_email))
+        .and(deliver_from('notifications@localhost'))
+        .and(have_subject('Registrations for cb6e6126.ngrok.io have been automatically switched to requiring approval'))
+        .and(have_body_text('have been automatically switched'))
+    end
+  end
 end

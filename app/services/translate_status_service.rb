@@ -9,6 +9,8 @@ class TranslateStatusService < BaseService
   def call(status, target_language)
     @status = status
     @source_texts = source_texts
+
+    target_language = target_language.split(/[_-]/).first unless target_languages.include?(target_language)
     @target_language = target_language
 
     raise Mastodon::NotPermittedError unless permitted?
@@ -32,11 +34,15 @@ class TranslateStatusService < BaseService
   def permitted?
     return false unless @status.distributable? && TranslationService.configured?
 
-    languages[@status.language]&.include?(@target_language)
+    target_languages.include?(@target_language)
   end
 
   def languages
-    Rails.cache.fetch('translation_service/languages', expires_in: 7.days, race_condition_ttl: 1.hour) { TranslationService.configured.languages }
+    Rails.cache.fetch('translation_service/languages', expires_in: 7.days, race_condition_ttl: 1.hour) { translation_backend.languages }
+  end
+
+  def target_languages
+    languages[@status.language] || []
   end
 
   def content_hash
@@ -100,7 +106,7 @@ class TranslateStatusService < BaseService
   end
 
   def unwrap_emoji_shortcodes(html)
-    fragment = Nokogiri::HTML.fragment(html)
+    fragment = Nokogiri::HTML5.fragment(html)
     fragment.css('span[translate="no"]').each do |element|
       element.remove_attribute('translate')
       element.replace(element.children) if element.attributes.empty?

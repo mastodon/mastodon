@@ -1,6 +1,10 @@
 name: Check formatting
 on:
+  merge_group:
   push:
+    branches:
+      - 'main'
+      - 'stable-*'
   pull_request:
 
 jobs:

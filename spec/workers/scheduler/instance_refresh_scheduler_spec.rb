@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::InstanceRefreshScheduler do
+RSpec.describe Scheduler::InstanceRefreshScheduler do
   let(:worker) { described_class.new }
 
   describe 'perform' do

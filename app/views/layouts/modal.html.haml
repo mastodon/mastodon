@@ -1,6 +1,8 @@
 - content_for :header_tags do
   = javascript_pack_tag 'public', crossorigin: 'anonymous'
 
+- content_for :body_classes, 'modal-layout compose-standalone'
+
 - content_for :content do
   - if user_signed_in? && !@hide_header
     .account-header
@@ -9,7 +11,7 @@
         = t 'users.signed_in_as'
         %span.username @#{current_account.local_username_and_domain}
       = link_to destroy_user_session_path(continue: true), method: :delete, class: 'logout-link icon-button', title: t('applications.logout'), 'aria-label': t('applications.logout') do
-        = fa_icon 'sign-out'
+        = material_symbol 'logout'
 
   .container-alt= yield
 

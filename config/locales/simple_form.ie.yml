@@ -9,7 +9,6 @@ ie:
         indexable: Tui public postas posse aparir in sercha-resultates sur Mastodon. E in omni casu, tis qui ha interactet con tui postas va posser serchar e trovar les.
         note: 'Tu posse @mentionar altri persones o #hashtags.'
         show_collections: Gente va posser navigar tra tui sequentes e sequitores. Gente quem tu seque va vider que tu seque les sin egarda.
-        unlocked: Persones va posser sequer te sin petir aprobation. Desselecte si tu vole manualmen tractar petitiones de sequer e decider ca acceptar o rejecter nov sequitores.
       account_alias:
         acct: Specificar li usatornomine@dominia del conto ex quel tu vole translocar
       account_migration:
@@ -77,13 +76,15 @@ ie:
           warn: Celar li contenete filtrat detra un avise mentionant li titul del filtre
       form_admin_settings:
         activity_api_enabled: Númeres de postas publicat localmen, activ usatores, e nov adhesiones in periodes semanal
-        backups_retention_period: Mantener usator-generat archives por li specificat quantitá de dies.
+        app_icon: WEBP, PNG, GIF o JPG. Remplazza li predenifit favicon Mastodon sur mobiles con un icon customisat.
+        backups_retention_period: Usatores posse generar archives de lor postas por adcargar plu tard. Si on specifica un valore positiv, li archives va esser automaticmen deletet de tui magazinage pos li specificat quantitá de dies.
         bootstrap_timeline_accounts: Ti-ci contos va esser pinglat al parte superiori del recomandationes por nov usatores.
         closed_registrations_message: Monstrat quande adhesiones es cludet
-        content_cache_retention_period: Omni postas e boosts de altri servitores va esser deletet pos li specificat quantitá de dies. Quelc postas fórsan va esser ínrestaurabil. Omni pertinent marcatores, favorites e boosts anc va esser perdit e ínpossibil a restaurar.
+        content_cache_retention_period: Omni postas de altri servitores (includente boosts e responses) va esser deletet pos li specificat quantitá de dies, sin egard a local usator-interactiones con les. To vale anc por postas queles un local usator ha marcat o favoritat it. Anc privat mentiones ínter usatores de diferent instanties va esser perdit e ínrestorabil. Talmen, ti-ci parametre es intentet por scopes special pro que it posse ruptes li expectationes de usatores.
         custom_css: On posse aplicar customisat stiles al web-version de Mastodon.
+        favicon: WEBP, PNG, GIF oo JPG. Remplazza li predenifit favicon Mastodon con in icon customisat.
         mascot: Substitue li ilustration in li avansat interfacie web.
-        media_cache_retention_period: Descargat files de media va esser deletet pos li specificat quantitá de dies quande li valore es positiv, e re-descargat sur demanda.
+        media_cache_retention_period: Files de medie de postas creat de lontan usatores es cachat sur tui servitor. Si on specifica un valore positiv, ili va esser automaticmen deletet pos li specificat quantitá de dies. Si on peti li data del medie pos deletion, it va esser re-descargat si li original fonte es disponibil. Restrictiones pri li frequentie de ligament-previsiones posse exister sur altri situs, e pro to it es recomandat que on usa un valore de adminim 14 dies; altrimen, li ligament-previsiones ne va esser actualisat secun demande ante ti témpor.
         peers_api_enabled: Un liste de nómines de dominia queles ti-ci servitor ha incontrat in li fediverse. Ci null data es includet pri ca tu confedera con un cert servitor o ne; it indica solmen que tui servitor conosse it. Usat per servicies colectent general statisticas pri federation.
         profile_directory: Li profilarium monstra omni usatores volent esser decovribil.
         require_invite_text: Quande registrationes besona manual aprobation, fa que li textu "Pro quo tu vole registrar te?" es obligatori vice facultativ
@@ -116,6 +117,7 @@ ie:
           sign_up_requires_approval: Nov registrationes va besonar tui aprobation
         severity: Selecter quo va evenir con demandes ex ti-ci IP
       rule:
+        hint: Optional. Ples provider plu detallies pri li regul
         text: Descrir un regul o postulation por usatores sur ti-ci servitor. Prova scrir un descrition curt e simplic
       sessions:
         otp: 'Intrar li 2-factor code generat del app sur tui portabile o usar un de tui codes de recuperation:'
@@ -127,7 +129,6 @@ ie:
         name: Tu posse changear solmen li minu/majusculitá del lítteres, por exemple, por far it plu leibil
       user:
         chosen_languages: Quande selectet, solmen postas in ti lingues va esser monstrat in public témpor-lineas
-        role: Permissiones de usator decidet per su rol
       user_role:
         color: Color a usar por li rol tra li UI, quam RGB (rubi-verdi-blu) in formate hex
         highlighted: Va far li rol publicmen visibil
@@ -242,7 +243,7 @@ ie:
         backups_retention_period: Periode de retener archives de usator
         bootstrap_timeline_accounts: Sempre recomandar ti-ci contos a nov usatores
         closed_registrations_message: Customisat missage quande registration ne disponibil
-        content_cache_retention_period: Periode de retention por cachat contenete
+        content_cache_retention_period: Periode de retention por contenete lontan
         custom_css: Custom CSS
         mascot: Customisat mascot (hereditat)
         media_cache_retention_period: Periode de retention por cachat medie
@@ -299,6 +300,7 @@ ie:
           patch: Notificar pri problema-fixant actualisationes
         trending_tag: Nov tendentie besonant inspection
       rule:
+        hint: Information in plu
         text: Regul
       settings:
         indexable: Includer profil-pagine in serchatores
@@ -307,7 +309,6 @@ ie:
         listable: Permisser que ti hashtag apari in serchas e suggestiones
         name: Hashtag
         trendable: Permisse que ti-ci hashtag apari sub tendenties
-        usable: Permisser que postas usa ti hashtag
       user:
         role: Rol
         time_zone: Zone temporal

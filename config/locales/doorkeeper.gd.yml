@@ -60,7 +60,7 @@ gd:
       error:
         title: Thachair mearachd
       new:
-        prompt_html: Bu mhiann le %{client_name} cead gus an cunntas agad inntrigeadh. Seo aplacaid threas-phàrtaidh. <strong>Mur eil earbsa agad ann, na ùghdarraich e.</strong>
+        prompt_html: Bu toigh le %{client_name} cead fhaighinn airson an cunntas agad inntrigeadh. <strong>Na gabh ris an iarrtas seo ach mas aithne dhut an tùs seo agus earbsa agad ann.</strong>
         review_permissions: Thoir sùil air na ceadan
         title: Tha feum air ùghdarrachadh
       show:
@@ -83,6 +83,7 @@ gd:
         access_denied: Dhiùlt sealbhadair a’ ghoireis no am frithealaiche ùghdarrachaidh an t-iarrtas.
         credential_flow_not_configured: Dh’fhàillig le sruth cruthachadh teisteas facail-fhaire do shealbhadair a’ ghoireis ri linn Doorkeeper.configure.resource_owner_from_credentials gun rèiteachadh.
         invalid_client: Dh’fhàillig le dearbhadh a’ chliant ri linn cliant nach aithne dhuinn, dearbhadh cliant nach deach gabhail a-staigh no dòigh dearbhaidh ris nach cuirear taic.
+        invalid_code_challenge_method: Feumaidh an dòigh an dùbhlain a bhith na S256, chan eil taic ri plain.
         invalid_grant: Chan eil an t-ùghdarrachadh a chaidh a thoirt seachad dligheach, dh’fhalbh an ùine air, chaidh a chùl-ghairm no chan eil e a-rèir URI an ath-stiùiridh a chaidh a chleachdadh san iarrtas ùghdarrachaidh no chaidh fhoillseachadh le cliant eile.
         invalid_redirect_uri: Chan eil an URI ath-stiùiridh a chaidh a ghabhail a-staigh dligheach.
         invalid_request:
@@ -135,6 +136,7 @@ gd:
         media: Ceanglachain mheadhanan
         mutes: Mùchaidhean
         notifications: Brathan
+        profile: A’ phròifil Mastodon agad
         push: Brathan putaidh
         reports: Gearanan
         search: Lorg
@@ -165,6 +167,7 @@ gd:
       admin:write:reports: gnìomhan na maorsainneachd air gearanan
       crypto: cleachdadh crioptachaidh o cheann gu ceann
       follow: atharrachadh dàimhean chunntasan
+      profile: leughadh fiosrachadh pròifil a’ chunntais agad a-mhàin
       push: faighinn nam brathan putaidh agad
       read: leughadh dàta sam bith a’ cunntais agad
       read:accounts: sealltainn fiosrachadh nan cunntasan

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'API V1 Statuses Reblogs' do
+RSpec.describe 'API V1 Statuses Reblogs' do
   let(:user)  { Fabricate(:user) }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)  { 'write:statuses' }
@@ -19,16 +19,21 @@ describe 'API V1 Statuses Reblogs' do
       context 'with public status' do
         it 'reblogs the status', :aggregate_failures do
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
 
           expect(status.reblogs.count).to eq 1
 
           expect(user.account.reblogged?(status)).to be true
 
-          hash_body = body_as_json
-
-          expect(hash_body[:reblog][:id]).to eq status.id.to_s
-          expect(hash_body[:reblog][:reblogs_count]).to eq 1
-          expect(hash_body[:reblog][:reblogged]).to be true
+          expect(response.parsed_body)
+            .to include(
+              reblog: include(
+                id: status.id.to_s,
+                reblogs_count: 1,
+                reblogged: true
+              )
+            )
         end
       end
 
@@ -37,11 +42,13 @@ describe 'API V1 Statuses Reblogs' do
 
         it 'returns http not found' do
           expect(response).to have_http_status(404)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
     end
 
-    describe 'POST /api/v1/statuses/:status_id/unreblog', :sidekiq_inline do
+    describe 'POST /api/v1/statuses/:status_id/unreblog', :inline_jobs do
       context 'with public status' do
         let(:status) { Fabricate(:status, account: user.account) }
 
@@ -52,16 +59,19 @@ describe 'API V1 Statuses Reblogs' do
 
         it 'destroys the reblog', :aggregate_failures do
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
 
           expect(status.reblogs.count).to eq 0
 
           expect(user.account.reblogged?(status)).to be false
 
-          hash_body = body_as_json
-
-          expect(hash_body[:id]).to eq status.id.to_s
-          expect(hash_body[:reblogs_count]).to eq 0
-          expect(hash_body[:reblogged]).to be false
+          expect(response.parsed_body)
+            .to include(
+              id: status.id.to_s,
+              reblogs_count: 0,
+              reblogged: false
+            )
         end
       end
 
@@ -76,16 +86,19 @@ describe 'API V1 Statuses Reblogs' do
 
         it 'destroys the reblog', :aggregate_failures do
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
 
           expect(status.reblogs.count).to eq 0
 
           expect(user.account.reblogged?(status)).to be false
 
-          hash_body = body_as_json
-
-          expect(hash_body[:id]).to eq status.id.to_s
-          expect(hash_body[:reblogs_count]).to eq 0
-          expect(hash_body[:reblogged]).to be false
+          expect(response.parsed_body)
+            .to include(
+              id: status.id.to_s,
+              reblogs_count: 0,
+              reblogged: false
+            )
         end
       end
 
@@ -98,6 +111,8 @@ describe 'API V1 Statuses Reblogs' do
 
         it 'returns http not found' do
           expect(response).to have_http_status(404)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
     end

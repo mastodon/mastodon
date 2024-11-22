@@ -48,7 +48,7 @@ export default class Counter extends PureComponent {
   componentDidMount () {
     const { measure, start_at, end_at, params } = this.props;
 
-    api().post('/api/v1/admin/measures', { keys: [measure], start_at, end_at, [measure]: params }).then(res => {
+    api(false).post('/api/v1/admin/measures', { keys: [measure], start_at, end_at, [measure]: params }).then(res => {
       this.setState({
         loading: false,
         data: res.data,

@@ -7,7 +7,6 @@ ie:
     hosted_on: Mastodon logiat che %{domain}
     title: Pri
   accounts:
-    follow: Sequer
     followers:
       one: Sequitor
       other: Sequitores
@@ -31,7 +30,6 @@ ie:
       created_msg: Moderatori nota creat successosimen!
       destroyed_msg: Moderatori nota destructet successosimen!
     accounts:
-      add_email_domain_block: Bloccar email-dominia {domain}
       approve: Aprobar
       approved_msg: Successosimen aprobat li aplication de registration de %{username}
       are_you_sure: Es tu cert?
@@ -58,7 +56,6 @@ ie:
       demote: Demoer
       destroyed_msg: Li data de %{username} es nu in li linea por esser deletet iminentmen
       disable: Gelar
-      disable_sign_in_token_auth: Desactivisar autentication per email-claves
       disable_two_factor_authentication: Desactivisar 2FA
       disabled: Gelat
       display_name: Visibil nómine
@@ -67,7 +64,6 @@ ie:
       email: E-post
       email_status: Statu del e-post
       enable: Desgelar
-      enable_sign_in_token_auth: Activisar autentication per email-claves
       enabled: Activ
       enabled_msg: Successosimen desgelat li conto de %{username}
       followers: Sequitores
@@ -132,7 +128,6 @@ ie:
       resubscribe: Reabonnar
       role: Rol
       search: Serchar
-      search_same_email_domain: Altri usatores con li sam email-dominia
       search_same_ip: Altri usatores con li sam IP
       security: Securitá
       security_measures:
@@ -173,26 +168,21 @@ ie:
         approve_appeal: Aprobar Apelle
         approve_user: Aprobar usator
         assigned_to_self_report: Assignar Raporte
-        change_email_user: Changear li email-adresse del usator
         change_role_user: Changear li rol del usator
         confirm_user: Confirmar usator
         create_account_warning: Crear admonimentes
         create_announcement: Crear un proclamation
-        create_canonical_email_block: Crear Email-Blocca
         create_custom_emoji: Crear Customisat Emoji
         create_domain_allow: Crear Dominia-Permisse
         create_domain_block: Crear Dominia-Blocca
-        create_email_domain_block: Crear Email-Dominia-Blocca
         create_ip_block: Crear regules por IP
         create_unavailable_domain: Crear Dominia Índisponibil
         create_user_role: Crear roles
         demote_user: Demoer Usator
         destroy_announcement: Deleter proclamation
-        destroy_canonical_email_block: Deleter Email-Blocca
         destroy_custom_emoji: Deleter Customisat Emoji
         destroy_domain_allow: Deleter Dominia-Permisse
         destroy_domain_block: Deleter Dominia-Blocca
-        destroy_email_domain_block: Deleter Email-Dominia-Blocca
         destroy_instance: Purgar Dominia
         destroy_ip_block: Deleter regul por IP
         destroy_status: Deleter Posta
@@ -200,10 +190,8 @@ ie:
         destroy_user_role: Destructer Rol
         disable_2fa_user: Desactivisar 2FA
         disable_custom_emoji: Desactivisar Customisat Emoji
-        disable_sign_in_token_auth_user: Desactivisar autentication per email-claves por usator
         disable_user: Desactivisar Usator
         enable_custom_emoji: Activisar Customisat Emoji
-        enable_sign_in_token_auth_user: Activisar autentication per email-claves por usator
         enable_user: Activisar Usator
         memorialize_account: Memorialisar Conto
         promote_user: Promoer Usator
@@ -232,26 +220,20 @@ ie:
         approve_appeal_html: "%{name} aprobat li apelle de %{target} contra un decision de moderation"
         approve_user_html: "%{name} aprobat li registration de %{target}"
         assigned_to_self_report_html: "%{name} assignat raporte %{target} a su self"
-        change_email_user_html: "%{name} changeat li email-adresse de usator %{target}"
         change_role_user_html: "%{name} changeat li rol de %{target}"
-        confirm_user_html: "%{name} confirmat li email-adresse de usator %{target}"
         create_account_warning_html: "%{name} dat un admoniment a %{target}"
         create_announcement_html: "%{name} creat li nov proclamation %{target}"
-        create_canonical_email_block_html: "%{name} bloccat email con li hash %{target}"
         create_custom_emoji_html: "%{name} cargat nov emoji %{target}"
         create_domain_allow_html: "%{name} permisset federation con dominia %{target}"
         create_domain_block_html: "%{name} bloccat dominia %{target}"
-        create_email_domain_block_html: "%{name} bloccat email-dominia %{target}"
         create_ip_block_html: "%{name} creat regul por IP %{target}"
         create_unavailable_domain_html: "%{name} haltat liveration a dominia %{target}"
         create_user_role_html: "%{name} creat li rol %{target}"
         demote_user_html: "%{name} demoet li usator %{target}"
         destroy_announcement_html: "%{name} deletet li proclamation %{target}"
-        destroy_canonical_email_block_html: "%{name} desbloccat email con li hash %{target}"
         destroy_custom_emoji_html: "%{name} deletet emoji %{target}"
         destroy_domain_allow_html: "%{name} interdictet federation con dominia %{target}"
         destroy_domain_block_html: "%{name} desbloccat dominia %{target}"
-        destroy_email_domain_block_html: "%{name} desbloccat email-dominia %{target}"
         destroy_instance_html: "%{name} purgat dominia %{target}"
         destroy_ip_block_html: "%{name} deletet regul por IP %{target}"
         destroy_status_html: "%{name} removet posta de %{target}"
@@ -259,10 +241,8 @@ ie:
         destroy_user_role_html: "%{name} deletet li rol %{target}"
         disable_2fa_user_html: "%{name} desactivisat 2-factor postulation por li usator %{target}"
         disable_custom_emoji_html: "%{name} desactivisat emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} desactivisat autentication per email-clave por %{target}"
         disable_user_html: "%{name} desactivisat li abilitá de %{target} a intrar"
         enable_custom_emoji_html: "%{name} activisat emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} activisat autentication per email-clave por %{target}"
         enable_user_html: "%{name} activisat li abilitá de %{target} a intrar"
         memorialize_account_html: "%{name} fat li conto de %{target} un págine de memorial"
         promote_user_html: "%{name} promoet li usator %{target}"
@@ -270,7 +250,6 @@ ie:
         reject_user_html: "%{name} rejectet li registration de %{target}"
         remove_avatar_user_html: "%{name} removet li avatar de %{target}"
         reopen_report_html: "%{name} reapertet raporte %{target}"
-        resend_user_html: "%{name} remisset un confirmation-email a %{target}"
         reset_password_user_html: "%{name} reiniciat li passa-parol del usator %{target}"
         resolve_report_html: "%{name} soluet raporte %{target}"
         sensitive_account_html: "%{name} marcat li medie de %{target} quam sensitiv"
@@ -429,7 +408,6 @@ ie:
       attempts_over_week:
         one: "%{count} registration-prova durant li ultim semane"
         other: "%{count} registration-prova durant li ultim semane"
-      created_msg: Successosimen bloccat email-dominia
       delete: Deleter
       dns:
         types:
@@ -438,12 +416,8 @@ ie:
       new:
         create: Adjunter dominia
         resolve: Resolver un dominia
-        title: Bloccar nov email-dominia
-      no_email_domain_block_selected: Null email-dominia-bloccas esset changeat pro que null esset selectet
       not_permitted: Ne permisset
-      resolved_dns_records_hint_html: Li dominia-nómine resolue se al seque dominias MX, queles es in fine responsabil por acceptar e-posta. Bloccar un dominia MX va bloccar inscriptiones de quelcunc e-posta quel usa li sam dominia MX, mem si li visibil dominia-nómine es diferent. <strong>Esse caut e ne blocca majori provisores de e-posta.</strong>
       resolved_through_html: Resoluet per %{domain}
-      title: Bloccat email-dominias
     export_domain_allows:
       new:
         title: Importar permisset dominias
@@ -594,9 +568,11 @@ ie:
         resolve_description_html: Null action va esser fat contra li raportat conto, null admoniment registrat, e li raporte va esser cludet.
         silence_description_html: Li conto va esser visibil nur a tis qui ja seque it o qui sercha it manualmen, limitante severimen su atingement. Ti sempre posse esser revertet. Ti clude omni raportes contra ti conto.
         suspend_description_html: Ti-ci conto e omni contenete va esser ínaccessibil e finalmen deletet, e interacter con it va esser ínpossibil. Reversibil til que 30 dies ha passat. Clude omni raportes contra ti conto.
-      actions_description_html: Decider quel action a far por soluer ti raporte. Si tu fa un punitiv action contra li raportat conto, li usator va reciver un notification per email, except in li casu que li <strong>Spam</strong> categorie es selectet.
       actions_description_remote_html: Decider quel action a far por soluer ti raporte. It va afecter solmen qualmen <strong>vor</strong> servitor comunica con ti lontan conto e tractar su contenete.
       add_to_report: Adjunter plu al raporte
+      already_suspended_badges:
+        local: Ja suspendet sur ti-ci servitor
+        remote: Ja suspendet sur su servitor
       are_you_sure: Es tu cert?
       assign_to_self: Assignar it a me
       assigned: Assignat moderator
@@ -655,7 +631,6 @@ ie:
         delete_data_html: Deleter li profil e contenete de <strong>@%{acct}</strong> 30 dies pos nu, except si ilu es dessuspendet ante tande
         preview_preamble_html: "<strong>@%{acct}</strong> va reciver un admoniment con li sequent contenete:"
         record_strike_html: Registrar un admoniment contra <strong>@%{acct}</strong> por auxiliar vos tractar futur violationes de ti-ci conto
-        send_email_html: Misser un admoniment-email a <strong>@%{acct}</strong>
         warning_placeholder: Ínobligatori additional rason por li moderatori action.
       target_origin: Orígine del conto raportat
       title: Raportes
@@ -695,7 +670,6 @@ ie:
         manage_appeals: Gerer Apelles
         manage_appeals_description: Permisse que usatores inspecte apelles contra actiones de moderatores
         manage_blocks: Gerer Bloccas
-        manage_blocks_description: Permisse que usatores blocca provisores de e-posta e IP-adresses
         manage_custom_emojis: Gerer Customisat Emojis
         manage_custom_emojis_description: Permisse que usatores gere customisat emojis sur li servitor
         manage_federation: Gerer Federation
@@ -713,7 +687,6 @@ ie:
         manage_taxonomies: Gerer Taxonomies
         manage_taxonomies_description: Permisse que usatores inspecte contenete de tendentie e actualisar parametres de hashtags
         manage_user_access: Gerer Usator-Accesse
-        manage_user_access_description: Permisse usatores desactivisar li 2-factor autentication de altri usatores, changear lor email-adresses, e reiniciar lor passa-paroles
         manage_users: Gerer usatores
         manage_users_description: Permisse que usatores vide detallies de altri usatores e fa actiones de moderation contra les
         manage_webhooks: Gerer Webcrocs
@@ -748,6 +721,7 @@ ie:
         desc_html: To ci usa extern scrites de hCaptcha, quel posse esser ínquietant pro rasones de securitá e privatie. In plu, <strong>it posse far li processu de registration mult plu desfacil (particularimen por tis con deshabilitás)</strong>. Pro ti rasones, ples considerar alternativ mesuras, tales quam registration per aprobation o invitation.
         title: Exige que nov usatores solue un CAPTCHA por confirmar lor conto
       content_retention:
+        danger_zone: Zone de dangere
         preamble: Decider qualmen usator-generat contenete es inmagasinat in Mastodon.
         title: Retention de contenete
       default_noindex:
@@ -787,7 +761,6 @@ ie:
       destroyed_msg: Cargat file successosimen deletet!
     software_updates:
       critical_update: Critic — ples actualisar rapidmen
-      description: On recomanda que vu actualisa vor Mastodon-servitor regularimen por profiter del max recent fixes e facultates. In plu, quelcvez it es critic actualisar Mastodon promptmen por evitar problemas de securitá. Pro ti rasones, Mastodon questiona chascun 30 minutes ca hay actualisationes, e va notificar vos secun vor parametres pri email-notificationes.
       documentation_link: Aprender plu
       release_notes: Version-notas
       title: Actualisationes disponibil
@@ -818,7 +791,6 @@ ie:
       original_status: Original posta
       reblogs: Boosts
       status_changed: Posta modificat
-      title: Postas del conto
       trending: Populari
       visibility: Visibilitá
       with_media: Con medie
@@ -939,14 +911,12 @@ ie:
         used_by_over_week:
           one: Usat de un person durant li ultim semane
           other: Usat de %{count} persones durant li ultim semane
-      title: Tendenties
       trending: Populari
     warning_presets:
       add_new: Adjunter un nov
       delete: Deleter
       edit_preset: Modificar prefiguration de avise
       empty: Vu ancor ha definit null prefigurationes de avise.
-      title: Modificar prefigurationes de avise
     webhooks:
       add_new: Adjunter punctu terminal
       delete: Deleter
@@ -1024,9 +994,7 @@ ie:
       guide_link_text: Omnes posse contribuer.
     sensitive_content: Sensitiv contenete
   application_mailer:
-    notification_preferences: Changear parametres pri email
     salutation: "%{name},"
-    settings: 'Changear parametres pri email: %{link}'
     unsubscribe: Desabonnar
     view: 'Vider:'
     view_profile: Vider profil
@@ -1046,7 +1014,6 @@ ie:
       hint_html: Just un cose plu! Noi deve confirmar que tu es homan (por que noi posse impedir li spam!). Solue li CAPTCHA in-infra e clicca "Avansar".
       title: Control de securitá
     confirmations:
-      awaiting_review: Tui email-adresse es confirmat! Li personale de %{domain} nu va tractar tui registration. Tu va reciver un email si ili aproba tui conto!
       awaiting_review_title: On tracta tui registration
       clicking_this_link: cliccar ti-ci ligament
       login_link: intrar
@@ -1054,7 +1021,6 @@ ie:
       redirect_to_app_html: Tu deve har esset redirectet al aplication <strong>%{app_name}</strong>. Si to ne evenit, prova %{clicking_this_link} o retornar manualmen al aplication.
       registration_complete: Tu ha completat tui registration che %{domain}!
       welcome_title: Benevenit, %{name}!
-      wrong_email_hint: Si ti email-adresse ne es corect, tu posse changear it in li parametres de conto.
     delete_account: Deleter li conto
     delete_account_html: Si tu vole deleter tui conto, tu posse <a href="%{path}">proceder ci</a>. On va petir confirmation de te.
     description:
@@ -1075,7 +1041,6 @@ ie:
     or_log_in_with: O intrar med
     privacy_policy_agreement_html: Yo leet e consenti li <a href="%{privacy_policy_path}" target="_blank">politica pri privatie</a>
     progress:
-      confirm: Confirmar email
       details: Tui detallies
       review: Nor revise
       rules: Acceptar regules
@@ -1097,10 +1062,8 @@ ie:
     security: Securitá
     set_new_password: Establisser nov passa-parol
     setup:
-      email_below_hint_html: Vider tui spam-emails, o petir un altre. Tu posse corectar tui email-adresse si it es íncorect.
       email_settings_hint_html: Clicca li ligament quel noi inviat a te por verificar %{email}. Noi va atender ci.
       link_not_received: Recivet null ligament?
-      new_confirmation_instructions_sent: Tu va reciver un nov email con li ligament de confirmation in quelc minutes!
       title: Vider tui inbuxe
     sign_in:
       preamble_html: Aperter session med tui <strong>%{domain}</strong> detallies. Si tui conto logia che un diferent servitor, tu ne va posser intrar ci.
@@ -1111,9 +1074,7 @@ ie:
       title: Crear un conto che %{domain}.
     status:
       account_status: Statu del conto
-      confirming: Atendent li confirmation del email-adresse.
       functional: Tui conto es completmen functional.
-      pending: Tu conto atende tractation de nor personale. Ti fórsan va durar quelc témpor. Tu va reciver un email si tui aplication es aprobat.
       redirecting_to: Tui conto es ínactiv pro que it actualmen redirecte a %{acct}.
       self_destruct: Pro que %{domain} va cluder bentost, tu have solmen limitat accesse a tui conto.
       view_strikes: Vide anteyan admonimentes contra tui conto
@@ -1127,7 +1088,6 @@ ie:
   crypto:
     errors:
       invalid_key: ne es un valid clave Ed25519 o Curve25519
-      invalid_signature: ne es un valid signatura Ed25519
   date:
     formats:
       default: "%d.%m.%Y"
@@ -1156,9 +1116,6 @@ ie:
       before: 'Ante proceder, ples leer ti notas cuidosimen:'
       caches: Contenete quel ha esset inmagasinat de altri servitores fórsan va persister
       data_removal: Tui postas e altri data va esser permanentmen removet
-      email_change_html: Tui posse <a href="%{path}">changear tui email-adresse</a> sin deleter tui conto
-      email_contact_html: Si ancor it ne ariva, tu posse inviar un email a <a href="mailto:%{email}">%{email}</a> por auxilie
-      email_reconfirmation_html: Si tu ne recive li confirmation-email, tu posse <a href="%{path}">solicita it denov</a>
       irreversible: Tu ne va posser restaurar o reactivisar tui conto
       more_details_html: Por plu mult detallies, vide li <a href="%{terms_path}">politica pri privatie</a>.
       username_available: Tui usator-nómine va retornar a esser disponibil
@@ -1193,8 +1150,6 @@ ie:
       your_appeal_approved: Tui apelle ha esset aprobat
       your_appeal_pending: Tu ha fat un apelle
       your_appeal_rejected: Tui apelle ha esset rejectet
-  domain_validator:
-    invalid_domain: ne es un valid dominia-nómine
   edit_profile:
     basic_information: Basic information
     hint_html: "<strong>Customisa ti quel gente vide sur tui public profil e apu tui postas.</strong> Altri persones es plu probabil sequer te e interacter con te si tu have un detalliat profil e un profil-image."
@@ -1318,20 +1273,6 @@ ie:
       merge_long: Conservar existent registres e adjunter li novis
       overwrite: Remplazzar
       overwrite_long: Remplazzar existent registres per li novis
-    overwrite_preambles:
-      blocking_html: Tu va <strong>remplazzar tui liste de bloccat contos</strong> per til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
-      bookmarks_html: Tu va <strong>remplazzar tui marcatores</strong> per til <strong>%{total_items} postas</strong> de <strong>%{filename}</strong>.
-      domain_blocking_html: Tu va <strong>remplazzar tui liste de bloccat dominias</strong> per til <strong>%{total_items} dominias</strong> de <strong>%{filename}</strong>.
-      following_html: Tu va <strong>sequer</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong> e <strong>dessequer omni altri contos</strong>.
-      lists_html: Tu va <strong>remplazzar tui listes</strong> per li contenete de <strong>%{filename}</strong>. Til <strong>%{total_items} contos</strong> va esser adjuntet a nov listes.
-      muting_html: Tu va <strong>remplazzar tui liste de silentiat contos</strong> per til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Tu va <strong>bloccar</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
-      bookmarks_html: Tu va adjunter til <strong>%{total_items} postas</strong> de <strong>%{filename}</strong> a tui <strong>marcatores</strong>.
-      domain_blocking_html: Tu va <strong>bloccar</strong> til <strong>%{total_items} dominias</strong> de <strong>%{filename}</strong>.
-      following_html: Tu va <strong>sequer</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
-      lists_html: Tu va adjunter til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong> a tui <strong>listes</strong>. Nov listes va esser creat si ne hay un liste a quel adjunter.
-      muting_html: Tu va <strong>silentiar</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
     preface: Tu posse importar data quel tu ha exportat de un altri servitor, quam un liste del gente quem tu seque o blocca.
     recent_imports: Recent importationes
     states:
@@ -1391,7 +1332,6 @@ ie:
     authentication_methods:
       otp: aplication de 2-factor autentication
       password: passa-parol
-      sign_in_token: code de securitá per email
       webauthn: claves de securitá
     description_html: Si tu vide activitá quel tu ne conosse, considera changear tui passa-parol e activisar 2-factor autentication.
     empty: Null historie de autentication disponibil
@@ -1402,16 +1342,6 @@ ie:
     unsubscribe:
       action: Yes, desabonnar
       complete: Desabonnat
-      confirmation_html: Esque tu vermen vole desabonnar de reciver %{type} por Mastodon che %{domain} a tui email-adresse %{email}? Tu sempre posse reabonnar per tui <a href="%{settings_path}">parametres pri email-notificationes</a>.
-      emails:
-        notification_emails:
-          favourite: email-notificationes pri favoritisationes
-          follow: email-notificationes pri seques
-          follow_request: email-notificationes pri seque-petitiones
-          mention: email-notificationes pri mentiones
-          reblog: email-notificationes pri boosts
-      resubscribe_html: Si tu ha desabonnat errarimen, tu posse reabonnar per tui <a href="%{settings_path}">parametres pri email-notificationes</a>.
-      success_html: Tu ne plu va reciver %{type} por Mastodon che %{domain} a tui email-adresse %{email}.
       title: Desabonnar
   media_attachments:
     validations:
@@ -1492,10 +1422,7 @@ ie:
     update:
       subject: "%{name} modificat un posta"
   notifications:
-    administration_emails: Email-notificationes pri administration
-    email_events: Evenimentes por email-notificationes
     email_events_hint: 'Selecte li evenimentes pri queles tu vole reciver notificationes:'
-    other_settings: Parametres pri altri notificationes
   number:
     human:
       decimal_units:
@@ -1648,19 +1575,29 @@ ie:
     delete: Deletion de conto
     development: Developation
     edit_profile: Modificar profil
-    export: Exportation de data
     featured_tags: Recomandat hashtags
     import: Importar
     import_and_export: Importation e exportation
     migrate: Migration de conto
-    notifications: Notificationes
     preferences: Preferenties
     profile: Public profil
     relationships: Sequetes e sequitores
+    severed_relationships: Detranchat relationes
     statuses_cleanup: Automatisat deletion de postas
     strikes: Admonimentes moderatori
     two_factor_authentication: 2-factor autentication
     webauthn_authentication: Claves de securitá
+  severed_relationships:
+    download: Descargar (%{count})
+    event_type:
+      account_suspension: Suspension del conto (%{target_name})
+      domain_block: Suspension del servitor (%{target_name})
+      user_domain_block: Tu bloccat %{target_name}
+    lost_followers: Perdit sequitores
+    lost_follows: Perdit sequetes
+    preamble: Tu posse perdir tis queles tu seque e tui sequitores quande tu blocca un domonia o quande tui moderatores decide suspender un lontan servitor. Tande, tu va posser descargar listes de dejuntet relationes, a inspecter e possibilmen importar sur un altri servitor.
+    purged: Information pri ti-ci servitor ha esset purgat per li administratores de tui servitor.
+    type: Eveniment
   statuses:
     attached:
       audio:
@@ -1682,25 +1619,12 @@ ie:
     edited_at_html: Modificat ye %{date}
     errors:
       in_reply_not_found: Li posta a quel tu prova responder ne sembla exister.
-    open_in_web: Aperter in web
     over_character_limit: límite de carácteres de %{max} transpassat
     pin_errors:
       direct: On ne posse pinglar postas queles es visibil solmen a mentionat usatores
       limit: Tu ja ha pinglat li maxim númere de postas
       ownership: On ne posse pinglar li posta de un altri person
       reblog: On ne posse pinglar un boost
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} persones"
-      total_votes:
-        one: "%{count} vote"
-        other: "%{count} votes"
-      vote: Votar
-    show_more: Monstrar plu
-    show_newer: Monstrar plu nov
-    show_older: Monstrar plu old
-    show_thread: Monstrar fil
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Direct
@@ -1756,6 +1680,7 @@ ie:
     contrast: Mastodon (Alt contraste)
     default: Mastodon (Obscur)
     mastodon-light: Mastodon (Luminosi)
+    system: Automatic (usar tema del sistema)
   time:
     formats:
       default: "%d.%m.%Y ye %H:%M"
@@ -1843,9 +1768,44 @@ ie:
         silence: Conto limitat
         suspend: Conto suspendet
     welcome:
-      edit_profile_action: Configuration de profil
-      edit_profile_step: Tu posse personalisar tui profil por cargar un profil-image, changear tui monstrat nómine e plu. Tu posse optar tractar nov sequitores ante que ili es permisset sequer te.
+      apps_android_action: Obtener it sur Google Play
+      apps_ios_action: Descargar sur li App Store
+      apps_step: Descargar nor aplis oficial.
+      apps_title: Aplis de Mastodon
+      checklist_subtitle: 'Lass nos auxiliar te comensar sur ti-ci frontiera social:'
+      checklist_title: Lista de benevenit
+      edit_profile_action: Personalisar
+      edit_profile_step: Agranda tui interactiones per un profil detalliat.
+      edit_profile_title: Personalisar tui profil
       explanation: Vi quelc suggestiones por que tu mey comensar
+      feature_action: Aprender plu
+      feature_audience: Mastodon te da un possibilitá unic de administrar tui audientie sin intervenitores. Mastodon, desplegat che tui propri servitor, permisse que tu sequeye e esseye sequet de quelcunc altri Mastodon-servitores in li internet, e ne es controlat de quicunc quam tu.
+      feature_audience_title: Agrandar tui audientie in confidentie
+      feature_control: Tu save max bon ti quel tu vole vider sur tui initial témpor-linea. Null algoritmes o reclames por prodigar tui témpor. Seque quicunc che quelcunc Mastodon-servitor de un singul conto e recive lor postas in órdine cronologic, e fa que tui parte del internet esseye un poc plu quam tu.
+      feature_control_title: Resta in control de tui propri témpor-linea
+      feature_creativity: Mastodon permisse postas con audio, video e images, descriptiones de accessibilitá, avises de contenete, animat profil-images, personalisat emojis, control del acurtation de images de previse, a plu, por auxiliar te expresser te. Si tu publica tui art, tui musica, o tui podcast, Mastodon va apoyar te.
+      feature_creativity_title: Ínparalelat creativitá
+      feature_moderation: Mastodon retromette li potentie de far decisiones in tui manus. Chascun servitor crea su propri regules, queles es infortiat localmen e ne universalmen quam che social medies corporat, dunc it es li max flexibil pri responder al besones de diferent gruppes de gente. Adhere a un servitor con regules con queles tu concorda, o mantene tui propri.
+      feature_moderation_title: Moderandi moderation
+      follow_action: Sequer
+      follow_step: Sequer interessant gente es to quo importa in Mastodon.
+      follow_title: Personalisar tui hemal témpor-linea
+      follows_subtitle: Sequer famosi contos
+      follows_title: Persones a sequer
+      follows_view_more: Vider plu persones a sequer
+      hashtags_recent_count:
+        one: "%{people} person in li passat 2 dies"
+        other: "%{people} persones in li passat 2 dies"
+      hashtags_subtitle: Explorar li postas de tendentie durant li passat 2 dies
+      hashtags_title: Populari hashtags
+      hashtags_view_more: Vider plu hashtags in tendentie
+      post_action: Composir
+      post_step: Saluta li munde con textu, images, videos o balotationes.
+      post_title: Crear tui unesim posta
+      share_action: Compartir
+      share_step: Informar tui amics qualmen trovar te che Mastodon.
+      share_title: Partir tui profil Mastodon
+      sign_in_action: Intrar
       subject: Benevenit a Mastodon
       title: Benevenit, %{name}!
   users:
@@ -1854,7 +1814,6 @@ ie:
     invalid_otp_token: Ínvalid 2-factor code
     otp_lost_help_html: Si tu perdit accesse a ambis, tu posse contacter %{email}
     rate_limited: Tro mult de provas de autentication, ples provar denov plu tard.
-    seamless_external_login: Tu ha intrat per un servicie external, dunc parametres pri tui passa-parol e email-adresse ne es disponibil.
     signed_in_as: 'Session apertet quam:'
   verification:
     extra_instructions_html: '<strong>Nota</strong>: Li ligament in tui websitu posse esser ínvisibil. Li important parte es <code>rel="me"</code> quel prevente fals self-identification in websitus con contenete generat de usatores. Tu posse mem usar un <code>link</code> element in li cap-section del págine vice <code>a</code>, ma li HTML code deve esser accessibil sin executer JavaScript.'

@@ -12,8 +12,10 @@ RSpec.describe 'Peers' do
 
         expect(response)
           .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
 
-        expect(body_as_json)
+        expect(response.parsed_body)
           .to be_an(Array)
       end
     end

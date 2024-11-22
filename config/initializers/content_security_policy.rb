@@ -12,24 +12,6 @@ policy = ContentSecurityPolicy.new
 assets_host = policy.assets_host
 media_hosts = policy.media_hosts
 
-def sso_host
-  return unless ENV['ONE_CLICK_SSO_LOGIN'] == 'true'
-  return unless ENV['OMNIAUTH_ONLY'] == 'true'
-  return unless Devise.omniauth_providers.length == 1
-
-  provider = Devise.omniauth_configs[Devise.omniauth_providers[0]]
-  @sso_host ||= begin
-    case provider.provider
-    when :cas
-      provider.cas_url
-    when :saml
-      provider.options[:idp_sso_target_url]
-    when :openid_connect
-      provider.options.dig(:client_options, :authorization_endpoint) || OpenIDConnect::Discovery::Provider::Config.discover!(provider.options[:issuer]).authorization_endpoint
-    end
-  end
-end
-
 Rails.application.config.content_security_policy do |p|
   p.base_uri        :none
   p.default_src     :none
@@ -38,17 +20,16 @@ Rails.application.config.content_security_policy do |p|
   p.img_src         :self, :data, :blob, *media_hosts
   p.style_src       :self, assets_host
   p.media_src       :self, :data, *media_hosts
-  p.frame_src       :self, :https
   p.manifest_src    :self, assets_host
 
-  if sso_host.present?
-    p.form_action     :self, sso_host
+  if policy.sso_host.present?
+    p.form_action :self, policy.sso_host
   else
-    p.form_action     :self
+    p.form_action :self
   end
 
-  p.child_src       :self, :blob, assets_host
-  p.worker_src      :self, :blob, assets_host
+  p.child_src  :self, :blob, assets_host
+  p.worker_src :self, :blob, assets_host
 
   if Rails.env.development?
     webpacker_public_host = ENV.fetch('WEBPACKER_DEV_SERVER_PUBLIC', Webpacker.config.dev_server[:public])
@@ -56,9 +37,11 @@ Rails.application.config.content_security_policy do |p|
 
     p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url, *front_end_build_urls
     p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host
+    p.frame_src   :self, :https, :http
   else
     p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url
     p.script_src  :self, assets_host, "'wasm-unsafe-eval'"
+    p.frame_src   :self, :https
   end
 end
 

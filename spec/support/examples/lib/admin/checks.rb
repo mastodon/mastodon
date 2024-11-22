@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_examples 'a check available to devops users' do
+RSpec.shared_examples 'a check available to devops users' do
   describe 'skip?' do
     context 'when user can view devops' do
       before { allow(user).to receive(:can?).with(:view_devops).and_return(true) }
