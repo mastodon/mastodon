@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -18,6 +18,7 @@ import VisibilityIcon from '@/material-icons/400-24px/visibility.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+import { TimelineHint } from 'mastodon/components/timeline_hint';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
@@ -38,12 +39,10 @@ import {
   unblockDomain,
 } from '../../actions/domain_blocks';
 import {
-  favourite,
-  unfavourite,
+  toggleFavourite,
   bookmark,
   unbookmark,
-  reblog,
-  unreblog,
+  toggleReblog,
   pin,
   unpin,
 } from '../../actions/interactions';
@@ -64,27 +63,20 @@ import {
 import ColumnHeader from '../../components/column_header';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import StatusContainer from '../../containers/status_container';
-import { boostModal, deleteModal } from '../../initial_state';
+import { deleteModal } from '../../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../../selectors';
 import Column from '../ui/components/column';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 
 import ActionBar from './components/action_bar';
-import DetailedStatus from './components/detailed_status';
+import { DetailedStatus } from './components/detailed_status';
 
 
 const messages = defineMessages({
-  deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
-  deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
-  redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
-  redraftMessage: { id: 'confirmations.redraft.message', defaultMessage: 'Are you sure you want to delete this status and re-draft it? Favorites and boosts will be lost, and replies to the original post will be orphaned.' },
   revealAll: { id: 'status.show_more_all', defaultMessage: 'Show more for all' },
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
   statusTitleWithAttachments: { id: 'status.title.with_attachments', defaultMessage: '{user} posted {attachmentCount, plural, one {an attachment} other {# attachments}}' },
   detailedStatus: { id: 'status.detailed_status', defaultMessage: 'Detailed conversation view' },
-  replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
-  replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
-  blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Block entire domain' },
 });
 
 const makeMapStateToProps = () => {
@@ -244,11 +236,7 @@ class Status extends ImmutablePureComponent {
     const { signedIn } = this.props.identity;
 
     if (signedIn) {
-      if (status.get('favourited')) {
-        dispatch(unfavourite(status));
-      } else {
-        dispatch(favourite(status));
-      }
+      dispatch(toggleFavourite(status.get('id')));
     } else {
       dispatch(openModal({
         modalType: 'INTERACTION',
@@ -270,21 +258,14 @@ class Status extends ImmutablePureComponent {
   };
 
   handleReplyClick = (status) => {
-    const { askReplyConfirmation, dispatch, intl } = this.props;
+    const { askReplyConfirmation, dispatch } = this.props;
     const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (askReplyConfirmation) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: intl.formatMessage(messages.replyMessage),
-            confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: () => dispatch(replyCompose(status, this.props.history)),
-          },
-        }));
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }));
       } else {
-        dispatch(replyCompose(status, this.props.history));
+        dispatch(replyCompose(status));
       }
     } else {
       dispatch(openModal({
@@ -298,24 +279,12 @@ class Status extends ImmutablePureComponent {
     }
   };
 
-  handleModalReblog = (status, privacy) => {
-    this.props.dispatch(reblog({ statusId: status.get('id'), visibility: privacy }));
-  };
-
   handleReblogClick = (status, e) => {
     const { dispatch } = this.props;
     const { signedIn } = this.props.identity;
 
     if (signedIn) {
-      if (status.get('reblogged')) {
-        dispatch(unreblog({ statusId: status.get('id') }));
-      } else {
-        if ((e && e.shiftKey) || !boostModal) {
-          this.handleModalReblog(status);
-        } else {
-          dispatch(openModal({ modalType: 'BOOST', modalProps: { status, onReblog: this.handleModalReblog } }));
-        }
-      }
+      dispatch(toggleReblog(status.get('id'), e && e.shiftKey));
     } else {
       dispatch(openModal({
         modalType: 'INTERACTION',
@@ -336,33 +305,32 @@ class Status extends ImmutablePureComponent {
     }
   };
 
-  handleDeleteClick = (status, history, withRedraft = false) => {
-    const { dispatch, intl } = this.props;
+  handleDeleteClick = (status, withRedraft = false) => {
+    const { dispatch } = this.props;
 
     if (!deleteModal) {
-      dispatch(deleteStatus(status.get('id'), history, withRedraft));
+      dispatch(deleteStatus(status.get('id'), withRedraft));
     } else {
-      dispatch(openModal({
-        modalType: 'CONFIRM',
-        modalProps: {
-          message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
-          confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-          onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
-        },
-      }));
+      dispatch(openModal({ modalType: 'CONFIRM_DELETE_STATUS', modalProps: { statusId: status.get('id'), withRedraft } }));
     }
   };
 
-  handleEditClick = (status, history) => {
-    this.props.dispatch(editStatus(status.get('id'), history));
+  handleEditClick = (status) => {
+    const { dispatch, askReplyConfirmation } = this.props;
+
+    if (askReplyConfirmation) {
+      dispatch(openModal({ modalType: 'CONFIRM_EDIT_STATUS', modalProps: { statusId: status.get('id') } }));
+    } else {
+      dispatch(editStatus(status.get('id')));
+    }
   };
 
-  handleDirectClick = (account, router) => {
-    this.props.dispatch(directCompose(account, router));
+  handleDirectClick = (account) => {
+    this.props.dispatch(directCompose(account));
   };
 
-  handleMentionClick = (account, router) => {
-    this.props.dispatch(mentionCompose(account, router));
+  handleMentionClick = (account) => {
+    this.props.dispatch(mentionCompose(account));
   };
 
   handleOpenMedia = (media, index, lang) => {
@@ -631,7 +599,7 @@ class Status extends ImmutablePureComponent {
   };
 
   render () {
-    let ancestors, descendants;
+    let ancestors, descendants, remoteHint;
     const { isLoading, status, ancestorsIds, descendantsIds, intl, domain, multiColumn, pictureInPicture } = this.props;
     const { fullscreen } = this.state;
 
@@ -659,6 +627,17 @@ class Status extends ImmutablePureComponent {
 
     const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
     const isIndexable = !status.getIn(['account', 'noindex']);
+
+    if (!isLocal) {
+      remoteHint = (
+        <TimelineHint
+          className={classNames(!!descendants && 'timeline-hint--with-descendants')}
+          url={status.get('url')}
+          message={<FormattedMessage id='hints.threads.replies_may_be_missing' defaultMessage='Replies from other servers may be missing.' />}
+          label={<FormattedMessage id='hints.threads.see_more' defaultMessage='See more replies on {domain}' values={{ domain: <strong>{status.getIn(['account', 'acct']).split('@')[1]}</strong> }} />}
+        />
+      );
+    }
 
     const handlers = {
       moveUp: this.handleHotkeyMoveUp,
@@ -728,6 +707,7 @@ class Status extends ImmutablePureComponent {
             </HotKeys>
 
             {descendants}
+            {remoteHint}
           </div>
         </ScrollContainer>
 

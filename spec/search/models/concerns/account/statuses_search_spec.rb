@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Account::StatusesSearch, :sidekiq_inline do
+RSpec.describe Account::StatusesSearch, :inline_jobs do
   describe 'a non-indexable account becoming indexable' do
     let(:account) { Account.find_by(username: 'search_test_account_1') }
 

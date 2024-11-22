@@ -15,6 +15,12 @@ uk:
       user/invite_request:
         text: Причина
     errors:
+      attributes:
+        domain:
+          invalid: не є дійсним іменем домену
+      messages:
+        invalid_domain_on_line: "%{value} не є дійсним іменем домену"
+        too_many_lines: перевищує ліміт %{limit} рядків
       models:
         account:
           attributes:

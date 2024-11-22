@@ -2,10 +2,6 @@
 
 require 'rails_helper'
 
-def poll_option_json(name, votes)
-  { type: 'Note', name: name, replies: { type: 'Collection', totalItems: votes } }
-end
-
 RSpec.describe ActivityPub::ProcessStatusUpdateService do
   subject { described_class.new }
 
@@ -40,14 +36,13 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
   end
 
   describe '#call' do
-    it 'updates text' do
+    it 'updates text and content warning' do
       subject.call(status, json, json)
-      expect(status.reload.text).to eq 'Hello universe'
-    end
-
-    it 'updates content warning' do
-      subject.call(status, json, json)
-      expect(status.reload.spoiler_text).to eq 'Show more'
+      expect(status.reload)
+        .to have_attributes(
+          text: eq('Hello universe'),
+          spoiler_text: eq('Show more')
+        )
     end
 
     context 'when the changes are only in sanitized-out HTML' do
@@ -67,12 +62,9 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'does not create any edits' do
+      it 'does not create any edits and does not mark status edited' do
         expect(status.reload.edits).to be_empty
-      end
-
-      it 'does not mark status as edited' do
-        expect(status.edited?).to be false
+        expect(status).to_not be_edited
       end
     end
 
@@ -90,15 +82,9 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'does not create any edits' do
+      it 'does not create any edits, mark status edited, or update text' do
         expect(status.reload.edits).to be_empty
-      end
-
-      it 'does not mark status as edited' do
-        expect(status.reload.edited?).to be false
-      end
-
-      it 'does not update the text' do
+        expect(status.reload).to_not be_edited
         expect(status.reload.text).to eq 'Hello world'
       end
     end
@@ -137,19 +123,10 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'does not create any edits' do
+      it 'does not create any edits, mark status edited, update text but does update tallies' do
         expect(status.reload.edits).to be_empty
-      end
-
-      it 'does not mark status as edited' do
-        expect(status.reload.edited?).to be false
-      end
-
-      it 'does not update the text' do
+        expect(status.reload).to_not be_edited
         expect(status.reload.text).to eq 'Hello world'
-      end
-
-      it 'updates tallies' do
         expect(status.poll.reload.cached_tallies).to eq [4, 3]
       end
     end
@@ -189,19 +166,10 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'does not create any edits' do
+      it 'does not create any edits, mark status edited, update text, or update tallies' do
         expect(status.reload.edits).to be_empty
-      end
-
-      it 'does not mark status as edited' do
-        expect(status.reload.edited?).to be false
-      end
-
-      it 'does not update the text' do
+        expect(status.reload).to_not be_edited
         expect(status.reload.text).to eq 'Hello world'
-      end
-
-      it 'does not update tallies' do
         expect(status.poll.reload.cached_tallies).to eq [0, 0]
       end
     end
@@ -213,13 +181,10 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         status.snapshot!(rate_limit: false)
       end
 
-      it 'does not create any edits' do
-        expect { subject.call(status, json, json) }.to_not(change { status.reload.edits.pluck(&:id) })
-      end
-
-      it 'does not update the text, spoiler_text or edited_at' do
+      it 'does not create any edits or update relevant attributes' do
         expect { subject.call(status, json, json) }
-          .to_not(change { status.reload.attributes.slice('text', 'spoiler_text', 'edited_at').values })
+          .to not_change { status.reload.edits.pluck(&:id) }
+          .and(not_change { status.reload.attributes.slice('text', 'spoiler_text', 'edited_at').values })
       end
     end
 
@@ -237,12 +202,9 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'does not create any edits' do
+      it 'does not create any edits or mark status edited' do
         expect(status.reload.edits).to be_empty
-      end
-
-      it 'does not mark status as edited' do
-        expect(status.edited?).to be false
+        expect(status).to_not be_edited
       end
     end
 
@@ -261,12 +223,9 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         subject.call(status, json, json)
       end
 
-      it 'does not create any edits' do
+      it 'does not create any edits or mark status edited' do
         expect(status.reload.edits).to be_empty
-      end
-
-      it 'does not mark status as edited' do
-        expect(status.edited?).to be false
+        expect(status).to_not be_edited
       end
     end
 
@@ -331,7 +290,6 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     context 'when originally without media attachments' do
       before do
         stub_request(:get, 'https://example.com/foo.png').to_return(body: attachment_fixture('emojo.png'))
-        subject.call(status, json, json)
       end
 
       let(:payload) do
@@ -347,19 +305,18 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         }
       end
 
-      it 'updates media attachments' do
-        media_attachment = status.reload.ordered_media_attachments.first
+      it 'updates media attachments, fetches attachment, records media change in edit' do
+        subject.call(status, json, json)
 
-        expect(media_attachment).to_not be_nil
-        expect(media_attachment.remote_url).to eq 'https://example.com/foo.png'
-      end
+        expect(status.reload.ordered_media_attachments.first)
+          .to be_present
+          .and(have_attributes(remote_url: 'https://example.com/foo.png'))
 
-      it 'fetches the attachment' do
-        expect(a_request(:get, 'https://example.com/foo.png')).to have_been_made
-      end
+        expect(a_request(:get, 'https://example.com/foo.png'))
+          .to have_been_made
 
-      it 'records media change in edit' do
-        expect(status.edits.reload.last.ordered_media_attachment_ids).to_not be_empty
+        expect(status.edits.reload.last.ordered_media_attachment_ids)
+          .to_not be_empty
       end
     end
 
@@ -381,27 +338,26 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
       before do
         allow(RedownloadMediaWorker).to receive(:perform_async)
+      end
+
+      it 'updates the existing media attachment in-place, does not queue redownload, updates media, records media change' do
         subject.call(status, json, json)
-      end
 
-      it 'updates the existing media attachment in-place' do
-        media_attachment = status.media_attachments.ordered.reload.first
+        expect(status.media_attachments.ordered.reload.first)
+          .to be_present
+          .and have_attributes(
+            remote_url: 'https://example.com/foo.png',
+            description: 'A picture'
+          )
 
-        expect(media_attachment).to_not be_nil
-        expect(media_attachment.remote_url).to eq 'https://example.com/foo.png'
-        expect(media_attachment.description).to eq 'A picture'
-      end
+        expect(RedownloadMediaWorker)
+          .to_not have_received(:perform_async)
 
-      it 'does not queue redownload for the existing media attachment' do
-        expect(RedownloadMediaWorker).to_not have_received(:perform_async)
-      end
+        expect(status.ordered_media_attachments.map(&:remote_url))
+          .to eq %w(https://example.com/foo.png)
 
-      it 'updates media attachments' do
-        expect(status.ordered_media_attachments.map(&:remote_url)).to eq %w(https://example.com/foo.png)
-      end
-
-      it 'records media change in edit' do
-        expect(status.edits.reload.last.ordered_media_attachment_ids).to_not be_empty
+        expect(status.edits.reload.last.ordered_media_attachment_ids)
+          .to_not be_empty
       end
     end
 
@@ -409,14 +365,12 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       before do
         poll = Fabricate(:poll, status: status)
         status.update(preloadable_poll: poll)
+      end
+
+      it 'removes poll and records media change in edit' do
         subject.call(status, json, json)
-      end
 
-      it 'removes poll' do
         expect(status.reload.poll).to be_nil
-      end
-
-      it 'records media change in edit' do
         expect(status.edits.reload.last.poll_options).to be_nil
       end
     end
@@ -438,30 +392,27 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         }
       end
 
-      before do
+      it 'creates a poll and records media change in edit' do
         subject.call(status, json, json)
-      end
 
-      it 'creates a poll' do
-        poll = status.reload.poll
+        expect(status.reload.poll)
+          .to be_present
+          .and have_attributes(options: %w(Foo Bar Baz))
 
-        expect(poll).to_not be_nil
-        expect(poll.options).to eq %w(Foo Bar Baz)
-      end
-
-      it 'records media change in edit' do
         expect(status.edits.reload.last.poll_options).to eq %w(Foo Bar Baz)
       end
     end
 
-    it 'creates edit history' do
+    it 'creates edit history and sets edit timestamp' do
       subject.call(status, json, json)
-      expect(status.edits.reload.map(&:text)).to eq ['Hello world', 'Hello universe']
+      expect(status.edits.reload.map(&:text))
+        .to eq ['Hello world', 'Hello universe']
+      expect(status.reload.edited_at.to_s)
+        .to eq '2021-09-08 22:39:25 UTC'
     end
+  end
 
-    it 'sets edited timestamp' do
-      subject.call(status, json, json)
-      expect(status.reload.edited_at.to_s).to eq '2021-09-08 22:39:25 UTC'
-    end
+  def poll_option_json(name, votes)
+    { type: 'Note', name: name, replies: { type: 'Collection', totalItems: votes } }
   end
 end

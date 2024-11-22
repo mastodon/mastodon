@@ -7,7 +7,6 @@ lt:
     hosted_on: Mastodon talpinamas %{domain}
     title: Apie
   accounts:
-    follow: Sekti
     followers:
       few: Sekėjai
       many: Sekėjo
@@ -29,13 +28,14 @@ lt:
   admin:
     account_actions:
       action: Atlikti veiksmą
+      already_silenced: Ši paskyra jau buvo apribota.
+      already_suspended: Ši paskyra jau sustabdyta.
       title: Atlikti prižiūrėjimo veiksmą %{acct}
     account_moderation_notes:
       create: Palikti pastabą
       created_msg: Prižiūrėjimo pastaba sėkmingai sukurta!
       destroyed_msg: Prižiūrėjimo pastaba sėkmingai sunaikinta!
     accounts:
-      add_email_domain_block: Blokuoti el. pašto domeną
       approve: Patvirtinti
       approved_msg: Sėkmingai patvirtinta %{username} registracijos paraiška.
       are_you_sure: Ar esi įsitikinęs (-usi)?
@@ -50,6 +50,7 @@ lt:
         title: Keisti el. paštą %{username}
       change_role:
         changed_msg: Vaidmuo sėkmingai pakeistas.
+        edit_roles: Tvarkyti naudotojų vaidmenis
         label: Keisti vaidmenį
         no_role: Jokios vaidmenį
         title: Keisti vaidmenį %{username}
@@ -62,7 +63,6 @@ lt:
       demote: Pažeminti
       destroyed_msg: "%{username} duomenys dabar laukia eilėje, kad būtų netrukus ištrinti."
       disable: Sustabdyti
-      disable_sign_in_token_auth: Išjungti el. pašto prieigos rakto tapatybės nustatymą
       disable_two_factor_authentication: Išjungti 2FA
       disabled: Pristabdyta
       display_name: Rodomas vardas
@@ -71,7 +71,6 @@ lt:
       email: El. paštas
       email_status: El. pašto būsena
       enable: Panaikinti sustabdymą
-      enable_sign_in_token_auth: Įjungti el. pašto prieigos rakto tapatybės nustatymą
       enabled: Įjungta
       enabled_msg: Sėkmingai panaikintas %{username} paskyros sustabdymas.
       followers: Sekėjai
@@ -138,7 +137,6 @@ lt:
       resubscribe: Prenumeruoti iš naujo
       role: Vaidmuo
       search: Ieškoti
-      search_same_email_domain: Kiti naudotojai su tuo pačiu el. pašto domenu
       search_same_ip: Kiti naudotojai su tuo pačiu IP
       security: Saugumas
       security_measures:
@@ -179,37 +177,34 @@ lt:
         approve_appeal: Patvirtinti apeliaciją
         approve_user: Patvirtinti naudotoją
         assigned_to_self_report: Priskirti ataskaitą
-        change_email_user: Keisti el. paštą naudotojui
         change_role_user: Keisti naudotojo vaidmenį
         confirm_user: Patvirtinti naudotoją
         create_account_warning: Kurti įspėjimą
         create_announcement: Kurti skelbimą
-        create_canonical_email_block: Kurti el. pašto bloką
         create_custom_emoji: Kurti pasirinktinį jaustuką
         create_domain_allow: Kurti domeno leidimą
         create_domain_block: Kurti domeno bloką
-        create_email_domain_block: Kurti el. pašto domeno bloką
         create_ip_block: Kurti IP taisyklę
+        create_relay: Kurti perdavimą
         create_unavailable_domain: Kurti nepasiekiamą domeną
         create_user_role: Kurti vaidmenį
         demote_user: Pažeminti naudotoją
         destroy_announcement: Ištrinti skelbimą
-        destroy_canonical_email_block: Ištrinti el. pašto bloką
         destroy_custom_emoji: Ištrinti pasirinktinį jaustuką
         destroy_domain_allow: Ištrinti domeno leidimą
         destroy_domain_block: Ištrinti domeno bloką
-        destroy_email_domain_block: Ištrinti el. pašto domeno bloką
         destroy_instance: Išvalyti domeną
         destroy_ip_block: Ištrinti IP taisyklę
+        destroy_relay: Ištrinti perdavimą
         destroy_status: Ištrinti įrašą
         destroy_unavailable_domain: Ištrinti nepasiekiamą domeną
         destroy_user_role: Sunaikinti vaidmenį
         disable_2fa_user: Išjungti 2FA
         disable_custom_emoji: Išjungti pasirinktinį jaustuką
-        disable_sign_in_token_auth_user: Išjungti el. pašto prieigos rakto tapatybės nustatymą naudotojui
+        disable_relay: Išjungti perdavimą
         disable_user: Išjungti naudotoją
         enable_custom_emoji: Įjungti pasirinktinį jaustuką
-        enable_sign_in_token_auth_user: Įjungti el. pašto prieigos rakto tapatybės nustatymą naudotojui
+        enable_relay: Įjungti perdavimą
         enable_user: Įjungti naudotoją
         memorialize_account: Memorializuoti paskyrą
         promote_user: Paaukštinti naudotoją
@@ -232,43 +227,40 @@ lt:
         update_custom_emoji: Atnaujinti pasirinktinį jaustuką
         update_domain_block: Atnaujinti domeno bloką
         update_ip_block: Atnaujinti IP taisyklę
+        update_report: Atnaujinti ataskaitą
         update_status: Atnaujinti įrašą
         update_user_role: Atnaujinti vaidmenį
       actions:
         approve_appeal_html: "%{name} patvirtino prižiūjimo veiksmo apeliaciją iš %{target}"
         approve_user_html: "%{name} patvirtino registraciją iš %{target}"
         assigned_to_self_report_html: "%{name} paskyrė ataskaitą %{target} saviems"
-        change_email_user_html: "%{name} pakeitė el. paštą naudotojui %{target}"
         change_role_user_html: "%{name} pakeitė vaidmenį %{target}"
-        confirm_user_html: "%{name} patvirtino el. paštą naudotojui %{target}"
         create_account_warning_html: "%{name} išsiuntė įspėjimą %{target}"
         create_announcement_html: "%{name} sukūrė naują skelbimą %{target}"
-        create_canonical_email_block_html: "%{name} užblokavo el. paštą su maišu %{target}"
         create_custom_emoji_html: "%{name} įkėlė naują jaustuką %{target}"
         create_domain_allow_html: "%{name} leido federaciją su domenu %{target}"
         create_domain_block_html: "%{name} užblokavo domeną %{target}"
-        create_email_domain_block_html: "%{name} užblokavo el. pašto domeną %{target}"
         create_ip_block_html: "%{name} sukūrė taisyklę IP %{target}"
+        create_relay_html: "%{name} sukūrė perdavimą %{target}"
         create_unavailable_domain_html: "%{name} sustabdė tiekimą į domeną %{target}"
         create_user_role_html: "%{name} sukūrė %{target} vaidmenį"
         demote_user_html: "%{name} pažemino naudotoją %{target}"
         destroy_announcement_html: "%{name} ištrynė skelbimą %{target}"
-        destroy_canonical_email_block_html: "%{name} atblokavo el. paštą su maišu %{target}"
         destroy_custom_emoji_html: "%{name} ištrynė jaustuką %{target}"
         destroy_domain_allow_html: "%{name} neleido federacijos su domenu %{target}"
         destroy_domain_block_html: "%{name} atblokavo domeną %{target}"
-        destroy_email_domain_block_html: "%{name} atblokavo el. pašto domeną %{target}"
         destroy_instance_html: "%{name} išvalė domeną %{target}"
         destroy_ip_block_html: "%{name} ištrynė taisyklę IP %{target}"
+        destroy_relay_html: "%{name} ištrynė perdavimą %{target}"
         destroy_status_html: "%{name} pašalino įrašą %{target}"
         destroy_unavailable_domain_html: "%{name} pratęsė tiekimą į domeną %{target}"
         destroy_user_role_html: "%{name} ištrynė %{target} vaidmenį"
         disable_2fa_user_html: "%{name} išjungė dviejų veiksnių reikalavimą naudotojui %{target}"
         disable_custom_emoji_html: "%{name} išjungė jaustuką %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} išjungė el. pašto prieigos tapatybės nustatymą %{target}"
+        disable_relay_html: "%{name} išjungė perdavimą %{target}"
         disable_user_html: "%{name} išjungė prisijungimą naudotojui %{target}"
         enable_custom_emoji_html: "%{name} įjungė jaustuką %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} įjungė el. pašto prieigos tapatybės nustatymą %{target}"
+        enable_relay_html: "%{name} įjungė perdavimą %{target}"
         enable_user_html: "%{name} įjungė prisijungimą naudotojui %{target}"
         memorialize_account_html: "%{name} pavertė %{target} paskyrą į atminimo puslapį"
         promote_user_html: "%{name} paaukštino naudotoją %{target}"
@@ -276,7 +268,6 @@ lt:
         reject_user_html: "%{name} atmetė registraciją iš %{target}"
         remove_avatar_user_html: "%{name} pašalino %{target} avatarą"
         reopen_report_html: "%{name} atidarė ataskaitą %{target}"
-        resend_user_html: "%{name} iš naujo išsiuntė patvirtinimo el. laišką %{target}"
         reset_password_user_html: "%{name} iš naujo nustatė naudotojo slaptažodį %{target}"
         resolve_report_html: "%{name} išsprendė ataskaitą %{target}"
         sensitive_account_html: "%{name} pažymėjo %{target} mediją kaip jautrią"
@@ -299,6 +290,7 @@ lt:
       filter_by_action: Filtruoti pagal veiksmą
       filter_by_user: Filtruoti pagal naudotoją
       title: Audito žurnalas
+      unavailable_instance: "(domeno pavadinimas neprieinamas)"
     announcements:
       destroyed_msg: Skelbimas sėkmingai ištrintas.
       edit:
@@ -345,6 +337,8 @@ lt:
       shortcode: Trumpas kodas
       shortcode_hint: Bent du ženklai, tik raidiniai skaitmeniniai ženklai bei akcentai(_)
       title: Asmeniniai jaustukai
+      uncategorized: Be kategorijos
+      unlist: Neįtraukti į sąrašą
       unlisted: Neįtrauktas į sąrašą
       update_failed_msg: Jaustukas negalėjo būti pakeistas
       updated_msg: Jaustukas sėkmingai pakeistas!
@@ -392,8 +386,16 @@ lt:
       created_msg: Domenas buvo sėkmingai leistas federacijai.
       destroyed_msg: Domenas buvo neleistas federacijai.
       export: Eksportuoti
+      import: Importuoti
+      undo: Neleisti federavimo su domenu
     domain_blocks:
       add_new: Pridėti naują domeno bloką
+      confirm_suspension:
+        cancel: Atšaukti
+        confirm: Pristabdyti
+        permanent_action: Atšaukus pristabdymą jokie duomenys ar sąryšiai nebus atkurti.
+        preamble_html: Jūs pristabdysite <strong>%{domain}</strong> ir jo subdomenus.
+        remove_all_data: Taip iš serverio bus pašalintas visas šio domeno paskyrų turinys, medija ir profilio duomenys.
       created_msg: Domeno užblokavimas nagrinėjamas
       destroyed_msg: Domeno blokas pašalintas
       domain: Domenas
@@ -411,6 +413,7 @@ lt:
           silence: Riboti
           suspend: Pristabdyti
         title: Naujos domeno blokas
+      private_comment: Privatus komentaras
       public_comment: Viešas komentaras
       public_comment_hint: Komentaras apie šį domeno apribojimą plačiajai visuomenei, jei įjungtas domenų apribojimų sąrašo reklamavimas.
       reject_media: Atmesti medijos failus
@@ -418,28 +421,57 @@ lt:
       reject_reports: Atmesti ataskaitas
       reject_reports_hint: Ignoruoti visus skundus, kurie siunčiami iš šio domeno. Neliečia užblokavimu
       undo: Atkurti domeno bloką
+      view: Peržiūrėti domeno bloką
     email_domain_blocks:
       add_new: Pridėti naują
       allow_registrations_with_approval: Leisti registracijas su patvirtinimu
-      created_msg: El pašto domenas sėkmingai pridėtas į juodąjį sąrašą
       delete: Ištrinti
       domain: Domenas
       new:
         create: Pridėto domeną
-        title: Naujas el pašto juodojo sąrašo įtraukimas
-      title: El pašto juodasis sąrašas
+    export_domain_allows:
+      new:
+        title: Importuoti domeno leidžiamus
+      no_file: Nėra pasirinkto failo
+    export_domain_blocks:
+      import:
+        description_html: Netrukus importuosi domenų blokavimų sąrašą. Labai atidžiai peržiūrėk šį sąrašą, ypač jei ne tu jį sudarei.
+        existing_relationships_warning: Esami sekimo sąryšiai
+        private_comment_description_html: 'Kad būtų lengviau atsekti, iš kur importuoti blokavimai, importuoti blokavimai bus kuriami su šiuo privačiu komentaru: <q>%{comment}</q>'
+        private_comment_template: Importuota iš %{source}, %{date}
+        title: Importuoti domeno blokavimus
+      invalid_domain_block: 'Vienas ar daugiau domenų blokavimų buvo praleisti dėl toliau nurodytos (-ų) klaidos (-ų): %{error}'
+      new:
+        title: Importuoti domeno blokavimus
+      no_file: Nėra pasirinkto failo
+    follow_recommendations:
+      language: Kalbui
+      status: Būsena
     instances:
+      audit_log:
+        title: Naujausi audito žurnalai
+        view_all: Peržiūrėti visus audito žurnalus
+      availability:
+        title: Prieinamumas
+        warning: Paskutinis bandymas prisijungti prie šio serverio buvo nesėkmingas
       back_to_all: Visi
+      back_to_limited: Apribotas
+      back_to_warning: Įspėjimas
       by_domain: Domenas
       content_policies:
+        policies:
+          reject_media: Atmesti mediją
+          reject_reports: Atmesti ataskaitas
+        policy: Politika
         reason: Viešoji priežastis
+        title: Turinio politika
       delivery:
         all: Visi
       delivery_available: Pristatymas galimas
       moderation:
         all: Visi
         limited: Limituotas
-        title: Moderacija
+        title: Prižiūrėjimas
       public_comment: Viešas komentaras
       title: Federacija
       total_blocked_by_us: Mes užblokavome
@@ -467,7 +499,7 @@ lt:
       inbox_url: Perdavimo URL
       pending: Laukiama perdavimo patvirtinimo
       save_and_enable: Išsaugoti ir įjungti
-      setup: Sukurti perdavimo ryšį
+      setup: Nustatyti perdavimo ryšį
       status: Statusas
       title: Perdavimai
     report_notes:
@@ -475,6 +507,7 @@ lt:
       destroyed_msg: Skundo žinutė sekmingai ištrinta!
     reports:
       action_taken_by: Veiksmo ėmėsi
+      actions_no_posts: Ši ataskaita neturi jokių susijusių įrašų ištrinti
       already_suspended_badges:
         local: Jau sustabdytas šiame serveryje
         remote: Jau sustabdytas jų serveryje
@@ -498,6 +531,7 @@ lt:
       report: 'Skundas #%{id}'
       reported_account: Reportuota paskyra
       reported_by: Skundas sukurtas
+      reported_with_application: Pranešta su programėle
       resolved: Išspręsta
       resolved_msg: Skundas sėkmingai įšspręstas!
       status: Statusas
@@ -517,6 +551,8 @@ lt:
         manage_invites_description: Leidžia naudotojams naršyti ir deaktyvuoti kvietimų nuorodas.
         manage_taxonomies_description: Leidžia naudotojams peržiūrėti tendencingą turinį ir atnaujinti saitažodžių nustatymus
     settings:
+      branding:
+        title: Firminio ženklo kūrimas
       captcha_enabled:
         desc_html: Tai priklauso nuo hCaptcha išorinių skriptų, kurie gali kelti susirūpinimą dėl saugumo ir privatumo. Be to, <strong>dėl to registracijos procesas kai kuriems žmonėms (ypač neįgaliesiems) gali būti gerokai sunkiau prieinami</strong>. Dėl šių priežasčių apsvarstyk alternatyvias priemones, pavyzdžiui, patvirtinimu arba kvietimu grindžiamą registraciją.
       content_retention:
@@ -528,8 +564,16 @@ lt:
         all: Visiems
       registrations:
         moderation_recommandation: Prieš atidarant registraciją visiems, įsitikink, kad turi tinkamą ir reaguojančią prižiūrėjimo komandą!
+      registrations_mode:
+        modes:
+          approved: Registracijai privalomas patvirtinimas
+        warning_hint: Rekomenduojame naudoti „Registracijai privalomas patvirtinimas“, nebent esi tikras (-a), kad tavo prižiūrėjimo komanda gali laiku apdoroti šlamštus ir kenkėjiškas registracijas.
+      security:
+        authorized_fetch: Reikalauti tapatybės nustatymo iš federacinių serverių
+        authorized_fetch_hint: Reikalauti tapatybės nustatymo iš federacinių serverių leidžia griežčiau užtikrinti tiek naudotojo, tiek serverio lygio blokų vykdymą. Tačiau dėl to nukenčia našumas, sumažėja atsakymų pasiekiamumas ir gali kilti suderinamumo su kai kuriomis federacinėmis paslaugomis problemų. Be to, tai nesutrukdys skirtiems dalyviams gauti tavo viešų įrašų ir paskyrų.
+        authorized_fetch_overridden_hint: Šiuo metu negali pakeisti šio nustatymo, nes jį pakeičia aplinkos kintamasis.
+        federation_authentication: Federacijos tapatybės nustatymo vykdymas
     software_updates:
-      description: Rekomenduojama nuolat atnaujinti Mastodon diegyklę, kad galėtum naudotis naujausiais pataisymais ir funkcijomis. Be to, kartais labai svarbu laiku atnaujinti Mastodon, kad būtų išvengta saugumo problemų. Dėl šių priežasčių Mastodon kas 30 minučių tikrina, ar yra naujinimų, ir praneša tau apie tai pagal tavo el. pašto pranešimų parinktis.
       documentation_link: Sužinoti daugiau
       release_notes: Leidimo informacija
       title: Galimi naujinimai
@@ -545,7 +589,9 @@ lt:
       back_to_account: Grįžti į paskyros puslapį
       back_to_report: Grįžti į ataskaitos puslapį
       batch:
+        add_to_report: 'Pridėti į ataskaitą #%{id}'
         remove_from_report: Pašalinti iš ataskaitos
+      contents: Turinys
       deleted: Ištrinta
       favourites: Mėgstami
       history: Versijų istorija
@@ -554,13 +600,19 @@ lt:
       media:
         title: Medija
       metadata: Metaduomenys
+      no_history: Šis įrašas nebuvo redaguotas
       no_status_selected: Jokie įrašai nebuvo pakeisti, nes nė vienas buvo pasirinktas
       open: Atidaryti įrašą
       original_status: Originalus įrašas
-      title: Paskyros statusai
+      replied_to_html: Atsakyta į %{acct_link}
+      status_title: Paskelbė @%{name}
+      title: Paskyros įrašai – @%{name}
       trending: Tendencinga
+      view_publicly: Peržiūrėti viešai
       with_media: Su medija
     system_checks:
+      database_schema_check:
+        message_html: Laukiama duomenų bazės perkėlimo. Paleisk juos, kad įsitikintum, jog programa veikia taip, kaip tikimasi.
       elasticsearch_health_yellow:
         message_html: Elasticsearch klasteris yra nesveikas (geltona būsena), galbūt norėsi išsiaiškinti priežastį
       elasticsearch_preset:
@@ -568,14 +620,43 @@ lt:
       elasticsearch_preset_single_node:
         action: Žiūrėti dokumentaciją
         message_html: Tavo Elasticsearch klasteris turi tik vieną mazgą, <code>ES_PRESET</code> turėtų būti nustatyta į <code>single_node_cluster</code>.
+      elasticsearch_running_check:
+        message_html: Nepavyko prijungti prie Elasticsearch. Patikrink, ar ji veikia, arba išjunk viso teksto paiešką.
+      software_version_check:
+        action: Žiūrėti galimus naujinimus
+        message_html: Yra „Mastodon“ naujinimas.
+    tags:
+      moderation:
+        not_trendable: Netendencinga
+        not_usable: Nenaudojama
+        pending_review: Laukiama peržiūros
+        review_requested: Paprašyta peržiūros
+        reviewed: Peržiūrėta
+        title: Statusas
+        trendable: Tendencinga
+        unreviewed: Neperžiūrėta
+        usable: Naudojama
+      name: Pavadinimas
+      newest: Naujausias
+      oldest: Seniausias
+      open: Peržiūrėti viešai
+      reset: Atkurti
+      search: Paieška
+      title: Saitažodžiai
     title: Administracija
     trends:
       allow: Leisti
       approved: Patvirtinta
+      confirm_allow: Ar tikrai nori leisti pasirinktas žymes?
+      confirm_disallow: Ar tikrai nori neleisti pasirinktas žymes?
       disallow: Neleisti
       links:
         allow: Leisti nuorodą
         allow_provider: Leisti leidėją
+        confirm_allow: Ar tikrai nori leisti pasirinktas nuorodas?
+        confirm_allow_provider: Ar tikrai nori leisti pasirinktus teikėjus?
+        confirm_disallow: Ar tikrai nori neleisti pasirinktas nuorodas?
+        confirm_disallow_provider: Ar tikrai nori neleisti pasirinktus teikėjus?
         description_html: Tai – nuorodos, kuriomis šiuo metu daug bendrinasi paskyros, iš kurių tavo serveris mato įrašus. Tai gali padėti naudotojams sužinoti, kas vyksta pasaulyje. Jokios nuorodos nerodomos viešai, kol nepatvirtinai leidėjo. Taip pat gali leisti arba atmesti atskiras nuorodas.
         disallow: Neleisti nuorodą
         disallow_provider: Neleisti leidėją
@@ -596,6 +677,10 @@ lt:
       statuses:
         allow: Leisti įrašą
         allow_account: Leisti autorių (-ę)
+        confirm_allow: Ar tikrai nori leisti pasirinktas būsenas?
+        confirm_allow_account: Ar tikrai nori leisti pasirinktas paskyras?
+        confirm_disallow: Ar tikrai nori neleisti pasirinktas būsenas?
+        confirm_disallow_account: Ar tikrai nori neleisti pasirinktas paskyras?
         description_html: Tai – įrašai, apie kuriuos žino tavo serveris ir kuriais šiuo metu daug bendrinamasi ir kurie yra mėgstami. Tai gali padėti naujiems ir grįžtantiems naudotojams rasti daugiau žmonių, kuriuos galima sekti. Jokie įrašai nerodomi viešai, kol nepatvirtinai autoriaus (-ės), o autorius (-ė) leidžia savo paskyrą siūlyti kitiems. Taip pat gali leisti arba atmesti atskirus įrašus.
         disallow: Neleisti įrašą
         disallow_account: Neleisti autorių (-ę)
@@ -619,7 +704,7 @@ lt:
         title: Tendencingos saitažodžiai
         trendable: Gali pasirodyti tendencijose
         trending_rank: 'Tendencinga #%{rank}'
-      title: Tendencijos
+      title: Rekomendacijos ir tendencijos
       trending: Tendencinga
     warning_presets:
       add_new: Pridėti naują
@@ -627,7 +712,19 @@ lt:
       edit_preset: Keisti įspėjimo nustatymus
       title: Įspėjamieji numatytieji
     webhooks:
+      add_new: Pridėti galutinį tašką
+      delete: Ištrinti
       description_html: "<strong>Webhook</strong> leidžia Mastodon siųsti <strong>realaus laiko pranešimus</strong> apie pasirinktus įvykius į tavo programą, kad programa galėtų <strong>automatiškai paleisti reakcijas</strong>."
+      disable: Išjungti
+      disabled: Išjungta
+      edit: Redaguoti galutinį tašką
+      enable: Įjungti
+      enabled: Aktyvi
+      enabled_events:
+        few: "%{count} įjungti įvykiai"
+        many: "%{count} įjungto įvykio"
+        one: "%{count} įjungtas įvykis"
+        other: "%{count} įjungtų įvykių"
       events: Įvykiai
   admin_mailer:
     auto_close_registrations:
@@ -656,8 +753,6 @@ lt:
       guide_link_text: Visi gali prisidėti.
     sensitive_content: Jautrus turinys
   application_mailer:
-    notification_preferences: Keisti el. pašto nuostatas
-    settings: 'Keisti el. pašto nuostatas: %{link}'
     view: 'Peržiūra:'
     view_profile: Peržiurėti profilį
     view_status: Peržiūrėti įrašą
@@ -669,39 +764,79 @@ lt:
     warning: Būkite atsargūs su šia informacija. Niekada jos nesidalinkite!
     your_token: Tavo prieigos raktas
   auth:
+    apply_for_account: Prašyti paskyros
+    captcha_confirmation:
+      help_html: Jei turi problemų išsprendžiant CAPTCHA, gali susisiekti su mumis per %{email} ir mes tau padėsime.
+      hint_html: Dar vienas dalykas! Turime patvirtinti, kad esi žmogus (kad galėtume išvengti šlamšto). Išspręsk toliau pateiktą CAPTCHA ir spausk Tęsti.
+      title: Saugumo patikrinimas
     confirmations:
+      awaiting_review_title: Peržiūrima tavo registracija
+      clicking_this_link: paspausti šį nuorodą
+      login_link: prisijungti
+      proceed_to_login_html: Dabar gali pereiti prie %{login_link}.
+      redirect_to_app_html: Turėjei būti nukreiptas (-a) į <strong>%{app_name}</strong> programėlę. Jei taip neatsitiko, pabandyk %{clicking_this_link} arba rankiniu būdu grįžk į programėlę.
+      registration_complete: Tavo registracija domene %{domain} baigta!
       welcome_title: Sveiki, %{name}!
     delete_account: Ištrinti paskyrą
-    delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>. Jūsų prašys patvirtinti pasirinkimą.
+    delete_account_html: Jei nori ištrinti savo paskyrą, gali <a href="%{path}">tęsti čia</a>. Tavęs bus paprašyta patvirtinimo.
     description:
       prefix_invited_by_user: "@%{name} kviečia prisijungti prie šio Mastodon serverio!"
-      prefix_sign_up: Užsiregistruok Mastodon šiandien!
+      prefix_sign_up: Užsiregistruok sistemoje Mastodon šiandien!
+      suffix: Su paskyra galėsi sekti žmones, skelbti naujienas ir keistis žinutėmis su bet kurio Mastodon serverio naudotojais ir dar daugiau!
     didnt_get_confirmation: Negavai patvirtinimo nuorodos?
     dont_have_your_security_key: Neturi saugumo rakto?
     forgot_password: Pamiršai slaptažodį?
     invalid_reset_password_token: Slaptažodžio atkūrimo raktas yra netinkamas arba nebegaliojantis. Paprašyk naujo.
+    link_to_otp: Įvesk dvigubą kodą iš telefono arba atkūrimo kodą
+    link_to_webauth: Naudoti saugumo rakto įrenginį
     log_in_with: Prisijungti su
     login: Prisijungti
     logout: Atsijungti
-    migrate_account: Prisijungti prie kitos paskyros
-    migrate_account_html: Jeigu norite nukreipti šią paskyrą į kita, galite tai <a href="%{path}">konfiguruoti čia</a>.
+    migrate_account: Persikelti prie kitos paskyros
+    migrate_account_html: Jei nori šią paskyrą nukreipti į kitą, gali <a href="%{path}">sukonfigūruoti ją čia</a>.
     or_log_in_with: Arba prisijungti su
+    privacy_policy_agreement_html: Perskaičiau ir sutinku su <a href="%{privacy_policy_path}" target="_blank">privatumo politika</a>
+    progress:
+      details: Tavo duomenys
+      review: Mūsų peržiūra
+      rules: Priimti taisykles
     providers:
       cas: CAS
       saml: SAML
     register: Užsiregistruoti
-    reset_password: Atstatyti slaptažodį
+    registration_closed: "%{instance} nepriima naujų narių"
+    resend_confirmation: Iš naujo siųsti patvirtinimo nuorodą
+    reset_password: Nustatyti iš naujo slaptažodį
     rules:
+      accept: Priimti
+      back: Grįžti
       invited_by: 'Gali prisijungti prie %{domain} pagal kvietimą, kurį gavai iš:'
+      preamble: Tai nustatė ir taiko %{domain} prižiūrėtojai.
       preamble_invited: Prieš tęsiant, atsižvelk į pagrindines taisykles, kurias nustatė %{domain} prižiūrėtojai.
+      title: Kelios pagrindinės taisyklės.
       title_invited: Esi pakviestas.
     security: Apsauga
     set_new_password: Nustatyti naują slaptažodį
+    setup:
+      email_settings_hint_html: Spustelėk mūsų atsiųstą nuorodą, kad patikrintum %{email}. Mes lauksime čia.
+      link_not_received: Negavai nuorodos?
+      title: Patikrinti pašto dėžutę
+    sign_in:
+      preamble_html: Prisijunk su savo <strong>%{domain}</strong> kredencialais. Jei tavo yra kitame serveryje, čia prisijungti negalėsi.
+      title: Prisijungti prie %{domain}
     status:
       account_status: Paskyros būsena
       redirecting_to: Tavo paskyra yra neaktyvi, nes šiuo metu ji nukreipiama į %{acct}.
       self_destruct: Kadangi %{domain} uždaromas, turėsi tik ribotą prieigą prie savo paskyros.
       view_strikes: Peržiūrėti ankstesnius savo paskyros pažeidimus
+  author_attribution:
+    example_title: Teksto pavyzdys
+    hint_html: Ar rašote naujienas ar tinklaraščio straipsnius už „Mastodon“ ribų? Valdykite, kaip būsite nurodomi, kai jais bus bendrinama platformoje „Mastodon“.
+    instructions: 'Įsitikinkite, kad šis kodas yra jūsų straipsnio HTML:'
+    more_from_html: Daugiau iš %{name}
+    s_blog: "%{name} tinklaraštis"
+    then_instructions: Tada toliau esančiame lauke įrašykite leidinio domeno vardą.
+    title: Autoriaus (-ės) atribucija
   challenge:
     hint_html: "<strong>Patarimas:</strong> artimiausią valandą daugiau neprašysime tavo slaptažodžio."
   datetime:
@@ -743,24 +878,24 @@ lt:
       title: Nepavyko saugumo patvirtinimas
     '429': Stabdomas
     '500':
-      content: Atsiprašome, tačiau mūsų pusėje įvyko klaida.
+      content: Atsiprašome, bet kažkas nutiko ne taip mūsų pusėje.
       title: Netinkamas puslapis
     noscript_html: Kad naudotumėtės Mastodon web aplikacija, prašome įsijungti JavaScript. Alternatyviai, pabandykite viena iš <a href="%{apps_path}">vietinių aplikacijų</a> Mastodon savo platformai.
   exports:
     archive_takeout:
       date: Data
-      download: Parsisiųsti archyvą
-      hint_html: Jūs galite prašyti savo <strong>įrašų bei medijos</strong> archyvo. Eksportuota informacija bus ActivityPub formatu, skaitoma suderintų programų. Galite prašyti archyvo, kas 7 dienas.
+      download: Atsisiųsti archyvą
+      hint_html: Gali paprašyti savo <strong>įrašų ir įkeltos medijos</strong> archyvo. Eksportuoti duomenys bus „ActivityPub“ formatu, kurį galima perskaityti bet kuria suderinama programine įranga. Archyvo galima prašyti kas 7 dienas.
       in_progress: Sudaromas archyvas...
       request: Prašyti savo archyvo
       size: Dydis
-    blocks: Jūs blokuojate
+    blocks: Blokuoji
     bookmarks: Žymės
     csv: CSV
-    domain_blocks: Domeno blokai
+    domain_blocks: Domeno blokavimai
     lists: Sąrašai
-    mutes: Jūs tildote
-    storage: Medijos sandėlis
+    mutes: Nutildei
+    storage: Medijos saugykla
   featured_tags:
     add_new: Pridėti naują
     hint_html: "<strong>Savo profilyje parodyk svarbiausius saitažodžius.</strong> Tai puikus įrankis kūrybiniams darbams ir ilgalaikiams projektams sekti, todėl svarbiausios saitažodžiai rodomi matomoje vietoje profilyje ir leidžia greitai pasiekti tavo paties įrašus."
@@ -796,11 +931,11 @@ lt:
     errors:
       too_large: Failas per didelis.
     modes:
-      merge: Sulieti
+      merge: Sujungti
       merge_long: Išsaugoti esančius įrašus ir pridėti naujus
       overwrite: Perrašyti
       overwrite_long: Pakeisti senus įrašus naujais
-    preface: Jūs galite importuoti informaciją iš kito serverio, tokią kaip sąrašą žmonių kuriuos sekate.
+    preface: Gali importuoti duomenis, kuriuos eksportavai iš kito serverio, pavyzdžiui, sekamų arba blokuojamų žmonių sąrašą.
     success: Jūsų informacija sėkmingai įkelta ir bus apdorota kaip įmanoma greičiau
     types:
       blocking: Blokuojamų sąrašas
@@ -833,13 +968,26 @@ lt:
       expires_at: Baigsis
       uses: Naudojimai
     title: Kviesti žmones
+  login_activities:
+    authentication_methods:
+      otp: dvigubas tapatybės nustatymo programėlė
+      webauthn: saugumo raktai
+    description_html: Jei pastebėjei neatpažįstamą veiklą, apsvarstyk galimybę pakeisti slaptažodį ir įjungti dvigubą tapatybės nustatymą.
+    empty: Tapatybės nustatymas istorijos nėra
+    title: Tapatybės nustatymo istorija
+  mail_subscriptions:
+    unsubscribe:
+      success_html: Daugiau negausi %{type} „Mastodon“ domene %{domain} į savo el. paštą %{email}.
   media_attachments:
     validations:
       images_and_video: Negalima pridėti video prie statuso, kuris jau turi nuotrauką
+      not_found: Medija %{ids} nerasta arba jau pridėta prie kito įrašo.
       too_many: Negalima pridėti daugiau nei 4 failų
   migrations:
     acct: Perkelta į
     cancel: Atšaukti nukreipimą
+    warning:
+      disabled_account: Po to tavo dabartine paskyra nebus galima naudotis visiškai. Tačiau turėsi prieigą prie duomenų eksporto ir pakartotinio aktyvavimo.
   moderation:
     title: Prižiūrėjimas
   notification_mailer:
@@ -866,6 +1014,7 @@ lt:
       subject: "%{name} pakėlė tavo įrašą"
       title: Naujas pakėlimas
   notifications:
+    administration_emails: Administratoriaus el. laiško pranešimai
     email_events: Įvykiai, skirti el. laiško pranešimams
     email_events_hint: 'Pasirink įvykius, apie kuriuos nori gauti pranešimus:'
   number:
@@ -875,6 +1024,10 @@ lt:
           billion: mlrd.
           million: mln.
           thousand: tūkst.
+  otp_authentication:
+    code_hint: Įvesk autentifikatoriaus programėlės sugeneruotą kodą, kad patvirtintum
+    description_html: Jei įjungsi <strong>dvigubo tapatybės nustatymą</strong> naudojant autentifikatoriaus programėlę, prisijungiant reikės turėti telefoną, kuris generuos prieigos raktos, kuriuos turėsi įvesti.
+    instructions_html: "<strong>Nuskenuok šį QR kodą į Google Authenticator arba panašią TOTP programėlę savo telefone</strong>. Nuo šiol ši programėlė generuos prieigos raktus, kuriuos turėsi įvesti prisijungiant."
   pagination:
     newer: Naujesnis
     next: Kitas
@@ -925,7 +1078,7 @@ lt:
       generic: Nežinoma naršyklė
     current_session: Dabartinis seansas
     date: Data
-    description: "%{browser} ant %{platform}"
+    description: "„%{browser}“ per „%{platform}“"
     explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
     ip: IP
     platforms:
@@ -945,6 +1098,7 @@ lt:
     revoke: Naikinti
     revoke_success: Seansas sėkmingai panaikintas.
     title: Seansai
+    view_authentication_history: Peržiūrėti paskyros tapatybės nustatymo istoriją
   settings:
     account: Paskyra
     account_settings: Paskyros nustatymai
@@ -955,16 +1109,18 @@ lt:
     delete: Paskyros trynimas
     development: Kūrimas
     edit_profile: Redaguoti profilį
-    export: Duomenų eksportas
+    export: Eksportuoti
     featured_tags: Rodomi saitažodžiai
     import: Importuoti
+    import_and_export: Importas ir eksportas
     migrate: Paskyros migracija
     notifications: El. laiško pranešimai
     preferences: Nuostatos
     profile: Viešas profilis
     relationships: Sekimai ir sekėjai
     severed_relationships: Nutrūkę sąryšiai
-    two_factor_authentication: Dviejų veiksnių autentikacija
+    two_factor_authentication: Dvigubas tapatybės nustatymas
+    webauthn_authentication: Saugumo raktai
   severed_relationships:
     download: Atsisiųsti (%{count})
     preamble: Užblokavus domeną arba prižiūrėtojams nusprendus pristabdyti nuotolinio serverio veiklą, gali prarasti sekimus ir sekėjus. Kai taip atsitiks, galėsi atsisiųsti nutrauktų sąryšių sąrašus, kad juos patikrinti ir galbūt importuoti į kitą serverį.
@@ -984,29 +1140,26 @@ lt:
         other: "%{count} vaizdų"
     boosted_from_html: Pakelta iš %{acct_link}
     content_warning: 'Turinio įspėjimas: %{warning}'
-    open_in_web: Atidaryti naudojan Web
     over_character_limit: pasiektas %{max} simbolių limitas
     pin_errors:
       limit: Jūs jau prisegėte maksimalų toot'ų skaičų
       ownership: Kitų vartotojų toot'ai negali būti prisegti
       reblog: Pakeltos žinutės negali būti prisegtos
-    poll:
-      vote: Balsuoti
-    show_more: Rodyti daugiau
-    show_thread: Rodyti giją
     visibilities:
       private: Tik sekėjams
       private_long: rodyti tik sekėjams
       public: Vieša
       public_long: visi gali matyti
-      unlisted: Neįtrauktas į sąrašus
+      unlisted: Neįtrauktas į sąrašą
       unlisted_long: matyti gali visi, bet nėra išvardyti į viešąsias laiko skales
   statuses_cleanup:
     enabled_hint: Automatiškai ištrina įrašus, kai jie pasiekia nustatytą amžiaus ribą, nebent jie atitinka vieną iš toliau nurodytų išimčių
+    interaction_exceptions_explanation: Atkreipk dėmesį, kad negarantuojama, jog įrašai nebus ištrinti, jei jų mėgstamumo ar pasidalinimo riba bus žemesnė, nors vieną kartą ji jau buvo viršyta.
     keep_polls_hint: Neištrina jokių tavo apklausų
     keep_self_bookmark: Laikyti įrašus, kuriuos pažymėjai
     keep_self_bookmark_hint: Neištrina tavo pačių įrašų, jei esi juos pažymėjęs (-usi)
     keep_self_fav_hint: Neištrina tavo pačių įrašų, jei esi juos pamėgęs (-usi)
+    min_age_label: Amžiaus riba
   stream_entries:
     sensitive_content: Jautrus turinys
   themes:
@@ -1017,13 +1170,16 @@ lt:
   two_factor_authentication:
     add: Pridėti
     disable: Išjungti 2FA
-    enabled: Dviejų veiksnių autentikacija įjungta
-    enabled_success: Dviejų veiksnių autentikacija sėkmingai įjungta
+    disabled_success: Dvigubas tapatybės nustatymas sėkmingai išjungtas
+    enabled: Dvigubas tapatybės nustatymas įjungtas
+    enabled_success: Dvigubas tapatybės nustatymas sėkmingai įjungtas
     generate_recovery_codes: Sugeneruoti atkūrimo kodus
     lost_recovery_codes: Atkūrimo kodai jums leidžia atgauti prisijungimą prie Jūsų paskyros, jeigu prarandate telefoną. Jeigu praradote atkūrimo kodus, juos galite sugeneruoti čia. Jūsų senieji atkūrimo kodai nebeveiks.
+    otp: Autentifikatoriaus programėlė
     recovery_codes: Atsarginio atkūrimo kodai
     recovery_codes_regenerated: Atkūrimo kodai sėkmingai sugeneruoti
     recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
+    webauthn: Saugumo raktai
   user_mailer:
     appeal_approved:
       action: Paskyros nustatymai
@@ -1037,11 +1193,15 @@ lt:
       title: Archyvas išimtas
     failed_2fa:
       details: 'Štai išsami informacija apie bandymą prisijungti:'
-      explanation: Kažkas bandė prisijungti prie tavo paskyros, bet nurodė netinkamą antrąjį tapatybės nustatymo veiksnį.
+      explanation: Kažkas bandė prisijungti prie tavo paskyros, bet nurodė netinkamą dvigubą tapatybės nustatymą.
       further_actions_html: Jei tai buvo ne tu, rekomenduojame nedelsiant imtis %{action}, nes jis gali būti pažeistas.
-      subject: Antrojo veiksnio tapatybės nustatymas nesėkmingai
-      title: Nepavyko atlikti antrojo veiksnio tapatybės nustatymo
+      subject: Dvigubas tapatybės nustatymas nesėkmingai
+      title: Nepavyko atlikti dvigubo tapatybės nustatymo
+    suspicious_sign_in:
+      further_actions_html: Jei tai buvai ne tu, rekomenduojame nedelsiant %{action} ir įjungti dvigubą tapatybės nustatymą, kad tavo paskyra būtų saugi.
     warning:
+      categories:
+        spam: Šlamštas
       subject:
         disable: Jūsų paskyra %{acct} buvo užšaldyta
         none: Įspėjmas vartotojui %{acct}
@@ -1105,10 +1265,13 @@ lt:
     instructions_html: Nukopijuok ir įklijuok toliau pateiktą kodą į savo svetainės HTML. Tada į vieną iš papildomų profilio laukų skirtuke Redaguoti profilį įrašyk savo svetainės adresą ir išsaugok pakeitimus.
     verification: Patvirtinimas
     verified_links: Tavo patikrintos nuorodos
+    website_verification: Svetainės patvirtinimas
   webauthn_credentials:
+    add: Pridėti naują saugumo raktą
     create:
       error: Kilo problema pridedant saugumo raktą. Bandyk dar kartą.
       success: Tavo saugumo raktas buvo sėkmingai pridėtas.
+    delete: Ištrinti
     delete_confirmation: Ar tikrai nori ištrinti šį saugumo raktą?
     description_html: Jei įjungsi <strong>saugumo rakto tapatybės nustatymą</strong>, prisijungiant reikės naudoti vieną iš savo saugumo raktų.
     destroy:
@@ -1116,3 +1279,4 @@ lt:
       success: Tavo saugumo raktas buvo sėkmingai ištrintas.
     nickname_hint: Įvesk naujojo saugumo rakto slapyvardį
     not_enabled: Dar neįjungei WebAuthn
+    otp_required: Norint naudoti saugumo raktus, pirmiausia įjunk dvigubą tapatybės nustatymą.

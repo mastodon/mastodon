@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,7 +21,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id", "uri"], name: "index_account_aliases_on_account_id_and_uri", unique: true
-    t.index ["account_id"], name: "index_account_aliases_on_account_id"
   end
 
   create_table "account_conversations", force: :cascade do |t|
@@ -99,7 +98,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.integer "followers_count", default: 0, null: false
     t.integer "following_count", default: 0, null: false
     t.index ["account_id", "relationship_severance_event_id"], name: "idx_on_account_id_relationship_severance_event_id_7bd82bf20e", unique: true
-    t.index ["account_id"], name: "index_account_relationship_severance_events_on_account_id"
     t.index ["relationship_severance_event_id"], name: "idx_on_relationship_severance_event_id_403f53e707"
   end
 
@@ -193,13 +191,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.boolean "hide_collections"
     t.integer "avatar_storage_schema_version"
     t.integer "header_storage_schema_version"
-    t.string "devices_url"
-    t.integer "suspension_origin"
     t.datetime "sensitized_at", precision: nil
+    t.integer "suspension_origin"
     t.boolean "trendable"
     t.datetime "reviewed_at", precision: nil
     t.datetime "requested_review_at", precision: nil
     t.boolean "indexable", default: false, null: false
+    t.string "attribution_domains", default: [], array: true
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["domain", "id"], name: "index_accounts_on_domain_and_id"
@@ -260,6 +258,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.datetime "updated_at", precision: nil, null: false
     t.datetime "published_at", precision: nil
     t.bigint "status_ids", array: true
+  end
+
+  create_table "annual_report_statuses_per_account_counts", force: :cascade do |t|
+    t.integer "year", null: false
+    t.bigint "account_id", null: false
+    t.bigint "statuses_count", null: false
+    t.index ["year", "account_id"], name: "idx_on_year_account_id_ff3e167cef", unique: true
   end
 
   create_table "appeals", force: :cascade do |t|
@@ -397,7 +402,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.datetime "updated_at", null: false
     t.index ["custom_filter_id"], name: "index_custom_filter_statuses_on_custom_filter_id"
     t.index ["status_id", "custom_filter_id"], name: "index_custom_filter_statuses_on_status_id_and_custom_filter_id", unique: true
-    t.index ["status_id"], name: "index_custom_filter_statuses_on_status_id"
   end
 
   create_table "custom_filters", force: :cascade do |t|
@@ -409,19 +413,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.datetime "updated_at", precision: nil, null: false
     t.integer "action", default: 0, null: false
     t.index ["account_id"], name: "index_custom_filters_on_account_id"
-  end
-
-  create_table "devices", force: :cascade do |t|
-    t.bigint "access_token_id"
-    t.bigint "account_id"
-    t.string "device_id", default: "", null: false
-    t.string "name", default: "", null: false
-    t.text "fingerprint_key", default: "", null: false
-    t.text "identity_key", default: "", null: false
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["access_token_id"], name: "index_devices_on_access_token_id"
-    t.index ["account_id"], name: "index_devices_on_account_id"
   end
 
   create_table "domain_allows", force: :cascade do |t|
@@ -451,20 +442,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.bigint "parent_id"
     t.boolean "allow_with_approval", default: false, null: false
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
-  end
-
-  create_table "encrypted_messages", id: :bigint, default: -> { "timestamp_id('encrypted_messages'::text)" }, force: :cascade do |t|
-    t.bigint "device_id"
-    t.bigint "from_account_id"
-    t.string "from_device_id", default: "", null: false
-    t.integer "type", default: 0, null: false
-    t.text "body", default: "", null: false
-    t.text "digest", default: "", null: false
-    t.text "message_franking", default: "", null: false
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["device_id"], name: "index_encrypted_messages_on_device_id"
-    t.index ["from_account_id"], name: "index_encrypted_messages_on_from_account_id"
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -579,12 +556,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
   end
 
   create_table "ip_blocks", force: :cascade do |t|
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.datetime "expires_at", precision: nil
     t.inet "ip", default: "0.0.0.0", null: false
     t.integer "severity", default: 0, null: false
+    t.datetime "expires_at", precision: nil
     t.text "comment", default: "", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["ip"], name: "index_ip_blocks_on_ip", unique: true
   end
 
@@ -661,10 +638,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
   end
 
   create_table "mentions", force: :cascade do |t|
-    t.bigint "status_id"
+    t.bigint "status_id", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.bigint "account_id"
+    t.bigint "account_id", null: false
     t.boolean "silent", default: false, null: false
     t.index ["account_id", "status_id"], name: "index_mentions_on_account_id_and_status_id", unique: true
     t.index ["status_id"], name: "index_mentions_on_status_id"
@@ -692,12 +669,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
 
   create_table "notification_policies", force: :cascade do |t|
     t.bigint "account_id", null: false
-    t.boolean "filter_not_following", default: false, null: false
-    t.boolean "filter_not_followers", default: false, null: false
-    t.boolean "filter_new_accounts", default: false, null: false
-    t.boolean "filter_private_mentions", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "for_not_following", default: 0, null: false
+    t.integer "for_not_followers", default: 0, null: false
+    t.integer "for_new_accounts", default: 0, null: false
+    t.integer "for_private_mentions", default: 1, null: false
+    t.integer "for_limited_accounts", default: 1, null: false
     t.index ["account_id"], name: "index_notification_policies_on_account_id", unique: true
   end
 
@@ -706,11 +684,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.bigint "from_account_id", null: false
     t.bigint "last_status_id"
     t.bigint "notifications_count", default: 0, null: false
-    t.boolean "dismissed", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "from_account_id"], name: "index_notification_requests_on_account_id_and_from_account_id", unique: true
-    t.index ["account_id", "id"], name: "index_notification_requests_on_account_id_and_id", order: { id: :desc }, where: "(dismissed = false)"
     t.index ["from_account_id"], name: "index_notification_requests_on_from_account_id"
     t.index ["last_status_id"], name: "index_notification_requests_on_last_status_id"
   end
@@ -724,6 +700,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.bigint "from_account_id", null: false
     t.string "type"
     t.boolean "filtered", default: false, null: false
+    t.string "group_key"
+    t.index ["account_id", "group_key"], name: "index_notifications_on_account_id_and_group_key", where: "(group_key IS NOT NULL)"
     t.index ["account_id", "id", "type"], name: "index_notifications_on_account_id_and_id_and_type", order: { id: :desc }
     t.index ["account_id", "id", "type"], name: "index_notifications_on_filtered", order: { id: :desc }, where: "(filtered = false)"
     t.index ["activity_id", "activity_type"], name: "index_notifications_on_activity_id_and_activity_type"
@@ -739,6 +717,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.string "scopes"
     t.bigint "application_id", null: false
     t.bigint "resource_owner_id", null: false
+    t.string "code_challenge"
+    t.string "code_challenge_method"
     t.index ["resource_owner_id"], name: "index_oauth_access_grants_on_resource_owner_id"
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
   end
@@ -775,17 +755,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.index ["owner_id", "owner_type"], name: "index_oauth_applications_on_owner_id_and_owner_type"
     t.index ["superapp"], name: "index_oauth_applications_on_superapp", where: "(superapp = true)"
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
-  end
-
-  create_table "one_time_keys", force: :cascade do |t|
-    t.bigint "device_id"
-    t.string "key_id", default: "", null: false
-    t.text "key", default: "", null: false
-    t.text "signature", default: "", null: false
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["device_id"], name: "index_one_time_keys_on_device_id"
-    t.index ["key_id"], name: "index_one_time_keys_on_key_id"
   end
 
   create_table "pghero_space_stats", force: :cascade do |t|
@@ -877,6 +846,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.integer "link_type"
     t.datetime "published_at"
     t.string "image_description", default: "", null: false
+    t.bigint "author_account_id"
+    t.index ["author_account_id"], name: "index_preview_cards_on_author_account_id", where: "(author_account_id IS NOT NULL)"
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 
@@ -927,6 +898,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.integer "category", default: 0, null: false
     t.datetime "action_taken_at", precision: nil
     t.bigint "rule_ids", array: true
+    t.bigint "application_id"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["action_taken_by_account_id"], name: "index_reports_on_action_taken_by_account_id", where: "(action_taken_by_account_id IS NOT NULL)"
     t.index ["assigned_account_id"], name: "index_reports_on_assigned_account_id", where: "(assigned_account_id IS NOT NULL)"
@@ -1043,6 +1015,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.bigint "favourites_count", default: 0, null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.bigint "untrusted_favourites_count"
+    t.bigint "untrusted_reblogs_count"
     t.index ["status_id"], name: "index_status_stats_on_status_id", unique: true
   end
 
@@ -1095,12 +1069,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.bigint "status_id", null: false
     t.bigint "tag_id", null: false
     t.index ["status_id"], name: "index_statuses_tags_on_status_id"
-  end
-
-  create_table "system_keys", force: :cascade do |t|
-    t.binary "key"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "tag_follows", force: :cascade do |t|
@@ -1240,7 +1208,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
     t.datetime "updated_at", precision: nil, null: false
     t.index ["external_id"], name: "index_webauthn_credentials_on_external_id", unique: true
     t.index ["user_id", "nickname"], name: "index_webauthn_credentials_on_user_id_and_nickname", unique: true
-    t.index ["user_id"], name: "index_webauthn_credentials_on_user_id"
   end
 
   create_table "webhooks", force: :cascade do |t|
@@ -1299,11 +1266,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
   add_foreign_key "custom_filter_statuses", "custom_filters", on_delete: :cascade
   add_foreign_key "custom_filter_statuses", "statuses", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
-  add_foreign_key "devices", "accounts", on_delete: :cascade
-  add_foreign_key "devices", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
-  add_foreign_key "encrypted_messages", "accounts", column: "from_account_id", on_delete: :cascade
-  add_foreign_key "encrypted_messages", "devices", on_delete: :cascade
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
   add_foreign_key "featured_tags", "accounts", on_delete: :cascade
@@ -1333,8 +1296,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
   add_foreign_key "mentions", "statuses", on_delete: :cascade
   add_foreign_key "mutes", "accounts", column: "target_account_id", name: "fk_eecff219ea", on_delete: :cascade
   add_foreign_key "mutes", "accounts", name: "fk_b8d8daf315", on_delete: :cascade
-  add_foreign_key "notification_permissions", "accounts"
-  add_foreign_key "notification_permissions", "accounts", column: "from_account_id"
+  add_foreign_key "notification_permissions", "accounts", column: "from_account_id", on_delete: :cascade
+  add_foreign_key "notification_permissions", "accounts", on_delete: :cascade
   add_foreign_key "notification_policies", "accounts", on_delete: :cascade
   add_foreign_key "notification_requests", "accounts", column: "from_account_id", on_delete: :cascade
   add_foreign_key "notification_requests", "accounts", on_delete: :cascade
@@ -1346,18 +1309,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id", name: "fk_f5fc4c1ee3", on_delete: :cascade
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id", name: "fk_e84df68546", on_delete: :cascade
   add_foreign_key "oauth_applications", "users", column: "owner_id", name: "fk_b0988c7c0a", on_delete: :cascade
-  add_foreign_key "one_time_keys", "devices", on_delete: :cascade
   add_foreign_key "poll_votes", "accounts", on_delete: :cascade
   add_foreign_key "poll_votes", "polls", on_delete: :cascade
   add_foreign_key "polls", "accounts", on_delete: :cascade
   add_foreign_key "polls", "statuses", on_delete: :cascade
   add_foreign_key "preview_card_trends", "preview_cards", on_delete: :cascade
+  add_foreign_key "preview_cards", "accounts", column: "author_account_id", on_delete: :nullify
   add_foreign_key "report_notes", "accounts", on_delete: :cascade
   add_foreign_key "report_notes", "reports", on_delete: :cascade
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", name: "fk_bca45b75fd", on_delete: :nullify
   add_foreign_key "reports", "accounts", column: "assigned_account_id", on_delete: :nullify
   add_foreign_key "reports", "accounts", column: "target_account_id", name: "fk_eb37af34f0", on_delete: :cascade
   add_foreign_key "reports", "accounts", name: "fk_4b81f7522c", on_delete: :cascade
+  add_foreign_key "reports", "oauth_applications", column: "application_id", on_delete: :nullify
   add_foreign_key "scheduled_statuses", "accounts", on_delete: :cascade
   add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", name: "fk_957e5bda89", on_delete: :cascade
   add_foreign_key "session_activations", "users", name: "fk_e5fda67334", on_delete: :cascade
@@ -1416,9 +1380,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
   add_index "instances", ["domain"], name: "index_instances_on_domain", unique: true
 
   create_view "user_ips", sql_definition: <<-SQL
-      SELECT t0.user_id,
-      t0.ip,
-      max(t0.used_at) AS used_at
+      SELECT user_id,
+      ip,
+      max(used_at) AS used_at
      FROM ( SELECT users.id AS user_id,
               users.sign_up_ip AS ip,
               users.created_at AS used_at
@@ -1435,7 +1399,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
               login_activities.created_at
              FROM login_activities
             WHERE (login_activities.success = true)) t0
-    GROUP BY t0.user_id, t0.ip;
+    GROUP BY user_id, ip;
   SQL
   create_view "account_summaries", materialized: true, sql_definition: <<-SQL
       SELECT accounts.id AS account_id,
@@ -1456,9 +1420,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
   add_index "account_summaries", ["account_id"], name: "index_account_summaries_on_account_id", unique: true
 
   create_view "global_follow_recommendations", materialized: true, sql_definition: <<-SQL
-      SELECT t0.account_id,
-      sum(t0.rank) AS rank,
-      array_agg(t0.reason) AS reason
+      SELECT account_id,
+      sum(rank) AS rank,
+      array_agg(reason) AS reason
      FROM ( SELECT account_summaries.account_id,
               ((count(follows.id))::numeric / (1.0 + (count(follows.id))::numeric)) AS rank,
               'most_followed'::text AS reason
@@ -1482,8 +1446,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_192043) do
                     WHERE (follow_recommendation_suppressions.account_id = statuses.account_id)))))
             GROUP BY account_summaries.account_id
            HAVING (sum((status_stats.reblogs_count + status_stats.favourites_count)) >= (5)::numeric)) t0
-    GROUP BY t0.account_id
-    ORDER BY (sum(t0.rank)) DESC;
+    GROUP BY account_id
+    ORDER BY (sum(rank)) DESC;
   SQL
   add_index "global_follow_recommendations", ["account_id"], name: "index_global_follow_recommendations_on_account_id", unique: true
 

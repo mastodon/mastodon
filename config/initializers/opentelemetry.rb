@@ -56,14 +56,22 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
       },
     })
 
-    prefix = ENV.fetch('OTEL_SERVICE_NAME_PREFIX', 'mastodon')
+    prefix    = ENV.fetch('OTEL_SERVICE_NAME_PREFIX', 'mastodon')
+    separator = ENV.fetch('OTEL_SERVICE_NAME_SEPARATOR', '/')
 
     c.service_name =  case $PROGRAM_NAME
-                      when /puma/ then "#{prefix}/web"
+                      when /puma/ then "#{prefix}#{separator}web"
                       else
-                        "#{prefix}/#{$PROGRAM_NAME.split('/').last}"
+                        "#{prefix}#{separator}#{$PROGRAM_NAME.split('/').last}"
                       end
     c.service_version = Mastodon::Version.to_s
+
+    if Mastodon::Version.source_commit.present?
+      c.resource = OpenTelemetry::SDK::Resources::Resource.create(
+        'vcs.repository.ref.revision' => Mastodon::Version.source_commit,
+        'vcs.repository.url.full' => Mastodon::Version.source_base_url
+      )
+    end
   end
 end
 

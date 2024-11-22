@@ -4,8 +4,8 @@
 - content_for :page_title do
   = t('admin.reports.confirm_action', acct: target_acct)
 
-= form_tag admin_report_actions_path(@report), class: 'simple_form', method: :post do
-  = hidden_field_tag :moderation_action, @moderation_action
+= form_with url: admin_report_actions_path(@report), class: :simple_form do |form|
+  = form.hidden_field :moderation_action, value: @moderation_action
 
   %p.hint= t("admin.reports.summary.action_preambles.#{@moderation_action}_html", acct: target_acct)
   %ul.hint
@@ -30,7 +30,9 @@
         %p= t "user_mailer.warning.explanation.#{warning_action}", instance: Rails.configuration.x.local_domain
 
       .fields-group
-        = text_area_tag :text, nil, placeholder: t('admin.reports.summary.warning_placeholder')
+        = form.text_area :text,
+                         value: nil,
+                         placeholder: t('admin.reports.summary.warning_placeholder')
 
       - unless @report.other?
         %p
@@ -75,4 +77,7 @@
 
   .actions
     = link_to t('admin.reports.cancel'), admin_report_path(@report), class: 'button button-tertiary'
-    = button_tag t('admin.reports.confirm'), name: :confirm, class: 'button', type: :submit
+    = form.button t('admin.reports.confirm'),
+                  name: :confirm,
+                  class: 'button',
+                  type: :submit

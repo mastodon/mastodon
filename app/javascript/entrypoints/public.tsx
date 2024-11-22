@@ -37,43 +37,6 @@ const messages = defineMessages({
   },
 });
 
-interface SetHeightMessage {
-  type: 'setHeight';
-  id: string;
-  height: number;
-}
-
-function isSetHeightMessage(data: unknown): data is SetHeightMessage {
-  if (
-    data &&
-    typeof data === 'object' &&
-    'type' in data &&
-    data.type === 'setHeight'
-  )
-    return true;
-  else return false;
-}
-
-window.addEventListener('message', (e) => {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- typings are not correct, it can be null in very rare cases
-  if (!e.data || !isSetHeightMessage(e.data) || !window.parent) return;
-
-  const data = e.data;
-
-  ready(() => {
-    window.parent.postMessage(
-      {
-        type: 'setHeight',
-        id: data.id,
-        height: document.getElementsByTagName('html')[0]?.scrollHeight,
-      },
-      '*',
-    );
-  }).catch((e: unknown) => {
-    console.error('Error in setHeightMessage postMessage', e);
-  });
-});
-
 function loaded() {
   const { messages: localeData } = getLocale();
 
@@ -316,8 +279,8 @@ function loaded() {
 
       const message =
         statusEl.dataset.spoiler === 'expanded'
-          ? localeData['status.show_less'] ?? 'Show less'
-          : localeData['status.show_more'] ?? 'Show more';
+          ? (localeData['status.show_less'] ?? 'Show less')
+          : (localeData['status.show_more'] ?? 'Show more');
       spoilerLink.textContent = new IntlMessageFormat(
         message,
         locale,
@@ -364,31 +327,24 @@ Rails.delegate(document, '.input-copy button', 'click', ({ target }) => {
 
   if (!input) return;
 
-  const oldReadOnly = input.readOnly;
-
-  input.readOnly = false;
-  input.focus();
-  input.select();
-  input.setSelectionRange(0, input.value.length);
-
-  try {
-    if (document.execCommand('copy')) {
-      input.blur();
-
+  navigator.clipboard
+    .writeText(input.value)
+    .then(() => {
       const parent = target.parentElement;
 
-      if (!parent) return;
-      parent.classList.add('copied');
+      if (parent) {
+        parent.classList.add('copied');
 
-      setTimeout(() => {
-        parent.classList.remove('copied');
-      }, 700);
-    }
-  } catch (err) {
-    console.error(err);
-  }
+        setTimeout(() => {
+          parent.classList.remove('copied');
+        }, 700);
+      }
 
-  input.readOnly = oldReadOnly;
+      return true;
+    })
+    .catch((error: unknown) => {
+      console.error(error);
+    });
 });
 
 const toggleSidebar = () => {
@@ -430,6 +386,42 @@ Rails.delegate(document, 'img.custom-emoji', 'mouseout', ({ target }) => {
   if (target instanceof HTMLImageElement && target.dataset.static)
     target.src = target.dataset.static;
 });
+
+const setInputDisabled = (
+  input: HTMLInputElement | HTMLSelectElement,
+  disabled: boolean,
+) => {
+  input.disabled = disabled;
+
+  const wrapper = input.closest('.with_label');
+  if (wrapper) {
+    wrapper.classList.toggle('disabled', input.disabled);
+
+    const hidden =
+      input.type === 'checkbox' &&
+      wrapper.querySelector<HTMLInputElement>('input[type=hidden][value="0"]');
+    if (hidden) {
+      hidden.disabled = input.disabled;
+    }
+  }
+};
+
+Rails.delegate(
+  document,
+  '#account_statuses_cleanup_policy_enabled',
+  'change',
+  ({ target }) => {
+    if (!(target instanceof HTMLInputElement) || !target.form) return;
+
+    target.form
+      .querySelectorAll<
+        HTMLInputElement | HTMLSelectElement
+      >('input:not([type=hidden], #account_statuses_cleanup_policy_enabled), select')
+      .forEach((input) => {
+        setInputDisabled(input, !target.checked);
+      });
+  },
+);
 
 // Empty the honeypot fields in JS in case something like an extension
 // automatically filled them.

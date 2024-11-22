@@ -2,5 +2,5 @@
 
 Fabricator(:account_domain_block) do
   account { Fabricate.build(:account) }
-  domain 'example.com'
+  domain { sequence { |n| "host-#{n}.example" } }
 end

@@ -80,7 +80,7 @@ module SignatureVerification
     fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)", signed_string: compare_signed_string, signature: signature_params['signature']
   rescue SignatureVerificationError => e
     fail_with! e.message
-  rescue HTTP::Error, OpenSSL::SSL::SSLError => e
+  rescue *Mastodon::HTTP_CONNECTION_ERRORS => e
     fail_with! "Failed to fetch remote data: #{e.message}"
   rescue Mastodon::UnexpectedResponseError
     fail_with! 'Failed to fetch remote data (got unexpected reply from server)'

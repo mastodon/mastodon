@@ -13,7 +13,7 @@ class Settings::ApplicationsController < Settings::BaseController
   def new
     @application = Doorkeeper::Application.new(
       redirect_uri: Doorkeeper.configuration.native_redirect_uri,
-      scopes: 'read:me'
+      scopes: 'profile'
     )
   end
 

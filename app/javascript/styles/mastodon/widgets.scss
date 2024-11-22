@@ -1,213 +1,4 @@
-@use 'sass:math';
-
-.hero-widget {
-  margin-bottom: 10px;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  &__img {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    border-radius: 4px 4px 0 0;
-    background: $base-shadow-color;
-
-    img {
-      object-fit: cover;
-      display: block;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      border-radius: 4px 4px 0 0;
-    }
-  }
-
-  &__text {
-    background: $ui-base-color;
-    padding: 20px;
-    border-radius: 0 0 4px 4px;
-    font-size: 15px;
-    color: $darker-text-color;
-    line-height: 20px;
-    word-wrap: break-word;
-    font-weight: 400;
-
-    .emojione {
-      width: 20px;
-      height: 20px;
-      margin: -3px 0 0;
-      margin-inline-start: 0.075em;
-      margin-inline-end: 0.075em;
-    }
-
-    p {
-      margin-bottom: 20px;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    em {
-      display: inline;
-      margin: 0;
-      padding: 0;
-      font-weight: 700;
-      background: transparent;
-      font-family: inherit;
-      font-size: inherit;
-      line-height: inherit;
-      color: lighten($darker-text-color, 10%);
-    }
-
-    a {
-      color: $secondary-text-color;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  @media screen and (max-width: $no-gap-breakpoint) {
-    display: none;
-  }
-}
-
-.endorsements-widget {
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-
-  h4 {
-    padding: 10px;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 13px;
-    color: $darker-text-color;
-  }
-
-  .account {
-    padding: 10px 0;
-
-    &:last-child {
-      border-bottom: 0;
-    }
-
-    .account__display-name {
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  .trends__item {
-    padding: 10px;
-  }
-}
-
-.trends-widget {
-  h4 {
-    color: $darker-text-color;
-  }
-}
-
-.placeholder-widget {
-  padding: 16px;
-  border-radius: 4px;
-  border: 2px dashed $dark-text-color;
-  text-align: center;
-  color: $darker-text-color;
-  margin-bottom: 10px;
-}
-
-.moved-account-widget {
-  padding: 15px;
-  padding-bottom: 20px;
-  border-radius: 4px;
-  background: $ui-base-color;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-  color: $secondary-text-color;
-  font-weight: 400;
-  margin-bottom: 10px;
-
-  strong,
-  a {
-    font-weight: 500;
-
-    @each $lang in $cjk-langs {
-      &:lang(#{$lang}) {
-        font-weight: 700;
-      }
-    }
-  }
-
-  a {
-    color: inherit;
-    text-decoration: underline;
-
-    &.mention {
-      text-decoration: none;
-
-      span {
-        text-decoration: none;
-      }
-
-      &:focus,
-      &:hover,
-      &:active {
-        text-decoration: none;
-
-        span {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-
-  &__message {
-    margin-bottom: 15px;
-
-    .fa {
-      margin-inline-end: 5px;
-      color: $darker-text-color;
-    }
-  }
-
-  &__card {
-    .detailed-status__display-avatar {
-      position: relative;
-      cursor: pointer;
-    }
-
-    .detailed-status__display-name {
-      margin-bottom: 0;
-      text-decoration: none;
-
-      span {
-        font-weight: 400;
-      }
-    }
-  }
-}
-
-.memoriam-widget {
-  padding: 20px;
-  border-radius: 4px;
-  background: $base-shadow-color;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-  font-size: 14px;
-  color: $darker-text-color;
-  margin-bottom: 10px;
-}
-
 .directory {
-  background: $ui-base-color;
-  border-radius: 4px;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-
   &__tag {
     box-sizing: border-box;
     margin-bottom: 10px;
@@ -217,7 +8,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: $ui-base-color;
+      border: 1px solid var(--background-border-color);
       border-radius: 4px;
       padding: 15px;
       text-decoration: none;
@@ -229,7 +20,7 @@
       &:hover,
       &:active,
       &:focus {
-        background: lighten($ui-base-color, 8%);
+        background: $ui-base-color;
       }
     }
 
@@ -351,7 +142,7 @@
       &:focus,
       &:hover,
       &:active {
-        text-decoration: underline;
+        color: $highlight-text-color;
       }
     }
   }
@@ -366,9 +157,7 @@
     padding-inline-end: 16px;
   }
 
-  .fa {
-    font-size: 16px;
-
+  .icon {
     &.active {
       color: $highlight-text-color;
     }
@@ -385,30 +174,6 @@
   @media screen and (max-width: $no-gap-breakpoint) {
     tbody td.optional {
       display: none;
-    }
-  }
-}
-
-.moved-account-widget,
-.memoriam-widget,
-.directory {
-  @media screen and (max-width: $no-gap-breakpoint) {
-    margin-bottom: 0;
-    box-shadow: none;
-    border-radius: 0;
-  }
-}
-
-.placeholder-widget {
-  a {
-    text-decoration: none;
-    font-weight: 500;
-    color: $ui-highlight-color;
-
-    &:hover,
-    &:focus,
-    &:active {
-      text-decoration: underline;
     }
   }
 }

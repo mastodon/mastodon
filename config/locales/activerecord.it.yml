@@ -15,6 +15,12 @@ it:
       user/invite_request:
         text: Motivo
     errors:
+      attributes:
+        domain:
+          invalid: non è un nome di dominio valido
+      messages:
+        invalid_domain_on_line: "%{value} non è un nome di dominio valido"
+        too_many_lines: è oltre il limite di %{limit} righe
       models:
         account:
           attributes:

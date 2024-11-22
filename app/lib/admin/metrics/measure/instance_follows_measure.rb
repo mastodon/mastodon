@@ -44,17 +44,9 @@ class Admin::Metrics::Measure::InstanceFollowsMeasure < Admin::Metrics::Measure:
         SELECT count(*) FROM new_follows
       ) AS value
       FROM (
-        SELECT generate_series(date_trunc('day', :start_at::timestamp)::date, date_trunc('day', :end_at::timestamp)::date, interval '1 day') AS period
+        #{generated_series_days}
       ) AS axis
     SQL
-  end
-
-  def time_period
-    (@start_at.to_date..@end_at.to_date)
-  end
-
-  def previous_time_period
-    ((@start_at.to_date - length_of_period)..(@end_at.to_date - length_of_period))
   end
 
   def params

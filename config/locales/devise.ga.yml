@@ -11,19 +11,114 @@ ga:
       invalid: "%{authentication_keys} nó pasfhocal neamhbhailí."
       last_attempt: Tá iarracht amháin eile agat sula gcuirtear do chuntas faoi ghlas.
       locked: Tá do chuntas faoi ghlas.
+      not_found_in_database: "%{authentication_keys} nó pasfhocal neamhbhailí."
+      omniauth_user_creation_failure: Earráid agus cuntas á chruthú don aitheantas seo.
       pending: Tá do chuntas fós faoi athbhreithniú.
+      timeout: Chuaigh do sheisiún in éag. Logáil isteach arís chun leanúint ar aghaidh.
       unauthenticated: Ní mór duit lógáil isteach nó síniú suas roimh leanúint leat.
       unconfirmed: Caithfidh tú do r-phost a dheimhniú roimh leanúint leat.
     mailer:
       confirmation_instructions:
         action: Deimhnigh seoladh r-phost
         action_with_app: Deimhnigh agus fill ar %{app}
+        explanation: Tá cuntas cruthaithe agat ar %{host} leis an seoladh ríomhphoist seo. Tá tú ceann cliceáil ar shiúl ó é a ghníomhachtú. Mura tusa a bhí ann, déan neamhaird den ríomhphost seo le do thoil.
+        explanation_when_pending: Chuir tú isteach ar chuireadh chuig %{host} leis an seoladh ríomhphoist seo. Nuair a dheimhníonn tú do sheoladh r-phoist, déanfaimid athbhreithniú ar d’iarratas. Is féidir leat logáil isteach chun do shonraí a athrú nó chun do chuntas a scriosadh, ach ní féidir leat rochtain a fháil ar fhormhór na bhfeidhmeanna go dtí go mbeidh do chuntas faofa. Má dhiúltaítear do d’iarratas, bainfear do shonraí, mar sin ní bheidh aon ghníomh eile ag teastáil uait. Mura tusa a bhí ann, déan neamhaird den ríomhphost seo le do thoil.
+        extra_html: Seiceáil freisin <a href="%{terms_path}">rialacha an fhreastalaí</a> agus <a href="%{policy_path}">ár dtéarmaí seirbhíse</a>.
+        subject: 'Mastodon: Treoracha dearbhaithe do %{instance}'
+        title: Fíoraigh seoladh ríomhphoist
       email_changed:
+        explanation: 'Tá seoladh ríomhphoist do chuntais á athrú go:'
+        extra: Murar athraigh tú do ríomhphost, is dócha go bhfuil rochtain faighte ag duine éigin ar do chuntas. Athraigh do phasfhocal láithreach le do thoil nó déan teagmháil le riarthóir an fhreastalaí má tá tú glasáilte amach as do chuntas.
+        subject: 'Mastodon: Athraíodh an ríomhphost'
         title: Seoladh ríomhphoist nua
       password_change:
+        explanation: Athraíodh an pasfhocal do do chuntas.
+        extra: Murar athraigh tú do phasfhocal, is dócha go bhfuil rochtain faighte ag duine éigin ar do chuntas. Athraigh do phasfhocal láithreach le do thoil nó déan teagmháil le riarthóir an fhreastalaí má tá tú glasáilte amach as do chuntas.
+        subject: 'Mastodon: Athraíodh an pasfhocal'
         title: Pasfhocal athraithe
+      reconfirmation_instructions:
+        explanation: Deimhnigh an seoladh nua chun do ríomhphost a athrú.
+        extra: Murar tusa a thionscain an t-athrú seo, déan neamhaird den ríomhphost seo le do thoil. Ní athrófar seoladh ríomhphoist an chuntais Mastodon go dtí go bhfaighidh tú rochtain ar an nasc thuas.
+        subject: 'Mastodon: Deimhnigh ríomhphost le haghaidh %{instance}'
+        title: Fíoraigh seoladh ríomhphoist
       reset_password_instructions:
         action: Athraigh pasfhocal
+        explanation: D'iarr tú pasfhocal nua do do chuntas.
+        extra: Murar iarr tú é seo, déan neamhaird den ríomhphost seo le do thoil. Ní athrófar do phasfhocal go dtí go bhfaighidh tú rochtain ar an nasc thuas agus go gcruthóidh tú ceann nua.
+        subject: 'Mastodon: Athshocraigh treoracha pasfhocail'
+        title: Athshocrú pasfhocal
+      two_factor_disabled:
+        explanation: Is féidir logáil isteach anois ach úsáid a bhaint as seoladh ríomhphoist agus pasfhocal amháin.
+        subject: 'Mastodon: Díchumasaíodh fíordheimhniú dhá fhachtóir'
+        subtitle: Díchumasaíodh fíordheimhniú dhá-fhachtóir do do chuntas.
+        title: 2FA díchumasaithe
+      two_factor_enabled:
+        explanation: Beidh comhartha ginte ag an aip TOTP péireáilte ag teastáil chun logáil isteach.
+        subject: 'Mastodon: Fíordheimhniú dhá-fhachtóir cumasaithe'
+        subtitle: Cumasaíodh fíordheimhniú dhá fhachtóir do do chuntas.
+        title: 2FA cumasaithe
+      two_factor_recovery_codes_changed:
+        explanation: Tá na cóid athshlánaithe roimhe seo neamhbhailí agus gineadh cinn nua.
+        subject: 'Mastodon: Cóid aisghabhála dhá-fhachtóir athghinte'
+        subtitle: Tá na cóid athshlánaithe roimhe seo neamhbhailí agus gineadh cinn nua.
+        title: Athraíodh cóid aisghabhála 2FA
+      unlock_instructions:
+        subject: 'Mastodon: Díghlasáil treoracha'
+      webauthn_credential:
+        added:
+          explanation: Cuireadh an eochair shlándála seo a leanas le do chuntas
+          subject: 'Mastodon: Eochair shlándála nua'
+          title: Tá eochair shlándála nua curtha leis
+        deleted:
+          explanation: Scriosadh an eochair shlándála seo a leanas ó do chuntas
+          subject: 'Mastodon: Scriosadh an eochair shlándála'
+          title: Scriosadh ceann de d'eochracha slándála
+      webauthn_disabled:
+        explanation: Díchumasaíodh fíordheimhniú le heochracha slándála do do chuntas.
+        extra: Is féidir logáil isteach anois ag baint úsáide as an comhartha a ghineann an aip TOTP péireáilte amháin.
+        subject: 'Mastodon: Díchumasaíodh fíordheimhniú le heochracha slándála'
+        title: Eochracha slándála díchumasaithe
+      webauthn_enabled:
+        explanation: Cumasaíodh fíordheimhniú eochair shlándála do do chuntas.
+        extra: Is féidir d'eochair shlándála a úsáid le logáil isteach anois.
+        subject: 'Mastodon: Fíordheimhniú eochair shlándála cumasaithe'
+        title: Eochracha slándála cumasaithe
+    omniauth_callbacks:
+      failure: Níorbh fhéidir tú a fhíordheimhniú ó %{kind} toisc "%{reason}".
+      success: D'éirigh le fíordheimhniú ó chuntas %{kind}.
+    passwords:
+      no_token: Ní féidir leat rochtain a fháil ar an leathanach seo gan teacht ó ríomhphost athshocraithe pasfhocail. Má thagann tú ó ríomhphost athshocraithe pasfhocail, cinntigh le do thoil gur úsáid tú an URL iomlán a cuireadh ar fáil.
+      send_instructions: Má tá do sheoladh ríomhphoist inár mbunachar sonraí, gheobhaidh tú nasc athshlánaithe pasfhocail ag do sheoladh ríomhphoist i gceann cúpla nóiméad. Seiceáil d'fhillteán turscair mura bhfuair tú an ríomhphost seo.
+      send_paranoid_instructions: Má tá do sheoladh ríomhphoist inár mbunachar sonraí, gheobhaidh tú nasc athshlánaithe pasfhocail ag do sheoladh ríomhphoist i gceann cúpla nóiméad. Seiceáil d'fhillteán turscair mura bhfuair tú an ríomhphost seo.
+      updated: Athraíodh do phasfhocal go rathúil. Tá tú sínithe isteach anois.
+      updated_not_active: Athraíodh do phasfhocal go rathúil.
+    registrations:
+      destroyed: Slán! Cealaíodh do chuntas go rathúil. Tá súil againn tú a fheiceáil arís go luath.
+      signed_up: Fáilte romhat! D'éirigh leat síniú suas.
+      signed_up_but_inactive: D'éirigh leat síniú suas. Mar sin féin, níorbh fhéidir linn tú a shíniú isteach toisc nach bhfuil do chuntas gníomhachtaithe fós.
+      signed_up_but_locked: D'éirigh leat síniú suas. Mar sin féin, níorbh fhéidir linn tú a shíniú isteach toisc go bhfuil do chuntas glasáilte.
+      signed_up_but_pending: Tá teachtaireacht le nasc deimhnithe seolta chuig do sheoladh ríomhphoist. Tar éis duit an nasc a chliceáil, déanfaimid athbhreithniú ar d’iarratas. Cuirfear in iúl duit má cheadaítear é.
+      signed_up_but_unconfirmed: Tá teachtaireacht le nasc deimhnithe seolta chuig do sheoladh ríomhphoist. Lean an nasc chun do chuntas a ghníomhachtú. Seiceáil d'fhillteán turscair mura bhfuair tú an ríomhphost seo.
+      update_needs_confirmation: D'éirigh leat do chuntas a nuashonrú, ach caithfimid do sheoladh ríomhphoist nua a fhíorú. Seiceáil do ríomhphost agus lean an nasc dearbhaithe chun do sheoladh ríomhphoist nua a dhearbhú. Seiceáil d'fhillteán turscair mura bhfuair tú an ríomhphost seo.
+      updated: D'éirigh le do chuntas a nuashonrú.
+    sessions:
+      already_signed_out: D'éirigh le síniú amach.
+      signed_in: D'éirigh le síniú isteach.
+      signed_out: D'éirigh le síniú amach.
+    unlocks:
+      send_instructions: Gheobhaidh tú ríomhphost le treoracha maidir le conas do chuntas a dhíghlasáil i gceann cúpla nóiméad. Seiceáil d'fhillteán turscair mura bhfuair tú an ríomhphost seo.
+      send_paranoid_instructions: Má tá do chuntas ann, gheobhaidh tú ríomhphost le treoracha maidir le conas é a dhíghlasáil i gceann cúpla nóiméad. Seiceáil d'fhillteán turscair mura bhfuair tú an ríomhphost seo.
+      unlocked: Díghlasáladh do chuntas go rathúil. Logáil isteach le do thoil chun leanúint ar aghaidh.
   errors:
     messages:
+      already_confirmed: deimhníodh cheana féin, bain triail as síniú isteach
+      confirmation_period_expired: ní mór é a dhearbhú laistigh de %{period}, iarr ceann nua le do thoil
+      expired: imithe in éag, iarr ceann nua le do thoil
       not_found: níor aimsíodh é
+      not_locked: nach raibh faoi ghlas
+      not_saved:
+        few: 'Chuir %{count} earráid cosc ​​ar an %{resource} seo a shábháil:'
+        many: 'Chuir %{count} earráid cosc ​​ar an %{resource} seo a shábháil:'
+        one: 'Chuir earráid 1 cosc ​​ar an %{resource} seo a shábháil:'
+        other: 'Chuir %{count} earráid cosc ​​ar an %{resource} seo a shábháil:'
+        two: 'Chuir %{count} earráid cosc ​​ar an %{resource} seo a shábháil:'

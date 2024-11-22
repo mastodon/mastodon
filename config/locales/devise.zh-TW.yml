@@ -2,9 +2,9 @@
 zh-TW:
   devise:
     confirmations:
-      confirmed: 您的電子郵件地址已確認成功。
-      send_instructions: 幾分鐘後您將收到確認信件。若未收到此信件，請檢查垃圾郵件資料夾。
-      send_paranoid_instructions: 如果您的電子郵件存在於我們的資料庫，您將於幾分鐘內收到確認信。若未收到請檢查垃圾郵件資料夾。
+      confirmed: 您的電子郵件地址已成功驗證。
+      send_instructions: 幾分鐘後您將收到驗證信。若未收到此信件，請檢查垃圾郵件資料夾。
+      send_paranoid_instructions: 如果您的電子郵件存在於我們的資料庫，您將於幾分鐘內收到驗證信。若未收到請檢查垃圾郵件資料夾。
     failure:
       already_authenticated: 您已登入。
       inactive: 您的帳號尚未啟用。
@@ -16,13 +16,13 @@ zh-TW:
       pending: 您的帳號仍在審核中。
       timeout: 登入階段逾時。請重新登入以繼續。
       unauthenticated: 您必須先登入或註冊才能繼續使用。
-      unconfirmed: 您必須先確認電子郵件才能繼續使用。
+      unconfirmed: 您必須先驗證電子郵件才能繼續使用。
     mailer:
       confirmation_instructions:
         action: 驗證電子郵件地址
         action_with_app: 確認並返回 %{app}
         explanation: 您已於 %{host} 上以此電子郵件地址建立了一支帳號。您距離啟用它只剩一點之遙了。若這不是您，請忽略此信件。
-        explanation_when_pending: 您使用此電子郵件地址申請了 %{host} 的邀請。當您確認電子郵件地址後我們將審核您的申請。您能於登入後變更詳細資訊或刪除您的帳號，但直到您的帳號被核准之前，您無法操作大部分的功能。若您的申請遭拒絕，您的資料將被移除而不必做後續動作。如果這不是您本人，請忽略此郵件。
+        explanation_when_pending: 您使用此電子郵件地址申請了 %{host} 的邀請。當您驗證電子郵件地址後我們將審核您的申請。您能於登入後變更詳細資訊或刪除您的帳號，但直到您的帳號被核准之前，您無法操作大部分的功能。若您的申請遭拒絕，您的資料將被移除而不必做後續動作。如果這不是您本人，請忽略此郵件。
         extra_html: 同時也請看看<a href="%{terms_path}">伺服器規則</a>與<a href="%{policy_path}">服務條款</a>。
         subject: Mastodon：%{instance} 確認說明
         title: 驗證電子郵件地址
@@ -37,9 +37,9 @@ zh-TW:
         subject: Mastodon：已變更密碼
         title: 密碼已變更
       reconfirmation_instructions:
-        explanation: 請確認新的電子郵件地址以變更。
+        explanation: 請驗證新的電子郵件地址以變更。
         extra: 若此次變更不是由您起始的，請忽略此信件。Mastodon 帳號的電子郵件地址於您存取上面的連結前不會變更。
-        subject: Mastodon：確認 %{instance} 的電子郵件地址
+        subject: Mastodon：驗證 %{instance} 之電子郵件地址
         title: 驗證電子郵件地址
       reset_password_instructions:
         action: 變更密碼
@@ -75,7 +75,7 @@ zh-TW:
           title: 您的一支安全密鑰已經被移除
       webauthn_disabled:
         explanation: 您的帳號已停用安全金鑰身份驗證。
-        extra: 現在僅可使用配對的 TOTP 應用程式產生之 token 登入。
+        extra: 目前僅可使用配對的 TOTP 應用程式產生之 token 登入。
         subject: Mastodon：安全密鑰認證方式已停用
         title: 已停用安全密鑰
       webauthn_enabled:
@@ -90,16 +90,16 @@ zh-TW:
       no_token: 您必須透過密碼重設信件才能存取此頁面。若確實如此，請確定輸入的網址是完整的。
       send_instructions: 若電子郵件地址存在於我們的資料庫，幾分鐘後您將於信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
       send_paranoid_instructions: 若電子郵件地址存在於我們的資料庫，幾分鐘後您將於信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
-      updated: 您的密碼已成功變更，現在已經登入。
+      updated: 您的密碼已成功變更，您現在已經成功登入。
       updated_not_active: 您的密碼已成功變更。
     registrations:
       destroyed: 再見！您的帳號已成功取消，期待再相逢。
       signed_up: 歡迎！您已成功註冊。
       signed_up_but_inactive: 您已註冊成功，但由於您的帳號尚未啟用，我們暫時無法讓您登入。
       signed_up_but_locked: 您已註冊成功，但由於您的帳號已被鎖定，我們無法讓您登入。
-      signed_up_but_pending: 包含確認連結的訊息已寄到您的電子郵件信箱。按下此連結後我們將審核您的申請。核准後將通知您。
-      signed_up_but_unconfirmed: 包含確認連結的訊息已寄到您的電子信箱。請前往連結以啟用帳號。若未收到請檢查垃圾郵件資料夾。
-      update_needs_confirmation: 已成功更新您的帳號，但仍需驗證您的新信箱。請檢查電子信箱並前往確認連結來確認新信箱位址。若未收到請檢查垃圾郵件資料夾。
+      signed_up_but_pending: 包含驗證連結的訊息已寄到您的電子郵件信箱。按下此連結後我們將審核您的申請。核准後將通知您。
+      signed_up_but_unconfirmed: 包含驗證連結的訊息已寄至您的電子郵件信箱。請前往連結以啟用帳號。若未收到請檢查垃圾郵件資料夾。
+      update_needs_confirmation: 已成功更新您的帳號，但仍需驗證您的新電子郵件地址。請檢查電子郵件信箱並前往確認連結來確認新電子郵件地址。若未收到請檢查垃圾郵件資料夾。
       updated: 您的帳號已成功更新。
     sessions:
       already_signed_out: 已成功登出。
@@ -111,7 +111,7 @@ zh-TW:
       unlocked: 已解鎖您的帳號，請登入以繼續。
   errors:
     messages:
-      already_confirmed: 已經確認，請嘗試登入
+      already_confirmed: 已驗證，請嘗試登入
       confirmation_period_expired: 您需要於 %{period} 內完成驗證。請重新申請
       expired: 已經過期，請重新請求
       not_found: 找不到

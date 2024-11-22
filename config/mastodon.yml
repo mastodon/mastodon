@@ -1,0 +1,4 @@
+---
+shared:
+  self_destruct_value: <%= ENV.fetch('SELF_DESTRUCT', nil) %>
+  software_update_url: <%= ENV.fetch('UPDATE_CHECK_URL', 'https://api.joinmastodon.org/update-check') %>

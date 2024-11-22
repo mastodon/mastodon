@@ -12,12 +12,11 @@ import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
-import { followAccount, unfollowAccount } from 'mastodon/actions/accounts';
 import { changeSetting } from 'mastodon/actions/settings';
 import { fetchSuggestions, dismissSuggestion } from 'mastodon/actions/suggestions';
 import { Avatar } from 'mastodon/components/avatar';
-import { Button } from 'mastodon/components/button';
 import { DisplayName } from 'mastodon/components/display_name';
+import { FollowButton } from 'mastodon/components/follow_button';
 import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 import { VerifiedBadge } from 'mastodon/components/verified_badge';
@@ -79,18 +78,8 @@ Source.propTypes = {
 const Card = ({ id, sources }) => {
   const intl = useIntl();
   const account = useSelector(state => state.getIn(['accounts', id]));
-  const relationship = useSelector(state => state.getIn(['relationships', id]));
   const firstVerifiedField = account.get('fields').find(item => !!item.get('verified_at'));
   const dispatch = useDispatch();
-  const following = relationship?.get('following') ?? relationship?.get('requested');
-
-  const handleFollow = useCallback(() => {
-    if (following) {
-      dispatch(unfollowAccount(id));
-    } else {
-      dispatch(followAccount(id));
-    }
-  }, [id, following, dispatch]);
 
   const handleDismiss = useCallback(() => {
     dispatch(dismissSuggestion(id));
@@ -109,7 +98,7 @@ const Card = ({ id, sources }) => {
         {firstVerifiedField ? <VerifiedBadge link={firstVerifiedField.get('value')} /> : <Source id={sources.get(0)} />}
       </div>
 
-      <Button text={intl.formatMessage(following ? messages.unfollow : messages.follow)} secondary={following} onClick={handleFollow} />
+      <FollowButton accountId={id} />
     </div>
   );
 };
@@ -140,8 +129,13 @@ export const InlineFollowSuggestions = ({ hidden }) => {
       return;
     }
 
-    setCanScrollLeft(bodyRef.current.scrollLeft > 0);
-    setCanScrollRight((bodyRef.current.scrollLeft + bodyRef.current.clientWidth) < bodyRef.current.scrollWidth);
+    if (getComputedStyle(bodyRef.current).direction === 'rtl') {
+      setCanScrollLeft((bodyRef.current.clientWidth - bodyRef.current.scrollLeft) < bodyRef.current.scrollWidth);
+      setCanScrollRight(bodyRef.current.scrollLeft < 0);
+    } else {
+      setCanScrollLeft(bodyRef.current.scrollLeft > 0);
+      setCanScrollRight((bodyRef.current.scrollLeft + bodyRef.current.clientWidth) < bodyRef.current.scrollWidth);
+    }
   }, [setCanScrollRight, setCanScrollLeft, bodyRef, suggestions]);
 
   const handleLeftNav = useCallback(() => {
@@ -157,8 +151,13 @@ export const InlineFollowSuggestions = ({ hidden }) => {
       return;
     }
 
-    setCanScrollLeft(bodyRef.current.scrollLeft > 0);
-    setCanScrollRight((bodyRef.current.scrollLeft + bodyRef.current.clientWidth) < bodyRef.current.scrollWidth);
+    if (getComputedStyle(bodyRef.current).direction === 'rtl') {
+      setCanScrollLeft((bodyRef.current.clientWidth - bodyRef.current.scrollLeft) < bodyRef.current.scrollWidth);
+      setCanScrollRight(bodyRef.current.scrollLeft < 0);
+    } else {
+      setCanScrollLeft(bodyRef.current.scrollLeft > 0);
+      setCanScrollRight((bodyRef.current.scrollLeft + bodyRef.current.clientWidth) < bodyRef.current.scrollWidth);
+    }
   }, [setCanScrollRight, setCanScrollLeft, bodyRef]);
 
   const handleDismiss = useCallback(() => {

@@ -27,7 +27,7 @@ require_relative '../lib/sanitize_ext/sanitize_config'
 require_relative '../lib/redis/namespace_extensions'
 require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
-require_relative '../lib/paperclip/lazy_thumbnail'
+
 require_relative '../lib/paperclip/gif_transcoder'
 require_relative '../lib/paperclip/media_type_spoof_detector_extensions'
 require_relative '../lib/paperclip/transcoder'
@@ -48,6 +48,8 @@ require_relative '../lib/chewy/strategy/bypass_with_warning'
 require_relative '../lib/webpacker/manifest_extensions'
 require_relative '../lib/webpacker/helper_extensions'
 require_relative '../lib/rails/engine_extensions'
+require_relative '../lib/action_dispatch/remote_ip_extensions'
+require_relative '../lib/stoplight/redis_data_store_extensions'
 require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
 require_relative '../lib/simple_navigation/item_extensions'
@@ -57,9 +59,7 @@ Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
 module Mastodon
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
-
-    config.active_record.marshalling_format_version = 7.1
+    config.load_defaults 7.2
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -91,18 +91,28 @@ module Mastodon
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware
 
-    initializer :deprecator do |app|
-      app.deprecators[:mastodon] = ActiveSupport::Deprecation.new('4.3', 'mastodon/mastodon')
+    config.before_configuration do
+      require 'mastodon/redis_configuration'
+      ::REDIS_CONFIGURATION = Mastodon::RedisConfiguration.new
+
+      config.x.use_vips = ENV['MASTODON_USE_LIBVIPS'] == 'true'
+
+      if config.x.use_vips
+        require_relative '../lib/paperclip/vips_lazy_thumbnail'
+      else
+        require_relative '../lib/paperclip/lazy_thumbnail'
+      end
     end
 
-    config.before_configuration do
-      require 'mastodon/redis_config'
-    end
+    config.x.captcha = config_for(:captcha)
+    config.x.mastodon = config_for(:mastodon)
+    config.x.translation = config_for(:translation)
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.include ApplicationExtension
+      Doorkeeper::AccessGrant.include AccessGrantExtension
       Doorkeeper::AccessToken.include AccessTokenExtension
       Devise::FailureApp.include AbstractController::Callbacks
       Devise::FailureApp.include Localized

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::Migration::RedirectsController do
+RSpec.describe Settings::Migration::RedirectsController do
   render_views
 
   let!(:user) { Fabricate(:user, password: 'testtest') }

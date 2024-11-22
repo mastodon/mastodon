@@ -84,6 +84,7 @@ Devise.setup do |config|
     oidc_options[:response_mode] = ENV['OIDC_RESPONSE_MODE'] if ENV['OIDC_RESPONSE_MODE'] # OPTIONAL (default: query)
     oidc_options[:display] = ENV['OIDC_DISPLAY'] if ENV['OIDC_DISPLAY'] # OPTIONAL (default: page)
     oidc_options[:prompt] = ENV['OIDC_PROMPT'] if ENV['OIDC_PROMPT'] # OPTIONAL
+    oidc_options[:pkce] = ENV['OIDC_USE_PKCE'] == 'true' if ENV['OIDC_USE_PKCE'] # OPTIONAL (default: false)
     oidc_options[:send_nonce] = ENV['OIDC_SEND_NONCE'] == 'true' if ENV['OIDC_SEND_NONCE'] # OPTIONAL (default: true)
     oidc_options[:send_scope_to_token_endpoint] = ENV['OIDC_SEND_SCOPE_TO_TOKEN_ENDPOINT'] == 'true' if ENV['OIDC_SEND_SCOPE_TO_TOKEN_ENDPOINT'] # OPTIONAL (default: true)
     oidc_options[:post_logout_redirect_uri] = ENV['OIDC_IDP_LOGOUT_REDIRECT_URI'] if ENV['OIDC_IDP_LOGOUT_REDIRECT_URI'] # OPTIONAL

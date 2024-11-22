@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Custom CSS' do
+RSpec.describe 'Custom CSS' do
   include RoutingHelper
 
   describe 'GET /custom.css' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Reports::ActionsController do
+RSpec.describe Admin::Reports::ActionsController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
