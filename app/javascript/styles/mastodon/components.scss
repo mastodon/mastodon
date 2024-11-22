@@ -6154,13 +6154,6 @@ a.status-card {
   }
 }
 
-.onboard-sliders {
-  display: inline-block;
-  max-width: 30px;
-  max-height: auto;
-  margin-inline-start: 10px;
-}
-
 .safety-action-modal {
   width: 600px;
   flex-direction: column;
@@ -8739,6 +8732,7 @@ noscript {
   &__item {
     flex-shrink: 0;
     background: lighten($ui-base-color, 12%);
+    color: $darker-text-color;
     border: 0;
     border-radius: 3px;
     margin: 2px;
@@ -8775,7 +8769,6 @@ noscript {
       font-weight: 500;
       text-align: center;
       margin-inline-start: 6px;
-      color: $darker-text-color;
     }
 
     &:hover,
@@ -8784,10 +8777,7 @@ noscript {
       background: lighten($ui-base-color, 16%);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
-
-      &__count {
-        color: lighten($darker-text-color, 4%);
-      }
+      color: lighten($darker-text-color, 4%);
     }
 
     &.active {
@@ -8798,10 +8788,7 @@ noscript {
         $ui-highlight-color,
         80%
       );
-
-      .reactions-bar__item__count {
-        color: lighten($highlight-text-color, 8%);
-      }
+      color: lighten($highlight-text-color, 8%);
     }
   }
 
@@ -10416,7 +10403,7 @@ noscript {
 
   &__text {
     flex: 1 1 auto;
-    font-style: 14px;
+    font-size: 14px;
     line-height: 20px;
 
     strong {
@@ -10474,7 +10461,7 @@ noscript {
   &__name {
     flex: 1 1 auto;
     color: $darker-text-color;
-    font-style: 14px;
+    font-size: 14px;
     line-height: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
