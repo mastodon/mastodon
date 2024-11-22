@@ -35,8 +35,11 @@ hr:
         scopes: Odvojite opsege razmacima. Za korištenje zadanih opsega, ostavite prazno.
       index:
         application: Aplikacija
+        delete: Obriši
+        empty: Nemaš aplikacija.
         name: Ime
         new: Nova aplikacija
+        show: Prikaži
         title: Vaše aplikacije
       new:
         title: Nova aplikacija
@@ -53,8 +56,6 @@ hr:
       error:
         title: Došlo je do greške
       new:
-        able_to: Moći će
-        prompt: Aplikacija %{client_name} zatražila je pristup Vašem računu
         title: Potrebna je autorizacija
     authorized_applications:
       buttons:
@@ -62,8 +63,7 @@ hr:
       confirmations:
         revoke: Jeste li sigurni?
       index:
-        application: Aplikacija
-        created_at: Ovlašeno
+        authorized_at: Autorizirano %{date}
         title: Vaše autorizirane aplikacije
     errors:
       messages:
@@ -92,6 +92,14 @@ hr:
       authorized_applications:
         destroy:
           notice: Aplikacija je opozvana.
+    grouped_scopes:
+      title:
+        favourites: Favoriti
+        filters: Filteri
+        follows: Praćeni
+        lists: Liste
+        search: Traži
+        statuses: Objave
     layouts:
       admin:
         nav:
@@ -99,6 +107,7 @@ hr:
       application:
         title: Traži se OAuth autorizacija
     scopes:
+      admin:read: pročitaj sve podatke na serveru
       follow: mijenjati odnose između računa
       read: čitati sve podatke Vašeg računa
       write: mijenjati sve podatke Vašeg računa

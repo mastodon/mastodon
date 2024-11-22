@@ -60,8 +60,8 @@ nl:
       error:
         title: Er is een fout opgetreden
       new:
-        able_to: Deze toepassing zal in staat zijn om
-        prompt: "%{client_name} autoriseren om jouw account te gebruiken"
+        prompt_html: "%{client_name} vraagt om toegang tot je account. <strong>Keur dit verzoek alleen goed als je deze bron herkent en vertrouwt.</strong>"
+        review_permissions: Toestemmingen beoordelen
         title: Autorisatie vereist
       show:
         title: Kopieer deze autorisatiecode en plak het in de toepassing.
@@ -71,16 +71,19 @@ nl:
       confirmations:
         revoke: Weet je het zeker?
       index:
-        application: Toepassing
-        created_at: Aangemaakt op
-        date_format: "%d-%m-%Y %H:%M:%S"
+        authorized_at: Toestemming verleend op %{date}
+        description_html: Dit zijn toepassingen die toegang hebben tot jouw account via de API. Als er toepassingen tussen staan die je niet herkent of een toepassing zich misdraagt, kun je de toegangsrechten van de toepassing intrekken.
+        last_used_at: Voor het laatst gebruikt op %{date}
+        never_used: Nooit gebruikt
         scopes: Toestemmingen
+        superapp: Intern
         title: Jouw geautoriseerde toepassingen
     errors:
       messages:
         access_denied: De resource-eigenaar of autorisatie-server weigerde het verzoek.
         credential_flow_not_configured: De wachtwoordgegevens-flow van de resource-eigenaar is mislukt omdat Doorkeeper.configure.resource_owner_from_credentials niet is ingesteld.
         invalid_client: Clientverificatie is mislukt door een onbekende client, ontbrekende client-authenticatie of een niet ondersteunde authenticatie-methode.
+        invalid_code_challenge_method: De code challenge method moet S256 zijn, plain wordt niet ondersteund.
         invalid_grant: De verstrekte autorisatie is ongeldig, verlopen, ingetrokken, komt niet overeen met de redirect-URI die is opgegeven of werd uitgegeven aan een andere client.
         invalid_redirect_uri: De opgegeven redirect-URI is ongeldig.
         invalid_request:
@@ -110,6 +113,34 @@ nl:
       authorized_applications:
         destroy:
           notice: Toepassing ingetrokken.
+    grouped_scopes:
+      access:
+        read: Alleen leestoegang
+        read/write: Lees- en schrijftoegang
+        write: Alleen schrijftoegang
+      title:
+        accounts: Accounts
+        admin/accounts: Accountbeheer
+        admin/all: Alle beheerfuncties
+        admin/reports: Rapportagebeheer
+        all: Volledige toegang tot je Mastodon-account
+        blocks: Blokkeren
+        bookmarks: Bladwijzers
+        conversations: Gesprekken
+        crypto: End-to-end-encryptie
+        favourites: Favorieten
+        filters: Filters
+        follow: Gevolgde, genegeerde en geblokkeerde gebruikers
+        follows: Volgend
+        lists: Lijsten
+        media: Mediabijlagen
+        mutes: Negeren
+        notifications: Meldingen
+        profile: Jouw Mastodonprofiel
+        push: Pushmeldingen
+        reports: Rapportages
+        search: Zoeken
+        statuses: Berichten
     layouts:
       admin:
         nav:
@@ -120,30 +151,43 @@ nl:
     scopes:
       admin:read: alle gegevens op de server lezen
       admin:read:accounts: gevoelige informatie van alle accounts lezen
+      admin:read:canonical_email_blocks: gevoelige informatie van alle canoniek geblokkeerde e-mailadressen lezen
+      admin:read:domain_allows: gevoelige informatie van alle toegestane domeinen lezen
+      admin:read:domain_blocks: gevoelige informatie van alle geblokkeerde domeinen lezen
+      admin:read:email_domain_blocks: gevoelige informatie van alle geblokkeerde e-maildomeinen lezen
+      admin:read:ip_blocks: gevoelige informatie van alle geblokkeerde IP-adressen lezen
       admin:read:reports: gevoelige informatie van alle rapportages en gerapporteerde accounts lezen
       admin:write: wijzig alle gegevens op de server
       admin:write:accounts: moderatieacties op accounts uitvoeren
+      admin:write:canonical_email_blocks: moderatieacties op canoniek geblokkeerde e-mailadressen uitvoeren
+      admin:write:domain_allows: moderatieacties op toegestane domeinen uitvoeren
+      admin:write:domain_blocks: moderatieacties op geblokkeerde domeinen uitvoeren
+      admin:write:email_domain_blocks: moderatieacties op geblokkeerde e-maildomeinen uitvoeren
+      admin:write:ip_blocks: moderatieacties op geblokkeerde IP-adressen uitvoeren
       admin:write:reports: moderatieacties op rapportages uitvoeren
-      follow: relaties tussen accounts bewerken
+      crypto: end-to-end-encryptie gebruiken
+      follow: volgrelaties tussen accounts bewerken
+      profile: alleen de profielgegevens van jouw account lezen
       push: jouw pushmeldingen ontvangen
       read: alle gegevens van jouw account lezen
       read:accounts: informatie accounts bekijken
       read:blocks: jouw geblokkeerde gebruikers bekijken
       read:bookmarks: jouw bladwijzers bekijken
-      read:favourites: jouw favorieten bekijken
+      read:favourites: je favorieten tonen
       read:filters: jouw filters bekijken
       read:follows: de accounts die jij volgt bekijken
       read:lists: jouw lijsten bekijken
       read:mutes: jouw genegeerde gebruikers bekijken
       read:notifications: jouw meldingen bekijken
-      read:reports: jouw gerapporteerde toots bekijken
+      read:reports: jouw gerapporteerde berichten bekijken
       read:search: namens jou zoeken
-      read:statuses: alle toots bekijken
+      read:statuses: alle berichten bekijken
       write: alle gegevens van jouw account bewerken
       write:accounts: jouw profiel bewerken
       write:blocks: accounts en domeinen blokkeren
-      write:bookmarks: toots aan bladwijzers toevoegen
-      write:favourites: toots als favoriet markeren
+      write:bookmarks: berichten aan bladwijzers toevoegen
+      write:conversations: gespreken negeren en verwijderen
+      write:favourites: favoriete berichten
       write:filters: filters aanmaken
       write:follows: mensen volgen
       write:lists: lijsten aanmaken
@@ -151,4 +195,4 @@ nl:
       write:mutes: mensen en gesprekken negeren
       write:notifications: meldingen verwijderen
       write:reports: andere mensen rapporteren
-      write:statuses: toots publiceren
+      write:statuses: berichten plaatsen

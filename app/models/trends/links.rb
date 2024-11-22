@@ -3,23 +3,58 @@
 class Trends::Links < Trends::Base
   PREFIX = 'trending_links'
 
+  BATCH_SIZE = 100
+
   self.default_options = {
-    threshold: 15,
-    review_threshold: 10,
+    threshold: 5,
+    review_threshold: 3,
     max_score_cooldown: 2.days.freeze,
     max_score_halflife: 8.hours.freeze,
+    decay_threshold: 1,
   }
 
-  def register(status, at_time = Time.now.utc)
-    original_status = status.reblog? ? status.reblog : status
-
-    return unless original_status.public_visibility? && status.public_visibility? &&
-                  !original_status.account.silenced? && !status.account.silenced? &&
-                  !original_status.spoiler_text?
-
-    original_status.preview_cards.each do |preview_card|
-      add(preview_card, status.account_id, at_time) if preview_card.appropriate_for_trends?
+  class Query < Trends::Query
+    def filtered_for!(account)
+      @account = account
+      self
     end
+
+    def filtered_for(account)
+      clone.filtered_for!(account)
+    end
+
+    def to_arel
+      scope = PreviewCard.joins(:trend).reorder(score: :desc)
+      scope = scope.reorder(language_order_clause.desc, score: :desc) if preferred_languages.present?
+      scope = scope.merge(PreviewCardTrend.allowed) if @allowed
+      scope = scope.offset(@offset) if @offset.present?
+      scope = scope.limit(@limit) if @limit.present?
+      scope
+    end
+
+    private
+
+    def language_order_clause
+      Arel::Nodes::Case.new.when(PreviewCardTrend.arel_table[:language].in(preferred_languages)).then(1).else(0)
+    end
+
+    def preferred_languages
+      if @account&.chosen_languages.present?
+        @account.chosen_languages
+      else
+        @locale
+      end
+    end
+  end
+
+  def register(status, at_time = Time.now.utc)
+    original_status = status.proper
+
+    return unless (original_status.public_visibility? && status.public_visibility?) &&
+                  !(original_status.account.silenced? || status.account.silenced?) &&
+                  !(original_status.spoiler_text? || original_status.sensitive?)
+
+    add(original_status.preview_card, status.account_id, at_time) if original_status.preview_card&.appropriate_for_trends?
   end
 
   def add(preview_card, account_id, at_time = Time.now.utc)
@@ -27,37 +62,46 @@ class Trends::Links < Trends::Base
     record_used_id(preview_card.id, at_time)
   end
 
-  def get(allowed, limit)
-    preview_card_ids = currently_trending_ids(allowed, limit)
-    preview_cards = PreviewCard.where(id: preview_card_ids).index_by(&:id)
-    preview_card_ids.map { |id| preview_cards[id] }.compact
+  def query
+    Query.new(key_prefix, klass)
   end
 
   def refresh(at_time = Time.now.utc)
-    preview_cards = PreviewCard.where(id: (recently_used_ids(at_time) + currently_trending_ids(false, -1)).uniq)
-    calculate_scores(preview_cards, at_time)
-    trim_older_items
+    # First, recalculate scores for links that were trending previously. We split the queries
+    # to avoid having to load all of the IDs into Ruby just to send them back into Postgres
+    PreviewCard.where(id: PreviewCardTrend.select(:preview_card_id)).find_in_batches(batch_size: BATCH_SIZE) do |preview_cards|
+      calculate_scores(preview_cards, at_time)
+    end
+
+    # Then, calculate scores for links that were used today. There are potentially some
+    # duplicate items here that we might process one more time, but that should be fine
+    PreviewCard.where(id: recently_used_ids(at_time)).find_in_batches(batch_size: BATCH_SIZE) do |preview_cards|
+      calculate_scores(preview_cards, at_time)
+    end
+
+    # Now that all trends have up-to-date scores, and all the ones below the threshold have
+    # been removed, we can recalculate their positions
+    PreviewCardTrend.recalculate_ordered_rank
   end
 
   def request_review
-    preview_cards = PreviewCard.where(id: currently_trending_ids(false, -1))
+    PreviewCardTrend.locales.flat_map do |language|
+      score_at_threshold  = PreviewCardTrend.where(language: language).allowed.by_rank.ranked_below(options[:review_threshold]).first&.score || 0
+      preview_card_trends = PreviewCardTrend.where(language: language).not_allowed.joins(:preview_card)
 
-    preview_cards_requiring_review = preview_cards.filter_map do |preview_card|
-      next unless would_be_trending?(preview_card.id) && !preview_card.trendable? && preview_card.requires_review_notification?
+      preview_card_trends.filter_map do |trend|
+        preview_card = trend.preview_card
 
-      if preview_card.provider.nil?
-        preview_card.provider = PreviewCardProvider.create(domain: preview_card.domain, requested_review_at: Time.now.utc)
-      else
-        preview_card.provider.touch(:requested_review_at)
+        next unless trend.score > score_at_threshold && !preview_card.trendable? && preview_card.requires_review_notification?
+
+        if preview_card.provider.nil?
+          preview_card.provider = PreviewCardProvider.create(domain: preview_card.domain, requested_review_at: Time.now.utc)
+        else
+          preview_card.provider.touch(:requested_review_at)
+        end
+
+        preview_card
       end
-
-      preview_card
-    end
-
-    return if preview_cards_requiring_review.empty?
-
-    User.staff.includes(:account).find_each do |user|
-      AdminMailer.new_trending_links(user.account, preview_cards_requiring_review).deliver_later! if user.allows_trending_tag_emails?
     end
   end
 
@@ -67,10 +111,14 @@ class Trends::Links < Trends::Base
     PREFIX
   end
 
+  def klass
+    PreviewCard
+  end
+
   private
 
   def calculate_scores(preview_cards, at_time)
-    preview_cards.each do |preview_card|
+    items = preview_cards.map do |preview_card|
       expected  = preview_card.history.get(at_time - 1.day).accounts.to_f
       expected  = 1.0 if expected.zero?
       observed  = preview_card.history.get(at_time).accounts.to_f
@@ -78,13 +126,11 @@ class Trends::Links < Trends::Base
       max_score = preview_card.max_score
       max_score = 0 if max_time.nil? || max_time < (at_time - options[:max_score_cooldown])
 
-      score = begin
-        if expected > observed || observed < options[:threshold]
-          0
-        else
-          ((observed - expected)**2) / expected
-        end
-      end
+      score = if expected > observed || observed < options[:threshold]
+                0
+              else
+                ((observed - expected)**2) / expected
+              end
 
       if score > max_score
         max_score = score
@@ -94,24 +140,19 @@ class Trends::Links < Trends::Base
         preview_card.update_columns(max_score: max_score, max_score_at: max_time)
       end
 
-      decaying_score = max_score * (0.5**((at_time.to_f - max_time.to_f) / options[:max_score_halflife].to_f))
+      decaying_score = if max_score.zero? || !valid_locale?(preview_card.language)
+                         0
+                       else
+                         max_score * (0.5**((at_time.to_f - max_time.to_f) / options[:max_score_halflife].to_f))
+                       end
 
-      if decaying_score.zero?
-        redis.zrem("#{PREFIX}:all", preview_card.id)
-        redis.zrem("#{PREFIX}:allowed", preview_card.id)
-      else
-        redis.zadd("#{PREFIX}:all", decaying_score, preview_card.id)
-
-        if preview_card.trendable?
-          redis.zadd("#{PREFIX}:allowed", decaying_score, preview_card.id)
-        else
-          redis.zrem("#{PREFIX}:allowed", preview_card.id)
-        end
-      end
+      [decaying_score, preview_card]
     end
-  end
 
-  def would_be_trending?(id)
-    score(id) > score_at_rank(options[:review_threshold] - 1)
+    to_insert = items.filter { |(score, _)| score >= options[:decay_threshold] }
+    to_delete = items.filter { |(score, _)| score < options[:decay_threshold] }
+
+    PreviewCardTrend.upsert_all(to_insert.map { |(score, preview_card)| { preview_card_id: preview_card.id, score: score, language: preview_card.language, allowed: preview_card.trendable? || false } }, unique_by: :preview_card_id) if to_insert.any?
+    PreviewCardTrend.where(preview_card_id: to_delete.map { |(_, preview_card)| preview_card.id }).delete_all if to_delete.any?
   end
 end

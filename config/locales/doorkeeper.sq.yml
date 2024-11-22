@@ -60,8 +60,8 @@ sq:
       error:
         title: Ndodhi një gabim
       new:
-        able_to: Do të jetë në gjendje të
-        prompt: Aplikacioni %{client_name} kërkon hyrje në llogarinë tuaj
+        prompt_html: "%{client_name} do të donte leje të hyjë në llogarinë tuaj. <strong>Miratojeni këtë kërkesë vetëm nëse e njihni dhe e besoni këtë burim.</strong>"
+        review_permissions: Shqyrtoni leje
         title: Lypset autorizim
       show:
         title: Kopjojeni këtë kod autorizimi dhe ngjiteni te aplikacioni.
@@ -71,16 +71,19 @@ sq:
       confirmations:
         revoke: A jeni i sigurt?
       index:
-        application: Aplikacion
-        created_at: I autorizuar
-        date_format: "%d.%m.%Y, %H:%M:%S"
-        scopes: Fushëveprime
+        authorized_at: Autorizuar më %{date}
+        description_html: Këto janë aplikacione që mund të hyjnë në llogarinë tuaj duke përdorur API-n. Nëse këtu ka aplikacione që nuk i njihni, ose një aplikacion po sillet ndryshe nga sa pritet, mund t’i shfuqizoni hyrjen.
+        last_used_at: Përdorur së fundi më %{date}
+        never_used: I papërdorur ndonjëherë
+        scopes: Leje
+        superapp: I brendshëm
         title: Aplikacionet tuaja të autorizuar
     errors:
       messages:
         access_denied: I zoti i burimit ose shërbyesi i autorizimit e hodhi poshtë kërkesën.
         credential_flow_not_configured: Rrjedha për Kredenciale Fjalëkalimi të të Zotit të Burimit dështoi për shkak se Doorkeeper.configure.resource_owner_from_credentials është i paformësuar.
         invalid_client: Mirëfilltësimi i klientit dështoi për shkak klienti të panjohur, mospërfshirjeje mirëfilltësimi klienti, ose metode të pambuluar mirëfilltësimi.
+        invalid_code_challenge_method: Metoda me kod duhet të jetë e llojit S256, e thjeshta nuk mbulohet.
         invalid_grant: Autorizimi i dhënë është i pavlefshëm, ka skaduar, është shfuqizuar, s’përputhet me URI-n e ridrejtimit të përdorur te kërkesa e autorizimit, ose është emetuar për klient tjetër.
         invalid_redirect_uri: URI e ridrejtimit s’është e vlefshme.
         invalid_request:
@@ -110,6 +113,34 @@ sq:
       authorized_applications:
         destroy:
           notice: Aplikacioni u shfuqizua.
+    grouped_scopes:
+      access:
+        read: Hyrje vetëm për lexim
+        read/write: Hyrje për lexim dhe shkrim
+        write: Hyrje vetëm për shkrim
+      title:
+        accounts: Llogari
+        admin/accounts: Administrim llogarish
+        admin/all: Krejt funksionet administrative
+        admin/reports: Administrim i raporteve
+        all: Hyrje të plotë në llogarinë tuaj Mastodon
+        blocks: Blloqe
+        bookmarks: Faqerojtës
+        conversations: Biseda
+        crypto: Fshehtëzim skaj-më-skaj
+        favourites: Të parapëlqyer
+        filters: Filtra
+        follow: Ndjekje, Heshtime dhe Bllokime
+        follows: Ndjekje
+        lists: Lista
+        media: Bashkëngjitje media
+        mutes: Heshtime
+        notifications: Njoftime
+        profile: Profili juaj Mastodon
+        push: Njoftime Push
+        reports: Raportime
+        search: Kërkim
+        statuses: Postime
     layouts:
       admin:
         nav:
@@ -119,18 +150,30 @@ sq:
         title: Lypset autorizim OAuth
     scopes:
       admin:read: të lexojë krejt të dhënat te shërbyesi
-      admin:read:accounts: të lexojë krejt të dhënat rezervat të krejt llogarive
-      admin:read:reports: të lexojë të dhëna rezervat të krejt raportimeve dhe të llogarive të raportuara
+      admin:read:accounts: të lexojë hollësi rezervat të krejt llogarive
+      admin:read:canonical_email_blocks: të lexojë hollësi rezervat të krejt bllokimeve të zakonshëm të email-eve
+      admin:read:domain_allows: të lexojë hollësi rezervat të krejt lejimeve të përkatësive
+      admin:read:domain_blocks: të lexojë hollësi rezervat të krejt bllokimeve të përkatësive
+      admin:read:email_domain_blocks: të lexojë hollësi rezervat të krejt bllokimeve të përkatësive të email-eve
+      admin:read:ip_blocks: të lexojë hollësi rezervat të krejt bllokimeve të IP-ve
+      admin:read:reports: të lexojë hollësi rezervat të krejt raportimeve dhe të llogarive të raportuara
       admin:write: të përpunojë krejt të dhënat në shërbyes
       admin:write:accounts: të kryejë veprime moderimi në llogaritë
+      admin:write:canonical_email_blocks: të kryejë veprime moderimi në bllokime të zakonshëm të email-eve
+      admin:write:domain_allows: të kryejë veprime moderimi mbi lejime përkatësish
+      admin:write:domain_blocks: të kryejë veprime moderimi mbi bllokime përkatësish
+      admin:write:email_domain_blocks: të kryejë veprime moderimi mbi lejime përkatësish email
+      admin:write:ip_blocks: të kryejë veprime moderimi mbi bllokime IP-sh
       admin:write:reports: të kryejë veprime moderimi në raportime
+      crypto: përdor fshehtëzim skaj-më-skaj
       follow: të ndryshojë marrëdhënie llogarish
+      profile: të lexojë vetëm hollësi profili llogarie tuaj
       push: të marrë njoftime push për ju
       read: të lexojë krejt të dhënat e llogarisë tuaj
-      read:accounts: të shohë të dhëna llogarish
+      read:accounts: të shohë hollësi llogarish
       read:blocks: të shohë blloqet tuaja
       read:bookmarks: të shohë faqerojtësit tuaj
-      read:favourites: të shohë të parapëlqyerit tuaj
+      read:favourites: shihni të parapëlqyerit tuaj
       read:filters: të shohë filtrat tuaj
       read:follows: të shohë ndjekësit tuaj
       read:lists: të shohë listat tuaja
@@ -143,7 +186,8 @@ sq:
       write:accounts: të ndryshojë profilin tuaj
       write:blocks: të bllokojë llogari dhe përkatësi
       write:bookmarks: të faqeruajë gjendje
-      write:favourites: të parapëlqejë gjendje
+      write:conversations: heshtoni dhe fshini biseda
+      write:favourites: postime të parapëlqyer
       write:filters: të krijojë filtra
       write:follows: të ndjekë persona
       write:lists: të krijojë lista

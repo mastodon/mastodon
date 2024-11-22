@@ -1,72 +1,74 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe MediaAttachment, type: :model do
+RSpec.describe MediaAttachment, :attachment_processing do
   describe 'local?' do
-    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url) }
-
     subject { media_attachment.local? }
 
-    context 'remote_url is blank' do
+    let(:media_attachment) { described_class.new(remote_url: remote_url) }
+
+    context 'when remote_url is blank' do
       let(:remote_url) { '' }
 
       it 'returns true' do
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
-    context 'remote_url is present' do
+    context 'when remote_url is present' do
       let(:remote_url) { 'remote_url' }
 
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
 
   describe 'needs_redownload?' do
-    let(:media_attachment) { Fabricate(:media_attachment, remote_url: remote_url, file: file) }
-
     subject { media_attachment.needs_redownload? }
 
-    context 'file is blank' do
+    let(:media_attachment) { described_class.new(remote_url: remote_url, file: file) }
+
+    context 'when file is blank' do
       let(:file) { nil }
 
-      context 'remote_url is present' do
+      context 'when remote_url is present' do
         let(:remote_url) { 'remote_url' }
 
         it 'returns true' do
-          is_expected.to be true
+          expect(subject).to be true
         end
       end
     end
 
-    context 'file is present' do
+    context 'when file is present' do
       let(:file) { attachment_fixture('avatar.gif') }
 
-      context 'remote_url is blank' do
+      context 'when remote_url is blank' do
         let(:remote_url) { '' }
 
         it 'returns false' do
-          is_expected.to be false
+          expect(subject).to be false
         end
       end
 
-      context 'remote_url is present' do
+      context 'when remote_url is present' do
         let(:remote_url) { 'remote_url' }
 
         it 'returns true' do
-          is_expected.to be false
+          expect(subject).to be false
         end
       end
     end
   end
 
   describe '#to_param' do
-    let(:media_attachment) { Fabricate(:media_attachment, shortcode: shortcode) }
-    let(:shortcode)        { nil }
+    let(:media_attachment) { Fabricate.build(:media_attachment, shortcode: shortcode, id: id) }
 
     context 'when media attachment has a shortcode' do
       let(:shortcode) { 'foo' }
+      let(:id) { 123 }
 
       it 'returns shortcode' do
         expect(media_attachment.to_param).to eq shortcode
@@ -75,31 +77,117 @@ RSpec.describe MediaAttachment, type: :model do
 
     context 'when media attachment does not have a shortcode' do
       let(:shortcode) { nil }
+      let(:id) { 123 }
 
       it 'returns string representation of id' do
-        expect(media_attachment.to_param).to eq media_attachment.id.to_s
+        expect(media_attachment.to_param).to eq id.to_s
       end
     end
   end
 
-  describe 'animated gif conversion' do
-    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('avatar.gif')) }
-
-    it 'sets type to gifv' do
-      expect(media.type).to eq 'gifv'
+  shared_examples 'static 600x400 image' do |content_type, extension|
+    after do
+      media.destroy
     end
 
-    it 'converts original file to mp4' do
-      expect(media.file_content_type).to eq 'video/mp4'
-    end
+    it 'saves media attachment with correct file and size metadata' do
+      expect(media)
+        .to be_persisted
+        .and be_processing_complete
+        .and have_attributes(
+          file: be_present,
+          type: eq('image'),
+          file_content_type: eq(content_type),
+          file_file_name: end_with(extension)
+        )
 
-    it 'sets meta' do
-      expect(media.file.meta["original"]["width"]).to eq 128
-      expect(media.file.meta["original"]["height"]).to eq 128
+      # Rack::Mime (used by PublicFileServerMiddleware) recognizes file extension
+      expect(Rack::Mime.mime_type(extension, nil)).to eq content_type
+
+      # Strip original file name
+      expect(media.file_file_name)
+        .to_not start_with '600x400'
+
+      # Set meta for original and thumbnail
+      expect(media.file.meta.deep_symbolize_keys)
+        .to include(
+          original: include(
+            width: eq(600),
+            height: eq(400),
+            aspect: eq(1.5)
+          ),
+          small: include(
+            width: eq(588),
+            height: eq(392),
+            aspect: eq(1.5)
+          )
+        )
     end
   end
 
-  describe 'non-animated gif non-conversion' do
+  describe 'jpeg' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400.jpeg')) }
+
+    it_behaves_like 'static 600x400 image', 'image/jpeg', '.jpeg'
+  end
+
+  describe 'png' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400.png')) }
+
+    it_behaves_like 'static 600x400 image', 'image/png', '.png'
+  end
+
+  describe 'monochrome jpg' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('monochrome.png')) }
+
+    it_behaves_like 'static 600x400 image', 'image/png', '.png'
+  end
+
+  describe 'webp' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400.webp')) }
+
+    it_behaves_like 'static 600x400 image', 'image/webp', '.webp'
+  end
+
+  describe 'avif' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400.avif')) }
+
+    it_behaves_like 'static 600x400 image', 'image/jpeg', '.jpeg'
+  end
+
+  describe 'heic' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400.heic')) }
+
+    it_behaves_like 'static 600x400 image', 'image/jpeg', '.jpeg'
+  end
+
+  describe 'base64-encoded image' do
+    let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('600x400.jpeg').read)}" }
+    let(:media) { Fabricate(:media_attachment, file: base64_attachment) }
+
+    it_behaves_like 'static 600x400 image', 'image/jpeg', '.jpeg'
+  end
+
+  describe 'animated gif' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('avatar.gif')) }
+
+    it 'sets correct file metadata' do
+      expect(media)
+        .to have_attributes(
+          type: eq('gifv'),
+          file_content_type: eq('video/mp4')
+        )
+      expect(media_metadata)
+        .to include(
+          original: include(
+            width: eq(128),
+            height: eq(128)
+          )
+        )
+    end
+  end
+
+  describe 'static gif' do
     fixtures = [
       { filename: 'attachment.gif', width: 600, height: 400, aspect: 1.5 },
       { filename: 'mini-static.gif', width: 32, height: 32, aspect: 1.0 },
@@ -107,118 +195,118 @@ RSpec.describe MediaAttachment, type: :model do
 
     fixtures.each do |fixture|
       context fixture[:filename] do
-        let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture(fixture[:filename])) }
+        let(:media) { Fabricate(:media_attachment, file: attachment_fixture(fixture[:filename])) }
 
-        it 'sets type to image' do
-          expect(media.type).to eq 'image'
-        end
-
-        it 'leaves original file as-is' do
-          expect(media.file_content_type).to eq 'image/gif'
-        end
-
-        it 'sets meta' do
-          expect(media.file.meta["original"]["width"]).to eq fixture[:width]
-          expect(media.file.meta["original"]["height"]).to eq fixture[:height]
-          expect(media.file.meta["original"]["aspect"]).to eq fixture[:aspect]
+        it 'sets correct file metadata' do
+          expect(media)
+            .to have_attributes(
+              type: eq('image'),
+              file_content_type: eq('image/gif')
+            )
+          expect(media_metadata)
+            .to include(
+              original: include(
+                width: eq(fixture[:width]),
+                height: eq(fixture[:height]),
+                aspect: eq(fixture[:aspect])
+              )
+            )
         end
       end
     end
   end
 
   describe 'ogg with cover art' do
-    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('boop.ogg')) }
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('boop.ogg')) }
+    let(:expected_media_duration) { 0.235102 }
 
-    it 'detects it as an audio file' do
-      expect(media.type).to eq 'audio'
-    end
+    # The libvips and ImageMagick implementations produce different results
+    let(:expected_background_color) { Rails.configuration.x.use_vips ? '#268cd9' : '#3088d4' }
 
-    it 'sets meta for the duration' do
-      expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
-    end
+    it 'sets correct file metadata' do
+      expect(media)
+        .to have_attributes(
+          type: eq('audio'),
+          thumbnail: be_present,
+          file_file_name: not_eq('boop.ogg')
+        )
 
-    it 'extracts thumbnail' do
-      expect(media.thumbnail.present?).to eq true
-    end
-
-    it 'extracts colors from thumbnail' do
-      expect(media.file.meta['colors']['background']).to eq '#3088d4'
-    end
-
-    it 'gives the file a random name' do
-      expect(media.file_file_name).to_not eq 'boop.ogg'
-    end
-  end
-
-  describe 'jpeg' do
-    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }
-
-    it 'sets meta for different style' do
-      expect(media.file.meta["original"]["width"]).to eq 600
-      expect(media.file.meta["original"]["height"]).to eq 400
-      expect(media.file.meta["original"]["aspect"]).to eq 1.5
-      expect(media.file.meta["small"]["width"]).to eq 490
-      expect(media.file.meta["small"]["height"]).to eq 327
-      expect(media.file.meta["small"]["aspect"]).to eq 490.0 / 327
-    end
-
-    it 'gives the file a random name' do
-      expect(media.file_file_name).to_not eq 'attachment.jpg'
+      expect(media_metadata)
+        .to include(
+          original: include(duration: be_within(0.05).of(expected_media_duration)),
+          colors: include(background: eq(expected_background_color))
+        )
     end
   end
 
-  describe 'base64-encoded jpeg' do
-    let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('attachment.jpg').read)}" }
-    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: base64_attachment) }
+  describe 'mp3 with large cover art' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('boop.mp3')) }
+    let(:expected_media_duration) { 0.235102 }
 
-    it 'saves media attachment' do
-      expect(media.persisted?).to be true
-      expect(media.file).to_not be_nil
-    end
-
-    it 'gives the file a file name' do
-      expect(media.file_file_name).to_not be_blank
-    end
-  end
-
-  it 'is invalid without file' do
-    media = MediaAttachment.new(account: Fabricate(:account))
-    expect(media.valid?).to be false
-  end
-
-  describe 'descriptions for remote attachments' do
-    it 'are cut off at 1500 characters' do
-      media = Fabricate(:media_attachment, description: 'foo' * 1000, remote_url: 'http://example.com/blah.jpg')
-
-      expect(media.description.size).to be <= 1_500
+    it 'detects file type and sets correct metadata' do
+      expect(media)
+        .to have_attributes(
+          type: eq('audio'),
+          thumbnail: be_present,
+          file_file_name: not_eq('boop.mp3')
+        )
+      expect(media_metadata)
+        .to include(
+          original: include(duration: be_within(0.05).of(expected_media_duration))
+        )
     end
   end
+
+  it { is_expected.to validate_presence_of(:file) }
 
   describe 'size limit validation' do
     it 'rejects video files that are too large' do
       stub_const 'MediaAttachment::IMAGE_LIMIT', 100.megabytes
       stub_const 'MediaAttachment::VIDEO_LIMIT', 1.kilobyte
-      expect { MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.webm')) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { Fabricate(:media_attachment, file: attachment_fixture('attachment.webm')) }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it 'accepts video files that are small enough' do
       stub_const 'MediaAttachment::IMAGE_LIMIT', 1.kilobyte
       stub_const 'MediaAttachment::VIDEO_LIMIT', 100.megabytes
-      media = MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.webm'))
+      media = Fabricate(:media_attachment, file: attachment_fixture('attachment.webm'))
       expect(media.valid?).to be true
     end
 
     it 'rejects image files that are too large' do
       stub_const 'MediaAttachment::IMAGE_LIMIT', 1.kilobyte
       stub_const 'MediaAttachment::VIDEO_LIMIT', 100.megabytes
-      expect { MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { Fabricate(:media_attachment, file: attachment_fixture('attachment.jpg')) }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
     it 'accepts image files that are small enough' do
       stub_const 'MediaAttachment::IMAGE_LIMIT', 100.megabytes
       stub_const 'MediaAttachment::VIDEO_LIMIT', 1.kilobyte
-      media = MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.jpg'))
+      media = Fabricate(:media_attachment, file: attachment_fixture('attachment.jpg'))
       expect(media.valid?).to be true
     end
+  end
+
+  describe 'cache deletion hooks' do
+    let(:media) { Fabricate(:media_attachment) }
+
+    before do
+      allow(Rails.configuration.x).to receive(:cache_buster_enabled).and_return(true)
+    end
+
+    it 'queues CacheBusterWorker jobs' do
+      original_path = media.file.path(:original)
+      small_path = media.file.path(:small)
+
+      expect { media.destroy }
+        .to enqueue_sidekiq_job(CacheBusterWorker).with(original_path)
+        .and enqueue_sidekiq_job(CacheBusterWorker).with(small_path)
+    end
+  end
+
+  private
+
+  def media_metadata
+    media.file.meta.deep_symbolize_keys
   end
 end

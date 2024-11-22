@@ -3,11 +3,24 @@
 ===
 
 <% unless @warning.none_action? %>
-<%= t "user_mailer.warning.explanation.#{@warning.action}" %>
+<%= t "user_mailer.warning.explanation.#{@warning.action}", instance: @instance %>
 
 <% end %>
+<% if @warning.text.present? %>
 <%= @warning.text %>
-<% if !@statuses.nil? && !@statuses.empty? %>
+
+<% end %>
+<% if @warning.report && !@warning.report.other? %>
+**<%= t('user_mailer.warning.reason') %>** <%= t("user_mailer.warning.categories.#{@warning.report.category}") %>
+
+<% if @warning.report.violation? && @warning.report.rule_ids.present? %>
+<% @warning.report.rules.each do |rule| %>
+- <%= rule.text %>
+<% end %>
+
+<% end %>
+<% end %>
+<% if !@statuses.empty? %>
 <%= t('user_mailer.warning.statuses') %>
 
 <% @statuses.each do |status| %>
@@ -19,4 +32,5 @@
 ---
 <% end %>
 
-<%= t 'user_mailer.warning.get_in_touch', instance: @instance %>
+<%= t 'user_mailer.warning.appeal_description', instance: @instance %>
+<%= disputes_strike_url(@warning) %>

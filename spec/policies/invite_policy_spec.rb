@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pundit/rspec'
 
 RSpec.describe InvitePolicy do
-  let(:subject) { described_class }
-  let(:admin)   { Fabricate(:user, admin: true).account }
+  subject { described_class }
+
+  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
   let(:john)    { Fabricate(:user).account }
 
   permissions :index? do
-    context 'staff?' do
+    context 'when staff?' do
       it 'permits' do
         expect(subject).to permit(admin, Invite)
       end
@@ -17,29 +17,35 @@ RSpec.describe InvitePolicy do
   end
 
   permissions :create? do
-    context 'min_required_role?' do
+    context 'with privilege' do
+      before do
+        UserRole.everyone.update(permissions: UserRole::FLAGS[:invite_users])
+      end
+
       it 'permits' do
-        allow_any_instance_of(described_class).to receive(:min_required_role?) { true }
         expect(subject).to permit(john, Invite)
       end
     end
 
-    context 'not min_required_role?' do
+    context 'when does not have privilege' do
+      before do
+        UserRole.everyone.update(permissions: UserRole::Flags::NONE)
+      end
+
       it 'denies' do
-        allow_any_instance_of(described_class).to receive(:min_required_role?) { false }
         expect(subject).to_not permit(john, Invite)
       end
     end
   end
 
   permissions :deactivate_all? do
-    context 'admin?' do
+    context 'when admin?' do
       it 'permits' do
         expect(subject).to permit(admin, Invite)
       end
     end
 
-    context 'not admin?' do
+    context 'when not admin?' do
       it 'denies' do
         expect(subject).to_not permit(john, Invite)
       end
@@ -47,46 +53,22 @@ RSpec.describe InvitePolicy do
   end
 
   permissions :destroy? do
-    context 'owner?' do
+    context 'when owner?' do
       it 'permits' do
         expect(subject).to permit(john, Fabricate(:invite, user: john.user))
       end
     end
 
-    context 'not owner?' do
-      context 'Setting.min_invite_role == "admin"' do
-        before do
-          Setting.min_invite_role = 'admin'
-        end
-
-        context 'admin?' do
-          it 'permits' do
-            expect(subject).to permit(admin, Fabricate(:invite))
-          end
-        end
-
-        context 'not admin?' do
-          it 'denies' do
-            expect(subject).to_not permit(john, Fabricate(:invite))
-          end
+    context 'when not owner?' do
+      context 'when admin?' do
+        it 'permits' do
+          expect(subject).to permit(admin, Fabricate(:invite))
         end
       end
 
-      context 'Setting.min_invite_role != "admin"' do
-        before do
-          Setting.min_invite_role = 'else'
-        end
-
-        context 'staff?' do
-          it 'permits' do
-            expect(subject).to permit(admin, Fabricate(:invite))
-          end
-        end
-
-        context 'not staff?' do
-          it 'denies' do
-            expect(subject).to_not permit(john, Fabricate(:invite))
-          end
+      context 'when not admin?' do
+        it 'denies' do
+          expect(subject).to_not permit(john, Fabricate(:invite))
         end
       end
     end

@@ -3,8 +3,8 @@ fr:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nom
-        redirect_uri: L’URL de redirection
+        name: Nom de l'application
+        redirect_uri: URI de redirection
         scopes: Étendues
         website: Site web de l’application
     errors:
@@ -25,7 +25,7 @@ fr:
         edit: Modifier
         submit: Envoyer
       confirmations:
-        destroy: Voulez-vous vraiment faire ça ?
+        destroy: En êtes-vous sûr ?
       edit:
         title: Modifier l’application
       form:
@@ -60,8 +60,8 @@ fr:
       error:
         title: Une erreur est survenue
       new:
-        able_to: Cette application pourra
-        prompt: Autoriser %{client_name} à utiliser votre compte ?
+        prompt_html: "%{client_name} aimerait avoir la permission d'accéder à votre compte. <strong>Approuver cette demande uniquement si vous reconnaissez et faites confiance à cette source.</strong>"
+        review_permissions: Examiner les autorisations
         title: Autorisation requise
       show:
         title: Copiez ce code d’autorisation et collez-le dans l’application.
@@ -69,23 +69,26 @@ fr:
       buttons:
         revoke: Révoquer
       confirmations:
-        revoke: Voulez-vous vraiment faire ça ?
+        revoke: En êtes-vous sûr ?
       index:
-        application: Application
-        created_at: Créé le
-        date_format: "%d-%m-%Y %H:%M:%S"
-        scopes: Permissions
+        authorized_at: Autorisée le %{date}
+        description_html: Ces applications peuvent accéder à votre compte via l'API. Si vous voyez ici des applications que vous ne reconnaissez pas ou qui ne fonctionnent pas normalement, vous pouvez en révoquer les accès.
+        last_used_at: Dernière utilisation le %{date}
+        never_used: Jamais utilisée
+        scopes: Autorisations
+        superapp: Interne
         title: Vos applications autorisées
     errors:
       messages:
         access_denied: Le propriétaire de la ressource ou le serveur d’autorisation a refusé la requête.
         credential_flow_not_configured: Le flux des identifiants du mot de passe du propriétaire de la ressource a échoué car Doorkeeper.configure.resource_owner_from_credentials n’est pas configuré.
         invalid_client: L’authentification du client a échoué à cause d’un client inconnu, d’aucune authentification de client incluse ou d’une méthode d’authentification non prise en charge.
+        invalid_code_challenge_method: La méthode de contrôle du code doit être S256, le mode « en clair » n'est pas pris en charge.
         invalid_grant: L’autorisation accordée est invalide, expirée, annulée, ne concorde pas avec l’URL de redirection utilisée dans la requête d’autorisation, ou a été délivrée à un autre client.
         invalid_redirect_uri: L’URL de redirection n’est pas valide.
         invalid_request:
-          missing_param: 'Parramètre requis manquant: %{value}.'
-          request_not_authorized: La requête doit être autorisée. Le paramètre requis pour la requête d'autorisation est manquant ou non valide.
+          missing_param: 'Paramètre requis manquant : %{value}.'
+          request_not_authorized: La requête doit être autorisée. Le paramètre requis pour l'autorisation de la requête est manquant ou non valide.
           unknown: La requête omet un paramètre requis, inclut une valeur de paramètre non prise en charge ou est autrement mal formée.
         invalid_resource_owner: Les identifiants fournis par le propriétaire de la ressource ne sont pas valides ou le propriétaire de la ressource ne peut être trouvé
         invalid_scope: La permission demandée est invalide, inconnue ou mal formée.
@@ -110,6 +113,34 @@ fr:
       authorized_applications:
         destroy:
           notice: Application révoquée.
+    grouped_scopes:
+      access:
+        read: Accès en lecture seule
+        read/write: Accès en lecture et écriture
+        write: Accès en écriture seule
+      title:
+        accounts: Comptes
+        admin/accounts: Gestion des comptes
+        admin/all: Toutes les fonctionnalités d'administration
+        admin/reports: Gestion des rapports
+        all: Accès complet à votre compte Mastodon
+        blocks: Bloqués
+        bookmarks: Marque-pages
+        conversations: Conversations
+        crypto: Chiffrement de bout-en-bout
+        favourites: Favoris
+        filters: Filtres
+        follow: Abonnements, comptes masqués et comptes bloqués
+        follows: Abonnements
+        lists: Listes
+        media: Fichiers médias
+        mutes: Masqués
+        notifications: Notifications
+        profile: Votre profil Mastodon
+        push: Notifications push
+        reports: Signalements
+        search: Recherche
+        statuses: Messages
     layouts:
       admin:
         nav:
@@ -120,11 +151,23 @@ fr:
     scopes:
       admin:read: lire toutes les données du serveur
       admin:read:accounts: lire les informations sensibles de tous les comptes
+      admin:read:canonical_email_blocks: lire les informations sensibles de tous les bloqueurs de courriels canoniques
+      admin:read:domain_allows: lire les informations sensibles de tous les domaines autorisés
+      admin:read:domain_blocks: lire les informations sensibles de tous les bloqueurs de domaines
+      admin:read:email_domain_blocks: lire les informations sensibles de tous les bloqueurs de domaines de courriel
+      admin:read:ip_blocks: lire les informations sensibles de tous les blocqueurs d'IP
       admin:read:reports: lire les informations sensibles de tous les signalements et des comptes signalés
       admin:write: modifier toutes les données sur le serveur
       admin:write:accounts: effectuer des actions de modération sur les comptes
+      admin:write:canonical_email_blocks: effectuer des actions de modération sur les bloqueurs de courriels canoniques
+      admin:write:domain_allows: effectuer des actions de modération sur les autorisations de domaines
+      admin:write:domain_blocks: effectuer des actions de modération sur des bloqueurs de domaines
+      admin:write:email_domain_blocks: effectuer des actions de modération sur des bloqueurs de domaines de courriel
+      admin:write:ip_blocks: effectuer des actions de modération sur des bloqueurs d'IP
       admin:write:reports: effectuer des actions de modération sur les signalements
+      crypto: utiliser le chiffrement de bout-en-bout
       follow: modifier les relations du compte
+      profile: lire uniquement les informations de votre compte
       push: recevoir vos notifications poussées
       read: lire toutes les données de votre compte
       read:accounts: voir les informations des comptes
@@ -138,12 +181,13 @@ fr:
       read:notifications: voir vos notifications
       read:reports: voir vos signalements
       read:search: rechercher en votre nom
-      read:statuses: voir tous les statuts
+      read:statuses: voir tous les messages
       write: modifier toutes les données de votre compte
       write:accounts: modifier votre profil
       write:blocks: bloquer des comptes et des domaines
-      write:bookmarks: statuts des marque-pages
-      write:favourites: mettre des statuts en favori
+      write:bookmarks: mettre des messages en marque-pages
+      write:conversations: masquer et effacer les conversations
+      write:favourites: messages favoris
       write:filters: créer des filtres
       write:follows: suivre des personnes
       write:lists: créer des listes
@@ -151,4 +195,4 @@ fr:
       write:mutes: masquer des comptes et des conversations
       write:notifications: effacer vos notifications
       write:reports: signaler d’autres personnes
-      write:statuses: publier des statuts
+      write:statuses: publier des messages

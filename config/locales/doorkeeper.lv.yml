@@ -22,12 +22,12 @@ lv:
         authorize: Autorizēt
         cancel: Atcelt
         destroy: Iznīcināt
-        edit: Rediģēt
+        edit: Labot
         submit: Apstiprināt
       confirmations:
-        destroy: Vai esi pārliecināts?
+        destroy: Vai tiešām?
       edit:
-        title: Rediģēt pieteikumu
+        title: Labot lietotni
       form:
         error: Hmm! Pārbaudi, vai tavā veidlapā nav kļūdu
       help:
@@ -60,8 +60,8 @@ lv:
       error:
         title: Radās kļūda
       new:
-        able_to: Tā varēs
-        prompt: Lietotne %{client_name} prasa piekļuvi tavam kontam
+        prompt_html: "%{client_name} vēlas atļauju piekļūt Tavam kontam. <strong>Apstiprini šo pieprasījumu tikai tad, ja atpazīsti un uzticies šim avotam!</strong>"
+        review_permissions: Pārskatīt atļaujas
         title: Nepieciešama autorizācija
       show:
         title: Nokopē šo autorizācijas kodu un ielīmē to lietotnē.
@@ -69,18 +69,21 @@ lv:
       buttons:
         revoke: Atsaukt
       confirmations:
-        revoke: Vai esi pārliecināts?
+        revoke: Vai tiešām?
       index:
-        application: Lietotne
-        created_at: Autorizēts
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Darbības sfēras
+        authorized_at: Autorizētas %{date}
+        description_html: Šīs ir lietotnes, kas var piekļūt Tavam kontam ar API. Ja šeit ir lietotnes, kuras neatpazīsti, vai lietotne darbojas ne tā, kā paredzēts, vari atsaukt tās piekļuvi.
+        last_used_at: Pēdējo reizi lietotas %{date}
+        never_used: Nekad nav lietotas
+        scopes: Atļaujas
+        superapp: Iekšējs
         title: Tevis autorizētās lietotnes
     errors:
       messages:
         access_denied: Resursa īpašnieks vai autorizācijas serveris pieprasījumu noraidīja.
         credential_flow_not_configured: Resursa īpašnieka paroles akreditācijas datu plūsma neizdevās, jo Doorkeeper.configure.resource_owner_from_credentials nebija konfigurēts.
         invalid_client: Klienta autentifikācija neizdevās nezināma klienta, klienta autentifikācijas vai neatbalstītas autentifikācijas metodes dēļ.
+        invalid_code_challenge_method: Koda izaicinājuma veidam jābūt S256, vienkāršs netiek atbalstīts.
         invalid_grant: Sniegtā autorizācijas piekrišana nav derīga, tai ir beidzies derīguma termiņš, tā ir atsaukta, tā neatbilst autorizācijas pieprasījumā izmantotajam novirzīšanas URI vai tika izsniegta citam klientam.
         invalid_redirect_uri: Iekļauts novirzīšanas uri nav derīgs.
         invalid_request:
@@ -110,6 +113,34 @@ lv:
       authorized_applications:
         destroy:
           notice: Lietotne atsaukta.
+    grouped_scopes:
+      access:
+        read: Tikai lasīšanas piekļuve
+        read/write: Lasīšanas un rakstīšanas piekļuve
+        write: Tikai rakstīšanas piekļuve
+      title:
+        accounts: Konti
+        admin/accounts: Kontu pārvaldīšana
+        admin/all: Visas administrēšanas funkcijas
+        admin/reports: Ziņojumu pārvaldīšana
+        all: Pilna piekļuve tavam Mastodon kontam
+        blocks: Bloķētie
+        bookmarks: Grāmatzīmes
+        conversations: Sarunas
+        crypto: Pilnīga šifrēšana
+        favourites: Izlase
+        filters: Filtri
+        follow: Seko, Izslēdz un Bloķē
+        follows: Seko
+        lists: Saraksti
+        media: Multividesu pielikumi
+        mutes: Apklusinātie
+        notifications: Paziņojumi
+        profile: Tavs Mastodon profils
+        push: Uznirstošie paziņojumi
+        reports: Ziņojumi
+        search: Meklēt
+        statuses: Ziņas
     layouts:
       admin:
         nav:
@@ -120,17 +151,29 @@ lv:
     scopes:
       admin:read: lasīt visus datus uz servera
       admin:read:accounts: lasīt sensitīvu informāciju no visiem kontiem
+      admin:read:canonical_email_blocks: lasīt sensitīvu informāciju par visiem kanoniskajiem e-pasta blokiem
+      admin:read:domain_allows: lasīt visu domēnu sensitīvo informāciju, ko atļauj
+      admin:read:domain_blocks: lasīt sensitīvu informāciju par visiem domēna blokiem
+      admin:read:email_domain_blocks: lasīt sensitīvu informāciju par visiem e-pasta domēna blokiem
+      admin:read:ip_blocks: lasīt sensitīvu informāciju par visiem IP blokiem
       admin:read:reports: lasīt sensitīvu informāciju no visiem pārskatiem un kontiem, par kuriem ziņots
       admin:write: modificēt visus datus uz servera
-      admin:write:accounts: veikt moderācijas darbības kontos
-      admin:write:reports: veikt moderācijas darbības pārskatos
+      admin:write:accounts: veikt satura pārraudzības darbības kontos
+      admin:write:canonical_email_blocks: veikt satura pārraudzības darbības kanoniskajos e-pasta blokos
+      admin:write:domain_allows: veikt satura pārraudzības darbības domēna atļaujā
+      admin:write:domain_blocks: veikt satura pārraudzības darbības domēna blokos
+      admin:write:email_domain_blocks: veikt satura pārraudzības darbības e-pasta domēna blokos
+      admin:write:ip_blocks: veikt satura pārraudzības darbības IP blokos
+      admin:write:reports: veikt satura pārraudzības darbības pārskatos
+      crypto: lieto pilnīgu šifrēšanu
       follow: mainīt konta attiecības
+      profile: lasīt tikai Tava konta profila informāciju
       push: saņemt savus push paziņojumus
       read: lasīt visus sava konta datus
       read:accounts: apskatīt kontu informāciju
       read:blocks: apskatīt savus blokus
       read:bookmarks: apskatīt savas grāmatzīmes
-      read:favourites: apskatīt savu izlasi
+      read:favourites: skatīt tavu izlasi
       read:filters: apskatīt savus filtrus
       read:follows: apskatīt savus sekotājus
       read:lists: apskatīt savus sarakstus
@@ -143,11 +186,12 @@ lv:
       write:accounts: labot manu profilu
       write:blocks: bloķēt kontus un domēnus
       write:bookmarks: pievienotās grāmatzīmes
+      write:conversations: apklusināt un dzēst sarunas
       write:favourites: iecienītākās ziņas
       write:filters: izveidot filtrus
       write:follows: seko cilvēkiem
       write:lists: izveido sarakstus
-      write:media: pievieno mediju datnes
+      write:media: pievieno multivides datnes
       write:mutes: apklusini cilvēkus un sarunas
       write:notifications: notīri savus paziņojumus
       write:reports: ziņo par citiem cilvēkiem

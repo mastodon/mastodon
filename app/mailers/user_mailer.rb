@@ -5,188 +5,221 @@ class UserMailer < Devise::Mailer
 
   helper :accounts
   helper :application
+  helper :formatting
   helper :instance
+  helper :routing
   helper :statuses
 
-  helper RoutingHelper
+  before_action :set_instance
 
-  def confirmation_instructions(user, token, **)
+  default to: -> { @resource.email }
+
+  def confirmation_instructions(user, token, *, **)
     @resource = user
     @token    = token
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.unconfirmed_email.presence || @resource.email,
            subject: I18n.t(@resource.pending_reconfirmation? ? 'devise.mailer.reconfirmation_instructions.subject' : 'devise.mailer.confirmation_instructions.subject', instance: @instance),
            template_name: @resource.pending_reconfirmation? ? 'reconfirmation_instructions' : 'confirmation_instructions'
     end
   end
 
-  def reset_password_instructions(user, token, **)
+  def reset_password_instructions(user, token, *, **)
     @resource = user
     @token    = token
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.reset_password_instructions.subject')
+    I18n.with_locale(locale(use_current_locale: true)) do
+      mail subject: default_devise_subject
     end
   end
 
-  def password_change(user, **)
+  def password_change(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.password_change.subject')
+    I18n.with_locale(locale(use_current_locale: true)) do
+      mail subject: default_devise_subject
     end
   end
 
-  def email_changed(user, **)
+  def email_changed(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.email_changed.subject')
+    I18n.with_locale(locale(use_current_locale: true)) do
+      mail subject: default_devise_subject
     end
   end
 
-  def two_factor_enabled(user, **)
+  def two_factor_enabled(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_enabled.subject')
+    I18n.with_locale(locale(use_current_locale: true)) do
+      mail subject: default_devise_subject
     end
   end
 
-  def two_factor_disabled(user, **)
+  def two_factor_disabled(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_disabled.subject')
+    I18n.with_locale(locale(use_current_locale: true)) do
+      mail subject: default_devise_subject
     end
   end
 
-  def two_factor_recovery_codes_changed(user, **)
+  def two_factor_recovery_codes_changed(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_recovery_codes_changed.subject')
+    I18n.with_locale(locale(use_current_locale: true)) do
+      mail subject: default_devise_subject
     end
   end
 
-  def webauthn_enabled(user, **)
+  def webauthn_enabled(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_enabled.subject')
+    I18n.with_locale(locale(use_current_locale: true)) do
+      mail subject: default_devise_subject
     end
   end
 
-  def webauthn_disabled(user, **)
+  def webauthn_disabled(user, *, **)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_disabled.subject')
+    I18n.with_locale(locale(use_current_locale: true)) do
+      mail subject: default_devise_subject
     end
   end
 
   def webauthn_credential_added(user, webauthn_credential)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
     @webauthn_credential = webauthn_credential
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_credential.added.subject')
+    I18n.with_locale(locale(use_current_locale: true)) do
+      mail subject: I18n.t('devise.mailer.webauthn_credential.added.subject')
     end
   end
 
   def webauthn_credential_deleted(user, webauthn_credential)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
     @webauthn_credential = webauthn_credential
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_credential.deleted.subject')
+    I18n.with_locale(locale(use_current_locale: true)) do
+      mail subject: I18n.t('devise.mailer.webauthn_credential.deleted.subject')
     end
   end
 
   def welcome(user)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('user_mailer.welcome.subject')
+    @suggestions = AccountSuggestions.new(@resource.account).get(5)
+    @tags = Trends.tags.query.allowed.limit(5)
+    @has_account_fields = @resource.account.display_name.present? || @resource.account.note.present? || @resource.account.avatar.present?
+    @has_active_relationships = @resource.account.active_relationships.exists?
+    @has_statuses = @resource.account.statuses.exists?
+
+    I18n.with_locale(locale) do
+      mail subject: default_i18n_subject
     end
   end
 
   def backup_ready(user, backup)
     @resource = user
-    @instance = Rails.configuration.x.local_domain
     @backup   = backup
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email, subject: I18n.t('user_mailer.backup_ready.subject')
+    I18n.with_locale(locale) do
+      mail subject: default_i18n_subject
     end
   end
 
-  def warning(user, warning, status_ids = nil)
+  def warning(user, warning)
     @resource = user
     @warning  = warning
-    @instance = Rails.configuration.x.local_domain
-    @statuses = Status.where(id: status_ids).includes(:account) if status_ids.is_a?(Array)
+    @statuses = @warning.statuses.includes(:account, :preloadable_poll, :media_attachments, active_mentions: [:account])
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email,
-           subject: I18n.t("user_mailer.warning.subject.#{@warning.action}", acct: "@#{user.account.local_username_and_domain}"),
-           reply_to: Setting.site_contact_email
+    I18n.with_locale(locale) do
+      mail subject: I18n.t("user_mailer.warning.subject.#{@warning.action}", acct: "@#{user.account.local_username_and_domain}")
     end
   end
 
-  def sign_in_token(user, remote_ip, user_agent, timestamp)
+  def appeal_approved(user, appeal)
+    @resource = user
+    @appeal   = appeal
+
+    I18n.with_locale(locale) do
+      mail subject: default_i18n_subject(date: l(@appeal.created_at))
+    end
+  end
+
+  def appeal_rejected(user, appeal)
+    @resource = user
+    @appeal   = appeal
+
+    I18n.with_locale(locale) do
+      mail subject: default_i18n_subject(date: l(@appeal.created_at))
+    end
+  end
+
+  def suspicious_sign_in(user, remote_ip, user_agent, timestamp)
     @resource   = user
-    @instance   = Rails.configuration.x.local_domain
     @remote_ip  = remote_ip
     @user_agent = user_agent
     @detection  = Browser.new(user_agent)
     @timestamp  = timestamp.to_time.utc
 
-    return unless @resource.active_for_authentication?
-
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email,
-           subject: I18n.t('user_mailer.sign_in_token.subject'),
-           reply_to: Setting.site_contact_email
+    I18n.with_locale(locale) do
+      mail subject: default_i18n_subject
     end
+  end
+
+  def failed_2fa(user, remote_ip, user_agent, timestamp)
+    @resource   = user
+    @remote_ip  = remote_ip
+    @user_agent = user_agent
+    @detection  = Browser.new(user_agent)
+    @timestamp  = timestamp.to_time.utc
+
+    I18n.with_locale(locale) do
+      mail subject: default_i18n_subject
+    end
+  end
+
+  private
+
+  def default_devise_subject
+    I18n.t(:subject, scope: ['devise.mailer', action_name])
+  end
+
+  def set_instance
+    @instance = Rails.configuration.x.local_domain
+  end
+
+  def locale(use_current_locale: false)
+    @resource.locale.presence || (use_current_locale && I18n.locale) || I18n.default_locale
   end
 end

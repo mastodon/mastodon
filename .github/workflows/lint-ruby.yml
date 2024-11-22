@@ -1,0 +1,51 @@
+name: Ruby Linting
+on:
+  merge_group:
+  push:
+    branches:
+      - 'main'
+      - 'stable-*'
+    paths:
+      - 'Gemfile*'
+      - '.rubocop*.yml'
+      - '.ruby-version'
+      - 'config/brakeman.ignore'
+      - '**/*.rb'
+      - '**/*.rake'
+      - '.github/workflows/lint-ruby.yml'
+
+  pull_request:
+    paths:
+      - 'Gemfile*'
+      - '.rubocop*.yml'
+      - '.ruby-version'
+      - 'config/brakeman.ignore'
+      - '**/*.rb'
+      - '**/*.rake'
+      - '.github/workflows/lint-ruby.yml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    env:
+      BUNDLE_ONLY: development
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Set-up RuboCop Problem Matcher
+        uses: r7kamura/rubocop-problem-matchers-action@v1
+
+      - name: Run rubocop
+        run: bin/rubocop
+
+      - name: Run brakeman
+        if: always() # Run both checks, even if the first failed
+        run: bin/brakeman

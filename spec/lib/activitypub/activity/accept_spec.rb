@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Accept do
@@ -23,6 +25,7 @@ RSpec.describe ActivityPub::Activity::Accept do
     subject { described_class.new(json, sender) }
 
     before do
+      allow(RemoteAccountRefreshWorker).to receive(:perform_async)
       Fabricate(:follow_request, account: recipient, target_account: sender)
       subject.perform
     end
@@ -34,9 +37,15 @@ RSpec.describe ActivityPub::Activity::Accept do
     it 'removes the follow request' do
       expect(recipient.requested?(sender)).to be false
     end
+
+    it 'queues a refresh' do
+      expect(RemoteAccountRefreshWorker).to have_received(:perform_async).with(sender.id)
+    end
   end
 
-  context 'given a relay' do
+  context 'when given a relay' do
+    subject { described_class.new(json, sender) }
+
     let!(:relay) { Fabricate(:relay, state: :pending, follow_activity_id: 'https://abc-123/456') }
 
     let(:json) do
@@ -53,8 +62,6 @@ RSpec.describe ActivityPub::Activity::Accept do
         },
       }.with_indifferent_access
     end
-
-    subject { described_class.new(json, sender) }
 
     it 'marks the relay as accepted' do
       subject.perform

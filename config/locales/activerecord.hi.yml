@@ -5,12 +5,26 @@ hi:
       poll:
         expires_at: समयसीमा
         options: विकल्प
+      user:
+        agreement: सेवा अनुबंध।
+        email: ई-मेइल पता
+        locale: स्थानिक
+        password: कुंजिका
+      user/account:
+        username: यूज़रनेम
+      user/invite_request:
+        text: कारण
     errors:
       models:
         account:
           attributes:
             username:
               invalid: केवल अक्षर, संख्या और अंडरस्कोर
+              reserved: आरक्षित है
+        admin/webhook:
+          attributes:
+            url:
+              invalid: यह मान्य यु.आर.एल. नहिं है
         status:
           attributes:
             reblog:

@@ -1,0 +1,55 @@
+---
+ckb:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: وادەی کۆتایی
+        options: هەڵبژاردنەکان
+      user:
+        agreement: ڕێکەوتنی خزمەتگوزاری
+        email: ناونیشانی ئیمەیڵ
+        locale: ناوچەیی
+        password: تێپەڕوشە
+      user/account:
+        username: ناوی بەکارهێنەر
+      user/invite_request:
+        text: هۆکار
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: تەنها پیت، ژمارە و ژێرەوە
+              reserved: تەرخان کراوە
+        admin/webhook:
+          attributes:
+            url:
+              invalid: بەستەرەکە دروست نیە
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: بەستەرەکە دروست نیە
+        import:
+          attributes:
+            data:
+              malformed: ناتەواوە
+        status:
+          attributes:
+            reblog:
+              taken: لە بار بوونی هەیە
+        user:
+          attributes:
+            email:
+              blocked: دابینکەرێکی ئیمەیڵی ڕێگەپێنەدراو بەکاردەهێنێت
+              unreachable: پێناچێت بوونی هەبێت
+            role_id:
+              elevated: ناتوانرێت بەرزتربێت لە ڕۆلەکەی خۆت
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: ئەو مۆڵەتانەش لەخۆبگرێت کە سەلامەت نین بۆ ڕۆلی سەرەکی
+              elevated: ناتوانێت ئەو مۆڵەتانە لەخۆبگرێت کە ڕۆڵی ئێستات خاوەنی نییە
+              own_role: ناتوانرێت بە ڕۆڵی ئێستات بگۆڕدرێت
+            position:
+              elevated: ناتوانێت لە ڕۆڵی ئێستات بەرزتر بێت
+              own_role: ناتوانرێت بە ڕۆڵی ئێستات بگۆڕدرێت

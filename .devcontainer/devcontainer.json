@@ -1,0 +1,42 @@
+{
+  "name": "Mastodon on local machine",
+  "dockerComposeFile": "compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+  "features": {
+    "ghcr.io/devcontainers/features/sshd:1": {}
+  },
+
+  "forwardPorts": [3000, 4000],
+
+  "portsAttributes": {
+    "3000": {
+      "label": "web",
+      "onAutoForward": "notify",
+      "requireLocalPort": true
+    },
+    "4000": {
+      "label": "stream",
+      "onAutoForward": "silent",
+      "requireLocalPort": true
+    }
+  },
+
+  "remoteUser": "root",
+
+  "otherPortsAttributes": {
+    "onAutoForward": "silent"
+  },
+
+  "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "postCreateCommand": "bin/setup",
+  "waitFor": "postCreateCommand",
+
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": ["EditorConfig.EditorConfig", "webben.browserslist"]
+    }
+  }
+}

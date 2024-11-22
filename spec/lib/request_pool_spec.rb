@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RequestPool do
+RSpec.describe RequestPool do
   subject { described_class.new }
 
   describe '#with' do
@@ -33,31 +33,36 @@ describe RequestPool do
 
       subject
 
-      threads = 20.times.map do |i|
-        Thread.new do
-          20.times do
-            subject.with('http://example.com') do |http_client|
-              http_client.get('/').flush
-            end
-          end
+      multi_threaded_execution(5) do
+        subject.with('http://example.com') do |http_client|
+          http_client.get('/').flush
+          # Nudge scheduler to yield and exercise the full pool
+          sleep(0.01)
         end
       end
-
-      threads.map(&:join)
 
       expect(subject.size).to be > 1
     end
 
-    it 'closes idle connections' do
-      stub_request(:get, 'http://example.com/').to_return(status: 200, body: 'Hello!')
-
-      subject.with('http://example.com') do |http_client|
-        http_client.get('/').flush
+    context 'with an idle connection' do
+      before do
+        stub_const('RequestPool::MAX_IDLE_TIME', 1) # Lower idle time limit to 1 seconds
+        stub_const('RequestPool::REAPER_FREQUENCY', 0.1) # Run reaper every 0.1 seconds
+        stub_request(:get, 'http://example.com/').to_return(status: 200, body: 'Hello!')
       end
 
-      expect(subject.size).to eq 1
-      sleep RequestPool::MAX_IDLE_TIME + 30 + 1
-      expect(subject.size).to eq 0
+      it 'closes the connections' do
+        subject.with('http://example.com') do |http_client|
+          http_client.get('/').flush
+        end
+
+        expect { reaper_observes_idle_timeout }.to change(subject, :size).from(1).to(0)
+      end
+
+      def reaper_observes_idle_timeout
+        # One full idle period and 2 reaper cycles more
+        sleep RequestPool::MAX_IDLE_TIME + (RequestPool::REAPER_FREQUENCY * 2)
+      end
     end
   end
 end

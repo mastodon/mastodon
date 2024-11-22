@@ -48,7 +48,7 @@ pl:
         title: Nowa aplikacja
       show:
         actions: Akcje
-        application_id: ID Aplikacji
+        application_id: Klucz klienta
         callback_urls: Adresy wywołań zwrotnych
         scopes: Zakresy (scopes)
         secret: Sekret
@@ -60,8 +60,8 @@ pl:
       error:
         title: Wystapił błąd
       new:
-        able_to: Uzyska
-        prompt: Aplikacja %{client_name} prosi o dostęp do Twojego konta
+        prompt_html: "%{client_name} prosi o dostęp do twojego konta. <strong>Tylko zatwierdź tę prośbę, jeżeli ją rozpoznajesz i ufasz.</strong>"
+        review_permissions: Sprawdź uprawnienia
         title: Wymagana jest autoryzacja
       show:
         title: Skopiuj kod uwierzytelniający i wklej go w aplikacji.
@@ -71,16 +71,19 @@ pl:
       confirmations:
         revoke: Czy na pewno?
       index:
-        application: Aplikacja
-        created_at: Autoryzowana
-        date_format: "%d.%m.%Y %H:%M:%S"
-        scopes: Zakresy
+        authorized_at: Autoryzowano %{date}
+        description_html: Są to aplikacje, które mogą uzyskać dostęp do Twojego konta za pomocą API. Jeśli są tu aplikacje, których nie rozpoznajesz lub aplikacja zachowuje się nieprawidłowo, możesz usunąć jej dostęp.
+        last_used_at: Ostatnio używane %{date}
+        never_used: Nigdy nieużywane
+        scopes: Uprawnienia
+        superapp: Wewnętrzne
         title: Twoje autoryzowane aplikacje
     errors:
       messages:
         access_denied: Właściciel zasobu lub serwer autoryzujący odrzuciły żądanie.
         credential_flow_not_configured: Ścieżka "Resource Owner Password Credentials" zakończyła się błędem, ponieważ Doorkeeper.configure.resource_owner_from_credentials nie został skonfigurowany.
         invalid_client: Autoryzacja klienta nie powiodła się z powodu nieznanego klienta, braku uwierzytelnienia klienta, lub niewspieranej metody uwierzytelniania.
+        invalid_code_challenge_method: Metodą wyzwania kodowego musi być S256, plain jest nieobsługiwany.
         invalid_grant: Grant uwierzytelnienia jest niepoprawny, przeterminowany, unieważniony, nie pasuje do URI przekierowwania użytego w żądaniu uwierzytelnienia, lub został wystawiony przez innego klienta.
         invalid_redirect_uri: URI przekierowania jest nieprawidłowy.
         invalid_request:
@@ -110,6 +113,34 @@ pl:
       authorized_applications:
         destroy:
           notice: Unieważniono aplikację.
+    grouped_scopes:
+      access:
+        read: Dostęp w trybie tylko do odczytu
+        read/write: Uprawnienia do odczytu i zapisu
+        write: Dostęp w trybie tylko do odczytu
+      title:
+        accounts: Konta
+        admin/accounts: Zarządzanie kontami użytkowników
+        admin/all: Wszystkie opcje administratora
+        admin/reports: Zarządzanie zgłoszeniami
+        all: Pełny dostęp do konta Mastodon
+        blocks: Zablokowane
+        bookmarks: Zakładki
+        conversations: Konwersacje
+        crypto: Szyfrowanie End-to-End
+        favourites: Ulubione
+        filters: Filtry
+        follow: Obserwatorzy, wyciszeni i zablokowani
+        follows: Obserwowani
+        lists: Listy
+        media: Załączniki multimedialne
+        mutes: Wyciszenia
+        notifications: Powiadomienia
+        profile: Twój profil
+        push: Powiadomienia push
+        reports: Zgłoszenia
+        search: Szukaj
+        statuses: Wpisy
     layouts:
       admin:
         nav:
@@ -120,11 +151,23 @@ pl:
     scopes:
       admin:read: odczytaj wszystkie dane na serwerze
       admin:read:accounts: odczytaj wrażliwe informacje na wszystkich kontach
+      admin:read:canonical_email_blocks: odczytaj poufne informacje o wszystkich kanonicznych blokach poczty
+      admin:read:domain_allows: odczyt wrażliwych informacji z domen, które pozwalają
+      admin:read:domain_blocks: odczyt wrażliwych informacji ze wszystkich bloków domen
+      admin:read:email_domain_blocks: odczyt wrażliwych informacji ze wszystkich bloków domen email
+      admin:read:ip_blocks: odczyt wrażliwych informacji ze wszystkich bloków IP
       admin:read:reports: odczytaj wrażliwe informacje ze wszystkich zgłoszeń oraz zgłoszonych kont
       admin:write: zmodyfikuj wszystkie dane na serwerze
       admin:write:accounts: wykonaj działania moderacyjne na kontach
+      admin:write:canonical_email_blocks: wykonaj działania moderacyjne na kanonicznych blokach e-mail
+      admin:write:domain_allows: wykonaj działania moderacyjne na domenach, które zezwalają
+      admin:write:domain_blocks: wykonaj działania moderacyjne na blokach domen
+      admin:write:email_domain_blocks: wykonaj działania moderacyjne na blokach domen e-mail
+      admin:write:ip_blocks: wykonaj działania moderacyjne na blokach IP
       admin:write:reports: wykonaj działania moderacyjne na zgłoszeniach
-      follow: możliwość śledzenia kont
+      crypto: użyj szyfrowania end-to-end
+      follow: możliwość zarządzania relacjami kont
+      profile: odczytaj tylko informacje o profilu
       push: otrzymywanie powiadomień push dla Twojego konta
       read: możliwość odczytu wszystkich danych konta
       read:accounts: dostęp do informacji o koncie
@@ -132,7 +175,7 @@ pl:
       read:bookmarks: dostęp do zakładek
       read:favourites: dostęp do listy ulubionych
       read:filters: dostęp do filtrów
-      read:follows: dostęp do listy śledzonych
+      read:follows: dostęp do listy obserwowanych
       read:lists: dostęp do Twoich list
       read:mutes: dostęp do listy wyciszonych
       read:notifications: możliwość odczytu powiadomień
@@ -143,9 +186,10 @@ pl:
       write:accounts: możliwość modyfikowania informacji o koncie
       write:blocks: możliwość blokowania domen i użytkowników
       write:bookmarks: możliwość dodawania wpisów do zakładek
-      write:favourites: możliwość dodawnia wpisów do ulubionych
+      write:conversations: wycisz i usuń konwersacje
+      write:favourites: polubianie wpisów
       write:filters: możliwość tworzenia filtrów
-      write:follows: możliwość śledzenia ludzi
+      write:follows: możliwość obserwowania ludzi
       write:lists: możliwość tworzenia list
       write:media: możliwość wysyłania zawartości multimedialnej
       write:mutes: możliwość wyciszania ludzi i konwersacji

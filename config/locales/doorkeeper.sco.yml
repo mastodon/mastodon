@@ -1,0 +1,179 @@
+---
+sco:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Application nemm
+        redirect_uri: Redireck URI
+        scopes: Scopes
+        website: Application wabsteid
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: cannae contain a fragment.
+              invalid_uri: haes tae be a valid URI.
+              relative_uri: haes tae be an absolute URI.
+              secured_uri: haes tae be a HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Alloo
+        cancel: Cancel
+        destroy: Destroy
+        edit: Edit
+        submit: Pit in
+      confirmations:
+        destroy: Ye shuir?
+      edit:
+        title: Edit application
+      form:
+        error: Ooft! Check yer form fir possible mistaks
+      help:
+        native_redirect_uri: Uise %{native_redirect_uri} fir local tests
+        redirect_uri: Uise ae line per URI
+        scopes: Separate scopes wi spaces. Lea blank fir tae uise the default scopes.
+      index:
+        application: Application
+        callback_url: Cawback URL
+        delete: Delete
+        empty: Ye'v nae applications.
+        name: Nemm
+        new: New application
+        scopes: Scopes
+        show: Shaw
+        title: Yer applications
+      new:
+        title: New application
+      show:
+        actions: Actions
+        application_id: Client key
+        callback_urls: Cawback URLs
+        scopes: Scopes
+        secret: Client secret
+        title: 'Application: %{name}'
+    authorizations:
+      buttons:
+        authorize: Authorize
+        deny: Deny
+      error:
+        title: A error haes occurrt
+      new:
+        review_permissions: Luik ower permissions
+        title: Authorization requirt
+      show:
+        title: Copy this authorization code an paste it in tae the application.
+    authorized_applications:
+      buttons:
+        revoke: Tak awa
+      confirmations:
+        revoke: Ye shuir?
+      index:
+        authorized_at: Authorized on %{date}
+        description_html: This is the applications thit kin access yer accoont uisin the API. Gin there applications thit ye dinnae recognize here, or a application isnae behavin richt, ye kin tak awa its access.
+        last_used_at: Last uised on %{date}
+        never_used: Never uised
+        scopes: Permissions
+        superapp: Internal
+        title: Yer authorized applications
+    errors:
+      messages:
+        access_denied: The resoorce ainer or authorization server denied the request.
+        credential_flow_not_configured: Resoorce Ainer Passwird Credentials flow failed doon tae Doorkeeper.configure.resource_owner_from_credentials no bein configurt.
+        invalid_client: Client authentication failed doon tae unkent client, nae client authentication includit, or unsupportit authentication method.
+        invalid_grant: The provided authorization grant isnae valid, expirit, revokt, disnae match the redirection URI uised in the authorization request, or wis issued tae anither client.
+        invalid_redirect_uri: The redirect uri includit isnae valid.
+        invalid_request:
+          missing_param: 'Missing requirit parameter: %{value}.'
+          request_not_authorized: Request need fir tae be authorized. Requirit parameter fir authorizin request is missin or invalid.
+          unknown: The request is missin a requirit parameter, includes a unsupportit parameter value, or is itherwise malformt.
+        invalid_resource_owner: The providit resoorce ainer credentials urnae valid, or resoorce ainer cannae be fun
+        invalid_scope: The requestit scope isnae valid, unkent, or malformt.
+        invalid_token:
+          expired: The access token expirit
+          revoked: The access token wis revokt
+          unknown: The access token isnae valid
+        resource_owner_authenticator_not_configured: Resoorce Ainer fin failt doon tae Doorkeeper.configure.resource_owner_authenticator bein unconfigurt.
+        server_error: The authorization server encoontert a unexpectit condition thit preventit it fae fulfillin the request.
+        temporarily_unavailable: The authorization server currently isnae able tae haunnle the request doon tae a temporary owerloadin or maintenance o the server.
+        unauthorized_client: The client isnae authorized fir tae perform this request uisin this method.
+        unsupported_grant_type: The authorization grant type isnae supportit bi the authorization server.
+        unsupported_response_type: The authorization server disnae support this response type.
+    flash:
+      applications:
+        create:
+          notice: Application makkit.
+        destroy:
+          notice: Application deletit.
+        update:
+          notice: Application updatit.
+      authorized_applications:
+        destroy:
+          notice: Application revokit.
+    grouped_scopes:
+      access:
+        read: Read-ainly access
+        read/write: Read an write access
+        write: Write-ainly access
+      title:
+        accounts: Accoonts
+        admin/accounts: Administration o accoonts
+        admin/all: Aw administrative functions
+        admin/reports: Administration o clypes
+        blocks: Dingies
+        bookmarks: Buikmairks
+        conversations: Conversations
+        crypto: En-tae-en encryption
+        filters: Filters
+        follows: Follaes
+        lists: Lists
+        media: Media attachments
+        mutes: Wheeshts
+        notifications: Notes
+        push: Push notes
+        reports: Clypes
+        search: Seirch
+        statuses: Posts
+    layouts:
+      admin:
+        nav:
+          applications: Applications
+          oauth2_provider: OAuth2 Provider
+      application:
+        title: OAuth authorization requirit
+    scopes:
+      admin:read: read aw data on the server
+      admin:read:accounts: read sensitive information fae aw accoonts
+      admin:read:reports: read sensitive information fae aw clyped an clyped on accoonts
+      admin:write: modify aw data on the server
+      admin:write:accounts: perform moderation actions on accoonts
+      admin:write:reports: perform moderation actions on clypes
+      crypto: uise en-tae-en encryption
+      follow: modify accoont relationships
+      push: get yer push notifications
+      read: read aw yer accoont's data
+      read:accounts: see accoonts information
+      read:blocks: see yer dingies
+      read:bookmarks: see yer buikmairks
+      read:filters: see yer filters
+      read:follows: see yer follaes
+      read:lists: see yer lists
+      read:mutes: see yet wheeshts
+      read:notifications: see yer notes
+      read:reports: see yer clypes
+      read:search: seirch on yer behauf
+      read:statuses: see aw posts
+      write: modify aw yer accoont's data
+      write:accounts: modify yer profile
+      write:blocks: dingie accoonts an domains
+      write:bookmarks: buikmairk posts
+      write:conversations: wheesht an delete conversations
+      write:filters: mak filters
+      write:follows: follae fowk
+      write:lists: mak lists
+      write:media: upload media files
+      write:mutes: wheesht fowk an conversations
+      write:notifications: claer yer notes
+      write:reports: clype on ither fowk
+      write:statuses: publish posts

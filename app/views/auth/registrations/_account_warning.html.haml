@@ -1,0 +1,22 @@
+= link_to disputes_strike_path(account_warning), class: 'strike-entry' do
+  .strike-entry__header
+    .strike-entry__avatar
+      .indicator-icon{ class: account_warning.overruled? ? 'success' : 'failure' }
+        = material_symbol 'warning'
+    .strike-entry__content
+      .strike-entry__title
+        = t 'disputes.strikes.title',
+            action: t(account_warning.action, scope: 'disputes.strikes.title_actions'),
+            date: l(account_warning.created_at.to_date)
+      .strike-entry__timestamp
+        %time.formatted{ datetime: account_warning.created_at.iso8601 }= l(account_warning.created_at)
+
+        - if account_warning.overruled?
+          ·
+          %span.positive-hint= t('disputes.strikes.your_appeal_approved')
+        - elsif account_warning.appeal&.pending?
+          ·
+          %span.warning-hint= t('disputes.strikes.your_appeal_pending')
+        - elsif account_warning.appeal&.rejected?
+          ·
+          %span.negative-hint= t('disputes.strikes.your_appeal_rejected')

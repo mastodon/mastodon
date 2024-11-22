@@ -1,0 +1,7 @@
+<%= raw t('admin_mailer.new_software_updates.body') %>
+
+<% @software_updates.each do |update| %>
+- Mastodon <%= update.version %>: <%= update.release_notes %>
+<% end %>
+
+<%= raw t('application_mailer.view')%> <%= admin_software_updates_url %>

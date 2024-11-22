@@ -1,0 +1,15 @@
+= content_for :heading do
+  = render 'application/mailer/heading',
+           image_url: frontend_asset_url('images/mailer-new/heading/appeal-rejected.png'),
+           subtitle: t('user_mailer.appeal_rejected.subtitle'),
+           title: t('user_mailer.appeal_rejected.title')
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-inner-card-td.email-prose
+            %p= t 'user_mailer.appeal_rejected.explanation',
+                  appeal_date: l(@appeal.created_at.in_time_zone(@resource.time_zone.presence), format: :with_time_zone),
+                  strike_date: l(@appeal.strike.created_at.in_time_zone(@resource.time_zone.presence), format: :with_time_zone)
+            = render 'application/mailer/button', text: t('user_mailer.appeal_approved.action'), url: root_url

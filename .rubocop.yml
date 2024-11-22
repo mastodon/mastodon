@@ -1,302 +1,34 @@
+---
+AllCops:
+  CacheRootDirectory: tmp
+  DisplayStyleGuide: true
+  Exclude:
+    - Vagrantfile
+    - config/initializers/json_ld*
+    - lib/mastodon/migration_helpers.rb
+  ExtraDetails: true
+  NewCops: enable
+  TargetRubyVersion: 3.2 # Oldest supported ruby version
+
+inherit_from:
+  - .rubocop/layout.yml
+  - .rubocop/metrics.yml
+  - .rubocop/naming.yml
+  - .rubocop/rails.yml
+  - .rubocop/rspec_rails.yml
+  - .rubocop/rspec.yml
+  - .rubocop/style.yml
+  - .rubocop/custom.yml
+  - .rubocop_todo.yml
+  - .rubocop/strict.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
 require:
   - rubocop-rails
-
-AllCops:
-  TargetRubyVersion: 2.5
-  NewCops: disable
-  Exclude:
-  - 'spec/**/*'
-  - 'db/**/*'
-  - 'app/views/**/*'
-  - 'config/**/*'
-  - 'bin/*'
-  - 'Rakefile'
-  - 'node_modules/**/*'
-  - 'Vagrantfile'
-  - 'vendor/**/*'
-  - 'lib/json_ld/*'
-  - 'lib/templates/**/*'
-
-Bundler/OrderedGems:
-  Enabled: false
-
-Layout/AccessModifierIndentation:
-  EnforcedStyle: indent
-
-Layout/EmptyLineAfterMagicComment:
-  Enabled: false
-
-Layout/EmptyLineAfterGuardClause:
-  Enabled: false
-
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: true
-
-Layout/HashAlignment:
-  Enabled: false
-  # EnforcedHashRocketStyle: table
-  # EnforcedColonStyle: table
-
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-
-Layout/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: space
-
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
-
-Lint/DuplicateElsifCondition:
-  Enabled: true
-
-Lint/MixedRegexpCaptureTypes:
-  Enabled: true
-
-Lint/RaiseException:
-  Enabled: true
-
-Lint/StructNewOverride:
-  Enabled: true
-
-Lint/UselessAccessModifier:
-  ContextCreatingMethods:
-    - class_methods
-
-Metrics/AbcSize:
-  Max: 100
-  Exclude:
-    - 'lib/mastodon/*_cli.rb'
-
-Metrics/BlockLength:
-  Max: 55
-  Exclude:
-    - 'lib/tasks/**/*'
-    - 'lib/mastodon/*_cli.rb'
-
-Metrics/BlockNesting:
-  Max: 3
-  Exclude:
-    - 'lib/mastodon/*_cli.rb'
-
-Metrics/ClassLength:
-  CountComments: false
-  Max: 400
-  Exclude:
-    - 'lib/mastodon/*_cli.rb'
-
-Metrics/CyclomaticComplexity:
-  Max: 25
-  Exclude:
-    - 'lib/mastodon/*_cli.rb'
-
-Layout/LineLength:
-  AllowURI: true
-  Enabled: false
-
-Metrics/MethodLength:
-  CountComments: false
-  Max: 65
-  Exclude:
-    - 'lib/mastodon/*_cli.rb'
-
-Metrics/ModuleLength:
-  CountComments: false
-  Max: 200
-
-Metrics/ParameterLists:
-  Max: 5
-  CountKeywordArgs: true
-
-Metrics/PerceivedComplexity:
-  Max: 25
-
-Naming/MemoizedInstanceVariableName:
-  Enabled: false
-
-Naming/MethodParameterName:
-  Enabled: true
-
-Rails:
-  Enabled: true
-
-Rails/ApplicationController:
-  Enabled: false
-  Exclude:
-    - 'app/controllers/well_known/**/*.rb'
-
-Rails/BelongsTo:
-  Enabled: false
-
-Rails/ContentTag:
-  Enabled: false
-
-Rails/EnumHash:
-  Enabled: false
-
-Rails/Exit:
-  Exclude:
-    - 'lib/mastodon/*'
-    - 'lib/cli.rb'
-
-Rails/FilePath:
-  Enabled: false
-
-Rails/HasAndBelongsToMany:
-  Enabled: false
-
-Rails/HasManyOrHasOneDependent:
-  Enabled: false
-
-Rails/HelperInstanceVariable:
-  Enabled: false
-
-Rails/HttpStatus:
-  Enabled: false
-
-Rails/IndexBy:
-  Enabled: false
-
-Rails/InverseOf:
-  Enabled: false
-
-Rails/LexicallyScopedActionFilter:
-  Enabled: false
-
-Rails/OutputSafety:
-  Enabled: true
-
-Rails/RakeEnvironment:
-  Enabled: false
-
-Rails/RedundantForeignKey:
-  Enabled: false
-
-Rails/SkipsModelValidations:
-  Enabled: false
-
-Rails/UniqueValidationWithoutIndex:
-  Enabled: false
-
-Style/AccessorGrouping:
-  Enabled: true
-
-Style/AccessModifierDeclarations:
-  Enabled: false
-
-Style/ArrayCoercion:
-  Enabled: true
-
-Style/BisectedAttrAccessor:
-  Enabled: true
-
-Style/CaseLikeIf:
-  Enabled: false
-
-Style/ClassAndModuleChildren:
-  Enabled: false
-
-Style/CollectionMethods:
-  Enabled: true
-  PreferredMethods:
-    find_all: 'select'
-
-Style/Documentation:
-  Enabled: false
-
-Style/DoubleNegation:
-  Enabled: true
-
-Style/ExpandPathArguments:
-  Enabled: false
-
-Style/ExponentialNotation:
-  Enabled: true
-
-Style/FormatString:
-  Enabled: false
-
-Style/FormatStringToken:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: true
-
-Style/GuardClause:
-  Enabled: false
-
-Style/HashAsLastArrayItem:
-  Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashLikeCase:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: false
-
-Style/IfUnlessModifier:
-  Enabled: false
-
-Style/InverseMethods:
-  Enabled: false
-
-Style/Lambda:
-  Enabled: false
-
-Style/MutableConstant:
-  Enabled: false
-
-Style/PercentLiteralDelimiters:
-  PreferredDelimiters:
-    '%i': '()'
-    '%w': '()'
-
-Style/PerlBackrefs:
-  AutoCorrect: false
-
-Style/RedundantAssignment:
-  Enabled: false
-
-Style/RedundantFetchBlock:
-  Enabled: true
-
-Style/RedundantFileExtensionInRequire:
-  Enabled: true
-
-Style/RedundantRegexpCharacterClass:
-  Enabled: false
-
-Style/RedundantRegexpEscape:
-  Enabled: false
-
-Style/RedundantReturn:
-  Enabled: true
-
-Style/RegexpLiteral:
-  Enabled: false
-
-Style/RescueStandardError:
-  Enabled: false
-
-Style/SignalException:
-  Enabled: false
-
-Style/SlicingWithRange:
-  Enabled: true
-
-Style/SymbolArray:
-  Enabled: false
-
-Style/TrailingCommaInArrayLiteral:
-  EnforcedStyleForMultiline: 'comma'
-
-Style/TrailingCommaInHashLiteral:
-  EnforcedStyleForMultiline: 'comma'
-
-Style/UnpackFirst:
-  Enabled: false
+  - rubocop-rspec
+  - rubocop-rspec_rails
+  - rubocop-performance
+  - rubocop-capybara

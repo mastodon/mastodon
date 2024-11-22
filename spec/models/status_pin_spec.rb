@@ -1,72 +1,103 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe StatusPin, type: :model do
-  describe 'validations' do
-    it 'allows pins of own statuses' do
-      account = Fabricate(:account)
-      status  = Fabricate(:status, account: account)
+RSpec.describe StatusPin do
+  describe 'Validations' do
+    subject { Fabricate.build :status_pin }
 
-      expect(StatusPin.new(account: account, status: status).save).to be true
-    end
+    context 'with an account pinning statuses' do
+      subject { Fabricate.build :status_pin, account: account }
 
-    it 'does not allow pins of statuses by someone else' do
-      account = Fabricate(:account)
-      status  = Fabricate(:status)
+      let(:account) { Fabricate(:account) }
 
-      expect(StatusPin.new(account: account, status: status).save).to be false
-    end
+      context 'with a self-owned status' do
+        let(:status) { Fabricate(:status, account: account) }
 
-    it 'does not allow pins of reblogs' do
-      account = Fabricate(:account)
-      status  = Fabricate(:status, account: account)
-      reblog  = Fabricate(:status, reblog: status)
-
-      expect(StatusPin.new(account: account, status: reblog).save).to be false
-    end
-
-    it 'does not allow pins of private statuses' do
-      account = Fabricate(:account)
-      status  = Fabricate(:status, account: account, visibility: :private)
-
-      expect(StatusPin.new(account: account, status: status).save).to be false
-    end
-
-    it 'does not allow pins of direct statuses' do
-      account = Fabricate(:account)
-      status  = Fabricate(:status, account: account, visibility: :direct)
-
-      expect(StatusPin.new(account: account, status: status).save).to be false
-    end
-
-    max_pins = 5
-    it 'does not allow pins above the max' do
-      account = Fabricate(:account)
-      status = []
-
-      (max_pins + 1).times do |i|
-        status[i] = Fabricate(:status, account: account)
+        it { is_expected.to allow_value(status).for(:status) }
       end
 
-      max_pins.times do |i|
-        expect(StatusPin.new(account: account, status: status[i]).save).to be true
+      context 'with a status from someone else' do
+        let(:status) { Fabricate(:status) }
+
+        it { is_expected.to_not allow_value(status).for(:status).against(:base) }
       end
 
-      expect(StatusPin.new(account: account, status: status[max_pins]).save).to be false
+      context 'with a reblog status' do
+        let(:status) { Fabricate(:status, reblog: Fabricate(:status, account: account)) }
+
+        it { is_expected.to_not allow_value(status).for(:status).against(:base) }
+      end
+
+      context 'with a private status' do
+        let(:status) { Fabricate(:status, account: account, visibility: :private) }
+
+        it { is_expected.to allow_value(status).for(:status).against(:base) }
+      end
+
+      context 'with a direct status' do
+        let(:status) { Fabricate(:status, account: account, visibility: :direct) }
+
+        it { is_expected.to_not allow_value(status).for(:status).against(:base) }
+      end
     end
 
-    it 'allows pins above the max for remote accounts' do
-      account = Fabricate(:account, domain: 'remote.test', username: 'bob', url: 'https://remote.test/')
-      status = []
+    context 'with a validator pin limit' do
+      before { stub_const('StatusPinValidator::PIN_LIMIT', 2) }
 
-      (max_pins + 1).times do |i|
-        status[i] = Fabricate(:status, account: account)
+      context 'with a local account at the limit' do
+        let(:account) { Fabricate :account }
+
+        before { Fabricate.times(StatusPinValidator::PIN_LIMIT, :status_pin, account: account) }
+
+        it { is_expected.to_not allow_value(account).for(:account).against(:base).with_message(I18n.t('statuses.pin_errors.limit')) }
       end
 
-      max_pins.times do |i|
-        expect(StatusPin.new(account: account, status: status[i]).save).to be true
+      context 'with a remote account at the limit' do
+        let(:account) { Fabricate :account, domain: 'remote.test' }
+
+        before { Fabricate.times(StatusPinValidator::PIN_LIMIT, :status_pin, account: account) }
+
+        it { is_expected.to allow_value(account).for(:account) }
+      end
+    end
+  end
+
+  describe 'Callbacks' do
+    describe 'Invalidating status via policy' do
+      subject { Fabricate :status_pin, status: Fabricate(:status, account: account), account: account }
+
+      context 'with a local account that owns the status and has a policy' do
+        let(:account) { Fabricate :account, domain: nil }
+
+        before do
+          Fabricate :account_statuses_cleanup_policy, account: account
+          account.statuses_cleanup_policy.record_last_inspected(subject.status.id + 1_024)
+        end
+
+        it 'calls the invalidator on destroy' do
+          expect { subject.destroy }
+            .to change(account.statuses_cleanup_policy, :last_inspected)
+        end
       end
 
-      expect(StatusPin.new(account: account, status: status[max_pins]).save).to be true
+      context 'with a local account that owns the status and does not have a policy' do
+        let(:account) { Fabricate :account, domain: nil }
+
+        it 'does not call the invalidator on destroy' do
+          expect { subject.destroy }
+            .to_not change(account, :updated_at)
+        end
+      end
+
+      context 'with a remote account' do
+        let(:account) { Fabricate :account, domain: 'host.example' }
+
+        it 'does not call the invalidator on destroy' do
+          expect { subject.destroy }
+            .to_not change(account, :updated_at)
+        end
+      end
     end
   end
 end

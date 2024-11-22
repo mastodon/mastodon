@@ -8,14 +8,14 @@ class EmailMxValidator < ActiveModel::Validator
 
     domain = get_domain(user.email)
 
-    if domain.blank?
+    if domain.blank? || domain.include?('..')
       user.errors.add(:email, :invalid)
     elsif !on_allowlist?(domain)
-      ips, hostnames = resolve_mx(domain)
+      resolved_ips, resolved_domains = resolve_mx(domain)
 
-      if ips.empty?
+      if resolved_ips.empty?
         user.errors.add(:email, :unreachable)
-      elsif on_blacklist?(hostnames + ips)
+      elsif email_domain_blocked?(resolved_domains, user.sign_up_ip)
         user.errors.add(:email, :blocked)
       end
     end
@@ -34,30 +34,31 @@ class EmailMxValidator < ActiveModel::Validator
   end
 
   def on_allowlist?(domain)
-    return false if Rails.configuration.x.email_domains_whitelist.blank?
+    return false if Rails.configuration.x.email_domains_allowlist.blank?
 
-    Rails.configuration.x.email_domains_whitelist.include?(domain)
+    Rails.configuration.x.email_domains_allowlist.include?(domain)
   end
 
   def resolve_mx(domain)
-    hostnames = []
-    ips       = []
+    records = []
+    ips     = []
 
     Resolv::DNS.open do |dns|
       dns.timeouts = 5
 
-      hostnames = dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }
+      records = dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }
+      next if records == [''] # This domain explicitly rejects emails
 
-      ([domain] + hostnames).uniq.each do |hostname|
+      ([domain] + records).uniq.each do |hostname|
         ips.concat(dns.getresources(hostname, Resolv::DNS::Resource::IN::A).to_a.map { |e| e.address.to_s })
         ips.concat(dns.getresources(hostname, Resolv::DNS::Resource::IN::AAAA).to_a.map { |e| e.address.to_s })
       end
     end
 
-    [ips, hostnames]
+    [ips, records]
   end
 
-  def on_blacklist?(values)
-    EmailDomainBlock.where(domain: values.uniq).any?
+  def email_domain_blocked?(domains, attempt_ip)
+    EmailDomainBlock.block?(domains, attempt_ip: attempt_ip)
   end
 end

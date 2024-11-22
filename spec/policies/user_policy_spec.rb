@@ -1,29 +1,29 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pundit/rspec'
 
 RSpec.describe UserPolicy do
-  let(:subject) { described_class }
-  let(:admin)   { Fabricate(:user, admin: true).account }
-  let(:john)    { Fabricate(:user).account }
+  subject { described_class }
+
+  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+  let(:john)    { Fabricate(:account) }
 
   permissions :reset_password?, :change_email? do
-    context 'staff?' do
-      context '!record.staff?' do
+    context 'when staff?' do
+      context 'with !record.staff?' do
         it 'permits' do
           expect(subject).to permit(admin, john.user)
         end
       end
 
-      context 'record.staff?' do
+      context 'when record.staff?' do
         it 'denies' do
           expect(subject).to_not permit(admin, admin.user)
         end
       end
     end
 
-    context '!staff?' do
+    context 'with !staff?' do
       it 'denies' do
         expect(subject).to_not permit(john, User)
       end
@@ -31,21 +31,21 @@ RSpec.describe UserPolicy do
   end
 
   permissions :disable_2fa? do
-    context 'admin?' do
-      context '!record.staff?' do
+    context 'when admin?' do
+      context 'with !record.staff?' do
         it 'permits' do
           expect(subject).to permit(admin, john.user)
         end
       end
 
-      context 'record.staff?' do
+      context 'when record.staff?' do
         it 'denies' do
           expect(subject).to_not permit(admin, admin.user)
         end
       end
     end
 
-    context '!admin?' do
+    context 'with !admin?' do
       it 'denies' do
         expect(subject).to_not permit(john, User)
       end
@@ -53,23 +53,23 @@ RSpec.describe UserPolicy do
   end
 
   permissions :confirm? do
-    context 'staff?' do
-      context '!record.confirmed?' do
+    context 'when staff?' do
+      context 'with !record.confirmed?' do
         it 'permits' do
           john.user.update(confirmed_at: nil)
           expect(subject).to permit(admin, john.user)
         end
       end
 
-      context 'record.confirmed?' do
+      context 'when record.confirmed?' do
         it 'denies' do
-          john.user.confirm!
+          john.user.mark_email_as_confirmed!
           expect(subject).to_not permit(admin, john.user)
         end
       end
     end
 
-    context '!staff?' do
+    context 'with !staff?' do
       it 'denies' do
         expect(subject).to_not permit(john, User)
       end
@@ -77,13 +77,13 @@ RSpec.describe UserPolicy do
   end
 
   permissions :enable? do
-    context 'staff?' do
+    context 'when staff?' do
       it 'permits' do
         expect(subject).to permit(admin, User)
       end
     end
 
-    context '!staff?' do
+    context 'with !staff?' do
       it 'denies' do
         expect(subject).to_not permit(john, User)
       end
@@ -91,76 +91,61 @@ RSpec.describe UserPolicy do
   end
 
   permissions :disable? do
-    context 'staff?' do
-      context '!record.admin?' do
+    context 'when staff?' do
+      context 'with !record.admin?' do
         it 'permits' do
           expect(subject).to permit(admin, john.user)
         end
       end
 
-      context 'record.admin?' do
+      context 'when record.admin?' do
         it 'denies' do
           expect(subject).to_not permit(admin, admin.user)
         end
       end
     end
 
-    context '!staff?' do
+    context 'with !staff?' do
       it 'denies' do
         expect(subject).to_not permit(john, User)
       end
     end
   end
 
-  permissions :promote? do
-    context 'admin?' do
-      context 'promoteable?' do
-        it 'permits' do
-          expect(subject).to permit(admin, john.user)
-        end
+  permissions :approve?, :reject? do
+    context 'when admin' do
+      context 'when user is approved' do
+        it { is_expected.to_not permit(admin, User.new(approved: true)) }
       end
 
-      context '!promoteable?' do
-        it 'denies' do
-          expect(subject).to_not permit(admin, admin.user)
-        end
+      context 'when user is not approved' do
+        it { is_expected.to permit(admin, User.new(approved: false)) }
       end
     end
 
-    context '!admin?' do
-      it 'denies' do
-        expect(subject).to_not permit(john, User)
-      end
+    context 'when not admin' do
+      it { is_expected.to_not permit(john, User.new) }
     end
   end
 
-  permissions :demote? do
-    context 'admin?' do
-      context '!record.admin?' do
-        context 'demoteable?' do
-          it 'permits' do
-            john.user.update(moderator: true)
-            expect(subject).to permit(admin, john.user)
-          end
-        end
-
-        context '!demoteable?' do
-          it 'denies' do
-            expect(subject).to_not permit(admin, john.user)
-          end
-        end
-      end
-
-      context 'record.admin?' do
-        it 'denies' do
-          expect(subject).to_not permit(admin, admin.user)
-        end
-      end
+  permissions :change_role? do
+    context 'when not admin' do
+      it { is_expected.to_not permit(john, User.new) }
     end
 
-    context '!admin?' do
-      it 'denies' do
-        expect(subject).to_not permit(john, User)
+    context 'when admin' do
+      let(:user) { User.new(role: role) }
+
+      context 'when role of admin overrides user role' do
+        let(:role) { UserRole.new(position: admin.user.role.position - 10, id: 123) }
+
+        it { is_expected.to permit(admin, user) }
+      end
+
+      context 'when role of admin does not override user role' do
+        let(:role) { UserRole.new(position: admin.user.role.position + 10, id: 123) }
+
+        it { is_expected.to_not permit(admin, user) }
       end
     end
   end

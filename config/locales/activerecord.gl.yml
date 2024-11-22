@@ -15,12 +15,30 @@ gl:
       user/invite_request:
         text: Razón
     errors:
+      attributes:
+        domain:
+          invalid: non é un nome de dominio válido
+      messages:
+        invalid_domain_on_line: "%{value} non é un nome de dominio válido"
+        too_many_lines: superou o límite de %{limit} liñas
       models:
         account:
           attributes:
             username:
               invalid: só letras, números e trazo baixo
               reserved: está reservado
+        admin/webhook:
+          attributes:
+            url:
+              invalid: non é un URL válido
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: non é un URL válido
+        import:
+          attributes:
+            data:
+              malformed: ten formato incorrecto
         status:
           attributes:
             reblog:
@@ -30,3 +48,18 @@ gl:
             email:
               blocked: utiliza un provedor de email non autorizado
               unreachable: semella que non existe
+            role_id:
+              elevated: non pode superar o teu rol actual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inclúe permisos que non son seguros para o rol básico
+              elevated: non pode incluir permisos que o teu rol actual non posúe
+              own_role: non pode ser modificado co teu rol actual
+            position:
+              elevated: non pode superar ao teu rol actual
+              own_role: non pode ser modificado co teu rol actual
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: non podes incluír eventos para os que non tes permiso

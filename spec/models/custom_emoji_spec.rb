@@ -1,48 +1,50 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe CustomEmoji, type: :model do
+RSpec.describe CustomEmoji, :attachment_processing do
   describe '#search' do
-    let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: shortcode) }
-
     subject { described_class.search(search_term) }
 
-    context 'shortcode is exact' do
+    let(:custom_emoji) { Fabricate(:custom_emoji, shortcode: shortcode) }
+
+    context 'when shortcode is exact' do
       let(:shortcode) { 'blobpats' }
       let(:search_term) { 'blobpats' }
 
       it 'finds emoji' do
-        is_expected.to include(custom_emoji)
+        expect(subject).to include(custom_emoji)
       end
     end
 
-    context 'shortcode is partial' do
+    context 'when shortcode is partial' do
       let(:shortcode) { 'blobpats' }
       let(:search_term) { 'blob' }
 
       it 'finds emoji' do
-        is_expected.to include(custom_emoji)
+        expect(subject).to include(custom_emoji)
       end
     end
   end
 
   describe '#local?' do
-    let(:custom_emoji) { Fabricate(:custom_emoji, domain: domain) }
-
     subject { custom_emoji.local? }
 
-    context 'domain is nil' do
+    let(:custom_emoji) { Fabricate(:custom_emoji, domain: domain) }
+
+    context 'when domain is nil' do
       let(:domain) { nil }
 
       it 'returns true' do
-        is_expected.to be true
+        expect(subject).to be true
       end
     end
 
-    context 'domain is present' do
+    context 'when domain is present' do
       let(:domain) { 'example.com' }
 
       it 'returns false' do
-        is_expected.to be false
+        expect(subject).to be false
       end
     end
   end
@@ -55,15 +57,15 @@ RSpec.describe CustomEmoji, type: :model do
   end
 
   describe '.from_text' do
-    let!(:emojo) { Fabricate(:custom_emoji) }
-
     subject { described_class.from_text(text, nil) }
+
+    let!(:emojo) { Fabricate(:custom_emoji, shortcode: 'coolcat') }
 
     context 'with plain text' do
       let(:text) { 'Hello :coolcat:' }
 
       it 'returns records used via shortcodes in text' do
-        is_expected.to include(emojo)
+        expect(subject).to include(emojo)
       end
     end
 
@@ -71,17 +73,24 @@ RSpec.describe CustomEmoji, type: :model do
       let(:text) { '<p>Hello :coolcat:</p>' }
 
       it 'returns records used via shortcodes in text' do
-        is_expected.to include(emojo)
+        expect(subject).to include(emojo)
       end
     end
   end
 
-  describe 'pre_validation' do
-    let(:custom_emoji) { Fabricate(:custom_emoji, domain: 'wWw.MaStOdOn.CoM') }
-
-    it 'should downcase' do
-      custom_emoji.valid?
-      expect(custom_emoji.domain).to eq('www.mastodon.com')
+  describe 'Normalizations' do
+    describe 'domain' do
+      it { is_expected.to normalize(:domain).from('wWw.MaStOdOn.CoM').to('www.mastodon.com') }
+      it { is_expected.to normalize(:domain).from(nil).to(nil) }
     end
+  end
+
+  describe 'Validations' do
+    subject { Fabricate.build :custom_emoji }
+
+    it { is_expected.to validate_uniqueness_of(:shortcode).scoped_to(:domain) }
+    it { is_expected.to validate_length_of(:shortcode).is_at_least(described_class::MINIMUM_SHORTCODE_SIZE) }
+    it { is_expected.to allow_values('cats').for(:shortcode) }
+    it { is_expected.to_not allow_values('@#$@#$', 'X').for(:shortcode) }
   end
 end

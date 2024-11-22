@@ -3,11 +3,18 @@
 class Webfinger
   class Error < StandardError; end
   class GoneError < Error; end
-  class RedirectError < StandardError; end
+  class RedirectError < Error; end
 
   class Response
-    def initialize(body)
+    ACTIVITYPUB_READY_TYPE = ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].freeze
+
+    attr_reader :uri
+
+    def initialize(uri, body)
+      @uri  = uri
       @json = Oj.load(body, mode: :strict)
+
+      validate_response!
     end
 
     def subject
@@ -15,13 +22,28 @@ class Webfinger
     end
 
     def link(rel, attribute)
-      links.dig(rel, attribute)
+      links.dig(rel, 0, attribute)
+    end
+
+    def self_link_href
+      self_link.fetch('href')
     end
 
     private
 
     def links
-      @links ||= @json['links'].index_by { |link| link['rel'] }
+      @links ||= @json.fetch('links', []).group_by { |link| link['rel'] }
+    end
+
+    def self_link
+      links.fetch('self', []).find do |link|
+        ACTIVITYPUB_READY_TYPE.include?(link['type'])
+      end
+    end
+
+    def validate_response!
+      raise Webfinger::Error, "Missing subject in response for #{@uri}" if subject.blank?
+      raise Webfinger::Error, "Missing self link in response for #{@uri}" if self_link.blank?
     end
   end
 
@@ -34,7 +56,7 @@ class Webfinger
   end
 
   def perform
-    Response.new(body_from_webfinger)
+    Response.new(@uri, body_from_webfinger)
   rescue Oj::ParseError
     raise Webfinger::Error, "Invalid JSON in response for #{@uri}"
   rescue Addressable::URI::InvalidURIError
@@ -48,6 +70,7 @@ class Webfinger
       if res.code == 200
         body = res.body_with_limit
         raise Webfinger::Error, "Request for #{@uri} returned empty response" if body.empty?
+
         body
       elsif res.code == 404 && use_fallback
         body_from_host_meta
@@ -90,7 +113,7 @@ class Webfinger
   end
 
   def standard_url
-    if @domain.end_with? ".onion"
+    if @domain.end_with? '.onion'
       "http://#{@domain}/.well-known/webfinger?resource=#{@uri}"
     else
       "https://#{@domain}/.well-known/webfinger?resource=#{@uri}"
@@ -98,7 +121,7 @@ class Webfinger
   end
 
   def host_meta_url
-    if @domain.end_with? ".onion"
+    if @domain.end_with? '.onion'
       "http://#{@domain}/.well-known/host-meta"
     else
       "https://#{@domain}/.well-known/host-meta"

@@ -1,0 +1,50 @@
+name: JavaScript Linting
+on:
+  merge_group:
+  push:
+    branches:
+      - 'main'
+      - 'stable-*'
+    paths:
+      - 'package.json'
+      - 'yarn.lock'
+      - 'tsconfig.json'
+      - '.nvmrc'
+      - '.prettier*'
+      - '.eslint*'
+      - '**/*.js'
+      - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '.github/workflows/lint-js.yml'
+
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'yarn.lock'
+      - 'tsconfig.json'
+      - '.nvmrc'
+      - '.prettier*'
+      - '.eslint*'
+      - '**/*.js'
+      - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '.github/workflows/lint-js.yml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
+
+      - name: ESLint
+        run: yarn lint:js --max-warnings 0
+
+      - name: Typecheck
+        run: yarn typecheck

@@ -1,12 +1,10 @@
-require Rails.root.join('lib', 'mastodon', 'migration_helpers')
+# frozen_string_literal: true
 
-class AddDisabledToUsers < ActiveRecord::Migration[5.1]
-  include Mastodon::MigrationHelpers
-
+class AddDisabledToUsers < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def up
-    safety_assured { add_column_with_default :users, :disabled, :bool, default: false }
+    safety_assured { add_column :users, :disabled, :bool, default: false, null: false }
   end
 
   def down

@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 class ActivityPub::InboxesController < ActivityPub::BaseController
-  include SignatureVerification
   include JsonLdHelper
-  include AccountOwnedConcern
 
   before_action :skip_unknown_actor_activity
-  before_action :require_signature!
+  before_action :require_actor_signature!
   skip_before_action :authenticate_user!
 
   def create
@@ -24,7 +22,7 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
 
   def unknown_affected_account?
     json = Oj.load(body, mode: :strict)
-    json.is_a?(Hash) && %w(Delete Update).include?(json['type']) && json['actor'].present? && json['actor'] == value_or_id(json['object']) && !Account.where(uri: json['actor']).exists?
+    json.is_a?(Hash) && %w(Delete Update).include?(json['type']) && json['actor'].present? && json['actor'] == value_or_id(json['object']) && !Account.exists?(uri: json['actor'])
   rescue Oj::ParseError
     false
   end
@@ -49,28 +47,27 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
   end
 
   def upgrade_account
-    if signed_request_account.ostatus?
+    if signed_request_account&.ostatus?
       signed_request_account.update(last_webfingered_at: nil)
       ResolveAccountWorker.perform_async(signed_request_account.acct)
     end
 
-    DeliveryFailureTracker.reset!(signed_request_account.inbox_url)
+    DeliveryFailureTracker.reset!(signed_request_actor.inbox_url)
   end
 
   def process_collection_synchronization
     raw_params = request.headers['Collection-Synchronization']
-    return if raw_params.blank? || ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] == 'true'
+    return if raw_params.blank? || ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] == 'true' || signed_request_account.nil?
 
     # Re-using the syntax for signature parameters
-    tree   = SignatureParamsParser.new.parse(raw_params)
-    params = SignatureParamsTransformer.new.apply(tree)
+    params = SignatureParser.parse(raw_params)
 
     ActivityPub::PrepareFollowersSynchronizationService.new.call(signed_request_account, params)
-  rescue Parslet::ParseFailed
+  rescue SignatureParser::ParsingError
     Rails.logger.warn 'Error parsing Collection-Synchronization header'
   end
 
   def process_payload
-    ActivityPub::ProcessingWorker.perform_async(signed_request_account.id, body, @account&.id)
+    ActivityPub::ProcessingWorker.perform_async(signed_request_actor.id, body, @account&.id, signed_request_actor.class.name)
   end
 end

@@ -1,0 +1,61 @@
+.fields-row
+  .fields-row__column.fields-row__column-6.fields-group
+    = f.input :title,
+              as: :string,
+              hint: false,
+              wrapper: :with_label
+  .fields-row__column.fields-row__column-6.fields-group
+    = f.input :expires_in,
+              collection: CustomFilter::EXPIRATION_DURATIONS.map(&:to_i),
+              include_blank: I18n.t('invites.expires_in_prompt'),
+              label_method: ->(i) { I18n.t("invites.expires_in.#{i}") },
+              wrapper: :with_label
+
+.fields-group
+  = f.input :context,
+            as: :check_boxes,
+            collection_wrapper_tag: 'ul',
+            collection: CustomFilter::VALID_CONTEXTS,
+            include_blank: false,
+            item_wrapper_tag: 'li',
+            label_method: ->(context) { I18n.t("filters.contexts.#{context}") },
+            wrapper: :with_block_label
+
+%hr.spacer/
+
+.fields-group
+  = f.input :filter_action,
+            as: :radio_buttons,
+            collection: %i(warn hide),
+            hint: t('simple_form.hints.filters.action'),
+            include_blank: false,
+            label_method: ->(action) { filter_action_label(action) },
+            required: true,
+            wrapper: :with_block_label
+
+%hr.spacer/
+
+- unless f.object.statuses.empty?
+  %h4= t('filters.edit.statuses')
+
+  %p.muted-hint= t('filters.edit.statuses_hint_html', path: filter_statuses_path(f.object))
+
+  %hr.spacer/
+
+%h4= t('filters.edit.keywords')
+
+.table-wrapper
+  %table.table.keywords-table
+    %thead
+      %tr
+        %th= t('simple_form.labels.defaults.phrase')
+        %th= t('simple_form.labels.defaults.whole_word')
+        %th
+    %tbody
+      = f.simple_fields_for :keywords do |keyword|
+        = render 'keyword_fields', f: keyword
+    %tfoot
+      %tr
+        %td{ colspan: 3 }
+          = link_to_add_association f, :keywords, class: 'table-action-link', partial: 'keyword_fields', 'data-association-insertion-node': '.keywords-table tbody', 'data-association-insertion-method': 'append' do
+            = safe_join([material_symbol('add'), t('filters.edit.add_keyword')])

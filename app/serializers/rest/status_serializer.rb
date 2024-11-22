@@ -1,16 +1,21 @@
 # frozen_string_literal: true
 
 class REST::StatusSerializer < ActiveModel::Serializer
+  include FormattingHelper
+
+  # Please update `app/javascript/mastodon/api_types/statuses.ts` when making changes to the attributes
+
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
              :uri, :url, :replies_count, :reblogs_count,
-             :favourites_count
+             :favourites_count, :edited_at
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
   attribute :muted, if: :current_user?
   attribute :bookmarked, if: :current_user?
   attribute :pinned, if: :pinnable?
+  has_many :filtered, serializer: REST::FilterResultSerializer, if: :current_user?
 
   attribute :content, unless: :source_requested?
   attribute :text, if: :source_requested?
@@ -19,7 +24,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   belongs_to :application, if: :show_application?
   belongs_to :account, serializer: REST::AccountSerializer
 
-  has_many :media_attachments, serializer: REST::MediaAttachmentSerializer
+  has_many :ordered_media_attachments, key: :media_attachments, serializer: REST::MediaAttachmentSerializer
   has_many :ordered_mentions, key: :mentions
   has_many :tags
   has_many :emojis, serializer: REST::CustomEmojiSerializer
@@ -71,50 +76,66 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def content
-    Formatter.instance.format(object)
+    status_content_format(object)
   end
 
   def url
     ActivityPub::TagManager.instance.url_for(object)
   end
 
+  def reblogs_count
+    object.untrusted_reblogs_count || relationships&.attributes_map&.dig(object.id, :reblogs_count) || object.reblogs_count
+  end
+
+  def favourites_count
+    object.untrusted_favourites_count || relationships&.attributes_map&.dig(object.id, :favourites_count) || object.favourites_count
+  end
+
   def favourited
-    if instance_options && instance_options[:relationships]
-      instance_options[:relationships].favourites_map[object.id] || false
+    if relationships
+      relationships.favourites_map[object.id] || false
     else
       current_user.account.favourited?(object)
     end
   end
 
   def reblogged
-    if instance_options && instance_options[:relationships]
-      instance_options[:relationships].reblogs_map[object.id] || false
+    if relationships
+      relationships.reblogs_map[object.id] || false
     else
       current_user.account.reblogged?(object)
     end
   end
 
   def muted
-    if instance_options && instance_options[:relationships]
-      instance_options[:relationships].mutes_map[object.conversation_id] || false
+    if relationships
+      relationships.mutes_map[object.conversation_id] || false
     else
       current_user.account.muting_conversation?(object.conversation)
     end
   end
 
   def bookmarked
-    if instance_options && instance_options[:relationships]
-      instance_options[:relationships].bookmarks_map[object.id] || false
+    if relationships
+      relationships.bookmarks_map[object.id] || false
     else
       current_user.account.bookmarked?(object)
     end
   end
 
   def pinned
-    if instance_options && instance_options[:relationships]
-      instance_options[:relationships].pins_map[object.id] || false
+    if relationships
+      relationships.pins_map[object.id] || false
     else
       current_user.account.pinned?(object)
+    end
+  end
+
+  def filtered
+    if relationships
+      relationships.filters_map[object.id] || []
+    else
+      current_user.account.status_matches_filters(object)
     end
   end
 
@@ -122,7 +143,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     current_user? &&
       current_user.account_id == object.account_id &&
       !object.reblog? &&
-      %w(public unlisted).include?(object.visibility)
+      %w(public unlisted private).include?(object.visibility)
   end
 
   def source_requested?
@@ -133,8 +154,18 @@ class REST::StatusSerializer < ActiveModel::Serializer
     object.active_mentions.to_a.sort_by(&:id)
   end
 
+  private
+
+  def relationships
+    instance_options && instance_options[:relationships]
+  end
+
   class ApplicationSerializer < ActiveModel::Serializer
     attributes :name, :website
+
+    def website
+      object.website.presence
+    end
   end
 
   class MentionSerializer < ActiveModel::Serializer

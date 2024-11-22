@@ -11,33 +11,36 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    %link{ rel: 'icon', href: favicon_path, type: 'image/x-icon' }/
-    %link{ rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }/
-    %link{ rel: 'mask-icon', href: '/mask-icon.svg', color: '#2B90D9' }/
-    %link{ rel: 'manifest', href: '/manifest.json' }/
-    %meta{ name: 'msapplication-config', content: '/browserconfig.xml' }/
-    %meta{ name: 'theme-color', content: '#282c37' }/
-    %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
+    - SiteUpload::FAVICON_SIZES.each do |size|
+      %link{ rel: 'icon', sizes: "#{size}x#{size}", href: favicon_path(size.to_i) || frontend_asset_path("icons/favicon-#{size}x#{size}.png"), type: 'image/png' }/
 
-    %title= content_for?(:page_title) ? safe_join([yield(:page_title).chomp.html_safe, title], ' - ') : title
+    - SiteUpload::APPLE_ICON_SIZES.each do |size|
+      %link{ rel: 'apple-touch-icon', sizes: "#{size}x#{size}", href: app_icon_path(size.to_i) || frontend_asset_path("icons/apple-touch-icon-#{size}x#{size}.png") }/
 
-    = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
-    = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
+    - if use_mask_icon?
+      %link{ rel: 'mask-icon', href: frontend_asset_path('images/logo-symbol-icon.svg'), color: '#6364FF' }/
+    %link{ rel: 'manifest', href: manifest_path(format: :json) }/
+    = theme_color_tags current_theme
+    %meta{ name: 'mobile-web-app-capable', content: 'yes' }/
+
+    %title= html_title
+
+    = theme_style_tags current_theme
+    -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
+    = stylesheet_pack_tag 'inert', media: 'all', crossorigin: 'anonymous', id: 'inert-style'
+
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
-    = javascript_pack_tag "locale_#{I18n.locale}", crossorigin: 'anonymous'
-    = csrf_meta_tags
+    = preload_pack_asset "locale/#{I18n.locale}-json.js"
+    = csrf_meta_tags unless skip_csrf_meta_tags?
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 
-    = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
-
-    - if Setting.custom_css.present?
-      = stylesheet_link_tag custom_css_path, host: request.host, media: 'all'
+    = stylesheet_link_tag custom_css_path, skip_pipeline: true, host: root_url, media: 'all'
 
     = yield :header_tags
 
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
 
-    .logo-resources
-      = raw render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')
-      = raw render file: Rails.root.join('app', 'javascript', 'images', 'logo_full.svg')
+    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => 'true' }
+      = inline_svg_tag 'logo-symbol-icon.svg'
+      = inline_svg_tag 'logo-symbol-wordmark.svg'

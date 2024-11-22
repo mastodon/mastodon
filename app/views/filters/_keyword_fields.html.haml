@@ -1,0 +1,8 @@
+%tr.nested-fields
+  %td= f.input :keyword, as: :string
+  %td
+    .label_input__wrapper= f.input_field :whole_word
+  %td
+    = f.hidden_field :id if f.object&.persisted? # Required so Rails doesn't put the field outside of the <tr/>
+    = link_to_remove_association(f, class: 'table-action-link') do
+      = safe_join([material_symbol('close'), t('filters.index.delete')])

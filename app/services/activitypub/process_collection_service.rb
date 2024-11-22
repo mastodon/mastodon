@@ -2,13 +2,33 @@
 
 class ActivityPub::ProcessCollectionService < BaseService
   include JsonLdHelper
+  include DomainControlHelper
 
-  def call(body, account, **options)
-    @account = account
-    @json    = Oj.load(body, mode: :strict)
+  def call(body, actor, **options)
+    @account = actor
+    @json    = original_json = Oj.load(body, mode: :strict)
     @options = options
 
+    return unless @json.is_a?(Hash)
+
+    begin
+      @json = compact(@json) if @json['signature'].is_a?(Hash)
+    rescue JSON::LD::JsonLdError => e
+      Rails.logger.debug { "Error when compacting JSON-LD document for #{value_or_id(@json['actor'])}: #{e.message}" }
+      @json = original_json.without('signature')
+    end
+
     return if !supported_context? || (different_actor? && verify_account!.nil?) || suspended_actor? || @account.local?
+    return unless @account.is_a?(Account)
+
+    if @json['signature'].present?
+      # We have verified the signature, but in the compaction step above, might
+      # have introduced incompatibilities with other servers that do not
+      # normalize the JSON-LD documents (for instance, previous Mastodon
+      # versions), so skip redistribution if we can't get a safe document.
+      patch_for_forwarding!(original_json, @json)
+      @json.delete('signature') unless safe_for_forwarding?(original_json, @json)
+    end
 
     case @json['type']
     when 'Collection', 'CollectionPage'
@@ -50,10 +70,15 @@ class ActivityPub::ProcessCollectionService < BaseService
   end
 
   def verify_account!
-    @options[:relayed_through_account] = @account
-    @account = ActivityPub::LinkedDataSignature.new(@json).verify_account!
-  rescue JSON::LD::JsonLdError => e
-    Rails.logger.debug "Could not verify LD-Signature for #{value_or_id(@json['actor'])}: #{e.message}"
+    return unless @json['signature'].is_a?(Hash)
+    return if domain_not_allowed?(@json['signature']['creator'])
+
+    @options[:relayed_through_actor] = @account
+    @account = ActivityPub::LinkedDataSignature.new(@json).verify_actor!
+    @account = nil unless @account.is_a?(Account)
+    @account
+  rescue JSON::LD::JsonLdError, RDF::WriterError => e
+    Rails.logger.debug { "Could not verify LD-Signature for #{value_or_id(@json['actor'])}: #{e.message}" }
     nil
   end
 end

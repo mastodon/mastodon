@@ -15,12 +15,30 @@ hu:
       user/invite_request:
         text: Indoklás
     errors:
+      attributes:
+        domain:
+          invalid: nem egy érvényes domain név
+      messages:
+        invalid_domain_on_line: "%{value} nem egy érvényes domain név"
+        too_many_lines: túllépi a(z) %{limit} soros korlátot
       models:
         account:
           attributes:
             username:
               invalid: csak betűket, számokat vagy alávonást tartalmazhat
-              reserved: fenntartott
+              reserved: foglalt
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nem érvényes URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nem érvényes URL
+        import:
+          attributes:
+            data:
+              malformed: hibás
         status:
           attributes:
             reblog:
@@ -28,5 +46,20 @@ hu:
         user:
           attributes:
             email:
-              blocked: egy letiltott e-mail szolgáltatót használ
+              blocked: egy letiltott email szolgáltatót használ
               unreachable: úgy tűnik, hogy nem létezik
+            role_id:
+              elevated: nem lehet magasabb, mint a jelenlegi szereped
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: tartalmaz olyan engedélyeket is, melyek az alap szerephez nem biztonságosak
+              elevated: nem tartalmazhat olyan engedélyeket, melyek nincsenek benne a jelenlegi szerepedben
+              own_role: nem megváltoztatható a jelenlegi szerepköröddel
+            position:
+              elevated: nem lehet magasabb, mint a jelenlegi szereped
+              own_role: nem megváltoztatható a jelenlegi szerepköröddel
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: nem lehet olyan eseményeket bevenni, melyekhez nincs jogosultságod

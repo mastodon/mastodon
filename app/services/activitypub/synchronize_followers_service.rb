@@ -23,7 +23,7 @@ class ActivityPub::SynchronizeFollowersService < BaseService
   private
 
   def remove_unexpected_local_followers!
-    @account.followers.local.where.not(id: @expected_followers.map(&:id)).each do |unexpected_follower|
+    @account.followers.local.where.not(id: @expected_followers.map(&:id)).reorder(nil).find_each do |unexpected_follower|
       UnfollowService.new.call(unexpected_follower, @account)
     end
   end
@@ -59,15 +59,15 @@ class ActivityPub::SynchronizeFollowersService < BaseService
 
     case collection['type']
     when 'Collection', 'CollectionPage'
-      collection['items']
+      as_array(collection['items'])
     when 'OrderedCollection', 'OrderedCollectionPage'
-      collection['orderedItems']
+      as_array(collection['orderedItems'])
     end
   end
 
   def fetch_collection(collection_or_uri)
     return collection_or_uri if collection_or_uri.is_a?(Hash)
-    return if invalid_origin?(collection_or_uri)
+    return if non_matching_uri_hosts?(@account.uri, collection_or_uri)
 
     fetch_resource_without_id_validation(collection_or_uri, nil, true)
   end

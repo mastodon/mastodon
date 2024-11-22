@@ -2,14 +2,18 @@
 
 class TagPolicy < ApplicationPolicy
   def index?
-    staff?
+    role.can?(:manage_taxonomies)
   end
 
   def show?
-    staff?
+    role.can?(:manage_taxonomies)
   end
 
   def update?
-    staff?
+    role.can?(:manage_taxonomies)
+  end
+
+  def review?
+    role.can?(:manage_taxonomies)
   end
 end

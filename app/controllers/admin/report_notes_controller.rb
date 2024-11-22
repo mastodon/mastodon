@@ -14,22 +14,19 @@ module Admin
         if params[:create_and_resolve]
           @report.resolve!(current_account)
           log_action :resolve, @report
-
-          redirect_to admin_reports_path, notice: I18n.t('admin.reports.resolved_msg')
-          return
-        end
-
-        if params[:create_and_unresolve]
+        elsif params[:create_and_unresolve]
           @report.unresolve!
           log_action :reopen, @report
         end
 
-        redirect_to admin_report_path(@report), notice: I18n.t('admin.report_notes.created_msg')
+        redirect_to after_create_redirect_path, notice: I18n.t('admin.report_notes.created_msg')
       else
-        @report_notes = (@report.notes.latest + @report.history + @report.target_account.targeted_account_warnings.latest.custom).sort_by(&:created_at)
-        @form         = Form::StatusBatch.new
+        @report_notes = @report.notes.chronological.includes(:account)
+        @action_logs  = @report.history.includes(:target)
+        @form         = Admin::StatusBatchAction.new
+        @statuses     = @report.statuses.with_includes
 
-        render template: 'admin/reports/show'
+        render 'admin/reports/show'
       end
     end
 
@@ -40,6 +37,14 @@ module Admin
     end
 
     private
+
+    def after_create_redirect_path
+      if params[:create_and_resolve]
+        admin_reports_path
+      else
+        admin_report_path(@report)
+      end
+    end
 
     def resource_params
       params.require(:report_note).permit(

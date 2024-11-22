@@ -60,8 +60,6 @@ hy:
       error:
         title: Առաջացել է սխալ։
       new:
-        able_to: Նա կարողանալու է
-        prompt: "%{client_name} յաւելուածը խնդրում է հասանելիութիւն քո հաշուին"
         title: Անհրաժեշտ է նոյնականացում
       show:
         title: Պատճէնիր այս նոյնականացման կոդը եւ փակցրու յաւելուածում։
@@ -71,10 +69,9 @@ hy:
       confirmations:
         revoke: Վստա՞հ ես
       index:
-        application: Յաւելուած
-        created_at: Նոյնականացրած
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Դաշտեր
+        never_used: Երբեք չի օգտագործուել
+        scopes: Թոյլտուութիւններ
+        superapp: Ներքին
         title: Քո նոյնականացրած ծրագրերը
     errors:
       messages:
@@ -110,6 +107,24 @@ hy:
       authorized_applications:
         destroy:
           notice: Յաւելուածը չեղարկուել է։
+    grouped_scopes:
+      access:
+        read: Միայն կարդալու հնարաւորութիւն
+        read/write: Կարդալու եւ գրելու հնարաւորութիւն
+        write: Միայն գրելու հնարաւորութիւն
+      title:
+        accounts: Հաշիւներ
+        blocks: Արգելափակումներ
+        bookmarks: Էջանիշեր
+        conversations: Զրոյցներ
+        favourites: Հաւանածներ
+        filters: Զտիչներ
+        lists: Ցանկեր
+        mutes: Լռեցուածներ
+        notifications: Ծանուցումներ
+        push: Հրելու ծանուցումներ
+        search: Որոնել
+        statuses: Գրառումներ
     layouts:
       admin:
         nav:
@@ -130,7 +145,7 @@ hy:
       read:accounts: տեսնել հաշիւների ինֆորմացիան
       read:blocks: տեսնել արգելափակումները
       read:bookmarks: տեսնել էջանիշները
-      read:favourites: տեսնել հաւանումները
+      read:favourites: տես քո հաւանածները
       read:filters: տեսնել ֆիլտրերը
       read:follows: տեսնել հետեւորդներին
       read:lists: տեսնել ցանկերը
@@ -143,7 +158,6 @@ hy:
       write:accounts: փոփոխել հաշիւը
       write:blocks: արգելափակել հաշիւները եւ դոմէյնները
       write:bookmarks: էջանշել գրառումները
-      write:favourites: հաւանել գրառումները
       write:filters: "'ստեղծել ֆիլտրեր"
       write:follows: հետեւել մարդկանց
       write:lists: ստեղծել ցանկեր

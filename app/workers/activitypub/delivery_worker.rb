@@ -10,12 +10,23 @@ class ActivityPub::DeliveryWorker
 
   sidekiq_options queue: 'push', retry: 16, dead: false
 
+  # Unfortunately, we cannot control Sidekiq's jitter, so add our own
+  sidekiq_retry_in do |count|
+    # This is Sidekiq's default delay
+    delay  = (count**4) + 15
+    # Our custom jitter, that will be added to Sidekiq's built-in one.
+    # Sidekiq's built-in jitter is `rand(10) * (count + 1)`
+    jitter = rand(0.5 * (count**4))
+    delay + jitter
+  end
+
   HEADERS = { 'Content-Type' => 'application/activity+json' }.freeze
 
   def perform(json, source_account_id, inbox_url, options = {})
-    return unless DeliveryFailureTracker.available?(inbox_url)
-
     @options        = options.with_indifferent_access
+
+    return unless @options[:bypass_availability] || DeliveryFailureTracker.available?(inbox_url)
+
     @json           = json
     @source_account = Account.find(source_account_id)
     @inbox_url      = inbox_url
@@ -37,7 +48,7 @@ class ActivityPub::DeliveryWorker
 
   def build_request(http_client)
     Request.new(:post, @inbox_url, body: @json, http_client: http_client).tap do |request|
-      request.on_behalf_of(@source_account, :uri, sign_with: @options[:sign_with])
+      request.on_behalf_of(@source_account, sign_with: @options[:sign_with])
       request.add_headers(HEADERS)
       request.add_headers({ 'Collection-Synchronization' => synchronization_header }) if ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] != 'true' && @options[:synchronize_followers]
     end
@@ -48,7 +59,7 @@ class ActivityPub::DeliveryWorker
   end
 
   def perform_request
-    light = Stoplight(@inbox_url) do
+    stoplight_wrapper.run do
       request_pool.with(@host) do |http_client|
         build_request(http_client).perform do |response|
           raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response)
@@ -57,10 +68,12 @@ class ActivityPub::DeliveryWorker
         end
       end
     end
+  end
 
-    light.with_threshold(STOPLIGHT_FAILURE_THRESHOLD)
-         .with_cool_off_time(STOPLIGHT_COOLDOWN)
-         .run
+  def stoplight_wrapper
+    Stoplight(@inbox_url)
+      .with_threshold(STOPLIGHT_FAILURE_THRESHOLD)
+      .with_cool_off_time(STOPLIGHT_COOLDOWN)
   end
 
   def failure_tracker

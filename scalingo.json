@@ -31,7 +31,7 @@
       "required": false
     },
     "S3_REGION": {
-      "description": "Amazon S3 region that the bucket is located in",
+      "description": "Amazon S3 region that the bucket is located in; see regions list here: http://docs.aws.amazon.com/general/latest/gr/rande.html",
       "required": false
     },
     "AWS_ACCESS_KEY_ID": {
@@ -74,8 +74,13 @@
       "description": "SMTP server certificate verification mode. Defaults is 'peer'.",
       "required": false
     },
+    "SMTP_ENABLE_STARTTLS": {
+      "description": "Enable STARTTLS? Default is 'auto'.",
+      "value": "auto",
+      "required": false
+    },
     "SMTP_ENABLE_STARTTLS_AUTO": {
-      "description": "Enable STARTTLS if SMTP server supports it? Default is true.",
+      "description": "Enable STARTTLS if SMTP server supports it? Deprecated by SMTP_ENABLE_STARTTLS.",
       "required": false
     },
     "BUILDPACK_URL": {
@@ -92,8 +97,5 @@
   "scripts": {
     "postdeploy": "bundle exec rails db:migrate && bundle exec rails db:seed"
   },
-  "addons": [
-    "postgresql",
-    "redis"
-  ]
+  "addons": ["postgresql", "redis"]
 }

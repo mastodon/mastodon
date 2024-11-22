@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Redisable
-  extend ActiveSupport::Concern
-
-  private
-
   def redis
-    Redis.current
+    Thread.current[:redis] ||= RedisConnection.pool.checkout
+  end
+
+  def with_redis(&block)
+    RedisConnection.with(&block)
   end
 end

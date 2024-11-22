@@ -1,9 +1,11 @@
-import { connect } from 'react-redux';
-import EmojiPickerDropdown from '../components/emoji_picker_dropdown';
-import { changeSetting } from '../../../actions/settings';
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 import { Map as ImmutableMap } from 'immutable';
+import { connect } from 'react-redux';
+
+
 import { useEmoji } from '../../../actions/emojis';
+import { changeSetting } from '../../../actions/settings';
+import EmojiPickerDropdown from '../components/emoji_picker_dropdown';
 
 const perLine = 8;
 const lines   = 2;
@@ -72,6 +74,7 @@ const mapDispatchToProps = (dispatch, { onPickEmoji }) => ({
   },
 
   onPickEmoji: emoji => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- this is not a react hook
     dispatch(useEmoji(emoji));
 
     if (onPickEmoji) {

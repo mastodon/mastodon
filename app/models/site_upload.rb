@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: site_uploads
@@ -12,12 +13,53 @@
 #  meta              :json
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  blurhash          :string
 #
 
 class SiteUpload < ApplicationRecord
-  has_attached_file :file
+  include Attachmentable
 
-  validates_attachment_content_type :file, content_type: /\Aimage\/.*\z/
+  FAVICON_SIZES = [16, 32, 48].freeze
+  APPLE_ICON_SIZES   = [57, 60, 72, 76, 114, 120, 144, 152, 167, 180, 1024].freeze
+  ANDROID_ICON_SIZES = [36, 48, 72, 96, 144, 192, 256, 384, 512].freeze
+
+  APP_ICON_SIZES = (APPLE_ICON_SIZES + ANDROID_ICON_SIZES).uniq.freeze
+
+  STYLES = {
+    app_icon:
+      APP_ICON_SIZES.to_h do |size|
+        [:"#{size}", { format: 'png', geometry: "#{size}x#{size}#", file_geometry_parser: FastGeometryParser }]
+      end.freeze,
+
+    favicon:
+      FAVICON_SIZES.to_h do |size|
+        [:"#{size}", { format: 'png', geometry: "#{size}x#{size}#", file_geometry_parser: FastGeometryParser }]
+      end.freeze,
+
+    thumbnail: {
+      '@1x': {
+        format: 'png',
+        geometry: '1200x630#',
+        file_geometry_parser: FastGeometryParser,
+        blurhash: {
+          x_comp: 4,
+          y_comp: 4,
+        }.freeze,
+      },
+
+      '@2x': {
+        format: 'png',
+        geometry: '2400x1260#',
+        file_geometry_parser: FastGeometryParser,
+      }.freeze,
+    }.freeze,
+
+    mascot: {}.freeze,
+  }.freeze
+
+  has_attached_file :file, styles: ->(file) { STYLES[file.instance.var.to_sym] }, convert_options: { all: '-coalesce +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' }, processors: [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
+
+  validates_attachment_content_type :file, content_type: %r{\Aimage/.*\z}
   validates :file, presence: true
   validates :var, presence: true, uniqueness: true
 

@@ -22,12 +22,12 @@ sr:
         authorize: Ауторизуј
         cancel: Поништи
         destroy: Уништи
-        edit: Измени
+        edit: Уреди
         submit: Пошаљи
       confirmations:
         destroy: Да ли сте сигурни?
       edit:
-        title: Измени апликацију
+        title: Уреди апликацију
       form:
         error: Опс! Проверите формулар за евентуалне грешке
       help:
@@ -38,6 +38,7 @@ sr:
         application: Апликација
         callback_url: Адреса за повратни позив
         delete: Обриши
+        empty: Немате апликација.
         name: Име
         new: Нова апликација
         scopes: Опсези важења
@@ -59,8 +60,7 @@ sr:
       error:
         title: Догодила се грешка
       new:
-        able_to: Биће у могућности да
-        prompt: Апликација %{client_name} захтева приступ Вашем налогу
+        review_permissions: Прегледај дозволе
         title: Потребна ауторизација
       show:
         title: Копирајте овај ауторизациони код и налепите га у апликацију.
@@ -70,18 +70,25 @@ sr:
       confirmations:
         revoke: Да ли сте сигурни?
       index:
-        application: Апликација
-        created_at: Ауторизована
-        date_format: "%d.%m.%Y %H:%M:%S"
-        scopes: Опсези важења
+        authorized_at: Ауторизовано дана %{date}
+        description_html: Ово су апликације које могу да приступе твом налогу помоћу АПИ-ја. Ако овде постоје апликације које не препознајеш или се нека апликација не понаша добро, можеш опозвати њено право приступа.
+        last_used_at: Последњи пут коришћено дана %{date}
+        never_used: Никада није коришћено
+        scopes: Дозволе
+        superapp: Интерно
         title: Ваше ауторизоване апликације
     errors:
       messages:
         access_denied: Власник ресурса или ауторизациони сервер су одбили захтев.
         credential_flow_not_configured: Ток Resource Owner Password Credentials није успео пошто је Doorkeeper.configure.resource_owner_from_credentials неисконфигурисан.
         invalid_client: Клијентска идентификација није успела због непознатог клијента, зато што клијент није укључио идентификацију или зато што је искоришћен неподржани идентификациони метод.
+        invalid_code_challenge_method: Метод изазова кода мора бити S256, обичан није подржан.
         invalid_grant: Задата идентификациона дозвола је неисправна, истекла, опозвана, не поклапа се са адресом преусмеравања или је издата неког другом клијенту.
         invalid_redirect_uri: Укључена адреса преусмеравања није исправна.
+        invalid_request:
+          missing_param: 'Недостаје обавезни параметар: %{value}.'
+          request_not_authorized: Захтев мора бити ауторизован. Обавезни параметар за ауторизацију захтева недостаје или је неважећи.
+          unknown: Обавезни параметар у захтеву недостаје, у захтеву се налази неподржана вредност параметра или је параметар на неки други начин погрешно формиран.
         invalid_resource_owner: Задати креденцијали власника ресурса нису исправни или власник ресурса не може бити нађен
         invalid_scope: Захтевани опсег важења није исправан, непознат је или је на неки други начин погрешан.
         invalid_token:
@@ -105,6 +112,34 @@ sr:
       authorized_applications:
         destroy:
           notice: Апликација опозвана.
+    grouped_scopes:
+      access:
+        read: Приступ само за читање
+        read/write: Приступ за читање и писање
+        write: Приступ само за писање
+      title:
+        accounts: Налози
+        admin/accounts: Администрација налога
+        admin/all: Све функције администрације
+        admin/reports: Администрација пријава
+        all: Потпуни приступ вашем Mastodon налогу
+        blocks: Блокирани
+        bookmarks: Обележивачи
+        conversations: Разговори
+        crypto: End-to-end енкрипција
+        favourites: Омиљено
+        filters: Филтери
+        follow: Праћења, игнорисања и блокирања
+        follows: Праћени
+        lists: Листе
+        media: Мултимедијални прилози
+        mutes: Игнорисани
+        notifications: Обавештења
+        profile: Ваш Mastodon профил
+        push: Прослеђена обавештења
+        reports: Пријаве
+        search: Претрага
+        statuses: Објаве
     layouts:
       admin:
         nav:
@@ -113,6 +148,50 @@ sr:
       application:
         title: OAuth ауторизација потребна
     scopes:
-      follow: прати, блокира, одблокира и отпрати налоге
+      admin:read: читање свих података на серверу
+      admin:read:accounts: читање осетљивих података за све налоге
+      admin:read:canonical_email_blocks: прочитај осетљиве информације и канонске имејл блокове
+      admin:read:domain_allows: прочитај осетљиве информације за све дозволе домена
+      admin:read:domain_blocks: прочитај осетљиве информације за све блокове домена
+      admin:read:email_domain_blocks: прочитај осетљиве информације свих блокова имејл домена
+      admin:read:ip_blocks: прочитај осетљиве информације за све IP блокове
+      admin:read:reports: читање осетљивих података свих извештаја и пријављених налога
+      admin:write: мењање свих података на серверу
+      admin:write:accounts: вршење модераторских активности над налозима
+      admin:write:canonical_email_blocks: изврши модерацијске радње над канонским имејл блоковима
+      admin:write:domain_allows: изврши модерацијске радње над дозволама домена
+      admin:write:domain_blocks: изврши модераторске активности на блоковима домена
+      admin:write:email_domain_blocks: изврши модерацијске радње над блоковима имејл домена
+      admin:write:ip_blocks: изврши модераторске активности на IP блоковима
+      admin:write:reports: вршење модераторских активности над извештајима
+      crypto: коришћење end-to-end енкрипције
+      follow: мења односе налога
+      profile: чита само информације о профилу вашег налога
+      push: примање прослеђених обавештења
       read: чита податке Вашег налога
+      read:accounts: погледај информације о налозима
+      read:blocks: погледај своје блокиране
+      read:bookmarks: погледај своје обележиваче
+      read:favourites: погледај своје омиљене
+      read:filters: погледај своје филтере
+      read:follows: погледај кога пратиш
+      read:lists: погледај своје листе
+      read:mutes: погледај игнорисања
+      read:notifications: погледај своја обавештења
+      read:reports: погледај своје пријаве
+      read:search: претражи у своје име
+      read:statuses: погледај све објаве
       write: објављује статусе у Ваше име
+      write:accounts: измени свој профил
+      write:blocks: блокирај налоге и домене
+      write:bookmarks: обележи објаве
+      write:conversations: игнориши и избриши разговоре
+      write:favourites: омиљене објаве
+      write:filters: креирај филтере
+      write:follows: прати кориснике
+      write:lists: креирај листе
+      write:media: отпреми медијске датотеке
+      write:mutes: игнориши кориснике и разговоре
+      write:notifications: обриши своја обавештења
+      write:reports: пријави друге кориснике
+      write:statuses: објави објаве

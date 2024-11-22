@@ -30,9 +30,9 @@ class Export
   end
 
   def to_following_accounts_csv
-    CSV.generate(headers: ['Account address', 'Show boosts'], write_headers: true) do |csv|
+    CSV.generate(headers: ['Account address', 'Show boosts', 'Notify on new posts', 'Languages'], write_headers: true) do |csv|
       account.active_relationships.includes(:target_account).reorder(id: :desc).each do |follow|
-        csv << [acct(follow.target_account), follow.show_reblogs]
+        csv << [acct(follow.target_account), follow.show_reblogs, follow.notify, follow.languages&.join(', ')]
       end
     end
   end
@@ -53,42 +53,6 @@ class Export
         csv << [domain]
       end
     end
-  end
-
-  def total_storage
-    account.media_attachments.sum(:file_file_size)
-  end
-
-  def total_statuses
-    account.statuses_count
-  end
-
-  def total_bookmarks
-    account.bookmarks.count
-  end
-
-  def total_follows
-    account.following_count
-  end
-
-  def total_lists
-    account.owned_lists.count
-  end
-
-  def total_followers
-    account.followers_count
-  end
-
-  def total_blocks
-    account.blocking.count
-  end
-
-  def total_mutes
-    account.muting.count
-  end
-
-  def total_domain_blocks
-    account.domain_blocks.count
   end
 
   private

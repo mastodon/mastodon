@@ -1,0 +1,34 @@
+- content_for :page_title do
+  = t('admin.webhooks.title')
+
+- content_for :heading do
+  .content__heading__row
+    %h2
+      %small
+        = material_symbol 'inbox'
+        = t('admin.webhooks.webhook')
+      = @webhook.url
+    .content__heading__actions
+      = link_to t('admin.webhooks.edit'), edit_admin_webhook_path, class: 'button' if can?(:update, @webhook)
+
+.table-wrapper
+  %table.table.horizontal-table
+    %tbody
+      %tr
+        %th= t('admin.webhooks.status')
+        %td
+          - if @webhook.enabled?
+            %span.positive-hint= t('admin.webhooks.enabled')
+            = table_link_to 'power_off', t('admin.webhooks.disable'), disable_admin_webhook_path(@webhook), method: :post if can?(:disable, @webhook)
+          - else
+            %span.negative-hint= t('admin.webhooks.disabled')
+            = table_link_to 'power_off', t('admin.webhooks.enable'), enable_admin_webhook_path(@webhook), method: :post if can?(:enable, @webhook)
+      %tr
+        %th= t('admin.webhooks.events')
+        %td
+          %abbr{ title: @webhook.events.join(', ') }= t('admin.webhooks.enabled_events', count: @webhook.events.size)
+      %tr
+        %th= t('admin.webhooks.secret')
+        %td
+          %samp= @webhook.secret
+          = table_link_to 'refresh', t('admin.webhooks.rotate_secret'), rotate_admin_webhook_secret_path(@webhook), method: :post if can?(:rotate_secret, @webhook)

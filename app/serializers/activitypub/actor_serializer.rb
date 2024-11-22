@@ -2,27 +2,29 @@
 
 class ActivityPub::ActorSerializer < ActivityPub::Serializer
   include RoutingHelper
+  include FormattingHelper
 
   context :security
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
-                     :moved_to, :property_value, :discoverable, :olm, :suspended
+                     :moved_to, :property_value, :discoverable, :suspended,
+                     :memorial, :indexable, :attribution_domains
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :featured, :featured_tags,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers,
-             :discoverable, :published
+             :discoverable, :indexable, :published, :memorial
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
   has_many :virtual_tags, key: :tag
   has_many :virtual_attachments, key: :attachment
 
-  attribute :devices, unless: :instance_actor?
   attribute :moved_to, if: :moved?
   attribute :also_known_as, if: :also_known_as?
   attribute :suspended, if: :suspended?
+  attribute :attribution_domains, if: -> { object.attribution_domains.any? }
 
   class EndpointsSerializer < ActivityPub::Serializer
     include RoutingHelper
@@ -69,10 +71,6 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     object.instance_actor? ? instance_actor_inbox_url : account_inbox_url(object)
   end
 
-  def devices
-    account_collection_url(object, :devices)
-  end
-
   def outbox
     object.instance_actor? ? instance_actor_outbox_url : account_outbox_url(object)
   end
@@ -94,15 +92,19 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def discoverable
-    object.suspended? ? false : (object.discoverable || false)
+    object.unavailable? ? false : (object.discoverable || false)
+  end
+
+  def indexable
+    object.unavailable? ? false : (object.indexable || false)
   end
 
   def name
-    object.suspended? ? '' : object.display_name
+    object.unavailable? ? object.username : (object.display_name.presence || object.username)
   end
 
   def summary
-    object.suspended? ? '' : Formatter.instance.simplified_format(object)
+    object.unavailable? ? '' : account_bio_format(object)
   end
 
   def icon
@@ -126,23 +128,23 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def avatar_exists?
-    !object.suspended? && object.avatar?
+    !object.unavailable? && object.avatar?
   end
 
   def header_exists?
-    !object.suspended? && object.header?
+    !object.unavailable? && object.header?
   end
 
   def manually_approves_followers
-    object.suspended? ? false : object.locked
+    object.unavailable? ? false : object.locked
   end
 
   def virtual_tags
-    object.suspended? ? [] : (object.emojis + object.tags)
+    object.unavailable? ? [] : (object.emojis + object.tags)
   end
 
   def virtual_attachments
-    object.suspended? ? [] : object.fields
+    object.unavailable? ? [] : object.fields
   end
 
   def moved_to
@@ -150,11 +152,11 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def moved?
-    !object.suspended? && object.moved?
+    !object.unavailable? && object.moved?
   end
 
   def also_known_as?
-    !object.suspended? && !object.also_known_as.empty?
+    !object.unavailable? && !object.also_known_as.empty?
   end
 
   def published
@@ -185,6 +187,8 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   class Account::FieldSerializer < ActivityPub::Serializer
+    include FormattingHelper
+
     attributes :type, :name, :value
 
     def type
@@ -192,7 +196,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     end
 
     def value
-      Formatter.instance.format_field(object.account, object.value)
+      account_field_value_format(object)
     end
   end
 

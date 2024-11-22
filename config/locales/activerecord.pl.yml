@@ -15,12 +15,30 @@ pl:
       user/invite_request:
         text: Powód
     errors:
+      attributes:
+        domain:
+          invalid: nie jest prawidłową nazwą domeny
+      messages:
+        invalid_domain_on_line: "%{value} nie jest prawidłową nazwą domeny"
+        too_many_lines: przekracza limit %{limit} linii
       models:
         account:
           attributes:
             username:
               invalid: może składać się tylko z liter, cyfr i podkreślników
               reserved: jest zarezerwowana
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nie jest poprawnym adresem URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nie jest poprawnym adresem URL
+        import:
+          attributes:
+            data:
+              malformed: jest uszkodzona
         status:
           attributes:
             reblog:
@@ -30,3 +48,18 @@ pl:
             email:
               blocked: używa niedozwolonego dostawcy poczty elektronicznej
               unreachable: wydaje się nie istnieć
+            role_id:
+              elevated: nie może być wyższa niż twoja bieżąca rola
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: dołącz uprawnienia, które nie są bezpieczne dla roli podstawowej
+              elevated: nie może zawierać uprawnień, jakie twoja obecna rola nie posiada
+              own_role: nie można zmienić z aktualną rolą
+            position:
+              elevated: nie może być wyższa niż twoja bieżąca rola
+              own_role: nie może być zmieniona z twoją aktualną rolą
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: nie można uwzględnić wydarzeń, do których nie masz uprawnień

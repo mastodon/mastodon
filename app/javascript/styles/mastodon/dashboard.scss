@@ -13,8 +13,9 @@
     & > div,
     & > a {
       padding: 20px;
-      background: lighten($ui-base-color, 4%);
+      background: var(--background-color);
       border-radius: 4px;
+      border: 1px solid var(--background-border-color);
       box-sizing: border-box;
       height: 100%;
     }
@@ -27,7 +28,7 @@
       &:hover,
       &:focus,
       &:active {
-        background: lighten($ui-base-color, 8%);
+        background: $ui-base-color;
       }
     }
   }
@@ -37,9 +38,7 @@
     text-align: center;
     font-weight: 500;
     font-size: 24px;
-    line-height: 21px;
     color: $primary-text-color;
-    font-family: $font-display, sans-serif;
     margin-bottom: 20px;
     line-height: 30px;
   }
@@ -61,7 +60,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   grid-gap: 10px;
 
-  @media screen and (max-width: 1350px) {
+  @media screen and (width <= 1350px) {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
@@ -83,20 +82,18 @@
     display: flex;
     align-items: baseline;
     border-radius: 4px;
-    background: $ui-highlight-color;
+    background: $ui-button-background-color;
     color: $primary-text-color;
     transition: all 100ms ease-in;
     font-size: 14px;
-    padding: 0 16px;
-    line-height: 36px;
-    height: 36px;
+    padding: 8px 16px;
     text-decoration: none;
     margin-bottom: 4px;
 
     &:active,
     &:focus,
     &:hover {
-      background-color: lighten($ui-highlight-color, 10%);
+      background-color: $ui-button-focus-background-color;
       transition: all 200ms ease-out;
     }
 
@@ -112,10 +109,6 @@
 
     span {
       flex: 1 1 auto;
-    }
-
-    .fa {
-      flex: 0 0 auto;
     }
 
     strong {

@@ -7,7 +7,15 @@ export function Compose () {
 }
 
 export function Notifications () {
-  return import(/* webpackChunkName: "features/notifications" */'../../notifications');
+  return import(/* webpackChunkName: "features/notifications_v1" */'../../notifications');
+}
+
+export function Notifications_v2 () {
+  return import(/* webpackChunkName: "features/notifications_v2" */'../../notifications_v2');
+}
+
+export function NotificationsWrapper () {
+  return import(/* webpackChunkName: "features/notifications" */'../../notifications_wrapper');
 }
 
 export function HomeTimeline () {
@@ -20,6 +28,10 @@ export function PublicTimeline () {
 
 export function CommunityTimeline () {
   return import(/* webpackChunkName: "features/community_timeline" */'../../community_timeline');
+}
+
+export function Firehose () {
+  return import(/* webpackChunkName: "features/firehose" */'../../firehose');
 }
 
 export function HashtagTimeline () {
@@ -82,12 +94,12 @@ export function FollowRequests () {
   return import(/* webpackChunkName: "features/follow_requests" */'../../follow_requests');
 }
 
-export function GenericNotFound () {
-  return import(/* webpackChunkName: "features/generic_not_found" */'../../generic_not_found');
-}
-
 export function FavouritedStatuses () {
   return import(/* webpackChunkName: "features/favourited_statuses" */'../../favourited_statuses');
+}
+
+export function FollowedTags () {
+  return import(/* webpackChunkName: "features/followed_tags" */'../../followed_tags');
 }
 
 export function BookmarkedStatuses () {
@@ -114,8 +126,16 @@ export function BlockModal () {
   return import(/* webpackChunkName: "modals/block_modal" */'../components/block_modal');
 }
 
+export function DomainBlockModal () {
+  return import(/* webpackChunkName: "modals/domain_block_modal" */'../components/domain_block_modal');
+}
+
 export function ReportModal () {
   return import(/* webpackChunkName: "modals/report_modal" */'../components/report_modal');
+}
+
+export function IgnoreNotificationsModal () {
+  return import(/* webpackChunkName: "modals/domain_block_modal" */'../components/ignore_notifications_modal');
 }
 
 export function MediaGallery () {
@@ -130,16 +150,8 @@ export function EmbedModal () {
   return import(/* webpackChunkName: "modals/embed_modal" */'../components/embed_modal');
 }
 
-export function ListEditor () {
-  return import(/* webpackChunkName: "features/list_editor" */'../../list_editor');
-}
-
 export function ListAdder () {
   return import(/*webpackChunkName: "features/list_adder" */'../../list_adder');
-}
-
-export function Search () {
-  return import(/*webpackChunkName: "features/search" */'../../search');
 }
 
 export function Tesseract () {
@@ -154,6 +166,62 @@ export function Directory () {
   return import(/* webpackChunkName: "features/directory" */'../../directory');
 }
 
-export function FollowRecommendations () {
-  return import(/* webpackChunkName: "features/follow_recommendations" */'../../follow_recommendations');
+export function Onboarding () {
+  return import(/* webpackChunkName: "features/onboarding" */'../../onboarding');
+}
+
+export function CompareHistoryModal () {
+  return import(/*webpackChunkName: "modals/compare_history_modal" */'../components/compare_history_modal');
+}
+
+export function Explore () {
+  return import(/* webpackChunkName: "features/explore" */'../../explore');
+}
+
+export function FilterModal () {
+  return import(/*webpackChunkName: "modals/filter_modal" */'../components/filter_modal');
+}
+
+export function InteractionModal () {
+  return import(/*webpackChunkName: "modals/interaction_modal" */'../../interaction_modal');
+}
+
+export function SubscribedLanguagesModal () {
+  return import(/*webpackChunkName: "modals/subscribed_languages_modal" */'../../subscribed_languages_modal');
+}
+
+export function ClosedRegistrationsModal () {
+  return import(/*webpackChunkName: "modals/closed_registrations_modal" */'../../closed_registrations_modal');
+}
+
+export function About () {
+  return import(/*webpackChunkName: "features/about" */'../../about');
+}
+
+export function PrivacyPolicy () {
+  return import(/*webpackChunkName: "features/privacy_policy" */'../../privacy_policy');
+}
+
+export function NotificationRequests () {
+  return import(/*webpackChunkName: "features/notifications/requests" */'../../notifications/requests');
+}
+
+export function NotificationRequest () {
+  return import(/*webpackChunkName: "features/notifications/request" */'../../notifications/request');
+}
+
+export function LinkTimeline () {
+  return import(/*webpackChunkName: "features/link_timeline" */'../../link_timeline');
+}
+
+export function AnnualReportModal () {
+  return import(/*webpackChunkName: "modals/annual_report_modal" */'../components/annual_report_modal');
+}
+
+export function ListEdit () {
+  return import(/*webpackChunkName: "features/lists" */'../../lists/new');
+}
+
+export function ListMembers () {
+  return import(/* webpackChunkName: "features/lists" */'../../lists/members');
 }

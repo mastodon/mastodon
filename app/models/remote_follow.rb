@@ -3,7 +3,6 @@
 class RemoteFollow
   include ActiveModel::Validations
   include RoutingHelper
-  include WebfingerHelper
 
   attr_accessor :acct, :addressable_template
 
@@ -36,13 +35,11 @@ class RemoteFollow
 
     username, domain = value.strip.gsub(/\A@/, '').split('@')
 
-    domain = begin
-      if TagManager.instance.local_domain?(domain)
-        nil
-      else
-        TagManager.instance.normalize_domain(domain)
-      end
-    end
+    domain = if TagManager.instance.local_domain?(domain)
+               nil
+             else
+               TagManager.instance.normalize_domain(domain)
+             end
 
     [username, domain].compact.join('@')
   rescue Addressable::URI::InvalidURIError
@@ -68,8 +65,8 @@ class RemoteFollow
   end
 
   def acct_resource
-    @acct_resource ||= webfinger!("acct:#{acct}")
-  rescue Webfinger::Error, HTTP::ConnectionError
+    @acct_resource ||= Webfinger.new("acct:#{acct}").perform
+  rescue Webfinger::Error, *Mastodon::HTTP_CONNECTION_ERRORS
     nil
   end
 

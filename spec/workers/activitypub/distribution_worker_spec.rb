@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe ActivityPub::DistributionWorker do
+RSpec.describe ActivityPub::DistributionWorker do
   subject { described_class.new }
 
   let(:status)   { Fabricate(:status) }
-  let(:follower) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example.com') }
+  let(:follower) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example.com', domain: 'example.com') }
 
   describe '#perform' do
     before do
-      allow(ActivityPub::DeliveryWorker).to receive(:push_bulk)
       follower.follow!(status.account)
     end
 
@@ -18,8 +19,9 @@ describe ActivityPub::DistributionWorker do
       end
 
       it 'delivers to followers' do
-        subject.perform(status.id)
-        expect(ActivityPub::DeliveryWorker).to have_received(:push_bulk).with(['http://example.com'])
+        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything]]) do
+          subject.perform(status.id)
+        end
       end
     end
 
@@ -29,19 +31,24 @@ describe ActivityPub::DistributionWorker do
       end
 
       it 'delivers to followers' do
-        subject.perform(status.id)
-        expect(ActivityPub::DeliveryWorker).to have_received(:push_bulk).with(['http://example.com'])
+        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[match_json_values(type: 'Create'), status.account.id, 'http://example.com', anything]]) do
+          subject.perform(status.id)
+        end
       end
     end
 
     context 'with direct status' do
+      let(:mentioned_account) { Fabricate(:account, protocol: :activitypub, inbox_url: 'https://foo.bar/inbox', domain: 'foo.bar') }
+
       before do
         status.update(visibility: :direct)
+        status.mentions.create!(account: mentioned_account)
       end
 
-      it 'does nothing' do
-        subject.perform(status.id)
-        expect(ActivityPub::DeliveryWorker).to_not have_received(:push_bulk)
+      it 'delivers to mentioned accounts' do
+        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[match_json_values(type: 'Create'), status.account.id, 'https://foo.bar/inbox', anything]]) do
+          subject.perform(status.id)
+        end
       end
     end
   end

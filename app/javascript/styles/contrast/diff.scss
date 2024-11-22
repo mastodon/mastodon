@@ -1,82 +1,54 @@
-// components.scss
-.compose-form {
-  .compose-form__modifiers {
-    .compose-form__upload {
-      &-description {
-        input {
-          &::placeholder {
-            opacity: 1;
-          }
-        }
+.status__content a,
+.reply-indicator__content a,
+.edit-indicator__content a,
+.link-footer a,
+.status__content__read-more-button,
+.status__content__translate-button {
+  text-decoration: underline;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+
+  &.mention {
+    text-decoration: none;
+
+    span {
+      text-decoration: underline;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      span {
+        text-decoration: none;
       }
     }
   }
 }
 
-.rich-formatting a,
-.rich-formatting p a,
-.rich-formatting li a,
-.landing-page__short-description p a,
 .status__content a,
-.reply-indicator__content a {
-  color: lighten($ui-highlight-color, 12%);
-  text-decoration: underline;
-
-  &.mention {
-    text-decoration: none;
-  }
-
-  &.mention span {
-    text-decoration: underline;
-
-    &:hover,
-    &:focus,
-    &:active {
-      text-decoration: none;
-    }
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    text-decoration: none;
-  }
-
-  &.status__content__spoiler-link {
-    color: $secondary-text-color;
-    text-decoration: none;
-  }
-}
-
-.status__content__read-more-button {
-  text-decoration: underline;
-
-  &:hover,
-  &:focus,
-  &:active {
-    text-decoration: none;
-  }
-}
-
-.getting-started__footer a {
-  text-decoration: underline;
-
-  &:hover,
-  &:focus,
-  &:active {
-    text-decoration: none;
-  }
+.reply-indicator__content a,
+.edit-indicator__content a {
+  color: $highlight-text-color;
 }
 
 .nothing-here {
   color: $darker-text-color;
 }
 
-.public-layout .public-account-header__tabs__tabs .counter.active::after {
-  border-bottom: 4px solid $ui-highlight-color;
+.report-dialog-modal__textarea::placeholder {
+  color: $inverted-text-color;
 }
 
-.compose-form .autosuggest-textarea__textarea::placeholder,
-.compose-form .spoiler-input__input::placeholder {
-  color: $inverted-text-color;
+.link-button:disabled {
+  cursor: not-allowed;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none !important;
+  }
 }

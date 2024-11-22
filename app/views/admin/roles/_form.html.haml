@@ -1,0 +1,53 @@
+= render 'shared/error_messages', object: form.object
+
+- if form.object.everyone?
+  .flash-message.info
+    = t('admin.roles.everyone_full_description_html')
+- else
+  .fields-group
+    = form.input :name,
+                 wrapper: :with_label
+
+  - unless current_user.role == form.object
+    .fields-group
+      = form.input :position,
+                   input_html: { max: current_user.role.position - 1 },
+                   wrapper: :with_label
+
+  .fields-group
+    = form.input :color,
+                 input_html: { placeholder: '#000000', type: 'color' },
+                 wrapper: :with_label
+
+  %hr.spacer/
+
+  .fields-group
+    = form.input :highlighted,
+                 wrapper: :with_label
+
+  %hr.spacer/
+
+- unless current_user.role == form.object
+
+  .field-group
+    .input.with_block_label
+      %label= t('simple_form.labels.user_role.permissions_as_keys')
+      %span.hint= t('simple_form.hints.user_role.permissions_as_keys')
+
+    - (form.object.everyone? ? UserRole::Flags::CATEGORIES.slice(:invites) : UserRole::Flags::CATEGORIES).each do |category, permissions|
+      %h4= t(category, scope: 'admin.roles.categories')
+
+      = form.input :permissions_as_keys,
+                   as: :check_boxes,
+                   collection_wrapper_tag: 'ul',
+                   collection: permissions,
+                   disabled: disable_permissions?(permissions),
+                   hint: false,
+                   include_blank: false,
+                   item_wrapper_tag: 'li',
+                   label_method: ->(privilege) { privilege_label(privilege) },
+                   label: false,
+                   required: false,
+                   wrapper: :with_block_label
+
+  %hr.spacer/

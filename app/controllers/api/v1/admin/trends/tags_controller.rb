@@ -1,16 +1,48 @@
 # frozen_string_literal: true
 
-class Api::V1::Admin::Trends::TagsController < Api::BaseController
-  before_action :require_staff!
-  before_action :set_tags
+class Api::V1::Admin::Trends::TagsController < Api::V1::Trends::TagsController
+  include Authorization
+
+  before_action -> { authorize_if_got_token! :'admin:read' }, only: :index
+  before_action -> { authorize_if_got_token! :'admin:write' }, except: :index
+
+  after_action :verify_authorized, except: :index
 
   def index
-    render json: @tags, each_serializer: REST::Admin::TagSerializer
+    if current_user&.can?(:manage_taxonomies)
+      render json: @tags, each_serializer: REST::Admin::TagSerializer
+    else
+      super
+    end
+  end
+
+  def approve
+    authorize :tag, :review?
+
+    tag = Tag.find(params[:id])
+    tag.update(trendable: true, reviewed_at: Time.now.utc)
+    render json: tag, serializer: REST::Admin::TagSerializer
+  end
+
+  def reject
+    authorize :tag, :review?
+
+    tag = Tag.find(params[:id])
+    tag.update(trendable: false, reviewed_at: Time.now.utc)
+    render json: tag, serializer: REST::Admin::TagSerializer
   end
 
   private
 
-  def set_tags
-    @tags = Trends.tags.get(false, limit_param(10))
+  def enabled?
+    super || current_user&.can?(:manage_taxonomies)
+  end
+
+  def tags_from_trends
+    if current_user&.can?(:manage_taxonomies)
+      Trends.tags.query
+    else
+      super
+    end
   end
 end

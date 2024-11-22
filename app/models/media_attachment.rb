@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: media_attachments
@@ -33,12 +34,19 @@ class MediaAttachment < ApplicationRecord
 
   include Attachmentable
 
-  enum type: [:image, :gifv, :video, :unknown, :audio]
-  enum processing: [:queued, :in_progress, :complete, :failed], _prefix: true
+  enum :type, { image: 0, gifv: 1, video: 2, unknown: 3, audio: 4 }
+  enum :processing, { queued: 0, in_progress: 1, complete: 2, failed: 3 }, prefix: true
 
   MAX_DESCRIPTION_LENGTH = 1_500
 
-  IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif).freeze
+  IMAGE_LIMIT = 16.megabytes
+  VIDEO_LIMIT = 99.megabytes
+
+  MAX_VIDEO_MATRIX_LIMIT = 8_294_400 # 3840x2160px
+  MAX_VIDEO_FRAME_RATE   = 120
+  MAX_VIDEO_FRAMES       = 36_000 # Approx. 5 minutes at 120 fps
+
+  IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif .webp .heic .heif .avif).freeze
   VIDEO_FILE_EXTENSIONS = %w(.webm .mp4 .m4v .mov).freeze
   AUDIO_FILE_EXTENSIONS = %w(.ogg .oga .mp3 .wav .flac .opus .aac .m4a .3gp .wma).freeze
 
@@ -49,10 +57,11 @@ class MediaAttachment < ApplicationRecord
     small
   ).freeze
 
-  IMAGE_MIME_TYPES             = %w(image/jpeg image/png image/gif).freeze
+  IMAGE_MIME_TYPES             = %w(image/jpeg image/png image/gif image/heic image/heif image/webp image/avif).freeze
+  IMAGE_CONVERTIBLE_MIME_TYPES = %w(image/heic image/heif image/avif).freeze
   VIDEO_MIME_TYPES             = %w(video/webm video/mp4 video/quicktime video/ogg).freeze
   VIDEO_CONVERTIBLE_MIME_TYPES = %w(video/webm video/quicktime).freeze
-  AUDIO_MIME_TYPES             = %w(audio/wave audio/wav audio/x-wav audio/x-pn-wave audio/ogg audio/vorbis audio/mpeg audio/mp3 audio/webm audio/flac audio/aac audio/m4a audio/x-m4a audio/mp4 audio/3gpp video/x-ms-asf).freeze
+  AUDIO_MIME_TYPES             = %w(audio/wave audio/wav audio/x-wav audio/x-pn-wave audio/vnd.wave audio/ogg audio/vorbis audio/mpeg audio/mp3 audio/webm audio/flac audio/aac audio/m4a audio/x-m4a audio/mp4 audio/3gpp video/x-ms-asf).freeze
 
   BLURHASH_OPTIONS = {
     x_comp: 4,
@@ -61,33 +70,44 @@ class MediaAttachment < ApplicationRecord
 
   IMAGE_STYLES = {
     original: {
-      pixels: 2_073_600, # 1920x1080px
+      pixels: 8_294_400, # 3840x2160px
       file_geometry_parser: FastGeometryParser,
     }.freeze,
 
     small: {
-      pixels: 160_000, # 400x400px
+      pixels: 230_400, # 640x360px
       file_geometry_parser: FastGeometryParser,
       blurhash: BLURHASH_OPTIONS,
     }.freeze,
   }.freeze
 
+  IMAGE_CONVERTED_STYLES = {
+    original: {
+      format: 'jpeg',
+      content_type: 'image/jpeg',
+    }.merge(IMAGE_STYLES[:original]).freeze,
+
+    small: {
+      format: 'jpeg',
+    }.merge(IMAGE_STYLES[:small]).freeze,
+  }.freeze
+
   VIDEO_FORMAT = {
     format: 'mp4',
     content_type: 'video/mp4',
+    vfr_frame_rate_threshold: MAX_VIDEO_FRAME_RATE,
     convert_options: {
       output: {
         'loglevel' => 'fatal',
-        'movflags' => 'faststart',
-        'pix_fmt' => 'yuv420p',
-        'vf' => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
-        'vsync' => 'cfr',
+        'preset' => 'veryfast',
+        'movflags' => 'faststart', # Move metadata to start of file so playback can begin before download finishes
+        'pix_fmt' => 'yuv420p', # Ensure color space for cross-browser compatibility
+        'vf' => 'crop=floor(iw/2)*2:floor(ih/2)*2', # h264 requires width and height to be even. Crop instead of scale to avoid blurring
         'c:v' => 'h264',
-        'maxrate' => '1300K',
-        'bufsize' => '1300K',
-        'frames:v' => 60 * 60 * 3,
-        'crf' => 18,
+        'c:a' => 'aac',
+        'b:a' => '192k',
         'map_metadata' => '-1',
+        'frames:v' => MAX_VIDEO_FRAMES,
       }.freeze,
     }.freeze,
   }.freeze
@@ -114,7 +134,7 @@ class MediaAttachment < ApplicationRecord
       convert_options: {
         output: {
           'loglevel' => 'fatal',
-          vf: 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
+          :vf => 'scale=\'min(640\, iw):min(640\, ih)\':force_original_aspect_ratio=decrease',
         }.freeze,
       }.freeze,
       format: 'png',
@@ -148,15 +168,11 @@ class MediaAttachment < ApplicationRecord
     original: IMAGE_STYLES[:small].freeze,
   }.freeze
 
+  DEFAULT_STYLES = [:original].freeze
+
   GLOBAL_CONVERT_OPTIONS = {
-    all: '-quality 90 -strip +set modify-date +set create-date',
+    all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp -define jpeg:dct-method=float',
   }.freeze
-
-  IMAGE_LIMIT = 10.megabytes
-  VIDEO_LIMIT = 40.megabytes
-
-  MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
-  MAX_VIDEO_FRAME_RATE   = 60
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true
   belongs_to :status,           inverse_of: :media_attachments, optional: true
@@ -184,17 +200,20 @@ class MediaAttachment < ApplicationRecord
   remotable_attachment :thumbnail, IMAGE_LIMIT, suppress_errors: true, download_on_assign: false
 
   validates :account, presence: true
-  validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }, if: :local?
+  validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }
   validates :file, presence: true, if: :local?
   validates :thumbnail, absence: true, if: -> { local? && !audio_or_video? }
 
-  scope :attached,   -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
+  scope :attached, -> { where.not(status_id: nil).or(where.not(scheduled_status_id: nil)) }
+  scope :cached, -> { remote.where.not(file_file_name: nil) }
+  scope :created_before, ->(value) { where(arel_table[:created_at].lt(value)) }
+  scope :local, -> { where(remote_url: '') }
+  scope :ordered, -> { order(id: :asc) }
+  scope :remote, -> { where.not(remote_url: '') }
   scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
-  scope :local,      -> { where(remote_url: '') }
-  scope :remote,     -> { where.not(remote_url: '') }
-  scope :cached,     -> { remote.where.not(file_file_name: nil) }
+  scope :updated_before, ->(value) { where(arel_table[:updated_at].lt(value)) }
 
-  default_scope { order(id: :asc) }
+  attr_accessor :skip_download
 
   def local?
     remote_url.blank?
@@ -206,6 +225,10 @@ class MediaAttachment < ApplicationRecord
 
   def needs_redownload?
     file.blank? && remote_url.present?
+  end
+
+  def significantly_changed?
+    description_previously_changed? || thumbnail_updated_at_previously_changed? || file_meta_previously_changed?
   end
 
   def larger_media_format?
@@ -243,19 +266,21 @@ class MediaAttachment < ApplicationRecord
   attr_writer :delay_processing
 
   def delay_processing?
-    @delay_processing
+    @delay_processing && larger_media_format?
   end
 
   def delay_processing_for_attachment?(attachment_name)
-    @delay_processing && attachment_name == :file
+    delay_processing? && attachment_name == :file
   end
+
+  before_create :set_unknown_type
+  before_create :set_processing
+
+  before_destroy :prepare_cache_bust!, prepend: true
+  after_destroy :bust_cache!
 
   after_commit :enqueue_processing, on: :create
   after_commit :reset_parent_cache, on: :update
-
-  before_create :prepare_description, unless: :local?
-  before_create :set_unknown_type
-  before_create :set_processing
 
   after_post_process :set_meta
 
@@ -273,6 +298,8 @@ class MediaAttachment < ApplicationRecord
     def file_styles(attachment)
       if attachment.instance.file_content_type == 'image/gif' || VIDEO_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
         VIDEO_CONVERTED_STYLES
+      elsif IMAGE_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
+        IMAGE_CONVERTED_STYLES
       elsif IMAGE_MIME_TYPES.include?(attachment.instance.file_content_type)
         IMAGE_STYLES
       elsif VIDEO_MIME_TYPES.include?(attachment.instance.file_content_type)
@@ -299,10 +326,6 @@ class MediaAttachment < ApplicationRecord
 
   def set_unknown_type
     self.type = :unknown if file.blank? && !type_changed?
-  end
-
-  def prepare_description
-    self.description = description.strip[0...MAX_DESCRIPTION_LENGTH] unless description.nil?
   end
 
   def set_type_and_extension
@@ -355,7 +378,7 @@ class MediaAttachment < ApplicationRecord
     return {} if width.nil?
 
     {
-      width:  width,
+      width: width,
       height: height,
       size: "#{width}x#{height}",
       aspect: width.to_f / height,
@@ -388,6 +411,31 @@ class MediaAttachment < ApplicationRecord
   end
 
   def reset_parent_cache
-    Rails.cache.delete("statuses/#{status_id}") if status_id.present?
+    Rails.cache.delete("v3:statuses/#{status_id}") if status_id.present?
+  end
+
+  # Record the cache keys to burst before the file get actually deleted
+  def prepare_cache_bust!
+    return unless Rails.configuration.x.cache_buster_enabled
+
+    @paths_to_cache_bust = MediaAttachment.attachment_definitions.keys.flat_map do |attachment_name|
+      attachment = public_send(attachment_name)
+      styles = DEFAULT_STYLES | attachment.styles.keys
+      styles.map { |style| attachment.path(style) }
+    end.compact
+  rescue => e
+    # We really don't want any error here preventing media deletion
+    Rails.logger.warn "Error #{e.class} busting cache: #{e.message}"
+  end
+
+  # Once Paperclip has deleted the files, we can't recover the cache keys,
+  # so use the previously-saved ones
+  def bust_cache!
+    return unless Rails.configuration.x.cache_buster_enabled
+
+    CacheBusterWorker.push_bulk(@paths_to_cache_bust) { |path| [path] }
+  rescue => e
+    # We really don't want any error here preventing media deletion
+    Rails.logger.warn "Error #{e.class} busting cache: #{e.message}"
   end
 end

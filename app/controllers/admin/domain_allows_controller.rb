@@ -25,6 +25,8 @@ class Admin::DomainAllowsController < Admin::BaseController
   def destroy
     authorize @domain_allow, :destroy?
     UnallowDomainService.new.call(@domain_allow)
+    log_action :destroy, @domain_allow
+
     redirect_to admin_instances_path, notice: I18n.t('admin.domain_allows.destroyed_msg')
   end
 

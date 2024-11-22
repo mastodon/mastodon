@@ -1,38 +1,47 @@
 # frozen_string_literal: true
 
 class ManifestSerializer < ActiveModel::Serializer
+  include InstanceHelper
   include RoutingHelper
   include ActionView::Helpers::TextHelper
 
-  attributes :name, :short_name, :description,
+  attributes :id, :name, :short_name,
              :icons, :theme_color, :background_color,
              :display, :start_url, :scope,
-             :share_target, :shortcuts
+             :share_target, :shortcuts,
+             :prefer_related_applications, :related_applications
+
+  def id
+    # This is set to `/home` because that was the old value of `start_url` and
+    # thus the fallback ID computed by Chrome:
+    # https://developer.chrome.com/blog/pwa-manifest-id/
+    '/home'
+  end
 
   def name
-    object.site_title
+    object.title
   end
 
   def short_name
-    object.site_title
-  end
-
-  def description
-    strip_tags(object.site_short_description.presence || I18n.t('about.about_mastodon_html'))
+    object.title
   end
 
   def icons
-    [
+    SiteUpload::ANDROID_ICON_SIZES.map do |size|
+      src = app_icon_path(size.to_i)
+      src = URI.join(root_url, src).to_s if src.present?
+
       {
-        src: '/android-chrome-192x192.png',
-        sizes: '192x192',
+        src: src || frontend_asset_url("icons/android-chrome-#{size}x#{size}.png"),
+        sizes: "#{size}x#{size}",
         type: 'image/png',
-      },
-    ]
+        purpose: 'any maskable',
+      }
+    end
   end
 
   def theme_color
-    '#282c37'
+    '#191b22'
   end
 
   def background_color
@@ -44,7 +53,7 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def start_url
-    '/web/timelines/home'
+    '/'
   end
 
   def scope
@@ -68,37 +77,40 @@ class ManifestSerializer < ActiveModel::Serializer
   def shortcuts
     [
       {
-        name: 'New toot',
-        url: '/web/statuses/new',
-        icons: [
-          {
-            src: '/shortcuts/new-status.png',
-            type: 'image/png',
-            sizes: '192x192',
-          },
-        ],
+        name: 'Compose new post',
+        url: '/publish',
       },
       {
         name: 'Notifications',
-        url: '/web/notifications',
-        icons: [
-          {
-            src: '/shortcuts/notifications.png',
-            type: 'image/png',
-            sizes: '192x192',
-          },
-        ],
+        url: '/notifications',
       },
       {
-        name: 'Direct messages',
-        url: '/web/timelines/direct',
-        icons: [
-          {
-            src: '/shortcuts/direct.png',
-            type: 'image/png',
-            sizes: '192x192',
-          },
-        ],
+        name: 'Explore',
+        url: '/explore',
+      },
+    ]
+  end
+
+  def prefer_related_applications
+    true
+  end
+
+  def related_applications
+    [
+      {
+        platform: 'play',
+        url: 'https://play.google.com/store/apps/details?id=org.joinmastodon.android',
+        id: 'org.joinmastodon.android',
+      },
+      {
+        platform: 'itunes',
+        url: 'https://apps.apple.com/us/app/mastodon-for-iphone/id1571998974',
+        id: 'id1571998974',
+      },
+      {
+        platform: 'f-droid',
+        url: 'https://f-droid.org/en/packages/org.joinmastodon.android/',
+        id: 'org.joinmastodon.android',
       },
     ]
   end

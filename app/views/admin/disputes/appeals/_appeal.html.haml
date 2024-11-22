@@ -1,0 +1,21 @@
+= link_to disputes_strike_path(appeal.strike), class: ['log-entry', appeal.approved? && 'log-entry--inactive'] do
+  .log-entry__header
+    .log-entry__avatar
+      = image_tag appeal.account.avatar.url(:original), alt: '', width: 40, height: 40, class: 'avatar'
+    .log-entry__content
+      .log-entry__title
+        = strike_action_label(appeal)
+      .log-entry__timestamp
+        %time.formatted{ datetime: appeal.strike.created_at.iso8601 }
+          = l(appeal.strike.created_at)
+
+        - if appeal.strike.report_id.present?
+          ·
+          = t('admin.reports.title', id: appeal.strike.report_id)
+        ·
+        - if appeal.approved?
+          %span.positive-hint= t('admin.strikes.appeal_approved')
+        - elsif appeal.rejected?
+          %span.negative-hint= t('admin.strikes.appeal_rejected')
+        - else
+          %span.warning-hint= t('admin.strikes.appeal_pending')

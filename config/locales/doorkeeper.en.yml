@@ -60,8 +60,8 @@ en:
       error:
         title: An error has occurred
       new:
-        able_to: It will be able to
-        prompt: Application %{client_name} requests access to your account
+        prompt_html: "%{client_name} would like permission to access your account. <strong>Only approve this request if you recognize and trust this source.</strong>"
+        review_permissions: Review permissions
         title: Authorization required
       show:
         title: Copy this authorization code and paste it to the application.
@@ -71,16 +71,19 @@ en:
       confirmations:
         revoke: Are you sure?
       index:
-        application: Application
-        created_at: Authorized
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Scopes
+        authorized_at: Authorized on %{date}
+        description_html: These are applications that can access your account using the API. If there are applications you do not recognize here, or an application is misbehaving, you can revoke its access.
+        last_used_at: Last used on %{date}
+        never_used: Never used
+        scopes: Permissions
+        superapp: Internal
         title: Your authorized applications
     errors:
       messages:
         access_denied: The resource owner or authorization server denied the request.
         credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
         invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
+        invalid_code_challenge_method: The code challenge method must be S256, plain is unsupported.
         invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
         invalid_redirect_uri: The redirect uri included is not valid.
         invalid_request:
@@ -110,6 +113,34 @@ en:
       authorized_applications:
         destroy:
           notice: Application revoked.
+    grouped_scopes:
+      access:
+        read: Read-only access
+        read/write: Read and write access
+        write: Write-only access
+      title:
+        accounts: Accounts
+        admin/accounts: Administration of accounts
+        admin/all: All administrative functions
+        admin/reports: Administration of reports
+        all: Full access to your Mastodon account
+        blocks: Blocks
+        bookmarks: Bookmarks
+        conversations: Conversations
+        crypto: End-to-end encryption
+        favourites: Favorites
+        filters: Filters
+        follow: Follows, Mutes and Blocks
+        follows: Follows
+        lists: Lists
+        media: Media attachments
+        mutes: Mutes
+        notifications: Notifications
+        profile: Your Mastodon profile
+        push: Push notifications
+        reports: Reports
+        search: Search
+        statuses: Posts
     layouts:
       admin:
         nav:
@@ -120,17 +151,29 @@ en:
     scopes:
       admin:read: read all data on the server
       admin:read:accounts: read sensitive information of all accounts
+      admin:read:canonical_email_blocks: read sensitive information of all canonical email blocks
+      admin:read:domain_allows: read sensitive information of all domain allows
+      admin:read:domain_blocks: read sensitive information of all domain blocks
+      admin:read:email_domain_blocks: read sensitive information of all email domain blocks
+      admin:read:ip_blocks: read sensitive information of all IP blocks
       admin:read:reports: read sensitive information of all reports and reported accounts
       admin:write: modify all data on the server
       admin:write:accounts: perform moderation actions on accounts
+      admin:write:canonical_email_blocks: perform moderation actions on canonical email blocks
+      admin:write:domain_allows: perform moderation actions on domain allows
+      admin:write:domain_blocks: perform moderation actions on domain blocks
+      admin:write:email_domain_blocks: perform moderation actions on email domain blocks
+      admin:write:ip_blocks: perform moderation actions on IP blocks
       admin:write:reports: perform moderation actions on reports
+      crypto: use end-to-end encryption
       follow: modify account relationships
+      profile: read only your account's profile information
       push: receive your push notifications
       read: read all your account's data
       read:accounts: see accounts information
       read:blocks: see your blocks
       read:bookmarks: see your bookmarks
-      read:favourites: see your favourites
+      read:favourites: see your favorites
       read:filters: see your filters
       read:follows: see your follows
       read:lists: see your lists
@@ -143,7 +186,8 @@ en:
       write:accounts: modify your profile
       write:blocks: block accounts and domains
       write:bookmarks: bookmark posts
-      write:favourites: favourite posts
+      write:conversations: mute and delete conversations
+      write:favourites: favorite posts
       write:filters: create filters
       write:follows: follow people
       write:lists: create lists

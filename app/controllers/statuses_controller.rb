@@ -1,39 +1,34 @@
 # frozen_string_literal: true
 
 class StatusesController < ApplicationController
-  include StatusControllerConcern
+  include WebAppControllerConcern
   include SignatureAuthentication
   include Authorization
   include AccountOwnedConcern
 
-  layout 'public'
+  vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
 
-  before_action :require_signature!, only: [:show, :activity], if: -> { request.format == :json && authorized_fetch_mode? }
+  before_action :require_account_signature!, only: [:show, :activity], if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_status
-  before_action :set_instance_presenter
-  before_action :set_link_headers
   before_action :redirect_to_original, only: :show
-  before_action :set_referrer_policy_header, only: :show
-  before_action :set_cache_headers
-  before_action :set_body_classes
+
+  after_action :set_link_headers
 
   skip_around_action :set_locale, if: -> { request.format == :json }
-  skip_before_action :require_functional!, only: [:show, :embed], unless: :whitelist_mode?
+  skip_before_action :require_functional!, only: [:show, :embed], unless: :limited_federation_mode?
 
-  content_security_policy only: :embed do |p|
-    p.frame_ancestors(false)
+  content_security_policy only: :embed do |policy|
+    policy.frame_ancestors(false)
   end
 
   def show
     respond_to do |format|
       format.html do
         expires_in 10.seconds, public: true if current_account.nil?
-        set_ancestors
-        set_descendants
       end
 
       format.json do
-        expires_in 3.minutes, public: @status.distributable? && public_fetch_mode?
+        expires_in 3.minutes, public: true if @status.distributable? && public_fetch_mode?
         render_with_cache json: @status, content_type: 'application/activity+json', serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter
       end
     end
@@ -48,19 +43,17 @@ class StatusesController < ApplicationController
     return not_found if @status.hidden? || @status.reblog?
 
     expires_in 180, public: true
-    response.headers['X-Frame-Options'] = 'ALLOWALL'
+    response.headers.delete('X-Frame-Options')
 
     render layout: 'embedded'
   end
 
   private
 
-  def set_body_classes
-    @body_classes = 'with-modals'
-  end
-
   def set_link_headers
-    response.headers['Link'] = LinkHeader.new([[ActivityPub::TagManager.instance.uri_for(@status), [%w(rel alternate), %w(type application/activity+json)]]])
+    response.headers['Link'] = LinkHeader.new(
+      [[ActivityPub::TagManager.instance.uri_for(@status), [%w(rel alternate), %w(type application/activity+json)]]]
+    ).to_s
   end
 
   def set_status
@@ -70,15 +63,7 @@ class StatusesController < ApplicationController
     not_found
   end
 
-  def set_instance_presenter
-    @instance_presenter = InstancePresenter.new
-  end
-
   def redirect_to_original
-    redirect_to ActivityPub::TagManager.instance.url_for(@status.reblog) if @status.reblog?
-  end
-
-  def set_referrer_policy_header
-    response.headers['Referrer-Policy'] = 'origin' unless @status.distributable?
+    redirect_to(ActivityPub::TagManager.instance.url_for(@status.reblog), allow_other_host: true) if @status.reblog?
   end
 end

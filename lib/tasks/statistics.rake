@@ -7,13 +7,15 @@ namespace :mastodon do
   task :stats do
     require 'rails/code_statistics'
     [
-      %w(App\ Libraries app/lib),
+      ['App Libraries', 'app/lib'],
       %w(Presenters app/presenters),
+      %w(Policies app/policies),
+      %w(Serializers app/serializers),
       %w(Services app/services),
       %w(Validators app/validators),
       %w(Workers app/workers),
     ].each do |name, dir|
-      ::STATS_DIRECTORIES << [name, Rails.root.join(dir)]
+      STATS_DIRECTORIES << [name, dir]
     end
   end
 end

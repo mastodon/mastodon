@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAccountStatusesCleanupPolicies < ActiveRecord::Migration[6.1]
   def change
     create_table :account_statuses_cleanup_policies do |t|
@@ -17,4 +19,3 @@ class CreateAccountStatusesCleanupPolicies < ActiveRecord::Migration[6.1]
     end
   end
 end
-

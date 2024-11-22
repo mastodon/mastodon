@@ -1,13 +1,11 @@
-require Rails.root.join('lib', 'mastodon', 'migration_helpers')
+# frozen_string_literal: true
 
 class AddAutofollowToInvites < ActiveRecord::Migration[5.2]
-  include Mastodon::MigrationHelpers
-
   disable_ddl_transaction!
 
-  def change
+  def up
     safety_assured do
-      add_column_with_default :invites, :autofollow, :bool, default: false, allow_null: false
+      add_column :invites, :autofollow, :bool, default: false, null: false
     end
   end
 

@@ -13,14 +13,12 @@ class Api::V1::FeaturedTagsController < Api::BaseController
   end
 
   def create
-    @featured_tag = current_account.featured_tags.new(featured_tag_params)
-    @featured_tag.reset_data
-    @featured_tag.save!
-    render json: @featured_tag, serializer: REST::FeaturedTagSerializer
+    featured_tag = CreateFeaturedTagService.new.call(current_account, params.require(:name))
+    render json: featured_tag, serializer: REST::FeaturedTagSerializer
   end
 
   def destroy
-    @featured_tag.destroy!
+    RemoveFeaturedTagWorker.perform_async(current_account.id, @featured_tag.id)
     render_empty
   end
 
@@ -32,9 +30,5 @@ class Api::V1::FeaturedTagsController < Api::BaseController
 
   def set_featured_tags
     @featured_tags = current_account.featured_tags.order(statuses_count: :desc)
-  end
-
-  def featured_tag_params
-    params.permit(:name)
   end
 end

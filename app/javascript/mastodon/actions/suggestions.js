@@ -1,6 +1,7 @@
 import api from '../api';
-import { importFetchedAccounts } from './importer';
+
 import { fetchRelationships } from './accounts';
+import { importFetchedAccounts } from './importer';
 
 export const SUGGESTIONS_FETCH_REQUEST = 'SUGGESTIONS_FETCH_REQUEST';
 export const SUGGESTIONS_FETCH_SUCCESS = 'SUGGESTIONS_FETCH_SUCCESS';
@@ -9,10 +10,10 @@ export const SUGGESTIONS_FETCH_FAIL    = 'SUGGESTIONS_FETCH_FAIL';
 export const SUGGESTIONS_DISMISS = 'SUGGESTIONS_DISMISS';
 
 export function fetchSuggestions(withRelationships = false) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(fetchSuggestionsRequest());
 
-    api(getState).get('/api/v2/suggestions', { params: { limit: 20 } }).then(response => {
+    api().get('/api/v2/suggestions', { params: { limit: 20 } }).then(response => {
       dispatch(importFetchedAccounts(response.data.map(x => x.account)));
       dispatch(fetchSuggestionsSuccess(response.data));
 
@@ -21,14 +22,14 @@ export function fetchSuggestions(withRelationships = false) {
       }
     }).catch(error => dispatch(fetchSuggestionsFail(error)));
   };
-};
+}
 
 export function fetchSuggestionsRequest() {
   return {
     type: SUGGESTIONS_FETCH_REQUEST,
     skipLoading: true,
   };
-};
+}
 
 export function fetchSuggestionsSuccess(suggestions) {
   return {
@@ -36,7 +37,7 @@ export function fetchSuggestionsSuccess(suggestions) {
     suggestions,
     skipLoading: true,
   };
-};
+}
 
 export function fetchSuggestionsFail(error) {
   return {
@@ -45,20 +46,13 @@ export function fetchSuggestionsFail(error) {
     skipLoading: true,
     skipAlert: true,
   };
-};
+}
 
-export const dismissSuggestion = accountId => (dispatch, getState) => {
+export const dismissSuggestion = accountId => (dispatch) => {
   dispatch({
     type: SUGGESTIONS_DISMISS,
     id: accountId,
   });
 
-  api(getState).delete(`/api/v1/suggestions/${accountId}`).then(() => {
-    dispatch(fetchSuggestionsRequest());
-
-    api(getState).get('/api/v2/suggestions').then(response => {
-      dispatch(importFetchedAccounts(response.data.map(x => x.account)));
-      dispatch(fetchSuggestionsSuccess(response.data));
-    }).catch(error => dispatch(fetchSuggestionsFail(error)));
-  }).catch(() => {});
+  api().delete(`/api/v1/suggestions/${accountId}`).catch(() => {});
 };

@@ -60,29 +60,31 @@ cs:
       error:
         title: Vyskytla se chyba
       new:
-        able_to: Bude moci
-        prompt: Aplikace %{client_name} vyžaduje přístup k vašemu účtu
+        review_permissions: Zkontrolujte oprávnění
         title: Je vyžadována autorizace
       show:
         title: Zkopírujte tento autorizační kód a vložte ho do aplikace.
     authorized_applications:
       buttons:
-        revoke: Zamítnout
+        revoke: Odvolat
       confirmations:
         revoke: Opravdu?
       index:
-        application: Aplikace
-        created_at: Autorizováno
-        date_format: "%d. %m. %Y %H:%M:%S"
-        scopes: Rozsahy
+        authorized_at: Autorizována %{date}
+        description_html: Toto jsou aplikace, které mohou přistupovat k vašemu účtu s použitím API. Pokud jsou zde aplikace, které nepoznáváte, nebo se aplikace nechová správně, můžete odvolat její přístup.
+        last_used_at: Naposledy použito %{date}
+        never_used: Nikdy nepoužito
+        scopes: Oprávnění
+        superapp: Interní
         title: Vaše autorizované aplikace
     errors:
       messages:
         access_denied: Vlastník zdroje či autorizační server žádost zamítl.
         credential_flow_not_configured: Proud Resource Owner Password Credentials selhal, protože Doorkeeper.configure.resource_owner_from_credentials nebylo nakonfigurováno.
         invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentizaci či nepodporované autentizační metodě.
-        invalid_grant: Poskytnuté oprávnění je neplatné, vypršela jeho platnost, bylo zamítnuto, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
-        invalid_redirect_uri: URI pro přesměrování není platné.
+        invalid_code_challenge_method: Metoda code challenge musí být S256, plain není podporována.
+        invalid_grant: Poskytnuté oprávnění je neplatné, vypršela jeho platnost, bylo odvoláno, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
+        invalid_redirect_uri: Zahrnutá přesměrovací URI není platná.
         invalid_request:
           missing_param: 'Chybí potřebný parametr: %{value}.'
           request_not_authorized: Požadavek musí být autorizován. Potřebný parametr pro autorizaci požadavku chybí nebo není platný.
@@ -91,7 +93,7 @@ cs:
         invalid_scope: Požadovaný rozsah je neplatný, neznámý, nebo špatně formulovaný.
         invalid_token:
           expired: Přístupový token vypršel
-          revoked: Přístupový token byl zamítnut
+          revoked: Přístupový token byl odvolán
           unknown: Přístupový token je neplatný
         resource_owner_authenticator_not_configured: Nález Resource Owner selhal, protože Doorkeeper.configure.resource_owner_authenticator nebylo nakonfigurováno.
         server_error: Autorizační server se setkal s neočekávanou chybou, která mu zabránila ve vykonání požadavku.
@@ -109,7 +111,35 @@ cs:
           notice: Aplikace aktualizována.
       authorized_applications:
         destroy:
-          notice: Aplikace zamítnuta.
+          notice: Aplikace odvolána.
+    grouped_scopes:
+      access:
+        read: Přístup pouze pro čtení
+        read/write: Přístup ke čtení a zápisu
+        write: Přístup pouze pro zápis
+      title:
+        accounts: Účty
+        admin/accounts: Správa účtů
+        admin/all: Všechny správcovské funkce
+        admin/reports: Správa hlášení
+        all: Plný přístup k vašemu Mastodon účtu
+        blocks: Blokace
+        bookmarks: Záložky
+        conversations: Konverzace
+        crypto: End-to-end šifrování
+        favourites: Oblíbené
+        filters: Filtry
+        follow: Sledování, ztlumení a blokování
+        follows: Sledovaní
+        lists: Seznamy
+        media: Mediální přílohy
+        mutes: Skrytí
+        notifications: Oznámení
+        profile: Váš Mastodon profil
+        push: Push oznámení
+        reports: Hlášení
+        search: Hledání
+        statuses: Příspěvky
     layouts:
       admin:
         nav:
@@ -120,17 +150,29 @@ cs:
     scopes:
       admin:read: číst všechna data na serveru
       admin:read:accounts: číst citlivé informace všech účtů
+      admin:read:canonical_email_blocks: číst citlivé informace všech kanonických e-mailových bloků
+      admin:read:domain_allows: číst citlivé informace ze všech povolených domén
+      admin:read:domain_blocks: číst citlivé informace ze všech bloků domén
+      admin:read:email_domain_blocks: číst citlivé informace ze všech bloků emailových domén
+      admin:read:ip_blocks: číst citlivé informace ze všech bloků IP
       admin:read:reports: číst citlivé informace všech nahlášení a nahlášených účtů
       admin:write: měnit všechna data na serveru
       admin:write:accounts: provádět moderátorské akce s účty
+      admin:write:canonical_email_blocks: provést akce moderace na kanonických emailových blocích
+      admin:write:domain_allows: provést akce moderace na povolených doménách
+      admin:write:domain_blocks: provést akce moderace na doménových blocích
+      admin:write:email_domain_blocks: provést akce moderace na blocích emailových domén
+      admin:write:ip_blocks: provést akce moderace na blocích IP
       admin:write:reports: provádět moderátorské akce s hlášeními
+      crypto: používat end-to-end šifrování
       follow: upravovat vztahy mezi profily
+      profile: číst pouze základní informace o vašem účtu
       push: přijímat vaše push oznámení
       read: vidět všechna data vašeho účtu
       read:accounts: vidět informace o účtech
       read:blocks: vidět vaše blokace
       read:bookmarks: vidět vaše záložky
-      read:favourites: vidět vaše oblíbené příspěvky
+      read:favourites: zobrazit vaše oblíbené
       read:filters: vidět vaše filtry
       read:follows: vidět vaše sledování
       read:lists: vidět vaše seznamy
@@ -143,7 +185,8 @@ cs:
       write:accounts: měnit váš profil
       write:blocks: blokovat účty a domény
       write:bookmarks: přidávat příspěvky do záložek
-      write:favourites: oblibovat si příspěvky
+      write:conversations: skrývat a mazat konverzace
+      write:favourites: oblíbené příspěvky
       write:filters: vytvářet filtry
       write:follows: sledovat lidi
       write:lists: vytvářet seznamy

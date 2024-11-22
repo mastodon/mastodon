@@ -33,7 +33,7 @@ gl:
       help:
         native_redirect_uri: Utiliza %{native_redirect_uri} para probas locais
         redirect_uri: Utiliza unha liña por URI
-        scopes: Separar permisos con espazos. Deixar en branco para utilizar os permisos por omisión.
+        scopes: Separar permisos con espazos. Deixar en branco para utilizar os permisos por defecto.
       index:
         application: Aplicación
         callback_url: URL de chamada
@@ -60,8 +60,8 @@ gl:
       error:
         title: Algo fallou
       new:
-        able_to: Poderá
-        prompt: A aplicación %{client_name} solicita acceso a túa conta
+        prompt_html: "%{client_name} solicita permiso para acceder á túa conta. <strong>Aproba esta solicitude só se recoñeces e confías da súa orixe.</strong>"
+        review_permissions: Revisar permisos
         title: Autorización necesaria
       show:
         title: Copia este código de autorización e pégao na aplicación.
@@ -69,18 +69,21 @@ gl:
       buttons:
         revoke: Retirar autorización
       confirmations:
-        revoke: Estás segura?
+        revoke: Tes certeza?
       index:
-        application: Aplicación
-        created_at: Autorizado
-        date_format: "%d-%m-%Y %H:%M:%S"
-        scopes: Ámbitos
+        authorized_at: Autorizada o %{date}
+        description_html: Estas aplicacións poden acceder á túa conta usando a API. Se ves aplicacións que non recoñeces, ou hai comportamentos non consentidos dalgunha delas, podes revogar o acceso.
+        last_used_at: Último acceso o %{date}
+        never_used: Nunca empregada
+        scopes: Permisos
+        superapp: Interno
         title: As túas aplicacións autorizadas
     errors:
       messages:
         access_denied: O propietario do recurso ou o servidor autorizado denegaron a petición.
         credential_flow_not_configured: O fluxo do Contrasinal de Credenciais do Dono do Recurso fallou debido a que Doorkeeper.configure.resource_owner_from_credentials non están configuradas.
         invalid_client: A autenticación do cliente fallou por ser un cliente descoñecido, non se incluíu autenticación do cliente, ou o método de autenticación non está soportado.
+        invalid_code_challenge_method: O método de desafío para o código debe ser S256, texto claro non ten soporte.
         invalid_grant: A validación da autorización proporcionada non é valida, caducou, foi rexeitada, non coincide a redirección URI utilizada na petición de autorización, ou foi proporcionada para outro cliente.
         invalid_redirect_uri: A uri de redirección incluída non é válida.
         invalid_request:
@@ -110,6 +113,34 @@ gl:
       authorized_applications:
         destroy:
           notice: Aplicación revogada.
+    grouped_scopes:
+      access:
+        read: Acceso de só-lectura
+        read/write: Acceso de lectura e escritura
+        write: Acceso de só-escritura
+      title:
+        accounts: Contas
+        admin/accounts: Administración das contas
+        admin/all: Todas as funcións administrativas
+        admin/reports: Administración das denuncias
+        all: Acceso completo á túa conta de Mastodon
+        blocks: Bloqueos
+        bookmarks: Marcadores
+        conversations: Conversas
+        crypto: Cifrado extremo-a-extremo
+        favourites: Favoritas
+        filters: Filtros
+        follow: Seguidas, Acaladas e Bloqueadas
+        follows: Seguimentos
+        lists: Listas
+        media: Anexos multimedia
+        mutes: Acaladas
+        notifications: Notificacións
+        profile: O teu perfil en Mastodon
+        push: Notificacións Push
+        reports: Denuncias
+        search: Busca
+        statuses: Publicacións
     layouts:
       admin:
         nav:
@@ -120,17 +151,29 @@ gl:
     scopes:
       admin:read: ler todos os datos no servidor
       admin:read:accounts: ler información sensible de todas as contas
+      admin:read:canonical_email_blocks: ler a información sensíbel de tódolos bloqueos de correos electrónicos canónicos
+      admin:read:domain_allows: ler a información sensible de todos os dominios permitidos
+      admin:read:domain_blocks: ler a información sensible de todos os bloqueos de dominio
+      admin:read:email_domain_blocks: ler a información sensible de tódolos dominios de correo electrónico
+      admin:read:ip_blocks: ler a información sensible de todos os bloqueos de IP
       admin:read:reports: ler información sensible de todos os informes e contas denunciadas
       admin:write: modificar todos os datos no servidor
       admin:write:accounts: executar accións de moderación nas contas
+      admin:write:canonical_email_blocks: realizar accións de moderación en bloqueos de correo electrónico canónicos
+      admin:write:domain_allows: realizar accións de moderación en dominios permitidos
+      admin:write:domain_blocks: realizar accións de moderación en bloqueos de dominio
+      admin:write:email_domain_blocks: realizar accións de moderación en bloqueos de dominio de correo electrónico
+      admin:write:ip_blocks: realizar accións de moderación en bloqueos de IPs
       admin:write:reports: executar accións de moderación nas denuncias
+      crypto: usar cifrado de extremo-a-extremo
       follow: modificar as relacións da conta
+      profile: ler só a información de perfil da túa conta
       push: recibir notificacións push
       read: ler todos os datos da tua conta
       read:accounts: ver información das contas
       read:blocks: ver a quen bloqueas
       read:bookmarks: ver os marcadores
-      read:favourites: ver os favoritos
+      read:favourites: ver as favoritas
       read:filters: ver os filtros
       read:follows: ver a quen segues
       read:lists: ver as tuas listaxes
@@ -138,12 +181,13 @@ gl:
       read:notifications: ver as notificacións
       read:reports: ver as túas denuncias
       read:search: buscar no teu nome
-      read:statuses: ver todos os estados
+      read:statuses: ver todas as publicacións
       write: modificar todos os datos da tua conta
       write:accounts: modificar o teu perfil
       write:blocks: bloquear contas e dominios
-      write:bookmarks: marcar os estados
-      write:favourites: estados favoritos
+      write:bookmarks: marcar publicacións
+      write:conversations: acalar e eliminar conversas
+      write:favourites: favorecer publicacións
       write:filters: crear filtros
       write:follows: seguir usuarias
       write:lists: crear listaxes
@@ -151,4 +195,4 @@ gl:
       write:mutes: acalar usuarias e conversas
       write:notifications: eliminar as notificacións
       write:reports: denunciar usuarias
-      write:statuses: publicar estados
+      write:statuses: publicar

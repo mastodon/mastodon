@@ -1,40 +1,14 @@
 ---
 hr:
   about:
-    about_hashtag_html: Ovo su javni tootovi označeni s <strong>#%{hashtag}</strong>. Možete biti u interakciji s njima, ako imate račun bilo gdje u fediverzumu.
     about_mastodon_html: 'Društvena mreža budućnosti: bez oglasa, bez korporativnog nadzora, etički dizajn i decentralizacija! Budite u vlasništvu svojih podataka pomoću Mastodona!'
-    about_this: Dodatne informacije
-    active_count_after: aktivnih
-    active_footnote: Mjesečno aktivnih korisnika (MAU)
-    apps: Mobilne aplikacije
-    apps_platforms: Koristite Mastodon na iOS-u, Androidu i drugim platformama
-    contact: Kontakt
     contact_missing: Nije postavljeno
-    discover_users: Otkrijte korisnike
-    documentation: Dokumentacija
-    get_apps: Isprobajte mobilnu aplikaciju
-    learn_more: Saznajte više
-    privacy_policy: Politika privatnosti
-    server_stats: 'Statistika poslužitelja:'
-    source_code: Izvorni kôd
-    status_count_before: Koji su objavili
-    terms: Uvjeti pružanja usluga
-    unavailable_content: Moderirani poslužitelji
+    title: O aplikaciji
   accounts:
-    follow: Prati
     following: Praćenih
     last_active: posljednja aktivnost
-    media: Medijski sadržaj
-    never_active: Nikad
     nothing_here: Ovdje nema ničeg!
-    people_followed_by: Ljudi koje %{name} prati
-    people_who_follow: Ljudi koji prate %{name}
     posts_tab_heading: Tootovi
-    posts_with_replies: Tootovi i odgovori
-    roles:
-      group: Grupa
-    unavailable: Profil nije dostupan
-    unfollow: Prestani pratiti
   admin:
     account_actions:
       action: Izvrši radnju
@@ -42,8 +16,8 @@ hr:
       create: Ostavi bilješku
     accounts:
       approve: Odobri
-      approve_all: Odobri sve
       are_you_sure: Jeste li sigurni?
+      avatar: Avatar
       by_domain: Domena
       change_email:
         changed_msg: E-pošta računa uspješno je promijenjena!
@@ -52,11 +26,17 @@ hr:
         new_email: Nova e-pošta
         submit: Promijeni e-poštu
         title: Promjena e-pošte za %{username}
+      change_role:
+        changed_msg: Uloga uspješno dodijeljena!
+        label: Promjeni ulogu
       confirm: Potvrdi
       confirmed: Potvrđeno
       confirming: Potvrđivanje
+      custom: Prilagođeno
       delete: Izbriši podatke
       deleted: Izbrisano
+      disable: Zamrzni
+      disable_two_factor_authentication: Onemogući 2FA
       display_name: Prikazano ime
       domain: Domena
       edit: Uredi
@@ -66,6 +46,8 @@ hr:
       followers: Pratitelji
       follows: Praćeni
       header: Zaglavlje
+      ip: IP
+      joined: Pridružen
       location:
         all: Sve
         local: Lokalno
@@ -73,30 +55,44 @@ hr:
         title: Lokacija
       moderation:
         all: Sve
+      most_recent_activity: Nedavne aktivnosti
+      perform_full_suspension: Suspendiraj
+      protocol: Protokol
+      public: Javno
+      reject: Odbij
     action_logs:
-      deleted_status: "(izbrisani status)"
       empty: Nema pronađenih izvješća.
       filter_by_action: Filtriraj prema radnji
       filter_by_user: Filtriraj prema korisniku
+    email_domain_blocks:
+      add_new: Dodaj novi
+    ip_blocks:
+      add_new: Stvori pravilo
+    roles:
+      privileges:
+        invite_users_description: Dopusti korisnicima da pozovu nove ljude na server
+    settings:
+      about:
+        title: O aplikaciji
+    warning_presets:
+      add_new: Dodaj novi
+  aliases:
+    add_new: Stvori alias
+  appearance:
+    advanced_web_interface: Napredno web sučelje
+    localization:
+      body: Mastodon prevode dobrovoljci.
+      guide_link_text: Svi mogu doprinjeti.
   application_mailer:
-    settings: 'Promijeni postavke e-pošte: %{link}'
     view: 'Vidi:'
-  applications:
-    invalid_url: Unesena poveznica nije valjana
   auth:
-    didnt_get_confirmation: Niste primili upute za potvrđivanje?
     forgot_password: Zaboravljena lozinka?
     login: Prijavi se
     logout: Odjavi se
     register: Registriraj se
-    resend_confirmation: Ponovo pošalji upute za potvrđivanje
     reset_password: Ponovno postavi lozinku
     security: Sigurnost
     set_new_password: Postavi novu lozinku
-  authorize_follow:
-    error: Nažalost, došlo je do greške tijekom traženja udaljenog računa
-    follow: Prati
-    title: Prati %{acct}
   datetime:
     distance_in_words:
       about_x_months: "%{count}mj"
@@ -106,24 +102,19 @@ hr:
       less_than_x_seconds: Upravo sada
       over_x_years: "%{count}god"
       x_months: "%{count}mj"
-  errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
-    '422': 
-    '429': Too many requests
-    '500': 
-    '503': The page could not be served due to a temporary server failure.
+  edit_profile:
+    basic_information: Osnovne informacije
   exports:
     archive_takeout:
       date: Datum
       download: Preuzmite svoju arhivu
+      request: Zatraži svoju arhivu
       size: Veličina
     blocks: Blokirali ste
     lists: Liste
     storage: Pohrana medijskih sadržaja
+  featured_tags:
+    add_new: Dodaj novi
   filters:
     contexts:
       notifications: Obavijesti
@@ -132,20 +123,12 @@ hr:
       title: Filteri
     new:
       title: Dodaj novi filter
-  footer:
-    developers: Razvijatelji
-    more: Više…
-    resources: Resursi
-    trending_now: Popularno
   generic:
     all: Sve
     changes_saved_msg: Izmjene su uspješno sačuvane!
     copy: Kopiraj
     delete: Obriši
     save_changes: Sačuvaj izmjene
-  identity_proofs:
-    authorize: Da, autoriziraj
-    identity: Identitet
   imports:
     preface: Možete uvesti podatke koje ste izveli s drugog poslužitelja, kao što su liste ljudi koje pratite ili blokirate.
     success: Vaši podatci uspješno su preneseni i bit će obrađeni u dogledno vrijeme
@@ -169,10 +152,8 @@ hr:
       few: "%{count} korištenja"
       one: 1 korištenje
       other: "%{count} korištenja"
+    title: Pozovi ljude
   notification_mailer:
-    digest:
-      body: Ovo je kratak sažetak propuštenih poruka od Vašeg prošlog posjeta %{since}
-      mention: "%{name} Vas je spomenuo/la:"
     favourite:
       body: "%{name} je označio/la Vaš status favoritom:"
       subject: "%{name} je označio/la Vaš status favoritom"
@@ -207,13 +188,10 @@ hr:
     errors:
       already_voted: Već ste glasali u ovoj anketi
   remote_follow:
-    acct: Unesite Vaše KorisničkoIme@domena s kojim želite izvršiti radnju
     missing_resource: Nije moguće pronaći traženi URL preusmjeravanja za Vaš račun
-    proceed: Dalje
-    prompt: 'Pratit ćete:'
   sessions:
-    platforms:
-      other: nepoznata platforma
+    browsers:
+      ie: Internet Explorer
     revoke: Opozovi
     revoke_success: Sesija je uspješno opozvana
     title: Sesije
@@ -227,34 +205,24 @@ hr:
     delete: Brisanje računa
     development: Razvijanje
     edit_profile: Uredi profil
-    export: Izvoz podataka
     featured_tags: Istaknuti hashtagovi
     import: Uvezi
-    notifications: Obavijesti
+    import_and_export: Uvezi i izvezi
     preferences: Postavke
     profile: Profil
+    statuses_cleanup: Automatsko brisanje postova
     two_factor_authentication: Dvofaktorska autentifikacija
   statuses:
-    open_in_web: Otvori na webu
     over_character_limit: prijeđeno je ograničenje od %{max} znakova
-    poll:
-      total_people:
-        few: "%{count} osobe"
-        one: "%{count} osoba"
-        other: "%{count} ljudi"
-      total_votes:
-        few: "%{count} glasa"
-        one: "%{count} glas"
-        other: "%{count} glasova"
-      vote: Glasaj
-    show_more: Prikaži više
-    show_thread: Prikaži nit
     visibilities:
       private: Samo pratitelji
       public: Javno
+      public_long: Svi mogu vidjeti
       unlisted: Neprikazano
+      unlisted_long: Svi mogu vidjeti, ali nije izlistano u javnim timelineovima
+  statuses_cleanup:
+    enabled: Automatski obriši strare postove
   stream_entries:
-    reblogged: boostano
     sensitive_content: Osjetljivi sadržaj
   two_factor_authentication:
     disable: Onemogući 2FA
@@ -266,13 +234,9 @@ hr:
         silence: Račun je ograničen
         suspend: Račun je suspendiran
     welcome:
-      edit_profile_action: Postavi profil
-      review_preferences_action: Promijeni postavke
       subject: Dobro došli na Mastodon
-      tips: Savjeti
   users:
     invalid_otp_token: Nevažeći dvo-faktorski kôd
-    invalid_sign_in_token: Nevažeći sigurnosni kôd
     signed_in_as: 'Prijavljeni kao:'
   verification:
     verification: Verifikacija

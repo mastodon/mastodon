@@ -5,7 +5,7 @@ nn:
       doorkeeper/application:
         name: Applikasjonsnamn
         redirect_uri: Omdirigerings-URI
-        scopes: Skop
+        scopes: Omfang
         website: Applikasjonsnettside
     errors:
       models:
@@ -33,15 +33,15 @@ nn:
       help:
         native_redirect_uri: Bruk %{native_redirect_uri} for lokale testar
         redirect_uri: Bruk ei linjer per URI
-        scopes: Skil skop med mellomrom. Ikkje fyll inn noko som helst for å bruke standardskop.
+        scopes: Skil omfang med mellomrom. La stå tomt for å bruka standardomfang.
       index:
         application: Applikasjon
         callback_url: Callback-URL
         delete: Slett
-        empty: Du har ikkje nokon applikasjonar.
+        empty: Du har ingen applikasjonar.
         name: Namn
         new: Ny applikasjon
-        scopes: Skop
+        scopes: Omfang
         show: Vis
         title: Dine applikasjonar
       new:
@@ -50,7 +50,7 @@ nn:
         actions: Handlingar
         application_id: Klientnøkkel
         callback_urls: Callback-URLar
-        scopes: Skop
+        scopes: Omfang
         secret: Klienthemmelegheit
         title: 'Applikasjon: %{name}'
     authorizations:
@@ -60,8 +60,8 @@ nn:
       error:
         title: Ein feil har oppstått
       new:
-        able_to: Applikasjonen vil kunne
-        prompt: Applikasjonen %{client_name} spør om tilgang til kontoen din
+        prompt_html: "%{client_name} ynskjer tilgang til kontoen din. <strong>Godkjenn dette berre dersom du kjenner att og stolar på %{client_name}.</strong>"
+        review_permissions: Sjå gjennom løyve
         title: Autorisasjon nødvendig
       show:
         title: Kopier denne autorisasjonskoden og lim den inn i applikasjonen.
@@ -71,29 +71,37 @@ nn:
       confirmations:
         revoke: Er du sikker?
       index:
-        application: Applikasjon
-        created_at: Autorisert
-        scopes: Skop
+        authorized_at: Autorisert den %{date}
+        description_html: Desse programma har tilgang til kontoen diin frå programgrensesnittet. Dersom du ser program her som du ikkje kjenner att, eller eit program oppfører seg feil, kan du trekkja tilbake tillgangen her.
+        last_used_at: Sist brukt den %{date}
+        never_used: Aldri brukt
+        scopes: Løyve
+        superapp: Intern
         title: Dine autoriserte applikasjonar
     errors:
       messages:
         access_denied: Ressurseigaren eller autorisasjonstenaren avviste førespurnaden.
-        credential_flow_not_configured: Flyten «Resource Owner Password Credentials» kunne ikkje verte fullført av di «Doorkeeper.configure.resource_owner_from_credentials» er ikkje konfigurert.
-        invalid_client: Klientautentisering feilet på grunn av ukjent klient, ingen autentisering inkludert, eller autentiseringsmetode er ikke støttet.
-        invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen eller var utstedt til en annen klient.
+        credential_flow_not_configured: Flyten «Resource Owner Password Credentials» kunne ikkje fullførast sidan «Doorkeeper.configure.resource_owner_from_credentials» ikkje er konfigurert.
+        invalid_client: Klientautentisering feila på grunn av ukjent klient, ingen inkludert autentisering, eller ikkje støtta autentiseringsmetode.
+        invalid_code_challenge_method: Kodeutfordringsmetoden må vera S256, klartekst er ikkje støtta.
+        invalid_grant: Autoriseringa er ugyldig, utløpt, oppheva, stemmer ikkje med omdirigerings-URIen eller var tildelt ein annan klient.
         invalid_redirect_uri: Omdirigerings-URLen er ikkje gyldig.
-        invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så er det ikke mulig å finne eieren
+        invalid_request:
+          missing_param: 'Manglar naudsynt parameter: %{value}.'
+          request_not_authorized: Førespurnaden må godkjennast. Naudsynt parameter for godkjenning manglar eller er ugyldig.
+          unknown: Førespurnaden manglar ein naudsynt parameter, inneheld ein parameter som ikkje er støtta, eller er misdanna.
+        invalid_resource_owner: Ressurseigardetaljane er ikkje gyldige, eller så er det ikkje mogleg å finna eigaren
         invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
         invalid_token:
-          expired: Tilgangsbeviset har utløpt
-          revoked: Tilgangsbeviset har blitt opphevet
-          unknown: Tilgangsbeviset er ugyldig
-        resource_owner_authenticator_not_configured: Ressurseier kunne ikke finnes fordi Doorkeeper.configure.resource_owner_authenticator ikke er konfigurert.
-        server_error: Autoriseringstjeneren støtte på en uventet hendelse som hindret den i å svare på forespørslen.
-        temporarily_unavailable: Autoriseringstjeneren kan ikke håndtere forespørslen grunnet en midlertidig overbelastning eller tjenervedlikehold.
-        unauthorized_client: Klienten har ikke autorisasjon for å utføre denne forespørslen med denne metoden.
-        unsupported_grant_type: Autorisasjonstildelingstypen er ikke støttet av denne autoriseringstjeneren.
-        unsupported_response_type: Autorisasjonsserveren støtter ikke denne typen av forespørsler.
+          expired: Innloggingsnykelen har gått ut på dato
+          revoked: Innloggingsnykelen er oppheva
+          unknown: Innloggngsnykelen er ugyldig
+        resource_owner_authenticator_not_configured: Ressurseigar kunne ikkje finnast fordi Doorkeeper.configure.resource_owner_authenticator ikkje er konfigurert.
+        server_error: Autoriseringstenaren støtte på ei uventa hending som hindra han i å svara på førespurnaden.
+        temporarily_unavailable: Autoriseringstenaren kan ikkje hansama førespurnaden grunna kortvarig overbelastning eller tenarvedlikehald.
+        unauthorized_client: Klienten har ikkje autorisasjon for å utføra førespurnaden med denne metoden.
+        unsupported_grant_type: Autorisasjonstildelingstypen er ikkje støtta av denne autoriseringstenaren.
+        unsupported_response_type: Autorisasjonstenaren støttar ikkje denne typen førespurnader.
     flash:
       applications:
         create:
@@ -105,25 +113,65 @@ nn:
       authorized_applications:
         destroy:
           notice: App avvist.
+    grouped_scopes:
+      access:
+        read: Berre lesetligang
+        read/write: Lese- og skrivetilgang
+        write: Berre skrivetilgang
+      title:
+        accounts: Kontoar
+        admin/accounts: Kontoadministrasjon
+        admin/all: Alle administrative funksjonar
+        admin/reports: Rapportadministrasjon
+        all: Full tilgang til Mastodon-kontoen din
+        blocks: Blokkeringar
+        bookmarks: Bokmerke
+        conversations: Samtalar
+        crypto: Ende-til-ende-kryptering
+        favourites: Favorittar
+        filters: Filter
+        follow: Dei du fylgjer, dempar og blokkerer
+        follows: Fylgjer
+        lists: Lister
+        media: Mediavedlegg
+        mutes: Dempingar
+        notifications: Varsel
+        profile: Mastodon-profilen din
+        push: Pushvarsel
+        reports: Rapportar
+        search: Søk
+        statuses: Innlegg
     layouts:
       admin:
         nav:
           applications: Appar
-          oauth2_provider: OAuth2-tilbyder
+          oauth2_provider: OAuth2-tilbydar
       application:
-        title: OAuth-autorisering påkrevet
+        title: Krav om OAuth-autorisering
     scopes:
       admin:read: lese alle data på tjeneren
-      admin:read:accounts: lese sensitiv informasjon om alle kontoer
-      admin:read:reports: lese sensitiv informasjon om alle rapporter og rapporterte kontoer
-      admin:write: modifisere alle data på tjeneren
-      admin:write:accounts: utføre moderatorhandlinger på kontoer
-      admin:write:reports: utføre moderatorhandlinger på rapporter
-      follow: følg, blokkér, avblokkér, avfølg brukere
-      push: motta dine varsler
-      read: lese dine data
-      read:accounts: se informasjon om kontoer
-      read:blocks: se dine blokkeringer
+      admin:read:accounts: lese sensitiv informasjon om alle kontoar
+      admin:read:canonical_email_blocks: les ømtolig informasjon om alle kanoniske e-postblokkeringar
+      admin:read:domain_allows: les ømtolig informasjon om alle domeneløyve
+      admin:read:domain_blocks: les ømtolig informasjon om alle domeneblokkeringar
+      admin:read:email_domain_blocks: les ømtolig informasjon om alle e-postdomeneblokkeringar
+      admin:read:ip_blocks: les ømtolig informasjon om alle IP-blokkeringar
+      admin:read:reports: lese sensitiv informasjon om alle rapportar og rapporterte kontoar
+      admin:write: endre alle data på tenaren
+      admin:write:accounts: utføre moderatorhandlingar på kontoar
+      admin:write:canonical_email_blocks: utføre modereringshandlingar på kanoniske e-postblokkeringar
+      admin:write:domain_allows: utføre modereringshandlingar på domeneløyve
+      admin:write:domain_blocks: utføre modereringshandlingar på domeneblokkeringar
+      admin:write:email_domain_blocks: utføre modereringshandlingar på e-postdomeneblokkeringar
+      admin:write:ip_blocks: utføre modereringshandlingar på IP-blokkeringar
+      admin:write:reports: utføre moderatorhandlingar på rapportar
+      crypto: bruk ende-til-ende-kryptering
+      follow: fylg, blokkér, avblokkér, avfylg brukarar
+      profile: les berre den grunnlejggande informasjonen til brukarkontoen din
+      push: motta pushvarsla dine
+      read: lese alle dine kontodata
+      read:accounts: sjå informasjon om kontoar
+      read:blocks: sjå dine blokkeringar
       read:bookmarks: sjå bokmerka dine
       read:favourites: sjå favorittane dine
       read:filters: sjå filtera dine
@@ -132,18 +180,19 @@ nn:
       read:mutes: sjå kven du har målbunde
       read:notifications: sjå varsla dine
       read:reports: sjå rapportane dine
-      read:search: søke på dine vegne
-      read:statuses: sjå alle statusar
-      write: poste på dine vegne
-      write:accounts: rediger profilen din
+      read:search: søke på dine vegner
+      read:statuses: sjå alle innlegg
+      write: endre alle dine kontodata
+      write:accounts: redigera profilen din
       write:blocks: blokker kontoar og domene
-      write:bookmarks: bokmerk statusar
-      write:favourites: merk statusar som favoritt
+      write:bookmarks: bokmerk innlegg
+      write:conversations: demp og slett samtalar
+      write:favourites: favorittmarker innlegg
       write:filters: lag filter
       write:follows: fylg folk
       write:lists: lag lister
       write:media: last opp mediefiler
-      write:mutes: målbind folk og samtalar
+      write:mutes: demp folk og samtalar
       write:notifications: tøm varsla dine
       write:reports: rapporter andre folk
-      write:statuses: legg ut statusar
+      write:statuses: publiser innlegg

@@ -2,24 +2,23 @@
 
 class Settings::ExportsController < Settings::BaseController
   include Authorization
+  include Redisable
+  include Lockable
 
+  skip_before_action :check_self_destruct!
   skip_before_action :require_functional!
 
   def show
-    @export  = Export.new(current_account)
+    @export_summary = ExportSummary.new(preloaded_account)
     @backups = current_user.backups
   end
 
   def create
     backup = nil
 
-    RedisLock.acquire(lock_options) do |lock|
-      if lock.acquired?
-        authorize :backup, :create?
-        backup = current_user.backups.create!
-      else
-        raise Mastodon::RaceConditionError
-      end
+    with_redis_lock("backup:#{current_user.id}") do
+      authorize :backup, :create?
+      backup = current_user.backups.create!
     end
 
     BackupWorker.perform_async(backup.id)
@@ -27,7 +26,14 @@ class Settings::ExportsController < Settings::BaseController
     redirect_to settings_export_path
   end
 
-  def lock_options
-    { redis: Redis.current, key: "backup:#{current_user.id}" }
+  private
+
+  def preloaded_account
+    current_account.tap do |account|
+      ActiveRecord::Associations::Preloader.new(
+        records: [account],
+        associations: :account_stat
+      ).call
+    end
   end
 end

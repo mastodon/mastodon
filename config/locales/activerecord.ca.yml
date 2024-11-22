@@ -8,25 +8,58 @@ ca:
       user:
         agreement: Acord de servei
         email: Adreça de correu electrònic
-        locale: Idioma
+        locale: Llengua
         password: Contrasenya
       user/account:
         username: Nom d'usuari
       user/invite_request:
         text: Motiu
     errors:
+      attributes:
+        domain:
+          invalid: no és un nom de domini vàlid
+      messages:
+        invalid_domain_on_line: "%{value} no és un nom de domini vàlid"
+        too_many_lines: sobrepassa el límit de %{limit} línies
       models:
         account:
           attributes:
             username:
-              invalid: només lletres, números i subratllats
+              invalid: només pot contenir lletres, números i guions baixos
               reserved: està reservat
+        admin/webhook:
+          attributes:
+            url:
+              invalid: no és un enllaç vàlid
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: no és un enllaç vàlid
+        import:
+          attributes:
+            data:
+              malformed: està mal format
         status:
           attributes:
             reblog:
-              taken: del tut ja existeix
+              taken: de la publicació ja existeix
         user:
           attributes:
             email:
-              blocked: utilitza un proveïdor de correu electrònic no autoritzat
+              blocked: utilitza un proveïdor de correu-e no autoritzat
               unreachable: sembla que no existeix
+            role_id:
+              elevated: no pot ser superior al teu rol actual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inclou permisos que no són segurs per al rol base
+              elevated: no pot incloure permisos que el teu rol actual no té
+              own_role: no es pot canviar amb el teu rol actual
+            position:
+              elevated: no pot ser superior al teu rol actual
+              own_role: no es pot canviar amb el teu rol actual
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: no pots incloure esdeveniments que no en tens permisos

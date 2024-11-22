@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe HomeFeed, type: :model do
-  let(:account) { Fabricate(:account) }
-
+RSpec.describe HomeFeed do
   subject { described_class.new(account) }
+
+  let(:account) { Fabricate(:account) }
 
   describe '#get' do
     before do
@@ -15,7 +17,7 @@ RSpec.describe HomeFeed, type: :model do
 
     context 'when feed is generated' do
       before do
-        Redis.current.zadd(
+        redis.zadd(
           FeedManager.instance.key(:home, account.id),
           [[4, 4], [3, 3], [2, 2], [1, 1]]
         )
@@ -25,13 +27,12 @@ RSpec.describe HomeFeed, type: :model do
         results = subject.get(3)
 
         expect(results.map(&:id)).to eq [3, 2]
-        expect(results.first.attributes.keys).to eq %w(id updated_at)
       end
     end
 
     context 'when feed is being generated' do
       before do
-        Redis.current.set("account:#{account.id}:regeneration", true)
+        redis.set("account:#{account.id}:regeneration", true)
       end
 
       it 'returns nothing' do

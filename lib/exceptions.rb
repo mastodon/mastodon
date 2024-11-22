@@ -10,6 +10,8 @@ module Mastodon
   class StreamValidationError < ValidationError; end
   class RaceConditionError < Error; end
   class RateLimitExceededError < Error; end
+  class SyntaxError < Error; end
+  class InvalidParameterError < Error; end
 
   class UnexpectedResponseError < Error
     attr_reader :response
@@ -24,4 +26,20 @@ module Mastodon
       end
     end
   end
+
+  class PrivateNetworkAddressError < HostValidationError
+    attr_reader :host
+
+    def initialize(host)
+      @host = host
+      super()
+    end
+  end
+
+  HTTP_CONNECTION_ERRORS = [
+    HTTP::ConnectionError,
+    HTTP::Error,
+    HTTP::TimeoutError,
+    OpenSSL::SSL::SSLError,
+  ].freeze
 end

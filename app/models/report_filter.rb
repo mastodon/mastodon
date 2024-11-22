@@ -18,11 +18,23 @@ class ReportFilter
   def results
     scope = Report.unresolved
 
-    params.each do |key, value|
+    relevant_params.each do |key, value|
       scope = scope.merge scope_for(key, value)
     end
 
     scope
+  end
+
+  private
+
+  def relevant_params
+    params.tap do |args|
+      args.delete(:target_origin) if origin_is_remote_and_domain_present?
+    end
+  end
+
+  def origin_is_remote_and_domain_present?
+    params[:target_origin] == 'remote' && params[:by_target_domain].present?
   end
 
   def scope_for(key, value)
@@ -38,7 +50,7 @@ class ReportFilter
     when :target_origin
       target_origin_scope(value)
     else
-      raise "Unknown filter: #{key}"
+      raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
   end
 
@@ -49,7 +61,7 @@ class ReportFilter
     when :remote
       Report.where(target_account: Account.remote)
     else
-      raise "Unknown value: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown value: #{value}"
     end
   end
 end

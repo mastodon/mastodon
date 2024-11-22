@@ -8,7 +8,9 @@ class MoveWorker
     @target_account = Account.find(target_account_id)
 
     if @target_account.local? && @source_account.local?
-      rewrite_follows!
+      num_moved = rewrite_follows!
+      @source_account.update_count!(:followers_count, -num_moved)
+      @target_account.update_count!(:followers_count, num_moved)
     else
       queue_follow_unfollows!
     end
@@ -27,18 +29,50 @@ class MoveWorker
   private
 
   def rewrite_follows!
+    num_moved = 0
+
+    # First, approve pending follow requests for the new account,
+    # this allows correctly processing list memberships with pending
+    # follow requests
+    FollowRequest.where(account: @source_account.followers, target_account_id: @target_account.id).find_each do |follow_request|
+      ListAccount.where(follow_id: follow_request.id).includes(:list).find_each do |list_account|
+        list_account.list.accounts << @target_account
+      rescue ActiveRecord::RecordInvalid
+        nil
+      end
+
+      follow_request.authorize!
+    end
+
+    # Then handle accounts that follow both the old and new account
+    @source_account.passive_relationships
+                   .where(account: Account.local)
+                   .where(account: @target_account.followers.local)
+                   .in_batches do |follows|
+      ListAccount.where(follow: follows).includes(:list).find_each do |list_account|
+        list_account.list.accounts << @target_account
+      rescue ActiveRecord::RecordInvalid
+        nil
+      end
+    end
+
+    # Finally, handle the common case of accounts not following the new account
     @source_account.passive_relationships
                    .where(account: Account.local)
                    .where.not(account: @target_account.followers.local)
                    .where.not(account_id: @target_account.id)
-                   .in_batches
-                   .update_all(target_account_id: @target_account.id)
+                   .in_batches do |follows|
+      ListAccount.where(follow: follows).in_batches.update_all(account_id: @target_account.id)
+      num_moved += follows.update_all(target_account_id: @target_account.id)
+    end
+
+    num_moved
   end
 
   def queue_follow_unfollows!
     bypass_locked = @target_account.local?
 
-    @source_account.followers.local.select(:id).find_in_batches do |accounts|
+    @source_account.followers.local.select(:id).reorder(nil).find_in_batches do |accounts|
       UnfollowFollowWorker.push_bulk(accounts.map(&:id)) { |follower_id| [follower_id, @source_account.id, @target_account.id, bypass_locked] }
     rescue => e
       @deferred_error = e
@@ -47,7 +81,7 @@ class MoveWorker
 
   def copy_account_notes!
     AccountNote.where(target_account: @source_account).find_each do |note|
-      text = I18n.with_locale(note.account.user&.locale || I18n.default_locale) do
+      text = I18n.with_locale(note.account.user&.locale.presence || I18n.default_locale) do
         I18n.t('move_handler.copy_account_note_text', acct: @source_account.acct)
       end
 
@@ -89,8 +123,8 @@ class MoveWorker
   end
 
   def add_account_note_if_needed!(account, id)
-    unless AccountNote.where(account: account, target_account: @target_account).exists?
-      text = I18n.with_locale(account.user&.locale || I18n.default_locale) do
+    unless AccountNote.exists?(account: account, target_account: @target_account)
+      text = I18n.with_locale(account.user&.locale.presence || I18n.default_locale) do
         I18n.t(id, acct: @source_account.acct)
       end
       AccountNote.create!(account: account, target_account: @target_account, comment: text)

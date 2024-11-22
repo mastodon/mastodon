@@ -3,11 +3,18 @@
 class ActivityPub::ProcessingWorker
   include Sidekiq::Worker
 
-  sidekiq_options backtrace: true, retry: 8
+  sidekiq_options queue: 'ingress', backtrace: true, retry: 8
 
-  def perform(account_id, body, delivered_to_account_id = nil)
-    ActivityPub::ProcessCollectionService.new.call(body, Account.find(account_id), override_timestamps: true, delivered_to_account_id: delivered_to_account_id, delivery: true)
+  def perform(actor_id, body, delivered_to_account_id = nil, actor_type = 'Account')
+    case actor_type
+    when 'Account'
+      actor = Account.find_by(id: actor_id)
+    end
+
+    return if actor.nil?
+
+    ActivityPub::ProcessCollectionService.new.call(body, actor, override_timestamps: true, delivered_to_account_id: delivered_to_account_id, delivery: true)
   rescue ActiveRecord::RecordInvalid => e
-    Rails.logger.debug "Error processing incoming ActivityPub object: #{e}"
+    Rails.logger.debug { "Error processing incoming ActivityPub object: #{e}" }
   end
 end

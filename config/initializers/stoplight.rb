@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 require 'stoplight'
 
-Stoplight::Light.default_data_store = Stoplight::DataStore::Redis.new(Redis.current)
-Stoplight::Light.default_notifiers  = [Stoplight::Notifier::Logger.new(Rails.logger)]
+Rails.application.reloader.to_prepare do
+  Stoplight.default_data_store = Stoplight::DataStore::Redis.new(RedisConnection.new.connection)
+  Stoplight.default_notifiers  = [Stoplight::Notifier::Logger.new(Rails.logger)]
+end

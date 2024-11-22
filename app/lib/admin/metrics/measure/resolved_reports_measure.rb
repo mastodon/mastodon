@@ -1,36 +1,39 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Measure::ResolvedReportsMeasure < Admin::Metrics::Measure::BaseMeasure
+  include Admin::Metrics::Measure::QueryHelper
+
   def key
     'resolved_reports'
   end
 
-  def total
-    Report.resolved.where(updated_at: time_period).count
+  protected
+
+  def perform_total_query
+    Report.resolved.where(action_taken_at: time_period).count
   end
 
-  def previous_total
-    Report.resolved.where(updated_at: previous_time_period).count
+  def perform_previous_total_query
+    Report.resolved.where(action_taken_at: previous_time_period).count
   end
 
-  def data
-    sql = <<-SQL.squish
+  def sql_array
+    [sql_query_string, { start_at: @start_at, end_at: @end_at }]
+  end
+
+  def sql_query_string
+    <<~SQL.squish
       SELECT axis.*, (
         WITH resolved_reports AS (
           SELECT reports.id
           FROM reports
-          WHERE action_taken
-            AND date_trunc('day', reports.updated_at)::date = axis.period
+          WHERE date_trunc('day', reports.action_taken_at)::date = axis.period
         )
         SELECT count(*) FROM resolved_reports
       ) AS value
       FROM (
-        SELECT generate_series(date_trunc('day', $1::timestamp)::date, date_trunc('day', $2::timestamp)::date, interval '1 day') AS period
+        #{generated_series_days}
       ) AS axis
     SQL
-
-    rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, @start_at], [nil, @end_at]])
-
-    rows.map { |row| { date: row['period'], value: row['value'].to_s } }
   end
 end

@@ -2,10 +2,10 @@
 
 class PreviewCardPolicy < ApplicationPolicy
   def index?
-    staff?
+    role.can?(:manage_taxonomies)
   end
 
-  def update?
-    staff?
+  def review?
+    role.can?(:manage_taxonomies)
   end
 end

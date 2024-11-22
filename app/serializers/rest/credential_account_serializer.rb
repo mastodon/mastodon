@@ -3,6 +3,8 @@
 class REST::CredentialAccountSerializer < REST::AccountSerializer
   attributes :source
 
+  has_one :role, serializer: REST::RoleSerializer
+
   def source
     user = object.user
 
@@ -13,6 +15,13 @@ class REST::CredentialAccountSerializer < REST::AccountSerializer
       note: object.note,
       fields: object.fields.map(&:to_h),
       follow_requests_count: FollowRequest.where(target_account: object).limit(40).count,
+      hide_collections: object.hide_collections,
+      discoverable: object.discoverable,
+      indexable: object.indexable,
     }
+  end
+
+  def role
+    object.user_role
   end
 end

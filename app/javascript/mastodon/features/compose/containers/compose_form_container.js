@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ComposeForm from '../components/compose_form';
+
 import {
   changeCompose,
   submitCompose,
@@ -10,6 +10,7 @@ import {
   insertEmojiCompose,
   uploadCompose,
 } from '../../../actions/compose';
+import ComposeForm from '../components/compose_form';
 
 const mapStateToProps = state => ({
   text: state.getIn(['compose', 'text']),
@@ -21,10 +22,13 @@ const mapStateToProps = state => ({
   caretPosition: state.getIn(['compose', 'caretPosition']),
   preselectDate: state.getIn(['compose', 'preselectDate']),
   isSubmitting: state.getIn(['compose', 'is_submitting']),
+  isEditing: state.getIn(['compose', 'id']) !== null,
   isChangingUpload: state.getIn(['compose', 'is_changing_upload']),
   isUploading: state.getIn(['compose', 'is_uploading']),
-  showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
+  isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
+  lang: state.getIn(['compose', 'language']),
+  maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 500),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -33,8 +37,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeCompose(text));
   },
 
-  onSubmit (router) {
-    dispatch(submitCompose(router));
+  onSubmit () {
+    dispatch(submitCompose());
   },
 
   onClearSuggestions () {

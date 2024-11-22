@@ -12,7 +12,8 @@ eo:
       last_attempt: Vi ankoraŭ povas provi unufoje antaŭ ol via konto estos ŝlosita.
       locked: Via konto estas ŝlosita.
       not_found_in_database: Nevalida %{authentication_keys} aŭ pasvorto.
-      pending: Via konto ankoraŭ estas kontrolanta.
+      omniauth_user_creation_failure: Eraro okazis kreinte konton por ĉi tiu identeco.
+      pending: Via konto ankoraŭ estas kontrolata.
       timeout: Via seanco eksvalidiĝis. Bonvolu ensaluti denove por daŭrigi.
       unauthenticated: Vi devas ensaluti aŭ registriĝi antaŭ ol daŭrigi.
       unconfirmed: Vi devas konfirmi vian retadreson antaŭ ol daŭrigi.
@@ -24,22 +25,22 @@ eo:
         explanation_when_pending: Vi petis inviton al %{host} per ĉi tiu retpoŝta adreso. Kiam vi konfirmas vian retpoŝtan adreson, ni revizios vian kandidatiĝon. Vi ne povas ensaluti ĝis tiam. Se via kandidatiĝo estas rifuzita, viaj datumoj estos forigitaj, do neniu alia ago estos postulita de vi. Se tio ne estis vi, bonvolu ignori ĉi tiun retpoŝton.
         extra_html: Bonvolu rigardi <a href="%{terms_path}">la regulojn de la servilo</a> kaj <a href="%{policy_path}">niajn uzkondiĉojn</a>.
         subject: 'Mastodon: Konfirmaj instrukcioj por %{instance}'
-        title: Konfirmi retadreson
+        title: Konfirmi retpoŝton
       email_changed:
-        explanation: 'La retadreso de via konto ŝanĝiĝas al:'
+        explanation: 'La retpoŝtadreso de via konto ŝanĝiĝas al:'
         extra: Se vi ne volis ŝanĝi vian retadreson, iu verŝajne aliris al via konto. Bonvolu tuj ŝanĝi vian pasvorton aŭ kontakti la administranton de la servilo, se vi estas blokita ekster via konto.
-        subject: 'Mastodon: Retadreso ŝanĝita'
+        subject: 'Mastodon: Retpoŝton ŝanĝiĝis'
         title: Nova retadreso
       password_change:
         explanation: La pasvorto de via konto estis ŝanĝita.
         extra: Se vi ne ŝanĝis vian pasvorton, iu verŝajne aliris al via konto. Bonvolu ŝanĝi vian pasvorton tuj aŭ kontakti la administranton de la servilo, se vi estas blokita ekster via konto.
         subject: 'Mastodon: Pasvorto ŝanĝita'
-        title: Pasvorto ŝanĝita
+        title: Pasvorto estas ŝanĝita
       reconfirmation_instructions:
-        explanation: Retajpu la novan adreson por ŝanĝi vian retadreson.
+        explanation: Retajpu la novan adreson por ŝanĝi vian retpoŝtadreson.
         extra: Se ĉi tiu ŝanĝo ne estis komencita de vi, bonvolu ignori ĉi tiun retmesaĝon. La retadreso por la Mastodon-konto ne ŝanĝiĝos se vi ne aliras la supran ligilon.
-        subject: 'Mastodon: Konfirmi retadreson por %{instance}'
-        title: Kontrolu retadreson
+        subject: 'Mastodon: Konfirmi retpoŝton por %{instance}'
+        title: Kontroli retpoŝtadreson
       reset_password_instructions:
         action: Ŝanĝi pasvorton
         explanation: Vi petis novan pasvorton por via konto.
@@ -47,16 +48,19 @@ eo:
         subject: 'Mastodon: Instrukcioj por ŝanĝi pasvorton'
         title: Pasvorto restarigita
       two_factor_disabled:
-        explanation: Dufaktora aŭtentigo por via konto malebligis. Ensalutado nun eblas per nur retpoŝtadreso kaj pasvorto.
+        explanation: Ensalutu nun eblas uzante nur retadreson kaj pasvorton.
         subject: 'Mastodon: dufaktora aŭtentigo malebligita'
-        title: la du-etapa aŭtentigo estas malŝaltita
+        subtitle: Dupaŝa aŭtentigo por via konto estas malŝaltita.
+        title: 2FA estas malŝaltita
       two_factor_enabled:
-        explanation: Dufaktora aŭtentigo sukcese ebligita por via akonto. Vi bezonos ĵetonon kreitan per parigitan aplikaĵon por ensaluti.
-        subject: 'Mastodon: dufaktora aŭtentigo ebligita'
-        title: la du-etapa aŭtentigo estas ŝaltita
+        explanation: Tokeno generita de la parigita TOTP-aplikaĵo estos necesa por ensaluti.
+        subject: 'Mastodon: Dufaktora aŭtentigo ebligita'
+        subtitle: Dupaŝa aŭtentigo por via konto estas ŝaltita.
+        title: 2FA aktivigita
       two_factor_recovery_codes_changed:
         explanation: La antaŭaj reakiraj kodoj estis nuligitaj kaj novaj estis generitaj.
         subject: 'Mastodon: Reakiraj kodoj de dufaktora aŭtentigo rekreitaj'
+        subtitle: La antaŭaj restarigaj kodoj estis malvalidigitaj kaj novaj estis generitaj.
         title: Reakiraj kodoj de 2FA estas ŝanĝitaj
       unlock_instructions:
         subject: 'Mastodon: Instrukcioj por malŝlosi'
@@ -70,11 +74,13 @@ eo:
           subject: 'Mastodon: sekureca ŝlosilo forigita'
           title: Unu el viaj sekurecaj ŝlosiloj estis forigita
       webauthn_disabled:
-        explanation: Aŭtentikigo per sekurecaj ŝlosiloj estis malebligita por via konto. Ensaluto nun eblas per nur la signo generita de la parigita TOTP-programo.
+        explanation: Aŭtentigo per sekurecaj ŝlosiloj estas malŝaltita por via konto.
+        extra: Ensaluto nun eblas uzante nur la ĵetonon generitan de la parigita tempbazita unufoja pasvorta aplikaĵo.
         subject: 'Mastodon: sekureca-ŝlosila aŭtentigo malebligita'
         title: Sekurecaj ŝlosiloj malaktivigitaj
       webauthn_enabled:
-        explanation: Sekureca ŝlosila aŭtentokontrolo estis ebligita por via konto. Via sekureca ŝlosilo nun uzeblas por ensaluti.
+        explanation: Sekurecŝlosila aŭtentigo estas ebligita por via konto.
+        extra: Via sekureca ŝlosilo nun povas esti uzata por ensaluto.
         subject: 'Mastodon: sekureca-ŝlosila aŭtentigo ebligita'
         title: Sekurecaj ŝlosiloj aktivigitaj
     omniauth_callbacks:
@@ -105,7 +111,7 @@ eo:
       unlocked: Via konto estis sukcese malŝlosita. Bonvolu ensaluti por daŭrigi.
   errors:
     messages:
-      already_confirmed: jam estis konfirmita, bonvolu provi ensaluti
+      already_confirmed: jam estis konfirmita, bonvolu provi saluti
       confirmation_period_expired: devas esti konfirmita ene de %{period}, bonvolu peti denove
       expired: eksvalidiĝis, bonvolu peti denove
       not_found: ne estis trovita

@@ -14,6 +14,7 @@
 #
 
 class AnnouncementReaction < ApplicationRecord
+  before_validation :set_custom_emoji
   after_commit :queue_publish
 
   belongs_to :account
@@ -23,12 +24,10 @@ class AnnouncementReaction < ApplicationRecord
   validates :name, presence: true
   validates_with ReactionValidator
 
-  before_validation :set_custom_emoji
-
   private
 
   def set_custom_emoji
-    self.custom_emoji = CustomEmoji.local.find_by(disabled: false, shortcode: name) if name.present?
+    self.custom_emoji = CustomEmoji.local.enabled.find_by(shortcode: name) if name.present?
   end
 
   def queue_publish

@@ -1,0 +1,27 @@
+= content_for :heading do
+  = render 'application/mailer/heading',
+           image_url: frontend_asset_url('images/mailer-new/heading/login.png'),
+           subtitle: t('user_mailer.suspicious_sign_in.explanation'),
+           title: t('user_mailer.suspicious_sign_in.title')
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-inner-card-td.email-prose
+            %p= t 'user_mailer.suspicious_sign_in.details'
+            %p
+              %strong #{t('sessions.ip')}:
+              = @remote_ip
+              %br/
+              %strong #{t('sessions.browser')}:
+              %span{ title: @user_agent }
+                = t 'sessions.description',
+                    browser: t("sessions.browsers.#{@detection.id}", default: @detection.id.to_s),
+                    platform: t("sessions.platforms.#{@detection.platform.id}", default: @detection.platform.id.to_s)
+              %br/
+              %strong #{t('sessions.date')}:
+              = l(@timestamp.in_time_zone(@resource.time_zone.presence), format: :with_time_zone)
+            = render 'application/mailer/button', text: t('settings.account_settings'), url: edit_user_registration_url
+      %p= t 'user_mailer.suspicious_sign_in.further_actions_html',
+            action: link_to(t('user_mailer.suspicious_sign_in.change_password'), edit_user_registration_url)

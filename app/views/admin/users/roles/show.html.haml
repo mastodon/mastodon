@@ -1,0 +1,16 @@
+- content_for :page_title do
+  = t('admin.accounts.change_role.title', username: @user.account.username)
+
+= simple_form_for @user, url: admin_user_role_path(@user) do |f|
+  .fields-group
+    = f.association :role,
+                    collection: UserRole.assignable,
+                    include_blank: I18n.t('admin.accounts.change_role.no_role'),
+                    label_method: :name,
+                    wrapper: :with_block_label,
+                    hint: safe_join([I18n.t('simple_form.hints.user.role'), ' ', link_to(I18n.t('admin.accounts.change_role.edit_roles'), admin_roles_path)])
+
+  .actions
+    = f.button :button,
+               t('generic.save_changes'),
+               type: :submit

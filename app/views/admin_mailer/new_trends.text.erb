@@ -1,0 +1,5 @@
+<%= raw t('admin_mailer.new_trends.body') %>
+
+<%= render partial: 'new_trending_links', object: @links unless @links.empty? %>
+<%= render partial: 'new_trending_tags', object: @tags unless @tags.empty? %>
+<%= render partial: 'new_trending_statuses', object: @statuses unless @statuses.empty? %>

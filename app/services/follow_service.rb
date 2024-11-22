@@ -11,6 +11,7 @@ class FollowService < BaseService
   # @param [Hash] options
   # @option [Boolean] :reblogs Whether or not to show reblogs, defaults to true
   # @option [Boolean] :notify Whether to create notifications about new posts, defaults to false
+  # @option [Array<String>] :languages Which languages to allow on the home feed from this account, defaults to all
   # @option [Boolean] :bypass_locked
   # @option [Boolean] :bypass_limit Allow following past the total follow number
   # @option [Boolean] :with_rate_limit
@@ -49,7 +50,7 @@ class FollowService < BaseService
   end
 
   def following_not_possible?
-    @target_account.nil? || @target_account.id == @source_account.id || @target_account.suspended?
+    @target_account.nil? || @target_account.id == @source_account.id || @target_account.unavailable?
   end
 
   def following_not_allowed?
@@ -57,35 +58,42 @@ class FollowService < BaseService
   end
 
   def change_follow_options!
-    @source_account.follow!(@target_account, reblogs: @options[:reblogs], notify: @options[:notify])
+    @source_account.follow!(@target_account, **follow_options)
   end
 
   def change_follow_request_options!
-    @source_account.request_follow!(@target_account, reblogs: @options[:reblogs], notify: @options[:notify])
+    @source_account.request_follow!(@target_account, **follow_options)
   end
 
   def request_follow!
-    follow_request = @source_account.request_follow!(@target_account, reblogs: @options[:reblogs], notify: @options[:notify], rate_limit: @options[:with_rate_limit], bypass_limit: @options[:bypass_limit])
+    follow_request = @source_account.request_follow!(@target_account, **follow_options.merge(rate_limit: @options[:with_rate_limit], bypass_limit: @options[:bypass_limit]))
 
     if @target_account.local?
-      LocalNotificationWorker.perform_async(@target_account.id, follow_request.id, follow_request.class.name, :follow_request)
+      LocalNotificationWorker.perform_async(@target_account.id, follow_request.id, follow_request.class.name, 'follow_request')
     elsif @target_account.activitypub?
-      ActivityPub::DeliveryWorker.perform_async(build_json(follow_request), @source_account.id, @target_account.inbox_url)
+      ActivityPub::DeliveryWorker.perform_async(build_json(follow_request), @source_account.id, @target_account.inbox_url, { 'bypass_availability' => true })
     end
 
     follow_request
   end
 
   def direct_follow!
-    follow = @source_account.follow!(@target_account, reblogs: @options[:reblogs], notify: @options[:notify], rate_limit: @options[:with_rate_limit], bypass_limit: @options[:bypass_limit])
+    follow = @source_account.follow!(@target_account, **follow_options.merge(rate_limit: @options[:with_rate_limit], bypass_limit: @options[:bypass_limit]))
 
-    LocalNotificationWorker.perform_async(@target_account.id, follow.id, follow.class.name, :follow)
-    MergeWorker.perform_async(@target_account.id, @source_account.id)
+    LocalNotificationWorker.perform_async(@target_account.id, follow.id, follow.class.name, 'follow')
+    MergeWorker.perform_async(@target_account.id, @source_account.id, 'home')
+    MergeWorker.push_bulk(List.where(account: @source_account).joins(:list_accounts).where(list_accounts: { account_id: @target_account.id }).pluck(:id)) do |list_id|
+      [@target_account.id, list_id, 'list']
+    end
 
     follow
   end
 
   def build_json(follow_request)
     Oj.dump(serialize_payload(follow_request, ActivityPub::FollowSerializer))
+  end
+
+  def follow_options
+    @options.slice(:reblogs, :notify, :languages)
   end
 end

@@ -3,8 +3,8 @@
 class Api::V1::DomainBlocksController < Api::BaseController
   BLOCK_LIMIT = 100
 
-  before_action -> { doorkeeper_authorize! :follow, :'read:blocks' }, only: :show
-  before_action -> { doorkeeper_authorize! :follow, :'write:blocks' }, except: :show
+  before_action -> { doorkeeper_authorize! :follow, :read, :'read:blocks' }, only: :show
+  before_action -> { doorkeeper_authorize! :follow, :write, :'write:blocks' }, except: :show
   before_action :require_user!
   after_action :insert_pagination_headers, only: :show
 
@@ -38,36 +38,20 @@ class Api::V1::DomainBlocksController < Api::BaseController
     current_account.domain_blocks
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
-    if records_continue?
-      api_v1_domain_blocks_url pagination_params(max_id: pagination_max_id)
-    end
+    api_v1_domain_blocks_url pagination_params(max_id: pagination_max_id) if records_continue?
   end
 
   def prev_path
-    unless @blocks.empty?
-      api_v1_domain_blocks_url pagination_params(since_id: pagination_since_id)
-    end
+    api_v1_domain_blocks_url pagination_params(since_id: pagination_since_id) unless @blocks.empty?
   end
 
-  def pagination_max_id
-    @blocks.last.id
-  end
-
-  def pagination_since_id
-    @blocks.first.id
+  def pagination_collection
+    @blocks
   end
 
   def records_continue?
     @blocks.size == limit_param(BLOCK_LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 
   def domain_block_params

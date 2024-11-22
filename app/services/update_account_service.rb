@@ -21,13 +21,15 @@ class UpdateAccountService < BaseService
 
   def authorize_all_follow_requests(account)
     follow_requests = FollowRequest.where(target_account: account)
-    follow_requests = follow_requests.preload(:account).select { |req| !req.account.silenced? }
-    AuthorizeFollowWorker.push_bulk(follow_requests) do |req|
+    follow_requests = follow_requests.preload(:account).reject { |req| req.account.silenced? }
+    AuthorizeFollowWorker.push_bulk(follow_requests, limit: 1_000) do |req|
       [req.account_id, req.target_account_id]
     end
   end
 
   def check_links(account)
+    return unless account.fields.any?(&:requires_verification?)
+
     VerifyAccountLinksWorker.perform_async(account.id)
   end
 

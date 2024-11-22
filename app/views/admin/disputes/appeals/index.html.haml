@@ -1,0 +1,19 @@
+- content_for :page_title do
+  = t('admin.disputes.appeals.title')
+
+.filters
+  .filter-subset
+    %strong= t('admin.tags.review')
+    %ul
+      %li= filter_link_to safe_join([t('admin.accounts.moderation.pending'), "(#{@pending_appeals_count.value})"], ' '), status: 'pending'
+      %li= filter_link_to t('admin.trends.approved'), status: 'approved'
+      %li= filter_link_to t('admin.trends.rejected'), status: 'rejected'
+
+- if @appeals.empty?
+  .muted-hint.center-text
+    = t 'admin.disputes.appeals.empty'
+- else
+  .announcements-list
+    = render partial: 'appeal', collection: @appeals
+
+= paginate @appeals

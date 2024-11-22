@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PublishScheduledAnnouncementWorker do
+RSpec.describe PublishScheduledAnnouncementWorker do
   subject { described_class.new }
 
   let!(:remote_account) { Fabricate(:account, domain: 'domain.com', username: 'foo', uri: 'https://domain.com/users/foo') }
@@ -12,7 +12,7 @@ describe PublishScheduledAnnouncementWorker do
 
   describe 'perform' do
     before do
-      service = double
+      service = instance_double(FetchRemoteStatusService)
       allow(FetchRemoteStatusService).to receive(:new).and_return(service)
       allow(service).to receive(:call).with('https://domain.com/users/foo/12345') { remote_status.reload }
 

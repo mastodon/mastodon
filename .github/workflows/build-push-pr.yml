@@ -1,0 +1,62 @@
+name: Build container image for PR
+on:
+  pull_request:
+    types: [labeled, synchronize, reopened, ready_for_review, opened]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  compute-suffix:
+    runs-on: ubuntu-latest
+    # This is only allowed to run if:
+    # - the PR branch is in the `mastodon/mastodon` repository
+    # - the PR is not a draft
+    # - the PR has the "build-image" label
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository && !github.event.pull_request.draft && contains(github.event.pull_request.labels.*.name, 'build-image') }}
+    steps:
+      # Repository needs to be cloned so `git rev-parse` below works
+      - name: Clone repository
+        uses: actions/checkout@v4
+      - id: version_vars
+        run: |
+          echo mastodon_version_metadata=pr-${{ github.event.pull_request.number }}-$(git rev-parse --short ${{github.event.pull_request.head.sha}}) >> $GITHUB_OUTPUT
+          echo mastodon_short_sha=$(git rev-parse --short ${{github.event.pull_request.head.sha}}) >> $GITHUB_OUTPUT
+    outputs:
+      metadata: ${{ steps.version_vars.outputs.mastodon_version_metadata }}
+      short_sha: ${{ steps.version_vars.outputs.mastodon_short_sha }}
+
+  build-image:
+    needs: compute-suffix
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      file_to_build: Dockerfile
+      platforms: linux/amd64,linux/arm64
+      use_native_arm64_builder: true
+      push_to_images: |
+        ghcr.io/mastodon/mastodon
+      version_metadata: ${{ needs.compute-suffix.outputs.metadata }}
+      flavor: |
+        latest=auto
+      tags: |
+        type=ref,event=pr
+        type=ref,event=pr,suffix=-${{ needs.compute-suffix.outputs.short_sha }}
+    secrets: inherit
+
+  build-image-streaming:
+    needs: compute-suffix
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      file_to_build: streaming/Dockerfile
+      platforms: linux/amd64,linux/arm64
+      use_native_arm64_builder: true
+      push_to_images: |
+        ghcr.io/mastodon/mastodon-streaming
+      version_metadata: ${{ needs.compute-suffix.outputs.metadata }}
+      flavor: |
+        latest=auto
+      tags: |
+        type=ref,event=pr
+        type=ref,event=pr,suffix=-${{ needs.compute-suffix.outputs.short_sha }}
+    secrets: inherit

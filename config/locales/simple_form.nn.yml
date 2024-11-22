@@ -2,24 +2,33 @@
 nn:
   simple_form:
     hints:
+      account:
+        attribution_domains_as_text: Ein per line. Vernar mot falske krediteringar.
+        discoverable: Dei offentlege innlegga dine og profilen din kan dukka opp i tilrådingar på ulike stader på Mastodon, og profilen din kan bli føreslegen for andre folk.
+        display_name: Ditt fulle namn eller ditt tøysenamn.
+        fields: Heimesida di, pronomen, alder, eller kva du måtte ynskje.
+        indexable: Dei offentlege innlegga dine kan dukka opp i søkjeresultat på Mastodon. Folk som har reagert på oinnlegga dine kan uansett søkja gjennom dei.
+        note: 'Du kan @nemne folk eller #emneknaggar.'
+        show_collections: Andre kan sjå kven du fylgjer og kven som fylgjer deg. Dei du fylgjer kan alltid sjå at du fylgjer dei.
+        unlocked: Alle kan fylgja deg utan å måtta be om det. Vel bort dersom du vil gå gjennom førespurnader om å fylgja deg og seia ja eller nei til kvar av dei.
       account_alias:
-        acct: Spesifiser brukarnamn@domenet til brukaren du vil flytja frå
+        acct: Angi brukarnamn@domene til brukaren du ynskjer å flytta frå
       account_migration:
-        acct: Spesifiser brukarnamn@domenet til brukaren du vil flytja til
+        acct: Angi brukarnamn@domene til brukaren du ynskjer å flytta til
       account_warning_preset:
-        text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og nemningar
+        text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og omtaler
         title: Valfritt. Ikkje synleg for mottakar
       admin_account_action:
-        include_statuses: Brukaren får sjå kva tut som gjorde moderatorhandllinga eller -åtvaringa
+        include_statuses: Brukaren får sjå kva tut som førte til moderatorhandlinga eller -åtvaringa
         send_email_notification: Brukaren får ei forklåring av kva som har hendt med kontoen sin
         text_html: Valfritt. Du kan bruka tut-syntaks. Du kan <a href="%{path}">leggja til åtvaringsførehandsinnstillingar</a> for å spara tid
         type_html: Vel det du vil gjera med <strong>%{acct}</strong>
         types:
-          disable: Forhindre brukeren å bruke kontoen sin, men ikke slett eller skjule innholdet deres.
-          none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
-          sensitive: Tving alle denne brukerens medievedlegg til å bli markert som følsom.
-          silence: Hindre brukeren i å kunne skrive offentlig synlighet, skjule sine innlegg og varsler for personer som ikke kan følge dem.
-          suspend: Forhindre interaksjon fra eller til denne kontoen og slett innholdet der. Reversibel innen 30 dager.
+          disable: Hindre eigaren frå å bruke kontoen, men fjern eller skjul ikkje innhaldet deira.
+          none: Bruk dette for å senda ei åtvaring til brukaren utan å utløyse andre handlingar.
+          sensitive: Tving markering for sensitivt innhald på alle mediavedlegga til denne brukaren.
+          silence: Hindre brukaren frå å leggja ut offentlege innlegg, gøym innlegga deira og varslingar frå folk som ikkje fylgjer dei. Lukkar alle rapportar om denne kontoen.
+          suspend: Hindre samhandling med– og slett innhaldet til denne kontoen. Kan omgjerast innan 30 dagar. Lukkar alle rapportar om denne kontoen.
         warning_preset_id: Valfritt. Du kan leggja inn eigen tekst på enden av føreoppsettet
       announcement:
         all_day: Når merka, vil berre datoane til tidsramma synast
@@ -27,44 +36,73 @@ nn:
         scheduled_at: Lat stå blankt for å gjeva ut lysinga med ein gong
         starts_at: Valfritt. Om lysinga di er bunden til eit tidspunkt
         text: Du kan bruka tut-syntaks. Ver merksam på plassen lysinga tek på brukaren sin skjerm
+      appeal:
+        text: Ei åtvaring kan kun ankast ein gong
       defaults:
         autofollow: Folk som lagar ein konto gjennom innbydinga fylgjer deg automatisk
-        avatar: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
+        avatar: WEBP, PNG, GIF eller JPG. Maks %{size}. Blir forminska til %{dimensions}pkt
         bot: Denne kontoen utfører i hovedsak automatiserte handlinger og blir kanskje ikke holdt øye med
         context: En eller flere sammenhenger der filteret skal gjelde
         current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
         current_username: Skriv inn brukarnamnet til den noverande kontoen for å stadfesta
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
-        discoverable: Profilmappen er en annen måte for kontoen din å nå et bredere publikum på
         email: Du får snart ein stadfestings-e-post
-        fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
-        header: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
+        header: WEBP, PNG, GIF eller JPG. Maks %{size}. Blir forminska til %{dimensions}pkt
         inbox_url: Kopier URLen fra forsiden til overgangen du vil bruke
         irreversible: Filtrerte tut vil verta borte for evig, sjølv om filteret vert fjerna seinare
         locale: Språket til brukargrensesnittet, e-postar og push-varsel
-        locked: Krev at du manuelt godkjenner fylgjarar
         password: Nytt minst 8 teikn
         phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
         scopes: API-ane som programmet vil få tilgjenge til. Ettersom du vel eit toppnivåomfang tarv du ikkje velja einskilde API-ar.
         setting_aggregate_reblogs: Ikkje vis nye framhevingar for tut som nyleg har vorte heva fram (Påverkar berre nylege framhevingar)
-        setting_default_sensitive: Nærtakande media vert gøymd som standard og kan synast med eit klikk
-        setting_display_media_default: Gøym media som er merka som nærtakande
+        setting_always_send_emails: Vanlegvis vil ikkje e-postvarsel bli sendt når du brukar Mastodon aktivt
+        setting_default_sensitive: Sensitive media vert gøymde som standard, og du syner dei ved å klikka på dei
+        setting_display_media_default: Gøym media som er merka som sensitive
         setting_display_media_hide_all: Alltid skjul alt media
         setting_display_media_show_all: Vis alltid media
-        setting_hide_network: Kven du fylgjer og kven som fylgjer deg vert ikkje vist på profilen din
-        setting_noindex: Påverkar den offentlege profilen og statussidene dine
-        setting_show_application: Programmet du brukar for å tuta synast i den detaljerte visninga av tuta dine
-        setting_use_blurhash: Overgangar er bygt på dei løynde sine leter, men gjer detaljar utydelege
-        setting_use_pending_items: Gøym tidslineoppdateringar ved eit klikk, i staden for å bla ned hendestraumen automatisk
-        username: Brukarnamnet ditt vert unikt på %{domain}
+        setting_use_blurhash: Overgangar er basert på fargane til skjulte grafikkelement, men gjer detaljar utydelege
+        setting_use_pending_items: Gøym tidslineoppdateringar bak eit klikk, i staden for å rulla ned automatisk
+        username: Du kan bruka bokstavar, tal og understrekar
         whole_word: Når søkjeordet eller setninga berre er alfanumerisk, nyttast det berre om det samsvarar med heile ordet
       domain_allow:
         domain: Dette domenet er i stand til å henta data frå denne tenaren og innkomande data vert handsama og lagra
       email_domain_block:
-        domain: Dette kan vera domenenamnet som synest i e-postaddressa, MX-recorden som domenet løyser til eller IP-adressa til tenaren som MX-record løyser til. Dei sjekkast ved brukarregistrering og registretinga vert avvist.
-        with_dns_records: Eit forsøk på å løysa gjeve domene som DNS-data vil vera gjord og resultata vert svartelista
+        domain: Dette kan vera domenenamnet som blir vist i e-postadressa eller den MX-oppføringa den brukar. Dei vil bli kontrollert ved registrering.
+        with_dns_records: Det vil bli gjort eit forsøk på å avgjera DNS-oppføringa til domenet og resultata vil bli tilsvarande blokkert
       featured_tag:
-        name: 'Kanskje du vil nytta ein av desse:'
+        name: 'Her er nokre av emneknaggane du har brukt i det siste:'
+      filters:
+        action: Velg kva som skal gjerast når eit innlegg samsvarar med filteret
+        actions:
+          hide: Skjul filtrert innhald fullstendig og lat som om det ikkje finst
+          warn: Skjul det filtrerte innhaldet bak ei åtvaring som nemner tittelen på filteret
+      form_admin_settings:
+        activity_api_enabled: Tal på lokale innlegg, aktive brukarar og nyregistreringar kvar veke
+        app_icon: WEBP, PNG, GIF eller JPG. Overstyrer standard-app-ikonet på mobile einingar med eit eigendefinert ikon.
+        backups_retention_period: Brukarar har moglegheit til å generere arkiv av sine innlegg for å laste ned seinare. Når sett til ein positiv verdi, blir desse arkiva automatisk sletta frå lagringa etter eit gitt antal dagar.
+        bootstrap_timeline_accounts: Desse kontoane vil bli festa øverst på fylgjaranbefalingane til nye brukarar.
+        closed_registrations_message: Vist når det er stengt for registrering
+        content_cache_retention_period: Alle innlegg frå andre tenarar (inkludert framhevingar og svar) vil bli sletta etter talet på dagar du skriv inn, uansett om nokon har samhandla med desse innlegga. Dette inkluderer innlegg der ein lokal brukar har merka det som bokmerke eller som favoritt. Private omtaler mellom brukarar frå ulike nettstader vil gå tapt og vera umogleg å gjenskapa. Bruk av denne innstillinga er meint for spesielle nettstader og bryt med det mange forventar av ein vanleg nettstad.
+        custom_css: Du kan bruka eigendefinerte stilar på nettversjonen av Mastodon.
+        favicon: WEBP, PNG, GIF eller JPG. Overstyrer det standarde Mastodon-favikonet med eit eigendefinert ikon.
+        mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
+        media_cache_retention_period: Mediafiler frå innlegg laga av eksterne brukarar blir bufra på serveren din. Når sett til ein positiv verdi, slettast media etter eit gitt antal dagar. Viss mediedata blir førespurt etter det er sletta, vil dei bli lasta ned på nytt viss kjelda sitt innhald framleis er tilgjengeleg. På grunn av restriksjonar på kor ofte lenkeførehandsvisningskort lastar tredjepart-nettstadar, rådast det til å setje denne verdien til minst 14 dagar, eller at førehandsvisningskort ikkje blir oppdatert på førespurnad før det tidspunktet.
+        peers_api_enabled: Ei liste over domenenamn denne tenaren har møtt på i allheimen. Det står ingenting om tenaren din samhandlar med ein annan tenar, berre om tenaren din veit om den andre. Dette blir brukt av tenester som samlar statistikk om føderering i det heile.
+        profile_directory: Profilkatalogen viser alle brukarar som har valt å kunne bli oppdaga.
+        require_invite_text: Når registrering krev manuell godkjenning, lyt du gjera tekstfeltet "Kvifor vil du bli med?" obligatorisk i staden for valfritt
+        site_contact_email: Korleis kan ein få tak i deg når det gjeld juridiske spørsmål eller spørsmål om støtte.
+        site_contact_username: Korleis folk kan koma i kontakt med deg på Mastodon.
+        site_extended_description: Tilleggsinformasjon som kan vera nyttig for besøkjande og brukarar. Kan strukturerast med Markdown-syntaks.
+        site_short_description: Ein kort omtale for lettare å finne tenaren blant alle andre. Kven driftar han, kven er i målgruppa?
+        site_terms: Bruk eigen personvernpolicy eller la stå tom for å bruka standard. Kan strukturerast med Markdown-syntaks.
+        site_title: Kva ein kan kalla tenaren, utanom domenenamnet.
+        status_page_url: Adressa til ei side der folk kan sjå statusen til denne tenaren ved feil og utkoplingar
+        theme: Tema som er synleg for nye brukarar og besøkjande som ikkje er logga inn.
+        thumbnail: Eit omlag 2:1 bilete vist saman med informasjon om tenaren.
+        timeline_preview: Besøkjande som ikkje er logga inn vil kunne bla gjennom dei siste offentlege innlegga på tenaren.
+        trendable_by_default: Hopp over manuell gjennomgang av populært innhald. Enkeltståande innlegg kan fjernast frå trendar i etterkant.
+        trends: Trendar viser kva for nokre innlegg, emneknaggar og nyheiter som er i støytet på tenaren.
+        trends_as_landing_page: Vis populært innhald til utlogga brukarar og folk som kjem innom sida i staden for ei skildring av tenaren. Du må ha skrudd på trendar for å kunna bruka dette.
       form_challenge:
         current_password: Du går inn i eit trygt område
       imports:
@@ -72,26 +110,48 @@ nn:
       invite_request:
         text: Dette kjem til å hjelpa oss med å gå gjennom søknaden din
       ip_block:
-        comment: Valgfritt. Husk hvorfor du la til denne regelen.
-        expires_in: IP-adressene er en helt begrenset ressurs, de deles og endres ofte hender. Ubestemte IP-blokker anbefales ikke.
-        ip: Skriv inn en IPv4 eller IPv6-adresse. Du kan blokkere alle områder ved å bruke CIDR-syntaksen. Pass på å ikke låse deg selv!
+        comment: Valfritt. Hugs kvifor du la til denne regelen.
+        expires_in: IP-adresser er ein avgrensa ressurs, er av og til delte og byter ofte eigar. På grunn av dette er det ikkje tilrådd med uavgrensa IP-blokkeringar.
+        ip: Skriv inn ei IPv4 eller IPv6 adresse. Du kan blokkere heile IP-områder ved bruk av CIDR-syntaks. Pass på å ikkje blokkera deg sjølv!
         severities:
           no_access: Blokker tilgang til alle ressurser
-          sign_up_requires_approval: Nye registreringer vil kreve din godkjenning
-        severity: Velg hva som vil skje med forespørsler fra denne IP
+          sign_up_block: Nye registreringar vil ikkje vera mogleg
+          sign_up_requires_approval: Du må godkjenna nye registreringar
+        severity: Vel kva som skal skje ved førespurnader frå denne IP
       rule:
-        text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
+        hint: Valfritt. Gje meir informasjon om regelen
+        text: Forklar ein regel eller eit krav for brukarar på denne tenaren. Prøv å skriva kort og lettfattleg
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        webauthn: Om det er ein USB-nøkkel må du setja han inn og om nødvendig trykkja på han.
+      settings:
+        indexable: Profilsida di kan dukka opp søkjeresultat frå Google, Bing, Duckduckgo og andre.
+        show_application: Du vil uansett alltid kunna sjå kva app som la ut innlegga dine.
       tag:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
+        role: Rolla kontrollerer kva løyve brukaren har.
+      user_role:
+        color: Fargen som skal nyttast for denne rolla i heile brukargrensesnittet, som RGB i hex-format
+        highlighted: Dette gjer rolla synleg offentleg
+        name: Offentleg namn på rolla, dersom rolla skal visast som eit emblem
+        permissions_as_keys: Brukarar med denne rolla vil ha tilgang til...
+        position: Høgare rolle avgjer konfliktløysing i visse situasjonar. Visse handlingar kan berre utførast på roller med lågare prioritet
+      webhook:
+        events: Vel hendingar å senda
+        template: Skriv di eiga JSON nyttelast ved å bruka variabel interpolering. La stå tom for standard JSON.
+        url: Kvar hendingar skal sendast
     labels:
       account:
+        attribution_domains_as_text: Nettstader som har lov å kreditera deg
+        discoverable: Ta med profilen og innlegga i oppdagingsalgoritmar
         fields:
           name: Merkelapp
           value: Innhald
+        indexable: Ta med offentlege innlegg i søkjeresultat
+        show_collections: Vis dei du fylgjer og dei som fylgjer deg på profilen din
+        unlocked: Godta nye følgjare automatisk
       account_alias:
         acct: Brukarnamnet på den gamle kontoen
       account_migration:
@@ -107,9 +167,9 @@ nn:
         types:
           disable: Slå av innlogging
           none: Gjer inkje
-          sensitive: Sensitiv
+          sensitive: Ømtolig
           silence: Togn
-          suspend: Utvis og slett kontodata for godt
+          suspend: Utvis
         warning_preset_id: Bruk åtvaringsoppsett
       announcement:
         all_day: Heildagshending
@@ -117,6 +177,8 @@ nn:
         scheduled_at: Planlegg publisering
         starts_at: Byrjing av hendinga
         text: Lysing
+      appeal:
+        text: Forklar kvifor denne avgjerda bør gjerast om
       defaults:
         autofollow: Bed om å fylgja kontoen din
         avatar: Bilete
@@ -127,7 +189,6 @@ nn:
         context: Filtrer kontekstar
         current_password: Noverande passord
         data: Data
-        discoverable: Før denne kontoen opp i mappa
         display_name: Synleg namn
         email: E-post-adresse
         expires_in: Vert ugyldig etter
@@ -137,7 +198,6 @@ nn:
         inbox_url: URL-addressen til overgangsinnboksen
         irreversible: Forkast i staden for å gøyma
         locale: Språk
-        locked: Lås konto
         max_uses: Grense på brukartal
         new_password: Nytt passord
         note: Om meg
@@ -146,13 +206,14 @@ nn:
         phrase: Nykelord eller frase
         setting_advanced_layout: Skruv på det avanserte nettgrensesnittet
         setting_aggregate_reblogs: Gruppeframhevingar på tidsliner
+        setting_always_send_emails: Alltid send epostvarsel
         setting_auto_play_gif: Spel av animerte GIF-ar automatisk
         setting_boost_modal: Vis stadfesting før framheving
-        setting_crop_images: Skjer bilete i ikkje-utvida tut til 16x9
         setting_default_language: Språk på innlegg
         setting_default_privacy: Privatliv
         setting_default_sensitive: Merk alltid media som nærtakande
         setting_delete_modal: Vis stadfesting før du slettar eit tut
+        setting_disable_hover_cards: Skru av profilvising når peikaren er over
         setting_disable_swiping: Skru av sveipebevegelser
         setting_display_media: Medievisning
         setting_display_media_default: Standard
@@ -160,17 +221,16 @@ nn:
         setting_display_media_show_all: Vis alle
         setting_expand_spoilers: Vid alltid ut tut som er merka med innhaldsåtvaringar
         setting_hide_network: Gøym nettverket ditt
-        setting_noindex: Vel bort søkjemotorregistrering
         setting_reduce_motion: Minsk rørsle i animasjonar
-        setting_show_application: Avdekk programmet bruka for å senda tut
         setting_system_font_ui: Bruk standardskrifttypen på systemet
         setting_theme: Sidetema
         setting_trends: Vis kva som er populært i dag
         setting_unfollow_modal: Vis stadfesting før du sluttar å fylgja nokon
-        setting_use_blurhash: Vis fargerike overgangar for gøymt media
+        setting_use_blurhash: Vis fargerike overgangar for gøymde medium
         setting_use_pending_items: Saktemodus
         severity: Alvorsgrad
-        sign_in_token_attempt: Trygdenykel
+        sign_in_token_attempt: Innloggingsnykel
+        title: Tittel
         type: Importtype
         username: Brukarnamn
         username_or_email: Brukarnamn eller E-post
@@ -179,10 +239,44 @@ nn:
         with_dns_records: Ha med MX-recordar og IP-ar til domenet
       featured_tag:
         name: Emneknagg
+      filters:
+        actions:
+          hide: Gøym heilt
+          warn: Gøym med ei åtvaring
+      form_admin_settings:
+        activity_api_enabled: Legg ut samla statistikk om brukaraktiviteten i APIet
+        app_icon: App-ikon
+        backups_retention_period: Arkiveringsperiode for brukararkiv
+        bootstrap_timeline_accounts: Tilrå alltid desse kontoane for nye brukarar
+        closed_registrations_message: Eigendefinert melding når registrering ikkje er mogleg
+        content_cache_retention_period: Oppbevaringstid for eksternt innhald
+        custom_css: Egendefinert CSS
+        favicon: Favorittikon
+        mascot: Eigendefinert maskot (eldre funksjon)
+        media_cache_retention_period: Oppbevaringsperiode for mediebuffer
+        peers_api_enabled: Legg ut ei liste over oppdaga tenarar i APIet
+        profile_directory: Aktiver profilkatalog
+        registrations_mode: Kven kan registrera seg
+        require_invite_text: Krev ei grunngjeving for å få bli med
+        show_domain_blocks: Vis domeneblokkeringar
+        show_domain_blocks_rationale: Vis grunngjeving for domeneblokkeringar
+        site_contact_email: E-postadresse for kontakt
+        site_contact_username: Brukarnamn for kontakt
+        site_extended_description: Utvida omtale av tenaren
+        site_short_description: Stutt om tenaren
+        site_terms: Personvernsreglar
+        site_title: Tenarnamn
+        status_page_url: Adresse til statussida
+        theme: Standardtema
+        thumbnail: Miniatyrbilete for tenaren
+        timeline_preview: Tillat uautentisert tilgang til offentleg tidsline
+        trendable_by_default: Tillat trendar utan gjennomgang på førehand
+        trends: Aktiver trendar
+        trends_as_landing_page: Bruk trendar som startside
       interactions:
-        must_be_follower: Gøym varslingar frå folk som ikkje fylgjer deg
-        must_be_following: Gøym varslingar frå folk du ikkje fylgjer
-        must_be_following_dm: Gøym direktemeldinger frå folk du ikkje fylgjer
+        must_be_follower: Blokker varsel frå folk som ikkje fylgjer deg
+        must_be_following: Blokker varsel frå folk du ikkje fylgjer
+        must_be_following_dm: Blokker direktemeldinger frå folk du ikkje fylgjer
       invite:
         comment: Kommentar
       invite_request:
@@ -192,9 +286,11 @@ nn:
         ip: IP
         severities:
           no_access: Blokker tilgang
-          sign_up_requires_approval: Begrens påmeldinger
+          sign_up_block: Blokker registrering
+          sign_up_requires_approval: Avgrens påmeldingar
         severity: Oppføring
       notification_emails:
+        appeal: Nokon klagar på ei moderatoravgjerd
         digest: Send samandrag på e-post
         favourite: Send e-post når nokon merkjer statusen din som favoritt
         follow: Send e-post når nokon fylgjer deg
@@ -202,16 +298,41 @@ nn:
         mention: Send e-post når nokon nemner deg
         pending_account: Send e-post når ein ny konto treng gjennomgang
         reblog: Send e-post når nokon framhevar statusen din
-        report: Send e-post når nokon rapporterer noko
-        trending_tag: Ein emneknagg som ikkje er sett igjennom er på veg opp
+        report: Ny rapport er sendt
+        software_updates:
+          all: Varsle om alle oppdateringar
+          critical: Varsle kun om kristiske oppdateringar
+          label: Ein ny versjon av Mastodon er tilgjengeleg
+          none: Aldri varsle om oppdateringar (ikkje anbefalt)
+          patch: Varsle om feilrettingsoppdateringar
+        trending_tag: Ny trend krev gjennomgang
       rule:
+        hint: Meir informasjon
         text: Regler
+      settings:
+        indexable: Ta med profilsida i søkjemotorar
+        show_application: Vis kva app du brukte når du skreiv innlegg
       tag:
         listable: Tillat denne emneknaggen å synast i søk og i profilmappa
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å synast under trendar
-        usable: Gje tut lov til å nytta denne emneknaggen
+        usable: Godta at innlegga kan bruka denne emneknaggen lokalt
+      user:
+        role: Rolle
+        time_zone: Tidssone
+      user_role:
+        color: Emblemfarge
+        highlighted: Vis rolle som emblem på brukarprofil
+        name: Namn
+        permissions_as_keys: Løyve
+        position: Prioritet
+      webhook:
+        events: Aktiverte hendingar
+        template: Nyttelastmal
+        url: Endepunkts-URL
     'no': Nei
+    not_recommended: Ikkje anbefalt
+    overridden: Overstyrt
     recommended: Tilrådt
     required:
       mark: "*"

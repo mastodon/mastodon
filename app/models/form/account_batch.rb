@@ -6,7 +6,8 @@ class Form::AccountBatch
   include AccountableConcern
   include Payloadable
 
-  attr_accessor :account_ids, :action, :current_account
+  attr_accessor :account_ids, :action, :current_account,
+                :select_all_matching, :query
 
   def save
     case action
@@ -16,8 +17,8 @@ class Form::AccountBatch
       unfollow!
     when 'remove_from_followers'
       remove_from_followers!
-    when 'block_domains'
-      block_domains!
+    when 'remove_domains_from_followers'
+      remove_domains_from_followers!
     when 'approve'
       approve!
     when 'reject'
@@ -34,9 +35,15 @@ class Form::AccountBatch
   private
 
   def follow!
+    error = nil
+
     accounts.each do |target_account|
       FollowService.new.call(current_account, target_account)
+    rescue Mastodon::NotPermittedError, ActiveRecord::RecordNotFound => e
+      error ||= e
     end
+
+    raise error if error.present?
   end
 
   def unfollow!
@@ -49,10 +56,8 @@ class Form::AccountBatch
     RemoveFromFollowersService.new.call(current_account, account_ids)
   end
 
-  def block_domains!
-    AfterAccountDomainBlockWorker.push_bulk(account_domains) do |domain|
-      [current_account.id, domain]
-    end
+  def remove_domains_from_followers!
+    RemoveDomainsFromFollowersService.new.call(current_account, account_domains)
   end
 
   def account_domains
@@ -60,7 +65,11 @@ class Form::AccountBatch
   end
 
   def accounts
-    Account.where(id: account_ids)
+    if select_all_matching?
+      query
+    else
+      Account.where(id: account_ids)
+    end
   end
 
   def approve!
@@ -101,21 +110,40 @@ class Form::AccountBatch
 
   def reject_account(account)
     authorize(account.user, :reject?)
-    log_action(:reject, account.user, username: account.username)
+    log_action(:reject, account.user)
     account.suspend!(origin: :local)
-    AccountDeletionWorker.perform_async(account.id, reserve_username: false)
+    AccountDeletionWorker.perform_async(account.id, { 'reserve_username' => false })
   end
 
   def suspend_account(account)
     authorize(account, :suspend?)
     log_action(:suspend, account)
     account.suspend!(origin: :local)
+    account.strikes.create!(
+      account: current_account,
+      action: :suspend
+    )
+
     Admin::SuspensionWorker.perform_async(account.id)
+
+    # Suspending a single account closes their associated reports, so
+    # mass-suspending would be consistent.
+    Report.where(target_account: account).unresolved.find_each do |report|
+      authorize(report, :update?)
+      log_action(:resolve, report)
+      report.resolve!(current_account)
+    rescue Mastodon::NotPermittedError
+      # This should not happen, but just in case, do not fail early
+    end
   end
 
   def approve_account(account)
     authorize(account.user, :approve?)
     log_action(:approve, account.user)
     account.user.approve!
+  end
+
+  def select_all_matching?
+    select_all_matching == '1'
   end
 end

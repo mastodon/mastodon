@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: follow_requests
@@ -11,6 +12,7 @@
 #  show_reblogs      :boolean          default(TRUE), not null
 #  uri               :string
 #  notify            :boolean          default(FALSE), not null
+#  languages         :string           is an Array
 #
 
 class FollowRequest < ApplicationRecord
@@ -27,10 +29,19 @@ class FollowRequest < ApplicationRecord
   has_one :notification, as: :activity, dependent: :destroy
 
   validates :account_id, uniqueness: { scope: :target_account_id }
+  validates :languages, language: true
 
   def authorize!
-    account.follow!(target_account, reblogs: show_reblogs, notify: notify, uri: uri, bypass_limit: true)
-    MergeWorker.perform_async(target_account.id, account.id) if account.local?
+    follow = account.follow!(target_account, reblogs: show_reblogs, notify: notify, languages: languages, uri: uri, bypass_limit: true)
+
+    if account.local?
+      ListAccount.where(follow_request: self).update_all(follow_request_id: nil, follow_id: follow.id)
+      MergeWorker.perform_async(target_account.id, account.id, 'home')
+      MergeWorker.push_bulk(List.where(account: account).joins(:list_accounts).where(list_accounts: { account_id: target_account.id }).pluck(:id)) do |list_id|
+        [target_account.id, list_id, 'list']
+      end
+    end
+
     destroy!
   end
 
@@ -41,10 +52,15 @@ class FollowRequest < ApplicationRecord
   end
 
   before_validation :set_uri, only: :create
+  after_commit :invalidate_follow_recommendations_cache
 
   private
 
   def set_uri
     self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil?
+  end
+
+  def invalidate_follow_recommendations_cache
+    Rails.cache.delete("follow_recommendations/#{account_id}")
   end
 end

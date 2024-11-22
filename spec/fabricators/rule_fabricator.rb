@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Fabricator(:rule) do
-  priority   ""
-  deleted_at "2021-02-21 05:51:09"
-  text       "MyText"
+  priority   0
+  deleted_at nil
+  text       { Faker::Lorem.paragraph }
 end

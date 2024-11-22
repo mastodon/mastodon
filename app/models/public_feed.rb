@@ -27,8 +27,9 @@ class PublicFeed
     scope.merge!(remote_only_scope) if remote_only?
     scope.merge!(account_filters_scope) if account?
     scope.merge!(media_only_scope) if media_only?
+    scope.merge!(language_scope) if account&.chosen_languages.present?
 
-    scope.cache_ids.to_a_paginated_by_id(limit, max_id: max_id, since_id: since_id, min_id: min_id)
+    scope.to_a_paginated_by_id(limit, max_id: max_id, since_id: since_id, min_id: min_id)
   end
 
   private
@@ -44,11 +45,11 @@ class PublicFeed
   end
 
   def local_only?
-    options[:local]
+    options[:local] && !options[:remote]
   end
 
   def remote_only?
-    options[:remote]
+    options[:remote] && !options[:local]
   end
 
   def account?
@@ -60,7 +61,7 @@ class PublicFeed
   end
 
   def public_scope
-    Status.with_public_visibility.joins(:account).merge(Account.without_suspended.without_silenced)
+    Status.public_visibility.joins(:account).merge(Account.without_suspended.without_silenced)
   end
 
   def local_only_scope
@@ -83,10 +84,13 @@ class PublicFeed
     Status.joins(:media_attachments).group(:id)
   end
 
+  def language_scope
+    Status.where(language: account.chosen_languages)
+  end
+
   def account_filters_scope
     Status.not_excluded_by_account(account).tap do |scope|
       scope.merge!(Status.not_domain_blocked_by_account(account)) unless local_only?
-      scope.merge!(Status.in_chosen_languages(account)) if account.chosen_languages.present?
     end
   end
 end

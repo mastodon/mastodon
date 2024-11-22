@@ -60,9 +60,9 @@ th:
       error:
         title: เกิดข้อผิดพลาด
       new:
-        able_to: แอปจะสามารถ
-        prompt: แอปพลิเคชัน %{client_name} ขอเข้าถึงบัญชีของคุณ
-        title: ต้องมีการอนุญาต
+        prompt_html: "%{client_name} ต้องการสิทธิอนุญาตเพื่อเข้าถึงบัญชีของคุณ <strong>อนุมัติคำขอนี้เฉพาะหากคุณรู้จักและเชื่อถือแหล่งที่มานี้เท่านั้น</strong>"
+        review_permissions: ตรวจทานสิทธิอนุญาต
+        title: ต้องการการอนุญาต
       show:
         title: คัดลอกรหัสการอนุญาตนี้แล้ววางลงในแอปพลิเคชัน
     authorized_applications:
@@ -71,23 +71,36 @@ th:
       confirmations:
         revoke: คุณแน่ใจหรือไม่?
       index:
-        application: แอปพลิเคชัน
-        created_at: อนุญาตเมื่อ
-        date_format: "%d/%m/%Y %H:%M:%S"
-        scopes: ขอบเขต
+        authorized_at: อนุญาตเมื่อ %{date}
+        description_html: นี่คือแอปพลิเคชันที่สามารถเข้าถึงบัญชีของคุณโดยใช้ API หากมีแอปพลิเคชันที่คุณไม่รู้จักที่นี่ หรือแอปพลิเคชันทำงานผิดปกติ คุณสามารถเพิกถอนการเข้าถึงของแอปพลิเคชัน
+        last_used_at: ใช้ล่าสุดเมื่อ %{date}
+        never_used: ไม่เคยใช้
+        scopes: สิทธิอนุญาต
+        superapp: ภายใน
         title: แอปพลิเคชันที่ได้รับอนุญาตของคุณ
     errors:
       messages:
         access_denied: เจ้าของทรัพยากรหรือเซิร์ฟเวอร์การอนุญาตปฏิเสธคำขอ
+        credential_flow_not_configured: โฟลว์ข้อมูลประจำตัวรหัสผ่านเจ้าของทรัพยากรล้มเหลวเนื่องจากไม่ได้กำหนดค่า Doorkeeper.configure.resource_owner_from_credentials
+        invalid_client: การรับรองความถูกต้องไคลเอ็นต์ล้มเหลวเนื่องจากไคลเอ็นต์ที่ไม่รู้จัก ไม่ได้รวมการรับรองความถูกต้องไคลเอ็นต์ หรือวิธีการรับรองความถูกต้องที่ไม่รองรับ
+        invalid_code_challenge_method: วิธีการทดสอบรหัสต้องเป็น S256 ไม่รองรับแบบธรรมดา
+        invalid_grant: การให้การรับรองความถูกต้องที่ให้มาไม่ถูกต้อง หมดอายุแล้ว เพิกถอนแล้ว ไม่ตรงกับ URI การเปลี่ยนเส้นทางที่ใช้ในคำขอการรับรองความถูกต้อง หรือออกให้ไคลเอ็นต์อื่น
+        invalid_redirect_uri: URI การเปลี่ยนเส้นทางที่รวมอยู่ไม่ถูกต้อง
         invalid_request:
           missing_param: 'พารามิเตอร์ที่จำเป็นขาดหายไป: %{value}'
+          request_not_authorized: จำเป็นต้องอนุญาตคำขอ พารามิเตอร์ที่จำเป็นสำหรับการอนุญาตคำขอขาดหายไปหรือไม่ถูกต้อง
+          unknown: คำขอไม่มีพารามิเตอร์ที่จำเป็น รวมค่าพารามิเตอร์ที่ไม่รองรับ หรือมิฉะนั้นผิดรูปแบบ
+        invalid_resource_owner: ข้อมูลประจำตัวเจ้าของทรัพยากรที่ให้มาไม่ถูกต้อง หรือไม่พบเจ้าของทรัพยากร
         invalid_scope: ขอบเขตที่ขอไม่ถูกต้อง ไม่รู้จัก หรือผิดรูปแบบ
         invalid_token:
           expired: โทเคนการเข้าถึงหมดอายุแล้ว
           revoked: เพิกถอนโทเคนการเข้าถึงแล้ว
           unknown: โทเคนการเข้าถึงไม่ถูกต้อง
         resource_owner_authenticator_not_configured: การค้นหาเจ้าของทรัพยากรล้มเหลวเนื่องจากไม่ได้กำหนดค่า Doorkeeper.configure.resource_owner_authenticator
-        unauthorized_client: ไคลเอ็นต์ไม่ได้รับอนุญาตให้ทำคำขอนี้โดยใช้วิธีการนี้
+        server_error: เซิร์ฟเวอร์การรับรองความถูกต้องพบเงื่อนไขที่ไม่คาดคิดซึ่งป้องกันไม่ให้เซิร์ฟเวอร์ดำเนินการตามคำขอ
+        temporarily_unavailable: เซิร์ฟเวอร์การรับรองความถูกต้องไม่สามารถจัดการคำขอได้ในปัจจุบันเนื่องจากการทำงานเกินพิกัดชั่วคราวหรือการบำรุงรักษาเซิร์ฟเวอร์
+        unauthorized_client: ไม่อนุญาตให้ไคลเอ็นต์ทำคำขอนี้โดยใช้วิธีการนี้
+        unsupported_grant_type: ไม่รองรับชนิดการให้การรับรองความถูกต้องโดยเซิร์ฟเวอร์การรับรองความถูกต้อง
         unsupported_response_type: เซิร์ฟเวอร์การอนุญาตไม่รองรับชนิดการตอบสนองนี้
     flash:
       applications:
@@ -100,21 +113,61 @@ th:
       authorized_applications:
         destroy:
           notice: เพิกถอนแอปพลิเคชันแล้ว
+    grouped_scopes:
+      access:
+        read: การเข้าถึงแบบอ่านเท่านั้น
+        read/write: การเข้าถึงแบบอ่านและเขียน
+        write: การเข้าถึงแบบเขียนเท่านั้น
+      title:
+        accounts: บัญชี
+        admin/accounts: การดูแลบัญชี
+        admin/all: ฟังก์ชันการดูแลทั้งหมด
+        admin/reports: การดูแลรายงาน
+        all: การเข้าถึงบัญชี Mastodon ของคุณแบบเต็ม
+        blocks: การปิดกั้น
+        bookmarks: ที่คั่นหน้า
+        conversations: การสนทนา
+        crypto: การเข้ารหัสแบบต้นทางถึงปลายทาง
+        favourites: รายการโปรด
+        filters: ตัวกรอง
+        follow: ติดตาม ซ่อน และปิดกั้น
+        follows: การติดตาม
+        lists: รายการ
+        media: ไฟล์แนบสื่อ
+        mutes: การซ่อน
+        notifications: การแจ้งเตือน
+        profile: โปรไฟล์ Mastodon ของคุณ
+        push: การแจ้งเตือนแบบผลัก
+        reports: การรายงาน
+        search: ค้นหา
+        statuses: โพสต์
     layouts:
       admin:
         nav:
           applications: แอปพลิเคชัน
           oauth2_provider: ผู้ให้บริการ OAuth2
       application:
-        title: ต้องมีการอนุญาต OAuth
+        title: ต้องการการอนุญาต OAuth
     scopes:
       admin:read: อ่านข้อมูลทั้งหมดในเซิร์ฟเวอร์
       admin:read:accounts: อ่านข้อมูลที่ละเอียดอ่อนของบัญชีทั้งหมด
+      admin:read:canonical_email_blocks: อ่านข้อมูลที่ละเอียดอ่อนของการปิดกั้นอีเมลมาตรฐานทั้งหมด
+      admin:read:domain_allows: อ่านข้อมูลที่ละเอียดอ่อนของการอนุญาตโดเมนทั้งหมด
+      admin:read:domain_blocks: อ่านข้อมูลที่ละเอียดอ่อนของการปิดกั้นโดเมนทั้งหมด
+      admin:read:email_domain_blocks: อ่านข้อมูลที่ละเอียดอ่อนของการปิดกั้นโดเมนอีเมลทั้งหมด
+      admin:read:ip_blocks: อ่านข้อมูลที่ละเอียดอ่อนของการปิดกั้น IP ทั้งหมด
       admin:read:reports: อ่านข้อมูลที่ละเอียดอ่อนของรายงานและบัญชีที่ได้รับการรายงานทั้งหมด
       admin:write: ปรับเปลี่ยนข้อมูลทั้งหมดในเซิร์ฟเวอร์
-      admin:write:accounts: ทำการกระทำการควบคุมบัญชี
-      admin:write:reports: ทำการกระทำการควบคุมรายงาน
+      admin:write:accounts: ทำการกระทำการกลั่นกรองต่อบัญชี
+      admin:write:canonical_email_blocks: ทำการกระทำการกลั่นกรองต่อการปิดกั้นอีเมลมาตรฐาน
+      admin:write:domain_allows: ทำการกระทำการกลั่นกรองต่อการอนุญาตโดเมน
+      admin:write:domain_blocks: ทำการกระทำการกลั่นกรองต่อการปิดกั้นโดเมน
+      admin:write:email_domain_blocks: ทำการกระทำการกลั่นกรองต่อการปิดกั้นโดเมนอีเมล
+      admin:write:ip_blocks: ทำการกระทำการกลั่นกรองต่อการปิดกั้น IP
+      admin:write:reports: ทำการกระทำการกลั่นกรองต่อรายงาน
+      crypto: ใช้การเข้ารหัสแบบต้นทางถึงปลายทาง
       follow: ปรับเปลี่ยนความสัมพันธ์ของบัญชี
+      profile: อ่านเฉพาะข้อมูลโปรไฟล์ของบัญชีของคุณเท่านั้น
       push: รับการแจ้งเตือนแบบผลักของคุณ
       read: อ่านข้อมูลบัญชีทั้งหมดของคุณ
       read:accounts: ดูข้อมูลบัญชี
@@ -133,6 +186,7 @@ th:
       write:accounts: ปรับเปลี่ยนโปรไฟล์ของคุณ
       write:blocks: ปิดกั้นบัญชีและโดเมน
       write:bookmarks: เพิ่มที่คั่นหน้าโพสต์
+      write:conversations: ซ่อนและลบการสนทนา
       write:favourites: ชื่นชอบโพสต์
       write:filters: สร้างตัวกรอง
       write:follows: ติดตามผู้คน

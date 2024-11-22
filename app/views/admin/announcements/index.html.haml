@@ -9,14 +9,13 @@
     %strong= t('admin.relays.status')
     %ul
       %li= filter_link_to t('generic.all'), published: nil, unpublished: nil
-      %li= filter_link_to safe_join([t('admin.announcements.live'), "(#{number_with_delimiter(Announcement.published.count)})"], ' '), published: '1', unpublished: nil
+      %li= filter_link_to safe_join([t('admin.announcements.live'), "(#{number_with_delimiter(@published_announcements_count.value)})"], ' '), published: '1', unpublished: nil
 
 - if @announcements.empty?
-  %div.muted-hint.center-text
+  .muted-hint.center-text
     = t 'admin.announcements.empty'
 - else
   .announcements-list
     = render partial: 'announcement', collection: @announcements
 
 = paginate @announcements
-

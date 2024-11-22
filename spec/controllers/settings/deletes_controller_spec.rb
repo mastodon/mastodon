@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe Settings::DeletesController do
+RSpec.describe Settings::DeletesController do
   render_views
 
   describe 'GET #show' do
@@ -9,19 +11,20 @@ describe Settings::DeletesController do
 
       before do
         sign_in user, scope: :user
+        get :show
       end
 
-      it 'renders confirmation page' do
-        get :show
+      it 'renders confirmation page with private cache control headers', :aggregate_failures do
         expect(response).to have_http_status(200)
+        expect(response.headers['Cache-Control']).to include('private, no-store')
       end
 
       context 'when suspended' do
-        let(:user) { Fabricate(:user, account_attributes: { username: 'alice', suspended_at: Time.now.utc }) }
+        let(:user) { Fabricate(:user, account_attributes: { suspended_at: Time.now.utc }) }
 
-        it 'returns http forbidden' do
-          get :show
+        it 'returns http forbidden with private cache control headers', :aggregate_failures do
           expect(response).to have_http_status(403)
+          expect(response.headers['Cache-Control']).to include('private, no-store')
         end
       end
     end
@@ -47,24 +50,15 @@ describe Settings::DeletesController do
           delete :destroy, params: { form_delete_confirmation: { password: 'petsmoldoggos' } }
         end
 
-        it 'redirects to sign in page' do
+        it 'removes user record and redirects', :aggregate_failures, :inline_jobs do
           expect(response).to redirect_to '/auth/sign_in'
-        end
-
-        it 'removes user record' do
           expect(User.find_by(id: user.id)).to be_nil
-        end
-
-        it 'marks account as suspended' do
           expect(user.account.reload).to be_suspended
-        end
-
-        it 'does not create an email block' do
           expect(CanonicalEmailBlock.block?(user.email)).to be false
         end
 
         context 'when suspended' do
-          let(:user) { Fabricate(:user, account_attributes: { username: 'alice', suspended_at: Time.now.utc }) }
+          let(:user) { Fabricate(:user, account_attributes: { suspended_at: Time.now.utc }) }
 
           it 'returns http forbidden' do
             expect(response).to have_http_status(403)
@@ -79,20 +73,6 @@ describe Settings::DeletesController do
 
         it 'redirects back to confirmation page' do
           expect(response).to redirect_to settings_delete_path
-        end
-      end
-
-      context 'when account deletions are disabled' do
-        around do |example|
-          open_deletion = Setting.open_deletion
-          example.run
-          Setting.open_deletion = open_deletion
-        end
-
-        it 'redirects' do
-          Setting.open_deletion = false
-          delete :destroy
-          expect(response).to redirect_to root_path
         end
       end
     end

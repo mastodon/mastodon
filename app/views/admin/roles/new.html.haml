@@ -1,0 +1,7 @@
+- content_for :page_title do
+  = t('admin.roles.add_new')
+
+= simple_form_for @role, url: admin_roles_path do |form|
+  = render partial: 'form', object: form
+  .actions
+    = form.button :button, t('admin.roles.add_new'), type: :submit

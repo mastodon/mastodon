@@ -1,0 +1,8 @@
+<%= raw t('admin_mailer.new_trends.new_trending_links.title') %>
+
+<% new_trending_links.each do |link| %>
+- <%= link.title %> · <%= link.url %>
+  <%= standard_locale_name(link.language) %> · <%= raw t('admin.trends.links.usage_comparison', today: link.history.get(Time.now.utc).accounts, yesterday: link.history.get(Time.now.utc - 1.day).accounts) %> · <%= t('admin.trends.tags.current_score', score: link.trend.score.round(2)) %>
+<% end %>
+
+<%= raw t('application_mailer.view')%> <%= admin_trends_links_url %>

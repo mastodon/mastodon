@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: instances
@@ -8,59 +9,70 @@
 #
 
 class Instance < ApplicationRecord
+  include DatabaseViewRecord
+
   self.primary_key = :domain
 
   attr_accessor :failure_days
 
-  has_many :accounts, foreign_key: :domain, primary_key: :domain
+  with_options foreign_key: :domain, primary_key: :domain, inverse_of: false do
+    belongs_to :domain_block
+    belongs_to :domain_allow
+    belongs_to :unavailable_domain
 
-  belongs_to :domain_block, foreign_key: :domain, primary_key: :domain
-  belongs_to :domain_allow, foreign_key: :domain, primary_key: :domain
-  belongs_to :unavailable_domain, foreign_key: :domain, primary_key: :domain # skipcq: RB-RL1031
-
-  scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
-
-  def self.refresh
-    Scenic.database.refresh_materialized_view(table_name, concurrently: true, cascade: false)
+    has_many :accounts, dependent: nil
   end
 
-  def readonly?
-    true
+  scope :searchable, -> { where.not(domain: DomainBlock.select(:domain)) }
+  scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
+  scope :domain_starts_with, ->(value) { where(arel_table[:domain].matches("#{sanitize_sql_like(value)}%", false, true)) }
+  scope :by_domain_and_subdomains, ->(domain) { where("reverse('.' || domain) LIKE reverse(?)", "%.#{domain}") }
+  scope :with_domain_follows, ->(domains) { where(domain: domains).where(domain_account_follows) }
+
+  def self.domain_account_follows
+    Arel.sql(
+      <<~SQL.squish
+        EXISTS (
+          SELECT 1
+          FROM follows
+          JOIN accounts ON follows.account_id = accounts.id OR follows.target_account_id = accounts.id
+          WHERE accounts.domain = instances.domain
+        )
+      SQL
+    )
   end
 
   def delivery_failure_tracker
     @delivery_failure_tracker ||= DeliveryFailureTracker.new(domain)
   end
 
-  def following_count
-    @following_count ||= Follow.where(account: accounts).count
+  def purgeable?
+    unavailable? || domain_block&.suspend?
   end
 
-  def followers_count
-    @followers_count ||= Follow.where(target_account: accounts).count
+  def unavailable?
+    unavailable_domain.present?
   end
 
-  def reports_count
-    @reports_count ||= Report.where(target_account: accounts).count
-  end
-
-  def blocks_count
-    @blocks_count ||= Block.where(target_account: accounts).count
-  end
-
-  def public_comment
-    domain_block&.public_comment
-  end
-
-  def private_comment
-    domain_block&.private_comment
-  end
-
-  def media_storage
-    @media_storage ||= MediaAttachment.where(account: accounts).sum(:file_file_size)
+  def failing?
+    failure_days.present? || unavailable?
   end
 
   def to_param
     domain
+  end
+
+  alias to_log_human_identifier to_param
+
+  delegate :exhausted_deliveries_days, to: :delivery_failure_tracker
+
+  def availability_over_days(num_days, end_date = Time.now.utc.to_date)
+    failures_map    = exhausted_deliveries_days.index_with { true }
+    period_end_at   = exhausted_deliveries_days.last || end_date
+    period_start_at = period_end_at - num_days.days
+
+    (period_start_at..period_end_at).map do |date|
+      [date, failures_map[date]]
+    end
   end
 end

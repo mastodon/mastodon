@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DisplayName /> renders display name + account name 1`] = `
+<span
+  className="display-name"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <bdi>
+    <strong
+      className="display-name__html"
+      dangerouslySetInnerHTML={
+        {
+          "__html": "<p>Foo</p>",
+        }
+      }
+    />
+  </bdi>
+   
+  <span
+    className="display-name__account"
+  >
+    @
+    bar@baz
+  </span>
+</span>
+`;

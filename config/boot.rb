@@ -1,17 +1,18 @@
+# frozen_string_literal: true
+
 unless ENV.key?('RAILS_ENV')
-  STDERR.puts 'ERROR: Missing RAILS_ENV environment variable, please set it to "production", "development", or "test".'
-  exit 1
+  abort <<~ERROR
+    The RAILS_ENV environment variable is not set.
+
+    Please set it correctly depending on context:
+
+      - Use "production" for a live deployment of the application
+      - Use "development" for local feature work
+      - Use "test" when running the automated spec suite
+  ERROR
 end
 
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __dir__)
 
 require 'bundler/setup' # Set up gems listed in the Gemfile.
-require 'bootsnap' # Speed up boot time by caching expensive operations.
-
-Bootsnap.setup(
-  cache_dir:            File.expand_path('../tmp/cache', __dir__),
-  development_mode:     ENV.fetch('RAILS_ENV', 'development') == 'development',
-  load_path_cache:      true,
-  compile_cache_iseq:   false,
-  compile_cache_yaml:   false
-)
+require 'bootsnap/setup' # Speed up boot time by caching expensive operations.

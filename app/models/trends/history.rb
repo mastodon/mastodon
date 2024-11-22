@@ -11,11 +11,11 @@ class Trends::History
     end
 
     def uses
-      redis.mget(*@days.map { |day| day.key_for(:uses) }).map(&:to_i).sum
+      with_redis { |redis| redis.mget(*@days.map { |day| day.key_for(:uses) }).sum(&:to_i) }
     end
 
     def accounts
-      redis.pfcount(*@days.map { |day| day.key_for(:accounts) })
+      with_redis { |redis| redis.pfcount(*@days.map { |day| day.key_for(:accounts) }) }
     end
   end
 
@@ -33,19 +33,21 @@ class Trends::History
     attr_reader :day
 
     def accounts
-      redis.pfcount(key_for(:accounts))
+      with_redis { |redis| redis.pfcount(key_for(:accounts)) }
     end
 
     def uses
-      redis.get(key_for(:uses))&.to_i || 0
+      with_redis { |redis| redis.get(key_for(:uses)).to_i }
     end
 
     def add(account_id)
-      redis.pipelined do
-        redis.incrby(key_for(:uses), 1)
-        redis.pfadd(key_for(:accounts), account_id)
-        redis.expire(key_for(:uses), EXPIRE_AFTER)
-        redis.expire(key_for(:accounts), EXPIRE_AFTER)
+      with_redis do |redis|
+        redis.pipelined do |pipeline|
+          pipeline.incrby(key_for(:uses), 1)
+          pipeline.pfadd(key_for(:accounts), account_id)
+          pipeline.expire(key_for(:uses), EXPIRE_AFTER)
+          pipeline.expire(key_for(:accounts), EXPIRE_AFTER)
+        end
       end
     end
 
@@ -85,8 +87,8 @@ class Trends::History
   end
 
   def each(&block)
-    if block_given?
-      (0...7).map { |i| block.call(get(i.days.ago)) }
+    if block
+      (0...7).map { |i| yield(get(i.days.ago)) }
     else
       to_enum(:each)
     end

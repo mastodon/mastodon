@@ -6,12 +6,12 @@ class Api::V1::Admin::ReportsController < Api::BaseController
 
   LIMIT = 100
 
-  before_action -> { doorkeeper_authorize! :'admin:read', :'admin:read:reports' }, only: [:index, :show]
-  before_action -> { doorkeeper_authorize! :'admin:write', :'admin:write:reports' }, except: [:index, :show]
-  before_action :require_staff!
+  before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:reports' }, only: [:index, :show]
+  before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:reports' }, except: [:index, :show]
   before_action :set_reports, only: :index
   before_action :set_report, except: :index
 
+  after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
   FILTER_PARAMS = %i(
@@ -29,6 +29,13 @@ class Api::V1::Admin::ReportsController < Api::BaseController
 
   def show
     authorize @report, :show?
+    render json: @report, serializer: REST::Admin::ReportSerializer
+  end
+
+  def update
+    authorize @report, :update?
+    @report.update!(report_params)
+    log_action :update, @report
     render json: @report, serializer: REST::Admin::ReportSerializer
   end
 
@@ -74,12 +81,12 @@ class Api::V1::Admin::ReportsController < Api::BaseController
     ReportFilter.new(filter_params).results
   end
 
-  def filter_params
-    params.permit(*FILTER_PARAMS)
+  def report_params
+    params.permit(:category, rule_ids: [])
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
+  def filter_params
+    params.permit(*FILTER_PARAMS)
   end
 
   def next_path
@@ -90,12 +97,8 @@ class Api::V1::Admin::ReportsController < Api::BaseController
     api_v1_admin_reports_url(pagination_params(min_id: pagination_since_id)) unless @reports.empty?
   end
 
-  def pagination_max_id
-    @reports.last.id
-  end
-
-  def pagination_since_id
-    @reports.first.id
+  def pagination_collection
+    @reports
   end
 
   def records_continue?

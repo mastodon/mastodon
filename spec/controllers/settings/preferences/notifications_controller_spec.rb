@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe Settings::Preferences::NotificationsController do
+RSpec.describe Settings::Preferences::NotificationsController do
   render_views
 
   let(:user) { Fabricate(:user) }
@@ -10,28 +12,32 @@ describe Settings::Preferences::NotificationsController do
   end
 
   describe 'GET #show' do
-    it 'returns http success' do
+    before do
       get :show
+    end
+
+    it 'returns http success with private cache control headers', :aggregate_failures do
       expect(response).to have_http_status(200)
+      expect(response.headers['Cache-Control']).to include('private, no-store')
     end
   end
 
   describe 'PUT #update' do
     it 'updates notifications settings' do
-      user.settings['notification_emails'] = user.settings['notification_emails'].merge('follow' => false)
-      user.settings['interactions'] = user.settings['interactions'].merge('must_be_follower' => true)
+      user.settings.update('notification_emails.follow': false)
+      user.save
 
       put :update, params: {
         user: {
-          notification_emails: { follow: '1' },
-          interactions: { must_be_follower: '0' },
-        }
+          settings_attributes: {
+            'notification_emails.follow': '1',
+          },
+        },
       }
 
       expect(response).to redirect_to(settings_preferences_notifications_path)
       user.reload
-      expect(user.settings['notification_emails']['follow']).to be true
-      expect(user.settings['interactions']['must_be_follower']).to be false
+      expect(user.settings['notification_emails.follow']).to be true
     end
   end
 end

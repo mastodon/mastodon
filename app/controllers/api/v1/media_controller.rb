@@ -6,21 +6,22 @@ class Api::V1::MediaController < Api::BaseController
   before_action :set_media_attachment, except: [:create]
   before_action :check_processing, except: [:create]
 
+  def show
+    render json: @media_attachment, serializer: REST::MediaAttachmentSerializer, status: status_code_for_media_attachment
+  end
+
   def create
     @media_attachment = current_account.media_attachments.create!(media_attachment_params)
     render json: @media_attachment, serializer: REST::MediaAttachmentSerializer
   rescue Paperclip::Errors::NotIdentifiedByImageMagickError
     render json: file_type_error, status: 422
-  rescue Paperclip::Error
+  rescue Paperclip::Error => e
+    Rails.logger.error "#{e.class}: #{e.message}"
     render json: processing_error, status: 500
   end
 
-  def show
-    render json: @media_attachment, serializer: REST::MediaAttachmentSerializer, status: status_code_for_media_attachment
-  end
-
   def update
-    @media_attachment.update!(media_attachment_params)
+    @media_attachment.update!(updateable_media_attachment_params)
     render json: @media_attachment, serializer: REST::MediaAttachmentSerializer, status: status_code_for_media_attachment
   end
 
@@ -31,7 +32,7 @@ class Api::V1::MediaController < Api::BaseController
   end
 
   def set_media_attachment
-    @media_attachment = current_account.media_attachments.unattached.find(params[:id])
+    @media_attachment = current_account.media_attachments.where(status_id: nil).find(params[:id])
   end
 
   def check_processing
@@ -40,6 +41,10 @@ class Api::V1::MediaController < Api::BaseController
 
   def media_attachment_params
     params.permit(:file, :thumbnail, :description, :focus)
+  end
+
+  def updateable_media_attachment_params
+    params.permit(:thumbnail, :description, :focus)
   end
 
   def file_type_error

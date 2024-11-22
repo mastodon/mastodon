@@ -60,8 +60,8 @@ es-AR:
       error:
         title: Ocurrió un error
       new:
-        able_to: Será capaz de
-        prompt: La aplicación %{client_name} solicita acceso a tu cuenta
+        prompt_html: A %{client_name} le gustaría obtener permiso para acceder a tu cuenta. <strong>Aprobá esta solicitud solo si reconocés y confiás en esta fuente.</strong>
+        review_permissions: Revisar permisos
         title: Autorización requerida
       show:
         title: Copiá este código de autorización y pegalo en la aplicación.
@@ -71,16 +71,19 @@ es-AR:
       confirmations:
         revoke: "¿Estás seguro?"
       index:
-        application: Aplicación
-        created_at: Autorizada
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Ámbitos
+        authorized_at: Autorizado el %{date}
+        description_html: Estas son aplicaciones que pueden acceder a tu cuenta usando la API. Si hay aplicaciones que no reconocés acá, o que funcionan de forma sospechosa, podés revocar su acceso.
+        last_used_at: Último uso el %{date}
+        never_used: Nunca usada
+        scopes: Permisos
+        superapp: Interno
         title: Tus aplicaciones autorizadas
     errors:
       messages:
         access_denied: El propietario del recurso o servidor de autorización denegó la petición.
         credential_flow_not_configured: Las credenciales de contraseña del propietario del recurso fallaron debido a que "Doorkeeper.configure.resource_owner_from_credentials" está sin configurar.
         invalid_client: La autenticación del cliente falló debido a que es un cliente desconocido, o no está incluída la autenticación del cliente, o el método de autenticación no está soportado.
+        invalid_code_challenge_method: El método de desafío de código debe ser S256, «plain» no está soportado.
         invalid_grant: La concesión de autorización ofrecida no es válida, venció, se revocó, no coincide con la dirección web de redireccionamiento usada en la petición de autorización, o fue emitida para otro cliente.
         invalid_redirect_uri: La dirección web de redireccionamiento incluida no es válida.
         invalid_request:
@@ -110,6 +113,34 @@ es-AR:
       authorized_applications:
         destroy:
           notice: Aplicación revocada.
+    grouped_scopes:
+      access:
+        read: Acceso de sólo lectura
+        read/write: Acceso de lectura y escritura
+        write: Acceso de sólo escritura
+      title:
+        accounts: Cuentas
+        admin/accounts: Administración de cuentas
+        admin/all: Todas las funciones administrativas
+        admin/reports: Administración de denuncias
+        all: Acceso total a tu cuenta de Mastodon
+        blocks: Bloqueos
+        bookmarks: Marcadores
+        conversations: Conversaciones
+        crypto: Cifrado de extremo a extremo
+        favourites: Favoritos
+        filters: Filtros
+        follow: Seguimientos, silencios y bloqueos
+        follows: Seguimientos
+        lists: Listas
+        media: Adjuntos de medios
+        mutes: Silenciados
+        notifications: Notificaciones
+        profile: Tu perfil de Mastodon
+        push: Notificaciones push
+        reports: Denuncias
+        search: Buscar
+        statuses: Mensajes
     layouts:
       admin:
         nav:
@@ -120,11 +151,23 @@ es-AR:
     scopes:
       admin:read: leer todos los datos en el servidor
       admin:read:accounts: leer información sensible de todas las cuentas
+      admin:read:canonical_email_blocks: leer información sensible de todos los bloques canónicos de correo electrónico
+      admin:read:domain_allows: leer información sensible de todos los dominios permitidos
+      admin:read:domain_blocks: leer información sensible de todos los bloques de dominio
+      admin:read:email_domain_blocks: leer información sensible de todos los bloques de dominio de correo electrónico
+      admin:read:ip_blocks: leer información sensible de todos los bloques de direcciones IP
       admin:read:reports: leer información sensible de todos los informes y cuentas denunciadas
       admin:write: modificar todos los datos en el servidor
       admin:write:accounts: ejecutar acciones de moderación en cuentas
+      admin:write:canonical_email_blocks: ejecutar acciones de moderación en bloques canónicos de correo electrónico
+      admin:write:domain_allows: realizar acciones de moderación en el dominio permitido
+      admin:write:domain_blocks: ejecutar acciones de moderación en bloques de dominio
+      admin:write:email_domain_blocks: ejecutar acciones de moderación en bloques de dominio de correo electrónico
+      admin:write:ip_blocks: ejecutar acciones de moderación en bloques de direcciones IP
       admin:write:reports: ejecutar acciones de moderación en denuncias
+      crypto: usar cifrado de extremo a extremo
       follow: modificar relaciones de cuenta
+      profile: leer solo la información del perfil de tu cuenta
       push: recibir tus notificaciones push
       read: leer todos los datos de tu cuenta
       read:accounts: ver información de cuentas
@@ -143,6 +186,7 @@ es-AR:
       write:accounts: modificar tu perfil
       write:blocks: bloquear cuentas y dominios
       write:bookmarks: marcar mensajes
+      write:conversations: silenciar y eliminar conversaciones
       write:favourites: marcar mensajes como favoritos
       write:filters: crear filtros
       write:follows: seguir cuentas

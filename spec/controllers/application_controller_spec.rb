@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ApplicationController, type: :controller do
+RSpec.describe ApplicationController do
   controller do
     def success
       head 200
@@ -22,17 +22,14 @@ describe ApplicationController, type: :controller do
   end
 
   shared_examples 'respond_with_error' do |code|
-    it "returns http #{code} for http" do
-      subject
-      expect(response).to have_http_status(code)
-    end
+    it "returns http #{code} for http and renders template" do
+      expect(subject).to render_template("errors/#{code}", layout: 'error')
 
-    it "renders template for http" do
-      is_expected.to render_template("errors/#{code}", layout: 'error')
+      expect(response).to have_http_status(code)
     end
   end
 
-  context 'forgery' do
+  context 'with a forgery' do
     subject do
       ActionController::Base.allow_forgery_protection = true
       routes.draw { post 'success' => 'anonymous#success' }
@@ -49,7 +46,7 @@ describe ApplicationController, type: :controller do
 
     it 'returns account if signed in' do
       account = Fabricate(:account)
-      sign_in(Fabricate(:user, account: account))
+      sign_in(account.user)
       expect(controller.view_context.current_account).to eq account
     end
   end
@@ -57,19 +54,19 @@ describe ApplicationController, type: :controller do
   describe 'helper_method :single_user_mode?' do
     it 'returns false if it is in single_user_mode but there is no account' do
       allow(Rails.configuration.x).to receive(:single_user_mode).and_return(true)
-      expect(controller.view_context.single_user_mode?).to eq false
+      expect(controller.view_context.single_user_mode?).to be false
     end
 
     it 'returns false if there is an account but it is not in single_user_mode' do
       allow(Rails.configuration.x).to receive(:single_user_mode).and_return(false)
       Fabricate(:account)
-      expect(controller.view_context.single_user_mode?).to eq false
+      expect(controller.view_context.single_user_mode?).to be false
     end
 
     it 'returns true if it is in single_user_mode and there is an account' do
       allow(Rails.configuration.x).to receive(:single_user_mode).and_return(true)
       Fabricate(:account)
-      expect(controller.view_context.single_user_mode?).to eq true
+      expect(controller.view_context.single_user_mode?).to be true
     end
   end
 
@@ -88,26 +85,24 @@ describe ApplicationController, type: :controller do
 
     it 'returns instances\'s default theme when user didn\'t set theme' do
       current_user = Fabricate(:user)
+      current_user.settings.update(theme: 'contrast', noindex: false)
+      current_user.save
       sign_in current_user
-
-      allow(Setting).to receive(:[]).with('theme').and_return 'contrast'
-      allow(Setting).to receive(:[]).with('noindex').and_return false
 
       expect(controller.view_context.current_theme).to eq 'contrast'
     end
 
     it 'returns user\'s theme when it is set' do
       current_user = Fabricate(:user)
-      current_user.settings['theme'] = 'mastodon-light'
+      current_user.settings.update(theme: 'mastodon-light')
+      current_user.save
       sign_in current_user
-
-      allow(Setting).to receive(:[]).with('theme').and_return 'contrast'
 
       expect(controller.view_context.current_theme).to eq 'mastodon-light'
     end
   end
 
-  context 'ActionController::RoutingError' do
+  context 'with ActionController::RoutingError' do
     subject do
       routes.draw { get 'routing_error' => 'anonymous#routing_error' }
       get 'routing_error'
@@ -116,7 +111,7 @@ describe ApplicationController, type: :controller do
     include_examples 'respond_with_error', 404
   end
 
-  context 'ActiveRecord::RecordNotFound' do
+  context 'with ActiveRecord::RecordNotFound' do
     subject do
       routes.draw { get 'record_not_found' => 'anonymous#record_not_found' }
       get 'record_not_found'
@@ -125,32 +120,13 @@ describe ApplicationController, type: :controller do
     include_examples 'respond_with_error', 404
   end
 
-  context 'ActionController::InvalidAuthenticityToken' do
+  context 'with ActionController::InvalidAuthenticityToken' do
     subject do
       routes.draw { get 'invalid_authenticity_token' => 'anonymous#invalid_authenticity_token' }
       get 'invalid_authenticity_token'
     end
 
     include_examples 'respond_with_error', 422
-  end
-
-  describe 'before_action :store_current_location' do
-    it 'stores location for user if it is not devise controller' do
-      routes.draw { get 'success' => 'anonymous#success' }
-      get 'success'
-      expect(controller.stored_location_for(:user)).to eq '/success'
-    end
-
-    context do
-      controller Devise::SessionsController do
-      end
-
-      it 'does not store location for user if it is devise controller' do
-        @request.env["devise.mapping"] = Devise.mappings[:user]
-        get 'create'
-        expect(controller.stored_location_for(:user)).to be_nil
-      end
-    end
   end
 
   describe 'before_action :check_suspension' do
@@ -164,13 +140,13 @@ describe ApplicationController, type: :controller do
     end
 
     it 'does nothing if user who signed in is not suspended' do
-      sign_in(Fabricate(:user, account: Fabricate(:account, suspended: false)))
+      sign_in(Fabricate(:account, suspended: false).user)
       get 'success'
       expect(response).to have_http_status(200)
     end
 
     it 'redirects to account status page' do
-      sign_in(Fabricate(:user, account: Fabricate(:account, suspended: true)))
+      sign_in(Fabricate(:account, suspended: true).user)
       get 'success'
       expect(response).to redirect_to(edit_user_registration_path)
     end
@@ -180,70 +156,6 @@ describe ApplicationController, type: :controller do
     it 'raises error' do
       controller.params[:unmatched_route] = 'unmatched'
       expect { controller.raise_not_found }.to raise_error(ActionController::RoutingError, 'No route matches unmatched')
-    end
-  end
-
-  describe 'require_admin!' do
-    controller do
-      before_action :require_admin!
-
-      def sucesss
-        head 200
-      end
-    end
-
-    before do
-      routes.draw { get 'sucesss' => 'anonymous#sucesss' }
-    end
-
-    it 'returns a 403 if current user is not admin' do
-      sign_in(Fabricate(:user, admin: false))
-      get 'sucesss'
-      expect(response).to have_http_status(403)
-    end
-
-    it 'returns a 403 if current user is only a moderator' do
-      sign_in(Fabricate(:user, moderator: true))
-      get 'sucesss'
-      expect(response).to have_http_status(403)
-    end
-
-    it 'does nothing if current user is admin' do
-      sign_in(Fabricate(:user, admin: true))
-      get 'sucesss'
-      expect(response).to have_http_status(200)
-    end
-  end
-
-  describe 'require_staff!' do
-    controller do
-      before_action :require_staff!
-
-      def sucesss
-        head 200
-      end
-    end
-
-    before do
-      routes.draw { get 'sucesss' => 'anonymous#sucesss' }
-    end
-
-    it 'returns a 403 if current user is not admin or moderator' do
-      sign_in(Fabricate(:user, admin: false, moderator: false))
-      get 'sucesss'
-      expect(response).to have_http_status(403)
-    end
-
-    it 'does nothing if current user is moderator' do
-      sign_in(Fabricate(:user, moderator: true))
-      get 'sucesss'
-      expect(response).to have_http_status(200)
-    end
-
-    it 'does nothing if current user is admin' do
-      sign_in(Fabricate(:user, admin: true))
-      get 'sucesss'
-      expect(response).to have_http_status(200)
     end
   end
 
@@ -305,38 +217,5 @@ describe ApplicationController, type: :controller do
     end
 
     include_examples 'respond_with_error', 422
-  end
-
-  describe 'cache_collection' do
-    class C < ApplicationController
-      public :cache_collection
-    end
-
-    shared_examples 'receives :with_includes' do |fabricator, klass|
-      it 'uses raw if it is not an ActiveRecord::Relation' do
-        record = Fabricate(fabricator)
-        expect(C.new.cache_collection([record], klass)).to eq [record]
-      end
-    end
-
-    shared_examples 'cacheable' do |fabricator, klass|
-      include_examples 'receives :with_includes', fabricator, klass
-
-      it 'calls cache_ids of raw if it is an ActiveRecord::Relation' do
-        record = Fabricate(fabricator)
-        relation = klass.none
-        allow(relation).to receive(:cache_ids).and_return([record])
-        expect(C.new.cache_collection(relation, klass)).to eq [record]
-      end
-    end
-
-    it 'returns raw unless class responds to :with_includes' do
-      raw = Object.new
-      expect(C.new.cache_collection(raw, Object)).to eq raw
-    end
-
-    context 'Status' do
-      include_examples 'cacheable', :status, Status
-    end
   end
 end

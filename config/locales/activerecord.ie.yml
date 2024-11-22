@@ -1,0 +1,59 @@
+---
+ie:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Cludent date
+        options: Optiones
+      user:
+        agreement: Acorde de servicie
+        email: E-posta
+        locale: Local
+        password: Passa-parol
+      user/account:
+        username: Nómine del usator
+      user/invite_request:
+        text: Rason
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: deve contener solmen lítteres, númeres e sublineas
+              reserved: es reservat
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ne es un valid URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ne es un valid URL
+        import:
+          attributes:
+            data:
+              malformed: es malformat
+        status:
+          attributes:
+            reblog:
+              taken: de posta ja existe
+        user:
+          attributes:
+            email:
+              blocked: usa un ne-permisset provisor de e-posta
+              unreachable: sembla ne exister
+            role_id:
+              elevated: ne posse esser plu alt quam tui actual rol
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: include permissones ne secur por li rol de base
+              elevated: ne posse includer permissiones ne possedet de tui rol actual
+              own_role: ne posse esser changeat con tui actual rol
+            position:
+              elevated: ne posse esser plu alt quam tui actual rol
+              own_role: ne posse esser changeat con tui actual rol
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: ne posse includer evenimentes por queles tu ne have li yures

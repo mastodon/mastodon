@@ -15,12 +15,30 @@ gd:
       user/invite_request:
         text: Adhbhar
     errors:
+      attributes:
+        domain:
+          invalid: "– chan eil seo ’na ainm àrainne dligheach"
+      messages:
+        invalid_domain_on_line: Chan eil %{value} ’na ainm àrainne dligheach
+        too_many_lines: "– tha seo thar crìoch de %{limit} nan loidhnichean"
       models:
         account:
           attributes:
             username:
               invalid: "– chan fhaod ach litrichean gun sràcan, àireamhan ’s fo-loidhnichean a bhith ’na bhroinn"
               reserved: "– tha e glèidhte"
+        admin/webhook:
+          attributes:
+            url:
+              invalid: "– chan eil seo ’na URL dligheach"
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: "– chan eil seo ’na URL dligheach"
+        import:
+          attributes:
+            data:
+              malformed: "– chan eil cruth dligheach air"
         status:
           attributes:
             reblog:
@@ -30,3 +48,18 @@ gd:
             email:
               blocked: "– tha seo a’ chleachdadh solaraiche puist-d nach eil ceadaichte"
               unreachable: "– tha coltas nach eil seo ann"
+            role_id:
+              elevated: "– chan fhaod seo a bhith nas àirde na an dreuchd a th’ agad an-dràsta"
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: gabh a-staigh na ceadan nach eil sàbhailte dhan bhun-dreuchd
+              elevated: chan urrainn dhut ceadan a ghabhail a-staigh nach eil aig an dreuchd a th’ agad an-dràsta
+              own_role: cha ghabh seo atharrachadh leis an dreuchd a th’ agad an-dràsta
+            position:
+              elevated: chan fhaod seo a bhith nas àirde na an dreuchd a th’ agad an-dràsta
+              own_role: cha ghabh seo atharrachadh leis an dreuchd a th’ agad an-dràsta
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: chan fhaod thu tachartasan air nach eil ceadan agad a ghabhail a-steach

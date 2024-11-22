@@ -29,7 +29,7 @@ fa:
       edit:
         title: ویرایش برنامه
       form:
-        error: اوخ! ببینید چیزی را اشتباهی در فرم وارد نکرده‌اید؟
+        error: اوخ! ببینید چیزی را اشتباهی در فرم وارد نکرده‌اید
       help:
         native_redirect_uri: برای آزمایش‌های محلی %{native_redirect_uri} را به کار ببرید
         redirect_uri: هر URI را در یک سطر جدا بنویسید
@@ -60,27 +60,29 @@ fa:
       error:
         title: خطایی رخ داد
       new:
-        able_to: اجازه خواهد داشت
-        prompt: برنامهٔ %{client_name} می‌خواهد به حساب شما دسترسی داشته باشد
+        review_permissions: بازبینی اجازه‌ها
         title: نیاز به اجازه دادن
       show:
-        title: این کد مجوز را کپی کرده و در برنامه وارد کنید.
+        title: این کد تأیید را رونوشت کرده و در برنامه بگذارید.
     authorized_applications:
       buttons:
         revoke: فسخ
       confirmations:
         revoke: آیا مطمئن هستید؟
       index:
-        application: برنامه
-        created_at: مجازشده از
-        date_format: "%Y-%m-%d%H:%M:%S"
+        authorized_at: تایید شده در %{date}
+        description_html: اینها نرم‌افزار هایی هستند که می‌توانند به حساب کاربری شما با استفاده از رابط نرم‌افزاری دسترسی پیدا کنند. اگر نرم‌افزار های در اینجا هستند که نمی‌شناسید، یا نرم‌افزاری که رفتار مشکوک دارد، می‌توانید دسترسی اش را باطل کنید.
+        last_used_at: آخرین استفاده در %{date}
+        never_used: هرگز استفاده نشده
         scopes: اجازه‌ها
+        superapp: داخلی
         title: برنامه‌های مجاز
     errors:
       messages:
         access_denied: صاحب منبع یا کارساز تأیید هویت، درخواست را رد کردند.
         credential_flow_not_configured: جریان اعتبارنامهٔ گذرواژهٔ مالک منبع به دلیل پیکربندی نشده بودن Doorkeeper.configure.resource_owner_from_credentials شکست خورد.
         invalid_client: تأیید هویت کارخواه به دلیل کارخواه ناشناخته، عدم وجود تأیید هویت کاره یا روش تأیید هویت پشتیبانی‌نشده شکست خورد.
+        invalid_code_challenge_method: روش چالش کدی باید S256 باشد. متن خام پشتیبانی نمی‌شود.
         invalid_grant: اعطای دسترسی فراهم ‌شده نامعتبر، منقضی یا نامطابق با نشانی بازگشت استفاده‌شده در درخواست تأیید هویت بوده و یا برای کارخواهی دیگر صادر شده است.
         invalid_redirect_uri: نشانی بازگشت موجود، معتبر نیست.
         invalid_request:
@@ -110,6 +112,34 @@ fa:
       authorized_applications:
         destroy:
           notice: برنامه فسخ شد.
+    grouped_scopes:
+      access:
+        read: فقط دسترسی خواندن
+        read/write: دسترسی خواندن و نوشتن
+        write: فقط دسترسی نوشتن
+      title:
+        accounts: حساب‌ها
+        admin/accounts: مدیریت حساب های کاربری
+        admin/all: تمامی عملکرد های مدیریتی
+        admin/reports: مدیریت بازخورد ها
+        all: دسترسی کامل به حساب ماستودونتان
+        blocks: مسدودها
+        bookmarks: نشانک‌ها
+        conversations: گفت‌وگوها
+        crypto: رمزگذاری سرتاسری
+        favourites: برگزیده‌ها
+        filters: پالایه‌ها
+        follow: پی‌گیری، خموشی و مسدودی‌ها
+        follows: پی‌گرفتن‌ها
+        lists: سیاهه‌ها
+        media: پیوست‌های رسانه‌ای
+        mutes: خموش‌ها
+        notifications: آگاهی‌ها
+        profile: نمایهٔ ماستودونتان
+        push: آگاهی‌های ارسالی
+        reports: گزارش‌ها
+        search: جست‌وجو
+        statuses: فرسته‌ها
     layouts:
       admin:
         nav:
@@ -120,20 +150,32 @@ fa:
     scopes:
       admin:read: خواندن تمام داده‌ها روی کارساز
       admin:read:accounts: خواندن اطّلاعات حساس از همهٔ حساب‌ها
+      admin:read:canonical_email_blocks: خواندن اطّلاعات حسّاس از همهٔ انسدادهای رایانامهٔ متعارف
+      admin:read:domain_allows: خواندن اطّلاعات حساس از همهٔ دامنه ها اجازه داده شد
+      admin:read:domain_blocks: خواندن اطّلاعات حساس از همهٔ دامنه های مسدودشده
+      admin:read:email_domain_blocks: خواندن اطّلاعات حساس از همهٔ دامنه های رایانامه های مسدودشده
+      admin:read:ip_blocks: خواندن اطّلاعات حساس از همهٔ IPهای مسدودشده
       admin:read:reports: خواندن اطّلاعات حساس از همهٔ گزارش‌ها و حساب‌های گزارش‌شده
       admin:write: تغییر تمام داده‌ها روی کارساز
       admin:write:accounts: انجام کنش مدیریتی روی حساب‌ها
+      admin:write:canonical_email_blocks: انجام کنش‌های نظارتی روی همهٔ انسدادهای رایانامهٔ متعارف
+      admin:write:domain_allows: انجام کنش مدیریتی روی اجازه‌های دامنه
+      admin:write:domain_blocks: انجام کنش مدیریتی روی انسدادهای دامنه
+      admin:write:email_domain_blocks: انجام کنش مدیریتی روی انسدادهای دامنهٔ رایانامه
+      admin:write:ip_blocks: انجام کنش مدیریتی روی مسدودسازی های IP
       admin:write:reports: انجام کنش مدیریتی روی گزارش‌ها
+      crypto: از رمزگذاری سرتاسر استفاده کنید
       follow: پیگیری، مسدودسازی، لغو مسدودسازی، و لغو پیگیری حساب‌ها
-      push: برای حساب خود اعلان‌های لحظه‌ای دریافت کنید
+      profile: فقط خواندن اطّلاعات نمایهٔ حسابتان
+      push: دریافت آگاهی‌ای ارسالیتان
       read: خواندن اطلاعات حساب شما
       read:accounts: دیدن اطّلاعات حساب
-      read:blocks: دیدن انسدادهایتان
+      read:blocks: دیدن مسدودهایتان
       read:bookmarks: دیدن نشانک‌هایتان
       read:favourites: دیدن برگزیده‌هایتان
       read:filters: دیدن پالایه‌هایتان
       read:follows: دیدن پی‌گیری‌هایتان
-      read:lists: دیدن فهرست‌هایتان
+      read:lists: دیدن سیاهه‌هایتان
       read:mutes: دیدن خموشی‌هایتان
       read:notifications: دیدن آگاهی‌هایتان
       read:reports: دیدن گزارش‌هایتان
@@ -143,10 +185,11 @@ fa:
       write:accounts: تغییر نمایه‌تان
       write:blocks: انسداد حساب‌ها و دامنه‌ها
       write:bookmarks: نشانک‌گذاری وضعیت‌ها
-      write:favourites: برگزیدن وضعیت‌ها
+      write:conversations: مکالمات را بی‌صدا و حذف کنید
+      write:favourites: فرسته‌های برگزیده
       write:filters: ایحاد پالایش‌ها
       write:follows: پی‌گیری افراد
-      write:lists: ایجاد فهرست‌ها
+      write:lists: ایجاد سیاهه‌ها
       write:media: بارگذاری پرونده‌های رسانه
       write:mutes: خموش کردن افراد و گفت‌وگوها
       write:notifications: پام‌سازی آگاهی‌هایتان

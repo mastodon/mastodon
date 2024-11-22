@@ -1,0 +1,9 @@
+.content__heading__tabs
+  = render_navigation renderer: :links do |primary|
+    :ruby
+      primary.item :branding, safe_join([material_symbol('edit'), t('admin.settings.branding.title')]), admin_settings_branding_path
+      primary.item :about, safe_join([material_symbol('description'), t('admin.settings.about.title')]), admin_settings_about_path
+      primary.item :registrations, safe_join([material_symbol('group'), t('admin.settings.registrations.title')]), admin_settings_registrations_path
+      primary.item :discovery, safe_join([material_symbol('search'), t('admin.settings.discovery.title')]), admin_settings_discovery_path
+      primary.item :content_retention, safe_join([material_symbol('history'), t('admin.settings.content_retention.title')]), admin_settings_content_retention_path
+      primary.item :appearance, safe_join([material_symbol('computer'), t('admin.settings.appearance.title')]), admin_settings_appearance_path

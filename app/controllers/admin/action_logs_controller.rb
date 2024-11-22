@@ -4,7 +4,10 @@ module Admin
   class ActionLogsController < BaseController
     before_action :set_action_logs
 
-    def index; end
+    def index
+      authorize :audit_log, :index?
+      @auditable_accounts = Account.auditable.select(:id, :username)
+    end
 
     private
 

@@ -2,36 +2,41 @@
 
 module Admin::DashboardHelper
   def relevant_account_ip(account, ip_query)
-    default_ip = [account.user_current_sign_in_ip || account.user_sign_up_ip]
+    ips = account.user.present? ? account.user.ips.to_a : []
 
     matched_ip = begin
       ip_query_addr = IPAddr.new(ip_query)
-      account.user.recent_ips.find { |(_, ip)| ip_query_addr.include?(ip) } || default_ip
+      ips.find { |ip| ip_query_addr.include?(ip.ip) } || ips.first
     rescue IPAddr::Error
-      default_ip
-    end.last
+      ips.first
+    end
 
     if matched_ip
-      link_to matched_ip, admin_accounts_path(ip: matched_ip)
+      link_to matched_ip.ip, admin_accounts_path(ip: matched_ip.ip)
     else
       '-'
     end
   end
 
+  def date_range(range)
+    [l(range.first), l(range.last)]
+      .join(' - ')
+  end
+
   def relevant_account_timestamp(account)
-    timestamp, exact = begin
-      if account.user_current_sign_in_at && account.user_current_sign_in_at < 24.hours.ago
-        [account.user_current_sign_in_at, true]
-      elsif account.user_current_sign_in_at
-        [account.user_current_sign_in_at, false]
-      elsif account.user_pending?
-        [account.user_created_at, true]
-      elsif account.last_status_at.present?
-        [account.last_status_at, true]
-      else
-        [nil, false]
-      end
-    end
+    timestamp, exact = if account.user_current_sign_in_at && account.user_current_sign_in_at < 24.hours.ago
+                         [account.user_current_sign_in_at, true]
+                       elsif account.user_current_sign_in_at
+                         [account.user_current_sign_in_at, false]
+                       elsif account.user_pending?
+                         [account.user_created_at, true]
+                       elsif account.suspended_at.present? && account.local? && account.user.nil?
+                         [account.suspended_at, true]
+                       elsif account.last_status_at.present?
+                         [account.last_status_at, true]
+                       else
+                         [nil, false]
+                       end
 
     return '-' if timestamp.nil?
     return t('generic.today') unless exact

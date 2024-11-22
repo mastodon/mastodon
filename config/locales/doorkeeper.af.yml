@@ -1,1 +1,159 @@
+---
 af:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Toepassingnaam
+        redirect_uri: Herlei URI
+        scopes: Bestekke
+        website: Toepassingwebtuiste
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: kan nie ’n fragment bevat nie.
+              invalid_uri: moet ’n geldige URI wees.
+              relative_uri: moet ’n absolute URI wees.
+              secured_uri: moet ’n HTTPS/SSL URI wees.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Magtig
+        cancel: Kanselleer
+        destroy: Vernietig
+        edit: Redigeer
+        submit: Dien in
+      confirmations:
+        destroy: Is jy seker?
+      edit:
+        title: Redigeer toepassing
+      form:
+        error: Oeps! Hersien jou vorm vir moontlike foute
+      help:
+        native_redirect_uri: Gebruik %{native_redirect_uri} vir plaaslike toetse
+        redirect_uri: Gebruik een reël per URI
+        scopes: Verdeel omvanggrense met spasies. Laat dit leeg om verstekomvange te gebruik.
+      index:
+        application: Toepassing
+        callback_url: Terugroep-URL
+        delete: Wis uit
+        empty: Jy het geen toepassings nie.
+        name: Naam
+        new: Nuwe toepassing
+        scopes: Omvange
+        show: Vertoon
+        title: Jou toepassings
+      new:
+        title: Nuwe toepassing
+      show:
+        actions: Handelinge
+        application_id: Kliëntsleutel
+        callback_urls: Terugroep-URL'e
+        scopes: Omvange
+        secret: Kliëntgeheim
+        title: 'Toepassing: %{name}'
+    authorizations:
+      buttons:
+        authorize: Magtig
+        deny: Weier
+      error:
+        title: "’n Fout het ingesluip"
+      new:
+        review_permissions: Hersien toestemmings
+        title: Benodig magtiging
+      show:
+        title: Kopieer hierdie magtigingskode en plak dit in die toepassing.
+    authorized_applications:
+      buttons:
+        revoke: Herroep
+      confirmations:
+        revoke: Is jy seker?
+      index:
+        authorized_at: Bemagtig op %{date}
+        description_html: Hierdie toepassings kan deur middel van die API tot jou rekening toegang verkry. As jy van hierdie toepassings nie herken nie, of by ’n toepassing wangedrag bespeur, kan jy dit verdere toegang tot jou rekening weier.
+        last_used_at: Laas gebruik op %{date}
+        never_used: Nooit gebruik nie
+        scopes: Magtigings
+        superapp: Intern
+        title: Jou gemagtigde toepassings
+    errors:
+      messages:
+        access_denied: Die hulpbroneienaar of magtigingsbediener het die aansoek afgekeur.
+        credential_flow_not_configured: Magtigingsbewysvloei van die hulpbroneienaar het gefaal omdat Doorkeeper.configure.resource_owner_from_credentials nie opgestel is nie.
+    flash:
+      applications:
+        create:
+          notice: Toepassing geskep.
+        destroy:
+          notice: Toepassing uitgewis.
+        update:
+          notice: Toepassing bygewerk.
+      authorized_applications:
+        destroy:
+          notice: Toepassing herroep.
+    grouped_scopes:
+      access:
+        read: Slegs leestoegang
+        read/write: Lees-en-skryf-toegang
+        write: Slegs skryftoegang
+      title:
+        accounts: Rekeninge
+        admin/accounts: Administrasie van rekeninge
+        admin/all: Alle administratiewe funksies
+        admin/reports: Administrasie van rapporteringe
+        blocks: Blokkerings
+        bookmarks: Boekmerke
+        conversations: Gesprekke
+        crypto: End-tot-end-enkripsie
+        filters: Filters
+        lists: Lyste
+        media: Media-aanhegsels
+        mutes: Uitdowings
+        notifications: Kennisgewings
+        push: Stootkennisgewings
+        reports: Rapporteringe
+        search: Soek
+        statuses: Plasings
+    layouts:
+      admin:
+        nav:
+          applications: Toepassings
+          oauth2_provider: OAuth2-verskaffer
+      application:
+        title: Benodig OAuth-bemagtiging
+    scopes:
+      admin:read: lees alle data op die bediener
+      admin:read:accounts: lees sensitiewe inligting van alle rekeninge
+      admin:read:reports: lees sensitiewe inligting van alle verslae end aangeklaagde rekeninge
+      admin:write: verander alle data op die bediener
+      admin:write:accounts: modereer rekeninge
+      admin:write:reports: modereer verslae
+      crypto: gebruik end-tot-end-enkripsie
+      follow: verander rekeningverhoudings
+      push: ontvang jou stootkennisgewings
+      read: lees al jou rekeningdata
+      read:accounts: sien rekeninginligting
+      read:blocks: sien jou blokkerings
+      read:bookmarks: sien jou boekmerke
+      read:filters: sien jou filters
+      read:lists: sien jou lyste
+      read:mutes: sien jou uitdowings
+      read:notifications: sien jou kennisgewinge
+      read:reports: sien jou rapporterings
+      read:search: soek namens jou
+      read:statuses: sien alle plasings
+      write: pas al jou rekeningdata aan
+      write:accounts: pas jou profiel aan
+      write:blocks: blokkeer rekeninge en domeine
+      write:bookmarks: laat ’n boekmerk by plasings
+      write:conversations: doof en wis gesprekke uit
+      write:favourites: gunsteling plasings
+      write:filters: skep filters
+      write:follows: volg mense
+      write:lists: skep lyste
+      write:media: laai medalêers op
+      write:mutes: doof mense en gesprekke uit
+      write:notifications: verwyder jou kennisgewings
+      write:reports: rapporteer ander mense
+      write:statuses: publiseer plasings

@@ -1,104 +1,116 @@
 ---
 br:
   about:
-    about_this: Diàr-benn
-    active_count_after: oberiant
-    apps: Arloadoù pellgomz
-    apps_platforms: Ober get Mastodoñ àr iOS, Android ha savennoù arall
-    contact: Darempred
-    discover_users: Dizoleiñ implijer·ien·ezed
-    learn_more: Gouzout hiroc'h
-    privacy_policy: Reolennoù prevezded
-    source_code: Boneg tarzh
-    status_count_after:
-      few: toud
-      many: toud
-      one: toud
-      other: toud
-      two: toud
-    terms: Divizoù gwerzhañ hollek
-    unavailable_content_description:
-      domain: Dafariad
-    user_count_after:
-      few: implijer·ez
-      many: implijer·ez
-      one: implijer·ez
-      other: implijer·ez
-      two: implijer·ez
-    what_is_mastodon: Petra eo Mastodon?
+    contact_missing: Andermenet
+    contact_unavailable: N'eus ket
+    hosted_on: Servijer Mastodon herberc'hiet war %{domain}
+    title: Diwar-benn
   accounts:
-    follow: Heuliañ
     followers:
       few: Heulier·ez
       many: Heulier·ez
       one: Heulier·ez
       other: Heulier·ez
       two: Heulier·ez
-    following: O heuliañ
-    never_active: Birviken
+    following: Koumanantoù
+    last_active: oberiantiz ziwezhañ
+    nothing_here: N'eus netra amañ !
     posts:
-      few: Toud
-      many: Toud
+      few: Toudoù
+      many: Toudoù
       one: Toud
       other: Toud
-      two: Toud
+      two: Toudoù
     posts_tab_heading: Toudoù
-    posts_with_replies: Toudoù ha respontoù
-    roles:
-      admin: Merour
-      bot: Robot
-      group: Strollad
-    unavailable: Profil dihegerz
-    unfollow: Diheuliañ
   admin:
     account_moderation_notes:
-      delete: Dilemel
+      create: Leuskel un notenn
     accounts:
+      approve: Aprouiñ
+      are_you_sure: Ha sur oc'h?
+      avatar: Avatar
       by_domain: Domani
       change_email:
-        current_email: Postel bremanel
-        label: Kemm ar postel
+        changed_msg: Chomlec'h postel kemmet !
+        current_email: Postel a vremañ
+        label: Kemmañ ar postel
         new_email: Postel nevez
-        submit: Kemm ar postel
+        submit: Kemmañ ar postel
+      change_role:
+        no_role: Roll ebet
+      confirm: Kadarnaat
+      confirmed: Kadarnaet
+      confirming: O kadarnaat
+      custom: Personelaet
+      delete: Dilemel ar roadennoù
       deleted: Dilamet
+      demote: Argilañ
+      disable: Skornañ
+      disabled: Skornet
       domain: Domani
+      edit: Kemmañ
       email: Postel
       enable: Gweredekaat
       enabled: Gweredekaet
       followers: Heulier·ezed·ien
+      follows: Koumanantoù
       header: Talbenn
+      invited_by: Pedet gant
+      ip: IP
+      joined: Amañ abaoe
       location:
+        all: Pep tra
         local: Lec'hel
         remote: A-bell
+      media_attachments: Restroù media stag
       moderation:
         active: Oberiant
-        silenced: Mudet
+        all: Pep tra
+        pending: War ober
+        silenced: Bevennet
         suspended: Astalet
+        title: Habaskadur
+      most_recent_activity: Obererezh nevesañ
       perform_full_suspension: Astalañ
+      promote: Brudañ
       protocol: Komenad
       public: Publik
       reject: Nac'hañ
-      reject_all: Nac'hañ pep hini
       remove_header: Dilemel an talbenn
       reset: Adderaouekaat
       reset_password: Adderaouekaat ar ger-tremen
-      roles:
-        admin: Merour
-        moderator: Habaskaer·ez
-        user: Implijer·ez
+      resubscribe: Adkoumanantiñ
+      role: Roll
       search: Klask
+      security: Surentez
+      silence: Bevenniñ
+      silenced: Bevennet
+      statuses: Toudoù
+      subscribe: Koumanantiñ
+      suspend: Astalañ
       suspended: Astalet
       title: Kontoù
+      undo_silenced: Dizober ar bevennañ
+      unsubscribe: Digoumanantiñ
       username: Anv
+      warn: Diwall
+      web: Web
     action_logs:
       action_types:
-        destroy_status: Dilemel ar statud
-      deleted_status: "(statud dilemet)"
+        destroy_status: Dilemel ar c'hannad
+        update_status: Hizivaat ar c'hannad
+      actions:
+        destroy_status_html: Dilamet eo bet toud %{target} gant %{name}
+        update_status_html: Hizivaet eo bet toud %{target} gant %{name}
+      title: Renabl aodit
     announcements:
+      live: War-eeun
       new:
         create: Sevel ur gemenn
         title: Kemenn nevez
+      publish: Embann
       title: Kemennoù
+      unpublish: Diembann
     custom_emojis:
       by_domain: Domani
       copy: Eilañ
@@ -109,36 +121,80 @@ br:
       enable: Gweredekaat
       enabled: Gweredekaet
       list: Listenn
+      listed: Listennet
+      overwrite: Flastrañ
+      shortcode: Berradenn
+      unlist: Dilistennañ
+      upload: Ezkargañ
     dashboard:
+      new_users: implijerien·ezed nevez
       software: Meziant
       title: Taolenn labour
+      website: Lec'hienn
+    disputes:
+      appeals:
+        title: Galvoù
+    domain_allows:
+      export: Ezporzhiañ
+      import: Enporzhiañ
     domain_blocks:
       domain: Domani
       new:
         create: Sevel ur stanker
         severity:
           noop: Hini ebet
-          silence: Mudañ
           suspend: Astalañ
-      severity:
-        silence: mudet
-        suspend: astalet
-      show:
-        undo: Dizober
     email_domain_blocks:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
+      dns:
+        types:
+          mx: Enrolladenn MX
       domain: Domani
-      from_html: eus %{domain}
       new:
         create: Ouzhpenniñ un domani
+    export_domain_allows:
+      no_file: Restr ebet diuzet
+    follow_recommendations:
+      status: Statud
+      suppressed: Dilamet
     instances:
+      back_to_all: Pep tra
+      back_to_limited: Bevennet
+      back_to_warning: Diwall
       by_domain: Domani
+      content_policies:
+        policies:
+          silence: Bevenniñ
+          suspend: Astalañ
+        policy: Reolennoù
+      dashboard:
+        instance_statuses_measure: toudoù stoket
+      delivery:
+        all: Pep tra
+        failing: O faziañ
       moderation:
         all: Pep tra
+        limited: Bevennet
+        title: Habaskadur
+      purge: Spurjañ
+      title: Kevread
+      total_storage: Restroù media stag
     invites:
       filter:
+        all: Pep tra
         available: Hegerzh
+        expired: Deuet d'an termen
+        title: Sil
+      title: Pedadennoù
+    ip_blocks:
+      delete: Dilemel
+      expires_in:
+        '1209600': 2 sizhunvezh
+        '2629746': 1 mizvezh
+        '31556952': 1 bloavezh
+        '86400': 1 devezh
+        '94670856': 3 bloavezh
     relays:
       delete: Dilemel
       disable: Diweredekaat
@@ -155,47 +211,127 @@ br:
           one: "%{count} a notennoù"
           other: "%{count} a notennoù"
           two: "%{count} a notennoù"
+      action_log: Renabl aodit
       are_you_sure: Ha sur oc'h?
+      comment:
+        none: Hini ebet
+      delete_and_resolve: Dilemel ar c'hannadoù
+      forwarded: Treuzkaset
+      no_one_assigned: Den ebet
       notes:
         delete: Dilemel
+        title: Notennoù
       status: Statud
+      title: Disklêriadennoù
+      unresolved: Andiskoulmet
       updated_at: Nevesaet
+    roles:
+      categories:
+        devops: DevOps
+        invites: Pedadennoù
+        moderation: Habaskadur
+        special: Ispisial
+      delete: Dilemel
+      privileges:
+        view_devops: DevOps
+      title: Rolloù
+    rules:
+      delete: Dilemel
+      edit: Kemmañ ar reolenn
     settings:
+      about:
+        title: Diwar-benn
+      appearance:
+        title: Neuz
+      content_retention:
+        danger_zone: Takad dañjer
+      discovery:
+        title: Dizoloadur
+        trends: Luskadoù
       domain_blocks:
         all: D'an holl dud
-      site_title: Anv ar servijer
-      title: Arventennoù al lec'hienn
+        disabled: Da zen ebet
     statuses:
+      account: Aozer·ez
       batch:
-        delete: Dilemel
+        report: Disklêriañ
       deleted: Dilamet
-      no_media: Media ebet
-    tags:
-      name: Ger-klik
-      title: Gerioù-klik
+      favourites: Re vuiañ-karet
+      media:
+        title: Media
+      open: Digeriñ ar c'hannad
+      original_status: Toud orin
+      reblogs: Skignadennoù
+      status_changed: Toud kemmet
+      status_title: Embannadenn gant @%{name}
+      visibility: Gwelusted
+      with_media: Gant mediaoù
+    strikes:
+      actions:
+        delete_statuses: Dilamet eo bet toudoù %{target} gant %{name}
+    trends:
+      allow: Aotren
+      approved: Aprouet
+      links:
+        allow: Aotren al liamm
+      preview_card_providers:
+        title: Embannerien·ezed
+      rejected: Nac'het
+      statuses:
+        allow: Aotren ar c'hannad
+      tags:
+        dashboard:
+          tag_uses_measure: implijoù hollek
+        not_usable: N'haller ket en implijout
+        title: Hashtagoù diouzh ar c'hiz
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
+    webhooks:
+      delete: Dilemel
+      disable: Diweredekaat
+      enable: Bevaat
+      enabled: Bev
+      events: Darvoudoù
+      status: Statud
+      webhook: Webhook
+  admin_mailer:
+    new_appeal:
+      actions:
+        none: ur c'hemenn diwall
+    new_trends:
+      new_trending_tags:
+        title: Hashtagoù diouzh ar c'hiz
+  appearance:
+    discovery: Dizoloadur
+    localization:
+      body: Gant tud a-youl vat eo troet Mastodon.
+      guide_link: https://crowdin.com/project/mastodon
+  application_mailer:
+    view: 'Sellet :'
+    view_status: Gwelet ar c'hannad
   auth:
-    change_password: Ger-tremen
     delete_account: Dilemel ar gont
+    delete_account_html: Ma fell deoc'h dilemel ho kont e c'hellit <a href="%{path}">klikañ amañ</a>. Goulennet e vo ganeoc'h kadarnaat an obererezh.
+    description:
+      prefix_invited_by_user: Pedet oc'h gant @%{name} da zont e-barzh ar servijer Mastodon-mañ!
     login: Mont tre
     logout: Digennaskañ
+    migrate_account_html: Ma fell deoc'h adkas ar gont-mañ war-zu unan all e c'hellit <a href="%{path}">arventenniñ an dra-se amañ</a>.
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Lakaat ho anv
     reset_password: Adderaouekaat ar ger-tremen
     security: Diogelroez
-    setup:
-      title: Kefluniañ
     status:
       account_status: Statud ar gont
-  authorize_follow:
-    follow: Heuliañ
-    title: Heuliañ %{acct}
   challenge:
     confirm: Kenderc' hel
     invalid_password: Ger-tremen diwiriek
   date:
     formats:
-      default: "%d %b %Y"
+      default: "%d a viz %b %Y"
       with_month_name: "%d a viz %B %Y"
   datetime:
     distance_in_words:
@@ -204,28 +340,28 @@ br:
       about_x_years: "%{count}b"
       almost_x_years: "%{count}b"
       half_a_minute: Diouzhtu
+      less_than_x_minutes: "%{count}mun"
       less_than_x_seconds: Diouzhtu
       over_x_years: "%{count}b"
+      x_days: "%{count}d"
+      x_minutes: "%{count}mun"
       x_months: "%{count}miz"
       x_seconds: "%{count}eil"
   deletes:
     proceed: Dilemel ar gont
-  directories:
-    directory: Roll ar profiloù
-  errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
-    '422': 
-    '429': Too many requests
-    '500': 
-    '503': The page could not be served due to a temporary server failure.
+  disputes:
+    strikes:
+      appeal: Ober engalv
+      created_at: Deiziad
+      title_actions:
+        none: Diwall
   exports:
     archive_takeout:
       date: Deiziad
       size: Ment
+    blocks: Stankañ a rit
+    bookmarks: Sinedoù
+    csv: CSV
     lists: Listennoù
   featured_tags:
     add_new: Ouzhpenniñ unan nevez
@@ -235,18 +371,35 @@ br:
       notifications: Kemennoù
     index:
       delete: Dilemel
+      statuses:
+        few: "%{count} a gannadoù"
+        many: "%{count} a gannadoù"
+        one: "%{count} c'hannad"
+        other: "%{count} a gannadoù"
+        two: "%{count} gannad"
       title: Siloù
-  footer:
-    developers: Diorroerien
-    more: Muioc'h…
+    statuses:
+      index:
+        title: Toudoù silet
   generic:
     all: Pep tra
+    changes_saved_msg: Enrollet eo bet ar cheñchamantoù gant berzh!
     copy: Eilañ
     delete: Dilemel
+    none: Hini ebet
     order_by: Urzhiañ dre
-  identity_proofs:
-    identity: Identelezh
+    save_changes: Enrollañ ar cheñchamantoù
+    today: hiziv
+  imports:
+    modes:
+      merge: Teuziñ
+      overwrite: Flastrañ
+    types:
+      bookmarks: Sinedoù
+    upload: Ezkargañ
   invites:
+    delete: Diweredekaat
+    expired: Deuet d'an termen
     expires_in:
       '1800': 30 munutenn
       '21600': 6 eur
@@ -255,23 +408,69 @@ br:
       '604800': 1 sizhun
       '86400': 1 deiz
     expires_in_prompt: Birviken
+    table:
+      uses: Implijoù
     title: Pediñ tud
+  media_attachments:
+    validations:
+      images_and_video: N'haller stagañ ur video ouzh un embannadur a zo fotoioù gantañ dija
+      too_many: N'haller ket stagañ muioc'h eget 4 restr
+  migrations:
+    incoming_migrations_html: Evit dilojañ ur gont all da homañ e rankit <a href="%{path}">sevel un alias</a> da gentañ.
+  moderation:
+    title: Habaskadur
   notification_mailer:
     follow:
       title: Heulier nevez
     mention:
       action: Respont
+    reblog:
+      subject: 'Gant %{name} eo bet skignet ho toud '
+      title: Skignadenn nevez
+    status:
+      subject: Embannet ez eus bet traoù gant %{name}
+    update:
+      subject: Kemmet eo bet ur c'hannad gant %{name}
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: G
+          million: M
+          quadrillion: P
+          thousand: K
+          trillion: T
   otp_authentication:
     enable: Gweredekaat
     setup: Kefluniañ
+  pagination:
+    newer: Nevesoc'h
+    next: Da-heul
+    older: Koshoc'h
+    prev: A-raok
+  polls:
+    errors:
+      self_vote: N'hallit ket votiñ en ho sontadegoù deoc'h-c'hwi
+  preferences:
+    other: All
+    posting_defaults: Arventennoù embann dre ziouer
+  redirects:
+    prompt: M'ho peus fiziañs el liamm-mañ, klikit warnañ evit kenderc'hel.
+    title: O kuitaat %{instance} emaoc'h.
   relationships:
+    dormant: O kousket
     followers: Heulier·ezed·ien
-    following: O heuliañ
+    following: Koumanantoù
+    invited: Pedet
+    moved: Dilojet
+    mutual: Kenetre
+    primary: Kentañ
   sessions:
     browser: Merdeer
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -285,16 +484,26 @@ br:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: UC Browser
       weibo: Weibo
+    date: Deiziad
     description: "%{browser} war %{platform}"
+    ip: IP
     platforms:
-      other: savenn dianav
+      adobe_air: Adobe Air
+      android: Android
+      ios: iOS
+      linux: Linux
+      mac: macOS
+      windows: Windows
+    revoke: Dizober
   settings:
     account: Kont
     account_settings: Arventennoù ar gont
+    back: Distreiñ da vMastodon
     development: Diorren
-    edit_profile: Aozañ ar profil
+    edit_profile: Kemmañ ar profil
+    featured_tags: Hashtagoù pennañ
     import: Enporzhiañ
     import_and_export: Enporzhiañ hag ezporzhiañ
     preferences: Gwellvezioù
@@ -307,27 +516,77 @@ br:
         one: "%{count} skeudenn"
         other: "%{count} skeudenn"
         two: "%{count} skeudenn"
-    show_more: Diskouez muioc'h
+    pin_errors:
+      ownership: N'hallit ket spilhennañ embannadurioù ar re all
     visibilities:
+      direct: War-eeun
       public: Publik
-  stream_entries:
-    pinned: Toud spilhennet
+  statuses_cleanup:
+    keep_direct: Mirout ar c'hannadoù eeun
+    keep_media: Derc'hel an embannadurioù gant restroù stag
+    min_age:
+      '1209600': 2 sizhunvezh
+      '2629746': 1 mizvezh
+      '31556952': 1 bloavezh
+      '604800': 1 sizhunvezh
+      '63113904': 2 vloavezh
   themes:
-    default: Mastodoñ (Teñval)
-    mastodon-light: Mastodoñ (Sklaer)
+    default: Mastodon (Teñval)
+    mastodon-light: Mastodon (Sklaer)
   time:
     formats:
-      default: "%He%M, %d %b %Y"
+      default: "%d a viz %b %Y, %H:%M"
+      month: Miz %b %Y
+      time: "%H:%M"
+      with_time_zone: "%d a viz %b %Y, %H:%M %Z"
   two_factor_authentication:
     add: Ouzhpennañ
     disable: Diweredekaat
-    edit: Aozañ
+    edit: Kemmañ
   user_mailer:
+    appeal_approved:
+      action: Arventennoù ar gont
+    backup_ready:
+      extra: Prest eo da vezañ pellgarget!
     warning:
+      categories:
+        spam: Spam
+      reason: 'Abeg :'
+      statuses: 'Toudoù meneget :'
       title:
         none: Diwall
     welcome:
-      edit_profile_action: Kefluniañ ar profil
-      subject: Donemat e Mastodoñ
+      apps_android_action: Tapit anezhañ war Google Play
+      apps_ios_action: Pellgargañ war an App Store
+      apps_step: Pellgargit hon arloadoù ofisiel.
+      apps_title: Arloadoù Mastodon
+      edit_profile_action: Personelaat
+      edit_profile_title: Personelaat ho profil
+      feature_action: Gouzout hiroc'h
+      follow_action: Heuliañ
+      share_action: Rannañ
+      sign_in_action: Kevreañ
+      subject: Donemat e Mastodon
+      title: Degemer mat e bourzh, %{name}!
+  users:
+    follow_limit_reached: N'hallit ket heulian muioc'h eget %{limit} a zen
+    signed_in_as: 'Aet-tre evel:'
+  verification:
+    verification: Amprouadur
   webauthn_credentials:
+    add: Ouzphennañ un alc'hwez surentez nevez
+    create:
+      error: Ur guden a oa en ur ouzphennañ hoc'h alc'hwez surentez. Mar plij, klaskit c'hoazh.
+      success: Hoc'h alc'hwez surentez a zo bet ouzphennet gant berzh.
     delete: Dilemel
+    delete_confirmation: Sur oc'h e fell deoc'h dilemel an alc'hwez surentez-se ?
+    description_html: Ma'z eo aotreet <strong>dilesadur dre alc'hwez surentez</strong>, ret e vo deoc'h implijout unan eus hoc'h alc'hwezioù surentez evit mont-tre.
+    destroy:
+      error: Ur gudenn a oa en ur zilemel hoc'h alc'hwez surentez. Mar plij, klaskit c'hoazh.
+      success: Hoc'h alc'hwez surentez a zo bet dilamet gant berzh.
+    invalid_credential: Alc'hwez surentez direizh
+    nickname_hint: Skrivit lesanv hoc'h alc'hwez surentez nevez
+    not_enabled: WebAuthn n'eo ket aotreet ganeoc'h c'hoazh
+    not_supported: Alc'hwezioù surentez a zo diembreg gant ar merdeer-se
+    otp_required: Evit implijout alc'hwezioù surentez, aotrit dilesadur dre eil-elfenn da gentañ.
+    registered_on: Enrollet d'ar %{date}

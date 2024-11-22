@@ -1,0 +1,7 @@
+<%= raw t('admin_mailer.new_appeal.body', target: @appeal.account.username, action_taken_by: @appeal.strike.account.username, date: l(@appeal.strike.created_at, format: :with_time_zone), type: t(@appeal.strike.action, scope: 'admin_mailer.new_appeal.actions')) %>
+
+> <%= raw word_wrap(@appeal.text, break_sequence: "\n> ") %>
+
+<%= raw t('admin_mailer.new_appeal.next_steps') %>
+
+<%= raw t('application_mailer.view')%> <%= disputes_strike_url(@appeal.strike) %>

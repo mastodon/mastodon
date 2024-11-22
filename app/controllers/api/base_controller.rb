@@ -4,61 +4,24 @@ class Api::BaseController < ApplicationController
   DEFAULT_STATUSES_LIMIT = 20
   DEFAULT_ACCOUNTS_LIMIT = 40
 
-  include RateLimitHeaders
+  include Api::RateLimitHeaders
+  include Api::AccessTokenTrackingConcern
+  include Api::CachingConcern
+  include Api::ContentSecurityPolicy
+  include Api::ErrorHandling
+  include Api::Pagination
 
-  skip_before_action :store_current_location
-  skip_before_action :require_functional!, unless: :whitelist_mode?
+  skip_before_action :require_functional!, unless: :limited_federation_mode?
 
   before_action :require_authenticated_user!, if: :disallow_unauthenticated_api_access?
-  before_action :set_cache_headers
+  before_action :require_not_suspended!
+
+  vary_by 'Authorization'
 
   protect_from_forgery with: :null_session
 
-  skip_around_action :set_locale
-
-  rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
-    render json: { error: e.to_s }, status: 422
-  end
-
-  rescue_from ActiveRecord::RecordNotUnique do
-    render json: { error: 'Duplicate record' }, status: 422
-  end
-
-  rescue_from ActiveRecord::RecordNotFound do
-    render json: { error: 'Record not found' }, status: 404
-  end
-
-  rescue_from HTTP::Error, Mastodon::UnexpectedResponseError do
-    render json: { error: 'Remote data could not be fetched' }, status: 503
-  end
-
-  rescue_from OpenSSL::SSL::SSLError do
-    render json: { error: 'Remote SSL certificate could not be verified' }, status: 503
-  end
-
-  rescue_from Mastodon::NotPermittedError do
-    render json: { error: 'This action is not allowed' }, status: 403
-  end
-
-  rescue_from Seahorse::Client::NetworkingError do |e|
-    Rails.logger.warn "Storage server error: #{e}"
-    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
-  end
-
-  rescue_from Mastodon::RaceConditionError, Stoplight::Error::RedLight do
-    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
-  end
-
-  rescue_from Mastodon::RateLimitExceededError do
-    render json: { error: I18n.t('errors.429') }, status: 429
-  end
-
-  rescue_from ActionController::ParameterMissing do |e|
-    render json: { error: e.to_s }, status: 400
-  end
-
   def doorkeeper_unauthorized_render_options(error: nil)
-    { json: { error: (error.try(:description) || 'Not authorized') } }
+    { json: { error: error.try(:description) || 'Not authorized' } }
   end
 
   def doorkeeper_forbidden_render_options(*)
@@ -67,17 +30,10 @@ class Api::BaseController < ApplicationController
 
   protected
 
-  def set_pagination_headers(next_path = nil, prev_path = nil)
-    links = []
-    links << [next_path, [%w(rel next)]] if next_path
-    links << [prev_path, [%w(rel prev)]] if prev_path
-    response.headers['Link'] = LinkHeader.new(links) unless links.empty?
-  end
-
-  def limit_param(default_limit)
+  def limit_param(default_limit, max_limit = nil)
     return default_limit unless params[:limit]
 
-    [params[:limit].to_i.abs, default_limit * 2].min
+    [params[:limit].to_i.abs, max_limit || (default_limit * 2)].min
   end
 
   def params_slice(*keys)
@@ -96,6 +52,10 @@ class Api::BaseController < ApplicationController
 
   def require_authenticated_user!
     render json: { error: 'This method requires an authenticated user' }, status: 401 unless current_user
+  end
+
+  def require_not_suspended!
+    render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.unavailable?
   end
 
   def require_user!
@@ -120,11 +80,13 @@ class Api::BaseController < ApplicationController
     doorkeeper_authorize!(*scopes) if doorkeeper_token
   end
 
-  def set_cache_headers
-    response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
+  def disallow_unauthenticated_api_access?
+    ENV['DISALLOW_UNAUTHENTICATED_API_ACCESS'] == 'true' || Rails.configuration.x.limited_federation_mode
   end
 
-  def disallow_unauthenticated_api_access?
-    authorized_fetch_mode?
+  private
+
+  def respond_with_error(code)
+    render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code
   end
 end

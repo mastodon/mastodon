@@ -15,18 +15,51 @@ da:
       user/invite_request:
         text: Årsag
     errors:
+      attributes:
+        domain:
+          invalid: er ikke et gyldigt domænenavn
+      messages:
+        invalid_domain_on_line: "%{value} er ikke et gyldigt domænenavn"
+        too_many_lines: overstiger grænsen på %{limit} linjer
       models:
         account:
           attributes:
             username:
               invalid: må kun indeholde cifre, bogstaver og understreger
               reserved: er reserveret
+        admin/webhook:
+          attributes:
+            url:
+              invalid: er ikke en gyldig URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: er ikke en gyldig URL
+        import:
+          attributes:
+            data:
+              malformed: har ugyldigt format
         status:
           attributes:
             reblog:
-              taken: af allerede eksisterende status
+              taken: af status findes allerede
         user:
           attributes:
             email:
               blocked: bruger en ikke-tilladt e-mailudbyder
-              unreachable: synes ikke at findes
+              unreachable: ser ikke ud til at eksistere
+            role_id:
+              elevated: kan ikke være højere end din aktuelle rolle
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: omfat tilladelser, som ikke er sikre for basisrollen
+              elevated: kan ikke omfatte tilladelser, din aktuelle rolle ikke besidder
+              own_role: kan ikke ændres med din aktuelle rolle
+            position:
+              elevated: kan ikke være højere end din aktuelle rolle
+              own_role: kan ikke ændres med din aktuelle rolle
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: kan ikke inkludere begivenheder, du ikke har rettigheder til

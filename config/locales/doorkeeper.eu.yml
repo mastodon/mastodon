@@ -60,8 +60,7 @@ eu:
       error:
         title: Errore bat gertatu da
       new:
-        able_to: Egin ahal izango du
-        prompt: "%{client_name} aplikazioak zure kontua atzitzea eskatu du"
+        review_permissions: Berrikusi baimenak
         title: Baimena behar da
       show:
         title: Kopiatu baimen kode hau eta itsatsi aplikazioan.
@@ -71,17 +70,19 @@ eu:
       confirmations:
         revoke: Ziur zaude?
       index:
-        application: Aplikazioa
-        created_at: Baimenduta
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Irismena
+        authorized_at: "%{date} datan baimendua"
+        description_html: Aplikazio hauek zure kontura sarbidea dute APIa erabiliz. Ezagutzen ez duzun aplikazioren bat badago, edo aplikazio batek portaera desegokia badu, baimena kendu diezaiokezu.
+        last_used_at: Azkena %{date} datan erabilia
+        never_used: Inoiz erabili gabea
+        scopes: Baimenak
+        superapp: Barnekoa
         title: Zuk baimendutako aplikazioak
     errors:
       messages:
-        access_denied: Baliabidearen jabeak edo baimenaren zerbitzariak eskaria ukatu du.
+        access_denied: Baliabidearen jabeak edo baimenaren zerbitzariak eskaera ukatu du.
         credential_flow_not_configured: Baliabidearen jabearen pasahitza kredentzialen fluxuak huts egin du Doorkeeper.configure.resource_owner_from_credentials konfiguratu gabe dagoelako.
         invalid_client: Bezeroaren autentifikazioak huts egin du bezero ezezaguna delako, ez delako bezero autentifikazioa txertatu, edo autentifikazio metodoa ez delako onartzen.
-        invalid_grant: Emandako autorizatzea baliogabea da, iraungitu da, indargabetu da. ez dator bat autorizatze eskarian erabilitako URI-arekin, edo beste bezero batek sortu du.
+        invalid_grant: Emandako baimena baliogabea da, iraungi edo indargabetu da, ez dator bat baimen-eskaeran erabilitako birbideratze URI-arekin edo beste bezero batek sortu du.
         invalid_redirect_uri: Sartutako birbideratze URI-a baliogabea da.
         invalid_request:
           missing_param: 'Beharrezko parametroa falta da: %{value}.'
@@ -95,7 +96,7 @@ eu:
           unknown: Sarbide token-a baliogabea da
         resource_owner_authenticator_not_configured: Baliabidearen jabearen bilaketak huts egin du Doorkeeper.configure.resource_owner_authenticator konfiguratu gabe dagoelako.
         server_error: Autorizatze zerbitzariak eskaera betetzea eragotzi duen ustekabeko baldintza bat aurkitu du.
-        temporarily_unavailable: Autorizatze zerbitzariak ezin du orain eskaera bete  une batez zerbitzariak gainezka egin duelako edo mantentze lanetan dagoelako.
+        temporarily_unavailable: Baimen-zerbitzariak ezin du orain eskaera bete, une batez zerbitzariak gainezka egin duelako edo mantentze lanetan dagoelako.
         unauthorized_client: Bezeroak ez du eskaera hau metodo hau erabiliz egiteko baimenik.
         unsupported_grant_type: Autorizatze mota ez da onartzen autorizatze zerbitzarian.
         unsupported_response_type: Autorizatze zerbitzari honek ez du onartzen erantzun mota hau.
@@ -110,6 +111,33 @@ eu:
       authorized_applications:
         destroy:
           notice: Aplikazioa indargabetuta.
+    grouped_scopes:
+      access:
+        read: Bakarrik irakurtzeko sarbidea
+        read/write: Irakurtzeko eta idazteko baimena
+        write: Bakarrik idazteko sarbidea
+      title:
+        accounts: Kontuak
+        admin/accounts: Kontuen administrazioa
+        admin/all: Funtzio administratibo guztiak
+        admin/reports: Salaketen administrazioa
+        all: Sarbide osoa zure Mastodon kontura
+        blocks: Blokeoak
+        bookmarks: Laster-markak
+        conversations: Elkarrizketak
+        crypto: Muturretik-muturrerako zifraketa
+        favourites: Gogokoak
+        filters: Iragazkiak
+        follow: Jarraitzeak, mututzeak eta blokeatzeak
+        follows: Jarraipenak
+        lists: Zerrendak
+        media: Multimedia eranskinak
+        mutes: Mututzeak
+        notifications: Jakinarazpenak
+        push: Push jakinarazpenak
+        reports: Salaketak
+        search: Bilaketak
+        statuses: Bidalketak
     layouts:
       admin:
         nav:
@@ -120,10 +148,21 @@ eu:
     scopes:
       admin:read: zerbitzariko datu guztiak irakurri
       admin:read:accounts: kontu guztien informazio sentsiblea irakurri
+      admin:read:canonical_email_blocks: irakurri eposta kanonikoen blokeatzeari buruzko informazio sentikorra
+      admin:read:domain_allows: irakurri onartutako domeinu guztien informazio sentikorra
+      admin:read:domain_blocks: irakurri blokeatutako domeinu guztien informazio sentikorra
+      admin:read:email_domain_blocks: irakurri blokeatutako eposta domeinu guztien informazio sentikorra
+      admin:read:ip_blocks: irakurri blokeatutako IP guztien informazio sentikorra
       admin:read:reports: salaketa guztietako eta salatutako kontu guztietako informazio sentsiblea irakurri
       admin:write: zerbitzariko datu guztiak aldatu
       admin:write:accounts: kontuetan moderazio ekintzak burutu
+      admin:write:canonical_email_blocks: gauzatu moderazio ekintzak eposta kanonikoen blokeatzean
+      admin:write:domain_allows: gauzatu moderazio ekintzak onartutako domeinuetan
+      admin:write:domain_blocks: gauzatu moderazio ekintzak domeinuen blokeatzeetan
+      admin:write:email_domain_blocks: gauzatu moderazio ekintzak eposta domeinuen blokeatzeetan
+      admin:write:ip_blocks: gauzatu moderazio ekintzak IP blokeatzeetan
       admin:write:reports: salaketetan moderazio ekintzak burutu
+      crypto: erabili muturretik muturrerako zifraketa
       follow: aldatu kontuaren erlazioak
       push: jaso push jakinarazpenak
       read: irakurri zure kontuko datu guztiak
@@ -143,7 +182,8 @@ eu:
       write:accounts: zure profila aldatzea
       write:blocks: kontuak eta domeinuak blokeatzea
       write:bookmarks: mezuen laster-marka
-      write:favourites: gogoko mezuak
+      write:conversations: mututu eta ezabatu elkarrizketak
+      write:favourites: gogoko bidalketak
       write:filters: sortu iragazkiak
       write:follows: jarraitu jendea
       write:lists: sortu zerrendak

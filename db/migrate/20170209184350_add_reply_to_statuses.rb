@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddReplyToStatuses < ActiveRecord::Migration[5.0]
   def up
     add_column :statuses, :reply, :boolean, nil: false, default: false
