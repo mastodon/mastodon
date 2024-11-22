@@ -5,19 +5,30 @@ class Antispam
 
   ACCOUNT_AGE_EXEMPTION = 1.week.freeze
 
+  class DummyStatus < SimpleDelegator
+    def self.model_name
+      Mention.model_name
+    end
+
+    def active_mentions
+      # Don't use the scope but the in-memory array
+      mentions.filter { |mention| !mention.silent? }
+    end
+  end
+
   class SilentlyDrop < StandardError
     attr_reader :status
 
     def initialize(status)
       super()
 
-      @status = status
-
       status.created_at = Time.now.utc
       status.id = Mastodon::Snowflake.id_at(status.created_at)
       status.in_reply_to_account_id = status.thread&.account_id
 
       status.delete # Make sure this is not persisted
+
+      @status = DummyStatus.new(status)
     end
   end
 
