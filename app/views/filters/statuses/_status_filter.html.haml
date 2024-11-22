@@ -23,13 +23,13 @@
         = image_tag(status.account.avatar.url, width: 15, height: 15, alt: '', class: 'avatar')
         .username= status.account.acct
       ·
-      = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener noreferrer' do
+      = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime', rel: 'noopener noreferrer' do
         %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       - if status.edited?
         ·
         = t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'formatted'))
       ·
-      = fa_visibility_icon(status)
+      = material_symbol visibility_icon(status)
       = t("statuses.visibilities.#{status.visibility}")
       - if status.sensitive?
         ·

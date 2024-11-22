@@ -29,6 +29,7 @@ import {
 import type {
   ApiNotificationJSON,
   ApiNotificationGroupJSON,
+  NotificationType,
 } from 'mastodon/api_types/notifications';
 import { compareId } from 'mastodon/compare_id';
 import { usePendingItems } from 'mastodon/initial_state';
@@ -204,7 +205,15 @@ function mergeGapsAround(
 function processNewNotification(
   groups: NotificationGroupsState['groups'],
   notification: ApiNotificationJSON,
+  groupedTypes: NotificationType[],
 ) {
+  if (!groupedTypes.includes(notification.type)) {
+    notification = {
+      ...notification,
+      group_key: `ungrouped-${notification.id}`,
+    };
+  }
+
   const existingGroupIndex = groups.findIndex(
     (group) =>
       group.type !== 'gap' && group.group_key === notification.group_key,
@@ -242,14 +251,15 @@ function processNewNotification(
       groups.unshift(existingGroup);
     }
   } else {
-    // Create a new group
+    // We have not found an existing group, create a new one
     groups.unshift(createNotificationGroupFromNotificationJSON(notification));
   }
 }
 
 function trimNotifications(state: NotificationGroupsState) {
-  if (state.scrolledToTop) {
+  if (state.scrolledToTop && state.groups.length > NOTIFICATIONS_TRIM_LIMIT) {
     state.groups.splice(NOTIFICATIONS_TRIM_LIMIT);
+    ensureTrailingGap(state.groups);
   }
 }
 
@@ -400,6 +410,28 @@ function ensureLeadingGap(
   }
 }
 
+// Ensure the groups list ends with a gap suitable for loading more, mutating it to append one if needed
+function ensureTrailingGap(
+  groups: NotificationGroupsState['groups'],
+): NotificationGap {
+  const groupOrGap = groups.at(-1);
+
+  if (groupOrGap?.type === 'gap') {
+    // We're expecting older notifications, so discard sinceId if it's set
+    groupOrGap.sinceId = undefined;
+
+    return groupOrGap;
+  } else {
+    const gap: NotificationGap = {
+      type: 'gap',
+      maxId: groupOrGap?.page_min_id,
+    };
+
+    groups.push(gap);
+    return gap;
+  }
+}
+
 export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
   initialState,
   (builder) => {
@@ -445,11 +477,13 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
         trimNotifications(state);
       })
       .addCase(processNewNotificationForGroups.fulfilled, (state, action) => {
-        const notification = action.payload;
-        if (notification) {
+        if (action.payload) {
+          const { notification, groupedTypes } = action.payload;
+
           processNewNotification(
             usePendingItems ? state.pendingGroups : state.groups,
             notification,
+            groupedTypes,
           );
           updateLastReadId(state);
           trimNotifications(state);
@@ -500,10 +534,13 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
             if (existingGroupIndex > -1) {
               const existingGroup = state.groups[existingGroupIndex];
               if (existingGroup && existingGroup.type !== 'gap') {
-                group.notifications_count += existingGroup.notifications_count;
-                group.sampleAccountIds = group.sampleAccountIds
-                  .concat(existingGroup.sampleAccountIds)
-                  .slice(0, NOTIFICATIONS_GROUP_MAX_AVATARS);
+                if (group.partial) {
+                  group.notifications_count +=
+                    existingGroup.notifications_count;
+                  group.sampleAccountIds = group.sampleAccountIds
+                    .concat(existingGroup.sampleAccountIds)
+                    .slice(0, NOTIFICATIONS_GROUP_MAX_AVATARS);
+                }
                 state.groups.splice(existingGroupIndex, 1);
               }
             }
@@ -528,7 +565,10 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
           compareId(state.lastReadId, mostRecentGroup.page_max_id) < 0
         )
           state.lastReadId = mostRecentGroup.page_max_id;
-        commitLastReadId(state);
+
+        // We don't call `commitLastReadId`, because that is conditional
+        // and we want to unconditionally update the state instead.
+        state.readMarkerId = state.lastReadId;
       })
       .addCase(fetchMarkers.fulfilled, (state, action) => {
         if (

@@ -1,13 +1,12 @@
 ---
 tr:
   about:
-    about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
+    about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezi olmayan</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir!
     contact_missing: Ayarlanmadı
     contact_unavailable: Bulunamadı
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
     title: Hakkında
   accounts:
-    follow: Takip et
     followers:
       one: Takipçi
       other: Takipçiler
@@ -22,9 +21,12 @@ tr:
       one: Gönderi
       other: Gönderiler
     posts_tab_heading: Gönderiler
+    self_follow_error: Kendi hesabınızı takip etmenize izin yok
   admin:
     account_actions:
       action: Eylemi gerçekleştir
+      already_silenced: Bu hesap zaten sınırlanmış.
+      already_suspended: Bu hesap zaten askıya alınmış.
       title: "%{acct} üzerinde denetleme eylemi gerçekleştir"
     account_moderation_notes:
       create: Not bırak
@@ -46,6 +48,7 @@ tr:
         title: "%{username} için e-postayı değiştir"
       change_role:
         changed_msg: Rol başarıyla değiştirildi!
+        edit_roles: Kullanıcı rollerini yönetin
         label: Rolü değiştir
         no_role: Rol yok
         title: "%{username} için rolü değiştir"
@@ -184,6 +187,7 @@ tr:
         create_domain_block: Engellenen Alan Adı Oluştur
         create_email_domain_block: E-Posta Alan Adı Engeli Oluştur
         create_ip_block: IP kuralı oluştur
+        create_relay: Aktarıcı Oluştur
         create_unavailable_domain: Mevcut Olmayan Alan Adı Oluştur
         create_user_role: Rol Oluştur
         demote_user: Kullanıcıyı Düşür
@@ -195,14 +199,17 @@ tr:
         destroy_email_domain_block: E-posta Alan Adı Engelini Sil
         destroy_instance: Alan adını temizle
         destroy_ip_block: IP kuralını sil
+        destroy_relay: Aktarıcı Sil
         destroy_status: Durumu Sil
         destroy_unavailable_domain: Mevcut Olmayan Alan Adı Sil
         destroy_user_role: Rolü Kaldır
         disable_2fa_user: 2AD Kapat
         disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
+        disable_relay: Aktarıcıyı Devre Dışı Bırak
         disable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı Devre Dışı Bırak
         disable_user: Kullanıcıyı Devre Dışı Bırak
         enable_custom_emoji: Özel İfadeyi Etkinleştir
+        enable_relay: Aktarıcıyı Etkinleştir
         enable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı Etkinleştir
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
@@ -244,6 +251,7 @@ tr:
         create_domain_block_html: "%{name}, %{target} alan adını engelledi"
         create_email_domain_block_html: "%{name}, %{target} e-posta alan adını engelledi"
         create_ip_block_html: "%{name}, %{target} IP adresi için kural oluşturdu"
+        create_relay_html: "%{name}, %{target} aktarıcısını oluşturdu"
         create_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı durdurdu"
         create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
         demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
@@ -255,14 +263,17 @@ tr:
         destroy_email_domain_block_html: "%{name}, %{target} e-posta alan adı engelini kaldırdı"
         destroy_instance_html: "%{name}, %{target} alan adını temizledi"
         destroy_ip_block_html: "%{name}, %{target} IP adresi kuralını sildi"
+        destroy_relay_html: "%{name}, %{target} aktarıcısını sildi"
         destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
         destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
         destroy_user_role_html: "%{name}, %{target} rolünü sildi"
         disable_2fa_user_html: "%{name}, %{target} kullanıcısının iki aşamalı doğrulama gereksinimini kapattı"
         disable_custom_emoji_html: "%{name}, %{target} emojisini devre dışı bıraktı"
+        disable_relay_html: "%{name}, %{target} aktarıcısını devre dışı bıraktı"
         disable_sign_in_token_auth_user_html: "%{name}, %{target} için e-posta token doğrulamayı devre dışı bıraktı"
         disable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı devre dışı bıraktı"
         enable_custom_emoji_html: "%{name}, %{target} emojisini etkinleştirdi"
+        enable_relay_html: "%{name}, %{target} aktarıcısını etkinleştirdi"
         enable_sign_in_token_auth_user_html: "%{name}, %{target} için e-posta token doğrulamayı etkinleştirdi"
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
@@ -602,6 +613,7 @@ tr:
         suspend_description_html: Bu hesap ve tüm içeriği erişilmez olacak ve nihayetinde silinecek ve bu hesapla etkileşim mümkün olmayacaktır. 30 gün içinde geri alınabilir. Bu hesaba yönelik tüm bildiriimleri kapatır.
       actions_description_html: Bu bildirimi çözmek için ne yapılması gerektiğine karar verin. Bildirilen hesap için ceza işlemi yaparsanız, <strong>İstenmeyen</strong> kategorisi seçilmemişse, onlara bir e-posta duyurusu gönderilecektir.
       actions_description_remote_html: Bu bildirimi çözmek için hangi eylemi yapmak istediğinize karar verin. Bu yalnızca <strong>sizin</strong> sunucunuzun bu uzak hesapla nasıl etkileşeğini ve içeriğiyle ne yapacağını etkiler.
+      actions_no_posts: Bu raporun ilişkili olduğu silinecek gönderi yok
       add_to_report: Bildirime daha fazlasını ekle
       already_suspended_badges:
         local: Bu sunucuda zaten askıya alınmış
@@ -814,8 +826,10 @@ tr:
       back_to_account: Hesap sayfasına geri dön
       back_to_report: Bildirim sayfasına geri dön
       batch:
+        add_to_report: "#%{id} raporuna ekle"
         remove_from_report: Bildirimden kaldır
         report: Bildirim
+      contents: İçerikler
       deleted: Silindi
       favourites: Favoriler
       history: Sürüm geçmişi
@@ -824,13 +838,17 @@ tr:
       media:
         title: Medya
       metadata: Üstveri
+      no_history: Bu gönderi düzenlenmemiş
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
       open: Gönderiyi aç
       original_status: Özgün gönderi
       reblogs: Yeniden Paylaşımlar
+      replied_to_html: Yanıtladı %{acct_link}
       status_changed: Gönderi değişti
-      title: Hesap durumları
+      status_title: "@%{name} gönderisi"
+      title: Hesap gönderileri - @%{name}
       trending: Öne çıkanlar
+      view_publicly: Herkese açık görüntüle
       visibility: Görünürlük
       with_media: Medya ile
     strikes:
@@ -872,6 +890,9 @@ tr:
         message_html: Herhangi bir sunucu kuralı belirlemediniz.
       sidekiq_process_check:
         message_html: "%{value} kuyruk(lar)ı için herhangi bir Sidekiq süreci çalışmıyor. Lütfen Sidekiq yapılandırmanızı gözden geçirin"
+      software_version_check:
+        action: Mevcut güncellemeleri görün
+        message_html: Mastodon güncellemesi mevcut.
       software_version_critical_check:
         action: Mevcut güncellemeleri göster
         message_html: Kritik bir Mastodon güncellemesi var, lütfen en kısa sürede güncelleyin.
@@ -1157,6 +1178,14 @@ tr:
       view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     use_security_key: Güvenlik anahtarını kullan
+  author_attribution:
+    example_title: Örnek metin
+    hint_html: Mastodon dışında haber veya günlük yazıları mı yazıyorsunuz? Bu yazılar Mastodon'da paylaşıldığında size nasıl atıf yapılacağını denetleyin.
+    instructions: 'Bu kodun yazınızın HTML''sinde olduğundan emin olun:'
+    more_from_html: "%{name} kişisinden daha fazlası"
+    s_blog: "%{name} kişisinin Günlüğü"
+    then_instructions: Daha sonra, yayının alan adını aşağıda sahaya girin.
+    title: Yazar atıfı
   challenge:
     confirm: Devam et
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
@@ -1165,7 +1194,6 @@ tr:
   crypto:
     errors:
       invalid_key: geçerli bir Ed25519 veya Curve25519 anahtarı değil
-      invalid_signature: geçerli bir Ed25519 imzası değil
   date:
     formats:
       default: "%d %b %Y"
@@ -1231,8 +1259,6 @@ tr:
       your_appeal_approved: İtirazınız onaylandı
       your_appeal_pending: Bir itiraz gönderdiniz
       your_appeal_rejected: İtirazınız reddedildi
-  domain_validator:
-    invalid_domain: geçerli bir alan adı değil
   edit_profile:
     basic_information: Temel bilgiler
     hint_html: "<strong>İnsanlara herkese açık profilinizde ve gönderilerinizin yanında ne göstermek istediğinizi düzenleyin.</strong> Dolu bir profile ve bir profil resmine sahip olduğunuzda diğer insanlar daha yüksek ihtimalle sizi takip etmek ve sizinle etkileşime geçmek isteyeceklerdir."
@@ -1357,19 +1383,43 @@ tr:
       overwrite: Üzerine yaz
       overwrite_long: Mevcut kayıtları yenileriyle değiştir
     overwrite_preambles:
-      blocking_html: "<strong>Engel listenizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} hesapla</strong> değiştirmek üzeresiniz."
-      bookmarks_html: "<strong>Yerimlerinizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} gönderiyle</strong> değiştirmek üzeresiniz."
-      domain_blocking_html: "<strong>Alan adı engel listenizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} alan adıyla</strong> değiştirmek üzeresiniz."
-      following_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>takip etmeye</strong> başlamak ve <strong>diğer herkesi takipten çıkmak</strong> üzeresiniz."
-      lists_html: Listelerinizi <strong>%{filename}</strong> içeriğiyle <strong>değiştirmek</strong> üzeresiniz. Yeni listelere en fazla <strong>%{total_items} hesap</strong> eklenecek.
-      muting_html: "<strong>Sessize alınmış hesaplar listenizi</strong>, <strong>%{filename}</strong> dosyasından, <strong>%{total_items} hesapla</strong> değiştirmek üzeresiniz."
+      blocking_html:
+        one: "<strong>Engelleme listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> ile değiştirmek üzeresiniz."
+        other: "<strong>Engelleme listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> ile değiştirmek üzeresiniz."
+      bookmarks_html:
+        one: "<strong>Yerimlerinizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} gönderi</strong> ile değiştirmek üzeresiniz."
+        other: "<strong>Yerimlerinizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} gönderi</strong> ile değiştirmek üzeresiniz."
+      domain_blocking_html:
+        one: "<strong>Alan adı engelleme listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} alan adı</strong> ile değiştirmek üzeresiniz."
+        other: "<strong>Alan adı engelleme listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} alan adı</strong> ile değiştirmek üzeresiniz."
+      following_html:
+        one: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesabı</strong> <strong>takip etmek</strong> ve <strong>diğer herkesin takibini bırakmak</strong> üzeresiniz."
+        other: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesabı</strong> <strong>takip etmek</strong> ve <strong>diğer herkesin takibini bırakmak</strong> üzeresiniz."
+      lists_html:
+        one: "<strong>Listelerinizi</strong>, <strong>%{filename}</strong> dosya içeriğiyle değiştirmek üzeresiniz. <strong>%{count} hesap</strong> yeni listelere eklenecektir."
+        other: "<strong>Listelerinizi</strong>, <strong>%{filename}</strong> dosya içeriğiyle değiştirmek üzeresiniz. <strong>%{count} hesap</strong> yeni listelere eklenecektir."
+      muting_html:
+        one: "<strong>Sessize alınmış hesap listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> ile değiştirmek üzeresiniz."
+        other: "<strong>Sessize alınmış hesap listenizi</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> ile değiştirmek üzeresiniz."
     preambles:
-      blocking_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>engellemek</strong> üzeresiniz."
-      bookmarks_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} gönderiyi</strong> <strong>yerimlerinize</strong> eklemek üzeresiniz."
-      domain_blocking_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} alan adını</strong> <strong>engellemek</strong> üzeresiniz."
-      following_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>takip etmek</strong> üzeresiniz."
-      lists_html: "<strong>Listelerinize</strong> <strong>%{filename}</strong> dosyasından en fazla <strong>%{total_items} hesap</strong> eklemek üzeresiniz. Eklenecek bir liste olmaması durumunda yeni listeler oluşturulacaktır."
-      muting_html: "<strong>%{filename}</strong> dosyasından <strong>%{total_items} hesabı</strong> <strong>sessize almak</strong> üzeresiniz."
+      blocking_html:
+        one: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> <strong>engellemek</strong> üzeresiniz."
+        other: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> <strong>engellemek</strong> üzeresiniz."
+      bookmarks_html:
+        one: "<strong>Yerimlerinize</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} gönderi</strong> eklemek üzeresiniz."
+        other: "<strong>Yerimlerinize</strong>, <strong>%{filename}</strong> dosyasından <strong>%{count} gönderi</strong> eklemek üzeresiniz."
+      domain_blocking_html:
+        one: "<strong>%{filename}</strong> dosyasından <strong>%{count} alan adı</strong> <strong>engellemek</strong> üzeresiniz."
+        other: "<strong>%{filename}</strong> dosyasından <strong>%{count} alan adı</strong> <strong>engellemek</strong> üzeresiniz."
+      following_html:
+        one: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> <strong>takip etmek</strong> üzeresiniz."
+        other: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesap</strong> <strong>takip etmek</strong> üzeresiniz."
+      lists_html:
+        one: "<strong>Listelerinize</strong>, <strong>%{filename}</strong> <strong>%{count} hesap</strong> eklemek üzeresiniz. Eklenecek liste yoksa yeni listeler oluşturulacaktır."
+        other: "<strong>Listelerinize</strong>, <strong>%{filename}</strong> <strong>%{count} hesap</strong> eklemek üzeresiniz. Eklenecek liste yoksa yeni listeler oluşturulacaktır."
+      muting_html:
+        one: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesabı</strong> <strong>sessize almak</strong> üzeresiniz."
+        other: "<strong>%{filename}</strong> dosyasından <strong>%{count} hesabı</strong> <strong>sessize almak</strong> üzeresiniz."
     preface: Diğer sunucudan alarak oluşturduğunuz dosyalar sayesinde, bu sunucudaki hesabınıza takipçilerinizi aktarabilir veya istemediğiniz kişileri otomatik olarak engelleyebilirsiniz.
     recent_imports: Son içe aktarmalar
     states:
@@ -1454,6 +1504,7 @@ tr:
   media_attachments:
     validations:
       images_and_video: Zaten resim içeren bir duruma video eklenemez
+      not_found: "%{ids} medya dosyaları bulunamadı veya başka bir gönderiye zaten eklenmiş"
       not_ready: İşlemi tamamlanmamış dosyalar eklenemez. Birazdan tekrar deneyin!
       too_many: 4'ten fazla dosya eklenemiyor
   migrations:
@@ -1685,7 +1736,7 @@ tr:
     delete: Hesap silme
     development: Geliştirme
     edit_profile: Profili düzenle
-    export: Veriyi dışa aktar
+    export: Dışa Aktar
     featured_tags: Öne çıkan etiketler
     import: İçe aktar
     import_and_export: İçe ve dışa aktar
@@ -1731,23 +1782,12 @@ tr:
     edited_at_html: "%{date} tarihinde düzenlendi"
     errors:
       in_reply_not_found: Yanıtlamaya çalıştığınız durum yok gibi görünüyor.
-    open_in_web: Web sayfasında aç
     over_character_limit: "%{max} karakter limiti aşıldı"
     pin_errors:
       direct: Sadece değinilen kullanıcıların görebileceği gönderiler üstte tutulamaz
       limit: Halihazırda maksimum sayıda gönderi sabitlediniz
       ownership: Başkasının gönderisi sabitlenemez
       reblog: Bir gönderi sabitlenemez
-    poll:
-      total_people:
-        one: "%{count} kişi"
-        other: "%{count} kişiler"
-      total_votes:
-        one: "%{count} oy"
-        other: "%{count} oylar"
-      vote: Oy Ver
-    show_more: Daha fazlasını göster
-    show_thread: Konuyu göster
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Doğrudan
@@ -1946,6 +1986,7 @@ tr:
     instructions_html: Aşağıdaki kodu kopyalayın ve websitenizin HTML'sine yapıştırın. Daha sonra "Profil Düzenle" sekmesini kullanarak profilinizdeki ek sahalardan birine websitenizin adresini ekleyin ve değişiklikleri kaydedin.
     verification: Doğrulama
     verified_links: Doğrulanmış bağlantılarınız
+    website_verification: Website doğrulama
   webauthn_credentials:
     add: Yeni güvenlik anahtarı ekle
     create:

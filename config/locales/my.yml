@@ -7,7 +7,6 @@ my:
     hosted_on: "%{domain} မှ လက်ခံဆောင်ရွက်ထားသော Mastodon"
     title: အကြောင်း
   accounts:
-    follow: စောင့်ကြည့်မယ်
     followers:
       other: စောင့်ကြည့်သူ
     following: စောင့်ကြည့်နေသည်
@@ -765,7 +764,6 @@ my:
       original_status: မူရင်းပို့စ်
       reblogs: Reblog များ
       status_changed: ပို့စ်ပြောင်းပြီးပါပြီ
-      title: အကောင့်ပို့စ်များ
       trending: လက်ရှိခေတ်စားနေခြင်း
       visibility: မြင်နိုင်မှု
       with_media: မီဒီယာနှင့်အတူ
@@ -1045,7 +1043,6 @@ my:
   crypto:
     errors:
       invalid_key: မှန်ကန်သော Ed25519 သို့မဟုတ် Curve25519 ကီး မဟုတ်ပါ။
-      invalid_signature: မှန်ကန်သော Ed25519 လက်မှတ်မဟုတ်ပါ
   date:
     formats:
       default: "%b %d, %Y"
@@ -1108,8 +1105,6 @@ my:
       your_appeal_approved: သင့်တင်သွင်းခြင်းကို အတည်ပြုပြီးပါပြီ
       your_appeal_pending: အယူခံဝင်ရန် တင်သွင်းထားသည်
       your_appeal_rejected: အယူခံဝင်မှုကို ပယ်ချလိုက်သည်
-  domain_validator:
-    invalid_domain: တရားဝင်ဒိုမိန်းအမည်မဟုတ်ပါ
   edit_profile:
     basic_information: အခြေခံသတင်းအချက်အလက်
     hint_html: "<strong>သင်၏ အများမြင်ပရိုဖိုင်နှင့် သင့်ပို့စ်များဘေးရှိ တွေ့မြင်ရသည့်အရာကို စိတ်ကြိုက်ပြင်ဆင်ပါ။ </strong> သင့်တွင် ပရိုဖိုင်နှင့် ပရိုဖိုင်ပုံတစ်ခု ဖြည့်သွင်းထားပါက အခြားသူများအနေဖြင့် သင်နှင့် အပြန်အလှန် တုံ့ပြန်နိုင်ခြေပိုများပါသည်။"
@@ -1226,20 +1221,6 @@ my:
       merge_long: ရှိပြီးသားမှတ်တမ်းများ သိမ်းဆည်းပြီး အသစ်များ ထပ်ထည့်ပါ
       overwrite: ထပ်ရေးရန်
       overwrite_long: လက်ရှိမှတ်တမ်းများကို အသစ်များဖြင့် အစားထိုးပါ
-    overwrite_preambles:
-      blocking_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} အကောင့်များ</strong> အထိ <strong>သင့်ပိတ်ဆို့စာရင်း</strong>ကို အစားထိုးပါတော့မည်။
-      bookmarks_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} ပို့စ်များ</strong> အထိ <strong>သင့် bookmark များ</strong>ကို အစားထိုးပါတော့မည်။
-      domain_blocking_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} ဒိုမိန်းများ</strong> ဖြင့် <strong>သင်၏ ဒိုမိန်းပိတ်ဆို့စာရင်း</strong>ကို အစားထိုးပါတော့မည်။
-      following_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} အကောင့်များ</strong> အထိ <strong>စောင့်ကြည့်</strong> ပြီး <strong>အခြားမည်သူ့ကိုမျှ စောင့်မကြည့်တော့ပါ</strong> ။
-      lists_html: သင်သည် <strong>%{filename}</strong> ၏ အကြောင်းအရာများဖြင့် <strong>သင့်စာရင်းများကို အစားထိုး</strong> ပါတော့မည်။ <strong>%{total_items} အကောင့်များ</strong>အထိ စာရင်းအသစ်များသို့ ပေါင်းထည့်ပါမည်။
-      muting_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} အကောင့်များ</strong> ဖြင့် <strong>အသံပိတ်ထားသော သင့်အကောင့်များစာရင်း</strong>ကို အစားထိုးပါတော့မည်။
-    preambles:
-      blocking_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} အကောင့်များ</strong> အထိ <strong>ပိတ်ဆို့</strong>ပါတော့မည်။
-      bookmarks_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} ပို့စ်များ</strong> အထိ သင့် <strong> Bookmark များ</strong> သို့ ပေါင်းထည့်တော့မည်။
-      domain_blocking_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} ဒိုမိန်းများ</strong> အထိ <strong>ပိတ်ဆို့</strong>ပါတော့မည်။
-      following_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} အကောင့်များ</strong> အထိ <strong>စောင့်ကြည့်</strong> ပါတော့မည်။
-      lists_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} အကောင့်များ</strong> ကို သင့် <strong>စာရင်းများ</strong> သို့ ပေါင်းထည့်ပါတော့မည်။ ထည့်ရန်စာရင်းမရှိပါက စာရင်းအသစ်များကို ဖန်တီးပါမည်။
-      muting_html: သင်သည် <strong>%{filename}</strong> မှ <strong>%{total_items} အကောင့်များ</strong> အထိ <strong>အသံတိတ်</strong>ပါတော့မည်။
     preface: သင်စောင့်ကြည့်နေသည့်လူများစာရင်း သို့မဟုတ် ပိတ်ပင်ထားသည့်စာရင်းကဲ့သို့သော အခြားဆာဗာတစ်ခုမှ သင်ထုတ်ယူထားသည့်အချက်အလက်များကို ပြန်လည်ထည့်သွင်းနိုင်သည်။
     recent_imports: လတ်တလောထည့်သွင်းမှုများ
     states:
@@ -1533,7 +1514,6 @@ my:
     delete: အကောင့်ဖျက်သိမ်းခြင်း
     development: Development
     edit_profile: ပရိုဖိုင်ပြင်ဆင်ရန်
-    export: အချက်အလက်ထုတ်ယူခြင်း
     featured_tags: အသားပေးဖော်ပြထားသည့် ဟက်ရှ်တဂျ်များ
     import: ထည့်သွင်းခြင်း
     import_and_export: ထည့်သွင်းခြင်းနှင့် ထုတ်ယူခြင်း
@@ -1562,21 +1542,12 @@ my:
     edited_at_html: "%{date} ကို ပြင်ဆင်ပြီးပါပြီ"
     errors:
       in_reply_not_found: သင် စာပြန်နေသည့်ပို့စ်မှာ မရှိတော့ပါ။
-    open_in_web: ဝဘ်တွင် ဖွင့်ပါ
     over_character_limit: စာလုံးကန့်သတ်ချက် %{max} ကို ကျော်လွန်သွားပါပြီ
     pin_errors:
       direct: အမည်ဖော်ပြထားသည့် ပို့စ်များကို ပင်တွဲ၍မရပါ
       limit: သင်သည် ပို့စ်အရေအတွက်အများဆုံးကို ပင်တွဲထားပြီးဖြစ်သည်
       ownership: အခြားသူ၏ပို့စ်ကို ပင်တွဲ၍မရပါ
       reblog: Boost လုပ်ထားသောပို့စ်ကို ပင်ထား၍မရပါ
-    poll:
-      total_people:
-        other: "%{count} ယောက်"
-      total_votes:
-        other: မဲအရေအတွက် %{count} မဲ
-      vote: မဲပေးမည်
-    show_more: ပိုမိုပြရန်
-    show_thread: Thread ကို ပြပါ
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: တိုက်ရိုက်

@@ -17,7 +17,7 @@ function onProviderError(error: unknown) {
     error &&
     typeof error === 'object' &&
     error instanceof Error &&
-    error.message.match('MISSING_DATA')
+    /MISSING_DATA/.exec(error.message)
   ) {
     console.warn(error.message);
   }

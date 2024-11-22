@@ -12,7 +12,7 @@ import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { initBlockModal } from 'mastodon/actions/blocks';
 import { initMuteModal } from 'mastodon/actions/mutes';
-import { acceptNotificationRequest, dismissNotificationRequest } from 'mastodon/actions/notifications';
+import { acceptNotificationRequest, dismissNotificationRequest } from 'mastodon/actions/notification_requests';
 import { initReport } from 'mastodon/actions/reports';
 import { Avatar } from 'mastodon/components/avatar';
 import { CheckBox } from 'mastodon/components/check_box';
@@ -40,11 +40,11 @@ export const NotificationRequest = ({ id, accountId, notificationsCount, checked
   const { push: historyPush } = useHistory();
 
   const handleDismiss = useCallback(() => {
-    dispatch(dismissNotificationRequest(id));
+    dispatch(dismissNotificationRequest({ id }));
   }, [dispatch, id]);
 
   const handleAccept = useCallback(() => {
-    dispatch(acceptNotificationRequest(id));
+    dispatch(acceptNotificationRequest({ id }));
   }, [dispatch, id]);
 
   const handleMute = useCallback(() => {

@@ -9,7 +9,7 @@ module Mastodon
     end
 
     def minor
-      3
+      4
     end
 
     def patch
@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def default_prerelease
-      'beta.1'
+      'alpha.1'
     end
 
     def prerelease
@@ -43,6 +43,12 @@ module Mastodon
       @gem_version ||= Gem::Version.new(to_s.split('+')[0])
     end
 
+    def api_versions
+      {
+        mastodon: 2,
+      }
+    end
+
     def repository
       ENV.fetch('GITHUB_REPOSITORY', 'mastodon/mastodon')
     end
@@ -62,6 +68,10 @@ module Mastodon
       else
         source_base_url
       end
+    end
+
+    def source_commit
+      ENV.fetch('SOURCE_COMMIT', nil)
     end
 
     def user_agent

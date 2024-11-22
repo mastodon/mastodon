@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Metrics::Measure::InstanceAccountsMeasure do
+RSpec.describe Admin::Metrics::Measure::InstanceAccountsMeasure do
   subject { described_class.new(start_at, end_at, params) }
 
   let(:domain) { 'example.com' }

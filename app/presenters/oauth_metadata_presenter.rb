@@ -26,6 +26,10 @@ class OauthMetadataPresenter < ActiveModelSerializers::Model
     oauth_token_url
   end
 
+  def userinfo_endpoint
+    oauth_userinfo_url
+  end
+
   # As the api_v1_apps route doesn't technically conform to the specification
   # for OAuth 2.0 Dynamic Client Registration defined in RFC 7591 we use a
   # non-standard property for now to indicate the mastodon specific registration
@@ -61,7 +65,7 @@ class OauthMetadataPresenter < ActiveModelSerializers::Model
   end
 
   def code_challenge_methods_supported
-    %w(S256)
+    doorkeeper.pkce_code_challenge_methods_supported
   end
 
   private

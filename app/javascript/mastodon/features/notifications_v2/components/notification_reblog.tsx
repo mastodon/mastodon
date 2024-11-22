@@ -14,7 +14,7 @@ const labelRenderer: LabelRenderer = (displayedName, total, seeMoreHref) => {
     return (
       <FormattedMessage
         id='notification.reblog'
-        defaultMessage='{name} boosted your status'
+        defaultMessage='{name} boosted your post'
         values={{ name: displayedName }}
       />
     );

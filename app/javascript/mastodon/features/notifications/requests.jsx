@@ -11,7 +11,12 @@ import ArrowDropDownIcon from '@/material-icons/400-24px/arrow_drop_down.svg?rea
 import InventoryIcon from '@/material-icons/400-24px/inventory_2.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { openModal } from 'mastodon/actions/modal';
-import { fetchNotificationRequests, expandNotificationRequests, acceptNotificationRequests, dismissNotificationRequests } from 'mastodon/actions/notifications';
+import {
+  fetchNotificationRequests,
+  expandNotificationRequests,
+  acceptNotificationRequests,
+  dismissNotificationRequests,
+} from 'mastodon/actions/notification_requests';
 import { changeSetting } from 'mastodon/actions/settings';
 import { CheckBox } from 'mastodon/components/check_box';
 import Column from 'mastodon/components/column';
@@ -84,7 +89,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
         message: intl.formatMessage(messages.confirmAcceptMultipleMessage, { count: selectedItems.length }),
         confirm: intl.formatMessage(messages.confirmAcceptMultipleButton, { count: selectedItems.length}),
         onConfirm: () =>
-          dispatch(acceptNotificationRequests(selectedItems)),
+          dispatch(acceptNotificationRequests({ ids: selectedItems })),
       },
     }));
   }, [dispatch, intl, selectedItems]);
@@ -97,7 +102,7 @@ const SelectRow = ({selectAllChecked, toggleSelectAll, selectedItems, selectionM
         message: intl.formatMessage(messages.confirmDismissMultipleMessage, { count: selectedItems.length }),
         confirm: intl.formatMessage(messages.confirmDismissMultipleButton, { count: selectedItems.length}),
         onConfirm: () =>
-          dispatch(dismissNotificationRequests(selectedItems)),
+          dispatch(dismissNotificationRequests({ ids: selectedItems })),
       },
     }));
   }, [dispatch, intl, selectedItems]);
@@ -161,9 +166,9 @@ export const NotificationRequests = ({ multiColumn }) => {
   const columnRef = useRef();
   const intl = useIntl();
   const dispatch = useDispatch();
-  const isLoading = useSelector(state => state.getIn(['notificationRequests', 'isLoading']));
-  const notificationRequests = useSelector(state => state.getIn(['notificationRequests', 'items']));
-  const hasMore = useSelector(state => !!state.getIn(['notificationRequests', 'next']));
+  const isLoading = useSelector(state => state.notificationRequests.isLoading);
+  const notificationRequests = useSelector(state => state.notificationRequests.items);
+  const hasMore = useSelector(state => !!state.notificationRequests.next);
 
   const [selectionMode, setSelectionMode] = useState(false);
   const [checkedRequestIds, setCheckedRequestIds] = useState([]);
@@ -182,7 +187,7 @@ export const NotificationRequests = ({ multiColumn }) => {
       else
         ids.push(id);
 
-      setSelectAllChecked(ids.length === notificationRequests.size);
+      setSelectAllChecked(ids.length === notificationRequests.length);
 
       return [...ids];
     });
@@ -193,7 +198,7 @@ export const NotificationRequests = ({ multiColumn }) => {
       if(checked)
         setCheckedRequestIds([]);
       else
-        setCheckedRequestIds(notificationRequests.map(request => request.get('id')).toArray());
+        setCheckedRequestIds(notificationRequests.map(request => request.id));
 
       return !checked;
     });
@@ -217,7 +222,7 @@ export const NotificationRequests = ({ multiColumn }) => {
         multiColumn={multiColumn}
         showBackButton
         appendContent={
-          notificationRequests.size > 0 && (
+          notificationRequests.length > 0 && (
             <SelectRow selectionMode={selectionMode} setSelectionMode={setSelectionMode} selectAllChecked={selectAllChecked} toggleSelectAll={toggleSelectAll} selectedItems={checkedRequestIds} />
           )}
       >
@@ -236,12 +241,12 @@ export const NotificationRequests = ({ multiColumn }) => {
       >
         {notificationRequests.map(request => (
           <NotificationRequest
-            key={request.get('id')}
-            id={request.get('id')}
-            accountId={request.get('account')}
-            notificationsCount={request.get('notifications_count')}
+            key={request.id}
+            id={request.id}
+            accountId={request.account_id}
+            notificationsCount={request.notifications_count}
             showCheckbox={selectionMode}
-            checked={checkedRequestIds.includes(request.get('id'))}
+            checked={checkedRequestIds.includes(request.id)}
             toggleCheck={handleCheck}
           />
         ))}

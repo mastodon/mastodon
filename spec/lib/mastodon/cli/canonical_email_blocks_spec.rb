@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/canonical_email_blocks'
 
-describe Mastodon::CLI::CanonicalEmailBlocks do
+RSpec.describe Mastodon::CLI::CanonicalEmailBlocks do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }

@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/feeds'
 
-describe Mastodon::CLI::Feeds do
+RSpec.describe Mastodon::CLI::Feeds do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }

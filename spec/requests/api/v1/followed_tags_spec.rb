@@ -28,29 +28,24 @@ RSpec.describe 'Followed tags' do
 
     it_behaves_like 'forbidden for wrong scope', 'write write:follows'
 
-    it 'returns http success' do
+    it 'returns http success and includes followed tags' do
       subject
 
       expect(response).to have_http_status(:success)
-    end
-
-    it 'returns the followed tags correctly' do
-      subject
-
-      expect(body_as_json).to match_array(expected_response)
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body).to match_array(expected_response)
     end
 
     context 'with limit param' do
       let(:params) { { limit: 1 } }
 
-      it 'returns only the requested number of follow tags' do
+      it 'returns only the requested number of follow tags and sets pagination headers' do
         subject
 
-        expect(body_as_json.size).to eq(params[:limit])
-      end
-
-      it 'sets the correct pagination headers' do
-        subject
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body.size).to eq(params[:limit])
 
         expect(response)
           .to include_pagination_headers(

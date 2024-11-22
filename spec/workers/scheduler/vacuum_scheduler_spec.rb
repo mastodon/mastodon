@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::VacuumScheduler do
+RSpec.describe Scheduler::VacuumScheduler do
   let(:worker) { described_class.new }
 
   describe 'perform' do

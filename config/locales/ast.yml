@@ -449,7 +449,7 @@ ast:
     your_token: El pase d'accesu
   auth:
     delete_account: Desaniciu de la cuenta
-    delete_account_html: Si quies desaniciar la cuenta, pues facelo <a href="%{path}">equí</a>. Va pidísete que confirmes l'aición.
+    delete_account_html: Si quies desaniciar la cuenta, pues facelo <a href="%{path}">equí</a>. Vamos pidite que confirmes l'aición.
     description:
       prefix_sign_up: "¡Rexístrate güei en Mastodon!"
     didnt_get_confirmation: "¿Nun recibiesti l'enllaz de confirmación?"
@@ -486,7 +486,6 @@ ast:
   crypto:
     errors:
       invalid_key: nun ye una clave ed25519 o curve25519 válida
-      invalid_signature: nun ye una clave ed25519 válida
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -646,6 +645,7 @@ ast:
     errors:
       missing_also_known_as: nun ye un nomatu d'esta cuenta
       move_to_self: nun pue ser la cuenta actual
+    incoming_migrations: Migración d'otra cuenta
     incoming_migrations_html: Pa migrar d'otra cuenta a esta, primero tienes de <a href="%{path}">crear un nomatu de cuenta</a>.
     warning:
       followers: Esta aición va mover tolos siguidores de la cuenta actual a la nueva
@@ -727,6 +727,7 @@ ast:
     over_daily_limit: Superesti la llende de %{limit} artículos programaos pa güei
     over_total_limit: Superesti la llende de %{limit} artículos programaos
   sessions:
+    activity: Última actividá
     browser: Restolador
     browsers:
       alipay: Alipay
@@ -775,11 +776,11 @@ ast:
     back: Volver a Mastodon
     development: Desendolcu
     edit_profile: Edición del perfil
-    export: Esportación de datos
     featured_tags: Etiquetes destacaes
     import: Importación
     import_and_export: Importación y esportación
     migrate: Migración de la cuenta
+    notifications: Avisos per corréu electrónicu
     preferences: Preferencies
     profile: Perfil públicu
     relationships: Perfiles que sigues y te siguen
@@ -800,20 +801,11 @@ ast:
     default_language: La mesma que la de la interfaz
     errors:
       in_reply_not_found: L'artículu al que tentes de responder paez que nun esiste.
-    open_in_web: Abrir na web
     pin_errors:
       direct: Nun se puen fixar los artículos que son visibles namás pa los usuarios mentaos
       limit: Yá fixesti'l númberu máximu d'artículos
       ownership: Nun se pue fixar l'artículu d'otru perfil
       reblog: Nun se pue fixar un artículu compartíu
-    poll:
-      total_people:
-        one: "%{count} persona"
-        other: "%{count} persones"
-      total_votes:
-        one: "%{count} votu"
-        other: "%{count} votos"
-    show_more: Amosar más
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Mensaxe direutu

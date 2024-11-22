@@ -71,7 +71,10 @@ export const ConfirmationModal: React.FC<
             />
           </button>
 
-          <Button onClick={handleClick}>{confirm}</Button>
+          {/* eslint-disable-next-line jsx-a11y/no-autofocus -- we are in a modal and thus autofocusing is justified */}
+          <Button onClick={handleClick} autoFocus>
+            {confirm}
+          </Button>
         </div>
       </div>
     </div>

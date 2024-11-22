@@ -3,6 +3,7 @@ nn:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Ein per line. Vernar mot falske krediteringar.
         discoverable: Dei offentlege innlegga dine og profilen din kan dukka opp i tilrådingar på ulike stader på Mastodon, og profilen din kan bli føreslegen for andre folk.
         display_name: Ditt fulle namn eller ditt tøysenamn.
         fields: Heimesida di, pronomen, alder, eller kva du måtte ynskje.
@@ -130,19 +131,20 @@ nn:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
-        role: Rolla kontrollerer kva tilgangar brukaren har
+        role: Rolla kontrollerer kva løyve brukaren har.
       user_role:
         color: Fargen som skal nyttast for denne rolla i heile brukargrensesnittet, som RGB i hex-format
         highlighted: Dette gjer rolla synleg offentleg
         name: Offentleg namn på rolla, dersom rolla skal visast som eit emblem
         permissions_as_keys: Brukarar med denne rolla vil ha tilgang til...
-        position: Høgare rolle avgjer konfliktløysing i visse situasjonar. Visse handlingar kan kun utførast på rollar med lågare prioritet
+        position: Høgare rolle avgjer konfliktløysing i visse situasjonar. Visse handlingar kan berre utførast på roller med lågare prioritet
       webhook:
         events: Vel hendingar å senda
         template: Skriv di eiga JSON nyttelast ved å bruka variabel interpolering. La stå tom for standard JSON.
         url: Kvar hendingar skal sendast
     labels:
       account:
+        attribution_domains_as_text: Nettstader som har lov å kreditera deg
         discoverable: Ta med profilen og innlegga i oppdagingsalgoritmar
         fields:
           name: Merkelapp

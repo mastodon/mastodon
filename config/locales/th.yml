@@ -7,7 +7,6 @@ th:
     hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
     title: เกี่ยวกับ
   accounts:
-    follow: ติดตาม
     followers:
       other: ผู้ติดตาม
     following: กำลังติดตาม
@@ -20,9 +19,12 @@ th:
     posts:
       other: โพสต์
     posts_tab_heading: โพสต์
+    self_follow_error: ไม่อนุญาตการติดตามบัญชีของคุณเอง
   admin:
     account_actions:
       action: ทำการกระทำ
+      already_silenced: มีการจำกัดบัญชีนี้ไปแล้ว
+      already_suspended: มีการระงับบัญชีนี้ไปแล้ว
       title: ทำการกระทำการกลั่นกรองต่อ %{acct}
     account_moderation_notes:
       create: เขียนหมายเหตุ
@@ -44,6 +46,7 @@ th:
         title: เปลี่ยนอีเมลสำหรับ %{username}
       change_role:
         changed_msg: เปลี่ยนบทบาทสำเร็จ!
+        edit_roles: จัดการบทบาทผู้ใช้
         label: เปลี่ยนบทบาท
         no_role: ไม่มีบทบาท
         title: เปลี่ยนบทบาทสำหรับ %{username}
@@ -590,6 +593,7 @@ th:
         suspend_description_html: บัญชีและเนื้อหาของบัญชีทั้งหมดจะเข้าถึงไม่ได้และได้รับการลบในที่สุด และการโต้ตอบกับบัญชีจะเป็นไปไม่ได้ แปลงกลับได้ภายใน 30 วัน ปิดรายงานต่อบัญชีนี้ทั้งหมด
       actions_description_html: ตัดสินใจว่าการกระทำใดที่จะใช้เพื่อแก้ปัญหารายงานนี้ หากคุณใช้การกระทำที่เป็นการลงโทษต่อบัญชีที่รายงาน จะส่งการแจ้งเตือนอีเมลถึงเขา ยกเว้นเมื่อมีการเลือกหมวดหมู่ <strong>สแปม</strong>
       actions_description_remote_html: ตัดสินใจว่าการกระทำใดที่จะใช้เพื่อแก้ปัญหารายงานนี้ นี่จะมีผลต่อวิธีที่เซิร์ฟเวอร์ <strong>ของคุณ</strong> สื่อสารกับบัญชีระยะไกลนี้และจัดการเนื้อหาของบัญชีเท่านั้น
+      actions_no_posts: รายงานนี้ไม่มีโพสต์ที่เกี่ยวข้องใด ๆ ให้ลบ
       add_to_report: เพิ่มข้อมูลเพิ่มเติมไปยังรายงาน
       already_suspended_badges:
         local: ระงับในเซิร์ฟเวอร์นี้อยู่แล้ว
@@ -815,7 +819,6 @@ th:
       original_status: โพสต์ดั้งเดิม
       reblogs: การดัน
       status_changed: เปลี่ยนโพสต์แล้ว
-      title: โพสต์ของบัญชี
       trending: กำลังนิยม
       visibility: การมองเห็น
       with_media: มีสื่อ
@@ -858,12 +861,15 @@ th:
         message_html: คุณไม่ได้กำหนดกฎของเซิร์ฟเวอร์ใด ๆ
       sidekiq_process_check:
         message_html: ไม่มีกระบวนการ Sidekiq ที่กำลังทำงานสำหรับคิว %{value} โปรดตรวจทานการกำหนดค่า Sidekiq ของคุณ
+      software_version_check:
+        action: ดูการอัปเดตที่พร้อมใช้งาน
+        message_html: มีการอัปเดต Mastodon ที่พร้อมใช้งาน
       software_version_critical_check:
         action: ดูการอัปเดตที่พร้อมใช้งาน
         message_html: มีการอัปเดต Mastodon สำคัญพร้อมใช้งาน โปรดอัปเดตโดยเร็วที่สุดเท่าที่จะเป็นไปได้
       software_version_patch_check:
         action: ดูการอัปเดตที่พร้อมใช้งาน
-        message_html: มีการอัปเดต Mastodon ที่แก้ไขข้อบกพร่องพร้อมใช้งาน
+        message_html: มีการอัปเดต Mastodon ที่แก้ไขข้อบกพร่องที่พร้อมใช้งาน
       upload_check_privacy_error:
         action: ตรวจสอบที่นี่สำหรับข้อมูลเพิ่มเติม
         message_html: "<strong>เว็บเซิร์ฟเวอร์ของคุณกำหนดค่าไม่ถูกต้อง ความเป็นส่วนตัวของผู้ใช้ของคุณตกอยู่ในความเสี่ยง</strong>"
@@ -1139,6 +1145,14 @@ th:
       view_strikes: ดูการดำเนินการที่ผ่านมาต่อบัญชีของคุณ
     too_fast: ส่งแบบฟอร์มเร็วเกินไป ลองอีกครั้ง
     use_security_key: ใช้กุญแจความปลอดภัย
+  author_attribution:
+    example_title: ข้อความตัวอย่าง
+    hint_html: คุณกำลังเขียนข่าวหรือบทความบล็อกภายนอก Mastodon หรือไม่? ควบคุมวิธีที่คุณได้รับเครดิตเมื่อมีการแบ่งปันข่าวหรือบทความบล็อกใน Mastodon
+    instructions: 'ตรวจสอบให้แน่ใจว่าโค้ดนี้อยู่ใน HTML ของบทความของคุณ:'
+    more_from_html: เพิ่มเติมจาก %{name}
+    s_blog: บล็อกของ %{name}
+    then_instructions: จากนั้น เพิ่มชื่อโดเมนของการเผยแพร่ในช่องด้านล่าง
+    title: การระบุแหล่งที่มาผู้สร้าง
   challenge:
     confirm: ดำเนินการต่อ
     hint_html: "<strong>เคล็ดลับ:</strong> เราจะไม่ถามรหัสผ่านของคุณกับคุณสำหรับชั่วโมงถัดไป"
@@ -1147,7 +1161,6 @@ th:
   crypto:
     errors:
       invalid_key: ไม่ใช่กุญแจ Ed25519 หรือ Curve25519 ที่ถูกต้อง
-      invalid_signature: ไม่ใช่ลายเซ็น Ed25519 ที่ถูกต้อง
   date:
     formats:
       default: "%d %b %Y"
@@ -1213,8 +1226,6 @@ th:
       your_appeal_approved: อนุมัติการอุทธรณ์ของคุณแล้ว
       your_appeal_pending: คุณได้ส่งการอุทธรณ์
       your_appeal_rejected: ปฏิเสธการอุทธรณ์ของคุณแล้ว
-  domain_validator:
-    invalid_domain: ไม่ใช่ชื่อโดเมนที่ถูกต้อง
   edit_profile:
     basic_information: ข้อมูลพื้นฐาน
     hint_html: "<strong>ปรับแต่งสิ่งที่ผู้คนเห็นในโปรไฟล์สาธารณะของคุณและถัดจากโพสต์ของคุณ</strong> ผู้คนอื่น ๆ มีแนวโน้มที่จะติดตามคุณกลับและโต้ตอบกับคุณมากขึ้นเมื่อคุณมีโปรไฟล์ที่กรอกแล้วและรูปภาพโปรไฟล์"
@@ -1332,19 +1343,31 @@ th:
       overwrite: เขียนทับ
       overwrite_long: แทนที่ระเบียนปัจจุบันด้วยระเบียนใหม่
     overwrite_preambles:
-      blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นของคุณ</strong> ด้วยมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-      bookmarks_html: คุณกำลังจะ <strong>แทนที่ที่คั่นหน้าของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong>
-      domain_blocking_html: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นโดเมนของคุณ</strong> ด้วยมากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
-      following_html: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong> และ <strong>หยุดการติดตามคนอื่นใด</strong>
-      lists_html: คุณกำลังจะ <strong>แทนที่รายการของคุณ</strong> ด้วยเนื้อหาของ <strong>%{filename}</strong> จะเพิ่มมากถึง <strong>%{total_items} บัญชี</strong> ไปยังรายการใหม่
-      muting_html: คุณกำลังจะ <strong>แทนที่รายการบัญชีที่ซ่อนอยู่ของคุณ</strong> ด้วยมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
+      blocking_html:
+        other: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นของคุณ</strong> ด้วยมากถึง <strong>%{count} บัญชี</strong> จาก <strong>%{filename}</strong>
+      bookmarks_html:
+        other: คุณกำลังจะ <strong>แทนที่ที่คั่นหน้าของคุณ</strong> ด้วยมากถึง <strong>%{count} โพสต์</strong> จาก <strong>%{filename}</strong>
+      domain_blocking_html:
+        other: คุณกำลังจะ <strong>แทนที่รายการการปิดกั้นโดเมนของคุณ</strong> ด้วยมากถึง <strong>%{count} โดเมน</strong> จาก <strong>%{filename}</strong>
+      following_html:
+        other: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{count} บัญชี</strong> จาก <strong>%{filename}</strong> และ <strong>หยุดการติดตามคนอื่นใด</strong>
+      lists_html:
+        other: คุณกำลังจะ <strong>แทนที่รายการของคุณ</strong> ด้วยเนื้อหาของ <strong>%{filename}</strong> จะเพิ่มมากถึง <strong>%{count} บัญชี</strong> ไปยังรายการใหม่
+      muting_html:
+        other: คุณกำลังจะ <strong>แทนที่รายการบัญชีที่ซ่อนอยู่ของคุณ</strong> ด้วยมากถึง <strong>%{count} บัญชี</strong> จาก <strong>%{filename}</strong>
     preambles:
-      blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-      bookmarks_html: คุณกำลังจะเพิ่มมากถึง <strong>%{total_items} โพสต์</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>ที่คั่นหน้า</strong> ของคุณ
-      domain_blocking_html: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{total_items} โดเมน</strong> จาก <strong>%{filename}</strong>
-      following_html: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
-      lists_html: คุณกำลังจะเพิ่มมากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>รายการ</strong> ของคุณ จะสร้างรายการใหม่หากไม่มีรายการที่จะเพิ่มไปยัง
-      muting_html: คุณกำลังจะ <strong>ซ่อน</strong> มากถึง <strong>%{total_items} บัญชี</strong> จาก <strong>%{filename}</strong>
+      blocking_html:
+        other: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{count} บัญชี</strong> จาก <strong>%{filename}</strong>
+      bookmarks_html:
+        other: คุณกำลังจะเพิ่มมากถึง <strong>%{count} โพสต์</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>ที่คั่นหน้า</strong> ของคุณ
+      domain_blocking_html:
+        other: คุณกำลังจะ <strong>ปิดกั้น</strong> มากถึง <strong>%{count} โดเมน</strong> จาก <strong>%{filename}</strong>
+      following_html:
+        other: คุณกำลังจะ <strong>ติดตาม</strong> มากถึง <strong>%{count} บัญชี</strong> จาก <strong>%{filename}</strong>
+      lists_html:
+        other: คุณกำลังจะเพิ่มมากถึง <strong>%{count} บัญชี</strong> จาก <strong>%{filename}</strong> ไปยัง <strong>รายการ</strong> ของคุณ จะสร้างรายการใหม่หากไม่มีรายการที่จะเพิ่มไปยัง
+      muting_html:
+        other: คุณกำลังจะ <strong>ซ่อน</strong> มากถึง <strong>%{count} บัญชี</strong> จาก <strong>%{filename}</strong>
     preface: คุณสามารถนำเข้าข้อมูลที่คุณได้ส่งออกจากเซิร์ฟเวอร์อื่น เช่น รายการผู้คนที่คุณกำลังติดตามหรือกำลังปิดกั้น
     recent_imports: การนำเข้าล่าสุด
     states:
@@ -1428,6 +1451,7 @@ th:
   media_attachments:
     validations:
       images_and_video: ไม่สามารถแนบวิดีโอกับโพสต์ที่มีภาพอยู่แล้ว
+      not_found: ไม่พบสื่อ %{ids} หรือได้แนบกับโพสต์อื่นไปแล้ว
       not_ready: ไม่สามารถแนบไฟล์ที่ยังประมวลผลไม่เสร็จ ลองอีกครั้งในอีกสักครู่!
       too_many: ไม่สามารถแนบมากกว่า 4 ไฟล์
   migrations:
@@ -1659,7 +1683,7 @@ th:
     delete: การลบบัญชี
     development: การพัฒนา
     edit_profile: แก้ไขโปรไฟล์
-    export: การส่งออกข้อมูล
+    export: ส่งออก
     featured_tags: แฮชแท็กที่น่าสนใจ
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
@@ -1701,21 +1725,12 @@ th:
     edited_at_html: แก้ไขเมื่อ %{date}
     errors:
       in_reply_not_found: ดูเหมือนว่าจะไม่มีโพสต์ที่คุณกำลังพยายามตอบกลับอยู่
-    open_in_web: เปิดในเว็บ
     over_character_limit: เกินขีดจำกัดตัวอักษรที่ %{max} แล้ว
     pin_errors:
       direct: ไม่สามารถปักหมุดโพสต์ที่ปรากฏแก่ผู้ใช้ที่กล่าวถึงเท่านั้น
       limit: คุณได้ปักหมุดโพสต์ถึงจำนวนสูงสุดไปแล้ว
       ownership: ไม่สามารถปักหมุดโพสต์ของคนอื่น
       reblog: ไม่สามารถปักหมุดการดัน
-    poll:
-      total_people:
-        other: "%{count} คน"
-      total_votes:
-        other: "%{count} การลงคะแนน"
-      vote: ลงคะแนน
-    show_more: แสดงเพิ่มเติม
-    show_thread: แสดงกระทู้
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: โดยตรง
@@ -1913,6 +1928,7 @@ th:
     instructions_html: คัดลอกแล้ววางโค้ดด้านล่างลงใน HTML ของเว็บไซต์ของคุณ จากนั้นเพิ่มที่อยู่ของเว็บไซต์ของคุณลงในหนึ่งในช่องพิเศษในโปรไฟล์ของคุณจากแท็บ "แก้ไขโปรไฟล์" และบันทึกการเปลี่ยนแปลง
     verification: การตรวจสอบ
     verified_links: ลิงก์ที่ยืนยันแล้วของคุณ
+    website_verification: การตรวจสอบเว็บไซต์
   webauthn_credentials:
     add: เพิ่มกุญแจความปลอดภัยใหม่
     create:

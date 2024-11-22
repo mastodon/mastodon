@@ -4,8 +4,6 @@ class PostStatusService < BaseService
   include Redisable
   include LanguagesHelper
 
-  MIN_SCHEDULE_OFFSET = 5.minutes.freeze
-
   class UnexpectedMentionsError < StandardError
     attr_reader :accounts
 
@@ -38,6 +36,8 @@ class PostStatusService < BaseService
     @text        = @options[:text] || ''
     @in_reply_to = @options[:thread]
 
+    @antispam = Antispam.new
+
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
     validate_media!
@@ -57,6 +57,8 @@ class PostStatusService < BaseService
     end
 
     @status
+  rescue Antispam::SilentlyDrop => e
+    e.status
   end
 
   private
@@ -76,6 +78,7 @@ class PostStatusService < BaseService
     @status = @account.statuses.new(status_attributes)
     process_mentions_service.call(@status, save_records: false)
     safeguard_mentions!(@status)
+    @antispam.local_preflight_check!(@status)
 
     # The following transaction block is needed to wrap the UPDATEs to
     # the media attachments when the status is created
@@ -97,6 +100,7 @@ class PostStatusService < BaseService
 
   def schedule_status!
     status_for_validation = @account.statuses.build(status_attributes)
+    @antispam.local_preflight_check!(status_for_validation)
 
     if status_for_validation.valid?
       # Marking the status as destroyed is necessary to prevent the status from being
@@ -113,6 +117,8 @@ class PostStatusService < BaseService
     else
       raise ActiveRecord::RecordInvalid
     end
+  rescue Antispam::SilentlyDrop
+    @status = @account.scheduled_status.new(scheduled_status_attributes).tap(&:delete)
   end
 
   def postprocess_status!
@@ -133,6 +139,9 @@ class PostStatusService < BaseService
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > Status::MEDIA_ATTACHMENTS_LIMIT || @options[:poll].present?
 
     @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(Status::MEDIA_ATTACHMENTS_LIMIT).map(&:to_i))
+
+    not_found_ids = @options[:media_ids].map(&:to_i) - @media.map(&:id)
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_found', ids: not_found_ids.join(', ')) if not_found_ids.any?
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if @media.size > 1 && @media.find(&:audio_or_video?)
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_ready') if @media.any?(&:not_processed?)

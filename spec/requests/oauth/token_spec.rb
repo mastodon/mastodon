@@ -34,7 +34,7 @@ RSpec.describe 'Obtaining OAuth Tokens' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:scope]).to eq 'read write'
+          expect(response.parsed_body[:scope]).to eq 'read write'
         end
       end
 
@@ -76,7 +76,7 @@ RSpec.describe 'Obtaining OAuth Tokens' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json[:scope]).to eq('read')
+          expect(response.parsed_body[:scope]).to eq('read')
         end
       end
 
@@ -88,7 +88,7 @@ RSpec.describe 'Obtaining OAuth Tokens' do
             subject
 
             expect(response).to have_http_status(200)
-            expect(body_as_json[:scope]).to eq 'read write'
+            expect(response.parsed_body[:scope]).to eq 'read write'
           end
         end
 

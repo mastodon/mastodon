@@ -3,13 +3,14 @@ lt:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Po vieną eilutėje. Apsaugo nuo klaidingų atributų.
         discoverable: Tavo vieši įrašai ir profilis gali būti rodomi arba rekomenduojami įvairiose Mastodon vietose, o profilis gali būti siūlomas kitiems naudotojams.
         display_name: Tavo pilnas vardas arba smagus vardas.
         fields: Tavo pagrindinis puslapis, įvardžiai, amžius, bet kas, ko tik nori.
         indexable: Tavo vieši įrašai gali būti rodomi Mastodon paieškos rezultatuose. Žmonės, kurie bendravo su tavo įrašais, gali jų ieškoti nepriklausomai nuo to.
         note: 'Gali @paminėti kitus žmones arba #saitažodžius.'
         show_collections: Žmonės galės peržiūrėti tavo sekimus ir sekėjus. Žmonės, kuriuos seki, matys, kad juos seki, nepaisant to.
-        unlocked: Žmonės galės tave sekti nepaprašę patvirtinimo. Panaikink žymėjimą, jei nori peržiūrėti sekimo prašymus ir pasirinkti, ar priimti, ar atmesti naujus sekėjus.
+        unlocked: Žmonės galės jus sekti nepaprašę patvirtinimo. Panaikinkite žymėjimą, jei norite peržiūrėti sekimo prašymus ir pasirinkti, ar priimti, ar atmesti naujus sekėjus.
       account_alias:
         acct: Nurodyk paskyros, iš kurios nori perkelti, naudotojo vardą@domeną
       account_migration:
@@ -89,6 +90,8 @@ lt:
         timeline_preview: Atsijungę lankytojai galės naršyti naujausius viešus įrašus, esančius serveryje.
         trends: Trendai rodo, kurios įrašai, saitažodžiai ir naujienų istorijos tavo serveryje sulaukia didžiausio susidomėjimo.
         trends_as_landing_page: Rodyti tendencingą turinį atsijungusiems naudotojams ir lankytojams vietoj šio serverio aprašymo. Reikia, kad tendencijos būtų įjungtos.
+      imports:
+        data: CSV failas, eksportuotas iš kito „Mastodon“ serverio.
       invite_request:
         text: Tai padės mums peržiūrėti tavo paraišką
       rule:
@@ -101,9 +104,10 @@ lt:
         show_application: Neatsižvelgiant į tai, visada galėsi matyti, kuri programėlė paskelbė tavo įrašą.
       user:
         chosen_languages: Kai pažymėta, viešose laiko skalėse bus rodomi tik įrašai pasirinktomis kalbomis.
-        role: Vaidmuo valdo, kokius leidimus naudotojas (-a) turi
+        role: Vaidmuo valdo, kokius leidimus naudotojas turi.
     labels:
       account:
+        attribution_domains_as_text: Svetainės, kuriuose leidžiama jus nurodyti
         discoverable: Rekomenduoti profilį ir įrašus į atradimo algoritmus
         indexable: Įtraukti viešus įrašus į paieškos rezultatus
         show_collections: Rodyti sekimus ir sekėjus profilyje

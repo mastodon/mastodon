@@ -25,7 +25,7 @@
   .fields-group
     = f.input :site_short_description,
               as: :text,
-              input_html: { rows: 2, maxlength: 200 },
+              input_html: { rows: 2, maxlength: Form::AdminSettings::DESCRIPTION_LIMIT },
               wrapper: :with_block_label
 
   .fields-row

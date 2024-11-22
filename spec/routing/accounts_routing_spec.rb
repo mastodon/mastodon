@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Routes under accounts/' do
+RSpec.describe 'Routes under accounts/' do
   context 'with local username' do
     let(:username) { 'alice' }
 

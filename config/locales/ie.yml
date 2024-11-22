@@ -7,7 +7,6 @@ ie:
     hosted_on: Mastodon logiat che %{domain}
     title: Pri
   accounts:
-    follow: Sequer
     followers:
       one: Sequitor
       other: Sequitores
@@ -792,7 +791,6 @@ ie:
       original_status: Original posta
       reblogs: Boosts
       status_changed: Posta modificat
-      title: Postas del conto
       trending: Populari
       visibility: Visibilitá
       with_media: Con medie
@@ -1090,7 +1088,6 @@ ie:
   crypto:
     errors:
       invalid_key: ne es un valid clave Ed25519 o Curve25519
-      invalid_signature: ne es un valid signatura Ed25519
   date:
     formats:
       default: "%d.%m.%Y"
@@ -1153,8 +1150,6 @@ ie:
       your_appeal_approved: Tui apelle ha esset aprobat
       your_appeal_pending: Tu ha fat un apelle
       your_appeal_rejected: Tui apelle ha esset rejectet
-  domain_validator:
-    invalid_domain: ne es un valid dominia-nómine
   edit_profile:
     basic_information: Basic information
     hint_html: "<strong>Customisa ti quel gente vide sur tui public profil e apu tui postas.</strong> Altri persones es plu probabil sequer te e interacter con te si tu have un detalliat profil e un profil-image."
@@ -1278,20 +1273,6 @@ ie:
       merge_long: Conservar existent registres e adjunter li novis
       overwrite: Remplazzar
       overwrite_long: Remplazzar existent registres per li novis
-    overwrite_preambles:
-      blocking_html: Tu va <strong>remplazzar tui liste de bloccat contos</strong> per til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
-      bookmarks_html: Tu va <strong>remplazzar tui marcatores</strong> per til <strong>%{total_items} postas</strong> de <strong>%{filename}</strong>.
-      domain_blocking_html: Tu va <strong>remplazzar tui liste de bloccat dominias</strong> per til <strong>%{total_items} dominias</strong> de <strong>%{filename}</strong>.
-      following_html: Tu va <strong>sequer</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong> e <strong>dessequer omni altri contos</strong>.
-      lists_html: Tu va <strong>remplazzar tui listes</strong> per li contenete de <strong>%{filename}</strong>. Til <strong>%{total_items} contos</strong> va esser adjuntet a nov listes.
-      muting_html: Tu va <strong>remplazzar tui liste de silentiat contos</strong> per til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Tu va <strong>bloccar</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
-      bookmarks_html: Tu va adjunter til <strong>%{total_items} postas</strong> de <strong>%{filename}</strong> a tui <strong>marcatores</strong>.
-      domain_blocking_html: Tu va <strong>bloccar</strong> til <strong>%{total_items} dominias</strong> de <strong>%{filename}</strong>.
-      following_html: Tu va <strong>sequer</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
-      lists_html: Tu va adjunter til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong> a tui <strong>listes</strong>. Nov listes va esser creat si ne hay un liste a quel adjunter.
-      muting_html: Tu va <strong>silentiar</strong> til <strong>%{total_items} contos</strong> de <strong>%{filename}</strong>.
     preface: Tu posse importar data quel tu ha exportat de un altri servitor, quam un liste del gente quem tu seque o blocca.
     recent_imports: Recent importationes
     states:
@@ -1594,7 +1575,6 @@ ie:
     delete: Deletion de conto
     development: Developation
     edit_profile: Modificar profil
-    export: Exportation de data
     featured_tags: Recomandat hashtags
     import: Importar
     import_and_export: Importation e exportation
@@ -1639,23 +1619,12 @@ ie:
     edited_at_html: Modificat ye %{date}
     errors:
       in_reply_not_found: Li posta a quel tu prova responder ne sembla exister.
-    open_in_web: Aperter in web
     over_character_limit: límite de carácteres de %{max} transpassat
     pin_errors:
       direct: On ne posse pinglar postas queles es visibil solmen a mentionat usatores
       limit: Tu ja ha pinglat li maxim númere de postas
       ownership: On ne posse pinglar li posta de un altri person
       reblog: On ne posse pinglar un boost
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} persones"
-      total_votes:
-        one: "%{count} vote"
-        other: "%{count} votes"
-      vote: Votar
-    show_more: Monstrar plu
-    show_thread: Monstrar fil
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Direct

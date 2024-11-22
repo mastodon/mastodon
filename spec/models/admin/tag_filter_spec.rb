@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::TagFilter do
+RSpec.describe Admin::TagFilter do
   describe 'with invalid params' do
     it 'raises with key error' do
       filter = described_class.new(wrong: true)

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::StatusesController do
+RSpec.describe Admin::StatusesController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }

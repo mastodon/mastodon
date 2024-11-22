@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Admin::Accounts' do
+RSpec.describe 'Admin::Accounts' do
   let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
   before do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Settings / Exports / Lists' do
+RSpec.describe 'Settings / Exports / Lists' do
   describe 'GET /settings/exports/lists' do
     context 'with a signed in user who has lists' do
       let(:account) { Fabricate(:account, username: 'test', domain: 'example.com') }

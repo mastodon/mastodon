@@ -14,7 +14,7 @@ const labelRenderer: LabelRenderer = (displayedName, total, seeMoreHref) => {
     return (
       <FormattedMessage
         id='notification.favourite'
-        defaultMessage='{name} favorited your status'
+        defaultMessage='{name} favorited your post'
         values={{ name: displayedName }}
       />
     );

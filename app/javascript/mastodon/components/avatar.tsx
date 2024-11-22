@@ -1,9 +1,10 @@
+import { useState, useCallback } from 'react';
+
 import classNames from 'classnames';
 
+import { useHovering } from 'mastodon/../hooks/useHovering';
+import { autoPlayGif } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
-
-import { useHovering } from '../../hooks/useHovering';
-import { autoPlayGif } from '../initial_state';
 
 interface Props {
   account: Account | undefined; // FIXME: remove `undefined` once we know for sure its always there
@@ -25,6 +26,8 @@ export const Avatar: React.FC<Props> = ({
   counterBorderColor,
 }) => {
   const { hovering, handleMouseEnter, handleMouseLeave } = useHovering(animate);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const style = {
     ...styleFromParent,
@@ -37,16 +40,28 @@ export const Avatar: React.FC<Props> = ({
       ? account?.get('avatar')
       : account?.get('avatar_static');
 
+  const handleLoad = useCallback(() => {
+    setLoading(false);
+  }, [setLoading]);
+
+  const handleError = useCallback(() => {
+    setError(true);
+  }, [setError]);
+
   return (
     <div
       className={classNames('account__avatar', {
-        'account__avatar-inline': inline,
+        'account__avatar--inline': inline,
+        'account__avatar--loading': loading,
       })}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={style}
     >
-      {src && <img src={src} alt='' />}
+      {src && !error && (
+        <img src={src} alt='' onLoad={handleLoad} onError={handleError} />
+      )}
+
       {counter && (
         <div
           className='account__avatar__counter'

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Health check endpoint' do
+RSpec.describe 'Health check endpoint' do
   describe 'GET /health' do
     it 'returns http success when server is functioning' do
       get '/health'

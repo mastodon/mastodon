@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::UserCleanupScheduler do
+RSpec.describe Scheduler::UserCleanupScheduler do
   subject { described_class.new }
 
   let!(:new_unconfirmed_user) { Fabricate(:user) }

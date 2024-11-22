@@ -596,7 +596,7 @@ def disable_log_stdout!
 
   Rails.logger                 = dev_null
   ActiveRecord::Base.logger    = dev_null
-  HttpLog.configuration.logger = dev_null
+  HttpLog.configuration.logger = dev_null if defined?(HttpLog)
   Paperclip.options[:log]      = false
 end
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Home page' do
+RSpec.describe 'Home page' do
   context 'when signed in' do
     before { sign_in Fabricate(:user) }
 
@@ -11,6 +11,7 @@ describe 'Home page' do
 
       expect(page)
         .to have_css('noscript', text: /Mastodon/)
+        .and have_css('body', class: 'app-body')
     end
   end
 
@@ -20,6 +21,7 @@ describe 'Home page' do
 
       expect(page)
         .to have_css('noscript', text: /Mastodon/)
+        .and have_css('body', class: 'app-body')
     end
   end
 end

@@ -7,7 +7,6 @@ uk:
     hosted_on: Mastodon розміщено на %{domain}
     title: Про програму
   accounts:
-    follow: Підписатися
     followers:
       few: Підписники
       many: Підписників
@@ -26,9 +25,12 @@ uk:
       one: Допис
       other: Дописів
     posts_tab_heading: Дописів
+    self_follow_error: Ви не можете стежити за власним обліковим записом
   admin:
     account_actions:
       action: Виконати дію
+      already_silenced: Цей обліковий запис вже обмежено.
+      already_suspended: Цей обліковий запис вже було призупинено.
       title: Здійснити модераційну дію над %{acct}
     account_moderation_notes:
       create: Залишити нотатку
@@ -50,6 +52,7 @@ uk:
         title: Змінити адресу електронної пошти для %{username}
       change_role:
         changed_msg: Роль успішно змінено!
+        edit_roles: Керування ролями
         label: Змінити роль
         no_role: Немає ролі
         title: Змінити роль для %{username}
@@ -626,6 +629,7 @@ uk:
         suspend_description_html: Обліковий запис і весь його вміст будуть недоступними й врешті-решт видалені, і взаємодіяти з ним буде неможливо. Відновлення можливе протягом 30 днів. Закриває всі скарги на цей обліковий запис.
       actions_description_html: Визначте, які дії слід вжити для розв'язання цієї скарги. Якщо ви оберете каральні дії проти зареєстрованого облікового запису, про них буде надіслано сповіщення електронним листом, крім випадків, коли вибрано категорію <strong>Спам</strong>.
       actions_description_remote_html: Визначте, які дії слід вжити для розв'язання цього звіту. Це вплине тільки на те, як <strong>ваш</strong> сервер з'єднується з цим віддаленим обліковим записом і обробляє його вміст.
+      actions_no_posts: Ця скарга не має жодних пов'язаних дописів для видалення
       add_to_report: Додати ще подробиць до скарги
       already_suspended_badges:
         local: Вже призупинено на цьому сервері
@@ -786,7 +790,7 @@ uk:
         desc_html: Це залежить від зовнішніх скриптів hCaptcha, що може становити загрозу безпеці та приватності. Крім того, <strong>це може зробити процес реєстрації значно менш доступним для деяких людей (особливо з обмеженими можливостями)</strong>. З цих причин, будь ласка, розгляньте альтернативні заходи, такі як реєстрація на основі схвалення або на основі запрошення.
         title: Вимагати нових користувачів розв'язувати CAPTCHA для підтвердження облікового запису
       content_retention:
-        danger_zone: Зони небезпеки
+        danger_zone: Небезпечна зона
         preamble: Контролюйте, як зберігаються користувацькі матеріали в Mastodon.
         title: Зберігання вмісту
       default_noindex:
@@ -857,7 +861,6 @@ uk:
       original_status: Оригінальний допис
       reblogs: Поширення
       status_changed: Допис змінено
-      title: Дописи облікових записів
       trending: Популярне
       visibility: Видимість
       with_media: З медіа
@@ -900,6 +903,9 @@ uk:
         message_html: Ви не визначили будь-які правила сервера.
       sidekiq_process_check:
         message_html: Не працює процес Sidekiq для %{value} черги. Перегляньте конфігурації вашого Sidekiq
+      software_version_check:
+        action: Переглянути доступні оновлення
+        message_html: Доступне оновлення Mastodon.
       software_version_critical_check:
         action: Переглянути доступні оновлення
         message_html: Виявлено критичне оновлення Mastodon. Оновіться якнайшвидше.
@@ -1193,6 +1199,14 @@ uk:
       view_strikes: Переглянути попередні попередження вашому обліковому запису
     too_fast: Форму подано занадто швидко, спробуйте ще раз.
     use_security_key: Використовувати ключ безпеки
+  author_attribution:
+    example_title: Зразок тексту
+    hint_html: Ви пишете новини чи статті в блозі за межами Mastodon? Контролюйте, як вони підписуються, коли ними діляться на Mastodon.
+    instructions: 'Переконайтесь, що цей код розміщено в HTML-коді вашої статті:'
+    more_from_html: Більше від %{name}
+    s_blog: Блог %{name}
+    then_instructions: Потім додайте доменне ім'я публікації у поле нижче.
+    title: Атрибути авторства
   challenge:
     confirm: Далі
     hint_html: "<strong>Підказка:</strong> ми не будемо запитувати ваш пароль впродовж наступної години."
@@ -1201,7 +1215,6 @@ uk:
   crypto:
     errors:
       invalid_key: не є припустимим ключем Ed25519 або Curve25519
-      invalid_signature: не є дійсним підписом Ed25519
   date:
     formats:
       default: "%b %d, %Y"
@@ -1267,8 +1280,6 @@ uk:
       your_appeal_approved: Вашу апеляцію було схвалено
       your_appeal_pending: Ви не подавали апеляцій
       your_appeal_rejected: Вашу апеляцію було відхилено
-  domain_validator:
-    invalid_domain: не є допустимим ім'ям домену
   edit_profile:
     basic_information: Основна інформація
     hint_html: "<strong>Налаштуйте те, що люди бачитимуть у вашому загальнодоступному профілі та поруч із вашими дописами.</strong> Інші люди з більшою ймовірністю підпишуться на вас та взаємодіятимуть з вами, якщо у вас є заповнений профіль та зображення профілю."
@@ -1406,20 +1417,6 @@ uk:
       merge_long: Зберегти наявні записи та додати нові
       overwrite: Перезаписувати
       overwrite_long: Замінити наявні записи новими
-    overwrite_preambles:
-      blocking_html: Ви збираєтеся <strong>замінити ваш список блокування</strong> з <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong>.
-      bookmarks_html: Ви збираєтеся <strong>замінити ваші закладки</strong> з <strong>%{total_items} дописами</strong> з <strong>%{filename}</strong>.
-      domain_blocking_html: Ви збираєтеся <strong>замінити ваш список блокування доменів</strong> з <strong>%{total_items} доменами</strong> з <strong>%{filename}</strong>.
-      following_html: Ви збираєтеся <strong>слідкувати</strong> за <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong> і <strong>перестати слідкувати за всіма іншими</strong>.
-      lists_html: Ви збираєтеся <strong>замінити ваші списки</strong> вмістом з <strong>%{filename}</strong>. До нових списків буде додано до <strong>%{total_items} облікових записів</strong>.
-      muting_html: Ви збираєтеся <strong>замінити ваш список ігнорованих облікових записів</strong> з <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Ви збираєтеся <strong>заблокувати</strong> <strong>%{total_items} облікових записів</strong> з <strong>%{filename}</strong>.
-      bookmarks_html: Ви збираєтеся додати <strong>%{total_items} дописів</strong> з <strong>%{filename}</strong> до ваших <strong>закладок</strong>.
-      domain_blocking_html: Ви збираєтеся <strong>заблокувати</strong> <strong>%{total_items} доменів</strong> з <strong>%{filename}</strong>.
-      following_html: Ви збираєтеся <strong>слідкувати</strong> за <strong>%{total_items} обліковими записами</strong> з <strong>%{filename}</strong>.
-      lists_html: Ви збираєтеся додати до <strong>%{total_items} облікових записів</strong> з <strong>%{filename}</strong> до ваших <strong>списків</strong>. Нові списки будуть створені, якщо немає списку для додавання.
-      muting_html: Ви збираєтеся <strong>ігнорувати</strong> <strong>%{total_items} облікових записів</strong> з <strong>%{filename}</strong>.
     preface: Ви можете імпортувати дані, які ви експортували з іншого сервера, наприклад, список людей, яких ви відстежуєте або блокуєте.
     recent_imports: Останні імпорти
     states:
@@ -1506,6 +1503,7 @@ uk:
   media_attachments:
     validations:
       images_and_video: Не можна додати відео до допису з зображеннями
+      not_found: Медіа %{ids} не знайдено або вже прикріплено до іншого допису
       not_ready: Не можна прикріпити файли, оброблення яких ще не закінчилося. Спробуйте ще раз через хвилину!
       too_many: Не можна додати більше 4 файлів
   migrations:
@@ -1737,7 +1735,7 @@ uk:
     delete: Видалення облікового запису
     development: Розробка
     edit_profile: Редагувати профіль
-    export: Експорт даних
+    export: Експорт
     featured_tags: Рекомендовані хештеґи
     import: Імпорт
     import_and_export: Імпорт та експорт
@@ -1791,27 +1789,12 @@ uk:
     edited_at_html: Відредаговано %{date}
     errors:
       in_reply_not_found: Допису, на який ви намагаєтеся відповісти, не існує.
-    open_in_web: Відкрити у вебі
     over_character_limit: перевищено ліміт символів %{max}
     pin_errors:
       direct: Не можливо прикріпити дописи, які видимі лише згаданим користувачам
       limit: Ви вже закріпили максимальну кількість дописів
       ownership: Не можна закріпити чужий допис
       reblog: Не можна закріпити просунутий допис
-    poll:
-      total_people:
-        few: "%{count} людей"
-        many: "%{count} людей"
-        one: "%{count} людина"
-        other: "%{count} людей"
-      total_votes:
-        few: "%{count} голоса"
-        many: "%{count} голосів"
-        one: "%{count} голос"
-        other: "%{count} голоси"
-      vote: Проголосувати
-    show_more: Розгорнути
-    show_thread: Відкрити обговорення
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Особисто
@@ -2012,6 +1995,7 @@ uk:
     instructions_html: Скопіюйте та вставте наведений нижче код у HTML-код вашого сайту. Потім додайте адресу свого сайту в одне з додаткових полів вашого профілю на вкладці «Редагувати профіль» і збережіть зміни.
     verification: Підтвердження
     verified_links: Ваші підтверджені посилання
+    website_verification: Підтвердження вебсайтів
   webauthn_credentials:
     add: Додати новий ключ безпеки
     create:

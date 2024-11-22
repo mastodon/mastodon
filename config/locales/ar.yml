@@ -7,7 +7,6 @@ ar:
     hosted_on: ماستدون مُستضاف على %{domain}
     title: عن
   accounts:
-    follow: متابَعة
     followers:
       few: متابِعون
       many: متابِعون
@@ -54,6 +53,7 @@ ar:
         title: تعديل عنوان البريد الإلكتروني الخاص بـ %{username}
       change_role:
         changed_msg: تم تغيير بنجاح!
+        edit_roles: إدارة أدوار المستخدمين
         label: تغيير الدور
         no_role: بلا دور
         title: تغيير دور %{username}
@@ -847,7 +847,6 @@ ar:
       original_status: المنشور الأصلي
       reblogs: المعاد تدوينها
       status_changed: عُدّل المنشور
-      title: منشورات الحساب
       trending: المتداولة
       visibility: مدى الظهور
       with_media: تحتوي على وسائط
@@ -906,6 +905,7 @@ ar:
       moderation:
         title: الحالة
       newest: الأحدث
+      reset: إعادة التعيين
       review: حالة المراجعة
       search: البحث
       title: الوسوم
@@ -985,6 +985,7 @@ ar:
           other: مستخدَم من قِبل %{count} شخص خلال الأسبوع الماضي
           two: مستخدَم من قِبل %{count} شخصين خلال الأسبوع الماضي
           zero: مستخدَم من قِبل %{count} شخص خلال الأسبوع الماضي
+      title: التوصيات والرائجة
       trending: المتداولة
     warning_presets:
       add_new: إضافة واحد جديد
@@ -1141,8 +1142,10 @@ ar:
     security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
     setup:
+      email_below_hint_html: قم بفحص مجلد البريد المزعج الخاص بك، أو قم بطلب آخر. يمكنك تصحيح عنوان بريدك الإلكتروني إن كان خاطئا.
       email_settings_hint_html: انقر على الرابط الذي أرسلناه لك للتحقق من %{email}. سننتظر هنا.
       link_not_received: ألم تحصل على رابط؟
+      new_confirmation_instructions_sent: سوف تتلقى رسالة بريد إلكتروني جديدة مع رابط التأكيد في غضون بضع دقائق!
       title: تحقَّق من بريدك الوارِد
     sign_in:
       preamble_html: قم بتسجيل الدخول باستخدام بيانات الاعتماد الخاصة بك على <strong>%{domain}</strong>. إن استُضيف حسابك على خادم مختلف عن هذا الخادم، لن تتمكن من الولوج هنا.
@@ -1153,12 +1156,19 @@ ar:
       title: دعنا نجهّز %{domain}.
     status:
       account_status: حالة الحساب
+      confirming: في انتظار اكتمال تأكيد البريد الإلكتروني.
       functional: حسابك يعمل بشكل كامل.
+      pending: إن طلبك قيد المراجعة من قبل فريقنا. قد يستغرق هذا بعض الوقت. سوف تتلقى بريدا إلكترونيا إذا تمت الموافقة على طلبك.
       redirecting_to: حسابك غير نشط لأنه تم تحويله حاليا إلى %{acct}.
       self_destruct: نظرًا لإغلاق %{domain}، ستحصل فقط على وصول محدود إلى حسابك.
       view_strikes: عرض العقوبات السابقة المُطَبَّقة ضد حسابك
     too_fast: تم إرسال النموذج بسرعة كبيرة، حاول مرة أخرى.
     use_security_key: استخدام مفتاح الأمان
+  author_attribution:
+    example_title: عينة نص
+    more_from_html: المزيد من %{name}
+    s_blog: مدونة %{name}
+    title: إسناد المؤلف
   challenge:
     confirm: واصل
     hint_html: "<strong>توصية:</strong> لن نطلب منك ثانية كلمتك السرية في غضون الساعة اللاحقة."
@@ -1167,7 +1177,6 @@ ar:
   crypto:
     errors:
       invalid_key: ليس بمفتاح Ed25519 أو Curve25519 صالح
-      invalid_signature: ليس بتوقيع Ed25519 صالح
   date:
     formats:
       default: "%d %b %Y"
@@ -1196,6 +1205,9 @@ ar:
       before: 'يرجى قراءة هذه الملاحظات بتأنّي قبل المواصلة:'
       caches: قد يبقى المحتوى الذي تم تخزينه مؤقتًا مِن طرف الخوادم الأخرى
       data_removal: سوف تُحذَف منشوراتك والبيانات الأخرى نهائيا
+      email_change_html: بإمكانك <a href="%{path}">تغيير عنوان بريدك الإلكتروني</a> دون أن يُحذف حسابك
+      email_contact_html: إن لم تتلقّ أي شيء ، يمكنك مراسلة <a href="mailto:%{email}">%{email}</a> لطلب المساعدة
+      email_reconfirmation_html: إن لم تتلقّ الرسالة الإلكترونية للتأكيد ، بإمكانك <a href="%{path}">إعادة طلبها ثانيةً</a>
       irreversible: لن يكون بإمكانك استرجاع أو إعادة تنشيط حسابك
       more_details_html: للمزيد مِن التفاصيل ، يرجى الإطلاع على <a href="%{terms_path}">سياسة الخصوصية</a>.
       username_available: سيصبح اسم مستخدمك متوفرا ثانية
@@ -1230,8 +1242,6 @@ ar:
       your_appeal_approved: تمت الموافقة على طعنك
       your_appeal_pending: لقد قمت بتقديم طعن
       your_appeal_rejected: تم رفض طعنك
-  domain_validator:
-    invalid_domain: ليس بإسم نطاق صالح
   edit_profile:
     basic_information: معلومات أساسية
     hint_html: "<strong>قم بتخصيص ما سيراه الناس في ملفك الشخصي العام وبجوار منشوراتك.</strong> من المرجح أن يتابعك أشخاص آخرون ويتفاعلون معك إن كان لديك صفحة شخصية مملوء وصورة."
@@ -1383,20 +1393,6 @@ ar:
       merge_long: الإبقاء علي التسجيلات الحالية وإضافة الجديدة
       overwrite: إعادة الكتابة
       overwrite_long: استبدال التسجيلات الحالية بالجديدة
-    overwrite_preambles:
-      blocking_html: أنت على وشك <strong>استبدال قائمة الحظر</strong> بما يصل إلى <strong>%{total_items} من الحسابات</strong> من <strong>%{filename}</strong>.
-      bookmarks_html: أنت على وشك <strong>استبدال إشاراتك المرجعية</strong> بما يصل إلى <strong>%{total_items} من المشاركات</strong> من <strong>%{filename}</strong>.
-      domain_blocking_html: أنت على وشك <strong>إرشاداتك المرجعية</strong> بما يصل إلى <strong>%{total_items} من المشاركات</strong> من <strong>%{filename}</strong>.
-      following_html: أنت على وشك <strong>متابعة</strong> ما يصل إلى <strong>%{total_items} من الحسابات</strong> من <strong>%{filename}</strong> و<strong>التوقف عن متابعة أي شخص آخر</strong>.
-      lists_html: إنّك بصدد <strong>استبدال قوائمك</strong> بمحتوى مِلَفّ <strong>%{filename}</strong>. ما يُقارِب <strong>%{total_items} حسابًا</strong> سوف تُضاف إلى قوائم جديدة.
-      muting_html: أنت على وشك <strong>استبدال قائمة الحسابات الصامتة</strong> بما يصل إلى <strong>%{total_items} من الحسابات</strong> من <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: أنت على وشك <strong>حظر</strong> ما يصل إلى <strong>%{total_items} من الحسابات</strong> من <strong>%{filename}</strong>.
-      bookmarks_html: أنت على وشك إضافة ما يصل إلى <strong>%{total_items} من المشاركات</strong> من <strong>%{filename}</strong> إلى <strong>إشاراتك المرجعية</strong>.
-      domain_blocking_html: أنت على وشك <strong>حظر</strong> ما يصل إلى <strong>%{total_items} من النطاقات</strong> من <strong>%{filename}</strong>.
-      following_html: أنت على وشك <strong>متابعة</strong> ما يصل إلى <strong>%{total_items} من الحسابات</strong> من <strong>%{filename}</strong>.
-      lists_html: أنت على وشك إضافة ما يصل إلى <strong>%{total_items} حسابات</strong> من <strong>%{filename}</strong> إلى <strong>قوائمك</strong>. سيتم إنشاء قوائم جديدة في حالة عدم وجود قائمة للإضافة إليها.
-      muting_html: أنت على وشك <strong>تجاهل</strong> ما يصل إلى <strong>%{total_items} من الحسابات</string> من <string>%{filename}</string>.
     preface: بإمكانك استيراد بيانات قد قُمتَ بتصديرها مِن مثيل خادم آخَر، كقوائم المستخدِمين الذين كنتَ تتابِعهم أو قُمتَ بحظرهم.
     recent_imports: الاستيرادات الحديثة
     states:
@@ -1448,7 +1444,7 @@ ar:
       two: "%{count} استخدامات"
       zero: "%{count} استخدامات"
     max_uses_prompt: بلا حدود
-    prompt: توليد و مشاركة روابط للسماح للآخَرين بالنفاذ إلى مثيل الخادم هذا
+    prompt: توليد و مشاركة روابط للسماح للآخَرين النفاذ إلى هذا الخادم
     table:
       expires_at: تنتهي مدة صلاحيتها في
       uses: عدد الاستخدامات
@@ -1460,6 +1456,7 @@ ar:
     authentication_methods:
       otp: تطبيق المصادقة الثنائية
       password: كلمة المرور
+      sign_in_token: رمز الأمان للبريد الإلكتروني
       webauthn: مفاتيح الأمان
     description_html: إذا رأيت النشاط الذي لا تتعرف عليه، فكر في تغيير كلمة المرور الخاصة بك وتفعيل المصادقة ذات العاملين.
     empty: لا يوجد سجل مصادقة متاح
@@ -1553,6 +1550,7 @@ ar:
     update:
       subject: قام %{name} بتحرير منشور
   notifications:
+    administration_emails: إشعارات البريد الإلكتروني الإدارية
     email_events_hint: 'اختر الأحداث التي تريد أن تصِلَك اشعارات عنها:'
   number:
     human:
@@ -1706,7 +1704,6 @@ ar:
     delete: حذف الحسابات
     development: التطوير
     edit_profile: تعديل الصفحة التعريفية
-    export: تصدير البيانات
     featured_tags: الوسوم الشائعة
     import: استيراد
     import_and_export: استيراد وتصدير
@@ -1763,31 +1760,12 @@ ar:
     edited_at_html: عُدّل في %{date}
     errors:
       in_reply_not_found: إنّ المنشور الذي تحاول الرد عليه غير موجود على ما يبدو.
-    open_in_web: افتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
     pin_errors:
       direct: لا يمكن تثبيت المنشورات التي يراها فقط المتسخدمون المشار إليهم
       limit: لقد بلغت الحد الأقصى للمنشورات المثبتة
       ownership: لا يمكن تثبيت منشور نشره شخص آخر
       reblog: لا يمكن تثبيت إعادة نشر
-    poll:
-      total_people:
-        few: "%{count} أشخاص"
-        many: "%{count} أشخاص"
-        one: "%{count} شخص واحد"
-        other: "%{count} شخصا"
-        two: "%{count} شخصين"
-        zero: "%{count} شخص"
-      total_votes:
-        few: "%{count} أصوات"
-        many: "%{count} أصوات"
-        one: صوت واحد %{count}
-        other: "%{count} صوتا"
-        two: صوتين %{count}
-        zero: بدون صوت %{count}
-      vote: صوّت
-    show_more: أظهر المزيد
-    show_thread: اعرض خيط المحادثة
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: مباشرة
@@ -1811,13 +1789,13 @@ ar:
     keep_media: الاحتفاظ بالمنشورات ذات وسائط مرفقة
     keep_media_hint: لن تُحذف أي من منشوراتك التي تحتوي على وسائط مرفقة
     keep_pinned: الاحتفاظ بالمنشورات المثبتة
-    keep_pinned_hint: لم تقوم بحذف أي من مشاركتك المثبتة
+    keep_pinned_hint: لن تحذف أي من منشوراتك المثبتة
     keep_polls: الاحتفاظ باستطلاعات الرأي
-    keep_polls_hint: لم تقم بحذف أي من استطلاعاتك
+    keep_polls_hint: لن يتم حذف أي من استطلاعات الرأي الخاصة بك
     keep_self_bookmark: احتفظ بالمنشورات التي أدرجتها في الفواصل المرجعية
-    keep_self_bookmark_hint: لم تقم بحذف مشاركاتك الخاصة إذا قمت بوضع علامة مرجعية عليها
+    keep_self_bookmark_hint: لن تحذف منشوراتك الخاصة إذا قمت بوضع علامة مرجعية عليها
     keep_self_fav: احتفظ بالمنشورات التي أدرجتها في المفضلة
-    keep_self_fav_hint: لم تقم بحذف مشاركاتك الخاصة إذا كنت قد فضلتهم
+    keep_self_fav_hint: لن تحذف منشوراتك الخاصة إذا كنت قد فضلتها
     min_age:
       '1209600': أسبوعان
       '15778476': 6 أشهر
@@ -1828,9 +1806,9 @@ ar:
       '63113904': سنتان
       '7889238': 3 أشهر
     min_age_label: عتبة العمر
-    min_favs: إبقاء المشاركات المفضلة أكثر من
+    min_favs: إبقاء المنشورات المفضلة على الأقل
     min_favs_hint: لن تُحذف أي من منشوراتك التي تلقّت على الأقل هذا العدد من المفضلات. اتركه فارغاً لحذف المنشورات مهما كان عدد المفضلات التي تلقتها
-    min_reblogs: إبقاء المنشورات المعاد نشرها أكثر من
+    min_reblogs: إبقاء المنشورات المعاد نشرها على الأقل
     min_reblogs_hint: لن تُحذف أي من منشوراتك التي أعيد مشاركتها أكثر من هذا العدد من المرات. اتركه فارغاً لحذف المنشورات بغض النظر عن عدد إعادات النشر
   stream_entries:
     sensitive_content: محتوى حساس
@@ -1982,6 +1960,7 @@ ar:
     instructions_html: قم بنسخ ولصق التعليمة البرمجية أدناه في شفرة HTML لموقعك الخاص على الويب. ثم أضف عنوان موقع الويب الخاص بك إلى أحد الحقول الإضافية في ملفك التعريفي عبر لسان "تعديل الملف التعريفي" ثم احفظ التغييرات.
     verification: التحقق
     verified_links: روابطك التي تم التحقق منها
+    website_verification: التحقق من موقع الويب
   webauthn_credentials:
     add: إضافة مفتاح أمان جديد
     create:

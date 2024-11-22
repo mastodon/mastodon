@@ -16,7 +16,9 @@ class StatusReachFinder
   private
 
   def reached_account_inboxes
-    Account.where(id: reached_account_ids).inboxes
+    scope = Account.where(id: reached_account_ids)
+    scope.merge!(Account.without_suspended) unless unsafe?
+    scope.inboxes
   end
 
   def reached_account_ids

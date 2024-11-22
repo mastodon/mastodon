@@ -1,4 +1,4 @@
-.announcements-list__item
+.announcements-list__item{ id: dom_id(announcement) }
   = link_to edit_admin_announcement_path(announcement), class: 'announcements-list__item__title' do
     = truncate(announcement.text)
 

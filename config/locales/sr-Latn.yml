@@ -7,7 +7,6 @@ sr-Latn:
     hosted_on: Mastodon hostovan na %{domain}
     title: O instanci
   accounts:
-    follow: Zaprati
     followers:
       few: Pratioca
       one: Pratilac
@@ -808,7 +807,6 @@ sr-Latn:
       original_status: Originalna objava
       reblogs: Deljenja
       status_changed: Objava promenjena
-      title: Statusi naloga
       trending: U trendu
       visibility: Vidljivost
       with_media: Sa multimedijom
@@ -1111,7 +1109,6 @@ sr-Latn:
   crypto:
     errors:
       invalid_key: nije validan Ed25519 ili Curve25519 ključ
-      invalid_signature: nije validan Ed25519 potpis
   date:
     formats:
       default: "%d. %b. %Y."
@@ -1174,8 +1171,6 @@ sr-Latn:
       your_appeal_approved: Vaša žalba je uvažena
       your_appeal_pending: Priložili ste žalbu
       your_appeal_rejected: Vaša žalba je odbijena
-  domain_validator:
-    invalid_domain: nelegitimno ime domena
   edit_profile:
     basic_information: Osnovne informacije
     hint_html: "<strong>Prilagodite šta ljudi vide na vašem javnom profilu i pored vaših objava.</strong> Veća je verovatnoća da će vas drugi pratiti i komunicirati sa vama kada imate popunjen profil i sliku profila."
@@ -1306,20 +1301,6 @@ sr-Latn:
       merge_long: Zadržite postojeće zapise i dodajte nove
       overwrite: Zameni
       overwrite_long: Zameni trenutne zapise novima
-    overwrite_preambles:
-      blocking_html: Upravo ćete <strong>zameniti svoju listu blokiranih</strong> sa do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
-      bookmarks_html: Upravo ćete <strong>zameniti svoje obeleživače</strong> sa do <strong>%{total_items} objava</strong> iz <strong>%{filename}</strong>.
-      domain_blocking_html: Upravo ćete <strong>zameniti svoju listu blokiranih domena</strong> sa do <strong>%{total_items} domena</strong> iz <strong>%{filename}</strong>.
-      following_html: Upravo ćete <strong>pratiti</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong> and <strong>i prestati sa praćenjem bilo koga drugog</strong>.
-      lists_html: Spremate se da <strong>zamenite svoje liste</strong> sadržajem od <strong>%{filename}</strong>. Do <strong>%{total_items} naloga</strong> će biti dodato na nove liste.
-      muting_html: Upravo ćete <strong>zameniti svoju listu ignorisanih naloga</strong> sa do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Upravo ćete <strong>blokirati</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
-      bookmarks_html: Upravo ćete dodati do <strong>%{total_items} objava</strong> iz <strong>%{filename}</strong> u vaše <strong>obeleživače</strong>.
-      domain_blocking_html: Upravo ćete <strong>blokirati</strong> do <strong>%{total_items} domena</strong> iz <strong>%{filename}</strong>.
-      following_html: Upravo ćete <strong>pratiti</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
-      lists_html: Spremate se da dodate do <strong>%{total_items} naloga</strong> od <strong>%{filename}</strong> na svoje <strong>liste</strong>. Nove liste će biti kreirane ako ne postoji lista za dodavanje.
-      muting_html: Upravo ćete <strong>ignorisati</strong> do <strong>%{total_items} naloga</strong> iz <strong>%{filename}</strong>.
     preface: Možete uvesti podatke koje ste izvezli sa druge instance, kao što su liste ljudi koje ste pratili ili blokirali.
     recent_imports: Nedavni uvozi
     states:
@@ -1623,7 +1604,6 @@ sr-Latn:
     delete: Brisanje naloga
     development: Razvoj
     edit_profile: Uređivanje profila
-    export: Izvoz podataka
     featured_tags: Istaknute heš oznake
     import: Uvoz
     import_and_export: Uvoz i izvoz
@@ -1672,25 +1652,12 @@ sr-Latn:
     edited_at_html: Izmenjeno %{date}
     errors:
       in_reply_not_found: Objava na koju pokušavate da odgovorite naizgled ne postoji.
-    open_in_web: Otvori u vebu
     over_character_limit: ograničenje od %{max} karaktera prekoračeno
     pin_errors:
       direct: Objave koje su vidljive samo pomenutim korisnicima ne mogu biti prikačene
       limit: Već ste zakačili maksimalan broj objava
       ownership: Tuđa objava se ne može zakačiti
       reblog: Podrška ne može da se prikači
-    poll:
-      total_people:
-        few: "%{count} osobe"
-        one: "%{count} osoba"
-        other: "%{count} ljudi"
-      total_votes:
-        few: "%{count} glasa"
-        one: "%{count} glas"
-        other: "%{count} glasova"
-      vote: Glasajte
-    show_more: Prikaži još
-    show_thread: Prikaži niz
     title: "%{name}: „%{quote}”"
     visibilities:
       direct: Direktno

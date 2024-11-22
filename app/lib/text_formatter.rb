@@ -33,17 +33,24 @@ class TextFormatter
   def to_s
     return ''.html_safe if text.blank?
 
-    html = rewrite do |entity|
-      if entity[:url]
-        link_to_url(entity)
-      elsif entity[:hashtag]
-        link_to_hashtag(entity)
-      elsif entity[:screen_name]
-        link_to_mention(entity)
+    html = nil
+    MastodonOTELTracer.in_span('TextFormatter#to_s extract_and_rewrite') do
+      html = rewrite do |entity|
+        if entity[:url]
+          link_to_url(entity)
+        elsif entity[:hashtag]
+          link_to_hashtag(entity)
+        elsif entity[:screen_name]
+          link_to_mention(entity)
+        end
       end
     end
 
-    html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
+    if multiline?
+      MastodonOTELTracer.in_span('TextFormatter#to_s simple_format') do
+        html = simple_format(html, {}, sanitize: false).delete("\n")
+      end
+    end
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -93,48 +100,54 @@ class TextFormatter
   end
 
   def link_to_url(entity)
-    TextFormatter.shortened_link(entity[:url], rel_me: with_rel_me?)
+    MastodonOTELTracer.in_span('TextFormatter#link_to_url') do
+      TextFormatter.shortened_link(entity[:url], rel_me: with_rel_me?)
+    end
   end
 
   def link_to_hashtag(entity)
-    hashtag = entity[:hashtag]
-    url     = tag_url(hashtag)
+    MastodonOTELTracer.in_span('TextFormatter#link_to_hashtag') do
+      hashtag = entity[:hashtag]
+      url     = tag_url(hashtag)
 
-    <<~HTML.squish
-      <a href="#{h(url)}" class="mention hashtag" rel="tag">#<span>#{h(hashtag)}</span></a>
-    HTML
+      <<~HTML.squish
+        <a href="#{h(url)}" class="mention hashtag" rel="tag">#<span>#{h(hashtag)}</span></a>
+      HTML
+    end
   end
 
   def link_to_mention(entity)
-    username, domain = entity[:screen_name].split('@')
-    domain           = nil if local_domain?(domain)
-    account          = nil
+    MastodonOTELTracer.in_span('TextFormatter#link_to_mention') do
+      username, domain = entity[:screen_name].split('@')
+      domain           = nil if local_domain?(domain)
+      account          = nil
 
-    if preloaded_accounts?
-      same_username_hits = 0
+      if preloaded_accounts?
+        same_username_hits = 0
 
-      preloaded_accounts.each do |other_account|
-        same_username = other_account.username.casecmp(username).zero?
-        same_domain   = other_account.domain.nil? ? domain.nil? : other_account.domain.casecmp(domain)&.zero?
+        preloaded_accounts.each do |other_account|
+          same_username = other_account.username.casecmp(username).zero?
+          same_domain   = other_account.domain.nil? ? domain.nil? : other_account.domain.casecmp(domain)&.zero?
 
-        if same_username && !same_domain
-          same_username_hits += 1
-        elsif same_username && same_domain
-          account = other_account
+          if same_username && !same_domain
+            same_username_hits += 1
+          elsif same_username && same_domain
+            account = other_account
+          end
         end
+      else
+        account = entity_cache.mention(username, domain)
       end
-    else
-      account = entity_cache.mention(username, domain)
+
+      return "@#{h(entity[:screen_name])}" if account.nil?
+
+      url = ActivityPub::TagManager.instance.url_for(account)
+      display_username = same_username_hits&.positive? || with_domains? ? account.pretty_acct : account.username
+
+      <<~HTML.squish
+        <span class="h-card" translate="no"><a href="#{h(url)}" class="u-url mention">@<span>#{h(display_username)}</span></a></span>
+      HTML
     end
-
-    return "@#{h(entity[:screen_name])}" if account.nil?
-
-    url = ActivityPub::TagManager.instance.url_for(account)
-    display_username = same_username_hits&.positive? || with_domains? ? account.pretty_acct : account.username
-
-    <<~HTML.squish
-      <span class="h-card" translate="no"><a href="#{h(url)}" class="u-url mention">@<span>#{h(display_username)}</span></a></span>
-    HTML
   end
 
   def entity_cache

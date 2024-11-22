@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Share page', :js, :streaming do
+RSpec.describe 'Share page', :js, :streaming do
   include ProfileStories
 
   let(:email)               { 'test@example.com' }

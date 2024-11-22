@@ -73,6 +73,14 @@ class Admin::AccountAction
       end
     end
 
+    def disabled_types_for_account(account)
+      if account.suspended_locally?
+        %w(silence suspend)
+      elsif account.silenced?
+        %w(silence)
+      end
+    end
+
     def i18n_scope
       :activerecord
     end

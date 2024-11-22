@@ -5,7 +5,7 @@ dev_null = Logger.new('/dev/null')
 Rails.logger                 = dev_null
 ActiveRecord::Base.logger    = dev_null
 ActiveJob::Base.logger       = dev_null
-HttpLog.configuration.logger = dev_null
+HttpLog.configuration.logger = dev_null if defined?(HttpLog)
 Paperclip.options[:log]      = false
 Chewy.logger                 = dev_null
 
@@ -51,7 +51,7 @@ module Mastodon::CLI
               result = ActiveRecord::Base.connection_pool.with_connection do
                 yield(item)
               ensure
-                RedisConfiguration.pool.checkin if Thread.current[:redis]
+                RedisConnection.pool.checkin if Thread.current[:redis]
                 Thread.current[:redis] = nil
               end
 

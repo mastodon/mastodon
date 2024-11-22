@@ -16,7 +16,7 @@ class Scheduler::UserCleanupScheduler
   private
 
   def clean_unconfirmed_accounts!
-    User.unconfirmed.where(confirmation_sent_at: ..UNCONFIRMED_ACCOUNTS_MAX_AGE_DAYS.days.ago).reorder(nil).find_in_batches do |batch|
+    User.unconfirmed.where(confirmation_sent_at: ..UNCONFIRMED_ACCOUNTS_MAX_AGE_DAYS.days.ago).find_in_batches do |batch|
       # We have to do it separately because of missing database constraints
       AccountModerationNote.where(target_account_id: batch.map(&:account_id)).delete_all
       Account.where(id: batch.map(&:account_id)).delete_all

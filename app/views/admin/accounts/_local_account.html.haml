@@ -52,7 +52,7 @@
 - if can?(:reset_password, account.user)
   %tr
     %td
-      = table_link_to 'key', t('admin.accounts.reset_password'), admin_account_reset_path(account.id), method: :create, data: { confirm: t('admin.accounts.are_you_sure') }
+      = table_link_to 'key', t('admin.accounts.reset_password'), admin_account_reset_path(account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
 %tr
   %th= t('simple_form.labels.defaults.locale')
   %td= standard_locale_name(account.user_locale)

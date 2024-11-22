@@ -7,7 +7,6 @@ ms:
     hosted_on: Mastodon dihoskan di %{domain}
     title: Perihal
   accounts:
-    follow: Ikut
     followers:
       other: Pengikut
     following: Mengikuti
@@ -769,7 +768,6 @@ ms:
       original_status: Hantaran asal
       reblogs: Ulang siar
       status_changed: Hantaran diubah
-      title: Hantaran akaun
       trending: Sohor kini
       visibility: Visibiliti
       with_media: Dengan media
@@ -1052,7 +1050,6 @@ ms:
   crypto:
     errors:
       invalid_key: bukan kunci Ed25519 atau Curve25519 yang sah
-      invalid_signature: bukan tandatangan Ed25519 yang sah
   date:
     formats:
       default: "%b %d, %Y"
@@ -1115,8 +1112,6 @@ ms:
       your_appeal_approved: Rayuan anda telah diluluskan
       your_appeal_pending: Anda telah menghantar rayuan
       your_appeal_rejected: Rayuan anda telah ditolak
-  domain_validator:
-    invalid_domain: bukan nama domain yang sah
   edit_profile:
     basic_information: Maklumat Asas
     hint_html: "<strong>Sesuaikan perkara yang orang lihat pada profil awam anda dan di sebelah siaran anda.</strong> Orang lain lebih berkemungkinan mengikuti anda kembali dan berinteraksi dengan anda apabila anda mempunyai profil dan gambar profil yang telah diisi."
@@ -1227,20 +1222,6 @@ ms:
       merge_long: Simpan rekod sedia ada dan tambah rekod baharu
       overwrite: Tulis ganti
       overwrite_long: Gantikan rekod semasa dengan yang baharu
-    overwrite_preambles:
-      blocking_html: Anda akan <strong>menggantikan senarai blok anda</strong> dengan sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
-      bookmarks_html: Anda akan <strong>menggantikan penanda halaman anda</strong> dengan sehingga <strong>%{total_items} siaran</strong> daripada <strong>%{filename}</strong>.
-      domain_blocking_html: Anda akan <strong>menggantikan senarai blok domain anda</strong> dengan sehingga <strong>%{total_items} domain</strong> daripada <strong>%{filename}</strong>.
-      following_html: Anda akan <strong>mengikuti</strong> sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong> dan <strong>berhenti mengikuti orang lain</strong>.
-      lists_html: Anda akan <strong>menggantikan senarai anda</strong> dengan kandungan <strong>%{filename}</strong>. Sehingga <strong>%{total_items} akaun</strong> akan ditambahkan pada senarai baharu.
-      muting_html: Anda akan <strong>menggantikan senarai akaun yang diredamkan</strong> dengan sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Anda akan <strong>menyekat</strong> sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
-      bookmarks_html: Anda akan menambah sehingga <strong>%{total_items} pos</strong> daripada <strong>%{filename}</strong> ke <strong>penanda halaman</strong> anda.
-      domain_blocking_html: Anda akan <strong>menyekat</strong> sehingga <strong>%{total_items} domain</strong> daripada <strong>%{filename}</strong>.
-      following_html: Anda akan <strong>mengikuti</strong> sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
-      lists_html: Anda akan menambah sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong> ke <strong>senarai</strong> anda. Senarai baharu akan dibuat jika tiada senarai untuk ditambah.
-      muting_html: Anda akan <strong>membisukan</strong> sehingga <strong>%{total_items} akaun</strong> daripada <strong>%{filename}</strong>.
     preface: Anda boleh mengimport data yang telah anda eksport dari server lain, seperti senarai orang yang anda ikuti atau sekat.
     recent_imports: Import terkini
     states:
@@ -1533,7 +1514,6 @@ ms:
     delete: Pemadaman akaun
     development: Pembangunan
     edit_profile: Sunting profil
-    export: Eksport data
     featured_tags: Tanda pagar terpilih
     import: Import
     import_and_export: Import dan eksport
@@ -1562,21 +1542,12 @@ ms:
     edited_at_html: Disunting %{date}
     errors:
       in_reply_not_found: Pos yang anda cuba balas nampaknya tidak wujud.
-    open_in_web: Buka dalam web
     over_character_limit: had aksara %{max} melebihi
     pin_errors:
       direct: Pos yang hanya boleh dilihat oleh pengguna yang disebut tidak boleh disematkan
       limit: Anda telah menyematkan bilangan maksimum pos
       ownership: Siaran orang lain tidak boleh disematkan
       reblog: Rangsangan tidak boleh disematkan
-    poll:
-      total_people:
-        other: "%{count} orang"
-      total_votes:
-        other: "%{count} undi"
-      vote: Undi
-    show_more: Tunjuk lebih banyak
-    show_thread: Tunjuk bebenang
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Terus

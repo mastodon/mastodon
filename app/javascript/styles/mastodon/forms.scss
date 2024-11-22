@@ -12,6 +12,43 @@ code {
   margin: 50px auto;
 }
 
+.form-section {
+  border-radius: 8px;
+  background: var(--surface-background-color);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.fade-out-top {
+  position: relative;
+  overflow: hidden;
+  height: 160px;
+  max-width: 566px;
+  margin-inline: auto;
+
+  &::after {
+    content: '';
+    display: block;
+    background: linear-gradient(
+      to bottom,
+      var(--surface-background-color),
+      transparent
+    );
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 100px;
+    pointer-events: none;
+  }
+
+  & > div {
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: 0;
+  }
+}
+
 .indicator-icon {
   display: flex;
   align-items: center;
@@ -277,6 +314,10 @@ code {
 
     ul {
       columns: 2;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        columns: 1;
+      }
     }
   }
 
@@ -1214,6 +1255,8 @@ code {
 }
 
 .app-form {
+  padding: 20px;
+
   &__avatar-input,
   &__header-input {
     display: block;
@@ -1327,6 +1370,57 @@ code {
       display: flex;
       border-inline-start: 1px solid var(--background-border-color);
       padding-inline-start: 16px;
+    }
+  }
+
+  &__link {
+    display: flex;
+    gap: 16px;
+    padding: 8px 0;
+    align-items: center;
+    text-decoration: none;
+    color: $primary-text-color;
+    margin-bottom: 16px;
+
+    &__text {
+      flex: 1 1 auto;
+      font-size: 14px;
+      line-height: 20px;
+      color: $darker-text-color;
+
+      strong {
+        font-weight: 600;
+        display: block;
+        color: $primary-text-color;
+      }
+    }
+  }
+}
+
+.avatar-pile {
+  display: flex;
+  align-items: center;
+
+  img {
+    display: block;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--background-color);
+    background: var(--surface-background-color);
+    margin-inline-end: -16px;
+    transform: rotate(0);
+
+    &:first-child {
+      transform: rotate(-4deg);
+    }
+
+    &:nth-child(2) {
+      transform: rotate(-2deg);
+    }
+
+    &:last-child {
+      margin-inline-end: 0;
     }
   }
 }

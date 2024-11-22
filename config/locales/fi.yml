@@ -7,7 +7,6 @@ fi:
     hosted_on: Mastodon palvelimella %{domain}
     title: Tietoja
   accounts:
-    follow: Seuraa
     followers:
       one: seuraaja
       other: seuraajaa
@@ -22,9 +21,12 @@ fi:
       one: Julkaisu
       other: viestiä
     posts_tab_heading: Julkaisut
+    self_follow_error: Oman tilisi seuraaminen ei ole sallittua
   admin:
     account_actions:
       action: Suorita toimi
+      already_silenced: Tätä tiliä on jo rajoitettu.
+      already_suspended: Tämä tili on jo jäädytetty.
       title: Suorita moderointitoimi käyttäjälle %{acct}
     account_moderation_notes:
       create: Jätä muistiinpano
@@ -46,6 +48,7 @@ fi:
         title: Vaihda käyttäjän %{username} sähköposti-osoite
       change_role:
         changed_msg: Roolin vaihto onnistui!
+        edit_roles: Hallinnoi käyttäjien rooleja
         label: Vaihda rooli
         no_role: Ei roolia
         title: Vaihda käyttäjän %{username} rooli
@@ -184,6 +187,7 @@ fi:
         create_domain_block: Luo verkkotunnuksen esto
         create_email_domain_block: Luo sähköpostiverkkotunnuksen esto
         create_ip_block: Luo IP-sääntö
+        create_relay: Luo välittäjä
         create_unavailable_domain: Luo ei-saatavilla oleva verkkotunnus
         create_user_role: Luo rooli
         demote_user: Alenna käyttäjä
@@ -195,14 +199,17 @@ fi:
         destroy_email_domain_block: Poista sähköpostiverkkotunnuksen esto
         destroy_instance: Tyhjennä verkkotunnus
         destroy_ip_block: Poista IP-sääntö
+        destroy_relay: Poista välittäjä
         destroy_status: Poista julkaisu
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
         destroy_user_role: Hävitä rooli
         disable_2fa_user: Poista kaksivaiheinen todennus käytöstä
         disable_custom_emoji: Poista mukautettu emoji käytöstä
+        disable_relay: Poista välittäjä käytöstä
         disable_sign_in_token_auth_user: Poista sähköpostitunnuksella todennus käytöstä käyttäjältä
         disable_user: Poista tili käytöstä
         enable_custom_emoji: Ota mukautettu emoji käyttöön
+        enable_relay: Ota välittäjä käyttöön
         enable_sign_in_token_auth_user: Ota sähköpostitunnuksella todennus käyttöön käyttäjälle
         enable_user: Ota tili käyttöön
         memorialize_account: Muuta muistotiliksi
@@ -213,7 +220,7 @@ fi:
         reopen_report: Avaa raportti uudelleen
         resend_user: Lähetä vahvistusviesti uudelleen
         reset_password_user: Palauta salasana
-        resolve_report: Selvitä raportti
+        resolve_report: Ratkaise raportti
         sensitive_account: Pakota arkaluonteiseksi tiliksi
         silence_account: Rajoita tiliä
         suspend_account: Jäädytä tili
@@ -244,6 +251,7 @@ fi:
         create_domain_block_html: "%{name} esti verkkotunnuksen %{target}"
         create_email_domain_block_html: "%{name} esti sähköpostiverkkotunnuksen %{target}"
         create_ip_block_html: "%{name} loi säännön IP-osoitteelle %{target}"
+        create_relay_html: "%{name} loi välittäjän %{target}"
         create_unavailable_domain_html: "%{name} pysäytti toimituksen verkkotunnukseen %{target}"
         create_user_role_html: "%{name} loi roolin %{target}"
         demote_user_html: "%{name} alensi käyttäjän %{target}"
@@ -255,14 +263,17 @@ fi:
         destroy_email_domain_block_html: "%{name} kumosi sähköpostiverkkotunnuksen %{target} eston"
         destroy_instance_html: "%{name} tyhjensi verkkotunnuksen %{target}"
         destroy_ip_block_html: "%{name} poisti säännön IP-osoitteelta %{target}"
+        destroy_relay_html: "%{name} poisti välittäjän %{target}"
         destroy_status_html: "%{name} poisti käyttäjän %{target} julkaisun"
         destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
         destroy_user_role_html: "%{name} poisti roolin %{target}"
         disable_2fa_user_html: "%{name} poisti käyttäjältä %{target} vaatimuksen kaksivaiheiseen todentamiseen"
         disable_custom_emoji_html: "%{name} poisti emojin %{target} käytöstä"
+        disable_relay_html: "%{name} poisti välittäjän %{target} käytöstä"
         disable_sign_in_token_auth_user_html: "%{name} poisti sähköpostitunnuksella todennuksen käytöstä käyttäjältä %{target}"
         disable_user_html: "%{name} poisti kirjautumisen käytöstä käyttäjältä %{target}"
         enable_custom_emoji_html: "%{name} otti emojin %{target} käyttöön"
+        enable_relay_html: "%{name} otti välittäjän %{target} käyttöön"
         enable_sign_in_token_auth_user_html: "%{name} otti sähköpostitunnuksella todennuksen käyttöön käyttäjälle %{target}"
         enable_user_html: "%{name} otti kirjautumisen käyttöön käyttäjälle %{target}"
         memorialize_account_html: "%{name} muutti käyttäjän %{target} tilin muistosivuksi"
@@ -442,9 +453,9 @@ fi:
         create: Lisää verkkotunnus
         resolve: Selvitä verkkotunnus
         title: Estä uusi sähköpostiverkkotunnus
-      no_email_domain_block_selected: Sähköpostin verkkotunnuksia ei muutettu, koska yhtään ei ollut valittuna
+      no_email_domain_block_selected: Sähköpostiverkkotunnusten estoja ei muutettu, koska yhtäkään ei ollut valittuna
       not_permitted: Ei sallittu
-      resolved_dns_records_hint_html: Verkkotunnuksen nimi määräytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää rekisteröitymisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostin palveluntarjoajia.</strong>
+      resolved_dns_records_hint_html: Verkkotunnusnimi kytkeytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää rekisteröitymisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostipalvelujen tarjoajia.</strong>
       resolved_through_html: Ratkaistu verkkotunnuksen %{domain} kautta
       title: Estetyt sähköpostiverkkotunnukset
     export_domain_allows:
@@ -600,8 +611,9 @@ fi:
         resolve_description_html: Ilmoitettua tiliä kohtaan ei ryhdytä toimiin, varoitusta ei kirjata ja raportti suljetaan.
         silence_description_html: Tili näkyy vain niille, jotka jo seuraavat sitä tai etsivät sen manuaalisesti, mikä rajoittaa merkittävästi sen tavoitettavuutta. Voidaan perua milloin vain. Sulkee kaikki tiliin kohdistuvat raportit.
         suspend_description_html: Tili ja mikään sen sisältö eivät ole käytettävissä, ja lopulta ne poistetaan ja vuorovaikutus tilin kanssa on mahdotonta. Peruttavissa 30 päivän ajan. Sulkee kaikki tiliin kohdistuvat raportit.
-      actions_description_html: Päätä, mihin toimiin ryhdyt tämän raportin ratkaisemiseksi. Jos ryhdyt rangaistustoimeen ilmoitettua tiliä kohtaan, hänelle lähetetään sähköposti-ilmoitus, paitsi jos <strong>Roskaposti</strong>-luokka on valittuna.
+      actions_description_html: Päätä, mihin toimiin ryhdyt tämän raportin ratkaisemiseksi. Jos ryhdyt rangaistustoimeen raportoitua tiliä kohtaan, hänelle lähetetään sähköpostitse ilmoitus asiasta, paitsi jos valittuna on <strong>Roskaposti</strong>-luokka.
       actions_description_remote_html: Päätä, mihin toimiin ryhdyt tämän raportin ratkaisemiseksi. Tämä vaikuttaa vain siihen, miten <strong>sinun</strong> palvelimesi viestii tämän etätilin kanssa ja käsittelee sen sisältöä.
+      actions_no_posts: Tähän raporttiin ei liity poistettavia julkaisuja
       add_to_report: Lisää raporttiin
       already_suspended_badges:
         local: Jäädytetty jo tällä palvelimella
@@ -814,8 +826,10 @@ fi:
       back_to_account: Takaisin tilin sivulle
       back_to_report: Takaisin raporttisivulle
       batch:
+        add_to_report: Lisää raporttiin nro %{id}
         remove_from_report: Poista raportista
         report: Raportti
+      contents: Sisältö
       deleted: Poistettu
       favourites: Suosikit
       history: Versiohistoria
@@ -824,13 +838,17 @@ fi:
       media:
         title: Media
       metadata: Metadata
+      no_history: Tätä julkaisua ei ole muokattu
       no_status_selected: Julkaisuja ei muutettu, koska yhtään ei ollut valittuna
       open: Avaa julkaisu
       original_status: Alkuperäinen julkaisu
       reblogs: Edelleen jako
+      replied_to_html: Vastaus käyttäjälle %{acct_link}
       status_changed: Julkaisua muutettu
-      title: Tilin tilat
+      status_title: Julkaisu käyttäjältä @%{name}
+      title: Tilin julkaisut - @%{name}
       trending: Suosituttua
+      view_publicly: Näytä julkisesti
       visibility: Näkyvyys
       with_media: Sisältää mediaa
     strikes:
@@ -872,6 +890,9 @@ fi:
         message_html: Et ole määritellyt palvelimen sääntöjä lainkaan.
       sidekiq_process_check:
         message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
+      software_version_check:
+        action: Näytä saatavilla olevat päivitykset
+        message_html: Saatavilla on Mastodon-päivitys.
       software_version_critical_check:
         action: Näytä saatavilla olevat päivitykset
         message_html: Kriittinen Mastodon-päivitys on saatavilla. Tee päivitys mahdollisimman ripeästi.
@@ -1135,7 +1156,7 @@ fi:
     security: Turvallisuus
     set_new_password: Aseta uusi salasana
     setup:
-      email_below_hint_html: Tarkista roskapostikansiosi tai pyydä uusi viesti. Voit korjata sähköpostiosoitteesi, jos se oli väärin.
+      email_below_hint_html: Tarkista roskapostikansiosi tai pyydä uusi viesti. Voit korjata sähköpostiosoitteesi tarvittaessa.
       email_settings_hint_html: Napsauta lähettämäämme linkkiä vahvistaaksesi osoitteen %{email}. Odotamme täällä.
       link_not_received: Etkö saanut linkkiä?
       new_confirmation_instructions_sent: Saat pian uuden vahvistuslinkin sisältävän sähköpostiviestin!
@@ -1157,6 +1178,14 @@ fi:
       view_strikes: Näytä aiemmat tiliäsi koskevat varoitukset
     too_fast: Lomake lähetettiin liian nopeasti, yritä uudelleen.
     use_security_key: Käytä suojausavainta
+  author_attribution:
+    example_title: Esimerkkiteksti
+    hint_html: Kirjoitatko uutisia tai blogitekstejä Mastodonin ulkopuolella? Määrää, kuinka tulet tunnustetuksi, kun niitä jaetaan Mastodonissa.
+    instructions: 'Varmista, että artikkelisi HTML:ssä on tämä koodi:'
+    more_from_html: Lisää tekijältä %{name}
+    s_blog: Käyttäjän %{name} blogi
+    then_instructions: Lisää sitten julkaisun verkkotunnus seuraavaan tekstikenttään.
+    title: Tekijän tunnustus
   challenge:
     confirm: Jatka
     hint_html: "<strong>Vihje:</strong> Emme pyydä sinulta salasanaa uudelleen seuraavan tunnin aikana."
@@ -1165,7 +1194,6 @@ fi:
   crypto:
     errors:
       invalid_key: ei ole kelvollinen Ed25519- tai Curve25519-avain
-      invalid_signature: ei ole kelvollinen Ed25519-allekirjoitus
   date:
     formats:
       default: "%b %d, %Y"
@@ -1195,8 +1223,8 @@ fi:
       caches: Muiden palvelinten välimuistiinsa tallentamaa sisältöä voi säilyä
       data_removal: Julkaisusi ja muut tietosi poistetaan pysyvästi
       email_change_html: Voit <a href="%{path}">muuttaa sähköpostiosoitettasi</a> poistamatta tiliäsi
-      email_contact_html: Jos ei saavu perille, voit pyytää apua sähköpostilla <a href="mailto:%{email}">%{email}</a>
-      email_reconfirmation_html: Jos et saa vahvistuksen sähköpostia, niin voit <a href="%{path}">pyytää sitä uudelleen</a>
+      email_contact_html: Jos viesti ei vieläkään saavu perille, voit pyytää apua sähköpostitse osoitteella <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Jos et saa vahvistussähköpostiviestiä, voit <a href="%{path}">pyytää sitä uudelleen</a>
       irreversible: Et voi palauttaa tiliäsi etkä aktivoida sitä uudelleen
       more_details_html: Tarkempia tietoja saat <a href="%{terms_path}">tietosuojakäytännöstämme</a>.
       username_available: Käyttäjänimesi tulee saataville uudelleen
@@ -1231,8 +1259,6 @@ fi:
       your_appeal_approved: Valituksesi on hyväksytty
       your_appeal_pending: Olet lähettänyt valituksen
       your_appeal_rejected: Valituksesi on hylätty
-  domain_validator:
-    invalid_domain: ei ole kelvollinen verkkotunnus
   edit_profile:
     basic_information: Perustiedot
     hint_html: "<strong>Mukauta, mitä ihmiset näkevät julkisessa profiilissasi ja julkaisujesi vieressä.</strong> Sinua seurataan takaisin ja kanssasi ollaan vuorovaikutuksessa todennäköisemmin, kun sinulla on täytetty profiili ja profiilikuva."
@@ -1357,19 +1383,43 @@ fi:
       overwrite: Korvaa
       overwrite_long: Korvaa nykyiset tietueet uusilla
     overwrite_preambles:
-      blocking_html: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{total_items} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
-      bookmarks_html: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{total_items} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
-      domain_blocking_html: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{total_items} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
-      following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
-      lists_html: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{total_items} tiliä</strong>.
-      muting_html: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{total_items} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+      blocking_html:
+        one: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
+      following_html:
+        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+      lists_html:
+        one: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tili</strong>.
+        other: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tiliä</strong>.
+      muting_html:
+        one: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
-      bookmarks_html: Olet aikeissa lisätä kaikkiaan <strong>%{total_items} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
-      domain_blocking_html: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{total_items} verkkotunnusta</strong> tiedostosta <strong>%{filename}</strong>.
-      following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
-      lists_html: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
-      muting_html: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+      blocking_html:
+        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisun</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
+        other: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
+      domain_blocking_html:
+        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnuksen</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnusta</strong> tiedostosta <strong>%{filename}</strong>.
+      following_html:
+        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+      lists_html:
+        one: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
+        other: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
+      muting_html:
+        one: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
     preface: Voit tuoda toiselta palvelimelta viemiäsi tietoja, kuten seuraamiesi tai estämiesi käyttäjien luettelon.
     recent_imports: Viimeksi tuotu
     states:
@@ -1454,6 +1504,7 @@ fi:
   media_attachments:
     validations:
       images_and_video: Videota ei voi liittää tilapäivitykseen, jossa on jo kuvia
+      not_found: Mediaa %{ids} ei löytynyt, tai se on jo liitetty toiseen julkaisuun
       not_ready: Ei voi liittää tiedostoja, joiden käsittely on kesken. Yritä hetken kuluttua uudelleen!
       too_many: Tiedostoja voi liittää enintään 4
   migrations:
@@ -1685,7 +1736,7 @@ fi:
     delete: Tilin poisto
     development: Kehitys
     edit_profile: Muokkaa profiilia
-    export: Vie tietoja
+    export: Vie
     featured_tags: Suositellut aihetunnisteet
     import: Tuo tietoja
     import_and_export: Tuonti ja vienti
@@ -1731,23 +1782,12 @@ fi:
     edited_at_html: Muokattu %{date}
     errors:
       in_reply_not_found: Julkaisua, johon yrität vastata, ei näytä olevan olemassa.
-    open_in_web: Avaa selaimessa
     over_character_limit: merkkimäärän rajoitus %{max} ylitetty
     pin_errors:
       direct: Vain mainituille käyttäjille näkyviä julkaisuja ei voi kiinnittää
       limit: Olet jo kiinnittänyt enimmäismäärän julkaisuja
       ownership: Muiden julkaisuja ei voi kiinnittää
       reblog: Tehostusta ei voi kiinnittää
-    poll:
-      total_people:
-        one: "%{count} käyttäjä"
-        other: "%{count} käyttäjää"
-      total_votes:
-        one: "%{count} ääni"
-        other: "%{count} ääntä"
-      vote: Äänestä
-    show_more: Näytä lisää
-    show_thread: Näytä ketju
     title: "%{name}: ”%{quote}”"
     visibilities:
       direct: Suoraan
@@ -1941,11 +1981,12 @@ fi:
     signed_in_as: 'Kirjautunut tilillä:'
   verification:
     extra_instructions_html: <strong>Vinkki:</strong> Verkkosivustollasi oleva linkki voi olla myös näkymätön. Olennainen osuus on <code>rel="me"</code>, joka estää toiseksi henkilöksi tekeytymisen verkkosivustoilla, joilla on käyttäjien luomaa sisältöä. Voit käyttää jopa <code>link</code>-elementtiä sivun <code>head</code>-osassa elementin <code>a</code> sijaan, mutta HTML:n pitää olla käytettävissä ilman JavaScript-koodin suorittamista.
-    here_is_how: Näin voit tehdä sen
+    here_is_how: Näin se onnistuu
     hint_html: "<strong>Henkilöllisyyden vahvistaminen on Mastodonissa jokaisen käyttäjän ulottuvilla.</strong> Se perustuu avoimiin standardeihin ja on maksutonta nyt ja aina. Tarvitset vain henkilökohtaisen verkkosivuston, jonka perusteella sinut voidaan tunnistaa. Kun teet linkin tuolle verkkosivulle profiilistasi, tarkistamme, että verkkosivustolla on linkki takaisin profiiliisi, ja näytämme profiilissasi visuaalisen ilmaisimen."
     instructions_html: Kopioi ja liitä seuraava koodi verkkosivustosi HTML-lähdekoodiin. Lisää sitten verkkosivustosi osoite johonkin profiilisi lisäkentistä ”Muokkaa profiilia” -välilehdellä ja tallenna muutokset.
     verification: Vahvistus
     verified_links: Vahvistetut linkkisi
+    website_verification: Verkkosivuston vahvistus
   webauthn_credentials:
     add: Lisää uusi suojausavain
     create:

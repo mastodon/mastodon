@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RedownloadAvatarWorker do
+RSpec.describe RedownloadAvatarWorker do
   let(:worker) { described_class.new }
 
   describe '#perform' do

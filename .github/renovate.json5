@@ -7,6 +7,7 @@
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
     ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
   ],
+  rebaseWhen: 'conflicted',
   minimumReleaseAge: '3', // Wait 3 days after the package has been published before upgrading it
   // packageRules order is important, they are applied from top to bottom and are merged,
   // meaning the most important ones must be at the bottom, for example grouping rules

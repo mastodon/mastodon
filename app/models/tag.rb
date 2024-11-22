@@ -21,6 +21,8 @@
 
 class Tag < ApplicationRecord
   include Paginable
+  include Reviewable
+
   # rubocop:disable Rails/HasAndBelongsToMany
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
@@ -48,8 +50,6 @@ class Tag < ApplicationRecord
   validate :validate_name_change, if: -> { !new_record? && name_changed? }
   validate :validate_display_name_change, if: -> { !new_record? && display_name_changed? }
 
-  scope :reviewed, -> { where.not(reviewed_at: nil) }
-  scope :unreviewed, -> { where(reviewed_at: nil) }
   scope :pending_review, -> { unreviewed.where.not(requested_review_at: nil) }
   scope :usable, -> { where(usable: [true, nil]) }
   scope :not_usable, -> { where(usable: false) }
@@ -61,7 +61,7 @@ class Tag < ApplicationRecord
   scope :recently_used, lambda { |account|
                           joins(:statuses)
                             .where(statuses: { id: account.statuses.select(:id).limit(RECENT_STATUS_LIMIT) })
-                            .group(:id).order(Arel.sql('count(*) desc'))
+                            .group(:id).order(Arel.star.count.desc)
                         }
   scope :matches_name, ->(term) { where(arel_table[:name].lower.matches(arel_table.lower("#{sanitize_sql_like(Tag.normalize(term))}%"), nil, true)) } # Search with case-sensitive to use B-tree index
 
@@ -97,22 +97,6 @@ class Tag < ApplicationRecord
 
   alias trendable? trendable
 
-  def requires_review?
-    reviewed_at.nil?
-  end
-
-  def reviewed?
-    reviewed_at.present?
-  end
-
-  def requested_review?
-    requested_review_at.present?
-  end
-
-  def requires_review_notification?
-    requires_review? && !requested_review?
-  end
-
   def decaying?
     max_score_at && max_score_at >= Trends.tags.options[:max_score_cooldown].ago && max_score_at < 1.day.ago
   end
@@ -141,9 +125,9 @@ class Tag < ApplicationRecord
 
       query = Tag.matches_name(stripped_term)
       query = query.merge(Tag.listable) if options[:exclude_unlistable]
-      query = query.merge(matching_name(stripped_term).or(where.not(reviewed_at: nil))) if options[:exclude_unreviewed]
+      query = query.merge(matching_name(stripped_term).or(reviewed)) if options[:exclude_unreviewed]
 
-      query.order(Arel.sql('length(name) ASC, name ASC'))
+      query.order(Arel.sql('LENGTH(name)').asc, name: :asc)
            .limit(limit)
            .offset(offset)
     end

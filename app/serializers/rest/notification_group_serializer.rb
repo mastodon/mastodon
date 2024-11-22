@@ -13,6 +13,7 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
   belongs_to :report, if: :report_type?, serializer: REST::ReportSerializer
   belongs_to :account_relationship_severance_event, key: :event, if: :relationship_severance_event?, serializer: REST::AccountRelationshipSeveranceEventSerializer
   belongs_to :account_warning, key: :moderation_warning, if: :moderation_warning_event?, serializer: REST::AccountWarningSerializer
+  belongs_to :generated_annual_report, key: :annual_report, if: :annual_report_event?, serializer: REST::AnnualReportEventSerializer
 
   def sample_account_ids
     object.sample_accounts.pluck(:id).map(&:to_s)
@@ -38,22 +39,23 @@ class REST::NotificationGroupSerializer < ActiveModel::Serializer
     object.type == :moderation_warning
   end
 
+  def annual_report_event?
+    object.type == :annual_report
+  end
+
   def page_min_id
-    range = instance_options[:group_metadata][object.group_key]
-    range.present? ? range[:min_id].to_s : object.notification.id.to_s
+    object.pagination_data[:min_id].to_s
   end
 
   def page_max_id
-    range = instance_options[:group_metadata][object.group_key]
-    range.present? ? range[:max_id].to_s : object.notification.id.to_s
+    object.most_recent_notification_id.to_s
   end
 
   def latest_page_notification_at
-    range = instance_options[:group_metadata][object.group_key]
-    range.present? ? range[:latest_notification_at] : object.notification.created_at
+    object.pagination_data[:latest_notification_at]
   end
 
   def paginated?
-    !instance_options[:group_metadata].nil?
+    object.pagination_data.present?
   end
 end

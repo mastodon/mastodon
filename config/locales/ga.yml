@@ -7,7 +7,6 @@ ga:
     hosted_on: Mastodon arna óstáil ar %{domain}
     title: Maidir le
   accounts:
-    follow: Lean
     followers:
       few: Leantóirí
       many: Leantóirí
@@ -28,9 +27,12 @@ ga:
       other: Postálacha
       two: Postálacha
     posts_tab_heading: Postálacha
+    self_follow_error: Ní cheadaítear do chuntas féin a leanúint
   admin:
     account_actions:
       action: Déan gníomh
+      already_silenced: Tá teorainn leis an gcuntas seo cheana féin.
+      already_suspended: Tá an cuntas seo curtha ar fionraí cheana féin.
       title: Dean gníomh modhnóireachta ar %{acct}
     account_moderation_notes:
       create: Fág nóta
@@ -52,6 +54,7 @@ ga:
         title: Athraigh ríomhphost do %{username}
       change_role:
         changed_msg: Athraíodh ról go rathúil!
+        edit_roles: Bainistigh róil úsáideora
         label: Athraigh ról
         no_role: Gan ról
         title: Athraigh ról do %{username}
@@ -193,6 +196,7 @@ ga:
         create_domain_block: Cruthaigh Bloc Fearainn
         create_email_domain_block: Cruthaigh Bloc Fearainn Ríomhphoist
         create_ip_block: Cruthaigh riail IP
+        create_relay: Cruthaigh Leaschraolacháin
         create_unavailable_domain: Cruthaigh Fearann ​​Gan Fáil
         create_user_role: Cruthaigh Ról
         demote_user: Ísligh úsáideoir
@@ -204,14 +208,17 @@ ga:
         destroy_email_domain_block: Scrios Bloc Fearainn Ríomhphoist
         destroy_instance: Fearann ​​Purge
         destroy_ip_block: Scrios riail IP
+        destroy_relay: Scrios Leaschraolacháin
         destroy_status: Scrios Postáil
         destroy_unavailable_domain: Scrios Fearann ​​Gan Fáil
         destroy_user_role: Scrios ról
         disable_2fa_user: Díchumasaigh 2FA
         disable_custom_emoji: Díchumasaigh Emoji Saincheaptha
+        disable_relay: Díchumasaigh Leaschraolacháin
         disable_sign_in_token_auth_user: Díchumasaigh Fíordheimhniú Comhartha Ríomhphoist don Úsáideoir
         disable_user: Díchumasaigh Úsáideoir
         enable_custom_emoji: Cumasaigh Emoji Saincheaptha
+        enable_relay: Cumasaigh Leaschraolacháin
         enable_sign_in_token_auth_user: Cumasaigh Fíordheimhniú Comhartha Ríomhphoist don Úsáideoir
         enable_user: Cumasaigh Úsáideoir
         memorialize_account: Cuntas Cuimhneacháin
@@ -253,6 +260,7 @@ ga:
         create_domain_block_html: "%{name} fearann ​​bactha %{target}"
         create_email_domain_block_html: Chuir %{name} fearann ​​ríomhphoist bactha %{target}
         create_ip_block_html: Chruthaigh %{name} riail don IP %{target}
+        create_relay_html: Chruthaigh %{name} athsheoladh %{target}
         create_unavailable_domain_html: Chuir %{name} deireadh leis an seachadadh chuig fearann ​​%{target}
         create_user_role_html: Chruthaigh %{name} %{target} ról
         demote_user_html: "%{name} úsáideoir scriosta %{target}"
@@ -264,14 +272,17 @@ ga:
         destroy_email_domain_block_html: "%{name} fearann ​​ríomhphoist díchoiscthe %{target}"
         destroy_instance_html: Glanadh %{name} fearann ​​%{target}
         destroy_ip_block_html: "%{name} scriosta riail le haghaidh IP %{target}"
+        destroy_relay_html: Scrios %{name} an athsheoladh %{target}
         destroy_status_html: Bhain %{name} postáil le %{target}
         destroy_unavailable_domain_html: D'athchrom %{name} ar an seachadadh chuig fearann ​​%{target}
         destroy_user_role_html: Scrios %{name} ról %{target}
         disable_2fa_user_html: Dhíchumasaigh %{name} riachtanas dhá fhachtóir don úsáideoir %{target}
         disable_custom_emoji_html: Dhíchumasaigh %{name} emoji %{target}
+        disable_relay_html: Dhíchumasaigh %{name} an athsheoladh %{target}
         disable_sign_in_token_auth_user_html: Dhíchumasaigh %{name} fíordheimhniú comhartha ríomhphoist le haghaidh %{target}
         disable_user_html: "%{name} logáil isteach díchumasaithe d'úsáideoir %{target}"
         enable_custom_emoji_html: "%{name} emoji cumasaithe %{target}"
+        enable_relay_html: Chuir %{name} an sealaíocht %{target} ar chumas
         enable_sign_in_token_auth_user_html: Chuir %{name} fíordheimhniú comhartha ríomhphoist ar chumas %{target}
         enable_user_html: "%{name} logáil isteach cumasaithe don úsáideoir %{target}"
         memorialize_account_html: Rinne %{name} cuntas %{target} a iompú ina leathanach cuimhneacháin
@@ -638,6 +649,7 @@ ga:
         suspend_description_html: Beidh an cuntas agus a bhfuil ann go léir dorochtana agus scriosfar iad ar deireadh, agus beidh sé dodhéanta idirghníomhú leis. Inchúlaithe laistigh de 30 lá. Dúnann sé gach tuairisc i gcoinne an chuntais seo.
       actions_description_html: Déan cinneadh ar an ngníomh atá le déanamh chun an tuarascáil seo a réiteach. Má dhéanann tú beart pionósach in aghaidh an chuntais tuairiscithe, seolfar fógra ríomhphoist chucu, ach amháin nuair a roghnaítear an chatagóir <strong>Turscar</strong>.
       actions_description_remote_html: Déan cinneadh ar an ngníomh atá le déanamh chun an tuarascáil seo a réiteach. Ní bheidh tionchar aige seo ach ar an gcaoi a ndéanann <strong>do fhreastalaí</strong> cumarsáid leis an gcianchuntas seo agus a láimhseálann sé a ábhar.
+      actions_no_posts: Níl aon phostáil ghaolmhar ag an tuarascáil seo le scriosadh
       add_to_report: Cuir tuilleadh leis an tuairisc
       already_suspended_badges:
         local: Ar fionraí cheana féin ar an bhfreastalaí seo
@@ -856,8 +868,10 @@ ga:
       back_to_account: Ar ais go leathanach cuntais
       back_to_report: Ar ais go leathanach tuairisce
       batch:
+        add_to_report: 'Cuir leis an tuairisc # %{id}'
         remove_from_report: Bain den tuairisc
         report: Tuairisc
+      contents: Ábhar
       deleted: Scriosta
       favourites: Toghanna
       history: Stair leagan
@@ -866,13 +880,17 @@ ga:
       media:
         title: Meáin
       metadata: Meiteashonraí
+      no_history: Níl an postáil seo curtha in eagar
       no_status_selected: Níor athraíodh aon phostáil mar níor roghnaíodh ceann ar bith
       open: Oscail postáil
       original_status: Bunphostáil
       reblogs: Athbhlaganna
+      replied_to_html: D'fhreagair %{acct_link}
       status_changed: Athraíodh postáil
-      title: Poist chuntais
+      status_title: Postáil le @ %{name}
+      title: Postálacha cuntais - @%{name}
       trending: Ag treochtáil
+      view_publicly: Féach go poiblí
       visibility: Infheictheacht
       with_media: Le meáin
     strikes:
@@ -914,6 +932,9 @@ ga:
         message_html: Níl aon rialacha freastalaí sainmhínithe agat.
       sidekiq_process_check:
         message_html: Níl próiseas Sidekiq ag rith don scuaine/(scuainí) %{value}. Déan athbhreithniú ar do chumraíocht Sidekiq
+      software_version_check:
+        action: Féach nuashonruithe atá ar fáil
+        message_html: Tá nuashonrú Mastodon ar fáil.
       software_version_critical_check:
         action: Féach nuashonruithe atá ar fáil
         message_html: Tá nuashonrú ríthábhachtach Mastodon ar fáil, nuashonraigh chomh tapa agus is féidir le do thoil.
@@ -1211,6 +1232,14 @@ ga:
       view_strikes: Féach ar stailceanna san am atá caite i gcoinne do chuntais
     too_fast: Cuireadh an fhoirm isteach róthapa, triail arís.
     use_security_key: Úsáid eochair shlándála
+  author_attribution:
+    example_title: Téacs samplach
+    hint_html: An bhfuil tú ag scríobh altanna nuachta nó blag lasmuigh de Mastodon? Rialú conas a gheobhaidh tú creidmheas nuair a roinntear iad ar Mastodon.
+    instructions: 'Cinntigh go bhfuil an cód seo i HTML d''alt:'
+    more_from_html: Tuilleadh ó %{name}
+    s_blog: Blag %{name}
+    then_instructions: Ansin, cuir ainm fearainn an fhoilseacháin sa réimse thíos.
+    title: Leithdháil an údair
   challenge:
     confirm: Lean ar aghaidh
     hint_html: "<strong>Leid:</strong> Ní iarrfaimid do phasfhocal ort arís go ceann uair an chloig eile."
@@ -1219,7 +1248,6 @@ ga:
   crypto:
     errors:
       invalid_key: nach eochair bhailí Ed25519 nó Curve25519 í
-      invalid_signature: nach síniú bailí Ed25519 é
   date:
     formats:
       default: "%b %d, %Y"
@@ -1285,8 +1313,6 @@ ga:
       your_appeal_approved: Tá d’achomharc ceadaithe
       your_appeal_pending: Chuir tú achomharc isteach
       your_appeal_rejected: Diúltaíodh do d'achomharc
-  domain_validator:
-    invalid_domain: nach ainm fearainn bailí é
   edit_profile:
     basic_information: Eolas bunúsach
     hint_html: "<strong>Saincheap a bhfeiceann daoine ar do phróifíl phoiblí agus in aice le do phostálacha.</strong> Is dóichí go leanfaidh daoine eile ar ais tú agus go n-idirghníomhóidh siad leat nuair a bhíonn próifíl líonta agus pictiúr próifíle agat."
@@ -1432,19 +1458,79 @@ ga:
       overwrite: Forscríobh
       overwrite_long: Cuir na cinn nua in ionad na dtaifead reatha
     overwrite_preambles:
-      blocking_html: Tá tú ar tí <strong>do liosta bloc</strong> a chur in ionad suas le <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong>.
-      bookmarks_html: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{total_items} postáil</strong> ó <strong>%{filename}</strong>.
-      domain_blocking_html: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{total_items} fearainn</strong> ó <strong>%{filename}</strong>.
-      following_html: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong> agus <strong>stop a leanúint aon duine eile</strong>.
-      lists_html: Tá tú ar tí <strong>do liostaí</strong> a chur in ionad inneachair <strong>%{filename}</strong>. Cuirfear suas le <strong>%{total_items} cuntas</strong> le liostaí nua.
-      muting_html: Tá tú ar tí <strong>do liosta cuntas balbhaithe</strong> a chur in ionad suas le <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong>.
+      blocking_html:
+        few: Tá tú ar tí <strong>do liosta bloc</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>do liosta bloc</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>do liosta bloc</strong> a chur in ionad suas le <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>do liosta bloc</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>do liosta bloc</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+      bookmarks_html:
+        few: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>do leabharmharcanna</strong> a chur in ionad suas le <strong>%{count} postáil</strong> ó <strong>%{filename}</strong>.
+      domain_blocking_html:
+        few: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{count} fearainn</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{count} fearainn</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{count} fearainn</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{count} fearainn</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>do liosta bloc fearainn</strong> a chur in ionad suas le <strong>%{count} fearainn</strong> ó <strong>%{filename}</strong>.
+      following_html:
+        few: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong> agus <strong>stop ag leanúint aon duine eile</strong>.
+        many: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong> agus <strong>stop ag leanúint aon duine eile</strong>.
+        one: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} chuntais</strong> ó <strong>%{filename}</strong> agus <strong>stop a leanúint aon duine eile</strong>.
+        other: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong> agus <strong>stop ag leanúint aon duine eile</strong>.
+        two: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong> agus <strong>stop ag leanúint aon duine eile</strong>.
+      lists_html:
+        few: Tá tú ar tí <strong>do liostaí</strong> a chur in ionad inneachair <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} cuntais</strong> le liostaí nua.
+        many: Tá tú ar tí <strong>do liostaí</strong> a chur in ionad inneachair <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} cuntais</strong> le liostaí nua.
+        one: Tá tú ar tí <strong>do liostaí</strong> a chur in ionad inneachair <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} cuntas</strong> le liostaí nua.
+        other: Tá tú ar tí <strong>do liostaí</strong> a chur in ionad inneachair <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} cuntais</strong> le liostaí nua.
+        two: Tá tú ar tí <strong>do liostaí</strong> a chur in ionad inneachair <strong>%{filename}</strong>. Cuirfear suas le <strong>%{count} cuntais</strong> le liostaí nua.
+      muting_html:
+        few: Tá tú ar tí <strong>do liosta cuntas balbhaithe</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>do liosta cuntas balbhaithe</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>do liosta cuntais balbhaithe</strong> a chur in ionad suas le <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>do liosta cuntas balbhaithe</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>do liosta cuntas balbhaithe</strong> a chur in ionad suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Tá tú ar tí <strong>bloc</strong> suas le <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong>.
-      bookmarks_html: Tá tú ar tí <strong>%{total_items} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
-      domain_blocking_html: Tá tú ar tí <strong>bloc</strong> suas le <strong>%{total_items} fearainn</strong> ó <strong>%{filename}</strong>.
-      following_html: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong>.
-      lists_html: Tá tú ar tí <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong> a chur le do <strong>liostaí</strong>. Cruthófar liostaí nua mura bhfuil aon liosta le cur leis.
-      muting_html: Tá tú ar tí <strong>balbhú</strong> suas le <strong>%{total_items} cuntas</strong> ó <strong>%{filename}</strong>.
+      blocking_html:
+        few: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>bac</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+      bookmarks_html:
+        few: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
+        many: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
+        one: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
+        other: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
+        two: Tá tú ar tí <strong>%{count} postáil</strong> ó <strong>%{filename}</strong> a chur le do <strong>leabharmharcanna</strong>.
+      domain_blocking_html:
+        few: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} bhfearainn</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} bhfearainn</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>bac</strong> suas go dtí <strong>%{count} fearann</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} bhfearainn</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>bhac</strong> suas le <strong>%{count} bhfearainn</strong> ó <strong>%{filename}</strong>.
+      following_html:
+        few: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>leanúint</strong> suas go dtí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+      lists_html:
+        few: Tá tú ar tí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong> a chur le do <strong>liostaí</strong>. Cruthófar liostaí nua mura bhfuil aon liosta le cur leis.
+        many: Tá tú ar tí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong> a chur le do <strong>liostaí</strong>. Cruthófar liostaí nua mura bhfuil aon liosta le cur leis.
+        one: Tá tú ar tí cuntas <strong>%{count}</strong> ó <strong>%{filename}</strong> a chur le do <strong>liostaí</strong>. Cruthófar liostaí nua mura bhfuil aon liosta le cur leis.
+        other: Tá tú ar tí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong> a chur le do <strong>liostaí</strong>. Cruthófar liostaí nua mura bhfuil aon liosta le cur leis.
+        two: Tá tú ar tí <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong> a chur le do <strong>liostaí</strong>. Cruthófar liostaí nua mura bhfuil aon liosta le cur leis.
+      muting_html:
+        few: Tá tú ar tí <strong>balbhú</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        many: Tá tú ar tí <strong>balbhú</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        one: Tá tú ar tí <strong>balbhú</strong> suas go dtí <strong>%{count} cuntas</strong> ó <strong>%{filename}</strong>.
+        other: Tá tú ar tí <strong>balbhú</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
+        two: Tá tú ar tí <strong>balbhú</strong> suas le <strong>%{count} cuntais</strong> ó <strong>%{filename}</strong>.
     preface: Is féidir leat sonraí a d’easpórtáil tú a allmhairiú ó fhreastalaí eile, mar shampla liosta de na daoine a bhfuil tú ag leanúint nó ag cur bac orthu.
     recent_imports: Allmhairí le déanaí
     states:
@@ -1532,6 +1618,7 @@ ga:
   media_attachments:
     validations:
       images_and_video: Ní féidir físeán a cheangal le postáil a bhfuil íomhánna ann cheana féin
+      not_found: Meán %{ids} gan aimsiú nó ceangailte le postáil eile cheana
       not_ready: Ní féidir comhaid nach bhfuil próiseáil críochnaithe acu a cheangal. Bain triail eile as i gceann nóiméad!
       too_many: Ní féidir níos mó ná 4 chomhad a cheangal
   migrations:
@@ -1763,7 +1850,7 @@ ga:
     delete: Scriosadh cuntais
     development: Forbairt
     edit_profile: Cuir an phróifíl in eagar
-    export: Easpórtáil sonraí
+    export: Easpórtáil
     featured_tags: Haischlib faoi thrácht
     import: Iompórtáil
     import_and_export: Iompórtáil agus easpórtáil
@@ -1821,29 +1908,12 @@ ga:
     edited_at_html: "%{date} curtha in eagar"
     errors:
       in_reply_not_found: Is cosúil nach ann don phostáil a bhfuil tú ag iarraidh freagra a thabhairt air.
-    open_in_web: Oscail i ngréasán
     over_character_limit: teorainn carachtar %{max} sáraithe
     pin_errors:
       direct: Ní féidir postálacha nach bhfuil le feiceáil ach ag úsáideoirí luaite a phinnáil
       limit: Tá uaslíon na bpostálacha pinn agat cheana féin
       ownership: Ní féidir postáil duine éigin eile a phionnáil
       reblog: Ní féidir treisiú a phinnáil
-    poll:
-      total_people:
-        few: "%{count} daoine"
-        many: "%{count} daoine"
-        one: "%{count} duine"
-        other: "%{count} daoine"
-        two: "%{count} daoine"
-      total_votes:
-        few: "%{count} vótaí"
-        many: "%{count} vótaí"
-        one: "%{count} vóta"
-        other: "%{count} vótaí"
-        two: "%{count} vótaí"
-      vote: Vótáil
-    show_more: Taispeáin níos mó
-    show_thread: Taispeáin snáithe
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Díreach
@@ -2045,6 +2115,7 @@ ga:
     instructions_html: Cóipeáil agus greamaigh an cód thíos isteach i HTML do shuíomh Gréasáin. Ansin cuir seoladh do shuíomh Gréasáin isteach i gceann de na réimsí breise ar do phróifíl ón gcluaisín "Cuir próifíl in eagar" agus sábháil athruithe.
     verification: Fíorú
     verified_links: Do naisc fhíoraithe
+    website_verification: Fíorú láithreán gréasáin
   webauthn_credentials:
     add: Cuir eochair shlándála nua leis
     create:

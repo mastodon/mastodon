@@ -44,7 +44,6 @@ initializeLogLevel(process.env, environment);
  * @property {string[]} scopes
  * @property {string} accountId
  * @property {string[]} chosenLanguages
- * @property {string} deviceId
  */
 
 
@@ -102,7 +101,8 @@ const CHANNEL_NAMES = [
 ];
 
 const startServer = async () => {
-  const pgPool = Database.getPool(Database.configFromEnv(process.env, environment));
+  const pgConfig = Database.configFromEnv(process.env, environment);
+  const pgPool = Database.getPool(pgConfig, environment, logger);
 
   const metrics = setupMetrics(CHANNEL_NAMES, pgPool);
 
@@ -110,6 +110,35 @@ const startServer = async () => {
   const redisClient = Redis.createClient(redisConfig, logger);
   const server = http.createServer();
   const wss = new WebSocketServer({ noServer: true });
+
+  /**
+   * Adds a namespace to Redis keys or channel names
+   * Fixes: https://github.com/redis/ioredis/issues/1910
+   * @param {string} keyOrChannel
+   * @returns {string}
+   */
+  function redisNamespaced(keyOrChannel) {
+    if (redisConfig.namespace) {
+      return `${redisConfig.namespace}:${keyOrChannel}`;
+    } else {
+      return keyOrChannel;
+    }
+  }
+
+  /**
+   * Removes the redis namespace from a channel name
+   * @param {string} channel
+   * @returns {string}
+   */
+  function redisUnnamespaced(channel) {
+    if (typeof redisConfig.namespace === "string") {
+      // Note: this removes the configured namespace and the colon that is used
+      // to separate it:
+      return channel.slice(redisConfig.namespace.length + 1);
+    } else {
+      return channel;
+    }
+  }
 
   // Set the X-Request-Id header on WebSockets:
   wss.on("headers", function onHeaders(headers, req) {
@@ -200,7 +229,6 @@ const startServer = async () => {
   const subs = {};
 
   const redisSubscribeClient = Redis.createClient(redisConfig, logger);
-  const { redisPrefix } = redisConfig;
 
   // When checking metrics in the browser, the favicon is requested this
   // prevents the request from falling through to the API Router, which would
@@ -208,7 +236,7 @@ const startServer = async () => {
   app.get('/favicon.ico', (_req, res) => res.status(404).end());
 
   app.get('/api/v1/streaming/health', (_req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.writeHead(200, { 'Content-Type': 'text/plain', 'Cache-Control': 'private, no-store' });
     res.end('OK');
   });
 
@@ -222,7 +250,7 @@ const startServer = async () => {
     const interval = 6 * 60;
 
     const tellSubscribed = () => {
-      channels.forEach(channel => redisClient.set(`${redisPrefix}subscribed:${channel}`, '1', 'EX', interval * 3));
+      channels.forEach(channel => redisClient.set(redisNamespaced(`subscribed:${channel}`), '1', 'EX', interval * 3));
     };
 
     tellSubscribed();
@@ -240,11 +268,10 @@ const startServer = async () => {
    */
   const onRedisMessage = (channel, message) => {
     metrics.redisMessagesReceived.inc();
+    logger.debug(`New message on channel ${channel}`);
 
-    const callbacks = subs[channel];
-
-    logger.debug(`New message on channel ${redisPrefix}${channel}`);
-
+    const key = redisUnnamespaced(channel);
+    const callbacks = subs[key];
     if (!callbacks) {
       return;
     }
@@ -273,7 +300,8 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       logger.debug(`Subscribe ${channel}`);
-      redisSubscribeClient.subscribe(channel, (err, count) => {
+
+      redisSubscribeClient.subscribe(redisNamespaced(channel), (err, count) => {
         if (err) {
           logger.error(`Error subscribing to ${channel}`);
         } else if (typeof count === 'number') {
@@ -300,7 +328,9 @@ const startServer = async () => {
 
     if (subs[channel].length === 0) {
       logger.debug(`Unsubscribe ${channel}`);
-      redisSubscribeClient.unsubscribe(channel, (err, count) => {
+
+      // FIXME: https://github.com/redis/ioredis/issues/1910
+      redisSubscribeClient.unsubscribe(redisNamespaced(channel), (err, count) => {
         if (err) {
           logger.error(`Error unsubscribing to ${channel}`);
         } else if (typeof count === 'number') {
@@ -325,7 +355,7 @@ const startServer = async () => {
    * @returns {Promise<ResolvedAccount>}
    */
   const accountFromToken = async (token, req) => {
-    const result = await pgPool.query('SELECT oauth_access_tokens.id, oauth_access_tokens.resource_owner_id, users.account_id, users.chosen_languages, oauth_access_tokens.scopes, devices.device_id FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id LEFT OUTER JOIN devices ON oauth_access_tokens.id = devices.access_token_id WHERE oauth_access_tokens.token = $1 AND oauth_access_tokens.revoked_at IS NULL LIMIT 1', [token]);
+    const result = await pgPool.query('SELECT oauth_access_tokens.id, oauth_access_tokens.resource_owner_id, users.account_id, users.chosen_languages, oauth_access_tokens.scopes FROM oauth_access_tokens INNER JOIN users ON oauth_access_tokens.resource_owner_id = users.id WHERE oauth_access_tokens.token = $1 AND oauth_access_tokens.revoked_at IS NULL LIMIT 1', [token]);
 
     if (result.rows.length === 0) {
       throw new AuthenticationError('Invalid access token');
@@ -335,14 +365,12 @@ const startServer = async () => {
     req.scopes = result.rows[0].scopes.split(' ');
     req.accountId = result.rows[0].account_id;
     req.chosenLanguages = result.rows[0].chosen_languages;
-    req.deviceId = result.rows[0].device_id;
 
     return {
       accessTokenId: result.rows[0].id,
       scopes: result.rows[0].scopes.split(' '),
       accountId: result.rows[0].account_id,
       chosenLanguages: result.rows[0].chosen_languages,
-      deviceId: result.rows[0].device_id
     };
   };
 
@@ -481,14 +509,14 @@ const startServer = async () => {
     });
 
     res.on('close', () => {
-      unsubscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-      unsubscribe(`${redisPrefix}${systemChannelId}`, listener);
+      unsubscribe(accessTokenChannelId, listener);
+      unsubscribe(systemChannelId, listener);
 
       metrics.connectedChannels.labels({ type: 'eventsource', channel: 'system' }).dec(2);
     });
 
-    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-    subscribe(`${redisPrefix}${systemChannelId}`, listener);
+    subscribe(accessTokenChannelId, listener);
+    subscribe(systemChannelId, listener);
 
     metrics.connectedChannels.labels({ type: 'eventsource', channel: 'system' }).inc(2);
   };
@@ -805,11 +833,11 @@ const startServer = async () => {
     };
 
     channelIds.forEach(id => {
-      subscribe(`${redisPrefix}${id}`, listener);
+      subscribe(id, listener);
     });
 
     if (typeof attachCloseHandler === 'function') {
-      attachCloseHandler(channelIds.map(id => `${redisPrefix}${id}`), listener);
+      attachCloseHandler(channelIds, listener);
     }
 
     return listener;
@@ -831,7 +859,7 @@ const startServer = async () => {
     }
 
     res.setHeader('Content-Type', 'text/event-stream');
-    res.setHeader('Cache-Control', 'no-store');
+    res.setHeader('Cache-Control', 'private, no-store');
     res.setHeader('Transfer-Encoding', 'chunked');
 
     res.write(':)\n');
@@ -952,10 +980,6 @@ const startServer = async () => {
    */
   const channelsForUserStream = req => {
     const arr = [`timeline:${req.accountId}`];
-
-    if (isInScope(req, ['crypto']) && req.deviceId) {
-      arr.push(`timeline:${req.accountId}:${req.deviceId}`);
-    }
 
     if (isInScope(req, ['read', 'read:notifications'])) {
       arr.push(`timeline:${req.accountId}:notifications`);
@@ -1156,7 +1180,7 @@ const startServer = async () => {
     }
 
     channelIds.forEach(channelId => {
-      unsubscribe(`${redisPrefix}${channelId}`, subscription.listener);
+      unsubscribe(channelId, subscription.listener);
     });
 
     metrics.connectedChannels.labels({ type: 'websocket', channel: subscription.channelName }).dec();
@@ -1200,8 +1224,8 @@ const startServer = async () => {
       },
     });
 
-    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
-    subscribe(`${redisPrefix}${systemChannelId}`, listener);
+    subscribe(accessTokenChannelId, listener);
+    subscribe(systemChannelId, listener);
 
     subscriptions[accessTokenChannelId] = {
       channelName: 'system',
