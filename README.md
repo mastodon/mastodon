@@ -62,14 +62,14 @@ Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Stre
 ### Tech stack
 
 - **Ruby on Rails** powers the REST API and other web pages
-- **React.js** and Redux are used for the dynamic parts of the interface
+- **React.js** and **Redux** are used for the dynamic parts of the interface
 - **Node.js** powers the streaming API
 
 ### Requirements
 
 - **PostgreSQL** 12+
 - **Redis** 4+
-- **Ruby** 3.1+
+- **Ruby** 3.2+
 - **Node.js** 18+
 
 The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, and **Scalingo**. For Helm charts, reference the [mastodon/chart repository](https://github.com/mastodon/chart). The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
@@ -86,18 +86,18 @@ A **Vagrant** configuration is included for development purposes. To use it, com
 - Run `vagrant ssh -c "cd /vagrant && bin/dev"`
 - Open `http://mastodon.local` in your browser
 
-### MacOS
+### macOS
 
-To set up **MacOS** for native development, complete the following steps:
+To set up **macOS** for native development, complete the following steps:
 
-- Use a Ruby version manager to install the specified version from `.ruby-version`
-- Run `bundle` to install required gems
-- Run `brew install postgresql@14 redis imagemagick libidn` to install required dependencies
-- Navigate to Mastodon's root directory and run `brew install nvm` then `nvm use` to use the version from `.nvmrc`
-- Run `yarn` to install required packages
-- Run `corepack enable && corepack prepare`
-- Run `RAILS_ENV=development bundle exec rails db:setup`
-- Finally, run `bin/dev` which will launch the local services via `overmind` (if installed) or `foreman`
+- Install [Homebrew] and run `brew install postgresql@14 redis imagemagick
+libidn nvm` to install the required project dependencies
+- Use a Ruby version manager to activate the ruby in `.ruby-version` and run
+  `nvm use` to activate the node version from `.nvmrc`
+- Run the `bin/setup` script, which will install the required ruby gems and node
+  packages and prepare the database for local development
+- Finally, run the `bin/dev` script which will launch services via `overmind`
+  (if installed) or `foreman`
 
 ### Docker
 
@@ -155,3 +155,4 @@ You should have received a copy of the GNU Affero General Public License along w
 [Development Containers]: https://containers.dev/supporting
 [Docker]: https://docs.docker.com
 [GitHub Codespaces]: https://docs.github.com/en/codespaces
+[Homebrew]: https://brew.sh

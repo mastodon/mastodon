@@ -2,8 +2,8 @@ services:
   app:
     working_dir: /workspaces/mastodon/
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
     volumes:
       - ..:/workspaces/mastodon:cached
     environment:
@@ -69,7 +69,7 @@ services:
         hard: -1
 
   libretranslate:
-    image: libretranslate/libretranslate:v1.5.7
+    image: libretranslate/libretranslate:v1.6.2
     restart: unless-stopped
     volumes:
       - lt-data:/home/libretranslate/.local

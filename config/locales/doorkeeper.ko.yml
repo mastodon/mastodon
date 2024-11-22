@@ -31,7 +31,7 @@ ko:
       form:
         error: 이런! 오류를 확인하세요
       help:
-        native_redirect_uri: "%{native_redirect_uri}에서 로컬 테스트를 할 수 있습니다."
+        native_redirect_uri: "%{native_redirect_uri}를 이용해 로컬 테스트를 할 수 있습니다"
         redirect_uri: 한 줄에 하나의 URI를 작성하세요
         scopes: 스페이스로 범위를 구분하세요. 빈 칸으로 놔두면 기본 범위를 사용합니다.
       index:
@@ -60,7 +60,7 @@ ko:
       error:
         title: 오류가 발생하였습니다
       new:
-        prompt_html: "%{client_name} 제3자 애플리케이션이 귀하의 계정에 접근하기 위한 권한을 요청하고 있습니다. <strong>이 애플리케이션을 신뢰할 수 없다면 이 요청을 승인하지 마십시오.</strong>"
+        prompt_html: "%{client_name}이 계정에 접근할 권한을 요청합니다. <strong>내가 알아볼 수 있고 신뢰할 수 있는 출처의 요청인 경우에만 승인하세요.</strong>"
         review_permissions: 권한 검토
         title: 승인 필요
       show:
@@ -83,6 +83,7 @@ ko:
         access_denied: 리소스 소유자 또는 인증 서버가 요청을 거부했습니다.
         credential_flow_not_configured: Doorkeeper.configure.resource_owner_from_credentials의 설정이 되어있지 않아 리소스 소유자 암호 자격증명이 실패하였습니다.
         invalid_client: 클라이언트를 확인할 수 없기 때문에 인증이 실패하였습니다. 클라이언트 자격 증명이 포함되지 않았거나 지원되지 않는 메소드입니다.
+        invalid_code_challenge_method: 코드 챌린지는 S256이어야 합니다. 평문은 지원되지 않습니다.
         invalid_grant: 제공된 권한 부여가 잘못되거나, 만료되었거나, 취소되었거나, 권한 부여 요청에 사용된 리디렉션 URI가 일치하지 않거나, 다른 클라이언트에 지정되었습니다.
         invalid_redirect_uri: 리디렉션 URI가 올바르지 않습니다
         invalid_request:

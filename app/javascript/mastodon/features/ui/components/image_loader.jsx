@@ -17,7 +17,7 @@ export default class ImageLoader extends PureComponent {
     width: PropTypes.number,
     height: PropTypes.number,
     onClick: PropTypes.func,
-    zoomButtonHidden: PropTypes.bool,
+    zoomedIn: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -134,7 +134,7 @@ export default class ImageLoader extends PureComponent {
   };
 
   render () {
-    const { alt, lang, src, width, height, onClick } = this.props;
+    const { alt, lang, src, width, height, onClick, zoomedIn } = this.props;
     const { loading } = this.state;
 
     const className = classNames('image-loader', {
@@ -149,6 +149,7 @@ export default class ImageLoader extends PureComponent {
             <div className='loading-bar__container' style={{ width: this.state.width || width }}>
               <LoadingBar className='loading-bar' loading={1} />
             </div>
+
             <canvas
               className='image-loader__preview-canvas'
               ref={this.setCanvasRef}
@@ -164,7 +165,7 @@ export default class ImageLoader extends PureComponent {
             onClick={onClick}
             width={width}
             height={height}
-            zoomButtonHidden={this.props.zoomButtonHidden}
+            zoomedIn={zoomedIn}
           />
         )}
       </div>

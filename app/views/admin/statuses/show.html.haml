@@ -1,7 +1,14 @@
 - content_for :page_title do
-  = t('statuses.title', name: display_name(@account), quote: truncate(@status.spoiler_text.presence || @status.text, length: 50, omission: '…', escape: false))
+  = t('admin.statuses.status_title', name: @account.pretty_acct)
 
 - content_for :heading_actions do
+  = form_with model: @status_batch_action, url: batch_admin_account_statuses_path(@account.id) do |f|
+    = f.hidden_field :status_ids, { multiple: true, value: @status.id }
+    = f.button safe_join([material_symbol('flag'), t('admin.statuses.batch.report')]),
+               class: 'button',
+               data: { confirm: t('admin.reports.are_you_sure') },
+               name: :report,
+               type: :submit
   = link_to t('admin.statuses.open'), ActivityPub::TagManager.instance.url_for(@status), class: 'button', target: '_blank', rel: 'noopener noreferrer'
 
 %h3= t('admin.statuses.metadata')
@@ -15,7 +22,7 @@
       - if @status.reply?
         %tr
           %th= t('admin.statuses.in_reply_to')
-          %td= admin_account_link_to @status.in_reply_to_account, path: admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id)
+          %td= admin_account_link_to @status.in_reply_to_account, path: @status.thread.present? ? admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id) : nil
       %tr
         %th= t('admin.statuses.application')
         %td= @status.application&.name
@@ -44,7 +51,56 @@
 
 %hr.spacer/
 
-%h3= t('admin.statuses.history')
+%h3= t('admin.statuses.contents')
 
-%ol.history
-  = render partial: 'admin/status_edits/status_edit', collection: batched_ordered_status_edits
+.status__card
+  - if @status.reblog?
+    .status__prepend
+      = material_symbol('repeat')
+      = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(@status.proper.account, path: admin_account_status_path(@status.proper.account.id, @status.proper.id)))
+  - elsif @status.reply? && @status.in_reply_to_id.present?
+    .status__prepend
+      = material_symbol('reply')
+      = t('admin.statuses.replied_to_html', acct_link: admin_account_inline_link_to(@status.in_reply_to_account, path: @status.thread.present? ? admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id) : nil))
+  .status__content><
+    - if @status.proper.spoiler_text.blank?
+      = prerender_custom_emojis(status_content_format(@status.proper), @status.proper.emojis)
+    - else
+      %details<
+        %summary><
+          %strong> Content warning: #{prerender_custom_emojis(h(@status.proper.spoiler_text), @status.proper.emojis)}
+        = prerender_custom_emojis(status_content_format(@status.proper), @status.proper.emojis)
+
+    - unless @status.proper.ordered_media_attachments.empty?
+      = render partial: 'admin/reports/media_attachments', locals: { status: @status.proper }
+
+    .detailed-status__meta
+      - if @status.application
+        = @status.application.name
+        ·
+      %span.detailed-status__datetime
+        %time.formatted{ datetime: @status.created_at.iso8601, title: l(@status.created_at) }= l(@status.created_at)
+      - if @status.edited?
+        ·
+        %span.detailed-status__datetime
+          = t('statuses.edited_at_html', date: content_tag(:time, l(@status.edited_at), datetime: @status.edited_at.iso8601, title: l(@status.edited_at), class: 'formatted'))
+      - if @status.discarded?
+        ·
+        %span.negative-hint= t('admin.statuses.deleted')
+      - unless @status.reblog?
+        ·
+        = material_symbol(visibility_icon(@status))
+        = t("statuses.visibilities.#{@status.visibility}")
+      - if @status.proper.sensitive?
+        ·
+        = material_symbol('visibility_off')
+        = t('stream_entries.sensitive_content')
+
+%hr.spacer/
+
+%h3= t('admin.statuses.history')
+- if @status.edits.empty?
+  %p= t('admin.statuses.no_history')
+- else
+  %ol.history
+    = render partial: 'admin/status_edits/status_edit', collection: batched_ordered_status_edits

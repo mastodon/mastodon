@@ -1,11 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import type { ApiAccountJSON } from '../api_types/accounts';
-// To be replaced once ApiNotificationJSON type exists
-interface FakeApiNotificationJSON {
-  type: string;
-  account: ApiAccountJSON;
-}
+import type { ApiNotificationJSON } from 'mastodon/api_types/notifications';
 
 export const notificationsUpdate = createAction(
   'notifications/update',
@@ -13,7 +8,7 @@ export const notificationsUpdate = createAction(
     playSound,
     ...args
   }: {
-    notification: FakeApiNotificationJSON;
+    notification: ApiNotificationJSON;
     usePendingItems: boolean;
     playSound: boolean;
   }) => ({

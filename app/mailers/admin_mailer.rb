@@ -9,6 +9,8 @@ class AdminMailer < ApplicationMailer
   before_action :process_params
   before_action :set_instance
 
+  after_action :set_important_headers!, only: :new_critical_software_updates
+
   default to: -> { @me.user_email }
 
   def new_report(report)
@@ -56,10 +58,6 @@ class AdminMailer < ApplicationMailer
   def new_critical_software_updates
     @software_updates = SoftwareUpdate.where(urgent: true).to_a.sort_by(&:gem_version)
 
-    headers['Priority'] = 'urgent'
-    headers['X-Priority'] = '1'
-    headers['Importance'] = 'high'
-
     locale_for_account(@me) do
       mail subject: default_i18n_subject(instance: @instance)
     end
@@ -79,5 +77,13 @@ class AdminMailer < ApplicationMailer
 
   def set_instance
     @instance = Rails.configuration.x.local_domain
+  end
+
+  def set_important_headers!
+    headers(
+      'Importance' => 'high',
+      'Priority' => 'urgent',
+      'X-Priority' => '1'
+    )
   end
 end

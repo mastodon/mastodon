@@ -10,6 +10,7 @@ class ReportService < BaseService
     @comment        = options.delete(:comment).presence || ''
     @category       = options[:rule_ids].present? ? 'violation' : (options.delete(:category).presence || 'other')
     @rule_ids       = options.delete(:rule_ids).presence
+    @application    = options.delete(:application).presence
     @options        = options
 
     raise ActiveRecord::RecordNotFound if @target_account.unavailable?
@@ -35,7 +36,8 @@ class ReportService < BaseService
       uri: @options[:uri],
       forwarded: forward_to_origin?,
       category: @category,
-      rule_ids: @rule_ids
+      rule_ids: @rule_ids,
+      application: @application
     )
   end
 

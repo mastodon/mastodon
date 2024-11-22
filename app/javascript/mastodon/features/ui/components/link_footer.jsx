@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
@@ -11,24 +11,11 @@ import { openModal } from 'mastodon/actions/modal';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { domain, version, source_url, statusPageUrl, profile_directory as profileDirectory } from 'mastodon/initial_state';
 import { PERMISSION_INVITE_USERS } from 'mastodon/permissions';
-import { logOut } from 'mastodon/utils/log_out';
 
-const messages = defineMessages({
-  logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
-  logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
-});
-
-const mapDispatchToProps = (dispatch, { intl }) => ({
+const mapDispatchToProps = (dispatch) => ({
   onLogout () {
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: intl.formatMessage(messages.logoutMessage),
-        confirm: intl.formatMessage(messages.logoutConfirm),
-        closeWhenConfirm: false,
-        onConfirm: () => logOut(),
-      },
-    }));
+    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT' }));
+
   },
 });
 

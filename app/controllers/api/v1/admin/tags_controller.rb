@@ -13,6 +13,13 @@ class Api::V1::Admin::TagsController < Api::BaseController
 
   LIMIT = 100
 
+  PERMITTED_PARAMS = %i(
+    display_name
+    listable
+    trendable
+    usable
+  ).freeze
+
   def index
     authorize :tag, :index?
     render json: @tags, each_serializer: REST::Admin::TagSerializer
@@ -40,7 +47,9 @@ class Api::V1::Admin::TagsController < Api::BaseController
   end
 
   def tag_params
-    params.permit(:display_name, :trendable, :usable, :listable)
+    params
+      .slice(*PERMITTED_PARAMS)
+      .permit(*PERMITTED_PARAMS)
   end
 
   def next_path

@@ -16,7 +16,7 @@ module ApplicationExtension
     # dependent: delete_all, which means the ActiveRecord callback in
     # AccessTokenExtension is not run, so instead we manually announce to
     # streaming that these tokens are being deleted.
-    before_destroy :push_to_streaming_api, prepend: true
+    before_destroy :close_streaming_sessions, prepend: true
   end
 
   def confirmation_redirect_uri
@@ -29,10 +29,12 @@ module ApplicationExtension
     redirect_uri.split
   end
 
-  def push_to_streaming_api
+  def close_streaming_sessions(resource_owner = nil)
     # TODO: #28793 Combine into a single topic
     payload = Oj.dump(event: :kill)
-    access_tokens.in_batches do |tokens|
+    scope = access_tokens
+    scope = scope.where(resource_owner_id: resource_owner.id) unless resource_owner.nil?
+    scope.in_batches do |tokens|
       redis.pipelined do |pipeline|
         tokens.ids.each do |id|
           pipeline.publish("timeline:access_token:#{id}", payload)

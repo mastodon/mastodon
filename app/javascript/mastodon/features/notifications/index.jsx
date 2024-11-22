@@ -34,7 +34,10 @@ import ColumnHeader from '../../components/column_header';
 import { LoadGap } from '../../components/load_gap';
 import ScrollableList from '../../components/scrollable_list';
 
-import { FilteredNotificationsBanner } from './components/filtered_notifications_banner';
+import {
+  FilteredNotificationsBanner,
+  FilteredNotificationsIconButton,
+} from './components/filtered_notifications_banner';
 import NotificationsPermissionBanner from './components/notifications_permission_banner';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import FilterBarContainer from './containers/filter_bar_container';
@@ -202,7 +205,7 @@ class Notifications extends PureComponent {
         <LoadGap
           key={'gap:' + notifications.getIn([index + 1, 'id'])}
           disabled={isLoading}
-          maxId={index > 0 ? notifications.getIn([index - 1, 'id']) : null}
+          param={index > 0 ? notifications.getIn([index - 1, 'id']) : null}
           onClick={this.handleLoadGap}
         />
       ) : (
@@ -223,6 +226,13 @@ class Notifications extends PureComponent {
 
     let scrollContainer;
 
+    const prepend = (
+      <>
+        {needsNotificationPermission && <NotificationsPermissionBanner />}
+        <FilteredNotificationsBanner />
+      </>
+    );
+
     if (signedIn) {
       scrollContainer = (
         <ScrollableList
@@ -232,7 +242,7 @@ class Notifications extends PureComponent {
           showLoading={isLoading && notifications.size === 0}
           hasMore={hasMore}
           numPending={numPending}
-          prepend={needsNotificationPermission && <NotificationsPermissionBanner />}
+          prepend={prepend}
           alwaysPrepend
           emptyMessage={emptyMessage}
           onLoadMore={this.handleLoadOlder}
@@ -248,20 +258,21 @@ class Notifications extends PureComponent {
       scrollContainer = <NotSignedInIndicator />;
     }
 
-    let extraButton = null;
-
-    if (canMarkAsRead) {
-      extraButton = (
-        <button
-          aria-label={intl.formatMessage(messages.markAsRead)}
-          title={intl.formatMessage(messages.markAsRead)}
-          onClick={this.handleMarkAsRead}
-          className='column-header__button'
-        >
-          <Icon id='done-all' icon={DoneAllIcon} />
-        </button>
-      );
-    }
+    const extraButton = (
+      <>
+        <FilteredNotificationsIconButton className='column-header__button' />
+        {canMarkAsRead && (
+          <button
+            aria-label={intl.formatMessage(messages.markAsRead)}
+            title={intl.formatMessage(messages.markAsRead)}
+            onClick={this.handleMarkAsRead}
+            className='column-header__button'
+          >
+            <Icon id='done-all' icon={DoneAllIcon} />
+          </button>
+        )}
+      </>
+    );
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setColumnRef} label={intl.formatMessage(messages.title)}>
@@ -281,8 +292,6 @@ class Notifications extends PureComponent {
         </ColumnHeader>
 
         {filterBarContainer}
-
-        <FilteredNotificationsBanner />
 
         {scrollContainer}
 

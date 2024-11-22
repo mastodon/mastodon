@@ -33,11 +33,13 @@ RSpec.describe 'Reports' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:reports'
 
-    it 'creates a report', :aggregate_failures, :sidekiq_inline do
+    it 'creates a report', :aggregate_failures, :inline_jobs do
       emails = capture_emails { subject }
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to match(
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body).to match(
         a_hash_including(
           status_ids: [status.id.to_s],
           category: category,
@@ -47,6 +49,7 @@ RSpec.describe 'Reports' do
 
       expect(target_account.targeted_reports).to_not be_empty
       expect(target_account.targeted_reports.first.comment).to eq 'reasons'
+      expect(target_account.targeted_reports.first.application).to eq token.application
 
       expect(emails.size)
         .to eq(1)
@@ -64,6 +67,8 @@ RSpec.describe 'Reports' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 

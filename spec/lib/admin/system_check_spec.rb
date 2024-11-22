@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::SystemCheck do
+RSpec.describe Admin::SystemCheck do
   let(:user) { Fabricate(:user) }
 
   describe 'perform' do

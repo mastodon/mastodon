@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe SearchService do
+RSpec.describe SearchService do
   subject { described_class.new }
 
   describe '#call' do

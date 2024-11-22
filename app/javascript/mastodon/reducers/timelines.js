@@ -1,5 +1,7 @@
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 
+import { timelineDelete } from 'mastodon/actions/timelines_typed';
+
 import {
   blockAccountSuccess,
   muteAccountSuccess,
@@ -7,19 +9,18 @@ import {
 } from '../actions/accounts';
 import {
   TIMELINE_UPDATE,
-  TIMELINE_DELETE,
   TIMELINE_CLEAR,
   TIMELINE_EXPAND_SUCCESS,
   TIMELINE_EXPAND_REQUEST,
   TIMELINE_EXPAND_FAIL,
   TIMELINE_SCROLL_TOP,
   TIMELINE_CONNECT,
-  TIMELINE_DISCONNECT,
   TIMELINE_LOAD_PENDING,
   TIMELINE_MARK_AS_PARTIAL,
   TIMELINE_INSERT,
   TIMELINE_GAP,
   TIMELINE_SUGGESTIONS,
+  disconnectTimeline,
 } from '../actions/timelines';
 import { compareId } from '../compare_id';
 
@@ -158,7 +159,7 @@ const filterTimelines = (state, relationship, statuses) => {
       return;
     }
 
-    references = statuses.filter(item => item.get('reblog') === status.get('id')).map(item => item.get('id'));
+    references = statuses.filter(item => item.get('reblog') === status.get('id')).map(item => item.get('id')).valueSeq().toJSON();
     state      = deleteStatus(state, status.get('id'), references, relationship.id);
   });
 
@@ -201,8 +202,8 @@ export default function timelines(state = initialState, action) {
     return expandNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next, action.partial, action.isLoadingRecent, action.usePendingItems);
   case TIMELINE_UPDATE:
     return updateTimeline(state, action.timeline, fromJS(action.status), action.usePendingItems);
-  case TIMELINE_DELETE:
-    return deleteStatus(state, action.id, action.references, action.reblogOf);
+  case timelineDelete.type:
+    return deleteStatus(state, action.payload.statusId, action.payload.references, action.payload.reblogOf);
   case TIMELINE_CLEAR:
     return clearTimeline(state, action.timeline);
   case blockAccountSuccess.type:
@@ -214,11 +215,11 @@ export default function timelines(state = initialState, action) {
     return updateTop(state, action.timeline, action.top);
   case TIMELINE_CONNECT:
     return state.update(action.timeline, initialTimeline, map => reconnectTimeline(map, action.usePendingItems));
-  case TIMELINE_DISCONNECT:
+  case disconnectTimeline.type:
     return state.update(
-      action.timeline,
+      action.payload.timeline,
       initialTimeline,
-      map => map.set('online', false).update(action.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(TIMELINE_GAP) : items),
+      map => map.set('online', false).update(action.payload.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(TIMELINE_GAP) : items),
     );
   case TIMELINE_MARK_AS_PARTIAL:
     return state.update(

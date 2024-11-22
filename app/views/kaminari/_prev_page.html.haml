@@ -7,4 +7,4 @@
     per_page:      number of items to fetch per page
     remote:        data-remote
 %span.prev
-  = link_to_unless current_page.first?, safe_join([fa_icon('chevron-left'), t('pagination.prev')], ' '), url, rel: 'prev', remote: remote
+  = link_to_unless current_page.first?, safe_join([material_symbol('chevron_left'), t('pagination.prev')], ' '), url, rel: 'prev', remote: remote

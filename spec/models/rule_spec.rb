@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Rule do
+RSpec.describe Rule do
   describe 'scopes' do
     describe 'ordered' do
       let(:deleted_rule) { Fabricate(:rule, deleted_at: 10.days.ago) }

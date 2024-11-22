@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::Web::PushSubscriptionsController < Api::Web::BaseController
-  before_action :require_user!
+  before_action :require_user!, except: :destroy
   before_action :set_push_subscription, only: :update
   before_action :destroy_previous_subscriptions, only: :create, if: :prior_subscriptions?
   after_action :update_session_with_subscription, only: :create
@@ -15,6 +15,13 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   def update
     @push_subscription.update!(data: data_params)
     render json: @push_subscription, serializer: REST::WebPushSubscriptionSerializer
+  end
+
+  def destroy
+    push_subscription = ::Web::PushSubscription.find_by_token_for(:unsubscribe, params[:id])
+    push_subscription&.destroy
+
+    head 200
   end
 
   private

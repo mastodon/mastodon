@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'securerandom'
 
-describe Request do
+RSpec.describe Request do
   subject { described_class.new(:get, 'http://example.com') }
 
   describe '#headers' do
@@ -100,7 +100,7 @@ describe Request do
   describe "response's body_with_limit method" do
     it 'rejects body more than 1 megabyte by default' do
       stub_request(:any, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.megabytes))
-      expect { subject.perform(&:body_with_limit) }.to raise_error Mastodon::LengthValidationError
+      expect { subject.perform(&:body_with_limit) }.to raise_error(Mastodon::LengthValidationError, 'Body size exceeds limit of 1048576')
     end
 
     it 'accepts body less than 1 megabyte by default' do
@@ -110,17 +110,17 @@ describe Request do
 
     it 'rejects body by given size' do
       stub_request(:any, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.kilobytes))
-      expect { subject.perform { |response| response.body_with_limit(1.kilobyte) } }.to raise_error Mastodon::LengthValidationError
+      expect { subject.perform { |response| response.body_with_limit(1.kilobyte) } }.to raise_error(Mastodon::LengthValidationError, 'Body size exceeds limit of 1024')
     end
 
     it 'rejects too large chunked body' do
       stub_request(:any, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.megabytes), headers: { 'Transfer-Encoding' => 'chunked' })
-      expect { subject.perform(&:body_with_limit) }.to raise_error Mastodon::LengthValidationError
+      expect { subject.perform(&:body_with_limit) }.to raise_error(Mastodon::LengthValidationError, 'Body size exceeds limit of 1048576')
     end
 
     it 'rejects too large monolithic body' do
       stub_request(:any, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.megabytes), headers: { 'Content-Length' => 2.megabytes })
-      expect { subject.perform(&:body_with_limit) }.to raise_error Mastodon::LengthValidationError
+      expect { subject.perform(&:body_with_limit) }.to raise_error(Mastodon::LengthValidationError, 'Content-Length 2097152 exceeds limit of 1048576')
     end
 
     it 'truncates large monolithic body' do

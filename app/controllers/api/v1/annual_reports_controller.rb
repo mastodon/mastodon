@@ -17,6 +17,17 @@ class Api::V1::AnnualReportsController < Api::BaseController
            relationships: @relationships
   end
 
+  def show
+    with_read_replica do
+      @presenter = AnnualReportsPresenter.new([@annual_report])
+      @relationships = StatusRelationshipsPresenter.new(@presenter.statuses, current_account.id)
+    end
+
+    render json: @presenter,
+           serializer: REST::AnnualReportsSerializer,
+           relationships: @relationships
+  end
+
   def read
     @annual_report.view!
     render_empty

@@ -29,25 +29,7 @@ class Web::PushSubscription < ApplicationRecord
 
   delegate :locale, to: :associated_user
 
-  def encrypt(payload)
-    Webpush::Encryption.encrypt(payload, key_p256dh, key_auth)
-  end
-
-  def audience
-    @audience ||= Addressable::URI.parse(endpoint).normalized_site
-  end
-
-  def crypto_key_header
-    p256ecdsa = vapid_key.public_key_for_push_header
-
-    "p256ecdsa=#{p256ecdsa}"
-  end
-
-  def authorization_header
-    jwt = JWT.encode({ aud: audience, exp: 24.hours.from_now.to_i, sub: "mailto:#{contact_email}" }, vapid_key.curve, 'ES256', typ: 'JWT')
-
-    "WebPush #{jwt}"
-  end
+  generates_token_for :unsubscribe, expires_in: Web::PushNotificationWorker::TTL
 
   def pushable?(notification)
     policy_allows_notification?(notification) && alert_enabled_for_notification_type?(notification)
@@ -75,7 +57,7 @@ class Web::PushSubscription < ApplicationRecord
 
   class << self
     def unsubscribe_for(application_id, resource_owner)
-      access_token_ids = Doorkeeper::AccessToken.where(application_id: application_id, resource_owner_id: resource_owner.id, revoked_at: nil).pluck(:id)
+      access_token_ids = Doorkeeper::AccessToken.where(application_id: application_id, resource_owner_id: resource_owner.id).not_revoked.pluck(:id)
       where(access_token_id: access_token_ids).delete_all
     end
   end
@@ -90,14 +72,6 @@ class Web::PushSubscription < ApplicationRecord
       expires_in: Doorkeeper.configuration.access_token_expires_in,
       use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
     )
-  end
-
-  def vapid_key
-    @vapid_key ||= Webpush::VapidKey.from_keys(Rails.configuration.x.vapid_public_key, Rails.configuration.x.vapid_private_key)
-  end
-
-  def contact_email
-    @contact_email ||= ::Setting.site_contact_email
   end
 
   def alert_enabled_for_notification_type?(notification)

@@ -60,7 +60,7 @@ de:
       error:
         title: Ein Fehler ist aufgetreten
       new:
-        prompt_html: "%{client_name} möchte auf dein Konto zugreifen. Es handelt sich um eine Software von Dritten. <strong>Wenn du der Anwendung nicht vertraust, solltest du ihr keinen Zugriff auf dein Konto geben.</strong>"
+        prompt_html: "%{client_name} möchte auf dein Konto zugreifen. <strong>Du solltest diese Anfrage nur genehmigen, wenn du diese Quelle kennst und ihr vertraust.</strong>"
         review_permissions: Berechtigungen überprüfen
         title: Autorisierung erforderlich
       show:
@@ -83,6 +83,7 @@ de:
         access_denied: Diese Anfrage wurde von den Inhaber*innen oder durch den Autorisierungsserver abgelehnt.
         credential_flow_not_configured: Das Konto konnte nicht gefunden werden, da Doorkeeper.configure.resource_owner_from_credentials nicht konfiguriert ist.
         invalid_client: 'Client-Authentisierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
+        invalid_code_challenge_method: Die Code-Challenge-Methode muss „S256“ sein, „plain“ wird nicht unterstützt.
         invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen oder einem anderen Client ausgestellt, oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
         invalid_redirect_uri: Der beigefügte Weiterleitungs-URI ist ungültig.
         invalid_request:

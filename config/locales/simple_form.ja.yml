@@ -3,6 +3,7 @@ ja:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: 1行につき1つずつ入力してください。この設定は関わりのないwebサイトに対して虚偽の帰属表示が行われることを防止する役割があります。
         discoverable: プロフィールと公開投稿をMastodonのおすすめやハイライトとしてほかのユーザーに表示することを許可します。
         display_name: フルネーム、ハンドルネームなど
         fields: ホームページ、代名詞、年齢など何でも構いません。
@@ -81,7 +82,7 @@ ja:
         backups_retention_period: ユーザーには、後でダウンロードするために投稿のアーカイブを生成する機能があります。正の値に設定すると、これらのアーカイブは指定された日数後に自動的にストレージから削除されます。
         bootstrap_timeline_accounts: これらのアカウントは、新しいユーザー向けのおすすめユーザーの一番上にピン留めされます。
         closed_registrations_message: アカウント作成を停止している時に表示されます
-        content_cache_retention_period: 他のサーバーからのすべての投稿（ブーストや返信を含む）は、指定された日数が経過すると、ローカルユーザーとのやりとりに関係なく削除されます。これには、ローカルユーザーがブックマークやお気に入りとして登録した投稿も含まれます。異なるサーバーのユーザー間の非公開な変身も失われ、復元することは不可能です。この設定の使用は特別な目的のインスタンスのためのものであり、一般的な目的のサーバーで使用するした場合、多くのユーザーの期待を裏切ることになります。
+        content_cache_retention_period: 他のサーバーからのすべての投稿（ブーストや返信を含む）は、指定された日数が経過すると、ローカルユーザーとのやりとりに関係なく削除されます。これには、ローカルユーザーがブックマークやお気に入りとして登録した投稿も含まれます。異なるサーバーのユーザー間の非公開な返信も失われ、復元することは不可能です。この設定の使用は特別な目的のインスタンスのためのものであり、一般的な目的のサーバーで使用した場合、多くのユーザーの期待を裏切ることになります。
         custom_css: ウェブ版のMastodonでカスタムスタイルを適用できます。
         favicon: デフォルトのMastodonのブックマークアイコンを独自のアイコンで上書きします。WEBP、PNG、GIF、JPGが利用可能です。
         mascot: 上級者向けWebインターフェースのイラストを上書きします。
@@ -130,7 +131,7 @@ ja:
         name: 視認性向上などのためにアルファベット大文字小文字の変更のみ行うことができます
       user:
         chosen_languages: 選択すると、選択した言語の投稿のみが公開タイムラインに表示されるようになります
-        role: このロールはユーザーが持つ権限を管理します
+        role: そのロールは、ユーザーが持つ権限を制御します。
       user_role:
         color: UI 全体でロールの表示に使用される色（16進数RGB形式）
         highlighted: これによりロールが公開されます。
@@ -143,6 +144,7 @@ ja:
         url: イベントの送信先
     labels:
       account:
+        attribution_domains_as_text: あなたの著者表示を許可するwebサイト
         discoverable: アカウントを見つけやすくする
         fields:
           name: ラベル
@@ -211,6 +213,7 @@ ja:
         setting_default_privacy: 投稿の公開範囲
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
         setting_delete_modal: 投稿を削除する前に確認ダイアログを表示する
+        setting_disable_hover_cards: マウスオーバーでプロフィールをポップアップしない
         setting_disable_swiping: スワイプでの切り替えを無効にする
         setting_display_media: メディアの表示
         setting_display_media_default: 標準
@@ -242,11 +245,13 @@ ja:
           warn: 警告付きで隠す
       form_admin_settings:
         activity_api_enabled: APIでユーザーアクティビティに関する集計統計を公開する
+        app_icon: アプリアイコン
         backups_retention_period: ユーザーアーカイブの保持期間
         bootstrap_timeline_accounts: おすすめユーザーに常に表示するアカウント
         closed_registrations_message: アカウント作成を停止している時のカスタムメッセージ
         content_cache_retention_period: リモートコンテンツの保存期間
         custom_css: カスタムCSS
+        favicon: ブックマークアイコン
         mascot: カスタムマスコット（レガシー）
         media_cache_retention_period: メディアキャッシュの保持期間
         peers_api_enabled: 発見したサーバーのリストをAPIで公開する
@@ -311,7 +316,7 @@ ja:
         listable: 検索とディレクトリへの使用を許可する
         name: ハッシュタグ
         trendable: トレンドへの表示を許可する
-        usable: 投稿への使用を許可する
+        usable: このサーバーのユーザーがタグをつけて投稿することを許可する
       user:
         role: ロール
         time_zone: タイムゾーン

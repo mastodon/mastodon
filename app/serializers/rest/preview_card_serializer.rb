@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class REST::PreviewCardSerializer < ActiveModel::Serializer
+  class AuthorSerializer < ActiveModel::Serializer
+    attributes :name, :url
+    has_one :account, serializer: REST::AccountSerializer
+  end
+
   include RoutingHelper
 
   attributes :url, :title, :description, :language, :type,
@@ -8,7 +13,7 @@ class REST::PreviewCardSerializer < ActiveModel::Serializer
              :provider_url, :html, :width, :height,
              :image, :image_description, :embed_url, :blurhash, :published_at
 
-  has_one :author_account, serializer: REST::AccountSerializer, if: -> { object.author_account.present? }
+  has_many :authors, serializer: AuthorSerializer
 
   def url
     object.original_url.presence || object.url

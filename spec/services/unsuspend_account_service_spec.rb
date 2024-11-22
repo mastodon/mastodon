@@ -45,7 +45,7 @@ RSpec.describe UnsuspendAccountService do
         remote_follower.follow!(account)
       end
 
-      it 'merges back into feeds of local followers and sends update', :sidekiq_inline do
+      it 'merges back into feeds of local followers and sends update', :inline_jobs do
         subject
 
         expect_feeds_merged

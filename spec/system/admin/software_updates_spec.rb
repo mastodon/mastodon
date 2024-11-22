@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'finding software updates through the admin interface' do
+RSpec.describe 'finding software updates through the admin interface' do
   before do
     Fabricate(:software_update, version: '99.99.99', type: 'major', urgent: true, release_notes: 'https://github.com/mastodon/mastodon/releases/v99')
 

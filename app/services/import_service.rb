@@ -115,7 +115,7 @@ class ImportService < BaseService
       next if status.nil? && ActivityPub::TagManager.instance.local_uri?(uri)
 
       status || ActivityPub::FetchRemoteStatusService.new.call(uri)
-    rescue HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
+    rescue *Mastodon::HTTP_CONNECTION_ERRORS, Mastodon::UnexpectedResponseError
       nil
     rescue => e
       Rails.logger.warn "Unexpected error when importing bookmark: #{e}"

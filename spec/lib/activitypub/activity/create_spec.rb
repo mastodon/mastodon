@@ -63,6 +63,24 @@ RSpec.describe ActivityPub::Activity::Create do
       }
     end
 
+    let(:invalid_mention_json) do
+      {
+        id: [ActivityPub::TagManager.instance.uri_for(sender), 'post2'].join('/'),
+        type: 'Note',
+        to: [
+          'https://www.w3.org/ns/activitystreams#Public',
+          ActivityPub::TagManager.instance.uri_for(follower),
+        ],
+        content: '@bob lorem ipsum',
+        published: 1.hour.ago.utc.iso8601,
+        updated: 1.hour.ago.utc.iso8601,
+        tag: {
+          type: 'Mention',
+          href: 'http://notexisting.dontexistingtld/actor',
+        },
+      }
+    end
+
     def activity_for_object(json)
       {
         '@context': 'https://www.w3.org/ns/activitystreams',
@@ -116,6 +134,25 @@ RSpec.describe ActivityPub::Activity::Create do
 
       # Creates two notifications
       expect(Notification.count).to eq 2
+    end
+
+    it 'ignores unprocessable mention', :aggregate_failures do
+      stub_request(:get, invalid_mention_json[:tag][:href]).to_raise(HTTP::ConnectionError)
+      # When receiving the post that contains an invalid mention…
+      described_class.new(activity_for_object(invalid_mention_json), sender, delivery: true).perform
+
+      # NOTE: Refering explicitly to the workers is a bit awkward
+      DistributionWorker.drain
+      FeedInsertWorker.drain
+
+      # …it creates a status
+      status = Status.find_by(uri: invalid_mention_json[:id])
+
+      # Check the process did not crash
+      expect(status.nil?).to be false
+
+      # It has queued a mention resolve job
+      expect(MentionResolveWorker).to have_enqueued_sidekiq_job(status.id, invalid_mention_json[:tag][:href], anything)
     end
   end
 
@@ -891,6 +928,32 @@ RSpec.describe ActivityPub::Activity::Create do
           expect(poll.votes.first).to be_nil
         end
       end
+
+      context 'with counts' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            likes: {
+              id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar', '/likes'].join,
+              type: 'Collection',
+              totalItems: 50,
+            },
+            shares: {
+              id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar', '/shares'].join,
+              type: 'Collection',
+              totalItems: 100,
+            },
+          }
+        end
+
+        it 'uses the counts from the created object' do
+          status = sender.statuses.first
+          expect(status.untrusted_favourites_count).to eq 50
+          expect(status.untrusted_reblogs_count).to eq 100
+        end
+      end
     end
 
     context 'when object URI uses bearcaps' do
@@ -933,64 +996,6 @@ RSpec.describe ActivityPub::Activity::Create do
           visibility: 'public',
           text: 'Lorem ipsum'
         )
-      end
-    end
-
-    context 'with an encrypted message' do
-      subject { described_class.new(json, sender, delivery: true, delivered_to_account_id: recipient.id) }
-
-      let(:recipient) { Fabricate(:account) }
-      let(:object_json) do
-        {
-          id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
-          type: 'EncryptedMessage',
-          attributedTo: {
-            type: 'Device',
-            deviceId: '1234',
-          },
-          to: {
-            type: 'Device',
-            deviceId: target_device.device_id,
-          },
-          messageType: 1,
-          cipherText: 'Foo',
-          messageFranking: 'Baz678',
-          digest: {
-            digestAlgorithm: 'Bar456',
-            digestValue: 'Foo123',
-          },
-        }
-      end
-      let(:target_device) { Fabricate(:device, account: recipient) }
-
-      before do
-        subject.perform
-      end
-
-      it 'creates an encrypted message' do
-        encrypted_message = target_device.encrypted_messages.reload.first
-
-        expect(encrypted_message)
-          .to be_present
-          .and have_attributes(
-            from_device_id: eq('1234'),
-            from_account: eq(sender),
-            type: eq(1),
-            body: eq('Foo'),
-            digest: eq('Foo123')
-          )
-      end
-
-      it 'creates a message franking' do
-        encrypted_message = target_device.encrypted_messages.reload.first
-        message_franking  = encrypted_message.message_franking
-
-        crypt = ActiveSupport::MessageEncryptor.new(SystemKey.current_key, serializer: Oj)
-        json  = crypt.decrypt_and_verify(message_franking)
-
-        expect(json['source_account_id']).to eq sender.id
-        expect(json['target_account_id']).to eq recipient.id
-        expect(json['original_franking']).to eq 'Baz678'
       end
     end
 
