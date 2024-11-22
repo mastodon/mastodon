@@ -15,6 +15,13 @@ const mapStateToProps = state => ({
   openedViaKeyboard: state.dropdownMenu.keyboard,
 });
 
+/**
+ * @param {any} dispatch
+ * @param {Object} root0
+ * @param {any} [root0.status]
+ * @param {any} root0.items
+ * @param {any} [root0.scrollKey]
+ */
 const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
   onOpen(id, onItemClick, keyboard) {
     if (status) {

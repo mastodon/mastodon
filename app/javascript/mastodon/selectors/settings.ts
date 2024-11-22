@@ -52,4 +52,7 @@ export const selectSettingsNotificationsMinimizeFilteredBanner = (
 ) =>
   state.settings.getIn(['notifications', 'minimizeFilteredBanner']) as boolean;
 
+export const selectSettingsNotificationsGroupFollows = (state: RootState) =>
+  state.settings.getIn(['notifications', 'group', 'follow']) as boolean;
+
 /* eslint-enable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */

@@ -12,6 +12,7 @@ io:
       last_attempt: Tu ankore povas probar unfoye ante ke tua konto esos extingita.
       locked: Tua konto esas extingita.
       not_found_in_database: Nejusta %{authentication_keys}.
+      omniauth_user_creation_failure: Eroro dum ke kreas konto por ca identeso.
       pending: Vua konti ankore kontrolesas.
       timeout: Vua kunsido expiris. Voluntez rienirar por avancar.
       unauthenticated: Tu devas enirar o membreskar por durar.
@@ -47,14 +48,19 @@ io:
         subject: Instrucioni por chanjar la pasvorto
         title: Richanjo di pasvorto
       two_factor_disabled:
+        explanation: Eniro esas nun posibla per nur retpostoadreso e pasvorto.
         subject: 'Mastodon: 2-faktorverifiko deaktivigesis'
+        subtitle: 2-faktora verifiko por vua konto desaktivigesis.
         title: 2FA deaktivigesis
       two_factor_enabled:
+        explanation: Ficho facesis da parigita softwaro TOTP bezonesos por eniro.
         subject: 'Mastodon: 2-faktorverifiko aktivigesis'
+        subtitle: 2-faktora verifiko aktivigesis por vua konto.
         title: 2FA aktivigesis
       two_factor_recovery_codes_changed:
         explanation: Antea rigankodexi devalidesis e novo facesis.
         subject: 'Mastodon: 2-faktorrigankodexi rifacesis'
+        subtitle: Antea rigankodexi desvalidesis e novo facesis.
         title: 2FA-rigankodexi chanjesis
       unlock_instructions:
         subject: Instructioni por riacendar la konto
@@ -68,9 +74,13 @@ io:
           subject: 'Mastodon: Sekurklefo efacesis'
           title: 1 de vua sekurklefi efacesis
       webauthn_disabled:
+        explanation: Verifiko per sekuresklefi desaktivigesis por vua konto.
+        extra: Eniro esas nun posibla per nur ficho qua facesis da parigita softwaro TOTP.
         subject: 'Mastodon: Verifiko per sekurklefi deaktivigesis'
         title: Sekurklefi deaktivigesis
       webauthn_enabled:
+        explanation: Sekuresklefoa verifiko aktivigesis por vua konto.
+        extra: Vua sekuresklefo povas nun uzesar por eniro.
         subject: 'Mastodon: Sekurklefverifiko aktivigesis'
         title: Sekurklefi aktivigesis
     omniauth_callbacks:

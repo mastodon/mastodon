@@ -1,5 +1,8 @@
 = content_for :heading do
-  = render 'application/mailer/heading', heading_title: t('user_mailer.failed_2fa.title'), heading_subtitle: t('user_mailer.failed_2fa.explanation'), heading_image_url: frontend_asset_url('images/mailer-new/heading/login.png')
+  = render 'application/mailer/heading',
+           image_url: frontend_asset_url('images/mailer-new/heading/login.png'),
+           subtitle: t('user_mailer.failed_2fa.explanation'),
+           title: t('user_mailer.failed_2fa.title')
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-body-padding-td

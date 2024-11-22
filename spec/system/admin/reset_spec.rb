@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin::Reset' do
-  it 'Resets password for account user' do
+  it 'Resets password for account user', :inline_jobs do
     account = Fabricate :account
     sign_in admin_user
     visit admin_account_path(account.id)

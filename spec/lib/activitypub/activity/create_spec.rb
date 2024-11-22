@@ -63,6 +63,24 @@ RSpec.describe ActivityPub::Activity::Create do
       }
     end
 
+    let(:invalid_mention_json) do
+      {
+        id: [ActivityPub::TagManager.instance.uri_for(sender), 'post2'].join('/'),
+        type: 'Note',
+        to: [
+          'https://www.w3.org/ns/activitystreams#Public',
+          ActivityPub::TagManager.instance.uri_for(follower),
+        ],
+        content: '@bob lorem ipsum',
+        published: 1.hour.ago.utc.iso8601,
+        updated: 1.hour.ago.utc.iso8601,
+        tag: {
+          type: 'Mention',
+          href: 'http://notexisting.dontexistingtld/actor',
+        },
+      }
+    end
+
     def activity_for_object(json)
       {
         '@context': 'https://www.w3.org/ns/activitystreams',
@@ -116,6 +134,25 @@ RSpec.describe ActivityPub::Activity::Create do
 
       # Creates two notifications
       expect(Notification.count).to eq 2
+    end
+
+    it 'ignores unprocessable mention', :aggregate_failures do
+      stub_request(:get, invalid_mention_json[:tag][:href]).to_raise(HTTP::ConnectionError)
+      # When receiving the post that contains an invalid mention…
+      described_class.new(activity_for_object(invalid_mention_json), sender, delivery: true).perform
+
+      # NOTE: Refering explicitly to the workers is a bit awkward
+      DistributionWorker.drain
+      FeedInsertWorker.drain
+
+      # …it creates a status
+      status = Status.find_by(uri: invalid_mention_json[:id])
+
+      # Check the process did not crash
+      expect(status.nil?).to be false
+
+      # It has queued a mention resolve job
+      expect(MentionResolveWorker).to have_enqueued_sidekiq_job(status.id, invalid_mention_json[:tag][:href], anything)
     end
   end
 
@@ -889,6 +926,32 @@ RSpec.describe ActivityPub::Activity::Create do
 
         it 'does not add a vote to the poll' do
           expect(poll.votes.first).to be_nil
+        end
+      end
+
+      context 'with counts' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            likes: {
+              id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar', '/likes'].join,
+              type: 'Collection',
+              totalItems: 50,
+            },
+            shares: {
+              id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar', '/shares'].join,
+              type: 'Collection',
+              totalItems: 100,
+            },
+          }
+        end
+
+        it 'uses the counts from the created object' do
+          status = sender.statuses.first
+          expect(status.untrusted_favourites_count).to eq 50
+          expect(status.untrusted_reblogs_count).to eq 100
         end
       end
     end

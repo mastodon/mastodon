@@ -137,6 +137,7 @@ a.table-action-link {
   padding: 0 10px;
   color: $darker-text-color;
   font-weight: 500;
+  white-space: nowrap;
 
   &:hover {
     color: $highlight-text-color;
@@ -338,16 +339,12 @@ a.table-action-link {
     }
   }
 
-  .status__content {
-    padding-top: 0;
-
-    summary {
-      display: list-item;
-    }
-
-    strong {
-      font-weight: 700;
-    }
+  // Reset the status card to not have borders, background or padding when
+  // inline in the table of statuses
+  .status__card {
+    border: none;
+    background: none;
+    padding: 0;
   }
 
   .nothing-here {
@@ -357,6 +354,10 @@ a.table-action-link {
     background: var(--background-color);
 
     @media screen and (max-width: $no-gap-breakpoint) {
+      border-top: 1px solid var(--background-border-color);
+    }
+
+    &--no-toolbar {
       border-top: 1px solid var(--background-border-color);
     }
   }

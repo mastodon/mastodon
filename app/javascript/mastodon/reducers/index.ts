@@ -17,9 +17,7 @@ import filters from './filters';
 import followed_tags from './followed_tags';
 import height_cache from './height_cache';
 import history from './history';
-import listAdder from './list_adder';
-import listEditor from './list_editor';
-import lists from './lists';
+import { listsReducer } from './lists';
 import { markersReducer } from './markers';
 import media_attachments from './media_attachments';
 import meta from './meta';
@@ -69,9 +67,7 @@ const reducers = {
   notificationGroups: notificationGroupsReducer,
   height_cache,
   custom_emojis,
-  lists,
-  listEditor,
-  listAdder,
+  lists: listsReducer,
   filters,
   conversations,
   suggestions,

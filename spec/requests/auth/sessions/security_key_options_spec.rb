@@ -6,7 +6,7 @@ require 'webauthn/fake_client'
 RSpec.describe 'Security Key Options' do
   describe 'GET /auth/sessions/security_key_options' do
     let!(:user) do
-      Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+      Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret)
     end
 
     context 'with WebAuthn and OTP enabled as second factor' do

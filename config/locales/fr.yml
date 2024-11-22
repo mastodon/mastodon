@@ -21,6 +21,7 @@ fr:
       one: Message
       other: Messages
     posts_tab_heading: Messages
+    self_follow_error: Il n'est pas possible de suivre votre propre compte
   admin:
     account_actions:
       action: Effectuer l'action
@@ -262,8 +263,10 @@ fr:
         destroy_user_role_html: "%{name} a supprimé le rôle %{target}"
         disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} a désactivé l'authentification par jeton de courriel pour %{target}"
         disable_user_html: "%{name} a désactivé la connexion de l'utilisateur·rice %{target}"
         enable_custom_emoji_html: "%{name} a activé l'émoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} a activé l'authentification par jeton de courriel pour %{target}"
         enable_user_html: "%{name} a activé la connexion de l'utilisateur·rice %{target}"
         memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
         promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
@@ -427,7 +430,7 @@ fr:
       undo: Annuler le blocage de domaine
       view: Afficher les blocages de domaines
     email_domain_blocks:
-      add_new: Ajouter
+      add_new: Ajouter un nouveau
       allow_registrations_with_approval: Autoriser les inscriptions avec approbation
       attempts_over_week:
         one: "%{count} tentative au cours de la dernière semaine"
@@ -833,7 +836,6 @@ fr:
       original_status: Message original
       reblogs: Partages
       status_changed: Publication modifiée
-      title: Messages du compte
       trending: Tendances
       visibility: Visibilité
       with_media: Avec médias
@@ -876,6 +878,9 @@ fr:
         message_html: Vous n'avez pas défini de règles pour le serveur.
       sidekiq_process_check:
         message_html: Aucun processus Sidekiq en cours d'exécution pour la/les file(s) d'attente %{value}. Veuillez vérifier votre configuration de Sidekiq
+      software_version_check:
+        action: Voir les mises à jour disponibles
+        message_html: Une mise à jour de Mastodon est disponible.
       software_version_critical_check:
         action: Voir les mises à jour disponibles
         message_html: Une mise à jour critique de Mastodon est disponible, veuillez mettre à jour le plus rapidement possible.
@@ -1163,7 +1168,6 @@ fr:
     use_security_key: Utiliser la clé de sécurité
   author_attribution:
     example_title: Exemple de texte
-    hint_html: Déterminez la façon dont vous êtes crédité lorsque des liens sont partagés sur Mastodon.
     more_from_html: Plus via %{name}
     s_blog: Blog de %{name}
     title: Attribution de l'auteur·e
@@ -1364,19 +1368,43 @@ fr:
       overwrite: Écraser
       overwrite_long: Remplacer les enregistrements actuels par les nouveaux
     overwrite_preambles:
-      blocking_html: Vous allez <strong>remplacer votre liste de blocage</strong> par près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
-      bookmarks_html: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{total_items} posts</strong> tirés de <strong>%{filename}</strong>.
-      domain_blocking_html: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
-      following_html: Vous allez <strong>suivre</strong> jusqu’à <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
-      lists_html: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Près de <strong>%{total_items} comptes</strong> seront ajoutés à de nouvelles listes.
-      muting_html: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+      blocking_html:
+        one: Vous allez <strong>remplacer votre liste de blocage</strong> par près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer votre liste de blocage</strong> par près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{count} post</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer vos signets</strong> par près de <strong>%{count} posts</strong> tirés de <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{count} domaine</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer votre liste de blocage de domaines</strong> par près de <strong>%{count} domaines</strong> tirés de <strong>%{filename}</strong>.
+      following_html:
+        one: Vous allez <strong>suivre</strong> jusqu’à <strong>%{count} compte</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
+        other: Vous allez <strong>suivre</strong> jusqu’à <strong>%{count} comptes</strong> depuis <strong>%{filename}</strong> et <strong>arrêter de suivre n’importe qui d’autre</strong>.
+      lists_html:
+        one: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Près de <strong>%{count} compte</strong> sera ajouté à de nouvelles listes.
+        other: Vous allez <strong>remplacer vos listes</strong> par le contenu de <strong>%{filename}</strong>. Près de <strong>%{count} comptes</strong> seront ajoutés à de nouvelles listes.
+      muting_html:
+        one: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>remplacer votre liste de comptes masqués</strong> par près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Vous allez <strong>bloquer</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
-      bookmarks_html: Vous allez ajouter près de <strong>%{total_items} messages</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
-      domain_blocking_html: Vous allez <strong>bloquer</strong> près de <strong>%{total_items} domaines</strong> tirés de <strong>%{filename}</strong>.
-      following_html: Vous allez <strong>suivre</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
-      lists_html: Vous allez ajouter près de <strong>%{total_items} comptes</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
-      muting_html: Vous allez <strong>masquer</strong> près de <strong>%{total_items} comptes</strong> tirés de <strong>%{filename}</strong>.
+      blocking_html:
+        one: Vous allez <strong>bloquer</strong> près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>bloquer</strong> près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Vous allez ajouter près de <strong>%{count} message</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
+        other: Vous allez ajouter près de <strong>%{count} messages</strong> de <strong>%{filename}</strong> à vos <strong>signets</strong>.
+      domain_blocking_html:
+        one: Vous allez <strong>bloquer</strong> près de <strong>%{count} domaine</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>bloquer</strong> près de <strong>%{count} domaines</strong> tirés de <strong>%{filename}</strong>.
+      following_html:
+        one: Vous allez <strong>suivre</strong> près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>suivre</strong> près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
+      lists_html:
+        one: Vous allez ajouter près de <strong>%{count} compte</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
+        other: Vous allez ajouter près de <strong>%{count} comptes</strong> depuis <strong>%{filename}</strong> à vos <strong>listes</strong>. De nouvelles listes seront créées si besoin.
+      muting_html:
+        one: Vous allez <strong>masquer</strong> près de <strong>%{count} compte</strong> tiré de <strong>%{filename}</strong>.
+        other: Vous allez <strong>masquer</strong> près de <strong>%{count} comptes</strong> tirés de <strong>%{filename}</strong>.
     preface: Vous pouvez importer certaines données que vous avez exporté d’un autre serveur, comme une liste des personnes que vous suivez ou bloquez sur votre compte.
     recent_imports: Récents imports
     states:
@@ -1447,6 +1475,7 @@ fr:
     unsubscribe:
       action: Oui, se désinscrire
       complete: Désinscrit
+      confirmation_html: Êtes-vous sûr de vouloir vous désabonner de la réception de %{type} pour Mastodon sur %{domain} à votre adresse e-mail %{email} ? Vous pouvez toujours vous réabonner à partir de vos paramètres de <a href="%{settings_path}">notification par messagerie</a>.
       emails:
         notification_emails:
           favourite: e-mails de notifications de favoris
@@ -1692,7 +1721,7 @@ fr:
     delete: Suppression du compte
     development: Développement
     edit_profile: Modifier le profil
-    export: Export de données
+    export: Exportation
     featured_tags: Hashtags mis en avant
     import: Import de données
     import_and_export: Import et export

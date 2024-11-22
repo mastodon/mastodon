@@ -15,6 +15,12 @@ fy:
       user/invite_request:
         text: Reden
     errors:
+      attributes:
+        domain:
+          invalid: is in ûnjildige domeinnamme
+      messages:
+        invalid_domain_on_line: "%{value} is in ûnjildige domeinnamme"
+        too_many_lines: giet oer de limyt fan %{limit} rigels
       models:
         account:
           attributes:

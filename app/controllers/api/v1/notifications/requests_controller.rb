@@ -52,7 +52,7 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
   private
 
   def load_requests
-    requests = NotificationRequest.where(account: current_account).includes(:last_status, from_account: [:account_stat, :user]).to_a_paginated_by_id(
+    requests = NotificationRequest.where(account: current_account).without_suspended.includes(:last_status, from_account: [:account_stat, :user]).to_a_paginated_by_id(
       limit_param(DEFAULT_ACCOUNTS_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )
