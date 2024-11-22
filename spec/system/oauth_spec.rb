@@ -115,6 +115,8 @@ RSpec.describe 'Using OAuth from an external app' do
           subject
 
           within '.form-container .flash-message' do
+            # FIXME: Replace with doorkeeper.errors.messages.invalid_code_challenge_method.one for Doorkeeper > 5.8.0
+            # see: https://github.com/doorkeeper-gem/doorkeeper/pull/1747
             expect(page).to have_content(I18n.t('doorkeeper.errors.messages.invalid_code_challenge_method'))
           end
         end
