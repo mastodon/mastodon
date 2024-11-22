@@ -7,15 +7,11 @@ RSpec.describe IpBlock do
     subject { Fabricate.build :ip_block }
 
     it { is_expected.to validate_presence_of(:ip) }
+    it { is_expected.to validate_presence_of(:severity) }
 
     it { is_expected.to validate_uniqueness_of(:ip) }
 
-    it 'validates severity inclusion', :aggregate_failures do
-      ip_block = described_class.new(ip: '127.0.0.1', severity: :invalid)
-
-      expect(ip_block).to_not be_valid
-      expect(ip_block).to model_have_error_on_field(:severity)
-    end
+    it { is_expected.to allow_values(:sign_up_requires_approval, :sign_up_block, :no_access).for(:severity) }
   end
 
   describe '#to_log_human_identifier' do
