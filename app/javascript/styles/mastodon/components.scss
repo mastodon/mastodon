@@ -1077,26 +1077,6 @@ body > [data-popper-placement] {
     color: $highlight-text-color;
   }
 
-  .status__content__spoiler-link {
-    background: $action-button-color;
-
-    &:hover,
-    &:focus {
-      background: lighten($action-button-color, 7%);
-      text-decoration: none;
-    }
-
-    &::-moz-focus-inner {
-      border: 0;
-    }
-
-    &::-moz-focus-inner,
-    &:focus,
-    &:active {
-      outline: 0 !important;
-    }
-  }
-
   .status__content__text {
     display: none;
 
@@ -1352,21 +1332,6 @@ body > [data-popper-placement] {
   display: flex;
   justify-content: space-between;
   color: $dark-text-color;
-}
-
-.status__content__spoiler-link {
-  display: inline-block;
-  border-radius: 2px;
-  background: transparent;
-  border: 0;
-  color: $inverted-text-color;
-  font-weight: 700;
-  font-size: 11px;
-  padding: 0 6px;
-  text-transform: uppercase;
-  line-height: 20px;
-  cursor: pointer;
-  vertical-align: top;
 }
 
 .status__wrapper--filtered {
@@ -1734,11 +1699,6 @@ body > [data-popper-placement] {
     .emojione {
       width: 24px;
       height: 24px;
-      margin: -1px 0 0;
-    }
-
-    .status__content__spoiler-link {
-      line-height: 24px;
       margin: -1px 0 0;
     }
   }
@@ -2287,17 +2247,6 @@ a.account__display-name {
 
   .status__avatar {
     opacity: 0.5;
-  }
-
-  a.status__content__spoiler-link {
-    background: $ui-base-lighter-color;
-    color: $inverted-text-color;
-
-    &:hover,
-    &:focus {
-      background: lighten($ui-base-lighter-color, 7%);
-      text-decoration: none;
-    }
   }
 }
 
@@ -6383,15 +6332,6 @@ a.status-card {
   .status__content,
   .status__content p {
     color: $primary-text-color;
-  }
-
-  .status__content__spoiler-link {
-    color: $primary-text-color;
-    background: $ui-primary-color;
-
-    &:hover {
-      background: lighten($ui-primary-color, 8%);
-    }
   }
 
   .dialog-option {
