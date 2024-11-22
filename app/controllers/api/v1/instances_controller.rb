@@ -6,7 +6,7 @@ class Api::V1::InstancesController < Api::BaseController
 
   vary_by ''
 
-  # Override `current_user` to avoid reading session cookies unless in whitelist mode
+  # Override `current_user` to avoid reading session cookies unless in limited federation mode
   def current_user
     super if limited_federation_mode?
   end

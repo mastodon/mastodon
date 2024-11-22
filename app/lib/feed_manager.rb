@@ -109,7 +109,7 @@ class FeedManager
   def merge_into_home(from_account, into_account)
     timeline_key = key(:home, into_account.id)
     aggregate    = into_account.user&.aggregates_reblogs?
-    query        = from_account.statuses.where(visibility: [:public, :unlisted, :private]).includes(:preloadable_poll, :media_attachments, reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
+    query        = from_account.statuses.list_eligible_visibility.includes(:preloadable_poll, :media_attachments, reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
 
     if redis.zcard(timeline_key) >= FeedManager::MAX_ITEMS / 4
       oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
@@ -135,7 +135,7 @@ class FeedManager
   def merge_into_list(from_account, list)
     timeline_key = key(:list, list.id)
     aggregate    = list.account.user&.aggregates_reblogs?
-    query        = from_account.statuses.where(visibility: [:public, :unlisted, :private]).includes(:preloadable_poll, :media_attachments, reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
+    query        = from_account.statuses.list_eligible_visibility.includes(:preloadable_poll, :media_attachments, reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
 
     if redis.zcard(timeline_key) >= FeedManager::MAX_ITEMS / 4
       oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
@@ -162,7 +162,7 @@ class FeedManager
     timeline_key        = key(:home, into_account.id)
     timeline_status_ids = redis.zrange(timeline_key, 0, -1)
 
-    from_account.statuses.select('id, reblog_of_id').where(id: timeline_status_ids).reorder(nil).find_each do |status|
+    from_account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil).find_each do |status|
       remove_from_feed(:home, into_account.id, status, aggregate_reblogs: into_account.user&.aggregates_reblogs?)
     end
   end
@@ -175,7 +175,7 @@ class FeedManager
     timeline_key        = key(:list, list.id)
     timeline_status_ids = redis.zrange(timeline_key, 0, -1)
 
-    from_account.statuses.select('id, reblog_of_id').where(id: timeline_status_ids).reorder(nil).find_each do |status|
+    from_account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil).find_each do |status|
       remove_from_feed(:list, list.id, status, aggregate_reblogs: list.account.user&.aggregates_reblogs?)
     end
   end
@@ -196,7 +196,7 @@ class FeedManager
                     .where.not(account: into_account.following)
                     .tagged_with_none(TagFollow.where(account: into_account).pluck(:tag_id))
 
-    scope.select('id, reblog_of_id').reorder(nil).find_each do |status|
+    scope.select(:id, :reblog_of_id).reorder(nil).find_each do |status|
       remove_from_feed(:home, into_account.id, status, aggregate_reblogs: into_account.user&.aggregates_reblogs?)
     end
   end
@@ -274,7 +274,7 @@ class FeedManager
         next if last_status_score < oldest_home_score
       end
 
-      statuses = target_account.statuses.where(visibility: [:public, :unlisted, :private]).includes(:preloadable_poll, :media_attachments, :account, reblog: :account).limit(limit)
+      statuses = target_account.statuses.list_eligible_visibility.includes(:preloadable_poll, :media_attachments, :account, reblog: :account).limit(limit)
       crutches = build_crutches(account.id, statuses)
 
       statuses.each do |status|
@@ -420,10 +420,7 @@ class FeedManager
     check_for_blocks = status.active_mentions.pluck(:account_id)
     check_for_blocks.push(status.in_reply_to_account) if status.reply? && !status.in_reply_to_account_id.nil?
 
-    should_filter   = blocks_or_mutes?(receiver_id, check_for_blocks, :mentions) # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked (or muted)
-    should_filter ||= status.account.silenced? && !Follow.exists?(account_id: receiver_id, target_account_id: status.account_id) # Filter if the account is silenced and I'm not following them
-
-    should_filter
+    blocks_or_mutes?(receiver_id, check_for_blocks, :mentions) # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked (or muted)
   end
 
   # Check if status should not be added to the list feed
@@ -561,7 +558,7 @@ class FeedManager
       arr = crutches[:active_mentions][s.id] || []
       arr.push(s.account_id)
 
-      if s.reblog?
+      if s.reblog? && s.reblog.present?
         arr.push(s.reblog.account_id)
         arr.concat(crutches[:active_mentions][s.reblog_of_id] || [])
       end

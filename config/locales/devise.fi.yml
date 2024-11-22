@@ -2,9 +2,9 @@
 fi:
   devise:
     confirmations:
-      confirmed: Sähköpostiosoitteesi on vahvistettu.
-      send_instructions: Saat pian sähköpostitse ohjeet sähköpostiosoitteesi vahvistamiseen. Jos et saanut viestiä, tarkista roskapostikansiosi.
-      send_paranoid_instructions: Jos sähköpostiosoitteesi on tiedossammme, saat pian sähköpostiisi ohjeet sen vahvistamiseen. Jos et saanut viestiä, tarkista roskapostikansiosi.
+      confirmed: Sähköpostiosoitteesi vahvistus onnistui.
+      send_instructions: Saat pian sähköpostiisi ohjeet sähköpostiosoitteesi vahvistamiseen. Jos viestiä ei kuulu, tarkista roskapostikansiosi.
+      send_paranoid_instructions: Jos sähköpostiosoitteesi on tiedossammme, saat pian sähköpostiisi ohjeet sen vahvistamiseen. Jos viestiä ei kuulu, tarkista roskapostikansiosi.
     failure:
       already_authenticated: Olet jo kirjautunut sisään.
       inactive: Tiliäsi ei ole vielä aktivoitu.
@@ -14,7 +14,7 @@ fi:
       not_found_in_database: Virheellinen %{authentication_keys} tai salasana.
       omniauth_user_creation_failure: Virhe luotaessa tiliä tälle henkilöllisyydelle.
       pending: Tilisi on vielä tarkistamatta.
-      timeout: Istuntosi on vanhentunut. Jatkaaksesi käyttöä, kirjaudu uudelleen.
+      timeout: Istuntosi on vanhentunut. Jatka kirjautumalla uudelleen sisään.
       unauthenticated: Sinun on kirjauduttava tai rekisteröidyttävä ennen kuin voit jatkaa.
       unconfirmed: Vahvista sähköpostiosoitteesi, ennen kuin jatkat.
     mailer:
@@ -24,34 +24,34 @@ fi:
         explanation: Olet luonut käyttäjätilin palvelimelle %{host} tätä sähköpostiosoitetta käyttäen. Olet painalluksen päässä tilin aktivoinnista. Jos et luonut tiliä itse, voit jättää tämän viestin huomiotta.
         explanation_when_pending: Teit hakemuksen kutsusta palvelimelle %{host} tällä sähköpostiosoitteella. Kun olet vahvistanut sähköpostiosoitteesi, tarkistamme hakemuksesi. Voit kirjautua sisään muuttaaksesi hakemuksen sisältöä tai poistaaksesi tilin, mutta et voi käyttää suurinta osaa toiminnallisuudesta ennen kuin hakemuksesi on hyväksytty. Jos hakemuksesi hylätään, tietosi poistetaan eikä sinulta tarvita enempää toimia. Jos sinä et tehnyt hakemusta, voit jättää tämän viestin huomiotta.
         extra_html: Tutustu myös <a href="%{terms_path}">palvelimen sääntöihin</a> ja <a href="%{policy_path}">palveluehtoihimme</a>.
-        subject: 'Mastodon: Vahvistusohjeet instanssille %{instance}'
+        subject: 'Mastodon: vahvistusohjeet palvelimelle %{instance}'
         title: Vahvista sähköpostiosoite
       email_changed:
         explanation: 'Tilin sähköpostiosoitteeksi vaihdetaan:'
         extra: Jos et vaihtanut sähköpostiosoitettasi, joku muu on todennäköisesti päässyt käyttämään tiliäsi. Vaihda salasanasi viipymättä, tai ota yhteys palvelimen ylläpitoon, ellet pääse sisään käyttäjätilillesi.
-        subject: 'Mastodon: Sähköpostiosoite vaihdettu'
+        subject: 'Mastodon: sähköpostiosoite vaihdettu'
         title: Uusi sähköpostiosoite
       password_change:
         explanation: Tilisi salasana on vaihdettu.
-        extra: Ellet vaihtanut salasanaasi, joku muu on todennäköisesti päässyt käyttäjätilillesi. Vaihda salasanasi viipymättä, tai ota yhteys palvelimen ylläpitoon, jos kirjautuminen käyttäjätilillesi ei onnistu.
+        extra: Jos et vaihtanut salasanaasi, joku muu on todennäköisesti päässyt käyttämään tiliäsi. Vaihda salasanasi viipymättä, tai ota yhteys palvelimen ylläpitoon, ellet pääse sisään käyttäjätilillesi.
         subject: 'Mastodon: salasana vaihdettu'
         title: Salasana vaihdettu
       reconfirmation_instructions:
         explanation: Vahvista uusi sähköpostiosoite, niin muutos astuu voimaan.
-        extra: Jos et tehnyt muutosta itse, voit jättää tämän viestin huomiotta. Mastodon-tilin sähköpostiosoitetta ei vaihdeta, ennen kuin klikkaat yllä olevaa linkkiä.
-        subject: 'Mastodon: Vahvista sähköpostiosoite palvelimelle %{instance}'
+        extra: Jos et tehnyt muutosta itse, voit jättää tämän viestin huomiotta. Mastodon-tilin sähköpostiosoitetta ei vaihdeta, ennen kuin painat edellä olevaa linkkiä.
+        subject: 'Mastodon: vahvista sähköpostiosoite palvelimelle %{instance}'
         title: Vahvista sähköpostiosoite
       reset_password_instructions:
         action: Vaihda salasana
         explanation: Pyysit tilillesi uuden salasanan.
-        extra: Jos et tehnyt pyyntöä itse, voit jättää tämän viestin huomiotta. Salasanaasi ei vaihdeta, ennen kuin klikkaat yllä olevaa linkkiä ja luot uuden salasanan.
+        extra: Jos et tehnyt pyyntöä itse, voit jättää tämän viestin huomiotta. Salasanaasi ei vaihdeta, ennen kuin painat edellä olevaa linkkiä ja luot uuden salasanan.
         subject: 'Mastodon: ohjeet salasanan vaihtoon'
         title: Salasanan vaihto
       two_factor_disabled:
         explanation: Sisäänkirjautuminen on nyt mahdollista pelkällä sähköpostiosoitteella ja salasanalla.
         subject: 'Mastodon: kaksivaiheinen todennus poistettu käytöstä'
         subtitle: Kaksivaiheinen todennus on poistettu käytöstä tililtäsi.
-        title: 2-vaiheinen todennus pois käytöstä
+        title: Kaksivaiheinen todennus poissa käytöstä
       two_factor_enabled:
         explanation: Sisäänkirjautuminen edellyttää liitetyn TOTP-sovelluksen luomaa aikarajattua kertatunnuslukua.
         subject: 'Mastodon: kaksivaiheinen todennus otettu käyttöön'
@@ -59,37 +59,37 @@ fi:
         title: Kaksivaiheinen todennus käytössä
       two_factor_recovery_codes_changed:
         explanation: Uudet palautuskoodit on nyt luotu ja vanhat mitätöity.
-        subject: 'Mastodon: Kaksivaihetodennuksen palautuskoodit luotiin uudelleen'
+        subject: 'Mastodon: kaksivaiheisen todennuksen palautuskoodit luotiin uudelleen'
         subtitle: Aiemmat palautuskoodit on mitätöity, ja korvaavat uudet koodit on luotu.
-        title: 2-vaiheisen todennuksen palautuskoodit vaihdettiin
+        title: Kaksivaiheisen todennuksen palautuskoodit vaihdettiin
       unlock_instructions:
-        subject: 'Mastodon: lukituksen poistamisen ohjeet'
+        subject: 'Mastodon: ohjeet lukituksen poistoon'
       webauthn_credential:
         added:
           explanation: Seuraava suojausavain on lisätty tilillesi
-          subject: 'Mastodon: Uusi suojausavain'
+          subject: 'Mastodon: uusi suojausavain'
           title: Uusi suojausavain on lisätty
         deleted:
           explanation: Seuraava suojausavain on poistettu tililtäsi
-          subject: 'Mastodon: Suojausavain poistettu'
+          subject: 'Mastodon: suojausavain poistettu'
           title: Yksi suojausavaimistasi on poistettu
       webauthn_disabled:
-        explanation: Turva-avaimin kirjautuminen tilillesi on kytketty pois käytöstä.
+        explanation: Suojausavaimella todennus on poissa käytöstä tililläsi.
         extra: Olet nyt mahdollistanut sisäänkirjautumisen käyttäjätilillesi pelkästään palveluun liitetyn TOTP-sovelluksen luomalla aikarajoitteisella kertatunnusluvulla.
-        subject: 'Mastodon: Turva-avaintodennus on poistettu käytöstä'
+        subject: 'Mastodon: suojausavaimella todennus poistettu käytöstä'
         title: Suojausavaimet poistettu käytöstä
       webauthn_enabled:
-        explanation: Turva-avaimella kirjautuminen on otettu käyttöön tilillesi.
-        extra: Voit nyt kirjautua sisään turva-avaimellasi.
-        subject: 'Mastodon: Todennus suojausavaimella on otettu käyttöön'
+        explanation: Suojausavaimella todennus on käytössä tililläsi.
+        extra: Voit nyt kirjautua sisään suojausavaimellasi.
+        subject: 'Mastodon: suojausavaimella todennus otettu käyttöön'
         title: Suojausavaimet käytössä
     omniauth_callbacks:
-      failure: Tunnistautuminen lähteestä %{kind} ei onnistunut, koska "%{reason}".
-      success: Tunnistautuminen tililtä %{kind} onnistui.
+      failure: Todentaminen lähteestä %{kind} ei onnistunut, syynä ”%{reason}”.
+      success: Todentaminen tililtä %{kind} onnistui.
     passwords:
       no_token: Tälle sivulle pääsee vain salasananvaihtoviestin kautta. Jos tiedät tulevasi sen kautta, varmista, että käytät viestissä mainittua URL-osoitetta kokonaisuudessaan.
-      send_instructions: Jos sähköpostiosoite on tietokannassamme, siihen lähetetään pian viesti, jossa on linkki salasanan vaihtamiseksi. Mikäli viestiä ei kuulu, tarkista myös roskapostisi.
-      send_paranoid_instructions: Jos sähköpostiosoite on tietokannassamme, siihen lähetetään pian viesti, jossa on linkki salasanan vaihtamiseksi. Mikäli viestiä ei kuulu, tarkista myös roskapostisi.
+      send_instructions: Jos sähköpostiosoiteesi on tiedossamme, siihen lähetetään pian viesti, jossa on linkki salasanan vaihtamiseksi. Jos viestiä ei kuulu, tarkista roskapostikansiosi.
+      send_paranoid_instructions: Jos sähköpostiosoiteesi on tiedossamme, siihen lähetetään pian viesti, jossa on linkki salasanan vaihtamiseksi. Jos viestiä ei kuulu, tarkista roskapostikansiosi.
       updated: Salasanan vaihto onnistui. Olet nyt kirjautunut sisään.
       updated_not_active: Salasanan vaihto onnistui.
     registrations:
@@ -98,16 +98,16 @@ fi:
       signed_up_but_inactive: Rekisteröityminen onnistui. Emme kuitenkaan voi kirjata sinua sisään, sillä käyttäjätiliäsi ei ole vielä aktivoitu.
       signed_up_but_locked: Rekisteröityminen onnistui. Emme kuitenkaan voi kirjata sinua sisään, sillä käyttäjätilisi on lukittuna.
       signed_up_but_pending: Sähköpostiosoitteeseesi on lähetetty vahvistuslinkki. Sen avattuasi tarkistamme hakemuksesi, ja ilmoitamme hyväksynnästä.
-      signed_up_but_unconfirmed: Sähköpostiosoitteeseesi on lähetetty vahvistuslinkki. Aktivoi käyttäjätilisi seuraamalla linkkiä. Mikäli sitä ei kuulu, tarkista myös roskapostisi.
-      update_needs_confirmation: Tilin päivitys onnistui. Uusi sähköpostiosoite on kuitenkin vahvistettava. Tarkista saapuneet viestisi, ja vahvista uusi sähköpostiosoitteesi vahvistuslinkkiä seuraten. Mikäli viestiä ei kuulu, tarkista myös roskapostisi.
+      signed_up_but_unconfirmed: Sähköpostiosoitteeseesi on lähetetty vahvistuslinkki. Aktivoi käyttäjätilisi seuraamalla linkkiä. Jos sitä ei kuulu, tarkista roskapostikansiosi.
+      update_needs_confirmation: Tilin päivitys onnistui. Uusi sähköpostiosoite on kuitenkin vahvistettava. Tarkista saapuneet viestisi, ja vahvista uusi sähköpostiosoitteesi vahvistuslinkkiä seuraten. Jos viestiä ei kuulu, tarkista myös roskapostikansiosi.
       updated: Käyttäjätilisi tietojen päivittäminen onnistui.
     sessions:
       already_signed_out: Uloskirjautuminen onnistui.
       signed_in: Sisäänkirjautuminen onnistui.
       signed_out: Uloskirjautuminen onnistui.
     unlocks:
-      send_instructions: Saat pian sähköpostitse ohjeet tilin lukituksen poistoon. Jos et saanut viestiä, tarkista roskapostikansio.
-      send_paranoid_instructions: Jos tili on olemassa, saat pian sähköpostitse ohjeet tilin lukituksen poistoon. Jos et saanut viestiä, tarkista roskapostikansio.
+      send_instructions: Saat pian sähköpostiisi ohjeet tilin lukituksen poistoon. Jos viestiä ei kuulu, tarkista roskapostikansiosi.
+      send_paranoid_instructions: Jos tili on olemassa, saat pian sähköpostiisi ohjeet tilin lukituksen poistoon. Jos viestiä ei kuulu, tarkista roskapostikansiosi.
       unlocked: Tilisi lukituksen poisto onnistui. Jatka kirjautumalla sisään.
   errors:
     messages:

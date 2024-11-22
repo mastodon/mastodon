@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import { openModal } from 'mastodon/actions/modal';
 import { fetchPoll, vote } from 'mastodon/actions/polls';
 import Poll from 'mastodon/components/poll';
 
@@ -17,6 +18,17 @@ const mapDispatchToProps = (dispatch, { pollId }) => ({
   onVote (choices) {
     dispatch(vote(pollId, choices));
   },
+
+  onInteractionModal (type, status) {
+    dispatch(openModal({
+      modalType: 'INTERACTION',
+      modalProps: {
+        type,
+        accountId: status.getIn(['account', 'id']),
+        url: status.get('uri'),
+      },
+    }));
+  }
 });
 
 const mapStateToProps = (state, { pollId }) => ({

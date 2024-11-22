@@ -1,0 +1,28 @@
+.fields-group
+  = form.input :starts_at,
+               html5: true,
+               include_blank: true,
+               input_html: { pattern: datetime_pattern, placeholder: datetime_placeholder },
+               wrapper: :with_block_label
+  = form.input :ends_at,
+               html5: true,
+               include_blank: true,
+               input_html: { pattern: datetime_pattern, placeholder: datetime_placeholder },
+               wrapper: :with_block_label
+
+.fields-group
+  = form.input :all_day,
+               as: :boolean,
+               wrapper: :with_label
+
+.fields-group
+  = form.input :text,
+               wrapper: :with_block_label
+
+- unless form.object.published?
+  .fields-group
+    = form.input :scheduled_at,
+                 html5: true,
+                 include_blank: true,
+                 input_html: { pattern: datetime_pattern, placeholder: datetime_placeholder },
+                 wrapper: :with_block_label

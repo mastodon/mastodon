@@ -7,7 +7,6 @@ he:
     hosted_on: מסטודון שיושב בכתובת %{domain}
     title: אודות
   accounts:
-    follow: לעקוב
     followers:
       many: עוקבים
       one: עוקב
@@ -26,16 +25,19 @@ he:
       other: הודעות
       two: הודעותיים
     posts_tab_heading: הודעות
+    self_follow_error: בלתי אפשרי לך לעקוב אחרי חשבונך
   admin:
     account_actions:
       action: בצע/י פעולה
+      already_silenced: חשבון זה הוגבל זה מכבר.
+      already_suspended: חשבון זה הושעה.
       title: ביצוע פעולות הנהלה על %{acct}
     account_moderation_notes:
       create: ליצור
       created_msg: הודעת מנחה נוצרה בהצלחה!
       destroyed_msg: הודעת מנחה נמחקה בהצלחה!
     accounts:
-      add_email_domain_block: חסמו לגמרי את שם המתחם (דומיין) של הדוא"ל
+      add_email_domain_block: חסימת מתחם דוא"ל
       approve: אשר
       approved_msg: בקשת %{username} להירשם אושרה בהצלחה
       are_you_sure: בטוח?
@@ -50,6 +52,7 @@ he:
         title: שינוי כתובת דוא"ל עבור המשתמש.ת %{username}
       change_role:
         changed_msg: התפקיד שונה בהצלחה!
+        edit_roles: נהל תפקידי משתמש
         label: שינוי תפקיד
         no_role: ללא תפקיד
         title: שינוי תפקיד עבור %{username}
@@ -190,6 +193,7 @@ he:
         create_domain_block: יצירת דומיין חסום
         create_email_domain_block: יצירת חסימת דומיין דוא"ל
         create_ip_block: יצירת כלל IP
+        create_relay: יצירת ממסר
         create_unavailable_domain: יצירת דומיין בלתי זמין
         create_user_role: יצירת תפקיד
         demote_user: הורדת משתמש בדרגה
@@ -201,14 +205,17 @@ he:
         destroy_email_domain_block: מחיקת חסימת דומיין דוא"ל
         destroy_instance: טיהור דומיין
         destroy_ip_block: מחיקת כלל IP
+        destroy_relay: מחיקת ממסר
         destroy_status: מחיקת הודעה
         destroy_unavailable_domain: מחיקת דומיין בלתי זמין
         destroy_user_role: מחיקת תפקיד
         disable_2fa_user: השעיית זיהוי דו-גורמי
         disable_custom_emoji: השעיית אמוג'י מיוחד
+        disable_relay: השבתת ממסר
         disable_sign_in_token_auth_user: השעיית אסימון הזדהות בדוא"ל של משתמש
         disable_user: השעיית משתמש
         enable_custom_emoji: הפעלת אמוג'י מיוחד
+        enable_relay: החייאת ממסר
         enable_sign_in_token_auth_user: הפעלת אסימון הזדהות בדוא"ל של משתמש
         enable_user: אפשור משתמש
         memorialize_account: הנצחת חשבון
@@ -232,13 +239,14 @@ he:
         update_custom_emoji: עדכון סמלון מותאם אישית
         update_domain_block: עדכון חסימת שם מתחם
         update_ip_block: עדכון כלל IP
+        update_report: עדכון דו"ח עבירה
         update_status: סטטוס עדכון
         update_user_role: עדכון תפקיד
       actions:
         approve_appeal_html: "%{name} אישר/ה ערעור על החלטת מנהלי הקהילה מ-%{target}"
         approve_user_html: "%{name} אישר/ה הרשמה מ-%{target}"
         assigned_to_self_report_html: '%{name} הקצה/תה דו"ח %{target} לעצמם'
-        change_email_user_html: '%{name} שינה/תה את כתובת הדוא"ל של המשתמש %{target}'
+        change_email_user_html: '%{name} שינה\שינתה את כתובת הדוא"ל של המשתמש %{target}'
         change_role_user_html: "%{name} שינה את התפקיד של %{target}"
         confirm_user_html: '%{name} אישר/ה את כותבת הדו"אל של המשתמש %{target}'
         create_account_warning_html: "%{name} שלח/ה אזהרה ל %{target}"
@@ -249,6 +257,7 @@ he:
         create_domain_block_html: "%{name} חסם/ה את הדומיין %{target}"
         create_email_domain_block_html: '%{name} חסם/ה את דומיין הדוא"ל %{target}'
         create_ip_block_html: "%{name} יצר/ה כלל עבור IP %{target}"
+        create_relay_html: "%{name} יצרו את הממסר %{target}"
         create_unavailable_domain_html: "%{name} הפסיק/ה משלוח לדומיין %{target}"
         create_user_role_html: "%{name} יצר את התפקיד של %{target}"
         demote_user_html: "%{name} הוריד/ה בדרגה את המשתמש %{target}"
@@ -260,14 +269,17 @@ he:
         destroy_email_domain_block_html: '%{name} הסיר/ה חסימה מדומיין הדוא"ל %{target}'
         destroy_instance_html: "%{name} טיהר/ה את הדומיין %{target}"
         destroy_ip_block_html: "%{name} מחק/ה את הכלל עבור IP %{target}"
+        destroy_relay_html: "%{name} מחקו את הממסר %{target}"
         destroy_status_html: ההודעה של %{target} הוסרה ע"י %{name}
         destroy_unavailable_domain_html: "%{name} התחיל/ה מחדש משלוח לדומיין %{target}"
         destroy_user_role_html: "%{name} ביטל את התפקיד של %{target}"
         disable_2fa_user_html: "%{name} ביטל/ה את הדרישה לאימות דו-גורמי למשתמש %{target}"
         disable_custom_emoji_html: "%{name} השבית/ה את האמוג'י %{target}"
+        disable_relay_html: "%{name} השביתו את הממסר %{target}"
         disable_sign_in_token_auth_user_html: '%{name} השבית/ה את האימות בעזרת אסימון דוא"ל עבור %{target}'
         disable_user_html: "%{name} חסם/ה כניסה מהמשתמש/ת %{target}"
         enable_custom_emoji_html: "%{name} אפשר/ה את האמוג'י %{target}"
+        enable_relay_html: "%{name} החיו את הממסר %{target}"
         enable_sign_in_token_auth_user_html: '%{name} אפשר/ה אימות בעזרת אסימון דוא"ל עבור %{target}'
         enable_user_html: "%{name} אפשר/ה כניסה עבור המשתמש %{target}"
         memorialize_account_html: "%{name} הפך/ה את חשבונו של %{target} לדף הנצחה"
@@ -291,6 +303,7 @@ he:
         update_custom_emoji_html: "%{name} עדכן/ה אמוג'י %{target}"
         update_domain_block_html: "%{name} עדכן/ה חסימת דומיין עבור %{target}"
         update_ip_block_html: "%{name} שינה כלל עבור IP %{target}"
+        update_report_html: '%{name} עדכן/ה דו"ח %{target}'
         update_status_html: "%{name} עדכן/ה הודעה של %{target}"
         update_user_role_html: "%{name} שינה את התפקיד של %{target}"
       deleted_account: חשבון מחוק
@@ -298,6 +311,7 @@ he:
       filter_by_action: סינון לפי פעולה
       filter_by_user: סינון לפי משתמש
       title: ביקורת יומן
+      unavailable_instance: "(שם מתחם לא זמין)"
     announcements:
       destroyed_msg: הכרזה נמחקה בהצלחה!
       edit:
@@ -445,7 +459,7 @@ he:
         one: "%{count} נסיון במשך השבוע שעבר"
         other: "%{count} נסיונות הרשמה במשך השבוע שעבר"
         two: "%{count} נסיונות הרשמה במשך השבוע שעבר"
-      created_msg: כתובת מייל נחסמה בהצלחה
+      created_msg: מתחם כתובות דואל נחסם בהצלחה
       delete: מחיקה
       dns:
         types:
@@ -454,12 +468,12 @@ he:
       new:
         create: הוספת דומיין
         resolve: פתור דומיין
-        title: חסימת דומיין דוא"ל
-      no_email_domain_block_selected: לא בוצעו שינויים לחסימת דומייני דוא"ל שכן לא נבחרו דומיינים
+        title: חסימת מתחם כתובות דואל חדש
+      no_email_domain_block_selected: לא בוצעו שינויים לחסימת מתחמי דוא"ל שכן לא נבחרו מתחמים
       not_permitted: נאסר
-      resolved_dns_records_hint_html: שם הדומיין מוביל לדומייניי ה-MX הבאים, שהם בסופו של דבר אחראיים לקבלת דוא"ל. חסימת דומיין MX תוביל לחסימת הרשמות מכל כתובת דוא"ל שעושה שימוש בדומיין MX זה, אפילו אם הדומיין הגלוי שונה. <strong>יש להמנע מלחסום ספקי דוא"ל מובילים.</strong>
+      resolved_dns_records_hint_html: שם הדומיין מוביל למתחמי ה-MX הבאים, שהם בסופו של דבר אחראיים לקבלת דוא"ל. חסימת שם MX תוביל לחסימת הרשמות מכל כתובת דוא"ל שעושה שימוש בכתובת MX זו, אפילו אם הדומיין הגלוי שונה. <strong>יש להמנע מלחסום ספקי דוא"ל מובילים.</strong>
       resolved_through_html: נמצא דרך %{domain}
-      title: דומייניי דוא"ל חסומים
+      title: מתחמי כתובות דוא"ל חסומים
     export_domain_allows:
       new:
         title: יבוא רשימת שרתים מאושרים
@@ -484,6 +498,9 @@ he:
       title: המלצות מעקב
       unsuppress: שחזור המלצות מעקב
     instances:
+      audit_log:
+        title: יומני ביקורת אחרונים
+        view_all: צפיה ביומני הביקורת המלאים
       availability:
         description_html:
           many: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
@@ -620,6 +637,7 @@ he:
         suspend_description_html: חשבון זה על כל תכניו יחסמו וברבות הימים ימחקו, כל פעילות מולו לא תתאפשר. הפעולה ניתנת לביטול תוך 30 ימים, והיא תסגור כל דיווח התלוי ועומד נגד החשבון.
       actions_description_html: בחר/י איזו פעולה לבצע על מנת לפתור את הדו"ח. אם תופעל פעולת ענישה כנגד החשבון המדווח, הודעת דוא"ל תשלח אליהם, אלא אם נבחרה קטגוריית ה<strong>ספאם</strong>.
       actions_description_remote_html: בחרו איזו פעולה לבצע כדי לפתור את הדיווח שהוגש. פעולה זו תשפיע רק על התקשורת מול השרת <strong>שלך</strong> עם החשבון המרוחק ותוכנו.
+      actions_no_posts: דווח זה לא כולל הודעות למחיקה
       add_to_report: הוספת פרטים לדיווח
       already_suspended_badges:
         local: כבר הודח בשרת זה
@@ -660,6 +678,7 @@ he:
       report: 'דווח על #%{id}'
       reported_account: חשבון מדווח
       reported_by: דווח על ידי
+      reported_with_application: דיווחים באמצעות יישומון
       resolved: פתור
       resolved_msg: הדו"ח נפתר בהצלחה!
       skip_to_actions: דלג/י לפעולות
@@ -779,6 +798,7 @@ he:
         desc_html: אפשרות זו ניסמכת על קטעי קוד חיצוניים של hCaptcha שעלולים להיות סיכון אבטחה ופרטיות. בנוסף, <strong>זה עשוי להפוך את תהליך ההרשמה לבלתי נגיש לא.נשים, במיוחד בעלות ובעלי מוגבלויות</strong>. מסיבות אלו, כדאי לשקול חלופות כמו אשרור מנהלים ידני או הרשמה רק על בסיס הזמנה.
         title: לדרוש פתרון CAPTCHA כדי לאשרר למשתמשים את חשבונם
       content_retention:
+        danger_zone: אזור מסוכן
         preamble: שליטה על דרך אחסון תוכן המשתמשים במסטודון.
         title: תקופת השמירה של תכנים
       default_noindex:
@@ -834,8 +854,10 @@ he:
       back_to_account: חזרה לדף החשבון
       back_to_report: חזרה לעמוד הדיווח
       batch:
+        add_to_report: להוסיף לדו"ח מספר %{id}
         remove_from_report: הסרה מהדיווח
         report: דווח
+      contents: תוכן
       deleted: מחוקים
       favourites: חיבובים
       history: היסטורית גרסאות
@@ -844,13 +866,17 @@ he:
       media:
         title: מדיה
       metadata: נתוני-מטא
+      no_history: הודעה זו לא נערכה
       no_status_selected: לא בוצעו שינויים בהודעות שכן לא נבחרו כאלו
       open: פתח הודעה
       original_status: הודעה מקורית
       reblogs: שיתופים
+      replied_to_html: בתגובה לחשבון %{acct_link}
       status_changed: הודעה שונתה
-      title: הודעות החשבון
+      status_title: פרסום מאת @%{name}
+      title: פרסומי החשבון - @%{name}
       trending: נושאים חמים
+      view_publicly: צפיה בפומבי
       visibility: נראות
       with_media: עם מדיה
     strikes:
@@ -892,6 +918,9 @@ he:
         message_html: לא הוגדרו שום כללי שרת.
       sidekiq_process_check:
         message_html: שום הליכי Sidekiq לא רצים עבור %{value} תור(ות). בחנו בבקשה את הגדרות Sidekiq
+      software_version_check:
+        action: ראו עדכונים זמינים
+        message_html: עדכון מסטודון זמין כעת.
       software_version_critical_check:
         action: ראו עדכונים זמינים
         message_html: יצא עדכון קריטי למסטודון, נא לעדכן את תוכנת מסטודון בהקדם האפשרי.
@@ -905,16 +934,39 @@ he:
         action: למידע נוסף
         message_html: "<strong>שרות אחסון הענן שלך אינו מוגדר כראוי. פרטיות המשתמשות והמשתמשים שלך בסכנה.</strong>"
     tags:
+      moderation:
+        not_trendable: לא מזוהה כאופנתי
+        not_usable: בלתי שמיש
+        pending_review: ממתינים לסקירה
+        review_requested: התבקשה סקירה
+        reviewed: נסקר
+        title: מצב
+        trendable: ניתן לאפיון כאופנה
+        unreviewed: לא נסקר
+        usable: שמיש
+      name: שם
+      newest: החדש ביותר
+      oldest: הישן ביותר
+      open: צפיה בפומבי
+      reset: איפוס
       review: סקירת מצב
+      search: חיפוש
+      title: תגיות
       updated_msg: הגדרות תגיות עודכנו בהצלחה
     title: ניהול
     trends:
       allow: לאפשר
       approved: אישור
+      confirm_allow: 'וידוא: האם לאשר את התגיות שנבחרו?'
+      confirm_disallow: 'וידוא: האם לאסור את התגיות שנבחרו?'
       disallow: לא לאשר
       links:
         allow: אישור קישורית
         allow_provider: אישור מפרסם
+        confirm_allow: 'וידוא: האם לאשר את הקישורים שנבחרו?'
+        confirm_allow_provider: 'וידוא: האם לאשר את הספקים שנבחרו?'
+        confirm_disallow: 'וידוא: האם לאסור את הקישורים שנבחרו?'
+        confirm_disallow_provider: 'וידוא: האם לאסור את הספקים שנבחרו?'
         description_html: בקישוריות אלה נעשה כרגע שימוש על ידי חשבונות רבים שהשרת שלך רואה הודעות מהם. זה עשוי לסייע למשתמשיך לברר מה קורה בעולם. שום קישוריות לא יוצגו עד שתאשרו את המפרסם. ניתן גם לאפשר או לדחות קישוריות ספציפיות.
         disallow: לא לאשר קישורית
         disallow_provider: לא לאשר מפרסם
@@ -940,6 +992,10 @@ he:
       statuses:
         allow: הרשאת הודעה
         allow_account: הרשאת מחבר/ת
+        confirm_allow: 'וידוא: האם לאשר את הסטטוסים שנבחרו?'
+        confirm_allow_account: 'וידוא: האם לאשר את החשבונות שנבחרו?'
+        confirm_disallow: 'וידוא: האם לאסור את הסטטוסים שנבחרו?'
+        confirm_disallow_account: 'וידוא: האם לאסור את החשבונות שנבחרו?'
         description_html: אלו הן הודעות שהשרת שלך מכיר וזוכות להדהודים וחיבובים רבים כרגע. זה עשוי למשתמשיך החדשים והחוזרים למצוא עוד נעקבים. ההודעות לא מוצגות עד שיאושר המחבר/ת, והמחבר/ת יאשרו שחשבונים יומלץ לאחרים. ניתן לאשר או לדחות הודעות ספציפיות.
         disallow: לדחות הודעה
         disallow_account: לא לאשר מחבר/ת
@@ -976,14 +1032,14 @@ he:
           one: הוצגה על ידי משתמש בודד במשך השבוע שעבר
           other: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
           two: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
-      title: נושאים חמים
+      title: המלצות ונושאים חמים
       trending: נושאים חמים
     warning_presets:
       add_new: הוספת חדש
       delete: למחוק
       edit_preset: ערוך/י טקסט מוכן מראש לאזהרה
       empty: לא הגדרת עדיין שום טקסט מוכן מראש לאזהרה.
-      title: ניהול טקסטים מוכנים מראש לאזהרות
+      title: תצורת אזהרות
     webhooks:
       add_new: הוספת נקודת קצה
       delete: מחיקה
@@ -1158,6 +1214,14 @@ he:
       view_strikes: צפיה בעברות קודמות שנרשמו נגד חשבונך
     too_fast: הטופס הוגש מהר מדי, נסה/י שוב.
     use_security_key: שימוש במפתח אבטחה
+  author_attribution:
+    example_title: טקסט לדוגמה
+    hint_html: האם יש לך בלוג או טור חדשות שמתפרסם מחוץ למסטודון? ניתן לשלוט איך יוצג הקרדיט שלך כשמשתפים את הלינק במסטודון.
+    instructions: 'ודאו כי הקוד הזה נכלל בקוד ה־HTML של המאמרים שלכם:'
+    more_from_html: עוד מאת %{name}
+    s_blog: הבלוג של %{name}
+    then_instructions: לאחר מכן, הוסיפו את שם המתחם של האתר המפרסם בשדה למטה.
+    title: ייחוס למפרסם
   challenge:
     confirm: המשך
     hint_html: "<strong>טיפ:</strong> לא נבקש את סיסמתך שוב בשעה הקרובה."
@@ -1166,7 +1230,6 @@ he:
   crypto:
     errors:
       invalid_key: זהו לא מפתח Ed25519 או Curve25519 קביל
-      invalid_signature: היא לא חתימת Ed25519 קבילה
   date:
     formats:
       default: "%b %d, %Y"
@@ -1232,8 +1295,6 @@ he:
       your_appeal_approved: ערעורך התקבל
       your_appeal_pending: הגשת ערעור
       your_appeal_rejected: ערעורך נדחה
-  domain_validator:
-    invalid_domain: הוא לא שם דומיין קביל
   edit_profile:
     basic_information: מידע בסיסי
     hint_html: "<strong>התאמה אישית של מה שיראו אחרים בפרופיל הציבורי שלך וליד הודעותיך.</strong> אחרים עשויים יותר להחזיר עוקב וליצור אתך שיחה אם הפרופיל והתמונה יהיו מלאים."
@@ -1320,7 +1381,7 @@ he:
     statuses:
       back_to_filter: חזרה לפילטר
       batch:
-        remove: הסרה מפילטר
+        remove: הסרה ממסנן
       index:
         hint: סנן זה חל באופן של בחירת הודעות בודדות ללא תלות בקריטריונים אחרים. תוכלו להוסיף עוד הודעות לסנן זה ממנשק הווב.
         title: הודעות שסוננו
@@ -1372,19 +1433,67 @@ he:
       overwrite: דריסה
       overwrite_long: החלף רשומות נוכחיות בחדשות
     overwrite_preambles:
-      blocking_html: אתם עומדים <strong>להחליף את רשימת החסימות</strong> עד כדי <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
-      bookmarks_html: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>%{total_items} הודעות</strong> מהקובץ <strong>%{filename}</strong>.
-      domain_blocking_html: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>%{total_items} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
-      following_html: אתם עומדים <strong>לעקוב</strong> עד כדי <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
-      lists_html: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{total_items} חשבונות</strong> יתווספו לרשימות חדשות.
-      muting_html: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> עד כדי <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+      blocking_html:
+        many: אתם עומדים <strong>להחליף את רשימת החסימות</strong> עד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>להחליף את רשימת החסימות</strong> <strong>%{count} בחשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>להחליף את רשימת החסימות</strong> עד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>להחליף את רשימת החסימות</strong> בעד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+      bookmarks_html:
+        many: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>להחליף את רשימת הסימניות</strong><strong> בהודעה אחת</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>להחליף את רשימת הסימניות</strong> עד כדי <strong>שתי הודעות</strong> מהקובץ <strong>%{filename}</strong>.
+      domain_blocking_html:
+        many: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> <strong>בשרת אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>להחליף את רשימת חסימות השרתים</strong> עד כדי <strong>שני שרתים</strong> מהקובץ <strong>%{filename}</strong>.
+      following_html:
+        many: אתם עומדים <strong>לעקוב אחרי</strong> עד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
+        one: אתם עומדים <strong>לעקוב</strong> אחרי <strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
+        other: אתם עומדים <strong>לעקוב אחרי</strong> עד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
+        two: אתם עומדים <strong>לעקוב אחרי</strong> עד כדי <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong> ובמקביל <strong>להפסיק מעקב אחרי כל משתמש אחר</strong>.
+      lists_html:
+        many: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} חשבונות</strong> יתווספו לרשימות חדשות.
+        one: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>חשבון אחד</strong> יתווסף לרשימות חדשות.
+        other: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>%{count} חשבונות</strong> יתווספו לרשימות חדשות.
+        two: הפעולה הבאה <strong>תחליף את רשימותיך</strong> בתוכן של <strong>%{filename}</strong>. עד <strong>שני חשבונות</strong> יתווספו לרשימות חדשות.
+      muting_html:
+        many: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> בעד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> ב<strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> בעד כדי <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>להחליף את רשימת ההשתקות</strong> בעד כדי <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
     preambles:
-      blocking_html: אתם עומדים <strong>לחסום</strong> עד <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
-      bookmarks_html: אתם עומדים <strong>להוסיף</strong> עד <strong>%{total_items} הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
-      domain_blocking_html: אתם עומדים <strong>לחסום</strong> עד כדי <strong>%{total_items} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
-      following_html: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
-      lists_html: הפעולה הבאה תוסיף עד <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
-      muting_html: אתם עומדים <strong>להשתיק</strong> עד <strong>%{total_items} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+      blocking_html:
+        many: אתם עומדים <strong>לחסום</strong> עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>לחסום</strong><strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>לחסום</strong> עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>לחסום</strong> עד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+      bookmarks_html:
+        many: אתם עומדים להוסיף עד <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
+        one: אתם עומדים <strong>להוסיף</strong><strong>הודעה אחת</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
+        other: אתם עומדים להוסיף עד <strong>%{count} הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
+        two: אתם עומדים <strong>להוסיף</strong> עד <strong>שתי הודעות</strong> מהקובץ <strong>%{filename}</strong> לרשימת <strong>הסימניות שלכם</strong>.
+      domain_blocking_html:
+        many: אתם עומדים <strong>לחסום</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>לחסום</strong> עד <strong>שרת אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>לחסום</strong> עד כדי <strong>%{count} שרתים</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>לחסום</strong> עד כדי <strong>שני שרתים</strong> מהקובץ <strong>%{filename}</strong>.
+      following_html:
+        many: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>לעקוב</strong> אחרי עד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+      lists_html:
+        many: הפעולה הבאה תוסיף עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
+        one: הפעולה הבאה תוסיף עד <strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
+        other: הפעולה הבאה תוסיף עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
+        two: הפעולה הבאה תוסיף עד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong> אל ה<strong>רשימות</strong> שלך. רשימות חדשות יווצרו אם עוד לא קיימת רשימה להוסיף אליה.
+      muting_html:
+        many: אתם עומדים <strong>להשתיק</strong> עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        one: אתם עומדים <strong>להשתיק</strong> עד <strong>חשבון אחד</strong> מהקובץ <strong>%{filename}</strong>.
+        other: אתם עומדים <strong>להשתיק</strong> עד <strong>%{count} חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
+        two: אתם עומדים <strong>להשתיק</strong> עד <strong>שני חשבונות</strong> מהקובץ <strong>%{filename}</strong>.
     preface: ניתן ליבא מידע מסויים כגון כל הנעקבים או המשתמשים החסומים לתוך חשבונך על שרת זה, מתוך קבצים שנוצרו על ידי יצוא משרת אחר כגון רשימת הנעקבים והחסומים שלך.
     recent_imports: ייבואים אחרונים
     states:
@@ -1471,6 +1580,7 @@ he:
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו להודעה שכבר מכילה תמונות
+      not_found: קובץ %{ids} לא נמצא, או שהוצמד כבר להודעה אחרת
       not_ready: לא ניתן להצמיד קבצים שהעלאתם לא הסתיימה. נסה/י שוב בעוד רגע!
       too_many: לא ניתן להוסיף יותר מארבעה קבצים
   migrations:
@@ -1702,7 +1812,7 @@ he:
     delete: מחיקת חשבון
     development: פיתוח
     edit_profile: עריכת פרופיל
-    export: יצוא מידע
+    export: ייצוא
     featured_tags: תגיות נבחרות
     import: יבוא
     import_and_export: יבוא ויצוא
@@ -1756,27 +1866,12 @@ he:
     edited_at_html: נערך ב-%{date}
     errors:
       in_reply_not_found: נראה שההודעה שאת/ה מנסה להגיב לה לא קיימת.
-    open_in_web: פתח ברשת
     over_character_limit: חריגה מגבול התווים של %{max}
     pin_errors:
       direct: לא ניתן לקבע הודעות שנראותן מוגבלת למכותבים בלבד
       limit: הגעת למספר המירבי של ההודעות המוצמדות
       ownership: הודעות של אחרים לא יכולות להיות מוצמדות
       reblog: אין אפשרות להצמיד הדהודים
-    poll:
-      total_people:
-        many: "%{count} אנשים"
-        one: איש/ה %{count}
-        other: "%{count} אנשים"
-        two: "%{count} אנשים"
-      total_votes:
-        many: "%{count} קולות"
-        one: קול %{count}
-        other: "%{count} קולות"
-        two: "%{count} קולות"
-      vote: הצבעה
-    show_more: עוד
-    show_thread: הצג שרשור
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: ישיר
@@ -1977,6 +2072,7 @@ he:
     instructions_html: יש להדביק את הקוד שלמטה אל האתר שלך. ואז להוסיף את כתובת האתר לאחד השדות הנוספים בפרופיל מתוך טאב "עריכת פרופיל" ולשמור את השינויים.
     verification: אימות
     verified_links: קישוריך המאומתים
+    website_verification: אימות אתר רשת
   webauthn_credentials:
     add: הוספת מפתח אבטחה חדש
     create:

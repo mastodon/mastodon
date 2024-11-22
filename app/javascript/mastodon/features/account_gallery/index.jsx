@@ -20,7 +20,7 @@ import { expandAccountMediaTimeline } from '../../actions/timelines';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import Column from '../ui/components/column';
 
-import MediaItem from './components/media_item';
+import { MediaItem } from './components/media_item';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);

@@ -15,6 +15,12 @@ gl:
       user/invite_request:
         text: Razón
     errors:
+      attributes:
+        domain:
+          invalid: non é un nome de dominio válido
+      messages:
+        invalid_domain_on_line: "%{value} non é un nome de dominio válido"
+        too_many_lines: superou o límite de %{limit} liñas
       models:
         account:
           attributes:

@@ -6,7 +6,7 @@ export PORT="${PORT:-3000}"
 # Get around our boot.rb ENV check
 export RAILS_ENV="${RAILS_ENV:-development}"
 
-if command -v overmind &> /dev/null
+if command -v overmind 1> /dev/null 2>&1
 then
   overmind start -f Procfile.dev "$@"
   exit $?

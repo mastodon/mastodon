@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ThemeHelper do
+RSpec.describe ThemeHelper do
   describe 'theme_style_tags' do
     let(:result) { helper.theme_style_tags(theme) }
 

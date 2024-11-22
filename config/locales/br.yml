@@ -6,7 +6,6 @@ br:
     hosted_on: Servijer Mastodon herberc'hiet war %{domain}
     title: Diwar-benn
   accounts:
-    follow: Heuliañ
     followers:
       few: Heulier·ez
       many: Heulier·ez
@@ -27,7 +26,6 @@ br:
     account_moderation_notes:
       create: Leuskel un notenn
     accounts:
-      add_email_domain_block: Stankañ an domani postel
       approve: Aprouiñ
       are_you_sure: Ha sur oc'h?
       avatar: Avatar
@@ -245,6 +243,8 @@ br:
         title: Diwar-benn
       appearance:
         title: Neuz
+      content_retention:
+        danger_zone: Takad dañjer
       discovery:
         title: Dizoloadur
         trends: Luskadoù
@@ -263,7 +263,7 @@ br:
       original_status: Toud orin
       reblogs: Skignadennoù
       status_changed: Toud kemmet
-      title: Toudoù ar gont
+      status_title: Embannadenn gant @%{name}
       visibility: Gwelusted
       with_media: Gant mediaoù
     strikes:
@@ -284,7 +284,6 @@ br:
           tag_uses_measure: implijoù hollek
         not_usable: N'haller ket en implijout
         title: Hashtagoù diouzh ar c'hiz
-      title: Luskadoù
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
@@ -519,9 +518,6 @@ br:
         two: "%{count} skeudenn"
     pin_errors:
       ownership: N'hallit ket spilhennañ embannadurioù ar re all
-    poll:
-      vote: Mouezhiañ
-    show_more: Diskouez muioc'h
     visibilities:
       direct: War-eeun
       public: Publik

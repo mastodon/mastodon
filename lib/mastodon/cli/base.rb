@@ -40,7 +40,7 @@ module Mastodon
             .dup
             .tap { |config| config['pool'] = options[:concurrency] + 1 }
         )
-        RedisConfiguration.establish_pool(options[:concurrency])
+        RedisConnection.establish_pool(options[:concurrency])
       end
     end
   end

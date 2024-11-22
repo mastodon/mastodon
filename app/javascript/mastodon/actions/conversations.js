@@ -28,13 +28,13 @@ export const unmountConversations = () => ({
   type: CONVERSATIONS_UNMOUNT,
 });
 
-export const markConversationRead = conversationId => (dispatch, getState) => {
+export const markConversationRead = conversationId => (dispatch) => {
   dispatch({
     type: CONVERSATIONS_READ,
     id: conversationId,
   });
 
-  api(getState).post(`/api/v1/conversations/${conversationId}/read`);
+  api().post(`/api/v1/conversations/${conversationId}/read`);
 };
 
 export const expandConversations = ({ maxId } = {}) => (dispatch, getState) => {
@@ -48,7 +48,7 @@ export const expandConversations = ({ maxId } = {}) => (dispatch, getState) => {
 
   const isLoadingRecent = !!params.since_id;
 
-  api(getState).get('/api/v1/conversations', { params })
+  api().get('/api/v1/conversations', { params })
     .then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
@@ -88,10 +88,10 @@ export const updateConversations = conversation => dispatch => {
   });
 };
 
-export const deleteConversation = conversationId => (dispatch, getState) => {
+export const deleteConversation = conversationId => (dispatch) => {
   dispatch(deleteConversationRequest(conversationId));
 
-  api(getState).delete(`/api/v1/conversations/${conversationId}`)
+  api().delete(`/api/v1/conversations/${conversationId}`)
     .then(() => dispatch(deleteConversationSuccess(conversationId)))
     .catch(error => dispatch(deleteConversationFail(conversationId, error)));
 };

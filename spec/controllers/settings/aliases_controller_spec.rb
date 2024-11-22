@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::AliasesController do
+RSpec.describe Settings::AliasesController do
   render_views
 
   let!(:user) { Fabricate(:user) }

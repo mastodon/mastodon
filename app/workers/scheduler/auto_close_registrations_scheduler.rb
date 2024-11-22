@@ -11,7 +11,7 @@ class Scheduler::AutoCloseRegistrationsScheduler
   OPEN_REGISTRATIONS_MODERATOR_THRESHOLD = 1.week + UserTrackingConcern::SIGN_IN_UPDATE_FREQUENCY
 
   def perform
-    return if Rails.configuration.x.email_domains_whitelist.present? || ENV['DISABLE_AUTOMATIC_SWITCHING_TO_APPROVED_REGISTRATIONS'] == 'true'
+    return if Rails.configuration.x.email_domains_allowlist.present? || ENV['DISABLE_AUTOMATIC_SWITCHING_TO_APPROVED_REGISTRATIONS'] == 'true'
     return unless Setting.registrations_mode == 'open'
 
     switch_to_approval_mode! unless active_moderators?

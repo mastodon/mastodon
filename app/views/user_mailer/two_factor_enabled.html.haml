@@ -1,5 +1,8 @@
 = content_for :heading do
-  = render 'application/mailer/heading', heading_title: t('devise.mailer.two_factor_enabled.title'), heading_subtitle: t('devise.mailer.two_factor_enabled.subtitle'), heading_image_url: frontend_asset_url('images/mailer-new/heading/2fa-enabled.png')
+  = render 'application/mailer/heading',
+           image_url: frontend_asset_url('images/mailer-new/heading/2fa-enabled.png'),
+           subtitle: t('devise.mailer.two_factor_enabled.subtitle'),
+           title: t('devise.mailer.two_factor_enabled.title')
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-body-padding-td

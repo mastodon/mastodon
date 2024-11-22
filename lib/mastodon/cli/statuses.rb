@@ -191,24 +191,24 @@ module Mastodon::CLI
 
     def vacuum_and_analyze_statuses
       if options[:compress_database]
-        say('Run VACUUM FULL ANALYZE to statuses...')
+        say('Running "VACUUM FULL ANALYZE statuses"...')
         ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE statuses')
-        say('Run REINDEX to statuses...')
+        say('Running "REINDEX TABLE statuses"...')
         ActiveRecord::Base.connection.execute('REINDEX TABLE statuses')
       else
-        say('Run ANALYZE to statuses...')
+        say('Running "ANALYZE statuses"...')
         ActiveRecord::Base.connection.execute('ANALYZE statuses')
       end
     end
 
     def vacuum_and_analyze_conversations
       if options[:compress_database]
-        say('Run VACUUM FULL ANALYZE to conversations...')
+        say('Running "VACUUM FULL ANALYZE conversations"...')
         ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE conversations')
-        say('Run REINDEX to conversations...')
+        say('Running "REINDEX TABLE conversations"...')
         ActiveRecord::Base.connection.execute('REINDEX TABLE conversations')
       else
-        say('Run ANALYZE to conversations...')
+        say('Running "ANALYZE conversations"...')
         ActiveRecord::Base.connection.execute('ANALYZE conversations')
       end
     end

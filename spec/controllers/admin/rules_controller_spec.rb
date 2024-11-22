@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::RulesController do
+RSpec.describe Admin::RulesController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }

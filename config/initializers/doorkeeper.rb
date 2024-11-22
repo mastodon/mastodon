@@ -9,16 +9,9 @@ Doorkeeper.configure do
     current_user || redirect_to(new_user_session_url)
   end
 
-  resource_owner_from_credentials do |_routes|
-    user   = User.authenticate_with_ldap(email: request.params[:username], password: request.params[:password]) if Devise.ldap_authentication
-    user ||= User.authenticate_with_pam(email: request.params[:username], password: request.params[:password]) if Devise.pam_authentication
-
-    if user.nil?
-      user = User.find_by(email: request.params[:username])
-      user = nil unless user&.valid_password?(request.params[:password])
-    end
-
-    user unless user&.otp_required_for_login?
+  # Disable Resource Owner Password Credentials Grant Flow
+  resource_owner_from_credentials do
+    nil
   end
 
   # Doorkeeper provides some administrative interfaces for managing OAuth
@@ -59,6 +52,9 @@ Doorkeeper.configure do
   # Issue access tokens with refresh token (disabled by default)
   # use_refresh_token
 
+  # Proof of Key Code Exchange
+  pkce_code_challenge_methods ['S256']
+
   # Forbids creating/updating applications with arbitrary scopes that are
   # not in configuration, i.e. `default_scopes` or `optional_scopes`.
   # (Disabled by default)
@@ -74,7 +70,8 @@ Doorkeeper.configure do
   # For more information go to
   # https://github.com/doorkeeper-gem/doorkeeper/wiki/Using-Scopes
   default_scopes  :read
-  optional_scopes :write,
+  optional_scopes :profile,
+                  :write,
                   :'write:accounts',
                   :'write:blocks',
                   :'write:bookmarks',
@@ -117,8 +114,7 @@ Doorkeeper.configure do
                   :'admin:write:domain_blocks',
                   :'admin:write:ip_blocks',
                   :'admin:write:email_domain_blocks',
-                  :'admin:write:canonical_email_blocks',
-                  :crypto
+                  :'admin:write:canonical_email_blocks'
 
   # Change the way client credentials are retrieved from the request object.
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then
@@ -146,11 +142,11 @@ Doorkeeper.configure do
   force_ssl_in_redirect_uri false
 
   # Specify what redirect URI's you want to block during Application creation.
-  # Any redirect URI is whitelisted by default.
+  # Any redirect URI is allowed by default.
   #
   # You can use this option in order to forbid URI's with 'javascript' scheme
   # for example.
-  forbid_redirect_uri { |uri| %w[data vbscript javascript].include?(uri.scheme.to_s.downcase) }
+  forbid_redirect_uri { |uri| %w(data vbscript javascript).include?(uri.scheme.to_s.downcase) }
 
   # Specify what grant flows are enabled in array of Strings. The valid
   # strings and the flows they enable are:
@@ -169,7 +165,7 @@ Doorkeeper.configure do
   #   http://tools.ietf.org/html/rfc6819#section-4.4.3
   #
 
-  grant_flows %w(authorization_code password client_credentials)
+  grant_flows %w(authorization_code client_credentials)
 
   # Under some circumstances you might want to have applications auto-approved,
   # so that the user skips the authorization step.

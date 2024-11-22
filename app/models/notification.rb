@@ -13,12 +13,15 @@
 #  from_account_id :bigint(8)        not null
 #  type            :string
 #  filtered        :boolean          default(FALSE), not null
+#  group_key       :string
 #
 
 class Notification < ApplicationRecord
   self.inheritance_column = nil
 
+  include Notification::Groups
   include Paginable
+  include Redisable
 
   LEGACY_TYPE_CLASS_MAP = {
     'Mention' => :mention,
@@ -29,6 +32,7 @@ class Notification < ApplicationRecord
     'Poll' => :poll,
   }.freeze
 
+  # Please update app/javascript/api_types/notification.ts if you change this
   PROPERTIES = {
     mention: {
       filterable: true,
@@ -55,6 +59,12 @@ class Notification < ApplicationRecord
       filterable: false,
     }.freeze,
     severed_relationships: {
+      filterable: false,
+    }.freeze,
+    moderation_warning: {
+      filterable: false,
+    }.freeze,
+    annual_report: {
       filterable: false,
     }.freeze,
     'admin.sign_up': {
@@ -90,6 +100,8 @@ class Notification < ApplicationRecord
     belongs_to :poll, inverse_of: false
     belongs_to :report, inverse_of: false
     belongs_to :account_relationship_severance_event, inverse_of: false
+    belongs_to :account_warning, inverse_of: false
+    belongs_to :generated_annual_report, inverse_of: false
   end
 
   validates :type, inclusion: { in: TYPES }
@@ -186,7 +198,7 @@ class Notification < ApplicationRecord
       self.from_account_id = activity&.status&.account_id
     when 'Account'
       self.from_account_id = activity&.id
-    when 'AccountRelationshipSeveranceEvent'
+    when 'AccountRelationshipSeveranceEvent', 'AccountWarning', 'GeneratedAnnualReport'
       # These do not really have an originating account, but this is mandatory
       # in the data model, and the recipient's account will by definition
       # always exist

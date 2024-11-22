@@ -14,7 +14,7 @@ export default class Settings {
       const encodedData = JSON.stringify(data);
       localStorage.setItem(key, encodedData);
       return data;
-    } catch (e) {
+    } catch {
       return null;
     }
   }
@@ -24,7 +24,7 @@ export default class Settings {
     try {
       const rawData = localStorage.getItem(key);
       return JSON.parse(rawData);
-    } catch (e) {
+    } catch {
       return null;
     }
   }
@@ -35,7 +35,8 @@ export default class Settings {
       const key = this.generateKey(id);
       try {
         localStorage.removeItem(key);
-      } catch (e) {
+      } catch {
+        // ignore if the key is not found
       }
     }
     return data;

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Account::StatusesSearch do
+RSpec.describe Account::StatusesSearch do
   let(:account) { Fabricate(:account, indexable: indexable) }
 
   before do

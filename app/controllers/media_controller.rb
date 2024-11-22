@@ -19,9 +19,7 @@ class MediaController < ApplicationController
     redirect_to @media_attachment.file.url(:original)
   end
 
-  def player
-    @body_classes = 'player'
-  end
+  def player; end
 
   private
 

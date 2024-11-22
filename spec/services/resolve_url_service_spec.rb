@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ResolveURLService do
+RSpec.describe ResolveURLService do
   subject { described_class.new }
 
   describe '#call' do
@@ -51,12 +51,11 @@ describe ResolveURLService do
           let(:url) { 'https://example.com/@foo/42' }
           let(:uri) { 'https://example.com/users/foo/statuses/42' }
 
-          it 'returns status by url' do
-            expect(subject.call(url, on_behalf_of: account)).to eq(status)
-          end
-
-          it 'returns status by uri' do
-            expect(subject.call(uri, on_behalf_of: account)).to eq(status)
+          it 'returns status by URL or URI' do
+            expect(subject.call(url, on_behalf_of: account))
+              .to eq(status)
+            expect(subject.call(uri, on_behalf_of: account))
+              .to eq(status)
           end
         end
 
@@ -75,12 +74,11 @@ describe ResolveURLService do
           let(:url) { 'https://example.com/@foo/42' }
           let(:uri) { 'https://example.com/users/foo/statuses/42' }
 
-          it 'does not return the status by url' do
-            expect(subject.call(url, on_behalf_of: account)).to be_nil
-          end
-
-          it 'does not return the status by uri' do
-            expect(subject.call(uri, on_behalf_of: account)).to be_nil
+          it 'does not return the status by URL or URI' do
+            expect(subject.call(url, on_behalf_of: account))
+              .to be_nil
+            expect(subject.call(uri, on_behalf_of: account))
+              .to be_nil
           end
         end
 
@@ -107,22 +105,20 @@ describe ResolveURLService do
           account.follow!(poster)
         end
 
-        it 'returns status by url' do
-          expect(subject.call(url, on_behalf_of: account)).to eq(status)
-        end
-
-        it 'returns status by uri' do
-          expect(subject.call(uri, on_behalf_of: account)).to eq(status)
+        it 'returns status by URL or URI' do
+          expect(subject.call(url, on_behalf_of: account))
+            .to eq(status)
+          expect(subject.call(uri, on_behalf_of: account))
+            .to eq(status)
         end
       end
 
       context 'when the account does not follow the poster' do
-        it 'does not return the status by url' do
-          expect(subject.call(url, on_behalf_of: account)).to be_nil
-        end
-
-        it 'does not return the status by uri' do
-          expect(subject.call(uri, on_behalf_of: account)).to be_nil
+        it 'does not return the status by URL or URI' do
+          expect(subject.call(url, on_behalf_of: account))
+            .to be_nil
+          expect(subject.call(uri, on_behalf_of: account))
+            .to be_nil
         end
       end
     end

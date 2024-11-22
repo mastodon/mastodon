@@ -107,7 +107,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.back' defaultMessage='to navigate back' /></td>
               </tr>
               <tr>
-                <td><kbd>s</kbd></td>
+                <td><kbd>s</kbd>, <kbd>/</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.search' defaultMessage='to focus search' /></td>
               </tr>
               <tr>

@@ -105,7 +105,7 @@ class ReportReasonSelector extends PureComponent {
   };
 
   componentDidMount() {
-    api().get('/api/v1/instance').then(res => {
+    api(false).get('/api/v1/instance').then(res => {
       this.setState({
         rules: res.data.rules,
       });
@@ -122,7 +122,7 @@ class ReportReasonSelector extends PureComponent {
       return;
     }
 
-    api().put(`/api/v1/admin/reports/${id}`, {
+    api(false).put(`/api/v1/admin/reports/${id}`, {
       category,
       rule_ids: category === 'violation' ? rule_ids : [],
     }).catch(err => {
@@ -153,7 +153,7 @@ class ReportReasonSelector extends PureComponent {
         <Category id='other' text={intl.formatMessage(messages.other)} selected={category === 'other'} onSelect={this.handleSelect} disabled={disabled} />
         <Category id='legal' text={intl.formatMessage(messages.legal)} selected={category === 'legal'} onSelect={this.handleSelect} disabled={disabled} />
         <Category id='spam' text={intl.formatMessage(messages.spam)} selected={category === 'spam'} onSelect={this.handleSelect} disabled={disabled} />
-        <Category id='violation' text={intl.formatMessage(messages.violation)} selected={category === 'violation'} onSelect={this.handleSelect} disabled={disabled}>
+        <Category id='violation' text={intl.formatMessage(messages.violation)} selected={category === 'violation'} onSelect={this.handleSelect} disabled={disabled || rules.length === 0}>
           {rules.map(rule => <Rule key={rule.id} id={rule.id} text={rule.text} selected={rule_ids.includes(rule.id)} onToggle={this.handleToggle} disabled={disabled} />)}
         </Category>
       </div>

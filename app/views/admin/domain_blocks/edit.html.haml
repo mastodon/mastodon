@@ -1,63 +1,12 @@
 - content_for :page_title do
   = t('admin.domain_blocks.edit')
 
-= simple_form_for @domain_block, url: admin_domain_block_path(@domain_block), method: :put do |f|
+= simple_form_for @domain_block, url: admin_domain_block_path(@domain_block), method: :put do |form|
   = render 'shared/error_messages', object: @domain_block
 
-  .fields-row
-    .fields-row__column.fields-row__column-6.fields-group
-      = f.input :domain,
-                disabled: true,
-                hint: t('admin.domain_blocks.new.hint'),
-                label: t('admin.domain_blocks.domain'),
-                readonly: true,
-                required: true,
-                wrapper: :with_label
-
-    .fields-row__column.fields-row__column-6.fields-group
-      = f.input :severity,
-                collection: DomainBlock.severities.keys,
-                hint: t('admin.domain_blocks.new.severity.desc_html'),
-                include_blank: false,
-                label_method: ->(type) { t("admin.domain_blocks.new.severity.#{type}") },
-                wrapper: :with_label
-
-  .fields-group
-    = f.input :reject_media,
-              as: :boolean,
-              hint: I18n.t('admin.domain_blocks.reject_media_hint'),
-              label: I18n.t('admin.domain_blocks.reject_media'),
-              wrapper: :with_label
-
-  .fields-group
-    = f.input :reject_reports,
-              as: :boolean,
-              hint: I18n.t('admin.domain_blocks.reject_reports_hint'),
-              label: I18n.t('admin.domain_blocks.reject_reports'),
-              wrapper: :with_label
-
-  .fields-group
-    = f.input :obfuscate,
-              as: :boolean,
-              hint: I18n.t('admin.domain_blocks.obfuscate_hint'),
-              label: I18n.t('admin.domain_blocks.obfuscate'),
-              wrapper: :with_label
-
-  .field-group
-    = f.input :private_comment,
-              as: :string,
-              hint: t('admin.domain_blocks.private_comment_hint'),
-              label: I18n.t('admin.domain_blocks.private_comment'),
-              wrapper: :with_label
-
-  .field-group
-    = f.input :public_comment,
-              as: :string,
-              hint: t('admin.domain_blocks.public_comment_hint'),
-              label: I18n.t('admin.domain_blocks.public_comment'),
-              wrapper: :with_label
+  = render form
 
   .actions
-    = f.button :button,
-               t('generic.save_changes'),
-               type: :submit
+    = form.button :button,
+                  t('generic.save_changes'),
+                  type: :submit

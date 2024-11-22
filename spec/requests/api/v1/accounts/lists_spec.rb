@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Accounts Lists API' do
+RSpec.describe 'Accounts Lists API' do
   let(:user)     { Fabricate(:user) }
   let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)   { 'read:lists' }
@@ -20,6 +20,8 @@ describe 'Accounts Lists API' do
       get "/api/v1/accounts/#{account.id}/lists", headers: headers
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
   end
 end

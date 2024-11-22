@@ -1,6 +1,13 @@
 - content_for :page_title do
   = t('admin.account_actions.title', acct: @account.pretty_acct)
 
+- if @account.suspended_locally?
+  .flash-message.alert
+    = t('admin.account_actions.already_suspended')
+- elsif @account.silenced?
+  .flash-message.warn
+    = t('admin.account_actions.already_silenced')
+
 = simple_form_for @account_action, url: admin_account_action_path(@account.id) do |f|
   = f.input :report_id,
             as: :hidden
@@ -9,6 +16,7 @@
     = f.input :type,
               as: :radio_buttons,
               collection: Admin::AccountAction.types_for_account(@account),
+              disabled: Admin::AccountAction.disabled_types_for_account(@account),
               hint: t('simple_form.hints.admin_account_action.type_html', acct: @account.pretty_acct),
               include_blank: false,
               label_method: ->(type) { account_action_type_label(type) },

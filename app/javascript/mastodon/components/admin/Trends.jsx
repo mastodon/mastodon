@@ -22,7 +22,7 @@ export default class Trends extends PureComponent {
   componentDidMount () {
     const { limit } = this.props;
 
-    api().get('/api/v1/admin/trends/tags', { params: { limit } }).then(res => {
+    api(false).get('/api/v1/admin/trends/tags', { params: { limit } }).then(res => {
       this.setState({
         loading: false,
         data: res.data,

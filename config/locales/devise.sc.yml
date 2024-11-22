@@ -14,7 +14,7 @@ sc:
       not_found_in_database: "%{authentication_keys} o crae non vàlida."
       pending: Su contu tuo est ancora in revisione.
       timeout: Sa sessione tua est iscadida. Torra·bi a intrare pro sighire.
-      unauthenticated: Tocat a ti autenticare o ti registrare prima de sighire.
+      unauthenticated: Ti depes identificare o registrare prima de sighire.
       unconfirmed: Depes cunfirmare s'indiritzu tuo de posta eletrònica prima de sighire.
     mailer:
       confirmation_instructions:
@@ -74,7 +74,7 @@ sc:
         subject: 'Mastodon: Autenticatzione cun sa crae de seguresa ativada'
         title: Craes de seguresa abilitadas
     omniauth_callbacks:
-      failure: Faddina in s'autenticatzione dae %{kind}, ca "%{reason}".
+      failure: 'Faddina in s''autenticatzione dae %{kind}; resone: "%{reason}".'
       success: Autenticatzione curreta dae su contu de %{kind}.
     passwords:
       no_token: No podes intrare a custa pàgina sena passare dae unu messàgiu de posta eletrònica pro resetare sa crae. Si benes dae su messàgiu de posta pro resetare sa crae, faghe in modu de impreare s'URL intreu chi t'ant donadu.

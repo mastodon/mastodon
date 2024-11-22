@@ -48,8 +48,9 @@ export const AnimatedNumber: React.FC<Props> = ({ value }) => {
             <span
               key={key}
               style={{
-                position: direction * style.y > 0 ? 'absolute' : 'static',
-                transform: `translateY(${style.y * 100}%)`,
+                position:
+                  direction * (style.y ?? 0) > 0 ? 'absolute' : 'static',
+                transform: `translateY(${(style.y ?? 0) * 100}%)`,
               }}
             >
               <ShortNumber value={data as number} />

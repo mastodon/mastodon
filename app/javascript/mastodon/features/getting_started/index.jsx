@@ -12,9 +12,11 @@ import { connect } from 'react-redux';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import BookmarksIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
 import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
+import ModerationIcon from '@/material-icons/400-24px/gavel.svg?react';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
+import AdministrationIcon from '@/material-icons/400-24px/manufacturing.svg?react';
 import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
@@ -24,6 +26,8 @@ import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
 import LinkFooter from 'mastodon/features/ui/components/link_footer';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
+import { canManageReports, canViewAdminDashboard } from 'mastodon/permissions';
 
 import { me, showTrends } from '../../initial_state';
 import { NavigationBar } from '../compose/components/navigation_bar';
@@ -42,6 +46,8 @@ const messages = defineMessages({
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  administration: { id: 'navigation_bar.administration', defaultMessage: 'Administration' },
+  moderation: { id: 'navigation_bar.moderation', defaultMessage: 'Moderation' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
@@ -75,12 +81,8 @@ const badgeDisplay = (number, limit) => {
 };
 
 class GettingStarted extends ImmutablePureComponent {
-
-  static contextTypes = {
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     intl: PropTypes.object.isRequired,
     myAccount: ImmutablePropTypes.record,
     multiColumn: PropTypes.bool,
@@ -91,7 +93,7 @@ class GettingStarted extends ImmutablePureComponent {
 
   componentDidMount () {
     const { fetchFollowRequests } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (!signedIn) {
       return;
@@ -102,7 +104,7 @@ class GettingStarted extends ImmutablePureComponent {
 
   render () {
     const { intl, myAccount, multiColumn, unreadFollowRequests } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn, permissions } = this.props.identity;
 
     const navItems = [];
 
@@ -139,6 +141,13 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnSubheading key='header-settings' text={intl.formatMessage(messages.settings_subheading)} />,
         <ColumnLink key='preferences' icon='cog' iconComponent={SettingsIcon} text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
       );
+
+      if (canManageReports(permissions)) {
+        navItems.push(<ColumnLink key='moderation' href='/admin/reports' icon='flag' iconComponent={ModerationIcon} text={intl.formatMessage(messages.moderation)} />);
+      }
+      if (canViewAdminDashboard(permissions)) {
+        navItems.push(<ColumnLink key='administration' href='/admin/dashboard' icon='tachometer' iconComponent={AdministrationIcon} text={intl.formatMessage(messages.administration)} />);
+      }
     }
 
     return (
@@ -167,4 +176,4 @@ class GettingStarted extends ImmutablePureComponent {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(GettingStarted));
+export default withIdentity(connect(mapStateToProps, mapDispatchToProps)(injectIntl(GettingStarted)));

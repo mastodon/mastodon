@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe UnpublishAnnouncementWorker do
+RSpec.describe UnpublishAnnouncementWorker do
   let(:worker) { described_class.new }
 
   describe 'perform' do

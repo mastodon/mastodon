@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Webhooks::SecretsController do
+RSpec.describe Admin::Webhooks::SecretsController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
