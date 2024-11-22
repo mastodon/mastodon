@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'API routes' do
+RSpec.describe 'API routes' do
   describe 'Credentials routes' do
     it 'routes to verify credentials' do
       expect(get('/api/v1/accounts/verify_credentials'))

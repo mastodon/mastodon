@@ -15,6 +15,12 @@ zh-TW:
       user/invite_request:
         text: 原因
     errors:
+      attributes:
+        domain:
+          invalid: 並非一個有效網域
+      messages:
+        invalid_domain_on_line: "%{value} 並非一個有效網域"
+        too_many_lines: 已超過行數限制 (%{limit} 行)
       models:
         account:
           attributes:
@@ -40,7 +46,7 @@ zh-TW:
         user:
           attributes:
             email:
-              blocked: 使用不被允許的電子郵件供應商
+              blocked: 使用不被允許的電子郵件提供商
               unreachable: 該電子郵件地址似乎無法使用
             role_id:
               elevated: 不能高於您目前的角色

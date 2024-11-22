@@ -13,10 +13,10 @@ export const BLOCKS_EXPAND_SUCCESS = 'BLOCKS_EXPAND_SUCCESS';
 export const BLOCKS_EXPAND_FAIL    = 'BLOCKS_EXPAND_FAIL';
 
 export function fetchBlocks() {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(fetchBlocksRequest());
 
-    api(getState).get('/api/v1/blocks').then(response => {
+    api().get('/api/v1/blocks').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedAccounts(response.data));
       dispatch(fetchBlocksSuccess(response.data, next ? next.uri : null));
@@ -56,7 +56,7 @@ export function expandBlocks() {
 
     dispatch(expandBlocksRequest());
 
-    api(getState).get(url).then(response => {
+    api().get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedAccounts(response.data));
       dispatch(expandBlocksSuccess(response.data, next ? next.uri : null));

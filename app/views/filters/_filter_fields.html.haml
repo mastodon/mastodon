@@ -58,4 +58,4 @@
       %tr
         %td{ colspan: 3 }
           = link_to_add_association f, :keywords, class: 'table-action-link', partial: 'keyword_fields', 'data-association-insertion-node': '.keywords-table tbody', 'data-association-insertion-method': 'append' do
-            = safe_join([fa_icon('plus'), t('filters.edit.add_keyword')])
+            = safe_join([material_symbol('add'), t('filters.edit.add_keyword')])

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Metrics::Measure::TagAccountsMeasure do
+RSpec.describe Admin::Metrics::Measure::TagAccountsMeasure do
   subject { described_class.new(start_at, end_at, params) }
 
   let!(:tag) { Fabricate(:tag) }

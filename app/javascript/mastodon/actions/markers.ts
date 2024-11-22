@@ -1,19 +1,24 @@
 import { debounce } from 'lodash';
 
 import type { MarkerJSON } from 'mastodon/api_types/markers';
+import { getAccessToken } from 'mastodon/initial_state';
 import type { AppDispatch, RootState } from 'mastodon/store';
 import { createAppAsyncThunk } from 'mastodon/store/typed_functions';
 
-import api, { authorizationTokenFromState } from '../api';
+import api from '../api';
 import { compareId } from '../compare_id';
 
 export const synchronouslySubmitMarkers = createAppAsyncThunk(
   'markers/submit',
   async (_args, { getState }) => {
-    const accessToken = authorizationTokenFromState(getState);
+    const accessToken = getAccessToken();
     const params = buildPostMarkersParams(getState());
 
-    if (Object.keys(params).length === 0 || !accessToken) {
+    if (
+      Object.keys(params).length === 0 ||
+      !accessToken ||
+      accessToken === ''
+    ) {
       return;
     }
 
@@ -32,8 +37,7 @@ export const synchronouslySubmitMarkers = createAppAsyncThunk(
       });
 
       return;
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    } else if ('navigator' && 'sendBeacon' in navigator) {
+    } else if ('sendBeacon' in navigator) {
       // Failing that, we can use sendBeacon, but we have to encode the data as
       // FormData for DoorKeeper to recognize the token.
       const formData = new FormData();
@@ -59,7 +63,7 @@ export const synchronouslySubmitMarkers = createAppAsyncThunk(
       client.setRequestHeader('Content-Type', 'application/json');
       client.setRequestHeader('Authorization', `Bearer ${accessToken}`);
       client.send(JSON.stringify(params));
-    } catch (e) {
+    } catch {
       // Do not make the BeforeUnload handler error out
     }
   },
@@ -70,9 +74,7 @@ interface MarkerParam {
 }
 
 function getLastNotificationId(state: RootState): string | undefined {
-  // @ts-expect-error state.notifications is not yet typed
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
-  return state.getIn(['notifications', 'lastReadId']);
+  return state.notificationGroups.lastReadId;
 }
 
 const buildPostMarkersParams = (state: RootState) => {
@@ -96,14 +98,14 @@ export const submitMarkersAction = createAppAsyncThunk<{
   home: string | undefined;
   notifications: string | undefined;
 }>('markers/submitAction', async (_args, { getState }) => {
-  const accessToken = authorizationTokenFromState(getState);
+  const accessToken = getAccessToken();
   const params = buildPostMarkersParams(getState());
 
-  if (Object.keys(params).length === 0 || accessToken === '') {
+  if (Object.keys(params).length === 0 || !accessToken || accessToken === '') {
     return { home: undefined, notifications: undefined };
   }
 
-  await api(getState).post<MarkerJSON>('/api/v1/markers', params);
+  await api().post<MarkerJSON>('/api/v1/markers', params);
 
   return {
     home: params.home?.last_read_id,
@@ -133,14 +135,11 @@ export const submitMarkers = createAppAsyncThunk(
   },
 );
 
-export const fetchMarkers = createAppAsyncThunk(
-  'markers/fetch',
-  async (_args, { getState }) => {
-    const response = await api(getState).get<Record<string, MarkerJSON>>(
-      `/api/v1/markers`,
-      { params: { timeline: ['notifications'] } },
-    );
+export const fetchMarkers = createAppAsyncThunk('markers/fetch', async () => {
+  const response = await api().get<Record<string, MarkerJSON>>(
+    `/api/v1/markers`,
+    { params: { timeline: ['notifications'] } },
+  );
 
-    return { markers: response.data };
-  },
-);
+  return { markers: response.data };
+});

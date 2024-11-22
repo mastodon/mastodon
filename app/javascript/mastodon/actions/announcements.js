@@ -26,10 +26,10 @@ export const ANNOUNCEMENTS_TOGGLE_SHOW = 'ANNOUNCEMENTS_TOGGLE_SHOW';
 
 const noOp = () => {};
 
-export const fetchAnnouncements = (done = noOp) => (dispatch, getState) => {
+export const fetchAnnouncements = (done = noOp) => (dispatch) => {
   dispatch(fetchAnnouncementsRequest());
 
-  api(getState).get('/api/v1/announcements').then(response => {
+  api().get('/api/v1/announcements').then(response => {
     dispatch(fetchAnnouncementsSuccess(response.data.map(x => normalizeAnnouncement(x))));
   }).catch(error => {
     dispatch(fetchAnnouncementsFail(error));
@@ -61,10 +61,10 @@ export const updateAnnouncements = announcement => ({
   announcement: normalizeAnnouncement(announcement),
 });
 
-export const dismissAnnouncement = announcementId => (dispatch, getState) => {
+export const dismissAnnouncement = announcementId => (dispatch) => {
   dispatch(dismissAnnouncementRequest(announcementId));
 
-  api(getState).post(`/api/v1/announcements/${announcementId}/dismiss`).then(() => {
+  api().post(`/api/v1/announcements/${announcementId}/dismiss`).then(() => {
     dispatch(dismissAnnouncementSuccess(announcementId));
   }).catch(error => {
     dispatch(dismissAnnouncementFail(announcementId, error));
@@ -103,7 +103,7 @@ export const addReaction = (announcementId, name) => (dispatch, getState) => {
     dispatch(addReactionRequest(announcementId, name, alreadyAdded));
   }
 
-  api(getState).put(`/api/v1/announcements/${announcementId}/reactions/${encodeURIComponent(name)}`).then(() => {
+  api().put(`/api/v1/announcements/${announcementId}/reactions/${encodeURIComponent(name)}`).then(() => {
     dispatch(addReactionSuccess(announcementId, name, alreadyAdded));
   }).catch(err => {
     if (!alreadyAdded) {
@@ -134,10 +134,10 @@ export const addReactionFail = (announcementId, name, error) => ({
   skipLoading: true,
 });
 
-export const removeReaction = (announcementId, name) => (dispatch, getState) => {
+export const removeReaction = (announcementId, name) => (dispatch) => {
   dispatch(removeReactionRequest(announcementId, name));
 
-  api(getState).delete(`/api/v1/announcements/${announcementId}/reactions/${encodeURIComponent(name)}`).then(() => {
+  api().delete(`/api/v1/announcements/${announcementId}/reactions/${encodeURIComponent(name)}`).then(() => {
     dispatch(removeReactionSuccess(announcementId, name));
   }).catch(err => {
     dispatch(removeReactionFail(announcementId, name, err));

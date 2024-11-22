@@ -73,10 +73,10 @@ class Account::Field < ActiveModelSerializers::Model
   end
 
   def extract_url_from_html
-    doc = Nokogiri::HTML(value).at_xpath('//body')
+    doc = Nokogiri::HTML5.fragment(value)
 
     return if doc.nil?
-    return if doc.children.size > 1
+    return if doc.children.size != 1
 
     element = doc.children.first
 

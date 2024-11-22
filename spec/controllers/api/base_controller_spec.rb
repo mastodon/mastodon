@@ -2,14 +2,10 @@
 
 require 'rails_helper'
 
-describe Api::BaseController do
+RSpec.describe Api::BaseController do
   controller do
     def success
       head 200
-    end
-
-    def failure
-      FakeService.new
     end
   end
 

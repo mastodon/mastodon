@@ -5,7 +5,6 @@ hi:
     contact_unavailable: लागू नहीं है
     title: के बारे में
   accounts:
-    follow: अनुसरे
     following: फ़ॉलो कर रहे हैं
     instance_actor_flash: यह खाता आभासी है जो सर्वर को दिखाने के लिये है और ये किसी व्यक्तिका प्रतिनिधित्व नहि करता। यह सिर्फ देखरेख के हेतु से कार्यरत है और इसको निलंबित करने कि आवश्यकता नहि है।
     last_active: आखिरि बार इस वक्त सक्रिय थे
@@ -28,16 +27,34 @@ hi:
         all: सभी
         silenced: सीमित
       search: खोजें
-      search_same_email_domain: यहि इ-मेइल डोमैन वाले अन्य सदस्य
       silence: सीमा
       silenced: सीमित
       title: खाते
+    reports:
+      reported_with_application: एप्लीकेशन से रिपोर्ट किया गया
     system_checks:
       upload_check_privacy_error:
         message_html: "<strong> आपके वेब सर्वर का कन्फिगरेशन सही नहीं है। उपयोगकर्ताओं की निजता खतरे में है। </strong>"
       upload_check_privacy_error_object_storage:
         action: अधिक जानकारी हेतु यहां क्लिक करें।
         message_html: "<strong> आपके वेब सर्वर का कन्फिगरेशन सही नहीं है। उपयोगकर्ताओं की निजता खतरे में है। </strong>"
+    tags:
+      moderation:
+        not_trendable: ट्रेंड नहीं किया जाएगा
+        not_usable: उपयोगी नहीं
+        pending_review: लंबित समीक्षा
+        review_requested: समीक्षा की मांग की गई
+        reviewed: समीक्षित
+        title: स्टेटस
+        trendable: चर्चा में
+        unreviewed: गैर समीक्षित
+        usable: उपयुक्त
+      name: नाम
+      newest: नवीनतम
+      oldest: सबसे पुराने
+      reset: पुनः नियत करें
+      search: खोजें
+      title: हैशटैग
   redirects:
     prompt: अगर आपको इस लिंक पर भरोसा है तो आगे बढ़ने के लिए इसे क्लिक करें
     title: आप इस %{instance} को छोड़ने वाले हैं

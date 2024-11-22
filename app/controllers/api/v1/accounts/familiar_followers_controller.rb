@@ -12,7 +12,7 @@ class Api::V1::Accounts::FamiliarFollowersController < Api::BaseController
   private
 
   def set_accounts
-    @accounts = Account.without_suspended.where(id: account_ids).select('id, hide_collections')
+    @accounts = Account.without_suspended.where(id: account_ids).select(:id, :hide_collections)
   end
 
   def familiar_followers

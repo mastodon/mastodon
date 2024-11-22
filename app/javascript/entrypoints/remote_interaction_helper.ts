@@ -67,7 +67,9 @@ const fetchInteractionURLFailure = () => {
   );
 };
 
-const isValidDomain = (value: string) => {
+const isValidDomain = (value: unknown) => {
+  if (typeof value !== 'string') return false;
+
   const url = new URL('https:///path');
   url.hostname = value;
   return url.hostname === value;
@@ -123,6 +125,11 @@ const fromAcct = (acct: string) => {
 
   const domain = segments[1];
   const fallbackTemplate = `https://${domain}/authorize_interaction?uri={uri}`;
+
+  if (!domain) {
+    fetchInteractionURLFailure();
+    return;
+  }
 
   axios
     .get(`https://${domain}/.well-known/webfinger`, {

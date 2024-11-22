@@ -20,7 +20,7 @@ class Api::V1::Trends::StatusesController < Api::BaseController
 
   def set_statuses
     @statuses = if enabled?
-                  cache_collection(statuses_from_trends.offset(offset_param).limit(limit_param(DEFAULT_STATUSES_LIMIT)), Status)
+                  preload_collection(statuses_from_trends.offset(offset_param).limit(limit_param(DEFAULT_STATUSES_LIMIT)), Status)
                 else
                   []
                 end
@@ -30,10 +30,6 @@ class Api::V1::Trends::StatusesController < Api::BaseController
     scope = Trends.statuses.query.allowed.in_locale(content_locale)
     scope = scope.filtered_for(current_account) if user_signed_in?
     scope
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 
   def next_path

@@ -43,6 +43,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         update_poll!
         update_immediate_attributes!
         update_metadata!
+        update_counts!
         create_edits!
       end
 
@@ -62,6 +63,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     with_redis_lock("create:#{@uri}") do
       update_poll!(allow_significant_changes: false)
       queue_poll_notifications!
+      update_counts!
     end
   end
 
@@ -73,7 +75,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     as_array(@json['attachment']).each do |attachment|
       media_attachment_parser = ActivityPub::Parser::MediaAttachmentParser.new(attachment)
 
-      next if media_attachment_parser.remote_url.blank? || @next_media_attachments.size > 4
+      next if media_attachment_parser.remote_url.blank? || @next_media_attachments.size > Status::MEDIA_ATTACHMENTS_LIMIT
 
       begin
         media_attachment   = previous_media_attachments.find { |previous_media_attachment| previous_media_attachment.remote_url == media_attachment_parser.remote_url }
@@ -109,7 +111,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       media_attachment.download_file! if media_attachment.remote_url_previously_changed?
       media_attachment.download_thumbnail! if media_attachment.thumbnail_remote_url_previously_changed?
       media_attachment.save
-    rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+    rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
     rescue Seahorse::Client::NetworkingError => e
       Rails.logger.warn "Error storing media attachment: #{e}"
@@ -236,6 +238,19 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       rescue Seahorse::Client::NetworkingError => e
         Rails.logger.warn "Error storing emoji: #{e}"
       end
+    end
+  end
+
+  def update_counts!
+    likes = @status_parser.favourites_count
+    shares =  @status_parser.reblogs_count
+    return if likes.nil? && shares.nil?
+
+    @status.status_stat.tap do |status_stat|
+      status_stat.untrusted_reblogs_count = shares unless shares.nil?
+      status_stat.untrusted_favourites_count = likes unless likes.nil?
+
+      status_stat.save if status_stat.changed?
     end
   end
 

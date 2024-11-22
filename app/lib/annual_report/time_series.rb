@@ -17,7 +17,7 @@ class AnnualReport::TimeSeries < AnnualReport::Source
   private
 
   def statuses_per_month
-    @statuses_per_month ||= @account.statuses.reorder(nil).where(id: year_as_snowflake_range).group(:period).pluck(Arel.sql("date_part('month', created_at)::int AS period, count(*)")).to_h
+    @statuses_per_month ||= report_statuses.group(:period).pluck(Arel.sql("date_part('month', created_at)::int AS period, count(*)")).to_h
   end
 
   def following_per_month

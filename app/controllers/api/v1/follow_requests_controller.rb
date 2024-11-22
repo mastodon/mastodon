@@ -28,8 +28,8 @@ class Api::V1::FollowRequestsController < Api::BaseController
     @account ||= Account.find(params[:id])
   end
 
-  def relationships(**options)
-    AccountRelationshipsPresenter.new([account], current_user.account_id, **options)
+  def relationships(**)
+    AccountRelationshipsPresenter.new([account], current_user.account_id, **)
   end
 
   def load_accounts
@@ -66,9 +66,5 @@ class Api::V1::FollowRequestsController < Api::BaseController
 
   def records_continue?
     @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end

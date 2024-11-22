@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Users::RolesController do
+RSpec.describe Admin::Users::RolesController do
   render_views
 
   let(:current_role) { UserRole.create(name: 'Foo', permissions: UserRole::FLAGS[:manage_roles], position: 10) }

@@ -40,17 +40,11 @@ module Mastodon::CLI
     def remove_statuses
       return if options[:skip_status_remove]
 
-      say('Creating temporary database indices...')
-
-      ActiveRecord::Base.connection.add_index(:media_attachments, :remote_url, name: :index_media_attachments_remote_url, where: 'remote_url is not null', algorithm: :concurrently, if_not_exists: true)
-
-      max_id   = Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false)
       start_at = Time.now.to_f
 
-      unless options[:continue] && ActiveRecord::Base.connection.table_exists?('statuses_to_be_deleted')
-        ActiveRecord::Base.connection.add_index(:accounts, :id, name: :index_accounts_local, where: 'domain is null', algorithm: :concurrently, if_not_exists: true)
-        ActiveRecord::Base.connection.add_index(:status_pins, :status_id, name: :index_status_pins_status_id, algorithm: :concurrently, if_not_exists: true)
+      max_id   = Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false)
 
+      unless options[:continue] && ActiveRecord::Base.connection.table_exists?('statuses_to_be_deleted')
         say('Extract the deletion target from statuses... This might take a while...')
 
         ActiveRecord::Base.connection.create_table('statuses_to_be_deleted', force: true)
@@ -72,9 +66,6 @@ module Mastodon::CLI
         SQL
 
         say('Removing temporary database indices to restore write performance...')
-
-        ActiveRecord::Base.connection.remove_index(:accounts, name: :index_accounts_local, if_exists: true)
-        ActiveRecord::Base.connection.remove_index(:status_pins, name: :index_status_pins_status_id, if_exists: true)
       end
 
       say('Beginning statuses removal... This might take a while...')
@@ -102,12 +93,6 @@ module Mastodon::CLI
       ActiveRecord::Base.connection.drop_table('statuses_to_be_deleted')
 
       say("Done after #{Time.now.to_f - start_at}s, removed #{removed} out of #{processed} statuses.", :green)
-    ensure
-      say('Removing temporary database indices to restore write performance...')
-
-      ActiveRecord::Base.connection.remove_index(:accounts, name: :index_accounts_local, if_exists: true)
-      ActiveRecord::Base.connection.remove_index(:status_pins, name: :index_status_pins_status_id, if_exists: true)
-      ActiveRecord::Base.connection.remove_index(:media_attachments, name: :index_media_attachments_remote_url, if_exists: true)
     end
 
     def remove_orphans_media_attachments

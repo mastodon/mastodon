@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::SynchronizeFeaturedTagsCollectionWorker do
+RSpec.describe ActivityPub::SynchronizeFeaturedTagsCollectionWorker do
   let(:worker) { described_class.new }
   let(:service) { instance_double(ActivityPub::FetchFeaturedTagsCollectionService, call: true) }
 

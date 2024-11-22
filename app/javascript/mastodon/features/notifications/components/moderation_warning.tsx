@@ -1,7 +1,10 @@
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import GavelIcon from '@/material-icons/400-24px/gavel.svg?react';
 import { Icon } from 'mastodon/components/icon';
+import type { AccountWarningAction } from 'mastodon/models/notification_group';
 
 // This needs to be kept in sync with app/models/account_warning.rb
 const messages = defineMessages({
@@ -36,19 +39,18 @@ const messages = defineMessages({
 });
 
 interface Props {
-  action:
-    | 'none'
-    | 'disable'
-    | 'mark_statuses_as_sensitive'
-    | 'delete_statuses'
-    | 'sensitive'
-    | 'silence'
-    | 'suspend';
+  action: AccountWarningAction;
   id: string;
-  hidden: boolean;
+  hidden?: boolean;
+  unread?: boolean;
 }
 
-export const ModerationWarning: React.FC<Props> = ({ action, id, hidden }) => {
+export const ModerationWarning: React.FC<Props> = ({
+  action,
+  id,
+  hidden,
+  unread,
+}) => {
   const intl = useIntl();
 
   if (hidden) {
@@ -56,23 +58,32 @@ export const ModerationWarning: React.FC<Props> = ({ action, id, hidden }) => {
   }
 
   return (
-    <a
-      href={`/disputes/strikes/${id}`}
-      target='_blank'
-      rel='noopener noreferrer'
-      className='notification__moderation-warning'
+    <div
+      role='button'
+      className={classNames(
+        'notification-group notification-group--link notification-group--moderation-warning focusable',
+        { 'notification-group--unread': unread },
+      )}
+      tabIndex={0}
     >
-      <Icon id='warning' icon={GavelIcon} />
+      <div className='notification-group__icon'>
+        <Icon id='warning' icon={GavelIcon} />
+      </div>
 
-      <div className='notification__moderation-warning__content'>
+      <div className='notification-group__main'>
         <p>{intl.formatMessage(messages[action])}</p>
-        <span className='link-button'>
+        <a
+          href={`/disputes/strikes/${id}`}
+          target='_blank'
+          rel='noopener noreferrer'
+          className='link-button'
+        >
           <FormattedMessage
             id='notification.moderation-warning.learn_more'
             defaultMessage='Learn more'
           />
-        </span>
+        </a>
       </div>
-    </a>
+    </div>
   );
 };

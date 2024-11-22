@@ -7,6 +7,8 @@ class Api::V1::Peers::SearchController < Api::BaseController
   skip_before_action :require_authenticated_user!, unless: :limited_federation_mode?
   skip_around_action :set_locale
 
+  LIMIT = 10
+
   vary_by ''
 
   def index
@@ -35,10 +37,10 @@ class Api::V1::Peers::SearchController < Api::BaseController
           field: 'accounts_count',
           modifier: 'log2p',
         },
-      }).limit(10).pluck(:domain)
+      }).limit(LIMIT).pluck(:domain)
     else
       domain = normalized_domain
-      @domains = Instance.searchable.domain_starts_with(domain).limit(10).pluck(:domain)
+      @domains = Instance.searchable.domain_starts_with(domain).limit(LIMIT).pluck(:domain)
     end
   rescue Addressable::URI::InvalidURIError
     @domains = []
