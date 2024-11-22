@@ -23,7 +23,7 @@ class Antispam
 
   def local_preflight_check!(status)
     return unless spammy_texts.any? { |spammy_text| status.text.include?(spammy_text) }
-    return unless status.thread.present? && !status.thread.account.following?(status.account)
+    return unless suspicious_reply_or_mention?(status)
     return unless status.account.created_at >= ACCOUNT_AGE_EXEMPTION.ago
 
     report_if_needed!(status.account)
@@ -35,6 +35,14 @@ class Antispam
 
   def spammy_texts
     redis.smembers('antispam:spammy_texts')
+  end
+
+  def suspicious_reply_or_mention?(status)
+    parent = status.thread
+    return true if parent.present? && !Follow.exists?(account_id: parent.account_id, target_account: status.account_id)
+
+    account_ids = status.mentions.map(&:account_id).uniq
+    !Follow.exists?(account_id: account_ids, target_account_id: status.account.id)
   end
 
   def report_if_needed!(account)
