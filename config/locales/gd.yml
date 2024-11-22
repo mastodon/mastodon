@@ -25,6 +25,7 @@ gd:
       other: Postaichean
       two: Postaichean
     posts_tab_heading: Postaichean
+    self_follow_error: Chan fhaod thu an cunntas agad fhèn a leantainn
   admin:
     account_actions:
       action: Gabh an gnìomh
@@ -192,6 +193,7 @@ gd:
         create_domain_block: Cruthaich bacadh àrainne
         create_email_domain_block: Cruthaich bacadh àrainne puist-d
         create_ip_block: Cruthaich riaghailt IP
+        create_relay: Cruthaich ath-sheachadan
         create_unavailable_domain: Cruthaich àrainn nach eil ri fhaighinn
         create_user_role: Cruthaich dreuchd
         demote_user: Ìslich an cleachdaiche
@@ -203,14 +205,17 @@ gd:
         destroy_email_domain_block: Sguab às bacadh na h-àrainne puist-d
         destroy_instance: Purgaidich an àrainn
         destroy_ip_block: Sguab às an riaghailt IP
+        destroy_relay: Sguab às an t-ath-sheachadan
         destroy_status: Sguab às am post
         destroy_unavailable_domain: Sguab às àrainn nach eil ri fhaighinn
         destroy_user_role: Mill an dreuchd
         disable_2fa_user: Cuir an dearbhadh dà-cheumnach à comas
         disable_custom_emoji: Cuir an t-Emoji gnàthaichte à comas
+        disable_relay: Cuir an t-ath-sheachadan à comas
         disable_sign_in_token_auth_user: Cuir à comas dearbhadh le tòcan puist-d dhan chleachdaiche
         disable_user: Cuir an cleachdaiche à comas
         enable_custom_emoji: Cuir an t-Emoji gnàthaichte an comas
+        enable_relay: Cuir an ath-sheachadan an comas
         enable_sign_in_token_auth_user: Cuir an comas dearbhadh le tòcan puist-d dhan chleachdaiche
         enable_user: Cuir an cleachdaiche an comas
         memorialize_account: Dèan cuimhneachan dhen chunntas
@@ -252,6 +257,7 @@ gd:
         create_domain_block_html: Bhac %{name} an àrainn %{target}
         create_email_domain_block_html: Bhac %{name} an àrainn puist-d %{target}
         create_ip_block_html: Chruthaich %{name} riaghailt dhan IP %{target}
+        create_relay_html: Chruthaich %{name} an t-ath-sheachadan %{target}
         create_unavailable_domain_html: Sguir %{name} ris an lìbhrigeadh dhan àrainn %{target}
         create_user_role_html: Chruthaich %{name} an dreuchd %{target}
         demote_user_html: Dh’ìslich %{name} an cleachdaiche %{target}
@@ -261,16 +267,19 @@ gd:
         destroy_domain_allow_html: Dì-cheadaich %{name} co-nasgadh leis an àrainn %{target}
         destroy_domain_block_html: Dì-bhac %{name} an àrainn %{target}
         destroy_email_domain_block_html: Dì-bhac %{name} an àrainn puist-d %{target}
-        destroy_instance_html: Purgaidich %{name} an àrainn %{target}
+        destroy_instance_html: Phurgaidich %{name} an àrainn %{target}
         destroy_ip_block_html: Sguab %{name} às riaghailt dhan IP %{target}
+        destroy_relay_html: Sguab %{name} às an t-ath-sheachadan %{target}
         destroy_status_html: Thug %{name} post aig %{target} air falbh
         destroy_unavailable_domain_html: Lean %{name} air adhart leis an lìbhrigeadh dhan àrainn %{target}
         destroy_user_role_html: Sguab %{name} às an dreuchd %{target}
         disable_2fa_user_html: Chuir %{name} riatanas an dearbhaidh dà-cheumnaich à comas dhan chleachdaiche %{target}
         disable_custom_emoji_html: Chuir %{name} an Emoji %{target} à comas
+        disable_relay_html: Chuir %{name} an t-ath-sheachadan %{target} à comas
         disable_sign_in_token_auth_user_html: Chuir %{name} à comas dearbhadh le tòcan puist-d dha %{target}
         disable_user_html: Chuir %{name} an clàradh a-steach à comas dhan chleachdaiche %{target}
         enable_custom_emoji_html: Chuir %{name} an Emoji %{target} an comas
+        enable_relay_html: Chuir %{name} an t-ath-sheachadan %{target} an comas
         enable_sign_in_token_auth_user_html: Chuir %{name} an comas dearbhadh le tòcan puist-d dha %{target}
         enable_user_html: Chuir %{name} an clàradh a-steach an comas dhan chleachdaiche %{target}
         memorialize_account_html: Rinn %{name} duilleag cuimhneachain dhen chunntas aig %{target}
@@ -845,8 +854,10 @@ gd:
       back_to_account: Till gu duilleag a’ chunntais
       back_to_report: Till gu duilleag a’ ghearain
       batch:
+        add_to_report: 'Cuir ris a’ ghearan #%{id}'
         remove_from_report: Thoir air falbh on ghearan
         report: Gearan
+      contents: Susbaint
       deleted: Chaidh a sguabadh às
       favourites: Annsachdan
       history: Eachdraidh nan tionndadh
@@ -855,13 +866,17 @@ gd:
       media:
         title: Meadhanan
       metadata: Meata-dàta
+      no_history: Cha deach am post seo a dheasachadh
       no_status_selected: Cha deach post sam bith atharrachadh o nach deach gin dhiubh a thaghadh
       open: Fosgail am post
       original_status: Am post tùsail
       reblogs: Brosnachaidhean
+      replied_to_html: Freagairt do %{acct_link}
       status_changed: Post air atharrachadh
-      title: Postaichean a’ chunntais
+      status_title: Post le @%{name}
+      title: Postaichean a’ chunntais – @%{name}
       trending: A’ treandadh
+      view_publicly: Seall gu poblach
       visibility: Faicsinneachd
       with_media: Le meadhanan riutha
     strikes:
@@ -1201,9 +1216,11 @@ gd:
     use_security_key: Cleachd iuchair tèarainteachd
   author_attribution:
     example_title: Ball-sampaill teacsa
-    hint_html: Stùirich mar a thèid iomradh a thoirt ort nuair a thèid ceangal a cho-roinneadh air Mastodon.
+    hint_html: An sgrìobh thu naidheachdan no bloga taobh a-muigh Mhastodon? Stiùirich mar a thèid iomradh a thoirt ort nuair a bhios na h-artaigilean agad ’gan co-roinneadh air Mastodon.
+    instructions: 'Dèan cinnteach gu bheil an còd seo am broinn HTML an artaigil agad:'
     more_from_html: Barrachd o %{name}
     s_blog: Bloga aig %{name}
+    then_instructions: An uair sin, cuir ainm àrainn an fhoillseachaidh ris an raon gu h-ìosal.
     title: Aithris air an ùghdar
   challenge:
     confirm: Lean air adhart
@@ -1416,19 +1433,67 @@ gd:
       overwrite: Sgrìobh thairis air
       overwrite_long: Cuir na reacordan ùra an àite na feadhna a tha ann
     overwrite_preambles:
-      blocking_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean</strong> agad.
-      bookmarks_html: Tha thu an impis suas ri <strong>%{total_items} post(aichean)</strong> o <strong>%{filename}</strong> a chur <strong>an àite nan comharra-lìn</strong> agad.
-      domain_blocking_html: Tha thu an impis suas ri <strong>%{total_items} àrainn(ean)</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
-      following_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
-      lists_html: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan liostaichean agad</strong>. Thèid suas ri <strong>%{total_items}cunntas(an)</strong> a chur ri liostaichean ùra.
-      muting_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nan cunntasan mùchte</strong> agad.
+      blocking_html:
+        few: Tha thu an impis suas ri <strong>%{count} cunntasan</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean</strong> agad.
+        one: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean</strong> agad.
+        other: Tha thu an impis suas ri <strong>%{count} cunntas</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean</strong> agad.
+        two: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean</strong> agad.
+      bookmarks_html:
+        few: Tha thu an impis suas ri <strong>%{count} postaichean</strong> o <strong>%{filename}</strong> a chur <strong>an àite nan comharra-lìn</strong> agad.
+        one: Tha thu an impis suas ri <strong>%{count} phost</strong> o <strong>%{filename}</strong> a chur <strong>an àite nan comharra-lìn</strong> agad.
+        other: Tha thu an impis suas ri <strong>%{count} post</strong> o <strong>%{filename}</strong> a chur <strong>an àite nan comharra-lìn</strong> agad.
+        two: Tha thu an impis suas ri <strong>%{count} phost</strong> o <strong>%{filename}</strong> a chur <strong>an àite nan comharra-lìn</strong> agad.
+      domain_blocking_html:
+        few: Tha thu an impis suas ri <strong>%{count} àrainnean</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
+        one: Tha thu an impis suas ri <strong>%{count} àrainn</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
+        other: Tha thu an impis suas ri <strong>%{count} àrainn</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
+        two: Tha thu an impis suas ri <strong>%{count} àrainn</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
+      following_html:
+        few: Tha thu an impis suas ri <strong>%{count} cunntasan</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
+        one: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
+        other: Tha thu an impis suas ri <strong>%{count} cunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
+        two: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
+      lists_html:
+        few: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan liostaichean agad</strong>. Thèid suas ri <strong>%{count} cunntasan</strong> a chur ri liostaichean ùra.
+        one: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan liostaichean agad</strong>. Thèid suas ri <strong>%{count} chunntas</strong> a chur ri liostaichean ùra.
+        other: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan liostaichean agad</strong>. Thèid suas ri <strong>%{count} cunntas</strong> a chur ri liostaichean ùra.
+        two: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan liostaichean agad</strong>. Thèid suas ri <strong>%{count} chunntas</strong> a chur ri liostaichean ùra.
+      muting_html:
+        few: Tha thu an impis suas ri <strong>%{count} cunntasan</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nan cunntasan mùchte</strong> agad.
+        one: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nan cunntasan mùchte</strong> agad.
+        other: Tha thu an impis suas ri <strong>%{count} cunntas</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nan cunntasan mùchte</strong> agad.
+        two: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nan cunntasan mùchte</strong> agad.
     preambles:
-      blocking_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
-      bookmarks_html: Tha thu an impis suas ri <strong>%{total_items} post(aichean)</strong> o <strong>%{filename}</strong> a chur ris na h-<strong>annsachdan</strong> agad.
-      domain_blocking_html: Tha thu an impis suas ri <strong>%{total_items} àrainn(ean)</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
-      following_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a <strong>leantainn</strong>.
-      lists_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a chur ris na <strong>liostaichean</strong> agad. Thèid liostaichean ùra a chruthachadh mur eil liostaichean ann airson nan cunntasan a chur ris.
-      muting_html: Tha thu an impis suas ri <strong>%{total_items} cunntas(an)</strong> o <strong>%{filename}</strong> a <strong>mhùchadh</strong>.
+      blocking_html:
+        few: Tha thu an impis suas ri <strong>%{count} cunntasan</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
+        one: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
+        other: Tha thu an impis suas ri <strong>%{count} cunntas</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
+        two: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
+      bookmarks_html:
+        few: Tha thu an impis suas ri <strong>%{count} postaichean</strong> o <strong>%{filename}</strong> a chur ris na h-<strong>annsachdan</strong> agad.
+        one: Tha thu an impis suas ri <strong>%{count} phost</strong> o <strong>%{filename}</strong> a chur ris na h-<strong>annsachdan</strong> agad.
+        other: Tha thu an impis suas ri <strong>%{count} post</strong> o <strong>%{filename}</strong> a chur ris na h-<strong>annsachdan</strong> agad.
+        two: Tha thu an impis suas ri <strong>%{count} phost</strong> o <strong>%{filename}</strong> a chur ris na h-<strong>annsachdan</strong> agad.
+      domain_blocking_html:
+        few: Tha thu an impis suas ri <strong>%{count} àrainnean</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
+        one: Tha thu an impis suas ri <strong>%{count} àrainn</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
+        other: Tha thu an impis suas ri <strong>%{count} àrainn</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
+        two: Tha thu an impis suas ri <strong>%{count} àrainn</strong> o <strong>%{filename}</strong> a <strong>bhacadh</strong>.
+      following_html:
+        few: Tha thu an impis suas ri <strong>%{count} cunntasan</strong> o <strong>%{filename}</strong> a <strong>leantainn</strong>.
+        one: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> a <strong>leantainn</strong>.
+        other: Tha thu an impis suas ri <strong>%{count} cunntas</strong> o <strong>%{filename}</strong> a <strong>leantainn</strong>.
+        two: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> a <strong>leantainn</strong>.
+      lists_html:
+        few: Tha thu an impis suas ri <strong>%{count} cunntasan</strong> o <strong>%{filename}</strong> a chur ris na <strong>liostaichean</strong> agad. Thèid liostaichean ùra a chruthachadh mur eil liostaichean ann airson nan cunntasan a chur ris.
+        one: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> a chur ris na <strong>liostaichean</strong> agad. Thèid liostaichean ùra a chruthachadh mur eil liostaichean ann airson nan cunntasan a chur ris.
+        other: Tha thu an impis suas ri <strong>%{count} cunntas</strong> o <strong>%{filename}</strong> a chur ris na <strong>liostaichean</strong> agad. Thèid liostaichean ùra a chruthachadh mur eil liostaichean ann airson nan cunntasan a chur ris.
+        two: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> a chur ris na <strong>liostaichean</strong> agad. Thèid liostaichean ùra a chruthachadh mur eil liostaichean ann airson nan cunntasan a chur ris.
+      muting_html:
+        few: Tha thu an impis suas ri <strong>%{count} cunntasan</strong> o <strong>%{filename}</strong> a <strong>mhùchadh</strong>.
+        one: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> a <strong>mhùchadh</strong>.
+        other: Tha thu an impis suas ri <strong>%{count} cunntas</strong> o <strong>%{filename}</strong> a <strong>mhùchadh</strong>.
+        two: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> a <strong>mhùchadh</strong>.
     preface: "’S urrainn dhut dàta ion-phortadh a dh’às-phortaich thu o fhrithealaiche eile, can liosta nan daoine a leanas tu no a tha thu a’ bacadh."
     recent_imports: Ion-phortaidhean o chionn goirid
     states:

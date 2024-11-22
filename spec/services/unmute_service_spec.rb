@@ -16,7 +16,7 @@ RSpec.describe UnmuteService do
         it 'removes the account mute and sets up a merge' do
           expect { subject.call(account, target_account) }
             .to remove_account_mute
-          expect(MergeWorker).to have_enqueued_sidekiq_job(target_account.id, account.id)
+          expect(MergeWorker).to have_enqueued_sidekiq_job(target_account.id, account.id, 'home')
         end
       end
 

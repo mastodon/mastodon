@@ -21,7 +21,6 @@ import {
   unmountNotifications,
   refreshStaleNotificationGroups,
   pollRecentNotifications,
-  shouldGroupNotificationType,
 } from 'mastodon/actions/notification_groups';
 import {
   disconnectTimeline,
@@ -30,6 +29,7 @@ import {
 import type {
   ApiNotificationJSON,
   ApiNotificationGroupJSON,
+  NotificationType,
 } from 'mastodon/api_types/notifications';
 import { compareId } from 'mastodon/compare_id';
 import { usePendingItems } from 'mastodon/initial_state';
@@ -205,51 +205,55 @@ function mergeGapsAround(
 function processNewNotification(
   groups: NotificationGroupsState['groups'],
   notification: ApiNotificationJSON,
+  groupedTypes: NotificationType[],
 ) {
-  if (shouldGroupNotificationType(notification.type)) {
-    const existingGroupIndex = groups.findIndex(
-      (group) =>
-        group.type !== 'gap' && group.group_key === notification.group_key,
-    );
-
-    // In any case, we are going to add a group at the top
-    // If there is currently a gap at the top, now is the time to update it
-    if (groups.length > 0 && groups[0]?.type === 'gap') {
-      groups[0].maxId = notification.id;
-    }
-
-    if (existingGroupIndex > -1) {
-      const existingGroup = groups[existingGroupIndex];
-
-      if (
-        existingGroup &&
-        existingGroup.type !== 'gap' &&
-        !existingGroup.sampleAccountIds.includes(notification.account.id) // This can happen for example if you like, then unlike, then like again the same post
-      ) {
-        // Update the existing group
-        if (
-          existingGroup.sampleAccountIds.unshift(notification.account.id) >
-          NOTIFICATIONS_GROUP_MAX_AVATARS
-        )
-          existingGroup.sampleAccountIds.pop();
-
-        existingGroup.most_recent_notification_id = notification.id;
-        existingGroup.page_max_id = notification.id;
-        existingGroup.latest_page_notification_at = notification.created_at;
-        existingGroup.notifications_count += 1;
-
-        groups.splice(existingGroupIndex, 1);
-        mergeGapsAround(groups, existingGroupIndex);
-
-        groups.unshift(existingGroup);
-
-        return;
-      }
-    }
+  if (!groupedTypes.includes(notification.type)) {
+    notification = {
+      ...notification,
+      group_key: `ungrouped-${notification.id}`,
+    };
   }
 
-  // We have not found an existing group, create a new one
-  groups.unshift(createNotificationGroupFromNotificationJSON(notification));
+  const existingGroupIndex = groups.findIndex(
+    (group) =>
+      group.type !== 'gap' && group.group_key === notification.group_key,
+  );
+
+  // In any case, we are going to add a group at the top
+  // If there is currently a gap at the top, now is the time to update it
+  if (groups.length > 0 && groups[0]?.type === 'gap') {
+    groups[0].maxId = notification.id;
+  }
+
+  if (existingGroupIndex > -1) {
+    const existingGroup = groups[existingGroupIndex];
+
+    if (
+      existingGroup &&
+      existingGroup.type !== 'gap' &&
+      !existingGroup.sampleAccountIds.includes(notification.account.id) // This can happen for example if you like, then unlike, then like again the same post
+    ) {
+      // Update the existing group
+      if (
+        existingGroup.sampleAccountIds.unshift(notification.account.id) >
+        NOTIFICATIONS_GROUP_MAX_AVATARS
+      )
+        existingGroup.sampleAccountIds.pop();
+
+      existingGroup.most_recent_notification_id = notification.id;
+      existingGroup.page_max_id = notification.id;
+      existingGroup.latest_page_notification_at = notification.created_at;
+      existingGroup.notifications_count += 1;
+
+      groups.splice(existingGroupIndex, 1);
+      mergeGapsAround(groups, existingGroupIndex);
+
+      groups.unshift(existingGroup);
+    }
+  } else {
+    // We have not found an existing group, create a new one
+    groups.unshift(createNotificationGroupFromNotificationJSON(notification));
+  }
 }
 
 function trimNotifications(state: NotificationGroupsState) {
@@ -473,11 +477,13 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
         trimNotifications(state);
       })
       .addCase(processNewNotificationForGroups.fulfilled, (state, action) => {
-        const notification = action.payload;
-        if (notification) {
+        if (action.payload) {
+          const { notification, groupedTypes } = action.payload;
+
           processNewNotification(
             usePendingItems ? state.pendingGroups : state.groups,
             notification,
+            groupedTypes,
           );
           updateLastReadId(state);
           trimNotifications(state);
@@ -528,10 +534,13 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
             if (existingGroupIndex > -1) {
               const existingGroup = state.groups[existingGroupIndex];
               if (existingGroup && existingGroup.type !== 'gap') {
-                group.notifications_count += existingGroup.notifications_count;
-                group.sampleAccountIds = group.sampleAccountIds
-                  .concat(existingGroup.sampleAccountIds)
-                  .slice(0, NOTIFICATIONS_GROUP_MAX_AVATARS);
+                if (group.partial) {
+                  group.notifications_count +=
+                    existingGroup.notifications_count;
+                  group.sampleAccountIds = group.sampleAccountIds
+                    .concat(existingGroup.sampleAccountIds)
+                    .slice(0, NOTIFICATIONS_GROUP_MAX_AVATARS);
+                }
                 state.groups.splice(existingGroupIndex, 1);
               }
             }
@@ -556,7 +565,10 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
           compareId(state.lastReadId, mostRecentGroup.page_max_id) < 0
         )
           state.lastReadId = mostRecentGroup.page_max_id;
-        commitLastReadId(state);
+
+        // We don't call `commitLastReadId`, because that is conditional
+        // and we want to unconditionally update the state instead.
+        state.readMarkerId = state.lastReadId;
       })
       .addCase(fetchMarkers.fulfilled, (state, action) => {
         if (

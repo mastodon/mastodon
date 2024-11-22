@@ -43,7 +43,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   );
 
   const handleMouseUp = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-    ({ clientX, clientY, target, button }) => {
+    ({ clientX, clientY, target, button, ctrlKey, metaKey }) => {
       const [startX, startY] = clickCoordinatesRef.current ?? [0, 0];
       const [deltaX, deltaY] = [
         Math.abs(clientX - startX),
@@ -64,8 +64,14 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         element = element.parentNode as HTMLDivElement | null;
       }
 
-      if (deltaX + deltaY < 5 && button === 0 && account) {
-        history.push(`/@${account.acct}/${statusId}`);
+      if (deltaX + deltaY < 5 && account) {
+        const path = `/@${account.acct}/${statusId}`;
+
+        if (button === 0 && !(ctrlKey || metaKey)) {
+          history.push(path);
+        } else if (button === 1 || (button === 0 && (ctrlKey || metaKey))) {
+          window.open(path, '_blank', 'noreferrer noopener');
+        }
       }
 
       clickCoordinatesRef.current = null;

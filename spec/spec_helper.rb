@@ -34,8 +34,8 @@ RSpec.configure do |config|
   end
 end
 
-def serialized_record_json(record, serializer, adapter: nil)
-  options = { serializer: serializer }
+def serialized_record_json(record, serializer, adapter: nil, options: {})
+  options[:serializer] = serializer
   options[:adapter] = adapter if adapter.present?
   JSON.parse(
     ActiveModelSerializers::SerializableResource.new(

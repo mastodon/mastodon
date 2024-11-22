@@ -4,20 +4,85 @@ require 'rails_helper'
 
 RSpec.describe Appeal do
   describe 'Validations' do
-    it 'validates text length is under limit' do
-      appeal = Fabricate.build(
-        :appeal,
-        strike: Fabricate(:account_warning),
-        text: 'a' * described_class::TEXT_LENGTH_LIMIT * 2
-      )
+    subject { Fabricate.build :appeal, strike: Fabricate(:account_warning) }
 
-      expect(appeal).to_not be_valid
-      expect(appeal).to model_have_error_on_field(:text)
+    it { is_expected.to validate_length_of(:text).is_at_most(described_class::TEXT_LENGTH_LIMIT) }
+
+    context 'with a strike created too long ago' do
+      let(:strike) { Fabricate.build :account_warning, created_at: 100.days.ago }
+
+      it { is_expected.to_not allow_values(strike).for(:strike).against(:base).on(:create) }
     end
   end
 
-  describe 'scopes' do
-    describe 'approved' do
+  describe 'Query methods' do
+    describe '#pending?' do
+      subject { Fabricate.build :appeal, approved_at:, rejected_at: }
+
+      context 'with not approved and not rejected' do
+        let(:approved_at) { nil }
+        let(:rejected_at) { nil }
+
+        it { expect(subject).to be_pending }
+      end
+
+      context 'with approved and rejected' do
+        let(:approved_at) { 1.day.ago }
+        let(:rejected_at) { 1.day.ago }
+
+        it { expect(subject).to_not be_pending }
+      end
+
+      context 'with approved and not rejected' do
+        let(:approved_at) { 1.day.ago }
+        let(:rejected_at) { nil }
+
+        it { expect(subject).to_not be_pending }
+      end
+
+      context 'with not approved and rejected' do
+        let(:approved_at) { nil }
+        let(:rejected_at) { 1.day.ago }
+
+        it { expect(subject).to_not be_pending }
+      end
+    end
+
+    describe '#approved?' do
+      subject { Fabricate.build :appeal, approved_at: }
+
+      context 'with not approved' do
+        let(:approved_at) { nil }
+
+        it { expect(subject).to_not be_approved }
+      end
+
+      context 'with approved' do
+        let(:approved_at) { 1.day.ago }
+
+        it { expect(subject).to be_approved }
+      end
+    end
+
+    describe '#rejected?' do
+      subject { Fabricate.build :appeal, rejected_at: }
+
+      context 'with not rejected' do
+        let(:rejected_at) { nil }
+
+        it { expect(subject).to_not be_rejected }
+      end
+
+      context 'with rejected' do
+        let(:rejected_at) { 1.day.ago }
+
+        it { expect(subject).to be_rejected }
+      end
+    end
+  end
+
+  describe 'Scopes' do
+    describe '.approved' do
       let(:approved_appeal) { Fabricate(:appeal, approved_at: 10.days.ago) }
       let(:not_approved_appeal) { Fabricate(:appeal, approved_at: nil) }
 
@@ -27,7 +92,7 @@ RSpec.describe Appeal do
       end
     end
 
-    describe 'rejected' do
+    describe '.rejected' do
       let(:rejected_appeal) { Fabricate(:appeal, rejected_at: 10.days.ago) }
       let(:not_rejected_appeal) { Fabricate(:appeal, rejected_at: nil) }
 
@@ -37,7 +102,7 @@ RSpec.describe Appeal do
       end
     end
 
-    describe 'pending' do
+    describe '.pending' do
       let(:approved_appeal) { Fabricate(:appeal, approved_at: 10.days.ago) }
       let(:rejected_appeal) { Fabricate(:appeal, rejected_at: 10.days.ago) }
       let(:pending_appeal) { Fabricate(:appeal, rejected_at: nil, approved_at: nil) }

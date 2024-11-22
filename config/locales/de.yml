@@ -21,6 +21,7 @@ de:
       one: Beitrag
       other: Beiträge
     posts_tab_heading: Beiträge
+    self_follow_error: Es ist nicht erlaubt, deinem eigenen Konto zu folgen
   admin:
     account_actions:
       action: Aktion ausführen
@@ -79,7 +80,7 @@ de:
       invite_request_text: Begründung für das Beitreten
       invited_by: Eingeladen von
       ip: IP-Adresse
-      joined: Beigetreten
+      joined: Mitglied seit
       location:
         all: Alle
         local: Lokal
@@ -186,6 +187,7 @@ de:
         create_domain_block: Domain sperren
         create_email_domain_block: E-Mail-Domain-Sperre erstellen
         create_ip_block: IP-Regel erstellen
+        create_relay: Relay erstellen
         create_unavailable_domain: Nicht verfügbare Domain erstellen
         create_user_role: Rolle erstellen
         demote_user: Benutzer*in herabstufen
@@ -197,14 +199,17 @@ de:
         destroy_email_domain_block: E-Mail-Domain-Sperre entfernen
         destroy_instance: Domain-Daten entfernen
         destroy_ip_block: IP-Regel löschen
+        destroy_relay: Relay löschen
         destroy_status: Beitrag entfernen
         destroy_unavailable_domain: Nicht-verfügbare Domain entfernen
         destroy_user_role: Rolle entfernen
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Eigenes Emoji deaktivieren
+        disable_relay: Relay deaktivieren
         disable_sign_in_token_auth_user: E-Mail-Token-Authentisierung für dieses Konto deaktivieren
         disable_user: Benutzer*in deaktivieren
         enable_custom_emoji: Eigenes Emoji aktivieren
+        enable_relay: Relay aktivieren
         enable_sign_in_token_auth_user: E-Mail-Token-Authentisierung für dieses Konto aktivieren
         enable_user: Benutzer*in aktivieren
         memorialize_account: Gedenkkonto
@@ -246,6 +251,7 @@ de:
         create_domain_block_html: "%{name} sperrte die Domain %{target}"
         create_email_domain_block_html: "%{name} sperrte die E-Mail-Domain %{target}"
         create_ip_block_html: "%{name} erstellte eine IP-Regel für %{target}"
+        create_relay_html: "%{name} erstellte ein Relay %{target}"
         create_unavailable_domain_html: "%{name} beendete die Zustellung an die Domain %{target}"
         create_user_role_html: "%{name} erstellte die Rolle %{target}"
         demote_user_html: "%{name} stufte %{target} herunter"
@@ -257,14 +263,17 @@ de:
         destroy_email_domain_block_html: "%{name} entsperrte die E-Mail-Domain %{target}"
         destroy_instance_html: "%{name} entfernte die Daten der Domain %{target} von diesem Server"
         destroy_ip_block_html: "%{name} entfernte eine IP-Regel für %{target}"
+        destroy_relay_html: "%{name} löschte das Relay %{target}"
         destroy_status_html: "%{name} entfernte einen Beitrag von %{target}"
         destroy_unavailable_domain_html: "%{name} nahm die Zustellung an die Domain %{target} wieder auf"
         destroy_user_role_html: "%{name} löschte die Rolle %{target}"
         disable_2fa_user_html: "%{name} deaktivierte die Zwei-Faktor-Authentisierung für %{target}"
         disable_custom_emoji_html: "%{name} deaktivierte das Emoji %{target}"
+        disable_relay_html: "%{name} deaktivierte das Relay %{target}"
         disable_sign_in_token_auth_user_html: "%{name} deaktivierte die E-Mail-Token-Authentisierung für %{target}"
         disable_user_html: "%{name} deaktivierte den Zugang für %{target}"
         enable_custom_emoji_html: "%{name} aktivierte das Emoji %{target}"
+        enable_relay_html: "%{name} aktivierte das Relay %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktivierte die E-Mail-Token-Authentisierung für %{target}"
         enable_user_html: "%{name} aktivierte den Zugang für %{target}"
         memorialize_account_html: "%{name} wandelte das Konto von %{target} in eine Gedenkseite um"
@@ -418,9 +427,9 @@ de:
       not_permitted: Du bist nicht berechtigt, diese Aktion durchzuführen
       obfuscate: Domain-Name verschleiern
       obfuscate_hint: Den Domain-Namen öffentlich nur teilweise bekannt geben, sofern die Liste der Domain-Beschränkungen aktiviert ist
-      private_comment: Interne bzw. nicht-öffentliche Notiz
+      private_comment: Nicht-öffentliche Notiz
       private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderator*innen.
-      public_comment: Öffentliche Notiz
+      public_comment: Öffentliche Begründung
       public_comment_hint: Öffentlicher Hinweis zu dieser Domain-Beschränkung, sofern das Veröffentlichen von Sperrlisten grundsätzlich aktiviert ist.
       reject_media: Mediendateien ablehnen
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
@@ -493,7 +502,7 @@ de:
       by_domain: Domain
       confirm_purge: Möchtest du die Daten von dieser Domain wirklich für immer löschen?
       content_policies:
-        comment: Interne Notiz
+        comment: Nicht-öffentliche Notiz
         description_html: Du kannst Inhaltsrichtlinien definieren, die auf alle Konten dieser Domain und einer ihrer Subdomains angewendet werden.
         limited_federation_mode_description_html: Du kannst auswählen, ob du eine Föderation mit dieser Domain erlaubst.
         policies:
@@ -817,8 +826,10 @@ de:
       back_to_account: Zurück zum Konto
       back_to_report: Zurück zur Seite mit den Meldungen
       batch:
+        add_to_report: Der Meldung Nr. %{id} hinzufügen
         remove_from_report: Von der Meldung entfernen
         report: Meldung
+      contents: Inhalte
       deleted: Gelöscht
       favourites: Favoriten
       history: Versionsverlauf
@@ -827,13 +838,17 @@ de:
       media:
         title: Medien
       metadata: Metadaten
+      no_history: Der Beitrag wurde nicht bearbeitet
       no_status_selected: Keine Beiträge wurden geändert, weil keine ausgewählt wurden
       open: Beitrag öffnen
       original_status: Ursprünglicher Beitrag
       reblogs: Geteilte Beiträge
+      replied_to_html: Antwortete %{acct_link}
       status_changed: Beitrag bearbeitet
-      title: Beiträge des Kontos
+      status_title: Beitrag von @%{name}
+      title: Beiträge des Kontos – @%{name}
       trending: Trends
+      view_publicly: Öffentlich anzeigen
       visibility: Sichtbarkeit
       with_media: Mit Medien
     strikes:
@@ -1165,9 +1180,11 @@ de:
     use_security_key: Sicherheitsschlüssel verwenden
   author_attribution:
     example_title: Beispieltext
-    hint_html: Bestimme, wie du Anerkennungen durch geteilte Links auf Mastodon handhaben möchtest.
+    hint_html: Schreibst du außerhalb von Mastodon Nachrichtenartikel oder betreibst du einen Blog? Bestimme, wie du Anerkennungen durch geteilte Links auf Mastodon handhaben möchtest.
+    instructions: 'Der nachfolgende Code muss im HTML-Code deines Artikels sein:'
     more_from_html: Mehr von %{name}
     s_blog: Blog von %{name}
+    then_instructions: Ergänze die Domain, auf der deine Inhalte veröffentlicht werden in das unten stehende Feld.
     title: Anerkennung als Autor*in
   challenge:
     confirm: Fortfahren
@@ -1366,19 +1383,43 @@ de:
       overwrite: Überschreiben
       overwrite_long: Bestehende Datensätze durch neue ersetzen
     overwrite_preambles:
-      blocking_html: Du bist dabei, <strong>deine Liste blockierter Konten</strong> durch bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
-      bookmarks_html: Du bist dabei, <strong>deine Lesezeichen</strong> durch bis zu <strong>%{total_items} Beiträge</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
-      domain_blocking_html: Du bist dabei, <strong>deine Liste blockierter Domains</strong> durch bis zu <strong>%{total_items} Domains</strong> aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>.
-      following_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu folgen und <strong>niemand anderes zu folgen</strong>.
-      lists_html: Du bist dabei, <strong>deine Listen</strong> durch den Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Es werden bis zu <strong>%{total_items} Konten</strong> zu neuen Listen hinzugefügt.
-      muting_html: Du bist dabei, <strong>deine Liste stummgeschalteter Konten</strong> durch bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu ersetzen.
+      blocking_html:
+        one: Du bist dabei, <strong>deine Liste blockierter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konto</strong> zu ersetzen.
+        other: Du bist dabei, <strong>deine Liste blockierter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konten</strong> zu ersetzen.
+      bookmarks_html:
+        one: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beitrag</strong> zu ersetzen.
+        other: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beiträge</strong> zu ersetzen.
+      domain_blocking_html:
+        one: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domain</strong> zu ersetzen.
+        other: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domains</strong> zu ersetzen.
+      following_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong> und <strong>allen anderen zu entfolgen</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong> und <strong>allen anderen zu entfolgen</strong>.
+      lists_html:
+        one: Du bist dabei, <strong>deine Listen</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Konto</strong> wird zu neuen Listen hinzugefügt.
+        other: Du bist dabei, <strong>deine Listen</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Konten</strong> wird zu neuen Listen hinzugefügt.
+      muting_html:
+        one: Du bist dabei, <strong>deine Liste mit einem stummgeschalteten Konto</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konto</strong> zu ersetzen.
+        other: Du bist dabei, <strong>deine Liste stummgeschalteter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konten</strong> zu ersetzen.
     preambles:
-      blocking_html: Du bist dabei, bis zu <strong>%{total_items}%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
-      bookmarks_html: Du bist dabei, bis zu <strong>%{total_items} Beiträge</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
-      domain_blocking_html: Du bist dabei, bis zu <strong>%{total_items} Domains</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
-      following_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
-      lists_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Liste gibt, zu der etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
-      muting_html: Du bist dabei, bis zu <strong>%{total_items} Konten</strong> aus <strong>%{filename} stummzuschalten</strong>.
+      blocking_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+      bookmarks_html:
+        one: Du bist dabei, bis zu <strong>%{count} Beitrag</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Beiträge</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
+      domain_blocking_html:
+        one: Du bist dabei, bis zu <strong>%{count} Domain</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Domains</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+      following_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
+      lists_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Listen gibt, zu denen etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Listen gibt, zu denen etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
+      muting_html:
+        one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename} stummzuschalten</strong>.
+        other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename} stummzuschalten</strong>.
     preface: Daten, die du von einem Mastodon-Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du blockiert hast.
     recent_imports: Zuletzt importiert
     states:
@@ -1942,7 +1983,7 @@ de:
     extra_instructions_html: <strong>Hinweis:</strong> Der Link auf deiner Website kann unsichtbar sein. Der wichtige Teil ist <code>rel="me"</code>, wodurch das Nachahmen von Personen auf Websites mit nutzergenerierten Inhalten verhindert wird. Du kannst auch ein <code>link</code>-Tag statt <code>a</code> im Header auf der Seite verwenden, jedoch muss der HTML-Code ohne das Ausführen von JavaScript zugänglich sein.
     here_is_how: So funktioniert’s
     hint_html: "<strong>Alle können ihre Identität auf Mastodon verifizieren.</strong> Basierend auf offenen Standards – jetzt und für immer kostenlos. Alles, was du brauchst, ist eine eigene Website. Wenn du von deinem Profil auf diese Website verlinkst, überprüfen wir, ob die Website zu deinem Profil zurückverlinkt, und zeigen einen visuellen Hinweis an."
-    instructions_html: Kopiere den unten stehenden Code und füge ihn in das HTML deiner Website ein. Trage anschließend die Adresse deiner Website in ein Zusatzfeld auf deinem Profil ein und speichere die Änderungen. Die Zusatzfelder befinden sich im Reiter „Profil bearbeiten“.
+    instructions_html: Kopiere den unten stehenden Code und füge ihn in den HTML-Code deiner Website ein. Trage anschließend die Adresse deiner Website in ein Zusatzfeld auf deinem Profil ein und speichere die Änderungen. Die Zusatzfelder befinden sich im Reiter „Profil bearbeiten“.
     verification: Verifizierung
     verified_links: Deine verifizierten Links
     website_verification: Website-Verifizierung

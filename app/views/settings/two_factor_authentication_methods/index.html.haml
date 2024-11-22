@@ -2,7 +2,7 @@
   = t('settings.two_factor_authentication')
 
 - content_for :heading_actions do
-  = button_to t('two_factor_authentication.disable'), disable_settings_two_factor_authentication_methods_path, class: 'button button--destructive'
+  = link_to t('two_factor_authentication.disable'), disable_settings_two_factor_authentication_methods_path, class: 'button button--destructive', method: :post
 
 %p.hint
   %span.positive-hint
@@ -38,4 +38,4 @@
 %hr.spacer/
 
 .simple_form
-  = button_to t('two_factor_authentication.generate_recovery_codes'), settings_two_factor_authentication_recovery_codes_path, class: 'block-button'
+  = link_to t('two_factor_authentication.generate_recovery_codes'), settings_two_factor_authentication_recovery_codes_path, data: { method: :post }, class: 'block-button'

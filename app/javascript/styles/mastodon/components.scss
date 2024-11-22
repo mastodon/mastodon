@@ -1686,7 +1686,8 @@ body > [data-popper-placement] {
 
 .status__wrapper-direct,
 .notification-ungrouped--direct,
-.notification-group--direct {
+.notification-group--direct,
+.notification-group--annual-report {
   background: rgba($ui-highlight-color, 0.05);
 
   &:focus {
@@ -2077,7 +2078,6 @@ body > [data-popper-placement] {
   display: block;
   position: relative;
   border-radius: var(--avatar-border-radius);
-  background-color: var(--surface-background-color);
 
   img {
     width: 100%;
@@ -2087,7 +2087,11 @@ body > [data-popper-placement] {
     display: inline-block; // to not show broken images
   }
 
-  &-inline {
+  &--loading {
+    background-color: var(--surface-background-color);
+  }
+
+  &--inline {
     display: inline-block;
     vertical-align: middle;
     margin-inline-end: 5px;
@@ -2756,6 +2760,7 @@ a.account__display-name {
       flex: 0 1 auto;
       display: flex;
       flex-direction: column;
+      contain: inline-size layout paint style;
 
       @media screen and (min-width: $no-gap-breakpoint) {
         max-width: 600px;
@@ -2860,7 +2865,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .column {
-  width: 400px;
+  width: clamp(380px, calc((100% - 350px) / 4), 400px);
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -3611,6 +3616,7 @@ $ui-header-logo-wordmark-width: 99px;
   overflow-y: auto;
   width: 100%;
   height: 100%;
+  z-index: 0;
 }
 
 .drawer__inner__mastodon {
@@ -4028,6 +4034,7 @@ $ui-header-logo-wordmark-width: 99px;
   overflow: hidden;
   border: 1px solid var(--background-border-color);
   border-radius: 8px;
+  contain: inline-size layout paint style;
 
   &.bottomless {
     border-radius: 8px 8px 0 0;
@@ -4643,6 +4650,7 @@ a.status-card {
   border: 0;
   background: transparent;
   cursor: pointer;
+  text-decoration: none;
 
   .icon {
     width: 13px;
@@ -5056,7 +5064,8 @@ a.status-card {
   color: $dark-text-color;
   text-align: center;
   padding: 20px;
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 400;
   cursor: default;
   display: flex;
@@ -5075,6 +5084,17 @@ a.status-card {
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.empty-column-indicator {
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    inset-inline-start: 50%;
+    pointer-events: none;
+    transform: translate(100%, -100%) rotate(12deg);
+    transform-origin: center;
   }
 }
 
@@ -5769,7 +5789,7 @@ a.status-card {
 
 .modal-root {
   position: relative;
-  z-index: 9999;
+  z-index: 9998;
 }
 
 .modal-root__overlay {
@@ -5778,7 +5798,8 @@ a.status-card {
   inset-inline-start: 0;
   inset-inline-end: 0;
   bottom: 0;
-  background: rgba($base-overlay-background, 0.7);
+  opacity: 0.9;
+  background: $base-overlay-background;
   transition: background 0.5s;
 }
 
@@ -5805,6 +5826,7 @@ a.status-card {
   pointer-events: auto;
   user-select: text;
   display: flex;
+  max-width: 100vw;
 
   @media screen and (width <= $mobile-breakpoint) {
     margin-top: auto;
@@ -6132,13 +6154,6 @@ a.status-card {
   }
 }
 
-.onboard-sliders {
-  display: inline-block;
-  max-width: 30px;
-  max-height: auto;
-  margin-inline-start: 10px;
-}
-
 .safety-action-modal {
   width: 600px;
   flex-direction: column;
@@ -6372,12 +6387,14 @@ a.status-card {
   border-radius: 16px;
 
   &__header {
+    box-sizing: border-box;
     border-bottom: 1px solid var(--modal-border-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: row-reverse;
     padding: 12px 24px;
+    min-height: 61px;
 
     &__title {
       font-size: 16px;
@@ -7984,102 +8001,6 @@ noscript {
   background: rgba($base-overlay-background, 0.5);
 }
 
-.list-editor {
-  background: $ui-base-color;
-  flex-direction: column;
-  border-radius: 8px;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-  width: 380px;
-  overflow: hidden;
-
-  @media screen and (width <= 420px) {
-    width: 90%;
-  }
-
-  h4 {
-    padding: 15px 0;
-    background: lighten($ui-base-color, 13%);
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    border-radius: 8px 8px 0 0;
-  }
-
-  .drawer__pager {
-    height: 50vh;
-    border-radius: 4px;
-  }
-
-  .drawer__inner {
-    border-radius: 0 0 8px 8px;
-
-    &.backdrop {
-      width: calc(100% - 60px);
-      box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-      border-radius: 0 0 0 8px;
-    }
-  }
-
-  &__accounts {
-    overflow-y: auto;
-  }
-
-  .account__display-name {
-    &:hover strong {
-      text-decoration: none;
-    }
-  }
-
-  .account__avatar {
-    cursor: default;
-  }
-
-  .search {
-    margin-bottom: 0;
-  }
-}
-
-.list-adder {
-  background: $ui-base-color;
-  flex-direction: column;
-  border-radius: 8px;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-  width: 380px;
-  overflow: hidden;
-
-  @media screen and (width <= 420px) {
-    width: 90%;
-  }
-
-  &__account {
-    background: lighten($ui-base-color, 13%);
-  }
-
-  &__lists {
-    background: lighten($ui-base-color, 13%);
-    height: 50vh;
-    border-radius: 0 0 8px 8px;
-    overflow-y: auto;
-  }
-
-  .list {
-    padding: 10px;
-    border-bottom: 1px solid var(--background-border-color);
-  }
-
-  .list__wrapper {
-    display: flex;
-  }
-
-  .list__display-name {
-    flex: 1 1 auto;
-    overflow: hidden;
-    text-decoration: none;
-    font-size: 16px;
-    padding: 10px;
-  }
-}
-
 .focal-point {
   position: relative;
   cursor: move;
@@ -8811,6 +8732,7 @@ noscript {
   &__item {
     flex-shrink: 0;
     background: lighten($ui-base-color, 12%);
+    color: $darker-text-color;
     border: 0;
     border-radius: 3px;
     margin: 2px;
@@ -8847,7 +8769,6 @@ noscript {
       font-weight: 500;
       text-align: center;
       margin-inline-start: 6px;
-      color: $darker-text-color;
     }
 
     &:hover,
@@ -8856,10 +8777,7 @@ noscript {
       background: lighten($ui-base-color, 16%);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
-
-      &__count {
-        color: lighten($darker-text-color, 4%);
-      }
+      color: lighten($darker-text-color, 4%);
     }
 
     &.active {
@@ -8870,10 +8788,7 @@ noscript {
         $ui-highlight-color,
         80%
       );
-
-      .reactions-bar__item__count {
-        color: lighten($highlight-text-color, 8%);
-      }
+      color: lighten($highlight-text-color, 8%);
     }
   }
 
@@ -10143,7 +10058,7 @@ noscript {
   position: fixed;
   bottom: 2rem;
   inset-inline-start: 0;
-  z-index: 999;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -10488,7 +10403,7 @@ noscript {
 
   &__text {
     flex: 1 1 auto;
-    font-style: 14px;
+    font-size: 14px;
     line-height: 20px;
 
     strong {
@@ -10546,7 +10461,7 @@ noscript {
   &__name {
     flex: 1 1 auto;
     color: $darker-text-color;
-    font-style: 14px;
+    font-size: 14px;
     line-height: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -10627,6 +10542,7 @@ noscript {
   gap: 8px;
 
   .logo {
+    width: 16px;
     height: 16px;
     color: $darker-text-color;
   }
@@ -10809,20 +10725,16 @@ noscript {
       color: $darker-text-color;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
-      max-height: 4 * 22px;
+      max-height: none;
       overflow: hidden;
-
-      p {
-        display: none;
-
-        &:first-child {
-          display: initial;
-        }
-      }
 
       p,
       a {
         color: inherit;
+      }
+
+      p {
+        margin-bottom: 8px;
       }
     }
 
@@ -11118,19 +11030,21 @@ noscript {
 }
 
 .content-warning {
+  display: block;
   box-sizing: border-box;
   background: rgba($ui-highlight-color, 0.05);
   color: $secondary-text-color;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  border-color: rgba($ui-highlight-color, 0.15);
+  border: 1px solid rgba($ui-highlight-color, 0.15);
+  border-radius: 8px;
   padding: 8px (5px + 8px);
   position: relative;
   font-size: 15px;
   line-height: 22px;
+  cursor: pointer;
 
   p {
     margin-bottom: 8px;
+    font-weight: 500;
   }
 
   .link-button {
@@ -11139,31 +11053,100 @@ noscript {
     font-weight: 500;
   }
 
-  &::before,
-  &::after {
-    content: '';
+  &--filter {
+    color: $darker-text-color;
+
+    p {
+      font-weight: normal;
+    }
+
+    .filter-name {
+      font-weight: 500;
+      color: $secondary-text-color;
+    }
+  }
+}
+
+.lists__item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-inline-end: 13px;
+  border-bottom: 1px solid var(--background-border-color);
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 16px 13px;
+    flex: 1 1 auto;
+    font-size: 16px;
+    line-height: 24px;
+    color: $secondary-text-color;
+    text-decoration: none;
+
+    &:is(a):hover,
+    &:is(a):focus,
+    &:is(a):active {
+      color: $primary-text-color;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+
+      &::placeholder {
+        color: var(--input-placeholder-color);
+        opacity: 1;
+      }
+
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+}
+
+.column-search-header {
+  display: flex;
+  border-radius: 4px 4px 0 0;
+  border: 1px solid var(--background-border-color);
+
+  .column-header__back-button.compact {
+    flex: 0 0 auto;
+    color: $primary-text-color;
+  }
+
+  input {
+    background: transparent;
+    border: 0;
+    color: $primary-text-color;
+    font-size: 16px;
     display: block;
-    position: absolute;
-    height: 100%;
-    background: url('../images/warning-stripes.svg') repeat-y;
-    width: 5px;
-    top: 0;
-  }
+    flex: 1 1 auto;
 
-  &::before {
-    border-start-start-radius: 4px;
-    border-end-start-radius: 4px;
-    inset-inline-start: 0;
-  }
+    &::placeholder {
+      color: var(--input-placeholder-color);
+      opacity: 1;
+    }
 
-  &::after {
-    border-start-end-radius: 4px;
-    border-end-end-radius: 4px;
-    inset-inline-end: 0;
+    &:focus {
+      outline: 0;
+    }
   }
+}
 
-  &--filter::before,
-  &--filter::after {
-    background-image: url('../images/filter-stripes.svg');
-  }
+.column-footer {
+  padding: 16px;
+}
+
+.lists-scrollable {
+  min-height: 50vh;
 }

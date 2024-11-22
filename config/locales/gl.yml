@@ -21,6 +21,7 @@ gl:
       one: Publicación
       other: Publicacións
     posts_tab_heading: Publicacións
+    self_follow_error: Non está permitido seguir a túa propia conta
   admin:
     account_actions:
       action: Executar acción
@@ -186,6 +187,7 @@ gl:
         create_domain_block: Crear bloquedo do Dominio
         create_email_domain_block: Crear Bloqueo de Dominio do correo
         create_ip_block: Crear regra IP
+        create_relay: Crear Repetidor
         create_unavailable_domain: Crear dominio Non dispoñible
         create_user_role: Crear Rol
         demote_user: Degradar usuaria
@@ -197,14 +199,17 @@ gl:
         destroy_email_domain_block: Eliminar bloqueo do dominio do correo
         destroy_instance: Purgar Dominio
         destroy_ip_block: Eliminar regra IP
+        destroy_relay: Eliminar Repetidor
         destroy_status: Eliminar publicación
         destroy_unavailable_domain: Eliminar dominio Non dispoñible
         destroy_user_role: Eliminar Rol
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
+        disable_relay: Desactivar Repetidor
         disable_sign_in_token_auth_user: Desactivar Autenticación por Token no Correo para a Usuaria
         disable_user: Desactivar usuaria
         enable_custom_emoji: Activar emoticona personalizada
+        enable_relay: Activar Repetidor
         enable_sign_in_token_auth_user: Activar Autenticación con Token no Correo para a Usuaria
         enable_user: Activar usuaria
         memorialize_account: Transformar en conta conmemorativa
@@ -246,6 +251,7 @@ gl:
         create_domain_block_html: "%{name} bloqueou o dominio %{target}"
         create_email_domain_block_html: "%{name} bloqueou o dominio de correo %{target}"
         create_ip_block_html: "%{name} creou regra para o IP %{target}"
+        create_relay_html: "%{name} creou un repetidor en %{target}"
         create_unavailable_domain_html: "%{name} deixou de interactuar co dominio %{target}"
         create_user_role_html: "%{name} creou o rol %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
@@ -257,14 +263,17 @@ gl:
         destroy_email_domain_block_html: "%{name} desbloqueou o dominio de correo %{target}"
         destroy_instance_html: "%{name} purgou o dominio %{target}"
         destroy_ip_block_html: "%{name} eliminou a regra para o IP %{target}"
+        destroy_relay_html: "%{name} eliminou o repetidor %{target}"
         destroy_status_html: "%{name} eliminou a publicación de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a interacción co dominio %{target}"
         destroy_user_role_html: "%{name} eliminou o rol %{target}"
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
+        disable_relay_html: "%{name} desactivou o repetidor %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desactivou a autenticación por token no email para %{target}"
         disable_user_html: "%{name} desactivou as credenciais para a usuaria %{target}"
         enable_custom_emoji_html: "%{name} activou o emoji %{target}"
+        enable_relay_html: "%{name} activou o repetidor %{target}"
         enable_sign_in_token_auth_user_html: "%{name} activou a autenticación con token no email para %{target}"
         enable_user_html: "%{name} activou as credenciais para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
@@ -817,8 +826,10 @@ gl:
       back_to_account: Volver a páxina da conta
       back_to_report: Volver a denuncias
       batch:
+        add_to_report: 'Engadir á denuncia #%{id}'
         remove_from_report: Eliminar da denuncia
         report: Denuncia
+      contents: Contidos
       deleted: Eliminado
       favourites: Favoritas
       history: Historial de versións
@@ -827,13 +838,17 @@ gl:
       media:
         title: Medios
       metadata: Metadatos
+      no_history: Esta publicación foi editada
       no_status_selected: Non se cambiou ningunha publicación xa que ningunha foi seleccionada
       open: Abrir publicación
       original_status: Publicación orixinal
       reblogs: Promocións
+      replied_to_html: Respondeu a %{acct_link}
       status_changed: Publicación editada
-      title: Publicacións da conta
+      status_title: Publicación de @%{name}
+      title: Publicacións da conta - @%{name}
       trending: Popular
+      view_publicly: Ver publicamente
       visibility: Visibilidade
       with_media: con medios
     strikes:
@@ -1165,9 +1180,11 @@ gl:
     use_security_key: Usa chave de seguridade
   author_attribution:
     example_title: Texto de mostra
-    hint_html: Controla o xeito en que te acreditan cando se comparten ligazóns en Mastodon.
+    hint_html: Escribes novas ou artigos nun blog alleos a Mastodon? Xestiona o xeito en que podes dar crédito da túa autoría cando os compartes en Mastodon.
+    instructions: 'Pon coidado en que este código apareza no HTML do teu artigo:'
     more_from_html: Máis de %{name}
     s_blog: Blog de %{name}
+    then_instructions: Despois engade o nome de dominio da publicación no campo inferior.
     title: Atribución da autoría
   challenge:
     confirm: Continuar
@@ -1366,19 +1383,43 @@ gl:
       overwrite: Sobreescribir
       overwrite_long: Sustituír rexistros actuais cos novos
     overwrite_preambles:
-      blocking_html: Vas <strong>substituír a lista de bloqueos</strong> por <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
-      bookmarks_html: Vas <strong>substituír os marcadores</strong> por <strong>%{total_items} publicacións</strong> desde <strong>%{filename}</strong>.
-      domain_blocking_html: Vas <strong>substituír a lista de dominios bloqueados</strong> por <strong>%{total_items} dominios</strong> desde <strong>%{filename}</strong>.
-      following_html: Vas <strong>seguir</strong> estas <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong> e deixar de seguir a <strong>todas as outras contas</strong>.
-      lists_html: Vas <strong>substituír as túas listas</strong> co contido de <strong>%{filename}</strong>. Vanse engadir <strong>%{total_items} contas</strong> ás novas listas.
-      muting_html: Vas <strong>substituír a lista de contas acaladas</strong> por <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
+      blocking_html:
+        one: Vas <strong>substituír a lista de bloqueos</strong> por <strong>%{count} conta</strong> desde <strong>%{filename}</strong>.
+        other: Vas <strong>substituír a lista de bloqueos</strong> por <strong>%{count} contas</strong> desde <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Vas <strong>substituír os marcadores</strong> por <strong>%{count} publicación</strong> desde <strong>%{filename}</strong>.
+        other: Vas <strong>substituír os marcadores</strong> por <strong>%{count} publicacións</strong> desde <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Vas <strong>substituír a lista de dominios bloqueados</strong> por <strong>%{count} dominio</strong> desde <strong>%{filename}</strong>.
+        other: Vas <strong>substituír a lista de dominios bloqueados</strong> por <strong>%{count} dominios</strong> desde <strong>%{filename}</strong>.
+      following_html:
+        one: Vas <strong>seguir</strong> a <strong>%{count} conta</strong> desde <strong>%{filename}</strong> e deixar de seguir a <strong>todas as outras contas</strong>.
+        other: Vas <strong>seguir</strong> a <strong>%{count} contas</strong> desde <strong>%{filename}</strong> e deixar de seguir a <strong>todas as outras contas</strong>.
+      lists_html:
+        one: Vas <strong>substituír as túas listas</strong> co contido de <strong>%{filename}</strong>. Vaise engadir <strong>%{count} conta</strong> ás novas listas.
+        other: Vas <strong>substituír as túas listas</strong> co contido de <strong>%{filename}</strong>. Vanse engadir <strong>%{count} contas</strong> ás novas listas.
+      muting_html:
+        one: Vas <strong>substituír a lista de contas acaladas</strong> por <strong>%{count} conta</strong> desde <strong>%{filename}</strong>.
+        other: Vas <strong>substituír a lista de contas acaladas</strong> por <strong>%{count} contas</strong> desde <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Vas <strong>bloquear</strong> estas <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
-      bookmarks_html: Vas engadir <strong>%{total_items} publicacións</strong> desde <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
-      domain_blocking_html: Vas <strong>bloquear</strong> estes <strong>%{total_items} dominios</strong> desde <strong>%{filename}</strong>.
-      following_html: Vas <strong>seguir</strong> estas <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
-      lists_html: Vas engadir <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong> ás túas <strong>listas</strong>. Crearánse novas listas se non hai listas ás que engadilas.
-      muting_html: Vas <strong>acalar</strong> estas <strong>%{total_items} contas</strong> desde <strong>%{filename}</strong>.
+      blocking_html:
+        one: Vas <strong>bloquear</strong> a <strong>%{count} conta</strong> desde <strong>%{filename}</strong>.
+        other: Vas <strong>bloquear</strong> a <strong>%{count} contas</strong> desde <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Vas engadir <strong>%{count} publicación</strong> desde <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
+        other: Vas engadir <strong>%{count} publicacións</strong> desde <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
+      domain_blocking_html:
+        one: Vas <strong>bloquear</strong> a <strong>%{count} dominio</strong> desde <strong>%{filename}</strong>.
+        other: Vas <strong>bloquear</strong> a <strong>%{count} dominios</strong> desde <strong>%{filename}</strong>.
+      following_html:
+        one: Vas <strong>seguir</strong> a <strong>%{count} conta</strong> desde <strong>%{filename}</strong>.
+        other: Vas <strong>seguir</strong> a <strong>%{count} contas</strong> desde <strong>%{filename}</strong>.
+      lists_html:
+        one: Vas engadir <strong>%{count} conta</strong> desde <strong>%{filename}</strong> ás túas <strong>listas</strong>. Crearánse novas listas se non hai listas ás que engadilas.
+        other: Vas engadir <strong>%{count} contas</strong> desde <strong>%{filename}</strong> ás túas <strong>listas</strong>. Crearánse novas listas se non hai listas ás que engadilas.
+      muting_html:
+        one: Vas <strong>acalar</strong> a <strong>%{count} conta</strong> desde <strong>%{filename}</strong>.
+        other: Vas <strong>acalar</strong> a <strong>%{count} contas</strong> desde <strong>%{filename}</strong>.
     preface: Podes importar os datos que exportaches doutro servidor, tales como a lista de usuarias que estás a seguir ou bloquear.
     recent_imports: Importacións recentes
     states:
@@ -1760,11 +1801,11 @@ gl:
     enabled: Borrar automáticamente publicacións antigas
     enabled_hint: Borra automáticamente as túas publicacións unha vez acadan certa lonxevidade, a menos que cumpran algunha destas excepcións
     exceptions: Excepcións
-    explanation: Como o borrado de publicacións consume moitos recursos, esta faise aos poucos cando o servidor non ten moita carga de traballo. Así, a eliminación das túas publicacións podería ser lixeiramente posterior a cando lle correspondería por idade.
+    explanation: O borrado de publicacións vaise facendo aos poucos cando o servidor non ten moito traballo, é unha tarefa que consume moitos recursos. Así, a eliminación das túas publicacións podería ser lixeiramente posterior a cando lle correspondería por antigüidade.
     ignore_favs: Ignorar favoritas
     ignore_reblogs: Ignorar promocións
     interaction_exceptions: Excepcións baseadas en interaccións
-    interaction_exceptions_explanation: Ten en conta que non hai garantía de que se eliminen as túas publicacións se baixan do límite de promocións e favorecementos se nalgún momento o superaron.
+    interaction_exceptions_explanation: Ten en conta que non hai garantía de que se eliminen as túas publicacións se baixan do límite de promocións ou favorecementos se nalgún momento o tivese superado.
     keep_direct: Manter mensaxes directas
     keep_direct_hint: Non borrar ningunha das túas mensaxes directas
     keep_media: Manter publicacións que conteñen multimedia

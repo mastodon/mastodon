@@ -7,7 +7,7 @@ class AnnualReport::MostRebloggedAccounts < AnnualReport::Source
     {
       most_reblogged_accounts: most_reblogged_accounts.map do |(account_id, count)|
                                  {
-                                   account_id: account_id,
+                                   account_id: account_id.to_s,
                                    count: count,
                                  }
                                end,
@@ -17,6 +17,6 @@ class AnnualReport::MostRebloggedAccounts < AnnualReport::Source
   private
 
   def most_reblogged_accounts
-    report_statuses.where.not(reblog_of_id: nil).joins(reblog: :account).group('accounts.id').having('count(*) > 1').order(total: :desc).limit(SET_SIZE).pluck(Arel.sql('accounts.id, count(*) as total'))
+    report_statuses.where.not(reblog_of_id: nil).joins(reblog: :account).group(accounts: [:id]).having('count(*) > 1').order(count_all: :desc).limit(SET_SIZE).count
   end
 end

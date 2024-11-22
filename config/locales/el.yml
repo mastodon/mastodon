@@ -21,6 +21,7 @@ el:
       one: Ανάρτηση
       other: Αναρτήσεις
     posts_tab_heading: Αναρτήσεις
+    self_follow_error: Δεν επιτρέπεται να ακολουθήσεις τον δικό σου λογαριασμό
   admin:
     account_actions:
       action: Εκτέλεση ενέργειας
@@ -816,7 +817,6 @@ el:
       original_status: Αρχική ανάρτηση
       reblogs: Αναδημοσιεύσεις
       status_changed: Η ανάρτηση άλλαξε
-      title: Καταστάσεις λογαριασμού
       trending: Τάσεις
       visibility: Ορατότητα
       with_media: Με πολυμέσα
@@ -1322,20 +1322,6 @@ el:
       merge_long: Διατήρηση των εγγράφων που υπάρχουν και προσθήκη των νέων
       overwrite: Αντικατάσταση
       overwrite_long: Αντικατάσταση των υπαρχόντων εγγράφων με τις καινούργιες
-    overwrite_preambles:
-      blocking_html: Πρόκειται να <strong>αντικαταστήσεις τη λίστα αποκλεισμών</strong> με έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
-      bookmarks_html: Πρόκειται να <strong>αντικαταστήσεις τους σελιδοδείκτες σου</strong> με έως και <strong>%{total_items} αναρτήσεις</strong> από το <strong>%{filename}</strong>.
-      domain_blocking_html: Πρόκειται να <strong>αντικαταστήσεις τη λίστα αποκλεισμών τομέων</strong> με έως και <strong>%{total_items} τομείς</strong> από το <strong>%{filename}</strong>.
-      following_html: Πρόκειται να <strong>ακολουθήσεις</strong> μέχρι <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong> και <strong>να σταματήσεις να ακολουθείς οποιονδήποτε άλλο</strong>.
-      lists_html: Πρόκειται να <strong>αντικαταστήσεις τις λίστες σου</strong> με περιεχόμενο του <strong>%{filename}</strong>. Μέχρι <strong>%{total_items} λογαριασμοί</strong> θα προστεθούν σε νέες λίστες.
-      muting_html: Πρόκειται να <strong>αντικαταστήσεις τη λίστα λογαριασμών σε σίγαση</strong> με έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Πρόκειται να <strong>αποκλείσεις</strong> έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
-      bookmarks_html: Πρόκειται να προσθέσεις μέχρι και <strong>%{total_items} αναρτήσεις</strong> από το <strong>%{filename}</strong> στους <strong>σελιδοδείκτες</strong> σου.
-      domain_blocking_html: Πρόκειται να <strong>αποκλείσεις</strong> έως και <strong>%{total_items} τομείς</strong> από το <strong>%{filename}</strong>.
-      following_html: Πρόκειται να <strong>ακολουθήσεις</strong> έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
-      lists_html: Πρόκειται να προσθέσεις μέχρι και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong> στις <strong>λίστες</strong> σου. Θα δημιουργηθούν νέες λίστες αν δεν υπάρχει λίστα για προσθήκη.
-      muting_html: Πρόκειται να <strong>κάνεις σίγαση</strong> σε έως και <strong>%{total_items} λογαριασμούς</strong> από το <strong>%{filename}</strong>.
     preface: Μπορείς να εισάγεις τα δεδομένα που έχεις εξάγει από άλλο διακομιστή, όπως τη λίστα των ατόμων που ακολουθείς ή έχεις αποκλείσει.
     recent_imports: Πρόσφατες Εισαγωγές
     states:
