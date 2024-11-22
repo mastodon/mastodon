@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe REST::AccountSerializer do
+RSpec.describe REST::AccountSerializer do
   subject { serialized_record_json(account, described_class) }
 
   let(:role)    { Fabricate(:user_role, name: 'Role', highlighted: true) }

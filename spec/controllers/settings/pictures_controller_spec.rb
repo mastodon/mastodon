@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::PicturesController do
+RSpec.describe Settings::PicturesController do
   render_views
 
   let!(:user) { Fabricate(:user) }

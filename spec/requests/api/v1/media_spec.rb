@@ -17,16 +17,13 @@ RSpec.describe 'Media' do
 
     it_behaves_like 'forbidden for wrong scope', 'read'
 
-    it 'returns http success' do
+    it 'returns http success with media information' do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the media information' do
-      subject
-
-      expect(body_as_json).to match(
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body).to match(
         a_hash_including(
           id: media.id.to_s,
           description: media.description,
@@ -44,6 +41,8 @@ RSpec.describe 'Media' do
         subject
 
         expect(response).to have_http_status(206)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -54,6 +53,8 @@ RSpec.describe 'Media' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -64,6 +65,8 @@ RSpec.describe 'Media' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -80,10 +83,12 @@ RSpec.describe 'Media' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(MediaAttachment.first).to be_present
         expect(MediaAttachment.first).to have_attached_file(:file)
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           a_hash_including(id: MediaAttachment.first.id.to_s, description: params[:description], type: media_type)
         )
       end
@@ -107,6 +112,8 @@ RSpec.describe 'Media' do
           subject
 
           expect(response).to have_http_status(422)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
 
@@ -117,23 +124,25 @@ RSpec.describe 'Media' do
           subject
 
           expect(response).to have_http_status(500)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
     end
 
-    context 'with image/jpeg', :paperclip_processing do
+    context 'with image/jpeg', :attachment_processing do
       let(:params) { { file: fixture_file_upload('attachment.jpg', 'image/jpeg'), description: 'jpeg image' } }
 
       it_behaves_like 'a successful media upload', 'image'
     end
 
-    context 'with image/gif', :paperclip_processing do
+    context 'with image/gif', :attachment_processing do
       let(:params) { { file: fixture_file_upload('attachment.gif', 'image/gif') } }
 
       it_behaves_like 'a successful media upload', 'image'
     end
 
-    context 'with video/webm', :paperclip_processing do
+    context 'with video/webm', :attachment_processing do
       let(:params) { { file: fixture_file_upload('attachment.webm', 'video/webm') } }
 
       it_behaves_like 'a successful media upload', 'gifv'
@@ -158,6 +167,8 @@ RSpec.describe 'Media' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -176,6 +187,8 @@ RSpec.describe 'Media' do
           subject
 
           expect(response).to have_http_status(404)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
     end

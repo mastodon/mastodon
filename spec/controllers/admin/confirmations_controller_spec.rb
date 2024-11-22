@@ -11,7 +11,7 @@ RSpec.describe Admin::ConfirmationsController do
 
   describe 'POST #create' do
     it 'confirms the user' do
-      user = Fabricate(:user, confirmed_at: false)
+      user = Fabricate(:user, confirmed_at: nil)
       post :create, params: { account_id: user.account.id }
 
       expect(response).to redirect_to(admin_accounts_path)

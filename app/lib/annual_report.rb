@@ -17,9 +17,19 @@ class AnnualReport
 
   SCHEMA = 1
 
+  def self.table_name_prefix
+    'annual_report_'
+  end
+
   def initialize(account, year)
     @account = account
     @year = year
+  end
+
+  def self.prepare(year)
+    SOURCES.each do |klass|
+      klass.prepare(year)
+    end
   end
 
   def generate

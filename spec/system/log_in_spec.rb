@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Log in' do
+RSpec.describe 'Log in' do
   include ProfileStories
 
   subject { page }
@@ -17,17 +17,13 @@ describe 'Log in' do
   end
 
   it 'A valid email and password user is able to log in' do
-    fill_in 'user_email', with: email
-    fill_in 'user_password', with: password
-    click_on I18n.t('auth.login')
+    fill_in_auth_details(email, password)
 
     expect(subject).to have_css('div.app-holder')
   end
 
   it 'A invalid email and password user is not able to log in' do
-    fill_in 'user_email', with: 'invalid_email'
-    fill_in 'user_password', with: 'invalid_password'
-    click_on I18n.t('auth.login')
+    fill_in_auth_details('invalid_email', 'invalid_password')
 
     expect(subject).to have_css('.flash-message', text: failure_message('invalid'))
   end
@@ -36,9 +32,7 @@ describe 'Log in' do
     let(:confirmed_at) { nil }
 
     it 'A unconfirmed user is able to log in' do
-      fill_in 'user_email', with: email
-      fill_in 'user_password', with: password
-      click_on I18n.t('auth.login')
+      fill_in_auth_details(email, password)
 
       expect(subject).to have_css('div.admin-wrapper')
     end

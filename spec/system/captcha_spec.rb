@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'email confirmation flow when captcha is enabled' do
+RSpec.describe 'email confirmation flow when captcha is enabled' do
   let(:user)        { Fabricate(:user, confirmed_at: nil, confirmation_token: 'foobar', created_by_application: client_app) }
   let(:client_app)  { nil }
 

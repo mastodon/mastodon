@@ -52,6 +52,7 @@ module Paperclip
         # implement. If cropping ever becomes necessary for other situations, this will
         # need to be expanded.
         crop_width = crop_height = [target_width, target_height].min if @target_geometry&.square?
+        crop_width = crop_height = "'min(iw,ih)'" if crop_width == 'ih'
 
         filter = begin
           if @crop
@@ -68,7 +69,7 @@ module Paperclip
       end
 
       dst
-    rescue Terrapin::ExitStatusError => e
+    rescue Vips::Error, Terrapin::ExitStatusError => e
       raise Paperclip::Error, "Error while optimizing #{@basename}: #{e}"
     rescue Terrapin::CommandNotFoundError
       raise Paperclip::Errors::CommandNotFoundError, 'Could not run the `ffmpeg` command. Please install ffmpeg.'

@@ -15,17 +15,12 @@ class Api::V1::Lists::AccountsController < Api::BaseController
   end
 
   def create
-    ApplicationRecord.transaction do
-      list_accounts.each do |account|
-        @list.accounts << account
-      end
-    end
-
+    AddAccountsToListService.new.call(@list, Account.find(account_ids))
     render_empty
   end
 
   def destroy
-    ListAccount.where(list: @list, account_id: account_ids).destroy_all
+    RemoveAccountsFromListService.new.call(@list, Account.where(id: account_ids))
     render_empty
   end
 
@@ -41,10 +36,6 @@ class Api::V1::Lists::AccountsController < Api::BaseController
     else
       @list.accounts.without_suspended.includes(:account_stat, :user).paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
     end
-  end
-
-  def list_accounts
-    Account.find(account_ids)
   end
 
   def account_ids

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Timelines::LinkController < Api::V1::Timelines::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: :show, if: :require_auth?
+  before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :set_preview_card
   before_action :set_statuses
 
@@ -16,10 +16,6 @@ class Api::V1::Timelines::LinkController < Api::V1::Timelines::BaseController
   end
 
   private
-
-  def require_auth?
-    !Setting.timeline_preview
-  end
 
   def set_preview_card
     @preview_card = PreviewCard.joins(:trend).merge(PreviewCardTrend.allowed).find_by!(url: params[:url])

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CustomEmoji, :paperclip_processing do
+RSpec.describe CustomEmoji, :attachment_processing do
   describe '#search' do
     subject { described_class.search(search_term) }
 
@@ -79,22 +79,18 @@ RSpec.describe CustomEmoji, :paperclip_processing do
   end
 
   describe 'Normalizations' do
-    describe 'downcase domain value' do
-      context 'with a mixed case domain value' do
-        it 'normalizes the value to downcased' do
-          custom_emoji = Fabricate.build(:custom_emoji, domain: 'wWw.MaStOdOn.CoM')
-
-          expect(custom_emoji.domain).to eq('www.mastodon.com')
-        end
-      end
-
-      context 'with a nil domain value' do
-        it 'leaves the value as nil' do
-          custom_emoji = Fabricate.build(:custom_emoji, domain: nil)
-
-          expect(custom_emoji.domain).to be_nil
-        end
-      end
+    describe 'domain' do
+      it { is_expected.to normalize(:domain).from('wWw.MaStOdOn.CoM').to('www.mastodon.com') }
+      it { is_expected.to normalize(:domain).from(nil).to(nil) }
     end
+  end
+
+  describe 'Validations' do
+    subject { Fabricate.build :custom_emoji }
+
+    it { is_expected.to validate_uniqueness_of(:shortcode).scoped_to(:domain) }
+    it { is_expected.to validate_length_of(:shortcode).is_at_least(described_class::MINIMUM_SHORTCODE_SIZE) }
+    it { is_expected.to allow_values('cats').for(:shortcode) }
+    it { is_expected.to_not allow_values('@#$@#$', 'X').for(:shortcode) }
   end
 end

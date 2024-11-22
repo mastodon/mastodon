@@ -33,7 +33,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(locale) do
+    I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
     end
   end
@@ -43,7 +43,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(locale) do
+    I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
     end
   end
@@ -53,7 +53,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(locale) do
+    I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
     end
   end
@@ -63,7 +63,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(locale) do
+    I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
     end
   end
@@ -73,7 +73,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(locale) do
+    I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
     end
   end
@@ -83,7 +83,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(locale) do
+    I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
     end
   end
@@ -93,7 +93,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(locale) do
+    I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
     end
   end
@@ -103,7 +103,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(locale) do
+    I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: default_devise_subject
     end
   end
@@ -114,7 +114,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(locale) do
+    I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: I18n.t('devise.mailer.webauthn_credential.added.subject')
     end
   end
@@ -125,7 +125,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(locale) do
+    I18n.with_locale(locale(use_current_locale: true)) do
       mail subject: I18n.t('devise.mailer.webauthn_credential.deleted.subject')
     end
   end
@@ -219,7 +219,7 @@ class UserMailer < Devise::Mailer
     @instance = Rails.configuration.x.local_domain
   end
 
-  def locale
-    @resource.locale.presence || I18n.locale || I18n.default_locale
+  def locale(use_current_locale: false)
+    @resource.locale.presence || (use_current_locale && I18n.locale) || I18n.default_locale
   end
 end

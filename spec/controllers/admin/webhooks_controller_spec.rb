@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::WebhooksController do
+RSpec.describe Admin::WebhooksController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::UpdatePollSerializer do
+RSpec.describe ActivityPub::UpdatePollSerializer do
   subject { serialized_record_json(status, described_class, adapter: ActivityPub::Adapter) }
 
   let(:account) { Fabricate(:account) }

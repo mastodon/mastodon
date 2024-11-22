@@ -1,11 +1,13 @@
 - content_for :page_title do
   = t('auth.captcha_confirmation.title')
 
-= form_tag auth_captcha_confirmation_url, method: 'POST', class: 'simple_form' do
+= form_with url: auth_captcha_confirmation_url, class: :simple_form do |form|
   = render 'auth/shared/progress', stage: 'confirm'
 
-  = hidden_field_tag :confirmation_token, params[:confirmation_token]
-  = hidden_field_tag :redirect_to_app, params[:redirect_to_app]
+  = form.hidden_field :confirmation_token,
+                      value: params[:confirmation_token]
+  = form.hidden_field :redirect_to_app,
+                      value: params[:redirect_to_app]
 
   %h1.title= t('auth.captcha_confirmation.title')
   %p.lead= t('auth.captcha_confirmation.hint_html')
@@ -15,4 +17,6 @@
   %p.lead= t('auth.captcha_confirmation.help_html', email: mail_to(Setting.site_contact_email, nil))
 
   .actions
-    = button_tag t('challenge.confirm'), class: 'button', type: :submit
+    = form.button t('challenge.confirm'),
+                  class: 'button',
+                  type: :submit

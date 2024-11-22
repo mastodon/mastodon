@@ -18,7 +18,7 @@ FileUtils.chdir APP_ROOT do
   system('bundle check') || system!('bundle install')
 
   puts "\n== Installing JS dependencies =="
-  system! 'corepack prepare'
+  system! 'corepack enable'
   system! 'bin/yarn install --immutable'
 
   puts "\n== Preparing database =="

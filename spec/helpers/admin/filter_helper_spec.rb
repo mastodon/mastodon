@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::FilterHelper do
+RSpec.describe Admin::FilterHelper do
   it 'Uses filter_link_to to create filter links' do
     params = ActionController::Parameters.new(
       { test: 'test' }

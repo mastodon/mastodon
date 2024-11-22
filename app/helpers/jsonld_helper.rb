@@ -141,7 +141,7 @@ module JsonLdHelper
   def safe_for_forwarding?(original, compacted)
     original.without('@context', 'signature').all? do |key, value|
       compacted_value = compacted[key]
-      return false unless value.class == compacted_value.class
+      return false unless value.instance_of?(compacted_value.class)
 
       if value.is_a?(Hash)
         safe_for_forwarding?(value, compacted_value)
@@ -198,14 +198,6 @@ module JsonLdHelper
     json
   rescue Oj::ParseError
     nil
-  end
-
-  def merge_context(context, new_context)
-    if context.is_a?(Array)
-      context << new_context
-    else
-      [context, new_context]
-    end
   end
 
   def response_successful?(response)

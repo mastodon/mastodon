@@ -6,5 +6,4 @@ export const submitAccountNote = createDataLoadingThunk(
   ({ accountId, note }: { accountId: string; note: string }) =>
     apiSubmitAccountNote(accountId, note),
   (relationship) => ({ relationship }),
-  { skipLoading: true },
 );

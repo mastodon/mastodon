@@ -110,18 +110,6 @@ class LanguageDropdownMenu extends PureComponent {
     }).map(result => result.obj);
   }
 
-  frequentlyUsed () {
-    const { languages, value } = this.props;
-    const current = languages.find(lang => lang[0] === value);
-    const results = [];
-
-    if (current) {
-      results.push(current);
-    }
-
-    return results;
-  }
-
   handleClick = e => {
     const value = e.currentTarget.getAttribute('data-index');
 
@@ -252,7 +240,6 @@ class LanguageDropdown extends PureComponent {
     frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string),
     intl: PropTypes.object.isRequired,
     onChange: PropTypes.func,
-    onClose: PropTypes.func,
   };
 
   state = {
@@ -269,14 +256,11 @@ class LanguageDropdown extends PureComponent {
   };
 
   handleClose = () => {
-    const { value, onClose } = this.props;
-
     if (this.state.open && this.activeElement) {
       this.activeElement.focus({ preventScroll: true });
     }
 
     this.setState({ open: false });
-    onClose(value);
   };
 
   handleChange = value => {

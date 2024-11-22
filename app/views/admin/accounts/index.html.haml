@@ -1,38 +1,41 @@
 - content_for :page_title do
   = t('admin.accounts.title')
 
-= form_tag admin_accounts_url, method: 'GET', class: 'simple_form' do
+= form_with url: admin_accounts_url, method: :get, class: :simple_form do |form|
   .filters
     .filter-subset.filter-subset--with-select
       %strong= t('admin.accounts.location.title')
       .input.select.optional
-        = select_tag :origin,
-                     options_for_select([[t('admin.accounts.location.local'), 'local'], [t('admin.accounts.location.remote'), 'remote']], params[:origin]),
-                     prompt: I18n.t('generic.all')
+        = form.select :origin,
+                      options_for_select([[t('admin.accounts.location.local'), 'local'], [t('admin.accounts.location.remote'), 'remote']], params[:origin]),
+                      prompt: I18n.t('generic.all')
     .filter-subset.filter-subset--with-select
       %strong= t('admin.accounts.moderation.title')
       .input.select.optional
-        = select_tag :status,
-                     options_for_select(admin_accounts_moderation_options, params[:status]),
-                     prompt: I18n.t('generic.all')
+        = form.select :status,
+                      options_for_select(admin_accounts_moderation_options, params[:status]),
+                      prompt: I18n.t('generic.all')
     .filter-subset.filter-subset--with-select
       %strong= t('admin.accounts.role')
       .input.select.optional
-        = select_tag :role_ids,
-                     options_from_collection_for_select(UserRole.assignable, :id, :name, params[:role_ids]),
-                     prompt: I18n.t('admin.accounts.moderation.all')
+        = form.select :role_ids,
+                      options_from_collection_for_select(UserRole.assignable, :id, :name, params[:role_ids]),
+                      prompt: I18n.t('admin.accounts.moderation.all')
     .filter-subset.filter-subset--with-select
       %strong= t 'generic.order_by'
       .input.select
-        = select_tag :order,
-                     options_for_select([[t('relationships.most_recent'), 'recent'], [t('relationships.last_active'), 'active']], params[:order])
+        = form.select :order,
+                      options_for_select([[t('relationships.most_recent'), 'recent'], [t('relationships.last_active'), 'active']], params[:order])
 
   .fields-group
     - %i(username by_domain display_name email ip).each do |key|
       - next if key == :by_domain && params[:origin] != 'remote'
 
       .input.string.optional
-        = text_field_tag key, params[key], class: 'string optional', placeholder: I18n.t("admin.accounts.#{key}")
+        = form.text_field key,
+                          value: params[key],
+                          class: 'string optional',
+                          placeholder: I18n.t("admin.accounts.#{key}")
 
   .actions
     %button.button= t('admin.accounts.search')
@@ -40,7 +43,7 @@
 
 %hr.spacer/
 
-= form_for(@form, url: batch_admin_accounts_path) do |f|
+= form_with model: @form, url: batch_admin_accounts_path do |f|
   = hidden_field_tag :page, params[:page] || 1
   = hidden_field_tag :select_all_matching, '0'
 

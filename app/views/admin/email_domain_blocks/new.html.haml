@@ -16,7 +16,7 @@
               label: I18n.t('admin.email_domain_blocks.allow_registrations_with_approval'),
               wrapper: :with_label
 
-  - if defined?(@resolved_records)
+  - if defined?(@resolved_records) && @resolved_records.any?
     %p.hint= t('admin.email_domain_blocks.resolved_dns_records_hint_html')
 
     .batch-table
@@ -30,12 +30,12 @@
             %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
               = f.input_field :other_domains,
                               as: :boolean,
-                              checked_value: record.exchange.to_s,
+                              checked_value: record,
                               include_hidden: false,
                               multiple: true
             .batch-table__row__content.pending-account
               .pending-account__header
-                %samp= record.exchange.to_s
+                %samp= record
                 %br
                 = t('admin.email_domain_blocks.dns.types.mx')
 

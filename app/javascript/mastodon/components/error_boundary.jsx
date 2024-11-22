@@ -60,8 +60,8 @@ export default class ErrorBoundary extends PureComponent {
     try {
       textarea.select();
       document.execCommand('copy');
-    } catch (e) {
-
+    } catch {
+      // do nothing
     } finally {
       document.body.removeChild(textarea);
     }
