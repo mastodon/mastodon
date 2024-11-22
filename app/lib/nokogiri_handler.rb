@@ -8,5 +8,9 @@ class NokogiriHandler
     def link_rel_include(token_list, token)
       token_list.to_s.downcase.split(WHITE_SPACE).include?(token.downcase)
     end
+
+    def casecmp(str1, str2)
+      str1.to_s.casecmp?(str2.to_s)
+    end
   end
 end
