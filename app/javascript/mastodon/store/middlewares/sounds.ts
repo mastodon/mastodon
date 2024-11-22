@@ -51,7 +51,7 @@ const play = (audio: HTMLAudioElement) => {
 };
 
 export const soundsMiddleware = (): Middleware<
-  // eslint-disable-next-line @typescript-eslint/ban-types -- we need to use `{}` here to ensure the dispatch types can be merged
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type -- we need to use `{}` here to ensure the dispatch types can be merged
   {},
   RootState
 > => {
@@ -74,8 +74,9 @@ export const soundsMiddleware = (): Middleware<
     if (isActionWithMetaSound(action)) {
       const sound = action.meta.sound;
 
-      if (sound && Object.hasOwn(soundCache, sound)) {
-        play(soundCache[sound]);
+      if (sound) {
+        const s = soundCache[sound];
+        if (s) play(s);
       }
     }
 

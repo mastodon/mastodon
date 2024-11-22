@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RedownloadMediaWorker do
+RSpec.describe RedownloadMediaWorker do
   let(:worker) { described_class.new }
 
   describe '#perform' do

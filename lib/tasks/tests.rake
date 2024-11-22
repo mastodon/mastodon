@@ -11,7 +11,7 @@ namespace :tests do
         '3_3_0' => 2020_12_18_054746,
       }.each do |release, version|
         ActiveRecord::Tasks::DatabaseTasks
-          .migration_connection
+          .migration_connection_pool
           .migration_context
           .migrate(version)
         Rake::Task["tests:migrations:populate_v#{release}"]
@@ -107,8 +107,8 @@ namespace :tests do
       end
 
       policy = NotificationPolicy.find_by(account: User.find(1).account)
-      unless policy.filter_private_mentions == false && policy.filter_not_following == true
-        puts 'Notification policy not migrated as expected'
+      unless policy.for_private_mentions == 'accept' && policy.for_not_following == 'filter'
+        puts "Notification policy not migrated as expected: #{policy.for_private_mentions.inspect}, #{policy.for_not_following.inspect}"
         exit(1)
       end
 
@@ -130,8 +130,17 @@ namespace :tests do
       # This is checking the attribute rather than the method, to avoid the legacy fallback
       # and ensure the data has been migrated
       unless Account.find_local('qcuser').user[:otp_secret] == 'anotpsecretthatshouldbeencrypted'
-        puts "DEBUG: #{Account.find_local('qcuser').user.inspect}"
         puts 'OTP secret for user not preserved as expected'
+        exit(1)
+      end
+
+      unless Doorkeeper::Application.find(2)[:scopes] == 'write:accounts profile'
+        puts 'Application OAuth scopes not rewritten as expected'
+        exit(1)
+      end
+
+      unless Doorkeeper::Application.find(2).access_tokens.first[:scopes] == 'write:accounts profile'
+        puts 'OAuth access token scopes not rewritten as expected'
         exit(1)
       end
 
@@ -152,6 +161,23 @@ namespace :tests do
         VALUES
           (1, 'https://example.com/users/foobar', 'foobar@example.com', now(), now()),
           (1, 'https://example.com/users/foobar', 'foobar@example.com', now(), now());
+
+        /* Doorkeeper records
+           While the `read:me` scope was technically not valid in 3.3.0,
+           it is still useful for the purposes of testing the `ChangeReadMeScopeToProfile`
+           migration.
+        */
+
+        INSERT INTO "oauth_applications"
+          (id, name, uid, secret, redirect_uri, scopes, created_at, updated_at)
+        VALUES
+          (2, 'foo', 'foo', 'foo', 'https://example.com/#foo', 'write:accounts read:me', now(), now()),
+          (3, 'bar', 'bar', 'bar', 'https://example.com/#bar', 'read:me', now(), now());
+
+        INSERT INTO "oauth_access_tokens"
+          (token, application_id, scopes, resource_owner_id, created_at)
+        VALUES
+          ('secret', 2, 'write:accounts read:me', 4, now());
       SQL
     end
 

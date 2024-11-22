@@ -33,6 +33,14 @@ RSpec.describe LinkDetailsExtractor do
         expect(subject.canonical_url).to eq original_url
       end
     end
+
+    context 'when canonical URL is set to "undefined"' do
+      let(:url) { 'undefined' }
+
+      it 'ignores the canonical URLs' do
+        expect(subject.canonical_url).to eq original_url
+      end
+    end
   end
 
   context 'when only basic metadata is present' do
@@ -129,6 +137,24 @@ RSpec.describe LinkDetailsExtractor do
       include_examples 'structured data'
     end
 
+    context 'with the first tag is null' do
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            null
+          </script>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      include_examples 'structured data'
+    end
+
     context 'with preceding block of unsupported LD+JSON' do
       let(:html) { <<~HTML }
         <!doctype html>
@@ -191,6 +217,35 @@ RSpec.describe LinkDetailsExtractor do
       HTML
 
       include_examples 'structured data'
+    end
+
+    context 'with author names as array' do
+      let(:ld_json) do
+        {
+          '@context' => 'https://schema.org',
+          '@type' => 'NewsArticle',
+          'headline' => 'A lot of authors',
+          'description' => 'But we decided to cram them into one',
+          'author' => {
+            '@type' => 'Person',
+            'name' => ['Author 1', 'Author 2'],
+          },
+        }.to_json
+      end
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      it 'joins author names' do
+        expect(subject.author_name).to eq 'Author 1, Author 2'
+      end
     end
   end
 

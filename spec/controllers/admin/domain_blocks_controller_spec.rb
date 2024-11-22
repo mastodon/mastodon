@@ -13,7 +13,6 @@ RSpec.describe Admin::DomainBlocksController do
     it 'assigns a new domain block' do
       get :new
 
-      expect(assigns(:domain_block)).to be_instance_of(DomainBlock)
       expect(response).to have_http_status(200)
     end
   end
@@ -171,12 +170,11 @@ RSpec.describe Admin::DomainBlocksController do
     it 'returns http success' do
       get :edit, params: { id: domain_block.id }
 
-      expect(assigns(:domain_block)).to be_instance_of(DomainBlock)
       expect(response).to have_http_status(200)
     end
   end
 
-  describe 'PUT #update', :sidekiq_inline do
+  describe 'PUT #update', :inline_jobs do
     subject do
       post :update, params: { :id => domain_block.id, :domain_block => { domain: 'example.com', severity: new_severity }, 'confirm' => '' }
     end

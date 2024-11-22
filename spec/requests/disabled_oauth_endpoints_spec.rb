@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Disabled OAuth routes' do
+RSpec.describe 'Disabled OAuth routes' do
   # These routes are disabled via the doorkeeper configuration for
   # `admin_authenticator`, as these routes should only be accessible by server
   # administrators. For now, these routes are not properly designed and

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Form::CustomEmojiBatch do
+RSpec.describe Form::CustomEmojiBatch do
   describe '#save' do
     subject { described_class.new({ current_account: account }.merge(options)) }
 

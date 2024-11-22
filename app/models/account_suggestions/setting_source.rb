@@ -3,7 +3,7 @@
 class AccountSuggestions::SettingSource < AccountSuggestions::Source
   def get(account, limit: DEFAULT_LIMIT)
     if setting_enabled?
-      base_account_scope(account).where(setting_to_where_condition).limit(limit).pluck(:id).zip([key].cycle)
+      base_account_scope(account).merge(setting_to_where_condition).limit(limit).pluck(:id).zip([key].cycle)
     else
       []
     end
@@ -25,11 +25,9 @@ class AccountSuggestions::SettingSource < AccountSuggestions::Source
 
   def setting_to_where_condition
     usernames_and_domains.map do |(username, domain)|
-      Arel::Nodes::Grouping.new(
-        Account.arel_table[:username].lower.eq(username.downcase).and(
-          Account.arel_table[:domain].lower.eq(domain&.downcase)
-        )
-      )
+      Account
+        .with_username(username)
+        .with_domain(domain)
     end.reduce(:or)
   end
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::ProcessingWorker do
+RSpec.describe ActivityPub::ProcessingWorker do
   subject { described_class.new }
 
   let(:account) { Fabricate(:account) }

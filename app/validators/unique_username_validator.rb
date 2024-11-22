@@ -6,10 +6,7 @@ class UniqueUsernameValidator < ActiveModel::Validator
   def validate(account)
     return if account.username.blank?
 
-    normalized_username = account.username.downcase
-    normalized_domain = account.domain&.downcase
-
-    scope = Account.where(Account.arel_table[:username].lower.eq normalized_username).where(Account.arel_table[:domain].lower.eq normalized_domain)
+    scope = Account.with_username(account.username).with_domain(account.domain)
     scope = scope.where.not(id: account.id) if account.persisted?
 
     account.errors.add(:username, :taken) if scope.exists?

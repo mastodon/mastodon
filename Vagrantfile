@@ -151,6 +151,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--nictype2", "virtio"]
   end
 
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.cpus = 3
+    libvirt.memory = 8192
+  end
+
+
   # This uses the vagrant-hostsupdater plugin, and lets you
   # access the development site at http://mastodon.local.
   # If you change it, also change it in .env.vagrant before provisioning

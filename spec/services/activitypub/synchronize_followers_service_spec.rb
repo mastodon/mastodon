@@ -13,11 +13,9 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
   let(:collection_uri) { 'http://example.com/partial-followers' }
 
   let(:items) do
-    [
-      ActivityPub::TagManager.instance.uri_for(alice),
-      ActivityPub::TagManager.instance.uri_for(eve),
-      ActivityPub::TagManager.instance.uri_for(mallory),
-    ]
+    [alice, eve, mallory].map do |account|
+      ActivityPub::TagManager.instance.uri_for(account)
+    end
   end
 
   let(:payload) do
@@ -40,20 +38,15 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       subject.call(actor, collection_uri)
     end
 
-    it 'keeps expected followers' do
-      expect(alice.following?(actor)).to be true
-    end
-
-    it 'removes local followers not in the remote list' do
-      expect(bob.following?(actor)).to be false
-    end
-
-    it 'converts follow requests to follow relationships when they have been accepted' do
-      expect(mallory.following?(actor)).to be true
-    end
-
-    it 'sends an Undo Follow to the actor' do
-      expect(ActivityPub::DeliveryWorker).to have_received(:perform_async).with(anything, eve.id, actor.inbox_url)
+    it 'maintains following records and sends Undo Follow to actor' do
+      expect(alice)
+        .to be_following(actor) # Keep expected followers
+      expect(bob)
+        .to_not be_following(actor) # Remove local followers not in remote list
+      expect(mallory)
+        .to be_following(actor) # Convert follow request to follow when accepted
+      expect(ActivityPub::DeliveryWorker)
+        .to have_received(:perform_async).with(anything, eve.id, actor.inbox_url) # Send Undo Follow to actor
     end
   end
 

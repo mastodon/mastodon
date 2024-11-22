@@ -15,11 +15,17 @@ ia:
       user/invite_request:
         text: Motivo
     errors:
+      attributes:
+        domain:
+          invalid: non es un nomine de dominio valide
+      messages:
+        invalid_domain_on_line: "%{value} non es un nomine de dominio valide"
+        too_many_lines: il es ultra le limite de %{limit} lineas
       models:
         account:
           attributes:
             username:
-              invalid: debe continer solmente litteras, numeros e tractos de sublineamento
+              invalid: debe continer solmente litteras, numeros e lineettas basse
               reserved: es reservate
         admin/webhook:
           attributes:

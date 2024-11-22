@@ -6,7 +6,7 @@
 - if defined?(@global_private_comment) && @global_private_comment.present?
   %p= t('admin.export_domain_blocks.import.private_comment_description_html', comment: @global_private_comment)
 
-= form_for(@form, url: batch_admin_domain_blocks_path) do |f|
+= form_with model: @form, url: batch_admin_domain_blocks_path do |f|
   .batch-table
     .batch-table__toolbar
       %label.batch-table__toolbar__select.batch-checkbox-all

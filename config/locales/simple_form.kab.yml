@@ -5,21 +5,23 @@ kab:
       account:
         display_name: Isem-ik·im ummid neɣ isem-ik·im n uqeṣṣer.
         fields: Asebter-ik·im agejdan, imqimen, leεmer, ayen tebɣiḍ.
+        note: 'Tzemreḍ ad d-@tbedreḍ imdanen niḍen neɣ #ihacṭagen.'
       account_alias:
         acct: Sekcem isem n umseqdac@domain n umiḍan s wansa itebγiḍ ad gujjeḍ
       account_migration:
         acct: Sekcem isem n umseqdac@taγult n umiḍan anida itebγiḍ ad gujjeḍ
       admin_account_action:
-        send_email_notification: Amseqdac ad t-id-yewweḍ usefhem γef wayen yeḍran akked umiḍan-is
+        send_email_notification: Amseqdac ad t-id-yewweḍ usefhem ɣef wayen yeḍran akked umiḍan-is
         type_html: Fren d acu ara txedmeḍ s <strong>%{acct}</strong>
       defaults:
-        autofollow: Imdanen ara ijerrden s usnebgi-inek, ad k-ḍefṛen s wudem awurman
+        autofollow: Imdanen ara ijerrden s usnebgi-inek·inem, ad k·m-ḍefṛen s wudem awurman
         bot: Smekti-d wiyaḍ dakken amiḍan-a ixeddem s wudem amezwer tigawin tiwurmanin yernu ur yezmir ara ad yettwaɛass
         email: Ad n-teṭṭfeḍ imayl i usentem
         irreversible: Tisuffaɣ i tessazedgeḍ ad ttwakksent i lebda, ula ma tekkseḍ imsizdeg-nni ar zdat
-        locale: Tutlayt n ugrudem, imaylen d tilγa
+        locale: Tutlayt n ugrudem, imaylen d walɣuten yettudemren
         password: Seqdec ma drus 8 n yisekkilen
-        setting_display_media_default: Ffer teywalt yettwacreḍ d tanafrit
+        setting_always_send_emails: S umata, ilɣa s yimayl ur d-ttwaceyyεen ara mi ara tesseqdaceḍ Mastodon s wudem urmid
+        setting_display_media_default: Ffer imidyaten yettwacreḍ d infariyen
         setting_display_media_hide_all: Ffer yal tikkelt akk taywalt
         setting_display_media_show_all: Ffer yal tikkelt teywalt yettwacreḍ d tanafrit
         username: Tzemreḍ ad tesqedceḍ isekkilen, uṭṭunen akked yijerriden n wadda
@@ -27,6 +29,8 @@ kab:
         name: 'Ha-t-an kra seg ihacṭagen i tesseqdaceḍ ussan-a ineggura maḍi :'
       imports:
         data: Afaylu CSV id yusan seg uqeddac-nniḍen n Maṣṭudun
+      invite_request:
+        text: Aya ad aɣ-iɛiwen ad nessenqed tuttra-k·m
       ip_block:
         comment: D afrayan. Cfu ɣef wayɣer i terniḍ alugen-a.
         severities:
@@ -36,6 +40,8 @@ kab:
         fields:
           name: Tabzimt
           value: Agbur
+      account_alias:
+        acct: Tansa n umiḍan aqbur
       account_migration:
         acct: Tansa n umiḍan amaynut
       account_warning_preset:
@@ -51,6 +57,7 @@ kab:
           suspend: Ḥbes di leεḍil
       announcement:
         ends_at: Tagara n tedyant
+        starts_at: Tazwara n tedyant
         text: Alɣu
       defaults:
         autofollow: Ɛreḍ-it-id ad yeḍfer amiḍan-ik·im
@@ -59,24 +66,33 @@ kab:
         chosen_languages: Sizdeg tutlayin
         confirm_new_password: Sentem awal uffir amaynut
         confirm_password: Sentem awal uffir
+        context: Isatalen n umsizdeg
         current_password: Awal uffir n tura
         data: Isefka
         display_name: Isem ara d-yettwaskanen
         email: Tansa imayl
         expires_in: Ad yemmet
+        fields: Urtiyen niḍen
         header: Ixef
+        honeypot: "%{label} (ur tettaččar ara)"
+        inbox_url: URL n tbewwaḍt n urmas yettwacudden
+        irreversible: Kkes deg wadeg n tuffra
         locale: Tutlayt n wegrudem
         max_uses: Amḍan afellay n iseqdacen
         new_password: Awal uffir amaynut
         note: Tameddurt
         otp_attempt: Tangalt n snat n tarayin
         password: Awal uffir
-        setting_default_language: Tutlayt n tira
-        setting_default_privacy: Tabaḍnit n tira
+        phrase: Awal n tsarut neɣ tafyirt
+        setting_advanced_layout: Rmed agrudem n web leqqayen
+        setting_always_send_emails: Dima ttazen-d ilɣa s yimayl
+        setting_default_language: Tutlayt n usuffeɣ
+        setting_default_privacy: Tabaḍnit n usuffeɣ
+        setting_display_media: Askanay n imidyaten
         setting_display_media_default: Akk-a kan
         setting_display_media_hide_all: Ffer-iten akk
         setting_display_media_show_all: Sken-iten-id akk
-        setting_hide_network: Ffer azetta-k·m
+        setting_hide_network: Ffer azetta-k·m inmetti
         setting_theme: Asental n wesmel
         setting_use_pending_items: Askar aleɣwayan
         sign_in_token_attempt: Tangalt n tɣellist
@@ -88,11 +104,18 @@ kab:
       featured_tag:
         name: Ahacṭag
       form_admin_settings:
+        custom_css: CSS udmawan
+        profile_directory: Rmed akaram n imaγnuten
+        site_contact_email: Imayl n unermas
+        site_short_description: Aglam n uqeddac
         site_terms: Tasertit tabaḍnit
         site_title: Isem n uqeddac
+        status_page_url: URL n uusebter n waddaden
+        theme: Asentel amezwer
+        thumbnail: Tanfult n uqeddac
       interactions:
-        must_be_follower: Ssewḥel ilɣa sɣur wid akked tid ur yellin ara d imeḍfaren-ik·im
-        must_be_following: Ssewḥel ilɣa sɣur wid akked tid ur tettḍafareḍ ara
+        must_be_follower: Ssewḥel alɣuten sɣur wid akked tid ur yellin ara d imeḍfaren-ik·im
+        must_be_following: Ssewḥel alɣuten sɣur wid akked tid ur tettḍafareḍ ara
         must_be_following_dm: Sewḥel iznan usriden sɣur wid akked tid ur tettḍafareḍ ara
       invite:
         comment: Awennit
@@ -109,18 +132,25 @@ kab:
         follow: Yeḍfer-ik·im-id walbɛaḍ
         follow_request: Ma yella win i d-yessutren ad k·em-yeḍfer
         mention: Yuder-ik·em-id walbɛaḍ
+        pending_account: Amiḍan amaynut yesran asenqed
         reblog: Yella win yesselhan adda-dik·im
+        report: Aneqis amaynut yettwazen
       rule:
         hint: Isallen-nniḍen
         text: Alugen
       tag:
         name: Ahacṭag
       user:
+        role: Tamlilt
         time_zone: Tamnaḍt tasragant
       user_role:
         name: Isem
         permissions_as_keys: Tisirag
+      webhook:
+        events: Tidyanin turmidin
     'no': Ala
+    not_recommended: Ur yettuwelleh ara
+    overridden: Yeččur
     recommended: Yettuwelleh
     required:
       mark: "*"

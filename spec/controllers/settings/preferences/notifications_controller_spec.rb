@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::Preferences::NotificationsController do
+RSpec.describe Settings::Preferences::NotificationsController do
   render_views
 
   let(:user) { Fabricate(:user) }

@@ -1,0 +1,23 @@
+---
+Rails/BulkChangeTable:
+  Enabled: false # Conflicts with strong_migrations features
+
+Rails/FilePath:
+  EnforcedStyle: arguments
+
+Rails/HttpStatus:
+  EnforcedStyle: numeric
+
+Rails/NegateInclude:
+  Enabled: false
+
+Rails/RakeEnvironment:
+  Exclude: # Tasks are doing local work which do not need full env loaded
+    - lib/tasks/auto_annotate_models.rake
+    - lib/tasks/emojis.rake
+    - lib/tasks/mastodon.rake
+    - lib/tasks/repo.rake
+    - lib/tasks/statistics.rake
+
+Rails/SkipsModelValidations:
+  Enabled: false
