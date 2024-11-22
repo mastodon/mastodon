@@ -185,6 +185,7 @@ lt:
         create_domain_allow: Kurti domeno leidimą
         create_domain_block: Kurti domeno bloką
         create_ip_block: Kurti IP taisyklę
+        create_relay: Kurti perdavimą
         create_unavailable_domain: Kurti nepasiekiamą domeną
         create_user_role: Kurti vaidmenį
         demote_user: Pažeminti naudotoją
@@ -194,13 +195,16 @@ lt:
         destroy_domain_block: Ištrinti domeno bloką
         destroy_instance: Išvalyti domeną
         destroy_ip_block: Ištrinti IP taisyklę
+        destroy_relay: Ištrinti perdavimą
         destroy_status: Ištrinti įrašą
         destroy_unavailable_domain: Ištrinti nepasiekiamą domeną
         destroy_user_role: Sunaikinti vaidmenį
         disable_2fa_user: Išjungti 2FA
         disable_custom_emoji: Išjungti pasirinktinį jaustuką
+        disable_relay: Išjungti perdavimą
         disable_user: Išjungti naudotoją
         enable_custom_emoji: Įjungti pasirinktinį jaustuką
+        enable_relay: Įjungti perdavimą
         enable_user: Įjungti naudotoją
         memorialize_account: Memorializuoti paskyrą
         promote_user: Paaukštinti naudotoją
@@ -237,6 +241,7 @@ lt:
         create_domain_allow_html: "%{name} leido federaciją su domenu %{target}"
         create_domain_block_html: "%{name} užblokavo domeną %{target}"
         create_ip_block_html: "%{name} sukūrė taisyklę IP %{target}"
+        create_relay_html: "%{name} sukūrė perdavimą %{target}"
         create_unavailable_domain_html: "%{name} sustabdė tiekimą į domeną %{target}"
         create_user_role_html: "%{name} sukūrė %{target} vaidmenį"
         demote_user_html: "%{name} pažemino naudotoją %{target}"
@@ -246,13 +251,16 @@ lt:
         destroy_domain_block_html: "%{name} atblokavo domeną %{target}"
         destroy_instance_html: "%{name} išvalė domeną %{target}"
         destroy_ip_block_html: "%{name} ištrynė taisyklę IP %{target}"
+        destroy_relay_html: "%{name} ištrynė perdavimą %{target}"
         destroy_status_html: "%{name} pašalino įrašą %{target}"
         destroy_unavailable_domain_html: "%{name} pratęsė tiekimą į domeną %{target}"
         destroy_user_role_html: "%{name} ištrynė %{target} vaidmenį"
         disable_2fa_user_html: "%{name} išjungė dviejų veiksnių reikalavimą naudotojui %{target}"
         disable_custom_emoji_html: "%{name} išjungė jaustuką %{target}"
+        disable_relay_html: "%{name} išjungė perdavimą %{target}"
         disable_user_html: "%{name} išjungė prisijungimą naudotojui %{target}"
         enable_custom_emoji_html: "%{name} įjungė jaustuką %{target}"
+        enable_relay_html: "%{name} įjungė perdavimą %{target}"
         enable_user_html: "%{name} įjungė prisijungimą naudotojui %{target}"
         memorialize_account_html: "%{name} pavertė %{target} paskyrą į atminimo puslapį"
         promote_user_html: "%{name} paaukštino naudotoją %{target}"
@@ -581,7 +589,9 @@ lt:
       back_to_account: Grįžti į paskyros puslapį
       back_to_report: Grįžti į ataskaitos puslapį
       batch:
+        add_to_report: 'Pridėti į ataskaitą #%{id}'
         remove_from_report: Pašalinti iš ataskaitos
+      contents: Turinys
       deleted: Ištrinta
       favourites: Mėgstami
       history: Versijų istorija
@@ -590,11 +600,15 @@ lt:
       media:
         title: Medija
       metadata: Metaduomenys
+      no_history: Šis įrašas nebuvo redaguotas
       no_status_selected: Jokie įrašai nebuvo pakeisti, nes nė vienas buvo pasirinktas
       open: Atidaryti įrašą
       original_status: Originalus įrašas
-      title: Paskyros statusai
+      replied_to_html: Atsakyta į %{acct_link}
+      status_title: Paskelbė @%{name}
+      title: Paskyros įrašai – @%{name}
       trending: Tendencinga
+      view_publicly: Peržiūrėti viešai
       with_media: Su medija
     system_checks:
       database_schema_check:

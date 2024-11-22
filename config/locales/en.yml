@@ -187,6 +187,7 @@ en:
         create_domain_block: Create Domain Block
         create_email_domain_block: Create Email Domain Block
         create_ip_block: Create IP rule
+        create_relay: Create Relay
         create_unavailable_domain: Create Unavailable Domain
         create_user_role: Create Role
         demote_user: Demote User
@@ -198,14 +199,17 @@ en:
         destroy_email_domain_block: Delete Email Domain Block
         destroy_instance: Purge Domain
         destroy_ip_block: Delete IP rule
+        destroy_relay: Delete Relay
         destroy_status: Delete Post
         destroy_unavailable_domain: Delete Unavailable Domain
         destroy_user_role: Destroy Role
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
+        disable_relay: Disable Relay
         disable_sign_in_token_auth_user: Disable Email Token Authentication for User
         disable_user: Disable User
         enable_custom_emoji: Enable Custom Emoji
+        enable_relay: Enable Relay
         enable_sign_in_token_auth_user: Enable Email Token Authentication for User
         enable_user: Enable User
         memorialize_account: Memorialize Account
@@ -247,6 +251,7 @@ en:
         create_domain_block_html: "%{name} blocked domain %{target}"
         create_email_domain_block_html: "%{name} blocked email domain %{target}"
         create_ip_block_html: "%{name} created rule for IP %{target}"
+        create_relay_html: "%{name} created a relay %{target}"
         create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
         create_user_role_html: "%{name} created %{target} role"
         demote_user_html: "%{name} demoted user %{target}"
@@ -258,14 +263,17 @@ en:
         destroy_email_domain_block_html: "%{name} unblocked email domain %{target}"
         destroy_instance_html: "%{name} purged domain %{target}"
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
+        destroy_relay_html: "%{name} deleted the relay %{target}"
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
         destroy_user_role_html: "%{name} deleted %{target} role"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
+        disable_relay_html: "%{name} disabled the relay %{target}"
         disable_sign_in_token_auth_user_html: "%{name} disabled email token authentication for %{target}"
         disable_user_html: "%{name} disabled login for user %{target}"
         enable_custom_emoji_html: "%{name} enabled emoji %{target}"
+        enable_relay_html: "%{name} enabled the relay %{target}"
         enable_sign_in_token_auth_user_html: "%{name} enabled email token authentication for %{target}"
         enable_user_html: "%{name} enabled login for user %{target}"
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
@@ -818,8 +826,10 @@ en:
       back_to_account: Back to account page
       back_to_report: Back to report page
       batch:
+        add_to_report: 'Add to report #%{id}'
         remove_from_report: Remove from report
         report: Report
+      contents: Contents
       deleted: Deleted
       favourites: Favorites
       history: Version history
@@ -828,13 +838,17 @@ en:
       media:
         title: Media
       metadata: Metadata
+      no_history: This post hasn't been edited
       no_status_selected: No posts were changed as none were selected
       open: Open post
       original_status: Original post
       reblogs: Reblogs
+      replied_to_html: Replied to %{acct_link}
       status_changed: Post changed
-      title: Account posts
+      status_title: Post by @%{name}
+      title: Account posts - @%{name}
       trending: Trending
+      view_publicly: View publicly
       visibility: Visibility
       with_media: With media
     strikes:

@@ -22,19 +22,33 @@ class SoftwareUpdate < ApplicationRecord
     Gem::Version.new(version)
   end
 
+  def outdated?
+    runtime_version >= gem_version
+  end
+
+  def pending?
+    gem_version > runtime_version
+  end
+
   class << self
     def check_enabled?
-      ENV['UPDATE_CHECK_URL'] != ''
+      Rails.configuration.x.mastodon.software_update_url.present?
     end
 
     def pending_to_a
       return [] unless check_enabled?
 
-      all.to_a.filter { |update| update.gem_version > Mastodon::Version.gem_version }
+      all.to_a.filter(&:pending?)
     end
 
     def urgent_pending?
       pending_to_a.any?(&:urgent?)
     end
+  end
+
+  private
+
+  def runtime_version
+    Mastodon::Version.gem_version
   end
 end

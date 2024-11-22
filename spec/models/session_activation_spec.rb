@@ -3,39 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe SessionActivation do
-  describe '#detection' do
-    let(:session_activation) { Fabricate(:session_activation, user_agent: 'Chrome/62.0.3202.89') }
-
-    it 'sets a Browser instance as detection' do
-      expect(session_activation.detection).to be_a Browser::Chrome
-    end
-  end
-
-  describe '#browser' do
-    before do
-      allow(session_activation).to receive(:detection).and_return(detection)
-    end
-
-    let(:detection)          { instance_double(Browser::Chrome, id: 1) }
-    let(:session_activation) { Fabricate(:session_activation) }
-
-    it 'returns detection.id' do
-      expect(session_activation.browser).to be 1
-    end
-  end
-
-  describe '#platform' do
-    before do
-      allow(session_activation).to receive(:detection).and_return(detection)
-    end
-
-    let(:session_activation) { Fabricate(:session_activation) }
-    let(:detection)          { instance_double(Browser::Chrome, platform: instance_double(Browser::Platform, id: 1)) }
-
-    it 'returns detection.platform.id' do
-      expect(session_activation.platform).to be 1
-    end
-  end
+  include_examples 'BrowserDetection'
 
   describe '.active?' do
     subject { described_class.active?(id) }

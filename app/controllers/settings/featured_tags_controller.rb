@@ -5,6 +5,8 @@ class Settings::FeaturedTagsController < Settings::BaseController
   before_action :set_featured_tag, except: [:index, :create]
   before_action :set_recently_used_tags, only: :index
 
+  RECENT_TAGS_LIMIT = 10
+
   def index
     @featured_tag = FeaturedTag.new
   end
@@ -38,7 +40,7 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   def set_recently_used_tags
-    @recently_used_tags = Tag.suggestions_for_account(current_account).limit(10)
+    @recently_used_tags = Tag.suggestions_for_account(current_account).limit(RECENT_TAGS_LIMIT)
   end
 
   def featured_tag_params

@@ -17,6 +17,7 @@ class IpBlock < ApplicationRecord
   CACHE_KEY = 'blocked_ips'
 
   include Expireable
+  include InetContainer
   include Paginable
 
   enum :severity, {

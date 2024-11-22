@@ -293,7 +293,7 @@ lv:
       empty: Žurnāli nav atrasti.
       filter_by_action: Filtrēt pēc darbības
       filter_by_user: Filtrēt pēc lietotāja
-      title: Auditācijas pieraksti
+      title: Audita žurnāls
       unavailable_instance: "(domēna vārds nav pieejams)"
     announcements:
       destroyed_msg: Paziņojums ir veiksmīgi izdzēsts!
@@ -447,6 +447,7 @@ lv:
         resolve: Atrisināt domēnu
       not_permitted: Nav atļauta
       resolved_through_html: Atrisināts, izmantojot %{domain}
+      title: Bloķētie e-pasta domēni
     export_domain_allows:
       new:
         title: Importēt domēnu atļaujas
@@ -595,7 +596,7 @@ lv:
           one: "%{count} piezīme"
           other: "%{count} piezīmes"
           zero: "%{count} piezīmju"
-      action_log: Auditācijas pieraksti
+      action_log: Audita žurnāls
       action_taken_by: Veiktā darbība
       actions:
         delete_description_html: Raksti, par kurām ziņots, tiks dzēsti, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākos pārkāpumus saistībā ar to pašu kontu.
@@ -829,7 +830,7 @@ lv:
       original_status: Oriģinālā ziņa
       reblogs: Reblogi
       status_changed: Ziņa mainīta
-      title: Konta ziņas
+      status_title: Publicēja @%{name}
       trending: Aktuāli
       visibility: Redzamība
       with_media: Ar multividi
@@ -872,6 +873,9 @@ lv:
         message_html: Tu neesi definējis nevienu servera nosacījumu.
       sidekiq_process_check:
         message_html: Rindā(s) %{value} nedarbojas neviens Sidekiq process. Lūdzu, pārskati savu Sidekiq konfigurāciju
+      software_version_check:
+        action: Skatīt pieejamos atjauninājumus
+        message_html: Pieejams Mastodon atjauninājums.
       software_version_critical_check:
         action: Skatīt pieejamos atjauninājumus
         message_html: Ir pieejams kritisks Mastodon atjauninājums. Lūdzu, atjaunini to pēc iespējas ātrāk.
@@ -967,6 +971,7 @@ lv:
           one: Pēdējās nedēļas laikā izmantoja viens cilvēks
           other: Pēdējās nedēļas laikā izmantoja %{count} cilvēki
           zero: Pēdējās nedēļas laikā izmantoja %{count} cilvēku
+      title: Ieteikumi un pašlaik populāri
       trending: Populārākie
     warning_presets:
       add_new: Pievienot jaunu
@@ -1129,7 +1134,7 @@ lv:
       title: Pārbaudi savu iesūtni
     sign_in:
       preamble_html: Jāpiesakās ar saviem <strong>%{domain}</strong> piekļuves datiem. Ja konts tiek mitināts citā serverī, šeit nevarēs pieteikties.
-      title: Pierakstīties %{domain}
+      title: Pieteikties %{domain}
     sign_up:
       manual_review: Reģistrācijas domēnā %{domain} manuāli pārbauda mūsu moderatori. Lai palīdzētu mums apstrādāt tavu reģistrāciju, uzraksti mazliet par sevi un to, kāpēc vēlies kontu %{domain}.
       preamble: Ar kontu šajā Mastodon serverī varēsi sekot jebkuram citam tīklā esošam cilvēkam neatkarīgi no tā, kur tiek mitināts viņa konts.
@@ -1415,13 +1420,20 @@ lv:
       webauthn: drošības atslēgas
     description_html: Ja pamani darbības, kuras neatpazīsti, jāapsver iespēja nomainīt savu paroli un iespējot divpakāpju autentifikāciju.
     empty: Nav pieejama autentifikācijas vēsture
-    failed_sign_in_html: Neizdevies pierakstīšanās mēģinājums ar %{method} no %{ip} (%{browser})
-    successful_sign_in_html: Veiksmīga pierakstīšanās ar %{method} no %{ip} (%{browser})
+    failed_sign_in_html: Neizdevies pieteikšanās mēģinājums ar %{method} no %{ip} (%{browser})
+    successful_sign_in_html: Veiksmīga pieteikšanās ar %{method} no %{ip} (%{browser})
     title: Autentifikācijas vēsture
   mail_subscriptions:
     unsubscribe:
       action: Jā, atcelt abonēšanu
       complete: Anulēts
+      emails:
+        notification_emails:
+          favourite: izlases paziņojumu e-pasta ziņojumi
+          follow: sekošanas paziņojumu e-pasta ziņojumi
+          follow_request: sekošanas pieprasījumu e-pasta ziņojumi
+          mention: pieminēšanas paziņojumu e-pasta ziņojumi
+          reblog: pastiprinājumu paziņojumu e-pasta ziņojumi
       title: Atcelt abonēšanu
   media_attachments:
     validations:
@@ -1653,6 +1665,7 @@ lv:
     delete: Konta dzēšana
     development: Izstrāde
     edit_profile: Labot profilu
+    export: Izgūt
     featured_tags: Piedāvātie tēmturi
     import: Imports
     import_and_export: Imports un eksports
@@ -1668,6 +1681,8 @@ lv:
     webauthn_authentication: Drošības atslēgas
   severed_relationships:
     download: Lejupielādēt (%{count})
+    event_type:
+      user_domain_block: Jūs bloķējāt %{target_name}
     lost_followers: Zaudētie sekotāji
     lost_follows: Zaudētie sekojumi
     type: Notikums
@@ -1797,11 +1812,11 @@ lv:
       title: Arhīva līdzņemšana
     suspicious_sign_in:
       change_password: mainīt paroli
-      details: 'Šeit ir detalizēta informācija par pierakstīšanos:'
-      explanation: Esam konstatējuši pierakstīšanos tavā kontā no jaunas IP adreses.
+      details: 'Šeit ir pieteikšanās izvērsums:'
+      explanation: Esam noteikuši pieteikšanos Tavā kontā no jaunas IP adreses.
       further_actions_html: Ja tas nebiji tu, iesakām nekavējoties %{action} un iespējot divu faktoru autentifikāciju, lai tavs konts būtu drošībā.
       subject: Tavam kontam ir piekļūts no jaunas IP adreses
-      title: Jauna pierakstīšanās
+      title: Jauna pieteikšanās
     warning:
       appeal: Iesniegt apelāciju
       appeal_description: Ja uzskatāt, ka tā ir kļūda, varat iesniegt apelāciju %{instance} darbiniekiem.

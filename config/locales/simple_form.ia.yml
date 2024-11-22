@@ -3,6 +3,7 @@ ia:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Un per linea. Protege contra false attributiones.
         discoverable: Tu messages public e tu profilo pote esser mittite in evidentia o recommendate in varie areas de Mastodon e tu profilo pote esser suggerite a altere usatores.
         display_name: Tu prenomine e nomine de familia o tu pseudonymo.
         fields: Tu pagina principal, pronomines, etate, tote lo que tu vole.
@@ -130,6 +131,7 @@ ia:
         name: Tu pote solmente cambiar le litteras inter majusculas e minusculas, per exemplo, pro render lo plus legibile
       user:
         chosen_languages: Si marcate, solo le messages in le linguas seligite sera monstrate in chronologias public
+        role: Le rolo controla qual permissos le usator ha.
       user_role:
         color: Color a esser usate pro le rolo in omne parte del UI, como RGB in formato hexadecimal
         highlighted: Iste rende le rolo publicamente visibile
@@ -142,6 +144,7 @@ ia:
         url: Ubi le eventos essera inviate
     labels:
       account:
+        attribution_domains_as_text: Sitos web autorisate a accreditar te
         discoverable: Evidentiar le profilo e messages in le algorithmos de discoperta
         fields:
           name: Etiquetta
@@ -210,6 +213,7 @@ ia:
         setting_default_privacy: Confidentialitate del messages
         setting_default_sensitive: Sempre marcar le medios cmo sensbile
         setting_delete_modal: Monstrar le dialogo de confirmation ante deler un message
+        setting_disable_hover_cards: Disactivar le previsualisation de profilos al passar del mus
         setting_disable_swiping: Disactivar le movimentos per glissamento
         setting_display_media: Visualisation de medios
         setting_display_media_default: Predefinite

@@ -598,4 +598,27 @@ RSpec.describe User do
       end
     end
   end
+
+  describe '#applications_last_used' do
+    let!(:user) { Fabricate(:user) }
+
+    let!(:never_used_application) { Fabricate :application, owner: user }
+    let!(:application_one) { Fabricate :application, owner: user }
+    let!(:application_two) { Fabricate :application, owner: user }
+
+    before do
+      _other_user_token = Fabricate :access_token, last_used_at: 3.days.ago
+      _never_used_token = Fabricate :access_token, application: never_used_application, resource_owner_id: user.id, last_used_at: nil
+      _app_one_old_token = Fabricate :access_token, application: application_one, resource_owner_id: user.id, last_used_at: 5.days.ago
+      _app_one_new_token = Fabricate :access_token, application: application_one, resource_owner_id: user.id, last_used_at: 1.day.ago
+      _never_used_token = Fabricate :access_token, application: application_two, resource_owner_id: user.id, last_used_at: 5.days.ago
+    end
+
+    it 'returns a hash of unique applications with last used values' do
+      expect(user.applications_last_used)
+        .to include(application_one.id => be_within(1.0).of(1.day.ago))
+        .and include(application_two.id => be_within(1.0).of(5.days.ago))
+        .and not_include(never_used_application.id)
+    end
+  end
 end

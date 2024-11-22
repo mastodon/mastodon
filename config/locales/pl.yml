@@ -193,6 +193,7 @@ pl:
         create_domain_block: Utwórz blokadę domeny
         create_email_domain_block: Utwórz blokadę domeny e-mail
         create_ip_block: Utwórz regułę IP
+        create_relay: Utwórz przekaźnik
         create_unavailable_domain: Utwórz niedostępną domenę
         create_user_role: Utwórz rolę
         demote_user: Zdegraduj użytkownika
@@ -204,14 +205,17 @@ pl:
         destroy_email_domain_block: Usuń blokadę domeny e-mail
         destroy_instance: Wyczyść domenę
         destroy_ip_block: Usuń regułę IP
+        destroy_relay: Usuń przekaźnik
         destroy_status: Usuń wpis
         destroy_unavailable_domain: Usuń niedostępną domenę
         destroy_user_role: Zlikwiduj rolę
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
+        disable_relay: Wyłącz przekaźnik
         disable_sign_in_token_auth_user: Wyłącz uwierzytelnianie tokenem przez e-mail dla użytkownika
         disable_user: Wyłącz użytkownika
         enable_custom_emoji: Włącz niestandardowe emoji
+        enable_relay: Włącz przekaźnik
         enable_sign_in_token_auth_user: Włącz uwierzytelnianie tokenem przez e-mail dla użytkownika
         enable_user: Włącz użytkownika
         memorialize_account: Upamiętnij konto
@@ -253,6 +257,7 @@ pl:
         create_domain_block_html: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block_html: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
         create_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
+        create_relay_html: "%{name} utworzył przekaźnik %{target}"
         create_unavailable_domain_html: "%{name} przestał(a) doręczać na domenę %{target}"
         create_user_role_html: "%{name} utworzył rolę %{target}"
         demote_user_html: "%{name} zdegradował(a) użytkownika %{target}"
@@ -264,14 +269,17 @@ pl:
         destroy_email_domain_block_html: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
         destroy_instance_html: "%{name} usunął domenę %{target}"
         destroy_ip_block_html: "%{name} usunął(-ęła) regułę dla IP %{target}"
+        destroy_relay_html: "%{name} usunął przekaźnik %{target}"
         destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
         destroy_user_role_html: "%{name} usunął rolę %{target}"
         disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwuskładnikowe użytkownikowi %{target}"
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
+        disable_relay_html: "%{name} wyłączył przekaźnik %{target}"
         disable_sign_in_token_auth_user_html: "%{name} wyłączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
         disable_user_html: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
         enable_custom_emoji_html: "%{name} włączył(a) emoji %{target}"
+        enable_relay_html: "%{name} włączył przekaźnik %{target}"
         enable_sign_in_token_auth_user_html: "%{name} włączył/a uwierzytelnianie tokenem przez e-mail dla %{target}"
         enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
         memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
@@ -846,8 +854,10 @@ pl:
       back_to_account: Wróć na konto
       back_to_report: Wróć do strony zgłoszenia
       batch:
+        add_to_report: 'Dodaj do raportu #%{id}'
         remove_from_report: Usuń ze zgłoszenia
         report: Zgłoszenie
+      contents: Zawartość
       deleted: Usunięto
       favourites: Ulubione
       history: Historia wersji
@@ -856,13 +866,17 @@ pl:
       media:
         title: Multimedia
       metadata: Metadane
+      no_history: Ten wpis nie był edytowany
       no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       open: Otwarty post
       original_status: Oryginalny post
       reblogs: Podbicia
+      replied_to_html: Odpowiedziano na %{acct_link}
       status_changed: Post zmieniony
-      title: Wpisy konta
+      status_title: Wpis @%{name}
+      title: Wpisy konta - @%{name}
       trending: Popularne
+      view_publicly: Wyświetl publicznie
       visibility: Widoczność
       with_media: Z zawartością multimedialną
     strikes:

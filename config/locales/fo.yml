@@ -187,6 +187,7 @@ fo:
         create_domain_block: Stovna navnaøkjablokering
         create_email_domain_block: Stovna t-post-økisnavnablokk
         create_ip_block: Stovna IP reglu
+        create_relay: Stovna reiðlag
         create_unavailable_domain: Stovna navnaøki, sum ikki er tøkt
         create_user_role: Stovna leiklut
         demote_user: Lækka brúkara í tign
@@ -198,14 +199,17 @@ fo:
         destroy_email_domain_block: Strika t-posta-økisnavnablokk
         destroy_instance: Reinsa navnaøki
         destroy_ip_block: Strika IP reglu
+        destroy_relay: Strika reiðlag
         destroy_status: Strika post
         destroy_unavailable_domain: Strika navnaøki, sum ikki er tøkt
         destroy_user_role: Bein burtur leiklut
         disable_2fa_user: Ger 2FA óvirkið
         disable_custom_emoji: Ger serligt kenslutekn óvirkið
+        disable_relay: Ger reiðlag óvirkið
         disable_sign_in_token_auth_user: Ger váttan við teldupostateknum óvirkna fyri brúkara
         disable_user: Ger brúkara óvirknan
         enable_custom_emoji: Ger serligt kenslutekn virkið
+        enable_relay: Ger reiðlag virkið
         enable_sign_in_token_auth_user: Ger váttan við teldupostateknum virkna fyri brúkara
         enable_user: Ger brúkara virknan
         memorialize_account: Minnst til Konto
@@ -247,6 +251,7 @@ fo:
         create_domain_block_html: "%{name} blokeraði navnaøkið %{target}"
         create_email_domain_block_html: "%{name} blokeraði teldupostanavnaøkið %{target}"
         create_ip_block_html: "%{name} gjørdi reglu fyri IP %{target}"
+        create_relay_html: "%{name} gjørdi eitt reiðlag %{target}"
         create_unavailable_domain_html: "%{name} steðgaði veiting til navnaøkið %{target}"
         create_user_role_html: "%{name} stovnaði %{target} leiklutin"
         demote_user_html: "%{name} lækkaði tignina hjá brúkaranum %{target}"
@@ -258,14 +263,17 @@ fo:
         destroy_email_domain_block_html: "%{name} leysgav teldupostanavnaøkið %{target}"
         destroy_instance_html: "%{name} reinsaði navnaøkið %{target}"
         destroy_ip_block_html: "%{name} slettaðar reglur fyri IP %{target}"
+        destroy_relay_html: "%{name} strikaði reiðlagið %{target}"
         destroy_status_html: "%{name} slettaði upplegg hjá %{target}"
         destroy_unavailable_domain_html: "%{name} tók upp aftir veiting til navnaøkið %{target}"
         destroy_user_role_html: "%{name} slettaði leiklutin hjá %{target}"
         disable_2fa_user_html: "%{name} slepti kravið um váttan í tveimum stigum fyri brúkaran %{target}"
         disable_custom_emoji_html: "%{name} gjørdi kensluteknið %{target} óvirkið"
+        disable_relay_html: "%{name} gjørdi reiðlagið %{target} óvirkið"
         disable_sign_in_token_auth_user_html: "%{name} gjørdi váttan við teldupostteknum óvirkna fyri %{target}"
         disable_user_html: "%{name} gjørdi innritan hjá brúkaranum %{target} óvirkna"
         enable_custom_emoji_html: "%{name} gjørdi kensluteknið %{target} virkið"
+        enable_relay_html: "%{name} gjørdi reiðlagið %{target} virkið"
         enable_sign_in_token_auth_user_html: "%{name} gjørdi váttan við teldupostteknum virkna fyri %{target}"
         enable_user_html: "%{name} gjørdi innritan virkna fyri brúkaran %{target}"
         memorialize_account_html: "%{name} broytti kontuna hjá %{target} til eina minnissíðu"
@@ -818,8 +826,10 @@ fo:
       back_to_account: Aftur til kontusíðu
       back_to_report: Aftur til meldingarsíðu
       batch:
+        add_to_report: 'Legg afturat melding #%{id}'
         remove_from_report: Strika frá melding
         report: Melding
+      contents: Innihald
       deleted: Strikað
       favourites: Dámdir postar
       history: Útgávusøga
@@ -828,13 +838,17 @@ fo:
       media:
         title: Miðlar
       metadata: Metadátur
+      no_history: Hesin posturin er ikki broyttur
       no_status_selected: Eingir postar vóru broyttir, tí eingir vóru valdir
       open: Lat post upp
       original_status: Upprunapostur
       reblogs: Endurbloggar
+      replied_to_html: Svaraði %{acct_link}
       status_changed: Postur broyttur
-      title: Postar hjá kontu
+      status_title: Postar hjá @%{name}
+      title: Kontupostar - @%{name}
       trending: Vælumtókt
+      view_publicly: Vís fyri øllum
       visibility: Sýni
       with_media: Við miðli
     strikes:
@@ -1368,6 +1382,44 @@ fo:
       merge_long: Varðveit verandi teigarøð og legg nýggjar afturat
       overwrite: Skriva omaná
       overwrite_long: Legg nýggj teigarøð inn fyri tey verandi
+    overwrite_preambles:
+      blocking_html:
+        one: Tú ert í ferð við at <strong>útskifta blokeringslistan hjá tær</strong> við upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>útskifta blokeringslistan hjá tær</strong> við upp til <strong>%{count} kontum</strong> frá <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Tú ert í ferð við at <strong>útskifta tíni bókamerki</strong> við upp til <strong>%{count} posti</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>útskifta tíni bókamerki</strong> við upp til <strong>%{count} postum</strong> frá <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Tú ert í ferð við at <strong>útskifta navnaøkisblokeringslistan hjá tær</strong> við upp til <strong>%{count} navnaøki</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>útskifta navnaøkisblokeringslistan hjá tær</strong> við upp til <strong>%{count} navnaøkjum</strong> frá <strong>%{filename}</strong>.
+      following_html:
+        one: Tú ert í ferð við at <strong>fylgja</strong> upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong> og <strong>at gevast at fylgja øðrum</strong>.
+        other: Tú ert í ferð við at <strong>fylgja</strong> upp til <strong>%{count} kontum</strong> frá <strong>%{filename}</strong> og <strong>at gevast at fylgja øðrum</strong>.
+      lists_html:
+        one: Tú ert í ferð við at <strong>skifta listarnar hjá tær út</strong> við tað, sum er í <strong>%{filename}</strong>. Upp til <strong>%{count} konta</strong> verður løgd afturat nýggjum listum.
+        other: Tú ert í ferð við at <strong>skifta listarnar hjá tær út</strong> við tað, sum er í <strong>%{filename}</strong>. Upp til <strong>%{count} kontur</strong> verða lagdar afturat nýggjum listum.
+      muting_html:
+        one: Tú ert í ferð við at <strong>útskifta listan hjá tær við doyvdum kontum</strong> við upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>útskifta listan hjá tær við doyvdum kontum</strong> við upp til <strong>%{count} kontum</strong> frá <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        one: Tú ert í ferð við at <strong>blokera</strong> upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>blokera</strong> upp til <strong>%{count} kontur</strong> frá <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Tú ert í ferð við at leggja upp til <strong>%{count} post</strong> frá <strong>%{filename}</strong> afturat tínum <strong>bókamerkjum</strong>.
+        other: Tú ert í ferð við at leggja upp til <strong>%{count} postar</strong> frá <strong>%{filename}</strong> afturat tínum <strong>bókamerkjum</strong>.
+      domain_blocking_html:
+        one: Tú ert í ferð við at <strong>blokera</strong> upp til <strong>%{count} navnaøki</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>blokera</strong> upp til <strong>%{count} navnaøki</strong> frá <strong>%{filename}</strong>.
+      following_html:
+        one: Tú ert í ferð við at <strong>fylgja</strong> upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>fylgja</strong> upp til <strong>%{count} kontur</strong> frá <strong>%{filename}</strong>.
+      lists_html:
+        one: Tú ert í ferð við at leggja upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong> afturat tínum <strong>listum</strong>. Nýggir listar verða stovnaðir, um eingin listi er at leggja afturat.
+        other: Tú ert í ferð við at leggja upp til <strong>%{count} kontur</strong> frá <strong>%{filename}</strong> afturat tínum <strong>listum</strong>. Nýggir listar verða stovnaðir, um eingin listi er at leggja afturat.
+      muting_html:
+        one: Tú ert í ferð við at <strong>doyva</strong> upp til <strong>%{count} kontu</strong> frá <strong>%{filename}</strong>.
+        other: Tú ert í ferð við at <strong>doyva</strong> upp til <strong>%{count} kontur</strong> frá <strong>%{filename}</strong>.
     preface: Tú kanst innlesa dátur, sum tú hevur útlisið frá einum øðrum ambætara, so sum listar av fólki, sum tú fylgir ella blokerar.
     recent_imports: Feskar innflytingar
     states:
