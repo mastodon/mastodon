@@ -225,7 +225,9 @@ RSpec.describe 'Domain Blocks' do
         subject
 
         expect(response).to have_http_status(422)
-        expect(body_as_json[:error]).to eq('Validation failed: Severity is not included in the list')
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body[:error]).to eq('Validation failed: Severity is not included in the list')
       end
     end
   end
