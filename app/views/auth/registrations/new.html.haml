@@ -72,7 +72,7 @@
   .fields-group
     = f.input :agreement,
               as: :boolean,
-              label: t('auth.privacy_policy_agreement_html', rules_path: about_more_path, privacy_policy_path: privacy_policy_path),
+              label: t('auth.user_agreement_html', privacy_policy_path: privacy_policy_path, terms_of_service_path: terms_of_service_path),
               required: false,
               wrapper: :with_label
 
