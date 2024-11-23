@@ -1,0 +1,14 @@
+<%= t('user_mailer.terms_of_service_changed.title') %>
+
+===
+
+<%= t('user_mailer.terms_of_service_changed.description', domain: site_hostname) %>
+
+=> <%= terms_of_service_url %>
+
+<%= t('user_mailer.terms_of_service_changed.changelog') %>
+
+<%= @terms_of_service.changelog %>
+<%= t('user_mailer.terms_of_service_changed.agreement', domain: site_hostname) %>
+
+<%= t('user_mailer.terms_of_service_changed.sign_off', domain: site_hostname) %>

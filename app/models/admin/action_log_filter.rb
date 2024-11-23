@@ -57,6 +57,7 @@ class Admin::ActionLogFilter
     enable_relay: { target_type: 'Relay', action: 'enable' }.freeze,
     memorialize_account: { target_type: 'Account', action: 'memorialize' }.freeze,
     promote_user: { target_type: 'User', action: 'promote' }.freeze,
+    publish_terms_of_service: { target_type: 'TermsOfService', action: 'publish' }.freeze,
     remove_avatar_user: { target_type: 'User', action: 'remove_avatar' }.freeze,
     reopen_report: { target_type: 'Report', action: 'reopen' }.freeze,
     resend_user: { target_type: 'User', action: 'resend' }.freeze,

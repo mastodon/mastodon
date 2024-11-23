@@ -1103,6 +1103,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_05_163118) do
     t.index "lower((name)::text) text_pattern_ops", name: "index_tags_on_name_lower_btree", unique: true
   end
 
+  create_table "terms_of_services", force: :cascade do |t|
+    t.text "text", default: "", null: false
+    t.text "changelog", default: "", null: false
+    t.datetime "published_at"
+    t.datetime "notification_sent_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tombstones", force: :cascade do |t|
     t.bigint "account_id"
     t.string "uri", null: false
