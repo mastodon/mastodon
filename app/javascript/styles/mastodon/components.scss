@@ -939,6 +939,16 @@ body > [data-popper-placement] {
     border-color: $ui-highlight-color;
     color: $primary-text-color;
   }
+
+  &.warning {
+    border-color: var(--goldenrod-2);
+    color: var(--goldenrod-2);
+
+    &.active {
+      background-color: var(--goldenrod-2);
+      color: var(--indigo-1);
+    }
+  }
 }
 
 .character-counter {
