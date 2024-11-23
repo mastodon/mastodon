@@ -312,7 +312,7 @@ const ListMembers: React.FC<{
         footer={
           mode === 'remove' && (
             <>
-              <div className='spacer' />
+              {displayedAccountIds.length > 0 && <div className='spacer' />}
 
               <div className='column-footer'>
                 <Link to={`/lists/${id}`} className='button button--block'>
