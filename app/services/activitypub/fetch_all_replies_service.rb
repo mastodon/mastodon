@@ -35,7 +35,7 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
     # Typically we assume the number of replies we *shouldn't* fetch is smaller than the
     # replies we *should* fetch, so we also minimize the number of uris we should load here.
     uris = @items.map { |item| value_or_id(item) }
-    dont_update = Status.where(uri: uris).shouldnt_fetch_replies.pluck(:uri)
+    dont_update = Status.where(uri: uris).should_not_fetch_replies.pluck(:uri)
 
     # touch all statuses that already exist and that we're about to update
     Status.where(uri: uris).should_fetch_replies.touch_all(:fetched_replies_at)
