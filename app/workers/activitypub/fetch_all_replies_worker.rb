@@ -17,12 +17,13 @@ class ActivityPub::FetchAllRepliesWorker
 
   def perform(parent_status_id, options = {})
     @parent_status = Status.find(parent_status_id)
+    return unless @parent_status.should_fetch_replies?
+    @parent_status.touch(:fetched_replies_at)
     Rails.logger.debug { "FetchAllRepliesWorker - #{@parent_status.uri}: Fetching all replies for status: #{@parent_status}" }
 
     uris_to_fetch, n_pages = get_replies(@parent_status.uri, MAX_PAGES, options)
     return if uris_to_fetch.nil?
 
-    @parent_status.touch(:fetched_replies_at)
     fetched_uris = uris_to_fetch.clone.to_set
 
     until uris_to_fetch.empty? || fetched_uris.length >= MAX_REPLIES || n_pages >= MAX_PAGES
