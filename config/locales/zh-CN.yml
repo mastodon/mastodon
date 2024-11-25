@@ -11,8 +11,8 @@ zh-CN:
       other: 关注者
     following: 正在关注
     instance_actor_flash: 该账号用来代表虚拟角色，并不代表个人用户，仅代表服务器本身。该账号用于联合目的，不应该被停用。
-    last_active: 最近活动
-    link_verified_on: 此链接的所有权已在 %{date} 检查
+    last_active: 上次活跃
+    link_verified_on: 此链接的所有权已在 %{date} 验证
     nothing_here: 空空如也！
     pin_errors:
       following: 你必须关注你要推荐的人
@@ -25,7 +25,7 @@ zh-CN:
       action: 执行操作
       already_silenced: 此账户已受限。
       already_suspended: 此账户已被封禁。
-      title: 在 %{acct} 上执行管理操作
+      title: 对 %{acct} 执行管理操作
     account_moderation_notes:
       create: 新建记录
       created_msg: 管理记录创建成功！
@@ -73,7 +73,7 @@ zh-CN:
       enabled_msg: 成功解冻 %{username} 的账号
       followers: 粉丝
       follows: 关注
-      header: 个人资料页横幅图片
+      header: 封面图
       inbox_url: 收件箱（Inbox）URL
       invite_request_text: 加入理由
       invited_by: 邀请者为
@@ -82,7 +82,7 @@ zh-CN:
       location:
         all: 全部
         local: 本站
-        remote: 远端实例
+        remote: 外站
         title: 位置
       login_status: 登录状态
       media_attachments: 媒体文件
@@ -113,16 +113,16 @@ zh-CN:
       protocol: 协议
       public: 公开页面
       push_subscription_expires: PuSH 订阅过期时间
-      redownload: 刷新个人资料
-      redownloaded_msg: 成功从来源处刷新 %{username} 的用户资料
+      redownload: 刷新账户信息
+      redownloaded_msg: 成功从来源站点刷新 %{username} 的账户信息
       reject: 拒绝
       rejected_msg: 已拒绝 %{username} 的注册申请
       remote_suspension_irreversible: 此账户的数据已被不可逆转地删除。
       remote_suspension_reversible_hint_html: 账号已在他们的服务器上封禁，数据将在 %{date} 完全删除。 在此之前，远程服务器仍可恢复此账号，并且没有任何不良影响。 如果你想立即移除该账号的所有数据，可以在下面进行。
       remove_avatar: 删除头像
-      remove_header: 删除横幅图片
+      remove_header: 移除封面图
       removed_avatar_msg: 成功删除 %{username} 的头像
-      removed_header_msg: 成功删除了 %{username} 的横幅图片
+      removed_header_msg: 成功移除 %{username} 的封面图
       resend_confirmation:
         already_confirmed: 该用户已被确认
         send: 重新发送确认链接
@@ -299,8 +299,8 @@ zh-CN:
         update_user_role_html: "%{name} 更改了 %{target} 角色"
       deleted_account: 账号已注销
       empty: 没有找到日志
-      filter_by_action: 根据行为过滤
-      filter_by_user: 根据用户过滤
+      filter_by_action: 根据操作筛选
+      filter_by_user: 根据用户筛选
       title: 审核日志
       unavailable_instance: "(域名不可用)"
     announcements:
@@ -547,7 +547,7 @@ zh-CN:
       filter:
         all: 全部
         available: 可用
-        expired: 已失效
+        expired: 已过期
         title: 筛选
       title: 邀请用户
     ip_blocks:
@@ -637,7 +637,7 @@ zh-CN:
       notes_description_html: 查看备注或向其他监察员留言
       processed_msg: '举报 #%{id} 处理成功'
       quick_actions_description_html: 快捷选择操作或向下滚动以查看举报内容：
-      remote_user_placeholder: 来自 %{instance} 的远程实例用户
+      remote_user_placeholder: 来自 %{instance} 的外站用户
       reopen: 重开举报
       report: '举报 #%{id}'
       reported_account: 举报用户
@@ -673,7 +673,7 @@ zh-CN:
       unknown_action_msg: 未知操作：%{action}
       unresolved: 未处理
       updated_at: 更新时间
-      view_profile: 查看资料
+      view_profile: 查看账户
     roles:
       add_new: 添加角色
       assigned_users:
@@ -1070,7 +1070,7 @@ zh-CN:
     settings: 更改邮件偏好： %{link}
     unsubscribe: 取消订阅
     view: 点此链接查看详情：
-    view_profile: 查看个人资料页
+    view_profile: 查看账户页
     view_status: 查看嘟文
   applications:
     created: 应用创建成功
@@ -1285,8 +1285,8 @@ zh-CN:
     hint_html: "<strong>什么是精选话题标签？</strong> 它们被显示在你的公开个人资料中的突出位置，人们可以在这些标签下浏览你的公共嘟文。 它们是跟踪创作或长期项目的进度的重要工具。"
   filters:
     contexts:
-      account: 个人资料
-      home: 主页时间线
+      account: 账户
+      home: 主页与列表
       notifications: 通知
       public: 公共时间线
       thread: 对话
@@ -1294,33 +1294,33 @@ zh-CN:
       add_keyword: 添加关键词
       keywords: 关键词
       statuses: 个别嘟文
-      statuses_hint_html: 无论是否匹配下列关键词，此过滤器适用于选用个别嘟文。<a href="%{path}">从过滤器中审核嘟文或移除嘟文</a>。
-      title: 编辑过滤器
+      statuses_hint_html: 无论是否匹配下列关键词，此过滤规则均适用于选中的个别嘟文。<a href="%{path}">在过滤规则页面检查或移除这些嘟文</a>
+      title: 编辑过滤规则
     errors:
-      deprecated_api_multiple_keywords: 这些参数不能从此应用程序更改，因为它们应用于一个以上的过滤关键字。 使用较新的应用程序或网页界面。
-      invalid_context: 提供的过滤器环境没有或无效
+      deprecated_api_multiple_keywords: 不能在此应用中更改这些参数，因为它们应用于不止一个过滤关键词。请使用较新的应用程序或网页界面。
+      invalid_context: 过滤规则生效场景为空或无效
     index:
-      contexts: 在 %{contexts} 中的过滤器
+      contexts: 过滤 %{contexts}
       delete: 删除
-      empty: 你没有过滤器。
-      expires_in: 在 %{distance} 后过期
-      expires_on: "%{date} 后到期"
+      empty: 你没有过滤规则。
+      expires_in: "%{distance} 后到期"
+      expires_on: 在 %{date} 到期
       keywords:
-        other: "%{count} 关键词"
+        other: "%{count} 个关键词"
       statuses:
         other: "%{count} 条嘟文"
       statuses_long:
-        other: "%{count} 条个别嘟文已隐藏"
-      title: 过滤器
+        other: 已隐藏 %{count} 条个别嘟文
+      title: 过滤规则
     new:
-      save: 保存新过滤器
-      title: 添加新的过滤器
+      save: 保存过滤规则
+      title: 新建过滤规则
     statuses:
-      back_to_filter: 返回过滤器
+      back_to_filter: 返回过滤规则
       batch:
-        remove: 从过滤器中移除
+        remove: 从过滤规则中移除
       index:
-        hint: 无论其他条件如何，此过滤器适用于选用个别嘟文。你可以从网页界面中向此过滤器加入更多嘟文。
+        hint: 此过滤规则适用于选中的个别嘟文，不受其它条件限制。你可以通过网页界面向此过滤规则添加更多嘟文。
         title: 过滤的嘟文
   generic:
     all: 全部
@@ -1752,7 +1752,7 @@ zh-CN:
       private: 仅关注者
       private_long: 只有关注你的用户能看到
       public: 公开
-      public_long: 所有人可见，并会出现在公共时间线上
+      public_long: 所有人可见
       unlisted: 悄悄公开
       unlisted_long: 对所有人可见，但不出现在公共时间线上
   statuses_cleanup:
@@ -1910,7 +1910,7 @@ zh-CN:
       feature_moderation_title: 管理，本应如此
       follow_action: 关注
       follow_step: 关注有趣的人，这就是 Mastodon 的意义所在。
-      follow_title: 个性化你的首页动态
+      follow_title: 个性化你的主页动态
       follows_subtitle: 关注知名账户
       follows_title: 推荐关注
       follows_view_more: 查看更多可关注的人

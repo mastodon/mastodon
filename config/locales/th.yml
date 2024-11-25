@@ -184,6 +184,7 @@ th:
         create_domain_block: สร้างการปิดกั้นโดเมน
         create_email_domain_block: สร้างการปิดกั้นโดเมนอีเมล
         create_ip_block: สร้างกฎ IP
+        create_relay: สร้างรีเลย์
         create_unavailable_domain: สร้างโดเมนที่ไม่พร้อมใช้งาน
         create_user_role: สร้างบทบาท
         demote_user: ลดขั้นผู้ใช้
@@ -195,14 +196,17 @@ th:
         destroy_email_domain_block: ลบการปิดกั้นโดเมนอีเมล
         destroy_instance: ล้างข้อมูลโดเมน
         destroy_ip_block: ลบกฎ IP
+        destroy_relay: ลบรีเลย์
         destroy_status: ลบโพสต์
         destroy_unavailable_domain: ลบโดเมนที่ไม่พร้อมใช้งาน
         destroy_user_role: ทำลายบทบาท
         disable_2fa_user: ปิดใช้งาน 2FA
         disable_custom_emoji: ปิดใช้งานอีโมจิที่กำหนดเอง
+        disable_relay: ปิดใช้งานรีเลย์
         disable_sign_in_token_auth_user: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับผู้ใช้
         disable_user: ปิดใช้งานผู้ใช้
         enable_custom_emoji: เปิดใช้งานอีโมจิที่กำหนดเอง
+        enable_relay: เปิดใช้งานรีเลย์
         enable_sign_in_token_auth_user: เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับผู้ใช้
         enable_user: เปิดใช้งานผู้ใช้
         memorialize_account: ทำให้บัญชีเป็นอนุสรณ์
@@ -244,6 +248,7 @@ th:
         create_domain_block_html: "%{name} ได้ปิดกั้นโดเมน %{target}"
         create_email_domain_block_html: "%{name} ได้ปิดกั้นโดเมนอีเมล %{target}"
         create_ip_block_html: "%{name} ได้สร้างกฎสำหรับ IP %{target}"
+        create_relay_html: "%{name} ได้สร้างรีเลย์ %{target}"
         create_unavailable_domain_html: "%{name} ได้หยุดการจัดส่งไปยังโดเมน %{target}"
         create_user_role_html: "%{name} ได้สร้างบทบาท %{target}"
         demote_user_html: "%{name} ได้ลดขั้นผู้ใช้ %{target}"
@@ -255,14 +260,17 @@ th:
         destroy_email_domain_block_html: "%{name} ได้เลิกปิดกั้นโดเมนอีเมล %{target}"
         destroy_instance_html: "%{name} ได้ล้างข้อมูลโดเมน %{target}"
         destroy_ip_block_html: "%{name} ได้ลบกฎสำหรับ IP %{target}"
+        destroy_relay_html: "%{name} ได้ลบรีเลย์ %{target}"
         destroy_status_html: "%{name} ได้เอาโพสต์โดย %{target} ออก"
         destroy_unavailable_domain_html: "%{name} ได้ทำการจัดส่งไปยังโดเมน %{target} ต่อ"
         destroy_user_role_html: "%{name} ได้ลบบทบาท %{target}"
         disable_2fa_user_html: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
         disable_custom_emoji_html: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
+        disable_relay_html: "%{name} ได้ปิดใช้งานรีเลย์ %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ได้ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
         disable_user_html: "%{name} ได้ปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         enable_custom_emoji_html: "%{name} ได้เปิดใช้งานอีโมจิ %{target}"
+        enable_relay_html: "%{name} ได้เปิดใช้งานรีเลย์ %{target}"
         enable_sign_in_token_auth_user_html: "%{name} ได้เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
         enable_user_html: "%{name} ได้เปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         memorialize_account_html: "%{name} ได้เปลี่ยนบัญชีของ %{target} เป็นหน้าอนุสรณ์"
@@ -804,8 +812,10 @@ th:
       back_to_account: กลับไปที่หน้าบัญชี
       back_to_report: กลับไปที่หน้ารายงาน
       batch:
+        add_to_report: 'เพิ่มไปยังรายงาน #%{id}'
         remove_from_report: เอาออกจากรายงาน
         report: รายงาน
+      contents: เนื้อหา
       deleted: ลบแล้ว
       favourites: รายการโปรด
       history: ประวัติรุ่น
@@ -814,12 +824,17 @@ th:
       media:
         title: สื่อ
       metadata: ข้อมูลอภิพันธุ์
+      no_history: ไม่มีการแก้ไขโพสต์นี้
       no_status_selected: ไม่มีการเปลี่ยนแปลงโพสต์เนื่องจากไม่มีการเลือก
       open: เปิดโพสต์
       original_status: โพสต์ดั้งเดิม
       reblogs: การดัน
+      replied_to_html: ตอบกลับ %{acct_link}
       status_changed: เปลี่ยนโพสต์แล้ว
+      status_title: โพสต์โดย @%{name}
+      title: โพสต์ของบัญชี - @%{name}
       trending: กำลังนิยม
+      view_publicly: ดูแบบสาธารณะ
       visibility: การมองเห็น
       with_media: มีสื่อ
     strikes:
