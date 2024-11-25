@@ -18,6 +18,7 @@ class ActivityPub::FetchAllRepliesWorker
   def perform(parent_status_id, options = {})
     @parent_status = Status.find(parent_status_id)
     return unless @parent_status.should_fetch_replies?
+
     @parent_status.touch(:fetched_replies_at)
     Rails.logger.debug { "FetchAllRepliesWorker - #{@parent_status.uri}: Fetching all replies for status: #{@parent_status}" }
 
