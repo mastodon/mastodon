@@ -1073,7 +1073,7 @@ es:
     remove: Desvincular alias
   appearance:
     advanced_web_interface: Interfaz web avanzada
-    advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, línea de tiempo federada, cualquier número de listas y etiquetas.'
+    advanced_web_interface_hint: 'Si quieres aprovechar todo el ancho de tu pantalla, la interfaz web avanzada te permite configurar muchas columnas diferentes para ver toda la información que quieras al mismo tiempo: Inicio, notificaciones, cronología federada, cualquier número de listas y etiquetas.'
     animations_and_accessibility: Animaciones y accesibilidad
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
@@ -1115,7 +1115,7 @@ es:
       welcome_title: "¡Te damos la bienvenida, %{name}!"
       wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
     delete_account: Borrar cuenta
-    delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
+    delete_account_html: Si deseas eliminar tu cuenta, puedes <a href="%{path}">hacerlo aquí</a>. Se te pedirá una confirmación.
     description:
       prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodon!"
       prefix_sign_up: "¡Únete a Mastodon hoy!"
@@ -1157,7 +1157,7 @@ es:
     set_new_password: Establecer nueva contraseña
     setup:
       email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu dirección de correo electrónico si está mal.
-      email_settings_hint_html: Pulsa el enlace que te hemos enviado para verificar %{email}. Esperaremos aquí mismo.
+      email_settings_hint_html: Haz clic en el enlace que te hemos enviado para verificar %{email}. Te esperamos aquí.
       link_not_received: "¿No recibiste un enlace?"
       new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
       title: Revisa tu bandeja de entrada
@@ -1299,7 +1299,7 @@ es:
   featured_tags:
     add_new: Añadir nuevo
     errors:
-      limit: Ya has alcanzado la cantidad máxima de hashtags
+      limit: Ya has alcanzado la cantidad máxima de etiquetas
     hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
@@ -1352,7 +1352,7 @@ es:
       one: "<strong>%{count}</strong> elemento que coincide con su búsqueda está seleccionado."
       other: Todos los <strong>%{count}</strong> elementos que coinciden con su búsqueda están seleccionados.
     cancel: Cancelar
-    changes_saved_msg: "¡Cambios guardados con éxito!"
+    changes_saved_msg: "¡Los cambios se han guardado correctamente!"
     confirm: Confirmar
     copy: Copiar
     delete: Eliminar
@@ -1376,7 +1376,7 @@ es:
       too_large: El archivo es demasiado grande
     failures: Fallos
     imported: Importado
-    mismatched_types_warning: Parece que podrías haber seleccionado el tipo incorrecto para esta importación, por favor vuelve a verificarlo.
+    mismatched_types_warning: Parece que has seleccionado el tipo incorrecto para esta importación, vuelve a comprobarlo.
     modes:
       merge: Unir
       merge_long: Mantener registros existentes y añadir nuevos
@@ -1737,7 +1737,7 @@ es:
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar
-    featured_tags: Hashtags destacados
+    featured_tags: Etiquetas destacadas
     import: Importar
     import_and_export: Importar y exportar
     migrate: Migración de cuenta
@@ -1777,8 +1777,8 @@ es:
     content_warning: 'Alerta de contenido: %{warning}'
     default_language: Igual que el idioma de la interfaz
     disallowed_hashtags:
-      one: 'contenía un hashtag no permitido: %{tags}'
-      other: 'contenía los hashtags no permitidos: %{tags}'
+      one: 'contenía una etiqueta no permitida: %{tags}'
+      other: 'contenía las etiquetas no permitidas: %{tags}'
     edited_at_html: Editado %{date}
     errors:
       in_reply_not_found: La publicación a la que intentas responder no existe.
@@ -1803,9 +1803,9 @@ es:
     exceptions: Excepciones
     explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente, a lo largo de un tiempo, cuando el servidor no está ocupado. Por este motivo, puede que tus publicaciones sean borradas algo después de que alcancen el umbral de tiempo especificado.
     ignore_favs: Ignorar favoritos
-    ignore_reblogs: Ignorar reblogueos
+    ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Excepciones basadas en interacciones
-    interaction_exceptions_explanation: Ten en cuenta que no hay garantía de que se eliminen las publicaciones que están por debajo de los umbrales de favoritos o de reblogueos si los han superado en algún momento.
+    interaction_exceptions_explanation: Ten en cuenta que no hay garantía de que se eliminen las publicaciones que están por debajo de los umbrales de favoritos o de impulsos si los han superado en algún momento.
     keep_direct: Mantener mensajes directos
     keep_direct_hint: No elimina ninguno de tus mensajes directos
     keep_media: Mantener publicaciones con multimedia adjunto
@@ -1831,7 +1831,7 @@ es:
     min_favs: Mantener mensajes con un número de favoritos mayor que
     min_favs_hint: No borra ninguna de las publicaciones que hayan recibido al menos esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
     min_reblogs: Mantener publicaciones reblogueadas más de
-    min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido reblogueadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de reblogueos
+    min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido impulsadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de impulsos
   stream_entries:
     sensitive_content: Contenido sensible
   strikes:
@@ -1982,7 +1982,7 @@ es:
   verification:
     extra_instructions_html: <strong>Consejo:</strong> El enlace en tu web puede ser invisible. La parte importante es <code>rel="me"</code>, que evita la suplantación de identidad en sitios con contenido generado por el usuario. Puedes incluso usar una etiqueta <code>enlace</code> en el encabezado de la página en vez de <code>a</code>, pero el HTML debe ser accesible sin ejecutar JavaScript.
     here_is_how: Así es como se hace
-    hint_html: "<strong>Verificar tu identidad en Mastodon es para todos.</strong> Basado en estándares web abiertos, ahora y para siempre. Todo lo que necesitas es un sitio web propio que la gente reconozca. Cuando enlaces a este sitio web desde tu perfil, comprobaremos que el sitio web se enlaza a tu perfil y mostraremos un indicador visual en él."
+    hint_html: "<strong>Verificar tu identidad en Mastodon es para todos.</strong> Basado en estándares web abiertos, ahora y siempre gratis. Todo lo que necesitas es un sitio web personal por el que la gente te reconozca. Cuando enlaces a este sitio web desde tu perfil, comprobaremos que el sitio web enlaza con tu perfil y mostraremos un indicador visual en él."
     instructions_html: Copia y pega el siguiente código en el HTML de tu sitio web. A continuación, añade la dirección de su sitio web en uno de los campos extra de tu perfil desde la pestaña "Editar perfil" y guarda los cambios.
     verification: Verificación
     verified_links: Tus enlaces verificados
