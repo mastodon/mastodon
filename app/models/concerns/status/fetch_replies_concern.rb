@@ -16,7 +16,7 @@ module Status::FetchRepliesConcern
     scope :fetched_recently, -> { where(fetched_replies_at: FETCH_REPLIES_DEBOUNCE.ago..) }
     scope :not_fetched_recently, -> { where(fetched_replies_at: ..FETCH_REPLIES_DEBOUNCE.ago).or(where(fetched_replies_at: nil)) }
 
-    scope :shouldnt_fetch_replies, -> { local.merge(created_recently).merge(fetched_recently) }
+    scope :should_not_fetch_replies, -> { local.merge(created_recently).merge(fetched_recently) }
     scope :should_fetch_replies, -> { local.invert_where.merge(not_created_recently).merge(not_fetched_recently) }
   end
 
