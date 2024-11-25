@@ -44,6 +44,26 @@ module Mastodon::CLI
       say('OK', :green)
     end
 
+    desc 'vacuum', 'Remove home feeds of inactive users from Redis'
+    long_desc <<-LONG_DESC
+      Running this task should not be needed in most cases, as Mastodon will
+      automatically clean up feeds from inactive accounts every day.
+
+      However, this task is more aggressive in order to clean up feeds that
+      may have been missed because of bugs or database mishaps.
+    LONG_DESC
+    def vacuum
+      say('Deleting home feeds for deleted local users…')
+      Account.local.where.missing(:user).select(:id).in_batches do |accounts|
+        FeedManager.instance.clean_feeds!(:home, accounts.ids)
+      end
+
+      say('Deleting home feeds for remote users…')
+      Account.remote.select(:id).in_batches do |accounts|
+        FeedManager.instance.clean_feeds!(:home, accounts.ids)
+      end
+    end
+
     private
 
     def active_user_accounts
