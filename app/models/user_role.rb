@@ -142,7 +142,7 @@ class UserRole < ApplicationRecord
     other_role.nil? || position > other_role.position
   end
 
-  def enables_delivery?(role)
+  def bypass_block?(role)
     overrides?(role) && highlighted? && can?(*Flags::CATEGORIES[:moderation])
   end
 

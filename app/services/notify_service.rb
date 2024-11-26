@@ -134,7 +134,7 @@ class NotifyService < BaseService
     end
 
     def from_staff?
-      @sender.local? && @sender.user.present? && @sender.user_role&.enables_delivery?(@recipient.user_role)
+      @sender.local? && @sender.user.present? && @sender.user_role&.bypass_block?(@recipient.user_role)
     end
 
     def from_self?
