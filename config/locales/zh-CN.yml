@@ -1272,7 +1272,7 @@ zh-CN:
       request: 请求你的存档
       size: 大小
     blocks: 屏蔽的用户
-    bookmarks: 书签
+    bookmarks: 收藏
     csv: CSV
     domain_blocks: 域名屏蔽
     lists: 列表
@@ -1361,7 +1361,7 @@ zh-CN:
       blocking_html:
         other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>账户<strong>替换你的屏蔽列表</strong>。
       bookmarks_html:
-        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 条</strong>嘟文<strong>替换你的书签</strong>。
+        other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 条</strong>嘟文<strong>替换你的收藏列表</strong>。
       domain_blocking_html:
         other: 你即将使用来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个</strong>域名<strong>替换你的域名屏蔽列表</strong>。
       following_html:
@@ -1374,7 +1374,7 @@ zh-CN:
       blocking_html:
         other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个账号</strong>。
       bookmarks_html:
-        other: 你即将把来自<strong> %{filename} </strong>的<strong> %{count} 篇嘟文</strong>添加到你的<strong>书签</strong>中。
+        other: 你即将把来自<strong> %{filename} </strong>的<strong> %{count} 篇嘟文</strong>添加到你的<strong>收藏夹</strong>中。
       domain_blocking_html:
         other: 你即将<strong>屏蔽</strong>来自 <strong>%{filename}</strong> 的最多 <strong>%{count} 个域名</strong>。
       following_html:
@@ -1395,18 +1395,18 @@ zh-CN:
     time_started: 开始于
     titles:
       blocking: 正在导入被屏蔽的账户
-      bookmarks: 正在导入书签
+      bookmarks: 正在导入收藏
       domain_blocking: 正在导入被屏蔽的域名
       following: 正在导入关注的账户
       lists: 导入列表
       muting: 正在导入隐藏的账户
     type: 导入类型
     type_groups:
-      constructive: 关注和书签
+      constructive: 关注与收藏
       destructive: 屏蔽与隐藏
     types:
       blocking: 屏蔽列表
-      bookmarks: 书签
+      bookmarks: 收藏
       domain_blocking: 域名屏蔽列表
       following: 关注列表
       lists: 列表
@@ -1757,24 +1757,24 @@ zh-CN:
       unlisted_long: 对所有人可见，但不出现在公共时间线上
   statuses_cleanup:
     enabled: 自动删除旧嘟文
-    enabled_hint: 达到指定过期时间后自动删除你的嘟文，除非满足下列条件之一
+    enabled_hint: 自动删除你发布的超过指定期限的嘟文，除非满足下列条件之一
     exceptions: 例外
-    explanation: 删除嘟文是一个消耗系统资源的耗时操作，所以这个操作会在服务器空闲时完成。因此，你的嘟文可能会在达到过期阈值之后一段时间才会被删除。
-    ignore_favs: 取消喜欢
-    ignore_reblogs: 忽略转嘟
+    explanation: 删除嘟文会占用大量服务器资源，所以这个操作将在服务器空闲时完成。因此，你的嘟文可能会在达到删除期限之后一段时间才会被删除。
+    ignore_favs: 喜欢数阈值
+    ignore_reblogs: 转嘟数阈值
     interaction_exceptions: 基于互动的例外
-    interaction_exceptions_explanation: 请注意，如果嘟文超出转嘟和喜欢的阈值之后，又降到阈值以下，则可能不会被删除。
+    interaction_exceptions_explanation: 请注意，如果嘟文的转嘟数和喜欢数超过保留阈值之后，又降到阈值以下，则可能不会被删除。
     keep_direct: 保留私信
-    keep_direct_hint: 不会删除你的任何私信
+    keep_direct_hint: 不删除你的任何私信
     keep_media: 保留带媒体附件的嘟文
-    keep_media_hint: 不会删除任何包含媒体附件的嘟文
+    keep_media_hint: 不删除任何包含媒体附件的嘟文
     keep_pinned: 保留置顶嘟文
-    keep_pinned_hint: 不会删除你的任何置顶嘟文
+    keep_pinned_hint: 不删除你的任何置顶嘟文
     keep_polls: 保留投票
-    keep_polls_hint: 不会删除你的任何投票
-    keep_self_bookmark: 保存被你加入书签的嘟文
-    keep_self_bookmark_hint: 如果你已将自己的嘟文添加书签，就不会删除这些嘟文
-    keep_self_fav: 保留你点赞的嘟文
+    keep_polls_hint: 不删除你的任何投票
+    keep_self_bookmark: 保存你收藏的的嘟文
+    keep_self_bookmark_hint: 不删除你收藏的嘟文
+    keep_self_fav: 保留你喜欢的嘟文
     keep_self_fav_hint: 如果你喜欢了自己的嘟文，则不会删除这些嘟文
     min_age:
       '1209600': 2周
@@ -1786,8 +1786,8 @@ zh-CN:
       '63113904': 两年
       '7889238': 3个月
     min_age_label: 过期阈值
-    min_favs: 保留如下嘟文：点赞数超过
-    min_favs_hint: 点赞数超过该阈值的的嘟文都不会被删除。如果留空，则无论嘟文获得多少点赞，都将被删除。
+    min_favs: 保留如下嘟文：喜欢数超过
+    min_favs_hint: 获得喜欢数超过该阈值的的嘟文都不会被删除。如果留空，则无论嘟文获得多少点赞，都将被删除。
     min_reblogs: 保留如下嘟文：转嘟数超过
     min_reblogs_hint: 转嘟数超过该阈值的的嘟文不会被删除。如果留空，则无论嘟文获得多少转嘟，都将被删除。
   stream_entries:
@@ -1899,13 +1899,13 @@ zh-CN:
       edit_profile_step: 完善个人资料，提升你的互动体验。
       edit_profile_title: 个性化你的个人资料
       explanation: 下面是几个小贴士，希望它们能帮到你
-      feature_action: 了解更多
+      feature_action: 详细了解
       feature_audience: Mastodon 为你提供了无需中间商即可管理受众的独特可能。Mastodon 可被部署在你自己的基础设施上，允许你关注其它任何 Mastodon 在线服务器的用户，或被任何其他在线 Mastodon 服务器的用户关注，并且不受你之外的任何人控制。
       feature_audience_title: 自由吸引你的受众
       feature_control: 你最清楚你想在你自己的主页中看到什么动态。没有算法或广告浪费你的时间。你可以用一个账号关注任何 Mastodon 服务器上的任何人，并按时间顺序获得他们发布的嘟文，让你的互联网的角落更合自己的心意。
       feature_control_title: 掌控自己的时间线
       feature_creativity: Mastodon 支持音频、视频和图片、无障碍描述、投票、内容警告， 动画头像、自定义表情包、缩略图裁剪控制等功能，帮助你在网上尽情表达自己。无论你是要发布你的艺术作品、音乐还是播客，Mastodon 都能为你服务。
-      feature_creativity_title: 无与伦比的创造力
+      feature_creativity_title: 尽情发挥创造力
       feature_moderation: Mastodon 将决策权交还给你。每个服务器都会创建自己的规则和条例，并在站点内施行，而不是像企业社交媒体那样居高临下，这使得它可以最灵活地响应不同人群的需求。加入一个你认同其规则的服务器，或托管你自己的服务器。
       feature_moderation_title: 管理，本应如此
       follow_action: 关注
