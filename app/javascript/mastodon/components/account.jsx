@@ -24,9 +24,6 @@ import { DisplayName } from './display_name';
 import { RelativeTimestamp } from './relative_timestamp';
 
 const messages = defineMessages({
-  follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Withdraw follow request' },
   unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
   unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
   mute_notifications: { id: 'account.mute_notifications_short', defaultMessage: 'Mute notifications' },
