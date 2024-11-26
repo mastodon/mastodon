@@ -20,7 +20,7 @@ import {
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import { Avatar } from 'mastodon/components/avatar';
 import { Button } from 'mastodon/components/button';
-import Column from 'mastodon/components/column';
+import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { ColumnSearchHeader } from 'mastodon/components/column_search_header';
 import { FollowersCounter } from 'mastodon/components/counters';
