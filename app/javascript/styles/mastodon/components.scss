@@ -44,6 +44,10 @@
     color: $ui-primary-color;
     cursor: default;
   }
+
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
+  }
 }
 
 .button {
@@ -419,10 +423,10 @@ body > [data-popper-placement] {
 
   &__suggestions {
     box-shadow: var(--dropdown-shadow);
-    background: $ui-base-color;
+    background: var(--input-background-color);
     border: 1px solid var(--background-border-color);
     border-radius: 0 0 4px 4px;
-    color: $secondary-text-color;
+    color: var(--on-input-color);
     font-size: 14px;
     padding: 0;
 
@@ -435,7 +439,7 @@ body > [data-popper-placement] {
       font-size: 14px;
       line-height: 20px;
       letter-spacing: 0.25px;
-      color: $secondary-text-color;
+      color: var(--on-input-color);
 
       &:last-child {
         border-radius: 0 0 4px 4px;
@@ -549,7 +553,7 @@ body > [data-popper-placement] {
     transition: border-color 300ms linear;
     min-height: 0;
     position: relative;
-    background: $ui-base-color;
+    background: var(--input-background-color);
     overflow-y: auto;
 
     &.active {
@@ -622,7 +626,7 @@ body > [data-popper-placement] {
     width: 100%;
     margin: 0;
     color: $secondary-text-color;
-    background: $ui-base-color;
+    background: var(--input-background-color);
     font-family: inherit;
     font-size: 14px;
     padding: 12px;
@@ -3247,203 +3251,6 @@ $ui-header-logo-wordmark-width: 99px;
   }
 }
 
-.onboarding__footer {
-  margin-top: 30px;
-  color: $dark-text-color;
-  text-align: center;
-  font-size: 14px;
-
-  .link-button {
-    display: inline-block;
-    color: inherit;
-    font-size: inherit;
-  }
-}
-
-.onboarding__link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  color: $highlight-text-color;
-  background: lighten($ui-base-color, 4%);
-  border-radius: 8px;
-  padding: 10px 15px;
-  box-sizing: border-box;
-  font-size: 14px;
-  font-weight: 500;
-  height: 56px;
-  text-decoration: none;
-
-  svg {
-    height: 1.5em;
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    background: lighten($ui-base-color, 8%);
-  }
-}
-
-.onboarding__illustration {
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  max-height: 200px;
-  width: auto;
-}
-
-.onboarding__lead {
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-  color: $darker-text-color;
-  text-align: center;
-  margin-bottom: 30px;
-
-  strong {
-    font-weight: 700;
-    color: $secondary-text-color;
-  }
-}
-
-.onboarding__links {
-  margin-bottom: 30px;
-
-  & > * {
-    margin-bottom: 2px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
-.onboarding__steps {
-  margin-bottom: 30px;
-
-  &__item {
-    background: lighten($ui-base-color, 4%);
-    border: 0;
-    border-radius: 8px;
-    display: flex;
-    width: 100%;
-    box-sizing: border-box;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    padding-inline-end: 15px;
-    margin-bottom: 2px;
-    text-decoration: none;
-    text-align: start;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: lighten($ui-base-color, 8%);
-    }
-
-    &__icon {
-      flex: 0 0 auto;
-      border-radius: 50%;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      color: $highlight-text-color;
-      font-size: 1.2rem;
-
-      @media screen and (width >= 600px) {
-        display: flex;
-      }
-    }
-
-    &__progress {
-      flex: 0 0 auto;
-      background: $valid-value-color;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 21px;
-      height: 21px;
-      color: $primary-text-color;
-
-      svg {
-        height: 14px;
-        width: auto;
-      }
-    }
-
-    &__go {
-      flex: 0 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 21px;
-      height: 21px;
-      color: $highlight-text-color;
-      font-size: 17px;
-
-      svg {
-        height: 1.5em;
-        width: auto;
-      }
-    }
-
-    &__description {
-      flex: 1 1 auto;
-      line-height: 20px;
-
-      h6 {
-        color: $highlight-text-color;
-        font-weight: 500;
-        font-size: 14px;
-      }
-
-      p {
-        color: $darker-text-color;
-        overflow: hidden;
-      }
-    }
-  }
-}
-
-.follow-recommendations {
-  background: darken($ui-base-color, 4%);
-  border-radius: 8px;
-  margin-bottom: 30px;
-
-  .account:last-child {
-    border-bottom: 0;
-  }
-
-  &__empty {
-    text-align: center;
-    color: $darker-text-color;
-    font-weight: 500;
-    padding: 40px;
-  }
-}
-
-.tip-carousel {
-  border: 1px solid transparent;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 30px;
-
-  &:focus {
-    outline: 0;
-    border-color: $highlight-text-color;
-  }
-
-  .media-modal__pagination {
-    margin-bottom: 0;
-  }
-}
-
 .copy-paste-text {
   background: lighten($ui-base-color, 4%);
   border-radius: 8px;
@@ -3490,9 +3297,10 @@ $ui-header-logo-wordmark-width: 99px;
 .onboarding__profile {
   position: relative;
   margin-bottom: 40px + 20px;
+  margin-top: -20px;
 
   .app-form__avatar-input {
-    border: 2px solid $ui-base-color;
+    border: 2px solid var(--background-color);
     position: absolute;
     inset-inline-start: -2px;
     bottom: -40px;
@@ -5569,7 +5377,7 @@ a.status-card {
     inset-inline-start: 0;
     margin-top: -2px;
     width: 100%;
-    background: $ui-base-color;
+    background: var(--input-background-color);
     border: 1px solid var(--background-border-color);
     border-radius: 0 0 4px 4px;
     box-shadow: var(--dropdown-shadow);
@@ -11116,19 +10924,22 @@ noscript {
 
 .column-search-header {
   display: flex;
-  border-radius: 4px 4px 0 0;
+  gap: 12px;
+  align-items: center;
   border: 1px solid var(--background-border-color);
-
-  .column-header__back-button.compact {
-    flex: 0 0 auto;
-    color: $primary-text-color;
-  }
+  border-top: 0;
+  border-bottom: 0;
+  padding: 16px;
+  padding-bottom: 8px;
 
   input {
-    background: transparent;
-    border: 0;
-    color: $primary-text-color;
+    background: var(--input-background-color);
+    border: 1px solid var(--background-border-color);
+    color: var(--on-input-color);
+    padding: 12px;
     font-size: 16px;
+    line-height: normal;
+    border-radius: 4px;
     display: block;
     flex: 1 1 auto;
 

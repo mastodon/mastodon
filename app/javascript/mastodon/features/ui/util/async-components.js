@@ -158,8 +158,12 @@ export function Directory () {
   return import(/* webpackChunkName: "features/directory" */'../../directory');
 }
 
-export function Onboarding () {
-  return import(/* webpackChunkName: "features/onboarding" */'../../onboarding');
+export function OnboardingProfile () {
+  return import(/* webpackChunkName: "features/onboarding" */'../../onboarding/profile');
+}
+
+export function OnboardingFollows () {
+  return import(/* webpackChunkName: "features/onboarding" */'../../onboarding/follows');
 }
 
 export function CompareHistoryModal () {
