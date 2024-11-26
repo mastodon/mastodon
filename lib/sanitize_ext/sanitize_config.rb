@@ -89,17 +89,17 @@ class Sanitize
       annotation = semantics.children.find(&is_annotation_with_encoding.curry['application/x-tex'])
       if annotation
         text = if math.attributes['display']&.value == 'block'
-          "$$#{annotation.text}$$"
-        else
-          "$#{annotation.text}$"
-        end
-        math.replace(Nokogiri::XML::Text.new(text, math.document))
+                 "$$#{annotation.text}$$"
+               else
+                 "$#{annotation.text}$"
+               end
+        math.replace(math.document.create_text_node(text))
         return
       end
       # Don't bother surrounding 'text/plain' annotations with dollar signs,
       # since it isn't LaTeX
       annotation = semantics.children.find(&is_annotation_with_encoding.curry['text/plain'])
-      math.replace(Nokogiri::XML::Text.new(annotation.text, math.document)) unless annotation.nil?
+      math.replace(math.document.create_text_node(annotation.text)) unless annotation.nil?
     end
 
     MASTODON_STRICT = freeze_config(
