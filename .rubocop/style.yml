@@ -19,6 +19,9 @@ Style/HashSyntax:
   EnforcedShorthandSyntax: either
   EnforcedStyle: ruby19_no_mixed_keys
 
+Style/KeywordArgumentsMerging:
+  Enabled: false
+
 Style/NumericLiterals:
   AllowedPatterns:
     - \d{4}_\d{2}_\d{2}_\d{6}
@@ -36,6 +39,9 @@ Style/RedundantFetchBlock:
 
 Style/RescueStandardError:
   EnforcedStyle: implicit
+
+Style/SafeNavigationChainLength:
+  Enabled: false
 
 Style/SymbolArray:
   Enabled: false
