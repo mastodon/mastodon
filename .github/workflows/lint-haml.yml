@@ -43,4 +43,4 @@ jobs:
       - name: Run haml-lint
         run: |
           echo "::add-matcher::.github/workflows/haml-lint-problem-matcher.json"
-          bundle exec haml-lint --reporter github
+          bin/haml-lint --reporter github

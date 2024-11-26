@@ -20,18 +20,23 @@ RSpec.describe AnnualReport::MostUsedApps do
     context 'with an active account' do
       let(:account) { Fabricate :account }
 
-      let(:application) { Fabricate :application }
+      let(:application) { Fabricate :application, name: 'App' }
+      let(:most_application) { Fabricate :application, name: 'Most App' }
 
       before do
         _other = Fabricate :status
         Fabricate.times 2, :status, account: account, application: application
+        Fabricate.times 3, :status, account: account, application: most_application
       end
 
       it 'builds a report for an account' do
         expect(subject.generate)
           .to include(
-            most_used_apps: contain_exactly(
-              include(name: application.name, count: 2)
+            most_used_apps: eq(
+              [
+                { name: most_application.name, count: 3 },
+                { name: application.name, count: 2 },
+              ]
             )
           )
       end

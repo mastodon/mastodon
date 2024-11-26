@@ -1255,11 +1255,13 @@ code {
 }
 
 .app-form {
+  padding: 16px;
+
   &__avatar-input,
   &__header-input {
     display: block;
     border-radius: 8px;
-    background: var(--dropdown-background-color);
+    background: var(--surface-variant-background-color);
     position: relative;
     cursor: pointer;
 
@@ -1307,7 +1309,7 @@ code {
     }
 
     &:hover {
-      background-color: var(--dropdown-border-color);
+      background-color: var(--surface-variant-active-background-color);
     }
   }
 
@@ -1368,6 +1370,57 @@ code {
       display: flex;
       border-inline-start: 1px solid var(--background-border-color);
       padding-inline-start: 16px;
+    }
+  }
+
+  &__link {
+    display: flex;
+    gap: 16px;
+    padding: 8px 0;
+    align-items: center;
+    text-decoration: none;
+    color: $primary-text-color;
+    margin-bottom: 16px;
+
+    &__text {
+      flex: 1 1 auto;
+      font-size: 14px;
+      line-height: 20px;
+      color: $darker-text-color;
+
+      strong {
+        font-weight: 600;
+        display: block;
+        color: $primary-text-color;
+      }
+    }
+  }
+}
+
+.avatar-pile {
+  display: flex;
+  align-items: center;
+
+  img {
+    display: block;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--background-color);
+    background: var(--surface-background-color);
+    margin-inline-end: -16px;
+    transform: rotate(0);
+
+    &:first-child {
+      transform: rotate(-4deg);
+    }
+
+    &:nth-child(2) {
+      transform: rotate(-2deg);
+    }
+
+    &:last-child {
+      margin-inline-end: 0;
     }
   }
 }

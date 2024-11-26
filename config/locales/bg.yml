@@ -226,20 +226,26 @@ bg:
         approve_appeal_html: "%{name} одобри обжалването на решение за модериране от %{target}"
         approve_user_html: "%{name} одобри регистрирането от %{target}"
         assigned_to_self_report_html: "%{name} възложи на себе си доклад %{target}"
+        change_email_user_html: "%{name} промени адреса на имейла на потребителя %{target}"
         change_role_user_html: "%{name} промени ролята на %{target}"
+        confirm_user_html: "%{name} потвърди адреса на имейла на потребителя %{target}"
         create_account_warning_html: "%{name} изпрати предупреждение до %{target}"
         create_announcement_html: "%{name} създаде ново оповестяване %{target}"
+        create_canonical_email_block_html: "%{name} блокира имейл с хеш %{target}"
         create_custom_emoji_html: "%{name} качи ново емоджи %{target}"
         create_domain_allow_html: "%{name} позволи федерирането с домейн %{target}"
         create_domain_block_html: "%{name} блокира домейн %{target}"
+        create_email_domain_block_html: "%{name} блокира домейн за е-поща %{target}"
         create_ip_block_html: "%{name} създаде правило за IP %{target}"
         create_unavailable_domain_html: "%{name} спря доставянето до домейн %{target}"
         create_user_role_html: "%{name} създаде роля %{target}"
         demote_user_html: "%{name} понижи потребителя %{target}"
         destroy_announcement_html: "%{name} изтри оповестяване %{target}"
+        destroy_canonical_email_block_html: "%{name} отблокира имейла с хеш %{target}"
         destroy_custom_emoji_html: "%{name} изтри емоджито %{target}"
         destroy_domain_allow_html: "%{name} забрани федерирация с домейн %{target}"
         destroy_domain_block_html: "%{name} отблокира домейн %{target}"
+        destroy_email_domain_block_html: "%{name} отблокира домейн за е-поща %{target}"
         destroy_instance_html: "%{name} прочисти домейн %{target}"
         destroy_ip_block_html: "%{name} изтри правило за IP %{target}"
         destroy_status_html: "%{name} премахна публикация от %{target}"
@@ -807,6 +813,7 @@ bg:
       original_status: Първообразна публикация
       reblogs: Блогване пак
       status_changed: Публикацията променена
+      title: Публикации на акаунт - @%{name}
       trending: Изгряващи
       visibility: Видимост
       with_media: С мултимедия
@@ -1104,8 +1111,10 @@ bg:
     security: Сигурност
     set_new_password: Задаване на нова парола
     setup:
+      email_below_hint_html: Проверете папката си за спам или поискайте друго е-писмо. Може да поправите адреса на имейла си, ако е грешен.
       email_settings_hint_html: Щракнете на връзката за потвърждаване, която ви изпратихме до %{email}. Ще ви почакаме тук.
       link_not_received: Не получихте ли връзка?
+      new_confirmation_instructions_sent: До няколко минути ще получите друго е-писмо с връзка за потвърждаване!
       title: Проверете входящата си поща
     sign_in:
       preamble_html: Влезте с идентификационните данни за <strong>%{domain}</strong>. Ако вашият акаунт е хостван на различен сървър, няма да можете да влезете в този.
@@ -1116,6 +1125,7 @@ bg:
       title: Първоначални настройки за %{domain}.
     status:
       account_status: Състояние на акаунта
+      confirming: Чака се потвърждението на имейла да завърши.
       functional: Вашият акаунт е в изправност.
       pending: Вашето приложение чака преглед от персонала ни. Това може да отнеме време. Ще получите е-писмо, ако приложението ви се одобри.
       redirecting_to: Вашият акаунт е бездеен, защото сега се пренасочва към %{acct}.
@@ -1125,6 +1135,8 @@ bg:
     use_security_key: Употреба на ключ за сигурност
   author_attribution:
     example_title: Примерен текст
+    hint_html: Пишете ли новинарски статии или блогове извън Mastodon? Управлявайте как ви приписват авторството, когато са споделени в Mastodon.
+    instructions: 'Уверете се, че този код е в HTML на статията ви:'
     more_from_html: Още от %{name}
     s_blog: Блогът на %{name}
     then_instructions: Тогава добавете име на домейна на публикацията в долното поле.
@@ -1165,6 +1177,9 @@ bg:
       before: 'Прочетете внимателно тези бележки преди да продължите:'
       caches: Съдържание, което може да е кеширано от други сървъри, може да се задържи
       data_removal: Ваши публикации и други данни ще бъдат завинаги премахнати
+      email_change_html: Може да <a href="%{path}">промените адреса на имейла си</a>, без да изтривате акаунта си
+      email_contact_html: Ако още не сте го получили, то обърнете се за помощ към <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Ако не сте получили е-писмо за потвърждение, може да го <a href="%{path}">заявите отново</a>
       irreversible: Няма да може да възстановите или да задействате пак акаунта си
       more_details_html: За повече детайли прегледайте <a href="%{terms_path}">декларацията за поверителност</a>.
       username_available: Вашето потребителско име ще стане налично отново
@@ -1392,6 +1407,7 @@ bg:
     unsubscribe:
       action: Да, да се спре абонамента
       complete: Спрян абонамент
+      confirmation_html: Наистина ли искате да спрете абонамента от получаването на %{type} за Mastodon в %{domain} към имейла си при %{email}? Може винаги пак да се абонирате от своите <a href="%{settings_path}">настройки за известяване по е-поща</a>.
       title: Спиране на абонамента
   media_attachments:
     validations:
