@@ -143,7 +143,7 @@ export const Follows: React.FC<{
         isLoading={isLoading || isLoadingSearch}
         footer={
           <>
-            <div className='spacer' />
+            {displayedAccountIds.length > 0 && <div className='spacer' />}
 
             <div className='column-footer'>
               <Link className='button button--block' to='/home'>

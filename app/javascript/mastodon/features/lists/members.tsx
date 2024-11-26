@@ -9,7 +9,6 @@ import { useDebouncedCallback } from 'use-debounce';
 
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
-import { fetchFollowing } from 'mastodon/actions/accounts';
 import { importFetchedAccounts } from 'mastodon/actions/importer';
 import { fetchList } from 'mastodon/actions/lists';
 import { apiRequest } from 'mastodon/api';
@@ -29,7 +28,6 @@ import { DisplayName } from 'mastodon/components/display_name';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { VerifiedBadge } from 'mastodon/components/verified_badge';
-import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
@@ -121,9 +119,6 @@ const ListMembers: React.FC<{
   const { id } = useParams<{ id: string }>();
   const intl = useIntl();
 
-  const followingAccountIds = useAppSelector(
-    (state) => state.user_lists.getIn(['following', me, 'items']) as string[],
-  );
   const [searching, setSearching] = useState(false);
   const [accountIds, setAccountIds] = useState<string[]>([]);
   const [searchAccountIds, setSearchAccountIds] = useState<string[]>([]);
@@ -145,8 +140,6 @@ const ListMembers: React.FC<{
         .catch(() => {
           setLoading(false);
         });
-
-      dispatch(fetchFollowing(me));
     }
   }, [dispatch, id]);
 
@@ -215,8 +208,8 @@ const ListMembers: React.FC<{
 
   let displayedAccountIds: string[];
 
-  if (mode === 'add') {
-    displayedAccountIds = searching ? searchAccountIds : followingAccountIds;
+  if (mode === 'add' && searching) {
+    displayedAccountIds = searchAccountIds;
   } else {
     displayedAccountIds = accountIds;
   }
@@ -250,17 +243,15 @@ const ListMembers: React.FC<{
         showLoading={loading && displayedAccountIds.length === 0}
         hasMore={false}
         footer={
-          mode === 'remove' && (
-            <>
-              {displayedAccountIds.length > 0 && <div className='spacer' />}
+          <>
+            {displayedAccountIds.length > 0 && <div className='spacer' />}
 
-              <div className='column-footer'>
-                <Link to={`/lists/${id}`} className='button button--block'>
-                  <FormattedMessage id='lists.done' defaultMessage='Done' />
-                </Link>
-              </div>
-            </>
-          )
+            <div className='column-footer'>
+              <Link to={`/lists/${id}`} className='button button--block'>
+                <FormattedMessage id='lists.done' defaultMessage='Done' />
+              </Link>
+            </div>
+          </>
         }
         emptyMessage={
           mode === 'remove' ? (
