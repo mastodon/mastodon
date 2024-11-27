@@ -161,6 +161,7 @@ const ListMembers: React.FC<{
   const { id } = useParams<{ id: string }>();
   const intl = useIntl();
 
+  const list = useAppSelector((state) => state.lists.get(id));
   const [searching, setSearching] = useState(false);
   const [accountIds, setAccountIds] = useState<string[]>([]);
   const [searchAccountIds, setSearchAccountIds] = useState<string[]>([]);
@@ -288,7 +289,14 @@ const ListMembers: React.FC<{
             {displayedAccountIds.length > 0 && <div className='spacer' />}
 
             <div className='column-footer'>
-              <Link to={`/lists/${id}`} className='button button--block'>
+              <Link
+                to={
+                  list?.type === 'public_list'
+                    ? `/starter-pack/${id}-${list.slug}`
+                    : `/lists/${id}`
+                }
+                className='button button--block'
+              >
                 <FormattedMessage id='lists.done' defaultMessage='Done' />
               </Link>
             </div>

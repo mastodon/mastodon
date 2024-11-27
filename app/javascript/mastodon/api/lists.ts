@@ -30,3 +30,6 @@ export const apiRemoveAccountFromList = (listId: string, accountId: string) =>
   apiRequestDelete(`v1/lists/${listId}/accounts`, {
     account_ids: [accountId],
   });
+
+export const apiFollowList = (listId: string) =>
+  apiRequestPost(`v1/lists/${listId}/follow`);

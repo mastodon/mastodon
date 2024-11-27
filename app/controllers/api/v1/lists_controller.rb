@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class Api::V1::ListsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:lists' }, only: [:index, :show]
+  include Authorization
+
+  before_action -> { authorize_if_got_token! :read, :'read:lists' }, only: [:show]
+  before_action -> { doorkeeper_authorize! :read, :'read:lists' }, only: [:index]
   before_action -> { doorkeeper_authorize! :write, :'write:lists' }, except: [:index, :show]
 
-  before_action :require_user!
+  before_action :require_user!, except: [:show]
   before_action :set_list, except: [:index, :create]
 
   def index
@@ -13,6 +16,7 @@ class Api::V1::ListsController < Api::BaseController
   end
 
   def show
+    authorize @list, :show?
     render json: @list, serializer: REST::ListSerializer
   end
 
@@ -22,11 +26,13 @@ class Api::V1::ListsController < Api::BaseController
   end
 
   def update
+    authorize @list, :update?
     @list.update!(list_params)
     render json: @list, serializer: REST::ListSerializer
   end
 
   def destroy
+    authorize @list, :destroy?
     @list.destroy!
     render_empty
   end
@@ -34,10 +40,10 @@ class Api::V1::ListsController < Api::BaseController
   private
 
   def set_list
-    @list = List.where(account: current_account).find(params[:id])
+    @list = List.find(params[:id])
   end
 
   def list_params
-    params.permit(:title, :replies_policy, :exclusive)
+    params.permit(:title, :description, :type, :replies_policy, :exclusive)
   end
 end

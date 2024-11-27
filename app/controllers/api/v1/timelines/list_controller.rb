@@ -1,23 +1,25 @@
 # frozen_string_literal: true
 
 class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:lists' }
-  before_action :require_user!
+  include Authorization
+
+  before_action -> { authorize_if_got_token! :read, :'read:lists' }
   before_action :set_list
   before_action :set_statuses
 
   PERMITTED_PARAMS = %i(limit).freeze
 
   def show
+    authorize @list, :show?
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
-           relationships: StatusRelationshipsPresenter.new(@statuses, current_user.account_id)
+           relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
   end
 
   private
 
   def set_list
-    @list = List.where(account: current_account).find(params[:id])
+    @list = List.find(params[:id])
   end
 
   def set_statuses

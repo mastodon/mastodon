@@ -1,0 +1,6 @@
+- content_for :page_title, @list.title
+
+- content_for :header_tags do
+  = render 'og', list: @list
+
+= render partial: 'shared/web_app'

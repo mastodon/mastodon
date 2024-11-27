@@ -4375,7 +4375,6 @@ a.status-card {
 }
 
 .column-header__buttons {
-  height: 48px;
   display: flex;
 }
 
@@ -4425,6 +4424,16 @@ a.status-card {
   &:disabled {
     color: $dark-text-color;
     cursor: default;
+  }
+
+  &.icon-button {
+    background: transparent;
+  }
+
+  &.copied {
+    color: $valid-value-color;
+    transition: none;
+    background-color: rgba($valid-value-color, 0.15);
   }
 }
 
@@ -10947,6 +10956,50 @@ noscript {
       font-weight: 500;
       color: $secondary-text-color;
     }
+  }
+}
+
+.lists__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  border: 1px solid var(--background-border-color);
+  border-top: 0;
+  gap: 24px;
+  font-size: 14px;
+  line-height: 20px;
+
+  &__title {
+    text-align: center;
+    text-wrap: balance;
+    color: $secondary-text-color;
+
+    h1 {
+      font-size: 22px;
+      line-height: 28px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-weight: 400;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: $darker-text-color;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 }
 

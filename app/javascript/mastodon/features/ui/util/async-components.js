@@ -38,6 +38,10 @@ export function ListTimeline () {
   return import('../../list_timeline');
 }
 
+export function PublicList () {
+  return import(/* webpackChunkName: "features/public_list" */'../../public_list');
+}
+
 export function Lists () {
   return import('../../lists');
 }

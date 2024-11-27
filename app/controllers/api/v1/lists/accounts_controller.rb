@@ -1,25 +1,30 @@
 # frozen_string_literal: true
 
 class Api::V1::Lists::AccountsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:lists' }, only: [:show]
+  include Authorization
+
+  before_action -> { authorize_if_got_token! :read, :'read:lists' }, only: [:show]
   before_action -> { doorkeeper_authorize! :write, :'write:lists' }, except: [:show]
 
-  before_action :require_user!
+  before_action :require_user!, except: [:show]
   before_action :set_list
 
   after_action :insert_pagination_headers, only: :show
 
   def show
+    authorize @list, :show?
     @accounts = load_accounts
     render json: @accounts, each_serializer: REST::AccountSerializer
   end
 
   def create
+    authorize @list, :update?
     AddAccountsToListService.new.call(@list, Account.find(account_ids))
     render_empty
   end
 
   def destroy
+    authorize @list, :update?
     RemoveAccountsFromListService.new.call(@list, Account.where(id: account_ids))
     render_empty
   end
@@ -27,7 +32,7 @@ class Api::V1::Lists::AccountsController < Api::BaseController
   private
 
   def set_list
-    @list = List.where(account: current_account).find(params[:list_id])
+    @list = List.find(params[:list_id])
   end
 
   def load_accounts
