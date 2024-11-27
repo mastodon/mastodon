@@ -5849,116 +5849,41 @@ a.status-card {
   }
 }
 
-.onboarding-modal,
-.error-modal,
-.embed-modal {
-  background: $ui-secondary-color;
-  color: $inverted-text-color;
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
+.modal-placeholder {
+  width: 588px;
+  min-height: 478px;
   flex-direction: column;
-}
+  background: var(--modal-background-color);
+  backdrop-filter: var(--background-filter);
+  border: 1px solid var(--modal-border-color);
+  border-radius: 16px;
 
-.error-modal__body {
-  height: 80vh;
-  width: 80vw;
-  max-width: 520px;
-  max-height: 420px;
-  position: relative;
-
-  & > div {
-    position: absolute;
-    top: 0;
-    inset-inline-start: 0;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 25px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  &__error {
+    padding: 24px;
     display: flex;
-    opacity: 0;
-    user-select: text;
-  }
-}
+    align-items: center;
+    flex-direction: column;
 
-.error-modal__body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.onboarding-modal__paginator,
-.error-modal__footer {
-  flex: 0 0 auto;
-  background: darken($ui-secondary-color, 8%);
-  display: flex;
-  padding: 25px;
-
-  & > div {
-    min-width: 33px;
-  }
-
-  .onboarding-modal__nav,
-  .error-modal__nav {
-    color: $lighter-text-color;
-    border: 0;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 10px 25px;
-    line-height: inherit;
-    height: auto;
-    margin: -10px;
-    border-radius: 4px;
-    background-color: transparent;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: darken($lighter-text-color, 4%);
-      background-color: darken($ui-secondary-color, 16%);
+    &__image {
+      width: 70%;
+      max-width: 350px;
     }
 
-    &.onboarding-modal__done,
-    &.onboarding-modal__next {
-      color: $inverted-text-color;
+    &__message {
+      text-align: center;
+      text-wrap: balance;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.25px;
 
-      &:hover,
-      &:focus,
-      &:active {
-        color: lighten($inverted-text-color, 4%);
+      &__actions {
+        margin-top: 24px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
       }
     }
-  }
-}
-
-.error-modal__footer {
-  justify-content: center;
-}
-
-.display-case {
-  text-align: center;
-  font-size: 15px;
-  margin-bottom: 15px;
-
-  &__label {
-    font-weight: 500;
-    color: $inverted-text-color;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    font-size: 12px;
-  }
-
-  &__case {
-    background: $ui-base-color;
-    color: $secondary-text-color;
-    font-weight: 500;
-    padding: 10px;
-    border-radius: 4px;
   }
 }
 
