@@ -51,5 +51,11 @@ RSpec.describe REST::StatusSerializer do
         expect(subject['favourites_count']).to eq(40)
       end
     end
+
+    context 'with created_at' do
+      it 'parses as RFC 3339 datetime' do
+        expect { DateTime.rfc3339(subject['created_at']) }.to_not raise_error
+      end
+    end
   end
 end
