@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PublishScheduledAnnouncementWorker do
+RSpec.describe PublishScheduledAnnouncementWorker do
   subject { described_class.new }
 
   let!(:remote_account) { Fabricate(:account, domain: 'domain.com', username: 'foo', uri: 'https://domain.com/users/foo') }

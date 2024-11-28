@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UnsuspendAccountService, type: :service do
+RSpec.describe UnsuspendAccountService do
   shared_context 'with common context' do
     subject { described_class.new.call(account) }
 
@@ -45,7 +45,7 @@ RSpec.describe UnsuspendAccountService, type: :service do
         remote_follower.follow!(account)
       end
 
-      it 'merges back into feeds of local followers and sends update', :sidekiq_inline do
+      it 'merges back into feeds of local followers and sends update', :inline_jobs do
         subject
 
         expect_feeds_merged

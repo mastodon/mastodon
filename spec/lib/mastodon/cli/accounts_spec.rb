@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/accounts'
 
-describe Mastodon::CLI::Accounts do
+RSpec.describe Mastodon::CLI::Accounts do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }
@@ -609,6 +609,25 @@ describe Mastodon::CLI::Accounts do
         expect(unfollow_service).to have_received(:call).with(follower_chris, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_rambo, target_account).once
         expect(unfollow_service).to have_received(:call).with(follower_ana, target_account).once
+      end
+    end
+  end
+
+  describe '#fix_duplicates' do
+    let(:action) { :fix_duplicates }
+    let(:service_double) { instance_double(ActivityPub::FetchRemoteAccountService, call: nil) }
+    let(:uri) { 'https://host.example/same/value' }
+
+    context 'when there are duplicate URI accounts' do
+      before do
+        Fabricate.times(2, :account, domain: 'host.example', uri: uri)
+        allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(service_double)
+      end
+
+      it 'finds the duplicates and calls fetch remote account service' do
+        expect { subject }
+          .to output_results('Duplicates found')
+        expect(service_double).to have_received(:call).with(uri)
       end
     end
   end
@@ -1326,18 +1345,16 @@ describe Mastodon::CLI::Accounts do
     end
 
     shared_examples 'a successful migration' do
-      it 'calls the MoveService for the last migration' do
-        expect { subject }
-          .to output_results('OK')
-
-        last_migration = source_account.migrations.last
-
-        expect(move_service).to have_received(:call).with(last_migration).once
-      end
-
-      it 'displays a successful message' do
+      it 'displays a success message and calls the MoveService for the last migration' do
         expect { subject }
           .to output_results("OK, migrated #{source_account.acct} to #{target_account.acct}")
+
+        expect(move_service)
+          .to have_received(:call).with(last_migration).once
+      end
+
+      def last_migration
+        source_account.migrations.last
       end
     end
 

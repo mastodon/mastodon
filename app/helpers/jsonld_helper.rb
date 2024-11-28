@@ -141,7 +141,7 @@ module JsonLdHelper
   def safe_for_forwarding?(original, compacted)
     original.without('@context', 'signature').all? do |key, value|
       compacted_value = compacted[key]
-      return false unless value.class == compacted_value.class
+      return false unless value.instance_of?(compacted_value.class)
 
       if value.is_a?(Hash)
         safe_for_forwarding?(value, compacted_value)
@@ -155,8 +155,8 @@ module JsonLdHelper
     end
   end
 
-  def fetch_resource(uri, id, on_behalf_of = nil, request_options: {})
-    unless id
+  def fetch_resource(uri, id_is_known, on_behalf_of = nil, request_options: {})
+    unless id_is_known
       json = fetch_resource_without_id_validation(uri, on_behalf_of)
 
       return if !json.is_a?(Hash) || unsupported_uri_scheme?(json['id'])
@@ -174,7 +174,19 @@ module JsonLdHelper
     build_request(uri, on_behalf_of, options: request_options).perform do |response|
       raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response) || !raise_on_temporary_error
 
-      body_to_json(response.body_with_limit) if response.code == 200
+      body_to_json(response.body_with_limit) if response.code == 200 && valid_activitypub_content_type?(response)
+    end
+  end
+
+  def valid_activitypub_content_type?(response)
+    return true if response.mime_type == 'application/activity+json'
+
+    # When the mime type is `application/ld+json`, we need to check the profile,
+    # but `http.rb` does not parse it for us.
+    return false unless response.mime_type == 'application/ld+json'
+
+    response.headers[HTTP::Headers::CONTENT_TYPE]&.split(';')&.map(&:strip)&.any? do |str|
+      str.start_with?('profile="') && str[9...-1].split.include?('https://www.w3.org/ns/activitystreams')
     end
   end
 
@@ -186,14 +198,6 @@ module JsonLdHelper
     json
   rescue Oj::ParseError
     nil
-  end
-
-  def merge_context(context, new_context)
-    if context.is_a?(Array)
-      context << new_context
-    else
-      [context, new_context]
-    end
   end
 
   def response_successful?(response)

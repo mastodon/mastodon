@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Form::StatusFilterBatchAction do
+RSpec.describe Form::StatusFilterBatchAction do
   describe '#save!' do
     it 'does nothing if status_filter_ids is empty' do
       batch_action = described_class.new(status_filter_ids: [])

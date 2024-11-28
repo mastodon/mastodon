@@ -32,7 +32,6 @@ module User::PamAuthenticable
 
       self.email        = "#{account.username}@#{find_pam_suffix}" if email.nil? && find_pam_suffix
       self.confirmed_at = Time.now.utc
-      self.admin        = false
       self.account      = account
       self.external     = true
 

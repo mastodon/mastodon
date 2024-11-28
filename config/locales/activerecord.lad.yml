@@ -11,10 +11,15 @@ lad:
         locale: Lingua
         password: Kod
       user/account:
-        username: Nombre de uzador
+        username: Nombre de utilizador
       user/invite_request:
         text: Razon
     errors:
+      attributes:
+        domain:
+          invalid: no es un nombre de domeno valido
+      messages:
+        invalid_domain_on_line: "%{value} no es un nombre de domeno valido"
       models:
         account:
           attributes:

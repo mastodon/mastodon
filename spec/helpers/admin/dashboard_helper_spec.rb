@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::DashboardHelper do
+RSpec.describe Admin::DashboardHelper do
   describe 'relevant_account_timestamp' do
     context 'with an account with older sign in' do
       let(:account) { Fabricate(:account) }

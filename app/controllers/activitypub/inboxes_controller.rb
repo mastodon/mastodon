@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::InboxesController < ActivityPub::BaseController
-  include SignatureVerification
   include JsonLdHelper
-  include AccountOwnedConcern
 
   before_action :skip_unknown_actor_activity
   before_action :require_actor_signature!
@@ -62,11 +60,10 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
     return if raw_params.blank? || ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] == 'true' || signed_request_account.nil?
 
     # Re-using the syntax for signature parameters
-    tree   = SignatureParamsParser.new.parse(raw_params)
-    params = SignatureParamsTransformer.new.apply(tree)
+    params = SignatureParser.parse(raw_params)
 
     ActivityPub::PrepareFollowersSynchronizationService.new.call(signed_request_account, params)
-  rescue Parslet::ParseFailed
+  rescue SignatureParser::ParsingError
     Rails.logger.warn 'Error parsing Collection-Synchronization header'
   end
 

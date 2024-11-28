@@ -23,7 +23,9 @@ RSpec.describe 'account featured tags API' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to contain_exactly(a_hash_including({
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body).to contain_exactly(a_hash_including({
         name: 'bar',
         url: "https://cb6e6126.ngrok.io/@#{account.username}/tagged/bar",
       }), a_hash_including({
@@ -37,7 +39,9 @@ RSpec.describe 'account featured tags API' do
         subject
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to contain_exactly(a_hash_including({
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body).to contain_exactly(a_hash_including({
           name: 'bar',
           url: "https://cb6e6126.ngrok.io/@#{account.pretty_acct}/tagged/bar",
         }), a_hash_including({

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'signature verification concern' do
+RSpec.describe 'signature verification concern' do
   before do
     stub_tests_controller
 
@@ -50,7 +50,7 @@ describe 'signature verification concern' do
       get '/activitypub/success'
 
       expect(response).to have_http_status(200)
-      expect(body_as_json).to match(
+      expect(response.parsed_body).to match(
         signed_request: false,
         signature_actor_id: nil,
         error: 'Request not signed'
@@ -62,7 +62,7 @@ describe 'signature verification concern' do
         get '/activitypub/signature_required'
 
         expect(response).to have_http_status(401)
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           error: 'Request not signed'
         )
       end
@@ -87,7 +87,7 @@ describe 'signature verification concern' do
         }
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           signed_request: true,
           signature_actor_id: actor.id.to_s
         )
@@ -109,7 +109,7 @@ describe 'signature verification concern' do
         }
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           signed_request: true,
           signature_actor_id: actor.id.to_s
         )
@@ -131,7 +131,7 @@ describe 'signature verification concern' do
         }
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           signed_request: true,
           signature_actor_id: actor.id.to_s
         )
@@ -152,7 +152,7 @@ describe 'signature verification concern' do
           'Signature' => signature_header,
         }
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           signed_request: true,
           signature_actor_id: nil,
           error: anything
@@ -168,7 +168,7 @@ describe 'signature verification concern' do
           'Signature' => 'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="Z8ilar3J7bOwqZkMp7sL8sRs4B1FT+UorbmvWoE+A5UeoOJ3KBcUmbsh+k3wQwbP5gMNUrra9rEWabpasZGphLsbDxfbsWL3Cf0PllAc7c1c7AFEwnewtExI83/qqgEkfWc2z7UDutXc2NfgAx89Ox8DXU/fA2GG0jILjB6UpFyNugkY9rg6oI31UnvfVi3R7sr3/x8Ea3I9thPvqI2byF6cojknSpDAwYzeKdngX3TAQEGzFHz3SDWwyp3jeMWfwvVVbM38FxhvAnSumw7YwWW4L7M7h4M68isLimoT3yfCn2ucBVL5Dz8koBpYf/40w7QidClAwCafZQFC29yDOg=="', # rubocop:disable Layout/LineLength
         }
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           signed_request: true,
           signature_actor_id: nil,
           error: anything
@@ -184,7 +184,7 @@ describe 'signature verification concern' do
           'Signature' => 'keyId="https://remote.domain/users/bob#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="Z8ilar3J7bOwqZkMp7sL8sRs4B1FT+UorbmvWoE+A5UeoOJ3KBcUmbsh+k3wQwbP5gMNUrra9rEWabpasZGphLsbDxfbsWL3Cf0PllAc7c1c7AFEwnewtExI83/qqgEkfWc2z7UDutXc2NfgAx89Ox8DXU/fA2GG0jILjB6UpFyNugkY9rg6oI31UnvfVi3R7sr3/x8Ea3I9thPvqI2byF6cojknSpDAwYzeKdngX3TAQEGzFHz3SDWwyp3jeMWfwvVVbM38FxhvAnSumw7YwWW4L7M7h4M68isLimoT3yfCn2ucBVL5Dz8koBpYf/40w7QidClAwCafZQFC29yDOg=="', # rubocop:disable Layout/LineLength
         }
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           signed_request: true,
           signature_actor_id: nil,
           error: anything
@@ -206,7 +206,7 @@ describe 'signature verification concern' do
           'Signature' => signature_header,
         }
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           signed_request: true,
           signature_actor_id: nil,
           error: 'Invalid Date header: not RFC 2616 compliant date: "wrong date"'
@@ -228,7 +228,7 @@ describe 'signature verification concern' do
           'Signature' => signature_header,
         }
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           signed_request: true,
           signature_actor_id: nil,
           error: 'Signed request date outside acceptable time window'
@@ -254,7 +254,7 @@ describe 'signature verification concern' do
         }
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           signed_request: true,
           signature_actor_id: actor.id.to_s
         )
@@ -278,7 +278,7 @@ describe 'signature verification concern' do
           'Signature' => signature_header,
         }
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           signed_request: true,
           signature_actor_id: nil,
           error: 'Mastodon requires the Digest header to be signed when doing a POST request'
@@ -303,7 +303,7 @@ describe 'signature verification concern' do
           'Signature' => signature_header,
         }
 
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           signed_request: true,
           signature_actor_id: nil,
           error: 'Invalid Digest value. Computed SHA-256 digest: wFNeS+K3n/2TKRMFQ2v4iTFOSj+uwF7P/Lt98xrZ5Ro=; given: ZOyIygCyaOW6GjVnihtTFtIS9PNmskdyMlNKiuyjfzw='
@@ -321,7 +321,7 @@ describe 'signature verification concern' do
         }
 
         expect(response).to have_http_status(200)
-        expect(body_as_json).to match(
+        expect(response.parsed_body).to match(
           signed_request: true,
           signature_actor_id: nil,
           error: anything
@@ -342,7 +342,7 @@ describe 'signature verification concern' do
         'Signature' => 'keyId="https://remote.domain/users/alice#main-key",algorithm="rsa-sha256",headers="date host (request-target)",signature="Z8ilar3J7bOwqZkMp7sL8sRs4B1FT+UorbmvWoE+A5UeoOJ3KBcUmbsh+k3wQwbP5gMNUrra9rEWabpasZGphLsbDxfbsWL3Cf0PllAc7c1c7AFEwnewtExI83/qqgEkfWc2z7UDutXc2NfgAx89Ox8DXU/fA2GG0jILjB6UpFyNugkY9rg6oI31UnvfVi3R7sr3/x8Ea3I9thPvqI2byF6cojknSpDAwYzeKdngX3TAQEGzFHz3SDWwyp3jeMWfwvVVbM38FxhvAnSumw7YwWW4L7M7h4M68isLimoT3yfCn2ucBVL5Dz8koBpYf/40w7QidClAwCafZQFC29yDOg=="', # rubocop:disable Layout/LineLength
       }
 
-      expect(body_as_json).to match(
+      expect(response.parsed_body).to match(
         signed_request: true,
         signature_actor_id: nil,
         error: 'Unable to fetch key JSON at https://remote.domain/users/alice#main-key'

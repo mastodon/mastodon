@@ -17,13 +17,14 @@ RSpec.describe 'API Markers' do
     end
 
     it 'returns markers', :aggregate_failures do
-      json = body_as_json
-
       expect(response).to have_http_status(200)
-      expect(json.key?(:home)).to be true
-      expect(json[:home][:last_read_id]).to eq '123'
-      expect(json.key?(:notifications)).to be true
-      expect(json[:notifications][:last_read_id]).to eq '456'
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body)
+        .to include(
+          home: include(last_read_id: '123'),
+          notifications: include(last_read_id: '456')
+        )
     end
   end
 
@@ -35,6 +36,8 @@ RSpec.describe 'API Markers' do
 
       it 'creates a marker', :aggregate_failures do
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(user.markers.first.timeline).to eq 'home'
         expect(user.markers.first.last_read_id).to eq 69_420
       end
@@ -48,8 +51,26 @@ RSpec.describe 'API Markers' do
 
       it 'updates a marker', :aggregate_failures do
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(user.markers.first.timeline).to eq 'home'
         expect(user.markers.first.last_read_id).to eq 70_120
+      end
+    end
+
+    context 'when database object becomes stale' do
+      before do
+        allow(Marker).to receive(:transaction).and_raise(ActiveRecord::StaleObjectError)
+        post '/api/v1/markers', headers: headers, params: { home: { last_read_id: '69420' } }
+      end
+
+      it 'returns error json' do
+        expect(response)
+          .to have_http_status(409)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to include(error: /Conflict during update/)
       end
     end
   end

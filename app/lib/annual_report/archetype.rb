@@ -28,22 +28,18 @@ class AnnualReport::Archetype < AnnualReport::Source
   end
 
   def polls_count
-    @polls_count ||= base_scope.where.not(poll_id: nil).count
+    @polls_count ||= report_statuses.where.not(poll_id: nil).count
   end
 
   def reblogs_count
-    @reblogs_count ||= base_scope.where.not(reblog_of_id: nil).count
+    @reblogs_count ||= report_statuses.where.not(reblog_of_id: nil).count
   end
 
   def replies_count
-    @replies_count ||= base_scope.where.not(in_reply_to_id: nil).where.not(in_reply_to_account_id: @account.id).count
+    @replies_count ||= report_statuses.where.not(in_reply_to_id: nil).where.not(in_reply_to_account_id: @account.id).count
   end
 
   def standalone_count
-    @standalone_count ||= base_scope.without_replies.without_reblogs.count
-  end
-
-  def base_scope
-    @account.statuses.where(id: year_as_snowflake_range)
+    @standalone_count ||= report_statuses.without_replies.without_reblogs.count
   end
 end

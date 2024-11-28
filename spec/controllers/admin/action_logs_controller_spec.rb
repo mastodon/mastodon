@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::ActionLogsController do
+RSpec.describe Admin::ActionLogsController do
   render_views
 
   # Action logs typically cause issues when their targets are not in the database

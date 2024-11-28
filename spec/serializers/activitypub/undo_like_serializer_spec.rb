@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::UndoLikeSerializer do
+RSpec.describe ActivityPub::UndoLikeSerializer do
   let(:serialization) { serialized_record_json(record, described_class) }
   let(:record) { Fabricate(:favourite) }
 

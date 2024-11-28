@@ -135,19 +135,19 @@ function getData(emoji, skin, set) {
       }
     }
 
-    if (Object.prototype.hasOwnProperty.call(data.short_names, emoji)) {
+    if (Object.hasOwn(data.short_names, emoji)) {
       emoji = data.short_names[emoji];
     }
 
-    if (Object.prototype.hasOwnProperty.call(data.emojis, emoji)) {
+    if (Object.hasOwn(data.emojis, emoji)) {
       emojiData = data.emojis[emoji];
     }
   } else if (emoji.id) {
-    if (Object.prototype.hasOwnProperty.call(data.short_names, emoji.id)) {
+    if (Object.hasOwn(data.short_names, emoji.id)) {
       emoji.id = data.short_names[emoji.id];
     }
 
-    if (Object.prototype.hasOwnProperty.call(data.emojis, emoji.id)) {
+    if (Object.hasOwn(data.emojis, emoji.id)) {
       emojiData = data.emojis[emoji.id];
       skin = skin || emoji.skin;
     }
@@ -216,7 +216,7 @@ function deepMerge(a, b) {
     let originalValue = a[key],
       value = originalValue;
 
-    if (Object.prototype.hasOwnProperty.call(b, key)) {
+    if (Object.hasOwn(b, key)) {
       value = b[key];
     }
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Accounts Notes API' do
+RSpec.describe 'Accounts Notes API' do
   let(:user)     { Fabricate(:user) }
   let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:scopes)   { 'write:accounts' }
@@ -22,6 +22,8 @@ describe 'Accounts Notes API' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(AccountNote.find_by(account_id: user.account.id, target_account_id: account.id).comment).to eq comment
       end
     end
@@ -33,6 +35,8 @@ describe 'Accounts Notes API' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(AccountNote.where(account_id: user.account.id, target_account_id: account.id)).to_not exist
       end
     end

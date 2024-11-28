@@ -53,7 +53,7 @@ class Webhook < ApplicationRecord
   end
 
   def required_permissions
-    events.map { |event| Webhook.permission_for_event(event) }
+    events.map { |event| Webhook.permission_for_event(event) }.uniq
   end
 
   def self.permission_for_event(event)

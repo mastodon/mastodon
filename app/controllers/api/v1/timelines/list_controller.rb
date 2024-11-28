@@ -21,11 +21,11 @@ class Api::V1::Timelines::ListController < Api::V1::Timelines::BaseController
   end
 
   def set_statuses
-    @statuses = cached_list_statuses
+    @statuses = preloaded_list_statuses
   end
 
-  def cached_list_statuses
-    cache_collection list_statuses, Status
+  def preloaded_list_statuses
+    preload_collection list_statuses, Status
   end
 
   def list_statuses

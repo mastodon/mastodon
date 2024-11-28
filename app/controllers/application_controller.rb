@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include UserTrackingConcern
   include SessionTrackingConcern
   include CacheConcern
+  include PreloadingConcern
   include DomainControlHelper
   include DatabaseHelper
   include AuthorizedFetchHelper
@@ -19,10 +20,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_theme
   helper_method :single_user_mode?
   helper_method :use_seamless_external_login?
-  helper_method :omniauth_only?
   helper_method :sso_account_settings
   helper_method :limited_federation_mode?
-  helper_method :body_class_string
   helper_method :skip_csrf_meta_tags?
 
   rescue_from ActionController::ParameterMissing, Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
@@ -32,7 +31,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
   rescue_from Mastodon::RateLimitExceededError, with: :too_many_requests
 
-  rescue_from HTTP::Error, OpenSSL::SSL::SSLError, with: :internal_server_error
+  rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS, with: :internal_server_error)
   rescue_from Mastodon::RaceConditionError, Stoplight::Error::RedLight, ActiveRecord::SerializationFailure, with: :service_unavailable
 
   rescue_from Seahorse::Client::NetworkingError do |e|
@@ -129,15 +128,11 @@ class ApplicationController < ActionController::Base
   end
 
   def single_user_mode?
-    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.where('id > 0').exists?
+    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.without_internal.exists?
   end
 
   def use_seamless_external_login?
     Devise.pam_authentication || Devise.ldap_authentication
-  end
-
-  def omniauth_only?
-    ENV['OMNIAUTH_ONLY'] == 'true'
   end
 
   def sso_account_settings
@@ -162,10 +157,6 @@ class ApplicationController < ActionController::Base
     current_user.setting_theme
   end
 
-  def body_class_string
-    @body_classes || ''
-  end
-
   def respond_with_error(code)
     respond_to do |format|
       format.any  { render "errors/#{code}", layout: 'error', status: code, formats: [:html] }
@@ -178,7 +169,7 @@ class ApplicationController < ActionController::Base
 
     respond_to do |format|
       format.any  { render 'errors/self_destruct', layout: 'auth', status: 410, formats: [:html] }
-      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: code }
+      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: 410 }
     end
   end
 

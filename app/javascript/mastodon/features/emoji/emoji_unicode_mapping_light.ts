@@ -46,7 +46,10 @@ function processEmojiMapData(
 Object.keys(shortCodesToEmojiData).forEach(
   (shortCode: ShortCodesToEmojiDataKey) => {
     if (shortCode === undefined) return;
-    const [filenameData, _searchData] = shortCodesToEmojiData[shortCode];
+
+    const emojiData = shortCodesToEmojiData[shortCode];
+    if (!emojiData) return;
+    const [filenameData, _searchData] = emojiData;
     filenameData.forEach((emojiMapData) => {
       processEmojiMapData(emojiMapData, shortCode);
     });

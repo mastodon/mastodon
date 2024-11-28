@@ -1,15 +1,15 @@
 // @ts-check
 
-const metrics = require('prom-client');
+import metrics from 'prom-client';
 
 /**
  * @typedef StreamingMetrics
- * @property {metrics.Registry} register
  * @property {metrics.Gauge<"type">} connectedClients
  * @property {metrics.Gauge<"type" | "channel">} connectedChannels
  * @property {metrics.Gauge} redisSubscriptions
  * @property {metrics.Counter} redisMessagesReceived
  * @property {metrics.Counter<"type">} messagesSent
+ * @property {import('express').RequestHandler<{}>} requestHandler
  */
 
 /**
@@ -18,7 +18,7 @@ const metrics = require('prom-client');
  * @param {import('pg').Pool} pgPool
  * @returns {StreamingMetrics}
  */
-function setupMetrics(channels, pgPool) {
+export function setupMetrics(channels, pgPool) {
   // Collect metrics from Node.js
   metrics.collectDefaultMetrics();
 
@@ -92,8 +92,23 @@ function setupMetrics(channels, pgPool) {
   messagesSent.inc({ type: 'websocket' }, 0);
   messagesSent.inc({ type: 'eventsource' }, 0);
 
+  /**
+   * @type {import('express').RequestHandler<{}>}
+   */
+  const requestHandler = (req, res) => {
+    metrics.register.metrics().then((output) => {
+      res.set('Content-Type', metrics.register.contentType);
+      res.set('Cache-Control', 'private, no-store');
+      res.end(output);
+    }).catch((err) => {
+      req.log.error(err, "Error collecting metrics");
+      res.set('Cache-Control', 'private, no-store');
+      res.status(500).end();
+    });
+  };
+
   return {
-    register: metrics.register,
+    requestHandler,
     connectedClients,
     connectedChannels,
     redisSubscriptions,
@@ -101,5 +116,3 @@ function setupMetrics(channels, pgPool) {
     messagesSent,
   };
 }
-
-exports.setupMetrics = setupMetrics;

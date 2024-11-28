@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Account::FinderConcern do
+RSpec.describe Account::FinderConcern do
   describe 'local finders' do
     let!(:account) { Fabricate(:account, username: 'Alice') }
 

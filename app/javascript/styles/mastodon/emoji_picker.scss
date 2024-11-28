@@ -14,20 +14,8 @@
 }
 
 .emoji-mart-bar {
-  border: 0 solid var(--dropdown-border-color);
-
   &:first-child {
-    border-bottom-width: 1px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     background: var(--dropdown-border-color);
-  }
-
-  &:last-child {
-    border-top-width: 1px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    display: none;
   }
 }
 
@@ -94,19 +82,12 @@
   height: 270px;
   max-height: 35vh;
   padding: 0 6px 6px;
-  background: var(--dropdown-background-color);
   will-change: transform;
-
-  &::-webkit-scrollbar-track:hover,
-  &::-webkit-scrollbar-track:active {
-    background-color: rgba($base-overlay-background, 0.3);
-  }
 }
 
 .emoji-mart-search {
   padding: 10px;
   padding-inline-end: 45px;
-  background: var(--dropdown-background-color);
   position: relative;
 
   input {
@@ -119,17 +100,17 @@
     width: 100%;
     background: $ui-base-color;
     color: $darker-text-color;
-    border: 1px solid lighten($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
 
     &::-moz-focus-inner {
       border: 0;
     }
 
-    &::-moz-focus-inner,
-    &:focus,
-    &:active {
-      outline: 0 !important;
+    &:active,
+    &:focus {
+      outline: none !important;
+      border-width: 1px !important;
     }
 
     &::-webkit-search-cancel-button {
@@ -195,7 +176,6 @@
     width: 100%;
     font-weight: 500;
     padding: 5px 6px;
-    background: var(--dropdown-background-color);
   }
 }
 

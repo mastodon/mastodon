@@ -1,20 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 
-import { toServerSideType } from 'mastodon/utils/filters';
-
 import { me } from '../initial_state';
 
+import { getFilters } from './filters';
+
 export { makeGetAccount } from "./accounts";
-
-const getFilters = (state, { contextType }) => {
-  if (!contextType) return null;
-
-  const serverSideType = toServerSideType(contextType);
-  const now = new Date();
-
-  return state.get('filters').filter((filter) => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || filter.get('expires_at') > now));
-};
 
 export const makeGetStatus = () => {
   return createSelector(
@@ -60,7 +51,7 @@ export const makeGetStatus = () => {
 
 export const makeGetPictureInPicture = () => {
   return createSelector([
-    (state, { id }) => state.get('picture_in_picture').statusId === id,
+    (state, { id }) => state.picture_in_picture.statusId === id,
     (state) => state.getIn(['meta', 'layout']) !== 'mobile',
   ], (inUse, available) => ImmutableMap({
     inUse: inUse && available,
@@ -73,10 +64,21 @@ const ALERT_DEFAULTS = {
   style: false,
 };
 
-export const getAlerts = createSelector(state => state.get('alerts'), alerts =>
+const formatIfNeeded = (intl, message, values) => {
+  if (typeof message === 'object') {
+    return intl.formatMessage(message, values);
+  }
+
+  return message;
+};
+
+export const getAlerts = createSelector([state => state.get('alerts'), (_, { intl }) => intl], (alerts, intl) =>
   alerts.map(item => ({
     ...ALERT_DEFAULTS,
     ...item,
+    action: formatIfNeeded(intl, item.action, item.values),
+    title: formatIfNeeded(intl, item.title, item.values),
+    message: formatIfNeeded(intl, item.message, item.values),
   })).toArray());
 
 export const makeGetNotification = () => createSelector([

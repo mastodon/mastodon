@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ImportWorker do
+RSpec.describe ImportWorker do
   let(:worker) { described_class.new }
   let(:service) { instance_double(ImportService, call: true) }
 

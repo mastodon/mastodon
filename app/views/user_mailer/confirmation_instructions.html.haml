@@ -1,5 +1,7 @@
 = content_for :heading do
-  = render 'application/mailer/heading', heading_title: t('devise.mailer.confirmation_instructions.title'), heading_image_url: frontend_asset_url('images/mailer-new/heading/email.png')
+  = render 'application/mailer/heading',
+           image_url: frontend_asset_url('images/mailer-new/heading/email.png'),
+           title: t('devise.mailer.confirmation_instructions.title')
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-body-padding-td
@@ -8,9 +10,7 @@
           %td.email-inner-card-td.email-prose
             %p= t @resource.approved? ? 'devise.mailer.confirmation_instructions.explanation' : 'devise.mailer.confirmation_instructions.explanation_when_pending', host: site_hostname
             - if @resource.created_by_application
-              = render 'application/mailer/button', text: t('settings.account_settings'), url: edit_user_registration_url
-              = link_to confirmation_url(@resource, confirmation_token: @token, redirect_to_app: 'true') do
-                %span= t 'devise.mailer.confirmation_instructions.action_with_app', app: @resource.created_by_application.name
+              = render 'application/mailer/button', text: t('devise.mailer.confirmation_instructions.action_with_app', app: @resource.created_by_application.name), url: confirmation_url(@resource, confirmation_token: @token, redirect_to_app: 'true')
             - else
               = render 'application/mailer/button', text: t('devise.mailer.confirmation_instructions.action'), url: confirmation_url(@resource, confirmation_token: @token)
             %p= t 'devise.mailer.confirmation_instructions.extra_html', terms_path: about_more_url, policy_path: privacy_policy_url

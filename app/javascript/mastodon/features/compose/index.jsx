@@ -21,7 +21,6 @@ import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import Column from 'mastodon/components/column';
 import { Icon }  from 'mastodon/components/icon';
-import { logOut } from 'mastodon/utils/log_out';
 
 import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
 import { changeComposing, mountCompose, unmountCompose } from '../../actions/compose';
@@ -29,9 +28,9 @@ import { mascot } from '../../initial_state';
 import { isMobile } from '../../is_mobile';
 import Motion from '../ui/util/optional_motion';
 
+import { SearchResults } from './components/search_results';
 import ComposeFormContainer from './containers/compose_form_container';
 import SearchContainer from './containers/search_container';
-import SearchResultsContainer from './containers/search_results_container';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -42,8 +41,6 @@ const messages = defineMessages({
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
   compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new post' },
-  logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
-  logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
 });
 
 const mapStateToProps = (state, ownProps) => ({
@@ -72,20 +69,12 @@ class Compose extends PureComponent {
   }
 
   handleLogoutClick = e => {
-    const { dispatch, intl } = this.props;
+    const { dispatch } = this.props;
 
     e.preventDefault();
     e.stopPropagation();
 
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: intl.formatMessage(messages.logoutMessage),
-        confirm: intl.formatMessage(messages.logoutConfirm),
-        closeWhenConfirm: false,
-        onConfirm: () => logOut(),
-      },
-    }));
+    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT' }));
 
     return false;
   };
@@ -138,7 +127,7 @@ class Compose extends PureComponent {
             <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
               {({ x }) => (
                 <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
-                  <SearchResultsContainer />
+                  <SearchResults />
                 </div>
               )}
             </Motion>

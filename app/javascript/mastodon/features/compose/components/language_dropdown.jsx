@@ -9,9 +9,9 @@ import { supportsPassiveEvents } from 'detect-passive-events';
 import fuzzysort from 'fuzzysort';
 import Overlay from 'react-overlays/Overlay';
 
-import CancelIcon from 'mastodon/../material-icons/400-24px/cancel-fill.svg?react';
-import SearchIcon from 'mastodon/../material-icons/400-24px/search.svg?react';
-import TranslateIcon from 'mastodon/../material-icons/400-24px/translate.svg?react';
+import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
+import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
 import { Icon } from 'mastodon/components/icon';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
 
@@ -110,18 +110,6 @@ class LanguageDropdownMenu extends PureComponent {
     }).map(result => result.obj);
   }
 
-  frequentlyUsed () {
-    const { languages, value } = this.props;
-    const current = languages.find(lang => lang[0] === value);
-    const results = [];
-
-    if (current) {
-      results.push(current);
-    }
-
-    return results;
-  }
-
   handleClick = e => {
     const value = e.currentTarget.getAttribute('data-index');
 
@@ -141,6 +129,7 @@ class LanguageDropdownMenu extends PureComponent {
     case 'Escape':
       onClose();
       break;
+    case ' ':
     case 'Enter':
       this.handleClick(e);
       break;
@@ -251,7 +240,6 @@ class LanguageDropdown extends PureComponent {
     frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string),
     intl: PropTypes.object.isRequired,
     onChange: PropTypes.func,
-    onClose: PropTypes.func,
   };
 
   state = {
@@ -268,14 +256,11 @@ class LanguageDropdown extends PureComponent {
   };
 
   handleClose = () => {
-    const { value, onClose } = this.props;
-
     if (this.state.open && this.activeElement) {
       this.activeElement.focus({ preventScroll: true });
     }
 
     this.setState({ open: false });
-    onClose(value);
   };
 
   handleChange = value => {

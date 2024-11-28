@@ -10,13 +10,16 @@
 #  text       :text             default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  hint       :text             default(""), not null
 #
 class Rule < ApplicationRecord
   include Discard::Model
 
+  TEXT_SIZE_LIMIT = 300
+
   self.discard_column = :deleted_at
 
-  validates :text, presence: true, length: { maximum: 300 }
+  validates :text, presence: true, length: { maximum: TEXT_SIZE_LIMIT }
 
   scope :ordered, -> { kept.order(priority: :asc, id: :asc) }
 end
