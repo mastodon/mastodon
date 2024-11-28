@@ -54,6 +54,9 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
       'OpenTelemetry::Instrumentation::Sidekiq' => {
         span_naming: :job_class, # Use the job class as the span name, otherwise this is the queue name and not very helpful
       },
+      'OpenTelemetry::Instrumentation::Redis' => {
+        trace_root_spans: false, # don't start traces with Redis spans
+      },
     })
 
     prefix    = ENV.fetch('OTEL_SERVICE_NAME_PREFIX', 'mastodon')
