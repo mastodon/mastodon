@@ -69,7 +69,7 @@ export const HashtagHeader = withIdentity(injectIntl(({ tag, intl, disabled, onC
     <div className='hashtag-header'>
       <div className='hashtag-header__header'>
         <h1>#{tag.get('name')}</h1>
-        <div className='account__header__tabs__buttons'>
+        <div className='hashtag-header__header__buttons'>
           { menu.length > 0 && <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' iconComponent={MoreHorizIcon} size={24} direction='right' /> }
           <Button onClick={onClick} text={intl.formatMessage(tag.get('following') ? messages.unfollowHashtag : messages.followHashtag)} disabled={disabled} />
         </div>
