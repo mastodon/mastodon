@@ -1,7 +1,7 @@
 ---
 zh-CN:
   about:
-    about_mastodon_html: 来自未来的社交网络：无广告、无监视、去中心化、合乎道德！使用 Mastodon 夺回你的数据！
+    about_mastodon_html: 来自未来的社交网络：无广告、无监视、去中心化、合乎道德！加入 Mastodon，掌控自己的数据！
     contact_missing: 未设定
     contact_unavailable: 未公开
     hosted_on: 运行在 %{domain} 上的 Mastodon 实例
@@ -56,7 +56,7 @@ zh-CN:
       custom: 自定义
       delete: 删除数据
       deleted: 已删除
-      demote: 降任
+      demote: 取消管理员
       destroyed_msg: "%{username} 的数据已被安排至删除队列"
       disable: 冻结
       disable_sign_in_token_auth: 禁用邮件令牌身份验证
@@ -109,7 +109,7 @@ zh-CN:
       previous_strikes: 既往处罚
       previous_strikes_description_html:
         other: 此账号已有<strong>%{count}</strong>次处罚。
-      promote: 升任
+      promote: 设为管理员
       protocol: 协议
       public: 公开页面
       push_subscription_expires: PuSH 订阅过期时间
@@ -187,7 +187,7 @@ zh-CN:
         create_relay: 创建中继站
         create_unavailable_domain: 创建不可用域名
         create_user_role: 创建角色
-        demote_user: 给用户降职
+        demote_user: 取消管理员
         destroy_announcement: 删除公告
         destroy_canonical_email_block: 解除邮箱封禁
         destroy_custom_emoji: 删除自定义表情符号
@@ -210,7 +210,7 @@ zh-CN:
         enable_sign_in_token_auth_user: 为用户启用邮件令牌身份验证
         enable_user: 启用用户
         memorialize_account: 设为追悼账户
-        promote_user: 给用户升任
+        promote_user: 指派管理员
         reject_appeal: 驳回申诉
         reject_user: 拒绝用户
         remove_avatar_user: 移除头像
@@ -251,7 +251,7 @@ zh-CN:
         create_relay_html: "%{name} 添加了中继站 %{target}"
         create_unavailable_domain_html: "%{name} 停止了向域名 %{target} 的投递"
         create_user_role_html: "%{name} 创建了 %{target} 角色"
-        demote_user_html: "%{name} 对用户 %{target} 进行了降任操作"
+        demote_user_html: "%{name} 撤销了用户 %{target} 的管理权限"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 解封了 hash 为 %{target} 的邮箱地址"
         destroy_custom_emoji_html: "%{name} 删除了自定义表情 %{target}"
@@ -274,7 +274,7 @@ zh-CN:
         enable_sign_in_token_auth_user_html: "%{name} 为 %{target} 启用了邮件令牌身份验证"
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼账户"
-        promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
+        promote_user_html: "%{name} 将用户 %{target} 设为管理员"
         reject_appeal_html: "%{name} 驳回了 %{target} 对审核结果的申诉"
         reject_user_html: "%{name} 拒绝了用户 %{target} 的注册"
         remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
@@ -786,7 +786,7 @@ zh-CN:
           open: 开放注册
         warning_hint: 我们建议使用“注册必须经过批准”，除非你确信你的管理团队能够及时处理骚扰和恶意注册。
       security:
-        authorized_fetch: 需要跨站认证
+        authorized_fetch: 与外站联合时要求身份验证
         authorized_fetch_hint: 要求外站请求通过验证能够使用户级别与服务器级别的封锁更为严格。然而，这将带来额外的性能负担、减少回复触达范围、并可能导致与一些联邦宇宙服务的兼容性问题。此外，这并不能阻止他人针对性地获取公开嘟文与账户。
         authorized_fetch_overridden_hint: 由于此设置被环境变量覆盖，目前无法更改。
         federation_authentication: 联合时强制要求身份验证
@@ -819,7 +819,7 @@ zh-CN:
       deleted: 已删除
       favourites: 喜欢
       history: 版本历史记录
-      in_reply_to: 回复给
+      in_reply_to: 回复
       language: 语言
       media:
         title: 媒体文件
@@ -829,7 +829,7 @@ zh-CN:
       open: 展开嘟文
       original_status: 原始嘟文
       reblogs: 转发
-      replied_to_html: 回复给 %{acct_link}
+      replied_to_html: 回复 %{acct_link}
       status_changed: 嘟文已编辑
       status_title: "@%{name} 的嘟文"
       title: 该账号的嘟文 - @%{name}
@@ -1055,7 +1055,7 @@ zh-CN:
     remove: 取消关联别名
   appearance:
     advanced_web_interface: 高级 Web 界面
-    advanced_web_interface_hint: 如果你想使用整个屏幕宽度，高级 web 界面允许你配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间线、任意数量的列表和话题标签。
+    advanced_web_interface_hint: 在高级网页界面支持自定义多栏显示，你可以利用整个屏幕的宽度，同时查看首页、通知、跨站时间线及任意数量的列表和话题。
     animations_and_accessibility: 动画与可访问性
     confirmation_dialogs: 确认对话框
     discovery: 发现
@@ -1091,16 +1091,16 @@ zh-CN:
       awaiting_review_title: 你的注册申请正在审核中
       clicking_this_link: 点击此链接
       login_link: 登录
-      proceed_to_login_html: 现在你可以继续前往 %{login_link} 。
-      redirect_to_app_html: 你应该已被重定向到 <strong>%{app_name}</strong> 应用程序。如果没有，请尝试 %{clicking_this_link} 或手动返回应用程序。
+      proceed_to_login_html: 你现在可以继续 %{login_link} 。
+      redirect_to_app_html: 你应该已经跳转到 <strong>%{app_name}</strong>。如果没有，请尝试 %{clicking_this_link} 或手动返回 App。
       registration_complete: 你在 %{domain} 上的注册现已完成！
       welcome_title: 欢迎你，%{name}！
-      wrong_email_hint: 如果该邮箱地址不正确，你可以在账户设置中进行更改。
+      wrong_email_hint: 如果这个邮箱地址不正确，你可以在账户设置中更改。
     delete_account: 删除账户
-    delete_account_html: 如果你想删除你的账户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
+    delete_account_html: 如果你想删除你的账户，请<a href="%{path}">点击此处继续</a>。你需要确认你的操作。
     description:
       prefix_invited_by_user: "@%{name} 邀请你加入这个Mastodon服务器！"
-      prefix_sign_up: 现在就注册 Mastodon！
+      prefix_sign_up: 现在就注册 Mastodon 吧！
       suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其它任何 Mastodon 服务器上的用户交流，而且还有其它更多功能！
     didnt_get_confirmation: 没有收到确认链接？
     dont_have_your_security_key: 没有你的安全密钥？
@@ -1117,7 +1117,7 @@ zh-CN:
     privacy_policy_agreement_html: 我已阅读并同意 <a href="%{privacy_policy_path}" target="_blank">隐私政策</a>
     progress:
       confirm: 确认邮箱
-      details: 你的详情
+      details: 你的详细信息
       review: 我们的审核
       rules: 接受规则
     providers:
@@ -1130,15 +1130,15 @@ zh-CN:
     rules:
       accept: 接受
       back: 返回
-      invited_by: 你可以加入%{domain}，这是由于你收到了他人的邀请，邀请来自：
-      preamble: 这些由 %{domain} 监察员设置和执行。
+      invited_by: 欢迎加入%{domain}，你是通过以下用户的邀请加入的：
+      preamble: 以下规则由 %{domain} 的管理员设定并执行。
       preamble_invited: 在你继续之前，请考虑 %{domain} 的管理员设定的基本规则。
       title: 一些基本规则。
-      title_invited: 你已经被邀请。
+      title_invited: 通过邀请加入
     security: 账户安全
     set_new_password: 设置新密码
     setup:
-      email_below_hint_html: 请检查你的垃圾邮件文件夹，或请求再发送一次。如果你的邮箱地址不正确，你可以更正它。
+      email_below_hint_html: 请检查你的垃圾邮件文件夹，或请求重新发送邮件。如果你填写的邮箱地址有误，请更正。
       email_settings_hint_html: 请点击我们发送给 %{email} 地址中的确认链接。我在这儿等着你。
       link_not_received: 没有收到链接？
       new_confirmation_instructions_sent: 你将在几分钟内收到一封带有确认链接的新邮件！
@@ -1157,7 +1157,7 @@ zh-CN:
       pending: 站务人员正在审核你的申请。这需要花点时间。在申请被批准后，你将收到一封邮件。
       redirecting_to: 你的账户无效，因为它已被设置为跳转到 %{acct}
       self_destruct: 由于 %{domain} 即将关闭，你只能获得对你本人账号的有限访问权限。
-      view_strikes: 查看针对你账号的记录
+      view_strikes: 查看针对你账号的处罚记录
     too_fast: 表单提交过快，请重试。
     use_security_key: 使用安全密钥
   author_attribution:
@@ -1217,7 +1217,7 @@ zh-CN:
       appeal: 申诉
       appeal_approved: 此次处罚已申诉成功并不再生效
       appeal_rejected: 此次申诉已被驳回
-      appeal_submitted_at: 已提出申诉
+      appeal_submitted_at: 申诉已提交
       appealed_msg: 你的申诉已经提交。如果申诉通过，你将收到通知。
       appeals:
         submit: 提交申诉
@@ -1239,7 +1239,7 @@ zh-CN:
         silence: 账号限制
         suspend: 账号封禁
       your_appeal_approved: 你的申诉已被批准
-      your_appeal_pending: 你已提交申诉
+      your_appeal_pending: 你已经提交了一次申诉
       your_appeal_rejected: 你的申诉已被驳回
   edit_profile:
     basic_information: 基本信息
@@ -1247,18 +1247,18 @@ zh-CN:
     other: 其他
   errors:
     '400': 你提交的请求无效或格式不正确。
-    '403': 你没有访问这个页面的权限。
+    '403': 你没有访问此页面的权限。
     '404': 无法找到你所要访问的页面。
-    '406': 页面无法处理请求。
-    '410': 你所要访问的页面此处已不存在。
+    '406': 无法以要求的格式显示此页面。
+    '410': 你要查看的页面已不存在。
     '422':
-      content: 无法确认登录信息。你是不是屏蔽了 Cookie？
-      title: 无法确认登录信息
-    '429': 请求被限制
+      content: 安全验证未通过。请检查是否禁用了 Cookie。
+      title: 安全验证未通过
+    '429': 请求过于频繁
     '500':
-      content: 抱歉，我们的后台出错了。
-      title: 这个页面有问题
-    '503': 服务暂时不可用，无法请求该页面。
+      content: 抱歉，服务器出现了一些故障。
+      title: 页面无法正确加载
+    '503': 服务器出现临时故障，无法加载页面。
     noscript_html: 使用 Mastodon 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">Mastodon 应用</a>。
   existing_username_validator:
     not_found: 在本站找不到此用户
