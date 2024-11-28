@@ -93,7 +93,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def last_status_at
-    object.last_status_at&.to_date&.rfc3339
+    object.last_status_at&.to_date&.iso8601
   end
 
   def display_name
