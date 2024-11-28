@@ -12,6 +12,7 @@ on:
       - '**/*.rb'
       - '.github/workflows/test-migrations.yml'
       - 'lib/tasks/tests.rake'
+      - 'lib/tasks/db.rake'
 
   pull_request:
     paths:
