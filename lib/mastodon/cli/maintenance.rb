@@ -39,6 +39,7 @@ module Mastodon::CLI
     class Webhook < ApplicationRecord; end
     class BulkImport < ApplicationRecord; end
     class SoftwareUpdate < ApplicationRecord; end
+    class TagFollow < ApplicationRecord; end
 
     class PreviewCard < ApplicationRecord
       self.inheritance_column = false
@@ -89,6 +90,7 @@ module Mastodon::CLI
         owned_classes << AccountIdentityProof if ActiveRecord::Base.connection.table_exists?(:account_identity_proofs)
         owned_classes << Appeal if ActiveRecord::Base.connection.table_exists?(:appeals)
         owned_classes << BulkImport if ActiveRecord::Base.connection.table_exists?(:bulk_imports)
+        owned_classes << TagFollow if ActiveRecord::Base.connection.table_exists?(:tag_follows)
 
         owned_classes.each do |klass|
           klass.where(account_id: other_account.id).find_each do |record|
