@@ -10,6 +10,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { fetchRelationships } from 'mastodon/actions/accounts';
+import { showAlertForError } from 'mastodon/actions/alerts';
 import { importFetchedAccounts } from 'mastodon/actions/importer';
 import { fetchList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
@@ -31,6 +32,7 @@ import { DisplayName } from 'mastodon/components/display_name';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { VerifiedBadge } from 'mastodon/components/verified_badge';
+import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
@@ -59,7 +61,8 @@ const AccountItem: React.FC<{
   const relationship = useAppSelector((state) =>
     accountId ? state.relationships.get(accountId) : undefined,
   );
-  const following = relationship?.following || relationship?.requested;
+  const following =
+    accountId === me || relationship?.following || relationship?.requested;
 
   useEffect(() => {
     if (accountId) {
@@ -88,8 +91,8 @@ const AccountItem: React.FC<{
                     onToggle(accountId);
                     return '';
                   })
-                  .catch(() => {
-                    // Nothing
+                  .catch((err: unknown) => {
+                    dispatch(showAlertForError(err));
                   });
               },
             },
