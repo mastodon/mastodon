@@ -110,6 +110,8 @@ class FeedManager
   # @param [Account] into_account
   # @return [void]
   def merge_into_home(from_account, into_account)
+    return unless into_account.user&.signed_in_recently?
+
     timeline_key = key(:home, into_account.id)
     aggregate    = into_account.user&.aggregates_reblogs?
     query        = from_account.statuses.list_eligible_visibility.includes(:preloadable_poll, :media_attachments, reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
@@ -136,6 +138,8 @@ class FeedManager
   # @param [List] list
   # @return [void]
   def merge_into_list(from_account, list)
+    return unless list.account.user&.signed_in_recently?
+
     timeline_key = key(:list, list.id)
     aggregate    = list.account.user&.aggregates_reblogs?
     query        = from_account.statuses.list_eligible_visibility.includes(:preloadable_poll, :media_attachments, reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
