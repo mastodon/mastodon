@@ -83,6 +83,9 @@ module AccountInteractions
     has_many :following, -> { order('follows.id desc') }, through: :active_relationships,  source: :target_account
     has_many :followers, -> { order('follows.id desc') }, through: :passive_relationships, source: :account
 
+    # Hashtag follows
+    has_many :tag_follows, inverse_of: :account, dependent: :destroy
+
     # Account notes
     has_many :account_notes, dependent: :destroy
 
