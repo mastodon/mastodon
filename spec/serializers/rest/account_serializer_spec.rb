@@ -44,4 +44,14 @@ RSpec.describe REST::AccountSerializer do
       expect(subject['memorial']).to be true
     end
   end
+
+  context 'when last_status_at is populated' do
+    before do
+      account.account_stat.update!(last_status_at: DateTime.new(2024, 11, 28, 16, 20, 0))
+    end
+
+    it 'is serialized as yyyy-mm-dd' do
+      expect(subject['last_status_at']).to eq('2024-11-28')
+    end
+  end
 end
