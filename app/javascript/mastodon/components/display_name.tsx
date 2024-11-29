@@ -2,6 +2,8 @@ import React from 'react';
 
 import type { List } from 'immutable';
 
+import LockIcon from '@/material-icons/400-24px/lock.svg?react';
+import { Icon } from 'mastodon/components/icon';
 import type { Account } from 'mastodon/models/account';
 
 import { autoPlayGif } from '../initial_state';
@@ -12,6 +14,7 @@ interface Props {
   account?: Account;
   others?: List<Account>;
   localDomain?: string;
+  showLocked?: boolean;
 }
 
 export class DisplayName extends React.PureComponent<Props> {
@@ -48,7 +51,7 @@ export class DisplayName extends React.PureComponent<Props> {
   };
 
   render() {
-    const { others, localDomain } = this.props;
+    const { others, localDomain, showLocked } = this.props;
 
     let displayName: React.ReactNode,
       suffix: React.ReactNode,
@@ -93,7 +96,14 @@ export class DisplayName extends React.PureComponent<Props> {
           />
         </bdi>
       );
-      suffix = <span className='display-name__account'>@{acct}</span>;
+      suffix = (
+        <span className='display-name__account'>
+          @{acct}
+          {showLocked && account.get('locked') && (
+            <Icon id='lock' icon={LockIcon} />
+          )}
+        </span>
+      );
     } else {
       displayName = (
         <bdi>

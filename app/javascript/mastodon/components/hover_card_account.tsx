@@ -51,7 +51,11 @@ export const HoverCardAccount = forwardRef<
         <>
           <Link to={`/@${account.acct}`} className='hover-card__name'>
             <Avatar account={account} size={46} />
-            <DisplayName account={account} localDomain={domain} />
+            <DisplayName
+              account={account}
+              localDomain={domain}
+              showLocked
+            />
           </Link>
 
           <div className='hover-card__text-row'>
