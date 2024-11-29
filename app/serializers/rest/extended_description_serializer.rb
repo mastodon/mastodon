@@ -4,7 +4,7 @@ class REST::ExtendedDescriptionSerializer < ActiveModel::Serializer
   attributes :updated_at, :content
 
   def updated_at
-    object.updated_at&.rfc3339
+    object.updated_at&.iso8601
   end
 
   def content
