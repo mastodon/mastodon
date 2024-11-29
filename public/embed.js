@@ -72,7 +72,7 @@
     });
 
     // Legacy embeds
-    document.querySelectorAll('iframe.mastodon-embed').forEach(iframe => {
+    var renderLegacyEmbed = function (iframe) {
       var id = generateId(embeds);
 
       embeds.set(id, iframe);
@@ -91,10 +91,11 @@
       };
 
       iframe.onload(); // In case the script is executing after the iframe has already loaded
-    });
+    };
+    document.querySelectorAll('iframe.mastodon-embed').forEach(renderLegacyEmbed);
 
     // New generation of embeds
-    document.querySelectorAll('blockquote.mastodon-embed').forEach(container => {
+    var renderEmbed = function (container) {
       var id = generateId(embeds);
 
       embeds.set(id, container);
@@ -122,6 +123,14 @@
       };
 
       container.appendChild(iframe);
+    };
+    document.querySelectorAll('blockquote.mastodon-embed').forEach(renderEmbed);
+
+    // Listen to "mastodon.render" to force rendering of embedded posts
+    document.addEventListener('mastodon.render', function (e) {
+      if (e.target.matches('blockquote.mastodon-embed')) {
+        renderEmbed(e.target);
+      }
     });
   });
 })((document.currentScript && document.currentScript.tagName.toUpperCase() === 'SCRIPT' && document.currentScript.dataset.allowedPrefixes) ? document.currentScript.dataset.allowedPrefixes.split(' ') : []);
