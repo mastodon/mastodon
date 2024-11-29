@@ -29,12 +29,15 @@ class FeedInsertWorker
   private
 
   def check_and_insert
-    if feed_filtered?
+    filter_result = feed_filtered?
+
+    if filter_result
       perform_unpush if update?
     else
       perform_push
-      perform_notify if notify?
     end
+
+    perform_notify if notify?(filter_result)
   end
 
   def feed_filtered?
@@ -48,8 +51,9 @@ class FeedInsertWorker
     end
   end
 
-  def notify?
-    return false if @type != :home || @status.reblog? || (@status.reply? && @status.in_reply_to_account_id != @status.account_id)
+  def notify?(filter_result)
+    return false if @type != :home || @status.reblog? || (@status.reply? && @status.in_reply_to_account_id != @status.account_id) ||
+                    filter_result == :filter
 
     Follow.find_by(account: @follower, target_account: @status.account)&.notify?
   end
