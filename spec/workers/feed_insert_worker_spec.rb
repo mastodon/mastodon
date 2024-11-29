@@ -59,7 +59,7 @@ RSpec.describe FeedInsertWorker do
       end
 
       it 'pushes the status onto the list timeline without filter' do
-        instance = instance_double(FeedManager, push_to_list: nil, filter?: false filter: nil)
+        instance = instance_double(FeedManager, push_to_list: nil, filter?: false, filter: nil)
         allow(FeedManager).to receive(:instance).and_return(instance)
         result = subject.perform(status.id, list.id, :list)
 
