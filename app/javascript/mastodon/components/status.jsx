@@ -173,7 +173,7 @@ class Status extends ImmutablePureComponent {
   handleMouseUp = e => {
     // Only handle clicks on the empty space above the content
 
-    if (e.target !== e.currentTarget) {
+    if (e.target !== e.currentTarget && e.detail >= 1) {
       return;
     }
 
