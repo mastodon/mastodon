@@ -32,12 +32,12 @@ class FeedManager
     "feed:#{type}:#{id}:#{subtype}"
   end
 
-  # Check if the status should not be added to a feed
+  # The filter result of the status to a particular feed
   # @param [Symbol] timeline_type
   # @param [Status] status
   # @param [Account|List] receiver
   # @return [void|Symbol] nil, :filter, or :skip_home
-  def filter?(timeline_type, status, receiver)
+  def filter(timeline_type, status, receiver)
     case timeline_type
     when :home
       filter_from_home(status, receiver.id, build_crutches(receiver.id, [status]), :home)
@@ -48,6 +48,15 @@ class FeedManager
     when :tags
       filter_from_tags?(status, receiver.id, build_crutches(receiver.id, [status])) ? :filter : nil
     end
+  end
+
+  # Check if the status should not be added to a feed
+  # @param [Symbol] timeline_type
+  # @param [Status] status
+  # @param [Account|List] receiver
+  # @return [Boolean]
+  def filter?(timeline_type, status, receiver)
+    !!filter(timeline_type, status, receiver)
   end
 
   # Add a status to a home feed and send a streaming API update

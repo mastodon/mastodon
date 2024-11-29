@@ -31,194 +31,196 @@ RSpec.describe FeedManager do
     let(:list) { Fabricate(:list, account: alice) }
 
     context 'with home feed' do
-      it 'returns nil for followee\'s status' do
+      it 'returns false for followee\'s status' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         bob.follow!(alice)
-        expect(subject.filter?(:home, status, bob)).to be_nil
+        expect(subject.filter?(:home, status, bob)).to be false
       end
 
-      it 'returns nil for reblog by followee' do
+      it 'returns false for reblog by followee' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reblog = Fabricate(:status, reblog: status, account: alice)
         bob.follow!(alice)
-        expect(subject.filter?(:home, reblog, bob)).to be_nil
+        expect(subject.filter?(:home, reblog, bob)).to be false
       end
 
-      it 'returns :filter for post from account who blocked me' do
+      it 'returns true for post from account who blocked me' do
         status = Fabricate(:status, text: 'Hello, World', account: alice)
         alice.block!(bob)
-        expect(subject.filter?(:home, status, bob)).to be :filter
+        expect(subject.filter?(:home, status, bob)).to be true
       end
 
-      it 'returns :filter for post from blocked account' do
+      it 'returns true for post from blocked account' do
         status = Fabricate(:status, text: 'Hello, World', account: alice)
         bob.block!(alice)
-        expect(subject.filter?(:home, status, bob)).to be :filter
+        expect(subject.filter?(:home, status, bob)).to be true
       end
 
-      it 'returns :filter for reblog by followee of blocked account' do
+      it 'returns true for reblog by followee of blocked account' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reblog = Fabricate(:status, reblog: status, account: alice)
         bob.follow!(alice)
         bob.block!(jeff)
-        expect(subject.filter?(:home, reblog, bob)).to be :filter
+        expect(subject.filter?(:home, reblog, bob)).to be true
       end
 
-      it 'returns :filter for reblog by followee of muted account' do
+      it 'returns true for reblog by followee of muted account' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reblog = Fabricate(:status, reblog: status, account: alice)
         bob.follow!(alice)
         bob.mute!(jeff)
-        expect(subject.filter?(:home, reblog, bob)).to be :filter
+        expect(subject.filter?(:home, reblog, bob)).to be true
       end
 
-      it 'returns :filter for reblog by followee of someone who is blocking recipient' do
+      it 'returns true for reblog by followee of someone who is blocking recipient' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reblog = Fabricate(:status, reblog: status, account: alice)
         bob.follow!(alice)
         jeff.block!(bob)
-        expect(subject.filter?(:home, reblog, bob)).to be :filter
+        expect(subject.filter?(:home, reblog, bob)).to be true
       end
 
-      it 'returns :filter for reblog from account with reblogs disabled' do
+      it 'returns true for reblog from account with reblogs disabled' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reblog = Fabricate(:status, reblog: status, account: alice)
         bob.follow!(alice, reblogs: false)
-        expect(subject.filter?(:home, reblog, bob)).to be :filter
+        expect(subject.filter?(:home, reblog, bob)).to be true
       end
 
-      it 'returns nil for reply by followee to another followee' do
+      it 'returns false for reply by followee to another followee' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
         bob.follow!(alice)
         bob.follow!(jeff)
-        expect(subject.filter?(:home, reply, bob)).to be_nil
+        expect(subject.filter?(:home, reply, bob)).to be false
       end
 
-      it 'returns nil for reply by followee to recipient' do
+      it 'returns false for reply by followee to recipient' do
         status = Fabricate(:status, text: 'Hello world', account: bob)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
         bob.follow!(alice)
-        expect(subject.filter?(:home, reply, bob)).to be_nil
+        expect(subject.filter?(:home, reply, bob)).to be false
       end
 
-      it 'returns nil for reply by followee to self' do
+      it 'returns false for reply by followee to self' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
         bob.follow!(alice)
-        expect(subject.filter?(:home, reply, bob)).to be_nil
+        expect(subject.filter?(:home, reply, bob)).to be false
       end
 
-      it 'returns :filter for reply by followee to non-followed account' do
+      it 'returns true for reply by followee to non-followed account' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
         bob.follow!(alice)
-        expect(subject.filter?(:home, reply, bob)).to be :filter
+        expect(subject.filter?(:home, reply, bob)).to be true
       end
 
-      it 'returns :filter for the second reply by followee to a non-federated status' do
+      it 'returns true for the second reply by followee to a non-federated status' do
         reply        = Fabricate(:status, text: 'Reply 1', reply: true, account: alice)
         second_reply = Fabricate(:status, text: 'Reply 2', thread: reply, account: alice)
         bob.follow!(alice)
-        expect(subject.filter?(:home, second_reply, bob)).to be :filter
+        expect(subject.filter?(:home, second_reply, bob)).to be true
       end
 
-      it 'returns nil for status by followee mentioning another account' do
+      it 'returns false for status by followee mentioning another account' do
         bob.follow!(alice)
         jeff.follow!(alice)
         status = PostStatusService.new.call(alice, text: 'Hey @jeff')
-        expect(subject.filter?(:home, status, bob)).to be_nil
+        expect(subject.filter?(:home, status, bob)).to be false
       end
 
-      it 'returns :filter for status by followee mentioning blocked account' do
+      it 'returns true for status by followee mentioning blocked account' do
         bob.block!(jeff)
         bob.follow!(alice)
         status = PostStatusService.new.call(alice, text: 'Hey @jeff')
-        expect(subject.filter?(:home, status, bob)).to be :filter
+        expect(subject.filter?(:home, status, bob)).to be true
       end
 
-      it 'returns :filter for reblog of a personally blocked domain' do
+      it 'returns true for reblog of a personally blocked domain' do
         alice.block_domain!('example.com')
         alice.follow!(jeff)
         status = Fabricate(:status, text: 'Hello world', account: bob)
         reblog = Fabricate(:status, reblog: status, account: jeff)
-        expect(subject.filter?(:home, reblog, alice)).to be :filter
+        expect(subject.filter?(:home, reblog, alice)).to be true
       end
 
-      it 'returns :filter for German post when follow is set to English only' do
+      it 'returns true for German post when follow is set to English only' do
         alice.follow!(bob, languages: %w(en))
         status = Fabricate(:status, text: 'Hallo Welt', account: bob, language: 'de')
-        expect(subject.filter?(:home, status, alice)).to be :filter
+        expect(subject.filter?(:home, status, alice)).to be true
       end
 
-      it 'returns nil for German post when follow is set to German' do
+      it 'returns false for German post when follow is set to German' do
         alice.follow!(bob, languages: %w(de))
         status = Fabricate(:status, text: 'Hallo Welt', account: bob, language: 'de')
-        expect(subject.filter?(:home, status, alice)).to be_nil
+        expect(subject.filter?(:home, status, alice)).to be false
       end
 
-      it 'returns :skip_home for post from followee on exclusive list' do
+      it 'returns true for post from followee on exclusive list' do
         list.exclusive = true
         alice.follow!(bob)
         list.accounts << bob
         allow(List).to receive(:where).and_return(list)
         status = Fabricate(:status, text: 'I post a lot', account: bob)
-        expect(subject.filter?(:home, status, alice)).to be :skip_home
+        expect(subject.filter?(:home, status, alice)).to be true
+        expect(subject.filter(:home, status, alice)).to be :skip_home
       end
 
-      it 'returns :skip_home for reblog from followee on exclusive list' do
+      it 'returns true for reblog from followee on exclusive list' do
         list.exclusive = true
         alice.follow!(jeff)
         list.accounts << jeff
         allow(List).to receive(:where).and_return(list)
         status = Fabricate(:status, text: 'I post a lot', account: bob)
         reblog = Fabricate(:status, reblog: status, account: jeff)
-        expect(subject.filter?(:home, reblog, alice)).to be :skip_home
+        expect(subject.filter?(:home, reblog, alice)).to be true
+        expect(subject.filter(:home, reblog, alice)).to be :skip_home
       end
 
-      it 'returns nil for post from followee on non-exclusive list' do
+      it 'returns false for post from followee on non-exclusive list' do
         list.exclusive = false
         alice.follow!(bob)
         list.accounts << bob
         status = Fabricate(:status, text: 'I post a lot', account: bob)
-        expect(subject.filter?(:home, status, alice)).to be_nil
+        expect(subject.filter?(:home, status, alice)).to be false
       end
 
-      it 'returns nil for reblog from followee on non-exclusive list' do
+      it 'returns false for reblog from followee on non-exclusive list' do
         list.exclusive = false
         alice.follow!(jeff)
         list.accounts << jeff
         status = Fabricate(:status, text: 'I post a lot', account: bob)
         reblog = Fabricate(:status, reblog: status, account: jeff)
-        expect(subject.filter?(:home, reblog, alice)).to be_nil
+        expect(subject.filter?(:home, reblog, alice)).to be false
       end
     end
 
     context 'with mentions feed' do
-      it 'returns :filter for status that mentions blocked account' do
+      it 'returns true for status that mentions blocked account' do
         bob.block!(jeff)
         status = PostStatusService.new.call(alice, text: 'Hey @jeff')
-        expect(subject.filter?(:mentions, status, bob)).to be :filter
+        expect(subject.filter?(:mentions, status, bob)).to be true
       end
 
-      it 'returns :filter for status that replies to a blocked account' do
+      it 'returns true for status that replies to a blocked account' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reply  = Fabricate(:status, text: 'Nay', thread: status, account: alice)
         bob.block!(jeff)
-        expect(subject.filter?(:mentions, reply, bob)).to be :filter
+        expect(subject.filter?(:mentions, reply, bob)).to be true
       end
 
-      it 'returns nil for status by limited account who recipient is not following' do
+      it 'returns false for status by limited account who recipient is not following' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         alice.silence!
-        expect(subject.filter?(:mentions, status, bob)).to be_nil
+        expect(subject.filter?(:mentions, status, bob)).to be false
       end
 
-      it 'returns nil for status by followed limited account' do
+      it 'returns false for status by followed limited account' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         alice.silence!
         bob.follow!(alice)
-        expect(subject.filter?(:mentions, status, bob)).to be_nil
+        expect(subject.filter?(:mentions, status, bob)).to be false
       end
     end
   end

@@ -126,7 +126,7 @@ class NotifyService < BaseService
     private
 
     def blocked_mention?
-      !!FeedManager.instance.filter?(:mentions, @notification.target_status, @recipient)
+      FeedManager.instance.filter?(:mentions, @notification.target_status, @recipient)
     end
 
     def message?
