@@ -64,13 +64,13 @@ class Trends::Tags < Trends::Base
   end
 
   def refresh(at_time = Time.now.utc)
-    # First, recalculate scores for links that were trending previously. We split the queries
+    # First, recalculate scores for tags that were trending previously. We split the queries
     # to avoid having to load all of the IDs into Ruby just to send them back into Postgres
     Tag.where(id: TagTrend.select(:tag_id)).find_in_batches(batch_size: BATCH_SIZE) do |tags|
       calculate_scores(tags, at_time)
     end
 
-    # Then, calculate scores for links that were used today. There are potentially some
+    # Then, calculate scores for tags that were used today. There are potentially some
     # duplicate items here that we might process one more time, but that should be fine
     Tag.where(id: recently_used_ids(at_time)).find_in_batches(batch_size: BATCH_SIZE) do |tags|
       calculate_scores(tags, at_time)
