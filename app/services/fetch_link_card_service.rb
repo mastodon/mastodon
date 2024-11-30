@@ -72,8 +72,10 @@ class FetchLinkCardService < BaseService
     parsed_url = Addressable::URI.parse(@url)
     return unless parsed_url.normalized_host == 'youtu.be'
 
+    video_id = parsed_url.path.delete_prefix('/')
     parsed_url.host = 'www.youtube.com'
-    parsed_url.path = "/watch?v=#{parsed_url.path.delete_prefix('/')}"
+    parsed_url.path = '/watch'
+    parsed_url.query_values = { v: video_id }
 
     @url = parsed_url.to_s
   end
