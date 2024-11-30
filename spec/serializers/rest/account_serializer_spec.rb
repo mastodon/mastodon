@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe REST::AccountSerializer do
+  default_datetime = DateTime.new(2024, 11, 28, 16, 20, 0)
   subject { serialized_record_json(account, described_class) }
 
   let(:role)    { Fabricate(:user_role, name: 'Role', highlighted: true) }
@@ -45,13 +46,43 @@ RSpec.describe REST::AccountSerializer do
     end
   end
 
+  context 'when created_at is populated' do
+    before do
+      account.account_stat.update!(created_at: default_datetime)
+    end
+
+    it 'parses as RFC 3339 datetime' do
+      expect { DateTime.rfc3339(subject['created_at']) }.to_not raise_error
+    end
+  end
+
   context 'when last_status_at is populated' do
     before do
-      account.account_stat.update!(last_status_at: DateTime.new(2024, 11, 28, 16, 20, 0))
+      account.account_stat.update!(last_status_at: default_datetime)
     end
 
     it 'is serialized as yyyy-mm-dd' do
       expect(subject['last_status_at']).to eq('2024-11-28')
+    end
+  end
+
+  context 'when mute_expires_at is populated', pending: 'creating a muted account' do
+    before do
+      account.account_stat.update!(mute_expires_at: default_datetime)
+    end
+
+    it 'parses as RFC 3339 datetime' do
+      expect { DateTime.rfc3339(subject['mute_expires_at']) }.to_not raise_error
+    end
+  end
+
+  context 'when verified_at is populated', pending: 'creating a verified account' do
+    before do
+      account.account_stat.update!(verified_at: default_datetime)
+    end
+
+    it 'parses as RFC 3339 datetime' do
+      expect { DateTime.rfc3339(subject['verified_at']) }.to_not raise_error
     end
   end
 end
