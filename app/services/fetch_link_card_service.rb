@@ -51,6 +51,8 @@ class FetchLinkCardService < BaseService
       'User-Agent' => "#{Mastodon::Version.user_agent} Bot",
     }
 
+    update_url_if_youtube!
+
     @html = Request.new(:get, @url).add_headers(headers).perform do |res|
       next unless res.code == 200 && res.mime_type == 'text/html'
 
@@ -64,6 +66,16 @@ class FetchLinkCardService < BaseService
 
       res.truncated_body
     end
+  end
+
+  def update_url_if_youtube!
+    parsed_url = Addressable::URI.parse(@url)
+    return unless parsed_url.normalized_host == 'youtu.be'
+
+    parsed_url.host = 'www.youtube.com'
+    parsed_url.path = "/watch?v=#{parsed_url.path.delete_prefix('/')}"
+
+    @url = parsed_url.to_s
   end
 
   def attach_card
