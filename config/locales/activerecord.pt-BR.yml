@@ -38,7 +38,12 @@ pt-BR:
         import:
           attributes:
             data:
-              malformed: está malformado
+              malformed: Está malformado
+        list_account:
+          attributes:
+            account_id:
+              taken: já está na lista
+          must_be_following: deve ser uma conta seguida
         status:
           attributes:
             reblog:

@@ -4,12 +4,17 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { Button } from 'mastodon/components/button';
 import { ShortNumber } from 'mastodon/components/short_number';
+import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import { withIdentity } from 'mastodon/identity_context';
+import { PERMISSION_MANAGE_TAXONOMIES } from 'mastodon/permissions';
 
 const messages = defineMessages({
   followHashtag: { id: 'hashtag.follow', defaultMessage: 'Follow hashtag' },
   unfollowHashtag: { id: 'hashtag.unfollow', defaultMessage: 'Unfollow hashtag' },
+  adminModeration: { id: 'hashtag.admin_moderation', defaultMessage: 'Open moderation interface for #{name}' },
 });
 
 const usesRenderer = (displayNumber, pluralReady) => (
@@ -45,9 +50,16 @@ const usesTodayRenderer = (displayNumber, pluralReady) => (
   />
 );
 
-export const HashtagHeader = injectIntl(({ tag, intl, disabled, onClick }) => {
+export const HashtagHeader = withIdentity(injectIntl(({ tag, intl, disabled, onClick, identity }) => {
   if (!tag) {
     return null;
+  }
+
+  const { signedIn, permissions } = identity;
+  const menu = [];
+
+  if (signedIn && (permissions & PERMISSION_MANAGE_TAXONOMIES) === PERMISSION_MANAGE_TAXONOMIES ) {
+    menu.push({ text: intl.formatMessage(messages.adminModeration, { name: tag.get("name") }), href: `/admin/tags/${tag.get('id')}` });
   }
 
   const [uses, people] = tag.get('history').reduce((arr, day) => [arr[0] + day.get('uses') * 1, arr[1] + day.get('accounts') * 1], [0, 0]);
@@ -57,7 +69,10 @@ export const HashtagHeader = injectIntl(({ tag, intl, disabled, onClick }) => {
     <div className='hashtag-header'>
       <div className='hashtag-header__header'>
         <h1>#{tag.get('name')}</h1>
-        <Button onClick={onClick} text={intl.formatMessage(tag.get('following') ? messages.unfollowHashtag : messages.followHashtag)} disabled={disabled} />
+        <div className='hashtag-header__header__buttons'>
+          { menu.length > 0 && <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' iconComponent={MoreHorizIcon} size={24} direction='right' /> }
+          <Button onClick={onClick} text={intl.formatMessage(tag.get('following') ? messages.unfollowHashtag : messages.followHashtag)} disabled={disabled} />
+        </div>
       </div>
 
       <div>
@@ -69,7 +84,7 @@ export const HashtagHeader = injectIntl(({ tag, intl, disabled, onClick }) => {
       </div>
     </div>
   );
-});
+}));
 
 HashtagHeader.propTypes = {
   tag: ImmutablePropTypes.map,

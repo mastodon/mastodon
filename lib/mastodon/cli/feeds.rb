@@ -5,6 +5,7 @@ require_relative 'base'
 module Mastodon::CLI
   class Feeds < Base
     include Redisable
+    include DatabaseHelper
 
     option :all, type: :boolean, default: false
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
@@ -42,6 +43,38 @@ module Mastodon::CLI
       keys = redis.keys('feed:*')
       redis.del(keys)
       say('OK', :green)
+    end
+
+    desc 'vacuum', 'Remove home feeds of inactive users from Redis'
+    long_desc <<-LONG_DESC
+      Running this task should not be needed in most cases, as Mastodon will
+      automatically clean up feeds from inactive accounts every day.
+
+      However, this task is more aggressive in order to clean up feeds that
+      may have been missed because of bugs or database mishaps.
+    LONG_DESC
+    def vacuum
+      with_read_replica do
+        say('Deleting orphaned home feeds…')
+        redis.scan_each(match: 'feed:home:*').each_slice(1000) do |keys|
+          ids = keys.map { |key| key.split(':')[2] }.compact_blank
+
+          known_ids = User.confirmed.signed_in_recently.where(account_id: ids).pluck(:account_id)
+
+          keys_to_delete = keys.filter { |key| known_ids.exclude?(key.split(':')[2]&.to_i) }
+          redis.del(keys_to_delete)
+        end
+
+        say('Deleting orphaned list feeds…')
+        redis.scan_each(match: 'feed:list:*').each_slice(1000) do |keys|
+          ids = keys.map { |key| key.split(':')[2] }.compact_blank
+
+          known_ids = List.where(account_id: User.confirmed.signed_in_recently.select(:account_id)).where(id: ids).pluck(:id)
+
+          keys_to_delete = keys.filter { |key| known_ids.exclude?(key.split(':')[2]&.to_i) }
+          redis.del(keys_to_delete)
+        end
+      end
     end
 
     private

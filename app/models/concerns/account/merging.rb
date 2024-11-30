@@ -16,7 +16,7 @@ module Account::Merging
       Follow, FollowRequest, Block, Mute,
       AccountModerationNote, AccountPin, AccountStat, ListAccount,
       PollVote, Mention, AccountDeletionRequest, AccountNote, FollowRecommendationSuppression,
-      Appeal
+      Appeal, TagFollow
     ]
 
     owned_classes.each do |klass|

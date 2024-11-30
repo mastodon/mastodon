@@ -39,10 +39,15 @@ es-MX:
           attributes:
             data:
               malformed: tiene un formato incorrecto
+        list_account:
+          attributes:
+            account_id:
+              taken: ya está en la lista
+          must_be_following: debe ser una cuenta seguida
         status:
           attributes:
             reblog:
-              taken: del estado ya existe
+              taken: de la publicación ya existe
         user:
           attributes:
             email:

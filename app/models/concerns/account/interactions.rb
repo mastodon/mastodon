@@ -88,6 +88,9 @@ module Account::Interactions
       has_many :remote_severed_relationships, foreign_key: 'remote_account_id', inverse_of: :remote_account
     end
 
+    # Hashtag follows
+    has_many :tag_follows, inverse_of: :account, dependent: :destroy
+
     # Account notes
     has_many :account_notes, dependent: :destroy
 

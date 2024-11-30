@@ -826,8 +826,10 @@ ca:
       back_to_account: Torna a la pàgina del compte
       back_to_report: Torna a la pàgina de l'informe
       batch:
+        add_to_report: 'Afegiu a l''informe #%{id}'
         remove_from_report: Treu de l'informe
         report: Denuncia
+      contents: Continguts
       deleted: Eliminada
       favourites: Favorits
       history: Històric de versions
@@ -836,12 +838,17 @@ ca:
       media:
         title: Contingut multimèdia
       metadata: Metadada
+      no_history: Aquesta publicació no s'ha editat
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
       open: Obre la publicació
       original_status: Publicació original
       reblogs: Impulsos
+      replied_to_html: En resposta a %{acct_link}
       status_changed: Publicació canviada
+      status_title: Publicació de @%{name}
+      title: Publicacions del compte - @%{name}
       trending: Tendència
+      view_publicly: Vegeu en públic
       visibility: Visibilitat
       with_media: Amb contingut multimèdia
     strikes:
@@ -1173,8 +1180,11 @@ ca:
     use_security_key: Usa clau de seguretat
   author_attribution:
     example_title: Text d'exemple
+    hint_html: Escriviu notícies o un blog fora de Mastodon? Controleu quin crèdit rebeu quan es comparteixen aquí.
+    instructions: 'Assegureu-vos que aquest codi és a l''HTML de l''article:'
     more_from_html: Més de %{name}
     s_blog: Blog de %{name}
+    then_instructions: Després, afegiu el nom del domini de la publicació aquí sota.
     title: Atribució d'autor
   challenge:
     confirm: Continua

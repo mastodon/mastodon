@@ -1180,12 +1180,12 @@ de:
     use_security_key: Sicherheitsschlüssel verwenden
   author_attribution:
     example_title: Beispieltext
-    hint_html: Schreibst du außerhalb von Mastodon Nachrichtenartikel oder betreibst du einen Blog? Bestimme, wie du Anerkennungen durch geteilte Links auf Mastodon handhaben möchtest.
-    instructions: 'Der nachfolgende Code muss im HTML-Code deines Artikels sein:'
+    hint_html: Schreibst du außerhalb von Mastodon journalistische Artikel oder andere Texte, beispielsweise in einem Blog? Lege hier fest, wann auf dein Profil verwiesen werden soll, wenn Links zu deinen Werken auf Mastodon geteilt werden.
+    instructions: 'Der nachfolgende Code muss im HTML-Header deines zu verlinkenden Textes stehen:'
     more_from_html: Mehr von %{name}
     s_blog: Blog von %{name}
-    then_instructions: Ergänze die Domain, auf der deine Inhalte veröffentlicht werden in das unten stehende Feld.
-    title: Anerkennung als Autor*in
+    then_instructions: Ergänze anschließend im unteren Feld die Domain, auf der sich deine Inhalte befinden.
+    title: Verifizierung als Autor*in
   challenge:
     confirm: Fortfahren
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
@@ -1563,7 +1563,7 @@ de:
     follow_request:
       action: Follower-Anfragen verwalten
       body: "%{name} möchte dir folgen"
-      subject: 'Ausstehende Folgeanfragen: %{name}'
+      subject: 'Ausstehende Follower-Anfragen: %{name}'
       title: Neue Follower-Anfrage
     mention:
       action: Antworten
@@ -1625,7 +1625,7 @@ de:
     posting_defaults: Standardeinstellungen für Beiträge
     public_timelines: Öffentliche Timelines
   privacy:
-    hint_html: "<strong>Bestimme, wie dein Profil und deine Beiträge gefunden werden sollen.</strong> Eine Vielzahl von Funktionen in Mastodon können dir helfen, eine größere Reichweite zu erlangen, wenn sie aktiviert sind. Nimm dir einen Moment Zeit, um diese Einstellungen zu überprüfen und sicherzustellen, dass sie für deinen Anwendungsfall geeignet sind."
+    hint_html: "<strong>Bestimme selbst, wie dein Profil und deine Beiträge gefunden werden sollen.</strong> Zahlreiche Mastodon-Funktionen können dir für eine größere Reichweite behilflich sein. Nimm dir einen Moment Zeit, um diese Einstellungen zu überprüfen."
     privacy: Datenschutz
     privacy_hint_html: Bestimme, wie viele Informationen du für andere preisgeben möchtest. Viele Menschen entdecken interessante Profile und coole Apps, indem sie die Follower anderer Profile durchstöbern und die Apps sehen, über die Beiträge veröffentlicht wurden – möglicherweise möchtest du diese Informationen ausblenden.
     reach: Reichweite
@@ -1801,7 +1801,7 @@ de:
     enabled: Alte Beiträge automatisch entfernen
     enabled_hint: Löscht automatisch deine Beiträge, sobald sie die angegebene Altersgrenze erreicht haben, es sei denn, sie entsprechen einer der unten angegebenen Ausnahmen
     exceptions: Ausnahmen
-    explanation: Damit Mastodon nicht durch das Löschen von Beiträgen ausgebremst wird, wartet der Server damit, bis wenig los ist. Aus diesem Grund werden deine Beiträge ggf. erst einige Zeit nach Erreichen der Altersgrenze gelöscht.
+    explanation: Damit der Server nicht durch das Löschen von Beiträgen ausgebremst wird, wartet die Mastodon-Software, bis wenig(er) los ist. Deshalb könnten deine Beiträge ggf. erst einige Zeit nach Erreichen der Altersgrenze gelöscht werden.
     ignore_favs: Favoriten ignorieren
     ignore_reblogs: Geteilte Beiträge ignorieren
     interaction_exceptions: Ausnahmen basierend auf Interaktionen
@@ -1980,13 +1980,13 @@ de:
     seamless_external_login: Du bist über einen externen Dienst angemeldet, daher sind Passwort- und E-Mail-Einstellungen nicht verfügbar.
     signed_in_as: 'Angemeldet als:'
   verification:
-    extra_instructions_html: <strong>Hinweis:</strong> Der Link auf deiner Website kann unsichtbar sein. Der wichtige Teil ist <code>rel="me"</code>, wodurch das Nachahmen von Personen auf Websites mit nutzergenerierten Inhalten verhindert wird. Du kannst auch ein <code>link</code>-Tag statt <code>a</code> im Header auf der Seite verwenden, jedoch muss der HTML-Code ohne das Ausführen von JavaScript zugänglich sein.
+    extra_instructions_html: <strong>Hinweis:</strong> Der Link auf deiner Website kann unsichtbar sein. Der wichtige Teil ist <code>rel="me"</code>. Du kannst auch den Tag <code>link</code> im <code>head</code> (statt <code>a</code> im <code>body</code>) verwenden, jedoch muss die Internetseite ohne JavaScript abrufbar sein.
     here_is_how: So funktioniert’s
     hint_html: "<strong>Alle können ihre Identität auf Mastodon verifizieren.</strong> Basierend auf offenen Standards – jetzt und für immer kostenlos. Alles, was du brauchst, ist eine eigene Website. Wenn du von deinem Profil auf diese Website verlinkst, überprüfen wir, ob die Website zu deinem Profil zurückverlinkt, und zeigen einen visuellen Hinweis an."
     instructions_html: Kopiere den unten stehenden Code und füge ihn in den HTML-Code deiner Website ein. Trage anschließend die Adresse deiner Website in ein Zusatzfeld auf deinem Profil ein und speichere die Änderungen. Die Zusatzfelder befinden sich im Reiter „Profil bearbeiten“.
     verification: Verifizierung
-    verified_links: Deine verifizierten Links
-    website_verification: Website-Verifizierung
+    verified_links: Deine verifizierten Domains
+    website_verification: Verifizierung einer Website
   webauthn_credentials:
     add: Sicherheitsschlüssel hinzufügen
     create:

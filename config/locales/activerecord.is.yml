@@ -39,6 +39,11 @@ is:
           attributes:
             data:
               malformed: er rangt formað
+        list_account:
+          attributes:
+            account_id:
+              taken: er þegar á listanum
+          must_be_following: verður að vera aðgangur sem fylgst er með
         status:
           attributes:
             reblog:

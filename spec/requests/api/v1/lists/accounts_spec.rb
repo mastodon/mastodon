@@ -95,7 +95,7 @@ RSpec.describe 'Accounts' do
       it 'does not add the account to the list', :aggregate_failures do
         subject
 
-        expect(response).to have_http_status(404)
+        expect(response).to have_http_status(422)
         expect(response.content_type)
           .to start_with('application/json')
         expect(list.accounts).to_not include(bob)

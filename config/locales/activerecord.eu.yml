@@ -33,6 +33,11 @@ eu:
           attributes:
             data:
               malformed: gaizki eratua dago
+        list_account:
+          attributes:
+            account_id:
+              taken: dagoeneko zerrendan dago
+          must_be_following: jarraitutako kontua izan behar da
         status:
           attributes:
             reblog:

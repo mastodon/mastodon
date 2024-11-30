@@ -34,8 +34,8 @@
     .fields-row__column.fields-row__column-6
       .fields-group
         = f.input :avatar,
-                  hint: t('simple_form.hints.defaults.avatar', dimensions: Account::Avatar::AVATAR_GEOMETRY, size: number_to_human_size(Account::Avatar::LIMIT)),
-                  input_html: { accept: Account::Avatar::IMAGE_MIME_TYPES.join(',') },
+                  hint: t('simple_form.hints.defaults.avatar', dimensions: Account::Avatar::AVATAR_GEOMETRY, size: number_to_human_size(Account::Avatar::AVATAR_LIMIT)),
+                  input_html: { accept: Account::Avatar::AVATAR_IMAGE_MIME_TYPES.join(',') },
                   wrapper: :with_block_label
 
     .fields-row__column.fields-row__column-6
@@ -50,8 +50,8 @@
     .fields-row__column.fields-row__column-6
       .fields-group
         = f.input :header,
-                  hint: t('simple_form.hints.defaults.header', dimensions: Account::Header::HEADER_GEOMETRY, size: number_to_human_size(Account::Header::LIMIT)),
-                  input_html: { accept: Account::Header::IMAGE_MIME_TYPES.join(',') },
+                  hint: t('simple_form.hints.defaults.header', dimensions: Account::Header::HEADER_GEOMETRY, size: number_to_human_size(Account::Header::HEADER_LIMIT)),
+                  input_html: { accept: Account::Header::HEADER_IMAGE_MIME_TYPES.join(',') },
                   wrapper: :with_block_label
 
     .fields-row__column.fields-row__column-6
