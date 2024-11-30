@@ -53,7 +53,7 @@ RSpec.describe REST::StatusSerializer do
     end
 
     context 'with created_at' do
-      it 'parses as RFC 3339 datetime' do
+      it 'is serialized as RFC 3339 datetime' do
         expect { DateTime.rfc3339(subject['created_at']) }.to_not raise_error
       end
     end
