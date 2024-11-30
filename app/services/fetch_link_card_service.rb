@@ -23,6 +23,8 @@ class FetchLinkCardService < BaseService
 
     @url = @original_url.to_s
 
+    update_url_if_youtube!
+
     with_redis_lock("fetch:#{@original_url}") do
       @card = PreviewCard.find_by(url: @url)
       process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
@@ -50,8 +52,6 @@ class FetchLinkCardService < BaseService
       'Accept-Language' => "#{I18n.default_locale}, *;q=0.5",
       'User-Agent' => "#{Mastodon::Version.user_agent} Bot",
     }
-
-    update_url_if_youtube!
 
     @html = Request.new(:get, @url).add_headers(headers).perform do |res|
       next unless res.code == 200 && res.mime_type == 'text/html'
