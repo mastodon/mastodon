@@ -134,7 +134,7 @@ class NotifyService < BaseService
     end
 
     def from_staff?
-      @sender.local? && @sender.user.present? && @sender.user_role&.overrides?(@recipient.user_role) && @sender.user_role&.highlighted? && @sender.user_role&.can?(*UserRole::Flags::CATEGORIES[:moderation])
+      @sender.local? && @sender.user.present? && @sender.user_role&.bypass_block?(@recipient.user_role)
     end
 
     def from_self?

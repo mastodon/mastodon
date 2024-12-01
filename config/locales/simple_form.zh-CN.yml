@@ -42,14 +42,14 @@ zh-CN:
         autofollow: 通过邀请链接注册的用户将会自动关注你
         avatar: 支持WEBP、PNG、GIF 或 JPG。最大 %{size}。将缩小到 %{dimensions}px
         bot: 来自这个账户的绝大多数操作都是自动进行的，并且可能无人监控
-        context: 过滤器的应用环境
+        context: 过滤规则将被应用到的一个或多个场景
         current_password: 为了安全起见，请输入当前账号的密码
         current_username: 请输入当前账号的用户名以确认
         digest: 仅在你长时间未登录，且收到了私信时发送
         email: 我们会向你发送一封确认邮件
-        header: 支持WEBP、PNG、GIF 或 JPG。最大 %{size}。将缩小到 %{dimensions}px
+        header: 支持WEBP、PNG、GIF 或 JPG。最大 %{size}。分辨率将被压缩至 %{dimensions}px
         inbox_url: 从你想要使用的中继站的主页上复制 URL
-        irreversible: 已过滤的嘟文会不可逆转地消失，即便移除过滤器之后也一样
+        irreversible: 被过滤的嘟文会永久消失，移除过滤规则后也不会恢复
         locale: 在用户界面、电子邮件和推送通知中使用的语言
         password: 至少需要8个字符
         phrase: 匹配将忽略嘟文或内容警告里的字母大小写
@@ -72,10 +72,10 @@ zh-CN:
       featured_tag:
         name: 以下是你最近使用过的标签：
       filters:
-        action: 选择在嘟文命中过滤器时要执行的操作
+        action: 选择在嘟文命中过滤规则时要执行的操作
         actions:
-          hide: 彻底屏蔽过滤内容，犹如它不曾存在过一般
-          warn: 在警告中提及过滤器标题后，隐藏过滤内容
+          hide: 彻底隐藏过滤内容，就像它从未存在过一样
+          warn: 显示带有过滤规则标题的警告，并隐藏过滤内容
       form_admin_settings:
         activity_api_enabled: 本站每周的嘟文数、活跃用户数和新注册用户数
         app_icon: WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖移动设备上的默认应用图标。
@@ -125,7 +125,7 @@ zh-CN:
         otp: 输入你手机应用上生成的双因素认证代码，或者任意一个恢复代码：
         webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
       settings:
-        indexable: 你的个人资料页面可能会出现在Google、Bing等搜索结果中。
+        indexable: 你的账户页可能会出现在Google、Bing等的搜索结果中。
         show_application: 无论如何，你始终可以看到是哪个应用发布了你的嘟文。
       tag:
         name: 你只能改变字母的大小写，让它更易读
@@ -145,12 +145,12 @@ zh-CN:
     labels:
       account:
         attribution_domains_as_text: 授权展示你的署名的网站
-        discoverable: 在发现算法中展示你的个人资料和嘟文
+        discoverable: 在发现算法中展示你的账户与嘟文
         fields:
           name: 标签
           value: 内容
         indexable: 将公开嘟文纳入搜索范围
-        show_collections: 在个人资料中显示关注和关注者
+        show_collections: 在账户页显示关注和关注者
         unlocked: 自动接受新关注者
       account_alias:
         acct: 处理旧账号
@@ -183,17 +183,17 @@ zh-CN:
         autofollow: 让被邀请人关注你的账户
         avatar: 头像
         bot: 这是一个机器人账户
-        chosen_languages: 语言过滤
+        chosen_languages: 过滤语言
         confirm_new_password: 确认新密码
         confirm_password: 确认密码
-        context: 过滤环境
+        context: 过滤规则生效场景
         current_password: 当前密码
         data: 数据文件
         display_name: 昵称
         email: 邮箱地址
         expires_in: 失效时间
         fields: 个人资料附加信息
-        header: 个人资料页横幅图片
+        header: 封面图
         honeypot: "%{label} (请勿填写)"
         inbox_url: 中继站收件箱的 URL
         irreversible: 丢弃而非隐藏
@@ -213,7 +213,7 @@ zh-CN:
         setting_default_privacy: 嘟文默认可见范围
         setting_default_sensitive: 始终标记媒体为敏感内容
         setting_delete_modal: 在删除嘟文前询问我
-        setting_disable_hover_cards: 禁用悬停资料预览
+        setting_disable_hover_cards: 禁用悬停资料卡预览
         setting_disable_swiping: 禁用滑动动作
         setting_display_media: 媒体显示
         setting_display_media_default: 默认
@@ -242,7 +242,7 @@ zh-CN:
       filters:
         actions:
           hide: 完全隐藏
-          warn: 隐藏时显示警告信息
+          warn: 隐藏时显示警告
       form_admin_settings:
         activity_api_enabled: 在 API 中发布有关用户活动的汇总统计数据
         app_icon: 应用图标
@@ -310,8 +310,8 @@ zh-CN:
         hint: 补充信息
         text: 规则
       settings:
-        indexable: 允许搜索引擎索引个人资料页面
-        show_application: 显示
+        indexable: 允许搜索引擎索引账户页
+        show_application: 显示你发嘟所用的应用
       tag:
         listable: 允许这个话题标签在用户目录中显示
         name: 话题标签

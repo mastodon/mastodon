@@ -39,6 +39,11 @@ nl:
           attributes:
             data:
               malformed: heeft de verkeerde opmaak
+        list_account:
+          attributes:
+            account_id:
+              taken: staat al in de lijst
+          must_be_following: moet een gevolgd account zijn
         status:
           attributes:
             reblog:

@@ -39,6 +39,11 @@ ca:
           attributes:
             data:
               malformed: està mal format
+        list_account:
+          attributes:
+            account_id:
+              taken: ja és a la llista
+          must_be_following: ha de ser un compte que seguiu
         status:
           attributes:
             reblog:

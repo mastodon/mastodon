@@ -31,13 +31,41 @@ $fluid-breakpoint: $maximum-width + 20px;
     padding-inline-start: 3em;
     font-weight: 500;
     counter-increment: list-counter;
+    min-height: 4ch;
+
+    button {
+      background: transparent;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      text-align: start;
+      font: inherit;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: transparent;
+      }
+
+      &[aria-expanded='false'] .rules-list__hint {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @supports (-webkit-line-clamp: 2) {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          white-space: normal;
+        }
+      }
+    }
 
     &::before {
       content: counter(list-counter);
       position: absolute;
       inset-inline-start: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 1em;
       background: $highlight-text-color;
       color: $ui-base-color;
       border-radius: 50%;
