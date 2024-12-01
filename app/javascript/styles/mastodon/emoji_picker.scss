@@ -39,7 +39,7 @@
   color: $darker-text-color;
 
   &:hover {
-    color: lighten($darker-text-color, 4%);
+    color: color.adjust($darker-text-color, 4%);
   }
 }
 
@@ -47,7 +47,7 @@
   color: $highlight-text-color;
 
   &:hover {
-    color: lighten($highlight-text-color, 4%);
+    color: color.adjust($highlight-text-color, 4%);
   }
 
   .emoji-mart-anchor-bar {

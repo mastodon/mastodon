@@ -16,7 +16,7 @@ $grey-600: hsl(240deg, 8%, 33%); // Trout
 $grey-100: hsl(240deg, 51%, 90%); // Topaz
 
 // Differences
-$success-green: lighten(hsl(138deg, 32%, 35%), 8%);
+$success-green: color.adjust(hsl(138deg, 32%, 35%), 8%);
 
 $base-overlay-background: $white !default;
 $valid-value-color: $success-green !default;
@@ -47,23 +47,6 @@ $light-text-color: hsl(240deg, 16%, 32%);
 // Newly added colors
 $account-background-color: $white !default;
 
-// Invert darkened and lightened colors
-@function darken($color, $amount) {
-  @return hsl(
-    hue($color),
-    color.channel($color, 'saturation', $space: hsl),
-    color.channel($color, 'lightness', $space: hsl) + $amount
-  );
-}
-
-@function lighten($color, $amount) {
-  @return hsl(
-    hue($color),
-    color.channel($color, 'saturation', $space: hsl),
-    color.channel($color, 'lightness', $space: hsl) - $amount
-  );
-}
-
 $emojis-requiring-inversion: 'chains';
 
 body {
@@ -80,5 +63,5 @@ body {
   --rich-text-text-color: rgba(114, 47, 83, 100%);
   --rich-text-decorations-color: rgba(255, 175, 212, 100%);
   --input-placeholder-color: #{transparentize($dark-text-color, 0.5)};
-  --input-background-color: #{darken($ui-base-color, 10%)};
+  --input-background-color: #{color.adjust($ui-base-color, 10%)};
 }

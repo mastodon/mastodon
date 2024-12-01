@@ -130,8 +130,8 @@
     &:active,
     &:focus,
     &:hover {
-      border-color: lighten($highlight-text-color, 4%);
-      color: lighten($highlight-text-color, 4%);
+      border-color: color.adjust($highlight-text-color, 4%);
+      color: color.adjust($highlight-text-color, 4%);
       background-color: transparent;
       text-decoration: none;
     }
@@ -254,7 +254,7 @@
   &:hover,
   &:active,
   &:focus {
-    color: lighten($action-button-color, 7%);
+    color: color.adjust($action-button-color, 7%);
     background-color: rgba($action-button-color, 0.15);
   }
 
@@ -263,7 +263,7 @@
   }
 
   &.disabled {
-    color: darken($action-button-color, 13%);
+    color: color.adjust($action-button-color, -13%);
     background-color: transparent;
     cursor: default;
   }
@@ -274,7 +274,7 @@
     &:hover,
     &:active,
     &:focus {
-      color: darken($lighter-text-color, 7%);
+      color: color.adjust($lighter-text-color, -7%);
       background-color: rgba($lighter-text-color, 0.15);
     }
 
@@ -283,7 +283,7 @@
     }
 
     &.disabled {
-      color: lighten($lighter-text-color, 7%);
+      color: color.adjust($lighter-text-color, 7%);
       background-color: transparent;
     }
   }
@@ -299,7 +299,7 @@
     }
 
     &.disabled {
-      color: lighten($highlight-text-color, 13%);
+      color: color.adjust($highlight-text-color, 13%);
     }
   }
 
@@ -354,7 +354,7 @@
   &:hover,
   &:active,
   &:focus {
-    color: darken($lighter-text-color, 7%);
+    color: color.adjust($lighter-text-color, -7%);
     background-color: rgba($lighter-text-color, 0.15);
   }
 
@@ -363,7 +363,7 @@
   }
 
   &.disabled {
-    color: lighten($lighter-text-color, 20%);
+    color: color.adjust($lighter-text-color, 20%);
     background-color: transparent;
     cursor: default;
   }
@@ -855,7 +855,7 @@ body > [data-popper-placement] {
       &__sep {
         width: 1px;
         height: 22px;
-        background: lighten($ui-base-color, 8%);
+        background: color.adjust($ui-base-color, 8%);
         flex: 0 0 auto;
       }
     }
@@ -1130,7 +1130,7 @@ body > [data-popper-placement] {
       inset-inline-start: 50%;
       top: 4px;
       transform: translateX(-50%);
-      background: lighten($ui-base-color, 8%);
+      background: color.adjust($ui-base-color, 8%);
       width: 2px;
       height: calc(100% + 32px - 8px); // Account for gap to next element
     }
@@ -1167,11 +1167,11 @@ body > [data-popper-placement] {
 
 .edit-indicator {
   border-radius: 4px 4px 0 0;
-  background: lighten($ui-base-color, 4%);
+  background: color.adjust($ui-base-color, 4%);
   padding: 12px;
   overflow-y: auto;
   flex: 0 0 auto;
-  border-bottom: 0.5px solid lighten($ui-base-color, 8%);
+  border-bottom: 0.5px solid color.adjust($ui-base-color, 8%);
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -1349,7 +1349,7 @@ body > [data-popper-placement] {
 
   &__button {
     display: inline;
-    color: lighten($ui-highlight-color, 8%);
+    color: color.adjust($ui-highlight-color, 8%);
     border: 0;
     background: transparent;
     padding: 0;
@@ -1434,7 +1434,7 @@ body > [data-popper-placement] {
 
         &:hover,
         &:focus {
-          background: lighten($ui-primary-color, 8%);
+          background: color.adjust($ui-primary-color, 8%);
         }
       }
     }
@@ -1485,7 +1485,7 @@ body > [data-popper-placement] {
 
   &__line {
     height: 16px - 4px;
-    border-inline-start: 2px solid lighten($ui-base-color, 8%);
+    border-inline-start: 2px solid color.adjust($ui-base-color, 8%);
     width: 0;
     position: absolute;
     top: 0;
@@ -1590,7 +1590,7 @@ body > [data-popper-placement] {
   padding: 0 10px;
 
   .detailed-status__display-name {
-    color: lighten($inverted-text-color, 16%);
+    color: color.adjust($inverted-text-color, 16%);
 
     span {
       display: inline;
@@ -1801,13 +1801,17 @@ body > [data-popper-placement] {
   &:focus {
     .detailed-status,
     .detailed-status__action-bar {
-      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+      background: mix(
+        color.adjust($ui-base-color, 4%),
+        $ui-highlight-color,
+        95%
+      );
     }
   }
 
   .detailed-status__action-bar {
     border-top-color: mix(
-      lighten($ui-base-color, 8%),
+      color.adjust($ui-base-color, 8%),
       $ui-highlight-color,
       95%
     );
@@ -3201,7 +3205,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .copy-paste-text {
-  background: lighten($ui-base-color, 4%);
+  background: color.adjust($ui-base-color, 4%);
   border-radius: 8px;
   border: 1px solid var(--background-border-color);
   padding: 16px;
@@ -3578,7 +3582,7 @@ $ui-header-logo-wordmark-width: 99px;
 
 .react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled)
   .react-toggle-track {
-  background: lighten($ui-highlight-color, 5%);
+  background: color.adjust($ui-highlight-color, 5%);
 }
 
 .switch-to-advanced {
@@ -3723,7 +3727,7 @@ $ui-header-logo-wordmark-width: 99px;
   kbd {
     display: inline-block;
     padding: 3px 5px;
-    background-color: lighten($ui-base-color, 8%);
+    background-color: color.adjust($ui-base-color, 8%);
     border: 1px solid darken($ui-base-color, 4%);
   }
 }
@@ -3958,7 +3962,7 @@ a.status-card {
   flex: 0 0 auto;
   width: 120px;
   aspect-ratio: 1;
-  background: lighten($ui-base-color, 8%);
+  background: color.adjust($ui-base-color, 8%);
   position: relative;
 
   & > .icon {
@@ -4082,7 +4086,7 @@ a.status-card {
     &:focus,
     &:active {
       text-decoration: underline;
-      color: lighten($highlight-text-color, 4%);
+      color: color.adjust($highlight-text-color, 4%);
     }
   }
 
@@ -4194,7 +4198,7 @@ a.status-card {
     font-size: 14px;
 
     &:hover {
-      color: lighten($highlight-text-color, 6%);
+      color: color.adjust($highlight-text-color, 6%);
     }
   }
 }
@@ -4300,7 +4304,7 @@ a.status-card {
   }
 
   &:hover {
-    color: lighten($darker-text-color, 4%);
+    color: color.adjust($darker-text-color, 4%);
   }
 
   &:focus-visible {
@@ -4451,7 +4455,7 @@ a.status-card {
 }
 
 .circular-progress {
-  color: lighten($ui-base-color, 26%);
+  color: color.adjust($ui-base-color, 26%);
   animation: 1.4s linear 0s infinite normal none running simple-rotate;
 
   circle {
@@ -4606,7 +4610,7 @@ a.status-card {
 }
 
 .modal-container--preloader {
-  background: lighten($ui-base-color, 8%);
+  background: color.adjust($ui-base-color, 8%);
 }
 
 .account--panel {
@@ -4682,7 +4686,7 @@ a.status-card {
       @include search-input;
 
       &::placeholder {
-        color: lighten($darker-text-color, 4%);
+        color: color.adjust($darker-text-color, 4%);
       }
 
       &::-moz-focus-inner {
@@ -4696,7 +4700,7 @@ a.status-card {
       }
 
       &:focus {
-        background: lighten($ui-base-color, 4%);
+        background: color.adjust($ui-base-color, 4%);
       }
 
       @media screen and (width <= 600px) {
@@ -4715,7 +4719,7 @@ a.status-card {
     }
 
     &__multi-value {
-      background: lighten($ui-base-color, 8%);
+      background: color.adjust($ui-base-color, 8%);
 
       &__remove {
         cursor: pointer;
@@ -4723,8 +4727,8 @@ a.status-card {
         &:hover,
         &:active,
         &:focus {
-          background: lighten($ui-base-color, 12%);
-          color: lighten($darker-text-color, 4%);
+          background: color.adjust($ui-base-color, 12%);
+          color: color.adjust($darker-text-color, 4%);
         }
       }
     }
@@ -4744,12 +4748,12 @@ a.status-card {
       &:hover,
       &:active,
       &:focus {
-        color: lighten($dark-text-color, 4%);
+        color: color.adjust($dark-text-color, 4%);
       }
     }
 
     &__indicator-separator {
-      background-color: lighten($ui-base-color, 8%);
+      background-color: color.adjust($ui-base-color, 8%);
     }
 
     &__menu {
@@ -7135,7 +7139,7 @@ a.status-card {
       &:hover,
       &:active,
       &:focus {
-        color: lighten($darker-text-color, 7%);
+        color: color.adjust($darker-text-color, 7%);
       }
     }
 
@@ -7257,7 +7261,7 @@ a.status-card {
       inset-inline-start: 0;
       top: 50%;
       transform: translate(0, -50%);
-      background: lighten($ui-highlight-color, 8%);
+      background: color.adjust($ui-highlight-color, 8%);
     }
 
     &__handle {
@@ -7270,7 +7274,7 @@ a.status-card {
       inset-inline-start: 0;
       margin-inline-start: -6px;
       transform: translate(0, -50%);
-      background: lighten($ui-highlight-color, 8%);
+      background: color.adjust($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
       opacity: 0;
 
@@ -7324,7 +7328,7 @@ a.status-card {
       height: 4px;
       border-radius: 4px;
       top: 14px;
-      background: lighten($ui-highlight-color, 8%);
+      background: color.adjust($ui-highlight-color, 8%);
     }
 
     &__buffer {
@@ -7340,7 +7344,7 @@ a.status-card {
       height: 12px;
       top: 10px;
       margin-inline-start: -6px;
-      background: lighten($ui-highlight-color, 8%);
+      background: color.adjust($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
 
       .no-reduce-motion & {
@@ -7975,7 +7979,7 @@ noscript {
       }
 
       a {
-        color: lighten($ui-highlight-color, 8%);
+        color: color.adjust($ui-highlight-color, 8%);
       }
 
       .icon {
@@ -8185,7 +8189,7 @@ noscript {
       }
 
       path:last-child {
-        stroke: lighten($highlight-text-color, 6%) !important;
+        stroke: color.adjust($highlight-text-color, 6%) !important;
         fill: none !important;
       }
     }
@@ -8209,31 +8213,34 @@ noscript {
         }
 
         path:last-child {
-          stroke: lighten($gold-star, 6%) !important;
+          stroke: color.adjust($gold-star, 6%) !important;
         }
       }
     }
 
     &--disabled {
       .trends__item__name {
-        color: lighten($ui-base-color, 12%);
+        color: color.adjust($ui-base-color, 12%);
 
         a {
-          color: lighten($ui-base-color, 12%);
+          color: color.adjust($ui-base-color, 12%);
         }
       }
 
       .trends__item__current {
-        color: lighten($ui-base-color, 12%);
+        color: color.adjust($ui-base-color, 12%);
       }
 
       .trends__item__sparkline {
         path:first-child {
-          fill: rgba(lighten($ui-base-color, 12%), 0.25) !important;
+          fill: rgba(color.adjust($ui-base-color, 12%), 0.25) !important;
         }
 
         path:last-child {
-          stroke: lighten(lighten($ui-base-color, 12%), 6%) !important;
+          stroke: color.adjust(
+            color.adjust($ui-base-color, 12%),
+            6%
+          ) !important;
         }
       }
     }
@@ -8251,7 +8258,7 @@ noscript {
   padding-bottom: 0;
 
   &:focus {
-    background: lighten($ui-base-color, 2%);
+    background: color.adjust($ui-base-color, 2%);
     outline: 0;
   }
 
@@ -8320,7 +8327,7 @@ noscript {
 }
 
 .announcements {
-  background: lighten($ui-base-color, 8%);
+  background: color.adjust($ui-base-color, 8%);
   font-size: 13px;
   display: flex;
   align-items: flex-end;
@@ -8404,7 +8411,7 @@ noscript {
 
   &__item {
     flex-shrink: 0;
-    background: lighten($ui-base-color, 12%);
+    background: color.adjust($ui-base-color, 12%);
     color: $darker-text-color;
     border: 0;
     border-radius: 3px;
@@ -8447,21 +8454,21 @@ noscript {
     &:hover,
     &:focus,
     &:active {
-      background: lighten($ui-base-color, 16%);
+      background: color.adjust($ui-base-color, 16%);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
-      color: lighten($darker-text-color, 4%);
+      color: color.adjust($darker-text-color, 4%);
     }
 
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
       background-color: mix(
-        lighten($ui-base-color, 12%),
+        color.adjust($ui-base-color, 12%),
         $ui-highlight-color,
         80%
       );
-      color: lighten($highlight-text-color, 8%);
+      color: color.adjust($highlight-text-color, 8%);
     }
   }
 
@@ -8491,7 +8498,7 @@ noscript {
     &:active,
     &:focus {
       opacity: 1;
-      color: lighten($darker-text-color, 4%);
+      color: color.adjust($darker-text-color, 4%);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
     }
@@ -8531,7 +8538,7 @@ noscript {
 
   &__footer {
     border-radius: 0 0 4px 4px;
-    background: lighten($ui-base-color, 4%);
+    background: color.adjust($ui-base-color, 4%);
     padding: 10px;
     padding-top: 12px;
     display: flex;
@@ -8540,7 +8547,7 @@ noscript {
 
   &__header {
     border-radius: 4px 4px 0 0;
-    background: lighten($ui-base-color, 4%);
+    background: color.adjust($ui-base-color, 4%);
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -8602,7 +8609,7 @@ noscript {
   &:hover,
   &:focus,
   &:active {
-    border-color: lighten($ui-base-color, 12%);
+    border-color: color.adjust($ui-base-color, 12%);
   }
 }
 
@@ -9000,7 +9007,7 @@ noscript {
         min-width: 0;
 
         &::placeholder {
-          color: lighten($darker-text-color, 4%);
+          color: color.adjust($darker-text-color, 4%);
         }
 
         &:focus {
@@ -9022,7 +9029,7 @@ noscript {
 
     &.focused &__input {
       border-color: $highlight-text-color;
-      background: lighten($ui-base-color, 4%);
+      background: color.adjust($ui-base-color, 4%);
     }
 
     &.invalid &__input {
@@ -9302,7 +9309,7 @@ noscript {
 
   hr {
     border: 0;
-    border-top: 1px solid lighten($ui-base-color, 4%);
+    border-top: 1px solid color.adjust($ui-base-color, 4%);
     margin-top: 3em;
     margin-bottom: 3em;
   }
@@ -9515,7 +9522,7 @@ noscript {
       width: 100%;
       height: auto;
       aspect-ratio: 1.9;
-      background: lighten($ui-base-color, 4%);
+      background: color.adjust($ui-base-color, 4%);
       border-radius: 8px;
       margin-bottom: 30px;
     }
@@ -9747,7 +9754,7 @@ noscript {
   color: $white;
   background: rgba($black, 0.85);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(lighten($classic-base-color, 4%), 0.85);
+  border: 1px solid rgba(color.adjust($classic-base-color, 4%), 0.85);
   border-radius: 8px;
   box-shadow:
     0 10px 15px -3px rgba($base-shadow-color, 0.25),
@@ -9952,7 +9959,7 @@ noscript {
         opacity: 1;
 
         .inline-follow-suggestions__body__scroll-button__icon {
-          background: lighten($ui-highlight-color, 4%);
+          background: color.adjust($ui-highlight-color, 4%);
         }
       }
     }

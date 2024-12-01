@@ -337,7 +337,7 @@ code {
 
   .required abbr {
     text-decoration: none;
-    color: lighten($error-value-color, 12%);
+    color: color.adjust($error-value-color, 12%);
   }
 
   .fields-group {
@@ -506,13 +506,13 @@ code {
   input[type='datetime-local'] {
     &:focus:invalid:not(:placeholder-shown),
     &:required:invalid:not(:placeholder-shown) {
-      border-color: lighten($error-red, 12%);
+      border-color: color.adjust($error-red, 12%);
     }
   }
 
   .input.field_with_errors {
     label {
-      color: lighten($error-red, 12%);
+      color: color.adjust($error-red, 12%);
     }
 
     input[type='text'],
@@ -522,13 +522,13 @@ code {
     input[type='datetime-local'],
     textarea,
     select {
-      border-color: lighten($error-red, 12%);
+      border-color: color.adjust($error-red, 12%);
     }
 
     .error {
       display: block;
       font-weight: 500;
-      color: lighten($error-red, 12%);
+      color: color.adjust($error-red, 12%);
       margin-top: 4px;
     }
   }
@@ -620,7 +620,7 @@ code {
     font-family: inherit;
     resize: vertical;
     background: $ui-base-color
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(color.adjust($ui-base-color, 12%))}'/></svg>")
       no-repeat right 8px center / auto 14px;
     border: 1px solid var(--background-border-color);
     border-radius: 4px;
@@ -760,7 +760,7 @@ code {
     }
 
     &:focus {
-      background: lighten($ui-base-color, 4%);
+      background: color.adjust($ui-base-color, 4%);
     }
   }
 
@@ -844,7 +844,7 @@ code {
     &:hover,
     &:focus,
     &:active {
-      color: lighten($highlight-text-color, 8%);
+      color: color.adjust($highlight-text-color, 8%);
     }
   }
 }
@@ -1097,7 +1097,7 @@ code {
   &__item {
     padding: 15px;
     color: $ui-secondary-color;
-    border-bottom: 1px solid lighten($ui-base-color, 4%);
+    border-bottom: 1px solid color.adjust($ui-base-color, 4%);
     display: flex;
     align-items: center;
 
