@@ -23,6 +23,8 @@ class FetchLinkCardService < BaseService
 
     @url = @original_url.to_s
 
+    update_url_if_youtube!
+
     with_redis_lock("fetch:#{@original_url}") do
       @card = PreviewCard.find_by(url: @url)
       process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
@@ -64,6 +66,18 @@ class FetchLinkCardService < BaseService
 
       res.truncated_body
     end
+  end
+
+  def update_url_if_youtube!
+    parsed_url = Addressable::URI.parse(@url)
+    return unless parsed_url.normalized_host == 'youtu.be'
+
+    video_id = parsed_url.path.delete_prefix('/')
+    parsed_url.host = 'www.youtube.com'
+    parsed_url.path = '/watch'
+    parsed_url.query_values = { v: video_id }
+
+    @url = parsed_url.to_s
   end
 
   def attach_card
