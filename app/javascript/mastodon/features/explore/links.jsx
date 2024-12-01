@@ -45,7 +45,7 @@ class Links extends PureComponent {
 
     const banner = (
       <DismissableBanner id='explore/links'>
-        <FormattedMessage id='dismissable_banner.explore_links' defaultMessage='These are news stories being shared the most on the social web today. Newer news stories posted by more different people are ranked higher.' />
+        <FormattedMessage id='dismissable_banner.explore_links' defaultMessage='These news stories are being shared the most on the fediverse today. Newer news stories posted by more different people are ranked higher.' />
       </DismissableBanner>
     );
 
