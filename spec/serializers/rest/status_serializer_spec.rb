@@ -57,5 +57,11 @@ RSpec.describe REST::StatusSerializer do
         expect { DateTime.rfc3339(subject['created_at']) }.to_not raise_error
       end
     end
+
+    context 'when edited_at is populated', pending: 'How to mark status as edited?' do
+      it 'is serialized as RFC 3339 datetime' do
+        expect { DateTime.rfc3339(subject['edited_at']) }.to_not raise_error
+      end
+    end
   end
 end

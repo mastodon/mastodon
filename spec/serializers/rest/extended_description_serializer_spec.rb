@@ -21,9 +21,6 @@ RSpec.describe REST::ExtendedDescriptionSerializer do
       end
     end
 
-    # Note: Unsure what to do here; it's not clear if the updated_at property
-    # is actually a datetime, or if it's free text.
-
     context 'with text missing' do
       let(:record) { ExtendedDescription.new text: nil, updated_at: default_datetime }
 
@@ -33,7 +30,7 @@ RSpec.describe REST::ExtendedDescriptionSerializer do
             'content' => eq(''),
             'updated_at' => eq('2024-11-28T16:20:00.000Z')
           )
-     end
+      end
     end
   end
 end
