@@ -5,18 +5,18 @@ es-MX:
       account:
         attribution_domains_as_text: Uno por línea. Protege contra atribuciones falsas.
         discoverable: Tu perfil y las publicaciones públicas pueden ser destacadas o recomendadas en varias áreas de Mastodon y tu perfil puede ser sugerido a otros usuarios.
-        display_name: Tu nombre completo o tu nick.
-        fields: Tu página de inicio, pronombres, edad, todo lo que quieras.
+        display_name: Tu nombre completo o tu apodo.
+        fields: Tu página de inicio, pronombres, edad, lo que quieras.
         indexable: Tus publicaciones públicas pueden aparecer en los resultados de búsqueda en Mastodon. Las personas que han interactuado con tus publicaciones pueden buscarlas en cualquier momento.
-        note: 'Puedes @mencionar a otra gente o #hashtags.'
+        note: 'Puedes @mencionar a otra gente o #etiquetas.'
         show_collections: Las personas pueden navegar a través de tus seguidos y seguidores. Las personas que te siguen pueden ver que las sigues.
-        unlocked: Las personas podrán seguirte sin solicitar aprobación. Desmarca si quieres revisar las solicitudes de seguimiento y elige si quieres aceptar o rechazar nuevos seguidores.
+        unlocked: La gente podrá seguirte sin solicitar aprobación. Desmarca si quieres revisar las solicitudes de seguimiento y elige si quieres aceptar o rechazar nuevos seguidores.
       account_alias:
         acct: Especifique el nombre de usuario@dominio de la cuenta desde la cual se desea migrar
       account_migration:
-        acct: Especifique el nombre de usuario@dominio de la cuenta a la cual desea migrar
+        acct: Especifica el nombre de usuario@dominio de la cuenta a la cual desea migrar
       account_warning_preset:
-        text: Puede usar sintaxis de publicaciones, como URLs, etiquetas y menciones
+        text: Puedes usar sintaxis de publicaciones, como URLs, etiquetas y menciones
         title: Opcional. No visible para el destinatario
       admin_account_action:
         include_statuses: El usuario verá qué publicaciones han causado la acción de moderación o advertencia
@@ -51,17 +51,17 @@ es-MX:
         inbox_url: Copia la URL de la página principal del relés que quieres utilizar
         irreversible: Las publicaciones filtradas desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
         locale: El idioma de la interfaz de usuario, correos y notificaciones push
-        password: Utilice al menos 8 caracteres
+        password: Utiliza al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a las publicaciones recibidas recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
-        setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un click
+        setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un clic
         setting_display_media_default: Ocultar contenido multimedia marcado como sensible
         setting_display_media_hide_all: Siempre ocultar todo el contenido multimedia
         setting_display_media_show_all: Mostrar siempre contenido multimedia marcado como sensible
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
-        setting_use_pending_items: Ocultar nuevos estados detrás de un clic en lugar de desplazar automáticamente el feed
+        setting_use_pending_items: Ocultar las publicaciones de la línea de tiempo tras un clic en lugar de desplazar automáticamente el feed
         username: Puedes usar letras, números y guiones bajos
         whole_word: Cuando la palabra clave o frase es solo alfanumérica, solo será aplicado si concuerda con toda la palabra
       domain_allow:
@@ -193,7 +193,7 @@ es-MX:
         email: Dirección de correo electrónico
         expires_in: Expirar tras
         fields: Metadatos de perfil
-        header: Img. cabecera
+        header: Imagen de encabezado
         honeypot: "%{label} (no rellenar)"
         inbox_url: URL de la entrada de relés
         irreversible: Dejar en lugar de ocultar

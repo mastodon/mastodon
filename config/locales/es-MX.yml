@@ -18,9 +18,9 @@ es-MX:
     pin_errors:
       following: Debes estar siguiendo a la persona a la que quieres aprobar
     posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
+      one: Publicación
+      other: Publicaciones
+    posts_tab_heading: Publicaciones
     self_follow_error: No se permite seguir tu propia cuenta
   admin:
     account_actions:
@@ -57,18 +57,18 @@ es-MX:
       confirming: Confirmando
       custom: Personalizado
       delete: Eliminar datos
-      deleted: Borrado
+      deleted: Eliminado
       demote: Degradar
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Deshabilitar
       disable_sign_in_token_auth: Deshabilitar la autenticación por token de correo electrónico
       disable_two_factor_authentication: Desactivar autenticación de dos factores
       disabled: Deshabilitada
-      display_name: Nombre
+      display_name: Nombre para mostrar
       domain: Dominio
       edit: Editar
-      email: E-mail
-      email_status: E-mail Status
+      email: Correo electrónico
+      email_status: Estado del correo electrónico
       enable: Habilitar
       enable_sign_in_token_auth: Habilitar la autenticación por token de correo electrónico
       enabled: Habilitada
@@ -86,8 +86,8 @@ es-MX:
         local: Local
         remote: Remoto
         title: Localización
-      login_status: Estado del login
-      media_attachments: Multimedia
+      login_status: Estado de la sesión
+      media_attachments: Archivos multimedia
       memorialize: Convertir en memorial
       memorialized: Cuenta conmemorativa
       memorialized_msg: "%{username} se convirtió con éxito en una cuenta conmemorativa"
@@ -149,7 +149,7 @@ es-MX:
         targeted_reports: Reportes hechos sobre esta cuenta
       silence: Silenciar
       silenced: Silenciado
-      statuses: Estados
+      statuses: Publicaciones
       strikes: Amonestaciones previas
       subscribe: Suscribir
       suspend: Suspender
@@ -200,7 +200,7 @@ es-MX:
         destroy_instance: Purgar dominio
         destroy_ip_block: Eliminar regla IP
         destroy_relay: Eliminar Relé
-        destroy_status: Eliminar Estado
+        destroy_status: Eliminar Publicación
         destroy_unavailable_domain: Eliminar Dominio No Disponible
         destroy_user_role: Destruir Rol
         disable_2fa_user: Deshabilitar 2FA
@@ -234,7 +234,7 @@ es-MX:
         update_domain_block: Actualizar el Bloqueo de Dominio
         update_ip_block: Actualizar regla IP
         update_report: Actualizar informe
-        update_status: Actualizar Estado
+        update_status: Actualizar Publicación
         update_user_role: Actualizar Rol
       actions:
         approve_appeal_html: "%{name} aprobó la solicitud de moderación de %{target}"
@@ -264,7 +264,7 @@ es-MX:
         destroy_instance_html: "%{name} purgó el dominio %{target}"
         destroy_ip_block_html: "%{name} eliminó una regla para la IP %{target}"
         destroy_relay_html: "%{name} eliminó el relé %{target}"
-        destroy_status_html: "%{name} eliminó el estado por %{target}"
+        destroy_status_html: "%{name} eliminó la publicación por %{target}"
         destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
         destroy_user_role_html: "%{name} eliminó el rol %{target}"
         disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
@@ -298,7 +298,7 @@ es-MX:
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_ip_block_html: "%{name} cambió la regla para la IP %{target}"
         update_report_html: "%{name} actualizó el informe %{target}"
-        update_status_html: "%{name} actualizó el estado de %{target}"
+        update_status_html: "%{name} actualizó la publicación de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
       deleted_account: cuenta eliminada
       empty: No se encontraron registros.
@@ -581,11 +581,11 @@ es-MX:
     relays:
       add_new: Añadir un nuevo relés
       delete: Borrar
-      description_html: Un <strong>relés de federation</strong> es un servidor intermedio que intercambia grandes volúmenes de toots públicos entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manialmente a personas de servidores remotos.
+      description_html: Un <strong>relés de federación</strong> es un servidor intermedio que intercambia grandes volúmenes de publicaciones públicas entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubrir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manualmente a personas de servidores remotos.
       disable: Deshabilitar
       disabled: Deshabilitado
       enable: Hablitar
-      enable_hint: Una vez conectado, tu servidor se suscribirá a todos los toots públicos de este relés, y comenzará a enviar los toots públicos de este servidor hacia él.
+      enable_hint: Una vez conectado, tu servidor se suscribirá a todas las publicaciones públicas de este relé, y comenzará a enviar las publicaciones públicas de este servidor hacia él.
       enabled: Habilitado
       inbox_url: URL del relés
       pending: Esperando la aprobación del relés
@@ -605,8 +605,8 @@ es-MX:
       action_log: Registro de auditoría
       action_taken_by: Acción tomada por
       actions:
-        delete_description_html: Los mensajes denunciados serán eliminados y se registrará una amonestación para ayudarte a escalar en futuras infracciones por la misma cuenta.
-        mark_as_sensitive_description_html: Los archivos multimedia en los mensajes informados se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar las futuras infracciones de la misma cuenta.
+        delete_description_html: Las publicaciones denunciadas serán eliminadas y se registrará una amonestación para ayudarte a escalar en futuras infracciones por la misma cuenta.
+        mark_as_sensitive_description_html: Los archivos multimedia en las publicaciones reportadas se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
         silence_description_html: La cuenta será visible sólo para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Siempre puede ser revertido. Cierra todos los reportes contra esta cuenta.
@@ -839,13 +839,13 @@ es-MX:
         title: Multimedia
       metadata: Metadatos
       no_history: Esta publicación no ha sido editada
-      no_status_selected: No se cambió ningún estado al no seleccionar ninguno
+      no_status_selected: No se cambió ninguna publicación al no seleccionar ninguna
       open: Abrir publicación
       original_status: Publicación original
       reblogs: Impulsos
-      replied_to_html: Respondió a %{acct_link}
+      replied_to_html: En respuesta a %{acct_link}
       status_changed: Publicación cambiada
-      status_title: Publicación de @%{name}
+      status_title: Publicado por %{name}
       title: Publicaciones de la cuenta - @%{name}
       trending: En tendencia
       view_publicly: Ver públicamente
@@ -924,7 +924,7 @@ es-MX:
       review: Estado de revisión
       search: Buscar
       title: Etiquetas
-      updated_msg: Hashtags actualizados exitosamente
+      updated_msg: Etiquetas actualizadas exitosamente
     title: Administración
     trends:
       allow: Permitir
@@ -983,7 +983,7 @@ es-MX:
           tag_servers_dimension: Servidores principales
           tag_servers_measure: diferentes servidores
           tag_uses_measure: usuarios totales
-        description_html: Estos son etiquetas que están apareciendo en muchos posts que tu servidor ve. Pueden ayudar a tus usuarios a averiguar de qué habla más gente en estos momentos. No hay hashtags que se muestren públicamente hasta que los apruebes.
+        description_html: Estos son etiquetas que están apareciendo en muchas publicaciones que tu servidor ve. Pueden ayudar a tus usuarios a averiguar de qué habla más gente en estos momentos. No hay etiquetas que se muestren públicamente hasta que los apruebes.
         listable: Pueden ser recomendadas
         no_tag_selected: No se cambió ninguna etiqueta ya que no se seleccionó ninguna
         not_listable: No serán recomendadas
@@ -1032,9 +1032,9 @@ es-MX:
       subject: Los registros para %{instance} han sido cambiados automáticamente para requerir aprobación
     new_appeal:
       actions:
-        delete_statuses: para eliminar sus mensajes
+        delete_statuses: para eliminar sus publicaciones
         disable: para congelar su cuenta
-        mark_statuses_as_sensitive: para marcar sus mensajes como sensibles
+        mark_statuses_as_sensitive: para marcar sus publicaciones como sensibles
         none: una alvertencia
         sensitive: para marcar su cuenta como sensible
         silence: para limitar su cuenta
@@ -1073,7 +1073,7 @@ es-MX:
     remove: Desvincular alias
   appearance:
     advanced_web_interface: Interfaz web avanzada
-    advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, línea de tiempo federada, cualquier número de listas y etiquetas.'
+    advanced_web_interface_hint: 'Si quieres aprovechar todo el ancho de tu pantalla, la interfaz web avanzada te permite configurar muchas columnas diferentes para ver toda la información que quieras al mismo tiempo: Inicio, notificaciones, cronología federada, cualquier número de listas y etiquetas.'
     animations_and_accessibility: Animaciones y accesibilidad
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
@@ -1089,7 +1089,7 @@ es-MX:
     unsubscribe: Cancelar suscripción
     view: 'Vista:'
     view_profile: Ver perfil
-    view_status: Ver estado
+    view_status: Ver publicación
   applications:
     created: Aplicación creada exitosamente
     destroyed: Apicación eliminada exitosamente
@@ -1115,7 +1115,7 @@ es-MX:
       welcome_title: "¡Bienvenido, %{name}!"
       wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
     delete_account: Borrar cuenta
-    delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
+    delete_account_html: Si deseas eliminar tu cuenta, puedes <a href="%{path}">proceder aquí</a>. Se te pedirá una confirmación.
     description:
       prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodon!"
       prefix_sign_up: "¡Únete a Mastodon hoy!"
@@ -1251,7 +1251,7 @@ es-MX:
       title_actions:
         delete_statuses: Eliminación de publicación
         disable: Congelación de la cuenta
-        mark_statuses_as_sensitive: Marcando los mensajes como sensibles
+        mark_statuses_as_sensitive: Marcando las publicaciones como sensibles
         none: Advertencia
         sensitive: Marcando la cuenta como sensible
         silence: Limitación de cuenta
@@ -1285,7 +1285,7 @@ es-MX:
     archive_takeout:
       date: Fecha
       download: Descargar tu archivo
-      hint_html: Puedes solicitar un archivo de tus <strong>toots y archivos multimedia subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
+      hint_html: Puedes solicitar un archivo de tus <strong>publicaciones y archivos multimedia subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible. Puedes solicitar un archivo cada 7 días.
       in_progress: Recopilando tu archivo...
       request: Solicitar tu archivo
       size: Tamaño
@@ -1299,7 +1299,7 @@ es-MX:
   featured_tags:
     add_new: Añadir nuevo
     errors:
-      limit: Ya has alcanzado la cantidad máxima de hashtags
+      limit: Ya has alcanzado la cantidad máxima de etiquetas
     hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
@@ -1503,7 +1503,7 @@ es-MX:
       title: Cancelar suscripción
   media_attachments:
     validations:
-      images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
+      images_and_video: No se puede adjuntar un video a una publicación que ya contenga imágenes
       not_found: Archivos multimedia %{ids} no encontrados, o ya se encuentran adjuntos a otra publicación
       not_ready: No se pueden adjuntar archivos que no se han terminado de procesar. ¡Inténtalo de nuevo en un momento!
       too_many: No se pueden adjuntar más de 4 archivos
@@ -1553,8 +1553,8 @@ es-MX:
       sign_up:
         subject: "%{name} se registró"
     favourite:
-      body: 'Tu estado fue marcado como favorito por %{name}:'
-      subject: "%{name} marcó como favorito tu estado"
+      body: 'Tu publicación fue marcada como favorita por %{name}:'
+      subject: "%{name} marcó como favorita tu publicación"
       title: Nuevo favorito
     follow:
       body: "¡%{name} te está siguiendo!"
@@ -1674,8 +1674,8 @@ es-MX:
       account: Publicaciones públicas de @%{acct}
       tag: 'Publicaciones públicas etiquetadas con #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Ha superado el límite de %{limit} toots programados para ese día
-    over_total_limit: Ha superado el límite de %{limit} toots programados
+    over_daily_limit: Has superado el límite de %{limit} publicaciones programadas para ese día
+    over_total_limit: Has superado el límite de %{limit} publicaciones programadas
     too_soon: La fecha programada debe estar en el futuro
   self_destruct:
     lead_html: Desafortunadamente, <strong>%{domain}</strong> está cerrando de manera permanente. Si tenías una cuenta ahí, no puedes continuar utilizándolo, pero puedes solicitar un respaldo de tus datos.
@@ -1737,7 +1737,7 @@ es-MX:
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar
-    featured_tags: Hashtags destacados
+    featured_tags: Etiquetas destacadas
     import: Importar
     import_and_export: Importar y exportar
     migrate: Migración de cuenta
@@ -1777,16 +1777,16 @@ es-MX:
     content_warning: 'Alerta de contenido: %{warning}'
     default_language: Igual que el idioma de la interfaz
     disallowed_hashtags:
-      one: 'contenía un hashtag no permitido: %{tags}'
-      other: 'contenía los hashtags no permitidos: %{tags}'
+      one: 'contenía una etiqueta no permitida: %{tags}'
+      other: 'contenía las etiquetas no permitidas: %{tags}'
     edited_at_html: Editado %{date}
     errors:
-      in_reply_not_found: El estado al que intentas responder no existe.
+      in_reply_not_found: La publicación a la que estás intentando responder no existe.
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
       direct: Las publicaciones que son visibles solo para los usuarios mencionados no pueden fijarse
       limit: Ya has fijado el número máximo de publicaciones
-      ownership: El toot de alguien más no puede fijarse
+      ownership: La publicación de alguien más no puede fijarse
       reblog: No se puede fijar una publicación impulsada
     title: "%{name}: «%{quote}»"
     visibilities:
@@ -1906,9 +1906,9 @@ es-MX:
         spam: Spam
         violation: El contenido viola las siguientes directrices de la comunidad
       explanation:
-        delete_statuses: Se ha determinado que algunos de tus mensajes violan una o más directrices de la comunidad y han sido por tanto eliminados por los moderadores de %{instance}.
+        delete_statuses: Se ha determinado que algunas de tus publicaciones violan una o más directrices de la comunidad y han sido, por tanto, eliminados por los moderadores de %{instance}.
         disable: Ya no puedes usar tu cuenta, pero tu perfil y el resto de datos permanecen intactos. Puedes solicitar una copia de seguridad de tus datos, cambiar la configuración de tu cuenta o eliminarla.
-        mark_statuses_as_sensitive: Algunos de tus mensajes han sido marcados como sensibles por los moderadores de %{instance}. Esto significa que la gente tendrá que pulsar los archivos multimedia en las publicaciones antes de que se muestre una vista previa. Puedes marcar los archivos multimedia como sensibles tú mismo cuando publiques en el futuro.
+        mark_statuses_as_sensitive: Algunas de tus publicaciones han sido marcadas como sensibles por los moderadores de %{instance}. Esto significa que la gente tendrá que pulsar los archivos multimedia en las publicaciones antes de que se muestre una vista previa. Puedes marcar los archivos multimedia como sensibles tú mismo cuando publiques en el futuro.
         sensitive: A partir de ahora, todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
         silence: Aún puedes usar tu cuenta, pero solo las personas que te están siguiendo verán tus publicaciones en este servidor, y puedes ser excluido de varias funcionalidades de descubrimiento. Sin embargo, otras cuentas podrán empezar a seguirte manualmente.
         suspend: Ya no puedes utilizar tu cuenta, y tu perfil y el resto de datos ya no son accesibles. Todavía puedes iniciar sesión para solicitar una copia de seguridad de tus datos, hasta que estos sean eliminados por completo en unos 30 días, aunque conservaremos algunos datos básicos para impedir que esquives la suspensión.

@@ -3,9 +3,69 @@
 require 'rails_helper'
 
 RSpec.describe UserRole do
-  subject { described_class.create(name: 'Foo', position: 1) }
+  describe 'Validations' do
+    describe 'name' do
+      context 'when everyone' do
+        subject { described_class.everyone }
+
+        it { is_expected.to_not validate_presence_of(:name) }
+      end
+
+      context 'when not everyone' do
+        subject { Fabricate.build :user_role }
+
+        it { is_expected.to validate_presence_of(:name) }
+      end
+    end
+
+    describe 'color' do
+      it { is_expected.to allow_values('#112233', '#aabbcc', '').for(:color) }
+      it { is_expected.to_not allow_values('x', '112233445566', '#xxyyzz').for(:color) }
+    end
+
+    context 'when current_account is set' do
+      subject { Fabricate :user_role }
+
+      let(:account) { Fabricate :account }
+
+      before { subject.current_account = account }
+
+      it { is_expected.to_not allow_value(999_999).for(:position).with_message(:elevated) }
+
+      it { is_expected.to_not allow_value(999_999).for(:permissions).against(:permissions_as_keys).with_message(:elevated) }
+
+      context 'when current_account is changing their own role' do
+        let(:account) { Fabricate :account, user: Fabricate(:user, role: subject) }
+
+        it { is_expected.to_not allow_value(100).for(:permissions).against(:permissions_as_keys).with_message(:own_role) }
+        it { is_expected.to_not allow_value(100).for(:position).with_message(:own_role) }
+      end
+    end
+  end
+
+  describe 'Callback for position' do
+    context 'when everyone' do
+      subject { Fabricate.build :user_role, id: described_class::EVERYONE_ROLE_ID }
+
+      it 'sets the position to nobody position' do
+        expect { subject.valid? }
+          .to change(subject, :position).to(described_class::NOBODY_POSITION)
+      end
+    end
+
+    context 'when not everyone' do
+      subject { Fabricate.build :user_role }
+
+      it 'does not change the position' do
+        expect { subject.valid? }
+          .to_not change(subject, :position)
+      end
+    end
+  end
 
   describe '#can?' do
+    subject { Fabricate :user_role }
+
     context 'with a single flag' do
       it 'returns true if any of them are present' do
         subject.permissions = described_class::FLAGS[:manage_reports]
@@ -92,6 +152,8 @@ RSpec.describe UserRole do
   end
 
   describe '#computed_permissions' do
+    subject { Fabricate :user_role }
+
     context 'when the role is nobody' do
       subject { described_class.nobody }
 

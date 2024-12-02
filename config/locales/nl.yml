@@ -187,6 +187,7 @@ nl:
         create_domain_block: Domeinblokkade aanmaken
         create_email_domain_block: E-maildomeinblokkade aanmaken
         create_ip_block: IP-regel aanmaken
+        create_relay: Relay aanmaken
         create_unavailable_domain: Niet beschikbaar domein aanmaken
         create_user_role: Rol aanmaken
         demote_user: Gebruiker degraderen
@@ -198,14 +199,17 @@ nl:
         destroy_email_domain_block: Blokkade van e-maildomein verwijderen
         destroy_instance: Domein volledig verwijderen
         destroy_ip_block: IP-regel verwijderen
+        destroy_relay: Relay verwijderen
         destroy_status: Toot verwijderen
         destroy_unavailable_domain: Niet beschikbaar domein verwijderen
         destroy_user_role: Rol permanent verwijderen
         disable_2fa_user: Tweestapsverificatie uitschakelen
         disable_custom_emoji: Lokale emojij uitschakelen
+        disable_relay: Relay uitschakelen
         disable_sign_in_token_auth_user: Verificatie met een toegangscode via e-mail voor de gebruiker uitschakelen
         disable_user: Gebruiker uitschakelen
         enable_custom_emoji: Lokale emoji inschakelen
+        enable_relay: Relay inschakelen
         enable_sign_in_token_auth_user: Verificatie met een toegangscode via e-mail voor de gebruiker inschakelen
         enable_user: Gebruiker inschakelen
         memorialize_account: Het account in een In memoriam veranderen
@@ -247,6 +251,7 @@ nl:
         create_domain_block_html: Domein %{target} is door %{name} geblokkeerd
         create_email_domain_block_html: "%{name} heeft het e-maildomein %{target} geblokkeerd"
         create_ip_block_html: "%{name} maakte regel aan voor IP %{target}"
+        create_relay_html: "%{name} heeft een relay aangemaakt %{target}"
         create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
         create_user_role_html: "%{name} maakte de rol %{target} aan"
         demote_user_html: Gebruiker %{target} is door %{name} gedegradeerd
@@ -258,14 +263,17 @@ nl:
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
         destroy_instance_html: "%{name} verwijderde het domein %{target} volledig"
         destroy_ip_block_html: "%{name} verwijderde regel voor IP %{target}"
+        destroy_relay_html: "%{name} heeft de relay %{target} verwijderd"
         destroy_status_html: Bericht van %{target} is door %{name} verwijderd
         destroy_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} hervat"
         destroy_user_role_html: "%{name} verwijderde de rol %{target}"
         disable_2fa_user_html: De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld
         disable_custom_emoji_html: Emoji %{target} is door %{name} uitgeschakeld
+        disable_relay_html: "%{name} heeft de relay %{target} uitgeschakeld"
         disable_sign_in_token_auth_user_html: "%{name} heeft verificatie met een toegangscode via e-mail uitgeschakeld voor %{target}"
         disable_user_html: Inloggen voor %{target} is door %{name} uitgeschakeld
         enable_custom_emoji_html: Emoji %{target} is door %{name} ingeschakeld
+        enable_relay_html: "%{name} heeft de relay %{target} ingeschakeld"
         enable_sign_in_token_auth_user_html: "%{name} heeft verificatie met een toegangscode via e-mail ingeschakeld voor %{target}"
         enable_user_html: Inloggen voor %{target} is door %{name} ingeschakeld
         memorialize_account_html: Het account %{target} is door %{name} in een In memoriam veranderd
@@ -835,10 +843,12 @@ nl:
       open: Bericht tonen
       original_status: Oorspronkelijk bericht
       reblogs: Boosts
+      replied_to_html: Reageerde op %{acct_link}
       status_changed: Bericht veranderd
       status_title: Bericht van @%{name}
       title: Accountberichten - @%{name}
       trending: Trending
+      view_publicly: In het openbaar bekijken
       visibility: Zichtbaarheid
       with_media: Met media
     strikes:

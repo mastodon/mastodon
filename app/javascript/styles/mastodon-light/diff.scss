@@ -108,17 +108,6 @@
   background: lighten($white, 4%);
 }
 
-// Change the background colors of status__content__spoiler-link
-.reply-indicator__content .status__content__spoiler-link,
-.status__content .status__content__spoiler-link {
-  background: $ui-base-color;
-
-  &:hover,
-  &:focus {
-    background: lighten($ui-base-color, 4%);
-  }
-}
-
 .account-gallery__item a {
   background-color: $ui-base-color;
 }
@@ -447,15 +436,24 @@
   color: lighten($ui-highlight-color, 8%);
 }
 
-.compose-form .autosuggest-textarea__textarea,
-.compose-form__highlightable,
-.autosuggest-textarea__suggestions,
-.search__input,
-.search__popout,
 .emoji-mart-search input,
 .language-dropdown__dropdown .emoji-mart-search input,
 .poll__option input[type='text'] {
   background: darken($ui-base-color, 10%);
+}
+
+.search__popout__menu__item {
+  &:hover,
+  &:active,
+  &:focus,
+  &.active {
+    color: $white;
+
+    mark,
+    .icon-button {
+      color: $white;
+    }
+  }
 }
 
 .inline-follow-suggestions {

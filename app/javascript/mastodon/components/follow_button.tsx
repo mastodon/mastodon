@@ -99,7 +99,12 @@ export const FollowButton: React.FC<{
   return (
     <Button
       onClick={handleClick}
-      disabled={relationship?.blocked_by || relationship?.blocking}
+      disabled={
+        relationship?.blocked_by ||
+        relationship?.blocking ||
+        (!(relationship?.following || relationship?.requested) &&
+          (account?.suspended || !!account?.moved))
+      }
       secondary={following}
       className={following ? 'button--destructive' : undefined}
     >

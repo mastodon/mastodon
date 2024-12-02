@@ -50,6 +50,7 @@ class DeleteAccountService < BaseService
     owned_lists
     scheduled_statuses
     status_pins
+    tag_follows
   )
 
   ASSOCIATIONS_ON_DESTROY = %w(
