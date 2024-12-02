@@ -39,6 +39,11 @@ ko:
           attributes:
             data:
               malformed: 데이터가 올바르지 않습니다
+        list_account:
+          attributes:
+            account_id:
+              taken: 이미 목록에 존재합니다
+          must_be_following: 팔로우한 계정이어야 합니다
         status:
           attributes:
             reblog:
