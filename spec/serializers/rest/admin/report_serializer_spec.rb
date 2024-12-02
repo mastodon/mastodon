@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe REST::Admin::ReportSerializer, pending: 'Fabricator errors' do
+RSpec.describe REST::Admin::ReportSerializer do
   subject { serialized_record_json(report, described_class) }
 
-  let(:report) { Fabricate(:admin_report) }
+  let(:report) { Fabricate(:report) }
 
   context 'with created_at' do
     it 'is serialized as RFC 3339 datetime' do
