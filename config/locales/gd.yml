@@ -25,6 +25,7 @@ gd:
       other: Postaichean
       two: Postaichean
     posts_tab_heading: Postaichean
+    self_follow_error: Chan fhaod thu an cunntas agad fhèn a leantainn
   admin:
     account_actions:
       action: Gabh an gnìomh
@@ -261,7 +262,7 @@ gd:
         destroy_domain_allow_html: Dì-cheadaich %{name} co-nasgadh leis an àrainn %{target}
         destroy_domain_block_html: Dì-bhac %{name} an àrainn %{target}
         destroy_email_domain_block_html: Dì-bhac %{name} an àrainn puist-d %{target}
-        destroy_instance_html: Purgaidich %{name} an àrainn %{target}
+        destroy_instance_html: Phurgaidich %{name} an àrainn %{target}
         destroy_ip_block_html: Sguab %{name} às riaghailt dhan IP %{target}
         destroy_status_html: Thug %{name} post aig %{target} air falbh
         destroy_unavailable_domain_html: Lean %{name} air adhart leis an lìbhrigeadh dhan àrainn %{target}
@@ -1201,8 +1202,11 @@ gd:
     use_security_key: Cleachd iuchair tèarainteachd
   author_attribution:
     example_title: Ball-sampaill teacsa
+    hint_html: An sgrìobh thu naidheachdan no bloga taobh a-muigh Mhastodon? Stiùirich mar a thèid iomradh a thoirt ort nuair a bhios na h-artaigilean agad ’gan co-roinneadh air Mastodon.
+    instructions: 'Dèan cinnteach gu bheil an còd seo am broinn HTML an artaigil agad:'
     more_from_html: Barrachd o %{name}
     s_blog: Bloga aig %{name}
+    then_instructions: An uair sin, cuir ainm àrainn an fhoillseachaidh ris an raon gu h-ìosal.
     title: Aithris air an ùghdar
   challenge:
     confirm: Lean air adhart

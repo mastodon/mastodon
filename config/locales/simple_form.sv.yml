@@ -3,6 +3,7 @@ sv:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: En per rad. Skyddar mot falska attributioner.
         discoverable: Dina offentliga inlägg och din profil kan komma att presenteras eller rekommenderas inom olika områden av Mastodon och din profil kan komma att föreslås till andra användare.
         display_name: Ditt fullständiga namn eller ditt roliga namn.
         fields: Din hemsida, ditt pronomen, din ålder, vadhelst du vill.
@@ -73,7 +74,7 @@ sv:
       filters:
         action: Välj vilken åtgärd som ska utföras när ett inlägg matchar filtret
         actions:
-          hide: Dölj det filtrerade innehållet helt (beter sig som om det inte fanns)
+          hide: Dölj det filtrerade innehållet helt, beter sig som om det inte fanns
           warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
       form_admin_settings:
         activity_api_enabled: Antalet lokalt publicerade inlägg, aktiva användare och nya registrerade konton per vecka
@@ -143,6 +144,7 @@ sv:
         url: Dit händelser kommer skickas
     labels:
       account:
+        attribution_domains_as_text: Webbplatser som får kreditera dig
         discoverable: Presentera profil och inlägg med upptäcktsalgoritmer
         fields:
           name: Etikett

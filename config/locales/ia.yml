@@ -21,6 +21,7 @@ ia:
       one: Message
       other: Messages
     posts_tab_heading: Messages
+    self_follow_error: Sequer tu proprie conto non es permittite
   admin:
     account_actions:
       action: Exequer action
@@ -1117,7 +1118,7 @@ ia:
     migrate_account: Migrar a un altere conto
     migrate_account_html: Si tu vole rediriger iste conto a un altere, tu pote <a href="%{path}">configurar lo hic</a>.
     or_log_in_with: O aperi session con
-    privacy_policy_agreement_html: Io ha legite e accepta le <a href="<a href="%{privacy_policy_path}" target="_blank">politica de confidentialitate</a>
+    privacy_policy_agreement_html: Io ha legite e accepta le <a href="%{privacy_policy_path}" target="_blank">politica de confidentialitate</a>
     progress:
       confirm: Confirmar e-mail
       details: Tu detalios
@@ -1165,8 +1166,11 @@ ia:
     use_security_key: Usar clave de securitate
   author_attribution:
     example_title: Texto de exemplo
+    hint_html: Scribe tu articulos de novas o de blog foras de Mastodon? Controla le maniera in que tu recipe attribution quando on los condivide sur Mastodon.
+    instructions: 'Assecura te que iste codice appare in le HTML de tu articulo:'
     more_from_html: Plus de %{name}
     s_blog: Blog de %{name}
+    then_instructions: Postea, adde le nomine de dominio del publication in le campo sequente.
     title: Attribution de autor
   challenge:
     confirm: Continuar
