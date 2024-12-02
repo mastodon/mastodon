@@ -135,6 +135,23 @@ RSpec.describe 'API V1 Push Subscriptions' do
     end
   end
 
+  describe 'GET /api/v1/push/subscription' do
+    subject { get '/api/v1/push/subscription', headers: headers }
+
+    before { create_subscription_with_token }
+
+    it 'shows subscription details' do
+      subject
+
+      expect(response)
+        .to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body)
+        .to include(endpoint: endpoint)
+    end
+  end
+
   describe 'DELETE /api/v1/push/subscription' do
     subject { delete '/api/v1/push/subscription', headers: headers }
 
