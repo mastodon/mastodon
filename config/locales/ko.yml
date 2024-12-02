@@ -488,9 +488,6 @@ ko:
         no_failures_recorded: 실패 기록이 없습니다.
         title: 가용성
         warning: 이 서버에 대한 마지막 연결 시도가 성공적이지 않았습니다
-      back_to_all: 전체
-      back_to_limited: 제한됨
-      back_to_warning: 경고
       by_domain: 도메인
       confirm_purge: 정말로 이 도메인의 데이터를 영구적으로 삭제하길 원하십니까?
       content_policies:
@@ -521,27 +518,16 @@ ko:
         restart: 전달 재시작
         stop: 전달 중지
         unavailable: 사용불가
-      delivery_available: 전송 가능
-      delivery_error_days: 전달 에러가 난 날짜들
-      delivery_error_hint: 만약 %{count}일 동안 전달이 불가능하다면, 자동으로 전달 불가로 표시됩니다.
       destroyed_msg: "%{domain}의 데이터는 곧바로 지워지도록 대기열에 들어갔습니다."
       empty: 도메인이 하나도 없습니다.
       known_accounts:
         other: "%{count} 개의 알려진 계정"
       moderation:
         all: 모두
-        limited: 제한
         title: 중재
-      private_comment: 비공개 주석
-      public_comment: 공개 주석
-      purge: 퍼지
+      purge: 제거
       purge_description_html: 이 도메인이 영구적으로 오프라인 상태라고 생각되면, 스토리지에서 이 도메인의 모든 계정 레코드와 관련 데이터를 삭제할 수 있습니다. 이 작업은 시간이 좀 걸릴 수 있습니다.
       title: 연합
-      total_blocked_by_us: 우리에게 차단 됨
-      total_followed_by_them: 우리를 팔로우
-      total_followed_by_us: 우리가 한 팔로우
-      total_reported: 이들에 대한 신고
-      total_storage: 미디어 첨부
       totals_time_period_hint_html: 아래에 표시된 총계는 역대 데이터에 대한 것입니다.
       unknown_instance: 현재 이 서버에서 해당 도메인에 대한 기록은 없습니다.
     invites:

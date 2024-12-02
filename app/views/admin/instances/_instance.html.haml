@@ -11,7 +11,7 @@
             %span.comment.public-comment #{t('admin.domain_blocks.public_comment')}: #{instance.domain_block.public_comment}
           - if instance.domain_block.private_comment.present?
             %span.comment.private-comment #{t('admin.domain_blocks.private_comment')}: #{instance.domain_block.private_comment}
-        - elsif instance.domain_allow
+        - elsif limited_federation_mode? && instance.domain_allow
           = t('admin.accounts.whitelisted')
         - else
           = t('admin.accounts.no_limits_imposed')

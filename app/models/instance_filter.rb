@@ -2,9 +2,17 @@
 
 class InstanceFilter
   KEYS = %i(
-    limited
+    status
     by_domain
     availability
+  ).freeze
+
+  # These are the valid input values for statuses:
+  STATUSES = %w(
+    allowed
+    suspended
+    limited
+    unrestricted
   ).freeze
 
   attr_reader :params
@@ -27,10 +35,8 @@ class InstanceFilter
 
   def scope_for(key, value)
     case key.to_s
-    when 'limited'
-      Instance.joins(:domain_block).reorder(domain_blocks: { id: :desc })
-    when 'allowed'
-      Instance.joins(:domain_allow).reorder(domain_allows: { id: :desc })
+    when 'status'
+      status_scope(value)
     when 'by_domain'
       Instance.matches_domain(value)
     when 'availability'
@@ -40,12 +46,33 @@ class InstanceFilter
     end
   end
 
+  def status_scope(value)
+    # The `join where` queries here look like they have a bug due to `domain_block`
+    # vs `domain_blocks`, however the table is `domain_blocks` while the relation on
+    # Instances is `domain_block`
+    case value.to_sym
+    when :allowed
+      Instance.joins(:domain_allow).reorder(Arel.sql('domain_allows.id desc'))
+    when :suspended
+      Instance.joins(:domain_block).where(domain_blocks: { severity: :suspend }).reorder(Arel.sql('domain_blocks.id desc'))
+    when :limited
+      Instance.joins(:domain_block).where(domain_blocks: { severity: [:silence, :noop] }).reorder(Arel.sql('domain_blocks.id desc'))
+    when :unrestricted
+      # Finds all instances where there isn't a record in the domain_blocks table
+      Instance.left_outer_joins(:domain_block).where(domain_blocks: { domain: nil })
+    else
+      raise Mastodon::InvalidParameterError, "Unknown limited scope value: #{value}"
+    end
+  end
+
   def availability_scope(value)
     case value
     when 'failing'
       Instance.where(domain: DeliveryFailureTracker.warning_domains)
     when 'unavailable'
       Instance.joins(:unavailable_domain)
+    when 'available'
+      Instance.left_outer_joins(:unavailable_domain).where(unavailable_domain: { domain: nil })
     else
       raise Mastodon::InvalidParameterError, "Unknown availability: #{value}"
     end

@@ -56,6 +56,16 @@ module Admin
     end
 
     def set_instances
+      # If we have a `status` in the query parameters, but it has no value or it
+      # isn't a known status remove the status query parameter
+      return redirect_to admin_instances_path filter_params.merge(status: nil) if params.include?(:status) && (params[:status].blank? || InstanceFilter::STATUSES.exclude?(params[:status]))
+
+      # If we have `limited` in the query parameters, remove it and redirect to suspended:
+      return redirect_to admin_instances_path filter_params.merge(status: :suspended) if params[:limited].present?
+
+      # If we're in limited federation mode and have a status parameter, remove it:
+      return redirect_to admin_instances_path filter_params.merge(status: nil) if limited_federation_mode? && params[:status].present?
+
       @instances = filtered_instances.page(params[:page])
     end
 
@@ -68,7 +78,7 @@ module Admin
     end
 
     def filtered_instances
-      InstanceFilter.new(limited_federation_mode? ? { allowed: true } : filter_params).results
+      InstanceFilter.new(limited_federation_mode? ? filter_params.merge(status: :allowed) : filter_params).results
     end
 
     def filter_params
