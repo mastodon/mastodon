@@ -1,7 +1,8 @@
-import { render, fireEvent, screen } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 
-import Button from '../button';
+import { render, fireEvent, screen } from 'mastodon/test_helpers';
+
+import { Button } from '../button';
 
 describe('<Button />', () => {
   it('renders a button element', () => {

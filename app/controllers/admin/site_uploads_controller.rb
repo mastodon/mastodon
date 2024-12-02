@@ -9,7 +9,7 @@ module Admin
 
       @site_upload.destroy!
 
-      redirect_to admin_settings_path, notice: I18n.t('admin.site_uploads.destroyed_msg')
+      redirect_back fallback_location: admin_settings_path, notice: I18n.t('admin.site_uploads.destroyed_msg')
     end
 
     private

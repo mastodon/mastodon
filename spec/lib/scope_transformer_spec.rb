@@ -2,22 +2,25 @@
 
 require 'rails_helper'
 
-describe ScopeTransformer do
+RSpec.describe ScopeTransformer do
   describe '#apply' do
     subject { described_class.new.apply(ScopeParser.new.parse(input)) }
 
     shared_examples 'a scope' do |namespace, term, access|
-      it 'parses the term' do
-        expect(subject.term).to eq term
+      it 'parses the attributes' do
+        expect(subject)
+          .to have_attributes(
+            term: term,
+            namespace: namespace,
+            access: access
+          )
       end
+    end
 
-      it 'parses the namespace' do
-        expect(subject.namespace).to eq namespace
-      end
+    context 'with scope "profile"' do
+      let(:input) { 'profile' }
 
-      it 'parses the access' do
-        expect(subject.access).to eq access
-      end
+      it_behaves_like 'a scope', nil, 'profile', 'read'
     end
 
     context 'with scope "read"' do

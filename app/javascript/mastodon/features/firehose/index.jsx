@@ -6,12 +6,14 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
+import { useIdentity } from '@/mastodon/identity_context';
+import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import { addColumn } from 'mastodon/actions/columns';
 import { changeSetting } from 'mastodon/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';
 import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
-import initialState, { domain } from 'mastodon/initial_state';
+import { domain } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import Column from '../../components/column';
@@ -23,15 +25,6 @@ const messages = defineMessages({
   title: { id: 'column.firehose', defaultMessage: 'Live feeds' },
 });
 
-// TODO: use a proper React context later on
-const useIdentity = () => ({
-  signedIn: !!initialState.meta.me,
-  accountId: initialState.meta.me,
-  disabledAccountId: initialState.meta.disabled_account_id,
-  accessToken: initialState.meta.access_token,
-  permissions: initialState.role ? initialState.role.permissions : 0,
-});
-
 const ColumnSettings = () => {
   const dispatch = useAppDispatch();
   const settings = useAppSelector((state) => state.getIn(['settings', 'firehose']));
@@ -41,15 +34,17 @@ const ColumnSettings = () => {
   );
 
   return (
-    <div>
-      <div className='column-settings__row'>
-        <SettingToggle
-          settings={settings}
-          settingPath={['onlyMedia']}
-          onChange={onChange}
-          label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
-        />
-      </div>
+    <div className='column-settings'>
+      <section>
+        <div className='column-settings__row'>
+          <SettingToggle
+            settings={settings}
+            settingPath={['onlyMedia']}
+            onChange={onChange}
+            label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
+          />
+        </div>
+      </section>
     </div>
   );
 };
@@ -138,7 +133,7 @@ const Firehose = ({ feedType, multiColumn }) => {
     <DismissableBanner id='public_timeline'>
       <FormattedMessage
         id='dismissable_banner.public_timeline'
-        defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.'
+        defaultMessage='These are the most recent public posts from people on the fediverse that people on {domain} follow.'
         values={{ domain }}
       />
     </DismissableBanner>
@@ -160,6 +155,7 @@ const Firehose = ({ feedType, multiColumn }) => {
     <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
         icon='globe'
+        iconComponent={PublicIcon}
         active={hasUnread}
         title={intl.formatMessage(messages.title)}
         onPin={handlePin}
@@ -169,31 +165,29 @@ const Firehose = ({ feedType, multiColumn }) => {
         <ColumnSettings />
       </ColumnHeader>
 
-      <div className='scrollable scrollable--flex'>
-        <div className='account__section-headline'>
-          <NavLink exact to='/public/local'>
-            <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
-          </NavLink>
+      <div className='account__section-headline'>
+        <NavLink exact to='/public/local'>
+          <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
+        </NavLink>
 
-          <NavLink exact to='/public/remote'>
-            <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
-          </NavLink>
+        <NavLink exact to='/public/remote'>
+          <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
+        </NavLink>
 
-          <NavLink exact to='/public'>
-            <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
-          </NavLink>
-        </div>
-
-        <StatusListContainer
-          prepend={prependBanner}
-          timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
-          onLoadMore={handleLoadMore}
-          trackScroll
-          scrollKey='firehose'
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-        />
+        <NavLink exact to='/public'>
+          <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
+        </NavLink>
       </div>
+
+      <StatusListContainer
+        prepend={prependBanner}
+        timelineId={`${feedType}${onlyMedia ? ':media' : ''}`}
+        onLoadMore={handleLoadMore}
+        trackScroll
+        scrollKey='firehose'
+        emptyMessage={emptyMessage}
+        bindToDocument={!multiColumn}
+      />
 
       <Helmet>
         <title>{intl.formatMessage(messages.title)}</title>
@@ -201,7 +195,7 @@ const Firehose = ({ feedType, multiColumn }) => {
       </Helmet>
     </Column>
   );
-}
+};
 
 Firehose.propTypes = {
   multiColumn: PropTypes.bool,

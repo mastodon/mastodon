@@ -1,0 +1,51 @@
+{
+  "name": "Mastodon on GitHub Codespaces",
+  "dockerComposeFile": "../compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+  "features": {
+    "ghcr.io/devcontainers/features/sshd:1": {}
+  },
+
+  "runServices": ["app", "db", "redis"],
+
+  "forwardPorts": [3000, 4000],
+
+  "portsAttributes": {
+    "3000": {
+      "label": "web",
+      "onAutoForward": "notify"
+    },
+    "4000": {
+      "label": "stream",
+      "onAutoForward": "silent"
+    }
+  },
+
+  "remoteUser": "root",
+
+  "otherPortsAttributes": {
+    "onAutoForward": "silent"
+  },
+
+  "remoteEnv": {
+    "LOCAL_DOMAIN": "${localEnv:CODESPACE_NAME}-3000.app.github.dev",
+    "LOCAL_HTTPS": "true",
+    "STREAMING_API_BASE_URL": "https://${localEnv:CODESPACE_NAME}-4000.app.github.dev",
+    "DISABLE_FORGERY_REQUEST_PROTECTION": "true",
+    "ES_ENABLED": "",
+    "LIBRE_TRANSLATE_ENDPOINT": ""
+  },
+
+  "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "postCreateCommand": "bin/setup",
+  "waitFor": "postCreateCommand",
+
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": ["EditorConfig.EditorConfig", "webben.browserslist"]
+    }
+  }
+}

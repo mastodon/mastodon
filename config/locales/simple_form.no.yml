@@ -3,11 +3,14 @@
   simple_form:
     hints:
       account:
+        discoverable: Dine offentlige innlegg og profil kan bli omtalt eller anbefalt i ulike deler av Mastodon, og profilen din kan foreslås til andre brukere.
         display_name: Ditt fulle navn eller ditt morsomme navn.
         fields: Din hjemmeside, uttalelse, alder, eller alt annet du vil.
+        indexable: Dine offentlige innlegg kan vises i søkeresultat på Mastodon. Personer som har samhandlet med innleggene dine kan finne de uansett.
         note: 'Du kan @nevne andre eller #emneknagger.'
+        show_collections: Folk vil kunne bla gjennom de du følger og dine følgere. Folk du følger vil uansett se at du følger dem.
       account_alias:
-        acct: Spesifiser brukernavn@domene til brukeren du vil flytte fra
+        acct: Spesifiser brukernavn@domene til kontoen du vil flytte fra
       account_migration:
         acct: Spesifiser brukernavn@domene til brukeren du vil flytte til
       account_warning_preset:
@@ -22,7 +25,7 @@
           disable: Forhindre brukeren fra å bruke kontoen sin, men ikke slett eller skjul innholdet deres.
           none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
           sensitive: Tving alle denne brukerens medievedlegg til å bli merket som følsomme.
-          silence: Forhindre at brukeren kan legge ut innlegg med offentlig synlighet, skjule innleggene og varslene sine fra folk som ikke følger dem. Lukker alle rapporter mot denne kontoen.
+          silence: Forhindre at brukeren kan legge ut innlegg med offentlig synlighet, skjul innleggene deres og varslene fra folk som ikke følger dem. Lukker alle rapporter mot denne kontoen.
           suspend: Forhindre interaksjon fra eller til denne kontoen og slett innholdet. Tilbakestiller innholdet innen 30 dager. Lukk alle rapporter mot denne kontoen.
         warning_preset_id: Valgfritt. Du kan fortsatt legge til tilpasset tekst til slutten av forhåndsinnstillingen
       announcement:
@@ -32,22 +35,20 @@
         starts_at: Valgfritt. I tilfellet din kunngjøring er bundet til en spesifikk tidsramme
         text: Du kan bruke innlegg-syntaks. Vennligst vær oppmerksom på plassen som kunngjøringen vil ta opp på brukeren sin skjerm
       appeal:
-        text: Du kan kun klage på en advarsel en gang
+        text: Du kan kun anke en advarsel en gang
       defaults:
         autofollow: Folk som lager en konto gjennom invitasjonen, vil automatisk følge deg
-        avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
+        avatar: WEBP, PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         bot: Denne kontoen utfører i hovedsak automatiserte handlinger og blir kanskje ikke holdt øye med
         context: En eller flere sammenhenger der filteret skal gjelde
         current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
         current_username: For å bekrefte, vennligst skriv inn brukernavnet til den nåværende kontoen
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
-        discoverable: La kontoen din bli oppdaget av ukjente gjennom anbefalinger, trender og andre funksjoner
         email: Du vil bli tilsendt en bekreftelses-E-post
-        header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
+        header: WEBP, PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         inbox_url: Kopier URLen fra forsiden til overgangen du vil bruke
         irreversible: Filtrerte innlegg vil ugjenkallelig forsvinne, selv om filteret senere blir fjernet
         locale: Språket til brukergrensesnittet, e-mailer og push-varsler
-        locked: Krever at du manuelt godkjenner følgere
         password: Bruk minst 8 tegn
         phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsvarselet til et innlegg
         scopes: Hvilke API-er programmet vil bli gitt tilgang til. Dersom du velger et toppnivåomfang, trenger du ikke å velge individuelle API-er.
@@ -57,9 +58,6 @@
         setting_display_media_default: Skjul media som er merket som følsomt
         setting_display_media_hide_all: Skjul alltid all media
         setting_display_media_show_all: Alltid vis media som er merket som sensitivt
-        setting_hide_network: De som du følger, og de som følger deg, vil ikke bli vist på profilen din
-        setting_noindex: Påvirker din offentlige profil og statussider
-        setting_show_application: Appen du bruker til å publisere innlegg vil bli vist i den detaljerte visningen til innleggene dine
         setting_use_blurhash: Gradientene er basert på fargene til de skjulte visualitetene, men gjør alle detaljer uklare
         setting_use_pending_items: Skjul tidslinjeoppdateringer bak et klikk, i stedet for å automatisk la strømmen skrolle
         username: Du kan bruke bokstaver, tall og understrekingstegn
@@ -78,13 +76,10 @@
           warn: Skjul det filtrerte innholdet bak et varsel som omtaler filterets tittel
       form_admin_settings:
         activity_api_enabled: Teller med lokale publiserte innlegg, aktive brukere og nye registreringer i ukentlige bøtter
-        backups_retention_period: Behold genererte brukerarkiv i det angitte antall dager.
         bootstrap_timeline_accounts: Disse kontoene vil bli festet til toppen av nye brukeres følge-anbefalinger.
         closed_registrations_message: Vises når det er stengt for registrering
-        content_cache_retention_period: Innlegg fra andre tjenere vil slettes etter det angitte antall dager når det er satt til en positiv verdi. Dette kan være irreversibelt.
         custom_css: Du kan bruke egendefinerte stiler på nettversjonen av Mastodon.
         mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
-        media_cache_retention_period: Mediafiler som lastes ned vil bli slettet etter det angitte antall dager når det settes til en positiv verdi, og blir lastet ned på nytt ved behov.
         peers_api_enabled: En liste over domenenavn denne serveren har oppstått i fødiverset. Det finnes ikke data om du føderer med en gitt server, for akkurat det serveren din vet om. Dette brukes av tjenester som i all hovedsak innhenter føderasjonsstatistikk.
         profile_directory: Profilkatalogen viser alle brukere som har valgt å kunne bli oppdaget.
         require_invite_text: Når registreringer krever manuell godkjenning, må du gjøre «Hvorfor vil du bli med?»-tekstinput obligatorisk i stedet for valgfritt
@@ -121,11 +116,13 @@
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
         webauthn: Hvis det er en USB-nøkkel må du sette den inn og om nødvendig trykke på den.
+      settings:
+        indexable: Profilsiden din kan vises i søkeresultater på Google, Bing og så videre.
+        show_application: Du vil uansett kunne se hvilken app publiserte ditt innlegg.
       tag:
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
         chosen_languages: Hvis noen av dem er valgt, vil kun innlegg i de valgte språkene bli vist i de offentlige tidslinjene
-        role: Rollekontroller som bestemmer rettigheter brukeren har
       user_role:
         color: Farge som skal brukes for rollen gjennom hele UI, som RGB i hex-format
         highlighted: Dette gjør rollen offentlig synlig
@@ -138,9 +135,13 @@
         url: Hvor hendelser vil bli sendt til
     labels:
       account:
+        discoverable: Anbefal profil og innlegg i Mastodons algoritmer
         fields:
           name: Etikett
           value: Innhold
+        indexable: Inkluder offentlige innlegg i søkeresultater
+        show_collections: Vis de du følger og dine følgere på profilen
+        unlocked: Godta nye følgere automatisk
       account_alias:
         acct: Brukernavnet til den gamle brukeren
       account_migration:
@@ -178,7 +179,6 @@
         context: Filtersammenhenger
         current_password: Nåværende passord
         data: Data
-        discoverable: Før opp denne kontoen i mappen
         display_name: Visningsnavn
         email: E-postadresse
         expires_in: Utløper etter
@@ -188,7 +188,6 @@
         inbox_url: URL til overgangsinnboksen
         irreversible: Forkast i stedet for å skjule
         locale: Språk
-        locked: Lås konto
         max_uses: Maksimalt antall bruk
         new_password: Nytt passord
         note: Om meg
@@ -196,7 +195,7 @@
         password: Passord
         phrase: Nøkkelord eller frase
         setting_advanced_layout: Skru på det avanserte nettgrensesnittet
-        setting_aggregate_reblogs: Gruppefremhevinger i tidslinjer
+        setting_aggregate_reblogs: Samle fremhevinger i tidslinjer
         setting_always_send_emails: Alltid send e-postvarslinger
         setting_auto_play_gif: Autoavspill animert GIF-filer
         setting_boost_modal: Vis bekreftelse før fremheving
@@ -211,9 +210,7 @@
         setting_display_media_show_all: Vis alle
         setting_expand_spoilers: Utvid alltid innlegg som er merket med innholdsvarsler
         setting_hide_network: Skjul nettverket ditt
-        setting_noindex: Avmeld fra søkemotorindeksering
         setting_reduce_motion: Reduser bevegelser i animasjoner
-        setting_show_application: Vis hvilken app som ble brukt til å sende innlegg
         setting_system_font_ui: Bruk systemets standardfont
         setting_theme: Sidens tema
         setting_trends: Vis dagens trender
@@ -240,7 +237,6 @@
         backups_retention_period: Brukers oppbevaringsperiode for arkiv
         bootstrap_timeline_accounts: Anbefaler alltid disse kontoene til nye brukere
         closed_registrations_message: Egendefinert melding når registrering ikke er tilgjengelig
-        content_cache_retention_period: Oppbevaringsperiode for innholdsbuffer
         custom_css: Egendefinert CSS
         mascot: Egendefinert maskot (legacy)
         media_cache_retention_period: Oppbevaringsperiode for mediebuffer
@@ -280,7 +276,7 @@
           sign_up_requires_approval: Begrens påmeldinger
         severity: Oppføring
       notification_emails:
-        appeal: Noen klager på en moderator sin avgjørelse
+        appeal: Noen anker en moderator sin avgjørelse
         digest: Send sammendrag på e-post
         favourite: Send e-post når noen setter din status som favoritt
         follow: Send e-post når noen følger deg
@@ -289,14 +285,22 @@
         pending_account: Ny bruker avventer gjennomgang
         reblog: Send e-post når noen fremhever din status
         report: Ny rapport er sendt
+        software_updates:
+          all: Varsle om alle oppdateringer
+          critical: Varsle kun om kritiske oppdateringer
+          label: En ny versjon av Mastodon er tilgjengelig
+          none: Aldri varsle om oppdateringer (anbefales ikke)
+          patch: Varsle om oppdateringer med feilrettinger
         trending_tag: Ny trend krever gjennomgang
       rule:
         text: Regler
+      settings:
+        indexable: Inkluder profilside i søkemotorer
+        show_application: Vis hvilket program du brukte når du sendte et innlegg
       tag:
         listable: Tillat denne emneknaggen å vises i søk og på profilmappen
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å vises under trender
-        usable: Tillat innlegg å bruke denne emneknaggen
       user:
         role: Rolle
         time_zone: Tidssone
@@ -312,6 +316,7 @@
         url: Endepunkt lenke
     'no': Nei
     not_recommended: Ikke anbefalt
+    overridden: Overstyrt
     recommended: Anbefalt
     required:
       mark: "*"

@@ -3,7 +3,7 @@ da:
   activerecord:
     attributes:
       poll:
-        expires_at: 截止时间
+        expires_at: Tidsfrist
         options: Valgmuligheder
       user:
         agreement: Tjenesteaftale
@@ -15,6 +15,12 @@ da:
       user/invite_request:
         text: Årsag
     errors:
+      attributes:
+        domain:
+          invalid: er ikke et gyldigt domænenavn
+      messages:
+        invalid_domain_on_line: "%{value} er ikke et gyldigt domænenavn"
+        too_many_lines: overstiger grænsen på %{limit} linjer
       models:
         account:
           attributes:
@@ -24,19 +30,24 @@ da:
         admin/webhook:
           attributes:
             url:
-              invalid: "'er ikke en gyldig URL"
+              invalid: er ikke en gyldig URL
         doorkeeper/application:
           attributes:
             website:
-              invalid: "'er ikke en gyldig URL"
+              invalid: er ikke en gyldig URL
         import:
           attributes:
             data:
-              malformed: er forkert udformet
+              malformed: har ugyldigt format
+        list_account:
+          attributes:
+            account_id:
+              taken: er allerede på listen
+          must_be_following: skal være konto, der følges
         status:
           attributes:
             reblog:
-              taken: af allerede eksisterende status
+              taken: af status findes allerede
         user:
           attributes:
             email:

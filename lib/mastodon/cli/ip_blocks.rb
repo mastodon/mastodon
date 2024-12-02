@@ -5,7 +5,7 @@ require_relative 'base'
 
 module Mastodon::CLI
   class IpBlocks < Base
-    option :severity, required: true, enum: %w(no_access sign_up_requires_approval sign_up_block), desc: 'Severity of the block'
+    option :severity, required: true, enum: IpBlock.severities.keys, desc: 'Severity of the block'
     option :comment, aliases: [:c], desc: 'Optional comment'
     option :duration, aliases: [:d], type: :numeric, desc: 'Duration of the block in seconds'
     option :force, type: :boolean, aliases: [:f], desc: 'Overwrite existing blocks'
@@ -20,10 +20,7 @@ module Mastodon::CLI
       option to overwrite it.
     LONG_DESC
     def add(*addresses)
-      if addresses.empty?
-        say('No IP(s) given', :red)
-        exit(1)
-      end
+      fail_with_message 'No IP(s) given' if addresses.empty?
 
       skipped   = 0
       processed = 0
@@ -70,10 +67,7 @@ module Mastodon::CLI
       cover the given IP(s).
     LONG_DESC
     def remove(*addresses)
-      if addresses.empty?
-        say('No IP(s) given', :red)
-        exit(1)
-      end
+      fail_with_message 'No IP(s) given' if addresses.empty?
 
       processed = 0
       skipped   = 0
@@ -86,9 +80,9 @@ module Mastodon::CLI
         end
 
         ip_blocks = if options[:force]
-                      IpBlock.where('ip >>= ?', address)
+                      IpBlock.containing(address)
                     else
-                      IpBlock.where('ip <<= ?', address)
+                      IpBlock.contained_by(address)
                     end
 
         if ip_blocks.empty?
@@ -111,7 +105,7 @@ module Mastodon::CLI
       tools. Only blocks with no_access severity are returned.
     LONG_DESC
     def export
-      IpBlock.where(severity: :no_access).find_each do |ip_block|
+      IpBlock.severity_no_access.find_each do |ip_block|
         case options[:format]
         when 'nginx'
           say "deny #{ip_block.ip}/#{ip_block.ip.prefix};"

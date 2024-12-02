@@ -1,25 +1,22 @@
 # frozen_string_literal: true
 
 class ManifestSerializer < ActiveModel::Serializer
+  include InstanceHelper
   include RoutingHelper
   include ActionView::Helpers::TextHelper
 
-  ICON_SIZES = %w(
-    36
-    48
-    72
-    96
-    144
-    192
-    256
-    384
-    512
-  ).freeze
-
-  attributes :name, :short_name,
+  attributes :id, :name, :short_name,
              :icons, :theme_color, :background_color,
              :display, :start_url, :scope,
-             :share_target, :shortcuts
+             :share_target, :shortcuts,
+             :prefer_related_applications, :related_applications
+
+  def id
+    # This is set to `/home` because that was the old value of `start_url` and
+    # thus the fallback ID computed by Chrome:
+    # https://developer.chrome.com/blog/pwa-manifest-id/
+    '/home'
+  end
 
   def name
     object.title
@@ -30,9 +27,12 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def icons
-    ICON_SIZES.map do |size|
+    SiteUpload::ANDROID_ICON_SIZES.map do |size|
+      src = app_icon_path(size.to_i)
+      src = URI.join(root_url, src).to_s if src.present?
+
       {
-        src: full_pack_url("media/icons/android-chrome-#{size}x#{size}.png"),
+        src: src || frontend_asset_url("icons/android-chrome-#{size}x#{size}.png"),
         sizes: "#{size}x#{size}",
         type: 'image/png',
         purpose: 'any maskable',
@@ -53,7 +53,7 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def start_url
-    '/home'
+    '/'
   end
 
   def scope
@@ -83,6 +83,34 @@ class ManifestSerializer < ActiveModel::Serializer
       {
         name: 'Notifications',
         url: '/notifications',
+      },
+      {
+        name: 'Explore',
+        url: '/explore',
+      },
+    ]
+  end
+
+  def prefer_related_applications
+    true
+  end
+
+  def related_applications
+    [
+      {
+        platform: 'play',
+        url: 'https://play.google.com/store/apps/details?id=org.joinmastodon.android',
+        id: 'org.joinmastodon.android',
+      },
+      {
+        platform: 'itunes',
+        url: 'https://apps.apple.com/us/app/mastodon-for-iphone/id1571998974',
+        id: 'id1571998974',
+      },
+      {
+        platform: 'f-droid',
+        url: 'https://f-droid.org/en/packages/org.joinmastodon.android/',
+        id: 'org.joinmastodon.android',
       },
     ]
   end

@@ -1,4 +1,5 @@
-import type { Middleware, AnyAction } from 'redux';
+import { isAction } from '@reduxjs/toolkit';
+import type { Middleware, UnknownAction } from '@reduxjs/toolkit';
 
 import ready from 'mastodon/ready';
 import { assetHost } from 'mastodon/utils/config';
@@ -8,6 +9,21 @@ import type { RootState } from '..';
 interface AudioSource {
   src: string;
   type: string;
+}
+
+interface ActionWithMetaSound extends UnknownAction {
+  meta: { sound: string };
+}
+
+function isActionWithMetaSound(action: unknown): action is ActionWithMetaSound {
+  return (
+    isAction(action) &&
+    'meta' in action &&
+    typeof action.meta === 'object' &&
+    !!action.meta &&
+    'sound' in action.meta &&
+    typeof action.meta.sound === 'string'
+  );
 }
 
 const createAudio = (sources: AudioSource[]) => {
@@ -35,7 +51,8 @@ const play = (audio: HTMLAudioElement) => {
 };
 
 export const soundsMiddleware = (): Middleware<
-  Record<string, never>,
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type -- we need to use `{}` here to ensure the dispatch types can be merged
+  {},
   RootState
 > => {
   const soundCache: Record<string, HTMLAudioElement> = {};
@@ -53,15 +70,16 @@ export const soundsMiddleware = (): Middleware<
     ]);
   });
 
-  return () =>
-    (next) =>
-    (action: AnyAction & { meta?: { sound?: string } }) => {
-      const sound = action.meta?.sound;
+  return () => (next) => (action) => {
+    if (isActionWithMetaSound(action)) {
+      const sound = action.meta.sound;
 
-      if (sound && Object.hasOwn(soundCache, sound)) {
-        play(soundCache[sound]);
+      if (sound) {
+        const s = soundCache[sound];
+        if (s) play(s);
       }
+    }
 
-      return next(action);
-    };
+    return next(action);
+  };
 };

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe MuteService, type: :service do
+RSpec.describe MuteService do
   subject { described_class.new.call(account, target_account) }
 
   let(:account) { Fabricate(:account) }
@@ -17,7 +17,7 @@ RSpec.describe MuteService, type: :service do
       redis.del(home_timeline_key)
     end
 
-    it "clears account's statuses" do
+    it "clears account's statuses", :inline_jobs do
       FeedManager.instance.push_to_home(account, status)
       FeedManager.instance.push_to_home(account, other_account_status)
 

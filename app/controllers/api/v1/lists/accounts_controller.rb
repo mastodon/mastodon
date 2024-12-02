@@ -15,17 +15,12 @@ class Api::V1::Lists::AccountsController < Api::BaseController
   end
 
   def create
-    ApplicationRecord.transaction do
-      list_accounts.each do |account|
-        @list.accounts << account
-      end
-    end
-
+    AddAccountsToListService.new.call(@list, Account.find(account_ids))
     render_empty
   end
 
   def destroy
-    ListAccount.where(list: @list, account_id: account_ids).destroy_all
+    RemoveAccountsFromListService.new.call(@list, Account.where(id: account_ids))
     render_empty
   end
 
@@ -37,14 +32,10 @@ class Api::V1::Lists::AccountsController < Api::BaseController
 
   def load_accounts
     if unlimited?
-      @list.accounts.without_suspended.includes(:account_stat).all
+      @list.accounts.without_suspended.includes(:account_stat, :user).all
     else
-      @list.accounts.without_suspended.includes(:account_stat).paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
+      @list.accounts.without_suspended.includes(:account_stat, :user).paginate_by_max_id(limit_param(DEFAULT_ACCOUNTS_LIMIT), params[:max_id], params[:since_id])
     end
-  end
-
-  def list_accounts
-    Account.find(account_ids)
   end
 
   def account_ids
@@ -53,10 +44,6 @@ class Api::V1::Lists::AccountsController < Api::BaseController
 
   def resource_params
     params.permit(account_ids: [])
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
   end
 
   def next_path
@@ -71,20 +58,12 @@ class Api::V1::Lists::AccountsController < Api::BaseController
     api_v1_list_accounts_url pagination_params(since_id: pagination_since_id) unless @accounts.empty?
   end
 
-  def pagination_max_id
-    @accounts.last.id
-  end
-
-  def pagination_since_id
-    @accounts.first.id
+  def pagination_collection
+    @accounts
   end
 
   def records_continue?
     @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 
   def unlimited?

@@ -6,23 +6,10 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   class Error < StandardError; end
 
   # Returns actor that owns the key
-  def call(uri, id: true, prefetched_body: nil, suppress_errors: true)
+  def call(uri, suppress_errors: true)
     raise Error, 'No key URI given' if uri.blank?
 
-    if prefetched_body.nil?
-      if id
-        @json = fetch_resource_without_id_validation(uri)
-        if actor_type?
-          @json = fetch_resource(@json['id'], true)
-        elsif uri != @json['id']
-          raise Error, "Fetched URI #{uri} has wrong id #{@json['id']}"
-        end
-      else
-        @json = fetch_resource(uri, id)
-      end
-    else
-      @json = body_to_json(prefetched_body, compare_id: id ? uri : nil)
-    end
+    @json = fetch_resource(uri, false)
 
     raise Error, "Unable to fetch key JSON at #{uri}" if @json.nil?
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?(@json)

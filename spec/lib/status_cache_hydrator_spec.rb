@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusCacheHydrator do
+RSpec.describe StatusCacheHydrator do
   let(:status)  { Fabricate(:status) }
   let(:account) { Fabricate(:account) }
 

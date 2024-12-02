@@ -27,7 +27,11 @@ class Poll < ApplicationRecord
   belongs_to :status
 
   has_many :votes, class_name: 'PollVote', inverse_of: :poll, dependent: :delete_all
-  has_many :voters, -> { group('accounts.id') }, through: :votes, class_name: 'Account', source: :account
+
+  with_options class_name: 'Account', source: :account, through: :votes do
+    has_many :voters, -> { group(accounts: [:id]) }
+    has_many :local_voters, -> { group(accounts: [:id]).merge(Account.local) }
+  end
 
   has_many :notifications, as: :activity, dependent: :destroy
 
@@ -53,7 +57,7 @@ class Poll < ApplicationRecord
   end
 
   def voted?(account)
-    account.id == account_id || votes.where(account: account).exists?
+    account.id == account_id || votes.exists?(account: account)
   end
 
   def own_votes(account)
@@ -107,7 +111,7 @@ class Poll < ApplicationRecord
   def reset_parent_cache
     return if status_id.nil?
 
-    Rails.cache.delete("statuses/#{status_id}")
+    Rails.cache.delete("v3:statuses/#{status_id}")
   end
 
   def last_fetched_before_expiration?

@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class AdminMailer < ApplicationMailer
-  layout 'plain_mailer'
+  layout 'admin_mailer'
 
   helper :accounts
   helper :languages
 
   before_action :process_params
   before_action :set_instance
+
+  after_action :set_important_headers!, only: :new_critical_software_updates
 
   default to: -> { @me.user_email }
 
@@ -45,6 +47,28 @@ class AdminMailer < ApplicationMailer
     end
   end
 
+  def new_software_updates
+    @software_updates = SoftwareUpdate.all.to_a.sort_by(&:gem_version)
+
+    locale_for_account(@me) do
+      mail subject: default_i18n_subject(instance: @instance)
+    end
+  end
+
+  def new_critical_software_updates
+    @software_updates = SoftwareUpdate.where(urgent: true).to_a.sort_by(&:gem_version)
+
+    locale_for_account(@me) do
+      mail subject: default_i18n_subject(instance: @instance)
+    end
+  end
+
+  def auto_close_registrations
+    locale_for_account(@me) do
+      mail subject: default_i18n_subject(instance: @instance)
+    end
+  end
+
   private
 
   def process_params
@@ -53,5 +77,13 @@ class AdminMailer < ApplicationMailer
 
   def set_instance
     @instance = Rails.configuration.x.local_domain
+  end
+
+  def set_important_headers!
+    headers(
+      'Importance' => 'high',
+      'Priority' => 'urgent',
+      'X-Priority' => '1'
+    )
   end
 end

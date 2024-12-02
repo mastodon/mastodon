@@ -3,9 +3,14 @@ da:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Ét pr. linje. Beskytter mod falske tilskrivninger.
+        discoverable: Dine offentlige indlæg og profil kan blive fremhævet eller anbefalet i forskellige områder af Mastodon, og profilen kan blive foreslået til andre brugere.
         display_name: Dit fulde navn eller dit sjove navn.
         fields: Din hjemmeside, dine pronominer, din alder, eller hvad du har lyst til.
+        indexable: Dine offentlige indlæg vil kunne vises i Mastodon-søgeresultater. Folk, som har interageret med dem, vil kunne finde dem uanset.
         note: 'Du kan @omtale andre personer eller #hashtags.'
+        show_collections: Folk vil ikke kunne tjekke dine Følger og Følgere. Folk, du selv følger, vil stadig kunne se dette.
+        unlocked: Man vil kunne følges af folk uden først at godkende dem. Ønsker man at gennemgå Følg-anmodninger og individuelt acceptere/afvise nye følgere, så fjern markeringen.
       account_alias:
         acct: Angiv brugernavn@domain for den konto, hvorfra du vil flytte
       account_migration:
@@ -35,19 +40,17 @@ da:
         text: En advarsel kan kun appelleres én gang
       defaults:
         autofollow: Personer tilmeldt via invitationen vil automatisk blive følgere
-        avatar: PNG, GIF eller JPG. Maks. %{size}. Auto-nedskaleres til %{dimensions}px
+        avatar: WEBP, PNG, GIF eller JPG. Maks. %{size}. Nedskaleres til %{dimensions}px
         bot: Signalér til andre, at denne konto primært udfører automatiserede handlinger og muligvis ikke monitoreres
         context: En eller flere kontekster, hvor filteret skal anvendes
         current_password: Angiv af sikkerhedsårsager adgangskoden til den aktuelle konto
         current_username: For at bekræfte, angiv brugernavnet for den aktuelle konto
         digest: Sendes kun efter en lang inaktivitetsperiode, og kun hvis du har modtaget personlige beskeder under fraværet
-        discoverable: Tillad kontoen at blive fundet af fremmede via anbefalinger og øvrige funktioner
         email: En bekræftelses-e-mail fremsendes
-        header: PNG, GIF eller JPG. Maks. %{size}. Auto-nedskaleres til %{dimensions}px
+        header: WEBP, PNG, GIF eller JPG. Maks. %{size}. Nedskaleres til %{dimensions}px
         inbox_url: Kopiér URL'en fra forsiden af den videreformidler, der skal anvendes
         irreversible: Filtrerede indlæg forsvinder permanent, selv hvis filteret senere fjernes
         locale: Sprog til brug for brugerflade, e-mails og push-notifikationer
-        locked: Godkend manuelt følgeanmodninger for at styre, hvem der følger dig
         password: Brug mindst 8 tegn
         phrase: Matches uanset uanset brug af store/små bogstaver i teksten eller indholdsadvarsel for et indlæg
         scopes: De API'er, som applikationen vil kunne tilgå. Vælges en topniveaudstrækning, vil detailvalg være unødvendige.
@@ -57,9 +60,6 @@ da:
         setting_display_media_default: Skjul medier med sensitiv-markering
         setting_display_media_hide_all: Skjul altid medier
         setting_display_media_show_all: Vis altid medier
-        setting_hide_network: Hvem du følger, og hvem som følger dig, skjules på din profil
-        setting_noindex: Påvirker din offentlige profil samt indlægssider
-        setting_show_application: Applikationen, hvormed der postes, vil fremgå af detailvisningen af dine indlæg
         setting_use_blurhash: Gradienter er baseret på de skjulte grafikelementers farver, men slører alle detaljer
         setting_use_pending_items: Skjul tidslinjeopdateringer bag et klik i stedet for brug af auto-feedrulning
         username: Bogstaver, cifre og understregningstegn kan benyttes
@@ -78,13 +78,15 @@ da:
           warn: Skjul filtreret indhold bag en advarsel, der nævner filterets titel
       form_admin_settings:
         activity_api_enabled: Antal lokalt opslåede indlæg, aktive brugere samt nye tilmeldinger i ugentlige opdelinger
-        backups_retention_period: Behold genererede brugerarkiver i det angivne antal dage.
+        app_icon: WEBP, PNG, GIF eller JPG. Tilsidesætter standard app-ikonet på mobilenheder med et tilpasset ikon.
+        backups_retention_period: Brugere har mulighed for at generere arkiver af deres indlæg til senere downloade. Når sat til positiv værdi, vil disse arkiver automatisk blive slettet fra lagerpladsen efter det angivne antal dage.
         bootstrap_timeline_accounts: Disse konti fastgøres øverst på nye brugeres følg-anbefalinger.
         closed_registrations_message: Vises, når tilmeldinger er lukket
-        content_cache_retention_period: Indlæg fra andre servere slettes efter det angivne antal dage, når sat til en positiv værdi. Dette kan være irreversibelt.
+        content_cache_retention_period: Alle indlæg fra andre servere (herunder boosts og besvarelser) slettes efter det angivne antal dage uden hensyn til lokal brugerinteraktion med disse indlæg. Dette omfatter indlæg, hvor en lokal bruger har markeret dem som bogmærker eller favoritter. Private omtaler mellem brugere fra forskellige instanser vil også være tabt og umulige at gendanne. Brugen af denne indstilling er beregnet til særlige formål instanser og bryder mange brugerforventninger ved implementering til almindelig brug.
         custom_css: Man kan anvende tilpassede stilarter på Mastodon-webversionen.
+        favicon: WEBP, PNG, GIF eller JPG. Tilsidesætter standard Mastodon favikonet på mobilenheder med et tilpasset ikon.
         mascot: Tilsidesætter illustrationen i den avancerede webgrænseflade.
-        media_cache_retention_period: Downloadede mediefiler slettes efter det angivne antal dage, når sat til en positiv værdi, og gendownloades på forlangende.
+        media_cache_retention_period: Mediefiler fra indlæg oprettet af eksterne brugere er cachet på din server. Når sat til positiv værdi, slettes medier efter det angivne antal dage. Anmodes om mediedata efter de er slettet, gendownloades de, hvis kildeindholdet stadig er tilgængeligt. Grundet begrænsninger på, hvor ofte linkforhåndsvisningskort forespørger tredjeparts websteder, anbefales det at sætte denne værdi til mindst 14 dage, ellers opdateres linkforhåndsvisningskort ikke efter behov før det tidspunkt.
         peers_api_enabled: En liste med domænenavne, som denne server har stødt på i fediverset. Ingen data inkluderes her om, hvorvidt der fødereres med en given server, blot at din server kender til det. Dette bruges af tjenester, som indsamler generelle føderationsstatistikker.
         profile_directory: Profilmappen oplister alle brugere, som har valgt at kunne opdages.
         require_invite_text: Når tilmelding kræver manuel godkendelse, så gør “Hvorfor ønsker du at deltage?” tekstinput obligatorisk i stedet for valgfrit
@@ -117,15 +119,19 @@ da:
           sign_up_requires_approval: Nye tilmeldinger kræver din godkendelse
         severity: Afgør, hvordan forespørgsler fra denne IP behandles
       rule:
+        hint: Valgfrit. Oplys yderligere detaljer om reglen
         text: Beskriv på en kort og enkel form en regel/krav for brugere på denne server
       sessions:
         otp: 'Angiv tofaktorkoden generet af din mobil-app eller brug en af genoprettelseskoderne:'
         webauthn: Er det en USB-nøgle, så sørg for at isætte den og, om nødvendigt, åbne den manuelt.
+      settings:
+        indexable: Din profilside kan fremgå i søgeresultater på Google, Bing mv.
+        show_application: Du vil dog altid kunne se, hvilken app, der offentliggjorde dit indlæg.
       tag:
         name: Kun bogstavtyper (store/små) kan ændres, eksempelvis for at gøre det mere læsbart
       user:
         chosen_languages: Når markeret, vil kun indlæg på de valgte sprog fremgå på offentlige tidslinjer
-        role: Rollen styrer, hvilke tilladelser brugeren har
+        role: Rollen styrer, hvilke tilladelser brugeren er tildelt.
       user_role:
         color: Farven, i RGB hex-format, der skal bruges til rollen i hele UI'en
         highlighted: Dette gør rollen offentligt synlig
@@ -138,9 +144,14 @@ da:
         url: Hvor begivenheder sendes til
     labels:
       account:
+        attribution_domains_as_text: Websteder, man må krediteres af
+        discoverable: Fremhæv profil og indlæg i opdagelsesalgoritmer
         fields:
           name: Etiket
           value: Indhold
+        indexable: Medtag offentlige indlæg i søgeresultater
+        show_collections: Vis Følger og Følgere på profil
+        unlocked: Acceptér automatisk nye Følgere
       account_alias:
         acct: Brugernavn på den gamle konto
       account_migration:
@@ -178,7 +189,6 @@ da:
         context: Kontekstfiltrering
         current_password: Aktuel adgangskode
         data: Data
-        discoverable: Foreslå konto til andre
         display_name: Visningsnavn
         email: E-mailadresse
         expires_in: Udløb efter
@@ -188,7 +198,6 @@ da:
         inbox_url: URL til videreformidlingsindbakken
         irreversible: Fjern istedet for skjul
         locale: Grænsefladesprog
-        locked: Kræv følgeanmodninger
         max_uses: Maks. antal afbenyttelser
         new_password: Ny adgangskode
         note: Biografi
@@ -197,13 +206,14 @@ da:
         phrase: Nøgleord/-sætning
         setting_advanced_layout: Aktivér avanceret webgrænseflade
         setting_aggregate_reblogs: Gruppér boosts på tidslinjer
-        setting_always_send_emails: Send altid en e-mailnotifikationer
+        setting_always_send_emails: Send altid e-mailnotifikationer
         setting_auto_play_gif: Autoafspil animerede GIF'er
         setting_boost_modal: Vis bekræftelsesdialog inden boosting
         setting_default_language: Sprog for indlæg
         setting_default_privacy: Fortrolighed for indlæg
         setting_default_sensitive: Markér altid medier som sensitive
         setting_delete_modal: Vis bekræftelsesdialog før et indlæg slettes
+        setting_disable_hover_cards: Deaktivér profilforhåndsvisning ved svæv (hover)
         setting_disable_swiping: Deaktivér strygebevægelser
         setting_display_media: Medievisning
         setting_display_media_default: Standard
@@ -211,9 +221,7 @@ da:
         setting_display_media_show_all: Vis alle
         setting_expand_spoilers: Ekspandér altid indlæg markeret med indholdsadvarsler
         setting_hide_network: Skjul din sociale graf
-        setting_noindex: Fravælg søgemaskineindeksering
         setting_reduce_motion: Reducér animationsbevægelse
-        setting_show_application: Vis applikationen brugt til at poste indlæg
         setting_system_font_ui: Brug systemets standardskrifttype
         setting_theme: Webstedstema
         setting_trends: Vis dagens tendenser
@@ -237,11 +245,13 @@ da:
           warn: Skjul bag en advarsel
       form_admin_settings:
         activity_api_enabled: Offentliggør samlede statistikker vedr. brugeraktivitet i API'en
+        app_icon: App-ikon
         backups_retention_period: Brugerarkivs opbevaringsperiode
         bootstrap_timeline_accounts: Anbefal altid disse konti til nye brugere
         closed_registrations_message: Tilpasset besked, når tilmelding er utilgængelig
-        content_cache_retention_period: Indholds-cache opbevaringsperiode
+        content_cache_retention_period: Opbevaringsperiode for eksternt indhold
         custom_css: Tilpasset CSS
+        favicon: Favikon
         mascot: Tilpasset maskot (ældre funktion)
         media_cache_retention_period: Media-cache opbevaringsperiode
         peers_api_enabled: Udgiv liste over fundne server i API'en
@@ -264,9 +274,9 @@ da:
         trends: Aktivér trends
         trends_as_landing_page: Brug tendenser som destinationssiden
       interactions:
-        must_be_follower: Blokér notifikationer fra ikke-følgere
-        must_be_following: Blokér notifikationer fra folk, som ikke følges
-        must_be_following_dm: Bloker direkte beskeder fra folk, som ikke følges
+        must_be_follower: Blokér notifikationer fra bruger, der ikke følger dig
+        must_be_following: Blokér notifikationer fra brugere, du ikke følger
+        must_be_following_dm: Bloker direkte beskeder fra brugere, du ikke følger
       invite:
         comment: Kommentar
       invite_request:
@@ -289,14 +299,24 @@ da:
         pending_account: Ny konto kræver gennemgang
         reblog: Nogen boostede dit indlæg
         report: Ny anmeldelse indsendt
+        software_updates:
+          all: Notificér ved alle opdateringer
+          critical: Notificér kun ved kritiske opdateringer
+          label: En ny Mastodon-version er tilgængelig
+          none: Notificér ikke om opdateringer (anbefales ikke)
+          patch: Notificér om fejlrettelsesopdateringer
         trending_tag: Ny tendens kræver revidering
       rule:
+        hint: Yderligere oplysninger
         text: Regel
+      settings:
+        indexable: Inkludér profilside i søgemaskiner
+        show_application: Vis, fra hvilken app et indlæg er sendt
       tag:
         listable: Tillad visning af dette hashtag i søgninger og forslag
         name: Hashtag
         trendable: Tillad visning af dette hashtag under trends
-        usable: Tillad indlæg at benytte dette hashtag
+        usable: Tillad indlæg at benytte dette hashtag lokalt
       user:
         role: Rolle
         time_zone: Tidszone
@@ -312,6 +332,7 @@ da:
         url: Endepunkts-URL
     'no': Nej
     not_recommended: Ikke anbefalet
+    overridden: Tilsidesat
     recommended: Anbefalet
     required:
       mark: "*"

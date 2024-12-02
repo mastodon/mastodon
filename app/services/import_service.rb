@@ -75,7 +75,7 @@ class ImportService < BaseService
     if @import.overwrite?
       presence_hash = items.each_with_object({}) { |(id, extra), mapping| mapping[id] = [true, extra] }
 
-      overwrite_scope.find_each do |target_account|
+      overwrite_scope.reorder(nil).find_each do |target_account|
         if presence_hash[target_account.acct]
           items.delete(target_account.acct)
           extra = presence_hash[target_account.acct][1]
@@ -115,7 +115,7 @@ class ImportService < BaseService
       next if status.nil? && ActivityPub::TagManager.instance.local_uri?(uri)
 
       status || ActivityPub::FetchRemoteStatusService.new.call(uri)
-    rescue HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
+    rescue *Mastodon::HTTP_CONNECTION_ERRORS, Mastodon::UnexpectedResponseError
       nil
     rescue => e
       Rails.logger.warn "Unexpected error when importing bookmark: #{e}"

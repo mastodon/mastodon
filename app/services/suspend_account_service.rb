@@ -51,13 +51,13 @@ class SuspendAccountService < BaseService
   end
 
   def unmerge_from_home_timelines!
-    @account.followers_for_local_distribution.find_each do |follower|
+    @account.followers_for_local_distribution.reorder(nil).find_each do |follower|
       FeedManager.instance.unmerge_from_home(@account, follower)
     end
   end
 
   def unmerge_from_list_timelines!
-    @account.lists_for_local_distribution.find_each do |list|
+    @account.lists_for_local_distribution.reorder(nil).find_each do |list|
       FeedManager.instance.unmerge_from_list(@account, list)
     end
   end

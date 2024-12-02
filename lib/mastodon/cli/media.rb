@@ -6,6 +6,8 @@ module Mastodon::CLI
   class Media < Base
     include ActionView::Helpers::NumberHelper
 
+    class UnrecognizedOrphanType < StandardError; end
+
     VALID_PATH_SEGMENTS_SIZE = [7, 10].freeze
 
     option :days, type: :numeric, default: 7, aliases: [:d]
@@ -13,6 +15,7 @@ module Mastodon::CLI
     option :remove_headers, type: :boolean, default: false
     option :include_follows, type: :boolean, default: false
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, default: false, aliases: [:v]
     option :dry_run, type: :boolean, default: false
     desc 'remove', 'Remove remote media files, headers or avatars'
     long_desc <<-DESC
@@ -31,15 +34,9 @@ module Mastodon::CLI
       following anyone locally are pruned.
     DESC
     def remove
-      if options[:prune_profiles] && options[:remove_headers]
-        say('--prune-profiles and --remove-headers should not be specified simultaneously', :red, true)
-        exit(1)
-      end
+      fail_with_message '--prune-profiles and --remove-headers should not be specified simultaneously' if options[:prune_profiles] && options[:remove_headers]
 
-      if options[:include_follows] && !(options[:prune_profiles] || options[:remove_headers])
-        say('--include-follows can only be used with --prune-profiles or --remove-headers', :red, true)
-        exit(1)
-      end
+      fail_with_message '--include-follows can only be used with --prune-profiles or --remove-headers' if options[:include_follows] && !(options[:prune_profiles] || options[:remove_headers])
       time_ago = options[:days].days.ago
 
       if options[:prune_profiles] || options[:remove_headers]
@@ -48,8 +45,8 @@ module Mastodon::CLI
           next if account.avatar.blank? && account.header.blank?
           next if options[:remove_headers] && account.header.blank?
 
-          size = (account.header_file_size || 0)
-          size += (account.avatar_file_size || 0) if options[:prune_profiles]
+          size = account.header_file_size || 0
+          size += account.avatar_file_size || 0 if options[:prune_profiles]
 
           unless dry_run?
             account.header.destroy
@@ -64,7 +61,7 @@ module Mastodon::CLI
       end
 
       unless options[:prune_profiles] || options[:remove_headers]
-        processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where(created_at: ..time_ago)) do |media_attachment|
+        processed, aggregate = parallelize_with_progress(MediaAttachment.cached.remote.where(created_at: ..time_ago)) do |media_attachment|
           next if media_attachment.file.blank?
 
           size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
@@ -125,23 +122,10 @@ module Mastodon::CLI
             object.acl.put(acl: s3_permissions) if options[:fix_permissions] && !dry_run?
 
             path_segments = object.key.split('/')
-            path_segments.delete('cache')
-
-            unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
-              progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
-              next
-            end
-
-            model_name      = path_segments.first.classify
-            attachment_name = path_segments[1].singularize
-            record_id       = path_segments[2..-2].join.to_i
-            file_name       = path_segments.last
-            record          = record_map.dig(model_name, record_id)
-            attachment      = record&.public_send(attachment_name)
 
             progress.increment
 
-            next unless attachment.blank? || !attachment.variant?(file_name)
+            next unless orphaned_file?(path_segments, record_map)
 
             begin
               object.delete unless dry_run?
@@ -153,18 +137,18 @@ module Mastodon::CLI
             rescue => e
               progress.log(pastel.red("Error processing #{object.key}: #{e}"))
             end
+          rescue UnrecognizedOrphanType
+            progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
           end
         end
       when :fog
-        say('The fog storage driver is not supported for this operation at this time', :red)
-        exit(1)
+        fail_with_message 'The fog storage driver is not supported for this operation at this time'
       when :azure
-        say('The azure storage driver is not supported for this operation at this time', :red)
-        exit(1)
+        fail_with_message 'The azure storage driver is not supported for this operation at this time'
       when :filesystem
         require 'find'
 
-        root_path = ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')).gsub(':rails_root', Rails.root.to_s)
+        root_path = Rails.configuration.x.file_storage_root_path.gsub(':rails_root', Rails.root.to_s)
 
         Find.find(File.join(*[root_path, prefix].compact)) do |path|
           next if File.directory?(path)
@@ -172,26 +156,10 @@ module Mastodon::CLI
           key = path.gsub("#{root_path}#{File::SEPARATOR}", '')
 
           path_segments = key.split(File::SEPARATOR)
-          path_segments.delete('cache')
-
-          unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
-            progress.log(pastel.yellow("Unrecognized file found: #{key}"))
-            next
-          end
-
-          model_name      = path_segments.first.classify
-          record_id       = path_segments[2..-2].join.to_i
-          attachment_name = path_segments[1].singularize
-          file_name       = path_segments.last
-
-          next unless PRELOAD_MODEL_WHITELIST.include?(model_name)
-
-          record     = model_name.constantize.find_by(id: record_id)
-          attachment = record&.public_send(attachment_name)
 
           progress.increment
 
-          next unless attachment.blank? || !attachment.variant?(file_name)
+          next unless orphaned_file?(path_segments)
 
           begin
             size = File.size(path)
@@ -212,6 +180,8 @@ module Mastodon::CLI
           rescue => e
             progress.log(pastel.red("Error processing #{key}: #{e}"))
           end
+        rescue UnrecognizedOrphanType
+          progress.log(pastel.yellow("Unrecognized file found: #{path}"))
         end
       end
 
@@ -254,10 +224,7 @@ module Mastodon::CLI
         username, domain = options[:account].split('@')
         account = Account.find_remote(username, domain)
 
-        if account.nil?
-          say('No such account', :red)
-          exit(1)
-        end
+        fail_with_message 'No such account' if account.nil?
 
         scope = MediaAttachment.where(account_id: account.id)
       elsif options[:domain]
@@ -265,7 +232,7 @@ module Mastodon::CLI
       elsif options[:days].present?
         scope = MediaAttachment.remote
       else
-        exit(1)
+        fail_with_message 'Specify the source of media attachments'
       end
 
       scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false)) if options[:days].present?
@@ -288,14 +255,10 @@ module Mastodon::CLI
 
     desc 'usage', 'Calculate disk space consumed by Mastodon'
     def usage
-      say("Attachments:\t#{number_to_human_size(MediaAttachment.sum(Arel.sql('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')))} (#{number_to_human_size(MediaAttachment.where(account: Account.local).sum(Arel.sql('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')))} local)")
-      say("Custom emoji:\t#{number_to_human_size(CustomEmoji.sum(:image_file_size))} (#{number_to_human_size(CustomEmoji.local.sum(:image_file_size))} local)")
-      say("Preview cards:\t#{number_to_human_size(PreviewCard.sum(:image_file_size))}")
-      say("Avatars:\t#{number_to_human_size(Account.sum(:avatar_file_size))} (#{number_to_human_size(Account.local.sum(:avatar_file_size))} local)")
-      say("Headers:\t#{number_to_human_size(Account.sum(:header_file_size))} (#{number_to_human_size(Account.local.sum(:header_file_size))} local)")
-      say("Backups:\t#{number_to_human_size(Backup.sum(:dump_file_size))}")
-      say("Imports:\t#{number_to_human_size(Import.sum(:data_file_size))}")
-      say("Settings:\t#{number_to_human_size(SiteUpload.sum(:file_file_size))}")
+      print_table [
+        %w(Object Total Local),
+        *object_storage_summary,
+      ]
     end
 
     desc 'lookup URL', 'Lookup where media is displayed by passing a media URL'
@@ -305,43 +268,49 @@ module Mastodon::CLI
       path_segments = path.split('/')[2..]
       path_segments.delete('cache')
 
-      unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
-        say('Not a media URL', :red)
-        exit(1)
-      end
+      fail_with_message 'Not a media URL' unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
 
       model_name = path_segments.first.classify
-      record_id  = path_segments[2..-2].join.to_i
+      record_id  = path_segments[2...-2].join.to_i
 
-      unless PRELOAD_MODEL_WHITELIST.include?(model_name)
-        say("Cannot find corresponding model: #{model_name}", :red)
-        exit(1)
-      end
+      fail_with_message "Cannot find corresponding model: #{model_name}" unless PRELOADED_MODELS.include?(model_name)
 
       record = model_name.constantize.find_by(id: record_id)
       record = record.status if record.respond_to?(:status)
 
-      unless record
-        say('Cannot find corresponding record', :red)
-        exit(1)
-      end
+      fail_with_message 'Cannot find corresponding record' unless record
 
       display_url = ActivityPub::TagManager.instance.url_for(record)
 
-      if display_url.blank?
-        say('No public URL for this type of record', :red)
-        exit(1)
-      end
+      fail_with_message 'No public URL for this type of record' if display_url.blank?
 
       say(display_url, :blue)
     rescue Addressable::URI::InvalidURIError
-      say('Invalid URL', :red)
-      exit(1)
+      fail_with_message 'Invalid URL'
     end
 
     private
 
-    PRELOAD_MODEL_WHITELIST = %w(
+    def object_storage_summary
+      [
+        [:attachments, MediaAttachment.sum(combined_media_sum), MediaAttachment.where(account: Account.local).sum(combined_media_sum)],
+        [:custom_emoji, CustomEmoji.sum(:image_file_size), CustomEmoji.local.sum(:image_file_size)],
+        [:avatars, Account.sum(:avatar_file_size), Account.local.sum(:avatar_file_size)],
+        [:headers, Account.sum(:header_file_size), Account.local.sum(:header_file_size)],
+        [:preview_cards, PreviewCard.sum(:image_file_size), nil],
+        [:backups, Backup.sum(:dump_file_size), nil],
+        [:imports, Import.sum(:data_file_size), nil],
+        [:settings, SiteUpload.sum(:file_file_size), nil],
+      ].map { |label, total, local| [label.to_s.titleize, number_to_human_size(total), local.present? ? number_to_human_size(local) : nil] }
+    end
+
+    def combined_media_sum
+      Arel.sql(<<~SQL.squish)
+        COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)
+      SQL
+    end
+
+    PRELOADED_MODELS = %w(
       Account
       Backup
       CustomEmoji
@@ -361,9 +330,9 @@ module Mastodon::CLI
         next unless VALID_PATH_SEGMENTS_SIZE.include?(segments.size)
 
         model_name = segments.first.classify
-        record_id  = segments[2..-2].join.to_i
+        record_id  = segments[2...-2].join.to_i
 
-        next unless PRELOAD_MODEL_WHITELIST.include?(model_name)
+        next unless PRELOADED_MODELS.include?(model_name)
 
         preload_map[model_name] << record_id
       end
@@ -371,6 +340,24 @@ module Mastodon::CLI
       preload_map.each_with_object({}) do |(model_name, record_ids), model_map|
         model_map[model_name] = model_name.constantize.where(id: record_ids).index_by(&:id)
       end
+    end
+
+    def orphaned_file?(path_segments, record_map = nil)
+      path_segments.delete('cache')
+
+      raise UnrecognizedOrphanType unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
+
+      model_name      = path_segments.first.classify
+      record_id       = path_segments[2...-2].join.to_i
+      attachment_name = path_segments[1].singularize
+      file_name       = path_segments.last
+
+      raise UnrecognizedOrphanType unless PRELOADED_MODELS.include?(model_name)
+
+      record     = record_map.present? ? record_map.dig(model_name, record_id) : model_name.constantize.find_by(id: record_id)
+      attachment = record&.public_send(attachment_name)
+
+      attachment.blank? || !attachment.variant?(file_name)
     end
   end
 end

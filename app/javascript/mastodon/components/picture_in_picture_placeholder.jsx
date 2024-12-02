@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import CancelPresentationIcon from '@/material-icons/400-24px/cancel_presentation.svg?react';
 import { removePictureInPicture } from 'mastodon/actions/picture_in_picture';
 import { Icon }  from 'mastodon/components/icon';
 
@@ -25,7 +26,7 @@ class PictureInPicturePlaceholder extends PureComponent {
 
     return (
       <div className='picture-in-picture-placeholder' style={{ aspectRatio }} role='button' tabIndex={0} onClick={this.handleClick}>
-        <Icon id='window-restore' />
+        <Icon id='window-restore' icon={CancelPresentationIcon} />
         <FormattedMessage id='picture_in_picture.restore' defaultMessage='Put it back' />
       </div>
     );

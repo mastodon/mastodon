@@ -4,18 +4,18 @@ fi:
     attributes:
       doorkeeper/application:
         name: Sovelluksen nimi
-        redirect_uri: Uudelleenohjauksen URI
+        redirect_uri: Uudelleenohjaus-URI
         scopes: Oikeudet
-        website: Sovelluksen verkkosivu
+        website: Sovelluksen verkkosivusto
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: ei voi sisältää osia.
+              fragment_present: ei voi sisältää ankkuria (#).
               invalid_uri: on oltava kelvollinen URI.
               relative_uri: on oltava täysi URI.
-              secured_uri: on oltava HTTPS/SSL-URI.
+              secured_uri: on oltava HTTPS-/SSL-URI.
   doorkeeper:
     applications:
       buttons:
@@ -31,7 +31,7 @@ fi:
       form:
         error: Hupsis! Tarkista, ettei lomakkeessasi ole virheitä
       help:
-        native_redirect_uri: Käytä %{native_redirect_uri} paikallisiin testeihin
+        native_redirect_uri: Käytä tunnistetta %{native_redirect_uri} paikallisiin testeihin
         redirect_uri: Lisää jokainen URI omalle rivilleen
         scopes: Erota oikeudet välilyönneillä. Jätä kenttä tyhjäksi, jos haluat käyttää oletusoikeuksia.
       index:
@@ -43,15 +43,15 @@ fi:
         new: Uusi sovellus
         scopes: Oikeudet
         show: Näytä
-        title: Omat sovellukset
+        title: Omat sovelluksesi
       new:
         title: Uusi sovellus
       show:
         actions: Toiminnot
-        application_id: Ohjelman tunnus
+        application_id: Asiakasohjelman tunnus
         callback_urls: Takaisinkutsu-URL:t
         scopes: Oikeudet
-        secret: Ohjelman salaisuus
+        secret: Asiakasohjelman salaisuus
         title: 'Sovellus: %{name}'
     authorizations:
       buttons:
@@ -60,34 +60,35 @@ fi:
       error:
         title: Tapahtui virhe
       new:
-        prompt_html: "%{client_name} pyytää lupaa käyttää tiliäsi. Se on kolmannen osapuolen sovellus. <strong>Jos et luota siihen, älä valtuuta sitä.</strong>"
+        prompt_html: "%{client_name} haluaisi käyttöoikeuden tiliisi. <strong>Hyväksy tämä pyyntö vain, jos tunnistat lähteen ja luotat siihen.</strong>"
         review_permissions: Tarkista käyttöoikeudet
         title: Valtuutus vaaditaan
       show:
         title: Kopioi tämä valtuutuskoodi ja liitä se sovellukseen.
     authorized_applications:
       buttons:
-        revoke: Peru
+        revoke: Poista
       confirmations:
         revoke: Oletko varma?
       index:
         authorized_at: Valtuutettu %{date}
-        description_html: Nämä ovat sovelluksia, jotka voivat käyttää tiliäsi käyttäen API. Jos et tunnista sitä tai sovellus toimii väärin, voit peruuttaa sen käyttöoikeuden.
-        last_used_at: Viimeksi käytetty %{date}
+        description_html: Nämä sovellukset voivat käyttää tiliäsi ohjelmointirajapinnan kautta. Jos tässä on sovelluksia, joita et tunnista, tai sovellus toimii väärin, voit peruuttaa sen käyttöoikeuden.
+        last_used_at: Käytetty viimeksi %{date}
         never_used: Ei käytetty
-        scopes: Oikeudet
+        scopes: Käyttöoikeudet
         superapp: Sisäinen
-        title: Valtuutetut sovellukset
+        title: Valtuuttamasi sovellukset
     errors:
       messages:
         access_denied: Resurssin omistaja tai valtuutuspalvelin hylkäsi pyynnön.
         credential_flow_not_configured: Resurssin omistajan salasanatietojen luku epäonnistui, koska asetusta Doorkeeper.configure.resource_owner_from_credentials ei ole konfiguroitu.
-        invalid_client: Asiakasohjelman valtuutus epäonnistui, koska asiakas on tuntematon, asiakkaan valtuutus ei ollut mukana tai valtuutustapaa ei tueta.
-        invalid_grant: Valtuutuslupa on virheellinen, umpeutunut, peruttu, valtuutuspyynnössä käytettyä uudelleenohjaus-URI:tä vastaamaton tai myönnetty toiselle asiakkaalle.
+        invalid_client: Asiakasohjelman todennus epäonnistui, koska asiakas on tuntematon, asiakkaan todennus ei ollut mukana tai todennustapaa ei tueta.
+        invalid_code_challenge_method: Koodihaastemenetelmän tulee olla S256 – selväkielistä ei tueta.
+        invalid_grant: Valtuutuslupa on virheellinen, vanhentunut, peruttu, valtuutuspyynnössä käytettyä uudelleenohjaus-URI:tä vastaamaton tai myönnetty toiselle asiakkaalle.
         invalid_redirect_uri: Uudelleenohjaus-URI on virheellinen.
         invalid_request:
           missing_param: 'Vaadittu parametri puuttuu: %{value}.'
-          request_not_authorized: Pyyntö on hyväksyttävä. Vaadittu parametri pyynnön hyväksymiseksi puuttuu tai on virheellinen.
+          request_not_authorized: Pyyntö on valtuutettava. Vaadittu parametri pyynnön valtuuttamiseksi puuttuu tai on virheellinen.
           unknown: Pyynnöstä puuttuu vaadittu parametri, se sisältää tukemattoman parametriarvon tai on muulla tavoin väärin muotoiltu.
         invalid_resource_owner: Annetut resurssin omistajan tunnnukset ovat virheelliset, tai resurssin omistajaa ei löydy
         invalid_scope: Pyydetyt oikeudet ovat virheellisiä, tuntemattomia tai väärin muotoiltuja.
@@ -114,31 +115,32 @@ fi:
           notice: Sovellus poistettu.
     grouped_scopes:
       access:
-        read: Vain luku
+        read: Vain lukuoikeus
         read/write: Luku- ja kirjoitusoikeudet
         write: Vain kirjoitusoikeus
       title:
         accounts: Tilit
-        admin/accounts: Tilien hallinta
+        admin/accounts: Tilien hallinnointi
         admin/all: Kaikki hallinnolliset toiminnot
-        admin/reports: Raporttien hallinta
+        admin/reports: Raporttien hallinnointi
         all: Täysi pääsy Mastodon-tiliisi
-        blocks: Torjutut
+        blocks: Estot
         bookmarks: Kirjanmerkit
         conversations: Keskustelut
         crypto: Päästä päähän -salaus
         favourites: Suosikit
         filters: Suodattimet
-        follow: Seuraamiset, mykistykset ja estot
-        follows: Seuraa
+        follow: Seuratut, mykistykset ja estot
+        follows: Seuratut
         lists: Listat
         media: Medialiitteet
         mutes: Mykistykset
         notifications: Ilmoitukset
-        push: Push-ilmoitukset
+        profile: Mastodon-profiilisi
+        push: Puskuilmoitukset
         reports: Raportit
         search: Hae
-        statuses: Viestit
+        statuses: Julkaisut
     layouts:
       admin:
         nav:
@@ -147,49 +149,50 @@ fi:
       application:
         title: OAuth-valtuutus tarvitaan
     scopes:
-      admin:read: lukea kaikkia tietoja palvelimelta
-      admin:read:accounts: lue arkaluontoinen sisältö kaikilta tileiltä
-      admin:read:canonical_email_blocks: lue arkaluonteisia tietoja kaikista kanonisesti sallituista sähköpostiosoitteista
+      admin:read: lue kaikkia palvelimen tietoja
+      admin:read:accounts: lue arkaluonteisia tietoja kaikista tileistä
+      admin:read:canonical_email_blocks: lue arkaluonteisia tietoja kaikista estetyistä kanonisista sähköpostiosoitteista
       admin:read:domain_allows: lue arkaluonteisia tietoja kaikista sallituista verkkotunnuksista
       admin:read:domain_blocks: lue arkaluonteisia tietoja kaikista estetyistä verkkotunnuksista
       admin:read:email_domain_blocks: lue arkaluonteisia tietoja kaikista estetyistä sähköpostiverkkotunnuksista
       admin:read:ip_blocks: lue arkaluonteisia tietoja kaikista estetyistä IP-osoitteista
-      admin:read:reports: lue arkaluonteiset tiedot kaikista raporteista ja raportoiduista tileistä
-      admin:write: muokata kaikkia tietoja palvelimella
-      admin:write:accounts: suorita moderointitoiminnot tileillä
-      admin:write:canonical_email_blocks: toteuta moderointitoimenpiteitä kanonisille sähköpostiosoite-estoille
-      admin:write:domain_allows: toteuta moderointitoimenpiteitä sallituille verkkotunnuksille
-      admin:write:domain_blocks: toteuta moderointitoimenpiteitä estetyille verkkotunnuksille
-      admin:write:email_domain_blocks: toteuta moderointitoimenpiteitä estetyille sähköpostiverkkotunnuksille
-      admin:write:ip_blocks: toteuta moderointitoimenpiteitä estetyille IP-osoitteille
-      admin:write:reports: suorita moderointitoiminnot raporteissa
-      crypto: käytä päästä päähän salausta
-      follow: seurata, estää, perua eston ja lopettaa tilien seuraaminen
-      push: vastaanottaa push-ilmoituksesi
-      read: lukea tilin tietoja
-      read:accounts: nähdä tilin tiedot
-      read:blocks: katso lohkosi
-      read:bookmarks: katso kirjanmerkkisi
-      read:favourites: näytä suosikkisi
-      read:filters: katso suodattimesi
-      read:follows: katso ketä seuraat
-      read:lists: katso listasi
-      read:mutes: katso mykistyksesi
-      read:notifications: katso ilmoitukset
-      read:reports: katso raporttisi
-      read:search: haku sinun puolesta
-      read:statuses: katso kaikki viestit
-      write: julkaista puolestasi
-      write:accounts: muokata profiiliasi
-      write:blocks: estää tilit ja palvelimet
-      write:bookmarks: kirjanmerkki viestit
-      write:conversations: mykistä ja poistaa keskustelut
-      write:favourites: suosikkijulkaisut
-      write:filters: luoda suodattimia
-      write:follows: seurata ihmisiä
-      write:lists: luoda listoja
-      write:media: lähettää mediatiedostoja
-      write:mutes: mykistää ihmisiä ja keskusteluja
-      write:notifications: tyhjentää ilmoituksesi
-      write:reports: raportoi muille ihmisille
-      write:statuses: julkaise viestejä
+      admin:read:reports: lue arkaluonteisia tietoja kaikista raporteista ja raportoiduista tileistä
+      admin:write: muokkaa kaikkia palvelimen tietoja
+      admin:write:accounts: suorita moderointitoimia tileille
+      admin:write:canonical_email_blocks: suorita moderointitoimia estetyille kanonisille sähköpostiosoitteille
+      admin:write:domain_allows: suorita moderointitoimia sallituille verkkotunnuksille
+      admin:write:domain_blocks: suorita moderointitoimia estetyille verkkotunnuksille
+      admin:write:email_domain_blocks: suorita moderointitoimia estetyille sähköpostiverkkotunnuksille
+      admin:write:ip_blocks: suorita moderointitoimia estetyille IP-osoitteille
+      admin:write:reports: suorita moderointitoimia raporteille
+      crypto: käytä päästä päähän -salausta
+      follow: muokkaa tilin seurantasuhteita
+      profile: lue vain tilisi profiilitietoja
+      push: vastaanota puskuilmoituksesi
+      read: lue kaikkia tilisi tietoja
+      read:accounts: katso tilien tietoja
+      read:blocks: katso estojasi
+      read:bookmarks: katso kirjanmerkkejäsi
+      read:favourites: katso suosikkejasi
+      read:filters: katso suodattimiasi
+      read:follows: katso seurattujasi
+      read:lists: katso listojasi
+      read:mutes: katso mykistyksiäsi
+      read:notifications: katso ilmoituksiasi
+      read:reports: katso raporttejasi
+      read:search: hae puolestasi
+      read:statuses: katso kaikkia julkaisujasi
+      write: muokkaa kaikkia tilisi tietoja
+      write:accounts: muokkaa profiiliasi
+      write:blocks: estä tilejä ja verkkotunnuksia
+      write:bookmarks: lisää julkaisuja kirjanmerkkeihin
+      write:conversations: mykistä ja poista keskusteluja
+      write:favourites: lisää julkaisuja suosikkeihin
+      write:filters: luo suodattimia
+      write:follows: seuraa käyttäjiä
+      write:lists: luo listoja
+      write:media: lähetä mediatiedostoja
+      write:mutes: mykistä käyttäjiä ja keskusteluja
+      write:notifications: tyhjennä ilmoituksesi
+      write:reports: raportoi muita käyttäjiä
+      write:statuses: julkaise julkaisuja

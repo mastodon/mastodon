@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ApplicationController do
+RSpec.describe ApplicationController do
   controller do
     def success
       head 200
@@ -22,13 +22,10 @@ describe ApplicationController do
   end
 
   shared_examples 'respond_with_error' do |code|
-    it "returns http #{code} for http" do
-      subject
-      expect(response).to have_http_status(code)
-    end
-
-    it 'renders template for http' do
+    it "returns http #{code} for http and renders template" do
       expect(subject).to render_template("errors/#{code}", layout: 'error')
+
+      expect(response).to have_http_status(code)
     end
   end
 
@@ -220,40 +217,5 @@ describe ApplicationController do
     end
 
     include_examples 'respond_with_error', 422
-  end
-
-  describe 'cache_collection' do
-    subject do
-      Class.new(ApplicationController) do
-        public :cache_collection
-      end
-    end
-
-    shared_examples 'receives :with_includes' do |fabricator, klass|
-      it 'uses raw if it is not an ActiveRecord::Relation' do
-        record = Fabricate(fabricator)
-        expect(subject.new.cache_collection([record], klass)).to eq [record]
-      end
-    end
-
-    shared_examples 'cacheable' do |fabricator, klass|
-      include_examples 'receives :with_includes', fabricator, klass
-
-      it 'calls cache_ids of raw if it is an ActiveRecord::Relation' do
-        record = Fabricate(fabricator)
-        relation = klass.none
-        allow(relation).to receive(:cache_ids).and_return([record])
-        expect(subject.new.cache_collection(relation, klass)).to eq [record]
-      end
-    end
-
-    it 'returns raw unless class responds to :with_includes' do
-      raw = Object.new
-      expect(subject.new.cache_collection(raw, Object)).to eq raw
-    end
-
-    context 'with a Status' do
-      include_examples 'cacheable', :status, Status
-    end
   end
 end

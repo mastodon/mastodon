@@ -37,12 +37,10 @@ RSpec.describe Form::AccountBatch do
         let(:select_all_matching) { '0' }
         let(:account_ids)         { [target_account.id, target_account2.id] }
 
-        it 'suspends the expected users' do
-          expect { subject }.to change { [target_account.reload.suspended?, target_account2.reload.suspended?] }.from([false, false]).to([true, true])
-        end
-
-        it 'closes open reports targeting the suspended users' do
-          expect { subject }.to change { Report.unresolved.where(target_account: [target_account, target_account2]).count }.from(2).to(0)
+        it 'suspends the expected users and closes open reports' do
+          expect { subject }
+            .to change_account_suspensions
+            .and change_open_reports_for_accounts
         end
       end
 
@@ -50,13 +48,33 @@ RSpec.describe Form::AccountBatch do
         let(:select_all_matching) { '1' }
         let(:query)               { Account.where(id: [target_account.id, target_account2.id]) }
 
-        it 'suspends the expected users' do
-          expect { subject }.to change { [target_account.reload.suspended?, target_account2.reload.suspended?] }.from([false, false]).to([true, true])
+        it 'suspends the expected users and closes open reports' do
+          expect { subject }
+            .to change_account_suspensions
+            .and change_open_reports_for_accounts
         end
+      end
 
-        it 'closes open reports targeting the suspended users' do
-          expect { subject }.to change { Report.unresolved.where(target_account: [target_account, target_account2]).count }.from(2).to(0)
-        end
+      private
+
+      def change_account_suspensions
+        change { relevant_account_suspension_statuses }
+          .from([false, false])
+          .to([true, true])
+      end
+
+      def change_open_reports_for_accounts
+        change(relevant_account_unresolved_reports, :count)
+          .from(2)
+          .to(0)
+      end
+
+      def relevant_account_unresolved_reports
+        Report.unresolved.where(target_account: [target_account, target_account2])
+      end
+
+      def relevant_account_suspension_statuses
+        [target_account.reload, target_account2.reload].map(&:suspended?)
       end
     end
   end

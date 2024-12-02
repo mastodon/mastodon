@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::TwoFactorAuthenticationMethodsController do
+RSpec.describe Settings::TwoFactorAuthenticationMethodsController do
   render_views
 
   context 'when not signed in' do
@@ -29,11 +29,8 @@ describe Settings::TwoFactorAuthenticationMethodsController do
           get :index
         end
 
-        it 'returns http success' do
+        it 'returns http success with private cache control headers', :aggregate_failures do
           expect(response).to have_http_status(200)
-        end
-
-        it 'returns private cache control headers' do
           expect(response.headers['Cache-Control']).to include('private, no-store')
         end
       end

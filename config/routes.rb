@@ -1,7 +1,19 @@
 # frozen_string_literal: true
 
-require 'sidekiq_unique_jobs/web'
+require 'sidekiq_unique_jobs/web' if ENV['ENABLE_SIDEKIQ_UNIQUE_JOBS_UI'] == true
 require 'sidekiq-scheduler/web'
+
+class RedirectWithVary < ActionDispatch::Routing::PathRedirect
+  def build_response(req)
+    super.tap do |response|
+      response.headers['Vary'] = 'Origin, Accept'
+    end
+  end
+end
+
+def redirect_with_vary(path)
+  RedirectWithVary.new(301, path)
+end
 
 Rails.application.routes.draw do
   # Paths of routes on the web app that to not require to be indexed or
@@ -15,11 +27,13 @@ Rails.application.routes.draw do
     /public/remote
     /conversations
     /lists/(*any)
-    /notifications
+    /links/(*any)
+    /notifications/(*any)
+    /notifications_v2/(*any)
     /favourites
     /bookmarks
     /pinned
-    /start
+    /start/(*any)
     /directory
     /explore/(*any)
     /search
@@ -39,7 +53,7 @@ Rails.application.routes.draw do
 
   get 'health', to: 'health#show'
 
-  authenticate :user, lambda { |u| u.role&.can?(:view_devops) } do
+  authenticate :user, ->(user) { user.role&.can?(:view_devops) } do
     mount Sidekiq::Web, at: 'sidekiq', as: :sidekiq
     mount PgHero::Engine, at: 'pghero', as: :pghero
   end
@@ -50,13 +64,25 @@ Rails.application.routes.draw do
                 tokens: 'oauth/tokens'
   end
 
-  get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
-  get '.well-known/nodeinfo', to: 'well_known/nodeinfo#index', as: :nodeinfo, defaults: { format: 'json' }
-  get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
-  get '.well-known/change-password', to: redirect('/auth/edit')
-  get '.well-known/proxy', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
+  namespace :oauth do
+    # As this is borrowed from OpenID, the specification says we must also support
+    # POST for the userinfo endpoint:
+    # https://openid.net/specs/openid-connect-core-1_0.html#UserInfo
+    match 'userinfo', via: [:get, :post], to: 'userinfo#show', defaults: { format: 'json' }
+  end
 
-  get '/nodeinfo/2.0', to: 'well_known/nodeinfo#show', as: :nodeinfo_schema
+  scope path: '.well-known' do
+    scope module: :well_known do
+      get 'oauth-authorization-server', to: 'oauth_metadata#show', as: :oauth_metadata, defaults: { format: 'json' }
+      get 'host-meta', to: 'host_meta#show', as: :host_meta
+      get 'nodeinfo', to: 'node_info#index', as: :nodeinfo, defaults: { format: 'json' }
+      get 'webfinger', to: 'webfinger#show', as: :webfinger
+    end
+    get 'change-password', to: redirect('/auth/edit'), as: nil
+    get 'proxy', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }, as: nil
+  end
+
+  get '/nodeinfo/2.0', to: 'well_known/node_info#show', as: :nodeinfo_schema
 
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
@@ -65,9 +91,13 @@ Rails.application.routes.draw do
   get 'remote_interaction_helper', to: 'remote_interaction_helper#index'
 
   resource :instance_actor, path: 'actor', only: [:show] do
-    resource :inbox, only: [:create], module: :activitypub
-    resource :outbox, only: [:show], module: :activitypub
+    scope module: :activitypub do
+      resource :inbox, only: [:create]
+      resource :outbox, only: [:show]
+    end
   end
+
+  get '/invite/:invite_code', constraints: ->(req) { req.format == :json }, to: 'api/v1/invites#show'
 
   devise_scope :user do
     get '/invite/:invite_code', to: 'auth/registrations#new', as: :public_invite
@@ -76,24 +106,23 @@ Rails.application.routes.draw do
 
     namespace :auth do
       resource :setup, only: [:show, :update], controller: :setup
-      resource :challenge, only: [:create], controller: :challenges
+      resource :challenge, only: [:create]
       get 'sessions/security_key_options', to: 'sessions#webauthn_options'
       post 'captcha_confirmation', to: 'confirmations#confirm_captcha', as: :captcha_confirmation
     end
   end
 
-  devise_for :users, path: 'auth', format: false, controllers: {
-    omniauth_callbacks: 'auth/omniauth_callbacks',
-    sessions:           'auth/sessions',
-    registrations:      'auth/registrations',
-    passwords:          'auth/passwords',
-    confirmations:      'auth/confirmations',
-  }
+  scope module: :auth do
+    devise_for :users, path: 'auth', format: false
+  end
 
-  get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
-  get '/users/:username/following', to: redirect('/@%{username}/following'), constraints: lambda { |req| req.format.nil? || req.format.html? }
-  get '/users/:username/followers', to: redirect('/@%{username}/followers'), constraints: lambda { |req| req.format.nil? || req.format.html? }
-  get '/users/:username/statuses/:id', to: redirect('/@%{username}/%{id}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
+  with_options constraints: ->(req) { req.format.nil? || req.format.html? } do
+    get '/users/:username', to: redirect_with_vary('/@%{username}')
+    get '/users/:username/following', to: redirect_with_vary('/@%{username}/following')
+    get '/users/:username/followers', to: redirect_with_vary('/@%{username}/followers')
+    get '/users/:username/statuses/:id', to: redirect_with_vary('/@%{username}/%{id}')
+  end
+
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
@@ -104,27 +133,36 @@ Rails.application.routes.draw do
       end
 
       resources :replies, only: [:index], module: :activitypub
+      resources :likes, only: [:index], module: :activitypub
+      resources :shares, only: [:index], module: :activitypub
     end
 
     resources :followers, only: [:index], controller: :follower_accounts
     resources :following, only: [:index], controller: :following_accounts
 
-    resource :outbox, only: [:show], module: :activitypub
-    resource :inbox, only: [:create], module: :activitypub
-    resource :claim, only: [:create], module: :activitypub
-    resources :collections, only: [:show], module: :activitypub
-    resource :followers_synchronization, only: [:show], module: :activitypub
+    scope module: :activitypub do
+      resource :outbox, only: [:show]
+      resource :inbox, only: [:create]
+      resources :collections, only: [:show]
+      resource :followers_synchronization, only: [:show]
+    end
   end
 
   resource :inbox, only: [:create], module: :activitypub
 
-  get '/:encoded_at(*path)', to: redirect("/@%{path}"), constraints: { encoded_at: /%40/ }
+  constraints(encoded_path: /%40.*/) do
+    get '/:encoded_path', to: redirect { |params|
+      "/#{params[:encoded_path].gsub('%40', '@')}"
+    }
+  end
 
   constraints(username: %r{[^@/.]+}) do
-    get '/@:username', to: 'accounts#show', as: :short_account
-    get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
-    get '/@:username/media', to: 'accounts#show', as: :short_account_media
-    get '/@:username/tagged/:tag', to: 'accounts#show', as: :short_account_tag
+    with_options to: 'accounts#show' do
+      get '/@:username', as: :short_account
+      get '/@:username/with_replies', as: :short_account_with_replies
+      get '/@:username/media', as: :short_account_media
+      get '/@:username/tagged/:tag', as: :short_account_tag
+    end
   end
 
   constraints(account_username: %r{[^@/.]+}) do
@@ -134,7 +172,7 @@ Rails.application.routes.draw do
     get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
   end
 
-  get '/@:username_with_domain/(*any)', to: 'home#index', constraints: { username_with_domain: %r{([^/])+?} }, format: false
+  get '/@:username_with_domain/(*any)', to: 'home#index', constraints: { username_with_domain: %r{([^/])+?} }, as: :account_with_domain, format: false
   get '/settings', to: redirect('/settings/profile')
 
   draw(:settings)
@@ -143,6 +181,11 @@ Rails.application.routes.draw do
     resources :strikes, only: [:show, :index] do
       resource :appeal, only: [:create]
     end
+  end
+
+  namespace :redirect do
+    resources :accounts, only: :show
+    resources :statuses, only: :show
   end
 
   resources :media, only: [:show] do
@@ -161,6 +204,14 @@ Rails.application.routes.draw do
   end
 
   resource :relationships, only: [:show, :update]
+  resources :severed_relationships, only: [:index] do
+    member do
+      constraints(format: :csv) do
+        get :followers
+        get :following
+      end
+    end
+  end
   resource :statuses_cleanup, controller: :statuses_cleanup, only: [:show, :update]
 
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy, format: false

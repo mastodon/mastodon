@@ -31,7 +31,7 @@ RSpec.describe Remotable do
     end
   end
 
-  let(:attribute_name) { "#{hoge}_remote_url".to_sym }
+  let(:attribute_name) { :"#{hoge}_remote_url" }
   let(:code)           { 200 }
   let(:file)           { 'filename="foo.txt"' }
   let(:foo)            { foo_class.new }
@@ -69,7 +69,9 @@ RSpec.describe Remotable do
 
     context 'with an invalid URL' do
       before do
-        allow(Addressable::URI).to receive_message_chain(:parse, :normalize).with(url).with(no_args).and_raise(Addressable::URI::InvalidURIError)
+        parsed = instance_double(Addressable::URI)
+        allow(parsed).to receive(:normalize).with(no_args).and_raise(Addressable::URI::InvalidURIError)
+        allow(Addressable::URI).to receive(:parse).with(url).and_return(parsed)
       end
 
       it 'makes no request' do
@@ -120,8 +122,11 @@ RSpec.describe Remotable do
       end
 
       it 'does not try to write attribute' do
-        expect(foo).to_not receive('[]=').with(attribute_name, url)
+        allow(foo).to receive('[]=').with(attribute_name, url)
+
         foo.hoge_remote_url = url
+
+        expect(foo).to_not have_received('[]=').with(attribute_name, url)
       end
     end
 
@@ -131,8 +136,11 @@ RSpec.describe Remotable do
       end
 
       it 'does not try to write attribute' do
-        expect(foo).to receive('[]=').with(attribute_name, url)
+        allow(foo).to receive('[]=').with(attribute_name, url)
+
         foo.hoge_remote_url = url
+
+        expect(foo).to have_received('[]=').with(attribute_name, url)
       end
     end
 
@@ -146,10 +154,13 @@ RSpec.describe Remotable do
         let(:code) { 500 }
 
         it 'does not assign file' do
-          expect(foo).to_not receive(:public_send).with("#{hoge}=", any_args)
-          expect(foo).to_not receive(:public_send).with("#{hoge}_file_name=", any_args)
+          allow(foo).to receive(:public_send)
+          allow(foo).to receive(:public_send)
 
           foo.hoge_remote_url = url
+
+          expect(foo).to_not have_received(:public_send).with("#{hoge}=", any_args)
+          expect(foo).to_not have_received(:public_send).with("#{hoge}_file_name=", any_args)
         end
       end
 
@@ -165,13 +176,13 @@ RSpec.describe Remotable do
 
             allow(ResponseWithLimit).to receive(:new).with(anything, anything).and_return(response_with_limit)
 
-            expect(foo).to receive(:public_send).with("download_#{hoge}!", url)
-
+            allow(foo).to receive(:public_send)
             foo.hoge_remote_url = url
+            expect(foo).to have_received(:public_send).with(:"download_#{hoge}!", url)
 
-            expect(foo).to receive(:public_send).with("#{hoge}=", response_with_limit)
-
+            allow(foo).to receive(:public_send)
             foo.download_hoge!(url)
+            expect(foo).to have_received(:public_send).with(:"#{hoge}=", response_with_limit)
           end
         end
       end
@@ -193,10 +204,13 @@ RSpec.describe Remotable do
           let(:error_class) { error_class }
 
           it 'calls Rails.logger.debug' do
-            expect(Rails.logger).to receive(:debug) do |&block|
+            allow(Rails.logger).to receive(:debug)
+
+            foo.hoge_remote_url = url
+
+            expect(Rails.logger).to have_received(:debug) do |&block|
               expect(block.call).to match(/^Error fetching remote #{hoge}: /)
             end
-            foo.hoge_remote_url = url
           end
         end
       end

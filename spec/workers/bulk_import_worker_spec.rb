@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe BulkImportWorker do
+RSpec.describe BulkImportWorker do
   subject { described_class.new }
 
   let(:import) { Fabricate(:bulk_import, state: :scheduled) }

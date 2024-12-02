@@ -1,0 +1,196 @@
+---
+lad:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nombre de aplikasyon
+        redirect_uri: URI para readreso
+        scopes: Ambitos
+        website: Sitio internetiko
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: no puede kontener un fragmento.
+              invalid_uri: deve ser un URI valido.
+              relative_uri: deve ser un URI asoluto.
+              secured_uri: deve ser un URI de HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autoriza
+        cancel: Anula
+        destroy: Destruye
+        edit: Edita
+        submit: Embia
+      confirmations:
+        destroy: Estas siguro?
+      edit:
+        title: Edita aplikasyon
+      form:
+        error: Atyo! Komprova tu formulario
+      help:
+        native_redirect_uri: Utiliza %{native_redirect_uri} para provas lokalas
+        redirect_uri: Uza una linya por URI
+        scopes: Separa los ambitos kon espasyos. Deshalo en blanko para kulanear los ambitos predeterminados.
+      index:
+        application: Aplikasyon
+        callback_url: URL de callback
+        delete: Efasa
+        empty: No tienes aplikasyones.
+        name: Nombre
+        new: Mueva aplikasyon
+        scopes: Ambitos
+        show: Amostra
+        title: Tus aplikasyones
+      new:
+        title: Mueva aplikasyon
+      show:
+        actions: Aksyones
+        application_id: Yave de mushteri
+        callback_urls: URLs de callback
+        scopes: Ambitos
+        secret: Mushteri sekreto
+        title: 'Aplikasyon: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autoriza
+        deny: Dezautoriza
+      error:
+        title: Un yerro tiene afitado
+      new:
+        review_permissions: Reviza permisos
+        title: Autorizasyon rekerida
+      show:
+        title: Kopia este kodiche de autorizasyon i apegalo en la aplikasyon.
+    authorized_applications:
+      buttons:
+        revoke: Revoka
+      confirmations:
+        revoke: Estas siguro?
+      index:
+        authorized_at: Autorizado el %{date}
+        description_html: Estas son las aplikasyones ke pueden akseder tu kuento uzando el API. Si ay aplikasyones aki las kualas no rekoneses, o unas ke no se komporten bien, puedes revokar sus akseso.
+        last_used_at: Ultimo uzo el %{date}
+        never_used: Nunkua uzado
+        scopes: Permisos
+        superapp: Interno
+        title: Tus aplikasyones autorizadas
+    errors:
+      messages:
+        access_denied: El patron del rekurso o el sirvidor de autorizasyon refuzo tu solisitud.
+        credential_flow_not_configured: Las kredensyalas de kod del patron del rekurso no funksyonan porke Doorkeeper.configure.resource_owner_from_credentials no esta konfigurado.
+        invalid_client: La autentifikasyon del mushteri no reushida porke el mushteri no es konesido, no ay autentifikasyon del mushteri inkluyida, o el metodo de autentifikasyon no es suportada.
+        invalid_grant: La konsesyon de autorizasyon ofresida es invalida, kadukada, revokada, no koensida kon el URI de readreso utilizado en la solisitud de autorizasyon, o fue emitida para otro mushteri.
+        invalid_redirect_uri: El URI de readreso inkluydo no es valido.
+        invalid_request:
+          missing_param: 'Parametro rekerido no topado: %{value}.'
+          request_not_authorized: Solisitud deve ser autorizada. Parametro rekerido para autorizar la solisitud no topado o no valido.
+          unknown: La solisitud no tiene un parametro rekerido, inkluye una valuta de parametro no suportada o es yerrado de otra forma.
+        invalid_resource_owner: Las kredensyalas de patron del rekurso no son validas o patron del rekurso no topado
+        invalid_scope: El ambito pedido es invalido, no konesido o yerrado.
+        invalid_token:
+          expired: El token de akseso tiene kadukado
+          revoked: El token de akseso fue revokado
+          unknown: El token de akseso no es valido
+        resource_owner_authenticator_not_configured: El patron del rekurso no topado porke Doorkeeper.configure.resource_owner_authenticator no esta konfigurado.
+        server_error: El sirvidor de autorizasyon topo una kondisyon no ekspektada ke no le permite kumplir kon la solisitud.
+        temporarily_unavailable: El sirvidor de autorizasyon agora no puede realizar la solisitud porke el sirvidor esta sobrekargado o basho mantenimiento.
+        unauthorized_client: El mushteri no esta autorizado para realizar esta solisitud uzando este metodo.
+        unsupported_grant_type: El tipo de konsesyon de autorizasyon no esta suportado por el sirvidor de autentifikasyon.
+        unsupported_response_type: El sirvidor de autorizasyon no suporta este tipo de repuesta.
+    flash:
+      applications:
+        create:
+          notice: Aplikasyon kriyada.
+        destroy:
+          notice: Aplikasyon efasada.
+        update:
+          notice: Aplikasyon aktualizada.
+      authorized_applications:
+        destroy:
+          notice: Aplikasyon revokada.
+    grouped_scopes:
+      access:
+        read: Akseso solo de meldar
+        read/write: Akseso de meldar i eskrivir
+        write: Akseso solo de eskrivir
+      title:
+        accounts: Kuentos
+        admin/accounts: Administrasyon de kuentos
+        admin/all: Todas las funksyones administrativas
+        admin/reports: Administrasyon de raportos
+        all: Akseso total a tu kuento de Mastodon
+        blocks: Blokos
+        bookmarks: Markadores
+        conversations: Konversasyones
+        crypto: Shifrasyon de lado a lado
+        favourites: Favoritos
+        filters: Filtros
+        follow: Segimientos, silensiasyones i blokos
+        follows: Segimyentos
+        lists: Listas
+        media: Aneksos de multimedia
+        mutes: Silensiasyones
+        notifications: Avizos
+        profile: Tu profil de Mastodon
+        push: Avizos arrepushados
+        reports: Raportos
+        search: Bushkeda
+        statuses: Publikasyones
+    layouts:
+      admin:
+        nav:
+          applications: Publikasyones
+          oauth2_provider: Prokurador de OAuth2
+      application:
+        title: Autorizasyon OAuth rekerida
+    scopes:
+      admin:read: meldar todos los datos en el sirvidor
+      admin:read:accounts: meldar informasyon sensivle en todos los kuentos
+      admin:read:canonical_email_blocks: meldar informasyon sensivle de todos blokos kanonikos de posta
+      admin:read:domain_allows: meldar informasyon sensivle de todos los domenos permitidos
+      admin:read:domain_blocks: meldar informasyon sensivle de todos los blokos de domeno
+      admin:read:email_domain_blocks: meldar informasyon sensivle de todos los blokos de domenos de posta
+      admin:read:ip_blocks: meldar informasyon sensivle de todos los blokos de IP
+      admin:read:reports: meldar informasyon sensivle de todos los raportos i kuentos raportados
+      admin:write: modifikar todos los datos en el sirvidor
+      admin:write:accounts: fazer aksyones de moderasyon en kuentos
+      admin:write:canonical_email_blocks: fazer aksyones de moderasyon en blokos kanonikos de posta
+      admin:write:domain_allows: fazer aksyones de moderasyon en domenos permitidos
+      admin:write:domain_blocks: fazer aksyones de moderasyon en blokos de domeno
+      admin:write:email_domain_blocks: fazer aksyones de moderasyon en blokos de domenos de posta
+      admin:write:ip_blocks: fazer aksyones de moderasyon en blokos de IP
+      admin:write:reports: fazer aksyones de moderasyon en raportos
+      crypto: kulanear shifrasyon de lado a lado
+      follow: modifikar relasyones de kuentos
+      profile: melda solo la informasyon del profil
+      push: risivir tus avizos arrepushados
+      read: meldar todos tus datos de kuento
+      read:accounts: ver enformasyon de kuentos
+      read:blocks: ver tus blokos
+      read:bookmarks: ver tus markadores
+      read:favourites: ver ke te plaze
+      read:filters: ver tus filtros
+      read:follows: ver a ken siges
+      read:lists: ver tus listas
+      read:mutes: ver tus silensiasyones
+      read:notifications: ver tus avizos
+      read:reports: ver tus raportos
+      read:search: bushkar en tu nombre
+      read:statuses: ver todas las publikasyones
+      write: modifikar todos los datos de tu kuento
+      write:accounts: modifikar tu profil
+      write:blocks: blokar kuentos i domenos
+      write:bookmarks: markar publikasyones
+      write:conversations: silensyar i efasar konversasyones
+      write:favourites: indikar ke publikasyones te plazen
+      write:filters: kriyar filtros
+      write:follows: segir a djente
+      write:lists: kriyar listas
+      write:media: kargar dosyas multimedia
+      write:mutes: silensyar a djente i konversasyones
+      write:notifications: alimpiar tus avizos
+      write:reports: raportar a otras personas
+      write:statuses: publikar publikasyones

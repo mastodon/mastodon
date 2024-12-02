@@ -60,7 +60,6 @@ eu:
       error:
         title: Errore bat gertatu da
       new:
-        prompt_html: "%{client_name} bezeroak zure kontura sartzeko baimena nahi du. Hirugarrengoen aplikazio bat da. <strong>Ez bazara fidatzen, ez zenuke baimendu behar.</strong>"
         review_permissions: Berrikusi baimenak
         title: Baimena behar da
       show:
@@ -80,10 +79,10 @@ eu:
         title: Zuk baimendutako aplikazioak
     errors:
       messages:
-        access_denied: Baliabidearen jabeak edo baimenaren zerbitzariak eskaria ukatu du.
+        access_denied: Baliabidearen jabeak edo baimenaren zerbitzariak eskaera ukatu du.
         credential_flow_not_configured: Baliabidearen jabearen pasahitza kredentzialen fluxuak huts egin du Doorkeeper.configure.resource_owner_from_credentials konfiguratu gabe dagoelako.
         invalid_client: Bezeroaren autentifikazioak huts egin du bezero ezezaguna delako, ez delako bezero autentifikazioa txertatu, edo autentifikazio metodoa ez delako onartzen.
-        invalid_grant: Emandako autorizatzea baliogabea da, iraungitu da, indargabetu da. ez dator bat autorizatze eskarian erabilitako URI-arekin, edo beste bezero batek sortu du.
+        invalid_grant: Emandako baimena baliogabea da, iraungi edo indargabetu da, ez dator bat baimen-eskaeran erabilitako birbideratze URI-arekin edo beste bezero batek sortu du.
         invalid_redirect_uri: Sartutako birbideratze URI-a baliogabea da.
         invalid_request:
           missing_param: 'Beharrezko parametroa falta da: %{value}.'
@@ -97,7 +96,7 @@ eu:
           unknown: Sarbide token-a baliogabea da
         resource_owner_authenticator_not_configured: Baliabidearen jabearen bilaketak huts egin du Doorkeeper.configure.resource_owner_authenticator konfiguratu gabe dagoelako.
         server_error: Autorizatze zerbitzariak eskaera betetzea eragotzi duen ustekabeko baldintza bat aurkitu du.
-        temporarily_unavailable: Autorizatze zerbitzariak ezin du orain eskaera bete  une batez zerbitzariak gainezka egin duelako edo mantentze lanetan dagoelako.
+        temporarily_unavailable: Baimen-zerbitzariak ezin du orain eskaera bete, une batez zerbitzariak gainezka egin duelako edo mantentze lanetan dagoelako.
         unauthorized_client: Bezeroak ez du eskaera hau metodo hau erabiliz egiteko baimenik.
         unsupported_grant_type: Autorizatze mota ez da onartzen autorizatze zerbitzarian.
         unsupported_response_type: Autorizatze zerbitzari honek ez du onartzen erantzun mota hau.
@@ -127,6 +126,7 @@ eu:
         bookmarks: Laster-markak
         conversations: Elkarrizketak
         crypto: Muturretik-muturrerako zifraketa
+        favourites: Gogokoak
         filters: Iragazkiak
         follow: Jarraitzeak, mututzeak eta blokeatzeak
         follows: Jarraipenak
@@ -169,6 +169,7 @@ eu:
       read:accounts: ikusi kontuaren informazioa
       read:blocks: ikusi zure blokeoak
       read:bookmarks: ikusi zure laster-markak
+      read:favourites: ikusi zure gogokoak
       read:filters: ikusi zure iragazkiak
       read:follows: ikusi zuk jarraitutakoak
       read:lists: ikusi zure zerrendak
@@ -182,6 +183,7 @@ eu:
       write:blocks: kontuak eta domeinuak blokeatzea
       write:bookmarks: mezuen laster-marka
       write:conversations: mututu eta ezabatu elkarrizketak
+      write:favourites: gogoko bidalketak
       write:filters: sortu iragazkiak
       write:follows: jarraitu jendea
       write:lists: sortu zerrendak

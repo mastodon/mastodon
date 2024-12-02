@@ -4,6 +4,7 @@ require_relative '../../../config/boot'
 require_relative '../../../config/environment'
 
 require 'thor'
+require 'pastel'
 require_relative 'progress_helper'
 
 module Mastodon
@@ -16,6 +17,10 @@ module Mastodon
       end
 
       private
+
+      def fail_with_message(message)
+        raise Thor::Error, message
+      end
 
       def pastel
         @pastel ||= Pastel.new
@@ -35,7 +40,7 @@ module Mastodon
             .dup
             .tap { |config| config['pool'] = options[:concurrency] + 1 }
         )
-        RedisConfiguration.establish_pool(options[:concurrency])
+        RedisConnection.establish_pool(options[:concurrency])
       end
     end
   end

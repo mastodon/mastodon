@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Report do
+RSpec.describe Report do
   describe 'statuses' do
     it 'returns the statuses for the report' do
       status = Fabricate(:status)
@@ -108,30 +108,54 @@ describe Report do
     let(:report) { Fabricate(:report, target_account_id: target_account.id, status_ids: [status.id], created_at: 3.days.ago, updated_at: 1.day.ago) }
     let(:target_account) { Fabricate(:account) }
     let(:status) { Fabricate(:status) }
+    let(:account_warning) { Fabricate(:account_warning, report_id: report.id) }
 
     before do
-      Fabricate('Admin::ActionLog', target_type: 'Report', account_id: target_account.id, target_id: report.id, created_at: 2.days.ago)
-      Fabricate('Admin::ActionLog', target_type: 'Account', account_id: target_account.id, target_id: report.target_account_id, created_at: 2.days.ago)
-      Fabricate('Admin::ActionLog', target_type: 'Status', account_id: target_account.id, target_id: status.id, created_at: 2.days.ago)
+      Fabricate(:action_log, target_type: 'Report', account_id: target_account.id, target_id: report.id, created_at: 2.days.ago)
+      Fabricate(:action_log, target_type: 'Account', account_id: target_account.id, target_id: report.target_account_id, created_at: 2.days.ago)
+      Fabricate(:action_log, target_type: 'Status', account_id: target_account.id, target_id: status.id, created_at: 2.days.ago)
+      Fabricate(:action_log, target_type: 'AccountWarning', account_id: target_account.id, target_id: account_warning.id, created_at: 2.days.ago)
     end
 
-    it 'returns right logs' do
-      expect(action_logs.count).to eq 3
+    it 'returns expected logs' do
+      expect(action_logs)
+        .to have_attributes(count: 4)
+        .and include(have_attributes(target_type: 'Account'))
+        .and include(have_attributes(target_type: 'AccountWarning'))
+        .and include(have_attributes(target_type: 'Report'))
+        .and include(have_attributes(target_type: 'Status'))
     end
   end
 
   describe 'validations' do
     let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
 
-    it 'is invalid if comment is longer than 1000 characters only if reporter is local' do
-      report = Fabricate.build(:report, comment: Faker::Lorem.characters(number: 1001))
+    it 'is invalid if comment is longer than character limit and reporter is local' do
+      report = Fabricate.build(:report, comment: comment_over_limit)
       expect(report.valid?).to be false
       expect(report).to model_have_error_on_field(:comment)
     end
 
-    it 'is valid if comment is longer than 1000 characters and reporter is not local' do
-      report = Fabricate.build(:report, account: remote_account, comment: Faker::Lorem.characters(number: 1001))
+    it 'is valid if comment is longer than character limit and reporter is not local' do
+      report = Fabricate.build(:report, account: remote_account, comment: comment_over_limit)
       expect(report.valid?).to be true
+    end
+
+    it 'is invalid if it references invalid rules' do
+      report = Fabricate.build(:report, category: :violation, rule_ids: [-1])
+      expect(report.valid?).to be false
+      expect(report).to model_have_error_on_field(:rule_ids)
+    end
+
+    it 'is invalid if it references rules but category is not "violation"' do
+      rule = Fabricate(:rule)
+      report = Fabricate.build(:report, category: :spam, rule_ids: rule.id)
+      expect(report.valid?).to be false
+      expect(report).to model_have_error_on_field(:rule_ids)
+    end
+
+    def comment_over_limit
+      'a' * described_class::COMMENT_SIZE_LIMIT * 2
     end
   end
 end

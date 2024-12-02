@@ -12,6 +12,7 @@ gl:
       last_attempt: Tes un intento máis antes de que a túa conta fique bloqueada.
       locked: A túa conta está bloqueada.
       not_found_in_database: "%{authentication_keys} ou contrasinal non válidos."
+      omniauth_user_creation_failure: Erro ao crear unha conta para esta identidade.
       pending: A túa conta aínda está baixo revisión.
       timeout: A túa sesión caducou. Accede outra vez para continuar.
       unauthenticated: Precisas iniciar sesión ou rexistrarte antes de continuar.
@@ -47,16 +48,19 @@ gl:
         subject: 'Mastodon: Instrucións para restabelecer o contrasinal'
         title: Restabelecer contrasinal
       two_factor_disabled:
-        explanation: A autenticación de dobre factor para a túa conta foi desactivada. É agora posíbel acceder só co teu enderezo de email e contrasinal.
+        explanation: Agora xa podes acceder usando simplemente o correo e contrasinal.
         subject: 'Mastodon: Autenticación de dobre factor desactivada'
+        subtitle: Desactivouse o segundo factor de autenticación.
         title: 2FA desactivado
       two_factor_enabled:
-        explanation: A autenticación de dobre factor foi activada para a túa conta. Un token, xerado pola aplicación TOTP emparellada, será necesario para acceder.
+        explanation: Vai ser preciso usar un código creado pola app TOTP emparellada.
         subject: 'Mastodon: Activouse a autenticación de dobre factor'
+        subtitle: Activouse o segundo factor de autenticación para a conta.
         title: 2FA activado
       two_factor_recovery_codes_changed:
         explanation: Os códigos de recuperación anteriores fican anulados e os novos foron xerados.
         subject: 'Mastodon: Xerados novos códigos de recuperación de dobre factor'
+        subtitle: Os anteriores códigos de recuperación quedaron desactivados e crearonse uns novos.
         title: Códigos de recuperación 2FA mudados
       unlock_instructions:
         subject: 'Mastodon: Instrucións para desbloquear'
@@ -70,11 +74,13 @@ gl:
           subject: 'Mastodon: Chave de seguridade eliminada'
           title: Eliminouse unha das túas chaves de seguridade
       webauthn_disabled:
-        explanation: Desactivouse para a túa conta a autenticación con chaves de seguridade. Agora a conexión é posible usando só o token creado pola app TOTP emparellada.
+        explanation: Desactivouse para a conta a autenticación con chaves de seguridade.
+        extra: Agora só se pode acceder usando o código creado pola app TOTP emparellada.
         subject: 'Mastodon: Desactivouse a autenticación con chave de seguridade'
         title: Chaves de seguridade desactivadas
       webauthn_enabled:
-        explanation: Activouse para a conta a autenticación con chave de seguridade. Xa podes usar a chave de seguridade para contectar.
+        explanation: Activouse para a conta a autenticación con chave de seguridade.
+        extra: Xa podes usar a chave de seguridade para acceder.
         subject: 'Mastodon: Autenticación con chave de seguridade activada'
         title: Chaves de seguridade activas
     omniauth_callbacks:

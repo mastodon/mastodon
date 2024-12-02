@@ -1,7 +1,11 @@
 - content_for :page_title do
   = t('settings.account_settings')
 
-= render 'status'
+- if self_destruct?
+  .flash-message.warning
+    = t('auth.status.self_destruct', domain: Rails.configuration.x.local_domain)
+- else
+  = render partial: 'status', locals: { user: @user, strikes: @strikes }
 
 %h3= t('auth.security')
 
@@ -11,15 +15,33 @@
   - if (!use_seamless_external_login? || resource.encrypted_password.present?) && !omniauth_only?
     .fields-row
       .fields-row__column.fields-group.fields-row__column-6
-        = f.input :email, wrapper: :with_label, input_html: { 'aria-label': t('simple_form.labels.defaults.email') }, required: true, disabled: current_account.suspended?
+        = f.input :email,
+                  disabled: current_account.suspended?,
+                  input_html: { 'aria-label': t('simple_form.labels.defaults.email') },
+                  required: true,
+                  wrapper: :with_label
       .fields-row__column.fields-group.fields-row__column-6
-        = f.input :current_password, wrapper: :with_label, input_html: { 'aria-label': t('simple_form.labels.defaults.current_password'), autocomplete: 'current-password' }, required: true, disabled: current_account.suspended?, hint: false
+        = f.input :current_password,
+                  disabled: current_account.suspended?,
+                  hint: false,
+                  input_html: { 'aria-label': t('simple_form.labels.defaults.current_password'), autocomplete: 'current-password' },
+                  required: true,
+                  wrapper: :with_label
 
     .fields-row
       .fields-row__column.fields-group.fields-row__column-6
-        = f.input :password, wrapper: :with_label, label: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label': t('simple_form.labels.defaults.new_password'), autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last }, hint: t('simple_form.hints.defaults.password'), disabled: current_account.suspended?
+        = f.input :password,
+                  disabled: current_account.suspended?,
+                  hint: t('simple_form.hints.defaults.password'),
+                  input_html: { 'aria-label': t('simple_form.labels.defaults.new_password'), autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last },
+                  label: t('simple_form.labels.defaults.new_password'),
+                  wrapper: :with_label
       .fields-row__column.fields-group.fields-row__column-6
-        = f.input :password_confirmation, wrapper: :with_label, label: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label': t('simple_form.labels.defaults.confirm_new_password'), autocomplete: 'new-password' }, disabled: current_account.suspended?
+        = f.input :password_confirmation,
+                  disabled: current_account.suspended?,
+                  input_html: { 'aria-label': t('simple_form.labels.defaults.confirm_new_password'), autocomplete: 'new-password' },
+                  label: t('simple_form.labels.defaults.confirm_new_password'),
+                  wrapper: :with_label
 
     .actions
       = f.button :button, t('generic.save_changes'), type: :submit, class: 'button', disabled: current_account.suspended?
@@ -32,7 +54,7 @@
 
 = render partial: 'sessions', object: @sessions
 
-- unless current_account.suspended?
+- unless current_account.suspended? || self_destruct?
   %hr.spacer/
 
   %h3= t('auth.migrate_account')

@@ -1,32 +1,18 @@
 # frozen_string_literal: true
 
 class AccountSuggestions::SettingSource < AccountSuggestions::Source
-  def key
-    :staff
-  end
-
-  def get(account, skip_account_ids: [], limit: 40)
-    return [] unless setting_enabled?
-
-    as_ordered_suggestions(
-      scope(account).where(setting_to_where_condition).where.not(id: skip_account_ids),
-      usernames_and_domains
-    ).take(limit)
-  end
-
-  def remove(_account, _target_account_id)
-    nil
+  def get(account, limit: DEFAULT_LIMIT)
+    if setting_enabled?
+      base_account_scope(account).merge(setting_to_where_condition).limit(limit).pluck(:id).zip([key].cycle)
+    else
+      []
+    end
   end
 
   private
 
-  def scope(account)
-    Account.searchable
-           .followable_by(account)
-           .not_excluded_by_account(account)
-           .not_domain_blocked_by_account(account)
-           .where(locked: false)
-           .where.not(id: account.id)
+  def key
+    :featured
   end
 
   def usernames_and_domains
@@ -39,11 +25,9 @@ class AccountSuggestions::SettingSource < AccountSuggestions::Source
 
   def setting_to_where_condition
     usernames_and_domains.map do |(username, domain)|
-      Arel::Nodes::Grouping.new(
-        Account.arel_table[:username].lower.eq(username.downcase).and(
-          Account.arel_table[:domain].lower.eq(domain&.downcase)
-        )
-      )
+      Account
+        .with_username(username)
+        .with_domain(domain)
     end.reduce(:or)
   end
 
@@ -60,9 +44,5 @@ class AccountSuggestions::SettingSource < AccountSuggestions::Source
 
   def setting
     Setting.bootstrap_timeline_accounts
-  end
-
-  def to_ordered_list_key(account)
-    [account.username.downcase, account.domain&.downcase]
   end
 end

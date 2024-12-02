@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pundit/rspec'
 
-describe Admin::StatusPolicy do
+RSpec.describe Admin::StatusPolicy do
   let(:policy) { described_class }
   let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
   let(:john)    { Fabricate(:account) }
-  let(:status) { Fabricate(:status) }
+  let(:status) { Fabricate(:status, visibility: status_visibility) }
+  let(:status_visibility) { :public }
 
   permissions :index?, :update?, :review?, :destroy? do
     context 'with an admin' do
       it 'permits' do
-        expect(policy).to permit(admin, Tag)
+        expect(policy).to permit(admin, Status)
       end
     end
 
     context 'with a non-admin' do
       it 'denies' do
-        expect(policy).to_not permit(john, Tag)
+        expect(policy).to_not permit(john, Status)
       end
     end
   end
@@ -26,7 +26,7 @@ describe Admin::StatusPolicy do
   permissions :show? do
     context 'with an admin' do
       context 'with a public visible status' do
-        before { allow(status).to receive(:public_visibility?).and_return(true) }
+        let(:status_visibility) { :public }
 
         it 'permits' do
           expect(policy).to permit(admin, status)
@@ -34,10 +34,20 @@ describe Admin::StatusPolicy do
       end
 
       context 'with a not public visible status' do
-        before { allow(status).to receive(:public_visibility?).and_return(false) }
+        let(:status_visibility) { :direct }
 
         it 'denies' do
           expect(policy).to_not permit(admin, status)
+        end
+
+        context 'when the status mentions the admin' do
+          before do
+            status.mentions.create!(account: admin)
+          end
+
+          it 'permits' do
+            expect(policy).to permit(admin, status)
+          end
         end
       end
     end

@@ -15,6 +15,12 @@ tr:
       user/invite_request:
         text: Gerekçe
     errors:
+      attributes:
+        domain:
+          invalid: geçerli bir alan adı değil
+      messages:
+        invalid_domain_on_line: "%{value} geçerli bir alan adı değil"
+        too_many_lines: "%{limit} satır sınırının üzerinde"
       models:
         account:
           attributes:
@@ -33,6 +39,11 @@ tr:
           attributes:
             data:
               malformed: bozulmuştur
+        list_account:
+          attributes:
+            account_id:
+              taken: zaten listede var
+          must_be_following: takip edilen bir hesap olmalı
         status:
           attributes:
             reblog:

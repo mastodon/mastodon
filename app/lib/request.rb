@@ -68,28 +68,16 @@ class Request
   # about 15s in total
   TIMEOUT = { connect_timeout: 5, read_timeout: 10, write_timeout: 10, read_deadline: 30 }.freeze
 
-  # Workaround for overly-eager decoding of percent-encoded characters in Addressable::URI#normalized_path
-  # https://github.com/sporkmonger/addressable/issues/366
-  URI_NORMALIZER = lambda do |uri|
-    uri = HTTP::URI.parse(uri)
-
-    HTTP::URI.new(
-      scheme: uri.normalized_scheme,
-      authority: uri.normalized_authority,
-      path: Addressable::URI.normalize_path(encode_non_ascii(uri.path)).presence || '/',
-      query: encode_non_ascii(uri.query)
-    )
-  end
-
   include RoutingHelper
 
   def initialize(verb, url, **options)
     raise ArgumentError if url.blank?
 
     @verb        = verb
-    @url         = URI_NORMALIZER.call(url)
+    @url         = Addressable::URI.parse(url).normalize
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
+    @full_path   = !options.delete(:omit_query_string)
     @options     = options.merge(socket_class: use_proxy? || @allow_local ? ProxySocket : Socket)
     @options     = @options.merge(timeout_class: PerOperationWithDeadline, timeout_options: TIMEOUT)
     @options     = @options.merge(proxy_url) if use_proxy?
@@ -117,7 +105,7 @@ class Request
 
   def perform
     begin
-      response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
+      response = http_client.request(@verb, @url.to_s, @options.merge(headers: headers))
     rescue => e
       raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
     end
@@ -151,21 +139,15 @@ class Request
       %w(http https).include?(parsed_url.scheme) && parsed_url.host.present?
     end
 
-    NON_ASCII_PATTERN = /[^\x00-\x7F]+/
-
-    def encode_non_ascii(str)
-      str&.gsub(NON_ASCII_PATTERN) { |substr| CGI.escape(substr.encode(Encoding::UTF_8)) }
-    end
-
     def http_client
-      HTTP.use(:auto_inflate).use(normalize_uri: { normalizer: URI_NORMALIZER }).follow(max_hops: 3)
+      HTTP.use(:auto_inflate).follow(max_hops: 3)
     end
   end
 
   private
 
   def set_common_headers!
-    @headers[REQUEST_TARGET]    = "#{@verb} #{@url.path}"
+    @headers[REQUEST_TARGET]    = request_target
     @headers['User-Agent']      = Mastodon::Version.user_agent
     @headers['Host']            = @url.host
     @headers['Date']            = Time.now.utc.httpdate
@@ -174,6 +156,14 @@ class Request
 
   def set_digest!
     @headers['Digest'] = "SHA-256=#{Digest::SHA256.base64digest(@options[:body])}"
+  end
+
+  def request_target
+    if @url.query.nil? || !@full_path
+      "#{@verb} #{@url.path}"
+    else
+      "#{@verb} #{@url.path}?#{@url.query}"
+    end
   end
 
   def signature
@@ -244,12 +234,16 @@ class Request
     end
 
     def body_with_limit(limit = 1.megabyte)
-      raise Mastodon::LengthValidationError if content_length.present? && content_length > limit
+      require_limit_not_exceeded!(limit)
 
       contents = truncated_body(limit)
-      raise Mastodon::LengthValidationError if contents.bytesize > limit
+      raise Mastodon::LengthValidationError, "Body size exceeds limit of #{limit}" if contents.bytesize > limit
 
       contents
+    end
+
+    def require_limit_not_exceeded!(limit)
+      raise Mastodon::LengthValidationError, "Content-Length #{content_length} exceeds limit of #{limit}" if content_length.present? && content_length > limit
     end
   end
 
@@ -340,13 +334,9 @@ class Request
       def check_private_address(address, host)
         addr = IPAddr.new(address.to_s)
 
-        return if Rails.env.development? || private_address_exceptions.any? { |range| range.include?(addr) }
+        return if Rails.env.development? || Rails.configuration.x.private_address_exceptions.any? { |range| range.include?(addr) }
 
         raise Mastodon::PrivateNetworkAddressError, host if PrivateAddressCheck.private_address?(addr)
-      end
-
-      def private_address_exceptions
-        @private_address_exceptions = (ENV['ALLOWED_PRIVATE_ADDRESSES'] || '').split(/(?:\s*,\s*|\s+)/).map { |addr| IPAddr.new(addr) }
       end
     end
   end

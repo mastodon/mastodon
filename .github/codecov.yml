@@ -1,0 +1,13 @@
+comment: false # Do not leave PR comments
+coverage:
+  status:
+    project:
+      default:
+        # GitHub status check is not blocking
+        informational: true
+    patch:
+      default:
+        # GitHub status check is not blocking
+        informational: true
+github_checks:
+  annotations: false

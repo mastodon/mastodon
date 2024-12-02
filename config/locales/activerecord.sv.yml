@@ -15,6 +15,12 @@ sv:
       user/invite_request:
         text: Anledning
     errors:
+      attributes:
+        domain:
+          invalid: är inte ett giltigt domännamn
+      messages:
+        invalid_domain_on_line: "%{value} Är inte ett giltigt domännamn"
+        too_many_lines: överskrider gränsen på %{limit} rader
       models:
         account:
           attributes:
@@ -53,3 +59,7 @@ sv:
             position:
               elevated: kan inte vara högre än din nuvarande roll
               own_role: kan inte ändras med din nuvarande roll
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: kan inte inkludera händelser som du inte har rättigheter till

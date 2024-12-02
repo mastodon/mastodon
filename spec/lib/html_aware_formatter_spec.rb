@@ -41,6 +41,14 @@ RSpec.describe HtmlAwareFormatter do
           expect(subject).to_not include 'status__content__spoiler-link'
         end
       end
+
+      context 'when given text containing ruby tags for east-asian languages' do
+        let(:text) { '<ruby>明日 <rp>(</rp><rt>Ashita</rt><rp>)</rp></ruby>' }
+
+        it 'keeps the ruby tags' do
+          expect(subject).to eq '<ruby>明日 <rp>(</rp><rt>Ashita</rt><rp>)</rp></ruby>'
+        end
+      end
     end
   end
 end

@@ -15,6 +15,12 @@ fo:
       user/invite_request:
         text: Orsøk
     errors:
+      attributes:
+        domain:
+          invalid: er ikki eitt virkið økisnavn
+      messages:
+        invalid_domain_on_line: "%{value} er ikki eitt virkið økisnavn"
+        too_many_lines: er longri enn markið á %{limit} reglur
       models:
         account:
           attributes:
@@ -33,6 +39,11 @@ fo:
           attributes:
             data:
               malformed: er avskeplað
+        list_account:
+          attributes:
+            account_id:
+              taken: er longu á listanum
+          must_be_following: má verða ein konta, sum verður fylgd
         status:
           attributes:
             reblog:

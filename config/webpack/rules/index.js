@@ -2,7 +2,6 @@ const babel = require('./babel');
 const css = require('./css');
 const file = require('./file');
 const materialIcons = require('./material_icons');
-const nodeModules = require('./node_modules');
 const tesseract = require('./tesseract');
 
 // Webpack loaders are processed in reverse order
@@ -13,6 +12,5 @@ module.exports = {
   file,
   tesseract,
   css,
-  nodeModules,
   babel,
 };

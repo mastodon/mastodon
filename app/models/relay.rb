@@ -15,14 +15,19 @@
 class Relay < ApplicationRecord
   validates :inbox_url, presence: true, uniqueness: true, url: true, if: :will_save_change_to_inbox_url?
 
-  enum state: { idle: 0, pending: 1, accepted: 2, rejected: 3 }
+  enum :state, { idle: 0, pending: 1, accepted: 2, rejected: 3 }
 
   scope :enabled, -> { accepted }
 
-  before_validation :strip_url
+  normalizes :inbox_url, with: ->(inbox_url) { inbox_url.strip }
+
   before_destroy :ensure_disabled
 
   alias enabled? accepted?
+
+  def to_log_human_identifier
+    inbox_url
+  end
 
   def enable!
     activity_id = ActivityPub::TagManager.instance.generate_uri_for(nil)
@@ -75,9 +80,5 @@ class Relay < ApplicationRecord
 
   def ensure_disabled
     disable! if enabled?
-  end
-
-  def strip_url
-    inbox_url&.strip!
   end
 end

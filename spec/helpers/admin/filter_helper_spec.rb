@@ -2,13 +2,12 @@
 
 require 'rails_helper'
 
-describe Admin::FilterHelper do
+RSpec.describe Admin::FilterHelper do
   it 'Uses filter_link_to to create filter links' do
     params = ActionController::Parameters.new(
       { test: 'test' }
     )
-    allow(helper).to receive(:params).and_return(params)
-    allow(helper).to receive(:url_for).and_return('/test')
+    allow(helper).to receive_messages(params: params, url_for: '/test')
     result = helper.filter_link_to('text', { resolved: true })
 
     expect(result).to match(/text/)

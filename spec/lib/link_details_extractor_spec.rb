@@ -33,6 +33,14 @@ RSpec.describe LinkDetailsExtractor do
         expect(subject.canonical_url).to eq original_url
       end
     end
+
+    context 'when canonical URL is set to "undefined"' do
+      let(:url) { 'undefined' }
+
+      it 'ignores the canonical URLs' do
+        expect(subject.canonical_url).to eq original_url
+      end
+    end
   end
 
   context 'when only basic metadata is present' do
@@ -41,27 +49,20 @@ RSpec.describe LinkDetailsExtractor do
       <html lang="en">
       <head>
         <title>Man bites dog</title>
-        <meta name="description" content="A dog&#39;s tale">
+        <meta name="descripTION" content="A dog&#39;s tale">
+        <link rel="pretty IcoN" href="/favicon.ico">
       </head>
       </html>
     HTML
 
-    describe '#title' do
-      it 'returns the title from title tag' do
-        expect(subject.title).to eq 'Man bites dog'
-      end
-    end
-
-    describe '#description' do
-      it 'returns the description from meta tag' do
-        expect(subject.description).to eq "A dog's tale"
-      end
-    end
-
-    describe '#language' do
-      it 'returns the language from lang attribute' do
-        expect(subject.language).to eq 'en'
-      end
+    it 'extracts the expected values from html metadata' do
+      expect(subject)
+        .to have_attributes(
+          title: eq('Man bites dog'),
+          description: eq("A dog's tale"),
+          language: eq('en'),
+          icon: eq('https://example.com/favicon.ico')
+        )
     end
   end
 
@@ -82,38 +83,24 @@ RSpec.describe LinkDetailsExtractor do
           'name' => 'Pet News',
           'url' => 'https://example.com',
         },
+        'inLanguage' => {
+          name: 'English',
+          alternateName: 'en',
+        },
       }.to_json
     end
 
     shared_examples 'structured data' do
-      describe '#title' do
-        it 'returns the title from structured data' do
-          expect(subject.title).to eq 'Man bites dog'
-        end
-      end
-
-      describe '#description' do
-        it 'returns the description from structured data' do
-          expect(subject.description).to eq "A dog's tale"
-        end
-      end
-
-      describe '#published_at' do
-        it 'returns the publicaton time from structured data' do
-          expect(subject.published_at).to eq '2022-01-31T19:53:00+00:00'
-        end
-      end
-
-      describe '#author_name' do
-        it 'returns the author name from structured data' do
-          expect(subject.author_name).to eq 'Charlie Brown'
-        end
-      end
-
-      describe '#provider_name' do
-        it 'returns the provider name from structured data' do
-          expect(subject.provider_name).to eq 'Pet News'
-        end
+      it 'extracts the expected values from structured data' do
+        expect(subject)
+          .to have_attributes(
+            title: eq('Man bites dog'),
+            description: eq("A dog's tale"),
+            published_at: eq('2022-01-31T19:53:00+00:00'),
+            author_name: eq('Charlie Brown'),
+            provider_name: eq('Pet News'),
+            language: eq('en')
+          )
       end
     end
 
@@ -141,6 +128,24 @@ RSpec.describe LinkDetailsExtractor do
         <body>
           <script type="application/ld+json">
             invalid LD+JSON
+          </script>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      include_examples 'structured data'
+    end
+
+    context 'with the first tag is null' do
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            null
           </script>
           <script type="application/ld+json">
             #{ld_json}
@@ -215,6 +220,35 @@ RSpec.describe LinkDetailsExtractor do
 
       include_examples 'structured data'
     end
+
+    context 'with author names as array' do
+      let(:ld_json) do
+        {
+          '@context' => 'https://schema.org',
+          '@type' => 'NewsArticle',
+          'headline' => 'A lot of authors',
+          'description' => 'But we decided to cram them into one',
+          'author' => {
+            '@type' => 'Person',
+            'name' => ['Author 1', 'Author 2'],
+          },
+        }.to_json
+      end
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      it 'joins author names' do
+        expect(subject.author_name).to eq 'Author 1, Author 2'
+      end
+    end
   end
 
   context 'when Open Graph protocol data is present' do
@@ -224,7 +258,7 @@ RSpec.describe LinkDetailsExtractor do
       <head>
         <meta property="og:url" content="https://example.com/dog.html">
         <meta property="og:title" content="Man bites dog">
-        <meta property="og:description" content="A dog's tale">
+        <meta property="OG:description" content="A dog's tale">
         <meta property="article:published_time" content="2022-01-31T19:53:00+00:00">
         <meta property="og:author" content="Charlie Brown">
         <meta property="og:locale" content="en">
@@ -235,58 +269,19 @@ RSpec.describe LinkDetailsExtractor do
       </html>
     HTML
 
-    describe '#canonical_url' do
-      it 'returns the URL from Open Graph protocol data' do
-        expect(subject.canonical_url).to eq 'https://example.com/dog.html'
-      end
-    end
-
-    describe '#title' do
-      it 'returns the title from Open Graph protocol data' do
-        expect(subject.title).to eq 'Man bites dog'
-      end
-    end
-
-    describe '#description' do
-      it 'returns the description from Open Graph protocol data' do
-        expect(subject.description).to eq "A dog's tale"
-      end
-    end
-
-    describe '#published_at' do
-      it 'returns the publicaton time from Open Graph protocol data' do
-        expect(subject.published_at).to eq '2022-01-31T19:53:00+00:00'
-      end
-    end
-
-    describe '#author_name' do
-      it 'returns the author name from Open Graph protocol data' do
-        expect(subject.author_name).to eq 'Charlie Brown'
-      end
-    end
-
-    describe '#language' do
-      it 'returns the language from Open Graph protocol data' do
-        expect(subject.language).to eq 'en'
-      end
-    end
-
-    describe '#image' do
-      it 'returns the image from Open Graph protocol data' do
-        expect(subject.image).to eq 'https://example.com/snoopy.jpg'
-      end
-    end
-
-    describe '#image:alt' do
-      it 'returns the image description from Open Graph protocol data' do
-        expect(subject.image_alt).to eq 'A good boy'
-      end
-    end
-
-    describe '#provider_name' do
-      it 'returns the provider name from Open Graph protocol data' do
-        expect(subject.provider_name).to eq 'Pet News'
-      end
+    it 'extracts the expected values from open graph data' do
+      expect(subject)
+        .to have_attributes(
+          canonical_url: eq('https://example.com/dog.html'),
+          title: eq('Man bites dog'),
+          description: eq("A dog's tale"),
+          published_at: eq('2022-01-31T19:53:00+00:00'),
+          author_name: eq('Charlie Brown'),
+          language: eq('en'),
+          image: eq('https://example.com/snoopy.jpg'),
+          image_alt: eq('A good boy'),
+          provider_name: eq('Pet News')
+        )
     end
   end
 end

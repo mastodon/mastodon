@@ -2,6 +2,8 @@
 
 class ActivityPub::Activity::Update < ActivityPub::Activity
   def perform
+    @account.schedule_refresh_if_stale!
+
     dereference_object!
 
     if equals_or_includes_any?(@object['type'], %w(Application Group Organization Person Service))
@@ -28,6 +30,6 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
 
     return if @status.nil?
 
-    ActivityPub::ProcessStatusUpdateService.new.call(@status, @object, request_id: @options[:request_id])
+    ActivityPub::ProcessStatusUpdateService.new.call(@status, @json, @object, request_id: @options[:request_id])
   end
 end

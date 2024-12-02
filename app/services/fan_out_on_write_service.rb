@@ -8,6 +8,7 @@ class FanOutOnWriteService < BaseService
   # @param [Hash] options
   # @option options [Boolean] update
   # @option options [Array<Integer>] silenced_account_ids
+  # @option options [Boolean] skip_notifications
   def call(status, options = {})
     @status    = status
     @account   = status.account
@@ -37,8 +38,11 @@ class FanOutOnWriteService < BaseService
 
   def fan_out_to_local_recipients!
     deliver_to_self!
-    notify_mentioned_accounts!
-    notify_about_update! if update?
+
+    unless @options[:skip_notifications]
+      notify_mentioned_accounts!
+      notify_about_update! if update?
+    end
 
     case @status.visibility.to_sym
     when :public, :unlisted, :private
@@ -70,6 +74,15 @@ class FanOutOnWriteService < BaseService
       LocalNotificationWorker.push_bulk(mentions) do |mention|
         [mention.account_id, mention.id, 'Mention', 'mention']
       end
+
+      next unless update?
+
+      # This may result in duplicate update payloads, but this ensures clients
+      # are aware of edits to posts only appearing in mention notifications
+      # (e.g. private mentions or mentions by people they do not follow)
+      PushUpdateWorker.push_bulk(mentions.filter { |mention| subscribed_to_streaming_api?(mention.account_id) }) do |mention|
+        [mention.account_id, @status.id, "timeline:#{mention.account_id}:notifications", { 'update' => true }]
+      end
     end
   end
 
@@ -90,7 +103,7 @@ class FanOutOnWriteService < BaseService
   end
 
   def deliver_to_hashtag_followers!
-    TagFollow.where(tag_id: @status.tags.map(&:id)).select(:id, :account_id).reorder(nil).find_in_batches do |follows|
+    TagFollow.for_local_distribution.where(tag_id: @status.tags.map(&:id)).select(:id, :account_id).reorder(nil).find_in_batches do |follows|
       FeedInsertWorker.push_bulk(follows) do |follow|
         [@status.id, follow.account_id, 'tags', { 'update' => update? }]
       end
@@ -157,5 +170,9 @@ class FanOutOnWriteService < BaseService
 
   def broadcastable?
     @status.public_visibility? && !@status.reblog? && !@account.silenced?
+  end
+
+  def subscribed_to_streaming_api?(account_id)
+    redis.exists?("subscribed:timeline:#{account_id}") || redis.exists?("subscribed:timeline:#{account_id}:notifications")
   end
 end

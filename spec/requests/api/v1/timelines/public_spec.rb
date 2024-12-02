@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Public' do
+RSpec.describe 'Public' do
   let(:user)    { Fabricate(:user) }
   let(:scopes)  { 'read:statuses' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
@@ -13,7 +13,9 @@ describe 'Public' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(body_as_json.pluck(:id)).to match_array(expected_statuses.map { |status| status.id.to_s })
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body.pluck(:id)).to match_array(expected_statuses.map { |status| status.id.to_s })
     end
   end
 
@@ -22,15 +24,19 @@ describe 'Public' do
       get '/api/v1/timelines/public', headers: headers, params: params
     end
 
-    let!(:private_status) { Fabricate(:status, visibility: :private) } # rubocop:disable RSpec/LetSetup
     let!(:local_status)   { Fabricate(:status, account: Fabricate.build(:account, domain: nil)) }
     let!(:remote_status)  { Fabricate(:status, account: Fabricate.build(:account, domain: 'example.com')) }
     let!(:media_status)   { Fabricate(:status, media_attachments: [Fabricate.build(:media_attachment)]) }
-
     let(:params) { {} }
+
+    before do
+      Fabricate(:status, visibility: :private)
+    end
 
     context 'when the instance allows public preview' do
       let(:expected_statuses) { [local_status, remote_status, media_status] }
+
+      it_behaves_like 'forbidden for wrong scope', 'profile'
 
       context 'with an authorized user' do
         it_behaves_like 'a successful request to the public timeline'
@@ -56,6 +62,13 @@ describe 'Public' do
         it_behaves_like 'a successful request to the public timeline'
       end
 
+      context 'with local and remote params' do
+        let(:params) { { local: true, remote: true } }
+        let(:expected_statuses) { [local_status, remote_status, media_status] }
+
+        it_behaves_like 'a successful request to the public timeline'
+      end
+
       context 'with only_media param' do
         let(:params) { { only_media: true } }
         let(:expected_statuses) { [media_status] }
@@ -66,20 +79,19 @@ describe 'Public' do
       context 'with limit param' do
         let(:params) { { limit: 1 } }
 
-        it 'returns only the requested number of statuses', :aggregate_failures do
+        it 'returns only the requested number of statuses and sets pagination headers', :aggregate_failures do
           subject
 
           expect(response).to have_http_status(200)
-          expect(body_as_json.size).to eq(params[:limit])
-        end
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body.size).to eq(params[:limit])
 
-        it 'sets the correct pagination headers', :aggregate_failures do
-          subject
-
-          headers = response.headers['Link']
-
-          expect(headers.find_link(%w(rel prev)).href).to eq(api_v1_timelines_public_url(limit: 1, min_id: media_status.id.to_s))
-          expect(headers.find_link(%w(rel next)).href).to eq(api_v1_timelines_public_url(limit: 1, max_id: media_status.id.to_s))
+          expect(response)
+            .to include_pagination_headers(
+              prev: api_v1_timelines_public_url(limit: params[:limit], min_id: media_status.id),
+              next: api_v1_timelines_public_url(limit: params[:limit], max_id: media_status.id)
+            )
         end
       end
     end
@@ -89,20 +101,36 @@ describe 'Public' do
         Form::AdminSettings.new(timeline_preview: false).save
       end
 
-      context 'with an authenticated user' do
-        let(:expected_statuses) { [local_status, remote_status, media_status] }
+      it_behaves_like 'forbidden for wrong scope', 'profile'
 
-        it_behaves_like 'a successful request to the public timeline'
-      end
-
-      context 'with an unauthenticated user' do
+      context 'without an authentication token' do
         let(:headers) { {} }
 
         it 'returns http unprocessable entity' do
           subject
 
           expect(response).to have_http_status(422)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
+      end
+
+      context 'with an application access token, not bound to a user' do
+        let(:token) { Fabricate(:accessible_access_token, resource_owner_id: nil, scopes: scopes) }
+
+        it 'returns http unprocessable entity' do
+          subject
+
+          expect(response).to have_http_status(422)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
+      end
+
+      context 'with an authenticated user' do
+        let(:expected_statuses) { [local_status, remote_status, media_status] }
+
+        it_behaves_like 'a successful request to the public timeline'
       end
     end
   end

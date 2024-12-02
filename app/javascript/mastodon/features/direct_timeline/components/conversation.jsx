@@ -1,15 +1,24 @@
 import PropTypes from 'prop-types';
+import { useCallback } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
+import { createSelector } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 import { HotKeys } from 'react-hotkeys';
 
+import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
+import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
+import { replyCompose } from 'mastodon/actions/compose';
+import { markConversationRead, deleteConversation } from 'mastodon/actions/conversations';
+import { openModal } from 'mastodon/actions/modal';
+import { muteStatus, unmuteStatus, toggleStatusSpoilers } from 'mastodon/actions/statuses';
 import AttachmentList from 'mastodon/components/attachment_list';
 import AvatarComposite from 'mastodon/components/avatar_composite';
 import { IconButton } from 'mastodon/components/icon_button';
@@ -17,6 +26,7 @@ import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import StatusContent from 'mastodon/components/status_content';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif } from 'mastodon/initial_state';
+import { makeGetStatus } from 'mastodon/selectors';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -28,26 +38,27 @@ const messages = defineMessages({
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
 });
 
-class Conversation extends ImmutablePureComponent {
+const getAccounts = createSelector(
+  (state) => state.get('accounts'),
+  (_, accountIds) => accountIds,
+  (accounts, accountIds) =>
+    accountIds.map(id => accounts.get(id))
+);
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
+const getStatus = makeGetStatus();
 
-  static propTypes = {
-    conversationId: PropTypes.string.isRequired,
-    accounts: ImmutablePropTypes.list.isRequired,
-    lastStatus: ImmutablePropTypes.map,
-    unread:PropTypes.bool.isRequired,
-    scrollKey: PropTypes.string,
-    onMoveUp: PropTypes.func,
-    onMoveDown: PropTypes.func,
-    markRead: PropTypes.func.isRequired,
-    delete: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
-  };
+export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) => {
+  const id = conversation.get('id');
+  const unread = conversation.get('unread');
+  const lastStatusId = conversation.get('last_status');
+  const accountIds = conversation.get('accounts');
+  const intl = useIntl();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const lastStatus = useSelector(state => getStatus(state, { id: lastStatusId }));
+  const accounts = useSelector(state => getAccounts(state, accountIds));
 
-  handleMouseEnter = ({ currentTarget }) => {
+  const handleMouseEnter = useCallback(({ currentTarget }) => {
     if (autoPlayGif) {
       return;
     }
@@ -58,9 +69,9 @@ class Conversation extends ImmutablePureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-original');
     }
-  };
+  }, []);
 
-  handleMouseLeave = ({ currentTarget }) => {
+  const handleMouseLeave = useCallback(({ currentTarget }) => {
     if (autoPlayGif) {
       return;
     }
@@ -71,135 +82,150 @@ class Conversation extends ImmutablePureComponent {
       let emoji = emojis[i];
       emoji.src = emoji.getAttribute('data-static');
     }
-  };
+  }, []);
 
-  handleClick = () => {
-    if (!this.context.router) {
-      return;
-    }
-
-    const { lastStatus, unread, markRead } = this.props;
-
+  const handleClick = useCallback(() => {
     if (unread) {
-      markRead();
+      dispatch(markConversationRead(id));
     }
 
-    this.context.router.history.push(`/@${lastStatus.getIn(['account', 'acct'])}/${lastStatus.get('id')}`);
-  };
+    history.push(`/@${lastStatus.getIn(['account', 'acct'])}/${lastStatus.get('id')}`);
+  }, [dispatch, history, unread, id, lastStatus]);
 
-  handleMarkAsRead = () => {
-    this.props.markRead();
-  };
+  const handleMarkAsRead = useCallback(() => {
+    dispatch(markConversationRead(id));
+  }, [dispatch, id]);
 
-  handleReply = () => {
-    this.props.reply(this.props.lastStatus, this.context.router.history);
-  };
+  const handleReply = useCallback(() => {
+    dispatch((_, getState) => {
+      let state = getState();
 
-  handleDelete = () => {
-    this.props.delete();
-  };
+      if (state.getIn(['compose', 'text']).trim().length !== 0) {
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status: lastStatus } }));
+      } else {
+        dispatch(replyCompose(lastStatus));
+      }
+    });
+  }, [dispatch, lastStatus]);
 
-  handleHotkeyMoveUp = () => {
-    this.props.onMoveUp(this.props.conversationId);
-  };
+  const handleDelete = useCallback(() => {
+    dispatch(deleteConversation(id));
+  }, [dispatch, id]);
 
-  handleHotkeyMoveDown = () => {
-    this.props.onMoveDown(this.props.conversationId);
-  };
+  const handleHotkeyMoveUp = useCallback(() => {
+    onMoveUp(id);
+  }, [id, onMoveUp]);
 
-  handleConversationMute = () => {
-    this.props.onMute(this.props.lastStatus);
-  };
+  const handleHotkeyMoveDown = useCallback(() => {
+    onMoveDown(id);
+  }, [id, onMoveDown]);
 
-  handleShowMore = () => {
-    this.props.onToggleHidden(this.props.lastStatus);
-  };
-
-  render () {
-    const { accounts, lastStatus, unread, scrollKey, intl } = this.props;
-
-    if (lastStatus === null) {
-      return null;
+  const handleConversationMute = useCallback(() => {
+    if (lastStatus.get('muted')) {
+      dispatch(unmuteStatus(lastStatus.get('id')));
+    } else {
+      dispatch(muteStatus(lastStatus.get('id')));
     }
+  }, [dispatch, lastStatus]);
 
-    const menu = [
-      { text: intl.formatMessage(messages.open), action: this.handleClick },
-      null,
-    ];
+  const handleShowMore = useCallback(() => {
+    dispatch(toggleStatusSpoilers(lastStatus.get('id')));
+  }, [dispatch, lastStatus]);
 
-    menu.push({ text: intl.formatMessage(lastStatus.get('muted') ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMute });
+  if (!lastStatus) {
+    return null;
+  }
 
-    if (unread) {
-      menu.push({ text: intl.formatMessage(messages.markAsRead), action: this.handleMarkAsRead });
-      menu.push(null);
-    }
+  const menu = [
+    { text: intl.formatMessage(messages.open), action: handleClick },
+    null,
+    { text: intl.formatMessage(lastStatus.get('muted') ? messages.unmuteConversation : messages.muteConversation), action: handleConversationMute },
+  ];
 
-    menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDelete });
+  if (unread) {
+    menu.push({ text: intl.formatMessage(messages.markAsRead), action: handleMarkAsRead });
+    menu.push(null);
+  }
 
-    const names = accounts.map(a => <Link to={`/@${a.get('acct')}`} key={a.get('id')} title={a.get('acct')}><bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }} /></bdi></Link>).reduce((prev, cur) => [prev, ', ', cur]);
+  menu.push({ text: intl.formatMessage(messages.delete), action: handleDelete });
 
-    const handlers = {
-      reply: this.handleReply,
-      open: this.handleClick,
-      moveUp: this.handleHotkeyMoveUp,
-      moveDown: this.handleHotkeyMoveDown,
-      toggleHidden: this.handleShowMore,
-    };
+  const names = accounts.map(a => (
+    <Link to={`/@${a.get('acct')}`} key={a.get('id')} data-hover-card-account={a.get('id')}>
+      <bdi>
+        <strong
+          className='display-name__html'
+          dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }}
+        />
+      </bdi>
+    </Link>
+  )).reduce((prev, cur) => [prev, ', ', cur]);
 
-    return (
-      <HotKeys handlers={handlers}>
-        <div className={classNames('conversation focusable muted', { 'conversation--unread': unread })} tabIndex={0}>
-          <div className='conversation__avatar' onClick={this.handleClick} role='presentation'>
-            <AvatarComposite accounts={accounts} size={48} />
-          </div>
+  const handlers = {
+    reply: handleReply,
+    open: handleClick,
+    moveUp: handleHotkeyMoveUp,
+    moveDown: handleHotkeyMoveDown,
+    toggleHidden: handleShowMore,
+  };
 
-          <div className='conversation__content'>
-            <div className='conversation__content__info'>
-              <div className='conversation__content__relative-time'>
-                {unread && <span className='conversation__unread' />} <RelativeTimestamp timestamp={lastStatus.get('created_at')} />
-              </div>
+  return (
+    <HotKeys handlers={handlers}>
+      <div className={classNames('conversation focusable muted', { unread })} tabIndex={0}>
+        <div className='conversation__avatar' onClick={handleClick} role='presentation'>
+          <AvatarComposite accounts={accounts} size={48} />
+        </div>
 
-              <div className='conversation__content__names' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-                <FormattedMessage id='conversation.with' defaultMessage='With {names}' values={{ names: <span>{names}</span> }} />
-              </div>
+        <div className='conversation__content'>
+          <div className='conversation__content__info'>
+            <div className='conversation__content__relative-time'>
+              {unread && <span className='conversation__unread' />} <RelativeTimestamp timestamp={lastStatus.get('created_at')} />
             </div>
 
-            <StatusContent
-              status={lastStatus}
-              onClick={this.handleClick}
-              expanded={!lastStatus.get('hidden')}
-              onExpandedToggle={this.handleShowMore}
-              collapsible
+            <div className='conversation__content__names' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <FormattedMessage id='conversation.with' defaultMessage='With {names}' values={{ names: <span>{names}</span> }} />
+            </div>
+          </div>
+
+          <StatusContent
+            status={lastStatus}
+            onClick={handleClick}
+            expanded={!lastStatus.get('hidden')}
+            onExpandedToggle={handleShowMore}
+            collapsible
+          />
+
+          {lastStatus.get('media_attachments').size > 0 && (
+            <AttachmentList
+              compact
+              media={lastStatus.get('media_attachments')}
             />
+          )}
 
-            {lastStatus.get('media_attachments').size > 0 && (
-              <AttachmentList
-                compact
-                media={lastStatus.get('media_attachments')}
+          <div className='status__action-bar'>
+            <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' iconComponent={ReplyIcon} onClick={handleReply} />
+
+            <div className='status__action-bar-dropdown'>
+              <DropdownMenuContainer
+                scrollKey={scrollKey}
+                status={lastStatus}
+                items={menu}
+                icon='ellipsis-h'
+                iconComponent={MoreHorizIcon}
+                size={18}
+                direction='right'
+                title={intl.formatMessage(messages.more)}
               />
-            )}
-
-            <div className='status__action-bar'>
-              <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReply} />
-
-              <div className='status__action-bar-dropdown'>
-                <DropdownMenuContainer
-                  scrollKey={scrollKey}
-                  status={lastStatus}
-                  items={menu}
-                  icon='ellipsis-h'
-                  size={18}
-                  direction='right'
-                  title={intl.formatMessage(messages.more)}
-                />
-              </div>
             </div>
           </div>
         </div>
-      </HotKeys>
-    );
-  }
+      </div>
+    </HotKeys>
+  );
+};
 
-}
-
-export default injectIntl(Conversation);
+Conversation.propTypes = {
+  conversation: ImmutablePropTypes.map.isRequired,
+  scrollKey: PropTypes.string,
+  onMoveUp: PropTypes.func,
+  onMoveDown: PropTypes.func,
+};

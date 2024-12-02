@@ -1,8 +1,8 @@
 - content_for :page_title do
   = t('doorkeeper.applications.new.title')
 
-= simple_form_for @application, url: settings_applications_path do |f|
-  = render 'fields', f: f
+= simple_form_for @application, url: settings_applications_path do |form|
+  = render form
 
   .actions
-    = f.button :button, t('doorkeeper.applications.buttons.submit'), type: :submit
+    = form.button :button, t('doorkeeper.applications.buttons.submit'), type: :submit

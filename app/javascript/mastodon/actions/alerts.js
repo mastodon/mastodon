@@ -1,5 +1,7 @@
 import { defineMessages } from 'react-intl';
 
+import { AxiosError } from 'axios';
+
 const messages = defineMessages({
   unexpectedTitle: { id: 'alert.unexpected.title', defaultMessage: 'Oops!' },
   unexpectedMessage: { id: 'alert.unexpected.message', defaultMessage: 'An unexpected error occurred.' },
@@ -50,10 +52,15 @@ export const showAlertForError = (error, skipNotFound = false) => {
     });
   }
 
+  // An aborted request, e.g. due to reloading the browser window, it not really error
+  if (error.code === AxiosError.ECONNABORTED) {
+    return { type: ALERT_NOOP };
+  }
+
   console.error(error);
 
   return showAlert({
     title: messages.unexpectedTitle,
     message: messages.unexpectedMessage,
   });
-}
+};

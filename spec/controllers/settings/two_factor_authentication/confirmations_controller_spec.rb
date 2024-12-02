@@ -2,55 +2,53 @@
 
 require 'rails_helper'
 
-describe Settings::TwoFactorAuthentication::ConfirmationsController do
+RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
   render_views
 
   shared_examples 'renders :new' do
     it 'renders the new view' do
       subject
 
-      expect(assigns(:confirmation)).to be_instance_of Form::TwoFactorConfirmation
-      expect(assigns(:provision_url)).to eq 'otpauth://totp/cb6e6126.ngrok.io:local-part%40domain?secret=thisisasecretforthespecofnewview&issuer=cb6e6126.ngrok.io'
-      expect(assigns(:qrcode)).to be_instance_of RQRCode::QRCode
       expect(response).to have_http_status(200)
       expect(response).to render_template(:new)
+      expect(response.body)
+        .to include(qr_code_markup)
+    end
+
+    def qr_code_markup
+      RQRCode::QRCode.new(
+        'otpauth://totp/cb6e6126.ngrok.io:local-part%40domain?secret=thisisasecretforthespecofnewview&issuer=cb6e6126.ngrok.io'
+      ).as_svg(padding: 0, module_size: 4, use_path: true)
     end
   end
 
   [true, false].each do |with_otp_secret|
     let(:user) { Fabricate(:user, email: 'local-part@domain', otp_secret: with_otp_secret ? 'oldotpsecret' : nil) }
 
-    describe 'GET #new' do
-      context 'when signed in and a new otp secret has been set in the session' do
-        subject do
-          sign_in user, scope: :user
-          get :new, session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
+    context 'when signed in' do
+      before { sign_in user, scope: :user }
+
+      describe 'GET #new' do
+        context 'when a new otp secret has been set in the session' do
+          subject do
+            get :new, session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
+          end
+
+          include_examples 'renders :new'
         end
 
-        include_examples 'renders :new'
-      end
+        it 'redirects if a new otp_secret has not been set in the session' do
+          get :new, session: { challenge_passed_at: Time.now.utc }
 
-      it 'redirects if not signed in' do
-        get :new
-        expect(response).to redirect_to('/auth/sign_in')
-      end
-
-      it 'redirects if a new otp_secret has not been set in the session' do
-        sign_in user, scope: :user
-        get :new, session: { challenge_passed_at: Time.now.utc }
-        expect(response).to redirect_to('/settings/otp_authentication')
-      end
-    end
-
-    describe 'POST #create' do
-      context 'when signed in' do
-        before do
-          sign_in user, scope: :user
+          expect(response).to redirect_to('/settings/otp_authentication')
         end
+      end
 
+      describe 'POST #create' do
         describe 'when form_two_factor_confirmation parameter is not provided' do
           it 'raises ActionController::ParameterMissing' do
             post :create, params: {}, session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
+
             expect(response).to have_http_status(400)
           end
         end
@@ -58,70 +56,78 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
         describe 'when creation succeeds' do
           let!(:otp_backup_codes) { user.generate_otp_backup_codes! }
 
-          it 'renders page with success' do
+          before do
             prepare_user_otp_generation
-            prepare_user_otp_consumption
+            prepare_user_otp_consumption_response(true)
+            allow(controller).to receive(:current_user).and_return(user)
+          end
 
-            expect do
-              post :create,
-                   params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
-                   session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
-            end.to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
+          it 'renders page with success' do
+            expect { post_create_with_options }
+              .to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
 
-            expect(assigns(:recovery_codes)).to eq otp_backup_codes
             expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
             expect(response).to have_http_status(200)
             expect(response).to render_template('settings/two_factor_authentication/recovery_codes/index')
-          end
-
-          def prepare_user_otp_generation
-            expect_any_instance_of(User).to receive(:generate_otp_backup_codes!) do |value|
-              expect(value).to eq user
-              otp_backup_codes
-            end
-          end
-
-          def prepare_user_otp_consumption
-            expect_any_instance_of(User).to receive(:validate_and_consume_otp!) do |value, code, options|
-              expect(value).to eq user
-              expect(code).to eq '123456'
-              expect(options).to eq({ otp_secret: 'thisisasecretforthespecofnewview' })
-              true
-            end
+            expect(response.body).to include(*otp_backup_codes)
           end
         end
 
         describe 'when creation fails' do
           subject do
-            expect_any_instance_of(User).to receive(:validate_and_consume_otp!) do |value, code, options|
-              expect(value).to eq user
-              expect(code).to eq '123456'
-              expect(options).to eq({ otp_secret: 'thisisasecretforthespecofnewview' })
-              false
-            end
-
-            expect do
-              post :create,
-                   params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
-                   session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
-            end.to(not_change { user.reload.otp_secret })
+            expect { post_create_with_options }
+              .to(not_change { user.reload.otp_secret })
           end
 
-          it 'renders the new view' do
+          before do
+            prepare_user_otp_consumption_response(false)
+            allow(controller).to receive(:current_user).and_return(user)
+          end
+
+          it 'renders page with error message' do
             subject
             expect(response.body).to include 'The entered code was invalid! Are server time and device time correct?'
           end
 
           include_examples 'renders :new'
         end
-      end
 
-      context 'when not signed in' do
-        it 'redirects if not signed in' do
-          post :create, params: { form_two_factor_confirmation: { otp_attempt: '123456' } }
-          expect(response).to redirect_to('/auth/sign_in')
+        private
+
+        def post_create_with_options
+          post :create,
+               params: { form_two_factor_confirmation: { otp_attempt: '123456' } },
+               session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
+        end
+
+        def prepare_user_otp_generation
+          allow(user)
+            .to receive(:generate_otp_backup_codes!)
+            .and_return(otp_backup_codes)
+        end
+
+        def prepare_user_otp_consumption_response(result)
+          options = { otp_secret: 'thisisasecretforthespecofnewview' }
+          allow(user)
+            .to receive(:validate_and_consume_otp!)
+            .with('123456', options)
+            .and_return(result)
         end
       end
+    end
+  end
+
+  context 'when not signed in' do
+    it 'redirects on POST to create' do
+      post :create, params: { form_two_factor_confirmation: { otp_attempt: '123456' } }
+
+      expect(response).to redirect_to('/auth/sign_in')
+    end
+
+    it 'redirects on GET to new' do
+      get :new
+
+      expect(response).to redirect_to('/auth/sign_in')
     end
   end
 end

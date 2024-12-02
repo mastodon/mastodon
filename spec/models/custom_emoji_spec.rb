@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CustomEmoji do
+RSpec.describe CustomEmoji, :attachment_processing do
   describe '#search' do
     subject { described_class.search(search_term) }
 
@@ -59,7 +59,7 @@ RSpec.describe CustomEmoji do
   describe '.from_text' do
     subject { described_class.from_text(text, nil) }
 
-    let!(:emojo) { Fabricate(:custom_emoji) }
+    let!(:emojo) { Fabricate(:custom_emoji, shortcode: 'coolcat') }
 
     context 'with plain text' do
       let(:text) { 'Hello :coolcat:' }
@@ -78,12 +78,19 @@ RSpec.describe CustomEmoji do
     end
   end
 
-  describe 'pre_validation' do
-    let(:custom_emoji) { Fabricate(:custom_emoji, domain: 'wWw.MaStOdOn.CoM') }
-
-    it 'downcases' do
-      custom_emoji.valid?
-      expect(custom_emoji.domain).to eq('www.mastodon.com')
+  describe 'Normalizations' do
+    describe 'domain' do
+      it { is_expected.to normalize(:domain).from('wWw.MaStOdOn.CoM').to('www.mastodon.com') }
+      it { is_expected.to normalize(:domain).from(nil).to(nil) }
     end
+  end
+
+  describe 'Validations' do
+    subject { Fabricate.build :custom_emoji }
+
+    it { is_expected.to validate_uniqueness_of(:shortcode).scoped_to(:domain) }
+    it { is_expected.to validate_length_of(:shortcode).is_at_least(described_class::MINIMUM_SHORTCODE_SIZE) }
+    it { is_expected.to allow_values('cats').for(:shortcode) }
+    it { is_expected.to_not allow_values('@#$@#$', 'X').for(:shortcode) }
   end
 end

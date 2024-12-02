@@ -99,9 +99,13 @@ module Mastodon::Snowflake
     def id_at(timestamp, with_random: true)
       id  = timestamp.to_i * 1000
       id += rand(1000) if with_random
-      id  = id << 16
+      id <<= 16
       id += rand(2**16) if with_random
       id
+    end
+
+    def to_time(id)
+      Time.at((id >> 16) / 1000).utc
     end
 
     private

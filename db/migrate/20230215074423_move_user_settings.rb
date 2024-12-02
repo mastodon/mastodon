@@ -69,7 +69,7 @@ class MoveUserSettings < ActiveRecord::Migration[6.1]
         MAPPING.each do |legacy_key, new_key|
           value = previous_settings[legacy_key]&.value
 
-          next if value.blank?
+          next if value.nil?
 
           if value.is_a?(Hash)
             value.each do |nested_key, nested_value|
@@ -80,7 +80,7 @@ class MoveUserSettings < ActiveRecord::Migration[6.1]
           end
         end
 
-        user.update_column('settings', Oj.dump(user_settings)) # rubocop:disable Rails/SkipsModelValidations
+        user.update_column('settings', Oj.dump(user_settings))
       end
     end
   end

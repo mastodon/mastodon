@@ -15,6 +15,12 @@ nl:
       user/invite_request:
         text: Reden
     errors:
+      attributes:
+        domain:
+          invalid: is een ongeldige domeinnaam
+      messages:
+        invalid_domain_on_line: "%{value} is een ongeldige domeinnaam"
+        too_many_lines: overschrijdt de limiet van %{limit} regels
       models:
         account:
           attributes:
@@ -33,6 +39,11 @@ nl:
           attributes:
             data:
               malformed: heeft de verkeerde opmaak
+        list_account:
+          attributes:
+            account_id:
+              taken: staat al in de lijst
+          must_be_following: moet een gevolgd account zijn
         status:
           attributes:
             reblog:

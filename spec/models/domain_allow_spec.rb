@@ -2,17 +2,14 @@
 
 require 'rails_helper'
 
-describe DomainAllow do
-  describe 'scopes' do
-    describe 'matches_domain' do
-      let(:domain) { Fabricate(:domain_allow, domain: 'example.com') }
-      let(:other_domain) { Fabricate(:domain_allow, domain: 'example.biz') }
+RSpec.describe DomainAllow do
+  describe 'Validations' do
+    it { is_expected.to validate_presence_of(:domain) }
 
-      it 'returns the correct records' do
-        results = described_class.matches_domain('example.com')
+    context 'when a normalized domain exists' do
+      before { Fabricate(:domain_allow, domain: 'にゃん') }
 
-        expect(results).to eq([domain])
-      end
+      it { is_expected.to_not allow_value('xn--r9j5b5b').for(:domain) }
     end
   end
 end

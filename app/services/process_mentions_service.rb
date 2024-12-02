@@ -44,14 +44,14 @@ class ProcessMentionsService < BaseService
       if mention_undeliverable?(mentioned_account)
         begin
           mentioned_account = ResolveAccountService.new.call(Regexp.last_match(1))
-        rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
+        rescue Webfinger::Error, *Mastodon::HTTP_CONNECTION_ERRORS, Mastodon::UnexpectedResponseError
           mentioned_account = nil
         end
       end
 
       # If after resolving it still isn't found or isn't the right
       # protocol, then give up
-      next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
+      next match if mention_undeliverable?(mentioned_account) || mentioned_account&.unavailable?
 
       mention   = @previous_mentions.find { |x| x.account_id == mentioned_account.id }
       mention ||= @current_mentions.find  { |x| x.account_id == mentioned_account.id }

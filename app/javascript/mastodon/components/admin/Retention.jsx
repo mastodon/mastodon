@@ -9,11 +9,12 @@ import api from 'mastodon/api';
 import { roundTo10 } from 'mastodon/utils/numbers';
 
 const dateForCohort = cohort => {
+  const timeZone = 'UTC';
   switch(cohort.frequency) {
   case 'day':
-    return <FormattedDate value={cohort.period} month='long' day='2-digit' />;
+    return <FormattedDate value={cohort.period} month='long' day='2-digit' timeZone={timeZone} />;
   default:
-    return <FormattedDate value={cohort.period} month='long' year='numeric' />;
+    return <FormattedDate value={cohort.period} month='long' year='numeric' timeZone={timeZone} />;
   }
 };
 
@@ -33,7 +34,7 @@ export default class Retention extends PureComponent {
   componentDidMount () {
     const { start_at, end_at, frequency } = this.props;
 
-    api().post('/api/v1/admin/retention', { start_at, end_at, frequency }).then(res => {
+    api(false).post('/api/v1/admin/retention', { start_at, end_at, frequency }).then(res => {
       this.setState({
         loading: false,
         data: res.data,
@@ -50,7 +51,7 @@ export default class Retention extends PureComponent {
     let content;
 
     if (loading) {
-      content = <FormattedMessage id='loading_indicator.label' defaultMessage='Loading...' />;
+      content = <FormattedMessage id='loading_indicator.label' defaultMessage='Loading…' />;
     } else {
       content = (
         <table className='retention__table'>

@@ -4,7 +4,8 @@ class AttachmentBatch
   # Maximum amount of objects you can delete in an S3 API call. It's
   # important to remember that this does not correspond to the number
   # of records in the batch, since records can have multiple attachments
-  LIMIT = 1_000
+  LIMIT = ENV.fetch('S3_BATCH_DELETE_LIMIT', 1000).to_i
+  MAX_RETRY = ENV.fetch('S3_BATCH_DELETE_RETRY', 3).to_i
 
   # Attributes generated and maintained by Paperclip (not all of them
   # are always used on every class, however)
@@ -36,7 +37,7 @@ class AttachmentBatch
 
   def clear
     remove_files
-    batch.update_all(nullified_attributes) # rubocop:disable Rails/SkipsModelValidations
+    batch.update_all(nullified_attributes)
   end
 
   private
@@ -75,7 +76,24 @@ class AttachmentBatch
             end
           when :fog
             logger.debug { "Deleting #{attachment.path(style)}" }
-            attachment.directory.files.new(key: attachment.path(style)).destroy
+
+            retries = 0
+            begin
+              attachment.send(:directory).files.new(key: attachment.path(style)).destroy
+            rescue Fog::OpenStack::Storage::NotFound
+              logger.debug "Will ignore because file is not found #{attachment.path(style)}"
+            rescue => e
+              retries += 1
+
+              if retries < MAX_RETRY
+                logger.debug "Retry #{retries}/#{MAX_RETRY} after #{e.message}"
+                sleep 2**retries
+                retry
+              else
+                logger.error "Batch deletion from fog failed after #{e.message}"
+                raise e
+              end
+            end
           when :azure
             logger.debug { "Deleting #{attachment.path(style)}" }
             attachment.destroy
@@ -90,6 +108,7 @@ class AttachmentBatch
     # objects can be processed at once, so we have to potentially
     # separate them into multiple calls.
 
+    retries = 0
     keys.each_slice(LIMIT) do |keys_slice|
       logger.debug { "Deleting #{keys_slice.size} objects" }
 
@@ -97,6 +116,17 @@ class AttachmentBatch
         objects: keys_slice.map { |key| { key: key } },
         quiet: true,
       })
+    rescue => e
+      retries += 1
+
+      if retries < MAX_RETRY
+        logger.debug "Retry #{retries}/#{MAX_RETRY} after #{e.message}"
+        sleep 2**retries
+        retry
+      else
+        logger.error "Batch deletion from S3 failed after #{e.message}"
+        raise e
+      end
     end
   end
 

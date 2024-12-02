@@ -5,6 +5,8 @@ module Admin
     before_action :set_instances, only: :index
     before_action :set_instance, except: :index
 
+    LOGS_LIMIT = 5
+
     def index
       authorize :instance, :index?
       preload_delivery_failures!
@@ -13,6 +15,7 @@ module Admin
     def show
       authorize :instance, :show?
       @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
+      @action_logs = Admin::ActionLogFilter.new(target_domain: @instance.domain).results.limit(LOGS_LIMIT)
     end
 
     def destroy
@@ -49,7 +52,7 @@ module Admin
     private
 
     def set_instance
-      @instance = Instance.find(TagManager.instance.normalize_domain(params[:id]&.strip))
+      @instance = Instance.find_or_initialize_by(domain: TagManager.instance.normalize_domain(params[:id]&.strip))
     end
 
     def set_instances

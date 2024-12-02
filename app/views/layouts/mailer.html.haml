@@ -1,54 +1,87 @@
 !!!
-%html{ lang: I18n.locale }
+%html{ lang: I18n.locale, dir: locale_direction }
   %head
-    %meta{ 'http-equiv' => 'Content-Type', 'content' => 'text/html; charset=utf-8' }/
-    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0, shrink-to-fit=no' }
-
+    %meta{ 'charset' => 'utf-8' }
+    %title Mastodon
+    %meta{ name: 'x-apple-disable-message-reformatting' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    %meta{ name: 'format-detection', content: 'telephone=no, date=no, address=no, email=no, url=no' }
+    %meta{ name: 'supported-color-schemes', content: 'light' }
+    %style
+      \table { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    %style{ 'data-premailer': 'ignore' }
+      \.email a { color: inherit; text-decoration: none; }
+      \.email-btn-hover:hover { background-color: #563acc !important; }
+    /[if mso]
+      <xml>
+      <o:OfficeDocumentSettings xmlns:o="urn:schemas-microsoft-com:office:office">
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+      </xml>
     = stylesheet_pack_tag 'mailer'
-  %body{ dir: locale_direction }
-    %table.email-table{ cellspacing: 0, cellpadding: 0 }
-      %tbody
+  %body
+    .email{ dir: locale_direction }
+      %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
-          %td.email-body.email-start
+          %td.email-desktop-p-8
             .email-container
-              %table.content-section{ cellspacing: 0, cellpadding: 0 }
-                %tbody
-                  %tr
-                    %td.content-cell.header
-                      .email-row
-                        .col-6
-                          %table.column{ cellspacing: 0, cellpadding: 0 }
-                            %tbody
-                              %tr
-                                %td.column-cell
-                                  = link_to root_url do
-                                    = image_tag full_pack_url('media/images/mailer/wordmark.png'), alt: 'Mastodon', height: 34, class: 'logo'
+              /[if mso]
+                <table border="0" cellpadding="0" cellspacing="0" align="center" style="width:740px;" role="presentation"><tr><td>
+              %table.email-w-full.email-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                %tr
+                  %td.email-card-td.email-desktop-rounded-16px
 
-    = yield
+                    -# Header
+                    %table.email-header-table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                      %tr
+                        %td.email-header-td
 
-    %table.email-table{ cellspacing: 0, cellpadding: 0 }
-      %tbody
-        %tr
-          %td.email-body.email-end
+                          -# Logo
+                          %table.email-header-logo-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                            %tr
+                              %td.email-header-logo-td
+                                /[if mso]
+                                  <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="false" stroke="false" style="position:absolute; left:40px; top:26px; width:636px;"><v:textbox style="mso-fit-shape-to-text:true" inset="0,0,0,0">
+                                .email-header-logo-div
+                                  %p.email-header-logo-p
+                                    %span.email-header-logo-span
+                                      = '/ '
+                                      = site_hostname
+                                /[if mso]
+                                  </v:textbox></v:rect>
+                                = link_to root_url, class: 'email-header-logo-a' do
+                                  = image_tag frontend_asset_url('images/mailer-new/common/logo-header.png'), alt: 'Mastodon', width: 157, height: 40
+
+                          -# Heading
+                          = yield :heading
+
+                    .email-header-after-div
+                      .email-header-after-inside-div
+                    %table.email-body-table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                      %tr
+                        %td.email-body-td
+                          -# Content
+                          = yield
+
+              /[if mso]
+                </td></tr></table>
+
+            -# Footer
             .email-container
-              %table.content-section{ cellspacing: 0, cellpadding: 0 }
-                %tbody
-                  %tr
-                    %td.content-cell.content-end
-                      != '&nbsp; '
-                  %tr
-                    %td.blank-cell.footer
-                      .email-row
-                        .col-6
-                          %table.column{ cellspacing: 0, cellpadding: 0 }
-                            %tbody
-                              %td.column-cell
-                                %p= t 'about.hosted_on', domain: site_hostname
-                                %p
-                                  = link_to t('application_mailer.notification_preferences'), settings_preferences_notifications_url
-                                  - if defined?(@unsubscribe_url)
-                                    ·
-                                    = link_to t('application_mailer.unsubscribe'), @unsubscribe_url
-                              %td.column-cell.text-right
-                                = link_to root_url do
-                                  = image_tag full_pack_url('media/images/mailer/logo.png'), alt: 'Mastodon', height: 24
+              /[if mso]
+                <table border="0" cellpadding="0" cellspacing="0" align="center" style="width:740px;" role="presentation"><tr><td>
+              %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                %tr
+                  %td.email-footer-td
+                    %p.email-footer-p
+                      = link_to root_url, class: 'email-footer-logo-a' do
+                        = image_tag frontend_asset_url('images/mailer-new/common/logo-footer.png'), alt: 'Mastodon', width: 44, height: 44
+                    %p.email-footer-p
+                      = t 'about.hosted_on', domain: site_hostname
+                    %p.email-footer-p
+                      = link_to t('application_mailer.notification_preferences'), settings_preferences_notifications_url
+                      - if defined?(@unsubscribe_url)
+                        ·
+                        = link_to t('application_mailer.unsubscribe'), @unsubscribe_url
+              /[if mso]
+                </td></tr></table>

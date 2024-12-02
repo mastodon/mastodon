@@ -10,19 +10,38 @@ RSpec.describe Disputes::AppealsController do
   let!(:admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
   describe '#create' do
-    let(:current_user) { Fabricate(:user) }
-    let(:strike) { Fabricate(:account_warning, target_account: current_user.account) }
+    subject { post :create, params: params }
 
-    before do
-      post :create, params: { strike_id: strike.id, appeal: { text: 'Foo' } }
+    context 'with valid params' do
+      let(:current_user) { Fabricate(:user) }
+      let(:strike) { Fabricate(:account_warning, target_account: current_user.account) }
+      let(:params) { { strike_id: strike.id, appeal: { text: 'Foo' } } }
+
+      it 'notifies staff about new appeal and redirects back to strike page', :inline_jobs do
+        emails = capture_emails { subject }
+
+        expect(emails.size)
+          .to eq(1)
+        expect(emails.first)
+          .to have_attributes(
+            to: contain_exactly(admin.email),
+            subject: eq(I18n.t('admin_mailer.new_appeal.subject', username: current_user.account.acct, instance: Rails.configuration.x.local_domain))
+          )
+        expect(response).to redirect_to(disputes_strike_path(strike.id))
+      end
     end
 
-    it 'notifies staff about new appeal' do
-      expect(ActionMailer::Base.deliveries.first.to).to eq([admin.email])
-    end
+    context 'with invalid params' do
+      let(:current_user) { Fabricate(:user) }
+      let(:strike) { Fabricate(:account_warning, target_account: current_user.account) }
+      let(:params) { { strike_id: strike.id, appeal: { text: '' } } }
 
-    it 'redirects back to the strike page' do
-      expect(response).to redirect_to(disputes_strike_path(strike.id))
+      it 'does not send email and renders strike show page', :inline_jobs do
+        emails = capture_emails { subject }
+
+        expect(emails).to be_empty
+        expect(response).to render_template('disputes/strikes/show')
+      end
     end
   end
 end

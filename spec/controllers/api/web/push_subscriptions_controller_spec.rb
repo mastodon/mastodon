@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Api::Web::PushSubscriptionsController do
+RSpec.describe Api::Web::PushSubscriptionsController do
   render_views
 
   let(:user) { Fabricate(:user) }
@@ -37,37 +37,49 @@ describe Api::Web::PushSubscriptionsController do
     }
   end
 
+  before do
+    sign_in(user)
+
+    stub_request(:post, create_payload[:subscription][:endpoint]).to_return(status: 200)
+  end
+
   describe 'POST #create' do
     it 'saves push subscriptions' do
-      sign_in(user)
-
-      stub_request(:post, create_payload[:subscription][:endpoint]).to_return(status: 200)
-
       post :create, format: :json, params: create_payload
+
+      expect(response).to have_http_status(200)
 
       user.reload
 
-      push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
+      expect(created_push_subscription).to have_attributes(
+        endpoint: eq(create_payload[:subscription][:endpoint]),
+        key_p256dh: eq(create_payload[:subscription][:keys][:p256dh]),
+        key_auth: eq(create_payload[:subscription][:keys][:auth])
+      )
+      expect(user.session_activations.first.web_push_subscription).to eq(created_push_subscription)
+    end
 
-      expect(push_subscription['endpoint']).to eq(create_payload[:subscription][:endpoint])
-      expect(push_subscription['key_p256dh']).to eq(create_payload[:subscription][:keys][:p256dh])
-      expect(push_subscription['key_auth']).to eq(create_payload[:subscription][:keys][:auth])
+    context 'with a user who has a session with a prior subscription' do
+      let!(:prior_subscription) { Fabricate(:web_push_subscription, session_activation: user.session_activations.last) }
+
+      it 'destroys prior subscription when creating new one' do
+        post :create, format: :json, params: create_payload
+
+        expect(response).to have_http_status(200)
+        expect { prior_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
 
     context 'with initial data' do
       it 'saves alert settings' do
-        sign_in(user)
-
-        stub_request(:post, create_payload[:subscription][:endpoint]).to_return(status: 200)
-
         post :create, format: :json, params: create_payload.merge(alerts_payload)
 
-        push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
+        expect(response).to have_http_status(200)
 
-        expect(push_subscription.data['policy']).to eq 'all'
+        expect(created_push_subscription.data['policy']).to eq 'all'
 
         %w(follow follow_request favourite reblog mention poll status).each do |type|
-          expect(push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
+          expect(created_push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
         end
       end
     end
@@ -75,23 +87,23 @@ describe Api::Web::PushSubscriptionsController do
 
   describe 'PUT #update' do
     it 'changes alert settings' do
-      sign_in(user)
-
-      stub_request(:post, create_payload[:subscription][:endpoint]).to_return(status: 200)
-
       post :create, format: :json, params: create_payload
 
-      alerts_payload[:id] = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint]).id
+      expect(response).to have_http_status(200)
+
+      alerts_payload[:id] = created_push_subscription.id
 
       put :update, format: :json, params: alerts_payload
 
-      push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
-
-      expect(push_subscription.data['policy']).to eq 'all'
+      expect(created_push_subscription.data['policy']).to eq 'all'
 
       %w(follow follow_request favourite reblog mention poll status).each do |type|
-        expect(push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
+        expect(created_push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
       end
     end
+  end
+
+  def created_push_subscription
+    Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
   end
 end

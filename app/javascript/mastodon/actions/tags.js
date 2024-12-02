@@ -20,10 +20,10 @@ export const HASHTAG_UNFOLLOW_REQUEST = 'HASHTAG_UNFOLLOW_REQUEST';
 export const HASHTAG_UNFOLLOW_SUCCESS = 'HASHTAG_UNFOLLOW_SUCCESS';
 export const HASHTAG_UNFOLLOW_FAIL    = 'HASHTAG_UNFOLLOW_FAIL';
 
-export const fetchHashtag = name => (dispatch, getState) => {
+export const fetchHashtag = name => (dispatch) => {
   dispatch(fetchHashtagRequest());
 
-  api(getState).get(`/api/v1/tags/${name}`).then(({ data }) => {
+  api().get(`/api/v1/tags/${name}`).then(({ data }) => {
     dispatch(fetchHashtagSuccess(name, data));
   }).catch(err => {
     dispatch(fetchHashtagFail(err));
@@ -45,10 +45,10 @@ export const fetchHashtagFail = error => ({
   error,
 });
 
-export const fetchFollowedHashtags = () => (dispatch, getState) => {
+export const fetchFollowedHashtags = () => (dispatch) => {
   dispatch(fetchFollowedHashtagsRequest());
 
-  api(getState).get('/api/v1/followed_tags').then(response => {
+  api().get('/api/v1/followed_tags').then(response => {
     const next = getLinks(response).refs.find(link => link.rel === 'next');
     dispatch(fetchFollowedHashtagsSuccess(response.data, next ? next.uri : null));
   }).catch(err => {
@@ -87,7 +87,7 @@ export function expandFollowedHashtags() {
 
     dispatch(expandFollowedHashtagsRequest());
 
-    api(getState).get(url).then(response => {
+    api().get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(expandFollowedHashtagsSuccess(response.data, next ? next.uri : null));
     }).catch(error => {
@@ -117,10 +117,10 @@ export function expandFollowedHashtagsFail(error) {
   };
 }
 
-export const followHashtag = name => (dispatch, getState) => {
+export const followHashtag = name => (dispatch) => {
   dispatch(followHashtagRequest(name));
 
-  api(getState).post(`/api/v1/tags/${name}/follow`).then(({ data }) => {
+  api().post(`/api/v1/tags/${name}/follow`).then(({ data }) => {
     dispatch(followHashtagSuccess(name, data));
   }).catch(err => {
     dispatch(followHashtagFail(name, err));
@@ -144,10 +144,10 @@ export const followHashtagFail = (name, error) => ({
   error,
 });
 
-export const unfollowHashtag = name => (dispatch, getState) => {
+export const unfollowHashtag = name => (dispatch) => {
   dispatch(unfollowHashtagRequest(name));
 
-  api(getState).post(`/api/v1/tags/${name}/unfollow`).then(({ data }) => {
+  api().post(`/api/v1/tags/${name}/unfollow`).then(({ data }) => {
     dispatch(unfollowHashtagSuccess(name, data));
   }).catch(err => {
     dispatch(unfollowHashtagFail(name, err));

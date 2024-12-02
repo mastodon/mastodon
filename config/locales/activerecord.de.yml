@@ -4,7 +4,7 @@ de:
     attributes:
       poll:
         expires_at: Abstimmungsende
-        options: Auswahlfelder
+        options: Auswahlmöglichkeiten
       user:
         agreement: Service-Vereinbarung
         email: E-Mail-Adresse
@@ -15,6 +15,12 @@ de:
       user/invite_request:
         text: Begründung
     errors:
+      attributes:
+        domain:
+          invalid: ist kein gültiger Domain-Name
+      messages:
+        invalid_domain_on_line: "%{value} ist kein gültiger Domain-Name"
+        too_many_lines: übersteigt das Limit von %{limit} Zeilen
       models:
         account:
           attributes:
@@ -33,10 +39,15 @@ de:
           attributes:
             data:
               malformed: ist fehlerhaft
+        list_account:
+          attributes:
+            account_id:
+              taken: befindet sich bereits auf der Liste
+          must_be_following: muss ein gefolgtes Konto sein
         status:
           attributes:
             reblog:
-              taken: des Beitrags existiert schon
+              taken: des Beitrags existiert bereits
         user:
           attributes:
             email:
@@ -49,7 +60,7 @@ de:
             permissions_as_keys:
               dangerous: enthält Berechtigungen, die für die Basisrolle nicht sicher sind
               elevated: kann keine Berechtigungen enthalten, die deine aktuelle Rolle nicht besitzt
-              own_role: kann nicht mit deiner aktuellen Rolle geändert werden
+              own_role: kann mit deiner aktuellen Rolle nicht geändert werden
             position:
               elevated: darf nicht höher als deine derzeitige Rolle sein
               own_role: darf nicht mit deiner aktuellen Rolle geändert werden

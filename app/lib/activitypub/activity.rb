@@ -20,9 +20,9 @@ class ActivityPub::Activity
   end
 
   class << self
-    def factory(json, account, **options)
+    def factory(json, account, **)
       @json = json
-      klass&.new(json, account, **options)
+      klass&.new(json, account, **)
     end
 
     private
@@ -154,7 +154,7 @@ class ActivityPub::Activity
     if object_uri.start_with?('http')
       return if ActivityPub::TagManager.instance.local_uri?(object_uri)
 
-      ActivityPub::FetchRemoteStatusService.new.call(object_uri, id: true, on_behalf_of: @account.followers.local.first, request_id: @options[:request_id])
+      ActivityPub::FetchRemoteStatusService.new.call(object_uri, on_behalf_of: @account.followers.local.first, request_id: @options[:request_id])
     elsif @object['url'].present?
       ::FetchRemoteStatusService.new.call(@object['url'], request_id: @options[:request_id])
     end

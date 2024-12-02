@@ -7,11 +7,21 @@ import { openModal, closeModal } from '../actions/modal';
 import DropdownMenu from '../components/dropdown_menu';
 import { isUserTouching } from '../is_mobile';
 
+/**
+ * @param {import('mastodon/store').RootState} state
+ */
 const mapStateToProps = state => ({
-  openDropdownId: state.getIn(['dropdown_menu', 'openId']),
-  openedViaKeyboard: state.getIn(['dropdown_menu', 'keyboard']),
+  openDropdownId: state.dropdownMenu.openId,
+  openedViaKeyboard: state.dropdownMenu.keyboard,
 });
 
+/**
+ * @param {any} dispatch
+ * @param {Object} root0
+ * @param {any} [root0.status]
+ * @param {any} root0.items
+ * @param {any} [root0.scrollKey]
+ */
 const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
   onOpen(id, onItemClick, keyboard) {
     if (status) {
@@ -25,7 +35,7 @@ const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
         actions: items,
         onClick: onItemClick,
       },
-    }) : openDropdownMenu(id, keyboard, scrollKey));
+    }) : openDropdownMenu({ id, keyboard, scrollKey }));
   },
 
   onClose(id) {
@@ -33,7 +43,7 @@ const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
       modalType: 'ACTIONS',
       ignoreFocus: false,
     }));
-    dispatch(closeDropdownMenu(id));
+    dispatch(closeDropdownMenu({ id }));
   },
 });
 

@@ -15,6 +15,12 @@ cy:
       user/invite_request:
         text: Rheswm
     errors:
+      attributes:
+        domain:
+          invalid: "- nid yw'n enw parth dilys"
+      messages:
+        invalid_domain_on_line: Nid yw %{value} yn enw parth dilys
+        too_many_lines: "- dros y terfyn o %{limit} llinell"
       models:
         account:
           attributes:
@@ -33,6 +39,11 @@ cy:
           attributes:
             data:
               malformed: wedi'i gamffurfio
+        list_account:
+          attributes:
+            account_id:
+              taken: eisoes ar y rhestr
+          must_be_following: rhaid iddo fod yn gyfrif dilyn
         status:
           attributes:
             reblog:

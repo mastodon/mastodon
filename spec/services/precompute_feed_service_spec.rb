@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PrecomputeFeedService, type: :service do
+RSpec.describe PrecomputeFeedService do
   subject { described_class.new }
 
   describe 'call' do
@@ -27,7 +27,7 @@ RSpec.describe PrecomputeFeedService, type: :service do
       muted_account = Fabricate(:account)
       Fabricate(:mute, account: account, target_account: muted_account)
       reblog = Fabricate(:status, account: muted_account)
-      status = Fabricate(:status, account: account, reblog: reblog)
+      Fabricate(:status, account: account, reblog: reblog)
 
       subject.call(account)
 

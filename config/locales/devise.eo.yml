@@ -6,12 +6,13 @@ eo:
       send_instructions: Vi ricevos retmesaĝon kun instrukcioj por konfirmi vian retadreson ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
       send_paranoid_instructions: Se via retadreso ekzistas en nia datumbazo, vi ricevos retmesaĝon kun instrukcioj por konfirmi vian retadreson ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
     failure:
-      already_authenticated: Vi jam salutis.
+      already_authenticated: Vi jam ensalutis.
       inactive: Via konto ankoraŭ ne estas konfirmita.
       invalid: Nevalida %{authentication_keys} aŭ pasvorto.
       last_attempt: Vi ankoraŭ povas provi unufoje antaŭ ol via konto estos ŝlosita.
       locked: Via konto estas ŝlosita.
       not_found_in_database: Nevalida %{authentication_keys} aŭ pasvorto.
+      omniauth_user_creation_failure: Eraro okazis kreinte konton por ĉi tiu identeco.
       pending: Via konto ankoraŭ estas kontrolata.
       timeout: Via seanco eksvalidiĝis. Bonvolu ensaluti denove por daŭrigi.
       unauthenticated: Vi devas ensaluti aŭ registriĝi antaŭ ol daŭrigi.
@@ -39,7 +40,7 @@ eo:
         explanation: Retajpu la novan adreson por ŝanĝi vian retpoŝtadreson.
         extra: Se ĉi tiu ŝanĝo ne estis komencita de vi, bonvolu ignori ĉi tiun retmesaĝon. La retadreso por la Mastodon-konto ne ŝanĝiĝos se vi ne aliras la supran ligilon.
         subject: 'Mastodon: Konfirmi retpoŝton por %{instance}'
-        title: Kontrolu retpoŝtadreson
+        title: Kontroli retpoŝtadreson
       reset_password_instructions:
         action: Ŝanĝi pasvorton
         explanation: Vi petis novan pasvorton por via konto.
@@ -47,16 +48,19 @@ eo:
         subject: 'Mastodon: Instrukcioj por ŝanĝi pasvorton'
         title: Pasvorto restarigita
       two_factor_disabled:
-        explanation: Dufaktora aŭtentigo por via konto malebligis. Ensalutado nun eblas per nur retpoŝtadreso kaj pasvorto.
+        explanation: Ensalutu nun eblas uzante nur retadreson kaj pasvorton.
         subject: 'Mastodon: dufaktora aŭtentigo malebligita'
+        subtitle: Dupaŝa aŭtentigo por via konto estas malŝaltita.
         title: 2FA estas malŝaltita
       two_factor_enabled:
-        explanation: Dufaktora aŭtentigo sukcese ebligita por via akonto. Vi bezonos ĵetonon kreitan per parigitan aplikaĵon por ensaluti.
+        explanation: Tokeno generita de la parigita TOTP-aplikaĵo estos necesa por ensaluti.
         subject: 'Mastodon: Dufaktora aŭtentigo ebligita'
+        subtitle: Dupaŝa aŭtentigo por via konto estas ŝaltita.
         title: 2FA aktivigita
       two_factor_recovery_codes_changed:
         explanation: La antaŭaj reakiraj kodoj estis nuligitaj kaj novaj estis generitaj.
         subject: 'Mastodon: Reakiraj kodoj de dufaktora aŭtentigo rekreitaj'
+        subtitle: La antaŭaj restarigaj kodoj estis malvalidigitaj kaj novaj estis generitaj.
         title: Reakiraj kodoj de 2FA estas ŝanĝitaj
       unlock_instructions:
         subject: 'Mastodon: Instrukcioj por malŝlosi'
@@ -70,11 +74,13 @@ eo:
           subject: 'Mastodon: sekureca ŝlosilo forigita'
           title: Unu el viaj sekurecaj ŝlosiloj estis forigita
       webauthn_disabled:
-        explanation: Aŭtentikigo per sekurecaj ŝlosiloj estis malebligita por via konto. Ensaluto nun eblas per nur la signo generita de la parigita TOTP-programo.
+        explanation: Aŭtentigo per sekurecaj ŝlosiloj estas malŝaltita por via konto.
+        extra: Ensaluto nun eblas uzante nur la ĵetonon generitan de la parigita tempbazita unufoja pasvorta aplikaĵo.
         subject: 'Mastodon: sekureca-ŝlosila aŭtentigo malebligita'
         title: Sekurecaj ŝlosiloj malaktivigitaj
       webauthn_enabled:
-        explanation: Sekureca ŝlosila aŭtentokontrolo estis ebligita por via konto. Via sekureca ŝlosilo nun uzeblas por ensaluti.
+        explanation: Sekurecŝlosila aŭtentigo estas ebligita por via konto.
+        extra: Via sekureca ŝlosilo nun povas esti uzata por ensaluto.
         subject: 'Mastodon: sekureca-ŝlosila aŭtentigo ebligita'
         title: Sekurecaj ŝlosiloj aktivigitaj
     omniauth_callbacks:

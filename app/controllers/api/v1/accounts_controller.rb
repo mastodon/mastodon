@@ -1,21 +1,30 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < Api::BaseController
+  include RegistrationHelper
+
   before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:create, :follow, :unfollow, :remove_from_followers, :block, :unblock, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow, :write, :'write:follows' }, only: [:follow, :unfollow, :remove_from_followers]
   before_action -> { doorkeeper_authorize! :follow, :write, :'write:mutes' }, only: [:mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow, :write, :'write:blocks' }, only: [:block, :unblock]
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:create]
 
-  before_action :require_user!, except: [:show, :create]
-  before_action :set_account, except: [:create]
-  before_action :check_account_approval, except: [:create]
-  before_action :check_account_confirmation, except: [:create]
+  before_action :require_user!, except: [:index, :show, :create]
+  before_action :set_account, except: [:index, :create]
+  before_action :set_accounts, only: [:index]
+  before_action :check_account_approval, except: [:index, :create]
+  before_action :check_account_confirmation, except: [:index, :create]
   before_action :check_enabled_registrations, only: [:create]
+  before_action :check_accounts_limit, only: [:index]
+  before_action :check_following_self, only: [:follow]
 
   skip_before_action :require_authenticated_user!, only: :create
 
   override_rate_limit_headers :follow, family: :follows
+
+  def index
+    render json: @accounts, each_serializer: REST::AccountSerializer
+  end
 
   def show
     cache_if_unauthenticated!
@@ -47,7 +56,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def mute
-    MuteService.new.call(current_user.account, @account, notifications: truthy_param?(:notifications), duration: (params[:duration]&.to_i || 0))
+    MuteService.new.call(current_user.account, @account, notifications: truthy_param?(:notifications), duration: params[:duration].to_i)
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships
   end
 
@@ -77,6 +86,10 @@ class Api::V1::AccountsController < Api::BaseController
     @account = Account.find(params[:id])
   end
 
+  def set_accounts
+    @accounts = Account.where(id: account_ids).without_unapproved
+  end
+
   def check_account_approval
     raise(ActiveRecord::RecordNotFound) if @account.local? && @account.user_pending?
   end
@@ -85,23 +98,35 @@ class Api::V1::AccountsController < Api::BaseController
     raise(ActiveRecord::RecordNotFound) if @account.local? && !@account.user_confirmed?
   end
 
-  def relationships(**options)
-    AccountRelationshipsPresenter.new([@account.id], current_user.account_id, **options)
+  def check_accounts_limit
+    raise(Mastodon::ValidationError) if account_ids.size > DEFAULT_ACCOUNTS_LIMIT
+  end
+
+  def check_following_self
+    render json: { error: I18n.t('accounts.self_follow_error') }, status: 403 if current_user.account.id == @account.id
+  end
+
+  def relationships(**)
+    AccountRelationshipsPresenter.new([@account], current_user.account_id, **)
+  end
+
+  def account_ids
+    Array(accounts_params[:id]).uniq.map(&:to_i)
+  end
+
+  def accounts_params
+    params.permit(id: [])
   end
 
   def account_params
-    params.permit(:username, :email, :password, :agreement, :locale, :reason, :time_zone)
+    params.permit(:username, :email, :password, :agreement, :locale, :reason, :time_zone, :invite_code)
+  end
+
+  def invite
+    Invite.find_by(code: params[:invite_code]) if params[:invite_code].present?
   end
 
   def check_enabled_registrations
-    forbidden if single_user_mode? || omniauth_only? || !allowed_registrations?
-  end
-
-  def allowed_registrations?
-    Setting.registrations_mode != 'none'
-  end
-
-  def omniauth_only?
-    ENV['OMNIAUTH_ONLY'] == 'true'
+    forbidden unless allowed_registration?(request.remote_ip, invite)
   end
 end

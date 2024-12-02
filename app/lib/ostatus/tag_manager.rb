@@ -52,7 +52,7 @@ class OStatus::TagManager
       ActivityPub::TagManager.instance.uri_to_local_id(tag)
     else
       matches = Regexp.new("objectId=([\\d]+):objectType=#{expected_type}").match(tag)
-      return matches[1] unless matches.nil?
+      matches[1] unless matches.nil?
     end
   end
 

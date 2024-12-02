@@ -19,7 +19,7 @@ class SuspiciousSignInDetector
   end
 
   def previously_seen_ip?(request)
-    @user.ips.where('ip <<= ?', masked_ip(request)).exists?
+    @user.ips.contained_by(masked_ip(request)).exists?
   end
 
   def freshly_signed_up?

@@ -38,7 +38,7 @@ class BulkImportService < BaseService
     rows_by_acct = extract_rows_by_acct
 
     if @import.overwrite?
-      @account.following.find_each do |followee|
+      @account.following.reorder(nil).find_each do |followee|
         row = rows_by_acct.delete(followee.acct)
 
         if row.nil?
@@ -67,7 +67,7 @@ class BulkImportService < BaseService
     rows_by_acct = extract_rows_by_acct
 
     if @import.overwrite?
-      @account.blocking.find_each do |blocked_account|
+      @account.blocking.reorder(nil).find_each do |blocked_account|
         row = rows_by_acct.delete(blocked_account.acct)
 
         if row.nil?
@@ -93,7 +93,7 @@ class BulkImportService < BaseService
     rows_by_acct = extract_rows_by_acct
 
     if @import.overwrite?
-      @account.muting.find_each do |muted_account|
+      @account.muting.reorder(nil).find_each do |muted_account|
         row = rows_by_acct.delete(muted_account.acct)
 
         if row.nil?
