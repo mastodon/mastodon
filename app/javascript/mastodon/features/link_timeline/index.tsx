@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 
 import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
 import { expandLinkTimeline } from 'mastodon/actions/timelines';
-import Column from 'mastodon/components/column';
+import { Column } from 'mastodon/components/column';
+import type { ColumnRef } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
 import type { Card } from 'mastodon/models/status';
@@ -17,7 +18,7 @@ export const LinkTimeline: React.FC<{
   const { url } = useParams<{ url: string }>();
   const decodedUrl = url ? decodeURIComponent(url) : undefined;
   const dispatch = useAppDispatch();
-  const columnRef = useRef<Column>(null);
+  const columnRef = useRef<ColumnRef>(null);
   const firstStatusId = useAppSelector((state) =>
     decodedUrl
       ? // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
