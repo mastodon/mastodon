@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.14] - UNRELEASED
+
+### Added
+
+- Add `tootctl feeds vacuum` (#33065 by @ClearlyClaire)
+
+### Fixed
+
+- Fix inactive users' timelines being backfilled on follow and unsuspend (#33094 by @ClearlyClaire)
+- Fix direct inbox delivery pushing posts into inactive followers' timelines (#33067 by @ClearlyClaire)
+- Fix `TagFollow` records not being correctly handled in account operations (#33063 by @ClearlyClaire)
+- Fix pushing hashtag-followed posts to feeds of inactive users (#33018 by @Gargron)
+- Fix and improve batch attachment deletion handling when using OpenStack Swift (#32637 by @hugogameiro)
+- Fix tl language native name (#32606 by @seav)
+
+### Security
+
+- Update dependencies
+
 ## [4.2.13] - 2024-09-30
 
 ### Security
