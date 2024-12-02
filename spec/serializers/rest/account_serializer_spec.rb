@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe REST::AccountSerializer do
-  default_datetime = DateTime.new(2024, 11, 28, 16, 20, 0)
   subject { serialized_record_json(account, described_class) }
 
+  let(:default_datetime) { DateTime.new(2024, 11, 28, 16, 20, 0) }
   let(:role)    { Fabricate(:user_role, name: 'Role', highlighted: true) }
   let(:user)    { Fabricate(:user, role: role) }
   let(:account) { user.account }
