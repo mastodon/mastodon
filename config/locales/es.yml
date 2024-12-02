@@ -21,6 +21,7 @@ es:
       one: Publicación
       other: Publicaciones
     posts_tab_heading: Publicaciones
+    self_follow_error: No está permitido seguir tu propia cuenta
   admin:
     account_actions:
       action: Realizar acción
@@ -56,7 +57,7 @@ es:
       confirming: Confirmando
       custom: Personalizado
       delete: Eliminar datos
-      deleted: Borrado
+      deleted: Eliminado
       demote: Degradar
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Deshabilitar
@@ -66,8 +67,8 @@ es:
       display_name: Nombre
       domain: Dominio
       edit: Editar
-      email: E-mail
-      email_status: E-mail Status
+      email: Correo electrónico
+      email_status: Estado del correo electrónico
       enable: Habilitar
       enable_sign_in_token_auth: Habilitar la autenticación por token de correo electrónico
       enabled: Habilitada
@@ -85,7 +86,7 @@ es:
         local: Local
         remote: Remoto
         title: Localización
-      login_status: Estado del login
+      login_status: Estado de inicio de sesión
       media_attachments: Multimedia
       memorialize: Convertir en memorial
       memorialized: Cuenta conmemorativa
@@ -101,7 +102,7 @@ es:
       moderation_notes: Notas de moderación
       most_recent_activity: Actividad más reciente
       most_recent_ip: IP más reciente
-      no_account_selected: Ninguna cuenta se cambió como ninguna fue seleccionada
+      no_account_selected: Ninguna cuenta se cambió, ya que ninguna fue seleccionada
       no_limits_imposed: Sin límites impuestos
       no_role_assigned: Ningún rol asignado
       not_subscribed: No se está suscrito
@@ -115,7 +116,7 @@ es:
       protocol: Protocolo
       public: Público
       push_subscription_expires: Expiración de la suscripción PuSH
-      redownload: Refrescar avatar
+      redownload: Refrescar perfil
       redownloaded_msg: Se actualizó correctamente el perfil de %{username} desde el origen
       reject: Rechazar
       rejected_msg: La solicitud de registro de %{username} ha sido rechazada con éxito
@@ -131,17 +132,17 @@ es:
         success: "¡Enlace de confirmación enviado con éxito!"
       reset: Reiniciar
       reset_password: Reiniciar contraseña
-      resubscribe: Re-suscribir
+      resubscribe: Volver a suscribirse
       role: Rol
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo
       search_same_ip: Otros usuarios con la misma IP
       security: Seguridad
       security_measures:
-        only_password: Sólo contraseña
+        only_password: Solo contraseña
         password_and_2fa: Contraseña y 2FA
       sensitive: Sensible
-      sensitized: marcado como sensible
+      sensitized: Marcada como sensible
       shared_inbox_url: URL de bandeja compartida
       show:
         created_reports: Reportes hechos por esta cuenta
@@ -160,10 +161,10 @@ es:
       unblocked_email_msg: Se ha desbloqueado correctamente la dirección de correo de %{username}
       unconfirmed_email: Correo electrónico sin confirmar
       undo_sensitized: Desmarcar como sensible
-      undo_silenced: Des-silenciar
-      undo_suspension: Des-suspender
+      undo_silenced: Dejar de silenciar
+      undo_suspension: Deshacer suspensión
       unsilenced_msg: Se quitó con éxito el límite de la cuenta %{username}
-      unsubscribe: Desuscribir
+      unsubscribe: Cancelar suscripción
       unsuspended_msg: Se quitó con éxito la suspensión de la cuenta de %{username}
       username: Nombre de usuario
       view_domain: Ver resumen del dominio
@@ -295,7 +296,7 @@ es:
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
-      title: Log de auditoría
+      title: Registro de auditoría
       unavailable_instance: "(nombre de dominio no disponible)"
     announcements:
       destroyed_msg: "¡Anuncio eliminado con éxito!"
@@ -337,7 +338,7 @@ es:
       listed: Listados
       new:
         title: Añadir nuevo emoji personalizado
-      no_emoji_selected: No se cambió ningún emoji ya que no se seleccionó ninguno
+      no_emoji_selected: No se cambió ningún emoji, ya que no se seleccionó ninguno
       not_permitted: No tienes permiso para realizar esta acción
       overwrite: Sobrescribir
       shortcode: Código de atajo
@@ -565,7 +566,7 @@ es:
         '94670856': 3 años
       new:
         title: Crear nueva regla IP
-      no_ip_block_selected: No se han cambiado reglas IP ya que no se ha seleccionado ninguna
+      no_ip_block_selected: No se han cambiado reglas IP, ya que no se ha seleccionado ninguna
       title: Reglas IP
     relationships:
       title: Relaciones de %{acct}
@@ -909,7 +910,7 @@ es:
       review: Estado de revisión
       search: Buscar
       title: Etiquetas
-      updated_msg: Hashtags actualizados exitosamente
+      updated_msg: La configuración de etiquetas se actualizó correctamente
     title: Administración
     trends:
       allow: Permitir
@@ -1058,7 +1059,7 @@ es:
     remove: Desvincular alias
   appearance:
     advanced_web_interface: Interfaz web avanzada
-    advanced_web_interface_hint: 'Si desea utilizar todo el ancho de pantalla, la interfaz web avanzada le permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quiera: Inicio, notificaciones, línea de tiempo federada, cualquier número de listas y etiquetas.'
+    advanced_web_interface_hint: 'Si quieres aprovechar todo el ancho de tu pantalla, la interfaz web avanzada te permite configurar muchas columnas diferentes para ver toda la información que quieras al mismo tiempo: Inicio, notificaciones, cronología federada, cualquier número de listas y etiquetas.'
     animations_and_accessibility: Animaciones y accesibilidad
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
@@ -1100,7 +1101,7 @@ es:
       welcome_title: "¡Te damos la bienvenida, %{name}!"
       wrong_email_hint: Si esa dirección de correo electrónico no es correcta, puedes cambiarla en la configuración de la cuenta.
     delete_account: Borrar cuenta
-    delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
+    delete_account_html: Si deseas eliminar tu cuenta, puedes <a href="%{path}">hacerlo aquí</a>. Se te pedirá una confirmación.
     description:
       prefix_invited_by_user: "¡@%{name} te invita a unirte a este servidor de Mastodon!"
       prefix_sign_up: "¡Únete a Mastodon hoy!"
@@ -1108,7 +1109,7 @@ es:
     didnt_get_confirmation: "¿No recibiste un enlace de confirmación?"
     dont_have_your_security_key: "¿No tienes tu clave de seguridad?"
     forgot_password: "¿Olvidaste tu contraseña?"
-    invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
+    invalid_reset_password_token: El token de restablecimiento de contraseña no es válido o ha expirado. Por favor solicita uno nuevo.
     link_to_otp: Introduce un código de dos factores desde tu teléfono o un código de recuperación
     link_to_webauth: Utilice su dispositivo de clave de seguridad
     log_in_with: Iniciar sesión con
@@ -1142,7 +1143,7 @@ es:
     set_new_password: Establecer nueva contraseña
     setup:
       email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu dirección de correo electrónico si está mal.
-      email_settings_hint_html: Pulsa el enlace que te hemos enviado para verificar %{email}. Esperaremos aquí mismo.
+      email_settings_hint_html: Haz clic en el enlace que te hemos enviado para verificar %{email}. Te esperamos aquí.
       link_not_received: "¿No recibiste un enlace?"
       new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
       title: Revisa tu bandeja de entrada
@@ -1257,7 +1258,7 @@ es:
     '422':
       content: Verificación de seguridad fallida. ¿Estás bloqueando algunas cookies?
       title: Verificación de seguridad fallida
-    '429': Asfixiado
+    '429': Demasiadas solicitudes
     '500':
       content: Lo sentimos, algo ha funcionado mal por nuestra parte.
       title: Esta página no es correcta
@@ -1284,7 +1285,7 @@ es:
   featured_tags:
     add_new: Añadir nuevo
     errors:
-      limit: Ya has alcanzado la cantidad máxima de hashtags
+      limit: Ya has alcanzado la cantidad máxima de etiquetas
     hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus publicaciones públicas específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
@@ -1337,7 +1338,7 @@ es:
       one: "<strong>%{count}</strong> elemento que coincide con su búsqueda está seleccionado."
       other: Todos los <strong>%{count}</strong> elementos que coinciden con su búsqueda están seleccionados.
     cancel: Cancelar
-    changes_saved_msg: "¡Cambios guardados con éxito!"
+    changes_saved_msg: "¡Los cambios se han guardado correctamente!"
     confirm: Confirmar
     copy: Copiar
     delete: Eliminar
@@ -1361,7 +1362,7 @@ es:
       too_large: El archivo es demasiado grande
     failures: Fallos
     imported: Importado
-    mismatched_types_warning: Parece que podrías haber seleccionado el tipo incorrecto para esta importación, por favor vuelve a verificarlo.
+    mismatched_types_warning: Parece que has seleccionado el tipo incorrecto para esta importación, vuelve a comprobarlo.
     modes:
       merge: Unir
       merge_long: Mantener registros existentes y añadir nuevos
@@ -1421,7 +1422,7 @@ es:
       '604800': 1 semana
       '86400': 1 día
     expires_in_prompt: Nunca
-    generate: Generar
+    generate: Generar enlace de invitación
     invalid: Esta invitación no es válida
     invited_by: 'Fuiste invitado por:'
     max_uses:
@@ -1464,12 +1465,12 @@ es:
       title: Cancelar suscripición
   media_attachments:
     validations:
-      images_and_video: No se puede adjuntar un video a unapublicación que ya contenga imágenes
+      images_and_video: No se puede adjuntar un video a una publicación que ya contenga imágenes
       not_found: Archivos multimedia %{ids} no encontrados, o ya se encuentran adjuntos a otra publicación
       not_ready: No se pueden adjuntar archivos que no se han terminado de procesar. ¡Inténtalo de nuevo en un momento!
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
-    acct: username@domain de la nueva cuenta
+    acct: Movido a
     cancel: Cancelar redireccionamiento
     cancel_explanation: Al cancelar el redireccionamiento se reactivará tu cuenta actual, pero no recuperarás los seguidores que hayan sido trasladados a la otra cuenta.
     cancelled_msg: El redireccionamiento se ha cancelado correctamente.
@@ -1698,13 +1699,13 @@ es:
     development: Desarrollo
     edit_profile: Editar perfil
     export: Exportar
-    featured_tags: Hashtags destacados
+    featured_tags: Etiquetas destacadas
     import: Importar
     import_and_export: Importar y exportar
     migrate: Migración de cuenta
     notifications: Notificaciones por correo electrónico
     preferences: Preferencias
-    profile: Perfil
+    profile: Perfil público
     relationships: Siguiendo y seguidores
     severed_relationships: Relaciones cortadas
     statuses_cleanup: Eliminación automática de publicaciones
@@ -1738,8 +1739,8 @@ es:
     content_warning: 'Alerta de contenido: %{warning}'
     default_language: Igual que el idioma de la interfaz
     disallowed_hashtags:
-      one: 'contenía un hashtag no permitido: %{tags}'
-      other: 'contenía los hashtags no permitidos: %{tags}'
+      one: 'contenía una etiqueta no permitida: %{tags}'
+      other: 'contenía las etiquetas no permitidas: %{tags}'
     edited_at_html: Editado %{date}
     errors:
       in_reply_not_found: La publicación a la que intentas responder no existe.
@@ -1748,11 +1749,11 @@ es:
       direct: Las publicaciones que son visibles solo para los usuarios mencionados no pueden fijarse
       limit: Ya has fijado el número máximo de publicaciones
       ownership: La publicación de otra persona no puede fijarse
-      reblog: Un boost no puede fijarse
+      reblog: Una publicación impulsada no puede fijarse
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Directa
-      private: Sólo mostrar a seguidores
+      private: Solo seguidores
       private_long: Solo mostrar a tus seguidores
       public: Pública
       public_long: Todos pueden ver
@@ -1764,9 +1765,9 @@ es:
     exceptions: Excepciones
     explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente, a lo largo de un tiempo, cuando el servidor no está ocupado. Por este motivo, puede que tus publicaciones sean borradas algo después de que alcancen el umbral de tiempo especificado.
     ignore_favs: Ignorar favoritos
-    ignore_reblogs: Ignorar reblogueos
+    ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Excepciones basadas en interacciones
-    interaction_exceptions_explanation: Ten en cuenta que no hay garantía de que se eliminen las publicaciones que están por debajo de los umbrales de favoritos o de reblogueos si los han superado en algún momento.
+    interaction_exceptions_explanation: Ten en cuenta que no hay garantía de que se eliminen las publicaciones que están por debajo de los umbrales de favoritos o de impulsos si los han superado en algún momento.
     keep_direct: Mantener mensajes directos
     keep_direct_hint: No elimina ninguno de tus mensajes directos
     keep_media: Mantener publicaciones con multimedia adjunto
@@ -1792,7 +1793,7 @@ es:
     min_favs: Mantener mensajes con un número de favoritos mayor que
     min_favs_hint: No borra ninguna de las publicaciones que hayan recibido al menos esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
     min_reblogs: Mantener publicaciones reblogueadas más de
-    min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido reblogueadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de reblogueos
+    min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido impulsadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de impulsos
   stream_entries:
     sensitive_content: Contenido sensible
   strikes:
@@ -1801,8 +1802,8 @@ es:
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior
   themes:
-    contrast: Alto contraste
-    default: Mastodon
+    contrast: Mastodon (alto contraste)
+    default: Mastodon (oscuro)
     mastodon-light: Mastodon (claro)
     system: Automático (usar tema del sistema)
   time:
@@ -1822,7 +1823,7 @@ es:
     edit: Editar
     enabled: La autenticación de dos factores está activada
     enabled_success: Verificación de dos factores activada exitosamente
-    generate_recovery_codes: generar códigos de recuperación
+    generate_recovery_codes: Generar códigos de recuperación
     lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación, puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
     methods: Métodos de autenticación de doble factor
     otp: Aplicación de autenticación
@@ -1943,7 +1944,7 @@ es:
   verification:
     extra_instructions_html: <strong>Consejo:</strong> El enlace en tu web puede ser invisible. La parte importante es <code>rel="me"</code>, que evita la suplantación de identidad en sitios con contenido generado por el usuario. Puedes incluso usar una etiqueta <code>enlace</code> en el encabezado de la página en vez de <code>a</code>, pero el HTML debe ser accesible sin ejecutar JavaScript.
     here_is_how: Así es como se hace
-    hint_html: "<strong>Verificar tu identidad en Mastodon es para todos.</strong> Basado en estándares web abiertos, ahora y para siempre. Todo lo que necesitas es un sitio web propio que la gente reconozca. Cuando enlaces a este sitio web desde tu perfil, comprobaremos que el sitio web se enlaza a tu perfil y mostraremos un indicador visual en él."
+    hint_html: "<strong>Verificar tu identidad en Mastodon es para todos.</strong> Basado en estándares web abiertos, ahora y siempre gratis. Todo lo que necesitas es un sitio web personal por el que la gente te reconozca. Cuando enlaces a este sitio web desde tu perfil, comprobaremos que el sitio web enlaza con tu perfil y mostraremos un indicador visual en él."
     instructions_html: Copia y pega el siguiente código en el HTML de tu sitio web. A continuación, añade la dirección de su sitio web en uno de los campos extra de tu perfil desde la pestaña "Editar perfil" y guarda los cambios.
     verification: Verificación
     verified_links: Tus enlaces verificados

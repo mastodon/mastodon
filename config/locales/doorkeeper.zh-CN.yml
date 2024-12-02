@@ -60,7 +60,7 @@ zh-CN:
       error:
         title: 发生错误
       new:
-        prompt_html: "%{client_name} 请求获得访问您账户的权限。 <strong>请在确保自己了解并信任此来源后再批准该请求。</strong>"
+        prompt_html: "%{client_name} 请求获得访问你账户的权限。 <strong>请在确保自己了解并信任此来源后再批准该请求。</strong>"
         review_permissions: 检查权限
         title: 需要授权
       show:
@@ -85,7 +85,7 @@ zh-CN:
         invalid_client: 由于应用信息未知、未提交认证信息或使用了不支持的认证方式，认证失败
         invalid_code_challenge_method: 代码验证方法必须是 S256，不支持明文。
         invalid_grant: 授权方式无效、过期或已被撤销、与授权请求中的回调地址不一致，或使用了其他应用的回调地址
-        invalid_redirect_uri: 无效的登录回调地址
+        invalid_redirect_uri: 登录回调地址无效。
         invalid_request:
           missing_param: 缺少必需的参数：%{value}
           request_not_authorized: 请求需要被授权。授权请求所需的参数缺失或无效。
@@ -123,14 +123,14 @@ zh-CN:
         admin/accounts: 账号管理
         admin/all: 所有管理功能
         admin/reports: 举报管理
-        all: 完全访问您的Mastodon账户
+        all: 完全访问你的Mastodon账户
         blocks: 屏蔽
-        bookmarks: 书签
+        bookmarks: 收藏
         conversations: 会话
         crypto: 端到端加密
         favourites: 喜欢
-        filters: 过滤器
-        follow: 关注者，隐藏与屏蔽
+        filters: 过滤规则
+        follow: 关注，隐藏与屏蔽
         follows: 关注
         lists: 列表
         media: 媒体文件
@@ -163,18 +163,18 @@ zh-CN:
       admin:write:domain_allows: 在域上执行管理操作
       admin:write:domain_blocks: 在域块上执行管理操作
       admin:write:email_domain_blocks: 对已屏蔽邮箱域名执行管理操作
-      admin:write:ip_blocks: 在 IP 块上执行管理操作
+      admin:write:ip_blocks: 针对 IP 段执行管理操作
       admin:write:reports: 对举报执行管理操作
       crypto: 使用端到端加密
       follow: 关注或屏蔽用户
-      profile: 仅读取你账号的个人资料信息
+      profile: 仅读取你账户的个人资料信息
       push: 接收你的账户的推送通知
       read: 读取你的账户数据
       read:accounts: 查看账号信息
       read:blocks: 查看你的屏蔽列表
-      read:bookmarks: 查看你的书签
+      read:bookmarks: 查看你的收藏夹
       read:favourites: 查看喜欢的嘟文
-      read:filters: 查看你的过滤器
+      read:filters: 查看你的过滤规则
       read:follows: 查看你的关注
       read:lists: 查看你的列表
       read:mutes: 查看你的隐藏列表
@@ -185,10 +185,10 @@ zh-CN:
       write: 修改你的账号数据
       write:accounts: 修改你的个人资料
       write:blocks: 屏蔽账号和域名
-      write:bookmarks: 为嘟文添加书签
+      write:bookmarks: 收藏嘟文
       write:conversations: 静音并删除会话
       write:favourites: 喜欢嘟文
-      write:filters: 创建过滤器
+      write:filters: 创建过滤规则
       write:follows: 关注其他人
       write:lists: 创建列表
       write:media: 上传媒体文件
