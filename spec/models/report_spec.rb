@@ -127,6 +127,28 @@ RSpec.describe Report do
     end
   end
 
+  describe '#unresolved_siblings?' do
+    subject { Fabricate :report }
+
+    context 'when the target account has other unresolved reports' do
+      before { Fabricate :report, action_taken_at: nil, target_account: subject.target_account }
+
+      it { is_expected.to be_unresolved_siblings }
+    end
+
+    context 'when the target account has a resolved report' do
+      before { Fabricate :report, action_taken_at: 3.days.ago, target_account: subject.target_account }
+
+      it { is_expected.to_not be_unresolved_siblings }
+    end
+
+    context 'when the target account has no other reports' do
+      before { described_class.where(target_account: subject.target_account).destroy_all }
+
+      it { is_expected.to_not be_unresolved_siblings }
+    end
+  end
+
   describe 'validations' do
     let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
 
