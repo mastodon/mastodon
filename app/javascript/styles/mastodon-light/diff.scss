@@ -529,3 +529,16 @@ a.sparkline {
     color: var(--indigo-3);
   }
 }
+
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: rgba($action-button-color, 0.25)
+      var(--background-border-color);
+  }
+}
+
+.custom-scrollbars {
+  ::-webkit-scrollbar-thumb {
+    opacity: 0.25;
+  }
+}
