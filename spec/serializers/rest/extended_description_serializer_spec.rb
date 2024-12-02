@@ -3,8 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe REST::ExtendedDescriptionSerializer do
-  default_datetime = DateTime.new(2024, 11, 28, 16, 20, 0)
   subject { serialized_record_json(record, described_class) }
+
+  let(:default_datetime) { DateTime.new(2024, 11, 28, 16, 20, 0) }
 
   describe 'serialization' do
     context 'with text present' do

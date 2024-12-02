@@ -15,7 +15,7 @@ RSpec.describe REST::Admin::CohortSerializer do
           'period' => /2024-01-01/
         )
         expect { DateTime.rfc3339(subject['period']) }.to_not raise_error
-        subject['data'].each { |datum| expect {DateTime.rfc3339(datum['date'])}.to_not raise_error}
+        subject['data'].each { |datum| expect { DateTime.rfc3339(datum['date']) }.to_not raise_error }
     end
   end
 end
