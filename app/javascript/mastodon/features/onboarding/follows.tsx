@@ -174,7 +174,7 @@ export const Follows: React.FC<{
             /* @ts-expect-error inferred props are wrong */
             id={accountId}
             key={accountId}
-            withBio={false}
+            withBio
           />
         ))}
       </ScrollableList>
