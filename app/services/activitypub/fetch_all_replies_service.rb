@@ -6,8 +6,8 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
   # Limit of replies to fetch per status
   MAX_REPLIES = (ENV['FETCH_REPLIES_MAX_SINGLE'] || 500).to_i
 
-  def call(collection_or_uri, max_pages = nil, allow_synchronous_requests: true, request_id: nil)
-    @allow_synchronous_requests = allow_synchronous_requests
+  def call(collection_or_uri, max_pages = nil, request_id: nil)
+    @allow_synchronous_requests = true
     @filter_by_host = false
     @collection_or_uri = collection_or_uri
 
