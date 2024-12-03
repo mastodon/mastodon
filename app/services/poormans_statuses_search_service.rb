@@ -23,8 +23,12 @@ class PoormansStatusesSearchService < BaseService
     raw_words = @query.split(/[ 　]/)
     account_id = raw_words.find { |word| word.start_with?('from:') }&.then do |from|
       acct = from.delete_prefix('from:').delete_prefix('@')
-      username, domain = acct.split('@')
-      self.class.find_remote(username, domain)&.id
+      if acct == 'me'
+        @account.id
+      else
+        username, domain = acct.split('@')
+        self.class.find_remote(username, domain)&.id
+      end
     end
     words = raw_words.reject { |word| word.start_with?('from:') }
 
