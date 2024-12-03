@@ -113,7 +113,14 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
   end
 
   let(:account) { Fabricate(:account, domain: 'example.com') }
-  let(:status)  { Fabricate(:status, account: account, uri: top_note_uri) }
+  let(:status) do
+    Fabricate(
+      :status,
+      account: account,
+      uri: top_note_uri,
+      created_at: 1.day.ago - Status::FetchRepliesConcern::CREATED_RECENTLY_DEBOUNCE
+    )
+  end
 
   before do
     allow(FetchReplyWorker).to receive(:push_bulk)
@@ -252,6 +259,28 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
         stub_const('ActivityPub::FetchAllRepliesWorker::MAX_PAGES', 3)
         got_uris = subject.perform(status.id)
         expect(got_uris).to match_array(top_items + top_items_paged + nested_items)
+      end
+    end
+
+    context 'when replies should not be fetched' do
+      # ensure that we should not fetch by setting the status to be created in the debounce window
+      let(:status) do
+        Fabricate(
+          :status,
+          account: account,
+          uri: top_note_uri,
+          created_at: DateTime.now
+        )
+      end
+
+      before do
+        stub_const('Status::FetchRepliesConcern::CREATED_RECENTLY_DEBOUNCE', 1.week)
+      end
+
+      it 'returns nil without fetching' do
+        got_uris = subject.perform(status.id)
+        expect(got_uris).to be_nil
+        assert_not_requested :get, top_note_uri
       end
     end
   end
