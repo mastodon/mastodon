@@ -281,7 +281,7 @@ fi:
         reject_appeal_html: "%{name} hylkäsi käyttäjän %{target} valituksen moderointipäätöksestä"
         reject_user_html: "%{name} hylkäsi käyttäjän %{target} rekisteröitymisen"
         remove_avatar_user_html: "%{name} poisti käyttäjän %{target} profiilikuvan"
-        reopen_report_html: "%{name} avasi uudelleen raportin %{target}"
+        reopen_report_html: "%{name} avasi raportin %{target} uudelleen"
         resend_user_html: "%{name} lähetti vahvistussähköpostiviestin uudelleen käyttäjälle %{target}"
         reset_password_user_html: "%{name} palautti käyttäjän %{target} salasanan"
         resolve_report_html: "%{name} ratkaisi raportin %{target}"
@@ -828,7 +828,7 @@ fi:
       batch:
         add_to_report: Lisää raporttiin nro %{id}
         remove_from_report: Poista raportista
-        report: Raportti
+        report: Raportoi
       contents: Sisältö
       deleted: Poistettu
       favourites: Suosikit
