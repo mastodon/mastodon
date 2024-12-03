@@ -523,6 +523,13 @@ a.sparkline {
   }
 }
 
+.notification-group--annual-report {
+  .notification-group__icon,
+  .notification-group__main .link-button {
+    color: var(--indigo-3);
+  }
+}
+
 @supports not selector(::-webkit-scrollbar) {
   html {
     scrollbar-color: rgba($action-button-color, 0.25)
@@ -530,13 +537,8 @@ a.sparkline {
   }
 }
 
-::-webkit-scrollbar-thumb {
-  opacity: 0.25;
-}
-
-.notification-group--annual-report {
-  .notification-group__icon,
-  .notification-group__main .link-button {
-    color: var(--indigo-3);
+.custom-scrollbars {
+  ::-webkit-scrollbar-thumb {
+    opacity: 0.25;
   }
 }
