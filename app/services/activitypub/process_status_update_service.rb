@@ -204,7 +204,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       mention ||= account.mentions.new(status: @status)
 
       current_mentions << mention
-    rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
+    rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
       # Since previous mentions are about already-known accounts,
       # they don't try to resolve again and won't fall into this case.
       # In other words, this failure case is only for new mentions and won't
