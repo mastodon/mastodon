@@ -103,6 +103,36 @@ RSpec.describe 'poormans search' do # ::FilePath
           expect(response.parsed_body[:statuses].pluck(:content)).to eq(['word 3', 'word 1'].map { |w| "<p>#{w}</p>" })
         end
       end
+
+      context 'when specified local account' do
+        let!(:status_from_local_account) { Fabricate(:status, account: Fabricate(:account, domain: nil), text: 'word 1') }
+
+        before do
+          # other status
+          Fabricate(:status, text: 'word 2')
+        end
+
+        it 'returns status from local user' do
+          get '/api/v2/search', headers: headers, params: { q: "word from:@#{status_from_local_account.account.username}", limit: 3 }
+
+          expect(response.parsed_body[:statuses].pluck(:content)).to contain_exactly('<p>word 1</p>')
+        end
+      end
+
+      context 'when specified me' do
+        before do
+          # my status
+          Fabricate(:status, account: Fabricate(:account, user: user), text: 'word 1')
+          # other status
+          Fabricate(:status, text: 'word 2')
+        end
+
+        it 'returns status from me' do
+          get '/api/v2/search', headers: headers, params: { q: 'word from:me', limit: 3 }
+
+          expect(response.parsed_body[:statuses].pluck(:content)).to contain_exactly('<p>word 1</p>')
+        end
+      end
     end
   end
 end
