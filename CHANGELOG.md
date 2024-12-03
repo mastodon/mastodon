@@ -3,7 +3,7 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
-## [4.2.21] - 2024-12-02
+## [4.2.21] - 2024-12-03
 
 ### Fixed
 
