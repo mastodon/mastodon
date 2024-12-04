@@ -18,6 +18,16 @@ RSpec.describe UserRole do
       end
     end
 
+    describe 'position' do
+      subject { Fabricate.build :user_role }
+
+      let(:excess) { 2**32 }
+      let(:limit) { 2**31 }
+
+      it { is_expected.to_not allow_values(-excess, excess).for(:position) }
+      it { is_expected.to allow_values(-limit, limit).for(:position) }
+    end
+
     describe 'color' do
       it { is_expected.to allow_values('#112233', '#aabbcc', '').for(:color) }
       it { is_expected.to_not allow_values('x', '112233445566', '#xxyyzz').for(:color) }
