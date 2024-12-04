@@ -1085,7 +1085,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_23_160722) do
     t.float "score", default: 0.0, null: false
     t.integer "rank", default: 0, null: false
     t.boolean "allowed", default: false, null: false
-    t.string "language"
+    t.string "language", default: "", null: false
     t.index ["tag_id", "language"], name: "index_tag_trends_on_tag_id_and_language", unique: true
   end
 
