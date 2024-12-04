@@ -197,7 +197,7 @@ end
 
 group :development, :test do
   # Interactive Debugging tools
-  gem 'debug', '~> 1.8'
+  gem 'debug', '~> 1.8', require: false
 
   # Generate fake data values
   gem 'faker', '~> 3.2'
@@ -210,6 +210,9 @@ group :development, :test do
   gem 'ruby-prof', require: false
   gem 'stackprof', require: false
   gem 'test-prof'
+  gem 'vernier', require: false
+
+  
 
   # RSpec runner for rails
   gem 'rspec-rails', '~> 7.0'
