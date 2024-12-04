@@ -77,12 +77,13 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       },
 
       media_attachments: {
-        supported_mime_types: MediaAttachment.supported_mime_types,
-        image_size_limit: MediaAttachment::IMAGE_LIMIT,
+        description_limit: MediaAttachment::MAX_DESCRIPTION_LENGTH,
         image_matrix_limit: Attachmentable::MAX_MATRIX_LIMIT,
-        video_size_limit: MediaAttachment::VIDEO_LIMIT,
+        image_size_limit: MediaAttachment::IMAGE_LIMIT,
+        supported_mime_types: MediaAttachment.supported_mime_types,
         video_frame_rate_limit: MediaAttachment::MAX_VIDEO_FRAME_RATE,
         video_matrix_limit: MediaAttachment::MAX_VIDEO_MATRIX_LIMIT,
+        video_size_limit: MediaAttachment::VIDEO_LIMIT,
       },
 
       polls: {
