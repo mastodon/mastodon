@@ -399,7 +399,7 @@ The following changelog entries focus on changes visible to users, administrator
 - Fix empty environment variables not using default nil value (#27400 by @renchap)
 - Fix language sorting in settings (#27158 by @gunchleoc)
 
-## |4.2.11] - 2024-08-16
+## [4.2.11] - 2024-08-16
 
 ### Added
 

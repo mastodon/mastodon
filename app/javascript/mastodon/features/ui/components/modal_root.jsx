@@ -35,6 +35,7 @@ import {
   ConfirmUnfollowModal,
   ConfirmClearNotificationsModal,
   ConfirmLogOutModal,
+  ConfirmFollowToListModal,
 } from './confirmation_modals';
 import FocalPointModal from './focal_point_modal';
 import ImageModal from './image_modal';
@@ -56,6 +57,7 @@ export const MODAL_COMPONENTS = {
   'CONFIRM_UNFOLLOW': () => Promise.resolve({ default: ConfirmUnfollowModal }),
   'CONFIRM_CLEAR_NOTIFICATIONS': () => Promise.resolve({ default: ConfirmClearNotificationsModal }),
   'CONFIRM_LOG_OUT': () => Promise.resolve({ default: ConfirmLogOutModal }),
+  'CONFIRM_FOLLOW_TO_LIST': () => Promise.resolve({ default: ConfirmFollowToListModal }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
   'DOMAIN_BLOCK': DomainBlockModal,
