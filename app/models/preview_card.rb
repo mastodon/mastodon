@@ -134,7 +134,7 @@ class PreviewCard < ApplicationRecord
   end
 
   def authors
-    @authors ||= [PreviewCard::Author.new(self)]
+    @authors ||= Array(serialized_authors)
   end
 
   class Author < ActiveModelSerializers::Model
@@ -168,6 +168,13 @@ class PreviewCard < ApplicationRecord
   end
 
   private
+
+  def serialized_authors
+    if author_name? || author_url?
+      PreviewCard::Author
+        .new(self)
+    end
+  end
 
   def extract_dimensions
     file = image.queued_for_write[:original]
