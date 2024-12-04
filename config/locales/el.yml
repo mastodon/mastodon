@@ -430,6 +430,7 @@ el:
       attempts_over_week:
         one: "%{count} προσπάθεια την τελευταία εβδομάδα"
         other: "%{count} προσπάθειες εγγραφής την τελευταία εβδομάδα"
+      created_msg: Επιτυχής αποκλεισμός τομέα email
       delete: Διαγραφή
       dns:
         types:
@@ -859,6 +860,9 @@ el:
         message_html: Δεν έχεις ορίσει κανέναν κανόνα διακομιστή.
       sidekiq_process_check:
         message_html: Καμία διεργασία Sidekiq δεν εκτελείται για την ουρά %{value}. Παρακαλώ έλεγξε τη διαμόρφωση του Sidekiq
+      software_version_check:
+        action: Δες τις διαθέσιμες ενημερώσεις
+        message_html: Μια ενημέρωση Mastodon είναι διαθέσιμη.
       software_version_critical_check:
         action: Δες τις διαθέσιμες ενημερώσεις
         message_html: Μια κρίσιμη ενημέρωση του Mastodon είναι διαθέσιμη, παρακαλώ ενήμερωσε το συντομότερο δυνατόν.
