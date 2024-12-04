@@ -14,15 +14,6 @@ class Trends::Tags < Trends::Base
   }
 
   class Query < Trends::Query
-    def filtered_for!(account)
-      @account = account
-      self
-    end
-
-    def filtered_for(account)
-      clone.filtered_for!(account)
-    end
-
     def to_arel
       scope = Tag.joins(:trend).reorder(language_order_clause.desc, score: :desc)
       scope = scope.merge(TagTrend.allowed) if @allowed
@@ -35,14 +26,6 @@ class Trends::Tags < Trends::Base
 
     def language_order_clause
       Arel::Nodes::Case.new.when(TagTrend.arel_table[:language].in(preferred_languages)).then(1).else(0)
-    end
-
-    def preferred_languages
-      if @account&.chosen_languages.present?
-        @account.chosen_languages
-      else
-        @locale
-      end
     end
   end
 

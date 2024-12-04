@@ -12,6 +12,7 @@ class Trends::Query
     @records = []
     @loaded  = false
     @allowed = false
+    @account = nil
     @limit   = nil
     @offset  = nil
   end
@@ -23,6 +24,15 @@ class Trends::Query
 
   def allowed
     clone.allowed!
+  end
+
+  def filtered_for!(account)
+    @account = account
+    self
+  end
+
+  def filtered_for(account)
+    clone.filtered_for!(account)
   end
 
   def in_locale!(value)
@@ -82,5 +92,13 @@ class Trends::Query
 
   def perform_queries
     to_arel.to_a
+  end
+
+  def preferred_languages
+    if @account&.chosen_languages.present?
+      @account.chosen_languages
+    else
+      @locale
+    end
   end
 end

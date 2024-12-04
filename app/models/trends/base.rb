@@ -34,7 +34,7 @@ class Trends::Base
   end
 
   def query
-    Trends::Query.new(key_prefix, klass)
+    Trends::Query.new(klass)
   end
 
   protected
