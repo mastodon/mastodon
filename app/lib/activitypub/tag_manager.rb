@@ -13,7 +13,9 @@ class ActivityPub::TagManager
   }.freeze
 
   def public_collection?(uri)
-    [COLLECTIONS[:public], 'as:Public', 'Public'].include?(uri)
+    %w(as:Public Public)
+      .push(COLLECTIONS[:public])
+      .include?(uri)
   end
 
   def url_for(target)
