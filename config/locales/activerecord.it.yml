@@ -39,6 +39,11 @@ it:
           attributes:
             data:
               malformed: è malformato
+        list_account:
+          attributes:
+            account_id:
+              taken: è già nella lista
+          must_be_following: deve essere un account seguito
         status:
           attributes:
             reblog:
