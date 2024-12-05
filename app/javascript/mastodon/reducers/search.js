@@ -50,6 +50,7 @@ export default function search(state = initialState, action) {
     return state.set('hidden', true);
   case SEARCH_FETCH_REQUEST:
     return state.withMutations(map => {
+      map.set('results', ImmutableMap());
       map.set('isLoading', true);
       map.set('submitted', true);
       map.set('type', action.searchType);

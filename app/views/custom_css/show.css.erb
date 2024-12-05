@@ -1,8 +1,8 @@
-<%- if Setting.custom_css.present? %>
-<%= raw Setting.custom_css %>
+<%- if custom_css_styles.present? %>
+<%= raw custom_css_styles %>
 
 <%- end %>
-<%- UserRole.where(highlighted: true).select { |role| role.color.present? }.each do |role| %>
+<%- @user_roles.each do |role| %>
 .user-role-<%= role.id %> {
   --user-role-accent: <%= role.color %>;
 }

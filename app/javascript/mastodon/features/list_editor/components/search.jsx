@@ -7,6 +7,8 @@ import classNames from 'classnames';
 
 import { connect } from 'react-redux';
 
+import CancelIcon from '@/material-icons/400-24px/cancel.svg?react';
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 
 import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
@@ -69,8 +71,8 @@ class Search extends PureComponent {
         </label>
 
         <div role='button' tabIndex={0} className='search__icon' onClick={this.handleClear}>
-          <Icon id='search' className={classNames({ active: !hasValue })} />
-          <Icon id='times-circle' aria-label={intl.formatMessage(messages.search)} className={classNames({ active: hasValue })} />
+          <Icon id='search' icon={SearchIcon} className={classNames({ active: !hasValue })} />
+          <Icon id='times-circle' icon={CancelIcon} aria-label={intl.formatMessage(messages.search)} className={classNames({ active: hasValue })} />
         </div>
       </div>
     );

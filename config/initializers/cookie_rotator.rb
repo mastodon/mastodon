@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-# TODO: Remove after 4.2.0
-Rails.application.configure do
-  config.active_support.key_generator_hash_digest_class = OpenSSL::Digest::SHA1
-end
+# TODO: remove this file some time after 4.3.0
 
 Rails.application.config.after_initialize do
   Rails.application.config.action_dispatch.cookies_rotations.tap do |cookies|
@@ -12,9 +9,8 @@ Rails.application.config.after_initialize do
 
     secret_key_base = Rails.application.secret_key_base
 
-    # TODO: Switch to SHA1 after 4.2.0
     key_generator = ActiveSupport::KeyGenerator.new(
-      secret_key_base, iterations: 1000, hash_digest_class: OpenSSL::Digest::SHA256
+      secret_key_base, iterations: 1000, hash_digest_class: OpenSSL::Digest::SHA1
     )
     key_len = ActiveSupport::MessageEncryptor.key_len
 

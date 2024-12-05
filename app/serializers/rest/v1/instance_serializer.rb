@@ -33,7 +33,7 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
   end
 
   def thumbnail
-    instance_presenter.thumbnail ? full_asset_url(instance_presenter.thumbnail.file.url(:'@1x')) : full_pack_url('media/images/preview.png')
+    instance_presenter.thumbnail ? full_asset_url(instance_presenter.thumbnail.file.url(:'@1x')) : frontend_asset_url('images/preview.png')
   end
 
   def stats
@@ -64,12 +64,12 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
 
       statuses: {
         max_characters: StatusLengthValidator::MAX_CHARS,
-        max_media_attachments: 4,
+        max_media_attachments: Status::MEDIA_ATTACHMENTS_LIMIT,
         characters_reserved_per_url: StatusLengthValidator::URL_PLACEHOLDER_CHARS,
       },
 
       media_attachments: {
-        supported_mime_types: MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES + MediaAttachment::AUDIO_MIME_TYPES,
+        supported_mime_types: MediaAttachment.supported_mime_types,
         image_size_limit: MediaAttachment::IMAGE_LIMIT,
         image_matrix_limit: Attachmentable::MAX_MATRIX_LIMIT,
         video_size_limit: MediaAttachment::VIDEO_LIMIT,

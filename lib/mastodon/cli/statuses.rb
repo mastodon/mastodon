@@ -26,10 +26,7 @@ module Mastodon::CLI
       indices before commencing, and removes them afterward.
     LONG_DESC
     def remove
-      if options[:batch_size] < 1
-        say('Cannot run with this batch_size setting, must be at least 1', :red)
-        exit(1)
-      end
+      fail_with_message 'Cannot run with this batch_size setting, must be at least 1' if options[:batch_size] < 1
 
       remove_statuses
       vacuum_and_analyze_statuses
@@ -120,7 +117,7 @@ module Mastodon::CLI
 
       say('Beginning removal of now-orphaned media attachments to free up disk space...')
 
-      scope     = MediaAttachment.reorder(nil).unattached.where('created_at < ?', options[:days].pred.days.ago)
+      scope     = MediaAttachment.unattached.created_before(options[:days].pred.days.ago)
       processed = 0
       removed   = 0
       progress  = create_progress_bar(scope.count)
@@ -194,24 +191,24 @@ module Mastodon::CLI
 
     def vacuum_and_analyze_statuses
       if options[:compress_database]
-        say('Run VACUUM FULL ANALYZE to statuses...')
+        say('Running "VACUUM FULL ANALYZE statuses"...')
         ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE statuses')
-        say('Run REINDEX to statuses...')
+        say('Running "REINDEX TABLE statuses"...')
         ActiveRecord::Base.connection.execute('REINDEX TABLE statuses')
       else
-        say('Run ANALYZE to statuses...')
+        say('Running "ANALYZE statuses"...')
         ActiveRecord::Base.connection.execute('ANALYZE statuses')
       end
     end
 
     def vacuum_and_analyze_conversations
       if options[:compress_database]
-        say('Run VACUUM FULL ANALYZE to conversations...')
+        say('Running "VACUUM FULL ANALYZE conversations"...')
         ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE conversations')
-        say('Run REINDEX to conversations...')
+        say('Running "REINDEX TABLE conversations"...')
         ActiveRecord::Base.connection.execute('REINDEX TABLE conversations')
       else
-        say('Run ANALYZE to conversations...')
+        say('Running "ANALYZE conversations"...')
         ActiveRecord::Base.connection.execute('ANALYZE conversations')
       end
     end

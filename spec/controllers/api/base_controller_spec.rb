@@ -2,17 +2,13 @@
 
 require 'rails_helper'
 
-describe Api::BaseController do
-  before do
-    stub_const('FakeService', Class.new)
-  end
-
+RSpec.describe Api::BaseController do
   controller do
     def success
       head 200
     end
 
-    def error
+    def failure
       FakeService.new
     end
   end
@@ -30,7 +26,7 @@ describe Api::BaseController do
 
     it 'does not protect from forgery' do
       ActionController::Base.allow_forgery_protection = true
-      post 'success'
+      post :success
       expect(response).to have_http_status(200)
     end
   end
@@ -50,50 +46,26 @@ describe Api::BaseController do
 
     it 'returns http forbidden for unconfirmed accounts' do
       user.update(confirmed_at: nil)
-      post 'success'
+      post :success
       expect(response).to have_http_status(403)
     end
 
     it 'returns http forbidden for pending accounts' do
       user.update(approved: false)
-      post 'success'
+      post :success
       expect(response).to have_http_status(403)
     end
 
     it 'returns http forbidden for disabled accounts' do
       user.update(disabled: true)
-      post 'success'
+      post :success
       expect(response).to have_http_status(403)
     end
 
     it 'returns http forbidden for suspended accounts' do
       user.account.suspend!
-      post 'success'
+      post :success
       expect(response).to have_http_status(403)
-    end
-  end
-
-  describe 'error handling' do
-    before do
-      routes.draw { get 'error' => 'api/base#error' }
-    end
-
-    {
-      ActiveRecord::RecordInvalid => 422,
-      Mastodon::ValidationError => 422,
-      ActiveRecord::RecordNotFound => 404,
-      Mastodon::UnexpectedResponseError => 503,
-      HTTP::Error => 503,
-      OpenSSL::SSL::SSLError => 503,
-      Mastodon::NotPermittedError => 403,
-    }.each do |error, code|
-      it "Handles error class of #{error}" do
-        allow(FakeService).to receive(:new).and_raise(error)
-
-        get 'error'
-        expect(response).to have_http_status(code)
-        expect(FakeService).to have_received(:new)
-      end
     end
   end
 end

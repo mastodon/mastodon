@@ -1,0 +1,24 @@
+- if report.account.instance_actor?
+  %p= t('admin.reports.comment_description_html', name: content_tag(:strong, site_hostname, class: 'username'))
+- elsif report.account.local?
+  %p= t('admin.reports.comment_description_html', name: content_tag(:strong, report.account.username, class: 'username'))
+- else
+  %p= t('admin.reports.comment_description_html', name: t('admin.reports.remote_user_placeholder', instance: report.account.domain))
+.report-notes
+  .report-notes__item
+    - if report.account.local? && !report.account.instance_actor?
+      = image_tag report.account.avatar.url, class: 'report-notes__item__avatar'
+    - else
+      = image_tag(full_asset_url('avatars/original/missing.png', skip_pipeline: true), class: 'report-notes__item__avatar')
+    .report-notes__item__header
+      %span.username
+        - if report.account.instance_actor?
+          = site_hostname
+        - elsif report.account.local?
+          = link_to report.account.username, admin_account_path(report.account_id)
+        - else
+          = link_to report.account.domain, admin_instance_path(report.account.domain)
+      %time.relative-formatted{ datetime: report.created_at.iso8601 }
+        = l report.created_at.to_date
+    .report-notes__item__content
+      = simple_format(h(report.comment))

@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "noUnusedParameters": false,
+    "tsBuildInfoFile": "../tmp/cache/streaming/tsconfig.tsbuildinfo",
+    "paths": {}
+  },
+  "include": ["./*.js", "./.eslintrc.cjs"]
+}

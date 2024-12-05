@@ -13,8 +13,9 @@
     & > div,
     & > a {
       padding: 20px;
-      background: lighten($ui-base-color, 4%);
+      background: var(--background-color);
       border-radius: 4px;
+      border: 1px solid var(--background-border-color);
       box-sizing: border-box;
       height: 100%;
     }
@@ -27,7 +28,7 @@
       &:hover,
       &:focus,
       &:active {
-        background: lighten($ui-base-color, 8%);
+        background: $ui-base-color;
       }
     }
   }
@@ -85,9 +86,7 @@
     color: $primary-text-color;
     transition: all 100ms ease-in;
     font-size: 14px;
-    padding: 0 16px;
-    line-height: 36px;
-    height: 36px;
+    padding: 8px 16px;
     text-decoration: none;
     margin-bottom: 4px;
 
@@ -110,10 +109,6 @@
 
     span {
       flex: 1 1 auto;
-    }
-
-    .fa {
-      flex: 0 0 auto;
     }
 
     strong {

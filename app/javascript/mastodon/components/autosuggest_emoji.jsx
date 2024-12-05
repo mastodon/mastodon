@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { assetHost } from 'mastodon/utils/config';
 
-import unicodeMapping from '../features/emoji/emoji_unicode_mapping_light';
+import { unicodeMapping } from '../features/emoji/emoji_unicode_mapping_light';
 
 export default class AutosuggestEmoji extends PureComponent {
 
@@ -35,7 +35,7 @@ export default class AutosuggestEmoji extends PureComponent {
           alt={emoji.native || emoji.colons}
         />
 
-        {emoji.colons}
+        <div className='autosuggest-emoji__name'>{emoji.colons}</div>
       </div>
     );
   }

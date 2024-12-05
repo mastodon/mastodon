@@ -20,18 +20,27 @@
 class Announcement < ApplicationRecord
   scope :unpublished, -> { where(published: false) }
   scope :published, -> { where(published: true) }
-  scope :without_muted, ->(account) { joins("LEFT OUTER JOIN announcement_mutes ON announcement_mutes.announcement_id = announcements.id AND announcement_mutes.account_id = #{account.id}").where(announcement_mutes: { id: nil }) }
-  scope :chronological, -> { order(Arel.sql('COALESCE(announcements.starts_at, announcements.scheduled_at, announcements.published_at, announcements.created_at) ASC')) }
-  scope :reverse_chronological, -> { order(Arel.sql('COALESCE(announcements.starts_at, announcements.scheduled_at, announcements.published_at, announcements.created_at) DESC')) }
+  scope :chronological, -> { order(coalesced_chronology_timestamps.asc) }
+  scope :reverse_chronological, -> { order(coalesced_chronology_timestamps.desc) }
 
   has_many :announcement_mutes, dependent: :destroy
   has_many :announcement_reactions, dependent: :destroy
 
   validates :text, presence: true
-  validates :starts_at, presence: true, if: -> { ends_at.present? }
-  validates :ends_at, presence: true, if: -> { starts_at.present? }
+  validates :starts_at, presence: true, if: :ends_at?
+  validates :ends_at, presence: true, if: :starts_at?
 
   before_validation :set_published, on: :create
+
+  class << self
+    def coalesced_chronology_timestamps
+      Arel.sql(
+        <<~SQL.squish
+          COALESCE(announcements.starts_at, announcements.scheduled_at, announcements.published_at, announcements.created_at)
+        SQL
+      )
+    end
+  end
 
   def to_log_human_identifier
     text
@@ -45,20 +54,18 @@ class Announcement < ApplicationRecord
     update!(published: false, scheduled_at: nil)
   end
 
-  def time_range?
-    starts_at.present? && ends_at.present?
-  end
-
   def mentions
     @mentions ||= Account.from_text(text)
   end
 
   def statuses
-    @statuses ||= if status_ids.nil?
-                    []
-                  else
-                    Status.where(id: status_ids, visibility: [:public, :unlisted])
-                  end
+    @statuses ||= begin
+      if status_ids.nil?
+        []
+      else
+        Status.with_includes.distributable_visibility.where(id: status_ids)
+      end
+    end
   end
 
   def tags
@@ -70,21 +77,40 @@ class Announcement < ApplicationRecord
   end
 
   def reactions(account = nil)
-    records = begin
-      scope = announcement_reactions.group(:announcement_id, :name, :custom_emoji_id).order(Arel.sql('MIN(created_at) ASC'))
-
-      if account.nil?
-        scope.select('name, custom_emoji_id, count(*) as count, false as me')
-      else
-        scope.select("name, custom_emoji_id, count(*) as count, exists(select 1 from announcement_reactions r where r.account_id = #{account.id} and r.announcement_id = announcement_reactions.announcement_id and r.name = announcement_reactions.name) as me")
+    grouped_ordered_announcement_reactions.select(
+      [:name, :custom_emoji_id, 'COUNT(*) as count'].tap do |values|
+        values << value_for_reaction_me_column(account)
       end
-    end.to_a
-
-    ActiveRecord::Associations::Preloader.new(records: records, associations: :custom_emoji).call
-    records
+    ).to_a.tap do |records|
+      ActiveRecord::Associations::Preloader.new(records: records, associations: :custom_emoji).call
+    end
   end
 
   private
+
+  def grouped_ordered_announcement_reactions
+    announcement_reactions
+      .group(:announcement_id, :name, :custom_emoji_id)
+      .order(
+        Arel.sql('MIN(created_at)').asc
+      )
+  end
+
+  def value_for_reaction_me_column(account)
+    if account.nil?
+      'FALSE AS me'
+    else
+      <<~SQL.squish
+        EXISTS(
+          SELECT 1
+          FROM announcement_reactions inner_reactions
+          WHERE inner_reactions.account_id = #{account.id}
+            AND inner_reactions.announcement_id = announcement_reactions.announcement_id
+            AND inner_reactions.name = announcement_reactions.name
+        ) AS me
+      SQL
+    end
+  end
 
   def set_published
     return unless scheduled_at.blank? || scheduled_at.past?

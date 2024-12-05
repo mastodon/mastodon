@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
-class Api::V1::Statuses::TranslationsController < Api::BaseController
-  include Authorization
-
+class Api::V1::Statuses::TranslationsController < Api::V1::Statuses::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:statuses' }
   before_action :require_user!
-  before_action :set_status
   before_action :set_translation
 
   rescue_from TranslationService::NotConfiguredError, with: :not_found
@@ -24,13 +21,6 @@ class Api::V1::Statuses::TranslationsController < Api::BaseController
   end
 
   private
-
-  def set_status
-    @status = Status.find(params[:status_id])
-    authorize @status, :show?
-  rescue Mastodon::NotPermittedError
-    not_found
-  end
 
   def set_translation
     @translation = TranslateStatusService.new.call(@status, content_locale)

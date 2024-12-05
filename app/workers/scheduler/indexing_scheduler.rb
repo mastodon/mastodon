@@ -24,6 +24,8 @@ class Scheduler::IndexingScheduler
     end
   end
 
+  private
+
   def indexes
     [AccountsIndex, TagsIndex, PublicStatusesIndex, StatusesIndex]
   end

@@ -7,7 +7,6 @@ da:
     hosted_on: Mastodon hostet på %{domain}
     title: Om
   accounts:
-    follow: Følg
     followers:
       one: Følger
       other: tilhængere
@@ -25,6 +24,8 @@ da:
   admin:
     account_actions:
       action: Udfør handling
+      already_silenced: Denne konto er allerede blevet begrænset.
+      already_suspended: Denne konto er allerede suspenderet.
       title: Udfør moderatorhandling på %{acct}
     account_moderation_notes:
       create: Skriv notat
@@ -46,6 +47,7 @@ da:
         title: Skift e-mail for %{username}
       change_role:
         changed_msg: Rolle ændret!
+        edit_roles: Håndtér brugerroller
         label: Ændr rolle
         no_role: Ingen rolle
         title: Ændr rolle for %{username}
@@ -58,7 +60,7 @@ da:
       demote: Degradér
       destroyed_msg: "%{username}s data er nu sat i kø mhp. snarlig sletning"
       disable: Frys
-      disable_sign_in_token_auth: Deaktivér e-mailtokengodkendelse
+      disable_sign_in_token_auth: Deaktivér e-mailtoken godkendelse
       disable_two_factor_authentication: Deaktivér 2FA
       disabled: Frosset
       display_name: Visningsnavn
@@ -226,13 +228,14 @@ da:
         update_custom_emoji: Opdatér tilpasset emoji
         update_domain_block: Opdatér domæneblokering
         update_ip_block: Opdatér IP-regel
+        update_report: Opdatér anmeldelse
         update_status: Opdatér indlæg
         update_user_role: Opdatér rolle
       actions:
         approve_appeal_html: "%{name} godkendte moderationsafgørelsesappellen fra %{target}"
         approve_user_html: "%{name} godkendte tilmeldingen fra %{target}"
         assigned_to_self_report_html: "%{name} tildelte sig selv anmeldelsen %{target}"
-        change_email_user_html: "%{name} ændrede e-mailadressen for bruger %{target}"
+        change_email_user_html: "%{name} skiftede e-mailadressen for bruger %{target}"
         change_role_user_html: "%{name} ændrede rollen for %{target}"
         confirm_user_html: "%{name} bekræftede e-mailadressen for bruger %{target}"
         create_account_warning_html: "%{name} sendte en advarsel til %{target}"
@@ -285,6 +288,7 @@ da:
         update_custom_emoji_html: "%{name} opdaterede emoji %{target}"
         update_domain_block_html: "%{name} opdaterede domæneblokeringen for %{target}"
         update_ip_block_html: "%{name} ændrede reglen for IP'en %{target}"
+        update_report_html: "%{name} opdaterede rapporten %{target}"
         update_status_html: "%{name} opdaterede indlægget fra %{target}"
         update_user_role_html: "%{name} ændrede %{target}-rolle"
       deleted_account: slettet konto
@@ -292,6 +296,7 @@ da:
       filter_by_action: Filtrér efter handling
       filter_by_user: Filtrér efter bruger
       title: Revisionslog
+      unavailable_instance: "(domænenavn utilgængeligt)"
     announcements:
       destroyed_msg: Bekendtgørelsen er slettet!
       edit:
@@ -425,10 +430,11 @@ da:
       view: Vis domæneblokering
     email_domain_blocks:
       add_new: Tilføj ny
+      allow_registrations_with_approval: Tillad registreringer med godkendelse
       attempts_over_week:
         one: "%{count} tilmeldingsforsøg over den seneste uge"
         other: "%{count} tilmeldingsforsøg over den seneste uge"
-      created_msg: E-maildomæne blokeret
+      created_msg: E-maildomæne hermed blokeret
       delete: Slet
       dns:
         types:
@@ -438,9 +444,9 @@ da:
         create: Tilføj domæne
         resolve: Opløs domæne
         title: Blokér nyt e-maildomæne
-      no_email_domain_block_selected: Ingen e-mailblokeringer ændret (ingen var valgt)
+      no_email_domain_block_selected: Ingen e-maildomæneblokeringer ændret (ingen var valgt)
       not_permitted: Ikke tilladt
-      resolved_dns_records_hint_html: Domænenavnet opløses til flg. MX-domæner, som i sidste ende er ansvarlige for e-mailmodtagelse. Blokering af et MX-domæne blokerer også tilmeldinger fra enhver e-mailadresse på det pågældende MX-domæne, selv hvis det synlige domænenavn er et andet. <strong>Pas på ikke ikke at blokere større e-mailudbydere.</strong>
+      resolved_dns_records_hint_html: Domænenavnet opløses til flg. MX-domæner, som i sidste ende er ansvarlige for e-mailmodtagelse. Blokering af et MX-domæne blokerer også tilmeldinger fra enhver e-mailadresse på det pågældende MX-domæne, selv hvis det synlige domænenavn er et andet. <strong>Pas på ikke at blokere større e-mailudbydere.</strong>
       resolved_through_html: Opløst via %{domain}
       title: Blokerede e-maildomæner
     export_domain_allows:
@@ -467,6 +473,9 @@ da:
       title: Følg-anbefalinger
       unsuppress: Genopret følg-anbefaling
     instances:
+      audit_log:
+        title: Seneste Revisionslogger
+        view_all: Vis alle revisionslogger
       availability:
         description_html:
           one: Lykkes det ikke at levere til domænet i løbet af <strong>%{count} dag</strong>, foretages ingen yderligere leveringsforsøg, medmindre en levering <em>fra</em> domænet modtages.
@@ -499,7 +508,7 @@ da:
         instance_accounts_dimension: Mest fulgte konti
         instance_accounts_measure: gemte konti
         instance_followers_measure: vores følgere dér
-        instance_follows_measure: deres følgere dér
+        instance_follows_measure: deres følgere her
         instance_languages_dimension: Topsprog
         instance_media_attachments_measure: gemte medievedhæftninger
         instance_reports_measure: anmeldelser af dem
@@ -534,6 +543,7 @@ da:
       total_reported: Anmeldelser om dem
       total_storage: Medievedhæftninger
       totals_time_period_hint_html: Nedenfor viste totaler omfatter data for alle tidsperioder.
+      unknown_instance: Der er i pt. ingen post for dette domæne på denne server.
     invites:
       deactivate_all: Deaktivér alle
       filter:
@@ -592,9 +602,13 @@ da:
         resolve_description_html: Ingen foranstaltninger træffes mod den anmeldte konto, ingen advarsel (strike) registreres og anmeldelsen lukkes.
         silence_description_html: Kontoen vil kun være synlig for følgerene eller dem, som manuelt slå den op, hvilket markant begrænser dens udbredelse. Kan altid omgøres. Lukker alle indrapporteringer af kontoen.
         suspend_description_html: Kontoen inkl. alt indhold utilgængeliggøres og interaktion umuliggøres, og den slettes på et tidspunkt. Kan omgøres inden for 30 dage. Lukker alle indrapporteringer af kontoen.
-      actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Træffes en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
+      actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Ved en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
       actions_description_remote_html: Fastslå en nødvendig handling mhp. at løse denne anmeldelse. Dette vil kun påvirke <strong>din</strong> servers kommunikation med, og indholdshåndtering for, fjernkontoen.
+      actions_no_posts: Denne anmeldelse har ingen tilknyttede indlæg at slette
       add_to_report: Føj mere til anmeldelse
+      already_suspended_badges:
+        local: Allerede suspenderet på denne server
+        remote: Allerede suspenderet på vedkommendes server
       are_you_sure: Sikker?
       assign_to_self: Tildel til mig
       assigned: Tildelt moderator
@@ -610,6 +624,7 @@ da:
       created_at: Anmeldt
       delete_and_resolve: Slet indlæg
       forwarded: Videresendt
+      forwarded_replies_explanation: Denne anmeldelse er fra en ekstern bruger og om eksternt indhold. Den er videresendt til dig, da det anmeldte indhold er som svar til en af dine brugere.
       forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Markér som løst
       mark_as_sensitive: Markér som sensitiv
@@ -630,6 +645,7 @@ da:
       report: 'Anmeldelse #%{id}'
       reported_account: Anmeldt konto
       reported_by: Anmeldt af
+      reported_with_application: Rapporteret via applikation
       resolved: Løst
       resolved_msg: Anmeldelse løst!
       skip_to_actions: Overspring til foranstaltninger
@@ -673,7 +689,7 @@ da:
         moderation: Moderering
         special: Speciel
       delete: Slet
-      description_html: Med <strong>brugerroller</strong>kan man tilpasse sine brugeres adgang til Mastodon-funktioner og -områder.
+      description_html: Med <strong>brugerroller</strong> kan man tilpasse sine brugeres adgang til Mastodon-funktioner og -områder.
       edit: Redigér rolle for '%{name}
       everyone: Standardtilladelser
       everyone_full_description_html: Dette er <strong>basisrollen</strong> med indvirkning på <strong>alle brugere</strong>, selv dem uden rolletildeling. Alle øvrige rolletilladelser nedarves herfra.
@@ -745,6 +761,7 @@ da:
         desc_html: Dette er afhængig af eksterne scripts fra hCaptcha, som kan være en sikkerhed og privatlivets fred. Derudover kan <strong>dette gøre registreringsprocessen betydeligt mindre tilgængelig for nogle (især deaktiveret) personer</strong>. Af disse grunde bedes De overveje alternative foranstaltninger såsom godkendelsesbaseret eller inviteret til at blive registreret.
         title: Kræv nye brugere for at løse en CAPTCHA for at bekræfte deres konto
       content_retention:
+        danger_zone: Farezone
         preamble: Styr, hvordan Mastodon gemmer brugergenereret indhold.
         title: Indholdsopbevaring
       default_noindex:
@@ -764,6 +781,7 @@ da:
         disabled: Til ingen
         users: Til indloggede lokale brugere
       registrations:
+        moderation_recommandation: Sørg for, at der er et tilstrækkeligt og reaktivt moderationsteam, før registrering åbnes for alle!
         preamble: Styr, hvem der kan oprette en konto på serveren.
         title: Registreringer
       registrations_mode:
@@ -771,6 +789,7 @@ da:
           approved: Tilmeldingsgodkendelse kræves
           none: Ingen kan tilmelde sig
           open: Alle kan tilmelde sig
+        warning_hint: Brug af "Godkendelse kræves ved tilmelding" anbefales, medmindre man er sikker på, at moderationsteamet kan håndtere spam og ondsindede registreringer i tide.
       security:
         authorized_fetch: Kræver godkendelse fra fødererede servere
         authorized_fetch_hint: Krav om godkendelse fra fødererede servere muliggør strengere håndhævelse af både bruger- og serverniveaublokeringer. Omkostningen er dog en ydelsesreduktion, reduceret udstrækning af dine svar samt potentielle kompatibilitetsproblemer med visse fødererede tjenester. Derudover vil dette ikke hindre målrettede aktører i at hente dine offentlige indlæg og konti.
@@ -782,7 +801,7 @@ da:
       destroyed_msg: Websteds-upload blev slettet!
     software_updates:
       critical_update: Kritisk – opdatér hurtigst muligt
-      description: Det anbefales at holde Mastodon-installationen opdateret for at drage fordel af de seneste fejlrettelser og funktioner. Undertiden kan det desuden være kritisk at opdatere Mastodon rettidigt for at undgå sikkerhedsproblemer. Mastodon tjekker derfor for opdateringer hvert 30. minut og notificerer dig jf. dine e-mailnotifikationsindstillinger.
+      description: Det anbefales at holde Mastodon-installationen opdateret for at drage fordel af de seneste fejlrettelser og funktioner. Undertiden kan det desuden være kritisk at opdatere Mastodon rettidigt for at undgå sikkerhedsproblemer. Mastodon tjekker derfor for opdateringer hvert 30. minut og notificerer brugeren jf. dennes e-mailnotifikationsindstillinger.
       documentation_link: Læs mere
       release_notes: Udgivelsesnoter
       title: Tilgængelige opdateringer
@@ -856,6 +875,9 @@ da:
         message_html: Ingen serverregler defineret.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-proces kører for %{value}-kø(er). Gennemgå Sidekiq-opsætningen
+      software_version_check:
+        action: Se tilgængelige opdateringer
+        message_html: En Mastodon-opdatering er tilgængelig.
       software_version_critical_check:
         action: Se tilgængelige opdateringer
         message_html: En kritisk Mastodon-opdatering er tilgængelig. Opdatér hurtigst muligt.
@@ -869,16 +891,39 @@ da:
         action: Tjek her for flere oplysninger
         message_html: "<strong>Objektlageret er fejlopsat. Brugernes fortrolighed er i fare.</strong>"
     tags:
-      review: Revisionsstatus
+      moderation:
+        not_trendable: Ikke trendegnet
+        not_usable: Ikke brugbar
+        pending_review: Afventer gennemgang
+        review_requested: Gennemgang ønsket
+        reviewed: Revideret
+        title: Status
+        trendable: Trendegnet
+        unreviewed: Urevideret
+        usable: Brugbar
+      name: Navn
+      newest: Seneste
+      oldest: Ældste
+      open: Vis offentligt
+      reset: Nulstil
+      review: Gennmgangsstatus
+      search: Søg
+      title: Hashtags
       updated_msg: Hashtag-indstillinger opdateret
     title: Administration
     trends:
       allow: Tillad
       approved: Godkendt
+      confirm_allow: Sikker på, at de valgte tags skal tillades?
+      confirm_disallow: Sikker på, at de valgte tags ikke skal tillades?
       disallow: Tillad ikke
       links:
         allow: Tillad link
         allow_provider: Tillad udgiver
+        confirm_allow: Sikker på, at de valgte links skal tillades?
+        confirm_allow_provider: Sikker på, at de valgte udbydere skal tillades?
+        confirm_disallow: Sikker på, at de valgte links ikke skal tillades?
+        confirm_disallow_provider: Sikker på, at de valgte udbydere ikke skal tillades?
         description_html: Disse er links, som pt. deles meget af konti, som serveren ser indlæg fra. Det kan hjælpe ens brugere med at finde ud af, hvad der sker i verden. Ingen links vises offentligt, før man godkender udgiveren. Man kan også tillade/afvise individuelle links.
         disallow: Tillad ikke link
         disallow_provider: Tillad ikke udgiver
@@ -892,7 +937,7 @@ da:
         usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
       not_allowed_to_trend: Ikke tilladt at trende
       only_allowed: Kun tilladte
-      pending_review: Afventer revision
+      pending_review: Afventer gennemgang
       preview_card_providers:
         allowed: Links fra denne udgiver kan trende
         description_html: Disse er domæner, hvorfra links ofte deles på serveren. Links vil ikke trende offentligt, medmindre man har godkendt domænet for linket. Godkendelse/afvisning indbefatter underdomæner.
@@ -902,6 +947,10 @@ da:
       statuses:
         allow: Tillad indlæg
         allow_account: Tillad forfatter
+        confirm_allow: Sikker på, at de valgte statusser skal tillades?
+        confirm_allow_account: Sikker på, at de valgte konti skal tillades?
+        confirm_disallow: Sikker på, at de valgte statusser ikke skal tillades?
+        confirm_disallow_account: Sikker på, at de valgte konti ikke skal tillades?
         description_html: Disse er indlæg, serveren kender til, som pt. deles og favoritmarkeres meget. Det kan hjælpe nye og tilbagevendende brugere til at finde flere personer at følge. Ingen indlæg vises offentligt, før man godkender forfatteren, samt denne tillader sin konto at blive foreslået andre. Man kan også tillade/afvise individuelle indlæg.
         disallow: Tillad ikke indlæg
         disallow_account: Tillad ikke forfatter
@@ -934,14 +983,14 @@ da:
         used_by_over_week:
           one: Brugt af én person den seneste uge
           other: Brugt af %{count} personer den seneste uge
-      title: Trends
+      title: Anbefalinger og Tendenser
       trending: Populære
     warning_presets:
       add_new: Tilføj ny
       delete: Slet
       edit_preset: Redigér advarselsforvalg
       empty: Ingen advarselsforvalg defineret endnu.
-      title: Håndtérr advarselsforvalg
+      title: Præindstillinger for advarsel
     webhooks:
       add_new: Tilføj endepunkt
       delete: Slet
@@ -963,6 +1012,9 @@ da:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Grundet manglende nylig moderatoraktivitet er registreringsproceduren på %{instance} automatisk ændret til at kræve manuel gennemgang for at forhindre, at %{instance} bruges som platform for potentielle dårlige aktører. Proceduren kan til enhver tid ændre igen til åbne registreringer.
+      subject: Registreringsproceduren for %{instance} er automatisk ændret til at kræve godkendelse
     new_appeal:
       actions:
         delete_statuses: for sletning af vedkommendes indlæg
@@ -989,16 +1041,14 @@ da:
       body: Nye Mastodon-versioner er udgivet. Opgradering bør overvejes!
       subject: Nye Mastodon-versioner er tilgængelige til %{instance}!
     new_trends:
-      body: 'Flg. emner kræver revision, inden de kan vises offentligt:'
+      body: 'Flg. emner kræver gennemgang, inden de kan vises offentligt:'
       new_trending_links:
         title: Populære links
       new_trending_statuses:
         title: Populære opslag
       new_trending_tags:
-        no_approved_tags: Der er pt. ingen godkendte populære hashtags.
-        requirements: 'Enhver af disse kandidater vil kunne overgå #%{rank} godkendte populære hastag, der med en score på #%{lowest_tag_score} pt. er %{lowest_tag_name}.'
         title: Populære hashtags
-      subject: Nye tendenser klar til revision på %{instance}
+      subject: Nye tendenser klar til gennemgang på %{instance}
   aliases:
     add_new: Opret alias
     created_msg: Nyt alias oprettet. Du kan nu påbegynde flytningen fra den gamle konto.
@@ -1040,7 +1090,15 @@ da:
       hint_html: Bare en ting mere! Vi er nødt til at bekræfte, at du er et menneske (dette er for at vi kan holde spam ude!). Løs CAPTCHA'en nedenfor og klik på "Fortsæt".
       title: Sikkerhedstjek
     confirmations:
-      wrong_email_hint: Er denne e-mailadresse ikke korrekt, kan den ændres i kontoindstillinger.
+      awaiting_review: E-mailadressen er bekræftet! %{domain}-personalet gennemgår nu registreringen. En e-mail fremsendes, såfremt kontoen godkendes!
+      awaiting_review_title: Registreringen er ved at blive gennemgået
+      clicking_this_link: klikke på dette link
+      login_link: log ind
+      proceed_to_login_html: Der kan nu fortsættes til %{login_link}.
+      redirect_to_app_html: En omdirigering til <strong>%{app_name}</strong>-appen burde være sket. Er det ikke tilfældet, prøv da %{clicking_this_link} eller returnér manuelt til appen.
+      registration_complete: Registreringen på %{domain} er nu fuldført!
+      welcome_title: Velkommen %{name}!
+      wrong_email_hint: Er denne e-mailadresse ikke korrekt, kan den ændres via Kontoindstillinger.
     delete_account: Slet konto
     delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
     description:
@@ -1099,11 +1157,18 @@ da:
       account_status: Kontostatus
       confirming: Afventer færdiggørelse af e-mailbekræftelse.
       functional: Din konto er fuldt funktionel.
-      pending: Din ansøgning afventer gennemgang af vores medarbejdere. Dette kan tage noget tid. Du modtager en e-mail, hvis din ansøgning godkendes.
+      pending: Ansøgningen afventer gennemgang af vores personale. Dette kan tage noget tid. Man bør modtage en e-mail, såfremt ansøgningen godkendes.
       redirecting_to: Din konto er inaktiv, da den pt. er omdirigerer til %{acct}.
+      self_destruct: Da %{domain} er under nedlukning, vil kontoadgangen være begrænset.
       view_strikes: Se tidligere anmeldelser af din konto
     too_fast: Formularen indsendt for hurtigt, forsøg igen.
     use_security_key: Brug sikkerhedsnøgle
+  author_attribution:
+    example_title: Eksempeltekst
+    hint_html: Styrer, hvordan man krediteres, når links deles på Mastodon.
+    more_from_html: Flere fra %{name}
+    s_blog: "%{name}s blog"
+    title: Forfattertilskrivning
   challenge:
     confirm: Fortsæt
     hint_html: "<strong>Tip:</strong> Du bliver ikke anmodet om din adgangskode igen den næste time."
@@ -1112,7 +1177,6 @@ da:
   crypto:
     errors:
       invalid_key: er ikke en gyldig Ed25519- eller Curve25519-nøgle
-      invalid_signature: er ikke en gylidig Ed25519-signatur
   date:
     formats:
       default: "%d. %b %Y"
@@ -1141,9 +1205,9 @@ da:
       before: 'Inder der fortsættes, læs venligst disse notater omhyggeligt:'
       caches: Indhold, cachelagret af andre servere, kan fortsat eksistere
       data_removal: Dine indlæg og andre data fjernes permanent
-      email_change_html: Du kan <a href="%{path}">skifte e-mailadresse</a> uden at slette din konto
-      email_contact_html: Hvis det stadig ikke ankommer, kan du sende en e-mail til <a href="mailto:%{email}">%{email}</a> for hjælp
-      email_reconfirmation_html: Modtager du ikke bekræftelses-e-mailen, kan du <a href="%{path}">anmode om en ny</a>
+      email_change_html: Man kan <a href="%{path}">skifte e-mailadresse</a> uden at slette sin konto
+      email_contact_html: Hvis den stadig ikke modtages, send en e-mail til <a href="mailto:%{email}">%{email}</a> for hjælp
+      email_reconfirmation_html: Modtages bekræftelsesmailen ikke, kan man <a href="%{path}">anmode om en ny</a>
       irreversible: Du vil ikke kunne gendanne/genaktivere din konto
       more_details_html: For yderligere oplysningerer, tjek <a href="%{terms_path}">privatlivspolitikken</a>.
       username_available: Dit brugernavn vil blive tilgængeligt igen
@@ -1178,8 +1242,6 @@ da:
       your_appeal_approved: Din appel er godkendt
       your_appeal_pending: Du har indgivet en appel
       your_appeal_rejected: Din appel er afvist
-  domain_validator:
-    invalid_domain: er ikke et gyldigt domænenavn
   edit_profile:
     basic_information: Oplysninger
     hint_html: "<strong>Tilpas hvad folk ser på din offentlige profil og ved siden af dine indlæg.</strong> Andre personer vil mere sandsynligt følge dig tilbage og interagere med dig, når du har en udfyldt profil og et profilbillede."
@@ -1358,6 +1420,7 @@ da:
       '86400': 1 dag
     expires_in_prompt: Aldrig
     generate: Generér invitationslink
+    invalid: Denne invitation er ikke gyldig
     invited_by: 'Du blev inviteret af:'
     max_uses:
       one: 1 benyttelse
@@ -1386,7 +1449,7 @@ da:
     unsubscribe:
       action: Ja, afmeld
       complete: Afmeldt
-      confirmation_html: Er du sikker på, at du vil afmelde dig fra at modtage %{type} for Mastodon på %{domain} til din e-mail på %{email}? Du kan altid gentilmelde dig dine <a href="%{settings_path}">e-mail-notifikationsindstillinger</a>.
+      confirmation_html: Sikker på, at %{type} for Mastodon skal afmeldes på %{domain} til e-mailen %{email}? Man kan altid gentilmelde sig via <a href="%{settings_path}">indstillingerne E-mailnotifikationer</a>.
       emails:
         notification_emails:
           favourite: e-mailnotifikationer om favoritmarkeringer
@@ -1394,12 +1457,13 @@ da:
           follow_request: e-mailnotifikationer om følgeanmodninger
           mention: e-mailnotifikationer om omtaler
           reblog: e-mailnotifikationer om boosts
-      resubscribe_html: Hvis du har afmeldt dig ved en fejl, kan du gentilmelde dig under dine <a href="%{settings_path}">e-mail-notifikationsindstillinger</a>.
-      success_html: Du vil ikke længere modtage %{type} for Mastodon på %{domain} til din e-mail på %{email}.
+      resubscribe_html: Har man afmeldt sig ved en fejl, kan man gentilmelde sig via <a href="%{settings_path}">indstillingerne E-mailnotifikationer</a>.
+      success_html: Man vil ikke længere modtage %{type} for Mastodon på %{domain} til e-mailen %{email}.
       title: Opsig abonnement
   media_attachments:
     validations:
       images_and_video: En video kan ikke vedhæftes et indlæg med billedindhold
+      not_found: Mediet %{ids} ikke fundet eller allerede vedhæftet andet indlæg
       not_ready: Filer under behandling kan ikke vedhæftes. Forsøg igen senere!
       too_many: Maks. 4 filer kan vedhæftes
   migrations:
@@ -1429,7 +1493,7 @@ da:
       before: 'Inder der fortsættes, læs venligst disse notater omhyggeligt:'
       cooldown: Efter flytningen er der en venteperiode, hvor kontoen ikke kan flyttes igen
       disabled_account: Efterfølgende er din nuværende konto ikke fuldt funktionsdygtig, der er dog adgang til dataeksport samt genaktivering.
-      followers: Denne handling vil flytte alle følgere fra den aktuelle konto til den nye ditto
+      followers: Denne handling vil flytte alle følgere fra den aktuelle konto til den nye konto
       only_redirect_html: Alternativt kan du <a href="%{path}">oprette en omdirigering for din profil alene</a>.
       other_data: Ingen øvrige data flyttes automatisk
       redirect: Din nuværende kontoprofil opdateres med en omdirigeringsnotits og ekskluderes fra søgninger
@@ -1479,7 +1543,6 @@ da:
     administration_emails: Admin e-mailnotifikationer
     email_events: Begivenheder for e-mailnotifikationer
     email_events_hint: 'Vælg begivenheder, for hvilke notifikationer skal modtages:'
-    other_settings: Andre notifikationsindstillinger
   number:
     human:
       decimal_units:
@@ -1535,6 +1598,9 @@ da:
     errors:
       limit_reached: Grænse for forskellige reaktioner nået
       unrecognized_emoji: er ikke en genkendt emoji
+  redirects:
+    prompt: Er der tillid til dette link, så klik på det for at fortsætte.
+    title: Nu forlades %{instance}.
   relationships:
     activity: Kontoaktivitet
     confirm_follow_selected_followers: Sikker på, at de valgte følgere skal følges?
@@ -1570,6 +1636,9 @@ da:
     over_daily_limit: Den daglige grænse på %{limit} planlagte indlæg er nået
     over_total_limit: Grænsen på %{limit} planlagte indlæg er nået
     too_soon: Den planlagte dato skal være i fremtiden
+  self_destruct:
+    lead_html: Desværre lukker <strong>%{domain}</strong> permanent. Har man en konto dér, vil fortsat brug heraf ikke være mulig. Man kan dog stadig anmode om en sikkerhedskopi af sine data.
+    title: Denne server er under nedlukning
   sessions:
     activity: Seneste aktivitet
     browser: Browser
@@ -1594,6 +1663,7 @@ da:
       unknown_browser: Ukendt browser
       weibo: Weibo
     current_session: Aktuelle session
+    date: Dato
     description: "%{browser} på %{platform}"
     explanation: Disse webbrowsere er pt. logget ind på din Mastodon-konto.
     ip: IP
@@ -1625,19 +1695,31 @@ da:
     delete: Kontosletning
     development: Udvikling
     edit_profile: Redigér profil
-    export: Dataeksport
+    export: Eksport
     featured_tags: Udvalgte hashtags
     import: Import
     import_and_export: Import og eksport
     migrate: Kontomigrering
-    notifications: Notifikationer
+    notifications: E-mailnotifikationer
     preferences: Præferencer
     profile: Offentlig profil
     relationships: Følger og følgere
+    severed_relationships: Afbrudte forhold
     statuses_cleanup: Auto-indlægssletning
     strikes: Moderationsadvarsler
     two_factor_authentication: Tofaktorgodkendelse
     webauthn_authentication: Sikkerhedsnøgler
+  severed_relationships:
+    download: Download (%{count})
+    event_type:
+      account_suspension: Kontosuspendering (%{target_name})
+      domain_block: Serversuspendering (%{target_name})
+      user_domain_block: "%{target_name} blev blokeret"
+    lost_followers: Tabte følgere
+    lost_follows: Mistet følger
+    preamble: Der kan mistes fulgte objekter og følgere, når et domæne blokeres eller moderatorerne beslutter at suspendere en ekstern server. Når det sker, kan der downloades lister over afbrudte relationer til inspektion og mulig import på anden server.
+    purged: Oplysninger om denne server er blevet renset af serveradministratoreren.
+    type: Begivenhed
   statuses:
     attached:
       audio:
@@ -1659,25 +1741,12 @@ da:
     edited_at_html: Redigeret %{date}
     errors:
       in_reply_not_found: Indlægget, der forsøges besvaret, ser ikke ud til at eksistere.
-    open_in_web: Åbn i webbrowser
     over_character_limit: grænsen på %{max} tegn overskredet
     pin_errors:
       direct: Indlæg, som kun kan ses af omtalte brugere, kan ikke fastgøres
       limit: Maksimalt antal indlæg allerede fastgjort
       ownership: Andres indlæg kan ikke fastgøres
       reblog: Et boost kan ikke fastgøres
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} personer"
-      total_votes:
-        one: "%{count} stemme"
-        other: "%{count} stemmer"
-      vote: Stem
-    show_more: Vis flere
-    show_newer: Vis nyere
-    show_older: Vis ældre
-    show_thread: Vis tråd
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkte
@@ -1733,6 +1802,7 @@ da:
     contrast: Mastodon (høj kontrast)
     default: Mastodont (mørkt)
     mastodon-light: Mastodon (lyst)
+    system: Automatisk (benyt systemtema)
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
@@ -1760,18 +1830,27 @@ da:
     webauthn: Sikkerhedsnøgler
   user_mailer:
     appeal_approved:
-      action: Gå til din konto
+      action: Kontoindstillinger
       explanation: Appellen af kontoadvarslen fra %{strike_date}, indsendt af dig pr. %{appeal_date}, er blevet godkendt. Din kontostatus er igen god.
       subject: Din appel pr. %{date} er godkendt
+      subtitle: Dit kontoomdømme er nu igen godt.
       title: Appel godkendt
     appeal_rejected:
       explanation: Appellen af kontoadvarslen fra %{strike_date}, indsendt af dig pr. %{appeal_date}, er blevet afvist.
       subject: Din appel pr. %{date} er afvist
+      subtitle: Din appel er afvist.
       title: Appel afvist
     backup_ready:
-      explanation: Den anmodede fulde sikkerhedskopi af din Mastodon-konto er nu klar til download!
+      explanation: Der er anmodet om en fuld sikkerhedskopi af din Mastodon-konto.
+      extra: Sikkerhedskopien kan nu downloades!
       subject: Dit arkiv er klar til download
       title: Arkiv download
+    failed_2fa:
+      details: 'Her er detaljerne om login-forsøget:'
+      explanation: Nogen har forsøgt at logge ind på kontoen, men har angivet en ugyldig anden godkendelsesfaktor.
+      further_actions_html: Var dette ikke dig, anbefales det straks at %{action}, da den kan være kompromitteret.
+      subject: Anden faktor godkendelsesfejl
+      title: Fejlede på anden faktor godkendelse
     suspicious_sign_in:
       change_password: ændrer din adgangskode
       details: 'Her er nogle detaljer om login-forsøget:'
@@ -1811,13 +1890,44 @@ da:
         silence: Konto begrænset
         suspend: Konto suspenderet
     welcome:
-      edit_profile_action: Opsæt profil
-      edit_profile_step: Man kan tilpasse sin profil ved at uploade profilfoto, overskrift, ændre visningsnavn mv. Ønskes nye følgere vurderet, før de må følge dig, kan kontoen låses.
+      apps_android_action: Hent den fra Google Play
+      apps_ios_action: Download i App Store
+      apps_step: Download vores officielle apps.
+      apps_title: Mastodon apps
+      checklist_subtitle: 'Kom i gang på denne nye sociale frontløber:'
+      checklist_title: Velkomsttjekliste
+      edit_profile_action: Personliggør
+      edit_profile_step: Andre er mere tilbøjelige til at interagere med brugere med udfyldte profiler.
+      edit_profile_title: Personliggør din profil
       explanation: Her er nogle råd for at få dig i gang
-      final_action: Begynd at poste
-      final_step: 'Begynd at poste! Selv uden følgere vil offentlige indlæg kunne ses af andre f.eks. på den lokale tidslinje og i hashtags. Man kan introducere sig selv via hastagget #introductions.'
-      full_handle: Dit fulde brugernavn
-      full_handle_hint: Dette er, hvad du oplyser til dine venner, så de kan sende dig beskeder eller følge dig fra andre servere.
+      feature_action: Læs mere
+      feature_audience: Mastodon giver brugeren en unik mulighed for at styre sit publikum uden mellemled. Mastodon udrullet på egen infrastruktur giver mulighed for at følge og blive fulgt fra enhver anden Mastodon-server online, kontrolleret/styret alene af brugen selv.
+      feature_audience_title: Opbyg et publikum i tillid
+      feature_control: Man ved selv bedst, hvad man ønsker at se på sit hjemmefeed. Ingen algoritmer eller annoncer til at spilde tiden. Følg alle på tværs af enhver Mastodon-server fra en enkelt konto og modtag deres indlæg i kronologisk rækkefølge, og gør dette hjørne af internet lidt mere personligt.
+      feature_control_title: Hold styr på egen tidslinje
+      feature_creativity: Mastodon understøtter indlæg med lyd, video og billede, tilgængelighedsbeskrivelser, meningsmålinger, indhold advarsler, animerede avatarer, tilpassede emojis, miniaturebeskæringskontrol og mere, for at gøre det lettere at udtrykke sig online. Uanset om man udgiver sin kunst, musik eller podcast, så står Mastodon til rådighed.
+      feature_creativity_title: Uovertruffen kreativitet
+      feature_moderation: Mastodon lægger beslutningstagning tilbage i brugerens hænder. Hver server opretter deres egne regler og reguleringer, som håndhæves lokalt og ikke ovenfra som virksomhedernes sociale medier, hvilket gør det til den mest fleksible mht. at reagere på behovene hos forskellige persongrupper. Deltag på en server med de regler, man er enige med, eller driv en egen server.
+      feature_moderation_title: Moderering af måden, tingene bør være på
+      follow_action: Følg
+      follow_step: At følge interessante personer, det er, hvad Mastodon handler om.
+      follow_title: Personliggør hjemmefeedet
+      follows_subtitle: Følg velkendte konti
+      follows_title: Hvem, som skal følges
+      follows_view_more: Vis nogle personer at følge
+      hashtags_recent_count:
+        one: "%{people} person de seneste 2 dage"
+        other: "%{people} personer de seneste 2 dage"
+      hashtags_subtitle: Udforsk de seneste 2 dages tendenser
+      hashtags_title: Populære hashtags
+      hashtags_view_more: Se flere populære hashtags
+      post_action: Skriv
+      post_step: Sig hej til verden med tekst, fotos, videoer eller afstemninger.
+      post_title: Opret det første indlæg
+      share_action: Del
+      share_step: Lad vennerne vide, hvor man kan findes på Mastodon.
+      share_title: Del Mastodon-profilen
+      sign_in_action: Log ind
       subject: Velkommen til Mastodon
       title: Velkommen ombord, %{name}!
   users:
@@ -1825,7 +1935,8 @@ da:
     go_to_sso_account_settings: Gå til identitetsudbyderens kontoindstillinger
     invalid_otp_token: Ugyldig tofaktorkode
     otp_lost_help_html: Har du mistet adgang til begge, kan du kontakte %{email}
-    seamless_external_login: Du er logget ind via en ekstern tjeneste, så adgangskode- og e-mailindstillinger er utilgængelige.
+    rate_limited: For mange godkendelsesforsøg. Prøv igen senere.
+    seamless_external_login: Adgangskode- og e-mailindstillinger er utilgængelige, da der er logget ind via en ekstern tjeneste.
     signed_in_as: 'Logget ind som:'
   verification:
     extra_instructions_html: <strong>Tip:</strong> Linket på din hjemmeside kan være usynligt. Den vigtige del er <code>rel="me"</code> , som forhindrer impersonation på websteder med brugergenereret indhold. Du kan endda bruge et <code>link</code> tag i overskriften på siden i stedet for <code>a</code>, men HTML skal være tilgængelig uden at udføre JavaScript.
@@ -1834,6 +1945,7 @@ da:
     instructions_html: Kopier og indsæt koden nedenfor i HTML på din hjemmeside. Tilføj derefter adressen på din hjemmeside i et af de ekstra felter på din profil på fanen "Redigér profil" og gem ændringer.
     verification: Bekræftelse
     verified_links: Dine bekræftede links
+    website_verification: Webstedsbekræftelse
   webauthn_credentials:
     add: Tilføj ny sikkerhedsnøgle
     create:

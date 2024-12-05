@@ -11,6 +11,7 @@ permissions:
 jobs:
   compute-suffix:
     runs-on: ubuntu-latest
+    if: github.repository == 'mastodon/mastodon'
     steps:
       - id: version_vars
         env:
@@ -24,12 +25,35 @@ jobs:
     needs: compute-suffix
     uses: ./.github/workflows/build-container-image.yml
     with:
+      file_to_build: Dockerfile
       platforms: linux/amd64,linux/arm64
       use_native_arm64_builder: true
       cache: false
       push_to_images: |
         tootsuite/mastodon
         ghcr.io/mastodon/mastodon
+      version_prerelease: ${{ needs.compute-suffix.outputs.prerelease }}
+      labels: |
+        org.opencontainers.image.description=Nightly build image used for testing purposes
+      flavor: |
+        latest=auto
+      tags: |
+        type=raw,value=edge
+        type=raw,value=nightly
+        type=schedule,pattern=${{ needs.compute-suffix.outputs.prerelease }}
+    secrets: inherit
+
+  build-image-streaming:
+    needs: compute-suffix
+    uses: ./.github/workflows/build-container-image.yml
+    with:
+      file_to_build: streaming/Dockerfile
+      platforms: linux/amd64,linux/arm64
+      use_native_arm64_builder: true
+      cache: false
+      push_to_images: |
+        tootsuite/mastodon-streaming
+        ghcr.io/mastodon/mastodon-streaming
       version_prerelease: ${{ needs.compute-suffix.outputs.prerelease }}
       labels: |
         org.opencontainers.image.description=Nightly build image used for testing purposes

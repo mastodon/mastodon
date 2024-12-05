@@ -90,7 +90,15 @@ class InstancePresenter < ActiveModelSerializers::Model
     @mascot ||= Rails.cache.fetch('site_uploads/mascot') { SiteUpload.find_by(var: 'mascot') }
   end
 
-  def email
-    @email ||= Rails.cache.fetch('site_uploads/email') { SiteUpload.find_by(var: 'email') }
+  def favicon
+    return @favicon if defined?(@favicon)
+
+    @favicon ||= Rails.cache.fetch('site_uploads/favicon') { SiteUpload.find_by(var: 'favicon') }
+  end
+
+  def app_icon
+    return @app_icon if defined?(@app_icon)
+
+    @app_icon ||= Rails.cache.fetch('site_uploads/app_icon') { SiteUpload.find_by(var: 'app_icon') }
   end
 end

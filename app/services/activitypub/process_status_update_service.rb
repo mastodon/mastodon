@@ -73,7 +73,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     as_array(@json['attachment']).each do |attachment|
       media_attachment_parser = ActivityPub::Parser::MediaAttachmentParser.new(attachment)
 
-      next if media_attachment_parser.remote_url.blank? || @next_media_attachments.size > 4
+      next if media_attachment_parser.remote_url.blank? || @next_media_attachments.size > Status::MEDIA_ATTACHMENTS_LIMIT
 
       begin
         media_attachment   = previous_media_attachments.find { |previous_media_attachment| previous_media_attachment.remote_url == media_attachment_parser.remote_url }
@@ -96,8 +96,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         Rails.logger.debug { "Invalid URL in attachment: #{e}" }
       end
     end
-
-    added_media_attachments = @next_media_attachments - previous_media_attachments
 
     @status.ordered_media_attachment_ids = @next_media_attachments.map(&:id)
 
@@ -282,7 +280,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def reset_preview_card!
-    @status.preview_cards.clear
+    @status.reset_preview_card!
     LinkCrawlWorker.perform_in(rand(1..59).seconds, @status.id)
   end
 

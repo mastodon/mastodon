@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ResolveAccountWorker do
+RSpec.describe ResolveAccountWorker do
   let(:worker) { described_class.new }
 
   describe 'perform' do

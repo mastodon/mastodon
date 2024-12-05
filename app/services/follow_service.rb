@@ -50,7 +50,7 @@ class FollowService < BaseService
   end
 
   def following_not_possible?
-    @target_account.nil? || @target_account.id == @source_account.id || @target_account.suspended?
+    @target_account.nil? || @target_account.id == @source_account.id || @target_account.unavailable?
   end
 
   def following_not_allowed?

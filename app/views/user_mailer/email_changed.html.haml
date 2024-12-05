@@ -1,58 +1,11 @@
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell.hero
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center.padded
-                              %table.hero-icon{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                                %tbody
-                                  %tr
-                                    %td
-                                      = image_tag full_pack_url('media/images/mailer/icon_email.png'), alt: ''
-
-                              %h1= t 'devise.mailer.email_changed.title'
-                              %p.lead= t 'devise.mailer.email_changed.explanation'
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell.content-start
-                  %table.column{ cellspacing: 0, cellpadding: 0 }
-                    %tbody
-                      %tr
-                        %td.column-cell.input-cell
-                          %table.input{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                            %tbody
-                              %tr
-                                %td= @resource.unconfirmed_email
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center.padded
-                              %p= t 'devise.mailer.email_changed.extra'
+= content_for :heading do
+  = render 'application/mailer/heading', heading_title: t('devise.mailer.email_changed.title'), heading_subtitle: t('devise.mailer.email_changed.explanation'), heading_image_url: frontend_asset_url('images/mailer-new/heading/email.png')
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-inner-card-td.email-prose
+            = render 'application/mailer/frame', text: @resource.unconfirmed_email
+            %p= t 'devise.mailer.email_changed.extra'
+            = render 'application/mailer/button', text: t('settings.account_settings'), url: edit_user_registration_url

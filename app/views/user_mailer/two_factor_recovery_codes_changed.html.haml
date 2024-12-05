@@ -1,43 +1,10 @@
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell.hero
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.text-center.padded
-                              %table.hero-icon.alert-icon{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                                %tbody
-                                  %tr
-                                    %td
-                                      = image_tag full_pack_url('media/images/mailer/icon_lock_open.png'), alt: ''
-
-                              %h1= t 'devise.mailer.two_factor_recovery_codes_changed.title'
-                              %p.lead= t 'devise.mailer.two_factor_recovery_codes_changed.explanation'
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell.content-start
-                  %table.column{ cellspacing: 0, cellpadding: 0 }
-                    %tbody
-                      %tr
-                        %td.column-cell.button-cell
-                          %table.button{ align: 'center', cellspacing: 0, cellpadding: 0 }
-                            %tbody
-                              %tr
-                                %td.button-primary
-                                  = link_to edit_user_registration_url do
-                                    %span= t('settings.account_settings')
+= content_for :heading do
+  = render 'application/mailer/heading', heading_title: t('devise.mailer.two_factor_recovery_codes_changed.title'), heading_subtitle: t('devise.mailer.two_factor_recovery_codes_changed.subtitle'), heading_image_url: frontend_asset_url('images/mailer-new/heading/2fa-recovery.png')
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-inner-card-td.email-prose
+            %p= t 'devise.mailer.two_factor_recovery_codes_changed.explanation'
+            = render 'application/mailer/button', text: t('settings.account_settings'), url: edit_user_registration_url

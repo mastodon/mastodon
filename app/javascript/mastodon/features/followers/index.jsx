@@ -12,6 +12,7 @@ import { TimelineHint } from 'mastodon/components/timeline_hint';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 import { getAccountHidden } from 'mastodon/selectors';
+import { useAppSelector } from 'mastodon/store';
 
 import {
   lookupAccount,
@@ -19,11 +20,11 @@ import {
   fetchFollowers,
   expandFollowers,
 } from '../../actions/accounts';
-import ColumnBackButton from '../../components/column_back_button';
+import { ColumnBackButton } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
 import AccountContainer from '../../containers/account_container';
-import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
+import { LimitedAccountHint } from '../account_timeline/components/limited_account_hint';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import Column from '../ui/components/column';
 
@@ -45,17 +46,28 @@ const mapStateToProps = (state, { params: { acct, id } }) => {
     hasMore: !!state.getIn(['user_lists', 'followers', accountId, 'next']),
     isLoading: state.getIn(['user_lists', 'followers', accountId, 'isLoading'], true),
     suspended: state.getIn(['accounts', accountId, 'suspended'], false),
+    hideCollections: state.getIn(['accounts', accountId, 'hide_collections'], false),
     hidden: getAccountHidden(state, accountId),
     blockedBy: state.getIn(['relationships', accountId, 'blocked_by'], false),
   };
 };
 
-const RemoteHint = ({ url }) => (
-  <TimelineHint url={url} resource={<FormattedMessage id='timeline_hint.resources.followers' defaultMessage='Followers' />} />
-);
+const RemoteHint = ({ accountId, url }) => {
+  const acct = useAppSelector(state => state.accounts.get(accountId)?.acct);
+  const domain = acct ? acct.split('@')[1] : undefined;
+
+  return (
+    <TimelineHint
+      url={url}
+      message={<FormattedMessage id='hints.profiles.followers_may_be_missing' defaultMessage='Followers for this profile may be missing.' />}
+      label={<FormattedMessage id='hints.profiles.see_more_followers' defaultMessage='See more followers on {domain}' values={{ domain: <strong>{domain}</strong> }} />}
+    />
+  );
+};
 
 RemoteHint.propTypes = {
   url: PropTypes.string.isRequired,
+  accountId: PropTypes.string.isRequired,
 };
 
 class Followers extends ImmutablePureComponent {
@@ -111,7 +123,7 @@ class Followers extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { accountId, accountIds, hasMore, blockedBy, isAccount, multiColumn, isLoading, suspended, hidden, remote, remoteUrl } = this.props;
+    const { accountId, accountIds, hasMore, blockedBy, isAccount, multiColumn, isLoading, suspended, hidden, remote, remoteUrl, hideCollections } = this.props;
 
     if (!isAccount) {
       return (
@@ -137,17 +149,19 @@ class Followers extends ImmutablePureComponent {
       emptyMessage = <LimitedAccountHint accountId={accountId} />;
     } else if (blockedBy) {
       emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
+    } else if (hideCollections && accountIds.isEmpty()) {
+      emptyMessage = <FormattedMessage id='empty_column.account_hides_collections' defaultMessage='This user has chosen to not make this information available' />;
     } else if (remote && accountIds.isEmpty()) {
-      emptyMessage = <RemoteHint url={remoteUrl} />;
+      emptyMessage = <RemoteHint accountId={accountId} url={remoteUrl} />;
     } else {
       emptyMessage = <FormattedMessage id='account.followers.empty' defaultMessage='No one follows this user yet.' />;
     }
 
-    const remoteMessage = remote ? <RemoteHint url={remoteUrl} /> : null;
+    const remoteMessage = remote ? <RemoteHint accountId={accountId} url={remoteUrl} /> : null;
 
     return (
       <Column>
-        <ColumnBackButton multiColumn={multiColumn} />
+        <ColumnBackButton />
 
         <ScrollableList
           scrollKey='followers'

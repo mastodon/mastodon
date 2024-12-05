@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-class Api::V1::Instances::PeersController < Api::BaseController
+class Api::V1::Instances::PeersController < Api::V1::Instances::BaseController
   before_action :require_enabled_api!
 
-  skip_before_action :require_authenticated_user!, unless: :limited_federation_mode?
   skip_around_action :set_locale
 
-  vary_by ''
-
-  # Override `current_user` to avoid reading session cookies unless in whitelist mode
+  # Override `current_user` to avoid reading session cookies unless in limited federation mode
   def current_user
     super if limited_federation_mode?
   end

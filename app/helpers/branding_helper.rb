@@ -23,17 +23,6 @@ module BrandingHelper
   end
 
   def render_logo
-    content_tag(:svg, tag.use(href: '#decodon-flower-logo'), viewBox: '0 0 150 150', class: 'logo logo--icon')
-  end
-
-  def render_symbol(version = :icon)
-    path = case version
-           when :icon
-             'decodon_flower_logo.svg'
-           when :wordmark
-             'decodon_logo_full.svg'
-           end
-
-    render(file: Rails.root.join('app', 'javascript', 'images', path)).html_safe # rubocop:disable Rails/OutputSafety
+    image_tag(frontend_asset_path('images/logo.svg'), alt: 'Mastodon', class: 'logo logo--icon')
   end
 end

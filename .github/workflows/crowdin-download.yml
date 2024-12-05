@@ -11,6 +11,7 @@ permissions:
 jobs:
   download-translations:
     runs-on: ubuntu-latest
+    if: github.repository == 'mastodon/mastodon'
 
     steps:
       - name: Checkout
@@ -25,7 +26,7 @@ jobs:
 
       # Download the translation files from Crowdin
       - name: crowdin action
-        uses: crowdin/github-action@v1
+        uses: crowdin/github-action@v2
         with:
           upload_sources: false
           upload_translations: false
@@ -43,33 +44,27 @@ jobs:
         run: sudo chown -R runner:docker .
 
       # This is needed to run the normalize step
-      - name: Install native Ruby dependencies
-        run: sudo apt-get install -y libicu-dev libidn11-dev
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
 
       - name: Run i18n normalize task
         run: bundle exec i18n-tasks normalize
 
       # Create or update the pull request
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5.0.2
+        uses: peter-evans/create-pull-request@v7.0.5
         with:
           commit-message: 'New Crowdin translations'
           title: 'New Crowdin Translations (automated)'
           author: 'GitHub Actions <noreply@github.com>'
           body: |
-            New Crowdin translations, automated with Github Actions
+            New Crowdin translations, automated with GitHub Actions
 
             See `.github/workflows/crowdin-download.yml`
 
             This PR will be updated every day with new translations.
 
-            Due to a limitation in Github Actions, checks are not running on this PR without manual action.
+            Due to a limitation in GitHub Actions, checks are not running on this PR without manual action.
             If you want to run the checks, then close and re-open it.
           branch: i18n/crowdin/translations
           base: main

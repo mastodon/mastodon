@@ -2,41 +2,36 @@
 
 require 'rails_helper'
 
-describe ApplicationHelper do
-  describe 'active_nav_class' do
-    it 'returns active when on the current page' do
-      allow(helper).to receive(:current_page?).and_return(true)
-
-      result = helper.active_nav_class('/test')
-      expect(result).to eq 'active'
-    end
-
-    it 'returns active when on a current page' do
-      allow(helper).to receive(:current_page?).with('/foo').and_return(false)
-      allow(helper).to receive(:current_page?).with('/test').and_return(true)
-
-      result = helper.active_nav_class('/foo', '/test')
-      expect(result).to eq 'active'
-    end
-
-    it 'returns empty string when not on current page' do
-      allow(helper).to receive(:current_page?).and_return(false)
-
-      result = helper.active_nav_class('/test')
-      expect(result).to eq ''
-    end
-  end
-
+RSpec.describe ApplicationHelper do
   describe 'body_classes' do
     context 'with a body class string from a controller' do
-      before do
-        without_partial_double_verification do
-          allow(helper).to receive_messages(body_class_string: 'modal-layout compose-standalone', current_theme: 'default', current_account: Fabricate(:account))
-        end
-      end
+      before { helper.extend controller_helpers }
 
       it 'uses the controller body classes in the result' do
-        expect(helper.body_classes).to match(/modal-layout compose-standalone/)
+        expect(helper.body_classes)
+          .to match(/modal-layout compose-standalone/)
+          .and match(/theme-default/)
+      end
+
+      it 'includes values set via content_for' do
+        helper.content_for(:body_classes) { 'admin' }
+
+        expect(helper.body_classes)
+          .to match(/admin/)
+      end
+
+      private
+
+      def controller_helpers
+        Module.new do
+          def body_class_string = 'modal-layout compose-standalone'
+
+          def current_account
+            @current_account ||= Fabricate(:account)
+          end
+
+          def current_theme = 'default'
+        end
       end
     end
   end
@@ -67,9 +62,12 @@ describe ApplicationHelper do
     end
   end
 
-  describe 'fa_icon' do
-    it 'returns a tag of fixed-width cog' do
-      expect(helper.fa_icon('cog fw')).to eq '<i class="fa fa-cog fa-fw"></i>'
+  describe '#material_symbol' do
+    it 'returns an svg with the icon and options' do
+      expect(helper.material_symbol('lock', class: :test, data: { hidden: true }))
+        .to match('<svg.*/svg>')
+        .and match('class="icon material-lock test"')
+        .and match('data-hidden="true"')
     end
   end
 
@@ -89,42 +87,10 @@ describe ApplicationHelper do
     end
   end
 
-  describe 'show_landing_strip?', without_verify_partial_doubles: true do
-    describe 'when signed in' do
-      before do
-        allow(helper).to receive(:user_signed_in?).and_return(true)
-      end
-
-      it 'does not show landing strip' do
-        expect(helper.show_landing_strip?).to be false
-      end
-    end
-
-    describe 'when signed out' do
-      before do
-        allow(helper).to receive(:user_signed_in?).and_return(false)
-      end
-
-      it 'does not show landing strip on single user instance' do
-        allow(helper).to receive(:single_user_mode?).and_return(true)
-
-        expect(helper.show_landing_strip?).to be false
-      end
-
-      it 'shows landing strip on multi user instance' do
-        allow(helper).to receive(:single_user_mode?).and_return(false)
-
-        expect(helper.show_landing_strip?).to be true
-      end
-    end
-  end
-
   describe 'available_sign_up_path' do
     context 'when registrations are closed' do
       before do
-        without_partial_double_verification do
-          allow(Setting).to receive(:registrations_mode).and_return('none')
-        end
+        allow(Setting).to receive(:[]).with('registrations_mode').and_return 'none'
       end
 
       it 'redirects to joinmastodon site' do
@@ -269,7 +235,7 @@ describe ApplicationHelper do
 
     it 'returns an unlock icon for a unlisted visible status' do
       result = helper.visibility_icon Status.new(visibility: 'unlisted')
-      expect(result).to match(/unlock/)
+      expect(result).to match(/lock_open/)
     end
 
     it 'returns a lock icon for a private visible status' do
@@ -279,22 +245,56 @@ describe ApplicationHelper do
 
     it 'returns an at icon for a direct visible status' do
       result = helper.visibility_icon Status.new(visibility: 'direct')
-      expect(result).to match(/at/)
+      expect(result).to match(/alternate_email/)
     end
   end
 
   describe 'title' do
-    around do |example|
-      site_title = Setting.site_title
-      example.run
-      Setting.site_title = site_title
-    end
-
     it 'returns site title on production environment' do
       Setting.site_title = 'site title'
       allow(Rails.env).to receive(:production?).and_return(true)
       expect(helper.title).to eq 'site title'
       expect(Rails.env).to have_received(:production?)
+    end
+
+    it 'returns site title with note on non-production environment' do
+      Setting.site_title = 'site title'
+      allow(Rails.env).to receive(:production?).and_return(false)
+      expect(helper.title).to eq 'site title (Dev)'
+      expect(Rails.env).to have_received(:production?)
+    end
+  end
+
+  describe 'html_title' do
+    before do
+      allow(Rails.env).to receive(:production?).and_return(true)
+    end
+
+    context 'with a page_title content_for value' do
+      it 'uses the value in the html title' do
+        Setting.site_title = 'Site Title'
+        helper.content_for(:page_title, 'Test Value')
+
+        expect(helper.html_title).to eq 'Test Value - Site Title'
+        expect(helper.html_title).to be_html_safe
+      end
+
+      it 'removes extra new lines' do
+        Setting.site_title = 'Site Title'
+        helper.content_for(:page_title, "Test Value\n")
+
+        expect(helper.html_title).to eq 'Test Value - Site Title'
+        expect(helper.html_title).to be_html_safe
+      end
+    end
+
+    context 'without any page_title content_for value' do
+      it 'returns the site title' do
+        Setting.site_title = 'Site Title'
+
+        expect(helper.html_title).to eq 'Site Title'
+        expect(helper.html_title).to be_html_safe
+      end
     end
   end
 end

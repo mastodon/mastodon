@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe AccountMigration do
+  describe 'Normalizations' do
+    describe 'acct' do
+      it { is_expected.to normalize(:acct).from('  @username@domain  ').to('username@domain') }
+    end
+  end
+
   describe 'validations' do
     subject { described_class.new(account: source_account, acct: target_acct) }
 

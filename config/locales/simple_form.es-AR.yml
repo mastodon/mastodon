@@ -3,6 +3,7 @@ es-AR:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Protege de atribuciones falsas.
         discoverable: Tu perfil y publicaciones pueden ser destacadas o recomendadas en varias áreas de Mastodon, y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu pseudónimo.
         fields: Tu sitio web, pronombres, edad, o lo que quieras.
@@ -39,14 +40,14 @@ es-AR:
         text: Sólo podés apelar un incumplimiento una vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
-        avatar: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles.'
+        avatar: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         bot: Esta cuenta ejecuta principalmente acciones automatizadas y podría no ser monitorizada
         context: Uno o múltiples contextos en los que debe aplicarse el filtro
         current_password: Por razones de seguridad, por favor, ingresá la contraseña de la cuenta actual
         current_username: Para confirmar, por favor, ingresá el nombre de usuario de la cuenta actual
         digest: Sólo enviado tras un largo periodo de inactividad, y sólo si recibiste mensajes personales en tu ausencia
         email: Se te enviará un correo electrónico de confirmación
-        header: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles.'
+        header: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         inbox_url: Copiá la dirección web desde la página principal del relé que querés usar
         irreversible: Los mensajes filtrados desaparecerán irreversiblemente, incluso si este filtro es eliminado después
         locale: El idioma de la interface de usuario, correos electrónicos y notificaciones push
@@ -77,13 +78,15 @@ es-AR:
           warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
       form_admin_settings:
         activity_api_enabled: Conteos de mensajes publicados localmente, cuentas activas y nuevos registros en tandas semanales
-        backups_retention_period: Conservar los archivos historiales generados por el usuario durante el número de días especificado.
+        app_icon: WEBP, PNG, GIF o JPG. Reemplaza el ícono de aplicación predeterminado en dispositivos móviles con uno personalizado.
+        backups_retention_period: Los usuarios tienen la capacidad de generar archivos historiales de sus mensajes para descargar más adelante. Cuando se establece un valor positivo, estos archivos se eliminarán automáticamente de su almacenamiento después del número especificado de días.
         bootstrap_timeline_accounts: Estas cuentas serán fijadas a la parte superior de las recomendaciones de cuentas a seguir para nuevos usuarios.
         closed_registrations_message: Mostrado cuando los registros están cerrados
-        content_cache_retention_period: Todos los mensajes y adhesiones de otros servidores se eliminarán después del número especificado de días. Es posible que algunos mensajes no sean recuperables. Todos los marcadores relacionados, mensajes marcados como favoritos y adhesiones también se perderán y será imposible de deshacer.
+        content_cache_retention_period: Todos los mensajes de otros servidores (incluyendo adhesiones y respuestas) se eliminarán después del número de días especificado, sin tener en cuenta la interacción del usuario local con esos mensajes. Esto incluye mensajes que un usuario local haya agregado a marcadores o los haya marcado como favoritos. Las menciones privadas entre usuarios de diferentes servidores también se perderán y también serán imposibles de restaurar. El uso de esta configuración está destinado a servidores de propósito especial y rompe muchas expectativas de los usuarios cuando se implementa para uso general.
         custom_css: Podés aplicar estilos personalizados a la versión web de Mastodon.
+        favicon: WEBP, PNG, GIF o JPG. Reemplaza el favicón predeterminado de Mastodon con uno personalizado.
         mascot: Reemplaza la ilustración en la interface web avanzada.
-        media_cache_retention_period: Los archivos de medios descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se volverán a descargar a pedido.
+        media_cache_retention_period: Los archivos de medios de mensajes publicados por usuarios remotos se almacenan en la memoria caché en tu servidor. Cuando se establece un valor positivo, los medios se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si es que el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlace consultan a sitios web de terceros, se recomienda establecer este valor a, al menos, 14 días, o las tarjetas de previsualización de enlaces no se actualizarán a pedido antes de ese momento.
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Acá no se incluye ningún dato sobre si federás con un servidor determinado, sólo que tu servidor lo conoce. Esto es usado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado a que su cuenta pueda ser descubierta.
         require_invite_text: Cuando registros aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
@@ -116,6 +119,7 @@ es-AR:
           sign_up_requires_approval: Los nuevos registros requerirán tu aprobación
         severity: Elegí lo que pasará con las solicitudes desde esta dirección IP
       rule:
+        hint: Opcional. Ofrecé más detalles sobre la regla
         text: Describí una regla o requisito para los usuarios de este servidor. Intentá hacerla corta y sencilla
       sessions:
         otp: 'Ingresá el código de autenticación de dos factores generado por la aplicación en tu dispositivo, o usá uno de tus códigos de recuperación:'
@@ -127,7 +131,7 @@ es-AR:
         name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
       user:
         chosen_languages: Cuando estén marcados, sólo se mostrarán los mensajes en los idiomas seleccionados en las líneas temporales públicas
-        role: El rol controla qué permisos tiene el usuario
+        role: El rol controla qué permisos tiene el usuario.
       user_role:
         color: Color que se utilizará para el rol a lo largo de la interface de usuario, como RGB en formato hexadecimal
         highlighted: Esto hace que el rol sea públicamente visible
@@ -140,6 +144,7 @@ es-AR:
         url: Adónde serán enviados los eventos
     labels:
       account:
+        attribution_domains_as_text: Solo permitir sitios web específicos
         discoverable: Destacar perfil y mensajes en algoritmos de descubrimiento
         fields:
           name: Nombre de campo
@@ -208,6 +213,7 @@ es-AR:
         setting_default_privacy: Privacidad de mensajes
         setting_default_sensitive: Siempre marcar medios como sensibles
         setting_delete_modal: Mostrar diálogo de confirmación antes de eliminar un mensaje
+        setting_disable_hover_cards: Deshabilitar previsualización del perfil al pasar el cursor
         setting_disable_swiping: Deshabilitar movimientos de deslizamiento
         setting_display_media: Visualización de medios
         setting_display_media_default: Predeterminada
@@ -239,11 +245,13 @@ es-AR:
           warn: Ocultar con una advertencia
       form_admin_settings:
         activity_api_enabled: Publicar estadísticas agregadas sobre la actividad de la cuenta en la API
+        app_icon: Ícono de la aplicación
         backups_retention_period: Período de retención del archivo historial del usuario
         bootstrap_timeline_accounts: Siempre recomendar estas cuentas a usuarios nuevos
         closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
-        content_cache_retention_period: Período de retención de la caché de contenido
+        content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
+        favicon: Favicón
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de la caché de medios
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
@@ -299,6 +307,7 @@ es-AR:
           patch: Notificar sobre actualizaciones de corrección de errores
         trending_tag: Una nueva tendencia requiere revisión
       rule:
+        hint: Información adicional
         text: Regla
       settings:
         indexable: Incluir la página de perfil en los motores de búsqueda
@@ -307,7 +316,7 @@ es-AR:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en las sugerencias
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
-        usable: Permitir a los mensajes usar esta etiqueta
+        usable: Permitir que los mensajes usen esta etiqueta localmente
       user:
         role: Rol
         time_zone: Zona horaria

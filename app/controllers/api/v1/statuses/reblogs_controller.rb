@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class Api::V1::Statuses::ReblogsController < Api::BaseController
-  include Authorization
+class Api::V1::Statuses::ReblogsController < Api::V1::Statuses::BaseController
   include Redisable
   include Lockable
 
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }
   before_action :require_user!
   before_action :set_reblog, only: [:create]
+  skip_before_action :set_status
 
   override_rate_limit_headers :create, family: :statuses
 

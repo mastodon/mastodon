@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class Api::V1::Timelines::PublicController < Api::BaseController
+class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
-  before_action :require_user!, only: [:show], if: :require_auth?
-  after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
+
+  PERMITTED_PARAMS = %i(local remote limit only_media).freeze
 
   def show
     cache_if_unauthenticated!
@@ -13,16 +13,12 @@ class Api::V1::Timelines::PublicController < Api::BaseController
 
   private
 
-  def require_auth?
-    !Setting.timeline_preview
-  end
-
   def load_statuses
-    cached_public_statuses_page
+    preloaded_public_statuses_page
   end
 
-  def cached_public_statuses_page
-    cache_collection(public_statuses, Status)
+  def preloaded_public_statuses_page
+    preload_collection(public_statuses, Status)
   end
 
   def public_statuses
@@ -43,27 +39,11 @@ class Api::V1::Timelines::PublicController < Api::BaseController
     )
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:local, :remote, :limit, :only_media).permit(:local, :remote, :limit, :only_media).merge(core_params)
-  end
-
   def next_path
-    api_v1_timelines_public_url pagination_params(max_id: pagination_max_id)
+    api_v1_timelines_public_url next_path_params
   end
 
   def prev_path
-    api_v1_timelines_public_url pagination_params(min_id: pagination_since_id)
-  end
-
-  def pagination_max_id
-    @statuses.last.id
-  end
-
-  def pagination_since_id
-    @statuses.first.id
+    api_v1_timelines_public_url prev_path_params
   end
 end

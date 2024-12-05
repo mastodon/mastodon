@@ -25,7 +25,7 @@ class FetchOEmbedService
     return if html.nil?
 
     @format = @options[:format]
-    page    = Nokogiri::HTML(html)
+    page    = Nokogiri::HTML5(html)
 
     if @format.nil? || @format == :json
       @endpoint_url ||= page.at_xpath('//link[@type="application/json+oembed"]|//link[@type="text/json+oembed"]')&.attribute('href')&.value

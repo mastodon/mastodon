@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::AutoCloseRegistrationsScheduler do
+RSpec.describe Scheduler::AutoCloseRegistrationsScheduler do
   subject { described_class.new }
 
   describe '#perform' do

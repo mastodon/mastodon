@@ -2,9 +2,13 @@ name: Check i18n
 
 on:
   push:
-    branches: [main]
+    branches:
+      - 'main'
+      - 'stable-*'
   pull_request:
-    branches: [main]
+    branches:
+      - 'main'
+      - 'stable-*'
 
 env:
   RAILS_ENV: test
@@ -19,25 +23,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libicu-dev libidn11-dev
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          cache: yarn
-          node-version-file: '.nvmrc'
-
-      - name: Install all yarn packages
-        run: yarn --frozen-lockfile
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
 
       - name: Check for missing strings in English JSON
         run: |

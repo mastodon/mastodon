@@ -9,6 +9,11 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import ReactSwipeableViews from 'react-swipeable-views';
 
+import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import FitScreenIcon from '@/material-icons/400-24px/fit_screen.svg?react';
+import ActualSizeIcon from '@/svg-icons/actual_size.svg?react';
 import { getAverageFromBlurhash } from 'mastodon/blurhash';
 import { GIFV } from 'mastodon/components/gifv';
 import { Icon }  from 'mastodon/components/icon';
@@ -23,6 +28,8 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
   previous: { id: 'lightbox.previous', defaultMessage: 'Previous' },
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
+  zoomIn: { id: 'lightbox.zoom_in', defaultMessage: 'Zoom to actual size' },
+  zoomOut: { id: 'lightbox.zoom_out', defaultMessage: 'Zoom to fit' },
 });
 
 class MediaModal extends ImmutablePureComponent {
@@ -43,30 +50,39 @@ class MediaModal extends ImmutablePureComponent {
   state = {
     index: null,
     navigationHidden: false,
-    zoomButtonHidden: false,
+    zoomedIn: false,
+  };
+
+  handleZoomClick = () => {
+    this.setState(prevState => ({
+      zoomedIn: !prevState.zoomedIn,
+    }));
   };
 
   handleSwipe = (index) => {
-    this.setState({ index: index % this.props.media.size });
+    this.setState({
+      index: index % this.props.media.size,
+      zoomedIn: false,
+    });
   };
 
   handleTransitionEnd = () => {
     this.setState({
-      zoomButtonHidden: false,
+      zoomedIn: false,
     });
   };
 
   handleNextClick = () => {
     this.setState({
       index: (this.getIndex() + 1) % this.props.media.size,
-      zoomButtonHidden: true,
+      zoomedIn: false,
     });
   };
 
   handlePrevClick = () => {
     this.setState({
       index: (this.props.media.size + this.getIndex() - 1) % this.props.media.size,
-      zoomButtonHidden: true,
+      zoomedIn: false,
     });
   };
 
@@ -75,7 +91,7 @@ class MediaModal extends ImmutablePureComponent {
 
     this.setState({
       index: index % this.props.media.size,
-      zoomButtonHidden: true,
+      zoomedIn: false,
     });
   };
 
@@ -127,20 +143,27 @@ class MediaModal extends ImmutablePureComponent {
     return this.state.index !== null ? this.state.index : this.props.index;
   }
 
-  toggleNavigation = () => {
+  handleToggleNavigation = () => {
     this.setState(prevState => ({
       navigationHidden: !prevState.navigationHidden,
     }));
   };
 
+  setRef = c => {
+    this.setState({
+      viewportWidth: c?.clientWidth,
+      viewportHeight: c?.clientHeight,
+    });
+  };
+
   render () {
     const { media, statusId, lang, intl, onClose } = this.props;
-    const { navigationHidden } = this.state;
+    const { navigationHidden, zoomedIn, viewportWidth, viewportHeight } = this.state;
 
     const index = this.getIndex();
 
-    const leftNav  = media.size > 1 && <button tabIndex={0} className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' fixedWidth /></button>;
-    const rightNav = media.size > 1 && <button tabIndex={0} className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' fixedWidth /></button>;
+    const leftNav  = media.size > 1 && <button tabIndex={0} className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' icon={ChevronLeftIcon} /></button>;
+    const rightNav = media.size > 1 && <button tabIndex={0} className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' icon={ChevronRightIcon} /></button>;
 
     const content = media.map((image) => {
       const width  = image.getIn(['meta', 'original', 'width']) || null;
@@ -157,8 +180,8 @@ class MediaModal extends ImmutablePureComponent {
             alt={description}
             lang={lang}
             key={image.get('url')}
-            onClick={this.toggleNavigation}
-            zoomButtonHidden={this.state.zoomButtonHidden}
+            onClick={this.handleToggleNavigation}
+            zoomedIn={zoomedIn}
           />
         );
       } else if (image.get('type') === 'video') {
@@ -227,9 +250,12 @@ class MediaModal extends ImmutablePureComponent {
       ));
     }
 
+    const currentMedia = media.get(index);
+    const zoomable = currentMedia.get('type') === 'image' && (currentMedia.getIn(['meta', 'original', 'width']) > viewportWidth || currentMedia.getIn(['meta', 'original', 'height']) > viewportHeight);
+
     return (
-      <div className='modal-root__modal media-modal'>
-        <div className='media-modal__closer' role='presentation' onClick={onClose} >
+      <div className='modal-root__modal media-modal' ref={this.setRef}>
+        <div className='media-modal__closer' role='presentation' onClick={onClose}>
           <ReactSwipeableViews
             style={swipeableViewsStyle}
             containerStyle={containerStyle}
@@ -243,7 +269,10 @@ class MediaModal extends ImmutablePureComponent {
         </div>
 
         <div className={navigationClassName}>
-          <IconButton className='media-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={40} />
+          <div className='media-modal__buttons'>
+            {zoomable && <IconButton title={intl.formatMessage(zoomedIn ? messages.zoomOut : messages.zoomIn)} iconComponent={zoomedIn ? FitScreenIcon : ActualSizeIcon} onClick={this.handleZoomClick} />}
+            <IconButton title={intl.formatMessage(messages.close)} icon='times' iconComponent={CloseIcon} onClick={onClose} />
+          </div>
 
           {leftNav}
           {rightNav}

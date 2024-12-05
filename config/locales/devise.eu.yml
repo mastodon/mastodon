@@ -12,6 +12,7 @@ eu:
       last_attempt: Saiakera bat geratzen zaizu zure kontua giltzapetu aurretik.
       locked: Zure kontua giltzapetuta dago.
       not_found_in_database: Baliogabeko %{authentication_keys} edo pasahitza.
+      omniauth_user_creation_failure: Errorea identitate honen kontu bat sortzean.
       pending: Zure kontua oraindik berrikusteke dago.
       timeout: Zure saioa iraungitu da. Hasi saioa berriro jarraitzeko.
       unauthenticated: Saioa hasi edo izena eman behar duzu jarraitu aurretik.
@@ -23,59 +24,64 @@ eu:
         explanation: Kontu bat sortu duzu %{host} ostalarian eposta helbide honekin. Klik bat baino ez zaizu falta kontua aktibatzeko. Ez baduzu zuk sortu, ez egin ezer mezu honekin.
         explanation_when_pending: "%{host} instantziara gonbidatzeko eskatu duzu eposta helbide honekin. Behin zure eposta helbidea berresten duzula, zure eskaera berrikusiko da. Ezin duzu aurretik saioa hasi. Zure eskaera ukatuko balitz, zure datuak ezabatuko lirateke, eta ez zenuke beste ezer egiteko beharrik. Ez baduzu zuk eskatu gonbidapena, ez egin ezer mezu honekin."
         extra_html: Egiaztatu <a href="%{terms_path}">zerbitzariaren arauak</a> eta <a href="%{policy_path}">zerbitzuaren erabilera baldintzak</a>.
-        subject: '%{instance} instantziaren argibideak baieztapenerako'
+        subject: 'Mastodon: %{instance} instantziaren argibideak baieztapenerako'
         title: Egiaztatu eposta helbidea
       email_changed:
         explanation: 'Zure kontuaren eposta helbidea hau izango da aurrerantzean:'
         extra: Ez baduzu eposta helbidea aldatu, agian baten bat zure kontuan sartu da. Aldatu zure pasahitza berehala edo jarri zerbitzariko administratzailearekin harremanetan zure kontura sartzerik ez baduzu.
-        subject: 'Aldatu da eposta helbidea'
+        subject: 'Mastodon: Aldatu da eposta helbidea'
         title: Eposta helbide berria
       password_change:
         explanation: Zure kontuaren pasahitza aldatu da.
         extra: Ez baduzu pasahitza aldatu, agian baten bat zure kontura sartzea lortu du. Aldatu zure pasahitza berehala edo jarri zerbitzariko administratzailearekin kontaktuan zure kontura sartzerik ez baduzu.
-        subject: 'Pasahitza aldatuta'
+        subject: 'Mastodon: Pasahitza aldatuta'
         title: Pasahitza aldatuta
       reconfirmation_instructions:
         explanation: Berretsi helbide berria zure eposta aldatzeko.
         extra: Aldaketa hau ez baduzu zuk eskatu, ez egin ezer mezu honekin. Mastodon kontuaren eposta helbidea ez da aldatuko goiko estekan sartzen ez bazara.
-        subject: 'Berretsi %{instance} instantziarako eposta helbidea'
+        subject: 'Mastodon: Berretsi %{instance} instantziarako eposta helbidea'
         title: Egiaztatu eposta helbidea
       reset_password_instructions:
         action: Aldatu pasahitza
         explanation: Pasahitza berria eskatu duzu zure konturako.
         extra: Hori ez baduzu zuk eskatu, ez egin ezer mezu honekin. Zure pasahitza ez da aldatuko goiko estekara sartu eta berri bat sortzen ez baduzu.
-        subject: 'Pasahitza berrezartzeko argibideak'
+        subject: 'Mastodon: Pasahitza berrezartzeko argibideak'
         title: Pasahitza berrezartzea
       two_factor_disabled:
-        explanation: Bi faktoreetako autentifikazioa desgaitu da zure kontuan. Orain saioa hasi daiteke e-mail helbidea eta pasahitza bakarrik erabilita.
-        subject: 'Bi faktoreetako autentifikazioa desgaituta'
+        explanation: Orain posible da helbide elektronikoa eta pasahitza erabiliz saioa hastea.
+        subject: 'Mastodon: Bi faktoreetako autentifikazioa desgaituta'
+        subtitle: Kontuaren bi faktoreko autentifikazioa desgaitu da.
         title: 2FA desgaituta
       two_factor_enabled:
-        explanation: Bi faktoreetako autentifikazioa gaitu da zure kontuan. Token bat sortu du lotutako TOTP aplikazioak eta saioa hasteko eskatuko da.
-        subject: 'Bi faktoreetako autentifikazioa gaituta'
+        explanation: Parekatutako TOTP aplikazioak sortutako tokena beharko da saioa hasteko.
+        subject: 'Mastodon: Bi faktoreetako autentifikazioa gaituta'
+        subtitle: Kontuaren bi faktoreko autentifikazioa gaitu da.
         title: 2FA gaituta
       two_factor_recovery_codes_changed:
         explanation: Aurreko kodeak baliogabetu dira eta berriak sortu dira.
-        subject: 'Bi faktoreetako berreskuratze kodeak birsortuta'
+        subject: 'Mastodon: Bi faktoreetako berreskuratze kodeak birsortuta'
+        subtitle: Aurreko berreskuratze-kodeak baliogabetu eta berriak sortu dira.
         title: 2FA berreskuratze kodeak aldatuta
       unlock_instructions:
-        subject: 'Desblokeatzeko argibideak'
+        subject: 'Mastodon: Desblokeatzeko argibideak'
       webauthn_credential:
         added:
           explanation: Segurtasun gako hau zure kontuan gehitu da
-          subject: 'Segurtasun gako berria'
+          subject: 'Mastodon: Segurtasun gako berria'
           title: Segurtasun gako berri bat gehitu da
         deleted:
           explanation: Segurtasun gako hau zure kontutik ezabatu da
-          subject: 'Segurtasun gakoa ezabatu da'
+          subject: 'Mastodon: Segurtasun gakoa ezabatu da'
           title: Zure segurtasun gakoetako bat ezabatu da
       webauthn_disabled:
-        explanation: Segurtasun gako bidezko autentifikazioa desgaitu da zure kontuan. Saioa hasteko modu bakarra parekatutako TOTP aplikazioak sortutako tokena erabiltzea da orain.
-        subject: 'Segurtasun gakoekin autentifikatzea desgaituta'
+        explanation: Kontuaren segurtasun-gako bidezko autentifikazioa desgaitu da.
+        extra: Parekatutako TOTP aplikazioak sortutako tokena erabiliz bakarrik has daiteke saioa orain.
+        subject: 'Mastodon: Segurtasun gakoekin autentifikatzea desgaituta'
         title: Segurtasun gakoak desgaituta
       webauthn_enabled:
-        explanation: Segurtasun gako bidezko autentifikazioa gaitu da zure kontuan. Orain zure segurtasun gakoa erabil dezakezu saioa hasteko.
-        subject: 'Segurtasun gako bidezko autentifikazioa gaituta'
+        explanation: Kontuaren segurtasun-gako bidezko autentifikazioa gaitu da.
+        extra: Orain, segurtasun-gakoa erabil daiteke saioa hasteko.
+        subject: 'Mastodon: Segurtasun gako bidezko autentifikazioa gaituta'
         title: Segurtasun gakoak gaituta
     omniauth_callbacks:
       failure: Ezin izan zaizu %{kind} motatik autentifikatu arrazoia "%{reason}" dela.

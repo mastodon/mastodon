@@ -42,8 +42,7 @@ module ChallengableConcern
   end
 
   def render_challenge
-    @body_classes = 'lighter'
-    render template: 'auth/challenges/new', layout: 'auth'
+    render 'auth/challenges/new', layout: 'auth'
   end
 
   def challenge_passed?

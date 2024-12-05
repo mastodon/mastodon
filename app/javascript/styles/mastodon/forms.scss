@@ -12,6 +12,41 @@ code {
   margin: 50px auto;
 }
 
+.form-section {
+  border-radius: 8px;
+  background: var(--surface-background-color);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.fade-out-top {
+  position: relative;
+  overflow: hidden;
+  height: 160px;
+
+  &::after {
+    content: '';
+    display: block;
+    background: linear-gradient(
+      to bottom,
+      var(--surface-background-color),
+      transparent
+    );
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 100px;
+    pointer-events: none;
+  }
+
+  & > div {
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: 0;
+  }
+}
+
 .indicator-icon {
   display: flex;
   align-items: center;
@@ -36,7 +71,7 @@ code {
   }
 
   .input {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     overflow: hidden;
 
     &.hidden {
@@ -266,16 +301,21 @@ code {
       font-size: 14px;
       color: $primary-text-color;
       display: block;
-      font-weight: 500;
-      padding-top: 5px;
+      font-weight: 600;
+      line-height: 20px;
     }
 
     .hint {
-      margin-bottom: 15px;
+      line-height: 16px;
+      margin-bottom: 12px;
     }
 
     ul {
       columns: 2;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        columns: 1;
+      }
     }
   }
 
@@ -287,6 +327,10 @@ code {
     display: inline-block;
     width: auto;
     flex: 0;
+  }
+
+  .input.select.select--languages {
+    min-width: 32ch;
   }
 
   .required abbr {
@@ -307,7 +351,7 @@ code {
       margin-bottom: 10px;
       max-width: 100%;
       height: auto;
-      border-radius: 4px;
+      border-radius: var(--avatar-border-radius);
       background: url('images/void.png');
 
       &[src$='missing.png'] {
@@ -413,7 +457,7 @@ code {
   }
 
   .input.static .label_input__wrapper {
-    font-size: 16px;
+    font-size: 14px;
     padding: 10px;
     border: 1px solid $dark-text-color;
     border-radius: 4px;
@@ -427,21 +471,18 @@ code {
   input[type='datetime-local'],
   textarea {
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 20px;
     color: $primary-text-color;
     display: block;
     width: 100%;
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: darken($ui-base-color, 10%);
-    border: 1px solid darken($ui-base-color, 14%);
+    background: $ui-base-color;
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
-    padding: 10px;
-
-    &::placeholder {
-      color: lighten($darker-text-color, 4%);
-    }
+    padding: 10px 16px;
 
     &:invalid {
       box-shadow: none;
@@ -451,14 +492,8 @@ code {
       border-color: $valid-value-color;
     }
 
-    &:hover {
-      border-color: darken($ui-base-color, 20%);
-    }
-
-    &:active,
-    &:focus {
-      border-color: $highlight-text-color;
-      background: darken($ui-base-color, 8%);
+    @media screen and (width <= 600px) {
+      font-size: 16px;
     }
   }
 
@@ -524,12 +559,11 @@ code {
     border-radius: 4px;
     background: $ui-button-background-color;
     color: $ui-button-color;
-    font-size: 18px;
-    line-height: inherit;
+    font-size: 15px;
+    line-height: 22px;
     height: auto;
-    padding: 10px;
+    padding: 7px 18px;
     text-decoration: none;
-    text-transform: uppercase;
     text-align: center;
     box-sizing: border-box;
     cursor: pointer;
@@ -576,21 +610,25 @@ code {
   select {
     appearance: none;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 14px;
     color: $primary-text-color;
     display: block;
     width: 100%;
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: darken($ui-base-color, 10%)
+    background: $ui-base-color
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
-      no-repeat right 8px center / auto 16px;
-    border: 1px solid darken($ui-base-color, 14%);
+      no-repeat right 8px center / auto 14px;
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
     padding-inline-start: 10px;
     padding-inline-end: 30px;
     height: 41px;
+
+    @media screen and (width <= 600px) {
+      font-size: 16px;
+    }
   }
 
   h4 {
@@ -607,15 +645,15 @@ code {
       inset-inline-end: 3px;
       top: 1px;
       padding: 10px;
-      padding-bottom: 9px;
-      font-size: 16px;
+      font-size: 14px;
       color: $dark-text-color;
       font-family: inherit;
       pointer-events: none;
       cursor: default;
-      max-width: 140px;
+      max-width: 50%;
       white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
 
       &::after {
         content: '';
@@ -625,11 +663,6 @@ code {
         inset-inline-end: 0;
         bottom: 1px;
         width: 5px;
-        background-image: linear-gradient(
-          to right,
-          rgba(darken($ui-base-color, 10%), 0),
-          darken($ui-base-color, 10%)
-        );
       }
     }
   }
@@ -643,8 +676,9 @@ code {
 }
 
 .flash-message {
-  background: lighten($ui-base-color, 8%);
-  color: $darker-text-color;
+  background: var(--background-color);
+  color: $highlight-text-color;
+  border: 1px solid $highlight-text-color;
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
@@ -935,10 +969,6 @@ code {
           font-weight: 700;
         }
       }
-
-      .fa {
-        font-weight: 400;
-      }
     }
   }
 }
@@ -1078,6 +1108,7 @@ code {
 
       &__type {
         color: $darker-text-color;
+        word-break: break-word;
       }
     }
 
@@ -1218,5 +1249,123 @@ code {
   .completed .circle {
     border-color: $highlight-text-color;
     background: $highlight-text-color;
+  }
+}
+
+.app-form {
+  &__avatar-input,
+  &__header-input {
+    display: block;
+    border-radius: 8px;
+    background: var(--dropdown-background-color);
+    position: relative;
+    cursor: pointer;
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      z-index: 0;
+    }
+
+    .icon {
+      position: absolute;
+      inset-inline-start: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: $darker-text-color;
+      z-index: 3;
+    }
+
+    &.selected .icon {
+      color: $primary-text-color;
+      transform: none;
+      inset-inline-start: auto;
+      inset-inline-end: 8px;
+      top: auto;
+      bottom: 8px;
+    }
+
+    &.invalid img {
+      outline: 1px solid $error-value-color;
+      outline-offset: -1px;
+    }
+
+    &.invalid::before {
+      display: block;
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: rgba($error-value-color, 0.25);
+      z-index: 2;
+      border-radius: 8px;
+    }
+
+    &:hover {
+      background-color: var(--dropdown-border-color);
+    }
+  }
+
+  &__avatar-input {
+    width: 80px;
+    height: 80px;
+  }
+
+  &__header-input {
+    aspect-ratio: 580/193;
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: $darker-text-color;
+    font-size: 14px;
+    line-height: 20px;
+
+    .icon {
+      flex: 0 0 auto;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    &__label {
+      flex: 1 1 auto;
+
+      strong {
+        color: $primary-text-color;
+        font-weight: 600;
+      }
+
+      .hint {
+        display: block;
+        font-size: 14px;
+        color: $darker-text-color;
+      }
+
+      .recommended {
+        position: absolute;
+        margin: 0 4px;
+        margin-top: -2px;
+      }
+    }
+
+    &__toggle {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    &__toggle > div {
+      display: flex;
+      border-inline-start: 1px solid var(--background-border-color);
+      padding-inline-start: 16px;
+    }
   }
 }

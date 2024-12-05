@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import RefreshIcon from '@/material-icons/400-24px/refresh.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 
 import { fetchReblogs, expandReblogs } from '../../actions/interactions';
@@ -45,7 +46,7 @@ class Reblogs extends ImmutablePureComponent {
     if (!this.props.accountIds) {
       this.props.dispatch(fetchReblogs(this.props.params.statusId));
     }
-  };
+  }
 
   handleRefresh = () => {
     this.props.dispatch(fetchReblogs(this.props.params.statusId));
@@ -74,7 +75,7 @@ class Reblogs extends ImmutablePureComponent {
           showBackButton
           multiColumn={multiColumn}
           extraButton={(
-            <button type='button' className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' /></button>
+            <button type='button' className='column-header__button' title={intl.formatMessage(messages.refresh)} aria-label={intl.formatMessage(messages.refresh)} onClick={this.handleRefresh}><Icon id='refresh' icon={RefreshIcon} /></button>
           )}
         />
 

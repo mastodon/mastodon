@@ -7,107 +7,12 @@
   - else
     = link_to t('admin.reports.mark_as_unresolved'), reopen_admin_report_path(@report), method: :post, class: 'button'
 
-.report-header
-  .report-header__card
-    .account-card
-      .account-card__header
-        = image_tag @report.target_account.header.url, alt: ''
-      .account-card__title
-        .account-card__title__avatar
-          = image_tag @report.target_account.avatar.url, alt: ''
-        .display-name
-          %bdi
-            %strong.emojify.p-name= display_name(@report.target_account, custom_emojify: true)
-          %span
-            = acct(@report.target_account)
-            = fa_icon('lock') if @report.target_account.locked?
-      - if @report.target_account.note.present?
-        .account-card__bio.emojify
-          = prerender_custom_emojis(account_bio_format(@report.target_account), @report.target_account.emojis)
-      .account-card__actions
-        .account-card__counters
-          .account-card__counters__item
-            = friendly_number_to_human @report.target_account.statuses_count
-            %small= t('accounts.posts', count: @report.target_account.statuses_count).downcase
-          .account-card__counters__item
-            = friendly_number_to_human @report.target_account.followers_count
-            %small= t('accounts.followers', count: @report.target_account.followers_count).downcase
-          .account-card__counters__item
-            = friendly_number_to_human @report.target_account.following_count
-            %small= t('accounts.following', count: @report.target_account.following_count).downcase
-        .account-card__actions__button
-          = link_to t('admin.reports.view_profile'), admin_account_path(@report.target_account_id), class: 'button'
-    .report-header__details.report-header__details--horizontal
-      .report-header__details__item
-        .report-header__details__item__header
-          %strong= t('admin.accounts.joined')
-        .report-header__details__item__content
-          %time.time-ago{ datetime: @report.target_account.created_at.iso8601, title: l(@report.target_account.created_at) }= l @report.target_account.created_at
-      .report-header__details__item
-        .report-header__details__item__header
-          %strong= t('accounts.last_active')
-        .report-header__details__item__content
-          - if @report.target_account.last_status_at.present?
-            %time.time-ago{ datetime: @report.target_account.last_status_at.to_date.iso8601, title: l(@report.target_account.last_status_at.to_date) }= l @report.target_account.last_status_at
-      .report-header__details__item
-        .report-header__details__item__header
-          %strong= t('admin.accounts.strikes')
-        .report-header__details__item__content
-          = @report.target_account.previous_strikes_count
+- unless @report.account.local? || @report.target_account.local?
+  .flash-message= t('admin.reports.forwarded_replies_explanation')
 
-  .report-header__details
-    .report-header__details__item
-      .report-header__details__item__header
-        %strong= t('admin.reports.created_at')
-      .report-header__details__item__content
-        %time.formatted{ datetime: @report.created_at.iso8601 }
-    .report-header__details__item
-      .report-header__details__item__header
-        %strong= t('admin.reports.reported_by')
-      .report-header__details__item__content
-        - if @report.account.instance_actor?
-          = site_hostname
-        - elsif @report.account.local?
-          = admin_account_link_to @report.account
-        - else
-          = @report.account.domain
-    .report-header__details__item
-      .report-header__details__item__header
-        %strong= t('admin.reports.status')
-      .report-header__details__item__content
-        - if @report.action_taken?
-          = t('admin.reports.resolved')
-        - else
-          = t('admin.reports.unresolved')
-    - unless @report.target_account.local?
-      .report-header__details__item
-        .report-header__details__item__header
-          %strong= t('admin.reports.forwarded')
-        .report-header__details__item__content
-          - if @report.forwarded?
-            = t('simple_form.yes')
-          - else
-            = t('simple_form.no')
-    - if @report.action_taken_by_account.present?
-      .report-header__details__item
-        .report-header__details__item__header
-          %strong= t('admin.reports.action_taken_by')
-        .report-header__details__item__content
-          = admin_account_link_to @report.action_taken_by_account
-    - else
-      .report-header__details__item
-        .report-header__details__item__header
-          %strong= t('admin.reports.assigned')
-        .report-header__details__item__content
-          - if @report.assigned_account.nil?
-            = t 'admin.reports.no_one_assigned'
-          - else
-            = admin_account_link_to @report.assigned_account
-          —
-          - if @report.assigned_account != current_user.account
-            = table_link_to 'user', t('admin.reports.assign_to_self'), assign_to_self_admin_report_path(@report), method: :post
-          - elsif !@report.assigned_account.nil?
-            = table_link_to 'trash', t('admin.reports.unassign'), unassign_admin_report_path(@report), method: :post
+.report-header
+  = render 'admin/reports/header_card', report: @report
+  = render 'admin/reports/header_details', report: @report
 
 %hr.spacer
 
@@ -115,36 +20,14 @@
 
 %p= t 'admin.reports.category_description_html'
 
-= react_admin_component :report_reason_selector, id: @report.id, category: @report.category, rule_ids: @report.rule_ids&.map(&:to_s), disabled: @report.action_taken?
+= react_admin_component :report_reason_selector,
+                        category: @report.category,
+                        disabled: @report.action_taken?,
+                        id: @report.id,
+                        rule_ids: @report.rule_ids&.map(&:to_s)
 
 - if @report.comment.present?
-  - if @report.account.instance_actor?
-    %p= t('admin.reports.comment_description_html', name: content_tag(:strong, site_hostname, class: 'username'))
-  - elsif @report.account.local?
-    %p= t('admin.reports.comment_description_html', name: content_tag(:strong, @report.account.username, class: 'username'))
-  - else
-    %p= t('admin.reports.comment_description_html', name: t('admin.reports.remote_user_placeholder', instance: @report.account.domain))
-
-  .report-notes
-    .report-notes__item
-      - if @report.account.local? && !@report.account.instance_actor?
-        = image_tag @report.account.avatar.url, class: 'report-notes__item__avatar'
-      - else
-        = image_tag(full_asset_url('avatars/original/missing.png', skip_pipeline: true), class: 'report-notes__item__avatar')
-
-      .report-notes__item__header
-        %span.username
-          - if @report.account.instance_actor?
-            = site_hostname
-          - elsif @report.account.local?
-            = link_to @report.account.username, admin_account_path(@report.account_id)
-          - else
-            = link_to @report.account.domain, admin_instance_path(@report.account.domain)
-        %time.relative-formatted{ datetime: @report.created_at.iso8601 }
-          = l @report.created_at.to_date
-
-      .report-notes__item__content
-        = simple_format(h(@report.comment))
+  = render 'admin/reports/comment', report: @report
 
 %hr.spacer/
 
@@ -152,22 +35,24 @@
   = t 'admin.reports.statuses'
   %small.section-skip-link
     = link_to '#actions' do
-      = fa_icon 'angle-double-down'
+      = material_symbol 'keyboard_double_arrow_down'
       = t('admin.reports.skip_to_actions')
 
 %p
   = t 'admin.reports.statuses_description_html'
   —
-  = link_to safe_join([fa_icon('plus'), t('admin.reports.add_to_report')]), admin_account_statuses_path(@report.target_account_id, report_id: @report.id), class: 'table-action-link'
+  = link_to safe_join([material_symbol('add'), t('admin.reports.add_to_report')]),
+            admin_account_statuses_path(@report.target_account_id, report_id: @report.id),
+            class: 'table-action-link'
 
-= form_for(@form, url: batch_admin_account_statuses_path(@report.target_account_id, report_id: @report.id)) do |f|
+= form_with model: @form, url: batch_admin_account_statuses_path(@report.target_account_id, report_id: @report.id) do |f|
   .batch-table
     .batch-table__toolbar
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
         - if !@statuses.empty? && @report.unresolved?
-          = f.button safe_join([fa_icon('times'), t('admin.statuses.batch.remove_from_report')]), name: :remove_from_report, class: 'table-action-link', type: :submit
+          = f.button safe_join([material_symbol('close'), t('admin.statuses.batch.remove_from_report')]), name: :remove_from_report, class: 'table-action-link', type: :submit
     .batch-table__body
       - if @statuses.empty?
         = nothing_here 'nothing-here--under-tabs'
@@ -179,7 +64,7 @@
 
   %p#actions= t(@report.target_account.local? ? 'admin.reports.actions_description_html' : 'admin.reports.actions_description_remote_html')
 
-  = render partial: 'admin/reports/actions'
+  = render partial: 'admin/reports/actions', locals: { report: @report, statuses: @statuses }
 
 - unless @action_logs.empty?
   %hr.spacer/
@@ -198,15 +83,17 @@
 .report-notes
   = render @report_notes
 
-= simple_form_for @report_note, url: admin_report_notes_path do |f|
-  = f.input :report_id, as: :hidden
+= simple_form_for @report_note, url: admin_report_notes_path do |form|
+  = form.input :report_id, as: :hidden
+
+  = render 'shared/error_messages', object: @report_note
 
   .field-group
-    = f.input :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6
+    = form.input :content, input_html: { placeholder: t('admin.reports.notes.placeholder'), maxlength: ReportNote::CONTENT_SIZE_LIMIT, rows: 6, autofocus: @report_note.errors.any? }
 
   .actions
     - if @report.unresolved?
-      = f.button :button, t('admin.reports.notes.create_and_resolve'), name: :create_and_resolve, type: :submit
+      = form.button :button, t('admin.reports.notes.create_and_resolve'), name: :create_and_resolve, type: :submit
     - else
-      = f.button :button, t('admin.reports.notes.create_and_unresolve'), name: :create_and_unresolve, type: :submit
-    = f.button :button, t('admin.reports.notes.create'), type: :submit
+      = form.button :button, t('admin.reports.notes.create_and_unresolve'), name: :create_and_unresolve, type: :submit
+    = form.button :button, t('admin.reports.notes.create'), type: :submit

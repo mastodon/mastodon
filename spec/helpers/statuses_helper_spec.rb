@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusesHelper do
+RSpec.describe StatusesHelper do
   describe 'status_text_summary' do
     context 'with blank text' do
       let(:status) { Status.new(spoiler_text: '') }
@@ -23,40 +23,27 @@ describe StatusesHelper do
     end
   end
 
-  def status_text_summary(status)
-    return if status.spoiler_text.blank?
+  describe '#media_summary' do
+    it 'describes the media on a status' do
+      status = Fabricate :status
+      Fabricate :media_attachment, status: status, type: :video
+      Fabricate :media_attachment, status: status, type: :audio
+      Fabricate :media_attachment, status: status, type: :image
 
-    I18n.t('statuses.content_warning', warning: status.spoiler_text)
-  end
+      result = helper.media_summary(status)
 
-  describe 'link_to_newer' do
-    it 'returns a link to newer content' do
-      url = 'https://example.com'
-      result = helper.link_to_newer(url)
-
-      expect(result).to match('load-more')
-      expect(result).to match(I18n.t('statuses.show_newer'))
+      expect(result).to eq('Attached: 1 image · 1 video · 1 audio')
     end
   end
 
-  describe 'link_to_older' do
-    it 'returns a link to older content' do
-      url = 'https://example.com'
-      result = helper.link_to_older(url)
-
-      expect(result).to match('load-more')
-      expect(result).to match(I18n.t('statuses.show_older'))
-    end
-  end
-
-  describe 'fa_visibility_icon' do
+  describe 'visibility_icon' do
     context 'with a status that is public' do
       let(:status) { Status.new(visibility: 'public') }
 
       it 'returns the correct fa icon' do
-        result = helper.fa_visibility_icon(status)
+        result = helper.visibility_icon(status)
 
-        expect(result).to match('fa-globe')
+        expect(result).to match('globe')
       end
     end
 
@@ -64,9 +51,9 @@ describe StatusesHelper do
       let(:status) { Status.new(visibility: 'unlisted') }
 
       it 'returns the correct fa icon' do
-        result = helper.fa_visibility_icon(status)
+        result = helper.visibility_icon(status)
 
-        expect(result).to match('fa-unlock')
+        expect(result).to match('lock_open')
       end
     end
 
@@ -74,9 +61,9 @@ describe StatusesHelper do
       let(:status) { Status.new(visibility: 'private') }
 
       it 'returns the correct fa icon' do
-        result = helper.fa_visibility_icon(status)
+        result = helper.visibility_icon(status)
 
-        expect(result).to match('fa-lock')
+        expect(result).to match('lock')
       end
     end
 
@@ -84,9 +71,9 @@ describe StatusesHelper do
       let(:status) { Status.new(visibility: 'direct') }
 
       it 'returns the correct fa icon' do
-        result = helper.fa_visibility_icon(status)
+        result = helper.visibility_icon(status)
 
-        expect(result).to match('fa-at')
+        expect(result).to match('alternate_email')
       end
     end
   end

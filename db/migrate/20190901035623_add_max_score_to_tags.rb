@@ -2,7 +2,11 @@
 
 class AddMaxScoreToTags < ActiveRecord::Migration[5.2]
   def change
-    add_column :tags, :max_score, :float
-    add_column :tags, :max_score_at, :datetime
+    safety_assured do
+      change_table(:tags, bulk: true) do |t|
+        t.column :max_score, :float
+        t.column :max_score_at, :datetime
+      end
+    end
   end
 end

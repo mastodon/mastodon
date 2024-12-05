@@ -2,17 +2,19 @@
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
     'config:recommended',
+    'customManagers:dockerfileVersions',
     ':labels(dependencies)',
-    ':maintainLockFilesMonthly', // update non-direct dependencies monthly
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
     ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
   ],
+  rebaseWhen: 'conflicted',
   minimumReleaseAge: '3', // Wait 3 days after the package has been published before upgrading it
   // packageRules order is important, they are applied from top to bottom and are merged,
   // meaning the most important ones must be at the bottom, for example grouping rules
   // If we do not want a package to be grouped with others, we need to set its groupName
   // to `null` after any other rule set it to something.
   dependencyDashboardHeader: 'This issue lists Renovate updates and detected dependencies. Read the [Dependency Dashboard](https://docs.renovatebot.com/key-concepts/dashboard/) docs to learn more. Before approving any upgrade: read the description and comments in the [`renovate.json5` file](https://github.com/mastodon/mastodon/blob/main/.github/renovate.json5).',
+  postUpdateOptions: ['yarnDedupeHighest'],
   packageRules: [
     {
       // Require Dependency Dashboard Approval for major version bumps of these node packages
@@ -22,6 +24,7 @@
         'react-hotkeys', // Requires code changes
 
         // Requires Webpacker upgrade or replacement
+        '@svgr/webpack',
         '@types/webpack',
         'babel-loader',
         'compression-webpack-plugin',
@@ -49,7 +52,6 @@
       matchManagers: ['bundler'],
       matchPackageNames: [
         'rack', // Needs to be synced with Rails version
-        'sprockets', // Requires manual upgrade https://github.com/rails/sprockets/blob/master/UPGRADING.md#guide-to-upgrading-from-sprockets-3x-to-4x
         'strong_migrations', // Requires manual upgrade
         'sidekiq', // Requires manual upgrade
         'sidekiq-unique-jobs', // Requires manual upgrades and sync with Sidekiq version
@@ -59,7 +61,7 @@
       dependencyDashboardApproval: true,
     },
     {
-      // Update Github Actions and Docker images weekly
+      // Update GitHub Actions and Docker images weekly
       matchManagers: ['github-actions', 'dockerfile', 'docker-compose'],
       extends: ['schedule:weekly'],
     },
@@ -86,6 +88,7 @@
     },
     {
       // Update devDependencies every week, with one grouped PR
+      matchManagers: ['npm'],
       matchDepTypes: 'devDependencies',
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'devDependencies (non-major)',
@@ -94,14 +97,24 @@
     {
       // Group all eslint-related packages with `eslint` in the same PR
       matchManagers: ['npm'],
-      matchPackageNames: ['eslint'],
-      matchPackagePrefixes: ['eslint-', '@typescript-eslint/'],
+      matchPackageNames: ['eslint', 'eslint-*', '@typescript-eslint/*'],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'eslint (non-major)',
     },
     {
+      // Group actions/*-artifact in the same PR
+      matchManagers: ['github-actions'],
+      matchPackageNames: [
+        'actions/download-artifact',
+        'actions/upload-artifact',
+      ],
+      matchUpdateTypes: ['major'],
+      groupName: 'artifact actions (major)',
+    },
+    {
       // Update @types/* packages every week, with one grouped PR
-      matchPackagePrefixes: '@types/',
+      matchManagers: ['npm'],
+      matchPackageNames: '@types/*',
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'DefinitelyTyped types (non-major)',
       extends: ['schedule:weekly'],
@@ -114,6 +127,27 @@
         'typescript', // Typescript has code-impacting changes in minor versions
       ],
       groupName: null, // We dont want them to belong to any group
+    },
+    {
+      // Group all RuboCop packages with `rubocop` in the same PR
+      matchManagers: ['bundler'],
+      matchPackageNames: ['rubocop', 'rubocop-*'],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'RuboCop (non-major)',
+    },
+    {
+      // Group all RSpec packages with `rspec` in the same PR
+      matchManagers: ['bundler'],
+      matchPackageNames: ['rspec', 'rspec-*'],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'RSpec (non-major)',
+    },
+    {
+      // Group all opentelemetry-ruby packages in the same PR
+      matchManagers: ['bundler'],
+      matchPackageNames: ['opentelemetry-*'],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'opentelemetry-ruby (non-major)',
     },
     // Add labels depending on package manager
     { matchManagers: ['npm', 'nvm'], addLabels: ['javascript'] },

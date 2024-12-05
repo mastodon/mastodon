@@ -8,15 +8,15 @@
 # shorten temporary column names.
 
 # Documentation on using these functions (and why one might do so):
-# https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/development/what_requires_downtime.md
+# https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/doc/development/database/avoiding_downtime_in_migrations.md
 
-# The file itself:
-# https://gitlab.com/gitlab-org/gitlab-ce/blob/master/lib/gitlab/database/migration_helpers.rb
+# The original file (since updated):
+# https://gitlab.com/gitlab-org/gitlab-foss/-/blob/master/lib/gitlab/database/migration_helpers.rb
 
 # It is licensed as follows:
 
-# Copyright (c) 2011-2017 GitLab B.V.
-
+# Copyright (c) 2011-present GitLab B.V.
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
@@ -24,20 +24,19 @@
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
 
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
 
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 
 # This is bad form, but there are enough differences that it's impractical to do
 # otherwise:
-# rubocop:disable all
 
 module Mastodon
   module MigrationHelpers
@@ -78,46 +77,10 @@ module Mastodon
       end
     end
 
-    BACKGROUND_MIGRATION_BATCH_SIZE = 1000 # Number of rows to process per job
-    BACKGROUND_MIGRATION_JOB_BUFFER_SIZE = 1000 # Number of jobs to bulk queue at a time
-
     # Gets an estimated number of rows for a table
     def estimate_rows_in_table(table_name)
       exec_query('SELECT reltuples FROM pg_class WHERE relname = ' +
         "'#{table_name}'").to_a.first['reltuples']
-    end
-
-    # Adds `created_at` and `updated_at` columns with timezone information.
-    #
-    # This method is an improved version of Rails' built-in method `add_timestamps`.
-    #
-    # Available options are:
-    # default - The default value for the column.
-    # null - When set to `true` the column will allow NULL values.
-    #        The default is to not allow NULL values.
-    def add_timestamps_with_timezone(table_name, **options)
-      options[:null] = false if options[:null].nil?
-
-      [:created_at, :updated_at].each do |column_name|
-        if options[:default] && transaction_open?
-          raise '`add_timestamps_with_timezone` with default value cannot be run inside a transaction. ' \
-            'You can disable transactions by calling `disable_ddl_transaction!` ' \
-            'in the body of your migration class'
-        end
-
-        # If default value is presented, use `add_column_with_default` method instead.
-        if options[:default]
-          add_column_with_default(
-            table_name,
-            column_name,
-            :datetime_with_timezone,
-            default: options[:default],
-            allow_null: options[:null]
-          )
-        else
-          add_column(table_name, column_name, :datetime_with_timezone, **options)
-        end
-      end
     end
 
     # Creates a new index, concurrently when supported
@@ -159,10 +122,8 @@ module Mastodon
           'in the body of your migration class'
       end
 
-      if supports_drop_index_concurrently?
-        options = options.merge({ algorithm: :concurrently })
-        disable_statement_timeout
-      end
+      options = options.merge({ algorithm: :concurrently })
+      disable_statement_timeout
 
       remove_index(table_name, **options.merge({ column: column_name }))
     end
@@ -183,26 +144,10 @@ module Mastodon
           'in the body of your migration class'
       end
 
-      if supports_drop_index_concurrently?
-        options = options.merge({ algorithm: :concurrently })
-        disable_statement_timeout
-      end
+      options = options.merge({ algorithm: :concurrently })
+      disable_statement_timeout
 
       remove_index(table_name, **options.merge({ name: index_name }))
-    end
-
-    # Only available on Postgresql >= 9.2
-    def supports_drop_index_concurrently?
-      version = select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
-
-      version >= 90_200
-    end
-
-    # Only available on Postgresql >= 11
-    def supports_add_column_with_default?
-      version = select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
-
-      version >= 110_000
     end
 
     # Adds a foreign key with only minimal locking on the tables involved.
@@ -393,69 +338,6 @@ module Mastodon
 
         # There are no more rows left to update.
         break unless stop_row
-      end
-    end
-
-    # Adds a column with a default value without locking an entire table.
-    #
-    # This method runs the following steps:
-    #
-    # 1. Add the column with a default value of NULL.
-    # 2. Change the default value of the column to the specified value.
-    # 3. Update all existing rows in batches.
-    # 4. Set a `NOT NULL` constraint on the column if desired (the default).
-    #
-    # These steps ensure a column can be added to a large and commonly used
-    # table without locking the entire table for the duration of the table
-    # modification.
-    #
-    # table - The name of the table to update.
-    # column - The name of the column to add.
-    # type - The column type (e.g. `:integer`).
-    # default - The default value for the column.
-    # limit - Sets a column limit. For example, for :integer, the default is
-    #         4-bytes. Set `limit: 8` to allow 8-byte integers.
-    # allow_null - When set to `true` the column will allow NULL values, the
-    #              default is to not allow NULL values.
-    #
-    # This method can also take a block which is passed directly to the
-    # `update_column_in_batches` method.
-    def add_column_with_default(table, column, type, default:, limit: nil, allow_null: false, &block)
-      if supports_add_column_with_default?
-        add_column(table, column, type, default: default, limit: limit, null: allow_null)
-        return
-      end
-
-      if transaction_open?
-        raise 'add_column_with_default can not be run inside a transaction, ' \
-          'you can disable transactions by calling disable_ddl_transaction! ' \
-          'in the body of your migration class'
-      end
-
-      disable_statement_timeout
-
-      transaction do
-        if limit
-          add_column(table, column, type, default: nil, limit: limit)
-        else
-          add_column(table, column, type, default: nil)
-        end
-
-        # Changing the default before the update ensures any newly inserted
-        # rows already use the proper default value.
-        change_column_default(table, column, default)
-      end
-
-      begin
-        update_column_in_batches(table, column, default, &block)
-
-        change_column_null(table, column, false) unless allow_null
-      # We want to rescue _all_ exceptions here, even those that don't inherit
-      # from StandardError.
-      rescue Exception => error # rubocop: disable all
-        remove_column(table, column)
-
-        raise error
       end
     end
 
@@ -839,39 +721,6 @@ module Mastodon
       rename_index table_name, "#{index_name}_new", index_name
     end
 
-    # This will replace the first occurrence of a string in a column with
-    # the replacement
-    # On postgresql we can use `regexp_replace` for that.
-    # On mysql we find the location of the pattern, and overwrite it
-    # with the replacement
-    def replace_sql(column, pattern, replacement)
-      quoted_pattern = Arel::Nodes::Quoted.new(pattern.to_s)
-      quoted_replacement = Arel::Nodes::Quoted.new(replacement.to_s)
-
-      replace = Arel::Nodes::NamedFunction
-        .new("regexp_replace", [column, quoted_pattern, quoted_replacement])
-      Arel::Nodes::SqlLiteral.new(replace.to_sql)
-    end
-
-    def remove_foreign_key_without_error(*args)
-      remove_foreign_key(*args)
-    rescue ArgumentError
-    end
-
-    def sidekiq_queue_migrate(queue_from, to:)
-      while sidekiq_queue_length(queue_from) > 0
-        Sidekiq.redis do |conn|
-          conn.rpoplpush "queue:#{queue_from}", "queue:#{to}"
-        end
-      end
-    end
-
-    def sidekiq_queue_length(queue_name)
-      Sidekiq.redis do |conn|
-        conn.llen("queue:#{queue_name}")
-      end
-    end
-
     def check_trigger_permissions!(table)
       unless Grant.create_and_execute_trigger?(table)
         dbname = ActiveRecord::Base.configurations[Rails.env]['database']
@@ -892,94 +741,10 @@ into similar problems in the future (e.g. when new tables are created).
       end
     end
 
-    # Bulk queues background migration jobs for an entire table, batched by ID range.
-    # "Bulk" meaning many jobs will be pushed at a time for efficiency.
-    # If you need a delay interval per job, then use `queue_background_migration_jobs_by_range_at_intervals`.
-    #
-    # model_class - The table being iterated over
-    # job_class_name - The background migration job class as a string
-    # batch_size - The maximum number of rows per job
-    #
-    # Example:
-    #
-    #     class Route < ActiveRecord::Base
-    #       include EachBatch
-    #       self.table_name = 'routes'
-    #     end
-    #
-    #     bulk_queue_background_migration_jobs_by_range(Route, 'ProcessRoutes')
-    #
-    # Where the model_class includes EachBatch, and the background migration exists:
-    #
-    #     class Gitlab::BackgroundMigration::ProcessRoutes
-    #       def perform(start_id, end_id)
-    #         # do something
-    #       end
-    #     end
-    def bulk_queue_background_migration_jobs_by_range(model_class, job_class_name, batch_size: BACKGROUND_MIGRATION_BATCH_SIZE)
-      raise "#{model_class} does not have an ID to use for batch ranges" unless model_class.column_names.include?('id')
-
-      jobs = []
-
-      model_class.each_batch(of: batch_size) do |relation|
-        start_id, end_id = relation.pluck('MIN(id), MAX(id)').first
-
-        if jobs.length >= BACKGROUND_MIGRATION_JOB_BUFFER_SIZE
-          # Note: This code path generally only helps with many millions of rows
-          # We push multiple jobs at a time to reduce the time spent in
-          # Sidekiq/Redis operations. We're using this buffer based approach so we
-          # don't need to run additional queries for every range.
-          BackgroundMigrationWorker.perform_bulk(jobs)
-          jobs.clear
-        end
-
-        jobs << [job_class_name, [start_id, end_id]]
-      end
-
-      BackgroundMigrationWorker.perform_bulk(jobs) unless jobs.empty?
-    end
-
-    # Queues background migration jobs for an entire table, batched by ID range.
-    # Each job is scheduled with a `delay_interval` in between.
-    # If you use a small interval, then some jobs may run at the same time.
-    #
-    # model_class - The table being iterated over
-    # job_class_name - The background migration job class as a string
-    # delay_interval - The duration between each job's scheduled time (must respond to `to_f`)
-    # batch_size - The maximum number of rows per job
-    #
-    # Example:
-    #
-    #     class Route < ActiveRecord::Base
-    #       include EachBatch
-    #       self.table_name = 'routes'
-    #     end
-    #
-    #     queue_background_migration_jobs_by_range_at_intervals(Route, 'ProcessRoutes', 1.minute)
-    #
-    # Where the model_class includes EachBatch, and the background migration exists:
-    #
-    #     class Gitlab::BackgroundMigration::ProcessRoutes
-    #       def perform(start_id, end_id)
-    #         # do something
-    #       end
-    #     end
-    def queue_background_migration_jobs_by_range_at_intervals(model_class, job_class_name, delay_interval, batch_size: BACKGROUND_MIGRATION_BATCH_SIZE)
-      raise "#{model_class} does not have an ID to use for batch ranges" unless model_class.column_names.include?('id')
-
-      model_class.each_batch(of: batch_size) do |relation, index|
-        start_id, end_id = relation.pluck('MIN(id), MAX(id)').first
-
-        # `BackgroundMigrationWorker.bulk_perform_in` schedules all jobs for
-        # the same time, which is not helpful in most cases where we wish to
-        # spread the work over time.
-        BackgroundMigrationWorker.perform_in(delay_interval * index, job_class_name, [start_id, end_id])
-      end
-    end
-
     private
 
-    # https://github.com/rails/rails/blob/v5.2.0/activerecord/lib/active_record/connection_adapters/postgresql/schema_statements.rb#L678-L684
+    # Private method copied from:
+    # https://github.com/rails/rails/blob/v7.1.3.2/activerecord/lib/active_record/connection_adapters/postgresql/schema_statements.rb#L974-L980
     def extract_foreign_key_action(specifier)
       case specifier
       when 'c'; :cascade
@@ -989,5 +754,3 @@ into similar problems in the future (e.g. when new tables are created).
     end
   end
 end
-
-# rubocop:enable all

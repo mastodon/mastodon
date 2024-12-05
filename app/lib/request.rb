@@ -77,7 +77,7 @@ class Request
     @url         = Addressable::URI.parse(url).normalize
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
-    @full_path   = options.delete(:with_query_string)
+    @full_path   = !options.delete(:omit_query_string)
     @options     = options.merge(socket_class: use_proxy? || @allow_local ? ProxySocket : Socket)
     @options     = @options.merge(timeout_class: PerOperationWithDeadline, timeout_options: TIMEOUT)
     @options     = @options.merge(proxy_url) if use_proxy?
@@ -234,12 +234,16 @@ class Request
     end
 
     def body_with_limit(limit = 1.megabyte)
-      raise Mastodon::LengthValidationError if content_length.present? && content_length > limit
+      require_limit_not_exceeded!(limit)
 
       contents = truncated_body(limit)
-      raise Mastodon::LengthValidationError if contents.bytesize > limit
+      raise Mastodon::LengthValidationError, "Body size exceeds limit of #{limit}" if contents.bytesize > limit
 
       contents
+    end
+
+    def require_limit_not_exceeded!(limit)
+      raise Mastodon::LengthValidationError, "Content-Length #{content_length} exceeds limit of #{limit}" if content_length.present? && content_length > limit
     end
   end
 

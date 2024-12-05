@@ -17,16 +17,13 @@ RSpec.describe 'Tags' do
       let!(:tag) { Fabricate(:tag) }
       let(:name) { tag.name }
 
-      it 'returns http success' do
+      it 'returns the tag', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'returns the tag' do
-        subject
-
-        expect(body_as_json[:name]).to eq(name)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body[:name]).to eq(name)
       end
     end
 
@@ -37,6 +34,8 @@ RSpec.describe 'Tags' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -47,6 +46,8 @@ RSpec.describe 'Tags' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -62,15 +63,12 @@ RSpec.describe 'Tags' do
     it_behaves_like 'forbidden for wrong scope', 'read read:follows'
 
     context 'when the tag exists' do
-      it 'returns http success' do
+      it 'creates follow', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(:success)
-      end
-
-      it 'creates follow' do
-        subject
-
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(TagFollow.where(tag: tag, account: user.account)).to exist
       end
     end
@@ -78,21 +76,13 @@ RSpec.describe 'Tags' do
     context 'when the tag does not exist' do
       let(:name) { 'hoge' }
 
-      it 'returns http success' do
+      it 'creates a new tag with the specified name', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
-      end
-
-      it 'creates a new tag with the specified name' do
-        subject
-
+        expect(response.content_type)
+          .to start_with('application/json')
         expect(Tag.where(name: name)).to exist
-      end
-
-      it 'creates follow' do
-        subject
-
         expect(TagFollow.where(tag: Tag.find_by(name: name), account: user.account)).to exist
       end
     end
@@ -104,6 +94,8 @@ RSpec.describe 'Tags' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -115,6 +107,8 @@ RSpec.describe 'Tags' do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -133,15 +127,12 @@ RSpec.describe 'Tags' do
 
     it_behaves_like 'forbidden for wrong scope', 'read read:follows'
 
-    it 'returns http success' do
+    it 'removes the follow', :aggregate_failures do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'removes the follow' do
-      subject
-
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(TagFollow.where(tag: tag, account: user.account)).to_not exist
     end
 
@@ -152,6 +143,8 @@ RSpec.describe 'Tags' do
         subject
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -163,6 +156,8 @@ RSpec.describe 'Tags' do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::WebhooksController do
+RSpec.describe Admin::WebhooksController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
@@ -83,6 +83,24 @@ describe Admin::WebhooksController do
 
         expect(response).to have_http_status(:success)
         expect(response).to render_template(:edit)
+      end
+    end
+
+    describe 'POST #enable' do
+      it 'enables the webhook' do
+        post :enable, params: { id: webhook.id }
+
+        expect(webhook.reload).to be_enabled
+        expect(response).to redirect_to(admin_webhook_path(webhook))
+      end
+    end
+
+    describe 'POST #disable' do
+      it 'disables the webhook' do
+        post :disable, params: { id: webhook.id }
+
+        expect(webhook.reload).to_not be_enabled
+        expect(response).to redirect_to(admin_webhook_path(webhook))
       end
     end
 

@@ -2,19 +2,13 @@
 
 require 'rails_helper'
 
-describe AccountControllerConcern do
+RSpec.describe AccountControllerConcern do
   controller(ApplicationController) do
     include AccountControllerConcern
 
     def success
-      head 200
+      render plain: @account.username # rubocop:disable RSpec/InstanceVariable
     end
-  end
-
-  around do |example|
-    registrations_mode = Setting.registrations_mode
-    example.run
-    Setting.registrations_mode = registrations_mode
   end
 
   before do
@@ -55,22 +49,17 @@ describe AccountControllerConcern do
   end
 
   context 'when account is not suspended' do
-    it 'assigns @account' do
-      account = Fabricate(:account)
-      get 'success', params: { account_username: account.username }
-      expect(assigns(:account)).to eq account
-    end
+    let(:account) { Fabricate(:account, username: 'username') }
 
-    it 'sets link headers' do
-      account = Fabricate(:account, username: 'username')
-      get 'success', params: { account_username: 'username' }
-      expect(response.headers['Link'].to_s).to eq '<http://test.host/.well-known/webfinger?resource=acct%3Ausername%40cb6e6126.ngrok.io>; rel="lrdd"; type="application/jrd+json", <https://cb6e6126.ngrok.io/users/username>; rel="alternate"; type="application/activity+json"'
-    end
-
-    it 'returns http success' do
-      account = Fabricate(:account)
+    it 'Prepares the account, returns success, and sets link headers' do
       get 'success', params: { account_username: account.username }
-      expect(response).to have_http_status(200)
+
+      expect(response)
+        .to have_http_status(200)
+        .and have_http_link_header('http://test.host/.well-known/webfinger?resource=acct%3Ausername%40cb6e6126.ngrok.io').for(rel: 'lrdd', type: 'application/jrd+json')
+        .and have_http_link_header('https://cb6e6126.ngrok.io/users/username').for(rel: 'alternate', type: 'application/activity+json')
+      expect(response.body)
+        .to include(account.username)
     end
   end
 end

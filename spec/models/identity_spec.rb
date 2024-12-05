@@ -7,8 +7,11 @@ RSpec.describe Identity do
     let(:auth) { Fabricate(:identity, user: Fabricate(:user)) }
 
     it 'calls .find_or_create_by' do
-      expect(described_class).to receive(:find_or_create_by).with(uid: auth.uid, provider: auth.provider)
+      allow(described_class).to receive(:find_or_create_by)
+
       described_class.find_for_omniauth(auth)
+
+      expect(described_class).to have_received(:find_or_create_by).with(uid: auth.uid, provider: auth.provider)
     end
 
     it 'returns an instance of Identity' do

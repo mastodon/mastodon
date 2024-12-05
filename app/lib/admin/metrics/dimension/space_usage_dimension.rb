@@ -11,7 +11,7 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
   protected
 
   def perform_query
-    [postgresql_size, redis_size, media_size]
+    [postgresql_size, redis_size, media_size, search_size].compact
   end
 
   def postgresql_size
@@ -64,5 +64,23 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
                     else
                       redis.info
                     end
+  end
+
+  def search_size
+    return unless Chewy.enabled?
+
+    client_info = Chewy.client.info
+
+    value = Chewy.client.indices.stats['indices'].values.sum { |index_data| index_data['primaries']['store']['size_in_bytes'] }
+
+    {
+      key: 'search',
+      human_key: client_info.dig('version', 'distribution') == 'opensearch' ? 'OpenSearch' : 'Elasticsearch',
+      value: value.to_s,
+      unit: 'bytes',
+      human_value: number_to_human_size(value),
+    }
+  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
+    nil
   end
 end

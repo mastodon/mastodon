@@ -16,10 +16,10 @@
 class Conversation < ApplicationRecord
   validates :uri, uniqueness: true, if: :uri?
 
+  has_many :statuses, dependent: nil, inverse_of: :conversation
+
   belongs_to :parent_status, class_name: 'Status', optional: true, inverse_of: :conversation
   belongs_to :parent_account, class_name: 'Account', optional: true
-
-  has_many :statuses, inverse_of: :conversation
 
   scope :local, -> { where(uri: nil) }
 

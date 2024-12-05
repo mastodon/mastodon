@@ -2,7 +2,7 @@
   = t('statuses.title', name: display_name(@account), quote: truncate(@status.spoiler_text.presence || @status.text, length: 50, omission: '…', escape: false))
 
 - content_for :heading_actions do
-  = link_to t('admin.statuses.open'), ActivityPub::TagManager.instance.url_for(@status), class: 'button', target: '_blank'
+  = link_to t('admin.statuses.open'), ActivityPub::TagManager.instance.url_for(@status), class: 'button', target: '_blank', rel: 'noopener noreferrer'
 
 %h3= t('admin.statuses.metadata')
 
@@ -47,15 +47,4 @@
 %h3= t('admin.statuses.history')
 
 %ol.history
-  - @status.edits.includes(:account, status: [:account]).each.with_index do |status_edit, i|
-    %li
-      .history__entry
-        %h5
-          - if i.zero?
-            = t('admin.statuses.original_status')
-          - else
-            = t('admin.statuses.status_changed')
-          ·
-          %time.formatted{ datetime: status_edit.created_at.iso8601, title: l(status_edit.created_at) }= l(status_edit.created_at)
-
-        = render status_edit
+  = render partial: 'admin/status_edits/status_edit', collection: batched_ordered_status_edits

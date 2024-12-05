@@ -31,6 +31,11 @@ module Admin
 
     private
 
+    def batched_ordered_status_edits
+      @status.edits.includes(:account, status: [:account]).find_each(order: :asc)
+    end
+    helper_method :batched_ordered_status_edits
+
     def admin_status_batch_action_params
       params.require(:admin_status_batch_action).permit(status_ids: [])
     end

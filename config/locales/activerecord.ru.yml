@@ -15,6 +15,12 @@ ru:
       user/invite_request:
         text: Причина
     errors:
+      attributes:
+        domain:
+          invalid: не является действующим доменным именем
+      messages:
+        invalid_domain_on_line: "%{value} Не является действительным доменным именем"
+        too_many_lines: Превышает предел %{limit} строк
       models:
         account:
           attributes:
@@ -36,7 +42,7 @@ ru:
         status:
           attributes:
             reblog:
-              taken: поста уже существует
+              taken: пост уже существует
         user:
           attributes:
             email:

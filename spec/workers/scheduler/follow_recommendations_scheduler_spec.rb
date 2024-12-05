@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::FollowRecommendationsScheduler do
+RSpec.describe Scheduler::FollowRecommendationsScheduler do
   let!(:target_accounts) do
     Fabricate.times(3, :account) do
       statuses(count: 6)
@@ -29,14 +29,12 @@ describe Scheduler::FollowRecommendationsScheduler do
 
       it 'creates recommendations' do
         expect { scheduled_run }.to change(FollowRecommendation, :count).from(0).to(target_accounts.size)
-        expect(redis.zrange('follow_recommendations:en', 0, -1)).to match_array(target_accounts.pluck(:id).map(&:to_s))
       end
     end
 
     context 'when there are no accounts to recommend' do
       it 'does not create follow recommendations' do
         expect { scheduled_run }.to_not change(FollowRecommendation, :count)
-        expect(redis.zrange('follow_recommendations:en', 0, -1)).to be_empty
       end
     end
   end

@@ -16,7 +16,7 @@ class PlainTextFormatter
     if local?
       text
     else
-      node = Nokogiri::HTML.fragment(insert_newlines)
+      node = Nokogiri::HTML5.fragment(insert_newlines)
       # Elements that are entirely removed with our Sanitize config
       node.xpath('.//iframe|.//math|.//noembed|.//noframes|.//noscript|.//plaintext|.//script|.//style|.//svg|.//xmp').remove
       node.text.chomp

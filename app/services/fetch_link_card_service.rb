@@ -22,7 +22,7 @@ class FetchLinkCardService < BaseService
     @status       = status
     @original_url = parse_urls
 
-    return if @original_url.nil? || @status.preview_cards.any?
+    return if @original_url.nil? || @status.with_preview_card?
 
     @url = @original_url.to_s
 
@@ -32,7 +32,7 @@ class FetchLinkCardService < BaseService
     end
 
     attach_card if @card&.persisted?
-  rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
+  rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, Encoding::UndefinedConversionError, ActiveRecord::RecordInvalid => e
     Rails.logger.debug { "Error fetching link #{@original_url}: #{e}" }
     nil
   end
@@ -48,7 +48,13 @@ class FetchLinkCardService < BaseService
   def html
     return @html if defined?(@html)
 
-    @html = Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => "#{Mastodon::Version.user_agent} Bot").perform do |res|
+    headers = {
+      'Accept' => 'text/html',
+      'Accept-Language' => "#{I18n.default_locale}, *;q=0.5",
+      'User-Agent' => "#{Mastodon::Version.user_agent} Bot",
+    }
+
+    @html = Request.new(:get, @url).add_headers(headers).perform do |res|
       next unless res.code == 200 && res.mime_type == 'text/html'
 
       # We follow redirects, and ideally we want to save the preview card for
@@ -59,15 +65,15 @@ class FetchLinkCardService < BaseService
 
       @html_charset = res.charset
 
-      res.body_with_limit
+      res.truncated_body
     end
   end
 
   def attach_card
     with_redis_lock("attach_card:#{@status.id}") do
-      return if @status.preview_cards.any?
+      return if @status.with_preview_card?
 
-      @status.preview_cards << @card
+      PreviewCardsStatus.create(status: @status, preview_card: @card, url: @original_url)
       Rails.cache.delete(@status)
       Trends.links.register(@status)
     end
@@ -77,7 +83,7 @@ class FetchLinkCardService < BaseService
     urls = if @status.local?
              @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
            else
-             document = Nokogiri::HTML(@status.text)
+             document = Nokogiri::HTML5(@status.text)
              links = document.css('a')
 
              links.filter_map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.filter_map(&:normalize)
@@ -150,9 +156,13 @@ class FetchLinkCardService < BaseService
     return if html.nil?
 
     link_details_extractor = LinkDetailsExtractor.new(@url, @html, @html_charset)
+    domain = Addressable::URI.parse(link_details_extractor.canonical_url).normalized_host
+    provider = PreviewCardProvider.matching_domain(domain)
+    linked_account = ResolveAccountService.new.call(link_details_extractor.author_account, suppress_errors: true) if link_details_extractor.author_account.present?
 
     @card = PreviewCard.find_or_initialize_by(url: link_details_extractor.canonical_url) if link_details_extractor.canonical_url != @card.url
     @card.assign_attributes(link_details_extractor.to_preview_card_attributes)
+    @card.author_account = linked_account if linked_account&.can_be_attributed_from?(domain) || provider&.trendable?
     @card.save_with_optional_image! unless @card.title.blank? && @card.html.blank?
   end
 end

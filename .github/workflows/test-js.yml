@@ -1,9 +1,10 @@
 name: JavaScript Testing
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
     paths:
       - 'package.json'
       - 'yarn.lock'
@@ -35,14 +36,8 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          cache: yarn
-          node-version-file: '.nvmrc'
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
 
-      - name: Install all yarn packages
-        run: yarn --frozen-lockfile
-
-      - name: Jest testing
+      - name: JavaScript testing
         run: yarn jest --reporters github-actions summary

@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import api from 'mastodon/api';
-import Hashtag from 'mastodon/components/hashtag';
+import { Hashtag } from 'mastodon/components/hashtag';
 
 export default class Trends extends PureComponent {
 
@@ -22,7 +22,7 @@ export default class Trends extends PureComponent {
   componentDidMount () {
     const { limit } = this.props;
 
-    api().get('/api/v1/admin/trends/tags', { params: { limit } }).then(res => {
+    api(false).get('/api/v1/admin/trends/tags', { params: { limit } }).then(res => {
       this.setState({
         loading: false,
         data: res.data,

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { throttle } from 'lodash';
 
 import api from 'mastodon/api';
+import { browserHistory } from 'mastodon/components/router';
 import { search as emojiSearch } from 'mastodon/features/emoji/emoji_mart_search_light';
 import { tagHistory } from 'mastodon/settings';
 
@@ -76,6 +77,7 @@ export const INIT_MEDIA_EDIT_MODAL = 'INIT_MEDIA_EDIT_MODAL';
 
 export const COMPOSE_CHANGE_MEDIA_DESCRIPTION = 'COMPOSE_CHANGE_MEDIA_DESCRIPTION';
 export const COMPOSE_CHANGE_MEDIA_FOCUS       = 'COMPOSE_CHANGE_MEDIA_FOCUS';
+export const COMPOSE_CHANGE_MEDIA_ORDER       = 'COMPOSE_CHANGE_MEDIA_ORDER';
 
 export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
 export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
@@ -88,9 +90,9 @@ const messages = defineMessages({
   saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
 });
 
-export const ensureComposeIsVisible = (getState, routerHistory) => {
+export const ensureComposeIsVisible = (getState) => {
   if (!getState().getIn(['compose', 'mounted'])) {
-    routerHistory.push('/publish');
+    browserHistory.push('/publish');
   }
 };
 
@@ -110,14 +112,26 @@ export function changeCompose(text) {
   };
 }
 
-export function replyCompose(status, routerHistory) {
+export function replyCompose(status) {
   return (dispatch, getState) => {
     dispatch({
       type: COMPOSE_REPLY,
       status: status,
     });
 
-    ensureComposeIsVisible(getState, routerHistory);
+    ensureComposeIsVisible(getState);
+  };
+}
+
+export function replyComposeById(statusId) {
+  return (dispatch, getState) => {
+    const state = getState();
+    const status = state.statuses.get(statusId);
+
+    if (status) {
+      const account = state.accounts.get(status.get('account'));
+      dispatch(replyCompose(status.set('account', account)));
+    }
   };
 }
 
@@ -133,38 +147,44 @@ export function resetCompose() {
   };
 }
 
-export const focusCompose = (routerHistory, defaultText) => (dispatch, getState) => {
+export const focusCompose = (defaultText) => (dispatch, getState) => {
   dispatch({
     type: COMPOSE_FOCUS,
     defaultText,
   });
 
-  ensureComposeIsVisible(getState, routerHistory);
+  ensureComposeIsVisible(getState);
 };
 
-export function mentionCompose(account, routerHistory) {
+export function mentionCompose(account) {
   return (dispatch, getState) => {
     dispatch({
       type: COMPOSE_MENTION,
       account: account,
     });
 
-    ensureComposeIsVisible(getState, routerHistory);
+    ensureComposeIsVisible(getState);
   };
 }
 
-export function directCompose(account, routerHistory) {
+export function mentionComposeById(accountId) {
+  return (dispatch, getState) => {
+    dispatch(mentionCompose(getState().accounts.get(accountId)));
+  };
+}
+
+export function directCompose(account) {
   return (dispatch, getState) => {
     dispatch({
       type: COMPOSE_DIRECT,
       account: account,
     });
 
-    ensureComposeIsVisible(getState, routerHistory);
+    ensureComposeIsVisible(getState);
   };
 }
 
-export function submitCompose(routerHistory) {
+export function submitCompose() {
   return function (dispatch, getState) {
     const status   = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
@@ -196,7 +216,7 @@ export function submitCompose(routerHistory) {
       });
     }
 
-    api(getState).request({
+    api().request({
       url: statusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${statusId}`,
       method: statusId === null ? 'post' : 'put',
       data: {
@@ -215,8 +235,8 @@ export function submitCompose(routerHistory) {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
-      if (routerHistory && (routerHistory.location.pathname === '/publish' || routerHistory.location.pathname === '/statuses/new') && window.history.state) {
-        routerHistory.goBack();
+      if ((browserHistory.location.pathname === '/publish' || browserHistory.location.pathname === '/statuses/new') && window.history.state) {
+        browserHistory.goBack();
       }
 
       dispatch(insertIntoTagHistory(response.data.tags, status));
@@ -250,7 +270,7 @@ export function submitCompose(routerHistory) {
         message: statusId === null ? messages.published : messages.saved,
         action: messages.open,
         dismissAfter: 10000,
-        onClick: () => routerHistory.push(`/@${response.data.account.username}/${response.data.id}`),
+        onClick: () => browserHistory.push(`/@${response.data.account.username}/${response.data.id}`),
       }));
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
@@ -280,7 +300,7 @@ export function submitComposeFail(error) {
 
 export function uploadCompose(files) {
   return function (dispatch, getState) {
-    const uploadLimit = 4;
+    const uploadLimit = getState().getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']);
     const media = getState().getIn(['compose', 'media_attachments']);
     const pending = getState().getIn(['compose', 'pending_media_attachments']);
     const progress = new Array(files.length).fill(0);
@@ -300,12 +320,12 @@ export function uploadCompose(files) {
     dispatch(uploadComposeRequest());
 
     for (const [i, file] of Array.from(files).entries()) {
-      if (media.size + i > 3) break;
+      if (media.size + i > (uploadLimit - 1)) break;
 
       const data = new FormData();
       data.append('file', file);
 
-      api(getState).post('/api/v2/media', data, {
+      api().post('/api/v2/media', data, {
         onUploadProgress: function({ loaded }){
           progress[i] = loaded;
           dispatch(uploadComposeProgress(progress.reduce((a, v) => a + v, 0), total));
@@ -322,7 +342,7 @@ export function uploadCompose(files) {
           let tryCount = 1;
 
           const poll = () => {
-            api(getState).get(`/api/v1/media/${data.id}`).then(response => {
+            api().get(`/api/v1/media/${data.id}`).then(response => {
               if (response.status === 200) {
                 dispatch(uploadComposeSuccess(response.data, file));
               } else if (response.status === 206) {
@@ -344,7 +364,7 @@ export const uploadComposeProcessing = () => ({
   type: COMPOSE_UPLOAD_PROCESSING,
 });
 
-export const uploadThumbnail = (id, file) => (dispatch, getState) => {
+export const uploadThumbnail = (id, file) => (dispatch) => {
   dispatch(uploadThumbnailRequest());
 
   const total = file.size;
@@ -352,7 +372,7 @@ export const uploadThumbnail = (id, file) => (dispatch, getState) => {
 
   data.append('thumbnail', file);
 
-  api(getState).put(`/api/v1/media/${id}`, data, {
+  api().put(`/api/v1/media/${id}`, data, {
     onUploadProgress: ({ loaded }) => {
       dispatch(uploadThumbnailProgress(loaded, total));
     },
@@ -435,7 +455,7 @@ export function changeUploadCompose(id, params) {
 
       dispatch(changeUploadComposeSuccess(data, true));
     } else {
-      api(getState).put(`/api/v1/media/${id}`, params).then(response => {
+      api().put(`/api/v1/media/${id}`, params).then(response => {
         dispatch(changeUploadComposeSuccess(response.data, false));
       }).catch(error => {
         dispatch(changeUploadComposeFail(id, error));
@@ -523,7 +543,7 @@ const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => 
 
   fetchComposeSuggestionsAccountsController = new AbortController();
 
-  api(getState).get('/api/v1/accounts/search', {
+  api().get('/api/v1/accounts/search', {
     signal: fetchComposeSuggestionsAccountsController.signal,
 
     params: {
@@ -557,7 +577,7 @@ const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
 
   fetchComposeSuggestionsTagsController = new AbortController();
 
-  api(getState).get('/api/v2/search', {
+  api().get('/api/v2/search', {
     signal: fetchComposeSuggestionsTagsController.signal,
 
     params: {
@@ -758,7 +778,7 @@ export function changeComposeCircle(value) {
     type: COMPOSE_CIRCLE_CHANGE,
     value,
   };
-};
+}
 
 export function insertEmojiCompose(position, emoji, needsSpace) {
   return {
@@ -795,11 +815,12 @@ export function addPollOption(title) {
   };
 }
 
-export function changePollOption(index, title) {
+export function changePollOption(index, title, maxOptions) {
   return {
     type: COMPOSE_POLL_OPTION_CHANGE,
     index,
     title,
+    maxOptions,
   };
 }
 
@@ -817,3 +838,9 @@ export function changePollSettings(expiresIn, isMultiple) {
     isMultiple,
   };
 }
+
+export const changeMediaOrder = (a, b) => ({
+  type: COMPOSE_CHANGE_MEDIA_ORDER,
+  a,
+  b,
+});

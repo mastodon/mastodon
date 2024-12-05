@@ -3,18 +3,25 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { initBoostModal } from 'mastodon/actions/boosts';
+import OpenInNewIcon from '@/material-icons/400-24px/open_in_new.svg?react';
+import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
+import ReplyAllIcon from '@/material-icons/400-24px/reply_all.svg?react';
+import StarIcon from '@/material-icons/400-24px/star.svg?react';
 import { replyCompose } from 'mastodon/actions/compose';
-import { reblog, favourite, unreblog, unfavourite } from 'mastodon/actions/interactions';
+import { toggleReblog, toggleFavourite } from 'mastodon/actions/interactions';
 import { openModal } from 'mastodon/actions/modal';
 import { IconButton } from 'mastodon/components/icon_button';
-import { me, boostModal } from 'mastodon/initial_state';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
+import { me } from 'mastodon/initial_state';
 import { makeGetStatus } from 'mastodon/selectors';
+import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 const messages = defineMessages({
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
@@ -24,8 +31,6 @@ const messages = defineMessages({
   cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
-  replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
-  replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
 });
 
@@ -41,13 +46,8 @@ const makeMapStateToProps = () => {
 };
 
 class Footer extends ImmutablePureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object,
-    identity: PropTypes.object,
-  };
-
   static propTypes = {
+    identity: identityContextPropShape,
     statusId: PropTypes.string.isRequired,
     status: ImmutablePropTypes.map.isRequired,
     intl: PropTypes.object.isRequired,
@@ -55,33 +55,27 @@ class Footer extends ImmutablePureComponent {
     askReplyConfirmation: PropTypes.bool,
     withOpenButton: PropTypes.bool,
     onClose: PropTypes.func,
+    ...WithRouterPropTypes,
   };
 
   _performReply = () => {
     const { dispatch, status, onClose } = this.props;
-    const { router } = this.context;
 
     if (onClose) {
       onClose(true);
     }
 
-    dispatch(replyCompose(status, router.history));
+    dispatch(replyCompose(status));
   };
 
   handleReplyClick = () => {
-    const { dispatch, askReplyConfirmation, status, intl } = this.props;
-    const { signedIn } = this.context.identity;
+    const { dispatch, askReplyConfirmation, status, onClose } = this.props;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
       if (askReplyConfirmation) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: intl.formatMessage(messages.replyMessage),
-            confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: this._performReply,
-          },
-        }));
+        onClose(true);
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }));
       } else {
         this._performReply();
       }
@@ -99,14 +93,10 @@ class Footer extends ImmutablePureComponent {
 
   handleFavouriteClick = () => {
     const { dispatch, status } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
-      if (status.get('favourited')) {
-        dispatch(unfavourite(status));
-      } else {
-        dispatch(favourite(status));
-      }
+      dispatch(toggleFavourite(status.get('id')));
     } else {
       dispatch(openModal({
         modalType: 'INTERACTION',
@@ -119,23 +109,12 @@ class Footer extends ImmutablePureComponent {
     }
   };
 
-  _performReblog = (status, privacy) => {
-    const { dispatch } = this.props;
-    dispatch(reblog(status, privacy));
-  };
-
   handleReblogClick = e => {
     const { dispatch, status } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn } = this.props.identity;
 
     if (signedIn) {
-      if (status.get('reblogged')) {
-        dispatch(unreblog(status));
-      } else if ((e && e.shiftKey) || !boostModal) {
-        this._performReblog(status);
-      } else {
-        dispatch(initBoostModal({ status, onReblog: this._performReblog }));
-      }
+      dispatch(toggleReblog(status.get('id'), e && e.shiftKey));
     } else {
       dispatch(openModal({
         modalType: 'INTERACTION',
@@ -149,9 +128,7 @@ class Footer extends ImmutablePureComponent {
   };
 
   handleOpenClick = e => {
-    const { router } = this.context;
-
-    if (e.button !== 0 || !router) {
+    if (e.button !== 0 || !history) {
       return;
     }
 
@@ -161,7 +138,7 @@ class Footer extends ImmutablePureComponent {
       onClose();
     }
 
-    router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
+    this.props.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
   };
 
   render () {
@@ -170,13 +147,15 @@ class Footer extends ImmutablePureComponent {
     const publicStatus  = ['public', 'unlisted'].includes(status.get('visibility'));
     const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
 
-    let replyIcon, replyTitle;
+    let replyIcon, replyIconComponent, replyTitle;
 
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
+      replyIconComponent = ReplyIcon;
       replyTitle = intl.formatMessage(messages.reply);
     } else {
       replyIcon = 'reply-all';
+      replyIconComponent = ReplyAllIcon;
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
@@ -194,14 +173,14 @@ class Footer extends ImmutablePureComponent {
 
     return (
       <div className='picture-in-picture__footer'>
-        <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} />
-        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={status.get('reblogs_count')} />
-        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} />
-        {withOpenButton && <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.open)} icon='external-link' onClick={this.handleOpenClick} href={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} />}
+        <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} iconComponent={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? ReplyIcon : replyIconComponent} onClick={this.handleReplyClick} counter={status.get('replies_count')} />
+        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} title={reblogTitle} icon='retweet' iconComponent={RepeatIcon} onClick={this.handleReblogClick} counter={status.get('reblogs_count')} />
+        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={StarIcon} onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} />
+        {withOpenButton && <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.open)} icon='external-link' iconComponent={OpenInNewIcon} onClick={this.handleOpenClick} href={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} />}
       </div>
     );
   }
 
 }
 
-export default connect(makeMapStateToProps)(injectIntl(Footer));
+export default  connect(makeMapStateToProps)(withIdentity(withRouter(injectIntl(Footer))));

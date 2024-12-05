@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::Preferences::OtherController do
+RSpec.describe Settings::Preferences::OtherController do
   render_views
 
   let(:user) { Fabricate(:user, chosen_languages: []) }
@@ -16,11 +16,8 @@ describe Settings::Preferences::OtherController do
       get :show
     end
 
-    it 'returns http success' do
+    it 'returns http success with private cache control headers', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns private cache control headers' do
       expect(response.headers['Cache-Control']).to include('private, no-store')
     end
   end

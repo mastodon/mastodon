@@ -4,6 +4,7 @@ class ActivityPub::LinkedDataSignature
   include JsonLdHelper
 
   CONTEXT = 'https://w3id.org/identity/v1'
+  SIGNATURE_CONTEXT = 'https://w3id.org/security/v1'
 
   def initialize(json)
     @json = json.with_indifferent_access
@@ -46,7 +47,13 @@ class ActivityPub::LinkedDataSignature
 
     signature = Base64.strict_encode64(keypair.sign(OpenSSL::Digest.new('SHA256'), to_be_signed))
 
-    @json.merge('signature' => options.merge('signatureValue' => signature))
+    # Mastodon's context is either an array or a single URL
+    context_with_security = Array(@json['@context'])
+    context_with_security << 'https://w3id.org/security/v1'
+    context_with_security.uniq!
+    context_with_security = context_with_security.first if context_with_security.size == 1
+
+    @json.merge('signature' => options.merge('signatureValue' => signature), '@context' => context_with_security)
   end
 
   private

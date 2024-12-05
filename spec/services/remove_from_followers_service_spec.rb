@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe RemoveFromFollowersService, type: :service do
+RSpec.describe RemoveFromFollowersService do
   subject { described_class.new }
 
   let(:bob) { Fabricate(:account, username: 'bob') }
@@ -10,13 +10,13 @@ RSpec.describe RemoveFromFollowersService, type: :service do
   describe 'local' do
     let(:sender) { Fabricate(:account, username: 'alice') }
 
-    before do
-      Follow.create(account: sender, target_account: bob)
-      subject.call(bob, sender)
-    end
+    before { Follow.create(account: sender, target_account: bob) }
 
     it 'does not create follow relation' do
-      expect(bob.followed_by?(sender)).to be false
+      subject.call(bob, sender)
+
+      expect(bob)
+        .to_not be_followed_by(sender)
     end
   end
 
@@ -26,15 +26,16 @@ RSpec.describe RemoveFromFollowersService, type: :service do
     before do
       Follow.create(account: sender, target_account: bob)
       stub_request(:post, sender.inbox_url).to_return(status: 200)
+    end
+
+    it 'does not create follow relation and sends reject activity', :inline_jobs do
       subject.call(bob, sender)
-    end
 
-    it 'does not create follow relation' do
-      expect(bob.followed_by?(sender)).to be false
-    end
+      expect(bob)
+        .to_not be_followed_by(sender)
 
-    it 'sends a reject activity' do
-      expect(a_request(:post, sender.inbox_url)).to have_been_made.once
+      expect(a_request(:post, sender.inbox_url))
+        .to have_been_made.once
     end
   end
 end

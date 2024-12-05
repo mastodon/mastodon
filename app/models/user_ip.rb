@@ -10,11 +10,11 @@
 #
 
 class UserIp < ApplicationRecord
+  include DatabaseViewRecord
+
   self.primary_key = :user_id
 
   belongs_to :user
 
-  def readonly?
-    true
-  end
+  scope :by_latest_used, -> { order(used_at: :desc) }
 end

@@ -57,48 +57,12 @@ module MediaComponentHelper
     end
   end
 
-  def render_card_component(status, **options)
-    component_params = {
-      sensitive: sensitive_viewer?(status, current_account),
-      card: serialize_status_card(status).as_json,
-    }.merge(**options)
-
-    react_component :card, component_params
-  end
-
-  def render_poll_component(status, **options)
-    component_params = {
-      disabled: true,
-      poll: serialize_status_poll(status).as_json,
-    }.merge(**options)
-
-    react_component :poll, component_params do
-      render partial: 'statuses/poll', locals: { status: status, poll: status.preloadable_poll, autoplay: prefers_autoplay? }
-    end
-  end
-
   private
 
   def serialize_media_attachment(attachment)
     ActiveModelSerializers::SerializableResource.new(
       attachment,
       serializer: REST::MediaAttachmentSerializer
-    )
-  end
-
-  def serialize_status_card(status)
-    ActiveModelSerializers::SerializableResource.new(
-      status.preview_card,
-      serializer: REST::PreviewCardSerializer
-    )
-  end
-
-  def serialize_status_poll(status)
-    ActiveModelSerializers::SerializableResource.new(
-      status.preloadable_poll,
-      serializer: REST::PollSerializer,
-      scope: current_user,
-      scope_name: :current_user
     )
   end
 

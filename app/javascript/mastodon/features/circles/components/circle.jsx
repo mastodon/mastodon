@@ -5,9 +5,13 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
+import MotionPhotosOnIcon from '@/material-icons/400-24px/motion_photos_on.svg?react';
+import { Icon }  from 'mastodon/components/icon';
+import IconButton from 'mastodon/components/icon_button';
+
 import { deleteCircle } from '../../../actions/circles';
 import { openModal } from '../../../actions/modal';
-import Icon from '../../../components/icon';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_circle.message', defaultMessage: 'Are you sure you want to permanently delete this circle?' },
@@ -29,7 +33,7 @@ class Circle extends React.PureComponent {
 
   handleEditClick = () => {
     this.props.dispatch(openModal({ modalType: 'CIRCLE_EDITOR', modalProps: { circleId: this.props.id }}));
-  }
+  };
 
   handleDeleteClick = () => {
     const { dispatch, intl } = this.props;
@@ -42,7 +46,7 @@ class Circle extends React.PureComponent {
         dispatch(deleteCircle(id));
       },
     }}));
-  }
+  };
 
   render() {
     const { text, intl } = this.props;
@@ -50,12 +54,10 @@ class Circle extends React.PureComponent {
     return (
       <div className='circle-link'>
         <button className='circle-edit-button' onClick={this.handleEditClick}>
-          <Icon id='user-circle' className='column-link__icon' fixedWidth />
+          <Icon id='motion_photos_on' icon='motion_photos_on' iconComponent={MotionPhotosOnIcon} className='column-link__icon' fixedWidth />
           {text}
         </button>
-        <button className='circle-delete-button' title={intl.formatMessage(messages.deleteConfirm)} onClick={this.handleDeleteClick}>
-          <Icon id='trash' className='column-link__icon' fixedWidth />
-        </button>
+        <IconButton icon='delete' iconComponent={DeleteIcon} className='circle-delete-button' title={intl.formatMessage(messages.deleteConfirm)} onClick={this.handleDeleteClick} />
       </div>
     );
   }

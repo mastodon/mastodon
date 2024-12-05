@@ -165,7 +165,7 @@ describe('computeHashtagBarForStatus', () => {
     );
   });
 
-  it('puts the hashtags in the bar if a status content has hashtags in the only line and has a media', () => {
+  it('does not put the hashtags in the bar if a status content has hashtags in the only line and has a media', () => {
     const status = createStatus(
       '<p>This is my content! <a href="test">#hashtag</a></p>',
       ['hashtag'],

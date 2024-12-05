@@ -16,7 +16,7 @@
 class SoftwareUpdate < ApplicationRecord
   self.inheritance_column = nil
 
-  enum type: { patch: 0, minor: 1, major: 2 }, _suffix: :type
+  enum :type, { patch: 0, minor: 1, major: 2 }, suffix: :type
 
   def gem_version
     Gem::Version.new(version)

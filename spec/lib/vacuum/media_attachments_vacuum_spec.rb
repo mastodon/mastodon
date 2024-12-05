@@ -17,32 +17,21 @@ RSpec.describe Vacuum::MediaAttachmentsVacuum do
     let!(:old_unattached_media) { Fabricate(:media_attachment, account_id: nil, created_at: 10.days.ago) }
     let!(:new_unattached_media) { Fabricate(:media_attachment, account_id: nil, created_at: 1.hour.ago) }
 
-    before do
-      subject.perform
-    end
+    before { subject.perform }
 
-    it 'deletes cache of remote media attachments past the retention period' do
-      expect(old_remote_media.reload.file).to be_blank
-    end
-
-    it 'does not touch local media attachments past the retention period' do
-      expect(old_local_media.reload.file).to_not be_blank
-    end
-
-    it 'does not delete cache of remote media attachments within the retention period' do
-      expect(new_remote_media.reload.file).to_not be_blank
-    end
-
-    it 'does not touch local media attachments within the retention period' do
-      expect(new_local_media.reload.file).to_not be_blank
-    end
-
-    it 'deletes unattached media attachments past TTL' do
-      expect { old_unattached_media.reload }.to raise_error(ActiveRecord::RecordNotFound)
-    end
-
-    it 'does not delete unattached media attachments within TTL' do
-      expect(new_unattached_media.reload).to be_persisted
+    it 'handles attachments based on metadata details' do
+      expect(old_remote_media.reload.file) # Remote and past retention period
+        .to be_blank
+      expect(old_local_media.reload.file) # Local and past retention
+        .to_not be_blank
+      expect(new_remote_media.reload.file) # Remote and within retention
+        .to_not be_blank
+      expect(new_local_media.reload.file) # Local and within retention
+        .to_not be_blank
+      expect { old_unattached_media.reload } # Unattached and past TTL
+        .to raise_error(ActiveRecord::RecordNotFound)
+      expect(new_unattached_media.reload) # Unattached and within TTL
+        .to be_persisted
     end
   end
 end

@@ -3,6 +3,7 @@ nl:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Beschermt tegen onjuiste attributies.
         discoverable: Jouw openbare berichten kunnen worden uitgelicht op verschillende plekken binnen Mastodon en jouw account kan worden aanbevolen aan andere gebruikers.
         display_name: Jouw volledige naam of een leuke bijnaam.
         fields: Jouw website, persoonlijke voornaamwoorden, leeftijd, alles wat je maar kwijt wilt.
@@ -28,7 +29,7 @@ nl:
           sensitive: Forceer dat alle mediabijlagen van deze gebruiker als gevoelig worden gemarkeerd.
           silence: Voorkom dat de gebruiker berichten kan plaatsen met openbare zichtbaarheid, verberg diens berichten en meldingen van mensen die de gebruiker niet volgen. Sluit alle rapportages tegen dit account af.
           suspend: Voorkom interactie van of naar dit account en verwijder de inhoud. Dit is omkeerbaar binnen 30 dagen. Dit sluit alle rapporten tegen dit account af.
-        warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
+        warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de preset
       announcement:
         all_day: Wanneer dit is aangevinkt worden alleen de datums binnen het tijdvak getoond
         ends_at: Optioneel. De publicatie van de mededeling wordt op dit tijdstip automatisch beëindigd
@@ -39,14 +40,14 @@ nl:
         text: Je kunt maar eenmalig bezwaar indienen tegen een vastgestelde overtreding
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
-        avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
+        avatar: WEBP, PNG, GIF of JPG. Maximaal %{size}. Wordt verkleind naar %{dimensions}px
         bot: Signaal aan anderen dat het account voornamelijk geautomatiseerde acties uitvoert en mogelijk niet wordt gecontroleerd
         context: Een of meerdere locaties waar de filter actief moet zijn
         current_password: Voer voor veiligheidsredenen het wachtwoord van je huidige account in
         current_username: Voer ter bevestiging de gebruikersnaam van je huidige account in
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
         email: Je krijgt een bevestigingsmail
-        header: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
+        header: WEBP, PNG, GIF of JPG. Maximaal %{size}. Wordt verkleind naar %{dimensions}px
         inbox_url: Kopieer de URL van de voorpagina van de relayserver die je wil gebruiken
         irreversible: Gefilterde berichten verdwijnen onomkeerbaar, zelfs als de filter later wordt verwijderd
         locale: De taal van de gebruikersomgeving, e-mails en pushmeldingen
@@ -77,13 +78,15 @@ nl:
           warn: Verberg de gefilterde inhoud achter een waarschuwing, met de titel van het filter als waarschuwingstekst
       form_admin_settings:
         activity_api_enabled: Aantallen lokaal gepubliceerde berichten, actieve gebruikers en nieuwe registraties per week
-        backups_retention_period: De aangemaakte gebruikersarchieven voor het opgegeven aantal dagen behouden.
+        app_icon: WEBP, PNG, GIF of JPG. Vervangt op mobiele apparaten het standaard app-pictogram met een aangepast pictogram.
+        backups_retention_period: Gebruikers hebben de mogelijkheid om archieven van hun berichten te genereren om later te downloaden. Indien ingesteld op een positieve waarde, worden deze archieven automatisch verwijderd uit jouw opslag na het opgegeven aantal dagen.
         bootstrap_timeline_accounts: Deze accounts worden bovenaan de aanbevelingen aan nieuwe gebruikers getoond. Meerdere gebruikersnamen met komma's scheiden.
         closed_registrations_message: Weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld
-        content_cache_retention_period: Alle berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Deze berichten kunnen daarna hoogstwaarschijnlijk niet meer worden hersteld. Alle gerelateerde bladwijzers, favorieten en boosts worden eveneens onomkeerbaar verwijderd.
+        content_cache_retention_period: Alle berichten van andere servers (inclusief boosts en reacties) worden verwijderd na het opgegeven aantal dagen, ongeacht enige lokale gebruikersinteractie met die berichten. Dit betreft ook berichten die een lokale gebruiker aan diens bladwijzers heeft toegevoegd of als favoriet heeft gemarkeerd. Privéberichten tussen gebruikers van verschillende servers gaan ook verloren en zijn onmogelijk te herstellen. Het gebruik van deze instelling is bedoeld voor servers die een speciaal doel dienen en overtreedt veel gebruikersverwachtingen wanneer deze voor algemeen gebruik wordt geïmplementeerd.
         custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
+        favicon: WEBP, PNG, GIF of JPG. Vervangt de standaard Mastodon favicon met een aangepast pictogram.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
-        media_cache_retention_period: Mediabestanden die van andere servers zijn gedownload worden na het opgegeven aantal dagen verwijderd en worden op verzoek opnieuw gedownload.
+        media_cache_retention_period: Mediabestanden van berichten van externe gebruikers worden op jouw server in de cache opgeslagen. Indien ingesteld op een positieve waarde, worden media verwijderd na het opgegeven aantal dagen. Als de mediagegevens worden opgevraagd nadat ze zijn verwijderd, worden ze opnieuw gedownload wanneer de originele inhoud nog steeds beschikbaar is. Vanwege beperkingen op hoe vaak linkvoorbeelden sites van derden raadplegen, wordt aanbevolen om deze waarde in te stellen op ten minste 14 dagen. Anders worden linkvoorbeelden niet op aanvraag bijgewerkt.
         peers_api_enabled: Een lijst met domeinnamen die deze server heeft aangetroffen in de fediverse. Er zijn hier geen gegevens inbegrepen over de vraag of je verbonden bent met een bepaalde server, alleen dat je server er van weet. Dit wordt gebruikt door diensten die statistieken over de federatie in algemene zin verzamelen.
         profile_directory: De gebruikersgids bevat een lijst van alle gebruikers die ervoor gekozen hebben om ontdekt te kunnen worden.
         require_invite_text: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
@@ -116,6 +119,7 @@ nl:
           sign_up_requires_approval: Nieuwe registraties vereisen jouw goedkeuring
         severity: Kies wat er moet gebeuren met aanvragen van dit IP-adres
       rule:
+        hint: Optioneel. Verstrek meer details over de regel
         text: Omschrijf een regel of vereiste voor gebruikers op deze server. Probeer het kort en simpel te houden
       sessions:
         otp: 'Voer de tweestaps-toegangscode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
@@ -127,7 +131,7 @@ nl:
         name: Je kunt elk woord met een hoofdletter beginnen, om zo bijvoorbeeld de tekst leesbaarder te maken
       user:
         chosen_languages: Alleen berichten in de aangevinkte talen worden op de openbare tijdlijnen getoond
-        role: De rol bepaalt welke rechten een gebruiker heeft
+        role: De rol bepaalt welke rechten de gebruiker heeft.
       user_role:
         color: Kleur die gebruikt wordt voor de rol in de UI, als RGB in hexadecimale formaat
         highlighted: Dit maakt de rol openbaar zichtbaar
@@ -140,6 +144,7 @@ nl:
         url: Waar gebeurtenissen naartoe worden verzonden
     labels:
       account:
+        attribution_domains_as_text: Alleen bepaalde websites toestaan
         discoverable: Jouw account en berichten laten uitlichten door Mastodon
         fields:
           name: Label
@@ -148,9 +153,9 @@ nl:
         show_collections: Accounts die jij volgt en die jou volgen op je profiel tonen
         unlocked: Automatisch nieuwe volgers accepteren
       account_alias:
-        acct: Mastodonadres van het oude account
+        acct: Fediverse-adres van het oude account
       account_migration:
-        acct: Mastodonadres van het nieuwe account
+        acct: Fediverse-adres van het nieuwe account
       account_warning_preset:
         text: Tekst van preset
         title: Titel
@@ -165,7 +170,7 @@ nl:
           sensitive: Gevoelig
           silence: Beperken
           suspend: Opschorten en onomkeerbaar accountgegevens verwijderen
-        warning_preset_id: Gebruik een voorinstelling van een waarschuwing
+        warning_preset_id: Een preset voor een waarschuwing gebruiken
       announcement:
         all_day: Gedurende de hele dag
         ends_at: Eindigt
@@ -208,6 +213,7 @@ nl:
         setting_default_privacy: Zichtbaarheid van nieuwe berichten
         setting_default_sensitive: Media altijd als gevoelig markeren
         setting_delete_modal: Vraag voor het verwijderen van een bericht een bevestiging
+        setting_disable_hover_cards: Profielvoorbeelden door eroverheen te zweven uitschakelen
         setting_disable_swiping: Swipebewegingen uitschakelen
         setting_display_media: Mediaweergave
         setting_display_media_default: Standaard
@@ -239,11 +245,13 @@ nl:
           warn: Met een waarschuwing verbergen
       form_admin_settings:
         activity_api_enabled: Statistieken over gebruikersactiviteit via de API publiceren
+        app_icon: App-pictogram
         backups_retention_period: Bewaartermijn gebruikersarchief
         bootstrap_timeline_accounts: Accounts die altijd aan nieuwe gebruikers worden aanbevolen
         closed_registrations_message: Aangepast bericht wanneer registratie is uitgeschakeld
-        content_cache_retention_period: Bewaartermijn berichtencache
+        content_cache_retention_period: Bewaartermijn voor externe inhoud
         custom_css: Aangepaste CSS
+        favicon: Favicon
         mascot: Aangepaste mascotte (legacy)
         media_cache_retention_period: Bewaartermijn mediacache
         peers_api_enabled: Lijst van bekende servers via de API publiceren
@@ -287,7 +295,7 @@ nl:
         favourite: Wanneer iemand jouw bericht als favoriet markeert
         follow: Wanneer iemand jou is gaan volgen
         follow_request: Wanneer iemand jou wil volgen
-        mention: Wanneer iemand jou heeft vermeld
+        mention: Je bent door iemand vermeld
         pending_account: Wanneer een nieuw account moet worden beoordeeld
         reblog: Wanneer iemand jouw bericht heeft geboost
         report: Nieuwe rapportage is ingediend
@@ -299,6 +307,7 @@ nl:
           patch: Meldingen bij bugfix-updates
         trending_tag: Nieuwe trend vereist beoordeling
       rule:
+        hint: Aanvullende informatie
         text: Regel
       settings:
         indexable: Zoekmachines jouw profielpagina laten vinden
@@ -307,7 +316,7 @@ nl:
         listable: Toestaan dat deze hashtag in zoekopdrachten en aanbevelingen te zien valt
         name: Hashtag
         trendable: Goedkeuren dat deze hashtag onder trends te zien valt
-        usable: Toestaan dat deze hashtag in berichten gebruikt mag worden
+        usable: Berichten toestaan deze hashtag lokaal te gebruiken
       user:
         role: Rol
         time_zone: Tijdzone

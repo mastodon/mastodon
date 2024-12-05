@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::ProcessAccountService, type: :service do
+RSpec.describe ActivityPub::ProcessAccountService do
   subject { described_class.new }
 
   context 'with property values, an avatar, and a profile header' do
@@ -63,8 +63,28 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
     end
   end
 
+  context 'with attribution domains' do
+    let(:payload) do
+      {
+        id: 'https://foo.test',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        attributionDomains: [
+          'example.com',
+        ],
+      }.with_indifferent_access
+    end
+
+    it 'parses attribution domains' do
+      account = subject.call('alice', 'example.com', payload)
+
+      expect(account.attribution_domains)
+        .to match_array(%w(example.com))
+    end
+  end
+
   context 'when account is not suspended' do
-    subject { described_class.new.call('alice', 'example.com', payload) }
+    subject { described_class.new.call(account.username, account.domain, payload) }
 
     let!(:account) { Fabricate(:account, username: 'alice', domain: 'example.com') }
 
@@ -160,12 +180,10 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
       stub_const 'ActivityPub::ProcessAccountService::SUBDOMAINS_RATELIMIT', 5
     end
 
-    it 'creates at least some accounts' do
-      expect { subject }.to change { Account.remote.count }.by_at_least(2)
-    end
-
-    it 'creates no more account than the limit allows' do
-      expect { subject }.to change { Account.remote.count }.by_at_most(5)
+    it 'creates accounts without exceeding rate limit' do
+      expect { subject }
+        .to create_some_remote_accounts
+        .and create_fewer_than_rate_limit_accounts
     end
   end
 
@@ -226,12 +244,20 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
       end
     end
 
-    it 'creates at least some accounts' do
-      expect { subject.call('user1', 'foo.test', payload) }.to change { Account.remote.count }.by_at_least(2)
+    it 'creates accounts without exceeding rate limit', :inline_jobs do
+      expect { subject.call('user1', 'foo.test', payload) }
+        .to create_some_remote_accounts
+        .and create_fewer_than_rate_limit_accounts
     end
+  end
 
-    it 'creates no more account than the limit allows' do
-      expect { subject.call('user1', 'foo.test', payload) }.to change { Account.remote.count }.by_at_most(5)
-    end
+  private
+
+  def create_some_remote_accounts
+    change(Account.remote, :count).by_at_least(2)
+  end
+
+  def create_fewer_than_rate_limit_accounts
+    change(Account.remote, :count).by_at_most(5)
   end
 end

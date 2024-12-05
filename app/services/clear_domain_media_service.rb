@@ -43,7 +43,7 @@ class ClearDomainMediaService < BaseService
   end
 
   def media_from_blocked_domain
-    MediaAttachment.joins(:account).merge(blocked_domain_accounts).reorder(nil)
+    MediaAttachment.joins(:account).merge(blocked_domain_accounts)
   end
 
   def emojis_from_blocked_domains

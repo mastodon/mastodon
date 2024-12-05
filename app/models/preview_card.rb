@@ -32,30 +32,43 @@
 #  link_type                    :integer
 #  published_at                 :datetime
 #  image_description            :string           default(""), not null
+#  author_account_id            :bigint(8)
 #
 
 class PreviewCard < ApplicationRecord
   include Attachmentable
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
-  LIMIT = 2.megabytes
+  LIMIT = Rails.configuration.x.use_vips ? 8.megabytes : 2.megabytes
 
   BLURHASH_OPTIONS = {
     x_comp: 4,
     y_comp: 4,
   }.freeze
 
+  # URL size limit to safely store in PosgreSQL's unique indexes
+  # Technically this is a byte-size limit but we use it as a
+  # character limit to work with length validation
+  URL_CHARACTER_LIMIT = 2692
+
   self.inheritance_column = false
 
-  enum type: { link: 0, photo: 1, video: 2, rich: 3 }
-  enum link_type: { unknown: 0, article: 1 }
+  enum :type, { link: 0, photo: 1, video: 2, rich: 3 }
+  enum :link_type, { unknown: 0, article: 1 }
 
-  has_and_belongs_to_many :statuses
+  has_many :preview_cards_statuses, dependent: :delete_all, inverse_of: :preview_card
+  has_many :statuses, through: :preview_cards_statuses
+
   has_one :trend, class_name: 'PreviewCardTrend', inverse_of: :preview_card, dependent: :destroy
+  belongs_to :author_account, class_name: 'Account', optional: true
 
-  has_attached_file :image, processors: [:thumbnail, :blurhash_transcoder], styles: ->(f) { image_styles(f) }, convert_options: { all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' }, validate_media_type: false
+  has_attached_file :image,
+                    processors: [Rails.configuration.x.use_vips ? :lazy_thumbnail : :thumbnail, :blurhash_transcoder],
+                    styles: ->(f) { image_styles(f) },
+                    convert_options: { all: '-quality 90 +profile "!icc,*" +set date:modify +set date:create +set date:timestamp' },
+                    validate_media_type: false
 
-  validates :url, presence: true, uniqueness: true
+  validates :url, presence: true, uniqueness: true, url: true, length: { maximum: URL_CHARACTER_LIMIT }
   validates_attachment_content_type :image, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :image, less_than: LIMIT
   remotable_attachment :image, LIMIT
@@ -63,6 +76,9 @@ class PreviewCard < ApplicationRecord
   scope :cached, -> { where.not(image_file_name: [nil, '']) }
 
   before_save :extract_dimensions, if: :link?
+
+  # This can be set by the status when retrieving the preview card using the join model
+  attr_accessor :original_url
 
   def appropriate_for_trends?
     link? && article? && title.present? && description.present? && image.present? && provider_name.present?
@@ -115,6 +131,22 @@ class PreviewCard < ApplicationRecord
 
   def history
     @history ||= Trends::History.new('links', id)
+  end
+
+  def authors
+    @authors ||= [PreviewCard::Author.new(self)]
+  end
+
+  class Author < ActiveModelSerializers::Model
+    attributes :name, :url, :account
+
+    def initialize(preview_card)
+      super(
+        name: preview_card.author_name,
+        url: preview_card.author_url,
+        account: preview_card.author_account,
+      )
+    end
   end
 
   class << self
