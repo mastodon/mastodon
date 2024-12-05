@@ -119,7 +119,11 @@ function loaded() {
         formattedContent = dateFormat.format(datetime);
       }
 
-      content.title = formattedContent;
+      const timeGiven = content.dateTime.includes('T');
+      content.title = timeGiven
+        ? dateTimeFormat.format(datetime)
+        : dateFormat.format(datetime);
+
       content.textContent = formattedContent;
     });
 
