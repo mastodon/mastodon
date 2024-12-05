@@ -152,17 +152,17 @@ zh-CN:
       admin:read: 读取服务器上的所有数据
       admin:read:accounts: 读取所有账号的敏感信息
       admin:read:canonical_email_blocks: 读取所有已屏蔽邮箱的敏感信息
-      admin:read:domain_allows: 读取所有域的敏感信息
-      admin:read:domain_blocks: 读取所有域块的敏感信息
-      admin:read:email_domain_blocks: 读取所有已屏蔽邮箱域名的敏感信息
+      admin:read:domain_allows: 读取敏感信息 - 站点允许列表
+      admin:read:domain_blocks: 读取敏感信息 - 站点屏蔽列表
+      admin:read:email_domain_blocks: 读取敏感信息 - 邮箱域名屏蔽列表
       admin:read:ip_blocks: 读取所有IP块的敏感信息
       admin:read:reports: 读取所有举报和被举报账号的敏感信息
       admin:write: 修改服务器上的所有数据
       admin:write:accounts: 对账号执行管理操作
       admin:write:canonical_email_blocks: 对已屏蔽邮箱执行管理操作
-      admin:write:domain_allows: 在域上执行管理操作
-      admin:write:domain_blocks: 在域块上执行管理操作
-      admin:write:email_domain_blocks: 对已屏蔽邮箱域名执行管理操作
+      admin:write:domain_allows: 修改站点允许列表
+      admin:write:domain_blocks: 修改站点屏蔽列表
+      admin:write:email_domain_blocks: 修改邮箱域名屏蔽列表
       admin:write:ip_blocks: 针对 IP 段执行管理操作
       admin:write:reports: 对举报执行管理操作
       crypto: 使用端到端加密
@@ -184,7 +184,7 @@ zh-CN:
       read:statuses: 查看所有嘟文
       write: 修改你的账号数据
       write:accounts: 修改你的个人资料
-      write:blocks: 屏蔽账号和域名
+      write:blocks: 屏蔽账户与站点
       write:bookmarks: 收藏嘟文
       write:conversations: 静音并删除会话
       write:favourites: 喜欢嘟文

@@ -187,6 +187,7 @@ el:
         create_domain_block: Δημιουργία Αποκλεισμού Τομέα
         create_email_domain_block: Δημιουργία Αποκλεισμού Τομέα Email
         create_ip_block: Δημιουργία κανόνα IP
+        create_relay: Δημιουργία Relay
         create_unavailable_domain: Δημιουργία Μη Διαθέσιμου Τομέα
         create_user_role: Δημιουργία Ρόλου
         demote_user: Υποβιβασμός Χρήστη
@@ -198,14 +199,17 @@ el:
         destroy_email_domain_block: Διαγραφή Αποκλεισμού Τομέα Email
         destroy_instance: Εκκαθάριση Τομέα
         destroy_ip_block: Διαγραφή κανόνα IP
+        destroy_relay: Διαγραφή Relay
         destroy_status: Διαγραφή Ανάρτησης
         destroy_unavailable_domain: Διαγραφή Μη Διαθέσιμου Τομέα
         destroy_user_role: Καταστροφή Ρόλου
         disable_2fa_user: Απενεργοποίηση 2FA
         disable_custom_emoji: Απενεργοποίηση Προσαρμοσμένων Emoji
+        disable_relay: Απενεργοποίηση Relay
         disable_sign_in_token_auth_user: Απενεργοποίηση Ελέγχου Ταυτότητας Διακριτικού Email για Χρήστη
         disable_user: Απενεργοποίηση Χρήστη
         enable_custom_emoji: Ενεργοποίηση Προσαρμοσμένων Emoji
+        enable_relay: Ενεργοποίηση Relay
         enable_sign_in_token_auth_user: Ενεργοποίηση Ελέγχου Ταυτότητας Διακριτικού Email για Χρήστη
         enable_user: Ενεργοποίηση Χρήστη
         memorialize_account: Μετατροπή Λογαριασμού σε Εις Μνήμην
@@ -247,22 +251,30 @@ el:
         create_domain_block_html: Ο/Η %{name} απέκλεισε τον τομέα %{target}
         create_email_domain_block_html: Ο χρήστης %{name} απέκλεισε τον τομέα email %{target}
         create_ip_block_html: Ο/Η %{name} δημιούργησε κανόνα για την IP %{target}
+        create_relay_html: Ο χρήστης %{name} δημιούργησε ένα relay %{target}
         create_unavailable_domain_html: Ο/Η %{name} σταμάτησε να τροφοδοτεί τον τομέα %{target}
         create_user_role_html: Ο/Η %{name} δημιούργησε ρόλο %{target}
         demote_user_html: Ο/Η %{name} υποβίβασε τον χρήστη %{target}
         destroy_announcement_html: Ο/Η %{name} διέγραψε την ανακοίνωση %{target}
+        destroy_canonical_email_block_html: Ο χρήστης %{name} έκανε άρση αποκλεισμού email με το hash %{target}
         destroy_custom_emoji_html: Ο/Η %{name} διέγραψε το emoji %{target}
         destroy_domain_allow_html: Ο/Η %{name} αφαίρεσε τον τομέα %{target} από τη λίστα εγκρίσεων
         destroy_domain_block_html: Ο/Η %{name} επέτρεψε τον τομέα %{target}
+        destroy_email_domain_block_html: Ο χρήστης %{name} έκανε άρση αποκλεισμού του τομέα email %{target}
         destroy_instance_html: Ο/Η %{name} εκκαθάρισε τον τομέα %{target}
         destroy_ip_block_html: Ο/Η %{name} διέγραψε τον κανόνα για την IP %{target}
+        destroy_relay_html: Ο χρήστης %{name} διέγραψε το relay %{target}
         destroy_status_html: Ο/Η %{name} αφαίρεσε την ανάρτηση του/της %{target}
         destroy_unavailable_domain_html: Ο/Η %{name} ξανάρχισε να τροφοδοτεί το domain %{target}
         destroy_user_role_html: Ο/Η %{name} διέγραψε τον ρόλο του %{target}
         disable_2fa_user_html: Ο/Η %{name} απενεργοποίησε την απαίτηση για ταυτοποίηση δύο παραγόντων για τον χρήστη %{target}
         disable_custom_emoji_html: Ο/Η %{name} απενεργοποίησε το emoji %{target}
+        disable_relay_html: Ο χρήστης %{name} απενεργοποίησε το relay %{target}
+        disable_sign_in_token_auth_user_html: Ο χρήστης %{name} απενεργοποίησε την ταυτοποίηση χαρακτηριστικού μέσω e-mail για %{target}
         disable_user_html: Ο/Η %{name} απενεργοποίησε τη σύνδεση για τον χρήστη %{target}
         enable_custom_emoji_html: Ο/Η %{name} ενεργοποίησε το emoji %{target}
+        enable_relay_html: Ο χρήστης %{name} ενεργοποίησε το relay %{target}
+        enable_sign_in_token_auth_user_html: Ο χρήστης %{name} ενεργοποίησε την πιστοποίηση αναγνωριστικού email του %{target}
         enable_user_html: Ο/Η %{name} ενεργοποίησε τη σύνδεση για τον χρήστη %{target}
         memorialize_account_html: O/H %{name} μετέτρεψε τον λογαριασμό του %{target} σε σελίδα εις μνήμην
         promote_user_html: Ο/Η %{name} προβίβασε το χρήστη %{target}
@@ -270,6 +282,7 @@ el:
         reject_user_html: ο/η %{name} απέρριψε την εγγραφή από %{target}
         remove_avatar_user_html: ο/η %{name} αφαίρεσε το άβαταρ του/της %{target}
         reopen_report_html: Ο/Η %{name} ξανάνοιξε την αναφορά %{target}
+        resend_user_html: Ο χρήστης %{name} έστειλε ξανά email επιβεβαίωσης για τον χρήστη %{target}
         reset_password_user_html: Ο/Η %{name} επανέφερε το συνθηματικό του χρήστη %{target}
         resolve_report_html: Ο/Η %{name} επέλυσε την αναφορά %{target}
         sensitive_account_html: Ο/Η %{name} επισήμανε τα πολυμέσα του/της %{target} ως ευαίσθητα
@@ -439,8 +452,12 @@ el:
       new:
         create: Προσθήκη τομέα
         resolve: Επίλυση τομέα
+        title: Αποκλεισμός νέου τομέα email
+      no_email_domain_block_selected: Δεν άλλαξαν οι αποκλεισμοί τομέα email καθώς δεν επιλέχθηκε κανένας
       not_permitted: Δεν επιτρέπεται
+      resolved_dns_records_hint_html: Το όνομα τομέα επιλύεται στους ακόλουθους τομείς MX, οι οποίοι είναι τελικά υπεύθυνοι για την αποδοχή των email. Αποκλείοντας έναν τομέα MX θα αποκλείει τις εγγραφές από οποιαδήποτε διεύθυνση email που χρησιμοποιεί τον ίδιο τομέα MX, ακόμη και αν το ορατό όνομα τομέα είναι διαφορετικό. <strong>Προσέξτε να μην αποκλείσετε τους μεγάλους παρόχους ηλεκτρονικού ταχυδρομείου.</strong>
       resolved_through_html: Επιλύθηκε μέσω %{domain}
+      title: Αποκλεισμένοι τομείς email
     export_domain_allows:
       new:
         title: Εισαγωγή επιτρεπόμενων τομέων
@@ -594,7 +611,9 @@ el:
         resolve_description_html: Δεν θα ληφθούν μέτρα κατά του αναφερόμενου λογαριασμού, δεν θα καταγραφεί κανένα παράπτωμα, και η αναφορά θα κλείσει.
         silence_description_html: Ο λογαριασμός θα είναι ορατός μόνο σε εκείνους που ήδη τον ακολουθούν ή τον αναζητούν χειροκίνητα, περιορίζοντας κατά πολύ την εμβέλειά του. Η ενέργεια αυτή είναι αναστρέψιμη. Κλείνει όλες τις αναφορές εναντίον αυτού του λογαριασμού.
         suspend_description_html: Ο λογαριασμός και όλο το περιεχόμενό του θα είναι απρόσιτα και τελικά θα διαγραφούν και η αλληλεπίδραση με αυτόν θα είναι αδύνατη. Αναστρέψιμη εντός 30 ημερών. Κλείνει όλες τις αναφορές εναντίον αυτού του λογαριασμού.
+      actions_description_html: Αποφάσισε ποια μέτρα θα ληφθούν για την επίλυση αυτής της αναφοράς. Εάν προβείς σε τιμωρητική ενέργεια κατά του αναφερόμενου λογαριασμού, θα αποσταλεί ειδοποίηση μέσω ηλεκτρονικού ταχυδρομείου σε αυτόν, εκτός όταν η κατηγορία <strong>Spam</strong> είναι επιλεγμένη.
       actions_description_remote_html: Αποφάσισε ποια μέτρα θα ληφθούν για την επίλυση αυτής της αναφοράς. Αυτό θα επηρεάσει μόνο το πώς <strong>ο δικός σας</strong> διακομιστής επικοινωνεί με αυτόν τον απομακρυσμένο λογαριασμό και χειρίζεται το περιεχόμενό του.
+      actions_no_posts: Αυτή η αναφορά δεν έχει συσχετισμένες αναρτήσεις για διαγραφή
       add_to_report: Πρόσθεσε περισσότερα στην αναφορά
       already_suspended_badges:
         local: Ήδη σε αναστολή σε αυτόν τον διακομιστή
@@ -658,6 +677,7 @@ el:
         delete_data_html: Διάγραψε το προφίλ και το περιεχόμενο του <strong>@%{acct}</strong> σε 30 ημέρες από τώρα εκτός αν, εν τω μεταξύ, ανακληθεί η αναστολή
         preview_preamble_html: 'Ο <strong>@%{acct}</strong> θα λάβει μια προειδοποίηση με τα ακόλουθο περιεχόμενο:'
         record_strike_html: Κατάγραψε ένα παράπτωμα εναντίον του <strong>@%{acct}</strong> για να σε βοηθήσει να αποφασίσεις σε μελλοντικές παραβιάσεις από αυτόν τον λογαριασμό
+        send_email_html: Στείλε στον λογαριασμό <strong>@%{acct}</strong> ένα προειδοποιητικό email
         warning_placeholder: Προαιρετικές επιπλέον εξηγήσεις για αυτή την ενέργεια από την ομάδα συντονισμού.
       target_origin: Προέλευση του αναφερόμενου λογαριασμού
       title: Αναφορές
@@ -697,6 +717,7 @@ el:
         manage_appeals: Διαχείριση Εφέσεων
         manage_appeals_description: Επιτρέπει στους χρήστες να εξετάζουν τις εφέσεις κατά των ενεργειών της ομάδας συντονισμού
         manage_blocks: Διαχείριση Αποκλεισμών
+        manage_blocks_description: Επιτρέπει στους χρήστες να αποκλείουν παρόχους email και διευθύνσεις IP
         manage_custom_emojis: Διαχείριση Προσαρμοσμένων Emojis
         manage_custom_emojis_description: Επιτρέπει στους χρήστες να διαχειρίζονται προσαρμοσμένα emojis στον διακομιστή
         manage_federation: Διαχείριση Συναλλαγών
@@ -714,6 +735,7 @@ el:
         manage_taxonomies: Διαχείριση Ταξινομιών
         manage_taxonomies_description: Επιτρέπει στους χρήστες να εξετάζουν το δημοφιλές περιεχόμενο και να ενημερώνουν τις ρυθμίσεις ετικέτας
         manage_user_access: Διαχείριση Πρόσβασης Χρήστη
+        manage_user_access_description: Επιτρέπει στους χρήστες να απενεργοποιούν την ταυτοποίηση δύο παραγόντων άλλων χρηστών, να αλλάξουν τη διεύθυνση ηλεκτρονικού ταχυδρομείου τους και να επαναφέρουν τον κωδικό πρόσβασής τους
         manage_users: Διαχείριση Χρηστών
         manage_users_description: Επιτρέπει στους χρήστες να βλέπουν τις λεπτομέρειες άλλων χρηστών και να εκτελούν ενέργειες συντονισμού εναντίον τους
         manage_webhooks: Διαχείριση Webhooks
@@ -788,6 +810,7 @@ el:
       destroyed_msg: Η μεταφόρτωση ιστότοπου διαγράφηκε επιτυχώς!
     software_updates:
       critical_update: Κρίσιμο - παρακαλώ ενημέρωσε γρήγορα
+      description: Συνιστάται να διατηρείς την εγκατάσταση του Mastodon ενημερωμένη για να επωφεληθείς από τις πιο πρόσφατες διορθώσεις και δυνατότητες. Επιπλέον, μερικές φορές είναι κρίσιμο να ενημερώσεις το Mastodon εγκαίρως για να αποφύγεις προβλήματα ασφαλείας. Για αυτούς τους λόγους, το Mastodon ελέγχει για ενημερώσεις κάθε 30 λεπτά και θα σε ειδοποιεί σύμφωνα με τις προτιμήσεις ειδοποίησης μέσω email.
       documentation_link: Μάθε περισσότερα
       release_notes: Σημειώσεις έκδοσης
       title: Διαθέσιμες ενημερώσεις
@@ -803,8 +826,10 @@ el:
       back_to_account: Επιστροφή στη σελίδα λογαριασμού
       back_to_report: Πίσω στη σελίδα αναφοράς
       batch:
+        add_to_report: 'Προσθήκη στην αναφορά #%{id}'
         remove_from_report: Αφαίρεση από την αναφορά
         report: Αναφορά
+      contents: Περιεχόμενα
       deleted: Διαγεγραμμένα
       favourites: Αγαπημένα
       history: Ιστορικό εκδόσεων
@@ -813,12 +838,17 @@ el:
       media:
         title: Πολυμέσα
       metadata: Μεταδεδομένα
+      no_history: Αυτή η ανάρτηση δεν έχει επεξεργαστεί
       no_status_selected: Καμία δημοσίευση δεν άλλαξε αφού καμία δεν ήταν επιλεγμένη
       open: Άνοιγμα ανάρτησης
       original_status: Αρχική ανάρτηση
       reblogs: Αναδημοσιεύσεις
+      replied_to_html: Απάντησε στον χρήστη %{acct_link}
       status_changed: Η ανάρτηση άλλαξε
+      status_title: Ανάρτηση από @%{name}
+      title: Αναρτήσεις λογαριασμού - @%{name}
       trending: Τάσεις
+      view_publicly: Προβολή δημόσια
       visibility: Ορατότητα
       with_media: Με πολυμέσα
     strikes:
@@ -889,6 +919,7 @@ el:
       name: Όνομα
       newest: Νεότερη όλων
       oldest: Παλαιότερη όλων
+      open: Προβολή Δημόσια
       reset: Επαναφορά
       review: Κατάσταση αξιολόγησης
       search: Αναζήτηση
@@ -898,10 +929,16 @@ el:
     trends:
       allow: Επιτρέπεται
       approved: Εγκρίθηκε
+      confirm_allow: Σίγουρα θες να επιτρέψεις τις επιλεγμένες ετικέτες;
+      confirm_disallow: Σίγουρα θες να απορρίψεις τις επιλεγμένες ετικέτες;
       disallow: Να μην επιτρέπεται
       links:
         allow: Να επιτρέπεται σύνδεσμος
         allow_provider: Να επιτρέπεται ο εκδότης
+        confirm_allow: Σίγουρα θες να επιτρέψεις τουςεπιλεγμένους συνδέσμους;
+        confirm_allow_provider: Σίγουρα θες να επιτρέψεις τους επιλεγμένους παρόχους;
+        confirm_disallow: Σίγουρα θες να απορρίψεις τους επιλεγμένους συνδέσμους;
+        confirm_disallow_provider: Σίγουρα θες να απορρίψεις τους επιλεγμένους παρόχους;
         description_html: Αυτοί οι σύνδεσμοι μοιράζονται αρκετά από λογαριασμούς των οποίων τις δημοσιεύσεις, βλέπει ο διακομιστής σας. Μπορεί να βοηθήσει τους χρήστες σας να μάθουν τί συμβαίνει στον κόσμο. Οι σύνδεσμοι δεν εμφανίζονται δημόσια μέχρι να εγκρίνετε τον εκδότη. Μπορείς επίσης να επιτρέψεις ή να απορρίψεις μεμονωμένους συνδέσμους.
         disallow: Να μην επιτρέπεται ο σύνδεσμος
         disallow_provider: Να μην επιτρέπεται ο εκδότης
@@ -1560,7 +1597,6 @@ el:
   scheduled_statuses:
     over_daily_limit: Έχεις υπερβεί το όριο των %{limit} προγραμματισμένων αναρτήσεων για εκείνη τη μέρα
     over_total_limit: Έχεις υπερβεί το όριο των %{limit} προγραμματισμένων αναρτήσεων
-    too_soon: Η προγραμματισμένη ημερομηνία πρέπει να είναι στο μέλλον
   self_destruct:
     lead_html: Δυστυχώς, το <strong>%{domain}</strong> κλείνει οριστικά. Αν είχατε λογαριασμό εκεί, δεν θα μπορείτε να συνεχίσετε τη χρήση του, αλλά μπορείτε ακόμα να ζητήσετε ένα αντίγραφο ασφαλείας των δεδομένων σας.
     title: Αυτός ο διακομιστής κλείνει οριστικά
