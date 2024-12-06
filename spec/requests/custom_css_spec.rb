@@ -5,10 +5,10 @@ require 'rails_helper'
 RSpec.describe 'Custom CSS' do
   include RoutingHelper
 
-  describe 'GET /custom.css' do
+  describe 'GET /css/:id.css' do
     context 'without any CSS or User Roles' do
       it 'returns empty stylesheet' do
-        get '/custom.css'
+        get '/css/custom-123.css'
 
         expect(response)
           .to have_http_status(200)
@@ -27,7 +27,7 @@ RSpec.describe 'Custom CSS' do
       end
 
       it 'returns stylesheet from settings' do
-        get '/custom.css'
+        get '/css/custom-456.css'
 
         expect(response)
           .to have_http_status(200)

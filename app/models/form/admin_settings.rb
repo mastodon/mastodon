@@ -69,6 +69,10 @@ class Form::AdminSettings
     favicon
   ).freeze
 
+  DIGEST_KEYS = %i(
+    custom_css
+  ).freeze
+
   OVERRIDEN_SETTINGS = {
     authorized_fetch: :authorized_fetch_mode?,
   }.freeze
@@ -121,6 +125,11 @@ class Form::AdminSettings
 
     KEYS.each do |key|
       next unless instance_variable_defined?(:"@#{key}")
+
+      if DIGEST_KEYS.include?(key)
+        digest = Digest::SHA256.hexdigest instance_variable_get(:"@#{key}")
+        Rails.cache.write(:custom_style_digest, digest)
+      end
 
       if UPLOAD_KEYS.include?(key)
         public_send(key).save
