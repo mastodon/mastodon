@@ -23,7 +23,15 @@ module ThemeHelper
     end
   end
 
+  def active_custom_stylesheet
+    [:custom, active_sheet_digest].join('-')
+  end
+
   private
+
+  def active_sheet_digest
+    (Rails.cache.read(:custom_style_digest) || :styles).to_s.first(8)
+  end
 
   def theme_color_for(theme)
     theme == 'mastodon-light' ? Themes::THEME_COLORS[:light] : Themes::THEME_COLORS[:dark]
