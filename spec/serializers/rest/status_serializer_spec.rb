@@ -58,7 +58,9 @@ RSpec.describe REST::StatusSerializer do
       end
     end
 
-    context 'when edited_at is populated', pending: 'How to mark status as edited?' do
+    context 'when edited_at is populated' do
+      let(:status) { Fabricate.build :status, edited_at: 3.days.ago }
+
       it 'is serialized as RFC 3339 datetime' do
         expect { DateTime.rfc3339(subject['edited_at']) }.to_not raise_error
       end
