@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_05_135925) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_05_163118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -1235,8 +1235,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_05_135925) do
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
   add_foreign_key "account_migrations", "accounts", column: "target_account_id", on_delete: :nullify
   add_foreign_key "account_migrations", "accounts", on_delete: :cascade
-  add_foreign_key "account_moderation_notes", "accounts"
-  add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
+  add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id", on_delete: :cascade
+  add_foreign_key "account_moderation_notes", "accounts", on_delete: :cascade
   add_foreign_key "account_notes", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "account_notes", "accounts", on_delete: :cascade
   add_foreign_key "account_pins", "accounts", column: "target_account_id", on_delete: :cascade
@@ -1360,7 +1360,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_05_135925) do
   add_foreign_key "web_push_subscriptions", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "web_push_subscriptions", "users", on_delete: :cascade
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade
-  add_foreign_key "webauthn_credentials", "users"
+  add_foreign_key "webauthn_credentials", "users", on_delete: :cascade
 
   create_view "instances", materialized: true, sql_definition: <<-SQL
       WITH domain_counts(domain, accounts_count) AS (
