@@ -164,6 +164,7 @@ RSpec.describe FeedManager do
         allow(List).to receive(:where).and_return(list)
         status = Fabricate(:status, text: 'I post a lot', account: bob)
         expect(subject.filter?(:home, status, alice)).to be true
+        expect(subject.filter(:home, status, alice)).to be :skip_home
       end
 
       it 'returns true for reblog from followee on exclusive list' do
@@ -174,6 +175,7 @@ RSpec.describe FeedManager do
         status = Fabricate(:status, text: 'I post a lot', account: bob)
         reblog = Fabricate(:status, reblog: status, account: jeff)
         expect(subject.filter?(:home, reblog, alice)).to be true
+        expect(subject.filter(:home, reblog, alice)).to be :skip_home
       end
 
       it 'returns false for post from followee on non-exclusive list' do

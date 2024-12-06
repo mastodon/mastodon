@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_05_163118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -939,11 +939,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
   create_table "settings", force: :cascade do |t|
     t.string "var", null: false
     t.text "value"
-    t.string "thing_type"
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
-    t.bigint "thing_id"
-    t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true
+    t.index ["var"], name: "index_settings_on_var", unique: true
   end
 
   create_table "severed_relationships", force: :cascade do |t|
@@ -1078,6 +1076,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
     t.datetime "updated_at", null: false
     t.index ["account_id", "tag_id"], name: "index_tag_follows_on_account_id_and_tag_id", unique: true
     t.index ["tag_id"], name: "index_tag_follows_on_tag_id"
+  end
+
+  create_table "tag_trends", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.float "score", default: 0.0, null: false
+    t.integer "rank", default: 0, null: false
+    t.boolean "allowed", default: false, null: false
+    t.string "language", default: "", null: false
+    t.index ["tag_id", "language"], name: "index_tag_trends_on_tag_id_and_language", unique: true
   end
 
   create_table "tags", force: :cascade do |t|
@@ -1228,8 +1235,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
   add_foreign_key "account_migrations", "accounts", column: "target_account_id", on_delete: :nullify
   add_foreign_key "account_migrations", "accounts", on_delete: :cascade
-  add_foreign_key "account_moderation_notes", "accounts"
-  add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
+  add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id", on_delete: :cascade
+  add_foreign_key "account_moderation_notes", "accounts", on_delete: :cascade
   add_foreign_key "account_notes", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "account_notes", "accounts", on_delete: :cascade
   add_foreign_key "account_pins", "accounts", column: "target_account_id", on_delete: :cascade
@@ -1343,6 +1350,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
   add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
   add_foreign_key "tag_follows", "accounts", on_delete: :cascade
   add_foreign_key "tag_follows", "tags", on_delete: :cascade
+  add_foreign_key "tag_trends", "tags", on_delete: :cascade
   add_foreign_key "tombstones", "accounts", on_delete: :cascade
   add_foreign_key "user_invite_requests", "users", on_delete: :cascade
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
@@ -1352,7 +1360,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_082851) do
   add_foreign_key "web_push_subscriptions", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "web_push_subscriptions", "users", on_delete: :cascade
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade
-  add_foreign_key "webauthn_credentials", "users"
+  add_foreign_key "webauthn_credentials", "users", on_delete: :cascade
 
   create_view "instances", materialized: true, sql_definition: <<-SQL
       WITH domain_counts(domain, accounts_count) AS (

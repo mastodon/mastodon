@@ -281,7 +281,7 @@ fi:
         reject_appeal_html: "%{name} hylkäsi käyttäjän %{target} valituksen moderointipäätöksestä"
         reject_user_html: "%{name} hylkäsi käyttäjän %{target} rekisteröitymisen"
         remove_avatar_user_html: "%{name} poisti käyttäjän %{target} profiilikuvan"
-        reopen_report_html: "%{name} avasi uudelleen raportin %{target}"
+        reopen_report_html: "%{name} avasi raportin %{target} uudelleen"
         resend_user_html: "%{name} lähetti vahvistussähköpostiviestin uudelleen käyttäjälle %{target}"
         reset_password_user_html: "%{name} palautti käyttäjän %{target} salasanan"
         resolve_report_html: "%{name} ratkaisi raportin %{target}"
@@ -828,7 +828,7 @@ fi:
       batch:
         add_to_report: Lisää raporttiin nro %{id}
         remove_from_report: Poista raportista
-        report: Raportti
+        report: Raportoi
       contents: Sisältö
       deleted: Poistettu
       favourites: Suosikit
@@ -1274,7 +1274,7 @@ fi:
       title: Turvallisuusvahvistus epäonnistui
     '429': Rajoitettu
     '500':
-      content: Valitettavasti jokin meni pieleen meidän päässämme.
+      content: Valitettavasti jotain meni pieleen meidän päässämme.
       title: Sivu ei ole oikein
     '503': Sivua ei voitu näyttää palvelimen väliaikaisen vian vuoksi.
     noscript_html: Käyttääksesi Mastodonin verkkosovellusta, ota JavaScript käyttöön. Vaihtoehtoisesti voit kokeilla käyttämällesi alustalle kehitettyjä Mastodonin <a href="%{apps_path}">natiivisovelluksia</a>.
@@ -1676,7 +1676,7 @@ fi:
   scheduled_statuses:
     over_daily_limit: Olet ylittänyt %{limit} ajoitetun julkaisun rajan tälle päivälle
     over_total_limit: Olet ylittänyt %{limit} ajoitetun julkaisun rajan
-    too_soon: Ajoitetun päiväyksen pitää olla tulevaisuudessa
+    too_soon: päivämäärän on oltava tulevaisuudessa
   self_destruct:
     lead_html: Valitettavasti <strong>%{domain}</strong> sulkeutuu pysyvästi. Jos sinulla on siellä tili, et voi jatkaa sen käyttöä mutta voit yhä pyytää varmuuskopiota tiedoistasi.
     title: Tämä palvelin sulkeutuu
