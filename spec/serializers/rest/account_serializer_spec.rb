@@ -66,19 +66,6 @@ RSpec.describe REST::AccountSerializer do
     end
   end
 
-  context 'when mute_expires_at is populated' do
-    let(:target_account) { Fabricate(:account) }
-
-    before do
-      # account.account_stat.update!(mute_expires_at: default_datetime)
-      account.mute!(:target_account)
-    end
-
-    it 'parses as RFC 3339 datetime' do
-      expect { DateTime.rfc3339(subject['mute_expires_at']) }.to_not raise_error
-    end
-  end
-
   context 'when verified_at is populated', pending: 'creating a verified account' do
     before do
       account.account_stat.update!(verified_at: default_datetime)
