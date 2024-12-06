@@ -1,0 +1,8 @@
+= render partial: 'shared/settings_header'
+
+.simple_form
+  .fields-group
+    .input-group
+      %h2= t('preferences.local_themes')
+      %p.hint= t('preferences.local_themes_description')
+      = react_component :local_theme_settings

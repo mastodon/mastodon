@@ -221,3 +221,9 @@ export function ListEdit () {
 export function ListMembers () {
   return import(/* webpackChunkName: "features/lists" */'../../lists/members');
 }
+
+export function Preferences () {
+  return import(/* webpackChunkName: "features/preferences" */'../../preferences');
+}
+
+
