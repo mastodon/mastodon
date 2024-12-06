@@ -27,5 +27,3 @@
     - accept_path = @invite_code.present? ? public_invite_url(invite_code: @invite_code, accept: @accept_token) : new_user_registration_path(accept: @accept_token)
     = link_to t('auth.rules.accept'), accept_path, class: 'button'
     = link_to t('auth.rules.back'), root_path, class: 'button button-tertiary'
-
-.form-footer= render 'auth/shared/links'
