@@ -177,6 +177,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.synced_folder ".", "/vagrant"
   end
 
+  config.vm.provider "virtualbox" do |vb, override|
+    if Vagrant::Util::Platform.windows?
+      override.vm.synced_folder ".", "/vagrant", type: "rsync"
+    end
+  end
+
   # Otherwise, you can access the site at http://localhost:3000 and http://localhost:4000 , http://localhost:8080
   config.vm.network :forwarded_port, guest: 3000, host: 3000
   config.vm.network :forwarded_port, guest: 3035, host: 3035

@@ -44,10 +44,21 @@
                  label: I18n.t('simple_form.labels.defaults.setting_default_sensitive'),
                  wrapper: :with_label
 
-  %h4= t 'preferences.public_timelines'
+  %h4= t 'preferences.languages'
 
   .fields-group
     = f.input :chosen_languages,
+              as: :check_boxes,
+              collection_wrapper_tag: 'ul',
+              collection: filterable_languages,
+              include_blank: false,
+              item_wrapper_tag: 'li',
+              label_method: ->(locale) { native_locale_name(locale) },
+              required: false,
+              wrapper: :with_block_label
+
+  .fields-group
+    = f.input :spoken_languages,
               as: :check_boxes,
               collection_wrapper_tag: 'ul',
               collection: filterable_languages,

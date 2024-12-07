@@ -43,6 +43,7 @@
  * @property {boolean=} use_pending_items
  * @property {string} version
  * @property {string} sso_redirect
+ * @property {string[]} spoken_languages
  */
 
 /**
@@ -118,6 +119,7 @@ export const criticalUpdatesPending = initialState?.critical_updates_pending;
 // @ts-expect-error
 export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
+export const spokenLanguages = getMeta('spoken_languages');
 
 /**
  * @returns {string | undefined}

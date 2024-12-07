@@ -40,6 +40,7 @@
 #  settings                  :text
 #  time_zone                 :string
 #  otp_secret                :string
+#  spoken_languages          :string           default([]), not null, is an Array
 #
 
 class User < ApplicationRecord
@@ -135,6 +136,7 @@ class User < ApplicationRecord
   normalizes :locale, with: ->(locale) { I18n.available_locales.exclude?(locale.to_sym) ? nil : locale }
   normalizes :time_zone, with: ->(time_zone) { ActiveSupport::TimeZone[time_zone].nil? ? nil : time_zone }
   normalizes :chosen_languages, with: ->(chosen_languages) { chosen_languages.compact_blank.presence }
+  normalizes :spoken_languages, with: ->(spoken_languages) { spoken_languages.compact_blank }
 
   has_many :session_activations, dependent: :destroy
 

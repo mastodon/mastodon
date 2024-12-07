@@ -13,7 +13,7 @@ import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
 import { Icon } from 'mastodon/components/icon';
-import { languages as preloadedLanguages } from 'mastodon/initial_state';
+import { spokenLanguages, languages as preloadedLanguages } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   changeLanguage: { id: 'compose.language.change', defaultMessage: 'Change language' },
@@ -84,6 +84,9 @@ class LanguageDropdownMenu extends PureComponent {
     const { languages, value, frequentlyUsedLanguages } = this.props;
     const { searchValue } = this.state;
 
+    // first show spoken languages and then frequently used
+    const orderedLanguages = spokenLanguages.concat(frequentlyUsedLanguages.filter((item) => spokenLanguages.indexOf(item) < 0));
+
     if (searchValue === '') {
       return [...languages].sort((a, b) => {
         // Push current selection to the top of the list
@@ -93,10 +96,8 @@ class LanguageDropdownMenu extends PureComponent {
         } else if (b[0] === value) {
           return 1;
         } else {
-          // Sort according to frequently used languages
-
-          const indexOfA = frequentlyUsedLanguages.indexOf(a[0]);
-          const indexOfB = frequentlyUsedLanguages.indexOf(b[0]);
+          const indexOfA = orderedLanguages.indexOf(a[0]);
+          const indexOfB = orderedLanguages.indexOf(b[0]);
 
           return ((indexOfA > -1 ? indexOfA : Infinity) - (indexOfB > -1 ? indexOfB : Infinity));
         }

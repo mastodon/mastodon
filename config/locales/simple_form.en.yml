@@ -131,7 +131,12 @@ en:
         name: You can only change the casing of the letters, for example, to make it more readable
       user:
         chosen_languages: When checked, only posts in selected languages will be displayed in public timelines
+<<<<<<< HEAD
         role: The role controls which permissions the user has.
+=======
+        role: The role controls which permissions the user has
+        spoken_languages: Mastodon will not suggest to translate statuses in the languages that you speak
+>>>>>>> adam/add-spoken-languages
       user_role:
         color: Color to be used for the role throughout the UI, as RGB in hex format
         highlighted: This makes the role publicly visible
@@ -183,7 +188,7 @@ en:
         autofollow: Invite to follow your account
         avatar: Profile picture
         bot: This is an automated account
-        chosen_languages: Filter languages
+        chosen_languages: Filter languages in public timelines
         confirm_new_password: Confirm new password
         confirm_password: Confirm password
         context: Filter contexts
@@ -230,6 +235,7 @@ en:
         setting_use_pending_items: Slow mode
         severity: Severity
         sign_in_token_attempt: Security code
+        spoken_languages: Languages that you can speak
         title: Title
         type: Import type
         username: Username
