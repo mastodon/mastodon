@@ -18,6 +18,6 @@ class RemoveFromFollowersService < BaseService
   end
 
   def build_json(follow)
-    Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer))
+    JSON.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer))
   end
 end
