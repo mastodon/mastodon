@@ -201,8 +201,9 @@ Rails.application.routes.draw do
   get '/about',      to: 'about#show'
   get '/about/more', to: redirect('/about')
 
-  get '/privacy-policy', to: 'privacy#show', as: :privacy_policy
-  get '/terms',          to: redirect('/privacy-policy')
+  get '/privacy-policy',   to: 'privacy#show', as: :privacy_policy
+  get '/terms-of-service', to: 'terms_of_service#show', as: :terms_of_service
+  get '/terms',            to: redirect('/terms-of-service')
 
   match '/', via: [:post, :put, :patch, :delete], to: 'application#raise_not_found', format: false
   match '*unmatched_route', via: :all, to: 'application#raise_not_found', format: false

@@ -25,7 +25,7 @@ import StarIcon from '@/material-icons/400-24px/star.svg?react';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
-import LinkFooter from 'mastodon/features/ui/components/link_footer';
+import { LinkFooter } from 'mastodon/features/ui/components/link_footer';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { canManageReports, canViewAdminDashboard } from 'mastodon/permissions';
 
