@@ -16,37 +16,6 @@ def redirect_with_vary(path)
 end
 
 Rails.application.routes.draw do
-  # Paths of routes on the web app that to not require to be indexed or
-  # have alternative format representations requiring separate controllers
-  web_app_paths = %w(
-    /getting-started
-    /keyboard-shortcuts
-    /home
-    /public
-    /public/local
-    /public/remote
-    /conversations
-    /lists/(*any)
-    /links/(*any)
-    /notifications/(*any)
-    /notifications_v2/(*any)
-    /favourites
-    /bookmarks
-    /pinned
-    /start/(*any)
-    /directory
-    /explore/(*any)
-    /search
-    /publish
-    /follow_requests
-    /blocks
-    /domain_blocks
-    /mutes
-    /followed_tags
-    /statuses/(*any)
-    /deck/(*any)
-  ).freeze
-
   root 'home#index'
 
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
@@ -226,9 +195,7 @@ Rails.application.routes.draw do
 
   draw(:api)
 
-  web_app_paths.each do |path|
-    get path, to: 'home#index'
-  end
+  draw(:web_app)
 
   get '/web/(*any)', to: redirect('/%{any}', status: 302), as: :web, defaults: { any: '' }, format: false
   get '/about',      to: 'about#show'
