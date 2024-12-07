@@ -372,6 +372,40 @@ code {
     }
   }
 
+  .fields-group-small {
+    margin-bottom: 25px;
+
+    .input:last-child {
+      margin-bottom: 0;
+    }
+
+    &__thumbnail {
+      justify-content: center;
+      padding: 10px;
+      display: block;
+      margin: 0;
+      margin-bottom: 10px;
+      width: max-content;
+      height: auto;
+      border-radius: var(--avatar-border-radius);
+      background: url('images/void.png');
+
+      &[src$='missing.png'] {
+        visibility: hidden;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &#account_avatar-preview {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+      }
+    }
+  }
+
   .fields-row {
     display: flex;
     margin: 0 -10px;

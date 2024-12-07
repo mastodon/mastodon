@@ -44,29 +44,36 @@
                  label: I18n.t('simple_form.labels.defaults.setting_default_sensitive'),
                  wrapper: :with_label
 
-  %h4= t 'preferences.languages'
+    %h4= t 'preferences.languages'
 
-  .fields-group
-    = f.input :chosen_languages,
-              as: :check_boxes,
-              collection_wrapper_tag: 'ul',
-              collection: filterable_languages,
-              include_blank: false,
-              item_wrapper_tag: 'li',
-              label_method: ->(locale) { native_locale_name(locale) },
-              required: false,
-              wrapper: :with_block_label
+    .fields-row
+      .fields-group-small
+        = f.input :chosen_languages,
+                  as: :check_boxes,
+                  collection_wrapper_tag: 'ul',
+                  collection: filterable_languages,
+                  hint: I18n.t('simple_form.hints.user.chosen_languages'),
+                  label: I18n.t('simple_form.labels.defaults.chosen_languages'),
+                  label_method: ->(locale) { native_locale_name(locale) },
+                  include_blank: false,
+                  item_wrapper_tag: 'li',
+                  required: false,
+                  wrapper: :with_label
 
-  .fields-group
-    = f.input :spoken_languages,
-              as: :check_boxes,
-              collection_wrapper_tag: 'ul',
-              collection: filterable_languages,
-              include_blank: false,
-              item_wrapper_tag: 'li',
-              label_method: ->(locale) { native_locale_name(locale) },
-              required: false,
-              wrapper: :with_block_label
+      .fields-group
+        = f.input :spoken_languages,
+                  as: :check_boxes,
+                  collection_wrapper_tag: 'ul',
+                  collection: filterable_languages,
+                  hint: I18n.t('simple_form.hints.user.spoken_languages'),
+                  label: I18n.t('simple_form.labels.defaults.spoken_languages'),
+                  label_method: ->(locale) { native_locale_name(locale) },
+                  include_blank: false,
+                  item_wrapper_tag: 'li',
+                  required: false,
+                  wrapper: :with_label
+
+
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
