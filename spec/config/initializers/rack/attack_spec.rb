@@ -74,8 +74,8 @@ RSpec.describe Rack::Attack, type: :request do
   describe 'throttle excessive sign-up requests by IP address' do
     context 'when accessed through the website' do
       let(:throttle) { 'throttle_sign_up_attempts/ip' }
-      let(:limit)  { 25 }
-      let(:period) { 5.minutes }
+      let(:limit)  { 15 }
+      let(:period) { 15.minutes }
       let(:request) { -> { post path, headers: { 'REMOTE_ADDR' => remote_ip } } }
 
       context 'with exact path' do
@@ -93,8 +93,8 @@ RSpec.describe Rack::Attack, type: :request do
 
     context 'when accessed through the API' do
       let(:throttle) { 'throttle_api_sign_up' }
-      let(:limit)  { 5 }
-      let(:period) { 30.minutes }
+      let(:limit)  { 15 }
+      let(:period) { 15.minutes }
       let(:request) { -> { post path, headers: { 'REMOTE_ADDR' => remote_ip } } }
 
       context 'with exact path' do
