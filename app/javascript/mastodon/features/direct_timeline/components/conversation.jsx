@@ -23,7 +23,7 @@ import AttachmentList from 'mastodon/components/attachment_list';
 import AvatarComposite from 'mastodon/components/avatar_composite';
 import { IconButton } from 'mastodon/components/icon_button';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
-import StatusContent from 'mastodon/components/status_content';
+import { StatusContent } from 'mastodon/components/status_content';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { autoPlayGif } from 'mastodon/initial_state';
 import { makeGetStatus } from 'mastodon/selectors';

@@ -34,7 +34,7 @@ import { DisplayName } from './display_name';
 import { getHashtagBarForStatus } from './hashtag_bar';
 import { RelativeTimestamp } from './relative_timestamp';
 import StatusActionBar from './status_action_bar';
-import StatusContent from './status_content';
+import { StatusContent } from './status_content';
 import { StatusThreadLabel } from './status_thread_label';
 import { VisibilityIcon } from './visibility_icon';
 
