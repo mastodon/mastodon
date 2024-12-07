@@ -62,13 +62,15 @@ window.addEventListener('message', (e) => {
 
   // We use a timeout to allow for the React page to render before calculating the height
   afterInitialRender(() => {
-    window.parent.postMessage(
-      {
-        type: 'setHeight',
-        id: data.id,
-        height: document.getElementsByTagName('html')[0]?.scrollHeight,
-      },
-      '*',
-    );
+    window.requestAnimationFrame(() => {
+      window.parent.postMessage(
+        {
+          type: 'setHeight',
+          id: data.id,
+          height: document.getElementsByTagName('html')[0]?.scrollHeight,
+        },
+        '*',
+      );
+    });
   });
 });
