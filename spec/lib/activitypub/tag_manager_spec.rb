@@ -7,17 +7,50 @@ RSpec.describe ActivityPub::TagManager do
 
   subject { described_class.instance }
 
+  let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
+
+  describe '#public_collection?' do
+    it 'returns true for the special public collection and common shorthands' do
+      expect(subject.public_collection?('https://www.w3.org/ns/activitystreams#Public')).to be true
+      expect(subject.public_collection?('as:Public')).to be true
+      expect(subject.public_collection?('Public')).to be true
+    end
+
+    it 'returns false for other URIs' do
+      expect(subject.public_collection?('https://example.com/foo/bar')).to be false
+    end
+  end
+
   describe '#url_for' do
-    it 'returns a string' do
+    it 'returns a string starting with web domain' do
       account = Fabricate(:account)
-      expect(subject.url_for(account)).to be_a String
+      expect(subject.url_for(account)).to be_a(String)
+        .and start_with(domain)
     end
   end
 
   describe '#uri_for' do
-    it 'returns a string' do
+    it 'returns a string starting with web domain' do
       account = Fabricate(:account)
-      expect(subject.uri_for(account)).to be_a String
+      expect(subject.uri_for(account)).to be_a(String)
+        .and start_with(domain)
+    end
+  end
+
+  describe '#activity_uri_for' do
+    context 'when given an account' do
+      it 'raises an exception' do
+        account = Fabricate(:account)
+        expect { subject.activity_uri_for(account) }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when given a local activity' do
+      it 'returns a string starting with web domain' do
+        status = Fabricate(:status)
+        expect(subject.uri_for(status)).to be_a(String)
+          .and start_with(domain)
+      end
     end
   end
 
