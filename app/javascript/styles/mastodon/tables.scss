@@ -241,7 +241,7 @@ a.table-action-link {
       &:hover,
       &:focus,
       &:active {
-        background: lighten($ui-base-color, 8%);
+        background: color.adjust($ui-base-color, 8%);
       }
     }
   }
