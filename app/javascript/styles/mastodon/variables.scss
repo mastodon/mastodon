@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // Commonly used web colors
 $black: #000000; // Black
 $white: #ffffff; // White
@@ -45,6 +47,11 @@ $ui-button-background-color: $blurple-500 !default;
 $ui-button-focus-background-color: $blurple-600 !default;
 $ui-button-focus-outline-color: $blurple-400 !default;
 $ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !default;
+
+$ui-button-disabled-color: color.adjust(
+  $ui-button-background-color,
+  $alpha: -0.3
+) !default;
 
 $ui-button-secondary-color: $blurple-500 !default;
 $ui-button-secondary-border-color: $blurple-500 !default;

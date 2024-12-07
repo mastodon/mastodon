@@ -3,6 +3,12 @@
 
 .simple_form .button.button-tertiary {
   color: $highlight-text-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white;
+  }
 }
 
 .status-card__actions button,

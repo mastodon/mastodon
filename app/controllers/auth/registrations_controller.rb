@@ -142,4 +142,12 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   def set_cache_headers
     response.cache_control.replace(private: true, no_store: true)
   end
+
+  def is_flashing_format? # rubocop:disable Naming/PredicateName
+    if params[:action] == 'create'
+      false # Disable flash messages for sign-up
+    else
+      super
+    end
+  end
 end

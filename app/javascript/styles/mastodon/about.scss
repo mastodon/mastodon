@@ -21,7 +21,6 @@ $fluid-breakpoint: $maximum-width + 20px;
 .rules-list {
   font-size: 15px;
   line-height: 22px;
-  color: $primary-text-color;
   counter-reset: list-counter;
 
   li {
@@ -80,6 +79,10 @@ $fluid-breakpoint: $maximum-width + 20px;
     &:last-child {
       border-bottom: 0;
     }
+  }
+
+  &__text {
+    color: $primary-text-color;
   }
 
   &__hint {
