@@ -127,7 +127,7 @@ class UpdateStatusService < BaseService
     return unless @status.text_previously_changed?
 
     @status.reset_preview_card!
-    LinkCrawlWorker.perform_async(@status.id)
+    LinkCrawlJob.perform_later(@status.id)
   end
 
   def update_metadata!

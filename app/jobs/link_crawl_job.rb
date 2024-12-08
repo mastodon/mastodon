@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-class LinkCrawlWorker
-  include Sidekiq::Worker
+class LinkCrawlJob < ApplicationJob
+  queue_as :default
 
-  sidekiq_options queue: 'pull', retry: 0
+  discard_on StandardError do |_job, error|
+    Rails.logger.warn { "Job discarded: #{error.message}" }
+  end
 
   def perform(status_id)
     FetchLinkCardService.new.call(Status.find(status_id))

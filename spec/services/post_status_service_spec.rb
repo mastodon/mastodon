@@ -216,12 +216,12 @@ RSpec.describe PostStatusService do
   end
 
   it 'crawls links' do
-    allow(LinkCrawlWorker).to receive(:perform_async)
+    allow(LinkCrawlJob).to receive(:perform_later)
     account = Fabricate(:account)
 
     status = subject.call(account, text: 'test status update')
 
-    expect(LinkCrawlWorker).to have_received(:perform_async).with(status.id)
+    expect(LinkCrawlJob).to have_received(:perform_later).with(status.id)
   end
 
   it 'attaches the given media to the created status' do

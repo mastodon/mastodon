@@ -23,6 +23,14 @@ development:
     host: <%= ENV['DB_HOST'] %>
     port: <%= ENV['DB_PORT'] %>
     replica: true
+  queue:
+    <<: *default
+    database: <%= ENV['QUEUE_DB_NAME'] || 'mastodon_development_queue' %>
+    migrations_paths: db/queue_migrate
+    username: <%= ENV['DB_USER'] %>
+    password: <%= (ENV['DB_PASS'] || '').to_json %>
+    host: <%= ENV['DB_HOST'] %>
+    port: <%= ENV['DB_PORT'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -43,6 +51,14 @@ test:
     host: <%= ENV['DB_HOST'] %>
     port: <%= ENV['DB_PORT'] %>
     replica: true
+  queue:
+    <<: *default
+    database: <%= ENV['QUEUE_DB_NAME'] || 'mastodon' %>_test<%= ENV['TEST_ENV_NUMBER'] %>
+    migrations_paths: db/queue_migrate
+    username: <%= ENV['DB_USER'] %>
+    password: <%= (ENV['DB_PASS'] || '').to_json %>
+    host: <%= ENV['DB_HOST'] %>
+    port: <%= ENV['DB_PORT'] %>
 
 production:
   primary:
@@ -62,3 +78,12 @@ production:
     port: <%= ENV['REPLICA_DB_PORT'] ||ENV['DB_PORT'] || 5432 %>
     prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
     replica: true
+  queue:
+    <<: *default
+    database: <%= ENV['QUEUE_DB_NAME'] || 'mastodon_production_queue' %>
+    migrations_paths: db/queue_migrate
+    username: <%= ENV['DB_USER'] || 'mastodon' %>
+    password: <%= (ENV['DB_PASS'] || '').to_json %>
+    host: <%= ENV['DB_HOST'] || 'localhost' %>
+    port: <%= ENV['DB_PORT'] || 5432 %>
+    prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
