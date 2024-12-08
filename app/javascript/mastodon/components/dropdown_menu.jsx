@@ -124,7 +124,7 @@ class DropdownMenu extends PureComponent {
 
     return (
       <li className={classNames('dropdown-menu__item', { 'dropdown-menu__item--dangerous': dangerous })} key={`${text}-${i}`}>
-        <a href={href} target={target} data-method={method} rel='noopener noreferrer' role='button' tabIndex={0} ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
+        <a href={href} target={target} data-method={method} rel='noopener' role='button' tabIndex={0} ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
           {text}
         </a>
       </li>

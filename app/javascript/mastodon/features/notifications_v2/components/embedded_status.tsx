@@ -70,7 +70,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
         if (button === 0 && !(ctrlKey || metaKey)) {
           history.push(path);
         } else if (button === 1 || (button === 0 && (ctrlKey || metaKey))) {
-          window.open(path, '_blank', 'noreferrer noopener');
+          window.open(path, '_blank', 'noopener');
         }
       }
 

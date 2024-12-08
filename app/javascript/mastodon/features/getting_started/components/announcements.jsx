@@ -85,7 +85,7 @@ class ContentWithRouter extends ImmutablePureComponent {
       }
 
       link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer');
+      link.setAttribute('rel', 'noopener');
     }
   }
 

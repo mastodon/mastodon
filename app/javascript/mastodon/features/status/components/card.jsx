@@ -208,7 +208,7 @@ export default class Card extends PureComponent {
               <div className='status-card__actions' onClick={this.handleEmbedClick} role='none'>
                 <div>
                   <button type='button' onClick={this.handleEmbedClick}><Icon id='play' icon={PlayArrowIcon} /></button>
-                  <a href={card.get('url')} onClick={this.handleExternalLinkClick} target='_blank' rel='noopener noreferrer'><Icon id='external-link' icon={OpenInNewIcon} /></a>
+                  <a href={card.get('url')} onClick={this.handleExternalLinkClick} target='_blank' rel='noopener'><Icon id='external-link' icon={OpenInNewIcon} /></a>
                 </div>
               </div>
             ) : spoilerButton}
@@ -219,7 +219,7 @@ export default class Card extends PureComponent {
       return (
         <div className={classNames('status-card', { expanded: largeImage })} ref={this.setRef} onClick={revealed ? null : this.handleReveal} role={revealed ? 'button' : null}>
           {embed}
-          <a href={card.get('url')} target='_blank' rel='noopener noreferrer'>{description}</a>
+          <a href={card.get('url')} target='_blank' rel='noopener'>{description}</a>
         </div>
       );
     } else if (card.get('image')) {
@@ -239,7 +239,7 @@ export default class Card extends PureComponent {
 
     return (
       <>
-        <a href={card.get('url')} className={classNames('status-card', { expanded: largeImage, bottomless: showAuthor })} target='_blank' rel='noopener noreferrer' ref={this.setRef}>
+        <a href={card.get('url')} className={classNames('status-card', { expanded: largeImage, bottomless: showAuthor })} target='_blank' rel='noopener' ref={this.setRef}>
           {embed}
           {description}
         </a>
