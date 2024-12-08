@@ -1,1 +1,31 @@
+---
 fil:
+  devise:
+    confirmations:
+      confirmed: Matagumpay na nakumpirma ang email address mo.
+      send_instructions: Makakatanggap ka ng email na may instruksiyon kung paano kumpirmahin ang email address mo sa ilang minuto. Paki-check ang spam folder mo kung hindi mo natanggap ang email na ito.
+      send_paranoid_instructions: Kung nasa database namin ang email address mo, makakatanggap ka ng email na may instruksiyon kung paano kumpirmahin ang email address mo sa ilang minuto. Paki-check ang spam folder mo kung hindi mo natanggap ang email na ito.
+    failure:
+      already_authenticated: Naka-sign in ka na.
+      inactive: Hindi pa naa-activate ang account mo.
+      invalid: Invalid na %{authentication_keys} o password.
+      last_attempt: May isa ka pang attempt bago ma-lock ang account mo.
+      locked: Na-lock ang account mo.
+      not_found_in_database: Invalid na %{authentication_keys} o password.
+      omniauth_user_creation_failure: May error sa paggawa ng account para sa identidad na ito.
+      pending: Nire-review pa ang account mo.
+      timeout: Natapos na ang sesyon mo. Mag-login ulit para magpatuloy.
+      unauthenticated: Kailangan mong mag-login o mag-sign up bago magpatuloy.
+      unconfirmed: Kailangan mong kumpirmahin ang email address mo bago ka magpatuloy.
+    mailer:
+      confirmation_instructions:
+        action: Beripikahin ang email address
+        action_with_app: Kumpirmahin at bumalik sa %{app}
+        explanation: Nakagawa ka ng account sa %{host} gamit ang email address na ito. Isang click na lang para ma-activate ito. Kung hindi ikaw ito, balewalain ang email na ito.
+        explanation_when_pending: Nag-apply ka para sa imbitasyon sa %{host} gamit ang email address na ito. Kapag nakumpirma mo ang email address mo, rerebyuhin namin ang aplikasyon mo. Maaari kang mag-login para baguhin ang mga detalye mo o tanggalin ang iyong account, pero hindi mo maaakses ang karamihan sa mga function hanggang hindi naaaprubahan ang account mo. Kung tinanggihan ang aplikasyon mo, aalisin ang data mo, kaya wala ka nang ibang kailangang gawing aksiyon. Kung hindi ikaw ito, balewalain ang email na ito.
+        extra_html: Paki-check din <a href="%{terms_path}">ang mga tuntunin ng server</a> at <a href="%{policy_path}">ang aming mga tuntunin sa serbisyo</a>.
+        subject: 'Mastodon: Instruksiyon sa kumpirmasyon para sa %{instance}'
+        title: Beripikahin ang email address
+      email_changed:
+        explanation: 'Ang email address para sa account mo ay binabago sa:'
+        extra: Kung hindi mo binago ang email mo, malamang ay may nagkaroon ng akses sa account mo. Pakipalitan agad ang password mo o kontakin ang server admin kung na-lock out ka sa account mo.
