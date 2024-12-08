@@ -39,6 +39,11 @@ da:
           attributes:
             data:
               malformed: har ugyldigt format
+        list_account:
+          attributes:
+            account_id:
+              taken: er allerede på listen
+          must_be_following: skal være konto, der følges
         status:
           attributes:
             reblog:

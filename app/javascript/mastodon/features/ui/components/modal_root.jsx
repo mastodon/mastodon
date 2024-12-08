@@ -26,7 +26,6 @@ import BundleContainer from '../containers/bundle_container';
 import ActionsModal from './actions_modal';
 import AudioModal from './audio_modal';
 import { BoostModal } from './boost_modal';
-import BundleModalError from './bundle_modal_error';
 import {
   ConfirmationModal,
   ConfirmDeleteStatusModal,
@@ -36,11 +35,12 @@ import {
   ConfirmUnfollowModal,
   ConfirmClearNotificationsModal,
   ConfirmLogOutModal,
+  ConfirmFollowToListModal,
 } from './confirmation_modals';
 import FocalPointModal from './focal_point_modal';
 import ImageModal from './image_modal';
 import MediaModal from './media_modal';
-import ModalLoading from './modal_loading';
+import { ModalPlaceholder } from './modal_placeholder';
 import VideoModal from './video_modal';
 
 export const MODAL_COMPONENTS = {
@@ -57,6 +57,7 @@ export const MODAL_COMPONENTS = {
   'CONFIRM_UNFOLLOW': () => Promise.resolve({ default: ConfirmUnfollowModal }),
   'CONFIRM_CLEAR_NOTIFICATIONS': () => Promise.resolve({ default: ConfirmClearNotificationsModal }),
   'CONFIRM_LOG_OUT': () => Promise.resolve({ default: ConfirmLogOutModal }),
+  'CONFIRM_FOLLOW_TO_LIST': () => Promise.resolve({ default: ConfirmFollowToListModal }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
   'DOMAIN_BLOCK': DomainBlockModal,
@@ -105,14 +106,16 @@ export default class ModalRoot extends PureComponent {
     this.setState({ backgroundColor: color });
   };
 
-  renderLoading = modalId => () => {
-    return ['MEDIA', 'VIDEO', 'BOOST', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
+  renderLoading = () => {
+    const { onClose } = this.props;
+
+    return <ModalPlaceholder loading onClose={onClose} />;
   };
 
   renderError = (props) => {
     const { onClose } = this.props;
 
-    return <BundleModalError {...props} onClose={onClose} />;
+    return <ModalPlaceholder {...props} onClose={onClose} />;
   };
 
   handleClose = (ignoreFocus = false) => {
@@ -134,7 +137,7 @@ export default class ModalRoot extends PureComponent {
       <Base backgroundColor={backgroundColor} onClose={this.handleClose} ignoreFocus={ignoreFocus}>
         {visible && (
           <>
-            <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
+            <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading} error={this.renderError} renderDelay={200}>
               {(SpecificComponent) => {
                 const ref = typeof SpecificComponent !== 'function' ? this.setModalRef : undefined;
                 return <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={ref} />;

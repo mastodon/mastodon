@@ -70,7 +70,7 @@ RSpec.describe PostStatusService do
           subject.call(account, text: 'Hi future!', scheduled_at: invalid_scheduled_time)
         end.to raise_error(
           ActiveRecord::RecordInvalid,
-          'Validation failed: Scheduled at The scheduled date must be in the future'
+          'Validation failed: Scheduled at date must be in the future'
         )
       end
     end

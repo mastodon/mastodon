@@ -6,6 +6,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
   subject { described_class.new }
 
   let!(:status) { Fabricate(:status, text: 'Hello world', account: Fabricate(:account, domain: 'example.com')) }
+  let(:bogus_mention) { 'https://example.com/users/erroringuser' }
   let(:payload) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
@@ -17,6 +18,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       tag: [
         { type: 'Hashtag', name: 'hoge' },
         { type: 'Mention', href: ActivityPub::TagManager.instance.uri_for(alice) },
+        { type: 'Mention', href: bogus_mention },
       ],
     }
   end
@@ -33,16 +35,18 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     mentions.each { |a| Fabricate(:mention, status: status, account: a) }
     tags.each { |t| status.tags << t }
     media_attachments.each { |m| status.media_attachments << m }
+    stub_request(:get, bogus_mention).to_raise(HTTP::ConnectionError)
   end
 
   describe '#call' do
-    it 'updates text and content warning' do
+    it 'updates text and content warning, and schedules re-fetching broken mention' do
       subject.call(status, json, json)
       expect(status.reload)
         .to have_attributes(
           text: eq('Hello universe'),
           spoiler_text: eq('Show more')
         )
+      expect(MentionResolveWorker).to have_enqueued_sidekiq_job(status.id, bogus_mention, anything)
     end
 
     context 'when the changes are only in sanitized-out HTML' do

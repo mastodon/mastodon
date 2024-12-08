@@ -35,8 +35,7 @@ import server from './server';
 import settings from './settings';
 import status_lists from './status_lists';
 import statuses from './statuses';
-import suggestions from './suggestions';
-import tags from './tags';
+import { suggestionsReducer } from './suggestions';
 import timelines from './timelines';
 import trends from './trends';
 import user_lists from './user_lists';
@@ -70,13 +69,12 @@ const reducers = {
   lists: listsReducer,
   filters,
   conversations,
-  suggestions,
+  suggestions: suggestionsReducer,
   polls,
   trends,
   markers: markersReducer,
   picture_in_picture: pictureInPictureReducer,
   history,
-  tags,
   followed_tags,
   notificationPolicy: notificationPolicyReducer,
   notificationRequests: notificationRequestsReducer,

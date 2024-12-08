@@ -7,6 +7,29 @@ RSpec.describe 'Tags' do
     context 'when tag exists' do
       let(:tag) { Fabricate :tag }
 
+      context 'with HTML format' do
+        before { get tag_path(tag) }
+
+        it 'returns page with links to alternate resources' do
+          expect(rss_links.first[:href])
+            .to eq(tag_url(tag))
+          expect(activity_json_links.first[:href])
+            .to eq(tag_url(tag))
+        end
+
+        def rss_links
+          alternate_links.css('[type="application/rss+xml"]')
+        end
+
+        def activity_json_links
+          alternate_links.css('[type="application/activity+json"]')
+        end
+
+        def alternate_links
+          response.parsed_body.css('link[rel=alternate]')
+        end
+      end
+
       context 'with JSON format' do
         before { get tag_path(tag, format: :json) }
 

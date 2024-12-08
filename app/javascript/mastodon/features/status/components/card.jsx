@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 
-import Immutable from 'immutable';
+import { is } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import DescriptionIcon from '@/material-icons/400-24px/description-fill.svg?react';
@@ -73,7 +73,7 @@ export default class Card extends PureComponent {
   };
 
   UNSAFE_componentWillReceiveProps (nextProps) {
-    if (!Immutable.is(this.props.card, nextProps.card)) {
+    if (!is(this.props.card, nextProps.card)) {
       this.setState({ embedded: false, previewLoaded: false });
     }
 

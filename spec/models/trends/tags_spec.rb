@@ -61,10 +61,10 @@ RSpec.describe Trends::Tags do
 
     it 'decays scores' do
       subject.refresh(yesterday + 12.hours)
-      original_score = subject.score(tag_ocs.id)
+      original_score = TagTrend.find_by(tag: tag_ocs).score
       expect(original_score).to eq 144.0
       subject.refresh(yesterday + 12.hours + subject.options[:max_score_halflife])
-      decayed_score = subject.score(tag_ocs.id)
+      decayed_score = TagTrend.find_by(tag: tag_ocs).score
       expect(decayed_score).to be <= original_score / 2
     end
   end

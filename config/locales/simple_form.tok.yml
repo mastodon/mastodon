@@ -3,7 +3,15 @@ tok:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: linja sitelen wan la wan taso o lon. ni la, sona pona pi jan pali li lon.
         display_name: nimi sina ale anu nimi sina musi.
+        fields: lipu open sina, en nimi pi kon sina, en suli tenpo sina, en ijo ante ale pi wile sina.
+        note: 'sina ken @mu e jan ante, li ken lon e #kulupu toki suli.'
+        show_collections: 'jan li ken lukin e ni: sina kute e jan seme, jan seme li kute e sina. ale la, sina kute e jan la ona li sona.'
+      account_alias:
+        acct: o toki e nimi@ma pi sijelo tan
+      account_migration:
+        acct: o toki e nimi@ma pi sijelo tawa
       defaults:
         setting_display_media_hide_all: sitelen ale li len
         setting_display_media_show_all: sitelen ale li len ala
