@@ -9,7 +9,7 @@
                data: { confirm: t('admin.reports.are_you_sure') },
                name: :report,
                type: :submit
-  = link_to t('admin.statuses.open'), ActivityPub::TagManager.instance.url_for(@status), class: 'button', target: '_blank', rel: 'noopener noreferrer'
+  = link_to t('admin.statuses.open'), ActivityPub::TagManager.instance.url_for(@status), class: 'button', target: '_blank', rel: 'noopener'
 
 %h3= t('admin.statuses.metadata')
 

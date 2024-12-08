@@ -153,7 +153,7 @@ Rails.application.configure do
     'X-Frame-Options' => 'DENY',
     'X-Content-Type-Options' => 'nosniff',
     'X-XSS-Protection' => '0',
-    'Referrer-Policy' => 'same-origin',
+    'Referrer-Policy' => ENV['ALLOW_REFERRER_ORIGIN'] == 'true' ? 'origin' : 'same-origin',
   }
 
   # TODO: Remove once devise-two-factor data migration complete
