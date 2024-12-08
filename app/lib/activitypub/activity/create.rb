@@ -92,7 +92,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def distribute
     # Spread out crawling randomly to avoid DDoSing the link
-    LinkCrawlWorker.perform_in(rand(1..59).seconds, @status.id)
+    LinkCrawlJob.set(wait: rand(1..59).seconds).perform_later(@status.id)
 
     # Distribute into home and list feeds and notify mentioned accounts
     ::DistributionWorker.perform_async(@status.id, { 'silenced_account_ids' => @silenced_account_ids }) if @options[:override_timestamps] || @status.within_realtime_window?
