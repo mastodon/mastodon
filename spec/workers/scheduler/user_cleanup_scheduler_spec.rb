@@ -9,6 +9,7 @@ RSpec.describe Scheduler::UserCleanupScheduler do
   let!(:old_unconfirmed_user) { Fabricate(:user) }
   let!(:confirmed_user)       { Fabricate(:user) }
   let!(:moderation_note)      { Fabricate(:account_moderation_note, account: Fabricate(:account), target_account: old_unconfirmed_user.account) }
+  let!(:webauthn_credential)  { Fabricate(:webauthn_credential, user_id: old_unconfirmed_user.id) }
 
   describe '#perform' do
     before do
@@ -25,6 +26,8 @@ RSpec.describe Scheduler::UserCleanupScheduler do
         .and change { Account.exists?(old_unconfirmed_user.account_id) }
         .from(true).to(false)
       expect { moderation_note.reload }
+        .to raise_error(ActiveRecord::RecordNotFound)
+      expect { webauthn_credential.reload }
         .to raise_error(ActiveRecord::RecordNotFound)
       expect_preservation_of(new_unconfirmed_user)
       expect_preservation_of(confirmed_user)

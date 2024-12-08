@@ -248,9 +248,11 @@ lv:
         confirm_user_html: "%{name} apstiprināja lietotāja %{target} e-pasta adresi"
         create_account_warning_html: "%{name} nosūtīja brīdinājumu %{target}"
         create_announcement_html: "%{name} izveidoja jaunu paziņojumu %{target}"
+        create_canonical_email_block_html: "%{name} liedza e-pasta adresi ar jaucējkodu %{target}"
         create_custom_emoji_html: "%{name} augšupielādēja jaunu emocijzīmi %{target}"
         create_domain_allow_html: "%{name} atļāva federāciju ar domēnu %{target}"
         create_domain_block_html: "%{name} bloķēja domēnu %{target}"
+        create_email_domain_block_html: "%{name} liedza e-pasta domēnu %{target}"
         create_ip_block_html: "%{name} izveidoja nosacījumu priekš IP %{target}"
         create_unavailable_domain_html: "%{name} apturēja piegādi uz domēnu %{target}"
         create_user_role_html: "%{name} nomainīja %{target} lomu"
@@ -1610,7 +1612,6 @@ lv:
   scheduled_statuses:
     over_daily_limit: Tu esi pārsniedzis šodien ieplānoto %{limit} ziņu ierobežojumu
     over_total_limit: Tu esi pārsniedzis ieplānoto %{limit} ziņu ierobežojumu
-    too_soon: Ieplānotajam datumam ir jābūt nākotnē
   self_destruct:
     lead_html: Diemžēl domēns <strong>%{domain}</strong> tiek neatgriezeniski slēgts. Ja tev tur bija konts, tu nevarēsi turpināt to lietot, taču joprojām vari pieprasīt savu datu kopiju.
     title: Šis serveris tiek slēgts
