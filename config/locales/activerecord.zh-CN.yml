@@ -39,6 +39,11 @@ zh-CN:
           attributes:
             data:
               malformed: 格式错误
+        list_account:
+          attributes:
+            account_id:
+              taken: 已经被加入到列表了
+          must_be_following: 需要是你关注的账户
         status:
           attributes:
             reblog:
@@ -49,16 +54,16 @@ zh-CN:
               blocked: 使用了被封禁的电子邮件提供商
               unreachable: 似乎不存在
             role_id:
-              elevated: 不能高于您当前的身份
+              elevated: 不能高于你现在的身份
         user_role:
           attributes:
             permissions_as_keys:
               dangerous: 包含对基本角色不安全的权限
-              elevated: 不能包含您当前身份未有的权限
-              own_role: 无法以您当前的身份更改
+              elevated: 不能包含你当前身份未有的权限
+              own_role: 无权以你当前的身份更改
             position:
-              elevated: 不能高于您当前的角色
-              own_role: 无法以您当前的身份更改
+              elevated: 不能高于你当前的角色
+              own_role: 无权以你当前的身份更改
         webhook:
           attributes:
             events:

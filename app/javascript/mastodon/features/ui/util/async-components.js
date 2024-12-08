@@ -7,15 +7,7 @@ export function Compose () {
 }
 
 export function Notifications () {
-  return import(/* webpackChunkName: "features/notifications_v1" */'../../notifications');
-}
-
-export function Notifications_v2 () {
-  return import(/* webpackChunkName: "features/notifications_v2" */'../../notifications_v2');
-}
-
-export function NotificationsWrapper () {
-  return import(/* webpackChunkName: "features/notifications" */'../../notifications_wrapper');
+  return import(/* webpackChunkName: "features/notifications" */'../../notifications_v2');
 }
 
 export function HomeTimeline () {
@@ -150,10 +142,6 @@ export function EmbedModal () {
   return import(/* webpackChunkName: "modals/embed_modal" */'../components/embed_modal');
 }
 
-export function ListEditor () {
-  return import(/* webpackChunkName: "features/list_editor" */'../../list_editor');
-}
-
 export function ListAdder () {
   return import(/*webpackChunkName: "features/list_adder" */'../../list_adder');
 }
@@ -170,8 +158,12 @@ export function Directory () {
   return import(/* webpackChunkName: "features/directory" */'../../directory');
 }
 
-export function Onboarding () {
-  return import(/* webpackChunkName: "features/onboarding" */'../../onboarding');
+export function OnboardingProfile () {
+  return import(/* webpackChunkName: "features/onboarding" */'../../onboarding/profile');
+}
+
+export function OnboardingFollows () {
+  return import(/* webpackChunkName: "features/onboarding" */'../../onboarding/follows');
 }
 
 export function CompareHistoryModal () {
@@ -216,4 +208,16 @@ export function NotificationRequest () {
 
 export function LinkTimeline () {
   return import(/*webpackChunkName: "features/link_timeline" */'../../link_timeline');
+}
+
+export function AnnualReportModal () {
+  return import(/*webpackChunkName: "modals/annual_report_modal" */'../components/annual_report_modal');
+}
+
+export function ListEdit () {
+  return import(/*webpackChunkName: "features/lists" */'../../lists/new');
+}
+
+export function ListMembers () {
+  return import(/* webpackChunkName: "features/lists" */'../../lists/members');
 }

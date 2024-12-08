@@ -5,7 +5,7 @@ module Admin
     def index
       authorize :email_domain_block, :index?
 
-      @email_domain_blocks = EmailDomainBlock.where(parent_id: nil).includes(:children).order(id: :desc).page(params[:page])
+      @email_domain_blocks = EmailDomainBlock.parents.includes(:children).order(id: :desc).page(params[:page])
       @form                = Form::EmailDomainBlockBatch.new
     end
 
@@ -58,10 +58,7 @@ module Admin
     private
 
     def set_resolved_records
-      Resolv::DNS.open do |dns|
-        dns.timeouts = 5
-        @resolved_records = dns.getresources(@email_domain_block.domain, Resolv::DNS::Resource::IN::MX).to_a
-      end
+      @resolved_records = DomainResource.new(@email_domain_block.domain).mx
     end
 
     def resource_params

@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 module StatusesHelper
-  EMBEDDED_CONTROLLER = 'statuses'
-  EMBEDDED_ACTION = 'embed'
-
   VISIBLITY_ICONS = {
     public: 'globe',
     unlisted: 'lock_open',
@@ -12,7 +9,7 @@ module StatusesHelper
   }.freeze
 
   def nothing_here(extra_classes = '')
-    content_tag(:div, class: "nothing-here #{extra_classes}") do
+    tag.div(class: ['nothing-here', extra_classes]) do
       t('accounts.nothing_here')
     end
   end
@@ -60,16 +57,8 @@ module StatusesHelper
     components.compact_blank.join("\n\n")
   end
 
-  def stream_link_target
-    embedded_view? ? '_blank' : nil
-  end
-
   def visibility_icon(status)
     VISIBLITY_ICONS[status.visibility.to_sym]
-  end
-
-  def embedded_view?
-    params[:controller] == EMBEDDED_CONTROLLER && params[:action] == EMBEDDED_ACTION
   end
 
   def prefers_autoplay?

@@ -3,7 +3,7 @@ ru:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Защищает от ложных атрибуций.
+        attribution_domains_as_text: По одному на строку. Защищает от ложных атрибуций.
         discoverable: Ваши публичные сообщения и профиль могут быть показаны или рекомендованы в различных разделах Mastodon, и ваш профиль может быть предложен другим пользователям.
         display_name: Ваше полное имя или псевдоним.
         fields: Ваша домашняя страница, местоимения, возраст - все, что угодно.
@@ -60,6 +60,7 @@ ru:
         setting_display_media_default: Скрывать файлы «деликатного характера»
         setting_display_media_hide_all: Всегда скрывать любые медиафайлы
         setting_display_media_show_all: Всегда показывать любые медиафайлы
+        setting_system_scrollbars_ui: Работает только в браузерах для ПК на основе Safari или Chrome
         setting_use_blurhash: Градиенты основаны на цветах скрытых медиа, но скрывают любые детали.
         setting_use_pending_items: Показывать обновления в ленте только после клика вместо автоматической прокрутки.
         username: Вы можете использовать буквы, цифры и знаки подчеркивания
@@ -144,7 +145,7 @@ ru:
         url: Куда события будут отправляться
     labels:
       account:
-        attribution_domains_as_text: Разрешить только определенные сайты
+        attribution_domains_as_text: Веб-сайты, которым разрешено ссылаться на вас
         discoverable: Профиль и сообщения в алгоритмах обнаружения
         fields:
           name: Пункт
@@ -223,6 +224,7 @@ ru:
         setting_hide_network: Скрыть свои связи
         setting_reduce_motion: Уменьшить движение в анимации
         setting_system_font_ui: Использовать шрифт системы по умолчанию
+        setting_system_scrollbars_ui: Использовать системные полосы прокрутки
         setting_theme: Тема сайта
         setting_trends: Показывать сегодняшние тренды
         setting_unfollow_modal: Всегда спрашивать перед отпиской от учётной записи

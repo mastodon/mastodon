@@ -21,6 +21,7 @@ fi:
       one: Julkaisu
       other: viestiä
     posts_tab_heading: Julkaisut
+    self_follow_error: Oman tilisi seuraaminen ei ole sallittua
   admin:
     account_actions:
       action: Suorita toimi
@@ -186,6 +187,7 @@ fi:
         create_domain_block: Luo verkkotunnuksen esto
         create_email_domain_block: Luo sähköpostiverkkotunnuksen esto
         create_ip_block: Luo IP-sääntö
+        create_relay: Luo välittäjä
         create_unavailable_domain: Luo ei-saatavilla oleva verkkotunnus
         create_user_role: Luo rooli
         demote_user: Alenna käyttäjä
@@ -197,14 +199,17 @@ fi:
         destroy_email_domain_block: Poista sähköpostiverkkotunnuksen esto
         destroy_instance: Tyhjennä verkkotunnus
         destroy_ip_block: Poista IP-sääntö
+        destroy_relay: Poista välittäjä
         destroy_status: Poista julkaisu
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
         destroy_user_role: Hävitä rooli
         disable_2fa_user: Poista kaksivaiheinen todennus käytöstä
         disable_custom_emoji: Poista mukautettu emoji käytöstä
+        disable_relay: Poista välittäjä käytöstä
         disable_sign_in_token_auth_user: Poista sähköpostitunnuksella todennus käytöstä käyttäjältä
         disable_user: Poista tili käytöstä
         enable_custom_emoji: Ota mukautettu emoji käyttöön
+        enable_relay: Ota välittäjä käyttöön
         enable_sign_in_token_auth_user: Ota sähköpostitunnuksella todennus käyttöön käyttäjälle
         enable_user: Ota tili käyttöön
         memorialize_account: Muuta muistotiliksi
@@ -215,7 +220,7 @@ fi:
         reopen_report: Avaa raportti uudelleen
         resend_user: Lähetä vahvistusviesti uudelleen
         reset_password_user: Palauta salasana
-        resolve_report: Selvitä raportti
+        resolve_report: Ratkaise raportti
         sensitive_account: Pakota arkaluonteiseksi tiliksi
         silence_account: Rajoita tiliä
         suspend_account: Jäädytä tili
@@ -246,6 +251,7 @@ fi:
         create_domain_block_html: "%{name} esti verkkotunnuksen %{target}"
         create_email_domain_block_html: "%{name} esti sähköpostiverkkotunnuksen %{target}"
         create_ip_block_html: "%{name} loi säännön IP-osoitteelle %{target}"
+        create_relay_html: "%{name} loi välittäjän %{target}"
         create_unavailable_domain_html: "%{name} pysäytti toimituksen verkkotunnukseen %{target}"
         create_user_role_html: "%{name} loi roolin %{target}"
         demote_user_html: "%{name} alensi käyttäjän %{target}"
@@ -257,14 +263,17 @@ fi:
         destroy_email_domain_block_html: "%{name} kumosi sähköpostiverkkotunnuksen %{target} eston"
         destroy_instance_html: "%{name} tyhjensi verkkotunnuksen %{target}"
         destroy_ip_block_html: "%{name} poisti säännön IP-osoitteelta %{target}"
+        destroy_relay_html: "%{name} poisti välittäjän %{target}"
         destroy_status_html: "%{name} poisti käyttäjän %{target} julkaisun"
         destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
         destroy_user_role_html: "%{name} poisti roolin %{target}"
         disable_2fa_user_html: "%{name} poisti käyttäjältä %{target} vaatimuksen kaksivaiheiseen todentamiseen"
         disable_custom_emoji_html: "%{name} poisti emojin %{target} käytöstä"
+        disable_relay_html: "%{name} poisti välittäjän %{target} käytöstä"
         disable_sign_in_token_auth_user_html: "%{name} poisti sähköpostitunnuksella todennuksen käytöstä käyttäjältä %{target}"
         disable_user_html: "%{name} poisti kirjautumisen käytöstä käyttäjältä %{target}"
         enable_custom_emoji_html: "%{name} otti emojin %{target} käyttöön"
+        enable_relay_html: "%{name} otti välittäjän %{target} käyttöön"
         enable_sign_in_token_auth_user_html: "%{name} otti sähköpostitunnuksella todennuksen käyttöön käyttäjälle %{target}"
         enable_user_html: "%{name} otti kirjautumisen käyttöön käyttäjälle %{target}"
         memorialize_account_html: "%{name} muutti käyttäjän %{target} tilin muistosivuksi"
@@ -272,7 +281,7 @@ fi:
         reject_appeal_html: "%{name} hylkäsi käyttäjän %{target} valituksen moderointipäätöksestä"
         reject_user_html: "%{name} hylkäsi käyttäjän %{target} rekisteröitymisen"
         remove_avatar_user_html: "%{name} poisti käyttäjän %{target} profiilikuvan"
-        reopen_report_html: "%{name} avasi uudelleen raportin %{target}"
+        reopen_report_html: "%{name} avasi raportin %{target} uudelleen"
         resend_user_html: "%{name} lähetti vahvistussähköpostiviestin uudelleen käyttäjälle %{target}"
         reset_password_user_html: "%{name} palautti käyttäjän %{target} salasanan"
         resolve_report_html: "%{name} ratkaisi raportin %{target}"
@@ -333,8 +342,8 @@ fi:
       enabled: Käytössä
       enabled_msg: Emoji otettiin käyttöön onnistuneesti
       image_hint: PNG tai GIF, enintään %{size}
-      list: Lisää listalle
-      listed: Listalla
+      list: Lisää listaan
+      listed: Listassa
       new:
         title: Lisää uusi mukautettu emoji
       no_emoji_selected: Emojeita ei muutettu, koska yhtään ei ollut valittuna
@@ -344,8 +353,8 @@ fi:
       shortcode_hint: Vähintään 2 merkkiä, vain kirjaimia, numeroita ja alaviivoja
       title: Mukautetut emojit
       uncategorized: Luokittelematon
-      unlist: Poista listalta
-      unlisted: Ei listalla
+      unlist: Poista listasta
+      unlisted: Ei listassa
       update_failed_msg: Emojin päivitys epäonnistui
       updated_msg: Emojin päivitys onnistui!
       upload: Lähetä
@@ -817,8 +826,10 @@ fi:
       back_to_account: Takaisin tilin sivulle
       back_to_report: Takaisin raporttisivulle
       batch:
+        add_to_report: Lisää raporttiin nro %{id}
         remove_from_report: Poista raportista
-        report: Raportti
+        report: Raportoi
+      contents: Sisältö
       deleted: Poistettu
       favourites: Suosikit
       history: Versiohistoria
@@ -827,13 +838,17 @@ fi:
       media:
         title: Media
       metadata: Metadata
+      no_history: Tätä julkaisua ei ole muokattu
       no_status_selected: Julkaisuja ei muutettu, koska yhtään ei ollut valittuna
       open: Avaa julkaisu
       original_status: Alkuperäinen julkaisu
       reblogs: Edelleen jako
+      replied_to_html: Vastaus käyttäjälle %{acct_link}
       status_changed: Julkaisua muutettu
-      title: Tilin tilat
+      status_title: Julkaisu käyttäjältä @%{name}
+      title: Tilin julkaisut - @%{name}
       trending: Suosituttua
+      view_publicly: Näytä julkisesti
       visibility: Näkyvyys
       with_media: Sisältää mediaa
     strikes:
@@ -875,6 +890,9 @@ fi:
         message_html: Et ole määritellyt palvelimen sääntöjä lainkaan.
       sidekiq_process_check:
         message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
+      software_version_check:
+        action: Näytä saatavilla olevat päivitykset
+        message_html: Saatavilla on Mastodon-päivitys.
       software_version_critical_check:
         action: Näytä saatavilla olevat päivitykset
         message_html: Kriittinen Mastodon-päivitys on saatavilla. Tee päivitys mahdollisimman ripeästi.
@@ -1162,9 +1180,11 @@ fi:
     use_security_key: Käytä suojausavainta
   author_attribution:
     example_title: Esimerkkiteksti
-    hint_html: Määrää, kuinka tulet tunnustetuksi, kun Mastodonissa jaetaan linkkejä.
+    hint_html: Kirjoitatko uutisia tai blogitekstejä Mastodonin ulkopuolella? Määrää, kuinka tulet tunnustetuksi, kun niitä jaetaan Mastodonissa.
+    instructions: 'Varmista, että artikkelisi HTML:ssä on tämä koodi:'
     more_from_html: Lisää tekijältä %{name}
     s_blog: Käyttäjän %{name} blogi
+    then_instructions: Lisää sitten julkaisun verkkotunnus seuraavaan tekstikenttään.
     title: Tekijän tunnustus
   challenge:
     confirm: Jatka
@@ -1254,7 +1274,7 @@ fi:
       title: Turvallisuusvahvistus epäonnistui
     '429': Rajoitettu
     '500':
-      content: Valitettavasti jokin meni pieleen meidän päässämme.
+      content: Valitettavasti jotain meni pieleen meidän päässämme.
       title: Sivu ei ole oikein
     '503': Sivua ei voitu näyttää palvelimen väliaikaisen vian vuoksi.
     noscript_html: Käyttääksesi Mastodonin verkkosovellusta, ota JavaScript käyttöön. Vaihtoehtoisesti voit kokeilla käyttämällesi alustalle kehitettyjä Mastodonin <a href="%{apps_path}">natiivisovelluksia</a>.
@@ -1363,19 +1383,43 @@ fi:
       overwrite: Korvaa
       overwrite_long: Korvaa nykyiset tietueet uusilla
     overwrite_preambles:
-      blocking_html: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{total_items} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
-      bookmarks_html: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{total_items} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
-      domain_blocking_html: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{total_items} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
-      following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
-      lists_html: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{total_items} tiliä</strong>.
-      muting_html: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{total_items} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+      blocking_html:
+        one: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata estoluettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata kirjanmerkkisi</strong> kaikkiaan <strong>%{count} julkaisulla</strong> tiedostosta <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata verkkotunnusten estoluettelosi</strong> kaikkiaan <strong>%{count} verkkotunnuksella</strong> tiedostosta <strong>%{filename}</strong>.
+      following_html:
+        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong> ja <strong>lopettaa kaikkien muiden seuraamisen</strong>.
+      lists_html:
+        one: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tili</strong>.
+        other: Olet aikeissa <strong>korvata listojasi</strong> tiedoston <strong>%{filename}</strong> sisällöllä. Uusiin listoihin lisätään kaikkiaan <strong>%{count} tiliä</strong>.
+      muting_html:
+        one: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>korvata mykistettyjen tilien luettelosi</strong> kaikkiaan <strong>%{count} tilillä</strong> tiedostosta <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
-      bookmarks_html: Olet aikeissa lisätä kaikkiaan <strong>%{total_items} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
-      domain_blocking_html: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{total_items} verkkotunnusta</strong> tiedostosta <strong>%{filename}</strong>.
-      following_html: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
-      lists_html: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
-      muting_html: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{total_items} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+      blocking_html:
+        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisun</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
+        other: Olet aikeissa lisätä kaikkiaan <strong>%{count} julkaisua</strong> tiedostosta <strong>%{filename}</strong><strong>kirjanmerkkeihisi</strong>.
+      domain_blocking_html:
+        one: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnuksen</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>estää</strong> kaikkiaan <strong>%{count} verkkotunnusta</strong> tiedostosta <strong>%{filename}</strong>.
+      following_html:
+        one: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>seurata</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
+      lists_html:
+        one: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
+        other: Olet aikeissa lisätä <strong>listoihisi</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>. Uusia listoja luodaan, jos sopivaa kohdelistaa ei ole olemassa.
+      muting_html:
+        one: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tilin</strong> tiedostosta <strong>%{filename}</strong>.
+        other: Olet aikeissa <strong>mykistää</strong> kaikkiaan <strong>%{count} tiliä</strong> tiedostosta <strong>%{filename}</strong>.
     preface: Voit tuoda toiselta palvelimelta viemiäsi tietoja, kuten seuraamiesi tai estämiesi käyttäjien luettelon.
     recent_imports: Viimeksi tuotu
     states:
@@ -1632,7 +1676,7 @@ fi:
   scheduled_statuses:
     over_daily_limit: Olet ylittänyt %{limit} ajoitetun julkaisun rajan tälle päivälle
     over_total_limit: Olet ylittänyt %{limit} ajoitetun julkaisun rajan
-    too_soon: Ajoitetun päiväyksen pitää olla tulevaisuudessa
+    too_soon: päivämäärän on oltava tulevaisuudessa
   self_destruct:
     lead_html: Valitettavasti <strong>%{domain}</strong> sulkeutuu pysyvästi. Jos sinulla on siellä tili, et voi jatkaa sen käyttöä mutta voit yhä pyytää varmuuskopiota tiedoistasi.
     title: Tämä palvelin sulkeutuu
@@ -1692,7 +1736,7 @@ fi:
     delete: Tilin poisto
     development: Kehitys
     edit_profile: Muokkaa profiilia
-    export: Vie tietoja
+    export: Vie
     featured_tags: Suositellut aihetunnisteet
     import: Tuo tietoja
     import_and_export: Tuonti ja vienti
@@ -1937,7 +1981,7 @@ fi:
     signed_in_as: 'Kirjautunut tilillä:'
   verification:
     extra_instructions_html: <strong>Vinkki:</strong> Verkkosivustollasi oleva linkki voi olla myös näkymätön. Olennainen osuus on <code>rel="me"</code>, joka estää toiseksi henkilöksi tekeytymisen verkkosivustoilla, joilla on käyttäjien luomaa sisältöä. Voit käyttää jopa <code>link</code>-elementtiä sivun <code>head</code>-osassa elementin <code>a</code> sijaan, mutta HTML:n pitää olla käytettävissä ilman JavaScript-koodin suorittamista.
-    here_is_how: Näin voit tehdä sen
+    here_is_how: Näin se onnistuu
     hint_html: "<strong>Henkilöllisyyden vahvistaminen on Mastodonissa jokaisen käyttäjän ulottuvilla.</strong> Se perustuu avoimiin standardeihin ja on maksutonta nyt ja aina. Tarvitset vain henkilökohtaisen verkkosivuston, jonka perusteella sinut voidaan tunnistaa. Kun teet linkin tuolle verkkosivulle profiilistasi, tarkistamme, että verkkosivustolla on linkki takaisin profiiliisi, ja näytämme profiilissasi visuaalisen ilmaisimen."
     instructions_html: Kopioi ja liitä seuraava koodi verkkosivustosi HTML-lähdekoodiin. Lisää sitten verkkosivustosi osoite johonkin profiilisi lisäkentistä ”Muokkaa profiilia” -välilehdellä ja tallenna muutokset.
     verification: Vahvistus

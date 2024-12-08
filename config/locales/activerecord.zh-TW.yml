@@ -39,6 +39,11 @@ zh-TW:
           attributes:
             data:
               malformed: 資料不正確
+        list_account:
+          attributes:
+            account_id:
+              taken: 已於列表中
+          must_be_following: 必須為已跟隨之帳號
         status:
           attributes:
             reblog:
@@ -46,7 +51,7 @@ zh-TW:
         user:
           attributes:
             email:
-              blocked: 使用不被允許的電子郵件供應商
+              blocked: 使用不被允許的電子郵件提供商
               unreachable: 該電子郵件地址似乎無法使用
             role_id:
               elevated: 不能高於您目前的角色

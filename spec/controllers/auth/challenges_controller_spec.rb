@@ -8,9 +8,7 @@ RSpec.describe Auth::ChallengesController do
   let(:password) { 'foobar12345' }
   let(:user) { Fabricate(:user, password: password) }
 
-  before do
-    sign_in user
-  end
+  before { sign_in user }
 
   describe 'POST #create' do
     let(:return_to) { edit_user_registration_path }
@@ -18,28 +16,24 @@ RSpec.describe Auth::ChallengesController do
     context 'with correct password' do
       before { post :create, params: { form_challenge: { return_to: return_to, current_password: password } } }
 
-      it 'redirects back' do
-        expect(response).to redirect_to(return_to)
-      end
-
-      it 'sets session' do
-        expect(session[:challenge_passed_at]).to_not be_nil
+      it 'redirects back and sets challenge passed at in session' do
+        expect(response)
+          .to redirect_to(return_to)
+        expect(session[:challenge_passed_at])
+          .to_not be_nil
       end
     end
 
     context 'with incorrect password' do
       before { post :create, params: { form_challenge: { return_to: return_to, current_password: 'hhfggjjd562' } } }
 
-      it 'renders challenge' do
-        expect(response).to render_template('auth/challenges/new')
-      end
-
-      it 'displays error' do
-        expect(response.body).to include 'Invalid password'
-      end
-
-      it 'does not set session' do
-        expect(session[:challenge_passed_at]).to be_nil
+      it 'renders challenge, displays error, does not set session' do
+        expect(response)
+          .to render_template('auth/challenges/new')
+        expect(response.body)
+          .to include 'Invalid password'
+        expect(session[:challenge_passed_at])
+          .to be_nil
       end
     end
   end

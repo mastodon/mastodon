@@ -39,6 +39,11 @@ de:
           attributes:
             data:
               malformed: ist fehlerhaft
+        list_account:
+          attributes:
+            account_id:
+              taken: befindet sich bereits auf der Liste
+          must_be_following: muss ein gefolgtes Konto sein
         status:
           attributes:
             reblog:

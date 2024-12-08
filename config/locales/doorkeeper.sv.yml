@@ -60,6 +60,7 @@ sv:
       error:
         title: Ett fel har uppstått
       new:
+        prompt_html: "%{client_name} vill ha behörighet att komma åt ditt konto. <strong>Godkänn bara denna begäran om du känner igen och litar på källan.</strong>"
         review_permissions: Granska behörigheter
         title: Godkännande krävs
       show:
@@ -71,7 +72,7 @@ sv:
         revoke: Är du säker?
       index:
         authorized_at: Godkändes den %{date}
-        description_html: Dessa applikationer har åtkomst till ditt konto genom API:et. Om det finns applikationer du inte känner igen här, eller om en applikation inte fungerar, kan du återkalla dess åtkomst.
+        description_html: Detta är program som kan komma åt ditt konto med hjälp av API. Om det finns program som du inte känner igen här, eller om ett program är inte fungerar kan du återkalla dess åtkomst.
         last_used_at: Användes senast %{date}
         never_used: Aldrig använd
         scopes: Behörigheter
@@ -132,7 +133,7 @@ sv:
         follow: Följare, mjutade och blockerade
         follows: Följer
         lists: Listor
-        media: Mediabilagor
+        media: Mediebilagor
         mutes: Tystade användare
         notifications: Aviseringar
         profile: Din Mastodon-profil

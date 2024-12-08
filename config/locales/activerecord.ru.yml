@@ -39,6 +39,11 @@ ru:
           attributes:
             data:
               malformed: неверный формат
+        list_account:
+          attributes:
+            account_id:
+              taken: уже в списке
+          must_be_following: должен быть пользователем, на которого вы подписаны
         status:
           attributes:
             reblog:

@@ -20,6 +20,7 @@ ia:
           invalid: non es un nomine de dominio valide
       messages:
         invalid_domain_on_line: "%{value} non es un nomine de dominio valide"
+        too_many_lines: il es ultra le limite de %{limit} lineas
       models:
         account:
           attributes:
@@ -38,6 +39,11 @@ ia:
           attributes:
             data:
               malformed: es mal formate
+        list_account:
+          attributes:
+            account_id:
+              taken: jam es in le lista
+          must_be_following: debe esser un conto sequite
         status:
           attributes:
             reblog:

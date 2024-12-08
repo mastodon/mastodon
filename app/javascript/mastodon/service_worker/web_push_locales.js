@@ -6,6 +6,12 @@
 const fs   = require('fs');
 const path = require('path');
 
+const { defineMessages } = require('react-intl');
+
+const messages = defineMessages({
+  mentioned_you: { id: 'notification.mentioned_you', defaultMessage: '{name} mentioned you' },
+});
+
 const filtered  = {};
 const filenames = fs.readdirSync(path.resolve(__dirname, '../locales'));
 
@@ -20,7 +26,7 @@ filenames.forEach(filename => {
     'notification.favourite': full['notification.favourite'] || '',
     'notification.follow': full['notification.follow'] || '',
     'notification.follow_request': full['notification.follow_request'] || '',
-    'notification.mention': full['notification.mention'] || '',
+    'notification.mention': full[messages.mentioned_you.id] || '',
     'notification.reblog': full['notification.reblog'] || '',
     'notification.poll': full['notification.poll'] || '',
     'notification.status': full['notification.status'] || '',

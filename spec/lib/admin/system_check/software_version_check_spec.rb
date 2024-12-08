@@ -27,9 +27,10 @@ RSpec.describe Admin::SystemCheck::SoftwareVersionCheck do
 
       context 'when checks are disabled' do
         around do |example|
-          ClimateControl.modify UPDATE_CHECK_URL: '' do
-            example.run
-          end
+          original = Rails.configuration.x.mastodon.software_update_url
+          Rails.configuration.x.mastodon.software_update_url = ''
+          example.run
+          Rails.configuration.x.mastodon.software_update_url = original
         end
 
         it 'returns true' do
@@ -51,8 +52,8 @@ RSpec.describe Admin::SystemCheck::SoftwareVersionCheck do
         Fabricate(:software_update, version: '99.99.99', type: 'major', urgent: false)
       end
 
-      it 'returns true' do
-        expect(check.pass?).to be true
+      it 'returns false' do
+        expect(check.pass?).to be false
       end
     end
 

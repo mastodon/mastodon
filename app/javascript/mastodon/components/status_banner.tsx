@@ -1,8 +1,8 @@
 import { FormattedMessage } from 'react-intl';
 
 export enum BannerVariant {
-  Yellow = 'yellow',
-  Blue = 'blue',
+  Warning = 'warning',
+  Filter = 'filter',
 }
 
 export const StatusBanner: React.FC<{
@@ -11,9 +11,9 @@ export const StatusBanner: React.FC<{
   expanded?: boolean;
   onClick?: () => void;
 }> = ({ children, variant, expanded, onClick }) => (
-  <div
+  <label
     className={
-      variant === BannerVariant.Yellow
+      variant === BannerVariant.Warning
         ? 'content-warning'
         : 'content-warning content-warning--filter'
     }
@@ -26,6 +26,11 @@ export const StatusBanner: React.FC<{
           id='content_warning.hide'
           defaultMessage='Hide post'
         />
+      ) : variant === BannerVariant.Warning ? (
+        <FormattedMessage
+          id='content_warning.show_more'
+          defaultMessage='Show more'
+        />
       ) : (
         <FormattedMessage
           id='content_warning.show'
@@ -33,5 +38,5 @@ export const StatusBanner: React.FC<{
         />
       )}
     </button>
-  </div>
+  </label>
 );

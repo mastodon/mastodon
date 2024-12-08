@@ -1,0 +1,7 @@
+shared:
+  deepl:
+    api_key: <%= ENV.fetch('DEEPL_API_KEY', nil) %>
+    plan: <%= ENV.fetch('DEEPL_PLAN', 'free') %>
+  libre_translate:
+    api_key: <%= ENV.fetch('LIBRE_TRANSLATE_API_KEY', nil) %>
+    endpoint: <%= ENV.fetch('LIBRE_TRANSLATE_ENDPOINT', nil) %>

@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchServer } from 'mastodon/actions/server';
+import { Account } from 'mastodon/components/account';
 import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
-import Account from 'mastodon/containers/account_container';
 import { domain } from 'mastodon/initial_state';
 
 const messages = defineMessages({

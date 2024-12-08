@@ -7,8 +7,19 @@ namespace :db do
   namespace :encryption do
     desc 'Generate a set of keys for configuring Active Record encryption in a given environment'
     task :init do # rubocop:disable Rails/RakeEnvironment
+      if %w(
+        ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY
+        ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT
+        ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY
+      ).any? { |key| ENV.key?(key) }
+        pastel = Pastel.new
+        puts pastel.red(<<~MSG)
+          WARNING: It looks like encryption secrets have already been set. Please ensure you are not changing secrets for a Mastodon installation that already uses them, as this will cause data loss and other issues that are difficult to recover from.
+        MSG
+      end
+
       puts <<~MSG
-        Add these secret environment variables to your Mastodon environment (e.g. .env.production):#{' '}
+        Add the following secret environment variables to your Mastodon environment (e.g. .env.production), ensure they are shared across all your nodes and do not change them after they are set:#{' '}
 
         ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY=#{SecureRandom.alphanumeric(32)}
         ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT=#{SecureRandom.alphanumeric(32)}
@@ -32,8 +43,14 @@ namespace :db do
   end
 
   task pre_migration_check: :environment do
-    version = ActiveRecord::Base.connection.database_version
-    abort 'This version of Mastodon requires PostgreSQL 12.0 or newer. Please update PostgreSQL before updating Mastodon.' if version < 120_000
+    pg_version = ActiveRecord::Base.connection.database_version
+    abort 'This version of Mastodon requires PostgreSQL 12.0 or newer. Please update PostgreSQL before updating Mastodon.' if pg_version < 120_000
+
+    schema_version = ActiveRecord::Migrator.current_version
+    abort <<~MESSAGE if ENV['SKIP_POST_DEPLOYMENT_MIGRATIONS'] && schema_version < 2023_09_07_150100
+      Zero-downtime migrations from Mastodon versions earlier than 4.2.0 are not supported.
+      Please update to Mastodon 4.2.x first or upgrade by stopping all services and running migrations without `SKIP_POST_DEPLOYMENT_MIGRATIONS`.
+    MESSAGE
   end
 
   Rake::Task['db:migrate'].enhance(['db:pre_migration_check'])

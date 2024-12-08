@@ -29,6 +29,22 @@ RSpec.describe 'Media API', :attachment_processing do
       end
     end
 
+    context 'when media description is too long' do
+      let(:params) do
+        {
+          file: fixture_file_upload('attachment-jpg.123456_abcd', 'image/jpeg'),
+          description: 'aa' * MediaAttachment::MAX_DESCRIPTION_LENGTH,
+        }
+      end
+
+      it 'returns http error' do
+        post '/api/v2/media', headers: headers, params: params
+
+        expect(response).to have_http_status(422)
+        expect(response.body).to include 'Description is too long'
+      end
+    end
+
     context 'when large format media attachment has not been processed' do
       let(:params) { { file: fixture_file_upload('attachment.webm', 'video/webm') } }
 

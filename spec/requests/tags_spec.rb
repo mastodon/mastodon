@@ -8,14 +8,25 @@ RSpec.describe 'Tags' do
       let(:tag) { Fabricate :tag }
 
       context 'with HTML format' do
-        # TODO: Update the have_cacheable_headers matcher to operate on capybara sessions
-        # Remove this example, rely on system spec (which should use matcher)
         before { get tag_path(tag) }
 
-        it 'returns http success' do
-          expect(response)
-            .to have_http_status(200)
-            .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+        it 'returns page with links to alternate resources' do
+          expect(rss_links.first[:href])
+            .to eq(tag_url(tag))
+          expect(activity_json_links.first[:href])
+            .to eq(tag_url(tag))
+        end
+
+        def rss_links
+          alternate_links.css('[type="application/rss+xml"]')
+        end
+
+        def activity_json_links
+          alternate_links.css('[type="application/activity+json"]')
+        end
+
+        def alternate_links
+          response.parsed_body.css('link[rel=alternate]')
         end
       end
 

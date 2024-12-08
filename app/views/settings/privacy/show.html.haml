@@ -5,7 +5,7 @@
   %h2= t('settings.profile')
   = render partial: 'settings/shared/profile_navigation'
 
-= simple_form_for @account, url: settings_privacy_path, html: { method: :put } do |f|
+= simple_form_for @account, url: settings_privacy_path do |f|
   = render 'shared/error_messages', object: @account
 
   %p.lead= t('privacy.hint_html')

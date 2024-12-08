@@ -21,18 +21,26 @@ RSpec.describe AnnualReport::MostRebloggedAccounts do
       let(:account) { Fabricate :account }
 
       let(:other_account) { Fabricate :account }
+      let(:most_other_account) { Fabricate :account }
 
       before do
         _other = Fabricate :status
         Fabricate :status, account: account, reblog: Fabricate(:status, account: other_account)
         Fabricate :status, account: account, reblog: Fabricate(:status, account: other_account)
+
+        Fabricate :status, account: account, reblog: Fabricate(:status, account: most_other_account)
+        Fabricate :status, account: account, reblog: Fabricate(:status, account: most_other_account)
+        Fabricate :status, account: account, reblog: Fabricate(:status, account: most_other_account)
       end
 
       it 'builds a report for an account' do
         expect(subject.generate)
           .to include(
-            most_reblogged_accounts: contain_exactly(
-              include(account_id: other_account.id, count: 2)
+            most_reblogged_accounts: eq(
+              [
+                { account_id: most_other_account.id.to_s, count: 3 },
+                { account_id: other_account.id.to_s, count: 2 },
+              ]
             )
           )
       end
