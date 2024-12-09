@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 
 import { changeComposing, mountCompose, unmountCompose } from 'mastodon/actions/compose';
 import ServerBanner from 'mastodon/components/server_banner';
+import { Search } from 'mastodon/features/compose/components/search';
 import ComposeFormContainer from 'mastodon/features/compose/containers/compose_form_container';
-import SearchContainer from 'mastodon/features/compose/containers/search_container';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 
 import LinkFooter from './link_footer';
@@ -42,7 +42,7 @@ class ComposePanel extends PureComponent {
 
     return (
       <div className='compose-panel' onFocus={this.onFocus}>
-        <SearchContainer openInRoute />
+        <Search openInRoute />
 
         {!signedIn && (
           <>
