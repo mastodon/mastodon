@@ -18,7 +18,7 @@ import Column from 'mastodon/components/column';
 import { Icon  }  from 'mastodon/components/icon';
 import { ServerHeroImage } from 'mastodon/components/server_hero_image';
 import { Skeleton } from 'mastodon/components/skeleton';
-import LinkFooter from 'mastodon/features/ui/components/link_footer';
+import { LinkFooter} from 'mastodon/features/ui/components/link_footer';
 
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },
