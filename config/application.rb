@@ -123,5 +123,7 @@ module Mastodon
       Devise::FailureApp.include AbstractController::Callbacks
       Devise::FailureApp.include Localized
     end
+
+    config.solid_queue.silence_polling = true
   end
 end
