@@ -52,21 +52,23 @@ illegal activities. Accordingly, you may not, or assist any other person to (or
 attempt to):
 
 - Violate these Terms or other policies and terms posted on, or otherwise
-- applicable to, the Instance; Upload any material, program, or software that
-- contains any virus, worm, spyware, Trojan horse or other program or code
-- designed to interrupt, destroy or limit the functionality of the Instance,
-- launch a denial of service attack, or in any other way attempt to interfere
-- with the functioning and availability of the Instance; Except as may be the
-- result of standard search engine or Internet browser usage, use, launch,
-- develop, or distribute any automated system, including without limitation, any
-- spider, robot, cheat utility, scraper, offline reader, or any data mining or
-- similar data gathering extraction tools to access the Instance, or use or
-- launch any unauthorized script or other software; Interfere with, disable,
-- vandalize or disrupt the Instance or servers or networks connected to the
-- Instance; Hack into, penetrate, disable, or otherwise circumvent the security
-- measures of the Instance or servers or networks connected to the Instance; or
-- otherwise use the Instance in any way that violates any applicable national,
-- federal, state, local or international law or regulation.
+  applicable to, the Instance;
+- Upload any material, program, or software that contains any virus, worm,
+  spyware, Trojan horse or other program or code designed to interrupt, destroy
+  or limit the functionality of the Instance, launch a denial of service attack,
+  or in any other way attempt to interfere with the functioning and availability
+  of the Instance;
+- Except as may be the result of standard search engine or Internet browser
+  usage, use, launch, develop, or distribute any automated system, including
+  without limitation, any spider, robot, cheat utility, scraper, offline reader,
+  or any data mining or similar data gathering extraction tools to access the
+  Instance, or use or launch any unauthorized script or other software;
+- Interfere with, disable, vandalize or disrupt the Instance or servers or
+  networks connected to the Instance;
+- Hack into, penetrate, disable, or otherwise circumvent the security measures
+  of the Instance or servers or networks connected to the Instance;
+- or otherwise use the Instance in any way that violates any applicable
+  national, federal, state, local or international law or regulation.
 
 ## Intellectual Property
 
