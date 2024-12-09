@@ -1,0 +1,21 @@
+- content_for :page_title do
+  = t('admin.fasp.providers.edit')
+
+= simple_form_for [:admin, @provider] do |f|
+  = render 'shared/error_messages', object: @provider
+
+  %h4= t('admin.fasp.providers.select_capabilities')
+
+  - f.object.capabilities.each do |capability|
+    .fields-group
+      .input.with_label.boolean.optional.field_with_hint
+        .label_input
+          %label.boolean.optional{ for: "provider_enabled_capabilities_#{capability['id']}" }
+            = capability['id']
+        .label_input__wrapper
+          = hidden_field_tag "provider[enabled_capabilities][#{capability['id']}]", '0', id: false
+          %label.checkbox
+            = check_box_tag "provider[enabled_capabilities][#{capability['id']}]", class: 'optional boolean'
+
+  .actions
+    = f.button :button, t('admin.fasp.providers.save'), type: :submit

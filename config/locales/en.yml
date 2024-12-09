@@ -555,6 +555,36 @@ en:
       total_storage: Media attachments
       totals_time_period_hint_html: The totals displayed below include data for all time.
       unknown_instance: There is currently no record of this domain on this server.
+    fasp:
+      debug:
+        callbacks:
+          created_at: Created at
+          delete: Delete
+          ip: IP address
+          request_body: Request body
+          title: Debug Callbacks
+      providers:
+        active: Active
+        base_url: Base URL
+        debug: Debug call
+        delete: Delete
+        edit: Edit Provider
+        finish_registration: Finish registration
+        name: Name
+        public_key_fingerprint: Public key fingerprint
+        providers: Providers
+        registration_requested: Registration requested
+        registrations:
+          confirm: Confirm
+          description: You received a registration from a FASP. Reject it if you did not initiate this. If you initiated this, carefully compare name and key fingerprint before confirming the registration.
+          reject: Reject
+          title: Confirm FASP Registration
+        save: Save
+        select_capabilities: Select Capabilities
+        sign_in: Sign In
+        status: Status
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     invites:
       deactivate_all: Deactivate all
       filter:
