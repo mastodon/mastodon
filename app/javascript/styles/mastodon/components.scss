@@ -108,7 +108,7 @@
 
   &:disabled,
   &.disabled {
-    background-color: $ui-primary-color;
+    background-color: $ui-button-disabled-color;
     cursor: not-allowed;
   }
 
@@ -148,14 +148,14 @@
     &:disabled,
     &.disabled {
       opacity: 0.7;
-      border-color: $ui-primary-color;
-      color: $ui-primary-color;
+      border-color: $ui-button-disabled-color;
+      color: $ui-button-disabled-color;
 
       &:active,
       &:focus,
       &:hover {
-        border-color: $ui-primary-color;
-        color: $ui-primary-color;
+        border-color: $ui-button-disabled-color;
+        color: $ui-button-disabled-color;
       }
     }
   }
