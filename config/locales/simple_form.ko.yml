@@ -3,6 +3,7 @@ ko:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: 한 줄에 하나씩. 가짜 기여로부터 보호합니다.
         discoverable: 내 공개 게시물과 프로필이 마스토돈의 다양한 추천 기능에 나타날 수 있고 프로필이 다른 사용자에게 제안될 수 있습니다
         display_name: 진짜 이름 또는 재미난 이름.
         fields: 홈페이지, 호칭, 나이, 뭐든지 적고 싶은 것들.
@@ -31,9 +32,9 @@ ko:
         warning_preset_id: 선택사항. 틀의 마지막에 임의의 텍스트를 추가 할 수 있습니다
       announcement:
         all_day: 체크 되었을 경우, 그 시간에 속한 날짜들에만 표시됩니다
-        ends_at: 옵션입니다. 공지사항이 이 시간에 자동으로 발행 중지 됩니다
+        ends_at: 선택사항. 공지사항이 이 시간에 자동으로 발행 중지 됩니다
         scheduled_at: 공백으로 두면 공지사항이 곧바로 발행 됩니다
-        starts_at: 공지사항이 특정한 시간에 종속 될 때를 위한 옵션입니다
+        starts_at: 선택사항. 공지사항이 특정한 시간에 종속 될 때를 위한 옵션입니다
         text: 게시물 문법을 사용할 수 있습니다. 공지사항은 사용자의 화면 상단 공간을 차지한다는 것을 명심하세요
       appeal:
         text: 처벌에 대해 단 한 번만 이의제기를 할 수 있습니다
@@ -45,7 +46,7 @@ ko:
         current_password: 보안을 위해 현재 계정의 암호를 입력해주세요
         current_username: 확인을 위해, 현재 계정의 사용자명을 입력해주세요
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
-        email: 확인용 이메일을 보냈습니다.
+        email: 확인용 이메일을 보내게 됩니다
         header: WEBP, PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소됨
         inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
         irreversible: 필터링 된 게시물은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
@@ -109,7 +110,7 @@ ko:
       invite_request:
         text: 이 정보는 신청을 검토하는데 도움을 줄 수 있습니다.
       ip_block:
-        comment: 필수 아님. 왜 이 규칙을 추가했는지 기억하세요.
+        comment: 선택사항. 왜 이 규칙을 추가했는지 기억하세요.
         expires_in: IP 주소는 한정된 자원입니다, 이것들은 가끔 공유 되거나 자주 소유자가 바뀌기도 합니다. 이런 이유로 인해, IP 차단을 영구히 유지하는 것은 추천하지 않습니다.
         ip: IPv4 또는 IPv6 주소를 입력하세요. CIDR 문법을 사용해서 모든 범위를 차단할 수도 있습니다. 자기 자신을 잠가버리지 않도록 주의하세요!
         severities:
@@ -118,7 +119,7 @@ ko:
           sign_up_requires_approval: 새 가입이 승인을 필요로 하도록 합니다
         severity: 해당 IP로부터의 요청에 대해 무엇이 일어나게 할 지 고르세요
       rule:
-        hint: 옵션사항. 규칙에 대한 더 상세한 정보를 제공하세요
+        hint: 선택사항. 규칙에 대한 더 상세한 정보를 제공하세요
         text: 이 서버 사용자들이 지켜야 할 규칙과 요구사항을 설명해주세요. 짧고 간단하게 작성해주세요
       sessions:
         otp: '휴대전화에서 생성된 이중 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
@@ -143,6 +144,7 @@ ko:
         url: 이벤트가 어디로 전송될 지
     labels:
       account:
+        attribution_domains_as_text: 나를 기여자로 올릴 수 있도록 허용된 웹사이트들
         discoverable: 발견하기 알고리즘에 프로필과 게시물을 추천하기
         fields:
           name: 라벨

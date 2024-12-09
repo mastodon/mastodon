@@ -44,6 +44,7 @@ RSpec.describe 'Credentials' do
         expect(response.parsed_body)
           .to not_include(client_id: be_present)
           .and not_include(client_secret: be_present)
+          .and not_include(client_secret_expires_at: be_present)
       end
     end
 

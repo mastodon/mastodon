@@ -16,7 +16,7 @@ es:
       account_migration:
         acct: Especifica el nombre_de_usuario@dominio de la cuenta hacia la que quieres migrar
       account_warning_preset:
-        text: Puede usar sintaxis de publicaciones, como URLs, hashtags y menciones
+        text: Puede usar sintaxis de publicaciones, como URLs, etiquetas y menciones
         title: Opcional. No es visible para el destinatario
       admin_account_action:
         include_statuses: El usuario verá qué publicaciones han causado la acción de moderación o advertencia
@@ -46,12 +46,12 @@ es:
         current_password: Por razones de seguridad por favor ingrese la contraseña de la cuenta actual
         current_username: Para confirmar, por favor ingrese el nombre de usuario de la cuenta actual
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
-        email: Se le enviará un correo de confirmación
+        email: Te enviaremos un correo electrónico de confirmación
         header: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         inbox_url: Copia la URL de la página principal del relés que quieres utilizar
         irreversible: Las publicaciones filtradas desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
         locale: El idioma de la interfaz de usuario, correos y notificaciones push
-        password: Utilice al menos 8 caracteres
+        password: Utiliza al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a los impulsos recibidos recientemente)
@@ -101,7 +101,7 @@ es:
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
         timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
         trendable_by_default: Omitir la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
-        trends: Las tendencias muestran qué mensajes, etiquetas y noticias están ganando tracción en tu servidor.
+        trends: Las tendencias muestran qué publicaciones, etiquetas y noticias están ganando tracción en tu servidor.
         trends_as_landing_page: Mostrar contenido en tendencia para usuarios y visitantes en lugar de una descripción de este servidor. Requiere que las tendencias estén habilitadas.
       form_challenge:
         current_password: Estás entrando en un área segura
@@ -193,7 +193,7 @@ es:
         email: Dirección de correo electrónico
         expires_in: Expirar tras
         fields: Metadatos de perfil
-        header: Img. cabecera
+        header: Imagen de encabezado
         honeypot: "%{label} (no rellenar)"
         inbox_url: URL de la entrada de relés
         irreversible: Rechazar en lugar de ocultar
@@ -208,7 +208,7 @@ es:
         setting_aggregate_reblogs: Agrupar impulsos en las líneas de tiempo
         setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
-        setting_boost_modal: Mostrar ventana de confirmación antes de impulsar
+        setting_boost_modal: Mostrar diálogo de confirmación antes de impulsar una publicación
         setting_default_language: Idioma de publicación
         setting_default_privacy: Privacidad de publicaciones
         setting_default_sensitive: Marcar siempre imágenes como sensibles
@@ -339,5 +339,5 @@ es:
       text: necesario
     title:
       sessions:
-        webauthn: Utilice una de sus claves de seguridad para iniciar sesión
+        webauthn: Utiliza una de sus claves de seguridad para iniciar sesión
     'yes': Sí

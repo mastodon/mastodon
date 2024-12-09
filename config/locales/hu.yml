@@ -21,6 +21,7 @@ hu:
       one: Bejegyzés
       other: Bejegyzés
     posts_tab_heading: Bejegyzés
+    self_follow_error: A saját fiók nem követhető
   admin:
     account_actions:
       action: Művelet végrehajtása
@@ -570,21 +571,21 @@ hu:
     relationships:
       title: "%{acct} kapcsolatai"
     relays:
-      add_new: Új relé hozzáadása
+      add_new: Új továbbító hozzáadása
       delete: Törlés
-      description_html: A <strong>föderációs relé</strong> egy olyan köztes szerver, mely nagy mennyiségű nyilvános bejegyzést cserél az erre feliratkozó vagy erre publikáló szerverek között. <strong>Ezzel segíthetsz kis és közepes szervereknek tartalmat megtalálni a föderációban</strong>, mely egyébként csak akkor válna lehetővé, ha a saját felhasználóik más szervereken lévő fiókokat követnének.
+      description_html: A <strong>föderációs továbbító</strong> egy olyan köztes kiszolgáló, mely nagy mennyiségű nyilvános bejegyzést cserél az erre feliratkozó vagy erre publikáló kiszolgálók között. <strong>Ezzel segíthetsz kis és közepes kiszolgálóknak megtalálni a tartalmakat a föderációban</strong>, melyek egyébként csak akkor válnának lehetővé, ha a saját felhasználóik más kiszolgálókon lévő fiókokat követnének.
       disable: Kikapcsolás
       disabled: Kikapcsolva
       enable: Bekapcsolás
-      enable_hint: Ha bekapcsolod, a szerver minden nyilvános bejegyzésre feliratkozik ezen a relén, valamint az összes nyilvános bejegyzést elküldi ennek.
+      enable_hint: Ha bekapcsolod, a kiszolgáló minden nyilvános bejegyzésre feliratkozik ezen a továbbítón, valamint az összes nyilvános bejegyzést elküldi ennek.
       enabled: Bekapcsolva
-      inbox_url: Relé URL
-      pending: Várakozás a relé jóváhagyására
+      inbox_url: Továbbító URL
+      pending: Várakozás a továbbító jóváhagyására
       save_and_enable: Mentés és engedélyezés
-      setup: Relé kapcsolat felállítása
-      signatures_not_enabled: A relék nem fognak megfelelően működni, amíg a biztonságos mód vagy a korlátozott föderációs mód engedélyezett
+      setup: Továbbító kapcsolat felállítása
+      signatures_not_enabled: A továbbítók nem fognak megfelelően működni, amíg a biztonságos mód vagy a korlátozott föderációs mód engedélyezett
       status: Állapot
-      title: Relék
+      title: Továbbítók
     report_notes:
       created_msg: Bejelentési feljegyzés létrehozva!
       destroyed_msg: Bejelentési feljegyzés törölve!
@@ -1165,8 +1166,11 @@ hu:
     use_security_key: Biztonsági kulcs használata
   author_attribution:
     example_title: Mintaszöveg
+    hint_html: Mastodonon kívül írsz híreket vagy blogbejegyzéseket? Szabályozd, hogyan tüntethetnek fel szerzőként, amikor Mastodonon osztják meg őket.
+    instructions: 'Győződj meg róla, hogy ez a kód a cikked HTML-jében van:'
     more_from_html: 'Több tőle: %{name}'
     s_blog: "%{name} blogja"
+    then_instructions: Aztán add meg a publikáció domain-nevét az alábbi mezőben.
     title: Szerző forrásmegjelölése
   challenge:
     confirm: Folytatás
@@ -1910,7 +1914,7 @@ hu:
       feature_moderation_title: Moderálás, ahogy annak lennie kell
       follow_action: Követés
       follow_step: A Mastodon az érdekes emberek követéséről szól.
-      follow_title: Saját hírfolyam testreszabása
+      follow_title: Kezdőlapi hírfolyam testreszabása
       follows_subtitle: Jól ismert fiókok követése
       follows_title: Kit érdemes követni
       follows_view_more: További követendő személyek megtekintése

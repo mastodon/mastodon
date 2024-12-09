@@ -34,7 +34,7 @@ RSpec.describe SearchQueryTransformer do
       let(:query) { "#{operator}:\"abc\"" }
 
       it 'raises an exception' do
-        expect { subject }.to raise_error(Mastodon::FilterValidationError, 'Invalid date abc')
+        expect { subject }.to raise_error(Date::Error)
       end
     end
   end

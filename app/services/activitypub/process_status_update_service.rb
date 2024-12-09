@@ -190,6 +190,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   def update_mentions!
     previous_mentions = @status.active_mentions.includes(:account).to_a
     current_mentions  = []
+    unresolved_mentions = []
 
     @raw_mentions.each do |href|
       next if href.blank?
@@ -203,6 +204,12 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       mention ||= account.mentions.new(status: @status)
 
       current_mentions << mention
+    rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
+      # Since previous mentions are about already-known accounts,
+      # they don't try to resolve again and won't fall into this case.
+      # In other words, this failure case is only for new mentions and won't
+      # affect `removed_mentions` so they can safely be retried asynchronously
+      unresolved_mentions << href
     end
 
     current_mentions.each do |mention|
@@ -215,6 +222,11 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     removed_mentions = previous_mentions - current_mentions
 
     Mention.where(id: removed_mentions.map(&:id)).update_all(silent: true) unless removed_mentions.empty?
+
+    # Queue unresolved mentions for later
+    unresolved_mentions.uniq.each do |uri|
+      MentionResolveWorker.perform_in(rand(30...600).seconds, @status.id, uri, { 'request_id' => @request_id })
+    end
   end
 
   def update_emojis!

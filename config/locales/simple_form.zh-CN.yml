@@ -4,12 +4,12 @@ zh-CN:
     hints:
       account:
         attribution_domains_as_text: 每行一个域名。这样就可以保护作品免受虚假署名。
-        discoverable: 您的公开嘟文和个人资料可能会在 Mastodon 的多个位置展示，您的个人资料可能会被推荐给其他用户。
+        discoverable: 你的公开嘟文和个人资料可能会在 Mastodon 的多个位置展示，你的个人资料可能会被推荐给其他用户。
         display_name: 你的全名或昵称。
         fields: 你的主页、人称代词、年龄，以及任何你想要添加的内容。
-        indexable: 您的公开嘟文会出现在 Mastodon 的搜索结果中。无论是否勾选，与您的嘟文有过交互的人都可能通过搜索找到它们。
-        note: '你可以提及 @其他人 或 #标签 。'
-        show_collections: 人们将能够浏览您的关注和追随者。您关注的人会看到您关注他们。
+        indexable: 你的公开嘟文会出现在 Mastodon 的搜索结果中。无论是否勾选，与你的嘟文有过交互的人都可能通过搜索找到它们。
+        note: '你可以提及 @其他人 或 #话题标签 。'
+        show_collections: 人们将能够浏览你的关注和追随者。你关注的人会看到你关注他们。
         unlocked: 人们将能够在不请求批准的情况下关注你。如果你希望审核关注请求并选择接受或拒绝新的粉丝，请取消勾选此项。
       account_alias:
         acct: 指定你想要迁移过来的原账号：用户名@站点域名
@@ -42,14 +42,14 @@ zh-CN:
         autofollow: 通过邀请链接注册的用户将会自动关注你
         avatar: 支持WEBP、PNG、GIF 或 JPG。最大 %{size}。将缩小到 %{dimensions}px
         bot: 来自这个账户的绝大多数操作都是自动进行的，并且可能无人监控
-        context: 过滤器的应用环境
+        context: 过滤规则将被应用到的一个或多个场景
         current_password: 为了安全起见，请输入当前账号的密码
         current_username: 请输入当前账号的用户名以确认
         digest: 仅在你长时间未登录，且收到了私信时发送
         email: 我们会向你发送一封确认邮件
-        header: 支持WEBP、PNG、GIF 或 JPG。最大 %{size}。将缩小到 %{dimensions}px
+        header: 支持WEBP、PNG、GIF 或 JPG。最大 %{size}。分辨率将被压缩至 %{dimensions}px
         inbox_url: 从你想要使用的中继站的主页上复制 URL
-        irreversible: 已过滤的嘟文会不可逆转地消失，即便移除过滤器之后也一样
+        irreversible: 被过滤的嘟文会永久消失，移除过滤规则后也不会恢复
         locale: 在用户界面、电子邮件和推送通知中使用的语言
         password: 至少需要8个字符
         phrase: 匹配将忽略嘟文或内容警告里的字母大小写
@@ -61,8 +61,8 @@ zh-CN:
         setting_display_media_hide_all: 始终隐藏媒体
         setting_display_media_show_all: 始终显示媒体
         setting_use_blurhash: 渐变是基于模糊后的隐藏内容生成的
-        setting_use_pending_items: 关闭自动滚动更新，时间轴会在点击后更新
-        username: 您只能使用字母、数字和下划线
+        setting_use_pending_items: 点击查看时间线更新，而非自动滚动更新动态。
+        username: 你只能使用字母、数字和下划线
         whole_word: 如果关键词只包含字母和数字，将只在词语完全匹配时才会应用
       domain_allow:
         domain: 该站点将能够从该服务器上拉取数据，并处理和存储收到的数据。
@@ -72,22 +72,22 @@ zh-CN:
       featured_tag:
         name: 以下是你最近使用过的标签：
       filters:
-        action: 选择在嘟文命中过滤器时要执行的操作
+        action: 选择在嘟文命中过滤规则时要执行的操作
         actions:
-          hide: 彻底屏蔽过滤内容，犹如它不曾存在过一般
-          warn: 在警告中提及过滤器标题后，隐藏过滤内容
+          hide: 彻底隐藏过滤内容，就像它从未存在过一样
+          warn: 显示带有过滤规则标题的警告，并隐藏过滤内容
       form_admin_settings:
         activity_api_enabled: 本站每周的嘟文数、活跃用户数和新注册用户数
         app_icon: WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖移动设备上的默认应用图标。
         backups_retention_period: 用户可以生成其嘟文存档以供之后下载。当该值被设为正值时，这些存档将在指定的天数后自动从你的存储中删除。
-        bootstrap_timeline_accounts: 这些账号将在新用户关注推荐中置顶。
+        bootstrap_timeline_accounts: 这些账号将在新用户关注推荐中置顶显示。
         closed_registrations_message: 在关闭注册时显示
         content_cache_retention_period: 来自其它实例的所有嘟文（包括转嘟与回复）都将在指定天数后被删除，不论本实例用户是否与这些嘟文产生过交互。这包括被本实例用户喜欢和收藏的嘟文。实例间用户的私下提及也将丢失并无法恢复。此设置针对的是特殊用途的实例，用于一般用途时会打破许多用户的期望。
         custom_css: 你可以为网页版 Mastodon 应用自定义样式。
         favicon: WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖 Mastodon 的默认图标。
         mascot: 覆盖高级网页界面中的绘图形象。
         media_cache_retention_period: 来自外站用户嘟文的媒体文件将被缓存到你的实例上。当该值被设为正值时，缓存的媒体文件将在指定天数后被清除。如果媒体文件在被清除后重新被请求，且源站内容仍然可用，它将被重新下载。由于链接预览卡拉取第三方站点的频率受到限制，建议将此值设置为至少 14 天，如果小于该值，链接预览卡将不会按需更新。
-        peers_api_enabled: 此服务器在联邦宇宙中遇到的域名列表。 这里不包含关于您是否与给定服务器联合的数据，只是您的服务器知道它。 这由收集一般意义上的联邦统计信息的服务使用。
+        peers_api_enabled: 此服务器在联邦宇宙中遇到的实例列表。 此处不包含关于您是否与给定服务器联合的数据，只是您的服务器知道它。 这由收集一般意义上的联邦统计信息的服务使用。
         profile_directory: 个人资料目录会列出所有选择可被发现的用户。
         require_invite_text: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
         site_contact_email: 他人需要询恰法务或支持信息时的联络方式
@@ -99,7 +99,7 @@ zh-CN:
         status_page_url: 配置一个网址，当服务中断时，人们可以通过该网址查看服务器的状态。
         theme: 给未登录访客和新用户使用的主题。
         thumbnail: 与服务器信息一并展示的约 2:1 比例的图像。
-        timeline_preview: 未登录访客将能够浏览服务器上最新的公共嘟文。
+        timeline_preview: 未登录访客将能够浏览服务器上的最新公开嘟文。
         trendable_by_default: 跳过对热门内容的手工审核。个别项目仍可在之后从趋势中删除。
         trends: 热门页中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
         trends_as_landing_page: 向注销的用户和访问者显示热门内容，而不是对该服务器的描述，需要启用热门。
@@ -125,12 +125,12 @@ zh-CN:
         otp: 输入你手机应用上生成的双因素认证代码，或者任意一个恢复代码：
         webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
       settings:
-        indexable: 您的个人资料页面可能会出现在Google、Bing等搜索结果中。
+        indexable: 你的账户页可能会出现在Google、Bing等的搜索结果中。
         show_application: 无论如何，你始终可以看到是哪个应用发布了你的嘟文。
       tag:
         name: 你只能改变字母的大小写，让它更易读
       user:
-        chosen_languages: 仅选中语言的嘟文会出现在公共时间轴上（全不选则显示所有语言的嘟文）
+        chosen_languages: 仅选中语言的嘟文会出现在公共时间线上（全不选则显示所有语言的嘟文）
         role: 角色用于控制用户拥有的权限。
       user_role:
         color: 在界面各处用于标记该角色的颜色，以十六进制 RGB 格式表示
@@ -145,12 +145,12 @@ zh-CN:
     labels:
       account:
         attribution_domains_as_text: 授权展示你的署名的网站
-        discoverable: 在发现算法中展示你的个人资料和嘟文
+        discoverable: 在发现算法中展示你的账户与嘟文
         fields:
           name: 标签
           value: 内容
         indexable: 将公开嘟文纳入搜索范围
-        show_collections: 在个人资料中显示关注和关注者
+        show_collections: 在账户页显示关注和关注者
         unlocked: 自动接受新关注者
       account_alias:
         acct: 处理旧账号
@@ -183,17 +183,17 @@ zh-CN:
         autofollow: 让被邀请人关注你的账户
         avatar: 头像
         bot: 这是一个机器人账户
-        chosen_languages: 语言过滤
+        chosen_languages: 过滤语言
         confirm_new_password: 确认新密码
         confirm_password: 确认密码
-        context: 过滤环境
+        context: 过滤规则生效场景
         current_password: 当前密码
         data: 数据文件
         display_name: 昵称
         email: 邮箱地址
         expires_in: 失效时间
         fields: 个人资料附加信息
-        header: 个人资料页横幅图片
+        header: 封面图
         honeypot: "%{label} (请勿填写)"
         inbox_url: 中继站收件箱的 URL
         irreversible: 丢弃而非隐藏
@@ -205,7 +205,7 @@ zh-CN:
         password: 密码
         phrase: 关键词
         setting_advanced_layout: 启用高级 Web 界面
-        setting_aggregate_reblogs: 在时间轴中合并转嘟
+        setting_aggregate_reblogs: 在时间线中合并转嘟
         setting_always_send_emails: 总是发送电子邮件通知
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 在转嘟前询问我
@@ -213,7 +213,7 @@ zh-CN:
         setting_default_privacy: 嘟文默认可见范围
         setting_default_sensitive: 始终标记媒体为敏感内容
         setting_delete_modal: 在删除嘟文前询问我
-        setting_disable_hover_cards: 禁用悬停资料预览
+        setting_disable_hover_cards: 禁用悬停资料卡预览
         setting_disable_swiping: 禁用滑动动作
         setting_display_media: 媒体显示
         setting_display_media_default: 默认
@@ -242,12 +242,12 @@ zh-CN:
       filters:
         actions:
           hide: 完全隐藏
-          warn: 隐藏时显示警告信息
+          warn: 隐藏时显示警告
       form_admin_settings:
         activity_api_enabled: 在 API 中发布有关用户活动的汇总统计数据
         app_icon: 应用图标
         backups_retention_period: 用户存档保留期
-        bootstrap_timeline_accounts: 推荐新用户关注以下账号
+        bootstrap_timeline_accounts: 向新用户推荐以下账号
         closed_registrations_message: 在关闭注册时显示的自定义消息
         content_cache_retention_period: 外站内容保留期
         custom_css: 自定义 CSS
@@ -257,7 +257,7 @@ zh-CN:
         peers_api_enabled: 在API中公开的已知实例的服务器的列表
         profile_directory: 启用用户目录
         registrations_mode: 谁可以注册
-        require_invite_text: 注册前需要提供理由
+        require_invite_text: 注册时需要提供理由
         show_domain_blocks: 显示域名屏蔽列表
         show_domain_blocks_rationale: 显示域名屏蔽原因
         site_contact_email: 联系邮箱
@@ -269,7 +269,7 @@ zh-CN:
         status_page_url: 状态页网址
         theme: 默认主题
         thumbnail: 本站缩略图
-        timeline_preview: 时间轴预览
+        timeline_preview: 允许未登录用户访问公共时间线
         trendable_by_default: 允许在未审核的情况下将话题置为热门
         trends: 启用热门
         trends_as_landing_page: 使用热门页作为登陆页面
@@ -292,13 +292,13 @@ zh-CN:
       notification_emails:
         appeal: 有人对审核结果提出申诉
         digest: 发送摘要邮件
-        favourite: 当有用户喜欢了我的嘟文时，发送电子邮件提醒我
-        follow: 有用户关注我时
-        follow_request: 有用户向我发送关注请求时
-        mention: 有用户提及我时
-        pending_account: 有账号需要审核时
-        reblog: 有用户转嘟我的嘟文时
-        report: 新举报已提交
+        favourite: 有用户喜欢了我的嘟文
+        follow: 有人关注了我
+        follow_request: 有人向我发送了关注请求
+        mention: 有人提到了我
+        pending_account: 有账号需要审核
+        reblog: 有人转嘟了我的嘟文
+        report: 有人提交了新举报
         software_updates:
           all: 通知所有更新
           critical: 仅在有关键更新时通知
@@ -310,7 +310,7 @@ zh-CN:
         hint: 补充信息
         text: 规则
       settings:
-        indexable: 允许搜索引擎索引个人资料页面
+        indexable: 允许搜索引擎索引账户页
         show_application: 显示你发嘟所用的应用
       tag:
         listable: 允许这个话题标签在用户目录中显示
@@ -328,8 +328,8 @@ zh-CN:
         position: 优先级
       webhook:
         events: 已启用事件
-        template: 载荷模板
-        url: 对端 URL
+        template: Payload 模板
+        url: 端点 URL
     'no': 否
     not_recommended: 不推荐
     overridden: 已覆盖

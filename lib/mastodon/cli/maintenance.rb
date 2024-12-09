@@ -43,6 +43,7 @@ module Mastodon::CLI
     class BulkImport < ApplicationRecord; end
     class SoftwareUpdate < ApplicationRecord; end
     class SeveredRelationship < ApplicationRecord; end
+    class TagFollow < ApplicationRecord; end
 
     class DomainBlock < ApplicationRecord
       enum :severity, { silence: 0, suspend: 1, noop: 2 }
@@ -102,6 +103,7 @@ module Mastodon::CLI
         owned_classes << AccountIdentityProof if db_table_exists?(:account_identity_proofs)
         owned_classes << Appeal if db_table_exists?(:appeals)
         owned_classes << BulkImport if db_table_exists?(:bulk_imports)
+        owned_classes << TagFollow if db_table_exists?(:tag_follows)
 
         owned_classes.each do |klass|
           klass.where(account_id: other_account.id).find_each do |record|

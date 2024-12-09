@@ -21,6 +21,7 @@ sv:
       one: Inlägg
       other: Inlägg
     posts_tab_heading: Inlägg
+    self_follow_error: Det är inte tillåtet att följa ditt eget konto
   admin:
     account_actions:
       action: Utför åtgärd
@@ -58,11 +59,11 @@ sv:
       delete: Radera data
       deleted: Raderad
       demote: Degradera
-      destroyed_msg: "%{username}'s data har nu lagts till kön för att raderas omedelbart"
-      disable: inaktivera
+      destroyed_msg: "%{username}s data har nu lagts till kön för att raderas omedelbart"
+      disable: Inaktivera
       disable_sign_in_token_auth: Inaktivera autentisering med pollett via e-post
       disable_two_factor_authentication: Inaktivera 2FA
-      disabled: inaktiverad
+      disabled: Inaktiverad
       display_name: Visningsnamn
       domain: Domän
       edit: Redigera
@@ -71,7 +72,7 @@ sv:
       enable: Aktivera
       enable_sign_in_token_auth: Aktivera autentisering med pollett via e-post
       enabled: Aktiverad
-      enabled_msg: Uppfrysningen av %{username}'s konto lyckades
+      enabled_msg: Uppfrysningen av %{username}s konto lyckades
       followers: Följare
       follows: Följs
       header: Rubrik
@@ -141,7 +142,7 @@ sv:
         only_password: Endast lösenord
         password_and_2fa: Lösenord och 2FA
       sensitive: Känsligt
-      sensitized: markerad som känsligt
+      sensitized: Markerad som känsligt
       shared_inbox_url: Delad inkorg URL
       show:
         created_reports: Anmälningar som skapats av det här kontot
@@ -267,21 +268,21 @@ sv:
         enable_custom_emoji_html: "%{name} aktiverade emoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktiverade e-posttokenautentisering för %{target}"
         enable_user_html: "%{name} aktiverade inloggning för användaren %{target}"
-        memorialize_account_html: "%{name} gjorde %{target}'s konto till en minnessida"
+        memorialize_account_html: "%{name} gjorde %{target}s konto till en minnessida"
         promote_user_html: "%{name} befordrade användaren %{target}"
         reject_appeal_html: "%{name} avvisade överklagande av modereringsbeslut från %{target}"
         reject_user_html: "%{name} avvisade registrering från %{target}"
-        remove_avatar_user_html: "%{name} tog bort %{target}'s avatar"
+        remove_avatar_user_html: "%{name} tog bort %{target}s avatar"
         reopen_report_html: "%{name} öppnade rapporten igen %{target}"
         resend_user_html: "%{name} skickade bekräftelsemail för %{target} på nytt"
         reset_password_user_html: "%{name} återställ användarens lösenord %{target}"
         resolve_report_html: "%{name} löste rapporten %{target}"
-        sensitive_account_html: "%{name} markerade %{target}'s media som känsligt"
-        silence_account_html: "%{name} begränsade %{target}'s konto"
+        sensitive_account_html: "%{name} markerade %{target}s media som känsligt"
+        silence_account_html: "%{name} begränsade %{target}s konto"
         suspend_account_html: "%{name} stängde av %{target}s konto"
         unassigned_report_html: "%{name} tog bort tilldelning av rapporten %{target}"
         unblock_email_account_html: "%{name} avblockerade %{target}s e-postadress"
-        unsensitive_account_html: "%{name} avmarkerade %{target}'s media som känsligt"
+        unsensitive_account_html: "%{name} avmarkerade %{target}s media som känsligt"
         unsilence_account_html: "%{name} tog bort begränsning av %{target}s konto"
         unsuspend_account_html: "%{name} ångrade avstängningen av %{target}s konto"
         update_announcement_html: "%{name} uppdaterade kungörelsen %{target}"
@@ -541,7 +542,7 @@ sv:
       total_followed_by_them: Följs av dem
       total_followed_by_us: Följs av oss
       total_reported: Rapporter om dem
-      total_storage: Media-bilagor
+      total_storage: Mediebilagor
       totals_time_period_hint_html: Totalsummorna som visas nedan inkluderar data för all tid.
       unknown_instance: Det finns för närvarande inga uppgifter om denna domän på denna server.
     invites:
@@ -568,9 +569,9 @@ sv:
       no_ip_block_selected: Inga IP-regler ändrades då inga var valda
       title: IP-regler
     relationships:
-      title: "%{acct}'s relationer"
+      title: "%{acct}s relationer"
     relays:
-      add_new: Lägg till nytt relä
+      add_new: Lägg till nytt ombud
       delete: Radera
       description_html: Ett <strong>federeringsombud</strong> är en mellanliggande server som utbyter höga antal offentliga inlägg mellan servrar som prenumererar på och publicerar till det. <strong>Det kan hjälpa små och medelstora servrar upptäcka innehåll från fediversumet</strong>, vilket annars skulle kräva att lokala användare manuellt följer personer på fjärrservrar.
       disable: Inaktivera
@@ -581,10 +582,10 @@ sv:
       inbox_url: Ombuds-URL
       pending: Väntar på ombudets godkännande
       save_and_enable: Spara och aktivera
-      setup: Konfigurera en relä-anslutning
-      signatures_not_enabled: Ombud fungerar inte korrekt medan säkert läge eller begränsat federeringsläge är aktiverade
+      setup: Konfigurera ett ombud
+      signatures_not_enabled: Ombud fungerar inte korrekt om säkert läge eller begränsat federeringsläge är aktiverade
       status: Status
-      title: Relä
+      title: Ombud
     report_notes:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
@@ -835,7 +836,7 @@ sv:
       title: Kontoinlägg
       trending: Trendande
       visibility: Synlighet
-      with_media: med media
+      with_media: Med media
     strikes:
       actions:
         delete_statuses: "%{name} raderade %{target}s inlägg"
@@ -892,17 +893,19 @@ sv:
         message_html: "<strong>Din objektlagring är felkonfigurerad. Sekretessen för dina användare är i riskzonen.</strong>"
     tags:
       moderation:
+        not_trendable: Kan inte trenda
         not_usable: Inte användbar
         pending_review: Väntar på granskning
         review_requested: Granskning begärd
         reviewed: Granskat
         title: Status
-        trendable:
+        trendable: Kan trenda
         unreviewed: Ogranskad
         usable: Användbar
       name: Namn
       newest: Nyaste
       oldest: Äldsta
+      open: Visa offentligt
       reset: Återställ
       review: Granskningsstatus
       search: Sök
@@ -1163,8 +1166,11 @@ sv:
     use_security_key: Använd säkerhetsnyckel
   author_attribution:
     example_title: Exempeltext
+    hint_html: Skriver du nyheter eller bloggartiklar utanför Mastodon? Kontrollera hur du får krediteras när de delas på Mastodon.
+    instructions: 'Se till att den här koden finns i din artikels HTML:'
     more_from_html: Mer från %{name}
     s_blog: "%{name}s blogg"
+    then_instructions: Lägg sedan till domännamnet för publikationen i fältet nedan.
     title: Författarattribution
   challenge:
     confirm: Fortsätt
@@ -1464,7 +1470,7 @@ sv:
       not_ready: Kan inte bifoga filer som inte har behandlats färdigt. Försök igen om ett ögonblick!
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
-    acct: användarnamn@domän av det nya kontot
+    acct: Flyttad till
     cancel: Avbryt omdirigering
     cancel_explanation: Avstängning av omdirigeringen kommer att återaktivera ditt nuvarande konto, men kommer inte att återskapa följare som har flyttats till det kontot.
     cancelled_msg: Avbröt omdirigeringen.
@@ -1673,7 +1679,7 @@ sv:
       ios: iOS
       kai_os: KaiOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       unknown_platform: Okänd plattform
       windows: Windows
       windows_mobile: Windows Mobile
@@ -1796,8 +1802,8 @@ sv:
   tags:
     does_not_match_previous_name: matchar inte det föregående namnet
   themes:
-    contrast: Hög kontrast
-    default: Mastodon
+    contrast: Mastodon (Hög kontrast)
+    default: Mastodon (Mörk)
     mastodon-light: Mastodon (ljust)
     system: Automatisk (använd systemtema)
   time:
@@ -1849,7 +1855,7 @@ sv:
       subject: Andra faktorns autentiseringsfel
       title: Misslyckad tvåfaktorsautentisering
     suspicious_sign_in:
-      change_password: Ändra ditt lösenord
+      change_password: ändra ditt lösenord
       details: 'Här är inloggningsdetaljerna:'
       explanation: Vi har upptäckt en inloggning till ditt konto från en ny IP-adress.
       further_actions_html: Om detta inte var du, rekommenderar vi att du snarast %{action} och aktiverar tvåfaktorsautentisering för att hålla ditt konto säkert.

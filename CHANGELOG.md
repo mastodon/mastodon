@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.2] - 2024-12-03
+
+### Added
+
+- Add `tootctl feeds vacuum` (#33065 by @ClearlyClaire)
+- Add error message when user tries to follow their own account (#31910 by @lenikadali)
+- Add client_secret_expires_at to OAuth Applications (#30317 by @ThisIsMissEm)
+
+### Changed
+
+- Change design of Content Warnings and filters (#32543 by @ClearlyClaire)
+
+### Fixed
+
+- Fix processing incoming post edits with mentions to unresolvable accounts (#33129 by @ClearlyClaire)
+- Fix error when including multiple instances of `embed.js` (#33107 by @YKWeyer)
+- Fix inactive users' timelines being backfilled on follow and unsuspend (#33094 by @ClearlyClaire)
+- Fix direct inbox delivery pushing posts into inactive followers' timelines (#33067 by @ClearlyClaire)
+- Fix `TagFollow` records not being correctly handled in account operations (#33063 by @ClearlyClaire)
+- Fix pushing hashtag-followed posts to feeds of inactive users (#33018 by @Gargron)
+- Fix duplicate notifications in notification groups when using slow mode (#33014 by @ClearlyClaire)
+- Fix posts made in the future being allowed to trend (#32996 by @ClearlyClaire)
+- Fix uploading higher-than-wide GIF profile picture with libvips enabled (#32911 by @ClearlyClaire)
+- Fix domain attribution field having autocorrect and autocapitalize enabled (#32903 by @ClearlyClaire)
+- Fix titles being escaped twice (#32889 by @ClearlyClaire)
+- Fix list creation limit check (#32869 by @ClearlyClaire)
+- Fix error in `tootctl email_domain_blocks` when supplying `--with-dns-records` (#32863 by @mjankowski)
+- Fix `min_id` and `max_id` causing error in search API (#32857 by @Gargron)
+- Fix inefficiencies when processing removal of posts that use featured tags (#32787 by @ClearlyClaire)
+- Fix alt-text pop-in not using the translated description (#32766 by @ClearlyClaire)
+- Fix preview cards with long titles erroneously causing layout changes (#32678 by @ClearlyClaire)
+- Fix embed modal layout on mobile (#32641 by @DismalShadowX)
+- Fix and improve batch attachment deletion handling when using OpenStack Swift (#32637 by @hugogameiro)
+- Fix blocks not being applied on link timeline (#32625 by @tribela)
+- Fix follow counters being incorrectly changed (#32622 by @oneiros)
+- Fix 'unknown' media attachment type rendering (#32613 and #32713 by @ThisIsMissEm and @renatolond)
+- Fix tl language native name (#32606 by @seav)
+
+### Security
+
+- Update dependencies
+
 ## [4.3.1] - 2024-10-21
 
 ### Added
