@@ -42,6 +42,6 @@ class FavouriteService < BaseService
   end
 
   def build_json(favourite)
-    Oj.dump(serialize_payload(favourite, ActivityPub::LikeSerializer))
+    JSON.dump(serialize_payload(favourite, ActivityPub::LikeSerializer))
   end
 end

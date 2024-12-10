@@ -23,13 +23,13 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
   before do
     stub_request(:get, 'https://foo.bar/watch?v=12345').to_return(status: 404, body: '')
-    stub_request(:get, object[:id]).to_return(body: Oj.dump(object))
+    stub_request(:get, object[:id]).to_return(body: JSON.dump(object))
   end
 
   describe '#call' do
     before do
       existing_status
-      subject.call(object[:id], prefetched_body: Oj.dump(object))
+      subject.call(object[:id], prefetched_body: JSON.dump(object))
     end
 
     context 'with Note object' do
@@ -309,7 +309,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
       end
 
       it 'creates statuses but not more than limit allows' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }
+        expect { subject.call(object[:id], prefetched_body: JSON.dump(object)) }
           .to change { sender.statuses.count }.by_at_least(2)
           .and change { sender.statuses.count }.by_at_most(3)
       end
@@ -359,7 +359,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
       end
 
       it 'creates statuses but not more than limit allows' do
-        expect { subject.call(object[:id], prefetched_body: Oj.dump(object)) }
+        expect { subject.call(object[:id], prefetched_body: JSON.dump(object)) }
           .to change { sender.statuses.count }.by_at_least(2)
           .and change { sender.statuses.count }.by_at_most(3)
       end
