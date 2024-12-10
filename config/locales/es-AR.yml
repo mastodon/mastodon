@@ -214,6 +214,7 @@ es-AR:
         enable_user: Habilitar usuario
         memorialize_account: Convertir en cuenta conmemorativa
         promote_user: Promover usuario
+        publish_terms_of_service: Publicar términos del servicio
         reject_appeal: Rechazar apelación
         reject_user: Rechazar usuario
         remove_avatar_user: Quitar avatar
@@ -278,6 +279,7 @@ es-AR:
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una cuenta conmemorativa"
         promote_user_html: "%{name} promovió al usuario %{target}"
+        publish_terms_of_service_html: "%{name} ha publicado actualizaciones de los términos del servicio"
         reject_appeal_html: "%{name} rechazó la solicitud de moderación de %{target}"
         reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} quitó el avatar de %{target}"
@@ -925,6 +927,25 @@ es-AR:
       search: Buscar
       title: Etiquetas
       updated_msg: La configuración de la etiqueta se actualizó exitosamente
+    terms_of_service:
+      back: Volver a los términos del servicio
+      changelog: Qué ha cambiado
+      create: Usa el tuyo
+      current: Actual
+      draft: Borrador
+      generate: Usar plantilla
+      generates:
+        action: Generar
+      no_history: Aún no se han registrado cambios en los términos del servicio.
+      no_terms_of_service_html: Actualmente no tienes configurado ningún término del servicio. Los términos del servicio están pensados para proporcionar claridad y protegerte de posibles responsabilidades en disputas con tus usuarios.
+      preview:
+        send_to_all:
+          one: Enviar %{display_count} correo electrónico
+          other: Enviar %{display_count} correos electrónicos
+      publish: Publicar
+      published_on_html: Publicado el %{date}
+      save_draft: Guardar borrador
+      title: Términos del servicio
     title: Administración
     trends:
       allow: Permitir
@@ -1164,6 +1185,7 @@ es-AR:
       title: Iniciar sesión en %{domain}
     sign_up:
       manual_review: Los registros en %{domain} pasan por la revisión manual de nuestros moderadores. Para ayudarnos a procesar tu registro, escribinos un poco sobre vos y contanos por qué querés una cuenta en %{domain}.
+      preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra persona en el fediverso, independientemente de dónde esté alojada su cuenta.
       title: Dejá que te preparemos en %{domain}.
     status:
       account_status: Estado de la cuenta
@@ -1836,6 +1858,8 @@ es-AR:
       too_late: Es demasiado tarde para apelar este incumplimiento
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior
+  terms_of_service:
+    title: Términos del servicio
   themes:
     contrast: Alto contraste
     default: Oscuro
@@ -1896,6 +1920,11 @@ es-AR:
       further_actions_html: Si no fuiste vos, te recomendamos que %{action} inmediatamente y habilités la autenticación de dos factores para mantener tu cuenta segura.
       subject: Se accedió a tu cuenta desde una nueva dirección IP
       title: Un nuevo inicio de sesión
+    terms_of_service_changed:
+      changelog: 'En resumen, esto es lo que esta actualización significa para ti:'
+      sign_off: El equipo de %{domain}
+      subject: Actualizaciones en nuestros términos del servicio
+      title: Actualización importante
     warning:
       appeal: Enviar una apelación
       appeal_description: Si creés que esto es un error, podés enviar una apelación al equipo de %{instance}.

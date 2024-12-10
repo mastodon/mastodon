@@ -214,6 +214,7 @@ fr:
         enable_user: Activer le compte
         memorialize_account: Ériger en mémorial
         promote_user: Promouvoir le compte
+        publish_terms_of_service: Publier les conditions d'utilisation
         reject_appeal: Rejeter l'appel
         reject_user: Rejeter le compte
         remove_avatar_user: Supprimer l’avatar
@@ -278,6 +279,7 @@ fr:
         enable_user_html: "%{name} a activé la connexion de l'utilisateur·rice %{target}"
         memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
         promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
+        publish_terms_of_service_html: "%{name} a publié des mises à jour des conditions d'utilisation"
         reject_appeal_html: "%{name} a rejeté l'appel de la décision de modération émis par %{target}"
         reject_user_html: "%{name} a rejeté l’inscription de %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
@@ -928,6 +930,35 @@ fr:
       search: Recherche
       title: Hashtags
       updated_msg: Paramètres du hashtag mis à jour avec succès
+    terms_of_service:
+      back: Retour aux conditions d'utilisation
+      changelog: Nouveautés
+      create: Utilisez vos propres
+      current: Courant
+      draft: Brouillon
+      generate: Utiliser un modèle
+      generates:
+        action: Générer
+        chance_to_review_html: "<strong>Les conditions d'utilisation générées ne seront pas publiées automatiquement.</strong> Vous aurez la possibilité de vérifier les résultats. Veuillez remplir les informations nécessaires pour continuer."
+        explanation_html: Le modèle de conditions d'utilisation fourni l'est uniquement à titre informatif et ne doit pas être interprété comme un conseil juridique sur quelque sujet que ce soit. Veuillez consulter votre propre conseiller juridique sur votre situation et les questions juridiques spécifiques que vous vous posez.
+        title: Configuration des Conditions d'Utilisation
+      history: Historique
+      live: En cours d'utilisation
+      no_history: Il n'y a pas encore de modifications enregistrées des conditions d'utilisation.
+      no_terms_of_service_html: Vous n'avez actuellement aucune condition d'utilisation configurée. Les conditions d'utilisation ont pour but de clarifier les droits et obligations de chacun lors de l'utilisation du service et de vous protéger contre d'éventuelles responsabilités en cas de litige avec vos utilisateurs.
+      notified_on_html: Utilisateurs notifiés le `%{date}`
+      notify_users: Notifier les utilisateurs
+      preview:
+        explanation_html: 'L''e-mail sera envoyé aux utilisateurs <strong>%{display_count}</strong> qui se sont inscrits avant %{date}. Le texte suivant sera inclus dans l''e-mail :'
+        send_preview: Envoyer un aperçu à %{email}
+        send_to_all:
+          one: Envoyer %{display_count} email
+          other: Envoyer %{display_count} emails
+        title: Notification concernant l'aperçu des conditions d'utilisation
+      publish: Publier
+      published_on_html: Publié le %{date}
+      save_draft: Enregistrer le brouillon
+      title: Conditions d'utilisation
     title: Administration
     trends:
       allow: Autoriser
@@ -1159,6 +1190,7 @@ fr:
     set_new_password: Définir le nouveau mot de passe
     setup:
       email_below_hint_html: Consultez votre dossier de courrier indésirable ou demandez-en un autre. Vous pouvez corriger votre adresse e-mail si elle est incorrecte.
+      email_settings_hint_html: Cliquez sur le lien que nous avons envoyé à %{email} pour commencer à utiliser Mastodon. Nous vous attendrons ici.
       link_not_received: Vous n'avez pas reçu de lien ?
       new_confirmation_instructions_sent: Vous allez recevoir un nouvel e-mail avec le lien de confirmation dans quelques minutes !
       title: Vérifiez votre boîte de réception
@@ -1167,6 +1199,7 @@ fr:
       title: Se connecter à %{domain}
     sign_up:
       manual_review: Les inscriptions sur %{domain} passent par une revue manuelle de nos modérateurs. Pour les aider, écrivez un peu plus sur vous et pourquoi vous souhaitez créer un compte sur %{domain}.
+      preamble: Avec un compte sur ce serveur Mastodon, vous pourrez suivre n'importe quelle autre personne du fediverse, quel que soit l'endroit où son compte est hébergé.
       title: Mettons les choses en place pour %{domain}.
     status:
       account_status: État du compte
@@ -1178,6 +1211,7 @@ fr:
       view_strikes: Voir les sanctions précédemment appliquées à votre compte
     too_fast: Formulaire envoyé trop rapidement, veuillez réessayer.
     use_security_key: Utiliser la clé de sécurité
+    user_agreement_html: J'ai lu et j'accepte les <a href="%{terms_of_service_path}" target="_blank">conditions d'utilisation</a> et la <a href="%{privacy_policy_path}" target="_blank">politique de confidentialité</a>
   author_attribution:
     example_title: Exemple de texte
     hint_html: Vous écrivez des nouvelles ou des articles de blog en dehors de Mastodon ? Contrôlez la façon dont vous êtes crédité lorsqu'ils sont partagés sur Mastodon.
@@ -1839,6 +1873,8 @@ fr:
       too_late: Il est trop tard pour faire appel à cette sanction
   tags:
     does_not_match_previous_name: ne correspond pas au nom précédent
+  terms_of_service:
+    title: Conditions d'utilisation
   themes:
     contrast: Mastodon (Contraste élevé)
     default: Mastodon (Sombre)
@@ -1899,6 +1935,15 @@ fr:
       further_actions_html: Si ce n’était pas vous, nous vous recommandons de %{action} immédiatement et d’activer l’authentification à deux facteurs afin de garder votre compte sécurisé.
       subject: Une nouvelle adresse IP a accédé à votre compte
       title: Une nouvelle connexion
+    terms_of_service_changed:
+      agreement: En continuant d'utiliser %{domain}, vous acceptez ces conditions. Si vous n'êtes pas d'accord avec les conditions mises à jour, vous pouvez résilier votre accord avec %{domain} à tout moment en supprimant votre compte.
+      changelog: 'En un coup d''œil, voici ce que cette mise à jour signifie pour vous :'
+      description: 'Vous recevez cet e-mail car nous apportons des modifications à nos conditions d''utilisation sur %{domain}. Nous vous encourageons à consulter l''intégralité des conditions mises à jour ici :'
+      description_html: Vous recevez cet e-mail car nous apportons des modifications à nos conditions d'utilisation sur %{domain}. Nous vous encourageons à consulter l'intégralité des <a href="%{path}" target="_blank">conditions mises à jour ici</a>.
+      sign_off: L'équipe %{domain}
+      subject: Mises à jour de nos conditions d'utilisation
+      subtitle: Les conditions d'utilisation de `%{domain}` changent
+      title: Mise à jour importante
     warning:
       appeal: Faire appel
       appeal_description: Si vous pensez qu'il s'agit d'une erreur, vous pouvez faire appel auprès de l'équipe de %{instance}.
