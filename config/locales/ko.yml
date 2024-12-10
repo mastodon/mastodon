@@ -913,6 +913,20 @@ ko:
       search: 검색
       title: 해시태그
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
+    terms_of_service:
+      back: 이용약관으로 돌아가기
+      changelog: 변경사항
+      current: 현재
+      draft: 초안
+      generate: 템플릿 사용
+      generates:
+        action: 생성
+      history: 역사
+      live: 활성
+      notify_users: 사용자들에게 알리기
+      publish: 게시
+      published_on_html: "%{date}에 게시됨"
+      save_draft: 초안 저장
     title: 관리
     trends:
       allow: 허용
@@ -1140,6 +1154,7 @@ ko:
     set_new_password: 새 암호 설정
     setup:
       email_below_hint_html: 스팸 폴더를 체크해보거나, 새로 요청할 수 있습니다. 이메일을 잘못 입력한 경우 수정할 수 있습니다.
+      email_settings_hint_html: "%{email}로 보낸 링크를 클릭해 마스토돈을 시작하세요. 기다리고 있겠습니다."
       link_not_received: 링크를 못 받으셨나요?
       new_confirmation_instructions_sent: 확인 링크가 담긴 이메일이 몇 분 안에 도착할것입니다!
       title: 수신함 확인하기
@@ -1148,6 +1163,7 @@ ko:
       title: "%{domain}에 로그인"
     sign_up:
       manual_review: "%{domain} 가입은 중재자들의 심사를 거쳐 진행됩니다. 가입 절차를 원활하게 하기 위해, 간단한 자기소개와 왜 %{domain}에 계정을 만들려고 하는지 적어주세요."
+      preamble: 이 마스토돈 서버의 계정을 통해, 연합우주에 속한 다른 사람들을, 그들이 어떤 서버에 있든 팔로우 할 수 있습니다.
       title: "%{domain}에 가입하기 위한 정보들을 입력하세요."
     status:
       account_status: 계정 상태
@@ -1796,6 +1812,8 @@ ko:
       too_late: 이의를 제기하기에 너무 늦었습니다
   tags:
     does_not_match_previous_name: 이전 이름과 맞지 않습니다
+  terms_of_service:
+    title: 이용 약관
   themes:
     contrast: 마스토돈 (고대비)
     default: 마스토돈 (어두움)
