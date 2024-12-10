@@ -25,7 +25,7 @@ import { VisibilityIcon } from 'mastodon/components/visibility_icon';
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
 import MediaGallery from '../../../components/media_gallery';
-import StatusContent from '../../../components/status_content';
+import { StatusContent } from '../../../components/status_content';
 import Audio from '../../audio';
 import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 import Video from '../../video';
