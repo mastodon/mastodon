@@ -2,9 +2,7 @@
 
 class ActivityPub::DeleteSerializer < ActivityPub::Serializer
   class TombstoneSerializer < ActivityPub::Serializer
-    context_extensions :atom_uri
-
-    attributes :id, :type, :atom_uri
+    attributes :id, :type
 
     def id
       ActivityPub::TagManager.instance.uri_for(object)
@@ -12,10 +10,6 @@ class ActivityPub::DeleteSerializer < ActivityPub::Serializer
 
     def type
       'Tombstone'
-    end
-
-    def atom_uri
-      OStatus::TagManager.instance.uri_for(object)
     end
   end
 

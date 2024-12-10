@@ -32,9 +32,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
         Tombstone.find_or_create_by(uri: object_uri, account: @account)
       end
 
-      @status   = Status.find_by(uri: object_uri, account: @account)
-      @status ||= Status.find_by(uri: @object['atomUri'], account: @account) if @object.is_a?(Hash) && @object['atomUri'].present?
-
+      @status = Status.find_by(uri: object_uri, account: @account)
       return if @status.nil?
 
       forwarder.forward! if forwarder.forwardable?
