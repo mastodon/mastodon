@@ -93,14 +93,16 @@ export const makeGetReport = () => createSelector([
 
 export const getAccountGallery = createSelector([
   (state, id) => state.getIn(['timelines', `account:${id}:media`, 'items'], ImmutableList()),
-  state       => state.get('statuses'),
-  (state, id) => state.getIn(['accounts', id]),
-], (statusIds, statuses, account) => {
+  state  => state.get('statuses'),
+], (statusIds, statuses) => {
   let medias = ImmutableList();
 
   statusIds.forEach(statusId => {
-    const status = statuses.get(statusId).set('account', account);
-    medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status)));
+    const status = statuses.get(statusId);
+
+    if (status) {
+      medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status)));
+    }
   });
 
   return medias;
