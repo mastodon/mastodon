@@ -111,10 +111,10 @@ RSpec.describe Report do
     let(:account_warning) { Fabricate(:account_warning, report_id: report.id) }
 
     before do
-      Fabricate(:action_log, target_type: 'Report', account_id: target_account.id, target_id: report.id)
-      Fabricate(:action_log, target_type: 'Account', account_id: target_account.id, target_id: report.target_account_id)
-      Fabricate(:action_log, target_type: 'Status', account_id: target_account.id, target_id: status.id)
-      Fabricate(:action_log, target_type: 'AccountWarning', account_id: target_account.id, target_id: account_warning.id)
+      Fabricate(:action_log, target_type: 'Report', target_id: report.id)
+      Fabricate(:action_log, target_type: 'Account', target_id: report.target_account_id)
+      Fabricate(:action_log, target_type: 'Status', target_id: status.id)
+      Fabricate(:action_log, target_type: 'AccountWarning', target_id: account_warning.id)
     end
 
     it 'returns expected logs' do
