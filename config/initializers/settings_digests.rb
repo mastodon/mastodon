@@ -1,11 +1,18 @@
 # frozen_string_literal: true
 
 Rails.application.config.to_prepare do
-  digest = begin
-    Digest::SHA256.hexdigest(Setting.custom_css.to_s)
+  custom_css = begin
+    Setting.custom_css
   rescue ActiveRecord::AdapterError # Running without a database, not migrated, no connection, etc
-    :styles
+    nil
   end
 
-  Rails.cache.write(:custom_style_digest, digest)
+  if custom_css.present?
+    Rails
+      .cache
+      .write(
+        :custom_style_digest,
+        Digest::SHA256.hexdigest(custom_css)
+      )
+  end
 end
