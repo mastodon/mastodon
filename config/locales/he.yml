@@ -220,6 +220,7 @@ he:
         enable_user: אפשור משתמש
         memorialize_account: הנצחת חשבון
         promote_user: קידום משתמש
+        publish_terms_of_service: פרסום תנאי השירות
         reject_appeal: דחיית ערעור
         reject_user: דחיית משתמש
         remove_avatar_user: הסרת תמונת פרופיל
@@ -284,6 +285,7 @@ he:
         enable_user_html: "%{name} אפשר/ה כניסה עבור המשתמש %{target}"
         memorialize_account_html: "%{name} הפך/ה את חשבונו של %{target} לדף הנצחה"
         promote_user_html: "%{name} העלה בדרגה את המשתמש %{target}"
+        publish_terms_of_service_html: "%{name} פירסמו עדכון לתנאי השירות"
         reject_appeal_html: "%{name} דחו ערעור על החלטת הנהלת הקהילה מ-%{target}"
         reject_user_html: "%{name} דחו הרשמה מ-%{target}"
         remove_avatar_user_html: "%{name} הסירו את תמונת הפרופיל של %{target}"
@@ -953,6 +955,37 @@ he:
       search: חיפוש
       title: תגיות
       updated_msg: הגדרות תגיות עודכנו בהצלחה
+    terms_of_service:
+      back: חזרה אל תנאי השירות
+      changelog: מה נשתנה
+      create: הבאתי מהבית
+      current: גרסא נוכחית
+      draft: טיוטה
+      generate: שימוש בתבנית
+      generates:
+        action: לחולל
+        chance_to_review_html: "<strong>תנאי השירות שחוללו עצמונית לא יפורסמו אוטומטית.</strong> תהיה לך הזדמנות לעבור על התוצאה. יש למלא את הפרטים הבאים כדי להמשיך."
+        explanation_html: תבנית תנאי השירות סופקה לצרכי יידוע בלבד, ואין לראות בהם עצה חוקית על אף נושא. אנא התייעצו בעצמבם עם פרקליט לגבי מצבכם הייחודי ושאלות ספציפיות שעלולות להיות לכם.
+        title: הקמת מסמך תנאי השירות
+      history: גרסאות העבר
+      live: הגרסא החיה
+      no_history: עוד לא נרשמו שינויים בתנאי השירות.
+      no_terms_of_service_html: עוד לא הוקם מסמך תנאי השירות. מסמך תנאי השירות מיועד להבהיר ולהגן עליך מאחריות חוקית במקרה של אי הסכמות מול המשתמשים שלך.
+      notified_on_html: המשתמשים קיבלו הודעה בתאריך %{date}
+      notify_users: להודיע למשתמשים
+      preview:
+        explanation_html: 'הדואל ישלח אל <strong>%{display_count} משתמשיםות</strong> שנרשמו לפני %{date}. להלן המלל שישלח בדואל:'
+        send_preview: שליחת הצצה מוקדמת אל %{email}
+        send_to_all:
+          many: שליחת %{display_count} הודעות דואל
+          one: שליחת הודעת דואל
+          other: שליחת %{display_count} הודעות דואל
+          two: שליחת שתי הודעות דואל
+        title: צפייה מוקדמת בתנאי השירות
+      publish: לפרסם
+      published_on_html: פורסם ביום %{date}
+      save_draft: שמירת טיוטה
+      title: תנאי השירות
     title: ניהול
     trends:
       allow: לאפשר
@@ -1192,6 +1225,7 @@ he:
     set_new_password: סיסמה חדשה
     setup:
       email_below_hint_html: אנא בדקו בתיקיית הספאם, או בקשו קוד חדש. ניתן לתקן את הכתובת אם נפלה תקלדה.
+      email_settings_hint_html: יש ללחוץ על הקישורית ששלחנו אל %{email} כדי להתחיל להשתמש במסטודון. נמתין לך כאן.
       link_not_received: לא קיבלת קישור?
       new_confirmation_instructions_sent: אתם עומדים לקבל הודעת דואל חדשה עם קיש/ור אימות בדקות הקרובות!
       title: בדוק/בדקי את תיבת הדואר הנכנס שלך
@@ -1200,6 +1234,7 @@ he:
       title: התחבר אל %{domain}
     sign_up:
       manual_review: פתיחת חשבון אצל %{domain} עוברת בדיקה ידנית על ידי הצוות שלנו. כדי לסייע בתהליך הרישום שלכןם, כתבו לנו על עצמכןם ולמה אתןם רוצותים חשבון בשרת %{domain}.
+      preamble: בעזרת חשבון על שרת מסטודון זה, ניתן לעקוב אחרי כל אדם בפידרציה, ולא משנה באיזה שרת נמצא החשבון שלהם.
       title: הבה ניצור לך חשבון בשרת %{domain}.
     status:
       account_status: מצב חשבון
@@ -1211,6 +1246,7 @@ he:
       view_strikes: צפיה בעברות קודמות שנרשמו נגד חשבונך
     too_fast: הטופס הוגש מהר מדי, נסה/י שוב.
     use_security_key: שימוש במפתח אבטחה
+    user_agreement_html: קראתי וזו הסכמתי למסמך <a href="%{terms_of_service_path}" target="_blank">תנאי השירות</a> ו<a href="%{privacy_policy_path}" target="_blank">מדיניות הפרטיות</a>
   author_attribution:
     example_title: טקסט לדוגמה
     hint_html: האם יש לך בלוג או טור חדשות שמתפרסם מחוץ למסטודון? ניתן לשלוט איך יוצג הקרדיט שלך כשמשתפים את הלינק במסטודון.
@@ -1920,6 +1956,8 @@ he:
       too_late: מאוחר מדי להגיש ערעור
   tags:
     does_not_match_previous_name: לא תואם את השם האחרון
+  terms_of_service:
+    title: תנאי השירות
   themes:
     contrast: מסטודון (ניגודיות גבוהה)
     default: מסטודון (כהה)
@@ -1980,6 +2018,15 @@ he:
       further_actions_html: אם לא את/ה התחברת, אנו ממליצים שתבצע/י %{action} מיידית ותאפשר/י אימות דו גורמי על מנת לשמור על החשבון בטוח.
       subject: נרשמה גישה לחשבונך מכתובת IP חדשה
       title: התחברות חדשה
+    terms_of_service_changed:
+      agreement: עם המשך השימוש בשרת %{domain} אתן מסכימות לתנאים הללו. אם אינכם מסכימים עם עדכוני תנאי השירות, אתן יכולות להפסיק את ההסכם עם %{domain} בכל עת על ידי מחיקת החשבון.
+      changelog: 'בקצרה, הנה משמעות העדכון עבורך:'
+      description: 'קיבלת הודעת דואל זו כיוון שאנו מבצעים שינויים במסמך תנאי השירות של %{domain}. אנו מעודדים אותך לעבור על השינויים במסמך המלא כאן:'
+      description_html: 'קיבלת הודעת דואל זו כיוון שאנו מבצעים שינויים במסמך תנאי השירות של %{domain}. אנו מעודדים אותך לעבור על <a href="%{path}" target="_blank">השינויים במסמך המלא כאן</a>:'
+      sign_off: צוות %{domain}
+      subject: עדכונים לתנאי השירות שלנו
+      subtitle: מסמך תנאי השירות של %{domain} עוברים שינויים
+      title: עדכון חשוב
     warning:
       appeal: הגשת ערעור
       appeal_description: אם את/ה מאמין/ה שזו טעות, ניתן להגיש ערעור לצוות של %{instance}.

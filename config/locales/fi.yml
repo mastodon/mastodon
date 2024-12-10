@@ -214,6 +214,7 @@ fi:
         enable_user: Ota tili käyttöön
         memorialize_account: Muuta muistotiliksi
         promote_user: Ylennä käyttäjä
+        publish_terms_of_service: Julkaise käyttöehdot
         reject_appeal: Hylkää valitus
         reject_user: Hylkää käyttäjä
         remove_avatar_user: Poista profiilikuva
@@ -278,6 +279,7 @@ fi:
         enable_user_html: "%{name} otti kirjautumisen käyttöön käyttäjälle %{target}"
         memorialize_account_html: "%{name} muutti käyttäjän %{target} tilin muistosivuksi"
         promote_user_html: "%{name} ylensi käyttäjän %{target}"
+        publish_terms_of_service_html: "%{name} julkaisi päivityksiä käyttöehtoihin"
         reject_appeal_html: "%{name} hylkäsi käyttäjän %{target} valituksen moderointipäätöksestä"
         reject_user_html: "%{name} hylkäsi käyttäjän %{target} rekisteröitymisen"
         remove_avatar_user_html: "%{name} poisti käyttäjän %{target} profiilikuvan"
@@ -925,6 +927,35 @@ fi:
       search: Hae
       title: Aihetunnisteet
       updated_msg: Aihetunnisteiden asetusten päivitys onnistui
+    terms_of_service:
+      back: Takaisin käyttöehtoihin
+      changelog: Mikä on muuttunut
+      create: Käytä omiasi
+      current: Voimassa olevat
+      draft: Luonnos
+      generate: Käytä mallia
+      generates:
+        action: Luo
+        chance_to_review_html: "<strong>Luotuja käyttöehtoja ei julkaista automaattisesti.</strong> Sinulla on mahdollisuus tarkistaa lopputulos. Jatka täyttämällä tarvittavat tiedot."
+        explanation_html: Tarjottu käyttöehtomalli on tarkoitettu vain tiedoksi, eikä sitä pidä tulkita oikeudellisena neuvontana missään yhteydessä. Käänny oman oikeusavustajasi puoleen tilanteessasi ja erityisissä oikeudellisissa kysymyksissäsi.
+        title: Käyttöehtojen määritys
+      history: Historia
+      live: Julki
+      no_history: Käyttöehtoihin ei ole vielä tehty muutoksia.
+      no_terms_of_service_html: Sinulla ei ole tällä hetkellä määritettyjä käyttöehtoja. Käyttöehtojen tarkoituksena on antaa selvyyttä ja suojata sinua mahdollisilta vastuilta riitatilanteissa käyttäjiesi kanssa.
+      notified_on_html: Ilmoitettu käyttäjille %{date}
+      notify_users: Ilmoita käyttäjille
+      preview:
+        explanation_html: 'Sähköpostia lähetetään <strong>%{display_count} käyttäjälle</strong>, jotka ovat rekisteröityneet ennen %{date}. Sähköpostiviestissä on seuraava teksti:'
+        send_preview: Lähetä esikatselu osoitteeseen %{email}
+        send_to_all:
+          one: Lähetä %{display_count} sähköpostiviesti
+          other: Lähetä %{display_count} sähköpostiviestiä
+        title: Esikatsele käyttöehtojen ilmoitus
+      publish: Julkaise
+      published_on_html: Julkaistu %{date}
+      save_draft: Tallenna luonnos
+      title: Käyttöehdot
     title: Ylläpito
     trends:
       allow: Salli
@@ -1156,6 +1187,7 @@ fi:
     set_new_password: Aseta uusi salasana
     setup:
       email_below_hint_html: Tarkista roskapostikansiosi tai pyydä uusi viesti. Voit korjata sähköpostiosoitteesi tarvittaessa.
+      email_settings_hint_html: Jotta voit aloittaa Mastodonin käytön, napsauta linkkiä, jonka lähetimme osoitteeseen %{email}. Odotamme täällä.
       link_not_received: Etkö saanut linkkiä?
       new_confirmation_instructions_sent: Saat pian uuden vahvistuslinkin sisältävän sähköpostiviestin!
       title: Tarkista sähköpostilaatikkosi
@@ -1164,6 +1196,7 @@ fi:
       title: Kirjaudu palvelimelle %{domain}
     sign_up:
       manual_review: Palvelimen %{domain} ylläpito tarkastaa rekisteröitymiset käsin. Helpottaaksesi rekisteröitymisesi käsittelyä kerro hieman itsestäsi ja siitä, miksi haluat luoda käyttäjätilin palvelimelle %{domain}.
+      preamble: Kun sinulla on tili tällä Mastodon-palvelimella, voit seurata kaikkia muita fediversumin käyttäjiä riippumatta siitä, missä heidän tilinsä on.
       title: Otetaan %{domain} käyttöösi.
     status:
       account_status: Tilin tila
@@ -1175,6 +1208,7 @@ fi:
       view_strikes: Näytä aiemmat tiliäsi koskevat varoitukset
     too_fast: Lomake lähetettiin liian nopeasti, yritä uudelleen.
     use_security_key: Käytä suojausavainta
+    user_agreement_html: Olen lukenut ja hyväksyn <a href="%{terms_of_service_path}" target="_blank">käyttöehdot</a> ja <a href="%{privacy_policy_path}" target="_blank">tietosuojakäytännön</a>
   author_attribution:
     example_title: Esimerkkiteksti
     hint_html: Kirjoitatko uutisia tai blogitekstejä Mastodonin ulkopuolella? Määrää, kuinka tulet tunnustetuksi, kun niitä jaetaan Mastodonissa.
@@ -1836,6 +1870,8 @@ fi:
       too_late: On liian myöhäistä vedota tähän varoitukseen
   tags:
     does_not_match_previous_name: ei vastaa edellistä nimeä
+  terms_of_service:
+    title: Käyttöehdot
   themes:
     contrast: Mastodon (suuri kontrasti)
     default: Mastodon (tumma)
@@ -1896,6 +1932,15 @@ fi:
       further_actions_html: Jos tämä et ollut sinä, suosittelemme, että %{action} heti ja otat käyttöön kaksivaiheisen todennuksen pitääksesi tilisi turvassa.
       subject: Tiliäsi on käytetty uudesta IP-osoitteesta
       title: Uusi kirjautuminen
+    terms_of_service_changed:
+      agreement: Jatkamalla palvelun %{domain} käyttöä hyväksyt nämä ehdot. Jos et hyväksy päivitettyjä ehtoja, voit milloin tahansa päättää sopimuksesi palvelun %{domain} kanssa poistamalla tilisi.
+      changelog: 'Lyhyesti, mitä tämä päivitys tarkoittaa sinulle:'
+      description: 'Sait tämän sähköpostiviestin, koska teemme muutoksia palvelun %{domain} käyttöehtoihin. Kehotamme sinua tutustumaan päivitettyihin ehtoihin kokonaisuudessaan täällä:'
+      description_html: Sait tämän sähköpostiviestin, koska teemme muutoksia palvelun %{domain} käyttöehtoihin. Kehotamme sinua tutustumaan <a href="%{path}" target="_blank">päivitettyihin ehtoihin kokonaisuudessaan täällä</a>.
+      sign_off: Palvelimen %{domain} tiimi
+      subject: Käyttöehtojemme päivitykset
+      subtitle: Palvelimen %{domain} käyttöehdot muuttuvat
+      title: Tärkeä päivitys
     warning:
       appeal: Lähetä valitus
       appeal_description: Jos uskot, että tämä on virhe, voit hakea muutosta palvelimen %{instance} ylläpidolta.
