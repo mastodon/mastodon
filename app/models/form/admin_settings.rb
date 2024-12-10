@@ -126,10 +126,7 @@ class Form::AdminSettings
     KEYS.each do |key|
       next unless instance_variable_defined?(:"@#{key}")
 
-      if DIGEST_KEYS.include?(key)
-        digest = Digest::SHA256.hexdigest instance_variable_get(:"@#{key}")
-        Rails.cache.write(:custom_style_digest, digest)
-      end
+      cache_digest_value(key) if DIGEST_KEYS.include?(key)
 
       if UPLOAD_KEYS.include?(key)
         public_send(key).save
@@ -141,6 +138,18 @@ class Form::AdminSettings
   end
 
   private
+
+  def cache_digest_value(key)
+    Rails.cache.delete(:custom_style_digest)
+
+    key_value = instance_variable_get(:"@#{key}")
+    if key_value.present?
+      Rails.cache.write(
+        :custom_style_digest,
+        Digest::SHA256.hexdigest(key_value)
+      )
+    end
+  end
 
   def typecast_value(key, value)
     if BOOLEAN_KEYS.include?(key)
