@@ -3,11 +3,9 @@ on:
   push:
     tags:
       - '*genya0407*'
+    branches:
+      - trunk
   workflow_dispatch:
-    inputs:
-      tags:
-        type: string
-        required: true
 
 jobs:
   build-image:
@@ -26,11 +24,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Get current datetime
+        id: set-datetime
+        run: echo "::set-output name=datetime::$(date +'%Y%m%d%H%M%S')"
+
       - uses: docker/metadata-action@v5
         id: meta
         with:
           images: ghcr.io/genya0407/mastodon/${{ matrix.image.name }}
-          tags: ${{ inputs.tags }}
+          tags: ${{ inputs.tags || steps.set-datetime.outputs.datetime }}
 
       - uses: docker/build-push-action@v6
         with:
