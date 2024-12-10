@@ -23,14 +23,27 @@ module ThemeHelper
     end
   end
 
-  def active_custom_stylesheet
-    [:custom, active_sheet_digest].join('-')
+  def custom_stylesheet
+    if active_sheet_digest.present?
+      stylesheet_link_tag(
+        custom_css_path(active_custom_stylesheet),
+        host: root_url,
+        media: :all,
+        skip_pipeline: true
+      )
+    end
   end
 
   private
 
+  def active_custom_stylesheet
+    ['custom', active_sheet_digest]
+      .compact_blank
+      .join('-')
+  end
+
   def active_sheet_digest
-    (Rails.cache.read(:custom_style_digest) || :styles).to_s.first(8)
+    Rails.cache.read(:custom_style_digest).to_s.first(8)
   end
 
   def theme_color_for(theme)
