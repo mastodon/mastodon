@@ -110,20 +110,27 @@ RSpec.describe Report do
     let(:status) { Fabricate(:status) }
     let(:account_warning) { Fabricate(:account_warning, report_id: report.id) }
 
-    before do
-      Fabricate(:action_log, target_type: 'Report', target_id: report.id)
-      Fabricate(:action_log, target_type: 'Account', target_id: report.target_account_id)
-      Fabricate(:action_log, target_type: 'Status', target_id: status.id)
-      Fabricate(:action_log, target_type: 'AccountWarning', target_id: account_warning.id)
-    end
+    let!(:matched_type_account_warning) { Fabricate(:action_log, target_type: 'AccountWarning', target_id: account_warning.id) }
+    let!(:matched_type_account) { Fabricate(:action_log, target_type: 'Account', target_id: report.target_account_id) }
+    let!(:matched_type_report) { Fabricate(:action_log, target_type: 'Report', target_id: report.id) }
+    let!(:matched_type_status) { Fabricate(:action_log, target_type: 'Status', target_id: status.id) }
+
+    let!(:unmatched_type_account_warning) { Fabricate(:action_log, target_type: 'AccountWarning') }
+    let!(:unmatched_type_account) { Fabricate(:action_log, target_type: 'Account') }
+    let!(:unmatched_type_report) { Fabricate(:action_log, target_type: 'Report') }
+    let!(:unmatched_type_status) { Fabricate(:action_log, target_type: 'Status') }
 
     it 'returns expected logs' do
       expect(action_logs)
         .to have_attributes(count: 4)
-        .and include(have_attributes(target_type: 'Account'))
-        .and include(have_attributes(target_type: 'AccountWarning'))
-        .and include(have_attributes(target_type: 'Report'))
-        .and include(have_attributes(target_type: 'Status'))
+        .and include(matched_type_account_warning)
+        .and include(matched_type_account)
+        .and include(matched_type_report)
+        .and include(matched_type_status)
+        .and not_include(unmatched_type_account_warning)
+        .and not_include(unmatched_type_account)
+        .and not_include(unmatched_type_report)
+        .and not_include(unmatched_type_status)
     end
   end
 
