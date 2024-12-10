@@ -13,7 +13,7 @@ class WebfingerSerializer < ActiveModel::Serializer
     if object.instance_actor?
       [instance_actor_url]
     else
-      [short_account_url(object), account_url(object)]
+      [short_account_url(object), ActivityPub::TagManager.instance.uri_for(object)]
     end
   end
 
@@ -43,6 +43,6 @@ class WebfingerSerializer < ActiveModel::Serializer
   end
 
   def self_href
-    object.instance_actor? ? instance_actor_url : account_url(object)
+    ActivityPub::TagManager.instance.uri_for(object)
   end
 end

@@ -94,7 +94,7 @@ Rails.application.routes.draw do
 
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
-  resources :accounts, path: 'users', only: [:show], param: :username do
+  concern :account_resources do
     resources :statuses, only: [:show] do
       member do
         get :activity
@@ -116,6 +116,9 @@ Rails.application.routes.draw do
       resource :followers_synchronization, only: [:show]
     end
   end
+
+  resources :accounts, path: 'users', only: [:show], param: :username, concerns: :account_resources
+  resources :accounts, path: 'u', only: [:show], param: :id, as: :numeric_account, concerns: :account_resources
 
   resource :inbox, only: [:create], module: :activitypub
 
