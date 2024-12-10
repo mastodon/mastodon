@@ -214,6 +214,7 @@ eo:
         enable_user: Ebligi uzanton
         memorialize_account: Memorigu Konton
         promote_user: Promocii Uzanton
+        publish_terms_of_service: Publikigi kondiĉojn de uzado
         reject_appeal: Malaprobi Apelacion
         reject_user: Malakcepti Uzanton
         remove_avatar_user: Forigi la profilbildon
@@ -925,6 +926,21 @@ eo:
       search: Serĉi
       title: Kradvortoj
       updated_msg: Kradvorto agordoj ĝisdatigis sukcese
+    terms_of_service:
+      back: Reen al kondiĉoj de uzado
+      create: Uzu vian propran
+      current: Nuna
+      draft: Malneto
+      generates:
+        title: Agordo de kondiĉoj de uzado
+      preview:
+        send_to_all:
+          one: Sendi %{display_count} retpoŝton
+          other: Sendi %{display_count} retpoŝtojn
+      publish: Publikigi
+      published_on_html: Publikigita je %{date}
+      save_draft: Konservi malneton
+      title: Kondiĉoj de uzado
     title: Administrado
     trends:
       allow: Permesi
@@ -1164,6 +1180,7 @@ eo:
       title: Saluti en %{domain}
     sign_up:
       manual_review: Enskriboj en %{domain} havas manan superrigardon, farita de niaj moderistoj. Por helpi nin por procezi vian enskribon, skribu ion pri vi mem, kaj kial vi volas konton en %{domain}.
+      preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povos sekvi ajnan alian personon ĉe la fediverso, sendepende de kie ilia konto estas gastigita.
       title: Ni pretigu vin ĉe %{domain}.
     status:
       account_status: Statuso de la konto
@@ -1838,6 +1855,8 @@ eo:
       too_late: Estas tro malfrua por apelacii ĉi tiun admonon
   tags:
     does_not_match_previous_name: ne kongruas kun la antaŭa nomo
+  terms_of_service:
+    title: Kondiĉoj de uzado
   themes:
     contrast: Mastodon (Forta kontrasto)
     default: Mastodon (Malhela)
@@ -1898,6 +1917,8 @@ eo:
       further_actions_html: Se ne estas vi, ni rekomendas ke vi %{action} tuj por sekurigi vian konton.
       subject: Via konto estas alirita de nova IP-adreso
       title: Nova saluto
+    terms_of_service_changed:
+      title: Grava ĝisdatigo
     warning:
       appeal: Sendi apelacion
       appeal_description: Se vi pensas ke ĉi tio estas eraro, vi povas sendi apelacion al la teamo de %{instance}.

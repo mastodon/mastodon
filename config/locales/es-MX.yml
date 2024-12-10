@@ -214,6 +214,7 @@ es-MX:
         enable_user: Habilitar Usuario
         memorialize_account: Transformar en Cuenta Conmemorativa
         promote_user: Promover Usuario
+        publish_terms_of_service: Publicar condiciones del servicio
         reject_appeal: Rechazar apelación
         reject_user: Rechazar Usuario
         remove_avatar_user: Eliminar Avatar
@@ -278,6 +279,7 @@ es-MX:
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
         promote_user_html: "%{name} promoción al usuario %{target}"
+        publish_terms_of_service_html: "%{name} publicó actualizaciones de las condiciones del servicio"
         reject_appeal_html: "%{name} rechazó la solicitud de moderación de %{target}"
         reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} eliminó el avatar de %{target}"
@@ -925,6 +927,34 @@ es-MX:
       search: Buscar
       title: Etiquetas
       updated_msg: Etiquetas actualizadas exitosamente
+    terms_of_service:
+      back: Regresar a las condiciones del servicio
+      changelog: Lo que ha cambiado
+      create: Usa el tuyo
+      current: Actual
+      draft: Borrador
+      generate: Usar plantilla
+      generates:
+        action: Generar
+        chance_to_review_html: "<strong>Las condiciones de servicio generadas no se publicarán automáticamente.</strong> Tendrás la oportunidad de revisar los resultados. Por favor, rellena los datos necesarios para continuar."
+        explanation_html: La plantilla de condiciones de servicio que se proporciona tiene únicamente fines informativos y no debe interpretarse como asesoramiento jurídico sobre ningún tema. Por favor, consulte con su propio asesor legal sobre su situación y las cuestiones legales específicas que tenga.
+        title: Configuración de las condiciones del servicio
+      history: Historial
+      no_history: No se han registrado cambios en las condiciones del servicio hasta el momento.
+      no_terms_of_service_html: Actualmente, no tiene configuradas condiciones del servicio. Las condiciones del servicio están diseñadas para proporcionar claridad y protegerte de posibles responsabilidades en disputas con tus usuarios.
+      notified_on_html: Usuarios notificados el %{date}
+      notify_users: Notificar usuarios
+      preview:
+        explanation_html: 'El correo electrónico se enviará a <strong>%{display_count} usuarios</strong> que se hayan registrado antes de %{date}. En el correo electrónico se incluirá el siguiente texto:'
+        send_preview: Enviar vista previa a %{email}
+        send_to_all:
+          one: Enviar %{display_count} correo electrónico
+          other: Enviar %{display_count} correos electrónicos
+        title: Vista previa de la notificación de las condiciones del servicio
+      publish: Publicar
+      published_on_html: Publicado el %{date}
+      save_draft: Guardar borrador
+      title: Condiciones del servicio
     title: Administración
     trends:
       allow: Permitir
@@ -1156,6 +1186,7 @@ es-MX:
     set_new_password: Establecer nueva contraseña
     setup:
       email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu dirección de correo electrónico si está mal.
+      email_settings_hint_html: Haz clic en el enlace que te enviamos a %{email} para comenzar a usar Mastodon. Te esperamos aquí.
       link_not_received: "¿No recibiste un enlace?"
       new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
       title: Revisa tu bandeja de entrada
@@ -1164,6 +1195,7 @@ es-MX:
       title: Registrate en %{domain}
     sign_up:
       manual_review: Los registros en %{domain} pasan por la revisión manual de nuestros moderadores. Para ayudarnos a procesar tu registro, escribe un poco sobre ti mismo y por qué quieres una cuenta en %{domain}.
+      preamble: Al tener una cuenta en este servidor de Mastodon, tendrás la oportunidad de seguir a cualquier persona en el fediverso, sin importar en qué plataforma esté alojada su cuenta.
       title: Crear cuenta de Mastodon en %{domain}.
     status:
       account_status: Estado de la cuenta
@@ -1175,6 +1207,7 @@ es-MX:
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     use_security_key: Usar la clave de seguridad
+    user_agreement_html: He leído y acepto las <a href="%{terms_of_service_path}" target="_blank">condiciones del servicio</a> y la <a href="%{privacy_policy_path}" target="_blank">política de privacidad</a>
   author_attribution:
     example_title: Texto de ejemplo
     hint_html: "¿Estás escribiendo artículos de noticias o blogs fuera de Mastodon? Controla cómo te acreditan cuando se comparten en Mastodon."
@@ -1836,6 +1869,8 @@ es-MX:
       too_late: Es demasiado tarde para apelar esta amonestación
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior
+  terms_of_service:
+    title: Condiciones del servicio
   themes:
     contrast: Alto contraste
     default: Mastodon
@@ -1896,6 +1931,15 @@ es-MX:
       further_actions_html: Si no fuiste tú, te recomendamos que %{action} inmediatamente y habilites la autenticación de dos factores para mantener tu cuenta segura.
       subject: Tu cuenta ha sido accedida desde una nueva dirección IP
       title: Un nuevo inicio de sesión
+    terms_of_service_changed:
+      agreement: Al seguir usando %{domain}, aceptas estas condiciones. Si no estás de acuerdo con las condiciones actualizadas, puedes cancelar tu acuerdo con %{domain} en cualquier momento eliminando tu cuenta.
+      changelog: 'En pocas palabras, esto es lo que esta actualización implica para ti:'
+      description: 'Estás recibiendo este correo electrónico porque estamos realizando algunos cambios en nuestras condiciones del servicio en %{domain}. Te animamos a revisar las condiciones actualizadas en su totalidad aquí:'
+      description_html: Estás recibiendo este correo electrónico porque estamos realizando algunos cambios en nuestras condiciones del servicio en %{domain}. Te animamos a revisar las <a href="%{path}" target="_blank">condiciones actualizadas en su totalidad aquí</a>.
+      sign_off: El equipo de %{domain}
+      subject: Actualizaciones en nuestras condiciones del servicio
+      subtitle: Las condiciones del servicio de %{domain} han cambiado
+      title: Actualización importante
     warning:
       appeal: Enviar una apelación
       appeal_description: Si crees que esto es un error, puedes enviar una apelación al equipo de %{instance}.

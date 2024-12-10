@@ -214,6 +214,7 @@ ca:
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
+        publish_terms_of_service: Publicar les condicions de servei
         reject_appeal: Rebutja l'apel·lació
         reject_user: Rebutja l'usuari
         remove_avatar_user: Eliminar avatar
@@ -278,6 +279,7 @@ ca:
         enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
         memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
         promote_user_html: "%{name} ha promogut l'usuari %{target}"
+        publish_terms_of_service_html: "%{name} ha publicat actualitzacions a les condicions de servei"
         reject_appeal_html: "%{name} ha rebutjat l'apel·lació a la decisió de moderació de %{target}"
         reject_user_html: "%{name} ha rebutjat el registre de %{target}"
         remove_avatar_user_html: "%{name} ha eliminat l'avatar de %{target}"
@@ -925,6 +927,19 @@ ca:
       search: Cerca
       title: Etiquetes
       updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
+    terms_of_service:
+      back: Tornar a les condicions de servei
+      changelog: Què ha canviat
+      create: Feu servir el vostre
+      current: Actual
+      draft: Esborrany
+      generate: Fer servir la plantilla
+      generates:
+        action: Generar
+        chance_to_review_html: "<strong>Les condicions de servei generades no es publicaran automàticament.</strong> Tindreu l'oportunitat de revisar-ne els resultats. Empleneu els detalls necessaris per a procedir."
+        title: Configuració de les condicions de servei
+      history: Historial
+      live: En ús
     title: Administració
     trends:
       allow: Permet
@@ -1156,6 +1171,7 @@ ca:
     set_new_password: Estableix una contrasenya nova
     setup:
       email_below_hint_html: Verifiqueu la carpeta de correu brossa o demaneu-ne un altre. Podeu corregir l'adreça de correu-e si no és correcta.
+      email_settings_hint_html: Feu clic a l'enllaç que us hem enviat a %{email} per a començar a utilitzar Mastodon. Us esperem.
       link_not_received: No has rebut l'enllaç?
       new_confirmation_instructions_sent: Rebràs un nou correu amb l'enllaç de confirmació en pocs minuts!
       title: Comprova la teva safata d'entrada
@@ -1164,6 +1180,7 @@ ca:
       title: Inicia sessió a %{domain}
     sign_up:
       manual_review: Els registres a %{domain} passen per una revisió manual dels nostres moderadors. Per ajudar-nos a processar el teu registre, escriu-nos quelcom sobre tu i perquè vols un compte a %{domain}.
+      preamble: Amb un compte en aquest servidor de Mastodon podreu seguir qualsevol altra persona al Fedivers, sense importar a quin servidor tingui el compte.
       title: Configurem-te a %{domain}.
     status:
       account_status: Estat del compte
@@ -1798,6 +1815,8 @@ ca:
       too_late: És massa tard per a apel·lar aquesta acció
   tags:
     does_not_match_previous_name: no coincideix amb el nom anterior
+  terms_of_service:
+    title: Condicions de servei
   themes:
     contrast: Mastodon (alt contrast)
     default: Mastodon (fosc)
@@ -1858,6 +1877,8 @@ ca:
       further_actions_html: Si no has estat tu, %{action} immediatament i activa l'autenticació de dos-factors per a mantenir el teu compte segur.
       subject: S'ha accedit al teu compte des d'una adreça IP nova
       title: Un inici de sessió nou
+    terms_of_service_changed:
+      title: Actualització important
     warning:
       appeal: Envia una apel·lació
       appeal_description: Si creus que això és un error, pots enviar una apel·lació a l'equip de %{instance}.

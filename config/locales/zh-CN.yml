@@ -211,6 +211,7 @@ zh-CN:
         enable_user: 启用用户
         memorialize_account: 设为追悼账户
         promote_user: 指派管理员
+        publish_terms_of_service: 发布服务条款
         reject_appeal: 驳回申诉
         reject_user: 拒绝用户
         remove_avatar_user: 移除头像
@@ -275,6 +276,7 @@ zh-CN:
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼账户"
         promote_user_html: "%{name} 将用户 %{target} 设为管理员"
+        publish_terms_of_service_html: "%{name} 更新了服务条款"
         reject_appeal_html: "%{name} 驳回了 %{target} 对审核结果的申诉"
         reject_user_html: "%{name} 拒绝了用户 %{target} 的注册"
         remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
@@ -911,6 +913,34 @@ zh-CN:
       search: 搜索
       title: 话题
       updated_msg: 话题设置更新成功
+    terms_of_service:
+      back: 返回服务条款页
+      changelog: 变更说明
+      create: 自定义
+      current: 当前版本
+      draft: 草案
+      generate: 使用模板
+      generates:
+        action: 生成
+        chance_to_review_html: "<strong>服务条款生成后不会自动发布。</strong>你可以审核生成的草案，填写必要的信息后继续操作。"
+        explanation_html: 此服务条款模板仅供参考，不构成法律意见。如有任何法律问题，请咨询法律顾问。
+        title: 设置服务条款
+      history: 历史记录
+      live: 生效中
+      no_history: 尚无服务条款变更记录。
+      no_terms_of_service_html: 你还没有设置任何服务条款。设置服务条款可以清晰地界定责任，并在与用户发生争议时有效保护您的权益。
+      notified_on_html: 已于 %{date} 通知用户
+      notify_users: 通知用户
+      preview:
+        explanation_html: 即将向在 %{date} 注册之前的<strong> %{display_count} 名用户</strong>发送邮件。下述文本将会包含在邮件中：
+        send_preview: 向 %{email} 发送预览
+        send_to_all:
+          other: 发送 %{display_count} 封邮件
+        title: 服务条款变更通知预览
+      publish: 发布
+      published_on_html: 发表于 %{date}
+      save_draft: 保存草案
+      title: 服务条款
     title: 管理
     trends:
       allow: 允许
@@ -1138,6 +1168,7 @@ zh-CN:
     set_new_password: 设置新密码
     setup:
       email_below_hint_html: 请检查你的垃圾邮件文件夹，或请求重新发送邮件。如果你填写的邮箱地址有误，请更正。
+      email_settings_hint_html: 点击发送到 %{email} 的链接，即可开始使用 Mastodon。
       link_not_received: 没有收到链接？
       new_confirmation_instructions_sent: 你将在几分钟内收到一封带有确认链接的新邮件！
       title: 请检查你的收件箱
@@ -1146,6 +1177,7 @@ zh-CN:
       title: 登录到 %{domain}
     sign_up:
       manual_review: 你在 %{domain} 上的注册需要经由管理人员手动审核。 为了帮助我们处理你的注册，请简要说明你为什么想在 %{domain} 上注册。
+      preamble: 在这个 Mastodon 站点上注册一个账户，你就可以关注联邦宇宙中的任何人，无论他们的账户在哪里。
       title: 让我们在 %{domain} 上开始。
     status:
       account_status: 账户状态
@@ -1157,6 +1189,7 @@ zh-CN:
       view_strikes: 查看针对你账号的处罚记录
     too_fast: 表单提交过快，请重试。
     use_security_key: 使用安全密钥
+    user_agreement_html: 我已阅读并同意 <a href="%{terms_of_service_path}" target="_blank">服务条款</a> 与 <a href="%{privacy_policy_path}" target="_blank">隐私政策</a>
   author_attribution:
     example_title: 示例文本
     hint_html: 你是否在 Mastodon 之外撰写新闻或博客文章？控制它们被分享到 Mastodon 时的署名方式。
@@ -1794,6 +1827,8 @@ zh-CN:
       too_late: 已来不及对此次处罚提出申诉
   tags:
     does_not_match_previous_name: 和之前的名称不匹配
+  terms_of_service:
+    title: 服务条款
   themes:
     contrast: Mastodon (高对比度)
     default: Mastodon (暗色)
@@ -1854,6 +1889,15 @@ zh-CN:
       further_actions_html: 如果不是你本人操作，我们建议你立即 %{action} 并启用双因素认证，以确保账号安全。
       subject: 已有新 IP 地址访问了你的账号
       title: 一次新登录
+    terms_of_service_changed:
+      agreement: 继续使用你在 %{domain} 的账户即表示您同意这些条款。如果你不同意更新后的条款，你可以随时删除账户以终止与 %{domain} 的协议。
+      changelog: 本次更新的要点如下：
+      description: 你收到此邮件是因为我们更新了 %{domain} 的服务条款。我们建议你在此查看变更后的服务条款：
+      description_html: 你收到此邮件是因为我们更新了 %{domain} 的服务条款。我们建议你在此查看<a href="%{path}" target="_blank">变更后的服务条款</a>。
+      sign_off: "%{domain} 运营团队"
+      subject: 服务条款变更
+      subtitle: "%{domain} 更新了服务条款"
+      title: 重要变更
     warning:
       appeal: 提交申诉
       appeal_description: 如果你认为此结果有误，可以向 %{instance} 的工作人员提交申诉。
