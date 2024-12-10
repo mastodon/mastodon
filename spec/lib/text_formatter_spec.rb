@@ -50,7 +50,7 @@ RSpec.describe TextFormatter do
       end
     end
 
-    context 'when given a stand-alone google URL' do
+    context 'when given a stand-alone Google URL' do
       let(:text) { 'http://google.com' }
 
       it 'matches the full URL' do
@@ -277,6 +277,26 @@ RSpec.describe TextFormatter do
 
       it 'outputs the raw URL' do
         expect(subject).to eq '<p>http://www\.google\.com</p>'
+      end
+    end
+
+    context 'when given a lengthy URL' do
+      let(:text) { 'lorem https://prepitaph.org/wip/web-dovespair/ ipsum' }
+
+      it 'truncates the URL' do
+        expect(subject).to include '<span class="invisible">https://</span>'
+        expect(subject).to include '<span class="ellipsis">prepitaph.org/wip/web-dovespai</span>'
+        expect(subject).to include '<span class="invisible">r/</span>'
+      end
+    end
+
+    context 'when given a sufficiently short URL' do
+      let(:text) { 'lorem https://prepitaph.org/wip/web-devspair/ ipsum' }
+
+      it 'does not truncate the URL' do
+        expect(subject).to include '<span class="invisible">https://</span>'
+        expect(subject).to include '<span class="">prepitaph.org/wip/web-devspair/</span>'
+        expect(subject).to include '<span class="invisible"></span>'
       end
     end
 

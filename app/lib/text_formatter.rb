@@ -68,6 +68,12 @@ class TextFormatter
       suffix      = url[prefix.length + 30..]
       cutoff      = url[prefix.length..].length > 30
 
+      if suffix && suffix.length == 1 # revert truncation to account for ellipsis
+        display_url += suffix
+        suffix = nil
+        cutoff = false
+      end
+
       tag.a href: url, target: '_blank', rel: rel.join(' '), translate: 'no' do
         tag.span(prefix, class: 'invisible') +
           tag.span(display_url, class: (cutoff ? 'ellipsis' : '')) +
