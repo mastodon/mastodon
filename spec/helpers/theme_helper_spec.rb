@@ -81,7 +81,7 @@ RSpec.describe ThemeHelper do
 
   describe '#custom_stylesheet' do
     context 'when custom css setting value digest is present' do
-      before { Rails.cache.write(:custom_style_digest, '1a2s3d4f1a2s3d4f') }
+      before { Rails.cache.write(:setting_digest_custom_css, '1a2s3d4f1a2s3d4f') }
 
       it 'returns value from settings' do
         expect(custom_stylesheet)
@@ -90,7 +90,7 @@ RSpec.describe ThemeHelper do
     end
 
     context 'when custom css setting value digest is not present' do
-      before { Rails.cache.delete(:custom_style_digest) }
+      before { Rails.cache.delete(:setting_digest_custom_css) }
 
       it 'returns default value' do
         expect(custom_stylesheet)

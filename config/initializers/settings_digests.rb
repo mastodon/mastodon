@@ -11,7 +11,7 @@ Rails.application.config.to_prepare do
     Rails
       .cache
       .write(
-        :custom_style_digest,
+        :setting_digest_custom_css,
         Digest::SHA256.hexdigest(custom_css)
       )
   end

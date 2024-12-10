@@ -43,7 +43,7 @@ module ThemeHelper
   end
 
   def active_sheet_digest
-    Rails.cache.read(:custom_style_digest).to_s.first(8)
+    Rails.cache.read(:setting_digest_custom_css).to_s.first(8)
   end
 
   def theme_color_for(theme)

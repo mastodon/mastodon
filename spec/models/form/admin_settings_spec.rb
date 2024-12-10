@@ -28,18 +28,18 @@ RSpec.describe Form::AdminSettings do
 
         it 'changes relevant digest value' do
           expect { subject.save }
-            .to(change { Rails.cache.read(:custom_style_digest) }.to(digested))
+            .to(change { Rails.cache.read(:setting_digest_custom_css) }.to(digested))
         end
       end
 
       context 'when updating custom css to empty value' do
         subject { described_class.new(custom_css: '') }
 
-        before { Rails.cache.write(:custom_style_digest, 'previous-value') }
+        before { Rails.cache.write(:setting_digest_custom_css, 'previous-value') }
 
         it 'changes relevant digest value' do
           expect { subject.save }
-            .to(change { Rails.cache.read(:custom_style_digest) }.to(be_blank))
+            .to(change { Rails.cache.read(:setting_digest_custom_css) }.to(be_blank))
         end
       end
 
@@ -48,7 +48,7 @@ RSpec.describe Form::AdminSettings do
 
         it 'does not update digests' do
           expect { subject.save }
-            .to(not_change { Rails.cache.read(:custom_style_digest) })
+            .to(not_change { Rails.cache.read(:setting_digest_custom_css) })
         end
       end
     end

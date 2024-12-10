@@ -140,12 +140,12 @@ class Form::AdminSettings
   private
 
   def cache_digest_value(key)
-    Rails.cache.delete(:custom_style_digest)
+    Rails.cache.delete(:"setting_digest_#{key}")
 
     key_value = instance_variable_get(:"@#{key}")
     if key_value.present?
       Rails.cache.write(
-        :custom_style_digest,
+        :"setting_digest_#{key}",
         Digest::SHA256.hexdigest(key_value)
       )
     end
