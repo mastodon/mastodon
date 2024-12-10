@@ -3,13 +3,14 @@ lv:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Viens katrā līnijā. Aizsargā no nepatiesa attiecinājuma.
         discoverable: Tavas publiskās ziņas un profils var tikt piedāvāti vai ieteikti dažādās Mastodon vietās, un tavs profils var tikt ieteikts citiem lietotājiem.
         display_name: Tavs pilnais vārds vai tavs joku vārds.
         fields: Tava mājas lapa, vietniekvārdi, vecums, viss, ko vēlies.
         indexable: Tavi publiskie ieraksti var tikt parādīti Mastodon meklēšanas iznākumā. Cilvēki, kuri ir mijiedarbojušies ar Taviem ierakstiem, var tos meklēt neatkarīgi no tā.
         note: 'Tu vari @minēt citus cilvēkus vai #mirkļbirkas.'
         show_collections: Cilvēki varēs pārlūkot Tavus sekotājus un sekojamos. Cilvēki, kuriem Tu seko, redzēs, ka Tu seko viņiem neatkarīgi no tā.
-        unlocked: Cilvēki varēs tev sekot, neprasot apstiprinājumu. Noņem atzīmi, ja vēlies pārskatīt sekošanas pieprasījumus un izvēlēties, pieņemt vai noraidīt jaunus sekotājus.
+        unlocked: Cilvēki varēs Tev sekot bez apstiprinājuma pieprasīšanas. Jānoņem atzīme, ja vēlies pārskatīt sekošanas pieprasījumus un izvēlēties, vai apstiprināt vai noraidīt jaunus sekotājus.
       account_alias:
         acct: Norādi konta lietotājvārdu@domēnu, no kura vēlies pārvākties
       account_migration:
@@ -18,7 +19,7 @@ lv:
         text: Vari izmantot ziņu sintaksi, piemēram, URL, atsauces un pieminējumus
         title: Neobligāts. Saņēmējam nav redzams
       admin_account_action:
-        include_statuses: Lietotājs redzēs, kuras ziņas izraisījušas moderācijas darbību vai brīdinājumu
+        include_statuses: Lietotājs redzēs, kuras ziņas izraisījušas satura pārraudzības darbību vai brīdinājumu
         send_email_notification: Lietotājs saņems paskaidrojumu par to, kas notika ar viņa kontu
         text_html: Neobligāts. Tu vari lietot ziņu sintaksi. Lai ietaupītu laiku, tu vari <a href="%{path}">pievienot brīdinājuma sākotnējos iestatījumus</a>
         type_html: Izvēlies, ko darīt ar <strong>%{acct}</strong>
@@ -60,7 +61,7 @@ lv:
         setting_display_media_hide_all: Vienmēr slēpt multividi
         setting_display_media_show_all: Vienmēr rādīt multividi
         setting_use_blurhash: Pāreju pamatā ir paslēpto uzskatāmo līdzekļu krāsas, bet saturs tiek padarīts neskaidrs
-        setting_use_pending_items: Paslēpt laika skalas atjauninājumus aiz klikšķa, nevis automātiski ritini plūsmu
+        setting_use_pending_items: Paslēpt laika skalas atjauninājumus aiz klikšķa, nevis ar automātisku plūsmas ritināšanu
         username: Tu vari lietot burtus, ciparus un zemsvītras
         whole_word: Ja atslēgvārds vai frāze ir tikai burtciparu, tas tiks lietots tikai tad, ja tas atbilst visam vārdam
       domain_allow:
@@ -88,7 +89,7 @@ lv:
         media_cache_retention_period: Informācijas nesēju datnes no ierakstiem, kurus ir veikuši attālie lietotāji, tiek kešoti šajā serverī. Kad ir iestatīta apstiprinoša vērtība, informācijas nesēji tiks izdzēsti pēc norādītā dienu skaita. Ja informācijas nesēju dati tiks pieprasīti pēc tam, kad tie tika izdzēsti, tie tiks atkārtoti lejupielādēti, ja avota saturs joprojām būs pieejams. Saišu priekšskatījuma karšu vaicājumu biežuma ierobežojumu dēļ ir ieteicams iestatīt šo vērtību vismaz 14 dienas vai saišu priekšskatījuma kartes netiks atjauninātas pēc pieprasījuma pirms tā laika.
         peers_api_enabled: Domēna vārdu saraksts, ar kuriem šis serveris ir saskāries fediversā. Šeit nav iekļauti dati par to, vai tu veic federāciju ar noteiktu serveri, tikai tavs serveris par to zina. To izmanto dienesti, kas apkopo statistiku par federāciju vispārīgā nozīmē.
         profile_directory: Profilu direktorijā ir uzskaitīti visi lietotāji, kuri ir izvēlējušies būt atklājami.
-        require_invite_text: 'Ja pierakstīšanai nepieciešama manuāla apstiprināšana, izdari tā, lai teksta: “Kāpēc vēlaties pievienoties?” ievade ir obligāta, nevis opcionāla'
+        require_invite_text: Ja nepieciešama pašrocīga apstiprināšana, lai pierakstītos, teksta “Kāpēc vēlies pievienoties?” ievade jāpadara par nepieciešamu, nevis izvēles
         site_contact_email: Kā cilvēki var sazināties ar tevi par juridiskiem vai atbalsta jautājumiem.
         site_contact_username: Tagad cilvēki var tevi sasniegt Mastodon.
         site_extended_description: Jebkura papildu informācija, kas var būt noderīga apmeklētājiem un lietotājiem. Var strukturēt ar Markdown sintaksi.
@@ -143,6 +144,7 @@ lv:
         url: Kur notikumi tiks nosūtīti
     labels:
       account:
+        attribution_domains_as_text: Tīmekļvietnes, kurām ir tiesības uzskaitīt Tevi
         discoverable: Funkcijas profils un ziņas atklāšanas algoritmos
         fields:
           name: Marķējums
@@ -181,7 +183,7 @@ lv:
         autofollow: Uzaicini sekot tavam kontam
         avatar: Profila attēls
         bot: Šis ir automatizēts konts
-        chosen_languages: Filtrēt valodas
+        chosen_languages: Atlasīt valodas
         confirm_new_password: Apstiprināt jauno paroli
         confirm_password: Apstiprināt paroli
         context: Filtrēt kontekstus
@@ -337,5 +339,5 @@ lv:
       text: nepieciešams
     title:
       sessions:
-        webauthn: Lai pierakstītos, izmanto vienu no savām drošības atslēgām
+        webauthn: Lai pieteiktos, jāizmanto viena no savām drošības atslēgām
     'yes': Jā

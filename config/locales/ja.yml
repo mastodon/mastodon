@@ -19,6 +19,7 @@ ja:
     posts:
       other: 投稿
     posts_tab_heading: 投稿
+    self_follow_error: 自分のアカウントをフォローすることはできません
   admin:
     account_actions:
       action: アクションを実行
@@ -251,7 +252,7 @@ ja:
         destroy_custom_emoji_html: "%{name}さんがカスタム絵文字『%{target}』を削除しました"
         destroy_domain_allow_html: "%{name}さんが%{target}の連合許可を外しました"
         destroy_domain_block_html: "%{name}さんがドメイン %{target}のブロックを外しました"
-        destroy_email_domain_block_html: "%{name} がメールドメイン %{target} のブロックを外しました"
+        destroy_email_domain_block_html: "%{name} さんがメールドメイン %{target} のブロックを外しました"
         destroy_instance_html: "%{name}さんがドメイン %{target}をブロックしました"
         destroy_ip_block_html: "%{name}さんが IP %{target}のルールを削除しました"
         destroy_status_html: "%{name}さんが%{target}さんの投稿を削除しました"
@@ -1147,8 +1148,11 @@ ja:
     use_security_key: セキュリティキーを使用
   author_attribution:
     example_title: サンプルテキスト
+    hint_html: Mastodonの外でニュースやブログなどを執筆しているユーザーは、Mastodonで自分の記事が共有されたときに著者情報を表示させることができます。
+    instructions: 以下のコードを自分の記事のHTMLに貼り付けます。
     more_from_html: "%{name} のその他の情報"
     s_blog: "%{name} のブログ"
+    then_instructions: その後、記事の公開に使用しているドメイン名を以下の入力欄に追加してください。
     title: 著者の帰属
   challenge:
     confirm: 続ける

@@ -6,6 +6,7 @@ class Admin::AnnouncementsController < Admin::BaseController
 
   def index
     authorize :announcement, :index?
+    @published_announcements_count = Announcement.published.async_count
   end
 
   def new
