@@ -14,16 +14,6 @@ class Api::V1::StatusesController < Api::BaseController
   override_rate_limit_headers :create, family: :statuses
   override_rate_limit_headers :update, family: :statuses
 
-  # This API was originally unlimited, pagination cannot be introduced without
-  # breaking backwards-compatibility. Arbitrarily high number to cover most
-  # conversations as quasi-unlimited, it would be too much work to render more
-  # than this anyway
-  CONTEXT_LIMIT = 4_096
-
-  # This remains expensive and we don't want to show everything to logged-out users
-  ANCESTORS_LIMIT         = 40
-  DESCENDANTS_LIMIT       = 60
-  DESCENDANTS_DEPTH_LIMIT = 20
 
   def index
     @statuses = preload_collection(@statuses, Status)
@@ -39,25 +29,10 @@ class Api::V1::StatusesController < Api::BaseController
   def context
     cache_if_unauthenticated!
 
-    ancestors_limit         = CONTEXT_LIMIT
-    descendants_limit       = CONTEXT_LIMIT
-    descendants_depth_limit = nil
+    @status_tree = StatusTree.new(status: @status, account: current_account)
+    @status_node = @status_tree.find_node(@status.id)
 
-    if current_account.nil?
-      ancestors_limit         = ANCESTORS_LIMIT
-      descendants_limit       = DESCENDANTS_LIMIT
-      descendants_depth_limit = DESCENDANTS_DEPTH_LIMIT
-    end
-
-    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
-    descendants_results = @status.descendants(descendants_limit, current_account, descendants_depth_limit)
-    loaded_ancestors    = preload_collection(ancestors_results, Status)
-    loaded_descendants  = preload_collection(descendants_results, Status)
-
-    @context = Context.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
-    statuses = [@status] + @context.ancestors + @context.descendants
-
-    render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
+    render json: @status_node, serializer: REST::StatusTreeNodeSerializer, relationships: StatusRelationshipsPresenter.new(@status_tree.flatten, current_user&.account_id)
   end
 
   def create

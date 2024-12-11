@@ -292,18 +292,6 @@ class Status < ApplicationRecord
     end.take(MEDIA_ATTACHMENTS_LIMIT)
   end
 
-  def replies_count
-    status_stat&.replies_count || 0
-  end
-
-  def reblogs_count
-    status_stat&.reblogs_count || 0
-  end
-
-  def favourites_count
-    status_stat&.favourites_count || 0
-  end
-
   # Reblogs count received from an external instance
   def untrusted_reblogs_count
     status_stat&.untrusted_reblogs_count unless local?
@@ -393,6 +381,7 @@ class Status < ApplicationRecord
   def status_stat
     super || build_status_stat
   end
+  delegate :replies_count, :reblogs_count, :favourites_count, to: :status_stat
 
   def discard_with_reblogs
     discard_time = Time.current
