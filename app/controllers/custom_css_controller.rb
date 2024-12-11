@@ -4,7 +4,7 @@ class CustomCssController < ActionController::Base # rubocop:disable Rails/Appli
   before_action :set_user_roles
 
   def show
-    expires_in 3.minutes, public: true
+    expires_in 1.month, public: true
     render content_type: 'text/css'
   end
 
