@@ -48,7 +48,7 @@ class VideoMetadataExtractor
         @frame_rate ||= @r_frame_rate
         # If the video has not been re-encoded by ffmpeg, it may contain rotation information,
         # and we need to simulate applying it to the dimensions
-        @width, @height = @height, @width if video_stream[:side_data_list]&.any? { |x| x[:rotation].abs == 90 }
+        @width, @height = @height, @width if video_stream[:side_data_list]&.any? { |x| x[:rotation]&.abs == 90 }
       end
 
       if (audio_stream = audio_streams.first)
