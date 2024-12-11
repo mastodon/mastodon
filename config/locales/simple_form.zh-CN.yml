@@ -147,7 +147,7 @@ zh-CN:
       user_role:
         color: 在界面各处用于标记该角色的颜色，以十六进制 RGB 格式表示
         highlighted: 使角色公开可见
-        name: 角色的公开名称，将在设为展示徽章时使用
+        name: 角色的公开名称，将在外显为徽章时使用
         permissions_as_keys: 具有此角色的用户将有权访问...
         position: 用于在特定情况下处理决策冲突。一些特定操作只能对优先级更低的角色执行
       webhook:
@@ -337,7 +337,7 @@ zh-CN:
         admin_email: 接收法务通知的邮箱地址
         arbitration_address: 仲裁通知的实际送达地址
         arbitration_website: 仲裁通知的在线提交入口
-        dmca_address: DMCA/版权通知的实际地址
+        dmca_address: 接收DMCA/版权通知的实际地址
         dmca_email: 接收DMCA/版权通知的邮箱地址
         domain: 域名
         jurisdiction: 法律管辖区
@@ -346,9 +346,9 @@ zh-CN:
         time_zone: 时区
       user_role:
         color: 徽章颜色
-        highlighted: 在用户资料中显示角色徽章
+        highlighted: 在账户页显示角色徽章
         name: 名称
-        permissions_as_keys: 权限设置
+        permissions_as_keys: 权限
         position: 优先级
       webhook:
         events: 已启用事件

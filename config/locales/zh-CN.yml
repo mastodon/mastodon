@@ -102,7 +102,7 @@ zh-CN:
       most_recent_ip: 最后活跃IP
       no_account_selected: 因为没有选中任何账号，所以没有更改
       no_limits_imposed: 无限制
-      no_role_assigned: 未定角色
+      no_role_assigned: 未指派角色
       not_subscribed: 未订阅
       pending: 待审核
       perform_full_suspension: 封禁
@@ -199,7 +199,7 @@ zh-CN:
         destroy_relay: 删除中继站
         destroy_status: 删除嘟文
         destroy_unavailable_domain: 删除不可用域名
-        destroy_user_role: 销毁角色
+        destroy_user_role: 删除角色
         disable_2fa_user: 停用双因素认证
         disable_custom_emoji: 禁用自定义表情符号
         disable_relay: 禁用中继站
@@ -251,7 +251,7 @@ zh-CN:
         create_ip_block_html: "%{name} 为 IP %{target} 创建了规则"
         create_relay_html: "%{name} 添加了中继站 %{target}"
         create_unavailable_domain_html: "%{name} 停止了向域名 %{target} 的投递"
-        create_user_role_html: "%{name} 创建了 %{target} 角色"
+        create_user_role_html: "%{name} 创建了角色 %{target}"
         demote_user_html: "%{name} 撤销了用户 %{target} 的管理权限"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 解封了 hash 为 %{target} 的邮箱地址"
@@ -264,7 +264,7 @@ zh-CN:
         destroy_relay_html: "%{name} 删除了中继站 %{target}"
         destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
-        destroy_user_role_html: "%{name} 删除了 %{target} 角色"
+        destroy_user_role_html: "%{name} 删除了角色 %{target}"
         disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双因素认证"
         disable_custom_emoji_html: "%{name} 停用了自定义表情 %{target}"
         disable_relay_html: "%{name} 停用了中继站 %{target}"
@@ -298,7 +298,7 @@ zh-CN:
         update_ip_block_html: "%{name} 修改了对 IP %{target} 的规则"
         update_report_html: "%{name} 更新了举报 %{target}"
         update_status_html: "%{name} 刷新了 %{target} 的嘟文"
-        update_user_role_html: "%{name} 更改了 %{target} 角色"
+        update_user_role_html: "%{name} 更改了角色 %{target}"
       deleted_account: 账号已注销
       empty: 没有找到日志
       filter_by_action: 根据操作筛选
@@ -679,61 +679,61 @@ zh-CN:
     roles:
       add_new: 添加角色
       assigned_users:
-        other: "%{count} 用户"
+        other: "%{count} 名用户"
       categories:
         administration: 管理
         devops: 开发运维
         invites: 邀请
-        moderation: 监察
+        moderation: 审核
         special: 特殊
       delete: 刪除
-      description_html: 使用 <strong>用户角色</strong>，你可以自定义你的用户可以访问的功能和区域。
-      edit: 编辑 '%{name}' 角色
+      description_html: 使用 <strong>用户角色</strong>，你可以自定义你的用户可以访问的 Mastodon 功能和区域。
+      edit: 编辑角色 '%{name}'
       everyone: 默认权限
-      everyone_full_description_html: 这是影响到 <strong>所有用户</strong>的<strong>基础角色</strong>，包括未指定角色的用户。 其他所有的角色都继承着它的权限。
+      everyone_full_description_html: 该角色是<strong>基础角色</strong>，会影响<strong>所有用户</strong>，包括未指定角色的用户。 其他所有的角色都继承该角色的权限。
       permissions_count:
-        other: "%{count} 权限"
+        other: "%{count} 个权限"
       privileges:
         administrator: 管理员
-        administrator_description: 拥有此权限的用户将绕过每个权限
+        administrator_description: 拥有此权限的用户将绕过所有权限限制。
         delete_user_data: 删除用户数据
         delete_user_data_description: 允许用户立即删除其他用户的数据
         invite_users: 邀请用户
-        invite_users_description: 允许用户邀请新人加入服务器
+        invite_users_description: 允许用户邀请新人加入站点
         manage_announcements: 管理公告
-        manage_announcements_description: 允许用户管理服务器上的通知
+        manage_announcements_description: 允许用户管理站点上的公告
         manage_appeals: 管理申诉
-        manage_appeals_description: 允许用户审阅针对管理操作的申诉
-        manage_blocks: 管理地址段
-        manage_blocks_description: 允许用户屏蔽邮箱提供商和IP地址
+        manage_appeals_description: 允许用户复核针对管理操作的申诉
+        manage_blocks: 管理地址屏蔽列表
+        manage_blocks_description: 允许用户屏蔽邮箱域名与IP地址
         manage_custom_emojis: 管理自定义表情
-        manage_custom_emojis_description: 允许用户管理服务器上的自定义表情
+        manage_custom_emojis_description: 允许用户管理站点上的自定义表情
         manage_federation: 管理联合
         manage_federation_description: 允许用户禁止或允许本站同其他站点的联合，并控制消息投递能力
         manage_invites: 管理邀请
-        manage_invites_description: 允许用户浏览和停用邀请链接
+        manage_invites_description: 允许用户浏览与停用邀请链接
         manage_reports: 管理举报
         manage_reports_description: 允许用户审核举报并执行管理操作
         manage_roles: 管理角色
-        manage_roles_description: 允许用户管理和分配比他们权限低的角色
+        manage_roles_description: 允许用户管理与指派比自己权限低的角色
         manage_rules: 管理规则
-        manage_rules_description: 允许用户更改服务器规则
+        manage_rules_description: 允许用户修改站点规则
         manage_settings: 管理设置
         manage_settings_description: 允许用户更改站点设置
-        manage_taxonomies: 管理分类
-        manage_taxonomies_description: 允许用户查看热门内容并更新标签设置
-        manage_user_access: 管理访问
-        manage_user_access_description: 允许用户禁用其它用户的双因素身份验证，更改他们的邮箱地址，以及重置他们的密码。
+        manage_taxonomies: 管理热门与话题
+        manage_taxonomies_description: 允许用户审核热门内容并更新话题设置
+        manage_user_access: 管理用户身份验证信息
+        manage_user_access_description: 允许用户允许用户为其他用户关闭双因素身份验证、修改邮箱并重置密码。
         manage_users: 管理用户
         manage_users_description: 允许用户查看其他用户的信息并执行管理操作
         manage_webhooks: 管理 Webhooks
         manage_webhooks_description: 允许用户为管理事件配置 Webhook
         view_audit_log: 查看审核日志
-        view_audit_log_description: 允许用户查看此服务器上的管理操作记录
-        view_dashboard: 查看仪表板
-        view_dashboard_description: 允许用户访问仪表盘和各种指标
+        view_audit_log_description: 允许用户查看此站点上的管理操作记录
+        view_dashboard: 查看信息面板
+        view_dashboard_description: 允许用户访问信息面板和各种指标
         view_devops: 开发运维
-        view_devops_description: 允许用户访问 Sidekiq 和 pgHero 仪表板
+        view_devops_description: 允许用户访问 Sidekiq 和 pgHero 控制面板
       title: 角色
     rules:
       add_new: 添加规则
@@ -918,11 +918,11 @@ zh-CN:
       changelog: 变更说明
       create: 自定义
       current: 当前版本
-      draft: 草案
+      draft: 草稿
       generate: 使用模板
       generates:
         action: 生成
-        chance_to_review_html: "<strong>服务条款生成后不会自动发布。</strong>你可以审核生成的草案，填写必要的信息后继续操作。"
+        chance_to_review_html: "<strong>服务条款生成后不会自动发布。</strong>你可以审核生成的草稿，填写必要的信息后继续操作。"
         explanation_html: 此服务条款模板仅供参考，不构成法律意见。如有任何法律问题，请咨询法律顾问。
         title: 设置服务条款
       history: 历史记录
@@ -939,7 +939,7 @@ zh-CN:
         title: 服务条款变更通知预览
       publish: 发布
       published_on_html: 发表于 %{date}
-      save_draft: 保存草案
+      save_draft: 保存草稿
       title: 服务条款
     title: 管理
     trends:

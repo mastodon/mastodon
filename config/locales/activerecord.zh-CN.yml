@@ -54,16 +54,16 @@ zh-CN:
               blocked: 使用了被封禁的电子邮件提供商
               unreachable: 似乎不存在
             role_id:
-              elevated: 不能高于你现在的身份
+              elevated: 不能高于你目前所处角色拥有的权限
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: 包含对基本角色不安全的权限
+              dangerous: 包含对基本角色而言不安全的权限
               elevated: 不能包含你当前身份未有的权限
-              own_role: 无权以你当前的身份更改
+              own_role: 你当前的角色无权执行此更改
             position:
               elevated: 不能高于你当前的角色
-              own_role: 无权以你当前的身份更改
+              own_role: 你当前的角色无权执行此更改
         webhook:
           attributes:
             events:
