@@ -111,16 +111,10 @@ class Request
     end
 
     begin
-      # If we are using a persistent connection, we have to
-      # read every response to be able to move forward at all.
-      # However, simply calling #to_s or #flush may not be safe,
-      # as the response body, if malicious, could be too big
-      # for our memory. So we use the #body_with_limit method
-      response.body_with_limit if http_client.persistent?
-
       yield response if block_given?
     ensure
-      http_client.close unless http_client.persistent?
+      response.truncated_body if http_client.persistent? && !response.connection.finished_request?
+      http_client.close unless http_client.persistent? && response.connection.finished_request?
     end
   end
 
