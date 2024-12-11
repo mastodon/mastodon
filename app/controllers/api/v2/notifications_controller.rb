@@ -80,7 +80,19 @@ class Api::V2::NotificationsController < Api::BaseController
     return [] if @notifications.empty?
 
     MastodonOTELTracer.in_span('Api::V2::NotificationsController#load_grouped_notifications') do
-      NotificationGroup.from_notifications(@notifications, pagination_range: (@notifications.last.id)..(@notifications.first.id), grouped_types: params[:grouped_types])
+      pagination_range = (@notifications.last.id)..@notifications.first.id
+
+      if @notifications.size < limit_param(DEFAULT_NOTIFICATIONS_LIMIT)
+        if params[:min_id].present?
+          pagination_range = @notifications.last.id...(params[:max_id]&.to_i)
+        else
+          range_start = params[:since_id]&.to_i
+          range_start += 1 unless range_start.nil?
+          pagination_range = range_start..(@notifications.first.id)
+        end
+      end
+
+      NotificationGroup.from_notifications(@notifications, pagination_range: pagination_range, grouped_types: params[:grouped_types])
     end
   end
 
