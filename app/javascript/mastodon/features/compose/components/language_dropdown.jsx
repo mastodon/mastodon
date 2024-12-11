@@ -238,6 +238,7 @@ class LanguageDropdown extends PureComponent {
   static propTypes = {
     value: PropTypes.string,
     frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string),
+    guess: PropTypes.string,
     intl: PropTypes.object.isRequired,
     onChange: PropTypes.func,
   };
@@ -281,7 +282,7 @@ class LanguageDropdown extends PureComponent {
   };
 
   render () {
-    const { value, intl, frequentlyUsedLanguages } = this.props;
+    const { value, guess, intl, frequentlyUsedLanguages } = this.props;
     const { open, placement } = this.state;
     const current = preloadedLanguages.find(lang => lang[0] === value) ?? [];
 
@@ -294,7 +295,7 @@ class LanguageDropdown extends PureComponent {
           onClick={this.handleToggle}
           onMouseDown={this.handleMouseDown}
           onKeyDown={this.handleButtonKeyDown}
-          className={classNames('dropdown-button', { active: open })}
+          className={classNames('dropdown-button', { active: open, warning: guess !== '' && guess !== value })}
         >
           <Icon icon={TranslateIcon} />
           <span className='dropdown-button__label'>{current[2] ?? value}</span>
