@@ -19,7 +19,7 @@ RSpec.describe FetchRemoteStatusService do
   context 'when protocol is :activitypub' do
     subject { described_class.new.call(note[:id], prefetched_body: prefetched_body) }
 
-    let(:prefetched_body) { Oj.dump(note) }
+    let(:prefetched_body) { JSON.dump(note) }
 
     before do
       subject
