@@ -24,7 +24,7 @@ module ThemeHelper
   end
 
   def custom_stylesheet
-    if active_sheet_digest.present?
+    if active_custom_stylesheet.present?
       stylesheet_link_tag(
         custom_css_path(active_custom_stylesheet),
         host: root_url,
@@ -37,13 +37,15 @@ module ThemeHelper
   private
 
   def active_custom_stylesheet
-    ['custom', active_sheet_digest]
-      .compact_blank
-      .join('-')
+    if cached_custom_css_digest.present?
+      [:custom, cached_custom_css_digest.to_s.first(8)]
+        .compact_blank
+        .join('-')
+    end
   end
 
-  def active_sheet_digest
-    Rails.cache.read(:setting_digest_custom_css).to_s.first(8)
+  def cached_custom_css_digest
+    Rails.cache.read(:setting_digest_custom_css)
   end
 
   def theme_color_for(theme)
