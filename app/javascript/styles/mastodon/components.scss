@@ -3017,7 +3017,9 @@ $ui-header-logo-wordmark-width: 99px;
 
     .column > .scrollable,
     .tabs-bar__wrapper .column-header,
-    .tabs-bar__wrapper .column-back-button {
+    .tabs-bar__wrapper .column-back-button,
+    .explore__search-header,
+    .column-search-header {
       border-left: 0;
       border-right: 0;
     }
@@ -3058,10 +3060,6 @@ $ui-header-logo-wordmark-width: 99px;
       display: none;
     }
   }
-}
-
-.explore__search-header {
-  display: none;
 }
 
 .explore__suggestions__card {
@@ -3136,10 +3134,6 @@ $ui-header-logo-wordmark-width: 99px;
 @media screen and (max-width: $no-gap-breakpoint - 1px) {
   .columns-area__panels__pane--compositional {
     display: none;
-  }
-
-  .explore__search-header {
-    display: flex;
   }
 }
 
@@ -5446,6 +5440,17 @@ a.status-card {
 }
 
 .search__icon {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  top: 12px + 2px;
+  cursor: default;
+  pointer-events: none;
+  margin-inline-start: 16px - 2px;
+  width: 20px;
+  height: 20px;
+
   &::-moz-focus-inner {
     border: 0;
   }
@@ -5457,17 +5462,14 @@ a.status-card {
 
   .icon {
     position: absolute;
-    top: 12px + 2px;
-    display: inline-block;
+    top: 0;
+    inset-inline-start: 0;
     opacity: 0;
     transition: all 100ms linear;
     transition-property: transform, opacity;
     width: 20px;
     height: 20px;
     color: $darker-text-color;
-    cursor: default;
-    pointer-events: none;
-    margin-inline-start: 16px - 2px;
 
     &.active {
       pointer-events: auto;
@@ -8645,6 +8647,9 @@ noscript {
 .explore__search-header {
   justify-content: center;
   align-items: center;
+  border: 1px solid var(--background-border-color);
+  border-top: 0;
+  border-bottom: 0;
   padding: 16px;
   padding-bottom: 8px;
 
@@ -8663,10 +8668,18 @@ noscript {
     border: 1px solid var(--background-border-color);
   }
 
-  .search .icon {
+  .search__icon {
     top: 12px;
     inset-inline-end: 12px;
     color: $dark-text-color;
+  }
+}
+
+.layout-single-column .explore__search-header {
+  display: none;
+
+  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+    display: flex;
   }
 }
 
