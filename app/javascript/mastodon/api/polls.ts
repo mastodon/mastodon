@@ -6,5 +6,5 @@ export const apiGetPoll = (pollId: string) =>
 
 export const apiPollVote = (pollId: string, choices: string[]) =>
   apiRequestPost<ApiPollJSON>(`/v1/polls/${pollId}/votes`, {
-    data: { choices },
+    choices,
   });
