@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_12_153054) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_12_153202) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -236,8 +236,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_12_153054) do
   end
 
   create_table "announcement_reactions", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "announcement_id"
+    t.bigint "account_id", null: false
+    t.bigint "announcement_id", null: false
     t.string "name", default: "", null: false
     t.bigint "custom_emoji_id"
     t.datetime "created_at", precision: nil, null: false
