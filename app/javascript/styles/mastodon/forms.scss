@@ -584,8 +584,9 @@ code {
       background-color: $ui-button-focus-background-color;
     }
 
+    &:disabled,
     &:disabled:hover {
-      background-color: $ui-primary-color;
+      background-color: $ui-button-disabled-color;
     }
 
     &.negative {
@@ -596,16 +597,6 @@ code {
       &:focus {
         background-color: $ui-button-destructive-focus-background-color;
       }
-    }
-  }
-
-  .button.button-tertiary {
-    padding: 9px;
-
-    &:hover,
-    &:focus,
-    &:active {
-      padding: 10px;
     }
   }
 
@@ -1173,6 +1164,7 @@ code {
   align-items: center;
   padding-bottom: 30px;
   margin-bottom: 30px;
+  color: $white;
 
   li {
     flex: 0 0 auto;

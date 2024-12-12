@@ -1114,7 +1114,6 @@ ja:
     migrate_account: 別のアカウントに引っ越す
     migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
     or_log_in_with: または次のサービスでログイン
-    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">プライバシーポリシー</a>を読み、同意します
     progress:
       confirm: メールアドレスの確認
       details: ユーザー情報
@@ -1139,7 +1138,6 @@ ja:
     set_new_password: 新しいパスワード
     setup:
       email_below_hint_html: 確認メールが迷惑メールフォルダに振り分けられていないか確認してください。メールアドレスを間違えた場合は、ここでメールアドレスの変更と確認メールの再送ができます。
-      email_settings_hint_html: メールに記載のリンクを開いて %{email} を確認してください。
       link_not_received: 確認メールを受信できない場合は
       new_confirmation_instructions_sent: 確認用のリンクを記載した新しいメールを送信しました
       title: 確認メールを送信しました
@@ -1148,7 +1146,6 @@ ja:
       title: "%{domain}にログイン"
     sign_up:
       manual_review: "%{domain} への登録にはモデレーターによる承認が必要です。審査の参考になるように、簡単な自己紹介や %{domain} に登録したい理由などを記入してください。"
-      preamble: この Mastodon サーバーのアカウントがあれば、ネットワーク上の他の人のアカウントがどこでホストされているかに関係なく、その人をフォローすることができます。
       title: さあ %{domain} でセットアップしましょう.
     status:
       account_status: アカウントの状態
@@ -1638,6 +1635,7 @@ ja:
   scheduled_statuses:
     over_daily_limit: その日予約できる投稿数 %{limit}を超えています
     over_total_limit: 予約できる投稿数 %{limit}を超えています
+    too_soon: 日付は未来でなければなりません
   self_destruct:
     lead_html: 残念ながら、<strong>%{domain}</strong> は恒久的に閉鎖されます。ここにお持ちだったアカウントを今後使うことはできませんが、これまでのデータのバックアップを要求することはまだ可能です。
     title: このサーバーは閉鎖されます

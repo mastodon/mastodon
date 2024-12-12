@@ -3,12 +3,14 @@ fr-CA:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Un par ligne. Protège contre les fausses attributions.
         discoverable: Vos messages publics et votre profil peuvent être mis en avant ou recommandés dans diverses parties de Mastodon et votre profil peut être suggéré à d’autres utilisateurs.
         display_name: Votre nom complet ou votre nom cool.
         fields: Votre page d'accueil, pronoms, âge, tout ce que vous voulez.
         indexable: Vos messages publics peuvent apparaître dans les résultats de recherche sur Mastodon. Les personnes qui ont interagi avec vos messages peuvent les trouver dans une recherche quoi qu’il arrive.
         note: 'Vous pouvez @mentionner d’autres personnes ou des #hashtags.'
         show_collections: Les gens pourront voir les personnes que vous suivez ou qui vous suivent. Ceux que vous suivez verront que vous les suivez dans tous les cas.
+        unlocked: Les personnes pourront vous suivre sans en demander la permission. Décochez cette case si vous souhaitez examiner les demandes de suivi et choisir d'accepter ou de rejeter les nouveaux followers.
       account_alias:
         acct: Spécifiez l’identifiant@domaine du compte que vous souhaitez faire migrer
       account_migration:
@@ -58,6 +60,7 @@ fr-CA:
         setting_display_media_default: Masquer les médias marqués comme sensibles
         setting_display_media_hide_all: Toujours masquer les médias
         setting_display_media_show_all: Toujours afficher les médias
+        setting_system_scrollbars_ui: S'applique uniquement aux navigateurs basés sur Safari et Chrome
         setting_use_blurhash: Les dégradés sont basés sur les couleurs des images cachées mais n’en montrent pas les détails
         setting_use_pending_items: Cacher les mises à jour des fils d’actualités derrière un clic, au lieu de les afficher automatiquement
         username: Vous pouvez utiliser des lettres, des chiffres, et des tirets bas
@@ -127,6 +130,17 @@ fr-CA:
         show_application: Vous pourrez toujours voir quelle application vous avez utilisé pour publier un message dans tous les cas.
       tag:
         name: Vous ne pouvez modifier que la casse des lettres, par exemple, pour le rendre plus lisible
+      terms_of_service:
+        changelog: Peut être structuré avec la syntaxe Markdown.
+        text: Peut être structuré avec la syntaxe Markdown.
+      terms_of_service_generator:
+        admin_email: Les avis juridiques comprennent les contre-avis, les ordonnances judiciaires, les demandes de retrait et les demandes des forces de l'ordre.
+        arbitration_address: Peut être la même que l'adresse physique ci-dessus, ou "N/A" si vous utilisez un e-mail
+        arbitration_website: Peut être un formulaire web, ou « N/A» si vous utilisez un e-mail
+        dmca_address: Pour les opérateurs américains, utilisez l'adresse enregistrée dans le répertoire des agents désignés du DMCA Designated Agent Directory. Une boîte postale est disponible sur demande directe. Utilisez le formulaire de demande de dérogation pour l'utilisation d'une boîte postale par un agent désigné du Designated Agent Post Office Box Waiver Request pour envoyer un e-mail au Bureau du droit d'auteur (Copyright Office) et expliquer que vous êtes un modérateur de contenu à domicile qui craint des représailles ou une vengeance pour ses actions et que vous avez besoin d'utiliser une boîte postale afin de masquer votre adresse personnelle au public.
+        dmca_email: Peut être la même adresse e-mail que celle utilisée pour « Adresse e-mail pour les mentions légales » ci-dessus
+        domain: Identification unique du service en ligne que vous offrez.
+        jurisdiction: Indiquez le pays dans lequel réside la personne qui paie les factures. S'il s'agit d'une entreprise ou d'une autre entité, indiquez le pays dans lequel elle est enregistrée, ainsi que la ville, la région, le territoire ou l'État, le cas échéant.
       user:
         chosen_languages: Lorsque coché, seuls les messages dans les langues sélectionnées seront affichés sur les fils publics
         role: Le rôle définit quelles autorisations a l'utilisateur⋅rice.
@@ -142,6 +156,7 @@ fr-CA:
         url: Là où les événements seront envoyés
     labels:
       account:
+        attribution_domains_as_text: Sites web autorisés à vous citer
         discoverable: Autoriser des algorithmes de découverte à mettre en avant votre profil et vos messages
         fields:
           name: Étiquette
@@ -220,6 +235,7 @@ fr-CA:
         setting_hide_network: Cacher votre réseau
         setting_reduce_motion: Réduire la vitesse des animations
         setting_system_font_ui: Utiliser la police par défaut du système
+        setting_system_scrollbars_ui: Utiliser la barre de défilement par défaut du système
         setting_theme: Thème du site
         setting_trends: Afficher les tendances du jour
         setting_unfollow_modal: Afficher une fenêtre de confirmation avant de vous désabonner d’un compte
@@ -314,6 +330,17 @@ fr-CA:
         name: Mot-clic
         trendable: Autoriser ce hashtag à apparaitre dans les tendances
         usable: Autoriser les messages à utiliser ce hashtag localement
+      terms_of_service:
+        changelog: Nouveautés?
+        text: Conditions d'utilisation
+      terms_of_service_generator:
+        admin_email: Adresse électronique pour les notifications légales
+        arbitration_address: Adresse physique pour les notifications d'arbitrage
+        arbitration_website: Site Web pour soumettre les notifications d'arbitrage
+        dmca_address: Adresse physique pour les avis DMCA/copyright
+        dmca_email: Adresse e-mail pour les avis DMCA/copyright
+        domain: Domaine
+        jurisdiction: Juridiction
       user:
         role: Rôle
         time_zone: Fuseau horaire

@@ -90,7 +90,7 @@ RSpec.describe MediaAttachment, :attachment_processing do
       media.destroy
     end
 
-    it 'saves media attachment with correct file and size metadata' do
+    it 'saves metadata and generates styles' do
       expect(media)
         .to be_persisted
         .and be_processing_complete
@@ -98,18 +98,28 @@ RSpec.describe MediaAttachment, :attachment_processing do
           file: be_present,
           type: eq('image'),
           file_content_type: eq(content_type),
-          file_file_name: end_with(extension)
+          file_file_name: end_with(extension),
+          blurhash: have_attributes(size: eq(36))
         )
-
-      # Rack::Mime (used by PublicFileServerMiddleware) recognizes file extension
-      expect(Rack::Mime.mime_type(extension, nil)).to eq content_type
 
       # Strip original file name
       expect(media.file_file_name)
         .to_not start_with '600x400'
 
+      # Generate styles
+      expect(FastImage.size(media.file.path(:original)))
+        .to eq [600, 400]
+      expect(FastImage.size(media.file.path(:small)))
+        .to eq [588, 392]
+
+      # Use extension recognized by Rack::Mime (used by PublicFileServerMiddleware)
+      expect(media.file.path(:original))
+        .to end_with(extension)
+      expect(media.file.path(:small))
+        .to end_with(extension)
+
       # Set meta for original and thumbnail
-      expect(media.file.meta.deep_symbolize_keys)
+      expect(media_metadata)
         .to include(
           original: include(
             width: eq(600),
@@ -119,6 +129,60 @@ RSpec.describe MediaAttachment, :attachment_processing do
           small: include(
             width: eq(588),
             height: eq(392),
+            aspect: eq(1.5)
+          )
+        )
+
+      # Rack::Mime (used by PublicFileServerMiddleware) recognizes file extension
+      expect(Rack::Mime.mime_type(extension, nil)).to eq content_type
+    end
+  end
+
+  shared_examples 'animated 600x400 image' do
+    after do
+      media.destroy
+    end
+
+    it 'saves metadata and generates styles' do
+      expect(media)
+        .to be_persisted
+        .and be_processing_complete
+        .and have_attributes(
+          file: be_present,
+          type: eq('gifv'),
+          file_content_type: eq('video/mp4'),
+          file_file_name: end_with('.mp4'),
+          blurhash: have_attributes(size: eq(36))
+        )
+
+      # Strip original file name
+      expect(media.file_file_name)
+        .to_not start_with '600x400'
+
+      # Transcode to MP4
+      expect(media.file.path(:original))
+        .to end_with('.mp4')
+
+      # Generate static thumbnail
+      expect(FastImage.size(media.file.path(:small)))
+        .to eq [600, 400]
+      expect(FastImage.animated?(media.file.path(:small)))
+        .to be false
+      expect(media.file.path(:small))
+        .to end_with('.png')
+
+      # Set meta for styles
+      expect(media_metadata)
+        .to include(
+          original: include(
+            width: eq(600),
+            height: eq(400),
+            duration: eq(3),
+            frame_rate: '1/1'
+          ),
+          small: include(
+            width: eq(600),
+            height: eq(400),
             aspect: eq(1.5)
           )
         )
@@ -137,10 +201,10 @@ RSpec.describe MediaAttachment, :attachment_processing do
     it_behaves_like 'static 600x400 image', 'image/png', '.png'
   end
 
-  describe 'monochrome jpg' do
-    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('monochrome.png')) }
+  describe 'gif' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400.gif')) }
 
-    it_behaves_like 'static 600x400 image', 'image/png', '.png'
+    it_behaves_like 'static 600x400 image', 'image/gif', '.gif'
   end
 
   describe 'webp' do
@@ -161,6 +225,12 @@ RSpec.describe MediaAttachment, :attachment_processing do
     it_behaves_like 'static 600x400 image', 'image/jpeg', '.jpeg'
   end
 
+  describe 'monochrome jpg' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('monochrome.png')) }
+
+    it_behaves_like 'static 600x400 image', 'image/png', '.png'
+  end
+
   describe 'base64-encoded image' do
     let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('600x400.jpeg').read)}" }
     let(:media) { Fabricate(:media_attachment, file: base64_attachment) }
@@ -169,51 +239,15 @@ RSpec.describe MediaAttachment, :attachment_processing do
   end
 
   describe 'animated gif' do
-    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('avatar.gif')) }
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400-animated.gif')) }
 
-    it 'sets correct file metadata' do
-      expect(media)
-        .to have_attributes(
-          type: eq('gifv'),
-          file_content_type: eq('video/mp4')
-        )
-      expect(media_metadata)
-        .to include(
-          original: include(
-            width: eq(128),
-            height: eq(128)
-          )
-        )
-    end
+    it_behaves_like 'animated 600x400 image'
   end
 
-  describe 'static gif' do
-    fixtures = [
-      { filename: 'attachment.gif', width: 600, height: 400, aspect: 1.5 },
-      { filename: 'mini-static.gif', width: 32, height: 32, aspect: 1.0 },
-    ]
+  describe 'animated png' do
+    let(:media) { Fabricate(:media_attachment, file: attachment_fixture('600x400-animated.png')) }
 
-    fixtures.each do |fixture|
-      context fixture[:filename] do
-        let(:media) { Fabricate(:media_attachment, file: attachment_fixture(fixture[:filename])) }
-
-        it 'sets correct file metadata' do
-          expect(media)
-            .to have_attributes(
-              type: eq('image'),
-              file_content_type: eq('image/gif')
-            )
-          expect(media_metadata)
-            .to include(
-              original: include(
-                width: eq(fixture[:width]),
-                height: eq(fixture[:height]),
-                aspect: eq(fixture[:aspect])
-              )
-            )
-        end
-      end
-    end
+    it_behaves_like 'animated 600x400 image'
   end
 
   describe 'ogg with cover art' do

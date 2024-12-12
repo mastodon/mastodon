@@ -1,9 +1,16 @@
 inherit_from: ../../.rubocop.yml
 
-Naming/VariableNumber:
-  CheckSymbols: false
+# Below are all enabled as workaround for https://docs.rubocop.org/rubocop/configuration.html#path-relativity
+# TODO: Delete this file and move above config to base naming config
 
-# Enabled here as workaround for https://docs.rubocop.org/rubocop/configuration.html#path-relativity
 Rails/CreateTableWithTimestamps:
+  Include:
+    - '*.rb'
+
+Rails/ThreeStateBooleanColumn:
+  Include:
+    - '*.rb'
+
+Rails/ReversibleMigration:
   Include:
     - '*.rb'
