@@ -214,6 +214,7 @@ tr:
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
         promote_user: Kullanıcıyı Yükselt
+        publish_terms_of_service: Hizmet Şartlarını Yayınla
         reject_appeal: İtirazı Reddet
         reject_user: Kullanıcıyı Reddet
         remove_avatar_user: Profil Resmini Kaldır
@@ -278,6 +279,7 @@ tr:
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
         promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
+        publish_terms_of_service_html: "%{name} hizmet şartları güncellemelerini yayınladı"
         reject_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını reddetti"
         reject_user_html: "%{name}, %{target} konumundan kaydı reddetti"
         remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
@@ -928,14 +930,25 @@ tr:
     terms_of_service:
       back: Hizmet şartlarına dön
       changelog: Ne Değişti
+      create: Kendinizinkini kullanın
       current: Şimdiki
       draft: Taslak
       generate: Şablon kullan
       generates:
         action: Oluştur
+        chance_to_review_html: "<strong>Üretilmiş hizmet şartları otomatik olarak yayınlanmayacaktır.</strong> Sonucu gözden geçirme şansınız olacaktır. Devam etmek için lütfen gerekli ayrıntıları doldurun."
+        explanation_html: Sağlanan hizmet şartları şablonu yalnızca bilgilendirme amaçlıdır ve herhangi bir konuda yasal tavsiye olarak yorumlanmamalıdır. Lütfen durumunuz ve belirli yasal sorularınız hakkında kendi hukuk müşavirinize danışın.
+        title: Hizmet Şartları Kurulumu
       history: Tarihçe
       live: Canlı
+      no_history: Henüz kaydedilmiş hizmet şartları değişikliği yok.
+      no_terms_of_service_html: Şu anda yapılandırılmış herhangi bir hizmet şartınız yok. Hizmet şartları, kullanıcılarınızla olan anlaşmazlıklarda netlik sağlamak ve sizi olası yükümlülüklerden korumak içindir.
+      notified_on_html: Kullanıcılar %{date} tarihinde bilgilendirildi
       notify_users: Kullanıcılara bildir
+      preview:
+        explanation_html: 'E-posta, %{date} tarihinden önce kaydolan <strong>%{display_count} kullanıcıya</strong> gönderilecektir. E-posta içerisinde aşağıdaki metin yer alacaktır:'
+        send_preview: Ön izlemeyi %{email} adresine gönder
+        title: Hizmet şartları bildirimini öz izle
       publish: Yayınla
       published_on_html: "%{date} tarihinde yayınlandı"
       save_draft: Taslağı kaydet
@@ -1192,6 +1205,7 @@ tr:
       view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     use_security_key: Güvenlik anahtarını kullan
+    user_agreement_html: <a href="%{terms_of_service_path}" target="_blank">hizmet şartları</a> ve <a href="%{privacy_policy_path}" target="_blank">gizlilik politikasını</a> okudum ve kabul ediyorum
   author_attribution:
     example_title: Örnek metin
     hint_html: Mastodon dışında haber veya günlük yazıları mı yazıyorsunuz? Bu yazılar Mastodon'da paylaşıldığında size nasıl atıf yapılacağını denetleyin.
@@ -1916,8 +1930,13 @@ tr:
       subject: Hesabınıza yeni bir IP adresinden erişim oldu
       title: Yeni bir oturum açma
     terms_of_service_changed:
+      agreement: "%{domain} sunucusunu kullanmaya devam ederek bu şartları kabul etmiş olursunuz. Güncellenen şartları kabul etmiyorsanız, %{domain} ile olan sözleşmenizi istediğiniz zaman hesabınızı silerek feshedebilirsiniz."
+      changelog: 'Bir bakışta, bu güncellemenin sizin için anlamı şudur:'
+      description: 'Bu e-postayı alıyorsunuz çünkü %{domain} adresindeki hizmet şartlarımızda bazı değişiklikler yapıyoruz. Aşağıda tümü yer alan güncellenen şartları incelemenizi öneriyoruz:'
+      description_html: Bu e-postayı alıyorsunuz çünkü %{domain} adresindeki hizmet şartlarımızda bazı değişiklikler yapıyoruz. <a href="%{path}" target="_blank">Tüm güncellenen şartları buraya tıklayarak</a> incelemenizi öneririz.
       sign_off: "%{domain} Ekibi"
       subject: Şimdiki hizmet şartlarımıza güncellemeler
+      subtitle: "%{domain} adresindeki hizmet şartları değişiyor"
       title: Önemli güncelleme
     warning:
       appeal: Bir itiraz gönder
