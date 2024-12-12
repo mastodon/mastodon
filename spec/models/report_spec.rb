@@ -156,13 +156,13 @@ RSpec.describe Report do
     end
   end
 
-  describe 'validations' do
+  describe 'Validations' do
     let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
 
     it 'is invalid if comment is longer than character limit and reporter is local' do
-      report = Fabricate.build(:report, comment: comment_over_limit)
-      expect(report.valid?).to be false
-      expect(report).to model_have_error_on_field(:comment)
+      report = Fabricate.build(:report)
+
+      expect(report).to_not allow_value(comment_over_limit).for(:comment)
     end
 
     it 'is valid if comment is longer than character limit and reporter is not local' do
@@ -171,16 +171,16 @@ RSpec.describe Report do
     end
 
     it 'is invalid if it references invalid rules' do
-      report = Fabricate.build(:report, category: :violation, rule_ids: [-1])
-      expect(report.valid?).to be false
-      expect(report).to model_have_error_on_field(:rule_ids)
+      report = Fabricate.build(:report, category: :violation)
+
+      expect(report).to_not allow_value([-1]).for(:rule_ids)
     end
 
     it 'is invalid if it references rules but category is not "violation"' do
       rule = Fabricate(:rule)
-      report = Fabricate.build(:report, category: :spam, rule_ids: rule.id)
-      expect(report.valid?).to be false
-      expect(report).to model_have_error_on_field(:rule_ids)
+      report = Fabricate.build(:report, category: :spam)
+
+      expect(report).to_not allow_value(rule.id).for(:rule_ids)
     end
 
     def comment_over_limit
