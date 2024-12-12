@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_12_153254) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_12_154231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -915,7 +915,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_12_153254) do
   end
 
   create_table "scheduled_statuses", force: :cascade do |t|
-    t.bigint "account_id"
+    t.bigint "account_id", null: false
     t.datetime "scheduled_at", precision: nil
     t.jsonb "params"
     t.index ["account_id"], name: "index_scheduled_statuses_on_account_id"
