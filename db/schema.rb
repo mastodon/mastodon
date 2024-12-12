@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_12_152910) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_12_153054) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -227,8 +227,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_12_152910) do
   end
 
   create_table "announcement_mutes", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "announcement_id"
+    t.bigint "account_id", null: false
+    t.bigint "announcement_id", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["account_id", "announcement_id"], name: "index_announcement_mutes_on_account_id_and_announcement_id", unique: true
