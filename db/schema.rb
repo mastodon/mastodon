@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_12_152618) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_12_152734) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,10 +43,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_12_152618) do
   end
 
   create_table "account_domain_blocks", force: :cascade do |t|
-    t.string "domain"
+    t.string "domain", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.bigint "account_id"
+    t.bigint "account_id", null: false
     t.index ["account_id", "domain"], name: "index_account_domain_blocks_on_account_id_and_domain", unique: true
   end
 
