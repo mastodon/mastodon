@@ -938,12 +938,16 @@ is:
       generate: Nota sniðmát
       generates:
         action: Útbúa
+        chance_to_review_html: "<strong>Sjálfvirkt útbúnu þjónustuskilmálarnir verða ekki birtir sjálfkrafa.</strong> Þú munt geta yfirfarið textann. Fylltu inn nauðsynlegar upplýsingar til að halda áfram to proceed."
         title: Uppsetning þjónustuskilmála
       history: Ferill
       live: Í beinni
+      no_history: Það eru engar breytingar ennþá á þjónustuskilmálunum.
+      no_terms_of_service_html: Þú ert ekki með neina þjónustuskilmála stillta í augnablikinu. Þjónustuskilmálum er ætlað að gera ábyrgð ljósa og vernda þig fyrir mögulegum kröfum sem notendur gætu gert í ágreiningsmálum við þig.
       notified_on_html: Notendur látnir vita þann %{date}
       notify_users: Láta notendur vita
       preview:
+        explanation_html: 'Tölvupósturinn verður sendur til <strong>%{display_count} notenda</strong> sem hafa skráð sig fyrir %{date}. Eftirfarandi texti verður hafður með í póstinum:'
         send_preview: Senda forskoðun til %{email}
         send_to_all:
           one: Senda %{display_count} tölvupóst
@@ -1932,6 +1936,8 @@ is:
       subject: Skráð hefur verið inn á aðganginn þinn frá nýju IP-vistfangi
       title: Ný innskráning
     terms_of_service_changed:
+      agreement: Með því að halda áfram að nota %{domain}, ert þú þar með að samþykkja þessa skilmála. Ef þú ert ósammála þessum uppfærðu skilmálum, geturðu hvenær sem er sagt upp samþykki þínu gagnvart %{domain} með því að eyða notandaaðgangi þínum.
+      changelog: 'Í stuttu máli er það þetta sem þessi uppfærsla þýðir fyrir þig:'
       sign_off: "%{domain}-teymið"
       subject: Breytingar á þjónustuskilmálum okkar
       subtitle: Þjónustuskilmálar eru að breytast á %{domain}
@@ -2040,4 +2046,4 @@ is:
     not_enabled: Þú hefur ennþá ekki virkjað WebAuthn
     not_supported: Þessi vafri styður ekki öryggislykla
     otp_required: Til að nota öryggislykla skaltu fyrst virkja tveggja-þátta auðkenningu.
-    registered_on: Nýskráður %{date}
+    registered_on: Skráði sig %{date}
