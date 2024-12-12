@@ -16,5 +16,5 @@ export const SearchSection = ({ title, onClickMore, children }) => (
 SearchSection.propTypes = {
   title: PropTypes.node.isRequired,
   onClickMore: PropTypes.func,
-  children: PropTypes.children,
+  children: PropTypes.node,
 };
