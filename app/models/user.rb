@@ -350,7 +350,7 @@ class User < ApplicationRecord
   end
 
   def revoke_access!
-    Doorkeeper::AccessGrant.by_resource_owner(self).update_all(revoked_at: Time.now.utc)
+    Doorkeeper::AccessGrant.by_resource_owner(self).touch_all(:revoked_at)
 
     Doorkeeper::AccessToken.by_resource_owner(self).in_batches do |batch|
       batch.touch_all(:revoked_at)
