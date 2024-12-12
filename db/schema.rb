@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_12_154231) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_12_154346) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -1130,7 +1130,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_12_154231) do
   end
 
   create_table "user_invite_requests", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.text "text"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
