@@ -39,7 +39,7 @@ namespace :admin do
     resource :draft, only: [:show, :update]
   end
 
-  resources :terms_of_service, only: [:index, :create, :update] do
+  resources :terms_of_service, only: [:index] do
     resource :preview, only: [:show], module: :terms_of_service
     resource :test, only: [:create], module: :terms_of_service
     resource :distribution, only: [:create], module: :terms_of_service
