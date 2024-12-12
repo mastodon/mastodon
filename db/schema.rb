@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_12_152734) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_12_152910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -213,7 +213,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_12_152734) do
   end
 
   create_table "admin_action_logs", force: :cascade do |t|
-    t.bigint "account_id"
+    t.bigint "account_id", null: false
     t.string "action", default: "", null: false
     t.string "target_type"
     t.bigint "target_id"
