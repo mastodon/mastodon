@@ -17,7 +17,7 @@ RSpec.describe REST::ExtendedDescriptionSerializer do
             'content' => eq(<<~HTML),
               <p>Hello world</p>
             HTML
-            'updated_at' => eq('2024-11-28T16:20:00.000Z')
+            'updated_at' => eq('2024-11-28T16:20:00+00:00')
           )
       end
     end
@@ -29,7 +29,7 @@ RSpec.describe REST::ExtendedDescriptionSerializer do
         expect(subject)
           .to include(
             'content' => eq(''),
-            'updated_at' => eq('2024-11-28T16:20:00.000Z')
+            'updated_at' => eq('2024-11-28T16:20:00+00:00')
           )
       end
     end
