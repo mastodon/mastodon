@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_12_154346) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_13_170053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,8 +24,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_12_154346) do
   end
 
   create_table "account_conversations", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "conversation_id"
+    t.bigint "account_id", null: false
+    t.bigint "conversation_id", null: false
     t.bigint "participant_account_ids", default: [], null: false, array: true
     t.bigint "status_ids", default: [], null: false, array: true
     t.bigint "last_status_id"
