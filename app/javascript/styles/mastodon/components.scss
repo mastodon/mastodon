@@ -1960,6 +1960,8 @@ body > [data-popper-placement] {
         }
 
         &__handle {
+          overflow: hidden;
+          text-overflow: ellipsis;
           user-select: all;
         }
       }
@@ -7925,6 +7927,8 @@ noscript {
           text-overflow: ellipsis;
 
           span {
+            overflow: hidden;
+            text-overflow: ellipsis;
             user-select: all;
           }
 
