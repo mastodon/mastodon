@@ -15,7 +15,7 @@
 
 Mastodon is a **free, open-source social network server** based on ActivityPub where users can follow friends and discover new ones. On Mastodon, users can publish anything they want: links, pictures, text, and video. All Mastodon servers are interoperable as a federated network (users on one server can seamlessly communicate with users from another one, including non-Mastodon software that implements ActivityPub!)
 
-## 🐘 Navigation
+## Navigation
 
 - [Project homepage 🐘](https://joinmastodon.org)
 - [Support the development via Patreon][patreon]
@@ -29,29 +29,29 @@ Mastodon is a **free, open-source social network server** based on ActivityPub w
 
 [patreon]: https://www.patreon.com/mastodon
 
-## ✨ Features
+## Features
 
 <img src="/app/javascript/images/elephant_ui_working.svg?raw=true" align="right" width="30%" />
 
-#### **🔶 No vendor lock-in: Fully interoperable with any conforming platform** - It doesn't have to be Mastodon; whatever implements ActivityPub is part of the social network! [Learn more](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/)
+**No vendor lock-in: Fully interoperable with any conforming platform** - It doesn't have to be Mastodon; whatever implements ActivityPub is part of the social network! [Learn more](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/)
 
-#### **🔶 Real-time, chronological timeline updates** - updates of people you're following appear in real-time in the UI via WebSockets. There's a firehose view as well!
+**Real-time, chronological timeline updates** - updates of people you're following appear in real-time in the UI via WebSockets. There's a firehose view as well!
 
-#### **🔶 Media attachments like images and short videos** - upload and view images and WebM/MP4 videos attached to the updates. Videos with no audio track are treated like GIFs; normal videos loop continuously!
+**Media attachments like images and short videos** - upload and view images and WebM/MP4 videos attached to the updates. Videos with no audio track are treated like GIFs; normal videos loop continuously!
 
-#### **🔶 Safety and moderation tools** - Mastodon includes private posts, locked accounts, phrase filtering, muting, blocking, and all sorts of other features, along with a reporting and moderation system. [Learn more](https://blog.joinmastodon.org/2018/07/cage-the-mastodon/)
+**Safety and moderation tools** - Mastodon includes private posts, locked accounts, phrase filtering, muting, blocking, and all sorts of other features, along with a reporting and moderation system. [Learn more](https://blog.joinmastodon.org/2018/07/cage-the-mastodon/)
 
-#### **🔶 OAuth2 and a straightforward REST API** - Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Streaming APIs. This results in a rich app ecosystem with a lot of choices!
+**OAuth2 and a straightforward REST API** - Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Streaming APIs. This results in a rich app ecosystem with a lot of choices!
 
-## 📦 Deployment
+## Deployment
 
-### 🗃️ Tech stack
+### Tech stack
 
 - **Ruby on Rails** powers the REST API and other web pages
 - **React.js** and **Redux** are used for the dynamic parts of the interface
 - **Node.js** powers the streaming API
 
-### ⬇️ Requirements
+### Requirements
 
 - **PostgreSQL** 12+
 - **Redis** 4+
@@ -60,7 +60,7 @@ Mastodon is a **free, open-source social network server** based on ActivityPub w
 
 The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, and **Scalingo**. For Helm charts, reference the [mastodon/chart repository](https://github.com/mastodon/chart). The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
 
-### 🏗️ Codebase structure
+### Codebase structure
 
 ```
 ├──.devcontainer                     // Scripts and preparation files for running Mastodon in a development container such as github.dev
@@ -78,9 +78,9 @@ The repository includes deployment configurations for **Docker and docker-compos
 └──vendor
 ```
 
-## 🛠️ Building from source
+## Building from source
 
-### 🔤 Vagrant
+### Vagrant
 
 A **Vagrant** configuration is included for development purposes. To use it, complete the following steps:
 
@@ -90,7 +90,7 @@ A **Vagrant** configuration is included for development purposes. To use it, com
 - Run `vagrant ssh -c "cd /vagrant && bin/dev"`
 - Open `http://mastodon.local` in your browser
 
-### 💻 macOS
+### macOS
 
 To set up **macOS** for native development, complete the following steps:
 
@@ -103,7 +103,7 @@ libidn nvm` to install the required project dependencies
 - Finally, run the `bin/dev` script which will launch services via `overmind`
   (if installed) or `foreman`
 
-### 🐋 Docker
+### Docker
 
 For production hosting and deployment with **Docker**, use the `Dockerfile` and
 `docker-compose.yml` in the project root directory.
@@ -116,14 +116,14 @@ docker compose -f .devcontainer/compose.yaml exec app bin/setup
 docker compose -f .devcontainer/compose.yaml exec app bin/dev
 ```
 
-### 🫙 Dev Containers
+### Dev Containers
 
 Within IDEs that support the [Development Containers] specification, start the
 "Mastodon on local machine" container from the editor. The necessary `docker
 compose` commands to build and setup the container should run automatically. For
 **Visual Studio Code** this requires installing the [Dev Container extension].
 
-### 😺 GitHub Codespaces
+### GitHub Codespaces
 
 [GitHub Codespaces] provides a web-based version of VS Code and a cloud hosted
 development environment configured with the software needed for this project.
@@ -136,7 +136,7 @@ development environment configured with the software needed for this project.
 - Wait for an _Open in Browser_ prompt. This will open Mastodon
 - On the _Ports_ tab "stream" setting change _Port visibility_ → _Public_
 
-## 🙋 Contributing
+## Contributing
 
 Mastodon is **free, open-source software** licensed under **AGPLv3**.
 
@@ -144,7 +144,7 @@ You can open issues for bugs you've found or features you think are missing. You
 
 **IRC channel**: #mastodon on [`irc.libera.chat`](https://libera.chat)
 
-## ⚖️ License
+## License
 
 Copyright (c) 2016-2024 Eugen Rochko (+ [`mastodon authors`](AUTHORS.md))
 
