@@ -71,11 +71,11 @@ The repository includes deployment configurations for **Docker and docker-compos
 ├──db                                // Database files for Mastodon's information database (Host-specific backend)
 ├──dist                              // Collection of code files relating app hosting on domains and port relations
 ├──lib                               // Code and file library
-├──log                               // Hosting logs (Host-specific backend; reserved for Mastodon hosting)
+├──log                               // Hosting logs
 ├──public                            // Static resource files
 ├──spec                              // Helpers, presenters, and other code models
-├──streaming                         // (Host-specific backend; reserved for Mastodon hosting)
-└──vendor                            // (Host-specific backend; reserved for Mastodon hosting)
+├──streaming                         // Streaming API service
+└──vendor
 ```
 
 ## 🛠️ Building from source
