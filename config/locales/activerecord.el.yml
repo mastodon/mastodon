@@ -39,6 +39,11 @@ el:
           attributes:
             data:
               malformed: δεν είναι έγκυρα
+        list_account:
+          attributes:
+            account_id:
+              taken: είναι ήδη στη λίστα
+          must_be_following: πρέπει να είναι ένας λογαριασμός που ακολουθείς
         status:
           attributes:
             reblog:

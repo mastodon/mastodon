@@ -1,0 +1,39 @@
+- content_for :page_title do
+  = t('admin.terms_of_service.title')
+
+- content_for :heading do
+  %h2= t('admin.terms_of_service.title')
+  = render partial: 'links'
+
+- if @terms_of_service.present?
+  .admin__terms-of-service__container
+    .admin__terms-of-service__container__header
+      .dot-indicator.success
+        .dot-indicator__indicator
+        %span= t('admin.terms_of_service.live')
+      ·
+      %span
+        = t('admin.terms_of_service.published_on_html', date: tag.time(l(@terms_of_service.published_at.to_date), class: 'formatted', date: @terms_of_service.published_at.to_date.iso8601))
+      ·
+      - if @terms_of_service.notification_sent?
+        %span
+          = t('admin.terms_of_service.notified_on_html', date: tag.time(l(@terms_of_service.notification_sent_at.to_date), class: 'formatted', date: @terms_of_service.notification_sent_at.to_date.iso8601))
+      - else
+        = link_to t('admin.terms_of_service.notify_users'), admin_terms_of_service_preview_path(@terms_of_service), class: 'link-button'
+
+    .admin__terms-of-service__container__body
+      .prose
+        = markdown(@terms_of_service.text)
+
+  %hr.spacer/
+
+  %h3= t('admin.terms_of_service.changelog')
+
+  .prose
+    = markdown(@terms_of_service.changelog)
+- else
+  %p.lead= t('admin.terms_of_service.no_terms_of_service_html')
+
+  .content__heading__actions
+    = link_to t('admin.terms_of_service.create'), admin_terms_of_service_draft_path, class: 'button'
+    = link_to t('admin.terms_of_service.generate'), admin_terms_of_service_generate_path, class: 'button button-secondary'

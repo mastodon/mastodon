@@ -15,6 +15,12 @@ fa:
       user/invite_request:
         text: دلیل
     errors:
+      attributes:
+        domain:
+          invalid: نام دامنهٔ معتبری نیست
+      messages:
+        invalid_domain_on_line: "%{value} نام دامنهٔ معتبری نیست"
+        too_many_lines: بیش از کران %{limit} خط است
       models:
         account:
           attributes:

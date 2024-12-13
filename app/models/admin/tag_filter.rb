@@ -14,7 +14,7 @@ class Admin::TagFilter
   end
 
   def results
-    scope = Tag.reorder(nil)
+    scope = Tag.all
 
     params.each do |key, value|
       next if key == :page

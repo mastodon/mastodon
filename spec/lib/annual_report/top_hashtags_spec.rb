@@ -21,20 +21,31 @@ RSpec.describe AnnualReport::TopHashtags do
       let(:account) { Fabricate :account }
 
       let(:tag) { Fabricate :tag }
+      let(:most_tag) { Fabricate :tag }
 
       before do
         _other = Fabricate :status
+
         first = Fabricate :status, account: account
         first.tags << tag
+        first.tags << most_tag
+
         last = Fabricate :status, account: account
         last.tags << tag
+        last.tags << most_tag
+
+        middle = Fabricate :status, account: account
+        middle.tags << most_tag
       end
 
       it 'builds a report for an account' do
         expect(subject.generate)
           .to include(
-            top_hashtags: contain_exactly(
-              include(name: tag.name, count: 2)
+            top_hashtags: eq(
+              [
+                { name: most_tag.name, count: 3 },
+                { name: tag.name, count: 2 },
+              ]
             )
           )
       end

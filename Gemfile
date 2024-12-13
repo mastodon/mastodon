@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 3.1.0'
+ruby '>= 3.2.0'
 
 gem 'propshaft'
 gem 'puma', '~> 6.3'
 gem 'rack', '~> 2.2.7'
-gem 'rails', '~> 7.1.1'
+gem 'rails', '~> 7.2.0'
 gem 'thor', '~> 1.2'
 
 gem 'dotenv'
@@ -16,16 +16,16 @@ gem 'pghero'
 
 gem 'aws-sdk-s3', '~> 1.123', require: false
 gem 'blurhash', '~> 0.1'
-gem 'fog-core', '<= 2.5.0'
+gem 'fog-core', '<= 2.6.0'
 gem 'fog-openstack', '~> 1.0', require: false
+gem 'jd-paperclip-azure', '~> 3.0', require: false
 gem 'kt-paperclip', '~> 7.2'
-gem 'md-paperclip-azure', '~> 2.2', require: false
 gem 'ruby-vips', '~> 2.2', require: false
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
 gem 'bootsnap', '~> 1.18.0', require: false
-gem 'browser', '< 6' # https://github.com/fnando/browser/issues/543
+gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.3'
 gem 'devise', '~> 4.9'
@@ -47,13 +47,14 @@ gem 'color_diff', '~> 0.1'
 gem 'csv', '~> 3.2'
 gem 'discard', '~> 1.2'
 gem 'doorkeeper', '~> 5.6'
+gem 'faraday-httpclient'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'hiredis', '~> 0.6'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.2.0'
 gem 'http_accept_language', '~> 2.1'
-gem 'httplog', '~> 1.7.0'
+gem 'httplog', '~> 1.7.0', require: false
 gem 'i18n'
 gem 'idn-ruby', require: 'idn'
 gem 'inline_svg'
@@ -61,7 +62,8 @@ gem 'irb', '~> 1.8'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
-gem 'mime-types', '~> 3.5.0', require: 'mime/types/columnar'
+gem 'mime-types', '~> 3.6.0', require: 'mime/types/columnar'
+gem 'mutex_m'
 gem 'nokogiri', '~> 1.15'
 gem 'oj', '~> 3.14'
 gem 'ox', '~> 2.14'
@@ -111,8 +113,8 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-http_client', '~> 0.22.3', require: false
   gem 'opentelemetry-instrumentation-net_http', '~> 0.22.4', require: false
   gem 'opentelemetry-instrumentation-pg', '~> 0.29.0', require: false
-  gem 'opentelemetry-instrumentation-rack', '~> 0.24.1', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.31.0', require: false
+  gem 'opentelemetry-instrumentation-rack', '~> 0.25.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.33.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.25.3', require: false
   gem 'opentelemetry-instrumentation-sidekiq', '~> 0.25.2', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false
@@ -170,7 +172,7 @@ group :development do
   gem 'rubocop-rspec_rails', require: false
 
   # Annotates modules with schema
-  gem 'annotate', '~> 3.2'
+  gem 'annotaterb', '~> 4.13'
 
   # Enhanced error message pages for development
   gem 'better_errors', '~> 2.9'
@@ -220,7 +222,7 @@ gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 gem 'xorcist', '~> 1.1'
 
-gem 'net-http', '~> 0.4.0'
+gem 'net-http', '~> 0.5.0'
 gem 'rubyzip', '~> 2.3'
 
 gem 'hcaptcha', '~> 7.1'

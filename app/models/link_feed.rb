@@ -19,6 +19,8 @@ class LinkFeed < PublicFeed
 
     scope.merge!(discoverable)
     scope.merge!(attached_to_preview_card)
+    scope.merge!(account_filters_scope) if account?
+    scope.merge!(language_scope) if account&.chosen_languages.present?
 
     scope.to_a_paginated_by_id(limit, max_id: max_id, since_id: since_id, min_id: min_id)
   end

@@ -1,8 +1,5 @@
 // @ts-check
-
-const allowedPrefixes = (document.currentScript && document.currentScript.tagName.toUpperCase() === 'SCRIPT' && document.currentScript.dataset.allowedPrefixes) ? document.currentScript.dataset.allowedPrefixes.split(' ') : [];
-
-(function () {
+(function (allowedPrefixes) {
   'use strict';
 
   /**
@@ -81,7 +78,7 @@ const allowedPrefixes = (document.currentScript && document.currentScript.tagNam
       embeds.set(id, iframe);
 
       iframe.allow = 'fullscreen';
-      iframe.sandbox = 'allow-scripts allow-same-origin';
+      iframe.sandbox = 'allow-scripts allow-same-origin allow-popups';
       iframe.style.border = 0;
       iframe.style.overflow = 'hidden';
       iframe.style.display = 'block';
@@ -112,7 +109,7 @@ const allowedPrefixes = (document.currentScript && document.currentScript.tagNam
       iframe.width = container.clientWidth;
       iframe.height = 0;
       iframe.allow = 'fullscreen';
-      iframe.sandbox = 'allow-scripts allow-same-origin';
+      iframe.sandbox = 'allow-scripts allow-same-origin allow-popups';
       iframe.style.border = 0;
       iframe.style.overflow = 'hidden';
       iframe.style.display = 'block';
@@ -127,4 +124,4 @@ const allowedPrefixes = (document.currentScript && document.currentScript.tagNam
       container.appendChild(iframe);
     });
   });
-})();
+})((document.currentScript && document.currentScript.tagName.toUpperCase() === 'SCRIPT' && document.currentScript.dataset.allowedPrefixes) ? document.currentScript.dataset.allowedPrefixes.split(' ') : []);

@@ -298,9 +298,10 @@ export default function notifications(state = initialState, action) {
     return action.payload.timeline === 'home' ?
       state.update(action.payload.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items) :
       state;
-  case NOTIFICATIONS_MARK_AS_READ:
+  case NOTIFICATIONS_MARK_AS_READ: {
     const lastNotification = state.get('items').find(item => item !== null);
     return lastNotification ? recountUnread(state, lastNotification.get('id')) : state;
+  }
   case NOTIFICATIONS_SET_BROWSER_SUPPORT:
     return state.set('browserSupport', action.value);
   case NOTIFICATIONS_SET_BROWSER_PERMISSION:

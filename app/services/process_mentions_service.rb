@@ -13,7 +13,7 @@ class ProcessMentionsService < BaseService
 
     return unless @status.local?
 
-    @previous_mentions = @status.active_mentions.includes(:account).to_a
+    @previous_mentions = @status.mentions.includes(:account).to_a
     @current_mentions  = []
 
     Status.transaction do
@@ -44,7 +44,7 @@ class ProcessMentionsService < BaseService
       if mention_undeliverable?(mentioned_account)
         begin
           mentioned_account = ResolveAccountService.new.call(Regexp.last_match(1))
-        rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
+        rescue Webfinger::Error, *Mastodon::HTTP_CONNECTION_ERRORS, Mastodon::UnexpectedResponseError
           mentioned_account = nil
         end
       end
@@ -56,6 +56,8 @@ class ProcessMentionsService < BaseService
       mention   = @previous_mentions.find { |x| x.account_id == mentioned_account.id }
       mention ||= @current_mentions.find  { |x| x.account_id == mentioned_account.id }
       mention ||= @status.mentions.new(account: mentioned_account)
+
+      mention.silent = false
 
       @current_mentions << mention
 
@@ -78,7 +80,7 @@ class ProcessMentionsService < BaseService
     end
 
     @current_mentions.each do |mention|
-      mention.save if mention.new_record? && @save_records
+      mention.save if (mention.new_record? || mention.silent_changed?) && @save_records
     end
 
     # If previous mentions are no longer contained in the text, convert them
@@ -86,7 +88,7 @@ class ProcessMentionsService < BaseService
     # received a notification might be more confusing
     removed_mentions = @previous_mentions - @current_mentions
 
-    Mention.where(id: removed_mentions.map(&:id)).update_all(silent: true) unless removed_mentions.empty?
+    Mention.where(id: removed_mentions.map(&:id), silent: false).update_all(silent: true) unless removed_mentions.empty?
   end
 
   def mention_undeliverable?(mentioned_account)

@@ -8,9 +8,9 @@ class AnnualReport::TopStatuses < AnnualReport::Source
 
     {
       top_statuses: {
-        by_reblogs: top_reblogs,
-        by_favourites: top_favourites,
-        by_replies: top_replies,
+        by_reblogs: top_reblogs&.to_s,
+        by_favourites: top_favourites&.to_s,
+        by_replies: top_replies&.to_s,
       },
     }
   end

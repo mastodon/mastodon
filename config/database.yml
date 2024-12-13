@@ -55,10 +55,11 @@ production:
     prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
   replica:
     <<: *default
-    database: <%= ENV['REPLICA_DB_NAME'] ||ENV['DB_NAME'] || 'mastodon_production' %>
-    username: <%= ENV['REPLICA_DB_USER'] ||ENV['DB_USER'] || 'mastodon' %>
+    database: <%= ENV['REPLICA_DB_NAME'] || ENV['DB_NAME'] || 'mastodon_production' %>
+    username: <%= ENV['REPLICA_DB_USER'] || ENV['DB_USER'] || 'mastodon' %>
     password: <%= (ENV['REPLICA_DB_PASS'] || ENV['DB_PASS'] || '').to_json %>
-    host: <%= ENV['REPLICA_DB_HOST'] ||ENV['DB_HOST'] || 'localhost' %>
-    port: <%= ENV['REPLICA_DB_PORT'] ||ENV['DB_PORT'] || 5432 %>
-    prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
+    host: <%= ENV['REPLICA_DB_HOST'] || ENV['DB_HOST'] || 'localhost' %>
+    port: <%= ENV['REPLICA_DB_PORT'] || ENV['DB_PORT'] || 5432 %>
+    prepared_statements: <%= ENV['REPLICA_PREPARED_STATEMENTS'] || ENV['PREPARED_STATEMENTS'] || 'true' %>
     replica: true
+    database_tasks: <%= ENV['REPLICA_DB_TASKS'] || 'true' %>

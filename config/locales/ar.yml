@@ -847,7 +847,6 @@ ar:
       original_status: المنشور الأصلي
       reblogs: المعاد تدوينها
       status_changed: عُدّل المنشور
-      title: منشورات الحساب
       trending: المتداولة
       visibility: مدى الظهور
       with_media: تحتوي على وسائط
@@ -1119,7 +1118,6 @@ ar:
     migrate_account: الانتقال إلى حساب مختلف
     migrate_account_html: إن كنت ترغب في تحويل هذا الحساب نحو حساب آخَر، يُمكِنُك <a href="%{path}">إعداده هنا</a>.
     or_log_in_with: أو قم بتسجيل الدخول بواسطة
-    privacy_policy_agreement_html: لقد قرأتُ وأوافق على سياسة الخصوصية <a href="%{privacy_policy_path}" target="_blank"></a>
     progress:
       confirm: تأكيد عنوان البريد الإلكتروني
       details: تفاصيلك
@@ -1144,7 +1142,6 @@ ar:
     set_new_password: إدخال كلمة مرور جديدة
     setup:
       email_below_hint_html: قم بفحص مجلد البريد المزعج الخاص بك، أو قم بطلب آخر. يمكنك تصحيح عنوان بريدك الإلكتروني إن كان خاطئا.
-      email_settings_hint_html: انقر على الرابط الذي أرسلناه لك للتحقق من %{email}. سننتظر هنا.
       link_not_received: ألم تحصل على رابط؟
       new_confirmation_instructions_sent: سوف تتلقى رسالة بريد إلكتروني جديدة مع رابط التأكيد في غضون بضع دقائق!
       title: تحقَّق من بريدك الوارِد
@@ -1153,7 +1150,6 @@ ar:
       title: تسجيل الدخول إلى %{domain}
     sign_up:
       manual_review: عمليات التسجيل في %{domain} تمر عبر المراجعة اليدوية من قبل مشرفينا. لمساعدتنا في معالجة إنشاء حسابك، اكتب نَبْذَة عن نفسك ولماذا تريد حسابًا على %{domain}.
-      preamble: مع حساب على خادم ماستدون هذا، ستتمكن من متابعة أي شخص آخر على الشبكة، بغض النظر عن المكان الذي يستضيف فيه حسابهم.
       title: دعنا نجهّز %{domain}.
     status:
       account_status: حالة الحساب
@@ -1394,20 +1390,6 @@ ar:
       merge_long: الإبقاء علي التسجيلات الحالية وإضافة الجديدة
       overwrite: إعادة الكتابة
       overwrite_long: استبدال التسجيلات الحالية بالجديدة
-    overwrite_preambles:
-      blocking_html: أنت على وشك <strong>استبدال قائمة الحظر</strong> بما يصل إلى <strong>%{total_items} من الحسابات</strong> من <strong>%{filename}</strong>.
-      bookmarks_html: أنت على وشك <strong>استبدال إشاراتك المرجعية</strong> بما يصل إلى <strong>%{total_items} من المشاركات</strong> من <strong>%{filename}</strong>.
-      domain_blocking_html: أنت على وشك <strong>إرشاداتك المرجعية</strong> بما يصل إلى <strong>%{total_items} من المشاركات</strong> من <strong>%{filename}</strong>.
-      following_html: أنت على وشك <strong>متابعة</strong> ما يصل إلى <strong>%{total_items} من الحسابات</strong> من <strong>%{filename}</strong> و<strong>التوقف عن متابعة أي شخص آخر</strong>.
-      lists_html: إنّك بصدد <strong>استبدال قوائمك</strong> بمحتوى مِلَفّ <strong>%{filename}</strong>. ما يُقارِب <strong>%{total_items} حسابًا</strong> سوف تُضاف إلى قوائم جديدة.
-      muting_html: أنت على وشك <strong>استبدال قائمة الحسابات الصامتة</strong> بما يصل إلى <strong>%{total_items} من الحسابات</strong> من <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: أنت على وشك <strong>حظر</strong> ما يصل إلى <strong>%{total_items} من الحسابات</strong> من <strong>%{filename}</strong>.
-      bookmarks_html: أنت على وشك إضافة ما يصل إلى <strong>%{total_items} من المشاركات</strong> من <strong>%{filename}</strong> إلى <strong>إشاراتك المرجعية</strong>.
-      domain_blocking_html: أنت على وشك <strong>حظر</strong> ما يصل إلى <strong>%{total_items} من النطاقات</strong> من <strong>%{filename}</strong>.
-      following_html: أنت على وشك <strong>متابعة</strong> ما يصل إلى <strong>%{total_items} من الحسابات</strong> من <strong>%{filename}</strong>.
-      lists_html: أنت على وشك إضافة ما يصل إلى <strong>%{total_items} حسابات</strong> من <strong>%{filename}</strong> إلى <strong>قوائمك</strong>. سيتم إنشاء قوائم جديدة في حالة عدم وجود قائمة للإضافة إليها.
-      muting_html: أنت على وشك <strong>تجاهل</strong> ما يصل إلى <strong>%{total_items} من الحسابات</string> من <string>%{filename}</string>.
     preface: بإمكانك استيراد بيانات قد قُمتَ بتصديرها مِن مثيل خادم آخَر، كقوائم المستخدِمين الذين كنتَ تتابِعهم أو قُمتَ بحظرهم.
     recent_imports: الاستيرادات الحديثة
     states:
@@ -1659,7 +1641,6 @@ ar:
   scheduled_statuses:
     over_daily_limit: لقد تجاوزتَ حد الـ %{limit} منشورات مُبَرمَجة مسموح بها اليوم
     over_total_limit: لقد بلغت حد الـ %{limit} مِن المنشورات المبرمَجة
-    too_soon: يجب أن يكون تاريخ البرمجة في المستقبَل
   self_destruct:
     lead_html: للأسف، سيتم إغلاق <strong>%{domain}</strong> بشكل دائم. إذا كان لديك حساب هناك، لن تكون قادرًا على الاستمرار في استخدامه، غير أنه يمكنك طلب نسخة احتياطية لبياناتك.
     title: سيُغلق هذا الخادم أبوابه

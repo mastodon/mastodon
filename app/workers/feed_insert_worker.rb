@@ -29,27 +29,31 @@ class FeedInsertWorker
   private
 
   def check_and_insert
-    if feed_filtered?
+    filter_result = feed_filter
+
+    if filter_result
       perform_unpush if update?
     else
       perform_push
-      perform_notify if notify?
     end
+
+    perform_notify if notify?(filter_result)
   end
 
-  def feed_filtered?
+  def feed_filter
     case @type
     when :home
-      FeedManager.instance.filter?(:home, @status, @follower)
+      FeedManager.instance.filter(:home, @status, @follower)
     when :tags
-      FeedManager.instance.filter?(:tags, @status, @follower)
+      FeedManager.instance.filter(:tags, @status, @follower)
     when :list
-      FeedManager.instance.filter?(:list, @status, @list)
+      FeedManager.instance.filter(:list, @status, @list)
     end
   end
 
-  def notify?
-    return false if @type != :home || @status.reblog? || (@status.reply? && @status.in_reply_to_account_id != @status.account_id)
+  def notify?(filter_result)
+    return false if @type != :home || @status.reblog? || (@status.reply? && @status.in_reply_to_account_id != @status.account_id) ||
+                    filter_result == :filter
 
     Follow.find_by(account: @follower, target_account: @status.account)&.notify?
   end

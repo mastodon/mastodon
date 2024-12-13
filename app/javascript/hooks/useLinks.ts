@@ -2,6 +2,8 @@ import { useCallback } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
+import { isFulfilled, isRejected } from '@reduxjs/toolkit';
+
 import { openURL } from 'mastodon/actions/search';
 import { useAppDispatch } from 'mastodon/store';
 
@@ -28,12 +30,22 @@ export const useLinks = () => {
   );
 
   const handleMentionClick = useCallback(
-    (element: HTMLAnchorElement) => {
-      dispatch(
-        openURL(element.href, history, () => {
+    async (element: HTMLAnchorElement) => {
+      const result = await dispatch(openURL({ url: element.href }));
+
+      if (isFulfilled(result)) {
+        if (result.payload.accounts[0]) {
+          history.push(`/@${result.payload.accounts[0].acct}`);
+        } else if (result.payload.statuses[0]) {
+          history.push(
+            `/@${result.payload.statuses[0].account.acct}/${result.payload.statuses[0].id}`,
+          );
+        } else {
           window.location.href = element.href;
-        }),
-      );
+        }
+      } else if (isRejected(result)) {
+        window.location.href = element.href;
+      }
     },
     [dispatch, history],
   );
@@ -48,7 +60,7 @@ export const useLinks = () => {
 
       if (isMentionClick(target)) {
         e.preventDefault();
-        handleMentionClick(target);
+        void handleMentionClick(target);
       } else if (isHashtagClick(target)) {
         e.preventDefault();
         handleHashtagClick(target);

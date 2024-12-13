@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { NavLink, withRouter } from 'react-router-dom';
 
+import { isFulfilled, isRejected } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
@@ -215,8 +216,20 @@ class Header extends ImmutablePureComponent {
 
       const link = e.currentTarget;
 
-      onOpenURL(link.href, history, () => {
-        window.location = link.href;
+      onOpenURL(link.href).then((result) => {
+        if (isFulfilled(result)) {
+          if (result.payload.accounts[0]) {
+            history.push(`/@${result.payload.accounts[0].acct}`);
+          } else if (result.payload.statuses[0]) {
+            history.push(`/@${result.payload.statuses[0].account.acct}/${result.payload.statuses[0].id}`);
+          } else {
+            window.location = link.href;
+          }
+        } else if (isRejected(result)) {
+          window.location = link.href;
+        }
+      }).catch(() => {
+        // Nothing
       });
     }
   };
@@ -421,7 +434,7 @@ class Header extends ImmutablePureComponent {
 
         <div className='account__header__bar'>
           <div className='account__header__tabs'>
-            <a className='avatar' href={account.get('avatar')} rel='noopener noreferrer' target='_blank' onClick={this.handleAvatarClick}>
+            <a className='avatar' href={account.get('avatar')} rel='noopener' target='_blank' onClick={this.handleAvatarClick}>
               <Avatar account={suspended || hidden ? undefined : account} size={90} />
             </a>
 

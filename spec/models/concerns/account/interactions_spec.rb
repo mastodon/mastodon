@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Account::Interactions do
-  let(:account)            { Fabricate(:account, username: 'account') }
+  let(:account)            { Fabricate(:account) }
   let(:account_id)         { account.id }
   let(:account_ids)        { [account_id] }
-  let(:target_account)     { Fabricate(:account, username: 'target') }
+  let(:target_account)     { Fabricate(:account) }
   let(:target_account_id)  { target_account.id }
   let(:target_account_ids) { [target_account_id] }
 

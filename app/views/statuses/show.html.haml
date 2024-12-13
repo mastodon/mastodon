@@ -1,5 +1,4 @@
-- content_for :page_title do
-  = t('statuses.title', name: display_name(@account), quote: truncate(@status.spoiler_text.presence || @status.text, length: 50, omission: '…', escape: false))
+- content_for :page_title, t('statuses.title', name: display_name(@account), quote: truncate(@status.spoiler_text.presence || @status.text, length: 50, omission: '…', escape: false))
 
 - content_for :header_tags do
   - if @account.user_prefers_noindex?

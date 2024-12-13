@@ -39,9 +39,9 @@ RSpec.describe AnnualReport::TopStatuses do
         expect(subject.generate)
           .to include(
             top_statuses: include(
-              by_reblogs: reblogged_status.id,
-              by_favourites: favourited_status.id,
-              by_replies: replied_status.id
+              by_reblogs: reblogged_status.id.to_s,
+              by_favourites: favourited_status.id.to_s,
+              by_replies: replied_status.id.to_s
             )
           )
       end

@@ -64,7 +64,6 @@ module.exports = defineConfig({
     'indent': ['error', 2],
     'jsx-quotes': ['error', 'prefer-single'],
     'semi': ['error', 'always'],
-    'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
     'no-console': [
       'warn',
@@ -110,7 +109,7 @@ module.exports = defineConfig({
     'react/jsx-equals-spacing': 'error',
     'react/jsx-no-bind': 'error',
     'react/jsx-no-useless-fragment': 'error',
-    'react/jsx-no-target-blank': 'off',
+    'react/jsx-no-target-blank': ['error', { allowReferrer: true }],
     'react/jsx-tag-spacing': 'error',
     'react/jsx-uses-react': 'off', // not needed with new JSX transform
     'react/jsx-wrap-multilines': 'error',

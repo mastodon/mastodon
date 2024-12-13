@@ -23,6 +23,6 @@ class Api::V1::Statuses::TranslationsController < Api::V1::Statuses::BaseControl
   private
 
   def set_translation
-    @translation = TranslateStatusService.new.call(@status, content_locale)
+    @translation = TranslateStatusService.new.call(@status, I18n.locale.to_s)
   end
 end

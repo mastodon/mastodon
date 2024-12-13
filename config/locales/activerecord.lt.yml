@@ -39,6 +39,11 @@ lt:
           attributes:
             data:
               malformed: yra netaisyklinga.
+        list_account:
+          attributes:
+            account_id:
+              taken: jau yra sąraše.
+          must_be_following: turi būti sekama paskyra.
         status:
           attributes:
             reblog:
