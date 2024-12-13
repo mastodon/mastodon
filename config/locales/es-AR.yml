@@ -936,14 +936,22 @@ es-AR:
       generate: Usar plantilla
       generates:
         action: Generar
+        chance_to_review_html: "<strong>Los términos del servicio generados no se publicarán automáticamente..</strong> Tendrás la oportunidad de revisar el resultado. Por favor, rellena los detalles necesarios para continuar."
+        explanation_html: La plantilla de términos de servicio ofrecida es únicamente para propósito informativo, y no debería ser considerada asesoramiento legal sobre ningún tema. Por favor, consulta con tu propio consejo legal sobre tu situación y las cuestiones legales específicas que tengas.
+        title: Configuración de términos del servicio
+      history: Historial
+      live: En vivo
       no_history: Aún no se han registrado cambios en los términos del servicio.
       no_terms_of_service_html: Actualmente no tienes configurado ningún término del servicio. Los términos del servicio están pensados para proporcionar claridad y protegerte de posibles responsabilidades en disputas con tus usuarios.
       notified_on_html: Usuarios notificados el %{date}
+      notify_users: Notificar usuarios
       preview:
+        explanation_html: 'El correo se enviará a <strong>%{display_count} usuarios</strong> que se registraron antes de %{date}. El siguiente texto se incluirá en el correo:'
         send_preview: Enviar vista previa a %{email}
         send_to_all:
           one: Enviar %{display_count} correo electrónico
           other: Enviar %{display_count} correos electrónicos
+        title: Vista previa de la notificación de términos del servicios
       publish: Publicar
       published_on_html: Publicado el %{date}
       save_draft: Guardar borrador
@@ -1200,6 +1208,7 @@ es-AR:
       view_strikes: Ver incumplimientos pasados contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, probá de nuevo.
     use_security_key: Usar la llave de seguridad
+    user_agreement_html: He leído y acepto los <a href="%{terms_of_service_path}" target="_blank">términos del servicio</a> y la <a href="%{privacy_policy_path}" target="_blank">política de privacidad</a>
   author_attribution:
     example_title: Texto de ejemplo
     hint_html: "¿Escribís artículos de noticias o de blog fuera de Mastodon? Controlá cómo se te acredita cuando se comparten en Mastodon."
@@ -1924,9 +1933,13 @@ es-AR:
       subject: Se accedió a tu cuenta desde una nueva dirección IP
       title: Un nuevo inicio de sesión
     terms_of_service_changed:
+      agreement: Al seguir usando %{domain}, aceptas estos términos. Si no estás de acuerdo con los términos actualizados, puedes cancelar tu acuerdo con %{domain} en cualquier momento eliminando tu cuenta.
       changelog: 'En resumen, esto es lo que esta actualización significa para ti:'
+      description: 'Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos del servicio en %{domain}. Te animamos a revisar los términos actualizados en su totalidad aquí:'
+      description_html: Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos del servicio en %{domain}. Te animamos a revisar los <a href="%{path}" target="_blank">términos actualizados en su totalidad aquí</a>.
       sign_off: El equipo de %{domain}
       subject: Actualizaciones en nuestros términos del servicio
+      subtitle: Los términos del servicio de %{domain} están cambiando
       title: Actualización importante
     warning:
       appeal: Enviar una apelación
