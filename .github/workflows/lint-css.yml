@@ -40,4 +40,4 @@ jobs:
         uses: ./.github/actions/setup-javascript
 
       - name: Stylelint
-        run: yarn lint:css -f github
+        run: yarn lint:css --custom-formatter @csstools/stylelint-formatter-github
