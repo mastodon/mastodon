@@ -78,7 +78,7 @@ The repository includes deployment configurations for **Docker and docker-compos
 └──vendor
 ```
 
-## Building from source
+## Development
 
 ### Vagrant
 
