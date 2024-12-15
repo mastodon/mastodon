@@ -70,6 +70,9 @@ class Form::AdminSettings
     mascot
     app_icon
     favicon
+    logo
+    logo_transparent
+    email
   ).freeze
 
   OVERRIDEN_SETTINGS = {
