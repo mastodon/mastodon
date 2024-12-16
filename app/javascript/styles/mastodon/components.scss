@@ -4088,10 +4088,7 @@ a.status-card {
 }
 
 .regeneration-indicator {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 500;
-  color: $dark-text-color;
+  color: $darker-text-color;
   border: 1px solid var(--background-border-color);
   border-top: 0;
   cursor: default;
@@ -4103,31 +4100,26 @@ a.status-card {
   padding: 20px;
 
   &__figure {
-    &,
-    img {
-      display: block;
-      width: auto;
-      height: 160px;
-      margin: 0;
-    }
-  }
-
-  &--without-header {
-    padding-top: 20px + 48px;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 350px;
+    margin-top: -50px;
   }
 
   &__label {
-    margin-top: 30px;
+    text-align: center;
+    font-size: 16px;
 
     strong {
+      font-weight: 500;
       display: block;
       margin-bottom: 10px;
-      color: $dark-text-color;
+      color: $darker-text-color;
     }
 
     span {
       font-size: 15px;
-      font-weight: 400;
     }
   }
 }
