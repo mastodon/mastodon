@@ -166,7 +166,7 @@ jobs:
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           files: coverage/lcov/*.lcov
         env:
@@ -252,7 +252,7 @@ jobs:
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           files: coverage/lcov/mastodon.lcov
         env:
