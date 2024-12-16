@@ -23,6 +23,7 @@ class Fasp::Provider < ApplicationRecord
   include DebugConcern
 
   has_many :fasp_debug_callbacks, inverse_of: :fasp_provider, class_name: 'Fasp::DebugCallback', dependent: :delete_all
+  has_many :fasp_subscriptions, inverse_of: :fasp_provider, class_name: 'Fasp::Subscription', dependent: :delete_all
 
   before_create :create_keypair
 
