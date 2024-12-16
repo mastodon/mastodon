@@ -948,6 +948,9 @@ tr:
       preview:
         explanation_html: 'E-posta, %{date} tarihinden önce kaydolan <strong>%{display_count} kullanıcıya</strong> gönderilecektir. E-posta içerisinde aşağıdaki metin yer alacaktır:'
         send_preview: Ön izlemeyi %{email} adresine gönder
+        send_to_all:
+          one: "%{display_count} e-posta gönder"
+          other: "%{display_count} e-posta gönder"
         title: Hizmet şartları bildirimini öz izle
       publish: Yayınla
       published_on_html: "%{date} tarihinde yayınlandı"
