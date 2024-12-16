@@ -47,7 +47,7 @@ class FeaturedTag < ApplicationRecord
   def decrement(deleted_status)
     if statuses_count <= 1
       update(statuses_count: 0, last_status_at: nil)
-    elsif last_status_at > deleted_status.created_at
+    elsif last_status_at.present? && last_status_at > deleted_status.created_at
       update(statuses_count: statuses_count - 1)
     else
       # Fetching the latest status creation time can be expensive, so only perform it
