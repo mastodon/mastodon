@@ -10,7 +10,7 @@ RSpec.describe REST::FilterSerializer do
     )
   end
 
-  let(:filter) { Fabricate :custom_filter, expires_at: DateTime.new(2024, 11, 28, 16, 20, 0) }
+  let(:filter) { Fabricate.build :custom_filter, expires_at: DateTime.new(2024, 11, 28, 16, 20, 0) }
 
   context 'when expires_at is populated' do
     it 'parses as RFC 3339 datetime' do

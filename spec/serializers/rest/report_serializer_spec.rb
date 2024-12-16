@@ -10,28 +10,13 @@ RSpec.describe REST::ReportSerializer do
     )
   end
 
-  let(:status) { Fabricate(:status) }
-  let(:report) { Fabricate(:report, status_ids: [status.id]) }
-
-  context 'with created_at' do
-    it 'is serialized as RFC 3339 datetime' do
-      expect(subject)
-        .to include(
-          'created_at' => match_api_datetime_format
-        )
-    end
-  end
-
-  context 'with action_taken_at' do
-    let(:acting_account) { Fabricate(:account) }
-
-    before do
-      report.resolve!(acting_account)
-    end
+  context 'with timestamps' do
+    let(:report) { Fabricate(:report, action_taken_at: 3.days.ago) }
 
     it 'is serialized as RFC 3339 datetime' do
       expect(subject)
         .to include(
+          'created_at' => match_api_datetime_format,
           'action_taken_at' => match_api_datetime_format
         )
     end

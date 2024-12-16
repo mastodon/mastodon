@@ -10,8 +10,7 @@ RSpec.describe REST::ScheduledStatusSerializer do
     )
   end
 
-  let(:account) { Fabricate(:account) }
-  let(:scheduled_status) { Fabricate.build(:scheduled_status, scheduled_at: 4.minutes.from_now, account: account, params: { application_id: 123 }) }
+  let(:scheduled_status) { Fabricate.build(:scheduled_status, scheduled_at: 4.minutes.from_now, params: { application_id: 123 }) }
 
   describe 'serialization' do
     it 'returns expected values and removes application_id from params' do
