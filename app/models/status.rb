@@ -34,6 +34,7 @@ class Status < ApplicationRecord
   include Discard::Model
   include Paginable
   include RateLimitable
+  include Status::FaspConcern
   include Status::SafeReblogInsert
   include Status::SearchConcern
   include Status::SnapshotConcern
