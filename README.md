@@ -60,24 +60,6 @@ Mastodon is a **free, open-source social network server** based on ActivityPub w
 
 The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, and **Scalingo**. For Helm charts, reference the [mastodon/chart repository](https://github.com/mastodon/chart). The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
 
-### Codebase structure
-
-```
-├──.devcontainer                     // Scripts and preparation files for running Mastodon in a development container such as github.dev
-├──.github                           // Health files for GitHub such as issue templates
-├──app                               // Collection of code files relating to the app's frontend
-├──bin                               // Scripts for running and hosting Mastodon
-├──config                            // Code files relating to federated hosting and Ruby bootstrappers
-├──db                                // Database files for Mastodon's information database (Host-specific backend)
-├──dist                              // Collection of code files relating app hosting on domains and port relations
-├──lib                               // Code and file library
-├──log                               // Hosting logs
-├──public                            // Static resource files
-├──spec                              // Helpers, presenters, and other code models
-├──streaming                         // Streaming API service
-└──vendor
-```
-
 ## Development
 
 ### Vagrant
