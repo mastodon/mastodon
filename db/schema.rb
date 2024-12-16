@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_16_223452) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_16_223859) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -599,7 +599,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_223452) do
   end
 
   create_table "markers", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.string "timeline", default: "", null: false
     t.bigint "last_read_id", default: 0, null: false
     t.integer "lock_version", default: 0, null: false
