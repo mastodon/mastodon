@@ -279,6 +279,7 @@ eo:
         enable_user_html: "%{name} ebligis ensaluton por uzanto %{target}"
         memorialize_account_html: "%{name} ŝanĝis la konton de %{target} al memora paĝo"
         promote_user_html: "%{name} plirangigis uzanton %{target}"
+        publish_terms_of_service_html: "%{name} publikigis ĝisdatigojn de la kondiĉoj de la servo"
         reject_appeal_html: "%{name} malakceptis apelacion kontraŭ moderiga decido de %{target}"
         reject_user_html: "%{name} malakceptis registriĝon de %{target}"
         remove_avatar_user_html: "%{name} forigis la profilbildon de %{target}"
@@ -934,7 +935,10 @@ eo:
       draft: Malneto
       generate: Uzi ŝablonon
       generates:
+        action: Generi
         title: Agordo de kondiĉoj de uzado
+      no_history: Ankoraŭ ne estas registritaj ŝanĝoj de la kondiĉoj de la servo.
+      no_terms_of_service_html: Vi nuntempe ne havas iujn ajn kondiĉojn de la servo agordita. La kondiĉoj de la servo celas doni klarecon kaj protekti vin kontraŭ eblaj respondecoj en disputoj kun viaj uzantoj.
       preview:
         send_to_all:
           one: Sendi %{display_count} retpoŝton
@@ -1174,6 +1178,7 @@ eo:
     set_new_password: Elekti novan pasvorton
     setup:
       email_below_hint_html: Kontrolu vian spam-dosierujon aŭ petu novan. Se necese, vi povas korekti vian retadreson.
+      email_settings_hint_html: Alklaku la ligilon, kiun ni sendis al %{email} por komenci uzi Mastodon. Ni atendos ĝuste ĉi tie.
       link_not_received: Ĉu vi ne ricevis ligilon?
       new_confirmation_instructions_sent: Vi ricevos novan retpoŝton kun la konfirma ligilo post kelkaj minutoj!
       title: Kontrolu vian retpoŝta enirkesto
@@ -1920,6 +1925,9 @@ eo:
       subject: Via konto estas alirita de nova IP-adreso
       title: Nova saluto
     terms_of_service_changed:
+      sign_off: La teamo de %{domain}
+      subject: Ĝisdatigoj al niaj kondiĉoj de servo
+      subtitle: La kondiĉoj de la servo de %{domain} ŝanĝiĝas
       title: Grava ĝisdatigo
     warning:
       appeal: Sendi apelacion

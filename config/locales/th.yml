@@ -211,6 +211,7 @@ th:
         enable_user: เปิดใช้งานผู้ใช้
         memorialize_account: ทำให้บัญชีเป็นอนุสรณ์
         promote_user: เลื่อนขั้นผู้ใช้
+        publish_terms_of_service: เผยแพร่เงื่อนไขการให้บริการ
         reject_appeal: ปฏิเสธการอุทธรณ์
         reject_user: ปฏิเสธผู้ใช้
         remove_avatar_user: เอาภาพประจำตัวออก
@@ -911,6 +912,25 @@ th:
       search: ค้นหา
       title: แฮชแท็ก
       updated_msg: อัปเดตการตั้งค่าแฮชแท็กสำเร็จ
+    terms_of_service:
+      back: กลับไปที่เงื่อนไขการให้บริการ
+      create: ใช้ของคุณเอง
+      current: ปัจจุบัน
+      draft: แบบร่าง
+      generate: ใช้แม่แบบ
+      generates:
+        action: สร้าง
+      history: ประวัติ
+      live: สด
+      notify_users: แจ้งเตือนผู้ใช้
+      preview:
+        send_preview: ส่งตัวอย่างไปยัง %{email}
+        send_to_all:
+          other: ส่ง %{display_count} อีเมล
+      publish: เผยแพร่
+      published_on_html: เผยแพร่เมื่อ %{date}
+      save_draft: บันทึกแบบร่าง
+      title: เงื่อนไขการให้บริการ
     title: การดูแล
     trends:
       allow: อนุญาต
@@ -1635,6 +1655,7 @@ th:
   scheduled_statuses:
     over_daily_limit: คุณมีโพสต์ที่จัดกำหนดการไว้เกินขีดจำกัดที่ %{limit} สำหรับวันนี้แล้ว
     over_total_limit: คุณมีโพสต์ที่จัดกำหนดการไว้เกินขีดจำกัดที่ %{limit} แล้ว
+    too_soon: วันที่ต้องอยู่ในอนาคต
   self_destruct:
     lead_html: น่าเสียดาย <strong>%{domain}</strong> กำลังปิดตัวลงอย่างถาวร หากคุณมีบัญชีที่นั่น คุณจะไม่สามารถใช้บัญชีต่อไปได้ แต่คุณยังคงสามารถขอข้อมูลสำรองของข้อมูลของคุณ
     title: เซิร์ฟเวอร์นี้กำลังปิดตัวลง
@@ -1793,6 +1814,8 @@ th:
       too_late: สายเกินไปที่จะอุทธรณ์การดำเนินการนี้
   tags:
     does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้านี้
+  terms_of_service:
+    title: เงื่อนไขการให้บริการ
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
@@ -1853,6 +1876,8 @@ th:
       further_actions_html: หากนี่ไม่ใช่คุณ เราแนะนำให้คุณ %{action} ทันทีและเปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยเพื่อรักษาบัญชีของคุณให้ปลอดภัย
       subject: มีการเข้าถึงบัญชีของคุณจากที่อยู่ IP ใหม่
       title: การลงชื่อเข้าใหม่
+    terms_of_service_changed:
+      sign_off: ทีม %{domain}
     warning:
       appeal: ส่งการอุทธรณ์
       appeal_description: หากคุณเชื่อว่านี่เป็นข้อผิดพลาด คุณสามารถส่งการอุทธรณ์ไปยังพนักงานของ %{instance}
