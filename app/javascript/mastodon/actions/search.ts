@@ -79,15 +79,12 @@ export const expandSearch = createDataLoadingThunk(
 
 export const openURL = createDataLoadingThunk(
   'search/openURL',
-  ({ url }: { url: string }, { getState }) => {
-    const signedIn = !!getState().meta.get('me');
-
-    return apiGetSearch({
+  ({ url }: { url: string }) =>
+    apiGetSearch({
       q: url,
-      resolve: signedIn,
+      resolve: true,
       limit: 1,
-    });
-  },
+    }),
   (data, { dispatch }) => {
     if (data.accounts.length > 0) {
       dispatch(importFetchedAccounts(data.accounts));
