@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Subscription
   class ApplicationMailer < ::ApplicationMailer
     layout 'mailer'
@@ -7,28 +9,20 @@ module Subscription
     helper :formatting
     helper :routing
 
-    before_action :set_logo
-
     def send_invite(email, invite)
       @invite = invite
-      @app_link = ENV['APP_LINK']
+      @app_link = ENV.fetch('APP_LINK', nil)
       mail to: email,
-          subject: "Here are your invites",
-          template_name: 'invite'
+           subject: I18n.t('subscription.invite_subject'),
+           template_name: 'invite'
     end
 
     def send_canceled(email, cancel_at)
       @cancel_at = cancel_at
-      @survey_link = ENV['CANCEL_SURVEY_LINK']
+      @survey_link = ENV.fetch('CANCEL_SURVEY_LINK', nil)
       mail to: email,
-          subject: "Your subscription has been canceled",
-          template_name: 'canceled'
-    end
-
-    protected
-
-    def set_logo
-      @logo = ::InstancePresenter.new.email&.file&.url
+           subject: I18n.t('subscription.cancel_subject'),
+           template_name: 'canceled'
     end
   end
 end

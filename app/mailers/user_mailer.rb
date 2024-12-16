@@ -17,7 +17,6 @@ class UserMailer < Devise::Mailer
   def confirmation_instructions(user, token, *, **)
     @resource = user
     @token    = token
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -31,7 +30,6 @@ class UserMailer < Devise::Mailer
   def reset_password_instructions(user, token, *, **)
     @resource = user
     @token    = token
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -42,7 +40,6 @@ class UserMailer < Devise::Mailer
 
   def password_change(user, *, **)
     @resource = user
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -53,7 +50,6 @@ class UserMailer < Devise::Mailer
 
   def email_changed(user, *, **)
     @resource = user
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -64,7 +60,6 @@ class UserMailer < Devise::Mailer
 
   def two_factor_enabled(user, *, **)
     @resource = user
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -75,7 +70,6 @@ class UserMailer < Devise::Mailer
 
   def two_factor_disabled(user, *, **)
     @resource = user
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -86,7 +80,6 @@ class UserMailer < Devise::Mailer
 
   def two_factor_recovery_codes_changed(user, *, **)
     @resource = user
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -97,7 +90,6 @@ class UserMailer < Devise::Mailer
 
   def webauthn_enabled(user, *, **)
     @resource = user
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -108,7 +100,6 @@ class UserMailer < Devise::Mailer
 
   def webauthn_disabled(user, *, **)
     @resource = user
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -120,7 +111,6 @@ class UserMailer < Devise::Mailer
   def webauthn_credential_added(user, webauthn_credential)
     @resource = user
     @webauthn_credential = webauthn_credential
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -132,7 +122,6 @@ class UserMailer < Devise::Mailer
   def webauthn_credential_deleted(user, webauthn_credential)
     @resource = user
     @webauthn_credential = webauthn_credential
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -143,7 +132,6 @@ class UserMailer < Devise::Mailer
 
   def welcome(user)
     @resource = user
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -161,7 +149,6 @@ class UserMailer < Devise::Mailer
   def backup_ready(user, backup)
     @resource = user
     @backup   = backup
-    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
@@ -174,7 +161,6 @@ class UserMailer < Devise::Mailer
     @resource = user
     @warning  = warning
     @statuses = @warning.statuses.includes(:account, :preloadable_poll, :media_attachments, active_mentions: [:account])
-    @logo = InstancePresenter.new.email&.file&.url
 
     I18n.with_locale(locale) do
       mail subject: I18n.t("user_mailer.warning.subject.#{@warning.action}", acct: "@#{user.account.local_username_and_domain}")
@@ -205,7 +191,6 @@ class UserMailer < Devise::Mailer
     @user_agent = user_agent
     @detection  = Browser.new(user_agent)
     @timestamp  = timestamp.to_time.utc
-    @logo = InstancePresenter.new.email&.file&.url
 
     I18n.with_locale(locale) do
       mail subject: default_i18n_subject
@@ -218,7 +203,6 @@ class UserMailer < Devise::Mailer
     @user_agent = user_agent
     @detection  = Browser.new(user_agent)
     @timestamp  = timestamp.to_time.utc
-    @logo = InstancePresenter.new.email&.file&.url
 
     I18n.with_locale(locale) do
       mail subject: default_i18n_subject

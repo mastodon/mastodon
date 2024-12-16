@@ -20,7 +20,6 @@ class NotificationMailer < ApplicationMailer
   layout 'mailer'
 
   def mention
-    @logo = InstancePresenter.new.email&.file&.url
     return if @status.blank?
 
     locale_for_account(@me) do
@@ -29,14 +28,12 @@ class NotificationMailer < ApplicationMailer
   end
 
   def follow
-    @logo = InstancePresenter.new.email&.file&.url
     locale_for_account(@me) do
       mail subject: default_i18n_subject(name: @account.acct)
     end
   end
 
   def favourite
-    @logo = InstancePresenter.new.email&.file&.url
     return if @status.blank?
 
     locale_for_account(@me) do
@@ -45,7 +42,6 @@ class NotificationMailer < ApplicationMailer
   end
 
   def reblog
-    @logo = InstancePresenter.new.email&.file&.url
     return if @status.blank?
 
     locale_for_account(@me) do
@@ -54,7 +50,6 @@ class NotificationMailer < ApplicationMailer
   end
 
   def follow_request
-    @logo = InstancePresenter.new.email&.file&.url
     locale_for_account(@me) do
       mail subject: default_i18n_subject(name: @account.acct)
     end
