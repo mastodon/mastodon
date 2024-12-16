@@ -9,7 +9,10 @@ RSpec.describe REST::Admin::AccountSerializer do
     let(:record) { Fabricate :account, user: Fabricate(:user) }
 
     it 'parses as RFC 3339 datetime' do
-      expect { DateTime.rfc3339(subject['created_at']) }.to_not raise_error
+      expect(subject)
+        .to include(
+          'created_at' => match_api_datetime_format
+        )
     end
   end
 

@@ -15,7 +15,10 @@ RSpec.describe REST::ReportSerializer do
 
   context 'with created_at' do
     it 'is serialized as RFC 3339 datetime' do
-      expect { DateTime.rfc3339(subject['created_at']) }.to_not raise_error
+      expect(subject)
+        .to include(
+          'created_at' => match_api_datetime_format
+        )
     end
   end
 
@@ -27,7 +30,10 @@ RSpec.describe REST::ReportSerializer do
     end
 
     it 'is serialized as RFC 3339 datetime' do
-      expect { DateTime.rfc3339(subject['action_taken_at']) }.to_not raise_error
+      expect(subject)
+        .to include(
+          'action_taken_at' => match_api_datetime_format
+        )
     end
   end
 end

@@ -12,7 +12,12 @@ RSpec.describe REST::Admin::MeasureSerializer do
 
   context 'when start_at is populated' do
     it 'parses as RFC 3339 datetime' do
-      subject['data'].each { |datum| expect { DateTime.rfc3339(datum['date']) }.to_not raise_error }
+      expect(subject)
+        .to include(
+          'data' => all(
+            include('date' => match_api_datetime_format)
+          )
+        )
     end
   end
 end

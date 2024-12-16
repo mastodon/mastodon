@@ -19,10 +19,13 @@ RSpec.describe REST::AnnouncementSerializer do
 
   context 'when date fields are populated' do
     it 'parses as RFC 3339 datetime' do
-      expect { DateTime.rfc3339(subject['starts_at']) }.to_not raise_error
-      expect { DateTime.rfc3339(subject['ends_at']) }.to_not raise_error
-      expect { DateTime.rfc3339(subject['published_at']) }.to_not raise_error
-      expect { DateTime.rfc3339(subject['updated_at']) }.to_not raise_error
+      expect(subject)
+        .to include(
+          'starts_at' => match_api_datetime_format,
+          'ends_at' => match_api_datetime_format,
+          'published_at' => match_api_datetime_format,
+          'updated_at' => match_api_datetime_format
+        )
     end
   end
 end

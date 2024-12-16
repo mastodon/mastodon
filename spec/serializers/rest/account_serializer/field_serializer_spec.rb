@@ -13,7 +13,10 @@ RSpec.describe REST::AccountSerializer::FieldSerializer do
     let(:field) { Account::Field.new(account, 'name' => 'Foo', 'value' => 'Bar', 'verified_at' => default_datetime) }
 
     it 'parses as RFC 3339 datetime' do
-      expect { DateTime.rfc3339(subject['verified_at']) }.to_not raise_error
+      expect(subject)
+        .to include(
+          'verified_at' => match_api_datetime_format
+        )
     end
   end
 end

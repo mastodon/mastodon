@@ -11,11 +11,11 @@ RSpec.describe REST::Admin::CohortSerializer do
     it 'returns expected values' do
       expect(subject)
         .to include(
-          'data' => be_a(Array),
-          'period' => /2024-01-01/
+          'data' => be_a(Array).and(
+            all(include('date' => match_api_datetime_format))
+          ),
+          'period' => match(/2024-01-01/).and(match_api_datetime_format)
         )
-      expect { DateTime.rfc3339(subject['period']) }.to_not raise_error
-      subject['data'].each { |datum| expect { DateTime.rfc3339(datum['date']) }.to_not raise_error }
     end
   end
 end

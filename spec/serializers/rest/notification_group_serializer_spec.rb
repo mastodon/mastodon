@@ -14,7 +14,10 @@ RSpec.describe REST::NotificationGroupSerializer do
 
   context 'when latest_page_notification_at is populated' do
     it 'parses as RFC 3339 datetime' do
-      expect { DateTime.rfc3339(subject['latest_page_notification_at']) }.to_not raise_error
+      expect(subject)
+        .to include(
+          'latest_page_notification_at' => match_api_datetime_format
+        )
     end
   end
 end
