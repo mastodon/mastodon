@@ -437,7 +437,9 @@ const InteractionModal: React.FC<{
     );
   }, [dispatch]);
 
-  let title: React.ReactNode, icon: React.ReactNode, action: React.ReactNode;
+  let title: React.ReactNode,
+    icon: React.ReactNode,
+    actionPrompt: React.ReactNode;
 
   switch (type) {
     case 'reply':
@@ -449,10 +451,10 @@ const InteractionModal: React.FC<{
           values={{ name }}
         />
       );
-      action = (
+      actionPrompt = (
         <FormattedMessage
           id='interaction_modal.action.reply'
-          defaultMessage='reply'
+          defaultMessage='To continue, you need to reply from your account.'
         />
       );
       break;
@@ -465,10 +467,10 @@ const InteractionModal: React.FC<{
           values={{ name }}
         />
       );
-      action = (
+      actionPrompt = (
         <FormattedMessage
           id='interaction_modal.action.reblog'
-          defaultMessage='boost'
+          defaultMessage='To continue, you need to reblog from your account.'
         />
       );
       break;
@@ -481,10 +483,10 @@ const InteractionModal: React.FC<{
           values={{ name }}
         />
       );
-      action = (
+      actionPrompt = (
         <FormattedMessage
           id='interaction_modal.action.favourite'
-          defaultMessage='favorite'
+          defaultMessage='To continue, you need to favorite from your account.'
         />
       );
       break;
@@ -497,10 +499,10 @@ const InteractionModal: React.FC<{
           values={{ name }}
         />
       );
-      action = (
+      actionPrompt = (
         <FormattedMessage
           id='interaction_modal.action.follow'
-          defaultMessage='follow'
+          defaultMessage='To continue, you need to follow from your account.'
         />
       );
       break;
@@ -513,10 +515,10 @@ const InteractionModal: React.FC<{
           values={{ name }}
         />
       );
-      action = (
+      actionPrompt = (
         <FormattedMessage
           id='interaction_modal.action.vote'
-          defaultMessage='vote'
+          defaultMessage='To continue, you need to vote from your account.'
         />
       );
       break;
@@ -559,13 +561,7 @@ const InteractionModal: React.FC<{
         <h3>
           <span className='interaction-modal__icon'>{icon}</span> {title}
         </h3>
-        <p>
-          <FormattedMessage
-            id='interaction_modal.to_continue_prompt'
-            defaultMessage='To continue, you need to {action} from your account.'
-            values={{ action }}
-          />
-        </p>
+        <p>{actionPrompt}</p>
       </div>
 
       <LoginForm resourceUrl={url} />
