@@ -108,6 +108,11 @@ module Mastodon
     config.x.mastodon = config_for(:mastodon)
     config.x.translation = config_for(:translation)
 
+    if ENV.fetch('QUERY_LOG_TAGS_ENABLED', 'false') == 'true'
+      config.active_record.query_log_tags_enabled = ENV.fetch('QUERY_LOG_TAGS_ENABLED', 'false') == 'true'
+      config.active_record.query_log_tags = [:namespaced_controller, :action, :sidekiq_job_class]
+    end
+
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
