@@ -76,6 +76,34 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
       )
     end
   end
+
+  # This middleware adds the trace_id and span_id to the Rails logging tags for every requests
+  class TelemetryLoggingMiddleware
+    def initialize(app)
+      @app = app
+    end
+
+    def call(env)
+      span = OpenTelemetry::Trace.current_span
+
+      unless span.recording?
+        @app.call(env)
+        return
+      end
+
+      span_id = span.context.hex_span_id
+      trace_id = span.context.hex_trace_id
+
+      Rails.logger.tagged("trace_id=#{trace_id}", "span_id=#{span_id}") do
+        @app.call(env)
+      end
+    end
+  end
+
+  Rails.application.configure do
+    config.middleware.insert_before Rails::Rack::Logger, TelemetryLoggingMiddleware
+  end
+
 end
 
 MastodonOTELTracer = OpenTelemetry.tracer_provider.tracer('mastodon')
