@@ -135,7 +135,7 @@ class Sanitize
 
       attributes: {
         'audio' => %w(controls),
-        'iframe' => %w(allowfullscreen frameborder height scrolling src width),
+        'iframe' => %w(allowfullscreen frameborder height scrolling src style width),
         'source' => %w(src type),
         'video' => %w(controls height loop width),
       },
