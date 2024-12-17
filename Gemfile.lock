@@ -224,14 +224,14 @@ GEM
     fabrication (2.31.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
-    faraday (2.12.0)
-      faraday-net_http (>= 2.0, < 3.4)
+    faraday (2.12.2)
+      faraday-net_http (>= 2.0, < 3.5)
       json
       logger
     faraday-httpclient (2.0.1)
       httpclient (>= 2.2)
-    faraday-net_http (3.3.0)
-      net-http
+    faraday-net_http (3.4.0)
+      net-http (>= 0.5.0)
     fast_blank (1.0.1)
     fastimage (2.3.1)
     ffi (1.17.0)
@@ -384,7 +384,7 @@ GEM
     llhttp-ffi (0.5.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
-    logger (1.6.2)
+    logger (1.6.3)
     lograge (0.14.0)
       actionpack (>= 4)
       activesupport (>= 4)
@@ -837,7 +837,7 @@ GEM
       unf_ext
     unf_ext (0.0.9.1)
     unicode-display_width (2.6.0)
-    uri (0.13.1)
+    uri (1.0.2)
     useragent (0.16.11)
     validate_email (0.1.6)
       activemodel (>= 3.0)
