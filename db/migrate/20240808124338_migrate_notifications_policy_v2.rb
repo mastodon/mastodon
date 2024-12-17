@@ -18,7 +18,7 @@ class MigrateNotificationsPolicyV2 < ActiveRecord::Migration[7.1]
   def down
     NotificationPolicy.in_batches.update_all(<<~SQL.squish)
       filter_not_following = CASE for_not_following WHEN 0 THEN false ELSE true END,
-      filter_not_following = CASE for_not_followers WHEN 0 THEN false ELSE true END,
+      filter_not_followers = CASE for_not_followers WHEN 0 THEN false ELSE true END,
       filter_new_accounts = CASE for_new_accounts WHEN 0 THEN false ELSE true END,
       filter_private_mentions = CASE for_private_mentions WHEN 0 THEN false ELSE true END
     SQL
