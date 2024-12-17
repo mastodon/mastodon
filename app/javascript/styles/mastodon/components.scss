@@ -8955,6 +8955,7 @@ noscript {
   }
 
   p {
+    text-align: center;
     font-size: 17px;
     line-height: 22px;
     color: $darker-text-color;
@@ -9028,11 +9029,6 @@ noscript {
       padding-top: 5px;
       padding-bottom: 5px;
       border: 1px solid var(--background-border-color);
-    }
-
-    &.focused &__input {
-      border-color: $highlight-text-color;
-      background: lighten($ui-base-color, 4%);
     }
 
     &.invalid &__input {
