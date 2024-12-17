@@ -341,13 +341,13 @@ export const DetailedStatus: React.FC<{
 
         {expanded && (
           <>
+            {media}
             <StatusContent
               status={status}
               onTranslate={handleTranslate}
               {...(statusContentProps as any)}
             />
 
-            {media}
             {hashtagBar}
           </>
         )}
