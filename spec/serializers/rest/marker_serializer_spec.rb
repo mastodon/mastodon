@@ -14,7 +14,10 @@ RSpec.describe REST::MarkerSerializer do
 
   context 'when updated_at is populated' do
     it 'parses as RFC 3339 datetime' do
-      expect { DateTime.rfc3339(subject['updated_at']) }.to_not raise_error
+      expect(subject)
+        .to include(
+          'updated_at' => match_api_datetime_format
+        )
     end
   end
 end

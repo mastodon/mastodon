@@ -25,7 +25,10 @@ RSpec.describe REST::MutedAccountSerializer do
     end
 
     it 'parses as RFC 3339 datetime' do
-      expect { DateTime.rfc3339(subject['mute_expires_at']) }.to_not raise_error
+      expect(subject)
+        .to include(
+          'mute_expires_at' => match_api_datetime_format
+        )
     end
   end
 

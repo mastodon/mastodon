@@ -12,9 +12,9 @@ RSpec.describe REST::AccountWarningSerializer do
       expect(subject)
         .to include(
           'id' => be_a(String).and(eq('123')),
-          'status_ids' => be_a(Array).and(eq(['456', '789']))
+          'status_ids' => be_a(Array).and(eq(['456', '789'])),
+          'created_at' => match_api_datetime_format
         )
-      expect { DateTime.rfc3339(subject['created_at']) }.to_not raise_error
     end
   end
 end

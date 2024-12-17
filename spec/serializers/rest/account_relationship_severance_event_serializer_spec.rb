@@ -11,14 +11,9 @@ RSpec.describe REST::AccountRelationshipSeveranceEventSerializer do
     it 'returns expected values' do
       expect(subject)
         .to include(
-          'id' => be_a(String).and(eq('123'))
+          'id' => be_a(String).and(eq('123')),
+          'created_at' => match_api_datetime_format
         )
-    end
-  end
-
-  context 'when created_at is populated' do
-    it 'parses as RFC 3339 datetime' do
-      expect { DateTime.rfc3339(subject['created_at']) }.to_not raise_error
     end
   end
 end
