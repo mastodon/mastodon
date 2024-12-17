@@ -52,4 +52,77 @@ RSpec.describe REST::StatusSerializer do
       end
     end
   end
+
+  describe '#replies_count' do
+    let(:author) { alice }
+    let(:replier) { bob }
+    let!(:status) { Fabricate(:status, account: author, visibility: :public) }
+
+    context 'when being presented to the account that posted the status' do
+      let(:current_user) { Fabricate(:user, account: author) }
+
+      before do
+        Fabricate(:follow, account: replier, target_account: author)
+        Fabricate(:follow, account: author, target_account: replier)
+      end
+
+      context 'when the status has follower-only replies' do
+        let(:reply) { Fabricate(:status, in_reply_to_id: status.id, account: replier, visibility: :private) }
+
+        before do
+          reply
+        end
+
+        it 'counts 1 reply' do
+          expect(subject['replies_count']).to eq(1)
+        end
+
+        context 'when one of the replies has subsequent replies' do
+          before do
+            Fabricate(:status, in_reply_to_id: reply.id, account: author, visibility: :private)
+          end
+
+          it 'does not count that reply' do
+            expect(subject['replies_count']).to eq 1
+          end
+        end
+      end
+    end
+
+    context 'when being presented to a different account' do
+      let(:current_user) { Fabricate(:user) }
+
+      context 'when the status has follower-only replies from an unfollowed account' do
+        before do
+          Fabricate(:status, in_reply_to_id: status.id, account: replier, visibility: :direct)
+        end
+
+        it 'counts 0 replies' do
+          expect(subject['replies_count']).to be 0
+        end
+      end
+
+      context 'when the replies are public' do
+        before do
+          Fabricate(:status, in_reply_to_id: status.id, account: replier, visibility: :public)
+        end
+
+        it 'counts 1 reply' do
+          expect(subject['replies_count']).to eq 1
+        end
+      end
+
+      context 'when there is one public reply and one private' do
+        before do
+          %i[direct public].each do |visibility|
+            Fabricate(:status, in_reply_to_id: status.id, account: replier, visibility: visibility)
+          end
+        end
+
+        it 'counts 1 reply' do
+          expect(subject['replies_count']).to eq 1
+        end
+      end
+    end
+  end
 end

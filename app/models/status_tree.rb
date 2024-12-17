@@ -1,25 +1,16 @@
 class StatusTree < ActiveModelSerializers::Model
   include PreloadingConcern
 
-  # This API was originally unlimited, pagination cannot be introduced without
-  # breaking backwards-compatibility. Arbitrarily high number to cover most
-  # conversations as quasi-unlimited, it would be too much work to render more
-  # than this anyway
   MAX_COUNT = 4_096
-
-  # This remains expensive and we don't want to show everything to logged-out users
-  ANCESTORS_MAX_COUNT   = 40
-  DESCENDANTS_MAX_COUNT = 60
-  DESCENDANTS_MAX_DEPTH = 20  
 
   attributes :status, :account, :tree
 
   class Node < ActiveModelSerializers::Model
     attributes :status, :tree
 
-    delegate_missing_to :status
-
     delegate :id, to: :status
+
+    delegate_missing_to :status
 
     def object_type = :status
 
@@ -35,16 +26,12 @@ class StatusTree < ActiveModelSerializers::Model
       tree.children_for(id)
     end
 
-    def replies_count
-      children.size
-    end
-
     def ==(other)
       other.class.in?([Node, Status]) && id == other.id
     end
 
     def inspect
-      "#<StatusTree::Node id: #{id}, parent_id: #{in_reply_to_id || 'nil'}>"
+      "#<StatusTree::Node id: #{id}, in_reply_to_id: #{in_reply_to_id || 'nil'}>"
     end
   end
 
@@ -77,6 +64,10 @@ class StatusTree < ActiveModelSerializers::Model
     "#<StatusTree #{tree.inspect}>"
   end
 
+  def status_node
+    find_node(status.id)
+  end
+
   def find_node(id, subtree = tree)
     subtree.each do |node, children|
       return node if node.id == id
@@ -89,13 +80,13 @@ class StatusTree < ActiveModelSerializers::Model
   def ancestors_for(id)
     ancestors = []
     node = find_node(id)
-    parent_id = node.in_reply_to_id
+    in_reply_to_id = node.in_reply_to_id
 
-    while parent_id
-      parent_node = find_node(parent_id)
+    while in_reply_to_id
+      parent_node = find_node(in_reply_to_id)
       break unless parent_node
       ancestors << parent_node
-      parent_id = parent_node.in_reply_to_id
+      in_reply_to_id = parent_node.in_reply_to_id
     end
 
     ancestors.reverse
@@ -116,24 +107,24 @@ class StatusTree < ActiveModelSerializers::Model
 
   private
 
-  def build_tree_from(nodes, parent_id = nil)
+  def build_tree_from(nodes, in_reply_to_id = nil)
     grouped_nodes = nodes.group_by(&:in_reply_to_id)
 
-    (grouped_nodes[parent_id] || []).each_with_object({}) do |node, tree|
+    (grouped_nodes[in_reply_to_id] || []).each_with_object({}) do |node, tree|
       tree[node] = build_tree_from(nodes - [node], node.id)
     end
   end
 
   def descendants_max_depth
-    account.nil? ? DESCENDANTS_MAX_DEPTH : nil
+    nil
   end
 
   def descendants_max_count
-    account.nil? ? DESCENDANTS_MAX_COUNT : MAX_COUNT
+    MAX_COUNT
   end
 
   def ancestors_max_count
-    account.nil? ? ANCESTORS_MAX_COUNT : MAX_COUNT
+    MAX_COUNT
   end
 
   def collect_descendants(subtree)

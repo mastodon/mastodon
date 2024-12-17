@@ -91,6 +91,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
     object.untrusted_favourites_count || relationships&.attributes_map&.dig(object.id, :favourites_count) || object.favourites_count
   end
 
+  def replies_count
+    StatusTree.new(status: object, account: current_user&.account).status_node.children.size
+  end
+
   def favourited
     if relationships
       relationships.favourites_map[object.id] || false

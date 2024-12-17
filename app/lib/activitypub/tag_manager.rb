@@ -37,8 +37,6 @@ class ActivityPub::TagManager
     return target.uri if target.respond_to?(:local?) && !target.local?
 
     case target.object_type
-    when :status
-      return activity_account_status_url(target.account, target) if target.reblog?
     when :person
       target.instance_actor? ? instance_actor_url : account_url(target)
     when :note, :comment, :activity
