@@ -20,14 +20,6 @@ RSpec.describe Poll do
         expect(results).to eq([attached_poll])
       end
     end
-
-    describe '.unattached' do
-      it 'finds the correct records' do
-        results = described_class.unattached
-
-        expect(results).to eq([not_attached_poll])
-      end
-    end
   end
 
   describe '#reset_votes!' do
