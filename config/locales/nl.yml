@@ -279,7 +279,7 @@ nl:
         enable_user_html: Inloggen voor %{target} is door %{name} ingeschakeld
         memorialize_account_html: Het account %{target} is door %{name} in een In memoriam veranderd
         promote_user_html: Gebruiker %{target} is door %{name} gepromoveerd
-        publish_terms_of_service_html: "%{name} publiceerde updates van de servicevoorwaarden"
+        publish_terms_of_service_html: "%{name} publiceerde bijgewerkte gebruiksvoorwaarden"
         reject_appeal_html: "%{name} heeft het bezwaar tegen de moderatiemaatregel van %{target} afgewezen"
         reject_user_html: "%{name} heeft de registratie van %{target} afgewezen"
         remove_avatar_user_html: "%{name} verwijderde de profielfoto van %{target}"
@@ -936,14 +936,14 @@ nl:
       generate: Sjabloon gebruiken
       generates:
         action: Genereren
-        chance_to_review_html: "<strong>De gegenereerde gebruiksvoorwaarden worden niet automatisch gepubliceerd.</strong> Je krijgt gelegenheid om de resultaten te bekijken. Vul de benodigde gegevens in om verder te gaan."
+        chance_to_review_html: "<strong>De gegenereerde gebruiksvoorwaarden worden niet automatisch gepubliceerd.</strong> Je krijgt de gelegenheid om de resultaten eerst te bekijken. Vul de benodigde gegevens in om verder te gaan."
         explanation_html: Het sjabloon voor de gebruiksvoorwaarden is uitsluitend bedoeld voor informatieve doeleinden en mag niet worden opgevat als juridisch advies over welk onderwerp dan ook. Raadpleeg een eigen juridisch adviseur over jouw situatie en voor specifieke juridische vragen.
         title: Gebruiksvoorwaarden instellen
       history: Geschiedenis
       live: Actueel
       no_history: Er zijn nog geen opgeslagen wijzigingen van de gebruiksvoorwaarden.
-      no_terms_of_service_html: Je hebt momenteel geen servicevoorwaarden geconfigureerd. De gebruiksvoorwaarden zijn bedoeld om duidelijkheid te verschaffen en je te beschermen tegen mogelijke verplichtingen in geschillen met gebruikers.
-      notified_on_html: Gebruikers ingelicht op %{date}
+      no_terms_of_service_html: Je hebt momenteel geen gebruiksvoorwaarden geconfigureerd. De gebruiksvoorwaarden zijn bedoeld om duidelijkheid te verschaffen en je te beschermen tegen mogelijke aansprakelijkheid als gevolg van geschillen met gebruikers.
+      notified_on_html: Gebruikers geïnformeerd op %{date}
       notify_users: Gebruikers informeren
       preview:
         explanation_html: 'De e-mail wordt verzonden naar <strong>%{display_count} gebruikers</strong> die zich hebben aangemeld voor %{date}. De volgende tekst zal in de e-mail worden opgenomen:'
@@ -951,7 +951,7 @@ nl:
         send_to_all:
           one: "%{display_count} e-mail verzenden"
           other: "%{display_count} e-mails verzenden"
-        title: Voorbeeld van Melding gebruiksvoorwaarden
+        title: Voorbeeld tonen van de melding over de gebruiksvoorwaarden
       publish: Publiceren
       published_on_html: Gepubliceerd op %{date}
       save_draft: Concept opslaan
@@ -1187,7 +1187,7 @@ nl:
     set_new_password: Nieuw wachtwoord instellen
     setup:
       email_below_hint_html: Controleer je map met spam, of vraag een nieuwe bevestigingslink aan. Je kan je e-mailadres corrigeren als het verkeerd is.
-      email_settings_hint_html: Klik op de link die we naar %{email} hebben gestuurd om Mastodon te gebruiken. We wachten hier af.
+      email_settings_hint_html: Klik op de link die we naar %{email} hebben gestuurd om Mastodon te gebruiken. We wachten wel even.
       link_not_received: Geen link ontvangen?
       new_confirmation_instructions_sent: Je ontvangt binnen enkele minuten een nieuwe e-mail met de bevestigingslink!
       title: Kijk in je mailbox
@@ -1196,7 +1196,7 @@ nl:
       title: Inloggen op %{domain}
     sign_up:
       manual_review: Inschrijvingen op %{domain} worden handmatig door onze moderatoren beoordeeld. Schrijf wat over jezelf en waarom je een account op %{domain} wilt. Hiermee help je ons om de aanvraag van jouw account goed te kunnen verwerken.
-      preamble: Met een account op deze Mastodon-server kun je iedereen volgen op de fediverse, ongeacht waar deze persoon een account heeft.
+      preamble: Met een account op deze Mastodon-server kun je iedereen in de fediverse volgen, ongeacht waar deze persoon een account heeft.
       title: Laten we je account op %{domain} instellen.
     status:
       account_status: Accountstatus
@@ -1935,10 +1935,10 @@ nl:
     terms_of_service_changed:
       agreement: Door %{domain} te blijven gebruiken, ga je akkoord met deze voorwaarden. Als je het niet eens bent met de bijgewerkte voorwaarden, kun je je overeenkomst met %{domain} op elk gewenst moment beëindigen door je account te verwijderen.
       changelog: 'In een oogopslag betekent deze update voor jou:'
-      description: 'Je ontvangt dit bericht omdat we enkele wijzigingen aanbrengen in onze gebruiksvoorwaarden bij %{domain}. We raden je aan om de bijgewerkte voorwaarden hier volledig te bekijken:'
-      description_html: Je ontvangt dit bericht omdat we enkele wijzigingen aanbrengen in onze gebruiksvoorwaarden bij %{domain}. We raden je aan om de bijgewerkte <a href="%{path}" target="_blank">voorwaarden hier geheel te bestuderen</a>.
+      description: 'Je ontvangt dit bericht omdat we enkele wijzigingen aanbrengen in onze gebruiksvoorwaarden op %{domain}. We raden je aan om de bijgewerkte voorwaarden hier volledig te bekijken:'
+      description_html: Je ontvangt dit bericht omdat we enkele wijzigingen aanbrengen in onze gebruiksvoorwaarden op %{domain}. We raden je aan om de bijgewerkte <a href="%{path}" target="_blank">voorwaarden hier volledig te bestuderen</a>.
       sign_off: Het %{domain}-team
-      subject: Bijwerkingen van onze servicevoorwaarden
+      subject: Onze bijgewerkte gebruiksvoorwaarden
       subtitle: De gebruiksvoorwaarden van %{domain} veranderen
       title: Belangrijke update
     warning:
@@ -1986,7 +1986,7 @@ nl:
       feature_action: Meer informatie
       feature_audience: Mastodon biedt je een unieke mogelijkheid om je publiek te beheren zonder tussenpersonen. Mastodon, geïmplementeerd in jouw eigen infrastructuur, stelt je in staat om elke andere Mastodon-server online te volgen en door hen gevolgd te worden, en staat onder controle van niemand, behalve die van jou.
       feature_audience_title: Bouw jouw publiek in vertrouwen op
-      feature_control: Je weet zelf het beste wat je op jouw tijdlijn wilt zien. Geen algoritmen of advertenties om je tijd te verspillen. Volg iedereen op elke Mastodon-server vanaf één account en ontvang hun berichten in chronologische volgorde, en maak jouw hoekje op het internet een beetje meer zoals jezelf.
+      feature_control: Je weet zelf het beste wat je op jouw starttijdlijn wilt zien. Geen algoritmen of advertenties om je tijd te verspillen. Volg iedereen op elke Mastodon-server vanaf één account en ontvang hun berichten in chronologische volgorde, en maak jouw hoekje op het internet een beetje meer zoals jezelf.
       feature_control_title: Houd controle over je eigen tijdlijn
       feature_creativity: Mastodon ondersteunt audio-, video- en fotoberichten, toegankelijkheidsbeschrijvingen, peilingen, inhoudswaarschuwingen, geanimeerde profielfoto's, aangepaste lokale emoji's, controle over het bijwerken van thumbnails en meer, om je te helpen jezelf online uit te drukken. Of je nu jouw kunst, jouw muziek of jouw podcast publiceert, Mastodon staat voor je klaar.
       feature_creativity_title: Ongeëvenaarde creativiteit

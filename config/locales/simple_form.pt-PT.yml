@@ -8,7 +8,7 @@ pt-PT:
         display_name: O seu nome completo ou o seu nome divertido.
         fields: A sua página inicial, os seus pronomes, idade e tudo o que quiser.
         indexable: As suas mensagens públicas podem aparecer nos resultados da pesquisa no Mastodon. Independentemente disso, as pessoas que interagiram com as suas publicações podem ser capazes de as pesquisar.
-        note: 'Pode @mencionar outras pessoas ou #hashtags.'
+        note: 'Pode @mencionar outras pessoas ou #etiquetas.'
         show_collections: As pessoas podem navegar pelas listas das pessoas que segue e dos seus seguidores. Independentemente disso, as pessoas que segue verão que você as segue.
         unlocked: As pessoas poderão segui-lo sem pedir aprovação. Desmarque se pretender rever os pedidos de seguimento e escolha se pretende aceitar ou rejeitar novos seguidores.
       account_alias:
@@ -16,7 +16,7 @@ pt-PT:
       account_migration:
         acct: Especifique o utilizador@domínio da conta para onde você deseja migrar
       account_warning_preset:
-        text: Pode usar sintaxe de escrita, como URL, etiquetas, e referências
+        text: Pode usar sintaxe de publicações, como URL, etiquetas e referências
         title: Opcional. Invisível para o destinatário
       admin_account_action:
         include_statuses: O utilizador verá quais as publicações que foram a razão da moderação ou advertência
@@ -62,7 +62,7 @@ pt-PT:
         setting_display_media_show_all: Mostrar sempre a media
         setting_system_scrollbars_ui: Aplica-se apenas a navegadores de desktop baseados no Safari e Chrome
         setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer pormenores
-        setting_use_pending_items: Ocultar atualizações da cronologia por detrás dum clique, em vez de rolar automaticamente o fluxo
+        setting_use_pending_items: Ocultar as atualizações da cronologia após um clique em vez de percorrer automaticamente a cronologia
         username: Pode utilizar letras, números e sublinhados
         whole_word: Quando a palavra-chave ou expressão-chave é somente alfanumérica, ela só será aplicada se corresponder à palavra completa
       domain_allow:
@@ -83,7 +83,7 @@ pt-PT:
         backups_retention_period: Os utilizadores têm a possibilidade de gerar arquivos das suas mensagens para descarregar mais tarde. Quando definido para um valor positivo, estes arquivos serão automaticamente eliminados do seu armazenamento após o número de dias especificado.
         bootstrap_timeline_accounts: Estas contas serão destacadas no topo das recomendações aos novos utilizadores.
         closed_registrations_message: Apresentado quando as inscrições estiverem encerradas
-        content_cache_retention_period: Todas as mensagens de outros servidores (incluindo impulsos e respostas) serão eliminadas após o número de dias especificado, independentemente de qualquer interação do utilizador local com essas mensagens. Isto inclui mensagens em que um utilizador local as tenha marcado ou favoritos. As menções privadas entre utilizadores de instâncias diferentes também se perderão e serão impossíveis de restaurar. A utilização desta definição destina-se a instâncias para fins especiais e quebra muitas expectativas dos utilizadores quando implementada para utilização geral.
+        content_cache_retention_period: Todas as mensagens de outros servidores (incluindo impulsos e respostas) serão eliminadas após o número de dias especificado, independentemente de qualquer interação do utilizador local com essas mensagens. Isto inclui mensagens em que um utilizador local as tenha marcado ou adicionado aos favoritos. As menções privadas entre utilizadores de instâncias diferentes também se perderão e serão impossíveis de restaurar. A utilização desta definição destina-se a instâncias para fins especiais e quebra muitas expectativas dos utilizadores quando implementada para utilização geral.
         custom_css: Pode aplicar estilos personalizados na versão web do Mastodon.
         favicon: WEBP, PNG, GIF ou JPG. Substitui o ícone de favorito padrão do Mastodon por um ícone personalizado.
         mascot: Sobrepõe-se à ilustração na interface web avançada.
@@ -305,7 +305,7 @@ pt-PT:
       notification_emails:
         appeal: Alguém recorreu de uma decisão de moderação
         digest: Enviar e-mails de resumo
-        favourite: Alguém adicionou uma publicação sua aos marcadores
+        favourite: Quando alguém adiciona uma publicação sua aos favoritos
         follow: Alguém começou a segui-lo
         follow_request: Alguém pediu para ser seu seguidor
         mention: Alguém o mencionou
@@ -329,7 +329,7 @@ pt-PT:
         listable: Permitir que esta etiqueta apareça em pesquisas e no diretório de perfis
         name: Etiqueta
         trendable: Permitir que esta etiqueta apareça nas tendências
-        usable: Permitir que as publicações usem esta hashtag localmente
+        usable: Permitir que as publicações usem esta etiqueta localmente
       terms_of_service:
         changelog: O que mudou?
         text: Termos do serviço
