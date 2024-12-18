@@ -173,6 +173,7 @@ module Mastodon::CLI
             path_segments = object.key.split('/')
             progress.increment
             next unless orphaned_file?(path_segments)
+
             begin
               object.destroy unless dry_run?
               reclaimed_bytes += object.content_length
