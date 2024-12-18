@@ -37,4 +37,8 @@ class Fasp::Subscription < ApplicationRecord
     self.threshold_likes     = threshold['likes'] || 3
     self.threshold_replies   = threshold['replies'] || 3
   end
+
+  def timeframe_start
+    threshold_timeframe.minutes.ago
+  end
 end
