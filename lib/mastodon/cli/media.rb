@@ -158,7 +158,7 @@ module Mastodon::CLI
 
         loop do
           objects = begin
-            directory.files.all(prefix: prefix, marker: last_key, limit: 1000)
+            directory.files.all(prefix: prefix, marker: last_key, limit: 1000).to_a
           rescue => e
             progress.log(pastel.red("Error fetching list of files: #{e}"))
             progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
