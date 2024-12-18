@@ -313,7 +313,7 @@ pt-PT:
       edit:
         title: Editar comunicado
       empty: Nenhum comunicado encontrado.
-      live: Em direto
+      live: Em tempo real
       new:
         create: Criar comunicado
         title: Novo comunicado
@@ -489,8 +489,8 @@ pt-PT:
         view_all: Ver registos de auditoria completos
       availability:
         description_html:
-          one: Se a transmissão ao domínio falhar ao final de <strong>%{count} dia(s)</strong>, não será feita mais nenhuma tentativa de transmissão a menos que seja recebida uma transmissão <em>proveniente</em> desse domínio.
-          other: Se a transmissão ao domínio falhar em <strong>%{count} dias diferentes</strong> sem sucesso, nenhuma tentativa de transmissão será feita a menos que uma transmissão <em>proveniente</em> do domínio seja recebida.
+          one: Se a entrega ao domínio falhar <strong>%{count} dia(s)</strong> sem sucesso, não serão efetuadas mais tentativas de entrega, a menos que seja recebida uma entrega <em>do</em> domínio.
+          other: Se a entrega ao domínio falhar <strong>%{count} dias diferentes</strong> sem sucesso, não serão efetuadas mais tentativas de entrega, a menos que seja recebida uma entrega <em>do</em> domínio.
         failure_threshold_reached: Limite de falhas atingido em %{date}.
         failures_recorded:
           one: Tentativa falhada em %{count} dia.
@@ -833,7 +833,7 @@ pt-PT:
         report: Denúncia
       contents: Conteúdo
       deleted: Eliminado
-      favourites: Marcadores
+      favourites: Favoritos
       history: Histórico de versões
       in_reply_to: A responder a
       language: Idioma
@@ -925,7 +925,7 @@ pt-PT:
       reset: Repor
       review: Estado da revisão
       search: Pesquisar
-      title: Hashtags
+      title: Etiquetas
       updated_msg: 'Definições de #etiquetas atualizadas com sucesso'
     terms_of_service:
       back: Voltar aos Termos do Serviço
@@ -940,7 +940,7 @@ pt-PT:
         explanation_html: O modelo de termos de serviço fornecido destina-se apenas a fins informativos e não deve ser interpretado como aconselhamento jurídico sobre qualquer assunto. Consulte o seu próprio consultor jurídico sobre a sua situação e questões jurídicas específicas que tenha.
         title: Configuração dos Termos de Serviço
       history: Histórico
-      live: Diretamente
+      live: Em tempo real
       no_history: Ainda não há nenhuma alteração registada nos termos de serviço.
       no_terms_of_service_html: Atualmente, não tem quaisquer termos de serviço configurados. Os termos de serviço destinam-se a proporcionar clareza e a protegê-lo de potenciais responsabilidades em litígios com os seus utilizadores.
       notified_on_html: Utilizadores notificados em %{date}
@@ -997,14 +997,14 @@ pt-PT:
         confirm_allow_account: Tem a certeza que pretende aceitar as contas selecionadas?
         confirm_disallow: Tem a certeza que pretende rejeitar os estados selecionados?
         confirm_disallow_account: Tem a certeza que pretende rejeitar as contas selecionadas?
-        description_html: Estas são publicações que o seu servidor conhece e que atualmente estão a ser frequentemente partilhadas e adicionadas aos favoritos. Isto pode ajudar os seus utilizadores, novos e retornados, a encontrar mais pessoas para seguir. Nenhuma publicação será exibida publicamente até que aprove o autor, e o autor permita que a sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individualmente.
+        description_html: Estas são publicações que o seu servidor conhece e que estão a ser muito partilhadas e adicionadas aos favoritos neste momento. Pode ajudar os seus utilizadores novos e antigos a encontrar mais pessoas para seguir. Nenhuma publicação é apresentada publicamente até que o autor seja aprovado e o autor permita que a sua conta seja sugerida a outros. Também pode permitir ou rejeitar mensagens individuais.
         disallow: Não permitir publicação
         disallow_account: Não permitir autor
         no_status_selected: Não foram alteradas quaisquer publicações de tendências, uma vez que nenhuma foi selecionada
         not_discoverable: O autor optou por não permitir que a sua conta seja sugerida a outros
         shared_by:
-          one: Partilhado ou adicionado aos marcadores uma vez
-          other: Partilhado e adicionado aos marcadores %{friendly_count} vezes
+          one: Partilhada ou adicionada aos favoritos uma vez
+          other: Partilhada ou adicionada aos favoritos %{friendly_count} vezes
         title: Publicações em tendência
       tags:
         current_score: Pontuação atual %{score}
@@ -1104,7 +1104,7 @@ pt-PT:
     remove: Desvincular pseudónimo
   appearance:
     advanced_web_interface: Interface web avançada
-    advanced_web_interface_hint: 'Se quiser utilizar toda a largura do seu ecrã, a interface web avançada permite-lhe configurar várias colunas diferentes para ver tanta informação ao mesmo tempo quanto quiser: Página inicial, notificações, cronologia federada, qualquer número de listas e etiquetas.'
+    advanced_web_interface_hint: 'Se quiser utilizar toda a largura do seu ecrã, a interface web avançada permite-lhe configurar várias colunas diferentes para ver tanta informação ao mesmo tempo quanto quiser: página inicial, notificações, cronologia federada, qualquer número de listas e etiquetas.'
     animations_and_accessibility: Animações e acessibilidade
     confirmation_dialogs: Caixas de confirmação
     discovery: Descobrir
@@ -1330,7 +1330,7 @@ pt-PT:
   featured_tags:
     add_new: Adicionar nova
     errors:
-      limit: Já destacou o número máximo de hashtags permitido
+      limit: Já destacou o número máximo de etiquetas permitido
     hint_html: "<strong>Coloque as etiquetas mais importantes no seu perfil.</strong> Uma excelente ferramenta para acompanhar os seus trabalhos criativos e projetos a longo prazo, as etiquetas em destaque são apresentadas de forma proeminente no seu perfil e permitem um acesso rápido às suas próprias publicações."
   filters:
     contexts:
@@ -1584,9 +1584,9 @@ pt-PT:
       sign_up:
         subject: "%{name} inscreveu-se"
     favourite:
-      body: 'A sua publicação foi adicionada aos marcadores por %{name}:'
-      subject: "%{name} adicionou a sua publicação aos marcadores"
-      title: Novo marcador
+      body: 'A sua publicação foi adicionada aos favoritos por %{name}:'
+      subject: "%{name} adicionou a sua publicação aos favoritos"
+      title: Novo favorito
     follow:
       body: "%{name} é teu seguidor!"
       subject: "%{name} começou a seguir-te"
@@ -1833,7 +1833,7 @@ pt-PT:
     enabled_hint: Apaga automaticamente as suas publicações assim que atingirem um certo limite de tempo, a não ser que correspondam a uma das seguintes excepções
     exceptions: Exceções
     explanation: Como apagar publicações é uma operação custosa, isto é feito lentamente ao longo do tempo, quando o servidor não está ocupado. Por esta razão, as suas publicações podem ser apagadas um pouco depois de atingirem o limite de idade definido.
-    ignore_favs: Ignorar marcadores
+    ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar os impulsos
     interaction_exceptions: Exceções baseadas em interações
     interaction_exceptions_explanation: Tenha em atenção que não há garantia de que as mensagens sejam eliminadas se ficarem abaixo do limite de favoritos ou de impulsionamento depois de os terem ultrapassado.
@@ -1847,8 +1847,8 @@ pt-PT:
     keep_polls_hint: Não apaga nenhuma das suas sondagens
     keep_self_bookmark: Manter as publicações que marcou
     keep_self_bookmark_hint: Não elimina as suas próprias publicações se as tiver nos marcadores
-    keep_self_fav: Manter as publicações que marcou
-    keep_self_fav_hint: Não apaga as suas próprias publicações se as tiver marcado
+    keep_self_fav: Manter as publicações que adicionou aos favoritos
+    keep_self_fav_hint: Não elimina as suas próprias publicações se as tiver adicionado aos favoritos
     min_age:
       '1209600': 2 semanas
       '15778476': 6 meses
@@ -1859,8 +1859,8 @@ pt-PT:
       '63113904': 2 anos
       '7889238': 3 meses
     min_age_label: Limite de idade
-    min_favs: Manter pelo menos as publicações dos marcadores
-    min_favs_hint: Não elimina nenhuma das suas publicações que tenha recebido pelo menos este número de favoritos. Deixe em branco para eliminar publicações, independentemente do seu número de favoritos
+    min_favs: Manter publicações adicionadas aos favoritos pelos menos
+    min_favs_hint: Não elimina nenhuma das suas publicações que tenha sido adicionada aos favoritos este número de vezes. Deixe em branco para eliminar publicações, independentemente do número de vezes que tenham sido adicionadas aos favoritos
     min_reblogs: Manter as publicações impulsionadas, pelo menos
     min_reblogs_hint: Não elimina nenhuma das suas mensagens que tenha sido impulsionada pelo menos este número de vezes. Deixe em branco para apagar as mensagens independentemente do número de impulsionamentos
   stream_entries:
@@ -1986,7 +1986,7 @@ pt-PT:
       feature_action: Mais informações
       feature_audience: O Mastodon oferece-lhe uma possibilidade única de gerir a sua audiência sem intermediários. O Mastodon implantado na sua própria infraestrutura permite-lhe seguir e ser seguido a partir de qualquer outro servidor Mastodon online e não está sob o controlo de ninguém a não ser o seu.
       feature_audience_title: Construa seu público em confiança
-      feature_control: Você sabe melhor o que quer ver no seu feed. Não há algoritmos ou anúncios que o façam perder tempo. Siga qualquer pessoa em qualquer servidor Mastodon a partir de uma única conta e receba as suas mensagens por ordem cronológica e torne o seu canto da Internet um pouco mais parecido consigo.
+      feature_control: Você sabe melhor o que quer ver na cronologia da sua página inicial. Não há algoritmos ou anúncios que o façam perder tempo. Siga qualquer pessoa em qualquer servidor Mastodon a partir de uma única conta e receba as suas mensagens por ordem cronológica, e torne o seu canto da Internet um pouco mais parecido consigo.
       feature_control_title: Mantenha o controlo da sua própria cronologia
       feature_creativity: O Mastodon suporta publicações de áudio, vídeo e imagens, descrições de acessibilidade, sondagens, avisos de conteúdo, avatares animados, emojis personalizados, controlo de corte de miniaturas e muito mais, para o ajudar a expressar-se online. Quer esteja a publicar a sua arte, a sua música ou o seu podcast, o Mastodon está lá para si.
       feature_creativity_title: Criatividade inigualável
@@ -1994,7 +1994,7 @@ pt-PT:
       feature_moderation_title: Moderando como deve ser
       follow_action: Seguir
       follow_step: Seguir pessoas interessantes é do que trata Mastodon.
-      follow_title: Personalize seu feed residencial
+      follow_title: Personalize a cronologia na sua página inicial
       follows_subtitle: Siga contas bem conhecidas
       follows_title: Quem seguir
       follows_view_more: Veja mais pessoas para seguir

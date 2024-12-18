@@ -271,6 +271,7 @@ bg:
         enable_user_html: "%{name} включи влизането за потребител %{target}"
         memorialize_account_html: "%{name} превърна акаунта на %{target} във възпоменателна страница"
         promote_user_html: "%{name} повиши потребителя %{target}"
+        publish_terms_of_service_html: "%{name} публикува обновления към условията на услугата"
         reject_appeal_html: "%{name} отхвърли обжалването на решение за модериране от %{target}"
         reject_user_html: "%{name} отхвърли регистрирането от %{target}"
         remove_avatar_user_html: "%{name} премахна аватара на %{target}"
@@ -921,6 +922,7 @@ bg:
     terms_of_service:
       back: Обратно към условията за ползване
       changelog: Какво е променено
+      create: Употребявайте свой собствен
       current: Текущо
       draft: Чернова
       generate: Употреба на шаблон
@@ -932,10 +934,15 @@ bg:
       history: История
       live: На живо
       no_history: Още няма записани промени в условията на услугата.
+      no_terms_of_service_html: В момента нямате никакви настроени условия за услугата. Условията за услугата са предназначени да осигурят яснота и да ви предпазят от възможни задължения при спорове с потребителите ви.
       notified_on_html: Потребители, известени на %{date}
+      notify_users: Известете потребителите
       preview:
         explanation_html: 'Имейлът ще се изпрати до <strong>%{display_count} потребители</strong>, регистрирали се преди %{date}. Следният текст ще се включи в е-писмо:'
         send_preview: Изпращане на предварителен преглед до %{email}
+        send_to_all:
+          one: Изпращане на %{display_count} имейл
+          other: Изпращане на %{display_count} имейла
         title: Предварителен преглед на известие за условията на услугата
       publish: Публикуване
       published_on_html: Публикувано на %{date}
@@ -1396,6 +1403,44 @@ bg:
       merge_long: Пази текущите записи и добавя нови
       overwrite: Презаписване
       overwrite_long: Заменя текущите записи с новите
+    overwrite_preambles:
+      blocking_html:
+        one: На път сте да <strong>замените списъка си с блокирани</strong> с до <strong>%{count} акаунт</strong> от <strong>%{filename}</strong>.
+        other: На път сте да <strong>замените списъка си с блокирани</strong> с до <strong>%{count} акаунта</strong> от <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: На път сте да <strong>замените списъка си с отметки</strong> с до <strong>%{count} публикация</strong> от <strong>%{filename}</strong>.
+        other: На път сте да <strong>замените списъка си с отметки</strong> с до <strong>%{count} публикации</strong> от <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: На път сте да <strong>замените списъка си с блокирани домейни</strong> с до <strong>%{count} домейн</strong> от <strong>%{filename}</strong>.
+        other: На път сте да <strong>замените списъка си с блокирани домейни</strong> с до <strong>%{count} домейна</strong> от <strong>%{filename}</strong>.
+      following_html:
+        one: На път сте да <strong>последвате</strong> до <strong>%{count} акаунт</strong> от <strong>%{filename}</strong> и <strong>да спрете да следвате някой друг</strong>.
+        other: На път сте да <strong>последвате</strong> до <strong>%{count} акаунта</strong> от <strong>%{filename}</strong> и <strong>да спрете да следвате някой друг</strong>.
+      lists_html:
+        one: На път сте да <strong>замените списъците си</strong> със съдържание от <strong>%{filename}</strong>. До <strong>%{count} акаунт</strong> ще се добави към новите списъци.
+        other: На път сте да <strong>замените списъците си</strong> със съдържание от <strong>%{filename}</strong>. До <strong>%{count} акаунта</strong> ще се добавят към новите списъци.
+      muting_html:
+        one: На път сте да <strong>замените списъка си със заглушен акаунт</strong> с до <strong>%{count} акаунт</strong> от <strong>%{filename}</strong>.
+        other: На път сте да <strong>замените списъка си със заглушени акаунти</strong> с до <strong>%{count} акаунта</strong> от <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        one: На път сте да <strong>блокирате</strong> до <strong>%{count} акаунт</strong> от <strong>%{filename}</strong>.
+        other: На път сте да <strong>блокирате</strong> до <strong>%{count} акаунта</strong> от <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: На път сте да добавите до <strong>%{count} публикация</strong> от <strong>%{filename}</strong> в <strong>отметките</strong> си.
+        other: На път сте да добавите до <strong>%{count} публикации</strong> от <strong>%{filename}</strong> в <strong>отметките</strong> си.
+      domain_blocking_html:
+        one: На път сте да <strong>блокирате</strong> до <strong>%{count} домейн</strong> от <strong>%{filename}</strong>.
+        other: На път сте да <strong>блокирате</strong> до <strong>%{count} домейна</strong> от <strong>%{filename}</strong>.
+      following_html:
+        one: На път сте да <strong>последвате</strong> до <strong>%{count} акаунт</strong> от <strong>%{filename}</strong>.
+        other: На път сте да <strong>последвате</strong> до <strong>%{count} акаунта</strong> от <strong>%{filename}</strong>.
+      lists_html:
+        one: На път сте да добавите до <strong>%{count} акаунт</strong> от <strong>%{filename}</strong> към своите <strong>списъци</strong>. Нови списъци ще се сътворят, ако няма списъци за добавяне.
+        other: На път сте да добавите до <strong>%{count} акаунта</strong> от <strong>%{filename}</strong> към <strong>списъците</strong> си. Нови списъци ще се сътворят, ако няма списъци за добавяне.
+      muting_html:
+        one: На път сте да <strong>заглушите</strong> до <strong>%{count} акаунт</strong> от <strong>%{filename}</strong>.
+        other: На път сте да <strong>заглушите</strong> до <strong>%{count} акаунта</strong> от <strong>%{filename}</strong>.
     preface: Можеш да импортираш някои данни, като например всички хора, които следваш или блокираш в акаунта си на тази инстанция, от файлове, създадени чрез експорт в друга инстанция.
     recent_imports: Скорошни внасяния
     states:
