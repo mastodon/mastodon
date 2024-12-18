@@ -23,12 +23,19 @@ RSpec.describe HomeHelper do
     context 'with a valid account' do
       let(:account) { Fabricate(:account) }
 
-      it 'returns a link to the account' do
-        without_partial_double_verification do
-          allow(helper).to receive_messages(current_account: account, prefers_autoplay?: false)
-          result = helper.account_link_to(account)
+      before { helper.extend controller_helpers }
 
-          expect(result).to match "@#{account.acct}"
+      it 'returns a link to the account' do
+        result = helper.account_link_to(account)
+
+        expect(result).to match "@#{account.acct}"
+      end
+
+      private
+
+      def controller_helpers
+        Module.new do
+          def current_account = Account.last
         end
       end
     end

@@ -44,48 +44,59 @@
 #  hide_collections              :boolean
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
-#  devices_url                   :string
 #  suspension_origin             :integer
 #  sensitized_at                 :datetime
 #  trendable                     :boolean
 #  reviewed_at                   :datetime
 #  requested_review_at           :datetime
 #  indexable                     :boolean          default(FALSE), not null
+#  attribution_domains           :string           default([]), is an Array
 #
 
 class Account < ApplicationRecord
   self.ignored_columns += %w(
-    subscription_expires_at
-    secret
+    devices_url
+    hub_url
     remote_url
     salmon_url
-    hub_url
+    secret
+    subscription_expires_at
     trust_level
   )
 
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
+  DEFAULT_FIELDS_SIZE = 4
+  INSTANCE_ACTOR_ID = -99
 
-  USERNAME_RE   = /[a-z0-9_]+([a-z0-9_.-]+[a-z0-9_]+)?/i
-  MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@[[:word:].-]+[[:word:]]+)?)}
+  USERNAME_RE   = /[a-z0-9_]+([.-]+[a-z0-9_]+)*/i
+  MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]]+([.-]+[[:word:]]+)*)?)}
   URL_PREFIX_RE = %r{\Ahttp(s?)://[^/]+}
   USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
+  USERNAME_LENGTH_LIMIT = 30
+  DISPLAY_NAME_LENGTH_LIMIT = 30
+  NOTE_LENGTH_LIMIT = 500
 
-  include Attachmentable
-  include AccountAssociations
-  include AccountAvatar
-  include AccountFinderConcern
-  include AccountHeader
-  include AccountInteractions
-  include Paginable
-  include AccountCounters
-  include DomainNormalizable
+  AUTOMATED_ACTOR_TYPES = %w(Application Service).freeze
+
+  include Attachmentable # Load prior to Avatar & Header concerns
+
+  include Account::Associations
+  include Account::Avatar
+  include Account::Counters
+  include Account::FinderConcern
+  include Account::Header
+  include Account::Interactions
+  include Account::Merging
+  include Account::Search
+  include Account::StatusesSearch
+  include Account::AttributionDomains
   include DomainMaterializable
-  include AccountMerging
-  include AccountSearch
-  include AccountStatusesSearch
+  include DomainNormalizable
+  include Paginable
+  include Reviewable
 
-  enum protocol: { ostatus: 0, activitypub: 1 }
-  enum suspension_origin: { local: 0, remote: 1 }, _prefix: true
+  enum :protocol, { ostatus: 0, activitypub: 1 }
+  enum :suspension_origin, { local: 0, remote: 1 }, prefix: true
 
   validates :username, presence: true
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
@@ -97,16 +108,21 @@ class Account < ApplicationRecord
   validates :uri, presence: true, unless: :local?, on: :create
 
   # Local user validations
-  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
+  validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: USERNAME_LENGTH_LIMIT }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
-  validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
-  validates :note, note_length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
-  validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
-  validates :uri, absence: true, if: :local?, on: :create
-  validates :inbox_url, absence: true, if: :local?, on: :create
-  validates :shared_inbox_url, absence: true, if: :local?, on: :create
-  validates :followers_url, absence: true, if: :local?, on: :create
+  validates :display_name, length: { maximum: DISPLAY_NAME_LENGTH_LIMIT }, if: -> { local? && will_save_change_to_display_name? }
+  validates :note, note_length: { maximum: NOTE_LENGTH_LIMIT }, if: -> { local? && will_save_change_to_note? }
+  validates :fields, length: { maximum: DEFAULT_FIELDS_SIZE }, if: -> { local? && will_save_change_to_fields? }
+  with_options on: :create do
+    validates :uri, absence: true, if: :local?
+    validates :inbox_url, absence: true, if: :local?
+    validates :shared_inbox_url, absence: true, if: :local?
+    validates :followers_url, absence: true, if: :local?
+  end
 
+  normalizes :username, with: ->(username) { username.squish }
+
+  scope :without_internal, -> { where(id: 1...) }
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
@@ -115,24 +131,29 @@ class Account < ApplicationRecord
   scope :sensitized, -> { where.not(sensitized_at: nil) }
   scope :without_suspended, -> { where(suspended_at: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
-  scope :without_instance_actor, -> { where.not(id: -99) }
+  scope :without_instance_actor, -> { where.not(id: INSTANCE_ACTOR_ID) }
   scope :recent, -> { reorder(id: :desc) }
-  scope :bots, -> { where(actor_type: %w(Application Service)) }
+  scope :bots, -> { where(actor_type: AUTOMATED_ACTOR_TYPES) }
+  scope :non_automated, -> { where.not(actor_type: AUTOMATED_ACTOR_TYPES) }
   scope :groups, -> { where(actor_type: 'Group') }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
+  scope :matches_uri_prefix, ->(value) { where(arel_table[:uri].matches("#{sanitize_sql_like(value)}/%", false, true)).or(where(uri: value)) }
   scope :matches_username, ->(value) { where('lower((username)::text) LIKE lower(?)', "#{value}%") }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
-  scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
   scope :without_unapproved, -> { left_outer_joins(:user).merge(User.approved.confirmed).or(remote) }
+  scope :auditable, -> { where(id: Admin::ActionLog.select(:account_id).distinct) }
   scope :searchable, -> { without_unapproved.without_suspended.where(moved_to_account_id: nil) }
   scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).joins(:account_stat) }
-  scope :followable_by, ->(account) { joins(arel_table.join(Follow.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(Follow.arel_table[:target_account_id]).and(Follow.arel_table[:account_id].eq(account.id))).join_sources).where(Follow.arel_table[:id].eq(nil)).joins(arel_table.join(FollowRequest.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(FollowRequest.arel_table[:target_account_id]).and(FollowRequest.arel_table[:account_id].eq(account.id))).join_sources).where(FollowRequest.arel_table[:id].eq(nil)) }
-  scope :by_recent_status, -> { includes(:account_stat).merge(AccountStat.order('last_status_at DESC NULLS LAST')).references(:account_stat) }
-  scope :by_recent_sign_in, -> { order(Arel.sql('users.current_sign_in_at DESC NULLS LAST')) }
-  scope :popular, -> { order('account_stats.followers_count desc') }
+  scope :by_recent_status, -> { includes(:account_stat).merge(AccountStat.by_recent_status).references(:account_stat) }
+  scope :by_recent_activity, -> { left_joins(:user, :account_stat).order(coalesced_activity_timestamps.desc).order(id: :desc) }
   scope :by_domain_and_subdomains, ->(domain) { where(domain: Instance.by_domain_and_subdomains(domain).select(:domain)) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { where(arel_table[:domain].eq(nil).or(arel_table[:domain].not_in(account.excluded_from_timeline_domains))) }
+  scope :dormant, -> { joins(:account_stat).merge(AccountStat.without_recent_activity) }
+  scope :with_username, ->(value) { where arel_table[:username].lower.eq(value.to_s.downcase) }
+  scope :with_domain, ->(value) { where arel_table[:domain].lower.eq(value&.to_s&.downcase) }
+  scope :without_memorial, -> { where(memorial: false) }
+  scope :duplicate_uris, -> { select(:uri, Arel.star.count).group(:uri).having(Arel.star.count.gt(1)) }
 
   after_update_commit :trigger_update_webhooks
 
@@ -169,11 +190,11 @@ class Account < ApplicationRecord
   end
 
   def bot?
-    %w(Application Service).include? actor_type
+    AUTOMATED_ACTOR_TYPES.include?(actor_type)
   end
 
   def instance_actor?
-    id == -99
+    id == INSTANCE_ACTOR_ID
   end
 
   alias bot bot?
@@ -238,6 +259,10 @@ class Account < ApplicationRecord
     suspended_at.present? && !instance_actor?
   end
 
+  def suspended_locally?
+    suspended? && suspension_origin_local?
+  end
+
   def suspended_permanently?
     suspended? && deletion_request.nil?
   end
@@ -245,6 +270,9 @@ class Account < ApplicationRecord
   def suspended_temporarily?
     suspended? && deletion_request.present?
   end
+
+  alias unavailable? suspended?
+  alias permanently_unavailable? suspended_permanently?
 
   def suspend!(date: Time.now.utc, origin: :local, block_email: true)
     transaction do
@@ -344,8 +372,6 @@ class Account < ApplicationRecord
     self[:fields] = fields
   end
 
-  DEFAULT_FIELDS_SIZE = 4
-
   def build_fields
     return if fields.size >= DEFAULT_FIELDS_SIZE
 
@@ -412,30 +438,22 @@ class Account < ApplicationRecord
     @synchronization_uri_prefix ||= "#{uri[URL_PREFIX_RE]}/"
   end
 
-  def requires_review?
-    reviewed_at.nil?
-  end
-
-  def reviewed?
-    reviewed_at.present?
-  end
-
-  def requested_review?
-    requested_review_at.present?
-  end
-
-  def requires_review_notification?
-    requires_review? && !requested_review?
-  end
-
   class << self
     def readonly_attributes
       super - %w(statuses_count following_count followers_count)
     end
 
     def inboxes
-      urls = reorder(nil).where(protocol: :activitypub).group(:preferred_inbox_url).pluck(Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url"))
+      urls = reorder(nil).activitypub.group(:preferred_inbox_url).pluck(Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url"))
       DeliveryFailureTracker.without_unavailable(urls)
+    end
+
+    def coalesced_activity_timestamps
+      Arel.sql(
+        <<~SQL.squish
+          COALESCE(users.current_sign_in_at, account_stats.last_status_at, to_timestamp(0))
+        SQL
+      )
     end
 
     def from_text(text)
@@ -453,8 +471,8 @@ class Account < ApplicationRecord
     end
 
     def inverse_alias(key, original_key)
-      define_method("#{key}=") do |value|
-        public_send("#{original_key}=", !ActiveModel::Type::Boolean.new.cast(value))
+      define_method(:"#{key}=") do |value|
+        public_send(:"#{original_key}=", !ActiveModel::Type::Boolean.new.cast(value))
       end
 
       define_method(key) do
@@ -471,7 +489,6 @@ class Account < ApplicationRecord
   end
 
   before_validation :prepare_contents, if: :local?
-  before_validation :prepare_username, on: :create
   before_create :generate_keys
   before_destroy :clean_feed_manager
 
@@ -487,10 +504,6 @@ class Account < ApplicationRecord
   def prepare_contents
     display_name&.strip!
     note&.strip!
-  end
-
-  def prepare_username
-    username&.squish!
   end
 
   def generate_keys

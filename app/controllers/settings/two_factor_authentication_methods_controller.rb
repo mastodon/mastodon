@@ -4,6 +4,7 @@ module Settings
   class TwoFactorAuthenticationMethodsController < BaseController
     include ChallengableConcern
 
+    skip_before_action :check_self_destruct!
     skip_before_action :require_functional!
 
     before_action :require_challenge!, only: :disable

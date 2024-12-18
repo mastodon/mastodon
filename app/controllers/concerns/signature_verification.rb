@@ -12,39 +12,6 @@ module SignatureVerification
 
   class SignatureVerificationError < StandardError; end
 
-  class SignatureParamsParser < Parslet::Parser
-    rule(:token)         { match("[0-9a-zA-Z!#$%&'*+.^_`|~-]").repeat(1).as(:token) }
-    rule(:quoted_string) { str('"') >> (qdtext | quoted_pair).repeat.as(:quoted_string) >> str('"') }
-    # qdtext and quoted_pair are not exactly according to spec but meh
-    rule(:qdtext)        { match('[^\\\\"]') }
-    rule(:quoted_pair)   { str('\\') >> any }
-    rule(:bws)           { match('\s').repeat }
-    rule(:param)         { (token.as(:key) >> bws >> str('=') >> bws >> (token | quoted_string).as(:value)).as(:param) }
-    rule(:comma)         { bws >> str(',') >> bws }
-    # Old versions of node-http-signature add an incorrect "Signature " prefix to the header
-    rule(:buggy_prefix)  { str('Signature ') }
-    rule(:params)        { buggy_prefix.maybe >> (param >> (comma >> param).repeat).as(:params) }
-    root(:params)
-  end
-
-  class SignatureParamsTransformer < Parslet::Transform
-    rule(params: subtree(:param)) do
-      (param.is_a?(Array) ? param : [param]).each_with_object({}) { |(key, value), hash| hash[key] = value }
-    end
-
-    rule(param: { key: simple(:key), value: simple(:val) }) do
-      [key, val]
-    end
-
-    rule(quoted_string: simple(:string)) do
-      string.to_s
-    end
-
-    rule(token: simple(:string)) do
-      string.to_s
-    end
-  end
-
   def require_account_signature!
     render json: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
   end
@@ -99,7 +66,7 @@ module SignatureVerification
     compare_signed_string = build_signed_string(include_query_string: false)
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
-    actor = stoplight_wrap_request { actor_refresh_key!(actor) }
+    actor = stoplight_wrapper.run { actor_refresh_key!(actor) }
 
     raise SignatureVerificationError, "Could not refresh public key #{signature_params['keyId']}" if actor.nil?
 
@@ -135,12 +102,8 @@ module SignatureVerification
   end
 
   def signature_params
-    @signature_params ||= begin
-      raw_signature = request.headers['Signature']
-      tree          = SignatureParamsParser.new.parse(raw_signature)
-      SignatureParamsTransformer.new.apply(tree)
-    end
-  rescue Parslet::ParseFailed
+    @signature_params ||= SignatureParser.parse(request.headers['Signature'])
+  rescue SignatureParser::ParsingError
     raise SignatureVerificationError, 'Error parsing signature parameters'
   end
 
@@ -263,10 +226,10 @@ module SignatureVerification
     end
 
     if key_id.start_with?('acct:')
-      stoplight_wrap_request { ResolveAccountService.new.call(key_id.delete_prefix('acct:'), suppress_errors: false) }
+      stoplight_wrapper.run { ResolveAccountService.new.call(key_id.delete_prefix('acct:'), suppress_errors: false) }
     elsif !ActivityPub::TagManager.instance.local_uri?(key_id)
       account   = ActivityPub::TagManager.instance.uri_to_actor(key_id)
-      account ||= stoplight_wrap_request { ActivityPub::FetchRemoteKeyService.new.call(key_id, suppress_errors: false) }
+      account ||= stoplight_wrapper.run { ActivityPub::FetchRemoteKeyService.new.call(key_id, suppress_errors: false) }
       account
     end
   rescue Mastodon::PrivateNetworkAddressError => e
@@ -275,12 +238,11 @@ module SignatureVerification
     raise SignatureVerificationError, e.message
   end
 
-  def stoplight_wrap_request(&block)
-    Stoplight("source:#{request.remote_ip}", &block)
+  def stoplight_wrapper
+    Stoplight("source:#{request.remote_ip}")
       .with_threshold(1)
       .with_cool_off_time(5.minutes.seconds)
       .with_error_handler { |error, handle| error.is_a?(HTTP::Error) || error.is_a?(OpenSSL::SSL::SSLError) ? handle.call(error) : raise(error) }
-      .run
   end
 
   def actor_refresh_key!(actor)

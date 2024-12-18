@@ -4,17 +4,13 @@ require 'rails_helper'
 
 RSpec.describe DomainBlock do
   describe 'validations' do
-    it 'is invalid without a domain' do
-      domain_block = Fabricate.build(:domain_block, domain: nil)
-      domain_block.valid?
-      expect(domain_block).to model_have_error_on_field(:domain)
-    end
+    it { is_expected.to validate_presence_of(:domain) }
 
     it 'is invalid if the same normalized domain already exists' do
-      domain_block_1 = Fabricate(:domain_block, domain: 'にゃん')
-      domain_block_2 = Fabricate.build(:domain_block, domain: 'xn--r9j5b5b')
-      domain_block_2.valid?
-      expect(domain_block_2).to model_have_error_on_field(:domain)
+      _domain_block = Fabricate(:domain_block, domain: 'にゃん')
+      domain_block_with_normalized_value = Fabricate.build(:domain_block, domain: 'xn--r9j5b5b')
+      domain_block_with_normalized_value.valid?
+      expect(domain_block_with_normalized_value).to model_have_error_on_field(:domain)
     end
   end
 

@@ -5,7 +5,9 @@
   %h2= t('settings.profile')
   = render partial: 'settings/shared/profile_navigation'
 
-.simple_form
+.simple_form.form-section
+  %h3= t('verification.website_verification')
+
   %p.lead= t('verification.hint_html')
 
   %h4= t('verification.here_is_how')
@@ -14,7 +16,7 @@
 
   .input-copy.lead
     .input-copy__wrapper
-      %input{ type: :text, maxlength: '999', spellcheck: 'false', readonly: 'true', value: link_to('Mastodon', ActivityPub::TagManager.instance.url_for(@account), rel: 'me').to_str }
+      = copyable_input value: link_to('Mastodon', ActivityPub::TagManager.instance.url_for(@account), rel: :me)
     %button{ type: :button }= t('generic.copy')
 
   %p.lead= t('verification.extra_instructions_html')
@@ -26,5 +28,35 @@
       - @verified_links.each do |field|
         %li
           %span.verified-badge
-            = fa_icon 'check', class: 'verified-badge__mark'
+            = material_symbol 'check', class: 'verified-badge__mark'
             %span= field.value
+
+= simple_form_for @account, url: settings_verification_path, html: { class: 'form-section' } do |f|
+  = render 'shared/error_messages', object: @account
+
+  %h3= t('author_attribution.title')
+
+  %p.lead= t('author_attribution.hint_html')
+
+  .fields-row
+    .fields-row__column.fields-row__column-6
+      .fields-group
+        = f.input :attribution_domains_as_text, as: :text, wrapper: :with_block_label, input_html: { placeholder: "example1.com\nexample2.com\nexample3.com", rows: 4 }
+    .fields-row__column.fields-row__column-6
+      .fields-group.fade-out-top
+        %div
+          .status-card.expanded.bottomless
+            .status-card__image
+              = image_tag frontend_asset_url('images/preview.png'), alt: '', class: 'status-card__image-image'
+            .status-card__content
+              %span.status-card__host
+                %span= t('author_attribution.s_blog', name: display_name(@account))
+                ·
+                %time.time-ago{ datetime: 1.year.ago.to_date.iso8601 }
+              %strong.status-card__title= t('author_attribution.example_title')
+          .more-from-author
+            = logo_as_symbol(:icon)
+            = t('author_attribution.more_from_html', name: link_to(root_url, class: 'story__details__shared__author-link') { image_tag(@account.avatar.url, class: 'account__avatar', width: 16, height: 16, alt: '') + tag.bdi(display_name(@account)) })
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

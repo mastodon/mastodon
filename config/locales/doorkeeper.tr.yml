@@ -15,7 +15,7 @@ tr:
               fragment_present: parça içeremez.
               invalid_uri: geçerli bir URL olmalıdır.
               relative_uri: mutlaka bir URL olmalıdır.
-              secured_uri: HTTPS/SSL URL olması gerekir.
+              secured_uri: bir HTTPS/SSL URI olması gerekir.
   doorkeeper:
     applications:
       buttons:
@@ -60,7 +60,7 @@ tr:
       error:
         title: Bir hata oluştu
       new:
-        prompt_html: "%{client_name} hesabınıza erişme izni istiyor. Bu üçüncü taraf bir uygulamadır. <strong>Eğer güvenmiyorsanız, izin vermemelisiniz.</strong>"
+        prompt_html: "%{client_name} hesabınıze erişmek için izin istiyor. <strong>Bu isteği sadece bu kaynağı tanıyor ve güveniyorsanız onaylayın.</strong>"
         review_permissions: İzinleri incele
         title: İzin gerekli
       show:
@@ -83,8 +83,9 @@ tr:
         access_denied: Kaynak sahibi veya yetkilendirme sunucusu isteği reddetti.
         credential_flow_not_configured: Kaynak Sahibi Parolası Kimlik Bilgileri akışı Doorkeeper.configure.resource_owner_from_credentials 'ın yapılandırılmamış olması nedeniyle başarısız oldu.
         invalid_client: İstemcinin kimlik doğrulaması bilinmeyen istemci, istemci kimlik doğrulamasının dahil olmaması veya desteklenmeyen kimlik doğrulama yöntemi nedeniyle başarısız oldu.
+        invalid_code_challenge_method: Kod zorluk metodu S256 olmalı, düz yöntem desteklenmiyor.
         invalid_grant: Sağlanan yetkilendirme izni geçersiz, süresi dolmuş, iptal edilmiş, yetkilendirme isteğinde kullanılan yönlendirme URL'siyle eşleşmiyor veya başka bir istemciye verilmiş.
-        invalid_redirect_uri: Dahil edilmiş yönlendirme URL'si geçersiz.
+        invalid_redirect_uri: Dahil edilmiş yönlendirme uri'si geçersiz.
         invalid_request:
           missing_param: 'Gerekli parametre eksik: %{value}.'
           request_not_authorized: İsteğin yetkilendirilmesi gerekiyor. İsteği yetkilendirmek için gereken parametre eksik veya geçersiz.
@@ -128,13 +129,14 @@ tr:
         conversations: Sohbetler
         crypto: Uçtan uca şifreleme
         favourites: Favoriler
-        filters: Filtreler
+        filters: Süzgeçler
         follow: Takipler, Sessizler ve Engeller
         follows: Takip edilenler
         lists: Listeler
         media: Medya ekleri
         mutes: Sessize alınanlar
         notifications: Bildirimler
+        profile: Mastodon profiliniz
         push: Anlık bildirimler
         reports: Şikayetler
         search: Arama
@@ -161,17 +163,18 @@ tr:
       admin:write:domain_allows: alan adı izinleri için denetleme eylemleri gerçekleştirin
       admin:write:domain_blocks: alan adı engellemeleri için denetleme eylemleri gerçekleştirin
       admin:write:email_domain_blocks: e-posta alan adı engellemeleri için denetleme eylemleri gerçekleştirin
-      admin:write:ip_blocks: IP engellemeleri için denetleme eylemleri gerçekleştirin
+      admin:write:ip_blocks: ıp blokları üzerinde moderasyon eylemleri gerçekleştir
       admin:write:reports: raporlarda denetleme eylemleri gerçekleştirin
       crypto: uçtan uca şifreleme kullan
       follow: hesap ilişkilerini değiştirin
+      profile: hesabınızın sadece profil bilgilerini okuma
       push: anlık bildirimlerizi alın
       read: hesabınızın tüm verilerini okuyun
       read:accounts: hesap bilgilerini görün
       read:blocks: engellemelerinizi görün
       read:bookmarks: yer imlerinizi görün
       read:favourites: favorilerinizi görün
-      read:filters: filtrelerinizi görün
+      read:filters: süzgeçlerinizi görün
       read:follows: takip ettiklerinizi görün
       read:lists: listelerinizi görün
       read:mutes: sessize aldıklarınızı görün

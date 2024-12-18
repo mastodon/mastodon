@@ -9,7 +9,7 @@ module Mastodon
     end
 
     def minor
-      2
+      3
     end
 
     def patch
@@ -43,6 +43,12 @@ module Mastodon
       @gem_version ||= Gem::Version.new(to_s.split('+')[0])
     end
 
+    def api_versions
+      {
+        mastodon: 2,
+      }
+    end
+
     def repository
       ENV.fetch('GITHUB_REPOSITORY', 'jesseplusplus/decodon')
     end
@@ -65,7 +71,7 @@ module Mastodon
     end
 
     def user_agent
-      @user_agent ||= "#{HTTP::Request::USER_AGENT} (Mastodon/#{Version}; +http#{Rails.configuration.x.use_https ? 's' : ''}://#{Rails.configuration.x.web_domain}/)"
+      @user_agent ||= "Mastodon/#{Version} (#{HTTP::Request::USER_AGENT}; +http#{Rails.configuration.x.use_https ? 's' : ''}://#{Rails.configuration.x.web_domain}/)"
     end
   end
 end

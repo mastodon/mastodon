@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'pundit/rspec'
 
-describe IpBlockPolicy do
+RSpec.describe IpBlockPolicy do
   let(:policy) { described_class }
   let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
   let(:john)    { Fabricate(:account) }

@@ -1,30 +1,30 @@
-- if !@user.confirmed?
+- if !user.confirmed?
   .flash-message.warning
     = t('auth.status.confirming')
     = link_to t('auth.didnt_get_confirmation'), new_user_confirmation_path
-- elsif !@user.approved?
+- elsif !user.approved?
   .flash-message.warning
     = t('auth.status.pending')
-- elsif @user.account.moved_to_account_id.present?
+- elsif user.account.moved_to_account_id.present?
   .flash-message.warning
-    = t('auth.status.redirecting_to', acct: @user.account.moved_to_account.pretty_acct)
+    = t('auth.status.redirecting_to', acct: user.account.moved_to_account.pretty_acct)
     = link_to t('migrations.cancel'), settings_migration_path
 
 %h3= t('auth.status.account_status')
 
 %p.hint
-  - if @user.account.suspended?
+  - if user.account.suspended?
     %span.negative-hint= t('user_mailer.warning.explanation.suspend')
-  - elsif @user.disabled?
+  - elsif user.disabled?
     %span.negative-hint= t('user_mailer.warning.explanation.disable')
-  - elsif @user.account.silenced?
+  - elsif user.account.silenced?
     %span.warning-hint= t('user_mailer.warning.explanation.silence')
   - else
     %span.positive-hint= t('auth.status.functional')
 
-= render partial: 'account_warning', collection: @strikes
+= render partial: 'account_warning', collection: strikes
 
-- if @user.account.strikes.exists?
+- if user.account.strikes.exists?
   %hr.spacer/
 
   %p.muted-hint

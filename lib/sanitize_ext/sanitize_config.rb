@@ -52,7 +52,7 @@ class Sanitize
                  :relative
                end
 
-      current_node.replace(Nokogiri::XML::Text.new(current_node.text, current_node.document)) unless LINK_PROTOCOLS.include?(scheme)
+      current_node.replace(current_node.document.create_text_node(current_node.text)) unless LINK_PROTOCOLS.include?(scheme)
     end
 
     UNSUPPORTED_ELEMENTS_TRANSFORMER = lambda do |env|
@@ -64,8 +64,8 @@ class Sanitize
       current_node.wrap('<p></p>')
     end
 
-    MASTODON_STRICT ||= freeze_config(
-      elements: %w(p br span a del s pre blockquote code b strong u i em ul ol li),
+    MASTODON_STRICT = freeze_config(
+      elements: %w(p br span a del s pre blockquote code b strong u i em ul ol li ruby rt rp),
 
       attributes: {
         'a' => %w(href rel class translate),
@@ -91,7 +91,7 @@ class Sanitize
       ]
     )
 
-    MASTODON_OEMBED ||= freeze_config(
+    MASTODON_OEMBED = freeze_config(
       elements: %w(audio embed iframe source video),
 
       attributes: {

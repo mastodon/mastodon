@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Report do
+RSpec.describe Report do
   describe 'statuses' do
     it 'returns the statuses for the report' do
       status = Fabricate(:status)
@@ -110,9 +110,9 @@ describe Report do
     let(:status) { Fabricate(:status) }
 
     before do
-      Fabricate('Admin::ActionLog', target_type: 'Report', account_id: target_account.id, target_id: report.id, created_at: 2.days.ago)
-      Fabricate('Admin::ActionLog', target_type: 'Account', account_id: target_account.id, target_id: report.target_account_id, created_at: 2.days.ago)
-      Fabricate('Admin::ActionLog', target_type: 'Status', account_id: target_account.id, target_id: status.id, created_at: 2.days.ago)
+      Fabricate(:action_log, target_type: 'Report', account_id: target_account.id, target_id: report.id, created_at: 2.days.ago)
+      Fabricate(:action_log, target_type: 'Account', account_id: target_account.id, target_id: report.target_account_id, created_at: 2.days.ago)
+      Fabricate(:action_log, target_type: 'Status', account_id: target_account.id, target_id: status.id, created_at: 2.days.ago)
     end
 
     it 'returns right logs' do
@@ -123,14 +123,14 @@ describe Report do
   describe 'validations' do
     let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
 
-    it 'is invalid if comment is longer than 1000 characters only if reporter is local' do
-      report = Fabricate.build(:report, comment: Faker::Lorem.characters(number: 1001))
+    it 'is invalid if comment is longer than character limit and reporter is local' do
+      report = Fabricate.build(:report, comment: comment_over_limit)
       expect(report.valid?).to be false
       expect(report).to model_have_error_on_field(:comment)
     end
 
-    it 'is valid if comment is longer than 1000 characters and reporter is not local' do
-      report = Fabricate.build(:report, account: remote_account, comment: Faker::Lorem.characters(number: 1001))
+    it 'is valid if comment is longer than character limit and reporter is not local' do
+      report = Fabricate.build(:report, account: remote_account, comment: comment_over_limit)
       expect(report.valid?).to be true
     end
 
@@ -145,6 +145,10 @@ describe Report do
       report = Fabricate.build(:report, category: :spam, rule_ids: rule.id)
       expect(report.valid?).to be false
       expect(report).to model_have_error_on_field(:rule_ids)
+    end
+
+    def comment_over_limit
+      'a' * described_class::COMMENT_SIZE_LIMIT * 2
     end
   end
 end

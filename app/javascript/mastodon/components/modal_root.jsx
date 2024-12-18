@@ -2,14 +2,13 @@ import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import 'wicg-inert';
+
 import { multiply } from 'color-blend';
 import { createBrowserHistory } from 'history';
 
-export default class ModalRoot extends PureComponent {
+import { WithOptionalRouterPropTypes, withOptionalRouter } from 'mastodon/utils/react_router';
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
+class ModalRoot extends PureComponent {
 
   static propTypes = {
     children: PropTypes.node,
@@ -20,6 +19,7 @@ export default class ModalRoot extends PureComponent {
       b: PropTypes.number,
     }),
     ignoreFocus: PropTypes.bool,
+    ...WithOptionalRouterPropTypes,
   };
 
   activeElement = this.props.children ? document.activeElement : null;
@@ -55,7 +55,7 @@ export default class ModalRoot extends PureComponent {
   componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);
     window.addEventListener('keydown', this.handleKeyDown, false);
-    this.history = this.context.router ? this.context.router.history : createBrowserHistory();
+    this.history = this.props.history || createBrowserHistory();
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
@@ -148,7 +148,7 @@ export default class ModalRoot extends PureComponent {
     return (
       <div className='modal-root' ref={this.setRef}>
         <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
-          <div role='presentation' className='modal-root__overlay' onClick={onClose} style={{ backgroundColor: backgroundColor ? `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, 0.7)` : null }} />
+          <div role='presentation' className='modal-root__overlay' onClick={onClose} style={{ backgroundColor: backgroundColor ? `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, 0.9)` : null }} />
           <div role='dialog' className='modal-root__container'>{children}</div>
         </div>
       </div>
@@ -156,3 +156,5 @@ export default class ModalRoot extends PureComponent {
   }
 
 }
+
+export default withOptionalRouter(ModalRoot);

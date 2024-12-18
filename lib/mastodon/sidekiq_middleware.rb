@@ -42,7 +42,7 @@ class Mastodon::SidekiqMiddleware
   def clean_up_elasticsearch_connections!
     return unless Chewy.enabled? && Chewy.current[:chewy_client].present?
 
-    Chewy.client.transport.connections.each do |connection|
+    Chewy.client.transport.transport.connections.each do |connection|
       # NOTE: This bit of code is tailored for the HTTPClient Faraday adapter
       connection.connection.app.instance_variable_get(:@client)&.reset_all
     end
@@ -53,7 +53,7 @@ class Mastodon::SidekiqMiddleware
   end
 
   def clean_up_redis_socket!
-    RedisConfiguration.pool.checkin if Thread.current[:redis]
+    RedisConnection.pool.checkin if Thread.current[:redis]
     Thread.current[:redis] = nil
   end
 

@@ -1,20 +1,50 @@
-import type { AnyAction, Middleware } from 'redux';
+import {
+  isAction,
+  isAsyncThunkAction,
+  isRejectedWithValue,
+} from '@reduxjs/toolkit';
+import type { Action, Middleware } from '@reduxjs/toolkit';
 
 import type { RootState } from '..';
 import { showAlertForError } from '../../actions/alerts';
+import type { AsyncThunkRejectValue } from '../typed_functions';
 
 const defaultFailSuffix = 'FAIL';
+const isFailedAction = new RegExp(`${defaultFailSuffix}$`, 'g');
 
-export const errorsMiddleware: Middleware<unknown, RootState> =
+interface ActionWithMaybeAlertParams extends Action, AsyncThunkRejectValue {}
+
+interface RejectedAction extends Action {
+  payload: AsyncThunkRejectValue;
+}
+
+function isRejectedActionWithPayload(
+  action: unknown,
+): action is RejectedAction {
+  return isAsyncThunkAction(action) && isRejectedWithValue(action);
+}
+
+function isActionWithmaybeAlertParams(
+  action: unknown,
+): action is ActionWithMaybeAlertParams {
+  return isAction(action);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type -- we need to use `{}` here to ensure the dispatch types can be merged
+export const errorsMiddleware: Middleware<{}, RootState> =
   ({ dispatch }) =>
   (next) =>
-  (action: AnyAction & { skipAlert?: boolean; skipNotFound?: boolean }) => {
-    if (action.type && !action.skipAlert) {
-      const isFail = new RegExp(`${defaultFailSuffix}$`, 'g');
-
-      if (typeof action.type === 'string' && action.type.match(isFail)) {
-        dispatch(showAlertForError(action.error, action.skipNotFound));
-      }
+  (action) => {
+    if (isRejectedActionWithPayload(action) && !action.payload.skipAlert) {
+      dispatch(
+        showAlertForError(action.payload.error, action.payload.skipNotFound),
+      );
+    } else if (
+      isActionWithmaybeAlertParams(action) &&
+      !action.skipAlert &&
+      action.type.match(isFailedAction)
+    ) {
+      dispatch(showAlertForError(action.error, action.skipNotFound));
     }
 
     return next(action);

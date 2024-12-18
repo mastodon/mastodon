@@ -31,8 +31,7 @@ module Mastodon::CLI
           recount_status_stats(status)
         end
       else
-        say("Unknown type: #{type}", :red)
-        exit(1)
+        fail_with_message "Unknown type: #{type}"
       end
 
       say

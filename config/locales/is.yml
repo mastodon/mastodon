@@ -7,7 +7,6 @@ is:
     hosted_on: Decodon hýst á %{domain}
     title: Um hugbúnaðinn
   accounts:
-    follow: Fylgjast með
     followers:
       one: fylgjandi
       other: fylgjendur
@@ -25,6 +24,8 @@ is:
   admin:
     account_actions:
       action: Framkvæma aðgerð
+      already_silenced: Þessi aðgangur hefur þegar verið takmarkaður.
+      already_suspended: Þessi aðgangur hefur þegar verið settur í frysti.
       title: Framkvæma umsjónaraðgerð á %{acct}
     account_moderation_notes:
       create: Skilja eftir minnispunkt
@@ -46,6 +47,7 @@ is:
         title: Breyta tölvupóstfangi fyrir %{username}
       change_role:
         changed_msg: Tókst að breyta hlutverki!
+        edit_roles: Sýsla með hlutverk notenda
         label: Breyta hlutverki
         no_role: Ekkert hlutverk
         title: Breyta hlutverki fyrir %{username}
@@ -226,6 +228,7 @@ is:
         update_custom_emoji: Uppfæra sérsniðið tjáningartákn
         update_domain_block: Uppfæra útilokun léns
         update_ip_block: Uppfæra reglu IP-vistfangs
+        update_report: Uppfæra kæru
         update_status: Uppfæra færslu
         update_user_role: Uppfæra hlutverk
       actions:
@@ -285,6 +288,7 @@ is:
         update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
         update_domain_block_html: "%{name} uppfærði útilokun lénsins %{target}"
         update_ip_block_html: "%{name} breytti reglu fyrir IP-vistfangið %{target}"
+        update_report_html: "%{name} uppfærði kæru %{target}"
         update_status_html: "%{name} uppfærði færslu frá %{target}"
         update_user_role_html: "%{name} breytti hlutverki %{target}"
       deleted_account: eyddur notandaaðgangur
@@ -292,6 +296,7 @@ is:
       filter_by_action: Sía eftir aðgerð
       filter_by_user: Sía eftir notanda
       title: Atvikaskrá
+      unavailable_instance: "(heiti léns ekki tiltækt)"
     announcements:
       destroyed_msg: Það tókst að eyða auglýsingunni!
       edit:
@@ -425,6 +430,7 @@ is:
       view: Skoða útilokun á léni
     email_domain_blocks:
       add_new: Bæta við nýju
+      allow_registrations_with_approval: Leyfa skráningar með samþykki
       attempts_over_week:
         one: "%{count} tilraun síðustu viku"
         other: "%{count} tilraunir til nýskráningar í síðustu viku"
@@ -467,6 +473,9 @@ is:
       title: Fylgja meðmælum
       unsuppress: Endurheimta að fylgja meðmælum
     instances:
+      audit_log:
+        title: Nýlegar atvikaskráningar
+        view_all: Skoða heildar-atvikaskráningar
       availability:
         description_html:
           one: Ef afhending til lénsins mistekst í <strong>%{count} dag</strong>, verður ekki reynt aftur að afhenda til lénsins nema ef afhending <em>frá</em> léninu berst.
@@ -534,6 +543,7 @@ is:
       total_reported: Kærur um þá
       total_storage: Myndaviðhengi
       totals_time_period_hint_html: Samtölurnar sem birtar eru hér fyrir neðan innihalda gögn frá upphafi.
+      unknown_instance: Í augnablikinu er engin færsla um þetta lén á þessum netþjóni.
     invites:
       deactivate_all: Gera allt óvirkt
       filter:
@@ -594,7 +604,11 @@ is:
         suspend_description_html: Notandaaðgangurinn og allt efni á honum mun verða óaðgengilegt og á endanum eytt út og samskipti við aðganginn verða ekki möguleg. Hægt að afturkalla innan 30 daga. Lokar öllum kærum gagnvart þessum aðgangi.
       actions_description_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Ef þú ákveður að refsa kærða notandaaðgangnum, verður viðkomandi send tilkynning í tölvupósti, nema ef flokkurinn <strong>Ruslpóstur</strong> sé valinn.
       actions_description_remote_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Þetta mun aðeins hafa áhrif á hvernig <strong>netþjónninn þinn</strong> meðhöndlar þennan fjartengda aðgang og efnið á honum.
+      actions_no_posts: Þessi kæra er ekki með neinar tengdar færslur til að eyða
       add_to_report: Bæta fleiru í kæru
+      already_suspended_badges:
+        local: Þegar frystur á þessum netþjóni
+        remote: Þegar frystur á hinum netþjóninum
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
@@ -610,6 +624,7 @@ is:
       created_at: Tilkynnt
       delete_and_resolve: Eyða færslum
       forwarded: Áframsent
+      forwarded_replies_explanation: Þessi kæra er frá fjartengdum notanda og er um fjartengt efni. Hún hefur verið framsend til þín þar sem kærða efnið er í svari til eins af notendunum þínum.
       forwarded_to: Áframsent á %{domain}
       mark_as_resolved: Merkja sem leyst
       mark_as_sensitive: Merkja sem viðkvæmt
@@ -630,6 +645,7 @@ is:
       report: 'Kæra #%{id}'
       reported_account: Kærður notandaaðgangur
       reported_by: Kært af
+      reported_with_application: Kærði með forritinu
       resolved: Leyst
       resolved_msg: Það tókst að leysa kæruna!
       skip_to_actions: Sleppa og fara í aðgerðir
@@ -747,6 +763,7 @@ is:
           Aukinheldur <strong> gæti þetta gert nýskráningarferlið óaðgengilegra sumum (sérstaklega fyrir fatlaða)</strong>. Þess vegna er rétt að skoða aðra valmöguleika svo sem nýskráningar háðar samþykki eða boði.
         title: Nýir notendur munu þurfa að standast Turing skynpróf til að staðfesta notendaaðganginn
       content_retention:
+        danger_zone: Hættusvæði
         preamble: Stýrðu hvernig efni frá notendum sé geymt í Mastodon.
         title: Geymsla efnis
       default_noindex:
@@ -766,6 +783,7 @@ is:
         disabled: Til engra
         users: Til innskráðra staðværra notenda
       registrations:
+        moderation_recommandation: Tryggðu að þú hafir hæft og aðgengilegt umsjónarteymi til taks áður en þú opnar á skráningar fyrir alla!
         preamble: Stýrðu því hverjir geta útbúið notandaaðgang á netþjóninum þínum.
         title: Nýskráningar
       registrations_mode:
@@ -773,6 +791,7 @@ is:
           approved: Krafist er samþykkt nýskráningar
           none: Enginn getur nýskráð sig
           open: Allir geta nýskráð sig
+        warning_hint: Við mælum með því að nota "Krafist er samþykkt nýskráningar" nema ef þú sért viss um að umsjónarteymið þitt geti brugðist tímanlega við ruslpósti og skráningum í misjöfnum tilgangi.
       security:
         authorized_fetch: Krefjast auðkenningar frá netþjónum í skýjasambandi
         authorized_fetch_hint: Að krefjast auðkenningar frá netþjónum í skýjasambandi kallar fram strangari útfærslu á útilokunum, bæði varðandi notendur og netþjóna. Hins vegar kemur þetta niður á afköstum, minnkar útbreiðslu á svörum þínum og gæti valdið samhæfnivandamálum við sumar sambandsþjónustur. Að auki kemur þetta ekki í veg fyrir að aðilar sem ætla sér að ná í opinberar færslur og notendaaðganga frá þér geri það.
@@ -858,6 +877,9 @@ is:
         message_html: Þú hefur ekki skilgreint neinar reglur fyrir netþjón.
       sidekiq_process_check:
         message_html: Ekkert Sidekiq-ferli er í gangi fyrir %{value} biðröð/biðraðir. Endilega athugaðu Sidekiq-uppsetninguna þína
+      software_version_check:
+        action: Skoða tiltækar uppfærslur
+        message_html: Uppfærsla er tiltæk fyrir Mastodon.
       software_version_critical_check:
         action: Skoða tiltækar uppfærslur
         message_html: Áríðandi uppfærsla Mastodon er tiltæk, uppfærðu eins fljótt og auðið er.
@@ -871,16 +893,39 @@ is:
         action: Skoðaðu hér til að fá frekari upplýsingar
         message_html: "<strong>Gagnageymslan þín er ekki rétt stillt. Friðhelgi notendanna þinna gæti verið í hættu.</strong>"
     tags:
+      moderation:
+        not_trendable: Getur ekki orðið vinsælt
+        not_usable: Ekki nothæft
+        pending_review: Bíður eftir yfirferð
+        review_requested: Beðið um yfirferð
+        reviewed: Yfirfarið
+        title: Staða
+        trendable: Getur orðið vinsælt
+        unreviewed: Óyfirfarið
+        usable: Nothæft
+      name: Nafn
+      newest: Nýjast
+      oldest: Elsta
+      open: Skoða opinberlega
+      reset: Endurstilla
       review: Yfirfara stöðufærslu
+      search: Leita
+      title: Myllumerki
       updated_msg: Það tókst að uppfæra stillingar myllumerkja
     title: Stjórnendur
     trends:
       allow: Leyfa
       approved: Samþykkt
+      confirm_allow: Ertu viss um að þú viljir leyfa valin merki?
+      confirm_disallow: Ertu viss um að þú viljir ekki leyfa valin merki?
       disallow: Ekki leyfa
       links:
         allow: Leyfa tengil
         allow_provider: Leyfa útgefanda
+        confirm_allow: Ertu viss um að þú viljir leyfa valda tengla?
+        confirm_allow_provider: Ertu viss um að þú viljir leyfa valdar þjónustur?
+        confirm_disallow: Ertu viss um að þú viljir ekki leyfa valda tengla?
+        confirm_disallow_provider: Ertu viss um að þú viljir ekki leyfa valdar þjónustur?
         description_html: Þetta eru tenglar/slóðir sem mikið er deilt af notendum sem netþjónninn þinn sér færslur frá. Þeir geta hjálpað notendunum þínu við að finna út hvað sé í gangi í heiminum. Engir tenglar birtast opinberlega fyrr en þú hefur samþykkt útgefanda þeirra. Þú getur líka leyft eða hafnað eintökum tenglum.
         disallow: Ekki leyfa tengil
         disallow_provider: Ekki leyfa útgefanda
@@ -904,6 +949,10 @@ is:
       statuses:
         allow: Leyfa færslu
         allow_account: Leyfa höfund
+        confirm_allow: Ertu viss um að þú viljir leyfa valdar stöður?
+        confirm_allow_account: Ertu viss um að þú viljir leyfa valda notendaaðganga?
+        confirm_disallow: Ertu viss um að þú viljir ekki leyfa valdar stöður?
+        confirm_disallow_account: Ertu viss um að þú viljir ekki leyfa valda notendaaðganga?
         description_html: Þetta eru færslur sem netþjónninn þinn veit að er víða deilt eða eru mikið sett í eftirlæti þessa stundina. Þær geta hjálpað nýjum sem eldri notendum þínum við að finna fleira fólk til að fylgjast með. Engar færslur birtast opinberlega fyrr en þú hefur samþykkt höfund þeirra og að viðkomandi höfundur leyfi að efni frá þeim sé notað í tillögur til annarra. Þú getur líka leyft eða hafnað eintökum færslum.
         disallow: Ekki leyfa færslu
         disallow_account: Ekki leyfa höfund
@@ -936,14 +985,14 @@ is:
         used_by_over_week:
           one: Notað af einum aðila síðustu vikuna
           other: Notað af %{count} aðilum síðustu vikuna
-      title: Tilhneiging
+      title: Meðmæli og vinsælt
       trending: Vinsælt
     warning_presets:
       add_new: Bæta við nýju
       delete: Eyða
       edit_preset: Breyta forstilltri aðvörun
       empty: Þú hefur ekki enn skilgreint neinar aðvaranaforstillingar.
-      title: Sýsla með forstilltar aðvaranir
+      title: Forstilltar aðvaranir
     webhooks:
       add_new: Bæta við endapunkti
       delete: Eyða
@@ -965,6 +1014,9 @@ is:
       title: Webhook-vefkrækjur
       webhook: Webhook-vefkrækja
   admin_mailer:
+    auto_close_registrations:
+      body: Vegna skorts á virkni umsjónaraðila að undanförnu, hafa nýskráningar á %{instance} sjálfkrafa verið stilltar á að þarfnast samþykktar umsjónaraðila, til að koma í veg fyrir að %{instance} verði mögulega misnotað af óprúttnum aðilum. Þú getur skipt hvenær sem er aftur yfir í opnar nýskráningar.
+      subject: Nýskráningar á %{instance} hafa sjálfkrafa verið stilltar á að krefjast samþykktar
     new_appeal:
       actions:
         delete_statuses: að eyða færslum viðkomandi
@@ -997,8 +1049,6 @@ is:
       new_trending_statuses:
         title: Vinsælar færslur
       new_trending_tags:
-        no_approved_tags: Það eru í augnablikinu engin samþykkt vinsæl myllumerki.
-        requirements: 'Hver af þessum tillögum gætu farið yfir samþykkta vinsæla myllumerkið númer #%{rank}, sem í augnablikinu er %{lowest_tag_name} með %{lowest_tag_score} stig'
         title: Vinsæl myllumerki
       subject: Nýtt vinsælt til yfirferðar á %{instance}
   aliases:
@@ -1044,6 +1094,14 @@ is:
         Leystu Turing skynprófið og smelltu á "Áfram".
       title: Öryggisathugun
     confirmations:
+      awaiting_review: Tölvupóstfangið þitt er staðfest. Umsjónarfólk %{domain} er núna að yfirfara skráninguna þína. Þú munt fá tölvupóst ef þau samþykkja skráninguna þína!
+      awaiting_review_title: Verið er að yfirfara skráninguna þína
+      clicking_this_link: smella á þennan tengil
+      login_link: skrá þig inn
+      proceed_to_login_html: Þú getur núna farið í að %{login_link}.
+      redirect_to_app_html: Þér ætti að hafa verið endurbeint í <strong>%{app_name}</strong> forritið. Ef það gerðist ekki, skaltu prófa að %{clicking_this_link} eða fara aftur í forritið.
+      registration_complete: Skráning þín á %{domain} er núna tilbúin!
+      welcome_title: Velkomin/n %{name}!
       wrong_email_hint: Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
     delete_account: Eyða notandaaðgangi
     delete_account_html: Ef þú vilt eyða notandaaðgangnum þínum, þá geturðu <a href="%{path}">farið í það hér</a>. Þú verður beðin/n um staðfestingu.
@@ -1105,9 +1163,16 @@ is:
       functional: Notandaaðgangurinn þinn er með fulla virkni.
       pending: Umsóknin þín bíður eftir að starfsfólkið okkar fari yfir hana. Það gæti tekið nokkurn tíma. Þú munt fá tölvupóst ef umsóknin er samþykkt.
       redirecting_to: Notandaaðgangurinn þinn er óvirkur vegna þess að hann endurbeinist á %{acct}.
+      self_destruct: Þar sem %{domain} er að hætta starfsemi, muntu aðeins halda takmörkuðum aðgangi að aðgangnum þínum.
       view_strikes: Skoða fyrri bönn notandaaðgangsins þíns
     too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
     use_security_key: Nota öryggislykil
+  author_attribution:
+    example_title: Sýnitexti
+    hint_html: Stýrðu hvernig framlög þín birtast þegar tenglum er deilt á Mastodon.
+    more_from_html: Meira frá %{name}
+    s_blog: Bloggsvæði hjá %{name}
+    title: Framlag höfundar
   challenge:
     confirm: Halda áfram
     hint_html: "<strong>Ábending:</strong> Við munum ekki spyrja þig um lykilorðið aftur næstu klukkustundina."
@@ -1116,7 +1181,6 @@ is:
   crypto:
     errors:
       invalid_key: er ekki gildur Ed25519 eða Curve25519-lykill
-      invalid_signature: er ekki gild Ed25519 undirritun
   date:
     formats:
       default: "%d. %b, %Y"
@@ -1182,8 +1246,6 @@ is:
       your_appeal_approved: Áfrýjun þín hefur verið samþykkt
       your_appeal_pending: Þú hefur sent inn áfrýjun
       your_appeal_rejected: Áfrýjun þinni hefur verið hafnað
-  domain_validator:
-    invalid_domain: er ekki leyfilegt nafn á léni
   edit_profile:
     basic_information: Grunnupplýsingar
     hint_html: "<strong>Sérsníddu hvað fólk sér á opinbera notandasniðinu þínu og næst færslunum þínum.</strong> Annað fólk er líklegra til að fylgjast með þér og eiga í samskiptum við þig ef þú fyllir út notandasniðið og setur auðkennismynd."
@@ -1362,6 +1424,7 @@ is:
       '86400': 1 dagur
     expires_in_prompt: Aldrei
     generate: Útbúa boðstengil
+    invalid: Þetta boð er ekki gilt
     invited_by: 'Þér var boðið af:'
     max_uses:
       one: 1 afnot
@@ -1404,6 +1467,7 @@ is:
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við færslu sem þegar inniheldur myndir
+      not_found: Myndefnið %{ids} fannst ekki eða er þegar hengt við aðra færslu
       not_ready: Ekki er hægt að hengja við skrár sem ekki er búið að vinna til fulls. Prófaðu aftur eftir augnablik!
       too_many: Ekki er hægt að hengja við fleiri en 4 skrár
   migrations:
@@ -1483,7 +1547,6 @@ is:
     administration_emails: Kerfisstjórnunartilkynningar í tölvupósti
     email_events: Atburðir fyrir tilkynningar í tölvupósti
     email_events_hint: 'Veldu þá atburði sem þú vilt fá tilkynningar í tölvupósti þegar þeir koma upp:'
-    other_settings: Aðrar stillingar varðandi tilkynningar
   number:
     human:
       decimal_units:
@@ -1539,6 +1602,9 @@ is:
     errors:
       limit_reached: Hámarki mismunandi viðbragða náð
       unrecognized_emoji: er ekki þekkt tjáningartákn
+  redirects:
+    prompt: Ef þú treystir þessum tengli, geturðu smellt á hann til að halda áfram.
+    title: Þú ert að yfirgefa %{instance}.
   relationships:
     activity: Virkni aðgangs
     confirm_follow_selected_followers: Ertu viss um að þú viljir fylgjast með völdum fylgjendum?
@@ -1574,6 +1640,9 @@ is:
     over_daily_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur fyrir þennan dag
     over_total_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur
     too_soon: Áætluð dagsetning verður að vera í framtíðinni
+  self_destruct:
+    lead_html: Því miður, <strong>%{domain}</strong> er að hætta starfsemi endanlega. Ef þú varst með aðgang þar, muntu ekki geta haldið áfram að nota hann, en þú getur áfram beðið um afrit af gögnunum þínum.
+    title: Þessi netþjónn er að hætta starfsemi
   sessions:
     activity: Síðasta virkni
     browser: Vafri
@@ -1598,6 +1667,7 @@ is:
       unknown_browser: Óþekktur vafri
       weibo: Weibo
     current_session: Núverandi seta
+    date: Dagsetning
     description: "%{browser} á %{platform}"
     explanation: Þetta eru vafrarnir sem núna eru skráðir inn á Mastodon-aðganginn þinn.
     ip: IP-vistfang
@@ -1629,19 +1699,31 @@ is:
     delete: Eyðing notandaaðgangs
     development: Þróun
     edit_profile: Breyta notandasniði
-    export: Útflutningur gagna
+    export: Flytja út
     featured_tags: Myllumerki með aukið vægi
     import: Flytja inn
     import_and_export: Inn- og útflutningur
     migrate: Yfirfærsla notandaaðgangs
-    notifications: Tilkynningar
+    notifications: Tilkynningar í tölvupósti
     preferences: Kjörstillingar
     profile: Notandasnið
     relationships: Fylgist með og fylgjendur
+    severed_relationships: Rofin tengsl
     statuses_cleanup: Sjálfvirk eyðing færslna
     strikes: Umsýsla refsinga
     two_factor_authentication: Tveggja-þátta auðkenning
     webauthn_authentication: Öryggislyklar
+  severed_relationships:
+    download: Sækja (%{count})
+    event_type:
+      account_suspension: Frysting notandaaðgangsins (%{target_name})
+      domain_block: Frysting netþjónsins (%{target_name})
+      user_domain_block: Þú útilokaðir %{target_name}
+    lost_followers: Tapaðir fylgjendur
+    lost_follows: Tapað sem þú fylgist með
+    preamble: Þú gætir misst einhverja sem þú fylgist með og eins fylgjendur þegar þú útilokar lén eða þegar umsjónarmenn netþjónsins þíns ákveða að frysta fjartengdan netþjón. Þegar slíkt gerist, geturðu sótt lista yfir slík skemmd tengsl, til að yfirfara og mögulega flytja inn á öðrum netþjóni.
+    purged: Upplýsingum um þennan netþjón hefur verið eytt af stjórnendum netþjónsins þíns.
+    type: Atburður
   statuses:
     attached:
       audio:
@@ -1663,25 +1745,12 @@ is:
     edited_at_html: Breytt %{date}
     errors:
       in_reply_not_found: Færslan sem þú ert að reyna að svara að er líklega ekki til.
-    open_in_web: Opna í vafra
     over_character_limit: hámarksfjölda stafa (%{max}) náð
     pin_errors:
       direct: Ekki er hægt að festa færslur sem einungis eru sýnilegar þeim notendum sem minnst er á
       limit: Þú hefur þegar fest leyfilegan hámarksfjölda færslna
       ownership: Færslur frá einhverjum öðrum er ekki hægt að festa
       reblog: Ekki er hægt að festa endurbirtingu
-    poll:
-      total_people:
-        one: "%{count} aðili"
-        other: "%{count} aðilar"
-      total_votes:
-        one: "%{count} atkvæði"
-        other: "%{count} atkvæði"
-      vote: Greiða atkvæði
-    show_more: Sýna meira
-    show_newer: Sýna nýrri
-    show_older: Sýna eldri
-    show_thread: Birta þráð
     title: "%{name}: „%{quote}‟"
     visibilities:
       direct: Beint
@@ -1737,6 +1806,7 @@ is:
     contrast: Mastodon (mikil birtuskil)
     default: Mastodon (dökkt)
     mastodon-light: Mastodon (ljóst)
+    system: Sjálfvirkt (nota þema kerfis)
   time:
     formats:
       default: "%d. %b, %Y, %H:%M"
@@ -1764,18 +1834,27 @@ is:
     webauthn: Öryggislyklar
   user_mailer:
     appeal_approved:
-      action: Farðu inn á notandaaðganginn þinn
+      action: Stillingar notandaaðgangs
       explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið samþykkt. Notandaaðgangurinn þinn er aftur í góðu lagi.
       subject: Áfrýjun þín frá %{date} hefur verið samþykkt
+      subtitle: Notandaaðgangurinn þinn er í góðu lagi.
       title: Áfrýjun samþykkt
     appeal_rejected:
       explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið hafnað.
       subject: Áfrýjun þinni frá %{date} hefur verið hafnað
+      subtitle: Áfrýjun þinni hefur verið hafnað.
       title: Áfrýjun hafnað
     backup_ready:
-      explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum. Það er núna tilbúið til niðurhals!
+      explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum.
+      extra: Það er núna tilbúið til niðurhals!
       subject: Safnskráin þín er tilbúin til niðurhals
       title: Taka út í safnskrá
+    failed_2fa:
+      details: 'Hér eru nánari upplýsingar um innskráningartilraunina:'
+      explanation: Einhver reyndi að skrá sig inn á aðganginn þinn en gaf upp ógild gögn seinna þrepi auðkenningar.
+      further_actions_html: Ef þetta varst ekki þú, þá mælum við eindregið með því að þú %{action} samstundis, þar sem það gæti verið berskjaldað.
+      subject: Bilun í seinna þrepi auðkenningar
+      title: Seinna þrep auðkenningar brást
     suspicious_sign_in:
       change_password: breytir lykilorðinu þínu
       details: 'Hér eru nánari upplýsingar um innskráninguna:'
@@ -1815,13 +1894,44 @@ is:
         silence: Notandaaðgangur takmarkaður
         suspend: Notandaaðgangur í frysti
     welcome:
-      edit_profile_action: Setja upp notandasnið
-      edit_profile_step: Þú getur sérsniðið notandasniðið þitt með því að setja inn auðkennismynd þína, breyta birtingarnafninu þínu og ýmislegt fleira. Þú getur valið að yfirfara nýja fylgjendur áður en þú leyfir þeim að fylgjast með þér.
+      apps_android_action: Fáðu það á Google Play
+      apps_ios_action: Sækja í App Store
+      apps_step: Sæktu opinberu forritin okkar.
+      apps_title: Mastodon-forrit
+      checklist_subtitle: 'Komum þér í gang á þessum nýja samfélagsmiðli:'
+      checklist_title: Til minnis í upphafi
+      edit_profile_action: Sérsníða
+      edit_profile_step: Annað fólk er líklegra til að eiga samskipti við þig ef þý setur einhverjar áhugaverðar upplýsingar í notandasniðið þitt.
+      edit_profile_title: Sérsníddu notandasniðið þitt
       explanation: Hér eru nokkrar ábendingar til að koma þér í gang
-      final_action: Byrjaðu að skrifa
-      final_step: 'Byrjaðu að tjá þig! Jafnvel án fylgjenda geta aðrir séð opinberar færslur frá þér, til dæmis á staðværu tímalínunni eða í myllumerkjum. Þú gætir jafnvel viljað kynna þig á myllumerkinu #introductions.'
-      full_handle: Fullt auðkenni þitt
-      full_handle_hint: Þetta er það sem þú myndir gefa upp við vini þína svo þeir geti sent þér skilaboð eða fylgst með þér af öðrum netþjóni.
+      feature_action: Kanna nánar
+      feature_audience: Mastodon gefur þér einstakt tækifæri til að eiga í samskiptum við áhorfendur þína milliliðalaust. Mastodon-netþjónn sem settur er upp á þínu eigin kerfi er ekki undir neins stjórn nema þinnar og gerir þér kleift að fylgjast með og eiga fylgjendur á hverjum þeim Mastodon-netþjóni sem er tengdur við internetið.
+      feature_audience_title: Byggðu upp orðspor þitt og áheyrendafjölda
+      feature_control: Þú veist best hvað þú vilt sjá í heimastreyminu þínu. Engin reiknirit eða auglýsingar að þvælast fyrir. Fylgstu af einum aðgangi með hverjum sem er á milli Mastodon-netþjóna og fáðu færslurnar þeirra í tímaröð, þannig geturðu útbúið þitt eigið lítið horn á internetinu þar sem hlutirnir eru að þínu skapi.
+      feature_control_title: Hafðu stjórn á þinni eigin tímalínu
+      feature_creativity: Mastodon styður færslur með hljóði, myndum og myndskeiðum, lýsingum fyrir aukið aðgengi, kannanir, aðvörunum vegna efnis, hreyanlegum auðkennismyndum, sérsniðnum tjáningartáknum, utanskurði smámynda ásamt fleiru; til að hjálpa þér við að tjá þig á netinu. Hvort sem þú sért að gefa út listina þína, tónlist eða hlaðvarp, þá er Mastodon til staðar fyrir þig.
+      feature_creativity_title: Óviðjafnanleg sköpunargleði
+      feature_moderation: Mastodon setur ákvarðanatökur aftur í þínar hendur. Hver netþjónn býr til sínar eigin reglur og venjur, sem gilda fyrir þann netþjón en eru ekki boðaðar með valdi að ofan og niður líkt og á samfélagsnetum stórfyrirtækja. Á þennan hátt svarar samfélagsmiðillinn þörfum mismunandi hópa. Taktu þátt á netþjóni með reglum sem þú samþykkir, eða hýstu þinn eigin.
+      feature_moderation_title: Umsjón með efni eins og slík á að vera
+      follow_action: Fylgjast með
+      follow_step: Að fylgjast með áhugaverðu fólki er það sem Mastodon snýst um.
+      follow_title: Aðlagaðu heimastreymið þitt eftir þínu höfði
+      follows_subtitle: Fylgstu með vel þekktum notendum
+      follows_title: Hverjum ætti að fylgjast með
+      follows_view_more: Skoða fleira fólk til að fylgjast með
+      hashtags_recent_count:
+        one: "%{people} aðili síðustu 2 daga"
+        other: "%{people} manns á síðustu 2 dögum"
+      hashtags_subtitle: Skoðaðu hvað sé búið að vera í umræðunni síðustu 2 dagana
+      hashtags_title: Vinsæl myllumerki
+      hashtags_view_more: Sjá fleiri vinsæl myllumerki
+      post_action: Skrifa
+      post_step: Heilsaðu heiminum með texta, ljósmyndum, myndskeiðum eða könnunum.
+      post_title: Gerðu fyrstu færsluna þína
+      share_action: Deila
+      share_step: Láttu vini þína vita hvernig þeir geta fundið þig á Mastodon.
+      share_title: Deildu notandasniðinu þínu
+      sign_in_action: Skrá inn
       subject: Velkomin í Mastodon
       title: Velkomin/n um borð, %{name}!
   users:
@@ -1829,6 +1939,7 @@ is:
     go_to_sso_account_settings: Fara í stillingar aðgangsins hjá auðkennisveitunni þinni
     invalid_otp_token: Ógildur tveggja-þátta kóði
     otp_lost_help_html: Ef þú hefur misst aðganginn að hvoru tveggja, geturðu sett þig í samband við %{email}
+    rate_limited: Of margar tilraunir til auðkenningar, prófaðu aftur síðar.
     seamless_external_login: Innskráning þín er í gegnum utanaðkomandi þjónustu, þannig að stillingar fyrir lykilorð og tölvupóst eru ekki aðgengilegar.
     signed_in_as: 'Skráð inn sem:'
   verification:
@@ -1838,6 +1949,7 @@ is:
     instructions_html: Afritaðu og límdu kóðann hér fyrir neðan inn í HTML-kóða vefsvæðisins þíns. Bættu síðan slóð vefsvæðisins þíns inn í einn af auka-reitunum í flipanum "Breyta notandasniði" og vistaðu síðan breytingarnar.
     verification: Sannprófun
     verified_links: Staðfestu tenglarnir þínir
+    website_verification: Staðfesting vefsvæðis
   webauthn_credentials:
     add: Bæta við nýjum öryggislykli
     create:

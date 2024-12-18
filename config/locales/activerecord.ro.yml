@@ -11,15 +11,21 @@ ro:
         locale: Localizare
         password: Parolă
       user/account:
-        username: Nume utilizator
+        username: Nume de utilizator
       user/invite_request:
         text: Motiv
     errors:
+      attributes:
+        domain:
+          invalid: nu este un nume de domeniu valid
+      messages:
+        invalid_domain_on_line: "%{value} nu este un nume de domeniu valid"
+        too_many_lines: este peste limita de %{limit} linii
       models:
         account:
           attributes:
             username:
-              invalid: doar litere, numere și sublinieri
+              invalid: trebuie să conțină numai litere, cifre și bară jos (_)
               reserved: este rezervat
         admin/webhook:
           attributes:
@@ -56,4 +62,4 @@ ro:
         webhook:
           attributes:
             events:
-              invalid_permissions: nu poate include evenimente la care nu aveți drepturi
+              invalid_permissions: nu poate include evenimente la care nu aveți dreptul

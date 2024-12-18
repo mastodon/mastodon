@@ -4,28 +4,37 @@ require 'rails_helper'
 require 'devise_two_factor/spec_helpers'
 
 RSpec.describe User do
+  subject { described_class.new(account: account) }
+
   let(:password) { 'abcd1234' }
   let(:account) { Fabricate(:account, username: 'alice') }
 
   it_behaves_like 'two_factor_backupable'
 
-  describe 'otp_secret' do
+  describe 'legacy_otp_secret' do
     it 'is encrypted with OTP_SECRET environment variable' do
       user = Fabricate(:user,
                        encrypted_otp_secret: "Fttsy7QAa0edaDfdfSz094rRLAxc8cJweDQ4BsWH/zozcdVA8o9GLqcKhn2b\nGi/V\n",
                        encrypted_otp_secret_iv: 'rys3THICkr60BoWC',
                        encrypted_otp_secret_salt: '_LMkAGvdg7a+sDIKjI3mR2Q==')
 
-      expect(user.otp_secret).to eq 'anotpsecretthatshouldbeencrypted'
+      expect(user.send(:legacy_otp_secret)).to eq 'anotpsecretthatshouldbeencrypted'
+    end
+  end
+
+  describe 'otp_secret' do
+    it 'encrypts the saved value' do
+      user = Fabricate(:user, otp_secret: '123123123')
+
+      user.reload
+
+      expect(user.otp_secret).to eq '123123123'
+      expect(user.attributes_before_type_cast[:otp_secret]).to_not eq '123123123'
     end
   end
 
   describe 'validations' do
-    it 'is invalid without an account' do
-      user = Fabricate.build(:user, account: nil)
-      user.valid?
-      expect(user).to model_have_error_on_field(:account)
-    end
+    it { is_expected.to belong_to(:account).required }
 
     it 'is invalid without a valid email' do
       user = Fabricate.build(:user, email: 'john@')
@@ -44,49 +53,72 @@ RSpec.describe User do
       user.valid?
       expect(user.valid?).to be true
     end
+  end
 
-    it 'cleans out invalid locale' do
-      user = Fabricate.build(:user, locale: 'toto')
-      expect(user.valid?).to be true
-      expect(user.locale).to be_nil
+  describe 'Normalizations' do
+    describe 'locale' do
+      it { is_expected.to_not normalize(:locale).from('en') }
+      it { is_expected.to normalize(:locale).from('toto').to(nil) }
     end
 
-    it 'cleans out invalid timezone' do
-      user = Fabricate.build(:user, time_zone: 'toto')
-      expect(user.valid?).to be true
-      expect(user.time_zone).to be_nil
+    describe 'time_zone' do
+      it { is_expected.to_not normalize(:time_zone).from('UTC') }
+      it { is_expected.to normalize(:time_zone).from('toto').to(nil) }
     end
 
-    it 'cleans out empty string from languages' do
-      user = Fabricate.build(:user, chosen_languages: [''])
-      user.valid?
-      expect(user.chosen_languages).to be_nil
+    describe 'chosen_languages' do
+      it { is_expected.to normalize(:chosen_languages).from(['en', 'fr', '']).to(%w(en fr)) }
+      it { is_expected.to normalize(:chosen_languages).from(['']).to(nil) }
     end
   end
 
-  describe 'scopes' do
+  describe 'scopes', :inline_jobs do
     describe 'recent' do
       it 'returns an array of recent users ordered by id' do
-        user_1 = Fabricate(:user)
-        user_2 = Fabricate(:user)
-        expect(described_class.recent).to eq [user_2, user_1]
+        first_user = Fabricate(:user)
+        second_user = Fabricate(:user)
+        expect(described_class.recent).to eq [second_user, first_user]
       end
     end
 
     describe 'confirmed' do
       it 'returns an array of users who are confirmed' do
-        user_1 = Fabricate(:user, confirmed_at: nil)
-        user_2 = Fabricate(:user, confirmed_at: Time.zone.now)
-        expect(described_class.confirmed).to contain_exactly(user_2)
+        Fabricate(:user, confirmed_at: nil)
+        confirmed_user = Fabricate(:user, confirmed_at: Time.zone.now)
+        expect(described_class.confirmed).to contain_exactly(confirmed_user)
       end
     end
 
-    describe 'inactive' do
-      it 'returns a relation of inactive users' do
-        specified = Fabricate(:user, current_sign_in_at: 15.days.ago)
-        Fabricate(:user, current_sign_in_at: 6.days.ago)
+    describe 'signed_in_recently' do
+      it 'returns a relation of users who have signed in during the recent period' do
+        recent_sign_in_user = Fabricate(:user, current_sign_in_at: within_duration_window_days.ago)
+        Fabricate(:user, current_sign_in_at: exceed_duration_window_days.ago)
 
-        expect(described_class.inactive).to contain_exactly(specified)
+        expect(described_class.signed_in_recently)
+          .to contain_exactly(recent_sign_in_user)
+      end
+    end
+
+    describe 'not_signed_in_recently' do
+      it 'returns a relation of users who have not signed in during the recent period' do
+        no_recent_sign_in_user = Fabricate(:user, current_sign_in_at: exceed_duration_window_days.ago)
+        Fabricate(:user, current_sign_in_at: within_duration_window_days.ago)
+
+        expect(described_class.not_signed_in_recently)
+          .to contain_exactly(no_recent_sign_in_user)
+      end
+    end
+
+    describe 'account_not_suspended' do
+      it 'returns with linked accounts that are not suspended' do
+        suspended_account = Fabricate(:account, suspended_at: 10.days.ago)
+        non_suspended_account = Fabricate(:account, suspended_at: nil)
+        suspended_user = Fabricate(:user, account: suspended_account)
+        non_suspended_user = Fabricate(:user, account: non_suspended_account)
+
+        expect(described_class.account_not_suspended)
+          .to include(non_suspended_user)
+          .and not_include(suspended_user)
       end
     end
 
@@ -111,32 +143,40 @@ RSpec.describe User do
         expect(described_class.matches_ip('2160:2160::/32')).to contain_exactly(user1)
       end
     end
+
+    def exceed_duration_window_days
+      described_class::ACTIVE_DURATION + 2.days
+    end
+
+    def within_duration_window_days
+      described_class::ACTIVE_DURATION - 2.days
+    end
   end
 
-  describe 'blacklist' do
-    around(:each) do |example|
-      old_blacklist = Rails.configuration.x.email_blacklist
+  describe 'email domains denylist integration' do
+    around do |example|
+      original = Rails.configuration.x.email_domains_denylist
 
-      Rails.configuration.x.email_domains_blacklist = 'mvrht.com'
+      Rails.configuration.x.email_domains_denylist = 'mvrht.com'
 
       example.run
 
-      Rails.configuration.x.email_domains_blacklist = old_blacklist
+      Rails.configuration.x.email_domains_denylist = original
     end
 
-    it 'allows a non-blacklisted user to be created' do
+    it 'allows a user with an email domain that is not on the denylist to be created' do
       user = described_class.new(email: 'foo@example.com', account: account, password: password, agreement: true)
 
       expect(user).to be_valid
     end
 
-    it 'does not allow a blacklisted user to be created' do
+    it 'does not allow a user with an email domain on the deylist to be created' do
       user = described_class.new(email: 'foo@mvrht.com', account: account, password: password, agreement: true)
 
       expect(user).to_not be_valid
     end
 
-    it 'does not allow a subdomain blacklisted user to be created' do
+    it 'does not allow a user with an email where the subdomain is on the denylist to be created' do
       user = described_class.new(email: 'foo@mvrht.com.topdomain.tld', account: account, password: password, agreement: true)
 
       expect(user).to_not be_valid
@@ -167,12 +207,9 @@ RSpec.describe User do
     context 'when the user is already confirmed' do
       let!(:user) { Fabricate(:user, confirmed_at: Time.now.utc, approved: true, unconfirmed_email: new_email) }
 
-      it 'sets email to unconfirmed_email' do
+      it 'sets email to unconfirmed_email and does not trigger web hook' do
         expect { subject }.to change { user.reload.email }.to(new_email)
-      end
 
-      it 'does not trigger the account.approved Web Hook' do
-        subject
         expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
       end
     end
@@ -181,65 +218,38 @@ RSpec.describe User do
       let(:user) { Fabricate(:user, confirmed_at: nil, unconfirmed_email: new_email) }
 
       context 'when the user is already approved' do
-        around(:example) do |example|
-          registrations_mode = Setting.registrations_mode
-          Setting.registrations_mode = 'approved'
-
-          example.run
-
-          Setting.registrations_mode = registrations_mode
-        end
-
         before do
+          Setting.registrations_mode = 'approved'
           user.approve!
         end
 
-        it 'sets email to unconfirmed_email' do
+        it 'sets email to unconfirmed_email and triggers `account.approved` web hook' do
           expect { subject }.to change { user.reload.email }.to(new_email)
-        end
 
-        it 'triggers the account.approved Web Hook' do
-          user.confirm
           expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
         end
       end
 
       context 'when the user does not require explicit approval' do
-        around(:example) do |example|
-          registrations_mode = Setting.registrations_mode
+        before do
           Setting.registrations_mode = 'open'
-
-          example.run
-
-          Setting.registrations_mode = registrations_mode
         end
 
-        it 'sets email to unconfirmed_email' do
+        it 'sets email to unconfirmed_email and triggers `account.approved` web hook' do
           expect { subject }.to change { user.reload.email }.to(new_email)
-        end
 
-        it 'triggers the account.approved Web Hook' do
-          user.confirm
           expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
         end
       end
 
       context 'when the user requires explicit approval but is not approved' do
-        around(:example) do |example|
-          registrations_mode = Setting.registrations_mode
+        before do
           Setting.registrations_mode = 'approved'
-
-          example.run
-
-          Setting.registrations_mode = registrations_mode
         end
 
-        it 'sets email to unconfirmed_email' do
+        it 'sets email to unconfirmed_email and does not trigger web hook' do
           expect { subject }.to change { user.reload.email }.to(new_email)
-        end
 
-        it 'does not trigger the account.approved Web Hook' do
-          subject
           expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
         end
       end
@@ -249,28 +259,17 @@ RSpec.describe User do
   describe '#approve!' do
     subject { user.approve! }
 
-    around(:example) do |example|
-      registrations_mode = Setting.registrations_mode
-      Setting.registrations_mode = 'approved'
-
-      example.run
-
-      Setting.registrations_mode = registrations_mode
-    end
-
     before do
+      Setting.registrations_mode = 'approved'
       allow(TriggerWebhookWorker).to receive(:perform_async)
     end
 
     context 'when the user is already confirmed' do
       let(:user) { Fabricate(:user, confirmed_at: Time.now.utc, approved: false) }
 
-      it 'sets the approved flag' do
+      it 'sets the approved flag and triggers `account.approved` web hook' do
         expect { subject }.to change { user.reload.approved? }.to(true)
-      end
 
-      it 'triggers the account.approved Web Hook' do
-        subject
         expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
       end
     end
@@ -278,12 +277,9 @@ RSpec.describe User do
     context 'when the user is not confirmed' do
       let(:user) { Fabricate(:user, confirmed_at: nil, approved: false) }
 
-      it 'sets the approved flag' do
+      it 'sets the approved flag and does not trigger web hook' do
         expect { subject }.to change { user.reload.approved? }.to(true)
-      end
 
-      it 'does not trigger the account.approved Web Hook' do
-        subject
         expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
       end
     end
@@ -349,43 +345,43 @@ RSpec.describe User do
     end
   end
 
-  describe 'whitelist' do
-    around(:each) do |example|
-      old_whitelist = Rails.configuration.x.email_domains_whitelist
+  describe 'allowlist integration' do
+    around do |example|
+      original = Rails.configuration.x.email_domains_allowlist
 
-      Rails.configuration.x.email_domains_whitelist = 'mastodon.space'
+      Rails.configuration.x.email_domains_allowlist = 'mastodon.space'
 
       example.run
 
-      Rails.configuration.x.email_domains_whitelist = old_whitelist
+      Rails.configuration.x.email_domains_allowlist = original
     end
 
-    it 'does not allow a user to be created unless they are whitelisted' do
+    it 'does not allow a user to be created when their email is not on the allowlist' do
       user = described_class.new(email: 'foo@example.com', account: account, password: password, agreement: true)
       expect(user).to_not be_valid
     end
 
-    it 'allows a user to be created if they are whitelisted' do
+    it 'allows a user to be created when their email is on the allowlist' do
       user = described_class.new(email: 'foo@mastodon.space', account: account, password: password, agreement: true)
       expect(user).to be_valid
     end
 
-    it 'does not allow a user with a whitelisted top domain as subdomain in their email address to be created' do
+    it 'does not allow a user with an email subdomain included on the top level domain allowlist to be created' do
       user = described_class.new(email: 'foo@mastodon.space.userdomain.com', account: account, password: password, agreement: true)
       expect(user).to_not be_valid
     end
 
-    context 'with a blacklisted subdomain' do
+    context 'with a subdomain on the denylist' do
       around do |example|
-        old_blacklist = Rails.configuration.x.email_blacklist
+        original = Rails.configuration.x.email_domains_denylist
         example.run
-        Rails.configuration.x.email_domains_blacklist = old_blacklist
+        Rails.configuration.x.email_domains_denylist = original
       end
 
-      it 'does not allow a user to be created with a specific blacklisted subdomain even if the top domain is whitelisted' do
-        Rails.configuration.x.email_domains_blacklist = 'blacklisted.mastodon.space'
+      it 'does not allow a user to be created with an email subdomain on the denylist even if the top domain is on the allowlist' do
+        Rails.configuration.x.email_domains_denylist = 'denylisted.mastodon.space'
 
-        user = described_class.new(email: 'foo@blacklisted.mastodon.space', account: account, password: password)
+        user = described_class.new(email: 'foo@denylisted.mastodon.space', account: account, password: password)
         expect(user).to_not be_valid
       end
     end
@@ -438,7 +434,9 @@ RSpec.describe User do
   end
 
   describe '#reset_password!' do
-    subject(:user) { Fabricate(:user, password: 'foobar12345') }
+    subject(:user) { Fabricate(:user, password: original_password) }
+
+    let(:original_password) { 'foobar12345' }
 
     let!(:session_activation) { Fabricate(:session_activation, user: user) }
     let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
@@ -446,63 +444,73 @@ RSpec.describe User do
 
     let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
 
-    before do
-      allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
-      user.reset_password!
+    before { stub_redis }
+
+    it 'changes the password immediately and revokes related access' do
+      expect { user.reset_password! }
+        .to remove_activated_sessions
+        .and remove_active_user_tokens
+        .and remove_user_web_subscriptions
+
+      expect(user)
+        .to_not be_external_or_valid_password(original_password)
+      expect { session_activation.reload }
+        .to raise_error(ActiveRecord::RecordNotFound)
+      expect { web_push_subscription.reload }
+        .to raise_error(ActiveRecord::RecordNotFound)
+      expect(redis_pipeline_stub)
+        .to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
     end
 
-    it 'changes the password immediately' do
-      expect(user.external_or_valid_password?('foobar12345')).to be false
+    def remove_activated_sessions
+      change(user.session_activations, :count).to(0)
     end
 
-    it 'deactivates all sessions' do
-      expect(user.session_activations.count).to eq 0
+    def remove_active_user_tokens
+      change { Doorkeeper::AccessToken.active_for(user).count }.to(0)
     end
 
-    it 'revokes all access tokens' do
-      expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
+    def remove_user_web_subscriptions
+      change { Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count }.to(0)
     end
 
-    it 'revokes streaming access for all access tokens' do
-      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
-    end
-
-    it 'removes push subscriptions' do
-      expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
+    def stub_redis
+      allow(redis)
+        .to receive(:pipelined)
+        .and_yield(redis_pipeline_stub)
     end
   end
 
-  describe '#confirm!' do
-    subject(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
+  describe '#mark_email_as_confirmed!' do
+    subject { user.mark_email_as_confirmed! }
 
-    before do
-      ActionMailer::Base.deliveries.clear
-      user.confirm!
-    end
-
-    after { ActionMailer::Base.deliveries.clear }
+    let!(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
 
     context 'when user is new' do
       let(:confirmed_at) { nil }
 
-      it 'confirms user' do
-        expect(user.confirmed_at).to be_present
-      end
+      it 'confirms user and delivers welcome email', :inline_jobs do
+        emails = capture_emails { subject }
 
-      it 'delivers mails' do
-        expect(ActionMailer::Base.deliveries.count).to eq 2
+        expect(user.confirmed_at).to be_present
+        expect(emails.size)
+          .to eq(1)
+        expect(emails.first)
+          .to have_attributes(
+            to: contain_exactly(user.email),
+            subject: eq(I18n.t('user_mailer.welcome.subject'))
+          )
       end
     end
 
     context 'when user is not new' do
       let(:confirmed_at) { Time.zone.now }
 
-      it 'confirms user' do
-        expect(user.confirmed_at).to be_present
-      end
+      it 'confirms user but does not deliver welcome email' do
+        emails = capture_emails { subject }
 
-      it 'does not deliver mail' do
-        expect(ActionMailer::Base.deliveries.count).to eq 0
+        expect(user.confirmed_at).to be_present
+        expect(emails).to be_empty
       end
     end
   end

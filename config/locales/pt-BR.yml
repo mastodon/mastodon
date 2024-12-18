@@ -4,10 +4,9 @@ pt-BR:
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
     contact_missing: Não definido
     contact_unavailable: Não disponível
-    hosted_on: Servidor Mastodon em %{domain}
+    hosted_on: Mastodon hospedado em %{domain}
     title: Sobre
   accounts:
-    follow: Seguir
     followers:
       one: Seguidor
       other: Seguidores
@@ -25,13 +24,15 @@ pt-BR:
   admin:
     account_actions:
       action: Tomar uma atitude
+      already_silenced: Esta conta já foi limitada.
+      already_suspended: Esta conta já foi suspensa.
       title: Moderar %{acct}
     account_moderation_notes:
       create: Deixar nota
       created_msg: Nota de moderação criada!
       destroyed_msg: Nota de moderação excluída!
     accounts:
-      add_email_domain_block: Bloquear domínio de e-mail
+      add_email_domain_block: Bloquear domínio de email
       approve: Aprovar
       approved_msg: O registro de %{username} foi aprovado
       are_you_sure: Você tem certeza?
@@ -45,10 +46,11 @@ pt-BR:
         submit: Alterar e-mail
         title: Alterar e-mail para %{username}
       change_role:
-        changed_msg: Cargo alterado!
-        label: Alterar cargo
-        no_role: Sem cargo
-        title: Alterar cargo para %{username}
+        changed_msg: Função alterada com sucesso!
+        edit_roles: Gerenciar funções do usuário
+        label: Alterar função
+        no_role: Nenhuma função
+        title: Alterar função para %{username}
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
@@ -173,26 +175,26 @@ pt-BR:
         approve_appeal: Aprovar revisão
         approve_user: Aprovar usuário
         assigned_to_self_report: Atribuir denúncia
-        change_email_user: Alterar e-mail do usuário
+        change_email_user: Alterar o Email para o usuário
         change_role_user: Alterar cargo do usuário
         confirm_user: Confirmar usuário
         create_account_warning: Criar aviso
         create_announcement: Criar anúncio
-        create_canonical_email_block: Criar bloqueio de e-mail
+        create_canonical_email_block: Criar bloqueio de Email
         create_custom_emoji: Criar emoji personalizado
         create_domain_allow: Permitir domínio
         create_domain_block: Bloquear domínio
-        create_email_domain_block: Bloquear domínio de e-mail
+        create_email_domain_block: Criar Bloqueio de Domínio de Email
         create_ip_block: Criar regra de IP
         create_unavailable_domain: Criar domínio indisponível
         create_user_role: Criar cargo
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
-        destroy_canonical_email_block: Desbloquear domínio de e-mail
+        destroy_canonical_email_block: Deletar bloqueio de Email
         destroy_custom_emoji: Excluir emoji personalizado
         destroy_domain_allow: Excluir domínio permitido
         destroy_domain_block: Desbloquear domínio
-        destroy_email_domain_block: Desbloquear domínio de e-mail
+        destroy_email_domain_block: Deletar bloqueio de domínio Email
         destroy_instance: Limpar domínio
         destroy_ip_block: Excluir regra de IP
         destroy_status: Excluir publicação
@@ -200,10 +202,10 @@ pt-BR:
         destroy_user_role: Destruir cargo
         disable_2fa_user: Desativar autenticação de dois fatores
         disable_custom_emoji: Desativar emoji personalizado
-        disable_sign_in_token_auth_user: Desativar autenticação via token por email para Usuário
+        disable_sign_in_token_auth_user: Desativar autenticação via Token de Email para Usuário
         disable_user: Desativar usuário
         enable_custom_emoji: Ativar emoji personalizado
-        enable_sign_in_token_auth_user: Ativar autenticação via token por email para Usuário
+        enable_sign_in_token_auth_user: Ativar autenticação via Token de Email para Usuário
         enable_user: Ativar usuário
         memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
@@ -226,6 +228,7 @@ pt-BR:
         update_custom_emoji: Editar Emoji Personalizado
         update_domain_block: Atualizar bloqueio de domínio
         update_ip_block: Atualizar regra de IP
+        update_report: Atualizar Relatório
         update_status: Editar Status
         update_user_role: Atualizar cargo
       actions:
@@ -237,7 +240,7 @@ pt-BR:
         confirm_user_html: "%{name} confirmou o endereço de e-mail do usuário %{target}"
         create_account_warning_html: "%{name} enviou um aviso para %{target}"
         create_announcement_html: "%{name} criou o novo anúncio %{target}"
-        create_canonical_email_block_html: "%{name} bloqueou o e-mail com o marcador %{target}"
+        create_canonical_email_block_html: "%{name} bloqueou o endereço de e-mail com o hash %{target}"
         create_custom_emoji_html: "%{name} enviou o novo emoji %{target}"
         create_domain_allow_html: "%{name} permitiu federação com domínio %{target}"
         create_domain_block_html: "%{name} bloqueou o domínio %{target}"
@@ -247,7 +250,7 @@ pt-BR:
         create_user_role_html: "%{name} criou o cargo %{target}"
         demote_user_html: "%{name} rebaixou o usuário %{target}"
         destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
-        destroy_canonical_email_block_html: "%{name} desbloqueou o e-mail com o marcador %{target}"
+        destroy_canonical_email_block_html: "%{name} desbloqueou o endereço e-mail com o hash %{target}"
         destroy_custom_emoji_html: "%{name} apagou o emoji %{target}"
         destroy_domain_allow_html: "%{name} bloqueou federação com domínio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o domínio %{target}"
@@ -259,10 +262,10 @@ pt-BR:
         destroy_user_role_html: "%{name} excluiu o cargo %{target}"
         disable_2fa_user_html: "%{name} desativou a exigência da autenticação de dois fatores para o usuário %{target}"
         disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} desativou a autenticação via token por email para %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} desativou a autenticação via token por e-mail para %{target}"
         disable_user_html: "%{name} desativou o login para %{target}"
         enable_custom_emoji_html: "%{name} ativou o emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} ativou a autenticação via token por email para %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ativou a autenticação via token por e-mail para %{target}"
         enable_user_html: "%{name} ativou o login para %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o usuário %{target}"
@@ -285,6 +288,7 @@ pt-BR:
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio de %{target}"
         update_ip_block_html: "%{name} alterou a regra para o IP %{target}"
+        update_report_html: "%{name} atualizou o relatório %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
         update_user_role_html: "%{name} alterou o cargo %{target}"
       deleted_account: conta excluída
@@ -292,6 +296,7 @@ pt-BR:
       filter_by_action: Filtrar por ação
       filter_by_user: Filtrar por usuário
       title: Auditar histórico
+      unavailable_instance: "(nome de domínio indisponível)"
     announcements:
       destroyed_msg: Anúncio excluído!
       edit:
@@ -425,10 +430,11 @@ pt-BR:
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
+      allow_registrations_with_approval: Permitir inscrições com aprovação
       attempts_over_week:
         one: "%{count} tentativa na última semana"
         other: "%{count} tentativas de inscrição na última semana"
-      created_msg: O domínio de e-mail foi adicionado à lista negra
+      created_msg: Domínio de e-mail bloqueado com sucesso
       delete: Excluir
       dns:
         types:
@@ -437,12 +443,12 @@ pt-BR:
       new:
         create: Adicionar domínio
         resolve: Resolver domínio
-        title: Nova entrada de lista negra de e-mail
-      no_email_domain_block_selected: Nenhum bloco de domínio de e-mail foi alterado, pois nenhum foi selecionado
+        title: Bloquear novo domínio de e-mail
+      no_email_domain_block_selected: Nenhum bloco de domínio de email foi alterado, pois, nenhum foi selecionado
       not_permitted: Não permitido
-      resolved_dns_records_hint_html: O nome de domínio resolve os seguintes domínios MX, que são responsáveis finais por aceitar o e-mail. Bloquear um domínio MX bloqueará inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Cuidado para não bloquear os principais provedores de e-mail.</strong>
+      resolved_dns_records_hint_html: O nome de domínio é associado aos seguintes domínios MX, que são responsáveis por aceitar e-mails. Ao bloquear um domínio MX, você bloqueará as inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Tenha cuidado para não bloquear os principais provedores de e-mail.</strong>
       resolved_through_html: Resolvido através de %{domain}
-      title: Lista de negra de e-mail
+      title: Domínios de e-mail bloqueados
     export_domain_allows:
       new:
         title: Importar domínios permitidos
@@ -467,6 +473,9 @@ pt-BR:
       title: Recomendações de contas
       unsuppress: Restaurar recomendação de contas
     instances:
+      audit_log:
+        title: Logs de auditoria recentes
+        view_all: Ver todos os logs de auditoria
       availability:
         description_html:
           one: Se a entrega ao domínio falhar em <strong>%{count} dia</strong> sem sucesso, nenhuma tentativa de entrega será feita a menos que uma entrega <em>do</em> domínio seja recebida.
@@ -534,6 +543,7 @@ pt-BR:
       total_reported: Denúncias sobre eles
       total_storage: Mídias anexadas
       totals_time_period_hint_html: Os totais exibidos abaixo incluem dados para todo o tempo.
+      unknown_instance: Atualmente não há registros deste domínio neste servidor.
     invites:
       deactivate_all: Desativar todos
       filter:
@@ -592,9 +602,13 @@ pt-BR:
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma violação será guardada e a denúncia será encerrada.
         silence_description_html: A conta ficará visível apenas para aqueles que já a seguem ou que a procuram manualmente, limitando severamente seu alcance. Pode ser revertido a qualquer momento. Fecha todas as denúncias desta conta.
         suspend_description_html: A conta e todo o seu conteúdo ficará inacessível e, eventualmente, excluído e interagir com ela será impossível. Reversível dentro de 30 dias. Encerra todas as denúncias contra esta conta.
-      actions_description_html: Decida que medidas tomar para resolver esta denúncia. Se você decidir punir a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>spam</strong> for selecionada.
+      actions_description_html: Decida qual ação tomar para responder a essa denúncia. Se você tomar uma ação punitiva contra a conta denunciada, uma notificação por e-mail será enviada ao usuário, exceto quando a categoria <strong>Spam</strong> for selecionada.
       actions_description_remote_html: Decida quais medidas tomará para resolver esta denúncia. Isso só afetará como <strong>seu servidor</strong> se comunica com esta conta remota e manipula seu conteúdo.
+      actions_no_posts: Essa denúncia não tem nenhuma publicação associada para excluir
       add_to_report: Adicionar mais à denúncia
+      already_suspended_badges:
+        local: Já suspenso neste servidor
+        remote: Já suspenso em seu servidor
       are_you_sure: Você tem certeza?
       assign_to_self: Atribuir para si
       assigned: Moderador responsável
@@ -610,6 +624,7 @@ pt-BR:
       created_at: Denunciado
       delete_and_resolve: Excluir publicações
       forwarded: Encaminhados
+      forwarded_replies_explanation: Este relatório é de um usuário remoto e é sobre um conteúdo remoto. Ele foi encaminhado para você porque o conteúdo denunciado está em resposta a um de seus usuários.
       forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
       mark_as_sensitive: Marcar como sensível
@@ -630,6 +645,7 @@ pt-BR:
       report: 'Denúncia #%{id}'
       reported_account: Conta denunciada
       reported_by: Denunciada por
+      reported_with_application: Denunciado pelo aplicativo
       resolved: Resolvido
       resolved_msg: Denúncia resolvida!
       skip_to_actions: Pular para ações
@@ -652,7 +668,7 @@ pt-BR:
         delete_data_html: Exclua o perfil e o conteúdo de <strong>@%{acct}</strong> daqui a 30 dias, a menos que a suspensão seja desfeita nesse meio tempo
         preview_preamble_html: "<strong>@%{acct}</strong> receberá um aviso com o seguinte conteúdo:"
         record_strike_html: Registre uma ação contra <strong>@%{acct}</strong> para te ajudar em futuras violações desta conta
-        send_email_html: Enviar <strong>@%{acct}</strong> um e-mail de aviso
+        send_email_html: Enviar <strong>@%{acct}</strong> um e-mail de alerta
         warning_placeholder: Argumentos adicionais para a ação de moderação.
       target_origin: Origem da conta denunciada
       title: Denúncias
@@ -745,6 +761,7 @@ pt-BR:
         desc_html: Isso é baseado em scripts externos de hCaptcha, o que pode ser uma preocupação de segurança e privacidade. Além disso, <strong>isso pode tornar o processo de registro significativamente menos acessível para algumas pessoas (especialmente deficientes)</strong>. Por estas razões, favor considerar medidas alternativas como o registro baseado em aprovação ou em convite.
         title: Exigir que novos usuários resolvam um CAPTCHA para confirmar sua conta
       content_retention:
+        danger_zone: Zona de perigo
         preamble: Controlar como o conteúdo gerado pelo usuário é armazenado no Mastodon.
         title: Retenção de conteúdo
       default_noindex:
@@ -764,6 +781,7 @@ pt-BR:
         disabled: Para ninguém
         users: Para usuários locais logados
       registrations:
+        moderation_recommandation: Por favor, certifique-se de ter uma equipe de moderação adequada e reativa antes de abrir as inscrições para todos!
         preamble: Controle quem pode criar uma conta no seu servidor.
         title: Inscrições
       registrations_mode:
@@ -771,6 +789,7 @@ pt-BR:
           approved: Aprovação necessária para criar conta
           none: Ninguém pode criar conta
           open: Qualquer um pode criar conta
+        warning_hint: Recomendamos o uso de "Aprovação necessária para se cadastrar", a menos que você esteja confiante de que sua equipe de moderação pode lidar com spam e registros maliciosos em tempo hábil.
       security:
         authorized_fetch: Exigir autenticação por parte de servidores federados
         authorized_fetch_hint: Exigir autenticação de servidores federados permite uma aplicação mais rigorosa de bloqueios tanto de nível de usuário como de servidor. No entanto, isso traz como custo uma penalidade no desempenho, reduz o alcance das suas respostas e pode introduzir problemas de compatibilidade com alguns serviços federados. Além disso, não impedirá atores dedicados de consultar suas publicações e contas públicas.
@@ -782,7 +801,7 @@ pt-BR:
       destroyed_msg: Upload do site excluído com sucesso!
     software_updates:
       critical_update: Crítico — por favor, atualize rapidamente
-      description: Recomenda-se manter a instalação do Mastodon atualizada para se beneficiar das funcionalidades e correções mais recentes. Além disso, por vezes é fundamental atualizar Mastodon em tempo hábil para evitar problemas de segurança. Por estes motivos, o Mastodon verifica atualizações a cada 30 minutos e lhe notificará de acordo com suas preferências de notificação por e-mail.
+      description: É recomendável que você mantenha a instalação do Mastodon atualizada para se beneficiar das correções e das novas funcionalidades. Além disso, às vezes é imprescindível atualizar o Mastodon rapidamente para evitar problemas de segurança. Por esses motivos, o Mastodon verifica se há atualizações a cada 30 minutos e notificará você de acordo com as suas preferências de notificação por e-mail.
       documentation_link: Saiba mais
       release_notes: Notas de lançamento
       title: Atualizações disponíveis
@@ -856,6 +875,9 @@ pt-BR:
         message_html: Você não definiu nenhuma regra de servidor.
       sidekiq_process_check:
         message_html: Nenhum processo Sidekiq rodando para a(s) fila(s) %{value}. Por favor, revise a sua configuração para Sidekiq
+      software_version_check:
+        action: Ver atualizações disponíveis
+        message_html: Uma atualização do Mastodon está disponível.
       software_version_critical_check:
         action: Ver atualizações disponíveis
         message_html: Uma atualização crítica do Mastodon está disponível. Por favor, atualize o mais rápido possível.
@@ -869,16 +891,39 @@ pt-BR:
         action: Confira aqui para mais informações
         message_html: "<strong>Seu armazenamento de objetos está mal configurado. A privacidade de seus usuários está em risco.</strong>"
     tags:
+      moderation:
+        not_trendable: Fora de moda
+        not_usable: Não utilizável
+        pending_review: Revisão pendente
+        review_requested: Revisão solicitada
+        reviewed: Revisado
+        title: Status
+        trendable: Tendências
+        unreviewed: Não revisado
+        usable: Utilizável
+      name: Nome
+      newest: Mais recente
+      oldest: Mais antigos
+      open: Visualizar Publicamente
+      reset: Reinicializar
       review: Status da revisão
+      search: Buscar
+      title: Hashtags
       updated_msg: Configurações de hashtag atualizadas
     title: Administração
     trends:
       allow: Permitir
       approved: Aprovado
+      confirm_allow: Você tem certeza que deseja permitir as tags selecionadas?
+      confirm_disallow: Você tem certeza de que deseja vetar as tags selecionadas?
       disallow: Impedir
       links:
         allow: Permitir link
         allow_provider: Permitir editor
+        confirm_allow: Tem certeza que deseja permitir os links selecionados?
+        confirm_allow_provider: Tem certeza que deseja permitir os provedores selecionados?
+        confirm_disallow: Tem certeza que deseja vetar os links selecionados?
+        confirm_disallow_provider: Tem certeza que deseja vetar os provedores selecionados?
         description_html: Estes são links que estão sendo compartilhados por contas que seu servidor vê. Você pode ajudar seus usuários a descobrir o que está acontecendo no mundo. Nenhum link é exibido publicamente até que você aprove o editor. Você também pode permitir ou rejeitar links individuais.
         disallow: Proibir link
         disallow_provider: Proibir autor
@@ -902,6 +947,10 @@ pt-BR:
       statuses:
         allow: Permitir publicação
         allow_account: Permitir autor
+        confirm_allow: Tem certeza que deseja permitir os status selecionados?
+        confirm_allow_account: Tem certeza que deseja permitir as contas selecionadas?
+        confirm_disallow: Tem certeza que deseja vetar os status selecionados?
+        confirm_disallow_account: Tem certeza que deseja vetar as contas selecionadas?
         description_html: Estes são as publicações que seu servidor sabe que estão sendo muito compartilhadas e favorecidas no momento. Isso pode ajudar seus usuários, novos e atuais, a encontrar mais pessoas para seguir. Nenhuma publicação é exibida publicamente até que você aprove o autor e o autor permitir que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individuais.
         disallow: Proibir publicação
         disallow_account: Proibir autor
@@ -934,14 +983,14 @@ pt-BR:
         used_by_over_week:
           one: Usado por uma pessoa na última semana
           other: Usado por %{count} pessoas na última semana
-      title: Em alta
+      title: Recomendações e tendências
       trending: Em alta
     warning_presets:
       add_new: Adicionar novo
       delete: Excluir
       edit_preset: Editar o aviso pré-definido
       empty: Você ainda não definiu nenhuma predefinição de alerta.
-      title: Gerenciar os avisos pré-definidos
+      title: Predefinições de aviso
     webhooks:
       add_new: Adicionar endpoint
       delete: Excluir
@@ -963,6 +1012,9 @@ pt-BR:
       title: Webhooks
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Devido à falta de atividade recente dos moderadores, as inscrições em %{instance} foram automaticamente alteradas para exigir revisão manual, para evitar que %{instance} seja usada como uma plataforma para potenciais atores mal-intencionados. Você pode alterá-la de volta para inscrições abertas a qualquer momento.
+      subject: As inscrições para %{instance} foram automaticamente alteradas para requerer aprovação
     new_appeal:
       actions:
         delete_statuses: para excluir suas publicações
@@ -995,8 +1047,6 @@ pt-BR:
       new_trending_statuses:
         title: Publicações em alta
       new_trending_tags:
-        no_approved_tags: No momento, não há hashtags de tendências aprovadas.
-        requirements: 'Qualquer um desses candidatos poderia ultrapassar a hashtag de tendência aprovada #%{rank} , que é atualmente #%{lowest_tag_name} com uma pontuação de %{lowest_tag_score}.'
         title: Hashtags em alta
       subject: Novas tendências para revisão em %{instance}
   aliases:
@@ -1020,7 +1070,7 @@ pt-BR:
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
     salutation: "%{name},"
-    settings: 'Alterar e-mail de preferência: %{link}'
+    settings: 'Alterar preferências de e-mail: %{link}'
     unsubscribe: Desinscrever
     view: 'Ver:'
     view_profile: Ver perfil
@@ -1040,6 +1090,14 @@ pt-BR:
       hint_html: Só mais uma coisa! Precisamos confirmar que você é um humano (isso é para que possamos evitar o spam!). Resolva o CAPTCHA abaixo e clique em "Continuar".
       title: Verificação de segurança
     confirmations:
+      awaiting_review: Seu endereço de e-mail está confirmado! A equipe %{domain} está agora revisando a sua inscrição. Você receberá um e-mail se a sua conta for aprovada!
+      awaiting_review_title: Seu cadastro está sendo analisado
+      clicking_this_link: clicar este link
+      login_link: entrar
+      proceed_to_login_html: Agora você pode prosseguir para %{login_link}.
+      redirect_to_app_html: Você deveria ter sido redirecionado para o aplicativo <strong>%{app_name}</strong>. Se isso não aconteceu, tente %{clicking_this_link} ou volte manualmente para o aplicativo.
+      registration_complete: Seu cadastro no %{domain} foi concluído!
+      welcome_title: Boas vindas, %{name}!
       wrong_email_hint: Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir sua conta, você pode <a href="%{path}">fazer isso aqui</a>. Uma confirmação será solicitada.
@@ -1083,7 +1141,7 @@ pt-BR:
     security: Segurança
     set_new_password: Definir uma nova senha
     setup:
-      email_below_hint_html: Verifique a sua pasta de spam, ou solicite outro link de confirmação. Você pode corrigir seu endereço de e-mail se estiver errado.
+      email_below_hint_html: Verifique a sua pasta de spam, ou solicite outra. Você pode corrigir o seu endereço de e-mail se estiver errado.
       email_settings_hint_html: Clique no link que te enviamos para verificar %{email}. Esperaremos aqui.
       link_not_received: Não recebeu um link?
       new_confirmation_instructions_sent: Você receberá um novo e-mail com o link de confirmação em alguns minutos!
@@ -1099,11 +1157,18 @@ pt-BR:
       account_status: Status da conta
       confirming: Confirmação por e-mail pendente.
       functional: Sua conta está totalmente operacional.
-      pending: Sua solicitação está com revisão pendente por parte de nossa equipe. Você receberá um e-mail se ela for aprovada.
+      pending: Sua inscrição está aguardando revisão pela nossa equipe. Isto pode levar algum tempo. Você receberá um e-mail se sua inscrição for aprovada.
       redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
+      self_destruct: Como %{domain} está se encerrando, você só terá acesso limitado à sua conta.
       view_strikes: Veja os avisos anteriores em relação à sua conta
     too_fast: O formulário foi enviado muito rapidamente, tente novamente.
     use_security_key: Usar chave de segurança
+  author_attribution:
+    example_title: Texto de amostra
+    hint_html: Controle como você é creditado quando links são compartilhados no Mastodon.
+    more_from_html: Mais de %{name}
+    s_blog: Blog do %{name}
+    title: Atribuição de autoria
   challenge:
     confirm: Continuar
     hint_html: "<strong>Dica:</strong> Não pediremos novamente sua senha pela próxima hora."
@@ -1112,7 +1177,6 @@ pt-BR:
   crypto:
     errors:
       invalid_key: não é uma chave Ed25519 ou Curve25519 válida
-      invalid_signature: não é uma assinatura Ed25519 válida
   date:
     formats:
       default: "%d %b, %Y"
@@ -1142,8 +1206,8 @@ pt-BR:
       caches: Conteúdo que foi armazenado em cache por outros servidores pode continuar a existir
       data_removal: Suas publicações e outros dados serão removidos permanentemente
       email_change_html: Você pode <a href="%{path}">alterar seu endereço de e-mail</a> sem excluir sua conta
-      email_contact_html: Se você ainda não recebeu, você pode enviar um e-mail pedindo ajuda para <a href="mailto:%{email}">%{email}</a>
-      email_reconfirmation_html: Se você não está recebendo o e-mail de confirmação, você pode <a href="%{path}">solicitá-lo novamente</a>
+      email_contact_html: Se ainda não chegar, você pode enviar um e-mail para <a href="mailto:%{email}">%{email}</a> para obter ajuda
+      email_reconfirmation_html: Se você não recebeu o e-mail de confirmação, você pode <a href="%{path}">solicitá-lo novamente</a>
       irreversible: Você não conseguirá restaurar ou reativar a sua conta
       more_details_html: Para mais detalhes, consulte a <a href="%{terms_path}">Política de Privacidade</a>.
       username_available: Seu nome de usuário ficará disponível novamente
@@ -1178,8 +1242,6 @@ pt-BR:
       your_appeal_approved: Sua revisão foi aprovada
       your_appeal_pending: Você enviou uma revisão
       your_appeal_rejected: Sua revisão foi rejeitada
-  domain_validator:
-    invalid_domain: não é um nome de domínio válido
   edit_profile:
     basic_information: Informações básicas
     hint_html: "<strong>Personalize o que as pessoas veem no seu perfil público e ao lado de suas publicações.</strong> É mais provável que outras pessoas o sigam de volta e interajam com você quando você tiver um perfil preenchido e uma foto de perfil."
@@ -1358,6 +1420,7 @@ pt-BR:
       '86400': 1 dia
     expires_in_prompt: Nunca
     generate: Gerar convite
+    invalid: Este convite não é válido
     invited_by: 'Você recebeu convite de:'
     max_uses:
       one: 1 uso
@@ -1386,20 +1449,21 @@ pt-BR:
     unsubscribe:
       action: Sim, cancelar subscrição
       complete: Desinscrito
-      confirmation_html: Tem certeza que deseja cancelar a inscrição de receber %{type} para Mastodon em %{domain} para o seu e-mail em %{email}? Você sempre pode se inscrever novamente de suas <a href="%{settings_path}">configurações de notificação de e-mail</a>.
+      confirmation_html: Tem certeza que deseja cancelar a assinatura de %{type} para Mastodon no %{domain} para o seu endereço de e-mail %{email}? Você sempre pode se inscrever novamente nas <a href="%{settings_path}">configurações de notificação de email</a>.
       emails:
         notification_emails:
-          favourite: e-mails de notificações de favoritos
-          follow: e-mails de novos seguidores
-          follow_request: e-mails de seguidores pendentes
-          mention: e-mails de notificação de menções
-          reblog: e-mails de notificação de impulsos
+          favourite: emails de notificação favoritos
+          follow: seguir emails de notificação
+          follow_request: emails de seguidores pendentes
+          mention: emails de notificação de menções
+          reblog: emails de notificação de boosts
       resubscribe_html: Se você cancelou sua inscrição por engano, você pode se inscrever novamente em suas <a href="%{settings_path}"> configurações de notificações por e-mail</a>.
-      success_html: Você não receberá mais %{type} do Mastodon em %{domain} para o seu e-mail %{email}.
+      success_html: Você não mais receberá %{type} no Mastodon em %{domain} ao seu endereço de e-mail %{email}.
       title: Cancelar inscrição
   media_attachments:
     validations:
       images_and_video: Não foi possível anexar um vídeo a uma publicação que já contém imagens
+      not_found: Mídia %{ids} não encontrada ou já anexada a outra publicação
       not_ready: Não é possível anexar arquivos que não terminaram de ser processados. Tente novamente daqui a pouco!
       too_many: Não foi possível anexar mais de 4 imagens
   migrations:
@@ -1476,10 +1540,9 @@ pt-BR:
     update:
       subject: "%{name} editou uma publicação"
   notifications:
-    administration_emails: Notificações por e-mail sobre administração
+    administration_emails: Notificações de e-mail do administrador
     email_events: Eventos para notificações por e-mail
     email_events_hint: 'Selecione os eventos que deseja receber notificações:'
-    other_settings: Outras opções para notificações
   number:
     human:
       decimal_units:
@@ -1535,6 +1598,9 @@ pt-BR:
     errors:
       limit_reached: Limite de reações diferentes atingido
       unrecognized_emoji: não é um emoji reconhecido
+  redirects:
+    prompt: Se você confia neste link, clique nele para continuar.
+    title: Você está saindo de %{instance}.
   relationships:
     activity: Atividade da conta
     confirm_follow_selected_followers: Tem certeza que deseja seguir os seguidores selecionados?
@@ -1570,6 +1636,9 @@ pt-BR:
     over_daily_limit: Você excedeu o limite de %{limit} publicações agendadas para esse dia
     over_total_limit: Você excedeu o limite de %{limit} publicações agendadas
     too_soon: A data agendada precisa ser no futuro
+  self_destruct:
+    lead_html: Infelizmente, <strong>%{domain}</strong> está se encerrando de forma permanente. Se você tem uma conta lá, não poderá continuar a usá-la, mas ainda pode solicitar uma cópia dos seus dados.
+    title: Este servidor está sendo fechado
   sessions:
     activity: Última atividade
     browser: Navegador
@@ -1594,6 +1663,7 @@ pt-BR:
       unknown_browser: Navegador desconhecido
       weibo: Weibo
     current_session: Sessão atual
+    date: Data
     description: "%{browser} em %{platform}"
     explanation: Estes são os navegadores que estão conectados com a sua conta Mastodon.
     ip: IP
@@ -1625,19 +1695,31 @@ pt-BR:
     delete: Exclusão de conta
     development: Desenvolvimento
     edit_profile: Editar perfil
-    export: Exportar dados
+    export: Exportar
     featured_tags: Hashtags em destaque
     import: Importar
     import_and_export: Importar e exportar
     migrate: Migração de conta
-    notifications: Notificações
+    notifications: Notificações por e-mail
     preferences: Preferências
     profile: Perfil
     relationships: Seguindo e seguidores
+    severed_relationships: Relacionamentos rompidos
     statuses_cleanup: Exclusão automatizada de publicações
     strikes: Avisos de moderação
     two_factor_authentication: Autenticação de dois fatores
     webauthn_authentication: Chaves de segurança
+  severed_relationships:
+    download: Download  %{count}
+    event_type:
+      account_suspension: Suspensão da conta (%{target_name})
+      domain_block: Suspensão do servidor (%{target_name})
+      user_domain_block: Você bloqueou %{target_name}
+    lost_followers: Seguidores perdidos
+    lost_follows: Seguidores perdidos
+    preamble: Você poderá perder seguidores e seguidores quando bloquear um domínio ou quando os seus moderadores decidirem suspender um servidor remoto. Quando isso acontecer, você poderá baixar listas de relações desfeitas, a serem inspecionadas e possivelmente importadas para outro servidor.
+    purged: As informações sobre este servidor foram eliminadas pelos administradores do seu servidor.
+    type: Evento
   statuses:
     attached:
       audio:
@@ -1659,25 +1741,12 @@ pt-BR:
     edited_at_html: Editado em %{date}
     errors:
       in_reply_not_found: A publicação que você quer responder parece não existir.
-    open_in_web: Abrir no navegador
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
       direct: Publicações visíveis apenas para usuários mencionados não podem ser fixadas
       limit: Você alcançou o número limite de publicações fixadas
       ownership: As publicações dos outros não podem ser fixadas
       reblog: Um impulso não pode ser fixado
-    poll:
-      total_people:
-        one: "%{count} pessoa"
-        other: "%{count} pessoas"
-      total_votes:
-        one: "%{count} voto"
-        other: "%{count} votos"
-      vote: Votar
-    show_more: Mostrar mais
-    show_newer: Mostrar mais recentes
-    show_older: Mostrar mais antigos
-    show_thread: Mostrar conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direto
@@ -1733,6 +1802,7 @@ pt-BR:
     contrast: Mastodon  (Alto contraste)
     default: Mastodon (Noturno)
     mastodon-light: Mastodon (Diurno)
+    system: Automático (usar tema do sistema)
   time:
     formats:
       default: "%H:%M em %d de %b de %Y"
@@ -1760,18 +1830,27 @@ pt-BR:
     webauthn: Chaves de segurança
   user_mailer:
     appeal_approved:
-      action: Acessar perfil
+      action: Configurações da conta
       explanation: A revisão da punição na sua conta em %{strike_date} que você enviou em %{appeal_date} foi aprovada. Sua conta está novamente em situação regular.
       subject: Sua revisão de %{date} foi aprovada
+      subtitle: Sua conta está novamente em boa situação.
       title: Revisão aprovada
     appeal_rejected:
       explanation: A revisão da punição na sua conta em %{strike_date} que você enviou em %{appeal_date} foi rejeitada.
       subject: Sua revisão de %{date} foi rejeitada
+      subtitle: Sua revisão foi rejeitada.
       title: Revisão rejeitada
     backup_ready:
-      explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
+      explanation: Você solicitou um ‘backup’ completo da sua conta Mastodon.
+      extra: Agora está pronto para baixar!
       subject: Seu arquivo está pronto para ser baixado
       title: Baixar arquivo
+    failed_2fa:
+      details: 'Aqui estão os detalhes da tentativa de acesso:'
+      explanation: Alguém tentou entrar em sua conta, mas forneceu um segundo fator de autenticação inválido.
+      further_actions_html: Se não foi você, recomendamos que %{action} imediatamente, pois ela pode ser comprometida.
+      subject: Falha na autenticação do segundo fator
+      title: Falha na autenticação do segundo fator
     suspicious_sign_in:
       change_password: Altere sua senha
       details: 'Aqui estão os detalhes do acesso:'
@@ -1809,15 +1888,46 @@ pt-BR:
         none: Aviso
         sensitive: Conta marcada como sensível
         silence: Conta silenciada
-        suspend: Conta banida
+        suspend: Conta suspensa
     welcome:
-      edit_profile_action: Configurar perfil
-      edit_profile_step: Você pode personalizar seu perfil enviando uma foto de perfil, mudando seu nome de exibição e mais. Você pode optar por revisar novos seguidores antes que eles possam te seguir.
+      apps_android_action: Disponível no Google Play
+      apps_ios_action: Disponível na App Store
+      apps_step: Baixe nossos aplicativos oficiais.
+      apps_title: Apps Mastodon
+      checklist_subtitle: 'Vamos começar nesta nova fronteira social:'
+      checklist_title: Lista de verificação de boas-vindas
+      edit_profile_action: Personalizar
+      edit_profile_step: Aumente suas interações tendo um perfil completo.
+      edit_profile_title: Customize seu perfil
       explanation: Aqui estão algumas dicas para você começar
-      final_action: Comece a publicar
-      final_step: 'Comece a postar! Mesmo sem seguidores, suas postagens públicas podem ser vistas pelos outros, por exemplo, na linha do tempo local ou nas hashtags. Você pode querer fazer uma introdução usando a hashtag #introduções.'
-      full_handle: Seu nome de usuário completo
-      full_handle_hint: Isso é o que você compartilha com seus amigos para que eles possam te mandar mensagens ou te seguir a partir de outro servidor.
+      feature_action: Saiba mais
+      feature_audience: O Mastodon oferece a você uma oportunidade única de gerenciar seu público sem intermediários. O Mastodon implantado em sua própria infraestrutura permite que você siga e seja seguido por qualquer outro servidor Mastodon online e está única e exclusivamente sob o seu controle.
+      feature_audience_title: Construa confiança com seu público
+      feature_control: Você sabe o que deseja ver na sua página inicial. Sem algoritmos ou anúncios para desperdiçar seu tempo. Siga qualquer pessoa em qualquer servidor Mastodon a partir de uma única conta e receba suas postagens em ordem cronológica, e faça o seu cantinho na internet um pouco mais a sua cara.
+      feature_control_title: Fique no controle da sua própria linha do tempo
+      feature_creativity: Mastodon oferece suporte a postagens de áudio, vídeo e imagem, descrições de acessibilidade, enquetes, avisos de conteúdo, avatares animados, emojis personalizados, recorte de miniaturas e muito mais, para ajudá-lo a se expressar online. Seja você publicando sua arte, sua música ou seu podcast, o Mastodon está lá para você.
+      feature_creativity_title: Criatividade inigualável
+      feature_moderation: Mastodon devolve a tomada de decisão para suas mãos. Cada servidor cria suas próprias regras e regulamentos, que são aplicados localmente e não de cima para baixo como nas redes sociais corporativas, tornando-o o mais flexível em responder às necessidades de diferentes grupos de pessoas. Junte-se a um servidor com as regras com as quais você concorda, ou hospede o seu próprio.
+      feature_moderation_title: Moderando como deve ser
+      follow_action: Seguir
+      follow_step: Seguir pessoas interessantes é do que trata Mastodon.
+      follow_title: Personalize sua página inicial
+      follows_subtitle: Siga contas conhecidas
+      follows_title: Quem seguir
+      follows_view_more: Veja mais pessoas para seguir
+      hashtags_recent_count:
+        one: "%{people} Pessoas nos últimos 2 dias"
+        other: "%{people} pessoas nos últimos 2 dias"
+      hashtags_subtitle: Explorar o que está em alta nos últimos 2 dias
+      hashtags_title: Hashtags em alta
+      hashtags_view_more: Ver mais hashtags em alta
+      post_action: Escrever
+      post_step: Diga olá para o mundo com texto, fotos, vídeos ou enquetes.
+      post_title: Crie sua primeira publicação
+      share_action: Compartilhar
+      share_step: Deixe seus amigos saberem como te encontrar no Mastodon.
+      share_title: Compartilhe seu perfil do Mastodon
+      sign_in_action: Entrar
       subject: Boas-vindas ao Mastodon
       title: Boas vindas, %{name}!
   users:
@@ -1825,7 +1935,8 @@ pt-BR:
     go_to_sso_account_settings: Vá para as configurações de conta do seu provedor de identidade
     invalid_otp_token: Código de dois fatores inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
-    seamless_external_login: Você entrou usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
+    rate_limited: Muitas tentativas de autenticação; tente novamente mais tarde.
+    seamless_external_login: Você está logado através de um serviço externo, portanto as configurações de senha e e-mail não estão disponíveis.
     signed_in_as: 'Entrou como:'
   verification:
     extra_instructions_html: <strong>Dica:</strong> O link do seu site não precisa ser visível. O importante é a parte <code>rel="me"</code>, que impede a personificação em sites com conteúdo gerado pelo usuário. Você pode até usar uma tag <code>link</code> no cabeçalho da página ao invés de uma tag <code>a</code>, mas é importante que o HTML esteja acessível sem executar JavaScript.
@@ -1834,6 +1945,7 @@ pt-BR:
     instructions_html: Copie o código abaixo e cole no HTML do seu site. Em seguida, adicione o endereço do seu site em um dos campos extras em seu perfil, na aba "Editar perfil", e salve as alterações.
     verification: Verificação
     verified_links: Seus links verificados
+    website_verification: Verificação do site
   webauthn_credentials:
     add: Adicionar nova chave de segurança
     create:

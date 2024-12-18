@@ -10,7 +10,7 @@ import api, { getLinks } from '../api';
 import { unescapeHTML } from '../utils/html';
 import { requestNotificationPermission } from '../utils/notifications';
 
-import { fetchFollowRequests, fetchRelationships } from './accounts';
+import { fetchFollowRequests } from './accounts';
 import {
   importFetchedAccount,
   importFetchedAccounts,
@@ -18,10 +18,12 @@ import {
   importFetchedStatuses,
 } from './importer';
 import { submitMarkers } from './markers';
+import { notificationsUpdate } from "./notifications_typed";
 import { register as registerPushNotifications } from './push_notifications';
 import { saveSettings } from './settings';
 
-export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
+export * from "./notifications_typed";
+
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 
 export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
@@ -30,7 +32,6 @@ export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 
 export const NOTIFICATIONS_FILTER_SET = 'NOTIFICATIONS_FILTER_SET';
 
-export const NOTIFICATIONS_CLEAR        = 'NOTIFICATIONS_CLEAR';
 export const NOTIFICATIONS_SCROLL_TOP   = 'NOTIFICATIONS_SCROLL_TOP';
 export const NOTIFICATIONS_LOAD_PENDING = 'NOTIFICATIONS_LOAD_PENDING';
 
@@ -42,18 +43,18 @@ export const NOTIFICATIONS_MARK_AS_READ = 'NOTIFICATIONS_MARK_AS_READ';
 export const NOTIFICATIONS_SET_BROWSER_SUPPORT    = 'NOTIFICATIONS_SET_BROWSER_SUPPORT';
 export const NOTIFICATIONS_SET_BROWSER_PERMISSION = 'NOTIFICATIONS_SET_BROWSER_PERMISSION';
 
+export const NOTIFICATION_REQUESTS_ACCEPT_REQUEST = 'NOTIFICATION_REQUESTS_ACCEPT_REQUEST';
+export const NOTIFICATION_REQUESTS_ACCEPT_SUCCESS = 'NOTIFICATION_REQUESTS_ACCEPT_SUCCESS';
+export const NOTIFICATION_REQUESTS_ACCEPT_FAIL    = 'NOTIFICATION_REQUESTS_ACCEPT_FAIL';
+
+export const NOTIFICATION_REQUESTS_DISMISS_REQUEST = 'NOTIFICATION_REQUESTS_DISMISS_REQUEST';
+export const NOTIFICATION_REQUESTS_DISMISS_SUCCESS = 'NOTIFICATION_REQUESTS_DISMISS_SUCCESS';
+export const NOTIFICATION_REQUESTS_DISMISS_FAIL    = 'NOTIFICATION_REQUESTS_DISMISS_FAIL';
+
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
   group: { id: 'notifications.group', defaultMessage: '{count} notifications' },
 });
-
-const fetchRelatedRelationships = (dispatch, notifications) => {
-  const accountIds = notifications.filter(item => ['follow', 'follow_request', 'admin.sign_up'].indexOf(item.type) !== -1).map(item => item.account.id);
-
-  if (accountIds.length > 0) {
-    dispatch(fetchRelationships(accountIds));
-  }
-};
 
 export const loadPending = () => ({
   type: NOTIFICATIONS_LOAD_PENDING,
@@ -95,14 +96,8 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
         dispatch(importFetchedAccount(notification.report.target_account));
       }
 
-      dispatch({
-        type: NOTIFICATIONS_UPDATE,
-        notification,
-        usePendingItems: preferPendingItems,
-        meta: (playSound && !filtered) ? { sound: 'boop' } : undefined,
-      });
 
-      fetchRelatedRelationships(dispatch, [notification]);
+      dispatch(notificationsUpdate({ notification, preferPendingItems, playSound: playSound && !filtered}));
     } else if (playSound && !filtered) {
       dispatch({
         type: NOTIFICATIONS_UPDATE_NOOP,
@@ -148,8 +143,8 @@ const noOp = () => {};
 
 let expandNotificationsController = new AbortController();
 
-export function expandNotifications({ maxId, forceLoad } = {}, done = noOp) {
-  return (dispatch, getState) => {
+export function expandNotifications({ maxId = undefined, forceLoad = false }) {
+  return async (dispatch, getState) => {
     const activeFilter = getState().getIn(['settings', 'notifications', 'quickFilter', 'active']);
     const notifications = getState().get('notifications');
     const isLoadingMore = !!maxId;
@@ -159,7 +154,6 @@ export function expandNotifications({ maxId, forceLoad } = {}, done = noOp) {
         expandNotificationsController.abort();
         expandNotificationsController = new AbortController();
       } else {
-        done();
         return;
       }
     }
@@ -186,7 +180,8 @@ export function expandNotifications({ maxId, forceLoad } = {}, done = noOp) {
 
     dispatch(expandNotificationsRequest(isLoadingMore));
 
-    api(getState).get('/api/v1/notifications', { params, signal: expandNotificationsController.signal }).then(response => {
+    try {
+      const response = await api().get('/api/v1/notifications', { params, signal: expandNotificationsController.signal });
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(importFetchedAccounts(response.data.map(item => item.account)));
@@ -194,13 +189,10 @@ export function expandNotifications({ maxId, forceLoad } = {}, done = noOp) {
       dispatch(importFetchedAccounts(response.data.filter(item => item.report).map(item => item.report.target_account)));
 
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null, isLoadingMore, isLoadingRecent, isLoadingRecent && preferPendingItems));
-      fetchRelatedRelationships(dispatch, response.data);
       dispatch(submitMarkers());
-    }).catch(error => {
+    } catch(error) {
       dispatch(expandNotificationsFail(error, isLoadingMore));
-    }).finally(() => {
-      done();
-    });
+    }
   };
 }
 
@@ -228,16 +220,6 @@ export function expandNotificationsFail(error, isLoadingMore) {
     error,
     skipLoading: !isLoadingMore,
     skipAlert: !isLoadingMore || error.name === 'AbortError',
-  };
-}
-
-export function clearNotifications() {
-  return (dispatch, getState) => {
-    dispatch({
-      type: NOTIFICATIONS_CLEAR,
-    });
-
-    api(getState).post('/api/v1/notifications/clear');
   };
 }
 

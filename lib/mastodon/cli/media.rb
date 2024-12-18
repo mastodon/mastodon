@@ -32,15 +32,9 @@ module Mastodon::CLI
       following anyone locally are pruned.
     DESC
     def remove
-      if options[:prune_profiles] && options[:remove_headers]
-        say('--prune-profiles and --remove-headers should not be specified simultaneously', :red, true)
-        exit(1)
-      end
+      fail_with_message '--prune-profiles and --remove-headers should not be specified simultaneously' if options[:prune_profiles] && options[:remove_headers]
 
-      if options[:include_follows] && !(options[:prune_profiles] || options[:remove_headers])
-        say('--include-follows can only be used with --prune-profiles or --remove-headers', :red, true)
-        exit(1)
-      end
+      fail_with_message '--include-follows can only be used with --prune-profiles or --remove-headers' if options[:include_follows] && !(options[:prune_profiles] || options[:remove_headers])
       time_ago = options[:days].days.ago
 
       if options[:prune_profiles] || options[:remove_headers]
@@ -49,8 +43,8 @@ module Mastodon::CLI
           next if account.avatar.blank? && account.header.blank?
           next if options[:remove_headers] && account.header.blank?
 
-          size = (account.header_file_size || 0)
-          size += (account.avatar_file_size || 0) if options[:prune_profiles]
+          size = account.header_file_size || 0
+          size += account.avatar_file_size || 0 if options[:prune_profiles]
 
           unless dry_run?
             account.header.destroy
@@ -65,7 +59,7 @@ module Mastodon::CLI
       end
 
       unless options[:prune_profiles] || options[:remove_headers]
-        processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where(created_at: ..time_ago)) do |media_attachment|
+        processed, aggregate = parallelize_with_progress(MediaAttachment.cached.remote.where(created_at: ..time_ago)) do |media_attachment|
           next if media_attachment.file.blank?
 
           size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
@@ -157,15 +151,13 @@ module Mastodon::CLI
           end
         end
       when :fog
-        say('The fog storage driver is not supported for this operation at this time', :red)
-        exit(1)
+        fail_with_message 'The fog storage driver is not supported for this operation at this time'
       when :azure
-        say('The azure storage driver is not supported for this operation at this time', :red)
-        exit(1)
+        fail_with_message 'The azure storage driver is not supported for this operation at this time'
       when :filesystem
         require 'find'
 
-        root_path = ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')).gsub(':rails_root', Rails.root.to_s)
+        root_path = Rails.configuration.x.file_storage_root_path.gsub(':rails_root', Rails.root.to_s)
 
         Find.find(File.join(*[root_path, prefix].compact)) do |path|
           next if File.directory?(path)
@@ -255,10 +247,7 @@ module Mastodon::CLI
         username, domain = options[:account].split('@')
         account = Account.find_remote(username, domain)
 
-        if account.nil?
-          say('No such account', :red)
-          exit(1)
-        end
+        fail_with_message 'No such account' if account.nil?
 
         scope = MediaAttachment.where(account_id: account.id)
       elsif options[:domain]
@@ -266,7 +255,7 @@ module Mastodon::CLI
       elsif options[:days].present?
         scope = MediaAttachment.remote
       else
-        exit(1)
+        fail_with_message 'Specify the source of media attachments'
       end
 
       scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false)) if options[:days].present?
@@ -289,7 +278,7 @@ module Mastodon::CLI
 
     desc 'usage', 'Calculate disk space consumed by Mastodon'
     def usage
-      say("Attachments:\t#{number_to_human_size(MediaAttachment.sum(Arel.sql('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')))} (#{number_to_human_size(MediaAttachment.where(account: Account.local).sum(Arel.sql('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')))} local)")
+      say("Attachments:\t#{number_to_human_size(media_attachment_storage_size)} (#{number_to_human_size(local_media_attachment_storage_size)} local)")
       say("Custom emoji:\t#{number_to_human_size(CustomEmoji.sum(:image_file_size))} (#{number_to_human_size(CustomEmoji.local.sum(:image_file_size))} local)")
       say("Preview cards:\t#{number_to_human_size(PreviewCard.sum(:image_file_size))}")
       say("Avatars:\t#{number_to_human_size(Account.sum(:avatar_file_size))} (#{number_to_human_size(Account.local.sum(:avatar_file_size))} local)")
@@ -306,41 +295,44 @@ module Mastodon::CLI
       path_segments = path.split('/')[2..]
       path_segments.delete('cache')
 
-      unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
-        say('Not a media URL', :red)
-        exit(1)
-      end
+      fail_with_message 'Not a media URL' unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
 
       model_name = path_segments.first.classify
       record_id  = path_segments[2...-2].join.to_i
 
-      unless PRELOAD_MODEL_WHITELIST.include?(model_name)
-        say("Cannot find corresponding model: #{model_name}", :red)
-        exit(1)
-      end
+      fail_with_message "Cannot find corresponding model: #{model_name}" unless PRELOAD_MODEL_WHITELIST.include?(model_name)
 
       record = model_name.constantize.find_by(id: record_id)
       record = record.status if record.respond_to?(:status)
 
-      unless record
-        say('Cannot find corresponding record', :red)
-        exit(1)
-      end
+      fail_with_message 'Cannot find corresponding record' unless record
 
       display_url = ActivityPub::TagManager.instance.url_for(record)
 
-      if display_url.blank?
-        say('No public URL for this type of record', :red)
-        exit(1)
-      end
+      fail_with_message 'No public URL for this type of record' if display_url.blank?
 
       say(display_url, :blue)
     rescue Addressable::URI::InvalidURIError
-      say('Invalid URL', :red)
-      exit(1)
+      fail_with_message 'Invalid URL'
     end
 
     private
+
+    def media_attachment_storage_size
+      MediaAttachment.sum(file_and_thumbnail_size_sql)
+    end
+
+    def local_media_attachment_storage_size
+      MediaAttachment.where(account: Account.local).sum(file_and_thumbnail_size_sql)
+    end
+
+    def file_and_thumbnail_size_sql
+      Arel.sql(
+        <<~SQL.squish
+          COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)
+        SQL
+      )
+    end
 
     PRELOAD_MODEL_WHITELIST = %w(
       Account

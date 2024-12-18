@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Poll do
+RSpec.describe Poll do
   describe 'scopes' do
     let(:status) { Fabricate(:status) }
     let(:attached_poll) { Fabricate(:poll, status: status) }
@@ -27,6 +27,14 @@ describe Poll do
 
         expect(results).to eq([not_attached_poll])
       end
+    end
+  end
+
+  describe 'validations' do
+    context 'when not valid' do
+      subject { Fabricate.build(:poll) }
+
+      it { is_expected.to validate_presence_of(:expires_at) }
     end
   end
 end

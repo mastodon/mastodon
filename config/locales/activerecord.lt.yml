@@ -1,1 +1,65 @@
+---
 lt:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Galutinė data
+        options: Pasirinkimai
+      user:
+        agreement: Paslaugos sutartis
+        email: El. laiško adresas
+        locale: Lokali
+        password: Slaptažodis
+      user/account:
+        username: Naudotojo vardas
+      user/invite_request:
+        text: Priežastis
+    errors:
+      attributes:
+        domain:
+          invalid: nėra tinkamas domeno vardas.
+      messages:
+        invalid_domain_on_line: "%{value} nėra tinkamas domeno vardas."
+        too_many_lines: yra daugiau nei %{limit} eilučių ribojimą.
+      models:
+        account:
+          attributes:
+            username:
+              invalid: turi būti tik raidės, skaičiai ir pabraukimai.
+              reserved: užimtas.
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nėra tinkamas URL adresas.
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nėra tinkamas URL adresas.
+        import:
+          attributes:
+            data:
+              malformed: yra netaisyklinga.
+        status:
+          attributes:
+            reblog:
+              taken: įrašas jau egzistuoja.
+        user:
+          attributes:
+            email:
+              blocked: naudoja neleidžiamą el. laiško paslaugų teikėją.
+              unreachable: neatrodo, kad egzistuoja.
+            role_id:
+              elevated: negali būti didesnis nei tavo dabartinis vaidmuo.
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: apima leidimus, kurie nėra saugūs pagrindiniam vaidmeniui.
+              elevated: negali apimti leidimų, kurių neturi tavo dabartinis vaidmuo.
+              own_role: negali būti pakeistas tavo dabartinis vaidmuo.
+            position:
+              elevated: negali būti didesnis nei tavo dabartinis vaidmuo.
+              own_role: negali būti pakeistas tavo dabartinis vaidmuo.
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: negali įtraukti įvykių, į kuriuos neturi teisių.

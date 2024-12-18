@@ -1,13 +1,7 @@
 # frozen_string_literal: true
 
-MIGRATION_BASE_CLASS = if ActiveRecord::VERSION::MAJOR >= 5
-                         ActiveRecord::Migration[5.0]
-                       else
-                         ActiveRecord::Migration[4.2]
-                       end
-
-class RailsSettingsMigration < MIGRATION_BASE_CLASS
-  def self.up
+class RailsSettingsMigration < ActiveRecord::Migration[5.0]
+  def up
     create_table :settings do |t|
       t.string     :var, null: false
       t.text       :value
@@ -17,7 +11,7 @@ class RailsSettingsMigration < MIGRATION_BASE_CLASS
     add_index :settings, [:target_type, :target_id, :var], unique: true
   end
 
-  def self.down
+  def down
     drop_table :settings
   end
 end

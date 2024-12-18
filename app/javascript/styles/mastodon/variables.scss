@@ -7,8 +7,8 @@ $blurple-600: #563acc; // Iris
 $blurple-500: #6364ff; // Brand purple
 $blurple-400: #7477fd; // Medium slate blue
 $blurple-300: #858afa; // Faded Blue
-$grey-600: #4e4c5a; // Trout
-$grey-100: #dadaf3; // Topaz
+$grey-600: hsl(240deg, 8%, 33%); // Trout
+$grey-100: hsl(240deg, 51%, 90%); // Topaz
 
 $success-green: #79bd9a !default; // Padua
 $error-red: $red-500 !default; // Cerise
@@ -18,10 +18,10 @@ $gold-star: #ca8f04 !default; // Dark Goldenrod
 $red-bookmark: $warning-red;
 
 // Values from the classic Mastodon UI
-$classic-base-color: #282c37; // Midnight Express
-$classic-primary-color: #9baec8; // Echo Blue
-$classic-secondary-color: #d9e1e8; // Pattens Blue
-$classic-highlight-color: #6364ff; // Brand purple
+$classic-base-color: hsl(240deg, 16%, 19%);
+$classic-primary-color: hsl(240deg, 29%, 70%);
+$classic-secondary-color: hsl(255deg, 25%, 88%);
+$classic-highlight-color: $blurple-500;
 
 // Variables for defaults in UI
 $base-shadow-color: $black !default;
@@ -46,10 +46,10 @@ $ui-button-focus-background-color: $blurple-600 !default;
 $ui-button-focus-outline-color: $blurple-400 !default;
 $ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !default;
 
-$ui-button-secondary-color: $grey-100 !default;
-$ui-button-secondary-border-color: $grey-100 !default;
-$ui-button-secondary-focus-background-color: $grey-600 !default;
-$ui-button-secondary-focus-color: $white !default;
+$ui-button-secondary-color: $blurple-500 !default;
+$ui-button-secondary-border-color: $blurple-500 !default;
+$ui-button-secondary-focus-border-color: $blurple-300 !default;
+$ui-button-secondary-focus-color: $blurple-300 !default;
 
 $ui-button-tertiary-color: $blurple-300 !default;
 $ui-button-tertiary-border-color: $blurple-300 !default;
@@ -88,16 +88,32 @@ $media-modal-media-max-width: 100%;
 $media-modal-media-max-height: 80%;
 
 $no-gap-breakpoint: 1175px;
+$mobile-breakpoint: 630px;
 
 $font-sans-serif: 'mastodon-font-sans-serif' !default;
 $font-display: 'mastodon-font-display' !default;
 $font-monospace: 'mastodon-font-monospace' !default;
 
 :root {
-  --dropdown-border-color: #{lighten($ui-base-color, 12%)};
-  --dropdown-background-color: #{lighten($ui-base-color, 4%)};
+  --dropdown-border-color: #{lighten($ui-base-color, 4%)};
+  --dropdown-background-color: #{rgba(darken($ui-base-color, 8%), 0.9)};
   --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
     0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
-  --modal-background-color: #{darken($ui-base-color, 4%)};
+  --modal-background-color: #{rgba(darken($ui-base-color, 8%), 0.7)};
+  --modal-background-variant-color: #{rgba($ui-base-color, 0.7)};
   --modal-border-color: #{lighten($ui-base-color, 4%)};
+  --background-border-color: #{lighten($ui-base-color, 4%)};
+  --background-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+  --background-color: #{darken($ui-base-color, 8%)};
+  --background-color-tint: #{rgba(darken($ui-base-color, 8%), 0.9)};
+  --surface-background-color: #{darken($ui-base-color, 4%)};
+  --surface-variant-background-color: #{$ui-base-color};
+  --surface-variant-active-background-color: #{lighten($ui-base-color, 4%)};
+  --on-surface-color: #{transparentize($ui-base-color, 0.5)};
+  --avatar-border-radius: 8px;
+  --media-outline-color: #{rgba(#fcf8ff, 0.15)};
+  --overlay-icon-shadow: drop-shadow(0 0 8px #{rgba($base-shadow-color, 0.25)});
+  --error-background-color: #{darken($error-red, 16%)};
+  --error-active-background-color: #{darken($error-red, 12%)};
+  --on-error-color: #fff;
 }

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe NotifyService, type: :service do
+RSpec.describe NotifyService do
   subject { described_class.new.call(recipient, type, activity) }
 
   let(:user) { Fabricate(:user) }
@@ -52,69 +52,13 @@ RSpec.describe NotifyService, type: :service do
 
   it 'does not notify when sender is silenced and not followed' do
     sender.silence!
-    expect { subject }.to_not change(Notification, :count)
+    subject
+    expect(Notification.find_by(activity: activity).filtered?).to be true
   end
 
   it 'does not notify when recipient is suspended' do
     recipient.suspend!
     expect { subject }.to_not change(Notification, :count)
-  end
-
-  context 'with direct messages' do
-    let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct)) }
-    let(:type)     { :mention }
-
-    before do
-      user.settings.update('interactions.must_be_following_dm': enabled)
-      user.save
-    end
-
-    context 'when recipient is supposed to be following sender' do
-      let(:enabled) { true }
-
-      it 'does not notify' do
-        expect { subject }.to_not change(Notification, :count)
-      end
-
-      context 'when the message chain is initiated by recipient, but is not direct message' do
-        let(:reply_to) { Fabricate(:status, account: recipient) }
-        let!(:mention) { Fabricate(:mention, account: sender, status: reply_to) }
-        let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: reply_to)) }
-
-        it 'does not notify' do
-          expect { subject }.to_not change(Notification, :count)
-        end
-      end
-
-      context 'when the message chain is initiated by recipient, but without a mention to the sender, even if the sender sends multiple messages in a row' do
-        let(:public_status) { Fabricate(:status, account: recipient) }
-        let(:intermediate_reply) { Fabricate(:status, account: sender, thread: public_status, visibility: :direct) }
-        let!(:intermediate_mention) { Fabricate(:mention, account: sender, status: intermediate_reply) }
-        let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: intermediate_reply)) }
-
-        it 'does not notify' do
-          expect { subject }.to_not change(Notification, :count)
-        end
-      end
-
-      context 'when the message chain is initiated by the recipient with a mention to the sender' do
-        let(:reply_to) { Fabricate(:status, account: recipient, visibility: :direct) }
-        let!(:mention) { Fabricate(:mention, account: sender, status: reply_to) }
-        let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct, thread: reply_to)) }
-
-        it 'does notify' do
-          expect { subject }.to change(Notification, :count)
-        end
-      end
-    end
-
-    context 'when recipient is NOT supposed to be following sender' do
-      let(:enabled) { false }
-
-      it 'does notify' do
-        expect { subject }.to change(Notification, :count)
-      end
-    end
   end
 
   describe 'reblogs' do
@@ -165,8 +109,6 @@ RSpec.describe NotifyService, type: :service do
 
   describe 'email' do
     before do
-      ActionMailer::Base.deliveries.clear
-
       user.settings.update('notification_emails.follow': enabled)
       user.save
     end
@@ -174,8 +116,16 @@ RSpec.describe NotifyService, type: :service do
     context 'when email notification is enabled' do
       let(:enabled) { true }
 
-      it 'sends email' do
-        expect { subject }.to change(ActionMailer::Base.deliveries, :count).by(1)
+      it 'sends email', :inline_jobs do
+        emails = capture_emails { subject }
+
+        expect(emails.size)
+          .to eq(1)
+        expect(emails.first)
+          .to have_attributes(
+            to: contain_exactly(user.email),
+            subject: eq(I18n.t('notification_mailer.follow.subject', name: sender.acct))
+          )
       end
     end
 
@@ -183,7 +133,351 @@ RSpec.describe NotifyService, type: :service do
       let(:enabled) { false }
 
       it "doesn't send email" do
-        expect { subject }.to_not change(ActionMailer::Base.deliveries, :count).from(0)
+        emails = capture_emails { subject }
+
+        expect(emails).to be_empty
+      end
+    end
+  end
+
+  context 'when the blocked sender has a role' do
+    let(:sender) { Fabricate(:user, role: sender_role).account }
+    let(:activity) { Fabricate(:mention, status: Fabricate(:status, account: sender)) }
+    let(:type) { :mention }
+
+    before do
+      recipient.block!(sender)
+    end
+
+    context 'when the role is a visible moderator' do
+      let(:sender_role) { Fabricate(:user_role, highlighted: true, permissions: UserRole::FLAGS[:manage_users]) }
+
+      it 'does notify' do
+        expect { subject }.to change(Notification, :count)
+      end
+    end
+
+    context 'when the role is a non-visible moderator' do
+      let(:sender_role) { Fabricate(:user_role, highlighted: false, permissions: UserRole::FLAGS[:manage_users]) }
+
+      it 'does not notify' do
+        expect { subject }.to_not change(Notification, :count)
+      end
+    end
+
+    context 'when the role is a visible non-moderator' do
+      let(:sender_role) { Fabricate(:user_role, highlighted: true) }
+
+      it 'does not notify' do
+        expect { subject }.to_not change(Notification, :count)
+      end
+    end
+  end
+
+  context 'with filtered notifications' do
+    let(:unknown)  { Fabricate(:account, username: 'unknown') }
+    let(:status)   { Fabricate(:status, account: unknown) }
+    let(:activity) { Fabricate(:mention, account: recipient, status: status) }
+    let(:type)     { :mention }
+
+    before do
+      Fabricate(:notification_policy, account: recipient, filter_not_following: true)
+    end
+
+    it 'creates a filtered notification' do
+      expect { subject }.to change(Notification, :count)
+      expect(Notification.last).to be_filtered
+    end
+
+    context 'when no notification request exists' do
+      it 'creates a notification request' do
+        expect { subject }.to change(NotificationRequest, :count)
+      end
+    end
+
+    context 'when a notification request exists' do
+      let!(:notification_request) do
+        Fabricate(:notification_request, account: recipient, from_account: unknown, last_status: Fabricate(:status, account: unknown))
+      end
+
+      it 'updates the existing notification request' do
+        expect { subject }.to_not change(NotificationRequest, :count)
+        expect(notification_request.reload.last_status).to eq status
+      end
+    end
+  end
+
+  describe NotifyService::DropCondition do
+    subject { described_class.new(notification) }
+
+    let(:activity) { Fabricate(:mention, status: Fabricate(:status)) }
+    let(:notification) { Fabricate(:notification, type: :mention, activity: activity, from_account: activity.status.account, account: activity.account) }
+
+    describe '#drop' do
+      context 'when sender is silenced and recipient has a default policy' do
+        before do
+          notification.from_account.silence!
+        end
+
+        it 'returns false' do
+          expect(subject.drop?).to be false
+        end
+      end
+
+      context 'when sender is silenced and recipient has a policy to ignore silenced accounts' do
+        before do
+          notification.from_account.silence!
+          notification.account.create_notification_policy!(for_limited_accounts: :drop)
+        end
+
+        it 'returns true' do
+          expect(subject.drop?).to be true
+        end
+      end
+
+      context 'when sender is new and recipient has a default policy' do
+        it 'returns false' do
+          expect(subject.drop?).to be false
+        end
+      end
+
+      context 'when sender is new and recipient has a policy to ignore silenced accounts' do
+        before do
+          notification.account.create_notification_policy!(for_new_accounts: :drop)
+        end
+
+        it 'returns true' do
+          expect(subject.drop?).to be true
+        end
+      end
+
+      context 'when sender is new and followed and recipient has a policy to ignore silenced accounts' do
+        before do
+          notification.account.create_notification_policy!(for_new_accounts: :drop)
+          notification.account.follow!(notification.from_account)
+        end
+
+        it 'returns false' do
+          expect(subject.drop?).to be false
+        end
+      end
+
+      context 'when recipient has blocked sender' do
+        before do
+          notification.account.block!(notification.from_account)
+        end
+
+        it 'returns true' do
+          expect(subject.drop?).to be true
+        end
+      end
+    end
+  end
+
+  describe NotifyService::FilterCondition do
+    subject { described_class.new(notification) }
+
+    let(:activity) { Fabricate(:mention, status: Fabricate(:status)) }
+    let(:notification) { Fabricate(:notification, type: :mention, activity: activity, from_account: activity.status.account, account: activity.account) }
+
+    describe '#filter?' do
+      context 'when sender is silenced' do
+        before do
+          notification.from_account.silence!
+        end
+
+        it 'returns true' do
+          expect(subject.filter?).to be true
+        end
+
+        context 'when recipient follows sender' do
+          before do
+            notification.account.follow!(notification.from_account)
+          end
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+
+        context 'when recipient is allowing limited accounts' do
+          before do
+            notification.account.create_notification_policy!(for_limited_accounts: :accept)
+          end
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+      end
+
+      context 'when recipient is filtering not-followed senders' do
+        before do
+          Fabricate(:notification_policy, account: notification.account, filter_not_following: true)
+        end
+
+        it 'returns true' do
+          expect(subject.filter?).to be true
+        end
+
+        context 'when sender has permission' do
+          before do
+            Fabricate(:notification_permission, account: notification.account, from_account: notification.from_account)
+          end
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+
+        context 'when sender is followed by recipient' do
+          before do
+            notification.account.follow!(notification.from_account)
+          end
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+      end
+
+      context 'when recipient is filtering not-followers' do
+        before do
+          Fabricate(:notification_policy, account: notification.account, filter_not_followers: true)
+        end
+
+        it 'returns true' do
+          expect(subject.filter?).to be true
+        end
+
+        context 'when sender has permission' do
+          before do
+            Fabricate(:notification_permission, account: notification.account, from_account: notification.from_account)
+          end
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+
+        context 'when sender follows recipient' do
+          before do
+            notification.from_account.follow!(notification.account)
+          end
+
+          it 'returns true' do
+            expect(subject.filter?).to be true
+          end
+        end
+
+        context 'when sender follows recipient for longer than 3 days' do
+          before do
+            follow = notification.from_account.follow!(notification.account)
+            follow.update(created_at: 4.days.ago)
+          end
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+      end
+
+      context 'when recipient is filtering new accounts' do
+        before do
+          Fabricate(:notification_policy, account: notification.account, filter_new_accounts: true)
+        end
+
+        it 'returns true' do
+          expect(subject.filter?).to be true
+        end
+
+        context 'when sender has permission' do
+          before do
+            Fabricate(:notification_permission, account: notification.account, from_account: notification.from_account)
+          end
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+
+        context 'when sender is older than 30 days' do
+          before do
+            notification.from_account.update(created_at: 31.days.ago)
+          end
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+      end
+
+      context 'when recipient is not filtering anyone' do
+        before do
+          Fabricate(:notification_policy, account: notification.account)
+        end
+
+        it 'returns false' do
+          expect(subject.filter?).to be false
+        end
+      end
+
+      context 'when recipient is filtering unsolicited private mentions' do
+        before do
+          Fabricate(:notification_policy, account: notification.account, filter_private_mentions: true)
+        end
+
+        context 'when notification is not a private mention' do
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+
+        context 'when notification is a private mention' do
+          before do
+            notification.target_status.update(visibility: :direct)
+          end
+
+          it 'returns true' do
+            expect(subject.filter?).to be true
+          end
+
+          context 'when the message chain is initiated by recipient, but sender is not mentioned' do
+            before do
+              original_status = Fabricate(:status, account: notification.account, visibility: :direct)
+              notification.target_status.update(thread: original_status)
+            end
+
+            it 'returns true' do
+              expect(subject.filter?).to be true
+            end
+          end
+
+          context 'when the message chain is initiated by recipient, and sender is mentioned' do
+            before do
+              original_status = Fabricate(:status, account: notification.account, visibility: :direct)
+              notification.target_status.update(thread: original_status)
+              Fabricate(:mention, status: original_status, account: notification.from_account)
+            end
+
+            it 'returns false' do
+              expect(subject.filter?).to be false
+            end
+          end
+
+          context 'when the sender is mentioned in an unrelated message chain' do
+            before do
+              original_status = Fabricate(:status, visibility: :direct)
+              intermediary_status = Fabricate(:status, visibility: :direct, thread: original_status)
+              notification.target_status.update(thread: intermediary_status)
+              Fabricate(:mention, status: original_status, account: notification.from_account)
+            end
+
+            it 'returns true' do
+              expect(subject.filter?).to be true
+            end
+          end
+        end
       end
     end
   end

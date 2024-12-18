@@ -60,8 +60,8 @@ vi:
       error:
         title: Một lỗi đã xảy ra
       new:
-        prompt_html: "%{client_name} yêu cầu truy cập tài khoản của bạn. Đây là ứng dụng của bên thứ ba. <strong>Nếu không tin tưởng, đừng cho phép nó.</strong>"
-        review_permissions: Xem lại quyền cho phép
+        prompt_html: "%{client_name} cần được bạn cho phép truy cập vào tài khoản. <strong>Cho phép nếu bạn tin tưởng ứng dụng này.</strong>"
+        review_permissions: Quyền truy cập
         title: Yêu cầu truy cập
       show:
         title: Sao chép mã này và dán nó vào ứng dụng.
@@ -71,7 +71,7 @@ vi:
       confirmations:
         revoke: Bạn có chắc không?
       index:
-        authorized_at: Cho phép %{date}
+        authorized_at: Cho phép vào %{date}
         description_html: Đây là những ứng dụng có thể truy cập tài khoản của bạn bằng API. Nếu có ứng dụng bạn không nhận ra ở đây hoặc ứng dụng hoạt động sai, bạn có thể thu hồi quyền truy cập của ứng dụng đó.
         last_used_at: Dùng lần cuối %{date}
         never_used: Chưa dùng
@@ -83,6 +83,7 @@ vi:
         access_denied: Chủ sở hữu tài nguyên hoặc máy chủ đã từ chối yêu cầu.
         credential_flow_not_configured: Resource Owner Password Credentials không thành công do Doorkeeper.configure.resource_owner_from_credentials không được định cấu hình.
         invalid_client: Xác minh ứng dụng khách không thành công do máy khách mơ hồ, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
+        invalid_code_challenge_method: Phương pháp thử thách mã phải là S256, phương pháp plain không được hỗ trợ.
         invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị gỡ hoặc không khớp với tài khoản đã cấp phép. Hoặc xung đột với ứng dụng khác.
         invalid_redirect_uri: URL chuyển hướng không hợp lệ.
         invalid_request:
@@ -122,7 +123,7 @@ vi:
         admin/accounts: Quản trị tài khoản
         admin/all: Mọi chức năng quản trị
         admin/reports: Quản trị báo cáo
-        all: Toàn quyền truy cập vào tài khoản Mastodon của bạn
+        all: Toàn quyền truy cập tài khoản Mastodon
         blocks: Chặn
         bookmarks: Tút đã lưu
         conversations: Thảo luận
@@ -135,6 +136,7 @@ vi:
         media: Tập tin đính kèm
         mutes: Đã ẩn
         notifications: Thông báo
+        profile: Hồ sơ Mastodon của bạn
         push: Thông báo đẩy
         reports: Báo cáo
         search: Tìm kiếm
@@ -149,7 +151,7 @@ vi:
     scopes:
       admin:read: đọc mọi dữ liệu trên máy chủ
       admin:read:accounts: đọc thông tin nhạy cảm của tất cả các tài khoản
-      admin:read:canonical_email_blocks: đọc thông tin nhạy cảm của tất cả các khối email chuẩn
+      admin:read:canonical_email_blocks: đọc thông tin nhạy cảm của tất cả khối email chuẩn
       admin:read:domain_allows: đọc thông tin nhạy cảm của tất cả các tên miền cho phép
       admin:read:domain_blocks: đọc thông tin nhạy cảm của tất cả các tên miền chặn
       admin:read:email_domain_blocks: đọc thông tin nhạy cảm của tất cả các miền email chặn
@@ -165,6 +167,7 @@ vi:
       admin:write:reports: áp đặt kiểm duyệt với các báo cáo
       crypto: dùng mã hóa đầu cuối
       follow: sửa đổi các mối quan hệ tài khoản
+      profile: chỉ đọc thông tin tài khoản cơ bản
       push: nhận thông báo đẩy
       read: đọc mọi dữ liệu tài khoản
       read:accounts: xem thông tin tài khoản

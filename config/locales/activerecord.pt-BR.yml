@@ -15,6 +15,12 @@ pt-BR:
       user/invite_request:
         text: Razão
     errors:
+      attributes:
+        domain:
+          invalid: não é um nome de domínio válido
+      messages:
+        invalid_domain_on_line: "%{value} não é um nome de domínio válido"
+        too_many_lines: está acima do limite de %{limit} linhas
       models:
         account:
           attributes:
@@ -32,7 +38,7 @@ pt-BR:
         import:
           attributes:
             data:
-              malformed: está incorreto
+              malformed: está malformado
         status:
           attributes:
             reblog:
@@ -43,16 +49,16 @@ pt-BR:
               blocked: usa provedor de e-mail não permitido
               unreachable: parece não existir
             role_id:
-              elevated: não pode ser maior que seu cargo atual
+              elevated: não pode maior que sua função atual
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: incluir permissões que não são seguras para o cargo base
-              elevated: não pode incluir permissões que o seu cargo atual não possui
-              own_role: não pode ser alterado com seu cargo atual
+              dangerous: incluir permissões que não são seguras para a função base
+              elevated: não pode incluir permissões que a sua função atual não possui
+              own_role: não pode ser alterado com sua função atual
             position:
-              elevated: não pode ser maior do que seu cargo atual
-              own_role: não pode ser alterado com seu cargo atual
+              elevated: não pode ser maior do que sua função atual
+              own_role: não pode ser alterado com sua função atual
         webhook:
           attributes:
             events:

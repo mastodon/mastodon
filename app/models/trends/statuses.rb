@@ -74,12 +74,12 @@ class Trends::Statuses < Trends::Base
 
     # Now that all trends have up-to-date scores, and all the ones below the threshold have
     # been removed, we can recalculate their positions
-    StatusTrend.connection.exec_update('UPDATE status_trends SET rank = t0.calculated_rank FROM (SELECT id, row_number() OVER w AS calculated_rank FROM status_trends WINDOW w AS (PARTITION BY language ORDER BY score DESC)) t0 WHERE status_trends.id = t0.id')
+    StatusTrend.recalculate_ordered_rank
   end
 
   def request_review
     StatusTrend.pluck('distinct language').flat_map do |language|
-      score_at_threshold = StatusTrend.where(language: language, allowed: true).order(rank: :desc).where('rank <= ?', options[:review_threshold]).first&.score || 0
+      score_at_threshold = StatusTrend.where(language: language, allowed: true).by_rank.ranked_below(options[:review_threshold]).first&.score || 0
       status_trends      = StatusTrend.where(language: language, allowed: false).joins(:status).includes(status: :account)
 
       status_trends.filter_map do |trend|

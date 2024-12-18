@@ -1,3 +1,5 @@
+import { browserHistory } from 'mastodon/components/router';
+
 import api from '../api';
 
 import { ensureComposeIsVisible, setComposeToStatus } from './compose';
@@ -47,11 +49,13 @@ export function fetchStatusRequest(id, skipLoading) {
   };
 }
 
-export function fetchStatus(id, forceFetch = false) {
+export function fetchStatus(id, forceFetch = false, alsoFetchContext = true) {
   return (dispatch, getState) => {
     const skipLoading = !forceFetch && getState().getIn(['statuses', id], null) !== null;
 
-    dispatch(fetchContext(id));
+    if (alsoFetchContext) {
+      dispatch(fetchContext(id));
+    }
 
     if (skipLoading) {
       return;
@@ -59,7 +63,7 @@ export function fetchStatus(id, forceFetch = false) {
 
     dispatch(fetchStatusRequest(id, skipLoading));
 
-    api(getState).get(`/api/v1/statuses/${id}`).then(response => {
+    api().get(`/api/v1/statuses/${id}`).then(response => {
       dispatch(importFetchedStatus(response.data));
       dispatch(fetchStatusSuccess(skipLoading));
     }).catch(error => {
@@ -94,7 +98,7 @@ export function redraft(status, replyStatus, raw_text) {
   };
 }
 
-export const editStatus = (id, routerHistory) => (dispatch, getState) => {
+export const editStatus = (id) => (dispatch, getState) => {
   let status = getState().getIn(['statuses', id]);
 
   if (status.get('poll')) {
@@ -103,9 +107,9 @@ export const editStatus = (id, routerHistory) => (dispatch, getState) => {
 
   dispatch(fetchStatusSourceRequest());
 
-  api(getState).get(`/api/v1/statuses/${id}/source`).then(response => {
+  api().get(`/api/v1/statuses/${id}/source`).then(response => {
     dispatch(fetchStatusSourceSuccess());
-    ensureComposeIsVisible(getState, routerHistory);
+    ensureComposeIsVisible(getState);
     dispatch(setComposeToStatus(status, response.data.text, response.data.spoiler_text));
   }).catch(error => {
     dispatch(fetchStatusSourceFail(error));
@@ -125,7 +129,7 @@ export const fetchStatusSourceFail = error => ({
   error,
 });
 
-export function deleteStatus(id, routerHistory, withRedraft = false) {
+export function deleteStatus(id, withRedraft = false) {
   return (dispatch, getState) => {
     let status = getState().getIn(['statuses', id]);
     const replyStatus = status.get('in_reply_to_id') ? getState().getIn(['statuses', status.get('in_reply_to_id')]) : null;
@@ -136,14 +140,14 @@ export function deleteStatus(id, routerHistory, withRedraft = false) {
 
     dispatch(deleteStatusRequest(id));
 
-    api(getState).delete(`/api/v1/statuses/${id}`).then(response => {
+    api().delete(`/api/v1/statuses/${id}`).then(response => {
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
       dispatch(importFetchedAccount(response.data.account));
 
       if (withRedraft) {
         dispatch(redraft(status, replyStatus, response.data.text));
-        ensureComposeIsVisible(getState, routerHistory);
+        ensureComposeIsVisible(getState);
       }
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));
@@ -177,10 +181,10 @@ export const updateStatus = status => dispatch =>
   dispatch(importFetchedStatus(status));
 
 export function fetchContext(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(fetchContextRequest(id));
 
-    api(getState).get(`/api/v1/statuses/${id}/context`).then(response => {
+    api().get(`/api/v1/statuses/${id}/context`).then(response => {
       dispatch(importFetchedStatuses(response.data.ancestors.concat(response.data.descendants)));
       dispatch(fetchContextSuccess(id, response.data.ancestors, response.data.descendants));
 
@@ -221,10 +225,10 @@ export function fetchContextFail(id, error) {
 }
 
 export function muteStatus(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(muteStatusRequest(id));
 
-    api(getState).post(`/api/v1/statuses/${id}/mute`).then(() => {
+    api().post(`/api/v1/statuses/${id}/mute`).then(() => {
       dispatch(muteStatusSuccess(id));
     }).catch(error => {
       dispatch(muteStatusFail(id, error));
@@ -255,10 +259,10 @@ export function muteStatusFail(id, error) {
 }
 
 export function unmuteStatus(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(unmuteStatusRequest(id));
 
-    api(getState).post(`/api/v1/statuses/${id}/unmute`).then(() => {
+    api().post(`/api/v1/statuses/${id}/unmute`).then(() => {
       dispatch(unmuteStatusSuccess(id));
     }).catch(error => {
       dispatch(unmuteStatusFail(id, error));
@@ -310,6 +314,21 @@ export function revealStatus(ids) {
   };
 }
 
+export function toggleStatusSpoilers(statusId) {
+  return (dispatch, getState) => {
+    const status = getState().statuses.get(statusId);
+
+    if (!status)
+      return;
+
+    if (status.get('hidden')) {
+      dispatch(revealStatus(statusId));
+    } else {
+      dispatch(hideStatus(statusId));
+    }
+  };
+}
+
 export function toggleStatusCollapse(id, isCollapsed) {
   return {
     type: STATUS_COLLAPSE,
@@ -318,10 +337,10 @@ export function toggleStatusCollapse(id, isCollapsed) {
   };
 }
 
-export const translateStatus = id => (dispatch, getState) => {
+export const translateStatus = id => (dispatch) => {
   dispatch(translateStatusRequest(id));
 
-  api(getState).post(`/api/v1/statuses/${id}/translate`).then(response => {
+  api().post(`/api/v1/statuses/${id}/translate`).then(response => {
     dispatch(translateStatusSuccess(id, response.data));
   }).catch(error => {
     dispatch(translateStatusFail(id, error));
@@ -350,3 +369,15 @@ export const undoStatusTranslation = (id, pollId) => ({
   id,
   pollId,
 });
+
+export const navigateToStatus = (statusId) => {
+  return (_dispatch, getState) => {
+    const state = getState();
+    const accountId = state.statuses.getIn([statusId, 'account']);
+    const acct = state.accounts.getIn([accountId, 'acct']);
+
+    if (acct) {
+      browserHistory.push(`/@${acct}/${statusId}`);
+    }
+  };
+};

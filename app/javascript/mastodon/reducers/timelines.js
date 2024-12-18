@@ -1,22 +1,26 @@
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 
+import { timelineDelete } from 'mastodon/actions/timelines_typed';
+
 import {
-  ACCOUNT_BLOCK_SUCCESS,
-  ACCOUNT_MUTE_SUCCESS,
-  ACCOUNT_UNFOLLOW_SUCCESS,
+  blockAccountSuccess,
+  muteAccountSuccess,
+  unfollowAccountSuccess
 } from '../actions/accounts';
 import {
   TIMELINE_UPDATE,
-  TIMELINE_DELETE,
   TIMELINE_CLEAR,
   TIMELINE_EXPAND_SUCCESS,
   TIMELINE_EXPAND_REQUEST,
   TIMELINE_EXPAND_FAIL,
   TIMELINE_SCROLL_TOP,
   TIMELINE_CONNECT,
-  TIMELINE_DISCONNECT,
   TIMELINE_LOAD_PENDING,
   TIMELINE_MARK_AS_PARTIAL,
+  TIMELINE_INSERT,
+  TIMELINE_GAP,
+  TIMELINE_SUGGESTIONS,
+  disconnectTimeline,
 } from '../actions/timelines';
 import { compareId } from '../compare_id';
 
@@ -31,6 +35,8 @@ const initialTimeline = ImmutableMap({
   pendingItems: ImmutableList(),
   items: ImmutableList(),
 });
+
+const isPlaceholder = value => value === TIMELINE_GAP || value === TIMELINE_SUGGESTIONS;
 
 const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, isLoadingRecent, usePendingItems) => {
   // This method is pretty tricky because:
@@ -63,20 +69,20 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
         // First, find the furthest (if properly sorted, oldest) item in the timeline that is
         // newer than the oldest fetched one, as it's most likely that it delimits the gap.
         // Start the gap *after* that item.
-        const lastIndex = oldIds.findLastIndex(id => id !== null && compareId(id, newIds.last()) >= 0) + 1;
+        const lastIndex = oldIds.findLastIndex(id => !isPlaceholder(id) && compareId(id, newIds.last()) >= 0) + 1;
 
         // Then, try to find the furthest (if properly sorted, oldest) item in the timeline that
         // is newer than the most recent fetched one, as it delimits a section comprised of only
         // items older or within `newIds` (or that were deleted from the server, so should be removed
         // anyway).
         // Stop the gap *after* that item.
-        const firstIndex = oldIds.take(lastIndex).findLastIndex(id => id !== null && compareId(id, newIds.first()) > 0) + 1;
+        const firstIndex = oldIds.take(lastIndex).findLastIndex(id => !isPlaceholder(id) && compareId(id, newIds.first()) > 0) + 1;
 
         let insertedIds = ImmutableOrderedSet(newIds).withMutations(insertedIds => {
           // It is possible, though unlikely, that the slice we are replacing contains items older
           // than the elements we got from the API. Get them and add them back at the back of the
           // slice.
-          const olderIds = oldIds.slice(firstIndex, lastIndex).filter(id => id !== null && compareId(id, newIds.last()) < 0);
+          const olderIds = oldIds.slice(firstIndex, lastIndex).filter(id => !isPlaceholder(id) && compareId(id, newIds.last()) < 0);
           insertedIds.union(olderIds);
 
           // Make sure we aren't inserting duplicates
@@ -84,8 +90,8 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
         }).toList();
 
         // Finally, insert a gap marker if the data is marked as partial by the server
-        if (isPartial && (firstIndex === 0 || oldIds.get(firstIndex - 1) !== null)) {
-          insertedIds = insertedIds.unshift(null);
+        if (isPartial && (firstIndex === 0 || oldIds.get(firstIndex - 1) !== TIMELINE_GAP)) {
+          insertedIds = insertedIds.unshift(TIMELINE_GAP);
         }
 
         return oldIds.take(firstIndex).concat(
@@ -153,7 +159,7 @@ const filterTimelines = (state, relationship, statuses) => {
       return;
     }
 
-    references = statuses.filter(item => item.get('reblog') === status.get('id')).map(item => item.get('id'));
+    references = statuses.filter(item => item.get('reblog') === status.get('id')).map(item => item.get('id')).valueSeq().toJSON();
     state      = deleteStatus(state, status.get('id'), references, relationship.id);
   });
 
@@ -178,7 +184,7 @@ const reconnectTimeline = (state, usePendingItems) => {
   }
 
   return state.withMutations(mMap => {
-    mMap.update(usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items);
+    mMap.update(usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(TIMELINE_GAP) : items);
     mMap.set('online', true);
   });
 };
@@ -196,30 +202,42 @@ export default function timelines(state = initialState, action) {
     return expandNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next, action.partial, action.isLoadingRecent, action.usePendingItems);
   case TIMELINE_UPDATE:
     return updateTimeline(state, action.timeline, fromJS(action.status), action.usePendingItems);
-  case TIMELINE_DELETE:
-    return deleteStatus(state, action.id, action.references, action.reblogOf);
+  case timelineDelete.type:
+    return deleteStatus(state, action.payload.statusId, action.payload.references, action.payload.reblogOf);
   case TIMELINE_CLEAR:
     return clearTimeline(state, action.timeline);
-  case ACCOUNT_BLOCK_SUCCESS:
-  case ACCOUNT_MUTE_SUCCESS:
-    return filterTimelines(state, action.relationship, action.statuses);
-  case ACCOUNT_UNFOLLOW_SUCCESS:
-    return filterTimeline('home', state, action.relationship, action.statuses);
+  case blockAccountSuccess.type:
+  case muteAccountSuccess.type:
+    return filterTimelines(state, action.payload.relationship, action.payload.statuses);
+  case unfollowAccountSuccess.type:
+    return filterTimeline('home', state, action.payload.relationship, action.payload.statuses);
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
   case TIMELINE_CONNECT:
     return state.update(action.timeline, initialTimeline, map => reconnectTimeline(map, action.usePendingItems));
-  case TIMELINE_DISCONNECT:
+  case disconnectTimeline.type:
     return state.update(
-      action.timeline,
+      action.payload.timeline,
       initialTimeline,
-      map => map.set('online', false).update(action.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items),
+      map => map.set('online', false).update(action.payload.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(TIMELINE_GAP) : items),
     );
   case TIMELINE_MARK_AS_PARTIAL:
     return state.update(
       action.timeline,
       initialTimeline,
       map => map.set('isPartial', true).set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('unread', 0),
+    );
+  case TIMELINE_INSERT:
+    return state.update(
+      action.timeline,
+      initialTimeline,
+      map => map.update('items', ImmutableList(), list => {
+        if (!list.includes(action.key)) {
+          return list.insert(action.index, action.key);
+        }
+
+        return list;
+      })
     );
   default:
     return state;

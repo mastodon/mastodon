@@ -74,6 +74,18 @@ class ActivityPub::TagManager
     account_status_replies_url(target.account, target, page_params)
   end
 
+  def likes_uri_for(target)
+    raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
+
+    account_status_likes_url(target.account, target)
+  end
+
+  def shares_uri_for(target)
+    raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
+
+    account_status_shares_url(target.account, target)
+  end
+
   def followers_uri_for(target)
     target.local? ? account_followers_url(target) : target.followers_url.presence
   end

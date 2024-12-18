@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RelationshipFilter do
+RSpec.describe RelationshipFilter do
   let(:account) { Fabricate(:account) }
 
   describe '#results' do

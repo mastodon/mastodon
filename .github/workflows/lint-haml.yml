@@ -1,9 +1,10 @@
 name: Haml Linting
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
     paths:
       - '.github/workflows/haml-lint-problem-matcher.json'
       - '.github/workflows/lint-haml.yml'
@@ -26,22 +27,20 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+
+    env:
+      BUNDLE_ONLY: development
+
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Install native Ruby dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libicu-dev libidn11-dev
-
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
           bundler-cache: true
 
       - name: Run haml-lint
         run: |
           echo "::add-matcher::.github/workflows/haml-lint-problem-matcher.json"
-          bundle exec haml-lint
+          bundle exec haml-lint --reporter github

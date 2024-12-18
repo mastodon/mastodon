@@ -12,16 +12,17 @@ import BundleColumnError from 'mastodon/features/ui/components/bundle_column_err
 import { me } from 'mastodon/initial_state';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 import { getAccountHidden } from 'mastodon/selectors';
+import { useAppSelector } from 'mastodon/store';
 
 import { lookupAccount, fetchAccount } from '../../actions/accounts';
 import { fetchFeaturedTags } from '../../actions/featured_tags';
 import { expandAccountFeaturedTimeline, expandAccountTimeline, connectTimeline, disconnectTimeline } from '../../actions/timelines';
-import ColumnBackButton from '../../components/column_back_button';
+import { ColumnBackButton } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import StatusList from '../../components/status_list';
 import Column from '../ui/components/column';
 
-import LimitedAccountHint from './components/limited_account_hint';
+import { LimitedAccountHint } from './components/limited_account_hint';
 import HeaderContainer from './containers/header_container';
 
 const emptyList = ImmutableList();
@@ -59,12 +60,22 @@ const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = fa
   };
 };
 
-const RemoteHint = ({ url }) => (
-  <TimelineHint url={url} resource={<FormattedMessage id='timeline_hint.resources.statuses' defaultMessage='Older posts' />} />
-);
+const RemoteHint = ({ accountId, url }) => {
+  const acct = useAppSelector(state => state.accounts.get(accountId)?.acct);
+  const domain = acct ? acct.split('@')[1] : undefined;
+
+  return (
+    <TimelineHint
+      url={url}
+      message={<FormattedMessage id='hints.profiles.posts_may_be_missing' defaultMessage='Some posts from this profile may be missing.' />}
+      label={<FormattedMessage id='hints.profiles.see_more_posts' defaultMessage='See more posts on {domain}' values={{ domain: <strong>{domain}</strong> }} />}
+    />
+  );
+};
 
 RemoteHint.propTypes = {
   url: PropTypes.string.isRequired,
+  accountId: PropTypes.string.isRequired,
 };
 
 class AccountTimeline extends ImmutablePureComponent {
@@ -133,7 +144,7 @@ class AccountTimeline extends ImmutablePureComponent {
     }
 
     if (prevProps.accountId === me && accountId !== me) {
-      dispatch(disconnectTimeline(`account:${me}`));
+      dispatch(disconnectTimeline({ timeline: `account:${me}` }));
     }
   }
 
@@ -141,7 +152,7 @@ class AccountTimeline extends ImmutablePureComponent {
     const { dispatch, accountId } = this.props;
 
     if (accountId === me) {
-      dispatch(disconnectTimeline(`account:${me}`));
+      dispatch(disconnectTimeline({ timeline: `account:${me}` }));
     }
   }
 
@@ -175,16 +186,16 @@ class AccountTimeline extends ImmutablePureComponent {
     } else if (blockedBy) {
       emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
     } else if (remote && statusIds.isEmpty()) {
-      emptyMessage = <RemoteHint url={remoteUrl} />;
+      emptyMessage = <RemoteHint accountId={accountId} url={remoteUrl} />;
     } else {
       emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No posts found' />;
     }
 
-    const remoteMessage = remote ? <RemoteHint url={remoteUrl} /> : null;
+    const remoteMessage = remote ? <RemoteHint accountId={accountId} url={remoteUrl} /> : null;
 
     return (
       <Column>
-        <ColumnBackButton multiColumn={multiColumn} />
+        <ColumnBackButton />
 
         <StatusList
           prepend={<HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />}
@@ -199,6 +210,7 @@ class AccountTimeline extends ImmutablePureComponent {
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           timelineId='account'
+          withCounters
         />
       </Column>
     );

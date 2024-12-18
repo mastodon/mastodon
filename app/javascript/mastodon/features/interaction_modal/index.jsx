@@ -9,9 +9,13 @@ import { connect } from 'react-redux';
 
 import { throttle, escapeRegExp } from 'lodash';
 
+import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
+import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
+import StarIcon from '@/material-icons/400-24px/star.svg?react';
 import { openModal, closeModal } from 'mastodon/actions/modal';
 import api from 'mastodon/api';
-import Button from 'mastodon/components/button';
+import { Button } from 'mastodon/components/button';
 import { Icon }  from 'mastodon/components/icon';
 import { registrationsOpen, sso_redirect } from 'mastodon/initial_state';
 
@@ -27,9 +31,9 @@ const mapStateToProps = (state, { accountId }) => ({
 const mapDispatchToProps = (dispatch) => ({
   onSignupClick() {
     dispatch(closeModal({
-        modalType: undefined,
-        ignoreFocus: false,
-      }));
+      modalType: undefined,
+      ignoreFocus: false,
+    }));
     dispatch(openModal({ modalType: 'CLOSED_REGISTRATIONS' }));
   },
 });
@@ -127,7 +131,7 @@ class LoginForm extends React.PureComponent {
     try {
       new URL(url);
       return true;
-    } catch(_) {
+    } catch {
       return false;
     }
   };
@@ -187,7 +191,7 @@ class LoginForm extends React.PureComponent {
 
   setIFrameRef = (iframe) => {
     this.iframeRef = iframe;
-  }
+  };
 
   handleFocus = () => {
     this.setState({ expanded: true });
@@ -294,9 +298,9 @@ class LoginForm extends React.PureComponent {
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyDown}
-            autocomplete='off'
-            autocapitalize='off'
-            spellcheck='false'
+            autoComplete='off'
+            autoCapitalize='off'
+            spellCheck='false'
           />
 
           <Button onClick={this.handleSubmit} disabled={isSubmitting || error}><FormattedMessage id='interaction_modal.login.action' defaultMessage='Take me home' /></Button>
@@ -354,22 +358,22 @@ class InteractionModal extends React.PureComponent {
 
     switch(type) {
     case 'reply':
-      icon = <Icon id='reply' />;
+      icon = <Icon id='reply' icon={ReplyIcon} />;
       title = <FormattedMessage id='interaction_modal.title.reply' defaultMessage="Reply to {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.reply' defaultMessage='With an account on Mastodon, you can respond to this post.' />;
       break;
     case 'reblog':
-      icon = <Icon id='retweet' />;
+      icon = <Icon id='retweet' icon={RepeatIcon} />;
       title = <FormattedMessage id='interaction_modal.title.reblog' defaultMessage="Boost {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.reblog' defaultMessage='With an account on Mastodon, you can boost this post to share it with your own followers.' />;
       break;
     case 'favourite':
-      icon = <Icon id='star' />;
+      icon = <Icon id='star' icon={StarIcon} />;
       title = <FormattedMessage id='interaction_modal.title.favourite' defaultMessage="Favorite {name}'s post" values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.favourite' defaultMessage='With an account on Mastodon, you can favorite this post to let the author know you appreciate it and save it for later.' />;
       break;
     case 'follow':
-      icon = <Icon id='user-plus' />;
+      icon = <Icon id='user-plus' icon={PersonAddIcon} />;
       title = <FormattedMessage id='interaction_modal.title.follow' defaultMessage='Follow {name}' values={{ name }} />;
       actionDescription = <FormattedMessage id='interaction_modal.description.follow' defaultMessage='With an account on Mastodon, you can follow {name} to receive their posts in your home feed.' values={{ name }} />;
       break;

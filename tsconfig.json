@@ -7,17 +7,22 @@
     "allowJs": true,
     "noEmit": true,
     "strict": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": "./",
+    "incremental": true,
+    "tsBuildInfoFile": "tmp/cache/tsconfig.tsbuildinfo",
     "paths": {
       "mastodon": ["app/javascript/mastodon"],
-      "mastodon/*": ["app/javascript/mastodon/*"]
+      "mastodon/*": ["app/javascript/mastodon/*"],
+      "@/*": ["app/javascript/*"]
     }
   },
   "include": [
     "app/javascript/mastodon",
-    "app/javascript/packs",
+    "app/javascript/entrypoints",
     "app/javascript/types"
   ]
 }

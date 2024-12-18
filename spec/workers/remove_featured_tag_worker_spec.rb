@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RemoveFeaturedTagWorker do
+RSpec.describe RemoveFeaturedTagWorker do
   let(:worker) { described_class.new }
 
   describe 'perform' do

@@ -13,49 +13,114 @@
 #  thing_id   :bigint(8)
 #
 
-class Setting < RailsSettings::Base
-  source Rails.root.join('config', 'settings.yml')
+# This file is derived from a fork of the `rails-settings-cached` gem available at
+# https://github.com/mastodon/rails-settings-cached/tree/v0.6.6-aliases-true, with
+# the original available at:
+# https://github.com/huacnlee/rails-settings-cached/tree/0.x
 
-  def to_param
-    var
-  end
+# It is licensed as follows:
+
+# Copyright (c) 2006 Alex Wayne
+# Some additional features added 2009 by Georg Ledermann
+
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOa AND
+# NONINFRINGEMENT. IN NO EVENT SaALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+class Setting < ApplicationRecord
+  after_commit :rewrite_cache, on: %i(create update)
+  after_commit :expire_cache, on: %i(destroy)
+
+  # Settings are server-wide settings only, but they were previously
+  # used for users too. This can be dropped later with a database
+  # migration dropping any scoped setting.
+  default_scope { where(thing_type: nil, thing_id: nil) }
 
   class << self
+    # get or set a variable with the variable as the called method
+    # rubocop:disable Style/MissingRespondToMissing
+    def method_missing(method, *args)
+      # set a value for a variable
+      if method.end_with?('=')
+        var_name = method.to_s.chomp('=')
+        value = args.first
+        self[var_name] = value
+      else
+        # retrieve a value
+        self[method.to_s]
+      end
+    end
+    # rubocop:enable Style/MissingRespondToMissing
+
+    def cache_prefix_by_startup
+      @cache_prefix_by_startup ||= Digest::MD5.hexdigest(default_settings.to_s)
+    end
+
+    def cache_key(var_name)
+      "rails_settings_cached/#{cache_prefix_by_startup}/#{var_name}"
+    end
+
     def [](key)
-      return super(key) unless rails_initialized?
-
-      Rails.cache.fetch(cache_key(key, nil)) do
-        db_val = object(key)
-
-        if db_val
-          default_value = default_settings[key]
-
-          return default_value.with_indifferent_access.merge!(db_val.value) if default_value.is_a?(Hash)
-
-          db_val.value
-        else
-          default_settings[key]
-        end
+      Rails.cache.fetch(cache_key(key)) do
+        db_val = find_by(var: key)
+        db_val ? db_val.value : default_settings[key]
       end
     end
 
-    def all_as_records
-      vars    = thing_scoped
-      records = vars.index_by(&:var)
-
-      default_settings.each do |key, default_value|
-        next if records.key?(key) || default_value.is_a?(Hash)
-
-        records[key] = Setting.new(var: key, value: default_value)
-      end
-
-      records
+    # set a setting value by [] notation
+    def []=(var_name, value)
+      record = find_or_initialize_by(var: var_name.to_s)
+      record.value = value
+      record.save!
     end
 
     def default_settings
-      return {} unless RailsSettings::Default.enabled?
+      return @default_settings if defined?(@default_settings)
 
-      RailsSettings::Default.instance
+      content = Rails.root.join('config', 'settings.yml').read
+      hash = content.empty? ? {} : YAML.safe_load(ERB.new(content).result, aliases: true).to_hash
+      @default_settings = (hash[Rails.env] || {}).freeze
     end
+  end
+
+  # get the value field, YAML decoded
+  def value
+    YAML.safe_load(self[:value], permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Symbol]) if self[:value].present?
+  end
+
+  # set the value field, YAML encoded
+  def value=(new_value)
+    self[:value] = new_value.to_yaml
+  end
+
+  def rewrite_cache
+    Rails.cache.write(cache_key, value)
+  end
+
+  def expire_cache
+    Rails.cache.delete(cache_key)
+  end
+
+  def cache_key
+    self.class.cache_key(var)
+  end
+
+  def to_param
+    var
   end
 end

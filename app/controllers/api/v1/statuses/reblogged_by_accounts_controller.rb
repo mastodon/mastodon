@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
-  include Authorization
-
+class Api::V1::Statuses::RebloggedByAccountsController < Api::V1::Statuses::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:accounts' }
-  before_action :set_status
   after_action :insert_pagination_headers
 
   def index
@@ -17,24 +14,20 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
 
   def load_accounts
     scope = default_accounts
-    scope = scope.where.not(id: current_account.excluded_from_timeline_account_ids) unless current_account.nil?
+    scope = scope.not_excluded_by_account(current_account) unless current_account.nil?
     scope.merge(paginated_statuses).to_a
   end
 
   def default_accounts
-    Account.without_suspended.includes(:statuses, :account_stat).references(:statuses)
+    Account.without_suspended.includes(:statuses, :account_stat, :user).references(:statuses)
   end
 
   def paginated_statuses
-    Status.where(reblog_of_id: @status.id).where(visibility: [:public, :unlisted]).paginate_by_max_id(
+    Status.where(reblog_of_id: @status.id).distributable_visibility.paginate_by_max_id(
       limit_param(DEFAULT_ACCOUNTS_LIMIT),
       params[:max_id],
       params[:since_id]
     )
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
   end
 
   def next_path
@@ -55,16 +48,5 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
 
   def records_continue?
     @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-  end
-
-  def set_status
-    @status = Status.find(params[:status_id])
-    authorize @status, :show?
-  rescue Mastodon::NotPermittedError
-    not_found
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end

@@ -4,17 +4,23 @@ fi:
     attributes:
       poll:
         expires_at: Määräaika
-        options: Valinnat
+        options: Vaihtoehdot
       user:
         agreement: Palvelusopimus
         email: Sähköpostiosoite
         locale: Alue
         password: Salasana
       user/account:
-        username: Käyttäjätunnus
+        username: Käyttäjänimi
       user/invite_request:
         text: Syy
     errors:
+      attributes:
+        domain:
+          invalid: ei ole kelvollinen verkkotunnus
+      messages:
+        invalid_domain_on_line: "%{value} ei ole kelvollinen verkkotunnus"
+        too_many_lines: ylittää %{limit} rivin rajan
       models:
         account:
           attributes:
@@ -28,7 +34,7 @@ fi:
         doorkeeper/application:
           attributes:
             website:
-              invalid: ei ole kelvollinen verkko-osoite
+              invalid: ei ole kelvollinen URL-osoite
         import:
           attributes:
             data:
@@ -36,19 +42,19 @@ fi:
         status:
           attributes:
             reblog:
-              taken: tila on jo olemassa
+              taken: tästä julkaisusta on jo tehty
         user:
           attributes:
             email:
-              blocked: käyttää kiellettyä sähköpostipalvelun tarjoajaa
+              blocked: käyttää kiellettyä sähköpostipalveluntarjoajaa
               unreachable: ei näytä olevan olemassa
             role_id:
               elevated: ei voi olla korkeampi kuin nykyinen roolisi
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: sisältää oikeudet, jotka eivät ole turvallisia perusroolille
-              elevated: ei voi sisältää oikeuksia, joita nykyisellä roolillasi ei ole
+              dangerous: sisällytä käyttöoikeuksia, jotka eivät ole turvallisia perusroolille
+              elevated: ei voi sisältää käyttöoikeuksia, joita nykyisellä roolillasi ei ole
               own_role: ei voi muuttaa nykyisellä roolillasi
             position:
               elevated: ei voi olla korkeampi kuin nykyinen roolisi

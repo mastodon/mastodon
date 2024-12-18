@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+# Default to port 3000 if not specified
+export PORT="${PORT:-3000}"
+
+# Get around our boot.rb ENV check
+export RAILS_ENV="${RAILS_ENV:-development}"
+
+if command -v overmind 1> /dev/null 2>&1
+then
+  overmind start -f Procfile.dev "$@"
+  exit $?
+fi
+
+if gem list --no-installed --exact --silent foreman; then
+  echo "Installing foreman..."
+  gem install foreman
+fi
+
+foreman start -f Procfile.dev "$@"

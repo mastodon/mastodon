@@ -43,7 +43,7 @@ fy:
         new: Nije tapassing
         scopes: Tastimmingen
         show: Toane
-        title: Dyn tapassingen
+        title: Jo tapassingen
       new:
         title: Nije tapassing
       show:
@@ -60,7 +60,7 @@ fy:
       error:
         title: Der is in flater bard
       new:
-        prompt_html: "%{client_name} hat tastimming nedich om tagong te krijen ta dyn account. It giet om in tapassing fan in tredde partij.<strong>Asto dit net fertroust, moatsto gjin tastimming jaan.</strong>"
+        prompt_html: "%{client_name} freget om tagong ta jo account. <strong>Keur dit fersyk allinnich goed as jo dizze boarne werkenne en fertrouwe.</strong>"
         review_permissions: Tastimmingen beoardiele
         title: Autorisaasje fereaske
       show:
@@ -69,20 +69,21 @@ fy:
       buttons:
         revoke: Ynlûke
       confirmations:
-        revoke: Bisto wis?
+        revoke: Binne jo wis?
       index:
         authorized_at: Autorisearre op %{date}
-        description_html: Dit binne tapassingen dy’t tagong hawwe ta dyn account fia de API. As der tapassingen tusken steane dy’tsto net werkenst of in tapassing harren misdraacht, kinsto de tagongsrjochten fan de tapassing ynlûke.
+        description_html: Dit binne tapassingen dy’t fia de API tagong hawwe ta jo account. As der tapassingen tusken steane dy’t jo net werkenne of in tapassing harren misdraacht, kinne jo de tagongsrjochten fan de tapassing ynlûke.
         last_used_at: Lêst brûkt op %{date}
         never_used: Nea brûkt
         scopes: Tastimmingen
         superapp: Yntern
-        title: Dyn autorisearre tapassingen
+        title: Jo autorisearre tapassingen
     errors:
       messages:
         access_denied: De boarne-eigener of autorisaasjeserver hat it fersyk wegere.
         credential_flow_not_configured: De wachtwurdgegevens-flow fan de boarne-eigener is mislearre, omdat Doorkeeper.configure.resource_owner_from_credentials net ynsteld is.
         invalid_client: Clientferifikaasje is mislearre troch in ûnbekende client, ûntbrekkende client-autentikaasje of in net stipe autentikaasjemetoade.
+        invalid_code_challenge_method: De koadechallengemetoade moat S256 wezen, plain wurdt net stipe.
         invalid_grant: De opjûne autorisaasje is ûnjildich, ferrûn, ynlutsen, komt net oerien mei de redirect-URI dy’t opjûn is of útjûn waard oan in oere client.
         invalid_redirect_uri: De opjûne redirect-URI is ûnjildich.
         invalid_request:
@@ -135,6 +136,7 @@ fy:
         media: Mediabylagen
         mutes: Negearre
         notifications: Meldingen
+        profile: Jo Mastodon-profyl
         push: Pushmeldingen
         reports: Rapportaazjes
         search: Sykje
@@ -165,22 +167,23 @@ fy:
       admin:write:reports: moderaasjemaatregelen nimme yn rapportaazjes
       crypto: ein-ta-ein-fersifering brûke
       follow: relaasjes tusken accounts bewurkje
-      push: dyn pushmeldingen ûntfange
-      read: alle gegevens fan dyn account lêze
+      profile: allinnich de profylgegevens fan jo account lêze
+      push: jo pushmeldingen ûntfange
+      read: alle gegevens fan jo account lêze
       read:accounts: accountynformaasje besjen
-      read:blocks: dyn blokkearre brûkers besjen
-      read:bookmarks: dyn blêdwizers besjen
+      read:blocks: jo blokkearre brûkers besjen
+      read:bookmarks: jo blêdwizers besjen
       read:favourites: jo favoriten besjen
-      read:filters: dyn filters besjen
+      read:filters: jo filters besjen
       read:follows: de accounts dy’tsto folgest besjen
-      read:lists: dyn listen besjen
-      read:mutes: dyn negearre brûkers besjen
-      read:notifications: dyn meldingen besjen
-      read:reports: dyn rapportearre berjochten besjen
-      read:search: út dyn namme sykje
+      read:lists: jo listen besjen
+      read:mutes: jo negearre brûkers besjen
+      read:notifications: jo meldingen besjen
+      read:reports: jo rapportearre berjochten besjen
+      read:search: út jo namme sykje
       read:statuses: alle berjochten besjen
-      write: alle gegevens fan dyn account bewurkje
-      write:accounts: dyn profyl bewurkje
+      write: alle gegevens fan jo account bewurkje
+      write:accounts: jo profyl bewurkje
       write:blocks: accounts en domeinen blokkearje
       write:bookmarks: berjochten oan blêdwizers tafoegje
       write:conversations: petearen negearre en fuortsmite

@@ -5,6 +5,7 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   include AccountableConcern
 
   LIMIT = 100
+  MAX_LIMIT = 500
 
   before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:domain_blocks' }, only: [:index, :show]
   before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:domain_blocks' }, except: [:index, :show]
@@ -13,8 +14,6 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
 
   after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
-
-  PAGINATION_PARAMS = %i(limit).freeze
 
   def index
     authorize :domain_block, :index?
@@ -61,24 +60,15 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   end
 
   def set_domain_blocks
-    @domain_blocks = filtered_domain_blocks.order(id: :desc).to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
+    @domain_blocks = DomainBlock.order(id: :desc).to_a_paginated_by_id(limit_param(LIMIT, MAX_LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 
   def set_domain_block
     @domain_block = DomainBlock.find(params[:id])
   end
 
-  def filtered_domain_blocks
-    # TODO: no filtering yet
-    DomainBlock.all
-  end
-
   def domain_block_params
     params.permit(:severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
   end
 
   def next_path
@@ -89,20 +79,12 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
     api_v1_admin_domain_blocks_url(pagination_params(min_id: pagination_since_id)) unless @domain_blocks.empty?
   end
 
-  def pagination_max_id
-    @domain_blocks.last.id
-  end
-
-  def pagination_since_id
-    @domain_blocks.first.id
+  def pagination_collection
+    @domain_blocks
   end
 
   def records_continue?
-    @domain_blocks.size == limit_param(LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(*PAGINATION_PARAMS).permit(*PAGINATION_PARAMS).merge(core_params)
+    @domain_blocks.size == limit_param(LIMIT, MAX_LIMIT)
   end
 
   def resource_params

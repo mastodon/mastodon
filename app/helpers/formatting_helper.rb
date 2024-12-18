@@ -9,6 +9,10 @@ module FormattingHelper
     TextFormatter.new(text, options).to_s
   end
 
+  def url_for_preview_card(preview_card)
+    preview_card.url
+  end
+
   def extract_status_plain_text(status)
     PlainTextFormatter.new(status.text, status.local?).to_s
   end

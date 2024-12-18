@@ -2,11 +2,42 @@
 
 require 'rails_helper'
 
-describe SearchQueryTransformer do
+RSpec.describe SearchQueryTransformer do
   subject { described_class.new.apply(parser, current_account: account) }
 
   let(:account) { Fabricate(:account) }
   let(:parser) { SearchQueryParser.new.parse(query) }
+
+  shared_examples 'date operator' do |operator|
+    let(:statement_operations) { [] }
+
+    [
+      ['2022-01-01', '2022-01-01'],
+      ['"2022-01-01"', '2022-01-01'],
+      ['12345678', '12345678'],
+      ['"12345678"', '12345678'],
+    ].each do |value, parsed|
+      context "with #{operator}:#{value}" do
+        let(:query) { "#{operator}:#{value}" }
+
+        it 'transforms clauses' do
+          ops = statement_operations.index_with { |_op| parsed }
+
+          expect(subject.send(:must_clauses)).to be_empty
+          expect(subject.send(:must_not_clauses)).to be_empty
+          expect(subject.send(:filter_clauses).map(&:term)).to contain_exactly(**ops, time_zone: 'UTC')
+        end
+      end
+    end
+
+    context "with #{operator}:\"abc\"" do
+      let(:query) { "#{operator}:\"abc\"" }
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(Mastodon::FilterValidationError, 'Invalid date abc')
+      end
+    end
+  end
 
   context 'with "hello world"' do
     let(:query) { 'hello world' }
@@ -68,13 +99,33 @@ describe SearchQueryTransformer do
     end
   end
 
-  context 'with \'before:"2022-01-01 23:00"\'' do
-    let(:query) { 'before:"2022-01-01 23:00"' }
+  context 'with \'is:"foo bar"\'' do
+    let(:query) { 'is:"foo bar"' }
 
     it 'transforms clauses' do
       expect(subject.send(:must_clauses)).to be_empty
       expect(subject.send(:must_not_clauses)).to be_empty
-      expect(subject.send(:filter_clauses).map(&:term)).to contain_exactly(lt: '2022-01-01 23:00', time_zone: 'UTC')
+      expect(subject.send(:filter_clauses).map(&:term)).to contain_exactly('foo bar')
+    end
+  end
+
+  context 'with date operators' do
+    context 'with "before"' do
+      it_behaves_like 'date operator', 'before' do
+        let(:statement_operations) { [:lt] }
+      end
+    end
+
+    context 'with "after"' do
+      it_behaves_like 'date operator', 'after' do
+        let(:statement_operations) { [:gt] }
+      end
+    end
+
+    context 'with "during"' do
+      it_behaves_like 'date operator', 'during' do
+        let(:statement_operations) { [:gte, :lte] }
+      end
     end
   end
 end

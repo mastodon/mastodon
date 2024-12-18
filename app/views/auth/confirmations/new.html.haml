@@ -1,13 +1,35 @@
 - content_for :page_title do
   = t('auth.resend_confirmation')
 
-= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-  = render 'shared/error_messages', object: resource
+- if resource.errors.of_kind?(:email, :already_confirmed)
+  .simple_form
+    = render 'auth/shared/progress', stage: resource.approved? ? 'completed' : 'confirmed'
 
-  .fields-group
-    = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.email'), input_html: { 'aria-label': t('simple_form.labels.defaults.email') }, readonly: current_user.present?, hint: current_user.present? && t('auth.confirmations.wrong_email_hint')
+    - if resource.approved?
+      %h1.title= t('auth.confirmations.welcome_title', name: resource.account.username)
+      %p.lead= t('auth.confirmations.registration_complete', domain: site_hostname)
+      - if resource.created_by_application && redirect_to_app?
+        - app = resource.created_by_application
+        %p.lead= t('auth.confirmations.redirect_to_app_html', app_name: app.name, clicking_this_link: link_to(t('auth.confirmations.clicking_this_link'), app.confirmation_redirect_uri))
+      - else
+        %p.lead= t('auth.confirmations.proceed_to_login_html', login_link: link_to_login(t('auth.confirmations.login_link')))
+    - else
+      %h1.title= t('auth.confirmations.awaiting_review_title')
+      %p.lead= t('auth.confirmations.awaiting_review', domain: site_hostname)
+- else
+  = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+    = render 'shared/error_messages', object: resource
 
-  .actions
-    = f.button :button, t('auth.resend_confirmation'), type: :submit
+    .fields-group
+      = f.input :email,
+                autofocus: true,
+                hint: current_user.present? && t('auth.confirmations.wrong_email_hint'),
+                input_html: { 'aria-label': t('simple_form.labels.defaults.email') },
+                label: t('simple_form.labels.defaults.email'),
+                readonly: current_user.present?,
+                wrapper: :with_label
+
+    .actions
+      = f.button :button, t('auth.resend_confirmation'), type: :submit
 
 .form-footer= render 'auth/shared/links'

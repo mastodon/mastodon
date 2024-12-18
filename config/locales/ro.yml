@@ -7,7 +7,6 @@ ro:
     hosted_on: Mastodon găzduit de %{domain}
     title: Despre
   accounts:
-    follow: Urmărește
     followers:
       few: Urmăritori
       one: Urmăritor
@@ -33,7 +32,6 @@ ro:
       created_msg: Notă de moderare creată cu succes!
       destroyed_msg: Notă de moderare distrusă cu succes!
     accounts:
-      add_email_domain_block: Domeniu de e-mail în lista neagră
       approve: Aprobă
       approved_msg: Cererea de înregistrare de către %{username} a fost aprobată cu succes
       are_you_sure: Ești sigur?
@@ -60,7 +58,6 @@ ro:
       demote: Retrogradează
       destroyed_msg: Datele utilizatorului %{username} sunt acum în așteptare pentru a fi șterse iminent
       disable: Dezactivează
-      disable_sign_in_token_auth: Dezactivează autentificarea prin token e-mail
       disable_two_factor_authentication: Dezactivează 2FA
       disabled: Dezactivat
       display_name: Nume afișat
@@ -69,7 +66,6 @@ ro:
       email: E-mail
       email_status: Stare e-mail
       enable: Activează
-      enable_sign_in_token_auth: Activează autentificarea prin token e-mail
       enabled: Activat
       enabled_msg: Am dezghețat cu succes contul %{username}
       followers: Urmăritori
@@ -93,6 +89,7 @@ ro:
       moderation:
         active: Activ
         all: Toate
+        disabled: Dezactivat
         pending: În așteptare
         silenced: Limitat
         suspended: Suspendate
@@ -115,19 +112,23 @@ ro:
       redownloaded_msg: S-a reîmprospătat cu succes profilul %{username} de la origine
       reject: Respinge
       rejected_msg: S-a respins cu succes cererea de înregistrare a utilizatorului %{username}
+      remote_suspension_irreversible: Datele acestui cont au fost șterse în mod ireversibil.
+      remote_suspension_reversible_hint_html: Contul a fost suspendat pe server-ul respectiv, iar datele vor fi șterse complet pe %{date}. Până atunci, server-ul remote poate restabili acest cont fără consecințe negative. Dacă dorești să elimini toate datele contului numaidecât, poți face acest lucru mai jos.
       remove_avatar: Elimină avatar
       remove_header: Elimină antet
       removed_avatar_msg: S-a îndepărtat cu succes poza de profil a utilizatorului %{username}
       removed_header_msg: S-a îndepărtat cu succes coperta utilizatorului %{username}
       resend_confirmation:
         already_confirmed: Acest utilizator este deja confirmat
+        send: Retrimite link-ul de confirmare
+        success: Link-ul de confirmare a fost trimis cu succes!
       reset: Resetează
       reset_password: Resetează parola
       resubscribe: Resubscrie-te
       role: Rol
       search: Caută
-      search_same_email_domain: Alţi utilizatori cu acelaşi domeniu de e-mail
       search_same_ip: Alţi utilizatori cu acelaşi IP
+      security: Securitate
       security_measures:
         only_password: Doar parola
         password_and_2fa: Parolă și Conectarea în 2 pași
@@ -166,7 +167,6 @@ ro:
         approve_appeal: Aprobare apel
         approve_user: Aprobă Utilizatorul
         assigned_to_self_report: Atribuie raportul
-        change_email_user: Schimbă e-mailul pentru utilizator
         change_role_user: Schimbă rolul utilizatorului
         confirm_user: Confirmare Utilizator
         create_account_warning: Crează avertisment
@@ -174,7 +174,6 @@ ro:
         create_custom_emoji: Creează Zâmbet Personalizat
         create_domain_allow: Creează permis domeniu
         create_domain_block: Crează blocare de domenii
-        create_email_domain_block: Creați blocare de domeniu e-mail
         create_ip_block: Creează regulă IP
         create_unavailable_domain: Crează domeniu indisponibil
         create_user_role: Creează Rol
@@ -183,17 +182,15 @@ ro:
         destroy_custom_emoji: Ștergere Zâmbet Personalizat
         destroy_domain_allow: Ștergere Permitere Domeniu
         destroy_domain_block: Ștergere Blocare Domeniu
-        destroy_email_domain_block: Șterge Blocarea Domeniului de Email
         destroy_instance: Curăță Domeniul
         destroy_ip_block: Șterge regula IP
         destroy_status: Șterge starea
         destroy_unavailable_domain: Șterge Domeniul Indisponibil
+        destroy_user_role: Distruge Rolul
         disable_2fa_user: Dezactivează 2FA
         disable_custom_emoji: Dezactivează Emoji-urile Personalizate
-        disable_sign_in_token_auth_user: Dezactivează Autentificarea prin Token E-mail pentru Utilizator
         disable_user: Dezactivează Utilizator
         enable_custom_emoji: Activează Emoji Personalizat
-        enable_sign_in_token_auth_user: Activează Autentificarea prin Token e-mail pentru Utilizator
         enable_user: Activează Utilizator
         memorialize_account: Comemoreză Contul
         promote_user: Promovează utilizator
@@ -201,6 +198,7 @@ ro:
         reject_user: Respinge Utilizatorul
         remove_avatar_user: Elimină avatar
         reopen_report: Redeschide Raport
+        resend_user: Retrimite E-Mail-ul de Confirmare
         reset_password_user: Resetează Parola
         resolve_report: Rezolvă Raport
         sensitive_account: Cont Sensibil
@@ -212,7 +210,9 @@ ro:
         unsuspend_account: Anulează Suspendarea Contului
         update_announcement: Actualizare Anunț
         update_custom_emoji: Actualizare Emoji Personalizat
+        update_ip_block: Actualizați regula IP
         update_status: Actualizează Starea
+        update_user_role: Actualizare Rol
       actions:
         create_custom_emoji_html: "%{name} a încărcat noi emoji %{target}"
       deleted_account: cont șters
@@ -237,6 +237,7 @@ ro:
       unpublish: Revocă publicarea
       unpublished_msg: Publicarea anunțului a fost revocată cu succes!
       updated_msg: Anunț actualizat cu succes!
+    critical_update_pending: Actualizare critică în așteptare
     custom_emojis:
       assign_category: Atribuie o categorie
       by_domain: Domeniu
@@ -271,6 +272,37 @@ ro:
       update_failed_msg: Nu s-a putut actualiza emoticonul respectiv
       updated_msg: Emoticon actualizat cu succes!
       upload: Încarcă
+    dashboard:
+      active_users: utilizatori activi
+      interactions: interacțiuni
+      media_storage: Stocare media
+      new_users: utilizatori noi
+      opened_reports: rapoarte deschise
+      resolved_reports: rapoarte rezolvate
+      software: Software
+      sources: Surse de înscriere
+      space: Utilizare spațiu
+      title: Tablou de bord
+      top_languages: Limbi active de top
+      top_servers: Top servere active
+      website: Site web
+    disputes:
+      appeals:
+        empty: Niciun recurs găsit.
+        title: Recursuri
+    domain_allows:
+      export: Exportare
+      import: Importare
+    domain_blocks:
+      confirm_suspension:
+        cancel: Anulare
+        confirm: Suspendă
+        permanent_action: Anularea suspendării nu va restabili nicio dată sau relație.
+        preamble_html: Sunteți pe cale să suspendați <strong>%{domain}</strong> și subdomeniile sale.
+        remove_all_data: Acest lucru va elimina tot conținutul, media și datele profilului contului acestui domeniu de pe server.
+        stop_communication: Serverul tău nu va mai comunica cu aceste servere.
+        title: Confirmați blocarea domeniului pentru %{domain}
+        undo_relationships: Această acțiune va anula orice relație de urmărire între conturile acestor servere și ale tale.
     email_domain_blocks:
       delete: Șterge
       dns:
@@ -409,8 +441,6 @@ ro:
       guide_link_text: Toată lumea poate contribui.
     sensitive_content: Conținut sensibil
   application_mailer:
-    notification_preferences: Modifică preferințe e-mail
-    settings: 'Modifică preferințe e-mail: %{link}'
     view: 'Vizualizare:'
     view_profile: Vizualizați profilul
     view_status: Vezi starea
@@ -442,8 +472,6 @@ ro:
     set_new_password: Setează o nouă parolă
     status:
       account_status: Starea contului
-      confirming: Se așteaptă finalizarea confirmării prin e-mail.
-      pending: Cererea dvs. este în curs de revizuire de către personalul nostru. Este posibil să dureze ceva timp. Veți primi un e-mail dacă cererea dvs. este aprobată.
       redirecting_to: Contul dvs. este inactiv deoarece în prezent se redirecționează către %{acct}.
   challenge:
     confirm: Continuă
@@ -475,8 +503,6 @@ ro:
       before: 'Înainte de a continua, vă rugăm să citiţi aceste note cu atenţie:'
       caches: Conținutul care a fost memorat de alte servere poate persista
       data_removal: Postările tale și alte date vor fi șterse permanent
-      email_change_html: Puteți <a href="%{path}">schimba adresa de e-mail</a> fără a șterge contul dvs
-      email_contact_html: Dacă tot nu ajunge, puteți trimite e-mail la <a href="mailto:%{email}">%{email}</a> pentru ajutor
   errors:
     '403': Nu ai permisiunea să vizitezi această pagină.
     '404': Pagina pe care o cauți nu există.
@@ -526,6 +552,7 @@ ro:
       blocking: Lista de blocare
       domain_blocking: Listă de blocare domenii
       following: Lista de urmărire
+      lists: Liste
       muting: Lista de ignorare
     upload: Încarcă
   invites:
@@ -582,6 +609,14 @@ ro:
       body: 'Postarea ta a fost impulsionată de %{name}:'
       subject: "%{name} ți-a impulsionat postarea"
       title: Impuls nou
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
   polls:
     errors:
       expired: Sondajul s-a încheiat deja
@@ -645,24 +680,11 @@ ro:
       other: 'conținea aceste hashtag-uri nepermise: %{tags}'
     errors:
       in_reply_not_found: Postarea la care încercați să răspundeți nu pare să existe.
-    open_in_web: Deschide pe web
     over_character_limit: s-a depășit limita de caracter %{max}
     pin_errors:
       limit: Deja ai fixat numărul maxim de postări
       ownership: Postarea altcuiva nu poate fi fixată
       reblog: Un impuls nu poate fi fixat
-    poll:
-      total_people:
-        few: "%{count} persoane"
-        one: "%{count} persoană"
-        other: "%{count} de persoane"
-      total_votes:
-        few: "%{count} voturi"
-        one: "%{count} vot"
-        other: "%{count} de voturi"
-      vote: Votează
-    show_more: Arată mai mult
-    show_thread: Arată discuția
     visibilities:
       private: Doar urmăritorii
       private_long: Arată doar urmăritorilor
@@ -692,7 +714,6 @@ ro:
     recovery_instructions_html: Dacă îți pierzi vreodată accesul la telefon, poți folosi unul dintre codurile de recuperare de mai jos pentru a recâștiga accesul la contul tău. <strong>Păstrați codurile de recuperare în condiții de siguranță</strong>. De exemplu, le puteți tipări și stoca cu alte documente importante.
   user_mailer:
     backup_ready:
-      explanation: Ai solicitat o copie de rezervă completă a contului tău. Acum este gata pentru descărcare!
       subject: Arhiva ta este gata pentru descărcare
       title: Preluare arhivă
     warning:
@@ -707,18 +728,13 @@ ro:
         silence: Cont limitat
         suspend: Cont suspendat
     welcome:
-      edit_profile_action: Configurare profil
       explanation: Iată câteva sfaturi pentru a începe
-      final_action: Începe să postezi
-      full_handle: Numele tău complet
-      full_handle_hint: Asta este ceea ce vei putea spune prietenilor pentru a te putea contacta sau pentru a te urmării de pe un alt server.
       subject: Bine ai venit
       title: Bine ai venit la bord, %{name}!
   users:
     follow_limit_reached: Nu poți urmări mai mult de %{limit} persoane
     invalid_otp_token: Cod doi pași nevalid
     otp_lost_help_html: Dacă ai pierdut accesul la ambele, poți lua legătura cu %{email}
-    seamless_external_login: Sunteți autentificat prin intermediul unui serviciu extern, astfel încât parola și setările de e-mail nu sunt disponibile.
     signed_in_as: 'Conectat ca:'
   verification:
     verification: Verificare

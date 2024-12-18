@@ -2,7 +2,9 @@
 
 class AddMetadataToStatuses < ActiveRecord::Migration[4.2]
   def change
-    add_column :statuses, :in_reply_to_id, :integer, null: true
-    add_column :statuses, :reblog_of_id, :integer, null: true
+    change_table(:statuses, bulk: true) do |t|
+      t.column :in_reply_to_id, :integer, null: true
+      t.column :reblog_of_id, :integer, null: true
+    end
   end
 end

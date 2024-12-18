@@ -1,14 +1,12 @@
-import { PureComponent } from 'react';
-
 import { Provider } from 'react-redux';
 
-import { fetchCustomEmojis } from '../actions/custom_emojis';
-import { hydrateStore } from '../actions/store';
-import Compose from '../features/standalone/compose';
-import initialState from '../initial_state';
-import { IntlProvider } from '../locales';
-import { store } from '../store';
-
+import { fetchCustomEmojis } from 'mastodon/actions/custom_emojis';
+import { hydrateStore } from 'mastodon/actions/store';
+import { Router } from 'mastodon/components/router';
+import Compose from 'mastodon/features/standalone/compose';
+import initialState from 'mastodon/initial_state';
+import { IntlProvider } from 'mastodon/locales';
+import { store } from 'mastodon/store';
 
 if (initialState) {
   store.dispatch(hydrateStore(initialState));
@@ -16,16 +14,14 @@ if (initialState) {
 
 store.dispatch(fetchCustomEmojis());
 
-export default class ComposeContainer extends PureComponent {
+const ComposeContainer = () => (
+  <IntlProvider>
+    <Provider store={store}>
+      <Router>
+        <Compose />
+      </Router>
+    </Provider>
+  </IntlProvider>
+);
 
-  render () {
-    return (
-      <IntlProvider>
-        <Provider store={store}>
-          <Compose />
-        </Provider>
-      </IntlProvider>
-    );
-  }
-
-}
+export default ComposeContainer;

@@ -12,7 +12,7 @@ class Api::V1::DirectoriesController < Api::BaseController
   private
 
   def require_enabled!
-    return not_found unless Setting.profile_directory
+    not_found unless Setting.profile_directory
   end
 
   def set_accounts
@@ -27,7 +27,7 @@ class Api::V1::DirectoriesController < Api::BaseController
       scope.merge!(local_account_scope) if local_accounts?
       scope.merge!(account_exclusion_scope) if current_account
       scope.merge!(account_domain_block_scope) if current_account && !local_accounts?
-    end
+    end.includes(:account_stat, user: :role)
   end
 
   def local_accounts?

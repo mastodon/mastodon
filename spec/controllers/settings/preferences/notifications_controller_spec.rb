@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::Preferences::NotificationsController do
+RSpec.describe Settings::Preferences::NotificationsController do
   render_views
 
   let(:user) { Fabricate(:user) }
@@ -16,25 +16,21 @@ describe Settings::Preferences::NotificationsController do
       get :show
     end
 
-    it 'returns http success' do
+    it 'returns http success with private cache control headers', :aggregate_failures do
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns private cache control headers' do
       expect(response.headers['Cache-Control']).to include('private, no-store')
     end
   end
 
   describe 'PUT #update' do
     it 'updates notifications settings' do
-      user.settings.update('notification_emails.follow': false, 'interactions.must_be_follower': true)
+      user.settings.update('notification_emails.follow': false)
       user.save
 
       put :update, params: {
         user: {
           settings_attributes: {
             'notification_emails.follow': '1',
-            'interactions.must_be_follower': '0',
           },
         },
       }
@@ -42,7 +38,6 @@ describe Settings::Preferences::NotificationsController do
       expect(response).to redirect_to(settings_preferences_notifications_path)
       user.reload
       expect(user.settings['notification_emails.follow']).to be true
-      expect(user.settings['interactions.must_be_follower']).to be false
     end
   end
 end

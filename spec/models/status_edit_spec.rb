@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusEdit do
+RSpec.describe StatusEdit do
   describe '#reblog?' do
     it 'returns false' do
       record = described_class.new

@@ -43,7 +43,8 @@ class About extends PureComponent {
   };
 
   render () {
-    return (<section className='intro'>
+    return (<div className='about-body'>
+      <section className='intro'>
         <div>
           <h1 className='heading'>
             A social network that&apos;s personal and private,
@@ -75,7 +76,8 @@ class About extends PureComponent {
         <div>
           <img src={appScreenshot} alt='app screenshot' />
         </div>
-      </section>);
+      </section>
+    </div>);
   }
 }
 

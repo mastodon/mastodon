@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
+RSpec.describe ActivityPub::FetchFeaturedCollectionService do
   subject { described_class.new }
 
   let(:actor) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/account', featured_collection_url: 'https://example.com/account/pinned') }
@@ -87,6 +87,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService, type: :service do
         'https://example.com/account/pinned/unknown-inlined',
         'https://example.com/account/pinned/unknown-reachable'
       )
+      expect(actor.pinned_statuses).to_not include(known_status)
     end
   end
 

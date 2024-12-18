@@ -1,21 +1,12 @@
 - content_for :page_title do
   = t('.title')
 
-= simple_form_for @announcement, url: admin_announcements_path, html: { novalidate: false } do |f|
+= simple_form_for @announcement, url: admin_announcements_path, html: { novalidate: false } do |form|
   = render 'shared/error_messages', object: @announcement
 
-  .fields-group
-    = f.input :starts_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}(:[0-9]{2}){1,2}', placeholder: Time.now.strftime('%FT%R') }
-    = f.input :ends_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}(:[0-9]{2}){1,2}', placeholder: Time.now.strftime('%FT%R') }
-
-  .fields-group
-    = f.input :all_day, as: :boolean, wrapper: :with_label
-
-  .fields-group
-    = f.input :text, wrapper: :with_block_label
-
-  .fields-group
-    = f.input :scheduled_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}(:[0-9]{2}){1,2}', placeholder: Time.now.strftime('%FT%R') }
+  = render form
 
   .actions
-    = f.button :button, t('.create'), type: :submit
+    = form.button :button,
+                  t('.create'),
+                  type: :submit

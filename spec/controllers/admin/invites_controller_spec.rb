@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::InvitesController do
+RSpec.describe Admin::InvitesController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
@@ -18,7 +18,8 @@ describe Admin::InvitesController do
 
     it 'renders index page' do
       expect(subject).to render_template :index
-      expect(assigns(:invites)).to include invite
+      expect(response.body)
+        .to include(invite.code)
     end
   end
 
@@ -44,14 +45,13 @@ describe Admin::InvitesController do
   end
 
   describe 'POST #deactivate_all' do
+    before { Fabricate(:invite, expires_at: nil) }
+
     it 'expires all invites, then redirects to admin_invites_path' do
-      invites = Fabricate.times(2, :invite, expires_at: nil)
-
-      post :deactivate_all
-
-      invites.each do |invite|
-        expect(invite.reload).to be_expired
-      end
+      expect { post :deactivate_all }
+        .to change { Invite.exists?(expires_at: nil) }
+        .from(true)
+        .to(false)
 
       expect(response).to redirect_to admin_invites_path
     end

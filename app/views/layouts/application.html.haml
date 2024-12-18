@@ -11,28 +11,29 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    %link{ rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' }/
+    - SiteUpload::FAVICON_SIZES.each do |size|
+      %link{ rel: 'icon', sizes: "#{size}x#{size}", href: favicon_path(size.to_i) || frontend_asset_path("icons/favicon-#{size}x#{size}.png"), type: 'image/png' }/
 
-    - %w(16 32).each do |size|
-      %link{ rel: 'icon', sizes: "#{size}x#{size}", href: asset_pack_path("media/icons/favicon-#{size}x#{size}.png"), type: 'image/png' }/
+    - SiteUpload::APPLE_ICON_SIZES.each do |size|
+      %link{ rel: 'apple-touch-icon', sizes: "#{size}x#{size}", href: app_icon_path(size.to_i) || frontend_asset_path("icons/apple-touch-icon-#{size}x#{size}.png") }/
 
-    %link{ rel: 'apple-touch-icon', href: asset_pack_path("media/icons/apple-touch-icon.png") }/
-
-    %link{ rel: 'mask-icon', href: asset_pack_path('media/images/logo-symbol-icon.svg'), color: '#6364FF' }/
+    - if use_mask_icon?
+      %link{ rel: 'mask-icon', href: frontend_asset_path('images/logo-symbol-icon.svg'), color: '#6364FF' }/
     %link{ rel: 'manifest', href: manifest_path(format: :json) }/
-    %meta{ name: 'theme-color', content: '#191b22' }/
-    %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
+    = theme_color_tags current_theme
+    %meta{ name: 'mobile-web-app-capable', content: 'yes' }/
 
-    %title= content_for?(:page_title) ? safe_join([yield(:page_title).chomp.html_safe, title], ' - ') : title
+    %title= html_title
 
-    = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
-    = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
+    = theme_style_tags current_theme
+    -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
+    = stylesheet_pack_tag 'inert', media: 'all', crossorigin: 'anonymous', id: 'inert-style'
+
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
     = preload_pack_asset "locale/#{I18n.locale}-json.js"
     = csrf_meta_tags unless skip_csrf_meta_tags?
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 
-    = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
     = stylesheet_link_tag custom_css_path, skip_pipeline: true, host: root_url, media: 'all'
 
     = yield :header_tags
@@ -40,6 +41,6 @@
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
 
-    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => true }
-      = render_symbol :icon
-      = render_symbol :wordmark
+    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => 'true' }
+      = inline_svg_tag 'decodon_flower_logo.svg'
+      = inline_svg_tag 'decodon_logo_full.svg'

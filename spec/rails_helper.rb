@@ -2,18 +2,35 @@
 
 ENV['RAILS_ENV'] ||= 'test'
 
+unless ENV['DISABLE_SIMPLECOV'] == 'true'
+  require 'simplecov'
+
+  SimpleCov.start 'rails' do
+    if ENV['CI']
+      require 'simplecov-lcov'
+      formatter SimpleCov::Formatter::LcovFormatter
+      formatter.config.report_with_single_file = true
+    else
+      formatter SimpleCov::Formatter::HTMLFormatter
+    end
+
+    enable_coverage :branch
+
+    add_filter 'lib/linter'
+
+    add_group 'Libraries', 'lib'
+    add_group 'Policies', 'app/policies'
+    add_group 'Presenters', 'app/presenters'
+    add_group 'Search', 'app/chewy'
+    add_group 'Serializers', 'app/serializers'
+    add_group 'Services', 'app/services'
+    add_group 'Validators', 'app/validators'
+  end
+end
+
 # This needs to be defined before Rails is initialized
-RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
-RUN_SEARCH_SPECS = ENV.fetch('RUN_SEARCH_SPECS', false)
-
-if RUN_SYSTEM_SPECS
-  STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
-  ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
-end
-
-if RUN_SEARCH_SPECS
-  # Include any configuration or setups specific to search tests here
-end
+STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
+ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
 
 require File.expand_path('../config/environment', __dir__)
 
@@ -25,18 +42,21 @@ require 'webmock/rspec'
 require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
+require 'email_spec/rspec'
+require 'test_prof/recipes/rspec/before_all'
 
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+Rails.root.glob('spec/support/**/*.rb').each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
-WebMock.disable_net_connect!(allow: Chewy.settings[:host], allow_localhost: RUN_SYSTEM_SPECS)
-Sidekiq::Testing.inline!
+WebMock.disable_net_connect!(
+  allow_localhost: true,
+  allow: Chewy.settings[:host]
+)
 Sidekiq.logger = nil
 
-# System tests config
 DatabaseCleaner.strategy = [:deletion]
-streaming_server_manager = StreamingServerManager.new
-search_data_manager = SearchDataManager.new
+
+Chewy.settings[:enabled] = false
 
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in
@@ -54,130 +74,99 @@ Devise::Test::ControllerHelpers.module_eval do
   end
 end
 
-module SignedRequestHelpers
-  def get(path, headers: nil, sign_with: nil, **args)
-    return super path, headers: headers, **args if sign_with.nil?
-
-    headers ||= {}
-    headers['Date'] = Time.now.utc.httpdate
-    headers['Host'] = ENV.fetch('LOCAL_DOMAIN')
-    signed_headers = headers.merge('(request-target)' => "get #{path}").slice('(request-target)', 'Host', 'Date')
-
-    key_id = ActivityPub::TagManager.instance.key_uri_for(sign_with)
-    keypair = sign_with.keypair
-    signed_string = signed_headers.map { |key, value| "#{key.downcase}: #{value}" }.join("\n")
-    signature = Base64.strict_encode64(keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
-
-    headers['Signature'] = "keyId=\"#{key_id}\",algorithm=\"rsa-sha256\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
-
-    super path, headers: headers, **args
-  end
-end
-
 RSpec.configure do |config|
-  # This is set before running spec:system, see lib/tasks/tests.rake
-  config.filter_run_excluding type: lambda { |type|
-    case type
-    when :system
-      !RUN_SYSTEM_SPECS
-    when :search
-      !RUN_SEARCH_SPECS
-    end
-  }
-  config.fixture_path = Rails.root.join('spec', 'fixtures')
+  # By default, skip specs that need full JS browser
+  config.filter_run_excluding :js
+
+  # By default, skip specs that need elastic search server
+  config.filter_run_excluding :search
+
+  # By default, skip specs that need the streaming server
+  config.filter_run_excluding :streaming
+
+  config.fixture_paths = [
+    Rails.root.join('spec', 'fixtures'),
+  ]
   config.use_transactional_fixtures = true
   config.order = 'random'
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 
+  # Set type to `cli` for all CLI specs
   config.define_derived_metadata(file_path: Regexp.new('spec/lib/mastodon/cli')) do |metadata|
     metadata[:type] = :cli
+  end
+
+  # Set `search` metadata true for all specs in spec/search/
+  config.define_derived_metadata(file_path: Regexp.new('spec/search/*')) do |metadata|
+    metadata[:search] = true
   end
 
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :helper
   config.include Devise::Test::ControllerHelpers, type: :view
-  config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include Devise::Test::IntegrationHelpers, type: :system
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include ActionMailer::TestHelper
   config.include Paperclip::Shoulda::Matchers
   config.include ActiveSupport::Testing::TimeHelpers
   config.include Chewy::Rspec::Helpers
   config.include Redisable
+  config.include ThreadingHelpers
   config.include SignedRequestHelpers, type: :request
+  config.include CommandLineHelpers, type: :cli
+  config.include SystemHelpers, type: :system
 
-  config.before :each, type: :cli do
-    stub_stdout
-    stub_reset_connection_pools
-  end
-
-  config.before :each, type: :feature do
-    Capybara.current_driver = :rack_test
-  end
-
-  config.before :each, type: :controller do
-    stub_jsonld_contexts!
-  end
-
-  config.before :each, type: :service do
-    stub_jsonld_contexts!
-  end
-
-  config.before :suite do
-    if RUN_SYSTEM_SPECS
-      Webpacker.compile
-      streaming_server_manager.start(port: STREAMING_PORT)
-    end
-
-    if RUN_SEARCH_SPECS
-      Chewy.strategy(:urgent)
-      search_data_manager.prepare_test_data
-    end
-  end
-
-  config.after :suite do
-    streaming_server_manager.stop
-
-    search_data_manager.cleanup_test_data if RUN_SEARCH_SPECS
-  end
-
-  config.around :each, type: :system do |example|
-    # driven_by :selenium, using: :chrome, screen_size: [1600, 1200]
-    driven_by :selenium, using: :headless_chrome, screen_size: [1600, 1200]
-
-    # The streaming server needs access to the database
-    # but with use_transactional_tests every transaction
-    # is rolled-back, so the streaming server never sees the data
-    # So we disable this feature for system tests, and use DatabaseCleaner to clean
-    # the database tables between each test
+  config.around(:each, use_transactional_tests: false) do |example|
     self.use_transactional_tests = false
-
-    DatabaseCleaner.cleaning do
-      # NOTE: we switched registrations mode to closed by default, but the specs
-      # very heavily rely on having it enabled by default, as it relies on users
-      # being approved by default except in select cases where explicitly testing
-      # other registration modes
-      # Also needs to be set per-example here because of the database cleaner.
-      Setting.registrations_mode = 'open'
-
-      example.run
-    end
-
+    example.run
     self.use_transactional_tests = true
   end
 
-  config.around :each, type: :search do |example|
-    search_data_manager.populate_indexes
+  config.around do |example|
+    if example.metadata[:inline_jobs] == true
+      Sidekiq::Testing.inline!
+    else
+      Sidekiq::Testing.fake!
+    end
     example.run
-    search_data_manager.remove_indexes
   end
 
-  config.before(:each) do |example|
-    unless example.metadata[:paperclip_processing]
-      allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true) # rubocop:disable RSpec/AnyInstance
+  config.around(:each, type: :search) do |example|
+    Chewy.settings[:enabled] = true
+    example.run
+    Chewy.settings[:enabled] = false
+  end
+
+  config.before :each, type: :cli do
+    stub_reset_connection_pools
+  end
+
+  config.before do |example|
+    allow(Resolv::DNS).to receive(:open).and_raise('Real DNS queries are disabled, stub Resolv::DNS as needed') unless example.metadata[:type] == :system
+  end
+
+  config.before do |example|
+    unless example.metadata[:attachment_processing]
+      # rubocop:disable RSpec/AnyInstance
+      allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true)
+      allow_any_instance_of(Paperclip::MediaTypeSpoofDetector).to receive(:spoofed?).and_return(false)
+      # rubocop:enable RSpec/AnyInstance
     end
   end
 
-  config.after :each do
+  config.before :each, type: :request do
+    # Use https and configured hostname in request spec requests
+    integration_session.https!
+    host! Rails.configuration.x.local_domain
+  end
+
+  config.before :each, type: :system do
+    # Align with capybara config so that rails helpers called from rspec use matching host
+    host! 'localhost:3000'
+  end
+
+  config.after do
     Rails.cache.clear
     redis.del(redis.keys)
   end
@@ -196,6 +185,8 @@ RSpec::Sidekiq.configure do |config|
 end
 
 RSpec::Matchers.define_negated_matcher :not_change, :change
+RSpec::Matchers.define_negated_matcher :not_eq, :eq
+RSpec::Matchers.define_negated_matcher :not_include, :include
 
 def request_fixture(name)
   Rails.root.join('spec', 'fixtures', 'requests', name).read
@@ -205,23 +196,9 @@ def attachment_fixture(name)
   Rails.root.join('spec', 'fixtures', 'files', name).open
 end
 
-def stub_stdout
-  # TODO: Is there a bettery way to:
-  # - Avoid CLI command output being printed out
-  # - Allow rspec to assert things against STDOUT
-  # - Avoid disabling stdout for other desirable output (deprecation warnings, for example)
-  allow($stdout).to receive(:write)
-end
-
 def stub_reset_connection_pools
   # TODO: Is there a better way to correctly run specs without stubbing this?
   # (Avoids reset_connection_pools! in test env)
   allow(ActiveRecord::Base).to receive(:establish_connection)
-  allow(RedisConfiguration).to receive(:establish_pool)
-end
-
-def stub_jsonld_contexts!
-  stub_request(:get, 'https://www.w3.org/ns/activitystreams').to_return(request_fixture('json-ld.activitystreams.txt'))
-  stub_request(:get, 'https://w3id.org/identity/v1').to_return(request_fixture('json-ld.identity.txt'))
-  stub_request(:get, 'https://w3id.org/security/v1').to_return(request_fixture('json-ld.security.txt'))
+  allow(RedisConnection).to receive(:establish_pool)
 end

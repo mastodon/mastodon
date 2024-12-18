@@ -20,7 +20,7 @@ cy:
     applications:
       buttons:
         authorize: Awdurdodi
-        cancel: Diddymu
+        cancel: Canslo
         destroy: Dinistrio
         edit: Golygu
         submit: Cyflwyno
@@ -60,7 +60,7 @@ cy:
       error:
         title: Mae rhywbeth wedi mynd o'i le
       new:
-        prompt_html: Hoffai %{client_name} gael caniatâd i gael mynediad i'ch cyfrif. Mae'n gais trydydd parti. <strong>Os nad ydych yn ymddiried ynddo, yna peidiwch a'i awdurdodi.</strong>
+        prompt_html: Hoffai %{client_name} gael caniatâd i gael mynediad i'ch cyfrif. <strong>Dim ond os ydych chi'n adnabod ac yn ymddiried yn y ffynhonnell hon y dylech gymeradwyo'r cais hwn.</strong>
         review_permissions: Adolygu caniatâd
         title: Angen awdurdodi
       show:
@@ -72,7 +72,7 @@ cy:
         revoke: Ydych chi'n siŵr?
       index:
         authorized_at: Wedi'i awdurdodi ar %{date}
-        description_html: Mae'r rhain yn raglenni sy'n gallu cael mynediad i'ch cyfrif gan ddefnyddio'r API. Os oes yna rhaglenni nad ydych chi'n eu hadnabod yma, neu os yw rhaglen yn camymddwyn, gallwch chi ddiddymu ei fynediad.
+        description_html: Mae'r rhain yn raglenni sy'n gallu cael mynediad i'ch cyfrif gan ddefnyddio'r API. Os oes yna rhaglenni nad ydych chi'n eu hadnabod yma, neu os yw rhaglen yn camymddwyn, gallwch chi ddirymu ei fynediad.
         last_used_at: Defnyddiwyd ddiwethaf ar %{date}
         never_used: Erioed wedi'i ddefnyddio
         scopes: Caniatâd
@@ -83,7 +83,8 @@ cy:
         access_denied: Mae perchennog yr adnodd neu'r gweinydd awdurdodi wedi atal y cais.
         credential_flow_not_configured: Llif meini prawf cyfrinair perchennog yr adnodd wedi methu achos fod Doorkeeper.configure.resource_owner_from_credentials heb ei ffurfweddu.
         invalid_client: Methodd dilysu cleient oherwydd cleient anhysbys, dim dilysiad cleient wedi'i gynnwys, neu ddull dilysu heb ei gefnogi.
-        invalid_grant: Mae'r grant awdurdodi ar yr amod yn annilys, wedi dod i ben, wedi'i ddiddymu, nid yw'n cyfateb i'r URI ailgyfeirio a ddefnyddiwyd yn y cais am awdurdodiad, neu wedi'i roi i gleient arall.
+        invalid_code_challenge_method: Rhaid i'r dull herio cod fod yn S256, nid oes cefnogaeth i'r plaen.
+        invalid_grant: Mae'r grant awdurdodi ar yr amod yn annilys, wedi dod i ben, wedi'i ddirymu, nid yw'n cyfateb i'r URI ailgyfeirio a ddefnyddiwyd yn y cais am awdurdodiad, neu wedi'i roi i gleient arall.
         invalid_redirect_uri: Nid yw'r uri ailgyfeirio a gynhwysir yn ddilys.
         invalid_request:
           missing_param: 'Paramedr gofynnol ar goll: %{value}.'
@@ -135,6 +136,7 @@ cy:
         media: Atodiadau cyfryngau
         mutes: Anwybyddiadau
         notifications: Hysbysiadau
+        profile: Eich proffil Mastodon
         push: Hysbysiadau gwthiadwy
         reports: Adroddiadau
         search: Chwilio
@@ -165,6 +167,7 @@ cy:
       admin:write:reports: cyflawni camau cymedroli ar adroddiadau
       crypto: defnyddio amgryptio ben i ben
       follow: addasu perthnasau cyfrif
+      profile: darllen dim ond gwybodaeth proffil eich cyfrif
       push: derbyn eich hysbysiadau gwthiadwy
       read: darllen holl ddata eich cyfrif
       read:accounts: gweld gwybodaeth y cyfrif

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UnblockService, type: :service do
+RSpec.describe UnblockService do
   subject { described_class.new }
 
   let(:sender) { Fabricate(:account, username: 'alice') }
@@ -10,13 +10,13 @@ RSpec.describe UnblockService, type: :service do
   describe 'local' do
     let(:bob) { Fabricate(:account) }
 
-    before do
-      sender.block!(bob)
-      subject.call(sender, bob)
-    end
+    before { sender.block!(bob) }
 
     it 'destroys the blocking relation' do
-      expect(sender.blocking?(bob)).to be false
+      subject.call(sender, bob)
+
+      expect(sender)
+        .to_not be_blocking(bob)
     end
   end
 
@@ -26,15 +26,15 @@ RSpec.describe UnblockService, type: :service do
     before do
       sender.block!(bob)
       stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
+    end
+
+    it 'destroys the blocking relation and sends unblock activity', :inline_jobs do
       subject.call(sender, bob)
-    end
 
-    it 'destroys the blocking relation' do
-      expect(sender.blocking?(bob)).to be false
-    end
-
-    it 'sends an unblock activity' do
-      expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
+      expect(sender)
+        .to_not be_blocking(bob)
+      expect(a_request(:post, 'http://example.com/inbox'))
+        .to have_been_made.once
     end
   end
 end

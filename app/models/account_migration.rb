@@ -25,13 +25,19 @@ class AccountMigration < ApplicationRecord
   before_validation :set_target_account
   before_validation :set_followers_count
 
+  normalizes :acct, with: ->(acct) { acct.strip.delete_prefix('@') }
+
   validates :acct, presence: true, domain: { acct: true }
   validate :validate_migration_cooldown
   validate :validate_target_account
 
-  scope :within_cooldown, ->(now = Time.now.utc) { where(arel_table[:created_at].gteq(now - COOLDOWN_PERIOD)) }
+  scope :within_cooldown, -> { where(created_at: cooldown_duration_ago..) }
 
   attr_accessor :current_password, :current_username
+
+  def self.cooldown_duration_ago
+    Time.current - COOLDOWN_PERIOD
+  end
 
   def save_with_challenge(current_user)
     if current_user.encrypted_password.present?
@@ -49,10 +55,6 @@ class AccountMigration < ApplicationRecord
 
   def cooldown_at
     created_at + COOLDOWN_PERIOD
-  end
-
-  def acct=(val)
-    super(val.to_s.strip.gsub(/\A@/, ''))
   end
 
   private

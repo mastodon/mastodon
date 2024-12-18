@@ -1,3 +1,4 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { connect } from 'react-redux';
 
 import {
@@ -12,10 +13,15 @@ import {
 
 import Search from '../components/search';
 
+const getRecentSearches = createSelector(
+  state => state.getIn(['search', 'recent']),
+  recent => recent.reverse(),
+);
+
 const mapStateToProps = state => ({
   value: state.getIn(['search', 'value']),
   submitted: state.getIn(['search', 'submitted']),
-  recent: state.getIn(['search', 'recent']).reverse(),
+  recent: getRecentSearches(state),
 });
 
 const mapDispatchToProps = dispatch => ({

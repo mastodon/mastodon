@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-describe ActivityPub::NoteSerializer do
-  subject { JSON.parse(@serialization.to_json) }
+RSpec.describe ActivityPub::NoteSerializer do
+  subject { serialized_record_json(parent, described_class, adapter: ActivityPub::Adapter) }
 
   let!(:account) { Fabricate(:account) }
   let!(:other) { Fabricate(:account) }
@@ -13,10 +13,6 @@ describe ActivityPub::NoteSerializer do
   let!(:reply_by_other_first) { Fabricate(:status, account: other, thread: parent, visibility: :public) }
   let!(:reply_by_account_third) { Fabricate(:status, account: account, thread: parent, visibility: :public) }
   let!(:reply_by_account_visibility_direct) { Fabricate(:status, account: account, thread: parent, visibility: :direct) }
-
-  before(:each) do
-    @serialization = ActiveModelSerializers::SerializableResource.new(parent, serializer: described_class, adapter: ActivityPub::Adapter)
-  end
 
   it 'has the expected shape' do
     expect(subject).to include({

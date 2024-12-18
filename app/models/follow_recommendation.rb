@@ -10,6 +10,8 @@
 #
 
 class FollowRecommendation < ApplicationRecord
+  include DatabaseViewRecord
+
   self.primary_key = :account_id
   self.table_name = :global_follow_recommendations
 
@@ -17,12 +19,4 @@ class FollowRecommendation < ApplicationRecord
   belongs_to :account
 
   scope :localized, ->(locale) { joins(:account_summary).merge(AccountSummary.localized(locale)) }
-
-  def self.refresh
-    Scenic.database.refresh_materialized_view(table_name, concurrently: false, cascade: false)
-  end
-
-  def readonly?
-    true
-  end
 end

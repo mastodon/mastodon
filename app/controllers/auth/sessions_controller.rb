@@ -7,24 +7,17 @@ class Auth::SessionsController < Devise::SessionsController
 
   layout 'auth'
 
+  skip_before_action :check_self_destruct!
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :require_functional!
   skip_before_action :update_user_sign_in
 
   prepend_before_action :check_suspicious!, only: [:create]
 
-  include TwoFactorAuthenticationConcern
-
-  before_action :set_instance_presenter, only: [:new]
-  before_action :set_body_classes
+  include Auth::TwoFactorAuthenticationConcern
 
   content_security_policy only: :new do |p|
     p.form_action(false)
-  end
-
-  def check_suspicious!
-    user = find_user
-    @login_is_suspicious = suspicious_sign_in?(user) unless user.nil?
   end
 
   def create
@@ -103,12 +96,9 @@ class Auth::SessionsController < Devise::SessionsController
 
   private
 
-  def set_instance_presenter
-    @instance_presenter = InstancePresenter.new
-  end
-
-  def set_body_classes
-    @body_classes = 'lighter'
+  def check_suspicious!
+    user = find_user
+    @login_is_suspicious = suspicious_sign_in?(user) unless user.nil?
   end
 
   def home_paths(resource)
@@ -185,9 +175,27 @@ class Auth::SessionsController < Devise::SessionsController
       ip: request.remote_ip,
       user_agent: request.user_agent
     )
+
+    # Only send a notification email every hour at most
+    return if redis.get("2fa_failure_notification:#{user.id}").present?
+
+    redis.set("2fa_failure_notification:#{user.id}", '1', ex: 1.hour)
+
+    UserMailer.failed_2fa(user, request.remote_ip, request.user_agent, Time.now.utc).deliver_later!
   end
 
   def second_factor_attempts_key(user)
     "2fa_auth_attempts:#{user.id}:#{Time.now.utc.hour}"
+  end
+
+  def respond_to_on_destroy
+    respond_to do |format|
+      format.json do
+        render json: {
+          redirect_to: after_sign_out_path_for(resource_name),
+        }, status: 200
+      end
+      format.all { super }
+    end
   end
 end

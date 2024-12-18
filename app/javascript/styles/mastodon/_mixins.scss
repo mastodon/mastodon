@@ -1,27 +1,15 @@
-@mixin avatar-radius {
-  border-radius: 4px;
-  background: transparent no-repeat;
-  background-position: 50%;
-  background-clip: padding-box;
-}
-
-@mixin avatar-size($size: 48px) {
-  width: $size;
-  height: $size;
-  background-size: $size $size;
-}
-
 @mixin search-input {
   outline: 0;
   box-sizing: border-box;
   width: 100%;
-  border: 0;
   box-shadow: none;
   font-family: inherit;
   background: $ui-base-color;
   color: $darker-text-color;
   border-radius: 4px;
-  font-size: 14px;
+  border: 1px solid var(--background-border-color);
+  font-size: 17px;
+  line-height: normal;
   margin: 0;
 }
 

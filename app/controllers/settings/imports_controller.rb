@@ -31,7 +31,7 @@ class Settings::ImportsController < Settings::BaseController
   def show; end
 
   def failures
-    @bulk_import = current_account.bulk_imports.where(state: :finished).find(params[:id])
+    @bulk_import = current_account.bulk_imports.state_finished.find(params[:id])
 
     respond_to do |format|
       format.csv do
@@ -92,7 +92,7 @@ class Settings::ImportsController < Settings::BaseController
   end
 
   def set_bulk_import
-    @bulk_import = current_account.bulk_imports.where(state: :unconfirmed).find(params[:id])
+    @bulk_import = current_account.bulk_imports.state_unconfirmed.find(params[:id])
   end
 
   def set_recent_imports

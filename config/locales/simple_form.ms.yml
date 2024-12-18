@@ -6,10 +6,10 @@ ms:
         discoverable: Siaran awam dan profil anda mungkin dipaparkan atau disyorkan dalam pelbagai kawasan Mastodon dan profil anda mungkin dicadangkan kepada pengguna lain.
         display_name: Nama penuh anda atau nama anda yang menyeronokkan.
         fields: Halaman utama anda, kata ganti nama, umur, apa sahaja yang anda mahukan.
-        indexable: Pos awam anda mungkin muncul dalam hasil carian di Mastodon. Orang yang telah berinteraksi dengan pos anda mungkin boleh mencarinya tanpa mengira.
+        indexable: Kiriman awam anda mungkin muncul dalam hasil carian di Mastodon. Orang yang telah berinteraksi dengan kiriman anda mungkin boleh mencarinya.
         note: 'Anda boleh @menyebut orang lain atau #hashtags.'
-        show_collections: Orang akan dapat menyemak imbas mengikut dan pengikut anda. Orang yang anda ikuti akan melihat bahawa anda mengikuti mereka tanpa mengira.
-        unlocked: Orang akan dapat mengikuti anda tanpa meminta kelulusan. Nyahtanda jika anda ingin menyemak permintaan ikuti dan pilih sama ada untuk menerima atau menolak pengikut baharu.
+        show_collections: Orang akan dapat menyemak imbas ikutan dan pengikut anda. Orang yang anda ikuti akan melihat bahawa anda tetap mengikuti mereka.
+        unlocked: Orang akan dapat mengikuti anda tanpa meminta kelulusan. Nyahtanda jika anda ingin menyemak permintaan ikutan dan pilih sama ada untuk menerima atau menolak pengikut baharu.
       account_alias:
         acct: Tentukan namapengguna@domain akaun yang ingin anda alihkan daripada
       account_migration:
@@ -39,14 +39,12 @@ ms:
         text: Anda boleh membuat rayuan terhadap pelanggaran sekali sahaja
       defaults:
         autofollow: Orang yang mendaftar melalui undangan akan mengikuti anda secara automatik
-        avatar: PNG, GIF atau JPG. Kebanyakannya %{size}. Saiz akan dikecilkan kepada %{dimensions}px
         bot: Memberi isyarat kepada orang lain bahawa akaun itu kebanyakannya melakukan tindakan automatik dan mungkin tidak dipantau
         context: Satu atau berbilang konteks di mana penapis harus digunakan
         current_password: Untuk tujuan keselamatan sila masukkan kata laluan akaun semasa
         current_username: Untuk mengesahkan, sila masukkan nama pengguna akaun semasa
         digest: Hanya dihantar selepas tempoh yang lama tidak aktif dan hanya jika anda telah menerima sebarang mesej peribadi semasa ketiadaan anda
         email: Anda akan dihantar e-mel pengesahan
-        header: PNG, GIF atau JPG. Paling banyak %{size}. Akan diturunkan skala kepada %{dimensions}px
         inbox_url: Salin URL dari muka depan geganti yang anda mahu gunakan
         irreversible: Siaran yang ditapis akan hilang secara tidak dapat dipulihkan, walaupun penapis dialih keluar kemudian
         locale: Bahasa untuk antara muka pengguna, e-mel dan pemberitahuan segera
@@ -77,13 +75,10 @@ ms:
           warn: Sembunyikan kandungan yang ditapis di sebalik amaran yang menyebut tajuk penapis
       form_admin_settings:
         activity_api_enabled: Kiraan siaran tempatan yang diterbitkan, pengguna aktif dan pendaftaran baharu dalam baldi mingguan
-        backups_retention_period: Simpan arkib pengguna yang dijana untuk bilangan hari yang ditentukan.
         bootstrap_timeline_accounts: Akaun ini akan disematkan pada bahagian atas cadangan ikutan pengguna baharu.
         closed_registrations_message: Dipaparkan semasa pendaftaran ditutup
-        content_cache_retention_period: Semua pos dan rangsangan daripada server lain akan dipadamkan selepas bilangan hari yang ditentukan. Sesetengah siaran mungkin tidak boleh dipulihkan. Semua penanda halaman, kegemaran dan rangsangan yang berkaitan juga akan hilang dan mustahil untuk dibuat asal.
         custom_css: Anda boleh menggunakan gaya tersuai pada versi web Mastodon.
         mascot: Mengatasi ilustrasi dalam antara muka web lanjutan.
-        media_cache_retention_period: Fail media yang dimuat turun akan dipadamkan selepas bilangan hari yang ditetapkan apabila ditetapkan kepada nilai positif dan dimuat turun semula atas permintaan.
         peers_api_enabled: Senarai nama domain yang pernah ditemui oleh server ini dalam fediverse. Tiada data disertakan di sini tentang sama ada anda bersekutu dengan server tertentu, cuma server anda mengetahuinya. Ini digunakan oleh perkhidmatan yang mengumpul statistik mengenai persekutuan dalam pengertian umum.
         profile_directory: Direktori profil menyenaraikan semua pengguna yang telah mengikut serta untuk ditemui.
         require_invite_text: Apabila pendaftaran memerlukan kelulusan manual, buat "Mengapa anda mahu menyertai?" input teks wajib dan bukannya pilihan
@@ -127,7 +122,6 @@ ms:
         name: Anda hanya boleh menukar selongsong huruf, sebagai contoh, untuk menjadikannya lebih mudah dibaca
       user:
         chosen_languages: Apabila disemak, hanya siaran dalam bahasa terpilih akan dipaparkan dalam garis masa awam
-        role: Peranan mengawal kebenaran yang dimiliki oleh pengguna
       user_role:
         color: Warna yang akan digunakan untuk peranan ini dalam seluruh UI, sebagai RGB dalam format hex
         highlighted: Ini menjadikan peranan ini dipaparkan secara umum
@@ -144,7 +138,7 @@ ms:
         fields:
           name: Label
           value: Kandungan
-        indexable: Sertakan pos awam dalam hasil carian
+        indexable: Termasuk kiriman awam dalam hasil carian
         show_collections: Tunjukkan ikutan dan pengikut pada profil
         unlocked: Terima pengikut baharu secara automatik
       account_alias:
@@ -242,7 +236,6 @@ ms:
         backups_retention_period: Tempoh pengekalan arkib pengguna
         bootstrap_timeline_accounts: Sentiasa mengesyorkan akaun ini kepada pengguna baharu
         closed_registrations_message: Mesej tersuai apabila pendaftaran tidak tersedia
-        content_cache_retention_period: Tempoh pengekalan cache kandungan
         custom_css: CSS tersuai
         mascot: Maskot tersuai (warisan)
         media_cache_retention_period: Tempoh pengekalan cache media
@@ -291,6 +284,12 @@ ms:
         pending_account: Akaun baru memerlukan semakan
         reblog: Seorang menggalakan hantaran anda
         report: Laporan baru telah dihantar
+        software_updates:
+          all: Beritahu mengenai semua kemas kini
+          critical: Beritahu mengenai kemas kini kritikal sahaja
+          label: Versi baharu Mastodon kini tersedia
+          none: Tidak pernah memberitahu mengenai kemas kini (tidak disarankan)
+          patch: Beritahu mengenai kemas kini pembetulan pepijat
         trending_tag: Trend baru memerlukan semakan
       rule:
         text: Peraturan
@@ -301,7 +300,6 @@ ms:
         listable: Benarkan hashtag ini muncul dalam carian dan cadangan
         name: Tanda pagar
         trendable: Benarkan hashtag ini muncul di bawah aliran
-        usable: Benarkan siaran untuk menggunakan tanda pagar ini
       user:
         role: Peranan
         time_zone: Zon masa
@@ -317,6 +315,7 @@ ms:
         url: URL titik akhir
     'no': Tidak
     not_recommended: Tidak disyorkan
+    overridden: Ditindih
     recommended: Disyorkan
     required:
       mark: "*"

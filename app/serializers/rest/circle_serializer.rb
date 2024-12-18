@@ -6,4 +6,13 @@ class REST::CircleSerializer < ActiveModel::Serializer
   def id
     object.id.to_s
   end
+
+  def list
+    return nil unless object.list
+
+    {
+      id: object.list.id.to_s,
+      title: object.list.title,
+    }
+  end
 end
