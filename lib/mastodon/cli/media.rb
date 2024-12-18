@@ -172,33 +172,18 @@ module Mastodon::CLI
 
           objects.each do |object|
             path_segments = object.key.split('/')
-            path_segments.delete('cache')
-
-            unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
-              progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
-              next
-            end
-
-            model_name      = path_segments.first.classify
-            attachment_name = path_segments[1].singularize
-            record_id      = path_segments[2...-2].join.to_i
-            file_name      = path_segments.last
-            record         = record_map.dig(model_name, record_id)
-            attachment     = record&.public_send(attachment_name)
-
             progress.increment
-
-            next unless attachment.blank? || !attachment.variant?(file_name)
-
+            next unless orphaned_file?(path_segments)            
             begin
               object.destroy unless dry_run?
               reclaimed_bytes += object.content_length
               removed += 1
-
               progress.log("Found and removed orphan: #{object.key}")
             rescue => e
               progress.log(pastel.red("Error processing #{object.key}: #{e}"))
             end
+          rescue UnrecognizedOrphanType
+            progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
           end
         end
       when :azure
