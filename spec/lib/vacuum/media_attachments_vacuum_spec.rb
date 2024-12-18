@@ -17,9 +17,9 @@ RSpec.describe Vacuum::MediaAttachmentsVacuum do
     let!(:old_unattached_media) { Fabricate(:media_attachment, account_id: nil, created_at: 10.days.ago) }
     let!(:new_unattached_media) { Fabricate(:media_attachment, account_id: nil, created_at: 1.hour.ago) }
 
-    before { subject.perform }
-
     it 'handles attachments based on metadata details' do
+      subject.perform
+
       expect(old_remote_media.reload.file) # Remote and past retention period
         .to be_blank
       expect(old_local_media.reload.file) # Local and past retention

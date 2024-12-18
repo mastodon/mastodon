@@ -38,25 +38,34 @@
 
   %p.lead= t('author_attribution.hint_html')
 
-  .fields-row
-    .fields-row__column.fields-row__column-6
-      .fields-group
-        = f.input :attribution_domains_as_text, as: :text, wrapper: :with_block_label, input_html: { placeholder: "example1.com\nexample2.com\nexample3.com", rows: 4 }
-    .fields-row__column.fields-row__column-6
-      .fields-group.fade-out-top
-        %div
-          .status-card.expanded.bottomless
-            .status-card__image
-              = image_tag frontend_asset_url('images/preview.png'), alt: '', class: 'status-card__image-image'
-            .status-card__content
-              %span.status-card__host
-                %span= t('author_attribution.s_blog', name: display_name(@account))
-                ·
-                %time.time-ago{ datetime: 1.year.ago.to_date.iso8601 }
-              %strong.status-card__title= t('author_attribution.example_title')
-          .more-from-author
-            = logo_as_symbol(:icon)
-            = t('author_attribution.more_from_html', name: link_to(root_url, class: 'story__details__shared__author-link') { image_tag(@account.avatar.url, class: 'account__avatar', width: 16, height: 16, alt: '') + tag.bdi(display_name(@account)) })
+  .fields-group.fade-out-top
+    %div
+      .status-card.expanded.bottomless
+        .status-card__image
+          = image_tag frontend_asset_url('images/preview.png'), alt: '', class: 'status-card__image-image'
+        .status-card__content
+          %span.status-card__host
+            %span= t('author_attribution.s_blog', name: display_name(@account))
+            ·
+            %time.time-ago{ datetime: 1.year.ago.to_date.iso8601 }
+          %strong.status-card__title= t('author_attribution.example_title')
+      .more-from-author
+        = logo_as_symbol(:icon)
+        = t('author_attribution.more_from_html', name: link_to(root_url, class: 'story__details__shared__author-link') { image_tag(@account.avatar.url, class: 'account__avatar', width: 16, height: 16, alt: '') + tag.bdi(display_name(@account)) })
+
+  %h4= t('verification.here_is_how')
+
+  %p.lead= t('author_attribution.instructions')
+
+  .input-copy.lead
+    .input-copy__wrapper
+      = copyable_input value: tag.meta(name: 'fediverse:creator', content: "@#{@account.local_username_and_domain}")
+    %button{ type: :button }= t('generic.copy')
+
+  %p.lead= t('author_attribution.then_instructions')
+
+  .fields-group
+    = f.input :attribution_domains_as_text, as: :text, wrapper: :with_block_label, input_html: { placeholder: "example1.com\nexample2.com\nexample3.com", rows: 4, autocapitalize: 'none', autocorrect: 'off' }
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

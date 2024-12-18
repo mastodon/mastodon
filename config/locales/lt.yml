@@ -593,7 +593,7 @@ lt:
       no_status_selected: Jokie įrašai nebuvo pakeisti, nes nė vienas buvo pasirinktas
       open: Atidaryti įrašą
       original_status: Originalus įrašas
-      title: Paskyros statusai
+      title: Paskyros įrašai
       trending: Tendencinga
       with_media: Su medija
     system_checks:
@@ -817,9 +817,11 @@ lt:
       view_strikes: Peržiūrėti ankstesnius savo paskyros pažeidimus
   author_attribution:
     example_title: Teksto pavyzdys
-    hint_html: Valdyk, kaip esi nurodomas (-a), kai nuorodos bendrinamos platformoje „Mastodon“.
+    hint_html: Ar rašote naujienas ar tinklaraščio straipsnius už „Mastodon“ ribų? Valdykite, kaip būsite nurodomi, kai jais bus bendrinama platformoje „Mastodon“.
+    instructions: 'Įsitikinkite, kad šis kodas yra jūsų straipsnio HTML:'
     more_from_html: Daugiau iš %{name}
     s_blog: "%{name} tinklaraštis"
+    then_instructions: Tada toliau esančiame lauke įrašykite leidinio domeno vardą.
     title: Autoriaus (-ės) atribucija
   challenge:
     hint_html: "<strong>Patarimas:</strong> artimiausią valandą daugiau neprašysime tavo slaptažodžio."
@@ -919,6 +921,9 @@ lt:
       merge_long: Išsaugoti esančius įrašus ir pridėti naujus
       overwrite: Perrašyti
       overwrite_long: Pakeisti senus įrašus naujais
+    overwrite_preambles:
+      blocking_html: Ketinate <strong>pakeisti savo blokavimo sąrašą</strong> iki <strong>%{total_items} paskyrų</strong> iš <strong>%{filename}</strong>.
+      bookmarks_html: Ketinate <strong>pakeisti savo žymes</strong> iki <strong>%{total_items} įrašų</strong> iš <strong>%{filename}</strong>.
     preface: Gali importuoti duomenis, kuriuos eksportavai iš kito serverio, pavyzdžiui, sekamų arba blokuojamų žmonių sąrašą.
     success: Jūsų informacija sėkmingai įkelta ir bus apdorota kaip įmanoma greičiau
     types:

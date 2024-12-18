@@ -21,7 +21,6 @@ import {
   unmountNotifications,
   refreshStaleNotificationGroups,
   pollRecentNotifications,
-  shouldGroupNotificationType,
 } from 'mastodon/actions/notification_groups';
 import {
   disconnectTimeline,
@@ -30,6 +29,7 @@ import {
 import type {
   ApiNotificationJSON,
   ApiNotificationGroupJSON,
+  NotificationType,
 } from 'mastodon/api_types/notifications';
 import { compareId } from 'mastodon/compare_id';
 import { usePendingItems } from 'mastodon/initial_state';
@@ -205,8 +205,9 @@ function mergeGapsAround(
 function processNewNotification(
   groups: NotificationGroupsState['groups'],
   notification: ApiNotificationJSON,
+  groupedTypes: NotificationType[],
 ) {
-  if (!shouldGroupNotificationType(notification.type)) {
+  if (!groupedTypes.includes(notification.type)) {
     notification = {
       ...notification,
       group_key: `ungrouped-${notification.id}`,
@@ -476,11 +477,13 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
         trimNotifications(state);
       })
       .addCase(processNewNotificationForGroups.fulfilled, (state, action) => {
-        const notification = action.payload;
-        if (notification) {
+        if (action.payload) {
+          const { notification, groupedTypes } = action.payload;
+
           processNewNotification(
             usePendingItems ? state.pendingGroups : state.groups,
             notification,
+            groupedTypes,
           );
           updateLastReadId(state);
           trimNotifications(state);
@@ -531,10 +534,13 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
             if (existingGroupIndex > -1) {
               const existingGroup = state.groups[existingGroupIndex];
               if (existingGroup && existingGroup.type !== 'gap') {
-                group.notifications_count += existingGroup.notifications_count;
-                group.sampleAccountIds = group.sampleAccountIds
-                  .concat(existingGroup.sampleAccountIds)
-                  .slice(0, NOTIFICATIONS_GROUP_MAX_AVATARS);
+                if (group.partial) {
+                  group.notifications_count +=
+                    existingGroup.notifications_count;
+                  group.sampleAccountIds = group.sampleAccountIds
+                    .concat(existingGroup.sampleAccountIds)
+                    .slice(0, NOTIFICATIONS_GROUP_MAX_AVATARS);
+                }
                 state.groups.splice(existingGroupIndex, 1);
               }
             }
@@ -559,7 +565,10 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
           compareId(state.lastReadId, mostRecentGroup.page_max_id) < 0
         )
           state.lastReadId = mostRecentGroup.page_max_id;
-        commitLastReadId(state);
+
+        // We don't call `commitLastReadId`, because that is conditional
+        // and we want to unconditionally update the state instead.
+        state.readMarkerId = state.lastReadId;
       })
       .addCase(fetchMarkers.fulfilled, (state, action) => {
         if (

@@ -2,6 +2,90 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.2] - 2024-12-03
+
+### Added
+
+- Add `tootctl feeds vacuum` (#33065 by @ClearlyClaire)
+- Add error message when user tries to follow their own account (#31910 by @lenikadali)
+- Add client_secret_expires_at to OAuth Applications (#30317 by @ThisIsMissEm)
+
+### Changed
+
+- Change design of Content Warnings and filters (#32543 by @ClearlyClaire)
+
+### Fixed
+
+- Fix processing incoming post edits with mentions to unresolvable accounts (#33129 by @ClearlyClaire)
+- Fix error when including multiple instances of `embed.js` (#33107 by @YKWeyer)
+- Fix inactive users' timelines being backfilled on follow and unsuspend (#33094 by @ClearlyClaire)
+- Fix direct inbox delivery pushing posts into inactive followers' timelines (#33067 by @ClearlyClaire)
+- Fix `TagFollow` records not being correctly handled in account operations (#33063 by @ClearlyClaire)
+- Fix pushing hashtag-followed posts to feeds of inactive users (#33018 by @Gargron)
+- Fix duplicate notifications in notification groups when using slow mode (#33014 by @ClearlyClaire)
+- Fix posts made in the future being allowed to trend (#32996 by @ClearlyClaire)
+- Fix uploading higher-than-wide GIF profile picture with libvips enabled (#32911 by @ClearlyClaire)
+- Fix domain attribution field having autocorrect and autocapitalize enabled (#32903 by @ClearlyClaire)
+- Fix titles being escaped twice (#32889 by @ClearlyClaire)
+- Fix list creation limit check (#32869 by @ClearlyClaire)
+- Fix error in `tootctl email_domain_blocks` when supplying `--with-dns-records` (#32863 by @mjankowski)
+- Fix `min_id` and `max_id` causing error in search API (#32857 by @Gargron)
+- Fix inefficiencies when processing removal of posts that use featured tags (#32787 by @ClearlyClaire)
+- Fix alt-text pop-in not using the translated description (#32766 by @ClearlyClaire)
+- Fix preview cards with long titles erroneously causing layout changes (#32678 by @ClearlyClaire)
+- Fix embed modal layout on mobile (#32641 by @DismalShadowX)
+- Fix and improve batch attachment deletion handling when using OpenStack Swift (#32637 by @hugogameiro)
+- Fix blocks not being applied on link timeline (#32625 by @tribela)
+- Fix follow counters being incorrectly changed (#32622 by @oneiros)
+- Fix 'unknown' media attachment type rendering (#32613 and #32713 by @ThisIsMissEm and @renatolond)
+- Fix tl language native name (#32606 by @seav)
+
+### Security
+
+- Update dependencies
+
+## [4.3.1] - 2024-10-21
+
+### Added
+
+- Add more explicit explanations about author attribution and `fediverse:creator` (#32383 by @ClearlyClaire)
+- Add ability to group follow notifications in WebUI, can be disabled in the column settings (#32520 by @renchap)
+- Add back a 6 hours mute duration option (#32522 by @renchap)
+- Add note about not changing ActiveRecord encryption secrets once they are set (#32413, #32476, #32512, and #32537 by @ClearlyClaire and @mjankowski)
+
+### Changed
+
+- Change translation feature to translate to selected regional variant (e.g. pt-BR) if available (#32428 by @c960657)
+
+### Removed
+
+- Remove ability to get embed code for remote posts (#32578 by @ClearlyClaire)\
+  Getting the embed code is only reliable for local posts.\
+  It never worked for non-Mastodon servers, and stopped working correctly with the changes made in 4.3.0.\
+  We have therefore decided to remove the menu entry while we investigate solutions.
+
+### Fixed
+
+- Fix follow recommendation moderation page default language when using regional variant (#32580 by @ClearlyClaire)
+- Fix column-settings spacing in local timeline in advanced view (#32567 by @lindwurm)
+- Fix broken i18n in text welcome mailer tags area (#32571 by @mjankowski)
+- Fix missing or incorrect cache-control headers for Streaming server (#32551 by @ThisIsMissEm)
+- Fix only the first paragraph being displayed in some notifications (#32348 by @ClearlyClaire)
+- Fix reblog icons on account media view (#32506 by @tribela)
+- Fix Content-Security-Policy not allowing OpenStack SWIFT object storage URI (#32439 by @kenkiku1021)
+- Fix back arrow pointing to the incorrect direction in RTL languages (#32485 by @renchap)
+- Fix streaming server using `REDIS_USERNAME` instead of `REDIS_USER` (#32493 by @ThisIsMissEm)
+- Fix follow recommendation carrousel scrolling on RTL layouts (#32462 and #32505 by @ClearlyClaire)
+- Fix follow recommendation suppressions not applying immediately (#32392 by @ClearlyClaire)
+- Fix language of push notifications (#32415 by @ClearlyClaire)
+- Fix mute duration not being shown in list of muted accounts in web UI (#32388 by @ClearlyClaire)
+- Fix “Mark every notification as read” not updating the read marker if scrolled down (#32385 by @ClearlyClaire)
+- Fix “Mention” appearing for otherwise filtered posts (#32356 by @ClearlyClaire)
+- Fix notification requests from suspended accounts still being listed (#32354 by @ClearlyClaire)
+- Fix list edition modal styling (#32358 and #32367 by @ClearlyClaire and @vmstan)
+- Fix 4 columns barely not fitting on 1920px screen (#32361 by @ClearlyClaire)
+- Fix icon alignment in applications list (#32293 by @mjankowski)
+
 ## [4.3.0] - 2024-10-08
 
 The following changelog entries focus on changes visible to users, administrators, client developers or federated software developers, but there has also been a lot of code modernization, refactoring, and tooling work, in particular by @mjankowski.
@@ -67,7 +151,7 @@ The following changelog entries focus on changes visible to users, administrator
   ```html
   <meta name="fediverse:creator" content="username@domain" />
   ```
-  On the API side, this is represented by a new `authors` attribute to the `PreviewCard` entity: https://docs.joinmastodon.org/entities/PreviewCard/#authors\
+  On the API side, this is represented by a new `authors` attribute to the `PreviewCard` entity: https://docs.joinmastodon.org/entities/PreviewCard/#authors \
   Users can allow arbitrary domains to use `fediverse:creator` to credit them by visiting `/settings/verification`.\
   This is federated as a new `attributionDomains` property in the `http://joinmastodon.org/ns` namespace, containing an array of domain names: https://docs.joinmastodon.org/spec/activitypub/#properties-used-1
 - **Add in-app notifications for moderation actions and warnings** (#30065, #30082, and #30081 by @ClearlyClaire)\

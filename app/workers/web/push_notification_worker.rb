@@ -78,7 +78,7 @@ class Web::PushNotificationWorker
   end
 
   def push_notification_json
-    json = serialized_notification_in_subscription_locale.as_json
+    json = serialized_notification.as_json
 
     if @subscription.expo?
       json.delete :access_token
@@ -89,12 +89,8 @@ class Web::PushNotificationWorker
       json[:to] = @subscription.expo
     end
 
-    Oj.dump(json)
-  end
-
-  def serialized_notification_in_subscription_locale
     I18n.with_locale(@subscription.locale.presence || I18n.default_locale) do
-      serialized_notification
+      Oj.dump(json)
     end
   end
 

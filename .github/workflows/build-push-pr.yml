@@ -21,9 +21,11 @@ jobs:
         uses: actions/checkout@v4
       - id: version_vars
         run: |
-          echo mastodon_version_metadata=pr-${{ github.event.pull_request.number }}-$(git rev-parse --short HEAD) >> $GITHUB_OUTPUT
+          echo mastodon_version_metadata=pr-${{ github.event.pull_request.number }}-$(git rev-parse --short ${{github.event.pull_request.head.sha}}) >> $GITHUB_OUTPUT
+          echo mastodon_short_sha=$(git rev-parse --short ${{github.event.pull_request.head.sha}}) >> $GITHUB_OUTPUT
     outputs:
       metadata: ${{ steps.version_vars.outputs.mastodon_version_metadata }}
+      short_sha: ${{ steps.version_vars.outputs.mastodon_short_sha }}
 
   build-image:
     needs: compute-suffix
@@ -39,6 +41,7 @@ jobs:
         latest=auto
       tags: |
         type=ref,event=pr
+        type=ref,event=pr,suffix=-${{ needs.compute-suffix.outputs.short_sha }}
     secrets: inherit
 
   build-image-streaming:
@@ -55,4 +58,5 @@ jobs:
         latest=auto
       tags: |
         type=ref,event=pr
+        type=ref,event=pr,suffix=-${{ needs.compute-suffix.outputs.short_sha }}
     secrets: inherit

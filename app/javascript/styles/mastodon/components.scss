@@ -2781,6 +2781,7 @@ a.account__display-name {
       flex: 0 1 auto;
       display: flex;
       flex-direction: column;
+      contain: inline-size layout paint style;
 
       @media screen and (min-width: $no-gap-breakpoint) {
         max-width: 600px;
@@ -2885,7 +2886,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .column {
-  width: 400px;
+  width: clamp(380px, calc((100% - 350px) / 4), 400px);
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -4055,6 +4056,7 @@ $ui-header-logo-wordmark-width: 99px;
   overflow: hidden;
   border: 1px solid var(--background-border-color);
   border-radius: 8px;
+  contain: inline-size layout paint style;
 
   &.bottomless {
     border-radius: 8px 8px 0 0;
@@ -5832,6 +5834,7 @@ a.status-card {
   pointer-events: auto;
   user-select: text;
   display: flex;
+  max-width: 100vw;
 
   @media screen and (width <= $mobile-breakpoint) {
     margin-top: auto;
@@ -8009,79 +8012,23 @@ noscript {
   background: rgba($base-overlay-background, 0.5);
 }
 
+.list-adder,
 .list-editor {
-  background: $ui-base-color;
+  backdrop-filter: var(--background-filter);
+  background: var(--modal-background-color);
+  border: 1px solid var(--modal-border-color);
   flex-direction: column;
   border-radius: 8px;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
   width: 380px;
   overflow: hidden;
 
   @media screen and (width <= 420px) {
     width: 90%;
-  }
-
-  h4 {
-    padding: 15px 0;
-    background: lighten($ui-base-color, 13%);
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    border-radius: 8px 8px 0 0;
-  }
-
-  .drawer__pager {
-    height: 50vh;
-    border-radius: 4px;
-  }
-
-  .drawer__inner {
-    border-radius: 0 0 8px 8px;
-
-    &.backdrop {
-      width: calc(100% - 60px);
-      box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-      border-radius: 0 0 0 8px;
-    }
-  }
-
-  &__accounts {
-    overflow-y: auto;
-  }
-
-  .account__display-name {
-    &:hover strong {
-      text-decoration: none;
-    }
-  }
-
-  .account__avatar {
-    cursor: default;
-  }
-
-  .search {
-    margin-bottom: 0;
   }
 }
 
 .list-adder {
-  background: $ui-base-color;
-  flex-direction: column;
-  border-radius: 8px;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-  width: 380px;
-  overflow: hidden;
-
-  @media screen and (width <= 420px) {
-    width: 90%;
-  }
-
-  &__account {
-    background: lighten($ui-base-color, 13%);
-  }
-
   &__lists {
-    background: lighten($ui-base-color, 13%);
     height: 50vh;
     border-radius: 0 0 8px 8px;
     overflow-y: auto;
@@ -8102,6 +8049,52 @@ noscript {
     text-decoration: none;
     font-size: 16px;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
+
+.list-editor {
+  h4 {
+    padding: 15px 0;
+    background: lighten($ui-base-color, 13%);
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .drawer__pager {
+    height: 50vh;
+    border: 0;
+  }
+
+  .drawer__inner {
+    &.backdrop {
+      width: calc(100% - 60px);
+      box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+      border-radius: 0 0 0 8px;
+    }
+  }
+
+  &__accounts {
+    background: unset;
+    overflow-y: auto;
+  }
+
+  .account__display-name {
+    &:hover strong {
+      text-decoration: none;
+    }
+  }
+
+  .account__avatar {
+    cursor: default;
+  }
+
+  .search {
+    margin-bottom: 0;
   }
 }
 
@@ -11073,20 +11066,16 @@ noscript {
       color: $darker-text-color;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
-      max-height: 4 * 22px;
+      max-height: none;
       overflow: hidden;
-
-      p {
-        display: none;
-
-        &:first-child {
-          display: initial;
-        }
-      }
 
       p,
       a {
         color: inherit;
+      }
+
+      p {
+        margin-bottom: 8px;
       }
     }
 
@@ -11382,19 +11371,21 @@ noscript {
 }
 
 .content-warning {
+  display: block;
   box-sizing: border-box;
   background: rgba($ui-highlight-color, 0.05);
   color: $secondary-text-color;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  border-color: rgba($ui-highlight-color, 0.15);
+  border: 1px solid rgba($ui-highlight-color, 0.15);
+  border-radius: 8px;
   padding: 8px (5px + 8px);
   position: relative;
   font-size: 15px;
   line-height: 22px;
+  cursor: pointer;
 
   p {
     margin-bottom: 8px;
+    font-weight: 500;
   }
 
   .link-button {
@@ -11403,31 +11394,16 @@ noscript {
     font-weight: 500;
   }
 
-  &::before,
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    height: 100%;
-    background: url('../images/warning-stripes.svg') repeat-y;
-    width: 5px;
-    top: 0;
-  }
+  &--filter {
+    color: $darker-text-color;
 
-  &::before {
-    border-start-start-radius: 4px;
-    border-end-start-radius: 4px;
-    inset-inline-start: 0;
-  }
+    p {
+      font-weight: normal;
+    }
 
-  &::after {
-    border-start-end-radius: 4px;
-    border-end-end-radius: 4px;
-    inset-inline-end: 0;
-  }
-
-  &--filter::before,
-  &--filter::after {
-    background-image: url('../images/filter-stripes.svg');
+    .filter-name {
+      font-weight: 500;
+      color: $secondary-text-color;
+    }
   }
 }

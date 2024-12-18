@@ -546,6 +546,20 @@ ro:
     modes:
       overwrite: Suprascrie
       overwrite_long: Înlocuiţi înregistrările curente cu cele noi
+    overwrite_preambles:
+      blocking_html: Sunteți pe cale să <strong>înlocuiți lista cu conturi blocate</strong> cu până la <strong>%{total_items} conturi</strong> din <strong>%{filename}</strong>.
+      bookmarks_html: Sunteți pe cale să <strong>înlocuiți marcajele</strong> cu până la <strong>%{total_items} postări</strong> din <strong>%{filename}</strong>.
+      domain_blocking_html: Sunteți pe cale să <strong>înlocuiți lista cu domenii blocate</strong> cu până la <strong>%{total_items} domenii</strong> din <strong>%{filename}</strong>.
+      following_html: Sunteți pe cale să <strong>urmăriți</strong> până la <strong>%{total_items} conturi</strong> din <strong>%{filename}</strong> și să <strong>nu mai urmăriți pe altcineva</strong>.
+      lists_html: Sunteți pe cale să <strong>înlocuiți listele</strong> cu conținut din <strong>%{filename}</strong>. Până la <strong>%{total_items} conturi</strong> vor fi adăugate la listele noi.
+      muting_html: Sunteți pe cale să <strong>înlocuiți lista cu conturi amuțite</strong> cu până la <strong>%{total_items} conturi</strong> din <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Sunteți pe cale să <strong>blocați</strong> până la <strong>%{total_items} conturi</strong> din <strong>%{filename}</strong>.
+      bookmarks_html: Sunteți pe cale să adăugați până la <strong>%{total_items} postări</strong> din <strong>%{filename}</strong> în <strong>marcajele dvs</strong>.
+      domain_blocking_html: Sunteți pe cale să <strong>blocați</strong> până la <strong>%{total_items} domenii</strong> din <strong>%{filename}</strong>.
+      following_html: Sunteți pe cale să <strong>urmăriți</strong> până la <strong>%{total_items} conturi</strong> din <strong>%{filename}</strong>.
+      lists_html: Sunteți pe cale să adăugați până la <strong>%{total_items} conturi</strong> din <strong>%{filename}</strong> în <strong>listele dvs</strong>. Vor fi create liste noi dacă nu există nicio listă la care să adăugați.
+      muting_html: Sunteți pe cale să <strong>amuțiți</strong> până la <strong>%{total_items} conturi</strong> din <strong>%{filename}</strong>.
     preface: Puteți importa date pe care le-ați exportat de pe un alt server, cum ar fi o listă a persoanelor pe care le urmăriți sau blocați.
     success: Datele dvs. au fost încărcate cu succes și vor fi procesate acum în timp util
     types:
