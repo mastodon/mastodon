@@ -168,7 +168,6 @@ module Mastodon::CLI
           break if objects.empty?
 
           last_key = objects.last.key
-          record_map = preload_records_from_mixed_objects(objects)
 
           objects.each do |object|
             path_segments = object.key.split('/')
