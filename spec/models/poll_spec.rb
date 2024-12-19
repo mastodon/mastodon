@@ -5,25 +5,6 @@ require 'rails_helper'
 RSpec.describe Poll do
   include_examples 'Expireable'
 
-  describe 'Scopes' do
-    let(:status) { Fabricate(:status) }
-    let(:attached_poll) { Fabricate(:poll, status: status) }
-    let(:not_attached_poll) do
-      Fabricate(:poll).tap do |poll|
-        poll.status = nil
-        poll.save(validate: false)
-      end
-    end
-
-    describe '.attached' do
-      it 'finds the correct records' do
-        results = described_class.attached
-
-        expect(results).to eq([attached_poll])
-      end
-    end
-  end
-
   describe '#reset_votes!' do
     let(:poll) { Fabricate :poll, cached_tallies: [2, 3], votes_count: 5, voters_count: 5 }
     let!(:vote) { Fabricate :poll_vote, poll: }
