@@ -5,6 +5,14 @@ require 'rails_helper'
 RSpec.describe 'Accounts show response' do
   let(:account) { Fabricate(:account) }
 
+  context 'with numeric-based identifiers' do
+    it 'returns http success' do
+      get "/ap/users/#{account.id}"
+
+      expect(response).to have_http_status(200)
+    end
+  end
+
   context 'with an unapproved account' do
     before { account.user.update(approved: false) }
 

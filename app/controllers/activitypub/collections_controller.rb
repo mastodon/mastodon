@@ -49,7 +49,7 @@ class ActivityPub::CollectionsController < ActivityPub::BaseController
 
   def collection_presenter
     ActivityPub::CollectionPresenter.new(
-      id: account_collection_url(@account, params[:id]),
+      id: ActivityPub::TagManager.instance.collection_uri_for(@account, params[:id]),
       type: @type,
       size: @size,
       items: @items
