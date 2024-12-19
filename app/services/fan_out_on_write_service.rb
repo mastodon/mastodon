@@ -63,6 +63,7 @@ class FanOutOnWriteService < BaseService
   def fan_out_to_public_streams!
     broadcast_to_hashtag_streams!
     broadcast_to_public_streams!
+    broadcast_to_profile_streams!
   end
 
   def deliver_to_self!
@@ -143,6 +144,10 @@ class FanOutOnWriteService < BaseService
       redis.publish('timeline:public:media', anonymous_payload)
       redis.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', anonymous_payload)
     end
+  end
+
+  def broadcast_to_profile_streams!
+    redis.publish("timeline:profile:#{@status.account_id}:public", anonymous_payload)
   end
 
   def deliver_to_conversation!

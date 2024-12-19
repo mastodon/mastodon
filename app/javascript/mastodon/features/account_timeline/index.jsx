@@ -7,20 +7,19 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { lookupAccount, fetchAccount } from 'mastodon/actions/accounts';
+import { fetchFeaturedTags } from 'mastodon/actions/featured_tags';
+import { connectProfileStream } from 'mastodon/actions/streaming';
+import { expandAccountFeaturedTimeline, expandAccountTimeline } from 'mastodon/actions/timelines';
+import { ColumnBackButton } from 'mastodon/components/column_back_button';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+import StatusList from 'mastodon/components/status_list';
 import { TimelineHint } from 'mastodon/components/timeline_hint';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
-import { me } from 'mastodon/initial_state';
+import Column from 'mastodon/features/ui/components/column';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 import { getAccountHidden } from 'mastodon/selectors';
 import { useAppSelector } from 'mastodon/store';
-
-import { lookupAccount, fetchAccount } from '../../actions/accounts';
-import { fetchFeaturedTags } from '../../actions/featured_tags';
-import { expandAccountFeaturedTimeline, expandAccountTimeline, connectTimeline, disconnectTimeline } from '../../actions/timelines';
-import { ColumnBackButton } from '../../components/column_back_button';
-import { LoadingIndicator } from '../../components/loading_indicator';
-import StatusList from '../../components/status_list';
-import Column from '../ui/components/column';
 
 import { LimitedAccountHint } from './components/limited_account_hint';
 import HeaderContainer from './containers/header_container';
@@ -114,9 +113,12 @@ class AccountTimeline extends ImmutablePureComponent {
     dispatch(fetchFeaturedTags(accountId));
     dispatch(expandAccountTimeline(accountId, { withReplies, tagged }));
 
-    if (accountId === me) {
-      dispatch(connectTimeline(`account:${me}`));
+    if (this.disconnect) {
+      this.disconnect();
+      this.disconnect = null;
     }
+
+    this.disconnect = dispatch(connectProfileStream(accountId));
   }
 
   componentDidMount () {
@@ -142,17 +144,12 @@ class AccountTimeline extends ImmutablePureComponent {
       }
       dispatch(expandAccountTimeline(accountId, { withReplies, tagged }));
     }
-
-    if (prevProps.accountId === me && accountId !== me) {
-      dispatch(disconnectTimeline({ timeline: `account:${me}` }));
-    }
   }
 
   componentWillUnmount () {
-    const { dispatch, accountId } = this.props;
-
-    if (accountId === me) {
-      dispatch(disconnectTimeline({ timeline: `account:${me}` }));
+    if (this.disconnect) {
+      this.disconnect();
+      this.disconnect = null;
     }
   }
 

@@ -195,3 +195,10 @@ export const connectDirectStream = () =>
  */
 export const connectListStream = listId =>
   connectTimelineStream(`list:${listId}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId) });
+
+/**
+ * @param {string} accountId
+ * @returns {function(): void}
+ */
+export const connectProfileStream = accountId =>
+  connectTimelineStream(`account:${accountId}`, 'profile', { account_id: accountId });
