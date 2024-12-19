@@ -40,7 +40,6 @@ class Poll < ApplicationRecord
   validates_with PollValidator, on: :create, if: :local?
 
   scope :attached, -> { where.not(status_id: nil) }
-  scope :unattached, -> { where(status_id: nil) }
 
   before_validation :prepare_options, if: :local?
   before_validation :prepare_votes_count
