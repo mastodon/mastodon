@@ -86,10 +86,7 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
     def call(env)
       span = OpenTelemetry::Trace.current_span
 
-      unless span.recording?
-        @app.call(env)
-        return
-      end
+      return @app.call(env) unless span.recording?
 
       span_id = span.context.hex_span_id
       trace_id = span.context.hex_trace_id
