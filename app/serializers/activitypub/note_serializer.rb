@@ -3,12 +3,11 @@
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
   include FormattingHelper
 
-  context_extensions :atom_uri, :conversation, :sensitive, :voters_count
+  context_extensions :conversation, :sensitive, :voters_count
 
   attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
-             :atom_uri, :in_reply_to_atom_uri,
              :conversation
 
   attribute :content
@@ -132,18 +131,6 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   def virtual_tags
     object.active_mentions.to_a.sort_by(&:id) + object.tags + object.emojis
-  end
-
-  def atom_uri
-    return unless object.local?
-
-    OStatus::TagManager.instance.uri_for(object)
-  end
-
-  def in_reply_to_atom_uri
-    return unless object.reply? && !object.thread.nil?
-
-    OStatus::TagManager.instance.uri_for(object.thread)
   end
 
   def conversation
