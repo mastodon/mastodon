@@ -6,7 +6,9 @@ class Fasp::AnnounceTrendWorker
   sidekiq_options queue: 'fasp', retry: 5
 
   def perform(status_id, trend_source)
-    status = ::Status.find(status_id)
+    status = ::Status.includes(:account).find(status_id)
+    return unless status.account.indexable?
+
     Fasp::Subscription.includes(:fasp_provider).content.trends.each do |subscription|
       announce(subscription, status.uri) if trending?(subscription, status, trend_source)
     end

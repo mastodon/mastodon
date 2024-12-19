@@ -13,19 +13,27 @@ module Status::FaspConcern
   private
 
   def announce_new_content_to_subscribed_fasp
+    return unless account_indexable?
+
     store_uri unless uri # TODO: solve this more elegantly
     Fasp::AnnounceContentLifecycleEventWorker.perform_async(uri, 'new')
   end
 
   def announce_updated_content_to_subscribed_fasp
+    return unless account_indexable?
+
     Fasp::AnnounceContentLifecycleEventWorker.perform_async(uri, 'update')
   end
 
   def announce_deleted_content_to_subscribed_fasp
+    return unless account_indexable?
+
     Fasp::AnnounceContentLifecycleEventWorker.perform_async(uri, 'delete')
   end
 
   def announce_trends_to_subscribed_fasp
+    return unless account_indexable?
+
     candidate_id, trend_source =
       if reblog_of_id
         [reblog_of_id, 'reblog']
