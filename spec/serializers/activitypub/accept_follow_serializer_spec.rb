@@ -11,7 +11,7 @@ RSpec.describe ActivityPub::AcceptFollowSerializer do
     it 'returns expected attributes' do
       expect(subject.deep_symbolize_keys)
         .to include(
-          actor: match(record.target_account.username),
+          actor: eq(ActivityPub::TagManager.instance.uri_for(record.target_account)),
           id: match("#accepts/follows/#{record.id}"),
           object: include(type: 'Follow'),
           type: 'Accept'
