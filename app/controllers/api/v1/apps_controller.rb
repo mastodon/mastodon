@@ -16,7 +16,12 @@ class Api::V1::AppsController < Api::BaseController
       redirect_uri: app_params[:redirect_uris],
       scopes: app_scopes_or_default,
       website: app_params[:website],
+      confidential: app_confidential?,
     }
+  end
+
+  def app_confidential?
+    !app_params[:token_endpoint_auth_method] || app_params[:token_endpoint_auth_method] != 'none'
   end
 
   def app_scopes_or_default
@@ -24,6 +29,6 @@ class Api::V1::AppsController < Api::BaseController
   end
 
   def app_params
-    params.permit(:client_name, :scopes, :website, :redirect_uris, redirect_uris: [])
+    params.permit(:client_name, :scopes, :website, :token_endpoint_auth_method, :redirect_uris, redirect_uris: [])
   end
 end
