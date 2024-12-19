@@ -87,7 +87,7 @@ pt-PT:
         remote: Remoto
         title: Local
       login_status: Estado de início de sessão
-      media_attachments: Anexos de media
+      media_attachments: Anexos multimédia
       memorialize: Converter num memorial
       memorialized: Em memória
       memorialized_msg: Conta %{username} transformada com sucesso em memorial
@@ -287,12 +287,12 @@ pt-PT:
         resend_user_html: "%{name} reenviou e-mail de confirmação para %{target}"
         reset_password_user_html: "%{name} restabeleceu a palavra-passe do utilizador %{target}"
         resolve_report_html: "%{name} resolveu a denúncia %{target}"
-        sensitive_account_html: "%{name} marcou a media de %{target} como sensível"
+        sensitive_account_html: "%{name} marcou a multimédia de %{target} como sensível"
         silence_account_html: "%{name} silenciou a conta de %{target}"
         suspend_account_html: "%{name} suspendeu a conta de %{target}"
         unassigned_report_html: "%{name} desatribuiu a denúncia %{target}"
         unblock_email_account_html: "%{name} desbloqueou o endereço de e-mail de %{target}"
-        unsensitive_account_html: "%{name} desmarcou a media de %{target} como sensível"
+        unsensitive_account_html: "%{name} desmarcou a multimédia de %{target} como sensível"
         unsilence_account_html: "%{name} desativou o silêncio de %{target}"
         unsuspend_account_html: "%{name} desativou a suspensão de %{target}"
         update_announcement_html: "%{name} atualizou o anúncio %{target}"
@@ -363,7 +363,7 @@ pt-PT:
     dashboard:
       active_users: utilizadores ativos
       interactions: interações
-      media_storage: Armazenamento de media
+      media_storage: Armazenamento de multimédia
       new_users: novos utilizadores
       opened_reports: denúncias abertas
       pending_appeals_html:
@@ -404,7 +404,7 @@ pt-PT:
         confirm: Suspender
         permanent_action: Desfazer a suspensão não restaurará nenhum dado ou relacionamento.
         preamble_html: Está prestes a suspender <strong>%{domain}</strong> e seus subdomínios.
-        remove_all_data: Isto irá remover todo o conteúdo, media e dados de perfil para este domínio do seu servidor.
+        remove_all_data: Isto irá remover todo o conteúdo, multimédias e dados de perfil para este domínio do seu servidor.
         stop_communication: O seu servidor irá parar de comunicar com esses servidores.
         title: Confirmar o bloqueio de domínio para %{domain}
         undo_relationships: Isto irá desfazer qualquer relação entre as contas desses servidores e as suas.
@@ -420,7 +420,7 @@ pt-PT:
         create: Criar bloqueio
         hint: O bloqueio do domínio não impedirá a criação de registos de contas na base de dados, mas aplicará retroativamente e automaticamente métodos de moderação específicos a essas contas.
         severity:
-          desc_html: "<strong>Limitar</strong> tornará as mensagens das contas neste domínio invisíveis a qualquer pessoa que não as esteja a seguir. <strong>Suspender</strong> removerá do seu servidor todo o conteúdo, media, e dados de perfil das contas deste domínio. Utilize <strong>Nenhum</strong> se apenas quiser rejeitar ficheiros media."
+          desc_html: "<strong>Limitar</strong> tornará as mensagens das contas neste domínio invisíveis a qualquer pessoa que não as esteja a seguir. <strong>Suspender</strong> removerá do seu servidor todo o conteúdo, multimédias e dados de perfil das contas deste domínio. Utilize <strong>Nenhum</strong> se apenas quiser rejeitar ficheiros multimédia."
           noop: Nenhum
           silence: Limitar
           suspend: Suspender
@@ -433,8 +433,8 @@ pt-PT:
       private_comment_hint: Comentário sobre essa limitação de domínio para uso interno pelos moderadores.
       public_comment: Comentário público
       public_comment_hint: Comentário sobre essa limitação de domínio para o público geral, se ativada a divulgação da lista de limitações de domínio.
-      reject_media: Rejeitar ficheiros de media
-      reject_media_hint: Remove ficheiros de media armazenados localmente, e rejeita a descarga de novos ficheiros no futuro. Sem pertinência para suspensões
+      reject_media: Rejeitar ficheiros multimédia
+      reject_media_hint: Remove ficheiros multimédia armazenados localmente e rejeita a descarga de novos ficheiros no futuro. Sem pertinência para suspensões
       reject_reports: Rejeitar denúncias
       reject_reports_hint: Ignorar todas as denúncias provenientes deste domínio. Sem pertinência para suspensões
       undo: Anular o bloqueio por domínio
@@ -508,7 +508,7 @@ pt-PT:
         description_html: Pode definir políticas de conteúdo que serão aplicadas a todas as contas deste domínio e a qualquer um dos seus subdomínios.
         limited_federation_mode_description_html: Pode escolher se deseja permitir a federação com este domínio.
         policies:
-          reject_media: Rejeitar media
+          reject_media: Rejeitar multimédia
           reject_reports: Rejeitar denúncias
           silence: Limitar
           suspend: Suspender
@@ -521,7 +521,7 @@ pt-PT:
         instance_followers_measure: nossos seguidores lá
         instance_follows_measure: os seus seguidores aqui
         instance_languages_dimension: Idiomas mais populares
-        instance_media_attachments_measure: anexos de media armazenados
+        instance_media_attachments_measure: anexos multimédia armazenados
         instance_reports_measure: denúncias sobre eles
         instance_statuses_measure: publicações armazenadas
       delivery:
@@ -552,7 +552,7 @@ pt-PT:
       total_followed_by_them: Seguido(s) por eles
       total_followed_by_us: Seguido(s) por nós
       total_reported: Denúncias sobre eles
-      total_storage: Anexos de media
+      total_storage: Anexos multimédia
       totals_time_period_hint_html: Os totais exibidos abaixo incluem dados referentes ao tempo total.
       unknown_instance: Atualmente não há registo deste domínio neste servidor.
     invites:
@@ -608,7 +608,7 @@ pt-PT:
       action_taken_by: Ação tomada por
       actions:
         delete_description_html: As publicações denunciadas serão eliminadas, e será registada uma reprimenda para ajudá-lo a tomar medidas em futuras infrações pela mesma conta.
-        mark_as_sensitive_description_html: A media nas publicações denunciadas será marcada como problemática, e uma reprimenda será registada para ajudá-lo a tomar medidas em futuras infrações pela mesma conta.
+        mark_as_sensitive_description_html: A multimédia nas publicações denunciadas será marcada como problemática, e uma reprimenda será registada para ajudá-lo a tomar medidas em futuras infrações pela mesma conta.
         other_description_html: Ver mais opções para controlar o comportamento da conta e personalizar a comunicação para a conta denunciada.
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, não será registada nenhuma reprimenda, e a denúncia será fechada.
         silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou o procurem manualmente, limitando fortemente o seu alcance. Pode sempre ser revertido. Encerrar todas as denúncias contra esta conta.
@@ -671,7 +671,7 @@ pt-PT:
           suspend_html: 'Está prestes a <strong>suspender a conta de</strong> <strong>@%{acct}</strong>. Isto irá:'
         actions:
           delete_html: Excluir as publicações ofensivas
-          mark_as_sensitive_html: Marcar a mídia dos posts ofensivos como sensível
+          mark_as_sensitive_html: Marcar a multimédia das publicações ofensivas como sensível
           silence_html: Limitar firmemente o alcance de <strong>@%{acct}</strong>, tornando seus perfis e conteúdos apenas visíveis para pessoas que já os estão seguindo ou olhando manualmente no perfil
           suspend_html: Suspender <strong>@%{acct}</strong>, tornando seu perfil e conteúdo inacessíveis e impossível de interagir
         close_report: 'Marcar relatório #%{id} como resolvido'
@@ -808,7 +808,7 @@ pt-PT:
         federation_authentication: Imposição de autenticação da federação
       title: Definições do servidor
     site_uploads:
-      delete: Eliminar arquivo carregado
+      delete: Eliminar ficheiro enviado
       destroyed_msg: Envio do site eliminado com sucesso!
     software_updates:
       critical_update: Crítico — por favor, atualize rapidamente
@@ -838,7 +838,7 @@ pt-PT:
       in_reply_to: A responder a
       language: Idioma
       media:
-        title: Media
+        title: Multimédia
       metadata: Metadados
       no_history: Esta publicação não foi editada
       no_status_selected: Nenhum estado foi alterado porque nenhum foi selecionado
@@ -852,7 +852,7 @@ pt-PT:
       trending: Em tendência
       view_publicly: Visualizar publicamente
       visibility: Visibilidade
-      with_media: Com media
+      with_media: Com multimédia
     strikes:
       actions:
         delete_statuses: "%{name} eliminou a publicação de %{target}"
@@ -1128,7 +1128,7 @@ pt-PT:
     regenerate_token: Regenerar token de acesso
     token_regenerated: Token de acesso regenerado com sucesso
     warning: Cuidado com estes dados. Não partilhar com ninguém!
-    your_token: O teu token de acesso
+    your_token: O seu token de acesso
   auth:
     apply_for_account: Solicitar uma conta
     captcha_confirmation:
@@ -1156,7 +1156,7 @@ pt-PT:
     forgot_password: Esqueceu-se da palavra-passe?
     invalid_reset_password_token: Token de modificação da palavra-passe é inválido ou expirou. Por favor, solicita um novo.
     link_to_otp: Introduza um código de dois fatores do seu telemóvel ou um código de recuperação
-    link_to_webauth: Usa o teu dispositivo de chave de segurança
+    link_to_webauth: Utilize o seu dispositivo de chave de segurança
     log_in_with: Iniciar sessão com
     login: Entrar
     logout: Sair
@@ -1325,8 +1325,8 @@ pt-PT:
     csv: CSV
     domain_blocks: Bloqueios de domínio
     lists: Listas
-    mutes: Tens em silêncio
-    storage: Armazenamento de media
+    mutes: Que ocultou
+    storage: Armazenamento de multimédia
   featured_tags:
     add_new: Adicionar nova
     errors:
@@ -1430,8 +1430,8 @@ pt-PT:
         one: Está prestes a substituir <strong>as suas listas</strong> pelo conteúdo de <strong>%{filename}</strong>. Até <strong>%{count} conta</strong> serão adicionadas a novas listas.
         other: Está prestes a substituir <strong>as suas listas</strong> pelo conteúdo de <strong>%{filename}</strong>. Até <strong>%{count} contas</strong> serão adicionadas a novas listas.
       muting_html:
-        one: Está prestes a <strong>substituir a sua lista de conta silenciada</strong> com até <strong>%{count} conta</strong> de <strong>%{filename}</strong>.
-        other: Está prestes a <strong>substituir a sua lista de contas silenciadas</strong> com até <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
+        one: Está prestes a <strong>substituir a sua lista de conta ocultada</strong> com até <strong>%{count} conta</strong> de <strong>%{filename}</strong>.
+        other: Está prestes a <strong>substituir a sua lista de contas ocultadas</strong> com até <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
     preambles:
       blocking_html:
         one: Está prestes a <strong>bloquear</strong> até <strong>%{count} conta</strong> de <strong>%{filename}</strong>.
@@ -1449,8 +1449,8 @@ pt-PT:
         one: Está prestes a adicionar até <strong>%{count} conta</strong> do ficheiro <strong>%{filename}</strong> para <strong>as suas listas</strong>. Novas listas serão criadas se não existir uma lista onde as adicionar.
         other: Está prestes a adicionar até <strong>%{count} contas</strong> do ficheiro <strong>%{filename}</strong> para <strong>as suas listas</strong>. Novas listas serão criadas se não existir uma lista onde as adicionar.
       muting_html:
-        one: Está prestes a <strong>silenciar</strong> até <strong>%{count} conta</strong> de <strong>%{filename}</strong>.
-        other: Está prestes a <strong>silenciar</strong> até <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
+        one: Está prestes a <strong>ocultar</strong> até <strong>%{count} conta</strong> de <strong>%{filename}</strong>.
+        other: Está prestes a <strong>ocultar</strong> até <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
     preface: Podes importar dados que tenhas exportado de outra instância, como a lista de pessoas que segues ou bloqueadas.
     recent_imports: Importações recentes
     states:
@@ -1459,7 +1459,7 @@ pt-PT:
       scheduled: Agendado
       unconfirmed: Não confirmado
     status: Estado
-    success: Os teus dados foram enviados correctamente e serão processados em breve
+    success: Os seus dados foram enviados correctamente e serão processados em breve
     time_started: Iniciado em
     titles:
       blocking: Importando contas bloqueadas
@@ -1467,11 +1467,11 @@ pt-PT:
       domain_blocking: Importando domínios bloqueados
       following: Importando contas seguidas
       lists: A importar listas
-      muting: Importando contas silenciadas
+      muting: Importando contas ocultadas
     type: Tipo de importação
     type_groups:
       constructive: Seguidores e marcadores
-      destructive: Bloqueios e silenciamentos
+      destructive: Bloqueios e ocultados
     types:
       blocking: Lista de bloqueio
       bookmarks: Marcadores
@@ -1479,7 +1479,7 @@ pt-PT:
       following: Lista de pessoas que estás a seguir
       lists: Listas
       muting: Lista de utilizadores silenciados
-    upload: Carregar
+    upload: Enviar
   invites:
     delete: Desativar
     expired: Expirados
@@ -1535,7 +1535,7 @@ pt-PT:
   media_attachments:
     validations:
       images_and_video: Não é possível anexar um vídeo a uma publicação que já contém imagens
-      not_found: Media %{ids} não encontrada ou já anexada a outra publicação
+      not_found: Multimédia %{ids} não encontrada ou já anexada a outra publicação
       not_ready: Não é possível anexar ficheiros que ainda não acabaram de ser processados. Tente outra vez daqui a pouco!
       too_many: Não é possível anexar mais de 4 ficheiros
   migrations:
@@ -1573,7 +1573,7 @@ pt-PT:
     title: Moderação
   move_handler:
     carry_blocks_over_text: Este utilizador migrou de %{acct}, que você tinha bloqueado.
-    carry_mutes_over_text: Este utilizador migrou de %{acct}, que você tinha silenciado.
+    carry_mutes_over_text: Este utilizador migrou de %{acct}, que você tinha ocultado.
     copy_account_note_text: 'Este utilizador migrou de %{acct}, aqui estão as suas notas anteriores sobre ele:'
   navigation:
     toggle_menu: Alternar o menu
@@ -1588,7 +1588,7 @@ pt-PT:
       subject: "%{name} adicionou a sua publicação aos favoritos"
       title: Novo favorito
     follow:
-      body: "%{name} é teu seguidor!"
+      body: "%{name} é seu seguidor!"
       subject: "%{name} começou a seguir-te"
       title: Novo seguidor
     follow_request:
@@ -1840,7 +1840,7 @@ pt-PT:
     keep_direct: Manter mensagens diretas
     keep_direct_hint: Não apaga nenhuma das suas mensagens diretas
     keep_media: Manter publicações com anexos de multimédia
-    keep_media_hint: Não apaga nenhuma das suas publicações com multimédia anexada
+    keep_media_hint: Não elimina nenhuma das suas publicações com multimédia anexada
     keep_pinned: Manter publicações afixadas
     keep_pinned_hint: Não apagar nenhuma das suas publicações afixadas
     keep_polls: Manter sondagens
@@ -1917,12 +1917,12 @@ pt-PT:
     backup_ready:
       explanation: Pediu uma cópia completa da sua conta Mastodon.
       extra: Está pronta para transferir!
-      subject: O seu arquivo está pronto para descarregar
+      subject: O seu arquivo está pronto para ser descarregado
       title: Arquivo de ficheiros
     failed_2fa:
       details: 'Aqui estão os detalhes da tentativa de entrada:'
       explanation: Alguém tentou iniciar sessão na sua conta, mas forneceu um segundo fator de autenticação inválido.
-      further_actions_html: Se não foi você, recomendamos que %{action} imediatamente, pois pode ter sido comprometido.
+      further_actions_html: Se não foi você, recomendamos que %{action} imediatamente, pois pode a sua conta pode ter sido comprometida.
       subject: Falha na autenticação do segundo fator
       title: Falha na autenticação do segundo fator
     suspicious_sign_in:
@@ -1950,8 +1950,8 @@ pt-PT:
       explanation:
         delete_statuses: Algumas das suas mensagens foram consideradas como violando uma ou mais diretrizes da comunidade e foram subsequentemente removidas pelos moderadores do %{instance}.
         disable: Já não pode utilizar a sua conta, mas o seu perfil e outros dados permanecem intactos. Pode solicitar uma cópia de segurança dos seus dados, alterar as definições da conta ou eliminar a sua conta.
-        mark_statuses_as_sensitive: Algumas das suas publicações foram marcadas como problemáticos pelos moderadores de %{instance}. Isto significa que as pessoas terão de tocar nas publicações para que possa ser apresentada uma pré-visualização. No futuro, quando publicar, lembre-se que pode você próprio marcar os media como problemáticos.
-        sensitive: A partir de agora, todos os ficheiros de media que carregue serão marcados como problemáticos e escondidos sob um aviso pedido para tocar para os ver.
+        mark_statuses_as_sensitive: Algumas das suas publicações foram marcadas como problemáticas pelos moderadores de %{instance}. Isto significa que as pessoas terão de tocar/clicar nas publicações para que possa ser apresentada uma pré-visualização. No futuro, quando publicar, lembre-se que pode você próprio marcar os elementos multimédia como problemáticos.
+        sensitive: A partir de agora, todos os ficheiros multimédia que enviar serão marcados como problemáticos e escondidos sob um aviso pedido para tocar/clicar para os ver.
         silence: Pode ainda utilizar a sua conta mas apenas as pessoas que já o seguem poderão ver as suas mensagens neste servidor, e poderá ser excluído de várias funcionalidades de divulgação. No entanto, outros poderão ainda segui-lo manualmente.
         suspend: Não pode mais utilizar a sua conta, e o seu perfil e outros dados já não se encontram acessíveis. Poderá ainda iniciar sessão para solicitar uma cópia dos seus dados até os mesmos serem totalmente removidos em cerca de 30 dias, porém reteremos alguns dados básicos para o impedir evitar a suspensão.
       reason: 'Motivo:'
@@ -1990,7 +1990,7 @@ pt-PT:
       feature_control_title: Mantenha o controlo da sua própria cronologia
       feature_creativity: O Mastodon suporta publicações de áudio, vídeo e imagens, descrições de acessibilidade, sondagens, avisos de conteúdo, avatares animados, emojis personalizados, controlo de corte de miniaturas e muito mais, para o ajudar a expressar-se online. Quer esteja a publicar a sua arte, a sua música ou o seu podcast, o Mastodon está lá para si.
       feature_creativity_title: Criatividade inigualável
-      feature_moderation: Mastodon coloca a tomada de decisões de volta em suas mãos. Cada servidor cria as suas próprias regras e regulamentos, que são aplicados localmente e não de cima para baixo como as redes sociais corporativas, tornando-o mais flexível na resposta às necessidades de diferentes grupos de pessoas. Junte-se a um servidor com as regras com as quais você concorda ou hospede as suas próprias.
+      feature_moderation: O Mastodon coloca a tomada de decisões de volta nas suas mãos. Cada servidor cria as suas próprias regras e regulamentos, que são aplicados localmente e não de cima para baixo como as redes sociais corporativas, tornando-o o mais flexível para responder às necessidades de diferentes grupos de pessoas. Junte-se a um servidor com as regras com as quais concorda ou aloje o seu próprio servidor.
       feature_moderation_title: Moderando como deve ser
       follow_action: Seguir
       follow_step: Seguir pessoas interessantes é do que trata Mastodon.
