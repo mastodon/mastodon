@@ -47,6 +47,16 @@ RSpec.describe 'Admin Webhooks' do
           .to have_content(I18n.t('admin.webhooks.title'))
       end
 
+      it 'fails to create with no events selected' do
+        visit new_admin_webhook_path
+
+        fill_in 'webhook_url', with: 'https://host.example/hooks/123'
+        expect { submit_form }
+          .to_not change(Webhook, :count)
+        expect(page)
+          .to have_content(/errors below/)
+      end
+
       def submit_form
         click_on I18n.t('admin.webhooks.add_new')
       end
