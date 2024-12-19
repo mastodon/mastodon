@@ -41,7 +41,7 @@ class UserRole < ApplicationRecord
   EVERYONE_ROLE_ID = -99
   NOBODY_POSITION = -1
 
-  POSITION_LIMIT = 2**31
+  POSITION_LIMIT = (2**31) - 1
 
   module Flags
     NONE = 0
@@ -91,7 +91,7 @@ class UserRole < ApplicationRecord
 
   validates :name, presence: true, unless: :everyone?
   validates :color, format: { with: /\A#?(?:[A-F0-9]{3}){1,2}\z/i }, unless: -> { color.blank? }
-  validates :position, numericality: { greater_than_or_equal_to: -POSITION_LIMIT, less_than_or_equal_to: POSITION_LIMIT }
+  validates :position, numericality: { in: (-POSITION_LIMIT..POSITION_LIMIT) }
 
   validate :validate_permissions_elevation
   validate :validate_position_elevation

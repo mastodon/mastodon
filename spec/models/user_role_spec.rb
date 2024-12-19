@@ -21,11 +21,9 @@ RSpec.describe UserRole do
     describe 'position' do
       subject { Fabricate.build :user_role }
 
-      let(:excess) { 2**32 }
-      let(:limit) { 2**31 }
+      let(:limit) { described_class::POSITION_LIMIT }
 
-      it { is_expected.to_not allow_values(-excess, excess).for(:position) }
-      it { is_expected.to allow_values(-limit, limit).for(:position) }
+      it { is_expected.to validate_numericality_of(:position).is_in(-limit..limit) }
     end
 
     describe 'color' do
