@@ -69,6 +69,10 @@ class Form::AdminSettings
     favicon
   ).freeze
 
+  DIGEST_KEYS = %i(
+    custom_css
+  ).freeze
+
   OVERRIDEN_SETTINGS = {
     authorized_fetch: :authorized_fetch_mode?,
   }.freeze
@@ -122,6 +126,8 @@ class Form::AdminSettings
     KEYS.each do |key|
       next unless instance_variable_defined?(:"@#{key}")
 
+      cache_digest_value(key) if DIGEST_KEYS.include?(key)
+
       if UPLOAD_KEYS.include?(key)
         public_send(key).save
       else
@@ -132,6 +138,18 @@ class Form::AdminSettings
   end
 
   private
+
+  def cache_digest_value(key)
+    Rails.cache.delete(:"setting_digest_#{key}")
+
+    key_value = instance_variable_get(:"@#{key}")
+    if key_value.present?
+      Rails.cache.write(
+        :"setting_digest_#{key}",
+        Digest::SHA256.hexdigest(key_value)
+      )
+    end
+  end
 
   def typecast_value(key, value)
     if BOOLEAN_KEYS.include?(key)
