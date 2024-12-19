@@ -8,7 +8,7 @@ pt-PT:
         display_name: O seu nome completo ou o seu nome divertido.
         fields: A sua página inicial, os seus pronomes, idade e tudo o que quiser.
         indexable: As suas mensagens públicas podem aparecer nos resultados da pesquisa no Mastodon. Independentemente disso, as pessoas que interagiram com as suas publicações podem ser capazes de as pesquisar.
-        note: 'Pode @mencionar outras pessoas ou #etiquetas.'
+        note: 'Pode @mencionar outras pessoas e usar #etiquetas.'
         show_collections: As pessoas podem navegar pelas listas das pessoas que segue e dos seus seguidores. Independentemente disso, as pessoas que segue verão que você as segue.
         unlocked: As pessoas poderão segui-lo sem pedir aprovação. Desmarque se pretender rever os pedidos de seguimento e escolha se pretende aceitar ou rejeitar novos seguidores.
       account_alias:
@@ -26,7 +26,7 @@ pt-PT:
         types:
           disable: Impede o utilizador de usar a sua conta, mas não elimina ou oculta o seu conteúdo.
           none: Use isto para enviar um aviso ao utilizador, sem espoletar nenhuma outra ação.
-          sensitive: Força todos os anexos de media deste utilizador a serem sinalizados como problemáticos.
+          sensitive: Forçar todos os anexos multimédia deste utilizador a serem assinalados como sensíveis.
           silence: Impede que o utilizador possa publicar com visibilidade pública, ocultando as suas publicações e notificações de pessoas que não o seguem. Encerra todas as denúncias contra esta conta.
           suspend: Evita qualquer interação de ou para esta conta e elimina o seu conteúdo. Reversível num período de 30 dias. Encerra todas as denúncias contra esta conta.
         warning_preset_id: Opcional. Tu ainda podes adicionar texto personalizado no fim do predefinido
@@ -56,10 +56,10 @@ pt-PT:
         scopes: Quais as API a que a aplicação terá permissão para aceder. Se selecionar um âmbito de nível superior, não precisa de selecionar âmbitos individuais.
         setting_aggregate_reblogs: Não mostrar os novos impulsos para publicações que tenham sido recentemente impulsionadas (apenas afeta os impulsos recentemente recebidos)
         setting_always_send_emails: Normalmente as notificações por e-mail não serão enviadas quando estiver a utilizar ativamente o Mastodon
-        setting_default_sensitive: Media problemática oculta por padrão, pode ser revelada com um clique
-        setting_display_media_default: Esconder media marcada como problemática
-        setting_display_media_hide_all: Esconder sempre toda a media
-        setting_display_media_show_all: Mostrar sempre a media
+        setting_default_sensitive: Os multimédia sensíveis são ocultados por predefinição e podem ser revelados com um clique/toque
+        setting_display_media_default: Esconder multimédia marcada como problemática
+        setting_display_media_hide_all: Esconder sempre toda a multimédia
+        setting_display_media_show_all: Mostrar sempre a multimédia
         setting_system_scrollbars_ui: Aplica-se apenas a navegadores de desktop baseados no Safari e Chrome
         setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer pormenores
         setting_use_pending_items: Ocultar as atualizações da cronologia após um clique em vez de percorrer automaticamente a cronologia
@@ -80,7 +80,7 @@ pt-PT:
       form_admin_settings:
         activity_api_enabled: Contagem, em blocos semanais, de publicações locais, utilizadores ativos e novos registos
         app_icon: WEBP, PNG, GIF ou JPG. Substitui o ícone padrão da aplicação em dispositivos móveis por um ícone personalizado.
-        backups_retention_period: Os utilizadores têm a possibilidade de gerar arquivos das suas mensagens para descarregar mais tarde. Quando definido para um valor positivo, estes arquivos serão automaticamente eliminados do seu armazenamento após o número de dias especificado.
+        backups_retention_period: Os utilizadores têm a possibilidade de gerar arquivos das suas publicações para descarregar mais tarde. Quando definido para um valor positivo, estes arquivos serão automaticamente eliminados do seu armazenamento após o número de dias especificado.
         bootstrap_timeline_accounts: Estas contas serão destacadas no topo das recomendações aos novos utilizadores.
         closed_registrations_message: Apresentado quando as inscrições estiverem encerradas
         content_cache_retention_period: Todas as mensagens de outros servidores (incluindo impulsos e respostas) serão eliminadas após o número de dias especificado, independentemente de qualquer interação do utilizador local com essas mensagens. Isto inclui mensagens em que um utilizador local as tenha marcado ou adicionado aos favoritos. As menções privadas entre utilizadores de instâncias diferentes também se perderão e serão impossíveis de restaurar. A utilização desta definição destina-se a instâncias para fins especiais e quebra muitas expectativas dos utilizadores quando implementada para utilização geral.
@@ -223,11 +223,11 @@ pt-PT:
         setting_boost_modal: Mostrar caixa de diálogo de confirmação antes de impulsionar
         setting_default_language: Idioma de publicação
         setting_default_privacy: Privacidade da publicação
-        setting_default_sensitive: Marcar sempre os media como problemáticos
+        setting_default_sensitive: Marcar sempre os multimédia como problemáticos
         setting_delete_modal: Solicitar confirmação antes de eliminar uma publicação
         setting_disable_hover_cards: Desativar visualização de perfil ao passar o cursor
         setting_disable_swiping: Desativar os movimentos de deslize
-        setting_display_media: Visualização de media
+        setting_display_media: Visualização de multimédia
         setting_display_media_default: Pré-definição
         setting_display_media_hide_all: Esconder todos
         setting_display_media_show_all: Mostrar todos
@@ -239,7 +239,7 @@ pt-PT:
         setting_theme: Tema do sítio
         setting_trends: Mostrar as tendências de hoje
         setting_unfollow_modal: Solicitar confirmação antes de deixar de seguir alguém
-        setting_use_blurhash: Mostrar gradientes coloridos para medias ocultas
+        setting_use_blurhash: Mostrar gradientes coloridos para multimédias ocultas
         setting_use_pending_items: Modo lento
         severity: Gravidade
         sign_in_token_attempt: Código de segurança
@@ -266,7 +266,7 @@ pt-PT:
         custom_css: CSS personalizado
         favicon: Ícone de favoritos
         mascot: Mascote personalizada (legado)
-        media_cache_retention_period: Período de retenção de ficheiros de media em cache
+        media_cache_retention_period: Período de retenção de ficheiros multimédia em cache
         peers_api_enabled: Publicar lista de servidores descobertos na API
         profile_directory: Ativar o diretório de perfis
         registrations_mode: Quem se pode inscrever
