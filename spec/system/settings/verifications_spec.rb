@@ -18,7 +18,7 @@ RSpec.describe 'Settings verification page' do
       fill_in attribution_field, with: 'host.example'
 
       expect { click_on submit_button }
-        .to(change { user.account.reload.attribution_domains_as_text })
+        .to(change { user.account.reload.attribution_domains })
       expect(page)
         .to have_content(success_message)
     end
@@ -29,6 +29,6 @@ RSpec.describe 'Settings verification page' do
   end
 
   def attribution_field
-    I18n.t('simple_form.labels.account.attribution_domains_as_text')
+    I18n.t('simple_form.labels.account.attribution_domains')
   end
 end
