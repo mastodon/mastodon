@@ -174,6 +174,10 @@ export function Explore () {
   return import(/* webpackChunkName: "features/explore" */'../../explore');
 }
 
+export function Search () {
+  return import(/* webpackChunkName: "features/explore" */'../../search');
+}
+
 export function FilterModal () {
   return import(/*webpackChunkName: "modals/filter_modal" */'../components/filter_modal');
 }
@@ -196,6 +200,10 @@ export function About () {
 
 export function PrivacyPolicy () {
   return import(/*webpackChunkName: "features/privacy_policy" */'../../privacy_policy');
+}
+
+export function TermsOfService () {
+  return import(/*webpackChunkName: "features/terms_of_service" */'../../terms_of_service');
 }
 
 export function NotificationRequests () {

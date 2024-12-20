@@ -27,10 +27,10 @@ import { notificationPolicyReducer } from './notification_policy';
 import { notificationRequestsReducer } from './notification_requests';
 import notifications from './notifications';
 import { pictureInPictureReducer } from './picture_in_picture';
-import polls from './polls';
+import { pollsReducer } from './polls';
 import push_notifications from './push_notifications';
 import { relationshipsReducer } from './relationships';
-import search from './search';
+import { searchReducer } from './search';
 import server from './server';
 import settings from './settings';
 import status_lists from './status_lists';
@@ -60,7 +60,7 @@ const reducers = {
   server,
   contexts,
   compose,
-  search,
+  search: searchReducer,
   media_attachments,
   notifications,
   notificationGroups: notificationGroupsReducer,
@@ -70,7 +70,7 @@ const reducers = {
   filters,
   conversations,
   suggestions: suggestionsReducer,
-  polls,
+  polls: pollsReducer,
   trends,
   markers: markersReducer,
   picture_in_picture: pictureInPictureReducer,

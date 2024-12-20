@@ -186,44 +186,53 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_tags!
-    @status.tags = Tag.find_or_create_by_names(@raw_tags)
+    previous_tags = @status.tags.to_a
+    current_tags = @status.tags = Tag.find_or_create_by_names(@raw_tags)
+
+    return unless @status.distributable?
+
+    added_tags = current_tags - previous_tags
+
+    unless added_tags.empty?
+      @account.featured_tags.where(tag_id: added_tags.pluck(:id)).find_each do |featured_tag|
+        featured_tag.increment(@status.created_at)
+      end
+    end
+
+    removed_tags = previous_tags - current_tags
+
+    unless removed_tags.empty?
+      @account.featured_tags.where(tag_id: removed_tags.pluck(:id)).find_each do |featured_tag|
+        featured_tag.decrement(@status)
+      end
+    end
   end
 
   def update_mentions!
-    previous_mentions = @status.active_mentions.includes(:account).to_a
-    current_mentions  = []
     unresolved_mentions = []
 
-    @raw_mentions.each do |href|
+    currently_mentioned_account_ids = @raw_mentions.filter_map do |href|
       next if href.blank?
 
       account   = ActivityPub::TagManager.instance.uri_to_resource(href, Account)
       account ||= ActivityPub::FetchRemoteAccountService.new.call(href, request_id: @request_id)
 
-      next if account.nil?
-
-      mention   = previous_mentions.find { |x| x.account_id == account.id }
-      mention ||= account.mentions.new(status: @status)
-
-      current_mentions << mention
+      account&.id
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       # Since previous mentions are about already-known accounts,
       # they don't try to resolve again and won't fall into this case.
       # In other words, this failure case is only for new mentions and won't
       # affect `removed_mentions` so they can safely be retried asynchronously
       unresolved_mentions << href
+      nil
     end
 
-    current_mentions.each do |mention|
-      mention.save if mention.new_record?
-    end
+    @status.mentions.upsert_all(currently_mentioned_account_ids.map { |id| { account_id: id, silent: false } }, unique_by: %w(status_id account_id))
 
     # If previous mentions are no longer contained in the text, convert them
     # to silent mentions, since withdrawing access from someone who already
     # received a notification might be more confusing
-    removed_mentions = previous_mentions - current_mentions
-
-    Mention.where(id: removed_mentions.map(&:id)).update_all(silent: true) unless removed_mentions.empty?
+    @status.mentions.where.not(account_id: currently_mentioned_account_ids).update_all(silent: true)
 
     # Queue unresolved mentions for later
     unresolved_mentions.uniq.each do |uri|

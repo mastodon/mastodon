@@ -4,7 +4,7 @@ class DomainValidator < ActiveModel::EachValidator
   MAX_DOMAIN_LENGTH = 256
   MIN_LABEL_LENGTH = 1
   MAX_LABEL_LENGTH = 63
-  ALLOWED_CHARACTERS_RE = /^[a-z0-9\-]+$/i
+  ALLOWED_CHARACTERS_RE = /^[a-z0-9-]+$/i
 
   def validate_each(record, attribute, value)
     return if value.blank?

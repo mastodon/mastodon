@@ -32,7 +32,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
   let(:media_attachments) { [] }
 
   before do
-    mentions.each { |a| Fabricate(:mention, status: status, account: a) }
+    mentions.each { |(account, silent)| Fabricate(:mention, status: status, account: account, silent: silent) }
     tags.each { |t| status.tags << t }
     media_attachments.each { |m| status.media_attachments << m }
     stub_request(:get, bogus_mention).to_raise(HTTP::ConnectionError)
@@ -256,16 +256,22 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
           updated: '2021-09-08T22:39:25Z',
           tag: [
             { type: 'Hashtag', name: 'foo' },
+            { type: 'Hashtag', name: 'bar' },
           ],
         }
       end
 
       before do
-        subject.call(status, json, json)
+        status.account.featured_tags.create!(name: 'bar')
+        status.account.featured_tags.create!(name: 'test')
       end
 
-      it 'updates tags' do
-        expect(status.tags.reload.map(&:name)).to eq %w(foo)
+      it 'updates tags and featured tags' do
+        expect { subject.call(status, json, json) }
+          .to change { status.tags.reload.pluck(:name) }.from(%w(test foo)).to(%w(foo bar))
+          .and change { status.account.featured_tags.find_by(name: 'test').statuses_count }.by(-1)
+          .and change { status.account.featured_tags.find_by(name: 'bar').statuses_count }.by(1)
+          .and change { status.account.featured_tags.find_by(name: 'bar').last_status_at }.from(nil).to(be_within(0.1).of(Time.now.utc))
       end
     end
 
@@ -280,7 +286,19 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
 
     context 'when originally with mentions' do
-      let(:mentions) { [alice, bob] }
+      let(:mentions) { [[alice, false], [bob, false]] }
+
+      before do
+        subject.call(status, json, json)
+      end
+
+      it 'updates mentions' do
+        expect(status.active_mentions.reload.map(&:account_id)).to eq [alice.id]
+      end
+    end
+
+    context 'when originally with silent mentions' do
+      let(:mentions) { [[alice, true], [bob, true]] }
 
       before do
         subject.call(status, json, json)

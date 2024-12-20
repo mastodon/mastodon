@@ -40,14 +40,14 @@ ia:
         text: Tu pote solo appellar contra un sanction un vice
       defaults:
         autofollow: Le personas qui se inscribe per medio del invitation te sequera automaticamente
-        avatar: WEBP, PNG, GIF or JPG. Al maximo %{size}. Sera diminuite a %{dimensions}px
+        avatar: WEBP, PNG, GIF o JPG. Al maximo %{size}. Sera reducite a %{dimensions}px
         bot: Signala a alteres que le conto principalmente exeque actiones automatisate e poterea non esser surveliate
         context: Un o plure contextos ubi le filtro deberea applicar se
         current_password: Pro propositos de securitate insere le contrasigno del conto actual
         current_username: Pro confirmar, insere le nomine de usator del conto actual
         digest: Solo inviate post un longe periodo de inactivitate e solo si tu ha recipite alcun messages personal in tu absentia
         email: Te sera inviate un email de confirmation
-        header: WEBP, PNG, GIF or JPG. Al maximo %{size}. Sera diminuite a %{dimensions}px
+        header: WEBP, PNG, GIF o JPG. Al maximo %{size}. Sera reducite a %{dimensions}px
         inbox_url: Copia le URL ab le pagina principal del repetitor que tu vole usar
         irreversible: Le messages filtrate disparera irreversibilemente, mesmo si le filtro es plus tarde removite
         locale: Le lingua del interfacie de usator, del emails e del notificationes pulsate
@@ -60,8 +60,9 @@ ia:
         setting_display_media_default: Celar le medios marcate como sensibile
         setting_display_media_hide_all: Sempre celar le medios
         setting_display_media_show_all: Sempre monstrar le medios
-        setting_use_blurhash: Le imagines degradate es basate sur le colores del medios visual celate, ma illos offusca qualcunque detalios
-        setting_use_pending_items: Celar le classification temporal detra un clic in vice que automaticamente rolante le fluxo
+        setting_system_scrollbars_ui: Se applica solmente al navigatores de scriptorio basate sur Safari e Chrome
+        setting_use_blurhash: Le imagines degradate se basa sur le colores del visuales celate, ma illos offusca tote le detalios
+        setting_use_pending_items: Requirer un clic pro monstrar nove messages in vice de rolar automaticamente le fluxo
         username: Tu pote usar litteras, numeros e tractos de sublineamento
         whole_word: Quando le parola o expression clave es solo alphanumeric, illo sera solo applicate si illo concorda con tote le parola
       domain_allow:
@@ -98,7 +99,7 @@ ia:
         site_title: Como le personas pote referer se a tu servitor in addition su nomine de dominio.
         status_page_url: URL de un pagina ubi le personas pote vider le stato de iste servitor durante un interruption
         theme: Thema que le visitatores disconnexe e le nove usatores vide.
-        thumbnail: Un imagine approximativemente 2:1 monstrate al latere del informationes de tu servitor.
+        thumbnail: Un imagine de circa 2:1 monstrate al latere del informationes de tu servitor.
         timeline_preview: Le visitatores disconnexe potera navigar per le plus recente messages public disponibile sur le servitor.
         trendable_by_default: Saltar le revision manual del contento de tendentia. Elementos singule pote ancora esser removite de tendentias post le facto.
         trends: Tendentias monstra que messages, hashtags e novas gania traction sur tu servitor.
@@ -129,6 +130,17 @@ ia:
         show_application: In omne caso, tu potera sempre vider qual app ha publicate tu message.
       tag:
         name: Tu pote solmente cambiar le litteras inter majusculas e minusculas, per exemplo, pro render lo plus legibile
+      terms_of_service:
+        changelog: Pote esser structurate con le syntaxe Markdown.
+        text: Pote esser structurate con le syntaxe Markdown.
+      terms_of_service_generator:
+        admin_email: Le avisos juridic include le contra-avisos, ordinantias judiciari, demandas de retiro e demandas de application del lege.
+        arbitration_address: Pote esser le mesme que le adresse physic supra, o “N/A” si se usa e-mail
+        arbitration_website: Pote esser un formulario web, o “N/A” si se usa e-mail
+        dmca_address: Pro operatores in le SUA, usa le adresse registrate in le Directorio de Agentes Designate pro le DMCA (DMCA Designated Agent Directory). Un adresse de cassa postal es disponibile per requesta directe; usa le Requesta de Exemption de Cassa Postal pro Agentes Designate del DMCA (DMCA Designated Agent Post Office Box Waiver Request) pro inviar un message electronic al Officio del Derecto de Autor (Copyright Office) e describer que tu es un moderator de contento que travalia de casa e qui time vengiantias o represalias pro tu actiones, necessitante le uso un cassa postal pro remover tu adresse personal del vista public.
+        dmca_email: Pote esser le mesme adresse de e-mail usate pro “Adresse de e-mail pro avisos juridic” supra
+        domain: Identification unic del servicio in linea que tu forni.
+        jurisdiction: Vermeldt het land waar de persoon woont die de rekeningen betaalt. Als het een bedrijf of een andere entiteit is, vermeldt het land waar het is opgenomen en de stad, regio, grondgebied of staat, voor zover van toepassing.
       user:
         chosen_languages: Si marcate, solo le messages in le linguas seligite sera monstrate in chronologias public
         role: Le rolo controla qual permissos le usator ha.
@@ -181,7 +193,7 @@ ia:
         text: Explicar perque iste decision deberea esser revertite
       defaults:
         autofollow: Invitar a sequer tu conto
-        avatar: Pictura de profilo
+        avatar: Imagine de profilo
         bot: Isto es un conto automatisate
         chosen_languages: Filtrar linguas
         confirm_new_password: Confirmar nove contrasigno
@@ -193,14 +205,14 @@ ia:
         email: Adresse de e-mail
         expires_in: Expira post
         fields: Campos extra
-        header: Imagine titulo
+        header: Imagine de titulo
         honeypot: "%{label} (non compilar)"
         inbox_url: URL del cassa de ingresso de repetitor
         irreversible: Declinar in vice que celar
         locale: Lingua de interfacie
         max_uses: Numero max de usos
         new_password: Nove contrasigno
-        note: Bio
+        note: Biographia
         otp_attempt: Codice a duo factores
         password: Contrasigno
         phrase: Parola o phrase clave
@@ -223,6 +235,7 @@ ia:
         setting_hide_network: Cela tu rete social
         setting_reduce_motion: Reducer movimento in animationes
         setting_system_font_ui: Usar typo de litteras predefinite del systema
+        setting_system_scrollbars_ui: Usar le barra de rolamento predefinite del systema
         setting_theme: Thema de sito
         setting_trends: Monstrar le tendentias de hodie
         setting_unfollow_modal: Monstrar dialogo de confirmation ante cessar de sequer alcuno
@@ -311,12 +324,23 @@ ia:
         text: Regula
       settings:
         indexable: Includer pagina de profilo in le motores de recerca
-        show_application: Monstrar ab que app tu ha inviate un message
+        show_application: Monstrar desde qual app tu ha inviate un message
       tag:
         listable: Permitter a iste hashtag apparer in le recercas e suggestiones
         name: Hashtag
         trendable: Permitter a iste hashtag de sub tendentias
         usable: Permitter al messages usar iste hashtag localmente
+      terms_of_service:
+        changelog: Que ha cambiate?
+        text: Conditiones de servicio
+      terms_of_service_generator:
+        admin_email: Adresse de e-mail pro avisos juridic
+        arbitration_address: Adresse physic pro avisos de arbitration
+        arbitration_website: Sito web pro submitter avisos de arbitration
+        dmca_address: Adresse physic pro avisos DCMA/de derectos de autor
+        dmca_email: Adresse de e-mail pro avisos DCMA/de derectos de autor
+        domain: Dominio
+        jurisdiction: Jurisdiction
       user:
         role: Rolo
         time_zone: Fuso horari

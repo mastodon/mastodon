@@ -6,7 +6,7 @@
     .time-period
       = date_range(@time_period)
 
-  = link_to t('admin.tags.open'), tag_url(@tag), class: 'button', target: '_blank', rel: 'noopener noreferrer'
+  = link_to t('admin.tags.open'), tag_url(@tag), class: 'button', target: '_blank', rel: 'noopener'
 
 - if current_user.can?(:view_dashboard)
   .dashboard
@@ -17,7 +17,7 @@
                               label: t('admin.trends.tags.dashboard.tag_accounts_measure'),
                               measure: 'tag_accounts',
                               params: { id: @tag.id },
-                              rel: 'noopener noreferrer',
+                              rel: 'noopener',
                               start_at: @time_period.first,
                               target: '_blank'
     .dashboard__item

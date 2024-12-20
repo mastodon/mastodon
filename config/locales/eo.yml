@@ -214,6 +214,7 @@ eo:
         enable_user: Ebligi uzanton
         memorialize_account: Memorigu Konton
         promote_user: Promocii Uzanton
+        publish_terms_of_service: Publikigi kondiĉojn de uzado
         reject_appeal: Malaprobi Apelacion
         reject_user: Malakcepti Uzanton
         remove_avatar_user: Forigi la profilbildon
@@ -278,6 +279,7 @@ eo:
         enable_user_html: "%{name} ebligis ensaluton por uzanto %{target}"
         memorialize_account_html: "%{name} ŝanĝis la konton de %{target} al memora paĝo"
         promote_user_html: "%{name} plirangigis uzanton %{target}"
+        publish_terms_of_service_html: "%{name} publikigis ĝisdatigojn de la kondiĉoj de la servo"
         reject_appeal_html: "%{name} malakceptis apelacion kontraŭ moderiga decido de %{target}"
         reject_user_html: "%{name} malakceptis registriĝon de %{target}"
         remove_avatar_user_html: "%{name} forigis la profilbildon de %{target}"
@@ -925,6 +927,26 @@ eo:
       search: Serĉi
       title: Kradvortoj
       updated_msg: Kradvorto agordoj ĝisdatigis sukcese
+    terms_of_service:
+      back: Reen al kondiĉoj de uzado
+      changelog: Kio ŝanĝiĝis
+      create: Uzu viajn proprajn
+      current: Nuna
+      draft: Malneto
+      generate: Uzi ŝablonon
+      generates:
+        action: Generi
+        title: Agordo de kondiĉoj de uzado
+      no_history: Ankoraŭ ne estas registritaj ŝanĝoj de la kondiĉoj de la servo.
+      no_terms_of_service_html: Vi nuntempe ne havas iujn ajn kondiĉojn de la servo agordita. La kondiĉoj de la servo celas doni klarecon kaj protekti vin kontraŭ eblaj respondecoj en disputoj kun viaj uzantoj.
+      preview:
+        send_to_all:
+          one: Sendi %{display_count} retpoŝton
+          other: Sendi %{display_count} retpoŝtojn
+      publish: Publikigi
+      published_on_html: Publikigita je %{date}
+      save_draft: Konservi malneton
+      title: Kondiĉoj de uzado
     title: Administrado
     trends:
       allow: Permesi
@@ -1132,7 +1154,6 @@ eo:
     migrate_account: Movi al alia konto
     migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas <a href="%{path}">agordi ĝin ĉi tie</a>.
     or_log_in_with: Aŭ saluti per
-    privacy_policy_agreement_html: Mi legis kaj konsentis pri <a href="%{privacy_policy_path}" target="_blank">privatpolitiko</a>
     progress:
       confirm: Konfirmi retadreson
       details: Viaj detaloj
@@ -1157,7 +1178,7 @@ eo:
     set_new_password: Elekti novan pasvorton
     setup:
       email_below_hint_html: Kontrolu vian spam-dosierujon aŭ petu novan. Se necese, vi povas korekti vian retadreson.
-      email_settings_hint_html: Enklaku la ligilon, ke ni sendis al vi por kontroli %{email}. Ni estos tien.
+      email_settings_hint_html: Alklaku la ligilon, kiun ni sendis al %{email} por komenci uzi Mastodon. Ni atendos ĝuste ĉi tie.
       link_not_received: Ĉu vi ne ricevis ligilon?
       new_confirmation_instructions_sent: Vi ricevos novan retpoŝton kun la konfirma ligilo post kelkaj minutoj!
       title: Kontrolu vian retpoŝta enirkesto
@@ -1166,7 +1187,7 @@ eo:
       title: Saluti en %{domain}
     sign_up:
       manual_review: Enskriboj en %{domain} havas manan superrigardon, farita de niaj moderistoj. Por helpi nin por procezi vian enskribon, skribu ion pri vi mem, kaj kial vi volas konton en %{domain}.
-      preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povas sekvi ajn personojn en la reto.
+      preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povos sekvi ajnan alian personon ĉe la fediverso, sendepende de kie ilia konto estas gastigita.
       title: Ni pretigu vin ĉe %{domain}.
     status:
       account_status: Statuso de la konto
@@ -1499,7 +1520,7 @@ eo:
           follow: sciigoj retpoŝtaj de sekvoj
           follow_request: retpoŝtajn petoj de sekvado
           mention: sciigoj retpoŝtaj de mencioj
-          reblog: sciigoj retpoŝtaj de stimuloj
+          reblog: sciigoj retpoŝtaj de diskonigoj
       resubscribe_html: Se vi malabonis erare, vi povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
       success_html: Vi ne plu ricevos %{type} por Mastodon ĉe %{domain} al via retpoŝto ĉe %{email}.
       title: Malaboni
@@ -1841,6 +1862,8 @@ eo:
       too_late: Estas tro malfrua por apelacii ĉi tiun admonon
   tags:
     does_not_match_previous_name: ne kongruas kun la antaŭa nomo
+  terms_of_service:
+    title: Kondiĉoj de uzado
   themes:
     contrast: Mastodon (Forta kontrasto)
     default: Mastodon (Malhela)
@@ -1901,6 +1924,11 @@ eo:
       further_actions_html: Se ne estas vi, ni rekomendas ke vi %{action} tuj por sekurigi vian konton.
       subject: Via konto estas alirita de nova IP-adreso
       title: Nova saluto
+    terms_of_service_changed:
+      sign_off: La teamo de %{domain}
+      subject: Ĝisdatigoj al niaj kondiĉoj de servo
+      subtitle: La kondiĉoj de la servo de %{domain} ŝanĝiĝas
+      title: Grava ĝisdatigo
     warning:
       appeal: Sendi apelacion
       appeal_description: Se vi pensas ke ĉi tio estas eraro, vi povas sendi apelacion al la teamo de %{instance}.

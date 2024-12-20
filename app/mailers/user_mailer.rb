@@ -209,6 +209,16 @@ class UserMailer < Devise::Mailer
     end
   end
 
+  def terms_of_service_changed(user, terms_of_service)
+    @resource = user
+    @terms_of_service = terms_of_service
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, escape_html: true, no_images: true)
+
+    I18n.with_locale(locale) do
+      mail subject: default_i18n_subject
+    end
+  end
+
   private
 
   def default_devise_subject

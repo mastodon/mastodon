@@ -6,7 +6,7 @@ class CreateLoginActivities < ActiveRecord::Migration[6.1]
       t.belongs_to :user, null: false, foreign_key: { on_delete: :cascade }
       t.string :authentication_method
       t.string :provider
-      t.boolean :success
+      t.boolean :success # rubocop:disable Rails/ThreeStateBooleanColumn
       t.string :failure_reason
       t.inet :ip
       t.string :user_agent
