@@ -12,3 +12,5 @@ type CardShape = Required<ApiPreviewCardJSON>;
 export type Card = RecordOf<CardShape>;
 
 export type MediaAttachment = Immutable.Map<string, unknown>;
+
+export type Translation = Immutable.Map<string, unknown>;
