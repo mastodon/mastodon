@@ -5,7 +5,7 @@ import { AxiosError } from 'axios';
 import type { AxiosResponse } from 'axios';
 
 interface Alert {
-  title: string | MessageDescriptor;
+  title?: string | MessageDescriptor;
   message: string | MessageDescriptor;
   values?: Record<string, string | number | Date>;
 }
