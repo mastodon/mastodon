@@ -3,13 +3,14 @@ en-GB:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: One per line. Protects from false attributions.
         discoverable: Your public posts and profile may be featured or recommended in various areas of Mastodon and your profile may be suggested to other users.
         display_name: Your full name or your fun name.
         fields: Your homepage, pronouns, age, anything you want.
         indexable: Your public posts may appear in search results on Mastodon. People who have interacted with your posts may be able to search them regardless.
         note: 'You can @mention other people or #hashtags.'
         show_collections: People will be able to browse through your follows and followers. People that you follow will see that you follow them regardless.
-        unlocked: People will be able to follow you without requesting approval. Uncheck if you want to review follow requests and chose whether to accept or reject new followers.
+        unlocked: People will be able to follow you without requesting approval. Uncheck if you want to review follow requests and choose whether to accept or reject new followers.
       account_alias:
         acct: Specify the username@domain of the account you want to move from
       account_migration:
@@ -143,6 +144,7 @@ en-GB:
         url: Where events will be sent to
     labels:
       account:
+        attribution_domains_as_text: Websites allowed to credit you
         discoverable: Feature profile and posts in discovery algorithms
         fields:
           name: Label

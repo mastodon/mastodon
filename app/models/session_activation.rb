@@ -30,6 +30,8 @@ class SessionActivation < ApplicationRecord
 
   DEFAULT_SCOPES = %w(read write follow).freeze
 
+  scope :latest, -> { order(id: :desc) }
+
   class << self
     def active?(id)
       id && exists?(session_id: id)
@@ -48,7 +50,7 @@ class SessionActivation < ApplicationRecord
     end
 
     def purge_old
-      order('created_at desc').offset(Rails.configuration.x.max_session_activations).destroy_all
+      latest.offset(Rails.configuration.x.max_session_activations).destroy_all
     end
 
     def exclusive(id)

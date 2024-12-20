@@ -71,7 +71,7 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
   end
 
   def local_votes_scope
-    Poll.joins(:votes).where(votes: { account: Account.local }).select('polls.id, polls.status_id')
+    Poll.joins(:votes).where(votes: { account: Account.local }).select(polls: [:id, :status_id])
   end
 
   def local_statuses_scope

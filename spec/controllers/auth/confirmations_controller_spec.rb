@@ -23,12 +23,11 @@ RSpec.describe Auth::ConfirmationsController do
         get :show, params: { confirmation_token: 'foobar' }
       end
 
-      it 'redirects to login' do
-        expect(response).to redirect_to(new_user_session_path)
-      end
-
-      it 'queues up bootstrapping of home timeline' do
-        expect(BootstrapTimelineWorker).to have_received(:perform_async).with(user.account_id)
+      it 'redirects to login and queues worker' do
+        expect(response)
+          .to redirect_to(new_user_session_path)
+        expect(BootstrapTimelineWorker)
+          .to have_received(:perform_async).with(user.account_id)
       end
     end
 
@@ -88,13 +87,13 @@ RSpec.describe Auth::ConfirmationsController do
         get :show, params: { confirmation_token: 'foobar' }
       end
 
-      it 'redirects to login and confirms email' do
-        expect(response).to redirect_to(new_user_session_path)
-        expect(user.reload.unconfirmed_email).to be_nil
-      end
-
-      it 'does not queue up bootstrapping of home timeline' do
-        expect(BootstrapTimelineWorker).to_not have_received(:perform_async)
+      it 'redirects to login, confirms email, does not queue worker' do
+        expect(response)
+          .to redirect_to(new_user_session_path)
+        expect(user.reload.unconfirmed_email)
+          .to be_nil
+        expect(BootstrapTimelineWorker)
+          .to_not have_received(:perform_async)
       end
     end
   end

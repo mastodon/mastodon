@@ -16,7 +16,8 @@ class StatusReachFinder
   private
 
   def reached_account_inboxes
-    Account.where(id: reached_account_ids).inboxes
+    scope = Account.where(id: reached_account_ids)
+    inboxes_without_suspended_for(scope)
   end
 
   def reached_account_ids
@@ -69,13 +70,8 @@ class StatusReachFinder
   end
 
   def followers_inboxes
-    if @status.in_reply_to_local_account? && distributable?
-      @status.account.followers.or(@status.thread.account.followers.not_domain_blocked_by_account(@status.account)).inboxes
-    elsif @status.direct_visibility? || @status.limited_visibility?
-      []
-    else
-      @status.account.followers.inboxes
-    end
+    scope = followers_scope
+    inboxes_without_suspended_for(scope)
   end
 
   def relay_inboxes
@@ -92,5 +88,20 @@ class StatusReachFinder
 
   def unsafe?
     @options[:unsafe]
+  end
+
+  def followers_scope
+    if @status.in_reply_to_local_account? && distributable?
+      @status.account.followers.or(@status.thread.account.followers.not_domain_blocked_by_account(@status.account))
+    elsif @status.direct_visibility? || @status.limited_visibility?
+      Account.none
+    else
+      @status.account.followers
+    end
+  end
+
+  def inboxes_without_suspended_for(scope)
+    scope.merge!(Account.without_suspended) unless unsafe?
+    scope.inboxes
   end
 end

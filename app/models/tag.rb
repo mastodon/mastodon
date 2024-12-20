@@ -32,6 +32,8 @@ class Tag < ApplicationRecord
   has_many :featured_tags, dependent: :destroy, inverse_of: :tag
   has_many :followers, through: :passive_relationships, source: :account
 
+  has_one :trend, class_name: 'TagTrend', inverse_of: :tag, dependent: :destroy
+
   HASHTAG_SEPARATORS = "_\u00B7\u30FB\u200c"
   HASHTAG_FIRST_SEQUENCE_CHUNK_ONE = "[[:word:]_][[:word:]#{HASHTAG_SEPARATORS}]*[[:alpha:]#{HASHTAG_SEPARATORS}]"
   HASHTAG_FIRST_SEQUENCE_CHUNK_TWO = "[[:word:]#{HASHTAG_SEPARATORS}]*[[:word:]_]"
@@ -61,7 +63,7 @@ class Tag < ApplicationRecord
   scope :recently_used, lambda { |account|
                           joins(:statuses)
                             .where(statuses: { id: account.statuses.select(:id).limit(RECENT_STATUS_LIMIT) })
-                            .group(:id).order(Arel.sql('count(*) desc'))
+                            .group(:id).order(Arel.star.count.desc)
                         }
   scope :matches_name, ->(term) { where(arel_table[:name].lower.matches(arel_table.lower("#{sanitize_sql_like(Tag.normalize(term))}%"), nil, true)) } # Search with case-sensitive to use B-tree index
 
@@ -127,7 +129,7 @@ class Tag < ApplicationRecord
       query = query.merge(Tag.listable) if options[:exclude_unlistable]
       query = query.merge(matching_name(stripped_term).or(reviewed)) if options[:exclude_unreviewed]
 
-      query.order(Arel.sql('length(name) ASC, name ASC'))
+      query.order(Arel.sql('LENGTH(name)').asc, name: :asc)
            .limit(limit)
            .offset(offset)
     end

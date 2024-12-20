@@ -79,4 +79,6 @@ body {
   --rich-text-container-color: rgba(255, 216, 231, 100%);
   --rich-text-text-color: rgba(114, 47, 83, 100%);
   --rich-text-decorations-color: rgba(255, 175, 212, 100%);
+  --input-placeholder-color: #{transparentize($dark-text-color, 0.5)};
+  --input-background-color: #{darken($ui-base-color, 10%)};
 }

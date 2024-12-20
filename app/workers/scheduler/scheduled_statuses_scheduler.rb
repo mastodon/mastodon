@@ -20,7 +20,7 @@ class Scheduler::ScheduledStatusesScheduler
   end
 
   def due_statuses
-    ScheduledStatus.where(scheduled_at: ..Time.now.utc + PostStatusService::MIN_SCHEDULE_OFFSET)
+    ScheduledStatus.where(scheduled_at: ..time_due_at)
   end
 
   def publish_scheduled_announcements!
@@ -30,7 +30,7 @@ class Scheduler::ScheduledStatusesScheduler
   end
 
   def due_announcements
-    Announcement.unpublished.where('scheduled_at IS NOT NULL AND scheduled_at <= ?', Time.now.utc + PostStatusService::MIN_SCHEDULE_OFFSET)
+    Announcement.unpublished.where('scheduled_at IS NOT NULL AND scheduled_at <= ?', time_due_at)
   end
 
   def unpublish_expired_announcements!
@@ -39,5 +39,9 @@ class Scheduler::ScheduledStatusesScheduler
 
   def expired_announcements
     Announcement.published.where('ends_at IS NOT NULL AND ends_at <= ?', Time.now.utc)
+  end
+
+  def time_due_at
+    Time.now.utc + ScheduledStatus::MINIMUM_OFFSET
   end
 end

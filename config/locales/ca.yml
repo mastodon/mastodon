@@ -187,6 +187,7 @@ ca:
         create_domain_block: Crea un bloqueig de domini
         create_email_domain_block: Crea un blocatge del domini del correu electrònic
         create_ip_block: Crear regla IP
+        create_relay: Crea un repetidor
         create_unavailable_domain: Crea un domini no disponible
         create_user_role: Crea Rol
         demote_user: Degrada l'usuari
@@ -198,18 +199,22 @@ ca:
         destroy_email_domain_block: Elimina el blocatge del domini del correu electrònic
         destroy_instance: Purga Domini
         destroy_ip_block: Eliminar regla IP
+        destroy_relay: Esborra el repetidor
         destroy_status: Elimina la publicació
         destroy_unavailable_domain: Esborra domini no disponible
         destroy_user_role: Destrueix Rol
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
+        disable_relay: Desactiva el repetidor
         disable_sign_in_token_auth_user: Desactivar l'autenticació de token per correu-e per a l'usuari
         disable_user: Deshabilita l'usuari
         enable_custom_emoji: Activa l'emoji personalitzat
+        enable_relay: Activa el repetidor
         enable_sign_in_token_auth_user: Activar l'autenticació de token per correu-e per a l'usuari
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
+        publish_terms_of_service: Publicar les condicions de servei
         reject_appeal: Rebutja l'apel·lació
         reject_user: Rebutja l'usuari
         remove_avatar_user: Eliminar avatar
@@ -247,6 +252,7 @@ ca:
         create_domain_block_html: "%{name} ha bloquejat el domini %{target}"
         create_email_domain_block_html: "%{name} ha blocat el domini de correu electrònic %{target}"
         create_ip_block_html: "%{name} ha creat una regla per a l'IP %{target}"
+        create_relay_html: "%{name} ha creat un repetidor %{target}"
         create_unavailable_domain_html: "%{name} ha aturat el lliurament al domini %{target}"
         create_user_role_html: "%{name} ha creat el rol %{target}"
         demote_user_html: "%{name} ha degradat l'usuari %{target}"
@@ -258,18 +264,22 @@ ca:
         destroy_email_domain_block_html: "%{name} ha desblocat el domini de correu electrònic %{target}"
         destroy_instance_html: "%{name} ha purgat el domini %{target}"
         destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
+        destroy_relay_html: "%{name} ha esborrat el repetidor %{target}"
         destroy_status_html: "%{name} ha eliminat el tut de %{target}"
         destroy_unavailable_domain_html: "%{name} ha représ el lliurament delivery al domini %{target}"
         destroy_user_role_html: "%{name} ha esborrat el rol %{target}"
         disable_2fa_user_html: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
         disable_custom_emoji_html: "%{name} ha desactivat l'emoji %{target}"
+        disable_relay_html: "%{name} ha desactivat el repetidor %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ha desactivat l'autenticació de token per correu-e per a %{target}"
         disable_user_html: "%{name} ha desactivat l'accés del usuari %{target}"
         enable_custom_emoji_html: "%{name} ha activat l'emoji %{target}"
+        enable_relay_html: "%{name} ha activat el repetidor %{target}"
         enable_sign_in_token_auth_user_html: "%{name} ha activat l'autenticació de token per correu-e per a %{target}"
         enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
         memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
         promote_user_html: "%{name} ha promogut l'usuari %{target}"
+        publish_terms_of_service_html: "%{name} ha publicat actualitzacions a les condicions de servei"
         reject_appeal_html: "%{name} ha rebutjat l'apel·lació a la decisió de moderació de %{target}"
         reject_user_html: "%{name} ha rebutjat el registre de %{target}"
         remove_avatar_user_html: "%{name} ha eliminat l'avatar de %{target}"
@@ -818,8 +828,10 @@ ca:
       back_to_account: Torna a la pàgina del compte
       back_to_report: Torna a la pàgina de l'informe
       batch:
+        add_to_report: 'Afegiu a l''informe #%{id}'
         remove_from_report: Treu de l'informe
         report: Denuncia
+      contents: Continguts
       deleted: Eliminada
       favourites: Favorits
       history: Històric de versions
@@ -828,13 +840,17 @@ ca:
       media:
         title: Contingut multimèdia
       metadata: Metadada
+      no_history: Aquesta publicació no s'ha editat
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
       open: Obre la publicació
       original_status: Publicació original
       reblogs: Impulsos
+      replied_to_html: En resposta a %{acct_link}
       status_changed: Publicació canviada
-      title: Estats del compte
+      status_title: Publicació de @%{name}
+      title: Publicacions del compte - @%{name}
       trending: Tendència
+      view_publicly: Vegeu en públic
       visibility: Visibilitat
       with_media: Amb contingut multimèdia
     strikes:
@@ -911,6 +927,19 @@ ca:
       search: Cerca
       title: Etiquetes
       updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
+    terms_of_service:
+      back: Tornar a les condicions de servei
+      changelog: Què ha canviat
+      create: Feu servir el vostre
+      current: Actual
+      draft: Esborrany
+      generate: Fer servir la plantilla
+      generates:
+        action: Generar
+        chance_to_review_html: "<strong>Les condicions de servei generades no es publicaran automàticament.</strong> Tindreu l'oportunitat de revisar-ne els resultats. Empleneu els detalls necessaris per a procedir."
+        title: Configuració de les condicions de servei
+      history: Historial
+      live: En ús
     title: Administració
     trends:
       allow: Permet
@@ -1118,7 +1147,6 @@ ca:
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots <a href="%{path}">configurar aquí</a>.
     or_log_in_with: O inicia sessió amb
-    privacy_policy_agreement_html: He llegit i estic d'acord amb la <a href="%{privacy_policy_path}" target="_blank">política de privacitat</a>
     progress:
       confirm: Confirmar email
       details: Els teus detalls
@@ -1143,7 +1171,7 @@ ca:
     set_new_password: Estableix una contrasenya nova
     setup:
       email_below_hint_html: Verifiqueu la carpeta de correu brossa o demaneu-ne un altre. Podeu corregir l'adreça de correu-e si no és correcta.
-      email_settings_hint_html: Toca l'enllaç que t'hem enviat per a verificar %{email}. Esperarem aquí mateix.
+      email_settings_hint_html: Feu clic a l'enllaç que us hem enviat a %{email} per a començar a utilitzar Mastodon. Us esperem.
       link_not_received: No has rebut l'enllaç?
       new_confirmation_instructions_sent: Rebràs un nou correu amb l'enllaç de confirmació en pocs minuts!
       title: Comprova la teva safata d'entrada
@@ -1152,7 +1180,7 @@ ca:
       title: Inicia sessió a %{domain}
     sign_up:
       manual_review: Els registres a %{domain} passen per una revisió manual dels nostres moderadors. Per ajudar-nos a processar el teu registre, escriu-nos quelcom sobre tu i perquè vols un compte a %{domain}.
-      preamble: Amb un compte en aquest servidor Mastodon podràs seguir qualsevol altra persona de la xarxa, independentment d'on tingui el compte.
+      preamble: Amb un compte en aquest servidor de Mastodon podreu seguir qualsevol altra persona al Fedivers, sense importar a quin servidor tingui el compte.
       title: Configurem-te a %{domain}.
     status:
       account_status: Estat del compte
@@ -1166,8 +1194,11 @@ ca:
     use_security_key: Usa clau de seguretat
   author_attribution:
     example_title: Text d'exemple
+    hint_html: Escriviu notícies o un blog fora de Mastodon? Controleu quin crèdit rebeu quan es comparteixen aquí.
+    instructions: 'Assegureu-vos que aquest codi és a l''HTML de l''article:'
     more_from_html: Més de %{name}
     s_blog: Blog de %{name}
+    then_instructions: Després, afegiu el nom del domini de la publicació aquí sota.
     title: Atribució d'autor
   challenge:
     confirm: Continua
@@ -1621,7 +1652,7 @@ ca:
   scheduled_statuses:
     over_daily_limit: Has superat el límit de %{limit} tuts programats per a avui
     over_total_limit: Has superat el límit de %{limit} tuts programats
-    too_soon: La data programada ha de ser futura
+    too_soon: la data ha de ser al futur
   self_destruct:
     lead_html: Lamentablement, <strong>%{domain}</strong> tanca de forma definitiva. Si hi teníeu un compte, no el podreu continuar utilitzant, però podeu demanar una còpia de les vostres dades.
     title: Aquest servidor tancarà
@@ -1784,6 +1815,8 @@ ca:
       too_late: És massa tard per a apel·lar aquesta acció
   tags:
     does_not_match_previous_name: no coincideix amb el nom anterior
+  terms_of_service:
+    title: Condicions de servei
   themes:
     contrast: Mastodon (alt contrast)
     default: Mastodon (fosc)
@@ -1844,6 +1877,8 @@ ca:
       further_actions_html: Si no has estat tu, %{action} immediatament i activa l'autenticació de dos-factors per a mantenir el teu compte segur.
       subject: S'ha accedit al teu compte des d'una adreça IP nova
       title: Un inici de sessió nou
+    terms_of_service_changed:
+      title: Actualització important
     warning:
       appeal: Envia una apel·lació
       appeal_description: Si creus que això és un error, pots enviar una apel·lació a l'equip de %{instance}.

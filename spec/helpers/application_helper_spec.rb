@@ -5,12 +5,20 @@ require 'rails_helper'
 RSpec.describe ApplicationHelper do
   describe 'body_classes' do
     context 'with a body class string from a controller' do
-      before { helper.extend controller_helpers }
+      before do
+        user = Fabricate :user
+        user.settings['web.use_system_font'] = true
+        user.settings['web.reduce_motion'] = true
+        user.save
 
-      it 'uses the controller body classes in the result' do
+        helper.extend controller_helpers
+      end
+
+      it 'uses the current theme and user settings classes in the result' do
         expect(helper.body_classes)
-          .to match(/modal-layout compose-standalone/)
-          .and match(/theme-default/)
+          .to match(/theme-default/)
+          .and match(/system-font/)
+          .and match(/reduce-motion/)
       end
 
       it 'includes values set via content_for' do
@@ -24,10 +32,8 @@ RSpec.describe ApplicationHelper do
 
       def controller_helpers
         Module.new do
-          def body_class_string = 'modal-layout compose-standalone'
-
           def current_account
-            @current_account ||= Fabricate(:account)
+            @current_account ||= Fabricate(:account, user: User.last)
           end
 
           def current_theme = 'default'
@@ -257,11 +263,11 @@ RSpec.describe ApplicationHelper do
         expect(helper.html_title).to be_html_safe
       end
 
-      it 'removes extra new lines' do
+      it 'does not escape twice' do
         Setting.site_title = 'Site Title'
-        helper.content_for(:page_title, "Test Value\n")
+        helper.content_for(:page_title, '&quot;Test Value&quot;'.html_safe)
 
-        expect(helper.html_title).to eq 'Test Value - Site Title'
+        expect(helper.html_title).to eq '&quot;Test Value&quot; - Site Title'
         expect(helper.html_title).to be_html_safe
       end
     end

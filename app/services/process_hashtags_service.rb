@@ -33,7 +33,7 @@ class ProcessHashtagsService < BaseService
 
     unless removed_tags.empty?
       @account.featured_tags.where(tag_id: removed_tags.map(&:id)).find_each do |featured_tag|
-        featured_tag.decrement(@status.id)
+        featured_tag.decrement(@status)
       end
     end
   end

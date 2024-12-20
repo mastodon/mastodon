@@ -13,6 +13,8 @@ class Web::PushNotificationWorker
     @subscription = Web::PushSubscription.find(subscription_id)
     @notification = Notification.find(notification_id)
 
+    return if @notification.updated_at < TTL.ago
+
     # Polymorphically associated activity could have been deleted
     # in the meantime, so we have to double-check before proceeding
     return unless @notification.activity.present? && @subscription.pushable?(@notification)

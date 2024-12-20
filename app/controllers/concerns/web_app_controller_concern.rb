@@ -7,7 +7,7 @@ module WebAppControllerConcern
     vary_by 'Accept, Accept-Language, Cookie'
 
     before_action :redirect_unauthenticated_to_permalinks!
-    before_action :set_app_body_class
+    before_action :set_referer_header
 
     content_security_policy do |p|
       policy = ContentSecurityPolicy.new
@@ -22,10 +22,6 @@ module WebAppControllerConcern
 
   def skip_csrf_meta_tags?
     !(ENV['ONE_CLICK_SSO_LOGIN'] == 'true' && ENV['OMNIAUTH_ONLY'] == 'true' && Devise.omniauth_providers.length == 1) && current_user.nil?
-  end
-
-  def set_app_body_class
-    @body_classes = 'app-body'
   end
 
   def redirect_unauthenticated_to_permalinks!
@@ -45,5 +41,11 @@ module WebAppControllerConcern
         redirect_to(permalink_redirector.redirect_uri, allow_other_host: true)
       end
     end
+  end
+
+  protected
+
+  def set_referer_header
+    response.set_header('Referrer-Policy', Setting.allow_referrer_origin ? 'origin' : 'same-origin')
   end
 end

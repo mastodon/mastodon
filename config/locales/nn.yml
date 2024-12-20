@@ -187,6 +187,7 @@ nn:
         create_domain_block: Opprett domene-blokk
         create_email_domain_block: Opprett blokkering av e-postdomene
         create_ip_block: Opprett IP-regel
+        create_relay: Opprett eit relé
         create_unavailable_domain: Opprett utilgjengeleg domene
         create_user_role: Opprett rolle
         demote_user: Degrader brukar
@@ -198,14 +199,17 @@ nn:
         destroy_email_domain_block: Fjern blokkering av e-postdomene
         destroy_instance: Slett domene
         destroy_ip_block: Slett IP-regel
+        destroy_relay: Slett relé
         destroy_status: Slett status
         destroy_unavailable_domain: Slett utilgjengeleg domene
         destroy_user_role: Øydelegg rolle
         disable_2fa_user: Skruv av 2FA
         disable_custom_emoji: Skruv av tilpassa emoji
+        disable_relay: Skru av reléet
         disable_sign_in_token_auth_user: Slå av e-post-token-autentisering for brukar
         disable_user: Skruv av brukar
         enable_custom_emoji: Skruv på tilpassa emoji
+        enable_relay: Skru på reléet
         enable_sign_in_token_auth_user: Slå på e-post-token-autentisering for brukar
         enable_user: Skruv på brukar
         memorialize_account: Opprett minnekonto
@@ -247,6 +251,7 @@ nn:
         create_domain_block_html: "%{name} blokkerte domenet %{target}"
         create_email_domain_block_html: "%{name} blokkerte e-postdomenet %{target}"
         create_ip_block_html: "%{name} oppretta ein regel for IP-en %{target}"
+        create_relay_html: "%{name} laga reléet %{target}"
         create_unavailable_domain_html: "%{name} stogga levering til domenet %{target}"
         create_user_role_html: "%{name} oppretta rolla %{target}"
         demote_user_html: "%{name} degraderte brukaren %{target}"
@@ -258,14 +263,17 @@ nn:
         destroy_email_domain_block_html: "%{name} avblokkerte e-postdomenet %{target}"
         destroy_instance_html: "%{name} tømde domenet %{target}"
         destroy_ip_block_html: "%{name} sletta ein regel for IP-en %{target}"
+        destroy_relay_html: "%{name} sletta reléet %{target}"
         destroy_status_html: "%{name} fjerna innlegget frå %{target}"
         destroy_unavailable_domain_html: "%{name} tok opp att levering til domenet %{target}"
         destroy_user_role_html: "%{name} sletta rolla %{target}"
         disable_2fa_user_html: "%{name} tok vekk krav om tofaktorautentisering for brukaren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverte emojien %{target}"
+        disable_relay_html: "%{name} skrudde av reléet %{target}"
         disable_sign_in_token_auth_user_html: "%{name} deaktiverte e-post-token-autentisering for %{target}"
         disable_user_html: "%{name} slo av innlogging for brukaren %{target}"
         enable_custom_emoji_html: "%{name} aktiverte emojien %{target}"
+        enable_relay_html: "%{name} skrudde på reléet %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktiverte e-post-token-autentisering for %{target}"
         enable_user_html: "%{name} aktiverte innlogging for brukaren %{target}"
         memorialize_account_html: "%{name} endret %{target}s konto til en minneside"
@@ -818,8 +826,10 @@ nn:
       back_to_account: Tilbake til kontosida
       back_to_report: Attende til rapporteringssida
       batch:
+        add_to_report: 'Legg til rapport #%{id}'
         remove_from_report: Fjern fra rapport
         report: Rapport
+      contents: Innhald
       deleted: Sletta
       favourites: Favorittar
       history: Versjonshistorikk
@@ -828,13 +838,17 @@ nn:
       media:
         title: Media
       metadata: Metadata
+      no_history: Dette innlegget har ikkje blitt redigert
       no_status_selected: Ingen statusar vart endra sidan ingen vart valde
       open: Opne innlegg
       original_status: Opprinnelig innlegg
       reblogs: Framhevingar
+      replied_to_html: Svarte %{acct_link}
       status_changed: Innlegg endret
-      title: Kontostatusar
+      status_title: Innlegg av @%{name}
+      title: Kontoinnlegg - @%{name}
       trending: Populært
+      view_publicly: Vis offentleg
       visibility: Synlighet
       with_media: Med media
     strikes:
@@ -1118,7 +1132,6 @@ nn:
     migrate_account: Flytt til ein annan konto
     migrate_account_html: Om du vil visa denne kontoen til ein anna, kan du <a href="%{path}">skipe det her</a>.
     or_log_in_with: Eller logg inn med
-    privacy_policy_agreement_html: Jeg har lest og godtar <a href="%{privacy_policy_path}" target="_blank">retningslinjer for personvern</a>
     progress:
       confirm: Stadfest e-post
       details: Opplysingane dine
@@ -1143,7 +1156,6 @@ nn:
     set_new_password: Lag nytt passord
     setup:
       email_below_hint_html: Sjekk søppelpostmappa di, eller be om ein ny. Du kan endra e-postadressa di dersom ho er feil.
-      email_settings_hint_html: Klikk lenka me sende deg for å stadfesta %{email}. Me sit her og ventar.
       link_not_received: Fekk du ikkje lenka?
       new_confirmation_instructions_sent: Du vil få ein ny e-post med stadfestingslenke innan nokre minutt!
       title: Sjekk innboksen din
@@ -1152,7 +1164,6 @@ nn:
       title: Logg inn på %{domain}
     sign_up:
       manual_review: Når du lagar ein konto på %{domain}, vil moderatorane våre gå gjennom påmeldinga di manuelt. For å hjelpa oss med påmeldinga di, er det fint om du skriv litt om deg sjølv og kvifor du vil ha ein konto på %{domain}.
-      preamble: Med ein konto på denne Mastodon-tenaren kan du fylgja andre folk på nettverket, uansett kvar dei har brukarkontoen sin.
       title: La oss få deg satt i gang på %{domain}.
     status:
       account_status: Kontostatus
@@ -1381,6 +1392,9 @@ nn:
       following_html:
         one: Du skal til å <strong>fylgja</strong> opp til <strong>%{count} brukarkonto</strong> frå <strong>%{filename}</strong> og <strong>slutta å fylgja alle andre</strong>.
         other: Du skal til å <strong>fylgja</strong> opp til <strong>%{count} brukarkontoar</strong> frå <strong>%{filename}</strong> og <strong>slutta å fylgja alle andre</strong>.
+      lists_html:
+        one: Du er i ferd med å <strong>erstatta listene dine</strong> med innhaldet i <strong>%{filename}</strong>. Opptil <strong>%{count} konto</strong> vil bli lagt til i dei nye listene.
+        other: Du er i ferd med å <strong>erstatta listene dine</strong> med innhaldet i <strong>%{filename}</strong>. Opptil <strong>%{count} kontoar</strong> vil bli lagt til i dei nye listene.
       muting_html:
         one: Du skal til å <strong>byta ut lista di over dempa brukarkontoar</strong> med opp til <strong>%{count} brukarkonto</strong> frå <strong>%{filename}</strong>.
         other: Du skal til å <strong>byta ut lista di over dempa brukarkontoar</strong> med opp til <strong>%{count} brukarkontoar</strong> frå <strong>%{filename}</strong>.
@@ -1659,7 +1673,6 @@ nn:
   scheduled_statuses:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
-    too_soon: Den planlagte datoen må være i fremtiden
   self_destruct:
     lead_html: Diverre stengjer <strong>%{domain}</strong> dørene for godt. Viss du hadde ein brukarkonto der, vil du ikkje kunna halda fram å bruka han, men du kan få ut ein tryggingskopi av dataa dine.
     title: Denne tenaren stengjer

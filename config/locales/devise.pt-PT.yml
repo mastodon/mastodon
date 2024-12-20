@@ -49,17 +49,17 @@ pt-PT:
         title: Solicitar nova palavra-passe
       two_factor_disabled:
         explanation: O início de sessão é agora possível utilizando apenas o endereço de e-mail e a palavra-passe.
-        subject: 'Mastodon: autenticação de duas etapas desativada'
+        subject: 'Mastodon: autenticação de dois fatores desativada'
         subtitle: A autenticação de dois fatores foi desativada para a sua conta.
-        title: 2FA desativado
+        title: 2FA desativada
       two_factor_enabled:
         explanation: Para iniciar sessão, será necessário um token gerado pela aplicação TOTP emparelhada.
-        subject: 'Mastodon: autenticação em duas etapas ativada'
+        subject: 'Mastodon: autenticação de dois fatores ativada'
         subtitle: A autenticação de dois fatores foi ativada para a sua conta.
         title: 2FA ativado
       two_factor_recovery_codes_changed:
         explanation: Os códigos de recuperação anteriores foram invalidados e foram gerados novos códigos.
-        subject: 'Mastodon: gerados novos códigos de recuperação em duas etapas'
+        subject: 'Mastodon: foram gerados novos códigos de recuperação de dois fatores'
         subtitle: Os códigos de recuperação anteriores foram invalidados e foram gerados novos códigos.
         title: Códigos de recuperação 2FA alterados
       unlock_instructions:
@@ -94,11 +94,6 @@ pt-PT:
       updated_not_active: A tua palavra-passe foi alterada.
     registrations:
       destroyed: Adeus! A sua conta foi cancelada com sucesso. Esperamos voltar a vê-lo em breve.
-      signed_up: Bem-vindo! A sua conta foi registada com sucesso.
-      signed_up_but_inactive: Registou-se com sucesso. No entanto, não foi possível iniciar sessão porque a sua conta ainda não está ativada.
-      signed_up_but_locked: Registou-se com sucesso. No entanto, não foi possível iniciar sessão porque a sua conta está bloqueada.
-      signed_up_but_pending: Foi enviada uma mensagem com uma hiperligação de confirmação para o seu endereço de e-mail. Depois de clicar na hiperligação, analisaremos a sua candidatura. Será notificado se for aprovado.
-      signed_up_but_unconfirmed: Foi enviada para o seu endereço de e-mail uma mensagem com uma hiperligação de confirmação. Siga a hiperligação para ativar a sua conta. Verifique a sua pasta de spam se não recebeu esta mensagem de e-mail.
       update_needs_confirmation: Atualizou a sua conta com sucesso, mas temos de verificar o seu novo endereço de e-mail. Verifique o seu e-mail e siga a hiperligação de confirmação para confirmar o seu novo endereço de e-mail. Verifique a sua pasta de spam se não recebeu esta mensagem de correio eletrónico.
       updated: A sua conta foi corretamente atualizada.
     sessions:

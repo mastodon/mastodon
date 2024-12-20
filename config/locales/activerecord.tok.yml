@@ -4,11 +4,67 @@ tok:
     attributes:
       poll:
         expires_at: pini tenpo
+        options: wile
+      user:
+        agreement: nasin lawa
+        email: nimi ilo pi pana lipu
+        locale: toki
+        password: nimi len sijelo
       user/account:
         username: nimi jan
+      user/invite_request:
+        text: tan
     errors:
+      attributes:
+        domain:
+          invalid: li nimi ilo ike
+      messages:
+        invalid_domain_on_line: nimi "%{value}" li nimi ilo ike
+        too_many_lines: la %{limit} o mute nanpa wan pi linja sitelen
       models:
         account:
           attributes:
             username:
-              reserved: jan ante li jo e nimi ni
+              invalid: 'la ni taso li ken lon: sitelen nimi, en sitelen nanpa, en sitelen pi linja anpa'
+              reserved: la jan ante li jo e nimi ni
+        admin/webhook:
+          attributes:
+            url:
+              invalid: li nimi ike pi lipu ilo
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: li nimi ike pi lipu ilo
+        import:
+          attributes:
+            data:
+              malformed: li nasin ike
+        list_account:
+          attributes:
+            account_id:
+              taken: li lon kulupu
+          must_be_following: o jan pi kute sina
+        status:
+          attributes:
+            reblog:
+              taken: pi toki ni li lon
+        user:
+          attributes:
+            email:
+              blocked: la kulupu ni pi nimi ilo li ike
+              unreachable: li lon ala tawa mi
+            role_id:
+              elevated: o anpa sina
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: la jan pi wawa ala o jo ala e ken pi mute ni
+              elevated: la sina jo ala e ken la ken ni o lon ala
+              own_role: la sina wawa lili la sina ken ala ante e ona
+            position:
+              elevated: o anpa sina
+              own_role: la sina wawa lili la sina ken ala ante e ona
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: la sina ken ala lon tenpo namako la tenpo ni li ken ala lon
