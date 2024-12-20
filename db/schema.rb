@@ -778,8 +778,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_224825) do
   end
 
   create_table "polls", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "status_id"
+    t.bigint "account_id", null: false
+    t.bigint "status_id", null: false
     t.datetime "expires_at", precision: nil
     t.string "options", default: [], null: false, array: true
     t.bigint "cached_tallies", default: [], null: false, array: true
