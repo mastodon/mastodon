@@ -993,9 +993,9 @@ RSpec.describe ActivityPub::Activity::Create do
 
       context 'when a vote to an expired local poll' do
         let(:poll) do
-          poll = Fabricate.build(:poll, options: %w(Yellow Blue), expires_at: 1.day.ago)
-          poll.save(validate: false)
-          poll
+          travel_to 2.days.ago do
+            Fabricate(:poll, options: %w(Yellow Blue), expires_at: 1.day.from_now)
+          end
         end
         let!(:local_status) { Fabricate(:status, poll: poll) }
 
