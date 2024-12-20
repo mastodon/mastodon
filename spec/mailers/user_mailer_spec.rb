@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe UserMailer do
   shared_examples 'delivery to memorialized user' do
-    context 'when user is not active for authentication' do
+    context 'when the account is memorialized' do
       before { receiver.account.update(memorial: true) }
 
       it 'does not deliver mail' do
