@@ -743,6 +743,40 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'with featured hashtags' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            to: 'https://www.w3.org/ns/activitystreams#Public',
+            tag: [
+              {
+                type: 'Hashtag',
+                href: 'http://example.com/blah',
+                name: '#test',
+              },
+            ],
+          }
+        end
+
+        before do
+          sender.featured_tags.create!(name: 'test')
+        end
+
+        it 'creates status and updates featured tag' do
+          expect { subject.perform }
+            .to change(sender.statuses, :count).by(1)
+            .and change { sender.featured_tags.first.reload.statuses_count }.by(1)
+            .and change { sender.featured_tags.first.reload.last_status_at }.from(nil).to(be_within(0.1).of(Time.now.utc))
+
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.tags.map(&:name)).to include('test')
+        end
+      end
+
       context 'with hashtags missing name' do
         let(:object_json) do
           {
