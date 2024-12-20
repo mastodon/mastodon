@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Poll do
+  include_examples 'Expireable'
+
   describe 'Scopes' do
     let(:status) { Fabricate(:status) }
     let(:attached_poll) { Fabricate(:poll, status: status) }
