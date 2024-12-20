@@ -13,20 +13,20 @@ module Status::FaspConcern
   private
 
   def announce_new_content_to_subscribed_fasp
-    return unless account_indexable?
+    return unless account_indexable? && public_visibility?
 
     store_uri unless uri # TODO: solve this more elegantly
     Fasp::AnnounceContentLifecycleEventWorker.perform_async(uri, 'new')
   end
 
   def announce_updated_content_to_subscribed_fasp
-    return unless account_indexable?
+    return unless account_indexable? && public_visibility_or_just_changed?
 
     Fasp::AnnounceContentLifecycleEventWorker.perform_async(uri, 'update')
   end
 
   def announce_deleted_content_to_subscribed_fasp
-    return unless account_indexable?
+    return unless account_indexable? && public_visibility?
 
     Fasp::AnnounceContentLifecycleEventWorker.perform_async(uri, 'delete')
   end
@@ -41,5 +41,9 @@ module Status::FaspConcern
         [in_reply_to_id, 'reply']
       end
     Fasp::AnnounceTrendWorker.perform_async(candidate_id, trend_source) if candidate_id
+  end
+
+  def public_visibility_or_just_changed?
+    public_visibility? || visibility_previously_was == 'public'
   end
 end
