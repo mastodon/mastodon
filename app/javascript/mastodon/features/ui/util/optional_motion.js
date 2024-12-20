@@ -1,4 +1,4 @@
-import Motion from 'react-motion/lib/Motion';
+import { Motion } from 'react-motion';
 
 import { reduceMotion } from '../../../initial_state';
 
