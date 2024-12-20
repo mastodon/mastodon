@@ -18,6 +18,6 @@ class UnblockService < BaseService
   end
 
   def build_json(unblock)
-    Oj.dump(serialize_payload(unblock, ActivityPub::UndoBlockSerializer))
+    JSON.dump(serialize_payload(unblock, ActivityPub::UndoBlockSerializer))
   end
 end

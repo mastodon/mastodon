@@ -1071,7 +1071,7 @@ RSpec.describe ActivityPub::Activity::Create do
       before do
         stub_request(:get, object_json[:id])
           .with(headers: { Authorization: "Bearer #{token}" })
-          .to_return(body: Oj.dump(object_json), headers: { 'Content-Type': 'application/activity+json' })
+          .to_return(body: JSON.dump(object_json), headers: { 'Content-Type': 'application/activity+json' })
 
         subject.perform
       end
