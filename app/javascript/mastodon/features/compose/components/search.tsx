@@ -497,8 +497,14 @@ export const Search: React.FC<{
             <div className='search__popout__menu'>
               {recentOptions.length > 0 ? (
                 recentOptions.map(({ label, key, action, forget }, i) => (
-                  <div key={key} className='search__popout__menu__item search__popout__menu__item--flex'>
-                    <button onMouseDown={action} className={classNames({ selected: selectedOption === i })}>
+                  <div
+                    key={key}
+                    className='search__popout__menu__item search__popout__menu__item--flex'
+                  >
+                    <button
+                      onMouseDown={action}
+                      className={classNames({ selected: selectedOption === i })}
+                    >
                       <span>{label}</span>
                     </button>
                     <button className='icon-button' onMouseDown={forget}>
