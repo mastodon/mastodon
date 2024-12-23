@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.10
+# syntax=docker/dockerfile:1.12
 
 # Please see https://docs.docker.com/engine/reference/builder for information about
 # the extended buildx capabilities used in this file.
@@ -9,7 +9,7 @@ ARG BUILDPLATFORM=${BUILDPLATFORM}
 
 # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 # renovate: datasource=node-version depName=node
-ARG NODE_MAJOR_VERSION="20"
+ARG NODE_MAJOR_VERSION="22"
 # Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
 ARG DEBIAN_VERSION="bookworm"
 # Node image to use for base image based on combined variables (ex: 20-bookworm-slim)

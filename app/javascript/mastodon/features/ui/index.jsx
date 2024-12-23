@@ -49,7 +49,7 @@ import {
   Favourites,
   DirectTimeline,
   HashtagTimeline,
-  NotificationsWrapper,
+  Notifications,
   NotificationRequests,
   NotificationRequest,
   FollowRequests,
@@ -58,17 +58,22 @@ import {
   FollowedTags,
   LinkTimeline,
   ListTimeline,
+  Lists,
+  ListEdit,
+  ListMembers,
   Blocks,
   DomainBlocks,
   Mutes,
   PinnedStatuses,
-  Lists,
   Directory,
+  OnboardingProfile,
+  OnboardingFollows,
   Explore,
-  Onboarding,
   InstanceStats,
+  Search,
   About,
   PrivacyPolicy,
+  TermsOfService,
 } from './util/async-components';
 import { ColumnsContextProvider } from './util/columns_context';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
@@ -197,6 +202,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/about' component={About} content={children} />
             <WrappedRoute path='/privacy-policy' component={PrivacyPolicy} content={children} />
             <WrappedRoute path='/instance-stats/:domain' component={InstanceStats} content={children} />
+            <WrappedRoute path='/terms-of-service' component={TermsOfService} content={children} />
 
             <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
             <Redirect from='/timelines/public' to='/public' exact />
@@ -207,8 +213,11 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
             <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
             <WrappedRoute path='/links/:url' component={LinkTimeline} content={children} />
+            <WrappedRoute path='/lists/new' component={ListEdit} content={children} />
+            <WrappedRoute path='/lists/:id/edit' component={ListEdit} content={children} />
+            <WrappedRoute path='/lists/:id/members' component={ListMembers} content={children} />
             <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
-            <WrappedRoute path='/notifications' component={NotificationsWrapper} content={children} exact />
+            <WrappedRoute path='/notifications' component={Notifications} content={children} exact />
             <WrappedRoute path='/notifications/requests' component={NotificationRequests} content={children} exact />
             <WrappedRoute path='/notifications/requests/:id' component={NotificationRequest} content={children} exact />
             <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
@@ -216,9 +225,11 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
             <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
-            <WrappedRoute path='/start' component={Onboarding} content={children} />
+            <WrappedRoute path={['/start', '/start/profile']} exact component={OnboardingProfile} content={children} />
+            <WrappedRoute path='/start/follows' component={OnboardingFollows} content={children} />
             <WrappedRoute path='/directory' component={Directory} content={children} />
-            <WrappedRoute path={['/explore', '/search']} component={Explore} content={children} />
+            <WrappedRoute path='/explore' component={Explore} content={children} />
+            <WrappedRoute path='/search' component={Search} content={children} />
             <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
 
             <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
@@ -484,7 +495,9 @@ class UI extends PureComponent {
     }
   };
 
-  handleHotkeyBack = () => {
+  handleHotkeyBack = e => {
+    e.preventDefault();
+
     const { history } = this.props;
 
     if (history.location?.state?.fromMastodon) {

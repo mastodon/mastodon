@@ -204,8 +204,8 @@ class StatusContent extends PureComponent {
       element = element.parentNode;
     }
 
-    if (deltaX + deltaY < 5 && e.button === 0 && this.props.onClick) {
-      this.props.onClick();
+    if (deltaX + deltaY < 5 && (e.button === 0 || e.button === 1) && e.detail >= 1 && this.props.onClick) {
+      this.props.onClick(e);
     }
 
     this.startXY = null;
@@ -245,7 +245,7 @@ class StatusContent extends PureComponent {
     );
 
     const poll = !!status.get('poll') && (
-      <PollContainer pollId={status.get('poll')} lang={language} />
+      <PollContainer pollId={status.get('poll')} status={status} lang={language} />
     );
 
     if (this.props.onClick) {

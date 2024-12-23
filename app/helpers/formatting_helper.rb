@@ -27,7 +27,14 @@ module FormattingHelper
   module_function :extract_status_plain_text
 
   def status_content_format(status)
-    html_aware_format(status.text, status.local?, preloaded_accounts: [status.account] + (status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : []))
+    MastodonOTELTracer.in_span('HtmlAwareFormatter rendering') do |span|
+      span.add_attributes(
+        'app.formatter.content.type' => 'status',
+        'app.formatter.content.origin' => status.local? ? 'local' : 'remote'
+      )
+
+      html_aware_format(status.text, status.local?, preloaded_accounts: [status.account] + (status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : []))
+    end
   end
 
   def rss_status_content_format(status)
@@ -39,7 +46,14 @@ module FormattingHelper
   end
 
   def account_bio_format(account)
-    html_aware_format(account.note, account.local?)
+    MastodonOTELTracer.in_span('HtmlAwareFormatter rendering') do |span|
+      span.add_attributes(
+        'app.formatter.content.type' => 'account_bio',
+        'app.formatter.content.origin' => account.local? ? 'local' : 'remote'
+      )
+
+      html_aware_format(account.note, account.local?)
+    end
   end
 
   def account_field_value_format(field, with_rel_me: true)
@@ -48,6 +62,10 @@ module FormattingHelper
     else
       html_aware_format(field.value, field.account.local?, with_rel_me: with_rel_me, with_domains: true, multiline: false)
     end
+  end
+
+  def markdown(text)
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML, escape_html: true, no_images: true).render(text).html_safe # rubocop:disable Rails/OutputSafety
   end
 
   private

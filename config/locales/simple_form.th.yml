@@ -3,6 +3,7 @@ th:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: หนึ่งรายการต่อบรรทัด ปกป้องจากการระบุแหล่งที่มาที่ผิด
         discoverable: อาจแสดงหรือแนะนำโพสต์และโปรไฟล์สาธารณะของคุณในพื้นที่ต่าง ๆ ของ Mastodon และอาจเสนอแนะโปรไฟล์ของคุณให้กับผู้ใช้อื่น ๆ
         display_name: ชื่อเต็มของคุณหรือชื่อแบบสนุกสนานของคุณ
         fields: หน้าแรก, สรรพนาม, อายุของคุณ สิ่งใดก็ตามที่คุณต้องการ
@@ -143,6 +144,7 @@ th:
         url: ที่ซึ่งจะส่งเหตุการณ์ไปยัง
     labels:
       account:
+        attribution_domains_as_text: เว็บไซต์ที่ได้รับอนุญาตให้ให้เครดิตคุณ
         discoverable: แสดงโปรไฟล์และโพสต์ในอัลกอริทึมการค้นพบ
         fields:
           name: ป้ายชื่อ
@@ -221,6 +223,7 @@ th:
         setting_hide_network: ซ่อนกราฟทางสังคมของคุณ
         setting_reduce_motion: ลดการเคลื่อนไหวในภาพเคลื่อนไหว
         setting_system_font_ui: ใช้แบบอักษรเริ่มต้นของระบบ
+        setting_system_scrollbars_ui: ใช้แถบเลื่อนเริ่มต้นของระบบ
         setting_theme: ชุดรูปแบบไซต์
         setting_trends: แสดงแนวโน้มของวันนี้
         setting_unfollow_modal: แสดงกล่องโต้ตอบการยืนยันก่อนเลิกติดตามใครสักคน
@@ -315,6 +318,10 @@ th:
         name: แฮชแท็ก
         trendable: อนุญาตให้แฮชแท็กนี้ปรากฏภายใต้แนวโน้ม
         usable: อนุญาตให้โพสต์ใช้แฮชแท็กนี้ในเซิร์ฟเวอร์
+      terms_of_service:
+        text: เงื่อนไขการให้บริการ
+      terms_of_service_generator:
+        domain: โดเมน
       user:
         role: บทบาท
         time_zone: โซนเวลา

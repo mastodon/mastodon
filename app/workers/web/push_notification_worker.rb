@@ -2,15 +2,18 @@
 
 class Web::PushNotificationWorker
   include Sidekiq::Worker
+  include RoutingHelper
 
   sidekiq_options queue: 'push', retry: 5
 
-  TTL     = 48.hours.to_s
+  TTL     = 48.hours
   URGENCY = 'normal'
 
   def perform(subscription_id, notification_id)
     @subscription = Web::PushSubscription.find(subscription_id)
     @notification = Notification.find(notification_id)
+
+    return if @notification.updated_at < TTL.ago
 
     # Polymorphically associated activity could have been deleted
     # in the meantime, so we have to double-check before proceeding
@@ -23,12 +26,13 @@ class Web::PushNotificationWorker
 
       request.add_headers(
         'Content-Type' => 'application/octet-stream',
-        'Ttl' => TTL,
+        'Ttl' => TTL.to_s,
         'Urgency' => URGENCY,
         'Content-Encoding' => 'aesgcm',
         'Encryption' => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
         'Crypto-Key' => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{web_push_request.crypto_key_header}",
-        'Authorization' => web_push_request.authorization_header
+        'Authorization' => web_push_request.authorization_header,
+        'Unsubscribe-URL' => subscription_url
       )
 
       request.perform do |response|
@@ -71,5 +75,9 @@ class Web::PushNotificationWorker
 
   def request_pool
     RequestPool.current
+  end
+
+  def subscription_url
+    api_web_push_subscription_url(id: @subscription.generate_token_for(:unsubscribe))
   end
 end

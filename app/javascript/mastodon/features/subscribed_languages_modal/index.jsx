@@ -23,7 +23,7 @@ const getAccountLanguages = createSelector([
   (state, accountId) => state.getIn(['timelines', `account:${accountId}`, 'items'], ImmutableList()),
   state => state.get('statuses'),
 ], (statusIds, statuses) =>
-  new ImmutableSet(statusIds.map(statusId => statuses.get(statusId)).filter(status => !status.get('reblog')).map(status => status.get('language'))));
+  ImmutableSet(statusIds.map(statusId => statuses.get(statusId)).filter(status => !status.get('reblog')).map(status => status.get('language'))));
 
 const mapStateToProps = (state, { accountId }) => ({
   acct: state.getIn(['accounts', accountId, 'acct']),

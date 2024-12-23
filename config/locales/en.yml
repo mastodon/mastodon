@@ -187,6 +187,7 @@ en:
         create_domain_block: Create Domain Block
         create_email_domain_block: Create Email Domain Block
         create_ip_block: Create IP rule
+        create_relay: Create Relay
         create_unavailable_domain: Create Unavailable Domain
         create_user_role: Create Role
         demote_user: Demote User
@@ -198,18 +199,22 @@ en:
         destroy_email_domain_block: Delete Email Domain Block
         destroy_instance: Purge Domain
         destroy_ip_block: Delete IP rule
+        destroy_relay: Delete Relay
         destroy_status: Delete Post
         destroy_unavailable_domain: Delete Unavailable Domain
         destroy_user_role: Destroy Role
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
+        disable_relay: Disable Relay
         disable_sign_in_token_auth_user: Disable Email Token Authentication for User
         disable_user: Disable User
         enable_custom_emoji: Enable Custom Emoji
+        enable_relay: Enable Relay
         enable_sign_in_token_auth_user: Enable Email Token Authentication for User
         enable_user: Enable User
         memorialize_account: Memorialize Account
         promote_user: Promote User
+        publish_terms_of_service: Publish Terms of Service
         reject_appeal: Reject Appeal
         reject_user: Reject User
         remove_avatar_user: Remove Avatar
@@ -247,6 +252,7 @@ en:
         create_domain_block_html: "%{name} blocked domain %{target}"
         create_email_domain_block_html: "%{name} blocked email domain %{target}"
         create_ip_block_html: "%{name} created rule for IP %{target}"
+        create_relay_html: "%{name} created a relay %{target}"
         create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
         create_user_role_html: "%{name} created %{target} role"
         demote_user_html: "%{name} demoted user %{target}"
@@ -258,18 +264,22 @@ en:
         destroy_email_domain_block_html: "%{name} unblocked email domain %{target}"
         destroy_instance_html: "%{name} purged domain %{target}"
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
+        destroy_relay_html: "%{name} deleted the relay %{target}"
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
         destroy_user_role_html: "%{name} deleted %{target} role"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
+        disable_relay_html: "%{name} disabled the relay %{target}"
         disable_sign_in_token_auth_user_html: "%{name} disabled email token authentication for %{target}"
         disable_user_html: "%{name} disabled login for user %{target}"
         enable_custom_emoji_html: "%{name} enabled emoji %{target}"
+        enable_relay_html: "%{name} enabled the relay %{target}"
         enable_sign_in_token_auth_user_html: "%{name} enabled email token authentication for %{target}"
         enable_user_html: "%{name} enabled login for user %{target}"
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
         promote_user_html: "%{name} promoted user %{target}"
+        publish_terms_of_service_html: "%{name} published updates to the terms of service"
         reject_appeal_html: "%{name} rejected moderation decision appeal from %{target}"
         reject_user_html: "%{name} rejected sign-up from %{target}"
         remove_avatar_user_html: "%{name} removed %{target}'s avatar"
@@ -821,8 +831,10 @@ en:
       back_to_account: Back to account page
       back_to_report: Back to report page
       batch:
+        add_to_report: 'Add to report #%{id}'
         remove_from_report: Remove from report
         report: Report
+      contents: Contents
       deleted: Deleted
       favourites: Favorites
       history: Version history
@@ -831,13 +843,17 @@ en:
       media:
         title: Media
       metadata: Metadata
+      no_history: This post hasn't been edited
       no_status_selected: No posts were changed as none were selected
       open: Open post
       original_status: Original post
       reblogs: Reblogs
+      replied_to_html: Replied to %{acct_link}
       status_changed: Post changed
-      title: Account posts
+      status_title: Post by @%{name}
+      title: Account posts - @%{name}
       trending: Trending
+      view_publicly: View publicly
       visibility: Visibility
       with_media: With media
     strikes:
@@ -914,6 +930,35 @@ en:
       search: Search
       title: Hashtags
       updated_msg: Hashtag settings updated successfully
+    terms_of_service:
+      back: Back to terms of service
+      changelog: What's changed
+      create: Use your own
+      current: Current
+      draft: Draft
+      generate: Use template
+      generates:
+        action: Generate
+        chance_to_review_html: "<strong>The generated terms of service will not be published automatically.</strong> You will have a chance to review the results. Please fill in the necessary details to proceed."
+        explanation_html: The terms of service template provided is for informational purposes only, and should not be construed as legal advice on any subject matter. Please consult with your own legal counsel on your situation and specific legal questions you have.
+        title: Terms of Service Setup
+      history: History
+      live: Live
+      no_history: There are no recorded changes of the terms of service yet.
+      no_terms_of_service_html: You don't currently have any terms of service configured. Terms of service are meant to provide clarity and protect you from potential liabilities in disputes with your users.
+      notified_on_html: Users notified on %{date}
+      notify_users: Notify users
+      preview:
+        explanation_html: 'The email will be sent to <strong>%{display_count} users</strong> who have signed up before %{date}. The following text will be included in the e-mail:'
+        send_preview: Send preview to %{email}
+        send_to_all:
+          one: Send %{display_count} email
+          other: Send %{display_count} emails
+        title: Preview terms of service notification
+      publish: Publish
+      published_on_html: Published on %{date}
+      save_draft: Save draft
+      title: Terms of Service
     title: Administration
     trends:
       allow: Allow
@@ -1122,7 +1167,6 @@ en:
     migrate_account: Move to a different account
     migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
     or_log_in_with: Or log in with
-    privacy_policy_agreement_html: I have read and agree to the <a href="%{privacy_policy_path}" target="_blank">privacy policy</a>
     progress:
       confirm: Confirm email
       details: Your details
@@ -1147,7 +1191,7 @@ en:
     set_new_password: Set new password
     setup:
       email_below_hint_html: Check your spam folder, or request another one. You can correct your email address if it's wrong.
-      email_settings_hint_html: Click the link we sent you to verify %{email}. We'll wait right here.
+      email_settings_hint_html: Click the link we sent to %{email} to begin using Mastodon. We'll wait right here.
       link_not_received: Didn't get a link?
       new_confirmation_instructions_sent: You will receive a new email with the confirmation link in a few minutes!
       title: Check your inbox
@@ -1156,7 +1200,7 @@ en:
       title: Login to %{domain}
     sign_up:
       manual_review: Sign-ups on %{domain} go through manual review by our moderators. Please read our Terms of Service.
-      preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
+      preamble: With an account on this Mastodon server, you'll be able to follow any other person on the fediverse, regardless of where their account is hosted.
       title: Let's get you set up on %{domain}.
     status:
       account_status: Account status
@@ -1168,6 +1212,7 @@ en:
       view_strikes: View past strikes against your account
     too_fast: Form submitted too fast, try again.
     use_security_key: Use security key
+    user_agreement_html: I have read and agree to the <a href="%{terms_of_service_path}" target="_blank">terms of service</a> and <a href="%{privacy_policy_path}" target="_blank">privacy policy</a>
   author_attribution:
     example_title: Sample text
     hint_html: Are you writing news or blog articles outside of Mastodon? Control how you get credited when they are shared on Mastodon.
@@ -1667,7 +1712,7 @@ en:
   scheduled_statuses:
     over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
     over_total_limit: You have exceeded the limit of %{limit} scheduled posts
-    too_soon: The scheduled date must be in the future
+    too_soon: date must be in the future
   self_destruct:
     lead_html: Unfortunately, <strong>%{domain}</strong> is permanently closing down. If you had an account there, you will not be able to continue using it, but you can still request a backup of your data.
     title: This server is closing down
@@ -1830,6 +1875,8 @@ en:
       too_late: It is too late to appeal this strike
   tags:
     does_not_match_previous_name: does not match the previous name
+  terms_of_service:
+    title: Terms of Service
   themes:
     contrast: Mastodon (High contrast)
     default: Mastodon (Dark)
@@ -1895,6 +1942,15 @@ en:
       further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
       subject: Your account has been accessed from a new IP address
       title: A new sign-in
+    terms_of_service_changed:
+      agreement: By continuing to use %{domain}, you are agreeing to these terms. If you disagree with the updated terms, you may terminate your agreement with %{domain} at any time by deleting your account.
+      changelog: 'At a glance, here is what this update means for you:'
+      description: 'You are receiving this e-mail because we''re making some changes to our terms of service at %{domain}. We encourage you to review the updated terms in full here:'
+      description_html: You are receiving this e-mail because we're making some changes to our terms of service at %{domain}. We encourage you to review the <a href="%{path}" target="_blank">updated terms in full here</a>.
+      sign_off: The %{domain} team
+      subject: Updates to our terms of service
+      subtitle: The terms of service of %{domain} are changing
+      title: Important update
     warning:
       appeal: Submit an appeal
       appeal_description: If you believe this is an error, you can submit an appeal to the staff of %{instance}.

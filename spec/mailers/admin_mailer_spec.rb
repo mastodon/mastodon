@@ -71,6 +71,7 @@ RSpec.describe AdminMailer do
     before do
       PreviewCardTrend.create!(preview_card: link)
       StatusTrend.create!(status: status, account: Fabricate(:account))
+      TagTrend.create!(tag: tag)
       recipient.user.update(locale: :en)
     end
 

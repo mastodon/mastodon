@@ -184,6 +184,7 @@ ko:
         create_domain_block: 도메인 차단 추가
         create_email_domain_block: 이메일 도메인 차단 생성
         create_ip_block: IP 규칙 만들기
+        create_relay: 릴레이 생성
         create_unavailable_domain: 사용 불가능한 도메인 생성
         create_user_role: 역할 생성
         demote_user: 사용자 강등
@@ -195,18 +196,22 @@ ko:
         destroy_email_domain_block: 이메일 도메인 차단 삭제
         destroy_instance: 도메인 퍼지하기
         destroy_ip_block: IP 규칙 삭제
+        destroy_relay: 릴레이 삭제
         destroy_status: 게시물 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
         destroy_user_role: 역할 삭제
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
+        disable_relay: 릴레이 비활성화
         disable_sign_in_token_auth_user: 사용자의 이메일 토큰 인증 비활성화
         disable_user: 사용자 비활성화
         enable_custom_emoji: 커스텀 에모지 활성화
+        enable_relay: 릴레이 활성화
         enable_sign_in_token_auth_user: 사용자의 이메일 토큰 인증 활성화
         enable_user: 사용자 활성화
         memorialize_account: 고인의 계정으로 전환
         promote_user: 사용자 승급
+        publish_terms_of_service: 이용 약관 게시
         reject_appeal: 이의 제기 거절
         reject_user: 사용자 거부
         remove_avatar_user: 아바타 지우기
@@ -244,6 +249,7 @@ ko:
         create_domain_block_html: "%{name} 님이 도메인 %{target}를 차단했습니다"
         create_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}를 차단했습니다"
         create_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
+        create_relay_html: "%{name} 님이 릴레이 %{target}를 생성했습니다"
         create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
         create_user_role_html: "%{name} 님이 %{target} 역할을 생성했습니다"
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
@@ -255,18 +261,22 @@ ko:
         destroy_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}을 차단 해제하였습니다"
         destroy_instance_html: "%{name} 님이 도메인 %{target}를 제거했습니다"
         destroy_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 삭제하였습니다"
+        destroy_relay_html: "%{name} 님이 릴레이 %{target}를 삭제했습니다"
         destroy_status_html: "%{name} 님이 %{target} 님의 게시물을 삭제했습니다"
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         destroy_user_role_html: "%{name} 님이 %{target} 역할을 삭제했습니다"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target} 님의 2단계 인증을 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화했습니다"
+        disable_relay_html: "%{name} 님이 릴레이 %{target}를 비활성화했습니다"
         disable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 비활성화했습니다"
         disable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 비활성화했습니다"
         enable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 활성화했습니다"
+        enable_relay_html: "%{name} 님이 릴레이 %{target}를 활성화했습니다"
         enable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 활성화했습니다"
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화했습니다"
         memorialize_account_html: "%{name} 님이 %{target}의 계정을 고인의 계정 페이지로 전환했습니다"
         promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
+        publish_terms_of_service_html: "%{name} 님이 이용 약관을 업데이트했습니다"
         reject_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 거절했습니다"
         reject_user_html: "%{name} 님이 %{target} 님의 가입을 거부했습니다"
         remove_avatar_user_html: "%{name} 님이 %{target} 님의 아바타를 지웠습니다"
@@ -806,8 +816,10 @@ ko:
       back_to_account: 계정으로 돌아가기
       back_to_report: 신고 페이지로 돌아가기
       batch:
+        add_to_report: '신고 #%{id}에 추가'
         remove_from_report: 신고에서 제거
         report: 신고
+      contents: 내용
       deleted: 삭제됨
       favourites: 좋아요
       history: 버전 이력
@@ -816,13 +828,17 @@ ko:
       media:
         title: 미디어
       metadata: 메타데이터
+      no_history: 이 게시물은 수정되지 않았습니다
       no_status_selected: 아무 것도 선택 되지 않아 어떤 게시물도 바뀌지 않았습니다
       open: 게시물 열기
       original_status: 원본 게시물
       reblogs: 리블로그
+      replied_to_html: "%{acct_link} 님에게 답장"
       status_changed: 게시물 변경됨
-      title: 계정 게시물
+      status_title: "@%{name} 님의 게시물"
+      title: 계정 게시물 - @%{name}
       trending: 유행 중
+      view_publicly: 공개시점으로 보기
       visibility: 공개 설정
       with_media: 미디어 있음
     strikes:
@@ -899,6 +915,31 @@ ko:
       search: 검색
       title: 해시태그
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
+    terms_of_service:
+      back: 이용약관으로 돌아가기
+      changelog: 변경사항
+      create: 직접 사용
+      current: 현재
+      draft: 초안
+      generate: 템플릿 사용
+      generates:
+        action: 생성
+        chance_to_review_html: "<strong>생성된 이용 약관은 자동으로 게시되지 않을 것입니다.</strong> 결과를 확인할 기회가 있습니다. 진행하려면 필요한 정보들을 입력하세요."
+        title: 이용 약관 설정
+      history: 역사
+      live: 활성
+      notified_on_html: 사용자들이 %{date}에 알림을 받았습니다
+      notify_users: 사용자들에게 알리기
+      preview:
+        explanation_html: "%{date} 이전에 가입한 <strong>%{display_count} 명의 사용자</strong>에게 이메일이 발송됩니다. 다음 내용이 이메일에 포함됩니다:"
+        send_preview: 미리보기를 %{email}에 보내기
+        send_to_all:
+          other: "%{display_count} 건의 메일 발송"
+        title: 이용 약관 알림 미리보기
+      publish: 게시
+      published_on_html: "%{date}에 게시됨"
+      save_draft: 초안 저장
+      title: 이용 약관
     title: 관리
     trends:
       allow: 허용
@@ -1102,7 +1143,6 @@ ko:
     migrate_account: 계정 옮기기
     migrate_account_html: 이 계정을 다른 계정으로 리디렉션 하길 원하는 경우 <a href="%{path}">여기</a>에서 설정할 수 있습니다.
     or_log_in_with: 다른 방법으로 로그인 하려면
-    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">개인정보처리방침</a>을 읽고 동의합니다
     progress:
       confirm: 이메일 확인
       details: 세부사항
@@ -1127,7 +1167,7 @@ ko:
     set_new_password: 새 암호 설정
     setup:
       email_below_hint_html: 스팸 폴더를 체크해보거나, 새로 요청할 수 있습니다. 이메일을 잘못 입력한 경우 수정할 수 있습니다.
-      email_settings_hint_html: "%{email}을 인증하기 위해 우리가 보낸 링크를 누르세요. 여기서 기다리겠습니다."
+      email_settings_hint_html: "%{email}로 보낸 링크를 클릭해 마스토돈을 시작하세요. 기다리고 있겠습니다."
       link_not_received: 링크를 못 받으셨나요?
       new_confirmation_instructions_sent: 확인 링크가 담긴 이메일이 몇 분 안에 도착할것입니다!
       title: 수신함 확인하기
@@ -1136,7 +1176,7 @@ ko:
       title: "%{domain}에 로그인"
     sign_up:
       manual_review: "%{domain} 가입은 중재자들의 심사를 거쳐 진행됩니다. 가입 절차를 원활하게 하기 위해, 간단한 자기소개와 왜 %{domain}에 계정을 만들려고 하는지 적어주세요."
-      preamble: 이 마스토돈 서버의 계정을 통해, 네트워크에 속한 다른 사람들을, 그들이 어떤 서버에 있든 팔로우 할 수 있습니다.
+      preamble: 이 마스토돈 서버의 계정을 통해, 연합우주에 속한 다른 사람들을, 그들이 어떤 서버에 있든 팔로우 할 수 있습니다.
       title: "%{domain}에 가입하기 위한 정보들을 입력하세요."
     status:
       account_status: 계정 상태
@@ -1148,10 +1188,14 @@ ko:
       view_strikes: 내 계정에 대한 과거 중재 기록 보기
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
     use_security_key: 보안 키 사용
+    user_agreement_html: <a href="%{terms_of_service_path}" target="_blank">이용 약관</a>과 <a href="%{privacy_policy_path}" target="_blank">개인정보처리방침</a>을 읽었고 동의합니다
   author_attribution:
     example_title: 예시 텍스트
+    hint_html: 마스토돈 밖에서 뉴스나 블로그 글을 쓰시나요? 마스토돈에 공유되었을 때 어떻게 표시될지를 제어하세요.
+    instructions: '이 코드가 글의 HTML 안에 포함되는지 확인하세요:'
     more_from_html: "%{name}의 게시물 더 보기"
     s_blog: "%{name}의 블로그"
+    then_instructions: 그리고 발행처의 도메인 네임을 아래 입력란에 추가하세요.
     title: 작성자 기여
   challenge:
     confirm: 계속
@@ -1623,7 +1667,7 @@ ko:
   scheduled_statuses:
     over_daily_limit: 그 날짜에 대한 %{limit}개의 예약 게시물 제한을 초과합니다
     over_total_limit: 예약 게시물 제한 %{limit}을 초과합니다
-    too_soon: 예약 날짜는 미래여야 합니다
+    too_soon: 미래의 날짜여야 합니다
   self_destruct:
     lead_html: 안타깝게도,  <strong>%{domain}</strong> 도메인을 영구히 폐쇄합니다. 이곳의 계정을 가졌다면, 이제 이용할 수 없으며, 당분간 백업 데이터를 요청할 수 있습니다.
     title: 이 서버는 폐쇄중입니다
@@ -1782,6 +1826,8 @@ ko:
       too_late: 이의를 제기하기에 너무 늦었습니다
   tags:
     does_not_match_previous_name: 이전 이름과 맞지 않습니다
+  terms_of_service:
+    title: 이용 약관
   themes:
     contrast: 마스토돈 (고대비)
     default: 마스토돈 (어두움)
@@ -1842,6 +1888,15 @@ ko:
       further_actions_html: 직접 로그인한 것이 아니라면, 지금 바로 %{action}과 2단계 인증을 활성화하여 계정을 안전하게 보호하시길 권해드립니다.
       subject: 계정이 새로운 IP에서 접근됨
       title: 새로운 로그인
+    terms_of_service_changed:
+      agreement: "%{domain}을 계속 사용하는 것으로 약관에 동의하는 것으로 간주합니다. 약관에 동의하지 않는 경우 계정을 삭제함으로써 언제든 동의를 철회할 수 있습니다."
+      changelog: '이번 변경사항의 주요 내용입니다:'
+      description: "%{domain}의 이용 약관이 변경되었기 때문에 발송된 이메일입니다. 변경된 전체 약관을 확인하시길 권합니다:"
+      description_html: '%{domain}의 이용 약관이 변경되었기 때문에 발송된 이메일입니다. <a href="%{path}" target="_blank">변경된 전체 약관</a>을 확인하시길 권합니다.'
+      sign_off: "%{domain} 팀"
+      subject: 변경된 이용 약관
+      subtitle: "%{domain}의 이용 약관이 변경됩니다"
+      title: 중요한 알림
     warning:
       appeal: 이의 제출하기
       appeal_description: 이것이 오류라고 생각한다면, %{instance}의 중재자에게 이의신청을 할 수 있습니다.

@@ -7,7 +7,7 @@
   .dashboard__item
     = react_admin_component :counter,
                             end_at: period_end_at,
-                            href: admin_accounts_path(origin: 'remote', by_domain: instance_domain),
+                            href: current_user.can?(:manage_users) ? admin_accounts_path(origin: 'remote', by_domain: instance_domain) : nil,
                             label: t('admin.instances.dashboard.instance_accounts_measure'),
                             measure: 'instance_accounts',
                             params: { domain: instance_domain },
@@ -43,7 +43,7 @@
   .dashboard__item
     = react_admin_component :counter,
                             end_at: period_end_at,
-                            href: admin_reports_path(by_target_domain: instance_domain),
+                            href: current_user.can?(:manage_reports) ? admin_reports_path(by_target_domain: instance_domain) : nil,
                             label: t('admin.instances.dashboard.instance_reports_measure'),
                             measure: 'instance_reports',
                             params: { domain: instance_domain },

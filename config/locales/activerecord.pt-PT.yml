@@ -15,6 +15,12 @@ pt-PT:
       user/invite_request:
         text: Motivo
     errors:
+      attributes:
+        domain:
+          invalid: não é um nome de domínio válido
+      messages:
+        invalid_domain_on_line: "%{value} não é um nome de domínio válido"
+        too_many_lines: está acima do limite de %{limit} linhas
       models:
         account:
           attributes:
@@ -33,6 +39,11 @@ pt-PT:
           attributes:
             data:
               malformed: está malformado
+        list_account:
+          attributes:
+            account_id:
+              taken: já está na lista
+          must_be_following: tem de ser uma conta seguida
         status:
           attributes:
             reblog:

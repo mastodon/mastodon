@@ -24,6 +24,7 @@ class UserSettings
     setting :use_blurhash, default: true
     setting :use_pending_items, default: false
     setting :use_system_font, default: false
+    setting :use_system_scrollbars, default: false
     setting :disable_swiping, default: false
     setting :disable_hover_cards, default: false
     setting :delete_modal, default: true

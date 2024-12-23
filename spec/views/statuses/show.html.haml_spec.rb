@@ -18,7 +18,7 @@ RSpec.describe 'statuses/show.html.haml' do
     assign(:descendant_threads, [])
   end
 
-  it 'has valid opengraph tags' do
+  it 'has valid opengraph tags and twitter player tags' do
     render
 
     expect(header_tags)
@@ -26,10 +26,6 @@ RSpec.describe 'statuses/show.html.haml' do
       .and match(/<meta content="article" property="og:type">/)
       .and match(/<meta content=".+" property="og:image">/)
       .and match(%r{<meta content="http://.+" property="og:url">})
-  end
-
-  it 'has twitter player tag' do
-    render
 
     expect(header_tags)
       .to match(%r{<meta content="http://.+/media/.+/player" property="twitter:player">})

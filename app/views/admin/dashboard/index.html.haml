@@ -16,7 +16,7 @@
   .dashboard__item
     = react_admin_component :counter,
                             end_at: @time_period.last,
-                            href: admin_accounts_path(origin: 'local'),
+                            href: current_user.can?(:manage_users) ? admin_accounts_path(origin: 'local') : nil,
                             label: t('admin.dashboard.new_users'),
                             measure: 'new_users',
                             start_at: @time_period.first
@@ -24,7 +24,7 @@
   .dashboard__item
     = react_admin_component :counter,
                             end_at: @time_period.last,
-                            href: admin_accounts_path(origin: 'local'),
+                            href: current_user.can?(:manage_users) ? admin_accounts_path(origin: 'local') : nil,
                             label: t('admin.dashboard.active_users'),
                             measure: 'active_users',
                             start_at: @time_period.first
@@ -39,7 +39,7 @@
   .dashboard__item
     = react_admin_component :counter,
                             end_at: @time_period.last,
-                            href: admin_reports_path,
+                            href: current_user.can?(:manage_reports) ? admin_reports_path : nil,
                             label: t('admin.dashboard.opened_reports'),
                             measure: 'opened_reports',
                             start_at: @time_period.first
@@ -47,7 +47,7 @@
   .dashboard__item
     = react_admin_component :counter,
                             end_at: @time_period.last,
-                            href: admin_reports_path(resolved: '1'),
+                            href: current_user.can?(:manage_reports) ? admin_reports_path(resolved: '1') : nil,
                             label: t('admin.dashboard.resolved_reports'),
                             measure: 'resolved_reports',
                             start_at: @time_period.first
