@@ -223,6 +223,7 @@ ga:
         enable_user: Cumasaigh Úsáideoir
         memorialize_account: Cuntas Cuimhneacháin
         promote_user: Úsáideoir a chur chun cinn
+        publish_terms_of_service: Foilsigh Téarmaí Seirbhíse
         reject_appeal: Diúltaigh Achomharc
         reject_user: Diúltaigh Úsáideoir
         remove_avatar_user: Bain Abhatár
@@ -287,6 +288,7 @@ ga:
         enable_user_html: "%{name} logáil isteach cumasaithe don úsáideoir %{target}"
         memorialize_account_html: Rinne %{name} cuntas %{target} a iompú ina leathanach cuimhneacháin
         promote_user_html: Chuir %{name} úsáideoir %{target} chun cinn
+        publish_terms_of_service_html: D'fhoilsigh %{name} nuashonruithe ar na téarmaí seirbhíse
         reject_appeal_html: Dhiúltaigh %{name} achomharc ar chinneadh modhnóireachta ó %{target}
         reject_user_html: Dhiúltaigh %{name} síniú suas ó %{target}
         remove_avatar_user_html: Bhain %{name} avatar %{target}
@@ -967,6 +969,38 @@ ga:
       search: Cuardach
       title: Haischlibeanna
       updated_msg: D'éirigh le socruithe hashtag a nuashonrú
+    terms_of_service:
+      back: Ar ais go téarmaí seirbhíse
+      changelog: Cad atá athraithe
+      create: Bain úsáid as do chuid féin
+      current: Reatha
+      draft: Dréacht
+      generate: Úsáid teimpléad
+      generates:
+        action: Gin
+        chance_to_review_html: "<strong>Ní fhoilseofar na téarmaí seirbhíse ginte go huathoibríoch.</strong> Beidh deis agat na torthaí a athbhreithniú. Líon isteach na sonraí riachtanacha le leanúint ar aghaidh."
+        explanation_html: Is chun críocha faisnéise amháin atá an teimpléad téarmaí seirbhíse a chuirtear ar fáil, agus níor cheart é a fhorléiriú mar chomhairle dlí ar aon ábhar. Téigh i gcomhairle le do chomhairle dlí féin maidir le do chás agus ceisteanna dlí ar leith atá agat.
+        title: Téarmaí Socrú Seirbhíse
+      history: Stair
+      live: Beo
+      no_history: Níl aon athruithe taifeadta ar théarmaí seirbhíse fós.
+      no_terms_of_service_html: Níl aon téarmaí seirbhíse cumraithe agat faoi láthair. Tá téarmaí seirbhíse i gceist le soiléireacht a sholáthar agus tú a chosaint ó dhliteanais ionchasacha i ndíospóidí le d’úsáideoirí.
+      notified_on_html: Cuireadh úsáideoirí ar an eolas ar %{date}
+      notify_users: Cuir úsáideoirí ar an eolas
+      preview:
+        explanation_html: 'Seolfar an ríomhphost chuig <strong>%{display_count} úsáideoir</strong> a chláraigh roimh %{date}. Beidh an téacs seo a leanas san áireamh sa ríomhphost:'
+        send_preview: Seol réamhamharc chuig %{email}
+        send_to_all:
+          few: Seol %{display_count} ríomhphost
+          many: Seol %{display_count} ríomhphost
+          one: Seol %{display_count} ríomhphost
+          other: Seol %{display_count} ríomhphost
+          two: Seol %{display_count} ríomhphost
+        title: Réamhamharc ar théarmaí an fhógra seirbhíse
+      publish: Foilsigh
+      published_on_html: Foilsithe ar %{date}
+      save_draft: Sábháil dréacht
+      title: Téarmaí Seirbhíse
     title: Riar
     trends:
       allow: Ceadaigh
@@ -1186,7 +1220,6 @@ ga:
     migrate_account: Bog chuig cuntas eile
     migrate_account_html: Más mian leat an cuntas seo a atreorú chuig ceann eile, is féidir leat <a href="%{path}">é a chumrú anseo</a>.
     or_log_in_with: Nó logáil isteach le
-    privacy_policy_agreement_html: Léigh mé agus aontaím leis an <a href="%{privacy_policy_path}" target="_blank">polasaí príobháideachais</a>
     progress:
       confirm: Deimhnigh ríomhphost
       details: Do chuid sonraí
@@ -1211,7 +1244,7 @@ ga:
     set_new_password: Socraigh pasfhocal nua
     setup:
       email_below_hint_html: Seiceáil d'fhillteán turscair, nó iarr ceann eile. Is féidir leat do sheoladh ríomhphoist a cheartú má tá sé mícheart.
-      email_settings_hint_html: Cliceáil ar an nasc a sheol muid chugat chun %{email} a fhíorú. Beidh muid ag fanacht ar dheis anseo.
+      email_settings_hint_html: Cliceáil ar an nasc a sheolamar chuig %{email} chun tús a chur le Mastodon a úsáid. Beidh muid ag fanacht ar dheis anseo.
       link_not_received: Nach bhfuair tú nasc?
       new_confirmation_instructions_sent: Gheobhaidh tú ríomhphost nua leis an nasc deimhnithe i gceann cúpla bomaite!
       title: Seiceáil do bhosca isteach
@@ -1220,7 +1253,7 @@ ga:
       title: Logáil isteach go %{domain}
     sign_up:
       manual_review: Téann clárúcháin ar %{domain} trí athbhreithniú láimhe ag ár modhnóirí. Chun cabhrú linn do chlárúchán a phróiseáil, scríobh beagán fút féin agus cén fáth a bhfuil cuntas uait ar %{domain}.
-      preamble: Le cuntas ar an bhfreastalaí Mastodon seo, beidh tú in ann aon duine eile ar an líonra a leanúint, beag beann ar an áit a bhfuil a gcuntas á óstáil.
+      preamble: Agus cuntas agat ar an bhfreastalaí Mastodon seo, beidh tú in ann aon duine eile ar an bhfealsúnacht a leanúint, is cuma cá bhfuil a gcuntas á óstáil.
       title: Déanaimis tú a shocrú ar %{domain}.
     status:
       account_status: Stádas cuntais
@@ -1232,6 +1265,7 @@ ga:
       view_strikes: Féach ar stailceanna san am atá caite i gcoinne do chuntais
     too_fast: Cuireadh an fhoirm isteach róthapa, triail arís.
     use_security_key: Úsáid eochair shlándála
+    user_agreement_html: Léigh mé agus aontaím leis na <a href="%{terms_of_service_path}" target="_blank">téarmaí seirbhíse</a> agus <a href="%{privacy_policy_path}" target="_blank">polasaí príobháideachais</a>
   author_attribution:
     example_title: Téacs samplach
     hint_html: An bhfuil tú ag scríobh altanna nuachta nó blag lasmuigh de Mastodon? Rialú conas a gheobhaidh tú creidmheas nuair a roinntear iad ar Mastodon.
@@ -1790,7 +1824,7 @@ ga:
   scheduled_statuses:
     over_daily_limit: Tá an teorainn de %{limit} postáil sceidealaithe sáraithe agat don lá atá inniu ann
     over_total_limit: Tá an teorainn de %{limit} postáil sceidealaithe sáraithe agat
-    too_soon: Caithfidh an dáta sceidealta a bheith sa todhchaí
+    too_soon: caithfidh dáta a bheith sa todhchaí
   self_destruct:
     lead_html: Ar an drochuair, tá <strong>%{domain}</strong> ag dúnadh síos go buan. Má bhí cuntas agat ann, ní bheidh tú in ann leanúint ar aghaidh á úsáid, ach is féidir leat cúltaca de do shonraí a iarraidh fós.
     title: Tá an freastalaí seo ag dúnadh
@@ -1965,6 +1999,8 @@ ga:
       too_late: Tá sé ró-dhéanach achomharc a dhéanamh faoin stailc seo
   tags:
     does_not_match_previous_name: nach meaitseálann an t-ainm roimhe seo
+  terms_of_service:
+    title: Téarmaí Seirbhíse
   themes:
     contrast: Mastodon (Codarsnacht ard)
     default: Mastodon (Dorcha)
@@ -2025,6 +2061,15 @@ ga:
       further_actions_html: Mura tusa a bhí ann, molaimid duit %{action} a dhéanamh láithreach agus fíordheimhniú dhá fhachtóir a chumasú chun do chuntas a choinneáil slán.
       subject: Fuarthas rochtain ar do chuntas ó sheoladh IP nua
       title: Síniú isteach nua
+    terms_of_service_changed:
+      agreement: Má leanann tú ar aghaidh ag úsáid %{domain}, tá tú ag aontú leis na téarmaí seo. Mura n-aontaíonn tú leis na téarmaí nuashonraithe, is féidir leat do chomhaontú le %{domain} a fhoirceannadh am ar bith trí do chuntas a scriosadh.
+      changelog: 'Sracfhéachaint, seo é a chiallaíonn an nuashonrú seo duit:'
+      description: 'Tá an ríomhphost seo á fháil agat toisc go bhfuil roinnt athruithe á ndéanamh againn ar ár dtéarmaí seirbhíse ag %{domain}. Molaimid duit athbhreithniú iomlán a dhéanamh ar na téarmaí nuashonraithe anseo:'
+      description_html: Tá an ríomhphost seo á fháil agat toisc go bhfuil roinnt athruithe á ndéanamh againn ar ár dtéarmaí seirbhíse ag %{domain}. Molaimid duit athbhreithniú a dhéanamh ar na <a href="%{path}" target="_blank">téarmaí nuashonraithe ina n-iomláine anseo</a>.
+      sign_off: Foireann %{domain}
+      subject: Nuashonruithe ar ár dtéarmaí seirbhíse
+      subtitle: Tá téarmaí seirbhíse %{domain} ag athrú
+      title: Nuashonrú tábhachtach
     warning:
       appeal: Cuir achomharc isteach
       appeal_description: Má chreideann tú gur earráid é seo, is féidir leat achomharc a chur isteach chuig foireann %{instance}.

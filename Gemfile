@@ -105,7 +105,7 @@ gem 'opentelemetry-api', '~> 1.4.0'
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.29.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
-  gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.20.1', require: false
+  gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.21.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.21.2', require: false
   gem 'opentelemetry-instrumentation-excon', '~> 0.22.0', require: false
   gem 'opentelemetry-instrumentation-faraday', '~> 0.24.1', require: false
@@ -114,7 +114,7 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-net_http', '~> 0.22.4', require: false
   gem 'opentelemetry-instrumentation-pg', '~> 0.29.0', require: false
   gem 'opentelemetry-instrumentation-rack', '~> 0.25.0', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.33.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.34.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.25.3', require: false
   gem 'opentelemetry-instrumentation-sidekiq', '~> 0.25.2', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false

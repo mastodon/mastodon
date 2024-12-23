@@ -60,6 +60,7 @@ en:
         setting_display_media_default: Hide media marked as sensitive
         setting_display_media_hide_all: Always hide media
         setting_display_media_show_all: Always show media
+        setting_system_scrollbars_ui: Applies only to desktop browsers based on Safari and Chrome
         setting_use_blurhash: Gradients are based on the colors of the hidden visuals but obfuscate any details
         setting_use_pending_items: Hide timeline updates behind a click instead of automatically scrolling the feed
         username: You can use letters, numbers, and underscores
@@ -129,6 +130,17 @@ en:
         show_application: You will always be able to see which app published your post regardless.
       tag:
         name: You can only change the casing of the letters, for example, to make it more readable
+      terms_of_service:
+        changelog: Can be structured with Markdown syntax.
+        text: Can be structured with Markdown syntax.
+      terms_of_service_generator:
+        admin_email: Legal notices include counternotices, court orders, takedown requests, and law enforcement requests.
+        arbitration_address: Can be the same as Physical address above, or “N/A” if using email
+        arbitration_website: Can be a web form, or “N/A” if using email
+        dmca_address: For US operators, use the address registered in the DMCA Designated Agent Directory. A P.O. Box listing is available upon direct request, use the DMCA Designated Agent Post Office Box Waiver Request to email the Copyright Office and describe that you are a home-based content moderator who fears revenge or retribution for your actions and need to use a P.O. Box to remove your home address from public view.
+        dmca_email: Can be the same email used for “Email address for legal notices” above
+        domain: Unique identification of the online service you are providing.
+        jurisdiction: List the country where whoever pays the bills lives. If it’s a company or other entity, list the country where it’s incorporated, and the city, region, territory or state as appropriate.
       user:
         chosen_languages: When checked, only posts in selected languages will be displayed in public timelines
         role: The role controls which permissions the user has.
@@ -223,6 +235,7 @@ en:
         setting_hide_network: Hide your social graph
         setting_reduce_motion: Reduce motion in animations
         setting_system_font_ui: Use system's default font
+        setting_system_scrollbars_ui: Use system's default scrollbar
         setting_theme: Site theme
         setting_trends: Show today's trends
         setting_unfollow_modal: Show confirmation dialog before unfollowing someone
@@ -317,6 +330,17 @@ en:
         name: Hashtag
         trendable: Allow this hashtag to appear under trends
         usable: Allow posts to use this hashtag locally
+      terms_of_service:
+        changelog: What's changed?
+        text: Terms of Service
+      terms_of_service_generator:
+        admin_email: Email address for legal notices
+        arbitration_address: Physical address for arbitration notices
+        arbitration_website: Website for submitting arbitration notices
+        dmca_address: Physical address for DMCA/copyright notices
+        dmca_email: Email address for DMCA/copyright notices
+        domain: Domain
+        jurisdiction: Legal jurisdiction
       user:
         role: Role
         time_zone: Time zone

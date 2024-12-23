@@ -214,6 +214,7 @@ ia:
         enable_user: Activar le usator
         memorialize_account: Converter conto in memorial
         promote_user: Promover usator
+        publish_terms_of_service: Publicar le conditiones de servicio
         reject_appeal: Rejectar appello
         reject_user: Rejectar usator
         remove_avatar_user: Remover avatar
@@ -278,6 +279,7 @@ ia:
         enable_user_html: "%{name} activava le apertura de session pro le usator %{target}"
         memorialize_account_html: "%{name} converteva le conto de %{target} in un pagina commemorative"
         promote_user_html: "%{name} promoveva le usator %{target}"
+        publish_terms_of_service_html: "%{name} ha actualisate le conditiones de servicio"
         reject_appeal_html: "%{name} refusava le appello del decision de moderation de %{target}"
         reject_user_html: "%{name} refusava le inscription de %{target}"
         remove_avatar_user_html: "%{name} removeva le avatar de %{target}"
@@ -925,6 +927,35 @@ ia:
       search: Cercar
       title: Hashtags
       updated_msg: Parametros de hashtag actualisate con successo
+    terms_of_service:
+      back: Retornar al conditiones de servicio
+      changelog: Lo que ha cambiate
+      create: Usar tu proprie
+      current: Actual
+      draft: Provisori
+      generate: Usar modello
+      generates:
+        action: Generar
+        chance_to_review_html: "<strong>Le conditiones de servicio generate non essera publicate automaticamente.</strong> Tu habera le opportunitate de revider le resultatos. Per favor completa le detalios necessari pro continuar."
+        explanation_html: Le modello de conditiones de servicio es fornite solmente pro fines informative e non debe esser interpretate como consilio juridic sur alcun subjecto. Per favor consulta tu proprie consiliero juridic pro omne questiones juridic concrete concernente tu situation.
+        title: Configuration del conditiones de servicio
+      history: Historia
+      live: In uso
+      no_history: Il non ha ancora modificationes registrate del conditiones de servicio.
+      no_terms_of_service_html: Tu non ha actualmente configurate alcun conditiones de servicio. Le conditiones de servicio es visate a fornir claritiate e a proteger te contra possibile responsabilitates in caso de litigios con tu usatores.
+      notified_on_html: Usatores notificate le %{date}
+      notify_users: Notificar usatores
+      preview:
+        explanation_html: 'Le message de e-mail essera inviate a <strong>%{display_count} usatores</strong> qui se ha inscribite ante le %{date}. Illo includera le sequente texto:'
+        send_preview: Inviar previsualisation a %{email}
+        send_to_all:
+          one: Inviar %{display_count} message de e-mail
+          other: Inviar %{display_count} messages de e-mail
+        title: Previsualisar le notification sur le conditiones de servicio
+      publish: Publicar
+      published_on_html: Publicate le %{date}
+      save_draft: Salvar version provisori
+      title: Conditiones de servicio
     title: Administration
     trends:
       allow: Permitter
@@ -1132,7 +1163,6 @@ ia:
     migrate_account: Migrar a un altere conto
     migrate_account_html: Si tu vole rediriger iste conto a un altere, tu pote <a href="%{path}">configurar lo hic</a>.
     or_log_in_with: O aperi session con
-    privacy_policy_agreement_html: Io ha legite e accepta le <a href="%{privacy_policy_path}" target="_blank">politica de confidentialitate</a>
     progress:
       confirm: Confirmar e-mail
       details: Tu detalios
@@ -1157,7 +1187,7 @@ ia:
     set_new_password: Definir un nove contrasigno
     setup:
       email_below_hint_html: Consulta tu dossier de spam, o requesta un altere ligamine de confirmation. Tu pote corriger tu adresse de e-mail si illo es errate.
-      email_settings_hint_html: Clicca sur le ligamine que nos te ha inviate pro verificar %{email}. Nos te attendera hic.
+      email_settings_hint_html: Clicca sur le ligamine que nos te ha inviate a %{email} pro comenciar a usar Mastodon. Nos te attendera hic.
       link_not_received: Necun ligamine recipite?
       new_confirmation_instructions_sent: Tu recipera un nove e-mail con le ligamine de confirmation in poc minutas!
       title: Consulta tu cassa de entrata
@@ -1166,7 +1196,7 @@ ia:
       title: Aperir session sur %{domain}
     sign_up:
       manual_review: Le inscriptiones sur %{domain} passa per un revision manual de nostre moderatores. Pro adjutar nos a processar tu inscription, per favor scribe un poco sur te e explica proque tu vole un conto sur %{domain}.
-      preamble: Con un conto sur iste servitor de Mastodon, tu potera sequer qualcunque altere persona sur le rete, independentemente de ubi su conto es albergate.
+      preamble: Con un conto sur iste servitor de Mastodon, tu potera sequer qualcunque altere persona sur le Fediverso, independentemente de ubi su conto es albergate.
       title: Lassa nos installar tu conto sur %{domain}.
     status:
       account_status: Stato del conto
@@ -1178,6 +1208,7 @@ ia:
       view_strikes: Examinar le sanctiones passate contra tu conto
     too_fast: Formulario inviate troppo rapidemente. Tenta lo de novo.
     use_security_key: Usar clave de securitate
+    user_agreement_html: Io ha legite e accepta le <a href="%{terms_of_service_path}" target="_blank">conditiones de servicio</a> e le <a href="%{privacy_policy_path}" target="_blank">politica de confidentialitate</a>
   author_attribution:
     example_title: Texto de exemplo
     hint_html: Scribe tu articulos de novas o de blog foras de Mastodon? Controla le maniera in que tu recipe attribution quando on los condivide sur Mastodon.
@@ -1676,7 +1707,7 @@ ia:
   scheduled_statuses:
     over_daily_limit: Tu ha excedite le limite de %{limit} messages programmate pro hodie
     over_total_limit: Tu ha excedite le limite de %{limit} messages programmate
-    too_soon: Le data programmate debe esser in le futuro
+    too_soon: le data debe esser in le futuro
   self_destruct:
     lead_html: Infortunatemente, <strong>%{domain}</strong> tosto claudera permanentemente. Si tu habeva un conto illac, tu non potera continuar a usar lo, ma tu pote ancora requestar un copia de tu datos.
     title: Iste servitor va clauder
@@ -1839,6 +1870,8 @@ ia:
       too_late: Es troppo tarde pro appellar contra iste sanction
   tags:
     does_not_match_previous_name: non corresponde al nomine precedente
+  terms_of_service:
+    title: Conditiones de servicio
   themes:
     contrast: Mastodon (Alte contrasto)
     default: Mastodon (Obscur)
@@ -1899,6 +1932,15 @@ ia:
       further_actions_html: Si non se tractava de te, nos recommenda %{action} immediatemente e activar le authentication bifactorial pro mantener tu conto secur.
       subject: Alcuno ha accedite a tu conto desde un nove adresse IP
       title: Un nove apertura de session
+    terms_of_service_changed:
+      agreement: Si tu continua a usar %{domain}, tu accepta iste conditiones. Si tu non es de accordo con le conditiones actualisate, tu pote sempre eliminar tu conto pro terminar tu accordo con %{domain}.
+      changelog: 'In summario, ecce lo que iste actualisation significa pro te:'
+      description: 'Tu recipe iste message perque nos ha apportate alcun modificationes a nostre conditiones de servicio sur %{domain}. Nos te incoragia a revider le conditiones actualisate complete al sequente adresse:'
+      description_html: Tu recipe iste message perque nos ha apportate alcun modificationes a nostre conditiones de servicio sur %{domain}. Nos te incoragia a revider le <a href="%{path}" target="_blank">conditiones actualisate complete</a>.
+      sign_off: Le equipa de %{domain}
+      subject: Actualisationes de nostre conditiones de servicio
+      subtitle: Le conditiones de servicio de %{domain} ha cambiate
+      title: Actualisation importante
     warning:
       appeal: Submitter un appello
       appeal_description: Si tu crede que se tracta de un error, tu pote presentar un appello al personal de %{instance}.

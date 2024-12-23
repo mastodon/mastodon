@@ -184,6 +184,7 @@ th:
         create_domain_block: สร้างการปิดกั้นโดเมน
         create_email_domain_block: สร้างการปิดกั้นโดเมนอีเมล
         create_ip_block: สร้างกฎ IP
+        create_relay: สร้างรีเลย์
         create_unavailable_domain: สร้างโดเมนที่ไม่พร้อมใช้งาน
         create_user_role: สร้างบทบาท
         demote_user: ลดขั้นผู้ใช้
@@ -195,18 +196,22 @@ th:
         destroy_email_domain_block: ลบการปิดกั้นโดเมนอีเมล
         destroy_instance: ล้างข้อมูลโดเมน
         destroy_ip_block: ลบกฎ IP
+        destroy_relay: ลบรีเลย์
         destroy_status: ลบโพสต์
         destroy_unavailable_domain: ลบโดเมนที่ไม่พร้อมใช้งาน
         destroy_user_role: ทำลายบทบาท
         disable_2fa_user: ปิดใช้งาน 2FA
         disable_custom_emoji: ปิดใช้งานอีโมจิที่กำหนดเอง
+        disable_relay: ปิดใช้งานรีเลย์
         disable_sign_in_token_auth_user: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับผู้ใช้
         disable_user: ปิดใช้งานผู้ใช้
         enable_custom_emoji: เปิดใช้งานอีโมจิที่กำหนดเอง
+        enable_relay: เปิดใช้งานรีเลย์
         enable_sign_in_token_auth_user: เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับผู้ใช้
         enable_user: เปิดใช้งานผู้ใช้
         memorialize_account: ทำให้บัญชีเป็นอนุสรณ์
         promote_user: เลื่อนขั้นผู้ใช้
+        publish_terms_of_service: เผยแพร่เงื่อนไขการให้บริการ
         reject_appeal: ปฏิเสธการอุทธรณ์
         reject_user: ปฏิเสธผู้ใช้
         remove_avatar_user: เอาภาพประจำตัวออก
@@ -244,6 +249,7 @@ th:
         create_domain_block_html: "%{name} ได้ปิดกั้นโดเมน %{target}"
         create_email_domain_block_html: "%{name} ได้ปิดกั้นโดเมนอีเมล %{target}"
         create_ip_block_html: "%{name} ได้สร้างกฎสำหรับ IP %{target}"
+        create_relay_html: "%{name} ได้สร้างรีเลย์ %{target}"
         create_unavailable_domain_html: "%{name} ได้หยุดการจัดส่งไปยังโดเมน %{target}"
         create_user_role_html: "%{name} ได้สร้างบทบาท %{target}"
         demote_user_html: "%{name} ได้ลดขั้นผู้ใช้ %{target}"
@@ -255,14 +261,17 @@ th:
         destroy_email_domain_block_html: "%{name} ได้เลิกปิดกั้นโดเมนอีเมล %{target}"
         destroy_instance_html: "%{name} ได้ล้างข้อมูลโดเมน %{target}"
         destroy_ip_block_html: "%{name} ได้ลบกฎสำหรับ IP %{target}"
+        destroy_relay_html: "%{name} ได้ลบรีเลย์ %{target}"
         destroy_status_html: "%{name} ได้เอาโพสต์โดย %{target} ออก"
         destroy_unavailable_domain_html: "%{name} ได้ทำการจัดส่งไปยังโดเมน %{target} ต่อ"
         destroy_user_role_html: "%{name} ได้ลบบทบาท %{target}"
         disable_2fa_user_html: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
         disable_custom_emoji_html: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
+        disable_relay_html: "%{name} ได้ปิดใช้งานรีเลย์ %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ได้ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
         disable_user_html: "%{name} ได้ปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         enable_custom_emoji_html: "%{name} ได้เปิดใช้งานอีโมจิ %{target}"
+        enable_relay_html: "%{name} ได้เปิดใช้งานรีเลย์ %{target}"
         enable_sign_in_token_auth_user_html: "%{name} ได้เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
         enable_user_html: "%{name} ได้เปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         memorialize_account_html: "%{name} ได้เปลี่ยนบัญชีของ %{target} เป็นหน้าอนุสรณ์"
@@ -804,8 +813,10 @@ th:
       back_to_account: กลับไปที่หน้าบัญชี
       back_to_report: กลับไปที่หน้ารายงาน
       batch:
+        add_to_report: 'เพิ่มไปยังรายงาน #%{id}'
         remove_from_report: เอาออกจากรายงาน
         report: รายงาน
+      contents: เนื้อหา
       deleted: ลบแล้ว
       favourites: รายการโปรด
       history: ประวัติรุ่น
@@ -814,12 +825,17 @@ th:
       media:
         title: สื่อ
       metadata: ข้อมูลอภิพันธุ์
+      no_history: ไม่มีการแก้ไขโพสต์นี้
       no_status_selected: ไม่มีการเปลี่ยนแปลงโพสต์เนื่องจากไม่มีการเลือก
       open: เปิดโพสต์
       original_status: โพสต์ดั้งเดิม
       reblogs: การดัน
+      replied_to_html: ตอบกลับ %{acct_link}
       status_changed: เปลี่ยนโพสต์แล้ว
+      status_title: โพสต์โดย @%{name}
+      title: โพสต์ของบัญชี - @%{name}
       trending: กำลังนิยม
+      view_publicly: ดูแบบสาธารณะ
       visibility: การมองเห็น
       with_media: มีสื่อ
     strikes:
@@ -896,6 +912,25 @@ th:
       search: ค้นหา
       title: แฮชแท็ก
       updated_msg: อัปเดตการตั้งค่าแฮชแท็กสำเร็จ
+    terms_of_service:
+      back: กลับไปที่เงื่อนไขการให้บริการ
+      create: ใช้ของคุณเอง
+      current: ปัจจุบัน
+      draft: แบบร่าง
+      generate: ใช้แม่แบบ
+      generates:
+        action: สร้าง
+      history: ประวัติ
+      live: สด
+      notify_users: แจ้งเตือนผู้ใช้
+      preview:
+        send_preview: ส่งตัวอย่างไปยัง %{email}
+        send_to_all:
+          other: ส่ง %{display_count} อีเมล
+      publish: เผยแพร่
+      published_on_html: เผยแพร่เมื่อ %{date}
+      save_draft: บันทึกแบบร่าง
+      title: เงื่อนไขการให้บริการ
     title: การดูแล
     trends:
       allow: อนุญาต
@@ -1099,7 +1134,6 @@ th:
     migrate_account: ย้ายไปยังบัญชีอื่น
     migrate_account_html: หากคุณต้องการเปลี่ยนเส้นทางบัญชีนี้ไปยังบัญชีอื่น คุณสามารถ <a href="%{path}">กำหนดค่าบัญชีที่นี่</a>
     or_log_in_with: หรือเข้าสู่ระบบด้วย
-    privacy_policy_agreement_html: ฉันได้อ่านและเห็นด้วยกับ <a href="%{privacy_policy_path}" target="_blank">นโยบายความเป็นส่วนตัว</a>
     progress:
       confirm: ยืนยันอีเมล
       details: รายละเอียดของคุณ
@@ -1124,7 +1158,6 @@ th:
     set_new_password: ตั้งรหัสผ่านใหม่
     setup:
       email_below_hint_html: ตรวจสอบโฟลเดอร์สแปมของคุณ หรือขออีเมลอื่น คุณสามารถแก้ไขที่อยู่อีเมลของคุณหากที่อยู่อีเมลผิด
-      email_settings_hint_html: คลิกลิงก์ที่เราส่งถึงคุณเพื่อยืนยัน %{email} เราจะรออยู่ตรงนี้
       link_not_received: ไม่ได้รับลิงก์?
       new_confirmation_instructions_sent: คุณจะได้รับอีเมลใหม่พร้อมลิงก์การยืนยันในไม่กี่นาที!
       title: ตรวจสอบกล่องขาเข้าของคุณ
@@ -1133,7 +1166,6 @@ th:
       title: เข้าสู่ระบบ %{domain}
     sign_up:
       manual_review: การลงทะเบียนใน %{domain} จะผ่านการตรวจทานด้วยตนเองโดยผู้กลั่นกรองของเรา เพื่อช่วยให้เราประมวลผลการลงทะเบียนของคุณ เขียนสักนิดเกี่ยวกับตัวคุณเองและเหตุผลที่คุณต้องการบัญชีใน %{domain}
-      preamble: ด้วยบัญชีในเซิร์ฟเวอร์ Mastodon นี้ คุณจะสามารถติดตามบุคคลอื่นใดในเครือข่าย โดยไม่คำนึงถึงที่ซึ่งบัญชีของเขาได้รับการโฮสต์
       title: มาตั้งค่าของคุณใน %{domain} กันเลย
     status:
       account_status: สถานะบัญชี
@@ -1623,7 +1655,7 @@ th:
   scheduled_statuses:
     over_daily_limit: คุณมีโพสต์ที่จัดกำหนดการไว้เกินขีดจำกัดที่ %{limit} สำหรับวันนี้แล้ว
     over_total_limit: คุณมีโพสต์ที่จัดกำหนดการไว้เกินขีดจำกัดที่ %{limit} แล้ว
-    too_soon: วันที่จัดกำหนดการต้องอยู่ในอนาคต
+    too_soon: วันที่ต้องอยู่ในอนาคต
   self_destruct:
     lead_html: น่าเสียดาย <strong>%{domain}</strong> กำลังปิดตัวลงอย่างถาวร หากคุณมีบัญชีที่นั่น คุณจะไม่สามารถใช้บัญชีต่อไปได้ แต่คุณยังคงสามารถขอข้อมูลสำรองของข้อมูลของคุณ
     title: เซิร์ฟเวอร์นี้กำลังปิดตัวลง
@@ -1782,6 +1814,8 @@ th:
       too_late: สายเกินไปที่จะอุทธรณ์การดำเนินการนี้
   tags:
     does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้านี้
+  terms_of_service:
+    title: เงื่อนไขการให้บริการ
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
@@ -1842,6 +1876,8 @@ th:
       further_actions_html: หากนี่ไม่ใช่คุณ เราแนะนำให้คุณ %{action} ทันทีและเปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยเพื่อรักษาบัญชีของคุณให้ปลอดภัย
       subject: มีการเข้าถึงบัญชีของคุณจากที่อยู่ IP ใหม่
       title: การลงชื่อเข้าใหม่
+    terms_of_service_changed:
+      sign_off: ทีม %{domain}
     warning:
       appeal: ส่งการอุทธรณ์
       appeal_description: หากคุณเชื่อว่านี่เป็นข้อผิดพลาด คุณสามารถส่งการอุทธรณ์ไปยังพนักงานของ %{instance}

@@ -220,6 +220,7 @@ pl:
         enable_user: Włącz użytkownika
         memorialize_account: Upamiętnij konto
         promote_user: Podnieś uprawnienia
+        publish_terms_of_service: Opublikuj Regulamin
         reject_appeal: Odrzuć odwołanie
         reject_user: Odrzuć użytkownika
         remove_avatar_user: Usuń awatar
@@ -953,6 +954,8 @@ pl:
       search: Szukaj
       title: Hashtagi
       updated_msg: Pomyślnie uaktualniono ustawienia hashtagów
+    terms_of_service:
+      draft: Szkic
     title: Administracja
     trends:
       allow: Zezwól
@@ -1168,7 +1171,6 @@ pl:
     migrate_account: Przenieś konto
     migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">zrobić to tutaj</a>.
     or_log_in_with: Lub zaloguj się z użyciem
-    privacy_policy_agreement_html: Przeczytałem/am i akceptuję <a href="%{privacy_policy_path}" target="_blank">politykę prywatności</a>
     progress:
       confirm: Potwierdź adres e-mail
       details: Twoje dane
@@ -1193,7 +1195,6 @@ pl:
     set_new_password: Ustaw nowe hasło
     setup:
       email_below_hint_html: Sprawdź folder ze spamem lub poproś o inny link potwierdzający. Możesz poprawić swój adres e-mail, jeśli jest niepoprawny.
-      email_settings_hint_html: Kliknij link, który wysłaliśmy do Ciebie w celu zweryfikowania %{email}. Poczekamy tutaj.
       link_not_received: Nie otrzymano linku?
       new_confirmation_instructions_sent: Za kilka minut otrzymasz nowy e-mail z linkiem potwierdzającym!
       title: Sprawdź swoją skrzynkę odbiorczą
@@ -1202,7 +1203,6 @@ pl:
       title: Zaloguj się do %{domain}
     sign_up:
       manual_review: Rejestracja na %{domain} przechodzi przez ręczne sprawdzanie przez naszych moderatorów. Aby pomóc nam usprawnić ten proces, napisz coś o sobie oraz dlaczego chcesz założyć konto na %{domain}.
-      preamble: Z kontem na tym serwerze Mastodon będziesz mógł obserwować każdą inną osobę w sieci, niezależnie od miejsca przechowywania ich konta.
       title: Skonfigurujmy Twoje konto na %{domain}.
     status:
       account_status: Stan konta
@@ -1690,7 +1690,7 @@ pl:
   scheduled_statuses:
     over_daily_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów na ten dzień
     over_total_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów
-    too_soon: Zaplanowana data musi wypadać w przyszłości
+    too_soon: musi to być przyszła data
   self_destruct:
     lead_html: Niestety, <strong>%{domain}</strong> jest permanentnie zamykane. Konta z tego serwera nie będą dostępne, ale można jeszcze odzyskać kopię zapasową danych.
     title: Ten serwer jest zamykany
@@ -1861,6 +1861,8 @@ pl:
       too_late: Jest za późno na odwołanie się od tego ostrzeżenia
   tags:
     does_not_match_previous_name: nie pasuje do poprzedniej nazwy
+  terms_of_service:
+    title: Regulamin
   themes:
     contrast: Mastodon (Wysoki kontrast)
     default: Mastodon (Ciemny)

@@ -60,6 +60,7 @@ ko:
         setting_display_media_default: 민감함으로 표시된 미디어 가리기
         setting_display_media_hide_all: 모든 미디어를 가리기
         setting_display_media_show_all: 모든 미디어를 보이기
+        setting_system_scrollbars_ui: 사파리와 크롬 기반의 데스크탑 브라우저만 적용됩니다
         setting_use_blurhash: 그라디언트는 숨겨진 내용의 색상을 기반으로 하지만 상세 내용은 보이지 않게 합니다
         setting_use_pending_items: 타임라인의 새 게시물을 자동으로 보여 주는 대신, 클릭해서 나타내도록 합니다
         username: 문자, 숫자, 밑줄을 사용할 수 있습니다
@@ -129,6 +130,12 @@ ko:
         show_application: 나 자신은 이 설정과 관계 없이 어떤 앱으로 게시물을 작성했는지 볼 수 있습니다.
       tag:
         name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
+      terms_of_service:
+        changelog: 마크다운 문법을 사용할 수 있습니다.
+        text: 마크다운 문법을 사용할 수 있습니다.
+      terms_of_service_generator:
+        arbitration_website: 웹 형태를 사용할 수 있습니다. 이메일을 사용한다면 "N/A"로 둘 수 있습니다
+        dmca_email: 상단의 "법적 통지를 위한 이메일 주소"와 같은 주소를 사용할 수 있습니다
       user:
         chosen_languages: 체크하면, 선택 된 언어로 작성된 게시물들만 공개 타임라인에 보여집니다
         role: 역할은 사용자가 어떤 권한을 가지게 될 지 결정합니다.
@@ -223,6 +230,7 @@ ko:
         setting_hide_network: 내 인맥 숨기기
         setting_reduce_motion: 애니메이션 줄이기
         setting_system_font_ui: 시스템의 기본 글꼴을 사용
+        setting_system_scrollbars_ui: 시스템 기본 스크롤바 사용
         setting_theme: 사이트 테마
         setting_trends: 오늘의 유행 보이기
         setting_unfollow_modal: 누군가를 언팔로우 할 때 확인란 표시하기
@@ -317,6 +325,17 @@ ko:
         name: 해시태그
         trendable: 이 해시태그가 유행에 나타날 수 있도록 허용
         usable: 이 해시태그를 로컬 게시물에서 사용 가능하도록 허용
+      terms_of_service:
+        changelog: 무엇이 바뀌었나요?
+        text: 이용 약관
+      terms_of_service_generator:
+        admin_email: 법적 조치를 위한 이메일 주소
+        arbitration_address: 중재 통지를 위한 실제 주소
+        arbitration_website: 중재 통지를 제출하기 위한 웹사이트
+        dmca_address: DMCA/저작권 통지를 위한 실제 주소
+        dmca_email: DMCA/저작권 통지를 위한 이메일 주소
+        domain: 도메인
+        jurisdiction: 법적 관할권
       user:
         role: 역할
         time_zone: 시간대

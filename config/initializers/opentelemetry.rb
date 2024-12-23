@@ -54,6 +54,9 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
       'OpenTelemetry::Instrumentation::Sidekiq' => {
         span_naming: :job_class, # Use the job class as the span name, otherwise this is the queue name and not very helpful
       },
+      'OpenTelemetry::Instrumentation::Redis' => {
+        trace_root_spans: false, # don't start traces with Redis spans
+      },
     })
 
     prefix    = ENV.fetch('OTEL_SERVICE_NAME_PREFIX', 'mastodon')
@@ -73,6 +76,31 @@ if ENV.keys.any? { |name| name.match?(/OTEL_.*_ENDPOINT/) }
       )
     end
   end
+
+  # This middleware adds the trace_id and span_id to the Rails logging tags for every requests
+  class TelemetryLoggingMiddleware
+    def initialize(app)
+      @app = app
+    end
+
+    def call(env)
+      span = OpenTelemetry::Trace.current_span
+
+      return @app.call(env) unless span.recording?
+
+      span_id = span.context.hex_span_id
+      trace_id = span.context.hex_trace_id
+
+      Rails.logger.tagged("trace_id=#{trace_id}", "span_id=#{span_id}") do
+        @app.call(env)
+      end
+    end
+  end
+
+  Rails.application.configure do
+    config.middleware.insert_before Rails::Rack::Logger, TelemetryLoggingMiddleware
+  end
+
 end
 
 MastodonOTELTracer = OpenTelemetry.tracer_provider.tracer('mastodon')

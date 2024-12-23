@@ -14,7 +14,7 @@ import { fetchList } from 'mastodon/actions/lists';
 import { createList, updateList } from 'mastodon/actions/lists_typed';
 import { apiGetAccounts } from 'mastodon/api/lists';
 import type { RepliesPolicyType } from 'mastodon/api_types/lists';
-import Column from 'mastodon/components/column';
+import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';

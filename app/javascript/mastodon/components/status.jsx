@@ -173,7 +173,7 @@ class Status extends ImmutablePureComponent {
   handleMouseUp = e => {
     // Only handle clicks on the empty space above the content
 
-    if (e.target !== e.currentTarget) {
+    if (e.target !== e.currentTarget && e.detail >= 1) {
       return;
     }
 
@@ -293,7 +293,7 @@ class Status extends ImmutablePureComponent {
     if (e?.button === 0 && !(e?.ctrlKey || e?.metaKey)) {
       history.push(path);
     } else if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
-      window.open(path, '_blank', 'noreferrer noopener');
+      window.open(path, '_blank', 'noopener');
     }
   };
 

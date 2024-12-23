@@ -211,6 +211,7 @@ vi:
         enable_user: Cho phép đăng nhập
         memorialize_account: Gán tưởng niệm
         promote_user: Nâng vai trò
+        publish_terms_of_service: Đăng Điều khoản Dịch vụ
         reject_appeal: Từ chối khiếu nại
         reject_user: Từ chối đăng ký
         remove_avatar_user: Xóa ảnh đại diện
@@ -275,6 +276,7 @@ vi:
         enable_user_html: "%{name} đã bỏ vô hiệu hóa đăng nhập %{target}"
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
         promote_user_html: "%{name} đã nâng vai trò của %{target}"
+        publish_terms_of_service_html: "%{name} đã cập nhật điều khoản dịch vụ"
         reject_appeal_html: "%{name} đã từ chối khiếu nại từ %{target}"
         reject_user_html: "%{name} đã từ chối đăng ký từ %{target}"
         remove_avatar_user_html: "%{name} đã xóa ảnh đại diện của %{target}"
@@ -911,6 +913,34 @@ vi:
       search: Tìm kiếm
       title: Hashtag
       updated_msg: Hashtag đã được cập nhật thành công
+    terms_of_service:
+      back: Trở về điều khoản dịch vụ
+      changelog: Điểm mới
+      create: Dùng của bạn
+      current: Hiện tại
+      draft: Bản nháp
+      generate: Dùng mẫu
+      generates:
+        action: Tạo
+        chance_to_review_html: "<strong>Các điều khoản dịch vụ đã tạo sẽ không được tự động công bố.</strong> Bạn sẽ cần xem lại trước. Vui lòng điền thông tin cần thiết để tiếp tục."
+        explanation_html: Mẫu điều khoản dịch vụ được cung cấp chỉ nhằm mục đích cung cấp thông tin và không được hiểu là tư vấn pháp lý về bất kỳ vấn đề nào. Vui lòng tham khảo ý kiến ​​cố vấn pháp lý của riêng bạn về tình huống của bạn và các câu hỏi pháp lý cụ thể mà bạn có.
+        title: Thiết lập Điều khoản Dịch vụ
+      history: Lịch sử
+      live: Đang hiển thị
+      no_history: Hiện tại chưa có ghi nhận thay đổi nào về các điều khoản dịch vụ.
+      no_terms_of_service_html: Hiện tại bạn chưa cấu hình bất kỳ điều khoản dịch vụ nào. Điều khoản dịch vụ nhằm mục đích cung cấp sự rõ ràng và bảo vệ bạn khỏi các trách nhiệm pháp lý tiềm ẩn trong các tranh chấp với người dùng của bạn.
+      notified_on_html: Đã thông báo tới thành viên vào %{date}
+      notify_users: Thông báo tới thành viên
+      preview:
+        explanation_html: 'Gửi email tới <strong>%{display_count} thành viên</strong> đã đăng ký trước %{date}. Nội dung sau đây sẽ được đưa vào email:'
+        send_preview: Gửi bản xem thử tới %{email}
+        send_to_all:
+          other: Gửi tới %{display_count} email
+        title: Xem trước thông báo về điều khoản dịch vụ
+      publish: Đăng
+      published_on_html: Đăng vào %{date}
+      save_draft: Lưu bản nháp
+      title: Điều khoản Dịch vụ
     title: Quản trị
     trends:
       allow: Cho phép
@@ -1114,7 +1144,6 @@ vi:
     migrate_account: Chuyển sang tài khoản khác
     migrate_account_html: Nếu bạn muốn bỏ tài khoản này để dùng một tài khoản khác, bạn có thể <a href="%{path}">thiết lập tại đây</a>.
     or_log_in_with: Hoặc đăng nhập bằng
-    privacy_policy_agreement_html: Tôi đã đọc và đồng ý <a href="%{privacy_policy_path}" target="_blank">chính sách bảo mật</a>
     progress:
       confirm: Xác nhận email
       details: Điền thông tin
@@ -1139,7 +1168,7 @@ vi:
     set_new_password: Đặt mật khẩu mới
     setup:
       email_below_hint_html: Kiểm tra hộp thư rác hoặc yêu cầu gửi lại. Bạn có thể sửa địa chỉ email của mình nếu sai.
-      email_settings_hint_html: Nhấn vào liên kết chúng tôi vừa gửi để xác minh %{email}. Nhanh nhé bạn.
+      email_settings_hint_html: Nhấn vào link được gửi đến %{email} để bắt đầu dùng Mastodon. Chúng tôi đợi bạn.
       link_not_received: Không nhận được mã?
       new_confirmation_instructions_sent: Bạn sẽ nhận được một email mới với liên kết xác minh sau vài phút!
       title: Kiểm tra email của bạn
@@ -1148,7 +1177,7 @@ vi:
       title: Đăng nhập %{domain}
     sign_up:
       manual_review: "%{domain} sẽ duyệt đăng ký thủ công. Để giúp chúng tôi duyệt nhanh, hãy viết một chút về bản thân và lý do bạn muốn có một tài khoản trên %{domain}."
-      preamble: Với tài khoản trên máy chủ Mastodon này, bạn sẽ có thể theo dõi bất kỳ người nào thuộc các máy chủ khác.
+      preamble: Với tài khoản trên máy chủ Mastodon này, bạn sẽ có thể theo dõi bất kỳ người nào trên các máy chủ khác, bất kể tài khoản của họ ở đâu.
       title: Đang đăng ký trên %{domain}.
     status:
       account_status: Trạng thái tài khoản
@@ -1160,6 +1189,7 @@ vi:
       view_strikes: Xem những lần cảnh cáo cũ
     too_fast: Nghi vấn đăng ký spam, xin thử lại.
     use_security_key: Dùng khóa bảo mật
+    user_agreement_html: Tôi đã đọc và đồng ý với <a href="%{terms_of_service_path}" target="_blank">điều khoản dịch vụ</a> và <a href="%{privacy_policy_path}" target="_blank">chính sách bảo mật</a>
   author_attribution:
     example_title: Văn bản mẫu
     hint_html: Bạn là nhà báo hoặc blogger bên ngoài Mastodon? Kiểm soát cách bài viết của bạn được ghi nhận khi chia sẻ trên Mastodon.
@@ -1638,7 +1668,7 @@ vi:
   scheduled_statuses:
     over_daily_limit: Bạn đã vượt qua giới hạn được lên lịch đăng tút %{limit} hôm nay
     over_total_limit: Bạn đã vượt quá giới hạn %{limit} của các tút được lên lịch
-    too_soon: Ngày lên lịch phải trong tương lai
+    too_soon: ngày phải ở tương lai
   self_destruct:
     lead_html: Rất tiếc, <strong>%{domain}</strong>đã đóng cửa vĩnh viễn. Nếu bạn có tài khoản ở đó, bạn sẽ không thể tiếp tục sử dụng tài khoản đó nhưng bạn vẫn có thể yêu cầu bản sao lưu dữ liệu của mình.
     title: Máy chủ đang đóng cửa
@@ -1797,6 +1827,8 @@ vi:
       too_late: Đã quá trễ để khiếu nại
   tags:
     does_not_match_previous_name: không khớp với tên trước
+  terms_of_service:
+    title: Điều khoản Dịch vụ
   themes:
     contrast: Mastodon (Tương phản)
     default: Mastodon (Tối)
@@ -1857,6 +1889,15 @@ vi:
       further_actions_html: Nếu đây không phải là bạn, hãy %{action} lập tức và bật xác minh hai bước để giữ tài khoản được an toàn.
       subject: Đăng nhập tài khoản từ địa chỉ IP mới
       title: Lần đăng nhập mới
+    terms_of_service_changed:
+      agreement: Tiếp tục sử dụng %{domain}, đồng nghĩa bạn đồng ý điều khoản dịch vụ. Nếu bạn không đồng ý với các điều khoản đã cập nhật, hãy xóa tài khoản %{domain} của bạn.
+      changelog: 'Nhìn sơ qua, bản cập nhật này:'
+      description: 'Bạn nhận được email này vì chúng tôi đang thực hiện một số thay đổi đối với các điều khoản dịch vụ tại %{domain}. Hãy xem lại đầy đủ các điều khoản đã cập nhật tại đây:'
+      description_html: Bạn nhận được email này vì chúng tôi đang thực hiện một số thay đổi đối với các điều khoản dịch vụ tại %{domain}. Hãy xem lại <a href="%{path}" target="_blank">đầy đủ các điều khoản được cập nhật ở đây</a>.
+      sign_off: Đội ngũ %{domain}
+      subject: Cập nhật điều khoản dịch vụ
+      subtitle: Điều khoản dịch vụ tại %{domain} đã thay đổi
+      title: Cập nhật quan trọng
     warning:
       appeal: Gửi khiếu nại
       appeal_description: Nếu bạn nghĩ đây chỉ là nhầm lẫn, hãy gửi một khiếu nại cho %{instance}.

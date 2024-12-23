@@ -23,7 +23,7 @@ zh-CN:
         action_with_app: 确认并返回%{app}
         explanation: 你在 %{host} 上使用此电子邮箱地址创建了一个账号。点击下面的链接即可激活账号。如果你没有创建账号，请忽略此邮件。
         explanation_when_pending: 你用这个邮箱申请了在 %{host} 注册。在确认邮箱地址之后，我们会审核你的申请。在此之前，你不能登录。如果你的申请被驳回，你的数据会被移除，因此你无需再采取任何行动。如果申请人不是你，请忽略这封邮件。
-        extra_html: 请记得阅读<a href="%{terms_path}">本实例的相关规定</a>和<a href="%{policy_path}">我们的使用条款</a>。
+        extra_html: 请记得阅读<a href="%{terms_path}">本实例的相关规定</a>和<a href="%{policy_path}">我们的服务条款</a>。
         subject: Mastodon：来自 %{instance} 的确认指引
         title: 验证邮箱地址
       email_changed:
@@ -94,11 +94,6 @@ zh-CN:
       updated_not_active: 你的密码已修改成功。
     registrations:
       destroyed: 再见！你的账户已成功注销。我们希望很快可以再见到你。
-      signed_up: 欢迎！你已成功注册。
-      signed_up_but_inactive: 你已成功注册，但我们无法让你登录，因为你的账户还没有激活。
-      signed_up_but_locked: 你已成功注册，但我们无法让你登录，因为你的账户已被锁定。
-      signed_up_but_pending: 一条带有确认链接的邮件已经发送到你的邮箱地址。在你点击该链接后，我们将会审核你的申请。如果申请被批准，你将收到通知。
-      signed_up_but_unconfirmed: 一封带有确认链接的邮件已经发送至你的邮箱，请点击邮件中的链接以激活你的账户。如果没有，请检查你的垃圾邮件。
       update_needs_confirmation: 账号信息更新成功，但我们需要验证你的新邮箱地址，请点击邮件中的链接以确认。如果没有收到邮件，请检查你的垃圾邮件文件夹。
       updated: 账户资料更新成功。
     sessions:

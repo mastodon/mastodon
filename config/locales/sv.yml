@@ -925,6 +925,10 @@ sv:
       search: Sök
       title: Hashtaggar
       updated_msg: Hashtagg-inställningarna har uppdaterats
+    terms_of_service:
+      draft: Utkast
+      publish: Publicera
+      title: Användarvillkor
     title: Administration
     trends:
       allow: Tillåt
@@ -1132,7 +1136,6 @@ sv:
     migrate_account: Flytta till ett annat konto
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
     or_log_in_with: Eller logga in med
-    privacy_policy_agreement_html: Jag har läst och godkänner <a href="%{privacy_policy_path}" target="_blank">integritetspolicyn</a>
     progress:
       confirm: Bekräfta e-postadress
       details: Dina uppgifter
@@ -1157,7 +1160,6 @@ sv:
     set_new_password: Skriv in nytt lösenord
     setup:
       email_below_hint_html: Kolla din skräppost-mapp eller begär en ny. Du kan korrigera din e-postadress om den är fel.
-      email_settings_hint_html: Klicka på länken som vi har skickat till dig för att bekräfta %{email}. Vi väntar här.
       link_not_received: Fick du ingen länk?
       new_confirmation_instructions_sent: Du kommer att få ett nytt e-postmeddelande med bekräftelselänken om några minuter!
       title: Kolla din inkorg
@@ -1166,7 +1168,6 @@ sv:
       title: Logga in på %{domain}
     sign_up:
       manual_review: Registreringar på %{domain} går igenom manuell granskning av våra moderatorer. För att hjälpa oss att hantera din registrering, skriv lite om dig själv och varför du vill ha ett konto på %{domain}.
-      preamble: Med ett konto på denna Mastodon-server kan du följa alla andra personer på nätverket, oavsett vilken server deras konto tillhör.
       title: Låt oss få igång dig på %{domain}.
     status:
       account_status: Kontostatus
@@ -1676,7 +1677,6 @@ sv:
   scheduled_statuses:
     over_daily_limit: Du har överskridit dygnsgränsen på %{limit} schemalagda inlägg
     over_total_limit: Du har överskridit gränsen på %{limit} schemalagda inlägg
-    too_soon: Schemaläggningsdatumet måste vara i framtiden
   self_destruct:
     lead_html: Tyvärr stänger <strong>%{domain}</strong> för gott. Om du hade ett konto där kommer du inte längre kunna använda det, men du kan fortfarande begära en säkerhetskopia av din data.
     title: Denna server stänger ned
@@ -1839,6 +1839,8 @@ sv:
       too_late: Det är för sent att överklaga denna strejk
   tags:
     does_not_match_previous_name: matchar inte det föregående namnet
+  terms_of_service:
+    title: Användarvillkor
   themes:
     contrast: Mastodon (Hög kontrast)
     default: Mastodon (Mörk)

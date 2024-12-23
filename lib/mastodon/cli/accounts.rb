@@ -164,7 +164,7 @@ module Mastodon::CLI
       user.disabled = false if options[:enable]
       user.disabled = true if options[:disable]
       user.approved = true if options[:approve]
-      user.otp_required_for_login = false if options[:disable_2fa]
+      user.disable_two_factor! if options[:disable_2fa]
 
       if user.save
         user.confirm if options[:confirm]
