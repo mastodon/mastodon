@@ -21,11 +21,11 @@ const _ = require('lodash');
 const emojiMap = require('./emoji_map.json');
 // This json file is downloaded from https://github.com/iamcal/emoji-data/
 // and is used to correct the sheet coordinates since we're using that repo's sheet
-const emojiDataJson = require('./emoji_sheet.json');
+const emojiSheetData = require('./emoji_sheet.json');
 const { unicodeToFilename } = require('./unicode_to_filename');
 const { unicodeToUnifiedName } = require('./unicode_to_unified_name');
 
-// Grabbed from `emoji_utils` to prevent circular dependency
+// Grabbed from `emoji_utils` to avoid circular dependency
 function unifiedToNative(unified) {
   let unicodes = unified.split('-'),
     codePoints = unicodes.map((u) => `0x${u}`);
@@ -45,7 +45,7 @@ let data = {
   emojis: _(emojiMart5Data.emojis).values().map(emoji => {
     let skin_variations = {};
     const unified = emoji.skins[0].unified.toUpperCase();
-    const emojiFromRawData = emojiDataJson.find(e => e.unified === unified);
+    const emojiFromRawData = emojiSheetData.find(e => e.unified === unified);
 
     if (!emojiFromRawData) {
       return undefined;
