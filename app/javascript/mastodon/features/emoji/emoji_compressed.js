@@ -30,10 +30,6 @@ function unifiedToNative(unified) {
   return String.fromCodePoint(...codePoints);
 }
 
-const SKINS = [
-  '1F3FB', '1F3FC', '1F3FD', '1F3FE', '1F3FF',
-];
-
 let data = {
   compressed: true,
   categories: emojiMart5Data.categories.map(cat => {
@@ -53,16 +49,24 @@ let data = {
     }
 
     if (emoji.skins.length > 1) {
-      SKINS.forEach(skinToneCode => {
-        const matchingVariation = emojiFromRawData.skin_variations[skinToneCode];
-        if (matchingVariation) {
+      const [, ...nonDefaultSkins] = emoji.skins;
+      nonDefaultSkins.forEach(skin => {
+        const [matchingRawCodePoints,matchingRawEmoji] = Object.entries(emojiFromRawData.skin_variations).find((pair) => {
+          const [, value] = pair;
+          return value.unified.toLowerCase() === skin.unified;
+        });
+
+        if (matchingRawEmoji && matchingRawCodePoints) {
+          // At the time of writing, the json from `@emoji-mart/data` doesn't have data
+          // for emoji like `woman-heart-woman` with different skin tones.
+          const skinToneCode = matchingRawCodePoints.split('-')[0];
           skin_variations[skinToneCode] = {
-            unified: matchingVariation.unified.toUpperCase(),
+            unified: matchingRawEmoji.unified.toUpperCase(),
             non_qualified: null,
-            sheet_x: matchingVariation.sheet_x,
-            sheet_y: matchingVariation.sheet_y,
+            sheet_x: matchingRawEmoji.sheet_x,
+            sheet_y: matchingRawEmoji.sheet_y,
             has_img_twitter: true,
-            native: unifiedToNative(matchingVariation.unified.toUpperCase())
+            native: unifiedToNative(matchingRawEmoji.unified.toUpperCase())
           };
         }
       });
