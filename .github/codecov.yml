@@ -1,13 +1,11 @@
-comment: false # Do not leave PR comments
+ comment: false # Do not leave PR comments
 coverage:
   status:
     project:
       default:
-        # GitHub status check is not blocking
-        informational: true
+        informational: true # GitHub status check is not blocking
     patch:
       default:
-        # GitHub status check is not blocking
-        informational: true
+        informational: true # GitHub status check is not blocking
 github_checks:
-  annotations: false
+  annotations: false # Disable Codecov annotations
