@@ -61,7 +61,7 @@ let data = {
 
         if (matchingRawEmoji && matchingRawCodePoints) {
           // At the time of writing, the json from `@emoji-mart/data` doesn't have data
-          // for emoji like `woman-heart-woman` with different skin tones.
+          // for emoji like `woman-heart-woman` with two different skin tones.
           const skinToneCode = matchingRawCodePoints.split('-')[0];
           skin_variations[skinToneCode] = {
             unified: matchingRawEmoji.unified.toUpperCase(),
