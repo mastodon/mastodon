@@ -3,21 +3,26 @@
   "dockerComposeFile": "compose.yaml",
   "service": "app",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-
+  
   "features": {
     "ghcr.io/devcontainers/features/sshd:1": {}
   },
-
-  "forwardPorts": [3000, 4000],
+  
+  "forwardPorts": [3000, 3035, 4000],
 
   "portsAttributes": {
     "3000": {
-      "label": "web",
+      "label": "Web Application",
+      "onAutoForward": "notify",
+      "requireLocalPort": true
+    },
+    "3035": {
+      "label": "Webpack Dev Server",
       "onAutoForward": "notify",
       "requireLocalPort": true
     },
     "4000": {
-      "label": "stream",
+      "label": "Streaming API",
       "onAutoForward": "silent",
       "requireLocalPort": true
     }
@@ -30,13 +35,22 @@
   },
 
   "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-  "postCreateCommand": "bin/setup",
+  "postCreateCommand": "bin/setup && yarn install",
   "waitFor": "postCreateCommand",
 
   "customizations": {
     "vscode": {
-      "settings": {},
-      "extensions": ["EditorConfig.EditorConfig", "webben.browserslist"]
+      "settings": {
+        "editor.formatOnSave": true,
+        "files.eol": "\n"
+      },
+      "extensions": [
+        "EditorConfig.EditorConfig",
+        "webben.browserslist",
+        "rebornix.ruby",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+      ]
     }
   }
 }
