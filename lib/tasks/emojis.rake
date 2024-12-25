@@ -103,4 +103,15 @@ namespace :emojis do
       gen_border map[emoji], 'white'
     end
   end
+
+  desc 'Download the JSON definition of emojis'
+  task :download_json do
+    source = 'https://raw.githubusercontent.com/iamcal/emoji-data/refs/tags/v15.1.2/emoji.json'
+    dest   = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_data.json')
+
+    puts "Downloading emojos data from source... (#{source})"
+
+    res = HTTP.get(source).to_s
+    File.write(dest, res)
+  end
 end
