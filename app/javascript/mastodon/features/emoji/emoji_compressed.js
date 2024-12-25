@@ -17,10 +17,11 @@ const emojiMart5Data = require('@emoji-mart/data/sets/15/all.json');
 const { uncompress: emojiMartUncompress } = require('emoji-mart/dist/utils/data');
 const _ = require('lodash');
 
+
+const emojiMap = require('./emoji_map.json');
 // This json file is downloaded from https://github.com/iamcal/emoji-data/
 // and is used to correct the sheet coordinates since we're using that repo's sheet
-const emojiDataJson = require('./emoji_data.json');
-const emojiMap = require('./emoji_map.json');
+const emojiDataJson = require('./emoji_sheet.json');
 const { unicodeToFilename } = require('./unicode_to_filename');
 const { unicodeToUnifiedName } = require('./unicode_to_unified_name');
 
