@@ -7,6 +7,18 @@ GIT
       hkdf (~> 0.2)
       jwt (~> 2.0)
 
+GIT
+  remote: https://github.com/mjankowski/flatware.git
+  revision: 7f0367157c378999a043330024a56653c6502b31
+  branch: ruby-3-4-allow
+  specs:
+    flatware (2.3.3)
+      drb
+      thor (< 2.0)
+    flatware-rspec (2.3.3)
+      flatware (= 2.3.3)
+      rspec (>= 3.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -238,12 +250,6 @@ GEM
     ffi-compiler (1.3.2)
       ffi (>= 1.15.5)
       rake
-    flatware (2.3.3)
-      drb
-      thor (< 2.0)
-    flatware-rspec (2.3.3)
-      flatware (= 2.3.3)
-      rspec (>= 3.6)
     fog-core (2.5.0)
       builder
       excon (~> 0.71)
@@ -917,7 +923,7 @@ DEPENDENCIES
   faraday-httpclient
   fast_blank (~> 1.0)
   fastimage
-  flatware-rspec
+  flatware-rspec!
   fog-core (<= 2.6.0)
   fog-openstack (~> 1.0)
   haml-rails (~> 2.0)

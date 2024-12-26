@@ -122,7 +122,7 @@ end
 
 group :test do
   # Enable usage of all available CPUs/cores during spec runs
-  gem 'flatware-rspec'
+  gem 'flatware-rspec', github: 'mjankowski/flatware', branch: 'ruby-3-4-allow' # TODO, remove on flatware release
 
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
   gem 'rspec-github', '~> 2.4', require: false
