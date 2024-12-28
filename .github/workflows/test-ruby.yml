@@ -124,6 +124,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
+          - '3.2'
           - '3.3'
           - '.ruby-version'
     steps:
@@ -225,6 +226,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
+          - '3.2'
           - '3.3'
           - '.ruby-version'
     steps:
@@ -303,6 +305,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
+          - '3.2'
           - '3.3'
           - '.ruby-version'
 
@@ -419,6 +422,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
+          - '3.2'
           - '3.3'
           - '.ruby-version'
         search-image:
