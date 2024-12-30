@@ -79,7 +79,7 @@ gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'redis-namespace', '~> 1.10'
 gem 'rqrcode', '~> 2.2'
 gem 'ruby-progressbar', '~> 1.13'
-gem 'sanitize', '~> 6.0'
+gem 'sanitize', '~> 7.0'
 gem 'scenic', '~> 1.7'
 gem 'sidekiq', '~> 6.5'
 gem 'sidekiq-bulk', '~> 0.2.0'
