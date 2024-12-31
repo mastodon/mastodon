@@ -451,6 +451,33 @@ export const Search: React.FC<{
     setSelectedOption(-1);
   }, [setExpanded, setSelectedOption]);
 
+  const handleDragOver = useCallback(
+    (event: React.DragEvent<HTMLInputElement>) => {
+      event.preventDefault();
+    },
+    [],
+  );
+  const handleDrop = useCallback(
+    (event: React.DragEvent<HTMLInputElement>) => {
+      event.preventDefault();
+
+      handleClear();
+
+      const query =
+        event.dataTransfer.getData('URL') ||
+        event.dataTransfer.getData('text/plain');
+
+      Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value',
+      )?.set?.call(event.target, query);
+
+      event.currentTarget.focus();
+      event.target.dispatchEvent(new Event('change', { bubbles: true }));
+    },
+    [handleClear],
+  );
+
   return (
     <form className={classNames('search', { active: expanded })}>
       <input
@@ -468,6 +495,8 @@ export const Search: React.FC<{
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
       />
 
       <button type='button' className='search__icon' onClick={handleClear}>
