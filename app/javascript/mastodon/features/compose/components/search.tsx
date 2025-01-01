@@ -360,22 +360,47 @@ export const Search: React.FC<{
         const couldBeURL =
           trimmedValue.startsWith('https://') && !trimmedValue.includes(' ');
 
+        let mastoPath;
         if (couldBeURL) {
           newQuickActions.push(QuickActionGenerators.couldBeURL(trimmedValue));
+
+          // presume URL is from a mastodon server; not just some random web URL
+          mastoPath = new URL(trimmedValue).pathname.replace(/^\//, '');
+        } else {
+          mastoPath = '';
         }
 
         const couldBeHashtag =
           (trimmedValue.startsWith('#') && trimmedValue.length > 1) ||
-          trimmedValue.match(HASHTAG_REGEX);
+          trimmedValue.match(HASHTAG_REGEX) ||
+          (couldBeURL && mastoPath.startsWith('tags/'));
 
         if (couldBeHashtag) {
-          newQuickActions.push(QuickActionGenerators.couldBeHashtag(trimmedValue.replace(/^#/, '')));
+          const hashtag = couldBeURL
+            ? mastoPath.replace(/^tags\//, '')
+            : trimmedValue.replace(/^#/, '');
+
+          newQuickActions.push(QuickActionGenerators.couldBeHashtag(hashtag));
         }
 
-        const couldBeUsername = /^@?[a-z0-9_-]+(@[^\s]+)?$/i.exec(trimmedValue);
-
+        const userRegexp = /^@?[a-z0-9_-]+(@[^\s]+)?$/i;
+        const couldBeUsername =
+          userRegexp.test(trimmedValue) ||
+          (couldBeURL && userRegexp.test(mastoPath));
         if (couldBeUsername) {
-          newQuickActions.push(QuickActionGenerators.couldBeUsername(trimmedValue.replace(/^@/, '')));
+          const mastoUser = mastoPath.replace(/^@/, '');
+
+          const username = !couldBeURL
+            ? trimmedValue.replace(/^@/, '')
+            : // @ts-expect-error : mastoPath was tested against userRegexp above, meaning there must be at least one `@`:
+              // so match can't return null here
+              mastoPath.match(/@/g).length === 1
+              ? // if there's only 1 `@` in mastoPath, obtain domain from URL's FQDN & append to mastoUser
+                `${mastoUser}@${new URL(trimmedValue).hostname}`
+              : // otherwise there were at least (hopefully, only) 2, and it's a full masto identifier
+                mastoUser;
+
+          newQuickActions.push(QuickActionGenerators.couldBeUsername(username));
         }
 
         const couldBeStatusSearch = searchEnabled;
