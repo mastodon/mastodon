@@ -60,6 +60,7 @@ nn:
         setting_display_media_default: Gøym media som er merka som sensitive
         setting_display_media_hide_all: Alltid skjul alt media
         setting_display_media_show_all: Vis alltid media
+        setting_system_scrollbars_ui: Gjeld berre skrivebordsnettlesarar som er bygde på Safari og Chrome
         setting_use_blurhash: Overgangar er basert på fargane til skjulte grafikkelement, men gjer detaljar utydelege
         setting_use_pending_items: Gøym tidslineoppdateringar bak eit klikk, i staden for å rulla ned automatisk
         username: Du kan bruka bokstavar, tal og understrekar
@@ -101,7 +102,7 @@ nn:
         thumbnail: Eit omlag 2:1 bilete vist saman med informasjon om tenaren.
         timeline_preview: Besøkjande som ikkje er logga inn vil kunne bla gjennom dei siste offentlege innlegga på tenaren.
         trendable_by_default: Hopp over manuell gjennomgang av populært innhald. Enkeltståande innlegg kan fjernast frå trendar i etterkant.
-        trends: Trendar viser kva for nokre innlegg, emneknaggar og nyheiter som er i støytet på tenaren.
+        trends: Trendar viser kva for nokre innlegg, emneknaggar og nyheiter som er populære på tenaren.
         trends_as_landing_page: Vis populært innhald til utlogga brukarar og folk som kjem innom sida i staden for ei skildring av tenaren. Du må ha skrudd på trendar for å kunna bruka dette.
       form_challenge:
         current_password: Du går inn i eit trygt område
@@ -129,6 +130,17 @@ nn:
         show_application: Du vil uansett alltid kunna sjå kva app som la ut innlegga dine.
       tag:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
+      terms_of_service:
+        changelog: Du kan bruka Markdown-syntaks for struktur.
+        text: Du kan bruka Markdown-syntaks for struktur.
+      terms_of_service_generator:
+        admin_email: Juridiske merknader kan vera motsegner, rettsavgjerder, orskurdar eller førespurnader om sletting.
+        arbitration_address: Kan vera lik den fysiske adressa over, eller "N/A" viss du bruker epost
+        arbitration_website: Kan vera eit nettskjema, eller "N/A" viss du bruker epost
+        dmca_address: For US operators, use the address registered in the DMCA Designated Agent Directory. A P.O. Box listing is available upon direct request, use the DMCA Designated Agent Post Office Box Waiver Request to email the Copyright Office and describe that you are a home-based content moderator who fears revenge or retribution for your actions and need to use a P.O. Box to remove your home address from public view.
+        dmca_email: Kan vera den same epostadressa som adressa for juridiske merknader over
+        domain: Noko som identifiserer den nettenesta du tilbyr.
+        jurisdiction: Skriv kva land den som betaler rekningane bur i. Viss det er eit firma eller ein annan organisasjon, skriv du landet der organisasjonen held til, samt adressa som trengst.
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
         role: Rolla kontrollerer kva løyve brukaren har.
@@ -223,6 +235,7 @@ nn:
         setting_hide_network: Gøym nettverket ditt
         setting_reduce_motion: Minsk rørsle i animasjonar
         setting_system_font_ui: Bruk standardskrifttypen på systemet
+        setting_system_scrollbars_ui: Bruk standardrullefeltet til systemet
         setting_theme: Sidetema
         setting_trends: Vis kva som er populært i dag
         setting_unfollow_modal: Vis stadfesting før du sluttar å fylgja nokon
@@ -317,6 +330,17 @@ nn:
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å synast under trendar
         usable: Godta at innlegga kan bruka denne emneknaggen lokalt
+      terms_of_service:
+        changelog: Kva er endra?
+        text: Bruksvilkår
+      terms_of_service_generator:
+        admin_email: Epostadresse for juridiske merknader
+        arbitration_address: Fysisk adresse for skilsdomsvarsel
+        arbitration_website: Nettstad for å senda inn skilsdomsvarsel
+        dmca_address: Fysisk adresse for opphavsrettsvarsel
+        dmca_email: Epostadresse for opphavsrettsvarsel
+        domain: Domene
+        jurisdiction: Rettskrins
       user:
         role: Rolle
         time_zone: Tidssone

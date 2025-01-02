@@ -940,6 +940,18 @@ ca:
         title: Configuració de les condicions de servei
       history: Historial
       live: En ús
+      no_history: Encara no hi ha enregistrats canvis en les condicions de servei.
+      no_terms_of_service_html: Ara no teniu cap condició de servei configurada. Aquestes tenen per objectiu clarificar drets i obligacions i protegir-vos de responsabilitats potencials en disputes amb els vostres usuaris.
+      notified_on_html: Usuaris notificats el %{date}
+      notify_users: Notifica els usuaris
+      preview:
+        explanation_html: 'Aquest correu-e s''enviarà a <strong>%{display_count} usuaris</strong> que han signat abans de %{date}. S''hi inclourà aquest text:'
+        send_preview: Envia una vista prèvia a %{email}
+        title: Vista prèvia de la notificació de les condicions de servei
+      publish: Publica
+      published_on_html: Publicada el %{date}
+      save_draft: Desa l'esborrany
+      title: Condicions de servei
     title: Administració
     trends:
       allow: Permet
@@ -1192,6 +1204,7 @@ ca:
       view_strikes: Veure accions del passat contra el teu compte
     too_fast: Formulari enviat massa ràpid, torna a provar-ho.
     use_security_key: Usa clau de seguretat
+    user_agreement_html: He llegit i estic d'acord amb les <a href="%{terms_of_service_path}" target="_blank">condicions de servei</a> i la <a href="%{privacy_policy_path}" target="_blank">política de privadesa</a>
   author_attribution:
     example_title: Text d'exemple
     hint_html: Escriviu notícies o un blog fora de Mastodon? Controleu quin crèdit rebeu quan es comparteixen aquí.
@@ -1878,6 +1891,7 @@ ca:
       subject: S'ha accedit al teu compte des d'una adreça IP nova
       title: Un inici de sessió nou
     terms_of_service_changed:
+      sign_off: L'equip de %{domain}
       title: Actualització important
     warning:
       appeal: Envia una apel·lació
