@@ -4,12 +4,15 @@ class EmptyProfileFieldNamesValidator < ActiveModel::Validator
   def validate(account)
     return if account.fields.empty?
 
-    field_names_valid = true
-    account.fields.each do |field|
-      field_names_valid = false if field.name.blank? && field.value.present?
-    end
-    return if field_names_valid
+    account.errors.add(:fields, 'Names of profile fields cannot be empty') if fields_with_values_missing_names?(account)
+  end
 
-    account.errors.add(:fields, 'Names of profile fields cannot be empty')
+  private
+
+  def fields_with_values_missing_names?(account)
+    account.fields.each do |field|
+      return true if field.name.blank? && field.value.present?
+    end
+    return false
   end
 end
