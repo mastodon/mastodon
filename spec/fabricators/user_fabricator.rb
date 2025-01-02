@@ -21,3 +21,7 @@ end
 Fabricator(:moderator_user, from: :user) do
   role UserRole.find_by(name: 'Moderator')
 end
+
+Fabricator(:owner_user, from: :user) do
+  role UserRole.find_by(name: 'Owner')
+end
