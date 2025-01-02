@@ -56,7 +56,7 @@ export const expandSearch = createDataLoadingThunk(
     return apiGetSearch({
       q,
       type,
-      limit: 11,
+      limit: 10,
       offset,
     });
   },
