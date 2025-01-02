@@ -39,6 +39,11 @@ nn:
           attributes:
             data:
               malformed: er feilutforma
+        list_account:
+          attributes:
+            account_id:
+              taken: er allereie på lista
+          must_be_following: må vera ein konto du fylgjer
         status:
           attributes:
             reblog:
