@@ -290,10 +290,10 @@ class Status extends ImmutablePureComponent {
 
     const path = `/@${status.getIn(['account', 'acct'])}/${status.get('id')}`;
 
-    if (e?.button === 0 && !(e?.ctrlKey || e?.metaKey)) {
-      history.push(path);
-    } else if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
+    if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
       window.open(path, '_blank', 'noopener');
+    } else {
+      history.push(path);
     }
   };
 
