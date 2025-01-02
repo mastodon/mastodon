@@ -77,7 +77,7 @@ RSpec.describe 'Admin Webhooks' do
         # Valid update
         fill_in 'webhook_url', with: 'https://host.example/new/value/123'
         expect { submit_form }
-          .to_not change(webhook.reload, :url)
+          .to(change { webhook.reload.url })
       end
 
       def submit_form
