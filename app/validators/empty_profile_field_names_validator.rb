@@ -13,6 +13,6 @@ class EmptyProfileFieldNamesValidator < ActiveModel::Validator
     account.fields.each do |field|
       return true if field.name.blank? && field.value.present?
     end
-    return false
+    false
   end
 end
