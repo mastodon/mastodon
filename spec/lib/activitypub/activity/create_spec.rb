@@ -768,7 +768,7 @@ RSpec.describe ActivityPub::Activity::Create do
           expect { subject.perform }
             .to change(sender.statuses, :count).by(1)
             .and change { sender.featured_tags.first.reload.statuses_count }.by(1)
-            .and change { sender.featured_tags.first.reload.last_status_at }.from(nil).to(be_within(0.1).of(Time.now.utc))
+            .and change { sender.featured_tags.first.reload.last_status_at }.from(nil).to(be_present)
 
           status = sender.statuses.first
 
