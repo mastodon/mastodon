@@ -10,6 +10,7 @@ module TestEndpoints
     /.well-known/nodeinfo
     /nodeinfo/2.0
     /manifest
+    /css/custom-1a2s3d4f.css
     /custom.css
     /actor
     /api/v1/instance/extended_description
