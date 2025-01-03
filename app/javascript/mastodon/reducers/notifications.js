@@ -23,11 +23,7 @@ import {
   NOTIFICATIONS_EXPAND_REQUEST,
   NOTIFICATIONS_EXPAND_FAIL,
   NOTIFICATIONS_FILTER_SET,
-  NOTIFICATIONS_SCROLL_TOP,
   NOTIFICATIONS_LOAD_PENDING,
-  NOTIFICATIONS_MOUNT,
-  NOTIFICATIONS_UNMOUNT,
-  NOTIFICATIONS_MARK_AS_READ,
   NOTIFICATIONS_SET_BROWSER_SUPPORT,
   NOTIFICATIONS_SET_BROWSER_PERMISSION,
 } from '../actions/notifications';
@@ -186,16 +182,6 @@ const clearUnread = (state) => {
   return state.set('lastReadId', lastNotification ? lastNotification.get('id') : '0');
 };
 
-const updateTop = (state, top) => {
-  state = state.set('top', top);
-
-  if (!shouldCountUnreadNotifications(state)) {
-    state = clearUnread(state);
-  }
-
-  return state;
-};
-
 const deleteByStatus = (state, statusId) => {
   const lastReadId = state.get('lastReadId');
 
@@ -208,15 +194,6 @@ const deleteByStatus = (state, statusId) => {
   const deletedUnread = state.get('pendingItems').filter(item => item !== null && item.get('status') === statusId && compareId(item.get('id'), lastReadId) > 0);
   state = state.update('unread', unread => unread - deletedUnread.size);
   return state.update('items', helper).update('pendingItems', helper);
-};
-
-const updateMounted = (state) => {
-  state = state.update('mounted', count => count + 1);
-  if (!shouldCountUnreadNotifications(state, state.get('mounted') === 1)) {
-    state = state.set('readMarkerId', state.get('lastReadId'));
-    state = clearUnread(state);
-  }
-  return state;
 };
 
 const updateVisibility = (state, visibility) => {
@@ -259,10 +236,6 @@ export default function notifications(state = initialState, action) {
   switch(action.type) {
   case fetchMarkers.fulfilled.type:
     return action.payload.markers.notifications ? recountUnread(state, action.payload.markers.notifications.last_read_id) : state;
-  case NOTIFICATIONS_MOUNT:
-    return updateMounted(state);
-  case NOTIFICATIONS_UNMOUNT:
-    return state.update('mounted', count => count - 1);
   case focusApp.type:
     return updateVisibility(state, true);
   case unfocusApp.type:
@@ -275,8 +248,6 @@ export default function notifications(state = initialState, action) {
     return state.update('isLoading', (nbLoading) => nbLoading - 1);
   case NOTIFICATIONS_FILTER_SET:
     return state.set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('hasMore', true);
-  case NOTIFICATIONS_SCROLL_TOP:
-    return updateTop(state, action.top);
   case notificationsUpdate.type:
     return normalizeNotification(state, action.payload.notification, action.payload.usePendingItems);
   case NOTIFICATIONS_EXPAND_SUCCESS:
@@ -298,10 +269,6 @@ export default function notifications(state = initialState, action) {
     return action.payload.timeline === 'home' ?
       state.update(action.payload.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items) :
       state;
-  case NOTIFICATIONS_MARK_AS_READ: {
-    const lastNotification = state.get('items').find(item => item !== null);
-    return lastNotification ? recountUnread(state, lastNotification.get('id')) : state;
-  }
   case NOTIFICATIONS_SET_BROWSER_SUPPORT:
     return state.set('browserSupport', action.value);
   case NOTIFICATIONS_SET_BROWSER_PERMISSION:

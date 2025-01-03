@@ -32,13 +32,7 @@ export const NOTIFICATIONS_EXPAND_FAIL    = 'NOTIFICATIONS_EXPAND_FAIL';
 
 export const NOTIFICATIONS_FILTER_SET = 'NOTIFICATIONS_FILTER_SET';
 
-export const NOTIFICATIONS_SCROLL_TOP   = 'NOTIFICATIONS_SCROLL_TOP';
 export const NOTIFICATIONS_LOAD_PENDING = 'NOTIFICATIONS_LOAD_PENDING';
-
-export const NOTIFICATIONS_MOUNT   = 'NOTIFICATIONS_MOUNT';
-export const NOTIFICATIONS_UNMOUNT = 'NOTIFICATIONS_UNMOUNT';
-
-export const NOTIFICATIONS_MARK_AS_READ = 'NOTIFICATIONS_MARK_AS_READ';
 
 export const NOTIFICATIONS_SET_BROWSER_SUPPORT    = 'NOTIFICATIONS_SET_BROWSER_SUPPORT';
 export const NOTIFICATIONS_SET_BROWSER_PERMISSION = 'NOTIFICATIONS_SET_BROWSER_PERMISSION';
@@ -223,13 +217,6 @@ export function expandNotificationsFail(error, isLoadingMore) {
   };
 }
 
-export function scrollTopNotifications(top) {
-  return {
-    type: NOTIFICATIONS_SCROLL_TOP,
-    top,
-  };
-}
-
 export function setFilter (filterType) {
   return dispatch => {
     dispatch({
@@ -241,19 +228,6 @@ export function setFilter (filterType) {
     dispatch(saveSettings());
   };
 }
-
-export const mountNotifications = () => ({
-  type: NOTIFICATIONS_MOUNT,
-});
-
-export const unmountNotifications = () => ({
-  type: NOTIFICATIONS_UNMOUNT,
-});
-
-
-export const markNotificationsAsRead = () => ({
-  type: NOTIFICATIONS_MARK_AS_READ,
-});
 
 // Browser support
 export function setupBrowserNotifications() {
