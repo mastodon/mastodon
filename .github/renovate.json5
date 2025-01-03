@@ -14,6 +14,11 @@
   // If we do not want a package to be grouped with others, we need to set its groupName
   // to `null` after any other rule set it to something.
   dependencyDashboardHeader: 'This issue lists Renovate updates and detected dependencies. Read the [Dependency Dashboard](https://docs.renovatebot.com/key-concepts/dashboard/) docs to learn more. Before approving any upgrade: read the description and comments in the [`renovate.json5` file](https://github.com/mastodon/mastodon/blob/main/.github/renovate.json5).',
+  constraints: {
+    // Mastodon should work on Ruby 3.4, but its test dependencies are currently uninstallable on Ruby 3.4.
+    // TODO: remove this once https://github.com/briandunn/flatware/issues/103 is fixed
+    ruby: '3.3',
+  },
   postUpdateOptions: ['yarnDedupeHighest'],
   packageRules: [
     {
