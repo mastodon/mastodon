@@ -48,7 +48,7 @@ RSpec.describe Trends::Statuses do
   describe 'Trends::Statuses::Query methods' do
     subject { described_class.new.query }
 
-    describe '.records' do
+    describe '#records' do
       context 'with scored cards' do
         let!(:higher_score) { Fabricate :status_trend, score: 10, language: 'en' }
         let!(:lower_score) { Fabricate :status_trend, score: 1, language: 'es' }
