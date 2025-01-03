@@ -18,7 +18,7 @@ RSpec.describe Webhook do
       subject { Fabricate.build :webhook, current_account: account }
 
       context 'with account that has permissions' do
-        let(:account) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+        let(:account) { Fabricate(:admin_user).account }
 
         it { is_expected.to allow_values(%w(account.created)).for(:events) }
       end

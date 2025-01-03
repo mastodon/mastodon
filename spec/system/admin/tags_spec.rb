@@ -6,7 +6,7 @@ RSpec.describe 'Admin Tags' do
   describe 'Tag interaction' do
     let!(:tag) { Fabricate(:tag, name: 'test') }
 
-    before { sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    before { sign_in Fabricate(:admin_user) }
 
     it 'allows tags listing and editing' do
       visit admin_tags_path

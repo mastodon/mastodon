@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin Relays' do
   describe 'Managing relays' do
-    before { sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    before { sign_in Fabricate(:admin_user) }
 
     describe 'Viewing relays' do
       let!(:relay) { Fabricate :relay }
