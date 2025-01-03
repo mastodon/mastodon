@@ -9,13 +9,6 @@ import {
   muteAccountSuccess,
   rejectFollowRequestSuccess,
 } from '../actions/accounts';
-import {
-  focusApp,
-  unfocusApp,
-} from '../actions/app';
-import {
-  fetchMarkers,
-} from '../actions/markers';
 import { clearNotifications } from '../actions/notification_groups';
 import {
   notificationsUpdate,
@@ -33,13 +26,8 @@ import { compareId } from '../compare_id';
 const initialState = ImmutableMap({
   pendingItems: ImmutableList(),
   items: ImmutableList(),
-  hasMore: true,
   top: false,
   mounted: 0,
-  unread: 0,
-  lastReadId: '0',
-  readMarkerId: '0',
-  isTabVisible: true,
   isLoading: 0,
   browserSupport: false,
   browserPermission: 'default',
@@ -65,13 +53,7 @@ const normalizeNotification = (state, notification, usePendingItems) => {
   }
 
   if (usePendingItems || !state.get('pendingItems').isEmpty()) {
-    return state.update('pendingItems', list => list.unshift(notificationToMap(notification))).update('unread', unread => unread + 1);
-  }
-
-  if (shouldCountUnreadNotifications(state)) {
-    state = state.update('unread', unread => unread + 1);
-  } else {
-    state = state.set('lastReadId', notification.id);
+    return state.update('pendingItems', list => list.unshift(notificationToMap(notification)));
   }
 
   return state.update('items', list => {
@@ -91,7 +73,6 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingMore
   // - `notifications` may include items that are already included
   // - this function can be called either to fill in a gap, or load newer items
 
-  const lastReadId = state.get('lastReadId');
   const newItems = ImmutableList(notifications.map(notificationToMap));
 
   return state.withMutations(mutable => {
@@ -154,19 +135,6 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingMore
       });
     }
 
-    if (!next) {
-      mutable.set('hasMore', false);
-    }
-
-    if (shouldCountUnreadNotifications(state)) {
-      mutable.set('unread', mutable.get('pendingItems').count(item => item !== null) + mutable.get('items').count(item => item && compareId(item.get('id'), lastReadId) > 0));
-    } else {
-      const mostRecent = newItems.find(item => item !== null);
-      if (mostRecent && compareId(lastReadId, mostRecent.get('id')) < 0) {
-        mutable.set('lastReadId', mostRecent.get('id'));
-      }
-    }
-
     mutable.update('isLoading', (nbLoading) => nbLoading - 1);
   });
 };
@@ -176,78 +144,21 @@ const filterNotifications = (state, accountIds, type) => {
   return state.update('items', helper).update('pendingItems', helper);
 };
 
-const clearUnread = (state) => {
-  state = state.set('unread', state.get('pendingItems').size);
-  const lastNotification = state.get('items').find(item => item !== null);
-  return state.set('lastReadId', lastNotification ? lastNotification.get('id') : '0');
-};
-
 const deleteByStatus = (state, statusId) => {
-  const lastReadId = state.get('lastReadId');
-
-  if (shouldCountUnreadNotifications(state)) {
-    const deletedUnread = state.get('items').filter(item => item !== null && item.get('status') === statusId && compareId(item.get('id'), lastReadId) > 0);
-    state = state.update('unread', unread => unread - deletedUnread.size);
-  }
-
   const helper = list => list.filterNot(item => item !== null && item.get('status') === statusId);
-  const deletedUnread = state.get('pendingItems').filter(item => item !== null && item.get('status') === statusId && compareId(item.get('id'), lastReadId) > 0);
-  state = state.update('unread', unread => unread - deletedUnread.size);
   return state.update('items', helper).update('pendingItems', helper);
-};
-
-const updateVisibility = (state, visibility) => {
-  state = state.set('isTabVisible', visibility);
-  if (!shouldCountUnreadNotifications(state)) {
-    state = state.set('readMarkerId', state.get('lastReadId'));
-    state = clearUnread(state);
-  }
-  return state;
-};
-
-const shouldCountUnreadNotifications = (state, ignoreScroll = false) => {
-  const isTabVisible   = state.get('isTabVisible');
-  const isOnTop        = state.get('top');
-  const isMounted      = state.get('mounted') > 0;
-  const lastReadId     = state.get('lastReadId');
-  const lastItem       = state.get('items').findLast(item => item !== null);
-  const lastItemReached = !state.get('hasMore') || lastReadId === '0' || (lastItem && compareId(lastItem.get('id'), lastReadId) <= 0);
-
-  return !(isTabVisible && (ignoreScroll || isOnTop) && isMounted && lastItemReached);
-};
-
-const recountUnread = (state, last_read_id) => {
-  return state.withMutations(mutable => {
-    if (compareId(last_read_id, mutable.get('lastReadId')) > 0) {
-      mutable.set('lastReadId', last_read_id);
-    }
-
-    if (compareId(last_read_id, mutable.get('readMarkerId')) > 0) {
-      mutable.set('readMarkerId', last_read_id);
-    }
-
-    if (state.get('unread') > 0 || shouldCountUnreadNotifications(state)) {
-      mutable.set('unread', mutable.get('pendingItems').count(item => item !== null) + mutable.get('items').count(item => item && compareId(item.get('id'), last_read_id) > 0));
-    }
-  });
 };
 
 export default function notifications(state = initialState, action) {
   switch(action.type) {
-  case fetchMarkers.fulfilled.type:
-    return action.payload.markers.notifications ? recountUnread(state, action.payload.markers.notifications.last_read_id) : state;
-  case focusApp.type:
-    return updateVisibility(state, true);
-  case unfocusApp.type:
-    return updateVisibility(state, false);
   case NOTIFICATIONS_LOAD_PENDING:
-    return state.update('items', list => state.get('pendingItems').concat(list.take(40))).set('pendingItems', ImmutableList()).set('unread', 0);
+    return state.update('items', list => state.get('pendingItems').concat(list.take(40))).set('pendingItems', ImmutableList());
   case NOTIFICATIONS_EXPAND_REQUEST:
     return state.update('isLoading', (nbLoading) => nbLoading + 1);
   case NOTIFICATIONS_EXPAND_FAIL:
     return state.update('isLoading', (nbLoading) => nbLoading - 1);
   case NOTIFICATIONS_FILTER_SET:
-    return state.set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('hasMore', true);
+    return state.set('items', ImmutableList()).set('pendingItems', ImmutableList());
   case notificationsUpdate.type:
     return normalizeNotification(state, action.payload.notification, action.payload.usePendingItems);
   case NOTIFICATIONS_EXPAND_SUCCESS:
@@ -262,7 +173,7 @@ export default function notifications(state = initialState, action) {
   case rejectFollowRequestSuccess.type:
     return filterNotifications(state, [action.payload.id], 'follow_request');
   case clearNotifications.pending.type:
-    return state.set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('hasMore', false);
+    return state.set('items', ImmutableList()).set('pendingItems', ImmutableList());
   case timelineDelete.type:
     return deleteByStatus(state, action.payload.statusId);
   case disconnectTimeline.type:
