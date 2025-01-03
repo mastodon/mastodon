@@ -120,7 +120,7 @@ export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
 export const termsOfServiceEnabled = getMeta('terms_of_service_enabled');
 
-const displayNames = new Intl.DisplayNames(getMeta('locale'), {
+const displayNames = Intl.DisplayNames && new Intl.DisplayNames(getMeta('locale'), {
   type: 'language',
   fallback: 'none',
   languageDisplay: 'standard',
@@ -128,7 +128,7 @@ const displayNames = new Intl.DisplayNames(getMeta('locale'), {
 
 export const languages = initialState?.languages?.map(lang => {
   // zh-YUE is not a valid CLDR unicode_language_id
-  return [lang[0], displayNames.of(lang[0].replace('zh-YUE', 'yue')) || lang[1], lang[2]];
+  return [lang[0], displayNames?.of(lang[0].replace('zh-YUE', 'yue')) || lang[1], lang[2]];
 });
 
 /**
