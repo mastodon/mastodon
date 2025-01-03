@@ -119,6 +119,11 @@ RSpec.configure do |config|
   config.include CommandLineHelpers, type: :cli
   config.include SystemHelpers, type: :system
 
+  # TODO: Remove when Devise fixes https://github.com/heartcombo/devise/issues/5705
+  config.before do
+    Rails.application.reload_routes_unless_loaded
+  end
+
   config.around(:each, use_transactional_tests: false) do |example|
     self.use_transactional_tests = false
     example.run
