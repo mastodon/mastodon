@@ -94,8 +94,8 @@ GEM
     ast (2.4.2)
     attr_required (1.0.2)
     aws-eventstream (1.3.0)
-    aws-partitions (1.1025.0)
-    aws-sdk-core (3.214.0)
+    aws-partitions (1.1029.0)
+    aws-sdk-core (3.214.1)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -126,7 +126,7 @@ GEM
     blurhash (0.1.8)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
-    brakeman (6.2.2)
+    brakeman (7.0.0)
       racc
     browser (6.2.0)
     brpoplpush-redis_script (0.1.3)
@@ -217,7 +217,7 @@ GEM
       htmlentities (~> 4.3.3)
       launchy (>= 2.1, < 4.0)
       mail (~> 2.7)
-    erubi (1.13.0)
+    erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
     excon (0.112.0)
@@ -234,7 +234,7 @@ GEM
       net-http (>= 0.5.0)
     fast_blank (1.0.1)
     fastimage (2.3.1)
-    ffi (1.17.0)
+    ffi (1.17.1)
     ffi-compiler (1.3.2)
       ffi (>= 1.15.5)
       rake
@@ -390,7 +390,7 @@ GEM
       activesupport (>= 4)
       railties (>= 4)
       request_store (~> 1.0)
-    loofah (2.23.1)
+    loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -415,7 +415,7 @@ GEM
     mutex_m (0.3.0)
     net-http (0.5.0)
       uri
-    net-imap (0.5.2)
+    net-imap (0.5.4)
       date
       net-protocol
     net-ldap (0.19.0)
@@ -426,10 +426,10 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.17.2)
+    nokogiri (1.18.1)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    oj (3.16.8)
+    oj (3.16.9)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
     omniauth (2.1.2)
@@ -608,7 +608,7 @@ GEM
       rack
     rack-session (1.0.2)
       rack (< 3)
-    rack-test (2.1.0)
+    rack-test (2.2.0)
       rack (>= 1.3)
     rackup (1.0.1)
       rack (< 3)
@@ -749,9 +749,9 @@ GEM
       fugit (~> 1.1, >= 1.11.1)
     safety_net_attestation (0.4.0)
       jwt (~> 2.0)
-    sanitize (6.1.3)
+    sanitize (7.0.0)
       crass (~> 1.0.2)
-      nokogiri (>= 1.12.0)
+      nokogiri (>= 1.16.8)
     scenic (1.8.0)
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
@@ -811,7 +811,7 @@ GEM
       climate_control
     test-prof (1.4.3)
     thor (1.3.2)
-    tilt (2.4.0)
+    tilt (2.5.0)
     timeout (0.4.3)
     tpm-key_attestation (0.12.1)
       bindata (~> 2.4)
@@ -891,7 +891,7 @@ DEPENDENCIES
   binding_of_caller (~> 1.0)
   blurhash (~> 0.1)
   bootsnap (~> 1.18.0)
-  brakeman (~> 6.0)
+  brakeman (~> 7.0)
   browser
   bundler-audit (~> 0.9)
   capybara (~> 3.39)
@@ -1007,7 +1007,7 @@ DEPENDENCIES
   ruby-progressbar (~> 1.13)
   ruby-vips (~> 2.2)
   rubyzip (~> 2.3)
-  sanitize (~> 6.0)
+  sanitize (~> 7.0)
   scenic (~> 1.7)
   selenium-webdriver
   shoulda-matchers
@@ -1037,4 +1037,4 @@ RUBY VERSION
    ruby 3.3.6p108
 
 BUNDLED WITH
-   2.6.1
+   2.6.2
