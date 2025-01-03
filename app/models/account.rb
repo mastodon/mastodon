@@ -118,6 +118,7 @@ class Account < ApplicationRecord
   validates :display_name, length: { maximum: DISPLAY_NAME_LENGTH_LIMIT }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, note_length: { maximum: NOTE_LENGTH_LIMIT }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: DEFAULT_FIELDS_SIZE }, if: -> { local? && will_save_change_to_fields? }
+  validates_with EmptyProfileFieldNamesValidator, if: -> { local? && will_save_change_to_fields? }
   with_options on: :create do
     validates :uri, absence: true, if: :local?
     validates :inbox_url, absence: true, if: :local?
@@ -300,7 +301,7 @@ class Account < ApplicationRecord
 
     if attributes.is_a?(Hash)
       attributes.each_value do |attr|
-        next if attr[:name].blank?
+        next if attr[:name].blank? && attr[:value].blank?
 
         previous = old_fields.find { |item| item['value'] == attr[:value] }
 
