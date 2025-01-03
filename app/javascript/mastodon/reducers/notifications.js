@@ -12,22 +12,15 @@ import {
 import { clearNotifications } from '../actions/notification_groups';
 import {
   notificationsUpdate,
-  NOTIFICATIONS_EXPAND_SUCCESS,
-  NOTIFICATIONS_EXPAND_REQUEST,
-  NOTIFICATIONS_EXPAND_FAIL,
   NOTIFICATIONS_FILTER_SET,
-  NOTIFICATIONS_LOAD_PENDING,
   NOTIFICATIONS_SET_BROWSER_SUPPORT,
   NOTIFICATIONS_SET_BROWSER_PERMISSION,
 } from '../actions/notifications';
 import { disconnectTimeline } from '../actions/timelines';
-import { compareId } from '../compare_id';
 
 const initialState = ImmutableMap({
   pendingItems: ImmutableList(),
   items: ImmutableList(),
-  top: false,
-  mounted: 0,
   isLoading: 0,
   browserSupport: false,
   browserPermission: 'default',
@@ -45,8 +38,6 @@ export const notificationToMap = notification => ImmutableMap({
 });
 
 const normalizeNotification = (state, notification, usePendingItems) => {
-  const top = state.get('top');
-
   // Under currently unknown conditions, the client may receive duplicates from the server
   if (state.get('pendingItems').some((item) => item?.get('id') === notification.id) || state.get('items').some((item) => item?.get('id') === notification.id)) {
     return state;
@@ -57,85 +48,11 @@ const normalizeNotification = (state, notification, usePendingItems) => {
   }
 
   return state.update('items', list => {
-    if (top && list.size > 40) {
+    if (list.size > 40) {
       list = list.take(20);
     }
 
     return list.unshift(notificationToMap(notification));
-  });
-};
-
-const expandNormalizedNotifications = (state, notifications, next, isLoadingMore, isLoadingRecent, usePendingItems) => {
-  // This method is pretty tricky because:
-  // - existing notifications might be out of order
-  // - the existing notifications may have gaps, most often explicitly noted with a `null` item
-  // - ideally, we don't want it to reorder existing items
-  // - `notifications` may include items that are already included
-  // - this function can be called either to fill in a gap, or load newer items
-
-  const newItems = ImmutableList(notifications.map(notificationToMap));
-
-  return state.withMutations(mutable => {
-    if (!newItems.isEmpty()) {
-      usePendingItems = isLoadingRecent && (usePendingItems || !mutable.get('pendingItems').isEmpty());
-
-      mutable.update(usePendingItems ? 'pendingItems' : 'items', oldItems => {
-        // If called to poll *new* notifications, we just need to add them on top without duplicates
-        if (isLoadingRecent) {
-          const idsToCheck = oldItems.map(item => item?.get('id')).toSet();
-          const insertedItems = newItems.filterNot(item => idsToCheck.includes(item.get('id')));
-          return insertedItems.concat(oldItems);
-        }
-
-        // If called to expand more (presumably older than any known to the WebUI), we just have to
-        // add them to the bottom without duplicates
-        if (isLoadingMore) {
-          const idsToCheck = oldItems.map(item => item?.get('id')).toSet();
-          const insertedItems = newItems.filterNot(item => idsToCheck.includes(item.get('id')));
-          return oldItems.concat(insertedItems);
-        }
-
-        // Now this gets tricky, as we don't necessarily know for sure where the gap to fill is,
-        // and some items in the timeline may not be properly ordered.
-
-        // However, we know that `newItems.last()` is the oldest item that was requested and that
-        // there is no “hole” between `newItems.last()` and `newItems.first()`.
-
-        // First, find the furthest (if properly sorted, oldest) item in the notifications that is
-        // newer than the oldest fetched one, as it's most likely that it delimits the gap.
-        // Start the gap *after* that item.
-        const lastIndex = oldItems.findLastIndex(item => item !== null && compareId(item.get('id'), newItems.last().get('id')) >= 0) + 1;
-
-        // Then, try to find the furthest (if properly sorted, oldest) item in the notifications that
-        // is newer than the most recent fetched one, as it delimits a section comprised of only
-        // items older or within `newItems` (or that were deleted from the server, so should be removed
-        // anyway).
-        // Stop the gap *after* that item.
-        const firstIndex = oldItems.take(lastIndex).findLastIndex(item => item !== null && compareId(item.get('id'), newItems.first().get('id')) > 0) + 1;
-
-        // At this point:
-        // - no `oldItems` after `firstIndex` is newer than any of the `newItems`
-        // - all `oldItems` after `lastIndex` are older than every of the `newItems`
-        // - it is possible for items in the replaced slice to be older than every `newItems`
-        // - it is possible for items before `firstIndex` to be in the `newItems` range
-        // Therefore:
-        // - to avoid losing items, items from the replaced slice that are older than `newItems`
-        //   should be added in the back.
-        // - to avoid duplicates, `newItems` should be checked the first `firstIndex` items of
-        //   `oldItems`
-        const idsToCheck = oldItems.take(firstIndex).map(item => item?.get('id')).toSet();
-        const insertedItems = newItems.filterNot(item => idsToCheck.includes(item.get('id')));
-        const olderItems = oldItems.slice(firstIndex, lastIndex).filter(item => item !== null && compareId(item.get('id'), newItems.last().get('id')) < 0);
-
-        return oldItems.take(firstIndex).concat(
-          insertedItems,
-          olderItems,
-          oldItems.skip(lastIndex),
-        );
-      });
-    }
-
-    mutable.update('isLoading', (nbLoading) => nbLoading - 1);
   });
 };
 
@@ -151,18 +68,10 @@ const deleteByStatus = (state, statusId) => {
 
 export default function notifications(state = initialState, action) {
   switch(action.type) {
-  case NOTIFICATIONS_LOAD_PENDING:
-    return state.update('items', list => state.get('pendingItems').concat(list.take(40))).set('pendingItems', ImmutableList());
-  case NOTIFICATIONS_EXPAND_REQUEST:
-    return state.update('isLoading', (nbLoading) => nbLoading + 1);
-  case NOTIFICATIONS_EXPAND_FAIL:
-    return state.update('isLoading', (nbLoading) => nbLoading - 1);
   case NOTIFICATIONS_FILTER_SET:
     return state.set('items', ImmutableList()).set('pendingItems', ImmutableList());
   case notificationsUpdate.type:
     return normalizeNotification(state, action.payload.notification, action.payload.usePendingItems);
-  case NOTIFICATIONS_EXPAND_SUCCESS:
-    return expandNormalizedNotifications(state, action.notifications, action.next, action.isLoadingMore, action.isLoadingRecent, action.usePendingItems);
   case blockAccountSuccess.type:
     return filterNotifications(state, [action.payload.relationship.id]);
   case muteAccountSuccess.type:
