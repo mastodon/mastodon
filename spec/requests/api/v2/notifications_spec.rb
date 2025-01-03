@@ -143,6 +143,55 @@ RSpec.describe 'Notifications' do
       end
     end
 
+    context 'when there are numerous notifications for the same final group' do
+      before do
+        user.account.notifications.destroy_all
+        5.times.each { FavouriteService.new.call(Fabricate(:account), user.account.statuses.first) }
+      end
+
+      context 'with no options' do
+        it 'returns a notification group covering all notifications' do
+          subject
+
+          notification_ids = user.account.notifications.reload.pluck(:id)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:notification_groups]).to contain_exactly(
+            a_hash_including(
+              type: 'favourite',
+              sample_account_ids: have_attributes(size: 5),
+              page_min_id: notification_ids.first.to_s,
+              page_max_id: notification_ids.last.to_s
+            )
+          )
+        end
+      end
+
+      context 'with min_id param' do
+        let(:params) { { min_id: user.account.notifications.reload.first.id - 1 } }
+
+        it 'returns a notification group covering all notifications' do
+          subject
+
+          notification_ids = user.account.notifications.reload.pluck(:id)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:notification_groups]).to contain_exactly(
+            a_hash_including(
+              type: 'favourite',
+              sample_account_ids: have_attributes(size: 5),
+              page_min_id: notification_ids.first.to_s,
+              page_max_id: notification_ids.last.to_s
+            )
+          )
+        end
+      end
+    end
+
     context 'with no options' do
       it 'returns expected notification types', :aggregate_failures do
         subject
