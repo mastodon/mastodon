@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { getAverageFromBlurhash } from 'mastodon/blurhash';
 import Audio from 'mastodon/features/audio';
 import Footer from 'mastodon/features/picture_in_picture/components/footer';
 
@@ -25,6 +26,18 @@ class AudioModal extends ImmutablePureComponent {
     onClose: PropTypes.func.isRequired,
     onChangeBackgroundColor: PropTypes.func.isRequired,
   };
+
+  componentDidMount () {
+    const { media, onChangeBackgroundColor } = this.props;
+
+    const backgroundColor = getAverageFromBlurhash(media.get('blurhash'));
+
+    onChangeBackgroundColor(backgroundColor || { r: 255, g: 255, b: 255 });
+  }
+
+  componentWillUnmount () {
+    this.props.onChangeBackgroundColor(null);
+  }
 
   render () {
     const { media, status, accountStaticAvatar, onClose } = this.props;

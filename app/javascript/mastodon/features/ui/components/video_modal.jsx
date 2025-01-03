@@ -37,6 +37,10 @@ class VideoModal extends ImmutablePureComponent {
     }
   }
 
+  componentWillUnmount () {
+    this.props.onChangeBackgroundColor(null);
+  }
+
   render () {
     const { media, status, onClose } = this.props;
     const options = this.props.options || {};
