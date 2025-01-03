@@ -10,9 +10,6 @@ class EmptyProfileFieldNamesValidator < ActiveModel::Validator
   private
 
   def fields_with_values_missing_names?(account)
-    account.fields.each do |field|
-      return true if field.name.blank? && field.value.present?
-    end
-    false
+    account.fields.any? { |field| field.name.blank? && field.value.present? }
   end
 end
