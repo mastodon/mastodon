@@ -3,7 +3,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { openModal } from 'mastodon/actions/modal';
-import { initializeNotifications } from 'mastodon/actions/notifications_migration';
+import { fetchNotifications } from 'mastodon/actions/notification_groups';
 
 import { showAlert } from '../../../actions/alerts';
 import { setFilter, requestBrowserPermission } from '../../../actions/notifications';
@@ -60,7 +60,7 @@ const mapDispatchToProps = (dispatch) => ({
       dispatch(changeSetting(['notifications', ...path], checked));
 
       if(path[0] === 'group' && path[1] === 'follow') {
-        dispatch(initializeNotifications());
+        dispatch(fetchNotifications());
       }
     }
   },
