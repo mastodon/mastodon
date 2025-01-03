@@ -335,7 +335,7 @@ et:
       enabled_msg: Selle emotikoni lubamine õnnestus
       image_hint: PNG või GIF suurusega kuni %{size}
       list: Loend
-      listed: Nimekirjastatud
+      listed: Loetletud
       new:
         title: Lisa uus emotikon
       no_emoji_selected: Emotikone ei muudetud, kuna ühtegi polnud valitud
@@ -345,8 +345,8 @@ et:
       shortcode_hint: Vähemalt 2 tähemärki, ainult tähted, numbrid ja alakriipsud
       title: Emotikonid
       uncategorized: Kategoriseerimata
-      unlist: Kirjendamata
-      unlisted: Kirjendamata
+      unlist: Loetlemata
+      unlisted: Loetlemata
       update_failed_msg: Ei saanud seda emotikoni uuendada
       updated_msg: Emotikoni uuendamine õnnestus!
       upload: Lae üles
@@ -828,12 +828,17 @@ et:
       media:
         title: Meedia
       metadata: Metaandmed
+      no_history: Seda postitust pole muudetud
       no_status_selected: Ühtegi postitust ei muudetud, sest ühtegi polnud valitud
       open: Ava postitus
       original_status: Algne postitus
       reblogs: Jagamised
+      replied_to_html: Vastatud %{acct_link}
       status_changed: Muudetud postitus
+      status_title: Postitajaks @%{name}
+      title: Postitus kontolt - @%{name}
       trending: Populaarne
+      view_publicly: Nähtav avalikult
       visibility: Nähtavus
       with_media: Meediaga
     strikes:
@@ -910,6 +915,19 @@ et:
       search: Otsi
       title: Märksõnad
       updated_msg: Sildi sätted edukalt uuendatud
+    terms_of_service:
+      back: Tagasi teenuse tingimustesse
+      changelog: Mis on muutunud
+      create: Kasuta enda oma
+      current: Praegune
+      draft: Mustand
+      generate: Kasuta malli
+      generates:
+        action: Genereeri
+        chance_to_review_html: "<strong>Loodud teenusetingimusi ei avaldata automaatselt.</strong> Sul on võimalus tulemused üle vaadata. Palun täida vajalikud andmed, et jätkata."
+        explanation_html: Esitatud teenusetingimuste näidis on mõeldud ainult teavitamise eesmärgil ja seda ei tohiks tõlgendada kui juriidilist nõuannet mis tahes küsimuses. Palun konsulteeri olukorra ja konkreetsete juriidiliste küsimuste osas oma õigusnõustajaga.
+        title: Teenuse tingimuste seadistamine
+      history: Ajalugu
     title: Administreerimine
     trends:
       allow: Luba
@@ -1275,7 +1293,7 @@ et:
     bookmarks: Järjehoidjad
     csv: CSV
     domain_blocks: Domeeni blokeeringud
-    lists: Nimekirjad
+    lists: Loetelud
     mutes: Oled vaigistanud
     storage: Meedia hoidla
   featured_tags:
@@ -1776,7 +1794,7 @@ et:
       private_long: Näevad ainult jälgijad
       public: Avalik
       public_long: Postitused on kõigile näha
-      unlisted: Kirjendamata
+      unlisted: Loetlemata
       unlisted_long: Kõigile näha, kuid ei näidata avalikel ajajoontel
   statuses_cleanup:
     enabled: Vanade postituste automaatne kustutamine
