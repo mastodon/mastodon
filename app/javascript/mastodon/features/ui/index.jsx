@@ -126,6 +126,7 @@ const keyMap = {
   toggleHidden: 'x',
   toggleSensitive: 'h',
   openMedia: 'e',
+  onTranslate: 't',
 };
 
 class SwitchingColumnsArea extends PureComponent {
