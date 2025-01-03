@@ -101,9 +101,9 @@ const EmbedModal: React.FC<{
           />
 
           <iframe
-            frameBorder='0'
             ref={iframeRef}
             sandbox='allow-scripts allow-same-origin'
+            style={{ border: 0 }}
             title='Preview'
           />
         </div>
