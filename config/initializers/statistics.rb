@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+return unless defined?(Rails::Command::StatsCommand)
+
 [
   %w(AppLibs app/lib),
   %w(Policies app/policies),
