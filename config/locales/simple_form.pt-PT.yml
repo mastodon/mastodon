@@ -32,12 +32,12 @@ pt-PT:
         warning_preset_id: Opcional. Tu ainda podes adicionar texto personalizado no fim do predefinido
       announcement:
         all_day: Quando marcado, apenas as datas do intervalo de tempo serão apresentadas
-        ends_at: Opcional. O anúncio será automaticamente retirado de exibição neste momento
-        scheduled_at: Deixe em branco para publicar o anúncio imediatamente
-        starts_at: Opcional. Caso o seu anúncio seja vinculado a um intervalo de tempo específico
-        text: Pode utilizar a sintaxe de publicações. Por favor, tenha em consideração o espaço que o comunicado ocupará no ecrã do utilizador
+        ends_at: Opcional. A mensagem de manutenção deixará de estar publicada neste momento
+        scheduled_at: Deixe em branco para publicar a mensagem de manutenção imediatamente
+        starts_at: Opcional. Caso a sua mensagem de manutenção seja vinculada a um intervalo de tempo específico
+        text: Pode utilizar a sintaxe de publicações. Por favor, tenha em consideração o espaço que a mensagem de manutenção ocupará no ecrã do utilizador
       appeal:
-        text: Só pode recorrer uma única vez de uma reprimenda
+        text: Só podes recorrer uma única vez de uma reprimenda
       defaults:
         autofollow: As pessoas que aderirem através do convite segui-lo-ão automaticamente
         avatar: WEBP, PNG, GIF ou JPG. No máximo %{size}. Será reduzido para %{dimensions}px
@@ -57,7 +57,7 @@ pt-PT:
         setting_aggregate_reblogs: Não mostrar os novos impulsos para publicações que tenham sido recentemente impulsionadas (apenas afeta os impulsos recentemente recebidos)
         setting_always_send_emails: Normalmente as notificações por e-mail não serão enviadas quando estiver a utilizar ativamente o Mastodon
         setting_default_sensitive: Os multimédia sensíveis são ocultados por predefinição e podem ser revelados com um clique/toque
-        setting_display_media_default: Esconder multimédia marcada como problemática
+        setting_display_media_default: Esconder multimédia marcada como sensível
         setting_display_media_hide_all: Esconder sempre toda a multimédia
         setting_display_media_show_all: Mostrar sempre a multimédia
         setting_system_scrollbars_ui: Aplica-se apenas a navegadores de desktop baseados no Safari e Chrome
@@ -112,7 +112,7 @@ pt-PT:
         text: Isto vai ajudar-nos a analisar o seu pedido
       ip_block:
         comment: Opcional. Relembre-se por que adicionou esta regra.
-        expires_in: Endereços IP são um recurso limitado, algumas vezes são compartilhados e muitas vezes mudam de mãos. Por essa razão, bloqueios de IP indefinidos não são recomendados.
+        expires_in: Os endereços de IP são um recurso limitado, algumas vezes são partilhados e muitas vezes mudam de mãos. Por essa razão, não são recomendados bloqueios de IP indefinidos.
         ip: Introduza um endereço IPv4 ou IPv6. Pode bloquear intervalos inteiros usando a sintaxe CIDR. Tenha cuidado para não se bloquear a sí mesmo!
         severities:
           no_access: Bloquear o acesso a todos os recursos
@@ -137,7 +137,7 @@ pt-PT:
         admin_email: Os avisos legais incluem contra-avisos, ordens judiciais, pedidos de remoção e pedidos de aplicação da lei.
         arbitration_address: Pode ser o mesmo que o endereço físico acima ou “N/A” se utilizar e-mail
         arbitration_website: Pode ser um formulário web ou “N/A” se for utilizado o e-mail
-        dmca_address: Para operadores dos EUA, utilize o endereço registado no Diretório de Agentes Designados DMCA. A listagem de uma caixa postal está disponível mediante pedido direto. Utilize o DMCA Designated Agent Post Office Box Waiver Request para enviar uma mensagem de correio eletrónico ao Copyright Office e descreva que é um moderador de conteúdos baseado em casa que receia vingança ou represálias pelas suas acções e que necessita de utilizar uma caixa postal para retirar o seu endereço de casa da vista do público.
+        dmca_address: Para operadores dos EUA, utilize o endereço registado no Diretório de Agentes Designados DMCA. A listagem de uma caixa postal está disponível mediante pedido direto. Utilize o DMCA Designated Agent Post Office Box Waiver Request para enviar uma mensagem de correio eletrónico ao Copyright Office e descreva que é um moderador de conteúdos baseado em casa que receia vingança ou represálias pelas suas ações e que necessita de utilizar uma caixa postal para retirar o seu endereço de casa da vista do público.
         dmca_email: Pode ser o mesmo e-mail utilizado para “Endereço de e-mail para avisos legais” acima
         domain: Identificação única do serviço online que está a prestar.
         jurisdiction: Indique o país de residência de quem paga as contas. Se se tratar de uma empresa ou outra entidade, indique o país onde está constituída, bem como a cidade, região, território ou estado, consoante o caso.
@@ -175,11 +175,11 @@ pt-PT:
         include_statuses: Incluir no e-mail as publicações denunciadas
         send_email_notification: Notificar o utilizador por e-mail
         text: Aviso personalizado
-        type: Acção
+        type: Ação
         types:
           disable: Congelar
           none: Enviar um aviso
-          sensitive: Problemático
+          sensitive: Sensível
           silence: Limitar
           suspend: Suspender
         warning_preset_id: Usar um aviso pré-definido
@@ -188,9 +188,9 @@ pt-PT:
         ends_at: Fim do evento
         scheduled_at: Agendar publicação
         starts_at: Início do evento
-        text: Comunicado
+        text: Mensagem de manutenção
       appeal:
-        text: Explique porque esta decisão deve ser revertida
+        text: Explicar por que razão esta decisão deve ser anulada
       defaults:
         autofollow: Convidar para seguir a sua conta
         avatar: Imagem de perfil
@@ -223,7 +223,7 @@ pt-PT:
         setting_boost_modal: Mostrar caixa de diálogo de confirmação antes de impulsionar
         setting_default_language: Idioma de publicação
         setting_default_privacy: Privacidade da publicação
-        setting_default_sensitive: Marcar sempre os multimédia como problemáticos
+        setting_default_sensitive: Marcar sempre os multimédia como sensíveis
         setting_delete_modal: Solicitar confirmação antes de eliminar uma publicação
         setting_disable_hover_cards: Desativar visualização de perfil ao passar o cursor
         setting_disable_swiping: Desativar os movimentos de deslize
@@ -303,7 +303,7 @@ pt-PT:
           sign_up_requires_approval: Limitar inscrições
         severity: Regra
       notification_emails:
-        appeal: Alguém recorreu de uma decisão de moderação
+        appeal: Alguém contestou uma decisão de moderação
         digest: Enviar e-mails de resumo
         favourite: Quando alguém adiciona uma publicação sua aos favoritos
         follow: Alguém começou a segui-lo

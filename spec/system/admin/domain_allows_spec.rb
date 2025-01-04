@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin::DomainAllows' do
-  let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:user) { Fabricate(:admin_user) }
   let(:domain) { 'host.example' }
 
   before do
