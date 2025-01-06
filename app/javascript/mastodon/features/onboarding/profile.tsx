@@ -58,7 +58,9 @@ export const Profile: React.FC<{
   );
   const [avatar, setAvatar] = useState<File>();
   const [header, setHeader] = useState<File>();
-  const [discoverable, setDiscoverable] = useState(true);
+  const [discoverable, setDiscoverable] = useState(
+    account?.discoverable ?? true,
+  );
   const [isSaving, setIsSaving] = useState(false);
   const [errors, setErrors] = useState<ApiAccountErrors>();
   const avatarFileRef = createRef<HTMLInputElement>();
