@@ -824,8 +824,7 @@ RSpec.describe Account do
       it { is_expected.to_not allow_values(account_note_over_limit).for(:note) }
 
       it { is_expected.to allow_value(fields_empty_name_value).for(:fields) }
-      it { is_expected.to_not allow_value(fields_over_limit).for(:fields) }
-      it { is_expected.to_not allow_value(fields_empty_name).for(:fields) }
+      it { is_expected.to_not allow_values(fields_over_limit, fields_empty_name).for(:fields) }
     end
 
     context 'when account is remote' do
