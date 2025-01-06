@@ -3,6 +3,29 @@
 require 'rails_helper'
 
 RSpec.describe SoftwareUpdate do
+  describe 'Scopes' do
+    describe '.urgent' do
+      let!(:urgent_update) { Fabricate :software_update, urgent: true }
+      let!(:non_urgent_update) { Fabricate :software_update, urgent: false }
+
+      it 'returns records that are urgent' do
+        expect(described_class.urgent)
+          .to include(urgent_update)
+          .and not_include(non_urgent_update)
+      end
+    end
+  end
+
+  describe '.by_version' do
+    let!(:latest_update) { Fabricate :software_update, version: '4.0.0' }
+    let!(:older_update) { Fabricate :software_update, version: '3.0.0' }
+
+    it 'returns record in gem version order' do
+      expect(described_class.by_version)
+        .to eq([older_update, latest_update])
+    end
+  end
+
   describe '#pending?' do
     subject { described_class.new(version: update_version) }
 

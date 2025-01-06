@@ -6,7 +6,7 @@ module Admin
 
     def index
       authorize :software_update, :index?
-      @software_updates = SoftwareUpdate.all.sort_by(&:gem_version)
+      @software_updates = SoftwareUpdate.by_version
     end
 
     private
