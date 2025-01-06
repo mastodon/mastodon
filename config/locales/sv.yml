@@ -214,6 +214,7 @@ sv:
         enable_user: Aktivera användare
         memorialize_account: Minnesmärk konto
         promote_user: Befordra användare
+        publish_terms_of_service: Publicera användarvillkor
         reject_appeal: Avvisa överklagande
         reject_user: Avvisa användare
         remove_avatar_user: Ta bort avatar
@@ -278,6 +279,7 @@ sv:
         enable_user_html: "%{name} aktiverade inloggning för användaren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto till en minnessida"
         promote_user_html: "%{name} befordrade användaren %{target}"
+        publish_terms_of_service_html: "%{name} publicerade uppdateringar till användarvillkoren"
         reject_appeal_html: "%{name} avvisade överklagande av modereringsbeslut från %{target}"
         reject_user_html: "%{name} avvisade registrering från %{target}"
         remove_avatar_user_html: "%{name} tog bort %{target}s avatar"
@@ -926,8 +928,33 @@ sv:
       title: Hashtaggar
       updated_msg: Hashtagg-inställningarna har uppdaterats
     terms_of_service:
+      back: Tillbaka till användarvillkoren
+      changelog: Vad har ändrats
+      create: Använd dina egna
+      current: Nuvarande
       draft: Utkast
+      generate: Använd mall
+      generates:
+        action: Generera
+        chance_to_review_html: "<strong>De genererade villkoren för tjänsten kommer inte att publiceras automatiskt.</strong> Du kommer att ha en chans att granska resultatet. Vänligen fyll i nödvändig information för att fortsätta."
+        explanation_html: Användarvillkorsmallen tillhandahålls endast i informationssyfte, och skall inte tolkas som juridisk rådgivning i något ämne. Rådgör med ditt eget juridiska ombud om din situation och specifika juridiska frågor du har.
+        title: Inställningar för användarvillkor
+      history: Historik
+      live: Aktuella
+      no_history: Det finns inga sparade ändringar i användarvillkoren ännu.
+      no_terms_of_service_html: Du har för närvarande inte några användarvillkor. Användarvillkoren är avsedda att ge klarhet och skydda dig i tvister med dina användare.
+      notified_on_html: Användare meddelade på %{date}
+      notify_users: Meddela användare
+      preview:
+        explanation_html: 'E-postmeddelandet kommer att skickas till <strong>%{display_count} användare</strong> som har registrerat sig före %{date}. Följande text kommer att inkluderas i meddelandet:'
+        send_preview: Skicka till %{email} för förhandsgranskning
+        send_to_all:
+          one: Skicka %{display_count} meddelande
+          other: Skicka %{display_count} meddelanden
+        title: Förhandsgranska användarvillkorsmeddelande
       publish: Publicera
+      published_on_html: Publicerade den %{date}
+      save_draft: Spara utkast
       title: Användarvillkor
     title: Administration
     trends:
@@ -1160,6 +1187,7 @@ sv:
     set_new_password: Skriv in nytt lösenord
     setup:
       email_below_hint_html: Kolla din skräppost-mapp eller begär en ny. Du kan korrigera din e-postadress om den är fel.
+      email_settings_hint_html: Klicka på länken vi skickade till %{email} för att börja använda Mastodon. Vi väntar här.
       link_not_received: Fick du ingen länk?
       new_confirmation_instructions_sent: Du kommer att få ett nytt e-postmeddelande med bekräftelselänken om några minuter!
       title: Kolla din inkorg
@@ -1168,6 +1196,7 @@ sv:
       title: Logga in på %{domain}
     sign_up:
       manual_review: Registreringar på %{domain} går igenom manuell granskning av våra moderatorer. För att hjälpa oss att hantera din registrering, skriv lite om dig själv och varför du vill ha ett konto på %{domain}.
+      preamble: Med ett konto på denna Mastodon-server kan du följa alla andra personer i fediversum, oavsett vilken server deras konto tillhör.
       title: Låt oss få igång dig på %{domain}.
     status:
       account_status: Kontostatus
@@ -1179,6 +1208,7 @@ sv:
       view_strikes: Visa tidigare prickar på ditt konto
     too_fast: Formuläret har skickats för snabbt, försök igen.
     use_security_key: Använd säkerhetsnyckel
+    user_agreement_html: Jag har läst och godkänner <a href="%{terms_of_service_path}" target="_blank">användarvillkoren</a> och <a href="%{privacy_policy_path}" target="_blank">integritetspolicy</a>
   author_attribution:
     example_title: Exempeltext
     hint_html: Skriver du nyheter eller bloggartiklar utanför Mastodon? Kontrollera hur du får krediteras när de delas på Mastodon.
@@ -1677,6 +1707,7 @@ sv:
   scheduled_statuses:
     over_daily_limit: Du har överskridit dygnsgränsen på %{limit} schemalagda inlägg
     over_total_limit: Du har överskridit gränsen på %{limit} schemalagda inlägg
+    too_soon: datumet måste vara i framtiden
   self_destruct:
     lead_html: Tyvärr stänger <strong>%{domain}</strong> för gott. Om du hade ett konto där kommer du inte längre kunna använda det, men du kan fortfarande begära en säkerhetskopia av din data.
     title: Denna server stänger ned
@@ -1901,6 +1932,15 @@ sv:
       further_actions_html: Om detta inte var du, rekommenderar vi att du snarast %{action} och aktiverar tvåfaktorsautentisering för att hålla ditt konto säkert.
       subject: Ditt konto har nåtts från en ny IP-adress
       title: En ny inloggning
+    terms_of_service_changed:
+      agreement: Genom att fortsätta använda %{domain} godkänner du dessa villkor. Om du inte håller med om de uppdaterade villkoren kan du när som helst säga upp ditt avtal med %{domain} genom att radera ditt konto.
+      changelog: 'I korthet, här är vad denna uppdatering innebär för dig:'
+      description: 'Du får detta e-postmeddelande eftersom vi gör vissa ändringar i våra användarvillkor på %{domain}. Vi uppmanar dig att granska de uppdaterade villkoren i sin helhet här:'
+      description_html: Du får detta e-postmeddelande eftersom vi gör vissa ändringar i våra användarvillkor på %{domain}. Vi uppmanar dig att granska de uppdaterade villkoren i <a href="%{path}" target="_blank">sin helhet här</a>.
+      sign_off: "%{domain} teamet"
+      subject: Uppdateringar till våra användarvillkor
+      subtitle: Villkoren för tjänsten på %{domain} ändras
+      title: Viktig uppdatering
     warning:
       appeal: Skicka överklagan
       appeal_description: Om du anser detta felaktigt kan du skicka överklagan till administratörerna av %{instance}.

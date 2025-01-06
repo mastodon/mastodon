@@ -25,15 +25,19 @@ cs:
       one: Příspěvek
       other: Příspěvků
     posts_tab_heading: Příspěvky
+    self_follow_error: Sledování vašeho vlastního účtu není povoleno
   admin:
     account_actions:
       action: Vykonat akci
+      already_silenced: Tento účet je již omezený.
+      already_suspended: Tento účet již byl pozastaven.
       title: Vykonat moderátorskou akci pro účet %{acct}
     account_moderation_notes:
       create: Zanechat poznámku
       created_msg: Moderátorská poznámka byla úspěšně vytvořena!
       destroyed_msg: Moderátorská poznámka byla úspěšně zničena!
     accounts:
+      add_email_domain_block: Blokovat e-mailovou doménu
       approve: Schválit
       approved_msg: Žádost o registraci uživatele %{username} úspěšně schválena
       are_you_sure: Opravdu?
@@ -48,6 +52,7 @@ cs:
         title: Změnit e-mail uživateli %{username}
       change_role:
         changed_msg: Role úspěšně změněna!
+        edit_roles: Správa uživatelských rolí
         label: Změnit roli
         no_role: Žádná role
         title: Změnit roli pro %{username}
@@ -60,6 +65,7 @@ cs:
       demote: Degradovat
       destroyed_msg: Data účtu %{username} jsou nyní ve frontě k okamžitému smazání
       disable: Zmrazit
+      disable_sign_in_token_auth: Zrušit ověřování e-mailovým tokenem
       disable_two_factor_authentication: Vypnout 2FA
       disabled: Zmrazen
       display_name: Zobrazované jméno
@@ -68,6 +74,7 @@ cs:
       email: E-mail
       email_status: Stav e-mailu
       enable: Rozmrazit
+      enable_sign_in_token_auth: Povolit ověřování e-mailovým tokenem
       enabled: Povoleno
       enabled_msg: Účet %{username} byl úspěšně rozmrazen
       followers: Sledující
@@ -134,6 +141,7 @@ cs:
       resubscribe: Znovu odebírat
       role: Role
       search: Hledat
+      search_same_email_domain: Ostatní uživatelé se stejnou e-mailovou doménou
       search_same_ip: Další uživatelé se stejnou IP adresou
       security: Zabezpečení
       security_measures:
@@ -174,6 +182,7 @@ cs:
         approve_appeal: Schválit odvolání
         approve_user: Schválit uživatele
         assigned_to_self_report: Přiřadit hlášení
+        change_email_user: Změnit e-mail uživatele
         change_role_user: Změnit roli uživatele
         confirm_user: Potvrdit uživatele
         create_account_warning: Vytvořit varování
@@ -435,8 +444,10 @@ cs:
       new:
         create: Přidat doménu
         resolve: Přeložit doménu
+        title: Blokovat novou e-mailovou doménu
       not_permitted: Nepovoleno
       resolved_through_html: Přeložena přes %{domain}
+      title: Blokované e-mailové domény
     export_domain_allows:
       new:
         title: Importovat povolené domény
@@ -813,6 +824,7 @@ cs:
       batch:
         remove_from_report: Odebrat z hlášení
         report: Nahlásit
+      contents: Obsah
       deleted: Smazáno
       favourites: Oblíbené
       history: Historie verzí

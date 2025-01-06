@@ -39,6 +39,11 @@ sv:
           attributes:
             data:
               malformed: är felformad
+        list_account:
+          attributes:
+            account_id:
+              taken: finns redan i listan
+          must_be_following: måste vara ett följt konto
         status:
           attributes:
             reblog:
