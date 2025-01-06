@@ -7,25 +7,17 @@ import { requestNotificationPermission } from '../utils/notifications';
 import { fetchFollowRequests } from './accounts';
 import {
   importFetchedAccount,
-  importFetchedStatus,
 } from './importer';
 import { submitMarkers } from './markers';
 import { notificationsUpdate } from "./notifications_typed";
 import { register as registerPushNotifications } from './push_notifications';
-import { saveSettings } from './settings';
 
 export * from "./notifications_typed";
-
-export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 
 export const NOTIFICATIONS_FILTER_SET = 'NOTIFICATIONS_FILTER_SET';
 
 export const NOTIFICATIONS_SET_BROWSER_SUPPORT    = 'NOTIFICATIONS_SET_BROWSER_SUPPORT';
 export const NOTIFICATIONS_SET_BROWSER_PERMISSION = 'NOTIFICATIONS_SET_BROWSER_PERMISSION';
-
-export const NOTIFICATION_REQUESTS_DISMISS_REQUEST = 'NOTIFICATION_REQUESTS_DISMISS_REQUEST';
-export const NOTIFICATION_REQUESTS_DISMISS_SUCCESS = 'NOTIFICATION_REQUESTS_DISMISS_SUCCESS';
-export const NOTIFICATION_REQUESTS_DISMISS_FAIL    = 'NOTIFICATION_REQUESTS_DISMISS_FAIL';
 
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
@@ -34,8 +26,6 @@ defineMessages({
 
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
-    const activeFilter = getState().getIn(['settings', 'notifications', 'quickFilter', 'active']);
-    const showInColumn = activeFilter === 'all' ? getState().getIn(['settings', 'notifications', 'shows', notification.type], true) : activeFilter === notification.type;
     const showAlert    = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
     const playSound    = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
 
@@ -57,24 +47,9 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 
     dispatch(submitMarkers());
 
-    if (showInColumn) {
-      dispatch(importFetchedAccount(notification.account));
-
-      if (notification.status) {
-        dispatch(importFetchedStatus(notification.status));
-      }
-
-      if (notification.report) {
-        dispatch(importFetchedAccount(notification.report.target_account));
-      }
-
-      dispatch(notificationsUpdate({ notification, playSound: playSound && !filtered}));
-    } else if (playSound && !filtered) {
-      dispatch({
-        type: NOTIFICATIONS_UPDATE_NOOP,
-        meta: { sound: 'boop' },
-      });
-    }
+    // `notificationsUpdate` is still used in `user_lists` and `relationships` reducers
+    dispatch(importFetchedAccount(notification.account));
+    dispatch(notificationsUpdate({ notification, playSound: playSound && !filtered}));
 
     // Desktop notifications
     if (typeof window.Notification !== 'undefined' && showAlert && !filtered) {
@@ -92,17 +67,6 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 }
 
 const noOp = () => {};
-
-export function setFilter (filterType) {
-  return dispatch => {
-    dispatch({
-      type: NOTIFICATIONS_FILTER_SET,
-      path: ['notifications', 'quickFilter', 'active'],
-      value: filterType,
-    });
-    dispatch(saveSettings());
-  };
-}
 
 // Browser support
 export function setupBrowserNotifications() {
