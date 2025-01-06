@@ -24,6 +24,8 @@ fi:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: sisältää arvoja, joista puuttuu nimike
             username:
               invalid: saa sisältää vain kirjaimia, numeroita ja alaviivoja
               reserved: on varattu

@@ -24,6 +24,8 @@ uk:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: містить значення з відсутніми мітками
             username:
               invalid: має містити лише літери, цифри та підкреслення
               reserved: зарезервовано
@@ -43,6 +45,7 @@ uk:
           attributes:
             account_id:
               taken: вже в списку
+          must_be_following: має бути відстежуваним обліковим записом
         status:
           attributes:
             reblog:
