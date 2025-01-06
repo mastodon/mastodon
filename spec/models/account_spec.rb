@@ -864,7 +864,7 @@ RSpec.describe Account do
     end
 
     def fields_over_limit
-      Array.new(5) { { 'name' => 'Name', 'value' => 'Value', 'verified_at' => '01/01/1970' } }
+      Array.new(described_class::DEFAULT_FIELDS_SIZE + 1) { { 'name' => 'Name', 'value' => 'Value', 'verified_at' => '01/01/1970' } }
     end
 
     def fields_empty_name
