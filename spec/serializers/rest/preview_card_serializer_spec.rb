@@ -21,7 +21,24 @@ RSpec.describe REST::PreviewCardSerializer do
     end
   end
 
-  context 'when preview card has author data' do
+  context 'when preview card has fediverse author data' do
+    let(:preview_card) { Fabricate.build :preview_card, author_account: Fabricate(:account) }
+
+    it 'includes populated authors array' do
+      expect(subject.deep_symbolize_keys)
+        .to include(
+          authors: be_an(Array).and(
+            contain_exactly(
+              include(
+                account: be_present
+              )
+            )
+          )
+        )
+    end
+  end
+
+  context 'when preview card has non-fediverse author data' do
     let(:preview_card) { Fabricate.build :preview_card, author_name: 'Name', author_url: 'https://host.example/123' }
 
     it 'includes populated authors array' do
