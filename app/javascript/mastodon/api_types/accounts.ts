@@ -19,7 +19,7 @@ export interface BaseApiAccountJSON {
   avatar_static: string;
   bot: boolean;
   created_at: string;
-  discoverable: boolean;
+  discoverable?: boolean;
   indexable: boolean;
   display_name: string;
   emojis: ApiCustomEmojiJSON[];
