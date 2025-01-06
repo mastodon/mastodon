@@ -25,7 +25,7 @@ module Localized
   end
 
   def available_locale_or_nil(locale_name)
-    locale_name.to_sym if locale_name.present? && I18n.available_locales.include?(locale_name.to_sym)
+    locale_name.to_sym if locale_name.respond_to?(:to_sym) && I18n.available_locales.include?(locale_name.to_sym)
   end
 
   def content_locale
