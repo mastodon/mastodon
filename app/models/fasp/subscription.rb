@@ -17,12 +17,11 @@
 #  fasp_provider_id    :bigint(8)        not null
 #
 class Fasp::Subscription < ApplicationRecord
-  CATEGORIES = %w(account content).freeze
   TYPES = %w(lifecycle trends).freeze
 
   belongs_to :fasp_provider, class_name: 'Fasp::Provider'
 
-  validates :category, presence: true, inclusion: CATEGORIES
+  validates :category, presence: true, inclusion: Fasp::DATA_CATEGORIES
   validates :subscription_type, presence: true,
                                 inclusion: TYPES
 

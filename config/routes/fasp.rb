@@ -12,7 +12,9 @@ namespace :api, format: false do
 
     namespace :data_sharing do
       namespace :v0 do
-        resources :backfill_requests, only: [:create]
+        resources :backfill_requests, only: [:create] do
+          resource :continuation, only: [:create]
+        end
 
         resources :event_subscriptions, only: [:create, :destroy]
       end
