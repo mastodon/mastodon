@@ -45,6 +45,7 @@ namespace :mastodon do
         env[key] = SecureRandom.alphanumeric(32)
       end
 
+      # Uses Webpush class, Webpush::Legacy does the same thing.
       vapid_key = Webpush.generate_key
 
       env['VAPID_PRIVATE_KEY'] = vapid_key.private_key
@@ -571,6 +572,7 @@ namespace :mastodon do
   namespace :webpush do
     desc 'Generate VAPID key'
     task :generate_vapid_key do
+      # Uses Webpush class, Webpush::Legacy does the same thing.
       vapid_key = Webpush.generate_key
       puts "VAPID_PRIVATE_KEY=#{vapid_key.private_key}"
       puts "VAPID_PUBLIC_KEY=#{vapid_key.public_key}"

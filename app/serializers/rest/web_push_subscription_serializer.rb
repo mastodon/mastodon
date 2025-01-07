@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class REST::WebPushSubscriptionSerializer < ActiveModel::Serializer
-  attributes :id, :endpoint, :alerts, :server_key, :policy
+  attributes :id, :endpoint, :standard, :alerts, :server_key, :policy
+
+  def standard
+    object.standard || false
+  end
 
   def alerts
     (object.data&.dig('alerts') || {}).each_with_object({}) { |(k, v), h| h[k] = ActiveModel::Type::Boolean.new.cast(v) }

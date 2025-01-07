@@ -43,6 +43,7 @@ Rails.application.configure do
   end
 
   # Generate random VAPID keys
+  # Uses Webpush class, Webpush::Legacy does the same thing.
   Webpush.generate_key.tap do |vapid_key|
     config.x.vapid_private_key = vapid_key.private_key
     config.x.vapid_public_key = vapid_key.public_key
