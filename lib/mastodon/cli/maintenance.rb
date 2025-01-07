@@ -192,7 +192,7 @@ module Mastodon::CLI
       verify_schema_version!
       verify_sidekiq_not_active!
       verify_backup_warning!
-      verify_timeout!
+      disable_timeout!
     end
 
     def process_deduplications
@@ -252,7 +252,7 @@ module Mastodon::CLI
       fail_with_message 'Maintenance process stopped.' unless yes?('Continue? (Yes/No)')
     end
 
-    def verify_timeout!
+    def disable_timeout!
       # Remove server-configured timeout if present
       database_connection.execute(<<~SQL.squish)
         SET statement_timeout = 0
