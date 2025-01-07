@@ -21,7 +21,7 @@ en:
       admin_account_action:
         include_statuses: The user will see which posts have caused the moderation action or warning
         send_email_notification: The user will receive an email with an explanation of what happened with their account
-        send_in_app_notification: The user will receive an in-app notification with an explanation of what happened with their account
+        send_notification: The user will receive an in-app notification with an explanation of what happened with their account
         text_html: Optional. You can use post syntax. You can <a href="%{path}">add warning presets</a> to save time
         type_html: Choose what to do with <strong>%{acct}</strong>
         types:
@@ -174,8 +174,8 @@ en:
         title: Title
       admin_account_action:
         include_statuses: Include reported posts in the e-mail
-        send_email_notification: Notify the user per e-mail
-        send_in_app_notification: Notify the user in the application
+        send_email_notification: Also notify the user per e-mail
+        send_notification: Notify the user in the application
         text: Custom warning
         type: Action
         types:

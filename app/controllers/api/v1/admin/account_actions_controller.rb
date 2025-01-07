@@ -32,7 +32,7 @@ class Api::V1::Admin::AccountActionsController < Api::BaseController
       :warning_preset_id,
       :text,
       :send_email_notification,
-      :send_in_app_notification
+      :send_notification
     )
   end
 end

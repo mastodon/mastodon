@@ -285,6 +285,51 @@ async function mountReactComponent(element: Element) {
   );
 }
 
+// In the account warning interface, email notifications imply in-app notifications, so update accordingly
+Rails.delegate(
+  document,
+  '#admin_account_action_send_email_notification',
+  'change',
+  () => {
+    const sendNotificationElement = document.querySelector<HTMLInputElement>(
+      'input#admin_account_action_send_notification',
+    );
+
+    const sendEmailNotificationElement =
+      document.querySelector<HTMLInputElement>(
+        'input#admin_account_action_send_email_notification',
+      );
+
+    if (sendNotificationElement && sendEmailNotificationElement?.checked) {
+      sendNotificationElement.checked = true;
+    }
+  },
+);
+
+Rails.delegate(
+  document,
+  '#admin_account_action_send_notification',
+  'change',
+  () => {
+    const sendNotificationElement = document.querySelector<HTMLInputElement>(
+      'input#admin_account_action_send_notification',
+    );
+
+    const sendEmailNotificationElement =
+      document.querySelector<HTMLInputElement>(
+        'input#admin_account_action_send_email_notification',
+      );
+
+    if (
+      sendNotificationElement &&
+      sendEmailNotificationElement &&
+      !sendNotificationElement.checked
+    ) {
+      sendEmailNotificationElement.checked = false;
+    }
+  },
+);
+
 ready(() => {
   const domainBlockSeveritySelect = document.querySelector<HTMLSelectElement>(
     'select#domain_block_severity',

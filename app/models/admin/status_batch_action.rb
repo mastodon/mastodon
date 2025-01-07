@@ -9,14 +9,14 @@ class Admin::StatusBatchAction
                 :status_ids, :report_id,
                 :text
 
-  attr_reader :send_email_notification, :send_in_app_notification
+  attr_reader :send_notification, :send_email_notification
 
   def send_email_notification=(value)
     @send_email_notification = ActiveModel::Type::Boolean.new.cast(value)
   end
 
-  def send_in_app_notification=(value)
-    @send_in_app_notification = ActiveModel::Type::Boolean.new.cast(value)
+  def send_notification=(value)
+    @send_notification = ActiveModel::Type::Boolean.new.cast(value)
   end
 
   def save!
@@ -133,10 +133,14 @@ class Admin::StatusBatchAction
   end
 
   def process_notification!
-    return unless target_account.local?
+    return unless warnable?
 
     UserMailer.warning(target_account.user, @warning).deliver_later! if send_email_notification
-    LocalNotificationWorker.perform_async(target_account.id, @warning.id, 'AccountWarning', 'moderation_warning') if send_in_app_notification
+    LocalNotificationWorker.perform_async(target_account.id, @warning.id, 'AccountWarning', 'moderation_warning')
+  end
+
+  def warnable?
+    send_notification && target_account.local?
   end
 
   def target_account

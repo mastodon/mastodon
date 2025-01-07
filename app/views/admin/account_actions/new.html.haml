@@ -26,11 +26,12 @@
     %hr.spacer/
 
     .fields-group
-      = f.input :send_email_notification,
+      = f.input :send_notification,
                 as: :boolean,
                 wrapper: :with_label
 
-      = f.input :send_in_app_notification,
+    .fields-group
+      = f.input :send_email_notification,
                 as: :boolean,
                 wrapper: :with_label
 
