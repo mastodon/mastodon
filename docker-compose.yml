@@ -100,7 +100,8 @@ services:
       - redis
 
   sidekiq:
-    build: .
+    # You can uncomment the following line if you want to not use the prebuilt image, for example if you have local code changes
+    # build: .
     image: ghcr.io/mastodon/mastodon:v4.3.2
     restart: always
     env_file: .env.production
