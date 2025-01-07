@@ -20,9 +20,10 @@ class Admin::AccountAction
                 :report_id,
                 :warning_preset_id
 
-  attr_reader :warning, :send_email_notification, :include_statuses
+  attr_reader :warning, :send_email_notification, :send_in_app_notification, :include_statuses
 
   alias send_email_notification? send_email_notification
+  alias send_in_app_notification? send_in_app_notification
   alias include_statuses? include_statuses
 
   validates :type, :target_account, :current_account, presence: true
@@ -30,13 +31,18 @@ class Admin::AccountAction
 
   def initialize(attributes = {})
     @send_email_notification = true
-    @include_statuses        = true
+    @send_in_app_notification = true
+    @include_statuses = true
 
     super
   end
 
   def send_email_notification=(value)
     @send_email_notification = ActiveModel::Type::Boolean.new.cast(value)
+  end
+
+  def send_in_app_notification=(value)
+    @send_in_app_notification = ActiveModel::Type::Boolean.new.cast(value)
   end
 
   def include_statuses=(value)
@@ -167,14 +173,10 @@ class Admin::AccountAction
   end
 
   def process_notification!
-    return unless warnable?
+    return unless target_account.local?
 
-    UserMailer.warning(target_account.user, warning).deliver_later!
-    LocalNotificationWorker.perform_async(target_account.id, warning.id, 'AccountWarning', 'moderation_warning')
-  end
-
-  def warnable?
-    send_email_notification? && target_account.local?
+    UserMailer.warning(target_account.user, warning).deliver_later! if send_email_notification?
+    LocalNotificationWorker.perform_async(target_account.id, warning.id, 'AccountWarning', 'moderation_warning') if send_in_app_notification?
   end
 
   def status_ids

@@ -30,6 +30,10 @@
                 as: :boolean,
                 wrapper: :with_label
 
+      = f.input :send_in_app_notification,
+                as: :boolean,
+                wrapper: :with_label
+
     - if params[:report_id].present?
       .fields-group
         = f.input :include_statuses,
