@@ -166,6 +166,7 @@ RUN \
   libheif-dev \
   libimagequant-dev \
   libjpeg62-turbo-dev \
+  libjxl-dev \
   liblcms2-dev \
   liborc-dev \
   libspng-dev \
@@ -349,6 +350,7 @@ RUN \
   libheif1 \
   libimagequant0 \
   libjpeg62-turbo \
+  libjxl0.7 \
   liblcms2-2 \
   liborc-0.4-0 \
   libspng0 \
