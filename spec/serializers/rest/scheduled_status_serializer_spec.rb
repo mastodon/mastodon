@@ -16,7 +16,8 @@ RSpec.describe REST::ScheduledStatusSerializer do
     it 'returns expected values and removes application_id from params' do
       expect(subject.deep_symbolize_keys)
         .to include(
-          scheduled_at: be_a(String).and(match_api_datetime_format)
+          scheduled_at: be_a(String).and(match_api_datetime_format),
+          params: include(:application_id)
         )
     end
   end
