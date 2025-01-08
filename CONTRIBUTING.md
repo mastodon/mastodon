@@ -74,11 +74,13 @@ particular, please keep in mind:
 
 ## Documentation
 
-The [Mastodon documentation](https://docs.joinmastodon.org) is a statically generated site. You can [submit merge requests to mastodon/documentation](https://github.com/mastodon/documentation).
+The [Mastodon documentation] is a statically generated site that contains guides
+and API docs. You can submit pull requests to the [documentation repository].
 
-[Crowdin]: https://crowdin.com/project/mastodon
 [contribution guidelines]: https://github.com/mastodon/.github/blob/main/CONTRIBUTING.md
+[Crowdin]: https://crowdin.com/project/mastodon
 [DEVELOPMENT]: docs/DEVELOPMENT.md
 [documentation repository]: https://github.com/mastodon/documentation
 [GitHub Issues]: https://github.com/mastodon/mastodon/issues
 [keepachangelog]: https://keepachangelog.com/en/1.0.0/
+[Mastodon documentation]: https://docs.joinmastodon.org
