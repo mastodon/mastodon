@@ -14,7 +14,8 @@ criteria guidance and the [DEVELOPMENT] guide for environment-specific details.
 
 ## API Changes and Additions
 
-Please note that any changes or additions made to the API should have an accompanying pull request on [our documentation repository](https://github.com/mastodon/documentation).
+Any changes or additions made to the API should have an accompanying pull
+request on our [documentation repository].
 
 ## Bug reports
 
@@ -52,3 +53,4 @@ The [Mastodon documentation](https://docs.joinmastodon.org) is a statically gene
 
 [contribution guidelines]: https://github.com/mastodon/.github/blob/main/CONTRIBUTING.md
 [DEVELOPMENT]: docs/DEVELOPMENT.md
+[documentation repository]: https://github.com/mastodon/documentation
