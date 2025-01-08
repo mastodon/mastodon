@@ -25,7 +25,8 @@ that you are not submitting duplicate bug reports or feature requests.
 
 ## Translations
 
-You can submit translations via [Crowdin](https://crowdin.com/project/mastodon). They are periodically merged into the codebase.
+Translations are community contributed via [Crowdin]. They are periodically
+reviewed and merged into the codebase.
 
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)](https://crowdin.com/project/mastodon)
 
@@ -53,6 +54,7 @@ It is not always possible to phrase every change in such a manner, but it is des
 
 The [Mastodon documentation](https://docs.joinmastodon.org) is a statically generated site. You can [submit merge requests to mastodon/documentation](https://github.com/mastodon/documentation).
 
+[Crowdin]: https://crowdin.com/project/mastodon
 [contribution guidelines]: https://github.com/mastodon/.github/blob/main/CONTRIBUTING.md
 [DEVELOPMENT]: docs/DEVELOPMENT.md
 [documentation repository]: https://github.com/mastodon/documentation
