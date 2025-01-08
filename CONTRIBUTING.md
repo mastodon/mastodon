@@ -17,7 +17,7 @@ criteria guidance and the [DEVELOPMENT] guide for environment-specific details.
 Any changes or additions made to the API should have an accompanying pull
 request on our [documentation repository].
 
-## Bug reports
+## Bug Reports
 
 Bug reports and feature suggestions must use descriptive and concise titles and
 be submitted to [GitHub Issues]. Please use the search function to make sure
@@ -30,9 +30,9 @@ reviewed and merged into the codebase.
 
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)](https://crowdin.com/project/mastodon)
 
-## Pull requests
+## Pull Requests
 
-### Size and scope
+### Size and Scope
 
 The smaller and more focused a set of changes in a Pull Request is, the easier
 it is to review. Splitting tasks into multiple smaller PRs is often preferable.
@@ -41,7 +41,7 @@ to review and less likely to get any feedback at all. If your change only makes
 sense in some larger context of future changes, note that in the description,
 but still aim to keep each distinct PR to a "smallest viable change" size.
 
-### Description of changes
+### Description of Changes
 
 Unless the Pull Request is about refactoring code, updating dependencies or
 other internal tasks, assume that the person reading the PR is not a programmer
@@ -62,7 +62,7 @@ Example:
 | ------------------------------------ | ------------------------------------------------------------- |
 | Fixed NoMethodError in RemovalWorker | Fix nil error when removing statuses caused by race condition |
 
-### Technical requirements
+### Technical Requirements
 
 Pull requests that do not pass automated checks on CI may not be reviewed. In
 particular, please keep in mind:
