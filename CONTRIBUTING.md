@@ -9,8 +9,6 @@ You can contribute in the following ways:
 - Contributing code to Mastodon by fixing bugs or implementing features
 - Improving the documentation
 
-If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
-
 Please review the org-level [contribution guidelines] for high-level acceptance
 criteria guidance and the [DEVELOPMENT] guide for environment-specific details.
 
