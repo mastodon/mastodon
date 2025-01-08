@@ -32,7 +32,29 @@ reviewed and merged into the codebase.
 
 ## Pull requests
 
-**Please use clean, concise titles for your pull requests.** Unless the pull request is about refactoring code, updating dependencies or other internal tasks, assume that the person reading the pull request title is not a programmer or Mastodon developer, but instead a Mastodon user or server administrator, and **try to describe your change or fix from their perspective**. We use commit squashing, so the final commit in the main branch will carry the title of the pull request, and commits from the main branch are fed into the changelog. The changelog is separated into [keepachangelog.com categories](https://keepachangelog.com/en/1.0.0/), and while that spec does not prescribe how the entries ought to be named, for easier sorting, start your pull request titles using one of the verbs "Add", "Change", "Deprecate", "Remove", or "Fix" (present tense).
+### Size and scope
+
+The smaller and more focused a set of changes in a Pull Request is, the easier
+it is to review. Splitting tasks into multiple smaller PRs is often preferable.
+Team time is limited and pull requests making large sprawling changes are harder
+to review and less likely to get any feedback at all. If your change only makes
+sense in some larger context of future changes, note that in the description,
+but still aim to keep each distinct PR to a "smallest viable change" size.
+
+### Description of changes
+
+Unless the Pull Request is about refactoring code, updating dependencies or
+other internal tasks, assume that the person reading the PR is not a programmer
+or Mastodon developer, but a Mastodon user or server admin, and try to describe
+things from their perspective.
+
+We use commit squashing, so the final commit in the main branch will carry the
+title and description from the Pull Request. Commits from the main branch are
+then fed into the changelog and ultimately into release notes. We try to follow
+the [keepachangelog] spec, and while that does not prescribe how the entries
+ought to be named, for easier sorting, starting your pull request titles using
+one of the verbs "Add", "Change", "Deprecate", "Remove", or "Fix" (present
+tense) is helpful when it makes sense.
 
 Example:
 
@@ -40,15 +62,15 @@ Example:
 | ------------------------------------ | ------------------------------------------------------------- |
 | Fixed NoMethodError in RemovalWorker | Fix nil error when removing statuses caused by race condition |
 
-It is not always possible to phrase every change in such a manner, but it is desired.
+### Technical requirements
 
-**The smaller the set of changes in the pull request is, the quicker it can be reviewed and merged.** Splitting tasks into multiple smaller pull requests is often preferable.
-
-**Pull requests that do not pass automated checks may not be reviewed**. In particular, you need to keep in mind:
+Pull requests that do not pass automated checks on CI may not be reviewed. In
+particular, please keep in mind:
 
 - Unit and integration tests (rspec, jest)
 - Code style rules (rubocop, eslint)
 - Normalization of locale files (i18n-tasks)
+- Relevant accessibility or performance concerns
 
 ## Documentation
 
@@ -59,3 +81,4 @@ The [Mastodon documentation](https://docs.joinmastodon.org) is a statically gene
 [DEVELOPMENT]: docs/DEVELOPMENT.md
 [documentation repository]: https://github.com/mastodon/documentation
 [GitHub Issues]: https://github.com/mastodon/mastodon/issues
+[keepachangelog]: https://keepachangelog.com/en/1.0.0/
