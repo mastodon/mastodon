@@ -802,8 +802,7 @@ RSpec.describe Account do
       it { is_expected.to_not allow_values(account_note_over_limit).for(:note) }
 
       it { is_expected.to allow_value(fields_empty_name_value).for(:fields) }
-      it { is_expected.to_not allow_value(fields_over_limit).for(:fields) }
-      it { is_expected.to_not allow_value(fields_empty_name).for(:fields) }
+      it { is_expected.to_not allow_values(fields_over_limit, fields_empty_name).for(:fields) }
 
       it { is_expected.to allow_values([], ['example.com'], (1..100).to_a).for(:attribution_domains) }
       it { is_expected.to_not allow_values(['example com'], ['@'], (1..101).to_a).for(:attribution_domains) }
@@ -845,7 +844,7 @@ RSpec.describe Account do
     end
 
     def fields_over_limit
-      Array.new(5) { { 'name' => 'Name', 'value' => 'Value', 'verified_at' => '01/01/1970' } }
+      Array.new(described_class::DEFAULT_FIELDS_SIZE + 1) { { 'name' => 'Name', 'value' => 'Value', 'verified_at' => '01/01/1970' } }
     end
 
     def fields_empty_name

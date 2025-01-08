@@ -624,7 +624,7 @@ RSpec.describe ActivityPub::Activity::Create do
                 type: 'Document',
                 mediaType: 'image/png',
                 url: 'http://example.com/attachment.png',
-                name: '*' * 1500,
+                name: '*' * MediaAttachment::MAX_DESCRIPTION_LENGTH,
               },
             ],
           }
@@ -636,7 +636,7 @@ RSpec.describe ActivityPub::Activity::Create do
           status = sender.statuses.first
 
           expect(status).to_not be_nil
-          expect(status.media_attachments.map(&:description)).to include('*' * 1500)
+          expect(status.media_attachments.map(&:description)).to include('*' * MediaAttachment::MAX_DESCRIPTION_LENGTH)
         end
       end
 
@@ -651,7 +651,7 @@ RSpec.describe ActivityPub::Activity::Create do
                 type: 'Document',
                 mediaType: 'image/png',
                 url: 'http://example.com/attachment.png',
-                summary: '*' * 1500,
+                summary: '*' * MediaAttachment::MAX_DESCRIPTION_LENGTH,
               },
             ],
           }
@@ -663,7 +663,7 @@ RSpec.describe ActivityPub::Activity::Create do
           status = sender.statuses.first
 
           expect(status).to_not be_nil
-          expect(status.media_attachments.map(&:description)).to include('*' * 1500)
+          expect(status.media_attachments.map(&:description)).to include('*' * MediaAttachment::MAX_DESCRIPTION_LENGTH)
         end
       end
 

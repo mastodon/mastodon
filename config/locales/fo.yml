@@ -214,6 +214,7 @@ fo:
         enable_user: Ger brúkara virknan
         memorialize_account: Minnst til Konto
         promote_user: Vís fram Brúkara
+        publish_terms_of_service: Útgev tænastutreytir
         reject_appeal: Avvís mótmali
         reject_user: Avvís Brúkara
         remove_avatar_user: Sletta Avatar
@@ -278,6 +279,7 @@ fo:
         enable_user_html: "%{name} gjørdi innritan virkna fyri brúkaran %{target}"
         memorialize_account_html: "%{name} broytti kontuna hjá %{target} til eina minnissíðu"
         promote_user_html: "%{name} flutti brúkaran %{target} fram"
+        publish_terms_of_service_html: "%{name} útgav dagføringar til tænastutreytirnar"
         reject_appeal_html: "%{name} avvísti umsjónaráheitan frá %{target}"
         reject_user_html: "%{name} avvísti skráseting hjá %{target}"
         remove_avatar_user_html: "%{name} strikaði eftirgjørda skapningin hjá %{target}"
@@ -925,6 +927,32 @@ fo:
       search: Leita
       title: Frámerki
       updated_msg: Frámerkjastillingar dagførdar
+    terms_of_service:
+      back: Aftur til tænastutreytir
+      changelog: Hvat er broytt
+      create: Brúka tínar egnu
+      current: Núverandi
+      draft: Kladda
+      generate: Brúka leist
+      generates:
+        action: Framleið
+        chance_to_review_html: "<strong>Framleiddu tænastutreytirnar verða ikki útgivnar av sær sjálvum.</strong> Tú fær møguleika at eftirhyggja úrslitini. Vinarliga útfyll neyðugu smálutirnar fyri at halda fram."
+        explanation_html: Leisturin við tænastutreytum er einans til kunningar og skal ikki fatast sum løgfrøðislig ráðgeving yvirhøvur. Vinarliga spyr tín egna løgfrøðisliga ráðgeva um tína støðu og ítøkiligu løgfrøðisligu spurningarnar hjá tær.
+        title: Uppseting av tænastutreytum
+      history: Søga
+      live: Beinleiðis
+      no_history: Enn eru ongar skrásettar broytingar í tænastutreytunum.
+      no_terms_of_service_html: Í løtuni hevur tú ongar tænastutreytir uppsettar. Hugsanin við tænastutreytum er at veita greidleika og at verja teg ímóti møguligum ábyrgdum í ósemjum við tínar brúkarar.
+      notified_on_html: Fráboðan latin brúkarum %{date}
+      notify_users: Gev brúkarum fráboðan
+      preview:
+        explanation_html: 'Teldubrævið verður sent til <strong>%{display_count} brúkarar</strong>, sum hava stovna kontu áðrenn %{date}. Fylgjandi tekstur kemur við í teldubrævið:'
+        send_preview: Send undanvísing til %{email}
+        title: Undanvís fráboðan um tænastutreytir
+      publish: Útgev
+      published_on_html: Útgivið %{date}
+      save_draft: Goym kladdu
+      title: Tænastutreytir
     title: Umsiting
     trends:
       allow: Loyv
@@ -1156,6 +1184,7 @@ fo:
     set_new_password: Áset nýtt loyniorð
     setup:
       email_below_hint_html: Kekka mappuna við ruskposti ella bið um ein annan. Tú kanst rætta teldupostadressuna, um hon er skeiv.
+      email_settings_hint_html: Trýst á leinkið, sum vit sendu til %{email} fyri at byrja at brúka Mastodon. Vit bíða beint her.
       link_not_received: Fekk tú einki leinki?
       new_confirmation_instructions_sent: Tú fer at móttaka eitt nýtt teldubræv við váttanarleinkinum um nakrar fáar minuttir!
       title: Kekka innbakkan hjá tær
@@ -1164,6 +1193,7 @@ fo:
       title: Rita inn á %{domain}
     sign_up:
       manual_review: Tilmeldingar til %{domain} fara ígjøgnum eina manuella eftirkanning av okkara kjakleiðarum. Fyri at hjálpa okkum at skunda undir skrásetingina, skriva eitt sindur um teg sjálva/n og hví tú vil hava eina kontu á %{domain}.
+      preamble: Við eini kontu á hesum Mastodon ambætaranum ber til hjá tær at fylgja ein og hvønn annan persón á fediversinum, óansæð hvar teirra konta er hýst.
       title: Latum okkum fáa teg settan upp á %{domain}.
     status:
       account_status: Kontustøða
@@ -1175,6 +1205,7 @@ fo:
       view_strikes: Vís eldri atsóknir móti tíni kontu
     too_fast: Oyðublaðið innsent ov skjótt, royn aftur.
     use_security_key: Brúka trygdarlykil
+    user_agreement_html: Eg havi lisið og taki undir við <a href="%{terms_of_service_path}" target="_blank">tænastutreytunum</a> og <a href="%{privacy_policy_path}" target="_blank">privatlívspolitikkinum</a>
   author_attribution:
     example_title: Tekstadømi
     hint_html: Skrivar tú tíðindi ella greinar til bloggin uttanfyri Mastodon? Her kanst tú stýra, hvussu tú verður tilsipað/ur, tá ið títt tilfar verður deilt á Mastodon.
@@ -1836,6 +1867,8 @@ fo:
       too_late: Tað er ov seint at kæra hesa atsókn
   tags:
     does_not_match_previous_name: samsvarar ikki við undanfarna navnið
+  terms_of_service:
+    title: Tænastutreytir
   themes:
     contrast: Mastodon (høgur kontrastur)
     default: Mastodon (myrkt)
@@ -1896,6 +1929,15 @@ fo:
       further_actions_html: Var hetta ikki tú, so mæla vit til, at tú %{action} beinan vegin og at tú ger váttan í tveimum stigum virkna fyri at konta tín kann vera trygg.
       subject: Atgongd er fingin til kontu tína frá eini nýggjari IP adressu
       title: Ein nýggj innritan
+    terms_of_service_changed:
+      agreement: Við framhaldandi at brúka %{domain} góðtekur tú hesar treytir. Tekur tú ikki undir við dagførdu treytunum, so kanst tú til einhvørja tíð uppsiga avtaluna við %{domain} við at strika kontu tína.
+      changelog: 'Í stuttum merkir henda dagføringin:'
+      description: 'Tú móttekur hetta teldubrævið, tí at vit gera nakrar broytingar í okkara tænastutreytum á %{domain}. Vit eggja tær til at eftirhyggja dagførdu treytirnar her:'
+      description_html: Tú móttekur hetta teldubrævið, tí at vit gera nakrar broytingar í okkara tænastutreytum á %{domain}. Vit eggja tær til at eftirhyggja <a href="%{path}" target="_blank">dagførdu og samlaðu treytirnar her</a>.
+      sign_off: "%{domain} toymið"
+      subject: Dagføringar til okkara tænastutreytir
+      subtitle: Tænastutreytirnar hjá %{domain} eru við at verða broyttar
+      title: Týdningarmikil dagføring
     warning:
       appeal: Innsend eina kæru
       appeal_description: Trýrt tú, at hetta er ein feilur, so kanst tú senda eina kæru til starvsfólkini á %{instance}.
