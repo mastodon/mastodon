@@ -21,7 +21,7 @@ request on our [documentation repository].
 
 Bug reports and feature suggestions must use descriptive and concise titles and
 be submitted to [GitHub Issues]. Please use the search function to make sure
-that you are not submitting duplicate bug reports or feature requests.
+there are not duplicate bug reports or feature requests.
 
 ## Translations
 
@@ -34,13 +34,14 @@ reviewed and merged into the codebase.
 
 ### Size and Scope
 
-Our team time is limited and PRs making large sprawling unsolicited changes are
-unlikely to get any response at all.
+Our time is limited and PRs making large, unsolicited changes are unlikely to
+get a response. Changes which link to an existing confirmed issue, or which come
+from a "help wanted" issue or other request are more likely to be reviewed.
 
-The smaller and more narrowly focused the changes in a Pull Request are, the
-easier they are to review and hopefully merge. If your change only makes sense
-in some larger context of future ongoing work, note that in the description, but
-still aim to keep each distinct PR to a "smallest viable change" chunk of work.
+The smaller and more narrowly focused the changes in a PR are, the easier they
+are to review and potentially merge. If the change only makes sense in some
+larger context of future ongoing work, note that in the description, but still
+aim to keep each distinct PR to a "smallest viable change" chunk of work.
 
 ### Description of Changes
 
@@ -73,7 +74,7 @@ particular, please keep in mind:
 ## Documentation
 
 The [Mastodon documentation] is a statically generated site that contains guides
-and API docs. You can submit pull requests to the [documentation repository].
+and API docs. Improvements are made via PRs to the [documentation repository].
 
 [contribution guidelines]: https://github.com/mastodon/.github/blob/main/CONTRIBUTING.md
 [Crowdin]: https://crowdin.com/project/mastodon
