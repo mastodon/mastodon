@@ -12,8 +12,6 @@ You can contribute in the following ways:
 Please review the org-level [contribution guidelines] for high-level acceptance
 criteria guidance and the [DEVELOPMENT] guide for environment-specific details.
 
-[contribution guidelines]: https://github.com/mastodon/.github/blob/main/CONTRIBUTING.md
-
 ## API Changes and Additions
 
 Please note that any changes or additions made to the API should have an accompanying pull request on [our documentation repository](https://github.com/mastodon/documentation).
@@ -52,4 +50,5 @@ It is not always possible to phrase every change in such a manner, but it is des
 
 The [Mastodon documentation](https://docs.joinmastodon.org) is a statically generated site. You can [submit merge requests to mastodon/documentation](https://github.com/mastodon/documentation).
 
+[contribution guidelines]: https://github.com/mastodon/.github/blob/main/CONTRIBUTING.md
 [DEVELOPMENT]: docs/DEVELOPMENT.md
