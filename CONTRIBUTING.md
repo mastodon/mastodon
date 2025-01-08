@@ -34,23 +34,25 @@ reviewed and merged into the codebase.
 
 ### Size and Scope
 
-The smaller and more focused changes in a Pull Request are, the easier they are
-to review. Team time is limited and PRs making large sprawling changes are
-unlikely to get any feedback at all. If your change only makes sense in some
-larger context of future ongoing work, note that in the description, but still
-aim to keep each distinct PR to a "smallest viable change" size.
+Our team time is limited and PRs making large sprawling unsolicited changes are
+unlikely to get any response at all.
+
+The smaller and more narrowly focused the changes in a Pull Request are, the
+easier they are to review and hopefully merge. If your change only makes sense
+in some larger context of future ongoing work, note that in the description, but
+still aim to keep each distinct PR to a "smallest viable change" chunk of work.
 
 ### Description of Changes
 
 Unless the Pull Request is about refactoring code, updating dependencies or
 other internal tasks, assume that the audience are not developers, but a
-Mastodon user or server admin, and try to describe from their perspective.
+Mastodon user or server admin, and try to describe it from their perspective.
 
 The final commit in the main branch will carry the title from the PR. The main
 branch is then fed into the changelog and ultimately into release notes. We try
-to follow the [keepachangelog] spec, and while that does not prescribe how the
-entries ought to be named, starting titles using one of the verbs "Add",
-"Change", "Deprecate", "Remove", or "Fix" (present tense) is helpful.
+to follow the [keepachangelog] spec, and while that does not prescribe how
+exactly the entries ought to be named, starting titles using one of the verbs
+"Add", "Change", "Deprecate", "Remove", or "Fix" (present tense) is helpful.
 
 Example:
 
