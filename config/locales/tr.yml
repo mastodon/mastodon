@@ -214,6 +214,7 @@ tr:
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
         promote_user: Kullanıcıyı Yükselt
+        publish_terms_of_service: Hizmet Şartlarını Yayınla
         reject_appeal: İtirazı Reddet
         reject_user: Kullanıcıyı Reddet
         remove_avatar_user: Profil Resmini Kaldır
@@ -278,6 +279,7 @@ tr:
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
         promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
+        publish_terms_of_service_html: "%{name} hizmet şartları güncellemelerini yayınladı"
         reject_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını reddetti"
         reject_user_html: "%{name}, %{target} konumundan kaydı reddetti"
         remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
@@ -925,6 +927,35 @@ tr:
       search: Ara
       title: Etiketler
       updated_msg: Etiket ayarları başarıyla güncellendi
+    terms_of_service:
+      back: Hizmet şartlarına dön
+      changelog: Ne Değişti
+      create: Kendinizinkini kullanın
+      current: Şimdiki
+      draft: Taslak
+      generate: Şablon kullan
+      generates:
+        action: Oluştur
+        chance_to_review_html: "<strong>Üretilmiş hizmet şartları otomatik olarak yayınlanmayacaktır.</strong> Sonucu gözden geçirme şansınız olacaktır. Devam etmek için lütfen gerekli ayrıntıları doldurun."
+        explanation_html: Sağlanan hizmet şartları şablonu yalnızca bilgilendirme amaçlıdır ve herhangi bir konuda yasal tavsiye olarak yorumlanmamalıdır. Lütfen durumunuz ve belirli yasal sorularınız hakkında kendi hukuk müşavirinize danışın.
+        title: Hizmet Şartları Kurulumu
+      history: Tarihçe
+      live: Canlı
+      no_history: Henüz kaydedilmiş hizmet şartları değişikliği yok.
+      no_terms_of_service_html: Şu anda yapılandırılmış herhangi bir hizmet şartınız yok. Hizmet şartları, kullanıcılarınızla olan anlaşmazlıklarda netlik sağlamak ve sizi olası yükümlülüklerden korumak içindir.
+      notified_on_html: Kullanıcılar %{date} tarihinde bilgilendirildi
+      notify_users: Kullanıcılara bildir
+      preview:
+        explanation_html: 'E-posta, %{date} tarihinden önce kaydolan <strong>%{display_count} kullanıcıya</strong> gönderilecektir. E-posta içerisinde aşağıdaki metin yer alacaktır:'
+        send_preview: Ön izlemeyi %{email} adresine gönder
+        send_to_all:
+          one: "%{display_count} e-posta gönder"
+          other: "%{display_count} e-posta gönder"
+        title: Hizmet şartları bildirimini öz izle
+      publish: Yayınla
+      published_on_html: "%{date} tarihinde yayınlandı"
+      save_draft: Taslağı kaydet
+      title: Hizmet Şartları
     title: Yönetim
     trends:
       allow: İzin ver
@@ -1132,7 +1163,6 @@ tr:
     migrate_account: Farklı bir hesaba taşıyın
     migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsan, <a href="%{path}">buradan yapılandırabilirsin</a>.
     or_log_in_with: 'Veya şununla oturum açın:'
-    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">Gizlilik politikasını</a> okudum ve kabul ettim
     progress:
       confirm: E-postanızı onaylayın
       details: Ayrıntılarınız
@@ -1157,7 +1187,7 @@ tr:
     set_new_password: Yeni parola belirle
     setup:
       email_below_hint_html: İstenmeyenler dizininize bakın veya başka bir onay bağlantısı isteyin. Eğer yanlışsa e-posta adresinizi de düzeltebilirsiniz.
-      email_settings_hint_html: "%{email} adresinizi doğrulamak için size gönderdiğimiz bağlantıya tıklayın. Biz burada bekliyoruz."
+      email_settings_hint_html: Mastodon kullanmaya başlamak %{email} adresine gönderdiğimiz bağlantıya tıklayın. Sizi burada bekliyoruz.
       link_not_received: Bağlantı gelmedi mi?
       new_confirmation_instructions_sent: Birkaç dakika içerisinde onaylama bağlantısını içeren yeni bir e-posta alacaksınız!
       title: Gelen kutunuzu kontrol edin
@@ -1166,7 +1196,7 @@ tr:
       title: "%{domain} giriş yapın"
     sign_up:
       manual_review: "%{domain} kayıtları moderatörler tarafından manuel olarak inceleniyor. Kaydınızı işlememizi kolaylaştırmak için kendiniz ve %{domain} sunucusundan neden hesap istediğiniz hakkında biraz bilgi verin."
-      preamble: Bu Mastodon sunucusu üzerinden bir hesap ile ağdaki herhangi bir kişiyi, hesabı hangi sunucuda saklanırsa saklansın, takip edebilirsiniz.
+      preamble: Bu Mastodon sunucusu üzerinden bir hesap ile fediverseteki herhangi bir kişiyi, hangi sunucuda olursa olsun, takip edebilirsiniz.
       title: "%{domain} için kurulumunuzu yapalım."
     status:
       account_status: Hesap durumu
@@ -1178,6 +1208,7 @@ tr:
       view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     use_security_key: Güvenlik anahtarını kullan
+    user_agreement_html: <a href="%{terms_of_service_path}" target="_blank">hizmet şartları</a> ve <a href="%{privacy_policy_path}" target="_blank">gizlilik politikasını</a> okudum ve kabul ediyorum
   author_attribution:
     example_title: Örnek metin
     hint_html: Mastodon dışında haber veya günlük yazıları mı yazıyorsunuz? Bu yazılar Mastodon'da paylaşıldığında size nasıl atıf yapılacağını denetleyin.
@@ -1676,7 +1707,7 @@ tr:
   scheduled_statuses:
     over_daily_limit: Bugün için %{limit} zamanlanmış gönderi sınırını aştınız
     over_total_limit: "%{limit} zamanlanmış gönderi sınırını aştınız"
-    too_soon: Programlanan tarih bugünden ileri bir tarihte olmalıdır
+    too_soon: tarih ileri bir tarih olmalıdır
   self_destruct:
     lead_html: Maalesef <strong>%{domain}</strong> kalıcı olarak kapanıyor. Eğer orada hesabınız varsa, onu kullanmaya devam edemeyeceksiniz, ancak yine de verinizin bir yedeğini isteyebilirsiniz.
     title: Bu sunucu kapanıyor
@@ -1839,6 +1870,8 @@ tr:
       too_late: Bu eyleme itiraz etmek için çok geç
   tags:
     does_not_match_previous_name: önceki adla eşleşmiyor
+  terms_of_service:
+    title: Hizmet Şartları
   themes:
     contrast: Mastodon (Yüksek karşıtlık)
     default: Mastodon (Karanlık)
@@ -1899,6 +1932,15 @@ tr:
       further_actions_html: Eğer oturum açan siz değildiyseniz, hesabınızı güvenli tutmanız için hemen %{action} yapmanızı ve iki aşamalı yetkilendirmeyi etkinleştirmenizi öneriyoruz.
       subject: Hesabınıza yeni bir IP adresinden erişim oldu
       title: Yeni bir oturum açma
+    terms_of_service_changed:
+      agreement: "%{domain} sunucusunu kullanmaya devam ederek bu şartları kabul etmiş olursunuz. Güncellenen şartları kabul etmiyorsanız, %{domain} ile olan sözleşmenizi istediğiniz zaman hesabınızı silerek feshedebilirsiniz."
+      changelog: 'Bir bakışta, bu güncellemenin sizin için anlamı şudur:'
+      description: 'Bu e-postayı alıyorsunuz çünkü %{domain} adresindeki hizmet şartlarımızda bazı değişiklikler yapıyoruz. Aşağıda tümü yer alan güncellenen şartları incelemenizi öneriyoruz:'
+      description_html: Bu e-postayı alıyorsunuz çünkü %{domain} adresindeki hizmet şartlarımızda bazı değişiklikler yapıyoruz. <a href="%{path}" target="_blank">Tüm güncellenen şartları buraya tıklayarak</a> incelemenizi öneririz.
+      sign_off: "%{domain} Ekibi"
+      subject: Şimdiki hizmet şartlarımıza güncellemeler
+      subtitle: "%{domain} adresindeki hizmet şartları değişiyor"
+      title: Önemli güncelleme
     warning:
       appeal: Bir itiraz gönder
       appeal_description: Bunun bir hata olduğunu düşünüyorsanız, %{instance} sunucusunun personeline bir itiraz gönderebilirsiniz.

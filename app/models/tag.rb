@@ -32,6 +32,8 @@ class Tag < ApplicationRecord
   has_many :featured_tags, dependent: :destroy, inverse_of: :tag
   has_many :followers, through: :passive_relationships, source: :account
 
+  has_one :trend, class_name: 'TagTrend', inverse_of: :tag, dependent: :destroy
+
   HASHTAG_SEPARATORS = "_\u00B7\u30FB\u200c"
   HASHTAG_FIRST_SEQUENCE_CHUNK_ONE = "[[:word:]_][[:word:]#{HASHTAG_SEPARATORS}]*[[:alpha:]#{HASHTAG_SEPARATORS}]"
   HASHTAG_FIRST_SEQUENCE_CHUNK_TWO = "[[:word:]#{HASHTAG_SEPARATORS}]*[[:word:]_]"

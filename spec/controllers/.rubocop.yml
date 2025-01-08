@@ -1,6 +1,0 @@
-inherit_from: ../../.rubocop.yml
-
-# Anonymous controllers in specs cannot access `described_class`, explanation:
-# https://github.com/rubocop/rubocop-rspec/blob/v2.26.1/lib/rubocop/cop/rspec/described_class.rb#L36-L56
-RSpec/DescribedClass:
-  SkipBlocks: true

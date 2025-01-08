@@ -208,6 +208,7 @@ lt:
         enable_user: Įjungti naudotoją
         memorialize_account: Memorializuoti paskyrą
         promote_user: Paaukštinti naudotoją
+        publish_terms_of_service: Publikuoti paslaugų sąlygas
         reject_appeal: Atmesti apeliaciją
         reject_user: Atmesti naudotoją
         remove_avatar_user: Pašalinti avatarą
@@ -264,6 +265,7 @@ lt:
         enable_user_html: "%{name} įjungė prisijungimą naudotojui %{target}"
         memorialize_account_html: "%{name} pavertė %{target} paskyrą į atminimo puslapį"
         promote_user_html: "%{name} paaukštino naudotoją %{target}"
+        publish_terms_of_service_html: "%{name} publikavo paslaugų sąlygų naujinimus"
         reject_appeal_html: "%{name} atmetė prižiūjimo veiksmo apeliaciją iš %{target}"
         reject_user_html: "%{name} atmetė registraciją iš %{target}"
         remove_avatar_user_html: "%{name} pašalino %{target} avatarą"
@@ -643,6 +645,37 @@ lt:
       reset: Atkurti
       search: Paieška
       title: Saitažodžiai
+    terms_of_service:
+      back: Atgal į paslaugų sąlygas
+      changelog: Kas pasikeitė
+      create: Naudoti savo
+      current: Dabartinė
+      draft: Parengti iš naujo
+      generate: Naudoti šabloną
+      generates:
+        action: Generuoti
+        chance_to_review_html: "<strong>Sugeneruotos paslaugų sąlygos nebus publikuojamos automatiškai.</strong> Turėsite galimybę peržiūrėti rezultatus. Kad tęstumėte, užpildykite reikiamą informaciją."
+        explanation_html: Pateiktas paslaugų sąlygų šablonas yra tik informacinio pobūdžio ir neturėtų būti laikomas teisiniu patarimu bet kokiu klausimu. Dėl savo situacijos ir konkrečių teisinių klausimų pasitarkite su savo teisininku.
+        title: Paslaugų sąlygų sąranka
+      history: Istorija
+      live: Tiesioginis
+      no_history: Kol kas nėra įrašyta paslaugų sąlygų pakeitimų.
+      no_terms_of_service_html: Šiuo metu nesate sukonfigūravę jokių paslaugų sąlygų. Paslaugų sąlygos skirtos suteikti aiškumo ir apsaugoti jus nuo galimų įsipareigojimų ginčuose su naudotojais.
+      notified_on_html: Naudotojams pranešta %{date}
+      notify_users: Pranešti naudotojus
+      preview:
+        explanation_html: 'El. laiškas bus išsiųstas <strong>%{display_count} naudotojams</strong>, kurie užsiregistravo iki %{date}. Į el. laišką bus įtrauktas toks tekstas:'
+        send_preview: Siųsti peržiūrą į %{email}
+        send_to_all:
+          few: Siųsti %{display_count} el. laiškus
+          many: Siųsti %{display_count} el. laiško
+          one: Siųsti %{display_count} el. laišką
+          other: Siųsti %{display_count} el. laiškų
+        title: Peržiūrėti paslaugų sąlygų pranešimą
+      publish: Publikuoti
+      published_on_html: Publikuota %{date}
+      save_draft: Išsaugoti juodraštį
+      title: Paslaugų sąlygos
     title: Administracija
     trends:
       allow: Leisti
@@ -795,7 +828,6 @@ lt:
     migrate_account: Persikelti prie kitos paskyros
     migrate_account_html: Jei nori šią paskyrą nukreipti į kitą, gali <a href="%{path}">sukonfigūruoti ją čia</a>.
     or_log_in_with: Arba prisijungti su
-    privacy_policy_agreement_html: Perskaičiau ir sutinku su <a href="%{privacy_policy_path}" target="_blank">privatumo politika</a>
     progress:
       details: Tavo duomenys
       review: Mūsų peržiūra
@@ -818,17 +850,20 @@ lt:
     security: Apsauga
     set_new_password: Nustatyti naują slaptažodį
     setup:
-      email_settings_hint_html: Spustelėk mūsų atsiųstą nuorodą, kad patikrintum %{email}. Mes lauksime čia.
+      email_settings_hint_html: Spustelėkite nuorodą, kurią atsiuntėme adresu %{email}, kad pradėtumėte naudoti „Mastodon“. Lauksime čia.
       link_not_received: Negavai nuorodos?
       title: Patikrinti pašto dėžutę
     sign_in:
       preamble_html: Prisijunk su savo <strong>%{domain}</strong> kredencialais. Jei tavo yra kitame serveryje, čia prisijungti negalėsi.
       title: Prisijungti prie %{domain}
+    sign_up:
+      preamble: Su šio „Mastodon“ serverio paskyra galėsite sekti bet kurį kitą fediversijoje esantį asmenį, nepriklausomai nuo to, kur yra jo paskyra.
     status:
       account_status: Paskyros būsena
       redirecting_to: Tavo paskyra yra neaktyvi, nes šiuo metu ji nukreipiama į %{acct}.
       self_destruct: Kadangi %{domain} uždaromas, turėsi tik ribotą prieigą prie savo paskyros.
       view_strikes: Peržiūrėti ankstesnius savo paskyros pažeidimus
+    user_agreement_html: Perskaičiau ir sutinku su <a href="%{terms_of_service_path}" target="_blank">paslaugų sąlygomis</a> ir <a href="%{privacy_policy_path}" target="_blank">privatumo politika</a>
   author_attribution:
     example_title: Teksto pavyzdys
     hint_html: Ar rašote naujienas ar tinklaraščio straipsnius už „Mastodon“ ribų? Valdykite, kaip būsite nurodomi, kai jais bus bendrinama platformoje „Mastodon“.
@@ -1070,7 +1105,7 @@ lt:
   scheduled_statuses:
     over_daily_limit: Jūs pasieketė limitą (%{limit}) galimų toot'ų per dieną
     over_total_limit: Jūs pasieketė %{limit} limitą galimų toot'ų
-    too_soon: Planuota data privalo būti ateityje
+    too_soon: data turi būti ateityje.
   sessions:
     activity: Paskutinė veikla
     browser: Naršyklė
@@ -1162,6 +1197,8 @@ lt:
     min_age_label: Amžiaus riba
   stream_entries:
     sensitive_content: Jautrus turinys
+  terms_of_service:
+    title: Paslaugų sąlygos
   themes:
     contrast: Mastodon (didelis kontrastas)
     default: Mastodon (tamsi)
@@ -1199,6 +1236,15 @@ lt:
       title: Nepavyko atlikti dvigubo tapatybės nustatymo
     suspicious_sign_in:
       further_actions_html: Jei tai buvai ne tu, rekomenduojame nedelsiant %{action} ir įjungti dvigubą tapatybės nustatymą, kad tavo paskyra būtų saugi.
+    terms_of_service_changed:
+      agreement: Tęsiant naudojimąsi %{domain}, jūs sutinkate su šiomis sąlygomis. Jei nesutinkate su atnaujintomis sąlygomis, bet kuriuo metu galite nutraukti sutartį su %{domain} ištrindami savo paskyrą.
+      changelog: Trumpai apie tai, ką šis naujinimas reiškia jums
+      description: 'Šį el. laišką gaunate, nes mes keičiame savo paslaugų sąlygas serveryje %{domain}. Kviečiame susipažinti su visomis atnaujintomis sąlygomis čia:'
+      description_html: Šį el. laišką gaunate, nes mes keičiame savo paslaugų sąlygas serveryje %{domain}. Kviečiame susipažinti su <a href="%{path}" target="_blank">visomis atnaujintomis sąlygomis čia</a>.
+      sign_off: "%{domain} komanda"
+      subject: Paslaugų sąlygų atnaujinimai
+      subtitle: Keičiasi %{domain} paslaugų sąlygos
+      title: Svarbus naujinimas
     warning:
       categories:
         spam: Šlamštas

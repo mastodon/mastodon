@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   check-i18n:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -35,18 +35,18 @@ jobs:
           git diff --exit-code
 
       - name: Check locale file normalization
-        run: bundle exec i18n-tasks check-normalized
+        run: bin/i18n-tasks check-normalized
 
       - name: Check for unused strings
-        run: bundle exec i18n-tasks unused
+        run: bin/i18n-tasks unused
 
       - name: Check for missing strings in English YML
         run: |
-          bundle exec i18n-tasks add-missing -l en
+          bin/i18n-tasks add-missing -l en
           git diff --exit-code
 
       - name: Check for wrong string interpolations
-        run: bundle exec i18n-tasks check-consistent-interpolations
+        run: bin/i18n-tasks check-consistent-interpolations
 
       - name: Check that all required locale files exist
-        run: bundle exec rake repo:check_locales_files
+        run: bin/rake repo:check_locales_files

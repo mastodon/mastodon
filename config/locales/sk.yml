@@ -182,11 +182,13 @@ sk:
         create_custom_emoji: Vytvor vlastné emotikony
         create_domain_allow: Vytvor povolenie pre doménu
         create_domain_block: Vytvor zákaz domény
+        create_email_domain_block: Vytvor zákaz emailovej domény
         create_ip_block: Vytvor IP pravidlo
         create_unavailable_domain: Vytvor nedostupnú doménu
         create_user_role: Vytvoriť rolu
         demote_user: Zniž užívateľskú rolu
         destroy_announcement: Vymaž oboznámenie
+        destroy_canonical_email_block: Zruš blokovanie emailu
         destroy_custom_emoji: Vymaž vlastné emotikony
         destroy_domain_allow: Zmaž povolenie pre doménu
         destroy_domain_block: Zruš blokovanie domény
@@ -1194,7 +1196,6 @@ sk:
   scheduled_statuses:
     over_daily_limit: Prekročil/a si denný limit %{limit} predplánovaných príspevkov
     over_total_limit: Prekročil/a si limit %{limit} predplánovaných príspevkov
-    too_soon: Dátum musí byť stanovený do budúcnosti
   sessions:
     activity: Najnovšia aktivita
     browser: Prehliadač

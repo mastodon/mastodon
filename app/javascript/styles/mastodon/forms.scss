@@ -584,8 +584,9 @@ code {
       background-color: $ui-button-focus-background-color;
     }
 
+    &:disabled,
     &:disabled:hover {
-      background-color: $ui-primary-color;
+      background-color: $ui-button-disabled-color;
     }
 
     &.negative {
@@ -596,16 +597,6 @@ code {
       &:focus {
         background-color: $ui-button-destructive-focus-background-color;
       }
-    }
-  }
-
-  .button.button-tertiary {
-    padding: 9px;
-
-    &:hover,
-    &:focus,
-    &:active {
-      padding: 10px;
     }
   }
 
@@ -667,6 +658,10 @@ code {
         width: 5px;
       }
     }
+  }
+
+  .status-card {
+    contain: unset;
   }
 }
 
@@ -1173,6 +1168,7 @@ code {
   align-items: center;
   padding-bottom: 30px;
   margin-bottom: 30px;
+  color: $white;
 
   li {
     flex: 0 0 auto;
@@ -1255,13 +1251,13 @@ code {
 }
 
 .app-form {
-  padding: 20px;
+  padding: 16px;
 
   &__avatar-input,
   &__header-input {
     display: block;
     border-radius: 8px;
-    background: var(--dropdown-background-color);
+    background: var(--surface-variant-background-color);
     position: relative;
     cursor: pointer;
 
@@ -1309,7 +1305,7 @@ code {
     }
 
     &:hover {
-      background-color: var(--dropdown-border-color);
+      background-color: var(--surface-variant-active-background-color);
     }
   }
 

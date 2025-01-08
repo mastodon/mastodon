@@ -36,7 +36,8 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { submitMarkers } from '../../actions/markers';
-import Column from '../../components/column';
+import { Column } from '../../components/column';
+import type { ColumnRef } from '../../components/column';
 import { ColumnHeader } from '../../components/column_header';
 import { LoadGap } from '../../components/load_gap';
 import ScrollableList from '../../components/scrollable_list';
@@ -96,7 +97,7 @@ export const Notifications: React.FC<{
     selectNeedsNotificationPermission,
   );
 
-  const columnRef = useRef<Column>(null);
+  const columnRef = useRef<ColumnRef>(null);
 
   const selectChild = useCallback((index: number, alignTop: boolean) => {
     const container = columnRef.current?.node as HTMLElement | undefined;

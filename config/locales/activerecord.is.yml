@@ -24,6 +24,8 @@ is:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: inniheldur gildi sem vantar merkingar
             username:
               invalid: má aðeins innihalda bókstafi, tölur og undirstrik
               reserved: er frátekið
@@ -39,6 +41,11 @@ is:
           attributes:
             data:
               malformed: er rangt formað
+        list_account:
+          attributes:
+            account_id:
+              taken: er þegar á listanum
+          must_be_following: verður að vera aðgangur sem fylgst er með
         status:
           attributes:
             reblog:

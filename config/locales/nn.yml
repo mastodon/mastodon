@@ -214,6 +214,7 @@ nn:
         enable_user: Skruv på brukar
         memorialize_account: Opprett minnekonto
         promote_user: Forfrem brukar
+        publish_terms_of_service: Legg ut bruksvilkåra
         reject_appeal: Avvis appell
         reject_user: Avvis brukar
         remove_avatar_user: Fjern avatar
@@ -278,6 +279,7 @@ nn:
         enable_user_html: "%{name} aktiverte innlogging for brukaren %{target}"
         memorialize_account_html: "%{name} endret %{target}s konto til en minneside"
         promote_user_html: "%{name} fremja brukaren %{target}"
+        publish_terms_of_service_html: "%{name} endra bruksvilkåra"
         reject_appeal_html: "%{name} avviste klagen frå %{target} på modereringa"
         reject_user_html: "%{name} avslo registrering fra %{target}"
         remove_avatar_user_html: "%{name} fjerna %{target} sitt profilbilete"
@@ -925,6 +927,35 @@ nn:
       search: Søk
       title: Emneknaggar
       updated_msg: Emneknagginnstillingane er oppdaterte
+    terms_of_service:
+      back: Tilbake til bruksvilkåra
+      changelog: Kva er endra
+      create: Bruk dine eigne
+      current: Gjeldande
+      draft: Utkast
+      generate: Bruk mal
+      generates:
+        action: Generer
+        chance_to_review_html: "<strong>Dei genererte bruksvilkåra blir ikkje lagde ut automatisk</strong> Du får høve til å sjå gjennom resultatet og fylla inn dei detaljane som trengst."
+        explanation_html: Malen for bruksvilkår er berre til informasjon, og du bør ikkje gå ut frå han som juridiske råd. Viss du har spørsmål om lovverk, bør du spørja ein advokat.
+        title: Oppsett for bruksvilkår
+      history: Historikk
+      live: Direkte
+      no_history: Det er ikkje registrert nokon endringar i bruksvilkåra enno.
+      no_terms_of_service_html: Du har ingen bruksvilkår for Mastodon-tenaren din. Slike vilkår klårgjer plikter og rettar for bruk av tenesta, og kan avgrensa ansvaret ditt viss du kjem opp i usemje med brukarar.
+      notified_on_html: Brukarane vart varsla %{date}
+      notify_users: Varsle brukarane
+      preview:
+        explanation_html: 'Eposten vil bli send til <strong>%{display_count} brukarar</strong> som har registrert seg før %{date}. Denne teksten vil stå i eposten:'
+        send_preview: Send førehandsvising til %{email}
+        send_to_all:
+          one: Send %{display_count} epost
+          other: Send %{display_count} epostar
+        title: Førehandsvis varsling om endring av bruksvilkår
+      publish: Legg ut
+      published_on_html: Lagt ut %{date}
+      save_draft: Lagre kladd
+      title: Bruksvilkår
     title: Leiing
     trends:
       allow: Tillat
@@ -1132,7 +1163,6 @@ nn:
     migrate_account: Flytt til ein annan konto
     migrate_account_html: Om du vil visa denne kontoen til ein anna, kan du <a href="%{path}">skipe det her</a>.
     or_log_in_with: Eller logg inn med
-    privacy_policy_agreement_html: Jeg har lest og godtar <a href="%{privacy_policy_path}" target="_blank">retningslinjer for personvern</a>
     progress:
       confirm: Stadfest e-post
       details: Opplysingane dine
@@ -1157,7 +1187,7 @@ nn:
     set_new_password: Lag nytt passord
     setup:
       email_below_hint_html: Sjekk søppelpostmappa di, eller be om ein ny. Du kan endra e-postadressa di dersom ho er feil.
-      email_settings_hint_html: Klikk lenka me sende deg for å stadfesta %{email}. Me sit her og ventar.
+      email_settings_hint_html: Klikk på lenka me sende til %{email} for å byrja å bruka Mastodon. Me ventar her til så lenge.
       link_not_received: Fekk du ikkje lenka?
       new_confirmation_instructions_sent: Du vil få ein ny e-post med stadfestingslenke innan nokre minutt!
       title: Sjekk innboksen din
@@ -1166,7 +1196,7 @@ nn:
       title: Logg inn på %{domain}
     sign_up:
       manual_review: Når du lagar ein konto på %{domain}, vil moderatorane våre gå gjennom påmeldinga di manuelt. For å hjelpa oss med påmeldinga di, er det fint om du skriv litt om deg sjølv og kvifor du vil ha ein konto på %{domain}.
-      preamble: Med ein konto på denne Mastodon-tenaren kan du fylgja andre folk på nettverket, uansett kvar dei har brukarkontoen sin.
+      preamble: Med ein konto på denne Mastodon-tenaren kan du fylgja andre folk på allheimen, uansett kvar dei har brukarkontoen sin.
       title: La oss få deg satt i gang på %{domain}.
     status:
       account_status: Kontostatus
@@ -1178,6 +1208,7 @@ nn:
       view_strikes: Vis tidligere advarsler mot kontoen din
     too_fast: Skjemaet ble sendt inn for raskt, prøv på nytt.
     use_security_key: Bruk sikkerhetsnøkkel
+    user_agreement_html: Eg godtek <a href="%{terms_of_service_path}" target="_blank">bruksvilkåra</a> og <a href="%{privacy_policy_path}" target="_blank">personvernvllkåra</a>
   author_attribution:
     example_title: Eksempeltekst
     hint_html: Skriv du nyhende eller blogginnlegg utanfor Mastodon? Her kan du kontrollera korleis du blir kreditert når artiklane dine blir delte på Mastodon.
@@ -1676,7 +1707,7 @@ nn:
   scheduled_statuses:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
-    too_soon: Den planlagte datoen må være i fremtiden
+    too_soon: datoen må vera i framtida
   self_destruct:
     lead_html: Diverre stengjer <strong>%{domain}</strong> dørene for godt. Viss du hadde ein brukarkonto der, vil du ikkje kunna halda fram å bruka han, men du kan få ut ein tryggingskopi av dataa dine.
     title: Denne tenaren stengjer
@@ -1839,6 +1870,8 @@ nn:
       too_late: Det er for seint å klage på denne prikken
   tags:
     does_not_match_previous_name: stemmar ikkje med det førre namnet
+  terms_of_service:
+    title: Bruksvilkår
   themes:
     contrast: Mastodon (Høg kontrast)
     default: Mastodon (Mørkt)
@@ -1899,6 +1932,15 @@ nn:
       further_actions_html: Om dette ikkje var deg, tilrår vi at du %{action} no og aktiverar 2-trinnsinnlogging for å halde kontoen din sikker.
       subject: Din konto er opna frå ei ny IP-adresse
       title: Ei ny pålogging
+    terms_of_service_changed:
+      agreement: Viss du held fram å bruka %{domain}, seier du deg einig i vilkåra. Viss du er usamd i dei oppdaterte vilkåra, kan du slutta å bruka %{domain} når du vil ved å sletta brukarkontoen din.
+      changelog: 'Denne oppdateringa, kort fortalt:'
+      description: 'Du får denne eposten fordi me har endra bruksvilkåra på %{domain}. Det er fint om du ser gjennom endringane her:'
+      description_html: Du får denne eposten fordi me endrar bruksvilkåra på %{domain}. Me oppmodar deg til å lesa gjennom <a href="%{path}" target="_blank">dei oppdaterte bruksvilkåra her</a>.
+      sign_off: Folka på %{domain}
+      subject: Endra bruksvilkår
+      subtitle: Bruksvilkåra på %{domain} er endra
+      title: Viktig oppdatering
     warning:
       appeal: Send inn anke
       appeal_description: Om du meiner dette er ein feil, kan du sende inn ei klage til gjengen i %{instance}.

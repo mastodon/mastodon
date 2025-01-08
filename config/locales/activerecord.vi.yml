@@ -24,6 +24,8 @@ vi:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: chứa giá trị thiếu nhãn
             username:
               invalid: chỉ chấp nhận ký tự, số và dấu gạch dưới
               reserved: bị cấm sử dụng
@@ -39,6 +41,11 @@ vi:
           attributes:
             data:
               malformed: bị hỏng
+        list_account:
+          attributes:
+            account_id:
+              taken: đã có trong danh sách
+          must_be_following: phải theo dõi từ trước
         status:
           attributes:
             reblog:

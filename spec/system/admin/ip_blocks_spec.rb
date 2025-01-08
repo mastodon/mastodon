@@ -3,22 +3,48 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin::IpBlocks' do
-  let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:current_user) { Fabricate(:admin_user) }
 
-  before do
-    sign_in current_user
+  before { sign_in current_user }
+
+  describe 'Creating an IP Block' do
+    it 'lists blocks and creates new ones' do
+      # Visit index page
+      visit admin_ip_blocks_path
+      expect(page)
+        .to have_content(I18n.t('admin.ip_blocks.title'))
+
+      # Navigate to new
+      click_on I18n.t('admin.ip_blocks.add_new')
+
+      # Invalid with missing IP
+      fill_in 'ip_block_ip', with: ''
+      expect { submit_form }
+        .to_not change(IpBlock, :count)
+      expect(page)
+        .to have_content(/error below/)
+
+      # Valid with IP
+      fill_in 'ip_block_ip', with: '192.168.1.1'
+      expect { submit_form }
+        .to change(IpBlock, :count).by(1)
+      expect(page)
+        .to have_content(I18n.t('admin.ip_blocks.created_msg'))
+    end
+
+    def submit_form
+      click_on I18n.t('admin.ip_blocks.add_new')
+    end
   end
 
   describe 'Performing batch updates' do
-    before do
-      visit admin_ip_blocks_path
-    end
-
     context 'without selecting any records' do
       it 'displays a notice about selection' do
-        click_on button_for_delete
+        visit admin_ip_blocks_path
 
-        expect(page).to have_content(selection_error_text)
+        click_on button_for_delete
+        expect(page)
+          .to have_content(selection_error_text)
       end
     end
 

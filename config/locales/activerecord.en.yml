@@ -24,6 +24,8 @@ en:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: contains values with missing labels
             username:
               invalid: must contain only letters, numbers and underscores
               reserved: is reserved
@@ -39,6 +41,11 @@ en:
           attributes:
             data:
               malformed: is malformed
+        list_account:
+          attributes:
+            account_id:
+              taken: is already on the list
+          must_be_following: must be a followed account
         status:
           attributes:
             reblog:

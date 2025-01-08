@@ -24,6 +24,8 @@ zh-TW:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: 包含缺少標籤之值
             username:
               invalid: 只能有字母、數字及底線
               reserved: 是保留關鍵字
@@ -39,6 +41,11 @@ zh-TW:
           attributes:
             data:
               malformed: 資料不正確
+        list_account:
+          attributes:
+            account_id:
+              taken: 已於列表中
+          must_be_following: 必須為已跟隨之帳號
         status:
           attributes:
             reblog:

@@ -39,6 +39,11 @@ th:
           attributes:
             data:
               malformed: ผิดรูปแบบ
+        list_account:
+          attributes:
+            account_id:
+              taken: อยู่ในรายการอยู่แล้ว
+          must_be_following: ต้องเป็นบัญชีที่ติดตาม
         status:
           attributes:
             reblog:

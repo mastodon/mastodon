@@ -214,6 +214,7 @@ is:
         enable_user: Virkja notanda
         memorialize_account: Gera aðgang að minningargrein
         promote_user: Hækka notanda í tign
+        publish_terms_of_service: Birta þjónustuskilmála
         reject_appeal: Hafna áfrýjun
         reject_user: Hafna notanda
         remove_avatar_user: Fjarlægja auðkennismynd
@@ -278,6 +279,7 @@ is:
         enable_user_html: "%{name} gerði innskráningu virka fyrir notandann %{target}"
         memorialize_account_html: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
         promote_user_html: "%{name} hækkaði notandann %{target} í tign"
+        publish_terms_of_service_html: "%{name} gaf út uppfærða þjónustuskilmála"
         reject_appeal_html: "%{name} hafnaði áfrýjun á ákvörðun umsjónarmanns frá %{target}"
         reject_user_html: "%{name} hafnaði nýskráningu frá %{target}"
         remove_avatar_user_html: "%{name} fjarlægði auðkennismynd af %{target}"
@@ -927,6 +929,35 @@ is:
       search: Leita
       title: Myllumerki
       updated_msg: Það tókst að uppfæra stillingar myllumerkja
+    terms_of_service:
+      back: Til baka í þjónustuskilmála
+      changelog: Hvað breyttist
+      create: Notaðu þína eigin
+      current: Núverandi
+      draft: Drög
+      generate: Nota sniðmát
+      generates:
+        action: Útbúa
+        chance_to_review_html: "<strong>Sjálfvirkt útbúnu þjónustuskilmálarnir verða ekki birtir sjálfkrafa.</strong> Þú munt geta yfirfarið textann. Fylltu inn nauðsynlegar upplýsingar til að halda áfram to proceed."
+        explanation_html: Sniðmátið fyrir þjónustuskilmála sem hér fylgir er einungis hugsat til upplýsingar og ætti ekki að taska sem lögfræðilegt álit varðandi hin ýmsu efni. Þú skalt endilega ráðfæra þig við löglærða í þínu umdæmi varðandi þau atriði sem eiga við um stöðu þína auk annarra spurninga um lögfræðileg mál sem þú gætir haft.
+        title: Uppsetning þjónustuskilmála
+      history: Ferill
+      live: Í beinni
+      no_history: Það eru engar breytingar ennþá á þjónustuskilmálunum.
+      no_terms_of_service_html: Þú ert ekki með neina þjónustuskilmála stillta í augnablikinu. Þjónustuskilmálum er ætlað að gera ábyrgð ljósa og vernda þig fyrir mögulegum kröfum sem notendur gætu gert í ágreiningsmálum við þig.
+      notified_on_html: Notendur látnir vita þann %{date}
+      notify_users: Láta notendur vita
+      preview:
+        explanation_html: 'Tölvupósturinn verður sendur til <strong>%{display_count} notenda</strong> sem hafa skráð sig fyrir %{date}. Eftirfarandi texti verður hafður með í póstinum:'
+        send_preview: Senda forskoðun til %{email}
+        send_to_all:
+          one: Senda %{display_count} tölvupóst
+          other: Senda %{display_count} tölvupósta
+        title: Forskoða tilkynningu um breytingar á þjónustuskilmálum
+      publish: Birta
+      published_on_html: Gefið út þann %{date}
+      save_draft: Vista drög
+      title: Þjónustuskilmálar
     title: Stjórnendur
     trends:
       allow: Leyfa
@@ -1136,7 +1167,6 @@ is:
     migrate_account: Færa á annan notandaaðgang
     migrate_account_html: Ef þú vilt endurbeina þessum aðgangi á einhvern annan, geturðu <a href="%{path}">stillt það hér</a>.
     or_log_in_with: Eða skráðu inn með
-    privacy_policy_agreement_html: Ég hef lesið og samþykkt <a href="%{privacy_policy_path}" target="_blank">persónuverndarstefnuna</a>
     progress:
       confirm: Staðfesta tölvupóstfang
       details: Nánari upplýsingar þínar
@@ -1161,7 +1191,7 @@ is:
     set_new_password: Stilla nýtt lykilorð
     setup:
       email_below_hint_html: Skoðaðu ruslpóstmöppuna þína, eða biddu um annan póst. Þú getur leiðrétt tölvupóstfangið þitt ef þörf er á.
-      email_settings_hint_html: Ýttu á tengilinn sem við sendum þér til að staðfesta %{email}. Við bíðum á meðan.
+      email_settings_hint_html: Smelltu á tengilinn sem við sendum á %{email} til að byrja að nota Mastodon. Við bíðum hér á meðan.
       link_not_received: Fékkstu ekki neinn tengil?
       new_confirmation_instructions_sent: Þú munt fá nýjan tölvupóst með staðfestingartengli innan skamms!
       title: Athugaðu pósthólfið þitt
@@ -1170,7 +1200,7 @@ is:
       title: Skrá inn á %{domain}
     sign_up:
       manual_review: Nýskráningar á %{domain} fara í gegnum handvirka yfirferð hjá umsjónarfólkinu okkar. Til að flýta fyrir skráningarferlinu, ættirðu að skrifa smávegis um þig og ástæður þess að þú viljir skrá þig á %{domain}.
-      preamble: Með notandaaðgangi á þessum Mastodon-þjóni geturðu fylgst með hverjum sem er á netkerfinu, sama hvar notandaaðgangurinn þeirra er hýstur.
+      preamble: Með notandaaðgangi á þessum Mastodon-þjóni geturðu fylgst með hverjum sem er á sambandsnetinu, sama hvar notandaaðgangurinn þeirra er hýstur.
       title: Förum núna að setja þig upp á %{domain}.
     status:
       account_status: Staða notandaaðgangs
@@ -1182,6 +1212,7 @@ is:
       view_strikes: Skoða fyrri bönn notandaaðgangsins þíns
     too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
     use_security_key: Nota öryggislykil
+    user_agreement_html: Ég hef lesið og samþykkt <a href="%{terms_of_service_path}" target="_blank">þjónustuskilmálana</a> og <a href="%{privacy_policy_path}" target="_blank">stefnuna um persónuvernd</a>
   author_attribution:
     example_title: Sýnitexti
     hint_html: Ertu að skrifa fréttir eða bloggfærslur utan Mastodon? Stýrðu því hvernig vitnað er í þig þegar þeim er deilt á Mastodon.
@@ -1680,7 +1711,7 @@ is:
   scheduled_statuses:
     over_daily_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur fyrir þennan dag
     over_total_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur
-    too_soon: Áætluð dagsetning verður að vera í framtíðinni
+    too_soon: dagsetning verður að vera fram í tímann
   self_destruct:
     lead_html: Því miður, <strong>%{domain}</strong> er að hætta starfsemi endanlega. Ef þú varst með aðgang þar, muntu ekki geta haldið áfram að nota hann, en þú getur áfram beðið um afrit af gögnunum þínum.
     title: Þessi netþjónn er að hætta starfsemi
@@ -1843,6 +1874,8 @@ is:
       too_late: Það er orðið of sint að áfrýja þessari refsingu
   tags:
     does_not_match_previous_name: samsvarar ekki fyrra nafni
+  terms_of_service:
+    title: Þjónustuskilmálar
   themes:
     contrast: Mastodon (mikil birtuskil)
     default: Mastodon (dökkt)
@@ -1903,6 +1936,15 @@ is:
       further_actions_html: Ef þetta varst ekki þú, þá mælum við með að þú %{action} strax og virkjir tveggja-þátta auðkenningu til að halda aðgangnum þínum öruggum.
       subject: Skráð hefur verið inn á aðganginn þinn frá nýju IP-vistfangi
       title: Ný innskráning
+    terms_of_service_changed:
+      agreement: Með því að halda áfram að nota %{domain}, ert þú þar með að samþykkja þessa skilmála. Ef þú ert ósammála þessum uppfærðu skilmálum, geturðu hvenær sem er sagt upp samþykki þínu gagnvart %{domain} með því að eyða notandaaðgangi þínum.
+      changelog: 'Í stuttu máli er það þetta sem þessi uppfærsla þýðir fyrir þig:'
+      description: 'Þú færð þennan tölvupóst vegna þess að við erum að gera nokkrar breytingar á þjónustuskilmálum okkar á %{domain}. Við hvetjum þig til að yfirfara uppfærðu skilmálana í heild hér:'
+      description_html: Þú færð þennan tölvupóst vegna þess að við erum að gera nokkrar breytingar á þjónustuskilmálum okkar á %{domain}. Við hvetjum þig til að yfirfara <a href="%{path}" target="_blank">uppfærðu skilmálana í heild hér:</a>.
+      sign_off: "%{domain}-teymið"
+      subject: Breytingar á þjónustuskilmálum okkar
+      subtitle: Þjónustuskilmálar eru að breytast á %{domain}
+      title: Mikilvæg uppfærsla
     warning:
       appeal: Senda inn áfrýjun
       appeal_description: Ef þú álítur að um mistök sé að ræða, geturðu sent áfrýjun til umsjónarmanna %{instance}.
@@ -2007,4 +2049,4 @@ is:
     not_enabled: Þú hefur ennþá ekki virkjað WebAuthn
     not_supported: Þessi vafri styður ekki öryggislykla
     otp_required: Til að nota öryggislykla skaltu fyrst virkja tveggja-þátta auðkenningu.
-    registered_on: Nýskráður %{date}
+    registered_on: Skráði sig %{date}

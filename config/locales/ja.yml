@@ -211,6 +211,7 @@ ja:
         enable_user: ユーザーを有効化
         memorialize_account: 追悼アカウント化
         promote_user: ユーザーを昇格
+        publish_terms_of_service: サービス利用規約を公開
         reject_appeal: 抗議を却下
         reject_user: ユーザーを拒否
         remove_avatar_user: アイコンを削除
@@ -275,6 +276,7 @@ ja:
         enable_user_html: "%{name}さんが%{target}さんのログインを有効化しました"
         memorialize_account_html: "%{name}さんが%{target}さんを追悼アカウントページに登録しました"
         promote_user_html: "%{name}さんが%{target}さんを昇格しました"
+        publish_terms_of_service_html: "%{name} がサービス利用規約の更新を公開しました"
         reject_appeal_html: "%{name}さんが%{target}からの抗議を却下しました"
         reject_user_html: "%{name}さんが%{target}さんからの登録を拒否しました"
         remove_avatar_user_html: "%{name}さんが%{target}さんのアイコンを削除しました"
@@ -507,7 +509,7 @@ ja:
         instance_accounts_dimension: 最もフォローされているアカウント
         instance_accounts_measure: 保存されたアカウント
         instance_followers_measure: そこでの我々のフォロワー
-        instance_follows_measure: リモートフォローしているアカウント
+        instance_follows_measure: こちらからのフォロー数
         instance_languages_dimension: 人気の言語
         instance_media_attachments_measure: 保存されたメディア
         instance_reports_measure: 通報
@@ -911,6 +913,34 @@ ja:
       search: 検索
       title: ハッシュタグ
       updated_msg: ハッシュタグ設定が更新されました
+    terms_of_service:
+      back: 利用規約に戻る
+      changelog: 変更箇所
+      create: 自分のものを使う
+      current: 現在
+      draft: 下書き
+      generate: テンプレートを使用
+      generates:
+        action: 作成
+        chance_to_review_html: "<strong>生成された利用規約は自動的には公開されません。</strong>結果を確認する機会があります。手続きに必要な詳細を記入してください。"
+        explanation_html: 提供された利用規約のテンプレートは情報提供のみを目的としており、いかなる主題に関しても法的助言と見なされるべきではありません。ご自身の状況や具体的な法的質問については、必ずご自身の弁護士に相談してください。
+        title: 利用規約の設定
+      history: 履歴
+      live: 公開中
+      no_history: 利用規約の変更はまだ記録されていません。
+      no_terms_of_service_html: 現在、利用規約が設定されていません。利用規約は、明確さを提供し、ユーザーとのトラブルにおける潜在的な責任からあなたを保護するためのものです。
+      notified_on_html: "%{date}に通知されたユーザー"
+      notify_users: ユーザに通知
+      preview:
+        explanation_html: メールは、%{date} より前に登録した<strong>%{display_count}人のユーザー</strong>に送信されます。以下のテキストがメールに含まれます：
+        send_preview: "%{email} にプレビューを送信"
+        send_to_all:
+          other: "%{display_count}件のメールを送信"
+        title: サービス利用規約の通知をプレビュー
+      publish: 公開
+      published_on_html: "%{date} に公開"
+      save_draft: 下書きを保存
+      title: サービス利用規約
     title: 管理
     trends:
       allow: 許可
@@ -1114,7 +1144,6 @@ ja:
     migrate_account: 別のアカウントに引っ越す
     migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
     or_log_in_with: または次のサービスでログイン
-    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">プライバシーポリシー</a>を読み、同意します
     progress:
       confirm: メールアドレスの確認
       details: ユーザー情報
@@ -1139,7 +1168,7 @@ ja:
     set_new_password: 新しいパスワード
     setup:
       email_below_hint_html: 確認メールが迷惑メールフォルダに振り分けられていないか確認してください。メールアドレスを間違えた場合は、ここでメールアドレスの変更と確認メールの再送ができます。
-      email_settings_hint_html: メールに記載のリンクを開いて %{email} を確認してください。
+      email_settings_hint_html: "%{email} に送信したリンクをクリックして Mastodon の使用を開始します。ここでお待ちしています。"
       link_not_received: 確認メールを受信できない場合は
       new_confirmation_instructions_sent: 確認用のリンクを記載した新しいメールを送信しました
       title: 確認メールを送信しました
@@ -1148,7 +1177,7 @@ ja:
       title: "%{domain}にログイン"
     sign_up:
       manual_review: "%{domain} への登録にはモデレーターによる承認が必要です。審査の参考になるように、簡単な自己紹介や %{domain} に登録したい理由などを記入してください。"
-      preamble: この Mastodon サーバーのアカウントがあれば、ネットワーク上の他の人のアカウントがどこでホストされているかに関係なく、その人をフォローすることができます。
+      preamble: この Mastodon サーバーのアカウントがあれば、fediverse上の他の人のアカウントがどこでホストされているかに関係なく、その人をフォローすることができます。
       title: さあ %{domain} でセットアップしましょう.
     status:
       account_status: アカウントの状態
@@ -1160,6 +1189,7 @@ ja:
       view_strikes: 過去のストライクを表示
     too_fast: フォームの送信が速すぎます。もう一度やり直してください。
     use_security_key: セキュリティキーを使用
+    user_agreement_html: <a href="%{terms_of_service_path}" target="_blank">利用規約</a> および <a href="%{privacy_policy_path}" target="_blank">プライバシーポリシー</a>を読み、同意します。
   author_attribution:
     example_title: サンプルテキスト
     hint_html: Mastodonの外でニュースやブログなどを執筆しているユーザーは、Mastodonで自分の記事が共有されたときに著者情報を表示させることができます。
@@ -1638,7 +1668,7 @@ ja:
   scheduled_statuses:
     over_daily_limit: その日予約できる投稿数 %{limit}を超えています
     over_total_limit: 予約できる投稿数 %{limit}を超えています
-    too_soon: より先の時間を指定してください
+    too_soon: 日付は未来でなければなりません
   self_destruct:
     lead_html: 残念ながら、<strong>%{domain}</strong> は恒久的に閉鎖されます。ここにお持ちだったアカウントを今後使うことはできませんが、これまでのデータのバックアップを要求することはまだ可能です。
     title: このサーバーは閉鎖されます
@@ -1797,6 +1827,8 @@ ja:
       too_late: このストライクに抗議するには遅すぎます
   tags:
     does_not_match_previous_name: 以前の名前と一致しません
+  terms_of_service:
+    title: サービス利用規約
   themes:
     contrast: Mastodon (ハイコントラスト)
     default: Mastodon (ダーク)
@@ -1857,6 +1889,15 @@ ja:
       further_actions_html: あなたがログインしていない場合は、すぐに%{action}し、アカウントを安全に保つために二要素認証を有効にすることをお勧めします。
       subject: 新しいIPアドレスからのアクセスがありました
       title: 新しいサインイン
+    terms_of_service_changed:
+      agreement: "%{domain} を引き続き使用することで、これらの条件に同意したことになります。更新された条件に同意しない場合は、アカウントを削除することでいつでも %{domain} との契約を終了することができます。"
+      changelog: 一目で分かる、この更新があなたにとって意味することは次の通りです：
+      description: このメールを受け取っているのは、%{domain} の利用規約にいくつかの変更を加えているためです。更新された利用規約をこちらで全てご確認いただくことをお勧めします：
+      description_html: このメールを受け取っているのは、%{domain} の利用規約にいくつかの変更を加えているためです。<a href="%{path}" target="_blank">こちらで更新された利用規約を全てご確認いただくことをお勧めします</a>。
+      sign_off: "%{domain} チーム"
+      subject: 利用規約の更新
+      subtitle: "%{domain} の利用規約が変更されています"
+      title: 重要な更新
     warning:
       appeal: 抗議を送信
       appeal_description: これが間違いだと思われる場合は、%{instance}のスタッフに申し立てすることができます。

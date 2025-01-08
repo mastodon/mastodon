@@ -24,6 +24,8 @@ lt:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: turi reikšmių su trūkstamomis etiketėmis.
             username:
               invalid: turi būti tik raidės, skaičiai ir pabraukimai.
               reserved: užimtas.
@@ -39,6 +41,11 @@ lt:
           attributes:
             data:
               malformed: yra netaisyklinga.
+        list_account:
+          attributes:
+            account_id:
+              taken: jau yra sąraše.
+          must_be_following: turi būti sekama paskyra.
         status:
           attributes:
             reblog:

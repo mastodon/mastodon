@@ -214,6 +214,7 @@ gl:
         enable_user: Activar usuaria
         memorialize_account: Transformar en conta conmemorativa
         promote_user: Promover usuaria
+        publish_terms_of_service: Publicar os Termos do Servizo
         reject_appeal: Rexeitar apelación
         reject_user: Rexeitar Usuaria
         remove_avatar_user: Eliminar avatar
@@ -278,6 +279,7 @@ gl:
         enable_user_html: "%{name} activou as credenciais para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
         promote_user_html: "%{name} promocionou a usuaria %{target}"
+        publish_terms_of_service_html: "%{name} actualizou os termos do servizo"
         reject_appeal_html: "%{name} rexeitou a apelación da decisión da moderación de %{target}"
         reject_user_html: "%{name} rexeitou o rexistro de %{target}"
         remove_avatar_user_html: "%{name} eliminou o avatar de %{target}"
@@ -925,6 +927,35 @@ gl:
       search: Buscar
       title: Cancelos
       updated_msg: Actualizaronse os axustes dos cancelos
+    terms_of_service:
+      back: Volver aos termos do servizo
+      changelog: Que cambios se fixeron
+      create: Usa os teus propios
+      current: Actuais
+      draft: Borrador
+      generate: Usar un modelo
+      generates:
+        action: Crear
+        chance_to_review_html: "<strong>Vanse publicar automaticamente os termos do servizo creados.</strong> Terás a oportunidade de revisar o resultado. Por favor completa os detalles precisos para continuar."
+        explanation_html: O modelo dos termos do servizo proporcionados é soamente informativo, e en ningún caso constitúe un consello legal. Por favor realiza unha consulta legal sobre a túa situación concreta e posibles cuestións legais que debas afrontar.
+        title: Configurar os Termos do Servizo
+      history: Historial
+      live: Actuais
+      no_history: Non hai rexistrados cambios nos termos do servizo.
+      no_terms_of_service_html: Actualmente non tes configurados ningúns termos do servizo. Os Termos do servizo están pensados para dar claridade e protexerte de responsabilidades potenciais nas disputas coas túas usuarias.
+      notified_on_html: Informouse ás usuarias o %{date}
+      notify_users: Informar ás usuarias
+      preview:
+        explanation_html: 'Vaise enviar un correo a <strong>%{display_count} usuarias</strong> que crearon a conta antes do %{date}. Incluirase o seguinte texto no correo:'
+        send_preview: Enviar vista previa a %{email}
+        send_to_all:
+          one: Enviar %{display_count} correo
+          other: Enviar %{display_count} correos
+        title: Vista previa da notificación sobre os termos do servizo
+      publish: Publicar
+      published_on_html: Publicados o %{date}
+      save_draft: Gardar borrador
+      title: Termos do Servizo
     title: Administración
     trends:
       allow: Permitir
@@ -1132,7 +1163,6 @@ gl:
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Se queres redirixir esta conta hacia outra diferente, podes <a href="%{path}">facelo aquí</a>.
     or_log_in_with: Ou accede con
-    privacy_policy_agreement_html: Lin e acepto a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
     progress:
       confirm: Confirmar correo
       details: Detalles
@@ -1157,7 +1187,7 @@ gl:
     set_new_password: Estabelecer novo contrasinal
     setup:
       email_below_hint_html: Mira no cartafol do spam, ou solicita outra. Podes cambiar o enderzo de correo se non é correcto.
-      email_settings_hint_html: Preme na ligazón que che enviamos para verificar %{email}. Agardamos por ti.
+      email_settings_hint_html: Preme na ligazón que enviamos a %{email} para comezar a usar Mastodon. Agardámoste.
       link_not_received: Non recibiches a ligazón?
       new_confirmation_instructions_sent: Nuns minutos recibirás un novo correo electrónico coa ligazón de confirmación!
       title: Mira a caixa de entrada
@@ -1166,7 +1196,7 @@ gl:
       title: Accede a %{domain}
     sign_up:
       manual_review: As novas contas en %{domain} son comprobadas manualmente pola moderación. Para axudarnos a xestionar o teu rexistro, escribe algo acerca de ti e por que queres unha conta en %{domain}.
-      preamble: Cunha conta neste servidor Mastodon poderás seguir a calquera outra persoa na rede, independentemente de onde estivese hospedada esa conta.
+      preamble: Cunha conta neste servidor Mastodon poderás seguir a calquera outra persoa no fediverso, independentemente de onde estivese hospedada esa conta.
       title: Imos crear a túa conta en %{domain}.
     status:
       account_status: Estado da conta
@@ -1178,6 +1208,7 @@ gl:
       view_strikes: Ver avisos anteriores respecto da túa conta
     too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
     use_security_key: Usa chave de seguridade
+    user_agreement_html: Lin e acepto os <a href="%{terms_of_service_path}" target="_blank">termos do servizo</a> e a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
   author_attribution:
     example_title: Texto de mostra
     hint_html: Escribes novas ou artigos nun blog alleos a Mastodon? Xestiona o xeito en que podes dar crédito da túa autoría cando os compartes en Mastodon.
@@ -1471,7 +1502,7 @@ gl:
     table:
       expires_at: Caduca
       uses: Usos
-    title: Convidar xente
+    title: Convidar a persoas
   lists:
     errors:
       limit: Xa acadaches o número máximo de listas
@@ -1676,7 +1707,7 @@ gl:
   scheduled_statuses:
     over_daily_limit: Excedeches o límite de %{limit} publicacións programadas para ese día
     over_total_limit: Excedeches o límite de %{limit} publicacións programadas
-    too_soon: A data de programación debe estar no futuro
+    too_soon: a data ten que estar no futuro
   self_destruct:
     lead_html: Desafortunadamente, <strong>%{domain}</strong> vai deixar de dar servizo. Se tes unha conta aquí non poderás seguir usándoa, mais podes solicitar un ficheiro cos teus datos.
     title: Este servidor vai fechar
@@ -1839,6 +1870,8 @@ gl:
       too_late: É demasiado tarde para recurrir este aviso
   tags:
     does_not_match_previous_name: non concorda co nome anterior
+  terms_of_service:
+    title: Termos do Servizo
   themes:
     contrast: Mastodon (Alto contraste)
     default: Mastodon (Escuro)
@@ -1899,6 +1932,15 @@ gl:
       further_actions_html: Se non foches ti, aconsellámosche %{action} inmediatamente e activar o segundo factor de autenticación para manter conta segura.
       subject: Accedeuse á túa conta desde novos enderezos IP
       title: Novo acceso
+    terms_of_service_changed:
+      agreement: Se continúas a usar %{domain} aceptas estas condicións. Se non aceptas as condicións actualizadas podería rematar o acordo con %{domain} en calquera momento e eliminarse a túa conta.
+      changelog: 'Dunha ollada, aquí tes o que implican os cambios para ti:'
+      description: 'Recibes este correo porque fixemos cambios nos termos do servizo de %{domain}. Recomendámosche que leas as condicións actualizadas ao completo aquí:'
+      description_html: Recibes este correo porque fixemos cambios nos termos do servizo de %{domain}. Recomendámosche que leas as <a href="%{path}" target="_blank">condicións actualizadas ao completo aquí</a>.
+      sign_off: O equipo de %{domain}
+      subject: Actualización dos nosos termos do servizo
+      subtitle: Cambiaron os termos do servizo de %{domain}
+      title: Notificación importante
     warning:
       appeal: Enviar unha apelación
       appeal_description: Se cres que esto é un erro, podes enviar un recurso á administración de %{instance}.

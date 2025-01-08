@@ -20,7 +20,7 @@ RSpec.describe Admin::BaseController do
 
   it 'returns private cache control headers' do
     routes.draw { get 'success' => 'admin/base#success' }
-    sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Moderator')))
+    sign_in(Fabricate(:moderator_user))
     get :success
 
     expect(response.headers['Cache-Control']).to include('private, no-store')
@@ -28,14 +28,14 @@ RSpec.describe Admin::BaseController do
 
   it 'renders admin layout as a moderator' do
     routes.draw { get 'success' => 'admin/base#success' }
-    sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Moderator')))
+    sign_in(Fabricate(:moderator_user))
     get :success
     expect(response).to render_template layout: 'admin'
   end
 
   it 'renders admin layout as an admin' do
     routes.draw { get 'success' => 'admin/base#success' }
-    sign_in(Fabricate(:user, role: UserRole.find_by(name: 'Admin')))
+    sign_in(Fabricate(:admin_user))
     get :success
     expect(response).to render_template layout: 'admin'
   end

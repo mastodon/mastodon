@@ -33,14 +33,12 @@ RSpec.describe User do
     end
   end
 
-  describe 'validations' do
+  describe 'Associations' do
     it { is_expected.to belong_to(:account).required }
+  end
 
-    it 'is invalid without a valid email' do
-      user = Fabricate.build(:user, email: 'john@')
-      user.valid?
-      expect(user).to model_have_error_on_field(:email)
-    end
+  describe 'Validations' do
+    it { is_expected.to_not allow_value('john@').for(:email) }
 
     it 'is valid with an invalid e-mail that has already been saved' do
       user = Fabricate.build(:user, email: 'invalid-email')
@@ -48,11 +46,7 @@ RSpec.describe User do
       expect(user.valid?).to be true
     end
 
-    it 'is valid with a localhost e-mail address' do
-      user = Fabricate.build(:user, email: 'admin@localhost')
-      user.valid?
-      expect(user.valid?).to be true
-    end
+    it { is_expected.to allow_value('admin@localhost').for(:email) }
   end
 
   describe 'Normalizations' do
@@ -180,6 +174,39 @@ RSpec.describe User do
       user = described_class.new(email: 'foo@mvrht.com.topdomain.tld', account: account, password: password, agreement: true)
 
       expect(user).to_not be_valid
+    end
+  end
+
+  describe '#update_sign_in!' do
+    context 'with an existing user' do
+      let!(:user) { Fabricate :user, last_sign_in_at: 10.days.ago, current_sign_in_at: 1.hour.ago, sign_in_count: 123 }
+
+      context 'with new sign in false' do
+        it 'updates timestamps but not counts' do
+          expect { user.update_sign_in!(new_sign_in: false) }
+            .to change(user, :last_sign_in_at)
+            .and change(user, :current_sign_in_at)
+            .and not_change(user, :sign_in_count)
+        end
+      end
+
+      context 'with new sign in true' do
+        it 'updates timestamps and counts' do
+          expect { user.update_sign_in!(new_sign_in: true) }
+            .to change(user, :last_sign_in_at)
+            .and change(user, :current_sign_in_at)
+            .and change(user, :sign_in_count).by(1)
+        end
+      end
+    end
+
+    context 'with a new user' do
+      let(:user) { Fabricate.build :user }
+
+      it 'does not persist the user' do
+        expect { user.update_sign_in! }
+          .to_not change(user, :persisted?).from(false)
+      end
     end
   end
 
@@ -574,7 +601,7 @@ RSpec.describe User do
   end
 
   describe '.those_who_can' do
-    before { Fabricate(:user, role: UserRole.find_by(name: 'Moderator')) }
+    before { Fabricate(:moderator_user) }
 
     context 'when there are not any user roles' do
       before { UserRole.destroy_all }
@@ -591,7 +618,7 @@ RSpec.describe User do
     end
 
     context 'when there are users with roles' do
-      let!(:admin_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+      let!(:admin_user) { Fabricate(:admin_user) }
 
       it 'returns the users with the role' do
         expect(described_class.those_who_can(:manage_blocks)).to eq([admin_user])

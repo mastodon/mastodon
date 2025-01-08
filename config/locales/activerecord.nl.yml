@@ -24,6 +24,8 @@ nl:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: bevat waarden met ontbrekende labels
             username:
               invalid: alleen letters, nummers en underscores
               reserved: gereserveerd
@@ -39,6 +41,11 @@ nl:
           attributes:
             data:
               malformed: heeft de verkeerde opmaak
+        list_account:
+          attributes:
+            account_id:
+              taken: staat al in de lijst
+          must_be_following: moet een gevolgd account zijn
         status:
           attributes:
             reblog:

@@ -214,6 +214,7 @@ eo:
         enable_user: Ebligi uzanton
         memorialize_account: Memorigu Konton
         promote_user: Promocii Uzanton
+        publish_terms_of_service: Publikigi kondiĉojn de uzado
         reject_appeal: Malaprobi Apelacion
         reject_user: Malakcepti Uzanton
         remove_avatar_user: Forigi la profilbildon
@@ -278,6 +279,7 @@ eo:
         enable_user_html: "%{name} ebligis ensaluton por uzanto %{target}"
         memorialize_account_html: "%{name} ŝanĝis la konton de %{target} al memora paĝo"
         promote_user_html: "%{name} plirangigis uzanton %{target}"
+        publish_terms_of_service_html: "%{name} publikigis ĝisdatigojn de la kondiĉoj de la servo"
         reject_appeal_html: "%{name} malakceptis apelacion kontraŭ moderiga decido de %{target}"
         reject_user_html: "%{name} malakceptis registriĝon de %{target}"
         remove_avatar_user_html: "%{name} forigis la profilbildon de %{target}"
@@ -455,6 +457,7 @@ eo:
         title: Bloki novan retpoŝtan domajnon
       no_email_domain_block_selected: Neniuj domajn blokoj ŝanĝiĝis ĉar nenio estis elektita
       not_permitted: Ne permesita
+      resolved_dns_records_hint_html: La nomo de la domajno almontras la sekvajn MX-domajnojn, kiuj estas fine responsaj por akcepti retpoŝton. Blokas MX-domajnon blokus enskribadojn el retpoŝtadreso ajn, kiu uzas la saman MX-domajnon, eĉ se la videbla domajnnomo estas malsama. <strong> Gardemu ne bloki maĵorajn provizistojn de retpoŝto.</strong>
       resolved_through_html: Solvis tra %{domain}
       title: Blokis retpoŝtajn domajnojn
     export_domain_allows:
@@ -483,6 +486,7 @@ eo:
     instances:
       audit_log:
         title: Novaj Protokoloj Pri Ekzamenoj
+        view_all: Vidu la tutan protokolon de revizio
       availability:
         description_html:
           one: Se sendo la domajno malsukcesis por <strong>%{count} dio</strong>, ne estas sendprovo plu escepte <em>de</em> la dojmano.
@@ -609,6 +613,7 @@ eo:
         resolve_description_html: Nenio okazotas al la raportita konto kaj la raporto fermotas.
         silence_description_html: La konto estos videbla al nur personoj kiu jam sekvis ĝin au permane serĉo ĝin, ege limigante ĝian atingon. Malfermi ciujn raportojn kontra ĉi tiun konton.
         suspend_description_html: La konto kaj ciuj ĝiaj enhavoj estos neatingebla kaj poŝte forigitas, kaj interagi per ĝi estos neebla. Malfermi ciujn raportojn kontra ĉi tiu konto.
+      actions_description_html: Elektu kiun agon fari por ripari ĉi tiun raporton. Se vi punus la raportitan uzanton, sciigon de retpoŝto sendos al ri, krom kiam la <strong>Spamo</strong> kategorio estas elektita.
       actions_description_remote_html: Decidu kiun klopodon por solvi ĉi tiun raporton. Ĉi tiu efikas kiel nur <strong>via</strong> servilo komuniki per ĉi tiu fora konto kaj trakti ĝian enhavon.
       actions_no_posts: Ĉi tiu raporto havas neniujn rilatajn afiŝojn por forigi
       add_to_report: Aldoni pli al raporto
@@ -630,6 +635,7 @@ eo:
       created_at: Signalita
       delete_and_resolve: Forigi afiŝojn
       forwarded: Plusendita
+      forwarded_replies_explanation: Ĉi tiu raporto estas de malproksima uzanto kaj estas pri malproksima enhavo. Ĝi plusendis al vi ĉar la raportita enhavo estas rediraĵo je unu el viaj uzantoj.
       forwarded_to: Plusendita al %{domain}
       mark_as_resolved: Marki solvita
       mark_as_sensitive: Marki kiel tiklan
@@ -673,6 +679,7 @@ eo:
         delete_data_html: Forigi profilon kaj enhavojn de <strong>@%{acct}</strong> post 30 tagoj se ili ne malsuspenditas dum la dauro
         preview_preamble_html: "<strong>@%{acct}</strong> akiros averton kun ĉi tiuj enhavoj:"
         record_strike_html: Rekordu admonon kontra <strong>@%{acct}</strong> por helpi vi plikontroli estontajn malobservojn de ĉi tiu konto
+        send_email_html: Sendu <strong>@%{acct}</strong> retpoŝto de averto
         warning_placeholder: Nedeviga aldona kialo por la moderigadago.
       target_origin: Origino de raportita konto
       title: Signaloj
@@ -712,6 +719,7 @@ eo:
         manage_appeals: Administri Apelaciojn
         manage_appeals_description: Rajtigas al uzantoj kontroli apelaciojn kontraǔ kontrolaj agoj
         manage_blocks: Administri Blokojn
+        manage_blocks_description: Permesas uzantojn bloki provizistojn de retpoŝto kaj IP adresojn
         manage_custom_emojis: Administri propajn emoĝiojn
         manage_custom_emojis_description: Permesi uzantojn administri propajn emoĝiojn ĉe la servilo
         manage_federation: Administri Federacion
@@ -729,6 +737,7 @@ eo:
         manage_taxonomies: Administri kategoriarojn
         manage_taxonomies_description: Permesi uzantojn kontroli popularan enhavon kaj ĝisdatigi kradvortopciojn
         manage_user_access: Administri uzantoaliron
+        manage_user_access_description: Permesas uzantojn invalidi la du-faktoran aŭtentigon de aliaj uzantoj, ŝanĝi siajn retpoŝtadresojn, kaj restarigi siajn pasvorton
         manage_users: Administri uzantojn
         manage_users_description: Permesi uzantaojn vidi detalojn de aliaj uzantoj kaj administri ilin
         manage_webhooks: Administri rethokojn
@@ -791,15 +800,19 @@ eo:
           approved: Bezonas aprobi por aliĝi
           none: Neniu povas aliĝi
           open: Iu povas aliĝi
+        warning_hint: Ni rekomendas uzi "Konsento neprigas por enskribiĝi" krom se vi memcertas, ke via teamo de moderistoj povas ellabori spamon kaj malignajn registradojn rapide.
       security:
         authorized_fetch: Devigi aŭtentigon de frataraj serviloj
+        authorized_fetch_hint: Neprigante aŭtentigon por federataj serviloj permesas pli striktan devigon de ambaŭ uzanto-nivelaj kaj servilo-nivelaj blokoj. Tamen, ĉi tiu uzas pli risurcojn, reduktas la ĝisiradon de viaj respondoj, kaj povas enkonduki aferoj, pri kongruoj. Plu, ĉi tiu ne preventos homojn el alporti viajn afiŝojn kaj uzantojn.
         authorized_fetch_overridden_hint: Vi nuntempe ne povas ŝanĝi ĉi tiun agordon ĉar ĝi estas anstataŭita de mediovariablo.
+        federation_authentication: Devigado de la aŭtentigo de la federacio
       title: Agordoj de la servilo
     site_uploads:
       delete: Forigi elŝutitan dosieron
       destroyed_msg: Reteja alŝuto sukcese forigita!
     software_updates:
       critical_update: Kritika — bonvolu ĝisdatiĝi rapide
+      description: Ni rekomendas ĝisdatigadi vian instalaĵon de Mastodon por deutili la plej ĵusajn riparojn kaj trajtojn. Plu, estas kelkajfoje grava ĝisdati Mastodon rapide por eviti problemojn pri sekureco. Tial, Mastodon kontrolas por ĝisdataĵoj ĉiuj 30 minutoj, kaj sciigos vin laŭ viaj agordoj pri retpoŝtaj sciigoj.
       documentation_link: Lerni pli
       release_notes: Eldono-notoj
       title: Disponeblaj ĝisdatigoj
@@ -815,8 +828,10 @@ eo:
       back_to_account: Reveni al konta paĝo
       back_to_report: Reveni al raportpaĝo
       batch:
+        add_to_report: 'Aldoni al raporto #%{id}'
         remove_from_report: Forigi de raporto
         report: Raporti
+      contents: Enhavoj
       deleted: Forigita
       favourites: Stelumoj
       history: Versia historio
@@ -825,12 +840,17 @@ eo:
       media:
         title: Aŭdovidaĵoj
       metadata: Metadatumoj
+      no_history: Ĉi tiu afiŝo ne estis redaktita
       no_status_selected: Neniu afiŝo estis ŝanĝita ĉar neniu estis elektita
       open: Malfermi afiŝojn
       original_status: Originala afiŝo
       reblogs: Reblogaĵoj
+      replied_to_html: Respondis al %{acct_link}
       status_changed: Afiŝo ŝanĝiĝis
+      status_title: Afiŝo de @%{name}
+      title: Afiŝoj de konto - @%{name}
       trending: Popularaĵoj
+      view_publicly: Vidu publike
       visibility: Videbleco
       with_media: Kun aŭdovidaĵoj
     strikes:
@@ -848,10 +868,20 @@ eo:
     system_checks:
       database_schema_check:
         message_html: Estas pritraktataj datumbazaj migradoj. Bonvolu ekzekuti ilin por certigi, ke la apliko kondutas kiel atendite
+      elasticsearch_health_red:
+        message_html: Elasticsearch peniko estas malsana (ruĝa statuso), trajtoj de serĉo malhaveblas
+      elasticsearch_health_yellow:
+        message_html: Peniko de Elasticsearch malsana (flava status), vi eble povas enketi la kialon
+      elasticsearch_index_mismatch:
+        message_html: Bildigoj de enhavtabelo de Elasticsearch posttempas. Bonvolu, rulu <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_preset:
         action: Legi dokumentaron
+        message_html: Via peniko de Elasticsearch havas pli ol unu verticon, sed Mastodon ne estas agordita uzi ilin.
       elasticsearch_preset_single_node:
         action: Vidi dokumentadon
+        message_html: Via peniko de Elasticsearch havas nur unu verticon, <code>ES_PRESET</code> devus munti al <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Via enhavtabelo de la sistemo de Elasticsearch posttempas pro ŝanĝo de agordoj. Bonvolu, rulu <code>tootctl search deploy --reset-chewy</code> por ĝisdatigi ĝin.
       elasticsearch_running_check:
         message_html: Ne eblas konekti Elasticsearch. Bonvolu kontroli ke ĝi funkcias, aǔ malŝaltu plentekstan serĉon
       elasticsearch_version_check:
@@ -870,6 +900,7 @@ eo:
         message_html: Grava ĝisdatigo de Mastodon disponeblas, bonvolu ĝisdatigi kiel eble plej rapide.
       software_version_patch_check:
         action: Vidi disponeblajn ĝisdatigojn
+        message_html: Ĝisdataĵo de Mastodon pri cimriparo haveblas.
       upload_check_privacy_error:
         action: Klaku ĉi tie por pliaj informoj
         message_html: "<strong>Via retservilo estas misagordita. La privateco de viaj uzantoj estas en risko.</strong>"
@@ -878,10 +909,13 @@ eo:
         message_html: "<strong>Via objektostokado estas misagordita. La privateco de viaj uzantoj estas en risko.</strong>"
     tags:
       moderation:
+        not_trendable: Ne modebla
         not_usable: Ne uzebla
+        pending_review: Pendata superrigardo
         review_requested: Revizio petita
         reviewed: Reviziita
         title: Stato
+        trendable: Modebla
         unreviewed: Nereviziita
         usable: Uzebla
       name: Nomo
@@ -893,6 +927,26 @@ eo:
       search: Serĉi
       title: Kradvortoj
       updated_msg: Kradvorto agordoj ĝisdatigis sukcese
+    terms_of_service:
+      back: Reen al kondiĉoj de uzado
+      changelog: Kio ŝanĝiĝis
+      create: Uzu viajn proprajn
+      current: Nuna
+      draft: Malneto
+      generate: Uzi ŝablonon
+      generates:
+        action: Generi
+        title: Agordo de kondiĉoj de uzado
+      no_history: Ankoraŭ ne estas registritaj ŝanĝoj de la kondiĉoj de la servo.
+      no_terms_of_service_html: Vi nuntempe ne havas iujn ajn kondiĉojn de la servo agordita. La kondiĉoj de la servo celas doni klarecon kaj protekti vin kontraŭ eblaj respondecoj en disputoj kun viaj uzantoj.
+      preview:
+        send_to_all:
+          one: Sendi %{display_count} retpoŝton
+          other: Sendi %{display_count} retpoŝtojn
+      publish: Publikigi
+      published_on_html: Publikigita je %{date}
+      save_draft: Konservi malneton
+      title: Kondiĉoj de uzado
     title: Administrado
     trends:
       allow: Permesi
@@ -930,7 +984,9 @@ eo:
       statuses:
         allow: Permesi afiŝon
         allow_account: Permesi aŭtoron
+        confirm_allow: Ĉu vi certas, ke vi volas permesi elektitajn statusojn?
         confirm_allow_account: Ĉu vi certas, ke vi volas permesi elektitajn kontojn?
+        confirm_disallow: Ĉu vi certas, ke vi volas malpermesi elektitajn statusojn?
         confirm_disallow_account: Ĉu vi certas, ke vi volas malpermesi elektitajn kontojn?
         description_html: Oni multe diskonigas kaj stelumas ĉi tiujn mesaĝojn nuntempe laŭ via servilo. Tio povas helpi novajn kaj revenantajn uzantojn trovi pli da homoj por sekvi. Mesaĝo estas montrita publike nur se vi aprobis la aŭtoron kaj se la aŭtoro aprobis ke ties konto estu proponita al aliaj. Vi ankaŭ povas permesi aŭ malakcepti specifajn mesaĝojn.
         disallow: Malpermesi afiŝon
@@ -971,6 +1027,7 @@ eo:
       delete: Forigi
       edit_preset: Redakti avertan antaŭagordon
       empty: Vi ankoraŭ ne difinis iun ajn antaŭagordon de averto.
+      title: Antaŭdifinoj de averto
     webhooks:
       add_new: Aldoni finpunkton
       delete: Forigi
@@ -992,6 +1049,9 @@ eo:
       title: Rethokoj
       webhook: Rethoko
   admin_mailer:
+    auto_close_registrations:
+      body: Pro seneco de ĵusaj aktivaĵoj de moderistoj, enskribadojn en %{instance} aŭtomate ŝanĝis al mana superrigardo, por eviti %{instance} estas uzita por eblaj fiuloj. Vi povas reŝanĝi ĝin al malfermaj enskribadoj iam ajn.
+      subject: Enskribadoj por %{instance} aŭtomate ŝanĝis al mana konsento
     new_appeal:
       actions:
         delete_statuses: por forigi iliajn afiŝojn
@@ -1006,6 +1066,7 @@ eo:
       subject: "%{username} apelacias kontroldecidon ĉe %{instance}"
     new_critical_software_updates:
       body: Novaj gravaj versioj de Mastodon estis publikigitaj, vi eble volas ĝisdatigi kiel eble plej baldaŭ!
+      subject: Sojlaj ĝisdataĵoj de Mastodon haveblas por %{instance}!
     new_pending_account:
       body: La detaloj de la nova konto estas ĉi-sube. Vi povas akcepti aŭ malakcepti tiun aliĝilon.
       subject: Nova konto atendas por recenzo en %{instance} (%{username})
@@ -1066,10 +1127,12 @@ eo:
       hint_html: Nur unu plia afero! Ni devas konfirmi, ke vi estas homo (tio estas por ke ni povu konservi la spamon ekstere!). Solvu la CAPTCHA sube kaj alklaku "Daŭrigu".
       title: Sekureckontrolo
     confirmations:
+      awaiting_review: Via retpoŝtadreso estas konfirmita! La teamo de %{domain} nun superrigardas vian enskribiĝon. Vi ricevos retpoŝton, se ili aprobos vian konton!
       awaiting_review_title: Via registriĝo estas reviziita
       clicking_this_link: alklakante ĉi tiun ligilon
       login_link: ensaluti
       proceed_to_login_html: Vi nun povas iri al %{login_link}.
+      redirect_to_app_html: Vi devus sendigi al la <strong>%{app_name}</strong> aplikaĵo. Se tion ne okazis, provu %{clicking_this_link} aŭ mane reiras al la aplikaĵo.
       registration_complete: Via registriĝo sur %{domain} nun finiĝis!
       welcome_title: Bonvenon, %{name}!
       wrong_email_hint: Se tiu retadreso ne estas ĝusta, vi povas ŝanĝi ĝin en kontagordoj.
@@ -1091,7 +1154,6 @@ eo:
     migrate_account: Movi al alia konto
     migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas <a href="%{path}">agordi ĝin ĉi tie</a>.
     or_log_in_with: Aŭ saluti per
-    privacy_policy_agreement_html: Mi legis kaj konsentis pri <a href="%{privacy_policy_path}" target="_blank">privatpolitiko</a>
     progress:
       confirm: Konfirmi retadreson
       details: Viaj detaloj
@@ -1115,6 +1177,8 @@ eo:
     security: Sekureco
     set_new_password: Elekti novan pasvorton
     setup:
+      email_below_hint_html: Kontrolu vian spam-dosierujon aŭ petu novan. Se necese, vi povas korekti vian retadreson.
+      email_settings_hint_html: Alklaku la ligilon, kiun ni sendis al %{email} por komenci uzi Mastodon. Ni atendos ĝuste ĉi tie.
       link_not_received: Ĉu vi ne ricevis ligilon?
       new_confirmation_instructions_sent: Vi ricevos novan retpoŝton kun la konfirma ligilo post kelkaj minutoj!
       title: Kontrolu vian retpoŝta enirkesto
@@ -1122,16 +1186,20 @@ eo:
       preamble_html: Ensalutu per via detaloj de <strong>%{domain}</strong>. Se via konto gastigantigas sur malsama servilo, vi ne povas ensaluti ĉi tie.
       title: Saluti en %{domain}
     sign_up:
-      preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povas sekvi ajn personojn en la reto.
+      manual_review: Enskriboj en %{domain} havas manan superrigardon, farita de niaj moderistoj. Por helpi nin por procezi vian enskribon, skribu ion pri vi mem, kaj kial vi volas konton en %{domain}.
+      preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povos sekvi ajnan alian personon ĉe la fediverso, sendepende de kie ilia konto estas gastigita.
       title: Ni pretigu vin ĉe %{domain}.
     status:
       account_status: Statuso de la konto
       confirming: Atendante ke retpoŝta konfirmo estos kompletigita.
       functional: Via konto estas tute funkcia.
+      pending: Via apliko estas superrigardata de niaj teamo. Ĉi tiu povas bezoni iom da tempo. Vi ricevos retpoŝton, se via apliko estas konsentita.
       redirecting_to: Via konto estas neaktiva ĉar ĝi nun alidirektas al %{acct}.
+      self_destruct: Pro %{domain} ekfermas, vi povos nur havi malvastan atingon al via konto.
       view_strikes: Vidi antauaj admonoj kontra via konto
     too_fast: Formularo sendita tro rapide, klopodu denove.
     use_security_key: Uzi sekurecan ŝlosilon
+    user_agreement_html: Mi legis kaj konsentas pri la <a href="%{terms_of_service_path}" target="_blank">servokondiĉoj</a> kaj <a href="%{privacy_policy_path}" target="_blank">privateca politiko</a>
   author_attribution:
     example_title: Ekzempla teksto
     hint_html: Ĉu vi skribas novaĵojn aŭ blogartikolojn ekster Mastodon? Kontrolu kiel vi estas kreditita kiam ili estas kunhavataj ĉe Mastodon.
@@ -1178,6 +1246,7 @@ eo:
       data_removal: Viaj afiŝoj kaj aliaj informoj estos forigita por eterne
       email_change_html: Vi povas <a href="%{path}">ŝanĝi vian retadreson</a> sen forigi vian konton
       email_contact_html: Se ĝi ankoraŭ ne alvenas, vi povas retpoŝti al <a href="mailto:%{email}">%{email}</a> por helpo
+      email_reconfirmation_html: Se vi ne ricevas la konfirmretpoŝton, vi povas <a href="%{path}">denove peti</a>
       irreversible: Vi ne povas regajni au reaktivigi vian konton
       more_details_html: Por pli da detaloj, vidi la <a href="%{terms_path}">privatecan politikon</a>.
       username_available: Via uzantnomo iĝos denove disponebla
@@ -1214,6 +1283,7 @@ eo:
       your_appeal_rejected: Via apelacio malakceptitas
   edit_profile:
     basic_information: Baza informo
+    hint_html: "<strong>Personigi, kion homoj vidi en via publika profilo kaj apud viaj afiŝoj. </strong> Aliaj homoj estas pli probable resekvi vin kaj interagi kun vi se vi havus finigitan profilon kaj profilan foton."
     other: Alia
   errors:
     '400': La peto kiun vi sendis estas nevalida au malformas.
@@ -1336,6 +1406,44 @@ eo:
       merge_long: Konservi ekzistajn registrojn kaj aldoni novajn
       overwrite: Anstataŭigi
       overwrite_long: Anstataŭigi la nunajn registrojn per la novaj
+    overwrite_preambles:
+      blocking_html:
+        one: Vi tuj <strong>anstataŭas vian blokliston</strong>, kun ĝis <strong>%{count} kontoj</strong> de <strong>%{filename}</strong>.
+        other: Vi tuj <strong>anstataŭas vian blokliston</strong> ĝis <strong>%{count} kontoj</strong> de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Vi tuj <strong>anstataŭas viajn legosignojn</strong> kun ĝis <strong>%{count} afiŝoj</strong> de <strong>%{filename}</strong>.
+        other: Vi tuj <strong>anstataŭas viajn legosignojn</strong> kun ĝis <strong>%{count} afiŝoj</strong> de <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Vi tuj <strong>anstataŭas vian domajnan blokliston</strong> kun ĝis <strong>%{count} domajnoj</strong> de <strong>%{filename}</strong>.
+        other: Vi tuj <strong>anstataŭas vian domajnan blokliston</strong> kun ĝis <strong>%{count} domajnoj</strong> de <strong>%{filename}</strong>.
+      following_html:
+        one: Vi tuj <strong>sekvos</strong> ĝis <strong>%{count} kontoj</strong> de <strong>%{filename}</strong> kaj <strong>ĉesos sekvi iun alian</strong>.
+        other: Vi tuj <strong>sekvos</strong> ĝis <strong>%{count} kontoj</strong> de <strong>%{filename}</strong> kaj <strong>ĉesos sekvi iun alian</strong>.
+      lists_html:
+        one: Vi tuj <strong>anstataŭos viajn listojn</strong> kun enhavo de <strong>%{filename}</strong>. Ĝis <strong>%{count} kontoj</strong> estos aldonitaj al novaj listoj.
+        other: Vi tuj <strong>anstataŭos viajn listojn</strong> kun enhavo de <strong>%{filename}</strong>. Ĝis <strong>%{count} kontoj</strong> estos aldonitaj al novaj listoj.
+      muting_html:
+        one: Vi tuj <strong>anstataŭas viajn listojn de silentigitaj kontoj</strong> kun ĝis<strong>%{count} kontoj</strong> de <strong>%{filename}</strong>.
+        other: Vi tuj <strong>anstataŭas viajn listojn de silentigitaj kontoj</strong> kun ĝis<strong>%{count} kontoj</strong> de <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        one: Vi tuj <strong>blokas</strong> ĝis <strong>%{count} kontoj</strong> de <strong>%{filename}</strong>.
+        other: Vi tuj <strong>blokas</strong> ĝis <strong>%{count} kontoj</strong> de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Vi tuj aldonas ĝis <strong>%{count} afiŝojn</strong> de <strong>%{filename}</strong> al viaj <strong>legosignoj</strong>.
+        other: Vi tuj aldonas ĝis <strong>%{count} afiŝojn</strong> de <strong>%{filename}</strong> al viaj <strong>legosignoj</strong>.
+      domain_blocking_html:
+        one: Vi tuj <strong>blokas</strong> ĝis <strong>%{count} domajnoj</strong> de <strong>%{filename}</strong>.
+        other: Vi tuj <strong>blokas</strong> ĝis <strong>%{count} domajnoj</strong> de <strong>%{filename}</strong>.
+      following_html:
+        one: Vi tuj <strong>sekvas</strong> ĝis <strong>%{count} kontoj</strong> de <strong>%{filename}</strong>.
+        other: Vi tuj <strong>sekvas</strong> ĝis <strong>%{count} kontoj</strong> de <strong>%{filename}</strong>.
+      lists_html:
+        one: Vi tuj aldonas ĝis <strong>%{count} kontojn</strong> de <strong>%{filename}</strong> al viaj <strong>listoj</strong>. Novaj listoj estos kreitaj se ne estas listo por aldoni.
+        other: Vi tuj aldonas ĝis <strong>%{count} kontojn</strong> de <strong>%{filename}</strong> al viaj <strong>listoj</strong>. Novaj listoj estos kreitaj se ne estas listo por aldoni.
+      muting_html:
+        one: Vi tuj<strong>silentas</strong> ĝis <strong>%{count} kontoj</strong> de <strong>%{filename}</strong>.
+        other: Vi tuj<strong>silentas</strong> ĝis <strong>%{count} kontoj</strong> de <strong>%{filename}</strong>.
     preface: Vi povas importi datumojn, kiujn vi eksportis el alia servilo, kiel liston de homoj, kiujn vi sekvas aŭ blokas.
     recent_imports: Lastatempaj importoj
     states:
@@ -1347,6 +1455,9 @@ eo:
     success: Viaj datumoj estis sukcese alŝutitaj kaj estos traktitaj kiel planite
     time_started: Komencis je
     titles:
+      blocking: Enportante blokitajn kontojn
+      bookmarks: Enportante legosignojn
+      domain_blocking: Enportante blokitajn domajnojn
       following: Importado de sekvaj kontoj
       lists: Importi listojn
       muting: Importado de silentigitaj kontoj
@@ -1403,13 +1514,21 @@ eo:
     unsubscribe:
       action: Jes, malabonu
       complete: Malabonita
+      confirmation_html: Ĉu vi certas, ke vi volas malaboni je ricevi %{type} por Mastodon ĉe %{domain} al via retpoŝto ĉe %{email}? Vi ĉiam povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
       emails:
         notification_emails:
+          favourite: sciigoj retpoŝtaj de ŝatataj
+          follow: sciigoj retpoŝtaj de sekvoj
           follow_request: retpoŝtajn petoj de sekvado
+          mention: sciigoj retpoŝtaj de mencioj
+          reblog: sciigoj retpoŝtaj de diskonigoj
+      resubscribe_html: Se vi malabonis erare, vi povas reaboni de viaj <a href="%{settings_path}">retpoŝtaj sciigaj agordoj</a>.
+      success_html: Vi ne plu ricevos %{type} por Mastodon ĉe %{domain} al via retpoŝto ĉe %{email}.
       title: Malaboni
   media_attachments:
     validations:
       images_and_video: Aldoni videon al mesaĝo, kiu jam havas bildojn ne eblas
+      not_found: Dosiero %{ids} ne trovis aŭ jam alteniĝis al alia afiŝo
       not_ready: Ne povas aldoni dosieron kiu ne finas procezitis.
       too_many: Aldoni pli ol 4 dosierojn ne eblas
   migrations:
@@ -1486,6 +1605,8 @@ eo:
     update:
       subject: "%{name} redaktis afiŝon"
   notifications:
+    administration_emails: Sciigoj retpoŝtaj de administacio
+    email_events: Eventoj por retpoŝtaj sciigoj
     email_events_hint: 'Elekti la eventojn pri kioj vi volas ricevi sciigojn:'
   number:
     human:
@@ -1579,7 +1700,7 @@ eo:
   scheduled_statuses:
     over_daily_limit: Vi transpasis la limigon al %{limit} samtage planitaj mesaĝoj
     over_total_limit: Vi transpasis la limigon al %{limit} planitaj mesaĝoj
-    too_soon: La planita dato devas esti en la estonteco
+    too_soon: dato devas esti en la futuro
   self_destruct:
     lead_html: Bedaŭrinde, <strong>%{domain}</strong> konstante fermiĝas. Se vi havis konton tie, vi ne povos daŭrigi uzi ĝin, sed vi ankoraŭ povas peti sekurkopion de viaj datumoj.
     title: Ĉi tiu servilo fermiĝas
@@ -1648,6 +1769,7 @@ eo:
     preferences: Preferoj
     profile: Profilo
     relationships: Sekvatoj kaj sekvantoj
+    severed_relationships: Finitaj rilatoj
     statuses_cleanup: Automata mesaĝforigo
     strikes: Kontroladmonoj
     two_factor_authentication: Dufaktora aŭtentigo
@@ -1655,8 +1777,13 @@ eo:
   severed_relationships:
     download: Elŝuti (%{count})
     event_type:
+      account_suspension: Suspendado de konto (%{target_name})
+      domain_block: Suspendado de servilo (%{target_name})
       user_domain_block: Vi blokis %{target_name}
     lost_followers: Perditaj sekvantoj
+    lost_follows: Perditaj sekvantoj
+    preamble: Vi eble perdos sekvojn kaj sekvantojn, kiam vi blockus domajnon aŭ kiam viaj moderantoj elektus suspendi malproksiman servilon. Kiam tio okazas, vi povus elŝulti registrojn de finitaj rilatoj, por inspektiĝi kaj eble enporti en alia servilo.
+    purged: Informo pri ĉi tiu servilo foriĝis de la administracio de via servilo.
     type: Evento
   statuses:
     attached:
@@ -1736,6 +1863,8 @@ eo:
       too_late: Estas tro malfrua por apelacii ĉi tiun admonon
   tags:
     does_not_match_previous_name: ne kongruas kun la antaŭa nomo
+  terms_of_service:
+    title: Kondiĉoj de uzado
   themes:
     contrast: Mastodon (Forta kontrasto)
     default: Mastodon (Malhela)
@@ -1771,19 +1900,24 @@ eo:
       action: Konto-agordoj
       explanation: La apelacio de la admono kontra via konto je %{strike_date} pri sendodato %{appeal_date} aprobitas.
       subject: Via apelacio de %{date} aprobitas
+      subtitle: Via konto estas denove bone.
       title: Apelacio estis aprobita
     appeal_rejected:
       explanation: La apelacio je %{strike_date} pri dato %{appeal_date} malakceptitas.
       subject: Via apelacio de %{date} estis malaprobita
+      subtitle: Via revizio negiĝis.
       title: Apelacio estis malaprobita
     backup_ready:
+      explanation: Vi petis por tuta rezervo de via Mastodon-a konto.
       extra: Estas nun preta por elŝuto!
       subject: Via arkivo estas preta por elŝutado
       title: Arkiva elŝuto
     failed_2fa:
+      details: 'Jen detaloj de la provaĵo de ensaluti:'
       explanation: Iu provis ensaluti al via konto sed provizis nevalidan duan aŭtentikigfaktoron.
       further_actions_html: Se ĉi tio ne estis vi, ni rekomendas ke vi %{action} tuj ĉar ĝi povas esti endanĝerigita.
       subject: Malsukceso dum la dua aŭtentikigfaktoro
+      title: Du-faktora aŭtentigo malsukcesis
     suspicious_sign_in:
       change_password: ŝanĝi vian pasvorton
       details: 'Ĉi-sube estas detaloj pri la saluto:'
@@ -1791,6 +1925,11 @@ eo:
       further_actions_html: Se ne estas vi, ni rekomendas ke vi %{action} tuj por sekurigi vian konton.
       subject: Via konto estas alirita de nova IP-adreso
       title: Nova saluto
+    terms_of_service_changed:
+      sign_off: La teamo de %{domain}
+      subject: Ĝisdatigoj al niaj kondiĉoj de servo
+      subtitle: La kondiĉoj de la servo de %{domain} ŝanĝiĝas
+      title: Grava ĝisdatigo
     warning:
       appeal: Sendi apelacion
       appeal_description: Se vi pensas ke ĉi tio estas eraro, vi povas sendi apelacion al la teamo de %{instance}.
@@ -1827,13 +1966,24 @@ eo:
       apps_ios_action: Elŝutu ĉe la App Store
       apps_step: Elŝutu niajn oficialajn aplikaĵojn.
       apps_title: Aplikaĵoj de Mastodon
+      checklist_subtitle: 'Nin eku vin en ĉi tiu nova socia rando:'
       checklist_title: Bonvenan Markolisto
       edit_profile_action: Agordi
+      edit_profile_step: Plibonigi viajn interagojn per havas finitan profilon.
       edit_profile_title: Agordi vian profilon
       explanation: Jen kelkaj konsiloj por helpi vin komenci
       feature_action: Lerni pli
+      feature_audience: Mastodon provizas vin per unika eblo por administri vian sekvantaron sen perantoj. Mastodon disponigita en via propra infrastrukturo ebligas al vi sekvi kaj esti sekvita de alia ajn Mastodon-servilo kaj estas tute sub via kontrolo nure.
+      feature_audience_title: Konstruu vian spektantaron memfide
+      feature_control: Vi scias plej bone, kion vi volas vidi en via hejmtemplinio. Neniaj algoritmoj nek reklamoj por malŝpari vian tempon. Sekvu iun ajn trans Mastodon-servilo ajn el unu konto kaj ricevu iliajn afiŝojn kronologie, kaj igu vian ejon de reto iom pli kiel vi.
+      feature_control_title: Havu la kontrolon de via propra templinio
+      feature_creativity: Mastodon subtenas aŭdaj, videajn kaj bildajn afiŝojn, priskribojn alireblecajn, enketojn, avertojn pri enhavo, animitajn bildetojn, personajn emoĝiojn, stucan kontrolon de bildetoj, kaj pli, por helpi al vi esprimi vin rete. Ĉu vi publikigas vian arton, vian muzikon, aŭ viajn podkastojn, Mastodon estas por vi.
+      feature_creativity_title: Senkompara kreemeco
+      feature_moderation: Mastodon denove donas al vi decidpovon. Ĉiu servilo kreas siajn proprajn regulojn kaj gvidliniojn, kiuj estas devigitaj loke kaj ne desupre kiel en firmaaj sociaj retejoj, igante ĝin la plej agordebla respondante al la bezonoj de malsamaj aroj de homoj. Aliĝu servilon kun la reguloj, kun kiuj vi konsentas, aŭ gastigu vian propran.
+      feature_moderation_title: Moderante kiel ĝi devus esti
       follow_action: Sekvi
       follow_step: Sekvi interesajn homojn estas pri kio Mastodon temas.
+      follow_title: Personigu vian hejmtemplinion
       follows_subtitle: Sekvu konatajn kontojn
       follows_title: Kiun sekvi
       follows_view_more: Rigardu pli da homoj por sekvi
@@ -1858,6 +2008,7 @@ eo:
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
     otp_lost_help_html: Se vi perdas aliron al ambaŭ, vi povas kontakti %{email}
     rate_limited: Estas tro multaj aŭtentigaj provoj, reprovu poste.
+    seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retpoŝtaj agordoj ne estas disponeblaj.
     signed_in_as: 'Salutinta kiel:'
   verification:
     extra_instructions_html: <strong>Konsilo:</strong> La ligilo en via retejo povas esti nevidebla. La grava parto estas <code>rel="me"</code>, kiu evitas identoŝtelon en retejoj kun enhavo generita de uzantoj. Vi povas eĉ uzi <code>link</code>-etikedon en la <code>header</code> de la paĝo anstataŭ <code>a</code>, sed la HTML devas esti atingebla sen plenumado de JavaScript.

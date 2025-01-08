@@ -6,6 +6,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
   subject { described_class.new }
 
   let!(:status) { Fabricate(:status, text: 'Hello world', account: Fabricate(:account, domain: 'example.com')) }
+  let(:bogus_mention) { 'https://example.com/users/erroringuser' }
   let(:payload) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
@@ -17,6 +18,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       tag: [
         { type: 'Hashtag', name: 'hoge' },
         { type: 'Mention', href: ActivityPub::TagManager.instance.uri_for(alice) },
+        { type: 'Mention', href: bogus_mention },
       ],
     }
   end
@@ -30,19 +32,21 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
   let(:media_attachments) { [] }
 
   before do
-    mentions.each { |a| Fabricate(:mention, status: status, account: a) }
+    mentions.each { |(account, silent)| Fabricate(:mention, status: status, account: account, silent: silent) }
     tags.each { |t| status.tags << t }
     media_attachments.each { |m| status.media_attachments << m }
+    stub_request(:get, bogus_mention).to_raise(HTTP::ConnectionError)
   end
 
   describe '#call' do
-    it 'updates text and content warning' do
+    it 'updates text and content warning, and schedules re-fetching broken mention' do
       subject.call(status, json, json)
       expect(status.reload)
         .to have_attributes(
           text: eq('Hello universe'),
           spoiler_text: eq('Show more')
         )
+      expect(MentionResolveWorker).to have_enqueued_sidekiq_job(status.id, bogus_mention, anything)
     end
 
     context 'when the changes are only in sanitized-out HTML' do
@@ -252,16 +256,22 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
           updated: '2021-09-08T22:39:25Z',
           tag: [
             { type: 'Hashtag', name: 'foo' },
+            { type: 'Hashtag', name: 'bar' },
           ],
         }
       end
 
       before do
-        subject.call(status, json, json)
+        status.account.featured_tags.create!(name: 'bar')
+        status.account.featured_tags.create!(name: 'test')
       end
 
-      it 'updates tags' do
-        expect(status.tags.reload.map(&:name)).to eq %w(foo)
+      it 'updates tags and featured tags' do
+        expect { subject.call(status, json, json) }
+          .to change { status.tags.reload.pluck(:name) }.from(%w(test foo)).to(%w(foo bar))
+          .and change { status.account.featured_tags.find_by(name: 'test').statuses_count }.by(-1)
+          .and change { status.account.featured_tags.find_by(name: 'bar').statuses_count }.by(1)
+          .and change { status.account.featured_tags.find_by(name: 'bar').last_status_at }.from(nil).to(be_present)
       end
     end
 
@@ -276,7 +286,19 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
 
     context 'when originally with mentions' do
-      let(:mentions) { [alice, bob] }
+      let(:mentions) { [[alice, false], [bob, false]] }
+
+      before do
+        subject.call(status, json, json)
+      end
+
+      it 'updates mentions' do
+        expect(status.active_mentions.reload.map(&:account_id)).to eq [alice.id]
+      end
+    end
+
+    context 'when originally with silent mentions' do
+      let(:mentions) { [[alice, true], [bob, true]] }
 
       before do
         subject.call(status, json, json)
