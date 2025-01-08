@@ -76,6 +76,18 @@ code {
     margin-bottom: 16px;
     overflow: hidden;
 
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &__toolbar {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
     &.hidden {
       margin: 0;
     }
@@ -540,6 +552,7 @@ code {
   .actions {
     margin-top: 30px;
     display: flex;
+    gap: 10px;
 
     &.actions--top {
       margin-top: 0;
@@ -552,9 +565,7 @@ code {
     margin-bottom: 15px;
   }
 
-  button,
-  .button,
-  .block-button {
+  button:not(.button, .link-button) {
     display: block;
     width: 100%;
     border: 0;
@@ -629,6 +640,18 @@ code {
   }
 
   .label_input {
+    position: relative;
+
+    &__loading-indicator {
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      inset-inline-start: 0;
+      border: 1px solid transparent;
+      padding: 10px 16px;
+      width: 100%;
+    }
+
     &__wrapper {
       position: relative;
     }

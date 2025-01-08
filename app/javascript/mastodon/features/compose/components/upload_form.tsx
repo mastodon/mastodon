@@ -2,7 +2,11 @@ import { useState, useCallback, useMemo } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import type { List } from 'immutable';
+import type {
+  List,
+  Map as ImmutableMap,
+  List as ImmutableList,
+} from 'immutable';
 
 import type {
   DragStartEvent,
@@ -63,18 +67,20 @@ export const UploadForm: React.FC = () => {
   const intl = useIntl();
   const mediaIds = useAppSelector(
     (state) =>
-      state.compose // eslint-disable-line @typescript-eslint/no-unsafe-call
-        .get('media_attachments') // eslint-disable-line @typescript-eslint/no-unsafe-member-access
-        .map((item: MediaAttachment) => item.get('id')) as List<string>, // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+      (
+        (state.compose as ImmutableMap<string, unknown>).get(
+          'media_attachments',
+        ) as ImmutableList<MediaAttachment>
+      ).map((item: MediaAttachment) => item.get('id')) as List<string>,
   );
   const active = useAppSelector(
-    (state) => state.compose.get('is_uploading') as boolean, // eslint-disable-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    (state) => state.compose.get('is_uploading') as boolean,
   );
   const progress = useAppSelector(
-    (state) => state.compose.get('progress') as number, // eslint-disable-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    (state) => state.compose.get('progress') as number,
   );
   const isProcessing = useAppSelector(
-    (state) => state.compose.get('is_processing') as boolean, // eslint-disable-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    (state) => state.compose.get('is_processing') as boolean,
   );
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const sensors = useSensors(
