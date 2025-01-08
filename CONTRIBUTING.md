@@ -19,7 +19,9 @@ request on our [documentation repository].
 
 ## Bug reports
 
-Bug reports and feature suggestions must use descriptive and concise titles and be submitted to [GitHub Issues](https://github.com/mastodon/mastodon/issues). Please use the search function to make sure that you are not submitting duplicates, and that a similar report or request has not already been resolved or rejected.
+Bug reports and feature suggestions must use descriptive and concise titles and
+be submitted to [GitHub Issues]. Please use the search function to make sure
+that you are not submitting duplicate bug reports or feature requests.
 
 ## Translations
 
@@ -54,3 +56,4 @@ The [Mastodon documentation](https://docs.joinmastodon.org) is a statically gene
 [contribution guidelines]: https://github.com/mastodon/.github/blob/main/CONTRIBUTING.md
 [DEVELOPMENT]: docs/DEVELOPMENT.md
 [documentation repository]: https://github.com/mastodon/documentation
+[GitHub Issues]: https://github.com/mastodon/mastodon/issues
