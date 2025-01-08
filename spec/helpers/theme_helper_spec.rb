@@ -79,6 +79,26 @@ RSpec.describe ThemeHelper do
     end
   end
 
+  describe '#custom_stylesheet' do
+    context 'when custom css setting value digest is present' do
+      before { Rails.cache.write(:setting_digest_custom_css, '1a2s3d4f1a2s3d4f') }
+
+      it 'returns value from settings' do
+        expect(custom_stylesheet)
+          .to match('/css/custom-1a2s3d4f.css')
+      end
+    end
+
+    context 'when custom css setting value digest is not present' do
+      before { Rails.cache.delete(:setting_digest_custom_css) }
+
+      it 'returns default value' do
+        expect(custom_stylesheet)
+          .to be_blank
+      end
+    end
+  end
+
   private
 
   def html_links

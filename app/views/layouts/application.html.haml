@@ -34,7 +34,7 @@
     = csrf_meta_tags unless skip_csrf_meta_tags?
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 
-    = stylesheet_link_tag custom_css_path, skip_pipeline: true, host: root_url, media: 'all'
+    = custom_stylesheet
 
     = yield :header_tags
 
