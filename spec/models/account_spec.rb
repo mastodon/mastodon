@@ -80,6 +80,20 @@ RSpec.describe Account do
     end
   end
 
+  describe '#actor_type_application?' do
+    context 'when the actor is not of type application' do
+      subject { Fabricate.build :account, actor_type: 'Person' }
+
+      it { is_expected.to_not be_actor_type_application }
+    end
+
+    context 'when the actor is of type application' do
+      subject { Fabricate.build :account, actor_type: 'Application' }
+
+      it { is_expected.to be_actor_type_application }
+    end
+  end
+
   describe 'Local domain user methods' do
     subject { Fabricate(:account, domain: nil, username: 'alice') }
 
