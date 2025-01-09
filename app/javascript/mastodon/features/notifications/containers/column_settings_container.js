@@ -3,11 +3,10 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { openModal } from 'mastodon/actions/modal';
-import { initializeNotifications } from 'mastodon/actions/notifications_migration';
+import { fetchNotifications , setNotificationsFilter } from 'mastodon/actions/notification_groups';
 
 import { showAlert } from '../../../actions/alerts';
-import { updateNotificationsPolicy } from '../../../actions/notification_policies';
-import { setFilter, requestBrowserPermission } from '../../../actions/notifications';
+import { requestBrowserPermission } from '../../../actions/notifications';
 import { changeAlerts as changePushNotifications } from '../../../actions/push_notifications';
 import { changeSetting } from '../../../actions/settings';
 import ColumnSettings from '../components/column_settings';
@@ -25,7 +24,6 @@ const mapStateToProps = state => ({
   alertsEnabled: state.getIn(['settings', 'notifications', 'alerts']).includes(true),
   browserSupport: state.getIn(['notifications', 'browserSupport']),
   browserPermission: state.getIn(['notifications', 'browserPermission']),
-  notificationPolicy: state.notificationPolicy,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -45,7 +43,7 @@ const mapDispatchToProps = (dispatch) => ({
       }
     } else if (path[0] === 'quickFilter') {
       dispatch(changeSetting(['notifications', ...path], checked));
-      dispatch(setFilter('all'));
+      dispatch(setNotificationsFilter('all'));
     } else if (path[0] === 'alerts' && checked && typeof window.Notification !== 'undefined' && Notification.permission !== 'granted') {
       if (checked && typeof window.Notification !== 'undefined' && Notification.permission !== 'granted') {
         dispatch(requestBrowserPermission((permission) => {
@@ -58,11 +56,12 @@ const mapDispatchToProps = (dispatch) => ({
       } else {
         dispatch(changeSetting(['notifications', ...path], checked));
       }
-    } else if(path[0] === 'groupingBeta') {
-      dispatch(changeSetting(['notifications', ...path], checked));
-      dispatch(initializeNotifications());
     } else {
       dispatch(changeSetting(['notifications', ...path], checked));
+
+      if(path[0] === 'group' && path[1] === 'follow') {
+        dispatch(fetchNotifications());
+      }
     }
   },
 
@@ -72,12 +71,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   onRequestNotificationPermission () {
     dispatch(requestBrowserPermission());
-  },
-
-  onChangePolicy (param, checked) {
-    dispatch(updateNotificationsPolicy({
-      [param]: checked,
-    }));
   },
 
 });

@@ -6,14 +6,13 @@ RSpec.describe Admin::DomainBlocksController do
   render_views
 
   before do
-    sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
+    sign_in Fabricate(:admin_user), scope: :user
   end
 
   describe 'GET #new' do
     it 'assigns a new domain block' do
       get :new
 
-      expect(assigns(:domain_block)).to be_instance_of(DomainBlock)
       expect(response).to have_http_status(200)
     end
   end
@@ -171,7 +170,6 @@ RSpec.describe Admin::DomainBlocksController do
     it 'returns http success' do
       get :edit, params: { id: domain_block.id }
 
-      expect(assigns(:domain_block)).to be_instance_of(DomainBlock)
       expect(response).to have_http_status(200)
     end
   end

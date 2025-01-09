@@ -90,8 +90,8 @@ describe('emoji', () => {
     });
 
     it('keeps ordering as expected (issue fixed by PR 20677)', () => {
-      expect(emojify('<p>💕 <a class="hashtag" href="https://example.com/tags/foo" rel="nofollow noopener noreferrer" target="_blank">#<span>foo</span></a> test: foo.</p>'))
-        .toEqual('<p><picture><img draggable="false" class="emojione" alt="💕" title=":two_hearts:" src="/emoji/1f495.svg"></picture> <a class="hashtag" href="https://example.com/tags/foo" rel="nofollow noopener noreferrer" target="_blank">#<span>foo</span></a> test: foo.</p>');
+      expect(emojify('<p>💕 <a class="hashtag" href="https://example.com/tags/foo" rel="nofollow noopener" target="_blank">#<span>foo</span></a> test: foo.</p>'))
+        .toEqual('<p><picture><img draggable="false" class="emojione" alt="💕" title=":two_hearts:" src="/emoji/1f495.svg"></picture> <a class="hashtag" href="https://example.com/tags/foo" rel="nofollow noopener" target="_blank">#<span>foo</span></a> test: foo.</p>');
     });
   });
 });

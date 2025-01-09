@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'I18n' do
+RSpec.describe 'I18n' do
   describe 'Pluralizing locale translations' do
     subject { I18n.t('generic.validation_errors', count: 1) }
 

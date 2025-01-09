@@ -3,39 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Account do
+  include_examples 'Account::Search'
+  include_examples 'Reviewable'
+
   context 'with an account record' do
     subject { Fabricate(:account) }
 
     let(:bob) { Fabricate(:account, username: 'bob') }
-
-    describe '#suspend!' do
-      it 'marks the account as suspended and creates a deletion request' do
-        expect { subject.suspend! }
-          .to change(subject, :suspended?).from(false).to(true)
-          .and(change { AccountDeletionRequest.exists?(account: subject) }.from(false).to(true))
-      end
-
-      context 'when the account is of a local user' do
-        subject { local_user_account }
-
-        let!(:local_user_account) { Fabricate(:user, email: 'foo+bar@domain.org').account }
-
-        it 'creates a canonical domain block' do
-          subject.suspend!
-          expect(CanonicalEmailBlock.block?(subject.user_email)).to be true
-        end
-
-        context 'when a canonical domain block already exists for that email' do
-          before do
-            Fabricate(:canonical_email_block, email: subject.user_email)
-          end
-
-          it 'does not raise an error' do
-            expect { subject.suspend! }.to_not raise_error
-          end
-        end
-      end
-    end
 
     describe '#follow!' do
       it 'creates a follow' do
@@ -75,14 +49,34 @@ RSpec.describe Account do
   end
 
   describe '#local?' do
-    it 'returns true when the account is local' do
+    it 'returns true when domain is null' do
       account = Fabricate(:account, domain: nil)
-      expect(account.local?).to be true
+      expect(account).to be_local
     end
 
-    it 'returns false when the account is on a different domain' do
+    it 'returns false when domain is present' do
       account = Fabricate(:account, domain: 'foreign.tld')
-      expect(account.local?).to be false
+      expect(account).to_not be_local
+    end
+  end
+
+  describe '#remote?' do
+    context 'when the domain is null' do
+      subject { Fabricate.build :account, domain: nil }
+
+      it { is_expected.to_not be_remote }
+    end
+
+    context 'when the domain is blank' do
+      subject { Fabricate.build :account, domain: '' }
+
+      it { is_expected.to_not be_remote }
+    end
+
+    context 'when the domain is present' do
+      subject { Fabricate.build :account, domain: 'host.example' }
+
+      it { is_expected.to be_remote }
     end
   end
 
@@ -177,16 +171,16 @@ RSpec.describe Account do
       end
     end
 
-    context 'when last_webfingered_at is more than 24 hours before' do
-      let(:last_webfingered_at) { 25.hours.ago }
+    context 'when last_webfingered_at is before the threshold' do
+      let(:last_webfingered_at) { (described_class::STALE_THRESHOLD + 1.hour).ago }
 
       it 'returns true' do
         expect(account.possibly_stale?).to be true
       end
     end
 
-    context 'when last_webfingered_at is less than 24 hours before' do
-      let(:last_webfingered_at) { 23.hours.ago }
+    context 'when last_webfingered_at is after the threshold' do
+      let(:last_webfingered_at) { (described_class::STALE_THRESHOLD - 1.hour).ago }
 
       it 'returns false' do
         expect(account.possibly_stale?).to be false
@@ -351,271 +345,6 @@ RSpec.describe Account do
     end
   end
 
-  describe '.search_for' do
-    before do
-      _missing = Fabricate(
-        :account,
-        display_name: 'Missing',
-        username: 'missing',
-        domain: 'missing.com'
-      )
-    end
-
-    it 'does not return suspended users' do
-      Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username',
-        domain: 'example.com',
-        suspended: true
-      )
-
-      results = described_class.search_for('username')
-      expect(results).to eq []
-    end
-
-    it 'does not return unapproved users' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username'
-      )
-
-      match.user.update(approved: false)
-
-      results = described_class.search_for('username')
-      expect(results).to eq []
-    end
-
-    it 'does not return unconfirmed users' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username'
-      )
-
-      match.user.update(confirmed_at: nil)
-
-      results = described_class.search_for('username')
-      expect(results).to eq []
-    end
-
-    it 'accepts ?, \, : and space as delimiter' do
-      match = Fabricate(
-        :account,
-        display_name: 'A & l & i & c & e',
-        username: 'username',
-        domain: 'example.com'
-      )
-
-      results = described_class.search_for('A?l\i:c e')
-      expect(results).to eq [match]
-    end
-
-    it 'finds accounts with matching display_name' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username',
-        domain: 'example.com'
-      )
-
-      results = described_class.search_for('display')
-      expect(results).to eq [match]
-    end
-
-    it 'finds accounts with matching username' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username',
-        domain: 'example.com'
-      )
-
-      results = described_class.search_for('username')
-      expect(results).to eq [match]
-    end
-
-    it 'finds accounts with matching domain' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username',
-        domain: 'example.com'
-      )
-
-      results = described_class.search_for('example')
-      expect(results).to eq [match]
-    end
-
-    it 'limits via constant by default' do
-      stub_const('Account::Search::DEFAULT_LIMIT', 1)
-      2.times.each { Fabricate(:account, display_name: 'Display Name') }
-      results = described_class.search_for('display')
-      expect(results.size).to eq 1
-    end
-
-    it 'accepts arbitrary limits' do
-      2.times.each { Fabricate(:account, display_name: 'Display Name') }
-      results = described_class.search_for('display', limit: 1)
-      expect(results.size).to eq 1
-    end
-
-    it 'ranks multiple matches higher' do
-      matches = [
-        { username: 'username', display_name: 'username' },
-        { display_name: 'Display Name', username: 'username', domain: 'example.com' },
-      ].map(&method(:Fabricate).curry(2).call(:account))
-
-      results = described_class.search_for('username')
-      expect(results).to eq matches
-    end
-  end
-
-  describe '.advanced_search_for' do
-    let(:account) { Fabricate(:account) }
-
-    context 'when limiting search to followed accounts' do
-      it 'accepts ?, \, : and space as delimiter' do
-        match = Fabricate(
-          :account,
-          display_name: 'A & l & i & c & e',
-          username: 'username',
-          domain: 'example.com'
-        )
-        account.follow!(match)
-
-        results = described_class.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
-        expect(results).to eq [match]
-      end
-
-      it 'does not return non-followed accounts' do
-        Fabricate(
-          :account,
-          display_name: 'A & l & i & c & e',
-          username: 'username',
-          domain: 'example.com'
-        )
-
-        results = described_class.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
-        expect(results).to eq []
-      end
-
-      it 'does not return suspended users' do
-        Fabricate(
-          :account,
-          display_name: 'Display Name',
-          username: 'username',
-          domain: 'example.com',
-          suspended: true
-        )
-
-        results = described_class.advanced_search_for('username', account, limit: 10, following: true)
-        expect(results).to eq []
-      end
-
-      it 'does not return unapproved users' do
-        match = Fabricate(
-          :account,
-          display_name: 'Display Name',
-          username: 'username'
-        )
-
-        match.user.update(approved: false)
-
-        results = described_class.advanced_search_for('username', account, limit: 10, following: true)
-        expect(results).to eq []
-      end
-
-      it 'does not return unconfirmed users' do
-        match = Fabricate(
-          :account,
-          display_name: 'Display Name',
-          username: 'username'
-        )
-
-        match.user.update(confirmed_at: nil)
-
-        results = described_class.advanced_search_for('username', account, limit: 10, following: true)
-        expect(results).to eq []
-      end
-    end
-
-    it 'does not return suspended users' do
-      Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username',
-        domain: 'example.com',
-        suspended: true
-      )
-
-      results = described_class.advanced_search_for('username', account)
-      expect(results).to eq []
-    end
-
-    it 'does not return unapproved users' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username'
-      )
-
-      match.user.update(approved: false)
-
-      results = described_class.advanced_search_for('username', account)
-      expect(results).to eq []
-    end
-
-    it 'does not return unconfirmed users' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username'
-      )
-
-      match.user.update(confirmed_at: nil)
-
-      results = described_class.advanced_search_for('username', account)
-      expect(results).to eq []
-    end
-
-    it 'accepts ?, \, : and space as delimiter' do
-      match = Fabricate(
-        :account,
-        display_name: 'A & l & i & c & e',
-        username: 'username',
-        domain: 'example.com'
-      )
-
-      results = described_class.advanced_search_for('A?l\i:c e', account)
-      expect(results).to eq [match]
-    end
-
-    it 'limits result count by default value' do
-      stub_const('Account::Search::DEFAULT_LIMIT', 1)
-      2.times { Fabricate(:account, display_name: 'Display Name') }
-      results = described_class.advanced_search_for('display', account)
-      expect(results.size).to eq 1
-    end
-
-    it 'accepts arbitrary limits' do
-      2.times { Fabricate(:account, display_name: 'Display Name') }
-      results = described_class.advanced_search_for('display', account, limit: 1)
-      expect(results.size).to eq 1
-    end
-
-    it 'ranks followed accounts higher' do
-      match = Fabricate(:account, username: 'Matching')
-      followed_match = Fabricate(:account, username: 'Matcher')
-      Fabricate(:follow, account: account, target_account: followed_match)
-
-      results = described_class.advanced_search_for('match', account)
-      expect(results).to eq [followed_match, match]
-      expect(results.first.rank).to be > results.last.rank
-    end
-  end
-
   describe '#statuses_count' do
     subject { Fabricate(:account) }
 
@@ -721,31 +450,109 @@ RSpec.describe Account do
     end
   end
 
-  describe 'validations' do
-    it 'is invalid without a username' do
-      account = Fabricate.build(:account, username: nil)
-      account.valid?
-      expect(account).to model_have_error_on_field(:username)
-    end
+  describe 'Callbacks' do
+    describe 'Stripping content when required' do
+      context 'with a remote account' do
+        subject { Fabricate.build :account, domain: 'host.example', note: '   note   ', display_name: '   display name   ' }
 
-    it 'squishes the username before validation' do
-      account = Fabricate(:account, domain: nil, username: " \u3000bob \t \u00a0 \n ")
-      expect(account.username).to eq 'bob'
-    end
-
-    context 'when is local' do
-      it 'is invalid if the username is not unique in case-insensitive comparison among local accounts' do
-        _account = Fabricate(:account, username: 'the_doctor')
-        non_unique_account = Fabricate.build(:account, username: 'the_Doctor')
-        non_unique_account.valid?
-        expect(non_unique_account).to model_have_error_on_field(:username)
+        it 'preserves content' do
+          expect { subject.valid? }
+            .to not_change(subject, :note)
+            .and not_change(subject, :display_name)
+        end
       end
 
-      it 'is invalid if the username is reserved' do
-        account = Fabricate.build(:account, username: 'support')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
+      context 'with a local account' do
+        subject { Fabricate.build :account, domain: nil, note:, display_name: }
+
+        context 'with populated fields' do
+          let(:note) { '   note   ' }
+          let(:display_name) { '   display name   ' }
+
+          it 'strips content' do
+            expect { subject.valid? }
+              .to change(subject, :note).to('note')
+              .and change(subject, :display_name).to('display name')
+          end
+        end
+
+        context 'with empty fields' do
+          let(:note) { nil }
+          let(:display_name) { nil }
+
+          it 'preserves content' do
+            expect { subject.valid? }
+              .to not_change(subject, :note)
+              .and not_change(subject, :display_name)
+          end
+        end
       end
+    end
+  end
+
+  describe '#can_be_attributed_from?' do
+    subject { Fabricate(:account, attribution_domains: %w(example.com)) }
+
+    it 'returns true for a matching domain' do
+      expect(subject.can_be_attributed_from?('example.com')).to be true
+    end
+
+    it 'returns true for a subdomain of a domain' do
+      expect(subject.can_be_attributed_from?('foo.example.com')).to be true
+    end
+
+    it 'returns false for a non-matching domain' do
+      expect(subject.can_be_attributed_from?('hoge.com')).to be false
+    end
+  end
+
+  describe '#attribution_domains_as_text=' do
+    subject { Fabricate(:account) }
+
+    it 'sets attribution_domains accordingly' do
+      subject.attribution_domains_as_text = "hoge.com\nexample.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+
+    it 'strips leading "*."' do
+      subject.attribution_domains_as_text = "hoge.com\n*.example.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+
+    it 'strips the protocol if present' do
+      subject.attribution_domains_as_text = "http://hoge.com\nhttps://example.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+
+    it 'strips a combination of leading "*." and protocol' do
+      subject.attribution_domains_as_text = "http://*.hoge.com\nhttps://*.example.com"
+
+      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
+    end
+  end
+
+  describe 'Normalizations' do
+    describe 'username' do
+      it { is_expected.to normalize(:username).from(" \u3000bob \t \u00a0 \n ").to('bob') }
+    end
+  end
+
+  describe 'Validations' do
+    it { is_expected.to validate_presence_of(:username) }
+
+    context 'when account is local' do
+      subject { Fabricate.build :account, domain: nil }
+
+      context 'with an existing differently-cased username account' do
+        before { Fabricate :account, username: 'the_doctor' }
+
+        it { is_expected.to_not allow_value('the_Doctor').for(:username) }
+      end
+
+      it { is_expected.to_not allow_value('support').for(:username) }
 
       it 'is valid when username is reserved but record has already been created' do
         account = Fabricate.build(:account, username: 'support')
@@ -753,9 +560,10 @@ RSpec.describe Account do
         expect(account.valid?).to be true
       end
 
-      it 'is valid if we are creating an instance actor account with a period' do
-        account = Fabricate.build(:account, id: described_class::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true, username: 'example.com')
-        expect(account.valid?).to be true
+      context 'with the instance actor' do
+        subject { Fabricate.build :account, id: described_class::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true }
+
+        it { is_expected.to allow_value('example.com').for(:username) }
       end
 
       it 'is valid if we are creating a possibly-conflicting instance actor account' do
@@ -764,81 +572,34 @@ RSpec.describe Account do
         expect(instance_account.valid?).to be true
       end
 
-      it 'is invalid if the username doesn\'t only contains letters, numbers and underscores' do
-        account = Fabricate.build(:account, username: 'the-doctor')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
-      end
+      it { is_expected.to_not allow_values('the-doctor', 'the.doctor').for(:username) }
 
-      it 'is invalid if the username contains a period' do
-        account = Fabricate.build(:account, username: 'the.doctor')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
-      end
+      it { is_expected.to validate_length_of(:username).is_at_most(described_class::USERNAME_LENGTH_LIMIT) }
+      it { is_expected.to validate_length_of(:display_name).is_at_most(described_class::DISPLAY_NAME_LENGTH_LIMIT) }
 
-      it 'is invalid if the username is longer than the character limit' do
-        account = Fabricate.build(:account, username: username_over_limit)
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
-      end
+      it { is_expected.to_not allow_values(account_note_over_limit).for(:note) }
 
-      it 'is invalid if the display name is longer than the character limit' do
-        account = Fabricate.build(:account, display_name: display_name_over_limit)
-        account.valid?
-        expect(account).to model_have_error_on_field(:display_name)
-      end
-
-      it 'is invalid if the note is longer than the character limit' do
-        account = Fabricate.build(:account, note: account_note_over_limit)
-        account.valid?
-        expect(account).to model_have_error_on_field(:note)
-      end
+      it { is_expected.to allow_value(fields_empty_name_value).for(:fields) }
+      it { is_expected.to_not allow_values(fields_over_limit, fields_empty_name).for(:fields) }
     end
 
-    context 'when is remote' do
-      it 'is invalid if the username is same among accounts in the same normalized domain' do
-        Fabricate(:account, domain: 'にゃん', username: 'username')
-        account = Fabricate.build(:account, domain: 'xn--r9j5b5b', username: 'username')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
+    context 'when account is remote' do
+      subject { Fabricate.build :account, domain: 'host.example' }
+
+      context 'when a normalized domain account exists' do
+        subject { Fabricate.build :account, domain: 'xn--r9j5b5b' }
+
+        before { Fabricate(:account, domain: 'にゃん', username: 'username') }
+
+        it { is_expected.to_not allow_values('username', 'Username').for(:username) }
       end
 
-      it 'is invalid if the username is not unique in case-insensitive comparison among accounts in the same normalized domain' do
-        Fabricate(:account, domain: 'にゃん', username: 'username')
-        account = Fabricate.build(:account, domain: 'xn--r9j5b5b', username: 'Username')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
-      end
+      it { is_expected.to allow_values('the-doctor', username_over_limit).for(:username) }
+      it { is_expected.to_not allow_values('the doctor').for(:username) }
 
-      it 'is valid even if the username contains hyphens' do
-        account = Fabricate.build(:account, domain: 'domain', username: 'the-doctor')
-        account.valid?
-        expect(account).to_not model_have_error_on_field(:username)
-      end
+      it { is_expected.to allow_values(display_name_over_limit).for(:display_name) }
 
-      it 'is invalid if the username doesn\'t only contains letters, numbers, underscores and hyphens' do
-        account = Fabricate.build(:account, domain: 'domain', username: 'the doctor')
-        account.valid?
-        expect(account).to model_have_error_on_field(:username)
-      end
-
-      it 'is valid even if the username is longer than the character limit' do
-        account = Fabricate.build(:account, domain: 'domain', username: username_over_limit)
-        account.valid?
-        expect(account).to_not model_have_error_on_field(:username)
-      end
-
-      it 'is valid even if the display name is longer than the character limit' do
-        account = Fabricate.build(:account, domain: 'domain', display_name: display_name_over_limit)
-        account.valid?
-        expect(account).to_not model_have_error_on_field(:display_name)
-      end
-
-      it 'is valid even if the note is longer than the character limit' do
-        account = Fabricate.build(:account, domain: 'domain', note: account_note_over_limit)
-        account.valid?
-        expect(account).to_not model_have_error_on_field(:note)
-      end
+      it { is_expected.to allow_values(account_note_over_limit).for(:note) }
     end
 
     def username_over_limit
@@ -851,6 +612,18 @@ RSpec.describe Account do
 
     def account_note_over_limit
       'a' * described_class::NOTE_LENGTH_LIMIT * 2
+    end
+
+    def fields_empty_name_value
+      Array.new(4) { { 'name' => '', 'value' => '' } }
+    end
+
+    def fields_over_limit
+      Array.new(described_class::DEFAULT_FIELDS_SIZE + 1) { { 'name' => 'Name', 'value' => 'Value', 'verified_at' => '01/01/1970' } }
+    end
+
+    def fields_empty_name
+      [{ 'name' => '', 'value' => 'Value', 'verified_at' => '01/01/1970' }]
     end
   end
 
@@ -978,22 +751,6 @@ RSpec.describe Account do
       it 'returns a relation of accounts sorted by recent creation' do
         matches = Array.new(2) { Fabricate(:account) }
         expect(described_class.without_internal.recent).to match_array(matches)
-      end
-    end
-
-    describe 'silenced' do
-      it 'returns an array of accounts who are silenced' do
-        silenced_account = Fabricate(:account, silenced: true)
-        _account = Fabricate(:account, silenced: false)
-        expect(described_class.silenced).to contain_exactly(silenced_account)
-      end
-    end
-
-    describe 'suspended' do
-      it 'returns an array of accounts who are suspended' do
-        suspended_account = Fabricate(:account, suspended: true)
-        _account = Fabricate(:account, suspended: false)
-        expect(described_class.suspended).to contain_exactly(suspended_account)
       end
     end
 

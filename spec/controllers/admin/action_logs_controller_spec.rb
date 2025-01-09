@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::ActionLogsController do
+RSpec.describe Admin::ActionLogsController do
   render_views
 
   # Action logs typically cause issues when their targets are not in the database
@@ -16,7 +16,7 @@ describe Admin::ActionLogsController do
 
   describe 'GET #index' do
     it 'returns 200' do
-      sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin'))
+      sign_in Fabricate(:admin_user)
       get :index, params: { page: 1 }
 
       expect(response).to have_http_status(200)

@@ -11,7 +11,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
   before_action :set_strikes, only: [:edit, :update]
-  before_action :set_body_classes, only: [:new, :create, :edit, :update]
   before_action :require_not_suspended!, only: [:update]
   before_action :set_cache_headers, only: [:edit, :update]
   before_action :set_rules, only: :new
@@ -104,10 +103,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def set_body_classes
-    @body_classes = %w(edit update).include?(action_name) ? 'admin' : 'lighter'
-  end
-
   def set_invite
     @invite = begin
       invite = Invite.find_by(code: invite_code) if invite_code.present?
@@ -146,5 +141,13 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_cache_headers
     response.cache_control.replace(private: true, no_store: true)
+  end
+
+  def is_flashing_format? # rubocop:disable Naming/PredicateName
+    if params[:action] == 'create'
+      false # Disable flash messages for sign-up
+    else
+      super
+    end
   end
 end

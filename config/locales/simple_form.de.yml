@@ -3,6 +3,7 @@ de:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Eine Domain pro Zeile. Dadurch können falsche Zuschreibungen unterbunden werden.
         discoverable: Deine öffentlichen Beiträge und dein Profil können in verschiedenen Bereichen auf Mastodon angezeigt oder empfohlen werden und dein Profil kann anderen vorgeschlagen werden.
         display_name: Dein richtiger Name oder dein Fantasiename.
         fields: Deine Website, Pronomen, dein Alter – alles, was du möchtest.
@@ -59,6 +60,7 @@ de:
         setting_display_media_default: Medien mit Inhaltswarnung ausblenden
         setting_display_media_hide_all: Medien immer ausblenden
         setting_display_media_show_all: Medien mit Inhaltswarnung immer anzeigen
+        setting_system_scrollbars_ui: Betrifft nur Desktop-Browser, die auf Chrome oder Safari basieren
         setting_use_blurhash: Der Farbverlauf basiert auf den Farben der ausgeblendeten Medien, verschleiert aber jegliche Details
         setting_use_pending_items: Neue Beiträge hinter einem Klick verstecken, anstatt automatisch zu scrollen
         username: Du kannst Buchstaben, Zahlen und Unterstriche verwenden
@@ -128,9 +130,19 @@ de:
         show_application: Du wirst immer sehen können, über welche App dein Beitrag veröffentlicht wurde.
       tag:
         name: Du kannst nur die Groß- und Kleinschreibung der Buchstaben ändern, um es z. B. lesbarer zu machen
+      terms_of_service:
+        changelog: Kann mit der Markdown-Syntax formatiert werden.
+        text: Kann mit der Markdown-Syntax formatiert werden.
+      terms_of_service_generator:
+        admin_email: Rechtliche Hinweise umfassen Gegendarstellungen, Gerichtsbeschlüsse, Anfragen zum Herunternehmen von Inhalten und Anfragen von Strafverfolgungsbehörden.
+        arbitration_address: Kann wie die Anschrift hierüber sein oder „N/A“, falls eine E-Mail verwendet wird
+        arbitration_website: Kann ein Webformular sein oder „N/A“, falls eine E-Mail verwendet wird
+        dmca_email: Kann dieselbe E-Mail wie bei „E-Mail-Adresse für rechtliche Hinweise“ sein
+        domain: Einzigartige Identifizierung des angebotenen Online-Services.
+        jurisdiction: Gib das Land an, in dem die Person lebt, die alle Rechnungen bezahlt. Falls es sich dabei um ein Unternehmen oder eine andere Einrichtung handelt, gib das Land mit dem Sitz an, sowie die Stadt oder Region.
       user:
         chosen_languages: Wenn du hier eine oder mehrere Sprachen auswählst, werden ausschließlich Beiträge in diesen Sprachen in deinen öffentlichen Timelines angezeigt
-        role: Die Rolle legt fest, welche Berechtigungen das Konto hat
+        role: Die Rolle bestimmt, welche Berechtigungen das Konto hat.
       user_role:
         color: Farbe, die für diese Rolle in der gesamten Benutzerschnittstelle verwendet wird, als RGB im Hexadezimalsystem
         highlighted: Dies macht die Rolle öffentlich im Profil sichtbar
@@ -143,6 +155,7 @@ de:
         url: Wohin Ereignisse gesendet werden
     labels:
       account:
+        attribution_domains_as_text: Websites, die auf dich verweisen dürfen
         discoverable: Profil und Beiträge in Suchalgorithmen berücksichtigen
         fields:
           name: Beschriftung
@@ -221,6 +234,7 @@ de:
         setting_hide_network: Follower und „Folge ich“ nicht anzeigen
         setting_reduce_motion: Bewegung in Animationen verringern
         setting_system_font_ui: Standardschriftart des Browsers verwenden
+        setting_system_scrollbars_ui: Bildlaufleiste des Systems verwenden
         setting_theme: Design
         setting_trends: Heutige Trends anzeigen
         setting_unfollow_modal: Bestätigungsdialog beim Entfolgen eines Profils anzeigen
@@ -314,7 +328,18 @@ de:
         listable: Erlaube, dass dieser Hashtag in Suchen und Empfehlungen erscheint
         name: Hashtag
         trendable: Erlaube, dass dieser Hashtag in den Trends erscheint
-        usable: Erlaube, dass dieser Hashtag in Beiträgen erscheint
+        usable: Beiträge dürfen diesen Hashtag lokal verwenden
+      terms_of_service:
+        changelog: Was hat sich geändert?
+        text: Nutzungsbedingungen
+      terms_of_service_generator:
+        admin_email: E-Mail-Adresse für rechtliche Hinweise
+        arbitration_address: Anschrift für Schiedsverfahren
+        arbitration_website: Website zum Einreichen von Schiedsverfahren
+        dmca_address: Anschrift für Urheberrechtsverletzungen
+        dmca_email: E-Mail-Adresse für Urheberrechtsverletzungen
+        domain: Domain
+        jurisdiction: Gerichtsstand
       user:
         role: Rolle
         time_zone: Zeitzone

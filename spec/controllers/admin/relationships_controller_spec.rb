@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-describe Admin::RelationshipsController do
+RSpec.describe Admin::RelationshipsController do
   render_views
 
-  let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:user) { Fabricate(:admin_user) }
 
   before do
     sign_in user, scope: :user

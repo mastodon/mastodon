@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-describe Api::RateLimitHeaders do
+RSpec.describe Api::RateLimitHeaders do
   controller(ApplicationController) do
-    include Api::RateLimitHeaders
+    include Api::RateLimitHeaders # rubocop:disable RSpec/DescribedClass
 
     def show
       head 200

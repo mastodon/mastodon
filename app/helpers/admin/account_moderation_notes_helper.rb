@@ -12,12 +12,12 @@ module Admin::AccountModerationNotesHelper
     )
   end
 
-  def admin_account_inline_link_to(account)
+  def admin_account_inline_link_to(account, path: nil)
     return if account.nil?
 
     link_to(
       account_inline_text(account),
-      admin_account_path(account.id),
+      path || admin_account_path(account.id),
       class: class_names('inline-name-tag', suspended: suspended_account?(account)),
       title: account.acct
     )

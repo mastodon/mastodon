@@ -30,10 +30,10 @@ class Api::BaseController < ApplicationController
 
   protected
 
-  def limit_param(default_limit)
+  def limit_param(default_limit, max_limit = nil)
     return default_limit unless params[:limit]
 
-    [params[:limit].to_i.abs, default_limit * 2].min
+    [params[:limit].to_i.abs, max_limit || (default_limit * 2)].min
   end
 
   def params_slice(*keys)

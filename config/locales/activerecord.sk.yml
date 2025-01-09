@@ -15,6 +15,11 @@ sk:
       user/invite_request:
         text: Dôvod
     errors:
+      attributes:
+        domain:
+          invalid: nie je platný tvar domény
+      messages:
+        invalid_domain_on_line: "%{value} nie je platný tvar domény"
       models:
         account:
           attributes:

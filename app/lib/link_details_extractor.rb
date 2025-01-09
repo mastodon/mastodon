@@ -157,11 +157,11 @@ class LinkDetailsExtractor
   end
 
   def title
-    html_entities_decode(structured_data&.headline || opengraph_tag('og:title') || document.xpath('//title').map(&:content).first)&.strip
+    html_entities.decode(structured_data&.headline || opengraph_tag('og:title') || head.at_xpath('title')&.content)&.strip
   end
 
   def description
-    html_entities_decode(structured_data&.description || opengraph_tag('og:description') || meta_tag('description'))
+    html_entities.decode(structured_data&.description || opengraph_tag('og:description') || meta_tag('description'))
   end
 
   def published_at
@@ -181,7 +181,7 @@ class LinkDetailsExtractor
   end
 
   def provider_name
-    html_entities_decode(structured_data&.publisher_name || opengraph_tag('og:site_name'))
+    html_entities.decode(structured_data&.publisher_name || opengraph_tag('og:site_name'))
   end
 
   def provider_url
@@ -189,7 +189,7 @@ class LinkDetailsExtractor
   end
 
   def author_name
-    html_entities_decode(structured_data&.author_name || opengraph_tag('og:author') || opengraph_tag('og:author:username'))
+    html_entities.decode(structured_data&.author_name || opengraph_tag('og:author') || opengraph_tag('og:author:username'))
   end
 
   def author_url
@@ -205,11 +205,11 @@ class LinkDetailsExtractor
   end
 
   def language
-    valid_locale_or_nil(structured_data&.language || opengraph_tag('og:locale') || document.xpath('//html').pick('lang'))
+    valid_locale_or_nil(structured_data&.language || opengraph_tag('og:locale') || document.root.attr('lang'))
   end
 
   def icon
-    valid_url_or_nil(structured_data&.publisher_icon || link_tag('apple-touch-icon') || link_tag('shortcut icon'))
+    valid_url_or_nil(structured_data&.publisher_icon || link_tag('apple-touch-icon') || link_tag('icon'))
   end
 
   private
@@ -225,7 +225,7 @@ class LinkDetailsExtractor
   end
 
   def valid_url_or_nil(str, same_origin_only: false)
-    return if str.blank? || str == 'null'
+    return if str.blank? || str == 'null' || str == 'undefined'
 
     url = @original_url + Addressable::URI.parse(str)
 
@@ -237,18 +237,20 @@ class LinkDetailsExtractor
   end
 
   def link_tag(name)
-    document.xpath("//link[@rel=\"#{name}\"]").pick('href')
+    head.at_xpath("//link[nokogiri:link_rel_include(@rel, '#{name}')]", NokogiriHandler)&.attr('href')
   end
 
   def opengraph_tag(name)
-    document.xpath("//meta[@property=\"#{name}\" or @name=\"#{name}\"]").pick('content')
+    head.at_xpath("//meta[nokogiri:casecmp(@property, '#{name}') or nokogiri:casecmp(@name, '#{name}')]", NokogiriHandler)&.attr('content')
   end
 
   def meta_tag(name)
-    document.xpath("//meta[@name=\"#{name}\"]").pick('content')
+    head.at_xpath("//meta[nokogiri:casecmp(@name, '#{name}')]", NokogiriHandler)&.attr('content')
   end
 
   def structured_data
+    return @structured_data if defined?(@structured_data)
+
     # Some publications have more than one JSON-LD definition on the page,
     # and some of those definitions aren't valid JSON either, so we have
     # to loop through here until we find something that is the right type
@@ -258,7 +260,7 @@ class LinkDetailsExtractor
 
       next if json_ld.blank?
 
-      structured_data = StructuredData.new(html_entities_decode(json_ld))
+      structured_data = StructuredData.new(html_entities.decode(json_ld))
 
       next unless structured_data.valid?
 
@@ -273,12 +275,25 @@ class LinkDetailsExtractor
     @document ||= detect_encoding_and_parse_document
   end
 
+  def head
+    @head ||= document.at_xpath('/html/head')
+  end
+
   def detect_encoding_and_parse_document
-    [detect_encoding, nil, header_encoding].uniq.each do |encoding|
-      document = Nokogiri::HTML(@html, nil, encoding)
-      return document if document.to_s.valid_encoding?
+    html = nil
+    encoding = nil
+
+    [detect_encoding, header_encoding].compact.each do |enc|
+      html = @html.dup.force_encoding(enc)
+      if html.valid_encoding?
+        encoding = enc
+        break
+      end
     end
-    Nokogiri::HTML(@html, nil, 'UTF-8')
+
+    html = @html unless encoding
+
+    Nokogiri::HTML5(html, nil, encoding)
   end
 
   def detect_encoding
@@ -297,15 +312,6 @@ class LinkDetailsExtractor
     @detector ||= CharlockHolmes::EncodingDetector.new.tap do |detector|
       detector.strip_tags = true
     end
-  end
-
-  def html_entities_decode(string)
-    return if string.nil?
-
-    unicode_string = string.to_s.encode('UTF-8')
-    raise EncodingError, 'cannot convert string to valid UTF-8' unless unicode_string.valid_encoding?
-
-    html_entities.decode(unicode_string)
   end
 
   def html_entities

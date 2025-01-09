@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Rack::Attack, type: :request do
+RSpec.describe Rack::Attack, type: :request do
   def app
     Rails.application
   end

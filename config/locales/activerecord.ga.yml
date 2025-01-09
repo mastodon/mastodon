@@ -15,6 +15,12 @@ ga:
       user/invite_request:
         text: Fáth
     errors:
+      attributes:
+        domain:
+          invalid: nach ainm fearainn bailí é
+      messages:
+        invalid_domain_on_line: Ní ainm fearainn bailí é %{value}
+        too_many_lines: thar an teorainn de %{limit} línte
       models:
         account:
           attributes:
@@ -33,6 +39,11 @@ ga:
           attributes:
             data:
               malformed: míchumtha
+        list_account:
+          attributes:
+            account_id:
+              taken: cheana féin ar an liosta
+          must_be_following: ní mór cuntas a leanúint
         status:
           attributes:
             reblog:

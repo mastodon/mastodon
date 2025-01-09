@@ -7,8 +7,13 @@ RSpec/Focus: # Require full spec run on CI
   Exclude: []
 
 Rails/Output: # Remove any `puts` debugging
+  inherit_mode:
+    merge:
+      - Include
   Enabled: true
   Exclude: []
+  Include:
+    - spec/**/*.rb
 
 Rails/FindEach: # Using `each` could impact performance, use `find_each`
   Enabled: true

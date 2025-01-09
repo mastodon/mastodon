@@ -20,7 +20,9 @@ RSpec.describe 'credentials API' do
 
       expect(response)
         .to have_http_status(200)
-      expect(body_as_json).to include({
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body).to include({
         source: hash_including({
           discoverable: false,
           indexable: false,
@@ -36,8 +38,10 @@ RSpec.describe 'credentials API' do
         subject
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
 
-        expect(body_as_json).to include({
+        expect(response.parsed_body).to include({
           locked: true,
         })
       end
@@ -75,15 +79,19 @@ RSpec.describe 'credentials API' do
       it 'returns http success' do
         subject
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
     describe 'with invalid data' do
-      let(:params) { { note: 'This is too long. ' * 30 } }
+      let(:params) { { note: 'a' * 2 * Account::NOTE_LENGTH_LIMIT } }
 
       it 'returns http unprocessable entity' do
         subject
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -92,8 +100,10 @@ RSpec.describe 'credentials API' do
 
       expect(response)
         .to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
 
-      expect(body_as_json).to include({
+      expect(response.parsed_body).to include({
         source: hash_including({
           discoverable: true,
           indexable: true,

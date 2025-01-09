@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Invite do
+  include_examples 'Expireable'
+
   describe '#valid_for_use?' do
     it 'returns true when there are no limitations' do
       invite = Fabricate(:invite, max_uses: nil, expires_at: nil)

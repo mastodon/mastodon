@@ -39,7 +39,7 @@ class PreviewCard < ApplicationRecord
   include Attachmentable
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
-  LIMIT = 2.megabytes
+  LIMIT = Rails.configuration.x.use_vips ? 8.megabytes : 2.megabytes
 
   BLURHASH_OPTIONS = {
     x_comp: 4,
@@ -134,7 +134,7 @@ class PreviewCard < ApplicationRecord
   end
 
   def authors
-    @authors ||= [PreviewCard::Author.new(self)]
+    @authors ||= Array(serialized_authors)
   end
 
   class Author < ActiveModelSerializers::Model
@@ -168,6 +168,13 @@ class PreviewCard < ApplicationRecord
   end
 
   private
+
+  def serialized_authors
+    if author_name? || author_url? || author_account_id?
+      PreviewCard::Author
+        .new(self)
+    end
+  end
 
   def extract_dimensions
     file = image.queued_for_write[:original]

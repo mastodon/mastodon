@@ -30,8 +30,8 @@
 
 5. <%= t('user_mailer.welcome.apps_title') %>
    <%= t('user_mailer.welcome.apps_step') %>
-   * iOS: https://apps.apple.com/app/mastodon-for-iphone-and-ipad/id1571998974
-   * Android: https://play.google.com/store/apps/details?id=org.joinmastodon.android
+   * iOS: <%= app_store_url_ios %>
+   * Android: <%= app_store_url_android %>
 
 ---
 
@@ -53,7 +53,7 @@
 <%= t('user_mailer.welcome.hashtags_subtitle') %>
 
 <%- @tags.each do |tag| %>
-* #<%= tag.display_name %> · <%= t('user_mailer.welcome.hashtags_recent_count', people: number_with_delimiter(tag.history.aggregate(2.days.ago.to_date..Time.zone.today).accounts)) %>
+* #<%= tag.display_name %> · <%= recent_tag_usage(tag) %>
   <%= tag_url(tag) %>
 <%- end %>
 

@@ -26,7 +26,7 @@ jobs:
 
       # Download the translation files from Crowdin
       - name: crowdin action
-        uses: crowdin/github-action@v1
+        uses: crowdin/github-action@v2
         with:
           upload_sources: false
           upload_translations: false
@@ -48,11 +48,11 @@ jobs:
         uses: ./.github/actions/setup-ruby
 
       - name: Run i18n normalize task
-        run: bundle exec i18n-tasks normalize
+        run: bin/i18n-tasks normalize
 
       # Create or update the pull request
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6.0.5
+        uses: peter-evans/create-pull-request@v7
         with:
           commit-message: 'New Crowdin translations'
           title: 'New Crowdin Translations (automated)'

@@ -42,6 +42,9 @@ const authorizationTokenFromInitialState = (): RawAxiosRequestHeaders => {
 // eslint-disable-next-line import/no-default-export
 export default function api(withAuthorization = true) {
   return axios.create({
+    transitional: {
+      clarifyTimeoutError: true,
+    },
     headers: {
       ...csrfHeader,
       ...(withAuthorization ? authorizationTokenFromInitialState() : {}),
@@ -65,8 +68,10 @@ export async function apiRequest<ApiResponse = unknown>(
   method: Method,
   url: string,
   args: {
+    signal?: AbortSignal;
     params?: RequestParamsOrData;
     data?: RequestParamsOrData;
+    timeout?: number;
   } = {},
 ) {
   const { data } = await api().request<ApiResponse>({

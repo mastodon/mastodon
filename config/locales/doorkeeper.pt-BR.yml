@@ -60,8 +60,8 @@ pt-BR:
       error:
         title: Ocorreu um erro
       new:
-        prompt_html: O %{client_name} gostaria de ter permissão para acessar sua conta. É uma aplicação de terceiros. <strong>Se você não confia, então você não deve autorizá-lo.</strong>
-        review_permissions: Revisar permissões
+        prompt_html: "%{client_name} gostaria de permissão para acessar sua conta. <strong>Aprove esta solicitação apenas se você reconhecer e confiar nesta fonte.</strong>"
+        review_permissions: Rever permissões
         title: Autorização necessária
       show:
         title: Copie este código de autorização e cole no aplicativo.
@@ -72,8 +72,8 @@ pt-BR:
         revoke: Você tem certeza?
       index:
         authorized_at: Autorizado em %{date}
-        description_html: Estas são as aplicações que podem acessar sua conta usando a API. Se houver aplicativos que você não reconhece ou com mau funcionamento, você pode revogar seu acesso.
-        last_used_at: Última vez usado em %{date}
+        description_html: Estas são as aplicações que podem acessar sua conta usando a API. Se houver aplicações que você não reconhece ou que não funcionem corretamente, você pode revogar os acessos.
+        last_used_at: Usado pela última vez em %{date}
         never_used: Nunca usado
         scopes: Permissões
         superapp: Interno
@@ -83,6 +83,7 @@ pt-BR:
         access_denied: O proprietário do recurso ou servidor de autorização recusou a solicitação.
         credential_flow_not_configured: Fluxo das Credenciais de Senha do Proprietário do Recurso falhou porque Doorkeeper.configure.resource_owner_from_credentials não foi configurado.
         invalid_client: Autenticação do cliente falhou por causa de um cliente desconhecido, nenhum cliente de autenticação foi incluído ou o método de autenticação não é suportado.
+        invalid_code_challenge_method: O método de desafio de código deve ser S256; o método 'plain' não é suportado.
         invalid_grant: A garantia de autorização está inválida, expirou ou foi revogada, não é equivalente ao link de redirecionamento usado na solicitação de autorização ou foi emitido por outro cliente.
         invalid_redirect_uri: O link de redirecionamento é inválido.
         invalid_request:
@@ -114,23 +115,23 @@ pt-BR:
           notice: Aplicativo revogado.
     grouped_scopes:
       access:
-        read: Acesso somente para leitura
+        read: Acesso somente leitura
         read/write: Acesso de leitura e escrita
-        write: Acesso somente para escrita
+        write: Acesso somente escrita
       title:
         accounts: Contas
         admin/accounts: Administração de contas
         admin/all: Todas as funções administrativas
-        admin/reports: Controle de denúncias
+        admin/reports: Administração de denúncias
         all: Acesso total à sua conta Mastodon
         blocks: Bloqueios
         bookmarks: Salvos
         conversations: Conversas
         crypto: Criptografia de ponta a ponta
-        favourites: Favoritas
+        favourites: Favoritos
         filters: Filtros
-        follow: Seguidores, Silenciados e Bloqueados
-        follows: Seguidores
+        follow: Seguimentos, Silenciamentos e Bloqueios
+        follows: Seguidos
         lists: Listas
         media: Mídias anexadas
         mutes: Silenciados
@@ -151,17 +152,17 @@ pt-BR:
       admin:read: ler todos os dados no servidor
       admin:read:accounts: ler informações sensíveis de todas as contas
       admin:read:canonical_email_blocks: ler informações sensíveis de todos os blocos de e-mail canônicos
-      admin:read:domain_allows: ler informações sensíveis de todos os domínios (URL) permitidos
-      admin:read:domain_blocks: ler informações sensíveis de todos os domínios (URL) bloqueados
-      admin:read:email_domain_blocks: ler informações sensíveis de todos os e-mails de domínios bloqueados
+      admin:read:domain_allows: ler informações sensíveis de todos os domínios permitidos
+      admin:read:domain_blocks: ler informações sensíveis de todos os domínios bloqueados
+      admin:read:email_domain_blocks: ler informações sensíveis de todos os domínios de e-mail bloqueados
       admin:read:ip_blocks: ler informações sensíveis de todos os endereços de IP bloqueados
       admin:read:reports: ler informações sensíveis de todas as denúncias e contas denunciadas
       admin:write: alterar todos os dados no servidor
       admin:write:accounts: executar ações de moderação em contas
       admin:write:canonical_email_blocks: executar ações de moderação em blocos canônicos de e-mail
-      admin:write:domain_allows: executar ações de moderação em domínios (URL) permitidos
-      admin:write:domain_blocks: executar ações de moderação em domínios (URL) bloqueados
-      admin:write:email_domain_blocks: executar ações de moderação em blocos de e-mail bloqueados
+      admin:write:domain_allows: executar ações de moderação em domínios permitidos
+      admin:write:domain_blocks: executar ações de moderação em domínios bloqueados
+      admin:write:email_domain_blocks: executar ações de moderação em domínios de e-mail bloqueados
       admin:write:ip_blocks: executar ações de moderação em IPs bloqueados
       admin:write:reports: executar ações de moderação em denúncias
       crypto: usar criptografia de ponta-a-ponta
@@ -172,7 +173,7 @@ pt-BR:
       read:accounts: ver informações das contas
       read:blocks: ver seus bloqueados
       read:bookmarks: ver seus salvos
-      read:favourites: veja suas favoritas
+      read:favourites: veja seus favoritos
       read:filters: ver seus filtros
       read:follows: ver quem você segue
       read:lists: ver suas listas

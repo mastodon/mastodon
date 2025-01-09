@@ -2,7 +2,7 @@
 
 module Admin::SettingsHelper
   def captcha_available?
-    ENV['HCAPTCHA_SECRET_KEY'].present? && ENV['HCAPTCHA_SITE_KEY'].present?
+    Rails.configuration.x.captcha.secret_key.present? && Rails.configuration.x.captcha.site_key.present?
   end
 
   def login_activity_title(activity)

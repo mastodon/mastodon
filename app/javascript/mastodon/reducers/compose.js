@@ -402,12 +402,12 @@ export default function compose(state = initialState, action) {
       .set('isUploadingThumbnail', false)
       .update('media_attachments', list => list.map(item => {
         if (item.get('id') === action.media.id) {
-          return fromJS(action.media);
+          return fromJS(action.media).set('unattached', item.get('unattached'));
         }
 
         return item;
       }));
-  case INIT_MEDIA_EDIT_MODAL:
+  case INIT_MEDIA_EDIT_MODAL: {
     const media =  state.get('media_attachments').find(item => item.get('id') === action.id);
     return state.set('media_modal', ImmutableMap({
       id: action.id,
@@ -416,6 +416,7 @@ export default function compose(state = initialState, action) {
       focusY: media.getIn(['meta', 'focus', 'y'], 0),
       dirty: false,
     }));
+  }
   case COMPOSE_CHANGE_MEDIA_DESCRIPTION:
     return state.setIn(['media_modal', 'description'], action.description).setIn(['media_modal', 'dirty'], true);
   case COMPOSE_CHANGE_MEDIA_FOCUS:

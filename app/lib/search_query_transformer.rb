@@ -144,6 +144,8 @@ class SearchQueryTransformer < Parslet::Transform
   end
 
   class PrefixClause
+    EPOCH_RE = /\A\d+\z/
+
     attr_reader :operator, :prefix, :term
 
     def initialize(prefix, operator, term, options = {})
@@ -168,15 +170,15 @@ class SearchQueryTransformer < Parslet::Transform
       when 'before'
         @filter = :created_at
         @type = :range
-        @term = { lt: term, time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
+        @term = { lt: date_from_term(term), time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
       when 'after'
         @filter = :created_at
         @type = :range
-        @term = { gt: term, time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
+        @term = { gt: date_from_term(term), time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
       when 'during'
         @filter = :created_at
         @type = :range
-        @term = { gte: term, lte: term, time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
+        @term = { gte: date_from_term(term), lte: date_from_term(term), time_zone: @options[:current_account]&.user_time_zone.presence || 'UTC' }
       when 'in'
         @operator = :flag
         @term = term
@@ -220,6 +222,11 @@ class SearchQueryTransformer < Parslet::Transform
 
       return language_code if LanguagesHelper::SUPPORTED_LOCALES.key?(language_code.to_sym)
 
+      term
+    end
+
+    def date_from_term(term)
+      DateTime.iso8601(term) unless term.match?(EPOCH_RE) # This will raise Date::Error if the date is invalid
       term
     end
   end

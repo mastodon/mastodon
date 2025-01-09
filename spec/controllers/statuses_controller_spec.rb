@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusesController do
+RSpec.describe StatusesController do
   render_views
 
   describe 'GET #show' do
@@ -63,7 +63,7 @@ describe StatusesController do
           expect(response.headers).to include(
             'Vary' => 'Accept, Accept-Language, Cookie',
             'Cache-Control' => include('public'),
-            'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+            'Link' => include('activity+json')
           )
           expect(response.body).to include status.text
         end
@@ -72,17 +72,16 @@ describe StatusesController do
       context 'with JSON' do
         let(:format) { 'json' }
 
-        it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
         it 'renders ActivityPub Note object successfully', :aggregate_failures do
           expect(response)
             .to have_http_status(200)
+            .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+
           expect(response.headers).to include(
-            'Vary' => 'Accept, Accept-Language, Cookie',
             'Content-Type' => include('application/activity+json'),
-            'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+            'Link' => include('activity+json')
           )
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to include(content: include(status.text))
         end
       end
@@ -169,7 +168,7 @@ describe StatusesController do
             expect(response.headers).to include(
               'Vary' => 'Accept, Accept-Language, Cookie',
               'Cache-Control' => include('private'),
-              'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              'Link' => include('activity+json')
             )
             expect(response.body).to include status.text
           end
@@ -185,9 +184,9 @@ describe StatusesController do
               'Vary' => 'Accept, Accept-Language, Cookie',
               'Cache-Control' => include('private'),
               'Content-Type' => include('application/activity+json'),
-              'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              'Link' => include('activity+json')
             )
-            expect(body_as_json)
+            expect(response.parsed_body)
               .to include(content: include(status.text))
           end
         end
@@ -213,7 +212,7 @@ describe StatusesController do
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
               expect(response.body).to include status.text
             end
@@ -229,9 +228,9 @@ describe StatusesController do
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
-              expect(body_as_json)
+              expect(response.parsed_body)
                 .to include(content: include(status.text))
             end
           end
@@ -279,7 +278,7 @@ describe StatusesController do
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
               expect(response.body).to include status.text
             end
@@ -295,9 +294,9 @@ describe StatusesController do
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
-              expect(body_as_json)
+              expect(response.parsed_body)
                 .to include(content: include(status.text))
             end
           end
@@ -371,7 +370,7 @@ describe StatusesController do
             expect(response.headers).to include(
               'Vary' => 'Accept, Accept-Language, Cookie',
               'Cache-Control' => include('private'),
-              'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              'Link' => include('activity+json')
             )
             expect(response.body).to include status.text
           end
@@ -380,17 +379,15 @@ describe StatusesController do
         context 'with JSON' do
           let(:format) { 'json' }
 
-          it_behaves_like 'cacheable response', expects_vary: 'Accept, Accept-Language, Cookie'
-
           it 'renders ActivityPub Note object successfully', :aggregate_failures do
             expect(response)
               .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
             expect(response.headers).to include(
-              'Vary' => 'Accept, Accept-Language, Cookie',
               'Content-Type' => include('application/activity+json'),
-              'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+              'Link' => include('activity+json')
             )
-            expect(body_as_json)
+            expect(response.parsed_body)
               .to include(content: include(status.text))
           end
         end
@@ -415,7 +412,7 @@ describe StatusesController do
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
               expect(response.body).to include status.text
             end
@@ -431,10 +428,10 @@ describe StatusesController do
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
 
-              expect(body_as_json)
+              expect(response.parsed_body)
                 .to include(content: include(status.text))
             end
           end
@@ -482,7 +479,7 @@ describe StatusesController do
               expect(response.headers).to include(
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
               expect(response.body).to include status.text
             end
@@ -498,9 +495,9 @@ describe StatusesController do
                 'Vary' => 'Accept, Accept-Language, Cookie',
                 'Cache-Control' => include('private'),
                 'Content-Type' => include('application/activity+json'),
-                'Link' => satisfy { |header| header.to_s.include?('activity+json') }
+                'Link' => include('activity+json')
               )
-              expect(body_as_json)
+              expect(response.parsed_body)
                 .to include(content: include(status.text))
             end
           end
@@ -527,288 +524,6 @@ describe StatusesController do
             end
           end
         end
-      end
-    end
-  end
-
-  describe 'GET #activity' do
-    let(:account) { Fabricate(:account) }
-    let(:status)  { Fabricate(:status, account: account) }
-
-    context 'when account is permanently suspended' do
-      before do
-        account.suspend!
-        account.deletion_request.destroy
-
-        get :activity, params: { account_username: account.username, id: status.id }
-      end
-
-      it 'returns http gone' do
-        expect(response).to have_http_status(410)
-      end
-    end
-
-    context 'when account is temporarily suspended' do
-      before do
-        account.suspend!
-
-        get :activity, params: { account_username: account.username, id: status.id }
-      end
-
-      it 'returns http forbidden' do
-        expect(response).to have_http_status(403)
-      end
-    end
-
-    context 'when status is public' do
-      before do
-        status.update(visibility: :public)
-        get :activity, params: { account_username: account.username, id: status.id }
-      end
-
-      it 'returns http success' do
-        expect(response).to have_http_status(:success)
-      end
-    end
-
-    context 'when status is private' do
-      before do
-        status.update(visibility: :private)
-        get :activity, params: { account_username: account.username, id: status.id }
-      end
-
-      it 'returns http not_found' do
-        expect(response).to have_http_status(404)
-      end
-    end
-
-    context 'when status is direct' do
-      before do
-        status.update(visibility: :direct)
-        get :activity, params: { account_username: account.username, id: status.id }
-      end
-
-      it 'returns http not_found' do
-        expect(response).to have_http_status(404)
-      end
-    end
-
-    context 'when signed-in' do
-      let(:user) { Fabricate(:user) }
-
-      before do
-        sign_in(user)
-      end
-
-      context 'when status is public' do
-        before do
-          status.update(visibility: :public)
-          get :activity, params: { account_username: account.username, id: status.id }
-        end
-
-        it 'returns http success' do
-          expect(response).to have_http_status(:success)
-        end
-      end
-
-      context 'when status is private' do
-        before do
-          status.update(visibility: :private)
-        end
-
-        context 'when user is authorized to see it' do
-          before do
-            user.account.follow!(account)
-            get :activity, params: { account_username: account.username, id: status.id }
-          end
-
-          it 'returns http success' do
-            expect(response).to have_http_status(200)
-          end
-        end
-
-        context 'when user is not authorized to see it' do
-          before do
-            get :activity, params: { account_username: account.username, id: status.id }
-          end
-
-          it 'returns http not_found' do
-            expect(response).to have_http_status(404)
-          end
-        end
-      end
-
-      context 'when status is direct' do
-        before do
-          status.update(visibility: :direct)
-        end
-
-        context 'when user is authorized to see it' do
-          before do
-            Fabricate(:mention, account: user.account, status: status)
-            get :activity, params: { account_username: account.username, id: status.id }
-          end
-
-          it 'returns http success' do
-            expect(response).to have_http_status(200)
-          end
-        end
-
-        context 'when user is not authorized to see it' do
-          before do
-            get :activity, params: { account_username: account.username, id: status.id }
-          end
-
-          it 'returns http not_found' do
-            expect(response).to have_http_status(404)
-          end
-        end
-      end
-    end
-
-    context 'with signature' do
-      let(:remote_account) { Fabricate(:account, domain: 'example.com') }
-
-      before do
-        allow(controller).to receive(:signed_request_actor).and_return(remote_account)
-      end
-
-      context 'when status is public' do
-        before do
-          status.update(visibility: :public)
-          get :activity, params: { account_username: account.username, id: status.id }
-        end
-
-        it 'returns http success' do
-          expect(response).to have_http_status(:success)
-        end
-      end
-
-      context 'when status is private' do
-        before do
-          status.update(visibility: :private)
-        end
-
-        context 'when user is authorized to see it' do
-          before do
-            remote_account.follow!(account)
-            get :activity, params: { account_username: account.username, id: status.id }
-          end
-
-          it 'returns http success' do
-            expect(response).to have_http_status(200)
-          end
-        end
-
-        context 'when user is not authorized to see it' do
-          before do
-            get :activity, params: { account_username: account.username, id: status.id }
-          end
-
-          it 'returns http not_found' do
-            expect(response).to have_http_status(404)
-          end
-        end
-      end
-
-      context 'when status is direct' do
-        before do
-          status.update(visibility: :direct)
-        end
-
-        context 'when user is authorized to see it' do
-          before do
-            Fabricate(:mention, account: remote_account, status: status)
-            get :activity, params: { account_username: account.username, id: status.id }
-          end
-
-          it 'returns http success' do
-            expect(response).to have_http_status(200)
-          end
-        end
-
-        context 'when user is not authorized to see it' do
-          before do
-            get :activity, params: { account_username: account.username, id: status.id }
-          end
-
-          it 'returns http not_found' do
-            expect(response).to have_http_status(404)
-          end
-        end
-      end
-    end
-  end
-
-  describe 'GET #embed' do
-    let(:account) { Fabricate(:account) }
-    let(:status)  { Fabricate(:status, account: account) }
-
-    context 'when account is suspended' do
-      let(:account) { Fabricate(:account, suspended: true) }
-
-      before do
-        get :embed, params: { account_username: account.username, id: status.id }
-      end
-
-      it 'returns http gone' do
-        expect(response).to have_http_status(410)
-      end
-    end
-
-    context 'when status is a reblog' do
-      let(:original_account) { Fabricate(:account, domain: 'example.com') }
-      let(:original_status) { Fabricate(:status, account: original_account, url: 'https://example.com/123') }
-      let(:status) { Fabricate(:status, account: account, reblog: original_status) }
-
-      before do
-        get :embed, params: { account_username: status.account.username, id: status.id }
-      end
-
-      it 'returns http not found' do
-        expect(response).to have_http_status(404)
-      end
-    end
-
-    context 'when status is public' do
-      before do
-        get :embed, params: { account_username: status.account.username, id: status.id }
-      end
-
-      it 'renders status successfully', :aggregate_failures do
-        expect(response)
-          .to have_http_status(200)
-          .and render_template(:embed)
-        expect(response.headers).to include(
-          'Vary' => 'Accept, Accept-Language, Cookie',
-          'Cache-Control' => include('public'),
-          'Link' => satisfy { |header| header.to_s.include?('activity+json') }
-        )
-        expect(response.body).to include status.text
-      end
-    end
-
-    context 'when status is private' do
-      let(:status) { Fabricate(:status, account: account, visibility: :private) }
-
-      before do
-        get :embed, params: { account_username: status.account.username, id: status.id }
-      end
-
-      it 'returns http not found' do
-        expect(response).to have_http_status(404)
-      end
-    end
-
-    context 'when status is direct' do
-      let(:status) { Fabricate(:status, account: account, visibility: :direct) }
-
-      before do
-        get :embed, params: { account_username: status.account.username, id: status.id }
-      end
-
-      it 'returns http not found' do
-        expect(response).to have_http_status(404)
       end
     end
   end

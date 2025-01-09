@@ -13,7 +13,7 @@
 #
 
 class Relay < ApplicationRecord
-  validates :inbox_url, presence: true, uniqueness: true, url: true, if: :will_save_change_to_inbox_url?
+  validates :inbox_url, presence: true, uniqueness: true, url: true # rubocop:disable Rails/UniqueValidationWithoutIndex
 
   enum :state, { idle: 0, pending: 1, accepted: 2, rejected: 3 }
 
@@ -24,6 +24,10 @@ class Relay < ApplicationRecord
   before_destroy :ensure_disabled
 
   alias enabled? accepted?
+
+  def to_log_human_identifier
+    inbox_url
+  end
 
   def enable!
     activity_id = ActivityPub::TagManager.instance.generate_uri_for(nil)

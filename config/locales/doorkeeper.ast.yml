@@ -41,7 +41,6 @@ ast:
       error:
         title: Prodúxose un error
       new:
-        prompt_html: "%{client_name}, que ye una aplicación de terceros, quier tener accesu a la cuenta. <strong>Si nun t'enfotes nella, nun habríes autorizala.</strong>"
         review_permissions: Revisión de los permisos
       show:
         title: Copia esti códigu d'autorización y apiégalu na aplicación.
@@ -51,7 +50,9 @@ ast:
       confirmations:
         revoke: "¿De xuru que quies facer esta aición?"
       index:
+        authorized_at: 'Data d''autorización: %{date}'
         description_html: Estes son les aplicaciones que puen acceder a la cuenta cola API. Si equí hai aplicaciones que nun conoces o hai dalguna aplicación que nun funciona correutamente, pues revocar el so accesu.
+        last_used_at: 'Últimu usu: %{date}'
         never_used: Enxamás s'usó
         scopes: Permisos
         title: Les aplicaciones qu'autoricesti

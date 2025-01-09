@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::AccountDeletionWorker do
+RSpec.describe Admin::AccountDeletionWorker do
   let(:worker) { described_class.new }
 
   describe 'perform' do

@@ -3,6 +3,7 @@ pl:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Jedna na linię. Chroni przed fałszywym przypisaniem wpisów.
         discoverable: Twój profil i publiczne wpisy mogą być promowane lub polecane na Mastodonie i twój profil może być sugerowany innym użytkownikom.
         display_name: Twoje imię lub pseudonim.
         fields: Co ci się tylko podoba – twoja strona domowa, zaimki, wiek…
@@ -59,6 +60,7 @@ pl:
         setting_display_media_default: Ukrywaj zawartość multimedialną oznaczoną jako wrażliwa
         setting_display_media_hide_all: Zawsze ukrywaj zawartość multimedialną
         setting_display_media_show_all: Zawsze pokazuj zawartość multimedialną
+        setting_system_scrollbars_ui: Stosuje się tylko do przeglądarek komputerowych opartych na Safari i Chrome
         setting_use_blurhash: Gradienty są oparte na kolorach ukrywanej zawartości, ale uniewidaczniają wszystkie szczegóły
         setting_use_pending_items: Ukryj aktualizacje osi czasu za kliknięciem, zamiast automatycznego przewijania strumienia
         username: Możesz używać liter, cyfr i podkreślników
@@ -130,7 +132,7 @@ pl:
         name: Możesz zmieniać tylko wielkość liter, np. aby były bardziej widoczne
       user:
         chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
-        role: Rola kontroluje uprawnienia użytkownika
+        role: Rola kontroluje uprawnienia użytkownika.
       user_role:
         color: Kolor używany dla roli w całym interfejsie użytkownika, wyrażony jako RGB w formacie szesnastkowym
         highlighted: To sprawia, że rola jest widoczna publicznie
@@ -143,6 +145,7 @@ pl:
         url: Dokąd będą wysłane zdarzenia
     labels:
       account:
+        attribution_domains_as_text: Strony które mogą ci przypisywać autorstwo.
         discoverable: Udostępniaj profil i wpisy funkcjom odkrywania
         fields:
           name: Nazwa
@@ -221,6 +224,7 @@ pl:
         setting_hide_network: Ukryj swoją sieć
         setting_reduce_motion: Ogranicz ruch w animacjach
         setting_system_font_ui: Używaj domyślnej czcionki systemu
+        setting_system_scrollbars_ui: Używaj domyślnego paska przewijania systemu
         setting_theme: Motyw strony
         setting_trends: Pokazuj dzisiejsze „Na czasie”
         setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem obserwacji
@@ -314,7 +318,13 @@ pl:
         listable: Pozwól, aby ten hashtag pojawiał się w wynikach wyszukiwania i katalogu profilów
         name: Hasztag
         trendable: Pozwól na wyświetlanie tego hashtagu w „Na czasie”
-        usable: Pozwól na umieszczanie tego hashtagu we wpisach
+        usable: Pozwól na umieszczanie tego hashtagu w lokalnych wpisach
+      terms_of_service:
+        changelog: Co się zmieniło?
+        text: Warunki korzystania z usługi
+      terms_of_service_generator:
+        domain: Domena
+        jurisdiction: Jurysdykcja
       user:
         role: Rola
         time_zone: Strefa czasowa

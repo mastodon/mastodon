@@ -7,11 +7,12 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     has_one :account, serializer: REST::AccountSerializer
   end
 
+  include InstanceHelper
   include RoutingHelper
 
   attributes :domain, :title, :version, :source_url, :description,
-             :usage, :thumbnail, :languages, :configuration,
-             :registrations
+             :usage, :thumbnail, :icon, :languages, :configuration,
+             :registrations, :api_versions
 
   has_one :contact, serializer: ContactSerializer
   has_many :rules, serializer: REST::RuleSerializer
@@ -29,6 +30,18 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     else
       {
         url: frontend_asset_url('images/preview.png'),
+      }
+    end
+  end
+
+  def icon
+    SiteUpload::ANDROID_ICON_SIZES.map do |size|
+      src = app_icon_path(size.to_i)
+      src = URI.join(root_url, src).to_s if src.present?
+
+      {
+        src: src || frontend_asset_url("icons/android-chrome-#{size}x#{size}.png"),
+        size: "#{size}x#{size}",
       }
     end
   end
@@ -64,12 +77,13 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       },
 
       media_attachments: {
-        supported_mime_types: MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES + MediaAttachment::AUDIO_MIME_TYPES,
-        image_size_limit: MediaAttachment::IMAGE_LIMIT,
+        description_limit: MediaAttachment::MAX_DESCRIPTION_LENGTH,
         image_matrix_limit: Attachmentable::MAX_MATRIX_LIMIT,
-        video_size_limit: MediaAttachment::VIDEO_LIMIT,
+        image_size_limit: MediaAttachment::IMAGE_LIMIT,
+        supported_mime_types: MediaAttachment.supported_mime_types,
         video_frame_rate_limit: MediaAttachment::MAX_VIDEO_FRAME_RATE,
         video_matrix_limit: MediaAttachment::MAX_VIDEO_MATRIX_LIMIT,
+        video_size_limit: MediaAttachment::VIDEO_LIMIT,
       },
 
       polls: {
@@ -92,6 +106,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       message: registrations_enabled? ? nil : registrations_message,
       url: ENV.fetch('SSO_ACCOUNT_SIGN_UP', nil),
     }
+  end
+
+  def api_versions
+    Mastodon::Version.api_versions
   end
 
   private

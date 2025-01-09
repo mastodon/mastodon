@@ -12,6 +12,43 @@ code {
   margin: 50px auto;
 }
 
+.form-section {
+  border-radius: 8px;
+  background: var(--surface-background-color);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.fade-out-top {
+  position: relative;
+  overflow: hidden;
+  height: 160px;
+  max-width: 566px;
+  margin-inline: auto;
+
+  &::after {
+    content: '';
+    display: block;
+    background: linear-gradient(
+      to bottom,
+      var(--surface-background-color),
+      transparent
+    );
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 100px;
+    pointer-events: none;
+  }
+
+  & > div {
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: 0;
+  }
+}
+
 .indicator-icon {
   display: flex;
   align-items: center;
@@ -277,6 +314,10 @@ code {
 
     ul {
       columns: 2;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        columns: 1;
+      }
     }
   }
 
@@ -288,6 +329,10 @@ code {
     display: inline-block;
     width: auto;
     flex: 0;
+  }
+
+  .input.select.select--languages {
+    min-width: 32ch;
   }
 
   .required abbr {
@@ -308,7 +353,7 @@ code {
       margin-bottom: 10px;
       max-width: 100%;
       height: auto;
-      border-radius: 4px;
+      border-radius: var(--avatar-border-radius);
       background: url('images/void.png');
 
       &[src$='missing.png'] {
@@ -441,11 +486,6 @@ code {
     border-radius: 4px;
     padding: 10px 16px;
 
-    &::placeholder {
-      color: $dark-text-color;
-      opacity: 1;
-    }
-
     &:invalid {
       box-shadow: none;
     }
@@ -544,8 +584,9 @@ code {
       background-color: $ui-button-focus-background-color;
     }
 
+    &:disabled,
     &:disabled:hover {
-      background-color: $ui-primary-color;
+      background-color: $ui-button-disabled-color;
     }
 
     &.negative {
@@ -556,16 +597,6 @@ code {
       &:focus {
         background-color: $ui-button-destructive-focus-background-color;
       }
-    }
-  }
-
-  .button.button-tertiary {
-    padding: 9px;
-
-    &:hover,
-    &:focus,
-    &:active {
-      padding: 10px;
     }
   }
 
@@ -607,8 +638,7 @@ code {
       inset-inline-end: 3px;
       top: 1px;
       padding: 10px;
-      padding-bottom: 9px;
-      font-size: 16px;
+      font-size: 14px;
       color: $dark-text-color;
       font-family: inherit;
       pointer-events: none;
@@ -626,13 +656,12 @@ code {
         inset-inline-end: 0;
         bottom: 1px;
         width: 5px;
-        background-image: linear-gradient(
-          to right,
-          rgba(darken($ui-base-color, 10%), 0),
-          darken($ui-base-color, 10%)
-        );
       }
     }
+  }
+
+  .status-card {
+    contain: unset;
   }
 }
 
@@ -937,10 +966,6 @@ code {
           font-weight: 700;
         }
       }
-
-      .fa {
-        font-weight: 400;
-      }
     }
   }
 }
@@ -1143,6 +1168,7 @@ code {
   align-items: center;
   padding-bottom: 30px;
   margin-bottom: 30px;
+  color: $white;
 
   li {
     flex: 0 0 auto;
@@ -1225,11 +1251,13 @@ code {
 }
 
 .app-form {
+  padding: 16px;
+
   &__avatar-input,
   &__header-input {
     display: block;
     border-radius: 8px;
-    background: var(--dropdown-background-color);
+    background: var(--surface-variant-background-color);
     position: relative;
     cursor: pointer;
 
@@ -1277,7 +1305,7 @@ code {
     }
 
     &:hover {
-      background-color: var(--dropdown-border-color);
+      background-color: var(--surface-variant-active-background-color);
     }
   }
 
@@ -1338,6 +1366,57 @@ code {
       display: flex;
       border-inline-start: 1px solid var(--background-border-color);
       padding-inline-start: 16px;
+    }
+  }
+
+  &__link {
+    display: flex;
+    gap: 16px;
+    padding: 8px 0;
+    align-items: center;
+    text-decoration: none;
+    color: $primary-text-color;
+    margin-bottom: 16px;
+
+    &__text {
+      flex: 1 1 auto;
+      font-size: 14px;
+      line-height: 20px;
+      color: $darker-text-color;
+
+      strong {
+        font-weight: 600;
+        display: block;
+        color: $primary-text-color;
+      }
+    }
+  }
+}
+
+.avatar-pile {
+  display: flex;
+  align-items: center;
+
+  img {
+    display: block;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--background-color);
+    background: var(--surface-background-color);
+    margin-inline-end: -16px;
+    transform: rotate(0);
+
+    &:first-child {
+      transform: rotate(-4deg);
+    }
+
+    &:nth-child(2) {
+      transform: rotate(-2deg);
+    }
+
+    &:last-child {
+      margin-inline-end: 0;
     }
   }
 }

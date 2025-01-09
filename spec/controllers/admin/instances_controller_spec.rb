@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Admin::InstancesController do
   render_views
 
-  let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:current_user) { Fabricate(:admin_user) }
 
   let!(:account_popular_main) { Fabricate(:account, domain: 'popular') }
 
@@ -28,11 +28,14 @@ RSpec.describe Admin::InstancesController do
     it 'renders instances' do
       get :index, params: { page: 2 }
 
-      instances = assigns(:instances).to_a
-      expect(instances.size).to eq 1
-      expect(instances[0].domain).to eq 'less.popular'
+      expect(instance_directory_links.size).to eq(1)
+      expect(instance_directory_links.first.text.strip).to match('less.popular')
 
       expect(response).to have_http_status(200)
+    end
+
+    def instance_directory_links
+      response.parsed_body.css('div.directory__tag a')
     end
   end
 

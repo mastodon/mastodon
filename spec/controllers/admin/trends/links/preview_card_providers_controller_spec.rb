@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-describe Admin::Trends::Links::PreviewCardProvidersController do
+RSpec.describe Admin::Trends::Links::PreviewCardProvidersController do
   render_views
 
-  let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:user) { Fabricate(:admin_user) }
 
   before do
     sign_in user, scope: :user

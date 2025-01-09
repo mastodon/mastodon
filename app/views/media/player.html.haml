@@ -2,6 +2,8 @@
   = render_initial_state
   = javascript_pack_tag 'public', crossorigin: 'anonymous'
 
+- content_for :body_classes, 'player'
+
 :ruby
   meta = @media_attachment.file.meta || {}
 

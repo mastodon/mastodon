@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  DANGEROUS_SCOPES = %w(
-    read
-    write
-    follow
-  ).freeze
-
   RTL_LOCALES = %i(
     ar
     ckb
@@ -85,8 +79,8 @@ module ApplicationHelper
 
   def html_title
     safe_join(
-      [content_for(:page_title).to_s.chomp, title]
-      .select(&:present?),
+      [content_for(:page_title), title]
+      .compact_blank,
       ' - '
     )
   end
@@ -95,8 +89,11 @@ module ApplicationHelper
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
 
-  def class_for_scope(scope)
-    'scope-danger' if DANGEROUS_SCOPES.include?(scope.to_s)
+  def label_for_scope(scope)
+    safe_join [
+      tag.samp(scope, class: { 'scope-danger' => SessionActivation::DEFAULT_SCOPES.include?(scope.to_s) }),
+      tag.span(t("doorkeeper.scopes.#{scope}"), class: :hint),
+    ]
   end
 
   def can?(action, record)
@@ -105,19 +102,17 @@ module ApplicationHelper
     policy(record).public_send(:"#{action}?")
   end
 
-  def fa_icon(icon, attributes = {})
-    class_names = attributes[:class]&.split || []
-    class_names << 'fa'
-    class_names += icon.split.map { |cl| "fa-#{cl}" }
-
-    content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
-  end
-
   def material_symbol(icon, attributes = {})
-    inline_svg_tag(
-      "400-24px/#{icon}.svg",
-      class: %w(icon).concat(attributes[:class].to_s.split),
-      role: :img
+    safe_join(
+      [
+        inline_svg_tag(
+          "400-24px/#{icon}.svg",
+          class: ['icon', "material-#{icon}"].concat(attributes[:class].to_s.split),
+          role: :img,
+          data: attributes[:data]
+        ),
+        ' ',
+      ]
     )
   end
 
@@ -125,25 +120,13 @@ module ApplicationHelper
     inline_svg_tag 'check.svg'
   end
 
-  def visibility_icon(status)
-    if status.public_visibility?
-      fa_icon('globe', title: I18n.t('statuses.visibilities.public'))
-    elsif status.unlisted_visibility?
-      fa_icon('unlock', title: I18n.t('statuses.visibilities.unlisted'))
-    elsif status.private_visibility? || status.limited_visibility?
-      fa_icon('lock', title: I18n.t('statuses.visibilities.private'))
-    elsif status.direct_visibility?
-      fa_icon('at', title: I18n.t('statuses.visibilities.direct'))
-    end
-  end
-
   def interrelationships_icon(relationships, account_id)
     if relationships.following[account_id] && relationships.followed_by[account_id]
-      fa_icon('exchange', title: I18n.t('relationships.mutual'), class: 'fa-fw active passive')
+      material_symbol('sync_alt', title: I18n.t('relationships.mutual'), class: 'active passive')
     elsif relationships.following[account_id]
-      fa_icon(locale_direction == 'ltr' ? 'arrow-right' : 'arrow-left', title: I18n.t('relationships.following'), class: 'fa-fw active')
+      material_symbol(locale_direction == 'ltr' ? 'arrow_right_alt' : 'arrow_left_alt', title: I18n.t('relationships.following'), class: 'active')
     elsif relationships.followed_by[account_id]
-      fa_icon(locale_direction == 'ltr' ? 'arrow-left' : 'arrow-right', title: I18n.t('relationships.followers'), class: 'fa-fw passive')
+      material_symbol(locale_direction == 'ltr' ? 'arrow_left_alt' : 'arrow_right_alt', title: I18n.t('relationships.followers'), class: 'passive')
     end
   end
 
@@ -160,9 +143,11 @@ module ApplicationHelper
   end
 
   def body_classes
-    output = body_class_string.split
+    output = []
+    output << content_for(:body_classes)
     output << "theme-#{current_theme.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui
+    output << 'custom-scrollbars' unless current_account&.user&.setting_system_scrollbars_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'rtl' if locale_direction == 'rtl'
     output.compact_blank.join(' ')
@@ -244,20 +229,21 @@ module ApplicationHelper
     full_asset_url(instance_presenter.mascot&.file&.url || frontend_asset_path('images/elephant_ui_plane.svg'))
   end
 
-  def instance_presenter
-    @instance_presenter ||= InstancePresenter.new
+  def copyable_input(options = {})
+    tag.input(type: :text, maxlength: 999, spellcheck: false, readonly: true, **options)
   end
 
-  def favicon_path(size = '48')
-    instance_presenter.favicon&.file&.url(size)
+  def recent_tag_usage(tag)
+    people = tag.history.aggregate(2.days.ago.to_date..Time.zone.today).accounts
+    I18n.t 'user_mailer.welcome.hashtags_recent_count', people: number_with_delimiter(people), count: people
   end
 
-  def app_icon_path(size = '48')
-    instance_presenter.app_icon&.file&.url(size)
+  def app_store_url_ios
+    'https://apps.apple.com/app/mastodon-for-iphone-and-ipad/id1571998974'
   end
 
-  def use_mask_icon?
-    instance_presenter.app_icon.blank?
+  def app_store_url_android
+    'https://play.google.com/store/apps/details?id=org.joinmastodon.android'
   end
 
   private

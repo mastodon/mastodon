@@ -16,37 +16,6 @@ def redirect_with_vary(path)
 end
 
 Rails.application.routes.draw do
-  # Paths of routes on the web app that to not require to be indexed or
-  # have alternative format representations requiring separate controllers
-  web_app_paths = %w(
-    /getting-started
-    /keyboard-shortcuts
-    /home
-    /public
-    /public/local
-    /public/remote
-    /conversations
-    /lists/(*any)
-    /links/(*any)
-    /notifications/(*any)
-    /notifications_v2/(*any)
-    /favourites
-    /bookmarks
-    /pinned
-    /start/(*any)
-    /directory
-    /explore/(*any)
-    /search
-    /publish
-    /follow_requests
-    /blocks
-    /domain_blocks
-    /mutes
-    /followed_tags
-    /statuses/(*any)
-    /deck/(*any)
-  ).freeze
-
   root 'home#index'
 
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
@@ -64,10 +33,17 @@ Rails.application.routes.draw do
                 tokens: 'oauth/tokens'
   end
 
+  namespace :oauth do
+    # As this is borrowed from OpenID, the specification says we must also support
+    # POST for the userinfo endpoint:
+    # https://openid.net/specs/openid-connect-core-1_0.html#UserInfo
+    match 'userinfo', via: [:get, :post], to: 'userinfo#show', defaults: { format: 'json' }
+  end
+
   scope path: '.well-known' do
     scope module: :well_known do
       get 'oauth-authorization-server', to: 'oauth_metadata#show', as: :oauth_metadata, defaults: { format: 'json' }
-      get 'host-meta', to: 'host_meta#show', as: :host_meta, defaults: { format: 'xml' }
+      get 'host-meta', to: 'host_meta#show', as: :host_meta
       get 'nodeinfo', to: 'node_info#index', as: :nodeinfo, defaults: { format: 'json' }
       get 'webfinger', to: 'webfinger#show', as: :webfinger
     end
@@ -79,7 +55,8 @@ Rails.application.routes.draw do
 
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
-  get 'custom.css', to: 'custom_css#show', as: :custom_css
+  get 'custom.css', to: 'custom_css#show'
+  resources :custom_css, only: :show, path: :css
 
   get 'remote_interaction_helper', to: 'remote_interaction_helper#index'
 
@@ -126,6 +103,8 @@ Rails.application.routes.draw do
       end
 
       resources :replies, only: [:index], module: :activitypub
+      resources :likes, only: [:index], module: :activitypub
+      resources :shares, only: [:index], module: :activitypub
     end
 
     resources :followers, only: [:index], controller: :follower_accounts
@@ -134,7 +113,6 @@ Rails.application.routes.draw do
     scope module: :activitypub do
       resource :outbox, only: [:show]
       resource :inbox, only: [:create]
-      resource :claim, only: [:create]
       resources :collections, only: [:show]
       resource :followers_synchronization, only: [:show]
     end
@@ -142,7 +120,11 @@ Rails.application.routes.draw do
 
   resource :inbox, only: [:create], module: :activitypub
 
-  get '/:encoded_at(*path)', to: redirect('/@%{path}'), constraints: { encoded_at: /%40/ }
+  constraints(encoded_path: /%40.*/) do
+    get '/:encoded_path', to: redirect { |params|
+      "/#{params[:encoded_path].gsub('%40', '@')}"
+    }
+  end
 
   constraints(username: %r{[^@/.]+}) do
     with_options to: 'accounts#show' do
@@ -214,16 +196,15 @@ Rails.application.routes.draw do
 
   draw(:api)
 
-  web_app_paths.each do |path|
-    get path, to: 'home#index'
-  end
+  draw(:web_app)
 
   get '/web/(*any)', to: redirect('/%{any}', status: 302), as: :web, defaults: { any: '' }, format: false
   get '/about',      to: 'about#show'
   get '/about/more', to: redirect('/about')
 
-  get '/privacy-policy', to: 'privacy#show', as: :privacy_policy
-  get '/terms',          to: redirect('/privacy-policy')
+  get '/privacy-policy',   to: 'privacy#show', as: :privacy_policy
+  get '/terms-of-service', to: 'terms_of_service#show', as: :terms_of_service
+  get '/terms',            to: redirect('/terms-of-service')
 
   match '/', via: [:post, :put, :patch, :delete], to: 'application#raise_not_found', format: false
   match '*unmatched_route', via: :all, to: 'application#raise_not_found', format: false

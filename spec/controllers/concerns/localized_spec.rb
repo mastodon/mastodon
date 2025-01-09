@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-describe Localized do
+RSpec.describe Localized do
   controller(ApplicationController) do
-    include Localized
+    include Localized # rubocop:disable RSpec/DescribedClass
 
     def success
       render plain: I18n.locale, status: 200

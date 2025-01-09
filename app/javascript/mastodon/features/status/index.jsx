@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { withRouter } from 'react-router-dom';
 
 import { createSelector } from '@reduxjs/toolkit';
-import Immutable from 'immutable';
+import { List as ImmutableList } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
@@ -18,6 +18,7 @@ import VisibilityIcon from '@/material-icons/400-24px/visibility.svg?react';
 import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+import { TimelineHint } from 'mastodon/components/timeline_hint';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
@@ -68,7 +69,7 @@ import Column from '../ui/components/column';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 
 import ActionBar from './components/action_bar';
-import DetailedStatus from './components/detailed_status';
+import { DetailedStatus } from './components/detailed_status';
 
 
 const messages = defineMessages({
@@ -86,7 +87,7 @@ const makeMapStateToProps = () => {
     (_, { id }) => id,
     state => state.getIn(['contexts', 'inReplyTos']),
   ], (statusId, inReplyTos) => {
-    let ancestorsIds = Immutable.List();
+    let ancestorsIds = ImmutableList();
     ancestorsIds = ancestorsIds.withMutations(mutable => {
       let id = statusId;
 
@@ -133,14 +134,14 @@ const makeMapStateToProps = () => {
       });
     }
 
-    return Immutable.List(descendantsIds);
+    return ImmutableList(descendantsIds);
   });
 
   const mapStateToProps = (state, props) => {
     const status = getStatus(state, { id: props.params.statusId });
 
-    let ancestorsIds   = Immutable.List();
-    let descendantsIds = Immutable.List();
+    let ancestorsIds   = ImmutableList();
+    let descendantsIds = ImmutableList();
 
     if (status) {
       ancestorsIds   = getAncestorsIds(state, { id: status.get('in_reply_to_id') });
@@ -473,6 +474,10 @@ class Status extends ImmutablePureComponent {
     this.handleToggleMediaVisibility();
   };
 
+  handleHotkeyTranslate = () => {
+    this.handleTranslate(this.props.status);
+  };
+
   handleMoveUp = id => {
     const { status, ancestorsIds, descendantsIds } = this.props;
 
@@ -598,7 +603,7 @@ class Status extends ImmutablePureComponent {
   };
 
   render () {
-    let ancestors, descendants;
+    let ancestors, descendants, remoteHint;
     const { isLoading, status, ancestorsIds, descendantsIds, intl, domain, multiColumn, pictureInPicture } = this.props;
     const { fullscreen } = this.state;
 
@@ -627,6 +632,17 @@ class Status extends ImmutablePureComponent {
     const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
     const isIndexable = !status.getIn(['account', 'noindex']);
 
+    if (!isLocal) {
+      remoteHint = (
+        <TimelineHint
+          className={classNames(!!descendants && 'timeline-hint--with-descendants')}
+          url={status.get('url')}
+          message={<FormattedMessage id='hints.threads.replies_may_be_missing' defaultMessage='Replies from other servers may be missing.' />}
+          label={<FormattedMessage id='hints.threads.see_more' defaultMessage='See more replies on {domain}' values={{ domain: <strong>{status.getIn(['account', 'acct']).split('@')[1]}</strong> }} />}
+        />
+      );
+    }
+
     const handlers = {
       moveUp: this.handleHotkeyMoveUp,
       moveDown: this.handleHotkeyMoveDown,
@@ -638,6 +654,7 @@ class Status extends ImmutablePureComponent {
       toggleHidden: this.handleHotkeyToggleHidden,
       toggleSensitive: this.handleHotkeyToggleSensitive,
       openMedia: this.handleHotkeyOpenMedia,
+      onTranslate: this.handleHotkeyTranslate,
     };
 
     return (
@@ -695,6 +712,7 @@ class Status extends ImmutablePureComponent {
             </HotKeys>
 
             {descendants}
+            {remoteHint}
           </div>
         </ScrollContainer>
 

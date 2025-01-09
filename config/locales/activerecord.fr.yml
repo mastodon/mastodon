@@ -15,9 +15,17 @@ fr:
       user/invite_request:
         text: Motif
     errors:
+      attributes:
+        domain:
+          invalid: n'est pas un nom de domaine valide
+      messages:
+        invalid_domain_on_line: "%{value} n'est pas un nom de domaine valide"
+        too_many_lines: dépasse la limite de %{limit} lignes
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: contient des valeurs avec des étiquettes manquantes
             username:
               invalid: seulement des lettres, des chiffres et des tirets bas
               reserved: est réservé
@@ -33,6 +41,11 @@ fr:
           attributes:
             data:
               malformed: est mal formé
+        list_account:
+          attributes:
+            account_id:
+              taken: est déjà sur la liste
+          must_be_following: dois être un compte suivi
         status:
           attributes:
             reblog:

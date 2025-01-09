@@ -75,10 +75,10 @@ export const FollowButton: React.FC<{
     label = <LoadingIndicator />;
   } else if (relationship.following && relationship.followed_by) {
     label = intl.formatMessage(messages.mutual);
-  } else if (!relationship.following && relationship.followed_by) {
-    label = intl.formatMessage(messages.followBack);
   } else if (relationship.following || relationship.requested) {
     label = intl.formatMessage(messages.unfollow);
+  } else if (relationship.followed_by) {
+    label = intl.formatMessage(messages.followBack);
   } else {
     label = intl.formatMessage(messages.follow);
   }
@@ -88,7 +88,7 @@ export const FollowButton: React.FC<{
       <a
         href='/settings/profile'
         target='_blank'
-        rel='noreferrer noopener'
+        rel='noopener'
         className='button button-secondary'
       >
         {label}
@@ -99,7 +99,12 @@ export const FollowButton: React.FC<{
   return (
     <Button
       onClick={handleClick}
-      disabled={relationship?.blocked_by || relationship?.blocking}
+      disabled={
+        relationship?.blocked_by ||
+        relationship?.blocking ||
+        (!(relationship?.following || relationship?.requested) &&
+          (account?.suspended || !!account?.moved))
+      }
       secondary={following}
       className={following ? 'button--destructive' : undefined}
     >

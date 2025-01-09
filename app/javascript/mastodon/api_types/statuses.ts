@@ -58,6 +58,29 @@ export interface ApiPreviewCardJSON {
   authors: ApiPreviewCardAuthorJSON[];
 }
 
+export type FilterContext =
+  | 'home'
+  | 'notifications'
+  | 'public'
+  | 'thread'
+  | 'account';
+
+export interface ApiFilterJSON {
+  id: string;
+  title: string;
+  context: FilterContext;
+  expires_at: string;
+  filter_action: 'warn' | 'hide';
+  keywords?: unknown[]; // TODO: FilterKeywordSerializer
+  statuses?: unknown[]; // TODO: FilterStatusSerializer
+}
+
+export interface ApiFilterResultJSON {
+  filter: ApiFilterJSON;
+  keyword_matches: string[];
+  status_matches: string[];
+}
+
 export interface ApiStatusJSON {
   id: string;
   created_at: string;
@@ -80,8 +103,7 @@ export interface ApiStatusJSON {
   bookmarked?: boolean;
   pinned?: boolean;
 
-  // filtered: FilterResult[]
-  filtered: unknown; // TODO
+  filtered?: ApiFilterResultJSON[];
   content?: string;
   text?: string;
 

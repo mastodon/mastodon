@@ -3,7 +3,41 @@
 require 'rails_helper'
 
 RSpec.describe Tag do
-  describe 'validations' do
+  include_examples 'Reviewable'
+
+  describe 'Validations' do
+    describe 'name' do
+      context 'with a new record' do
+        subject { Fabricate.build :tag, name: 'original' }
+
+        it { is_expected.to allow_value('changed').for(:name) }
+      end
+
+      context 'with an existing record' do
+        subject { Fabricate :tag, name: 'original' }
+
+        it { is_expected.to_not allow_value('changed').for(:name).with_message(previous_name_error_message) }
+      end
+    end
+
+    describe 'display_name' do
+      context 'with a new record' do
+        subject { Fabricate.build :tag, name: 'original', display_name: 'OriginalDisplayName' }
+
+        it { is_expected.to allow_value('ChangedDisplayName').for(:display_name) }
+      end
+
+      context 'with an existing record' do
+        subject { Fabricate :tag, name: 'original', display_name: 'OriginalDisplayName' }
+
+        it { is_expected.to_not allow_value('ChangedDisplayName').for(:display_name).with_message(previous_name_error_message) }
+      end
+    end
+
+    def previous_name_error_message
+      I18n.t('tags.does_not_match_previous_name')
+    end
+
     it 'invalid with #' do
       expect(described_class.new(name: '#hello_world')).to_not be_valid
     end
@@ -109,6 +143,18 @@ RSpec.describe Tag do
     it 'returns name' do
       tag = Fabricate(:tag, name: 'foo')
       expect(tag.to_param).to eq 'foo'
+    end
+  end
+
+  describe '#formatted_name' do
+    it 'returns name with a proceeding hash symbol' do
+      tag = Fabricate(:tag, name: 'foo')
+      expect(tag.formatted_name).to eq '#foo'
+    end
+
+    it 'returns display_name with a proceeding hash symbol, if display name present' do
+      tag = Fabricate(:tag, name: 'foobar', display_name: 'FooBar')
+      expect(tag.formatted_name).to eq '#FooBar'
     end
   end
 
@@ -239,6 +285,24 @@ RSpec.describe Tag do
       results = described_class.search_for('match')
 
       expect(results).to eq [tag, similar_tag]
+    end
+
+    it 'finds only listable tags' do
+      tag = Fabricate(:tag, name: 'match')
+      _miss_tag = Fabricate(:tag, name: 'matchunlisted', listable: false)
+
+      results = described_class.search_for('match')
+
+      expect(results).to eq [tag]
+    end
+
+    it 'finds non-listable tags as well via option' do
+      tag = Fabricate(:tag, name: 'match')
+      unlisted_tag = Fabricate(:tag, name: 'matchunlisted', listable: false)
+
+      results = described_class.search_for('match', 5, 0, exclude_unlistable: false)
+
+      expect(results).to eq [tag, unlisted_tag]
     end
   end
 end

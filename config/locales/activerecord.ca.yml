@@ -15,9 +15,17 @@ ca:
       user/invite_request:
         text: Motiu
     errors:
+      attributes:
+        domain:
+          invalid: no és un nom de domini vàlid
+      messages:
+        invalid_domain_on_line: "%{value} no és un nom de domini vàlid"
+        too_many_lines: sobrepassa el límit de %{limit} línies
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: conté valors sense etiqueta
             username:
               invalid: només pot contenir lletres, números i guions baixos
               reserved: està reservat
@@ -33,6 +41,11 @@ ca:
           attributes:
             data:
               malformed: està mal format
+        list_account:
+          attributes:
+            account_id:
+              taken: ja és a la llista
+          must_be_following: ha de ser un compte que seguiu
         status:
           attributes:
             reblog:

@@ -5,7 +5,7 @@ module Admin::Trends::StatusesHelper
     text = if status.local?
              status.text.split("\n").first
            else
-             Nokogiri::HTML(status.text).css('html > body > *').first&.text
+             Nokogiri::HTML5(status.text).css('html > body > *').first&.text
            end
 
     return '' if text.blank?

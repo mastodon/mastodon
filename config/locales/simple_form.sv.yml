@@ -3,6 +3,7 @@ sv:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: En per rad. Skyddar mot falska attributioner.
         discoverable: Dina offentliga inlägg och din profil kan komma att presenteras eller rekommenderas inom olika områden av Mastodon och din profil kan komma att föreslås till andra användare.
         display_name: Ditt fullständiga namn eller ditt roliga namn.
         fields: Din hemsida, ditt pronomen, din ålder, vadhelst du vill.
@@ -59,6 +60,7 @@ sv:
         setting_display_media_default: Dölj media markerad som känslig
         setting_display_media_hide_all: Dölj alltid all media
         setting_display_media_show_all: Visa alltid media markerad som känslig
+        setting_system_scrollbars_ui: Gäller endast för webbläsare som är baserade på Safari och Chrome
         setting_use_blurhash: Gradienter är baserade på färgerna av de dolda objekten men fördunklar alla detaljer
         setting_use_pending_items: Dölj tidslinjeuppdateringar bakom ett klick istället för att automatiskt bläddra i flödet
         username: Du kan använda bokstäver, siffror och understreck
@@ -73,7 +75,7 @@ sv:
       filters:
         action: Välj vilken åtgärd som ska utföras när ett inlägg matchar filtret
         actions:
-          hide: Dölj det filtrerade innehållet helt (beter sig som om det inte fanns)
+          hide: Dölj det filtrerade innehållet helt, beter sig som om det inte fanns
           warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
       form_admin_settings:
         activity_api_enabled: Antalet lokalt publicerade inlägg, aktiva användare och nya registrerade konton per vecka
@@ -128,9 +130,17 @@ sv:
         show_application: Du kommer alltid att kunna se vilken app som publicerat ditt inlägg oavsett.
       tag:
         name: Du kan bara ändra skriftläget av bokstäverna, till exempel, för att göra det mer läsbart
+      terms_of_service:
+        changelog: Kan struktureras med Markdown syntax.
+        text: Kan struktureras med Markdown syntax.
+      terms_of_service_generator:
+        arbitration_address: Kan vara samma som fysisk adress ovan, eller “N/A” om du använder e-post
+        arbitration_website: Kan vara ett webbformulär, eller ”N/A” om du använder e-post
+        dmca_email: Kan vara samma e-postadress som används för “E-postadress för juridiska meddelanden” ovan
+        jurisdiction: Lista det land där vem som än betalar räkningarna bor. Om det är ett företag eller annan enhet, lista landet där det är inkorporerat, och staden, regionen, territoriet eller staten på lämpligt sätt.
       user:
         chosen_languages: Vid aktivering visas bara inlägg på dina valda språk i offentliga tidslinjer
-        role: Rollen bestämmer vilka behörigheter användaren har
+        role: Rollen styr vilka behörigheter användaren har.
       user_role:
         color: Färgen som ska användas för rollen i användargränssnittet, som RGB i hex-format
         highlighted: Detta gör rollen synlig offentligt
@@ -143,6 +153,7 @@ sv:
         url: Dit händelser kommer skickas
     labels:
       account:
+        attribution_domains_as_text: Webbplatser som får kreditera dig
         discoverable: Presentera profil och inlägg med upptäcktsalgoritmer
         fields:
           name: Etikett
@@ -159,7 +170,7 @@ sv:
         title: Rubrik
       admin_account_action:
         include_statuses: Inkludera rapporterade inlägg i e-postmeddelandet
-        send_email_notification: Notifiera användaren via e-post
+        send_email_notification: Avisera användaren via e-post
         text: Anpassad varning
         type: Åtgärd
         types:
@@ -211,6 +222,7 @@ sv:
         setting_default_privacy: Inläggsintegritet
         setting_default_sensitive: Markera alltid media som känsligt
         setting_delete_modal: Visa bekräftelsedialog innan radering av inlägg
+        setting_disable_hover_cards: Inaktivera profilförhandsgranskning vid hovring
         setting_disable_swiping: Inaktivera svepande rörelser
         setting_display_media: Mediavisning
         setting_display_media_default: Standard
@@ -220,6 +232,7 @@ sv:
         setting_hide_network: Göm ditt nätverk
         setting_reduce_motion: Minska rörelser i animationer
         setting_system_font_ui: Använd systemets standardfont
+        setting_system_scrollbars_ui: Använd systemets standardrullningsfält
         setting_theme: Sidans tema
         setting_trends: Visa dagens trender
         setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
@@ -313,7 +326,15 @@ sv:
         listable: Tillåt denna hashtagg att visas i sökningar och förslag
         name: Hashtagg
         trendable: Tillåt denna hashtagg att visas under trender
-        usable: Tillåt inlägg att använda denna hashtagg
+        usable: Tillåt inlägg att använda denna fyrkantstagg
+      terms_of_service:
+        changelog: Vad har ändrats?
+        text: Användarvillkor
+      terms_of_service_generator:
+        admin_email: E-postadress för juridiska meddelanden
+        dmca_address: Fysisk adress för meddelanden om DMCA/upphovsrätt
+        dmca_email: Fysisk adress för meddelanden om DMCA/upphovsrätt
+        domain: Domän
       user:
         role: Roll
         time_zone: Tidszon

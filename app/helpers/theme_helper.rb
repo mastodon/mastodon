@@ -23,7 +23,30 @@ module ThemeHelper
     end
   end
 
+  def custom_stylesheet
+    if active_custom_stylesheet.present?
+      stylesheet_link_tag(
+        custom_css_path(active_custom_stylesheet),
+        host: root_url,
+        media: :all,
+        skip_pipeline: true
+      )
+    end
+  end
+
   private
+
+  def active_custom_stylesheet
+    if cached_custom_css_digest.present?
+      [:custom, cached_custom_css_digest.to_s.first(8)]
+        .compact_blank
+        .join('-')
+    end
+  end
+
+  def cached_custom_css_digest
+    Rails.cache.read(:setting_digest_custom_css)
+  end
 
   def theme_color_for(theme)
     theme == 'mastodon-light' ? Themes::THEME_COLORS[:light] : Themes::THEME_COLORS[:dark]

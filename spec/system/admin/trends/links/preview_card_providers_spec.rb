@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-describe 'Admin::Trends::Links::PreviewCardProviders' do
-  let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+RSpec.describe 'Admin::Trends::Links::PreviewCardProviders' do
+  let(:current_user) { Fabricate(:admin_user) }
 
   before do
     sign_in current_user

@@ -3,13 +3,13 @@ et:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Üks rea peal. See kaitseb pahatahtlike viidete eest.
         discoverable: Su profiili ja avalikke postitusi võidakse Mastodoni erinevates piirkondades esile tõsta või soovitada ning su profiili soovitada teistele kasutajatele.
         display_name: Su täisnimi või naljanimi.
         fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
         indexable: Sinu avalikud postitused võivad ilmuda Mastodoni otsingutulemustes. Inimesed, kes on sinu postitustele reageerinud, saavad neid otsida nii või naa.
         note: 'Saad @mainida teisi inimesi või #silte.'
         show_collections: Inimesed saavad sirvida su jälgijaid ja jälgitavaid. Inimesed, keda sa jälgid, näevad seda sõltumata häälestuse valikust.
-        unlocked: Inimesed saavad sind jälgima hakata kinnitamist taotlemata. Eemalda märge, kui soovid jälgimistaotlusi üle vaadata ja valida, kas nõustuda või keelduda uute jälgijatega.
       account_alias:
         acct: Sisesta konto kasutajanimi@domeen, mille soovid siia ümber kolida
       account_migration:
@@ -128,9 +128,12 @@ et:
         show_application: Sa saad sõltumata sellest vaadata, milline äpp su postituse postitas.
       tag:
         name: Saad muuta ainult tähtede suurtähelisust, näiteks selleks, et muuta seda loetavamaks
+      terms_of_service_generator:
+        dmca_address: USA operaatorite puhul kasuta DMCA määratud esindajate kataloogis registreeritud aadressi. Postkastide loetelu on saadaval otsese taotluse korral. Kasuta DMCA määratud esindaja postkastist loobumise taotlust, et saata e-kiri autoriõiguse ametile ja kirjeldada, et oled kodus asuv sisu moderaator, kes kardab kättemaksu või kättemaksu oma tegevuse eest ja vajab postkasti, et eemaldada oma kodune aadress avalikust nähtavusest.
+        jurisdiction: Nimeta riik, kus elab see, kes arveid maksab. Kui tegemist on äriühingu või muu üksusega, märgi riik, kus see on asutatud, ning vajaduse korral linn, piirkond, territoorium või osariik.
       user:
         chosen_languages: Keelte valimisel näidatakse avalikel ajajoontel ainult neis keeltes postitusi
-        role: See roll kontrollib, millised õigused kasutajal on
+        role: Rollid määravad, millised õigused kasutajal on.
       user_role:
         color: Rolli tähistamise värvus üle kasutajaliidese, RGB 16nd-formaadis
         highlighted: Teeb rolli avalikult nähtavaks
@@ -143,6 +146,7 @@ et:
         url: Kuhu sündmused saadetakse
     labels:
       account:
+        attribution_domains_as_text: Sinule viidata lubatud veebilehed
         discoverable: Tõsta postitused ja profiil avastamise algoritmides esile
         fields:
           name: Nimetus
@@ -211,6 +215,7 @@ et:
         setting_default_privacy: Postituse nähtavus
         setting_default_sensitive: Alati märgista meedia tundlikuks
         setting_delete_modal: Näita kinnitusdialoogi enne postituse kustutamist
+        setting_disable_hover_cards: Keela profiili eelvaade kui hõljutada
         setting_disable_swiping: Keela pühkimisliigutused
         setting_display_media: Meedia kuvarežiim
         setting_display_media_default: Vaikimisi
@@ -242,11 +247,13 @@ et:
           warn: Peida hoiatusega
       form_admin_settings:
         activity_api_enabled: Avalda agregeeritud statistika kasutajaaktiivsuse kohta API-s
+        app_icon: Äpi ikoon
         backups_retention_period: Kasutajate arhiivi talletusperiood
         bootstrap_timeline_accounts: Alati soovita neid kontosid uutele kasutajatele
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
         content_cache_retention_period: Kaugsisu säilitamise aeg
         custom_css: Kohandatud CSS
+        favicon: Favicon
         mascot: Kohandatud maskott (kunagine)
         media_cache_retention_period: Meediapuhvri talletusperiood
         peers_api_enabled: Avalda avastatud serverite loetelu API kaudu
@@ -311,7 +318,7 @@ et:
         listable: Luba sellel sildil ilmuda profiilide kataloogis
         name: Silt
         trendable: Luba sellel sildil trendida
-        usable: Luba postitustel seda silti kasutada
+        usable: Luba seda märksõna postitustes kasutada lokaalselt
       user:
         role: Roll
         time_zone: Ajavöönd

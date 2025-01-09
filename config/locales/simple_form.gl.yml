@@ -3,6 +3,7 @@ gl:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Un por liña. Protéxete das atribucións falsas.
         discoverable: As túas publicacións públicas e perfil poden mostrarse ou recomendarse en varias zonas de Mastodon e o teu perfil ser suxerido a outras usuarias.
         display_name: O teu nome completo ou un nome divertido.
         fields: Páxina web, pronome, idade, o que ti queiras.
@@ -59,6 +60,7 @@ gl:
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Ocultar sempre os medios
         setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
+        setting_system_scrollbars_ui: Aplícase só en navegadores de escritorio baseados en Safari e Chrome
         setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esvaecendo tódolos detalles
         setting_use_pending_items: Agochar actualizacións da cronoloxía tras un click no lugar de desprazar automáticamente os comentarios
         username: Podes usar letras, números e trazos baixos
@@ -99,9 +101,9 @@ gl:
         theme: Decorado que verán visitantes e novas usuarias.
         thumbnail: Imaxe con proporcións 2:1 mostrada xunto á información sobre o servidor.
         timeline_preview: Visitantes e usuarias non conectadas poderán ver as publicacións públicas máis recentes do servidor.
-        trendable_by_default: Omitir a revisión manual das tendencias. Poderás igualmente eliminar manualmente os elementos que vaian aparecendo.
+        trendable_by_default: Omitir a revisión manual dos contidos populares. Poderás igualmente eliminar manualmente os elementos que vaian aparecendo.
         trends: As tendencias mostran publicacións, cancelos e novas historias que teñen popularidade no teu servidor.
-        trends_as_landing_page: Mostrar contidos en voga para as persoas sen sesión iniciada e visitantes no lugar dunha descrición deste servidor. Require ter activado Tendencias.
+        trends_as_landing_page: Mostrar contidos en voga para as persoas sen sesión iniciada e visitantes no lugar dunha descrición deste servidor. Require ter activado Popularidade.
       form_challenge:
         current_password: Estás entrando nun área segura
       imports:
@@ -128,9 +130,20 @@ gl:
         show_application: Independentemente, ti sempre poderás ver a app coa que publicaches a túa publicación.
       tag:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
+      terms_of_service:
+        changelog: Pode usarse sintaxe Markdown.
+        text: Pode usarse sintaxe Markdown.
+      terms_of_service_generator:
+        admin_email: Os avisos legais inclúen ordes xudiciais, solicitudes de retirada de contido e requerimentos do cumprimento da lei.
+        arbitration_address: Pode ser o mesmo enderezo Físico de máis arriba, ou "N/A" se usas o correo electrónico
+        arbitration_website: Pode ser un formulario web ou "N/A" se usas o correo electrónico
+        dmca_address: Para operadores de USA, utiliza o mesmo enderezo rexistrado no DMCA Designated Agent Directory. Está dispoñible a opción de usar P.O. Box facendo a solicitude baixo a DMCA Designated Agent Post Office Box Waiver Request pedíndoa á Copyright Office e indicando que es un moderador de contidos na túa casa e temes ameazas ou violencia polas medidas que tomas e precisas usar un P.O. Box para que non sexa público o enderezo da túa casa.
+        dmca_email: Pode ser o mesmo enderezo de correo usado para "Enderezo para avisos legais"
+        domain: Identificador único do servizo en liña que proporcionas.
+        jurisdiction: Informa sobre o país onde vive quen paga as facturas. Se é unha empresa ou outra entidade, indica o país onde está establecida e é axeitado escribir a cidade, rexión, territorio ou estado.
       user:
         chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
-        role: O control dos roles adxudicados ás usuarias
+        role: Os roles establecen os permisos que ten a usuaria.
       user_role:
         color: Cor que se usará para o rol a través da IU, como RGB en formato hex
         highlighted: Isto fai o rol publicamente visible
@@ -138,11 +151,12 @@ gl:
         permissions_as_keys: As usuarias con este rol terán acceso a...
         position: O rol superior decide nos conflitos en certas situacións. Algunhas accións só poden aplicarse sobre roles cunha prioridade menor
       webhook:
-        events: Elixir eventos a enviar
+        events: Escoller eventos a enviar
         template: Crea o teu propio JSON interpolando variables. Déixao en branco para usar o JSON predeterminado.
         url: A onde se enviarán os eventos
     labels:
       account:
+        attribution_domains_as_text: Sitios web que poden acreditarte
         discoverable: Perfil destacado e publicacións nos algoritmos de descubrimento
         fields:
           name: Etiqueta
@@ -221,6 +235,7 @@ gl:
         setting_hide_network: Non mostrar contactos
         setting_reduce_motion: Reducir o movemento nas animacións
         setting_system_font_ui: Utilizar a tipografía por defecto do sistema
+        setting_system_scrollbars_ui: Usar barras de desprazamento predeterminadas no sistema
         setting_theme: Decorado da instancia
         setting_trends: Mostrar as tendencias de hoxe
         setting_unfollow_modal: Solicitar confirmación antes de deixar de seguir alguén
@@ -303,7 +318,7 @@ gl:
           label: Hai unha nova versión de Mastodon dispoñible
           none: Non notificar nunca as actualizacións (non se aconsella)
           patch: Notificar as actualizacións de arranxos
-        trending_tag: Hai que revisar unha nova tendencia
+        trending_tag: Hai que revisar un novo tema popular
       rule:
         hint: Información adicional
         text: Regra
@@ -314,7 +329,18 @@ gl:
         listable: Permitir que este cancelo apareza en buscas e no directorio de perfil
         name: Cancelo
         trendable: Permitir que este cancelo apareza en tendencias
-        usable: Permitir que as publicacións utilicen este cancelo
+        usable: Permitir que as publicacións usen este cancelo localmente
+      terms_of_service:
+        changelog: Que cambios se fixeron?
+        text: Termos do Servizo
+      terms_of_service_generator:
+        admin_email: Enderezo de correo para avisos legais
+        arbitration_address: Enderezo físico para avisos de arbitraxe
+        arbitration_website: Páxina web para enviar avisos de arbitraxe
+        dmca_address: Enderezo físico para avisos sobre DMCA/copyright
+        dmca_email: Enderezo de correo electrónico para avisos sobre DMCA/copyright
+        domain: Dominio
+        jurisdiction: Xurisdición legal
       user:
         role: Rol
         time_zone: Fuso horario

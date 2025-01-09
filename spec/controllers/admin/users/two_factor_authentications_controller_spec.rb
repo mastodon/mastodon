@@ -3,13 +3,13 @@
 require 'rails_helper'
 require 'webauthn/fake_client'
 
-describe Admin::Users::TwoFactorAuthenticationsController do
+RSpec.describe Admin::Users::TwoFactorAuthenticationsController do
   render_views
 
   let(:user) { Fabricate(:user) }
 
   before do
-    sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
+    sign_in Fabricate(:admin_user), scope: :user
   end
 
   describe 'DELETE #destroy' do

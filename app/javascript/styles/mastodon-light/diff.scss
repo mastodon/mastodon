@@ -1,12 +1,14 @@
 // Notes!
 // Sass color functions, "darken" and "lighten" are automatically replaced.
 
-html {
-  scrollbar-color: $ui-base-color rgba($ui-base-color, 0.25);
-}
-
 .simple_form .button.button-tertiary {
   color: $highlight-text-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white;
+  }
 }
 
 .status-card__actions button,
@@ -50,10 +52,6 @@ html {
 
 .icon-button:disabled {
   color: darken($action-button-color, 25%);
-}
-
-.account__header__bar .avatar .account__avatar {
-  border-color: $white;
 }
 
 .getting-started__footer a {
@@ -116,17 +114,6 @@ html {
   background: lighten($white, 4%);
 }
 
-// Change the background colors of status__content__spoiler-link
-.reply-indicator__content .status__content__spoiler-link,
-.status__content .status__content__spoiler-link {
-  background: $ui-base-color;
-
-  &:hover,
-  &:focus {
-    background: lighten($ui-base-color, 4%);
-  }
-}
-
 .account-gallery__item a {
   background-color: $ui-base-color;
 }
@@ -153,28 +140,6 @@ html {
 
 .report-dialog-modal__container {
   border-top-color: lighten($ui-base-color, 4%);
-}
-
-// Change the background colors of modals
-.actions-modal,
-.boost-modal,
-.confirmation-modal,
-.mute-modal,
-.block-modal,
-.report-modal,
-.report-dialog-modal,
-.embed-modal,
-.error-modal,
-.onboarding-modal,
-.compare-history-modal,
-.report-modal__comment .setting-text__wrapper,
-.report-modal__comment .setting-text,
-.announcements,
-.picture-in-picture__header,
-.picture-in-picture__footer,
-.reactions-bar__item {
-  background: $white;
-  border: 1px solid var(--background-border-color);
 }
 
 .reactions-bar__item:hover,
@@ -204,20 +169,6 @@ html {
 .icon-with-badge__badge {
   border-color: $white;
   color: $white;
-}
-
-.report-modal__comment {
-  border-right-color: lighten($ui-base-color, 8%);
-}
-
-.report-modal__container {
-  border-top-color: lighten($ui-base-color, 8%);
-}
-
-.column-header__collapsible-inner {
-  background: darken($ui-base-color, 4%);
-  border: 1px solid var(--background-border-color);
-  border-bottom: 0;
 }
 
 .column-settings__hashtags .column-select__option {
@@ -298,12 +249,6 @@ html {
 .directory__tag > div {
   background: $white;
   border: 1px solid var(--background-border-color);
-
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-  }
 }
 
 .picture-in-picture-placeholder {
@@ -317,10 +262,6 @@ html {
   &:active,
   &:focus {
     background: $ui-base-color;
-  }
-
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border: 0;
   }
 }
 
@@ -438,9 +379,6 @@ html {
   border-color: transparent transparent $white;
 }
 
-.hero-widget,
-.moved-account-widget,
-.memoriam-widget,
 .activity-stream,
 .nothing-here,
 .directory__tag > a,
@@ -504,15 +442,24 @@ html {
   color: lighten($ui-highlight-color, 8%);
 }
 
-.compose-form .autosuggest-textarea__textarea,
-.compose-form__highlightable,
-.search__input,
-.search__popout,
 .emoji-mart-search input,
 .language-dropdown__dropdown .emoji-mart-search input,
-// .strike-card,
 .poll__option input[type='text'] {
   background: darken($ui-base-color, 10%);
+}
+
+.search__popout__menu__item {
+  &:hover,
+  &:active,
+  &:focus,
+  &.active {
+    color: $white;
+
+    mark,
+    .icon-button {
+      color: $white;
+    }
+  }
 }
 
 .inline-follow-suggestions {
@@ -565,5 +512,39 @@ a.sparkline {
   &:focus,
   &:active {
     background: darken($ui-base-color, 10%);
+  }
+}
+
+.setting-text {
+  background: darken($ui-base-color, 10%);
+}
+
+.report-dialog-modal__textarea {
+  background: darken($ui-base-color, 10%);
+}
+
+.autosuggest-account {
+  .display-name__account {
+    color: $dark-text-color;
+  }
+}
+
+.notification-group--annual-report {
+  .notification-group__icon,
+  .notification-group__main .link-button {
+    color: var(--indigo-3);
+  }
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: rgba($action-button-color, 0.25)
+      var(--background-border-color);
+  }
+}
+
+.custom-scrollbars {
+  ::-webkit-scrollbar-thumb {
+    opacity: 0.25;
   }
 }

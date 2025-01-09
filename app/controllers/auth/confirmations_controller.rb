@@ -5,7 +5,6 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
 
   layout 'auth'
 
-  before_action :set_body_classes
   before_action :set_confirmation_user!, only: [:show, :confirm_captcha]
   before_action :redirect_confirmed_user, if: :signed_in_confirmed_user?
 
@@ -71,10 +70,6 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
 
   def signed_in_confirmed_user?
     user_signed_in? && current_user.confirmed? && current_user.unconfirmed_email.blank?
-  end
-
-  def set_body_classes
-    @body_classes = 'lighter'
   end
 
   def after_resending_confirmation_instructions_path_for(_resource_name)

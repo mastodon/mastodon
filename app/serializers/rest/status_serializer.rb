@@ -84,11 +84,11 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def reblogs_count
-    relationships&.attributes_map&.dig(object.id, :reblogs_count) || object.reblogs_count
+    object.untrusted_reblogs_count || relationships&.attributes_map&.dig(object.id, :reblogs_count) || object.reblogs_count
   end
 
   def favourites_count
-    relationships&.attributes_map&.dig(object.id, :favourites_count) || object.favourites_count
+    object.untrusted_favourites_count || relationships&.attributes_map&.dig(object.id, :favourites_count) || object.favourites_count
   end
 
   def favourited

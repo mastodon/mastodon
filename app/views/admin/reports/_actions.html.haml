@@ -17,21 +17,27 @@
       .report-actions__item__button
         = form.button t('admin.reports.delete_and_resolve'),
                       name: :delete,
-                      class: 'button button--destructive'
+                      class: 'button button--destructive',
+                      disabled: statuses.empty?,
+                      title: statuses.empty? ? t('admin.reports.actions_no_posts') : ''
       .report-actions__item__description
         = t('admin.reports.actions.delete_description_html')
     .report-actions__item
       .report-actions__item__button
         = form.button t('admin.accounts.silence'),
                       name: :silence,
-                      class: 'button button--destructive'
+                      class: 'button button--destructive',
+                      disabled: report.target_account.silenced? || report.target_account.suspended_locally?,
+                      title: report.target_account.silenced? ? t('admin.account_actions.already_silenced') : ''
       .report-actions__item__description
         = t('admin.reports.actions.silence_description_html')
     .report-actions__item
       .report-actions__item__button
         = form.button t('admin.accounts.suspend'),
                       name: :suspend,
-                      class: 'button button--destructive'
+                      class: 'button button--destructive',
+                      disabled: report.target_account.suspended_locally?,
+                      title: report.target_account.suspended_locally? ? t('admin.account_actions.already_suspended') : ''
       .report-actions__item__description
         = t('admin.reports.actions.suspend_description_html')
     .report-actions__item

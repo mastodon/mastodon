@@ -257,12 +257,7 @@ RSpec.describe MediaAttachment, :attachment_processing do
     end
   end
 
-  it 'is invalid without file' do
-    media = described_class.new
-
-    expect(media.valid?).to be false
-    expect(media).to model_have_error_on_field(:file)
-  end
+  it { is_expected.to validate_presence_of(:file) }
 
   describe 'size limit validation' do
     it 'rejects video files that are too large' do
@@ -289,6 +284,23 @@ RSpec.describe MediaAttachment, :attachment_processing do
       stub_const 'MediaAttachment::VIDEO_LIMIT', 1.kilobyte
       media = Fabricate(:media_attachment, file: attachment_fixture('attachment.jpg'))
       expect(media.valid?).to be true
+    end
+  end
+
+  describe 'cache deletion hooks' do
+    let(:media) { Fabricate(:media_attachment) }
+
+    before do
+      allow(Rails.configuration.x).to receive(:cache_buster_enabled).and_return(true)
+    end
+
+    it 'queues CacheBusterWorker jobs' do
+      original_path = media.file.path(:original)
+      small_path = media.file.path(:small)
+
+      expect { media.destroy }
+        .to enqueue_sidekiq_job(CacheBusterWorker).with(original_path)
+        .and enqueue_sidekiq_job(CacheBusterWorker).with(small_path)
     end
   end
 

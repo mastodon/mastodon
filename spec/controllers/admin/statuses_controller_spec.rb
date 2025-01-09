@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-describe Admin::StatusesController do
+RSpec.describe Admin::StatusesController do
   render_views
 
-  let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:user) { Fabricate(:admin_user) }
   let(:account) { Fabricate(:account) }
   let!(:status) { Fabricate(:status, account: account) }
   let(:media_attached_status) { Fabricate(:status, account: account, sensitive: !sensitive) }

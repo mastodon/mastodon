@@ -20,7 +20,7 @@ let id = 0;
 class DropdownMenu extends PureComponent {
 
   static propTypes = {
-    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]).isRequired,
+    items: PropTypes.array.isRequired,
     loading: PropTypes.bool,
     scrollable: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
@@ -39,6 +39,7 @@ class DropdownMenu extends PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
       e.stopPropagation();
+      e.preventDefault();
     }
   };
 
@@ -123,7 +124,7 @@ class DropdownMenu extends PureComponent {
 
     return (
       <li className={classNames('dropdown-menu__item', { 'dropdown-menu__item--dangerous': dangerous })} key={`${text}-${i}`}>
-        <a href={href} target={target} data-method={method} rel='noopener noreferrer' role='button' tabIndex={0} ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
+        <a href={href} target={target} data-method={method} rel='noopener' role='button' tabIndex={0} ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
           {text}
         </a>
       </li>
@@ -164,7 +165,7 @@ class Dropdown extends PureComponent {
     children: PropTypes.node,
     icon: PropTypes.string,
     iconComponent: PropTypes.func,
-    items: PropTypes.oneOfType([PropTypes.array, ImmutablePropTypes.list]),
+    items: PropTypes.array.isRequired,
     loading: PropTypes.bool,
     size: PropTypes.number,
     title: PropTypes.string,

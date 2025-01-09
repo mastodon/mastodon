@@ -15,7 +15,7 @@ namespace :branding do
     output_dest  = Rails.root.join('app', 'javascript', 'images', 'mailer')
 
     # Displayed size is 64px, at 3x it's 192px
-    Dir[Rails.root.join('app', 'javascript', 'images', 'icons', '*.svg')].each do |path|
+    Rails.root.glob('app/javascript/images/icons/*.svg').each do |path|
       rsvg_convert.run(input: path, size: 192, output: output_dest.join("#{File.basename(path, '.svg')}.png"))
     end
 

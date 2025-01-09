@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-describe UserTrackingConcern do
+RSpec.describe UserTrackingConcern do
   controller(ApplicationController) do
-    include UserTrackingConcern
+    include UserTrackingConcern # rubocop:disable RSpec/DescribedClass
 
     def show
       render plain: 'show'
