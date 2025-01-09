@@ -29,10 +29,16 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
   end
 
   def confirm_captcha
-    check_captcha! do |message|
-      flash.now[:alert] = message
-      render :captcha
-      return
+    if Rails.configuration.x.captcha.mcaptcha_secret_key.present?
+      check_mcaptcha! do |message|
+        flash.now[:alert] = message
+        render :captcha
+        return
+    else
+      check_mcaptcha! do |message|
+        flash.now[:alert] = message
+        render :captcha
+        return
     end
 
     show
