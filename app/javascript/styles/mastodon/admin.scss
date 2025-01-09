@@ -253,6 +253,10 @@ $content-width: 840px;
         .time-period {
           padding: 0 10px;
         }
+
+        .back-link {
+          margin-bottom: 0;
+        }
       }
 
       h2 small {
@@ -609,16 +613,6 @@ body,
 .simple_form.new_report_note,
 .simple_form.new_account_moderation_note {
   max-width: 100%;
-}
-
-.simple_form {
-  .actions {
-    margin-top: 15px;
-  }
-
-  .button {
-    font-size: 15px;
-  }
 }
 
 .batch-form-box {
@@ -1027,6 +1021,12 @@ a.name-tag,
 
 .user-role {
   color: var(--user-role-accent);
+}
+
+.applications-list {
+  .icon {
+    vertical-align: middle;
+  }
 }
 
 .announcements-list,
@@ -1913,6 +1913,107 @@ a.sparkline {
       border: 1px solid lighten($ui-base-color, 4%);
       background: $ui-base-color;
       border-radius: 4px;
+    }
+  }
+}
+
+.status__card {
+  padding: 15px;
+  border-radius: 4px;
+  background: $ui-base-color;
+  font-size: 15px;
+  line-height: 20px;
+  word-wrap: break-word;
+  font-weight: 400;
+  border: 1px solid lighten($ui-base-color, 4%);
+  color: $primary-text-color;
+  box-sizing: border-box;
+  min-height: 100%;
+
+  .status__prepend {
+    padding: 0 0 15px;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .status__content {
+    padding-top: 0;
+
+    summary {
+      display: list-item;
+    }
+  }
+}
+
+.admin {
+  &__terms-of-service {
+    &__container {
+      background: var(--surface-background-color);
+      border-radius: 8px;
+      border: 1px solid var(--background-border-color);
+      overflow: hidden;
+
+      &__header {
+        padding: 16px;
+        font-size: 14px;
+        line-height: 20px;
+        color: $secondary-text-color;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      &__body {
+        background: var(--background-color);
+        padding: 16px;
+        overflow-y: scroll;
+        height: 30vh;
+      }
+    }
+
+    &__history {
+      & > li {
+        border-bottom: 1px solid var(--background-border-color);
+
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+
+      &__item {
+        padding: 16px 0;
+        padding-bottom: 8px;
+
+        h5 {
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: 600;
+          margin-bottom: 16px;
+        }
+      }
+    }
+  }
+}
+
+.dot-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+
+  &__indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $dark-text-color;
+  }
+
+  &.success {
+    color: $valid-value-color;
+
+    .dot-indicator__indicator {
+      background-color: $valid-value-color;
     }
   }
 }

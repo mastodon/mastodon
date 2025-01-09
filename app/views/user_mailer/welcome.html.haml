@@ -1,7 +1,9 @@
 = content_for :heading do
   .email-desktop-flex
     .email-header-left
-      = render 'application/mailer/heading', heading_title: t('user_mailer.welcome.title', name: @resource.account.username), heading_subtitle: t('user_mailer.welcome.explanation')
+      = render 'application/mailer/heading',
+               subtitle: t('user_mailer.welcome.explanation'),
+               title: t('user_mailer.welcome.title', name: @resource.account.username)
     .email-header-right
       .email-header-card
         %table.email-header-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }

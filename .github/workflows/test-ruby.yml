@@ -124,8 +124,8 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.1'
           - '3.2'
+          - '3.3'
           - '.ruby-version'
     steps:
       - uses: actions/checkout@v4
@@ -143,7 +143,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg libpam-dev
+          additional-system-dependencies: ffmpeg imagemagick libpam-dev
 
       - name: Load database schema
         run: |
@@ -167,7 +167,7 @@ jobs:
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           files: coverage/lcov/*.lcov
         env:
@@ -175,7 +175,7 @@ jobs:
 
   test-libvips:
     name: Libvips tests
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
     needs:
       - build
@@ -226,8 +226,8 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.1'
           - '3.2'
+          - '3.3'
           - '.ruby-version'
     steps:
       - uses: actions/checkout@v4
@@ -245,7 +245,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg libpam-dev libyaml-dev
+          additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
@@ -254,7 +254,7 @@ jobs:
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           files: coverage/lcov/mastodon.lcov
         env:
@@ -305,8 +305,8 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.1'
           - '3.2'
+          - '3.3'
           - '.ruby-version'
 
     steps:
@@ -325,7 +325,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg
+          additional-system-dependencies: ffmpeg imagemagick
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
@@ -422,8 +422,8 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.1'
           - '3.2'
+          - '3.3'
           - '.ruby-version'
         search-image:
           - docker.elastic.co/elasticsearch/elasticsearch:7.17.13
@@ -445,7 +445,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg
+          additional-system-dependencies: ffmpeg imagemagick
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript

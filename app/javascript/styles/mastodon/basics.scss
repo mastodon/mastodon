@@ -107,13 +107,7 @@ body {
   &.embed {
     margin: 0;
     padding-bottom: 0;
-
-    .container {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
+    overflow: hidden;
   }
 
   &.admin {
@@ -141,6 +135,7 @@ body {
           width: 100%;
           height: auto;
           margin-top: -120px;
+          margin-bottom: -45px;
         }
       }
 

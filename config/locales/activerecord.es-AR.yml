@@ -24,6 +24,8 @@ es-AR:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: contiene valores con etiquetas faltantes
             username:
               invalid: sólo letras, números y subguiones ("_")
               reserved: está reservado
@@ -39,6 +41,11 @@ es-AR:
           attributes:
             data:
               malformed: está malformado
+        list_account:
+          attributes:
+            account_id:
+              taken: ya está en la lista
+          must_be_following: debe ser una cuenta seguida
         status:
           attributes:
             reblog:

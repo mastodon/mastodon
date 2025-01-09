@@ -24,6 +24,8 @@ tr:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: etiketleri eksik değerler içeriyor
             username:
               invalid: sadece harfler, sayılar ve alt çizgiler
               reserved: kullanılamaz
@@ -39,6 +41,11 @@ tr:
           attributes:
             data:
               malformed: bozulmuştur
+        list_account:
+          attributes:
+            account_id:
+              taken: zaten listede var
+          must_be_following: takip edilen bir hesap olmalı
         status:
           attributes:
             reblog:

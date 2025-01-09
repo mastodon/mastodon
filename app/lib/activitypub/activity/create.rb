@@ -53,6 +53,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     ApplicationRecord.transaction do
       @status = Status.create!(@params)
       attach_tags(@status)
+      attach_mentions(@status)
+      attach_counts(@status)
     end
 
     resolve_thread(@status)
@@ -161,9 +163,30 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     # not a big deal
     Trends.tags.register(status)
 
+    # Update featured tags
+    return if @tags.empty? || !status.distributable?
+
+    @account.featured_tags.where(tag_id: @tags.pluck(:id)).find_each do |featured_tag|
+      featured_tag.increment(status.created_at)
+    end
+  end
+
+  def attach_mentions(status)
     @mentions.each do |mention|
       mention.status = status
       mention.save
+    end
+  end
+
+  def attach_counts(status)
+    likes = @status_parser.favourites_count
+    shares = @status_parser.reblogs_count
+    return if likes.nil? && shares.nil?
+
+    status.status_stat.tap do |status_stat|
+      status_stat.untrusted_reblogs_count = shares unless shares.nil?
+      status_stat.untrusted_favourites_count = likes unless likes.nil?
+      status_stat.save if status_stat.changed?
     end
   end
 
@@ -200,7 +223,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if account.nil?
 
     @mentions << Mention.new(account: account, silent: false)
-  rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+  rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
     @unresolved_mentions << tag['href']
   end
 
@@ -251,7 +274,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         media_attachment.download_file!
         media_attachment.download_thumbnail!
         media_attachment.save
-      rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+      rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
         RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
       rescue Seahorse::Client::NetworkingError => e
         Rails.logger.warn "Error storing media attachment: #{e}"

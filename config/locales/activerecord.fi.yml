@@ -24,6 +24,8 @@ fi:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: sisältää arvoja, joista puuttuu nimike
             username:
               invalid: saa sisältää vain kirjaimia, numeroita ja alaviivoja
               reserved: on varattu
@@ -39,6 +41,11 @@ fi:
           attributes:
             data:
               malformed: on väärin muodostettu
+        list_account:
+          attributes:
+            account_id:
+              taken: on jo listassa
+          must_be_following: on oltava seurattu tili
         status:
           attributes:
             reblog:

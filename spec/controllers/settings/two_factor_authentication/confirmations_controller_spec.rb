@@ -18,7 +18,7 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
     def qr_code_markup
       RQRCode::QRCode.new(
         'otpauth://totp/cb6e6126.ngrok.io:local-part%40domain?secret=thisisasecretforthespecofnewview&issuer=cb6e6126.ngrok.io'
-      ).as_svg(padding: 0, module_size: 4)
+      ).as_svg(padding: 0, module_size: 4, use_path: true)
     end
   end
 

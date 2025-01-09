@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pundit/rspec'
 
 RSpec.describe SoftwareUpdatePolicy do
   subject { described_class }
 
-  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Owner')).account }
+  let(:admin)   { Fabricate(:owner_user).account }
   let(:john)    { Fabricate(:account) }
 
   permissions :index? do

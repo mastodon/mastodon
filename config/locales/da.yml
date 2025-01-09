@@ -21,6 +21,7 @@ da:
       one: Indlæg
       other: Indlæg
     posts_tab_heading: Indlæg
+    self_follow_error: Det er ikke tilladt at følge sin egen konto
   admin:
     account_actions:
       action: Udfør handling
@@ -186,6 +187,7 @@ da:
         create_domain_block: Opret domæneblokering
         create_email_domain_block: Opret e-maildomæneblokering
         create_ip_block: Opret IP-regel
+        create_relay: Opret Videresendelse
         create_unavailable_domain: Opret Utilgængeligt Domæne
         create_user_role: Opret rolle
         demote_user: Degradér bruger
@@ -197,18 +199,22 @@ da:
         destroy_email_domain_block: Slet e-maildomæneblokering
         destroy_instance: Udrens domæne
         destroy_ip_block: Slet IP-regel
+        destroy_relay: Slet Videresendelse
         destroy_status: Slet indlæg
         destroy_unavailable_domain: Slet Utilgængeligt Domæne
         destroy_user_role: Ødelæg rolle
         disable_2fa_user: Deaktivér 2FA
         disable_custom_emoji: Deaktivér tilpasset emoji
+        disable_relay: Deaktivér Videresendelse
         disable_sign_in_token_auth_user: Deaktivér e-mailtoken godkendelse for bruger
         disable_user: Deaktivér bruger
         enable_custom_emoji: Aktivér tilpasset emoji
+        enable_relay: Aktivér Relay
         enable_sign_in_token_auth_user: Aktivér e-mailtoken godkendelse for bruger
         enable_user: Aktivér bruger
         memorialize_account: Memoralisér konto
         promote_user: Forfrem bruger
+        publish_terms_of_service: Offentliggør Tjenestevilkår
         reject_appeal: Afvis appel
         reject_user: Afvis bruger
         remove_avatar_user: Fjern profilbillede
@@ -246,6 +252,7 @@ da:
         create_domain_block_html: "%{name} blokerede domænet %{target}"
         create_email_domain_block_html: "%{name} blokerede e-maildomænet %{target}"
         create_ip_block_html: "%{name} oprettede en regel for IP %{target}"
+        create_relay_html: "%{name} oprettede videresendelsen %{target}"
         create_unavailable_domain_html: "%{name} stoppede levering til domænet %{target}"
         create_user_role_html: "%{name} oprettede %{target}-rolle"
         demote_user_html: "%{name} degraderede brugeren %{target}"
@@ -257,18 +264,22 @@ da:
         destroy_email_domain_block_html: "%{name} afblokerede e-maildomænet %{target}"
         destroy_instance_html: "%{name} udrensede domænet %{target}"
         destroy_ip_block_html: "%{name} slettede en regel for IP %{target}"
+        destroy_relay_html: "%{name} oprettede videresendelsen %{target}"
         destroy_status_html: "%{name} fjernede indlægget fra %{target}"
         destroy_unavailable_domain_html: "%{name} genoptog levering til domænet %{target}"
         destroy_user_role_html: "%{name} slettede %{target}-rolle"
         disable_2fa_user_html: "%{name} deaktiverede tofaktorkravet for brugeren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverede emojien %{target}"
+        disable_relay_html: "%{name} deaktiverede videresendelsen %{target}"
         disable_sign_in_token_auth_user_html: "%{name} deaktiverede e-mailtoken godkendelsen for %{target}"
         disable_user_html: "%{name} deaktiverede indlogning for brugeren %{target}"
         enable_custom_emoji_html: "%{name} aktiverede emojien %{target}"
+        enable_relay_html: "%{name} aktiverede videresendelsen %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktiverede e-mailtoken godkendelse for %{target}"
         enable_user_html: "%{name} aktiverede indlogning for brugeren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto til en mindeside"
         promote_user_html: "%{name} forfremmede brugeren %{target}"
+        publish_terms_of_service_html: "%{name} offentliggjorde opdateringer til tjenestevilkårene"
         reject_appeal_html: "%{name} afviste moderationsafgørelsesappellen fra %{target}"
         reject_user_html: "%{name} afviste tilmelding fra %{target}"
         remove_avatar_user_html: "%{name} fjernede %{target}s profilbillede"
@@ -817,8 +828,10 @@ da:
       back_to_account: Retur til kontoside
       back_to_report: Retur til anmeldelsesside
       batch:
+        add_to_report: 'Føj til rapporten #%{id}'
         remove_from_report: Fjern fra anmeldelse
         report: Anmeldelse
+      contents: Indhold
       deleted: Slettet
       favourites: Favoritter
       history: Versionshistorik
@@ -827,13 +840,17 @@ da:
       media:
         title: Medier
       metadata: Metadata
+      no_history: Dette indlæg er ikke blevet redigeret
       no_status_selected: Ingen indlæg ændret (ingen valgt)
       open: Åbn indlæg
       original_status: Oprindeligt indlæg
       reblogs: Genblogninger
+      replied_to_html: Besvarede %{acct_link}
       status_changed: Indlæg ændret
-      title: Kontoindlæg
+      status_title: Indlæg fra @%{name}
+      title: Kontoindlæg - @%{name}
       trending: Populære
+      view_publicly: Vis offentligt
       visibility: Synlighed
       with_media: Med medier
     strikes:
@@ -910,6 +927,35 @@ da:
       search: Søg
       title: Hashtags
       updated_msg: Hashtag-indstillinger opdateret
+    terms_of_service:
+      back: Tilbage til Tjenestevilkår
+      changelog: Hvad der er ændret
+      create: Brug egne
+      current: Nuværende
+      draft: Udkast
+      generate: Brug skabelon
+      generates:
+        action: Generér
+        chance_to_review_html: "<strong>De genererede Tjenestevilkår offentliggøres ikke automatisk.</strong> Man vil have mulighed for at gennemgå resultaterne. Udfyld venligst de nødvendige oplysninger for at fortsætte."
+        explanation_html: Tjenestevilkår-skabelonen er alene til orientering og bør ikke fortolkes som juridisk rådgivning om noget emne. Kontakt en juridiske rådgiver vedr. den aktuelle situation samt specifikke juridiske spørgsmål, man måtte have.
+        title: Opsætning af Tjenestevilkår
+      history: Historik
+      live: Live
+      no_history: Der er endnu ingen registrerede ændringer af vilkårene for tjenesten.
+      no_terms_of_service_html: Der er p.t. ingen opsatte Tjenestevilkår. Tjenestevilkår er beregnet til at give klarhed, så man er beskyttet mod potentielle ansvarspådragelser i tvister med sine brugere.
+      notified_on_html: Brugere underrettet pr. %{date}
+      notify_users: Underrret brugere
+      preview:
+        explanation_html: 'E-mailen sendes til <strong>%{display_count} brugere</strong>, som har tilmeldt sig før %{date}. Følgende tekst medtages i e-mailen:'
+        send_preview: Send forhåndsvisning til %{email}
+        send_to_all:
+          one: Send %{display_count} e-mail
+          other: Send %{display_count} e-mails
+        title: Forhåndsvis Tjenestevilkår-underretning
+      publish: Udgiv
+      published_on_html: Udgivet pr. %{date}
+      save_draft: Gem udkast
+      title: Tjenestevilkår
     title: Administration
     trends:
       allow: Tillad
@@ -1117,7 +1163,6 @@ da:
     migrate_account: Flyt til en anden konto
     migrate_account_html: Ønsker du at omdirigere denne konto til en anden, kan du <a href="%{path}">opsætte dette hér</a>.
     or_log_in_with: Eller log ind med
-    privacy_policy_agreement_html: Jeg accepterer <a href="%{privacy_policy_path}" target="_blank">privatlivspolitikken</a>
     progress:
       confirm: Bekræft e-mail
       details: Dine detaljer
@@ -1142,7 +1187,7 @@ da:
     set_new_password: Opsæt ny adgangskode
     setup:
       email_below_hint_html: Tjek Spam-mappen eller anmod om et nyt link. Om nødvendigt kan e-mailadressen rettes.
-      email_settings_hint_html: Tryk på det tilsendte link for at bekræfte %{email}.
+      email_settings_hint_html: Klik på det link, der er sendt til %{email} for at begynde at bruge Mastodon.
       link_not_received: Intet link modtaget?
       new_confirmation_instructions_sent: Du bør om få minutter modtage en ny e-mail med bekræftelseslinket!
       title: Tjek indbakken
@@ -1151,7 +1196,7 @@ da:
       title: Log ind på %{domain}
     sign_up:
       manual_review: Tilmeldinger på %{domain} undergår manuel moderatorgennemgang. For at hjælpe med behandlingen af tilmeldingen, så skriv en smule om dig selv, samt hvorfor du ønsker en konto på %{domain}.
-      preamble: Med en konto på denne Mastodon-server vil man kunne følge enhver anden person på netværket, uanset hvor vedkommendes konto hostes.
+      preamble: Man vil med en konto på denne Mastodon-server kunne følge enhver anden bruger i fediverset, uanset hvor vedkommendes konto hostes.
       title: Lad os få dig sat op på %{domain}.
     status:
       account_status: Kontostatus
@@ -1163,11 +1208,14 @@ da:
       view_strikes: Se tidligere anmeldelser af din konto
     too_fast: Formularen indsendt for hurtigt, forsøg igen.
     use_security_key: Brug sikkerhedsnøgle
+    user_agreement_html: Jeg accepterer <a href="%{terms_of_service_path}" target="_blank">Tjenestevilkår</a> og <a href="%{privacy_policy_path}" target="_blank">Fortrolighedspolitik</a>
   author_attribution:
     example_title: Eksempeltekst
-    hint_html: Styrer, hvordan man krediteres, når links deles på Mastodon.
+    hint_html: Skriver du nyheder eller blogartikler uden for Mastodon? Styr, hvordan man bliver krediteret, når disse deles på Mastodon.
+    instructions: 'Sørg for, at denne kode er i artikelens HTML:'
     more_from_html: Flere fra %{name}
     s_blog: "%{name}s blog"
+    then_instructions: Tilføj dernæst publikationsdomænenavnet i feltet nedenfor.
     title: Forfattertilskrivning
   challenge:
     confirm: Fortsæt
@@ -1366,19 +1414,43 @@ da:
       overwrite: Overskriv
       overwrite_long: Erstat aktuelle poster med de nye
     overwrite_preambles:
-      blocking_html: Du er ved at <strong>erstatte bloklisten</strong> med op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
-      bookmarks_html: Du er ved at <strong>erstatte bogmærkelisten</strong> med op til <strong>%{total_items} emner</strong> fra <strong>%{filename}</strong>.
-      domain_blocking_html: Du er ved at <strong>erstatte domæneblokeringslisten</strong> med op til <strong>%{total_items} domæner</strong> fra <strong>%{filename}</strong>.
-      following_html: Du er ved at <strong>følge</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong> og <strong>stoppe med at følge alle andre</strong>.
-      lists_html: Du er ved at <strong>erstatte dine lister</strong> med indholdet af <strong>%{filename}</strong>. Op til <strong>%{total_items} konti</strong> tilføjes nye lister.
-      muting_html: Du er ved at <strong>erstatte listen over tavsgjorte konti</strong> med op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
+      blocking_html:
+        one: Man er ved at <strong>erstatte sin sortliste</strong> med <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>erstatte sin sortliste</strong> med optil <strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Man er ved at <strong>erstatte sine bogmærker</strong> med <strong>%{count} post</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>erstatte sine bogmærker</strong> med op til <strong>%{count} poster</strong> fra <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Man er ved at <strong>erstatte sin domænesortliste</strong> med <strong>%{count} domæne</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>erstatte sin domænesortliste</strong> med op til <strong>%{count} domæner</strong> fra <strong>%{filename}</strong>.
+      following_html:
+        one: Man er ved at <strong>følge</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong> og <strong>stoppe med at følge andre</strong>.
+        other: Man er ved at <strong>følge</strong> <strong>%{count} konti</strong> fra <strong>%{filename}</strong> og <strong>stoppe med at følge andre</strong>.
+      lists_html:
+        one: Man er ved at <strong>erstatte sine lister</strong> med indhold fra <strong>%{filename}</strong>. <strong>%{count} konto</strong> føjes til nye lister.
+        other: Man er ved at <strong>erstatte sine lister</strong> med indhold fra <strong>%{filename}</strong>. Op til <strong>%{count} konti</strong> føjes til nye lister.
+      muting_html:
+        one: Man er ved at <strong>sin liste over en tavsgjort konto</strong> med <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>sin liste over tavsgjorte konti</strong> med op til <strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Du er ved at <strong>blokere</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
-      bookmarks_html: Du er ved at føje op til <strong>%{total_items} indlæg</strong> fra <strong>%{filename}</strong> til <strong>bogmærkelisten</strong>.
-      domain_blocking_html: Du er ved at <strong>blokere</strong> op til <strong>%{total_items} domæner</strong> fra <strong>%{filename}</strong>.
-      following_html: Du er ved at <strong>følge</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
-      lists_html: Du er ved at tilføje op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong> til dine <strong>lister</strong>. Nye lister oprettes, hvis der ikke er nogen liste at føje konti til.
-      muting_html: Du er ved at <strong>tavsgøre</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
+      blocking_html:
+        one: Man er ved at <strong>blokere</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>blokere</strong> op til <strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Man er ved at tilføje <strong>%{count} post</strong> fra <strong>%{filename}</strong> til sine <strong>bogmærker</strong>.
+        other: Man er ved at tilføje <strong>%{count} poster</strong> fra <strong>%{filename}</strong> til sine <strong>bogmærker</strong>.
+      domain_blocking_html:
+        one: Man er ved at <strong>blokere</strong> <strong>%{count} domæne</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>blokere</strong> op til <strong>%{count} domæner</strong> fra <strong>%{filename}</strong>.
+      following_html:
+        one: Man er ved at <strong>følge</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>følge</strong> op til<strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
+      lists_html:
+        one: Man er ved at tilføje <strong>%{count} konto</strong> fra <strong>%{filename}</strong> til sine <strong>lister</strong>. Nye lister oprettes, hvis der ikke findes nogen liste at tilføje til.
+        other: Man er ved at tilføje <strong>%{count} konti</strong> fra <strong>%{filename}</strong> til sine <strong>lister</strong>. Nye lister oprettes, hvis der ikke findes nogen liste at tilføje til.
+      muting_html:
+        one: Man er ved at <strong>tavsgøre</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
+        other: Man er ved at <strong>tavsgøre</strong> op til <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
     preface: Du kan importere data, du har eksporteret fra en anden server, såsom en liste over folk du følger eller blokerer.
     recent_imports: Seneste importer
     states:
@@ -1635,7 +1707,7 @@ da:
   scheduled_statuses:
     over_daily_limit: Den daglige grænse på %{limit} planlagte indlæg er nået
     over_total_limit: Grænsen på %{limit} planlagte indlæg er nået
-    too_soon: Den planlagte dato skal være i fremtiden
+    too_soon: dato skal være i fremtiden
   self_destruct:
     lead_html: Desværre lukker <strong>%{domain}</strong> permanent. Har man en konto dér, vil fortsat brug heraf ikke være mulig. Man kan dog stadig anmode om en sikkerhedskopi af sine data.
     title: Denne server er under nedlukning
@@ -1798,6 +1870,8 @@ da:
       too_late: Det er for sent at appellere denne advarsel
   tags:
     does_not_match_previous_name: matcher ikke det foregående navn
+  terms_of_service:
+    title: Tjenestevilkår
   themes:
     contrast: Mastodon (høj kontrast)
     default: Mastodont (mørkt)
@@ -1858,6 +1932,15 @@ da:
       further_actions_html: Hvis dette ikke var dig, anbefaler vi, at du %{action} med det samme og aktiverer to-faktor godkendelse for at holde din konto sikker.
       subject: Din konto er blevet tilgået fra en ny IP-adresse
       title: Ny indlogning
+    terms_of_service_changed:
+      agreement: Ved at fortsætte med at bruge %{domain}, accepteres disse vilkår. Kan du ikke acceptere de opdaterede vilkår, kan din aftale med %{domain} til enhver tid opsiges ved at slette din konto.
+      changelog: 'Med ét blik er her, hvad denne opdatering rent praktisk betyder:'
+      description: 'Man modtager denne e-mail, fordi der foretages nogle ændringer i vores Tjenestevilkår på %{domain}. Man opfordres til at gennemgå de opdaterede vilkår fuldt ud her:'
+      description_html: Man modtager denne e-mail, fordi der foretages nogle ændringer i vores Tjenestevilkår på %{domain}. Man opfordres til at gennemgå de <a href="%{path}" target="_blank">opdaterede vilkår fuldt ud her</a>.
+      sign_off: "%{domain}-teamet"
+      subject: Opdatering af Tjenestevilkår
+      subtitle: Tjenestevilkår for %{domain} ændres
+      title: Vigtig opdatering
     warning:
       appeal: Indgiv appel
       appeal_description: Mener du, at dette er en fejl, kan der indgives en appel til %{instance}-personalet.

@@ -119,7 +119,11 @@ function loaded() {
         formattedContent = dateFormat.format(datetime);
       }
 
-      content.title = formattedContent;
+      const timeGiven = content.dateTime.includes('T');
+      content.title = timeGiven
+        ? dateTimeFormat.format(datetime)
+        : dateFormat.format(datetime);
+
       content.textContent = formattedContent;
     });
 
@@ -230,62 +234,6 @@ function loaded() {
       }
     },
   );
-
-  Rails.delegate(
-    document,
-    'button.status__content__spoiler-link',
-    'click',
-    function () {
-      if (!(this instanceof HTMLButtonElement)) return;
-
-      const statusEl = this.parentNode?.parentNode;
-
-      if (
-        !(
-          statusEl instanceof HTMLDivElement &&
-          statusEl.classList.contains('.status__content')
-        )
-      )
-        return;
-
-      if (statusEl.dataset.spoiler === 'expanded') {
-        statusEl.dataset.spoiler = 'folded';
-        this.textContent = new IntlMessageFormat(
-          localeData['status.show_more'] ?? 'Show more',
-          locale,
-        ).format() as string;
-      } else {
-        statusEl.dataset.spoiler = 'expanded';
-        this.textContent = new IntlMessageFormat(
-          localeData['status.show_less'] ?? 'Show less',
-          locale,
-        ).format() as string;
-      }
-    },
-  );
-
-  document
-    .querySelectorAll<HTMLButtonElement>('button.status__content__spoiler-link')
-    .forEach((spoilerLink) => {
-      const statusEl = spoilerLink.parentNode?.parentNode;
-
-      if (
-        !(
-          statusEl instanceof HTMLDivElement &&
-          statusEl.classList.contains('.status__content')
-        )
-      )
-        return;
-
-      const message =
-        statusEl.dataset.spoiler === 'expanded'
-          ? (localeData['status.show_less'] ?? 'Show less')
-          : (localeData['status.show_more'] ?? 'Show more');
-      spoilerLink.textContent = new IntlMessageFormat(
-        message,
-        locale,
-      ).format() as string;
-    });
 }
 
 Rails.delegate(
@@ -327,31 +275,24 @@ Rails.delegate(document, '.input-copy button', 'click', ({ target }) => {
 
   if (!input) return;
 
-  const oldReadOnly = input.readOnly;
-
-  input.readOnly = false;
-  input.focus();
-  input.select();
-  input.setSelectionRange(0, input.value.length);
-
-  try {
-    if (document.execCommand('copy')) {
-      input.blur();
-
+  navigator.clipboard
+    .writeText(input.value)
+    .then(() => {
       const parent = target.parentElement;
 
-      if (!parent) return;
-      parent.classList.add('copied');
+      if (parent) {
+        parent.classList.add('copied');
 
-      setTimeout(() => {
-        parent.classList.remove('copied');
-      }, 700);
-    }
-  } catch (err) {
-    console.error(err);
-  }
+        setTimeout(() => {
+          parent.classList.remove('copied');
+        }, 700);
+      }
 
-  input.readOnly = oldReadOnly;
+      return true;
+    })
+    .catch((error: unknown) => {
+      console.error(error);
+    });
 });
 
 const toggleSidebar = () => {
@@ -444,6 +385,24 @@ Rails.delegate(document, '#registration_new_user,#new_user', 'submit', () => {
       field.value = '';
     }
   });
+});
+
+Rails.delegate(document, '.rules-list button', 'click', ({ target }) => {
+  if (!(target instanceof HTMLElement)) {
+    return;
+  }
+
+  const button = target.closest('button');
+
+  if (!button) {
+    return;
+  }
+
+  if (button.ariaExpanded === 'true') {
+    button.ariaExpanded = 'false';
+  } else {
+    button.ariaExpanded = 'true';
+  }
 });
 
 function main() {

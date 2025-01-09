@@ -2,7 +2,7 @@
 
 exports[`<Avatar /> Autoplay renders a animated avatar 1`] = `
 <div
-  className="account__avatar"
+  className="account__avatar account__avatar--loading"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={
@@ -14,6 +14,8 @@ exports[`<Avatar /> Autoplay renders a animated avatar 1`] = `
 >
   <img
     alt=""
+    onError={[Function]}
+    onLoad={[Function]}
     src="/animated/alice.gif"
   />
 </div>
@@ -21,7 +23,7 @@ exports[`<Avatar /> Autoplay renders a animated avatar 1`] = `
 
 exports[`<Avatar /> Still renders a still avatar 1`] = `
 <div
-  className="account__avatar"
+  className="account__avatar account__avatar--loading"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={
@@ -33,6 +35,8 @@ exports[`<Avatar /> Still renders a still avatar 1`] = `
 >
   <img
     alt=""
+    onError={[Function]}
+    onLoad={[Function]}
     src="/static/alice.jpg"
   />
 </div>

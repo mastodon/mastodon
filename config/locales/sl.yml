@@ -853,7 +853,6 @@ sl:
       original_status: Izvorna objava
       reblogs: Ponovljeni blogi
       status_changed: Objava spremenjena
-      title: Objave računa
       trending: V trendu
       visibility: Vidnost
       with_media: Z mediji
@@ -1142,7 +1141,6 @@ sl:
     migrate_account: Premakni se na drug račun
     migrate_account_html: Če želite ta račun preusmeriti na drugega, ga lahko <a href="%{path}">nastavite tukaj</a>.
     or_log_in_with: Ali se prijavite z
-    privacy_policy_agreement_html: Prebral_a sem in se strinjam s <a href="%{privacy_policy_path}" target="_blank">pravilnikom o zasebnosti</a>.
     progress:
       confirm: Potrdi e-pošto
       details: Vaši podatki
@@ -1167,7 +1165,6 @@ sl:
     set_new_password: Nastavi novo geslo
     setup:
       email_below_hint_html: Poglejte v mapo neželene pošte ali zaprosite za novega. Če ste podali napačen e-naslov, ga lahko popravite.
-      email_settings_hint_html: Kliknite povezavo, ki smo vam jo poslali, da overite %{email}. Počakali bomo.
       link_not_received: Ali ste prejeli povezavo?
       new_confirmation_instructions_sent: Čez nekaj minut boste prejeli novo e-sporočilo s potrditveno povezavo!
       title: Preverite svojo dohodno e-pošto
@@ -1176,7 +1173,6 @@ sl:
       title: Vpiši se v %{domain}
     sign_up:
       manual_review: Registracije na %{domain} ročno pregledajo naši moderatorji. Da nam olajšate obdelavo vaše prijave, zapišite kaj o sebi in zakaj si želite račun na %{domain}.
-      preamble: Z računom na strežniku Mastodon boste lahko sledili vsem drugim v tem omrežju, ne glede na to, kje gostuje njihov račun.
       title: Naj vas namestimo na %{domain}.
     status:
       account_status: Stanje računa
@@ -1398,20 +1394,6 @@ sl:
       merge_long: Ohrani obstoječe zapise in dodaj nove
       overwrite: Prepiši
       overwrite_long: Zamenjaj trenutne zapise z novimi
-    overwrite_preambles:
-      blocking_html: Svoj <strong>seznam blokiranih računov boste nadomestili</strong> z največ <strong>%{total_items} računi</strong> iz <strong>%{filename}</strong>.
-      bookmarks_html: Svoje <strong>zaznamke boste nadomestili</strong> z največ <strong>%{total_items} objavami</strong> iz <strong>%{filename}</strong>.
-      domain_blocking_html: Svoj <strong>seznam blokiranih domen boste nadomestili</strong> z največ <strong>%{total_items} domenami</strong> iz <strong>%{filename}</strong>.
-      following_html: "<strong>Začeli boste slediti</strong> največ <strong>%{total_items} računom</strong> iz <strong>%{filename}</strong> in <strong>prenehali slediti vsem ostalim</strong>."
-      lists_html: Svoje <strong>sezname boste nadomestili</strong> z vsebino datoteke <strong>%{filename}</strong>. Največ <strong>%{total_items} računov</strong> bo dodanih na nove sezname.
-      muting_html: Svoj <strong>seznam utišanih računov boste nadomestili</strong> z največ <strong>%{total_items} računi</strong> iz <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: "<strong>Blokirali boste</strong> največ <strong>%{total_items} računov</strong> iz <strong>%{filename}</strong>."
-      bookmarks_html: "<strong>Med zaznamke</strong> boste dodali boste največ <strong>%{total_items} objav</strong> iz <strong>%{filename}</strong>."
-      domain_blocking_html: "<strong>Blokirali boste</strong> največ <strong>%{total_items} domen</strong> iz <strong>%{filename}</strong>."
-      following_html: "<strong>Začeli boste slediti</strong> največ <strong>%{total_items} računom</strong> iz <strong>%{filename}</strong>."
-      lists_html: Dodali boste največ <strong>%{total_items} računov</strong> iz <strong>%{filename}</strong> na svoje <strong>sezname</strong>. Po potrebi bodo ustvarjeni novi seznami.
-      muting_html: "<strong>Utišali boste</strong> največ <strong>%{total_items} računov</strong> iz <strong>%{filename}</strong>."
     preface: Podatke, ki ste jih izvozili iz drugega strežnika, lahko uvozite. Na primer seznam oseb, ki jih spremljate ali blokirate.
     recent_imports: Nedavni uvozi
     states:
@@ -1669,7 +1651,6 @@ sl:
   scheduled_statuses:
     over_daily_limit: Za ta dan ste presegli omejitev %{limit} načrtovanih objav
     over_total_limit: Presegli ste omejitev %{limit} načrtovanih objav
-    too_soon: Načrtovani datum mora biti v prihodnosti
   self_destruct:
     lead_html: Na žalost se <strong>%{domain}</strong> za vedno zapira. Če ste tu imeli svoj račun, ga v prihodnje ne boste mogli več uporabljati. Zahtevate lahko kopijo svojih podatkov.
     title: Ta strežnik se zapira

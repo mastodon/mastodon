@@ -837,7 +837,6 @@ sr:
       original_status: Оригинална објава
       reblogs: Дељења
       status_changed: Објава промењена
-      title: Статуси налога
       trending: У тренду
       visibility: Видљивост
       with_media: Са мултимедијом
@@ -1091,7 +1090,6 @@ sr:
     migrate_account: Премештање у други налог
     migrate_account_html: Ако желите да преусмерите овај налог на неки други, можете то <a href="%{path}">подесити овде</a>.
     or_log_in_with: Или се пријавите са
-    privacy_policy_agreement_html: Прочитао/-ла сам и сагласан/-а сам са <a href="%{privacy_policy_path}" target="_blank">политиком приватности</a>
     progress:
       details: Ваши детаљи
       review: Наш преглед
@@ -1114,7 +1112,6 @@ sr:
     security: Безбедност
     set_new_password: Постави нову лозинку
     setup:
-      email_settings_hint_html: Кликните на везу који смо вам послали да верификујете %{email}. Чекаћемо овде.
       link_not_received: Нисте добили везу?
       title: Проверите своје пријемно сандуче
     sign_in:
@@ -1122,7 +1119,6 @@ sr:
       title: Пријавите се на %{domain}
     sign_up:
       manual_review: Наши модератори ручно прегледају регистрације на %{domain}. Да бисте нам помогли да обрадимо вашу регистрацију, напишите нешто о себи и зашто желите налог на %{domain}.
-      preamble: Са налогом на овом Mastodon серверу, моћи ћете да пратите било кога са мреже, без обзира на то на ком серверу се његов/њен налог налази.
       title: Хајде да Вам наместимо налог на %{domain}.
     status:
       account_status: Статус налога
@@ -1332,20 +1328,6 @@ sr:
       merge_long: Задржите постојеће записе и додајте нове
       overwrite: Замени
       overwrite_long: Замени тренутне записе новима
-    overwrite_preambles:
-      blocking_html: Управо ћете <strong>заменити своју листу блокираних</strong> са до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
-      bookmarks_html: Управо ћете <strong>заменити своје обележиваче</strong> са до <strong>%{total_items} објава</strong> из <strong>%{filename}</strong>.
-      domain_blocking_html: Управо ћете <strong>заменити своју листу блокираних домена</strong> са до <strong>%{total_items} домена</strong> из <strong>%{filename}</strong>.
-      following_html: Управо ћете <strong>пратити</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong> and <strong>и престати са праћењем било кога другог</strong>.
-      lists_html: Спремате се да <strong>замените своје листе</strong> садржајем од <strong>%{filename}</strong>. До <strong>%{total_items} налога</strong> ће бити додато на нове листе.
-      muting_html: Управо ћете <strong>заменити своју листу игнорисаних налога</strong> са до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
-    preambles:
-      blocking_html: Управо ћете <strong>блокирати</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
-      bookmarks_html: Управо ћете додати до <strong>%{total_items} објава</strong> из <strong>%{filename}</strong> у ваше <strong>обележиваче</strong>.
-      domain_blocking_html: Управо ћете <strong>блокирати</strong> до <strong>%{total_items} домена</strong> из <strong>%{filename}</strong>.
-      following_html: Управо ћете <strong>пратити</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
-      lists_html: Спремате се да додате до <strong>%{total_items} налога</strong> од <strong>%{filename}</strong> на своје <strong>листе</strong>. Нове листе ће бити креиране ако не постоји листа за додавање.
-      muting_html: Управо ћете <strong>игнорисати</strong> до <strong>%{total_items} налога</strong> из <strong>%{filename}</strong>.
     preface: Можете увести податке које сте извезли са друге инстанце, као што су листе људи које сте пратили или блокирали.
     recent_imports: Недавни увози
     states:
@@ -1589,7 +1571,6 @@ sr:
   scheduled_statuses:
     over_daily_limit: Прекорачили сте границу од %{limit} планираних објава за данас
     over_total_limit: Прекорачили сте границу од %{limit} планираних објава
-    too_soon: Планирани датум мора бити у будућности
   self_destruct:
     lead_html: Нажалост, <strong>%{domain}</strong> се трајно затвара. Ако сте тамо имали налог, нећете моћи да наставите да га користите, али и даље можете да затражите резервну копију својих података.
     title: Овај сервер се затвара

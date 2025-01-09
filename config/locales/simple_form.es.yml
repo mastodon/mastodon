@@ -3,20 +3,20 @@ es:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Protege frente atribuciones fraudulentas.
+        attribution_domains_as_text: Una por línea. Protege de falsas atribuciones.
         discoverable: Tu perfil y publicaciones públicas pueden ser destacadas o recomendadas en varias áreas de Mastodon y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu apodo.
         fields: Tu carta de presentación, pronombres, edad, lo que quieras.
         indexable: Tus publicaciones públicas pueden aparecer en los resultados de búsqueda en Mastodon. Las personas que han interactuado con tus publicaciones pueden ser capaces de buscarlas sin importar su visibilidad.
         note: Puedes mencionar a otras personas o etiquetas.
         show_collections: Las personas podrán navegar a través de tus seguidos y seguidores. Esto no impide que las personas que sigues sepan que las estás siguiendo.
-        unlocked: Las personas podrán seguirte sin pedir aprobación. Desmarca si deseas revisar las solicitudes de seguimiento y aceptar o rechazar nuevos seguidores.
+        unlocked: Las personas podrán seguirte sin solicitar aprobación. Desmarca si quieres revisar las solicitudes de seguimiento y aceptar o rechazar nuevos seguidores.
       account_alias:
         acct: Especifica el nombre_de_usuario@dominio de la cuenta desde donde deseas migrar
       account_migration:
         acct: Especifica el nombre_de_usuario@dominio de la cuenta hacia la que quieres migrar
       account_warning_preset:
-        text: Puede usar sintaxis de publicaciones, como URLs, hashtags y menciones
+        text: Puede usar sintaxis de publicaciones, como URLs, etiquetas y menciones
         title: Opcional. No es visible para el destinatario
       admin_account_action:
         include_statuses: El usuario verá qué publicaciones han causado la acción de moderación o advertencia
@@ -46,12 +46,12 @@ es:
         current_password: Por razones de seguridad por favor ingrese la contraseña de la cuenta actual
         current_username: Para confirmar, por favor ingrese el nombre de usuario de la cuenta actual
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
-        email: Se le enviará un correo de confirmación
+        email: Te enviaremos un correo electrónico de confirmación
         header: WEBP, PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
         inbox_url: Copia la URL de la página principal del relés que quieres utilizar
         irreversible: Las publicaciones filtradas desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
         locale: El idioma de la interfaz de usuario, correos y notificaciones push
-        password: Utilice al menos 8 caracteres
+        password: Utiliza al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a los impulsos recibidos recientemente)
@@ -60,6 +60,7 @@ es:
         setting_display_media_default: Ocultar contenido multimedia marcado como sensible
         setting_display_media_hide_all: Siempre ocultar todo el contenido multimedia
         setting_display_media_show_all: Mostrar siempre contenido multimedia marcado como sensible
+        setting_system_scrollbars_ui: Solo aplica para navegadores de escritorio basados en Safari y Chrome
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar nuevas publicaciones detrás de un clic en lugar de desplazar automáticamente el feed
         username: Puedes usar letras, números y guiones bajos
@@ -101,7 +102,7 @@ es:
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
         timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
         trendable_by_default: Omitir la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
-        trends: Las tendencias muestran qué mensajes, etiquetas y noticias están ganando tracción en tu servidor.
+        trends: Las tendencias muestran qué publicaciones, etiquetas y noticias están ganando tracción en tu servidor.
         trends_as_landing_page: Mostrar contenido en tendencia para usuarios y visitantes en lugar de una descripción de este servidor. Requiere que las tendencias estén habilitadas.
       form_challenge:
         current_password: Estás entrando en un área segura
@@ -129,6 +130,17 @@ es:
         show_application: Tú siempre podrás ver desde qué aplicación se ha publicado tu publicación.
       tag:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
+      terms_of_service:
+        changelog: Se puede estructurar con sintaxis Markdown.
+        text: Se puede estructurar con sintaxis Markdown.
+      terms_of_service_generator:
+        admin_email: Los avisos legales incluyen devoluciones, órdenes judiciales, solicitudes de retiro y solicitudes de cumplimiento de la ley.
+        arbitration_address: Puede ser la misma que la dirección física anterior, o "N/A" si utiliza correo electrónico
+        arbitration_website: Puede ser un formulario web, o “N/A” si utiliza correo electrónico
+        dmca_address: Para operadores estadounidenses, utilice la dirección registrada en el DMCA Designated Agent Directory. Un listado P.O. Box está disponible bajo petición directa, use la DMCA Designated Agent Post Office Box Waiver Request para enviar un correo electrónico a la Oficina de Derechos de Autor y describir que usted es un moderador de contenido basado en el hogar que teme venganza o represalia por sus acciones y que necesita usar un P.O. Box para eliminar su dirección postal de la vista pública.
+        dmca_email: Puede ser el mismo correo electrónico utilizado para "Dirección de correo electrónico para avisos legales" de arriba
+        domain: Identificación única del servicio en línea que estás proporcionando.
+        jurisdiction: Lista el país donde vive quien paga las facturas. Si es una empresa u otra entidad, enumere el país donde está basada y la ciudad, región, territorio o estado según corresponda.
       user:
         chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
         role: El rol controla qué permisos tiene el usuario.
@@ -144,7 +156,7 @@ es:
         url: Donde los eventos serán enviados
     labels:
       account:
-        attribution_domains_as_text: Solo permitir sitios web específicos
+        attribution_domains_as_text: Sitios web autorizados a acreditarte
         discoverable: Destacar perfil y publicaciones en algoritmos de descubrimiento
         fields:
           name: Etiqueta
@@ -193,7 +205,7 @@ es:
         email: Dirección de correo electrónico
         expires_in: Expirar tras
         fields: Metadatos de perfil
-        header: Img. cabecera
+        header: Imagen de encabezado
         honeypot: "%{label} (no rellenar)"
         inbox_url: URL de la entrada de relés
         irreversible: Rechazar en lugar de ocultar
@@ -208,7 +220,7 @@ es:
         setting_aggregate_reblogs: Agrupar impulsos en las líneas de tiempo
         setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
-        setting_boost_modal: Mostrar ventana de confirmación antes de impulsar
+        setting_boost_modal: Mostrar diálogo de confirmación antes de impulsar una publicación
         setting_default_language: Idioma de publicación
         setting_default_privacy: Privacidad de publicaciones
         setting_default_sensitive: Marcar siempre imágenes como sensibles
@@ -223,6 +235,7 @@ es:
         setting_hide_network: Ocultar tu red
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_system_font_ui: Utilizar la tipografía por defecto del sistema
+        setting_system_scrollbars_ui: Utilizar barra de desplazamiento predeterminada del sistema
         setting_theme: Tema del sitio
         setting_trends: Mostrar las tendencias de hoy
         setting_unfollow_modal: Mostrar diálogo de confirmación antes de dejar de seguir a alguien
@@ -317,6 +330,17 @@ es:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a las publicaciones usar esta etiqueta localmente
+      terms_of_service:
+        changelog: "¿Qué ha cambiado?"
+        text: Términos del servicio
+      terms_of_service_generator:
+        admin_email: Dirección de correo electrónico para avisos legales
+        arbitration_address: Dirección física para avisos de arbitraje
+        arbitration_website: Sitio web para enviar avisos de arbitraje
+        dmca_address: Dirección física para avisos de DMCA/derechos de autor
+        dmca_email: Dirección de correo electrónico para avisos de DMCA/derechos de autor
+        domain: Dominio
+        jurisdiction: Jurisdicción legal
       user:
         role: Rol
         time_zone: Zona horaria
@@ -339,5 +363,5 @@ es:
       text: necesario
     title:
       sessions:
-        webauthn: Utilice una de sus claves de seguridad para iniciar sesión
+        webauthn: Utiliza una de sus claves de seguridad para iniciar sesión
     'yes': Sí

@@ -60,6 +60,10 @@ window.addEventListener('message', (e) => {
 
   const data = e.data;
 
+  // Only set overflow to `hidden` once we got the expected `message` so the post can still be scrolled if
+  // embedded without parent Javascript support
+  document.body.style.overflow = 'hidden';
+
   // We use a timeout to allow for the React page to render before calculating the height
   afterInitialRender(() => {
     window.parent.postMessage(

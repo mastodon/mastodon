@@ -27,39 +27,35 @@ RSpec.describe AccountStatusesCleanupService do
       end
 
       context 'when given a normal budget of 10' do
-        it 'reports 3 deleted statuses' do
-          expect(subject.call(account_policy, 10)).to eq 3
-        end
+        it 'reports 3 deleted statuses and records last deleted id, deletes statuses, preserves recent unrelated statuses' do
+          expect(subject.call(account_policy, 10))
+            .to eq(3)
 
-        it 'records the last deleted id' do
-          subject.call(account_policy, 10)
-          expect(account_policy.last_inspected).to eq [old_status.id, another_old_status.id].max
-        end
+          expect(account_policy.last_inspected)
+            .to eq [old_status.id, another_old_status.id].max
 
-        it 'actually deletes the statuses' do
-          subject.call(account_policy, 10)
-          expect(Status.find_by(id: [very_old_status.id, old_status.id, another_old_status.id])).to be_nil
-          expect { recent_status.reload }.to_not raise_error
-        end
-
-        it 'preserves recent and unrelated statuses' do
-          subject.call(account_policy, 10)
-          expect { unrelated_status.reload }.to_not raise_error
-          expect { recent_status.reload }.to_not raise_error
+          expect(Status.find_by(id: [very_old_status.id, old_status.id, another_old_status.id]))
+            .to be_nil
+          expect { recent_status.reload }
+            .to_not raise_error
+          expect { unrelated_status.reload }
+            .to_not raise_error
+          expect { recent_status.reload }
+            .to_not raise_error
         end
       end
 
       context 'when called repeatedly with a budget of 2' do
-        it 'reports 2 then 1 deleted statuses' do
-          expect(subject.call(account_policy, 2)).to eq 2
-          expect(subject.call(account_policy, 2)).to eq 1
-        end
+        it 'reports 2 then 1 deleted statuses and deletes in expected order' do
+          expect(subject.call(account_policy, 2))
+            .to eq(2)
+          expect(Status.find_by(id: very_old_status.id))
+            .to be_nil
 
-        it 'actually deletes the statuses in the expected order' do
-          subject.call(account_policy, 2)
-          expect(Status.find_by(id: very_old_status.id)).to be_nil
-          subject.call(account_policy, 2)
-          expect(Status.find_by(id: [very_old_status.id, old_status.id, another_old_status.id])).to be_nil
+          expect(subject.call(account_policy, 2))
+            .to eq(1)
+          expect(Status.find_by(id: [very_old_status.id, old_status.id, another_old_status.id]))
+            .to be_nil
         end
       end
 
@@ -90,19 +86,24 @@ RSpec.describe AccountStatusesCleanupService do
           end
         end
 
-        it 'reports 0 deleted statuses then 0 then 3 then 0 again' do
-          expect(subject.call(account_policy, 10)).to eq 0
-          expect(subject.call(account_policy, 10)).to eq 0
-          expect(subject.call(account_policy, 10)).to eq 3
-          expect(subject.call(account_policy, 10)).to eq 0
+        it 'reports 0 deleted statuses then 0 then 3 then 0 again, and keeps id under oldest deletable record' do
+          expect(subject.call(account_policy, 10))
+            .to eq(0)
+          expect(subject.call(account_policy, 10))
+            .to eq(0)
+          expect(subject.call(account_policy, 10))
+            .to eq(3)
+          expect(subject.call(account_policy, 10))
+            .to eq(0)
+          expect(account_policy.last_inspected)
+            .to be < oldest_deletable_record_id
         end
 
-        it 'never causes the recorded id to get higher than oldest deletable toot' do
-          subject.call(account_policy, 10)
-          subject.call(account_policy, 10)
-          subject.call(account_policy, 10)
-          subject.call(account_policy, 10)
-          expect(account_policy.last_inspected).to be < Mastodon::Snowflake.id_at(account_policy.min_status_age.seconds.ago, with_random: false)
+        def oldest_deletable_record_id
+          Mastodon::Snowflake.id_at(
+            account_policy.min_status_age.seconds.ago,
+            with_random: false
+          )
         end
       end
     end

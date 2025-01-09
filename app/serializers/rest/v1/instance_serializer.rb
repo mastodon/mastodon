@@ -48,14 +48,6 @@ class REST::V1::InstanceSerializer < ActiveModel::Serializer
     { streaming_api: Rails.configuration.x.streaming_api_base_url }
   end
 
-  def usage
-    {
-      users: {
-        active_month: instance_presenter.active_user_count(4),
-      },
-    }
-  end
-
   def configuration
     {
       accounts: {

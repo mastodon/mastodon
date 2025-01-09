@@ -6,7 +6,7 @@ eo:
       send_instructions: Vi ricevos retmesaĝon kun instrukcioj por konfirmi vian retadreson ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
       send_paranoid_instructions: Se via retadreso ekzistas en nia datumbazo, vi ricevos retmesaĝon kun instrukcioj por konfirmi vian retadreson ene de kelkaj minutoj. Bonvolu kontroli vian spamujon se vi ne ricevis ĉi tiun retmesaĝon.
     failure:
-      already_authenticated: Vi jam salutis.
+      already_authenticated: Vi jam ensalutis.
       inactive: Via konto ankoraŭ ne estas konfirmita.
       invalid: Nevalida %{authentication_keys} aŭ pasvorto.
       last_attempt: Vi ankoraŭ povas provi unufoje antaŭ ol via konto estos ŝlosita.
@@ -53,12 +53,14 @@ eo:
         subtitle: Dupaŝa aŭtentigo por via konto estas malŝaltita.
         title: 2FA estas malŝaltita
       two_factor_enabled:
+        explanation: Tokeno generita de la parigita TOTP-aplikaĵo estos necesa por ensaluti.
         subject: 'Mastodon: Dufaktora aŭtentigo ebligita'
         subtitle: Dupaŝa aŭtentigo por via konto estas ŝaltita.
         title: 2FA aktivigita
       two_factor_recovery_codes_changed:
         explanation: La antaŭaj reakiraj kodoj estis nuligitaj kaj novaj estis generitaj.
         subject: 'Mastodon: Reakiraj kodoj de dufaktora aŭtentigo rekreitaj'
+        subtitle: La antaŭaj restarigaj kodoj estis malvalidigitaj kaj novaj estis generitaj.
         title: Reakiraj kodoj de 2FA estas ŝanĝitaj
       unlock_instructions:
         subject: 'Mastodon: Instrukcioj por malŝlosi'
@@ -73,9 +75,11 @@ eo:
           title: Unu el viaj sekurecaj ŝlosiloj estis forigita
       webauthn_disabled:
         explanation: Aŭtentigo per sekurecaj ŝlosiloj estas malŝaltita por via konto.
+        extra: Ensaluto nun eblas uzante nur la ĵetonon generitan de la parigita tempbazita unufoja pasvorta aplikaĵo.
         subject: 'Mastodon: sekureca-ŝlosila aŭtentigo malebligita'
         title: Sekurecaj ŝlosiloj malaktivigitaj
       webauthn_enabled:
+        explanation: Sekurecŝlosila aŭtentigo estas ebligita por via konto.
         extra: Via sekureca ŝlosilo nun povas esti uzata por ensaluto.
         subject: 'Mastodon: sekureca-ŝlosila aŭtentigo ebligita'
         title: Sekurecaj ŝlosiloj aktivigitaj
@@ -90,11 +94,6 @@ eo:
       updated_not_active: Via pasvorto estis sukcese ŝanĝita.
     registrations:
       destroyed: Ĝis! Via konto estis sukcese forigita. Ni esperas revidi vin baldaŭ.
-      signed_up: Bonvenon! Vi sukcese registriĝis.
-      signed_up_but_inactive: Vi sukcese registriĝis. Tamen, ni ne povis ensalutigi vin, ĉar via konto ankoraŭ ne estas konfirmita.
-      signed_up_but_locked: Vi sukcese registriĝis. Tamen, ni ne povis ensalutigi vin, ĉar via konto estas ŝlosita.
-      signed_up_but_pending: Mesaĝo kun konfirma ligilo estis sendita al via retpoŝta adreso. Post kiam vi alklakis la ligilon, ni revizios vian kandidatiĝon. Vi estos sciigita se ĝi estas aprobita.
-      signed_up_but_unconfirmed: Retmesaĝo kun konfirma ligilo estis sendita al via retadreso. Bonvolu sekvi la ligilon por aktivigi vian konton. Bonvolu kontroli vian spamujon, se vi ne ricevis ĉi tiun retmesaĝon.
       update_needs_confirmation: Vi sukcese ĝisdatigis vian konton, sed ni bezonas kontroli vian novan retadreson. Bonvolu kontroli viajn retmesaĝojn kaj sekvi la konfirman ligilon por konfirmi vian novan retadreson. Bonvolu kontroli vian spamujon, se vi ne ricevis ĉi tiun retmesaĝon.
       updated: Via konto estis sukcese ĝisdatigita.
     sessions:

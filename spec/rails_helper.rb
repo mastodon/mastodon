@@ -32,7 +32,7 @@ end
 STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
 ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
 
-require File.expand_path('../config/environment', __dir__)
+require_relative '../config/environment'
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 
@@ -43,6 +43,7 @@ require 'paperclip/matchers'
 require 'capybara/rspec'
 require 'chewy/rspec'
 require 'email_spec/rspec'
+require 'pundit/rspec'
 require 'test_prof/recipes/rspec/before_all'
 
 Rails.root.glob('spec/support/**/*.rb').each { |f| require f }
@@ -112,10 +113,16 @@ RSpec.configure do |config|
   config.include ActiveSupport::Testing::TimeHelpers
   config.include Chewy::Rspec::Helpers
   config.include Redisable
+  config.include DomainHelpers
   config.include ThreadingHelpers
   config.include SignedRequestHelpers, type: :request
   config.include CommandLineHelpers, type: :cli
   config.include SystemHelpers, type: :system
+
+  # TODO: Remove when Devise fixes https://github.com/heartcombo/devise/issues/5705
+  config.before do
+    Rails.application.reload_routes_unless_loaded
+  end
 
   config.around(:each, use_transactional_tests: false) do |example|
     self.use_transactional_tests = false
@@ -159,6 +166,11 @@ RSpec.configure do |config|
     # Use https and configured hostname in request spec requests
     integration_session.https!
     host! Rails.configuration.x.local_domain
+  end
+
+  config.before :each, type: :system do
+    # Align with capybara config so that rails helpers called from rspec use matching host
+    host! 'localhost:3000'
   end
 
   config.after do
