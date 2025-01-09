@@ -24,6 +24,8 @@ lv:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: satur vērtības ar trūkstošām iezīmēm
             username:
               invalid: drīkst saturēt tikai burtus, ciparus un pasvītras
               reserved: ir rezervēts
@@ -39,6 +41,11 @@ lv:
           attributes:
             data:
               malformed: ir nepareizi veidots
+        list_account:
+          attributes:
+            account_id:
+              taken: jau ir sarakstā
+          must_be_following: jābūt kontam, kuram seko
         status:
           attributes:
             reblog:
