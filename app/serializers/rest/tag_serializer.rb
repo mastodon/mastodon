@@ -3,9 +3,13 @@
 class REST::TagSerializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :name, :url, :history
+  attributes :id, :name, :url, :history
 
   attribute :following, if: :current_user?
+
+  def id
+    object.id.to_s
+  end
 
   def url
     tag_url(object)
@@ -19,7 +23,7 @@ class REST::TagSerializer < ActiveModel::Serializer
     if instance_options && instance_options[:relationships]
       instance_options[:relationships].following_map[object.id] || false
     else
-      TagFollow.where(tag_id: object.id, account_id: current_user.account_id).exists?
+      TagFollow.exists?(tag_id: object.id, account_id: current_user.account_id)
     end
   end
 

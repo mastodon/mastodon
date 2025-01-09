@@ -14,13 +14,14 @@ class RSS::Builder
   end
 
   def to_xml
-    ('<?xml version="1.0" encoding="UTF-8"?>'.dup << Ox.dump(wrap_in_document, effort: :tolerant)).force_encoding('UTF-8')
+    Ox.dump(wrap_in_document, effort: :tolerant).force_encoding('UTF-8')
   end
 
   private
 
   def wrap_in_document
     Ox::Document.new(version: '1.0').tap do |document|
+      document << xml_instruct
       document << Ox::Element.new('rss').tap do |rss|
         rss['version']        = '2.0'
         rss['xmlns:webfeeds'] = 'http://webfeeds.org/rss/1.0'
@@ -28,6 +29,13 @@ class RSS::Builder
 
         rss << @dsl.to_element
       end
+    end
+  end
+
+  def xml_instruct
+    Ox::Instruct.new(:xml).tap do |instruct|
+      instruct[:version] = '1.0'
+      instruct[:encoding] = 'UTF-8'
     end
   end
 end

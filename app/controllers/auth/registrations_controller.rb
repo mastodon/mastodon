@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Auth::RegistrationsController < Devise::RegistrationsController
-  include RegistrationSpamConcern
+  include RegistrationHelper
+  include Auth::RegistrationSpamConcern
 
   layout :determine_layout
 
@@ -10,30 +11,35 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
   before_action :set_strikes, only: [:edit, :update]
-  before_action :set_instance_presenter, only: [:new, :create, :update]
-  before_action :set_body_classes, only: [:new, :create, :edit, :update]
   before_action :require_not_suspended!, only: [:update]
   before_action :set_cache_headers, only: [:edit, :update]
   before_action :set_rules, only: :new
   before_action :require_rules_acceptance!, only: :new
   before_action :set_registration_form_time, only: :new
 
+  skip_before_action :check_self_destruct!, only: [:edit, :update]
   skip_before_action :require_functional!, only: [:edit, :update]
 
   def new
     super(&:build_invite_request)
   end
 
-  def destroy
-    not_found
+  def edit # rubocop:disable Lint/UselessMethodDefinition
+    super
+  end
+
+  def create # rubocop:disable Lint/UselessMethodDefinition
+    super
   end
 
   def update
     super do |resource|
-      if resource.saved_change_to_encrypted_password?
-        resource.clear_other_sessions(current_session.session_id)
-      end
+      resource.clear_other_sessions(current_session.session_id) if resource.saved_change_to_encrypted_password?
     end
+  end
+
+  def destroy
+    not_found
   end
 
   protected
@@ -45,10 +51,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def build_resource(hash = nil)
-    super(hash)
+    super
 
     resource.locale                 = I18n.locale
-    resource.invite_code            = params[:invite_code] if resource.invite_code.blank?
+    resource.invite_code            = @invite&.code if resource.invite_code.blank?
     resource.registration_form_time = session[:registration_form_time]
     resource.sign_up_ip             = request.remote_ip
 
@@ -56,8 +62,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up) do |u|
-      u.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password)
+    devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+      user_params.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password)
     end
   end
 
@@ -84,19 +90,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if single_user_mode? || omniauth_only? || !allowed_registrations? || ip_blocked?
-  end
-
-  def allowed_registrations?
-    Setting.registrations_mode != 'none' || @invite&.valid_for_use?
-  end
-
-  def omniauth_only?
-    ENV['OMNIAUTH_ONLY'] == 'true'
-  end
-
-  def ip_blocked?
-    IpBlock.where(severity: :sign_up_block).where('ip >>= ?', request.remote_ip.to_s).exists?
+    redirect_to root_path unless allowed_registration?(request.remote_ip, @invite)
   end
 
   def invite_code
@@ -108,14 +102,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   private
-
-  def set_instance_presenter
-    @instance_presenter = InstancePresenter.new
-  end
-
-  def set_body_classes
-    @body_classes = %w(edit update).include?(action_name) ? 'admin' : 'lighter'
-  end
 
   def set_invite
     @invite = begin
@@ -129,7 +115,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_sessions
-    @sessions = current_user.session_activations
+    @sessions = current_user.session_activations.order(updated_at: :desc)
   end
 
   def set_strikes
@@ -137,7 +123,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def require_not_suspended!
-    forbidden if current_account.suspended?
+    forbidden if current_account.unavailable?
   end
 
   def set_rules
@@ -154,6 +140,14 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_cache_headers
-    response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
+    response.cache_control.replace(private: true, no_store: true)
+  end
+
+  def is_flashing_format? # rubocop:disable Naming/PredicateName
+    if params[:action] == 'create'
+      false # Disable flash messages for sign-up
+    else
+      super
+    end
   end
 end

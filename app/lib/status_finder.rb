@@ -27,8 +27,6 @@ class StatusFinder
   end
 
   def verify_action!
-    unless recognized_params[:action] == 'show'
-      raise ActiveRecord::RecordNotFound
-    end
+    raise ActiveRecord::RecordNotFound unless recognized_params[:action] == 'show'
   end
 end

@@ -3,14 +3,14 @@
 module Settings
   module TwoFactorAuthentication
     class WebauthnCredentialsController < BaseController
+      skip_before_action :check_self_destruct!
       skip_before_action :require_functional!
 
-      before_action :require_otp_enabled
-      before_action :require_webauthn_enabled, only: [:index, :destroy]
-
-      def new; end
+      before_action :redirect_invalid_otp, unless: -> { current_user.otp_enabled? }
+      before_action :redirect_invalid_webauthn, only: [:index, :destroy], unless: -> { current_user.webauthn_enabled? }
 
       def index; end
+      def new; end
 
       def options
         current_user.update(webauthn_id: WebAuthn.generate_user_id) unless current_user.webauthn_id
@@ -27,7 +27,7 @@ module Settings
 
         session[:webauthn_challenge] = options_for_create.challenge
 
-        render json: options_for_create, status: :ok
+        render json: options_for_create, status: 200
       end
 
       def create
@@ -52,7 +52,7 @@ module Settings
             end
           else
             flash[:error] = I18n.t('webauthn_credentials.create.error')
-            status = :internal_server_error
+            status = :unprocessable_entity
           end
         else
           flash[:error] = t('webauthn_credentials.create.error')
@@ -85,18 +85,14 @@ module Settings
 
       private
 
-      def require_otp_enabled
-        unless current_user.otp_enabled?
-          flash[:error] = t('webauthn_credentials.otp_required')
-          redirect_to settings_two_factor_authentication_methods_path
-        end
+      def redirect_invalid_otp
+        flash[:error] = t('webauthn_credentials.otp_required')
+        redirect_to settings_two_factor_authentication_methods_path
       end
 
-      def require_webauthn_enabled
-        unless current_user.webauthn_enabled?
-          flash[:error] = t('webauthn_credentials.not_enabled')
-          redirect_to settings_two_factor_authentication_methods_path
-        end
+      def redirect_invalid_webauthn
+        flash[:error] = t('webauthn_credentials.not_enabled')
+        redirect_to settings_two_factor_authentication_methods_path
       end
     end
   end

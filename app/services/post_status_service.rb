@@ -4,7 +4,14 @@ class PostStatusService < BaseService
   include Redisable
   include LanguagesHelper
 
-  MIN_SCHEDULE_OFFSET = 5.minutes.freeze
+  class UnexpectedMentionsError < StandardError
+    attr_reader :accounts
+
+    def initialize(message, accounts)
+      super(message)
+      @accounts = accounts
+    end
+  end
 
   # Post a text status update, fetch and notify remote users mentioned
   # @param [Account] account Account from which to post
@@ -21,12 +28,15 @@ class PostStatusService < BaseService
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
   # @option [Boolean] :with_rate_limit
+  # @option [Enumerable] :allowed_mentions Optional array of expected mentioned account IDs, raises `UnexpectedMentionsError` if unexpected accounts end up in mentions
   # @return [Status]
   def call(account, options = {})
     @account     = account
     @options     = options
     @text        = @options[:text] || ''
     @in_reply_to = @options[:thread]
+
+    @antispam = Antispam.new
 
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
@@ -37,13 +47,18 @@ class PostStatusService < BaseService
       schedule_status!
     else
       process_status!
-      postprocess_status!
-      bump_potential_friendship!
     end
 
     redis.setex(idempotency_key, 3_600, @status.id) if idempotency_given?
 
+    unless scheduled?
+      postprocess_status!
+      bump_potential_friendship!
+    end
+
     @status
+  rescue Antispam::SilentlyDrop => e
+    e.status
   end
 
   private
@@ -60,19 +75,32 @@ class PostStatusService < BaseService
   end
 
   def process_status!
+    @status = @account.statuses.new(status_attributes)
+    process_mentions_service.call(@status, save_records: false)
+    safeguard_mentions!(@status)
+    @antispam.local_preflight_check!(@status)
+
     # The following transaction block is needed to wrap the UPDATEs to
     # the media attachments when the status is created
-
     ApplicationRecord.transaction do
-      @status = @account.statuses.create!(status_attributes)
+      @status.save!
     end
+  end
 
-    process_hashtags_service.call(@status)
-    process_mentions_service.call(@status)
+  def safeguard_mentions!(status)
+    return if @options[:allowed_mentions].nil?
+
+    expected_account_ids = @options[:allowed_mentions].map(&:to_i)
+
+    unexpected_accounts = status.mentions.map(&:account).to_a.reject { |mentioned_account| expected_account_ids.include?(mentioned_account.id) }
+    return if unexpected_accounts.empty?
+
+    raise UnexpectedMentionsError.new('Post would be sent to unexpected accounts', unexpected_accounts)
   end
 
   def schedule_status!
     status_for_validation = @account.statuses.build(status_attributes)
+    @antispam.local_preflight_check!(status_for_validation)
 
     if status_for_validation.valid?
       # Marking the status as destroyed is necessary to prevent the status from being
@@ -89,9 +117,12 @@ class PostStatusService < BaseService
     else
       raise ActiveRecord::RecordInvalid
     end
+  rescue Antispam::SilentlyDrop
+    @status = @account.scheduled_status.new(scheduled_status_attributes).tap(&:delete)
   end
 
   def postprocess_status!
+    process_hashtags_service.call(@status)
     Trends.tags.register(@status)
     LinkCrawlWorker.perform_async(@status.id)
     DistributionWorker.perform_async(@status.id)
@@ -105,9 +136,12 @@ class PostStatusService < BaseService
       return
     end
 
-    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > 4 || @options[:poll].present?
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > Status::MEDIA_ATTACHMENTS_LIMIT || @options[:poll].present?
 
-    @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(4).map(&:to_i))
+    @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(Status::MEDIA_ATTACHMENTS_LIMIT).map(&:to_i))
+
+    not_found_ids = @options[:media_ids].map(&:to_i) - @media.map(&:id)
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_found', ids: not_found_ids.join(', ')) if not_found_ids.any?
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if @media.size > 1 && @media.find(&:audio_or_video?)
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_ready') if @media.any?(&:not_processed?)
@@ -135,7 +169,7 @@ class PostStatusService < BaseService
 
   def idempotency_duplicate
     if scheduled?
-      @account.schedule_statuses.find(@idempotency_duplicate)
+      @account.scheduled_statuses.find(@idempotency_duplicate)
     else
       @account.statuses.find(@idempotency_duplicate)
     end
@@ -146,14 +180,13 @@ class PostStatusService < BaseService
   end
 
   def scheduled_in_the_past?
-    @scheduled_at.present? && @scheduled_at <= Time.now.utc + MIN_SCHEDULE_OFFSET
+    @scheduled_at.present? && @scheduled_at <= Time.now.utc
   end
 
   def bump_potential_friendship!
     return if !@status.reply? || @account.id == @status.in_reply_to_account_id
+
     ActivityTracker.increment('activity:interactions')
-    return if @account.following?(@status.in_reply_to_account_id)
-    PotentialFriendshipTracker.record(@account.id, @status.in_reply_to_account_id, :reply)
   end
 
   def status_attributes
@@ -187,7 +220,7 @@ class PostStatusService < BaseService
   end
 
   def scheduled_options
-    @options.tap do |options_hash|
+    @options.dup.tap do |options_hash|
       options_hash[:in_reply_to_id]  = options_hash.delete(:thread)&.id
       options_hash[:application_id]  = options_hash.delete(:application)&.id
       options_hash[:scheduled_at]    = nil

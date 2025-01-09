@@ -2,18 +2,19 @@
 ko:
   devise:
     confirmations:
-      confirmed: 이메일이 성공적으로 승인 되었습니다.
+      confirmed: 이메일이 성공적으로 확인 되었습니다.
       send_instructions: 몇 분 이내로 확인 이메일이 발송 됩니다. 이메일을 받지 못 한 경우, 스팸 폴더를 확인하세요.
-      send_paranoid_instructions: 당신의 이메일이 우리의 DB에 있을 경우 몇 분 이내로 확인 메일이 발송 됩니다. 이메일을 받지 못 한 경우, 스팸 폴더를 확인하세요.
+      send_paranoid_instructions: 이메일 주소가 저희 데이터베이스에 있는 경우, 몇 분 내에 이메일 주소를 확인하는 방법에 대한 안내가 포함된 이메일을 받을 수 있습니다. 이 이메일을 받지 못했다면 스팸 폴더를 확인해 주세요.
     failure:
       already_authenticated: 이미 로그인 된 상태입니다.
       inactive: 계정이 아직 활성화 되지 않았습니다.
-      invalid: 올바르지 않은 %{authentication_keys} 혹은 패스워드입니다.
+      invalid: 올바르지 않은 %{authentication_keys} 혹은 암호입니다.
       last_attempt: 계정이 잠기기까지 한 번의 시도가 남았습니다.
       locked: 계정이 잠겼습니다.
-      not_found_in_database: 올바르지 않은 %{authentication_keys} 혹은 패스워드입니다.
-      pending: 계정이 아직 심사 중입니다.
-      timeout: 세션이 만료 되었습니다. 다시 로그인 해 주세요.
+      not_found_in_database: 올바르지 않은 %{authentication_keys} 혹은 암호입니다.
+      omniauth_user_creation_failure: 이 신원으로 계정을 만드는데 실패했습니다.
+      pending: 이 계정은 아직 검토 중입니다.
+      timeout: 세션이 만료되었습니다. 다시 로그인 하세요.
       unauthenticated: 계속 하려면 로그인을 해야 합니다.
       unconfirmed: 계속 하려면 이메일을 확인 받아야 합니다.
     mailer:
@@ -26,37 +27,40 @@ ko:
         subject: '마스토돈: %{instance}에 대한 확인 메일'
         title: 이메일 주소 확인
       email_changed:
-        explanation: '당신의 계정에 대한 이메일이 다음과 같이 바뀌려고 합니다:'
-        extra: 만약 당신이 메일을 바꾸지 않았다면 누군가가 당신의 계정에 대한 접근 권한을 얻은 것입니다. 즉시 패스워드를 바꾼 후, 계정이 잠겼다면 서버의 관리자에게 연락 하세요.
+        explanation: '귀하의 계정이 다음의 이메일 주소로 변경됩니다:'
+        extra: 만약 이메일을 바꾸지 않았다면 누군가 계정에 대한 접근 권한을 얻은 것입니다. 바로 암호를 바꾸셔야 하며, 만약 계정이 잠겼다면 서버의 운영자에게 연락 바랍니다.
         subject: '마스토돈: 이메일이 변경 되었습니다'
         title: 새 이메일 주소
       password_change:
-        explanation: 당신의 계정 패스워드가 변경되었습니다.
+        explanation: 계정 암호가 변경되었습니다.
         extra: 만약 패스워드 변경을 하지 않았다면 누군가가 당신의 계정에 대한 접근 권한을 얻은 것입니다. 즉시 패스워드를 바꾼 후, 계정이 잠겼다면 서버의 관리자에게 연락 하세요.
-        subject: '마스토돈: 패스워드가 변경 되었습니다'
-        title: 패스워드가 변경 되었습니다
+        subject: 'Mastodon: 암호 변경됨'
+        title: 암호 변경됨
       reconfirmation_instructions:
         explanation: 이메일 주소를 바꾸려면 새 이메일 주소를 확인해야 합니다.
         extra: 당신이 시도한 것이 아니라면 이 메일을 무시해 주세요. 위 링크를 클릭하지 않으면 이메일 변경은 일어나지 않습니다.
         subject: '마스토돈: %{instance}에 대한 이메일 확인'
         title: 이메일 주소 확인
       reset_password_instructions:
-        action: 패스워드 변경
+        action: 암호 변경
         explanation: 계정에 대한 패스워드 변경을 요청하였습니다.
         extra: 만약 당신이 시도한 것이 아니라면 이 메일을 무시해 주세요. 위 링크를 클릭해 패스워드를 새로 설정하기 전까지는 패스워드가 바뀌지 않습니다.
-        subject: '마스토돈: 패스워드 재설정 방법'
-        title: 패스워드 재설정
+        subject: 'Mastodon: 암호 재설정 설명'
+        title: 암호 재설정
       two_factor_disabled:
-        explanation: 당신의 계정에 설정된 이중 인증이 비활성화 되었습니다. 이제 이메일과 암호만으로 로그인이 가능합니다.
+        explanation: 이제 이메일과 암호만 이용해서 로그인이 가능합니다.
         subject: '마스토돈: 이중 인증 비활성화'
+        subtitle: 계정에 대한 2단계 인증이 비활성화되었습니다.
         title: 2FA 비활성화 됨
       two_factor_enabled:
-        explanation: 당신의 계정에 이중 인증이 활성화되었습니다. 로그인시 페어링된 T-OTP 앱에서 생성된 토큰이 필요합니다.
+        explanation: 로그인 하기 위해서는 짝이 되는 TOTP 앱에서 생성한 토큰이 필요합니다.
         subject: '마스토돈: 이중 인증 활성화'
+        subtitle: 계정에 대한 2단계 인증이 활성화되었습니다.
         title: 2FA 활성화 됨
       two_factor_recovery_codes_changed:
         explanation: 이전 복구 코드가 무효화되고 새 코드가 생성되었습니다
         subject: '마스토돈: 이중 인증 복구 코드 재생성 됨'
+        subtitle: 이전 복구 코드가 무효화되고 새 코드가 생성되었습니다.
         title: 2FA 복구 코드 변경됨
       unlock_instructions:
         subject: '마스토돈: 잠금 해제 방법'
@@ -70,30 +74,27 @@ ko:
           subject: '마스토돈: 보안 키 삭제'
           title: 보안 키가 삭제되었습니다
       webauthn_disabled:
-        explanation: 보안 키를 이용한 인증이 당신의 계정에 대해 비활성화 되어 있습니다. TOTP 앱의 토큰만으로 로그인 할 수 있습니다.
+        explanation: 계정의 보안 키 인증이 비활성화되었습니다
+        extra: 이제 TOTP 앱에서 생성한 토큰을 통해서만 로그인 가능합니다.
         subject: '마스토돈: 보안 키를 이용한 인증이 비활성화 됨'
         title: 보안 키 비활성화 됨
       webauthn_enabled:
-        explanation: 보안 키 인증이 당신의 계정에 대해 활성화 되어 있습니다. 보안 키를 통해 로그인 할 수 있습니다.
+        explanation: 계정에 대한 보안키 인증이 활성화되었습니다.
+        extra: 로그인시 보안키가 사용됩니다.
         subject: '마스토돈: 보안 키 인증 활성화 됨'
         title: 보안 키 활성화 됨
     omniauth_callbacks:
       failure: '"%{reason}" 때문에 당신을 %{kind}에서 인증할 수 없습니다.'
-      success: 성공적으로 %{kind} 계정을 인증 했습니다.
+      success: "%{kind} 계정을 성공적으로 인증했습니다."
     passwords:
-      no_token: 패스워드 재설정 이메일을 거치지 않고는 여기에 올 수 없습니다. 만약 패스워드 재설정 메일에서 온 것이라면 URL이 맞는지 확인해 주세요.
-      send_instructions: 당신의 이메일 주소가 우리의 DB에 있다면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
-      send_paranoid_instructions: 당신의 이메일 주소가 우리의 DB에 있다면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
-      updated: 패스워드가 재설정 되었습니다. 로그인 되었습니다.
-      updated_not_active: 패스워드가 성공적으로 변경 되었습니다.
+      no_token: 이 페이지는 암호 재설정 이메일을 거쳐야 접근할 수 있습니다. 만약 암호 재설정 이메일 거치지 않았다면 입력한 URL이 맞는지 확인 바랍니다.
+      send_instructions: 이메일 주소가 저희 데이터베이스에 있는 경우, 몇 분 내에 이메일 주소로 비밀번호 복구 링크를 받을 수 있습니다. 이 이메일을 받지 못했다면 스팸 폴더를 확인해 주세요.
+      send_paranoid_instructions: 이메일 주소가 저희 데이터베이스에 있는 경우, 몇 분 내에 이메일 주소로 비밀번호 복구 링크를 받을 수 있습니다. 이 이메일을 받지 못했다면 스팸 폴더를 확인해 주세요.
+      updated: 암호를 잘 바꾸었습니다. 현재 로그인 상태입니다.
+      updated_not_active: 암호를 잘 변경하였습니다.
     registrations:
       destroyed: 안녕히 가세요! 계정이 성공적으로 제거되었습니다. 다시 만나기를 희망합니다.
-      signed_up: 안녕하세요! 성공적으로 가입했습니다.
-      signed_up_but_inactive: 성공적으로 가입 했습니다. 그러나, 계정이 활성화 되지 않았기 때문에 아직 로그인 할 수 없습니다.
-      signed_up_but_locked: 성공적으로 가입 했습니다. 그러나, 계정이 잠겨있기 때문에 아직 로그인 할 수 없습니다.
-      signed_up_but_pending: 확인 링크를 포함한 메일이 발송 되었습니다. 링크를 클릭한 이후, 우리가 당신의 신청양식을 검토합니다. 승인이 되면 알림을 발송합니다.
-      signed_up_but_unconfirmed: 확인 링크를 포함한 메일이 발송 되었습니다. 링크를 클릭해 계정을 활성화 하세요. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
-      update_needs_confirmation: 계정 정보를 업데이트 했습니다. 하지만 새 이메일 주소에 대한 확인이 필요합니다. 이메일을 확인 한 후 링크를 통해 새 이메일을 확인 하세요. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
+      update_needs_confirmation: 계정 정보를 성공적으로 업데이트했으며, 새 이메일 주소에 대한 확인이 필요합니다. 이메일로 전달된 링크를 따라 새 이메일을 확인하세요. 메일을 받지 못하셨다면 스팸 폴더를 확인해 주세요.
       updated: 계정 정보가 성공적으로 업데이트 되었습니다.
     sessions:
       already_signed_out: 성공적으로 로그아웃 되었습니다.
@@ -111,4 +112,4 @@ ko:
       not_found: 찾을 수 없습니다
       not_locked: 잠기지 않았습니다
       not_saved:
-        other: "%{count}개의 에러로 인해 %{resource}가 저장 될 수 없습니다:"
+        other: "%{count} 개의 에러로 인해 %{resource}가 저장 될 수 없습니다:"

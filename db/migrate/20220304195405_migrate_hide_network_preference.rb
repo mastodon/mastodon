@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MigrateHideNetworkPreference < ActiveRecord::Migration[6.1]
   disable_ddl_transaction!
 
@@ -9,6 +11,13 @@ class MigrateHideNetworkPreference < ActiveRecord::Migration[6.1]
 
   class User < ApplicationRecord
     belongs_to :account
+  end
+
+  class Setting < ApplicationRecord
+    # Mirror the behavior of the `Setting` model at this point in db history
+    def value
+      YAML.safe_load(self[:value], permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Symbol]) if self[:value].present?
+    end
   end
 
   def up

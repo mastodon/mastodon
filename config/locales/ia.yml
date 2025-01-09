@@ -1,0 +1,2048 @@
+---
+ia:
+  about:
+    about_mastodon_html: 'Le rete social del futuro: nulle publicitate, nulle surveliantia corporative, conception ethic, e decentralisation! Mantene le controlo de tu datos con Mastodon!'
+    contact_missing: Non definite
+    contact_unavailable: N/D
+    hosted_on: Mastodon albergate sur %{domain}
+    title: A proposito
+  accounts:
+    followers:
+      one: Sequitor
+      other: Sequitores
+    following: Sequente
+    instance_actor_flash: Iste conto es un agente virtual usate pro representar le servitor mesme e non alcun usator individual. Illo es usate pro le federation e non debe esser suspendite.
+    last_active: ultime activitate
+    link_verified_on: Le proprietate de iste ligamine ha essite verificate le %{date}
+    nothing_here: Il ha nihil ci!
+    pin_errors:
+      following: Tu debe primo sequer le persona que tu vole indorsar
+    posts:
+      one: Message
+      other: Messages
+    posts_tab_heading: Messages
+    self_follow_error: Sequer tu proprie conto non es permittite
+  admin:
+    account_actions:
+      action: Exequer action
+      already_silenced: Iste conto jam ha essite limitate.
+      already_suspended: Iste conto jam ha essite suspendite.
+      title: Exequer action de moderation sur %{acct}
+    account_moderation_notes:
+      create: Lassar un nota
+      created_msg: Nota de moderation create con successo!
+      destroyed_msg: Nota de moderation destruite con successo!
+    accounts:
+      add_email_domain_block: Blocar dominio de e-mail
+      approve: Approbar
+      approved_msg: Demanda de inscription de %{username} approbate con successo
+      are_you_sure: Es tu secur?
+      avatar: Avatar
+      by_domain: Dominio
+      change_email:
+        changed_msg: E-mail cambiate con successo!
+        current_email: E-mail actual
+        label: Cambiar e-mail
+        new_email: Nove e-mail
+        submit: Cambiar e-mail
+        title: Cambiar e-mail pro %{username}
+      change_role:
+        changed_msg: Rolo cambiate con successo!
+        edit_roles: Gerer le regulas de usator
+        label: Cambiar rolo
+        no_role: Necun rolo
+        title: Cambiar rolo pro %{username}
+      confirm: Confirmar
+      confirmed: Confirmate
+      confirming: In confirmation
+      custom: Personalisate
+      delete: Deler datos
+      deleted: Delite
+      demote: Degradar
+      destroyed_msg: Le datos de %{username} es ora in cauda pro lor imminente deletion
+      disable: Gelar
+      disable_sign_in_token_auth: Disactivar le authentication per token in e-mail
+      disable_two_factor_authentication: Disactivar A2F
+      disabled: Gelate
+      display_name: Nomine a monstrar
+      domain: Dominio
+      edit: Modificar
+      email: E-mail
+      email_status: Stato de e-mail
+      enable: Disgelar
+      enable_sign_in_token_auth: Activar le authentication per token in e-mail
+      enabled: Activate
+      enabled_msg: Conto de %{username} disgelate con successo
+      followers: Sequitores
+      follows: Sequites
+      header: Capite
+      inbox_url: URL de cassa de entrata
+      invite_request_text: Motivos pro le inscription
+      invited_by: Invitate per
+      ip: IP
+      joined: Inscription
+      location:
+        all: Toto
+        local: Local
+        remote: Remote
+        title: Position
+      login_status: Stato de session
+      media_attachments: Annexos multimedial
+      memorialize: Render commemorative
+      memorialized: Conto commemorative
+      memorialized_msg: "%{username} ha essite convertite in un conto commemorative"
+      moderation:
+        active: Active
+        all: Toto
+        disabled: Disactivate
+        pending: In tractamento
+        silenced: Limitate
+        suspended: Suspendite
+        title: Moderation
+      moderation_notes: Notas de moderation
+      most_recent_activity: Activitate plus recente
+      most_recent_ip: IP plus recente
+      no_account_selected: Necun conto ha essite cambiate perque necun ha essite seligite
+      no_limits_imposed: Necun limite imponite
+      no_role_assigned: Necun rolo assignate
+      not_subscribed: Non subscribite
+      pending: Attende revision
+      perform_full_suspension: Suspender
+      previous_strikes: Sanctiones precedente
+      previous_strikes_description_html:
+        one: Iste conto ha <strong>un</strong> sanction.
+        other: Iste conto ha <strong>%{count}</strong> sanctiones.
+      promote: Promover
+      protocol: Protocollo
+      public: Public
+      push_subscription_expires: Subscription PuSH expira le
+      redownload: Actualisar profilo
+      redownloaded_msg: Le profilo de %{username} ha essite actualisate desde le origine
+      reject: Rejectar
+      rejected_msg: Le demanda de inscription de %{username} ha essite rejectate
+      remote_suspension_irreversible: Le datos de iste conto ha essite irreversibilemente delite.
+      remote_suspension_reversible_hint_html: Le conto ha essite suspendite sur su servitor, e le datos essera removite completemente le %{date}. Usque alora, le servitor remote pote restaurar iste conto sin effectos negative. Si tu vole remover immediatemente tote le datos del conto, tu pote facer lo hic infra.
+      remove_avatar: Remover avatar
+      remove_header: Remover capite
+      removed_avatar_msg: Le imagine de avatar de %{username} ha essite removite
+      removed_header_msg: Le imagine de capite de %{username} ha essite removite
+      resend_confirmation:
+        already_confirmed: Iste usator jam es confirmate
+        send: Reinviar ligamine de confirmation
+        success: Ligamine de confirmation inviate con successo!
+      reset: Reinitialisar
+      reset_password: Reinitialisar contrasigno
+      resubscribe: Resubscriber
+      role: Rolo
+      search: Cercar
+      search_same_email_domain: Altere usatores con le mesme dominio de e-mail
+      search_same_ip: Altere usatores con le mesme IP
+      security: Securitate
+      security_measures:
+        only_password: Solmente contrasigno
+        password_and_2fa: Contrasigno e A2F
+      sensitive: Fortiar sensibile
+      sensitized: Marcate como sensibile
+      shared_inbox_url: URL del cassa de entrata condividite
+      show:
+        created_reports: Reportos facite
+        targeted_reports: Reportate per alteres
+      silence: Limitar
+      silenced: Limitate
+      statuses: Messages
+      strikes: Sanctiones precedente
+      subscribe: Subscriber
+      suspend: Suspender
+      suspended: Suspendite
+      suspension_irreversible: Le datos de iste conto ha essite irreversibilemente delite. Tu pote disfacer le suspension de iste conto pro render lo usabile, ma isto non recuperara alcun datos precedente.
+      suspension_reversible_hint_html: Le conto ha essite suspendite, e le datos essera removite completemente le %{date}. Usque alora, le conto pote esser restaurate sin effectos negative. Si tu vole remover immediatemente tote le datos del conto, tu pote facer lo hic infra.
+      title: Contos
+      unblock_email: Disblocar adresse de e-mail
+      unblocked_email_msg: Adresse de e-mail de %{username} disblocate con successo
+      unconfirmed_email: E-mail non confirmate
+      undo_sensitized: Non plus fortiar sensibile
+      undo_silenced: Disfacer le limite
+      undo_suspension: Disfacer le suspension
+      unsilenced_msg: Le limite del conto de %{username} ha essite cancellate
+      unsubscribe: Desubscriber
+      unsuspended_msg: Le suspension del conto %{username} ha essite annullate
+      username: Nomine de usator
+      view_domain: Vider summario de dominio
+      warn: Advertir
+      web: Web
+      whitelisted: Permittite pro federation
+    action_logs:
+      action_types:
+        approve_appeal: Approbar appello
+        approve_user: Approbar usator
+        assigned_to_self_report: Assignar reporto
+        change_email_user: Cambiar e-mail pro le usator
+        change_role_user: Cambiar le rolo del usator
+        confirm_user: Confirmar le usator
+        create_account_warning: Crear un advertimento
+        create_announcement: Crear annuncio
+        create_canonical_email_block: Crear blocada de e-mail
+        create_custom_emoji: Crear emoji personalisate
+        create_domain_allow: Crear permisso de dominio
+        create_domain_block: Crear blocada de dominio
+        create_email_domain_block: Crear blocada de dominio de e-mail
+        create_ip_block: Crear un regula IP
+        create_relay: Crear repetitor
+        create_unavailable_domain: Crear dominio indisponibile
+        create_user_role: Crear un rolo
+        demote_user: Degradar usator
+        destroy_announcement: Deler annuncio
+        destroy_canonical_email_block: Deler blocada de e-mail
+        destroy_custom_emoji: Deler emoji personalisate
+        destroy_domain_allow: Deler permisso de dominio
+        destroy_domain_block: Deler blocada de dominio
+        destroy_email_domain_block: Deler blocada de dominio de e-mail
+        destroy_instance: Purgar dominio
+        destroy_ip_block: Deler le regula IP
+        destroy_relay: Deler repetitor
+        destroy_status: Deler message
+        destroy_unavailable_domain: Deler dominio indisponibile
+        destroy_user_role: Destruer rolo
+        disable_2fa_user: Disactivar A2F
+        disable_custom_emoji: Disactivar emoji personalisate
+        disable_relay: Disactivar repetitor
+        disable_sign_in_token_auth_user: Disactivar le authentication per token de e-mail pro le usator
+        disable_user: Disactivar le usator
+        enable_custom_emoji: Activar emoji personalisate
+        enable_relay: Activar repetitor
+        enable_sign_in_token_auth_user: Activar le authentication per token de e-mail pro le usator
+        enable_user: Activar le usator
+        memorialize_account: Converter conto in memorial
+        promote_user: Promover usator
+        publish_terms_of_service: Publicar le conditiones de servicio
+        reject_appeal: Rejectar appello
+        reject_user: Rejectar usator
+        remove_avatar_user: Remover avatar
+        reopen_report: Reaperir reporto
+        resend_user: Reinviar message de confirmation
+        reset_password_user: Reinitialisar contrasigno
+        resolve_report: Resolver reporto
+        sensitive_account: Fortiar de marcar le conto como sensibile
+        silence_account: Limitar conto
+        suspend_account: Suspender conto
+        unassigned_report: Disassignar reporto
+        unblock_email_account: Disblocar adresse de e-mail
+        unsensitive_account: Non plus fortiar de marcar le conto como sensibile
+        unsilence_account: Non plus limitar conto
+        unsuspend_account: Non plus suspender conto
+        update_announcement: Actualisar annuncio
+        update_custom_emoji: Actualisar emoji personalisate
+        update_domain_block: Actualisar blocada de dominio
+        update_ip_block: Actualisar le regula IP
+        update_report: Actualisar le reporto
+        update_status: Actualisar le message
+        update_user_role: Actualisar rolo
+      actions:
+        approve_appeal_html: "%{name} approbava appello del decision de moderation de %{target}"
+        approve_user_html: "%{name} approbava inscription de %{target}"
+        assigned_to_self_report_html: "%{name} assignava reporto %{target} a se mesme"
+        change_email_user_html: "%{name} cambiava le adresse de e-mail address del usator %{target}"
+        change_role_user_html: "%{name} cambiava rolo de %{target}"
+        confirm_user_html: "%{name} confirmava le adresse de e-mail del. usator %{target}"
+        create_account_warning_html: "%{name} inviava un advertimento a %{target}"
+        create_announcement_html: "%{name} creava un nove annuncio %{target}"
+        create_canonical_email_block_html: "%{name} blocava le e-mail con le hash %{target}"
+        create_custom_emoji_html: "%{name} incargava le nove emoji %{target}"
+        create_domain_allow_html: "%{name} permitteva federation con dominio %{target}"
+        create_domain_block_html: "%{name} blocava dominio %{target}"
+        create_email_domain_block_html: "%{name} blocava le dominio de e-mail %{target}"
+        create_ip_block_html: "%{name} creava regula pro IP %{target}"
+        create_relay_html: "%{name} ha create un repetitor %{target}"
+        create_unavailable_domain_html: "%{name} stoppava livration al dominio %{target}"
+        create_user_role_html: "%{name} creava rolo de %{target}"
+        demote_user_html: "%{name} degradava usator %{target}"
+        destroy_announcement_html: "%{name} deleva annuncio %{target}"
+        destroy_canonical_email_block_html: "%{name} disblocava le e-mail con le hash %{target}"
+        destroy_custom_emoji_html: "%{name} deleva emoji %{target}"
+        destroy_domain_allow_html: "%{name} impediva le federation con dominio %{target}"
+        destroy_domain_block_html: "%{name} disblocava dominio %{target}"
+        destroy_email_domain_block_html: "%{name} disblocava le dominio de e-mail %{target}"
+        destroy_instance_html: "%{name} purgava le dominio %{target}"
+        destroy_ip_block_html: "%{name} deleva le regula pro IP %{target}"
+        destroy_relay_html: "%{name} ha delite le repetitor %{target}"
+        destroy_status_html: "%{name} removeva un message de %{target}"
+        destroy_unavailable_domain_html: "%{name} reprendeva le livration al dominio %{target}"
+        destroy_user_role_html: "%{name} deleva le rolo %{target}"
+        disable_2fa_user_html: "%{name} disactivava le authentication a duo factores pro le usator %{target}"
+        disable_custom_emoji_html: "%{name} disactivava le emoji %{target}"
+        disable_relay_html: "%{name} ha disactivate le repetitor %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} disactivava le authentication per token de e-mail pro %{target}"
+        disable_user_html: "%{name} disactivava le apertura de session pro le usator %{target}"
+        enable_custom_emoji_html: "%{name} activava le emoji %{target}"
+        enable_relay_html: "%{name} ha activate le repetitor %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} activava le authentication per token de e-mail pro %{target}"
+        enable_user_html: "%{name} activava le apertura de session pro le usator %{target}"
+        memorialize_account_html: "%{name} converteva le conto de %{target} in un pagina commemorative"
+        promote_user_html: "%{name} promoveva le usator %{target}"
+        publish_terms_of_service_html: "%{name} ha actualisate le conditiones de servicio"
+        reject_appeal_html: "%{name} refusava le appello del decision de moderation de %{target}"
+        reject_user_html: "%{name} refusava le inscription de %{target}"
+        remove_avatar_user_html: "%{name} removeva le avatar de %{target}"
+        reopen_report_html: "%{name} reaperiva le reporto %{target}"
+        resend_user_html: "%{name} reinviava le e-mail de confirmation pro %{target}"
+        reset_password_user_html: "%{name} reinitialisava le contrasigno del usator %{target}"
+        resolve_report_html: "%{name} resolveva le reporto %{target}"
+        sensitive_account_html: "%{name} marcava le multimedia de %{target} como sensibile"
+        silence_account_html: "%{name} limitava le conto de %{target}"
+        suspend_account_html: "%{name} suspendeva le conto de %{target}"
+        unassigned_report_html: "%{name} disassignava le reporto %{target}"
+        unblock_email_account_html: "%{name} disblocava le adresse de e-mail de %{target}"
+        unsensitive_account_html: "%{name} dismarcava le multimedia de %{target} como sensibile"
+        unsilence_account_html: "%{name} removeva le limite del conto de %{target}"
+        unsuspend_account_html: "%{name} removeva le suspension del conto de %{target}"
+        update_announcement_html: "%{name} actualisava le annuncio %{target}"
+        update_custom_emoji_html: "%{name} actualisava le emoji %{target}"
+        update_domain_block_html: "%{name} actualisava le blocada de dominio pro %{target}"
+        update_ip_block_html: "%{name} cambiava regula pro IP %{target}"
+        update_report_html: "%{name} actualisava reporto %{target}"
+        update_status_html: "%{name} actualisava message de %{target}"
+        update_user_role_html: "%{name} cambiava rolo de %{target}"
+      deleted_account: conto delite
+      empty: Nulle registros trovate.
+      filter_by_action: Filtrar per action
+      filter_by_user: Filtrar per usator
+      title: Registro de inspection
+      unavailable_instance: "(nomine de dominio non disponibile)"
+    announcements:
+      destroyed_msg: Annuncio delite con successo!
+      edit:
+        title: Modificar annuncio
+      empty: Necun annuncios trovate.
+      live: In directo
+      new:
+        create: Crear annuncio
+        title: Nove annuncio
+      publish: Publicar
+      published_msg: Annuncio publicate con successo!
+      scheduled_for: Programmate pro %{time}
+      scheduled_msg: Annuncio programmate pro le publication!
+      title: Annuncios
+      unpublish: Depublicar
+      unpublished_msg: Le publication del annuncio ha essite disfacite!
+      updated_msg: Annuncio actualisate con successo!
+    critical_update_pending: Actualisation critic pendente
+    custom_emojis:
+      assign_category: Assignar categoria
+      by_domain: Dominio
+      copied_msg: Copia local del emoji create con successo
+      copy: Copiar
+      copy_failed_msg: Non poteva crear un copia local de ille emoji
+      create_new_category: Crear nove categoria
+      created_msg: Emoji create con successo!
+      delete: Deler
+      destroyed_msg: Emoji destruite con successo!
+      disable: Disactivar
+      disabled: Disactivate
+      disabled_msg: Emoji disactivate con successo
+      emoji: Emoji
+      enable: Activar
+      enabled: Activate
+      enabled_msg: Emoji activate con successo
+      image_hint: PNG o GIF usque %{size}
+      list: Listar
+      listed: Listate
+      new:
+        title: Adder nove emoji personalisate
+      no_emoji_selected: Necun emoji ha essite cambiate perque necun ha essite seligite
+      not_permitted: Tu non es autorisate a exequer iste action
+      overwrite: Superscriber
+      shortcode: Codice curte
+      shortcode_hint: Al minus 2 characteres, solo characteres alphanumeric e lineettas basse
+      title: Emojis personalisate
+      uncategorized: Sin categoria
+      unlist: Non listar
+      unlisted: Non listate
+      update_failed_msg: Non poteva actualisar le emoji
+      updated_msg: Emoji actualisate con successo!
+      upload: Incargar
+    dashboard:
+      active_users: usatores active
+      interactions: interactiones
+      media_storage: Immagazinage multimedial
+      new_users: nove usatores
+      opened_reports: reportos aperite
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> appello pendente"
+        other: "<strong>%{count}</strong> appellos pendente"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> reporto pendente"
+        other: "<strong>%{count}</strong> reportos pendente"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> hashtag pendente"
+        other: "<strong>%{count}</strong> hashtags pendente"
+      pending_users_html:
+        one: "<strong>%{count}</strong> usator pendente"
+        other: "<strong>%{count}</strong> usatores pendente"
+      resolved_reports: reportos resolvite
+      software: Software
+      sources: Fontes de inscription
+      space: Uso de spatio
+      title: Pannello de controlo
+      top_languages: Linguas le plus active
+      top_servers: Servitores le plus active
+      website: Sito web
+    disputes:
+      appeals:
+        empty: Nulle appellos trovate.
+        title: Appellos
+    domain_allows:
+      add_new: Permitter federation con dominio
+      created_msg: Le dominio ha essite correctemente autorisate pro federation
+      destroyed_msg: Le dominio ha essite prohibite pro federation
+      export: Exportar
+      import: Importar
+      undo: Prohiber federation con dominio
+    domain_blocks:
+      add_new: Adder nove blocada de dominio
+      confirm_suspension:
+        cancel: Cancellar
+        confirm: Suspender
+        permanent_action: Disfacer le suspension non restaurara alcun datos o relation.
+        preamble_html: Tu es sur le puncto de suspender <strong>%{domain}</strong> e su subdominios.
+        remove_all_data: Isto removera de tu servitor tote le contento, multimedia e datos de profilo del contos de iste dominio.
+        stop_communication: Tu servitor cessara de communicar con iste servitores.
+        title: Confirmar le blocada del dominio %{domain}
+        undo_relationships: Isto disfacera omne relation de sequimento inter le contos de iste servitores e illos del tue.
+      created_msg: Le blocada del dominio es ora in tractamento
+      destroyed_msg: Le blocada del dominio ha essite disfacite
+      domain: Dominio
+      edit: Modificar un blocada de dominio
+      existing_domain_block: Tu ha ja imponite limites plus stricte sur %{name}.
+      existing_domain_block_html: Tu ha ja imponite limites plus stricte sur %{name}; ora es necessari <a href="%{unblock_url}">disblocar lo</a> primo.
+      export: Exportar
+      import: Importar
+      new:
+        create: Crear blocada
+        hint: Le blocada del dominio non impedira le creation de entratas de conto in le base de datos, ma applicara retroactive- e automaticamente le methodos specific de moderation a iste contos.
+        severity:
+          desc_html: "<strong>Limitar</strong> rendera le messages del contos de iste dominio invisibile pro tote persona que non los seque. <strong>Suspender</strong> removera de tu servitor tote le contento, multimedia e datos de profilo del contos de iste dominio. Usa <strong>Necun</strong> si tu solmente vole rejectar le files multimedial."
+          noop: Necun
+          silence: Limitar
+          suspend: Suspender
+        title: Nove blocada de dominio
+      no_domain_block_selected: Necun blocada de dominio ha essite cambiate perque necun ha essite seligite
+      not_permitted: Tu non es autorisate a exequer iste action
+      obfuscate: Offuscar le nomine de dominio
+      obfuscate_hint: Offuscar partialmente le nomine de dominio in le lista si le diffusion del lista de limitationes del dominio es activate
+      private_comment: Commento private
+      private_comment_hint: Commentar iste limitation de dominio pro uso interne per le moderatores.
+      public_comment: Commento public
+      public_comment_hint: Commentar iste limitation de dominio pro le publico general, si le diffusion del lista de limitationes del dominio es activate.
+      reject_media: Refusar files multimedial
+      reject_media_hint: Remove le files multimedial immagazinate localmente e refusa de discargar tales in futuro. Irrelevante pro le suspensiones
+      reject_reports: Refusar reportos
+      reject_reports_hint: Ignorar tote le reportos proveniente de iste dominio. Irrelevante pro le suspensiones
+      undo: Disfacer blocada de dominio
+      view: Examinar blocada de dominio
+    email_domain_blocks:
+      add_new: Adder nove
+      allow_registrations_with_approval: Permitter inscriptiones con approbation
+      attempts_over_week:
+        one: "%{count} tentativa de inscription in le ultime septimana"
+        other: "%{count} tentativas de inscription in le ultime septimana"
+      created_msg: Le dominio de e-mail ha essite blocate con successo
+      delete: Deler
+      dns:
+        types:
+          mx: Registro MX
+      domain: Dominio
+      new:
+        create: Adder un dominio
+        resolve: Resolver dominio
+        title: Blocar un nove dominio de e-mail
+      no_email_domain_block_selected: Necun blocadas de dominio de e-mail ha essite cambiate perque necun ha essite seligite
+      not_permitted: Non permittite
+      resolved_dns_records_hint_html: Le nomine de dominio se resolve al sequente dominios MX, le quales ha le ultime responsibilitate pro le reception de e-mail. Blocar un dominio MX blocara le inscriptiones de qualcunque adresse de e-mail que usa le mesme dominio MX, mesmo si le nomine de dominio visibile es differente. <strong>Presta attention a evitar de blocar le grande fornitores de e-mail.</strong>
+      resolved_through_html: Resolvite per %{domain}
+      title: Dominios de e-mail blocate
+    export_domain_allows:
+      new:
+        title: Importar permissiones de dominio
+      no_file: Necun file seligite
+    export_domain_blocks:
+      import:
+        description_html: Tu es sur le puncto de importar un lista de blocadas de dominio. Per favor revide con grande cura iste lista, particularmente si tu non lo ha scribite tu mesme.
+        existing_relationships_warning: Relationes existente de sequimento
+        private_comment_description_html: 'Pro adjutar te a traciar de ubi proveni le blocadas importate, le blocadas importate essera create con le sequente commento private: <q>%{comment}</q>'
+        private_comment_template: Importate de %{source} le %{date}
+        title: Importar blocadas de dominio
+      invalid_domain_block: 'Un o plus blocadas de dominio ha essite saltate a causa del sequente error(es): %{error}'
+      new:
+        title: Importar blocadas de dominio
+      no_file: Necun file seligite
+    follow_recommendations:
+      description_html: "<strong>Le recommendationes de sequimento adjuta le nove usatores a trovar rapidemente contento interessante.</strong> Quando un usator non ha un historia sufficiente de interactiones con alteres pro formar recommendationes personalisate de sequimento, iste contos es recommendate. Illos se recalcula cata die a partir de un mixtura de contos con le plus grande numero de ingagiamentos recente e le numero de sequitores local le plus alte pro un lingua date."
+      language: Pro le lingua
+      status: Stato
+      suppress: Supprimer recommendation de sequimento
+      suppressed: Supprimite
+      title: Recommendationes de contos a sequer
+      unsuppress: Restaurar recommendation de sequimento
+    instances:
+      audit_log:
+        title: Registros de controlo recente
+        view_all: Vider registros de controlo integre
+      availability:
+        description_html:
+          one: Si le livration al dominio falle <strong>%{count} die</strong> sin succeder, necun tentativa ulterior de livration essera facite, excepte si es recipite un livration <em>ab</em> le dominio.
+          other: Si le livration al dominio falle durante <strong>%{count} dies differente</strong> sin succeder, necun tentativa ulterior de livration essera facite, excepte si es recipite un livration <em>ab</em> le dominio.
+        failure_threshold_reached: Limine de fallimentos attingite le %{date}.
+        failures_recorded:
+          one: Tentativa fallite durante %{count} die.
+          other: Tentativa fallite durante %{count} dies differente.
+        no_failures_recorded: Necun fallimento cognoscite.
+        title: Disponibilitate
+        warning: Le ultime tentativa de connexion a iste servitor non ha succedite
+      back_to_all: Toto
+      back_to_limited: Limitate
+      back_to_warning: Advertimento
+      by_domain: Dominio
+      confirm_purge: Es tu secur que tu vole deler permanentemente le datos de iste dominio?
+      content_policies:
+        comment: Nota interne
+        description_html: Tu pote definir politicas de contento que se applicara a tote le contos de iste dominio e a qualcunque de su subdominios.
+        limited_federation_mode_description_html: Tu pote decider si permitter le federation con iste dominio.
+        policies:
+          reject_media: Rejectar multimedia
+          reject_reports: Rejectar reportos
+          silence: Limitar
+          suspend: Suspender
+        policy: Politica
+        reason: Ration public
+        title: Politicas de contento
+      dashboard:
+        instance_accounts_dimension: Contos le plus sequite
+        instance_accounts_measure: contos immagazinate
+        instance_followers_measure: nostre sequitores illac
+        instance_follows_measure: lor sequitores hic
+        instance_languages_dimension: Linguas principal
+        instance_media_attachments_measure: annexos multimedial immagazinate
+        instance_reports_measure: reportos sur illes
+        instance_statuses_measure: messages immagazinate
+      delivery:
+        all: Totes
+        clear: Rader errores de livration
+        failing: Fallente
+        restart: Recomenciar livration
+        stop: Cessar livration
+        unavailable: Non disponibile
+      delivery_available: Livration es disponibile
+      delivery_error_days: Dies de errores de livration
+      delivery_error_hint: Si le livration non es possibile durante %{count} dies, illo essera automaticamente marcate como non livrabile.
+      destroyed_msg: Le datos de %{domain} es ora in cauda pro deletion imminente.
+      empty: Necun dominio trovate.
+      known_accounts:
+        one: "%{count} conto cognoscite"
+        other: "%{count} contos cognoscite"
+      moderation:
+        all: Toto
+        limited: Limitate
+        title: Moderation
+      private_comment: Commento private
+      public_comment: Commento public
+      purge: Purgar
+      purge_description_html: Si tu crede que iste dominio es foras de linea pro sempre, tu pote deler de tu immagazinage tote le registros del conto e le datos associate de iste dominio. Isto pote prender un tempore.
+      title: Federation
+      total_blocked_by_us: Blocate per nos
+      total_followed_by_them: Sequite per illes
+      total_followed_by_us: Sequite per nos
+      total_reported: Reportos sur illes
+      total_storage: Annexos multimedial
+      totals_time_period_hint_html: Le totales monstrate hic infra include le datos de tote le tempore.
+      unknown_instance: Iste dominio non es actualmente cognoscite sur iste servitor.
+    invites:
+      deactivate_all: Disactivar toto
+      filter:
+        all: Toto
+        available: Disponibile
+        expired: Expirate
+        title: Filtro
+      title: Invitationes
+    ip_blocks:
+      add_new: Crear regula
+      created_msg: Le nove regula IP ha essite addite
+      delete: Deler
+      expires_in:
+        '1209600': 2 septimanas
+        '15778476': 6 menses
+        '2629746': 1 mense
+        '31556952': 1 anno
+        '86400': 1 die
+        '94670856': 3 annos
+      new:
+        title: Crear un nove regula IP
+      no_ip_block_selected: Necun regula IP ha essite cambiate perque necun ha essite seligite
+      title: Regulas IP
+    relationships:
+      title: Relationes de %{acct}
+    relays:
+      add_new: Adder nove repetitor
+      delete: Deler
+      description_html: Un <strong>repetitor de federation</strong> es un servitor intermediari que excambia grande volumines de messages public inter le servitores que se inscribe e publica a illo. <strong>Illo pote adjutar le servitores micre e medie a discoperir le contento del fediverso</strong>, sin requirer que le usatores local seque manualmente altere personas sur servitores distante.
+      disable: Disactivar
+      disabled: Disactivate
+      enable: Activar
+      enable_hint: Un vice activate, tu servitor se inscribera a tote le messages public de iste repetitor, e comenciara a inviar le messages public de iste servitor a illo.
+      enabled: Activate
+      inbox_url: URL del repetitor
+      pending: Attende le approbation del repetitor
+      save_and_enable: Salvar e activar
+      setup: Crear un connexion con un repetitor
+      signatures_not_enabled: Le repetitores pote non functionar correctemente durante que le modo secur o le modo de federation limitate es activate
+      status: Stato
+      title: Repetitores
+    report_notes:
+      created_msg: Nota de reporto create con successo!
+      destroyed_msg: Nota de reporto delite con successo!
+    reports:
+      account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} notas"
+      action_log: Registro de inspection
+      action_taken_by: Mesura prendite per
+      actions:
+        delete_description_html: Le messages reportate essera delite e un sanction essera registrate pro adjutar te a prender mesuras adequate in caso de futur infractiones committite desde le mesme conto.
+        mark_as_sensitive_description_html: Le files multimedial in le messages reportate essera marcate como sensibile e un sanction essera registrate pro adjutar te a prender mesuras adequate in caso de futur infractiones committite desde le mesme conto.
+        other_description_html: Vider plus optiones pro controlar le comportamento del conto e personalisar le communication al conto signalate.
+        resolve_description_html: Necun mesura essera prendite contra le conto denunciate, necun sanction registrate, e le reporto essera claudite.
+        silence_description_html: Iste conto essera visibile solmente a qui ja lo seque o manualmente lo cerca, limitante gravemente su portata. Pote sempre esser revertite. Claude tote le reportos contra iste conto.
+        suspend_description_html: Le conto e tote su contento essera inaccessibile e finalmente delite, e interager con illo essera impossibile. Reversibile intra 30 dies. Claude tote le reportos contra iste conto.
+      actions_description_html: Decider que mesuras prender pro resolver iste reporto. Si tu prende un mesura punitive contra le conto reportate, un aviso email les sera inviate, salvo quando le categoria <strong>Spam</strong> es seligite.
+      actions_description_remote_html: Decide qual mesura prender pro resolver iste reporto. Isto affectara solmente le maniera in que <strong>tu</strong> servitor communica con iste conto remote e gere su contento.
+      actions_no_posts: Iste reporto non ha alcun message associate a deler
+      add_to_report: Adder plus al reporto
+      already_suspended_badges:
+        local: Ja suspendite sur iste servitor
+        remote: Ja suspendite sur su servitor
+      are_you_sure: Es tu secur?
+      assign_to_self: Assignar a me
+      assigned: Moderator assignate
+      by_target_domain: Dominio del conto reportate
+      cancel: Cancellar
+      category: Categoria
+      category_description_html: Le motivo pro le qual iste conto e/o contento ha essite reportate essera citate in le communication con le conto reportate
+      comment:
+        none: Necun
+      comment_description_html: 'Pro fornir plus information, %{name} ha scribite:'
+      confirm: Confirmar
+      confirm_action: Confirmar le mesura de moderation contra %{acct}
+      created_at: Reportate
+      delete_and_resolve: Deler le messages
+      forwarded: Reexpedite
+      forwarded_replies_explanation: Iste reporto proveni de un usator remote e concerne contento remote. Illo te ha essite reexpedite perque le contento reportate es in responsa a un usator tue.
+      forwarded_to: Reexpedite a %{domain}
+      mark_as_resolved: Marcar como resolvite
+      mark_as_sensitive: Marcar como sensibile
+      mark_as_unresolved: Marcar como non resolvite
+      no_one_assigned: Nemo
+      notes:
+        create: Adder un nota
+        create_and_resolve: Resolver con nota
+        create_and_unresolve: Reaperir con nota
+        delete: Deler
+        placeholder: Describe le mesuras prendite, o insere altere information pertinente...
+        title: Notas
+      notes_description_html: Vider e lassar notas a altere moderatores e a tu ego futur
+      processed_msg: 'Reporto #%{id} elaborate con successo'
+      quick_actions_description_html: 'Face un rapide action o rola a basso pro vider le contento reportate:'
+      remote_user_placeholder: le usator remote ab %{instance}
+      reopen: Reaperir reporto
+      report: 'Reporto #%{id}'
+      reported_account: Conto reportate
+      reported_by: Reportate per
+      reported_with_application: Signalate con le application
+      resolved: Resolvite
+      resolved_msg: Reporto resolvite con successo!
+      skip_to_actions: Saltar al actiones
+      status: Stato
+      statuses: Contento reportate
+      statuses_description_html: Le contento offensive essera citate in communication con le conto reportate
+      summary:
+        action_preambles:
+          delete_html: 'Tu es sur le puncto de <strong>remover</strong> alcunes del messages de <strong>@%{acct}</strong>. Isto va:'
+          mark_as_sensitive_html: 'Tu es sur le puncto de <strong>marcar</strong> alcunes del messages de <strong>@%{acct}</strong> como <strong>sensibile</strong>. Isto va:'
+          silence_html: 'Tu es sur le puncto de <strong>limitar</strong> le conto de <strong>@%{acct}</strong>. Isto va:'
+          suspend_html: 'Tu es sur le puncto de <strong>suspender</strong> le conto de <strong>@%{acct}</strong>. Isto va:'
+        actions:
+          delete_html: Remover le messages offensive
+          mark_as_sensitive_html: Marcar le multimedia de messages offensive como sensibile
+          silence_html: Limitar gravemente le portata de <strong>@%{acct}</strong> rendente le profilo e contento visibile solmente a qui ja lo seque o lo cerca manualmente
+          suspend_html: Suspender <strong>@%{acct}</strong>, rendente le profilo e contento inaccessibile e le interaction con illo impossibile
+        close_report: 'Marcar le reporto #%{id} como resolvite'
+        close_reports_html: Marcar <strong>tote</strong> le reportos contra <strong>@%{acct}</strong> como resolvite
+        delete_data_html: Deler le profilo e contento de <strong>@%{acct}</strong> in 30 dies excepte si le suspension es disfacite intertanto
+        preview_preamble_html: "<strong>@%{acct}</strong> recipera un advertimento con le sequente contento:"
+        record_strike_html: Registra un sanction contra <strong>@%{acct}</strong> pro adjutar te a prender mesuras adequate in caso de futur violationes committite desde iste conto
+        send_email_html: Inviar un e-mail de advertimento a <strong>@%{acct}</strong>
+        warning_placeholder: Motivation supplementari facultative pro le action de moderation.
+      target_origin: Origine del conto reportate
+      title: Reportos
+      unassign: Disassignar
+      unknown_action_msg: 'Action incognite: %{action}'
+      unresolved: Non resolvite
+      updated_at: Actualisate
+      view_profile: Vider profilo
+    roles:
+      add_new: Adder rolo
+      assigned_users:
+        one: "%{count} usator"
+        other: "%{count} usatores"
+      categories:
+        administration: Administration
+        devops: DevOps
+        invites: Invitationes
+        moderation: Moderation
+        special: Special
+      delete: Deler
+      description_html: Le <strong>rolos de usator</strong> permitte personalisar le functiones e areas de Mastodon al quales le usator pote acceder.
+      edit: Modificar le rolo '%{name}'
+      everyone: Permissiones predefinite
+      everyone_full_description_html: Iste es le <strong>rolo de base</strong> que affecta <strong>tote le usatores</strong>, mesmo illes sin rolo assignate. Tote le altere rolos heredita le permissiones de illo.
+      permissions_count:
+        one: "%{count} permission"
+        other: "%{count} permissiones"
+      privileges:
+        administrator: Administrator
+        administrator_description: Le usatores con iste permission pote contornar tote permission
+        delete_user_data: Deler le datos de usator
+        delete_user_data_description: Permitte que usatores dele immediatemente le datos de altere usatores
+        invite_users: Invitar usatores
+        invite_users_description: Permitte que usatores invita nove personas al servitor
+        manage_announcements: Gerer le annuncios
+        manage_announcements_description: Permitte que usatores genere annuncios sur le servitor
+        manage_appeals: Gerer appellos
+        manage_appeals_description: Permitte que usatores revide appellos contra actiones de moderation
+        manage_blocks: Gerer blocadas
+        manage_blocks_description: Permitter que usatores bloca le fornitores de e-mail e le adresses IP
+        manage_custom_emojis: Gerer emojis personalisate
+        manage_custom_emojis_description: Permitte que usatores gere emojis personalisate sur le servitor
+        manage_federation: Gerer federation
+        manage_federation_description: Permitte que le usatores bloca o permitte le federation con altere dominios, e controla le livration
+        manage_invites: Gerer le invitationes
+        manage_invites_description: Permitte que usatores examina e deactiva ligamines de invitation
+        manage_reports: Gerer le reportos
+        manage_reports_description: Permitte que usatores revide reportos e prende mesuras de moderation a base de illos
+        manage_roles: Gerer le rolos
+        manage_roles_description: Permitte que usatores gere e assigna rolos inferior a lor privilegios actual
+        manage_rules: Gerer le regulas
+        manage_rules_description: Permitte que usatores cambia le regulas del servitor
+        manage_settings: Gerer le parametros
+        manage_settings_description: Permitte que usatores cambia le parametros del sito
+        manage_taxonomies: Gerer taxonomias
+        manage_taxonomies_description: Permitte que usatores revide contento in tendentias e actualisa le parametros de hashtag
+        manage_user_access: Gerer le accesso de usatores
+        manage_user_access_description: Permitte que usatores disactiva le authentication bifactorial de altere usatores, cambia lor adresses de e-mail, e reinitialisa lor contrasigno
+        manage_users: Gerer usatores
+        manage_users_description: Permitte que usatores vide le detalios de altere usatores e exeque actiones de moderation contra illes
+        manage_webhooks: Gerer Webhooks
+        manage_webhooks_description: Permitte que usatores installa “webhooks” pro eventos administrative
+        view_audit_log: Vider le registro de inspection
+        view_audit_log_description: Permitte que usatores vide un historia de actiones administrative sur le servitor
+        view_dashboard: Vider le tabuliero de instrumentos
+        view_dashboard_description: Permitte que usatores accede al tabuliero de instrumentos e a varie statisticas
+        view_devops: DevOps
+        view_devops_description: Permitte que usatores accede al tabulieros de instrumentos de Sidekiq e pgHero
+      title: Rolos
+    rules:
+      add_new: Adder regula
+      delete: Deler
+      description_html: Ben que multes affirma de haber legite e acceptate le conditiones de servicio, generalmente le gente non los lege completemente usque un problema surge. <strong>Facilita le visibilitate del regulas de tu servitor in un colpo de oculo forniente los in un lista a punctos.</strong> Tenta mantener le regulas individual curte e simple, ma sin divider los in multe punctos separate.
+      edit: Modificar regula
+      empty: Necun regula del servitor ha essite definite ancora.
+      title: Regulas del servitor
+    settings:
+      about:
+        manage_rules: Gerer le regulas del servitor
+        preamble: Fornir information detaliate sur le functionamento, moderation e financiamento del servitor.
+        rules_hint: Il ha un area dedicate al regulas que tu usatores debe acceptar.
+        title: A proposito
+      appearance:
+        preamble: Personalisar le interfacie web de Mastodon.
+        title: Apparentia
+      branding:
+        preamble: Le marca de tu servitor lo differentia de altere servitores in le rete. Iste information pote esser monstrate in diverse ambientes, como le interfacie web de Mastodon, applicationes native, in previsualisationes de ligamines sur altere sitos web, in applicationes de messageria, etc. Pro iste ration, il es melior mantener iste information clar, breve e concise.
+        title: Marca
+      captcha_enabled:
+        desc_html: Iste depende de scripts externe de hCaptcha, que pote esser un problema de securitate e vita private. De plus, <strong>isto pote render le processo de inscription multo minus accessibile a certe personas (particularmente personas con discapacitates)</strong>. Pro iste rationes, considera altere mesuras como le inscription basate sur approbation o invitation.
+        title: Require que nove usatores solve un CAPTCHA pro confirmar lor conto
+      content_retention:
+        danger_zone: Zona periculose
+        preamble: Controlar como contento generate per le usator es immagazinate in Mastodon.
+        title: Retention de contento
+      default_noindex:
+        desc_html: Affecta tote le usatores qui non ha personalmente cambiate iste parametro
+        title: Excluder le usatores del indexation del motores de recerca per predefinition
+      discovery:
+        follow_recommendations: Recommendationes de contos a sequer
+        preamble: Presentar contento interessante es essential pro attraher e retener nove usatores qui pote non cognoscer alcun persona sur Mastodon. Controla como varie optiones de discoperta functiona sur tu servitor.
+        profile_directory: Directorio de profilos
+        public_timelines: Chronologias public
+        publish_discovered_servers: Publicar servitores discoperite
+        publish_statistics: Publicar statisticas
+        title: Discoperta
+        trends: Tendentias
+      domain_blocks:
+        all: A omnes
+        disabled: A necuno
+        users: A usators local in session
+      registrations:
+        moderation_recommandation: Per favor assecura te de haber un equipa de moderation adequate e reactive ante de aperir le inscription a omnes!
+        preamble: Controla qui pote crear un conto sur tu servitor.
+        title: Inscriptiones
+      registrations_mode:
+        modes:
+          approved: Approbation necessari pro le inscription
+          none: Nemo pote inscriber se
+          open: Quicunque pote inscriber se
+        warning_hint: Nos recommenda usar “Approbation necessari pro le inscription” si tu non es secur que tu equipa de moderation pote tractar spam e inscriptiones malevolente in tempore utile.
+      security:
+        authorized_fetch: Require authentication ab servitores federate
+        authorized_fetch_hint: Requirer authentication de servitores federate permitte un application plus stricte de blocadas a nivello de usator e de servitor. Nonobstante, isto diminue le prestationes del servitor, reduce le portata de tu responsas e pote introducer problemas de compatibilitate con certe servicios federate. In plus, isto non impedira le actores dedicate a recuperar tu messages public e tu contos.
+        authorized_fetch_overridden_hint: Tu actualmente non pote cambiar iste parametro perque illo es supplantate per un variabile de ambiente.
+        federation_authentication: Application del authentication de federation
+      title: Parametros de servitor
+    site_uploads:
+      delete: Deler file incargate
+      destroyed_msg: Le file incargate al sito ha essite delite!
+    software_updates:
+      critical_update: Critic – per favor, actualisa rapidemente
+      description: Il es recommendate mantener tu installation de Mastodon actualisate pro beneficiar del ultime reparationes e functiones. In ultra, de tempore a tempore, il es de importantia critic actualisar Mastodon in tempore utile pro evitar problemas de securitate. Pro iste rationes, Mastodon verifica le presentia de actualisationes cata 30 minutas, e te notificara secundo tu preferentias de notification in e-mail.
+      documentation_link: Pro saper plus
+      release_notes: Notas de version
+      title: Actualisationes disponibile
+      type: Typo
+      types:
+        major: Version major
+        minor: Version minor
+        patch: 'Version corrective: remedios de bugs e cambiamentos facile a applicar'
+      version: Version
+    statuses:
+      account: Autor
+      application: Application
+      back_to_account: Retornar al pagina del conto
+      back_to_report: Retro al pagina de reporto
+      batch:
+        add_to_report: 'Adder al reporto #%{id}'
+        remove_from_report: Remover del reporto
+        report: Reporto
+      contents: Contento
+      deleted: Delite
+      favourites: Favorites
+      history: Historia de versiones
+      in_reply_to: In responsa a
+      language: Lingua
+      media:
+        title: Multimedia
+      metadata: Metadatos
+      no_history: Iste message non ha essite modificate
+      no_status_selected: Necun message ha essite cambiate perque necun ha essite seligite
+      open: Aperir message
+      original_status: Message original
+      reblogs: Republicationes
+      replied_to_html: Respondite a %{acct_link}
+      status_changed: Message cambiate
+      status_title: Message de @%{name}
+      title: Messages del conto – @%{name}
+      trending: Tendentias
+      view_publicly: Vider publicamente
+      visibility: Visibilitate
+      with_media: Con multimedia
+    strikes:
+      actions:
+        delete_statuses: "%{name} ha delite le messages de %{target}"
+        disable: "%{name} ha gelate le conto de %{target}"
+        mark_statuses_as_sensitive: "%{name} ha marcate le messages de %{target} como sensibile"
+        none: "%{name} ha inviate un advertimento a %{target}"
+        sensitive: "%{name} ha marcate le conto de %{target} como sensibile"
+        silence: "%{name} ha limitate le conto de %{target}"
+        suspend: "%{name} ha suspendite le conto de %{target}"
+      appeal_approved: Appello facite
+      appeal_pending: Appello pendente
+      appeal_rejected: Appello rejectate
+    system_checks:
+      database_schema_check:
+        message_html: Il ha migrationes de base de datos pendente. Per favor exeque los pro assecurar que le application se comporta como expectate
+      elasticsearch_health_red:
+        message_html: Le aggregation Elasticsearch es malsan (stato rubie), le functiones de recerca es indisponibile
+      elasticsearch_health_yellow:
+        message_html: Le aggregation Elasticsearch es malsan (stato jalne), tu poterea voler investigar le ration
+      elasticsearch_index_mismatch:
+        message_html: Le mappas de indice Elasticsearch es obsolete. Per favor exeque <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Vide documentation
+        message_html: Tu aggregation Elasticsearch ha plus que un nodo, ma Mastodon non es configurate a usar los.
+      elasticsearch_preset_single_node:
+        action: Vide documentation
+        message_html: Tu aggregation Elasticsearch ha un sol nodo, <code>ES_PRESET</code> deberea esser mittite a <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Le indexation de tu systema Elasticsearch es obsolete a causa de un cambio de parametro. Per favor exeque <code>tootctl search deploy --reset-chewy</code> pro actualisar lo.
+      elasticsearch_running_check:
+        message_html: Impossibile connecter se a Elasticsearch. Verifica que illo es active, o disactiva le recerca a plen texto
+      elasticsearch_version_check:
+        message_html: 'Version de Elasticsearch incompatibile: %{value}'
+        version_comparison: Elasticsearch %{running_version} es active, ma %{required_version} es requirite
+      rules_check:
+        action: Gerer le regulas del servitor
+        message_html: Tu non ha definite alcun regula de servitor.
+      sidekiq_process_check:
+        message_html: Necun processo Sidekiq es active pro le cauda(s) %{value}. Per favor verifica tu configuration de Sidekiq
+      software_version_check:
+        action: Vider le actualisationes disponibile
+        message_html: Un actualisation de Mastodon es disponibile.
+      software_version_critical_check:
+        action: Vider le actualisationes disponibile
+        message_html: Un actualisation critic de Mastodon es disponibile. Per favor actualisa lo le plus tosto possibile.
+      software_version_patch_check:
+        action: Vider le actualisationes disponibile
+        message_html: Un actualisation de remedio de bug pro Mastodon es disponibile.
+      upload_check_privacy_error:
+        action: Consulta hic pro plus information
+        message_html: "<strong>Tu servitor web es mal configurate. Le confidentialitate de tu usatores es in risco.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Consulta hic pro plus information
+        message_html: "<strong>Tu immagazinage de objectos es mal configurate. Le confidentialitate de tu usatores es in risco.</strong>"
+    tags:
+      moderation:
+        not_trendable: Non pro tendentia
+        not_usable: Non usabile
+        pending_review: Attende revision
+        review_requested: Revision demandate
+        reviewed: Revidite
+        title: Stato
+        trendable: De tendentia
+        unreviewed: Non revidite
+        usable: Usabile
+      name: Nomine
+      newest: Le plus nove
+      oldest: Le plus ancian
+      open: Vider publicamente
+      reset: Reinitialisar
+      review: Revide le stato
+      search: Cercar
+      title: Hashtags
+      updated_msg: Parametros de hashtag actualisate con successo
+    terms_of_service:
+      back: Retornar al conditiones de servicio
+      changelog: Lo que ha cambiate
+      create: Usar tu proprie
+      current: Actual
+      draft: Provisori
+      generate: Usar modello
+      generates:
+        action: Generar
+        chance_to_review_html: "<strong>Le conditiones de servicio generate non essera publicate automaticamente.</strong> Tu habera le opportunitate de revider le resultatos. Per favor completa le detalios necessari pro continuar."
+        explanation_html: Le modello de conditiones de servicio es fornite solmente pro fines informative e non debe esser interpretate como consilio juridic sur alcun subjecto. Per favor consulta tu proprie consiliero juridic pro omne questiones juridic concrete concernente tu situation.
+        title: Configuration del conditiones de servicio
+      history: Historia
+      live: In uso
+      no_history: Il non ha ancora modificationes registrate del conditiones de servicio.
+      no_terms_of_service_html: Tu non ha actualmente configurate alcun conditiones de servicio. Le conditiones de servicio es visate a fornir claritiate e a proteger te contra possibile responsabilitates in caso de litigios con tu usatores.
+      notified_on_html: Usatores notificate le %{date}
+      notify_users: Notificar usatores
+      preview:
+        explanation_html: 'Le message de e-mail essera inviate a <strong>%{display_count} usatores</strong> qui se ha inscribite ante le %{date}. Illo includera le sequente texto:'
+        send_preview: Inviar previsualisation a %{email}
+        send_to_all:
+          one: Inviar %{display_count} message de e-mail
+          other: Inviar %{display_count} messages de e-mail
+        title: Previsualisar le notification sur le conditiones de servicio
+      publish: Publicar
+      published_on_html: Publicate le %{date}
+      save_draft: Salvar version provisori
+      title: Conditiones de servicio
+    title: Administration
+    trends:
+      allow: Permitter
+      approved: Approbate
+      confirm_allow: Es tu secur que tu vole permitter le etiquettas seligite?
+      confirm_disallow: Es tu secur que tu vole cessar de permitter le etiquettas seligite?
+      disallow: Refusar
+      links:
+        allow: Permitter ligamine
+        allow_provider: Autorisar le publicator
+        confirm_allow: Es tu secur que tu vole permitter le ligamines seligite?
+        confirm_allow_provider: Es tu secur que tu vole permitter le fornitores seligite?
+        confirm_disallow: Es tu secur que tu vole cessar de permitter le ligamines seligite?
+        confirm_disallow_provider: Es tu secur que tu vole cessar de permitter le fornitores seligite?
+        description_html: Istes es ligamines que es actualmente compartite multo per contos del quales tu servitor recipe messages. Illos pote adjutar tu usatores a discoperir lo que eveni in le mundo. Necun ligamine es monstrate publicamente usque tu autorisa le publicator. Tu pote tamben permitter o rejectar ligamines singule.
+        disallow: Prohibir le ligamine
+        disallow_provider: Prohibir le publicator
+        no_link_selected: Necun ligamine ha essite cambiate perque necun ha essite seligite
+        publishers:
+          no_publisher_selected: Necun publicator ha essite cambiate perque necun ha essite seligite
+        shared_by_over_week:
+          one: Compartite per un persona le septimana passate
+          other: Compartite per %{count} personas le septimana passate
+        title: Ligamines in tendentia
+        usage_comparison: Compartite %{today} vices hodie, in comparation con le %{yesterday} de heri
+      not_allowed_to_trend: Non autorisate a apparer in tendentias
+      only_allowed: Solo permittites
+      pending_review: Attende revision
+      preview_card_providers:
+        allowed: Ligamines de iste publicator pote apparer in tendentias
+        description_html: Istes es le dominios del quales le ligamines es frequentemente compartite sur tu servitor. Le ligamines solmente apparera in le tendentias public si le dominio del ligamine es approbate. Tu approbation (o rejection) se extende al subdominios.
+        rejected: Ligamines de iste publicator non apparera in tendentias
+        title: Publicatores
+      rejected: Rejectate
+      statuses:
+        allow: Permitter message
+        allow_account: Permitter autor
+        confirm_allow: Desira tu vermente permitter le statos seligite?
+        confirm_allow_account: Es tu secur que tu vole permitter le contos seligite?
+        confirm_disallow: Desira tu vermente impedir le statos seligite?
+        confirm_disallow_account: Es tu secur que tu vole cessar de permitter le contos seligite?
+        description_html: Istes es le messages cognoscite sur tu servitor que al momento es multo compartite e marcate como favorite. Illos pote adjutar tu usatores nove e reveniente a trovar plus personas a sequer. Necun message es monstrate publicamente usque tu approba le autor, a condition que le autor permitte que su conto es suggerite a alteres. Tu pote tamben permitter o rejectar messages singule.
+        disallow: Non permitter message
+        disallow_account: Non permitter autor
+        no_status_selected: Necun message in tendentia ha essite cambiate perque necun ha essite seligite
+        not_discoverable: Le autor non ha optate pro esser discoperibile
+        shared_by:
+          one: Compartite o marcate como favorite un vice
+          other: Compartite o marcate como favorite %{friendly_count} vices
+        title: Messages in tendentia
+      tags:
+        current_score: Score actual %{score}
+        dashboard:
+          tag_accounts_measure: usos unic
+          tag_languages_dimension: Linguas principal
+          tag_servers_dimension: Servitores principal
+          tag_servers_measure: servitores differente
+          tag_uses_measure: usos total
+        description_html: Istes es hashtags que actualmente appare in multe messages que tu servitor vide. Illos pote adjutar tu usatores a discoperir le cosas sur le quales le gente parla le plus al momento. Nulle hashtags es monstrate publicamente usque tu los approba.
+        listable: Pote esser suggerite
+        no_tag_selected: Necun etiquetta ha essite cambiate perque necun ha essite seligite
+        not_listable: Non essera suggerite
+        not_trendable: Non apparera sub tendentias
+        not_usable: Non pote esser usate
+        peaked_on_and_decaying: Ha attingite su maximo le %{date}, ora in declino
+        title: Hashtags in tendentia
+        trendable: Pote apparer sub tendentias
+        trending_rank: 'Tendentia #%{rank}'
+        usable: Pote esser usate
+        usage_comparison: Usate %{today} vices hodie, in comparation con le %{yesterday} de heri
+        used_by_over_week:
+          one: Usate per un persona in le ultime septimana
+          other: Usate per %{count} personas in le ultime septimana
+      title: Recommendationes e tendentias
+      trending: In tendentia
+    warning_presets:
+      add_new: Adder nove
+      delete: Deler
+      edit_preset: Rediger aviso predefinite
+      empty: Tu non ha ancora definite alcun avisos predefinite.
+      title: Predefinitiones de avisos
+    webhooks:
+      add_new: Adder puncto final
+      delete: Deler
+      description_html: Un <strong>webhook</strong> o puncto de ancorage web permitte a Mastodon transmitter <strong>notificationes in tempore real</strong> sur eventos seligite a tu proprie application, de maniera que tu application pote <strong>automaticamente activar reactiones</strong>.
+      disable: Disactivar
+      disabled: Disactivate
+      edit: Rediger puncto final
+      empty: Tu ancora non ha configurate alcun punctos final de webhook.
+      enable: Activar
+      enabled: Active
+      enabled_events:
+        one: 1 evento activate
+        other: "%{count} eventos activate"
+      events: Eventos
+      new: Nove webhook
+      rotate_secret: Rotar le secreto
+      secret: Secreto de signatura
+      status: Stato
+      title: Webhooks
+      webhook: Webhook
+  admin_mailer:
+    auto_close_registrations:
+      body: A causa de un manco de activate recente de moderatores, le parametros de inscription sur %{instance} ha essite automaticamente cambiate pro exiger un verification manual, a fin de impedir le possibile uso de %{instance} per actores malevolente. Tu pote reaperir le inscription a omne momento.
+      subject: Le inscriptiones a %{instance} ha essite automaticamente cambiate pro exiger approbation
+    new_appeal:
+      actions:
+        delete_statuses: deler su messages
+        disable: gelar su conto
+        mark_statuses_as_sensitive: marcar su messages como sensibile
+        none: emitter un advertimento
+        sensitive: marcar su conto como sensibile
+        silence: limitar su conto
+        suspend: suspender su conto
+      body: "%{target} appella contra un decision de moderation, prendite per %{action_taken_by} le %{date}, de %{type}. Le appellante ha scribite:"
+      next_steps: Tu pote approbar le appello pro disfacer le decision de moderation, o ignorar lo.
+      subject: "%{username} appella contra un decision de moderation sur %{instance}"
+    new_critical_software_updates:
+      body: Nove versiones critic de Mastodon ha essite publicate, per favor considera actualisar le plus tosto possibile!
+      subject: Actualisationes critic de Mastodon es disponibile pro %{instance}!
+    new_pending_account:
+      body: Le detalios del nove conto es infra. Tu pote approbar o refusar iste demanda.
+      subject: Nove conto preste a revider sur %{instance} (%{username})
+    new_report:
+      body: "%{reporter} ha reportate %{target}"
+      body_remote: Alcuno de %{domain} ha reportate %{target}
+      subject: Nove reporto pro %{instance} (#%{id})
+    new_software_updates:
+      body: Nove versiones de Mastodon ha essite publicate, tu poterea voler actualisar!
+      subject: Nove versiones de Mastodon es disponibile pro %{instance}!
+    new_trends:
+      body: 'Le sequente entratas require un revision ante que illos pote esser monstrate publicamente:'
+      new_trending_links:
+        title: Ligamines in tendentia
+      new_trending_statuses:
+        title: Messages in tendentia
+      new_trending_tags:
+        title: Hashtags in tendentia
+      subject: Nove tendentias a revider sur %{instance}
+  aliases:
+    add_new: Crear alias
+    created_msg: Le nove alias ha essite create. Ora tu pote initiar le migration desde le conto ancian.
+    deleted_msg: Le alias ha essite removite. Non essera plus possibile migrar de ille conto a iste.
+    empty: Tu non ha aliases.
+    hint_html: Si tu vole migrar de un altere conto a iste, tu pote crear un alias ci, que es necessari pro poter transferer le sequitores del conto ancian a iste. Iste action per se es <strong>innocue e reversibile</strong>. <strong>Le migration del conto es initiate desde le conto ancian</strong>.
+    remove: Disligar alias
+  appearance:
+    advanced_web_interface: Interfacie web avantiate
+    advanced_web_interface_hint: 'Si tu vole utilisar tote le largessa de tu schermo, le interfacie web avantiate te permitte configurar multe columnas differente pro vider al mesme tempore tante informationes como tu vole: pagina principal, notificationes, chronologia federate, un numero illimitate de listas e hashtags.'
+    animations_and_accessibility: Animationes e accessibilitate
+    confirmation_dialogs: Dialogos de confirmation
+    discovery: Discoperta
+    localization:
+      body: Mastodon es traducite per voluntarios.
+      guide_link: https://crowdin.com/project/mastodon/ia
+      guide_link_text: Totes pote contribuer.
+    sensitive_content: Contento sensibile
+  application_mailer:
+    notification_preferences: Cambiar preferentias de e-mail
+    salutation: "%{name},"
+    settings: 'Cambiar preferentias de e-mail: %{link}'
+    unsubscribe: Desubscriber
+    view: 'Visita:'
+    view_profile: Vider profilo
+    view_status: Vider message
+  applications:
+    created: Application create con successo
+    destroyed: Application delite con successo
+    logout: Clauder session
+    regenerate_token: Regenerar token de accesso
+    token_regenerated: Le token de accesso ha essite regenerate
+    warning: Sia multo prudente con iste datos. Non comparti los jammais con alcuno!
+    your_token: Tu token de accesso
+  auth:
+    apply_for_account: Requestar un conto
+    captcha_confirmation:
+      help_html: Si tu ha problemas a solver le CAPTCHA, tu pote contactar nos per %{email} e nos pote assister te.
+      hint_html: Solo un altere cosa! Nos debe confirmar que tu es un humano (de sorta que nos pote mantener le spam foras!). Solve le CAPTCHA infra e clicca sur "Continuar".
+      title: Controlo de securitate
+    confirmations:
+      awaiting_review: Tu adresse de e-mail es confirmate! Le personal de %{domain} ora revide tu registration. Tu recipera un e-mail si illes approba tu conto!
+      awaiting_review_title: Tu inscription es in curso de revision
+      clicking_this_link: cliccar sur iste ligamine
+      login_link: aperir session
+      proceed_to_login_html: Ora tu pote %{login_link}.
+      redirect_to_app_html: Tu deberea haber essite redirigite al app <strong>%{app_name}</strong>. Si isto non ha evenite, tenta %{clicking_this_link} o retornar manualmente al app.
+      registration_complete: Tu inscription sur %{domain} es ora concludite!
+      welcome_title: Benvenite, %{name}!
+      wrong_email_hint: Si ille adresse de e-mail non es correcte, tu pote cambiar lo in le parametros del conto.
+    delete_account: Deler le conto
+    delete_account_html: Si tu vole deler tu conto, tu pote <a href="%{path}">facer lo hic</a>. Te essera demandate un confirmation.
+    description:
+      prefix_invited_by_user: "@%{name} te invita a junger te a iste servitor de Mastodon!"
+      prefix_sign_up: Inscribe te sur Mastodon hodie!
+      suffix: Con un conto, tu potera sequer personas, publicar tu pensatas e excambiar messages con usatores de qualcunque servitor de Mastodon e multo plus!
+    didnt_get_confirmation: Non recipeva tu un ligamine de confirmation?
+    dont_have_your_security_key: Non ha tu le clave de securitate?
+    forgot_password: Contrasigno oblidate?
+    invalid_reset_password_token: Le token pro reinitialisar le contrasigno non es valide o ha expirate. Per favor requesta un nove.
+    link_to_otp: Insere un codice a duo factores de tu telephono o un codice de recuperation
+    link_to_webauth: Usa tu apparato clave de securitate
+    log_in_with: Aperir session con
+    login: Aperir session
+    logout: Clauder session
+    migrate_account: Migrar a un altere conto
+    migrate_account_html: Si tu vole rediriger iste conto a un altere, tu pote <a href="%{path}">configurar lo hic</a>.
+    or_log_in_with: O aperi session con
+    progress:
+      confirm: Confirmar e-mail
+      details: Tu detalios
+      review: Nostre revision
+      rules: Accepta le regulas
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Inscriber se
+    registration_closed: "%{instance} non accepta nove membros"
+    resend_confirmation: Reinviar ligamine de confirmation
+    reset_password: Reinitialisar contrasigno
+    rules:
+      accept: Acceptar
+      back: Retro
+      invited_by: 'Tu pote junger te a %{domain} gratias al invitation que tu ha recipite de:'
+      preamble: Istes es definite e applicate per le moderatores de %{domain}.
+      preamble_invited: Ante que tu continua, considera le regulas de base definite per le moderatores de %{domain}.
+      title: Alcun regulas de base.
+      title_invited: Tu ha essite invitate.
+    security: Securitate
+    set_new_password: Definir un nove contrasigno
+    setup:
+      email_below_hint_html: Consulta tu dossier de spam, o requesta un altere ligamine de confirmation. Tu pote corriger tu adresse de e-mail si illo es errate.
+      email_settings_hint_html: Clicca sur le ligamine que nos te ha inviate a %{email} pro comenciar a usar Mastodon. Nos te attendera hic.
+      link_not_received: Necun ligamine recipite?
+      new_confirmation_instructions_sent: Tu recipera un nove e-mail con le ligamine de confirmation in poc minutas!
+      title: Consulta tu cassa de entrata
+    sign_in:
+      preamble_html: Aperi session con tu credentiales de <strong>%{domain}</strong>. Si tu conto es albergate sur un altere servitor, tu non potera aperir session hic.
+      title: Aperir session sur %{domain}
+    sign_up:
+      manual_review: Le inscriptiones sur %{domain} passa per un revision manual de nostre moderatores. Pro adjutar nos a processar tu inscription, per favor scribe un poco sur te e explica proque tu vole un conto sur %{domain}.
+      preamble: Con un conto sur iste servitor de Mastodon, tu potera sequer qualcunque altere persona sur le Fediverso, independentemente de ubi su conto es albergate.
+      title: Lassa nos installar tu conto sur %{domain}.
+    status:
+      account_status: Stato del conto
+      confirming: Attendente le termination del confirmation del adresse de e-mail.
+      functional: Tu conto es completemente operative.
+      pending: Tu demanda attende le revision per nostre personal. Isto pote prender alcun tempore. Tu recipera un e-mail si tu demanda es approbate.
+      redirecting_to: Tu conto es inactive perque illo actualmente redirige a %{acct}.
+      self_destruct: Perque %{domain} va clauder, tu solo habera accesso limitate a tu conto.
+      view_strikes: Examinar le sanctiones passate contra tu conto
+    too_fast: Formulario inviate troppo rapidemente. Tenta lo de novo.
+    use_security_key: Usar clave de securitate
+    user_agreement_html: Io ha legite e accepta le <a href="%{terms_of_service_path}" target="_blank">conditiones de servicio</a> e le <a href="%{privacy_policy_path}" target="_blank">politica de confidentialitate</a>
+  author_attribution:
+    example_title: Texto de exemplo
+    hint_html: Scribe tu articulos de novas o de blog foras de Mastodon? Controla le maniera in que tu recipe attribution quando on los condivide sur Mastodon.
+    instructions: 'Assecura te que iste codice appare in le HTML de tu articulo:'
+    more_from_html: Plus de %{name}
+    s_blog: Blog de %{name}
+    then_instructions: Postea, adde le nomine de dominio del publication in le campo sequente.
+    title: Attribution de autor
+  challenge:
+    confirm: Continuar
+    hint_html: "<strong>Consilio:</strong> Nos non te demandara tu contrasigno de novo in le proxime hora."
+    invalid_password: Contrasigno non valide
+    prompt: Confirma le contrasigno pro continuar
+  crypto:
+    errors:
+      invalid_key: non es un clave Ed25519 o Curve25519 valide
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d de %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}me"
+      about_x_years: "%{count}a"
+      almost_x_years: "%{count}a"
+      half_a_minute: Justo ora
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Justo ora
+      over_x_years: "%{count}a"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}me"
+      x_seconds: "%{count}s"
+  deletes:
+    challenge_not_passed: Le informationes que tu ha inserite non es correcte
+    confirm_password: Insere tu contrasigno actual pro verificar tu identitate
+    confirm_username: Insere tu nomine de usator pro confirmar le procedura
+    proceed: Deler le conto
+    success_msg: Tu conto ha essite delite
+    warning:
+      before: 'Ante de continuar, per favor lege attentemente iste notas:'
+      caches: Le contento que altere servitores ha immagazinate in cache pote persister
+      data_removal: Tu messages e altere datos essera removite permanentemente
+      email_change_html: Tu pote <a href="%{path}">cambiar tu adresse de e-mail</a> sin deler tu conto
+      email_contact_html: Si illo ancora non arriva, tu pote inviar e-mail a <a href="mailto:%{email}">%{email}</a> pro peter adjuta
+      email_reconfirmation_html: Si tu non recipe le e-mail de confirmation, tu pote <a href="%{path}>requestar lo de novo</a>
+      irreversible: Tu non potera restaurar o reactivar tu conto
+      more_details_html: Pro plus detalios, vide le <a href="%{terms_path}">politica de confidentialitate</a>.
+      username_available: Tu nomine de usator essera disponibile novemente
+      username_unavailable: Tu nomine de usator remanera indisponibile
+  disputes:
+    strikes:
+      action_taken: Mesura prendite
+      appeal: Appellar
+      appeal_approved: Iste sanction ha essite annullate in appello e non es plus valide
+      appeal_rejected: Le appello ha essite rejectate
+      appeal_submitted_at: Appello submittite
+      appealed_msg: Tu appello ha essite submittite. Si es approbate, tu recipera notification.
+      appeals:
+        submit: Submitter appello
+      approve_appeal: Approbar apello
+      associated_report: Le reporto associate
+      created_at: Del data
+      description_html: Istes es le mesuras prendite contra tu conto e le advertimentos que te ha essite inviate per le personal de %{instance}.
+      recipient: Adressate a
+      reject_appeal: Rejectar appello
+      status: Message №%{id}
+      status_removed: Le message ha ja essite removite del systema
+      title: "%{action} del %{date}"
+      title_actions:
+        delete_statuses: Elimination de messages
+        disable: Gelamento del conto
+        mark_statuses_as_sensitive: Marcation de messages como sensibile
+        none: Advertimento
+        sensitive: Marcation del conto como sensibile
+        silence: Limitation del conto
+        suspend: Suspension del conto
+      your_appeal_approved: Tu appello ha essite approbate
+      your_appeal_pending: Tu ha submittite un appello
+      your_appeal_rejected: Tu appello ha essite rejectate
+  edit_profile:
+    basic_information: Information basic
+    hint_html: "<strong>Personalisa lo que le personas vide sur tu profilo public e presso tu messages.</strong> Il es plus probabile que altere personas te seque e interage con te quando tu ha un profilo complete e un photo."
+    other: Alteres
+  errors:
+    '400': Le requesta que tu ha inviate non es valide o es mal formate.
+    '403': Tu non ha le permission de acceder a iste pagina.
+    '404': Le pagina que tu cerca non es ci.
+    '406': Iste pagina non es disponibile in le formato demandate.
+    '410': Le pagina que tu cercava non plus existe ci.
+    '422':
+      content: Le verification de securitate ha fallite. Bloca tu le cookies?
+      title: Falleva le verification de securitate
+    '429': Troppo de requestas
+    '500':
+      content: Nos lo regretta, ma qualcosa non ha functionate de nostre latere.
+      title: Iste pagina non es correcte
+    '503': Le pagina non poteva esser servite a causa de un panna temporari del servitor.
+    noscript_html: Pro usar le application web Mastodon, es necessari activar JavaScript. Tu pote tamben probar un del <a href="%{apps_path}">apps native</a> de Mastodon pro tu platteforma.
+  existing_username_validator:
+    not_found: impossibile trovar un usator local con ille nomine de usator
+    not_found_multiple: non poteva trovar %{usernames}
+  exports:
+    archive_takeout:
+      date: Data
+      download: Discargar tu archivo
+      hint_html: Tu pote requestar un archivo de tu <strong>messages e files multimedial incargate</strong>. Le datos exportate essera in le formato ActivityPub, legibile per qualcunque software conforme. Tu pote requestar un archivo cata 7 dies.
+      in_progress: Compilante tu archivo...
+      request: Requestar tu archivo
+      size: Dimension
+    blocks: Tu ha blocate
+    bookmarks: Marcapaginas
+    csv: CSV
+    domain_blocks: Blocadas de dominio
+    lists: Listas
+    mutes: Tu ha silentiate
+    storage: Immagazinage multimedial
+  featured_tags:
+    add_new: Adder nove
+    errors:
+      limit: Tu ha jam mittite in evidentia le maxime numero de hashtags
+    hint_html: "<strong>Monstra tu plus importante hashtags sur tu profilo.</strong> Un excellente instrumento pro tener tracia de tu labores creative e projectos de longe termino, le hashtags que tu mitte in evidentia appare prominentemente sur tu profilo e permitte le accesso rapide a tu proprie messages."
+  filters:
+    contexts:
+      account: Profilos
+      home: Initio e listas
+      notifications: Notificationes
+      public: Chronologias public
+      thread: Conversationes
+    edit:
+      add_keyword: Adder parola clave
+      keywords: Parolas clave
+      statuses: Messages individual
+      statuses_hint_html: Iste filtro se applica a un selection de messages individual, independentemente de si illos corresponde al parolas clave infra. <a href="%{path}">Revide o remove messages del filtro</a>.
+      title: Modificar filtro
+    errors:
+      deprecated_api_multiple_keywords: Iste parametros non pote esser cambiate desde iste application perque illos se applica a plus de un parola clave del filtro. Usa un application plus recente o le interfacie web.
+      invalid_context: Contexto mancante o non valide
+    index:
+      contexts: Filtros in %{contexts}
+      delete: Deler
+      empty: Tu non ha filtros.
+      expires_in: Expira in %{distance}
+      expires_on: Expira le %{date}
+      keywords:
+        one: "%{count} parola clave"
+        other: "%{count} parolas clave"
+      statuses:
+        one: "%{count} message"
+        other: "%{count} messages"
+      statuses_long:
+        one: "%{count} message individual celate"
+        other: "%{count} messages individual celate"
+      title: Filtros
+    new:
+      save: Salvar nove filtro
+      title: Adder nove filtro
+    statuses:
+      back_to_filter: Retro al filtro
+      batch:
+        remove: Remover del filtro
+      index:
+        hint: Iste filtro se applica a un selection de messages individual, independentemente de altere criterios. Tu pote adder plus messages a iste filtro desde le interfacie web.
+        title: Messages filtrate
+  generic:
+    all: Toto
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> elemento sur iste pagina es seligite."
+      other: Tote le <strong>%{count}</strong> elementos sur iste pagina es seligite.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> elemento correspondente al recerca es seligite."
+      other: Tote le <strong>%{count}</strong> elementos correspondente al recerca es seligite.
+    cancel: Cancellar
+    changes_saved_msg: Le cambiamentos ha essite salvate!
+    confirm: Confirmar
+    copy: Copiar
+    delete: Deler
+    deselect: Deseliger toto
+    none: Necun
+    order_by: Ordinar per
+    save_changes: Salvar le cambiamentos
+    select_all_matching_items:
+      one: Selige %{count} elemento correspondente a tu recerca.
+      other: Selige %{count} elementos correspondente a tu recerca.
+    today: hodie
+    validation_errors:
+      one: Qualcosa ancora non es multo bon! Per favor controla le error infra
+      other: Qualcosa ancora non es multo bon! Per favor controla le %{count} errores infra
+  imports:
+    errors:
+      empty: File CSV vacue
+      incompatible_type: Incompatibile con le typo de importation seligite
+      invalid_csv_file: 'File CSV non valide. Error: %{error}'
+      over_rows_processing_limit: contine plus de %{count} lineas
+      too_large: Le file es troppo grande
+    failures: Fallimentos
+    imported: Importate
+    mismatched_types_warning: Il pare que tu pote haber seligite le typo errate pro iste importation. Per favor reverifica lo.
+    modes:
+      merge: Fusionar
+      merge_long: Conservar le registros existente e adder noves
+      overwrite: Superscriber
+      overwrite_long: Reimplaciar registros actual con le noves
+    overwrite_preambles:
+      blocking_html:
+        one: Tu va <strong>reimplaciar tu lista de blocada</strong> con usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>reimplaciar tu lista de blocada</strong> con usque <strong>%{count} contos</strong> ab <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Tu va <strong>reimplaciar tu marcapaginas</strong> con usque <strong>%{count} message</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>reimplaciar tu marcapaginas</strong> con usque <strong>%{count} messages</strong> ab <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Tu va <strong>reimplaciar tu blocada lista de dominios blocate</strong> con usque <strong>%{count} dominio</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>reimplaciar tu lista de dominios blocate</strong> con usque <strong>%{count} dominios</strong> ab <strong>%{filename}</strong>.
+      following_html:
+        one: Tu va <strong>sequer</strong> usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong> e <strong>cessar de sequer ulle altere</strong>.
+        other: Tu va <strong>sequer</strong> usque <strong>%{count} contos</strong> ab <strong>%{filename}</strong> e <strong>cessar de sequer ulle altere</strong>.
+      lists_html:
+        one: Tu va <strong>reimplaciar tu listas</strong> con contentos ab <strong>%{filename}</strong>. Usque <strong>%{count} conto</strong> sera addite al nove listas.
+        other: Tu va <strong>reimplaciar tu listas</strong> con contentos ab <strong>%{filename}</strong>. Usque <strong>%{count} contos</strong> sera addite a nove listas.
+      muting_html:
+        one: Tu va <strong>reimplaciar tu lista de conto silentiate</strong> con usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>reimplaciar tu lista de contos silentiate</strong> con usque <strong>%{count} contos</strong> ab <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        one: Tu va <strong>blocar</strong> usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>blocar</strong> usque <strong>%{count} contos</strong> de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Tu va adder usque <strong>%{count} message</strong> ab <strong>%{filename}</strong> a tu <strong>marcapaginas</strong>.
+        other: Tu va adder usque <strong>%{count} messages</strong> ab <strong>%{filename}</strong> a tu <strong>marcapaginas</strong>.
+      domain_blocking_html:
+        one: Tu va <strong>blocar</strong> usque <strong>%{count} dominio</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>blocar</strong> usque <strong>%{count} dominios</strong> ab <strong>%{filename}</strong>.
+      following_html:
+        one: Tu va <strong>sequer</strong> usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>sequer</strong> usque <strong>%{count} contos</strong> de <strong>%{filename}</strong>.
+      lists_html:
+        one: Tu va adder usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong> a tu <strong>lista</strong>. Nove listas sera create si il non ha lista a adder.
+        other: Tu va adder usque <strong>%{count} contos</strong> ab <strong>%{filename}</strong> a tu <strong>lista</strong>. Nove listas sera create si il non ha lista a adder.
+      muting_html:
+        one: Tu va <strong>silentiar</strong> usque <strong>%{count} conto</strong> ab <strong>%{filename}</strong>.
+        other: Tu va <strong>silentiar</strong> usque <strong>%{count} contos</strong> ab <strong>%{filename}</strong>.
+    preface: Tu pote importar datos que tu ha exportate de un altere servitor, como un lista de personas que tu seque o bloca.
+    recent_imports: Importationes recente
+    states:
+      finished: Terminate
+      in_progress: In curso
+      scheduled: Planificate
+      unconfirmed: Non confirmate
+    status: Stato
+    success: Tu datos ha essite correctemente incargate e essera tractate in tempore debite
+    time_started: Initiate le
+    titles:
+      blocking: Importation de contos blocate
+      bookmarks: Importation de marcapaginas
+      domain_blocking: Importation de dominios blocate
+      following: Importation de contos sequite
+      lists: Importation de listas
+      muting: Importation de contos silentiate
+    type: Typo de importation
+    type_groups:
+      constructive: Sequites e marcapaginas
+      destructive: Blocadas e silentiamentos
+    types:
+      blocking: Lista de blocadas
+      bookmarks: Marcapaginas
+      domain_blocking: Lista de dominios blocate
+      following: Lista de contos sequite
+      lists: Listas
+      muting: Lista de contos silentiate
+    upload: Incargar
+  invites:
+    delete: Disactivar
+    expired: Expirate
+    expires_in:
+      '1800': 30 minutas
+      '21600': 6 horas
+      '3600': 1 hora
+      '43200': 12 horas
+      '604800': 1 septimana
+      '86400': 1 die
+    expires_in_prompt: Nunquam
+    generate: Generar ligamine de invitation
+    invalid: Iste invitation non es valide
+    invited_by: 'Tu ha essite invitate per:'
+    max_uses:
+      one: un uso
+      other: "%{count} usos"
+    max_uses_prompt: Nulle limite
+    prompt: Genera e comparti ligamines con alteres pro conceder accesso a iste servitor
+    table:
+      expires_at: Expira
+      uses: Usos
+    title: Invitar personas
+  lists:
+    errors:
+      limit: Tu ha attingite le maxime numero de listas
+  login_activities:
+    authentication_methods:
+      otp: app pro authentication a duo factores
+      password: contrasigno
+      sign_in_token: codice de securitate de e-mail
+      webauthn: claves de securitate
+    description_html: Si tu vide activitate que tu non recognosce, considera de cambiar tu contrasigno e activar le authentication a duo factores.
+    empty: Nulle historia de authentication disponibile
+    failed_sign_in_html: Tentativa de authentication fallite con %{method} ab %{ip} (%{browser})
+    successful_sign_in_html: Apertura de session succedite con %{method} desde %{ip} (%{browser})
+    title: Historia de authentication
+  mail_subscriptions:
+    unsubscribe:
+      action: Si, desubscriber
+      complete: Desubscribite
+      confirmation_html: Es tu secur de voler cancellar le subscription al %{type} de Mastodon sur %{domain} pro tu adresse de e-mail %{email}? Tu pote sempre resubscriber te a partir del <a href="%{settings_path}">parametros de notification in e-mail</a>.
+      emails:
+        notification_emails:
+          favourite: notificationes de favorites in e-mail
+          follow: notificationes de sequimento in e-mail
+          follow_request: requestas de sequimento in e-mail
+          mention: notificationes de mentiones in e-mail
+          reblog: notificationes de impulsos in e-mail
+      resubscribe_html: Si tu ha cancellate le subscription in error, tu pote resubscriber te a partir del <a href="%{settings_path}">parametros de notification in e-mail</a>.
+      success_html: Tu non recipera plus %{type} pro Mastodon sur %{domain} a tu adresse de e-mail %{email}.
+      title: Desubcriber
+  media_attachments:
+    validations:
+      images_and_video: Impossibile annexar un video a un message que jam contine imagines
+      not_found: Medios %{ids} non trovate o jam attachate a un altere message
+      not_ready: Impossibile annexar files que non ha ancora essite processate. Retenta post un momento!
+      too_many: Impossibile annexar plus de 4 files
+  migrations:
+    acct: Ha migrate a
+    cancel: Cancellar redirection
+    cancel_explanation: Cancellar le redirection reactivara tu conto actual, ma non te retornara le sequitores que ha essite transferite al altere conto.
+    cancelled_msg: Redirection cancellate con successo.
+    errors:
+      already_moved: es le mesme conto al qual tu ha ja migrate
+      missing_also_known_as: non es un alias de iste conto
+      move_to_self: non pote esser le conto actual
+      not_found: non poteva esser trovate
+      on_cooldown: Tu es in pausa
+    followers_count: Sequitores al momento de migration
+    incoming_migrations: Migrar de un altere conto
+    incoming_migrations_html: Pro migrar de un altere conto a iste, primo tu debe <a href="%{path}">crear un alias de conto</a>.
+    moved_msg: Tu conto es ora redirigite a %{acct} e le transferentia de tu sequitores es in curso.
+    not_redirecting: Tu conto actualmente non es redirigite a un altere conto.
+    on_cooldown: Tu ha recentemente migrate tu conto. Iste function essera disponibile de novo in %{count} dies.
+    past_migrations: Migrationes passate
+    proceed_with_move: Transferer sequitores
+    redirected_msg: Tu conto es ora redirigite a %{acct}.
+    redirecting_to: Tu conto es redirigite a %{acct}.
+    set_redirect: Definir redirection
+    warning:
+      backreference_required: Le nove conto debe primo esser configurate pro referer se a iste
+      before: 'Ante de continuar, lege attentemente iste notas:'
+      cooldown: Post le migration il ha un periodo de pausa durante le qual tu non potera migrar de novo
+      disabled_account: Tu conto actual non essera plenmente usabile postea. Nonobstante, tu habera accesso al exportation de datos e al reactivation.
+      followers: Iste action transferera tote le sequitores del conto actual al conto nove
+      only_redirect_html: Como alternativa, tu pote <a href="%{path}">poner solmente un redirection sur tu profilo</a>.
+      other_data: Nulle altere datos essera migrate automaticamente
+      redirect: Le profilo de tu conto actual essera actualisate con un aviso de redirection e excludite de recercas
+  moderation:
+    title: Moderation
+  move_handler:
+    carry_blocks_over_text: Iste usator ha cambiate de conto desde %{acct}, que tu habeva blocate.
+    carry_mutes_over_text: Iste usator ha migrate de %{acct}, que tu habeva silentiate.
+    copy_account_note_text: 'Iste usator ha migrate de %{acct}, ecce tu previe notas sur iste persona:'
+  navigation:
+    toggle_menu: Commutar menu
+  notification_mailer:
+    admin:
+      report:
+        subject: "%{name} ha inviate un reporto"
+      sign_up:
+        subject: "%{name} se ha inscribite"
+    favourite:
+      body: 'Tu message ha essite marcate como favorite per %{name}:'
+      subject: "%{name} ha marcate tu message como favorite"
+      title: Nove favorite
+    follow:
+      body: "%{name} ora te seque!"
+      subject: "%{name} ora te seque"
+      title: Nove sequitor
+    follow_request:
+      action: Gerer requestas de sequimento
+      body: "%{name} ha demandate de sequer te"
+      subject: 'Sequitor pendente: %{name}'
+      title: Nove requesta de sequimento
+    mention:
+      action: Responder
+      body: "%{name} te ha mentionate in:"
+      subject: "%{name} te ha mentionate"
+      title: Nove mention
+    poll:
+      subject: Un sondage de %{name} ha finite
+    reblog:
+      body: "%{name} ha impulsate tu message:"
+      subject: "%{name} ha impulsate tu message"
+      title: Nove impulso
+    status:
+      subject: "%{name} ha publicate un message"
+    update:
+      subject: "%{name} ha modificate un message"
+  notifications:
+    administration_emails: Notificationes per e-mail pro administratores
+    email_events: Eventos pro notificationes per e-mail
+    email_events_hint: 'Selige eventos pro le quales tu vole reciper notificationes:'
+  number:
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: mld
+          million: mln
+          quadrillion: bld
+          thousand: mil
+          trillion: bln
+  otp_authentication:
+    code_hint: Insere le codice generate per tu app de authentication pro confirmar
+    description_html: Si tu activa <strong>le authentication a duo factores</strong> usante un app de authentication, le authentication requirera que tu es in possession de tu telephono, que generara tokens que tu debera inserer.
+    enable: Activar
+    instructions_html: "<strong>Scanna iste codice QR in Google Authenticator o un app TOTP simile sur tu telephono</strong>. Desde ora in avante, ille app generara tokens que tu debera inserer quando tu aperi session."
+    manual_instructions: 'Si tu non pote scannar le codice QR e debe inserer lo manualmente, ecce le secreto in texto simple:'
+    setup: Configurar
+    wrong_code: Le codice inserite non es valide! Es le hora del servitor e del apparato correcte?
+  pagination:
+    newer: Plus nove
+    next: Sequente
+    older: Plus ancian
+    prev: Previe
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Tu jam ha votate in iste sondage
+      duplicate_options: contine elementos duplicate
+      duration_too_long: es troppo lontan in le futuro
+      duration_too_short: es troppo tosto
+      expired: Le sondage ha jam finite
+      invalid_choice: Le option de voto eligite non existe
+      over_character_limit: non pote esser plus longe que %{max} characteres cata un
+      self_vote: Tu non pote votar in tu proprie sondages
+      too_few_options: debe haber plus de un elemento
+      too_many_options: non pote continer plus de %{max} elementos
+  preferences:
+    other: Alteres
+    posting_defaults: Parametros de publication predefinite
+    public_timelines: Chronologias public
+  privacy:
+    hint_html: "<strong>Personalisa como tu vole que tu profilo e tu messages es trovate.</strong> Un varietate de functiones in Mastodon pote adjutar te a attinger un plus grande publico quando activate. Prende un momento pro revider iste parametros pro assecurar te que illos se adapta a tu besonios."
+    privacy: Confidentialitate
+    privacy_hint_html: Controla quanto tu vole divulgar pro le beneficio de alteres. Le gente discoperi profilos e applicationes interessante percurrente le profilos sequite per altere personas e vidente a partir de qual applicationes illos publica lor messages, ma tu pote preferer de mantener tal information private.
+    reach: Portata
+    reach_hint_html: Controla si tu vole esser discoperite e sequite per nove personas. Vole tu que tu messages appare sur le schermo Explorar? Vole tu que altere personas te vide in lor recommendationes de sequimento? Vole tu acceptar automaticamente tote le nove sequitores o prefere tu haber le controlo granular super cata un?
+    search: Cercar
+    search_hint_html: Controla como tu vole esser trovate. Vole tu que le gente te trova per medio del contento de tu messages public? Vole tu que personas foras de Mastodon trova tu profilo quando illes cerca in le web? Nota ben que non es possibile garantir le exclusion total de tu information public del motores de recerca.
+    title: Confidentialitate e portata
+  privacy_policy:
+    title: Politica de confidentialitate
+  reactions:
+    errors:
+      limit_reached: Limite de reactiones differente attingite
+      unrecognized_emoji: non es un emoji recognoscite
+  redirects:
+    prompt: Si tu te fide a iste ligamine, clicca sur illo pro continuar.
+    title: Tu va lassar %{instance}.
+  relationships:
+    activity: Activitate del conto
+    confirm_follow_selected_followers: Es tu secur que tu vole sequer le sequitores seligite?
+    confirm_remove_selected_followers: Es tu secur que tu vole remover le sequitores seligite?
+    confirm_remove_selected_follows: Es tu secur que tu vole cessar de sequer le contos seligite?
+    dormant: Dormiente
+    follow_failure: Impossibile sequer alcunes del contos seligite.
+    follow_selected_followers: Sequer le sequitores seligite
+    followers: Sequitores
+    following: Sequente
+    invited: Invitate
+    last_active: Ultime activitate
+    most_recent: Plus recente
+    moved: Migrate
+    mutual: Mutue
+    primary: Primari
+    relationship: Relation
+    remove_selected_domains: Remover tote le sequitores del dominios seligite
+    remove_selected_followers: Remover le sequitores seligite
+    remove_selected_follows: Non plus sequer le usatores seligite
+    status: Stato del conto
+  remote_follow:
+    missing_resource: Impossibile trovar le URL de redirection requirite pro tu conto
+  reports:
+    errors:
+      invalid_rules: non face referentia a regulas valide
+  rss:
+    content_warning: 'Advertimento de contento:'
+    descriptions:
+      account: Messages public de @%{acct}
+      tag: 'Messages public con hashtag #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Tu ha excedite le limite de %{limit} messages programmate pro hodie
+    over_total_limit: Tu ha excedite le limite de %{limit} messages programmate
+    too_soon: le data debe esser in le futuro
+  self_destruct:
+    lead_html: Infortunatemente, <strong>%{domain}</strong> tosto claudera permanentemente. Si tu habeva un conto illac, tu non potera continuar a usar lo, ma tu pote ancora requestar un copia de tu datos.
+    title: Iste servitor va clauder
+  sessions:
+    activity: Ultime activitate
+    browser: Navigator
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Navigator incognite
+      huawei_browser: Huawei Browser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Navigator de Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      unknown_browser: Navigator incognite
+      weibo: Weibo
+    current_session: Session actual
+    date: Data
+    description: "%{browser} sur %{platform}"
+    explanation: Istes es le navigatores web actualmente in session sur tu conto Mastodon.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      kai_os: KaiOS
+      linux: Linux
+      mac: macOS
+      unknown_platform: Platteforma incognite
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Revocar
+    revoke_success: Session revocate con successo
+    title: Sessiones
+    view_authentication_history: Vider le historia de authentication de tu conto
+  settings:
+    account: Conto
+    account_settings: Parametros de conto
+    aliases: Aliases de conto
+    appearance: Apparentia
+    authorized_apps: Apps autorisate
+    back: Retornar a Mastodon
+    delete: Deletion de conto
+    development: Disveloppamento
+    edit_profile: Modificar profilo
+    export: Exportar
+    featured_tags: Hashtags in evidentia
+    import: Importar
+    import_and_export: Importar e exportar
+    migrate: Migration de conto
+    notifications: Notificationes per e-mail
+    preferences: Preferentias
+    profile: Profilo public
+    relationships: Sequites e sequitores
+    severed_relationships: Relationes rupte
+    statuses_cleanup: Deletion de message automatic
+    strikes: Sanctiones de moderation
+    two_factor_authentication: Authentication a duo factores
+    webauthn_authentication: Claves de securitate
+  severed_relationships:
+    download: Discargar (%{count})
+    event_type:
+      account_suspension: Suspension del conto (%{target_name})
+      domain_block: Suspension del servitor (%{target_name})
+      user_domain_block: Tu ha blocate %{target_name}
+    lost_followers: Sequitores perdite
+    lost_follows: Sequites perdite
+    preamble: Tu pote perder sequites e sequitores quando tu bloca un dominio o quando tu moderatores decide suspender un servitor remote. Quando isto occurre, tu potera discargar listas de relationes rumpite, a inspectar e eventualmente importar in un altere servitor.
+    purged: Le information sur iste servitor ha essite purgate per le administratores de tu servitor.
+    type: Evento
+  statuses:
+    attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audio"
+      description: 'Attachate: %{attached}'
+      image:
+        one: "%{count} imagine"
+        other: "%{count} imagines"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
+    boosted_from_html: Impulsate desde %{acct_link}
+    content_warning: 'Advertimento de contento: %{warning}'
+    default_language: Mesme como lingua de interfacie
+    disallowed_hashtags:
+      one: 'contineva un hashtag non autorisate: %{tags}'
+      other: 'contineva le hashtags non autorisate: %{tags}'
+    edited_at_html: Modificate le %{date}
+    errors:
+      in_reply_not_found: Le message a que tu tenta responder non pare exister.
+    over_character_limit: limite de characteres de %{max} excedite
+    pin_errors:
+      direct: Messages que es solo visibile a usatores mentionate non pote esser appunctate
+      limit: Tu ha jam appunctate le maxime numero de messages
+      ownership: Le message de alcuno altere non pote esser appunctate
+      reblog: Un impulso non pote esser affixate
+    title: "%{name}: “%{quote}”"
+    visibilities:
+      direct: Directe
+      private: Solmente sequitores
+      private_long: Solmente monstrar a sequitores
+      public: Public
+      public_long: Omnes pote vider
+      unlisted: Non listate
+      unlisted_long: Omnes pote vider, ma non es listate in le chronologias public
+  statuses_cleanup:
+    enabled: Deler automaticamente le messages ancian
+    enabled_hint: Dele automaticamente tu messages un vice que illos attinge un limine de etate specificate, salvo que illes concorda un del exceptiones infra
+    exceptions: Exceptiones
+    explanation: Pois que deler messages es un operation costose, isto es facite lentemente in le tempore quando le servitor non es alteremente occupate. Pro iste ration, tu messages pote esser delite un poco post que illos attinge le limine de etate.
+    ignore_favs: Ignorar favorites
+    ignore_reblogs: Ignorar impulsos
+    interaction_exceptions: Exceptiones basate sur interactiones
+    interaction_exceptions_explanation: Nota que il non ha garantia que le messages essera delite si illos va sub le limine de favorites o impulsos post haber lo superate un vice.
+    keep_direct: Mantener le messages directe
+    keep_direct_hint: Non dele alcun de tu messages directe
+    keep_media: Conservar messages con annexos multimedial
+    keep_media_hint: Non dele alcun de tu messages que ha annexos multimedial
+    keep_pinned: Conservar le messages fixate
+    keep_pinned_hint: Non dele alcun de tu messages fixate
+    keep_polls: Mantener sondages
+    keep_polls_hint: Non dele alcun de tu sondages
+    keep_self_bookmark: Conservar le messages que tu ha in marcapaginas
+    keep_self_bookmark_hint: Non dele tu proprie messages si tu los ha addite al marcapaginas
+    keep_self_fav: Conservar tu messages favorite
+    keep_self_fav_hint: Non dele tu proprie messages si tu los ha marcate como favorite
+    min_age:
+      '1209600': 2 septimanas
+      '15778476': 6 menses
+      '2629746': 1 mense
+      '31556952': 1 anno
+      '5259492': 2 menses
+      '604800': 1 septimana
+      '63113904': 2 annos
+      '7889238': 3 menses
+    min_age_label: Limine de etate
+    min_favs: Conservar messages marcate como favorite al minus
+    min_favs_hint: Non dele alcun de tu messages que ha essite marcate como favorite al minus iste numero de vices. Lassa vacue pro deler messages independentemente de lor numero de marcas como favorite
+    min_reblogs: Conservar messages impulsate al minus
+    min_reblogs_hint: Non dele alcun de tu messages que ha essite impulsate al minus iste numero de vices. Lassar vacue pro deler messages independentemente de lor numero de impulsos
+  stream_entries:
+    sensitive_content: Contento sensibile
+  strikes:
+    errors:
+      too_late: Es troppo tarde pro appellar contra iste sanction
+  tags:
+    does_not_match_previous_name: non corresponde al nomine precedente
+  terms_of_service:
+    title: Conditiones de servicio
+  themes:
+    contrast: Mastodon (Alte contrasto)
+    default: Mastodon (Obscur)
+    mastodon-light: Mastodon (Clar)
+    system: Automatic (usar thema del systema)
+  time:
+    formats:
+      default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+      with_time_zone: "%d %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Le quota de utilisation del servitor pro le servicio de traduction ha essite excedite.
+      too_many_requests: Il ha habite troppo de requestas al servicio de traduction recentemente.
+  two_factor_authentication:
+    add: Adder
+    disable: Disactivar A2F
+    disabled_success: Authentication a duo factores disactivate con successo
+    edit: Modificar
+    enabled: Le authentication a duo factores es activate
+    enabled_success: Authentication a duo factores activate con successo
+    generate_recovery_codes: Generar codices de recuperation
+    lost_recovery_codes: Le codices de recuperation te permitte reganiar le accesso a tu conto si tu perde tu telephono. Si tu ha perdite tu codices de recuperation, tu pote regenerar los hic. Tu ancian codices de recuperation essera invalidate.
+    methods: Methodos a duo factores
+    otp: App authenticator
+    recovery_codes: Salveguardar codices de recuperation
+    recovery_codes_regenerated: Codices de recuperation regenerate con successo
+    recovery_instructions_html: Si tu perde le accesso a tu telephono, tu pote usar un del codices de recuperation hic infra pro reganiar le accesso a tu conto. <strong>Mantene le codices de recuperation secur.</strong> Per exemplo, tu pote imprimer los e guardar los con altere documentos importante.
+    webauthn: Claves de securitate
+  user_mailer:
+    appeal_approved:
+      action: Parametros de conto
+      explanation: Le appello contra le sanction del %{strike_date} contra tu conto, que tu ha submittite le %{appeal_date}, ha essite approbate. Tu conto es de bon reputation de novo.
+      subject: Tu appello del %{date} ha essite approbate
+      subtitle: Tu conto es de bon reputation de novo.
+      title: Appello approbate
+    appeal_rejected:
+      explanation: Le appello contra le sanction del %{strike_date} contra tu conto, que tu ha submittite le %{appeal_date}, ha essite rejectate.
+      subject: Tu appello del %{date} ha essite rejectate
+      subtitle: Tu appello ha essite rejectate.
+      title: Appello rejectate
+    backup_ready:
+      explanation: Tu ha requestate un copia de securitate complete de tu conto de Mastodon.
+      extra: Illo es ora preste pro discargar!
+      subject: Tu archivo es preste pro discargar
+      title: Discargar archivo
+    failed_2fa:
+      details: 'Ecce le detalios del tentativa de apertura de session:'
+      explanation: Alcuno ha tentate aperir session a tu conto ma ha fornite un secunde factor de authentication non valide.
+      further_actions_html: Si non se tractava de te, nos recommenda %{action} immediatemente perque illo pote esser compromittite.
+      subject: Fallimento de authentication del secunde factor
+      title: Ha fallite le authentication del secunde factor
+    suspicious_sign_in:
+      change_password: cambiar tu contrasigno
+      details: 'Ecce le detalios del apertura de session:'
+      explanation: Nos ha detegite un apertura de session sur tu conto desde un nove adresse IP.
+      further_actions_html: Si non se tractava de te, nos recommenda %{action} immediatemente e activar le authentication bifactorial pro mantener tu conto secur.
+      subject: Alcuno ha accedite a tu conto desde un nove adresse IP
+      title: Un nove apertura de session
+    terms_of_service_changed:
+      agreement: Si tu continua a usar %{domain}, tu accepta iste conditiones. Si tu non es de accordo con le conditiones actualisate, tu pote sempre eliminar tu conto pro terminar tu accordo con %{domain}.
+      changelog: 'In summario, ecce lo que iste actualisation significa pro te:'
+      description: 'Tu recipe iste message perque nos ha apportate alcun modificationes a nostre conditiones de servicio sur %{domain}. Nos te incoragia a revider le conditiones actualisate complete al sequente adresse:'
+      description_html: Tu recipe iste message perque nos ha apportate alcun modificationes a nostre conditiones de servicio sur %{domain}. Nos te incoragia a revider le <a href="%{path}" target="_blank">conditiones actualisate complete</a>.
+      sign_off: Le equipa de %{domain}
+      subject: Actualisationes de nostre conditiones de servicio
+      subtitle: Le conditiones de servicio de %{domain} ha cambiate
+      title: Actualisation importante
+    warning:
+      appeal: Submitter un appello
+      appeal_description: Si tu crede que se tracta de un error, tu pote presentar un appello al personal de %{instance}.
+      categories:
+        spam: Spam
+        violation: Le contento viola le sequente regulas del communitate
+      explanation:
+        delete_statuses: Alcunes de tu messages ha essite judicate contrari a un o plus directivas communitari e ha dunque essite removite per le moderatores de %{instance}.
+        disable: Tu non pote plus usar tu conto, ma tu profilo e altere datos remane intacte. Tu pote requestar un copia de reserva de tu datos, cambiar le parametros del conto o deler le conto.
+        mark_statuses_as_sensitive: Alcunes de tu messages ha essite marcate como sensibile per le moderatores de %{instance}. Isto vole dicer que le gente debe toccar le objectos multimedial in le messages ante que un previsualisation appare. Tu pote marcar objectos multimedial como sensibile tu mesme quando tu publica messages in futuro.
+        sensitive: A partir de iste momento, tote le files multimedial que tu incarga essera marcate como sensibile e le gente debera cliccar sur un advertimento ante de poter vider los.
+        silence: Tu pote ancora usar tu conto ma solmente le personas qui ja te seque videra tu messages sur iste servitor, e tu pote esser excludite de varie functiones de discoperta. Nonobstante, altere personas pote ancora sequer te manualmente.
+        suspend: Tu non pote plus usar tu conto, e tu profilo e altere datos non es plus accessibile. Tu pote ancora aperir session pro requestar un copia de reserva de tu datos usque lor elimination in circa 30 dies. Nos retenera certe datos de base pro impedir que tu evade le suspension.
+      reason: 'Ration:'
+      statuses: 'Messages citate:'
+      subject:
+        delete_statuses: Tu messages sur %{acct} ha essite removite
+        disable: Tu conto %{acct} ha essite gelate
+        mark_statuses_as_sensitive: Tu messages sur %{acct} ha essite marcate como sensibile
+        none: Advertimento pro %{acct}
+        sensitive: Tu messages sur %{acct} essera marcate como sensibile a partir de ora
+        silence: Tu conto %{acct} ha essite limitate
+        suspend: Tu conto %{acct} ha essite suspendite
+      title:
+        delete_statuses: Messages removite
+        disable: Conto gelate
+        mark_statuses_as_sensitive: Messages marcate como sensibile
+        none: Advertimento
+        sensitive: Conto marcate como sensibile
+        silence: Conto limitate
+        suspend: Conto suspendite
+    welcome:
+      apps_android_action: Obtener lo sur Google Play
+      apps_ios_action: Discargar sur le App Store
+      apps_step: Discarga nostre applicationes official.
+      apps_title: Applicationes de Mastodon
+      checklist_subtitle: 'Comencia tu aventura sur le web social:'
+      checklist_title: Prime passos
+      edit_profile_action: Personalisar
+      edit_profile_step: Impulsa tu interactiones con un profilo comprehensive.
+      edit_profile_title: Personalisar tu profilo
+      explanation: Ecce alcun consilios pro initiar
+      feature_action: Apprender plus
+      feature_audience: Mastodon te presenta le possibilitate unic de gerer tu audientia sin intermediarios. Mastodon, installate sur tu proprie infrastructura, te permitte sequer, e esser sequite per, personas sur qualcunque altere servitor Mastodon in linea, e necuno lo controla salvo tu.
+      feature_audience_title: Crea tu audientia in confidentia
+      feature_control: Tu sape melio lo que tu vole vider sur tu fluxo de initio. Nulle algorithmos o annuncios dissipa tu tempore. Seque quicinque sur qualcunque servitor Mastodon desde un sol conto, recipe lor messages in ordine chronologic, e face te un angulo del internet ubi tu te senti a casa.
+      feature_control_title: Mantene le controlo de tu proprie chronologia
+      feature_creativity: Mastodon supporta messages con audio, video e imagines, descriptiones de accessibilitate, sondages, advertimentos de contento, avatares con animation, emojis personalisate, controlo de retalio de miniaturas, e plus, pro adjutar te a exprimer te in linea. Que tu publica tu arte, tu musica o tu podcast, Mastodon existe pro te.
+      feature_creativity_title: Creativitate sin parallel
+      feature_moderation: Mastodon remitte le controlo in tu manos. Cata servitor crea su proprie regulas e directivas, applicate localmente e non de maniera vertical como le medios social corporative, rendente lo flexibile in responder al necessitates de differente gruppos de personas. Adhere a un servitor con regulas que te place, o alberga le tue.
+      feature_moderation_title: Moderation como deberea esser
+      follow_action: Sequer
+      follow_step: Sequer personas interessante es le ration de esser de Mastodon.
+      follow_title: Personalisa tu fluxo principal
+      follows_subtitle: Seque contos popular
+      follows_title: Qui sequer
+      follows_view_more: Vider plus personas a sequer
+      hashtags_recent_count:
+        one: "%{people} persona in le passate duo dies"
+        other: "%{people} personas in le passate duo dies"
+      hashtags_subtitle: Explora le tendentias del passate 2 dies
+      hashtags_title: Hashtags in tendentia
+      hashtags_view_more: Vider plus de hashtags in tendentia
+      post_action: Scriber
+      post_step: Saluta le mundo con texto, photos, videos o sondages.
+      post_title: Face tu prime message
+      share_action: Compartir
+      share_step: Face saper a tu amicos como trovar te sur Mastodon.
+      share_title: Compartir tu profilo de Mastodon
+      sign_in_action: Initiar session
+      subject: Benvenite in Mastodon
+      title: Benvenite a bordo, %{name}!
+  users:
+    follow_limit_reached: Tu non pote sequer plus de %{limit} personas
+    go_to_sso_account_settings: Vader al parametros de conto de tu fornitor de identitate
+    invalid_otp_token: Codice de duo factores non valide
+    otp_lost_help_html: Si tu ha perdite le accesso a ambes, tu pote contactar %{email}
+    rate_limited: Troppo de tentativas de authentication. Per favor reessaya plus tarde.
+    seamless_external_login: Tu ha aperite session per medio de un servicio externe. Le parametros de contrasigno e de e-mail es dunque indisponibile.
+    signed_in_as: 'Session aperite como:'
+  verification:
+    extra_instructions_html: <strong>Consilio:</strong> Le ligamine sur tu sito web pote esser invisibile. Le parte importante es <code>rel="me"</code> que impedi le usurpation de identitate sur sitos web con contento generate per usatores. Tu pote mesmo usar un etiquetta <code>link</code> in le capite del pagina in vice de <code>a</code>, ma le codice HTML debe esser accessibile sin executar JavaScript.
+    here_is_how: Ecce como
+    hint_html: "<strong>Omnes pote verificar lor identitate sur Mastodon.</strong> Isto es basate sur standards web aperte e es gratuite, ora e pro sempre. Tote lo que es necessari es un sito web personal que le gente recognosce como le tue. Quando tu liga a iste sito web desde tu profilo, le systema verificara que le sito web liga retro a tu profilo e monstrara un indicator visual de iste facto."
+    instructions_html: Copia e colla le codice hic infra in le HTML de tu sito web. Alora adde le adresse de tu sito web in un del campos supplementari sur tu profilo desde le scheda “Modificar profilo” e salva le cambiamentos.
+    verification: Verification
+    verified_links: Tu ligamines verificate
+    website_verification: Verification de sito web
+  webauthn_credentials:
+    add: Adder un nove clave de securitate
+    create:
+      error: Il habeva un problema in adder tu clave de securitate. Tenta novemente.
+      success: Tu clave de securitate ha essite addite con successo.
+    delete: Deler
+    delete_confirmation: Es tu secur que tu vole deler iste clave de securitate?
+    description_html: Si tu activa le <strong>authentication per clave de securitate</strong>, le apertura de session requirera que tu usa un de tu claves de securitate.
+    destroy:
+      error: Il habeva un problema in deler tu clave de securitate. Tenta novemente.
+      success: Tu clave de securitate ha essite delite con successo.
+    invalid_credential: Clave de securitate non valide
+    nickname_hint: Insere le pseudonymo de tu nove clave de securitate
+    not_enabled: Tu ancora non ha activate WebAuthn
+    not_supported: Iste navigator non supporta claves de securitate
+    otp_required: Pro usar le claves de securitate activa prime le authentication de duo factores.
+    registered_on: Inscribite le %{date}

@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
 def gen_border(codepoint, color)
-  input = Rails.root.join('public', 'emoji', "#{codepoint}.svg")
-  dest = Rails.root.join('public', 'emoji', "#{codepoint}_border.svg")
+  input = Rails.public_path.join('emoji', "#{codepoint}.svg")
+  dest = Rails.public_path.join('emoji', "#{codepoint}_border.svg")
   doc = File.open(input) { |f| Nokogiri::XML(f) }
   svg = doc.at_css('svg')
   if svg.key?('viewBox')
-    view_box = svg['viewBox'].split(' ').map(&:to_i)
+    view_box = svg['viewBox'].split.map(&:to_i)
     view_box[0] -= 2
     view_box[1] -= 2
     view_box[2] += 4
     view_box[3] += 4
     svg['viewBox'] = view_box.join(' ')
   end
-  g = Nokogiri::XML::Node.new 'g', doc
+  g = doc.create_element('g')
   doc.css('svg > *').each do |elem|
     border_elem = elem.dup
 
@@ -31,12 +31,12 @@ def gen_border(codepoint, color)
 end
 
 def codepoints_to_filename(codepoints)
-  codepoints.downcase.gsub(/\A[0]+/, '').tr(' ', '-')
+  codepoints.downcase.gsub(/\A0+/, '').tr(' ', '-')
 end
 
 def codepoints_to_unicode(codepoints)
   if codepoints.include?(' ')
-    codepoints.split(' ').map(&:hex).pack('U*')
+    codepoints.split.map(&:hex).pack('U*')
   else
     [codepoints.hex].pack('U')
   end
@@ -45,7 +45,7 @@ end
 namespace :emojis do
   desc 'Generate a unicode to filename mapping'
   task :generate do
-    source = 'http://www.unicode.org/Public/emoji/14.0/emoji-test.txt'
+    source = 'http://www.unicode.org/Public/emoji/15.0/emoji-test.txt'
     codes  = []
     dest   = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_map.json')
 
@@ -69,7 +69,7 @@ namespace :emojis do
       end
     end
 
-    existence_maps = grouped_codes.map { |c| c.index_with { |cc| File.exist?(Rails.root.join('public', 'emoji', "#{codepoints_to_filename(cc)}.svg")) } }
+    existence_maps = grouped_codes.map { |c| c.index_with { |cc| Rails.public_path.join('emoji', "#{codepoints_to_filename(cc)}.svg").exist? } }
     map = {}
 
     existence_maps.each do |group|
@@ -91,8 +91,8 @@ namespace :emojis do
   desc 'Generate emoji variants with white borders'
   task :generate_borders do
     src = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_map.json')
-    emojis_light = '👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️'
-    emojis_dark = '🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴🐞🕺📱📲🚲'
+    emojis_light = '👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️🪽🪿'
+    emojis_dark = '🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴🐞🕺📱📲🚲🪮🐦‍⬛'
 
     map = Oj.load(File.read(src))
 

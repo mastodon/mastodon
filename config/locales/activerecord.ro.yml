@@ -11,16 +11,39 @@ ro:
         locale: Localizare
         password: Parolă
       user/account:
-        username: Nume utilizator
+        username: Nume de utilizator
       user/invite_request:
         text: Motiv
     errors:
+      attributes:
+        domain:
+          invalid: nu este un nume de domeniu valid
+      messages:
+        invalid_domain_on_line: "%{value} nu este un nume de domeniu valid"
+        too_many_lines: este peste limita de %{limit} linii
       models:
         account:
           attributes:
             username:
-              invalid: doar litere, numere și sublinieri
+              invalid: trebuie să conțină numai litere, cifre și bară jos (_)
               reserved: este rezervat
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nu este un URL valid
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nu este un URL valid
+        import:
+          attributes:
+            data:
+              malformed: este malformat
+        list_account:
+          attributes:
+            account_id:
+              taken: este deja pe listă
+          must_be_following: trebuie să fie un cont urmărit
         status:
           attributes:
             reblog:
@@ -30,3 +53,18 @@ ro:
             email:
               blocked: utilizează un furnizor de e-mail neautorizat
               unreachable: pare să nu existe
+            role_id:
+              elevated: nu poate fi mai mare decât rolul curent
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: include permisiuni care nu sunt sigure pentru rolul de bază
+              elevated: nu poate include permisiuni pe care rolul dvs. nu le deține
+              own_role: nu poate fi schimbat cu rolul curent
+            position:
+              elevated: nu poate fi mai mare decât rolul curent
+              own_role: nu poate fi schimbat cu rolul curent
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: nu poate include evenimente la care nu aveți dreptul

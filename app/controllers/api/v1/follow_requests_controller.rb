@@ -25,11 +25,11 @@ class Api::V1::FollowRequestsController < Api::BaseController
   private
 
   def account
-    Account.find(params[:id])
+    @account ||= Account.find(params[:id])
   end
 
-  def relationships(**options)
-    AccountRelationshipsPresenter.new([params[:id]], current_user.account_id, **options)
+  def relationships(**)
+    AccountRelationshipsPresenter.new([account], current_user.account_id, **)
   end
 
   def load_accounts
@@ -37,7 +37,7 @@ class Api::V1::FollowRequestsController < Api::BaseController
   end
 
   def default_accounts
-    Account.without_suspended.includes(:follow_requests, :account_stat).references(:follow_requests)
+    Account.without_suspended.includes(:follow_requests, :account_stat, :user).references(:follow_requests)
   end
 
   def paginated_follow_requests
@@ -48,20 +48,12 @@ class Api::V1::FollowRequestsController < Api::BaseController
     )
   end
 
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
-    if records_continue?
-      api_v1_follow_requests_url pagination_params(max_id: pagination_max_id)
-    end
+    api_v1_follow_requests_url pagination_params(max_id: pagination_max_id) if records_continue?
   end
 
   def prev_path
-    unless @accounts.empty?
-      api_v1_follow_requests_url pagination_params(since_id: pagination_since_id)
-    end
+    api_v1_follow_requests_url pagination_params(since_id: pagination_since_id) unless @accounts.empty?
   end
 
   def pagination_max_id
@@ -74,9 +66,5 @@ class Api::V1::FollowRequestsController < Api::BaseController
 
   def records_continue?
     @accounts.size == limit_param(DEFAULT_ACCOUNTS_LIMIT)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end

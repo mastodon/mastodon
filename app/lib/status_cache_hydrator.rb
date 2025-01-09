@@ -11,25 +11,51 @@ class StatusCacheHydrator
 
     # If we're delivering to the author who disabled the display of the application used to create the
     # status, we need to hydrate the application, since it was not rendered for the basic payload
-    payload[:application] = ActiveModelSerializers::SerializableResource.new(@status.application, serializer: REST::StatusSerializer::ApplicationSerializer).as_json if payload[:application].nil? && @status.account_id == account_id && @status.application.present?
+    payload[:application] = payload_application if payload[:application].nil? && @status.account_id == account_id
 
     # We take advantage of the fact that some relationships can only occur with an original status, not
     # the reblog that wraps it, so we can assume that some values are always false
     if payload[:reblog]
+      hydrate_reblog_payload(payload, account_id)
+    else
+      hydrate_non_reblog_payload(payload, account_id)
+    end
+  end
+
+  private
+
+  def hydrate_non_reblog_payload(empty_payload, account_id)
+    empty_payload.tap do |payload|
+      payload[:favourited] = Favourite.exists?(account_id: account_id, status_id: @status.id)
+      payload[:reblogged]  = Status.exists?(account_id: account_id, reblog_of_id: @status.id)
+      payload[:muted]      = ConversationMute.exists?(account_id: account_id, conversation_id: @status.conversation_id)
+      payload[:bookmarked] = Bookmark.exists?(account_id: account_id, status_id: @status.id)
+      payload[:pinned]     = StatusPin.exists?(account_id: account_id, status_id: @status.id) if @status.account_id == account_id
+      payload[:filtered]   = mapped_applied_custom_filter(account_id, @status)
+
+      if payload[:poll]
+        payload[:poll][:voted] = @status.account_id == account_id
+        payload[:poll][:own_votes] = []
+      end
+    end
+  end
+
+  def hydrate_reblog_payload(empty_payload, account_id)
+    empty_payload.tap do |payload|
       payload[:muted]      = false
       payload[:bookmarked] = false
       payload[:pinned]     = false if @status.account_id == account_id
-      payload[:filtered]   = CustomFilter.apply_cached_filters(CustomFilter.cached_filters_for(account_id), @status.reblog).map { |filter| ActiveModelSerializers::SerializableResource.new(filter, serializer: REST::FilterResultSerializer).as_json }
+      payload[:filtered]   = mapped_applied_custom_filter(account_id, @status.reblog)
 
       # If the reblogged status is being delivered to the author who disabled the display of the application
       # used to create the status, we need to hydrate it here too
-      payload[:reblog][:application] = ActiveModelSerializers::SerializableResource.new(@status.reblog.application, serializer: REST::StatusSerializer::ApplicationSerializer).as_json if payload[:reblog][:application].nil? && @status.reblog.account_id == account_id && @status.reblog.application.present?
+      payload[:reblog][:application] = payload_reblog_application if payload[:reblog][:application].nil? && @status.reblog.account_id == account_id
 
-      payload[:reblog][:favourited] = Favourite.where(account_id: account_id, status_id: @status.reblog_of_id).exists?
-      payload[:reblog][:reblogged]  = Status.where(account_id: account_id, reblog_of_id: @status.reblog_of_id).exists?
-      payload[:reblog][:muted]      = ConversationMute.where(account_id: account_id, conversation_id: @status.reblog.conversation_id).exists?
-      payload[:reblog][:bookmarked] = Bookmark.where(account_id: account_id, status_id: @status.reblog_of_id).exists?
-      payload[:reblog][:pinned]     = StatusPin.where(account_id: account_id, status_id: @status.reblog_of_id).exists? if @status.reblog.account_id == account_id
+      payload[:reblog][:favourited] = Favourite.exists?(account_id: account_id, status_id: @status.reblog_of_id)
+      payload[:reblog][:reblogged]  = Status.exists?(account_id: account_id, reblog_of_id: @status.reblog_of_id)
+      payload[:reblog][:muted]      = ConversationMute.exists?(account_id: account_id, conversation_id: @status.reblog.conversation_id)
+      payload[:reblog][:bookmarked] = Bookmark.exists?(account_id: account_id, status_id: @status.reblog_of_id)
+      payload[:reblog][:pinned]     = StatusPin.exists?(account_id: account_id, status_id: @status.reblog_of_id) if @status.reblog.account_id == account_id
       payload[:reblog][:filtered]   = payload[:filtered]
 
       if payload[:reblog][:poll]
@@ -45,20 +71,41 @@ class StatusCacheHydrator
 
       payload[:favourited] = payload[:reblog][:favourited]
       payload[:reblogged]  = payload[:reblog][:reblogged]
-    else
-      payload[:favourited] = Favourite.where(account_id: account_id, status_id: @status.id).exists?
-      payload[:reblogged]  = Status.where(account_id: account_id, reblog_of_id: @status.id).exists?
-      payload[:muted]      = ConversationMute.where(account_id: account_id, conversation_id: @status.conversation_id).exists?
-      payload[:bookmarked] = Bookmark.where(account_id: account_id, status_id: @status.id).exists?
-      payload[:pinned]     = StatusPin.where(account_id: account_id, status_id: @status.id).exists? if @status.account_id == account_id
-      payload[:filtered]   = CustomFilter.apply_cached_filters(CustomFilter.cached_filters_for(account_id), @status).map { |filter| ActiveModelSerializers::SerializableResource.new(filter, serializer: REST::FilterResultSerializer).as_json }
-
-      if payload[:poll]
-        payload[:poll][:voted] = @status.account_id == account_id
-        payload[:poll][:own_votes] = []
-      end
     end
+  end
 
-    payload
+  def mapped_applied_custom_filter(account_id, status)
+    CustomFilter
+      .apply_cached_filters(CustomFilter.cached_filters_for(account_id), status)
+      .map { |filter| serialized_filter(filter) }
+  end
+
+  def serialized_filter(filter)
+    ActiveModelSerializers::SerializableResource.new(
+      filter,
+      serializer: REST::FilterResultSerializer
+    ).as_json
+  end
+
+  def payload_application
+    @status.application.present? ? serialized_status_application_json : nil
+  end
+
+  def serialized_status_application_json
+    ActiveModelSerializers::SerializableResource.new(
+      @status.application,
+      serializer: REST::StatusSerializer::ApplicationSerializer
+    ).as_json
+  end
+
+  def payload_reblog_application
+    @status.reblog.application.present? ? serialized_status_reblog_application_json : nil
+  end
+
+  def serialized_status_reblog_application_json
+    ActiveModelSerializers::SerializableResource.new(
+      @status.reblog.application,
+      serializer: REST::StatusSerializer::ApplicationSerializer
+    ).as_json
   end
 end

@@ -1,0 +1,105 @@
+---
+fil:
+  devise:
+    confirmations:
+      confirmed: Matagumpay na nakumpirma ang email address mo.
+      send_instructions: Makakatanggap ka ng email na may instruksiyon kung paano kumpirmahin ang email address mo sa ilang minuto. Paki-check ang spam folder mo kung hindi mo natanggap ang email na ito.
+      send_paranoid_instructions: Kung nasa database namin ang email address mo, makakatanggap ka ng email na may instruksiyon kung paano kumpirmahin ang email address mo sa ilang minuto. Paki-check ang spam folder mo kung hindi mo natanggap ang email na ito.
+    failure:
+      already_authenticated: Naka-sign in ka na.
+      inactive: Hindi pa naa-activate ang account mo.
+      invalid: Invalid na %{authentication_keys} o password.
+      last_attempt: May isa ka pang attempt bago ma-lock ang account mo.
+      locked: Na-lock ang account mo.
+      not_found_in_database: Invalid na %{authentication_keys} o password.
+      omniauth_user_creation_failure: May error sa paggawa ng account para sa identidad na ito.
+      pending: Nire-review pa ang account mo.
+      timeout: Natapos na ang sesyon mo. Mag-login ulit para magpatuloy.
+      unauthenticated: Kailangan mong mag-login o mag-sign up bago magpatuloy.
+      unconfirmed: Kailangan mong kumpirmahin ang email address mo bago ka magpatuloy.
+    mailer:
+      confirmation_instructions:
+        action: Beripikahin ang email address
+        action_with_app: Kumpirmahin at bumalik sa %{app}
+        explanation: Nakagawa ka ng account sa %{host} gamit ang email address na ito. Isang click na lang para ma-activate ito. Kung hindi ikaw ito, balewalain ang email na ito.
+        explanation_when_pending: Nag-apply ka para sa imbitasyon sa %{host} gamit ang email address na ito. Kapag nakumpirma mo ang email address mo, rerebyuhin namin ang aplikasyon mo. Maaari kang mag-login para baguhin ang mga detalye mo o tanggalin ang iyong account, pero hindi mo maaakses ang karamihan sa mga function hanggang hindi naaaprubahan ang account mo. Kung tinanggihan ang aplikasyon mo, aalisin ang data mo, kaya wala ka nang ibang kailangang gawing aksiyon. Kung hindi ikaw ito, balewalain ang email na ito.
+        extra_html: Paki-check din <a href="%{terms_path}">ang mga tuntunin ng server</a> at <a href="%{policy_path}">ang aming mga tuntunin sa serbisyo</a>.
+        subject: 'Mastodon: Instruksiyon sa kumpirmasyon para sa %{instance}'
+        title: Beripikahin ang email address
+      email_changed:
+        explanation: 'Ang email address para sa account mo ay binabago sa:'
+        extra: Kung hindi mo binago ang email mo, malamang ay may nagkaroon ng akses sa account mo. Pakipalitan agad ang password mo o kontakin ang server admin kung na-lock out ka sa account mo.
+        subject: 'Mastodon: Napalitan ang email'
+        title: Bagong email address
+      password_change:
+        explanation: Nabago na ang password ng account mo.
+        extra: Kung hindi mo binago ang email mo, malamang ay may nagkaroon ng akses sa account mo. Pakipalitan agad ang password mo o kontakin ang server admin kung na-lock out ka sa account mo.
+        subject: 'Mastodon: Napalitan ang password'
+        title: Napalitan ang password
+      reconfirmation_instructions:
+        explanation: Kumpirmahin ang bagong address para baguhin ang email mo.
+        extra: Kung hindi ikaw ang gumawa ng pagbabagong ito, balewalain ang email na ito. Hindi mapapalitan ang email address para sa account sa Mastodon hanggang hindi mo napupuntahan ang link sa itaas.
+        subject: 'Mastodon: Kumpirmahin ang email para sa %{instance}'
+        title: Beripikahin ang email address
+      reset_password_instructions:
+        action: Palitan ang password
+        explanation: Humiling ka ng bagong passwird para sa account mo.
+        extra: Kung hindi mo hiniling ito, balewalain ang email na ito. Hindi mababago ang password mo hanggang hindi mo napupuntahan ang link sa itaas at nakakagawa ng bago.
+        subject: 'Mastodon: Instruksiyon sa pag-reset ng password'
+        title: Ang pasword nay nareset
+      two_factor_disabled:
+        explanation: Puwede nang mag-login gamit lang ang email address at password.
+        subject: 'Mastodon: Naka-disable ang two-factor authentication'
+        subtitle: Naka-disable ang two-factor authentication para sa account mo.
+        title: Naka-disable ang 2FA
+      two_factor_enabled:
+        explanation: Kakailanganin ang token na na-generate ng paired TOTP app para maka-login.
+        subject: 'Mastodon: Naka-enable ang two-factor authentication'
+        subtitle: Naka-enable ang two-factor authentication para sa account mo.
+        title: Naka-enable ang 2FA
+      two_factor_recovery_codes_changed:
+        explanation: Na-invalidate ang naunang mga recovery code at nakagawa na ng bago.
+        subject: 'Mastodon: Nakagawa ulit ng mga two-factor reecover code'
+        subtitle: Na-invalidate ang naunang mga recovery code at nakagawa na ng bago.
+        title: Nabago ang 2FA recovery codes
+      unlock_instructions:
+        subject: 'Mastodon: Buksan ang instruksiyon'
+      webauthn_credential:
+        added:
+          explanation: Naidagdag na sa account mo ang sumusunod na security key
+          subject: 'Mastodon: Bagong security key'
+          title: May naidagdag nang bagong security key
+        deleted:
+          explanation: Natanggal na sa account mo ang sumusunod na security key
+          subject: 'Mastodon: Na-delete ang security key'
+          title: Na-delete ang isa sa mga security key mo
+      webauthn_disabled:
+        explanation: Naka-disable ang authentication sa mga security key para sa account mo.
+        extra: Puwede nang mag-login gamit lang ang token na na-gennerate ng paired TOTP app.
+        subject: 'Mastodon: Naka-disable ang authentication sa mga security key'
+        title: Naka-disable ang mga security key
+      webauthn_enabled:
+        explanation: Naka-enable ang two-factor authentication para sa account mo.
+        extra: Magagamit na ngayon ang security key para maka-login.
+        subject: 'Mastodon: Naka-enable ang security key authentication'
+        title: Naka-enable ang mga security key
+    omniauth_callbacks:
+      failure: Hindi ka ma-authenticate mula sa %{kind} dahil “%{reason}”.
+      success: Matagumpay na na-aurthenticate mula sa %{kind} account.
+    passwords:
+      no_token: Hindi mo maaakses ang page na ito nang hindi nangaggaling sa password reset na email. Kung nangggaling ka sa password reset na email, siguruhin mong ginamit mo ang binigay na URL.
+      send_instructions: Kung nasa database namin ang email address mo, makakatanggap ka ng password recovery link ilang minuto. Paki-check ang spam folder mo kung hindi mo natanggap ang email na ito.
+      send_paranoid_instructions: Kung nasa database namin ang email address mo, makakatanggap ka ng password recovery link sa email address mo sa ilang minuto. Paki-check ang spam folder mo kung hindi mo natanggap ang email na ito.
+      updated: Matagumpay na napalitan ang password mo. Naka-sign in ka na.
+      updated_not_active: Matagumpay na napalitan ang password mo.
+    registrations:
+      destroyed: Paalam! Matagumpay na nakansela ang account mo. Sana ay magkita ulit tayo sa hinaharap.
+      update_needs_confirmation: Na-update mo na ang account mo, pero kailangan naming beripikahin ang bago mong email address. Pakitingnan ang email mo at sundan ang confirm link para makumpirma ang bagong email address mo. Pakitingnan ang spam folder mo kung hindi mo natanggap ang email na ito.
+      updated: Matagumpay na na-update ang account mo.
+    sessions:
+      already_signed_out: Matagumpay na naka-sign out.
+      signed_in: Matagumpay na naka-sign in.
+      signed_out: Matagumpay na naka-sign out.
+    unlocks:
+      send_instructions: Makakatanggap ka ng email na may instruksiyon kung paano i-unlock ang account mo sa ilang minuto. Pakitingnan ang spam folder mo kung hindi mo natanggap ang email na ito.
+      send_paranoid_instructions: Kung may account ka, makakatanggap ka ng email na may instruksiyon kung paano ito i-unlock sa ilang minuto. Pakitingnan ang spam folder mo kung hindi mo natanggap ang email na ito.

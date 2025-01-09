@@ -12,6 +12,7 @@ es-AR:
       last_attempt: Tenés un intento más antes de que se bloquee tu cuenta.
       locked: Se bloqueó tu cuenta.
       not_found_in_database: "%{authentication_keys} o contraseña no válidas."
+      omniauth_user_creation_failure: Error al crear una cuenta para esta identidad.
       pending: Tu cuenta todavía está bajo revisión.
       timeout: Venció tu sesión. Por favor, volvé a iniciar sesión para continuar.
       unauthenticated: Necesitás iniciar sesión o registrarte antes de continuar.
@@ -47,16 +48,19 @@ es-AR:
         subject: 'Mastodon: instrucciones para cambiar la contraseña'
         title: Cambiar contraseña
       two_factor_disabled:
-        explanation: La autenticación de dos factores para tu cuenta está deshabilitada. Ahora el inicio de sesión sólo es posible usando la dirección de correo electrónico y la contraseña.
+        explanation: Ahora es posible iniciar sesión utilizando sólo la dirección de correo electrónico y la contraseña.
         subject: 'Mastodon: autenticación de dos factores, deshabilitada'
+        subtitle: Se deshabilitó la autenticación de dos factores para tu cuenta.
         title: 2FA deshabilitada
       two_factor_enabled:
-        explanation: La autenticación de dos factores para tu cuenta está habilitada. Se requiere una clave generada por la aplicación TOTP asociada para iniciar sesión.
+        explanation: Para iniciar sesión, se requerirá una clave numérica ("token") generada por la aplicación TOTP emparejada.
         subject: 'Mastodon: autenticación de dos factores, habilitada'
+        subtitle: Se habilitó la autenticación de dos factores para tu cuenta.
         title: 2FA habilitada
       two_factor_recovery_codes_changed:
         explanation: Los códigos anteriores de recuperación fueron invalidados y se generaron unos nuevos.
         subject: 'Mastodon: códigos de recuperación de dos factores, regenerados'
+        subtitle: Los códigos de recuperación anteriores ya no son válidos y se generaron códigos nuevos.
         title: Códigos de recuperación 2FA cambiados
       unlock_instructions:
         subject: 'Mastodon: instrucciones de desbloqueo'
@@ -70,11 +74,13 @@ es-AR:
           subject: 'Mastodon: llave de seguridad eliminada'
           title: Se eliminó una de tus llaves de seguridad
       webauthn_disabled:
-        explanation: Se deshabilitó la autenticación con llaves de seguridad en tu cuenta. El inicio de sesión ahora es posible usando sólo la clave generada por la aplicación TOTP asociada.
+        explanation: Se deshabilitó la autenticación con claves de seguridad para tu cuenta.
+        extra: Ahora es posible iniciar sesión utilizando sólo la clave numérica ("token") generada por la aplicación TOTP emparejada.
         subject: 'Mastodon: autenticación con llaves de seguridad, deshabilitada'
         title: Llaves de seguridad deshabilitadas
       webauthn_enabled:
-        explanation: Se habilitó la autenticación de llave de seguridad en tu cuenta. Ahora tu llave de seguridad se puede usar para iniciar sesión.
+        explanation: Se habilitó la autenticación con llave de seguridad para tu cuenta.
+        extra: Ahora es posible iniciar sesión utilizando tu llave de seguridad.
         subject: 'Mastodon: autenticación con llaves de seguridad, habilitada'
         title: Llaves de seguridad habilitadas
     omniauth_callbacks:
@@ -88,11 +94,6 @@ es-AR:
       updated_not_active: Se cambió exitosamente tu contraseña.
     registrations:
       destroyed: "¡Chauchas! Se canceló exitosamente tu cuenta. Esperamos verte pronto de nuevo."
-      signed_up: "¡Bienvenido! Te registraste exitosamente."
-      signed_up_but_inactive: Te registraste exitosamente. Sin embargo, no podés iniciar sesión porque tu cuenta todavía no está activada.
-      signed_up_but_locked: Te registraste exitosamente. Sin embargo, no podés iniciar sesión porque tu cuenta está bloqueada.
-      signed_up_but_pending: Se envió un correo electrónico a tu dirección de correo con un enlace de confirmación. Después que hagás clic en ese enlace, revisaremos tu pedido. Si sos aprobado, serás notificado.
-      signed_up_but_unconfirmed: Se envió un correo electrónico a tu dirección de correo con un enlace de confirmación. Por favor, seguí ese enlace para activar tu cuenta. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
       update_needs_confirmation: Actualizaste tu cuenta exitosamente. Sin embargo, necesitamos verificar tu nueva dirección de correo electrónico. Por favor, revisá tu correo electrónico y seguí el enlace de confirmación. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
       updated: Se actualizó exitosamente tu cuenta.
     sessions:
@@ -102,7 +103,7 @@ es-AR:
     unlocks:
       send_instructions: En unos minutos, vas a recibir un correo electrónico con instrucciones sobre cómo desbloquear tu cuenta. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
       send_paranoid_instructions: Si tu cuenta existe en nuestra base de datos, en unos minutos vas a recibir un correo electrónico con instrucciones sobre cómo desbloquear tu cuenta. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
-      unlocked: Se desbloqueó tu cuenta exitosamente. Por favor, iniciá sesión para continuar.
+      unlocked: Tu cuenta fue desbloqueada exitosamente. Por favor, iniciá sesión para continuar.
   errors:
     messages:
       already_confirmed: ya se confirmó; por favor, intentá iniciar sesión

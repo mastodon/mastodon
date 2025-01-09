@@ -4,11 +4,11 @@ require 'rails_helper'
 
 RSpec.describe FamiliarFollowersPresenter do
   describe '#accounts' do
+    subject { described_class.new(requested_accounts, account.id) }
+
     let(:account) { Fabricate(:account) }
     let(:familiar_follower) { Fabricate(:account) }
     let(:requested_accounts) { Fabricate.times(2, :account) }
-
-    subject { described_class.new(requested_accounts, account.id) }
 
     before do
       familiar_follower.follow!(requested_accounts.first)
@@ -22,9 +22,12 @@ RSpec.describe FamiliarFollowersPresenter do
     it 'returns followers you follow' do
       result = subject.accounts.first
 
-      expect(result).to_not be_nil
-      expect(result.id).to eq requested_accounts.first.id
-      expect(result.accounts).to match_array([familiar_follower])
+      expect(result)
+        .to be_present
+        .and have_attributes(
+          id: requested_accounts.first.id,
+          accounts: contain_exactly(familiar_follower)
+        )
     end
 
     context 'when requested account hides followers' do
@@ -35,9 +38,12 @@ RSpec.describe FamiliarFollowersPresenter do
       it 'does not return followers you follow' do
         result = subject.accounts.first
 
-        expect(result).to_not be_nil
-        expect(result.id).to eq requested_accounts.first.id
-        expect(result.accounts).to be_empty
+        expect(result)
+          .to be_present
+          .and have_attributes(
+            id: requested_accounts.first.id,
+            accounts: be_empty
+          )
       end
     end
 
@@ -49,9 +55,12 @@ RSpec.describe FamiliarFollowersPresenter do
       it 'does not return followers you follow' do
         result = subject.accounts.first
 
-        expect(result).to_not be_nil
-        expect(result.id).to eq requested_accounts.first.id
-        expect(result.accounts).to be_empty
+        expect(result)
+          .to be_present
+          .and have_attributes(
+            id: requested_accounts.first.id,
+            accounts: be_empty
+          )
       end
     end
   end

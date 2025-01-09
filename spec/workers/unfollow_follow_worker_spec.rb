@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-describe UnfollowFollowWorker do
+RSpec.describe UnfollowFollowWorker do
+  subject { described_class.new }
+
   let(:local_follower)   { Fabricate(:account) }
   let(:source_account)   { Fabricate(:account) }
   let(:target_account)   { Fabricate(:account) }
   let(:show_reblogs)     { true }
-
-  subject { described_class.new }
 
   before do
     local_follower.follow!(source_account, reblogs: show_reblogs)

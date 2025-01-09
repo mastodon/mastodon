@@ -1,6 +1,3 @@
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 - content_for :page_title do
   = t('admin.settings.content_retention.title')
 
@@ -14,9 +11,21 @@
   %p.lead= t('admin.settings.content_retention.preamble')
 
   .fields-group
-    = f.input :media_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
-    = f.input :content_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
-    = f.input :backups_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
+    = f.input :media_cache_retention_period,
+              input_html: { pattern: '[0-9]+' },
+              wrapper: :with_block_label
+    = f.input :backups_retention_period,
+              input_html: { pattern: '[0-9]+' },
+              wrapper: :with_block_label
+
+  %h4= t('admin.settings.content_retention.danger_zone')
+
+  .fields-group
+    = f.input :content_cache_retention_period,
+              hint: false,
+              input_html: { pattern: '[0-9]+' },
+              warning_hint: t('simple_form.hints.form_admin_settings.content_cache_retention_period'),
+              wrapper: :with_block_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

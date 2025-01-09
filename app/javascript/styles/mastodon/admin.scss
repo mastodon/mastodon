@@ -1,7 +1,7 @@
-@use "sass:math";
+@use 'sass:math';
 
-$no-columns-breakpoint: 600px;
-$sidebar-width: 240px;
+$no-columns-breakpoint: 890px;
+$sidebar-width: 300px;
 $content-width: 840px;
 
 .admin-wrapper {
@@ -9,6 +9,13 @@ $content-width: 840px;
   justify-content: center;
   width: 100%;
   min-height: 100vh;
+
+  .icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: top;
+    margin: 0 2px;
+  }
 
   .sidebar-wrapper {
     min-height: 100vh;
@@ -19,7 +26,7 @@ $content-width: 840px;
     &__inner {
       display: flex;
       justify-content: flex-end;
-      background: $ui-base-color;
+      background: var(--background-color);
       height: 100%;
     }
   }
@@ -31,7 +38,7 @@ $content-width: 840px;
 
     &__toggle {
       display: none;
-      background: darken($ui-base-color, 4%);
+      background: var(--background-color);
       border-bottom: 1px solid lighten($ui-base-color, 4%);
       align-items: center;
 
@@ -58,16 +65,16 @@ $content-width: 840px;
           background: $ui-base-color;
         }
 
-        .fa-times {
+        .material-close {
           display: none;
         }
 
         &.active {
-          .fa-times {
+          .material-close {
             display: block;
           }
 
-          .fa-bars {
+          .material-menu {
             display: none;
           }
         }
@@ -96,7 +103,6 @@ $content-width: 840px;
 
     ul {
       list-style: none;
-      border-radius: 4px 0 0 4px;
       overflow: hidden;
       margin-bottom: 20px;
 
@@ -105,37 +111,26 @@ $content-width: 840px;
       }
 
       a {
+        font-size: 14px;
         display: block;
         padding: 15px;
         color: $darker-text-color;
         text-decoration: none;
         transition: all 200ms linear;
         transition-property: color, background-color;
-        border-radius: 4px 0 0 4px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
 
-        i.fa {
-          margin-right: 5px;
-        }
-
         &:hover {
           color: $primary-text-color;
-          background-color: darken($ui-base-color, 5%);
           transition: all 100ms linear;
           transition-property: color, background-color;
-        }
-
-        &.selected {
-          background: darken($ui-base-color, 2%);
-          border-radius: 4px 0 0;
         }
       }
 
       ul {
-        background: darken($ui-base-color, 4%);
-        border-radius: 0 0 0 4px;
+        background: var(--background-color);
         margin: 0;
 
         a {
@@ -144,20 +139,15 @@ $content-width: 840px;
         }
       }
 
-      .simple-navigation-active-leaf a {
-        color: $primary-text-color;
-        background-color: darken($ui-highlight-color, 2%);
-        border-bottom: 0;
-        border-radius: 0;
-
-        &:hover {
-          background-color: $ui-highlight-color;
-        }
+      .warning a {
+        color: $gold-star;
+        font-weight: 700;
       }
-    }
 
-    & > ul > .simple-navigation-active-leaf a {
-      border-radius: 4px 0 0 4px;
+      .simple-navigation-active-leaf a {
+        color: $highlight-text-color;
+        border-bottom: 0;
+      }
     }
   }
 
@@ -186,7 +176,10 @@ $content-width: 840px;
   }
 
   .content {
-    padding: 55px 15px 20px 25px;
+    padding-top: 55px;
+    padding-bottom: 20px;
+    padding-inline-start: 25px;
+    padding-inline-end: 15px;
 
     @media screen and (max-width: $no-columns-breakpoint) {
       max-width: none;
@@ -202,11 +195,12 @@ $content-width: 840px;
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        margin: -15px -15px 0 0;
+        margin-top: -15px;
+        margin-inline-end: -15px;
 
         & > * {
           margin-top: 15px;
-          margin-right: 15px;
+          margin-inline-end: 15px;
         }
       }
 
@@ -232,6 +226,10 @@ $content-width: 840px;
           gap: 5px;
           white-space: nowrap;
 
+          @media screen and (max-width: $mobile-breakpoint) {
+            flex: 1 0 50%;
+          }
+
           &:hover,
           &:focus,
           &:active {
@@ -242,21 +240,22 @@ $content-width: 840px;
             font-weight: 700;
             color: $primary-text-color;
             background: $ui-highlight-color;
-
-            &:hover,
-            &:focus,
-            &:active {
-              background: lighten($ui-highlight-color, 4%);
-            }
           }
         }
       }
 
       &__actions {
         display: inline-flex;
+        flex-flow: wrap;
+        gap: 5px;
+        align-items: center;
 
-        & > :not(:first-child) {
-          margin-left: 5px;
+        .time-period {
+          padding: 0 10px;
+        }
+
+        .back-link {
+          margin-bottom: 0;
         }
       }
 
@@ -296,7 +295,7 @@ $content-width: 840px;
       color: $darker-text-color;
       padding-bottom: 8px;
       margin-bottom: 8px;
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-bottom: 1px solid var(--background-border-color);
     }
 
     h6 {
@@ -316,10 +315,6 @@ $content-width: 840px;
       box-shadow: none;
     }
 
-    .directory__tag .table-action-link .fa {
-      color: inherit;
-    }
-
     .directory__tag h4 {
       font-size: 18px;
       font-weight: 700;
@@ -328,6 +323,23 @@ $content-width: 840px;
       padding-bottom: 0;
       margin-bottom: 0;
       border-bottom: 0;
+
+      .comment {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 4px;
+
+        &.private-comment {
+          display: block;
+          color: $darker-text-color;
+        }
+
+        &.public-comment {
+          display: block;
+          color: $secondary-text-color;
+        }
+      }
     }
 
     & > p {
@@ -352,7 +364,7 @@ $content-width: 840px;
       width: 100%;
       height: 0;
       border: 0;
-      border-bottom: 1px solid rgba($ui-base-lighter-color, 0.6);
+      border-bottom: 1px solid var(--background-border-color);
       margin: 20px 0;
 
       &.spacer {
@@ -386,18 +398,18 @@ $content-width: 840px;
           position: fixed;
           z-index: 10;
           width: 100%;
-          height: calc(100vh - 56px);
-          left: 0;
+          height: calc(100% - 56px);
+          inset-inline-start: 0;
           bottom: 0;
           overflow-y: auto;
-          background: $ui-base-color;
+          background: var(--background-color);
         }
       }
 
       ul a,
       ul ul a {
+        font-size: 16px;
         border-radius: 0;
-        border-bottom: 1px solid lighten($ui-base-color, 4%);
         transition: none;
 
         &:hover {
@@ -472,10 +484,11 @@ body,
 .filters {
   display: flex;
   flex-wrap: wrap;
+  gap: 40px;
 
   .filter-subset {
     flex: 0 0 auto;
-    margin: 0 40px 20px 0;
+    margin-bottom: 20px;
 
     &:last-child {
       margin-bottom: 30px;
@@ -487,7 +500,7 @@ body,
 
       li {
         display: inline-block;
-        margin-right: 5px;
+        margin-inline-end: 5px;
       }
     }
 
@@ -574,7 +587,7 @@ body,
 
   .activity-stream {
     flex: 2 0 0;
-    margin-right: 20px;
+    margin-inline-end: 20px;
     max-width: calc(100% - 60px);
 
     .entry {
@@ -602,16 +615,6 @@ body,
   max-width: 100%;
 }
 
-.simple_form {
-  .actions {
-    margin-top: 15px;
-  }
-
-  .button {
-    font-size: 15px;
-  }
-}
-
 .batch-form-box {
   display: flex;
   flex-wrap: wrap;
@@ -624,16 +627,6 @@ body,
 
   input.button {
     margin: 0 5px 5px 0;
-  }
-
-  .media-spoiler-toggle-buttons {
-    margin-left: auto;
-
-    .button {
-      overflow: visible;
-      margin: 0 0 5px 5px;
-      float: right;
-    }
   }
 }
 
@@ -653,7 +646,7 @@ body,
 
 .special-action-button,
 .back-link {
-  text-align: right;
+  text-align: end;
   flex: 1 1 auto;
 }
 
@@ -671,9 +664,11 @@ body,
   display: block;
   line-height: 20px;
   padding: 15px;
-  padding-left: 15px * 2 + 40px;
-  background: $ui-base-color;
-  border-bottom: 1px solid darken($ui-base-color, 8%);
+  padding-inline-start: 15px * 2 + 40px;
+  background: var(--background-color);
+  border-right: 1px solid var(--background-border-color);
+  border-left: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--background-border-color);
   position: relative;
   text-decoration: none;
   color: $darker-text-color;
@@ -682,27 +677,22 @@ body,
   &:first-child {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+    border-top: 1px solid var(--background-border-color);
   }
 
   &:last-child {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
-    border-bottom: 0;
-  }
-
-  &:hover,
-  &:focus,
-  &:active {
-    background: lighten($ui-base-color, 4%);
+    border-bottom: 1px solid var(--background-border-color);
   }
 
   &__avatar {
     position: absolute;
-    left: 15px;
+    inset-inline-start: 15px;
     top: 15px;
 
     .avatar {
-      border-radius: 4px;
+      border-radius: var(--avatar-border-radius);
       width: 40px;
       height: 40px;
     }
@@ -733,12 +723,57 @@ body,
   }
 }
 
+.strike-entry {
+  display: block;
+  line-height: 20px;
+  padding: 15px;
+  padding-inline-start: 15px * 2 + 40px;
+  background: var(--background-color);
+  border: 1px solid var(--background-border-color);
+  border-radius: 4px;
+  position: relative;
+  text-decoration: none;
+  color: $darker-text-color;
+  font-size: 14px;
+  margin-bottom: 15px;
+
+  &__avatar {
+    position: absolute;
+    inset-inline-start: 15px;
+    top: 15px;
+
+    .avatar {
+      border-radius: var(--avatar-border-radius);
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__title {
+    word-wrap: break-word;
+  }
+
+  &__timestamp {
+    color: $dark-text-color;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: $ui-base-color;
+  }
+}
+
 a.name-tag,
 .name-tag,
 a.inline-name-tag,
 .inline-name-tag {
   text-decoration: none;
   color: $secondary-text-color;
+
+  &:hover {
+    color: $highlight-text-color;
+  }
 
   .username {
     font-weight: 500;
@@ -766,7 +801,7 @@ a.name-tag,
   .avatar {
     display: block;
     margin: 0;
-    margin-right: 5px;
+    margin-inline-end: 5px;
     border-radius: 50%;
   }
 
@@ -780,7 +815,7 @@ a.name-tag,
 
 .speech-bubble {
   margin-bottom: 20px;
-  border-left: 4px solid $ui-highlight-color;
+  border-inline-start: 4px solid $ui-highlight-color;
 
   &.positive {
     border-left-color: $success-green;
@@ -796,7 +831,7 @@ a.name-tag,
 
   &__bubble {
     padding: 16px;
-    padding-left: 14px;
+    padding-inline-start: 14px;
     font-size: 15px;
     line-height: 20px;
     border-radius: 4px 4px 4px 0;
@@ -810,7 +845,7 @@ a.name-tag,
 
   &__owner {
     padding: 8px;
-    padding-left: 12px;
+    padding-inline-start: 12px;
   }
 
   time {
@@ -819,7 +854,8 @@ a.name-tag,
 }
 
 .report-card {
-  background: $ui-base-color;
+  background: var(--background-color);
+  border: 1px solid var(--background-border-color);
   border-radius: 4px;
   margin-bottom: 20px;
 
@@ -831,10 +867,10 @@ a.name-tag,
 
     .account {
       padding: 0;
-      border: 0;
+      border: none;
 
       &__avatar-wrapper {
-        margin-left: 0;
+        margin-inline-start: 0;
       }
     }
 
@@ -843,7 +879,7 @@ a.name-tag,
       font-weight: 500;
       color: $darker-text-color;
       text-transform: uppercase;
-      text-align: right;
+      text-align: end;
 
       a {
         color: inherit;
@@ -852,7 +888,7 @@ a.name-tag,
         &:focus,
         &:hover,
         &:active {
-          color: lighten($darker-text-color, 8%);
+          color: $highlight-text-color;
         }
       }
 
@@ -866,11 +902,7 @@ a.name-tag,
     &__item {
       display: flex;
       justify-content: flex-start;
-      border-top: 1px solid darken($ui-base-color, 4%);
-
-      &:hover {
-        background: lighten($ui-base-color, 2%);
-      }
+      border-top: 1px solid var(--background-border-color);
 
       &__reported-by,
       &__assigned {
@@ -893,8 +925,7 @@ a.name-tag,
         max-width: calc(100% - 300px);
 
         &__icon {
-          color: $dark-text-color;
-          margin-right: 4px;
+          margin-inline-end: 4px;
           font-weight: 500;
         }
       }
@@ -906,6 +937,10 @@ a.name-tag,
         padding: 15px;
         text-decoration: none;
         color: $darker-text-color;
+
+        &:hover {
+          color: $highlight-text-color;
+        }
       }
     }
   }
@@ -941,14 +976,15 @@ a.name-tag,
 
   .account__header__fields,
   .account__header__content {
-    background: lighten($ui-base-color, 8%);
+    background: var(--background-color);
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
     height: 100%;
   }
 
   .account__header__fields {
     margin: 0;
-    border: 0;
+    border: 1px solid var(--background-border-color);
 
     a {
       color: $highlight-text-color;
@@ -977,8 +1013,8 @@ a.name-tag,
 .applications-list__item,
 .filters-list__item {
   padding: 15px 0;
-  background: $ui-base-color;
-  border: 1px solid lighten($ui-base-color, 4%);
+  background: var(--background-color);
+  border: 1px solid var(--background-border-color);
   border-radius: 4px;
   margin-top: 15px;
 }
@@ -987,15 +1023,21 @@ a.name-tag,
   color: var(--user-role-accent);
 }
 
+.applications-list {
+  .icon {
+    vertical-align: middle;
+  }
+}
+
 .announcements-list,
 .filters-list {
-  border: 1px solid lighten($ui-base-color, 4%);
+  border: 1px solid var(--background-border-color);
   border-radius: 4px;
+  border-bottom: none;
 
   &__item {
     padding: 15px 0;
-    background: $ui-base-color;
-    border-bottom: 1px solid lighten($ui-base-color, 4%);
+    border-bottom: 1px solid var(--background-border-color);
 
     &__title {
       padding: 0 15px;
@@ -1007,9 +1049,17 @@ a.name-tag,
       text-decoration: none;
       margin-bottom: 10px;
 
+      &:hover {
+        color: $highlight-text-color;
+      }
+
       .account-role {
         vertical-align: middle;
       }
+    }
+
+    .icon {
+      vertical-align: middle;
     }
 
     a.announcements-list__item__title {
@@ -1045,10 +1095,6 @@ a.name-tag,
     &__permissions {
       margin-top: 10px;
     }
-
-    &:last-child {
-      border-bottom: 0;
-    }
   }
 }
 
@@ -1057,6 +1103,7 @@ a.name-tag,
     display: flex;
     justify-content: space-between;
     margin-bottom: 0;
+    word-break: break-word;
   }
 
   &__permissions {
@@ -1092,19 +1139,19 @@ a.name-tag,
 
   > h4 {
     position: sticky;
-    left: 0;
+    inset-inline-start: 0;
   }
 
   &__table {
     &__number {
-      color: $secondary-text-color;
+      color: var(--background-color);
       padding: 10px;
     }
 
     &__date {
       white-space: nowrap;
       padding: 10px 0;
-      text-align: left;
+      text-align: start;
       min-width: 120px;
 
       &.retention__table__average {
@@ -1124,7 +1171,7 @@ a.name-tag,
 
     &__box {
       box-sizing: border-box;
-      background: $ui-highlight-color;
+      background: var(--background-color);
       padding: 10px;
       font-weight: 500;
       color: $primary-text-color;
@@ -1133,7 +1180,10 @@ a.name-tag,
 
       @for $i from 0 through 10 {
         &--#{10 * $i} {
-          background-color: rgba($ui-highlight-color, 1 * (math.div(max(1, $i), 10)));
+          background-color: rgba(
+            $ui-highlight-color,
+            1 * (math.div(max(1, $i), 10))
+          );
         }
       }
     }
@@ -1143,8 +1193,9 @@ a.name-tag,
 .sparkline {
   display: block;
   text-decoration: none;
-  background: lighten($ui-base-color, 4%);
+  background: var(--background-color);
   border-radius: 4px;
+  border: 1px solid var(--background-border-color);
   padding: 0;
   position: relative;
   padding-bottom: 55px + 20px;
@@ -1159,7 +1210,7 @@ a.name-tag,
 
     &__total {
       display: block;
-      margin-right: 10px;
+      margin-inline-end: 10px;
       font-weight: 500;
       font-size: 28px;
       color: $primary-text-color;
@@ -1202,7 +1253,7 @@ a.name-tag,
 
     path:first-child {
       fill: rgba($highlight-text-color, 0.25) !important;
-      fill-opacity: 100% !important;
+      fill-opacity: 1 !important;
     }
 
     path:last-child {
@@ -1216,13 +1267,18 @@ a.sparkline {
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-base-color, 6%);
+    background: $ui-base-color;
   }
 }
 
 .skeleton {
-  background-color: lighten($ui-base-color, 8%);
-  background-image: linear-gradient(90deg, lighten($ui-base-color, 8%), lighten($ui-base-color, 12%), lighten($ui-base-color, 8%));
+  background-color: var(--background-color);
+  background-image: linear-gradient(
+    90deg,
+    lighten($ui-base-color, 8%),
+    lighten($ui-base-color, 12%),
+    lighten($ui-base-color, 8%)
+  );
   background-size: 200px 100%;
   background-repeat: no-repeat;
   border-radius: 4px;
@@ -1256,7 +1312,7 @@ a.sparkline {
     }
 
     &__value {
-      text-align: right;
+      text-align: end;
       color: $darker-text-color;
       padding: 11px 10px;
     }
@@ -1267,11 +1323,14 @@ a.sparkline {
       height: 8px;
       border-radius: 50%;
       background: $ui-highlight-color;
-      margin-right: 10px;
+      margin-inline-end: 10px;
 
       @for $i from 0 through 10 {
         &--#{10 * $i} {
-          background-color: rgba($ui-highlight-color, 1 * (math.div(max(1, $i), 10)));
+          background-color: rgba(
+            $ui-highlight-color,
+            1 * (math.div(max(1, $i), 10))
+          );
         }
       }
     }
@@ -1279,34 +1338,45 @@ a.sparkline {
     &:last-child {
       border-bottom: 0;
     }
+
+    &.negative {
+      color: $error-value-color;
+      font-weight: 700;
+
+      .dimension__item__value {
+        color: $error-value-color;
+      }
+    }
   }
 }
 
 .report-reason-selector {
   border-radius: 4px;
-  background: $ui-base-color;
+  background: var(--background-color);
   margin-bottom: 20px;
 
   &__category {
     cursor: pointer;
     border-bottom: 1px solid darken($ui-base-color, 8%);
 
-    &:last-child {
-      border-bottom: 0;
-    }
-
     &__label {
       padding: 15px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
 
     &__rules {
-      margin-left: 30px;
+      margin-inline-start: 30px;
     }
   }
 
   &__rule {
     cursor: pointer;
     padding: 15px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
   }
 }
 
@@ -1317,7 +1387,7 @@ a.sparkline {
 
   &__details {
     &__item {
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      border-bottom: 1px solid var(--background-border-color);
       padding: 15px 0;
 
       &:last-child {
@@ -1341,14 +1411,27 @@ a.sparkline {
     }
   }
 
-  @media screen and (max-width: 930px) {
+  @media screen and (width <= 930px) {
     grid-template-columns: minmax(0, 1fr);
   }
 }
 
 .account-card {
-  background: $ui-base-color;
   border-radius: 4px;
+  border: 1px solid var(--background-border-color);
+  position: relative;
+
+  &__warning-badge {
+    position: absolute;
+    padding: 4px 10px;
+    top: 10px;
+    inset-inline-start: 10px;
+    border-radius: 4px;
+    background:
+      url('../images/warning-stripes.svg') repeat-y left,
+      url('../images/warning-stripes.svg') repeat-y right,
+      var(--background-color);
+  }
 
   &__permalink {
     color: inherit;
@@ -1417,13 +1500,12 @@ a.sparkline {
 
     &::after {
       display: block;
-      content: "";
+      content: '';
       width: 50px;
       height: 21px;
       position: absolute;
       bottom: 0;
-      right: 15px;
-      background: linear-gradient(to left, $ui-base-color, transparent);
+      inset-inline-end: 15px;
       pointer-events: none;
     }
 
@@ -1499,11 +1581,11 @@ a.sparkline {
   margin-bottom: 20px;
 
   &__item {
-    background: $ui-base-color;
+    background: var(--background-color);
     position: relative;
     padding: 15px;
-    padding-left: 15px * 2 + 40px;
-    border-bottom: 1px solid darken($ui-base-color, 8%);
+    padding-inline-start: 15px * 2 + 40px;
+    border: 1px solid var(--background-border-color);
 
     &:first-child {
       border-top-left-radius: 4px;
@@ -1513,18 +1595,13 @@ a.sparkline {
     &:last-child {
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
-      border-bottom: 0;
-    }
-
-    &:hover {
-      background-color: lighten($ui-base-color, 4%);
     }
 
     &__avatar {
       position: absolute;
-      left: 15px;
+      inset-inline-start: 15px;
       top: 15px;
-      border-radius: 4px;
+      border-radius: var(--avatar-border-radius);
       width: 40px;
       height: 40px;
     }
@@ -1538,7 +1615,7 @@ a.sparkline {
       .username {
         color: $primary-text-color;
         font-weight: 500;
-        margin-right: 5px;
+        margin-inline-end: 5px;
 
         a {
           color: inherit;
@@ -1553,7 +1630,7 @@ a.sparkline {
       }
 
       time {
-        margin-left: 5px;
+        margin-inline-start: 5px;
         vertical-align: baseline;
       }
     }
@@ -1574,25 +1651,31 @@ a.sparkline {
           margin-bottom: 0;
         }
       }
+
+      a {
+        color: $highlight-text-color;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     &__actions {
       position: absolute;
       top: 15px;
-      right: 15px;
-      text-align: right;
+      inset-inline-end: 15px;
+      text-align: end;
     }
   }
 }
 
 .report-actions {
-  border: 1px solid darken($ui-base-color, 8%);
-
   &__item {
     display: flex;
     align-items: center;
     line-height: 18px;
-    border-bottom: 1px solid darken($ui-base-color, 8%);
 
     &:last-child {
       border-bottom: 0;
@@ -1603,7 +1686,7 @@ a.sparkline {
       flex: 0 0 auto;
       width: 200px;
       padding: 15px;
-      padding-right: 0;
+      padding-inline-end: 0;
 
       .button {
         display: block;
@@ -1618,7 +1701,7 @@ a.sparkline {
     }
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (width <= 800px) {
     border: 0;
 
     &__item {
@@ -1655,8 +1738,6 @@ a.sparkline {
 
 .strike-card {
   padding: 15px;
-  border-radius: 4px;
-  background: $ui-base-color;
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
@@ -1664,6 +1745,17 @@ a.sparkline {
   color: $primary-text-color;
   box-sizing: border-box;
   min-height: 100%;
+  border: 1px solid var(--background-border-color);
+  border-radius: 4px;
+
+  a {
+    color: $highlight-text-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
   p {
     margin-bottom: 20px;
@@ -1680,7 +1772,7 @@ a.sparkline {
 
   &__rules {
     list-style: disc;
-    padding-left: 15px;
+    padding-inline-start: 15px;
     margin-bottom: 20px;
     color: $darker-text-color;
 
@@ -1695,15 +1787,14 @@ a.sparkline {
 
   &__statuses-list {
     border-radius: 4px;
-    border: 1px solid darken($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     font-size: 13px;
     line-height: 18px;
     overflow: hidden;
 
     &__item {
       padding: 16px;
-      background: lighten($ui-base-color, 2%);
-      border-bottom: 1px solid darken($ui-base-color, 8%);
+      border-bottom: 1px solid var(--background-border-color);
 
       &:last-child {
         border-bottom: 0;
@@ -1769,7 +1860,7 @@ a.sparkline {
 
   li {
     counter-increment: step 1;
-    padding-left: 2.5rem;
+    padding-inline-start: 2.5rem;
     padding-bottom: 8px;
     position: relative;
     margin-bottom: 8px;
@@ -1779,7 +1870,7 @@ a.sparkline {
       content: counter(step);
       font-size: 0.625rem;
       font-weight: 500;
-      left: 0;
+      inset-inline-start: 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1793,12 +1884,12 @@ a.sparkline {
 
     &::after {
       position: absolute;
-      content: "";
+      content: '';
       width: 1px;
       background: $highlight-text-color;
       bottom: 0;
       top: calc(1.875rem + 1px);
-      left: 0.6875rem;
+      inset-inline-start: 0.6875rem;
     }
 
     &:last-child {
@@ -1822,6 +1913,107 @@ a.sparkline {
       border: 1px solid lighten($ui-base-color, 4%);
       background: $ui-base-color;
       border-radius: 4px;
+    }
+  }
+}
+
+.status__card {
+  padding: 15px;
+  border-radius: 4px;
+  background: $ui-base-color;
+  font-size: 15px;
+  line-height: 20px;
+  word-wrap: break-word;
+  font-weight: 400;
+  border: 1px solid lighten($ui-base-color, 4%);
+  color: $primary-text-color;
+  box-sizing: border-box;
+  min-height: 100%;
+
+  .status__prepend {
+    padding: 0 0 15px;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .status__content {
+    padding-top: 0;
+
+    summary {
+      display: list-item;
+    }
+  }
+}
+
+.admin {
+  &__terms-of-service {
+    &__container {
+      background: var(--surface-background-color);
+      border-radius: 8px;
+      border: 1px solid var(--background-border-color);
+      overflow: hidden;
+
+      &__header {
+        padding: 16px;
+        font-size: 14px;
+        line-height: 20px;
+        color: $secondary-text-color;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      &__body {
+        background: var(--background-color);
+        padding: 16px;
+        overflow-y: scroll;
+        height: 30vh;
+      }
+    }
+
+    &__history {
+      & > li {
+        border-bottom: 1px solid var(--background-border-color);
+
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+
+      &__item {
+        padding: 16px 0;
+        padding-bottom: 8px;
+
+        h5 {
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: 600;
+          margin-bottom: 16px;
+        }
+      }
+    }
+  }
+}
+
+.dot-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+
+  &__indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: $dark-text-color;
+  }
+
+  &.success {
+    color: $valid-value-color;
+
+    .dot-indicator__indicator {
+      background-color: $valid-value-color;
     }
   }
 }

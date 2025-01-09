@@ -6,6 +6,7 @@ class Admin::Disputes::AppealsController < Admin::BaseController
   def index
     authorize :appeal, :index?
 
+    @pending_appeals_count = Appeal.pending.async_count
     @appeals = filtered_appeals.page(params[:page])
   end
 
@@ -20,7 +21,7 @@ class Admin::Disputes::AppealsController < Admin::BaseController
     authorize @appeal, :approve?
     log_action :reject, @appeal
     @appeal.reject!(current_account)
-    UserMailer.appeal_rejected(@appeal.account.user, @appeal)
+    UserMailer.appeal_rejected(@appeal.account.user, @appeal).deliver_later
     redirect_to disputes_strike_path(@appeal.strike)
   end
 

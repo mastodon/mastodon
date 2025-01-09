@@ -1,13 +1,11 @@
-require Rails.root.join('lib', 'mastodon', 'migration_helpers')
+# frozen_string_literal: true
 
 class AddRejectReportsToDomainBlocks < ActiveRecord::Migration[5.2]
-  include Mastodon::MigrationHelpers
-
   disable_ddl_transaction!
 
   def up
     safety_assured do
-      add_column_with_default :domain_blocks, :reject_reports, :boolean, default: false, allow_null: false
+      add_column :domain_blocks, :reject_reports, :boolean, default: false, null: false
     end
   end
 

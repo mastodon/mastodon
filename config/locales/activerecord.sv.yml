@@ -15,9 +15,17 @@ sv:
       user/invite_request:
         text: Anledning
     errors:
+      attributes:
+        domain:
+          invalid: är inte ett giltigt domännamn
+      messages:
+        invalid_domain_on_line: "%{value} Är inte ett giltigt domännamn"
+        too_many_lines: överskrider gränsen på %{limit} rader
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: innehåller värden med saknade etiketter
             username:
               invalid: endast bokstäver, siffror och understrykning
               reserved: är reserverat
@@ -33,6 +41,11 @@ sv:
           attributes:
             data:
               malformed: är felformad
+        list_account:
+          attributes:
+            account_id:
+              taken: finns redan i listan
+          must_be_following: måste vara ett följt konto
         status:
           attributes:
             reblog:
@@ -53,3 +66,7 @@ sv:
             position:
               elevated: kan inte vara högre än din nuvarande roll
               own_role: kan inte ändras med din nuvarande roll
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: kan inte inkludera händelser som du inte har rättigheter till

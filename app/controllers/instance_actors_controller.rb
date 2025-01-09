@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
-class InstanceActorsController < ApplicationController
-  include AccountControllerConcern
+class InstanceActorsController < ActivityPub::BaseController
+  vary_by ''
 
-  skip_before_action :check_account_confirmation
-  skip_around_action :set_locale
+  serialization_scope nil
+
+  before_action :set_account
+
+  skip_before_action :authenticate_user! # From `AccountOwnedConcern`
+  skip_before_action :require_functional!
+  skip_before_action :update_user_sign_in
 
   def show
     expires_in 10.minutes, public: true
@@ -12,6 +17,11 @@ class InstanceActorsController < ApplicationController
   end
 
   private
+
+  # Skips various `before_action` from `AccountOwnedConcern`
+  def account_required?
+    false
+  end
 
   def set_account
     @account = Account.representative

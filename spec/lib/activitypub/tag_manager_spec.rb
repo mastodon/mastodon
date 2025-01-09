@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::TagManager do
@@ -50,20 +52,27 @@ RSpec.describe ActivityPub::TagManager do
       expect(subject.to(status)).to include(subject.followers_uri_for(mentioned))
     end
 
-    it "returns URIs of mentions for direct silenced author's status only if they are followers or requesting to be" do
-      bob    = Fabricate(:account, username: 'bob')
-      alice  = Fabricate(:account, username: 'alice')
-      foo    = Fabricate(:account)
-      author = Fabricate(:account, username: 'author', silenced: true)
-      status = Fabricate(:status, visibility: :direct, account: author)
-      bob.follow!(author)
-      FollowRequest.create!(account: foo, target_account: author)
-      status.mentions.create(account: alice)
-      status.mentions.create(account: bob)
-      status.mentions.create(account: foo)
-      expect(subject.to(status)).to include(subject.uri_for(bob))
-      expect(subject.to(status)).to include(subject.uri_for(foo))
-      expect(subject.to(status)).to_not include(subject.uri_for(alice))
+    context 'with followers and requested followers' do
+      let!(:bob) { Fabricate(:account, username: 'bob') }
+      let!(:alice) { Fabricate(:account, username: 'alice') }
+      let!(:foo) { Fabricate(:account) }
+      let!(:author) { Fabricate(:account, username: 'author', silenced: true) }
+      let!(:status) { Fabricate(:status, visibility: :direct, account: author) }
+
+      before do
+        bob.follow!(author)
+        FollowRequest.create!(account: foo, target_account: author)
+        status.mentions.create(account: alice)
+        status.mentions.create(account: bob)
+        status.mentions.create(account: foo)
+      end
+
+      it "returns URIs of mentions for direct silenced author's status only if they are followers or requesting to be" do
+        expect(subject.to(status))
+          .to include(subject.uri_for(bob))
+          .and include(subject.uri_for(foo))
+          .and not_include(subject.uri_for(alice))
+      end
     end
   end
 
@@ -95,20 +104,35 @@ RSpec.describe ActivityPub::TagManager do
       expect(subject.cc(status)).to include(subject.uri_for(mentioned))
     end
 
-    it "returns URIs of mentions for silenced author's non-direct status only if they are followers or requesting to be" do
-      bob    = Fabricate(:account, username: 'bob')
+    context 'with followers and requested followers' do
+      let!(:bob) { Fabricate(:account, username: 'bob') }
+      let!(:alice) { Fabricate(:account, username: 'alice') }
+      let!(:foo) { Fabricate(:account) }
+      let!(:author) { Fabricate(:account, username: 'author', silenced: true) }
+      let!(:status) { Fabricate(:status, visibility: :public, account: author) }
+
+      before do
+        bob.follow!(author)
+        FollowRequest.create!(account: foo, target_account: author)
+        status.mentions.create(account: alice)
+        status.mentions.create(account: bob)
+        status.mentions.create(account: foo)
+      end
+
+      it "returns URIs of mentions for silenced author's non-direct status only if they are followers or requesting to be" do
+        expect(subject.cc(status))
+          .to include(subject.uri_for(bob))
+          .and include(subject.uri_for(foo))
+          .and not_include(subject.uri_for(alice))
+      end
+    end
+
+    it 'returns poster of reblogged post, if reblog' do
+      bob    = Fabricate(:account, username: 'bob', domain: 'example.com', inbox_url: 'http://example.com/bob')
       alice  = Fabricate(:account, username: 'alice')
-      foo    = Fabricate(:account)
-      author = Fabricate(:account, username: 'author', silenced: true)
-      status = Fabricate(:status, visibility: :public, account: author)
-      bob.follow!(author)
-      FollowRequest.create!(account: foo, target_account: author)
-      status.mentions.create(account: alice)
-      status.mentions.create(account: bob)
-      status.mentions.create(account: foo)
-      expect(subject.cc(status)).to include(subject.uri_for(bob))
-      expect(subject.cc(status)).to include(subject.uri_for(foo))
-      expect(subject.cc(status)).to_not include(subject.uri_for(alice))
+      status = Fabricate(:status, visibility: :public, account: bob)
+      reblog = Fabricate(:status, visibility: :public, account: alice, reblog: status)
+      expect(subject.cc(reblog)).to include(subject.uri_for(bob))
     end
   end
 
@@ -137,7 +161,7 @@ RSpec.describe ActivityPub::TagManager do
     end
 
     it 'returns the remote account by matching URI without fragment part' do
-      account = Fabricate(:account, uri: 'https://example.com/123')
+      account = Fabricate(:account, uri: 'https://example.com/123', domain: 'example.com')
       expect(subject.uri_to_resource('https://example.com/123#456', Account)).to eq account
     end
 

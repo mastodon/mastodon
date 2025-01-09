@@ -1,152 +1,80 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe StatusesHelper, type: :helper do
-  describe '#stream_link_target' do
-    it 'returns nil if it is not an embedded view' do
-      set_not_embedded_view
+RSpec.describe StatusesHelper do
+  describe 'status_text_summary' do
+    context 'with blank text' do
+      let(:status) { Status.new(spoiler_text: '') }
 
-      expect(helper.stream_link_target).to be_nil
+      it 'returns immediately with nil' do
+        result = helper.status_text_summary(status)
+        expect(result).to be_nil
+      end
     end
 
-    it 'returns _blank if it is an embedded view' do
-      set_embedded_view
+    context 'with present text' do
+      let(:status) { Status.new(spoiler_text: 'SPOILERS!!!') }
 
-      expect(helper.stream_link_target).to eq '_blank'
-    end
-  end
-
-  def set_not_embedded_view
-    params[:controller] = "not_#{StatusesHelper::EMBEDDED_CONTROLLER}"
-    params[:action] = "not_#{StatusesHelper::EMBEDDED_ACTION}"
-  end
-
-  def set_embedded_view
-    params[:controller] = StatusesHelper::EMBEDDED_CONTROLLER
-    params[:action] = StatusesHelper::EMBEDDED_ACTION
-  end
-
-  describe '#style_classes' do
-    it do
-      status = double(reblog?: false)
-      classes = helper.style_classes(status, false, false, false)
-
-      expect(classes).to eq 'entry'
-    end
-
-    it do
-      status = double(reblog?: true)
-      classes = helper.style_classes(status, false, false, false)
-
-      expect(classes).to eq 'entry entry-reblog'
-    end
-
-    it do
-      status = double(reblog?: false)
-      classes = helper.style_classes(status, true, false, false)
-
-      expect(classes).to eq 'entry entry-predecessor'
-    end
-
-    it do
-      status = double(reblog?: false)
-      classes = helper.style_classes(status, false, true, false)
-
-      expect(classes).to eq 'entry entry-successor'
-    end
-
-    it do
-      status = double(reblog?: false)
-      classes = helper.style_classes(status, false, false, true)
-
-      expect(classes).to eq 'entry entry-center'
-    end
-
-    it do
-      status = double(reblog?: true)
-      classes = helper.style_classes(status, true, true, true)
-
-      expect(classes).to eq 'entry entry-predecessor entry-reblog entry-successor entry-center'
+      it 'returns the content warning' do
+        result = helper.status_text_summary(status)
+        expect(result).to eq(I18n.t('statuses.content_warning', warning: 'SPOILERS!!!'))
+      end
     end
   end
 
-  describe '#microformats_classes' do
-    it do
-      status = double(reblog?: false)
-      classes = helper.microformats_classes(status, false, false)
+  describe '#media_summary' do
+    it 'describes the media on a status' do
+      status = Fabricate :status
+      Fabricate :media_attachment, status: status, type: :video
+      Fabricate :media_attachment, status: status, type: :audio
+      Fabricate :media_attachment, status: status, type: :image
 
-      expect(classes).to eq ''
-    end
+      result = helper.media_summary(status)
 
-    it do
-      status = double(reblog?: false)
-      classes = helper.microformats_classes(status, true, false)
-
-      expect(classes).to eq 'p-in-reply-to'
-    end
-
-    it do
-      status = double(reblog?: false)
-      classes = helper.microformats_classes(status, false, true)
-
-      expect(classes).to eq 'p-comment'
-    end
-
-    it do
-      status = double(reblog?: true)
-      classes = helper.microformats_classes(status, true, false)
-
-      expect(classes).to eq 'p-in-reply-to p-repost-of'
-    end
-
-    it do
-      status = double(reblog?: true)
-      classes = helper.microformats_classes(status, true, true)
-
-      expect(classes).to eq 'p-in-reply-to p-repost-of p-comment'
+      expect(result).to eq('Attached: 1 image · 1 video · 1 audio')
     end
   end
 
-  describe '#microformats_h_class' do
-    it do
-      status = double(reblog?: false)
-      css_class = helper.microformats_h_class(status, false, false, false)
+  describe 'visibility_icon' do
+    context 'with a status that is public' do
+      let(:status) { Status.new(visibility: 'public') }
 
-      expect(css_class).to eq 'h-entry'
+      it 'returns the correct fa icon' do
+        result = helper.visibility_icon(status)
+
+        expect(result).to match('globe')
+      end
     end
 
-    it do
-      status = double(reblog?: true)
-      css_class = helper.microformats_h_class(status, false, false, false)
+    context 'with a status that is unlisted' do
+      let(:status) { Status.new(visibility: 'unlisted') }
 
-      expect(css_class).to eq 'h-cite'
+      it 'returns the correct fa icon' do
+        result = helper.visibility_icon(status)
+
+        expect(result).to match('lock_open')
+      end
     end
 
-    it do
-      status = double(reblog?: false)
-      css_class = helper.microformats_h_class(status, true, false, false)
+    context 'with a status that is private' do
+      let(:status) { Status.new(visibility: 'private') }
 
-      expect(css_class).to eq 'h-cite'
+      it 'returns the correct fa icon' do
+        result = helper.visibility_icon(status)
+
+        expect(result).to match('lock')
+      end
     end
 
-    it do
-      status = double(reblog?: false)
-      css_class = helper.microformats_h_class(status, false, true, false)
+    context 'with a status that is direct' do
+      let(:status) { Status.new(visibility: 'direct') }
 
-      expect(css_class).to eq 'h-cite'
-    end
+      it 'returns the correct fa icon' do
+        result = helper.visibility_icon(status)
 
-    it do
-      status = double(reblog?: false)
-      css_class = helper.microformats_h_class(status, false, false, true)
-
-      expect(css_class).to eq ''
-    end
-
-    it do
-      status = double(reblog?: true)
-      css_class = helper.microformats_h_class(status, true, true, true)
-
-      expect(css_class).to eq 'h-cite'
+        expect(result).to match('alternate_email')
+      end
     end
   end
 end

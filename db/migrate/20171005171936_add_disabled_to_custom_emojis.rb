@@ -1,12 +1,10 @@
-require Rails.root.join('lib', 'mastodon', 'migration_helpers')
+# frozen_string_literal: true
 
-class AddDisabledToCustomEmojis < ActiveRecord::Migration[5.1]
-  include Mastodon::MigrationHelpers
-
+class AddDisabledToCustomEmojis < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def up
-    safety_assured { add_column_with_default :custom_emojis, :disabled, :bool, default: false }
+    safety_assured { add_column :custom_emojis, :disabled, :bool, default: false, null: false }
   end
 
   def down

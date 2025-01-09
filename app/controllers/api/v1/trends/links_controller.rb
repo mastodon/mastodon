@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Trends::LinksController < Api::BaseController
+  vary_by 'Authorization, Accept-Language'
+
   before_action :set_links
 
   after_action :insert_pagination_headers
@@ -8,6 +10,7 @@ class Api::V1::Trends::LinksController < Api::BaseController
   DEFAULT_LINKS_LIMIT = 10
 
   def index
+    cache_if_unauthenticated!
     render json: @links, each_serializer: REST::Trends::LinkSerializer
   end
 
@@ -18,27 +21,17 @@ class Api::V1::Trends::LinksController < Api::BaseController
   end
 
   def set_links
-    @links = begin
-      if enabled?
-        links_from_trends.offset(offset_param).limit(limit_param(DEFAULT_LINKS_LIMIT))
-      else
-        []
-      end
-    end
+    @links = if enabled?
+               links_from_trends.offset(offset_param).limit(limit_param(DEFAULT_LINKS_LIMIT))
+             else
+               []
+             end
   end
 
   def links_from_trends
     scope = Trends.links.query.allowed.in_locale(content_locale)
     scope = scope.filtered_for(current_account) if user_signed_in?
     scope
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 
   def next_path

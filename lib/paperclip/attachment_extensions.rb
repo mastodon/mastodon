@@ -8,7 +8,7 @@ module Paperclip
 
     # monkey-patch to avoid unlinking too avoid unlinking source file too early
     # see https://github.com/kreeti/kt-paperclip/issues/64
-    def post_process_style(name, style) #:nodoc:
+    def post_process_style(name, style) # :nodoc:
       raise "Style #{name} has no processors defined." if style.processors.blank?
 
       intermediate_files = []
@@ -16,16 +16,16 @@ module Paperclip
       # if we're processing the original, close + unlink the source tempfile
       intermediate_files << original if name == :original
 
-      @queued_for_write[name] = style.processors.
-                                inject(original) do |file, processor|
+      @queued_for_write[name] = style.processors
+                                     .inject(original) do |file, processor|
         file = Paperclip.processor(processor).make(file, style.processor_options, self)
         intermediate_files << file unless file == original
         file
       end
 
       unadapted_file = @queued_for_write[name]
-      @queued_for_write[name] = Paperclip.io_adapters.
-                                for(@queued_for_write[name], @options[:adapter_options])
+      @queued_for_write[name] = Paperclip.io_adapters
+                                         .for(@queued_for_write[name], @options[:adapter_options])
       unadapted_file.close if unadapted_file.respond_to?(:close)
       @queued_for_write[name]
     rescue Paperclip::Errors::NotIdentifiedByImageMagickError => e
@@ -84,13 +84,11 @@ module Paperclip
       # Don't go through Stoplight if we don't have anything object-storage-oriented to do
       return super if @queued_for_delete.empty? && @queued_for_write.empty? && !dirty?
 
-      Stoplight('object-storage') { super }.with_threshold(STOPLIGHT_THRESHOLD).with_cool_off_time(STOPLIGHT_COOLDOWN).with_error_handler do |error, handle|
-        if error.is_a?(Seahorse::Client::NetworkingError)
-          handle.call(error)
-        else
-          raise error
-        end
-      end.run
+      Stoplight('object-storage')
+        .with_threshold(STOPLIGHT_THRESHOLD)
+        .with_cool_off_time(STOPLIGHT_COOLDOWN)
+        .with_error_handler { |error, handle| error.is_a?(Seahorse::Client::NetworkingError) ? handle.call(error) : raise(error) }
+        .run { super }
     end
   end
 end

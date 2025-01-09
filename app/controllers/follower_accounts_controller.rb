@@ -3,18 +3,18 @@
 class FollowerAccountsController < ApplicationController
   include AccountControllerConcern
   include SignatureVerification
-  include WebAppControllerConcern
+
+  vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
 
   before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
-  before_action :set_cache_headers
 
   skip_around_action :set_locale, if: -> { request.format == :json }
-  skip_before_action :require_functional!, unless: :whitelist_mode?
+  skip_before_action :require_functional!, unless: :limited_federation_mode?
 
   def index
     respond_to do |format|
       format.html do
-        expires_in 0, public: true unless user_signed_in?
+        expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.hour) unless user_signed_in?
       end
 
       format.json do
@@ -63,7 +63,7 @@ class FollowerAccountsController < ApplicationController
         id: account_followers_url(@account, page: params.fetch(:page, 1)),
         type: :ordered,
         size: @account.followers_count,
-        items: follows.map { |f| ActivityPub::TagManager.instance.uri_for(f.account) },
+        items: follows.map { |follow| ActivityPub::TagManager.instance.uri_for(follow.account) },
         part_of: account_followers_url(@account),
         next: next_page_url,
         prev: prev_page_url

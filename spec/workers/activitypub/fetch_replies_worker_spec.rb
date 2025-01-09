@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-describe ActivityPub::FetchRepliesWorker do
+RSpec.describe ActivityPub::FetchRepliesWorker do
   subject { described_class.new }
 
-  let(:account) { Fabricate(:account, uri: 'https://example.com/user/1') }
+  let(:account) { Fabricate(:account, domain: 'example.com') }
   let(:status)  { Fabricate(:status, account: account) }
 
   let(:payload) do
@@ -21,7 +21,7 @@ describe ActivityPub::FetchRepliesWorker do
 
   describe 'perform' do
     it 'performs a request if the collection URI is from the same host' do
-      stub_request(:get, 'https://example.com/statuses_replies/1').to_return(status: 200, body: json)
+      stub_request(:get, 'https://example.com/statuses_replies/1').to_return(status: 200, body: json, headers: { 'Content-Type': 'application/activity+json' })
       subject.perform(status.id, 'https://example.com/statuses_replies/1')
       expect(a_request(:get, 'https://example.com/statuses_replies/1')).to have_been_made.once
     end

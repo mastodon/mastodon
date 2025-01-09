@@ -11,6 +11,9 @@ class ScopeTransformer < Parslet::Transform
       @namespace = scope[:namespace]&.to_s
       @access    = scope[:access] ? [scope[:access].to_s] : DEFAULT_ACCESS.dup
       @term      = scope[:term]&.to_s || DEFAULT_TERM
+
+      # # override for profile scope which is read only
+      @access = %w(read) if @term == 'profile'
     end
 
     def key
@@ -28,7 +31,7 @@ class ScopeTransformer < Parslet::Transform
     def merge!(other_scope)
       raise ArgumentError unless other_scope.namespace == namespace && other_scope.term == term
 
-      @access.concat(other_scope.instance_variable_get('@access'))
+      @access.concat(other_scope.instance_variable_get(:@access))
       @access.uniq!
       @access.sort!
 

@@ -15,9 +15,17 @@ tr:
       user/invite_request:
         text: Gerekçe
     errors:
+      attributes:
+        domain:
+          invalid: geçerli bir alan adı değil
+      messages:
+        invalid_domain_on_line: "%{value} geçerli bir alan adı değil"
+        too_many_lines: "%{limit} satır sınırının üzerinde"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: etiketleri eksik değerler içeriyor
             username:
               invalid: sadece harfler, sayılar ve alt çizgiler
               reserved: kullanılamaz
@@ -28,11 +36,16 @@ tr:
         doorkeeper/application:
           attributes:
             website:
-              invalid: geçerli bir URL değil
+              invalid: geçerli bir bağlantı değil
         import:
           attributes:
             data:
               malformed: bozulmuştur
+        list_account:
+          attributes:
+            account_id:
+              taken: zaten listede var
+          must_be_following: takip edilen bir hesap olmalı
         status:
           attributes:
             reblog:
@@ -53,3 +66,7 @@ tr:
             position:
               elevated: mevcut rolünüzden yüksek olamaz
               own_role: mevcut rolünüzle değiştirilemez
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: erişim hakkınız olmayan olayları içeremez

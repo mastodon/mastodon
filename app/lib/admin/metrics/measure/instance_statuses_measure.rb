@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure::BaseMeasure
+  include Admin::Metrics::Measure::QueryHelper
+
   def self.with_params?
     true
   end
@@ -16,45 +18,47 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
   protected
 
   def perform_total_query
-    Status.joins(:account).merge(Account.where(domain: params[:domain])).count
+    domain = params[:domain]
+    domain = Instance.by_domain_and_subdomains(params[:domain]).select(:domain) if params[:include_subdomains]
+    Status.joins(:account).merge(Account.where(domain: domain)).count
   end
 
   def perform_previous_total_query
     nil
   end
 
-  def perform_data_query
-    sql = <<-SQL.squish
+  def sql_array
+    [sql_query_string, { start_at: @start_at, end_at: @end_at, domain: params[:domain], earliest_status_id: earliest_status_id, latest_status_id: latest_status_id }]
+  end
+
+  def sql_query_string
+    <<~SQL.squish
       SELECT axis.*, (
         WITH new_statuses AS (
           SELECT statuses.id
           FROM statuses
           INNER JOIN accounts ON accounts.id = statuses.account_id
-          WHERE statuses.id BETWEEN $3 AND $4
-            AND accounts.domain = $5::text
+          WHERE statuses.id BETWEEN :earliest_status_id AND :latest_status_id
+            AND #{account_domain_sql(params[:include_subdomains])}
             AND date_trunc('day', statuses.created_at)::date = axis.period
         )
         SELECT count(*) FROM new_statuses
       ) AS value
       FROM (
-        SELECT generate_series(date_trunc('day', $1::timestamp)::date, date_trunc('day', $2::timestamp)::date, interval '1 day') AS period
+        #{generated_series_days}
       ) AS axis
     SQL
-
-    rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, @start_at], [nil, @end_at], [nil, Mastodon::Snowflake.id_at(@start_at, with_random: false)], [nil, Mastodon::Snowflake.id_at(@end_at, with_random: false)], [nil, params[:domain]]])
-
-    rows.map { |row| { date: row['period'], value: row['value'].to_s } }
   end
 
-  def time_period
-    (@start_at.to_date..@end_at.to_date)
+  def earliest_status_id
+    Mastodon::Snowflake.id_at(@start_at.beginning_of_day, with_random: false)
   end
 
-  def previous_time_period
-    ((@start_at.to_date - length_of_period)..(@end_at.to_date - length_of_period))
+  def latest_status_id
+    Mastodon::Snowflake.id_at(@end_at.end_of_day, with_random: false)
   end
 
   def params
-    @params.permit(:domain)
+    @params.permit(:domain, :include_subdomains)
   end
 end

@@ -60,7 +60,7 @@ ja:
       error:
         title: エラーが発生しました
       new:
-        prompt_html: "%{client_name}があなたのアカウントにアクセスする許可を求めています。<strong>心当たりが無い場合はアクセス許可しないでください。</strong>"
+        prompt_html: "%{client_name} があなたのアカウントにアクセスするための許可を求めています。<strong>このリクエストを承認するのは、信頼できる相手であると認識している場合のみです。</strong>"
         review_permissions: アクセス許可を確認
         title: 認証が必要です
       show:
@@ -83,6 +83,7 @@ ja:
         access_denied: リソースの所有者または認証サーバーが要求を拒否しました。
         credential_flow_not_configured: リソース所有者のパスワード Doorkeeper.configure.resource_owner_from_credentials が設定されていないためクレデンシャルフローに失敗しました。
         invalid_client: 不明なクライアントであるか、クライアント情報が含まれていない、またはサポートされていない認証方法のため、クライアントの認証に失敗しました。
+        invalid_code_challenge_method: code challenge methodはS256のみが利用可能です。plainはサポートされていません。
         invalid_grant: 指定された認証許可は無効であるか、期限切れ、取り消されている、リダイレクトURIの不一致、または別のクライアントに発行されています。
         invalid_redirect_uri: 無効なリダイレクトURIが含まれています。
         invalid_request:
@@ -122,19 +123,20 @@ ja:
         admin/accounts: アカウント管理
         admin/all: すべての管理機能
         admin/reports: 通報の管理
-        all: すべて
+        all: Mastodonアカウントへのフルアクセス
         blocks: ブロック
         bookmarks: ブックマーク
         conversations: 会話
         crypto: エンドツーエンド暗号化
         favourites: お気に入り
         filters: フィルター
-        follow: フォロー・フォロワー
+        follow: フォロー、ミュート、ブロック
         follows: フォロー
         lists: リスト
         media: メディアの添付
         mutes: ミュート
         notifications: 通知
+        profile: Mastodonのプロフィール
         push: プッシュ通知
         reports: 通報
         search: 検索
@@ -149,12 +151,23 @@ ja:
     scopes:
       admin:read: サーバーのすべてのデータの読み取り
       admin:read:accounts: すべてのアカウントの機密情報の読み取り
+      admin:read:canonical_email_blocks: すべてのブロックしたメールアドレスの読み取り
+      admin:read:domain_allows: すべての許可したドメインの読み取り
+      admin:read:domain_blocks: すべてのブロックしたドメインの読み取り
+      admin:read:email_domain_blocks: すべてのブロックしたメールドメインの読み取り
+      admin:read:ip_blocks: すべてのブロックしたIPアドレスの読み取り
       admin:read:reports: すべての通報と通報されたアカウントの機密情報の読み取り
       admin:write: サーバーのすべてのデータの変更
       admin:write:accounts: アカウントに対するアクションの実行
+      admin:write:canonical_email_blocks: メールアドレスのブロックに関するアクションの実行
+      admin:write:domain_allows: ドメイン許可に関するアクションの実行
+      admin:write:domain_blocks: ドメインのブロックに関するアクションの実行
+      admin:write:email_domain_blocks: メールドメインのブロックに関するアクションの実行
+      admin:write:ip_blocks: IPアドレスのブロックに関するアクションの実行
       admin:write:reports: 通報に対するアクションの実行
       crypto: エンドツーエンド暗号化の使用
       follow: アカウントのつながりを変更
+      profile: アカウントのプロフィール情報の読み取りのみ
       push: プッシュ通知の受信
       read: アカウントのすべてのデータの読み取り
       read:accounts: アカウント情報の読み取り
@@ -174,7 +187,7 @@ ja:
       write:blocks: ユーザーのブロックやドメインの非表示
       write:bookmarks: 投稿のブックマーク登録
       write:conversations: 会話のミュートと削除
-      write:favourites: 投稿のお気に入り登録
+      write:favourites: お気に入りの投稿
       write:filters: フィルターの変更
       write:follows: あなたの代わりにフォロー、アンフォロー
       write:lists: リストの変更

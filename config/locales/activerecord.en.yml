@@ -15,9 +15,17 @@ en:
       user/invite_request:
         text: Reason
     errors:
+      attributes:
+        domain:
+          invalid: is not a valid domain name
+      messages:
+        invalid_domain_on_line: "%{value} is not a valid domain name"
+        too_many_lines: is over the limit of %{limit} lines
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: contains values with missing labels
             username:
               invalid: must contain only letters, numbers and underscores
               reserved: is reserved
@@ -33,6 +41,11 @@ en:
           attributes:
             data:
               malformed: is malformed
+        list_account:
+          attributes:
+            account_id:
+              taken: is already on the list
+          must_be_following: must be a followed account
         status:
           attributes:
             reblog:
@@ -53,3 +66,7 @@ en:
             position:
               elevated: cannot be higher than your current role
               own_role: cannot be changed with your current role
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: cannot include events you don't have the rights to

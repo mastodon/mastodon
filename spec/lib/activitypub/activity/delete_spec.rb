@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Delete do
@@ -30,6 +32,7 @@ RSpec.describe ActivityPub::Activity::Delete do
   context 'when the status has been reblogged' do
     describe '#perform' do
       subject { described_class.new(json, sender) }
+
       let!(:reblogger) { Fabricate(:account) }
       let!(:follower)  { Fabricate(:account, username: 'follower', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
       let!(:reblog)    { Fabricate(:status, account: reblogger, reblog: status) }
@@ -44,8 +47,12 @@ RSpec.describe ActivityPub::Activity::Delete do
         expect(Status.find_by(id: status.id)).to be_nil
       end
 
-      it 'sends delete activity to followers of rebloggers' do
+      it 'sends delete activity to followers of rebloggers', :inline_jobs do
         expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
+      end
+
+      it 'deletes the reblog' do
+        expect { reblog.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
@@ -53,6 +60,7 @@ RSpec.describe ActivityPub::Activity::Delete do
   context 'when the status has been reported' do
     describe '#perform' do
       subject { described_class.new(json, sender) }
+
       let!(:reporter) { Fabricate(:account) }
 
       before do

@@ -1,0 +1,116 @@
+---
+ie:
+  devise:
+    confirmations:
+      confirmed: Tui e-mail adresse ha esset confirmat successosimen.
+      send_instructions: Pos quelc minutes tu va reciver un e-posta con instructiones pri qualmen confirmar tui adresse electronic. Ples confirmar tui spamiere si tu ne vide li e-posta.
+      send_paranoid_instructions: Si tui email-adresse existe in nor database, pos quelc minutes tu va reciver un e-posta con instructiones pri qualmen confirmar tui adresse electronic. Ples confirmar tui spamiere si tu ne recivet ti-ci email.
+    failure:
+      already_authenticated: Tu ha ja intrat.
+      inactive: Tui conto ancor ne ha esset activat.
+      invalid: Ínvalid %{authentication_keys} o passa-parol.
+      last_attempt: Hay solmen un prova ante que tui conto deveni serrat.
+      locked: Tui conto es serrat.
+      not_found_in_database: Ínvalid %{authentication_keys} o passa-parol.
+      omniauth_user_creation_failure: Errore in li creation de un conto por ti-ci identitá.
+      pending: Tui conto es ancor sub revision.
+      timeout: Tui session ha expirat. Ples reintrar denov por continuar.
+      unauthenticated: Tu deve intrar o registrar te ante continuar.
+      unconfirmed: Tu deve confirmar tui e-posta ante continuar.
+    mailer:
+      confirmation_instructions:
+        action: Verificar e-posta
+        action_with_app: Confirma e retorna a%{app}
+        explanation: Tu ha creat un conto sur %{host} con ti-ci e-posta, quel tu posse activar per un sol clicc. Si it ne esset tu qui creat li conto, ples ignorar ti-ci missage.
+        explanation_when_pending: Tu ha demandat un invitation a %{host} con ti-ci e-posta. Pos confirmation de tui adresse, noi va inspecter tui aplication. Tu posse inloggar por changear detallies o deleter li conto, ma li pluparte del functiones va restar ínusabil til quande tui conto es aprobat. Tui data va esser deletet si tui conto es rejectet, e in ti casu tu ne besona far quelcunc cose. Si it ne esset tu qui creat li conto, ples ignorar ti-ci missage.
+        extra_html: Ples vider anc <a href="%{terms_path}">li regules del servitor</a> e <a href="%{policy_path}">nor termines de servicie</a>.
+        subject: 'Mastodon: Instructiones de confirmation por %{instance}'
+        title: Verificar e-posta
+      email_changed:
+        explanation: 'Li e-mail adresse de tui es changeat a:'
+        extra: Si tu ne changeat tui email-adresse, it es probabil que alqui ha ganiat accesse a tui conto. Ples changear tui passa-parol strax o contacter li administrator del servitor si tu ne posse intrar tui conto.
+        subject: 'Mastodon: E-posta changeat'
+        title: Nov adresse de e-posta
+      password_change:
+        explanation: Li passa-parol de tui conto ha esset changeat.
+        extra: Si tu ne changeat tui passa-parol, it es probabil que alqui ha ganiat accesse a tui conto. Ples changear tui passa-parol strax o contacter li administrator del servitor si tu ne posse intrar tui conto.
+        subject: 'Mastodon: Passa-parol changeat'
+        title: Passa-parol changeat
+      reconfirmation_instructions:
+        explanation: Confirmar li nov adresse por changeat tui e-posta.
+        extra: Ples ignorar ti-ci e-posta si li change ne esset efectuat per te. Li adresse electronic por li conto Mastodon ne va changear se si tu ne accesse li ligament in supra.
+        subject: 'Mastodon: E-posta de confirmation por %{instance}'
+        title: Verificar e-posta
+      reset_password_instructions:
+        action: Changear passa-parol
+        explanation: Tu demandat un nov passa-parol por tui conto.
+        extra: Si tu ne demandat to-ci, ples ignorar ti-ci email. Tui passa-parol ne va changear til que tu accessaye li ligament supra e crear un nov.
+        subject: 'Mastodon: Instructiones por reiniciar li passa-parol'
+        title: Reiniciar passa-parol
+      two_factor_disabled:
+        explanation: Aperter session es nu possibil solmen per email-adresse e passa-parol.
+        subject: 'Mastodon: 2-factor autentication desactivat'
+        subtitle: 2-factor autentication por tui conto ha esset desactivisat.
+        title: 2FA desvalidat
+      two_factor_enabled:
+        explanation: Un clave generat del acuplat TOTP-aplication nu va esser besonat por aperter session.
+        subject: 'Mastodon: 2-factor autentication activat'
+        subtitle: 2-factor autentication ha esset activisat por tui conto.
+        title: 2FA permisset
+      two_factor_recovery_codes_changed:
+        explanation: Li anteyan codes de recuperation ha esset ínvalidat, e novis generat.
+        subject: 'Mastodon: 2-factor codes de recuperation regenerat'
+        subtitle: Li anteyan codes de recuperation ha esset ínvalidat, e novis generat.
+        title: 2FA codes de recuperation changeat
+      unlock_instructions:
+        subject: 'Mastodon: Desserral instructiones'
+      webauthn_credential:
+        added:
+          explanation: Li sequent clave de securitá ha esset adjuntet a tui conto
+          subject: 'Mastodon: Nov clave de securitá'
+          title: Un nov clave de securitá ha esset adjuntet
+        deleted:
+          explanation: Li sequent clave de securitá ha esset deletet de tui conto
+          subject: 'Mastodon: Clave de securitá deletet'
+          title: Un ex tui claves de securitá ha esset deletet
+      webauthn_disabled:
+        explanation: Autentication per clave de securitá ha esset desactivisat por tui conto.
+        extra: Aperter session es nu possibil solmen per li clave generat del acuplat TOTP-aplication.
+        subject: 'Mastodon: Autentication con claves de securitá desactivisat'
+        title: Claves de securitá desactivisat
+      webauthn_enabled:
+        explanation: Autentication per clave de securitá ha esset activisat por tui conto.
+        extra: Tui clave de securitá nu posse esser usat por aperter session.
+        subject: 'Mastodon: Autentication per clave de securitá activat'
+        title: Claves de securitá activisat
+    omniauth_callbacks:
+      failure: Ne posset autenticar te de %{kind} pro "%{reason}".
+      success: Successosimen autenticat de conto %{kind}.
+    passwords:
+      no_token: Tu ne posse accessar ti-ci págine sin venir de un email pri reiniciar li passa-parol. Si tu ha venit de un email pri reiniciar li passa-parol, ples far cert que tu usat li complet URL providet.
+      send_instructions: Si tui email-adresse existe in nor database, tu va reciver un ligament por recuperar li passa-parol a tui email-adresse in quelc minutes. Ples vider tui spam-emails si tu ne recivet ti email.
+      send_paranoid_instructions: Si tui email-adresse existe in nor database, tu va reciver un ligament por recuperar li passa-parol a tui email-adresse in quelc minutes. Ples vider tui spam-emails si tu ne recivet ti email.
+      updated: Tui passa-parol ha esset changeat successosimen. Tu nu ha apertet session.
+      updated_not_active: Tui passa-parol ha esset changeat successosimen.
+    registrations:
+      destroyed: Adío! Tui conto ha esset anullat con successe. Noi espera revider te pos ne long.
+      update_needs_confirmation: Tu ha actualisat tui conto con successe, ma noi deve verificar tui nov adresse electronic. Ples confirmar tui e-postas e sequer li ligament de confirmation por confirmar li nov adresse, e inspecter tui spamiere si tu ne ha recivet li e-posta.
+      updated: Tui conto ha esset actualisat successosimen.
+    sessions:
+      already_signed_out: Exeat successosimen.
+      signed_in: Intrat successosimen.
+      signed_out: Exeat successosimen.
+    unlocks:
+      send_instructions: Pos quelc minutes tu va reciver un e-posta con instructiones pri qualmen desserrar tui adresse electronic. Ples confirmar tui spamiere si tu ne vide li e-posta.
+      send_paranoid_instructions: Si tui conto existe, pos quelc minutes tu va reciver un e-posta con instructiones pri qualmen desserrar it. Ples confirmar tui spamiere si tu ne recive li e-posta.
+      unlocked: Tui conto ha esset desserrat con successe. Ples intrar por continuar.
+  errors:
+    messages:
+      already_confirmed: esset ja confirmat, ples prova intrar
+      confirmation_period_expired: besona esser confirmat intra %{period}, ples demanda un nov
+      expired: ha expirat, ples demandar un nov
+      not_found: ne trovat
+      not_locked: ne esset serrat
+      not_saved:
+        one: '1 error prohibit ti %{resource} de esser conservat:'
+        other: "%{count} errores prohibit ti %{resource} de esser conservat:"

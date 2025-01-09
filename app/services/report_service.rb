@@ -10,13 +10,18 @@ class ReportService < BaseService
     @comment        = options.delete(:comment).presence || ''
     @category       = options[:rule_ids].present? ? 'violation' : (options.delete(:category).presence || 'other')
     @rule_ids       = options.delete(:rule_ids).presence
+    @application    = options.delete(:application).presence
     @options        = options
 
-    raise ActiveRecord::RecordNotFound if @target_account.suspended?
+    raise ActiveRecord::RecordNotFound if @target_account.unavailable?
 
     create_report!
     notify_staff!
-    forward_to_origin! if forward?
+
+    if forward?
+      forward_to_origin!
+      forward_to_replied_to!
+    end
 
     @report
   end
@@ -29,31 +34,48 @@ class ReportService < BaseService
       status_ids: reported_status_ids,
       comment: @comment,
       uri: @options[:uri],
-      forwarded: forward?,
+      forwarded: forward_to_origin?,
       category: @category,
-      rule_ids: @rule_ids
+      rule_ids: @rule_ids,
+      application: @application
     )
   end
 
   def notify_staff!
     return if @report.unresolved_siblings?
 
-    User.those_who_can(:manage_reports).includes(:account).each do |u|
+    User.those_who_can(:manage_reports).includes(:account).find_each do |u|
       LocalNotificationWorker.perform_async(u.account_id, @report.id, 'Report', 'admin.report')
-      AdminMailer.new_report(u.account, @report).deliver_later if u.allows_report_emails?
+      AdminMailer.with(recipient: u.account).new_report(@report).deliver_later if u.allows_report_emails?
     end
   end
 
   def forward_to_origin!
-    ActivityPub::DeliveryWorker.perform_async(
-      payload,
-      some_local_account.id,
-      @target_account.inbox_url
-    )
+    return unless forward_to_origin?
+
+    # Send report to the server where the account originates from
+    ActivityPub::DeliveryWorker.perform_async(payload, some_local_account.id, @target_account.inbox_url)
+  end
+
+  def forward_to_replied_to!
+    # Send report to servers to which the account was replying to, so they also have a chance to act
+    inbox_urls = Account.remote.where(domain: forward_to_domains).where(id: Status.where(id: reported_status_ids).where.not(in_reply_to_account_id: nil).select(:in_reply_to_account_id)).inboxes - [@target_account.inbox_url, @target_account.shared_inbox_url]
+
+    inbox_urls.each do |inbox_url|
+      ActivityPub::DeliveryWorker.perform_async(payload, some_local_account.id, inbox_url)
+    end
   end
 
   def forward?
     !@target_account.local? && ActiveModel::Type::Boolean.new.cast(@options[:forward])
+  end
+
+  def forward_to_origin?
+    forward? && forward_to_domains.include?(@target_account.domain)
+  end
+
+  def forward_to_domains
+    @forward_to_domains ||= (@options[:forward_to_domains] || [@target_account.domain]).filter_map { |domain| TagManager.instance.normalize_domain(domain&.strip) }.uniq
   end
 
   def reported_status_ids
@@ -61,7 +83,7 @@ class ReportService < BaseService
 
     # If the account making reports is remote, it is likely anonymized so we have to relax the requirements for attaching statuses.
     domain = @source_account.domain.to_s.downcase
-    has_followers = @target_account.followers.where(Account.arel_table[:domain].lower.eq(domain)).exists?
+    has_followers = @target_account.followers.with_domain(domain).exists?
     visibility = has_followers ? %i(public unlisted private) : %i(public unlisted)
     scope = @target_account.statuses.with_discarded
     scope.merge!(scope.where(visibility: visibility).or(scope.where('EXISTS (SELECT 1 FROM mentions m JOIN accounts a ON m.account_id = a.id WHERE lower(a.domain) = ?)', domain)))

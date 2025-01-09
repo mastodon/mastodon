@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Status, type: :model do
+RSpec.describe Status do
+  subject { Fabricate(:status, account: alice) }
+
   let(:alice) { Fabricate(:account, username: 'alice') }
   let(:bob)   { Fabricate(:account, username: 'bob') }
   let(:other) { Fabricate(:status, account: bob, text: 'Skulls for the skull god! The enemy\'s gates are sideways!') }
-
-  subject { Fabricate(:status, account: alice) }
 
   describe '#local?' do
     it 'returns true when no remote URI is set' do
@@ -47,22 +49,22 @@ RSpec.describe Status, type: :model do
   end
 
   describe '#verb' do
-    context 'if destroyed?' do
+    context 'when destroyed?' do
       it 'returns :delete' do
         subject.destroy!
         expect(subject.verb).to be :delete
       end
     end
 
-    context 'unless destroyed?' do
-      context 'if reblog?' do
+    context 'when not destroyed?' do
+      context 'when reblog?' do
         it 'returns :share' do
           subject.reblog = other
           expect(subject.verb).to be :share
         end
       end
 
-      context 'unless reblog?' do
+      context 'when not reblog?' do
         it 'returns :post' do
           subject.reblog = nil
           expect(subject.verb).to be :post
@@ -83,28 +85,28 @@ RSpec.describe Status, type: :model do
   end
 
   describe '#hidden?' do
-    context 'if private_visibility?' do
+    context 'when private_visibility?' do
       it 'returns true' do
         subject.visibility = :private
         expect(subject.hidden?).to be true
       end
     end
 
-    context 'if direct_visibility?' do
+    context 'when direct_visibility?' do
       it 'returns true' do
         subject.visibility = :direct
         expect(subject.hidden?).to be true
       end
     end
 
-    context 'if public_visibility?' do
+    context 'when public_visibility?' do
       it 'returns false' do
         subject.visibility = :public
         expect(subject.hidden?).to be false
       end
     end
 
-    context 'if unlisted_visibility?' do
+    context 'when unlisted_visibility?' do
       it 'returns false' do
         subject.visibility = :unlisted
         expect(subject.hidden?).to be false
@@ -158,13 +160,38 @@ RSpec.describe Status, type: :model do
       reblog = Fabricate(:status, account: bob, reblog: subject)
       expect(subject.reblogs_count).to eq 1
       expect { subject.destroy }.to_not raise_error
-      expect(Status.find_by(id: reblog.id)).to be_nil
+      expect(described_class.find_by(id: reblog.id)).to be_nil
+    end
+  end
+
+  describe '#untrusted_reblogs_count' do
+    before do
+      alice.update(domain: 'example.com')
+      subject.status_stat.tap do |status_stat|
+        status_stat.untrusted_reblogs_count = 0
+        status_stat.save
+      end
+      subject.save
+    end
+
+    it 'is incremented by the number of reblogs' do
+      Fabricate(:status, account: bob, reblog: subject)
+      Fabricate(:status, account: alice, reblog: subject)
+
+      expect(subject.untrusted_reblogs_count).to eq 2
+    end
+
+    it 'is decremented when reblog is removed' do
+      reblog = Fabricate(:status, account: bob, reblog: subject)
+      expect(subject.untrusted_reblogs_count).to eq 1
+      reblog.destroy
+      expect(subject.untrusted_reblogs_count).to eq 0
     end
   end
 
   describe '#replies_count' do
     it 'is the number of replies' do
-      reply = Fabricate(:status, account: bob, thread: subject)
+      Fabricate(:status, account: bob, thread: subject)
       expect(subject.replies_count).to eq 1
     end
 
@@ -192,6 +219,31 @@ RSpec.describe Status, type: :model do
     end
   end
 
+  describe '#untrusted_favourites_count' do
+    before do
+      alice.update(domain: 'example.com')
+      subject.status_stat.tap do |status_stat|
+        status_stat.untrusted_favourites_count = 0
+        status_stat.save
+      end
+      subject.save
+    end
+
+    it 'is incremented by favorites' do
+      Fabricate(:favourite, account: bob, status: subject)
+      Fabricate(:favourite, account: alice, status: subject)
+
+      expect(subject.untrusted_favourites_count).to eq 2
+    end
+
+    it 'is decremented when favourite is removed' do
+      favourite = Fabricate(:favourite, account: bob, status: subject)
+      expect(subject.untrusted_favourites_count).to eq 1
+      favourite.destroy
+      expect(subject.untrusted_favourites_count).to eq 0
+    end
+  end
+
   describe '#proper' do
     it 'is itself for original statuses' do
       expect(subject.proper).to eq subject
@@ -203,11 +255,88 @@ RSpec.describe Status, type: :model do
     end
   end
 
+  describe '#reported?' do
+    context 'when the status is not reported' do
+      it 'returns false' do
+        expect(subject.reported?).to be false
+      end
+    end
+
+    context 'when the status is part of an open report' do
+      before do
+        Fabricate(:report, target_account: subject.account, status_ids: [subject.id])
+      end
+
+      it 'returns true' do
+        expect(subject.reported?).to be true
+      end
+    end
+
+    context 'when the status is part of a closed report with an account warning mentioning the account' do
+      before do
+        report = Fabricate(:report, target_account: subject.account, status_ids: [subject.id])
+        report.resolve!(Fabricate(:account))
+        Fabricate(:account_warning, target_account: subject.account, status_ids: [subject.id], report: report)
+      end
+
+      it 'returns true' do
+        expect(subject.reported?).to be true
+      end
+    end
+
+    context 'when the status is part of a closed report with an account warning not mentioning the account' do
+      before do
+        report = Fabricate(:report, target_account: subject.account, status_ids: [subject.id])
+        report.resolve!(Fabricate(:account))
+        Fabricate(:account_warning, target_account: subject.account, report: report)
+      end
+
+      it 'returns false' do
+        expect(subject.reported?).to be false
+      end
+    end
+  end
+
+  describe '#ordered_media_attachments' do
+    let(:status) { Fabricate(:status) }
+
+    let(:first_attachment) { Fabricate(:media_attachment) }
+    let(:second_attachment) { Fabricate(:media_attachment) }
+    let(:last_attachment) { Fabricate(:media_attachment) }
+    let(:extra_attachment) { Fabricate(:media_attachment) }
+
+    before do
+      stub_const('Status::MEDIA_ATTACHMENTS_LIMIT', 3)
+
+      # Add attachments out of order
+      status.media_attachments << second_attachment
+      status.media_attachments << last_attachment
+      status.media_attachments << extra_attachment
+      status.media_attachments << first_attachment
+    end
+
+    context 'when ordered_media_attachment_ids is not set' do
+      it 'returns up to MEDIA_ATTACHMENTS_LIMIT attachments' do
+        expect(status.ordered_media_attachments.size).to eq Status::MEDIA_ATTACHMENTS_LIMIT
+      end
+    end
+
+    context 'when ordered_media_attachment_ids is set' do
+      before do
+        status.update!(ordered_media_attachment_ids: [first_attachment.id, second_attachment.id, last_attachment.id, extra_attachment.id])
+      end
+
+      it 'returns up to MEDIA_ATTACHMENTS_LIMIT attachments in the expected order' do
+        expect(status.ordered_media_attachments).to eq [first_attachment, second_attachment, last_attachment]
+      end
+    end
+  end
+
   describe '.mutes_map' do
+    subject { described_class.mutes_map([status.conversation.id], account) }
+
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
-
-    subject { Status.mutes_map([status.conversation.id], account) }
 
     it 'returns a hash' do
       expect(subject).to be_a Hash
@@ -220,10 +349,10 @@ RSpec.describe Status, type: :model do
   end
 
   describe '.favourites_map' do
+    subject { described_class.favourites_map([status], account) }
+
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
-
-    subject { Status.favourites_map([status], account) }
 
     it 'returns a hash' do
       expect(subject).to be_a Hash
@@ -236,10 +365,10 @@ RSpec.describe Status, type: :model do
   end
 
   describe '.reblogs_map' do
+    subject { described_class.reblogs_map([status], account) }
+
     let(:status)  { Fabricate(:status) }
     let(:account) { Fabricate(:account) }
-
-    subject { Status.reblogs_map([status], account) }
 
     it 'returns a hash' do
       expect(subject).to be_a Hash
@@ -252,82 +381,115 @@ RSpec.describe Status, type: :model do
   end
 
   describe '.tagged_with' do
-    let(:tag1)     { Fabricate(:tag) }
-    let(:tag2)     { Fabricate(:tag) }
-    let(:tag3)     { Fabricate(:tag) }
-    let!(:status1) { Fabricate(:status, tags: [tag1]) }
-    let!(:status2) { Fabricate(:status, tags: [tag2]) }
-    let!(:status3) { Fabricate(:status, tags: [tag3]) }
-    let!(:status4) { Fabricate(:status, tags: []) }
-    let!(:status5) { Fabricate(:status, tags: [tag1, tag2, tag3]) }
+    let(:tag_cats) { Fabricate(:tag, name: 'cats') }
+    let(:tag_dogs) { Fabricate(:tag, name: 'dogs') }
+    let(:tag_zebras) { Fabricate(:tag, name: 'zebras') }
+    let!(:status_with_tag_cats) { Fabricate(:status, tags: [tag_cats]) }
+    let!(:status_with_tag_dogs) { Fabricate(:status, tags: [tag_dogs]) }
+    let!(:status_tagged_with_zebras) { Fabricate(:status, tags: [tag_zebras]) }
+    let!(:status_without_tags) { Fabricate(:status, tags: []) }
+    let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs, tag_zebras]) }
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with([tag1.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status5.id])
-        expect(Status.tagged_with([tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status5.id])
-        expect(Status.tagged_with([tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status3.id, status5.id])
+        expect(described_class.tagged_with([tag_cats.id]))
+          .to include(status_with_tag_cats, status_with_all_tags)
+          .and not_include(status_without_tags)
+        expect(described_class.tagged_with([tag_dogs.id]))
+          .to include(status_with_tag_dogs, status_with_all_tags)
+          .and not_include(status_without_tags)
+        expect(described_class.tagged_with([tag_zebras.id]))
+          .to include(status_tagged_with_zebras, status_with_all_tags)
+          .and not_include(status_without_tags)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status2.id, status5.id])
-        expect(Status.tagged_with([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status3.id, status5.id])
-        expect(Status.tagged_with([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status3.id, status5.id])
+        expect(described_class.tagged_with([tag_cats.id, tag_dogs.id]))
+          .to include(status_with_tag_cats, status_with_tag_dogs, status_with_all_tags)
+          .and not_include(status_without_tags)
+        expect(described_class.tagged_with([tag_cats.id, tag_zebras.id]))
+          .to include(status_with_tag_cats, status_tagged_with_zebras, status_with_all_tags)
+          .and not_include(status_without_tags)
+        expect(described_class.tagged_with([tag_dogs.id, tag_zebras.id]))
+          .to include(status_with_tag_dogs, status_tagged_with_zebras, status_with_all_tags)
+          .and not_include(status_without_tags)
       end
     end
   end
 
   describe '.tagged_with_all' do
-    let(:tag1)     { Fabricate(:tag) }
-    let(:tag2)     { Fabricate(:tag) }
-    let(:tag3)     { Fabricate(:tag) }
-    let!(:status1) { Fabricate(:status, tags: [tag1]) }
-    let!(:status2) { Fabricate(:status, tags: [tag2]) }
-    let!(:status3) { Fabricate(:status, tags: [tag3]) }
-    let!(:status4) { Fabricate(:status, tags: []) }
-    let!(:status5) { Fabricate(:status, tags: [tag1, tag2]) }
+    let(:tag_cats) { Fabricate(:tag, name: 'cats') }
+    let(:tag_dogs) { Fabricate(:tag, name: 'dogs') }
+    let(:tag_zebras) { Fabricate(:tag, name: 'zebras') }
+    let!(:status_with_tag_cats) { Fabricate(:status, tags: [tag_cats]) }
+    let!(:status_with_tag_dogs) { Fabricate(:status, tags: [tag_dogs]) }
+    let!(:status_tagged_with_zebras) { Fabricate(:status, tags: [tag_zebras]) }
+    let!(:status_without_tags) { Fabricate(:status, tags: []) }
+    let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs]) }
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_all([tag1.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status5.id])
-        expect(Status.tagged_with_all([tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status5.id])
-        expect(Status.tagged_with_all([tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status3.id])
+        expect(described_class.tagged_with_all([tag_cats.id]))
+          .to include(status_with_tag_cats, status_with_all_tags)
+          .and not_include(status_without_tags)
+        expect(described_class.tagged_with_all([tag_dogs.id]))
+          .to include(status_with_tag_dogs, status_with_all_tags)
+          .and not_include(status_without_tags)
+        expect(described_class.tagged_with_all([tag_zebras.id]))
+          .to include(status_tagged_with_zebras)
+          .and not_include(status_without_tags)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_all([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status5.id])
-        expect(Status.tagged_with_all([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
-        expect(Status.tagged_with_all([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
+        expect(described_class.tagged_with_all([tag_cats.id, tag_dogs.id]))
+          .to include(status_with_all_tags)
+        expect(described_class.tagged_with_all([tag_cats.id, tag_zebras.id]))
+          .to eq []
+        expect(described_class.tagged_with_all([tag_dogs.id, tag_zebras.id]))
+          .to eq []
       end
     end
   end
 
   describe '.tagged_with_none' do
-    let(:tag1)     { Fabricate(:tag) }
-    let(:tag2)     { Fabricate(:tag) }
-    let(:tag3)     { Fabricate(:tag) }
-    let!(:status1) { Fabricate(:status, tags: [tag1]) }
-    let!(:status2) { Fabricate(:status, tags: [tag2]) }
-    let!(:status3) { Fabricate(:status, tags: [tag3]) }
-    let!(:status4) { Fabricate(:status, tags: []) }
-    let!(:status5) { Fabricate(:status, tags: [tag1, tag2, tag3]) }
+    let(:tag_cats) { Fabricate(:tag, name: 'cats') }
+    let(:tag_dogs) { Fabricate(:tag, name: 'dogs') }
+    let(:tag_zebras) { Fabricate(:tag, name: 'zebras') }
+    let!(:status_with_tag_cats) { Fabricate(:status, tags: [tag_cats]) }
+    let!(:status_with_tag_dogs) { Fabricate(:status, tags: [tag_dogs]) }
+    let!(:status_tagged_with_zebras) { Fabricate(:status, tags: [tag_zebras]) }
+    let!(:status_without_tags) { Fabricate(:status, tags: []) }
+    let!(:status_with_all_tags) { Fabricate(:status, tags: [tag_cats, tag_dogs, tag_zebras]) }
 
     context 'when given one tag' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_none([tag1.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status3.id, status4.id])
-        expect(Status.tagged_with_none([tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status3.id, status4.id])
-        expect(Status.tagged_with_none([tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status2.id, status4.id])
+        expect(described_class.tagged_with_none([tag_cats.id]))
+          .to include(status_with_tag_dogs, status_tagged_with_zebras, status_without_tags)
+          .and not_include(status_with_all_tags)
+        expect(described_class.tagged_with_none([tag_dogs.id]))
+          .to include(status_with_tag_cats, status_tagged_with_zebras, status_without_tags)
+          .and not_include(status_with_all_tags)
+        expect(described_class.tagged_with_none([tag_zebras.id]))
+          .to include(status_with_tag_cats, status_with_tag_dogs, status_without_tags)
+          .and not_include(status_with_all_tags)
       end
     end
 
     context 'when given multiple tags' do
       it 'returns the expected statuses' do
-        expect(Status.tagged_with_none([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status3.id, status4.id])
-        expect(Status.tagged_with_none([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status4.id])
-        expect(Status.tagged_with_none([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status4.id])
+        expect(described_class.tagged_with_none([tag_cats.id, tag_dogs.id]))
+          .to include(status_tagged_with_zebras, status_without_tags)
+          .and not_include(status_with_all_tags)
+        expect(described_class.tagged_with_none([tag_cats.id, tag_zebras.id]))
+          .to include(status_with_tag_dogs, status_without_tags)
+          .and not_include(status_with_all_tags)
+        expect(described_class.tagged_with_none([tag_dogs.id, tag_zebras.id]))
+          .to include(status_with_tag_cats, status_without_tags)
+          .and not_include(status_with_all_tags)
       end
     end
   end
@@ -342,35 +504,77 @@ RSpec.describe Status, type: :model do
     end
 
     it 'creates new conversation for stand-alone status' do
-      expect(Status.create(account: alice, text: 'First').conversation_id).to_not be_nil
+      expect(described_class.create(account: alice, text: 'First').conversation_id).to_not be_nil
     end
 
     it 'keeps conversation of parent node' do
       parent = Fabricate(:status, text: 'First')
-      expect(Status.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
+      expect(described_class.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
     end
 
     it 'sets `local` to true for status by local account' do
-      expect(Status.create(account: alice, text: 'foo').local).to be true
+      expect(described_class.create(account: alice, text: 'foo').local).to be true
     end
 
     it 'sets `local` to false for status by remote account' do
       alice.update(domain: 'example.com')
-      expect(Status.create(account: alice, text: 'foo').local).to be false
+      expect(described_class.create(account: alice, text: 'foo').local).to be false
     end
   end
 
-  describe 'validation' do
-    it 'disallow empty uri for remote status' do
-      alice.update(domain: 'example.com')
-      status = Fabricate.build(:status, uri: '', account: alice)
-      expect(status).to model_have_error_on_field(:uri)
+  describe 'Validations' do
+    context 'with a remote account' do
+      subject { Fabricate.build :status, account: remote_account }
+
+      let(:remote_account) { Fabricate :account, domain: 'example.com' }
+
+      it { is_expected.to_not allow_value('').for(:uri) }
+    end
+  end
+
+  describe 'Callbacks' do
+    describe 'Stripping content when required' do
+      context 'with a remote account' do
+        subject { Fabricate.build :status, local: false, account:, text: '   text   ', spoiler_text: '   spoiler   ' }
+
+        let(:account) { Fabricate.build :account, domain: 'host.example' }
+
+        it 'preserves content' do
+          expect { subject.valid? }
+            .to not_change(subject, :text)
+            .and not_change(subject, :spoiler_text)
+        end
+      end
+
+      context 'with a local account' do
+        let(:account) { Fabricate.build :account, domain: nil }
+
+        context 'with populated fields' do
+          subject { Fabricate.build :status, local: true, account:, text: '   text   ', spoiler_text: '   spoiler   ' }
+
+          it 'strips content' do
+            expect { subject.valid? }
+              .to change(subject, :text).to('text')
+              .and change(subject, :spoiler_text).to('spoiler')
+          end
+        end
+
+        context 'with empty fields' do
+          subject { Fabricate.build :status, local: true, account:, text: nil, spoiler_text: nil }
+
+          it 'preserves content' do
+            expect { subject.valid? }
+              .to not_change(subject, :text)
+              .and not_change(subject, :spoiler_text)
+          end
+        end
+      end
     end
   end
 
   describe 'after_create' do
     it 'saves ActivityPub uri as uri for local status' do
-      status = Status.create(account: alice, text: 'foo')
+      status = described_class.create(account: alice, text: 'foo')
       status.reload
       expect(status.uri).to start_with('https://')
     end

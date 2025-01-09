@@ -8,18 +8,24 @@ it:
       user:
         agreement: Condizioni di servizio
         email: Indirizzo email
-        locale: Localizzazione
+        locale: Locale
         password: Password
       user/account:
         username: Nome utente
       user/invite_request:
         text: Motivo
     errors:
+      attributes:
+        domain:
+          invalid: non è un nome di dominio valido
+      messages:
+        invalid_domain_on_line: "%{value} non è un nome di dominio valido"
+        too_many_lines: è oltre il limite di %{limit} righe
       models:
         account:
           attributes:
             username:
-              invalid: solo lettere, numeri e trattini bassi
+              invalid: deve contenere solo lettere, numeri e trattini bassi
               reserved: è riservato
         admin/webhook:
           attributes:
@@ -33,6 +39,11 @@ it:
           attributes:
             data:
               malformed: è malformato
+        list_account:
+          attributes:
+            account_id:
+              taken: è già nella lista
+          must_be_following: deve essere un account seguito
         status:
           attributes:
             reblog:
@@ -43,13 +54,17 @@ it:
               blocked: utilizza un provider di posta elettronica non autorizzato
               unreachable: non sembra esistere
             role_id:
-              elevated: non può essere superiore al tuo ruolo attuale
+              elevated: non può essere superiore al tuo ruolo corrente
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: include i permessi non sicuri per il ruolo di base
-              elevated: non è possibile includere i permessi che il tuo ruolo attuale non possiede
+              dangerous: include autorizzazioni che non sono sicure per il ruolo di base
+              elevated: non può includere le autorizzazioni che il tuo ruolo corrente non possiede
               own_role: non può essere modificato con il tuo ruolo attuale
             position:
-              elevated: non può essere superiore al tuo ruolo attuale
-              own_role: non può essere modificato con il tuo ruolo attuale
+              elevated: non può essere superiore al tuo ruolo corrente
+              own_role: non può essere modificato con il tuo ruolo corrente
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: non è possibile includere eventi per i quali non hai i diritti

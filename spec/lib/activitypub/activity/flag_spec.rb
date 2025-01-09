@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Flag do
@@ -34,6 +36,40 @@ RSpec.describe ActivityPub::Activity::Flag do
         expect(report).to_not be_nil
         expect(report.comment).to eq 'Boo!!'
         expect(report.status_ids).to eq [status.id]
+        expect(report.application).to be_nil
+      end
+    end
+
+    context 'when the report comment is excessively long' do
+      subject do
+        described_class.new({
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: flag_id,
+          type: 'Flag',
+          content: long_comment,
+          actor: ActivityPub::TagManager.instance.uri_for(sender),
+          object: [
+            ActivityPub::TagManager.instance.uri_for(flagged),
+            ActivityPub::TagManager.instance.uri_for(status),
+          ],
+        }.with_indifferent_access, sender)
+      end
+
+      let(:long_comment) { 'a' * described_class::COMMENT_SIZE_LIMIT * 2 }
+
+      before do
+        subject.perform
+      end
+
+      it 'creates a report but with a truncated comment' do
+        report = Report.find_by(account: sender, target_account: flagged)
+
+        expect(report)
+          .to be_present
+          .and have_attributes(status_ids: [status.id])
+        expect(report.comment)
+          .to have_attributes(length: described_class::COMMENT_SIZE_LIMIT)
+          .and eq(long_comment[0...described_class::COMMENT_SIZE_LIMIT])
       end
     end
 
@@ -106,11 +142,41 @@ RSpec.describe ActivityPub::Activity::Flag do
         expect(report.status_ids).to eq []
       end
     end
+
+    context 'when an account is passed but no status' do
+      let(:mentioned) { Fabricate(:account) }
+
+      let(:json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: flag_id,
+          type: 'Flag',
+          content: 'Boo!!',
+          actor: ActivityPub::TagManager.instance.uri_for(sender),
+          object: [
+            ActivityPub::TagManager.instance.uri_for(flagged),
+          ],
+        }.with_indifferent_access
+      end
+
+      before do
+        subject.perform
+      end
+
+      it 'creates a report with no attached status' do
+        report = Report.find_by(account: sender, target_account: flagged)
+
+        expect(report).to_not be_nil
+        expect(report.comment).to eq 'Boo!!'
+        expect(report.status_ids).to eq []
+      end
+    end
   end
 
   describe '#perform with a defined uri' do
     subject { described_class.new(json, sender) }
-    let (:flag_id) { 'http://example.com/reports/1' }
+
+    let(:flag_id) { 'http://example.com/reports/1' }
 
     before do
       subject.perform

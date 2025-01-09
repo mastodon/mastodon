@@ -5,7 +5,7 @@ vi:
       doorkeeper/application:
         name: Tên ứng dụng
         redirect_uri: URL chuyển hướng
-        scopes: Quyền hạn
+        scopes: Quyền
         website: Trang web ứng dụng
     errors:
       models:
@@ -41,7 +41,7 @@ vi:
         empty: Bạn không có ứng dụng nào.
         name: Tên
         new: Ứng dụng mới
-        scopes: Quyền hạn
+        scopes: Quyền
         show: Xem
         title: Ứng dụng của bạn
       new:
@@ -50,7 +50,7 @@ vi:
         actions: Hành động
         application_id: Mã Client
         callback_urls: Gọi lại URLs
-        scopes: Quyền hạn
+        scopes: Quyền
         secret: Bí ẩn của Client
         title: 'Ứng dụng: %{name}'
     authorizations:
@@ -60,8 +60,8 @@ vi:
       error:
         title: Một lỗi đã xảy ra
       new:
-        prompt_html: "%{client_name} yêu cầu truy cập tài khoản của bạn. Đây là ứng dụng của bên thứ ba. <strong>Nếu không tin tưởng, đừng cho phép nó.</strong>"
-        review_permissions: Xem lại quyền cho phép
+        prompt_html: "%{client_name} cần được bạn cho phép truy cập vào tài khoản. <strong>Cho phép nếu bạn tin tưởng ứng dụng này.</strong>"
+        review_permissions: Quyền truy cập
         title: Yêu cầu truy cập
       show:
         title: Sao chép mã này và dán nó vào ứng dụng.
@@ -83,6 +83,7 @@ vi:
         access_denied: Chủ sở hữu tài nguyên hoặc máy chủ đã từ chối yêu cầu.
         credential_flow_not_configured: Resource Owner Password Credentials không thành công do Doorkeeper.configure.resource_owner_from_credentials không được định cấu hình.
         invalid_client: Xác minh ứng dụng khách không thành công do máy khách mơ hồ, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
+        invalid_code_challenge_method: Phương pháp thử thách mã phải là S256, phương pháp plain không được hỗ trợ.
         invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị gỡ hoặc không khớp với tài khoản đã cấp phép. Hoặc xung đột với ứng dụng khác.
         invalid_redirect_uri: URL chuyển hướng không hợp lệ.
         invalid_request:
@@ -122,19 +123,20 @@ vi:
         admin/accounts: Quản trị tài khoản
         admin/all: Mọi chức năng quản trị
         admin/reports: Quản trị báo cáo
-        all: Tất cả
+        all: Toàn quyền truy cập tài khoản Mastodon
         blocks: Chặn
         bookmarks: Tút đã lưu
         conversations: Thảo luận
         crypto: Mã hóa đầu cuối
         favourites: Lượt thích
         filters: Bộ lọc
-        follow: Mối quan hệ
+        follow: Theo dõi, Ẩn và Chặn
         follows: Đang theo dõi
         lists: Danh sách
         media: Tập tin đính kèm
         mutes: Đã ẩn
         notifications: Thông báo
+        profile: Hồ sơ Mastodon của bạn
         push: Thông báo đẩy
         reports: Báo cáo
         search: Tìm kiếm
@@ -147,39 +149,50 @@ vi:
       application:
         title: Đăng nhập bằng OAuth
     scopes:
-      admin:read: đọc tất cả dữ liệu trên máy chủ
-      admin:read:accounts: đọc thông tin nhạy cảm của tất cả các tài khoản
+      admin:read: đọc mọi dữ liệu trên máy chủ
+      admin:read:accounts: đọc thông tin nhạy cảm của mọi tài khoản
+      admin:read:canonical_email_blocks: đọc thông tin nhạy cảm của mọi khối email biến thể
+      admin:read:domain_allows: đọc thông tin nhạy cảm của mọi máy chủ liên hợp
+      admin:read:domain_blocks: đọc thông tin nhạy cảm của mọi máy chủ chặn
+      admin:read:email_domain_blocks: đọc thông tin nhạy cảm của mọi tên miền email chặn
+      admin:read:ip_blocks: đọc thông tin nhạy cảm của mọi IP chặn
       admin:read:reports: đọc thông tin của các báo cáo và các tài khoản bị báo cáo
       admin:write: sửa đổi tất cả dữ liệu trên máy chủ
       admin:write:accounts: áp đặt hành động kiểm duyệt trên tài khoản
+      admin:write:canonical_email_blocks: áp đặt kiểm duyệt đối với chặn email biến thể
+      admin:write:domain_allows: áp đặt kiểm duyệt đối với các email cho phép
+      admin:write:domain_blocks: áp đặt kiểm duyệt đối với các tên miền chặn
+      admin:write:email_domain_blocks: áp đặt kiểm duyệt đối với các tên miền email chặn
+      admin:write:ip_blocks: áp đặt kiểm duyệt với các IP chặn
       admin:write:reports: áp đặt kiểm duyệt với các báo cáo
       crypto: dùng mã hóa đầu cuối
-      follow: sửa đổi các mối quan hệ tài khoản
-      push: nhận thông báo đẩy của bạn
-      read: đọc tất cả dữ liệu tài khoản của bạn
+      follow: sửa đổi các mối quan hệ
+      profile: chỉ xem thông tin tài khoản cơ bản
+      push: nhận thông báo đẩy
+      read: đọc mọi dữ liệu tài khoản
       read:accounts: xem thông tin tài khoản
-      read:blocks: xem những người bạn chặn
-      read:bookmarks: xem những thứ bạn đã lưu
-      read:favourites: xem lượt thích
-      read:filters: xem bộ lọc của bạn
-      read:follows: xem lượt theo dõi của bạn
-      read:lists: xem danh sách của bạn
-      read:mutes: xem những người bạn đã ẩn
-      read:notifications: xem thông báo của bạn
+      read:blocks: xem những người đã chặn
+      read:bookmarks: xem tút đã lưu
+      read:favourites: xem tút đã thích
+      read:filters: xem bộ lọc
+      read:follows: xem những người theo dõi
+      read:lists: xem danh sách
+      read:mutes: xem những người đã ẩn
+      read:notifications: xem thông báo
       read:reports: xem báo cáo của bạn
-      read:search: thay mặt bạn tìm kiếm
+      read:search: tìm kiếm
       read:statuses: xem toàn bộ tút
-      write: sửa đổi mọi dữ liệu tài khoản của bạn
-      write:accounts: sửa đổi trang hồ sơ của bạn
+      write: sửa đổi mọi dữ liệu tài khoản
+      write:accounts: sửa đổi trang hồ sơ
       write:blocks: chặn người và máy chủ
-      write:bookmarks: sửa đổi những thứ bạn lưu
+      write:bookmarks: sửa đổi những tút lưu
       write:conversations: ẩn và xóa thảo luận
-      write:favourites: lượt thích
+      write:favourites: thích tút
       write:filters: tạo bộ lọc
       write:follows: theo dõi ai đó
       write:lists: tạo danh sách
       write:media: tải lên tập tin
       write:mutes: ẩn người và thảo luận
-      write:notifications: xóa thông báo của bạn
-      write:reports: báo cáo người khác
+      write:notifications: xóa thông báo
+      write:reports: báo cáo
       write:statuses: đăng tút

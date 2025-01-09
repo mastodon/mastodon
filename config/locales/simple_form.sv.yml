@@ -2,6 +2,15 @@
 sv:
   simple_form:
     hints:
+      account:
+        attribution_domains_as_text: En per rad. Skyddar mot falska attributioner.
+        discoverable: Dina offentliga inlägg och din profil kan komma att presenteras eller rekommenderas inom olika områden av Mastodon och din profil kan komma att föreslås till andra användare.
+        display_name: Ditt fullständiga namn eller ditt roliga namn.
+        fields: Din hemsida, ditt pronomen, din ålder, vadhelst du vill.
+        indexable: Dina offentliga inlägg kan visas i sökresultat på Mastodon. Personer som har interagerat med dina inlägg kan söka dem oavsett.
+        note: 'Du kan @nämna andra personer eller #hashtaggar.'
+        show_collections: Andra kan se vem du följer och vem som följer dig. De du följer kan alltid se att du följer dem.
+        unlocked: Andra kommer att kunna följa dig utan att begära godkännande. Avmarkera om du vill granska följeslagare och välja om du vill acceptera eller avvisa nya följare.
       account_alias:
         acct: Ange användarnamn@domän för kontot som du vill flytta från
       account_migration:
@@ -18,8 +27,8 @@ sv:
           disable: Förhindra användaren från att använda sitt konto, men radera eller dölj inte innehållet.
           none: Använd det här för att skicka en varning till användaren, utan att vidta någon ytterligare åtgärd.
           sensitive: Tvinga alla denna användares mediebilagor till att flaggas som känsliga.
-          silence: Hindra användaren från att kunna göra offentliga inlägg, göm deras inlägg och notiser från folk som inte följer dem.
-          suspend: Hindra all interaktion från eller till detta konto och radera allt dess innehåll. Går att ångra inom 30 dagar.
+          silence: Hindra användaren från att kunna göra offentliga inlägg, göm deras inlägg och notiser från folk som inte följer dem. Stänger alla anmälningar mot detta kontot.
+          suspend: Förhindrar all interaktion från eller till detta konto och ta bort dess innehåll. Går att ångra inom 30 dagar. Stänger alla anmälningar mot detta konto.
         warning_preset_id: Valfri. Du kan lägga till anpassad text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
@@ -31,35 +40,30 @@ sv:
         text: Du kan endast överklaga en varning en gång
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
-        avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
+        avatar: WEBP, PNG, GIF eller JPG. Högst %{size}. Kommer nedskalas till %{dimensions} pixlar
         bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
         context: Ett eller fler sammanhang där filtret ska tillämpas
         current_password: Av säkerhetsskäl krävs lösenordet till det nuvarande kontot
         current_username: Ange det nuvarande kontots användarnamn för att bekräfta
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
-        discoverable: Tillåt att ditt konto upptäcks av främlingar genom rekommendationer, trender och andra funktioner
         email: Du kommer att få ett bekräftelsemeddelande via e-post
-        fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
-        header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
+        header: WEBP, PNG, GIF eller JPG. Högst %{size}. Kommer nedskalas till %{dimensions} pixlar
         inbox_url: Kopiera webbadressen från hemsidan av det ombud du vill använda
         irreversible: Filtrerade inlägg kommer att försvinna oåterkalleligt, även om filter tas bort senare
         locale: Språket för användargränssnittet, e-postmeddelanden och push-aviseringar
-        locked: Kräver att du manuellt godkänner följare
         password: Använd minst 8 tecken
         phrase: Matchas oavsett användande i text eller innehållsvarning för ett inlägg
         scopes: 'Vilka API: er applikationen kommer tillåtas åtkomst till. Om du väljer en omfattning på högstanivån behöver du inte välja individuella sådana.'
-        setting_aggregate_reblogs: Visa inte nya boostningar för inlägg som nyligen blivit boostade (påverkar endast nymottagna boostningar)
+        setting_aggregate_reblogs: Visa inte nya boostar för inlägg som nyligen blivit boostade (påverkar endast nymottagna boostar)
         setting_always_send_emails: E-postnotiser kommer vanligtvis inte skickas när du aktivt använder Mastodon
         setting_default_sensitive: Känslig media döljs som standard och kan visas med ett klick
         setting_display_media_default: Dölj media markerad som känslig
         setting_display_media_hide_all: Dölj alltid all media
         setting_display_media_show_all: Visa alltid media markerad som känslig
-        setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
-        setting_noindex: Påverkar din offentliga profil och statussidor
-        setting_show_application: Applikationen du använder för att göra inlägg kommer visas i detaljvyn för dina inlägg
+        setting_system_scrollbars_ui: Gäller endast för webbläsare som är baserade på Safari och Chrome
         setting_use_blurhash: Gradienter är baserade på färgerna av de dolda objekten men fördunklar alla detaljer
         setting_use_pending_items: Dölj tidslinjeuppdateringar bakom ett klick istället för att automatiskt bläddra i flödet
-        username: Ditt användarnamn måste vara unikt på %{domain}
+        username: Du kan använda bokstäver, siffror och understreck
         whole_word: När sökordet eller frasen endast är alfanumerisk, kommer det endast att tillämpas om det matchar hela ordet
       domain_allow:
         domain: Denna domän kommer att kunna hämta data från denna server och inkommande data från den kommer att behandlas och lagras
@@ -71,16 +75,20 @@ sv:
       filters:
         action: Välj vilken åtgärd som ska utföras när ett inlägg matchar filtret
         actions:
-          hide: Dölj det filtrerade innehållet helt (beter sig som om det inte fanns)
+          hide: Dölj det filtrerade innehållet helt, beter sig som om det inte fanns
           warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
       form_admin_settings:
-        backups_retention_period: Behåll genererade användararkiv i det angivna antalet dagar.
+        activity_api_enabled: Antalet lokalt publicerade inlägg, aktiva användare och nya registrerade konton per vecka
+        app_icon: WEBP, PNG, GIF eller JPG. Använd istället för appens egna ikon på mobila enheter.
+        backups_retention_period: Användare har möjlighet att generera arkiv av sina inlägg för att ladda ned senare. När det sätts till ett positivt värde raderas dessa arkiv automatiskt från din lagring efter det angivna antalet dagar.
         bootstrap_timeline_accounts: Dessa konton kommer fästas högst upp i nya användares följrekommendationer.
         closed_registrations_message: Visas när nyregistreringar är avstängda
-        content_cache_retention_period: Inlägg från andra servrar kommer att raderas efter det angivna antalet dagar när detta är inställt på ett positivt värde. Åtgärden kan vara oåterkallelig.
+        content_cache_retention_period: Alla inlägg från andra servrar (inklusive booster och svar) kommer att raderas efter det angivna antalet dagar, utan hänsyn till någon lokal användarinteraktion med dessa inlägg. Detta inkluderar inlägg där en lokal användare har markerat det som bokmärke eller favoriter. Privata omnämnanden mellan användare från olika instanser kommer också att gå förlorade och blir omöjliga att återställa. Användningen av denna inställning är avsedd för specialfall och bryter många användarförväntningar när de implementeras för allmänt bruk.
         custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
+        favicon: WEBP, PNG, GIF eller JPG. Används på mobila enheter istället för appens egen ikon.
         mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
-        media_cache_retention_period: Nedladdade mediefiler kommer raderas efter det angivna antalet dagar, om inställt till ett positivt värde, och laddas ned på nytt vid behov.
+        media_cache_retention_period: Mediafiler från inlägg som gjorts av fjärranvändare cachas på din server. När inställd på ett positivt värde kommer media att raderas efter det angivna antalet dagar. Om mediadatat begärs efter att det har raderats, kommer det att laddas ned igen om källinnehållet fortfarande är tillgängligt. På grund av begränsningar för hur ofta förhandsgranskningskort för länkar hämtas från tredjepartswebbplatser, rekommenderas det att ange detta värde till minst 14 dagar, annars kommer förhandsgranskningskorten inte att uppdateras på begäran före den tiden.
+        peers_api_enabled: En lista över domänen den här servern har stött på i fediversum. Ingen data inkluderas om du har federerat med servern, bara att din server känner till den. Detta används av tjänster som samlar statistik om federering i allmänhet.
         profile_directory: Profilkatalogen visar alla användare som har samtyckt till att bli upptäckbara.
         require_invite_text: Gör fältet "Varför vill du gå med?" obligatoriskt när nyregistreringar kräver manuellt godkännande
         site_contact_email: Hur människor kan nå dig för juridiska spörsmål eller supportfrågor.
@@ -89,11 +97,13 @@ sv:
         site_short_description: En kort beskrivning för att unikt identifiera din server. Vem är det som driver den, vilka är den till för?
         site_terms: Använd din egen sekretesspolicy eller lämna tomt för att använda standardinställningen. Kan struktureras med Markdown-syntax.
         site_title: Hur folk kan hänvisa till din server förutom med dess domännamn.
+        status_page_url: URL till en sida där personer kan se serverns status under ett driftavbrott
         theme: Tema som utloggade besökare och nya användare ser.
         thumbnail: En bild i cirka 2:1-proportioner som visas tillsammans med din serverinformation.
         timeline_preview: Utloggade besökare kommer kunna bläddra bland de senaste offentliga inläggen som finns på servern.
         trendable_by_default: Hoppa över manuell granskning av trendande innehåll. Enskilda objekt kan ändå raderas från trender retroaktivt.
         trends: Trender visar vilka inlägg, hashtaggar och nyheter det pratas om på din server.
+        trends_as_landing_page: Visa trendande innehåll för utloggade användare och besökare istället för en beskrivning om servern. Kräver att trender är aktiverat.
       form_challenge:
         current_password: Du går in i ett säkert område
       imports:
@@ -110,15 +120,27 @@ sv:
           sign_up_requires_approval: Nya registreringar kräver ditt godkännande
         severity: Välj vad som ska hända med förfrågningar från denna IP
       rule:
+        hint: Valfritt. Ange mer information om regeln
         text: Beskriv en regel eller ett krav för användare av denna server. Försök hålla det kort och koncist
       sessions:
         otp: 'Ange tvåfaktorskoden som genererades av din telefonapp, eller använd någon av dina återställningskoder:'
         webauthn: Om det är en USB-nyckel se till att sätta in den och, om nödvändigt, tryck på den.
+      settings:
+        indexable: Din profilsida kan visas i sökresultat på Google, Bing och andra sökmotorer.
+        show_application: Du kommer alltid att kunna se vilken app som publicerat ditt inlägg oavsett.
       tag:
         name: Du kan bara ändra skriftläget av bokstäverna, till exempel, för att göra det mer läsbart
+      terms_of_service:
+        changelog: Kan struktureras med Markdown syntax.
+        text: Kan struktureras med Markdown syntax.
+      terms_of_service_generator:
+        arbitration_address: Kan vara samma som fysisk adress ovan, eller “N/A” om du använder e-post
+        arbitration_website: Kan vara ett webbformulär, eller ”N/A” om du använder e-post
+        dmca_email: Kan vara samma e-postadress som används för “E-postadress för juridiska meddelanden” ovan
+        jurisdiction: Lista det land där vem som än betalar räkningarna bor. Om det är ett företag eller annan enhet, lista landet där det är inkorporerat, och staden, regionen, territoriet eller staten på lämpligt sätt.
       user:
         chosen_languages: Vid aktivering visas bara inlägg på dina valda språk i offentliga tidslinjer
-        role: Rollen bestämmer vilka behörigheter användaren har
+        role: Rollen styr vilka behörigheter användaren har.
       user_role:
         color: Färgen som ska användas för rollen i användargränssnittet, som RGB i hex-format
         highlighted: Detta gör rollen synlig offentligt
@@ -127,12 +149,18 @@ sv:
         position: Högre roll avgör konfliktlösning i vissa situationer. Vissa åtgärder kan endast utföras på roller med lägre prioritet
       webhook:
         events: Välj händelser att skicka
+        template: Skriv din egen JSON-nyttolast med variabel interpolation. Lämna tomt för förvald JSON.
         url: Dit händelser kommer skickas
     labels:
       account:
+        attribution_domains_as_text: Webbplatser som får kreditera dig
+        discoverable: Presentera profil och inlägg med upptäcktsalgoritmer
         fields:
           name: Etikett
           value: Innehåll
+        indexable: Inkludera offentliga inlägg i sökresultaten
+        show_collections: Göm följare och följeslagare på profilen
+        unlocked: Godkänn nya följare automatiskt
       account_alias:
         acct: Namnet på det gamla kontot
       account_migration:
@@ -142,7 +170,7 @@ sv:
         title: Rubrik
       admin_account_action:
         include_statuses: Inkludera rapporterade inlägg i e-postmeddelandet
-        send_email_notification: Notifiera användaren via e-post
+        send_email_notification: Avisera användaren via e-post
         text: Anpassad varning
         type: Åtgärd
         types:
@@ -170,7 +198,6 @@ sv:
         context: Filtrera sammanhang
         current_password: Nuvarande lösenord
         data: Data
-        discoverable: Föreslå konto för andra
         display_name: Visningsnamn
         email: E-postadress
         expires_in: Utgår efter
@@ -180,7 +207,6 @@ sv:
         inbox_url: Webbadress för ombudsinkorg
         irreversible: Släng istället för att dölja
         locale: Språk för gränssnittet
-        locked: Kräv följförfrågningar
         max_uses: Max antal användningar
         new_password: Nytt lösenord
         note: Biografi
@@ -188,15 +214,15 @@ sv:
         password: Lösenord
         phrase: Nyckelord eller -fras
         setting_advanced_layout: Aktivera avancerat webbgränssnitt
-        setting_aggregate_reblogs: Gruppera boostningar i tidslinjer
+        setting_aggregate_reblogs: Gruppera boostar i tidslinjer
         setting_always_send_emails: Skicka alltid e-postnotiser
         setting_auto_play_gif: Spela upp GIF:ar automatiskt
-        setting_boost_modal: Visa bekräftelsedialog innan boostningar
-        setting_crop_images: Beskär bilder i icke-utökade inlägg till 16x9
+        setting_boost_modal: Visa bekräftelsedialog innan boostning
         setting_default_language: Inläggsspråk
         setting_default_privacy: Inläggsintegritet
         setting_default_sensitive: Markera alltid media som känsligt
         setting_delete_modal: Visa bekräftelsedialog innan radering av inlägg
+        setting_disable_hover_cards: Inaktivera profilförhandsgranskning vid hovring
         setting_disable_swiping: Inaktivera svepande rörelser
         setting_display_media: Mediavisning
         setting_display_media_default: Standard
@@ -204,10 +230,9 @@ sv:
         setting_display_media_show_all: Visa alla
         setting_expand_spoilers: Utöka alltid tutningar markerade med innehållsvarningar
         setting_hide_network: Göm ditt nätverk
-        setting_noindex: Uteslutning av sökmotorindexering
         setting_reduce_motion: Minska rörelser i animationer
-        setting_show_application: Visa programmet som används för att skicka tutningar
         setting_system_font_ui: Använd systemets standardfont
+        setting_system_scrollbars_ui: Använd systemets standardrullningsfält
         setting_theme: Sidans tema
         setting_trends: Visa dagens trender
         setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
@@ -229,13 +254,17 @@ sv:
           hide: Dölj helt
           warn: Dölj med en varning
       form_admin_settings:
+        activity_api_enabled: Publicera aggregerad statistik om användaraktivitet i API:et
+        app_icon: Appikon
         backups_retention_period: Lagringsperiod för användararkivet
         bootstrap_timeline_accounts: Rekommendera alltid dessa konton till nya användare
         closed_registrations_message: Anpassat meddelande när nyregistreringar inte är tillgängliga
-        content_cache_retention_period: Tid för bibehållande av innehållscache
+        content_cache_retention_period: Förvaringsperiod för fjärrinnehåll
         custom_css: Anpassad CSS
+        favicon: Favicon
         mascot: Anpassad maskot (tekniskt arv)
         media_cache_retention_period: Tid för bibehållande av mediecache
+        peers_api_enabled: Publicera lista över upptäckta servrar i API:et
         profile_directory: Aktivera profilkatalog
         registrations_mode: Vem kan registrera sig
         require_invite_text: Kräv anledning för att gå med
@@ -247,11 +276,13 @@ sv:
         site_short_description: Serverbeskrivning
         site_terms: Integritetspolicy
         site_title: Servernamn
+        status_page_url: URL för statussida
         theme: Standardtema
         thumbnail: Serverns tumnagelbild
         timeline_preview: Tillåt oautentiserad åtkomst till offentliga tidslinjer
         trendable_by_default: Tillåt trender utan föregående granskning
         trends: Aktivera trender
+        trends_as_landing_page: Använd trender som landningssida
       interactions:
         must_be_follower: Blockera notiser från icke-följare
         must_be_following: Blockera notiser från personer du inte följer
@@ -276,18 +307,37 @@ sv:
         follow_request: Någon begärt att följa dig
         mention: Någon nämnt dig
         pending_account: Ett nytt konto behöver granskas
-        reblog: Någon boostar ditt inlägg
+        reblog: Någon boostade ditt inlägg
         report: En ny rapport har skickats
+        software_updates:
+          all: Meddela om alla uppdateringar
+          critical: Meddela endast om kritiska uppdateringar
+          label: En ny version av Mastodon är tillgänglig
+          none: Meddela inte om uppdateringar (rekommenderas inte)
+          patch: Meddela vid buggfix-uppdateringar
         trending_tag: En ny trend kräver granskning
       rule:
+        hint: Ytterligare information
         text: Regel
+      settings:
+        indexable: Inkludera profilsidan i sökmotorer
+        show_application: Visa från vilket program du skickade ett inlägg
       tag:
         listable: Tillåt denna hashtagg att visas i sökningar och förslag
         name: Hashtagg
         trendable: Tillåt denna hashtagg att visas under trender
-        usable: Tillåt inlägg att använda denna hashtagg
+        usable: Tillåt inlägg att använda denna fyrkantstagg
+      terms_of_service:
+        changelog: Vad har ändrats?
+        text: Användarvillkor
+      terms_of_service_generator:
+        admin_email: E-postadress för juridiska meddelanden
+        dmca_address: Fysisk adress för meddelanden om DMCA/upphovsrätt
+        dmca_email: Fysisk adress för meddelanden om DMCA/upphovsrätt
+        domain: Domän
       user:
         role: Roll
+        time_zone: Tidszon
       user_role:
         color: Emblemsfärg
         highlighted: Visa roll som emblem på användarprofiler
@@ -296,9 +346,11 @@ sv:
         position: Prioritet
       webhook:
         events: Aktiverade händelser
+        template: Lastmall
         url: Slutpunkts-URL
     'no': Nej
     not_recommended: Rekommenderas inte
+    overridden: Åsidosatt
     recommended: Rekommenderad
     required:
       mark: "*"

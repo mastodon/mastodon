@@ -60,6 +60,8 @@ eo:
       error:
         title: Eraro okazis
       new:
+        prompt_html: "%{client_name} ŝatus permeson aliri vian konton. <strong>Nur aprobu ĉi tiun peton se vi rekonas kaj fidas ĉi tiun fonton.</strong>"
+        review_permissions: Revizu permesojn
         title: Rajtigo bezonata
       show:
         title: Kopiu ĉi tiun rajtigan kodon kaj gluu ĝin al la aplikaĵo.
@@ -69,12 +71,19 @@ eo:
       confirmations:
         revoke: Ĉu vi certas?
       index:
+        authorized_at: Rajtigitas je %{date}
+        description_html: Ĉi tioj estas programaroj kiu povas aliri vian konton per API.
+        last_used_at: Laste uzita je %{date}
+        never_used: Neniam uzata
+        scopes: Permesoj
+        superapp: Interna
         title: Viaj rajtigitaj aplikaĵoj
     errors:
       messages:
         access_denied: La posedanto de la rimedo aŭ de la rajtiga servilo rifuzis vian peton.
         credential_flow_not_configured: La sendado de la identigiloj de la posedanto de la rimedo malsukcesis ĉar Doorkeeper.configure.resource_owner_from_credentials ne estis agordita.
         invalid_client: Klienta aŭtentigo malsukcesa pro nekonata kliento, neniu klienta aŭtentigo inkluzivita, aŭ nesubtenata aŭtentiga metodo.
+        invalid_code_challenge_method: La koda defia metodo devas esti S256, ebenaĵo estas nesubtenata.
         invalid_grant: La rajtiga konsento ne estas valida, ne plu estas valida, estis forigita, ne kongruas kun la plusenda URI uzita en la aŭtentiga peto, aŭ estis sendita al alia kliento.
         invalid_redirect_uri: La plusenda URI uzita ne estas valida.
         invalid_request:
@@ -105,12 +114,30 @@ eo:
         destroy:
           notice: Aplikaĵo malrajtigita.
     grouped_scopes:
+      access:
+        read: Legnura aliro
+        read/write: Lega kaj skriba aliro
+        write: Skribnura aliro
       title:
+        accounts: Kontoj
+        admin/accounts: Administro de kontoj
+        admin/all: Ĉiuj administraj funkcioj
+        admin/reports: Administro de raportoj
+        all: Plena aliro al via Mastodon-konto
         blocks: Blokita
         bookmarks: Legosignoj
-        favourites: Preferaĵoj
+        conversations: Konversacioj
+        crypto: Fin-al-fina ĉifrado
+        favourites: Preferatoj
+        filters: Filtriloj
+        follow: Abonadoj, silentigitaj kontoj kaj blokitaj kontoj
+        follows: Sekvas
         lists: Listoj
+        media: Plurmediaj aldonaĵoj
         mutes: Silentigitaj
+        notifications: Sciigoj
+        profile: Via Mastodon-profilo
+        push: Puŝsciigoj
         reports: Raportoj
         search: Serĉi
         statuses: Afiŝoj
@@ -124,17 +151,29 @@ eo:
     scopes:
       admin:read: legu ĉiujn datumojn en la servilo
       admin:read:accounts: legi konfidencajn informojn de ĉiuj kontoj
+      admin:read:canonical_email_blocks: legi sentemajn informojn de ĉiuj kanonikaj retpoŝtaj blokoj
+      admin:read:domain_allows: legi sentemajn informojn de ĉiuj domajno permesas
+      admin:read:domain_blocks: legi sentemajn informojn de ĉiuj domajnaj blokoj
+      admin:read:email_domain_blocks: legi sentemajn informojn pri ĉiuj retpoŝtaj domajnaj blokoj
+      admin:read:ip_blocks: legi sentivajn informojn de ĉiuj IP-blokoj
       admin:read:reports: legi konfidencajn informojn de ĉiuj signaloj kaj signalitaj kontoj
       admin:write: modifi ĉiujn datumojn en la servilo
       admin:write:accounts: plenumi agojn de kontrolo sur kontoj
+      admin:write:canonical_email_blocks: fari moderigajn agojn sur kanonikaj retpoŝtaj blokoj
+      admin:write:domain_allows: fari moderigajn agojn sur domajno permesas
+      admin:write:domain_blocks: fari moderigajn agojn sur domajnaj blokoj
+      admin:write:email_domain_blocks: fari moderigajn agojn pri retpoŝtaj domajnaj blokoj
+      admin:write:ip_blocks: fari moderigajn agojn pri IP-blokoj
       admin:write:reports: plenumi agojn de kontrolo sur signaloj
+      crypto: uzi fin-al-finan ĉifradon
       follow: ŝanĝi rilatojn al aliaj kontoj
+      profile: legu nur la profilinformojn de via konto
       push: ricevi viajn puŝ-sciigojn
       read: legi ĉiujn datumojn de via konto
       read:accounts: vidi la informojn de la kontoj
       read:blocks: vidi viajn blokadojn
       read:bookmarks: vidi viajn legosignojn
-      read:favourites: vidi viajn stelumojn
+      read:favourites: vidi viajn preferatojn
       read:filters: vidi viajn filtrilojn
       read:follows: vidi viajn sekvatojn
       read:lists: vidi viajn listojn
@@ -147,11 +186,12 @@ eo:
       write:accounts: ŝanĝi vian profilon
       write:blocks: bloki kontojn kaj domajnojn
       write:bookmarks: aldoni mesaĝojn al la legosignoj
-      write:favourites: stelumi mesaĝojn
+      write:conversations: mallautigi kaj forigi babiladojn
+      write:favourites: preferataj afiŝaj
       write:filters: krei filtrilojn
       write:follows: sekvi homojn
       write:lists: krei listojn
-      write:media: alŝuti aŭdovidaĵojn
+      write:media: alŝuti plurmediojn
       write:mutes: silentigi homojn kaj konversaciojn
       write:notifications: forigi viajn sciigojn
       write:reports: signali aliajn homojn

@@ -4,52 +4,69 @@ fi:
     attributes:
       poll:
         expires_at: Määräaika
-        options: Valinnat
+        options: Vaihtoehdot
       user:
         agreement: Palvelusopimus
         email: Sähköpostiosoite
-        locale: Paikallinen
+        locale: Alue
         password: Salasana
       user/account:
-        username: Käyttäjätunnus
+        username: Käyttäjänimi
       user/invite_request:
         text: Syy
     errors:
+      attributes:
+        domain:
+          invalid: ei ole kelvollinen verkkotunnus
+      messages:
+        invalid_domain_on_line: "%{value} ei ole kelvollinen verkkotunnus"
+        too_many_lines: ylittää %{limit} rivin rajan
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: sisältää arvoja, joista puuttuu nimike
             username:
               invalid: saa sisältää vain kirjaimia, numeroita ja alaviivoja
               reserved: on varattu
         admin/webhook:
           attributes:
             url:
-              invalid: ei ole kelvollinen URL
+              invalid: ei ole kelvollinen verkko-osoite
         doorkeeper/application:
           attributes:
             website:
-              invalid: ei ole kelvollinen URL
+              invalid: ei ole kelvollinen URL-osoite
         import:
           attributes:
             data:
               malformed: on väärin muodostettu
+        list_account:
+          attributes:
+            account_id:
+              taken: on jo listassa
+          must_be_following: on oltava seurattu tili
         status:
           attributes:
             reblog:
-              taken: tila on jo olemassa
+              taken: tästä julkaisusta on jo tehty
         user:
           attributes:
             email:
-              blocked: käyttää kiellettyä sähköpostipalvelun tarjoajaa
+              blocked: käyttää kiellettyä sähköpostipalveluntarjoajaa
               unreachable: ei näytä olevan olemassa
             role_id:
               elevated: ei voi olla korkeampi kuin nykyinen roolisi
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: sisältää oikeudet, jotka eivät ole turvallisia perusroolille
-              elevated: ei voi sisältää oikeuksia, joita nykyisellä roolillasi ei ole
+              dangerous: sisällytä käyttöoikeuksia, jotka eivät ole turvallisia perusroolille
+              elevated: ei voi sisältää käyttöoikeuksia, joita nykyisellä roolillasi ei ole
               own_role: ei voi muuttaa nykyisellä roolillasi
             position:
               elevated: ei voi olla korkeampi kuin nykyinen roolisi
               own_role: ei voi muuttaa nykyisellä roolillasi
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: ei voi sisältää tapahtumia, joihin sinulla ei ole oikeuksia

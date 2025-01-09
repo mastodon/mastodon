@@ -1,9 +1,11 @@
-import { connect } from 'react-redux';
-import LanguageDropdown from '../components/language_dropdown';
-import { changeComposeLanguage } from 'mastodon/actions/compose';
-import { useLanguage } from 'mastodon/actions/languages';
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 import { Map as ImmutableMap } from 'immutable';
+import { connect } from 'react-redux';
+
+
+import { changeComposeLanguage } from 'mastodon/actions/compose';
+
+import LanguageDropdown from '../components/language_dropdown';
 
 const getFrequentlyUsedLanguages = createSelector([
   state => state.getIn(['settings', 'frequentlyUsedLanguages'], ImmutableMap()),
@@ -23,10 +25,6 @@ const mapDispatchToProps = dispatch => ({
 
   onChange (value) {
     dispatch(changeComposeLanguage(value));
-  },
-
-  onClose (value) {
-    dispatch(useLanguage(value));
   },
 
 });

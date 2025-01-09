@@ -15,41 +15,56 @@ zh-CN:
       user/invite_request:
         text: 理由
     errors:
+      attributes:
+        domain:
+          invalid: 不是有效的域名
+      messages:
+        invalid_domain_on_line: "%{value} 不是有效的域名"
+        too_many_lines: 超出 %{limit} 行的长度限制
       models:
         account:
           attributes:
             username:
-              invalid: 只能包含字母、数字和下划线
+              invalid: 只能使用字母、数字和下划线
               reserved: 是保留关键字
         admin/webhook:
           attributes:
             url:
-              invalid: 非有效网址
+              invalid: 网址无效
         doorkeeper/application:
           attributes:
             website:
-              invalid: 非有效网址
+              invalid: 网址无效
         import:
           attributes:
             data:
               malformed: 格式错误
+        list_account:
+          attributes:
+            account_id:
+              taken: 已经被加入到列表了
+          must_be_following: 需要是你关注的账户
         status:
           attributes:
             reblog:
-              taken: 已被转嘟过
+              taken: 已经被转嘟过
         user:
           attributes:
             email:
               blocked: 使用了被封禁的电子邮件提供商
               unreachable: 似乎不存在
             role_id:
-              elevated: 不能高于您当前的身份
+              elevated: 不能高于你目前所处角色拥有的权限
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: 包含对基本角色不安全的权限
-              elevated: 不能包含您当前角色不拥有的权限
-              own_role: 无法以您当前的身份更改
+              dangerous: 包含对基本角色而言不安全的权限
+              elevated: 不能包含你当前身份未有的权限
+              own_role: 你当前的角色无权执行此更改
             position:
-              elevated: 不能高于您当前的角色
-              own_role: 无法以您当前的身份更改
+              elevated: 不能高于你当前的角色
+              own_role: 你当前的角色无权执行此更改
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: 不能包含你没有权限的事件

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe AfterBlockService, type: :service do
+RSpec.describe AfterBlockService do
   subject { described_class.new.call(account, target_account) }
 
   let(:account)              { Fabricate(:account) }

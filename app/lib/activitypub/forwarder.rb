@@ -12,7 +12,7 @@ class ActivityPub::Forwarder
   end
 
   def forward!
-    ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes) do |inbox_url|
+    ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes, limit: 1_000) do |inbox_url|
       [payload, signature_account_id, inbox_url]
     end
   end
@@ -28,13 +28,11 @@ class ActivityPub::Forwarder
   end
 
   def signature_account_id
-    @signature_account_id ||= begin
-      if in_reply_to_local?
-        in_reply_to.account_id
-      else
-        reblogged_by_account_ids.first
-      end
-    end
+    @signature_account_id ||= if in_reply_to_local?
+                                in_reply_to.account_id
+                              else
+                                reblogged_by_account_ids.first
+                              end
   end
 
   def inboxes

@@ -4,7 +4,7 @@ ko:
     attributes:
       poll:
         expires_at: 마감 기한
-        options: 선택
+        options: 선택지
       user:
         agreement: 이용약관
         email: 이메일 주소
@@ -15,12 +15,18 @@ ko:
       user/invite_request:
         text: 이유
     errors:
+      attributes:
+        domain:
+          invalid: 올바른 도메인 네임이 아닙니다
+      messages:
+        invalid_domain_on_line: "%{value}는 올바른 도메인 네임이 아닙니다"
+        too_many_lines: "%{limit}줄 제한을 초과합니다"
       models:
         account:
           attributes:
             username:
-              invalid: 영문자, 숫자, _만 사용 가능
-              reserved: 이미 예약되어 있습니다
+              invalid: 영문자와 숫자, 밑줄만 사용 가능합니다
+              reserved: 예약되어 있습니다
         admin/webhook:
           attributes:
             url:
@@ -33,6 +39,11 @@ ko:
           attributes:
             data:
               malformed: 데이터가 올바르지 않습니다
+        list_account:
+          attributes:
+            account_id:
+              taken: 이미 목록에 존재합니다
+          must_be_following: 팔로우한 계정이어야 합니다
         status:
           attributes:
             reblog:
@@ -53,3 +64,7 @@ ko:
             position:
               elevated: 당신의 현재 역할보다 높을 수 없습니다
               own_role: 당신의 현재 역할을 변경할 수 없습니다
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: 권한이 없는 이벤트를 포함할 수는 없습니다

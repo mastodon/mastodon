@@ -15,6 +15,12 @@ ja:
       user/invite_request:
         text: 理由
     errors:
+      attributes:
+        domain:
+          invalid: 有効なドメイン名ではありません
+      messages:
+        invalid_domain_on_line: "%{value} は有効なドメイン名ではありません"
+        too_many_lines: "%{limit} 行の制限を超えています。"
       models:
         account:
           attributes:
@@ -33,6 +39,11 @@ ja:
           attributes:
             data:
               malformed: は不正です
+        list_account:
+          attributes:
+            account_id:
+              taken: はすでにリストに存在します
+          must_be_following: フォローされているアカウントでなければなりません
         status:
           attributes:
             reblog:
@@ -53,3 +64,7 @@ ja:
             position:
               elevated: 現在と同じロールには変更できません
               own_role: 現在と同じロールには変更できません
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: あなたが権利を持っていないイベントを含めることはできません

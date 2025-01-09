@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Marker, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe Marker do
+  describe 'Validations' do
+    it { is_expected.to validate_inclusion_of(:timeline).in_array(described_class::TIMELINES) }
+  end
 end

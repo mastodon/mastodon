@@ -11,13 +11,13 @@ class Api::V2::FiltersController < Api::BaseController
     render json: @filters, each_serializer: REST::FilterSerializer, rules_requested: true
   end
 
-  def create
-    @filter = current_account.custom_filters.create!(resource_params)
-
+  def show
     render json: @filter, serializer: REST::FilterSerializer, rules_requested: true
   end
 
-  def show
+  def create
+    @filter = current_account.custom_filters.create!(resource_params)
+
     render json: @filter, serializer: REST::FilterSerializer, rules_requested: true
   end
 
@@ -35,7 +35,7 @@ class Api::V2::FiltersController < Api::BaseController
   private
 
   def set_filters
-    @filters = current_account.custom_filters.includes(:keywords)
+    @filters = current_account.custom_filters.includes(:keywords, :statuses)
   end
 
   def set_filter

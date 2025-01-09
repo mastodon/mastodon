@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 RSS::Builder.build do |doc|
   doc.title("##{@tag.display_name}")
   doc.description(I18n.t('rss.descriptions.tag', hashtag: @tag.display_name))
   doc.link(tag_url(@tag))
   doc.last_build_date(@statuses.first.created_at) if @statuses.any?
-  doc.generator("Mastodon v#{Mastodon::Version.to_s}")
+  doc.generator("Mastodon v#{Mastodon::Version}")
 
   @statuses.each do |status|
     doc.item do |item|
@@ -16,12 +18,12 @@ RSS::Builder.build do |doc|
         item.enclosure(full_asset_url(media.file.url(:original, false)), media.file.content_type, media.file.size)
       end
 
-      status.ordered_media_attachments.each do |media|
-        item.media_content(full_asset_url(media.file.url(:original, false)), media.file.content_type, media.file.size) do |media_content|
-          media_content.medium(media.gifv? ? 'image' : media.type.to_s)
+      status.ordered_media_attachments.each do |media_attachment|
+        item.media_content(full_asset_url(media_attachment.file.url(:original, false)), media_attachment.file.content_type, media_attachment.file.size) do |media_content|
+          media_content.medium(media_attachment.gifv? ? 'image' : media_attachment.type.to_s)
           media_content.rating(status.sensitive? ? 'adult' : 'nonadult')
-          media_content.description(media.description) if media.description.present?
-          media_content.thumbnail(media.thumbnail.url(:original, false)) if media.thumbnail?
+          media_content.description(media_attachment.description) if media_attachment.description.present?
+          media_content.thumbnail(media_attachment.thumbnail.url(:original, false)) if media_attachment.thumbnail?
         end
       end
 

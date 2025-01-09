@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe FollowService, type: :service do
+RSpec.describe FollowService do
+  subject { described_class.new }
+
   let(:sender) { Fabricate(:account, username: 'alice') }
 
-  subject { FollowService.new }
-
-  context 'local account' do
+  context 'when local account' do
     describe 'locked account' do
       let(:bob) { Fabricate(:account, locked: true, username: 'bob') }
 
@@ -136,20 +138,21 @@ RSpec.describe FollowService, type: :service do
     end
   end
 
-  context 'remote ActivityPub account' do
+  context 'when remote ActivityPub account' do
     let(:bob) { Fabricate(:account, username: 'bob', domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
 
     before do
-      stub_request(:post, "http://example.com/inbox").to_return(:status => 200, :body => "", :headers => {})
+      stub_request(:post, 'http://example.com/inbox').to_return(status: 200, body: '', headers: {})
+    end
+
+    it 'creates follow request and sends an activity to inbox', :inline_jobs do
       subject.call(sender, bob)
-    end
 
-    it 'creates follow request' do
-      expect(FollowRequest.find_by(account: sender, target_account: bob)).to_not be_nil
-    end
+      expect(FollowRequest.find_by(account: sender, target_account: bob))
+        .to_not be_nil
 
-    it 'sends a follow activity to the inbox' do
-      expect(a_request(:post, 'http://example.com/inbox')).to have_been_made.once
+      expect(a_request(:post, 'http://example.com/inbox'))
+        .to have_been_made.once
     end
   end
 end

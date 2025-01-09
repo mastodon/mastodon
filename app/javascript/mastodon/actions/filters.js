@@ -1,4 +1,5 @@
 import api from '../api';
+
 import { openModal } from './modal';
 
 export const FILTERS_FETCH_REQUEST = 'FILTERS_FETCH_REQUEST';
@@ -14,18 +15,21 @@ export const FILTERS_CREATE_SUCCESS = 'FILTERS_CREATE_SUCCESS';
 export const FILTERS_CREATE_FAIL    = 'FILTERS_CREATE_FAIL';
 
 export const initAddFilter = (status, { contextType }) => dispatch =>
-  dispatch(openModal('FILTER', {
-    statusId: status?.get('id'),
-    contextType: contextType,
+  dispatch(openModal({
+    modalType: 'FILTER',
+    modalProps: {
+      statusId: status?.get('id'),
+      contextType: contextType,
+    },
   }));
 
-export const fetchFilters = () => (dispatch, getState) => {
+export const fetchFilters = () => (dispatch) => {
   dispatch({
     type: FILTERS_FETCH_REQUEST,
     skipLoading: true,
   });
 
-  api(getState)
+  api()
     .get('/api/v2/filters')
     .then(({ data }) => dispatch({
       type: FILTERS_FETCH_SUCCESS,
@@ -40,10 +44,10 @@ export const fetchFilters = () => (dispatch, getState) => {
     }));
 };
 
-export const createFilterStatus = (params, onSuccess, onFail) => (dispatch, getState) => {
+export const createFilterStatus = (params, onSuccess, onFail) => (dispatch) => {
   dispatch(createFilterStatusRequest());
 
-  api(getState).post(`/api/v1/filters/${params.filter_id}/statuses`, params).then(response => {
+  api().post(`/api/v2/filters/${params.filter_id}/statuses`, params).then(response => {
     dispatch(createFilterStatusSuccess(response.data));
     if (onSuccess) onSuccess();
   }).catch(error => {
@@ -66,10 +70,10 @@ export const createFilterStatusFail = error => ({
   error,
 });
 
-export const createFilter = (params, onSuccess, onFail) => (dispatch, getState) => {
+export const createFilter = (params, onSuccess, onFail) => (dispatch) => {
   dispatch(createFilterRequest());
 
-  api(getState).post('/api/v2/filters', params).then(response => {
+  api().post('/api/v2/filters', params).then(response => {
     dispatch(createFilterSuccess(response.data));
     if (onSuccess) onSuccess(response.data);
   }).catch(error => {

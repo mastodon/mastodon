@@ -5,20 +5,11 @@ class Auth::SetupController < ApplicationController
 
   before_action :authenticate_user!
   before_action :require_unconfirmed_or_pending!
-  before_action :set_body_classes
   before_action :set_user
 
   skip_before_action :require_functional!
 
-  def show
-    flash.now[:notice] = begin
-      if @user.pending?
-        I18n.t('devise.registrations.signed_up_but_pending')
-      else
-        I18n.t('devise.registrations.signed_up_but_unconfirmed')
-      end
-    end
-  end
+  def show; end
 
   def update
     # This allows updating the e-mail without entering a password as is required
@@ -26,13 +17,12 @@ class Auth::SetupController < ApplicationController
     # that were not confirmed yet
 
     if @user.update(user_params)
-      redirect_to auth_setup_path, notice: I18n.t('devise.confirmations.send_instructions')
+      @user.resend_confirmation_instructions unless @user.confirmed?
+      redirect_to auth_setup_path, notice: I18n.t('auth.setup.new_confirmation_instructions_sent')
     else
       render :show
     end
   end
-
-  helper_method :missing_email?
 
   private
 
@@ -44,15 +34,7 @@ class Auth::SetupController < ApplicationController
     @user = current_user
   end
 
-  def set_body_classes
-    @body_classes = 'lighter'
-  end
-
   def user_params
     params.require(:user).permit(:email)
-  end
-
-  def missing_email?
-    truthy_param?(:missing_email)
   end
 end

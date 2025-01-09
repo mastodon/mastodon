@@ -1,43 +1,5 @@
 // @ts-check
 
-/**
- * @typedef Emoji
- * @property {string} shortcode
- * @property {string} static_url
- * @property {string} url
- */
-
-/**
- * @typedef AccountField
- * @property {string} name
- * @property {string} value
- * @property {string} verified_at
- */
-
-/**
- * @typedef Account
- * @property {string} acct
- * @property {string} avatar
- * @property {string} avatar_static
- * @property {boolean} bot
- * @property {string} created_at
- * @property {boolean=} discoverable
- * @property {string} display_name
- * @property {Emoji[]} emojis
- * @property {AccountField[]} fields
- * @property {number} followers_count
- * @property {number} following_count
- * @property {boolean} group
- * @property {string} header
- * @property {string} header_static
- * @property {string} id
- * @property {string=} last_status_at
- * @property {boolean} locked
- * @property {string} note
- * @property {number} statuses_count
- * @property {string} url
- * @property {string} username
- */
 
 /**
  * @typedef {[code: string, name: string, localName: string]} InitialStateLanguage
@@ -51,11 +13,11 @@
  * @property {boolean} activity_api_enabled
  * @property {string} admin
  * @property {boolean=} boost_modal
- * @property {boolean} crop_images
  * @property {boolean=} delete_modal
  * @property {boolean=} disable_swiping
+ * @property {boolean=} disable_hover_cards
  * @property {string=} disabled_account_id
- * @property {boolean} display_media
+ * @property {string} display_media
  * @property {string} domain
  * @property {boolean=} expand_spoilers
  * @property {boolean} limited_federation_mode
@@ -69,29 +31,51 @@
  * @property {boolean} reduce_motion
  * @property {string} repository
  * @property {boolean} search_enabled
+ * @property {boolean} trends_enabled
  * @property {boolean} single_user_mode
  * @property {string} source_url
  * @property {string} streaming_api_base_url
  * @property {boolean} timeline_preview
  * @property {string} title
- * @property {boolean} trends
- * @property {boolean} unfollow_modal
+ * @property {boolean} show_trends
+ * @property {boolean} trends_as_landing_page
  * @property {boolean} use_blurhash
  * @property {boolean=} use_pending_items
  * @property {string} version
- * @property {boolean} translation_enabled
+ * @property {string} sso_redirect
+ * @property {string} status_page_url
+ * @property {boolean} terms_of_service_enabled
+ */
+
+/**
+ * @typedef Role
+ * @property {string} id
+ * @property {string} name
+ * @property {string} permissions
+ * @property {string} color
+ * @property {boolean} highlighted
  */
 
 /**
  * @typedef InitialState
- * @property {Record<string, Account>} accounts
+ * @property {Record<string, import("./api_types/accounts").ApiAccountJSON>} accounts
  * @property {InitialStateLanguage[]} languages
+ * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
+ * @property {Role?} role
  */
 
 const element = document.getElementById('initial-state');
 /** @type {InitialState | undefined} */
 const initialState = element?.textContent && JSON.parse(element.textContent);
+
+/** @type {string} */
+const initialPath = document.querySelector("head meta[name=initialPath]")?.getAttribute("content") ?? '';
+/** @type {boolean} */
+export const hasMultiColumnPath = initialPath === '/'
+  || initialPath === '/getting-started'
+  || initialPath === '/home'
+  || initialPath.startsWith('/deck');
 
 /**
  * @template {keyof InitialStateMeta} K
@@ -103,9 +87,9 @@ const getMeta = (prop) => initialState?.meta && initialState.meta[prop];
 export const activityApiEnabled = getMeta('activity_api_enabled');
 export const autoPlayGif = getMeta('auto_play_gif');
 export const boostModal = getMeta('boost_modal');
-export const cropImages = getMeta('crop_images');
 export const deleteModal = getMeta('delete_modal');
 export const disableSwiping = getMeta('disable_swiping');
+export const disableHoverCards = getMeta('disable_hover_cards');
 export const disabledAccountId = getMeta('disabled_account_id');
 export const displayMedia = getMeta('display_media');
 export const domain = getMeta('domain');
@@ -121,16 +105,37 @@ export const reduceMotion = getMeta('reduce_motion');
 export const registrationsOpen = getMeta('registrations_open');
 export const repository = getMeta('repository');
 export const searchEnabled = getMeta('search_enabled');
-export const showTrends = getMeta('trends');
+export const trendsEnabled = getMeta('trends_enabled');
+export const showTrends = getMeta('show_trends');
 export const singleUserMode = getMeta('single_user_mode');
 export const source_url = getMeta('source_url');
 export const timelinePreview = getMeta('timeline_preview');
 export const title = getMeta('title');
-export const unfollowModal = getMeta('unfollow_modal');
+export const trendsAsLanding = getMeta('trends_as_landing_page');
 export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
-export const translationEnabled = getMeta('translation_enabled');
-export const languages = initialState?.languages;
+export const criticalUpdatesPending = initialState?.critical_updates_pending;
+export const statusPageUrl = getMeta('status_page_url');
+export const sso_redirect = getMeta('sso_redirect');
+export const termsOfServiceEnabled = getMeta('terms_of_service_enabled');
+
+const displayNames = Intl.DisplayNames && new Intl.DisplayNames(getMeta('locale'), {
+  type: 'language',
+  fallback: 'none',
+  languageDisplay: 'standard',
+});
+
+export const languages = initialState?.languages?.map(lang => {
+  // zh-YUE is not a valid CLDR unicode_language_id
+  return [lang[0], displayNames?.of(lang[0].replace('zh-YUE', 'yue')) || lang[1], lang[2]];
+});
+
+/**
+ * @returns {string | undefined}
+ */
+export function getAccessToken() {
+  return getMeta('access_token');
+}
 
 export default initialState;

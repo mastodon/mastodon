@@ -28,15 +28,15 @@ class InstanceFilter
   def scope_for(key, value)
     case key.to_s
     when 'limited'
-      Instance.joins(:domain_block).reorder(Arel.sql('domain_blocks.id desc'))
+      Instance.joins(:domain_block).reorder(domain_blocks: { id: :desc })
     when 'allowed'
-      Instance.joins(:domain_allow).reorder(Arel.sql('domain_allows.id desc'))
+      Instance.joins(:domain_allow).reorder(domain_allows: { id: :desc })
     when 'by_domain'
       Instance.matches_domain(value)
     when 'availability'
       availability_scope(value)
     else
-      raise "Unknown filter: #{key}"
+      raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
   end
 
@@ -47,7 +47,7 @@ class InstanceFilter
     when 'unavailable'
       Instance.joins(:unavailable_domain)
     else
-      raise "Unknown availability: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown availability: #{value}"
     end
   end
 end

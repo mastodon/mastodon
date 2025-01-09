@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: blocks
@@ -24,14 +25,19 @@ class Block < ApplicationRecord
     false # Force uri_for to use uri attribute
   end
 
-  after_commit :remove_blocking_cache
   before_validation :set_uri, only: :create
+  after_commit :invalidate_blocking_cache
+  after_commit :invalidate_follow_recommendations_cache
 
   private
 
-  def remove_blocking_cache
+  def invalidate_blocking_cache
     Rails.cache.delete("exclude_account_ids_for:#{account_id}")
     Rails.cache.delete("exclude_account_ids_for:#{target_account_id}")
+  end
+
+  def invalidate_follow_recommendations_cache
+    Rails.cache.delete("follow_recommendations/#{account_id}")
   end
 
   def set_uri

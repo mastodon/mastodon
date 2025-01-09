@@ -1,0 +1,14 @@
+- content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex, noarchive' }/
+  %link{ rel: 'canonical', href: @redirect_path }
+
+- content_for :body_classes, 'app-body'
+
+.redirect
+  .redirect__logo
+    = link_to render_logo, root_path
+
+  .redirect__message
+    %h1= t('redirects.title', instance: site_hostname)
+    %p= t('redirects.prompt')
+    %p= link_to @redirect_path, @redirect_path, rel: 'noopener'

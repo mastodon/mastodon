@@ -60,7 +60,7 @@ es:
       error:
         title: Ha ocurrido un error
       new:
-        prompt_html: "%{client_name} desea permiso para acceder a tu cuenta. Es una aplicación de terceros. <strong>Si no confías en ella, no deberías autorizarla.</strong>"
+        prompt_html: A %{client_name} le gustaría obtener permiso para acceder a tu cuenta. <strong>Aprueba esta solicitud solo si reconoces y confías en esta fuente.</strong>
         review_permissions: Revisar permisos
         title: Se requiere autorización
       show:
@@ -83,6 +83,7 @@ es:
         access_denied: El propietario del recurso o servidor de autorización denegó la petición.
         credential_flow_not_configured: Las credenciales de contraseña del propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_from_credentials está sin configurar.
         invalid_client: La autentificación del cliente falló debido o a que es un cliente desconocido o no está incluída la autentificación del cliente o el método de autentificación no está confirmado.
+        invalid_code_challenge_method: El método de desafío de código debe ser S256, «plain» no está soportado.
         invalid_grant: La concesión de autorización ofrecida es inválida, venció, se revocó, no coincide con la URI de redirección utilizada en la petición de autorización, o fue emitida para otro cliente.
         invalid_redirect_uri: La URI de redirección incluida no es válida.
         invalid_request:
@@ -122,19 +123,20 @@ es:
         admin/accounts: Administración de cuentas
         admin/all: Todas las funciones administrativas
         admin/reports: Administración de informes
-        all: Todo
+        all: Acceso completo a tu cuenta de Mastodon
         blocks: Bloqueos
         bookmarks: Marcadores
         conversations: Conversaciones
         crypto: Cifrado de extremo a extremo
         favourites: Favoritos
         filters: Filtros
-        follow: Relaciones
+        follow: Seguimientos, silenciados y bloqueos
         follows: Seguidos
         lists: Listas
         media: Adjuntos multimedia
         mutes: Silenciados
         notifications: Notificaciones
+        profile: Tu perfil de Mastodon
         push: Notificaciones push
         reports: Informes
         search: Buscar
@@ -149,12 +151,23 @@ es:
     scopes:
       admin:read: leer todos los datos en el servidor
       admin:read:accounts: leer información sensible de todas las cuentas
+      admin:read:canonical_email_blocks: leer información sensible de todos los bloqueos de correo canónico
+      admin:read:domain_allows: leer información sensible de todos los dominios permitidos
+      admin:read:domain_blocks: leer información sensible de todos los bloqueos de dominio
+      admin:read:email_domain_blocks: leer información sensible de todos los bloqueos de dominio de correo electrónico
+      admin:read:ip_blocks: leer información sensible de todos los bloqueos de IP
       admin:read:reports: leer información sensible de todos los informes y cuentas reportadas
       admin:write: modificar todos los datos en el servidor
       admin:write:accounts: realizar acciones de moderación en cuentas
+      admin:write:canonical_email_blocks: ejecutar acciones de moderación en bloqueos canónicos de correo electrónico
+      admin:write:domain_allows: ejecutar acciones de moderación en los dominios permitidos
+      admin:write:domain_blocks: ejecutar acciones de moderación en bloqueos de dominio
+      admin:write:email_domain_blocks: ejecutar acciones de moderación en bloqueos de dominio de correo electrónico
+      admin:write:ip_blocks: ejecutar acciones de moderación en bloqueos de IP
       admin:write:reports: realizar acciones de moderación en informes
       crypto: usar cifrado de extremo a extremo
       follow: seguir, bloquear, desbloquear y dejar de seguir cuentas
+      profile: leer sólo la información del perfil de tu cuenta
       push: recibir tus notificaciones push
       read: leer los datos de tu cuenta
       read:accounts: ver información de cuentas
@@ -168,13 +181,13 @@ es:
       read:notifications: ver tus notificaciones
       read:reports: ver tus informes
       read:search: buscar en su nombre
-      read:statuses: ver todos los estados
+      read:statuses: ver todas las publicaciones
       write: publicar en tu nombre
       write:accounts: modifica tu perfil
       write:blocks: bloquear cuentas y dominios
-      write:bookmarks: guardar estados como marcadores
+      write:bookmarks: guardar publicaciones como marcadores
       write:conversations: silenciar y eliminar conversaciones
-      write:favourites: publicaciones favoritas
+      write:favourites: marcar publicaciones como favoritas
       write:filters: crear filtros
       write:follows: seguir usuarios
       write:lists: crear listas
@@ -182,4 +195,4 @@ es:
       write:mutes: silenciar usuarios y conversaciones
       write:notifications: limpia tus notificaciones
       write:reports: reportar a otras personas
-      write:statuses: publicar estados
+      write:statuses: publicar mensajes

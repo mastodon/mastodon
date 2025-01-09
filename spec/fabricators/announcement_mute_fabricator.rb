@@ -1,4 +1,6 @@
+# frozen_string_literal: true
+
 Fabricator(:announcement_mute) do
-  account
-  announcement
+  announcement { Fabricate.build(:announcement) }
+  account { Fabricate.build(:account) }
 end

@@ -8,13 +8,13 @@
 
 body {
   font-family: $font-sans-serif, sans-serif;
-  background: darken($ui-base-color, 7%);
+  background: var(--background-color);
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
   color: $primary-text-color;
   text-rendering: optimizelegibility;
-  font-feature-settings: "kern";
+  font-feature-settings: 'kern';
   text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0%);
   -webkit-tap-highlight-color: transparent;
@@ -31,7 +31,19 @@ body {
     // Droid Sans => Older Androids (<4.0)
     // Helvetica Neue => Older macOS <10.11
     // $font-sans-serif => web-font (Roboto) fallback and newer Androids (>=4.0)
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", $font-sans-serif, sans-serif;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Fira Sans',
+      'Droid Sans',
+      'Helvetica Neue',
+      $font-sans-serif,
+      sans-serif;
   }
 
   &.app-body {
@@ -52,10 +64,6 @@ body {
     &.with-modals--active {
       overflow-y: hidden;
     }
-  }
-
-  &.lighter {
-    background: $ui-base-color;
   }
 
   &.with-modals {
@@ -97,28 +105,18 @@ body {
   }
 
   &.embed {
-    background: lighten($ui-base-color, 4%);
     margin: 0;
     padding-bottom: 0;
-
-    .container {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
+    overflow: hidden;
   }
 
   &.admin {
-    background: darken($ui-base-color, 4%);
     padding: 0;
   }
 
   &.error {
     position: absolute;
     text-align: center;
-    color: $darker-text-color;
-    background: $ui-base-color;
     width: 100%;
     height: 100%;
     padding: 0;
@@ -137,6 +135,7 @@ body {
           width: 100%;
           height: auto;
           margin-top: -120px;
+          margin-bottom: -45px;
         }
       }
 
@@ -149,11 +148,22 @@ body {
   }
 }
 
+a {
+  &:focus {
+    border-radius: 4px;
+    outline: $ui-button-focus-outline;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
 button {
   font-family: inherit;
   cursor: pointer;
 
-  &:focus {
+  &:focus:not(:focus-visible) {
     outline: none;
   }
 }
@@ -265,7 +275,7 @@ button {
   overflow: hidden;
   position: absolute;
   top: 0;
-  left: 0;
+  inset-inline-start: 0;
   z-index: -1000;
 }
 

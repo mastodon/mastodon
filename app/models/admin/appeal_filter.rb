@@ -5,6 +5,8 @@ class Admin::AppealFilter
     status
   ).freeze
 
+  IGNORED_PARAMS = %w(page).freeze
+
   attr_reader :params
 
   def initialize(params)
@@ -15,7 +17,7 @@ class Admin::AppealFilter
     scope = Appeal.order(id: :desc)
 
     params.each do |key, value|
-      next if %w(page).include?(key.to_s)
+      next if IGNORED_PARAMS.include?(key.to_s)
 
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
     end
@@ -30,7 +32,7 @@ class Admin::AppealFilter
     when 'status'
       status_scope(value)
     else
-      raise "Unknown filter: #{key}"
+      raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
   end
 
@@ -43,7 +45,7 @@ class Admin::AppealFilter
     when 'pending'
       Appeal.pending
     else
-      raise "Unknown status: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown status: #{value}"
     end
   end
 end

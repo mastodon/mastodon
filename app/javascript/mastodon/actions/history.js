@@ -1,4 +1,5 @@
 import api from '../api';
+
 import { importFetchedAccounts } from './importer';
 
 export const HISTORY_FETCH_REQUEST = 'HISTORY_FETCH_REQUEST';
@@ -14,7 +15,7 @@ export const fetchHistory = statusId => (dispatch, getState) => {
 
   dispatch(fetchHistoryRequest(statusId));
 
-  api(getState).get(`/api/v1/statuses/${statusId}/history`).then(({ data }) => {
+  api().get(`/api/v1/statuses/${statusId}/history`).then(({ data }) => {
     dispatch(importFetchedAccounts(data.map(x => x.account)));
     dispatch(fetchHistorySuccess(statusId, data));
   }).catch(error => dispatch(fetchHistoryFail(error)));

@@ -11,18 +11,26 @@ class FollowRecommendationFilter
   attr_reader :params, :language
 
   def initialize(params)
-    @language = params.delete('language') || I18n.locale
+    @language = usable_language(params.delete('language') || I18n.locale)
     @params   = params
   end
 
   def results
     if params['status'] == 'suppressed'
-      Account.joins(:follow_recommendation_suppression).order(FollowRecommendationSuppression.arel_table[:id].desc).to_a
+      Account.includes(:account_stat).joins(:follow_recommendation_suppression).order(FollowRecommendationSuppression.arel_table[:id].desc)
     else
-      account_ids = redis.zrevrange("follow_recommendations:#{@language}", 0, -1).map(&:to_i)
-      accounts    = Account.where(id: account_ids).index_by(&:id)
-
-      account_ids.map { |id| accounts[id] }.compact
+      Account.includes(:account_stat).joins(:follow_recommendation).merge(FollowRecommendation.localized(@language).order(rank: :desc))
     end
+  end
+
+  private
+
+  def usable_language(locale)
+    return locale if Trends.available_locales.include?(locale)
+
+    locale = locale.to_s.split(/[_-]/).first
+    return locale if Trends.available_locales.include?(locale)
+
+    nil
   end
 end

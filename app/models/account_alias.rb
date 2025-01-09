@@ -5,11 +5,11 @@
 # Table name: account_aliases
 #
 #  id         :bigint(8)        not null, primary key
-#  account_id :bigint(8)
 #  acct       :string           default(""), not null
 #  uri        :string           default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  account_id :bigint(8)        not null
 #
 
 class AccountAlias < ApplicationRecord
@@ -23,10 +23,7 @@ class AccountAlias < ApplicationRecord
   after_create :add_to_account
   after_destroy :remove_from_account
 
-  def acct=(val)
-    val = val.to_s.strip
-    super(val.start_with?('@') ? val[1..-1] : val)
-  end
+  normalizes :acct, with: ->(acct) { acct.strip.delete_prefix('@') }
 
   def pretty_acct
     username, domain = acct.split('@', 2)
@@ -38,7 +35,7 @@ class AccountAlias < ApplicationRecord
   def set_uri
     target_account = ResolveAccountService.new.call(acct)
     self.uri       = ActivityPub::TagManager.instance.uri_for(target_account) unless target_account.nil?
-  rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error
+  rescue Webfinger::Error, *Mastodon::HTTP_CONNECTION_ERRORS, Mastodon::Error
     # Validation will take care of it
   end
 

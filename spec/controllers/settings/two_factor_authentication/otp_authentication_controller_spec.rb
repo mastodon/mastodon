@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
+RSpec.describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
   render_views
 
   let(:user) { Fabricate(:user) }
@@ -63,7 +63,7 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
             expect do
               post :create, session: { challenge_passed_at: Time.now.utc }
             end.to not_change { user.reload.otp_secret }
-               .and change { session[:new_otp_secret] }
+               .and(change { session[:new_otp_secret] })
 
             expect(response).to redirect_to(new_settings_two_factor_authentication_confirmation_path)
           end
@@ -80,7 +80,7 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
             expect do
               post :create, session: { challenge_passed_at: Time.now.utc }
             end.to not_change { user.reload.otp_secret }
-               .and change { session[:new_otp_secret] }
+               .and(change { session[:new_otp_secret] })
 
             expect(response).to redirect_to(new_settings_two_factor_authentication_confirmation_path)
           end

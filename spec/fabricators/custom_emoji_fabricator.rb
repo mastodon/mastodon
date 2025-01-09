@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Fabricator(:custom_emoji) do
-  shortcode 'coolcat'
+  shortcode { sequence(:shortcode) { |i| "code_#{i}" } }
   domain    nil
-  image     { File.open(Rails.root.join('spec', 'fixtures', 'files', 'emojo.png')) }
+  image     { Rails.root.join('spec', 'fixtures', 'files', 'emojo.png').open }
 end

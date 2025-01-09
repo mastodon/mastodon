@@ -7,7 +7,7 @@ vi:
         options: Lựa chọn
       user:
         agreement: Thỏa thuận dịch vụ
-        email: Địa chỉ e-mail
+        email: Địa chỉ email
         locale: Quốc gia
         password: Mật khẩu
       user/account:
@@ -15,9 +15,17 @@ vi:
       user/invite_request:
         text: Lý do
     errors:
+      attributes:
+        domain:
+          invalid: không phải là một tên miền hợp lệ
+      messages:
+        invalid_domain_on_line: "%{value} không phải là một tên miền hợp lệ"
+        too_many_lines: vượt quá giới hạn %{limit} dòng
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: chứa giá trị thiếu nhãn
             username:
               invalid: chỉ chấp nhận ký tự, số và dấu gạch dưới
               reserved: bị cấm sử dụng
@@ -33,6 +41,11 @@ vi:
           attributes:
             data:
               malformed: bị hỏng
+        list_account:
+          attributes:
+            account_id:
+              taken: đã có trong danh sách
+          must_be_following: phải theo dõi từ trước
         status:
           attributes:
             reblog:
@@ -53,3 +66,7 @@ vi:
             position:
               elevated: không thể cao hơn vai trò hiện tại của bạn
               own_role: không thể thay đổi vai trò hiện tại của bạn
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: không thể bao gồm các sự kiện mà bạn không có quyền

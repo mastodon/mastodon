@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CreateAccountConversations < ActiveRecord::Migration[5.2]
   def change
-    create_table :account_conversations do |t|
+    create_table :account_conversations do |t| # rubocop:disable Rails/CreateTableWithTimestamps
       t.belongs_to :account, foreign_key: { on_delete: :cascade }
       t.belongs_to :conversation, foreign_key: { on_delete: :cascade }
       t.bigint :participant_account_ids, array: true, null: false, default: []

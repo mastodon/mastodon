@@ -6,28 +6,30 @@
     .one-liner
       = admin_account_link_to status.account
 
-      = link_to ActivityPub::TagManager.instance.url_for(status), target: '_blank', class: 'emojify', rel: 'noopener noreferrer' do
+      = link_to ActivityPub::TagManager.instance.url_for(status), target: '_blank', class: 'emojify', rel: 'noopener' do
         = one_line_preview(status)
 
         - status.ordered_media_attachments.each do |media_attachment|
           %abbr{ title: media_attachment.description }
-            = fa_icon 'link'
+            = material_symbol 'link'
             = media_attachment.file_file_name
 
-    = t('admin.trends.statuses.shared_by', count: status.reblogs_count + status.favourites_count, friendly_count: friendly_number_to_human(status.reblogs_count + status.favourites_count))
+    = t 'admin.trends.statuses.shared_by',
+        count: status.reblogs_count + status.favourites_count,
+        friendly_count: friendly_number_to_human(status.reblogs_count + status.favourites_count)
 
     - if status.account.domain.present?
-      •
+      ·
       = status.account.domain
     - if status.language.present?
-      •
+      ·
       = standard_locale_name(status.language)
     - if status.trendable? && !status.account.discoverable?
-      •
+      ·
       = t('admin.trends.statuses.not_discoverable')
     - if status.trend.allowed?
-      •
+      ·
       %abbr{ title: t('admin.trends.tags.current_score', score: status.trend.score) }= t('admin.trends.tags.trending_rank', rank: status.trend.rank)
     - elsif status.requires_review?
-      •
+      ·
       = t('admin.trends.pending_review')

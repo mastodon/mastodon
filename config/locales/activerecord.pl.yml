@@ -15,6 +15,12 @@ pl:
       user/invite_request:
         text: Powód
     errors:
+      attributes:
+        domain:
+          invalid: nie jest prawidłową nazwą domeny
+      messages:
+        invalid_domain_on_line: "%{value} nie jest prawidłową nazwą domeny"
+        too_many_lines: przekracza limit %{limit} linii
       models:
         account:
           attributes:
@@ -33,6 +39,11 @@ pl:
           attributes:
             data:
               malformed: jest uszkodzona
+        list_account:
+          attributes:
+            account_id:
+              taken: jest już na liście
+          must_be_following: musi być obserwowanym kontem
         status:
           attributes:
             reblog:
@@ -52,4 +63,8 @@ pl:
               own_role: nie można zmienić z aktualną rolą
             position:
               elevated: nie może być wyższa niż twoja bieżąca rola
-              own_role: nie można zmienić z aktualną rolą
+              own_role: nie może być zmieniona z twoją aktualną rolą
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: nie można uwzględnić wydarzeń, do których nie masz uprawnień

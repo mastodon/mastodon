@@ -12,25 +12,27 @@ RSpec.describe StatusRelationshipsPresenter do
       allow(Status).to receive(:pins_map).with(anything, current_account_id).and_return(default_map)
     end
 
-    let(:presenter)          { StatusRelationshipsPresenter.new(statuses, current_account_id, **options) }
+    let(:presenter)          { described_class.new(statuses, current_account_id, **options) }
     let(:current_account_id) { Fabricate(:account).id }
     let(:statuses)           { [Fabricate(:status)] }
-    let(:status_ids)         { statuses.map(&:id) + statuses.map(&:reblog_of_id).compact }
+    let(:status_ids)         { statuses.map(&:id) + statuses.filter_map(&:reblog_of_id) }
     let(:default_map)        { { 1 => true } }
 
-    context 'options are not set' do
+    context 'when options are not set' do
       let(:options) { {} }
 
       it 'sets default maps' do
-        expect(presenter.reblogs_map).to    eq default_map
-        expect(presenter.favourites_map).to eq default_map
-        expect(presenter.bookmarks_map).to  eq default_map
-        expect(presenter.mutes_map).to      eq default_map
-        expect(presenter.pins_map).to       eq default_map
+        expect(presenter).to have_attributes(
+          reblogs_map: eq(default_map),
+          favourites_map: eq(default_map),
+          bookmarks_map: eq(default_map),
+          mutes_map: eq(default_map),
+          pins_map: eq(default_map)
+        )
       end
     end
 
-    context 'options[:reblogs_map] is set' do
+    context 'when options[:reblogs_map] is set' do
       let(:options) { { reblogs_map: { 2 => true } } }
 
       it 'sets @reblogs_map merged with default_map and options[:reblogs_map]' do
@@ -38,7 +40,7 @@ RSpec.describe StatusRelationshipsPresenter do
       end
     end
 
-    context 'options[:favourites_map] is set' do
+    context 'when options[:favourites_map] is set' do
       let(:options) { { favourites_map: { 3 => true } } }
 
       it 'sets @favourites_map merged with default_map and options[:favourites_map]' do
@@ -46,7 +48,7 @@ RSpec.describe StatusRelationshipsPresenter do
       end
     end
 
-    context 'options[:bookmarks_map] is set' do
+    context 'when options[:bookmarks_map] is set' do
       let(:options) { { bookmarks_map: { 4 => true } } }
 
       it 'sets @bookmarks_map merged with default_map and options[:bookmarks_map]' do
@@ -54,7 +56,7 @@ RSpec.describe StatusRelationshipsPresenter do
       end
     end
 
-    context 'options[:mutes_map] is set' do
+    context 'when options[:mutes_map] is set' do
       let(:options) { { mutes_map: { 5 => true } } }
 
       it 'sets @mutes_map merged with default_map and options[:mutes_map]' do
@@ -62,7 +64,7 @@ RSpec.describe StatusRelationshipsPresenter do
       end
     end
 
-    context 'options[:pins_map] is set' do
+    context 'when options[:pins_map] is set' do
       let(:options) { { pins_map: { 6 => true } } }
 
       it 'sets @pins_map merged with default_map and options[:pins_map]' do
@@ -80,18 +82,30 @@ RSpec.describe StatusRelationshipsPresenter do
 
       it 'sets @filters_map to filter top-level status' do
         matched_filters = presenter.filters_map[statuses[0].id]
-        expect(matched_filters.size).to eq 1
 
-        expect(matched_filters[0].filter.title).to eq 'filter1'
-        expect(matched_filters[0].keyword_matches).to eq ['banned']
+        expect(matched_filters)
+          .to be_an(Array)
+          .and have_attributes(size: 1)
+          .and contain_exactly(
+            have_attributes(
+              filter: have_attributes(title: 'filter1'),
+              keyword_matches: contain_exactly('banned')
+            )
+          )
       end
 
       it 'sets @filters_map to filter reblogged status' do
         matched_filters = presenter.filters_map[statuses[1].reblog_of_id]
-        expect(matched_filters.size).to eq 1
 
-        expect(matched_filters[0].filter.title).to eq 'filter1'
-        expect(matched_filters[0].keyword_matches).to eq ['irrelevant']
+        expect(matched_filters)
+          .to be_an(Array)
+          .and have_attributes(size: 1)
+          .and contain_exactly(
+            have_attributes(
+              filter: have_attributes(title: 'filter1'),
+              keyword_matches: contain_exactly('irrelevant')
+            )
+          )
       end
     end
 
@@ -107,18 +121,30 @@ RSpec.describe StatusRelationshipsPresenter do
 
       it 'sets @filters_map to filter top-level status' do
         matched_filters = presenter.filters_map[statuses[0].id]
-        expect(matched_filters.size).to eq 1
 
-        expect(matched_filters[0].filter.title).to eq 'filter1'
-        expect(matched_filters[0].status_matches).to eq [statuses[0].id]
+        expect(matched_filters)
+          .to be_an(Array)
+          .and have_attributes(size: 1)
+          .and contain_exactly(
+            have_attributes(
+              filter: have_attributes(title: 'filter1'),
+              status_matches: contain_exactly(statuses.first.id)
+            )
+          )
       end
 
       it 'sets @filters_map to filter reblogged status' do
         matched_filters = presenter.filters_map[statuses[1].reblog_of_id]
-        expect(matched_filters.size).to eq 1
 
-        expect(matched_filters[0].filter.title).to eq 'filter1'
-        expect(matched_filters[0].status_matches).to eq [statuses[1].reblog_of_id]
+        expect(matched_filters)
+          .to be_an(Array)
+          .and have_attributes(size: 1)
+          .and contain_exactly(
+            have_attributes(
+              filter: have_attributes(title: 'filter1'),
+              status_matches: contain_exactly(statuses.second.reblog_of_id)
+            )
+          )
       end
     end
   end

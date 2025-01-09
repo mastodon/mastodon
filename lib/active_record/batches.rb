@@ -13,7 +13,9 @@ module ActiveRecord
 
       column_names.unshift(primary_key)
 
-      relation = relation.reorder(batch_order(order)).limit(batch_limit)
+      cursor = Array(primary_key)
+
+      relation = relation.reorder(build_batch_orders(cursor, order).to_h).limit(batch_limit)
       relation.skip_query_cache!
 
       batch_relation = relation
@@ -29,7 +31,7 @@ module ActiveRecord
           if flatten
             yield record[1]
           else
-            yield record[1..-1]
+            yield record[1..]
           end
         end
 

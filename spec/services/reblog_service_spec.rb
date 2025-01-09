@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe ReblogService, type: :service do
+RSpec.describe ReblogService do
   let(:alice)  { Fabricate(:account, username: 'alice') }
 
-  context 'creates a reblog with appropriate visibility' do
+  context 'when creates a reblog with appropriate visibility' do
+    subject { described_class.new }
+
     let(:visibility)        { :public }
     let(:reblog_visibility) { :public }
     let(:status)            { Fabricate(:status, account: alice, visibility: visibility) }
-
-    subject { ReblogService.new }
 
     before do
       subject.call(alice, status, visibility: reblog_visibility)
@@ -33,10 +35,25 @@ RSpec.describe ReblogService, type: :service do
   end
 
   context 'when the reblogged status is discarded in the meantime' do
-    let(:status) { Fabricate(:status, account: alice, visibility: :public) }
+    let(:status) { Fabricate(:status, account: alice, visibility: :public, text: 'discard-status-text') }
 
+    # Add a callback to discard the status being reblogged after the
+    # validations pass but before the database commit is executed.
     before do
-      status.discard
+      Status.class_eval do
+        before_save :discard_status
+        def discard_status
+          Status
+            .where(id: reblog_of_id)
+            .where(text: 'discard-status-text')
+            .touch_all(:deleted_at)
+        end
+      end
+    end
+
+    # Remove race condition simulating `discard_status` callback.
+    after do
+      Status._save_callbacks.delete(:discard_status)
     end
 
     it 'raises an exception' do
@@ -44,11 +61,11 @@ RSpec.describe ReblogService, type: :service do
     end
   end
 
-  context 'ActivityPub' do
+  context 'with ActivityPub' do
+    subject { described_class.new }
+
     let(:bob)    { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
     let(:status) { Fabricate(:status, account: bob) }
-
-    subject { ReblogService.new }
 
     before do
       stub_request(:post, bob.inbox_url)
@@ -68,10 +85,6 @@ RSpec.describe ReblogService, type: :service do
 
     it 'distributes to followers' do
       expect(ActivityPub::DistributionWorker).to have_received(:perform_async)
-    end
-
-    it 'sends an announce activity to the author' do
-      expect(a_request(:post, bob.inbox_url)).to have_been_made.once
     end
   end
 end

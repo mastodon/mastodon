@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::LinkedDataSignature do
   include JsonLdHelper
 
-  let!(:sender) { Fabricate(:account, uri: 'http://example.com/alice') }
+  subject { described_class.new(json) }
+
+  let!(:sender) { Fabricate(:account, uri: 'http://example.com/alice', domain: 'example.com') }
 
   let(:raw_json) do
     {
@@ -13,12 +17,6 @@ RSpec.describe ActivityPub::LinkedDataSignature do
   end
 
   let(:json) { raw_json.merge('signature' => signature) }
-
-  subject { described_class.new(json) }
-
-  before do
-    stub_jsonld_contexts!
-  end
 
   describe '#verify_actor!' do
     context 'when signature matches' do
@@ -33,6 +31,40 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
       it 'returns creator' do
         expect(subject.verify_actor!).to eq sender
+      end
+    end
+
+    context 'when local account record is missing a public key' do
+      let(:raw_signature) do
+        {
+          'creator' => 'http://example.com/alice',
+          'created' => '2017-09-23T20:21:34Z',
+        }
+      end
+
+      let(:signature) { raw_signature.merge('type' => 'RsaSignature2017', 'signatureValue' => sign(sender, raw_signature, raw_json)) }
+
+      let(:service_stub) { instance_double(ActivityPub::FetchRemoteKeyService) }
+
+      before do
+        # Ensure signature is computed with the old key
+        signature
+
+        # Unset key
+        old_key = sender.public_key
+        sender.update!(private_key: '', public_key: '')
+
+        allow(ActivityPub::FetchRemoteKeyService).to receive(:new).and_return(service_stub)
+
+        allow(service_stub).to receive(:call).with('http://example.com/alice') do
+          sender.update!(public_key: old_key)
+          sender
+        end
+      end
+
+      it 'fetches key and returns creator' do
+        expect(subject.verify_actor!).to eq sender
+        expect(service_stub).to have_received(:call).with('http://example.com/alice').once
       end
     end
 
@@ -63,16 +95,11 @@ RSpec.describe ActivityPub::LinkedDataSignature do
   describe '#sign!' do
     subject { described_class.new(raw_json).sign!(sender) }
 
-    it 'returns a hash' do
+    it 'returns a hash with a signature, the expected context, and the signature can be verified', :aggregate_failures do
       expect(subject).to be_a Hash
-    end
-
-    it 'contains signature' do
       expect(subject['signature']).to be_a Hash
       expect(subject['signature']['signatureValue']).to be_present
-    end
-
-    it 'can be verified again' do
+      expect(Array(subject['@context'])).to include('https://w3id.org/security/v1')
       expect(described_class.new(subject).verify_actor!).to eq sender
     end
   end

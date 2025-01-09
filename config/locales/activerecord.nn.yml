@@ -15,9 +15,17 @@ nn:
       user/invite_request:
         text: Grunn
     errors:
+      attributes:
+        domain:
+          invalid: er ikkje eit gyldig domenenamn
+      messages:
+        invalid_domain_on_line: "%{value} er ikkje gyldig i eit domenenamn"
+        too_many_lines: er over grensa på %{limit} liner
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: inneheld verdiar med manglande etikettar
             username:
               invalid: kan berre innehalda bokstavar, tal og understrekar
               reserved: er reservert
@@ -33,6 +41,11 @@ nn:
           attributes:
             data:
               malformed: er feilutforma
+        list_account:
+          attributes:
+            account_id:
+              taken: er allereie på lista
+          must_be_following: må vera ein konto du fylgjer
         status:
           attributes:
             reblog:
@@ -53,3 +66,7 @@ nn:
             position:
               elevated: kan ikkje vere høgare enn di noverande rolle
               own_role: kan ikkje endrast med di noverande rolle
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: kan ikkje inkludere hendingar du ikkje har rettar til

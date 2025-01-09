@@ -3,6 +3,8 @@
 class Form::AdminSettings
   include ActiveModel::Model
 
+  include AuthorizedFetchHelper
+
   KEYS = %i(
     site_contact_username
     site_contact_email
@@ -23,6 +25,7 @@ class Form::AdminSettings
     thumbnail
     mascot
     trends
+    trends_as_landing_page
     trendable_by_default
     show_domain_blocks
     show_domain_blocks_rationale
@@ -31,6 +34,11 @@ class Form::AdminSettings
     media_cache_retention_period
     content_cache_retention_period
     backups_retention_period
+    status_page_url
+    captcha_enabled
+    authorized_fetch
+    app_icon
+    favicon
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -46,15 +54,30 @@ class Form::AdminSettings
     preview_sensitive_media
     profile_directory
     trends
+    trends_as_landing_page
     trendable_by_default
     noindex
     require_invite_text
+    captcha_enabled
+    authorized_fetch
   ).freeze
 
   UPLOAD_KEYS = %i(
     thumbnail
     mascot
+    app_icon
+    favicon
   ).freeze
+
+  DIGEST_KEYS = %i(
+    custom_css
+  ).freeze
+
+  OVERRIDEN_SETTINGS = {
+    authorized_fetch: :authorized_fetch_mode?,
+  }.freeze
+
+  DESCRIPTION_LIMIT = 200
 
   attr_accessor(*KEYS)
 
@@ -65,47 +88,68 @@ class Form::AdminSettings
   validates :show_domain_blocks, inclusion: { in: %w(disabled users all) }, if: -> { defined?(@show_domain_blocks) }
   validates :show_domain_blocks_rationale, inclusion: { in: %w(disabled users all) }, if: -> { defined?(@show_domain_blocks_rationale) }
   validates :media_cache_retention_period, :content_cache_retention_period, :backups_retention_period, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@media_cache_retention_period) || defined?(@content_cache_retention_period) || defined?(@backups_retention_period) }
-  validates :site_short_description, length: { maximum: 200 }, if: -> { defined?(@site_short_description) }
+  validates :site_short_description, length: { maximum: DESCRIPTION_LIMIT }, if: -> { defined?(@site_short_description) }
+  validates :status_page_url, url: true, allow_blank: true
+  validate :validate_site_uploads
 
   KEYS.each do |key|
     define_method(key) do
-      return instance_variable_get("@#{key}") if instance_variable_defined?("@#{key}")
+      return instance_variable_get(:"@#{key}") if instance_variable_defined?(:"@#{key}")
 
-      stored_value = begin
-        if UPLOAD_KEYS.include?(key)
-          SiteUpload.where(var: key).first_or_initialize(var: key)
-        else
-          Setting.public_send(key)
-        end
-      end
+      stored_value = if UPLOAD_KEYS.include?(key)
+                       SiteUpload.where(var: key).first_or_initialize(var: key)
+                     elsif OVERRIDEN_SETTINGS.include?(key)
+                       public_send(OVERRIDEN_SETTINGS[key])
+                     else
+                       Setting.public_send(key)
+                     end
 
-      instance_variable_set("@#{key}", stored_value)
+      instance_variable_set(:"@#{key}", stored_value)
     end
   end
 
   UPLOAD_KEYS.each do |key|
-    define_method("#{key}=") do |file|
+    define_method(:"#{key}=") do |file|
       value = public_send(key)
       value.file = file
+    rescue Mastodon::DimensionsValidationError => e
+      errors.add(key.to_sym, e.message)
     end
   end
 
   def save
-    return false unless valid?
+    # NOTE: Annoyingly, files are processed and can error out before
+    # validations are called, and `valid?` clears errors…
+    # So for now, return early if errors aren't empty.
+    return false unless errors.empty? && valid?
 
     KEYS.each do |key|
-      next unless instance_variable_defined?("@#{key}")
+      next unless instance_variable_defined?(:"@#{key}")
+
+      cache_digest_value(key) if DIGEST_KEYS.include?(key)
 
       if UPLOAD_KEYS.include?(key)
         public_send(key).save
       else
         setting = Setting.where(var: key).first_or_initialize(var: key)
-        setting.update(value: typecast_value(key, instance_variable_get("@#{key}")))
+        setting.update(value: typecast_value(key, instance_variable_get(:"@#{key}")))
       end
     end
   end
 
   private
+
+  def cache_digest_value(key)
+    Rails.cache.delete(:"setting_digest_#{key}")
+
+    key_value = instance_variable_get(:"@#{key}")
+    if key_value.present?
+      Rails.cache.write(
+        :"setting_digest_#{key}",
+        Digest::SHA256.hexdigest(key_value)
+      )
+    end
+  end
 
   def typecast_value(key, value)
     if BOOLEAN_KEYS.include?(key)
@@ -114,6 +158,19 @@ class Form::AdminSettings
       value.blank? ? value : Integer(value)
     else
       value
+    end
+  end
+
+  def validate_site_uploads
+    UPLOAD_KEYS.each do |key|
+      next unless instance_variable_defined?(:"@#{key}")
+
+      upload = instance_variable_get(:"@#{key}")
+      next if upload.valid?
+
+      upload.errors.each do |error|
+        errors.import(error, attribute: key)
+      end
     end
   end
 end

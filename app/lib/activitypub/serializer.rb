@@ -33,6 +33,6 @@ class ActivityPub::Serializer < ActiveModel::Serializer
       adapter_options[:named_contexts].merge!(_named_contexts)
       adapter_options[:context_extensions].merge!(_context_extensions)
     end
-    super(adapter_options, options, adapter_instance)
+    super
   end
 end

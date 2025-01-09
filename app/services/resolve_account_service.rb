@@ -2,7 +2,6 @@
 
 class ResolveAccountService < BaseService
   include DomainControlHelper
-  include WebfingerHelper
   include Redisable
   include Lockable
 
@@ -54,7 +53,7 @@ class ResolveAccountService < BaseService
 
     fetch_account!
   rescue Webfinger::Error => e
-    Rails.logger.debug "Webfinger query for #{@uri} failed: #{e}"
+    Rails.logger.debug { "Webfinger query for #{@uri} failed: #{e}" }
     raise unless @options[:suppress_errors]
   end
 
@@ -71,19 +70,17 @@ class ResolveAccountService < BaseService
       @username, @domain = uri.strip.gsub(/\A@/, '').split('@')
     end
 
-    @domain = begin
-      if TagManager.instance.local_domain?(@domain)
-        nil
-      else
-        TagManager.instance.normalize_domain(@domain)
-      end
-    end
+    @domain = if TagManager.instance.local_domain?(@domain)
+                nil
+              else
+                TagManager.instance.normalize_domain(@domain)
+              end
 
     @uri = [@username, @domain].compact.join('@')
   end
 
   def process_webfinger!(uri)
-    @webfinger                           = webfinger!("acct:#{uri}")
+    @webfinger = Webfinger.new("acct:#{uri}").perform
     confirmed_username, confirmed_domain = split_acct(@webfinger.subject)
 
     if confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
@@ -93,24 +90,22 @@ class ResolveAccountService < BaseService
     end
 
     # Account doesn't match, so it may have been redirected
-    @webfinger         = webfinger!("acct:#{confirmed_username}@#{confirmed_domain}")
+    @webfinger = Webfinger.new("acct:#{confirmed_username}@#{confirmed_domain}").perform
     @username, @domain = split_acct(@webfinger.subject)
 
-    unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
-      raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{uri} (stopped at #{@username}@#{@domain})"
-    end
+    raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{uri} (stopped at #{@username}@#{@domain})" unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
   rescue Webfinger::GoneError
     @gone = true
   end
 
   def split_acct(acct)
-    acct.gsub(/\Aacct:/, '').split('@')
+    acct.delete_prefix('acct:').split('@').tap do |parts|
+      raise Webfinger::Error, 'Webfinger response is missing user or host value' unless parts.size == 2
+    end
   end
 
   def fetch_account!
-    return unless activitypub_ready?
-
-    with_lock("resolve:#{@username}@#{@domain}") do
+    with_redis_lock("resolve:#{@username}@#{@domain}") do
       @account = ActivityPub::FetchRemoteAccountService.new.call(actor_url, suppress_errors: @options[:suppress_errors])
     end
 
@@ -124,12 +119,8 @@ class ResolveAccountService < BaseService
     @options[:skip_cache] || @account.nil? || @account.possibly_stale?
   end
 
-  def activitypub_ready?
-    ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@webfinger.link('self', 'type'))
-  end
-
   def actor_url
-    @actor_url ||= @webfinger.link('self', 'href')
+    @actor_url ||= @webfinger.self_link_href
   end
 
   def gone_from_origin?

@@ -36,7 +36,7 @@ sl:
         status:
           attributes:
             reblog:
-              taken: od statusa že obstajajo
+              taken: od objave že obstajajo
         user:
           attributes:
             email:
@@ -53,3 +53,7 @@ sl:
             position:
               elevated: ne more biti višje od vaše trenutne vloge
               own_role: ni mogoče spremeniti z vašo trenutno vlogo
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: Dogodkov, do katerih nimate pravic, ni možno vključiti

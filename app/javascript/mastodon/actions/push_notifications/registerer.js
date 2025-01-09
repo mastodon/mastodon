@@ -1,14 +1,15 @@
 import api from '../../api';
-import { decode as decodeBase64 } from '../../utils/base64';
-import { pushNotificationsSetting } from '../../settings';
-import { setBrowserSupport, setSubscription, clearSubscription } from './setter';
 import { me } from '../../initial_state';
+import { pushNotificationsSetting } from '../../settings';
+import { decode as decodeBase64 } from '../../utils/base64';
+
+import { setBrowserSupport, setSubscription, clearSubscription } from './setter';
 
 // Taken from https://www.npmjs.com/package/web-push
 const urlBase64ToUint8Array = (base64String) => {
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding)
-    .replace(/\-/g, '+')
+    .replace(/-/g, '+')
     .replace(/_/g, '/');
 
   return decodeBase64(base64);

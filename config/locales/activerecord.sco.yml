@@ -1,0 +1,55 @@
+---
+sco:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Deidline
+        options: Chyces
+      user:
+        agreement: Service greeance
+        email: E-mail address
+        locale: Locale
+        password: Passwird
+      user/account:
+        username: Uisernemm
+      user/invite_request:
+        text: Raison
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: haes tae ainly hae letters, nummers an unnerscores
+              reserved: is reseirvit
+        admin/webhook:
+          attributes:
+            url:
+              invalid: isnae a guid URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: isnae a guid URL
+        import:
+          attributes:
+            data:
+              malformed: isnae o the expectit form
+        status:
+          attributes:
+            reblog:
+              taken: o post awriddy exists
+        user:
+          attributes:
+            email:
+              blocked: uises a e-mail provider thit's no allooed
+              unreachable: disnae seem tae exist
+            role_id:
+              elevated: cannae be heicher nor yer role the noo
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: hae permissions thit urnae safe fir the base role
+              elevated: cannae include permissions thit yer role the noo disnae haud
+              own_role: cannae be chynged wi the role ye hae the noo
+            position:
+              elevated: cannae be heicher nor the role ye hae the noo
+              own_role: cannae be chynged wi the role ye hae the noo

@@ -6,7 +6,6 @@ kk:
     contact_unavailable: Белгісіз
     hosted_on: Mastodon орнатылған %{domain} доменінде
   accounts:
-    follow: Жазылу
     followers:
       one: Оқырман
       other: Оқырман
@@ -93,8 +92,6 @@ kk:
       remove_header: Мұқаба суретін өшір
       resend_confirmation:
         already_confirmed: Қолданушы құпталған
-        send: Құптау хатын қайтадан жібер
-        success: Құптау хаты сәтті жіберілді!
       reset: Қалпына келтіру
       reset_password: Құпиясөзді қалпына келтіру
       resubscribe: Resubscribе
@@ -178,9 +175,7 @@ kk:
         create: Блок құру
         hint: Домендік блок дерекқорда тіркелгі жазбаларын құруға кедергі жасамайды, бірақ сол есептік жазбаларда ретроактивті және автоматты түрде нақты модерация әдістерін қолданады.
         severity:
-          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you just want to reject media filеs."
           noop: Ештеңе
-          silence: Үнсіз
           suspend: Тоқтатылған
         title: Жаңа домен блокы
       private_comment: Құпия пікір
@@ -195,13 +190,10 @@ kk:
       view: Домен блокын көрсету
     email_domain_blocks:
       add_new: Жаңасын қосу
-      created_msg: Қаратізімге email домені қосылды
       delete: Өшіру
       domain: Домен
       new:
         create: Add dоmain
-        title: New e-mail blаcklist entry
-      title: E-mail қаратізімі
     instances:
       by_domain: Domаin
       delivery_available: Жеткізу қол жетімді
@@ -293,7 +285,6 @@ kk:
       media:
         title: Медиa
       no_status_selected: Бірде-бір статус өзгерген жоқ, себебі ештеңе таңдалмады
-      title: Аккаунт статустары
       with_media: Медиамен
     tags:
       review: Статусты көрсету
@@ -303,7 +294,6 @@ kk:
       add_new: Add nеw
       delete: Deletе
       edit_preset: Edit warning prеset
-      title: Manage warning presеts
   admin_mailer:
     new_pending_account:
       body: Жаңа есептік жазба туралы мәліметтер төменде берілген. Бұл қолданбаны мақұлдауыңызға немесе қабылдамауыңызға болады.
@@ -324,10 +314,7 @@ kk:
     confirmation_dialogs: Пікірталас диалогтары
     discovery: Пікірталас
     sensitive_content: Нәзік контент
-    toot_layout: Жазба формасы
   application_mailer:
-    notification_preferences: Change e-mail prеferences
-    settings: 'Change e-mail preferеnces: %{link}'
     view: 'Viеw:'
     view_profile: Viеw Profile
     view_status: Viеw status
@@ -339,14 +326,12 @@ kk:
     warning: Be very carеful with this data. Never share it with anyone!
     your_token: Your access tokеn
   auth:
-    change_password: Құпиясөз
     delete_account: Аккаунт өшіру
     delete_account_html: Аккаунтыңызды жойғыңыз келсе, <a href="%{path}">мына жерді</a> басыңыз. Сізден растау сұралатын болады.
     description:
       prefix_invited_by_user: "@%{name} сізді Желіге қосылуға шақырады!"
       prefix_sign_up: Желіге бүгін қосылыңыз!
       suffix: Аккаунтыңызбен сіз кез-келген Mastodon серверінен және желідегі басқа адамдарды оқып, пост жаза аласыз және хат алмаса аласыз!
-    didnt_get_confirmation: Растау хаты келмеді ме?
     forgot_password: Құпиясөзіңізді ұмытып қалдыңыз ба?
     invalid_reset_password_token: Құпиясөз қайтып алу қолжетімді емес немесе мерзімі аяқталған. Қайтадан сұратыңыз.
     login: Кіру
@@ -359,30 +344,12 @@ kk:
       saml: SАML
     register: Тіркелу
     registration_closed: "%{instance} жаңа мүшелер қабылдамайды"
-    resend_confirmation: Растау нұсқаулықтарын жіберу
     reset_password: Құпиясөзді қалпына келтіру
     security: Қауіпсіздік
     set_new_password: Жаңа құпиясөз қою
-    setup:
-      email_below_hint_html: Егер төмендегі электрондық пошта мекенжайы дұрыс болмаса, оны осында өзгертіп, жаңа растау электрондық хатын ала аласыз.
-      email_settings_hint_html: Растау хаты %{email} адресіне жіберілді. Егер бұл электрондық пошта мекенжайы дұрыс болмаса, оны аккаунт параметрлерінде өзгертуге болады.
-      title: Баптау
     status:
       account_status: Аккаунт статусы
-      confirming: Электрондық поштаны растау аяқталуын күтуде.
-      pending: Сіздің өтінішіңіз біздің қызметкерлеріміздің қарауында. Бұл біраз уақыт алуы мүмкін. Өтінішіңіз мақұлданса, сізге электрондық пошта хабарламасы келеді.
       redirecting_to: Сіздің есептік жазбаңыз белсенді емес, себебі ол %{acct} жүйесіне қайта бағытталуда.
-  authorize_follow:
-    already_following: Бұл аккаунтқа жазылғансыз
-    error: Өкінішке орай, қашықтағы тіркелгіні іздеуде қате пайда болды
-    follow: Жазылу
-    follow_request: 'Сіз жазылуға өтініш жібердіңіз:'
-    following: 'Керемет! Сіз енді жазылдыңыз:'
-    post_follow:
-      close: Немесе терезені жаба салыңыз.
-      return: Қолданушы профилін көрсет
-      web: Вебте ашу
-    title: Жазылу %{acct}
   challenge:
     confirm: Жалғастыру
     hint_html: "<strong> Кеңес: </strong> біз келесі сағат ішінде сізден құпия сөзді қайта сұрамаймыз."
@@ -412,15 +379,10 @@ kk:
       before: 'Жұмысты бастамас бұрын, осы жазбаларды мұқият оқып шығыңыз:'
       caches: Басқа серверлер кэштеген мазмұн сақталуы мүмкін
       data_removal: Сіздің жазбаларыңыз және басқа деректеріңіз толығымен жойылады
-      email_change_html: Аккаунтыңызды жоймай-ақ <a href="%{path}"> электрондық пошта мекенжайын өзгертуге болады </a>
-      email_contact_html: Егер әлі келмесе, көмек үшін <a href="mailto:%{email}">%{email} </a> мекен-жайына хат жібере аласыз
-      email_reconfirmation_html: Егер сіз растау электрондық хатын алмасаңыз, сіз <a href="%{path}"> оны қайтадан сұрай аласыз </a>
       irreversible: Аккаунтты қалпына келтіре немесе қайта белсендіре алмайсыз
       more_details_html: Қосымша мәліметтер алу үшін <a href="%{terms_path}"> құпиялылық саясатын </a> қараңыз.
       username_available: Аккаунтыңыз қайтадан қолжетімді болады
       username_unavailable: Логиніңіз қолжетімді болмайды
-  domain_validator:
-    invalid_domain: жарамды домен атауы емес
   errors:
     '400': Сіз жіберген сұрау жарамсыз немесе дұрыс емес.
     '403': Бұны көру үшін сізде рұқсат жоқ.
@@ -455,8 +417,6 @@ kk:
     storage: Медиа жинақ
   featured_tags:
     add_new: Жаңасын қосу
-    errors:
-      limit: Хэштег лимитинен асып кеттіңіз
     hint_html: "<strong> Ерекшеліктері бар хэштегтер дегеніміз не? </strong> Олар жалпыға қол жетімді профильде көрсетіледі және адамдарға сіздің жалпы хабарламаларыңызды сол хэштегтердің астына қарауға мүмкіндік береді. Олар шығармашылық жұмыстарды немесе ұзақ мерзімді жобаларды бақылаудың тамаша құралы."
   filters:
     contexts:
@@ -474,8 +434,6 @@ kk:
       title: Фильтрлер
     new:
       title: Жаңа фильтр қосу
-  footer:
-    trending_now: Бүгінгі трендтер
   generic:
     all: Барлығы
     changes_saved_msg: Өзгерістер сәтті сақталды!
@@ -485,8 +443,6 @@ kk:
     validation_errors:
       one: Бір нәрсе дұрыс емес! Төмендегі қатені қараңыз
       other: Бір нәрсе дұрыс емес! Төмендегі %{count} қатені қараңыз
-  html_validator:
-    invalid_markup: 'жарамсыз HTML код: %{error}'
   imports:
     modes:
       merge: Біріктіру
@@ -523,9 +479,6 @@ kk:
       expires_at: Аяқталу мерзімі
       uses: Қолданыс
     title: Адам шақыру
-  lists:
-    errors:
-      limit: Сіз тізімдердің максимум мөлшеріне жеттіңіз
   media_attachments:
     validations:
       images_and_video: Жазбаға видео қоса алмайсыз, тек сурет қосуға болады
@@ -569,9 +522,7 @@ kk:
       subject: "%{name} жазбаңызды бөлісті"
       title: Жаңа бөлісім
   notifications:
-    email_events: E-mail ескертпелеріне шаралар
     email_events_hint: 'Ескертпе болып келетін шараларды таңда:'
-    other_settings: Ескертпелердің басқа баптаулары
   number:
     human:
       decimal_units:
@@ -624,13 +575,11 @@ kk:
   scheduled_statuses:
     over_daily_limit: Сіз бір күндік %{limit} жазба лимитін тауыстыңыз
     over_total_limit: Сіз %{limit} жазба лимитін тауыстыңыз
-    too_soon: Жоспарланған күн болашақта болуы керек
   sessions:
     activity: Соңғы әрекеттер
     browser: Браузер
     browsers:
       alipay: Аlipay
-      blackberry: Blаckberry
       chrome: Chrоme
       edge: Microsоft Edge
       electron: Electrоn
@@ -644,7 +593,6 @@ kk:
       phantom_js: PhаntomJS
       qq: QQ Brоwser
       safari: Safаri
-      uc_browser: UCBrоwser
       weibo: Weibо
     current_session: Қазіргі сессия
     description: "%{browser} - %{platform}"
@@ -653,13 +601,10 @@ kk:
     platforms:
       adobe_air: Adobе Air
       android: Andrоid
-      blackberry: Blackbеrry
-      chrome_os: ChromеOS
       firefox_os: Firefоx OS
       ios: iОS
       linux: Lіnux
       mac: Mаc
-      other: белгісіз платформа
       windows: Windоws
       windows_mobile: Windows Mоbile
       windows_phone: Windоws Phone
@@ -676,12 +621,10 @@ kk:
     delete: Аккаунт өшіру
     development: Жасаушы топ
     edit_profile: Профиль өңдеу
-    export: Экспорт уақыты
     featured_tags: Таңдаулы хэштегтер
     import: Импорт
     import_and_export: Импорт/экспорт
     migrate: Аккаунт көшіру
-    notifications: Ескертпелер
     preferences: Баптаулар
     profile: Профиль
     relationships: Жазылымдар және оқырмандар
@@ -700,23 +643,11 @@ kk:
     disallowed_hashtags:
       one: 'рұқсат етілмеген хэштег: %{tags}'
       other: 'рұқсат етілмеген хэштегтер: %{tags}'
-    open_in_web: Вебте ашу
     over_character_limit: "%{max} максимум таңбадан асып кетті"
     pin_errors:
       limit: Жабыстырылатын жазба саны максимумынан асты
       ownership: Біреудің жазбасы жабыстырылмайды
       reblog: Бөлісілген жазба жабыстырылмайды
-    poll:
-      total_people:
-        one: "%{count} адам"
-        other: "%{count} адам"
-      total_votes:
-        one: "%{count} дауыс"
-        other: "%{count} дауыс"
-      vote: Дауыс беру
-    show_more: Тағы әкел
-    show_thread: Тақырыпты көрсет
-    sign_in_to_participate: Сұхбатқа қатысу үшін кіріңіз
     visibilities:
       private: Тек оқырмандарға
       private_long: Тек оқырмандарға ғана көрінеді
@@ -725,8 +656,6 @@ kk:
       unlisted: Тізімге енбеген
       unlisted_long: Бәрі көре алады, бірақ ашық тізімдерге ене алмайды
   stream_entries:
-    pinned: Жабыстырылған жазба
-    reblogged: бөлісті
     sensitive_content: Нәзік мазмұн
   tags:
     does_not_match_previous_name: алдыңғы атқа сәйкес келмейді
@@ -745,7 +674,6 @@ kk:
     recovery_instructions_html: Егер сіз телефонға кіруді жоғалтсаңыз, тіркелгіңізге кіру үшін төмендегі қалпына келтіру кодтарының бірін пайдалануға болады. <strong>Қалпына келтіру кодтарын қауіпсіз ұстаңыз </strong>. Мысалы, оларды басып шығарып, оларды басқа маңызды құжаттармен сақтауға болады.
   user_mailer:
     backup_ready:
-      explanation: Сіз Mastodon аккаунтыңыздың толық мұрағатын сұрадыңыз. Қазір жүктеуге дайын!
       subject: Мұрағатыңыз түсіріп алуға дайын
       title: Мұрағатты алу
     warning:
@@ -760,19 +688,13 @@ kk:
         silence: Аккаунт шектеулі
         suspend: Аккаунт тоқтатылды
     welcome:
-      edit_profile_action: Профиль өңдеу
       explanation: Мына кеңестерді шолып өтіңіз
-      final_action: Жазба жазу
-      full_handle: Желі тұтқасы
-      full_handle_hint: This is what you would tell your friends so they can message or follow you frоm another server.
       subject: Mastodon Желісіне қош келдіңіз
       title: Ортаға қош келдің, %{name}!
   users:
     follow_limit_reached: Сіз %{limit} лимитінен көп адамға жазыла алмайсыз
     invalid_otp_token: Қате екі-факторлы код
     otp_lost_help_html: Егер кіру жолдарын жоғалтып алсаңыз, сізге %{email} арқылы жіберіледі
-    seamless_external_login: Сыртқы сервис арқылы кіріпсіз, сондықтан құпиясөз және электрондық пошта параметрлері қол жетімді емес.
     signed_in_as: 'Былай кірдіңіз:'
   verification:
-    explanation_html: 'Өзіңіздің профиль метадеректеріңіздегі сілтемелердің иесі ретінде өзіңізді <strong>тексере аласыз</strong>. Ол үшін байланыстырылған веб-сайтта Mastodon профиліне <strong>сілтеме болуы керек. </strong> Сілтемеде <code>rel = «me»</code> атрибуты болуы керек. Сілтеме мәтінінің мазмұны маңызды емес. Міне мысал:'
     verification: Растау

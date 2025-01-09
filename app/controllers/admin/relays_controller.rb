@@ -3,7 +3,7 @@
 module Admin
   class RelaysController < BaseController
     before_action :set_relay, except: [:index, :new, :create]
-    before_action :require_signatures_enabled!, only: [:new, :create, :enable]
+    before_action :warn_signatures_not_enabled!, only: [:new, :create, :enable]
 
     def index
       authorize :relay, :update?
@@ -21,28 +21,32 @@ module Admin
       @relay = Relay.new(resource_params)
 
       if @relay.save
+        log_action :create, @relay
         @relay.enable!
         redirect_to admin_relays_path
       else
-        render action: :new
+        render :new
       end
     end
 
     def destroy
       authorize :relay, :update?
       @relay.destroy
+      log_action :destroy, @relay
       redirect_to admin_relays_path
     end
 
     def enable
       authorize :relay, :update?
       @relay.enable!
+      log_action :enable, @relay
       redirect_to admin_relays_path
     end
 
     def disable
       authorize :relay, :update?
       @relay.disable!
+      log_action :disable, @relay
       redirect_to admin_relays_path
     end
 
@@ -56,8 +60,8 @@ module Admin
       params.require(:relay).permit(:inbox_url)
     end
 
-    def require_signatures_enabled!
-      redirect_to admin_relays_path, alert: I18n.t('admin.relays.signatures_not_enabled') if authorized_fetch_mode?
+    def warn_signatures_not_enabled!
+      flash.now[:error] = I18n.t('admin.relays.signatures_not_enabled') if authorized_fetch_mode?
     end
   end
 end

@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-describe Admin::DomainPurgeWorker do
+RSpec.describe Admin::DomainPurgeWorker do
   subject { described_class.new }
 
   describe 'perform' do
     it 'calls domain purge service for relevant domain block' do
-      service = double(call: nil)
+      service = instance_double(PurgeDomainService, call: nil)
       allow(PurgeDomainService).to receive(:new).and_return(service)
       result = subject.perform('example.com')
 

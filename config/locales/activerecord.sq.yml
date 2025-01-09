@@ -15,9 +15,17 @@ sq:
       user/invite_request:
         text: Arsye
     errors:
+      attributes:
+        domain:
+          invalid: s’është emër i vlefshëm përkatësie
+      messages:
+        invalid_domain_on_line: "%{value} s’është emër i vlefshëm përkatësie"
+        too_many_lines: është tej kufirit prej %{limit} rreshta
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: përmban vlera me etiketa që mungojnë
             username:
               invalid: duhet të përmbajë vetëm shkronja, numra dhe nënvija
               reserved: është i rezervuar
@@ -33,6 +41,11 @@ sq:
           attributes:
             data:
               malformed: janë të keqformuara
+        list_account:
+          attributes:
+            account_id:
+              taken: gjendet tashmë në listë
+          must_be_following: duhet të jetë një llogari e ndjekur
         status:
           attributes:
             reblog:
@@ -53,3 +66,7 @@ sq:
             position:
               elevated: s’mund të jetë më i lartë sesa roli juaj i tanishëm
               own_role: s’mund të ndryshohet me rolin tuaj të tanishëm
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: s’mund të përfshihen veprimtari mbi të cilat s’keni të drejta

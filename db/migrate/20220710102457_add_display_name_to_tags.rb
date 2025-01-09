@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddDisplayNameToTags < ActiveRecord::Migration[6.1]
   def change
     add_column :tags, :display_name, :string

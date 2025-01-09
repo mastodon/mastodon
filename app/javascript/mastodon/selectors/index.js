@@ -1,34 +1,11 @@
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
-import { toServerSideType } from 'mastodon/utils/filters';
+
 import { me } from '../initial_state';
 
-const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
-const getAccountCounters     = (state, id) => state.getIn(['accounts_counters', id], null);
-const getAccountRelationship = (state, id) => state.getIn(['relationships', id], null);
-const getAccountMoved        = (state, id) => state.getIn(['accounts', state.getIn(['accounts', id, 'moved'])]);
+import { getFilters } from './filters';
 
-export const makeGetAccount = () => {
-  return createSelector([getAccountBase, getAccountCounters, getAccountRelationship, getAccountMoved], (base, counters, relationship, moved) => {
-    if (base === null) {
-      return null;
-    }
-
-    return base.merge(counters).withMutations(map => {
-      map.set('relationship', relationship);
-      map.set('moved', moved);
-    });
-  });
-};
-
-const getFilters = (state, { contextType }) => {
-  if (!contextType) return null;
-
-  const serverSideType = toServerSideType(contextType);
-  const now = new Date();
-
-  return state.get('filters').filter((filter) => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || filter.get('expires_at') > now));
-};
+export { makeGetAccount } from "./accounts";
 
 export const makeGetStatus = () => {
   return createSelector(
@@ -74,7 +51,7 @@ export const makeGetStatus = () => {
 
 export const makeGetPictureInPicture = () => {
   return createSelector([
-    (state, { id }) => state.get('picture_in_picture').statusId === id,
+    (state, { id }) => state.picture_in_picture.statusId === id,
     (state) => state.getIn(['meta', 'layout']) !== 'mobile',
   ], (inUse, available) => ImmutableMap({
     inUse: inUse && available,
@@ -82,26 +59,27 @@ export const makeGetPictureInPicture = () => {
   }));
 };
 
-const getAlertsBase = state => state.get('alerts');
+const ALERT_DEFAULTS = {
+  dismissAfter: 5000,
+  style: false,
+};
 
-export const getAlerts = createSelector([getAlertsBase], (base) => {
-  let arr = [];
+const formatIfNeeded = (intl, message, values) => {
+  if (typeof message === 'object') {
+    return intl.formatMessage(message, values);
+  }
 
-  base.forEach(item => {
-    arr.push({
-      message: item.get('message'),
-      message_values: item.get('message_values'),
-      title: item.get('title'),
-      key: item.get('key'),
-      dismissAfter: 5000,
-      barStyle: {
-        zIndex: 200,
-      },
-    });
-  });
+  return message;
+};
 
-  return arr;
-});
+export const getAlerts = createSelector([state => state.get('alerts'), (_, { intl }) => intl], (alerts, intl) =>
+  alerts.map(item => ({
+    ...ALERT_DEFAULTS,
+    ...item,
+    action: formatIfNeeded(intl, item.action, item.values),
+    title: formatIfNeeded(intl, item.title, item.values),
+    message: formatIfNeeded(intl, item.message, item.values),
+  })).toArray());
 
 export const makeGetNotification = () => createSelector([
   (_, base)             => base,
@@ -121,8 +99,8 @@ export const getAccountGallery = createSelector([
   let medias = ImmutableList();
 
   statusIds.forEach(statusId => {
-    const status = statuses.get(statusId);
-    medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status).set('account', account)));
+    const status = statuses.get(statusId).set('account', account);
+    medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status)));
   });
 
   return medias;
@@ -135,3 +113,7 @@ export const getAccountHidden = createSelector([
 ], (hidden, followingOrRequested, isSelf) => {
   return hidden && !(isSelf || followingOrRequested);
 });
+
+export const getStatusList = createSelector([
+  (state, type) => state.getIn(['status_lists', type, 'items']),
+], (items) => items.toList());

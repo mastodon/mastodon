@@ -54,12 +54,14 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   def approve
     authorize @account.user, :approve?
     @account.user.approve!
+    log_action :approve, @account.user
     render json: @account, serializer: REST::Admin::AccountSerializer
   end
 
   def reject
     authorize @account.user, :reject?
     DeleteAccountService.new.call(@account, reserve_email: false, reserve_username: false)
+    log_action :reject, @account.user
     render_empty
   end
 
@@ -118,15 +120,9 @@ class Api::V1::Admin::AccountsController < Api::BaseController
       translated_params[:status] = status.to_s if params[status].present?
     end
 
-    if params[:staff].present?
-      translated_params[:role_ids] = UserRole.that_can(:manage_reports).map(&:id)
-    end
+    translated_params[:role_ids] = UserRole.that_can(:manage_reports).map(&:id) if params[:staff].present?
 
     translated_params
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
   end
 
   def next_path
@@ -137,12 +133,8 @@ class Api::V1::Admin::AccountsController < Api::BaseController
     api_v1_admin_accounts_url(pagination_params(min_id: pagination_since_id)) unless @accounts.empty?
   end
 
-  def pagination_max_id
-    @accounts.last.id
-  end
-
-  def pagination_since_id
-    @accounts.first.id
+  def pagination_collection
+    @accounts
   end
 
   def records_continue?

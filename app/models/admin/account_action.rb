@@ -26,6 +26,7 @@ class Admin::AccountAction
   alias include_statuses? include_statuses
 
   validates :type, :target_account, :current_account, presence: true
+  validates :type, inclusion: { in: TYPES }
 
   def initialize(attributes = {})
     @send_email_notification = true
@@ -51,7 +52,7 @@ class Admin::AccountAction
       process_reports!
     end
 
-    process_email!
+    process_notification!
     process_queue!
   end
 
@@ -70,6 +71,18 @@ class Admin::AccountAction
       else
         TYPES - %w(none disable)
       end
+    end
+
+    def disabled_types_for_account(account)
+      if account.suspended_locally?
+        %w(silence suspend)
+      elsif account.silenced?
+        %w(silence)
+      end
+    end
+
+    def i18n_scope
+      :activerecord
     end
   end
 
@@ -153,8 +166,11 @@ class Admin::AccountAction
     queue_suspension_worker! if type == 'suspend'
   end
 
-  def process_email!
-    UserMailer.warning(target_account.user, warning).deliver_later! if warnable?
+  def process_notification!
+    return unless warnable?
+
+    UserMailer.warning(target_account.user, warning).deliver_later!
+    LocalNotificationWorker.perform_async(target_account.id, warning.id, 'AccountWarning', 'moderation_warning')
   end
 
   def warnable?
@@ -166,13 +182,11 @@ class Admin::AccountAction
   end
 
   def reports
-    @reports ||= begin
-      if type == 'none'
-        with_report? ? [report] : []
-      else
-        Report.where(target_account: target_account).unresolved
-      end
-    end
+    @reports ||= if type == 'none'
+                   with_report? ? [report] : []
+                 else
+                   Report.where(target_account: target_account).unresolved
+                 end
   end
 
   def warning_preset

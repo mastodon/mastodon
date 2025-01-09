@@ -10,7 +10,7 @@ class Api::V1::ReportsController < Api::BaseController
     @report = ReportService.new.call(
       current_account,
       reported_account,
-      report_params
+      report_params.merge(application: doorkeeper_token.application)
     )
 
     render json: @report, serializer: REST::ReportSerializer
@@ -23,6 +23,6 @@ class Api::V1::ReportsController < Api::BaseController
   end
 
   def report_params
-    params.permit(:account_id, :comment, :category, :forward, status_ids: [], rule_ids: [])
+    params.permit(:account_id, :comment, :category, :forward, forward_to_domains: [], status_ids: [], rule_ids: [])
   end
 end

@@ -60,7 +60,7 @@ da:
       error:
         title: En fejl opstod
       new:
-        prompt_html: "%{client_name} ønsker tilladelse til at tilgå din konto. Den er en tredjepartsapplikation. <strong>Har du ikke tillid til den, bør den ikke godkendes.</strong>"
+        prompt_html: "%{client_name} vil ønsker tilladelse til at tilgå din konto. <strong>Godkend kun denne anmodning, hvis kilden genkendes, og man stoler på den.</strong>"
         review_permissions: Gennemgå tilladelser
         title: Godkendelse kræves
       show:
@@ -83,6 +83,7 @@ da:
         access_denied: Ressourceejeren eller godkendelsesserveren afviste anmodningen.
         credential_flow_not_configured: Ressourceejeradgangskodeakkreditiver-flow mislykkedes grundet ikke-opsat Doorkeeper.configure.resource_owner_from_credentials.
         invalid_client: Klientgodkendelse mislykkedes grundet en ukendt klient, ingen inkluderet klientgodkendelse eller uunderstøttet godkendelsesmetode.
+        invalid_code_challenge_method: Kodeudfordringsmetoden skal være S256, simpel (plain) er uunderstøttet.
         invalid_grant: Den leverede godkendelse er ugyldig, udløbet, ophævet, matcher ikke omdirigerings-URI'en brugt i godkendelsesanmodningen eller er udstedt til en anden klient.
         invalid_redirect_uri: Inkluderede ormdirigerings-URI er ugyldig.
         invalid_request:
@@ -122,19 +123,20 @@ da:
         admin/accounts: Kontihåndtering
         admin/all: Alle håndteringsfunktioner
         admin/reports: Rapporthåndteringer
-        all: Alt
+        all: Fuld adgang til din Mastodon-konto
         blocks: Blokeringer
         bookmarks: Bogmærker
         conversations: Konversationer
         crypto: Ende-til-ende kryptering
         favourites: Favoritter
         filters: Filtre
-        follow: Relationer
+        follow: Følger, Tavsgør og Blokerer
         follows: Følger
         lists: Lister
         media: Medievedhæftninger
         mutes: Tavsgørelser
         notifications: Notifikationer
+        profile: Din Mastodon-profil
         push: Push-notifikationer
         reports: Anmeldelser
         search: Søgning
@@ -149,12 +151,23 @@ da:
     scopes:
       admin:read: læs alle data på serveren
       admin:read:accounts: læs sensitiv information fra alle konti
+      admin:read:canonical_email_blocks: læs følsomme oplysninger fra alle kanoniske e-mailblokeringer
+      admin:read:domain_allows: læs følsomme informationer fra alle tilladte domæner
+      admin:read:domain_blocks: læs følsomme informationer fra alle domæneblokeringer
+      admin:read:email_domain_blocks: læs følsomme informationer fra alle e-maildomæneblokeringer
+      admin:read:ip_blocks: læs følsomme informationer fra alle IP-blokeringer
       admin:read:reports: læs sensitiv information fra alle anmeldelser og anmeldte konti
       admin:write: redigér alle data på serveren
       admin:write:accounts: udfør modereringshandlinger på konti
+      admin:write:canonical_email_blocks: udfør modereringshandlinger på kanoniske e-mailblokeringer
+      admin:write:domain_allows: udfør modereringshandlinger på tilladte domæner
+      admin:write:domain_blocks: udfør modereringshandlinger på domæneblokeringer
+      admin:write:email_domain_blocks: udfør modereringshandlinger på e-maildomæneblokeringer
+      admin:write:ip_blocks: udfør modereringshandlinger på IP-blokeringer
       admin:write:reports: udfør modereringshandlinger på anmeldelser
       crypto: benyt ende-til-ende kryptering
       follow: ændre kontorelationer
+      profile: læs kun kontoprofiloplysningerne
       push: modtag dine push-notifikationer
       read: læs alle dine kontodata
       read:accounts: se kontooplysninger

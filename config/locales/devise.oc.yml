@@ -47,11 +47,9 @@ oc:
         subject: Mastodon : consignas per reïnicializar lo senhal
         title: Reïnicializacion del senhal
       two_factor_disabled:
-        explanation: L’autentificacion dos factors per vòstre compte es estada desactivada. La connexion es ara possibla solament amb l’adreça electronica e lo senhal.
         subject: 'Mastodon : autentificacion dos factors desactivada'
         title: 2FA desactivat
       two_factor_enabled:
-        explanation: L’autentificacion dos factors es estada activada per vòstre compte. La connexion demandarà un geton generat per l’aplicacion TOTP associada.
         subject: 'Mastodon : autentificacion dos factor activada'
         title: 2FA activat
       two_factor_recovery_codes_changed:
@@ -70,11 +68,9 @@ oc:
           subject: 'Mastodon : clau de seguretat suprimida'
           title: Una de vòstras claus de seguretats es estada suprimida
       webauthn_disabled:
-        explanation: L’autentificacion amb de claus de seguretat foguèt estada desactivada per vòstre compte. L’identificacion es ara possible en utilizan un geton generat per una aplicacion TOTP associada.
         subject: 'Mastodon : autentificacion amb claus de seguretat desactivada'
         title: Claus de seguretat desactivadas
       webauthn_enabled:
-        explanation: L’autentificacion amb de claus de seguretat foguèt estada activada per vòstre compte. Vòstra clau de seguretat pòt ara èsser utilizada per l’identificacion.
         subject: 'Mastodon : autentificacion via clau de seguretat activada'
         title: Claus de seguretat activadas
     omniauth_callbacks:
@@ -88,11 +84,6 @@ oc:
       updated_not_active: Vòstre senhal es ben estat cambiat.
     registrations:
       destroyed: Adieu-siatz ! Vòstra inscripcion es estada anullada amb succès. Esperem vos tornar veire lèu.
-      signed_up: La benvenguda ! Sètz ben marcat al malhum.
-      signed_up_but_inactive: Sètz ben marcat. Pasmens, avèm pas pogut vos connectar perque vòstre compte es pas encara validat.
-      signed_up_but_locked: Sètz ben marcat. Pasmens, avèm pas pogut vos connectar perque vòstre compte es pas encara blocat.
-      signed_up_but_pending: Un messatge amb un ligam de confirmacion es estat enviat a vòstra adreça electronica. Aprèp aver clicat lo ligam, revisarem vòstra demanda. Seretz avisat se’s aprovada.
-      signed_up_but_unconfirmed: Un messatge amb un ligam de confirmacion es estat enviat a vòstra adreça de corrièl. Clicatz sul ligam per activar vòstre compte. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
       update_needs_confirmation: Avètz ben mes a jorn vòstre compte, mai nos cal verificar vòstra nòva adreça de corrièl. Mercés de verificar vòstres messatges e clicar sul ligam de confirmacion per confirmar vòstra nòva adreça de corrièl. Mercés de verificar tanben vòstre dorsièr de corrièls indesirables.
       updated: Vòstre compte es estat mes a jorn amb succès.
     sessions:

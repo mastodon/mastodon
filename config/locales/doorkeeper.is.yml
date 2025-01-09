@@ -60,7 +60,7 @@ is:
       error:
         title: Villa kom upp
       new:
-        prompt_html: "%{client_name} biður um heimild til að fara inn á notandaaðganginn þinn. Þetta er utanaðkomandi hugbúnaður. <strong>Ef þú treystir ekki viðkomandi, þá ættir þú ekki að heimila þetta.</strong>"
+        prompt_html: "%{client_name} vill fá heimild til að skoða aðganginn þinn. <strong>Ekki samþykkja þessa beiðni nema þú þekkir og treystir viðkomandi.</strong>"
         review_permissions: Yfirfara heimildir
         title: Auðkenning er nauðsynleg
       show:
@@ -83,6 +83,7 @@ is:
         access_denied: Eigandi tilfangs eða auðkenningarþjónn höfnuðu beininni.
         credential_flow_not_configured: Flæði á lykilorðsauðkennum eiganda tilfangs (Resource Owner) brást vegna þess að Doorkeeper.configure.resource_owner_from_credentials er óskilgreint.
         invalid_client: Auðkenning á biðlara brást vegna þess að biðlarinn er óþekktur, að auðkenning biðlarans fylgdi ekki með, eða að notuð var óstudd auðkenningaraðferð.
+        invalid_code_challenge_method: Aðferð við ráðningu kóðans verður að vera í S256, hreinn texti er ekki studdur.
         invalid_grant: Uppgefin auðkenningarheimild er ógild, útrunnin, afturkölluð, samsvarar ekki endurbirtingarslóðinni í auðkenningarbeiðninni, eða var gefin út til annars biðlara.
         invalid_redirect_uri: Endurbeiningarslóðin sem fylgdi er ekki gild.
         invalid_request:
@@ -122,19 +123,20 @@ is:
         admin/accounts: Stjórnun aðganga
         admin/all: Allar stjórnunaraðgerðir
         admin/reports: Stjórnun kæra
-        all: Allt
+        all: Fullur aðgangur að Mastodon-aðgangnum þínum
         blocks: Útilokanir
         bookmarks: Bókamerki
         conversations: Samtöl
         crypto: Enda-í-enda dulritun
         favourites: Eftirlæti
         filters: Síur
-        follow: Vensl
+        follow: Fylgist með, þagganir og útilokanir
         follows: Fylgist með
         lists: Listar
         media: Myndefnisviðhengi
         mutes: Þagganir
         notifications: Tilkynningar
+        profile: Mastodon notandasniðið þitt
         push: Ýti-tilkynningar
         reports: Kærur
         search: Leita
@@ -149,12 +151,23 @@ is:
     scopes:
       admin:read: lesa öll gögn á netþjóninum
       admin:read:accounts: lesa viðkvæmar upplýsingar á öllum notendaaðgöngum
+      admin:read:canonical_email_blocks: lesa viðkvæmar upplýsingar um allar stafréttar útilokanir tölvupósts
+      admin:read:domain_allows: lesa viðkvæmar upplýsingar um öll leyfð lén
+      admin:read:domain_blocks: lesa viðkvæmar upplýsingar um öll útilokuð lén
+      admin:read:email_domain_blocks: lesa viðkvæmar upplýsingar um öll útilokuð tölvupóstlén
+      admin:read:ip_blocks: lesa viðkvæmar upplýsingar um allar útilokanir IP-vistfanga
       admin:read:reports: lesa viðkvæmar upplýsingar í öllum skýrslum og kærðum notendaaðgöngum
       admin:write: breyta öllum gögnum á netþjóninum
       admin:write:accounts: framkvæma umsjónaraðgerðir á notendaaðganga
+      admin:write:canonical_email_blocks: framkvæma umsjónaraðgerðir á stafréttar útilokanir tölvupósts
+      admin:write:domain_allows: framkvæma umsjónaraðgerðir á leyfð lén
+      admin:write:domain_blocks: framkvæma umsjónaraðgerðir á útilokuð lén
+      admin:write:email_domain_blocks: framkvæma umsjónaraðgerðir á útilokuð tölvupóstlén
+      admin:write:ip_blocks: framkvæma umsjónaraðgerðir á útilokuð IP-vistföng
       admin:write:reports: framkvæma umsjónaraðgerðir á kærur
       crypto: nota enda-í-enda dulritun
       follow: breyta venslum aðgangs
+      profile: lesa einungis upplýsingar úr notandasniðinu þínu
       push: taka á móti ýti-tilkynningum til þín
       read: lesa öll gögn á notandaaðgangnum þínum
       read:accounts: sjá upplýsingar í notendaaðgöngum

@@ -1,18 +1,17 @@
 ---
 sq:
   about:
-    about_mastodon_html: 'Rrjeti shoqëror i së ardhmes: Pa reklama, pa survejim nga korporata, konceptim etik dhe decentralizim! Jini zot i të dhënave tuaja, me Mastodon-in!'
-    contact_missing: I parregulluar
+    about_mastodon_html: 'Rrjeti social i së ardhmes: Pa reklama, pa sy vëzhguese nga korporata, etik dhe i decentralizuar! Merrni sërisht zotësinë e të dhënave tuaja, me Mastodon!'
+    contact_missing: E pacaktuar
     contact_unavailable: N/A
-    hosted_on: Mastodon i strehuar në %{domain}
+    hosted_on: Server Mastodon i strehuar në %{domain}
     title: Mbi
   accounts:
-    follow: Ndiqeni
     followers:
       one: Ndjekës
       other: Ndjekës
-    following: Ndjekje
-    instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë shërbyesin dhe jo ndonjë përdorues individual. Përdoret për qëllime federimi dhe s’duhet pezulluar.
+    following: Po ndjek
+    instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë serverin dhe jo ndonjë përdorues. Përdoret për qëllime federimi dhe s’duhet pezulluar.
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
     nothing_here: S’ka gjë këtu!
@@ -22,16 +21,19 @@ sq:
       one: Mesazh
       other: Mesazhe
     posts_tab_heading: Mesazhe
+    self_follow_error: Ndjekja e llogarisë personale nuk lejohet
   admin:
     account_actions:
       action: Kryeje veprimin
+      already_silenced: Kjo llogari është kufizuar tashmë.
+      already_suspended: Kjo llogari është pezulluar tashmë.
       title: Kryeni veprim moderimi te %{acct}
     account_moderation_notes:
       create: Lini një shënim
       created_msg: Shënimi i moderimit u krijua me sukses!
       destroyed_msg: Shënimi i moderimit u asgjësua me sukses!
     accounts:
-      add_email_domain_block: Blloko përkatësi email
+      add_email_domain_block: Blloko përkratësi email-esh
       approve: Miratojeni
       approved_msg: U miratua me sukses aplikimi për regjistrim të %{username}
       are_you_sure: Jeni i sigurt?
@@ -46,6 +48,7 @@ sq:
         title: Ndrysho email-in për %{username}
       change_role:
         changed_msg: Roli u ndryshua me sukses!
+        edit_roles: Administroni role përdoruesish
         label: Ndryshoni rol
         no_role: Pa rol
         title: Ndryshoni rolin për %{username}
@@ -91,6 +94,7 @@ sq:
       moderation:
         active: Aktiv
         all: Krejt
+        disabled: I çaktivizuar
         pending: Pezull
         silenced: I kufizuar
         suspended: Të pezulluara
@@ -116,21 +120,24 @@ sq:
       redownloaded_msg: Profili i %{username} u rifreskua me sukses prej origjinës
       reject: Hidhe tej
       rejected_msg: Aplikimi për regjistrim i %{username} u hodh poshtë me sukses
+      remote_suspension_irreversible: Të dhënat e kësaj llogarie janë fshirë në mënyrë të pakthyeshme.
+      remote_suspension_reversible_hint_html: Llogaria është pezulluar në shërbyesit e tyre dhe të dhënat do të hiqen plotësisht më %{date}. Deri atëherë, shërbyesi i largët mund të rikthejë këtë llogari pa u cenuar. Nëse dëshironi të hiqen menjëherë të dhënat e llogarisë, mund ta bëni më poshtë.
       remove_avatar: Hiqe avatarin
       remove_header: Hiqe kryen
       removed_avatar_msg: U hoq me sukses figura e avatarit të %{username}
       removed_header_msg: U hoq me sukses figura e kryes për %{username}
       resend_confirmation:
         already_confirmed: Ky përdorues është i ripohuar tashmë
-        send: Ridërgo email ripohimi
-        success: Email-i i ripohimit u dërgua me sukses!
+        send: Ridërgo lidhje ripohimi
+        success: Lidhja e ripohimit u dërgua me sukses!
       reset: Riktheje te parazgjedhjet
       reset_password: Ricaktoni fjalëkalimin
       resubscribe: Ripajtohuni
       role: Rol
       search: Kërkoni
-      search_same_email_domain: Të tjerë përdorues me të njëjtën përkatësi email-i
+      search_same_email_domain: Përdorues të tjerë me të njëjtën përkatësi email
       search_same_ip: Të tjerë përdorues me të njëjtën IP
+      security: Siguri
       security_measures:
         only_password: Vetëm fjalëkalim
         password_and_2fa: Fjalëkalim dhe 2FA
@@ -169,7 +176,7 @@ sq:
         approve_appeal: Miratojeni Apelimin
         approve_user: Miratoje Përdoruesin
         assigned_to_self_report: Caktoji Raportim
-        change_email_user: Ndrysho Email për Përdoruesin
+        change_email_user: Ndryshoni Email për Përdoruesin
         change_role_user: Ndryshoni Rol Përdoruesi
         confirm_user: Ripohoje Përdoruesin
         create_account_warning: Krijo Sinjalizim
@@ -178,31 +185,36 @@ sq:
         create_custom_emoji: Krijo Emotikon Vetjak
         create_domain_allow: Krijo Lejim Përkatësie
         create_domain_block: Krijo Bllokim Përkatësie
-        create_email_domain_block: Krijo Bllokim Përkatësie Email-esh
+        create_email_domain_block: Krijoni Bllokim Përkatësie Email-esh
         create_ip_block: Krijoni Rregull IP
+        create_relay: Krijoni Rele
         create_unavailable_domain: Krijo Përkatësi të Papërdorshme
         create_user_role: Krijoni Rol
         demote_user: Zhgradoje Përdoruesin
         destroy_announcement: Fshije Lajmërimin
-        destroy_canonical_email_block: Fshi Bllokim El-esh
+        destroy_canonical_email_block: Fshini Bllokim Email-esh
         destroy_custom_emoji: Fshi Emotikon Vetjak
         destroy_domain_allow: Fshi Lejim Përkatësie
         destroy_domain_block: Fshi Bllokim Përkatësie
-        destroy_email_domain_block: Fshi bllokim përkatësie email-esh
+        destroy_email_domain_block: Fshini Bllokim Përkatësie Email-esh
         destroy_instance: Spastroje Përkatësinë
         destroy_ip_block: Fshini Rregull IP
+        destroy_relay: Fshije Relenë
         destroy_status: Fshi Gjendje
         destroy_unavailable_domain: Fshi Përkatësi të Papërdorshme
         destroy_user_role: Asgjësoje Rolin
         disable_2fa_user: Çaktivizo 2FA-në
         disable_custom_emoji: Çaktivizo Emotikon Vetjak
-        disable_sign_in_token_auth_user: Çaktivizo Mirëfilltësim me Token Email-i për Përdoruesin
+        disable_relay: Çaktivizoje Relenë
+        disable_sign_in_token_auth_user: Çaktivizoni për Përdoruesin Mirëfilltësim Me Token Email-i
         disable_user: Çaktivizo Përdorues
         enable_custom_emoji: Aktivizo Emotikon Vetjak
-        enable_sign_in_token_auth_user: Aktivizo Mirëfilltësim me Token Email-i për Përdoruesin
+        enable_relay: Aktivizoje Relenë
+        enable_sign_in_token_auth_user: Aktivizoni për Përdoruesin Mirëfilltësim Me Token Email-i
         enable_user: Aktivizo Përdorues
         memorialize_account: Bëje Llogari Përkujtimore
         promote_user: Promovojeni Përdoruesin
+        publish_terms_of_service: Boto Kushte Shërbimi
         reject_appeal: Hidheni Poshtë Apelimin
         reject_user: Hidhe Poshtë Përdoruesin
         remove_avatar_user: Hiqe Avatarin
@@ -222,6 +234,7 @@ sq:
         update_custom_emoji: Përditëso Emoxhi Vetjake
         update_domain_block: Përditëso Bllok Përkatësish
         update_ip_block: Përditësoni rregull IP
+        update_report: Përditësoni Raportimin
         update_status: Përditëso Gjendjen
         update_user_role: Përditësoni Rol
       actions:
@@ -233,35 +246,40 @@ sq:
         confirm_user_html: "%{name} ripohoi adresën email të përdoruesit %{target}"
         create_account_warning_html: "%{name} dërgoi një sinjalizim për %{target}"
         create_announcement_html: "%{name} krijoi lajmërim të ri për %{target}"
-        create_canonical_email_block_html: "%{name} bllokoi email-in me hashin %{target}"
+        create_canonical_email_block_html: "%{name} bllokoi email me hashin %{target}"
         create_custom_emoji_html: "%{name} ngarkoi emoxhi të ri %{target}"
         create_domain_allow_html: "%{name} lejoi federim me përkatësinë %{target}"
         create_domain_block_html: "%{name} bllokoi përkatësinë %{target}"
         create_email_domain_block_html: "%{name} bllokoi përkatësinë email %{target}"
         create_ip_block_html: "%{name} krijoi rregull për IP-në %{target}"
+        create_relay_html: "%{name} krijoi një rele %{target}"
         create_unavailable_domain_html: "%{name} ndali dërgimin drejt përkatësisë %{target}"
         create_user_role_html: "%{name} krijoi rolin %{target}"
         demote_user_html: "%{name} zhgradoi përdoruesin %{target}"
         destroy_announcement_html: "%{name} fshiu lajmërimin për %{target}"
-        destroy_canonical_email_block_html: "%{name} zhbllokoi email-n me hashin %{target}"
+        destroy_canonical_email_block_html: "%{name} zhbllokoi email me hashin %{target}"
         destroy_custom_emoji_html: "%{name} fshiu emoji-n %{target}"
         destroy_domain_allow_html: "%{name} hoqi lejimin për federim me %{target}"
         destroy_domain_block_html: "%{name} zhbllokoi përkatësinë %{target}"
-        destroy_email_domain_block_html: "%{name} hoqi bllokimin për përkatësinë email %{target}"
+        destroy_email_domain_block_html: "%{name} zhbllokoi përkatësi email %{target}"
         destroy_instance_html: "%{name} spastroi përkatësinë %{target}"
         destroy_ip_block_html: "%{name} fshiu rregull për IP-në %{target}"
+        destroy_relay_html: "%{name} fshiu relenë %{target}"
         destroy_status_html: "%{name} hoqi gjendje nga %{target}"
         destroy_unavailable_domain_html: "%{name} rinisi dërgimin drejt përkatësisë %{target}"
         destroy_user_role_html: "%{name} fshiu rolin %{target}"
         disable_2fa_user_html: "%{name} çaktivizoi domosdoshmërinë për dyfaktorësh për përdoruesin %{target}"
         disable_custom_emoji_html: "%{name} çaktivizoi emoxhin %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} çaktivizo mirëfilltësim me token email-i për %{target}"
+        disable_relay_html: "%{name} çaktivizoi relenë %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} çaktivizoi mirëfilltësim me token email për %{target}"
         disable_user_html: "%{name} çaktivizoi hyrje për përdoruesin %{target}"
         enable_custom_emoji_html: "%{name} aktivizoi emoxhin %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} aktivizo mirëfilltësim me token email-i përdoruesi për %{target}"
+        enable_relay_html: "%{name} aktivizoi relenë %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktivizoi mirëfilltësim me token email për %{target}"
         enable_user_html: "%{name} aktivizoi hyrje për përdoruesin %{target}"
         memorialize_account_html: "%{name} e shndërroi llogarinë e %{target} në një faqe përkujtimore"
         promote_user_html: "%{name} gradoi përdoruesin %{target}"
+        publish_terms_of_service_html: "%{name} botoi përditësime të kushteve të shërbimit"
         reject_appeal_html: "%{name} hodhi poshtë apelim vendimi moderimi nga %{target}"
         reject_user_html: "%{name} hodhi poshtë regjistrimin nga %{target}"
         remove_avatar_user_html: "%{name} hoqi avatarin e %{target}"
@@ -279,15 +297,17 @@ sq:
         unsuspend_account_html: "%{name} hoqi pezullimin për llogarinë e %{target}"
         update_announcement_html: "%{name} përditësoi lajmërimin %{target}"
         update_custom_emoji_html: "%{name} përditësoi emoxhin %{target}"
-        update_domain_block_html: "%{name} përditësoi bllokimin e përkatësish për %{target}"
+        update_domain_block_html: "%{name} përditësoi bllokim përkatësish për %{target}"
         update_ip_block_html: "%{name} ndryshoi rregull për IP-në %{target}"
+        update_report_html: "%{name} përditësoi raportimin %{target}"
         update_status_html: "%{name} përditësoi gjendjen me %{target}"
         update_user_role_html: "%{name} ndryshoi rolin për %{target}"
       deleted_account: fshiu llogarinë
       empty: S’u gjetën regjistra.
       filter_by_action: Filtroji sipas veprimit
       filter_by_user: Filtroji sipas përdoruesit
-      title: Auditim regjistri
+      title: Regjistër auditimesh
+      unavailable_instance: "(emër përkatësie jo i passhëm)"
     announcements:
       destroyed_msg: Lajmërimi u fshi me sukses!
       edit:
@@ -305,6 +325,7 @@ sq:
       unpublish: Hiqi publikimin
       unpublished_msg: Lajmërimi u botua me sukses!
       updated_msg: Lajmërimi u përditësua me sukses!
+    critical_update_pending: Përditësim kritik pezull
     custom_emojis:
       assign_category: Caktojini kategori
       by_domain: Përkatësi
@@ -373,24 +394,39 @@ sq:
       add_new: Shtoje përkatësinë në listë lejimesh
       created_msg: Përkatësia u shtua me sukses në listë lejimesh
       destroyed_msg: Përkatësia u hoq nga listë lejimesh
+      export: Eksportim
+      import: Importim
       undo: Hiqe nga listë lejimesh
     domain_blocks:
       add_new: Shtoni bllokim të ri përkatësie
+      confirm_suspension:
+        cancel: Anuloje
+        confirm: Pezulloje
+        permanent_action: Prapakthimi i pezullimit s’do të rikthejë ndonjë të dhënë apo marrëdhënie.
+        preamble_html: Ju ndan një hap nga pezullim i <strong>%{domain}</strong> dhe përkatësive të saj.
+        remove_all_data: Kjo do të sjellë heqjen nga shërbyesii juaj të krejt lëndës, medias dhe të dhënave të profilit për llogaritë e kësaj përkatësie.
+        stop_communication: Shërbyesi juaj do të reshtë së komunikuar me këta shërbyes.
+        title: Ripohoni bllokim përkatësie për %{domain}
+        undo_relationships: Kjo do të zhbëjë farëdo marrëdhënie ndjekjeje mes llogarive të këtyre shërbyesve dhe tuajit.
       created_msg: Bllokimi i përkatësisë tani po përpunohet
       destroyed_msg: Bllokimi i përkatësisë u hoq
       domain: Përkatësi
       edit: Përpunoni bllokim përkatësie
       existing_domain_block: Keni vendosur tashmë kufizime më të rrepta mbi %{name}.
       existing_domain_block_html: Keni vendosur tashmë kufizime më të rrepta mbi %{name}, lypset ta <a href="%{unblock_url}">zhbllokoni</a> së pari.
+      export: Eksportim
+      import: Importim
       new:
         create: Krijoni bllokim
         hint: Bllokimi i përkatësisë nuk do të pengojë krijim zërash llogarie te baza e të dhënave, por do të aplikojë në mënyrë retroaktive dhe të vetvetishme metoda specifike moderimi mbi këto llogari.
         severity:
-          desc_html: "<strong>Heshtja</strong> do t’i bëjë postimet e llogarisë të padukshme për këdo që nuk i ndjek ato. <strong>Pezullimi</strong> do të heqë krejt lëndën e llogarisë, media, dhe të dhëna profili. Përdorni <strong>Asnjë</strong>, nëse thjesht doni të mos pranohen kartela media."
+          desc_html: "<strong>Kufizoje</strong> do t’i bëjë postimet prej llogarish në këtë përkatësi të padukshme për këtë që nuk i ndjek. <strong>Pezulloje</strong> do të heqë nga shërbyesi juaj krejt lëndën, media dhe të dhëna profili për llogaritë e kësaj përkatësie. Përdorni <strong>Asnjë</strong>, nëse doni thjesht të hidhni tej kartela media."
           noop: Asnjë
-          silence: Heshtoji
+          silence: Kufizoje
           suspend: Pezulloje
         title: Bllokim i ri përkatësie
+      no_domain_block_selected: S’u ndryshuan bllokime përkatësish, ngaqë s’u përzgjodh ndonjë i tillë
+      not_permitted: S’keni leje të kryeni këtë veprim
       obfuscate: Errësoje emrin e përkatësisë
       obfuscate_hint: Errësoje pjesërisht emrin e përkatësisë te lista, nëse është aktivizuar publikimi i listës së kufizimeve të përkatësive
       private_comment: Koment privat
@@ -405,10 +441,11 @@ sq:
       view: Shihni bllokim përkatësie
     email_domain_blocks:
       add_new: Shtoni të ri
+      allow_registrations_with_approval: Lejo regjistrim me miratim
       attempts_over_week:
         one: "%{count} përpjekje gjatë javës së shkuar"
         other: "%{count} përpjekje regjistrimi gjatë javës së kaluar"
-      created_msg: Përkatësia email u shtua me sukses te lista e bllokimeve
+      created_msg: U bllokua me sukses përkatësi email
       delete: Fshije
       dns:
         types:
@@ -417,11 +454,27 @@ sq:
       new:
         create: Shtoni përkatësi
         resolve: Ftilloje përkatësinë
-        title: Zë i ri email në listë bllokimesh
-      no_email_domain_block_selected: S’u ndryshuan blloqe përkatësish email, ngaqë s’qe përzgjedhur ndonjë
-      resolved_dns_records_hint_html: Emri i përkatësisë jep u përket përkatësive vijuese MX, që janë përgjegjëset për pranim email-esh. Bllokimi i një përkatësie MX do të bllokojë regjistrime nga çfarëdo adrese email që përdor të njëjtën përkatësi MX, edhe nëse emri i dukshëm i përkatësisë është i ndryshëm. <strong>Jini i kujdesshëm të mos bllokoni shërbime të njohur email-esh.</strong>
+        title: Blloko përkatësi të re email
+      no_email_domain_block_selected: S’u ndryshuan bllokime përkatësish email, ngaqë s’qe përzgjedhur ndonjë
+      not_permitted: Jo i lejuar
+      resolved_dns_records_hint_html: Emri i përkatësisë u përket përkatësive vijuese MX, që janë përgjegjëset përfundimtare për pranim email-esh. Bllokimi i një përkatësie MX do të bllokojë regjistrime nga çfarëdo adrese email që përdor të njëjtën përkatësi MX, edhe nëse emri i dukshëm i përkatësisë është i ndryshëm. <strong>Hapni sytë të mos bllokoni shërbime të njohur email-esh.</strong>
       resolved_through_html: Zgjidhur përmes %{domain}
-      title: Listë bllokimesh email-esh
+      title: Përkatësi email të bllokuara
+    export_domain_allows:
+      new:
+        title: Importoni lejime përkatësish
+      no_file: S’u përzgjodh kartelë
+    export_domain_blocks:
+      import:
+        description_html: Ju ndan një hap nga importimi i një liste bllokimesh përkatësish. Ju lutemi, shqyrtojeni këtë listë me shumë kujdes, sidomos nëse këtë listë s’e keni krijuar ju.
+        existing_relationships_warning: Marrëdhënie ekzistuese ndjekjeje
+        private_comment_description_html: 'Për t’ju ndihmuar të ndiqni se nga vijnë bllokimet e importuara, këto do të krijohen me komentin vijues privat: <q>%{comment}</q>'
+        private_comment_template: Importuar nga %{source} më %{date}
+        title: Importoni bllokime përkatësish
+      invalid_domain_block: 'U anashkalua një ose më tepër bllokime përkatësish, për shkak të gabimit(eve) vijues: %{error}'
+      new:
+        title: Importoni bllokime përkatësish
+      no_file: S’u përzgjodh kartelë
     follow_recommendations:
       description_html: "<strong>Rekomandimet për ndjekje ndihmojnë përdoruesit e rinj të gjejnë shpejt lëndë me interes</strong>. Kur një përdorues nuk ka ndërvepruar mjaftueshëm me të tjerët, që të formohen rekomandime të personalizuara ndjekjeje, rekomandohen këto llogari. Ato përzgjidhen çdo ditë, prej një përzierje llogarish me shkallën më të lartë të angazhimit dhe numrin më të lartë të ndjekësve vendorë për një gjuhë të dhënë."
       language: Për gjuhën
@@ -431,6 +484,9 @@ sq:
       title: Rekomandime ndjekjeje
       unsuppress: Rikthe rekomandime ndjekjeje
     instances:
+      audit_log:
+        title: Regjistra Auditimesh Së Fundi
+        view_all: Shihni regjistra të plotë auditimesh
       availability:
         description_html:
           one: Nëse dhënia e mesazheve te përkatësia dështon për <strong>%{count} ditë</strong> pa sukses, s’do të bëhen përpjekje të tjera për dhënie, veç në u marrtë një dërgim <em>prej</em> përkatësisë.
@@ -449,6 +505,7 @@ sq:
       content_policies:
         comment: Shënim i brendshëm
         description_html: Mund të përkufizoni rregulla lënde që do të zbatohen mbi krejt llogaritë prej kësaj përkatësie dhe cilësdo nënpërkatësi të saj.
+        limited_federation_mode_description_html: Mund të zgjidhni të lejohet ose jo federimi me këtë përkatësi.
         policies:
           reject_media: Mos prano media
           reject_reports: Hidh tej raportimet
@@ -496,6 +553,7 @@ sq:
       total_reported: Raportime rreth tyre
       total_storage: Bashkëngjitje media
       totals_time_period_hint_html: Vlerat e shfaqura më poshtë përfshijnë të dhënat për krejt kohën.
+      unknown_instance: Aktualisht në këtë shërbyes s’ka gjurmë të kësaj përkatësie.
     invites:
       deactivate_all: Çaktivizoji krejt
       filter:
@@ -540,7 +598,6 @@ sq:
     report_notes:
       created_msg: Shënimi i raportimit u krijua me sukses!
       destroyed_msg: Shënimi i raportimit u fshi me sukses!
-      today_at: Sot më %{time}
     reports:
       account:
         notes:
@@ -553,22 +610,31 @@ sq:
         mark_as_sensitive_description_html: Medias te postimet e raportuara do t’i vihet shenjë si me spec dhe për të do të regjistrohet një paralajmërim, për t’ju ndihmuar të përshkallëzoni masat tuaja mbi shkelje të ardhshme nga e njëjta llogari.
         other_description_html: Shihni më tepër mundësi për kontroll të sjelljes së një llogari dhe përshtatni komunikimin me llogarinë e raportuar.
         resolve_description_html: Ndaj llogarisë së raportuar nuk do të ndërmerret ndonjë veprim, s’do të regjistrohet ndonjë paralajmërim dhe raporti do të mbyllet.
-        silence_description_html: Profili do të jetë i dukshëm vetëm për ata që e ndjekin tashmë, ose që e kërkojnë dorazi, duke reduktuar rëndë përhapjen e tij. Mundet përherë të prapakthehet.
-        suspend_description_html: Profili dhe krej lënda e tij do të bëhen të papërdorshëm, deri sa më në fund të fshihet. Ndërveprimi me llogarinë do të jetë i pamundur. E prapakthyeshme brenda 30 ditësh.
+        silence_description_html: Llogaria do të jetë e dukshme vetëm për ata që e ndjekin tashmë, ose e kërkojnë atë dorazi, duke kufizuar rëndë shtrirjen e saj. Kjo mundet përherë të prapakthehet. Mbyll krejt raportimet kundër kësaj llogarie.
+        suspend_description_html: Llogaria dhe krejt lënda e saj s’do të jenë të përdorshme dhe, së fundi, do të fshihen dhe ndërveprimi me te do të jetë i pamundur. E prapakthyeshme brenda 30 ditësh. Mbyll krejt raportimet kundër kësaj llogarie.
       actions_description_html: Vendosni cili veprim të kryhet për të zgjidhur këtë raportim. Nëse ndërmerrni një veprim ndëshkues kundër llogarisë së raportuar, atyre do t’u dërgohet një njoftim me email, hiq rastin kur përzgjidhet kategoria <strong>I padëshiruar</strong>.
+      actions_description_remote_html: Vendosni cili veprim të ndërmerret për zgjidhjen e këtij raportimi. Kjo do të prekë vetëm mënyrën se si shërbyesi <strong>juaj</strong> komunikon me këtë llogari të largët dhe se si e trajtojnë lëndën e saj.
+      actions_no_posts: Ky raportim s’ka ndonjë postim të përshoqëruar, për fshirje
       add_to_report: Shtoni më tepër te raportimi
+      already_suspended_badges:
+        local: Tashmë i pezulluar në këtë shërbyes
+        remote: Tashmë i pezulluar në shërbyesin e vet
       are_you_sure: A jeni i sigurt?
       assign_to_self: Caktojani vetes
       assigned: Iu caktua moderator
       by_target_domain: Përkatësi e llogarisë së raportuar
+      cancel: Anuloje
       category: Kategori
       category_description_html: Arsyeja pse kjo llogari dhe/ose lëndë raportohet do të citohet te komunikimi me llogarinë e raportuar
       comment:
         none: Asnjë
       comment_description_html: 'Për të dhënë më tepër informacion, %{name} shkroi:'
+      confirm: Ripohojeni
+      confirm_action: Ripohoni veprim moderimi kundër @%{acct}
       created_at: Raportuar më
       delete_and_resolve: Fshiji postimet
       forwarded: U përcoll
+      forwarded_replies_explanation: Ky raportim është nga një përdorues i largët dhe rreth lënde të largët. Ju është përcjellë ngaqë lënda e raportuar gjendet në përgjigje ndaj njërit prej përdoruesve tuaj.
       forwarded_to: U përcoll te %{domain}
       mark_as_resolved: Vëri shenjë si i zgjidhur
       mark_as_sensitive: Vëri shenjë si rezervat
@@ -582,21 +648,42 @@ sq:
         placeholder: Përshkruani ç’veprime janë ndërmarrë, ose çfarëdo përditësimi tjetër që lidhet me të…
         title: Shënime
       notes_description_html: Shihni dhe lini shënime për moderatorët e tjerë dhe për veten në të ardhmen
+      processed_msg: 'Raportimi #%{id} u përpunua me sukses'
       quick_actions_description_html: 'Kryeni një veprim të shpejtë, ose rrëshqitni poshtë për të parë lëndën e raportuar:'
       remote_user_placeholder: përdoruesi i largët prej %{instance}
       reopen: Rihape raportimin
       report: 'Raportim #%{id}'
       reported_account: Llogari e raportuar
       reported_by: Raportuar nga
+      reported_with_application: Raportuar me aplikacion
       resolved: I zgjidhur
       resolved_msg: Raportimi u zgjidh me sukses!
       skip_to_actions: Kaloni te veprimet
       status: Gjendje
       statuses: Lëndë e raportuar
       statuses_description_html: Lënda problematike do të citohet në komunikimin me llogarinë e raportuar
+      summary:
+        action_preambles:
+          delete_html: 'Ju ndan një hap nga <strong>heqja</strong> e disa postimeve të <strong>@%{acct}</strong>. Kjo do të sjellë:'
+          mark_as_sensitive_html: 'Ju ndan një hap nga <strong>vënia shenjë</strong> disa postimeve të <strong>@%{acct}</strong> si <strong>me spec</strong>. Kjo do të sjellë:'
+          silence_html: 'Ju ndan një hap nga <strong>kufizimi</strong> i llogarisë së <strong>@%{acct}</strong>. Kjo do të sjellë:'
+          suspend_html: 'Ju ndan një hap nga <strong>pezullimi</strong> i llogarisë së <strong>@%{acct}</strong>. Kjo do të sjellë:'
+        actions:
+          delete_html: Hiqi postimet fyese
+          mark_as_sensitive_html: Vëru shenjë si me spec mediave të postimeve fyese
+          silence_html: Kufizoje fort shtrirjen e <strong>@%{acct}</strong>, duke e bërë profilin dhe lëndën e tij të dukshme vetëm për persona që e ndjekin tashmë, ose që kërkojnë dorazi për profilin e tij
+          suspend_html: Pezulloje <strong>@%{acct}</strong>, duke e bërë profilin dhe lëndën e tij të pahapshme dhe të pamundur ndërveprimin me të
+        close_report: 'Vëri shenjë raportimit #%{id} si të zgjidhur'
+        close_reports_html: Vëru shenjë <strong>krejt</strong> raportimeve kundër <strong>@%{acct}</strong> si të zgjidhur
+        delete_data_html: Fshije profilin e <strong>@%{acct}</strong> dhe lëndën e 30 ditëve nga sot, veç në u pezulloftë ndërkohë
+        preview_preamble_html: "<strong>@%{acct}</strong> do të marrë një sinjalizim me lëndën vijuese:"
+        record_strike_html: Regjistroni një vërejtje kundër <strong>@%{acct}</strong> për t’ju ndihmuar të përshkallëzoni qëndrim në ras cenimesh të ardhshme nga kjo llogari
+        send_email_html: Dërgojini <strong>@%{acct}</strong> një email sinjalizues
+        warning_placeholder: Arsye shtesë, në daçi, për veprimin e moderimit.
       target_origin: Origjinë e llogarisë së raportuar
       title: Raportime
       unassign: Hiqja
+      unknown_action_msg: 'Veprim i panjohur: %{action}'
       unresolved: Të pazgjidhur
       updated_at: U përditësua më
       view_profile: Shihni profilin
@@ -624,16 +711,16 @@ sq:
         delete_user_data: Të Fshijë të Dhëna Përdoruesi
         delete_user_data_description: U lejon përdoruesve të fshijnë pa humbur kohë të dhëna përdoruesish të tjerë
         invite_users: Të Ftojë Përdorues
-        invite_users_description: U lejon përdruesve të ftojë te shërbyesi persona të rinj
+        invite_users_description: U lejon përdoruesve të ftojë te shërbyesi persona të rinj
         manage_announcements: Të Administrojë Njoftime
         manage_announcements_description: U lejon përdoruesve të administrojë njoftime te shërbyesi
         manage_appeals: Të Administrojë Apelime
         manage_appeals_description: U lejon përdoruesve të shqyrtojnë apelime kundër veprimesh moderimi
         manage_blocks: Të Administrojë Bllokim
-        manage_blocks_description: U lejon përdoruesve të bllokojnë shërbime email dhe adresa IP
+        manage_blocks_description: U lejon përdoruesve të bllkojnë shërbime email dhe adresa IP
         manage_custom_emojis: Të Administrojë Emoxhi Vetjake
         manage_custom_emojis_description: U lejon përdoruesve të administrojnë te shërbyesi emoxhi vetjake
-        manage_federation: Të Administrjë Federim
+        manage_federation: Të Administrojë Federim
         manage_federation_description: U lejon përdoruesve të bllokojnë ose lejojnë federim me përkatësi të tjera dhe të kontrollojnë shpërndarjen
         manage_invites: Të Administrojë Ftesa
         manage_invites_description: U lejon përdoruesve të shfletojnë dhe çaktivizojnë lidhje ftesash
@@ -662,7 +749,7 @@ sq:
     rules:
       add_new: Shtoni rregull
       delete: Fshije
-      description_html: Edhe pse shumica pretendon se kanë lexuar dhe pajtohen me kushtet e shërbimit, zakonisht njerëzit nuk e lexojnë nga fillimi në fund, deri kur del një problem. <strong>Bëjeni më të lehtë parjen e rregullave të shërbyesit tuaj me një vështim, duke i dhënë në një listë të thjeshtë me pika.</strong> Përpiquni që rregullat të jenë secili të shkurtër dhe të thjeshtë, por as mos u përpiqni t’i ndani në shumë zëra të veçantë.
+      description_html: Edhe pse shumica pretendon se kanë lexuar dhe pajtohen me kushtet e shërbimit, zakonisht njerëzit nuk e lexojnë nga fillimi në fund, deri kur del një problem. <strong>Bëjeni më të lehtë parjen e rregullave të shërbyesit tuaj me një vështrim, duke i dhënë në një listë të thjeshtë me pika.</strong> Përpiquni që rregullat të jenë secili të shkurtër dhe të thjeshtë, por as mos u përpiqni t’i ndani në shumë zëra të veçantë.
       edit: Përpunoni rregull
       empty: S’janë përcaktuar ende rregulla shërbyesi.
       title: Rregulla shërbyesi
@@ -678,14 +765,23 @@ sq:
       branding:
         preamble: Elementët e markës të shërbyesit tuaj e dallojnë atë nga shërbyes të tjerë në rrjet. Këto hollësi mund të shfaqen në një larmi mjedisesh, bie fjala, në ndërfaqen web të Mastodon-it, aplikacione për platforma të ndryshme, në paraparje lidhjesh në sajte të tjerë dhe brenda aplikacionesh për shkëmbim mesazhesh, e me radhë. Për këtë arsyes, më e mira është që këto hollësi të jenë të qarta, të shkurtra dhe të kursyera.
         title: Elementë marke
+      captcha_enabled:
+        desc_html: Kjo bazohet në programthe të jashtëm prej hCaptcha, çka mund të përbëjë një shqetësim për sigurinë dhe privatësinë. Veç kësaj, <strong>kjo mund ta bëjë procesin e regjistrimit në shkallë të madhe më pak të përdorshëm për disa persona (veçanërisht ata me paaftësi)</strong>. Për këto arsye, ju lutemi, shihni mundësinë e masave alternative, fjala vjen, bazuar në miratim, ose regjistrim vetëm me ftesa.
+        title: Kërko prej përdoruesve të rinj të zgjidhin një CAPTCHA, si ripohim të llogarisë të tyre
       content_retention:
+        danger_zone: Zonë rreziku
         preamble: Kontrolloni se si depozitohen në Mastodon lënda e prodhuar nga përdoruesit.
         title: Mbajtje lënde
+      default_noindex:
+        desc_html: Prek krejt përdoruesit që s’e kanë ndryshuar vetë këtë rregullim
+        title: Lëri, si parazgjedhje, përdoruesit jashtë indeksimi nga motorë kërkimesh
       discovery:
         follow_recommendations: Rekomandime ndjekjeje
         preamble: Shpërfaqja e lëndës interesante është me rëndësi kyçe për mirëseardhjen e përdoruesve të rinj që mund të mos njohin njeri në Mastodon. Kontrolloni se si funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi.
         profile_directory: Drejtori profilesh
         public_timelines: Rrjedha kohore publike
+        publish_discovered_servers: Publiko shërbyes të njohur
+        publish_statistics: Publiko statistika
         title: Zbulim
         trends: Në modë
       domain_blocks:
@@ -693,6 +789,7 @@ sq:
         disabled: Për askënd
         users: Për përdorues vendorë që kanë bërë hyrjen
       registrations:
+        moderation_recommandation: Ju lutemi, sigurohuni si keni një ekip adekuat dhe reagues moderimi, përpara se të hapni regjistrimet për këdo!
         preamble: Kontrolloni cilët mund të krijojnë llogari në shërbyesin tuaj.
         title: Regjistrime
       registrations_mode:
@@ -700,18 +797,38 @@ sq:
           approved: Për regjistrim, lypset miratimi
           none: S’mund të regjistrohet ndokush
           open: Mund të regjistrohet gjithkush
-      title: Rregullime Shërbyesi
+        warning_hint: Rekomandojmë përdorimin e “Për regjistrim lypset miratim”. veç nëse jeni i bindur se ekipi juaj i moderimit mund të trajtojë në kohë mesazhe të padëshiruar dhe regjistrime dashakeqe.
+      security:
+        authorized_fetch: Kërko doemos mirëfilltësim prej shërbyes të federuar
+        authorized_fetch_hint: Kërkimi doemos i kryerjes së mirëfilltësimit për shërbyes të federuar aktivizon detyrim më strikt të bllokimeve si në shkallë përdoruesi, ashtu edhe në shkallë shërbyesi. Por kjo vjen me koston e një keqësimi të funksionimit, redukton përhapjen e përgjigjeve tuaja dhe mund të sjellë probleme përputhshmërie me disa shërbime të federuara. Veç kësaj, kjo s’do t’ua pengojë, aktorëve vënë kësaj, të sjellin postimet dhe llogaritë tuaja publike.
+        authorized_fetch_overridden_hint: Aktualisht s’jeni në gjendje të ndryshoni këtë rregullim, ngaqë anashkalohet nga një ndryshore mjedisi.
+        federation_authentication: Detyrim mirëfilltësimi të federuarish
+      title: Rregullime shërbyesi
     site_uploads:
       delete: Fshi kartelën e ngarkuar
       destroyed_msg: Ngarkimi në sajt u fshi me sukses!
+    software_updates:
+      critical_update: Kritik — ju lutemi, përditësojeni pa humbur kohë
+      description: Rekomandohet ta mbani të përditësuar instalimin tuaj të Mastodon-it, që të përfitoni nga ndreqjet dhe veçoritë më të reja. Për më tej, ndonjëherë është kritike të përditësohet Mastodon-i në kohën e duhur, për të shmangur probleme sigurie. Për këto arsye, Mastodon-i kontrollon për përditësime çdo 30 minuta dhe do t’ju njoftojë, sipas parapëlqimeve tuaja për njoftime me email.
+      documentation_link: Mësoni më tepër
+      release_notes: Shënime hedhjeje në qarkullim
+      title: Përditësime të gatshme
+      type: Lloj
+      types:
+        major: Hedhje e rëndësishme në qarkullim
+        minor: Hedhje e vockël në qarkullim
+        patch: Hedhje në qarkullim arnimesh — ndreqje të meash dhe ndryshime të lehta për t’u aplikuar
+      version: Version
     statuses:
       account: Autor
       application: Aplikacion
       back_to_account: Mbrapsht te faqja e llogarisë
       back_to_report: Mbrapsht te faqja e raportimit
       batch:
+        add_to_report: 'Shtoje te raportimi #%{id}'
         remove_from_report: Hiqe prej raportimit
         report: Raportojeni
+      contents: Lëndë
       deleted: E fshirë
       favourites: Të parapëlqyer
       history: Historik versioni
@@ -720,13 +837,17 @@ sq:
       media:
         title: Media
       metadata: Tejtëdhëna
+      no_history: Ky postim s’është përpunuar
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       open: Hape postimin
       original_status: Postim origjinal
       reblogs: Riblogime
+      replied_to_html: Iu përgjigj %{acct_link}
       status_changed: Postimi ndryshoi
-      title: Gjendje llogarish
+      status_title: Postim nga @%{name}
+      title: Postime llogarie - @%{name}
       trending: Në modë
+      view_publicly: Shiheni publikisht
       visibility: Dukshmëri
       with_media: Me media
     strikes:
@@ -740,9 +861,24 @@ sq:
         suspend: "%{name} e pezulloi llogarinë e %{target}"
       appeal_approved: Apeluar
       appeal_pending: Apelim pezull
+      appeal_rejected: Apelimi u hodh poshtë
     system_checks:
       database_schema_check:
         message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
+      elasticsearch_health_red:
+        message_html: Grupi juaj i instancave Elasticsearch s’është i shëndetshëm (gjendje e verdhë), s’mund të përdoren veçoritë e kërkimit
+      elasticsearch_health_yellow:
+        message_html: Grupi juaj i instancave Elasticsearch s’është i shëndetshëm (gjendje e verdhë), mund të doni të hetoni shkakun
+      elasticsearch_index_mismatch:
+        message_html: Përshoqërimet e treguesit të Elasticsearch-it janë të vjetruara. Ju lutemi, xhironi <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: Shihni dokumentimin
+        message_html: Grupi i instancave tuaja Elasticsearch ka më shumë se një nyjë, por Mastodon-i s’është formësuar t’i përdorë ato.
+      elasticsearch_preset_single_node:
+        action: Shihni dokumentimin
+        message_html: Grupi i instancave tuaja Elasticsearch ka vetëm një nyjë, <code>ES_PRESET</code> i duhet dhënë vlera <code>single_node_cluster</code>.
+      elasticsearch_reset_chewy:
+        message_html: Treguesi juaj i sistemit Elasticsearch është i vjetruar, për shkak të një ndryshimi rregullimesh. Për ta përditësuar, ju lutemi, xhironi <code>tootctl search deploy --reset-chewy</code>.
       elasticsearch_running_check:
         message_html: S’u lidh dot me Elasticsearch. Ju lutemi, kontrolloni nëse ky xhiron, ose çaktivizoni kërkimin në tërë tekstin
       elasticsearch_version_check:
@@ -753,17 +889,82 @@ sq:
         message_html: S’keni përcaktuar ndonjë rregull shërbyesi.
       sidekiq_process_check:
         message_html: S’ka proces Sidekiq në punë për %{value} radhë. Ju lutemi, shqyrtoni formësimin tuaj për Sidekiq-un
+      software_version_check:
+        action: Shihni përditësimet e gatshme
+        message_html: Ka gati një përditësim Mastodon-i.
+      software_version_critical_check:
+        action: Shihni përditësimet e gatshme
+        message_html: Ka të gatshëm një përditësim kritik të Mastodon-it, ju lutemi, përditësojeni sa më shpejt të jetë e mundur.
+      software_version_patch_check:
+        action: Shihni përditësimet e gatshme
+        message_html: Ka të gatshëm një përditësim ndreqjeje të metash Mastodon-i.
+      upload_check_privacy_error:
+        action: Për më tepër hollësi, shihni këtu
+        message_html: "<strong>Shërbyesi juaj është formësuar keq. Privatësia e përdoruesve tuaj është në rrezik.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Për më tepër hollësi, shihni këtu
+        message_html: "<strong>Depozita juaj e objekteve është e formësuar keq. Privatësia e përdoruesve tuaj është në rrezik.</strong>"
     tags:
+      moderation:
+        not_usable: Të papërdorshme
+        pending_review: Në pritje të shqyrtimit
+        review_requested: U kërkua shqyrtim
+        reviewed: Shqyrtuar
+        title: Gjendje
+        unreviewed: Të pashqyrtuar
+        usable: Të përdorshëm
+      name: Emër
+      newest: Më të rejat
+      oldest: Më të vjetrat
+      open: Shiheni Publikisht
+      reset: Riktheje te parazgjedhjet
       review: Gjendje rishikimi
+      search: Kërkim
+      title: Hashtag-ë
       updated_msg: Rregullimet për hashtag-ët u përditësuan me sukses
+    terms_of_service:
+      back: Mbrapsht te kushte shërbimi
+      changelog: Ç’ka ndryshuar
+      create: Përdorni tuajat
+      current: Të tanishmet
+      draft: Skicë
+      generate: Përdorni gjedhe
+      generates:
+        action: Prodhoji
+        chance_to_review_html: "<strong>Termat e shërbimit të prodhuar s’do të botohen automatikisht.</strong> Do të keni një mundësi të shqyrtoni përfundimet. Ju lutemi, që të vazhdohet, plotësoni hollësitë e nevojshme."
+        explanation_html: Gjedhja e dhënë për kushtet e shërbimit është vetëm për qëllime njohjeje dhe s’duhet marrë si këshillë ligjore, për çfarëdo çështje. Ju lutemi, për situatën tuaj dhe pyetje specifike ligjore, lidhuni me juristin tuaj.
+        title: Ujdisje Termash Shërbimi
+      history: Historik
+      live: Drejtpërdrejt
+      no_history: Ende s’ka ndryshime të regjistruara të kushteve të shërbimit.
+      no_terms_of_service_html: Aktualisht s’keni të formësuar terma shërbimit. Termat e shërbimit janë menduar të japin qartësi dhe t’ju mbrojnë nga penalitete potenciale në çështje gjyqësore me përdoruesit tuaj.
+      notified_on_html: Përdoruesi u njoftuan më %{date}
+      notify_users: Njoftoji përdoruesit
+      preview:
+        explanation_html: 'Email-i do t’u dërgohet <strong>%{display_count} përdoruesve</strong> që janë regjistruar para %{date}. Te email-i do të përfshihet teksti vijues:'
+        send_preview: Dërgo paraparje te %{email}
+        send_to_all:
+          one: Dërgo %{display_count} email
+          other: Dërgo %{display_count} email-e
+        title: Bëni paraparje të njoftimit të shërbimt
+      publish: Botoje
+      published_on_html: Botuar më %{date}
+      save_draft: Ruaje skicën
+      title: Kushte Shërbimi
     title: Administrim
     trends:
       allow: Lejojeni
       approved: Miratuar
+      confirm_allow: Jeni i sigurt se doni të lejohen etiketat e përzgjedhura?
+      confirm_disallow: Jeni i sigurt se doni të mos lejohen etiketat e përzgjedhura?
       disallow: Mos e lejo
       links:
         allow: Lejoje lidhjen
         allow_provider: Lejoje botuesin
+        confirm_allow: Jeni i sigurt se doni të lejohen lidhjet e përzgjedhura?
+        confirm_allow_provider: Jeni i sigurt se doni të lejohen shërbimet e përzgjedhura?
+        confirm_disallow: Jeni i sigurt se doni të mos lejohen lidhjet e përzgjedhura?
+        confirm_disallow_provider: Jeni i sigurt se doni të mos lejohen shërbimet e përzgjedhura?
         description_html: Këto janë lidhje që ndahen aktualisht shumë me llogari prej të cilave shërbyesi juaj sheh postime. Mund të ndihmojë përdoruesit tuaj të gjejnë se ç’po ndodh në botë. S’shfaqen lidhje publikisht, deri sa të miratoni botuesin. Mundeni edhe të lejoni ose hidhni poshtë lidhje individuale.
         disallow: Hiq lejimin e lidhjes
         disallow_provider: Mos e lejo botuesin
@@ -786,6 +987,10 @@ sq:
       statuses:
         allow: Lejo postim
         allow_account: Lejo autor
+        confirm_allow: Jeni i sigurt se doni të lejohen gjendjet e përzgjedhura?
+        confirm_allow_account: Jeni i sigurt se doni të lejohen llogaritë e përzgjedhura?
+        confirm_disallow: Jeni i sigurt se doni të mos lejohen gjendjet e përzgjedhura?
+        confirm_disallow_account: Jeni i sigurt se doni të mos lejohen llogaritë e përzgjedhura?
         description_html: Këto janë postime të cilat shërbyesi juaj di se po ndahen shumë dhe po zgjidhen si të parapëlqyera për çastin. Mund të ndihmojnë përdoruesit tuaj të rinj dhe të riardhur të gjejnë më tepër vetë për të ndjekur. S’shfaqen postime publikisht, pa miratuar ju autorin dhe autori lejon që llogaria e tij t’u sugjerohet të tjerëve. Mundeni edhe të lejoni, ose hidhni, poshtë postime individuale.
         disallow: Mos lejo postim
         disallow_account: Mos lejo autor
@@ -812,19 +1017,20 @@ sq:
         peaked_on_and_decaying: Kulmoi më %{date}, tani në rënie
         title: Hashtag-ë në modë
         trendable: Mund të shfaqet nën të modës
+        trending_rank: 'Trending #%{rank}'
         usable: Mund të përdoret
         usage_comparison: Përdorur %{today} herë sot, krahasuar me %{yesterday} dje
         used_by_over_week:
           one: Përdorur nga një person gjatë javës së kaluar
           other: Përdorur nga %{count} vetë gjatë javës së kaluar
-      title: Në modë
+      title: Rekomandime & Prirje
       trending: Në modë
     warning_presets:
       add_new: Shtoni të ri
       delete: Fshije
       edit_preset: Përpunoni sinjalizim të paracaktuar
       empty: S’keni përcaktuar ende sinjalizime të gatshme.
-      title: Administroni sinjalizime të paracaktuara
+      title: Paracaktime sinjalizimesh
     webhooks:
       add_new: Shtoni pikëmbarim
       delete: Fshije
@@ -846,6 +1052,9 @@ sq:
       title: Webhook-ë
       webhook: Webhook
   admin_mailer:
+    auto_close_registrations:
+      body: Për shkak mungese veprimtarie moderatori së fundi, regjistrimet te %{instance} janë kaluar automatikisht të kërkojnë shqyrtim dorazi, për të penguar përdorimin e %{instance} si një platformë për aktorë të këqij. Mund të kaloni kurdo te regjistrime të hapura.
+      subject: Regjistrimet te %{instance} janë kaluar automatikisht të kërkojnë miratim
     new_appeal:
       actions:
         delete_statuses: fshirje e postimeve të tij
@@ -858,6 +1067,9 @@ sq:
       body: "%{target} po apelon një vendim moderimi nga %{action_taken_by} të marrë më %{date}, që qe %{type}. Shkruan:"
       next_steps: Apelimin mund të miratoni, që të zhbëhet vendimi i marrë, ose ta shpërfillni.
       subject: "%{username} po apelon një vendim moderimi te %{instance}"
+    new_critical_software_updates:
+      body: Janë hedhur në qarkullim versione të rinj të Mastodon-it, mund të donit ta përditësonit sa më shpejt të jetë e mundur!
+      subject: Për %{instance} ka përditësime kritike Mastodon-i!
     new_pending_account:
       body: Hollësitë e llogarisë së re gjenden më poshtë. Mund ta miratoni ose hidhni poshtë këtë aplikim.
       subject: Llogari e re për shqyrtim në %{instance} (%{username})
@@ -865,6 +1077,9 @@ sq:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
       subject: Raportim i ri për %{instance} (#%{id})
+    new_software_updates:
+      body: Janë hedhur në qarkullim versione të rinj Mastodon-i, mund të donit ta përditësoni!
+      subject: Për %{instance} ka të gatshëm versione të rinj Mastodon-i!
     new_trends:
       body: 'Gjërat vijuese lypin një shqyrtim, përpara se të mund të shfaqen publikisht:'
       new_trending_links:
@@ -872,7 +1087,6 @@ sq:
       new_trending_statuses:
         title: Postime në modë
       new_trending_tags:
-        no_approved_tags: Aktualisht s’ka hashtag-ë në modë të miratuar.
         title: Hashtag-ë në modë
       subject: Gjëra të reja në modë për shqyrtim te %{instance}
   aliases:
@@ -884,7 +1098,7 @@ sq:
     remove: Hiqe aliasin
   appearance:
     advanced_web_interface: Ndërfaqe web e thelluar
-    advanced_web_interface_hint: 'Nëse doni të shfrytëzoni krejt gjerësinë e ekranit tuaj, ndërfaqja e thelluar web ju lejon të formësoni shumë shtylla për të parë aq më tepër të dhëna në të njëjtën kohë sa doni: Kreu, njoftime, rrjedhë kohore të federuarash, çfarëdo numri listash dhe hashtag-ësh.'
+    advanced_web_interface_hint: 'Nëse doni të shfrytëzoni krejt gjerësinë e ekranit tuaj, ndërfaqja e thelluar web ju lejon të formësoni shumë shtylla për të parë në të njëjtën kohë aq hollësi sa doni: Kreu, njoftime, rrjedhë kohore të federuarash, çfarëdo numri listash dhe hashtag-ësh.'
     animations_and_accessibility: Animacione dhe përdorim nga persona me aftësi të kufizuara
     confirmation_dialogs: Dialogë ripohimesh
     discovery: Zbulim
@@ -893,31 +1107,45 @@ sq:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Çdokush mund të kontribuojë.
     sensitive_content: Lëndë rezervat
-    toot_layout: Skemë mesazhesh
   application_mailer:
-    notification_preferences: Ndryshoni parapëlqime email-i
+    notification_preferences: Ndryshoni parapëlqime rreth email-esh
     salutation: "%{name},"
-    settings: 'Ndryshoni parapëlqime email-i: %{link}'
+    settings: 'Ndryshoni parapëlqime rreth email-esh: %{link}'
+    unsubscribe: Shpajtohuni
     view: 'Parje:'
     view_profile: Shihni profilin
     view_status: Shihini gjendjen
   applications:
     created: Aplikimi u krijua me sukses
     destroyed: Aplikimi u fshi me sukses
+    logout: Dalje
     regenerate_token: Riprodho token hyrjesh
     token_regenerated: Token-i i hyrjeve u riprodhua me sukses
     warning: Bëni shumë kujdes me ato të dhëna. Mos ia jepni kurrë njeriu!
     your_token: Token-i juaj për hyrje
   auth:
-    apply_for_account: Bëhuni pjesë e radhës
-    change_password: Fjalëkalim
+    apply_for_account: Kërkoni një llogari
+    captcha_confirmation:
+      help_html: Nëse keni probleme me zgjidhjen e CAPTCHA-s, mund të lidheni me ne përmes %{email} dhe mund t’ju ndihmojmë.
+      hint_html: Edhe një gjë tjetër! Na duhet të ripohoni se jeni qenie njerëzore (që të mbajmë larg mesazhe të padëshiruar!). Zgjidhni CAPTCHA-n më poshtë dhe klikoni mbi “Vazhdo”.
+      title: Kontroll sigurie
+    confirmations:
+      awaiting_review: Adresa juaj email është vërtetuar! Ekipi i %{domain} tani po shqyrton regjistrimin tuaj. Nëse e miratojnë llogarinë tuaj, do të merrni një email!
+      awaiting_review_title: Regjistrimi juaj po merret në shqyrtim
+      clicking_this_link: duke klikuar këtë lidhje
+      login_link: hyni
+      proceed_to_login_html: Tani mund të vazhdoni të %{login_link}.
+      redirect_to_app_html: Duhet të ishit ridrejtuar te aplikacioni <strong>%{app_name}</strong>. Nëse s’ndodhi, provoni %{clicking_this_link}, ose të ktheheni dorazi te aplikacioni.
+      registration_complete: Tanimë është plotësuar regjistrimi juaj në %{domain}!
+      welcome_title: Mirë se vini, %{name}!
+      wrong_email_hint: Nëse ajo adresë email s’është e saktë, mund ta ndryshoni që nga rregullimet e llogarisë.
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
     description:
       prefix_invited_by_user: "@%{name} ju fton të bëheni pjesë e këtij shërbyesi Mastodon!"
       prefix_sign_up: Regjistrohuni në Mastodon që sot!
       suffix: Me një llogari, do të jeni në gjendje të ndiqni persona, përditësime postimesh dhe të shkëmbeni mesazhe me përdorues nga cilido shërbyes Mastodon, etj!
-    didnt_get_confirmation: S’morët udhëzime ripohimi?
+    didnt_get_confirmation: S’morët një lidhje ripohimi?
     dont_have_your_security_key: S’i keni kyçet tuaj të sigurisë?
     forgot_password: Harruat fjalëkalimin tuaj?
     invalid_reset_password_token: Token-i i ricaktimit të fjalëkalimit është i pavlefshëm ose ka skaduar. Ju lutemi, kërkoni një të ri.
@@ -929,47 +1157,60 @@ sq:
     migrate_account: Kaloni në një tjetër llogari
     migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
     or_log_in_with: Ose bëni hyrjen me
-    privacy_policy_agreement_html: I kam lexuar dhe pajtohem me <a href="%{privacy_policy_path}" target="_blank">rregullat e privatësisë</a>
+    progress:
+      confirm: Ripohoni email-in
+      details: Hollësitë tuaja
+      review: Shqyrtimi ynë
+      rules: Pranoni rregulla
     providers:
       cas: CAS
       saml: SAML
     register: Regjistrohuni
     registration_closed: "%{instance} s’pranon anëtarë të rinj"
-    resend_confirmation: Ridërgo udhëzime ripohimi
+    resend_confirmation: Ridërgo lidhje ripohimi
     reset_password: Ricaktoni fjalëkalimin
     rules:
+      accept: Pranoje
+      back: Mbrapsht
+      invited_by: 'Mund të bëheni pjesë e %{domain} falë ftesës që morët prej:'
       preamble: Këto vendosen dhe zbatimi i tyre është nën kujdesin e moderatorëve të %{domain}.
+      preamble_invited: Para se të vazhdoni më tej, ju lutemi, shihni rregullat bazë të vendosura nga moderatorët e %{domain}.
       title: Disa rregulla bazë.
+      title_invited: Jeni ftuar.
     security: Siguri
     set_new_password: Caktoni fjalëkalim të ri
     setup:
-      email_below_hint_html: Nëse adresa email më poshtë s’është e saktë, mund ta ndryshoni këtu dhe të merrni një email të ri ripohimi.
-      email_settings_hint_html: Email-i i ripohimit u dërgua te %{email}. Nëse ajo adresë email s’është e saktë, mund ta ndryshoni që nga rregullimet e llogarisë.
-      title: Ujdisje
+      email_below_hint_html: Shihni te dosja juaj e të padëshiruarve, ose kërkoni një tjetër. Mundeni të saktësoni adresën tuaj email, nëse është gabim.
+      email_settings_hint_html: Që të filloni të përdorni Mastodon-in, klikoni mbi lidhjen që dërguam te%{email}. Do të presim këtu.
+      link_not_received: S’morët lidhje?
+      new_confirmation_instructions_sent: Brenda pak mintuash do të merrni një email të ri me lidhjen e ripohimit!
+      title: Shihni te email-et tuaj
+    sign_in:
+      preamble_html: Hyni me kredencialet tuaja për te <strong>%{domain}</strong>. Nëse llogaria juaj strehohet në një tjetër shërbyes, s’do të jeni në gjendje të bëni hyrjen këtu.
+      title: Bëni hyrjen te %{domain}
     sign_up:
-      preamble: Me një llogari në këtë shërbyes Mastodon, do të jeni në gjendje të ndiqni cilindo person tjetër në rrjet, pavarësisht se ku strehohet llogaria e tyre.
+      manual_review: Regjistrimet te %{domain} kalojnë një shqyrtim dorazi nga moderatorët tanë. Që të na ndihmoni të përfundojmë regjistrimin tuaj, na shkruani pakëz mbi veten dhe pse doni një llogari në %{domain}.
+      preamble: Me një llogari te ky shërbyes Mastodon do të jeni në gjendje të ndiqni cilindo person në fedivers, pavarësisht se ku strehohet llogaria e tij.
       title: Le të ujdisim llogarinë tuaj në %{domain}.
     status:
       account_status: Gjendje llogarie
-      confirming: Po pritet që të plotësohet ripohimi i email-it.
+      confirming: Po pritet të plotësohet ripohimi i email-it.
       functional: Llogaria juaj është tërësisht funksionale.
       pending: Aplikimi juaj është në pritje të shqyrtimit nga stafi ynë. Kjo mund të dojë ca kohë. Nëse aplikimi juaj miratohet, do të merrni një email.
       redirecting_to: Llogaria juaj është joaktive, ngaqë aktualisht ridrejton te %{acct}.
+      self_destruct: Ngaqë %{domain} po mbyllet, do të keni vetëm hyrje të kufizuar te llogaria juaj.
       view_strikes: Shihni paralajmërime të dikurshme kundër llogarisë tuaj
     too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
     use_security_key: Përdor kyç sigurie
-  authorize_follow:
-    already_following: E ndiqni tashmë këtë llogari
-    already_requested: Keni dërguar tashmë një kërkesë ndjekjeje te ajo llogari
-    error: Mjerisht, pati një gabim gjatë kërkimit të llogarisë së largët
-    follow: Ndiqeni
-    follow_request: 'Keni dërguar një kërkesë ndjekjeje te:'
-    following: 'Sukses! Tani e ndiqni:'
-    post_follow:
-      close: Ose, thjesht mund të mbyllni këtë dritare.
-      return: Shfaq profilin e përdoruesit
-      web: Kalo në web
-    title: Ndiq %{acct}
+    user_agreement_html: I kam lexuar dhe pajtohen me <a href="%{terms_of_service_path}" target="_blank">kushtet e shërbimit</a> dhe <a href="%{privacy_policy_path}" target="_blank">rregullat e privatësisë</a>
+  author_attribution:
+    example_title: Tekst shembull
+    hint_html: Shkruani lajme, apo artikuj blogu jashtë Mastodon-it? Kontrolloni se si ju jepet hakë, kur ndahen me të tjerët në Mastodon.
+    instructions: 'Sigurohuni që ky kod të jetë në HTML-në e artikullit tuaj:'
+    more_from_html: Më tepër nga %{name}
+    s_blog: Blogu i %{name}
+    then_instructions: Mandej, shtoni te fusha më poshtë emrin e përkatësisë së botimit.
+    title: Atribuim autorësh
   challenge:
     confirm: Vazhdo
     hint_html: "<strong>Ndihmëz:</strong> S’do t’ju pyesim për fjalëkalimin tuaj sërish, për një orë."
@@ -978,7 +1219,6 @@ sq:
   crypto:
     errors:
       invalid_key: s’është kyç Ed25519 ose Curve25519 i vlefshëm
-      invalid_signature: s’është nënshkrim Ed25519 i vlefshëm
   date:
     formats:
       default: "%d %b, %Y"
@@ -998,7 +1238,7 @@ sq:
       x_months: "%{count}mj"
       x_seconds: "%{count}s"
   deletes:
-    challenge_not_passed: Të dhënat që dhatë s’qenë të sakta
+    challenge_not_passed: Hollësitë që dhatë s’qenë të sakta
     confirm_password: Që të verifikohet identiteti juaj, jepni fjalëkalimin tuaj të tanishëm
     confirm_username: Që të ripohohet procedura, jepni emrin tuaj të përdoruesit
     proceed: Fshini llogarinë
@@ -1008,8 +1248,8 @@ sq:
       caches: Lënda e ruajtur në fshehtinë nga shërbyes të tjerë mund të vazhdojë të gjendet në ta
       data_removal: Postimet dhe të tjera të dhëna tuajat do të hiqen përgjithmonë
       email_change_html: Mundeni të <a href="%{path}">ndryshoni adresën tuaj email</a> pa fshirë llogarinë tuaj
-      email_contact_html: Nëse prapë s’arrin, mund të dërgoni një email te <a href="mailto:%{email}">%{email}</a> për ndihmë
-      email_reconfirmation_html: Nëse s’e merrni email-in e ripohimit, mund të <a href="%{path}">rikërkoni</a>
+      email_contact_html: Nëse s’mbërrin ende, mund të dërgoni një email <a href="mailto:%{email}">%{email}</a> për të kërkuar ndihmë
+      email_reconfirmation_html: Nëse s’ju vjen email-i i ripohimit, mund ta <a href="%{path}">rikërkoni</a>
       irreversible: S’do të jeni në gjendje të riktheni ose riaktivizoni llogarinë tuaj
       more_details_html: Për më tepër hollësi, shihni <a href="%{terms_path}">rregulla privatësie</a>.
       username_available: Emri juaj i përdoruesit do të jetë sërish i passhëm
@@ -1027,7 +1267,7 @@ sq:
       approve_appeal: Miratoni apelimin
       associated_report: Raportimi i përshoqëruar
       created_at: Datuar
-      description_html: Këto janë veprime të ndërmara kundër llogarisë tuaj dhe sinjalizime që ju janë dërguar nga stafi i %{instance}.
+      description_html: Këto janë veprime të ndërmarra kundër llogarisë tuaj dhe sinjalizime që ju janë dërguar nga stafi i %{instance}.
       recipient: Drejtuar
       reject_appeal: Hidheni poshtë apelimin
       status: "#%{id} postimi"
@@ -1044,8 +1284,10 @@ sq:
       your_appeal_approved: Apelimi juaj u miratua
       your_appeal_pending: Keni parashtruar një apelim
       your_appeal_rejected: Apelimi juaj është hedhur poshtë
-  domain_validator:
-    invalid_domain: s’është emër i vlefshëm përkatësie
+  edit_profile:
+    basic_information: Hollësi elementare
+    hint_html: "<strong>Përshtatni ç’shohin njerëzit në profilin tuaj publik dhe në krah të postimeve tuaja.</strong> Personat e tjerë ka më shumë gjasa t’ju ndjekin dhe ndërveprojnë me ju, kur keni të plotësuar profilin dhe një foto profili."
+    other: Tjetër
   errors:
     '400': Kërkesa që parashtruar qe e pavlefshme ose e keqformuar.
     '403': S’keni leje të shihni këtë faqe.
@@ -1082,7 +1324,7 @@ sq:
   featured_tags:
     add_new: Shtoni të re
     errors:
-      limit: Keni përdorur tashmë si të zgjedhur sasinë maksimum të hashtag-ëve
+      limit: Keni përdorur tashmë numrin maksimum të hashtag-ëve
     hint_html: "<strong>Çfarë janë hashtag-ët e zgjedhur?</strong> Këta shfaqen dukshëm te profili juaj publik dhe u lejojnë të tjerëve të shfletojnë postime tuajt publikë posaçërisht nën këta hashtag-ë. Janë një mjet i goditur për të ndjekur punë krijuese ose projekte afatgjata."
   filters:
     contexts:
@@ -1126,8 +1368,6 @@ sq:
       index:
         hint: Ky filtër aplikohet për të përzgjedhur postime individuale, pavarësisht kriteresh të tjera. Që nga ndërfaqja web mund të shtoni më tepër postime te ky filtër.
         title: Postime të filtruar
-  footer:
-    trending_now: Prirjet e tashme
   generic:
     all: Krejt
     all_items_on_page_selected_html:
@@ -1136,7 +1376,9 @@ sq:
     all_matching_items_selected_html:
       one: Është përzgjedhur <strong>%{count}</strong> objekt me përkim me kërkimin tuaj.
       other: Janë përzgjedhur krejt <strong>%{count}</strong> objektet me përkim me kërkimin tuaj.
+    cancel: Anuloje
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
+    confirm: Ripohojeni
     copy: Kopjoje
     delete: Fshije
     deselect: Shpërzgjidhi krejt
@@ -1150,23 +1392,86 @@ sq:
     validation_errors:
       one: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni gabimin më poshtë
       other: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni %{count} gabimet më poshtë
-  html_validator:
-    invalid_markup: 'përmban elementë HTML të pavlefshëm: %{error}'
   imports:
     errors:
+      empty: Kartelë CSV e zbrazët
+      incompatible_type: E papërputhshme me llojin e përzgjedhur për importim
+      invalid_csv_file: 'Kartelë CSV e pavlefshme. Gabim: %{error}'
       over_rows_processing_limit: përmban më shumë se %{count} rreshta
+      too_large: Kartela është shumë e madhe
+    failures: Dështime
+    imported: Të importuar
+    mismatched_types_warning: Duket të keni përzgjedhur llojin e gabuar për këtë importim, ju lutemi, rikontrollojeni.
     modes:
       merge: Përzieji
       merge_long: Mbaji zërat ekzistues dhe shto të rinjtë
       overwrite: Mbishkruaje
       overwrite_long: Zëvendësoji zërat ekzistues me të rinjtë
+    overwrite_preambles:
+      blocking_html:
+        one: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimeve</strong>, me <strong>%{count} llogari</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimeve</strong>, me <strong>%{count} llogari</strong> nga <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Ju ndan një hap nga <strong>zëvendësimi i faqerojtësve tuaj</strong>, me <strong>%{count} postim</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>zëvendësimi i faqerojtësve tuaj</strong>, me <strong>%{count} postime</strong> nga <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimeve të përkatësive</strong>, me <strong>%{count} përkatësi</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të bllokimeve të përkatësive</strong>, me <strong>%{count} përkatësi</strong> nga <strong>%{filename}</strong>.
+      following_html:
+        one: Ju ndan një hap nga <strong>ndjekja</strong> e <strong>%{count} llogarie</strong> nga <strong>%{filename}</strong> dhe <strong>reshtja e ndjekjes së gjithkujt tjetër</strong>.
+        other: Ju ndan një hap nga <strong>ndjekja</strong> e deri <strong>%{count} llogarish</strong> nga <strong>%{filename}</strong> dhe <strong>reshtja e ndjekjes së gjithkujt tjetër</strong>.
+      lists_html:
+        one: Ju ndan një hap nga <strong>zëvendësimi i listave tuaja</strong> me lëndën e <strong>%{filename}</strong>. Te listat e reja do të shtohet deri <strong>%{count} llogari</strong>.
+        other: Ju ndan një hap nga <strong>zëvendësimi i listave tuaja</strong> me lëndën e <strong>%{filename}</strong>. Te listat e reja do të shtohet deri <strong>%{count} llogari</strong>.
+      muting_html:
+        one: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të llogarisë së heshtuar</strong> me <strong>%{count} llogari nga</strong> from <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>zëvendësimi i listës tuaj të llogarive të heshtuara</strong> me <strong>%{count} llogari nga</strong> from <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        one: Ju ndan një hap nga <strong>bllokimi</strong> i deri <strong>%{count} llogarie</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>bllokimi</strong> i deri <strong>%{count} llogarive</strong> nga <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Ju ndan një hap nga shtimi te <strong>faqerojtësit</strong> tuaj i deri <strong>%{count} postimi</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga shtimi te <strong>faqerojtësit</strong> tuaj i deri <strong>%{count} postimeve</strong> nga <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Ju ndan një hap nga <strong>bllokimi</strong> i deri <strong>%{count} përkatësie</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>bllokimi</strong> i deri <strong>%{count} përkatësive</strong> nga <strong>%{filename}</strong>.
+      following_html:
+        one: Ju ndan një hap nga <strong>ndjekja</strong> e deri <strong>%{count} llogarie</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>ndjekja</strong> e deri <strong>%{count} llogarive</strong> nga <strong>%{filename}</strong>.
+      lists_html:
+        one: Ju ndan një hap nga shtimi i deri <strong>%{count} llogarie</strong> nga <strong>%{filename}</strong> te <strong>listat</strong> tuaja. Nëse s’ka listë ku të shtohen, do të krijohen lista të reja.
+        other: Ju ndan një hap nga shtimi i deri <strong>%{count} llogarive</strong> nga <strong>%{filename}</strong> te <strong>listat</strong> tuaja. Nëse s’ka listë ku të shtohen, do të krijohen lista të reja.
+      muting_html:
+        one: Ju ndan një hap nga <strong>heshtimi</strong> i deri <strong>%{count} llogarie</strong> nga <strong>%{filename}</strong>.
+        other: Ju ndan një hap nga <strong>heshtimi</strong> i deri <strong>%{count} llogarive</strong> nga <strong>%{filename}</strong>.
     preface: Mund të importoni të dhëna që keni eksportuar nga një shërbyes tjetër, bie fjala, një listë të personave që ndiqni ose bllokoni.
+    recent_imports: Importime së fundi
+    states:
+      finished: Të përfunduar
+      in_progress: Në kryerje e sipër
+      scheduled: Të planifikuar
+      unconfirmed: Të paripohuar
+    status: Gjendje
     success: Të dhënat tuaja u ngarkuan me sukses dhe tani do të përpunohet në kohë
+    time_started: Filluar më
+    titles:
+      blocking: Po importohen llogari të bllokuara
+      bookmarks: Po importohen faqerojtës
+      domain_blocking: Po importohen përkatësi të bllokuara
+      following: Po importohen llogari të ndjekura
+      lists: Po importohen lista
+      muting: Po importohen llogari të heshtuara
+    type: Lloj importimi
+    type_groups:
+      constructive: Ndjekje & Faqerojtës
+      destructive: Bllokime & heshtime
     types:
       blocking: Listë bllokimesh
       bookmarks: Faqerojtës
       domain_blocking: Listë bllokimesh përkatësish
       following: Listë ndjekjesh
+      lists: Lista
       muting: Listë heshtimesh
     upload: Ngarkoje
   invites:
@@ -1181,6 +1486,7 @@ sq:
       '86400': 1 ditë
     expires_in_prompt: Kurrë
     generate: Prodho lidhje ftese
+    invalid: Kjo ftesë s’është e vlefshme
     invited_by: 'Qetë ftuar nga:'
     max_uses:
       one: 1 përdorim
@@ -1193,21 +1499,37 @@ sq:
     title: Ftoni njerëz
   lists:
     errors:
-      limit: Keni mbërritur në numrin maksimum të sasisë së listave
+      limit: Keni mbërritur në numrin maksimum të listave
   login_activities:
     authentication_methods:
       otp: aplikacion mirëfilltësimi dyfaktorësh
       password: fjalëkalim
-      sign_in_token: kod sigurie përmes email-i
+      sign_in_token: kod sigurie email-i
       webauthn: kyçe sigurie
     description_html: Nëse shihni veprimtari që nuk e njihni, shihni mundësinë e ndryshimit të fjalëkalimit tuaj dhe të aktivizimit të mirëfilltësimit dyfaktorësh.
     empty: S’ka historik mirëfilltësimesh
     failed_sign_in_html: Dështoi përpjekje hyrjeje me %{method} nga %{ip} (%{browser})
     successful_sign_in_html: Hyrje e suksesshme me %{method} nga %{ip} (%{browser})
     title: Historik mirëfilltësimesh
+  mail_subscriptions:
+    unsubscribe:
+      action: Po, shpajtomëni
+      complete: U shpajtuat
+      confirmation_html: Jeni i sigurt se doni të shpajtoheni nga marrje %{type} për Mastodon te %{domain} në email-in tuaj %{email}? Mundeni përherë të ripajtoheni që nga <a href="%{settings_path}">rregullimet tuaja për njoftime me email</a>.
+      emails:
+        notification_emails:
+          favourite: email-e njoftimesh parapëlqimesh
+          follow: email-e njoftimesh ndjekjeje
+          follow_request: email-e kërkesash ndjekjeje
+          mention: email-e njoftimesh përmendjesh
+          reblog: email-e njoftimesh përforcimesh
+      resubscribe_html: Nëse u shpajtuat gabimisht, mund të ripajtoheni që nga <a href="%{settings_path}">rregullimet tuaja për njoftime me email</a>.
+      success_html: S’do të merrni më %{type} për Mastodon te %{domain} në email-in tuaj te %{email}.
+      title: Shpajtohuni
   media_attachments:
     validations:
       images_and_video: S’mund të bashkëngjitet video te një gjendje që përmban figura tashmë
+      not_found: S’u gjet media %{ids}, ose është bashkëngjitur tashmë një tjetër postimi
       not_ready: S’mund të bashkëngjiten kartela që s’kanë përfunduar së përpunuari. Riprovoni pas një çasti!
       too_many: S’mund të bashkëngjiten më shumë se 4 kartela
   migrations:
@@ -1284,9 +1606,9 @@ sq:
     update:
       subject: "%{name} përpunoi një postim"
   notifications:
-    email_events: Akte për njoftim me email
+    administration_emails: Njoftime email përgjegjësi
+    email_events: Akte për njoftime email
     email_events_hint: 'Përzgjidhni akte për të cilët doni të merrni njoftime:'
-    other_settings: Rregullimet të tjera njoftimesh
   number:
     human:
       decimal_units:
@@ -1320,21 +1642,38 @@ sq:
       expired: Pyetësori ka përfunduar tashmë
       invalid_choice: Mundësia e zgjedhur për votën nuk ekziston
       over_character_limit: s’mund të jetë më i gjatë se %{max} shenja secili
+      self_vote: S’mund të votoni në pyetësorët tuaj
       too_few_options: duhet të ketë më tepër se një element
       too_many_options: s’mund të përmbajë më tepër se %{max} elementë
   preferences:
     other: Tjetër
     posting_defaults: Parazgjedhje postimesh
     public_timelines: Rrjedha kohore publike
+  privacy:
+    hint_html: "<strong>Përshtatni mënyrën se si dëshironi të gjenden prej të tjerëve profili dhe postimet tuaja.</strong> Një larmi veçorish të Mastodon-it mund t’ju ndihmojnë të shtriheni në një publik më të gjerë, kur aktivizohen. Ndaluni një çast t’i shqyrtoni këto rregullime, për t’u siguruar se i përshtaten rastit tuaj."
+    privacy: Privatësi
+    privacy_hint_html: Kontrolloni sa doni të tregoni prej vetes për të mirën e të tjerëve. Njerëzit zbulojnë profile interensante dhe aplikacione të lezetshme duke shfletuar ndjekjet e personave të tjerë dhe duke parë se prej cilëve aplikacione postuan, por mund të parapëlqeni ta mbani të fshehur këtë.
+    reach: Shtrirje
+    reach_hint_html: Kontrolloni zbulimin dhe ndjekjen tuaj nga persona të rinj. Doni që postimet tuaja të shfaqen në skenën Exploroni? Doni që persona të tjerë t’ju shohin te rekomandimet për ndjekje prej tyre? Doni të pranohen automatikisht ndjekësit e rinj, apo të keni kontroll të imët mbi secilin rast?
+    search: Kërkim
+    search_hint_html: Kontrolloni mënyrën se si do t’ju gjejnë. Doni që njerëzit t’ju gjejnë përmes çka keni postuar botërisht? Doni që njerëz jashtë Mastodon-it ta gjejnë profilin tuaj kur kërkojnë në internet? Ju lutemi, kini parasysh se për informacione publike s’mund të garantohet përjashtimi tërësor nga krejt motorët e kërkimeve.
+    title: Privatësi dhe shtrirje
   privacy_policy:
     title: Rregulla Privatësie
   reactions:
     errors:
       limit_reached: U mbërrit në kufirin e reagimeve të ndryshme
       unrecognized_emoji: s’është emotikon i pranuar
+  redirects:
+    prompt: Nëse e besoni këtë lidhje, klikoni që të vazhdohet.
+    title: Po e braktisni %{instance}.
   relationships:
     activity: Veprimtari llogarie
+    confirm_follow_selected_followers: Jeni i sigurt se doni të ndiqet ndjekësit e përzgjedhur?
+    confirm_remove_selected_followers: Jeni i sigurt se doni të hiqen ndjekësit e përzgjedhur?
+    confirm_remove_selected_follows: Jeni i sigurt se doni të hiqen ndjekjet e përzgjedhura?
     dormant: Në gjumë
+    follow_failure: S’u ndoqën dot disa nga llogaritë e përzgjedhura.
     follow_selected_followers: Ndiq ndjekësit e përzgjedhur
     followers: Ndjekës
     following: Ndjek
@@ -1362,18 +1701,22 @@ sq:
   scheduled_statuses:
     over_daily_limit: Keni tejkaluar kufirin e %{limit} mesazheve të planifikuara për atë ditë
     over_total_limit: Keni tejkaluar kufirin prej %{limit} mesazhesh të planifikuara
-    too_soon: Data e planifikimit duhet të bjerë në të ardhmen
+    too_soon: data duhet të jetë në të ardhmen
+  self_destruct:
+    lead_html: Mjerisht, <strong>%{domain}</strong> po mbyllet përgjithmonë. Nëse patët një llogari këtu, s’do të jeni në gjendje të vazhdoni ta përdorni, por mundeni ende të kërkoni një kopjeruajtje të të dhënave tuaja.
+    title: Ky shërbyes po mbyllet
   sessions:
     activity: Veprimtaria e fundit
     browser: Shfletues
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
       generic: Shfletues i panjohur
+      huawei_browser: Shfletues Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Shfletues Nokia S40 Ovi
@@ -1382,22 +1725,25 @@ sq:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: Shfletues UC
+      unknown_browser: Shfletues i Panjohur
       weibo: Weibo
     current_session: Sesioni i tanishëm
+    date: Datë
     description: "%{browser} në %{platform}"
     explanation: Këta janë shfletuesit e përdorur tani për hyrje te llogaria juaj Mastodon.
     ip: IP
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      kai_os: KaiOS
       linux: Linux
       mac: macOS
-      other: platformë e panjohur
+      unknown_platform: Platformë e Panjohur
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1415,19 +1761,31 @@ sq:
     delete: Fshirje llogarie
     development: Zhvillim
     edit_profile: Përpunoni profilin
-    export: Eksportim të dhënash
+    export: Eksportim
     featured_tags: Hashtag-ë të zgjedhur
     import: Importo
     import_and_export: Importim dhe eksportim
     migrate: Migrim llogarie
-    notifications: Njoftime
+    notifications: Njoftime me email
     preferences: Parapëlqime
     profile: Profil
     relationships: Ndjekje dhe ndjekës
+    severed_relationships: Marrëdhënie të ndërprera
     statuses_cleanup: Fshirje e automatizuar postimesh
     strikes: Paralajmërime nga moderimi
     two_factor_authentication: Mirëfilltësim Dyfaktorësh
     webauthn_authentication: Kyçe sigurie
+  severed_relationships:
+    download: Shkarkim (%{count})
+    event_type:
+      account_suspension: Pezullim llogarie (%{target_name})
+      domain_block: Pezullim shërbyesi (%{target_name})
+      user_domain_block: Bllokuat %{target_name}
+    lost_followers: Ndjekës të humbur
+    lost_follows: Ndjekje të humbura
+    preamble: Mund të humbni ndjekje dhe ndjekës, kur bllokoni një përkatësi, ose kur moderatorët tuaj vendosin të pezullojnë një shërbyes të largët. Kur kjo ndodh, do të jeni në gjendje të shkarkoni lista marrëdhëniesh të dëmtuara, për t’i shqyrtuar dhe mundet për t’i importuar në një shërbyes tjetër.
+    purged: Hollësitë rreth këtij shërbyesi janë spastuar nga përgjegjësit e shërbyesit tuaj.
+    type: Akt
   statuses:
     attached:
       audio:
@@ -1449,26 +1807,12 @@ sq:
     edited_at_html: Përpunuar më %{date}
     errors:
       in_reply_not_found: Gjendja të cilës po provoni t’i përgjigjeni s’duket se ekziston.
-    open_in_web: Hape në internet
     over_character_limit: u tejkalua kufi shenjash prej %{max}
     pin_errors:
       direct: Postimet që janë të dukshme vetëm për përdoruesit e përmendur s’mund të fiksohen
       limit: Keni fiksuar tashmë numrin maksimum të mesazheve
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       reblog: S’mund të fiksohet një përforcim
-    poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} vetë"
-      total_votes:
-        one: "%{count} votë"
-        other: "%{count} vota"
-      vote: Votë
-    show_more: Shfaq më tepër
-    show_newer: Shfaq më të reja
-    show_older: Shfaq më të vjetra
-    show_thread: Shfaq rrjedhën
-    sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: I drejtpërdrejtë
@@ -1510,27 +1854,33 @@ sq:
       '7889238': 3 muaj
     min_age_label: Prag moshe
     min_favs: Mbaji postimet e parapëlqyera më shumë se
-    min_favs_hint: Nuk fshihet ndonjë nga postimet tuaja që kanë marrë më shumë se sa ky numër parapëlqimesh. Lëreni të zbrazët për të fshirë postimet, pavarësisht të numrit të parapëlqimeve për to
+    min_favs_hint: Mos fshini ndonjë nga postimet tuaja që kanë marrë të paktën këtë numër si të parapëlqyer. Lëreni të zbrazët, që të fshihen postime pavarësisht nga numri se sa herë janë të parapëlqyer
     min_reblogs: Mbaji postimet e përforcuara më shumë se
     min_reblogs_hint: Nuk fshihet ndonjë nga postimet tuaja që kanë marrë më shumë se sa ky numër përforcimesh. Lëreni të zbrazët për të fshirë postimet, pavarësisht të numrit të përforcimeve për to
   stream_entries:
-    pinned: Mesazh i fiksuar
-    reblogged: të përforcuara
     sensitive_content: Lëndë rezervat
   strikes:
     errors:
       too_late: Është shumë vonë për apelim të këtij paralajmërimi
   tags:
     does_not_match_previous_name: s’përputhet me emrin e mëparshëm
+  terms_of_service:
+    title: Kushte Shërbimi
   themes:
     contrast: Mastodon (Me shumë kontrast)
     default: Mastodon (I errët)
     mastodon-light: Mastodon (I çelët)
+    system: E automatizuar (përdor temë sistemi)
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
+      with_time_zone: "%d %b %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: Është tejkaluar kuota e përdorimit për shërbimin e përkthimit në krejt shërbyesin.
+      too_many_requests: Tani së fundi ka patur shumë kërkesa ndaj shërbimit të përkthimit.
   two_factor_authentication:
     add: Shtoje
     disable: Çaktivizoje
@@ -1544,22 +1894,31 @@ sq:
     otp: Aplikacion mirëfilltësimesh
     recovery_codes: Kopjeruani kode rikthimesh
     recovery_codes_regenerated: Kodet e rikthimeve u riprodhuan me sukses
-    recovery_instructions_html: Në ndodhtë që të humbni hyrje te telefoni juaj, mund të përdorni një nga kodet e rikthimit më poshtë, që të rifitoni hyrje te llogaria juaj. <strong>Mbajini të parrezikuar kodet e rikthimeve</strong>. Për shembull, mund t’i shtypni dhe t’i ruani tok me dokumente të tjerë të rëndësishëm.
+    recovery_instructions_html: Në ndodhtë që të humbni hyrje te telefoni juaj, mund të përdorni një nga kodet e rikthimit më poshtë, që të rifitoni hyrje te llogaria juaj. <strong>Mbajini të parrezik kodet e rikthimeve</strong>. Për shembull, mund t’i shtypni dhe t’i ruani tok me dokumente të tjerë të rëndësishëm.
     webauthn: Kyçe sigurie
   user_mailer:
     appeal_approved:
-      action: Kaloni te llogaria juaj
+      action: Rregullime Llogarie
       explanation: Apelimi i paralajmërimit kundër llogarisë tuaj më %{strike_date}, të cilin e parashtruar më %{appeal_date} është miratuar. Llogaria juaj është sërish në pozita të mira.
       subject: Apelimi juaj i datës %{date} u miratua
+      subtitle: Llogaria juaj edhe një herë është e shëndetshme.
       title: Apelimi u miratua
     appeal_rejected:
       explanation: Apelimi i paralajmërimit kundër llogarisë tuaj më %{strike_date}, të cilin e parashtruar më %{appeal_date}, u hodh poshtë.
       subject: Apelimi juaj prej %{date} është hedhur poshtë
+      subtitle: Apelimi juaj është hedhur poshtë.
       title: Apelimi u hodh poshtë
     backup_ready:
-      explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon. E keni gati për shkarkim!
+      explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon.
+      extra: Tani është gati për shkarkim!
       subject: Arkivi juaj është gati për shkarkim
       title: Marrje arkivi me vete
+    failed_2fa:
+      details: 'Ja hollësitë e përpjekjes për hyrje:'
+      explanation: Dikush ka provuar të hyjë në llogarinë tuaj, por dha faktor të dytë mirëfilltësimi.
+      further_actions_html: Nëse s’qetë ju, rekomandojmë të %{action} menjëherë, ngaqë mund të jetë komprometua.
+      subject: Dështim faktori të dytë mirëfilltësimesh
+      title: Dështoi mirëfilltësimi me faktor të dytë
     suspicious_sign_in:
       change_password: ndryshoni fjalëkalimin tuaj
       details: 'Ja hollësitë për hyrjen:'
@@ -1567,6 +1926,15 @@ sq:
       further_actions_html: Nëse s’ishit ju, këshillojmë të %{action} menjëherë dhe të aktivizoni mirëfilltësim dyfaktorësh, për ta mbajtur llogarinë tuaj të sigurt.
       subject: Llogaria juaj është përdorur që nga një adresë e re IP
       title: Hyrje e re
+    terms_of_service_changed:
+      agreement: Duke vazhduar të përdorni %{domain}, pajtoheni më këto terma. Nëse s’pajtoheni me termat e përditësuar, mund të përfundoni pajtimin tuaj me %{domain} në çfarëdo kohe, përmes fshirjes së llogarisë tuaj.
+      changelog: 'Me një vështrim, ja se ç’do të thotë ky përditësim për ju:'
+      description: 'Po e merrni këtë email ngaqë po bëjmë disa ndryshime te kushtet tona të shërbimit në %{domain}. Ju nxisim të shqyrtoni termat e përditësuar të plotë këtu:'
+      description_html: Po e merrni këtë email ngaqë po bëjmë disa ndryshime në kushtet tona të shërbimit te %{domain}. Ju nxisim të shqyrtoni <a href="%{path}" target="_blank">termat e përditësuar të plotë këtu</a>.
+      sign_off: Ekipi i %{domain}
+      subject: Përditësime të termave tanë të shërbimit
+      subtitle: Termat e shërbimit të %{domain} po ndryshojnë
+      title: Përditësim i rëndësishëm
     warning:
       appeal: Parashtroni një apelim
       appeal_description: Nëse besoni se është gabim, mund t’i parashtroni një apelim stafit të %{instance}.
@@ -1595,28 +1963,66 @@ sq:
         disable: Llogari e ngrirë
         mark_statuses_as_sensitive: Postimeve iu vu shenjë si me spec
         none: Sinjalizim
-        sensitive: Llogarice iu vu shenjë si me spec
+        sensitive: Llogarisë iu vu shenjë si me spec
         silence: Llogari e kufizuar
         suspend: Llogari e pezulluar
     welcome:
-      edit_profile_action: Ujdisje profili
-      edit_profile_step: Profilin tuaj mund ta përshtatni duke ngarkuar një figurë, duke ndryshuar emrin tuaj në ekran, etj. Mund të zgjidhni të shqyrtoni ndjekës të rinj, para se të jenë lejuar t’ju ndjekin.
+      apps_android_action: Merreni në Google Play
+      apps_ios_action: Shkarkojeni nga App Store
+      apps_step: Shkarkoni aplikacionet tona zyrtare.
+      apps_title: Aplikacione Mastodon
+      checklist_subtitle: 'Le t’ju vëmë në udhë drejt këtij horizonti të ri rrjetesh shoqërorë:'
+      checklist_title: Listë hapash mirëseardhjeje
+      edit_profile_action: Personalizojeni
+      edit_profile_step: Përforconi ndërveprimet tuaja, duke pasur një profil shterues.
+      edit_profile_title: Personalizoni profilin tuaj
       explanation: Ja disa ndihmëza, sa për t’ia filluar
-      final_action: Filloni të postoni
-      final_step: 'Filloni të postoni! Edhe pa ndjekës, postimet tuaja publike mund të shihen nga të tjerët, për shembull, në rrjedhën kohore vendore, ose në hashtag-ë. Mund të doni të prezantoni veten përmes hashtag-ut #introductions.'
-      full_handle: Identifikuesi juaj i plotë
-      full_handle_hint: Kjo është ajo çka do të duhej t’u tregonit shokëve tuaj, që të mund t’ju dërgojnë mesazhe ose t’ju ndjekin nga një shërbyes tjetër.
+      feature_action: Mësoni më tepër
+      feature_audience: Mastodon-i ju sjell një mundësi unike për administrimin e publikut tuaj pa të tjerë në mes. Mastodon-i i sendërtuar në infrastrukturë tuajën ju lejon të ndiqni dhe të ndiqeni nga cilido shërbyes tjetër Mastodon në internet dhe është nën kontroll vetëm nga ju dhe askush tjetër.
+      feature_audience_title: Krijoni me vetëbesim publikun tuaj
+      feature_control: E dini më mirë se kushdo se ç’doni të shihni në prurjen tuaj të kreut. Pa algoritme apo reklama që ju hanë kot kohën. Ndiqni këdo, në çfarëdo shërbyesi Mastodon, që nga një llogari e vetme dhe merrni postimet e tyre në rend kohor dhe bëjeni këndin tuaj të internetit pak më tepër si ju.
+      feature_control_title: Mbani kontrollin e rrjedhës tuaj kohore
+      feature_creativity: Mastodon-i mbulon postime audio, video dhe foto, përshkrime për persona me aftësi të kufizuara, pyetësorë, sinjalizime rreth lënde, avatarë të animuar, emoxhi vetjake, kontroll qethjeje miniaturash, etj, për t’ju ndihmuar të shpreheni në internet. Qoftë kur po botoni art tuajin, muzikë tuajën apo podkastin tuaj, Mastodon-i është gati.
+      feature_creativity_title: Frymë krijuese e pashoqe
+      feature_moderation: Mastodon-i e rikthen marrjen e vendimeve në duart tuaja. Çdo shërbyes krijon rregullat dhe rregulloren e vet, të cilat vihen në zbatim lokalisht dhe jo nga sipër, si me mediat shoqërore të korporatave, duke e bërë më të zhdërvjellëtin për t’iu përgjigjur nevojave të grupeve të ndryshme të personave. Bëhuni pjesë e një shërbyesi me rregullat e të cilit pajtoheni, ose strehojeni ju vetë një të tillë.
+      feature_moderation_title: Moderim ashtu si duhet bërë
+      follow_action: Ndiqeni
+      follow_step: Ndjekje personash interesantë është ajo çka përbën thelbin e Mastodon-it.
+      follow_title: Personalizoni prurjen tuaj të kreut
+      follows_subtitle: Ndiqni llogari të mirënjohura
+      follows_title: Cilët të ndiqen
+      follows_view_more: Shihni më tepër vetë për ndjekje
+      hashtags_recent_count:
+        one: "%{people} person në 2 ditët e shkuara"
+        other: "%{people} vetë në 2 ditët e shkuara"
+      hashtags_subtitle: Eksploroni ç’është në modëë që prej 2 ditëve të fundit
+      hashtags_title: Hashtag-ë në modë
+      hashtags_view_more: Shihni më tepër hashtagë në modë
+      post_action: Hartoni
+      post_step: Përshëndetni botën me tekst, foto, video, ose pyetësorë.
+      post_title: Shkruani postimin tuaj të parë
+      share_action: Ndajeni me të tjerë
+      share_step: Bëjuni të ditur shokëve si t’ju gjejnë në Mastodon.
+      share_title: Ndani me të tjerët profilin tuaj Mastodon
+      sign_in_action: Hyni
       subject: Mirë se vini te Mastodon-i
       title: Mirë se vini, %{name}!
   users:
     follow_limit_reached: S’mund të ndiqni më tepër se %{limit} persona
+    go_to_sso_account_settings: Kaloni te rregullime llogarie te shërbimi juaj i identitetit
     invalid_otp_token: Kod dyfaktorësh i pavlefshëm
     otp_lost_help_html: Nëse humbët hyrjen te të dy, mund të lidheni me %{email}
-    seamless_external_login: Jeni futur përmes një shërbimi të jashtëm, ndaj s’ka rregullime fjalëkalimi dhe email.
+    rate_limited: Shumë përpjekje mirëfilltësimi, riprovoni më vonë.
+    seamless_external_login: Keni bërë hyrjen përmes një shërbimi të jashtëm, ndaj rregullimet për fjalëkalimin dhe email-in s’janë të përdorshme këtu.
     signed_in_as: 'I futur si:'
   verification:
-    explanation_html: 'Mundeni <strong>të verifikoni veten si i zoti i lidhjeve te tejtëdhënat e profilit tuaj</strong>. Për këtë, sajti i lidhur duhet të përmbajë një lidhje për te profili juaj Mastodon. Lidhje për te ajo <strong>duhet</strong> të ketë një atribut <code>rel="me"</code>. Lënda tekst e lidhjes nuk ngre peshë. Ja një shembull:'
+    extra_instructions_html: <strong>Ndihmëz:</strong> Lidhja te sajti juaj mund të jetë e padukshme. Pjesa e rëndësishme është <code>rel="me"</code>, e cila pengon të hiqen gjoja në sajte me lëndë të prodhuar nga përdorues. Mundeni edhe të përdorni një etiketë <code>link</code> te kryet e faqes, në vend se <code>a</code>, por HTML-ja duhet të jetë e përdorshme pa ekzekutim JavaScript-i.
+    here_is_how: Ja se si
+    hint_html: "<strong>Verifikimi i identitetit të secilit në Mastodon është për këdo.</strong> Bazuar në standarde web të hapët, falas për so dhe për mot. Krejt ç’ju duhet është një sajt personal me të cilin ju njohin njerëzit. Kur bëni lidhjen me këtë sajt që nga profili juaj, do të kontrollojmë nëse sajti përgjigjet me një lidhje për te profili juaj dhe shfaq një tregues në të."
+    instructions_html: Kopjoni dhe ngjitni në HTML-në e sajtit tuaj kodin më poshtë. Mandej shtoni adresën e sajtit tuaj te një nga fushat shtesë në profilin tuaj, që nga skeda “Përpunoni profil” dhe ruani ndryshimet.
     verification: Verifikim
+    verified_links: Lidhjet tuaja të verifikuara
+    website_verification: Verifikim sajti
   webauthn_credentials:
     add: Shtoni kyç të ri sigurie
     create:

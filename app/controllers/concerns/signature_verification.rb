@@ -12,45 +12,12 @@ module SignatureVerification
 
   class SignatureVerificationError < StandardError; end
 
-  class SignatureParamsParser < Parslet::Parser
-    rule(:token)         { match("[0-9a-zA-Z!#$%&'*+.^_`|~-]").repeat(1).as(:token) }
-    rule(:quoted_string) { str('"') >> (qdtext | quoted_pair).repeat.as(:quoted_string) >> str('"') }
-    # qdtext and quoted_pair are not exactly according to spec but meh
-    rule(:qdtext)        { match('[^\\\\"]') }
-    rule(:quoted_pair)   { str('\\') >> any }
-    rule(:bws)           { match('\s').repeat }
-    rule(:param)         { (token.as(:key) >> bws >> str('=') >> bws >> (token | quoted_string).as(:value)).as(:param) }
-    rule(:comma)         { bws >> str(',') >> bws }
-    # Old versions of node-http-signature add an incorrect "Signature " prefix to the header
-    rule(:buggy_prefix)  { str('Signature ') }
-    rule(:params)        { buggy_prefix.maybe >> (param >> (comma >> param).repeat).as(:params) }
-    root(:params)
-  end
-
-  class SignatureParamsTransformer < Parslet::Transform
-    rule(params: subtree(:p)) do
-      (p.is_a?(Array) ? p : [p]).each_with_object({}) { |(key, val), h| h[key] = val }
-    end
-
-    rule(param: { key: simple(:key), value: simple(:val) }) do
-      [key, val]
-    end
-
-    rule(quoted_string: simple(:string)) do
-      string.to_s
-    end
-
-    rule(token: simple(:string)) do
-      string.to_s
-    end
-  end
-
   def require_account_signature!
-    render plain: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
+    render json: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
   end
 
   def require_actor_signature!
-    render plain: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_actor
+    render json: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_actor
   end
 
   def signed_request?
@@ -91,20 +58,29 @@ module SignatureVerification
     raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if actor.nil?
 
     signature             = Base64.decode64(signature_params['signature'])
-    compare_signed_string = build_signed_string
+    compare_signed_string = build_signed_string(include_query_string: true)
 
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
-    actor = stoplight_wrap_request { actor_refresh_key!(actor) }
-
-    raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if actor.nil?
-
+    # Compatibility quirk with older Mastodon versions
+    compare_signed_string = build_signed_string(include_query_string: false)
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
-    fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)"
+    actor = stoplight_wrapper.run { actor_refresh_key!(actor) }
+
+    raise SignatureVerificationError, "Could not refresh public key #{signature_params['keyId']}" if actor.nil?
+
+    compare_signed_string = build_signed_string(include_query_string: true)
+    return actor unless verify_signature(actor, signature, compare_signed_string).nil?
+
+    # Compatibility quirk with older Mastodon versions
+    compare_signed_string = build_signed_string(include_query_string: false)
+    return actor unless verify_signature(actor, signature, compare_signed_string).nil?
+
+    fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)", signed_string: compare_signed_string, signature: signature_params['signature']
   rescue SignatureVerificationError => e
     fail_with! e.message
-  rescue HTTP::Error, OpenSSL::SSL::SSLError => e
+  rescue *Mastodon::HTTP_CONNECTION_ERRORS => e
     fail_with! "Failed to fetch remote data: #{e.message}"
   rescue Mastodon::UnexpectedResponseError
     fail_with! 'Failed to fetch remote data (got unexpected reply from server)'
@@ -118,18 +94,16 @@ module SignatureVerification
 
   private
 
-  def fail_with!(message)
-    @signature_verification_failure_reason = message
+  def fail_with!(message, **options)
+    Rails.logger.debug { "Signature verification failed: #{message}" }
+
+    @signature_verification_failure_reason = { error: message }.merge(options)
     @signed_request_actor = nil
   end
 
   def signature_params
-    @signature_params ||= begin
-      raw_signature = request.headers['Signature']
-      tree          = SignatureParamsParser.new.parse(raw_signature)
-      SignatureParamsTransformer.new.apply(tree)
-    end
-  rescue Parslet::ParseFailed
+    @signature_params ||= SignatureParser.parse(request.headers['Signature'])
+  rescue SignatureParser::ParsingError
     raise SignatureVerificationError, 'Error parsing signature parameters'
   end
 
@@ -138,7 +112,7 @@ module SignatureVerification
   end
 
   def signed_headers
-    signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split(' ')
+    signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split
   end
 
   def verify_signature_strength!
@@ -165,6 +139,7 @@ module SignatureVerification
     end
 
     raise SignatureVerificationError, "Invalid Digest value. The provided Digest value is not a SHA-256 digest. Given digest: #{sha256[1]}" if digest_size != 32
+
     raise SignatureVerificationError, "Invalid Digest value. Computed SHA-256 digest: #{body_digest}; given: #{sha256[1]}"
   end
 
@@ -177,16 +152,24 @@ module SignatureVerification
     nil
   end
 
-  def build_signed_string
+  def build_signed_string(include_query_string: true)
     signed_headers.map do |signed_header|
-      if signed_header == Request::REQUEST_TARGET
-        "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
-      elsif signed_header == '(created)'
+      case signed_header
+      when Request::REQUEST_TARGET
+        if include_query_string
+          "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.original_fullpath}"
+        else
+          # Current versions of Mastodon incorrectly omit the query string from the (request-target) pseudo-header.
+          # Therefore, temporarily support such incorrect signatures for compatibility.
+          # TODO: remove eventually some time after release of the fixed version
+          "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
+        end
+      when '(created)'
         raise SignatureVerificationError, 'Invalid pseudo-header (created) for rsa-sha256' unless signature_algorithm == 'hs2019'
         raise SignatureVerificationError, 'Pseudo-header (created) used but corresponding argument missing' if signature_params['created'].blank?
 
         "(created): #{signature_params['created']}"
-      elsif signed_header == '(expires)'
+      when '(expires)'
         raise SignatureVerificationError, 'Invalid pseudo-header (expires) for rsa-sha256' unless signature_algorithm == 'hs2019'
         raise SignatureVerificationError, 'Pseudo-header (expires) used but corresponding argument missing' if signature_params['expires'].blank?
 
@@ -209,8 +192,8 @@ module SignatureVerification
       end
 
       expires_time = Time.at(signature_params['expires'].to_i).utc if signature_params['expires'].present?
-    rescue ArgumentError
-      return false
+    rescue ArgumentError => e
+      raise SignatureVerificationError, "Invalid Date header: #{e.message}"
     end
 
     expires_time ||= created_time + 5.minutes unless created_time.nil?
@@ -227,7 +210,7 @@ module SignatureVerification
   end
 
   def to_header_name(name)
-    name.split(/-/).map(&:capitalize).join('-')
+    name.split('-').map(&:capitalize).join('-')
   end
 
   def missing_required_signature_parameters?
@@ -243,10 +226,10 @@ module SignatureVerification
     end
 
     if key_id.start_with?('acct:')
-      stoplight_wrap_request { ResolveAccountService.new.call(key_id.gsub(/\Aacct:/, ''), suppress_errors: false) }
+      stoplight_wrapper.run { ResolveAccountService.new.call(key_id.delete_prefix('acct:'), suppress_errors: false) }
     elsif !ActivityPub::TagManager.instance.local_uri?(key_id)
       account   = ActivityPub::TagManager.instance.uri_to_actor(key_id)
-      account ||= stoplight_wrap_request { ActivityPub::FetchRemoteKeyService.new.call(key_id, id: false, suppress_errors: false) }
+      account ||= stoplight_wrapper.run { ActivityPub::FetchRemoteKeyService.new.call(key_id, suppress_errors: false) }
       account
     end
   rescue Mastodon::PrivateNetworkAddressError => e
@@ -255,12 +238,11 @@ module SignatureVerification
     raise SignatureVerificationError, e.message
   end
 
-  def stoplight_wrap_request(&block)
-    Stoplight("source:#{request.remote_ip}", &block)
+  def stoplight_wrapper
+    Stoplight("source:#{request.remote_ip}")
       .with_threshold(1)
       .with_cool_off_time(5.minutes.seconds)
       .with_error_handler { |error, handle| error.is_a?(HTTP::Error) || error.is_a?(OpenSSL::SSL::SSLError) ? handle.call(error) : raise(error) }
-      .run
   end
 
   def actor_refresh_key!(actor)

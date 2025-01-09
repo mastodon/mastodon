@@ -1,79 +1,98 @@
 # frozen_string_literal: true
 
 class NotificationMailer < ApplicationMailer
-  helper :accounts
-  helper :statuses
+  helper :accounts,
+         :statuses,
+         :routing
 
-  helper RoutingHelper
+  before_action :process_params
+  with_options only: %i(mention favourite reblog) do
+    before_action :set_status
+    after_action :thread_by_conversation!
+  end
+  before_action :set_account, only: [:follow, :favourite, :reblog, :follow_request]
+  after_action :set_list_headers!
 
-  def mention(recipient, notification)
-    @me     = recipient
-    @status = notification.target_status
+  before_deliver :verify_functional_user
 
-    return unless @me.user.functional? && @status.present?
+  default to: -> { email_address_with_name(@user.email, @me.username) }
+
+  layout 'mailer'
+
+  def mention
+    return if @status.blank?
 
     locale_for_account(@me) do
-      thread_by_conversation(@status.conversation)
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.mention.subject', name: @status.account.acct)
+      mail subject: default_i18n_subject(name: @status.account.acct)
     end
   end
 
-  def follow(recipient, notification)
-    @me      = recipient
-    @account = notification.from_account
-
-    return unless @me.user.functional?
-
+  def follow
     locale_for_account(@me) do
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.follow.subject', name: @account.acct)
+      mail subject: default_i18n_subject(name: @account.acct)
     end
   end
 
-  def favourite(recipient, notification)
-    @me      = recipient
-    @account = notification.from_account
-    @status  = notification.target_status
-
-    return unless @me.user.functional? && @status.present?
+  def favourite
+    return if @status.blank?
 
     locale_for_account(@me) do
-      thread_by_conversation(@status.conversation)
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.favourite.subject', name: @account.acct)
+      mail subject: default_i18n_subject(name: @account.acct)
     end
   end
 
-  def reblog(recipient, notification)
-    @me      = recipient
-    @account = notification.from_account
-    @status  = notification.target_status
-
-    return unless @me.user.functional? && @status.present?
+  def reblog
+    return if @status.blank?
 
     locale_for_account(@me) do
-      thread_by_conversation(@status.conversation)
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.reblog.subject', name: @account.acct)
+      mail subject: default_i18n_subject(name: @account.acct)
     end
   end
 
-  def follow_request(recipient, notification)
-    @me      = recipient
-    @account = notification.from_account
-
-    return unless @me.user.functional?
-
+  def follow_request
     locale_for_account(@me) do
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.follow_request.subject', name: @account.acct)
+      mail subject: default_i18n_subject(name: @account.acct)
     end
   end
 
   private
 
-  def thread_by_conversation(conversation)
-    return if conversation.nil?
+  def process_params
+    @notification = params[:notification]
+    @me = params[:recipient]
+    @user = @me.user
+    @type = action_name
+    @unsubscribe_url = unsubscribe_url(token: @user.to_sgid(for: 'unsubscribe').to_s, type: @type)
+  end
 
-    msg_id = "<conversation-#{conversation.id}.#{conversation.created_at.strftime('%Y-%m-%d')}@#{Rails.configuration.x.local_domain}>"
+  def set_status
+    @status = @notification.target_status
+  end
 
-    headers['In-Reply-To'] = msg_id
-    headers['References']  = msg_id
+  def set_account
+    @account = @notification.from_account
+  end
+
+  def verify_functional_user
+    throw(:abort) unless @user.functional?
+  end
+
+  def set_list_headers!
+    headers(
+      'List-ID' => "<#{@type}.#{@me.username}.#{Rails.configuration.x.local_domain}>",
+      'List-Unsubscribe-Post' => 'List-Unsubscribe=One-Click',
+      'List-Unsubscribe' => "<#{@unsubscribe_url}>"
+    )
+  end
+
+  def thread_by_conversation!
+    return if @status&.conversation.nil?
+
+    conversation_message_id = "<conversation-#{@status.conversation.id}.#{@status.conversation.created_at.to_date}@#{Rails.configuration.x.local_domain}>"
+
+    headers(
+      'In-Reply-To' => conversation_message_id,
+      'References' => conversation_message_id
+    )
   end
 end

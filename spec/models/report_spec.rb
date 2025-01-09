@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe Report do
+RSpec.describe Report do
   describe 'statuses' do
     it 'returns the statuses for the report' do
       status = Fabricate(:status)
@@ -33,7 +35,7 @@ describe Report do
     end
 
     it 'assigns to a given account' do
-      is_expected.to eq current_account.id
+      expect(subject).to eq current_account.id
     end
   end
 
@@ -48,7 +50,7 @@ describe Report do
     end
 
     it 'unassigns' do
-      is_expected.to be_nil
+      expect(subject).to be_nil
     end
   end
 
@@ -87,13 +89,13 @@ describe Report do
 
     let(:report) { Fabricate(:report, action_taken_at: action_taken) }
 
-    context 'if action is taken' do
+    context 'when action is taken' do
       let(:action_taken) { Time.now.utc }
 
       it { is_expected.to be false }
     end
 
-    context 'if action not is taken' do
+    context 'when action not is taken' do
       let(:action_taken) { nil }
 
       it { is_expected.to be true }
@@ -103,32 +105,86 @@ describe Report do
   describe 'history' do
     subject(:action_logs) { report.history }
 
-    let(:report) { Fabricate(:report, target_account_id: target_account.id, status_ids: [status.id], created_at: 3.days.ago, updated_at: 1.day.ago) }
+    let(:report) { Fabricate(:report, target_account_id: target_account.id, status_ids: [status.id]) }
     let(:target_account) { Fabricate(:account) }
     let(:status) { Fabricate(:status) }
+    let(:account_warning) { Fabricate(:account_warning, report_id: report.id) }
 
-    before do
-      Fabricate('Admin::ActionLog', target_type: 'Report', account_id: target_account.id, target_id: report.id, created_at: 2.days.ago)
-      Fabricate('Admin::ActionLog', target_type: 'Account', account_id: target_account.id, target_id: report.target_account_id, created_at: 2.days.ago)
-      Fabricate('Admin::ActionLog', target_type: 'Status', account_id: target_account.id, target_id: status.id, created_at: 2.days.ago)
-    end
+    let!(:matched_type_account_warning) { Fabricate(:action_log, target_type: 'AccountWarning', target_id: account_warning.id) }
+    let!(:matched_type_account) { Fabricate(:action_log, target_type: 'Account', target_id: report.target_account_id) }
+    let!(:matched_type_report) { Fabricate(:action_log, target_type: 'Report', target_id: report.id) }
+    let!(:matched_type_status) { Fabricate(:action_log, target_type: 'Status', target_id: status.id) }
 
-    it 'returns right logs' do
-      expect(action_logs.count).to eq 3
+    let!(:unmatched_type_account_warning) { Fabricate(:action_log, target_type: 'AccountWarning') }
+    let!(:unmatched_type_account) { Fabricate(:action_log, target_type: 'Account') }
+    let!(:unmatched_type_report) { Fabricate(:action_log, target_type: 'Report') }
+    let!(:unmatched_type_status) { Fabricate(:action_log, target_type: 'Status') }
+
+    it 'returns expected logs' do
+      expect(action_logs)
+        .to have_attributes(count: 4)
+        .and include(matched_type_account_warning)
+        .and include(matched_type_account)
+        .and include(matched_type_report)
+        .and include(matched_type_status)
+        .and not_include(unmatched_type_account_warning)
+        .and not_include(unmatched_type_account)
+        .and not_include(unmatched_type_report)
+        .and not_include(unmatched_type_status)
     end
   end
 
-  describe 'validations' do
-    it 'has a valid fabricator' do
-      report = Fabricate(:report)
-      report.valid?
-      expect(report).to be_valid
+  describe '#unresolved_siblings?' do
+    subject { Fabricate :report }
+
+    context 'when the target account has other unresolved reports' do
+      before { Fabricate :report, action_taken_at: nil, target_account: subject.target_account }
+
+      it { is_expected.to be_unresolved_siblings }
     end
 
-    it 'is invalid if comment is longer than 1000 characters' do
-      report = Fabricate.build(:report, comment: Faker::Lorem.characters(number: 1001))
-      report.valid?
-      expect(report).to model_have_error_on_field(:comment)
+    context 'when the target account has a resolved report' do
+      before { Fabricate :report, action_taken_at: 3.days.ago, target_account: subject.target_account }
+
+      it { is_expected.to_not be_unresolved_siblings }
+    end
+
+    context 'when the target account has no other reports' do
+      before { described_class.where(target_account: subject.target_account).destroy_all }
+
+      it { is_expected.to_not be_unresolved_siblings }
+    end
+  end
+
+  describe 'Validations' do
+    let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
+
+    it 'is invalid if comment is longer than character limit and reporter is local' do
+      report = Fabricate.build(:report)
+
+      expect(report).to_not allow_value(comment_over_limit).for(:comment)
+    end
+
+    it 'is valid if comment is longer than character limit and reporter is not local' do
+      report = Fabricate.build(:report, account: remote_account, comment: comment_over_limit)
+      expect(report.valid?).to be true
+    end
+
+    it 'is invalid if it references invalid rules' do
+      report = Fabricate.build(:report, category: :violation)
+
+      expect(report).to_not allow_value([-1]).for(:rule_ids)
+    end
+
+    it 'is invalid if it references rules but category is not "violation"' do
+      rule = Fabricate(:rule)
+      report = Fabricate.build(:report, category: :spam)
+
+      expect(report).to_not allow_value(rule.id).for(:rule_ids)
+    end
+
+    def comment_over_limit
+      'a' * described_class::COMMENT_SIZE_LIMIT * 2
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Create do
@@ -21,15 +23,188 @@ RSpec.describe ActivityPub::Activity::Create do
     stub_request(:get, 'http://example.com/emojib.png').to_return(body: attachment_fixture('emojo.png'), headers: { 'Content-Type' => 'application/octet-stream' })
   end
 
+  describe 'processing posts received out of order' do
+    let(:follower) { Fabricate(:account, username: 'bob') }
+
+    let(:object_json) do
+      {
+        id: [ActivityPub::TagManager.instance.uri_for(sender), 'post1'].join('/'),
+        type: 'Note',
+        to: [
+          'https://www.w3.org/ns/activitystreams#Public',
+          ActivityPub::TagManager.instance.uri_for(follower),
+        ],
+        content: '@bob lorem ipsum',
+        published: 1.hour.ago.utc.iso8601,
+        updated: 1.hour.ago.utc.iso8601,
+        tag: {
+          type: 'Mention',
+          href: ActivityPub::TagManager.instance.uri_for(follower),
+        },
+      }
+    end
+
+    let(:reply_json) do
+      {
+        id: [ActivityPub::TagManager.instance.uri_for(sender), 'reply'].join('/'),
+        type: 'Note',
+        inReplyTo: object_json[:id],
+        to: [
+          'https://www.w3.org/ns/activitystreams#Public',
+          ActivityPub::TagManager.instance.uri_for(follower),
+        ],
+        content: '@bob lorem ipsum',
+        published: Time.now.utc.iso8601,
+        updated: Time.now.utc.iso8601,
+        tag: {
+          type: 'Mention',
+          href: ActivityPub::TagManager.instance.uri_for(follower),
+        },
+      }
+    end
+
+    let(:invalid_mention_json) do
+      {
+        id: [ActivityPub::TagManager.instance.uri_for(sender), 'post2'].join('/'),
+        type: 'Note',
+        to: [
+          'https://www.w3.org/ns/activitystreams#Public',
+          ActivityPub::TagManager.instance.uri_for(follower),
+        ],
+        content: '@bob lorem ipsum',
+        published: 1.hour.ago.utc.iso8601,
+        updated: 1.hour.ago.utc.iso8601,
+        tag: {
+          type: 'Mention',
+          href: 'http://notexisting.dontexistingtld/actor',
+        },
+      }
+    end
+
+    def activity_for_object(json)
+      {
+        '@context': 'https://www.w3.org/ns/activitystreams',
+        id: [json[:id], 'activity'].join('/'),
+        type: 'Create',
+        actor: ActivityPub::TagManager.instance.uri_for(sender),
+        object: json,
+      }.with_indifferent_access
+    end
+
+    before do
+      follower.follow!(sender)
+    end
+
+    it 'correctly processes posts and inserts them in timelines', :aggregate_failures do
+      # Simulate a temporary failure preventing from fetching the parent post
+      stub_request(:get, object_json[:id]).to_return(status: 500)
+
+      # When receiving the reply…
+      described_class.new(activity_for_object(reply_json), sender, delivery: true).perform
+
+      # NOTE: Refering explicitly to the workers is a bit awkward
+      DistributionWorker.drain
+      FeedInsertWorker.drain
+
+      # …it creates a status with an unknown parent
+      reply = Status.find_by(uri: reply_json[:id])
+      expect(reply.reply?).to be true
+      expect(reply.in_reply_to_id).to be_nil
+
+      # …and creates a notification
+      expect(LocalNotificationWorker.jobs.size).to eq 1
+
+      # …but does not insert it into timelines
+      expect(redis.zscore(FeedManager.instance.key(:home, follower.id), reply.id)).to be_nil
+
+      # When receiving the parent…
+      described_class.new(activity_for_object(object_json), sender, delivery: true).perform
+
+      Sidekiq::Worker.drain_all
+
+      # …it creates a status and insert it into timelines
+      parent = Status.find_by(uri: object_json[:id])
+      expect(parent.reply?).to be false
+      expect(parent.in_reply_to_id).to be_nil
+      expect(reply.reload.in_reply_to_id).to eq parent.id
+
+      # Check that the both statuses have been inserted into the home feed
+      expect(redis.zscore(FeedManager.instance.key(:home, follower.id), parent.id)).to be_within(0.1).of(parent.id.to_f)
+      expect(redis.zscore(FeedManager.instance.key(:home, follower.id), reply.id)).to be_within(0.1).of(reply.id.to_f)
+
+      # Creates two notifications
+      expect(Notification.count).to eq 2
+    end
+
+    it 'ignores unprocessable mention', :aggregate_failures do
+      stub_request(:get, invalid_mention_json[:tag][:href]).to_raise(HTTP::ConnectionError)
+      # When receiving the post that contains an invalid mention…
+      described_class.new(activity_for_object(invalid_mention_json), sender, delivery: true).perform
+
+      # NOTE: Refering explicitly to the workers is a bit awkward
+      DistributionWorker.drain
+      FeedInsertWorker.drain
+
+      # …it creates a status
+      status = Status.find_by(uri: invalid_mention_json[:id])
+
+      # Check the process did not crash
+      expect(status.nil?).to be false
+
+      # It has queued a mention resolve job
+      expect(MentionResolveWorker).to have_enqueued_sidekiq_job(status.id, invalid_mention_json[:tag][:href], anything)
+    end
+  end
+
   describe '#perform' do
     context 'when fetching' do
       subject { described_class.new(json, sender) }
 
-      before do
-        subject.perform
+      context 'when object publication date is below ISO8601 range' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            published: '-0977-11-03T08:31:22Z',
+          }
+        end
+
+        it 'creates status with a valid creation date', :aggregate_failures do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.text).to eq 'Lorem ipsum'
+
+          expect(status.created_at).to be_within(30).of(Time.now.utc)
+        end
       end
 
-      context 'object has been edited' do
+      context 'when object publication date is above ISO8601 range' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            published: '10000-11-03T08:31:22Z',
+          }
+        end
+
+        it 'creates status with a valid creation date', :aggregate_failures do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.text).to eq 'Lorem ipsum'
+
+          expect(status.created_at).to be_within(30).of(Time.now.utc)
+        end
+      end
+
+      context 'when object has been edited' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -40,22 +215,22 @@ RSpec.describe ActivityPub::Activity::Create do
           }
         end
 
-        it 'creates status' do
+        it 'creates status with appropriate creation and edition dates', :aggregate_failures do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
           expect(status.text).to eq 'Lorem ipsum'
-        end
 
-        it 'marks status as edited' do
-          status = sender.statuses.first
+          expect(status.created_at).to eq '2022-01-22T15:00:00Z'.to_datetime
 
-          expect(status).to_not be_nil
-          expect(status.edited?).to eq true
+          expect(status.edited?).to be true
+          expect(status.edited_at).to eq '2022-01-22T16:00:00Z'.to_datetime
         end
       end
 
-      context 'object has update date equal to creation date' do
+      context 'when object has update date equal to creation date' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -66,22 +241,18 @@ RSpec.describe ActivityPub::Activity::Create do
           }
         end
 
-        it 'creates status' do
+        it 'creates status and does not mark it as edited' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
           expect(status.text).to eq 'Lorem ipsum'
-        end
-
-        it 'does not mark status as edited' do
-          status = sender.statuses.first
-
-          expect(status).to_not be_nil
-          expect(status.edited?).to eq false
+          expect(status.edited?).to be false
         end
       end
 
-      context 'unknown object type' do
+      context 'with an unknown object type' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -91,11 +262,11 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'does not create a status' do
-          expect(sender.statuses.count).to be_zero
+          expect { subject.perform }.to_not change(sender.statuses, :count)
         end
       end
 
-      context 'standalone' do
+      context 'with a standalone' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -105,6 +276,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -112,6 +285,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'missing to/cc defaults to direct privacy' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -119,7 +294,7 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'public with explicit public address' do
+      context 'when public with explicit public address' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -130,6 +305,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -137,7 +314,7 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'public with as:Public' do
+      context 'when public with as:Public' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -148,6 +325,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -155,7 +334,7 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'public with Public' do
+      context 'when public with Public' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -166,6 +345,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -173,7 +354,7 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'unlisted with explicit public address' do
+      context 'when unlisted with explicit public address' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -184,6 +365,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -191,7 +374,7 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'unlisted with as:Public' do
+      context 'when unlisted with as:Public' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -202,6 +385,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -209,7 +394,7 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'unlisted with Public' do
+      context 'when unlisted with Public' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -220,6 +405,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -227,7 +414,7 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'private' do
+      context 'when private' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -238,6 +425,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -245,21 +434,23 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'private with inlined Collection in audience' do
+      context 'when private with inlined Collection in audience' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
             type: 'Note',
             content: 'Lorem ipsum',
             to: {
-              'type': 'OrderedCollection',
-              'id': 'http://example.com/followers',
-              'first': 'http://example.com/followers?page=true',
-            }
+              type: 'OrderedCollection',
+              id: 'http://example.com/followers',
+              first: 'http://example.com/followers?page=true',
+            },
           }
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -267,7 +458,7 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'limited' do
+      context 'when limited' do
         let(:recipient) { Fabricate(:account) }
 
         let(:object_json) do
@@ -279,20 +470,18 @@ RSpec.describe ActivityPub::Activity::Create do
           }
         end
 
-        it 'creates status' do
+        it 'creates status with a silent mention' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
           expect(status.visibility).to eq 'limited'
-        end
-
-        it 'creates silent mention' do
-          status = sender.statuses.first
           expect(status.mentions.first).to be_silent
         end
       end
 
-      context 'direct' do
+      context 'when direct' do
         let(:recipient) { Fabricate(:account) }
 
         let(:object_json) do
@@ -309,6 +498,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -316,7 +507,7 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'as a reply' do
+      context 'with a reply' do
         let(:original_status) { Fabricate(:status) }
 
         let(:object_json) do
@@ -329,6 +520,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -357,6 +550,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -379,6 +574,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
           expect(status).to_not be_nil
         end
@@ -396,18 +593,25 @@ RSpec.describe ActivityPub::Activity::Create do
                 mediaType: 'image/png',
                 url: 'http://example.com/attachment.png',
               },
+              {
+                type: 'Document',
+                mediaType: 'image/png',
+                url: 'http://example.com/emoji.png',
+              },
             ],
           }
         end
 
-        it 'creates status' do
+        it 'creates status with correctly-ordered media attachments' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
-          expect(status.media_attachments.map(&:remote_url)).to include('http://example.com/attachment.png')
+          expect(status.ordered_media_attachments.map(&:remote_url)).to eq ['http://example.com/attachment.png', 'http://example.com/emoji.png']
+          expect(status.ordered_media_attachment_ids).to be_present
         end
       end
-
 
       context 'with media attachments with long description' do
         let(:object_json) do
@@ -420,17 +624,19 @@ RSpec.describe ActivityPub::Activity::Create do
                 type: 'Document',
                 mediaType: 'image/png',
                 url: 'http://example.com/attachment.png',
-                name: '*' * 1500,
+                name: '*' * MediaAttachment::MAX_DESCRIPTION_LENGTH,
               },
             ],
           }
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
-          expect(status.media_attachments.map(&:description)).to include('*' * 1500)
+          expect(status.media_attachments.map(&:description)).to include('*' * MediaAttachment::MAX_DESCRIPTION_LENGTH)
         end
       end
 
@@ -445,17 +651,19 @@ RSpec.describe ActivityPub::Activity::Create do
                 type: 'Document',
                 mediaType: 'image/png',
                 url: 'http://example.com/attachment.png',
-                summary: '*' * 1500,
+                summary: '*' * MediaAttachment::MAX_DESCRIPTION_LENGTH,
               },
             ],
           }
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
-          expect(status.media_attachments.map(&:description)).to include('*' * 1500)
+          expect(status.media_attachments.map(&:description)).to include('*' * MediaAttachment::MAX_DESCRIPTION_LENGTH)
         end
       end
 
@@ -477,6 +685,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -500,6 +710,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
           expect(status).to_not be_nil
         end
@@ -522,6 +734,42 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.tags.map(&:name)).to include('test')
+        end
+      end
+
+      context 'with featured hashtags' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            to: 'https://www.w3.org/ns/activitystreams#Public',
+            tag: [
+              {
+                type: 'Hashtag',
+                href: 'http://example.com/blah',
+                name: '#test',
+              },
+            ],
+          }
+        end
+
+        before do
+          sender.featured_tags.create!(name: 'test')
+        end
+
+        it 'creates status and updates featured tag' do
+          expect { subject.perform }
+            .to change(sender.statuses, :count).by(1)
+            .and change { sender.featured_tags.first.reload.statuses_count }.by(1)
+            .and change { sender.featured_tags.first.reload.last_status_at }.from(nil).to(be_present)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -545,6 +793,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
           expect(status).to_not be_nil
         end
@@ -567,6 +817,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
           expect(status).to_not be_nil
         end
@@ -591,6 +843,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -617,6 +871,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
 
           expect(status).to_not be_nil
@@ -642,6 +898,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
           expect(status).to_not be_nil
         end
@@ -663,6 +921,8 @@ RSpec.describe ActivityPub::Activity::Create do
         end
 
         it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
           expect(status).to_not be_nil
         end
@@ -687,19 +947,19 @@ RSpec.describe ActivityPub::Activity::Create do
                 replies: {
                   type: 'Collection',
                   totalItems: 3,
-                }
+                },
               },
             ],
           }
         end
 
-        it 'creates status' do
+        it 'creates status with a poll' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
           status = sender.statuses.first
           expect(status).to_not be_nil
           expect(status.poll).to_not be_nil
-        end
 
-        it 'creates a poll' do
           poll = sender.polls.first
           expect(poll).to_not be_nil
           expect(poll.status).to_not be_nil
@@ -717,11 +977,13 @@ RSpec.describe ActivityPub::Activity::Create do
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
             type: 'Note',
             name: 'Yellow',
-            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status)
+            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status),
           }
         end
 
         it 'adds a vote to the poll with correct uri' do
+          expect { subject.perform }.to change(poll.votes, :count).by(1)
+
           vote = poll.votes.first
           expect(vote).to_not be_nil
           expect(vote.uri).to eq object_json[:id]
@@ -731,9 +993,9 @@ RSpec.describe ActivityPub::Activity::Create do
 
       context 'when a vote to an expired local poll' do
         let(:poll) do
-          poll = Fabricate.build(:poll, options: %w(Yellow Blue), expires_at: 1.day.ago)
-          poll.save(validate: false)
-          poll
+          travel_to 2.days.ago do
+            Fabricate(:poll, options: %w(Yellow Blue), expires_at: 1.day.from_now)
+          end
         end
         let!(:local_status) { Fabricate(:status, poll: poll) }
 
@@ -742,69 +1004,86 @@ RSpec.describe ActivityPub::Activity::Create do
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
             type: 'Note',
             name: 'Yellow',
-            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status)
+            inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status),
           }
         end
 
         it 'does not add a vote to the poll' do
+          expect { subject.perform }.to_not change(poll.votes, :count)
+
           expect(poll.votes.first).to be_nil
+        end
+      end
+
+      context 'with counts' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            likes: {
+              id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar', '/likes'].join,
+              type: 'Collection',
+              totalItems: 50,
+            },
+            shares: {
+              id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar', '/shares'].join,
+              type: 'Collection',
+              totalItems: 100,
+            },
+          }
+        end
+
+        it 'uses the counts from the created object' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+          expect(status.untrusted_favourites_count).to eq 50
+          expect(status.untrusted_reblogs_count).to eq 100
         end
       end
     end
 
-    context 'with an encrypted message' do
-      let(:recipient) { Fabricate(:account) }
-      let(:target_device) { Fabricate(:device, account: recipient) }
+    context 'when object URI uses bearcaps' do
+      subject { described_class.new(json, sender) }
 
-      subject { described_class.new(json, sender, delivery: true, delivered_to_account_id: recipient.id) }
+      let(:token) { 'foo' }
+
+      let(:json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: [ActivityPub::TagManager.instance.uri_for(sender), '#foo'].join,
+          type: 'Create',
+          actor: ActivityPub::TagManager.instance.uri_for(sender),
+          object: Addressable::URI.new(scheme: 'bear', query_values: { t: token, u: object_json[:id] }).to_s,
+        }.with_indifferent_access
+      end
 
       let(:object_json) do
         {
           id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
-          type: 'EncryptedMessage',
-          attributedTo: {
-            type: 'Device',
-            deviceId: '1234',
-          },
-          to: {
-            type: 'Device',
-            deviceId: target_device.device_id,
-          },
-          messageType: 1,
-          cipherText: 'Foo',
-          messageFranking: 'Baz678',
-          digest: {
-            digestAlgorithm: 'Bar456',
-            digestValue: 'Foo123',
-          },
+          type: 'Note',
+          content: 'Lorem ipsum',
+          to: 'https://www.w3.org/ns/activitystreams#Public',
         }
       end
 
       before do
+        stub_request(:get, object_json[:id])
+          .with(headers: { Authorization: "Bearer #{token}" })
+          .to_return(body: Oj.dump(object_json), headers: { 'Content-Type': 'application/activity+json' })
+
         subject.perform
       end
 
-      it 'creates an encrypted message' do
-        encrypted_message = target_device.encrypted_messages.reload.first
+      it 'creates status' do
+        status = sender.statuses.first
 
-        expect(encrypted_message).to_not be_nil
-        expect(encrypted_message.from_device_id).to eq '1234'
-        expect(encrypted_message.from_account).to eq sender
-        expect(encrypted_message.type).to eq 1
-        expect(encrypted_message.body).to eq 'Foo'
-        expect(encrypted_message.digest).to eq 'Foo123'
-      end
-
-      it 'creates a message franking' do
-        encrypted_message = target_device.encrypted_messages.reload.first
-        message_franking  = encrypted_message.message_franking
-
-        crypt = ActiveSupport::MessageEncryptor.new(SystemKey.current_key, serializer: Oj)
-        json  = crypt.decrypt_and_verify(message_franking)
-
-        expect(json['source_account_id']).to eq sender.id
-        expect(json['target_account_id']).to eq recipient.id
-        expect(json['original_franking']).to eq 'Baz678'
+        expect(status).to_not be_nil
+        expect(status).to have_attributes(
+          visibility: 'public',
+          text: 'Lorem ipsum'
+        )
       end
     end
 
@@ -833,14 +1112,9 @@ RSpec.describe ActivityPub::Activity::Create do
     end
 
     context 'when sender replies to local status' do
-      let!(:local_status) { Fabricate(:status) }
-
       subject { described_class.new(json, sender, delivery: true) }
 
-      before do
-        subject.perform
-      end
-
+      let!(:local_status) { Fabricate(:status) }
       let(:object_json) do
         {
           id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -848,6 +1122,10 @@ RSpec.describe ActivityPub::Activity::Create do
           content: 'Lorem ipsum',
           inReplyTo: ActivityPub::TagManager.instance.uri_for(local_status),
         }
+      end
+
+      before do
+        subject.perform
       end
 
       it 'creates status' do
@@ -859,14 +1137,9 @@ RSpec.describe ActivityPub::Activity::Create do
     end
 
     context 'when sender targets a local user' do
-      let!(:local_account) { Fabricate(:account) }
-
       subject { described_class.new(json, sender, delivery: true) }
 
-      before do
-        subject.perform
-      end
-
+      let!(:local_account) { Fabricate(:account) }
       let(:object_json) do
         {
           id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -874,6 +1147,10 @@ RSpec.describe ActivityPub::Activity::Create do
           content: 'Lorem ipsum',
           to: ActivityPub::TagManager.instance.uri_for(local_account),
         }
+      end
+
+      before do
+        subject.perform
       end
 
       it 'creates status' do
@@ -885,14 +1162,9 @@ RSpec.describe ActivityPub::Activity::Create do
     end
 
     context 'when sender cc\'s a local user' do
-      let!(:local_account) { Fabricate(:account) }
-
       subject { described_class.new(json, sender, delivery: true) }
 
-      before do
-        subject.perform
-      end
-
+      let!(:local_account) { Fabricate(:account) }
       let(:object_json) do
         {
           id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -900,6 +1172,10 @@ RSpec.describe ActivityPub::Activity::Create do
           content: 'Lorem ipsum',
           cc: ActivityPub::TagManager.instance.uri_for(local_account),
         }
+      end
+
+      before do
+        subject.perform
       end
 
       it 'creates status' do

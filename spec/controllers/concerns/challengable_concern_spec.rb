@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe ChallengableConcern, type: :controller do
+RSpec.describe ChallengableConcern do
   controller(ApplicationController) do
-    include ChallengableConcern
+    include ChallengableConcern # rubocop:disable RSpec/DescribedClass
 
     before_action :require_challenge!
 
@@ -31,7 +31,7 @@ RSpec.describe ChallengableConcern, type: :controller do
       sign_in user
     end
 
-    context 'for GET requests' do
+    context 'with GET requests' do
       before { get :foo }
 
       it 'does not ask for password' do
@@ -39,7 +39,7 @@ RSpec.describe ChallengableConcern, type: :controller do
       end
     end
 
-    context 'for POST requests' do
+    context 'with POST requests' do
       before { post :bar }
 
       it 'does not ask for password' do
@@ -56,7 +56,7 @@ RSpec.describe ChallengableConcern, type: :controller do
       sign_in user
     end
 
-    context 'for GET requests' do
+    context 'with GET requests' do
       before { get :foo, session: { challenge_passed_at: Time.now.utc } }
 
       it 'does not ask for password' do
@@ -64,7 +64,7 @@ RSpec.describe ChallengableConcern, type: :controller do
       end
     end
 
-    context 'for POST requests' do
+    context 'with POST requests' do
       before { post :bar, session: { challenge_passed_at: Time.now.utc } }
 
       it 'does not ask for password' do
@@ -81,21 +81,21 @@ RSpec.describe ChallengableConcern, type: :controller do
       sign_in user
     end
 
-    context 'for GET requests' do
+    context 'with GET requests' do
       before { get :foo }
 
       it 'renders challenge' do
-        expect(response).to render_template('auth/challenges/new')
+        expect(response).to render_template('auth/challenges/new', layout: :auth)
       end
 
       # See Auth::ChallengesControllerSpec
     end
 
-    context 'for POST requests' do
+    context 'with POST requests' do
       before { post :bar }
 
       it 'renders challenge' do
-        expect(response).to render_template('auth/challenges/new')
+        expect(response).to render_template('auth/challenges/new', layout: :auth)
       end
 
       it 'accepts correct password' do
@@ -106,7 +106,7 @@ RSpec.describe ChallengableConcern, type: :controller do
 
       it 'rejects wrong password' do
         post :bar, params: { form_challenge: { current_password: 'dddfff888123' } }
-        expect(response.body).to render_template('auth/challenges/new')
+        expect(response.body).to render_template('auth/challenges/new', layout: :auth)
         expect(session[:challenge_passed_at]).to be_nil
       end
     end

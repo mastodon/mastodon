@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: status_edits
@@ -19,7 +20,7 @@
 class StatusEdit < ApplicationRecord
   include RateLimitable
 
-  self.ignored_columns = %w(
+  self.ignored_columns += %w(
     media_attachments_changed
   )
 
@@ -38,13 +39,14 @@ class StatusEdit < ApplicationRecord
   belongs_to :status
   belongs_to :account, optional: true
 
-  default_scope { order(id: :asc) }
+  scope :ordered, -> { order(id: :asc) }
 
   delegate :local?, :application, :edited?, :edited_at,
-           :discarded?, :visibility, to: :status
+           :discarded?, :visibility, :language, to: :status
 
   def emojis
     return @emojis if defined?(@emojis)
+
     @emojis = CustomEmoji.from_text([spoiler_text, text].join(' '), status.account.domain)
   end
 
@@ -58,7 +60,7 @@ class StatusEdit < ApplicationRecord
         map = status.media_attachments.index_by(&:id)
         ordered_media_attachment_ids.map.with_index { |media_attachment_id, index| PreservedMediaAttachment.new(media_attachment: map[media_attachment_id], description: media_descriptions[index]) }
       end
-    end
+    end.take(Status::MEDIA_ATTACHMENTS_LIMIT)
   end
 
   def proper

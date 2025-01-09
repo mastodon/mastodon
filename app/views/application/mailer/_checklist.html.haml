@@ -1,0 +1,37 @@
+%table.email-w-full.email-checklist-wrapper-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-checklist-wrapper-td
+      %table.email-w-full.email-checklist-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation', class: ('email-checklist-checked' if defined?(checked) && checked) }
+        %tr
+          %td.email-checklist-td
+            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+              %tr
+                %td.email-checklist-icons-td
+                  %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                    %tr
+                      %td.email-checklist-icons-checkbox-td
+                        - if defined?(checked) && checked
+                          = image_tag frontend_asset_url('images/mailer-new/welcome/checkbox-on.png'), alt: '', width: 20, height: 20
+                        - else
+                          = image_tag frontend_asset_url('images/mailer-new/welcome/checkbox-off.png'), alt: '', width: 20, height: 20
+                      %td.email-checklist-icons-step-td
+                        - if defined?(key)
+                          = image_tag frontend_asset_url("images/mailer-new/welcome-icons/#{key}_step-#{checked ? 'on' : 'off'}.png"), alt: '', width: 40, height: 40
+                %td.email-checklist-text-td
+                  .email-desktop-flex
+                    /[if mso]
+                      <table border="0" cellpadding="0" cellspacing="0" align="center" style="width:100%;" role="presentation"><tr><td vertical-align:top;">
+                    %div
+                      %h3= t("user_mailer.welcome.#{key}_title")
+                      %p= t("user_mailer.welcome.#{key}_step")
+                    /[if mso]
+                      </td><td style="vertical-align:top;">
+                    %div
+                      - if defined?(show_apps_buttons) && show_apps_buttons
+                        .email-welcome-apps-btns
+                          = link_to image_tag(frontend_asset_url('images/mailer-new/store-icons/btn-app-store.png'), alt: t('user_mailer.welcome.apps_ios_action'), width: 120, height: 40), app_store_url_ios
+                          = link_to image_tag(frontend_asset_url('images/mailer-new/store-icons/btn-google-play.png'), alt: t('user_mailer.welcome.apps_android_action'), width: 120, height: 40), app_store_url_android
+                      - elsif defined?(button_text) && defined?(button_url) && defined?(checked) && !checked
+                        = render 'application/mailer/button', text: button_text, url: button_url, has_arrow: false
+                    /[if mso]
+                      </td></tr></table>

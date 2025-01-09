@@ -15,7 +15,7 @@ class UnfollowService < BaseService
     @target_account = target_account
     @options        = options
 
-    with_lock("relationship:#{[source_account.id, target_account.id].sort.join(':')}") do
+    with_redis_lock("relationship:#{[source_account.id, target_account.id].sort.join(':')}") do
       unfollow! || undo_follow_request!
     end
   end
@@ -31,7 +31,13 @@ class UnfollowService < BaseService
 
     create_notification(follow) if !@target_account.local? && @target_account.activitypub?
     create_reject_notification(follow) if @target_account.local? && !@source_account.local? && @source_account.activitypub?
-    UnmergeWorker.perform_async(@target_account.id, @source_account.id) unless @options[:skip_unmerge]
+
+    unless @options[:skip_unmerge]
+      UnmergeWorker.perform_async(@target_account.id, @source_account.id, 'home')
+      UnmergeWorker.push_bulk(List.where(account: @source_account).joins(:list_accounts).where(list_accounts: { account_id: @target_account.id }).pluck(:list_id)) do |list_id|
+        [@target_account.id, list_id, 'list']
+      end
+    end
 
     follow
   end

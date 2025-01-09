@@ -19,6 +19,8 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   has_many :virtual_tags, key: :tag
 
   has_one :replies, serializer: ActivityPub::CollectionSerializer, if: :local?
+  has_one :likes, serializer: ActivityPub::CollectionSerializer, if: :local?
+  has_one :shares, serializer: ActivityPub::CollectionSerializer, if: :local?
 
   has_many :poll_options, key: :one_of, if: :poll_and_not_multiple?
   has_many :poll_options, key: :any_of, if: :poll_and_multiple?
@@ -61,6 +63,22 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
         items: replies.map(&:second),
         next: last_id ? ActivityPub::TagManager.instance.replies_uri_for(object, page: true, min_id: last_id) : ActivityPub::TagManager.instance.replies_uri_for(object, page: true, only_other_accounts: true)
       )
+    )
+  end
+
+  def likes
+    ActivityPub::CollectionPresenter.new(
+      id: ActivityPub::TagManager.instance.likes_uri_for(object),
+      type: :unordered,
+      size: object.favourites_count
+    )
+  end
+
+  def shares
+    ActivityPub::CollectionPresenter.new(
+      id: ActivityPub::TagManager.instance.shares_uri_for(object),
+      type: :unordered,
+      size: object.reblogs_count
     )
   end
 

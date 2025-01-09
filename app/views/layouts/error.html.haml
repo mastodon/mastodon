@@ -1,12 +1,11 @@
 !!!
 %html{ lang: I18n.locale }
   %head
-    %meta{ content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
+    %meta{ 'content' => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
     %meta{ charset: 'utf-8' }/
     %title= safe_join([yield(:page_title), Setting.default_settings['site_title']], ' - ')
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
-    = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
-    = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all', crossorigin: 'anonymous'
+    = theme_style_tags Setting.default_settings['theme']
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
     = javascript_pack_tag 'error', crossorigin: 'anonymous'
   %body.error

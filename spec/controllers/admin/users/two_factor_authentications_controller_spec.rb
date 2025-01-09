@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'webauthn/fake_client'
 
-describe Admin::Users::TwoFactorAuthenticationsController do
+RSpec.describe Admin::Users::TwoFactorAuthenticationsController do
   render_views
 
   let(:user) { Fabricate(:user) }
 
   before do
-    sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
+    sign_in Fabricate(:admin_user), scope: :user
   end
 
   describe 'DELETE #destroy' do
@@ -20,7 +22,7 @@ describe Admin::Users::TwoFactorAuthenticationsController do
         delete :destroy, params: { user_id: user.id }
 
         user.reload
-        expect(user.otp_enabled?).to eq false
+        expect(user.otp_enabled?).to be false
         expect(response).to redirect_to(admin_account_path(user.account_id))
       end
     end
@@ -43,8 +45,8 @@ describe Admin::Users::TwoFactorAuthenticationsController do
         delete :destroy, params: { user_id: user.id }
 
         user.reload
-        expect(user.otp_enabled?).to eq false
-        expect(user.webauthn_enabled?).to eq false
+        expect(user.otp_enabled?).to be false
+        expect(user.webauthn_enabled?).to be false
         expect(response).to redirect_to(admin_account_path(user.account_id))
       end
     end

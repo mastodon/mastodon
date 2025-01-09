@@ -1,13 +1,12 @@
 ---
 fa:
   about:
-    about_mastodon_html: 'شبکهٔ اجتماعی آینده: بدون تبلیغات، بدون شنود از طرف شرکت‌ها، طراحی اخلاق‌مدار، و معماری غیرمتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
+    about_mastodon_html: 'شبکه‌ی اجتماعی آینده: بدون تبلیغات، بدون شنود از طرف شرکت‌ها، طراحی اخلاق‌مدار، و معماری غیرمتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
     contact_missing: تنظیم نشده
     contact_unavailable: موجود نیست
     hosted_on: ماستودون، میزبانی‌شده روی %{domain}
     title: درباره
   accounts:
-    follow: پیگیری
     followers:
       one: پیگیر
       other: پیگیر
@@ -22,16 +21,19 @@ fa:
       one: فرسته
       other: فرسته‌ها
     posts_tab_heading: فرسته‌ها
+    self_follow_error: دنبال کردن حساب کاربری شما مجاز نیست
   admin:
     account_actions:
       action: انجامِ کنش
+      already_silenced: این جساب از پیش محدود شده.
+      already_suspended: این جساب از پیش معلّق شده.
       title: انجام کنش مدیریتی روی %{acct}
     account_moderation_notes:
       create: افزودن یادداشت
       created_msg: یادداشت مدیر با موفقیت ساخته شد!
       destroyed_msg: یادداشت نظارتی با موفقیت نابود شد!
     accounts:
-      add_email_domain_block: مسدود کردن دامنهٔ رایانامه
+      add_email_domain_block: انسداد دامنهٔ رایانامه
       approve: پذیرفتن
       approved_msg: کارهٔ ثبت‌نام %{username} با موفقیت تأیید شد
       are_you_sure: مطمئنید؟
@@ -46,6 +48,7 @@ fa:
         title: تغییر رایانامه برای %{username}
       change_role:
         changed_msg: نقش با موفقیت تغییر کرد!
+        edit_roles: مدیریت نقش‌های کاربر
         label: تغییر نقش
         no_role: بدون نقش
         title: تغییر نقش برای %{username}
@@ -80,7 +83,7 @@ fa:
       joined: عضو شده در
       location:
         all: همه
-        local: محلّی
+        local: محلی
         remote: کارسازهای دیگر
         title: مکان
       login_status: وضعیت ورود
@@ -91,20 +94,24 @@ fa:
       moderation:
         active: فعّال
         all: همه
+        disabled: غیرفعال
         pending: منتظر
         silenced: محدود
         suspended: تعلیق شده
         title: مدیریت
       moderation_notes: یادداشت‌های مدیریتی
       most_recent_activity: آخرین فعالیت
-      most_recent_ip: آخرین IP
+      most_recent_ip: آخرین آی پی
       no_account_selected: هیچ حسابی تغییر نکرد زیرا حسابی انتخاب نشده بود
       no_limits_imposed: بدون محدودیت
       no_role_assigned: هیچ نقشی اعطا نشده
       not_subscribed: مشترک نیست
       pending: در انتظار بررسی
       perform_full_suspension: تعلیق
-      previous_strikes: اخطارهای پیشین
+      previous_strikes: شکایت‌های پیشین
+      previous_strikes_description_html:
+        one: این حساب <strong>یک</strong> شکایت دارد.
+        other: این حساب <strong>%{count}</strong> شکایت دارد.
       promote: ترفیع‌دادن
       protocol: پروتکل
       public: عمومی
@@ -113,21 +120,24 @@ fa:
       redownloaded_msg: حساب %{username} با موفقیت از ابتدا نوسازی شد
       reject: نپذیرفتن
       rejected_msg: کارهٔ ثبت‌نام %{username} با موفقیت رد شد
+      remote_suspension_irreversible: داده‌های این حساب به طور غیرقابل برگشت حذف شده است.
+      remote_suspension_reversible_hint_html: حساب روی کارسازشان معلّق شد و داده‌ها به صورت کامل در %{date} برداشته خواهند شد. تا آن زمان، کارساز دوردست می‌تواند این حساب را بی هیچ عوارضی بازگرداند. اگر می‌خواهید فوراً همهٔ داده‌های حساب را بردارید، می‌توانید در پایین این کار را بکنید.
       remove_avatar: حذف تصویر نمایه
       remove_header: برداشتن تصویر زمینه
       removed_avatar_msg: تصویر آواتار %{username} با موفّقیت برداشته شد
       removed_header_msg: تصویر سرایند %{username} با موفّقیت برداشته شد
       resend_confirmation:
         already_confirmed: این کاربر قبلا تایید شده است
-        send: ارسال دوبارهٔ رایانامهٔ تأیید
-        success: رایانامه تأیید با موفقیت ارسال شد!
+        send: ارسال مجدد پیوند تایید
+        success: پیوند تایید با موفقیت ارسال شد!
       reset: بازنشانی
-      reset_password: بازنشانی رمز
+      reset_password: بازنشانی گذرواژه
       resubscribe: اشتراک دوباره
       role: نقش
-      search: جستجو
+      search: جست‌وجو
       search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
-      search_same_ip: دیگر کاربران با IP یکسان
+      search_same_ip: دیگر کاربران با آی پی یکسان
+      security: امنیت
       security_measures:
         only_password: فقط گذرواژه
         password_and_2fa: گذرواژه و ۲عاملی
@@ -140,7 +150,7 @@ fa:
       silence: خموشاندن
       silenced: خموشانده
       statuses: نوشته‌ها
-      strikes: اخطارهای پیشین
+      strikes: شکایت‌های پیشین
       subscribe: اشتراک
       suspend: تعلیق
       suspended: تعلیق‌شده
@@ -167,17 +177,21 @@ fa:
         approve_user: تایید کاربر
         assigned_to_self_report: واگذاری گزارش
         change_email_user: تغییر رایانامه برای کاربر
+        change_role_user: تغیر نقش کاربر
         confirm_user: تأیید کاربر
         create_account_warning: ایجاد هشدار
         create_announcement: ایجاد اعلامیه
+        create_canonical_email_block: ایجاد انسداد رایانامه
         create_custom_emoji: ایجاد اموجی سفارشی
         create_domain_allow: ایجاد اجازهٔ دامنه
         create_domain_block: ایجاد انسداد دامنه
         create_email_domain_block: ایجاد انسداد دامنهٔ رایانامه
         create_ip_block: ایجاد قاعدهٔ آی‌پی
         create_unavailable_domain: ایجاد دامنهٔ ناموجود
+        create_user_role: ایجاد نقش
         demote_user: تنزل کاربر
         destroy_announcement: حذف اعلامیه
+        destroy_canonical_email_block: حذف انسداد رایانامه
         destroy_custom_emoji: حذف اموجی سفارشی
         destroy_domain_allow: حذف اجازهٔ دامنه
         destroy_domain_block: حذف انسداد دامنه
@@ -186,6 +200,7 @@ fa:
         destroy_ip_block: حذف قاعدهٔ آی‌پی
         destroy_status: حذف وضعیت
         destroy_unavailable_domain: حذف دامنهٔ ناموجود
+        destroy_user_role: نابودی نقش
         disable_2fa_user: از کار انداختن ورود دومرحله‌ای
         disable_custom_emoji: از کار انداختن اموجی سفارشی
         disable_sign_in_token_auth_user: از کار انداختن تأیید هویت ژتون رایانامه‌ای برای کاربر
@@ -195,10 +210,12 @@ fa:
         enable_user: به کار انداختن کاربر
         memorialize_account: یادسپاری حساب
         promote_user: ترفیع کاربر
+        publish_terms_of_service: انتشار شرایط خدمات
         reject_appeal: رد کردن درخواست تجدیدنظر
         reject_user: رد کاربر
         remove_avatar_user: برداشتن تصویر نمایه
         reopen_report: بازگشایی گزارش
+        resend_user: ارسال مجدد رایانامه تایید
         reset_password_user: بازنشانی گذرواژه
         resolve_report: رفع گزارش
         sensitive_account: علامت‌گذاری رسانه در حسابتان به عنوان حساس
@@ -212,23 +229,31 @@ fa:
         update_announcement: به‌روز رسانی اعلامیه
         update_custom_emoji: به‌روز رسانی اموجی سفارشی
         update_domain_block: به‌روزرسانی مسدودسازی دامنه
+        update_ip_block: بروزرسانی قاعدهٔ آی‌پی
+        update_report: به‌روز رسانی گزارش
         update_status: به‌روز رسانی وضعیت
+        update_user_role: به روزرسانی نقش
       actions:
         approve_appeal_html: "%{name} درخواست تجدیدنظر تصمیم مدیر را از %{target} پذیرفت"
         approve_user_html: "%{name} ثبت نام %{target} را تایید کرد"
         assigned_to_self_report_html: "%{name} رسیدگی به گزارش %{target} را به عهده گرفت"
         change_email_user_html: "%{name} نشانی رایانامهٔ کاربر %{target} را عوض کرد"
+        change_role_user_html: "%{name} نقش %{target} را تغییر داد"
         confirm_user_html: "%{name} نشانی رایانامهٔ کاربر %{target} را تأیید کرد"
         create_account_warning_html: "%{name} هشداری برای %{target} فرستاد"
         create_announcement_html: "%{name} اعلامیه‌ای جدید ایجاد کرد %{target}"
+        create_canonical_email_block_html: "%{name} رایانامه با درهم‌ریزی %{target} را مسدود کرد"
         create_custom_emoji_html: "%{name} اموجی تازهٔ %{target} را بارگذاشت"
         create_domain_allow_html: "%{name} دامنهٔ %{target} را مجاز کرد"
         create_domain_block_html: "%{name} دامنهٔ %{target} را مسدود کرد"
         create_email_domain_block_html: "%{name} دامنهٔ رایانامهٔ %{target} را مسدود کرد"
         create_ip_block_html: "%{name} برای آی‌پی %{target} قانونی ایجاد کرد"
         create_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را متوقف کرد"
+        create_user_role_html: "%{name} نقش %{target} را ایجاد کرد"
         demote_user_html: "%{name} کاربر %{target} را تنزل داد"
         destroy_announcement_html: "%{name} اعلامیهٔ %{target} را حذف کرد"
+        destroy_canonical_email_block_html: "%{name} رایانامه با درهم‌ریزی %{target} را نامسدود کرد"
+        destroy_custom_emoji_html: "%{name} شکلک %{target} را حذف کرد"
         destroy_domain_allow_html: "%{name} دامنهٔ %{target} را از فهرست مجاز برداشت"
         destroy_domain_block_html: "%{name} انسداد دامنهٔ %{target} را رفع کرد"
         destroy_email_domain_block_html: "%{name} انسداد دامنهٔ رایانامهٔ %{target} را برداشت"
@@ -236,6 +261,7 @@ fa:
         destroy_ip_block_html: "%{name} قاعدهٔ آی‌پی %{target} را حذف کرد"
         destroy_status_html: "%{name} وضعیت %{target} را برداشت"
         destroy_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را از سر گرفت"
+        destroy_user_role_html: "%{name} نقش %{target} را حذف کرد"
         disable_2fa_user_html: "%{name} ضرورت ورود دو مرحله‌ای را برای کاربر %{target} غیر فعال کرد"
         disable_custom_emoji_html: "%{name} شکلک %{target} را غیرفعال کرد"
         disable_sign_in_token_auth_user_html: "%{name}، احراز هویت با توکن رایانامه را برای %{target} غیرفعال کرد"
@@ -245,10 +271,12 @@ fa:
         enable_user_html: "%{name} ورود را برای کاربر %{target} فعال کرد"
         memorialize_account_html: "%{name} حساب %{target} را تبدیل به صفحهٔ یادمان کرد"
         promote_user_html: "%{name} کاربر %{target} را ترفیع داد"
+        publish_terms_of_service_html: "%{name} به‌روزرسانی‌های شرایط خدمات را منتشر کرد"
         reject_appeal_html: "%{name} درخواست تجدیدنظر تصمیم مدیر را از %{target} رد کرد"
         reject_user_html: "%{name} ثبت نام %{target} را رد کرد"
         remove_avatar_user_html: "%{name} تصویر نمایهٔ %{target} را حذف کرد"
         reopen_report_html: "%{name} گزارش %{target} را دوباره به جریان انداخت"
+        resend_user_html: "%{name} رایانامهٔ تأیید برای %{target} را دوباره فرستاد"
         reset_password_user_html: "%{name} گذرواژه کاربر %{target} را بازنشاند"
         resolve_report_html: "%{name} گزارش %{target} را رفع کرد"
         sensitive_account_html: "%{name} رسانهٔ %{target} را به عنوان حساس علامت‌گذاری کرد"
@@ -262,11 +290,16 @@ fa:
         update_announcement_html: "%{name} اعلامیهٔ %{target} را به‌روز کرد"
         update_custom_emoji_html: "%{name} شکلک %{target} را به‌روز کرد"
         update_domain_block_html: "%{name} مسدودسازی دامنه را برای %{target} به‌روزرسانی کرد"
+        update_ip_block_html: "%{name} قانون آی‌پی %{target} را تغییر داد"
+        update_report_html: "%{name} گزارش %{target} را به‌روز کرد"
         update_status_html: "%{name} نوشتهٔ %{target} را به‌روز کرد"
+        update_user_role_html: "%{name} نقش %{target} را تغییر داد"
+      deleted_account: حساب حذف شد
       empty: هیچ گزارشی پیدا نشد.
       filter_by_action: پالایش بر اساس کنش
       filter_by_user: پالایش بر اساس کاربر
       title: سیاههٔ بازرسی
+      unavailable_instance: "(نام دامنه ناموجود)"
     announcements:
       destroyed_msg: اعلامیه با موفقیت حذف شد!
       edit:
@@ -284,6 +317,7 @@ fa:
       unpublish: عدم انتشار
       unpublished_msg: انتشار اعلامیه با موفقیت لغو شد!
       updated_msg: اعلامیه با موفقیت به‌روز شد!
+    critical_update_pending: به‌روز رسانی‌های بحرانی منتظرند
     custom_emojis:
       assign_category: تعیین دسته
       by_domain: دامنه
@@ -306,6 +340,7 @@ fa:
       listed: فهرست شده
       new:
         title: افزودن شکلک سفارشی
+      no_emoji_selected: هیچ ایموجی‌ای تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
       not_permitted: مجاز به انجام این کنش نیستید
       overwrite: بازنویسی
       shortcode: کد کوتاه
@@ -318,7 +353,7 @@ fa:
       updated_msg: شکلک با موفقیت به‌روز شد!
       upload: بارگذاری
     dashboard:
-      active_users: کاربران فعّال
+      active_users: کاربر فعّال
       interactions: برهم‌کنش‌ها
       media_storage: ذخیره‌ساز رسانه
       new_users: کاربران جدید
@@ -331,7 +366,7 @@ fa:
         other: "<strong>%{count}</strong> گزارش در انتظار"
       pending_tags_html:
         one: "<strong>%{count}</strong> هشتگ در انتظار"
-        other: "<strong>%{count}</strong> هشتگ در انتظار"
+        other: "<strong>%{count}</strong> برچسب منتظر"
       pending_users_html:
         one: "<strong>%{count}</strong> کاربر در انتظار"
         other: "<strong>%{count}</strong> کاربر در انتظار"
@@ -341,7 +376,7 @@ fa:
       space: فضای مصرف‌شده
       title: ابزارهای مدیریت
       top_languages: زبان‌های فعّال‌تر
-      top_servers: کاربران فعّال‌تر
+      top_servers: فعّال‌ترین کارسازها
       website: پایگاه وب
     disputes:
       appeals:
@@ -351,23 +386,39 @@ fa:
       add_new: مجاز کردن دامنه
       created_msg: دامنه با موفقیت مجاز شد
       destroyed_msg: دامنه از فهرست مجاز برداشته شد
+      export: برون‌ریزی
+      import: درون‌ریزی
       undo: برداشتن از فهرست مجاز
     domain_blocks:
       add_new: افزودن مسدودسازی دامین تازه
+      confirm_suspension:
+        cancel: لغو
+        confirm: تعلیق
+        permanent_action: برگرداندن تعلیق هیچ داده یا ارتباطی را برنخواهد گرداند.
+        preamble_html: در حال تعلیق <strong>%{domain}</strong> و همهٔ زیردامنه‌هایش هستید.
+        remove_all_data: این کار همهٔ داده‌های نمایه، محتوا و رسانه‌های حساب‌های این دامنه را از کارسازتان برمی‌دارد.
+        stop_communication: کارسازتان دیگر با این کارسازها ارتباط برقرار نخواهد کرد.
+        title: تأیید انسداد دامنه برای %{domain}
+        undo_relationships: با این کار هر رابطه فالو بین حساب های این سرورها و حساب های شما خنثی می شود.
       created_msg: مسدودسازی دامنه در حال پردازش است
-      destroyed_msg: مسدودکردن دامنه واگردانده شد
+      destroyed_msg: انسداد دامنه واگردانده شد
       domain: دامنه
       edit: ویرایش مسدودسازی دامنه
+      existing_domain_block: شما قبلاً محدودیت های سخت تری را برای %{name} اعمال کرده اید.
       existing_domain_block_html: شما پیش‌تر محدودیت‌های سخت‌تری روی %{name} اعمال کرده‌اید، و باید نخست <a href="%{unblock_url}">مسدودسازی را لغو کنید</a>.
+      export: برون‌ریزی
+      import: درون‌ریزی
       new:
         create: مسدودسازی
         hint: مسدودسازی دامنه جلوی ایجاد ورودی‌های حساب در پایگاه داده را نمی‌گیرد، بلکه به طور خودکار روش‌های مدیریتی را روی فعالیت‌های فعلی و گذشتهٔ آن حساب‌ها اعمال می‌کند.
         severity:
-          desc_html: "<strong>خموشاندن</strong> نوشته‌های حساب را برای هر فرد غیرپیگیر، نامرئی می‌کند.<strong>تعلیق</strong> همهٔ محتوا، رسانه‌ها، و داده‌های نمایهٔ حساب را پاک می‌کند. اگر فقط می‌خواهید جلوی رسانه‌ها را بگیرید <strong>هیچ</strong> را برگزینید."
+          desc_html: "<strong>محدود کردن</strong> باعث می‌شود پست‌های حساب‌های موجود در این دامنه برای افرادی که آن‌ها را دنبال نمی‌کنند نامرئی شوند. <strong>تعلیق</strong> همه محتوا، رسانه و داده‌های نمایه حساب‌های این دامنه را از سرور شما حذف می‌کند. اگر فقط می‌خواهید فایل‌های رسانه‌ای را رد کنید، از <strong>هیچکدام</strong> استفاده کنید."
           noop: هیچ
-          silence: خموشاندن
+          silence: محدود
           suspend: تعلیق
         title: مسدودسازی دامین تازه
+      no_domain_block_selected: هیچ انسداد دامنه‌ای تغییر نکرد زیرا هیچ‌کدامشان انتخاب نشده بودند
+      not_permitted: شما مجاز به انجام این عملیات نیستید
       obfuscate: مبهم‌سازی نام دامنهٔ
       obfuscate_hint: در صورت به کار افتاده بودن اعلام فهرست محدودیت‌های دامنه، نام دامنه در فهرست را به صورت جزیی مبهم می‌کند
       private_comment: یادداشت خصوصی
@@ -375,13 +426,17 @@ fa:
       public_comment: یادداشت عمومی
       public_comment_hint: یادداشتی دربارهٔ محدودیت روی این دامین برای عموم، در صورتی که فهرست دامین‌های محدود شده منتشر شود.
       reject_media: نپذیرفتن پرونده‌های رسانه‌ای
-      reject_media_hint: پرونده‌های رسانه‌ای ذخیره‌شدهٔ محلّی را پاک کرده و از بارگیریشان در آینده خودداری می‌کند. بی‌تأثیر روی معلق‌ها
+      reject_media_hint: پرونده‌های رسانه‌ای ذخیره‌شدهٔ محلی را پاک کرده و از بارگیریشان در آینده خودداری می‌کند. بی‌تأثیر روی معلّق‌ها
       reject_reports: نپذیرفتن گزارش‌ها
       reject_reports_hint: گزارش‌هایی را که از این دامنه می‌آید نادیده می‌گیرد. بی‌تأثیر برای معلق‌شده‌ها
       undo: واگردانی مسدودسازی دامین
       view: دیدن مسدودسازی دامنه
     email_domain_blocks:
       add_new: افزودن تازه
+      allow_registrations_with_approval: اجازهٔ ثبت‌نام با تأیید
+      attempts_over_week:
+        one: "%{count} تلاش در هفتهٔ گذشته"
+        other: "%{count} تلاش ورود در هفتهٔ گذشته"
       created_msg: دامنهٔ رایانامه با موفقیت مسدود شد
       delete: پاک‌کردن
       dns:
@@ -390,8 +445,28 @@ fa:
       domain: دامین
       new:
         create: ساختن مسدودسازی
+        resolve: حل و فصل دامنه
         title: مسدودسازی دامنهٔ رایانامهٔ جدید
+      no_email_domain_block_selected: هیچ انسداد دامنهٔ رایانامه‌ای تغییر نکرد زیرا هیچ‌کدامشان انتخاب نشده بودند
+      not_permitted: مجاز نیست
+      resolved_dns_records_hint_html: نام دامنه به دامنه های MX زیر منتقل می شود که در نهایت مسئولیت پذیرش ایمیل را بر عهده دارند. مسدود کردن دامنه MX، ثبت نام از هر آدرس ایمیلی را که از همان دامنه MX استفاده می کند، مسدود می کند، حتی اگر نام دامنه قابل مشاهده متفاوت باشد. <strong>مراقب باشید ارائه دهندگان ایمیل اصلی را مسدود نکنید.</strong>
+      resolved_through_html: از طریق %{domain} حل شد
       title: دامنه‌های رایانامهٔ مسدود شده
+    export_domain_allows:
+      new:
+        title: درون‌ریزی اجازه‌های دامنه
+      no_file: هیچ پرونده‌ای گزیده نشده
+    export_domain_blocks:
+      import:
+        description_html: شما در حال وارد کردن لیستی از بلوک های دامنه هستید. لطفاً این فهرست را با دقت بررسی کنید، به خصوص اگر خودتان این فهرست را تهیه نکرده اید.
+        existing_relationships_warning: رابطه‌های پی‌گیری موجود
+        private_comment_description_html: 'برای کمک به ردیابی بلوک‌های وارد شده از کجا آمده‌اند، بلوک‌های وارد شده با نظر خصوصی زیر ایجاد می‌شوند: <q>%{comment}</q>'
+        private_comment_template: درون‌ریخته از %{source} در %{date}
+        title: درون‌ریزی انسدادهای دامنه
+      invalid_domain_block: 'یک یا چند بلوک دامنه به دلیل خطا(های) زیر نادیده گرفته شد: %{error}'
+      new:
+        title: درون‌ریزی انسدادهای دامنه
+      no_file: هیچ پرونده‌ای گزیده نشده
     follow_recommendations:
       description_html: "<strong>پیشنهادات پیگیری به کاربران جدید کک می‌کند تا سریع‌تر محتوای جالب را پیدا کنند</strong>. زمانی که کاربری هنوز به اندازه کافی با دیگران تعامل نداشته است تا پیشنهادات پیگیری شخصی‌سازی‌شده دریافت کند، این حساب‌ها را به جای آن فهرست مشاهده خواهد کرد. این حساب‌ها به صورت روزانه و در ترکیب با بیشتری تعاملات و بالاترین دنبال‌کنندگان محلی برای یک زبان مشخص بازمحاسبه می‌شوند."
       language: برای زبان
@@ -401,9 +476,20 @@ fa:
       title: پیشنهادهای پی‌گیری
       unsuppress: بازگردانی پیشنهادهای پی‌گیری
     instances:
+      audit_log:
+        title: گزارش های حسابرسی اخیر
+        view_all: مشاهده گزارش های حسابرسی کامل
       availability:
+        description_html:
+          one: اگر تحویل به دامنه <strong>%{count} روز</strong> بدون موفقیت انجام نشد، هیچ تلاش دیگری برای تحویل انجام نخواهد شد مگر اینکه تحویل <em>از</em> دامنه دریافت شود.
+          other: اگر تحویل به دامنه در <strong>%{count} روزهای مختلف</strong> بدون موفقیت انجام نشد، هیچ تلاش دیگری برای تحویل انجام نخواهد شد مگر اینکه تحویل <em>از</em> دامنه دریافت شود.
+        failure_threshold_reached: در %{date} به آستانهٔ شکست رسید.
+        failures_recorded:
+          one: تلاش ناموفق در %{count} روز.
+          other: تلاش ناموفق در %{count} روز مختلف.
         no_failures_recorded: هیچ شکستی در سابقه نیست.
         title: موجود بودن
+        warning: آخرین تلاش برای اتصال به این سرور ناموفق بوده است
       back_to_all: همه
       back_to_limited: محدود
       back_to_warning: هشدار
@@ -411,7 +497,11 @@ fa:
       confirm_purge: آیا مطمئن هستید می‌خواهید داده را از این دامنه برای همیشه پاک کنید؟
       content_policies:
         comment: یادداشت داخلی
+        description_html: می‌توانید خط‌مشی‌های محتوایی را تعریف کنید که برای همه حساب‌های این دامنه و هر یک از زیر دامنه‌های آن اعمال شود.
+        limited_federation_mode_description_html: شما می توانید انتخاب کنید که آیا فدراسیون با این دامنه مجاز است یا خیر.
         policies:
+          reject_media: رد کردن رسانه
+          reject_reports: نپذیرفتن گزارش‌ها
           silence: کران
           suspend: تعلیق
         policy: سیاست
@@ -419,13 +509,17 @@ fa:
         title: سیاست‌های محتوا
       dashboard:
         instance_accounts_dimension: حساب‌های پیش‌تر پی‌گیری شده
+        instance_accounts_measure: حساب‌های ذخیره شده
         instance_followers_measure: پی‌گیرندگانمان در آن‌جا
         instance_follows_measure: پی‌گیرندگانشان در این‌جا
         instance_languages_dimension: زبان‌های برتر
+        instance_media_attachments_measure: پیوست‌های رسانه‌ای ذخیره شده
         instance_reports_measure: گزارش‌ها درباره‌شان
+        instance_statuses_measure: فرسته‌های ذخیره شده
       delivery:
         all: همه
         clear: پاک کردن خطاهای تحول محتوا
+        failing: شکست خوردن
         restart: بازراه‌اندازی تحویل محتوا
         stop: متوقف‌کردن تحویل محتوا
         unavailable: ناموجود
@@ -434,6 +528,9 @@ fa:
       delivery_error_hint: اگر تحویل محتوا به مدت %{count} روز ممکن نباشد، به طور خودکار به عنوان تحویل‌ناشونده علامت‌گذاری خواهد شد.
       destroyed_msg: هم اکنون داده دامنه %{domain} در صف حذف حتمی است.
       empty: هیج دامنه‌ای پیدا نشد.
+      known_accounts:
+        one: "%{count} حساب شناخته"
+        other: "%{count} حساب شناخته"
       moderation:
         all: همه
         limited: محدود
@@ -441,12 +538,15 @@ fa:
       private_comment: یادداشت خصوصی
       public_comment: یادداشت عمومی
       purge: پاکسازی
-      title: ارتباط میان‌سروری
+      purge_description_html: اگر فکر می‌کنید این دامنه برای همیشه آفلاین است، می‌توانید تمام سوابق حساب و داده‌های مرتبط با این دامنه را از فضای ذخیره‌سازی خود حذف کنید. این ممکن است کمی طول بکشد.
+      title: ارتباط همگانی
       total_blocked_by_us: مسدودشده از طرف ما
       total_followed_by_them: ما را پی می‌گیرند
       total_followed_by_us: ما پیگیرشان هستیم
       total_reported: گزارش‌ها درباره‌شان
       total_storage: عکس‌ها و ویدیوها
+      totals_time_period_hint_html: مجموع نمایش داده شده در زیر شامل داده های تمام زمان است.
+      unknown_instance: در حال حاضر هیچ سابقه ای از این دامنه در این سرور وجود ندارد.
     invites:
       deactivate_all: غیرفعال‌کردن همه
       filter:
@@ -457,7 +557,7 @@ fa:
       title: دعوت‌ها
     ip_blocks:
       add_new: ایجاد قانون
-      created_msg: قانون IP جدید با موفقیت افزوده شد
+      created_msg: قانون آی پی جدید با موفقیت افزوده شد
       delete: پاک کردن
       expires_in:
         '1209600': ۲ هفته
@@ -467,15 +567,15 @@ fa:
         '86400': ۱ روز
         '94670856': ۳ سال
       new:
-        title: ایجاد قانون جدید IP
+        title: ایجاد قانون جدید آی پی
       no_ip_block_selected: هیچ قاعدهٔ آی‌پی‌ای تغییری نکرد زیرا هیچ‌کدام گزیده نشده بودند
-      title: قوانین IP
+      title: قوانین آی پی
     relationships:
       title: روابط %{acct}
     relays:
       add_new: افزودن رلهٔ تازه
       delete: حذف
-      description_html: یک <strong>رلهٔ میان‌سروری</strong> (federation relay) یک سرور میانجی است که حجم زیادی از فرسته‌های عمومی را بین سرورهای گوناگونی که عضوش می‌شوند جابه‌جا می‌کند. <strong>رله‌ها به سرورهای کوچک و متوسط کمک می‌کنند تا مطالب عمومی بیشتری را بیابند.</strong> اگر رله نباشد، این مطالب عمومی تنها وقتی پیدا می‌شوند که کاربران محلی خودشان پیگیر کاربران روی سرورهای دیگر شوند.
+      description_html: "<strong>رله فدراسیون</strong> یک سرور واسطه است که حجم زیادی از پست‌های عمومی را بین سرورهایی که مشترک و منتشر می‌کنند رد و بدل می‌کند. <strong>می‌تواند به سرورهای کوچک و متوسط ​​کمک کند تا محتوایی را از طرف دیگر پیدا کنند</strong>، که در غیر این صورت از کاربران محلی می‌خواهد به‌طور دستی افراد دیگر را در سرورهای راه دور دنبال کنند."
       disable: از کار انداختن
       disabled: از کار افتاده
       enable: به کار انداختن
@@ -491,7 +591,6 @@ fa:
     report_notes:
       created_msg: یادداشت گزارش با موفقیت ساخته شد!
       destroyed_msg: یادداشت گزارش با موفقیت حذف شد!
-      today_at: امروز در %{time}
     reports:
       account:
         notes:
@@ -500,18 +599,35 @@ fa:
       action_log: گزارش حسابرسی
       action_taken_by: انجام‌دهنده
       actions:
+        delete_description_html: فرستهٔ گزارش شده حذف و شکایتی ضبط خواهد شد تا بتوانید خلاف‌های آینده از همین حساب را بهتر مدیریت کنید.
+        mark_as_sensitive_description_html: رسانهٔ درون فرستهٔ گزارش شده به عنوان حسّاس علامت خورده و شکایتی ضبط خواهد شد تا بتوانید خلاف‌های آینده از همین حساب را بهتر مدیریت کنید.
         other_description_html: دیدن انتخاب های بیشتر برای کنترل رفتار حساب و سفارشی سازی ارتباط با حساب گزارش شده.
+        resolve_description_html: هیچ کنشی علیه حساب گزارش شده انجام نخواهد شد. هیچ شکایتی ضبط نشده و گزارش بسته خواهد شد.
+        silence_description_html: این حساب فقط برای کسانی قابل مشاهده خواهد بود که قبلاً آن را دنبال می کنند یا به صورت دستی آن را جستجو می کنند و دسترسی آن را به شدت محدود می کند. همیشه می توان برگرداند. همه گزارش‌های مربوط به این حساب را می‌بندد.
+        suspend_description_html: اکانت و تمامی محتویات آن غیرقابل دسترسی و در نهایت حذف خواهد شد و تعامل با آن غیر ممکن خواهد بود. قابل برگشت در عرض 30 روز همه گزارش‌های مربوط به این حساب را می‌بندد.
+      actions_description_html: تصمیم بگیرید که چه اقدامی برای حل این گزارش انجام دهید. اگر اقدام تنبیهی علیه حساب گزارش شده انجام دهید، یک اعلان ایمیل برای آنها ارسال می شود، به جز زمانی که دسته <strong>هرزنامه</strong> انتخاب شده باشد.
+      actions_description_remote_html: تصمیم بگیرید که چه اقدامی برای حل این گزارش انجام دهید. این فقط بر نحوه ارتباط سرور <strong>شما</strong> با این حساب راه دور و مدیریت محتوای آن تأثیر می گذارد.
+      actions_no_posts: این گزارش هیچ پست مرتبطی برای حذف ندارد
       add_to_report: افزودن بیش‌تر به گزارش
+      already_suspended_badges:
+        local: از پیش روی این کارساز معلّق شده
+        remote: از پیش روی کارسازشان معلّق شده
       are_you_sure: مطمئنید؟
       assign_to_self: به عهدهٔ من بگذار
       assigned: مدیر عهده‌دار
       by_target_domain: دامنهٔ حساب گزارش‌شده
+      cancel: لغو
       category: دسته
+      category_description_html: دلیل گزارش این حساب و/یا محتوا در ارتباط با حساب گزارش شده ذکر خواهد شد
       comment:
         none: هیچ
+      comment_description_html: 'برای ارائه اطلاعات بیشتر، %{name} نوشت:'
+      confirm: تأیید
+      confirm_action: تأیید کنش مدیریتی برای ‪@%{acct}‬
       created_at: گزارش‌شده
       delete_and_resolve: حذف فرسته‌ها
       forwarded: هدایت شده
+      forwarded_replies_explanation: این گزارش از یک کاربر راه دور و در مورد محتوای راه دور است. برای شما ارسال شده است زیرا محتوای گزارش شده در پاسخ به یکی از کاربران شما است.
       forwarded_to: هدایت شده به %{domain}
       mark_as_resolved: علامت‌گذاری به عنوان حل‌شده
       mark_as_sensitive: علامت به حساس
@@ -524,45 +640,107 @@ fa:
         delete: حذف
         placeholder: کارهایی را که در این باره انجام شده، یا هر به‌روزرسانی دیگری را بنویسید...
         title: یادداشت‌ها
+      notes_description_html: مشاهده کنید و یادداشت هایی را برای مدیران دیگر و خود آینده خود بگذارید
+      processed_msg: 'گزارش #%{id} با موفقیت پردازش شد'
+      quick_actions_description_html: 'یک اقدام سریع انجام دهید یا به پایین بروید تا محتوای گزارش شده را ببینید:'
       remote_user_placeholder: کاربر دوردست از %{instance}
       reopen: دوباره به جریان بیندازید
       report: 'گزارش #%{id}'
       reported_account: حساب گزارش‌شده
       reported_by: گزارش از طرف
+      reported_with_application: گزارش شده با برنامه
       resolved: حل‌شده
       resolved_msg: گزارش با موفقیت حل شد!
       skip_to_actions: پرش به کنش‌ها
       status: نوشته
       statuses: محتوای گزارش شده
+      statuses_description_html: محتوای توهین آمیز در ارتباط با حساب گزارش شده ذکر می شود
+      summary:
+        action_preambles:
+          delete_html: 'شما در حال <strong>حذف</strong> برخی از پست‌های <strong>@%{acct}</strong> هستید. این خواهد شد:'
+          mark_as_sensitive_html: 'شما در حال <strong>علامت گذاری</strong> برخی از پست های <strong>@%{acct}</strong> به عنوان <strong>حساس</strong> هستید. این خواهد شد:'
+          silence_html: 'شما در شرف <strong>محدود کردن</strong> <strong>@%{acct}</strong> هستید. این خواهد شد:'
+          suspend_html: 'شما در شرف <strong>تعلیق کردن</strong> <strong>@%{acct}</strong> هستید. این خواهد شد:'
+        actions:
+          delete_html: پست های توهین آمیز را حذف کنید
+          mark_as_sensitive_html: رسانه پست های توهین آمیز را به عنوان حساس علامت گذاری کنید
+          silence_html: دسترسی <strong>@%{acct}</strong> را به شدت محدود کنید و نمایه و محتویات آنها را فقط برای افرادی که قبلاً آنها را دنبال می‌کنند قابل مشاهده کنید یا به صورت دستی نمایه آن را جستجو کنید.
+          suspend_html: تعلیق <strong>@%{acct}</strong>، غیرقابل دسترس کردن نمایه و محتوای آنها و تعامل با آنها غیر ممکن
+        close_report: 'علامت گذاری گزارش #%{id} به عنوان حل شده است'
+        close_reports_html: "<strong>همه</strong> گزارش‌ها در برابر <strong>@%{acct}</strong> را به‌عنوان حل‌وفصل علامت‌گذاری کنید"
+        delete_data_html: نمایه و محتویات <strong>@%{acct}</strong> را 30 روز بعد حذف کنید، مگر اینکه در این مدت معلق نشوند
+        preview_preamble_html: "<strong>@%{acct}</strong> اخطاری با محتوای زیر دریافت خواهد کرد:"
+        record_strike_html: ضبط شکایتی علیه <strong>‪@%{acct}‬</strong> برای کمک به تصمیم‌گیری برای قانون‌شکنی‌های آیندهٔ این حساب
+        send_email_html: یک ایمیل هشدار به <strong>@%{acct}</strong> ارسال کنید
+        warning_placeholder: استدلال اضافی اختیاری برای اقدام تعدیل.
       target_origin: خاستگاه حساب گزارش‌شده
       title: گزارش‌ها
       unassign: پس‌گرفتن مسئولیت
+      unknown_action_msg: 'کنش ناشناخته: %{action}'
       unresolved: حل‌نشده
       updated_at: به‌روز شد
       view_profile: دیدن نمایه
     roles:
       add_new: افزودن نقش
+      assigned_users:
+        one: "%{count} کاربر"
+        other: "%{count} کاربر"
       categories:
         administration: مدیریت
-        devops: دواپس
+        devops: DevOps
         invites: دعوت‌ها
         moderation: نظارت
         special: ویژه
       delete: حذف
+      description_html: با <strong>نقش‌های کاربر</strong>، می‌توانید تنظیمات و مناطقی از ماستودون را که کاربران شما می‌توانند به آن دسترسی داشته باشند، سفارشی کنید.
       edit: ویراش نقش %{name}
       everyone: اجازه‌های پیش‌گزیده
+      everyone_full_description_html: این <strong>نقش پایه</strong> است که بر <strong>همه کاربران</strong> تأثیر می‌گذارد، حتی آن‌هایی که نقش تعیین‌شده ندارند. همه نقش های دیگر مجوزها را از آن به ارث می برند.
+      permissions_count:
+        one: "%{count} اجازه"
+        other: "%{count} اجازه"
       privileges:
         administrator: مدیر
+        administrator_description: کاربرانی که این مجوز را دارند از هر مجوزی عبور می کنند
         delete_user_data: حذف داده‌های کاربر
+        delete_user_data_description: به کاربران این امکان را می دهد که بدون تاخیر داده های سایر کاربران را حذف کنند
         invite_users: دعوت کاربران
+        invite_users_description: به کاربران اجازه می دهد افراد جدیدی را به سرور دعوت کنند
         manage_announcements: مدیریت اعلامیه‌ها
+        manage_announcements_description: به کاربران اجازه می دهد تا اعلان ها را روی سرور مدیریت کنند
+        manage_appeals: مدیریت درخواست‌های بازنگری
+        manage_appeals_description: به کاربران امکان می‌دهد درخواست‌های تجدیدنظر علیه اقدامات تعدیل را بررسی کنند
         manage_blocks: مدیریت مسدودی‌ها
+        manage_blocks_description: به کاربران اجازه می دهد تا ارائه دهندگان ایمیل و آدرس های آی پی را مسدود کنند
         manage_custom_emojis: مدیریت ایموجی‌های سفارشی
+        manage_custom_emojis_description: به کاربران اجازه می دهد تا ایموجی های سفارشی را روی سرور مدیریت کنند
+        manage_federation: مدیریت خودگردانی
+        manage_federation_description: به کاربران اجازه می‌دهد تا اتحاد با دامنه‌های دیگر را مسدود یا اجازه دهند و تحویل‌پذیری را کنترل کنند
         manage_invites: مدیریت دعوت‌ها
+        manage_invites_description: به کاربران امکان می دهد پیوندهای دعوت را مرور و غیرفعال کنند
         manage_reports: مدیریت گزارش‌ها
+        manage_reports_description: به کاربران امکان می‌دهد گزارش‌ها را بررسی کنند و اقدامات تعدیل را علیه آنها انجام دهند
         manage_roles: مدیریت نقش‌ها
+        manage_roles_description: به کاربران امکان می دهد نقش های زیر نقش خود را مدیریت و اختصاص دهند
         manage_rules: مدیریت قوانین
+        manage_rules_description: اجازه به کاربران برای تغییر قوانین کارساز
         manage_settings: مدیریت تنظیمات
+        manage_settings_description: اجازه به کاربران برای تغییر تنظیمات پایگاه
+        manage_taxonomies: مدیریت طیقه‌بندی‌ها
+        manage_taxonomies_description: به کاربران امکان می‌دهد محتوای پرطرفدار را بررسی کنند و تنظیمات هشتگ را به‌روزرسانی کنند
+        manage_user_access: مدیریت دسترسی کاربران
+        manage_user_access_description: به کاربران اجازه می دهد تا احراز هویت دو مرحله ای سایر کاربران را غیرفعال کنند، آدرس ایمیل آنها را تغییر دهند و رمز عبور خود را بازنشانی کنند
+        manage_users: مدیریت کاربران
+        manage_users_description: به کاربران اجازه می دهد تا جزئیات سایر کاربران را مشاهده کنند و اقدامات تعدیل را علیه آنها انجام دهند
+        manage_webhooks: مدیریت قلّاب‌های وب
+        manage_webhooks_description: به کاربران اجازه می دهد تا برای رویدادهای اداری، وب هوک ها را راه‌اندازی کنند
+        view_audit_log: مشاهده گزارش حسابرسی
+        view_audit_log_description: به کاربران اجازه می دهد تا تاریخچه ای از اقدامات مدیریتی روی سرور را مشاهده کنند
+        view_dashboard: دیدن داشبورد
+        view_dashboard_description: اجازه به کاربران برای دسترسی به داشتبورد و سنجه‌های مختلف
+        view_devops: دواپس
+        view_devops_description: به کاربران امکان دسترسی به داشبورد Sidekiq و pgHero را می دهد
+      title: نقش‌ها
     rules:
       add_new: افزودن قانون
       delete: حذف
@@ -571,10 +749,34 @@ fa:
       empty: هنوز هیچ قانونی برای کارساز تعریف نشده.
       title: قوانین کارساز
     settings:
+      about:
+        manage_rules: مدیریت قانون‌های کارساز
+        preamble: اطلاعات عمیقی در مورد نحوه کارکرد، تعدیل و تأمین مالی سرور ارائه دهید.
+        rules_hint: یک منطقه اختصاصی برای قوانینی وجود دارد که انتظار می رود کاربران شما به آن پایبند باشند.
+        title: درباره
+      appearance:
+        preamble: سفارشی‌سازی رابطس وب ماستودون.
+        title: ظاهر
+      branding:
+        preamble: نام تجاری سرور شما آن را از سایر سرورهای شبکه متمایز می کند. این اطلاعات ممکن است در محیط های مختلفی مانند رابط وب ماستودون، برنامه های کاربردی بومی، در پیش نمایش پیوند در سایر وب سایت ها و در برنامه های پیام رسانی و غیره نمایش داده شود. به همین دلیل، بهتر است این اطلاعات واضح، کوتاه و مختصر باشد.
+        title: ویژندگی
+      captcha_enabled:
+        desc_html: این متکی به اسکریپت های خارجی از hCaptcha است که ممکن است یک نگرانی امنیتی و حفظ حریم خصوصی باشد. علاوه بر این، <strong>این می‌تواند فرآیند ثبت نام را به میزان قابل توجهی برای برخی از افراد (به ویژه افراد ناتوان) کمتر در دسترس قرار دهد</strong>. به این دلایل، لطفاً اقدامات جایگزین مانند ثبت نام مبتنی بر تأیید یا دعوت را در نظر بگیرید.
+        title: کاربران جدید را ملزم به حل یک کپچا برای تأیید حساب خود کنید
+      content_retention:
+        danger_zone: منطقهٔ خطر
+        preamble: نحوه ذخیره محتوای تولید شده توسط کاربر در ماستودون را کنترل کنید.
+        title: حفظ محتوا
+      default_noindex:
+        desc_html: بر همه کاربرانی که خودشان این تنظیم را تغییر نداده اند تأثیر می گذارد
+        title: درخواست خروج از اندیس‌گذاری پیش‌گزیدهٔ موتور جست‌وجو
       discovery:
         follow_recommendations: پیروی از پیشنهادها
+        preamble: ارائه محتوای جالب در جذب کاربران جدیدی که ممکن است کسی ماستودون را نشناسند، مفید است. نحوه عملکرد ویژگی‌های کشف مختلف روی سرور خود را کنترل کنید.
         profile_directory: شاخهٔ نمایه
         public_timelines: خط زمانی‌های عمومی
+        publish_discovered_servers: انتشار کارسازهای کشف شده
+        publish_statistics: انتشار آمار
         title: کشف
         trends: پرطرفدارها
       domain_blocks:
@@ -582,24 +784,46 @@ fa:
         disabled: برای هیچ‌کدام
         users: برای کاربران محلی واردشده
       registrations:
+        moderation_recommandation: لطفاً قبل از اینکه ثبت نام را برای همه باز کنید، مطمئن شوید که یک تیم نظارتی مناسب و واکنشی دارید!
+        preamble: کنترل کنید چه کسی می تواند در سرور شما یک حساب ایجاد کند.
         title: ثبت‌نام‌ها
       registrations_mode:
         modes:
           approved: ثبت نام نیازمند تأیید مدیران است
           none: کسی نمی‌تواند ثبت نام کند
           open: همه می‌توانند ثبت نام کنند
+        warning_hint: توصیه می‌کنیم از ”تأیید لازم برای ثبت‌نام” استفاده کنید، مگر اینکه مطمئن باشید تیم نظارتی شما می‌تواند هرزنامه‌ها و ثبت‌های مخرب را به موقع مدیریت کند.
+      security:
+        authorized_fetch: نیاز به احراز هویت از سرورهای فدرال
+        authorized_fetch_hint: نیاز به احراز هویت از سرورهای فدرال، اجرای دقیق‌تر بلوک‌های سطح کاربر و سرور را ممکن می‌سازد. با این حال، این به قیمت جریمه عملکرد است، دسترسی به پاسخ‌های شما را کاهش می‌دهد و ممکن است مشکلات سازگاری با برخی از سرویس‌های فدرال را ایجاد کند. علاوه بر این، این مانع از دریافت پست‌ها و حساب‌های عمومی شما توسط بازیگران اختصاصی نمی‌شود.
+        authorized_fetch_overridden_hint: شما در حال حاضر نمی توانید این تنظیم را تغییر دهید زیرا توسط یک متغیر محیطی لغو شده است.
+        federation_authentication: اجرای احراز هویت فدراسیون
       title: تنظیمات کارساز
     site_uploads:
       delete: پرونده بارگذاری شده را پاک کنید
       destroyed_msg: بارگذاری پایگاه با موفقیت حذف شد!
+    software_updates:
+      critical_update: بحرانی — لطفاً به سرعت به‌روز کنید
+      description: توصیه می شود نصب ماستودون خود را به روز نگه دارید تا از آخرین اصلاحات و ویژگی ها بهره مند شوید. علاوه بر این، گاهی اوقات برای جلوگیری از مشکلات امنیتی، به روز رسانی ماستودون به موقع ضروری است. به این دلایل، ماستودون هر 30 دقیقه یکبار به‌روزرسانی‌ها را بررسی می‌کند و طبق اولویت‌های اعلان ایمیل شما را مطلع می‌کند.
+      documentation_link: بیش‌تر بیاموزید
+      release_notes: یادداشت‌های انتشار
+      title: به‌روز رسانی‌های موجود
+      type: گونه
+      types:
+        major: ارائه بزرگ
+        minor: ارائه کوچک
+        patch: انتشار وصله - رفع اشکال و تغییرات آسان برای اعمال
+      version: نگارش
     statuses:
       account: نگارنده
       application: برنامه
       back_to_account: بازگشت به صفحهٔ حساب
       back_to_report: بازگشت به صفحهٔ گزارش
       batch:
+        add_to_report: 'افزودن به گزارش #%{id}'
         remove_from_report: برداشتن از گزارش
         report: گزارش
+      contents: مطالب
       deleted: پاک‌شده
       favourites: برگزیده‌ها
       history: تاریخچهٔ نگارش
@@ -608,47 +832,171 @@ fa:
       media:
         title: رسانه
       metadata: فراداده
+      no_history: این پست ویرایش نشده است
       no_status_selected: هیچ فرسته‌ای تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
       open: گشودن فرسته
       original_status: فرستهٔ اصلی
       reblogs: تقویت‌ها
+      replied_to_html: به %{acct_link} پاسخ داد
       status_changed: فرسته تغییر کرد
-      title: نوشته‌های حساب
+      status_title: پست توسط @%{name}
+      title: پست‌های حساب - @%{name}
       trending: پرطرفدار
+      view_publicly: مشاهده عمومی
       visibility: نمایانی
       with_media: دارای عکس یا ویدیو
     strikes:
       actions:
         delete_statuses: "%{name} فرستهٔ %{target} را حذف کرد"
-      appeal_approved: درخواست تجدیدنظر کرد
-      appeal_pending: درخواست تجدیدنظر در انتظار
+        disable: "%{name} حساب %{target} را منجمد کرد"
+        mark_statuses_as_sensitive: "%{name} فرسته‌های %{target} را به عنوان حسّاس علامت زد"
+        none: "%{name} هشداری به %{target} فرستاد"
+        sensitive: "%{name} حساب %{target} را به عنوان حسّاس علامت زد"
+        silence: "%{name} حساب %{target} را محدود کرد"
+        suspend: "%{name} حساب %{target} را تعلیق کرد"
+      appeal_approved: تجدیدنظر شده
+      appeal_pending: منتظر تجدیدنظر
+      appeal_rejected: درخواست تجدیدنظر رد شد
     system_checks:
       database_schema_check:
         message_html: تعداد مهاجرت پایگاه داده در انتظار انجام هستند. لطفا آن‌ها را اجرا کنید تا اطمینان یابید که برنامه مطابق انتظار رفتار خواهد کرد
+      elasticsearch_health_red:
+        message_html: خوشه Elasticsearch ناسالم است (وضعیت قرمز)، ویژگی های جستجو در دسترس نیستند
+      elasticsearch_health_yellow:
+        message_html: خوشه Elasticsearch ناسالم است (وضعیت زرد)، ممکن است بخواهید دلیل آن را بررسی کنید
+      elasticsearch_index_mismatch:
+        message_html: نگاشت فهرست Elasticsearch منسوخ شده است. لطفاً <code>tootctl search deploy --only=%{value}</code> را اجرا کنید
+      elasticsearch_preset:
+        action: دیدن مستندات
+        message_html: خوشه Elasticsearch شما بیش از یک گره دارد، اما ماستودون برای استفاده از آنها پیکربندی نشده است.
+      elasticsearch_preset_single_node:
+        action: دیدن مستندات
+        message_html: خوشه Elasticsearch شما فقط یک گره دارد، <code>ES_PRESET</code> باید روی <code>single_node_cluster</code> تنظیم شود.
+      elasticsearch_reset_chewy:
+        message_html: فهرست سیستم Elasticsearch شما به دلیل تغییر تنظیمات قدیمی است. لطفاً برای به روز رسانی <code>tootctl search deploy --reset-chewy</code> را اجرا کنید.
+      elasticsearch_running_check:
+        message_html: به Elasticsearch متصل نشد. لطفاً بررسی کنید که در حال اجرا است یا جستجوی متن کامل را غیرفعال کنید
+      elasticsearch_version_check:
+        message_html: 'نگارش الستیک‌سرچ ناسازگار: %{value}'
+        version_comparison: الستیک‌سرچ %{running_version} در حال اجراست، حال که %{required_version} لازم است
       rules_check:
         action: مدیریت قانون‌های کارساز
         message_html: هیچ قانون کارسازی تعریف نکرده‌اید.
       sidekiq_process_check:
         message_html: صف(های) %{value} فاقد هیچونه فرایند Sidekiq هستند. لطفا تنظیمات Sidekiq خود را بازبینی کنید
+      software_version_check:
+        action: دیدن به‌روز رسانی‌های موجود
+        message_html: به‌روز رسانی ماستودون موجود است.
+      software_version_critical_check:
+        action: مشاهده به‌روزرسانی‌های موجود
+        message_html: یک به‌روزرسانی حیاتی ماستودون موجود است، لطفا در اسرع وقت به‌روزرسانی کنید.
+      software_version_patch_check:
+        action: مشاهده به‌روزرسانی‌های موجود
+        message_html: یک به‌روزرسانی رفع اشکال ماستودون موجود است.
+      upload_check_privacy_error:
+        action: برای اطّلاعات بیش‌تر این‌جا را بررسی کنید
+        message_html: "<strong>کارساز وبتان بد پیکربندی شده. محرمانگی کاربرانتان در خطر است.</strong>"
+      upload_check_privacy_error_object_storage:
+        action: برای اطّلاعات بیش‌تر این‌جا را بررسی کنید
+        message_html: "<strong>ذخیره‌سازتان بد پیکربندی شده. محرمانگی کاربرانتان در خطر است.</strong>"
     tags:
+      moderation:
+        not_trendable: غیر قابل داغ شدن
+        not_usable: غير قابل استفاده
+        pending_review: بازبینی منتظر
+        review_requested: بازبینی درخواست شده
+        reviewed: بازبینی شده
+        title: وضعیت
+        trendable: قابل داغ شدن
+        unreviewed: بررسی نشده
+        usable: قابل استفاده
+      name: نام
+      newest: جدیدترین
+      oldest: قدیمی‌ترین
+      open: دیدن عمومی
+      reset: بازنشانی
       review: وضعیت بازبینی
+      search: جست‌وجو
+      title: برچسب‌ها
       updated_msg: تنظیمات برچسب‌ها با موفقیت به‌روز شد
+    terms_of_service:
+      back: بازگشت به شرایط خدمات
+      changelog: چه چیزی تغییر کرده است
+      create: از خودت استفاده کن
+      current: فعلی
+      draft: پیش نویس
+      generate: از قالب استفاده کنید
+      generates:
+        action: ایجاد کنید
+        chance_to_review_html: "<strong>شرایط خدمات ایجاد شده به صورت خودکار منتشر نخواهد شد.</strong> شما فرصتی خواهید داشت که نتایج را بررسی کنید. لطفا مشخصات لازم را برای ادامه وارد کنید."
+        explanation_html: الگوی شرایط خدمات ارائه شده فقط برای اهداف اطلاعاتی است و نباید به عنوان مشاوره حقوقی در مورد هر موضوعی تلقی شود. لطفاً در مورد وضعیت خود و سؤالات حقوقی خاصی که دارید با مشاور حقوقی خود مشورت کنید.
+        title: راه اندازی شرایط خدمات
+      history: تاریخچه
+      live: زنده
+      no_history: هنوز هیچ تغییری در شرایط خدمات ثبت نشده است.
+      no_terms_of_service_html: شما در حال حاضر هیچ شرایط خدماتی را پیکربندی نکرده‌اید. شرایط خدمات به منظور ارائه وضوح و محافظت از شما در برابر مسئولیت های احتمالی در اختلافات با کاربران شما است.
+      notified_on_html: کاربران در %{date} مطلع شدند
+      notify_users: به کاربران اطلاع دهید
+      preview:
+        explanation_html: 'ایمیل برای <strong>%{display_count} کاربران</strong> که قبل از %{date} ثبت نام کرده اند ارسال خواهد شد. متن زیر در ایمیل درج خواهد شد:'
+        send_preview: ارسال پیش نمایش به %{email}
+        send_to_all:
+          one: "%{display_count} ایمیل ارسال کنید"
+          other: "%{display_count} ایمیل ارسال کنید"
+        title: پیش نمایش اعلان شرایط خدمات
+      publish: انتشار دهید
+      published_on_html: منتشر شده در %{date}
+      save_draft: ذخیره پیش نویس
+      title: شرایط خدمات
     title: مدیریت
     trends:
       allow: اجازه
       approved: تأیید شده
+      confirm_allow: مطمئنید که می‌خواهید برچسب‌های گزیده را مجاز کنید؟
+      confirm_disallow: مطمئنید که می‌خواهید برچسب‌های گزیده را ممنوع کنید؟
       disallow: اجازه ندادن
       links:
         allow: اجازه به پیوند
         allow_provider: اجازه به ناشر
+        confirm_allow: مطمئنید که می‌خواهید پیوندهای گزیده را مجاز کنید؟
+        confirm_allow_provider: مطمئنید که می‌خواهید فراهم‌کننده‌های گزیده را مجاز کنید؟
+        confirm_disallow: مطمئنید که می خواهید پیوندهای گزیده را ممنوع کنید؟
+        confirm_disallow_provider: مطمئنید که می خواهید فراهم کننده‌های گزیده را ممنوع کنید؟
+        description_html: اینها پیوندهایی هستند که در حال حاضر توسط حساب هایی که سرور شما پست ها را از آنها می بیند به اشتراک گذاشته می شود. این می تواند به کاربران شما کمک کند تا بفهمند در جهان چه می گذرد. تا زمانی که ناشر را تأیید نکنید، هیچ پیوندی به صورت عمومی نمایش داده نمی شود. همچنین می توانید پیوندهای فردی را مجاز یا رد کنید.
         disallow: اجازه ندادن به پیوند
         disallow_provider: اجازه ندادن به ناشر
+        no_link_selected: هیچ پیوندی تغییر نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
+        publishers:
+          no_publisher_selected: هیچ ناشری تغییر نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
+        shared_by_over_week:
+          one: هم‌رسانده به دست یک نفر در هفتهٔ گذشته
+          other: هم‌رسانده به دست %{count} نفر در هفتهٔ گذشته
         title: پیوندهای داغ
+        usage_comparison: امروز %{today} بار هم‌رسانی شده. در مقایسه با %{yesterday} بار دیروز
+      not_allowed_to_trend: اجازهٔ داغ شدن ندارد
+      only_allowed: فقط مجازها
       pending_review: بازبینی منتظر
       preview_card_providers:
+        allowed: پیوندها از این ناشر می‌توانند داغ شوند
+        description_html: اینها دامنه هایی هستند که پیوندهای آنها اغلب در سرور شما به اشتراک گذاشته می شود. پیوندها به صورت عمومی ترند نمی شوند مگر اینکه دامنه پیوند تأیید شود. تأیید (یا رد) شما به زیر دامنه ها نیز گسترش می یابد.
+        rejected: پیوندها از این ناشر داغ نخواهند شد
         title: ناشران
       rejected: رد شده
       statuses:
+        allow: اجازه به فرسته
+        allow_account: اجازه به نگارنده
+        confirm_allow: مطمئنید که می‌خواهید وضعیت‌های گزیده را مجاز کنید؟
+        confirm_allow_account: مطمئنید که می‌خواهید حساب‌های گزیده را مجاز کنید؟
+        confirm_disallow: مطمئنید که می‌خواهید وضعیت‌های گزیده را ممنوع کنید؟
+        confirm_disallow_account: مطمئنید که می‌خواهید حساب‌های گزیده را ممنوع کنید؟
+        description_html: اینها پست هایی هستند که سرور شما در مورد آنها می داند و در حال حاضر در حال به اشتراک گذاری و محبوبیت زیادی هستند. می تواند به کاربران جدید و بازگشتی شما کمک کند تا افراد بیشتری را برای دنبال کردن پیدا کنند. تا زمانی که نویسنده را تأیید نکنید، هیچ پستی به صورت عمومی نمایش داده نمی‌شود و نویسنده اجازه می‌دهد حساب خود را به دیگران پیشنهاد دهد. همچنین می توانید پست های فردی را مجاز یا رد کنید.
+        disallow: ممنوع کردن فرسته
+        disallow_account: ممنوع کردن نگارنده
+        no_status_selected: هیچ فرستهٔ داغی تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
+        not_discoverable: نویسنده امکان کشف بودن را انتخاب نکرده است
+        shared_by:
+          one: یک بار برگزیده یا هم‌رسانی شده
+          other: "%{friendly_count} بار برگزیده یا هم‌رسانی شده"
         title: فرسته‌های داغ
       tags:
         current_score: امتیاز کنونی %{score}
@@ -657,27 +1005,69 @@ fa:
           tag_languages_dimension: زبان‌های برتر
           tag_servers_dimension: کارسازهای برتر
           tag_servers_measure: کارسازهای گوناگون
-          tag_uses_measure: کل استفاده‌ّا
+          tag_uses_measure: کل استفاده‌ها
+        description_html: اینها هشتگ هایی هستند که در حال حاضر در بسیاری از پست هایی که سرور شما می بیند ظاهر می شوند. این می تواند به کاربران شما کمک کند تا بفهمند مردم در حال حاضر بیشتر درباره چه چیزی صحبت می کنند. تا زمانی که شما آن ها را تایید نکنید، هیچ هشتگ به صورت عمومی نمایش داده نمی شود.
         listable: می‌تواند پیشنهاد شود
+        no_tag_selected: هیچ برچسبی تغییر نکرد زیرا هیچ‌کدام گزیده نبودند
         not_listable: پیشنهاد نخواهد شد
+        not_trendable: تحت روندها ظاهر نمی شود
         not_usable: غیر قابل استفاده
+        peaked_on_and_decaying: در %{date} به اوج خود رسید، اکنون در حال زوال است
         title: برچسب‌های پرطرفدار
+        trendable: می تواند در زیر روندها ظاهر شود
         trending_rank: 'پرطرفدار #%{rank}'
         usable: قابل استفاده
-      title: پرطرفدار
+        usage_comparison: "%{today} بار امروز در مقایسه با %{yesterday} دیروز استفاده شد"
+        used_by_over_week:
+          one: در هفته گذشته توسط یک نفر استفاده شده است
+          other: در هفته گذشته توسط %{count} نفر استفاده شده است
+      title: توصیه ها و روندها
+      trending: پرطرفدار
     warning_presets:
       add_new: افزودن تازه
       delete: زدودن
       edit_preset: ویرایش هشدار پیش‌فرض
       empty: هنز هیچ پیش‌تنظیم هشداری را تعریف نکرده‌اید.
-      title: مدیریت هشدارهای پیش‌فرض
+      title: از پیش تنظیم های هشدار
     webhooks:
+      add_new: افزودن نقطهٔ پایانی
+      delete: حذف
+      description_html: یک <strong>وب هوک</strong> ماستودون را قادر می‌سازد تا <strong>اعلان‌های هم‌زمان</strong> در مورد رویدادهای انتخابی را به برنامه خود ارسال کند، بنابراین برنامه شما می‌تواند <strong>به‌طور خودکار واکنش‌ها را تحریک کند</strong>.
+      disable: از کار انداختن
+      disabled: از کار افتاده
+      edit: ویرایش نقطهٔ پایانی
+      empty: شما هنوز هیچ نقطه پایانی وبی هوک را پیکربندی نکرده‌اید.
+      enable: به کار انداختن
+      enabled: فعّال
+      enabled_events:
+        one: ۱ رویداد به کار افتاده
+        other: "%{count} رویداد به کار افتاده"
+      events: رویدادها
       new: قلاب وب جدید
+      rotate_secret: چرخش رمز
+      secret: امضا کردن رمز
+      status: وضعیت
+      title: قلاب‌های وب
+      webhook: قلاب وب
   admin_mailer:
+    auto_close_registrations:
+      body: به دلیل عدم فعالیت اخیر ناظر، ثبت نام در %{instance} به طور خودکار به نیاز به بازبینی دستی تغییر یافته است تا از استفاده %{instance} به عنوان بستری برای بازیگران بد احتمالی جلوگیری شود. در هر زمان می توانید آن را به ثبت نام های باز تغییر دهید.
+      subject: ثبت نام برای %{instance} به طور خودکار به نیاز به تأیید تغییر یافته است
     new_appeal:
       actions:
+        delete_statuses: برای حذف فرسته‌هایشان
+        disable: برای انجماد حسابشان
+        mark_statuses_as_sensitive: برای علامت زدن فرسته‌هایشان به عنوان حسّاس
         none: یک هشدار
+        sensitive: برای علامت زدن حسابشان به عنوان حسّاس
         silence: برای محدود کردن حساب آنها
+        suspend: برای تعلیق حسابشان
+      body: "%{target} برای یک تصمیم نظارتی توسط %{action_taken_by} از %{date} که %{type} بود، درخواست تجدیدنظر می‌کند. آنها نوشتند:"
+      next_steps: می‌توانید برای لغو تصمیم تعدیل، درخواست تجدیدنظر را تأیید کنید یا آن را نادیده بگیرید.
+      subject: "%{username} در حال درخواست تجدیدنظر برای تصمیم نظارت در %{instance}"
+    new_critical_software_updates:
+      body: نسخه های انتقادی جدید ماستودون منتشر شده است، ممکن است بخواهید در اسرع وقت به روز رسانی کنید!
+      subject: به‌روزرسانی‌های ماستودون بحرانی برای %{instance} در دسترس هستند!
     new_pending_account:
       body: جزئیات حساب تازه این‌جاست. شما می‌توانید آن را تأیید یا رد کنید.
       subject: حساب تازه‌ای در %{instance} نیازمند بررسی است (%{username})
@@ -685,11 +1075,18 @@ fa:
       body: کاربر %{reporter} کاربر %{target} را گزارش داد
       body_remote: کسی از %{domain} گزارش %{target} را فرستاده
       subject: گزارش تازه‌ای برای %{instance} (#%{id})
+    new_software_updates:
+      body: نسخه های جدید ماستودون منتشر شده است، ممکن است بخواهید به روز رسانی کنید!
+      subject: نسخه های جدید ماستودون برای %{instance} در دسترس هستند!
     new_trends:
+      body: 'موارد زیر قبل از نمایش عمومی نیاز به بررسی دارند:'
       new_trending_links:
         title: پیوندهای داغ
       new_trending_statuses:
         title: فرسته‌های داغ
+      new_trending_tags:
+        title: برچسب‌های داغ
+      subject: موضوغ داغ تازه‌ای در %{instance} نیازمند بررسی است
   aliases:
     add_new: ساختن نام مستعار
     created_msg: نام مستعار تازه با موفقیت ساخته شد. الان می‌توانید انتقال از حساب قدیمی را آغاز کنید.
@@ -708,33 +1105,48 @@ fa:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: همه می‌توانند کمک کنند.
     sensitive_content: محتوای حساس
-    toot_layout: آرایش فرسته
   application_mailer:
-    notification_preferences: تغییر ترجیحات ایمیل
+    notification_preferences: تغییر ترجیحات رایانامه
     salutation: "%{name}،"
-    settings: 'تغییر تنظیمات ایمیل: %{link}'
+    settings: 'تغییر ترجیحات رایانامه: %{link}'
+    unsubscribe: لغو اشتراک
     view: 'نمایش:'
     view_profile: دیدن نمایه
     view_status: دیدن نوشته‌ها
   applications:
     created: برنامه با موفقیت ساخته شد
     destroyed: برنامه با موفقیت پاک شد
+    logout: خروج
     regenerate_token: دوباره‌سازی کد دسترسی
     token_regenerated: کد دسترسی با موفقیت ساخته شد
     warning: خیلی مواظب این اطلاعات باشید و آن را به هیچ کس ندهید!
     your_token: کد دسترسی شما
   auth:
-    change_password: رمز
+    apply_for_account: درخواست یک حساب
+    captcha_confirmation:
+      help_html: اگر مشکلی در حل کپچا دارید، می توانید از طریق %{email} با ما در تماس باشید و ما می توانیم به شما کمک کنیم.
+      hint_html: فقط یک چیز دیگر! ما باید تأیید کنیم که شما یک انسان هستید (این برای جلوگیری از هرزنامه است!). کپچا زیر را حل کنید و روی "ادامه" کلیک کنید.
+      title: بررسی های امنیتی
+    confirmations:
+      awaiting_review: آدرس ایمیل شما تایید شد! کارکنان %{domain} اکنون در حال بررسی ثبت نام شما هستند. اگر حساب شما را تایید کنند یک ایمیل دریافت خواهید کرد!
+      awaiting_review_title: ثبت‌نامتان دارد بررسی می‌شود
+      clicking_this_link: زدن این پیوند
+      login_link: ورود
+      proceed_to_login_html: می‌توانید به %{login_link} ادامه دهید.
+      redirect_to_app_html: باید به برنامه <strong>%{app_name}</strong> هدایت می‌شوید. اگر این اتفاق نیفتاد، %{clicking_this_link} را امتحان کنید یا به صورت دستی به برنامه برگردید.
+      registration_complete: ثبت نام شما در %{domain} اکنون کامل شده است!
+      welcome_title: خوش آمدید، %{name}!
+      wrong_email_hint: اگر آن آدرس ایمیل درست نیست، می‌توانید آن را در تنظیمات حساب تغییر دهید.
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     description:
       prefix_invited_by_user: "@%{name} شما را به عضویت در این کارساز ماستودون دعوت کرده است!"
       prefix_sign_up: همین امروز عضو ماستودون شوید!
-      suffix: با داشتن حساب می‌توانید دیگران را پی بگیرید، نوشته‌های تازه منتشر کنید، و با کاربران دیگر از هر سرور ماستودون دیگری و حتی سرورهای دیگر در ارتباط باشید!
-    didnt_get_confirmation: راهنمایی برای تأیید را دریافت نکردید؟
+      suffix: با داشتن حساب می‌توانید دیگران را پی گرفته، نوشته‌هایی منتشر کرده و با کاربرانی از هر کارساز ماستودن دیگری در ارتباط باشید!
+    didnt_get_confirmation: یک پیوند تأیید را دریافت نکردید؟
     dont_have_your_security_key: کلید امنیتیتان را ندارید؟
-    forgot_password: رمزتان را گم کرده‌اید؟
-    invalid_reset_password_token: کد بازنشانی رمز نامعتبر یا منقضی شده است. لطفاً کد دیگری درخواست کنید.
+    forgot_password: گذرواژه خود را فراموش کرده‌اید؟
+    invalid_reset_password_token: کد بازنشانی گذرواژه نامعتبر یا منقضی شده است. لطفاً کد دیگری درخواست کنید.
     link_to_otp: رمز بازگردانی یا رمز دوعاملی را از تلفنتان وارد کنید
     link_to_webauth: استفاده از افزارهٔ امنیتیتان
     log_in_with: ورود با
@@ -743,47 +1155,68 @@ fa:
     migrate_account: نقل مکان به یک حساب دیگر
     migrate_account_html: اگر می‌خواهید این حساب را به حساب دیگری منتقل کنید، <a href="%{path}">این‌جا را کلیک کنید</a>.
     or_log_in_with: یا ورود به وسیلهٔ
+    progress:
+      confirm: تأیید رایانامه
+      details: جزئیات شما
+      review: بررسی ما
+      rules: پذیرش قوانین
     providers:
       cas: CAS
       saml: SAML
     register: عضو شوید
-    registration_closed: سرور %{instance} عضو تازه‌ای نمی‌پذیرد
-    resend_confirmation: راهنمایی برای تأیید را دوباره بفرست
-    reset_password: بازنشانی رمز
+    registration_closed: کارساز %{instance} عضو تازه‌ای نمی‌پذیرد
+    resend_confirmation: ارسال مجدد پیوند تایید
+    reset_password: بازنشانی گذرواژه
+    rules:
+      accept: پذیرفتن
+      back: بازگشت
+      invited_by: 'با سپاس از دعوتی از این فرد دریافت کرده‌اید می‌توانید به %{domain} بپیوندید:'
+      preamble: اینها توسط گردانندگان %{domain} تنظیم و اجرا می شوند.
+      preamble_invited: قبل از ادامه، لطفاً قوانین اساسی تنظیم شده توسط مدیران %{domain} را در نظر بگیرید.
+      title: برخی از قوانین اساسی.
+      title_invited: شما دعوت شده اید.
     security: امنیت
-    set_new_password: تعیین رمز تازه
+    set_new_password: تعین گذرواژه جدید
     setup:
-      email_below_hint_html: اگر نشانی ایمیل زیر نادرست است، می‌توانید آن را تغییر دهید و ایمیل تأیید دوباره‌ای دریافت کنید.
-      email_settings_hint_html: ایمیل تأیید به %{email} فرستاده شد. اگر این نشانی ایمیل درست نیست، می‌توانید از تنظیمات حساب آن را تغییر دهید.
-      title: راه اندازی
+      email_below_hint_html: پوشه هرزنامه خود را بررسی کنید یا یک پوشه دیگر درخواست کنید. در صورت اشتباه می توانید آدرس ایمیل خود را تصحیح کنید.
+      email_settings_hint_html: برای شروع استفاده از ماستودون روی پیوندی که به %{email} فرستادیم کلیک کنید. همین جا منتظر می مانیم.
+      link_not_received: پیوندی نگرفتید؟
+      new_confirmation_instructions_sent: تا چند دقیقه دیگر یک ایمیل جدید با لینک تایید دریافت خواهید کرد!
+      title: صندوق ورودیتان را بررسی کنید
+    sign_in:
+      preamble_html: با اطلاعات کاربری <strong>%{domain}</strong> خود وارد شوید. اگر حساب شما روی سرور دیگری میزبانی شود، نمی توانید در اینجا وارد شوید.
+      title: ورود به %{domain}
+    sign_up:
+      manual_review: ثبت‌نام‌ها در %{domain} از طریق بازبینی دستی توسط گردانندگان ما انجام می‌شود. برای کمک به ما در پردازش ثبت نام خود، کمی در مورد خودتان و اینکه چرا می خواهید یک حساب در %{domain} داشته باشید، بنویسید.
+      preamble: با داشتن یک حساب کاربری در این سرور ماستودون، می‌توانید هر شخص دیگری را در فدیورس دنبال کنید، صرف نظر از اینکه حساب او در کجا میزبانی می‌شود.
+      title: بیایید روی %{domain} برپایتان کنیم.
     status:
       account_status: وضعیت حساب
-      confirming: در حال انتظار برای کامل شدن تأیید ایمیل.
-      pending: درخواست شما منتظر تأیید مسئولان سایت است و این فرایند ممکن است کمی طول بکشد. اگر درخواست شما پذیرفته شود به شما ایمیلی فرستاده خواهد شد.
+      confirming: منتظر کامل شدن تأیید رایانامه.
+      functional: حسابتان کاملاً قابل استفاده است.
+      pending: درخواستتان منتظر بازبینی مسئولان است. ممکن است کمی طول بکشد. اگر درخواستتان پذیرفته شود رایانامه‌ای خواهید گرفت.
       redirecting_to: حساب شما غیرفعال است زیرا هم‌اکنون به %{acct} منتقل شده است.
+      self_destruct: از آنجایی که %{domain} در حال بسته شدن است، شما فقط دسترسی محدودی به حساب خود خواهید داشت.
+      view_strikes: دیدن شکایت‌های گذشته از حسابتان
     too_fast: فرم با سرعت بسیار زیادی فرستاده شد، دوباره تلاش کنید.
     use_security_key: استفاده از کلید امنیتی
-  authorize_follow:
-    already_following: شما همین الان هم این حساب را پی‌می‌گیرید
-    already_requested: درخواست پی‌گیری‌ای برای آن حساب فرستاده‌ بودید
-    error: متأسفانه حین یافتن آن حساب خطایی رخ داد
-    follow: پی بگیرید
-    follow_request: 'شما درخواست پیگیری فرستاده‌اید به:'
-    following: 'انجام شد! شما هم‌اینک پیگیر این کاربر هستید:'
-    post_follow:
-      close: یا این پنجره را ببندید.
-      return: نمایهٔ این کاربر را نشان بده
-      web: رفتن به وب
-    title: پیگیری %{acct}
+    user_agreement_html: من خوانده ام و موافقم <a href="%{terms_of_service_path}" target="_blank">شرایط خدمات</a> و <a href="%{privacy_policy_path}" target="_blank">سیاست حفظ حریم خصوصی</a>
+  author_attribution:
+    example_title: متن نمونه
+    hint_html: آیا در خارج از ماستودون اخبار یا مقالات وبلاگ می نویسید؟ نحوه دریافت اعتبار زمانی که آنها در ماستودون به اشتراک گذاشته می شوند را کنترل کنید.
+    instructions: 'مطمئن شوید این کد در HTML مقاله‌تان وجود دارد:'
+    more_from_html: بیش‌تر از %{name}
+    s_blog: بلاگ %{name}
+    then_instructions: سپس نام دامنهٔ مقاله را در زمینهٔ زیر بیفزایید.
+    title: اعتباردهی به نگارنده
   challenge:
     confirm: ادامه
-    hint_html: "<strong>نکته:</strong> ما در یک ساعت آینده رمزتان را از شما نخواهیم پرسید."
-    invalid_password: رمز نامعتبر
-    prompt: برای ادامه رمزتان را تأیید کنید
+    hint_html: "<strong>نکته:</strong> ما در یک ساعت آینده گذرواژه‌تان را از شما نخواهیم پرسید."
+    invalid_password: گذرواژه نامعتبر
+    prompt: برای ادامه گذرواژه‌تان را تأیید کنید
   crypto:
     errors:
       invalid_key: یک کلید معتبر Ed25519 یا Curve25519 نیست
-      invalid_signature: یک امضای معتبر Ed25519 نیست
   date:
     formats:
       default: "%d %b %Y"
@@ -804,7 +1237,7 @@ fa:
       x_seconds: "%{count} ثانیه"
   deletes:
     challenge_not_passed: اطلاعاتی که وارد کردید اشتباه بود
-    confirm_password: رمز فعلی خود را وارد کنید تا معلوم شود که خود شمایید
+    confirm_password: گذرواژه کنونی خود را وارد کنید تا هویتتان را تایید کنید
     confirm_username: برای تأیید این فرایند نام کاربری خود را وارد کنید
     proceed: پاک‌کردن حساب
     success_msg: حساب شما با موفقیت پاک شد
@@ -812,27 +1245,47 @@ fa:
       before: 'پیش از ادامه،‌ لطفاً نکته‌های زیر را به دقت بخوانید:'
       caches: ممکن است محتواهایی که دیگر کارسازها ذخیره کرده‌اند، همچنان باقی بماند
       data_removal: نوشته‌ها و داده‌های شما برای همیشه پاک خواهند شد
-      email_change_html: شما می‌توانید بدون پاک کردن حساب <a href="%{path}">نشانی ایمیل خود را تغییر دهید</a>
-      email_contact_html: اگر ایمیل همچنان نرسیده، برای درخواست کمک به <a href="mailto:%{email}">%{email}</a> پیغام دهید
-      email_reconfirmation_html: اگر ایمیل تأیید به دستتان نرسیده، می‌توانید <a href="%{path}">یک بار دیگر برایش درخواست بدهید</a>
+      email_change_html: می‌توانید بدون حذف حسابتان <a href="%{path}">نشانی رایانامه‌تان را تغییر دهید</a>
+      email_contact_html: اگر هنوز نرسیده، می‌توانید برای راهنمایی به <a href="mailto:%{email}">%{email}</a> رایانامه دهید
+      email_reconfirmation_html: اگر رایانامهٔ تأیید را نگرفته‌اید، می‌توانید <a href="%{path}">دوباره درخواستش دهید</a>
       irreversible: شما نخواهید توانست حساب خود را بازیابی یا فعال‌سازی کنید
       more_details_html: برای اطلاعات بیشتر <a href="%{terms_path}">سیاست رازداری</a> را ببینید.
       username_available: نام کاربری شما دوباره در دسترس خواهد بود
       username_unavailable: نام کاربری شما برای دیگران غیرقابل دسترس خواهد ماند
   disputes:
     strikes:
+      action_taken: کنش انجام شده
       appeal: درخواست تجدیدنظر
+      appeal_approved: شکایت با موفّقیت تحدیدنظر شد و دیگر معتبر نیست
       appeal_rejected: درخواست تجدیدنظر رد شده است
       appeal_submitted_at: درخواست تجدیدنظر فرستاده شد
+      appealed_msg: درخواست تجدیدنظرتان ثبت شد. اگر پذیرفته شود آگاه خواهید شد.
       appeals:
         submit: فرستادن درخواست تجدیدنظر
+      approve_appeal: پذیرش درخواست تجدیدنظر
+      associated_report: گزارش همراه
+      created_at: مورخه
+      description_html: این‌ها کنش‌های انجام شده روی حسابتان و هشدارهاییند که از سوی مدیران %{instance} به شما فرستاده شده‌اند.
+      recipient: ابلاغی به
+      reject_appeal: رد کردن درخواست تجدیدنظر
+      status: فرستهٔ ‪#%{id}‬
+      status_removed: فرسته از روس سامانه برداشته شده است
+      title: "%{action} در %{date}"
       title_actions:
+        delete_statuses: برداشتن فرسته
+        disable: انجماد حساب
+        mark_statuses_as_sensitive: علامت زدن فرسته به عنوان حسّاس
         none: هشدار
-      your_appeal_approved: درخواست تجدیدنظر شما پذیرفته شد
+        sensitive: علامت زدن حساب به عنوان حسّاس
+        silence: محدودیت حساب
+        suspend: تعلیق حساب
+      your_appeal_approved: درخواست تجدیدنظرتان پذیرفته شد
       your_appeal_pending: شما یک درخواست تجدیدنظر فرستادید
-      your_appeal_rejected: درخواست تجدیدنظر شما رد شد
-  domain_validator:
-    invalid_domain: نام دامین معتبر نیست
+      your_appeal_rejected: درخواست تجدیدنظرتان رد شد
+  edit_profile:
+    basic_information: اطلاعات پایه
+    hint_html: "<strong>شخصی‌سازی آن چه مردم روی نمایهٔ عمومیتان و کنار فرسته‌هایتان می‌بینند.</strong> هنگامی که نمایه‌ای کامل و یک تصویر نمایه داشته باشید،‌ احتمال پی‌گیری متقابل و تعامل با شما بیش‌تر است."
+    other: سایر
   errors:
     '400': درخواستی که فرستادید نامعتبر یا اشتباه بود.
     '403': شما اجازهٔ دیدن این صفحه را ندارید.
@@ -847,7 +1300,7 @@ fa:
       content: شرمنده، یک چیزی از سمت ما اشتباه شده.
       title: این صفحه درست نیست
     '503': این صفحه به خاطر یک مشکل موقت در کارساز در دسترس نیست.
-    noscript_html: برای استفاده از نسخهٔ تحت وب ماستودون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید <a href="%{apps_path}">یک کارهٔ ماستودون</a> را به کار ببرید.
+    noscript_html: برای استفاده از کارهٔ وب ماستودون، لطفاً جاوااسکریپت را به کار بیندازید. یا به جایش می‌توانید <a href="%{apps_path}">یک کارهٔ بومی</a> را به کار ببرید.
   existing_username_validator:
     not_found: کاربری با این نام کاربری در این کارساز پیدا نشد
     not_found_multiple: "%{usernames} پیدا نشد"
@@ -870,7 +1323,7 @@ fa:
     add_new: افزودن تازه
     errors:
       limit: شما بیشترین تعداد مجاز برچسب‌ها را دارید
-    hint_html: "<strong>برچسب‌های برگزیده چیستند؟</strong> این برچسب‌ها (هشتگ‌ها) به طور واضحی روی نمایهٔ عمومی شما نمایش می‌یابند و دیگران می‌توانند نوشته‌های شما را تحت هر کدام از این برچسب‌ها مرور کنند. این یک روش بسیار خوب برای دسته‌بندی آثار خلاقانه یا پروژه‌های بلندمدت شماست."
+    hint_html: "<strong>برچسب‌های برگزیده چیستند؟</strong> این برچسب‌ها به طور واضحی روی نمایهٔ عمومیتان نمایش یافته می‌گذارد افراد فرسته‌های عمومیتان زیرشان را مرور کنند. ابزاری عالی برای دنبال کردن آثار خلاقانه یا پروژه‌های بلندمدت است."
   filters:
     contexts:
       account: نمایه‌ها
@@ -879,46 +1332,131 @@ fa:
       public: خط زمانی‌های عمومی
       thread: گفتگوها
     edit:
+      add_keyword: افزودن کلیدواژه
+      keywords: کلیدواژه‌ها
+      statuses: فرسته‌های جدا
+      statuses_hint_html: این فیلتر برای انتخاب هر پست صرف نظر از مطابقت با کلمات کلیدی زیر اعمال می شود. <a href="%{path}">پست‌ها را از فیلتر بازبینی یا حذف کنید</a>.
       title: ویرایش پالایه
     errors:
+      deprecated_api_multiple_keywords: این پارامترها نمی‌توانند از این برنامه تغییر یابند؛ چرا که به بیش از یک کلیدواژهٔ پالایه اعمال می‌شود. از برنامه‌ای جدیدتر یا میانای وب استفاده کنید.
       invalid_context: زمینه‌ای موجود نیست یا نامعتبر است
     index:
+      contexts: پالایه‌ها در %{contexts}
       delete: پاک‌کردن
       empty: هیچ پالایه‌ای ندارید.
+      expires_in: در %{distance} منقضی می شود
+      expires_on: در %{date} منقضی می شود
+      keywords:
+        one: "%{count} کلیدواژه"
+        other: "%{count} کلیدواژه"
+      statuses:
+        one: "%{count} فرسته"
+        other: "%{count} فرسته"
+      statuses_long:
+        one: "%{count} فرستهٔ جداگانه نهفته"
+        other: "%{count} فرستهٔ جداگانه نهفته"
       title: پالایه‌ها
     new:
+      save: ذخیرهٔ پالایهٔ جدید
       title: افزودن پالایهٔ جدید
-  footer:
-    trending_now: پرطرفدار
+    statuses:
+      back_to_filter: بازگشت به پالایه
+      batch:
+        remove: برداشتن از پالایه
+      index:
+        hint: این فیلتر برای انتخاب پست های فردی بدون توجه به معیارهای دیگر اعمال می شود. می توانید پست های بیشتری را از رابط وب به این فیلتر اضافه کنید.
+        title: فرسته‌های پالوده
   generic:
     all: همه
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> مورد در این صفحه گزیده شده."
+      other: همهٔ <strong>%{count}</strong> مورد این صفحه گزیده شده‌اند.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> مورد مطابق با جست‌وجویتان گزیده شده."
+      other: "<strong>%{count}</strong> مورد مطابق با جست‌وجویتان گزیده شدند."
+    cancel: لغو
     changes_saved_msg: تغییرات با موفقیت ذخیره شدند!
+    confirm: تأیید
     copy: رونوشت
     delete: حذف
+    deselect: ناگزینش همه
     none: هیچ‌کدام
     order_by: مرتب‌سازی
     save_changes: ذخیرهٔ تغییرات
+    select_all_matching_items:
+      one: گزینش %{count} مورد مطابق با جست‌وجویتان.
+      other: گزینش %{count} مورد مطابق با جست‌وجویتان.
     today: امروز
     validation_errors:
       one: یک چیزی هنوز درست نیست! لطفاً خطاهای زیر را ببینید
       other: یک چیزی هنوز درست نیست! لطفاً %{count} خطای زیر را ببینید
-  html_validator:
-    invalid_markup: 'دارای نشانه‌گذاری نامعتبر HTML است: %{error}'
   imports:
     errors:
+      empty: پروندهٔ خالی CSV
+      incompatible_type: ناسازگار با گونهٔ درون‌ریزی گزیده
+      invalid_csv_file: 'پروندهٔ CSV نامعتبر. خطا: %{error}'
       over_rows_processing_limit: دارای بیش از %{count} ردیف
+      too_large: حجم فایل خیلی بزرگ است
+    failures: شکست‌ها
+    imported: وارد شد
+    mismatched_types_warning: به نظر می رسد ممکن است نوع اشتباهی را برای این درون ریزی انتخاب کرده باشید، لطفاً دوباره بررسی کنید.
     modes:
       merge: ادغام
       merge_long: داده‌های فعلی را داشته باشید و داده‌های تازه‌ای بیفزایید
       overwrite: بازنویسی
       overwrite_long: داده‌های فعلی را پاک کنید و داده‌های تازه‌ای بیفزایید
+    overwrite_preambles:
+      blocking_html:
+        one: می‌خواهید <strong>فهرست مسدود</strong> خود را با حداکثر <strong>%{count} حساب</strong> از <strong>%{filename}</strong> جایگزین کنید.
+        other: شما می‌خواهید <strong>فهرست مسدود خود را</strong> با حداکثر <strong>%{count} حساب</strong> از <strong>%{filename}</strong> جایگزین کنید.
+      bookmarks_html:
+        one: شما می‌خواهید <strong>نشانک‌های خود را</strong> با حداکثر <strong>%{count} پست</strong> از <strong>%{filename}</strong> جایگزین کنید.
+        other: شما می‌خواهید <strong>نشانک‌های خود را</strong> با حداکثر <strong>%{count} پست ها</strong> از <strong>%{filename}</strong> جایگزین کنید.
+      domain_blocking_html:
+        one: شما می‌خواهید <strong>لیست مسدودسازی دامنه خود را</strong> با حداکثر <strong>%{count} دامنه</strong> از <strong>%{filename}</strong> جایگزین کنید.
+        other: شما می خواهید <strong>لیست مسدودسازی دامنه خود را</strong> با حداکثر <strong>%{count} دامنه</strong> از <strong>%{filename}</strong> جایگزین کنید.
+      lists_html:
+        one: شما می خواهید <strong>لیست های خود را</strong> با محتوای <strong>%{filename}</strong> جایگزین کنید. حداکثر <strong>%{count} حساب</strong> به لیست‌های جدید اضافه می‌شود.
+        other: شما می خواهید <strong>لیست های خود را</strong> با محتوای <strong>%{filename}</strong> جایگزین کنید. حداکثر <strong>%{count} حساب</strong> به لیست‌های جدید اضافه می‌شود.
+    preambles:
+      blocking_html:
+        one: شما در شرف <strong>مسدود کردن</strong> حداکثر <strong>%{count} حساب</string> از <string>%{filename}</strong> هستید.
+        other: شما در شرف <strong>مسدود کردن</strong> حداکثر <strong>%{count} حساب</string> از <string>%{filename}</string> هستید.
+      lists_html:
+        one: شما در حال افزودن <strong>%{count} حساب</strong> از <strong>%{filename}</strong> به <strong>لیست‌های</strong> خود هستید. اگر لیستی برای افزودن وجود نداشته باشد، لیست های جدیدی ایجاد می شود.
+        other: شما می‌خواهید تا <strong>%{count} حساب</strong> از <strong>%{filename}</strong> را به <strong>فهرست‌های</strong> خود اضافه کنید. اگر لیستی برای افزودن وجود نداشته باشد، لیست های جدیدی ایجاد می شود.
+      muting_html:
+        one: 'شما در حال انجام <strong>بی صدا</strong> تا <strong>%{count} حساب کاربری</strong> از <strong>%{filename}</strong>.
+
+          '
+        other:
     preface: می‌توانید داده‌هایی را که از کارسازی دیگر برون‌ریخته‌اید، چون سیاهه‌ای از افرادی که پی گرفته یا مسدود می‌کنید را درون‌ریزی کنید.
+    recent_imports: واردشده‌های اخیر
+    states:
+      finished: پایان یافته
+      in_progress: در حال پیشرفت
+      scheduled: برنامه‌ریزی شده
+      unconfirmed: تایید نشده
+    status: وضعیت
     success: داده‌های شما با موفقیت بارگذاری شد و به زودی پردازش می‌شود
+    time_started: آغاز شده در
+    titles:
+      blocking: درون ریختن حساب‌های مسدود
+      bookmarks: درون ریختن نشانک‌ها
+      domain_blocking: درون ریختن دامنه‌های مسدود
+      following: درون ریختن حساب‌های پی‌گرفته
+      lists: درون ریختن سیاهه‌ها
+      muting: درون ریختن حساب‌های خموش
+    type: گونهٔ درون‌ریزی
+    type_groups:
+      constructive: پی‌گیری‌ها و نشانک‌ها
+      destructive: انسدادها و خموشی‌ها
     types:
       blocking: سیاههٔ انسداد
       bookmarks: نشانک‌ها
       domain_blocking: سیاههٔ انسداد دامنه
       following: سیاههٔ پی‌گیری
+      lists: سیاهه‌ها
       muting: سیاههٔ خموشی
     upload: بارگذاری
   invites:
@@ -933,6 +1471,7 @@ fa:
       '86400': ۱ روز
     expires_in_prompt: هیچ وقت
     generate: ساختن
+    invalid: این دعوت‌نامه معتبر نیست
     invited_by: 'دعوت‌کنندهٔ شما:'
     max_uses:
       one: ۱ بار
@@ -945,7 +1484,7 @@ fa:
     title: دعوت دیگران
   lists:
     errors:
-      limit: به بیشینهٔ مقدار سیاهه‌ها رسیدید
+      limit: به بیشینهٔ تعداد سیاهه‌ها رسیدید
   login_activities:
     authentication_methods:
       otp: کارهٔ تأیید هویت دوعاملی
@@ -957,9 +1496,25 @@ fa:
     failed_sign_in_html: تلاش‌های شکست‌خوردهٔ ورود با %{method} از %{ip} (%{browser})
     successful_sign_in_html: ورودهای موفق با %{method} از %{ip} (%{browser})
     title: تاریخچهٔ تأیید هویت
+  mail_subscriptions:
+    unsubscribe:
+      action: بله. لغو اشتراک
+      complete: لغو اشتراک شد
+      confirmation_html: آیا مطمئنید که می‌خواهید از دریافت %{type} برای ماستودون در %{domain} به ایمیل خود در %{email} لغو اشتراک کنید؟ همیشه می‌توانید از <a href="%{settings_path}">تنظیمات اعلان ایمیل</a> خود مجدداً مشترک شوید.
+      emails:
+        notification_emails:
+          favourite: رایانامه‌های آگاهی برگزیدن
+          follow: رایانامه‌های آگاهی پی‌گیری
+          follow_request: رایانامه‌های درخواست پی‌گیری
+          mention: رایانامه‌های آگاهی اشاره
+          reblog: رایانامه‌های آگاهی تقویت
+      resubscribe_html: اگر به اشتباه اشتراک را لغو کرده‌اید، می‌توانید از <a href="%{settings_path}">تنظیمات اعلان ایمیل</a> خود مجدداً اشتراک کنید.
+      success_html: دیگر %{type} را برای ماستودون در %{domain} به ایمیل خود در %{email} دریافت نخواهید کرد.
+      title: لغو اشتراک
   media_attachments:
     validations:
       images_and_video: نمی‌توان برای نوشته‌ای که تصویر دارد ویدیو بارگذاری کرد
+      not_found: رسانه %{ids} یافت نشد یا قبلاً به پست دیگری پیوست شده است
       not_ready: پرونده‌هایی که پردازش را تمام نکرده‌اند نمی‌توانند پیوست شوند. یکبار دیگر امتحان کنید!
       too_many: نمی‌توان بیشتر از ۴ تصویر بارگذاری کرد
   migrations:
@@ -992,15 +1547,19 @@ fa:
       followers: این کار همهٔ پیگیران شما را از حساب فعلی به حساب تازه منتقل خواهد کرد
       only_redirect_html: شما همچنین می‌توانید حساب خود را <a href="%{path}">به یک حساب دیگر اشاره دهید</a>.
       other_data: هیچ دادهٔ دیگری خودبه‌خود منتقل نخواهد شد
-      redirect: نمایهٔ حساب فعلی شما به حساب تازه اشاره خواهد کرد و خودش در نتیجهٔ جستجوها ظاهر نخواهد شد
+      redirect: نمایهٔ حساب کنونیتان به حساب تازه اشاره خواهد کرد و از جست‌وجوها حذف خواهد شد
   moderation:
     title: مدیریت کاربران
   move_handler:
     carry_blocks_over_text: این کاربر از %{acct} که مسدودش کرده‌اید، جابه‌جا شد.
     carry_mutes_over_text: این کاربر از %{acct} که خموشش کرده‌اید، جابه‌جا شد.
     copy_account_note_text: 'این کاربر از %{acct} جابه‌جا شده است. یادداشت‌های پیشینتان درباره‌اش این‌هاست:'
+  navigation:
+    toggle_menu: تغییر وضعیت فهرست
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} گزارشی ثبت کرد"
       sign_up:
         subject: "%{name} ثبت نام کرد"
     favourite:
@@ -1018,9 +1577,9 @@ fa:
       title: درخواست پیگیری تازه
     mention:
       action: پاسخ
-      body: "%{name} در این‌جا از شما نام برد:"
-      subject: "%{name} از شما نام برد"
-      title: نام‌برده‌شدن تازه
+      body: "%{name} در این‌جا به شما اشاره کرد:"
+      subject: "%{name} به شما اشاره کرد"
+      title: اشارهٔ جدید
     poll:
       subject: نظرسنجی‌ای از %{name} پایان یافت
     reblog:
@@ -1029,10 +1588,12 @@ fa:
       title: تقویت تازه
     status:
       subject: "%{name} چیزی فرستاد"
+    update:
+      subject: "%{name} فرسته‌ای را ویرایست"
   notifications:
+    administration_emails: آگاهی‌های رایانامه‌ای مدیر
     email_events: رویدادها برای آگاهی‌های رایانامه‌ای
     email_events_hint: 'گزینش رویدادهایی که می‌خواهید برایشان آگاهی دریافت کنید:'
-    other_settings: سایر تنظیمات آگاهی‌ها
   number:
     human:
       decimal_units:
@@ -1045,18 +1606,18 @@ fa:
           trillion: ت
   otp_authentication:
     code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
-    description_html: اگر <strong>ورود دومرحله‌ای</strong> را با استفاده از از یک کارهٔ تأییدکننده به کار بیندازید، لازم است برای ورود، به تلفن خود که برایتان یک ژتون خواهد ساخت دسترسی داشته باشید.
+    description_html: اگر <strong>تأیید هویت دو مرحله‌ای</strong> را با استفاده از برنامه احراز هویت فعال کنید، برای ورود به سیستم باید تلفن خود را در اختیار داشته باشید، که توکن‌هایی را برای ورود شما ایجاد می‌کند.
     enable: به کار انداختن
     instructions_html: "<strong>این کد QR را با برنامهٔ Google Authenticator یا برنامه‌های TOTP مشابه اسکن کنید</strong>. از این به بعد، آن برنامه کدهایی موقتی خواهد ساخت که برای ورود باید آن‌ها را وارد کنید."
-    manual_instructions: 'اگر نمی‌توانید رمز QR را بپویید و باید دستی واردظ کنید، متن رمز این‌جاست:'
+    manual_instructions: 'اگر نمی‌توانید رمز QR را بپویید و باید دستی وارد کنید، متن رمز این‌جاست:'
     setup: برپا سازی
-    wrong_code: رمز وارد شده نامعتبر بود! آیا زمان کارساز و زمان افزاره درستند؟
+    wrong_code: کد وارد شده نامعتبر بود! آیا زمان کارساز و زمان افزاره درستند؟
   pagination:
     newer: تازه‌تر
     next: بعدی
     older: قدیمی‌تر
     prev: قبلی
-    truncate: "…"
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: شما قبلاً در این نظرسنجی رأی داده‌اید
@@ -1066,19 +1627,38 @@ fa:
       expired: این نظرسنجی به پایان رسیده است
       invalid_choice: گزینه رای دادن وجود ندارد
       over_character_limit: هر کدام نمی‌تواند از %{max} نویسه طولانی‌تر باشد
+      self_vote: شما نمی توانید در نظرسنجی خودتان رای دهید
       too_few_options: حتماً باید بیش از یک گزینه داشته باشد
       too_many_options: نمی‌تواند بیشتر از %{max} گزینه داشته باشد
   preferences:
     other: سایر تنظیمات
     posting_defaults: تنظیمات پیش‌فرض انتشار
     public_timelines: خط زمانی‌های عمومی
+  privacy:
+    hint_html: "<strong>شخصی‌سازی چگونگی پیدا شدن فرسته‌ها و نمایه‌تان.</strong> ویژگی‌های متعدّدی در ماستودون می‌توانند هنگام به کار افتادن در رسیدن به مخاطبینی گسترده‌تر یاریتان کنند. کمی وقت برای بازبینی این تنظیمات گذاشته تا مطمئن شوید برایتان مناسبند."
+    privacy: محرمانگی
+    privacy_hint_html: واپایش میزان باز شدن به نفع دیگران. افراد نمایه‌های جالب و کاره‌های باحال را با مرور پی‌گرفتگان دیگران و دیدن کاره‌هایی که از آن‌ها می‌فرستند پیدا می‌کنند. با این حال شاید بخواهید پنهان نگهشان دارید.
+    reach: دسترسی
+    reach_hint_html: واپایش این که می‌خواهید به دست افراد جدید قابل کشف و پی‌گیری باشید یا نه. می‌خواهید فرسته‌هایتان روی صفحهٔ کشف ظاهر شوند؟ می‌خواهید دیگر افراد در پیشنهادهای پی‌گیریشان ببینندتان؟ می‌خواهید پی‌گیران جدید را به طور خودکار بپذیرید یا روی هرکدامشان واپایش داشته باشید؟
+    search: جست‌وجو
+    search_hint_html: واپایش این که چگونه می‌خواهید پیدا شوید. می‌خواهید افراد با آن‌چه به صورت عمومی درباره‌اش فرستاده‌اید پیدایتان کنند؟ می‌خواهید افراد خارج از ماستودون هنگام جست‌وجوی وب نمایه‌تان را بیابند؟ لطفاً‌به خاطر داشته باشید که خروج کامل از تمامی موتورهای جست‌وجو برای اطّلاعات عمومی قابل تضمین نیست.
+    title: محرمانگی و دسترسی
+  privacy_policy:
+    title: سیاست محرمانگی
   reactions:
     errors:
       limit_reached: تجاوز از کران واکنش‌های مختلف
       unrecognized_emoji: شکلک شناخته‌شده‌ای نیست
+  redirects:
+    prompt: اگر به این پویند اطمینان دارید برای ادامه بزنید.
+    title: دارید %{instance} را ترک می‌کنید.
   relationships:
     activity: فعالیت حساب
+    confirm_follow_selected_followers: آیا مطمئنید که می خواهید دنبال کننده های انتخابی را دنبال کنید؟
+    confirm_remove_selected_followers: آیا شما واقعا می خواهید دنبال کننده های انتخابی را حذف کنید؟
+    confirm_remove_selected_follows: آیا شما واقعا می خواهید دنبال شده های انتخابی را حذف کنید؟
     dormant: غیرفعال
+    follow_failure: نتوانست برخی از حساب‌های گزیده را پی بگیرد.
     follow_selected_followers: پیگیری پیگیران انتخاب شده
     followers: پی‌گیران
     following: پی می‌گیرد
@@ -1095,10 +1675,21 @@ fa:
     status: وضعیت حساب
   remote_follow:
     missing_resource: نشانی اینترنتی برای رسیدن به حساب شما پیدا نشد
+  reports:
+    errors:
+      invalid_rules: به قوانین معتبر اشاره نمی کند
+  rss:
+    content_warning: 'هشدا محتوا:'
+    descriptions:
+      account: فرسته‌های عمومی از ‪@%{acct}‬
+      tag: فرسته‌های عمومی برچسب خورده با ‪#%{hashtag}‬
   scheduled_statuses:
     over_daily_limit: شما از حد مجاز %{limit} فرسته زمان‌بندی‌شده در آن روز فراتر رفته‌اید
     over_total_limit: شما از حد مجاز %{limit} فرسته زمان‌بندی‌شده فراتر رفته‌اید
-    too_soon: زمان تعیین‌شده باید در آینده باشد
+    too_soon: تاریخ باید در آینده باشد
+  self_destruct:
+    lead_html: متأسفانه، <strong>%{domain}</strong> برای همیشه در حال بسته شدن است. اگر حسابی در آنجا داشتید، نمی‌توانید به استفاده از آن ادامه دهید، اما همچنان می‌توانید از داده‌های خود نسخه پشتیبان درخواست کنید.
+    title: این کارساز دارد بسته می‌شود
   sessions:
     activity: آخرین فعالیت
     browser: مرورگر
@@ -1110,6 +1701,7 @@ fa:
       electron: الکترون
       firefox: فایرفاکس
       generic: مرورگر ناشناخته
+      huawei_browser: مرورگر هواوی
       ie: اینترنت اکسپلورر
       micro_messenger: مایکرومسنجر
       nokia: مرورگر اوی نوکیا اس۴۰
@@ -1119,8 +1711,10 @@ fa:
       qq: مرورگر کیوکیو
       safari: سافاری
       uc_browser: مرورگر یوسی
+      unknown_browser: مرورگر ناشناخته
       weibo: وبیو
     current_session: نشست فعلی
+    date: تاریخ
     description: "%{browser} روی %{platform}"
     explanation: مرورگرهای زیر هم‌اینک به حساب شما وارد شده‌اند.
     ip: آی‌پی
@@ -1131,9 +1725,10 @@ fa:
       chrome_os: سیستم‌عامل کروم
       firefox_os: سیستم‌عامل فایرفاکس
       ios: آی‌اواس
+      kai_os: سیستم‌عامل کای
       linux: لینوکس
       mac: مک
-      other: سیستم ناشناخته
+      unknown_platform: بن‌سازهٔ ناشناخته
       windows: ویندوز
       windows_mobile: ویندوز همراه
       windows_phone: تلفن ویندوزی
@@ -1151,18 +1746,31 @@ fa:
     delete: پاک‌کردن حساب
     development: فرابری
     edit_profile: ویرایش نمایه
-    export: برون‌سپاری داده‌ها
+    export: برون‌ریزی
     featured_tags: برچسب‌های برگزیده
     import: درون‌ریزی
     import_and_export: درون‌ریزی و برون‌بری
     migrate: انتقال حساب
-    notifications: آگاهی‌ها
+    notifications: آگاهی‌های رایانامه‌ای
     preferences: ترجیحات
     profile: نمایه
     relationships: پیگیری‌ها و پیگیران
+    severed_relationships: ارتباط‌های قطع شده
     statuses_cleanup: حذف فرستهٔ خودکار
+    strikes: شکایت‌های مدیریتی
     two_factor_authentication: ورود دومرحله‌ای
     webauthn_authentication: کلیدهای امنیتی
+  severed_relationships:
+    download: بارگیری (%{count})
+    event_type:
+      account_suspension: تعلیق حساب (%{target_name})
+      domain_block: تعلیق کارساز (%{target_name})
+      user_domain_block: "%{target_name} را مسدود کردید"
+    lost_followers: پی‌گیرندگان از دست رفته
+    lost_follows: پی‌گرفته‌های از دست رفته
+    preamble: وقتی دامنه‌ای را مسدود کرده یا ناظرانتان تصمیم به تعلیق کارسازی دوردست می‌گیرند، ممکن است پی‌گیران و پی‌گرفته‌هایتان را از دست بدهید. با این حال قادرید سیاهه‌هایی از ارتباط‌های قطع شده را برای بررسی و درون‌ریزی احتمالی روی کارسازی دیگر بار بگیرید.
+    purged: اطّلاعات دربارهٔ این کارساز به دست مدیران کارسازتان پاک سازی شده.
+    type: رویداد
   statuses:
     attached:
       audio:
@@ -1177,31 +1785,19 @@ fa:
         other: "%{count} ویدیو"
     boosted_from_html: تقویت شده از طرف %{acct_link}
     content_warning: 'هشدا محتوا: %{warning}'
+    default_language: همانند زبان واسط
     disallowed_hashtags:
-      one: 'دارای هشتگ غیرمجاز: %{tags}'
-      other: 'دارای هشتگ‌های غیرمجاز: %{tags}'
+      one: 'دارای برچسبی غیرمجاز: %{tags}'
+      other: 'دارای برچسب‌های غیرمجاز: %{tags}'
+    edited_at_html: ویراسته در %{date}
     errors:
       in_reply_not_found: به نظر نمی‌رسد وضعیتی که می‌خواهید به آن پاسخ دهید، وجود داشته باشد.
-    open_in_web: گشودن در وب
     over_character_limit: از حد مجاز %{max} حرف فراتر رفتید
     pin_errors:
       direct: فرسته‌هایی که فقط برای کاربران اشاره شده نمایانند نمی‌توانند سنجاق شوند
       limit: از این بیشتر نمی‌شود نوشته‌های ثابت داشت
       ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
-      reblog: تقویت را نمی‌توان سنجاق کرد
-    poll:
-      total_people:
-        one: "%{count} نفر"
-        other: "%{count} نفر"
-      total_votes:
-        one: "%{count} رأی"
-        other: "%{count} رأی"
-      vote: رأی
-    show_more: نمایش
-    show_newer: نمایش جدیدتر
-    show_older: نمایش قدیمی‌تر
-    show_thread: نمایش رشته
-    sign_in_to_participate: برای شرکت در گفتگو وارد حساب خود شوید
+      reblog: تقویت نمی‌تواند سنجاق شود
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: مستقیم
@@ -1243,24 +1839,33 @@ fa:
       '7889238': ۳ ماه
     min_age_label: کرانهٔ سن
     min_favs: نگه داشتن فرسته‌هایی با برگزینش بیش از
-    min_favs_hint: هیچ یک از فرسته‌هایتان را که بیش از این تعداد برگزیده شده باشند، حذف نمی‌کند. برای حذف فرسته‌ها فارغ از تعداد برگزینش‌هایشان، خالی بگذارید
+    min_favs_hint: هیچ یک از فرسته‌هایتان را که کمینه این مقدار برگزیده شده باشند، حذف نمی‌کند. برای حذف فرسته‌ها فارغ از تعداد برگزینش‌هایشان، خالی بگذارید
     min_reblogs: نگه داشتن فرسته‌هایی با تقویت بیش از
     min_reblogs_hint: هیچ یک از فرسته‌هایتان را که بیش از این تعداد تقویت شده باشند، حذف نمی‌کند. برای حذف فرسته‌ها فارغ از تعداد تقویت‌هایشان، خالی بگذارید
   stream_entries:
-    pinned: نوشته‌های ثابت
-    reblogged: تقویت شده
     sensitive_content: محتوای حساس
+  strikes:
+    errors:
+      too_late: برای درخواست تجدیدنظر این شکایت بیش از حد دیر شده
   tags:
     does_not_match_previous_name: با نام پیشین مطابق نیست
+  terms_of_service:
+    title: شرایط خدمات
   themes:
     contrast: ماستودون (سایه‌روشن بالا)
     default: ماستودون (تیره)
     mastodon-light: ماستودون (روشن)
+    system: خودکار (استفاده از زمینهٔ سامانه)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
       time: "%OH:%OM"
+      with_time_zone: "%b %d, %Y, %H:%M %Z"
+  translation:
+    errors:
+      quota_exceeded: از سهمیه استفاده در سراسر سرور برای خدمات ترجمه فراتر رفته است.
+      too_many_requests: اخیراً درخواست های زیادی به خدمات ترجمه شده است.
   two_factor_authentication:
     add: افزودن
     disable: غیرفعال‌کردن
@@ -1278,52 +1883,129 @@ fa:
     webauthn: کلیدهای امنیتی
   user_mailer:
     appeal_approved:
-      action: به حساب خودتان بروید
+      action: تنظیمات حساب
       explanation: درخواست تجدیدنظر اخطار علیه حساب شما در %{strike_date} که در %{appeal_date} ارسال کرده‌اید، پذیرفته شده است. حساب شما بار دیگر در وضعیت خوبی قرار دارد.
       subject: درخواست تجدیدنظر شما در %{date} پذیرفته شد
+      subtitle: حسابتان دوباره در وضعیت مناسب است.
       title: درخواست تجدیدنظر پذیرفته شد
     appeal_rejected:
       explanation: درخواست تجدیدنظر اخطار علیه حساب شما در %{strike_date} که در %{appeal_date} ارسال کرده‌اید، رد شده است.
       subject: درخواست تجدیدنظر شما در %{date} رد شده است
+      subtitle: درخواست تجدیدنظرتان رد شد.
       title: درخواست تجدیدنظر رد شد
     backup_ready:
-      explanation: شما یک نسخهٔ پشتیبان کامل از حساب خود را درخواست کردید. این پشتیبان الان آمادهٔ بارگیری است!
+      explanation: درخواست پشتیبانی کامل از حساب ماستودونتان کردید.
+      extra: اکنون آمادهٔ بارگیری است!
       subject: بایگانی شما آمادهٔ دریافت است
       title: گرفتن بایگانی
+    failed_2fa:
+      details: 'جزییات تلاش‌ها برای ورد:'
+      explanation: شخصی سعی کرده است به حساب شما وارد شود اما یک عامل احراز هویت دوم نامعتبر ارائه کرده است.
+      further_actions_html: اگر این شما نبودید، توصیه می کنیم فورا %{action} را انجام دهید زیرا ممکن است به خطر بیفتد.
+    suspicious_sign_in:
+      change_password: تغییر گذرواژه‌تان
+      details: 'جزییات ورود:'
+      explanation: ما ورود به حساب شما را از یک آدرس آی پی جدید شناسایی کرده ایم.
+      further_actions_html: اگر این شما نبودید، توصیه می کنیم فورا %{action} را فعال کنید و برای ایمن نگه داشتن حساب خود، احراز هویت دو مرحله ای را فعال کنید.
+      subject: حساب شما از یک آدرس آی پی جدید قابل دسترسی است
+      title: یک ورود جدید
+    terms_of_service_changed:
+      agreement: با ادامه استفاده از %{domain}، با این شرایط موافقت می کنید. اگر با شرایط به‌روزرسانی شده مخالف هستید، می‌توانید در هر زمان با حذف حساب خود، قرارداد خود را با %{domain} فسخ کنید.
+      changelog: 'در یک نگاه، معنای این به‌روزرسانی برای شما چیست:'
+      description: 'شما این ایمیل را دریافت می کنید زیرا ما در حال ایجاد برخی تغییرات در شرایط خدمات خود در %{domain} هستیم. توصیه می کنیم شرایط به روز شده را به طور کامل در اینجا مرور کنید:'
+      description_html: شما این ایمیل را دریافت می کنید زیرا ما در حال ایجاد برخی تغییرات در شرایط خدمات خود در %{domain} هستیم. توصیه می کنیم <a href="%{path}" target="_blank">شرایط به روز شده را به طور کامل در اینجا بررسی کنید</a>.
+      sign_off: تیم %{domain}
+      subject: به‌روزرسانی‌های شرایط خدمات ما
+      subtitle: شرایط خدمات %{domain} در حال تغییر است
+      title: به روز رسانی مهم
     warning:
       appeal: فرستادن یک درخواست تجدیدنظر
       appeal_description: اگر فکر می‌کنید این یک خطا است، می‌توانید یک درخواست تجدیدنظر به کارکنان %{instance} ارسال کنید.
       categories:
         spam: هرزنامه
+        violation: محتوا دستورالعمل‌های انجمن زیر را نقض می‌کند
+      explanation:
+        delete_statuses: برخی از پست‌های شما یک یا چند دستورالعمل انجمن را نقض می‌کنند و متعاقباً توسط گردانندگان %{instance} حذف شده‌اند.
+        disable: دیگر نمی توانید از حساب خود استفاده کنید، اما نمایه و سایر داده های شما دست نخورده باقی می مانند. می توانید از داده های خود نسخه پشتیبان درخواست کنید، تنظیمات حساب را تغییر دهید یا حساب خود را حذف کنید.
+        mark_statuses_as_sensitive: برخی از پست‌های شما توسط گردانندگان %{instance} به عنوان حساس علامت‌گذاری شده‌اند. این بدان معناست که افراد باید قبل از نمایش پیش‌نمایش، روی رسانه پست‌ها ضربه بزنند. می‌توانید هنگام ارسال پست در آینده، رسانه‌ها را به‌عنوان حساس علامت‌گذاری کنید.
+        sensitive: از این پس، تمام فایل های رسانه ای آپلود شده شما به عنوان حساس علامت گذاری می شوند و در پشت هشدار کلیک پنهان می شوند.
+        silence: همچنان می‌توانید از حساب خود استفاده کنید، اما فقط افرادی که از قبل شما را دنبال می‌کنند، پست‌های شما را در این سرور می‌بینند و ممکن است از ویژگی‌های مختلف کشف مستثنی شوید. با این حال، دیگران ممکن است همچنان به صورت دستی شما را دنبال کنند.
+        suspend: دیگر نمی توانید از حساب خود استفاده کنید و نمایه و سایر داده های شما دیگر در دسترس نیستند. هنوز هم می‌توانید برای درخواست پشتیبان‌گیری از داده‌های خود وارد شوید تا زمانی که داده‌ها در حدود 30 روز به طور کامل حذف شوند، اما ما برخی از داده‌های اولیه را حفظ می‌کنیم تا از تعلیق فرار نکنید.
       reason: 'دلیل:'
+      statuses: 'پست های ذکر شده:'
       subject:
+        delete_statuses: فرسته‌هایتان روی %{acct} برداشته شده‌اند
         disable: حساب %{acct} شما متوقف شده است
+        mark_statuses_as_sensitive: فرسته‌هایتان روی %{acct} به عنوان حسّاس علامت خورده‌اند
         none: هشدار برای %{acct}
+        sensitive: فرسته‌هایتان روی %{acct} از اکنون به عنوان حسّاس علامت خواهند خورد
         silence: حساب %{acct} شما محدود شده است
         suspend: حساب %{acct}  شما معلق شده است
       title:
         delete_statuses: فرسته‌ها برداشته شدند
         disable: حساب متوقف شده است
+        mark_statuses_as_sensitive: فرسته‌ها به عنوان حسّاس علامت خوردند
         none: هشدار
+        sensitive: حساب به عنوان حساس علامت خورد
         silence: حساب محدود شده است
         suspend: حساب معلق شده است
     welcome:
-      edit_profile_action: تنظیم نمایه
+      apps_android_action: گرفتن از پلی گوگل
+      apps_ios_action: بارگیری روی فروشگاه کاره
+      apps_step: بارگیری کارهٔ رسمیمان.
+      apps_title: کاره‌های ماستودون
+      checklist_subtitle: 'بیایید روی این مرز اجتماعی جدید راهتان بیندازیم:'
+      checklist_title: سیاههٔ بررسی خوش‌آمد
+      edit_profile_action: شخصی سازی
+      edit_profile_step: تقویت تعامل‌هایتان با داشتن نمایه‌ای جامع.
+      edit_profile_title: شخصی سازی نمایه‌تان
       explanation: نکته‌هایی که برای آغاز کار به شما کمک می‌کنند
-      final_action: چیزی منتشر کنید
-      full_handle: نام کاربری کامل شما
-      full_handle_hint: این چیزی است که باید به دوستانتان بگویید تا بتوانند از کارسازی دیگر به شما پیام داده یا پی‌گیرتان شوند.
+      feature_action: دانشتن بیش‌تر
+      feature_audience: ماستودون بدون حضور فرد میانی، فرصتی منحصربه‌فرد برای مدیریت مخاطبان ارائه می‌کند. ماستودونی که روی زیرساخت خودتان استقرار یافته باشد، می‌گذارد بدون بودن زیر واپایش کسی غیر از خودتان، دیگر کارسازهای برخط ماستودون را دنبال کرده و به دست آن‌ها دنبال شوید.
+      feature_audience_title: مخاطبان‌تان را با اطمینان بسازید
+      feature_control: شما بهتر از هر کسی دیگری می‌دونید که چه می‌خواهید ببینید. هیچ الگوریتم یا تبلیغی وقت شما را تلف نمی‌کند. تنها با یک حساب، هر کسی را روی هر کارساز ماستودون دیگری دنبال کرده و فرسته‌هایشان را به ترتیب زمانی دریافت کنید. گوشهٔ دنج اینترنتی خودتان را بیشتر شبیه خودتان کنید.
+      feature_control_title: کنترل خط زمانی‌تان را به دست بگیرید
+      feature_creativity: ماستودون از فرسته‌های تصویری، ویدئویی و شنیداری، توضیحات دسترس‌پذیری، نظرسنجی، هشدار محتوا، تصاویر نمایهٔ پویا، شکلک‌های سفارشی، کنترل برش تصاویر بندانگشتی و بسیاری موارد دیگر پشتیبانی می‌کند تا به شما برای ابزار کردن خود در فضای برخط کمک کند. چه بخواهید یک اثر هنری، موسیقی یا پادکست منتشر کنید، ماستودون در خدمت شماست.
+      feature_creativity_title: خلاقیت بی‌همتا
+      feature_moderation: ماستودن، تصمیم‌گیری را به شما باز می‌گرداند. هر کارساز قوانین و شرایط استفاده خاص خودش را وضع می‌کند که فقط به صورت محلی اعمال می‌شود و نه به صورت از بالا به پایین در سکوهای اجتماعی شرکتی. این موضوع باعث افزایش انعطاف در پاسخ‌گویی به نیازهای گروه‌های مختلف می‌شود. به کارسازی با قوانین مورد پسندتان بپیوندید، و یا نمونه خود را میزبانی کنید.
+      feature_moderation_title: نظارت به شکلی که باید باشد
+      follow_action: پی‌گیری
+      follow_step: You curate your own feed. Lets fill it with interesting people.
+      follow_title: شخصی سازی خوراک خانگیتان
+      follows_subtitle: پی گرفتن حساب‌های شناخته شده
+      follows_title: افرادی برای پی‌گیری
+      follows_view_more: دیدن افرادی بیش‌تر برای پی‌گیری
+      hashtags_recent_count:
+        one: "%{people} نفر در ۲ روز اخیر"
+        other: "%{people} نفر در ۲ روز اخیر"
+      hashtags_subtitle: کشف گرایه‌ها در ۲ روز گذشته
+      hashtags_title: برچسب‌های داغ
+      hashtags_view_more: دیدن برچسب‌های داغ بیش‌تر
+      post_action: ایجاد
+      post_step: سلام کردن به جهان با متن، عکس، ویدیو یا نظرسنجی.
+      post_title: ساخت نخستین نظرسنجیتان
+      share_action: هم‌رسانی
+      share_step: بگذارید دوستانتان بدانند چگونه روی ماستودون بیابندتان.
+      share_title: هم‌رسانی نمایهٔ ماستودونتان
+      sign_in_action: ورود
       subject: به ماستودون خوش آمدید
       title: خوش آمدید، کاربر %{name}!
   users:
     follow_limit_reached: شما نمی‌توانید بیش از %{limit} نفر را پی بگیرید
+    go_to_sso_account_settings: به تنظیمات حساب فراهمگر هوبتتان بروید
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
     otp_lost_help_html: اگر شما دسترسی به هیچ‌کدامشان ندارید، باید با ایمیل %{email} تماس بگیرید
-    seamless_external_login: شما با یک سرویس خارج از مجموعه وارد شده‌اید، به همین دلیل تنظیمات ایمیل و رمز برای شما در دسترس نیست.
+    rate_limited: تلاش ّای هویت‌سنجی بیش از حد. لطفاً بعداً دوباره تلاش کنید.
+    seamless_external_login: با خدمتی خارجی وارد شده‌اید، برای همین تنظیمات رایانامه و گذرواژه در دسترس نیستند.
     signed_in_as: 'واردشده به نام:'
   verification:
-    explanation_html: 'شما می‌توانید <strong>خود را به عنوان مالک صفحه‌ای که در نمایه‌تان به آن پیوند داده‌اید تأیید کنید.</strong> برای این کار، صفحه‌ای که به آن پیوند داده‌اید، خودش باید پیوندی به نمایهٔ ماستودون شما داشته باشد. پیوند در آن صفحه <strong>باید</strong> عبارت <code>rel="me"‎</code> را به عنوان مشخّصهٔ (attribute) در خود داشته باشد. محتوای متن پیوند اهمتی ندارد. یک نمونه از چنین پیوندی:'
+    extra_instructions_html: <strong>نکته:</strong> پیوند روی پایگاه وبتان می‌تواند نامرئی باشد. بخش مهم <code>rel="me"</code> است که از جعل هویت روی پایگاه‌هایی با محتوای تولید شده به دست کاربر جلوگیری می‌کند. حتا می‌توانید به جای برچسب <code>a</code> از برچسب <code>link</code> در سرایند صفحه استفاده کنید؛ ولی HTML باید بدون اجرای جاوااسکریپت در دسترس باشد.
+    here_is_how: به اینصورت
+    hint_html: "<strong>تأیید هویتتان روی ماستودون برای همه است.</strong> برپایهٔ استانداردهای وب و رایگان برای همیشه. تمام آن چه نیاز دارید پایگاه وب شخصیست که افراد شما را با آن بشناسند. هنگام پیوند دادن به این پایگاه از نمایه‌تان، بررسی می‌کنیم که پیوندهای پایگاه وب نیز به نمایه‌تان پیوند داده باشد و نشانگری تصویری رویش نشان می‌دهیم."
+    instructions_html: کد زیر را رونوشت کرده و در HTML پایگاه وبتان جایگذاری کنید. سپس نشانی پایگاه وبتان را از زبانهٔ «ویرایش نمایه» در یکی از زمینه‌های اضافی روی نمایه‌تان افزوده و تغییرات را ذخیره کنید.
     verification: تأیید
+    verified_links: "‏پیوندهای تأییدشده‌ شما"
+    website_verification: تأیید پایگاه وب
   webauthn_credentials:
     add: افزودن کلید امنیتی
     create:

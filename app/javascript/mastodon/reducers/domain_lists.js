@@ -1,9 +1,10 @@
+import { Map as ImmutableMap, OrderedSet as ImmutableOrderedSet } from 'immutable';
+
 import {
   DOMAIN_BLOCKS_FETCH_SUCCESS,
   DOMAIN_BLOCKS_EXPAND_SUCCESS,
-  DOMAIN_UNBLOCK_SUCCESS,
+  unblockDomainSuccess
 } from '../actions/domain_blocks';
-import { Map as ImmutableMap, OrderedSet as ImmutableOrderedSet } from 'immutable';
 
 const initialState = ImmutableMap({
   blocks: ImmutableMap({
@@ -17,9 +18,9 @@ export default function domainLists(state = initialState, action) {
     return state.setIn(['blocks', 'items'], ImmutableOrderedSet(action.domains)).setIn(['blocks', 'next'], action.next);
   case DOMAIN_BLOCKS_EXPAND_SUCCESS:
     return state.updateIn(['blocks', 'items'], set => set.union(action.domains)).setIn(['blocks', 'next'], action.next);
-  case DOMAIN_UNBLOCK_SUCCESS:
-    return state.updateIn(['blocks', 'items'], set => set.delete(action.domain));
+  case unblockDomainSuccess.type:
+    return state.updateIn(['blocks', 'items'], set => set.delete(action.payload.domain));
   default:
     return state;
   }
-};
+}

@@ -13,7 +13,7 @@ class ActivityPub::TagManager
   }.freeze
 
   def public_collection?(uri)
-    uri == COLLECTIONS[:public] || uri == 'as:Public' || uri == 'Public'
+    uri == COLLECTIONS[:public] || %w(as:Public Public).include?(uri)
   end
 
   def url_for(target)
@@ -26,7 +26,10 @@ class ActivityPub::TagManager
       target.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
+
       short_account_status_url(target.account, target)
+    when :flag
+      target.uri
     end
   end
 
@@ -38,9 +41,12 @@ class ActivityPub::TagManager
       target.instance_actor? ? instance_actor_url : account_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
+
       account_status_url(target.account, target)
     when :emoji
       emoji_url(target)
+    when :flag
+      target.uri
     end
   end
 
@@ -66,6 +72,18 @@ class ActivityPub::TagManager
     raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
     account_status_replies_url(target.account, target, page_params)
+  end
+
+  def likes_uri_for(target)
+    raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
+
+    account_status_likes_url(target.account, target)
+  end
+
+  def shares_uri_for(target)
+    raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
+
+    account_status_shares_url(target.account, target)
   end
 
   def followers_uri_for(target)

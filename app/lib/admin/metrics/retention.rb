@@ -42,38 +42,7 @@ class Admin::Metrics::Retention
   end
 
   def perform_query
-    sql = <<-SQL.squish
-      SELECT axis.*, (
-        WITH new_users AS (
-          SELECT users.id
-          FROM users
-          WHERE date_trunc($3, users.created_at)::date = axis.cohort_period
-        ),
-        retained_users AS (
-          SELECT users.id
-          FROM users
-          INNER JOIN new_users on new_users.id = users.id
-          WHERE date_trunc($3, users.current_sign_in_at) >= axis.retention_period
-        )
-        SELECT ARRAY[count(*), (count(*))::float / (SELECT GREATEST(count(*), 1) FROM new_users)] AS retention_value_and_rate
-        FROM retained_users
-      )
-      FROM (
-        WITH cohort_periods AS (
-          SELECT generate_series(date_trunc($3, $1::timestamp)::date, date_trunc($3, $2::timestamp)::date, ('1 ' || $3)::interval) AS cohort_period
-        ),
-        retention_periods AS (
-          SELECT cohort_period AS retention_period FROM cohort_periods
-        )
-        SELECT *
-        FROM cohort_periods, retention_periods
-        WHERE retention_period >= cohort_period
-      ) as axis
-    SQL
-
-    rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, @start_at], [nil, @end_at], [nil, @frequency]])
-
-    rows.each_with_object([]) do |row, arr|
+    report_rows.each_with_object([]) do |row, arr|
       current_cohort = arr.last
 
       if current_cohort.nil? || current_cohort.period != row['cohort_period']
@@ -89,5 +58,46 @@ class Admin::Metrics::Retention
         value: value.to_s
       )
     end
+  end
+
+  def report_rows
+    ActiveRecord::Base.connection.select_all(sanitized_sql_string)
+  end
+
+  def sanitized_sql_string
+    ActiveRecord::Base.sanitize_sql_array(
+      [sql_query_string, { start_at: @start_at, end_at: @end_at, frequency: @frequency }]
+    )
+  end
+
+  def sql_query_string
+    <<~SQL.squish
+      SELECT axis.*, (
+        WITH new_users AS (
+          SELECT users.id
+          FROM users
+          WHERE date_trunc(:frequency, users.created_at)::date = axis.cohort_period
+        ),
+        retained_users AS (
+          SELECT users.id
+          FROM users
+          INNER JOIN new_users on new_users.id = users.id
+          WHERE date_trunc(:frequency, users.current_sign_in_at) >= axis.retention_period
+        )
+        SELECT ARRAY[count(*), (count(*))::float / (SELECT GREATEST(count(*), 1) FROM new_users)] AS retention_value_and_rate
+        FROM retained_users
+      )
+      FROM (
+        WITH cohort_periods AS (
+          SELECT generate_series(date_trunc(:frequency, :start_at::timestamp)::date, date_trunc(:frequency, :end_at::timestamp)::date, ('1 ' || :frequency)::interval) AS cohort_period
+        ),
+        retention_periods AS (
+          SELECT cohort_period AS retention_period FROM cohort_periods
+        )
+        SELECT *
+        FROM cohort_periods, retention_periods
+        WHERE retention_period >= cohort_period
+      ) as axis
+    SQL
   end
 end

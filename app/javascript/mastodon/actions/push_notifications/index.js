@@ -1,5 +1,5 @@
-import { setAlerts } from './setter';
 import { saveSettings } from './registerer';
+import { setAlerts } from './setter';
 
 export function changeAlerts(path, value) {
   return dispatch => {

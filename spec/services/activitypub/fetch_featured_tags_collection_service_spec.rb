@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service do
+RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService do
+  subject { described_class.new }
+
   let(:collection_url) { 'https://example.com/account/tags' }
   let(:actor) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/account') }
 
@@ -21,22 +25,20 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
     }.with_indifferent_access
   end
 
-  subject { described_class.new }
-
   shared_examples 'sets featured tags' do
     before do
       subject.call(actor, collection_url)
     end
 
     it 'sets expected tags as pinned tags' do
-      expect(actor.featured_tags.map(&:display_name)).to match_array ['Foo', 'bar', 'baZ']
+      expect(actor.featured_tags.map(&:display_name)).to match_array %w(Foo bar baZ)
     end
   end
 
   describe '#call' do
     context 'when the endpoint is a Collection' do
       before do
-        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload))
+        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'sets featured tags'
@@ -44,7 +46,7 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
 
     context 'when the account already has featured tags' do
       before do
-        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload))
+        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
 
         actor.featured_tags.create!(name: 'FoO')
         actor.featured_tags.create!(name: 'baz')
@@ -65,7 +67,7 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
       end
 
       before do
-        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload))
+        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'sets featured tags'
@@ -81,12 +83,12 @@ RSpec.describe ActivityPub::FetchFeaturedTagsCollectionService, type: :service d
             type: 'CollectionPage',
             partOf: collection_url,
             items: items,
-          }
+          },
         }.with_indifferent_access
       end
 
       before do
-        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload))
+        stub_request(:get, collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'sets featured tags'

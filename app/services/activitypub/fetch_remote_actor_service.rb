@@ -3,22 +3,21 @@
 class ActivityPub::FetchRemoteActorService < BaseService
   include JsonLdHelper
   include DomainControlHelper
-  include WebfingerHelper
 
   class Error < StandardError; end
 
   SUPPORTED_TYPES = %w(Application Group Organization Person Service).freeze
 
   # Does a WebFinger roundtrip on each call, unless `only_key` is true
-  def call(uri, id: true, prefetched_body: nil, break_on_redirect: false, only_key: false, suppress_errors: true)
+  def call(uri, prefetched_body: nil, break_on_redirect: false, only_key: false, suppress_errors: true, request_id: nil)
     return if domain_not_allowed?(uri)
     return ActivityPub::TagManager.instance.uri_to_actor(uri) if ActivityPub::TagManager.instance.local_uri?(uri)
 
     @json = begin
       if prefetched_body.nil?
-        fetch_resource(uri, id)
+        fetch_resource(uri, true)
       else
-        body_to_json(prefetched_body, compare_id: id ? uri : nil)
+        body_to_json(prefetched_body, compare_id: uri)
       end
     rescue Oj::ParseError
       raise Error, "Error parsing JSON-LD document #{uri}"
@@ -28,6 +27,7 @@ class ActivityPub::FetchRemoteActorService < BaseService
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?
     raise Error, "Unexpected object type for actor #{uri} (expected any of: #{SUPPORTED_TYPES})" unless expected_type?
     raise Error, "Actor #{uri} has moved to #{@json['movedTo']}" if break_on_redirect && @json['movedTo'].present?
+    raise Error, "Actor #{uri} has no 'preferredUsername', which is a requirement for Mastodon compatibility" if @json['preferredUsername'].blank?
 
     @uri      = @json['id']
     @username = @json['preferredUsername']
@@ -35,31 +35,29 @@ class ActivityPub::FetchRemoteActorService < BaseService
 
     check_webfinger! unless only_key
 
-    ActivityPub::ProcessAccountService.new.call(@username, @domain, @json, only_key: only_key, verified_webfinger: !only_key)
+    ActivityPub::ProcessAccountService.new.call(@username, @domain, @json, only_key: only_key, verified_webfinger: !only_key, request_id: request_id)
   rescue Error => e
-    Rails.logger.debug "Fetching actor #{uri} failed: #{e.message}"
+    Rails.logger.debug { "Fetching actor #{uri} failed: #{e.message}" }
     raise unless suppress_errors
   end
 
   private
 
   def check_webfinger!
-    webfinger                            = webfinger!("acct:#{@username}@#{@domain}")
+    webfinger = Webfinger.new("acct:#{@username}@#{@domain}").perform
     confirmed_username, confirmed_domain = split_acct(webfinger.subject)
 
     if @username.casecmp(confirmed_username).zero? && @domain.casecmp(confirmed_domain).zero?
-      raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.link('self', 'href') != @uri
+      raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.self_link_href != @uri
+
       return
     end
 
-    webfinger                            = webfinger!("acct:#{confirmed_username}@#{confirmed_domain}")
+    webfinger = Webfinger.new("acct:#{confirmed_username}@#{confirmed_domain}").perform
     @username, @domain                   = split_acct(webfinger.subject)
 
-    unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
-      raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{@uri} (stopped at #{@username}@#{@domain})"
-    end
-
-    raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.link('self', 'href') != @uri
+    raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{@uri} (stopped at #{@username}@#{@domain})" unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
+    raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.self_link_href != @uri
   rescue Webfinger::RedirectError => e
     raise Error, e.message
   rescue Webfinger::Error => e
@@ -67,7 +65,7 @@ class ActivityPub::FetchRemoteActorService < BaseService
   end
 
   def split_acct(acct)
-    acct.gsub(/\Aacct:/, '').split('@')
+    acct.delete_prefix('acct:').split('@')
   end
 
   def supported_context?

@@ -9,19 +9,23 @@ module Mastodon
     end
 
     def minor
-      0
+      4
     end
 
     def patch
       0
     end
 
-    def flags
-      'rc2'
+    def default_prerelease
+      'alpha.1'
     end
 
-    def suffix
-      ''
+    def prerelease
+      ENV['MASTODON_VERSION_PRERELEASE'].presence || default_prerelease
+    end
+
+    def build_metadata
+      ENV.fetch('MASTODON_VERSION_METADATA', nil)
     end
 
     def to_a
@@ -29,7 +33,20 @@ module Mastodon
     end
 
     def to_s
-      [to_a.join('.'), flags, suffix].join
+      components = [to_a.join('.')]
+      components << "-#{prerelease}" if prerelease.present?
+      components << "+#{build_metadata}" if build_metadata.present?
+      components.join
+    end
+
+    def gem_version
+      @gem_version ||= Gem::Version.new(to_s.split('+')[0])
+    end
+
+    def api_versions
+      {
+        mastodon: 2,
+      }
     end
 
     def repository
@@ -53,8 +70,12 @@ module Mastodon
       end
     end
 
+    def source_commit
+      ENV.fetch('SOURCE_COMMIT', nil)
+    end
+
     def user_agent
-      @user_agent ||= "#{HTTP::Request::USER_AGENT} (Mastodon/#{Version}; +http#{Rails.configuration.x.use_https ? 's' : ''}://#{Rails.configuration.x.web_domain}/)"
+      @user_agent ||= "Mastodon/#{Version} (#{HTTP::Request::USER_AGENT}; +http#{Rails.configuration.x.use_https ? 's' : ''}://#{Rails.configuration.x.web_domain}/)"
     end
   end
 end
