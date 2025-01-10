@@ -14,6 +14,20 @@ RSpec.describe Invite do
     it { is_expected.to validate_length_of(:comment).is_at_most(described_class::COMMENT_SIZE_LIMIT) }
   end
 
+  describe 'Scopes' do
+    describe '.available' do
+      let!(:no_expires) { Fabricate :invite, expires_at: nil }
+      let!(:past_expires) { Fabricate :invite, expires_at: 2.days.ago }
+      let!(:future_expires) { Fabricate :invite, expires_at: 2.days.from_now }
+
+      it 'returns future and non-epiring records' do
+        expect(described_class.available)
+          .to include(no_expires, future_expires)
+          .and not_include(past_expires)
+      end
+    end
+  end
+
   describe '#valid_for_use?' do
     it 'returns true when there are no limitations' do
       invite = Fabricate(:invite, max_uses: nil, expires_at: nil)
