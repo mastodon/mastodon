@@ -595,6 +595,11 @@ RSpec.describe Account do
 
       it { is_expected.to allow_value(fields_empty_name_value).for(:fields) }
       it { is_expected.to_not allow_values(fields_over_limit, fields_empty_name).for(:fields) }
+
+      it { is_expected.to validate_absence_of(:followers_url).on(:create) }
+      it { is_expected.to validate_absence_of(:inbox_url).on(:create) }
+      it { is_expected.to validate_absence_of(:shared_inbox_url).on(:create) }
+      it { is_expected.to validate_absence_of(:uri).on(:create) }
     end
 
     context 'when account is remote' do

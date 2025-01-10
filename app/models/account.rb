@@ -119,11 +119,11 @@ class Account < ApplicationRecord
   validates :note, note_length: { maximum: NOTE_LENGTH_LIMIT }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: DEFAULT_FIELDS_SIZE }, if: -> { local? && will_save_change_to_fields? }
   validates_with EmptyProfileFieldNamesValidator, if: -> { local? && will_save_change_to_fields? }
-  with_options on: :create do
-    validates :uri, absence: true, if: :local?
-    validates :inbox_url, absence: true, if: :local?
-    validates :shared_inbox_url, absence: true, if: :local?
-    validates :followers_url, absence: true, if: :local?
+  with_options on: :create, if: :local? do
+    validates :followers_url, absence: true
+    validates :inbox_url, absence: true
+    validates :shared_inbox_url, absence: true
+    validates :uri, absence: true
   end
 
   normalizes :username, with: ->(username) { username.squish }
