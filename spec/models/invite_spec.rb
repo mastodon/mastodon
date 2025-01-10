@@ -37,4 +37,26 @@ RSpec.describe Invite do
       expect(invite.valid_for_use?).to be false
     end
   end
+
+  describe 'Callbacks' do
+    describe 'Setting the invite code' do
+      context 'when creating a new record' do
+        subject { Fabricate.build :invite }
+
+        it 'sets a code value' do
+          expect { subject.save }
+            .to change(subject, :code).from(be_blank).to(be_present)
+        end
+      end
+
+      context 'when updating a record' do
+        subject { Fabricate :invite }
+
+        it 'does not change the code value' do
+          expect { subject.update(max_uses: 123_456) }
+            .to not_change(subject, :code)
+        end
+      end
+    end
+  end
 end
