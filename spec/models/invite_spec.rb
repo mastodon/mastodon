@@ -5,6 +5,11 @@ require 'rails_helper'
 RSpec.describe Invite do
   include_examples 'Expireable'
 
+  describe 'Associations' do
+    it { is_expected.to belong_to(:user).inverse_of(:invites) }
+    it { is_expected.to have_many(:users).inverse_of(:invite) }
+  end
+
   describe '#valid_for_use?' do
     it 'returns true when there are no limitations' do
       invite = Fabricate(:invite, max_uses: nil, expires_at: nil)
