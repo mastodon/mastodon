@@ -10,6 +10,10 @@ RSpec.describe Invite do
     it { is_expected.to have_many(:users).inverse_of(:invite) }
   end
 
+  describe 'Validations' do
+    it { is_expected.to validate_length_of(:comment).is_at_most(described_class::COMMENT_SIZE_LIMIT) }
+  end
+
   describe '#valid_for_use?' do
     it 'returns true when there are no limitations' do
       invite = Fabricate(:invite, max_uses: nil, expires_at: nil)
