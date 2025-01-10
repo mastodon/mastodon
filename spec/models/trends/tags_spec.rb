@@ -29,6 +29,31 @@ RSpec.describe Trends::Tags do
     end
   end
 
+  describe 'Trends::Tags::Query' do
+    subject { described_class.new.query }
+
+    describe '#records' do
+      context 'with scored cards' do
+        let!(:higher_score) { Fabricate :tag_trend, score: 10, language: 'en' }
+        let!(:lower_score) { Fabricate :tag_trend, score: 1, language: 'es' }
+
+        it 'returns higher score first' do
+          expect(subject.records)
+            .to eq([higher_score.tag, lower_score.tag])
+        end
+
+        context 'with preferred locale' do
+          before { subject.in_locale!('es') }
+
+          it 'returns in language order' do
+            expect(subject.records)
+              .to eq([lower_score.tag, higher_score.tag])
+          end
+        end
+      end
+    end
+  end
+
   describe '#refresh' do
     let!(:today) { at_time }
     let!(:yesterday) { today - 1.day }

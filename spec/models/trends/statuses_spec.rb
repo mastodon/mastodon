@@ -45,6 +45,31 @@ RSpec.describe Trends::Statuses do
     end
   end
 
+  describe 'Trends::Statuses::Query methods' do
+    subject { described_class.new.query }
+
+    describe '#records' do
+      context 'with scored cards' do
+        let!(:higher_score) { Fabricate :status_trend, score: 10, language: 'en' }
+        let!(:lower_score) { Fabricate :status_trend, score: 1, language: 'es' }
+
+        it 'returns higher score first' do
+          expect(subject.records)
+            .to eq([higher_score.status, lower_score.status])
+        end
+
+        context 'with preferred locale' do
+          before { subject.in_locale!('es') }
+
+          it 'returns in language order' do
+            expect(subject.records)
+              .to eq([lower_score.status, higher_score.status])
+          end
+        end
+      end
+    end
+  end
+
   describe '#add' do
     let(:status) { Fabricate(:status) }
 

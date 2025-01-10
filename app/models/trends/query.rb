@@ -94,6 +94,13 @@ class Trends::Query
     to_arel.to_a
   end
 
+  def language_order_for(trend_class)
+    trend_class
+      .reorder(nil)
+      .in_order_of(:language, [preferred_languages], filter: false)
+      .order(score: :desc)
+  end
+
   def preferred_languages
     if @account&.chosen_languages.present?
       @account.chosen_languages
