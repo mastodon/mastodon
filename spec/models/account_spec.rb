@@ -619,6 +619,8 @@ RSpec.describe Account do
       it { is_expected.to allow_values(display_name_over_limit).for(:display_name) }
 
       it { is_expected.to allow_values(account_note_over_limit).for(:note) }
+
+      it { is_expected.to validate_presence_of(:uri).on(:create) }
     end
 
     def username_over_limit

@@ -110,7 +110,9 @@ class Account < ApplicationRecord
   validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { (remote? || actor_type_application?) && will_save_change_to_username? }
 
   # Remote user validations
-  validates :uri, presence: true, unless: :local?, on: :create
+  with_options if: :remote? do
+    validates :uri, presence: true, on: :create
+  end
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: USERNAME_LENGTH_LIMIT }, if: -> { local? && will_save_change_to_username? && !actor_type_application? }
