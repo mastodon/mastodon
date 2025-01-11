@@ -66,6 +66,20 @@ RSpec.describe Trends::Statuses do
               .to eq([lower_score.status, higher_score.status])
           end
         end
+
+        context 'when account has chosen languages' do
+          let!(:lang_match_higher_score) { Fabricate :status_trend, score: 10, language: 'is' }
+          let!(:lang_match_lower_score) { Fabricate :status_trend, score: 1, language: 'da' }
+          let(:user) { Fabricate :user, chosen_languages: %w(da is) }
+          let(:account) { Fabricate :account, user: user }
+
+          before { subject.filtered_for!(account) }
+
+          it 'returns results' do
+            expect(subject.records)
+              .to eq([lang_match_higher_score.status, lang_match_lower_score.status, higher_score.status, lower_score.status])
+          end
+        end
       end
     end
   end

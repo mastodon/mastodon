@@ -50,6 +50,20 @@ RSpec.describe Trends::Tags do
               .to eq([lower_score.tag, higher_score.tag])
           end
         end
+
+        context 'when account has chosen languages' do
+          let!(:lang_match_higher_score) { Fabricate :tag_trend, score: 10, language: 'is' }
+          let!(:lang_match_lower_score) { Fabricate :tag_trend, score: 1, language: 'da' }
+          let(:user) { Fabricate :user, chosen_languages: %w(da is) }
+          let(:account) { Fabricate :account, user: user }
+
+          before { subject.filtered_for!(account) }
+
+          it 'returns results' do
+            expect(subject.records)
+              .to eq([lang_match_higher_score.tag, lang_match_lower_score.tag, higher_score.tag, lower_score.tag])
+          end
+        end
       end
     end
   end
