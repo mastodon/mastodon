@@ -21,7 +21,7 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
         endpoint: subscription_params[:endpoint],
         key_p256dh: subscription_params[:keys][:p256dh],
         key_auth: subscription_params[:keys][:auth],
-        standard: subscription_params[:standard],
+        standard: subscription_params[:standard] || false,
         data: data_params,
         user_id: current_user.id,
         access_token_id: doorkeeper_token.id
