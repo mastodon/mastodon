@@ -35,7 +35,7 @@ RSpec.describe Web::PushNotificationWorker do
     before do
       Setting.site_contact_email = contact_email
 
-      allow(Webpush::Encryption).to receive(:encrypt).and_return(payload)
+      allow(Webpush::Legacy::Encryption).to receive(:encrypt).and_return(payload)
       allow(JWT).to receive(:encode).and_return('jwt.encoded.payload')
 
       stub_request(:post, endpoint).to_return(status: 201, body: '')
