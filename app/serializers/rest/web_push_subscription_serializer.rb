@@ -3,9 +3,7 @@
 class REST::WebPushSubscriptionSerializer < ActiveModel::Serializer
   attributes :id, :endpoint, :standard, :alerts, :server_key, :policy
 
-  def standard
-    object.standard || false
-  end
+  delegate :standard, to: :object
 
   def alerts
     (object.data&.dig('alerts') || {}).each_with_object({}) { |(k, v), h| h[k] = ActiveModel::Type::Boolean.new.cast(v) }
