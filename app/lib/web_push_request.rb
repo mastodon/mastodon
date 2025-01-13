@@ -33,7 +33,7 @@ class WebPushRequest
   end
 
   def encrypt(payload)
-    Webpush::Encryption.encrypt(payload, key_p256dh, key_auth)
+    Webpush::Legacy::Encryption.encrypt(payload, key_p256dh, key_auth)
   end
 
   private
