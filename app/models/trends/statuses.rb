@@ -15,7 +15,7 @@ class Trends::Statuses < Trends::Base
   class Query < Trends::Query
     def to_arel
       scope = Status.joins(:trend).reorder(score: :desc)
-      scope = scope.merge(language_order_clause) if preferred_languages.present?
+      scope = scope.reorder(language_order_clause, score: :desc) if preferred_languages.present?
       scope = scope.merge(StatusTrend.allowed) if @allowed
       scope = scope.not_excluded_by_account(@account).not_domain_blocked_by_account(@account) if @account.present?
       scope = scope.offset(@offset) if @offset.present?
@@ -25,8 +25,8 @@ class Trends::Statuses < Trends::Base
 
     private
 
-    def language_order_clause
-      language_order_for(StatusTrend)
+    def trend_class
+      StatusTrend
     end
   end
 
