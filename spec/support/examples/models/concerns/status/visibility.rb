@@ -25,9 +25,9 @@ RSpec.shared_examples 'Status::Visibility' do
     let!(:public_status) { Fabricate :status, visibility: :public }
     let!(:unlisted_status) { Fabricate :status, visibility: :unlisted }
 
-    describe '.unrestricted_visibility' do
+    describe '.list_eligible_visibility' do
       it 'returns appropriate records' do
-        expect(Status.unrestricted_visibility)
+        expect(Status.list_eligible_visibility)
           .to include(
             private_status,
             public_status,
