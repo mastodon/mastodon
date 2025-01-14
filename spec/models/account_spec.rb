@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Account do
+  include_examples 'Account::Search'
   include_examples 'Reviewable'
 
   context 'with an account record' do
@@ -48,14 +49,48 @@ RSpec.describe Account do
   end
 
   describe '#local?' do
-    it 'returns true when the account is local' do
+    it 'returns true when domain is null' do
       account = Fabricate(:account, domain: nil)
-      expect(account.local?).to be true
+      expect(account).to be_local
     end
 
-    it 'returns false when the account is on a different domain' do
+    it 'returns false when domain is present' do
       account = Fabricate(:account, domain: 'foreign.tld')
-      expect(account.local?).to be false
+      expect(account).to_not be_local
+    end
+  end
+
+  describe '#remote?' do
+    context 'when the domain is null' do
+      subject { Fabricate.build :account, domain: nil }
+
+      it { is_expected.to_not be_remote }
+    end
+
+    context 'when the domain is blank' do
+      subject { Fabricate.build :account, domain: '' }
+
+      it { is_expected.to_not be_remote }
+    end
+
+    context 'when the domain is present' do
+      subject { Fabricate.build :account, domain: 'host.example' }
+
+      it { is_expected.to be_remote }
+    end
+  end
+
+  describe '#actor_type_application?' do
+    context 'when the actor is not of type application' do
+      subject { Fabricate.build :account, actor_type: 'Person' }
+
+      it { is_expected.to_not be_actor_type_application }
+    end
+
+    context 'when the actor is of type application' do
+      subject { Fabricate.build :account, actor_type: 'Application' }
+
+      it { is_expected.to be_actor_type_application }
     end
   end
 
@@ -324,271 +359,6 @@ RSpec.describe Account do
     end
   end
 
-  describe '.search_for' do
-    before do
-      _missing = Fabricate(
-        :account,
-        display_name: 'Missing',
-        username: 'missing',
-        domain: 'missing.com'
-      )
-    end
-
-    it 'does not return suspended users' do
-      Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username',
-        domain: 'example.com',
-        suspended: true
-      )
-
-      results = described_class.search_for('username')
-      expect(results).to eq []
-    end
-
-    it 'does not return unapproved users' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username'
-      )
-
-      match.user.update(approved: false)
-
-      results = described_class.search_for('username')
-      expect(results).to eq []
-    end
-
-    it 'does not return unconfirmed users' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username'
-      )
-
-      match.user.update(confirmed_at: nil)
-
-      results = described_class.search_for('username')
-      expect(results).to eq []
-    end
-
-    it 'accepts ?, \, : and space as delimiter' do
-      match = Fabricate(
-        :account,
-        display_name: 'A & l & i & c & e',
-        username: 'username',
-        domain: 'example.com'
-      )
-
-      results = described_class.search_for('A?l\i:c e')
-      expect(results).to eq [match]
-    end
-
-    it 'finds accounts with matching display_name' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username',
-        domain: 'example.com'
-      )
-
-      results = described_class.search_for('display')
-      expect(results).to eq [match]
-    end
-
-    it 'finds accounts with matching username' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username',
-        domain: 'example.com'
-      )
-
-      results = described_class.search_for('username')
-      expect(results).to eq [match]
-    end
-
-    it 'finds accounts with matching domain' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username',
-        domain: 'example.com'
-      )
-
-      results = described_class.search_for('example')
-      expect(results).to eq [match]
-    end
-
-    it 'limits via constant by default' do
-      stub_const('Account::Search::DEFAULT_LIMIT', 1)
-      2.times.each { Fabricate(:account, display_name: 'Display Name') }
-      results = described_class.search_for('display')
-      expect(results.size).to eq 1
-    end
-
-    it 'accepts arbitrary limits' do
-      2.times.each { Fabricate(:account, display_name: 'Display Name') }
-      results = described_class.search_for('display', limit: 1)
-      expect(results.size).to eq 1
-    end
-
-    it 'ranks multiple matches higher' do
-      matches = [
-        { username: 'username', display_name: 'username' },
-        { display_name: 'Display Name', username: 'username', domain: 'example.com' },
-      ].map(&method(:Fabricate).curry(2).call(:account))
-
-      results = described_class.search_for('username')
-      expect(results).to eq matches
-    end
-  end
-
-  describe '.advanced_search_for' do
-    let(:account) { Fabricate(:account) }
-
-    context 'when limiting search to followed accounts' do
-      it 'accepts ?, \, : and space as delimiter' do
-        match = Fabricate(
-          :account,
-          display_name: 'A & l & i & c & e',
-          username: 'username',
-          domain: 'example.com'
-        )
-        account.follow!(match)
-
-        results = described_class.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
-        expect(results).to eq [match]
-      end
-
-      it 'does not return non-followed accounts' do
-        Fabricate(
-          :account,
-          display_name: 'A & l & i & c & e',
-          username: 'username',
-          domain: 'example.com'
-        )
-
-        results = described_class.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
-        expect(results).to eq []
-      end
-
-      it 'does not return suspended users' do
-        Fabricate(
-          :account,
-          display_name: 'Display Name',
-          username: 'username',
-          domain: 'example.com',
-          suspended: true
-        )
-
-        results = described_class.advanced_search_for('username', account, limit: 10, following: true)
-        expect(results).to eq []
-      end
-
-      it 'does not return unapproved users' do
-        match = Fabricate(
-          :account,
-          display_name: 'Display Name',
-          username: 'username'
-        )
-
-        match.user.update(approved: false)
-
-        results = described_class.advanced_search_for('username', account, limit: 10, following: true)
-        expect(results).to eq []
-      end
-
-      it 'does not return unconfirmed users' do
-        match = Fabricate(
-          :account,
-          display_name: 'Display Name',
-          username: 'username'
-        )
-
-        match.user.update(confirmed_at: nil)
-
-        results = described_class.advanced_search_for('username', account, limit: 10, following: true)
-        expect(results).to eq []
-      end
-    end
-
-    it 'does not return suspended users' do
-      Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username',
-        domain: 'example.com',
-        suspended: true
-      )
-
-      results = described_class.advanced_search_for('username', account)
-      expect(results).to eq []
-    end
-
-    it 'does not return unapproved users' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username'
-      )
-
-      match.user.update(approved: false)
-
-      results = described_class.advanced_search_for('username', account)
-      expect(results).to eq []
-    end
-
-    it 'does not return unconfirmed users' do
-      match = Fabricate(
-        :account,
-        display_name: 'Display Name',
-        username: 'username'
-      )
-
-      match.user.update(confirmed_at: nil)
-
-      results = described_class.advanced_search_for('username', account)
-      expect(results).to eq []
-    end
-
-    it 'accepts ?, \, : and space as delimiter' do
-      match = Fabricate(
-        :account,
-        display_name: 'A & l & i & c & e',
-        username: 'username',
-        domain: 'example.com'
-      )
-
-      results = described_class.advanced_search_for('A?l\i:c e', account)
-      expect(results).to eq [match]
-    end
-
-    it 'limits result count by default value' do
-      stub_const('Account::Search::DEFAULT_LIMIT', 1)
-      2.times { Fabricate(:account, display_name: 'Display Name') }
-      results = described_class.advanced_search_for('display', account)
-      expect(results.size).to eq 1
-    end
-
-    it 'accepts arbitrary limits' do
-      2.times { Fabricate(:account, display_name: 'Display Name') }
-      results = described_class.advanced_search_for('display', account, limit: 1)
-      expect(results.size).to eq 1
-    end
-
-    it 'ranks followed accounts higher' do
-      match = Fabricate(:account, username: 'Matching')
-      followed_match = Fabricate(:account, username: 'Matcher')
-      Fabricate(:follow, account: account, target_account: followed_match)
-
-      results = described_class.advanced_search_for('match', account)
-      expect(results).to eq [followed_match, match]
-      expect(results.first.rank).to be > results.last.rank
-    end
-  end
-
   describe '#statuses_count' do
     subject { Fabricate(:account) }
 
@@ -803,6 +573,11 @@ RSpec.describe Account do
 
       it { is_expected.to allow_value(fields_empty_name_value).for(:fields) }
       it { is_expected.to_not allow_values(fields_over_limit, fields_empty_name).for(:fields) }
+
+      it { is_expected.to validate_absence_of(:followers_url).on(:create) }
+      it { is_expected.to validate_absence_of(:inbox_url).on(:create) }
+      it { is_expected.to validate_absence_of(:shared_inbox_url).on(:create) }
+      it { is_expected.to validate_absence_of(:uri).on(:create) }
 
       it { is_expected.to allow_values([], ['example.com'], (1..100).to_a).for(:attribution_domains) }
       it { is_expected.to_not allow_values(['example com'], ['@'], (1..101).to_a).for(:attribution_domains) }

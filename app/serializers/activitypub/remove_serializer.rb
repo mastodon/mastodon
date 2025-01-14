@@ -38,6 +38,6 @@ class ActivityPub::RemoveSerializer < ActivityPub::Serializer
   end
 
   def target
-    account_collection_url(object.account, :featured)
+    ActivityPub::TagManager.instance.collection_uri_for(object.account, :featured)
   end
 end

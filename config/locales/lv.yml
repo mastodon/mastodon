@@ -217,6 +217,7 @@ lv:
         enable_user: Ieslēgt Lietotāju
         memorialize_account: Saglabāt Kontu Piemiņai
         promote_user: Izceltt Lietotāju
+        publish_terms_of_service: Publicēt pakalpojuma izmantošanas noteikumus
         reject_appeal: Noraidīt Apelāciju
         reject_user: Noraidīt lietotāju
         remove_avatar_user: Noņemt profila attēlu
@@ -273,6 +274,7 @@ lv:
         enable_user_html: "%{name} iespējoja pieteikšanos lietotājam %{target}"
         memorialize_account_html: "%{name} pārvērta %{target} kontu par atmiņas lapu"
         promote_user_html: "%{name} paaugstināja lietotāju %{target}"
+        publish_terms_of_service_html: "%{name} padarīja pieejamus pakalpojuma izmantošanas noteikumu atjauninājumus"
         reject_appeal_html: "%{name} noraidīja satura pārraudzības lēmuma iebildumu no %{target}"
         reject_user_html: "%{name} noraidīja reģistrēšanos no %{target}"
         remove_avatar_user_html: "%{name} noņēma %{target} profila attēlu"
@@ -641,7 +643,7 @@ lv:
         create_and_resolve: Atrisināt ar piezīmi
         create_and_unresolve: Atvērt atkārtoti ar piezīmi
         delete: Dzēst
-        placeholder: Apraksti veiktās darbības vai citus saistītus atjauninājumus...
+        placeholder: Jāapraksta veiktās darbības vai jebkuri citi saistītie atjauninājumi...
         title: Piezīmes
       notes_description_html: Skati un atstāj piezīmes citiem moderatoriem un sev nākotnei
       processed_msg: 'Pārskats #%{id} veiksmīgi apstrādāts'
@@ -746,13 +748,13 @@ lv:
     rules:
       add_new: Pievienot noteikumu
       delete: Dzēst
-      description_html: Lai gan lielākā daļa apgalvo, ka ir izlasījuši pakalpojumu sniegšanas noteikumus un piekrīt tiem, parasti cilvēki to izlasa tikai pēc problēmas rašanās. <strong>Padariet vienkāršāku sava servera noteikumu uztveršanu, veidojot tos vienkāršā sarakstā pa punktiem.</strong> Centieties, lai atsevišķi noteikumi būtu īsi un vienkārši, taču arī nesadaliet tos daudzos atsevišķos vienumos.
+      description_html: Kaut arī lielākā daļa apgalvo, ka ir lasījuši un piekrīt pakalpojuma izmantošanas noteikumiem, parasti cilvēki tos neizlasa, līdz rodas sarežģījumi. <strong>Padari vienkāršāku sava servera noteikumu pārskatīšanu, sniedzot tos vienkāršā uzsvēruma punktu sarakstā!</strong> Jāmēģina atsevišķus noteikumus veidot īsus un vienkāršus, bet jāmēģina arī tos nesadalīt daudzos atsevišķos vienumos.
       edit: Labot nosacījumu
-      empty: Servera noteikumi vēl nav definēti.
+      empty: Vēl nav pievienots neviens servera noteikums.
       title: Servera noteikumi
     settings:
       about:
-        manage_rules: Pārvaldīt servera nosacījumus
+        manage_rules: Pārvaldīt servera noteikumus
         preamble: Sniedz padziļinātu informāciju par to, kā serveris tiek darbināts, moderēts un finansēts.
         rules_hint: Noteikumiem, kas taviem lietotājiem ir jāievēro, ir īpaša sadaļa.
         title: Par
@@ -821,6 +823,7 @@ lv:
       back_to_account: Atpakaļ uz konta lapu
       back_to_report: Atpakaļ uz paziņojumu lapu
       batch:
+        add_to_report: 'Pievienot atskaitei #%{id}'
         remove_from_report: Noņemt no ziņojuma
         report: Ziņojums
       contents: Saturs
@@ -832,13 +835,17 @@ lv:
       media:
         title: Multivide
       metadata: Metadati
+      no_history: Šis ieraksts nav bijis labots
       no_status_selected: Neviena ziņa netika mainīta, jo neviena netika atlasīta
       open: Atvērt ziņu
       original_status: Oriģinālā ziņa
       reblogs: Reblogi
+      replied_to_html: Atbildēja %{acct_link}
       status_changed: Ziņa mainīta
       status_title: Publicēja @%{name}
+      title: Konta ieraksti - @%{name}
       trending: Aktuāli
+      view_publicly: Skatīt publiski
       visibility: Redzamība
       with_media: Ar multividi
     strikes:
@@ -876,8 +883,8 @@ lv:
         message_html: 'Nesaderīga Elasticsearch versija: %{value}'
         version_comparison: Darbojas Elasticsearch %{running_version}, tomēr ir nepieciešama %{required_version}
       rules_check:
-        action: Pārvaldīt servera nosacījumus
-        message_html: Tu neesi definējis nevienu servera nosacījumu.
+        action: Pārvaldīt servera noteikumus
+        message_html: Nav pievienots neviens servera noteikums.
       sidekiq_process_check:
         message_html: Rindā(s) %{value} nedarbojas neviens Sidekiq process. Lūdzu, pārskati savu Sidekiq konfigurāciju
       software_version_check:
@@ -907,16 +914,42 @@ lv:
       name: Nosaukums
       newest: Jaunākie
       oldest: Vecākie
+      open: Apskatīt publiski
       reset: Atiestatīt
       review: Pārskatīt stāvokli
       search: Meklēt
       title: Tēmturi
       updated_msg: Tēmtura iestatījumi ir veiksmīgi atjaunināti
     terms_of_service:
+      back: Atpakaļ uz pakalpojuma izmantošanas noteikumiem
       changelog: Kas ir mainījies
+      create: Izmantot savus
+      current: Pašreizējie
+      draft: Melnraksts
+      generate: Izmantot sagatavi
+      generates:
+        action: Izveidot
+        chance_to_review_html: "<strong>Izveidotie pakalpojuma izmantošanas noteikumi netiks automātiski publicēti.</strong> Būs iespēja izskatīt iznākumu. Lūgums norādīt nepieciešamo informāciju, lai turpinātu."
+        explanation_html: Pakalpojuma izmantošanas noteikumu sagatave tiek piedāvāta tikai izzināšanas nolūkam, un to nevajadzētu izmantot kā juridisku padomu jebkurā jautājumā. Lūgums sazināties ar savu juridisko padomdevēju par saviem apstākļiem un noteiktiem juridiskiem jautājumiem.
+        title: Pakalpojuma izmantošānas noteikumu uzstādīšana
       history: Vēsture
+      live: Darbībā
+      no_history: Nav ierakstu par pakalpojuma izmantošanas noteikumu izmaiņām.
+      no_terms_of_service_html: Pašlaik nav uzstādīti pakalpojuma izmantošanas noteikumi. Tie ir paredzēti, lai sniegtu skaidrību un aizsargātu no iespējamas atbildības strīdos ar lietotājiem.
+      notified_on_html: Lietotājiem paziņots %{date}
+      notify_users: Paziņot lietotājiem
+      preview:
+        explanation_html: 'E-pasta ziņojums tiks nosūtīts <strong>%{display_count} lietotājiem</strong>, kuri ir reģistrējušies pirms %{date}. Šis teksts tiks iekļauts e-pasta ziņojumā:'
+        send_preview: Nosūtīt priekšskatījumu uz %{email}
+        send_to_all:
+          one: Nosūtīt %{display_count} e-pasta ziņojumu
+          other: Nosūtīt %{display_count} e-pasta ziņojumus
+          zero: Nosūtīt %{display_count} e-pasta ziņojumu
+        title: Priekškatīt pakalpojuma izmantošanas noteikumu paziņojumu
       publish: Publicēt
-      published_on_html: Publicēts %{date}
+      published_on_html: Publicēti %{date}
+      save_draft: Saglabāt melnrakstu
+      title: Pakalpojuma izmantošanas noteikumi
     title: Pārvaldība
     trends:
       allow: Atļaut
@@ -1157,6 +1190,7 @@ lv:
       view_strikes: Skati iepriekšējos brīdinājumus par savu kontu
     too_fast: Veidlapa ir iesniegta pārāk ātri, mēģini vēlreiz.
     use_security_key: Lietot drošības atslēgu
+    user_agreement_html: Es esmu izlasījis un piekrītu <a href="%{terms_of_service_path}" target="_blank">pakalpojuma izmantošanas noteikumiem</a> un <a href="%{privacy_policy_path}" target="_blank">privātuma nosacījumiem</a>
   author_attribution:
     example_title: Parauga teksts
     more_from_html: Vairāk no %{name}
@@ -1777,6 +1811,8 @@ lv:
       too_late: Brīdinājuma apstrīdēšanas laiks ir nokavēts
   tags:
     does_not_match_previous_name: nesakrīt ar iepriekšējo nosaukumu
+  terms_of_service:
+    title: Pakalpojuma izmantošanas noteikumi
   themes:
     contrast: Mastodon (Augsts kontrasts)
     default: Mastodon (Tumšs)
@@ -1826,6 +1862,15 @@ lv:
       further_actions_html: Ja tas nebiji tu, iesakām nekavējoties %{action} un iespējot divu faktoru autentifikāciju, lai tavs konts būtu drošībā.
       subject: Tavam kontam ir piekļūts no jaunas IP adreses
       title: Jauna pieteikšanās
+    terms_of_service_changed:
+      agreement: Ar %{domain} izmantošanas tuprināšanu tiek piekrists šiem noteikumiem. Ja ir iebildumi pret atjauninātajiem noteikumiem, savu piekrišanu var atcelt jebkurā laikā ar sava konta izdzēšanu.
+      changelog: 'Šeit īsumā ir aprakstīts, ko šis atjauninājums nozīmē:'
+      description: 'Šis e-pasta ziņojums tika saņemts, jo mēs veicam dažas izmaiņas savos pakalpojuma izmantošanas noteikumos %{domain}. Mēs aicinām pārskatīt pilnus atjauninātos noteikumus šeit:'
+      description_html: Šis e-pasta ziņojums tika saņemts, jo mēs veicam dažas izmaiņas savos pakalpojuma izmantošanas noteikumos %{domain}. Mēs aicinām pārskatīt <a href="%{path}" target="_blank">pilnus atjauninātos noteikumus šeit</a>.
+      sign_off: "%{domain} komanda"
+      subject: Mūsu pakalpojuma izmantošanas noteikumu atjauninājumi
+      subtitle: Mainās %{domain} pakalpojuma izmantošanas noteikumi
+      title: Svarīgs atjauninājums
     warning:
       appeal: Iesniegt apelāciju
       appeal_description: Ja uzskatāt, ka tā ir kļūda, varat iesniegt apelāciju %{instance} darbiniekiem.

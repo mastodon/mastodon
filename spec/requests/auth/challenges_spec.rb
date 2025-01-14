@@ -2,9 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Auth::ChallengesController do
-  render_views
-
+RSpec.describe 'Auth Challenges' do
   let(:password) { 'foobar12345' }
   let(:user) { Fabricate(:user, password: password) }
 
@@ -14,9 +12,9 @@ RSpec.describe Auth::ChallengesController do
     let(:return_to) { edit_user_registration_path }
 
     context 'with correct password' do
-      before { post :create, params: { form_challenge: { return_to: return_to, current_password: password } } }
-
       it 'redirects back and sets challenge passed at in session' do
+        post '/auth/challenge', params: { form_challenge: { return_to: return_to, current_password: password } }
+
         expect(response)
           .to redirect_to(return_to)
         expect(session[:challenge_passed_at])
@@ -25,13 +23,12 @@ RSpec.describe Auth::ChallengesController do
     end
 
     context 'with incorrect password' do
-      before { post :create, params: { form_challenge: { return_to: return_to, current_password: 'hhfggjjd562' } } }
-
       it 'renders challenge, displays error, does not set session' do
-        expect(response)
-          .to render_template('auth/challenges/new')
+        post '/auth/challenge', params: { form_challenge: { return_to: return_to, current_password: 'hhfggjjd562' } }
+
         expect(response.body)
-          .to include 'Invalid password'
+          .to include(I18n.t('challenge.prompt'))
+          .and include('Invalid password')
         expect(session[:challenge_passed_at])
           .to be_nil
       end

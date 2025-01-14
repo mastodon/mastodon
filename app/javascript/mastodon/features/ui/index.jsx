@@ -92,6 +92,7 @@ const mapStateToProps = state => ({
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < state.getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']),
   firstLaunch: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
+  newAccount: !state.getIn(['accounts', me, 'note']) && !state.getIn(['accounts', me, 'bot']) && state.getIn(['accounts', me, 'following_count'], 0) === 0 && state.getIn(['accounts', me, 'statuses_count'], 0) === 0,
   username: state.getIn(['accounts', me, 'username']),
 });
 
@@ -135,6 +136,7 @@ class SwitchingColumnsArea extends PureComponent {
     children: PropTypes.node,
     location: PropTypes.object,
     singleColumn: PropTypes.bool,
+    forceOnboarding: PropTypes.bool,
   };
 
   UNSAFE_componentWillMount () {
@@ -165,14 +167,16 @@ class SwitchingColumnsArea extends PureComponent {
   };
 
   render () {
-    const { children, singleColumn } = this.props;
+    const { children, singleColumn, forceOnboarding } = this.props;
     const { signedIn } = this.props.identity;
     const pathName = this.props.location.pathname;
 
     let redirect;
 
     if (signedIn) {
-      if (singleColumn) {
+      if (forceOnboarding) {
+        redirect = <Redirect from='/' to='/start' exact />;
+      } else if (singleColumn) {
         redirect = <Redirect from='/' to='/home' exact />;
       } else {
         redirect = <Redirect from='/' to='/deck/getting-started' exact />;
@@ -276,6 +280,7 @@ class UI extends PureComponent {
     intl: PropTypes.object.isRequired,
     layout: PropTypes.string.isRequired,
     firstLaunch: PropTypes.bool,
+    newAccount: PropTypes.bool,
     username: PropTypes.string,
     ...WithRouterPropTypes,
   };
@@ -568,7 +573,7 @@ class UI extends PureComponent {
 
   render () {
     const { draggingOver } = this.state;
-    const { children, isComposing, location, layout } = this.props;
+    const { children, isComposing, location, layout, firstLaunch, newAccount } = this.props;
 
     const handlers = {
       help: this.handleHotkeyToggleHelp,
@@ -597,7 +602,7 @@ class UI extends PureComponent {
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef}>
           <Header />
 
-          <SwitchingColumnsArea identity={this.props.identity} location={location} singleColumn={layout === 'mobile' || layout === 'single-column'}>
+          <SwitchingColumnsArea identity={this.props.identity} location={location} singleColumn={layout === 'mobile' || layout === 'single-column'} forceOnboarding={firstLaunch && newAccount}>
             {children}
           </SwitchingColumnsArea>
 

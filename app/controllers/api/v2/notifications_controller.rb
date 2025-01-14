@@ -80,8 +80,29 @@ class Api::V2::NotificationsController < Api::BaseController
     return [] if @notifications.empty?
 
     MastodonOTELTracer.in_span('Api::V2::NotificationsController#load_grouped_notifications') do
-      NotificationGroup.from_notifications(@notifications, pagination_range: (@notifications.last.id)..(@notifications.first.id), grouped_types: params[:grouped_types])
+      pagination_range = (@notifications.last.id)..@notifications.first.id
+
+      # If the page is incomplete, we know we are on the last page
+      if incomplete_page?
+        if paginating_up?
+          pagination_range = @notifications.last.id...(params[:max_id]&.to_i)
+        else
+          range_start = params[:since_id]&.to_i
+          range_start += 1 unless range_start.nil?
+          pagination_range = range_start..(@notifications.first.id)
+        end
+      end
+
+      NotificationGroup.from_notifications(@notifications, pagination_range: pagination_range, grouped_types: params[:grouped_types])
     end
+  end
+
+  def incomplete_page?
+    @notifications.size < limit_param(DEFAULT_NOTIFICATIONS_LIMIT)
+  end
+
+  def paginating_up?
+    params[:min_id].present?
   end
 
   def browserable_account_notifications

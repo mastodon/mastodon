@@ -1,9 +1,9 @@
 GIT
-  remote: https://github.com/ClearlyClaire/webpush.git
-  revision: f14a4d52e201128b1b00245d11b6de80d6cfdcd9
-  ref: f14a4d52e201128b1b00245d11b6de80d6cfdcd9
+  remote: https://github.com/mastodon/webpush.git
+  revision: 9631ac63045cfabddacc69fc06e919b4c13eb913
+  ref: 9631ac63045cfabddacc69fc06e919b4c13eb913
   specs:
-    webpush (0.3.8)
+    webpush (1.1.0)
       hkdf (~> 0.2)
       jwt (~> 2.0)
 
@@ -160,7 +160,7 @@ GEM
     cocoon (1.2.15)
     color_diff (0.1)
     concurrent-ruby (1.3.4)
-    connection_pool (2.4.1)
+    connection_pool (2.5.0)
     cose (1.3.1)
       cbor (~> 0.5.9)
       openssl-signature_algorithm (~> 1.0)
@@ -490,7 +490,7 @@ GEM
     opentelemetry-instrumentation-active_job (0.7.8)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.22.1)
-    opentelemetry-instrumentation-active_model_serializers (0.21.0)
+    opentelemetry-instrumentation-active_model_serializers (0.21.1)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-active_support (>= 0.7.0)
       opentelemetry-instrumentation-base (~> 0.22.1)
@@ -510,7 +510,7 @@ GEM
     opentelemetry-instrumentation-excon (0.22.5)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.22.1)
-    opentelemetry-instrumentation-faraday (0.24.8)
+    opentelemetry-instrumentation-faraday (0.25.0)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.22.1)
     opentelemetry-instrumentation-http (0.23.5)
@@ -522,7 +522,7 @@ GEM
     opentelemetry-instrumentation-net_http (0.22.8)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.22.1)
-    opentelemetry-instrumentation-pg (0.29.1)
+    opentelemetry-instrumentation-pg (0.29.2)
       opentelemetry-api (~> 1.0)
       opentelemetry-helpers-sql-obfuscation
       opentelemetry-instrumentation-base (~> 0.22.1)
@@ -555,7 +555,7 @@ GEM
       opentelemetry-api (~> 1.0)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
-    ox (2.14.19)
+    ox (2.14.20)
       bigdecimal (>= 3.0)
     parallel (1.26.3)
     parser (3.3.6.0)
@@ -690,7 +690,7 @@ GEM
     rspec-expectations (3.13.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-github (2.4.0)
+    rspec-github (3.0.0)
       rspec-core (~> 3.0)
     rspec-mocks (3.13.2)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -709,7 +709,7 @@ GEM
       rspec-mocks (~> 3.0)
       sidekiq (>= 5, < 8)
     rspec-support (3.13.2)
-    rubocop (1.69.2)
+    rubocop (1.70.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -744,7 +744,7 @@ GEM
     ruby-vips (2.2.2)
       ffi (~> 1.12)
       logger
-    rubyzip (2.3.2)
+    rubyzip (2.4.1)
     rufus-scheduler (3.9.2)
       fugit (~> 1.1, >= 1.11.1)
     safety_net_attestation (0.4.0)
@@ -963,7 +963,7 @@ DEPENDENCIES
   opentelemetry-instrumentation-active_model_serializers (~> 0.21.0)
   opentelemetry-instrumentation-concurrent_ruby (~> 0.21.2)
   opentelemetry-instrumentation-excon (~> 0.22.0)
-  opentelemetry-instrumentation-faraday (~> 0.24.1)
+  opentelemetry-instrumentation-faraday (~> 0.25.0)
   opentelemetry-instrumentation-http (~> 0.23.2)
   opentelemetry-instrumentation-http_client (~> 0.22.3)
   opentelemetry-instrumentation-net_http (~> 0.22.4)
@@ -994,7 +994,7 @@ DEPENDENCIES
   redis (~> 4.5)
   redis-namespace (~> 1.10)
   rqrcode (~> 2.2)
-  rspec-github (~> 2.4)
+  rspec-github (~> 3.0)
   rspec-rails (~> 7.0)
   rspec-sidekiq (~> 5.0)
   rubocop
