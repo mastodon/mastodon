@@ -28,6 +28,7 @@ RUN apt-get update && \
         libgdbm-dev \
         libgmp-dev \
         libssl-dev \
+        libyaml-dev \
         libyaml-0-2 \
         ca-certificates \
         libreadline8 \
