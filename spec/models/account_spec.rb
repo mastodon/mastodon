@@ -49,26 +49,22 @@ RSpec.describe Account do
   end
 
   describe '#local?' do
-    it 'returns true when domain is null' do
-      account = Fabricate(:account, domain: nil)
-      expect(account).to be_local
+    context 'when the domain is null' do
+      subject { Fabricate.build :account, domain: nil }
+
+      it { is_expected.to be_local }
     end
 
-    it 'returns false when domain is present' do
-      account = Fabricate(:account, domain: 'foreign.tld')
-      expect(account).to_not be_local
+    context 'when the domain is present' do
+      subject { Fabricate.build :account, domain: 'host.example' }
+
+      it { is_expected.to_not be_local }
     end
   end
 
   describe '#remote?' do
     context 'when the domain is null' do
       subject { Fabricate.build :account, domain: nil }
-
-      it { is_expected.to_not be_remote }
-    end
-
-    context 'when the domain is blank' do
-      subject { Fabricate.build :account, domain: '' }
 
       it { is_expected.to_not be_remote }
     end
@@ -556,6 +552,8 @@ RSpec.describe Account do
 
   describe 'Validations' do
     it { is_expected.to validate_presence_of(:username) }
+
+    it { is_expected.to_not allow_value('').for(:domain) }
 
     context 'when account is local' do
       subject { Fabricate.build :account, domain: nil }
