@@ -9,7 +9,7 @@
 #  endpoint        :string           not null
 #  key_auth        :string           not null
 #  key_p256dh      :string           not null
-#  standard        :boolean          default(FALSE)
+#  standard        :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  access_token_id :bigint(8)

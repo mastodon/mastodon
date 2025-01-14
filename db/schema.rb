@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema[8.0].define(version: 2025_01_08_111200) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "account_aliases", force: :cascade do |t|
     t.bigint "account_id", null: false
