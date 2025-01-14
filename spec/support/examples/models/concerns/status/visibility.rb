@@ -107,6 +107,13 @@ RSpec.shared_examples 'Status::Visibility' do
     end
   end
 
+  describe '.selectable_visibilities' do
+    it 'returns options available for default privacy selection' do
+      expect(Status.selectable_visibilities)
+        .to match(%w(public unlisted private))
+    end
+  end
+
   describe '#hidden?' do
     subject { Status.new }
 
