@@ -48,6 +48,27 @@ RSpec.describe 'Admin::IpBlocks' do
       end
     end
 
+    context 'with a selected block' do
+      let!(:ip_block) { Fabricate :ip_block }
+
+      it 'deletes the block' do
+        visit admin_ip_blocks_path
+
+        check_item
+
+        expect { click_on button_for_delete }
+          .to change(IpBlock, :count).by(-1)
+        expect { ip_block.reload }
+          .to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    def check_item
+      within '.batch-table__row' do
+        find('input[type=checkbox]').check
+      end
+    end
+
     def button_for_delete
       I18n.t('admin.ip_blocks.delete')
     end
