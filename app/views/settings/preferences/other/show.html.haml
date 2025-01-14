@@ -20,7 +20,7 @@
     .fields-row
       .fields-group.fields-row__column.fields-row__column-6
         = ff.input :default_privacy,
-                   collection: Status.selectable_visibilities,
+                   collection: Status::UNRESTRICTED_VISIBILITIES,
                    hint: false,
                    include_blank: false,
                    label_method: ->(visibility) { safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') },

@@ -3,9 +3,8 @@
 module Status::Visibility
   extend ActiveSupport::Concern
 
-  DISTRIBUTABLE_VISIBILITIES = %i(public unlisted).freeze
-  LIST_ELIGIBLE_VISIBILITIES = %i(public unlisted private).freeze
-  RESTRICTED_VISIBILITIES = %w(direct limited).freeze
+  DISTRIBUTABLE_VISIBILITIES = %w(public unlisted).freeze
+  UNRESTRICTED_VISIBILITIES = %w(public unlisted private).freeze
 
   included do
     enum :visibility,
@@ -14,18 +13,12 @@ module Status::Visibility
          validate: true
 
     scope :distributable_visibility, -> { where(visibility: DISTRIBUTABLE_VISIBILITIES) }
-    scope :list_eligible_visibility, -> { where(visibility: LIST_ELIGIBLE_VISIBILITIES) }
+    scope :unrestricted_visibility, -> { where(visibility: UNRESTRICTED_VISIBILITIES) }
     scope :not_direct_visibility, -> { where.not(visibility: :direct) }
 
-    validates :visibility, exclusion: { in: RESTRICTED_VISIBILITIES }, if: :reblog?
+    validates :visibility, inclusion: { in: UNRESTRICTED_VISIBILITIES }, if: :reblog?
 
     before_validation :set_visibility, unless: :visibility?
-  end
-
-  class_methods do
-    def selectable_visibilities
-      visibilities.keys - RESTRICTED_VISIBILITIES
-    end
   end
 
   def hidden?

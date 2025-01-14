@@ -3,6 +3,21 @@
 require 'rails_helper'
 
 RSpec.shared_examples 'Status::Visibility' do
+  describe 'Validations' do
+    context 'when status is a reblog' do
+      subject { Fabricate.build :status, reblog: Fabricate(:status) }
+
+      it { is_expected.to allow_values('public', 'unlisted', 'private').for(:visibility) }
+      it { is_expected.to_not allow_values('direct', 'limited').for(:visibility) }
+    end
+
+    context 'when status is not reblog' do
+      subject { Fabricate.build :status, reblog_of_id: nil }
+
+      it { is_expected.to allow_values('public', 'unlisted', 'private', 'direct', 'limited').for(:visibility) }
+    end
+  end
+
   describe 'Scopes' do
     let!(:direct_status) { Fabricate :status, visibility: :direct }
     let!(:limited_status) { Fabricate :status, visibility: :limited }
@@ -10,9 +25,9 @@ RSpec.shared_examples 'Status::Visibility' do
     let!(:public_status) { Fabricate :status, visibility: :public }
     let!(:unlisted_status) { Fabricate :status, visibility: :unlisted }
 
-    describe '.list_eligible_visibility' do
+    describe '.unrestricted_visibility' do
       it 'returns appropriate records' do
-        expect(Status.list_eligible_visibility)
+        expect(Status.unrestricted_visibility)
           .to include(
             private_status,
             public_status,
@@ -89,13 +104,6 @@ RSpec.shared_examples 'Status::Visibility' do
             .to change(subject, :visibility).to('public')
         end
       end
-    end
-  end
-
-  describe '.selectable_visibilities' do
-    it 'returns options available for default privacy selection' do
-      expect(Status.selectable_visibilities)
-        .to match(%w(public unlisted private))
     end
   end
 
