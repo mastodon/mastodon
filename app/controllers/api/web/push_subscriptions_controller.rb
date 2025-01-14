@@ -66,7 +66,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   end
 
   def subscription_params
-    @subscription_params ||= params.require(:subscription).permit(:endpoint, keys: [:auth, :p256dh])
+    @subscription_params ||= params.require(:subscription).permit(:standard, :endpoint, keys: [:auth, :p256dh])
   end
 
   def web_push_subscription_params
@@ -76,6 +76,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
       endpoint: subscription_params[:endpoint],
       key_auth: subscription_params[:keys][:auth],
       key_p256dh: subscription_params[:keys][:p256dh],
+      standard: subscription_params[:standard] || false,
       user_id: active_session.user_id,
     }
   end

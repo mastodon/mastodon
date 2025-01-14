@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_16_224825) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_08_111200) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "account_aliases", force: :cascade do |t|
     t.bigint "account_id", null: false
@@ -1202,6 +1202,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_16_224825) do
     t.datetime "updated_at", precision: nil, null: false
     t.bigint "access_token_id"
     t.bigint "user_id"
+    t.boolean "standard", default: false, null: false
     t.index ["access_token_id"], name: "index_web_push_subscriptions_on_access_token_id", where: "(access_token_id IS NOT NULL)"
     t.index ["user_id"], name: "index_web_push_subscriptions_on_user_id"
   end
