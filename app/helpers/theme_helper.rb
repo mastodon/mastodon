@@ -45,7 +45,9 @@ module ThemeHelper
   end
 
   def cached_custom_css_digest
-    Rails.cache.read(:setting_digest_custom_css)
+    Rails.cache.fetch(:setting_digest_custom_css) do
+      Setting.custom_css&.then { |content| Digest::SHA256.hexdigest(content) }
+    end
   end
 
   def theme_color_for(theme)
