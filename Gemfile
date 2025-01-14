@@ -125,7 +125,7 @@ group :test do
   gem 'flatware-rspec'
 
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
-  gem 'rspec-github', '~> 2.4', require: false
+  gem 'rspec-github', '~> 3.0', require: false
 
   # RSpec helpers for email specs
   gem 'email_spec'
