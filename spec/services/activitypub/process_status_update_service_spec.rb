@@ -32,7 +32,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
   let(:media_attachments) { [] }
 
   before do
-    mentions.each { |a| Fabricate(:mention, status: status, account: a) }
+    mentions.each { |(account, silent)| Fabricate(:mention, status: status, account: account, silent: silent) }
     tags.each { |t| status.tags << t }
     media_attachments.each { |m| status.media_attachments << m }
     stub_request(:get, bogus_mention).to_raise(HTTP::ConnectionError)
@@ -280,7 +280,19 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
 
     context 'when originally with mentions' do
-      let(:mentions) { [alice, bob] }
+      let(:mentions) { [[alice, false], [bob, false]] }
+
+      before do
+        subject.call(status, json, json)
+      end
+
+      it 'updates mentions' do
+        expect(status.active_mentions.reload.map(&:account_id)).to eq [alice.id]
+      end
+    end
+
+    context 'when originally with silent mentions' do
+      let(:mentions) { [[alice, true], [bob, true]] }
 
       before do
         subject.call(status, json, json)
