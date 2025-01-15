@@ -31,3 +31,28 @@ la:
       destroyed_msg: Nota moderationis feliciter deleta est!
     accounts:
       are_you_sure: Esne certus?
+    statuses:
+      title: Ratiōnis publicātiōnēs
+  auth:
+    privacy_policy_agreement_html: Lēgī et cōnsēnsī ad <a href="%{privacy_policy_path}" target="_blank">pōlīticam prīvātī tūtelam</a>
+    setup:
+      email_settings_hint_html: Premī nexum quem tibi mīsimus ut %{email} comprobēs. Hīc manēbimus.
+    sign_up:
+      preamble: Cum ratiōne in hāc servēnce Mastodonī, quemlibet alium hominem in rēte sequī poteris, ubicumque ratiō eius administrētur.
+  imports:
+    overwrite_preambles:
+      blocking_html: Mox <strong>līstam blōcātiōnis tuam</strong> substituēbis cum usque ad <strong>%{total_items} ratiōnēs</strong> e <strong>%{filename}</strong>.
+      bookmarks_html: Mox <strong>signa tua</strong> substituēbis cum usque ad <strong>%{total_items} prōnūntiātiōnēs</strong> e <strong>%{filename}</strong>.
+      domain_blocking_html: Mox <strong>līstam blōcātiōnis dominī tuī</strong> substituēbis cum usque ad <strong>%{total_items} dominī</strong> e <strong>%{filename}</strong>.
+      following_html: Mox <strong>sequēris</strong> usque ad <strong>%{total_items} ratiōnēs</strong> e <strong>%{filename}</strong> et <strong>desinēs sequī quemquam alium</strong>.
+      lists_html: Mox <strong>līstās tuās</strong> substituēbis cum contentīs <strong>%{filename}</strong>. Usque ad <strong>%{total_items} ratiōnēs</strong> ad novās līstās addentur.
+      muting_html: Mox <strong>līstam ratiōnum sīlentiōrum tuārum</strong> substituēbis cum usque ad <strong>%{total_items} ratiōnēs</strong> e <strong>%{filename}</strong>.
+    preambles:
+      blocking_html: Mox <strong>blōcābis</strong> usque ad <strong>%{total_items} ratiōnēs</strong> e <strong>%{filename}</strong>.
+      bookmarks_html: '"Mox usque ad <strong>%{total_items} nūmēra</strong> e <strong>%{filename}</strong> adde in <strong>līstās tuās</strong>."'
+      domain_blocking_html: Mox <strong>blōcābis</strong> usque ad <strong>%{total_items} dōmina</strong> e <strong>%{filename}</strong>.
+      following_html: Mox <strong>sequēris</strong> usque ad <strong>%{total_items} ratiōnēs</strong> e <strong>%{filename}</strong>.
+      lists_html: Mox usque ad <strong>%{total_items} ratiōnēs</strong> e <strong>%{filename}</strong> adde in <strong>līstās tuās</strong>. Novae līstās creābuntur, sī līstā ad quam addere nōn est.
+      muting_html: Mox <strong>tacēbis</strong> usque ad <strong>%{total_items} ratiōnēs</strong> e <strong>%{filename}</strong>.
+  scheduled_statuses:
+    too_soon: Dāta dēfīnīta in futurō esse dēbēbit.
