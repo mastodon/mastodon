@@ -58,6 +58,15 @@ class Api::V1::StatusesController < Api::BaseController
     statuses = [@status] + @context.ancestors + @context.descendants
 
     render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
+
+    if !current_account.nil? && @status.should_fetch_replies?
+      ActivityPub::FetchAllRepliesWorker.perform_async(
+        @status.id,
+        {
+          allow_synchronous_requests: true,
+        }
+      )
+    end
   end
 
   def create
