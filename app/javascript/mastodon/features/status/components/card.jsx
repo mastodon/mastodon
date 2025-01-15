@@ -19,6 +19,7 @@ import { Icon }  from 'mastodon/components/icon';
 import { MoreFromAuthor } from 'mastodon/components/more_from_author';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { useBlurhash } from 'mastodon/initial_state';
+import { sanitize_oembed } from 'mastodon/utils/sanitize';
 
 const IDNA_PREFIX = 'xn--';
 
@@ -114,7 +115,7 @@ export default class Card extends PureComponent {
 
   renderVideo () {
     const { card } = this.props;
-    const content = { __html: addAutoPlay(card.get('html')) };
+    const content = { __html: sanitize_oembed(addAutoPlay(card.get('html'))) };
 
     return (
       <div
