@@ -13,7 +13,7 @@ export interface ApiPollJSON {
   expired: boolean;
   multiple: boolean;
   votes_count: number;
-  voters_count: number;
+  voters_count: null | number;
 
   options: ApiPollOptionJSON[];
   emojis: ApiCustomEmojiJSON[];
