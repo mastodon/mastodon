@@ -516,37 +516,15 @@ RSpec.describe Account do
     end
   end
 
-  describe '#attribution_domains_as_text=' do
-    subject { Fabricate(:account) }
-
-    it 'sets attribution_domains accordingly' do
-      subject.attribution_domains_as_text = "hoge.com\nexample.com"
-
-      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
-    end
-
-    it 'strips leading "*."' do
-      subject.attribution_domains_as_text = "hoge.com\n*.example.com"
-
-      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
-    end
-
-    it 'strips the protocol if present' do
-      subject.attribution_domains_as_text = "http://hoge.com\nhttps://example.com"
-
-      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
-    end
-
-    it 'strips a combination of leading "*." and protocol' do
-      subject.attribution_domains_as_text = "http://*.hoge.com\nhttps://*.example.com"
-
-      expect(subject.attribution_domains).to contain_exactly('hoge.com', 'example.com')
-    end
-  end
-
   describe 'Normalizations' do
     describe 'username' do
       it { is_expected.to normalize(:username).from(" \u3000bob \t \u00a0 \n ").to('bob') }
+    end
+
+    describe 'attribution_domains' do
+      it { is_expected.to normalize(:attribution_domains).from(['example.com', ' example.com ', ' example.net ']).to(['example.com', 'example.net']) }
+      it { is_expected.to normalize(:attribution_domains).from(['https://example.com', 'http://example.net', '*.example.org']).to(['example.com', 'example.net', 'example.org']) }
+      it { is_expected.to normalize(:attribution_domains).from(['', ' ', nil]).to([]) }
     end
   end
 
@@ -598,6 +576,9 @@ RSpec.describe Account do
       it { is_expected.to validate_absence_of(:inbox_url).on(:create) }
       it { is_expected.to validate_absence_of(:shared_inbox_url).on(:create) }
       it { is_expected.to validate_absence_of(:uri).on(:create) }
+
+      it { is_expected.to allow_values([], ['example.com'], (1..100).to_a).for(:attribution_domains) }
+      it { is_expected.to_not allow_values(['example com'], ['@'], (1..101).to_a).for(:attribution_domains) }
     end
 
     context 'when account is remote' do
