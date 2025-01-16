@@ -16,13 +16,14 @@ module Paperclip
 
       if opaque?(image)
         basename = File.basename(file.path, File.extname(file.path))
-        dst_name = basename << '.jpg'
+        dst_name = basename << '.jpeg'
 
         dst = Paperclip::TempfileFactory.new.generate(dst_name)
 
         new_vipsimage_from_file(src_path).write_to_file(File.expand_path(dst.path), **save_options)
 
         if @file.size > dst.size
+          attachment.instance.file_file_name = "#{File.basename(attachment.instance.file_file_name, '.*')}.jpeg"
           attachment.instance.file_content_type = 'image/jpeg'
           return dst
         end
@@ -39,7 +40,7 @@ module Paperclip
 
       if opaque == 'true'
         basename = File.basename(file.path, File.extname(file.path))
-        dst_name = basename << '.jpg'
+        dst_name = basename << '.jpeg'
 
         dst = Paperclip::TempfileFactory.new.generate(dst_name)
 
@@ -48,6 +49,7 @@ module Paperclip
                 dst: File.expand_path(dst.path))
 
         if @file.size > dst.size
+          attachment.instance.file_file_name = "#{File.basename(attachment.instance.file_file_name, '.*')}.jpeg"
           attachment.instance.file_content_type = 'image/jpeg'
           return dst
         end
