@@ -43,13 +43,13 @@ class TranslateButton extends PureComponent {
 
       return (
         <div className='translate-button'>
-          <div className='translate-button__meta'>
-            <FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider }} />
-          </div>
-
           <button className='link-button' onClick={onClick}>
             <FormattedMessage id='status.show_original' defaultMessage='Show original' />
           </button>
+
+          <div className='translate-button__meta'>
+            <FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider }} />
+          </div>
         </div>
       );
     }
