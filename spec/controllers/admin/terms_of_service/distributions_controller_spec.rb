@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Admin::TermsOfService::DistributionsController do
   render_views
 
-  let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:user) { Fabricate(:admin_user) }
   let(:terms_of_service) { Fabricate(:terms_of_service, notification_sent_at: nil) }
 
   before do

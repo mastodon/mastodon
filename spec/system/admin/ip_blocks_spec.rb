@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin::IpBlocks' do
-  let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:current_user) { Fabricate(:admin_user) }
 
   before { sign_in current_user }
 
@@ -45,6 +45,27 @@ RSpec.describe 'Admin::IpBlocks' do
         click_on button_for_delete
         expect(page)
           .to have_content(selection_error_text)
+      end
+    end
+
+    context 'with a selected block' do
+      let!(:ip_block) { Fabricate :ip_block }
+
+      it 'deletes the block' do
+        visit admin_ip_blocks_path
+
+        check_item
+
+        expect { click_on button_for_delete }
+          .to change(IpBlock, :count).by(-1)
+        expect { ip_block.reload }
+          .to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    def check_item
+      within '.batch-table__row' do
+        find('input[type=checkbox]').check
       end
     end
 

@@ -6,7 +6,7 @@ RSpec.describe 'Admin Invites' do
   describe 'Invite interaction' do
     let!(:invite) { Fabricate(:invite, expires_at: nil) }
 
-    let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let(:user) { Fabricate(:admin_user) }
 
     before { sign_in user }
 

@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.3] - 2025-01-16
+
+### Security
+
+- Fix insufficient validation of account URIs ([GHSA-5wxh-3p65-r4g6](https://github.com/mastodon/mastodon/security/advisories/GHSA-5wxh-3p65-r4g6))
+- Update dependencies
+
+### Fixed
+
+- Fix `libyaml` missing from `Dockerfile` build stage (#33591 by @vmstan)
+- Fix incorrect notification settings migration for non-followers (#33348 by @ClearlyClaire)
+- Fix down clause for notification policy v2 migrations (#33340 by @jesseplusplus)
+- Fix error decrementing status count when `FeaturedTags#last_status_at` is `nil` (#33320 by @ClearlyClaire)
+- Fix last paginated notification group only including data on a single notification (#33271 by @ClearlyClaire)
+- Fix processing of mentions for post edits with an existing corresponding silent mention (#33227 by @ClearlyClaire)
+- Fix deletion of unconfirmed users with Webauthn set (#33186 by @ClearlyClaire)
+- Fix empty authors preview card serialization (#33151, #33466 by @mjankowski and @ClearlyClaire)
+
 ## [4.3.2] - 2024-12-03
 
 ### Added
@@ -135,7 +153,7 @@ The following changelog entries focus on changes visible to users, administrator
 - **Add notifications of severed relationships** (#27511, #29665, #29668, #29670, #29700, #29714, #29712, and #29731 by @ClearlyClaire and @Gargron)\
   Notify local users when they lose relationships as a result of a local moderator blocking a remote account or server, allowing the affected user to retrieve the list of broken relationships.\
   Note that this does not notify remote users.\
-  This adds the `severed_relationships` notification type to the REST API and streaming, with a new [`relationship_severance_event` attribute](https://docs.joinmastodon.org/entities/Notification/#relationship_severance_event).
+  This adds the `severed_relationships` notification type to the REST API and streaming, with a new [`event` attribute](https://docs.joinmastodon.org/entities/Notification/#relationship_severance_event).
 - **Add hover cards in web UI** (#30754, #30864, #30850, #30879, #30928, #30949, #30948, #30931, and #31300 by @ClearlyClaire, @Gargron, and @renchap)\
   Hovering over an avatar or username will now display a hover card with the first two lines of the user's description and their first two profile fields.\
   This can be disabled in the “Animations and accessibility” section of the preferences.

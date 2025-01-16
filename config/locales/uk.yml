@@ -58,7 +58,7 @@ uk:
         title: Змінити роль для %{username}
       confirm: Зберегти
       confirmed: Підтверджено
-      confirming: Зберігається
+      confirming: Підтверджується
       custom: Власне
       delete: Видалити дані
       deleted: Видалено
@@ -92,8 +92,8 @@ uk:
         title: Розміщення
       login_status: Стан входу
       media_attachments: Мультимедійні вкладення
-      memorialize: Меморіалізувати
-      memorialized: Перетворено на пам'ятник
+      memorialize: Увічнити
+      memorialized: Увічнено
       memorialized_msg: "%{username} успішно перетворено на пам'ятний обліковий запис"
       moderation:
         active: Активний
@@ -193,6 +193,7 @@ uk:
         create_domain_block: Створити блокування домену
         create_email_domain_block: Створити блокування домену е-пошти
         create_ip_block: Створити правило IP
+        create_relay: Створити реле
         create_unavailable_domain: Створити недоступний домен
         create_user_role: Створити роль
         demote_user: Понизити користувача
@@ -204,18 +205,22 @@ uk:
         destroy_email_domain_block: Видалити блокування домену е-пошти
         destroy_instance: Очистити домен
         destroy_ip_block: Видалити правило IP
+        destroy_relay: Видалити реле
         destroy_status: Видалити допис
         destroy_unavailable_domain: Видалити недоступний домен
         destroy_user_role: Знищити роль
         disable_2fa_user: Вимкнути 2FA
         disable_custom_emoji: Вимкнути користувацькі емодзі
+        disable_relay: Вимкнути реле
         disable_sign_in_token_auth_user: Вимкнути автентифікацію за допомогою токена е-пошти для користувача
         disable_user: Відключити користувача
         enable_custom_emoji: Увімкнути користувацькі емодзі
+        enable_relay: Увімкнути реле
         enable_sign_in_token_auth_user: Увімкнути автентифікацію за допомогою токена е-пошти для користувача
         enable_user: Активувати користувача
         memorialize_account: Меморіалізувати акаунт
         promote_user: Підвищити користувача
+        publish_terms_of_service: Опублікувати Умови використання
         reject_appeal: Відхилити апеляцію
         reject_user: Відхилити користувача
         remove_avatar_user: Видалити аватар
@@ -253,6 +258,7 @@ uk:
         create_domain_block_html: "%{name} блокує домен %{target}"
         create_email_domain_block_html: "%{name} блокує домен електронної пошти %{target}"
         create_ip_block_html: "%{name} створює правило для IP %{target}"
+        create_relay_html: "%{name} створив реле %{target}"
         create_unavailable_domain_html: "%{name} зупиняє доставляння на домен %{target}"
         create_user_role_html: "%{name} створює роль %{target}"
         demote_user_html: "%{name} понижує користувача %{target}"
@@ -264,18 +270,22 @@ uk:
         destroy_email_domain_block_html: "%{name} розблоковує домен електронної пошти %{target}"
         destroy_instance_html: "%{name} очищує домен %{target}"
         destroy_ip_block_html: "%{name} видаляє правило для IP %{target}"
+        destroy_relay_html: "%{name} видалив реле %{target}"
         destroy_status_html: "%{name} вилучає допис %{target}"
         destroy_unavailable_domain_html: "%{name} відновлює доставляння на домен %{target}"
         destroy_user_role_html: "%{name} видаляє роль %{target}"
         disable_2fa_user_html: "%{name} вимикає двоетапну перевірку для користувача %{target}"
         disable_custom_emoji_html: "%{name} вимикає емодзі %{target}"
+        disable_relay_html: "%{name} вимкнув реле %{target}"
         disable_sign_in_token_auth_user_html: "%{name} вимикає автентифікацію через токен е-пошти для %{target}"
         disable_user_html: "%{name} вимикає вхід для користувача %{target}"
         enable_custom_emoji_html: "%{name} вмикає емодзі %{target}"
+        enable_relay_html: "%{name} увімкнув реле %{target}"
         enable_sign_in_token_auth_user_html: "%{name} вмикає автентифікацію через токен е-пошти для %{target}"
         enable_user_html: "%{name} вмикає вхід для користувача %{target}"
         memorialize_account_html: "%{name} перетворює обліковий запис %{target} на сторінку пам'яті"
         promote_user_html: "%{name} підвищує користувача %{target}"
+        publish_terms_of_service_html: "%{name} опублікував оновлення умов використання"
         reject_appeal_html: "%{name} відхилили звернення на оскарження рішення від %{target}"
         reject_user_html: "%{name} відхиляє реєстрацію від %{target}"
         remove_avatar_user_html: "%{name} прибирає аватар %{target}"
@@ -846,8 +856,10 @@ uk:
       back_to_account: Назад до сторінки облікового запису
       back_to_report: Повернутися до сторінки скарги
       batch:
+        add_to_report: 'Додати до звіту #%{id}'
         remove_from_report: Вилучити зі скарги
         report: Скарга
+      contents: Вміст
       deleted: Видалено
       favourites: Вподобане
       history: Історія версій
@@ -856,12 +868,17 @@ uk:
       media:
         title: Медіа
       metadata: Метадані
+      no_history: Цей допис ще не редагували
       no_status_selected: Жодного допису не було змінено, оскільки жодного з них не було вибрано
       open: Відкрити допис
       original_status: Оригінальний допис
       reblogs: Поширення
+      replied_to_html: Відповів %{acct_link}
       status_changed: Допис змінено
+      status_title: "@%{name} опублікував допис"
+      title: Дописи облікового запису - @%{name}
       trending: Популярне
+      view_publicly: Переглянути привселюдно
       visibility: Видимість
       with_media: З медіа
     strikes:
@@ -922,7 +939,7 @@ uk:
       moderation:
         not_trendable: Не трендові
         not_usable: Невикористовувані
-        pending_review: Очікує розгляду
+        pending_review: Очікує на розгляд
         review_requested: Запит на розгляд
         reviewed: Розглянуто
         title: Статус
@@ -936,8 +953,34 @@ uk:
       reset: Скинути
       review: Переглянути допис
       search: Пошук
-      title: Хештеги
+      title: Гештеґи
       updated_msg: Параметри хештеґів успішно оновлені
+    terms_of_service:
+      back: Назад до умов використання
+      changelog: Що змінилося
+      create: Використовувати власний
+      current: Поточний
+      draft: Чернетка
+      generate: Використовувати шаблон
+      generates:
+        action: Згенерувати
+        chance_to_review_html: "<strong>Створені умови використання не опублікуються автоматично.</strong> Ви матимете змогу переглянути результати. Будь ласка, заповніть потрібні дані, щоб перейти далі."
+        explanation_html: Наданий шаблон умов надання послуг призначений лише для інформаційних цілей і не має розглядатися як юридична консультація з будь-якого питання. Проконсультуйтеся зі своїм юридичним радником щодо вашої ситуації та конкретних юридичних питань, які у вас постали.
+        title: Налаштування Умов обслуговування
+      history: Історія
+      live: Наживо
+      no_history: Змін умов обслуговування поки що не зафіксовано.
+      no_terms_of_service_html: Наразі у вас не налаштовано умов використання. Умови використання призначені для забезпечення ясності та захисту від потенційних зобов’язань у суперечках із користувачами.
+      notified_on_html: Користувачі сповіщені %{date}
+      notify_users: Сповістити користувачів
+      preview:
+        explanation_html: 'Електронний лист буде надіслано <strong>%{display_count} користувачам</strong>, які зареєструвалися до %{date}. Розміщений нижче текст додасться до електронного листа:'
+        send_preview: Надіслати попередній перегляд на %{email}
+        title: Попередній перегляд сповіщення про умови використання
+      publish: Опублікувати
+      published_on_html: Опубліковано %{date}
+      save_draft: Зберегти чернетку
+      title: Умови використання
     title: Адміністрування
     trends:
       allow: Дозволити
@@ -1186,6 +1229,7 @@ uk:
       title: Увійти до %{domain}
     sign_up:
       manual_review: Реєстрація на %{domain} проходить через ручний розгляд нашими модераторами. Щоб допомогти нам завершити вашу реєстрацію, напишіть трохи про себе і чому ви хочете зареєструватися на %{domain}.
+      preamble: За допомогою облікового запису на цьому сервері Mastodon ви зможете стежити за будь-якою іншою людиною у федіверсі незалежно від того, де розміщений обліковий запис.
       title: Налаштуймо вас на %{domain}.
     status:
       account_status: Стан облікового запису
@@ -1197,6 +1241,7 @@ uk:
       view_strikes: Переглянути попередні попередження вашому обліковому запису
     too_fast: Форму подано занадто швидко, спробуйте ще раз.
     use_security_key: Використовувати ключ безпеки
+    user_agreement_html: Я прочитав і приймаю <a href="%{terms_of_service_path}" target="_blank">умови використання</a> та <a href="%{privacy_policy_path}" target="_blank">політику конфіденційності< /a>
   author_attribution:
     example_title: Зразок тексту
     hint_html: Ви пишете новини чи статті в блозі за межами Mastodon? Контролюйте, як вони підписуються, коли ними діляться на Mastodon.
@@ -1844,6 +1889,8 @@ uk:
       too_late: Запізно оскаржувати це попередження
   tags:
     does_not_match_previous_name: не збігається з попереднім ім'ям
+  terms_of_service:
+    title: Умови використання
   themes:
     contrast: Mastodon (Висока контрастність)
     default: Mastodon (Темна)
@@ -1904,6 +1951,15 @@ uk:
       further_actions_html: Якщо це були не ви. Радимо вам негайно %{action} й увімкнути двоетапну перевірку, щоб уберегти свій обліковий запис.
       subject: До вашого облікового запису отримано доступ з нової IP-адреси
       title: Новий вхід
+    terms_of_service_changed:
+      agreement: Далі використовуючи %{domain}, ви погоджуєтеся з цими умовами. Якщо ви не згодні з оновленими умовами, ви можете припинити свою угоду з %{domain} будь-якої миті, видаливши ваш обліковий запис.
+      changelog: 'Коротко, ось що це оновлення означає для вас:'
+      description: 'Ви отримали цього електронного листа, тому що ми впроваджуємо деякі зміни в наші умови обслуговування в %{domain}. Радимо переглянути оновлені умови повністю тут:'
+      description_html: Ви отримали цього електронного листа, тому що ми впроваджуємо деякі зміни до наших умов обслуговування в %{domain}. Радимо переглянути <a href="%{path}" target="_blank">повністю оновлені умови тут</a>.
+      sign_off: Команда %{domain}
+      subject: Оновлення до наших умов обслуговування
+      subtitle: Умови використання %{domain} змінюються
+      title: Важливе оновлення
     warning:
       appeal: Подати апеляцію
       appeal_description: Якщо ви вважаєте, що це помилка, ви можете надіслати оскаржити дії персоналу %{instance}.

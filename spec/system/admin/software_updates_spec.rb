@@ -6,7 +6,7 @@ RSpec.describe 'finding software updates through the admin interface' do
   before do
     Fabricate(:software_update, version: '99.99.99', type: 'major', urgent: true, release_notes: 'https://github.com/mastodon/mastodon/releases/v99')
 
-    sign_in Fabricate(:user, role: UserRole.find_by(name: 'Owner')), scope: :user
+    sign_in Fabricate(:owner_user), scope: :user
   end
 
   it 'shows a link to the software updates page, which links to release notes' do

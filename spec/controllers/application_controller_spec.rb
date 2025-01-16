@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationController do
+  render_views
+
   controller do
     def success
       head 200
@@ -23,9 +25,22 @@ RSpec.describe ApplicationController do
 
   shared_examples 'respond_with_error' do |code|
     it "returns http #{code} for http and renders template" do
-      expect(subject).to render_template("errors/#{code}", layout: 'error')
+      subject
 
-      expect(response).to have_http_status(code)
+      expect(response)
+        .to have_http_status(code)
+      expect(response.parsed_body)
+        .to have_css('body[class=error]')
+      expect(response.parsed_body.css('h1').to_s)
+        .to include(error_content(code))
+    end
+
+    def error_content(code)
+      if code == 422
+        I18n.t('errors.422.content')
+      else
+        I18n.t("errors.#{code}")
+      end
     end
   end
 

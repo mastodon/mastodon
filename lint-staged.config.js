@@ -3,7 +3,7 @@ const config = {
   'Gemfile|*.{rb,ruby,ru,rake}': 'bin/rubocop --force-exclusion -a',
   '*.{js,jsx,ts,tsx}': 'eslint --fix',
   '*.{css,scss}': 'stylelint --fix',
-  '*.haml': 'bin/haml-lint -a',
+  '*.haml': 'bin/haml-lint -a --parallel',
   '**/*.ts?(x)': () => 'tsc -p tsconfig.json --noEmit',
 };
 
