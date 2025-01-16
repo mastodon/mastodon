@@ -17,7 +17,7 @@ namespace :mastodon do
     ENV.delete('SIDEKIQ_REDIS_URL')
 
     begin
-      errors = false
+      errors = []
 
       prompt.say('Your instance is identified by its domain name. Changing it afterward will break things.')
       env['LOCAL_DOMAIN'] = prompt.ask('Domain name:') do |q|
@@ -109,7 +109,7 @@ namespace :mastodon do
           unless prompt.yes?('Try again?')
             return prompt.warn 'Nothing saved. Bye!' unless prompt.yes?('Continue anyway?')
 
-            errors = true
+            errors << 'Database connection could not be established.'
             break
           end
         end
@@ -155,7 +155,7 @@ namespace :mastodon do
           unless prompt.yes?('Try again?')
             return prompt.warn 'Nothing saved. Bye!' unless prompt.yes?('Continue anyway?')
 
-            errors = true
+            errors << 'Redis connection could not be established.'
             break
           end
         end
@@ -450,7 +450,7 @@ namespace :mastodon do
           unless prompt.yes?('Try again?')
             return prompt.warn 'Nothing saved. Bye!' unless prompt.yes?('Continue anyway?')
 
-            errors = true
+            errors << 'E-email was not sent successfully.'
             break
           end
         end
@@ -498,7 +498,7 @@ namespace :mastodon do
             prompt.ok 'Done!'
           else
             prompt.error 'That failed! Perhaps your configuration is not right'
-            errors = true
+            errors << 'Preparing the database failed'
           end
         end
 
@@ -515,14 +515,15 @@ namespace :mastodon do
               prompt.say 'Done!'
             else
               prompt.error 'That failed! Maybe you need swap space?'
-              errors = true
+              errors << 'Compiling assets failed.'
             end
           end
         end
 
         prompt.say "\n"
-        if errors
-          prompt.warn 'Your Mastodon server is set up, but there were some errors along the way, you may have to fix them.'
+        if errors.any?
+          prompt.warn 'Your Mastodon server is set up, but there were some errors along the way, you may have to fix them:'
+          errors.each { |error| prompt.warn "- #{error}" }
         else
           prompt.ok 'All done! You can now power on the Mastodon server 🐘'
         end
