@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.3] - 2025-01-16
+
+### Security
+
+- Fix insufficient validation of account URIs ([GHSA-5wxh-3p65-r4g6](https://github.com/mastodon/mastodon/security/advisories/GHSA-5wxh-3p65-r4g6))
+- Update dependencies
+
+### Fixed
+
+- Fix `libyaml` missing from `Dockerfile` build stage (#33591 by @vmstan)
+- Fix incorrect notification settings migration for non-followers (#33348 by @ClearlyClaire)
+- Fix down clause for notification policy v2 migrations (#33340 by @jesseplusplus)
+- Fix error decrementing status count when `FeaturedTags#last_status_at` is `nil` (#33320 by @ClearlyClaire)
+- Fix last paginated notification group only including data on a single notification (#33271 by @ClearlyClaire)
+- Fix processing of mentions for post edits with an existing corresponding silent mention (#33227 by @ClearlyClaire)
+- Fix deletion of unconfirmed users with Webauthn set (#33186 by @ClearlyClaire)
+- Fix empty authors preview card serialization (#33151, #33466 by @mjankowski and @ClearlyClaire)
+
 ## [4.3.2] - 2024-12-03
 
 ### Added
