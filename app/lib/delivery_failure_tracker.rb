@@ -46,6 +46,8 @@ class DeliveryFailureTracker
       urls.reject do |url|
         host = Addressable::URI.parse(url).normalized_host
         unavailable_domains_map[host]
+      rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+        true
       end
     end
 
