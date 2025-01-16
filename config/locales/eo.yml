@@ -936,17 +936,22 @@ eo:
       generate: Uzi ŝablonon
       generates:
         action: Generi
+        chance_to_review_html: "<strong>La generataj kondiĉoj de uzado ne aŭtomate publikiĝos.</strong> Estos oportuni por vi kontroli la rezultojn. Bonvole entajpu la necesajn detalojn por daŭrigi."
+        explanation_html: La modelo por la kondiĉoj de la servo disponeblas sole por informi. Ĝi nepre ne estas leĝa konsilo pri iu ajn temo. Bonvole konsultu vian propran leĝan konsilanton pri via situacio kaj iuj leĝaj neklarecoj.
         title: Agordo de kondiĉoj de uzado
       history: Historio
       live: Antaŭmontro
       no_history: Ankoraŭ ne estas registritaj ŝanĝoj de la kondiĉoj de la servo.
       no_terms_of_service_html: Vi nuntempe ne havas iujn ajn kondiĉojn de la servo agordita. La kondiĉoj de la servo celas doni klarecon kaj protekti vin kontraŭ eblaj respondecoj en disputoj kun viaj uzantoj.
+      notified_on_html: Uzantojn sciigis je %{date}
       notify_users: Informu uzantojn
       preview:
+        explanation_html: 'La retmesaĝo estos alsendata al <strong>%{display_count} uzantoj</strong>, kiuj kreis konton antaŭ %{date}. La sekvonta teksto inkluziviĝos en la retmesaĝo:'
         send_preview: Sendu antaŭrigardon al %{email}
         send_to_all:
           one: Sendi %{display_count} retpoŝton
           other: Sendi %{display_count} retpoŝtojn
+        title: Antaŭmontri sciigon pri la kondiĉoj de la servo
       publish: Publikigi
       published_on_html: Publikigita je %{date}
       save_draft: Konservi malneton
@@ -1930,6 +1935,8 @@ eo:
       subject: Via konto estas alirita de nova IP-adreso
       title: Nova saluto
     terms_of_service_changed:
+      agreement: Se vi daŭrige uzos %{domain}, vi aŭtomate interkonsentos pri ĉi tiuj kondiĉoj. Se vi malkonsentas pri la novaj kondiĉoj, vi ĉiutempe rajtas nuligi la interkonsenton kun %{domain} per forigi vian konton.
+      changelog: 'Facile dirite, la ŝanĝoj estas la jenaj:'
       description: 'Vi ricevas ĉi tiun retmesaĝon ĉar ni faras iujn ŝanĝojn al niaj servokondiĉoj ĉe %{domain}. Ni instigas vin revizii la ĝisdatigitajn kondiĉojn tute ĉi tie:'
       description_html: Vi ricevas ĉi tiun retmesaĝon ĉar ni faras iujn ŝanĝojn al niaj servokondiĉoj ĉe %{domain}. Ni instigas vin revizii la <a href="%{path}" target="_blank">ĝisdatigitajn kondiĉojn plene ĉi tie</a>.
       sign_off: La teamo de %{domain}
