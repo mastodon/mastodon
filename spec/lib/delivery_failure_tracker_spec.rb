@@ -42,8 +42,8 @@ describe DeliveryFailureTracker do
       Fabricate(:unavailable_domain, domain: 'foo.bar')
     end
 
-    it 'removes URLs that are unavailable' do
-      results = described_class.without_unavailable(['http://example.com/good/inbox', 'http://foo.bar/unavailable/inbox'])
+    it 'removes URLs that are bogus or unavailable' do
+      results = described_class.without_unavailable(['http://example.com/good/inbox', 'http://foo.bar/unavailable/inbox', '{foo:'])
 
       expect(results).to include('http://example.com/good/inbox')
       expect(results).to_not include('http://foo.bar/unavailable/inbox')
