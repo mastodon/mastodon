@@ -4,7 +4,7 @@ module Mastodon
   module MigrationWarning
     WARNING_SECONDS = 10
 
-    DEFAULT_WARNING = <<~WARNING_MESSAGE
+    DEFAULT_WARNING = <<~WARNING_MESSAGE.freeze
       WARNING: This migration may take a *long* time for large instances.
       It will *not* lock tables for any significant time, but it may run
       for a very long time. We will pause for #{WARNING_SECONDS} seconds to allow you to

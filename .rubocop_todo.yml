@@ -69,15 +69,6 @@ Style/MapToHash:
   Exclude:
     - 'app/models/status.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: literals, strict
-Style/MutableConstant:
-  Exclude:
-    - 'app/models/tag.rb'
-    - 'app/services/delete_account_service.rb'
-    - 'lib/mastodon/migration_warning.rb'
-
 # Configuration parameters: AllowedMethods.
 # AllowedMethods: respond_to_missing?
 Style/OptionalBooleanParameter:
