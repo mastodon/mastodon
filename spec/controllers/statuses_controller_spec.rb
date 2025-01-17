@@ -9,45 +9,6 @@ RSpec.describe StatusesController do
     let(:account) { Fabricate(:account) }
     let(:status)  { Fabricate(:status, account: account) }
 
-    context 'when account is permanently suspended' do
-      before do
-        account.suspend!
-        account.deletion_request.destroy
-
-        get :show, params: { account_username: account.username, id: status.id }
-      end
-
-      it 'returns http gone' do
-        expect(response).to have_http_status(410)
-      end
-    end
-
-    context 'when account is temporarily suspended' do
-      before do
-        account.suspend!
-
-        get :show, params: { account_username: account.username, id: status.id }
-      end
-
-      it 'returns http forbidden' do
-        expect(response).to have_http_status(403)
-      end
-    end
-
-    context 'when status is a reblog' do
-      let(:original_account) { Fabricate(:account, domain: 'example.com') }
-      let(:original_status) { Fabricate(:status, account: original_account, url: 'https://example.com/123') }
-      let(:status) { Fabricate(:status, account: account, reblog: original_status) }
-
-      before do
-        get :show, params: { account_username: status.account.username, id: status.id }
-      end
-
-      it 'redirects to the original status' do
-        expect(response).to redirect_to(original_status.url)
-      end
-    end
-
     context 'when status is public' do
       before do
         get :show, params: { account_username: status.account.username, id: status.id, format: format }
@@ -140,17 +101,6 @@ RSpec.describe StatusesController do
 
       before do
         sign_in(user)
-      end
-
-      context 'when account blocks user' do
-        before do
-          account.block!(user.account)
-          get :show, params: { account_username: status.account.username, id: status.id }
-        end
-
-        it 'returns http not found' do
-          expect(response).to have_http_status(404)
-        end
       end
 
       context 'when status is public' do

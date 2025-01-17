@@ -3,7 +3,6 @@ zh-CN:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: 每行一个域名。这样就可以保护作品免受虚假署名。
         discoverable: 你的公开嘟文和个人资料可能会在 Mastodon 的多个位置展示，你的个人资料可能会被推荐给其他用户。
         display_name: 你的全名或昵称。
         fields: 你的主页、人称代词、年龄，以及任何你想要添加的内容。
@@ -24,11 +23,11 @@ zh-CN:
         text_html: 可选。你可以使用嘟文格式。你可以<a href="%{path}">预置警告</a>以节省时间
         type_html: 用<strong>%{acct}</strong>选择做什么
         types:
-          disable: 禁止用户使用账户，但不会删除或隐藏账户内容。
+          disable: 禁止用户使用账号，但不会删除或隐藏账号内容。
           none: 用它来向用户发送警告，不会触发其他操作。
           sensitive: 强制将此用户的所有媒体文件标记为敏感内容。
-          silence: 阻止用户发送公开嘟文，除了关注者以外，其他人都无法看到他的嘟文和通知。关闭针对此账户的所有举报。
-          suspend: 阻止此账户的任何交互并删除其内容。30天内可以撤销操作。关闭针对此账户的所有举报。
+          silence: 阻止用户发送公开嘟文，除了关注者以外，其他人都无法看到他的嘟文和通知。关闭针对此账号的所有举报。
+          suspend: 阻止此账号的任何交互并删除其内容。30天内可以撤销操作。关闭针对此账号的所有举报。
         warning_preset_id: 可选。你可以在预置文本末尾添加自定义文本
       announcement:
         all_day: 如果选中，只有该时间段内的日期会显示。
@@ -41,7 +40,7 @@ zh-CN:
       defaults:
         autofollow: 通过邀请链接注册的用户将会自动关注你
         avatar: 支持WEBP、PNG、GIF 或 JPG。最大 %{size}。将缩小到 %{dimensions}px
-        bot: 来自这个账户的绝大多数操作都是自动进行的，并且可能无人监控
+        bot: 来自这个账号的绝大多数操作都是自动进行的，并且可能无人监控
         context: 过滤规则将被应用到的一个或多个场景
         current_password: 为了安全起见，请输入当前账号的密码
         current_username: 请输入当前账号的用户名以确认
@@ -75,7 +74,7 @@ zh-CN:
       filters:
         action: 选择在嘟文命中过滤规则时要执行的操作
         actions:
-          hide: 彻底隐藏过滤内容，就像它从未存在过一样
+          hide: 选择在嘟文命中过滤规则时要执行的操作
           warn: 显示带有过滤规则标题的警告，并隐藏过滤内容
       form_admin_settings:
         activity_api_enabled: 本站每周的嘟文数、活跃用户数和新注册用户数
@@ -126,7 +125,7 @@ zh-CN:
         otp: 输入你手机应用上生成的双因素认证代码，或者任意一个恢复代码：
         webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
       settings:
-        indexable: 你的账户页可能会出现在Google、Bing等的搜索结果中。
+        indexable: 你的个人资料可能会出现在Google、Bing等的搜索结果中。
         show_application: 无论如何，你始终可以看到是哪个应用发布了你的嘟文。
       tag:
         name: 你只能改变字母的大小写，让它更易读
@@ -156,13 +155,12 @@ zh-CN:
         url: 事件将被发往的目的地
     labels:
       account:
-        attribution_domains_as_text: 授权展示你的署名的网站
-        discoverable: 在发现算法中展示你的账户与嘟文
+        discoverable: 在发现算法中展示你的账号与嘟文
         fields:
           name: 标签
           value: 内容
         indexable: 将公开嘟文纳入搜索范围
-        show_collections: 在账户页显示关注和关注者
+        show_collections: 在个人资料显示关注和关注者
         unlocked: 自动接受新关注者
       account_alias:
         acct: 处理旧账号
@@ -192,9 +190,9 @@ zh-CN:
       appeal:
         text: 说明此结果应当被推翻的理由
       defaults:
-        autofollow: 让被邀请人关注你的账户
+        autofollow: 让被邀请人关注你的账号
         avatar: 头像
-        bot: 这是一个机器人账户
+        bot: 这是一个机器人账号
         chosen_languages: 过滤语言
         confirm_new_password: 确认新密码
         confirm_password: 确认密码
@@ -225,7 +223,7 @@ zh-CN:
         setting_default_privacy: 嘟文默认可见范围
         setting_default_sensitive: 始终标记媒体为敏感内容
         setting_delete_modal: 在删除嘟文前询问我
-        setting_disable_hover_cards: 禁用悬停资料卡预览
+        setting_disable_hover_cards: 禁用悬停资料预览
         setting_disable_swiping: 禁用滑动动作
         setting_display_media: 媒体显示
         setting_display_media_default: 默认
@@ -305,7 +303,7 @@ zh-CN:
       notification_emails:
         appeal: 有人对审核结果提出申诉
         digest: 发送摘要邮件
-        favourite: 有用户喜欢了我的嘟文
+        favourite: 当有用户喜欢了我的嘟文时，发送电子邮件提醒我
         follow: 有人关注了我
         follow_request: 有人向我发送了关注请求
         mention: 有人提到了我
@@ -323,8 +321,8 @@ zh-CN:
         hint: 补充信息
         text: 规则
       settings:
-        indexable: 允许搜索引擎索引账户页
-        show_application: 显示你发嘟所用的应用
+        indexable: 允许搜索引擎索引个人资料
+        show_application: 显示你发嘟使用的应用
       tag:
         listable: 允许这个话题在用户目录中显示
         name: 话题
@@ -346,7 +344,7 @@ zh-CN:
         time_zone: 时区
       user_role:
         color: 徽章颜色
-        highlighted: 在账户页显示角色徽章
+        highlighted: 在用户资料中显示角色徽章
         name: 名称
         permissions_as_keys: 权限
         position: 优先级
