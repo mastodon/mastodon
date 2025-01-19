@@ -249,6 +249,51 @@ RSpec.describe LinkDetailsExtractor do
         expect(subject.author_name).to eq 'Author 1, Author 2'
       end
     end
+
+    context 'with incorrect ld_json data' do
+      let(:ld_json) do
+        {
+          '@context' => 'https://schema.org',
+          '@type' => 'NewsArticle',
+          'headline' => 'A lot of authors',
+          'description' => 'But we decided to cram them into one',
+          'author' => [[{
+            '@type' => 'Person',
+            'name' => ['Author 1'],
+          }]],
+          'publisher' => [[{
+            '@type' => 'NewsMediaOrganization',
+            'name' => 'Pet News',
+            'url' => 'https://example.com',
+          }]],
+          'image' => [[{
+            'url' => 'https://example.com/image.png',
+          }]],
+        }.to_json
+      end
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      it 'gives nil for author_name' do
+        expect(subject.author_name).to be_nil
+      end
+
+      it 'gives nil for publisher_name' do
+        expect(subject.publisher_name).to be_nil
+      end
+
+      it 'gives nil for image' do
+        expect(subject.image).to be_nil
+      end
+    end
   end
 
   context 'when Open Graph protocol data is present' do
@@ -282,36 +327,6 @@ RSpec.describe LinkDetailsExtractor do
           image_alt: eq('A good boy'),
           provider_name: eq('Pet News')
         )
-    end
-  end
-
-  describe LinkDetailsExtractor::StructuredData do
-    subject { described_class.new('{}') }
-
-    describe '#first_of_hash' do
-      context 'when value.is_a?(Array)' do
-        it 'returns value.first if value.first.is_a?(Hash)' do
-          value = [{ a: 1 }]
-          expect(subject.first_of_hash(value)).to be({ a: 1 })
-        end
-
-        it 'returns nil if value.first !is_a?(Hash)' do
-          value = ['a']
-          expect(subject.first_of_hash(value)).to be_nil
-        end
-      end
-
-      context 'with !value.is_a?(Array)' do
-        it 'returns value (value.is_a?(Hash))' do
-          value = { a: 1 }
-          expect(subject.first_of_hash(value)).to be({ a: 1 })
-        end
-
-        it 'returns value (!value.is_a?(Hash))' do
-          value = 'a'
-          expect(subject.first_of_hash(value)).to be 'a'
-        end
-      end
     end
   end
 end
