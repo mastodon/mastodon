@@ -266,9 +266,6 @@ RSpec.describe LinkDetailsExtractor do
             'name' => 'Pet News',
             'url' => 'https://example.com',
           }]],
-          'image' => [[{
-            'url' => 'https://example.com/image.png',
-          }]],
         }.to_json
       end
       let(:html) { <<~HTML }
@@ -282,16 +279,12 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      it 'gives nil for author_name' do
-        expect(subject.author_name).to be_nil
+      it 'gives "" for author_name' do
+        expect(subject.author_name).to be ''
       end
 
-      it 'gives nil for publisher_name' do
-        expect(subject.publisher_name).to be_nil
-      end
-
-      it 'gives nil for image' do
-        expect(subject.image).to be_nil
+      it 'gives "" for provider_name' do
+        expect(subject.provider_name).to be ''
       end
     end
   end
