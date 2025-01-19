@@ -52,8 +52,8 @@ RSpec.describe JsonLdHelper do
   describe '#first_of_hash' do
     context 'when value.is_a?(Array)' do
       it 'returns value.first if value.first.is_a?(Hash)' do
-        value = [{a: 1}]
-        expect(helper.first_of_hash(value)).to be({a: 1})
+        value = [{ a: 1 }]
+        expect(helper.first_of_hash(value)).to be({ a: 1 })
       end
 
       it 'returns nil if value.first !is_a?(Hash)' do
@@ -64,8 +64,8 @@ RSpec.describe JsonLdHelper do
 
     context 'with !value.is_a?(Array)' do
       it 'returns value (value.is_a?(Hash))' do
-        value = {a: 1}
-        expect(helper.first_of_hash(value)).to be({a: 1})
+        value = { a: 1 }
+        expect(helper.first_of_hash(value)).to be({ a: 1 })
       end
 
       it 'returns value (!value.is_a?(Hash))' do

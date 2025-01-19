@@ -93,7 +93,7 @@ class LinkDetailsExtractor
     end
 
     def first_of_hash(arr)
-      arr.is_a?(Array) ? arr.select { |item| item.is_a?(Hash) }.first : arr
+      arr.is_a?(Array) ? arr.find { |item| item.is_a?(Hash) } : arr
     end
 
     def root_array(root)
