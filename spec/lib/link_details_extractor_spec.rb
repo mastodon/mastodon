@@ -44,6 +44,8 @@ RSpec.describe LinkDetailsExtractor do
   end
 
   describe '#first_of_hash' do
+    let(:html) { '' }
+
     context 'when value.is_a?(Array)' do
       it 'returns value.first if value.first.is_a?(Hash)' do
         value = [{ a: 1 }]
