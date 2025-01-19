@@ -280,11 +280,11 @@ RSpec.describe LinkDetailsExtractor do
       HTML
 
       it 'gives "" for author_name' do
-        expect(subject.author_name).to be ''
+        expect(subject.author_name).to eq ''
       end
 
       it 'gives "" for provider_name' do
-        expect(subject.provider_name).to be ''
+        expect(subject.provider_name).to eq ''
       end
     end
   end
