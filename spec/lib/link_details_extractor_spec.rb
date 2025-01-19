@@ -285,7 +285,7 @@ RSpec.describe LinkDetailsExtractor do
     end
   end
 
-  RSpec.describe LinkDetailsExtractor::StructuredData do
+  describe LinkDetailsExtractor::StructuredData do
     subject { described_class.new('{}') }
 
     describe '#first_of_hash' do
