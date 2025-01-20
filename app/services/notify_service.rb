@@ -34,6 +34,7 @@ class NotifyService < BaseService
       @sender = notification.from_account
       @notification = notification
       @policy = NotificationPolicy.find_or_initialize_by(account: @recipient)
+      @from_staff = @sender.local? && @sender.user.present? && @sender.user_role&.bypass_block?(@recipient.user_role)
     end
 
     private
@@ -61,6 +62,14 @@ class NotifyService < BaseService
 
     def from_limited?
       @sender.silenced? && not_following?
+    end
+
+    def message?
+      @notification.type == :mention
+    end
+
+    def from_staff?
+      @from_staff
     end
 
     def private_mention_not_in_response?
@@ -129,14 +138,6 @@ class NotifyService < BaseService
       FeedManager.instance.filter?(:mentions, @notification.target_status, @recipient)
     end
 
-    def message?
-      @notification.type == :mention
-    end
-
-    def from_staff?
-      @sender.local? && @sender.user.present? && @sender.user_role&.bypass_block?(@recipient.user_role)
-    end
-
     def from_self?
       @recipient.id == @sender.id
     end
@@ -174,6 +175,7 @@ class NotifyService < BaseService
     def filter?
       return false unless filterable_type?
       return false if override_for_sender?
+      return false if message? && from_staff?
 
       filtered_by_limited_accounts_policy? ||
         filtered_by_not_following_policy? ||
