@@ -21,15 +21,18 @@ eu:
       one: Bidalketa
       other: Bidalketa
     posts_tab_heading: Bidalketa
+    self_follow_error: Zure kontua bera jarraitzea ez dago onartuta
   admin:
     account_actions:
       action: Burutu ekintza
+      already_suspended: Kontu hau dagoeneko kanporatua izan da.
       title: Burutu moderazio ekintza %{acct} kontuan
     account_moderation_notes:
       create: Sortu oharra
       created_msg: Moderazio oharra ongi sortu da!
       destroyed_msg: Moderazio ohara ongi suntsitu da!
     accounts:
+      add_email_domain_block: Blokeatu email domeinua
       approve: Onartu
       approved_msg: "%{username} erabiltzailearen erregistratzeko eskaera behar bezala onartu da"
       are_you_sure: Ziur zaude?
@@ -44,6 +47,7 @@ eu:
         title: Aldatu %{username}(r)en eposta helbidea
       change_role:
         changed_msg: Rola ondo aldatu da!
+        edit_roles: Kudeatu erabiltzaile rolak
         label: Aldatu rola
         no_role: Rolik ez
         title: Aldatu %{username} erabiltzailearen rola
@@ -56,6 +60,7 @@ eu:
       demote: Jaitsi mailaz
       destroyed_msg: "%{username} erabiltzailearen datuak behin betiko ezabatzeko ilaran daude"
       disable: Desgaitu
+      disable_sign_in_token_auth: Desgaitu e-posta token autentifikazioa
       disable_two_factor_authentication: Desgaitu 2FA
       disabled: Desgaituta
       display_name: Pantaila-izena
@@ -64,6 +69,7 @@ eu:
       email: Eposta
       email_status: Epostaren egoera
       enable: Gaitu
+      enable_sign_in_token_auth: Gaitu e-posta token autentifikazioa
       enabled: Gaituta
       enabled_msg: "%{username} kontua behar bezala desblokeatu da"
       followers: Jarraitzaileak
@@ -128,6 +134,7 @@ eu:
       resubscribe: Berriro harpidetu
       role: Rola
       search: Bilatu
+      search_same_email_domain: E-mail domeinu bera duten beste erabiltzaileak
       search_same_ip: IP bera duten beste erabiltzaileak
       security: Segurtasuna
       security_measures:
@@ -168,21 +175,26 @@ eu:
         approve_appeal: Onartu apelazioa
         approve_user: Onartu erabiltzailea
         assigned_to_self_report: Esleitu salaketa
+        change_email_user: Aldatu erabiltzailearen emaila
         change_role_user: Aldatu erabiltzailearen rola
         confirm_user: Berretsi erabiltzailea
         create_account_warning: Sortu abisua
         create_announcement: Sortu iragarpena
+        create_canonical_email_block: Sortu email blokeoa
         create_custom_emoji: Sortu emoji pertsonalizatua
         create_domain_allow: Sortu domeinu baimena
         create_domain_block: Sortu domeinu blokeoa
+        create_email_domain_block: Sortu email domeinu blokeoa
         create_ip_block: Sortu IP araua
         create_unavailable_domain: Sortu eskuragarri ez dagoen domeinua
         create_user_role: Sortu rola
         demote_user: Jaitsi erabiltzailearen maila
         destroy_announcement: Ezabatu iragarpena
+        destroy_canonical_email_block: Ezabatu email blokeoa
         destroy_custom_emoji: Ezabatu emoji pertsonalizatua
         destroy_domain_allow: Ezabatu domeinu baimena
         destroy_domain_block: Ezabatu domeinu blokeoa
+        destroy_email_domain_block: Ezabatu email domeinu blokeoa
         destroy_instance: Ezabatu betiko domeinua
         destroy_ip_block: Ezabatu IP araua
         destroy_status: Ezabatu bidalketa
@@ -190,8 +202,10 @@ eu:
         destroy_user_role: Ezabatu rola
         disable_2fa_user: Desgaitu 2FA
         disable_custom_emoji: Desgaitu emoji pertsonalizatua
+        disable_sign_in_token_auth_user: Desgaitu email token autentifikazioa erabiltzailearentzat
         disable_user: Desgaitu erabiltzailea
         enable_custom_emoji: Gaitu emoji pertsonalizatua
+        enable_sign_in_token_auth_user: Gaitu email token autentifikazioa erabiltzailearentzat
         enable_user: Gaitu erabiltzailea
         memorialize_account: Bihurtu kontua oroigarri
         promote_user: Igo erabiltzailea mailaz
