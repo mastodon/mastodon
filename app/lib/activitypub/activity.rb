@@ -7,6 +7,7 @@ class ActivityPub::Activity
 
   SUPPORTED_TYPES = %w(Note Question).freeze
   CONVERTED_TYPES = %w(Image Audio Video Article Page Event).freeze
+  QUOTE_REL_TYPES = %w(https://misskey-hub.net/ns#_misskey_quote).freeze
 
   def initialize(json, account, **options)
     @json    = json

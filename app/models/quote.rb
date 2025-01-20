@@ -31,6 +31,18 @@ class Quote < ApplicationRecord
   validates :activity_uri, presence: true, if: -> { account.local? && quoted_account&.remote? }
   validate :validate_visibility
 
+  def accept!
+    update!(state: :accepted)
+  end
+
+  def reject!
+    if accepted?
+      update!(state: :revoked)
+    elsif !revoked?
+      update!(state: :rejected)
+    end
+  end
+
   private
 
   def set_accounts
