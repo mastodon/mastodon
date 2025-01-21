@@ -85,6 +85,14 @@
     outline: $ui-button-icon-focus-outline;
   }
 
+  &--compact {
+    font-size: 14px;
+    line-height: normal;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 4px;
+  }
+
   &--dangerous {
     background-color: var(--error-background-color);
     color: var(--on-error-color);
@@ -3734,58 +3742,6 @@ $ui-header-logo-wordmark-width: 99px;
   }
 }
 
-.setting-text {
-  display: block;
-  box-sizing: border-box;
-  margin: 0;
-  color: $primary-text-color;
-  background: $ui-base-color;
-  padding: 7px 10px;
-  font-family: inherit;
-  font-size: 14px;
-  line-height: 22px;
-  border-radius: 4px;
-  border: 1px solid var(--background-border-color);
-
-  &:focus {
-    outline: 0;
-  }
-
-  &__wrapper {
-    background: $ui-base-color;
-    border: 1px solid var(--background-border-color);
-    margin-bottom: 10px;
-    border-radius: 4px;
-
-    .setting-text {
-      border: 0;
-      margin-bottom: 0;
-      border-radius: 0;
-
-      &:focus {
-        border: 0;
-      }
-    }
-
-    &__modifiers {
-      color: $inverted-text-color;
-      font-family: inherit;
-      font-size: 14px;
-      background: $white;
-    }
-  }
-
-  &__toolbar {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-
-  @media screen and (width <= 600px) {
-    font-size: 16px;
-  }
-}
-
 .status-card {
   display: flex;
   align-items: center;
@@ -6104,6 +6060,35 @@ a.status-card {
       gap: 16px;
       padding: 24px;
     }
+
+    &__preview {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: #000;
+
+      img {
+        display: block;
+      }
+
+      img,
+      .gifv video {
+        outline: 1px solid var(--media-outline-color);
+        outline-offset: -1px;
+        border-radius: 8px;
+      }
+
+      img,
+      .gifv video,
+      .video-player,
+      .audio-player {
+        max-width: 360px;
+        max-height: 45vh;
+      }
+    }
   }
 
   .copy-paste-text {
@@ -6448,62 +6433,6 @@ a.status-card {
   width: 100%;
   height: 1px;
   margin-bottom: 29px;
-}
-
-.report-modal__comment {
-  padding: 20px;
-  border-inline-end: 1px solid var(--background-border-color);
-  max-width: 320px;
-
-  p {
-    font-size: 14px;
-    line-height: 20px;
-    margin-bottom: 20px;
-  }
-
-  .setting-text-label {
-    display: block;
-    color: $secondary-text-color;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-
-  .setting-text {
-    width: 100%;
-    resize: none;
-    min-height: 100px;
-    max-height: 50vh;
-    border: 0;
-
-    @media screen and (height <= 600px) {
-      max-height: 20vh;
-    }
-
-    @media screen and (max-width: $no-columns-breakpoint) {
-      max-height: 20vh;
-    }
-  }
-
-  .setting-toggle {
-    margin-top: 20px;
-    margin-bottom: 24px;
-
-    &__label {
-      color: $inverted-text-color;
-      font-size: 14px;
-    }
-  }
-
-  @media screen and (width <= 480px) {
-    padding: 10px;
-    max-width: 100%;
-    order: 2;
-
-    .setting-toggle {
-      margin-bottom: 4px;
-    }
-  }
 }
 
 .actions-modal {
@@ -6998,11 +6927,6 @@ a.status-card {
   outline: 1px solid var(--media-outline-color);
   outline-offset: -1px;
 
-  &.editable {
-    border-radius: 0;
-    height: 100%;
-  }
-
   &.inactive {
     audio,
     .video-player__controls {
@@ -7070,11 +6994,6 @@ a.status-card {
   outline: 1px solid var(--media-outline-color);
   outline-offset: -1px;
   z-index: 2;
-
-  &.editable {
-    border-radius: 0;
-    height: 100% !important;
-  }
 
   video {
     display: block;
@@ -7381,6 +7300,14 @@ a.status-card {
 }
 
 .gifv {
+  position: relative;
+
+  canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
   video {
     max-width: 100vw;
     max-height: 80vh;
@@ -7686,24 +7613,14 @@ noscript {
 
 .focal-point {
   position: relative;
-  cursor: move;
+  cursor: grab;
   overflow: hidden;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $base-shadow-color;
 
-  img,
-  video,
-  canvas {
-    display: block;
-    max-height: 80vh;
-    width: 100%;
-    height: auto;
-    margin: 0;
-    object-fit: contain;
-    background: $base-shadow-color;
+  &.dragging {
+    cursor: grabbing;
   }
 
   &__reticle {
@@ -7711,54 +7628,10 @@ noscript {
     width: 100px;
     height: 100px;
     transform: translate(-50%, -50%);
-    background: url('../images/reticle.png') no-repeat 0 0;
+    border: 2px solid #fff;
     border-radius: 50%;
     box-shadow: 0 0 0 9999em rgba($base-shadow-color, 0.35);
-  }
-
-  &__overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    inset-inline-start: 0;
-  }
-
-  &__preview {
-    position: absolute;
-    bottom: 10px;
-    inset-inline-end: 10px;
-    z-index: 2;
-    cursor: move;
-    transition: opacity 0.1s ease;
-
-    &:hover {
-      opacity: 0.5;
-    }
-
-    strong {
-      color: $primary-text-color;
-      font-size: 14px;
-      font-weight: 500;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    div {
-      border-radius: 4px;
-      box-shadow: 0 0 14px rgba($base-shadow-color, 0.2);
-    }
-  }
-
-  @media screen and (width <= 480px) {
-    img,
-    video {
-      max-height: 100%;
-    }
-
-    &__preview {
-      display: none;
-    }
+    pointer-events: none;
   }
 }
 
@@ -10468,12 +10341,7 @@ noscript {
 .compose-form__actions {
   .button {
     display: block; // Otherwise text-ellipsis doesn't work
-    font-size: 14px;
-    line-height: normal;
-    font-weight: 700;
     flex: 1 1 auto;
-    padding: 5px 12px;
-    border-radius: 4px;
   }
 }
 
