@@ -18,4 +18,15 @@ RSpec.describe 'Settings Migrations' do
       it { is_expected.to redirect_to new_user_session_path }
     end
   end
+
+  context 'when user is signed in' do
+    before { sign_in Fabricate(:user) }
+
+    it 'gracefully handles invalid nested params' do
+      post settings_migration_path(account_migration: 'invalid')
+
+      expect(response)
+        .to have_http_status(400)
+    end
+  end
 end
