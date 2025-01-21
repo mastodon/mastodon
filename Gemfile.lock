@@ -283,7 +283,7 @@ GEM
     hashie (5.0.0)
     hcaptcha (7.1.0)
       json
-    highline (3.1.1)
+    highline (3.1.2)
       reline
     hiredis (0.6.3)
     hkdf (0.3.0)
@@ -406,7 +406,7 @@ GEM
     mime-types (3.6.0)
       logger
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.1203)
+    mime-types-data (3.2025.0107)
     mini_mime (1.1.5)
     mini_portile2 (2.8.8)
     minitest (5.25.4)
@@ -415,7 +415,7 @@ GEM
     mutex_m (0.3.0)
     net-http (0.6.0)
       uri
-    net-imap (0.5.4)
+    net-imap (0.5.5)
       date
       net-protocol
     net-ldap (0.19.0)
@@ -559,7 +559,7 @@ GEM
     ox (2.14.20)
       bigdecimal (>= 3.0)
     parallel (1.26.3)
-    parser (3.3.6.0)
+    parser (3.3.7.0)
       ast (~> 2.4.1)
       racc
     parslet (2.0.0)
@@ -581,7 +581,7 @@ GEM
       activesupport (>= 7.0.0)
       rack
       railties (>= 7.0.0)
-    psych (5.2.2)
+    psych (5.2.3)
       date
       stringio
     public_suffix (6.0.1)
@@ -658,7 +658,7 @@ GEM
       link_header (~> 0.0, >= 0.0.8)
     rdf-normalize (0.7.0)
       rdf (~> 3.3)
-    rdoc (6.10.0)
+    rdoc (6.11.0)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
     redis (4.8.1)
@@ -732,7 +732,7 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.52.0, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rspec (3.3.0)
+    rubocop-rspec (3.4.0)
       rubocop (~> 1.61)
     rubocop-rspec_rails (2.30.0)
       rubocop (~> 1.61)
@@ -871,7 +871,8 @@ GEM
       semantic_range (>= 2.3.0)
     webrick (1.9.1)
     websocket (1.2.11)
-    websocket-driver (0.7.6)
+    websocket-driver (0.7.7)
+      base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     wisper (2.0.1)
@@ -1038,4 +1039,4 @@ RUBY VERSION
    ruby 3.4.1p0
 
 BUNDLED WITH
-   2.6.2
+   2.6.3
