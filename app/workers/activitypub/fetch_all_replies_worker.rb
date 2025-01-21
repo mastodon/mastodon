@@ -51,7 +51,7 @@ class ActivityPub::FetchAllRepliesWorker
     replies_collection_or_uri = get_replies_uri(status_uri)
     return if replies_collection_or_uri.nil?
 
-    ActivityPub::FetchAllRepliesService.new.call(replies_collection_or_uri, max_pages, **options.deep_symbolize_keys)
+    ActivityPub::FetchAllRepliesService.new.call(replies_collection_or_uri, status_uri, max_pages, **options.deep_symbolize_keys)
   end
 
   def get_replies_uri(parent_status_uri)
