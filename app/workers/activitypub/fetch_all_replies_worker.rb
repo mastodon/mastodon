@@ -3,7 +3,7 @@
 # Fetch all replies to a status, querying recursively through
 # ActivityPub replies collections, fetching any statuses that
 # we either don't already have or we haven't checked for new replies
-# in the Status::FETCH_REPLIES_DEBOUNCE interval
+# in the Status::FETCH_REPLIES_COOLDOWN_MINUTES interval
 class ActivityPub::FetchAllRepliesWorker
   include Sidekiq::Worker
   include ExponentialBackoff

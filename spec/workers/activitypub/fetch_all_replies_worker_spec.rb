@@ -118,7 +118,7 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
       :status,
       account: account,
       uri: top_note_uri,
-      created_at: 1.day.ago - Status::FetchRepliesConcern::CREATED_RECENTLY_DEBOUNCE
+      created_at: 1.day.ago - Status::FetchRepliesConcern::FETCH_REPLIES_INITIAL_WAIT_MINUTES
     )
   end
 
@@ -267,7 +267,7 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
       let(:status) { Fabricate(:status, account: account, uri: top_note_uri, created_at: DateTime.now) }
 
       before do
-        stub_const('Status::FetchRepliesConcern::CREATED_RECENTLY_DEBOUNCE', 1.week)
+        stub_const('Status::FetchRepliesConcern::FETCH_REPLIES_INITIAL_WAIT_MINUTES', 1.week)
       end
 
       it 'returns nil without fetching' do
