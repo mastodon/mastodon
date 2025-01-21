@@ -13,10 +13,8 @@ module Auth::CaptchaConcern
   def captcha_available?
     if Rails.configuration.x.captcha.hcaptcha_secret_key.present? && Rails.configuration.x.captcha.hcaptcha_site_key.present?
       @hcaptcha_enabled = true
-      true
     elsif Rails.configuration.x.captcha.mcaptcha_secret_key.present? && Rails.configuration.x.captcha.mcaptcha_site_key.present?
       @mcaptcha_enabled = true
-      true
     else
       false
     end
