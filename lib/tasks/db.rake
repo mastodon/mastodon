@@ -11,16 +11,35 @@ namespace :db do
         ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY
         ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT
         ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY
-      ).any? { |key| ENV.key?(key) }
+      ).any? { |key| ENV[key].present? }
+        unless ENV['IGNORE_ALREADY_SET_SECRETS'] == 'true'
+          puts <<~MSG
+            Secrets for this server have already been set, this step can likely be ignored!
+            In the unlikely event you need to generate new secrets, re-run this command with `IGNORE_ALREADY_SET_SECRETS=true`.
+          MSG
+
+          next
+        end
+
         pastel = Pastel.new
         puts pastel.red(<<~MSG)
-          WARNING: It looks like encryption secrets have already been set. Please ensure you are not changing secrets for a Mastodon installation that already uses them, as this will cause data loss and other issues that are difficult to recover from.
+          WARNING: It looks like encryption secrets have already been set.
+          WARNING: Ensure you are not changing secrets for a Mastodon installation that already uses them, as this will cause data loss and other issues that are difficult to recover from.
+          WARNING: Only proceed if you are absolutely sure of what you are doing!
+        MSG
+
+        puts <<~MSG
+          If you are sure of what you are doing, add the following secret environment variables to your Mastodon environment (e.g. .env.production), ensure they are shared across all your nodes and do not change them after they are set:#{' '}
+        MSG
+      else
+        puts <<~MSG
+          Add the following secret environment variables to your Mastodon environment (e.g. .env.production), ensure they are shared across all your nodes and do not change them after they are set:#{' '}
         MSG
       end
 
       puts <<~MSG
-        Add the following secret environment variables to your Mastodon environment (e.g. .env.production), ensure they are shared across all your nodes and do not change them after they are set:#{' '}
 
+        # Do NOT change these variables once they are set
         ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY=#{SecureRandom.alphanumeric(32)}
         ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT=#{SecureRandom.alphanumeric(32)}
         ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY=#{SecureRandom.alphanumeric(32)}

@@ -2,7 +2,8 @@
 
 class WebPushRequest
   SIGNATURE_ALGORITHM = 'p256ecdsa'
-  AUTH_HEADER = 'WebPush'
+  LEGACY_AUTH_HEADER = 'WebPush'
+  STANDARD_AUTH_HEADER = 'vapid'
   PAYLOAD_EXPIRATION = 24.hours
   JWT_ALGORITHM = 'ES256'
   JWT_TYPE = 'JWT'
@@ -10,6 +11,7 @@ class WebPushRequest
   attr_reader :web_push_subscription
 
   delegate(
+    :standard,
     :endpoint,
     :key_auth,
     :key_p256dh,
@@ -24,19 +26,35 @@ class WebPushRequest
     @audience ||= Addressable::URI.parse(endpoint).normalized_site
   end
 
-  def authorization_header
-    [AUTH_HEADER, encoded_json_web_token].join(' ')
+  def legacy_authorization_header
+    [LEGACY_AUTH_HEADER, encoded_json_web_token].join(' ')
   end
 
   def crypto_key_header
     [SIGNATURE_ALGORITHM, vapid_key.public_key_for_push_header].join('=')
   end
 
-  def encrypt(payload)
+  def legacy_encrypt(payload)
+    Webpush::Legacy::Encryption.encrypt(payload, key_p256dh, key_auth)
+  end
+
+  def standard_authorization_header
+    [STANDARD_AUTH_HEADER, standard_vapid_value].join(' ')
+  end
+
+  def standard_encrypt(payload)
     Webpush::Encryption.encrypt(payload, key_p256dh, key_auth)
   end
 
+  def legacy
+    !standard
+  end
+
   private
+
+  def standard_vapid_value
+    "t=#{encoded_json_web_token},k=#{vapid_key.public_key_for_push_header}"
+  end
 
   def encoded_json_web_token
     JWT.encode(

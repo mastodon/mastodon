@@ -67,7 +67,7 @@ development environment configured with the software needed for this project.
 - On the _Ports_ tab "stream" setting change _Port visibility_ → _Public_
 
 [codespace]: https://codespaces.new/mastodon/mastodon?quickstart=1&devcontainer_path=.devcontainer%2Fcodespaces%2Fdevcontainer.json
-[CONTRIBUTING]: CONTRIBUTING.md
+[CONTRIBUTING]: ../CONTRIBUTING.md
 [Dev Container extension]: https://containers.dev/supporting#dev-containers
 [Development Containers]: https://containers.dev/supporting
 [Docker]: https://docs.docker.com

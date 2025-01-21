@@ -3,7 +3,6 @@ lv:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Viens katrā līnijā. Aizsargā no nepatiesa attiecinājuma.
         discoverable: Tavas publiskās ziņas un profils var tikt piedāvāti vai ieteikti dažādās Mastodon vietās, un tavs profils var tikt ieteikts citiem lietotājiem.
         display_name: Tavs pilnais vārds vai tavs joku vārds.
         fields: Tava mājas lapa, vietniekvārdi, vecums, viss, ko vēlies.
@@ -53,7 +52,7 @@ lv:
         locale: Lietotāja saskarnes, e-pasta ziņojumu un push paziņojumu valoda
         password: Izmanto vismaz 8 rakstzīmes
         phrase: Tiks saskaņots neatkarīgi no ziņas teksta reģistra vai satura brīdinājuma
-        scopes: Kuriem API lietojumprogrammai būs atļauta piekļuve. Ja izvēlies augstākā līmeņa tvērumu, tev nav jāatlasa atsevišķi vienumi.
+        scopes: Kuriem API lietotnei būs ļauts piekļūt. Ja atlasa augstākā līmeņa tvērumu, nav nepieciešamas atlasīt atsevišķus.
         setting_aggregate_reblogs: Nerādīt jaunus izcēlumus ziņām, kas nesen tika palielinātas (ietekmē tikai nesen saņemtos palielinājumus)
         setting_always_send_emails: Parasti e-pasta paziņojumi netiek sūtīti, kad aktīvi izmantojat Mastodon
         setting_default_sensitive: Sensitīva multivide pēc noklusējuma ir paslēpti, un tos var atklāt, noklikšķinot
@@ -119,8 +118,8 @@ lv:
           sign_up_requires_approval: Jaunām reģistrācijām būs nepieciešams tavs apstiprinājums
         severity: Izvēlies, kas notiks ar pieprasījumiem no šīs IP adreses
       rule:
-        hint: Izvēles. Sniedz vairāk informācijas par nosacījumu
-        text: Apraksti nosacījumus vai prasības šī servera lietotājiem. Centies, lai tas būtu īss un vienkāršs
+        hint: Izvēles. Sniedz vairāk informācijas par noteikumu
+        text: Jāapraksta nosacījums vai prasība šī servera lietotājiem. Jāmēģina to veidot īsu un vienkāršu
       sessions:
         otp: 'Ievadi divfaktoru kodu, ko ģenerējusi tava tālruņa lietotne, vai izmanto kādu no atkopšanas kodiem:'
         webauthn: Ja tā ir USB atslēga, noteikti ievieto to un, ja nepieciešams, pieskaries tai.
@@ -144,7 +143,6 @@ lv:
         url: Kur notikumi tiks nosūtīti
     labels:
       account:
-        attribution_domains_as_text: Tīmekļvietnes, kurām ir tiesības uzskaitīt Tevi
         discoverable: Funkcijas profils un ziņas atklāšanas algoritmos
         fields:
           name: Marķējums
@@ -317,6 +315,11 @@ lv:
         name: Tēmturis
         trendable: Atļaut šim tēmturim parādīties zem tendencēm
         usable: Ļaut ierakstos vietēji izmantot šo tēmturi
+      terms_of_service:
+        changelog: Kas ir mainījies?
+        text: Pakalpojuma izmantošanas nosacījumi
+      terms_of_service_generator:
+        domain: Domēna vārds
       user:
         role: Loma
         time_zone: Laika josla

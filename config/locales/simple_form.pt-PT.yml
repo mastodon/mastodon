@@ -3,7 +3,7 @@ pt-PT:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Um por linha. Protege contra falsas atribuições.
+        attribution_domains: Um por linha. Protege contra falsas atribuições.
         discoverable: As suas publicações e perfil públicos podem ser destacados ou recomendados em várias áreas do Mastodon e o seu perfil pode ser sugerido a outros utilizadores.
         display_name: O seu nome completo ou o seu nome divertido.
         fields: A sua página inicial, os seus pronomes, idade e tudo o que quiser.
@@ -63,7 +63,7 @@ pt-PT:
         setting_system_scrollbars_ui: Aplica-se apenas a navegadores de desktop baseados no Safari e Chrome
         setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer pormenores
         setting_use_pending_items: Ocultar as atualizações da cronologia após um clique em vez de percorrer automaticamente a cronologia
-        username: Pode utilizar letras, números e sublinhados
+        username: Pode utilizar letras, números e traços inferiores (_)
         whole_word: Quando a palavra-chave ou expressão-chave é somente alfanumérica, ela só será aplicada se corresponder à palavra completa
       domain_allow:
         domain: Este domínio será capaz de obter dados desta instância e os dados dele recebidos serão processados e armazenados
@@ -156,12 +156,12 @@ pt-PT:
         url: Para onde os eventos serão enviados
     labels:
       account:
-        attribution_domains_as_text: Sites autorizados a atribuir-lhe crédito
+        attribution_domains: Websites autorizados a atribuir-lhe crédito
         discoverable: Destacar perfil e publicações nos algoritmos de descoberta
         fields:
           name: Rótulo
           value: Conteúdo
-        indexable: Incluir mensagens públicas nos resultados da pesquisa
+        indexable: Incluir mensagens públicas nos resultados de pesquisas
         show_collections: Mostrar quem sigo e os meus seguidores no perfil
         unlocked: Aceitar automaticamente novos seguidores
       account_alias:
@@ -205,7 +205,7 @@ pt-PT:
         email: Endereço de correio electrónico
         expires_in: Expira em
         fields: Metadados de perfil
-        header: Cabeçalho
+        header: Imagem de cabeçalho
         honeypot: "%{label} (não preencher)"
         inbox_url: URL da caixa de entrada do repetidor
         irreversible: Expandir em vez de esconder

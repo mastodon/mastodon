@@ -3,7 +3,7 @@ ia:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Un per linea. Protege contra false attributiones.
+        attribution_domains: Un per linea. Protege contra false attributiones.
         discoverable: Tu messages public e tu profilo pote esser mittite in evidentia o recommendate in varie areas de Mastodon e tu profilo pote esser suggerite a altere usatores.
         display_name: Tu prenomine e nomine de familia o tu pseudonymo.
         fields: Tu pagina principal, pronomines, etate, tote lo que tu vole.
@@ -46,16 +46,16 @@ ia:
         current_password: Pro propositos de securitate insere le contrasigno del conto actual
         current_username: Pro confirmar, insere le nomine de usator del conto actual
         digest: Solo inviate post un longe periodo de inactivitate e solo si tu ha recipite alcun messages personal in tu absentia
-        email: Te sera inviate un email de confirmation
-        header: WEBP, PNG, GIF o JPG. Al maximo %{size}. Sera reducite a %{dimensions}px
+        email: Tu recipera un e-mail de confirmation
+        header: WEBP, PNG, GIF o JPG. Al maximo %{size}. Essera reducite a %{dimensions}px
         inbox_url: Copia le URL ab le pagina principal del repetitor que tu vole usar
-        irreversible: Le messages filtrate disparera irreversibilemente, mesmo si le filtro es plus tarde removite
+        irreversible: Le messages filtrate disparera irreversibilemente, mesmo si le filtro es removite plus tarde
         locale: Le lingua del interfacie de usator, del emails e del notificationes pulsate
         password: Usa al minus 8 characteres
-        phrase: Sera concordate ignorante majuscule/minuscule in le texto o avisos de contento de un message
-        scopes: A que APIs sera permittite acceder al application. Si tu selige un ambito de maxime nivello, tu non besonia de seliger los singulemente.
+        phrase: Se applicara independentemente de majusculas/minusculas in le texto o del aviso de contento de un message
+        scopes: Le APIs al quales le application habera accesso. Si tu selige un ambito de nivello superior, non es necessari seliger ambitos individual.
         setting_aggregate_reblogs: Non monstrar nove impulsos pro messages que ha essite recentemente impulsate (affecta solmente le impulsos novemente recipite)
-        setting_always_send_emails: Normalmente le avisos de email non sera inviate quando tu activemente usa Mastodon
+        setting_always_send_emails: Normalmente, le notificationes de e-mail non es inviate quando tu activemente usa Mastodon
         setting_default_sensitive: Le medios sensibile es celate de ordinario e pote esser revelate con un clic
         setting_display_media_default: Celar le medios marcate como sensibile
         setting_display_media_hide_all: Sempre celar le medios
@@ -64,12 +64,12 @@ ia:
         setting_use_blurhash: Le imagines degradate se basa sur le colores del visuales celate, ma illos offusca tote le detalios
         setting_use_pending_items: Requirer un clic pro monstrar nove messages in vice de rolar automaticamente le fluxo
         username: Tu pote usar litteras, numeros e tractos de sublineamento
-        whole_word: Quando le parola o expression clave es solo alphanumeric, illo sera solo applicate si illo concorda con tote le parola
+        whole_word: Quando le parola-clave o phrase es alphanumeric, illo essera solmente applicate si illo corresponde a tote le parola
       domain_allow:
         domain: Iste dominio potera extraher datos de iste servitor e le datos entrante de illo essera processate e immagazinate
       email_domain_block:
-        domain: Isto pote esser le nomine de dominio que apparera in le adresse email o le registration MX que illo usa. Illos sera verificate durante le inscription.
-        with_dns_records: Un tentativa sera facite pro resolver le registrationes de DNS del dominio date e le resultatos sera alsi blocate
+        domain: Isto pote esser le nomine de dominio que apparera in le adresse de e-mail o le registro MX que illo usa. Illos essera verificate durante le inscription.
+        with_dns_records: Un tentativa de resolver le registros DNS del dominio date essera facite e le resultatos essera equalmente blocate
       featured_tag:
         name: 'Ecce alcun del hashtags que tu usava le plus recentemente:'
       filters:
@@ -80,16 +80,16 @@ ia:
       form_admin_settings:
         activity_api_enabled: Numeros de messages localmente publicate, usatores active, e nove registrationes in gruppos septimanal
         app_icon: WEBP, PNG, GIF o JPG. Supplanta le icone predefinite sur apparatos mobile con un icone personalisate.
-        backups_retention_period: Le usatores pote generar archivos de lor messages pro discargar los plus tarde. Quando predefinite a un valor positive, iste archivos sera automaticamente delite de tu immagazinage post le specificate numero de dies.
-        bootstrap_timeline_accounts: Iste contos sera appunctate al summitate del recommendationes a sequer del nove usatores.
+        backups_retention_period: Le usatores pote generar archivos de lor messages pro discargar los plus tarde. Si iste option es definite a un valor positive, iste archivos essera automaticamente delite de tu immagazinage post le numero specificate de dies.
+        bootstrap_timeline_accounts: Iste contos essera fixate al initio del recommendationes de sequimento de nove usatores.
         closed_registrations_message: Monstrate quando le inscriptiones es claudite
         content_cache_retention_period: Tote le messages de altere servitores (includite impulsos e responsas) essera delite post le numero de dies specificate, independentemente de tote interaction de usatores local con ille messages. Isto include le messages addite al marcapaginas o marcate como favorite per un usator local. Le mentiones private inter usatores de differente instantias tamben essera irrecuperabilemente perdite. Le uso de iste parametro es intendite pro instantias con scopos specific e viola multe expectationes de usatores si es implementate pro uso general.
         custom_css: Tu pote applicar stilos personalisate sur le version de web de Mastodon.
         favicon: WEBP, PNG, GIF o JPG. Supplanta le favicone predefinite de Mastodon con un icone personalisate.
         mascot: Illo substitue le illustration in le interfacie web avantiate.
-        media_cache_retention_period: Le files multimedial de messages producite per usatores remote es in cache sur tu servitor. Quando predefinite a un valor positive, le medios sera delite post le numero de dies specificate. Le datos multimedial requirite post que illo es delite, sera re-discargate, si le contento original sera ancora disponibile. Per limitationes sur le frequentia con que le schedas de pre-visualisation de ligamine scruta le sitos de tertie partes, il es recommendate de predefinir iste valor a al minus 14 dies, o le schedas de pre-visualisation de ligamine non sera actualisate sur demanda ante ille tempore.
-        peers_api_enabled: Un lista de nomines de dominio que iste servitor ha incontrate in le fediverso. Nulle datos es includite ci re tu federation con un date servitor, justo que tu servitor lo cognosce. Isto es usate per servicios que collige statistica re le federation in senso general.
-        profile_directory: Le directorio de profilo lista tote le usatores qui ha optate pro esser detectabile.
+        media_cache_retention_period: Le files multimedial de messages producite per usatores distante se immagazina in cache sur tu servitor. Quando iste option es definite a un valor positive, tal files essera delite post le numero specificate de dies. Si alcuno requesta le datos multimedial post lor deletion, illos essera re-discargate si le contento original es ancora disponibile. Debite a limitationes sur le frequentia con que le cartas de previsualisation de ligamines se connecte al sitos de tertios, il es recommendate definir iste valor a al minus 14 dies, alteremente le previsualisationes de ligamines non essera actualisate sur demanda ante ille tempore.
+        peers_api_enabled: Un lista de nomines de dominio que iste servitor ha incontrate in le fediverso. Iste datos non indica si tu es in federation con un servitor date, ma solmente que tu servitor lo cognosce. Isto es usate per servicios que collige statisticas general sur le federation.
+        profile_directory: Le directorio de profilos lista tote le usatores que ha optate pro esser discoperibile.
         require_invite_text: Quando le inscriptiones require approbation manual, rende obligatori, plus tosto que optional, le entrata de texto “Perque vole tu junger te?”
         site_contact_email: Como pote contactar te le personas pro questiones legal o de supporto.
         site_contact_username: Como pote contactar te le personas re Mastodon.
@@ -100,7 +100,7 @@ ia:
         status_page_url: URL de un pagina ubi le personas pote vider le stato de iste servitor durante un interruption
         theme: Thema que le visitatores disconnexe e le nove usatores vide.
         thumbnail: Un imagine de circa 2:1 monstrate al latere del informationes de tu servitor.
-        timeline_preview: Le visitatores disconnexe potera navigar per le plus recente messages public disponibile sur le servitor.
+        timeline_preview: Le visitatores foras de session potera percurrer le messages public le plus recente disponibile sur le servitor.
         trendable_by_default: Saltar le revision manual del contento de tendentia. Elementos singule pote ancora esser removite de tendentias post le facto.
         trends: Tendentias monstra que messages, hashtags e novas gania traction sur tu servitor.
         trends_as_landing_page: Monstrar contento de tendentia a usatores disconnexe e visitatores in vice que un description de iste servitor. Require tendentias esser activate.
@@ -116,7 +116,7 @@ ia:
         ip: Inserer un adresse IPv4 o IPv6. Tu pote blocar campos integre per le syntaxe CIDR. Sia attente pro non disconnecter te!
         severities:
           no_access: Blocar accesso a tote le ressources
-          sign_up_block: Nove inscriptiones non sera possibile
+          sign_up_block: Nove inscriptiones non essera possibile
           sign_up_requires_approval: Nove inscriptiones requirera tu approbation
         severity: Seliger que evenira con requestas ab iste IP
       rule:
@@ -140,9 +140,9 @@ ia:
         dmca_address: Pro operatores in le SUA, usa le adresse registrate in le Directorio de Agentes Designate pro le DMCA (DMCA Designated Agent Directory). Un adresse de cassa postal es disponibile per requesta directe; usa le Requesta de Exemption de Cassa Postal pro Agentes Designate del DMCA (DMCA Designated Agent Post Office Box Waiver Request) pro inviar un message electronic al Officio del Derecto de Autor (Copyright Office) e describer que tu es un moderator de contento que travalia de casa e qui time vengiantias o represalias pro tu actiones, necessitante le uso un cassa postal pro remover tu adresse personal del vista public.
         dmca_email: Pote esser le mesme adresse de e-mail usate pro “Adresse de e-mail pro avisos juridic” supra
         domain: Identification unic del servicio in linea que tu forni.
-        jurisdiction: Vermeldt het land waar de persoon woont die de rekeningen betaalt. Als het een bedrijf of een andere entiteit is, vermeldt het land waar het is opgenomen en de stad, regio, grondgebied of staat, voor zover van toepassing.
+        jurisdiction: Indica le pais ubi vive le persona qui paga le facturas. Si se tracta de un interprisa o altere organisation, indica le pais ubi illo es incorporate, e le citate, region, territorio o stato del maniera appropriate pro le pais.
       user:
-        chosen_languages: Si marcate, solo le messages in le linguas seligite sera monstrate in chronologias public
+        chosen_languages: Si marcate, solmente le messages in le linguas seligite apparera in chronologias public
         role: Le rolo controla qual permissos le usator ha.
       user_role:
         color: Color a esser usate pro le rolo in omne parte del UI, como RGB in formato hexadecimal
@@ -153,10 +153,10 @@ ia:
       webhook:
         events: Selige le eventos a inviar
         template: Compone tu proprie carga utile JSON per interpolation de variabile. Lassar blanc pro JSON predefinite.
-        url: Ubi le eventos essera inviate
+        url: A ubi le eventos essera inviate
     labels:
       account:
-        attribution_domains_as_text: Sitos web autorisate a accreditar te
+        attribution_domains: Sitos web autorisate a accreditar te
         discoverable: Evidentiar le profilo e messages in le algorithmos de discoperta
         fields:
           name: Etiquetta
@@ -272,7 +272,7 @@ ia:
         registrations_mode: Qui pote inscriber se
         require_invite_text: Requirer un ration pro junger se
         show_domain_blocks: Monstrar le blocadas de dominio
-        show_domain_blocks_rationale: Monstrar perque le dominios era blocate
+        show_domain_blocks_rationale: Monstrar proque le dominios ha essite blocate
         site_contact_email: Adresse de e-mail de contacto
         site_contact_username: Nomine de usator de contacto
         site_extended_description: Description extense
@@ -288,8 +288,8 @@ ia:
         trends_as_landing_page: Usar tendentias como pagina de destination
       interactions:
         must_be_follower: Blocar notificationes de personas qui non te seque
-        must_be_following: Blocar notificationes de gente que tu non sequer
-        must_be_following_dm: Blocar messages directe de gente que tu non seque
+        must_be_following: Blocar notificationes de personas que tu non seque
+        must_be_following_dm: Blocar messages directe de personas que tu non seque
       invite:
         comment: Commento
       invite_request:
@@ -303,12 +303,12 @@ ia:
           sign_up_requires_approval: Limitar inscriptiones
         severity: Regula
       notification_emails:
-        appeal: Alcuno appella un decision de moderator
+        appeal: Alcuno appella contra un decision de moderator
         digest: Inviar emails compendio
-        favourite: Alcuno appreciava tu message
-        follow: Alcuno te sequeva
-        follow_request: Alcuno requireva de sequer te
-        mention: Alcuno te mentionava
+        favourite: Alcuno ha appreciate tu message
+        follow: Alcuno ha comenciate a sequer te
+        follow_request: Alcuno ha demandate de sequer te
+        mention: Alcuno te ha mentionate
         pending_account: Nove conto besonia de revision
         reblog: Alcuno ha impulsate tu message
         report: Un nove reporto es inviate

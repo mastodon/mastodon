@@ -8,16 +8,10 @@ namespace :mastodon do
     prompt = TTY::Prompt.new
     env    = {}
 
-    # When the application code gets loaded, it runs `lib/mastodon/redis_configuration.rb`.
-    # This happens before application environment configuration and sets REDIS_URL etc.
-    # These variables are then used even when REDIS_HOST etc. are changed, so clear them
-    # out so they don't interfere with our new configuration.
-    ENV.delete('REDIS_URL')
-    ENV.delete('CACHE_REDIS_URL')
-    ENV.delete('SIDEKIQ_REDIS_URL')
+    clear_environment!
 
     begin
-      errors = false
+      errors = []
 
       prompt.say('Your instance is identified by its domain name. Changing it afterward will break things.')
       env['LOCAL_DOMAIN'] = prompt.ask('Domain name:') do |q|
@@ -109,7 +103,7 @@ namespace :mastodon do
           unless prompt.yes?('Try again?')
             return prompt.warn 'Nothing saved. Bye!' unless prompt.yes?('Continue anyway?')
 
-            errors = true
+            errors << 'Database connection could not be established.'
             break
           end
         end
@@ -155,7 +149,7 @@ namespace :mastodon do
           unless prompt.yes?('Try again?')
             return prompt.warn 'Nothing saved. Bye!' unless prompt.yes?('Continue anyway?')
 
-            errors = true
+            errors << 'Redis connection could not be established.'
             break
           end
         end
@@ -450,7 +444,7 @@ namespace :mastodon do
           unless prompt.yes?('Try again?')
             return prompt.warn 'Nothing saved. Bye!' unless prompt.yes?('Continue anyway?')
 
-            errors = true
+            errors << 'E-email was not sent successfully.'
             break
           end
         end
@@ -498,7 +492,7 @@ namespace :mastodon do
             prompt.ok 'Done!'
           else
             prompt.error 'That failed! Perhaps your configuration is not right'
-            errors = true
+            errors << 'Preparing the database failed'
           end
         end
 
@@ -515,14 +509,15 @@ namespace :mastodon do
               prompt.say 'Done!'
             else
               prompt.error 'That failed! Maybe you need swap space?'
-              errors = true
+              errors << 'Compiling assets failed.'
             end
           end
         end
 
         prompt.say "\n"
-        if errors
-          prompt.warn 'Your Mastodon server is set up, but there were some errors along the way, you may have to fix them.'
+        if errors.any?
+          prompt.warn 'Your Mastodon server is set up, but there were some errors along the way, you may have to fix them:'
+          errors.each { |error| prompt.warn "- #{error}" }
         else
           prompt.ok 'All done! You can now power on the Mastodon server 🐘'
         end
@@ -578,6 +573,17 @@ namespace :mastodon do
   end
 
   private
+
+  def clear_environment!
+    # When the application code gets loaded, it runs `lib/mastodon/redis_configuration.rb`.
+    # This happens before application environment configuration and sets REDIS_URL etc.
+    # These variables are then used even when REDIS_HOST etc. are changed, so clear them
+    # out so they don't interfere with our new configuration.
+
+    ENV.delete('REDIS_URL')
+    ENV.delete('CACHE_REDIS_URL')
+    ENV.delete('SIDEKIQ_REDIS_URL')
+  end
 
   def generate_header(include_warning)
     default_message = "# Generated with mastodon:setup on #{Time.now.utc}\n\n"

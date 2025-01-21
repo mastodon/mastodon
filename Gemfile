@@ -94,7 +94,7 @@ gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2023'
 gem 'webauthn', '~> 3.0'
 gem 'webpacker', '~> 5.4'
-gem 'webpush', github: 'ClearlyClaire/webpush', ref: 'f14a4d52e201128b1b00245d11b6de80d6cfdcd9'
+gem 'webpush', github: 'mastodon/webpush', ref: '9631ac63045cfabddacc69fc06e919b4c13eb913'
 
 gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
@@ -104,19 +104,19 @@ gem 'opentelemetry-api', '~> 1.4.0'
 
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.29.0', require: false
-  gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
-  gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.21.0', require: false
-  gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.21.2', require: false
-  gem 'opentelemetry-instrumentation-excon', '~> 0.22.0', require: false
-  gem 'opentelemetry-instrumentation-faraday', '~> 0.25.0', require: false
-  gem 'opentelemetry-instrumentation-http', '~> 0.23.2', require: false
-  gem 'opentelemetry-instrumentation-http_client', '~> 0.22.3', require: false
-  gem 'opentelemetry-instrumentation-net_http', '~> 0.22.4', require: false
-  gem 'opentelemetry-instrumentation-pg', '~> 0.29.0', require: false
-  gem 'opentelemetry-instrumentation-rack', '~> 0.25.0', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.34.0', require: false
-  gem 'opentelemetry-instrumentation-redis', '~> 0.25.3', require: false
-  gem 'opentelemetry-instrumentation-sidekiq', '~> 0.25.2', require: false
+  gem 'opentelemetry-instrumentation-active_job', '~> 0.8.0', require: false
+  gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.22.0', require: false
+  gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.22.0', require: false
+  gem 'opentelemetry-instrumentation-excon', '~> 0.23.0', require: false
+  gem 'opentelemetry-instrumentation-faraday', '~> 0.26.0', require: false
+  gem 'opentelemetry-instrumentation-http', '~> 0.24.0', require: false
+  gem 'opentelemetry-instrumentation-http_client', '~> 0.23.0', require: false
+  gem 'opentelemetry-instrumentation-net_http', '~> 0.23.0', require: false
+  gem 'opentelemetry-instrumentation-pg', '~> 0.30.0', require: false
+  gem 'opentelemetry-instrumentation-rack', '~> 0.26.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.35.0', require: false
+  gem 'opentelemetry-instrumentation-redis', '~> 0.26.0', require: false
+  gem 'opentelemetry-instrumentation-sidekiq', '~> 0.26.0', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false
 end
 
@@ -125,7 +125,7 @@ group :test do
   gem 'flatware-rspec'
 
   # Adds RSpec Error/Warning annotations to GitHub PRs on the Files tab
-  gem 'rspec-github', '~> 2.4', require: false
+  gem 'rspec-github', '~> 3.0', require: false
 
   # RSpec helpers for email specs
   gem 'email_spec'

@@ -939,6 +939,16 @@ body > [data-popper-placement] {
     border-color: $ui-highlight-color;
     color: $primary-text-color;
   }
+
+  &.warning {
+    border-color: var(--goldenrod-2);
+    color: var(--goldenrod-2);
+
+    &.active {
+      background-color: var(--goldenrod-2);
+      color: var(--indigo-1);
+    }
+  }
 }
 
 .character-counter {
@@ -6815,6 +6825,8 @@ a.status-card {
   }
 
   &--layout-3 {
+    min-height: calc(64px * 2 + 8px);
+
     & > .media-gallery__item:nth-child(1) {
       border-end-end-radius: 0;
       border-start-end-radius: 0;
@@ -6834,6 +6846,8 @@ a.status-card {
   }
 
   &--layout-4 {
+    min-height: calc(64px * 2 + 8px);
+
     & > .media-gallery__item:nth-child(1) {
       border-end-end-radius: 0;
       border-start-end-radius: 0;
