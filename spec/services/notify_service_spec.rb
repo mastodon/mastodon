@@ -319,6 +319,16 @@ RSpec.describe NotifyService do
           end
         end
 
+        context 'when sender is a moderator' do
+          let(:sender_role) { Fabricate(:user_role, highlighted: true, permissions: UserRole::FLAGS[:manage_users]) }
+          let(:sender) { Fabricate(:user, role: sender_role).account }
+          let(:activity) { Fabricate(:mention, status: Fabricate(:status, account: sender)) }
+
+          it 'returns false' do
+            expect(subject.filter?).to be false
+          end
+        end
+
         context 'when sender is followed by recipient' do
           before do
             notification.account.follow!(notification.from_account)
