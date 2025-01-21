@@ -21,12 +21,15 @@ module Status::FetchRepliesConcern
 
     # statuses for which we won't receive update or deletion actions,
     # and should update when fetching replies
-    # Status from an account which either has only remote followers
-    # or where any local follows were created after the last update time
+    # Status from an account which either
+    # a) has only remote followers
+    # b) has local follows that were created after the last update time, or
+    # c) has no known followers
     scope :unsubscribed, lambda {
       local.invert_where.merge(
-        Status.joins(account: :followers).where.not(followers_accounts: { domain: nil })
+        Status.left_outer_joins(account: :followers).where.not(followers_accounts: { domain: nil })
               .or(where.not('follows.created_at < statuses.updated_at'))
+              .or(where(follows: { id: nil }))
       )
     }
   end

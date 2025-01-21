@@ -50,5 +50,11 @@ RSpec.describe Status::FetchRepliesConcern do
         expect(Status.unsubscribed).to eq([])
       end
     end
+
+    context 'when the status has no followers' do
+      it 'shows the status as unsubscribed' do
+        expect(Status.unsubscribed).to eq([status])
+      end
+    end
   end
 end
