@@ -3,6 +3,8 @@ import { PureComponent } from 'react';
 
 import { Helmet } from 'react-helmet';
 
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import Base from 'mastodon/components/modal_root';
 import { AltTextModal } from 'mastodon/features/alt_text_modal';
 import {
@@ -78,8 +80,7 @@ export const MODAL_COMPONENTS = {
 export default class ModalRoot extends PureComponent {
 
   static propTypes = {
-    type: PropTypes.string,
-    props: PropTypes.object,
+    modals: ImmutablePropTypes.list.isRequired,
     onClose: PropTypes.func.isRequired,
     ignoreFocus: PropTypes.bool,
   };
@@ -89,7 +90,7 @@ export default class ModalRoot extends PureComponent {
   };
 
   getSnapshotBeforeUpdate () {
-    return { visible: !!this.props.type };
+    return { visible: !!this.props.modals.get([0, 'type']) };
   }
 
   componentDidUpdate (prevProps, prevState, { visible }) {
@@ -129,25 +130,19 @@ export default class ModalRoot extends PureComponent {
   };
 
   render () {
-    const { type, props, ignoreFocus } = this.props;
+    const { modals, ignoreFocus } = this.props;
     const { backgroundColor } = this.state;
-    const visible = !!type;
+    const visible = !modals.isEmpty();
 
     return (
       <Base backgroundColor={backgroundColor} onClose={this.handleClose} ignoreFocus={ignoreFocus}>
-        {visible && (
-          <>
-            <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading} error={this.renderError} renderDelay={200}>
-              {(SpecificComponent) => {
-                return <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={this.setModalRef} />;
-              }}
-            </BundleContainer>
-
-            <Helmet>
-              <meta name='robots' content='noindex' />
-            </Helmet>
-          </>
-        )}
+        {visible && modals.toArray().map((modal, index) => (
+          <BundleContainer key={modal.modalKey} fetchComponent={MODAL_COMPONENTS[modal.modalType]} loading={this.renderLoading} error={this.renderError} renderDelay={200}>
+            {(SpecificComponent) => {
+              return <SpecificComponent {...modal.modalProps} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={index === 0 ? this.setModalRef : null} />;
+            }}
+          </BundleContainer>
+        ))}
       </Base>
     );
   }

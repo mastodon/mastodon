@@ -262,11 +262,6 @@ const Preview: React.FC<{
   }
 };
 
-interface RestoreProps {
-  previousDescription: string;
-  previousPosition: FocalPoint;
-}
-
 interface Props {
   mediaId: string;
   onClose: () => void;
@@ -275,15 +270,14 @@ interface Props {
 interface ConfirmationMessage {
   message: string;
   confirm: string;
-  props?: RestoreProps;
 }
 
 export interface ModalRef {
   getCloseConfirmationMessage: () => null | ConfirmationMessage;
 }
 
-export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
-  ({ mediaId, previousDescription, previousPosition, onClose }, ref) => {
+export const AltTextModal = forwardRef<ModalRef, Props>(
+  ({ mediaId, onClose }, ref) => {
     const intl = useIntl();
     const dispatch = useAppDispatch();
     const media = useAppSelector((state) =>
@@ -302,18 +296,15 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
     const focusY =
       (media?.getIn(['meta', 'focus', 'y'], 0) as number | undefined) ?? 0;
     const [description, setDescription] = useState(
-      previousDescription ??
         (media?.get('description') as string | undefined) ??
         '',
     );
     const [position, setPosition] = useState<FocalPoint>(
-      previousPosition ?? [focusX / 2 + 0.5, focusY / -2 + 0.5],
+      [focusX / 2 + 0.5, focusY / -2 + 0.5],
     );
     const [isDetecting, setIsDetecting] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
-    const dirtyRef = useRef(
-      previousDescription || previousPosition ? true : false,
-    );
+    const dirtyRef = useRef(false);
     const type = media?.get('type') as string;
     const valid = length(description) <= MAX_LENGTH;
 
