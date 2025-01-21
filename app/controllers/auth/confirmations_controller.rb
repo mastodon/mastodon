@@ -34,11 +34,13 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
         flash.now[:alert] = message
         render :captcha
         return
+      end
     else
-      check_mcaptcha! do |message|
+      check_hcaptcha! do |message|
         flash.now[:alert] = message
         render :captcha
         return
+      end
     end
 
     show
