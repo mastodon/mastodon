@@ -187,6 +187,7 @@ fa:
         create_domain_block: ایجاد انسداد دامنه
         create_email_domain_block: ایجاد انسداد دامنهٔ رایانامه
         create_ip_block: ایجاد قاعدهٔ آی‌پی
+        create_relay: ایجاد رله
         create_unavailable_domain: ایجاد دامنهٔ ناموجود
         create_user_role: ایجاد نقش
         demote_user: تنزل کاربر
@@ -198,14 +199,17 @@ fa:
         destroy_email_domain_block: حذف انسداد دامنهٔ رایانامه
         destroy_instance: پاکسازی دامنه
         destroy_ip_block: حذف قاعدهٔ آی‌پی
+        destroy_relay: حذف رله
         destroy_status: حذف وضعیت
         destroy_unavailable_domain: حذف دامنهٔ ناموجود
         destroy_user_role: نابودی نقش
         disable_2fa_user: از کار انداختن ورود دومرحله‌ای
         disable_custom_emoji: از کار انداختن اموجی سفارشی
+        disable_relay: غیرفعال‌سازی رله
         disable_sign_in_token_auth_user: از کار انداختن تأیید هویت ژتون رایانامه‌ای برای کاربر
         disable_user: از کار انداختن کاربر
         enable_custom_emoji: به کار انداختن اموجی سفارشی
+        enable_relay: فعال‌سازی رله
         enable_sign_in_token_auth_user: به کار انداختن تأیید هویت ژتون رایانامه‌ای برای کاربر
         enable_user: به کار انداختن کاربر
         memorialize_account: یادسپاری حساب
@@ -248,6 +252,7 @@ fa:
         create_domain_block_html: "%{name} دامنهٔ %{target} را مسدود کرد"
         create_email_domain_block_html: "%{name} دامنهٔ رایانامهٔ %{target} را مسدود کرد"
         create_ip_block_html: "%{name} برای آی‌پی %{target} قانونی ایجاد کرد"
+        create_relay_html: "%{name} یک رله %{target} ایجاد کرد"
         create_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را متوقف کرد"
         create_user_role_html: "%{name} نقش %{target} را ایجاد کرد"
         demote_user_html: "%{name} کاربر %{target} را تنزل داد"
@@ -259,14 +264,17 @@ fa:
         destroy_email_domain_block_html: "%{name} انسداد دامنهٔ رایانامهٔ %{target} را برداشت"
         destroy_instance_html: "%{name} دامنه %{target} را پاکسازی کرد"
         destroy_ip_block_html: "%{name} قاعدهٔ آی‌پی %{target} را حذف کرد"
+        destroy_relay_html: "%{name} رله %{target} را حذف کرد"
         destroy_status_html: "%{name} وضعیت %{target} را برداشت"
         destroy_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را از سر گرفت"
         destroy_user_role_html: "%{name} نقش %{target} را حذف کرد"
         disable_2fa_user_html: "%{name} ضرورت ورود دو مرحله‌ای را برای کاربر %{target} غیر فعال کرد"
         disable_custom_emoji_html: "%{name} شکلک %{target} را غیرفعال کرد"
+        disable_relay_html: "%{name} رله %{target} را غیرفعال کرد"
         disable_sign_in_token_auth_user_html: "%{name}، احراز هویت با توکن رایانامه را برای %{target} غیرفعال کرد"
         disable_user_html: "%{name} ورود را برای کاربر %{target} غیرفعال کرد"
         enable_custom_emoji_html: "%{name} شکلک %{target} را فعال کرد"
+        enable_relay_html: "%{name} رله %{target} را فعال کرد"
         enable_sign_in_token_auth_user_html: "%{name}، احراز هویت با توکن رایانامه را برای %{target} فعال کرد"
         enable_user_html: "%{name} ورود را برای کاربر %{target} فعال کرد"
         memorialize_account_html: "%{name} حساب %{target} را تبدیل به صفحهٔ یادمان کرد"
@@ -1415,13 +1423,28 @@ fa:
       domain_blocking_html:
         one: شما می‌خواهید <strong>لیست مسدودسازی دامنه خود را</strong> با حداکثر <strong>%{count} دامنه</strong> از <strong>%{filename}</strong> جایگزین کنید.
         other: شما می خواهید <strong>لیست مسدودسازی دامنه خود را</strong> با حداکثر <strong>%{count} دامنه</strong> از <strong>%{filename}</strong> جایگزین کنید.
+      following_html:
+        one: شما در شرف <strong>دنبال کردن</strong> حداکثر <strong>%{count} حساب</strong> از <strong>%{filename}</strong> هستید و <strong>دنبال کردن افراد دیگری را متوقف می‌کنید</strong>.
+        other: شما در شرف <strong>دنبال کردن</strong> حداکثر <strong>%{count} حساب</strong> از <strong>%{filename}</strong> هستید و <strong>دنبال کردن افراد دیگری را متوقف می‌کنید</strong>.
       lists_html:
         one: شما می خواهید <strong>لیست های خود را</strong> با محتوای <strong>%{filename}</strong> جایگزین کنید. حداکثر <strong>%{count} حساب</strong> به لیست‌های جدید اضافه می‌شود.
         other: شما می خواهید <strong>لیست های خود را</strong> با محتوای <strong>%{filename}</strong> جایگزین کنید. حداکثر <strong>%{count} حساب</strong> به لیست‌های جدید اضافه می‌شود.
+      muting_html:
+        one: شما می‌خواهید <strong>لیست حساب‌های بی‌صدا را جایگزین کنید</strong> با حداکثر <strong>%{count} حساب</strong> از <strong>%{filename}</strong>.
+        other: شما می‌خواهید <strong>لیست حساب‌های بی‌صدا را جایگزین کنید</strong> با حداکثر <strong>%{count} حساب</strong> از <strong>%{filename}</strong>.
     preambles:
       blocking_html:
         one: شما در شرف <strong>مسدود کردن</strong> حداکثر <strong>%{count} حساب</string> از <string>%{filename}</strong> هستید.
         other: شما در شرف <strong>مسدود کردن</strong> حداکثر <strong>%{count} حساب</string> از <string>%{filename}</string> هستید.
+      bookmarks_html:
+        one: شما می‌خواهید تا <strong>%{count} پست</strong> را از <strong>%{filename}</strong> به <strong>نشانک‌ها</strong> خود اضافه کنید.
+        other: شما می‌خواهید تا <strong>%{count} پست</strong> را از <strong>%{filename}</strong> به <strong>نشانک‌ها</strong> خود اضافه کنید.
+      domain_blocking_html:
+        one: شما در شرف <strong>مسدود کردن</strong> تا <strong>%{count} دامنه</strong> از <strong>%{filename}</strong> هستید.
+        other: شما در شرف <strong>مسدود کردن</strong> تا <strong>%{count} دامنه</strong> از <strong>%{filename}</strong> هستید.
+      following_html:
+        one: شما در شرف <strong>دنبال کردن</strong> حداکثر <strong>%{count} حساب</strong> از <strong>%{filename}</strong> هستید.
+        other: شما در شرف <strong>دنبال کردن</strong> حداکثر <strong>%{count} حساب</strong> از <strong>%{filename}</strong> هستید.
       lists_html:
         one: شما در حال افزودن <strong>%{count} حساب</strong> از <strong>%{filename}</strong> به <strong>لیست‌های</strong> خود هستید. اگر لیستی برای افزودن وجود نداشته باشد، لیست های جدیدی ایجاد می شود.
         other: شما می‌خواهید تا <strong>%{count} حساب</strong> از <strong>%{filename}</strong> را به <strong>فهرست‌های</strong> خود اضافه کنید. اگر لیستی برای افزودن وجود نداشته باشد، لیست های جدیدی ایجاد می شود.
@@ -1902,6 +1925,8 @@ fa:
       details: 'جزییات تلاش‌ها برای ورد:'
       explanation: شخصی سعی کرده است به حساب شما وارد شود اما یک عامل احراز هویت دوم نامعتبر ارائه کرده است.
       further_actions_html: اگر این شما نبودید، توصیه می کنیم فورا %{action} را انجام دهید زیرا ممکن است به خطر بیفتد.
+      subject: عدم موفقیت در تأیید هویت عامل دوم
+      title: احراز هویت عامل دوم ناموفق بود
     suspicious_sign_in:
       change_password: تغییر گذرواژه‌تان
       details: 'جزییات ورود:'
