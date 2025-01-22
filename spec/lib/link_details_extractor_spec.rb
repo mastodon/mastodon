@@ -250,7 +250,7 @@ RSpec.describe LinkDetailsExtractor do
       end
     end
 
-    context 'with incorrect ld_json data' do
+    context 'with embedded arrays' do
       let(:ld_json) do
         {
           '@context' => 'https://schema.org',
@@ -279,12 +279,12 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      it 'gives "" for author_name' do
-        expect(subject.author_name).to eq ''
+      it 'gives correct author_name' do
+        expect(subject.author_name).to eq 'Author 1'
       end
 
-      it 'gives "" for provider_name' do
-        expect(subject.provider_name).to eq ''
+      it 'gives provider_name' do
+        expect(subject.provider_name).to eq 'Pet News'
       end
     end
   end
