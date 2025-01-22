@@ -44,6 +44,8 @@ RSpec.describe 'Filters' do
     let(:new_title) { 'Change title value' }
 
     let!(:custom_filter) { Fabricate :custom_filter, account: user.account, title: filter_title }
+    let!(:keyword_one) { Fabricate :custom_filter_keyword, custom_filter: custom_filter }
+    let!(:keyword_two) { Fabricate :custom_filter_keyword, custom_filter: custom_filter }
 
     it 'Updates the saved filter' do
       navigate_to_filters
@@ -51,7 +53,12 @@ RSpec.describe 'Filters' do
       click_on filter_title
 
       fill_in filter_title_field, with: new_title
-      click_on submit_button
+      fill_in 'custom_filter_keywords_attributes_0_keyword', with: 'New value'
+      fill_in 'custom_filter_keywords_attributes_1_keyword', with: 'Wilderness'
+
+      expect { click_on submit_button }
+        .to change { keyword_one.reload.keyword }.to(/New value/)
+        .and(change { keyword_two.reload.keyword }.to(/Wilderness/))
 
       expect(page).to have_content(new_title)
     end
