@@ -319,7 +319,8 @@ GEM
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
     io-console (0.8.0)
-    irb (1.14.3)
+    irb (1.15.1)
+      pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jd-paperclip-azure (3.0.0)
@@ -568,6 +569,8 @@ GEM
     pg (1.5.9)
     pghero (3.6.1)
       activerecord (>= 6.1)
+    pp (0.6.2)
+      prettyprint
     premailer (1.27.0)
       addressable
       css_parser (>= 1.19.0)
@@ -576,6 +579,7 @@ GEM
       actionmailer (>= 3)
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
+    prettyprint (0.2.0)
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
