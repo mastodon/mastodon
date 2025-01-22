@@ -8,6 +8,12 @@ namespace :mastodon do
     prompt = TTY::Prompt.new
     env    = {}
 
+    if ENV['LOCAL_DOMAIN']
+      prompt.warn "It looks like you already configured Mastodon for domain '#{ENV['LOCAL_DOMAIN']}'."
+      prompt.warn 'Never re-run this task on an already-configured running server.'
+      next prompt.warn 'Nothing saved. Bye!' if prompt.no?('Continue anyway?')
+    end
+
     clear_environment!
 
     begin
