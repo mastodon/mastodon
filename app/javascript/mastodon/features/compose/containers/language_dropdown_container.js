@@ -78,6 +78,9 @@ const detectedLanguage = createSelector([
 ], text => {
   if (text.length > 20) {
     const guesses = debouncedLande(text);
+    if (!guesses)
+      return '';
+
     const [lang, confidence] = guesses[0];
 
     if (confidence > 0.8) {
