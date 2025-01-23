@@ -285,6 +285,7 @@ pl:
         enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
         memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
         promote_user_html: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
+        publish_terms_of_service_html: "%{name} opublikował aktualizacje warunków korzystania z usługi"
         reject_appeal_html: "%{name} zatwierdził(-a) odwołanie decyzji moderacyjnej od %{target}"
         reject_user_html: "%{name} odrzucił rejestrację od %{target}"
         remove_avatar_user_html: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
@@ -955,9 +956,36 @@ pl:
       title: Hashtagi
       updated_msg: Pomyślnie uaktualniono ustawienia hashtagów
     terms_of_service:
+      back: Powrót do warunków świadczenia usług
+      changelog: Co się zmieniło
+      create: Użyj własnego
+      current: Aktualna wersja
       draft: Szkic
       generate: Użyj szablonu
+      generates:
+        action: Wygeneruj
+        chance_to_review_html: "<strong>Wygenerowane warunki świadczenia usług nie zostaną automatycznie opublikowane.</strong> Będziesz miał szansę je sprawdzić raz jeszcze. Wypełnij wymagane pola, aby kontynuować."
+        explanation_html: Dostarczany wzór warunków świadczenia usług służy wyłącznie celom informacyjnym i nie powinien być interpretowany jako porada prawna w odniesieniu do żadnego przedmiotu. Proszę skonsultować się ze swoim doradcą prawnym w sprawie swojej sytuacji i konkretnych kwestii prawnych, które państwo posiadają.
+        title: Warunki korzystania z usługi
+      history: Historia
+      live: Rzeczywiste
+      no_history: Nie ma jeszcze zapisanych zmian w warunkach korzystania z usługi.
+      no_terms_of_service_html: Obecnie nie masz żadnych skonfigurowanych warunków korzystania z usługi. Warunki korzystania z usługi mają zapewnić jasność i ochronę przed potencjalnymi zobowiązaniami w sporach z użytkownikami.
+      notified_on_html: Użytkownicy powiadomieni o %{date}
+      notify_users: Powiadom użytkowników
+      preview:
+        explanation_html: 'E-mail zostanie wysłany do <strong>%{display_count} użytkowników</strong>, którzy zarejestrowali się przed %{date}. Otrzymają oni wiadomość o następującej treści:'
+        send_preview: Wyślij podgląd do %{email}
+        send_to_all:
+          few: Wyślij %{display_count} wiadomości e-mail
+          many: Wyślij %{display_count} wiadomości e-mail
+          one: Wyślij %{display_count} wiadomość e-mail
+          other: Wyślij %{display_count} wiadomości e-mail
+        title: Podgląd warunków powiadomienia o usłudze
+      publish: Publikuj
+      published_on_html: Opublikowano w dniu %{date}
       save_draft: Zapisz wersję roboczą
+      title: Warunki korzystania z usługi
     title: Administracja
     trends:
       allow: Zezwól
@@ -1197,6 +1225,7 @@ pl:
     set_new_password: Ustaw nowe hasło
     setup:
       email_below_hint_html: Sprawdź folder ze spamem lub poproś o inny link potwierdzający. Możesz poprawić swój adres e-mail, jeśli jest niepoprawny.
+      email_settings_hint_html: Kliknij link, który wysłaliśmy do %{email} , aby rozpocząć korzystanie z Mastodon. Poczekamy tutaj.
       link_not_received: Nie otrzymano linku?
       new_confirmation_instructions_sent: Za kilka minut otrzymasz nowy e-mail z linkiem potwierdzającym!
       title: Sprawdź swoją skrzynkę odbiorczą
@@ -1205,6 +1234,7 @@ pl:
       title: Zaloguj się do %{domain}
     sign_up:
       manual_review: Rejestracja na %{domain} przechodzi przez ręczne sprawdzanie przez naszych moderatorów. Aby pomóc nam usprawnić ten proces, napisz coś o sobie oraz dlaczego chcesz założyć konto na %{domain}.
+      preamble: Z kontem na tym serwerze Mastodon będziesz mógł obserwować każdą inną osobę w sieci, niezależnie od miejsca przechowywania ich konta.
       title: Skonfigurujmy Twoje konto na %{domain}.
     status:
       account_status: Stan konta
@@ -1435,6 +1465,68 @@ pl:
       merge_long: Zachowaj obecne wpisy i dodaj nowe
       overwrite: Nadpisz
       overwrite_long: Zastąp obecne wpisy nowymi
+    overwrite_preambles:
+      blocking_html:
+        few: Zamierzasz <strong>zastąpić swoją listę bloków</strong> maksymalnie <strong>%{count} kontami</strong> z <strong>%{filename}</strong>.
+        many: Zamierzasz <strong>zastąpić swoją listę bloków</strong> maksymalnie <strong>%{count} kontami</strong> z <strong>%{filename}</strong>.
+        one: Zamierzasz <strong>zastąpić swoją listę bloków</strong> maksymalnie <strong>%{count} kontem</strong> z <strong>%{filename}</strong>.
+        other: Zamierzasz <strong>zastąpić swoją listę bloków</strong> maksymalnie <strong>%{count} kontami</strong> z <strong>%{filename}</strong>.
+      bookmarks_html:
+        few: Zamierzasz <strong>zastąpić swoje zakładki</strong> maksymalnie <strong>%{count} wpisami</strong> z <strong>%{filename}</strong>.
+        many: Zamierzasz <strong>zastąpić swoje zakładki</strong> maksymalnie <strong>%{count} wpisami</strong> z <strong>%{filename}</strong>.
+        one: Zamierzasz <strong>zastąpić swoje zakładki</strong> maksymalnie <strong>%{count} wpisem</strong> z <strong>%{filename}</strong>.
+        other: Zamierzasz <strong>zastąpić swoje zakładki</strong> maksymalnie <strong>%{count} wpisami</strong> z <strong>%{filename}</strong>.
+      domain_blocking_html:
+        few: Zamierzasz <strong>zastąpić swoją listę bloków domen</strong> maksymalnie <strong>%{count} domenami</strong> z <strong>%{filename}</strong>.
+        many: Zamierzasz <strong>zastąpić swoją listę bloków domen</strong> maksymalnie <strong>%{count} domenami</strong> z <strong>%{filename}</strong>.
+        one: Zamierzasz <strong>zastąpić swoją listę bloków domen</strong> maksymalnie <strong>%{count} domeną</strong> z <strong>%{filename}</strong>.
+        other: Zamierzasz <strong>zastąpić swoją listę bloków domen</strong> maksymalnie <strong>%{count} domenami</strong> z <strong>%{filename}</strong>.
+      following_html:
+        few: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{count} konta</strong> z <strong>%{filename}</strong> i <strong>przestać obserwować kogokolwiek innego</strong>.
+        many: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{count} kont</strong> z <strong>%{filename}</strong> i <strong>przestać obserwować kogokolwiek innego</strong>.
+        one: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{count} konto</strong> z <strong>%{filename}</strong> i <strong>przestać obserwować kogokolwiek innego</strong>.
+        other: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{count} kont</strong> z <strong>%{filename}</strong> i <strong>przestać obserwować kogokolwiek innego</strong>.
+      lists_html:
+        few: Zamierzasz <strong>zastąpić swoje listy</strong> maksymalnie <strong>%{count} kontami</strong> z <strong>%{filename}</strong>.
+        many: Zamierzasz <strong>zastąpić swoje listy</strong> maksymalnie <strong>%{count} kontami</strong> z <strong>%{filename}</strong>.
+        one: Zamierzasz <strong>zastąpić swoje listy</strong> maksymalnie <strong>%{count} kontem</strong> z <strong>%{filename}</strong>.
+        other: Zamierzasz <strong>zastąpić swoje listy</strong> maksymalnie <strong>%{count} kontami</strong> z <strong>%{filename}</strong>.
+      muting_html:
+        few: Zamierzasz <strong>zastąpić swoją listę wyciszonych</strong> maksymalnie <strong>%{count} kontami</strong> z <strong>%{filename}</strong>.
+        many: Zamierzasz <strong>zastąpić swoją listę wyciszonych</strong> maksymalnie <strong>%{count} kontami</strong> z <strong>%{filename}</strong>.
+        one: Zamierzasz <strong>zastąpić swoją listę wyciszonych</strong> maksymalnie <strong>%{count} kontem</strong> z <strong>%{filename}</strong>.
+        other: Zamierzasz <strong>zastąpić swoją listę wyciszonych</strong> maksymalnie <strong>%{count} kontami</strong> z <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        few: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{count} konta</strong> z <strong>%{filename}</strong>.
+        many: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{count} kont</strong> z <strong>%{filename}</strong>.
+        one: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{count} konto</strong> z <strong>%{filename}</strong>.
+        other: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{count} kont</strong> z <strong>%{filename}</strong>.
+      bookmarks_html:
+        few: Zamierzasz dodać maksymalnie <strong>%{count} wpisy</strong> do twoich <strong>zakładek</strong> z <strong>%{filename}</strong>.
+        many: Zamierzasz dodać maksymalnie <strong>%{count} wpisów</strong> do twoich <strong>zakładek</strong> z <strong>%{filename}</strong>.
+        one: Zamierzasz dodać maksymalnie <strong>%{count} wpis</strong> do twoich <strong>zakładek</strong> z <strong>%{filename}</strong>.
+        other: Zamierzasz dodać maksymalnie <strong>%{count} wpisów</strong> do twoich <strong>zakładek</strong> z <strong>%{filename}</strong>.
+      domain_blocking_html:
+        few: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{count} domeny</strong> z <strong>%{filename}</strong>.
+        many: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{count} domeny</strong> z <strong>%{filename}</strong>.
+        one: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{count} domenę</strong> z <strong>%{filename}</strong>.
+        other: Zamierzasz <strong>zablokować</strong> maksymalnie <strong>%{count} domeny</strong> z <strong>%{filename}</strong>.
+      following_html:
+        few: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{count} konta</strong> z <strong>%{filename}</strong>.
+        many: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{count} kont</strong> z <strong>%{filename}</strong>.
+        one: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{count} konto</strong> z <strong>%{filename}</strong>.
+        other: Zamierzasz <strong>zaobserwować</strong> maksymalnie <strong>%{count} kont</strong> z <strong>%{filename}</strong>.
+      lists_html:
+        few: Zamierzasz dodać maksymalnie <strong>%{count} konta</strong> do twoich <strong>list</strong> z <strong>%{filename}</strong>. Jeżeli nie ma list, nowe zostaną utworzone.
+        many: Zamierzasz dodać maksymalnie <strong>%{count} kont</strong> do twoich <strong>list</strong> z <strong>%{filename}</strong>. Jeżeli nie ma list, nowe zostaną utworzone.
+        one: Zamierzasz dodać maksymalnie <strong>%{count} konto</strong> do twoich <strong>list</strong> z <strong>%{filename}</strong>. Jeżeli nie ma list, nowe zostaną utworzone.
+        other: Zamierzasz dodać maksymalnie <strong>%{count} kont</strong> do twoich <strong>list</strong> z <strong>%{filename}</strong>. Jeżeli nie ma list, nowe zostaną utworzone.
+      muting_html:
+        few: Zamierzasz <strong>wyciszyć</strong> maksymalnie <strong>%{count} konta</strong> z <strong>%{filename}</strong>.
+        many: Zamierzasz <strong>wyciszyć</strong> maksymalnie <strong>%{count} kont</strong> z <strong>%{filename}</strong>.
+        one: Zamierzasz <strong>wyciszyć</strong> maksymalnie <strong>%{count} konto</strong> z <strong>%{filename}</strong>.
+        other: Zamierzasz <strong>wyciszyć</strong> maksymalnie <strong>%{count} kont</strong> z <strong>%{filename}</strong>.
     preface: Możesz zaimportować pewne dane (np. lista kont, które obserwujesz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
     recent_imports: Ostatnie importy
     states:
@@ -1926,6 +2018,15 @@ pl:
       further_actions_html: Jeśli to nie Ty, zalecamy %{action} natychmiastowo i włącz uwierzytelnianie dwuetapowe, aby Twoje konto było bezpieczne.
       subject: Uzyskano dostęp do twojego konta z nowego adresu IP
       title: Nowe logowanie
+    terms_of_service_changed:
+      agreement: Kontynuując używanie %{domain}, zgadzasz się na te warunki. Jeśli nie zgadzasz się ze zaktualizowanymi warunkami, możesz wypowiedzieć umowę z %{domain} w dowolnym momencie, usuwając swoje konto.
+      changelog: 'W skrócie oto co oznacza dla Ciebie ta aktualizacja:'
+      description: 'Otrzymujesz ten e-mail, ponieważ wprowadzamy pewne zmiany w naszym regulaminie usługi w %{domain}. Zachęcamy Cię do pełnego zapoznania się z aktualnymi warunkami:'
+      description_html: Otrzymujesz ten e-mail, ponieważ wprowadzamy pewne zmiany w naszym regulaminie usługi w %{domain}. Zachęcamy do zapoznania się z aktualnymi warunkami <a href="%{path}" target="_blank">w całości tutaj</a>.
+      sign_off: Zespół %{domain}
+      subject: Aktualizacja warunków korzystania z usług
+      subtitle: Warunki korzystania z %{domain} zmieniają się
+      title: Ważna aktualizacja
     warning:
       appeal: Złóż odwołanie
       appeal_description: Jeśli uważasz, że zaszło nieporozumienie, możesz złożyć odwołanie do zespołu %{instance}.
