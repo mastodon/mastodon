@@ -18,7 +18,7 @@ class Settings::VerificationsController < Settings::BaseController
   private
 
   def account_params
-    params.require(:account).permit(:attribution_domains).tap do |params|
+    params.expect(account: [:attribution_domains]).tap do |params|
       params[:attribution_domains] = params[:attribution_domains].split if params[:attribution_domains]
     end
   end

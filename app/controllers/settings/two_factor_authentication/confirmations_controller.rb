@@ -38,7 +38,7 @@ module Settings
       private
 
       def confirmation_params
-        params.require(:form_two_factor_confirmation).permit(:otp_attempt)
+        params.expect(form_two_factor_confirmation: [:otp_attempt])
       end
 
       def prepare_two_factor_form

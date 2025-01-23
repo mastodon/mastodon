@@ -60,16 +60,12 @@ class Settings::ApplicationsController < Settings::BaseController
   end
 
   def application_params
-    params.require(:doorkeeper_application).permit(
-      :name,
-      :redirect_uri,
-      :scopes,
-      :website
-    )
+    params
+      .expect(doorkeeper_application: [:name, :redirect_uri, :scopes, :website])
   end
 
   def prepare_scopes
-    scopes = params.fetch(:doorkeeper_application, {}).fetch(:scopes, nil)
+    scopes = application_params.fetch(:doorkeeper_application, {}).fetch(:scopes, nil)
     params[:doorkeeper_application][:scopes] = scopes.join(' ') if scopes.is_a? Array
   end
 end
