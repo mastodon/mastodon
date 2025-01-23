@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { useCallback, useRef, useState, useEffect, PureComponent } from 'react';
 
-import { injectIntl, defineMessages } from 'react-intl';
+import { useIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
+
+import { createSelector } from '@reduxjs/toolkit';
+import { Map as ImmutableMap } from 'immutable';
 
 import { supportsPassiveEvents } from 'detect-passive-events';
 import fuzzysort from 'fuzzysort';
@@ -12,8 +15,12 @@ import Overlay from 'react-overlays/Overlay';
 import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
+import { changeComposeLanguage } from 'mastodon/actions/compose';
 import { Icon } from 'mastodon/components/icon';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
+import { useAppSelector, useAppDispatch } from 'mastodon/store';
+
+import { debouncedGuess } from '../util/language_detection';
 
 const messages = defineMessages({
   changeLanguage: { id: 'compose.language.change', defaultMessage: 'Change language' },
@@ -237,94 +244,90 @@ class LanguageDropdownMenu extends PureComponent {
 
 }
 
-class LanguageDropdown extends PureComponent {
+const getFrequentlyUsedLanguages = createSelector([
+  state => state.getIn(['settings', 'frequentlyUsedLanguages'], ImmutableMap()),
+], languageCounters => (
+  languageCounters.keySeq()
+    .sort((a, b) => languageCounters.get(a) - languageCounters.get(b))
+    .reverse()
+    .toArray()
+));
 
-  static propTypes = {
-    value: PropTypes.string,
-    frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string),
-    guess: PropTypes.string,
-    intl: PropTypes.object.isRequired,
-    onChange: PropTypes.func,
-  };
+export const LanguageDropdown = () => {
+  const [open, setOpen] = useState(false);
+  const [placement, setPlacement] = useState('bottom');
+  const [guess, setGuess] = useState('');
+  const activeElementRef = useRef(null);
+  const targetRef = useRef(null);
 
-  state = {
-    open: false,
-    placement: 'bottom',
-  };
+  const intl = useIntl();
 
-  handleToggle = () => {
-    if (this.state.open && this.activeElement) {
-      this.activeElement.focus({ preventScroll: true });
+  const dispatch = useAppDispatch();
+  const frequentlyUsedLanguages = useAppSelector(getFrequentlyUsedLanguages);
+  const value = useAppSelector((state) => state.compose.get('language'));
+  const text = useAppSelector((state) => state.compose.get('text'));
+
+  const current = preloadedLanguages.find(lang => lang[0] === value) ?? [];
+
+  const handleToggle = useCallback(() => {
+    if (open && activeElementRef.current)
+      activeElementRef.current.focus({ preventScroll: true });
+
+    setOpen(!open);
+  }, [open, setOpen]);
+
+  const handleClose = useCallback(() => {
+    if (open && activeElementRef.current)
+      activeElementRef.current.focus({ preventScroll: true });
+
+    setOpen(false);
+  }, [open, setOpen]);
+
+  const handleChange = useCallback((value) => {
+    dispatch(changeComposeLanguage(value));
+  }, [dispatch]);
+
+  const handleOverlayEnter = useCallback(({ placement }) => {
+    setPlacement(placement);
+  }, [setPlacement]);
+
+  useEffect(() => {
+    if (text.length > 20) {
+      debouncedGuess(text, setGuess);
+    } else {
+      setGuess('');
     }
+  }, [text, setGuess]);
 
-    this.setState({ open: !this.state.open });
-  };
+  return (
+    <div ref={targetRef}>
+      <button
+        type='button'
+        title={intl.formatMessage(messages.changeLanguage)}
+        aria-expanded={open}
+        onClick={handleToggle}
+        className={classNames('dropdown-button', { active: open, warning: guess !== '' && guess !== value })}
+      >
+        <Icon icon={TranslateIcon} />
+        <span className='dropdown-button__label'>{current[2] ?? value}</span>
+      </button>
 
-  handleClose = () => {
-    if (this.state.open && this.activeElement) {
-      this.activeElement.focus({ preventScroll: true });
-    }
-
-    this.setState({ open: false });
-  };
-
-  handleChange = value => {
-    const { onChange } = this.props;
-    onChange(value);
-  };
-
-  setTargetRef = c => {
-    this.target = c;
-  };
-
-  findTarget = () => {
-    return this.target;
-  };
-
-  handleOverlayEnter = (state) => {
-    this.setState({ placement: state.placement });
-  };
-
-  render () {
-    const { value, guess, intl, frequentlyUsedLanguages } = this.props;
-    const { open, placement } = this.state;
-    const current = preloadedLanguages.find(lang => lang[0] === value) ?? [];
-
-    return (
-      <div ref={this.setTargetRef} onKeyDown={this.handleKeyDown}>
-        <button
-          type='button'
-          title={intl.formatMessage(messages.changeLanguage)}
-          aria-expanded={open}
-          onClick={this.handleToggle}
-          onMouseDown={this.handleMouseDown}
-          onKeyDown={this.handleButtonKeyDown}
-          className={classNames('dropdown-button', { active: open, warning: guess !== '' && guess !== value })}
-        >
-          <Icon icon={TranslateIcon} />
-          <span className='dropdown-button__label'>{current[2] ?? value}</span>
-        </button>
-
-        <Overlay show={open} offset={[5, 5]} placement={placement} flip target={this.findTarget} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
-          {({ props, placement }) => (
-            <div {...props}>
-              <div className={`dropdown-animation language-dropdown__dropdown ${placement}`} >
-                <LanguageDropdownMenu
-                  value={value}
-                  guess={guess}
-                  frequentlyUsedLanguages={frequentlyUsedLanguages}
-                  onClose={this.handleClose}
-                  onChange={this.handleChange}
-                  intl={intl}
-                />
-              </div>
+      <Overlay show={open} offset={[5, 5]} placement={placement} flip target={targetRef} popperConfig={{ strategy: 'fixed', onFirstUpdate: handleOverlayEnter }}>
+        {({ props, placement }) => (
+          <div {...props}>
+            <div className={`dropdown-animation language-dropdown__dropdown ${placement}`} >
+              <LanguageDropdownMenu
+                value={value}
+                guess={guess}
+                frequentlyUsedLanguages={frequentlyUsedLanguages}
+                onClose={handleClose}
+                onChange={handleChange}
+                intl={intl}
+              />
             </div>
-          )}
-        </Overlay>
-      </div>
-    );
-  }
-
-}
-
-export default injectIntl(LanguageDropdown);
+          </div>
+        )}
+      </Overlay>
+    </div>
+  );
+};
