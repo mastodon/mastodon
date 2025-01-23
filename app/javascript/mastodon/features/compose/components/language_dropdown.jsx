@@ -5,6 +5,9 @@ import { useIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { createSelector } from '@reduxjs/toolkit';
+import { Map as ImmutableMap } from 'immutable';
+
 import { supportsPassiveEvents } from 'detect-passive-events';
 import fuzzysort from 'fuzzysort';
 import Overlay from 'react-overlays/Overlay';
@@ -12,8 +15,10 @@ import Overlay from 'react-overlays/Overlay';
 import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import TranslateIcon from '@/material-icons/400-24px/translate.svg?react';
+import { changeComposeLanguage } from 'mastodon/actions/compose';
 import { Icon } from 'mastodon/components/icon';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
+import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 const messages = defineMessages({
   changeLanguage: { id: 'compose.language.change', defaultMessage: 'Change language' },
@@ -237,17 +242,29 @@ class LanguageDropdownMenu extends PureComponent {
 
 }
 
+const getFrequentlyUsedLanguages = createSelector([
+  state => state.getIn(['settings', 'frequentlyUsedLanguages'], ImmutableMap()),
+], languageCounters => (
+  languageCounters.keySeq()
+    .sort((a, b) => languageCounters.get(a) - languageCounters.get(b))
+    .reverse()
+    .toArray()
+));
+
 export const LanguageDropdown = ({
-  value,
-  frequentlyUsedLanguages,
-  guess,
-  onChange
+  guess
 }) => {
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState('bottom');
   const activeElementRef = useRef(null);
   const targetRef = useRef(null);
+
   const intl = useIntl();
+
+  const dispatch = useAppDispatch();
+  const frequentlyUsedLanguages = useAppSelector(getFrequentlyUsedLanguages);
+  const value = useAppSelector((state) => state.compose.get('language'));
+
   const current = preloadedLanguages.find(lang => lang[0] === value) ?? [];
 
   const handleToggle = useCallback(() => {
@@ -265,8 +282,8 @@ export const LanguageDropdown = ({
   }, [open, setOpen]);
 
   const handleChange = useCallback((value) => {
-    onChange(value);
-  }, [onChange]);
+    dispatch(changeComposeLanguage(value));
+  }, [dispatch]);
 
   const handleOverlayEnter = useCallback(({ placement }) => {
     setPlacement(placement);
@@ -306,8 +323,5 @@ export const LanguageDropdown = ({
 };
 
 LanguageDropdown.propTypes = {
-  value: PropTypes.string,
-  frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string),
   guess: PropTypes.string,
-  onChange: PropTypes.func,
 };

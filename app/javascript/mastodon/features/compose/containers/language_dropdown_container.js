@@ -1,23 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { Map as ImmutableMap } from 'immutable';
 import { connect } from 'react-redux';
 
 import lande from 'lande';
 import { debounce } from 'lodash';
 
-import { changeComposeLanguage } from 'mastodon/actions/compose';
-
 import { LanguageDropdown } from '../components/language_dropdown';
 import { urlRegex } from '../util/url_regex';
-
-const getFrequentlyUsedLanguages = createSelector([
-  state => state.getIn(['settings', 'frequentlyUsedLanguages'], ImmutableMap()),
-], languageCounters => (
-  languageCounters.keySeq()
-    .sort((a, b) => languageCounters.get(a) - languageCounters.get(b))
-    .reverse()
-    .toArray()
-));
 
 const ISO_639_MAP = {
   afr: 'af', // Afrikaans
@@ -102,17 +90,7 @@ const detectedLanguage = createSelector([
 });
 
 const mapStateToProps = state => ({
-  frequentlyUsedLanguages: getFrequentlyUsedLanguages(state),
-  value: state.getIn(['compose', 'language']),
   guess: detectedLanguage(state),
 });
 
-const mapDispatchToProps = dispatch => ({
-
-  onChange (value) {
-    dispatch(changeComposeLanguage(value));
-  },
-
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(LanguageDropdown);
+export default connect(mapStateToProps)(LanguageDropdown);
