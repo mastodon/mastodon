@@ -9,6 +9,9 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
   let!(:sender) { Fabricate(:account, domain: 'foo.bar', uri: 'https://foo.bar') }
 
+  let(:follower) { Fabricate(:account, username: 'alice') }
+  let(:follow) { nil }
+  let(:response) { { body: Oj.dump(object), headers: { 'content-type': 'application/activity+json' } } }
   let(:existing_status) { nil }
 
   let(:note) do
@@ -23,13 +26,14 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
   before do
     stub_request(:get, 'https://foo.bar/watch?v=12345').to_return(status: 404, body: '')
-    stub_request(:get, object[:id]).to_return(body: Oj.dump(object))
+    stub_request(:get, object[:id]).to_return(**response)
   end
 
   describe '#call' do
     before do
+      follow
       existing_status
-      subject.call(object[:id], prefetched_body: Oj.dump(object))
+      subject.call(object[:id])
     end
 
     context 'with Note object' do
@@ -253,6 +257,35 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
           existing_status.reload
           expect(existing_status.text).to eq 'Lorem ipsum'
           expect(existing_status.edits).to_not be_empty
+        end
+
+        context 'when the status has been deleted at source' do
+          let(:response) { { status: 404, body: '' } }
+
+          context 'when the status is orphaned/unsubscribed' do
+            it 'deletes the orphaned status' do
+              expect { existing_status.reload }.to raise_error(ActiveRecord::RecordNotFound)
+            end
+          end
+
+          context 'when the status is from an account with only remote followers' do
+            let(:follower) { Fabricate(:account, username: 'alice', domain: 'foo.bar') }
+            let(:follow) { Fabricate(:follow, account: follower, target_account: sender, created_at: 2.days.ago) }
+
+            it 'deletes the orphaned status' do
+              expect { existing_status.reload }.to raise_error(ActiveRecord::RecordNotFound)
+            end
+          end
+
+          context 'when the status is from an account with local followers' do
+            let(:follow) { Fabricate(:follow, account: follower, target_account: sender, created_at: 2.days.ago) }
+
+            it 'does not delete the status' do
+              existing_status.reload
+              expect(existing_status.text).to eq 'Foo'
+              expect(existing_status.edits).to be_empty
+            end
+          end
         end
       end
 

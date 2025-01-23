@@ -85,6 +85,7 @@ RSpec.describe Status::FetchRepliesConcern do
 
       it 'shows the status as unsubscribed' do
         expect(Status.unsubscribed).to eq([status])
+        expect(status.unsubscribed?).to be(true)
       end
     end
 
@@ -95,6 +96,7 @@ RSpec.describe Status::FetchRepliesConcern do
 
       it 'shows the status as unsubscribed' do
         expect(Status.unsubscribed).to eq([status])
+        expect(status.unsubscribed?).to be(true)
       end
     end
 
@@ -105,6 +107,7 @@ RSpec.describe Status::FetchRepliesConcern do
 
       it 'shows the status as unsubscribed' do
         expect(Status.unsubscribed).to eq([status])
+        expect(status.unsubscribed?).to be(true)
       end
     end
 
@@ -115,12 +118,14 @@ RSpec.describe Status::FetchRepliesConcern do
 
       it 'does not show the status as unsubscribed' do
         expect(Status.unsubscribed).to eq([])
+        expect(status.unsubscribed?).to be(false)
       end
     end
 
     context 'when the status has no followers' do
       it 'shows the status as unsubscribed' do
         expect(Status.unsubscribed).to eq([status])
+        expect(status.unsubscribed?).to be(true)
       end
     end
   end
