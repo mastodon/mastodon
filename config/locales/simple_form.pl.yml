@@ -3,6 +3,7 @@ pl:
   simple_form:
     hints:
       account:
+        attribution_domains: Jedna na linię.
         discoverable: Twój profil i publiczne wpisy mogą być promowane lub polecane na Mastodonie i twój profil może być sugerowany innym użytkownikom.
         display_name: Twoje imię lub pseudonim.
         fields: Co ci się tylko podoba – twoja strona domowa, zaimki, wiek…
@@ -129,6 +130,13 @@ pl:
         show_application: Ty zawsze widzisz program użyty do zamieszczenia.
       tag:
         name: Możesz zmieniać tylko wielkość liter, np. aby były bardziej widoczne
+      terms_of_service:
+        changelog: Może być stworzony przy pomocy składni Markdown.
+        text: Może być stworzony przy pomocy składni Markdown.
+      terms_of_service_generator:
+        admin_email: Zawiadomienia prawne obejmują środki zapobiegawcze, nakazy sądowe, wnioski o popełnienie sprawy oraz wnioski organów ścigania.
+        arbitration_address: Może być taki sam jak adres fizyczny powyżej lub „N/A” jeśli używasz adresu e-mail
+        arbitration_website: Może być formularzem internetowym lub „N/A”, jeśli używasz adresu e-mail
       user:
         chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
         role: Rola kontroluje uprawnienia użytkownika.
@@ -321,6 +329,10 @@ pl:
         changelog: Co się zmieniło?
         text: Warunki korzystania z usługi
       terms_of_service_generator:
+        arbitration_address: Adres fizyczny powiadomień arbitrażowych
+        arbitration_website: Strona internetowa do składania zgłoszeń arbitrażowych
+        dmca_address: Adres fizyczny dla zgłoszeń naruszenia DMCA/praw autorskich
+        dmca_email: Adres e-mail dla zgłoszeń naruszenia DMCA/praw autorskich
         domain: Domena
         jurisdiction: Jurysdykcja
       user:
