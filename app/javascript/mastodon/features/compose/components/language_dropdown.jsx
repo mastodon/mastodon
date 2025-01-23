@@ -10,8 +10,6 @@ import { Map as ImmutableMap } from 'immutable';
 
 import { supportsPassiveEvents } from 'detect-passive-events';
 import fuzzysort from 'fuzzysort';
-import lande from 'lande';
-import { debounce } from 'lodash';
 import Overlay from 'react-overlays/Overlay';
 
 import CancelIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
@@ -22,7 +20,7 @@ import { Icon } from 'mastodon/components/icon';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { urlRegex } from '../util/url_regex';
+import { debouncedGuess } from '../util/language_detection';
 
 const messages = defineMessages({
   changeLanguage: { id: 'compose.language.change', defaultMessage: 'Change language' },
@@ -254,77 +252,6 @@ const getFrequentlyUsedLanguages = createSelector([
     .reverse()
     .toArray()
 ));
-
-const ISO_639_MAP = {
-  afr: 'af', // Afrikaans
-  ara: 'ar', // Arabic
-  aze: 'az', // Azerbaijani
-  bel: 'be', // Belarusian
-  ben: 'bn', // Bengali
-  bul: 'bg', // Bulgarian
-  cat: 'ca', // Catalan
-  ces: 'cs', // Czech
-  ckb: 'ku', // Kurdish
-  cmn: 'zh', // Mandarin
-  dan: 'da', // Danish
-  deu: 'de', // German
-  ell: 'el', // Greek
-  eng: 'en', // English
-  est: 'et', // Estonian
-  eus: 'eu', // Basque
-  fin: 'fi', // Finnish
-  fra: 'fr', // French
-  hau: 'ha', // Hausa
-  heb: 'he', // Hebrew
-  hin: 'hi', // Hindi
-  hrv: 'hr', // Croatian
-  hun: 'hu', // Hungarian
-  hye: 'hy', // Armenian
-  ind: 'id', // Indonesian
-  isl: 'is', // Icelandic
-  ita: 'it', // Italian
-  jpn: 'ja', // Japanese
-  kat: 'ka', // Georgian
-  kaz: 'kk', // Kazakh
-  kor: 'ko', // Korean
-  lit: 'lt', // Lithuanian
-  mar: 'mr', // Marathi
-  mkd: 'mk', // Macedonian
-  nld: 'nl', // Dutch
-  nob: 'no', // Norwegian
-  pes: 'fa', // Persian
-  pol: 'pl', // Polish
-  por: 'pt', // Portuguese
-  ron: 'ro', // Romanian
-  run: 'rn', // Rundi
-  rus: 'ru', // Russian
-  slk: 'sk', // Slovak
-  spa: 'es', // Spanish
-  srp: 'sr', // Serbian
-  swe: 'sv', // Swedish
-  tgl: 'tl', // Tagalog
-  tur: 'tr', // Turkish
-  ukr: 'uk', // Ukrainian
-  vie: 'vi', // Vietnamese
-};
-
-const debouncedGuess = debounce((text, setGuess) => {
-  text = text
-    .replace(urlRegex, '')
-    .replace(/(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/ig, '');
-
-  if (text.length > 20) {
-    const [lang, confidence] = lande(text)[0];
-
-    if (confidence > 0.8) {
-      setGuess(ISO_639_MAP[lang]);
-    } else {
-      setGuess('');
-    }
-  } else {
-    setGuess('');
-  }
-}, 500, { trailing: true });
 
 export const LanguageDropdown = () => {
   const [open, setOpen] = useState(false);
