@@ -16,8 +16,8 @@ module Status::FetchRepliesConcern
     scope :fetched_recently, -> { where(fetched_replies_at: FETCH_REPLIES_COOLDOWN_MINUTES.ago..) }
     scope :not_fetched_recently, -> { where(fetched_replies_at: [nil, ..FETCH_REPLIES_COOLDOWN_MINUTES.ago]) }
 
-    scope :should_not_fetch_replies, -> { local.merge(created_recently).merge(fetched_recently) }
-    scope :should_fetch_replies, -> { local.invert_where.merge(not_created_recently).merge(not_fetched_recently) }
+    scope :should_not_fetch_replies, -> { local.or(created_recently.or(fetched_recently)) }
+    scope :should_fetch_replies, -> { remote.merge(not_created_recently).merge(not_fetched_recently) }
 
     # statuses for which we won't receive update or deletion actions,
     # and should update when fetching replies
@@ -25,7 +25,7 @@ module Status::FetchRepliesConcern
     # a) has only remote followers
     # b) has local follows that were created after the last update time, or
     # c) has no known followers
-    scope :unsubscribed, -> {
+    scope :unsubscribed, lambda {
       remote.merge(
         Status.left_outer_joins(account: :followers).where.not(followers_accounts: { domain: nil })
               .or(where.not('follows.created_at < statuses.updated_at'))
