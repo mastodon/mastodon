@@ -17,4 +17,40 @@ RSpec.describe Form::AdminSettings do
       end
     end
   end
+
+  describe '#save' do
+    describe 'updating digest values' do
+      context 'when updating custom css to real value' do
+        subject { described_class.new(custom_css: css) }
+
+        let(:css) { 'body { color: red; }' }
+        let(:digested) { Digest::SHA256.hexdigest(css) }
+
+        it 'changes relevant digest value' do
+          expect { subject.save }
+            .to(change { Rails.cache.read(:setting_digest_custom_css) }.to(digested))
+        end
+      end
+
+      context 'when updating custom css to empty value' do
+        subject { described_class.new(custom_css: '') }
+
+        before { Rails.cache.write(:setting_digest_custom_css, 'previous-value') }
+
+        it 'changes relevant digest value' do
+          expect { subject.save }
+            .to(change { Rails.cache.read(:setting_digest_custom_css) }.to(be_blank))
+        end
+      end
+
+      context 'when updating other fields' do
+        subject { described_class.new(site_contact_email: 'test@example.host') }
+
+        it 'does not update digests' do
+          expect { subject.save }
+            .to(not_change { Rails.cache.read(:setting_digest_custom_css) })
+        end
+      end
+    end
+  end
 end

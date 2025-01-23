@@ -122,7 +122,7 @@ RSpec.describe 'Apps' do
     end
 
     context 'with a too-long name' do
-      let(:client_name) { 'hoge' * 20 }
+      let(:client_name) { 'a' * Doorkeeper::Application::APP_NAME_LIMIT * 2 }
 
       it 'returns http unprocessable entity' do
         subject
@@ -134,7 +134,7 @@ RSpec.describe 'Apps' do
     end
 
     context 'with a too-long website' do
-      let(:website) { "https://foo.bar/#{'hoge' * 2_000}" }
+      let(:website) { "https://foo.bar/#{'a' * Doorkeeper::Application::APP_WEBSITE_LIMIT * 2}" }
 
       it 'returns http unprocessable entity' do
         subject
@@ -146,7 +146,7 @@ RSpec.describe 'Apps' do
     end
 
     context 'with a too-long redirect_uri' do
-      let(:redirect_uris) { "https://app.example/#{'hoge' * 2_000}" }
+      let(:redirect_uris) { "https://app.example/#{'a' * Doorkeeper::Application::APP_REDIRECT_URI_LIMIT * 2}" }
 
       it 'returns http unprocessable entity' do
         subject

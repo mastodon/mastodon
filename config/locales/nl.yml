@@ -214,6 +214,7 @@ nl:
         enable_user: Gebruiker inschakelen
         memorialize_account: Het account in een In memoriam veranderen
         promote_user: Gebruiker promoveren
+        publish_terms_of_service: Algemene gebruiksvoorwaarden publiceren
         reject_appeal: Bezwaar afwijzen
         reject_user: Gebruiker afwijzen
         remove_avatar_user: Profielfoto verwijderen
@@ -263,21 +264,22 @@ nl:
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
         destroy_instance_html: "%{name} verwijderde het domein %{target} volledig"
         destroy_ip_block_html: "%{name} verwijderde regel voor IP %{target}"
-        destroy_relay_html: "%{name} heeft het relay %{target} verwijderd"
+        destroy_relay_html: "%{name} heeft de relay %{target} verwijderd"
         destroy_status_html: Bericht van %{target} is door %{name} verwijderd
         destroy_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} hervat"
         destroy_user_role_html: "%{name} verwijderde de rol %{target}"
         disable_2fa_user_html: De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld
         disable_custom_emoji_html: Emoji %{target} is door %{name} uitgeschakeld
-        disable_relay_html: "%{name} heeft het relay %{target} uitgeschakeld"
+        disable_relay_html: "%{name} heeft de relay %{target} uitgeschakeld"
         disable_sign_in_token_auth_user_html: "%{name} heeft verificatie met een toegangscode via e-mail uitgeschakeld voor %{target}"
         disable_user_html: Inloggen voor %{target} is door %{name} uitgeschakeld
         enable_custom_emoji_html: Emoji %{target} is door %{name} ingeschakeld
-        enable_relay_html: "%{name} heeft het relay %{target} ingeschakeld"
+        enable_relay_html: "%{name} heeft de relay %{target} ingeschakeld"
         enable_sign_in_token_auth_user_html: "%{name} heeft verificatie met een toegangscode via e-mail ingeschakeld voor %{target}"
         enable_user_html: Inloggen voor %{target} is door %{name} ingeschakeld
         memorialize_account_html: Het account %{target} is door %{name} in een In memoriam veranderd
         promote_user_html: Gebruiker %{target} is door %{name} gepromoveerd
+        publish_terms_of_service_html: "%{name} publiceerde bijgewerkte gebruiksvoorwaarden"
         reject_appeal_html: "%{name} heeft het bezwaar tegen de moderatiemaatregel van %{target} afgewezen"
         reject_user_html: "%{name} heeft de registratie van %{target} afgewezen"
         remove_avatar_user_html: "%{name} verwijderde de profielfoto van %{target}"
@@ -925,6 +927,35 @@ nl:
       search: Zoeken
       title: Hashtags
       updated_msg: Instellingen hashtag succesvol bijgewerkt
+    terms_of_service:
+      back: Terug naar de gebruiksvoorwaarden
+      changelog: Wat is veranderd
+      create: Gebruik je eigen
+      current: Huidige
+      draft: Concept
+      generate: Sjabloon gebruiken
+      generates:
+        action: Genereren
+        chance_to_review_html: "<strong>De gegenereerde gebruiksvoorwaarden worden niet automatisch gepubliceerd.</strong> Je krijgt de gelegenheid om de resultaten eerst te bekijken. Vul de benodigde gegevens in om verder te gaan."
+        explanation_html: Het sjabloon voor de gebruiksvoorwaarden is uitsluitend bedoeld voor informatieve doeleinden en mag niet worden opgevat als juridisch advies over welk onderwerp dan ook. Raadpleeg een eigen juridisch adviseur over jouw situatie en voor specifieke juridische vragen.
+        title: Gebruiksvoorwaarden instellen
+      history: Geschiedenis
+      live: Actueel
+      no_history: Er zijn nog geen opgeslagen wijzigingen van de gebruiksvoorwaarden.
+      no_terms_of_service_html: Je hebt momenteel geen gebruiksvoorwaarden geconfigureerd. De gebruiksvoorwaarden zijn bedoeld om duidelijkheid te verschaffen en je te beschermen tegen mogelijke aansprakelijkheid als gevolg van geschillen met gebruikers.
+      notified_on_html: Gebruikers geïnformeerd op %{date}
+      notify_users: Gebruikers informeren
+      preview:
+        explanation_html: 'De e-mail wordt verzonden naar <strong>%{display_count} gebruikers</strong> die zich hebben aangemeld voor %{date}. De volgende tekst zal in de e-mail worden opgenomen:'
+        send_preview: Voorbeeld verzenden naar %{email}
+        send_to_all:
+          one: "%{display_count} e-mail verzenden"
+          other: "%{display_count} e-mails verzenden"
+        title: Voorbeeld tonen van de melding over de gebruiksvoorwaarden
+      publish: Publiceren
+      published_on_html: Gepubliceerd op %{date}
+      save_draft: Concept opslaan
+      title: Gebruiksvoorwaarden
     title: Beheer
     trends:
       allow: Goedkeuren
@@ -1132,7 +1163,6 @@ nl:
     migrate_account: Naar een ander account verhuizen
     migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen, kun je <a href="%{path}">dit hier instellen</a>.
     or_log_in_with: Of inloggen met
-    privacy_policy_agreement_html: Ik heb het <a href="%{privacy_policy_path}" target="_blank">privacybeleid</a> gelezen en ga daarmee akkoord
     progress:
       confirm: E-mailadres bevestigen
       details: Jouw gegevens
@@ -1157,7 +1187,7 @@ nl:
     set_new_password: Nieuw wachtwoord instellen
     setup:
       email_below_hint_html: Controleer je map met spam, of vraag een nieuwe bevestigingslink aan. Je kan je e-mailadres corrigeren als het verkeerd is.
-      email_settings_hint_html: Klik op de link die we je hebben gestuurd om %{email} te verifiëren. We wachten wel even.
+      email_settings_hint_html: Klik op de link die we naar %{email} hebben gestuurd om Mastodon te gebruiken. We wachten wel even.
       link_not_received: Geen link ontvangen?
       new_confirmation_instructions_sent: Je ontvangt binnen enkele minuten een nieuwe e-mail met de bevestigingslink!
       title: Kijk in je mailbox
@@ -1166,7 +1196,7 @@ nl:
       title: Inloggen op %{domain}
     sign_up:
       manual_review: Inschrijvingen op %{domain} worden handmatig door onze moderatoren beoordeeld. Schrijf wat over jezelf en waarom je een account op %{domain} wilt. Hiermee help je ons om de aanvraag van jouw account goed te kunnen verwerken.
-      preamble: Je kunt met een Mastodon-account iedereen in het netwerk volgen, ongeacht waar deze persoon een account heeft.
+      preamble: Met een account op deze Mastodon-server kun je iedereen in de fediverse volgen, ongeacht waar deze persoon een account heeft.
       title: Laten we je account op %{domain} instellen.
     status:
       account_status: Accountstatus
@@ -1178,6 +1208,7 @@ nl:
       view_strikes: Bekijk de eerder door moderatoren vastgestelde overtredingen die je hebt gemaakt
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
     use_security_key: Beveiligingssleutel gebruiken
+    user_agreement_html: Ik heb de <a href="%{terms_of_service_path}" target="_blank">gebruiksvoorwaarden</a> en het <a href="%{privacy_policy_path}" target="_blank">privacybeleid</a> gelezen en ga ermee akkoord
   author_attribution:
     example_title: Voorbeeldtekst
     hint_html: Schrijf je nieuws- of blogartikelen buiten Mastodon? Bepaal hoe je geattribueerd wordt als deze gedeeld worden op Mastodon.
@@ -1676,7 +1707,7 @@ nl:
   scheduled_statuses:
     over_daily_limit: Je hebt de limiet van %{limit} in te plannen berichten voor vandaag overschreden
     over_total_limit: Je hebt de limiet van %{limit} in te plannen berichten overschreden
-    too_soon: De datum voor het ingeplande bericht moet in de toekomst liggen
+    too_soon: datum moet in de toekomst liggen
   self_destruct:
     lead_html: Helaas gaat <strong>%{domain}</strong> permanent sluiten. Als je daar een account had, kun je deze niet meer gebruiken, maar je kunt nog steeds een back-up van je gegevens opvragen.
     title: Deze server gaat sluiten
@@ -1839,6 +1870,8 @@ nl:
       too_late: De periode dat je bezwaar kunt maken tegen deze overtreding is verstreken
   tags:
     does_not_match_previous_name: komt niet overeen met de vorige naam
+  terms_of_service:
+    title: Gebruiksvoorwaarden
   themes:
     contrast: Mastodon (hoog contrast)
     default: Mastodon (donker)
@@ -1899,6 +1932,15 @@ nl:
       further_actions_html: Wanneer jij dit niet was, adviseren wij om onmiddellijk %{action} en om tweestapsverificatie in te schakelen, om zo je account veilig te houden.
       subject: Jouw account is vanaf een nieuw IP-adres benaderd
       title: Een nieuwe registratie
+    terms_of_service_changed:
+      agreement: Door %{domain} te blijven gebruiken, ga je akkoord met deze voorwaarden. Als je het niet eens bent met de bijgewerkte voorwaarden, kun je je overeenkomst met %{domain} op elk gewenst moment beëindigen door je account te verwijderen.
+      changelog: 'In een oogopslag betekent deze update voor jou:'
+      description: 'Je ontvangt dit bericht omdat we enkele wijzigingen aanbrengen in onze gebruiksvoorwaarden op %{domain}. We raden je aan om de bijgewerkte voorwaarden hier volledig te bekijken:'
+      description_html: Je ontvangt dit bericht omdat we enkele wijzigingen aanbrengen in onze gebruiksvoorwaarden op %{domain}. We raden je aan om de bijgewerkte <a href="%{path}" target="_blank">voorwaarden hier volledig te bestuderen</a>.
+      sign_off: Het %{domain}-team
+      subject: Onze bijgewerkte gebruiksvoorwaarden
+      subtitle: De gebruiksvoorwaarden van %{domain} veranderen
+      title: Belangrijke update
     warning:
       appeal: Bezwaar indienen
       appeal_description: Wanneer je denkt dat dit een fout is, kun je een bezwaar indienen bij de medewerkers van %{instance}.
@@ -1944,9 +1986,9 @@ nl:
       feature_action: Meer informatie
       feature_audience: Mastodon biedt je een unieke mogelijkheid om je publiek te beheren zonder tussenpersonen. Mastodon, geïmplementeerd in jouw eigen infrastructuur, stelt je in staat om elke andere Mastodon-server online te volgen en door hen gevolgd te worden, en staat onder controle van niemand, behalve die van jou.
       feature_audience_title: Bouw jouw publiek in vertrouwen op
-      feature_control: Je weet zelf het beste wat je op jouw tijdlijn wilt zien. Geen algoritmen of advertenties om je tijd te verspillen. Volg iedereen op elke Mastodon-server vanaf één account en ontvang hun berichten in chronologische volgorde, en maak jouw hoekje op het internet een beetje meer zoals jezelf.
+      feature_control: Je weet zelf het beste wat je op jouw starttijdlijn wilt zien. Geen algoritmen of advertenties om je tijd te verspillen. Volg iedereen op elke Mastodon-server vanaf één account en ontvang hun berichten in chronologische volgorde, en maak jouw hoekje op het internet een beetje meer zoals jezelf.
       feature_control_title: Houd controle over je eigen tijdlijn
-      feature_creativity: Mastodon ondersteunt audio-, video- en fotoberichten, toegankelijkheidsbeschrijvingen, peilingen, inhoudswaarschuwingen, geanimeerde profielfoto's, aangepaste lokale emoji's, controle over het bijwerken van thumbnails en meer, om je te helpen jezelf online uit te drukken. Of je nu jouw kunst, jouw muziek of jouw podcast publiceert, Mastodon staat voor je klaar.
+      feature_creativity: Mastodon ondersteunt audio-, video- en fotoberichten, toegankelijkheidsbeschrijvingen, peilingen, inhoudswaarschuwingen, geanimeerde profielfoto's, aangepaste lokale emoji's, controle over het bijwerken van miniaturen en meer, om je te helpen jezelf online uit te drukken. Of je nu jouw kunst, jouw muziek of jouw podcast publiceert, Mastodon staat voor je klaar.
       feature_creativity_title: Ongeëvenaarde creativiteit
       feature_moderation: Mastodon legt de besluitvorming weer in jouw handen. Elke server creëert diens eigen regels en voorschriften, die lokaal worden gehandhaafd en niet van bovenaf zoals sociale media van bedrijven, waardoor het het meest flexibel is in het reageren op de behoeften van verschillende groepen mensen. Word lid van een server met de regels waarmee je akkoord gaat, of host jouw eigen.
       feature_moderation_title: Moderatie zoals het hoort

@@ -214,6 +214,7 @@ hu:
         enable_user: Felhasználó engedélyezése
         memorialize_account: Fiók emlékké nyilvánítása
         promote_user: Felhasználó előléptetése
+        publish_terms_of_service: Felhasználási feltételek közzététele
         reject_appeal: Fellebbezés elutasítása
         reject_user: Felhasználó Elutasítása
         remove_avatar_user: Profilkép eltávolítása
@@ -278,6 +279,7 @@ hu:
         enable_user_html: "%{name} engedélyezte %{target} felhasználó bejelentkezését"
         memorialize_account_html: "%{name} emléket állított %{target} felhasználónak"
         promote_user_html: "%{name} előléptette %{target} felhasználót"
+        publish_terms_of_service_html: "%{name} frissítette a felhasználási feltételeket"
         reject_appeal_html: "%{name} visszautasított egy fellebbezést %{target} moderátori döntéséről"
         reject_user_html: "%{name} elutasította %{target} regisztrációját"
         remove_avatar_user_html: "%{name} törölte %{target} profilképét"
@@ -925,6 +927,35 @@ hu:
       search: Keresés
       title: Hashtagek
       updated_msg: A hashtag beállításokat sikeresen frissítettük
+    terms_of_service:
+      back: Vissza a felhasználási feltételekhez
+      changelog: Mi változott
+      create: Saját használata
+      current: Jelenlegi
+      draft: Piszkozat
+      generate: Sablon használata
+      generates:
+        action: Előállítás
+        chance_to_review_html: "<strong>Az előállított felhasználási feltételek nem lesznek automatikusan közzétéve.</strong> Előtte áttekintheted az eredményt. A folytatáshoz töltsd ki a szükséges részleteket."
+        explanation_html: A felhasználási feltételek sablonja csak információs célokat szolgál, és semmilyen témában nem tekinthető jogi tanácsadásnak. Konzultálj a saját jogi tanácsadóddal a helyzetedről és a felmerülő konkrét jogi kérdésekről.
+        title: Felhasználási feltételek beállítása
+      history: Előzmények
+      live: Élő
+      no_history: Még nincsenek változtatások a szolgáltatási feltételekben.
+      no_terms_of_service_html: Még nincsenek felhasználási feltételek beállítva. A felhasználási feltételek célja, hogy egyértelműsítsen, és megvédjen a felelősségvállalásoktól a felhasználókkal szembeni lehetséges viták során.
+      notified_on_html: 'Felhasználók értesítve: %{date}'
+      notify_users: Felhasználók értesítése
+      preview:
+        explanation_html: 'Az e-mail <strong>%{display_count} felhasználónak</strong> lesz elküldve (akik %{date} előtt regisztráltak). A következő szöveg fog szerepelni a levélben:'
+        send_preview: 'Előnézet elküldése ide: %{email}'
+        send_to_all:
+          one: "%{display_count} e-mail elküldése"
+          other: "%{display_count} e-mail elküldése"
+        title: Felhasználási feltételek értesítésének előnézete
+      publish: Közzététel
+      published_on_html: 'Közzétéve: %{date}'
+      save_draft: Piszkozat mentése
+      title: Felhasználási feltételek
     title: Karbantartás
     trends:
       allow: Engedélyezés
@@ -1132,7 +1163,6 @@ hu:
     migrate_account: Felhasználói fiók költöztetése
     migrate_account_html: Ha át szeretnéd irányítani ezt a fiókodat egy másikra, akkor <a href="%{path}">itt állíthatod be</a>.
     or_log_in_with: Vagy jelentkezz be ezzel
-    privacy_policy_agreement_html: Elolvastam és egyetértek az <a href="%{privacy_policy_path}" target="_blank">adatvédemi nyilatkozattal</a>
     progress:
       confirm: E-mail megerősítése
       details: Saját adatok
@@ -1157,7 +1187,7 @@ hu:
     set_new_password: Új jelszó beállítása
     setup:
       email_below_hint_html: Nézd meg a levélszemét mappát, vagy kérj egy újat. Módosíthatod az e-mail-címet, ha az hibás.
-      email_settings_hint_html: Kattints a hivatkozásra, melyet a(z) %{email} megerősítése céljából küldtünk. Addig várni fogunk.
+      email_settings_hint_html: A Mastodon használatának megkezdéséhez kattints a(z) %{email} címre küldött hivatkozásra. Itt fogunk várni.
       link_not_received: Nem kaptad meg a hivatkozást?
       new_confirmation_instructions_sent: Néhány perc múlva új e-mailt fogsz kapni a megerősítési hivatkozással.
       title: Bejövő postaláda ellenőrzése
@@ -1166,7 +1196,7 @@ hu:
       title: 'Bejelentkezés ide: %{domain}'
     sign_up:
       manual_review: A(z) %{domain} regisztrációi a moderátorok kézi felülvizsgálatán mennek át. Hogy segítsd a regisztráció feldolgozását, írj röviden magadról, és hogy miért szeretnél fiókot a(z) %{domain} oldalon.
-      preamble: Egy fiókkal ezen a Mastodon-kiszolgálón követhetsz bárkit a hálózaton, függetlenül attól, hogy az illető fiókja melyik kiszolgálón található.
+      preamble: Egy fiókkal ezen a Mastodon kiszolgálón követhetsz bárkit a födiverzumban, függetlenül attól, hogy az illető fiókja melyik kiszolgálón található.
       title: Állítsuk be a fiókod a %{domain} kiszolgálón.
     status:
       account_status: Fiók állapota
@@ -1178,6 +1208,7 @@ hu:
       view_strikes: Fiókod ellen felrótt korábbi vétségek megtekintése
     too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
     use_security_key: Biztonsági kulcs használata
+    user_agreement_html: Elolvastam és egyetértek a <a href="%{terms_of_service_path}" target="_blank">felhasználási feltételekkel</a> és az <a href="%{privacy_policy_path}" target="_blank">adatvédelmi nyilatkozattal</a>
   author_attribution:
     example_title: Mintaszöveg
     hint_html: Mastodonon kívül írsz híreket vagy blogbejegyzéseket? Szabályozd, hogyan tüntethetnek fel szerzőként, amikor Mastodonon osztják meg őket.
@@ -1676,7 +1707,7 @@ hu:
   scheduled_statuses:
     over_daily_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os napi limitet
     over_total_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os limitet
-    too_soon: Az időzített időpontnak a jövőben kell lennie
+    too_soon: a dátumnak a jövőben kell lennie
   self_destruct:
     lead_html: Sajnos a <strong>%{domain}</strong> végleg bezár. Ha volt itt fiókod, nem fogod tudni tovább használni, de kérheted majd az adataid biztonsági mentését.
     title: A kiszolgáló bezár
@@ -1839,6 +1870,8 @@ hu:
       too_late: Túl késő, hogy fellebbezd ezt a felrótt vétséget
   tags:
     does_not_match_previous_name: nem illeszkedik az előző névvel
+  terms_of_service:
+    title: Felhasználási feltételek
   themes:
     contrast: Mastodon (nagy kontrasztú)
     default: Mastodon (sötét)
@@ -1899,6 +1932,15 @@ hu:
       further_actions_html: Ha nem te voltál, akkor azt javasoljuk, hogy azonnal %{action} és engedélyezd a kétlépcsős hitelesítést, hogy biztonságban tudd a fiókodat.
       subject: A fiókodat egy új IP-címről érték el
       title: Új bejelentkezés
+    terms_of_service_changed:
+      agreement: A(z) %{domain} használatának folytatásával beleegyezel ezekbe a feltételekbe. Ha nem értesz egyet a frissített feltételekkel, akkor a fiókod törlésével megszakíthatod a(z) %{domain} weboldallal való megállapodásodat.
+      changelog: 'Dióhéjban ez a frissítés ezt jelenti számodra:'
+      description: 'Azért kapod ezt az e-mailt, mert a %{domain} felhasználási feltételein változtatunk. Javasoljuk, hogy tekintsd át a frissített feltételeket teljes egészében itt:'
+      description_html: Azért kapod ezt az e-mailt, mert a %{domain} felhasználási feltételein változtatunk. Javasoljuk, hogy tekintsd át a <a href="%{path}" target="_blank">frissített feltételeket teljes egészében itt</a>.
+      sign_off: A(z) %{domain} csapata
+      subject: A felhasználási feltételei frissítései
+      subtitle: A(z) %{domain} felhasználási feltételei megváltoznak
+      title: Fontos frissítés
     warning:
       appeal: Fellebbezés beküldése
       appeal_description: Ha azt gondolod, hogy ez hibás, beküldhetsz egy fellebbezést a(z) %{instance} szerver csapatának.

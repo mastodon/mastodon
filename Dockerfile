@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.11
+# syntax=docker/dockerfile:1.12
 
 # This file is designed for production server deployment, not local development work
 # For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/README.md#docker
@@ -10,9 +10,9 @@
 ARG TARGETPLATFORM=${TARGETPLATFORM}
 ARG BUILDPLATFORM=${BUILDPLATFORM}
 
-# Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.3.x"]
+# Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.4.x"]
 # renovate: datasource=docker depName=docker.io/ruby
-ARG RUBY_VERSION="3.3.6"
+ARG RUBY_VERSION="3.4.1"
 # # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 # renovate: datasource=node-version depName=node
 ARG NODE_MAJOR_VERSION="22"
@@ -20,7 +20,7 @@ ARG NODE_MAJOR_VERSION="22"
 ARG DEBIAN_VERSION="bookworm"
 # Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
 FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim AS node
-# Ruby image to use for base image based on combined variables (ex: 3.3.x-slim-bookworm)
+# Ruby image to use for base image based on combined variables (ex: 3.4.x-slim-bookworm)
 FROM docker.io/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} AS ruby
 
 # Resulting version string is vX.X.X-MASTODON_VERSION_PRERELEASE+MASTODON_VERSION_METADATA
@@ -153,6 +153,7 @@ RUN \
   libpq-dev \
   libssl-dev \
   libtool \
+  libyaml-dev \
   meson \
   nasm \
   pkg-config \

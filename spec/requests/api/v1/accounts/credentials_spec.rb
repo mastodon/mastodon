@@ -64,6 +64,7 @@ RSpec.describe 'credentials API' do
         indexable: true,
         locked: false,
         note: 'Hello!',
+        attribution_domains: ['example.com'],
         source: {
           privacy: 'unlisted',
           sensitive: true,
@@ -85,7 +86,7 @@ RSpec.describe 'credentials API' do
     end
 
     describe 'with invalid data' do
-      let(:params) { { note: 'This is too long. ' * 30 } }
+      let(:params) { { note: 'a' * 2 * Account::NOTE_LENGTH_LIMIT } }
 
       it 'returns http unprocessable entity' do
         subject
@@ -121,7 +122,8 @@ RSpec.describe 'credentials API' do
           display_name: eq("Alice Isn't Dead"),
           note: 'Hello!',
           avatar: exist,
-          header: exist
+          header: exist,
+          attribution_domains: ['example.com']
         )
     end
 

@@ -214,6 +214,7 @@ es:
         enable_user: Habilitar Usuario
         memorialize_account: Transformar en Cuenta Conmemorativa
         promote_user: Promover Usuario
+        publish_terms_of_service: Publicar términos del servicio
         reject_appeal: Rechazar Apelación
         reject_user: Rechazar Usuario
         remove_avatar_user: Eliminar Avatar
@@ -278,6 +279,7 @@ es:
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
         promote_user_html: "%{name} promoción al usuario %{target}"
+        publish_terms_of_service_html: "%{name} ha publicado actualizaciones de los términos del servicio"
         reject_appeal_html: "%{name} rechazó la solicitud de moderación de %{target}"
         reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} eliminó el avatar de %{target}"
@@ -925,6 +927,35 @@ es:
       search: Buscar
       title: Etiquetas
       updated_msg: La configuración de etiquetas se actualizó correctamente
+    terms_of_service:
+      back: Volver a los términos del servicio
+      changelog: Qué ha cambiado
+      create: Usa los tuyos
+      current: Actual
+      draft: Borrador
+      generate: Usar plantilla
+      generates:
+        action: Generar
+        chance_to_review_html: "<strong>Los términos del servicio generados no se publicarán automáticamente..</strong> Tendrás la oportunidad de revisar el resultado. Por favor, rellena los detalles necesarios para continuar."
+        explanation_html: La plantilla de términos de servicio ofrecida es únicamente para propósito informativo, y no debería ser considerada asesoramiento legal sobre ningún tema. Por favor, consulta con tu propio consejo legal sobre tu situación y las cuestiones legales específicas que tengas.
+        title: Configuración de términos del servicio
+      history: Historial
+      live: En vivo
+      no_history: Aún no se han registrado cambios en los términos del servicio.
+      no_terms_of_service_html: Actualmente no tienes configurado ningún término del servicio. Los términos del servicio están pensados para proporcionar claridad y protegerte de posibles responsabilidades en disputas con tus usuarios.
+      notified_on_html: Usuarios notificados el %{date}
+      notify_users: Notificar usuarios
+      preview:
+        explanation_html: 'El correo se enviará a <strong>%{display_count} usuarios</strong> que se registraron antes de %{date}. El siguiente texto se incluirá en el correo:'
+        send_preview: Enviar vista previa a %{email}
+        send_to_all:
+          one: Enviar %{display_count} correo electrónico
+          other: Enviar %{display_count} correos electrónicos
+        title: Vista previa de la notificación de términos del servicios
+      publish: Publicar
+      published_on_html: Publicado el %{date}
+      save_draft: Guardar borrador
+      title: Términos del Servicio
     title: Administración
     trends:
       allow: Permitir
@@ -1132,7 +1163,6 @@ es:
     migrate_account: Mudarse a otra cuenta
     migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
     or_log_in_with: O inicia sesión con
-    privacy_policy_agreement_html: He leído y acepto la <a href="%{privacy_policy_path}" target="_blank">política de privacidad</a>
     progress:
       confirm: Confirmar dirección de correo
       details: Tus detalles
@@ -1157,7 +1187,7 @@ es:
     set_new_password: Establecer nueva contraseña
     setup:
       email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu dirección de correo electrónico si está mal.
-      email_settings_hint_html: Haz clic en el enlace que te hemos enviado para verificar %{email}. Te esperamos aquí.
+      email_settings_hint_html: Haz clic en el enlace que enviamos a %{email} para comenzar a usar Mastodon. Estaremos esperando aquí mismo.
       link_not_received: "¿No recibiste un enlace?"
       new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
       title: Revisa tu bandeja de entrada
@@ -1166,7 +1196,7 @@ es:
       title: Iniciar sesión en %{domain}
     sign_up:
       manual_review: Los registros en %{domain} pasan por la revisión manual de nuestros moderadores. Para ayudarnos a procesar tu registro, escribe un poco sobre ti mismo y por qué quieres una cuenta en %{domain}.
-      preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra persona en la red, independientemente del servidor en el que se encuentre.
+      preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra persona en el fediverso, independientemente de dónde esté alojada su cuenta.
       title: Crear cuenta de Mastodon en %{domain}.
     status:
       account_status: Estado de la cuenta
@@ -1178,6 +1208,7 @@ es:
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     use_security_key: Usar la clave de seguridad
+    user_agreement_html: He leído y acepto los <a href="%{terms_of_service_path}" target="_blank">términos del servicio</a> y la <a href="%{privacy_policy_path}" target="_blank">política de privacidad</a>
   author_attribution:
     example_title: Texto de ejemplo
     hint_html: "¿Escribes noticias o artículos de blog fuera de Mastodon? Controla cómo se te acredita cuando se comparten en Mastodon."
@@ -1676,7 +1707,7 @@ es:
   scheduled_statuses:
     over_daily_limit: Ha superado el límite de %{limit} publicaciones programadas para ese día
     over_total_limit: Ha superado el límite de %{limit} publicaciones programadas
-    too_soon: La fecha programada debe estar en el futuro
+    too_soon: la fecha debe ser en el futuro
   self_destruct:
     lead_html: Desafortunadamente, <strong>%{domain}</strong> va a cerrar permanentemente. Si tenías una cuenta allí, no podrás continuar usándola, pero aún puedes solicitar una copia de tus datos.
     title: Este servidor está cerrando
@@ -1839,6 +1870,8 @@ es:
       too_late: Es demasiado tarde para apelar esta amonestación
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior
+  terms_of_service:
+    title: Términos del Servicio
   themes:
     contrast: Mastodon (alto contraste)
     default: Mastodon (oscuro)
@@ -1899,6 +1932,15 @@ es:
       further_actions_html: Si no fuiste tú, te recomendamos que %{action} inmediatamente y habilites la autenticación de dos factores para mantener tu cuenta segura.
       subject: Tu cuenta ha sido accedida desde una nueva dirección IP
       title: Un nuevo inicio de sesión
+    terms_of_service_changed:
+      agreement: Al seguir usando %{domain}, aceptas estos términos. Si no estás de acuerdo con los términos actualizados, puedes cancelar tu acuerdo con %{domain} en cualquier momento eliminando tu cuenta.
+      changelog: 'En resumen, esto es lo que esta actualización significa para ti:'
+      description: 'Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos del servicio en %{domain}. Te animamos a revisar los términos actualizados en su totalidad aquí:'
+      description_html: Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos del servicio en %{domain}. Te animamos a revisar los <a href="%{path}" target="_blank">términos actualizados en su totalidad aquí</a>.
+      sign_off: El equipo de %{domain}
+      subject: Actualizaciones en nuestros términos del servicio
+      subtitle: Los términos del servicio de %{domain} están cambiando
+      title: Actualización importante
     warning:
       appeal: Enviar una apelación
       appeal_description: Si crees que esto es un error, puedes enviar una apelación al personal de %{instance}.

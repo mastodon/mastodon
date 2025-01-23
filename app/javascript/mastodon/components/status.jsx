@@ -167,7 +167,12 @@ class Status extends ImmutablePureComponent {
 
   handleClick = e => {
     e.preventDefault();
-    this.handleHotkeyOpen(e);
+
+    if (e?.button === 0 && !(e?.ctrlKey || e?.metaKey)) {
+      this._openStatus();
+    } else if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
+      this._openStatus(true);
+    }
   };
 
   handleMouseUp = e => {
@@ -275,7 +280,11 @@ class Status extends ImmutablePureComponent {
     this.props.onMention(this._properStatus().get('account'));
   };
 
-  handleHotkeyOpen = (e) => {
+  handleHotkeyOpen = () => {
+    this._openStatus();
+  };
+
+  _openStatus = (newTab = false) => {
     if (this.props.onClick) {
       this.props.onClick();
       return;
@@ -290,10 +299,10 @@ class Status extends ImmutablePureComponent {
 
     const path = `/@${status.getIn(['account', 'acct'])}/${status.get('id')}`;
 
-    if (e?.button === 0 && !(e?.ctrlKey || e?.metaKey)) {
+    if (newTab) {
+      window.open(path, '_blank', 'noopener');
+    } else {
       history.push(path);
-    } else if (e?.button === 1 || (e?.button === 0 && (e?.ctrlKey || e?.metaKey))) {
-      window.open(path, '_blank', 'noreferrer noopener');
     }
   };
 
@@ -384,6 +393,7 @@ class Status extends ImmutablePureComponent {
       toggleHidden: this.handleHotkeyToggleHidden,
       toggleSensitive: this.handleHotkeyToggleSensitive,
       openMedia: this.handleHotkeyOpenMedia,
+      onTranslate: this.handleTranslate,
     };
 
     let media, statusAvatar, prepend, rebloggedByText;

@@ -19,6 +19,7 @@ class Scheduler::UserCleanupScheduler
     User.unconfirmed.where(confirmation_sent_at: ..UNCONFIRMED_ACCOUNTS_MAX_AGE_DAYS.days.ago).find_in_batches do |batch|
       # We have to do it separately because of missing database constraints
       AccountModerationNote.where(target_account_id: batch.map(&:account_id)).delete_all
+      WebauthnCredential.where(user_id: batch.map(&:id)).delete_all
       Account.where(id: batch.map(&:account_id)).delete_all
       User.where(id: batch.map(&:id)).delete_all
     end

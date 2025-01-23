@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import { Account } from 'mastodon/components/account';
 import { TimelineHint } from 'mastodon/components/timeline_hint';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
@@ -23,7 +24,6 @@ import {
 import { ColumnBackButton } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
-import AccountContainer from '../../containers/account_container';
 import { LimitedAccountHint } from '../account_timeline/components/limited_account_hint';
 import HeaderContainer from '../account_timeline/containers/header_container';
 import Column from '../ui/components/column';
@@ -175,7 +175,7 @@ class Following extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {forceEmptyState ? [] : accountIds.map(id =>
-            <AccountContainer key={id} id={id} withNote={false} />,
+            <Account key={id} id={id} />,
           )}
         </ScrollableList>
       </Column>

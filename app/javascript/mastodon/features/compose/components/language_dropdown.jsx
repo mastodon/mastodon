@@ -27,6 +27,7 @@ class LanguageDropdownMenu extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string.isRequired,
+    guess: PropTypes.string,
     frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string).isRequired,
     onClose: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -81,14 +82,17 @@ class LanguageDropdownMenu extends PureComponent {
   };
 
   search () {
-    const { languages, value, frequentlyUsedLanguages } = this.props;
+    const { languages, value, frequentlyUsedLanguages, guess } = this.props;
     const { searchValue } = this.state;
 
     if (searchValue === '') {
       return [...languages].sort((a, b) => {
-        // Push current selection to the top of the list
 
-        if (a[0] === value) {
+        if (guess && a[0] === guess) { // Push guessed language higher than current selection
+          return -1;
+        } else if (guess && b[0] === guess) {
+          return 1;
+        } else if (a[0] === value) { // Push current selection to the top of the list
           return -1;
         } else if (b[0] === value) {
           return 1;
@@ -238,6 +242,7 @@ class LanguageDropdown extends PureComponent {
   static propTypes = {
     value: PropTypes.string,
     frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string),
+    guess: PropTypes.string,
     intl: PropTypes.object.isRequired,
     onChange: PropTypes.func,
   };
@@ -281,7 +286,7 @@ class LanguageDropdown extends PureComponent {
   };
 
   render () {
-    const { value, intl, frequentlyUsedLanguages } = this.props;
+    const { value, guess, intl, frequentlyUsedLanguages } = this.props;
     const { open, placement } = this.state;
     const current = preloadedLanguages.find(lang => lang[0] === value) ?? [];
 
@@ -294,7 +299,7 @@ class LanguageDropdown extends PureComponent {
           onClick={this.handleToggle}
           onMouseDown={this.handleMouseDown}
           onKeyDown={this.handleButtonKeyDown}
-          className={classNames('dropdown-button', { active: open })}
+          className={classNames('dropdown-button', { active: open, warning: guess !== '' && guess !== value })}
         >
           <Icon icon={TranslateIcon} />
           <span className='dropdown-button__label'>{current[2] ?? value}</span>
@@ -306,6 +311,7 @@ class LanguageDropdown extends PureComponent {
               <div className={`dropdown-animation language-dropdown__dropdown ${placement}`} >
                 <LanguageDropdownMenu
                   value={value}
+                  guess={guess}
                   frequentlyUsedLanguages={frequentlyUsedLanguages}
                   onClose={this.handleClose}
                   onChange={this.handleChange}

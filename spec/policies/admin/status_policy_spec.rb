@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Admin::StatusPolicy do
   let(:policy) { described_class }
-  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+  let(:admin)   { Fabricate(:admin_user).account }
   let(:john)    { Fabricate(:account) }
   let(:status) { Fabricate(:status, visibility: status_visibility) }
   let(:status_visibility) { :public }

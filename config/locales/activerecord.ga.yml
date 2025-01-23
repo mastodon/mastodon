@@ -20,10 +20,11 @@ ga:
           invalid: nach ainm fearainn bailí é
       messages:
         invalid_domain_on_line: Ní ainm fearainn bailí é %{value}
-        too_many_lines: thar an teorainn de %{limit} línte
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: ina bhfuil luachanna a bhfuil lipéid in easnamh orthu
             username:
               invalid: ní mór go mbeadh litreacha, uimhreacha agus pointí béime amháin
               reserved: in áirithe
@@ -39,6 +40,11 @@ ga:
           attributes:
             data:
               malformed: míchumtha
+        list_account:
+          attributes:
+            account_id:
+              taken: cheana féin ar an liosta
+          must_be_following: ní mór cuntas a leanúint
         status:
           attributes:
             reblog:

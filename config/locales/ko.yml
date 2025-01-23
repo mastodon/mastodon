@@ -211,6 +211,7 @@ ko:
         enable_user: 사용자 활성화
         memorialize_account: 고인의 계정으로 전환
         promote_user: 사용자 승급
+        publish_terms_of_service: 이용 약관 게시
         reject_appeal: 이의 제기 거절
         reject_user: 사용자 거부
         remove_avatar_user: 아바타 지우기
@@ -275,6 +276,7 @@ ko:
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화했습니다"
         memorialize_account_html: "%{name} 님이 %{target}의 계정을 고인의 계정 페이지로 전환했습니다"
         promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
+        publish_terms_of_service_html: "%{name} 님이 이용 약관을 업데이트했습니다"
         reject_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 거절했습니다"
         reject_user_html: "%{name} 님이 %{target} 님의 가입을 거부했습니다"
         remove_avatar_user_html: "%{name} 님이 %{target} 님의 아바타를 지웠습니다"
@@ -913,6 +915,31 @@ ko:
       search: 검색
       title: 해시태그
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
+    terms_of_service:
+      back: 이용약관으로 돌아가기
+      changelog: 변경사항
+      create: 직접 사용
+      current: 현재
+      draft: 초안
+      generate: 템플릿 사용
+      generates:
+        action: 생성
+        chance_to_review_html: "<strong>생성된 이용 약관은 자동으로 게시되지 않을 것입니다.</strong> 결과를 확인할 기회가 있습니다. 진행하려면 필요한 정보들을 입력하세요."
+        title: 이용 약관 설정
+      history: 역사
+      live: 활성
+      notified_on_html: 사용자들이 %{date}에 알림을 받았습니다
+      notify_users: 사용자들에게 알리기
+      preview:
+        explanation_html: "%{date} 이전에 가입한 <strong>%{display_count} 명의 사용자</strong>에게 이메일이 발송됩니다. 다음 내용이 이메일에 포함됩니다:"
+        send_preview: 미리보기를 %{email}에 보내기
+        send_to_all:
+          other: "%{display_count} 건의 메일 발송"
+        title: 이용 약관 알림 미리보기
+      publish: 게시
+      published_on_html: "%{date}에 게시됨"
+      save_draft: 초안 저장
+      title: 이용 약관
     title: 관리
     trends:
       allow: 허용
@@ -1116,7 +1143,6 @@ ko:
     migrate_account: 계정 옮기기
     migrate_account_html: 이 계정을 다른 계정으로 리디렉션 하길 원하는 경우 <a href="%{path}">여기</a>에서 설정할 수 있습니다.
     or_log_in_with: 다른 방법으로 로그인 하려면
-    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">개인정보처리방침</a>을 읽고 동의합니다
     progress:
       confirm: 이메일 확인
       details: 세부사항
@@ -1141,7 +1167,7 @@ ko:
     set_new_password: 새 암호 설정
     setup:
       email_below_hint_html: 스팸 폴더를 체크해보거나, 새로 요청할 수 있습니다. 이메일을 잘못 입력한 경우 수정할 수 있습니다.
-      email_settings_hint_html: "%{email}을 인증하기 위해 우리가 보낸 링크를 누르세요. 여기서 기다리겠습니다."
+      email_settings_hint_html: "%{email}로 보낸 링크를 클릭해 마스토돈을 시작하세요. 기다리고 있겠습니다."
       link_not_received: 링크를 못 받으셨나요?
       new_confirmation_instructions_sent: 확인 링크가 담긴 이메일이 몇 분 안에 도착할것입니다!
       title: 수신함 확인하기
@@ -1150,7 +1176,7 @@ ko:
       title: "%{domain}에 로그인"
     sign_up:
       manual_review: "%{domain} 가입은 중재자들의 심사를 거쳐 진행됩니다. 가입 절차를 원활하게 하기 위해, 간단한 자기소개와 왜 %{domain}에 계정을 만들려고 하는지 적어주세요."
-      preamble: 이 마스토돈 서버의 계정을 통해, 네트워크에 속한 다른 사람들을, 그들이 어떤 서버에 있든 팔로우 할 수 있습니다.
+      preamble: 이 마스토돈 서버의 계정을 통해, 연합우주에 속한 다른 사람들을, 그들이 어떤 서버에 있든 팔로우 할 수 있습니다.
       title: "%{domain}에 가입하기 위한 정보들을 입력하세요."
     status:
       account_status: 계정 상태
@@ -1162,6 +1188,7 @@ ko:
       view_strikes: 내 계정에 대한 과거 중재 기록 보기
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
     use_security_key: 보안 키 사용
+    user_agreement_html: <a href="%{terms_of_service_path}" target="_blank">이용 약관</a>과 <a href="%{privacy_policy_path}" target="_blank">개인정보처리방침</a>을 읽었고 동의합니다
   author_attribution:
     example_title: 예시 텍스트
     hint_html: 마스토돈 밖에서 뉴스나 블로그 글을 쓰시나요? 마스토돈에 공유되었을 때 어떻게 표시될지를 제어하세요.
@@ -1640,7 +1667,7 @@ ko:
   scheduled_statuses:
     over_daily_limit: 그 날짜에 대한 %{limit}개의 예약 게시물 제한을 초과합니다
     over_total_limit: 예약 게시물 제한 %{limit}을 초과합니다
-    too_soon: 예약 날짜는 미래여야 합니다
+    too_soon: 미래의 날짜여야 합니다
   self_destruct:
     lead_html: 안타깝게도,  <strong>%{domain}</strong> 도메인을 영구히 폐쇄합니다. 이곳의 계정을 가졌다면, 이제 이용할 수 없으며, 당분간 백업 데이터를 요청할 수 있습니다.
     title: 이 서버는 폐쇄중입니다
@@ -1799,6 +1826,8 @@ ko:
       too_late: 이의를 제기하기에 너무 늦었습니다
   tags:
     does_not_match_previous_name: 이전 이름과 맞지 않습니다
+  terms_of_service:
+    title: 이용 약관
   themes:
     contrast: 마스토돈 (고대비)
     default: 마스토돈 (어두움)
@@ -1859,6 +1888,15 @@ ko:
       further_actions_html: 직접 로그인한 것이 아니라면, 지금 바로 %{action}과 2단계 인증을 활성화하여 계정을 안전하게 보호하시길 권해드립니다.
       subject: 계정이 새로운 IP에서 접근됨
       title: 새로운 로그인
+    terms_of_service_changed:
+      agreement: "%{domain}을 계속 사용하는 것으로 약관에 동의하는 것으로 간주합니다. 약관에 동의하지 않는 경우 계정을 삭제함으로써 언제든 동의를 철회할 수 있습니다."
+      changelog: '이번 변경사항의 주요 내용입니다:'
+      description: "%{domain}의 이용 약관이 변경되었기 때문에 발송된 이메일입니다. 변경된 전체 약관을 확인하시길 권합니다:"
+      description_html: '%{domain}의 이용 약관이 변경되었기 때문에 발송된 이메일입니다. <a href="%{path}" target="_blank">변경된 전체 약관</a>을 확인하시길 권합니다.'
+      sign_off: "%{domain} 팀"
+      subject: 변경된 이용 약관
+      subtitle: "%{domain}의 이용 약관이 변경됩니다"
+      title: 중요한 알림
     warning:
       appeal: 이의 제출하기
       appeal_description: 이것이 오류라고 생각한다면, %{instance}의 중재자에게 이의신청을 할 수 있습니다.

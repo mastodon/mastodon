@@ -214,6 +214,7 @@ da:
         enable_user: Aktivér bruger
         memorialize_account: Memoralisér konto
         promote_user: Forfrem bruger
+        publish_terms_of_service: Offentliggør Tjenestevilkår
         reject_appeal: Afvis appel
         reject_user: Afvis bruger
         remove_avatar_user: Fjern profilbillede
@@ -278,6 +279,7 @@ da:
         enable_user_html: "%{name} aktiverede indlogning for brugeren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto til en mindeside"
         promote_user_html: "%{name} forfremmede brugeren %{target}"
+        publish_terms_of_service_html: "%{name} offentliggjorde opdateringer til tjenestevilkårene"
         reject_appeal_html: "%{name} afviste moderationsafgørelsesappellen fra %{target}"
         reject_user_html: "%{name} afviste tilmelding fra %{target}"
         remove_avatar_user_html: "%{name} fjernede %{target}s profilbillede"
@@ -925,6 +927,35 @@ da:
       search: Søg
       title: Hashtags
       updated_msg: Hashtag-indstillinger opdateret
+    terms_of_service:
+      back: Tilbage til Tjenestevilkår
+      changelog: Hvad der er ændret
+      create: Brug egne
+      current: Nuværende
+      draft: Udkast
+      generate: Brug skabelon
+      generates:
+        action: Generér
+        chance_to_review_html: "<strong>De genererede Tjenestevilkår offentliggøres ikke automatisk.</strong> Man vil have mulighed for at gennemgå resultaterne. Udfyld venligst de nødvendige oplysninger for at fortsætte."
+        explanation_html: Tjenestevilkår-skabelonen er alene til orientering og bør ikke fortolkes som juridisk rådgivning om noget emne. Kontakt en juridiske rådgiver vedr. den aktuelle situation samt specifikke juridiske spørgsmål, man måtte have.
+        title: Opsætning af Tjenestevilkår
+      history: Historik
+      live: Live
+      no_history: Der er endnu ingen registrerede ændringer af vilkårene for tjenesten.
+      no_terms_of_service_html: Der er p.t. ingen opsatte Tjenestevilkår. Tjenestevilkår er beregnet til at give klarhed, så man er beskyttet mod potentielle ansvarspådragelser i tvister med sine brugere.
+      notified_on_html: Brugere underrettet pr. %{date}
+      notify_users: Underrret brugere
+      preview:
+        explanation_html: 'E-mailen sendes til <strong>%{display_count} brugere</strong>, som har tilmeldt sig før %{date}. Følgende tekst medtages i e-mailen:'
+        send_preview: Send forhåndsvisning til %{email}
+        send_to_all:
+          one: Send %{display_count} e-mail
+          other: Send %{display_count} e-mails
+        title: Forhåndsvis Tjenestevilkår-underretning
+      publish: Udgiv
+      published_on_html: Udgivet pr. %{date}
+      save_draft: Gem udkast
+      title: Tjenestevilkår
     title: Administration
     trends:
       allow: Tillad
@@ -1132,7 +1163,6 @@ da:
     migrate_account: Flyt til en anden konto
     migrate_account_html: Ønsker du at omdirigere denne konto til en anden, kan du <a href="%{path}">opsætte dette hér</a>.
     or_log_in_with: Eller log ind med
-    privacy_policy_agreement_html: Jeg accepterer <a href="%{privacy_policy_path}" target="_blank">privatlivspolitikken</a>
     progress:
       confirm: Bekræft e-mail
       details: Dine detaljer
@@ -1157,7 +1187,7 @@ da:
     set_new_password: Opsæt ny adgangskode
     setup:
       email_below_hint_html: Tjek Spam-mappen eller anmod om et nyt link. Om nødvendigt kan e-mailadressen rettes.
-      email_settings_hint_html: Tryk på det tilsendte link for at bekræfte %{email}.
+      email_settings_hint_html: Klik på det link, der er sendt til %{email} for at begynde at bruge Mastodon.
       link_not_received: Intet link modtaget?
       new_confirmation_instructions_sent: Du bør om få minutter modtage en ny e-mail med bekræftelseslinket!
       title: Tjek indbakken
@@ -1166,7 +1196,7 @@ da:
       title: Log ind på %{domain}
     sign_up:
       manual_review: Tilmeldinger på %{domain} undergår manuel moderatorgennemgang. For at hjælpe med behandlingen af tilmeldingen, så skriv en smule om dig selv, samt hvorfor du ønsker en konto på %{domain}.
-      preamble: Med en konto på denne Mastodon-server vil man kunne følge enhver anden person på netværket, uanset hvor vedkommendes konto hostes.
+      preamble: Man vil med en konto på denne Mastodon-server kunne følge enhver anden bruger i fediverset, uanset hvor vedkommendes konto hostes.
       title: Lad os få dig sat op på %{domain}.
     status:
       account_status: Kontostatus
@@ -1178,6 +1208,7 @@ da:
       view_strikes: Se tidligere anmeldelser af din konto
     too_fast: Formularen indsendt for hurtigt, forsøg igen.
     use_security_key: Brug sikkerhedsnøgle
+    user_agreement_html: Jeg accepterer <a href="%{terms_of_service_path}" target="_blank">Tjenestevilkår</a> og <a href="%{privacy_policy_path}" target="_blank">Fortrolighedspolitik</a>
   author_attribution:
     example_title: Eksempeltekst
     hint_html: Skriver du nyheder eller blogartikler uden for Mastodon? Styr, hvordan man bliver krediteret, når disse deles på Mastodon.
@@ -1676,7 +1707,7 @@ da:
   scheduled_statuses:
     over_daily_limit: Den daglige grænse på %{limit} planlagte indlæg er nået
     over_total_limit: Grænsen på %{limit} planlagte indlæg er nået
-    too_soon: Den planlagte dato skal være i fremtiden
+    too_soon: dato skal være i fremtiden
   self_destruct:
     lead_html: Desværre lukker <strong>%{domain}</strong> permanent. Har man en konto dér, vil fortsat brug heraf ikke være mulig. Man kan dog stadig anmode om en sikkerhedskopi af sine data.
     title: Denne server er under nedlukning
@@ -1839,6 +1870,8 @@ da:
       too_late: Det er for sent at appellere denne advarsel
   tags:
     does_not_match_previous_name: matcher ikke det foregående navn
+  terms_of_service:
+    title: Tjenestevilkår
   themes:
     contrast: Mastodon (høj kontrast)
     default: Mastodont (mørkt)
@@ -1899,6 +1932,15 @@ da:
       further_actions_html: Hvis dette ikke var dig, anbefaler vi, at du %{action} med det samme og aktiverer to-faktor godkendelse for at holde din konto sikker.
       subject: Din konto er blevet tilgået fra en ny IP-adresse
       title: Ny indlogning
+    terms_of_service_changed:
+      agreement: Ved at fortsætte med at bruge %{domain}, accepteres disse vilkår. Kan du ikke acceptere de opdaterede vilkår, kan din aftale med %{domain} til enhver tid opsiges ved at slette din konto.
+      changelog: 'Med ét blik er her, hvad denne opdatering rent praktisk betyder:'
+      description: 'Man modtager denne e-mail, fordi der foretages nogle ændringer i vores Tjenestevilkår på %{domain}. Man opfordres til at gennemgå de opdaterede vilkår fuldt ud her:'
+      description_html: Man modtager denne e-mail, fordi der foretages nogle ændringer i vores Tjenestevilkår på %{domain}. Man opfordres til at gennemgå de <a href="%{path}" target="_blank">opdaterede vilkår fuldt ud her</a>.
+      sign_off: "%{domain}-teamet"
+      subject: Opdatering af Tjenestevilkår
+      subtitle: Tjenestevilkår for %{domain} ændres
+      title: Vigtig opdatering
     warning:
       appeal: Indgiv appel
       appeal_description: Mener du, at dette er en fejl, kan der indgives en appel til %{instance}-personalet.

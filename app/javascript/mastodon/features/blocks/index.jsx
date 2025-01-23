@@ -9,11 +9,11 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import BlockIcon from '@/material-icons/400-24px/block-fill.svg?react';
+import { Account } from 'mastodon/components/account';
 
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
-import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
 
 const messages = defineMessages({
@@ -70,7 +70,7 @@ class Blocks extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
-            <AccountContainer key={id} id={id} defaultAction='block' />,
+            <Account key={id} id={id} defaultAction='block' />,
           )}
         </ScrollableList>
       </Column>

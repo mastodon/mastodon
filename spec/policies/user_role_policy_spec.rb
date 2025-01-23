@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe UserRolePolicy do
   subject { described_class }
 
-  let(:admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+  let(:admin) { Fabricate(:admin_user).account }
   let(:account) { Fabricate(:account) }
 
   permissions :index?, :create? do

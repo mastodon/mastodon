@@ -8,12 +8,11 @@ import type {
   ApiAccountRoleJSON,
   ApiAccountJSON,
 } from 'mastodon/api_types/accounts';
-import type { ApiCustomEmojiJSON } from 'mastodon/api_types/custom_emoji';
 import emojify from 'mastodon/features/emoji/emoji';
 import { unescapeHTML } from 'mastodon/utils/html';
 
-import { CustomEmojiFactory } from './custom_emoji';
-import type { CustomEmoji } from './custom_emoji';
+import { CustomEmojiFactory, makeEmojiMap } from './custom_emoji';
+import type { CustomEmoji, EmojiMap } from './custom_emoji';
 
 // AccountField
 interface AccountFieldShape extends Required<ApiAccountFieldJSON> {
@@ -101,15 +100,6 @@ export const accountDefaultValues: AccountShape = {
 };
 
 const AccountFactory = ImmutableRecord<AccountShape>(accountDefaultValues);
-
-type EmojiMap = Record<string, ApiCustomEmojiJSON>;
-
-function makeEmojiMap(emojis: ApiCustomEmojiJSON[]) {
-  return emojis.reduce<EmojiMap>((obj, emoji) => {
-    obj[`:${emoji.shortcode}:`] = emoji;
-    return obj;
-  }, {});
-}
 
 function createAccountField(
   jsonField: ApiAccountFieldJSON,

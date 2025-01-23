@@ -107,6 +107,13 @@ RSpec.describe 'API V1 Push Subscriptions' do
 
       it_behaves_like 'validation error'
     end
+
+    it 'gracefully handles invalid nested params' do
+      post api_v1_push_subscription_path, params: { subscription: 'invalid' }, headers: headers
+
+      expect(response)
+        .to have_http_status(400)
+    end
   end
 
   describe 'PUT /api/v1/push/subscription' do
@@ -132,6 +139,30 @@ RSpec.describe 'API V1 Push Subscriptions' do
           alerts: alerts_payload[:data][:alerts],
           policy: alerts_payload[:data][:policy]
         )
+    end
+
+    it 'gracefully handles invalid nested params' do
+      put api_v1_push_subscription_path(endpoint_push_subscription), params: { data: 'invalid' }, headers: headers
+
+      expect(response)
+        .to have_http_status(400)
+    end
+  end
+
+  describe 'GET /api/v1/push/subscription' do
+    subject { get '/api/v1/push/subscription', headers: headers }
+
+    before { create_subscription_with_token }
+
+    it 'shows subscription details' do
+      subject
+
+      expect(response)
+        .to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body)
+        .to include(endpoint: endpoint)
     end
   end
 

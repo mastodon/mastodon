@@ -5,15 +5,15 @@
 # Table name: admin_action_logs
 #
 #  id               :bigint(8)        not null, primary key
-#  account_id       :bigint(8)
 #  action           :string           default(""), not null
+#  human_identifier :string
+#  permalink        :string
+#  route_param      :string
 #  target_type      :string
-#  target_id        :bigint(8)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  human_identifier :string
-#  route_param      :string
-#  permalink        :string
+#  account_id       :bigint(8)        not null
+#  target_id        :bigint(8)
 #
 
 class Admin::ActionLog < ApplicationRecord

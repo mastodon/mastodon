@@ -211,6 +211,7 @@ zh-TW:
         enable_user: 啓用帳號
         memorialize_account: 設定成追悼帳號
         promote_user: 將用戶升級
+        publish_terms_of_service: 發佈服務條款
         reject_appeal: 駁回申訴
         reject_user: 回絕使用者
         remove_avatar_user: 刪除大頭貼
@@ -275,6 +276,7 @@ zh-TW:
         enable_user_html: "%{name} 將使用者 %{target} 設定為允許登入"
         memorialize_account_html: "%{name} 將 %{target} 設定為追悼帳號"
         promote_user_html: "%{name} 對使用者 %{target} 已進行晉級操作"
+        publish_terms_of_service_html: "%{name} 已發佈服務條款更新"
         reject_appeal_html: "%{name} 已回絕來自 %{target} 的審核決定申訴"
         reject_user_html: "%{name} 已回絕自 %{target} 而來的註冊"
         remove_avatar_user_html: "%{name} 已移除 %{target} 的大頭貼"
@@ -913,6 +915,34 @@ zh-TW:
       search: 搜尋
       title: 主題標籤
       updated_msg: 成功更新主題標籤設定
+    terms_of_service:
+      back: 回到服務條款
+      changelog: 有何異動
+      create: 使用您自己的
+      current: 目前
+      draft: 草稿
+      generate: 使用模板
+      generates:
+        action: 產生
+        chance_to_review_html: "<strong>所產生之服務條款將不會自動發佈。</strong> 您將能檢視所產生之結果。請填寫必要細節以繼續。"
+        explanation_html: 提供之服務條款模板僅供參考資訊使用，不應將其作為任何法律建議。請依照您的具體情形與特定法律議題諮詢您的法律顧問。
+        title: 設定服務條款
+      history: 歷史
+      live: 目前版本
+      no_history: 未有任何服務條款變更紀錄。
+      no_terms_of_service_html: 您目前尚未設定任何服務條款。服務條款旨在提供明確性，並保護您與使用者的爭議中免受潛在責任。
+      notified_on_html: 於 %{date} 通知之使用者
+      notify_users: 通知使用者
+      preview:
+        explanation_html: 此 email 將寄至於 %{date} 前註冊之 <strong>%{display_count} 名使用者</strong>。以下文字將被包含於 e-mail 中：
+        send_preview: 將預覽寄至 %{email}
+        send_to_all:
+          other: 寄出 %{display_count} 封 email
+        title: 預覽服務條款通知
+      publish: 發佈
+      published_on_html: 發佈於 %{date}
+      save_draft: 儲存草稿
+      title: 服務條款
     title: 管理介面
     trends:
       allow: 允許
@@ -1116,7 +1146,6 @@ zh-TW:
     migrate_account: 轉移至另一個帳號
     migrate_account_html: 如果您希望引導他人跟隨另一個帳號，請<a href="%{path}">至這裡設定</a>。
     or_log_in_with: 或透過其他方式登入
-    privacy_policy_agreement_html: 我已閱讀且同意 <a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
     progress:
       confirm: 驗證電子郵件地址
       details: 您的個人資料
@@ -1141,7 +1170,7 @@ zh-TW:
     set_new_password: 設定新密碼
     setup:
       email_below_hint_html: 請檢查您的垃圾郵件資料夾，或是請求另一封驗證信。若不正確，您可以更正您的電子郵件地址。
-      email_settings_hint_html: 請點擊我們寄給您連結以驗證 %{email}。我們將於此稍候。
+      email_settings_hint_html: 請點擊我們寄至 %{email} 之連結以開始使用 Mastodon。我們將於此稍候。
       link_not_received: 無法取得連結嗎？
       new_confirmation_instructions_sent: 您將於幾分鐘之內收到新的包含驗證連結之電子郵件！
       title: 請檢查您的收件匣
@@ -1150,7 +1179,7 @@ zh-TW:
       title: 登入 %{domain}
     sign_up:
       manual_review: "%{domain} 上的註冊由我們的管理員進行人工審核。為協助我們處理您的註冊，請寫一些關於您自己的資訊以及您欲於 %{domain} 上註冊帳號之原因。"
-      preamble: 若於此 Mastodon 伺服器擁有帳號，您將能跟隨聯邦宇宙網路中任何一份子，無論他們的帳號託管於何處。
+      preamble: 若於此 Mastodon 伺服器擁有帳號，您將能跟隨聯邦宇宙中任何一份子，無論他們的帳號託管於何處。
       title: 讓我們一起設定 %{domain} 吧！
     status:
       account_status: 帳號狀態
@@ -1162,6 +1191,7 @@ zh-TW:
       view_strikes: 檢視針對您帳號過去的警示
     too_fast: 送出表單的速度太快跟不上，請稍後再試。
     use_security_key: 使用安全金鑰
+    user_agreement_html: 我已閱讀並同意 <a href="%{terms_of_service_path}" target="_blank">服務條款</a> 與 <a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
   author_attribution:
     example_title: 範例文字
     hint_html: 您是否正於 Mastodon 之外撰寫新聞或部落格文章？控制當它們於 Mastodon 上分享時您如何獲得信譽。
@@ -1640,7 +1670,7 @@ zh-TW:
   scheduled_statuses:
     over_daily_limit: 您已經超過了本日排定發嘟的限額 (%{limit})
     over_total_limit: 您已經超過排程發嘟的限額 (%{limit})
-    too_soon: 嘟文不可以改變過去哦，只能預定未來 (咦)
+    too_soon: 日期必須為未來
   self_destruct:
     lead_html: 很遺憾，<strong>%{domain}</strong> 即將永久停止服務。如果您於該伺服器擁有帳號，您將無法繼續使用它，但您仍然可以請求您的資料備份。
     title: 這個伺服器即將停止服務
@@ -1799,6 +1829,8 @@ zh-TW:
       too_late: 您太晚申訴這個警示了
   tags:
     does_not_match_previous_name: 與先前的名稱不吻合
+  terms_of_service:
+    title: 服務條款
   themes:
     contrast: Mastodon（高對比）
     default: Mastodon（深色）
@@ -1859,6 +1891,15 @@ zh-TW:
       further_actions_html: 如果這個不是您，我們建議您立即 %{action} ，並且啟用二階段驗證 (2FA) 以確保帳號安全。
       subject: 您的帳號已被新 IP 位址存取
       title: 新登入
+    terms_of_service_changed:
+      agreement: 透過繼續使用 %{domain}，您將同意這些條款。若您不同意此條款異動，您能隨時終止與 %{domain} 之協議並刪除您的帳號。
+      changelog: 簡而言之，此次更新對您將意味著：
+      description: 您收到此 e-mail 係因我們正在更新 %{domain} 之服務條款。我們鼓勵您審視此處之服務條款更新全文：
+      description_html: 您收到此 e-mail 係因我們正在更新 %{domain} 之服務條款。我們鼓勵您審視 <a href="%{path}" target="_blank">此處之服務條款更新全文</a>。
+      sign_off: "%{domain} 團隊"
+      subject: 我們的服務條款更新
+      subtitle: "%{domain} 之服務條款正在悄悄發生變化"
+      title: 重要更新
     warning:
       appeal: 遞交申訴
       appeal_description: 若您認為這是錯誤，您可以向 %{instance} 的工作人員提出申訴。

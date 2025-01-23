@@ -3,7 +3,6 @@ sv:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: En per rad. Skyddar mot falska attributioner.
         discoverable: Dina offentliga inlägg och din profil kan komma att presenteras eller rekommenderas inom olika områden av Mastodon och din profil kan komma att föreslås till andra användare.
         display_name: Ditt fullständiga namn eller ditt roliga namn.
         fields: Din hemsida, ditt pronomen, din ålder, vadhelst du vill.
@@ -60,6 +59,7 @@ sv:
         setting_display_media_default: Dölj media markerad som känslig
         setting_display_media_hide_all: Dölj alltid all media
         setting_display_media_show_all: Visa alltid media markerad som känslig
+        setting_system_scrollbars_ui: Gäller endast för webbläsare som är baserade på Safari och Chrome
         setting_use_blurhash: Gradienter är baserade på färgerna av de dolda objekten men fördunklar alla detaljer
         setting_use_pending_items: Dölj tidslinjeuppdateringar bakom ett klick istället för att automatiskt bläddra i flödet
         username: Du kan använda bokstäver, siffror och understreck
@@ -129,6 +129,14 @@ sv:
         show_application: Du kommer alltid att kunna se vilken app som publicerat ditt inlägg oavsett.
       tag:
         name: Du kan bara ändra skriftläget av bokstäverna, till exempel, för att göra det mer läsbart
+      terms_of_service:
+        changelog: Kan struktureras med Markdown syntax.
+        text: Kan struktureras med Markdown syntax.
+      terms_of_service_generator:
+        arbitration_address: Kan vara samma som fysisk adress ovan, eller “N/A” om du använder e-post
+        arbitration_website: Kan vara ett webbformulär, eller ”N/A” om du använder e-post
+        dmca_email: Kan vara samma e-postadress som används för “E-postadress för juridiska meddelanden” ovan
+        jurisdiction: Lista det land där vem som än betalar räkningarna bor. Om det är ett företag eller annan enhet, lista landet där det är inkorporerat, och staden, regionen, territoriet eller staten på lämpligt sätt.
       user:
         chosen_languages: Vid aktivering visas bara inlägg på dina valda språk i offentliga tidslinjer
         role: Rollen styr vilka behörigheter användaren har.
@@ -144,13 +152,12 @@ sv:
         url: Dit händelser kommer skickas
     labels:
       account:
-        attribution_domains_as_text: Webbplatser som får kreditera dig
         discoverable: Presentera profil och inlägg med upptäcktsalgoritmer
         fields:
           name: Etikett
           value: Innehåll
         indexable: Inkludera offentliga inlägg i sökresultaten
-        show_collections: Göm följare och följeslagare på profilen
+        show_collections: Visa följare och följeslagare på profilen
         unlocked: Godkänn nya följare automatiskt
       account_alias:
         acct: Namnet på det gamla kontot
@@ -223,6 +230,7 @@ sv:
         setting_hide_network: Göm ditt nätverk
         setting_reduce_motion: Minska rörelser i animationer
         setting_system_font_ui: Använd systemets standardfont
+        setting_system_scrollbars_ui: Använd systemets standardrullningsfält
         setting_theme: Sidans tema
         setting_trends: Visa dagens trender
         setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
@@ -317,6 +325,14 @@ sv:
         name: Hashtagg
         trendable: Tillåt denna hashtagg att visas under trender
         usable: Tillåt inlägg att använda denna fyrkantstagg
+      terms_of_service:
+        changelog: Vad har ändrats?
+        text: Användarvillkor
+      terms_of_service_generator:
+        admin_email: E-postadress för juridiska meddelanden
+        dmca_address: Fysisk adress för meddelanden om DMCA/upphovsrätt
+        dmca_email: Fysisk adress för meddelanden om DMCA/upphovsrätt
+        domain: Domän
       user:
         role: Roll
         time_zone: Tidszon

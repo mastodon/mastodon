@@ -37,7 +37,7 @@
               required: true
     = f.input :password_confirmation,
               hint: false,
-              input_html: { 'aria-label': t('simple_form.labels.defaults.confirm_password'), autocomplete: 'new-password' },
+              input_html: { 'aria-label': t('simple_form.labels.defaults.confirm_password'), autocomplete: 'new-password', maxlength: User.password_length.last },
               placeholder: t('simple_form.labels.defaults.confirm_password'),
               required: true
     = f.input :confirm_password,
@@ -62,6 +62,7 @@
                                       as: :text,
                                       hint: false,
                                       label: false,
+                                      input_html: { maxlength: UserInviteRequest::TEXT_SIZE_LIMIT },
                                       required: Setting.require_invite_text,
                                       wrapper: :with_block_label
 
@@ -71,11 +72,9 @@
   .fields-group
     = f.input :agreement,
               as: :boolean,
-              label: t('auth.privacy_policy_agreement_html', rules_path: about_more_path, privacy_policy_path: privacy_policy_path),
-              required: true,
+              label: t('auth.user_agreement_html', privacy_policy_path: privacy_policy_path, terms_of_service_path: terms_of_service_path),
+              required: false,
               wrapper: :with_label
 
   .actions
     = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit
-
-.form-footer= render 'auth/shared/links'

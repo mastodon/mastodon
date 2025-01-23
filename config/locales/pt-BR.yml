@@ -214,6 +214,7 @@ pt-BR:
         enable_user: Ativar usuário
         memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
+        publish_terms_of_service: Publicar termos de serviço
         reject_appeal: Rejeitar revisão
         reject_user: Rejeitar usuário
         remove_avatar_user: Remover imagem de perfil
@@ -278,6 +279,7 @@ pt-BR:
         enable_user_html: "%{name} ativou o login para %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o usuário %{target}"
+        publish_terms_of_service_html: "%{name} publicou atualizações aos termos de serviço"
         reject_appeal_html: "%{name} rejeitou a revisão da decisão da moderação em %{target}"
         reject_user_html: "%{name} rejeitou a inscrição de %{target}"
         remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
@@ -925,6 +927,16 @@ pt-BR:
       search: Buscar
       title: Hashtags
       updated_msg: Configurações de hashtag atualizadas
+    terms_of_service:
+      back: Voltar aos termos de serviço
+      changelog: O que há de novo
+      create: Usar o meu próprio
+      current: Atual
+      draft: Rascunho
+      generate: Usar modelo
+      generates:
+        action: Gerar
+        chance_to_review_html: "<strong>Os termos de serviço gerado não será publicado automaticamente.</strong>Você terá uma chance de revisar os resultados. Preencha os detalhes necessários para continuar"
     title: Administração
     trends:
       allow: Permitir
@@ -1132,7 +1144,6 @@ pt-BR:
     migrate_account: Mudar-se para outra conta
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou entre com
-    privacy_policy_agreement_html: Eu li e concordo com a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
     progress:
       confirm: Confirmar e-mail
       details: Suas informações
@@ -1157,7 +1168,6 @@ pt-BR:
     set_new_password: Definir uma nova senha
     setup:
       email_below_hint_html: Verifique a sua pasta de spam, ou solicite outra. Você pode corrigir o seu endereço de e-mail se estiver errado.
-      email_settings_hint_html: Clique no link que te enviamos para verificar %{email}. Esperaremos aqui.
       link_not_received: Não recebeu um link?
       new_confirmation_instructions_sent: Você receberá um novo e-mail com o link de confirmação em alguns minutos!
       title: Verifique sua caixa de entrada
@@ -1166,7 +1176,6 @@ pt-BR:
       title: Entrar em %{domain}
     sign_up:
       manual_review: Inscrições no %{domain} passam pela revisão manual dos nossos moderadores. Para nos ajudar a processar o seu cadastro, escreva um pouco sobre você e por que você quer uma conta no %{domain}.
-      preamble: Com uma conta neste servidor Mastodon, você poderá seguir qualquer outra pessoa na rede, independentemente de onde sua conta esteja hospedada.
       title: Então vamos lá criar uma conta em %{domain}.
     status:
       account_status: Status da conta
@@ -1652,7 +1661,7 @@ pt-BR:
   scheduled_statuses:
     over_daily_limit: Você excedeu o limite de %{limit} publicações agendadas para esse dia
     over_total_limit: Você excedeu o limite de %{limit} publicações agendadas
-    too_soon: A data agendada precisa ser no futuro
+    too_soon: a data deve ser no futuro
   self_destruct:
     lead_html: Infelizmente, <strong>%{domain}</strong> está se encerrando de forma permanente. Se você tem uma conta lá, não poderá continuar a usá-la, mas ainda pode solicitar uma cópia dos seus dados.
     title: Este servidor está sendo fechado

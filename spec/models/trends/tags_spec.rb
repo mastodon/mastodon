@@ -29,6 +29,45 @@ RSpec.describe Trends::Tags do
     end
   end
 
+  describe 'Trends::Tags::Query' do
+    subject { described_class.new.query }
+
+    describe '#records' do
+      context 'with scored cards' do
+        let!(:higher_score) { Fabricate :tag_trend, score: 10, language: 'en' }
+        let!(:lower_score) { Fabricate :tag_trend, score: 1, language: 'es' }
+
+        it 'returns higher score first' do
+          expect(subject.records)
+            .to eq([higher_score.tag, lower_score.tag])
+        end
+
+        context 'with preferred locale' do
+          before { subject.in_locale!('es') }
+
+          it 'returns in language order' do
+            expect(subject.records)
+              .to eq([lower_score.tag, higher_score.tag])
+          end
+        end
+
+        context 'when account has chosen languages' do
+          let!(:lang_match_higher_score) { Fabricate :tag_trend, score: 10, language: 'is' }
+          let!(:lang_match_lower_score) { Fabricate :tag_trend, score: 1, language: 'da' }
+          let(:user) { Fabricate :user, chosen_languages: %w(da is) }
+          let(:account) { Fabricate :account, user: user }
+
+          before { subject.filtered_for!(account) }
+
+          it 'returns results' do
+            expect(subject.records)
+              .to eq([lang_match_higher_score.tag, lang_match_lower_score.tag, higher_score.tag, lower_score.tag])
+          end
+        end
+      end
+    end
+  end
+
   describe '#refresh' do
     let!(:today) { at_time }
     let!(:yesterday) { today - 1.day }
@@ -61,10 +100,10 @@ RSpec.describe Trends::Tags do
 
     it 'decays scores' do
       subject.refresh(yesterday + 12.hours)
-      original_score = subject.score(tag_ocs.id)
+      original_score = TagTrend.find_by(tag: tag_ocs).score
       expect(original_score).to eq 144.0
       subject.refresh(yesterday + 12.hours + subject.options[:max_score_halflife])
-      decayed_score = subject.score(tag_ocs.id)
+      decayed_score = TagTrend.find_by(tag: tag_ocs).score
       expect(decayed_score).to be <= original_score / 2
     end
   end

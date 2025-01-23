@@ -3,7 +3,7 @@ fo:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Eitt á hvørja reglu. Tað verjir fyri skeivum tilsipingum.
+        attribution_domains: Eitt á hvørja reglu. Tað verjir fyri skeivum tilsipingum.
         discoverable: Tínir almennu postar og tín vangi kunnu vera drigin fram og viðmæld ymsa staðni í Mastodon og vangin hjá tær kann vera viðmæltur øðrum brúkarum.
         display_name: Títt fulla navn og títt stuttliga navn.
         fields: Heimasíðan hjá tær, fornøvn, aldur ella hvat tú vil.
@@ -60,6 +60,7 @@ fo:
         setting_display_media_default: Fjal miðlafílur, sum eru merktar sum viðkvæmar
         setting_display_media_hide_all: Fjal altíð miðlafílur
         setting_display_media_show_all: Vís altíð miðlafílur
+        setting_system_scrollbars_ui: Er einans viðkomandi fyri skriviborðskagar grundaðir á Safari og Chrome
         setting_use_blurhash: Gradientar eru grundaðir á litirnar av fjaldu myndunum, men grugga allar smálutir
         setting_use_pending_items: Fjal tíðarlinjudagføringar aftan fyri eitt klikk heldur enn at skrulla tilføringina sjálvvirkandi
         username: Tú kanst brúka bókstavir, tøl og botnstrikur
@@ -129,6 +130,17 @@ fo:
         show_application: Óansæð, so er altíð møguligt hjá tær at síggja, hvør app postaði tín post.
       tag:
         name: Tú kanst einans broyta millum stórar og smáar stavir, til dømis fyri at gera tað meira lesiligt
+      terms_of_service:
+        changelog: Kunnu vera uppbygdar við Markdown syntaksi.
+        text: Kunnu vera uppbygdar við Markdown syntaksi.
+      terms_of_service_generator:
+        admin_email: Løgfrøðisligar fráboðanir fata um rættarligar mótfráboðanir, úrskurðir, áheitanir um at taka niður og løgfrøðisligar áheitanir.
+        arbitration_address: Kann vera tann sami sum fysiski bústaðurin omanfyri ella "N/A", um teldupostur verður brúktur
+        arbitration_website: Kann vera ein vevformularur ella "N/A", um teldupostur verður brúktur
+        dmca_address: Fyristøðufólk og -feløg í USA brúka bústaðin, ið er skrásettur í DMCA Designated Agent Directory. Ein postsmoguskráseting er tøk, um biðið verður um hana beinleiðis. Brúka DMCA Designated Agent Post Office Box Waiver Request fyri at senda teldubræv til Copyright Office og greið frá, at tú er ein kjakleiðari, sum virkar heimanifrá, og at tú er bangin fyri hevnd ella afturløning fyri tí, tú ger, og at tú hevur tørv á at brúka eina postsmogu fyri at fjala heimabústaðin fyri almenninginum.
+        dmca_email: Kann vera sami teldupoststaður, sum er brúktur til "Teldupoststaður fyri løgfrøðisligar fráboðanir" omanfyri
+        domain: Makaleys eyðmerking av nettænastuni, sum tú veitir.
+        jurisdiction: Lista landið, har sum tann, ið rindar rokningarnar, livir. Er tað eitt felag ella ein onnur eind, lista landið, har tað er skrásett, umframt býin, økið, umveldið ella statin, alt eftir hvat er hóskandi.
       user:
         chosen_languages: Tá hetta er valt, verða einans postar í valdum málum vístir á almennum tíðarlinjum
         role: Leikluturin stýrir hvørji rættindi, brúkarin hevur.
@@ -144,7 +156,7 @@ fo:
         url: Hvar hendingar verða sendar til
     labels:
       account:
-        attribution_domains_as_text: Heimasíður, sum hava loyvi at sipa til tín
+        attribution_domains: Heimasíður, sum hava loyvi at sipa til tín
         discoverable: Framheva vanga og postar í uppdagingar-algoritmum
         fields:
           name: Spjaldur
@@ -223,6 +235,7 @@ fo:
         setting_hide_network: Fjal sosiala grafin hjá tær
         setting_reduce_motion: Minka um rørslu í teknimyndum
         setting_system_font_ui: Brúka vanliga skriftaslagið hjá skipanini
+        setting_system_scrollbars_ui: Brúka vanliga skrullibjálkan hjá skipanini
         setting_theme: Uppsetingareyðkenni
         setting_trends: Vís dagsins rák
         setting_unfollow_modal: Vís váttanarmynd, áðrenn tú gevst at fylgja onkrum
@@ -317,6 +330,17 @@ fo:
         name: Tvíkrossur
         trendable: Loyv hesum frámerki at síggjast undir rákum
         usable: Loyv postum at brúka hetta frámerki lokalt
+      terms_of_service:
+        changelog: Hvat er broytt?
+        text: Tænastutreytir
+      terms_of_service_generator:
+        admin_email: Teldupoststaður fyri løgfrøðisligar fráboðanir
+        arbitration_address: Fysisk adressa fyri gerðarrættarfráboðanir
+        arbitration_website: Heimasíða har gerðarrættarfráboðanir kunnu innlatast
+        dmca_address: Fysiskur bústaður fyri DMCA/copyright fráboðanir
+        dmca_email: Teldubústaður fyri DMCA/copyright fráboðanir
+        domain: Navnaøki
+        jurisdiction: Løgdømi
       user:
         role: Leiklutur
         time_zone: Tíðarsona

@@ -20,10 +20,11 @@ tr:
           invalid: geçerli bir alan adı değil
       messages:
         invalid_domain_on_line: "%{value} geçerli bir alan adı değil"
-        too_many_lines: "%{limit} satır sınırının üzerinde"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: etiketleri eksik değerler içeriyor
             username:
               invalid: sadece harfler, sayılar ve alt çizgiler
               reserved: kullanılamaz

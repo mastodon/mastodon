@@ -20,10 +20,11 @@ he:
           invalid: אינו שם מתחם קביל
       messages:
         invalid_domain_on_line: "%{value} אינו שם מתחם קביל"
-        too_many_lines: מעבר למגבלה של %{limit} שורות
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: שדות המכילים ערכים אך חסרים תווית
             username:
               invalid: ספרות, אותיות לטיניות וקו תחתי בלבד
               reserved: שמור
@@ -39,6 +40,11 @@ he:
           attributes:
             data:
               malformed: בתצורה לא תואמת
+        list_account:
+          attributes:
+            account_id:
+              taken: כבר ברשימה
+          must_be_following: חייב להיות חשבון נעקב
         status:
           attributes:
             reblog:

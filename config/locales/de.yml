@@ -214,6 +214,7 @@ de:
         enable_user: Benutzer*in aktivieren
         memorialize_account: Gedenkkonto
         promote_user: Benutzer*in hochstufen
+        publish_terms_of_service: Nutzungsbedingungen veröffentlichen
         reject_appeal: Einspruch ablehnen
         reject_user: Benutzer*in ablehnen
         remove_avatar_user: Profilbild entfernen
@@ -278,6 +279,7 @@ de:
         enable_user_html: "%{name} aktivierte den Zugang für %{target}"
         memorialize_account_html: "%{name} wandelte das Konto von %{target} in eine Gedenkseite um"
         promote_user_html: "%{name} beförderte %{target}"
+        publish_terms_of_service_html: "%{name} aktualisierte die Nutzungsbedingungen"
         reject_appeal_html: "%{name} hat den Einspruch gegen eine Moderationsentscheidung von %{target} abgelehnt"
         reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} entfernte das Profilbild von %{target}"
@@ -925,6 +927,35 @@ de:
       search: Suchen
       title: Hashtags
       updated_msg: Hashtag-Einstellungen erfolgreich aktualisiert
+    terms_of_service:
+      back: Zurück zu den Nutzungsbedingungen
+      changelog: Was sich geändert hat
+      create: Eigene erstellen
+      current: Aktuell
+      draft: Entwurf
+      generate: Vorlage verwenden
+      generates:
+        action: Erstellen
+        chance_to_review_html: "<strong>Die durch diese Vorlage erstellten Nutzungsbedingungen werden nicht automatisch veröffentlicht.</strong> Du wirst alles noch einmal überprüfen können. Bitte fülle alle Felder mit den notwendigen Informationen aus, um fortzufahren."
+        explanation_html: Die Vorlage für die Nutzungsbedingungen dient ausschließlich zu Informationszwecken und sollte nicht als Rechtsberatung zu einem bestimmten Thema verstanden werden. Bei rechtlichen Fragen, konsultiere bitte deinen Rechtsbeistand.
+        title: Nutzungsbedingungen festlegen
+      history: Verlauf
+      live: Aktuell gültig
+      no_history: Es wurden noch keine Änderungen an den Nutzungsbedingungen aufgezeichnet.
+      no_terms_of_service_html: Du hast derzeit keine Nutzungsbedingungen bereitgestellt. Nutzungsbedingungen verschaffen Klarheit und schützen vor möglicher Haftung bei Streitigkeiten mit deinen Nutzer*innen.
+      notified_on_html: Nutzer*innen wurden am %{date} benachrichtigt
+      notify_users: Nutzer*innen benachrichtigen
+      preview:
+        explanation_html: 'Diese E-Mail wird an <strong>%{display_count} Nutzer*innen</strong> gesendet, die sich vor dem %{date} registriert haben. Der nachfolgende Text wird in der E-Mail enthalten sein:'
+        send_preview: Vorschau an %{email} senden
+        send_to_all:
+          one: "%{display_count} E-Mail senden"
+          other: "%{display_count} E-Mails senden"
+        title: Vorschau zu den neuen Nutzungsbedingungen
+      publish: Veröffentlichen
+      published_on_html: Veröffentlicht am %{date}
+      save_draft: Entwurf speichern
+      title: Nutzungsbedingungen
     title: Administration
     trends:
       allow: Erlauben
@@ -1132,7 +1163,6 @@ de:
     migrate_account: Zu einem anderen Konto umziehen
     migrate_account_html: Wenn du dieses Konto auf ein anderes weiterleiten möchtest, kannst du es <a href="%{path}">hier konfigurieren</a>.
     or_log_in_with: Oder anmelden mit
-    privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und stimme ihr zu
     progress:
       confirm: E-Mail bestätigen
       details: Deine Daten
@@ -1157,7 +1187,7 @@ de:
     set_new_password: Neues Passwort einrichten
     setup:
       email_below_hint_html: Überprüfe deinen Spam-Ordner oder lass dir den Bestätigungslink erneut zusenden. Falls die angegebene E-Mail-Adresse falsch ist, kannst du sie auch korrigieren.
-      email_settings_hint_html: Klicke auf den Bestätigungslink, den wir an %{email} gesendet haben, um die Adresse zu verifizieren. Wir warten hier solange auf dich.
+      email_settings_hint_html: Klicke auf den Link, den wir an %{email} gesendet haben, um mit Mastodon loszulegen. Wir warten hier solange auf dich.
       link_not_received: Keinen Bestätigungslink erhalten?
       new_confirmation_instructions_sent: In wenigen Minuten wirst du eine neue E-Mail mit dem Bestätigungslink erhalten!
       title: Überprüfe dein E-Mail-Postfach
@@ -1166,7 +1196,7 @@ de:
       title: Bei %{domain} anmelden
     sign_up:
       manual_review: Registrierungen für den Server %{domain} werden manuell durch unsere Moderator*innen überprüft. Um uns dabei zu unterstützen, schreibe etwas über dich und sage uns, weshalb du ein Konto auf %{domain} anlegen möchtest.
-      preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Konto registriert ist.
+      preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Fediverse folgen, unabhängig davon, wo ihr Konto registriert ist.
       title: Lass uns dein Konto auf %{domain} einrichten.
     status:
       account_status: Kontostatus
@@ -1178,6 +1208,7 @@ de:
       view_strikes: Vorherige Verstöße deines Kontos ansehen
     too_fast: Formular zu schnell übermittelt. Bitte versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
+    user_agreement_html: Ich stimme den <a href="%{terms_of_service_path}" target="_blank">Nutzungsbedingungen</a> sowie der <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> zu
   author_attribution:
     example_title: Beispieltext
     hint_html: Schreibst du außerhalb von Mastodon journalistische Artikel oder andere Texte, beispielsweise in einem Blog? Lege hier fest, wann auf dein Profil verwiesen werden soll, wenn Links zu deinen Werken auf Mastodon geteilt werden.
@@ -1676,7 +1707,7 @@ de:
   scheduled_statuses:
     over_daily_limit: Du hast das Limit von %{limit} geplanten Beiträgen für heute erreicht
     over_total_limit: Du hast das Limit für geplante Beiträge, das %{limit} beträgt, erreicht
-    too_soon: Das geplante Datum muss in der Zukunft liegen
+    too_soon: Datum muss in der Zukunft liegen
   self_destruct:
     lead_html: Bedauerlicherweise wird <strong>%{domain}</strong> den Betrieb für immer einstellen. Wenn du dort ein Konto angelegt hast, wirst du es nicht weiter verwenden können. Du kannst allerdings eine Sicherung deiner Daten anfordern.
     title: Dieser Server wird den Betrieb einstellen
@@ -1839,6 +1870,8 @@ de:
       too_late: Es ist zu spät, um gegen diese Maßnahme Einspruch zu erheben
   tags:
     does_not_match_previous_name: entspricht nicht dem vorherigen Namen
+  terms_of_service:
+    title: Nutzungsbedingungen
   themes:
     contrast: Mastodon (Hoher Kontrast)
     default: Mastodon (Dunkel)
@@ -1899,6 +1932,15 @@ de:
       further_actions_html: Wenn du das nicht warst, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentisierung für dein Konto zu aktivieren, um es abzusichern.
       subject: Es wurde auf dein Konto von einer neuen IP-Adresse zugegriffen
       title: Eine neue Anmeldung
+    terms_of_service_changed:
+      agreement: Wenn du %{domain} weiterhin verwendest, stimmst du den neuen Nutzungsbedingungen automatisch zu. Falls du mit diesen nicht einverstanden bist, kannst du die Vereinbarung mit %{domain} jederzeit widerrufen, indem du dein Konto dort löschst.
+      changelog: 'Hier siehst du, was sich geändert hat:'
+      description: 'Du erhältst diese E-Mail, weil wir einige Änderungen an unseren Nutzungsbedingungen für %{domain} vorgenommen haben. Wir empfehlen, die vollständig aktualisierte Fassung hier zu lesen:'
+      description_html: Du erhältst diese E-Mail, weil wir einige Änderungen an unseren Nutzungsbedingungen für %{domain} vorgenommen haben. Wir empfehlen, die <a href="%{path}" target="_blank">vollständig aktualisierte Fassung hier zu lesen</a>.
+      sign_off: Das Team von %{domain}
+      subject: Aktualisierungen unserer Nutzungsbedingungen
+      subtitle: Die Nutzungsbedingungen von %{domain} ändern sich
+      title: Wichtige Mitteilung
     warning:
       appeal: Einspruch erheben
       appeal_description: Wenn du glaubst, dass es sich um einen Fehler handelt, kannst du einen Einspruch an die Administration von %{instance} senden.

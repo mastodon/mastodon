@@ -15,8 +15,6 @@ be:
       user/invite_request:
         text: Прычына
     errors:
-      messages:
-        too_many_lines: перавышана абмежаванне ў %{limit} радкоў
       models:
         account:
           attributes:
@@ -35,6 +33,11 @@ be:
           attributes:
             data:
               malformed: дэфармаваны
+        list_account:
+          attributes:
+            account_id:
+              taken: ужо ў спісе
+          must_be_following: мусіць быць падпісаным уліковым запісам
         status:
           attributes:
             reblog:

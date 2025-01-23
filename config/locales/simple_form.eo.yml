@@ -3,7 +3,7 @@ eo:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Unu por linio. Protektas kontraŭ falsaj atribuoj.
+        attribution_domains: Unu por linio. Protektas kontraŭ falsaj atribuoj.
         discoverable: Viaj publikaj afiŝoj kaj profilo povas esti prezentitaj aŭ rekomenditaj en diversaj lokoj de Mastodon kaj via profilo povas esti proponita al aliaj uzantoj.
         display_name: Via plena nomo aŭ via kromnomo.
         fields: Via retpaĝo, pronomoj, aĝo, ĉio, kion vi volas.
@@ -60,6 +60,7 @@ eo:
         setting_display_media_default: Kaŝi plurmediojn markitajn kiel tiklaj
         setting_display_media_hide_all: Ĉiam kaŝi la plurmediojn
         setting_display_media_show_all: Ĉiam montri la plurmediojn
+        setting_system_scrollbars_ui: Aplikas nur por surtablaj retumiloj baziĝas de Safari kaj Chrome
         setting_use_blurhash: Transirojn estas bazita sur la koloroj de la kaŝitaj aŭdovidaĵoj sed ne montri iun ajn detalon
         setting_use_pending_items: Kaŝi tempoliniajn ĝisdatigojn malantaŭ klako anstataŭ aŭtomate rulumi la fluon
         username: Vi povas uzi literojn, ciferojn kaj substrekojn
@@ -129,6 +130,17 @@ eo:
         show_application: Vi ĉiam povos vidi kiu aplikaĵo publikigis vian afiŝon ĉiaokaze.
       tag:
         name: Vi povas ŝanĝi nur la majuskladon de la literoj, ekzemple, por igi ĝin pli legebla
+      terms_of_service:
+        changelog: Povas esti strukturita per sintakso Markdown-a.
+        text: Povas esti strukturita per sintakso Markdown-a.
+      terms_of_service_generator:
+        admin_email: Legalaj sciigoj povas esti kontraŭsciigoj, postulaĵoj de tribunalo, postulaĵoj pri forigo, kaj postulaĵoj de la policaro.
+        arbitration_address: Povas esti la sama kiel Fizika adreso supre, aŭ "N/A" se oni uzas retpoŝton
+        arbitration_website: Povas esti retformo, aŭ "N/A" se oni uzas retpoŝton
+        dmca_address: Por tenantoj en Usono, uzu la adreson registritan en la DMCA Designated Agenŭ Directory. Registrolibro de poŝtskatoloj haveblas per direkta postulo, uzu la DMCA Designated Agent Post Office Box Waiver Request por retpoŝti la Ofico de Kopirajto kaj priskribu, ke vi estas hejm-trovigita administranto por enhavo kaj devas uzi Poŝtskatolon por forigi vian hejmadreson de publika vido.
+        dmca_email: Povas esti la sama retpoŝtadreso uzita por "Retpoŝtadreso por legalaj sciigoj" supre
+        domain: Unika identigilo de la retaj servicoj, ke vi provizas.
+        jurisdiction: Enlistigu la landon, kie loĝas kiu pagas la fakturojn. Se ĝi estas kompanio aŭ alia ento, listigu la landon, kie ĝi estas enkorpigita, kaj la urbon, regionon, teritorion aŭ ŝtaton laŭeble.
       user:
         chosen_languages: Kun tio markita nur mesaĝoj en elektitaj lingvoj aperos en publikaj tempolinioj
         role: La rolo kontrolas kiujn permesojn la uzanto havas.
@@ -144,7 +156,7 @@ eo:
         url: Kien eventoj sendotas
     labels:
       account:
-        attribution_domains_as_text: Retejoj permesitaj krediti vin
+        attribution_domains: Retejoj permesitaj krediti vin
         discoverable: Elstarigi profilon kaj afiŝojn en eltrovantaj algoritmoj
         fields:
           name: Etikedo
@@ -182,7 +194,7 @@ eo:
       defaults:
         autofollow: Inviti al sekvi vian konton
         avatar: Rolfiguro
-        bot: Tio estas robota konto
+        bot: Ĉi tio estas aŭtomata konto
         chosen_languages: Filtri lingvojn
         confirm_new_password: Konfirmi novan pasvorton
         confirm_password: Konfirmi pasvorton
@@ -223,6 +235,7 @@ eo:
         setting_hide_network: Kaŝi viajn sekvantojn kaj sekvatojn
         setting_reduce_motion: Redukti la movecojn de la animacioj
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
+        setting_system_scrollbars_ui: Uzu la defaŭltan rulumilon de la sistemo
         setting_theme: Etoso de la retejo
         setting_trends: Montri hodiaŭajn furoraĵojn
         setting_unfollow_modal: Montri konfirman fenestron antaŭ ol ĉesi sekvi iun
@@ -317,6 +330,17 @@ eo:
         name: Kradvorto
         trendable: Permesi al ĉi tiu kradvorto aperi en furoraĵoj
         usable: Permesi afiŝojn uzi ĉi tiun kradvorton loke
+      terms_of_service:
+        changelog: Kio ŝanĝiĝis?
+        text: Kondiĉoj de uzado
+      terms_of_service_generator:
+        admin_email: Retpoŝtadreso por laŭleĝaj avizoj
+        arbitration_address: Fizika adreso por arbitraciaj avizoj
+        arbitration_website: Retejo por sendi arbitraciajn avizojn
+        dmca_address: Fizika adreso por DMCA/kopirajto-avizoj
+        dmca_email: Retpoŝtadreso por DMCA/kopirajto-avizoj
+        domain: Domajno
+        jurisdiction: Laŭleĝa jurisdikcio
       user:
         role: Rolo
         time_zone: Horzono

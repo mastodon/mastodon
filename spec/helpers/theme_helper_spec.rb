@@ -79,6 +79,45 @@ RSpec.describe ThemeHelper do
     end
   end
 
+  describe '#custom_stylesheet' do
+    let(:custom_css) { 'body {}' }
+    let(:custom_digest) { Digest::SHA256.hexdigest(custom_css) }
+
+    before do
+      Setting.custom_css = custom_css
+    end
+
+    context 'when custom css setting value digest is present' do
+      before { Rails.cache.write(:setting_digest_custom_css, custom_digest) }
+
+      it 'returns value from settings' do
+        expect(custom_stylesheet)
+          .to match("/css/custom-#{custom_digest[...8]}.css")
+      end
+    end
+
+    context 'when custom css setting value digest is expired' do
+      before { Rails.cache.delete(:setting_digest_custom_css) }
+
+      it 'returns value from settings' do
+        expect(custom_stylesheet)
+          .to match("/css/custom-#{custom_digest[...8]}.css")
+      end
+    end
+
+    context 'when custom css setting is not present' do
+      before do
+        Setting.custom_css = nil
+        Rails.cache.delete(:setting_digest_custom_css)
+      end
+
+      it 'returns default value' do
+        expect(custom_stylesheet)
+          .to be_blank
+      end
+    end
+  end
+
   private
 
   def html_links

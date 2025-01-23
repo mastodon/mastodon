@@ -226,6 +226,7 @@ cy:
         enable_user: Galluogi Defnyddiwr
         memorialize_account: Cofadeilio Cyfrif
         promote_user: Dyrchafu Defnyddiwr
+        publish_terms_of_service: Cyhoeddi Telerau Gwasanaeth
         reject_appeal: Gwrthod Apêl
         reject_user: Gwrthod Defnyddiwr
         remove_avatar_user: Tynnu Afatar
@@ -290,6 +291,7 @@ cy:
         enable_user_html: Mae %{name} wedi galluogi mewngofnodi defnyddiwr %{target}
         memorialize_account_html: Newidiodd %{name} gyfrif %{target} i dudalen memoriam
         promote_user_html: Mae %{name} wedi hyrwyddo defnyddiwr %{target}
+        publish_terms_of_service_html: Mae %{name} wedi cyhoeddi diweddariadau i'r telerau gwasanaeth
         reject_appeal_html: Mae %{name} wedi gwrthod apêl penderfyniad cymedroli %{target}
         reject_user_html: Mae %{name} wedi gwrthod cofrestriad gan %{target}
         remove_avatar_user_html: Mae %{name} wedi tynnu afatar %{target}
@@ -981,6 +983,39 @@ cy:
       search: Chwilio
       title: Hashnodau
       updated_msg: Gosodiadau hashnodau wedi'i diweddaru'n llwyddiannus
+    terms_of_service:
+      back: Nôl i delerau gwasanaeth
+      changelog: Beth sydd wedi newid
+      create: Defnyddiwch eich un eich hun
+      current: Cyfredol
+      draft: Drafft
+      generate: Defnyddiwch dempled
+      generates:
+        action: Cynhyrchu
+        chance_to_review_html: "<strong>Ni fydd y telerau gwasanaeth sy'n cael eu cynhyrchu'n cael eu cyhoeddi'n awtomatig.</strong> Bydd cyfle i chi adolygu'r canlyniadau. Cwblhewch y manylion angenrheidiol i symud ymlaen."
+        explanation_html: Mae'r templed telerau gwasanaeth sy'n cael eu darparu at ddibenion gwybodaeth yn unig, ac ni ddylid ei ddehongli fel cyngor cyfreithiol ar unrhyw bwnc. Ymgynghorwch â'ch cyngor cyfreithiol eich hun ar eich sefyllfa ag unrhyw gwestiynau cyfreithiol penodol sydd gennych.
+        title: Telerau Gosod Gwasanaeth
+      history: Hanes
+      live: Byw
+      no_history: Nid oes unrhyw newidiadau i delerau gwasanaeth wedi'u cofnodi eto.
+      no_terms_of_service_html: Nid oes gennych unrhyw delerau gwasanaeth wedi'u ffurfweddu ar hyn o bryd. Bwriad telerau gwasanaeth yw darparu eglurder a'ch amddiffyn rhag rhwymedigaethau posibl mewn anghydfodau gyda'ch defnyddwyr.
+      notified_on_html: Hysbyswyd defnyddwyr ar %{date}
+      notify_users: Hysbysu defnyddwyr
+      preview:
+        explanation_html: 'Bydd yr e-bost yn cael ei anfon at <strong>%{display_count} o ddefnyddwyr</strong> sydd wedi cofrestru cyn %{date}. Bydd y testun canlynol yn cael ei gynnwys yn yr e-bost:'
+        send_preview: Anfon rhagolwg at %{email}
+        send_to_all:
+          few: Anfon %{display_count} e-bost
+          many: Anfon %{display_count} e-bost
+          one: Anfon %{display_count} e-bost
+          other: Anfon %{display_count} e-bost
+          two: Anfon %{display_count} e-bost
+          zero: Anfon %{display_count} e-bost
+        title: Darllenwcy yr hysbysiad telerau gwasanaeth
+      publish: Cyhoeddi
+      published_on_html: Cyhoeddwyd ar %{date}
+      save_draft: Cadw drafft
+      title: Telerau Gwasanaeth
     title: Gweinyddiaeth
     trends:
       allow: Caniatáu
@@ -1204,7 +1239,6 @@ cy:
     migrate_account: Symud i gyfrif gwahanol
     migrate_account_html: Os hoffech chi ailgyfeirio'r cyfrif hwn at un gwahanol, mae modd <a href="%{path}">ei ffurfweddu yma</a>.
     or_log_in_with: Neu mewngofnodwch gyda
-    privacy_policy_agreement_html: Rwyf wedi darllen ac yn cytuno i'r <a href="%{privacy_policy_path}" target="_blank">polisi preifatrwydd</a>
     progress:
       confirm: Cadarnhau'r e-bost
       details: Eich manylion
@@ -1229,7 +1263,7 @@ cy:
     set_new_password: Gosod cyfrinair newydd
     setup:
       email_below_hint_html: Gwiriwch eich ffolder sbam, neu gofynnwch am un arall. Gallwch gywiro eich cyfeiriad e-bost os yw'n anghywir.
-      email_settings_hint_html: Cliciwch ar y ddolen a anfonwyd atoch i wirio %{email}. Byddwn yn aros yma amdanoch.
+      email_settings_hint_html: Cliciwch y ddolen anfonwyd at %{email} i ddechrau defnyddio Mastodon. Byddwn yn aros yn fan hyn.
       link_not_received: Heb gael dolen?
       new_confirmation_instructions_sent: Byddwch yn derbyn e-bost newydd gyda'r ddolen gadarnhau ymhen ychydig funudau!
       title: Gwiriwch eich blwch derbyn
@@ -1238,7 +1272,7 @@ cy:
       title: Mewngofnodi i %{domain}
     sign_up:
       manual_review: Mae cofrestriadau ar %{domain} yn cael eu hadolygu â llaw gan ein cymedrolwyr. Er mwyn ein helpu i brosesu eich cofrestriad, ysgrifennwch ychydig amdanoch chi'ch hun a pham rydych chi eisiau cyfrif ar %{domain}.
-      preamble: Gyda chyfrif ar y gweinydd Mastodon hwn, byddwch yn gallu dilyn unrhyw berson arall ar y rhwydwaith, lle bynnag mae eu cyfrif yn cael ei gynnal.
+      preamble: Gyda chyfrif ar y gweinydd Mastodon hwn, byddwch chi'n gallu dilyn unrhyw berson arall ar y ffedysawd, waeth ble mae eu cyfrif yn cael ei gynnal.
       title: Gadewch i ni eich gosod ar %{domain}.
     status:
       account_status: Statws cyfrif
@@ -1250,6 +1284,7 @@ cy:
       view_strikes: Gweld rybuddion y gorffennol yn erbyn eich cyfrif
     too_fast: Cafodd y ffurflen ei chyflwyno'n rhy gyflym, ceisiwch eto.
     use_security_key: Defnyddiwch allwedd diogelwch
+    user_agreement_html: Rwyf wedi darllen ac yn cytuno i <a href="%{terms_of_service_path}" target="_blank">delerau gwasanaeth</a> a'r <a href="%{privacy_policy_path}" target="_blank">polisi preifatrwydd</a>
   author_attribution:
     example_title: Testun enghreifftiol
     hint_html: Ydych chi'n ysgrifennu erthyglau newyddion neu flog y tu allan i Mastodon? Rheolwch sut y byddwch yn cael eich cydnabod pan fyddan nhw'n cael eu rhannu ar Mastodon.
@@ -1828,7 +1863,7 @@ cy:
   scheduled_statuses:
     over_daily_limit: Rydych wedi mynd dros y terfyn o %{limit} postiad a drefnwyd ar gyfer heddiw
     over_total_limit: Rydych wedi mynd dros y terfyn o %{limit} postiad a drefnwyd
-    too_soon: Rhaid i'r dyddiad a drefnwyd fod yn y dyfodol
+    too_soon: rhaid i'r dyddiad fod yn y dyfodol
   self_destruct:
     lead_html: Yn anffodus mae <strong>%{domain}</strong> yn cau'n barhaol. Os oedd gennych gyfrif yno, ni fydd modd i chi barhau i'w ddefnyddio, ond mae dal modd gofyn i gael copi wrth gefn o'ch data.
     title: Mae'r gweinydd hwn yn cau
@@ -2007,6 +2042,8 @@ cy:
       too_late: Mae'n rhy hwyr i apelio yn erbyn y rhybudd hwn
   tags:
     does_not_match_previous_name: ddim yn cyfateb i'r enw blaenorol
+  terms_of_service:
+    title: Telerau Gwasanaeth
   themes:
     contrast: Mastodon (Cyferbyniad uchel)
     default: Mastodon (Tywyll)
@@ -2067,6 +2104,15 @@ cy:
       further_actions_html: Os nad chi oedd hwn, rydym yn argymell eich bod yn %{action} ar unwaith ac yn galluogi dilysu dau ffactor i gadw'ch cyfrif yn ddiogel.
       subject: Mae eich cyfrif wedi'i gyrchu o gyfeiriad IP newydd
       title: Mewngofnodiad newydd
+    terms_of_service_changed:
+      agreement: Drwy barhau i ddefnyddio %{domain}, rydych yn cytuno i'r telerau hyn. Os ydych yn anghytuno â'r telerau a ddiweddarwyd, gallwch derfynu eich cytundeb â %{domain} ar unrhyw adeg drwy ddileu eich cyfrif.
+      changelog: 'Yn fyr, dyma beth mae''r diweddariad hwn yn ei olygu i chi:'
+      description: 'Rydych yn derbyn yr e-bost hwn oherwydd ein bod yn gwneud rhai newidiadau i''n telerau gwasanaeth yn %{domain}. Rydym yn eich annog i adolygu''r telerau diweddaraf yn llawn yma:'
+      description_html: Rydych yn derbyn yr e-bost hwn oherwydd ein bod yn gwneud rhai newidiadau i'n telerau gwasanaeth yn %{domain}. Rydym yn eich annog i adolygu'r <a href="%{path}" target="_blank">telerau diweddaraf yn llawn yma</a> .
+      sign_off: Tîm %{domain}
+      subject: Diweddariadau i'n telerau gwasanaeth
+      subtitle: Mae telerau gwasanaeth %{domain} yn newid
+      title: Diweddariad pwysig
     warning:
       appeal: Cyflwyno apêl
       appeal_description: Os credwch fod hwn yn gamgymeriad, gallwch gyflwyno apêl i staff %{instance}.

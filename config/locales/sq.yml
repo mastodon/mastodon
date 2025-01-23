@@ -214,6 +214,7 @@ sq:
         enable_user: Aktivizo Përdorues
         memorialize_account: Bëje Llogari Përkujtimore
         promote_user: Promovojeni Përdoruesin
+        publish_terms_of_service: Boto Kushte Shërbimi
         reject_appeal: Hidheni Poshtë Apelimin
         reject_user: Hidhe Poshtë Përdoruesin
         remove_avatar_user: Hiqe Avatarin
@@ -278,6 +279,7 @@ sq:
         enable_user_html: "%{name} aktivizoi hyrje për përdoruesin %{target}"
         memorialize_account_html: "%{name} e shndërroi llogarinë e %{target} në një faqe përkujtimore"
         promote_user_html: "%{name} gradoi përdoruesin %{target}"
+        publish_terms_of_service_html: "%{name} botoi përditësime të kushteve të shërbimit"
         reject_appeal_html: "%{name} hodhi poshtë apelim vendimi moderimi nga %{target}"
         reject_user_html: "%{name} hodhi poshtë regjistrimin nga %{target}"
         remove_avatar_user_html: "%{name} hoqi avatarin e %{target}"
@@ -920,6 +922,35 @@ sq:
       search: Kërkim
       title: Hashtag-ë
       updated_msg: Rregullimet për hashtag-ët u përditësuan me sukses
+    terms_of_service:
+      back: Mbrapsht te kushte shërbimi
+      changelog: Ç’ka ndryshuar
+      create: Përdorni tuajat
+      current: Të tanishmet
+      draft: Skicë
+      generate: Përdorni gjedhe
+      generates:
+        action: Prodhoji
+        chance_to_review_html: "<strong>Termat e shërbimit të prodhuar s’do të botohen automatikisht.</strong> Do të keni një mundësi të shqyrtoni përfundimet. Ju lutemi, që të vazhdohet, plotësoni hollësitë e nevojshme."
+        explanation_html: Gjedhja e dhënë për kushtet e shërbimit është vetëm për qëllime njohjeje dhe s’duhet marrë si këshillë ligjore, për çfarëdo çështje. Ju lutemi, për situatën tuaj dhe pyetje specifike ligjore, lidhuni me juristin tuaj.
+        title: Ujdisje Termash Shërbimi
+      history: Historik
+      live: Drejtpërdrejt
+      no_history: Ende s’ka ndryshime të regjistruara të kushteve të shërbimit.
+      no_terms_of_service_html: Aktualisht s’keni të formësuar terma shërbimit. Termat e shërbimit janë menduar të japin qartësi dhe t’ju mbrojnë nga penalitete potenciale në çështje gjyqësore me përdoruesit tuaj.
+      notified_on_html: Përdoruesi u njoftuan më %{date}
+      notify_users: Njoftoji përdoruesit
+      preview:
+        explanation_html: 'Email-i do t’u dërgohet <strong>%{display_count} përdoruesve</strong> që janë regjistruar para %{date}. Te email-i do të përfshihet teksti vijues:'
+        send_preview: Dërgo paraparje te %{email}
+        send_to_all:
+          one: Dërgo %{display_count} email
+          other: Dërgo %{display_count} email-e
+        title: Bëni paraparje të njoftimit të shërbimt
+      publish: Botoje
+      published_on_html: Botuar më %{date}
+      save_draft: Ruaje skicën
+      title: Kushte Shërbimi
     title: Administrim
     trends:
       allow: Lejojeni
@@ -1126,7 +1157,6 @@ sq:
     migrate_account: Kaloni në një tjetër llogari
     migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
     or_log_in_with: Ose bëni hyrjen me
-    privacy_policy_agreement_html: I kam lexuar dhe pajtohem me <a href="%{privacy_policy_path}" target="_blank">rregullat e privatësisë</a>
     progress:
       confirm: Ripohoni email-in
       details: Hollësitë tuaja
@@ -1151,7 +1181,7 @@ sq:
     set_new_password: Caktoni fjalëkalim të ri
     setup:
       email_below_hint_html: Shihni te dosja juaj e të padëshiruarve, ose kërkoni një tjetër. Mundeni të saktësoni adresën tuaj email, nëse është gabim.
-      email_settings_hint_html: Që të verifikoni %{email}, klikoni lidhjen që ju dërguam. Do të presim këtu.
+      email_settings_hint_html: Që të filloni të përdorni Mastodon-in, klikoni mbi lidhjen që dërguam te%{email}. Do të presim këtu.
       link_not_received: S’morët lidhje?
       new_confirmation_instructions_sent: Brenda pak mintuash do të merrni një email të ri me lidhjen e ripohimit!
       title: Shihni te email-et tuaj
@@ -1160,7 +1190,7 @@ sq:
       title: Bëni hyrjen te %{domain}
     sign_up:
       manual_review: Regjistrimet te %{domain} kalojnë një shqyrtim dorazi nga moderatorët tanë. Që të na ndihmoni të përfundojmë regjistrimin tuaj, na shkruani pakëz mbi veten dhe pse doni një llogari në %{domain}.
-      preamble: Me një llogari në këtë shërbyes Mastodon, do të jeni në gjendje të ndiqni cilindo person tjetër në rrjet, pavarësisht se ku strehohet llogaria e tyre.
+      preamble: Me një llogari te ky shërbyes Mastodon do të jeni në gjendje të ndiqni cilindo person në fedivers, pavarësisht se ku strehohet llogaria e tij.
       title: Le të ujdisim llogarinë tuaj në %{domain}.
     status:
       account_status: Gjendje llogarie
@@ -1172,6 +1202,7 @@ sq:
       view_strikes: Shihni paralajmërime të dikurshme kundër llogarisë tuaj
     too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
     use_security_key: Përdor kyç sigurie
+    user_agreement_html: I kam lexuar dhe pajtohen me <a href="%{terms_of_service_path}" target="_blank">kushtet e shërbimit</a> dhe <a href="%{privacy_policy_path}" target="_blank">rregullat e privatësisë</a>
   author_attribution:
     example_title: Tekst shembull
     hint_html: Shkruani lajme, apo artikuj blogu jashtë Mastodon-it? Kontrolloni se si ju jepet hakë, kur ndahen me të tjerët në Mastodon.
@@ -1670,7 +1701,7 @@ sq:
   scheduled_statuses:
     over_daily_limit: Keni tejkaluar kufirin e %{limit} mesazheve të planifikuara për atë ditë
     over_total_limit: Keni tejkaluar kufirin prej %{limit} mesazhesh të planifikuara
-    too_soon: Data e planifikimit duhet të bjerë në të ardhmen
+    too_soon: data duhet të jetë në të ardhmen
   self_destruct:
     lead_html: Mjerisht, <strong>%{domain}</strong> po mbyllet përgjithmonë. Nëse patët një llogari këtu, s’do të jeni në gjendje të vazhdoni ta përdorni, por mundeni ende të kërkoni një kopjeruajtje të të dhënave tuaja.
     title: Ky shërbyes po mbyllet
@@ -1833,6 +1864,8 @@ sq:
       too_late: Është shumë vonë për apelim të këtij paralajmërimi
   tags:
     does_not_match_previous_name: s’përputhet me emrin e mëparshëm
+  terms_of_service:
+    title: Kushte Shërbimi
   themes:
     contrast: Mastodon (Me shumë kontrast)
     default: Mastodon (I errët)
@@ -1893,6 +1926,15 @@ sq:
       further_actions_html: Nëse s’ishit ju, këshillojmë të %{action} menjëherë dhe të aktivizoni mirëfilltësim dyfaktorësh, për ta mbajtur llogarinë tuaj të sigurt.
       subject: Llogaria juaj është përdorur që nga një adresë e re IP
       title: Hyrje e re
+    terms_of_service_changed:
+      agreement: Duke vazhduar të përdorni %{domain}, pajtoheni më këto terma. Nëse s’pajtoheni me termat e përditësuar, mund të përfundoni pajtimin tuaj me %{domain} në çfarëdo kohe, përmes fshirjes së llogarisë tuaj.
+      changelog: 'Me një vështrim, ja se ç’do të thotë ky përditësim për ju:'
+      description: 'Po e merrni këtë email ngaqë po bëjmë disa ndryshime te kushtet tona të shërbimit në %{domain}. Ju nxisim të shqyrtoni termat e përditësuar të plotë këtu:'
+      description_html: Po e merrni këtë email ngaqë po bëjmë disa ndryshime në kushtet tona të shërbimit te %{domain}. Ju nxisim të shqyrtoni <a href="%{path}" target="_blank">termat e përditësuar të plotë këtu</a>.
+      sign_off: Ekipi i %{domain}
+      subject: Përditësime të termave tanë të shërbimit
+      subtitle: Termat e shërbimit të %{domain} po ndryshojnë
+      title: Përditësim i rëndësishëm
     warning:
       appeal: Parashtroni një apelim
       appeal_description: Nëse besoni se është gabim, mund t’i parashtroni një apelim stafit të %{instance}.

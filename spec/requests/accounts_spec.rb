@@ -53,8 +53,9 @@ RSpec.describe 'Accounts show response' do
           it 'returns a standard HTML response', :aggregate_failures do
             expect(response)
               .to have_http_status(200)
-              .and render_template(:show)
               .and have_http_link_header(ActivityPub::TagManager.instance.uri_for(account)).for(rel: 'alternate')
+            expect(response.parsed_body.at('title').content)
+              .to include(account.username)
           end
         end
 

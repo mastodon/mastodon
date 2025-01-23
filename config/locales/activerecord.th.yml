@@ -20,7 +20,6 @@ th:
           invalid: ไม่ใช่ชื่อโดเมนที่ถูกต้อง
       messages:
         invalid_domain_on_line: "%{value} ไม่ใช่ชื่อโดเมนที่ถูกต้อง"
-        too_many_lines: เกินขีดจำกัด %{limit} บรรทัด
       models:
         account:
           attributes:
@@ -39,6 +38,11 @@ th:
           attributes:
             data:
               malformed: ผิดรูปแบบ
+        list_account:
+          attributes:
+            account_id:
+              taken: อยู่ในรายการอยู่แล้ว
+          must_be_following: ต้องเป็นบัญชีที่ติดตาม
         status:
           attributes:
             reblog:

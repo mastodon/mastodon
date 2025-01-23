@@ -187,6 +187,7 @@ fr:
         create_domain_block: Créer un blocage de domaine
         create_email_domain_block: Création d'un blocage de domaine de courrier électronique
         create_ip_block: Créer une règle IP
+        create_relay: Créer un relais
         create_unavailable_domain: Créer un domaine indisponible
         create_user_role: Créer le rôle
         demote_user: Rétrograder l’utilisateur·ice
@@ -198,18 +199,22 @@ fr:
         destroy_email_domain_block: Supprimer le blocage de domaine de courriel
         destroy_instance: Purge du domaine
         destroy_ip_block: Supprimer la règle IP
+        destroy_relay: Supprimer le relais
         destroy_status: Supprimer le message
         destroy_unavailable_domain: Supprimer le domaine indisponible
         destroy_user_role: Détruire le rôle
         disable_2fa_user: Désactiver l’A2F
         disable_custom_emoji: Désactiver les émojis personnalisés
+        disable_relay: Désactiver le relais
         disable_sign_in_token_auth_user: Désactiver le jeton d'authentification par e-mail pour l'utilisateur
         disable_user: Désactiver le compte
         enable_custom_emoji: Activer les émojis personnalisées
+        enable_relay: Activer le relais
         enable_sign_in_token_auth_user: Activer le jeton d'authentification par e-mail pour l'utilisateur
         enable_user: Activer le compte
         memorialize_account: Ériger en mémorial
         promote_user: Promouvoir le compte
+        publish_terms_of_service: Publier les conditions d'utilisation
         reject_appeal: Rejeter l'appel
         reject_user: Rejeter le compte
         remove_avatar_user: Supprimer l’avatar
@@ -247,6 +252,7 @@ fr:
         create_domain_block_html: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block_html: "%{name} a bloqué le domaine d'e-mail %{target}"
         create_ip_block_html: "%{name} a créé une règle pour l'IP %{target}"
+        create_relay_html: "%{name} a créé un relais %{target}"
         create_unavailable_domain_html: "%{name} a arrêté la livraison vers le domaine %{target}"
         create_user_role_html: "%{name} a créé le rôle %{target}"
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
@@ -258,18 +264,22 @@ fr:
         destroy_email_domain_block_html: "%{name} a débloqué le domaine d'e-mail %{target}"
         destroy_instance_html: "%{name} a purgé le domaine %{target}"
         destroy_ip_block_html: "%{name} a supprimé la règle pour l'IP %{target}"
+        destroy_relay_html: "%{name} a supprimé le relais %{target}"
         destroy_status_html: "%{name} a supprimé le message de %{target}"
         destroy_unavailable_domain_html: "%{name} a repris la livraison au domaine %{target}"
         destroy_user_role_html: "%{name} a supprimé le rôle %{target}"
         disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
+        disable_relay_html: "%{name} a désactivé le relais %{target}"
         disable_sign_in_token_auth_user_html: "%{name} a désactivé l'authentification par jeton de courriel pour %{target}"
         disable_user_html: "%{name} a désactivé la connexion de l'utilisateur·rice %{target}"
         enable_custom_emoji_html: "%{name} a activé l'émoji %{target}"
+        enable_relay_html: "%{name} a activé le relais %{target}"
         enable_sign_in_token_auth_user_html: "%{name} a activé l'authentification par jeton de courriel pour %{target}"
         enable_user_html: "%{name} a activé la connexion de l'utilisateur·rice %{target}"
         memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
         promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
+        publish_terms_of_service_html: "%{name} a publié des mises à jour des conditions d'utilisation"
         reject_appeal_html: "%{name} a rejeté l'appel de la décision de modération émis par %{target}"
         reject_user_html: "%{name} a rejeté l’inscription de %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
@@ -821,8 +831,10 @@ fr:
       back_to_account: Retour à la page du compte
       back_to_report: Retour à la page du rapport
       batch:
+        add_to_report: 'Ajouter au rapport #%{id}'
         remove_from_report: Retirer du rapport
         report: Signalement
+      contents: Contenu
       deleted: Supprimé
       favourites: Favoris
       history: Historique de version
@@ -831,12 +843,17 @@ fr:
       media:
         title: Médias
       metadata: Metadonnés
+      no_history: Ce message n'a pas été édité
       no_status_selected: Aucun message n’a été modifié car aucun n’a été sélectionné
       open: Ouvrir le message
       original_status: Message original
       reblogs: Partages
-      status_changed: Publication modifiée
+      replied_to_html: Répondu à %{acct_link}
+      status_changed: Message modifié
+      status_title: Posté par @%{name}
+      title: Messages du compte - @%{name}
       trending: Tendances
+      view_publicly: Afficher de manière publique
       visibility: Visibilité
       with_media: Avec médias
     strikes:
@@ -913,6 +930,35 @@ fr:
       search: Recherche
       title: Hashtags
       updated_msg: Paramètres du hashtag mis à jour avec succès
+    terms_of_service:
+      back: Retour aux conditions d'utilisation
+      changelog: Nouveautés
+      create: Utilisez vos propres
+      current: Courant
+      draft: Brouillon
+      generate: Utiliser un modèle
+      generates:
+        action: Générer
+        chance_to_review_html: "<strong>Les conditions d'utilisation générées ne seront pas publiées automatiquement.</strong> Vous aurez la possibilité de vérifier les résultats. Veuillez remplir les informations nécessaires pour continuer."
+        explanation_html: Le modèle de conditions d'utilisation fourni l'est uniquement à titre informatif et ne doit pas être interprété comme un conseil juridique sur quelque sujet que ce soit. Veuillez consulter votre propre conseiller juridique sur votre situation et les questions juridiques spécifiques que vous vous posez.
+        title: Configuration des Conditions d'Utilisation
+      history: Historique
+      live: En cours d'utilisation
+      no_history: Il n'y a pas encore de modifications enregistrées des conditions d'utilisation.
+      no_terms_of_service_html: Vous n'avez actuellement aucune condition d'utilisation configurée. Les conditions d'utilisation ont pour but de clarifier les droits et obligations de chacun lors de l'utilisation du service et de vous protéger contre d'éventuelles responsabilités en cas de litige avec vos utilisateurs.
+      notified_on_html: Utilisateurs notifiés le `%{date}`
+      notify_users: Notifier les utilisateurs
+      preview:
+        explanation_html: 'L''e-mail sera envoyé aux utilisateurs <strong>%{display_count}</strong> qui se sont inscrits avant %{date}. Le texte suivant sera inclus dans l''e-mail :'
+        send_preview: Envoyer un aperçu à %{email}
+        send_to_all:
+          one: Envoyer %{display_count} email
+          other: Envoyer %{display_count} emails
+        title: Notification concernant l'aperçu des conditions d'utilisation
+      publish: Publier
+      published_on_html: Publié le %{date}
+      save_draft: Enregistrer le brouillon
+      title: Conditions d'utilisation
     title: Administration
     trends:
       allow: Autoriser
@@ -1120,7 +1166,6 @@ fr:
     migrate_account: Déménager vers un compte différent
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
     or_log_in_with: Ou authentifiez-vous avec
-    privacy_policy_agreement_html: J’ai lu et j’accepte la <a href="%{privacy_policy_path}" target="_blank">politique de confidentialité</a>
     progress:
       confirm: Confirmation de l'adresse mail
       details: Vos infos
@@ -1145,7 +1190,7 @@ fr:
     set_new_password: Définir le nouveau mot de passe
     setup:
       email_below_hint_html: Consultez votre dossier de courrier indésirable ou demandez-en un autre. Vous pouvez corriger votre adresse e-mail si elle est incorrecte.
-      email_settings_hint_html: Cliquez sur le lien que nous vous avons envoyé pour vérifier l’adresse %{email}. Nous vous attendons ici.
+      email_settings_hint_html: Cliquez sur le lien que nous avons envoyé à %{email} pour commencer à utiliser Mastodon. Nous vous attendrons ici.
       link_not_received: Vous n'avez pas reçu de lien ?
       new_confirmation_instructions_sent: Vous allez recevoir un nouvel e-mail avec le lien de confirmation dans quelques minutes !
       title: Vérifiez votre boîte de réception
@@ -1154,7 +1199,7 @@ fr:
       title: Se connecter à %{domain}
     sign_up:
       manual_review: Les inscriptions sur %{domain} passent par une revue manuelle de nos modérateurs. Pour les aider, écrivez un peu plus sur vous et pourquoi vous souhaitez créer un compte sur %{domain}.
-      preamble: Avec un compte sur ce serveur Mastodon, vous serez en mesure de suivre toute autre personne sur le réseau, quel que soit l’endroit où son compte est hébergé.
+      preamble: Avec un compte sur ce serveur Mastodon, vous pourrez suivre n'importe quelle autre personne du fediverse, quel que soit l'endroit où son compte est hébergé.
       title: Mettons les choses en place pour %{domain}.
     status:
       account_status: État du compte
@@ -1166,10 +1211,14 @@ fr:
       view_strikes: Voir les sanctions précédemment appliquées à votre compte
     too_fast: Formulaire envoyé trop rapidement, veuillez réessayer.
     use_security_key: Utiliser la clé de sécurité
+    user_agreement_html: J'ai lu et j'accepte les <a href="%{terms_of_service_path}" target="_blank">conditions d'utilisation</a> et la <a href="%{privacy_policy_path}" target="_blank">politique de confidentialité</a>
   author_attribution:
     example_title: Exemple de texte
+    hint_html: Vous écrivez des nouvelles ou des articles de blog en dehors de Mastodon ? Contrôlez la façon dont vous êtes crédité lorsqu'ils sont partagés sur Mastodon.
+    instructions: 'Assurez-vous que ce code se trouve dans le code HTML de votre article :'
     more_from_html: Plus via %{name}
     s_blog: Blog de %{name}
+    then_instructions: Ensuite, ajoutez le nom de domaine de la publication dans le champ ci-dessous.
     title: Attribution de l'auteur·e
   challenge:
     confirm: Continuer
@@ -1285,7 +1334,7 @@ fr:
     add_new: Ajouter un nouveau hashtag
     errors:
       limit: Vous avez déjà mis en avant le nombre maximum de hashtags
-    hint_html: "<strong>Mettez en évidence vos hashtags les plus importants sur votre profil.</strong> Un outil idéal pour suivre vos travaux créatifs et vos projets à long terme, les hashtags mis en avant sont affichés bien en évidence sur votre profil et permettent un accès rapide à vos propres publications."
+    hint_html: "<strong>Mettez en évidence vos hashtags les plus importants sur votre profil.</strong> Un outil idéal pour suivre vos travaux créatifs et vos projets à long terme, les hashtags mis en avant sont affichés bien en évidence sur votre profil et permettent un accès rapide à vos propres messages."
   filters:
     contexts:
       account: Profils
@@ -1296,7 +1345,7 @@ fr:
     edit:
       add_keyword: Ajouter un mot-clé
       keywords: Mots-clés
-      statuses: Publications individuelles
+      statuses: Messages individuels
       statuses_hint_html: Ce filtre s'applique à la sélection de messages individuels, qu'ils correspondent ou non aux mots-clés ci-dessous. <a href="%{path}">Revoir ou supprimer des messages du filtre</a>.
       title: Modifier le filtre
     errors:
@@ -1315,8 +1364,8 @@ fr:
         one: "%{count} message"
         other: "%{count} messages"
       statuses_long:
-        one: "%{count} publication individuelle cachée"
-        other: "%{count} publications individuelles cachées"
+        one: "%{count} message individuel caché"
+        other: "%{count} messages individuels cachés"
       title: Filtres
     new:
       save: Enregistrer le nouveau filtre
@@ -1661,7 +1710,7 @@ fr:
   scheduled_statuses:
     over_daily_limit: Vous avez dépassé la limite de %{limit} messages planifiés par jour
     over_total_limit: Vous avez dépassé la limite de %{limit} messages planifiés
-    too_soon: La date planifiée doit être dans le futur
+    too_soon: la date doit se situer dans le futur
   self_destruct:
     lead_html: Malheureusement, <strong>%{domain}</strong> ferme définitivement. Si vous y aviez un compte, vous ne pourrez pas continuer à l’utiliser, mais vous pouvez toujours demander une sauvegarde de vos données.
     title: Ce serveur est en cours de fermeture
@@ -1759,7 +1808,7 @@ fr:
         one: "%{count} vidéo"
         other: "%{count} vidéos"
     boosted_from_html: Partagé depuis %{acct_link}
-    content_warning: 'Avertissement sur le contenu : %{warning}'
+    content_warning: 'Avertissement de contenu : %{warning}'
     default_language: Même langue que celle de l’interface
     disallowed_hashtags:
       one: 'contient un hashtag désactivé : %{tags}'
@@ -1824,6 +1873,8 @@ fr:
       too_late: Il est trop tard pour faire appel à cette sanction
   tags:
     does_not_match_previous_name: ne correspond pas au nom précédent
+  terms_of_service:
+    title: Conditions d'utilisation
   themes:
     contrast: Mastodon (Contraste élevé)
     default: Mastodon (Sombre)
@@ -1884,6 +1935,15 @@ fr:
       further_actions_html: Si ce n’était pas vous, nous vous recommandons de %{action} immédiatement et d’activer l’authentification à deux facteurs afin de garder votre compte sécurisé.
       subject: Une nouvelle adresse IP a accédé à votre compte
       title: Une nouvelle connexion
+    terms_of_service_changed:
+      agreement: En continuant d'utiliser %{domain}, vous acceptez ces conditions. Si vous n'êtes pas d'accord avec les conditions mises à jour, vous pouvez résilier votre accord avec %{domain} à tout moment en supprimant votre compte.
+      changelog: 'En un coup d''œil, voici ce que cette mise à jour signifie pour vous :'
+      description: 'Vous recevez cet e-mail car nous apportons des modifications à nos conditions d''utilisation sur %{domain}. Nous vous encourageons à consulter l''intégralité des conditions mises à jour ici :'
+      description_html: Vous recevez cet e-mail car nous apportons des modifications à nos conditions d'utilisation sur %{domain}. Nous vous encourageons à consulter l'intégralité des <a href="%{path}" target="_blank">conditions mises à jour ici</a>.
+      sign_off: L'équipe %{domain}
+      subject: Mises à jour de nos conditions d'utilisation
+      subtitle: Les conditions d'utilisation de `%{domain}` changent
+      title: Mise à jour importante
     warning:
       appeal: Faire appel
       appeal_description: Si vous pensez qu'il s'agit d'une erreur, vous pouvez faire appel auprès de l'équipe de %{instance}.
@@ -1929,7 +1989,7 @@ fr:
       feature_action: En savoir plus
       feature_audience: Mastodon vous offre une possibilité unique de gérer votre audience sans intermédiaires. Mastodon peut être déployé sur votre propre infrastructure, ce qui vous permet de suivre et d'être suivi depuis n'importe quel autre serveur Mastodon et de n'être contrôlé par personne d'autre que vous.
       feature_audience_title: Construisez votre audience en toute confiance
-      feature_control: Vous savez mieux que quiconque ce que vous voulez voir sur votre fil principal. Personne ne veut d'un algorithme qui décide à vote place ou de publicité qui vous fera perdre votre temps. Suivez n'importe qui, sur n'importe quel serveur Mastodon, depuis votre compte. Recevez les publications du monde entier dans l'ordre chronologique et créez-vous votre chez-vous numérique qui vous ressemble.
+      feature_control: Vous savez mieux que quiconque ce que vous voulez voir sur votre fil principal. Pas d’algorithme ou de publicité qui vous fait perdre votre temps. Suivez n'importe qui sur n'importe quel serveur Mastodon depuis votre compte, recevez leurs messages dans l'ordre chronologique, et créez-vous un coin d’internet qui vous ressemble.
       feature_control_title: Gardez le contrôle de votre fil
       feature_creativity: Mastodon prend en charge les messages audio, vidéo et photo, les descriptions d'accessibilité, les sondages, les avertissements de contenu, les avatars animés, les émojis personnalisés, le contrôle des vignettes et bien plus encore pour vous aider à vous exprimer en ligne. Que vous publiiez votre art, votre musique ou votre podcast, Mastodon est là pour vous.
       feature_creativity_title: Créativité inégalée

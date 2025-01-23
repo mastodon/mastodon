@@ -2,6 +2,66 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.3] - 2025-01-16
+
+### Security
+
+- Fix insufficient validation of account URIs ([GHSA-5wxh-3p65-r4g6](https://github.com/mastodon/mastodon/security/advisories/GHSA-5wxh-3p65-r4g6))
+- Update dependencies
+
+### Fixed
+
+- Fix `libyaml` missing from `Dockerfile` build stage (#33591 by @vmstan)
+- Fix incorrect notification settings migration for non-followers (#33348 by @ClearlyClaire)
+- Fix down clause for notification policy v2 migrations (#33340 by @jesseplusplus)
+- Fix error decrementing status count when `FeaturedTags#last_status_at` is `nil` (#33320 by @ClearlyClaire)
+- Fix last paginated notification group only including data on a single notification (#33271 by @ClearlyClaire)
+- Fix processing of mentions for post edits with an existing corresponding silent mention (#33227 by @ClearlyClaire)
+- Fix deletion of unconfirmed users with Webauthn set (#33186 by @ClearlyClaire)
+- Fix empty authors preview card serialization (#33151, #33466 by @mjankowski and @ClearlyClaire)
+
+## [4.3.2] - 2024-12-03
+
+### Added
+
+- Add `tootctl feeds vacuum` (#33065 by @ClearlyClaire)
+- Add error message when user tries to follow their own account (#31910 by @lenikadali)
+- Add client_secret_expires_at to OAuth Applications (#30317 by @ThisIsMissEm)
+
+### Changed
+
+- Change design of Content Warnings and filters (#32543 by @ClearlyClaire)
+
+### Fixed
+
+- Fix processing incoming post edits with mentions to unresolvable accounts (#33129 by @ClearlyClaire)
+- Fix error when including multiple instances of `embed.js` (#33107 by @YKWeyer)
+- Fix inactive users' timelines being backfilled on follow and unsuspend (#33094 by @ClearlyClaire)
+- Fix direct inbox delivery pushing posts into inactive followers' timelines (#33067 by @ClearlyClaire)
+- Fix `TagFollow` records not being correctly handled in account operations (#33063 by @ClearlyClaire)
+- Fix pushing hashtag-followed posts to feeds of inactive users (#33018 by @Gargron)
+- Fix duplicate notifications in notification groups when using slow mode (#33014 by @ClearlyClaire)
+- Fix posts made in the future being allowed to trend (#32996 by @ClearlyClaire)
+- Fix uploading higher-than-wide GIF profile picture with libvips enabled (#32911 by @ClearlyClaire)
+- Fix domain attribution field having autocorrect and autocapitalize enabled (#32903 by @ClearlyClaire)
+- Fix titles being escaped twice (#32889 by @ClearlyClaire)
+- Fix list creation limit check (#32869 by @ClearlyClaire)
+- Fix error in `tootctl email_domain_blocks` when supplying `--with-dns-records` (#32863 by @mjankowski)
+- Fix `min_id` and `max_id` causing error in search API (#32857 by @Gargron)
+- Fix inefficiencies when processing removal of posts that use featured tags (#32787 by @ClearlyClaire)
+- Fix alt-text pop-in not using the translated description (#32766 by @ClearlyClaire)
+- Fix preview cards with long titles erroneously causing layout changes (#32678 by @ClearlyClaire)
+- Fix embed modal layout on mobile (#32641 by @DismalShadowX)
+- Fix and improve batch attachment deletion handling when using OpenStack Swift (#32637 by @hugogameiro)
+- Fix blocks not being applied on link timeline (#32625 by @tribela)
+- Fix follow counters being incorrectly changed (#32622 by @oneiros)
+- Fix 'unknown' media attachment type rendering (#32613 and #32713 by @ThisIsMissEm and @renatolond)
+- Fix tl language native name (#32606 by @seav)
+
+### Security
+
+- Update dependencies
+
 ## [4.3.1] - 2024-10-21
 
 ### Added
@@ -68,7 +128,7 @@ The following changelog entries focus on changes visible to users, administrator
   - `GET /api/v2/notifications`: https://docs.joinmastodon.org/methods/grouped_notifications/#get-grouped
   - `GET /api/v2/notifications/:group_key`: https://docs.joinmastodon.org/methods/grouped_notifications/#get-notification-group
   - `GET /api/v2/notifications/:group_key/accounts`: https://docs.joinmastodon.org/methods/grouped_notifications/#get-group-accounts
-  - `POST /api/v2/notifications/:group_key/dimsiss`: https://docs.joinmastodon.org/methods/grouped_notifications/#dismiss-group
+  - `POST /api/v2/notifications/:group_key/dismiss`: https://docs.joinmastodon.org/methods/grouped_notifications/#dismiss-group
   - `GET /api/v2/notifications/:unread_count`: https://docs.joinmastodon.org/methods/grouped_notifications/#unread-group-count
 - **Add notification policies, filtered notifications and notification requests** (#29366, #29529, #29433, #29565, #29567, #29572, #29575, #29588, #29646, #29652, #29658, #29666, #29693, #29699, #29737, #29706, #29570, #29752, #29810, #29826, #30114, #30251, #30559, #29868, #31008, #31011, #30996, #31149, #31220, #31222, #31225, #31242, #31262, #31250, #31273, #31310, #31316, #31322, #31329, #31324, #31331, #31343, #31342, #31309, #31358, #31378, #31406, #31256, #31456, #31419, #31457, #31508, #31540, #31541, #31723, #32062 and #32281 by @ClearlyClaire, @Gargron, @TheEssem, @mgmn, @oneiros, and @renchap)\
   The old “Block notifications from non-followers”, “Block notifications from people you don't follow” and “Block direct messages from people you don't follow” notification settings have been replaced by a new set of settings found directly in the notification column.\
@@ -93,7 +153,7 @@ The following changelog entries focus on changes visible to users, administrator
 - **Add notifications of severed relationships** (#27511, #29665, #29668, #29670, #29700, #29714, #29712, and #29731 by @ClearlyClaire and @Gargron)\
   Notify local users when they lose relationships as a result of a local moderator blocking a remote account or server, allowing the affected user to retrieve the list of broken relationships.\
   Note that this does not notify remote users.\
-  This adds the `severed_relationships` notification type to the REST API and streaming, with a new [`relationship_severance_event` attribute](https://docs.joinmastodon.org/entities/Notification/#relationship_severance_event).
+  This adds the `severed_relationships` notification type to the REST API and streaming, with a new [`event` attribute](https://docs.joinmastodon.org/entities/Notification/#relationship_severance_event).
 - **Add hover cards in web UI** (#30754, #30864, #30850, #30879, #30928, #30949, #30948, #30931, and #31300 by @ClearlyClaire, @Gargron, and @renchap)\
   Hovering over an avatar or username will now display a hover card with the first two lines of the user's description and their first two profile fields.\
   This can be disabled in the “Animations and accessibility” section of the preferences.
@@ -399,7 +459,7 @@ The following changelog entries focus on changes visible to users, administrator
 - Fix empty environment variables not using default nil value (#27400 by @renchap)
 - Fix language sorting in settings (#27158 by @gunchleoc)
 
-## |4.2.11] - 2024-08-16
+## [4.2.11] - 2024-08-16
 
 ### Added
 

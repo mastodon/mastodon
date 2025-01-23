@@ -9,9 +9,13 @@ import { useDebouncedCallback } from 'use-debounce';
 
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
+import { fetchRelationships } from 'mastodon/actions/accounts';
+import { showAlertForError } from 'mastodon/actions/alerts';
 import { importFetchedAccounts } from 'mastodon/actions/importer';
 import { fetchList } from 'mastodon/actions/lists';
+import { openModal } from 'mastodon/actions/modal';
 import { apiRequest } from 'mastodon/api';
+import { apiFollowAccount } from 'mastodon/api/accounts';
 import {
   apiGetAccounts,
   apiAddAccountToList,
@@ -20,7 +24,7 @@ import {
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import { Avatar } from 'mastodon/components/avatar';
 import { Button } from 'mastodon/components/button';
-import Column from 'mastodon/components/column';
+import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { ColumnSearchHeader } from 'mastodon/components/column_search_header';
 import { FollowersCounter } from 'mastodon/components/counters';
@@ -28,13 +32,14 @@ import { DisplayName } from 'mastodon/components/display_name';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { VerifiedBadge } from 'mastodon/components/verified_badge';
+import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
   heading: { id: 'column.list_members', defaultMessage: 'Manage list members' },
   placeholder: {
-    id: 'lists.search_placeholder',
-    defaultMessage: 'Search people you follow',
+    id: 'lists.search',
+    defaultMessage: 'Search',
   },
   enterSearch: { id: 'lists.add_to_list', defaultMessage: 'Add to list' },
   add: { id: 'lists.add_member', defaultMessage: 'Add' },
@@ -51,17 +56,51 @@ const AccountItem: React.FC<{
   onToggle: (accountId: string) => void;
 }> = ({ accountId, listId, partOfList, onToggle }) => {
   const intl = useIntl();
+  const dispatch = useAppDispatch();
   const account = useAppSelector((state) => state.accounts.get(accountId));
+  const relationship = useAppSelector((state) =>
+    accountId ? state.relationships.get(accountId) : undefined,
+  );
+  const following =
+    accountId === me || relationship?.following || relationship?.requested;
+
+  useEffect(() => {
+    if (accountId) {
+      dispatch(fetchRelationships([accountId]));
+    }
+  }, [dispatch, accountId]);
 
   const handleClick = useCallback(() => {
     if (partOfList) {
       void apiRemoveAccountFromList(listId, accountId);
+      onToggle(accountId);
     } else {
-      void apiAddAccountToList(listId, accountId);
+      if (following) {
+        void apiAddAccountToList(listId, accountId);
+        onToggle(accountId);
+      } else {
+        dispatch(
+          openModal({
+            modalType: 'CONFIRM_FOLLOW_TO_LIST',
+            modalProps: {
+              accountId,
+              onConfirm: () => {
+                apiFollowAccount(accountId)
+                  .then(() => apiAddAccountToList(listId, accountId))
+                  .then(() => {
+                    onToggle(accountId);
+                    return '';
+                  })
+                  .catch((err: unknown) => {
+                    dispatch(showAlertForError(err));
+                  });
+              },
+            },
+          }),
+        );
+      }
     }
-
-    onToggle(accountId);
-  }, [accountId, listId, partOfList, onToggle]);
+  }, [dispatch, accountId, following, listId, partOfList, onToggle]);
 
   if (!account) {
     return null;
@@ -186,8 +225,7 @@ const ListMembers: React.FC<{
         signal: searchRequestRef.current.signal,
         params: {
           q: value,
-          resolve: false,
-          following: true,
+          resolve: true,
         },
       })
         .then((data) => {
