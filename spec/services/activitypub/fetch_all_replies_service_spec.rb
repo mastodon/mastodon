@@ -74,7 +74,7 @@ RSpec.describe ActivityPub::FetchAllRepliesService do
       before do
         remote_actor = Fabricate(:account, domain: 'other.com', uri: 'http://other.com/account')
         # reply not in the collection from the remote instance, but we know about anyway without anyone following the account
-        Fabricate(:status, account: remote_actor, in_reply_to_id: status.id, uri: 'http://other.com/account/unsubscribed', fetched_replies_at: 1.year.ago)
+        Fabricate(:status, account: remote_actor, in_reply_to_id: status.id, uri: 'http://other.com/account/unsubscribed', fetched_replies_at: 1.year.ago, created_at: 1.year.ago)
       end
 
       it 'updates the unsubscribed replies' do
