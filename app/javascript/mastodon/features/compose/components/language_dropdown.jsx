@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useCallback, useRef, useState, useEffect, PureComponent } from 'react';
+import { useCallback, useRef, useState, useEffect, useMemo } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
@@ -30,68 +30,42 @@ const messages = defineMessages({
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 
-class LanguageDropdownMenu extends PureComponent {
+const LanguageDropdownMenu = ({ value, guess, frequentlyUsedLanguages, onClose, onChange, languages = preloadedLanguages, intl }) => {
+  const [searchValue, setSearchValue] = useState('');
+  const nodeRef = useRef(null);
+  const listNodeRef = useRef(null);
 
-  static propTypes = {
-    value: PropTypes.string.isRequired,
-    guess: PropTypes.string,
-    frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string).isRequired,
-    onClose: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
-    languages: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
-    intl: PropTypes.object,
-  };
-
-  static defaultProps = {
-    languages: preloadedLanguages,
-  };
-
-  state = {
-    searchValue: '',
-  };
-
-  handleDocumentClick = e => {
-    if (this.node && !this.node.contains(e.target)) {
-      this.props.onClose();
+  const handleDocumentClick = useCallback((e) => {
+    if (nodeRef.current && !nodeRef.current.contains(e.target)) {
+      onClose();
       e.stopPropagation();
     }
-  };
+  }, [nodeRef, onClose]);
 
-  componentDidMount () {
-    document.addEventListener('click', this.handleDocumentClick, { capture: true });
-    document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+  useEffect(() => {
+    document.addEventListener('click', handleDocumentClick, { capture: true });
+    document.addEventListener('touchend', handleDocumentClick, listenerOptions);
 
     // Because of https://github.com/react-bootstrap/react-bootstrap/issues/2614 we need
     // to wait for a frame before focusing
     requestAnimationFrame(() => {
-      if (this.node) {
-        const element = this.node.querySelector('input[type="search"]');
+      if (nodeRef.current) {
+        const element = nodeRef.current.querySelector('input[type="search"]');
         if (element) element.focus();
       }
     });
-  }
 
-  componentWillUnmount () {
-    document.removeEventListener('click', this.handleDocumentClick, { capture: true });
-    document.removeEventListener('touchend', this.handleDocumentClick, listenerOptions);
-  }
+    return () => {
+      document.removeEventListener('click', handleDocumentClick, { capture: true });
+      document.removeEventListener('touchend', handleDocumentClick, listenerOptions);
+    };
+  }, [nodeRef, handleDocumentClick]);
 
-  setRef = c => {
-    this.node = c;
-  };
+  const handleSearchChange = useCallback(({ target }) => {
+    setSearchValue(target.value);
+  }, [setSearchValue]);
 
-  setListRef = c => {
-    this.listNode = c;
-  };
-
-  handleSearchChange = ({ target }) => {
-    this.setState({ searchValue: target.value });
-  };
-
-  search () {
-    const { languages, value, frequentlyUsedLanguages, guess } = this.props;
-    const { searchValue } = this.state;
-
+  const results = useMemo(() => {
     if (searchValue === '') {
       return [...languages].sort((a, b) => {
 
@@ -119,20 +93,19 @@ class LanguageDropdownMenu extends PureComponent {
       limit: 5,
       threshold: -10000,
     }).map(result => result.obj);
-  }
+  }, [searchValue, languages, guess, frequentlyUsedLanguages, value]);
 
-  handleClick = e => {
+  const handleClick = useCallback((e) => {
     const value = e.currentTarget.getAttribute('data-index');
 
     e.preventDefault();
 
-    this.props.onClose();
-    this.props.onChange(value);
-  };
+    onClose();
+    onChange(value);
+  }, [onClose, onChange]);
 
-  handleKeyDown = e => {
-    const { onClose } = this.props;
-    const index = Array.from(this.listNode.childNodes).findIndex(node => node === e.currentTarget);
+  const handleKeyDown = useCallback(e => {
+    const index = Array.from(listNodeRef.current.childNodes).findIndex(node => node === e.currentTarget);
 
     let element = null;
 
@@ -142,26 +115,26 @@ class LanguageDropdownMenu extends PureComponent {
       break;
     case ' ':
     case 'Enter':
-      this.handleClick(e);
+      handleClick(e);
       break;
     case 'ArrowDown':
-      element = this.listNode.childNodes[index + 1] || this.listNode.firstChild;
+      element = listNodeRef.current.childNodes[index + 1] || listNodeRef.current.firstChild;
       break;
     case 'ArrowUp':
-      element = this.listNode.childNodes[index - 1] || this.listNode.lastChild;
+      element = listNodeRef.current.childNodes[index - 1] || listNodeRef.current.lastChild;
       break;
     case 'Tab':
       if (e.shiftKey) {
-        element = this.listNode.childNodes[index - 1] || this.listNode.lastChild;
+        element = listNodeRef.current.childNodes[index - 1] || listNodeRef.current.lastChild;
       } else {
-        element = this.listNode.childNodes[index + 1] || this.listNode.firstChild;
+        element = listNodeRef.current.childNodes[index + 1] || listNodeRef.current.firstChild;
       }
       break;
     case 'Home':
-      element = this.listNode.firstChild;
+      element = listNodeRef.current.firstChild;
       break;
     case 'End':
-      element = this.listNode.lastChild;
+      element = listNodeRef.current.lastChild;
       break;
     }
 
@@ -170,18 +143,15 @@ class LanguageDropdownMenu extends PureComponent {
       e.preventDefault();
       e.stopPropagation();
     }
-  };
+  }, [listNodeRef, onClose, handleClick]);
 
-  handleSearchKeyDown = e => {
-    const { onChange, onClose } = this.props;
-    const { searchValue } = this.state;
-
+  const handleSearchKeyDown = useCallback(e => {
     let element = null;
 
     switch(e.key) {
     case 'Tab':
     case 'ArrowDown':
-      element = this.listNode.firstChild;
+      element = listNodeRef.current.firstChild;
 
       if (element) {
         element.focus();
@@ -191,7 +161,7 @@ class LanguageDropdownMenu extends PureComponent {
 
       break;
     case 'Enter':
-      element = this.listNode.firstChild;
+      element = listNodeRef.current.firstChild;
 
       if (element) {
         onChange(element.getAttribute('data-index'));
@@ -206,43 +176,41 @@ class LanguageDropdownMenu extends PureComponent {
 
       break;
     }
-  };
+  }, [listNodeRef, onChange, onClose, searchValue]);
 
-  handleClear = () => {
-    this.setState({ searchValue: '' });
-  };
+  const handleClear = useCallback(() => {
+    setSearchValue('');
+  }, [setSearchValue]);
 
-  renderItem = lang => {
-    const { value } = this.props;
+  const isSearching = searchValue !== '';
 
-    return (
-      <div key={lang[0]} role='option' tabIndex={0} data-index={lang[0]} className={classNames('language-dropdown__dropdown__results__item', { active: lang[0] === value })} aria-selected={lang[0] === value} onClick={this.handleClick} onKeyDown={this.handleKeyDown}>
-        <span className='language-dropdown__dropdown__results__item__native-name' lang={lang[0]}>{lang[2]}</span> <span className='language-dropdown__dropdown__results__item__common-name'>({lang[1]})</span>
+  return (
+    <div ref={nodeRef}>
+      <div className='emoji-mart-search'>
+        <input type='search' value={searchValue} onChange={handleSearchChange} onKeyDown={handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
+        <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={handleClear}><Icon icon={!isSearching ? SearchIcon : CancelIcon} /></button>
       </div>
-    );
-  };
 
-  render () {
-    const { intl } = this.props;
-    const { searchValue } = this.state;
-    const isSearching = searchValue !== '';
-    const results = this.search();
-
-    return (
-      <div ref={this.setRef}>
-        <div className='emoji-mart-search'>
-          <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
-          <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}><Icon icon={!isSearching ? SearchIcon : CancelIcon} /></button>
-        </div>
-
-        <div className='language-dropdown__dropdown__results emoji-mart-scroll' role='listbox' ref={this.setListRef}>
-          {results.map(this.renderItem)}
-        </div>
+      <div className='language-dropdown__dropdown__results emoji-mart-scroll' role='listbox' ref={listNodeRef}>
+        {results.map((lang) => (
+          <div key={lang[0]} role='option' tabIndex={0} data-index={lang[0]} className={classNames('language-dropdown__dropdown__results__item', { active: lang[0] === value })} aria-selected={lang[0] === value} onClick={handleClick} onKeyDown={handleKeyDown}>
+            <span className='language-dropdown__dropdown__results__item__native-name' lang={lang[0]}>{lang[2]}</span> <span className='language-dropdown__dropdown__results__item__common-name'>({lang[1]})</span>
+          </div>
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
+};
 
-}
+LanguageDropdownMenu.propTypes = {
+  value: PropTypes.string.isRequired,
+  guess: PropTypes.string,
+  frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onClose: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  languages: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
+  intl: PropTypes.object,
+};
 
 const getFrequentlyUsedLanguages = createSelector([
   state => state.getIn(['settings', 'frequentlyUsedLanguages'], ImmutableMap()),
