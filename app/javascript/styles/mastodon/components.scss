@@ -50,6 +50,34 @@
   }
 }
 
+.help-button {
+  background: $ui-button-background-color;
+  border: 0;
+  color: $ui-button-color;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: $ui-button-focus-background-color;
+  }
+
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
+  }
+
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
 .button {
   background-color: $ui-button-background-color;
   border: 10px none;
@@ -6089,6 +6117,20 @@ a.status-card {
         max-height: 45vh;
       }
     }
+  }
+
+  &__popout {
+    background: var(--dropdown-background-color);
+    backdrop-filter: var(--background-filter);
+    border: 1px solid var(--dropdown-border-color);
+    box-shadow: var(--dropdown-shadow);
+    max-width: 320px;
+    padding: 16px;
+    border-radius: 8px;
+    z-index: 9999 !important;
+    font-size: 14px;
+    line-height: 20px;
+    color: $darker-text-color;
   }
 
   .copy-paste-text {

@@ -83,9 +83,12 @@ code {
     &__toolbar {
       margin-top: 16px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
       gap: 16px;
+
+      .character-counter {
+        flex: 0 0 auto;
+      }
     }
 
     &.hidden {
@@ -565,7 +568,7 @@ code {
     margin-bottom: 15px;
   }
 
-  button:not(.button, .link-button) {
+  button:not(.button, .link-button, .help-button) {
     display: block;
     width: 100%;
     border: 0;
