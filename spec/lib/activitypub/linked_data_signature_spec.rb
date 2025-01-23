@@ -13,10 +13,13 @@ RSpec.describe ActivityPub::LinkedDataSignature do
     {
       '@context' => 'https://www.w3.org/ns/activitystreams',
       'id' => 'http://example.com/hello-world',
+      'type' => 'Note',
+      'content' => 'Hello world',
     }
   end
 
-  let(:json) { raw_json.merge('signature' => signature) }
+  let(:signed_json) { raw_json.merge('signature' => signature) }
+  let(:json) { signed_json }
 
   describe '#verify_actor!' do
     context 'when signature matches' do
@@ -85,6 +88,54 @@ RSpec.describe ActivityPub::LinkedDataSignature do
       end
 
       let(:signature) { raw_signature.merge('type' => 'RsaSignature2017', 'signatureValue' => 's69F3mfddd99dGjmvjdjjs81e12jn121Gkm1') }
+
+      it 'returns nil' do
+        expect(subject.verify_actor!).to be_nil
+      end
+    end
+
+    context 'when an attribute has been removed from the document' do
+      let(:signature) { raw_signature.merge('type' => 'RsaSignature2017', 'signatureValue' => sign(sender, raw_signature, raw_json)) }
+      let(:json) { signed_json.without('content') }
+
+      let(:raw_signature) do
+        {
+          'creator' => 'http://example.com/alice',
+          'created' => '2017-09-23T20:21:34Z',
+        }
+      end
+
+      it 'returns nil' do
+        expect(subject.verify_actor!).to be_nil
+      end
+    end
+
+    context 'when an attribute has been added to the document' do
+      let(:signature) { raw_signature.merge('type' => 'RsaSignature2017', 'signatureValue' => sign(sender, raw_signature, raw_json)) }
+      let(:json) { signed_json.merge('attributedTo' => 'http://example.com/bob') }
+
+      let(:raw_signature) do
+        {
+          'creator' => 'http://example.com/alice',
+          'created' => '2017-09-23T20:21:34Z',
+        }
+      end
+
+      it 'returns nil' do
+        expect(subject.verify_actor!).to be_nil
+      end
+    end
+
+    context 'when an existing attribute has been changed' do
+      let(:signature) { raw_signature.merge('type' => 'RsaSignature2017', 'signatureValue' => sign(sender, raw_signature, raw_json)) }
+      let(:json) { signed_json.merge('content' => 'oops') }
+
+      let(:raw_signature) do
+        {
+          'creator' => 'http://example.com/alice',
+          'created' => '2017-09-23T20:21:34Z',
+        }
+      end
 
       it 'returns nil' do
         expect(subject.verify_actor!).to be_nil
