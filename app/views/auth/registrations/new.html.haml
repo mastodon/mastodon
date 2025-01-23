@@ -72,7 +72,7 @@
   .fields-group
     = f.input :agreement,
               as: :boolean,
-              label: t('auth.user_agreement_html', privacy_policy_path: privacy_policy_path, terms_of_service_path: terms_of_service_path),
+              label: TermsOfService.live.exists? ? t('auth.user_agreement_html', privacy_policy_path: privacy_policy_path, terms_of_service_path: terms_of_service_path) : t('auth.user_privacy_agreement_html', privacy_policy_path: privacy_policy_path),
               required: false,
               wrapper: :with_label
 
