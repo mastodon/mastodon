@@ -7,7 +7,7 @@ import { debounce } from 'lodash';
 
 import { changeComposeLanguage } from 'mastodon/actions/compose';
 
-import LanguageDropdown from '../components/language_dropdown';
+import { LanguageDropdown } from '../components/language_dropdown';
 import { urlRegex } from '../util/url_regex';
 
 const getFrequentlyUsedLanguages = createSelector([

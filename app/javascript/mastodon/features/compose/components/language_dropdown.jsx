@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { useCallback, useRef, useState, PureComponent } from 'react';
 
-import { injectIntl, defineMessages } from 'react-intl';
+import { useIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -237,94 +237,77 @@ class LanguageDropdownMenu extends PureComponent {
 
 }
 
-class LanguageDropdown extends PureComponent {
+export const LanguageDropdown = ({
+  value,
+  frequentlyUsedLanguages,
+  guess,
+  onChange
+}) => {
+  const [open, setOpen] = useState(false);
+  const [placement, setPlacement] = useState('bottom');
+  const activeElementRef = useRef(null);
+  const targetRef = useRef(null);
+  const intl = useIntl();
+  const current = preloadedLanguages.find(lang => lang[0] === value) ?? [];
 
-  static propTypes = {
-    value: PropTypes.string,
-    frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string),
-    guess: PropTypes.string,
-    intl: PropTypes.object.isRequired,
-    onChange: PropTypes.func,
-  };
+  const handleToggle = useCallback(() => {
+    if (open && activeElementRef.current)
+      activeElementRef.current.focus({ preventScroll: true });
 
-  state = {
-    open: false,
-    placement: 'bottom',
-  };
+    setOpen(!open);
+  }, [open, setOpen]);
 
-  handleToggle = () => {
-    if (this.state.open && this.activeElement) {
-      this.activeElement.focus({ preventScroll: true });
-    }
+  const handleClose = useCallback(() => {
+    if (open && activeElementRef.current)
+      activeElementRef.current.focus({ preventScroll: true });
 
-    this.setState({ open: !this.state.open });
-  };
+    setOpen(false);
+  }, [open, setOpen]);
 
-  handleClose = () => {
-    if (this.state.open && this.activeElement) {
-      this.activeElement.focus({ preventScroll: true });
-    }
-
-    this.setState({ open: false });
-  };
-
-  handleChange = value => {
-    const { onChange } = this.props;
+  const handleChange = useCallback((value) => {
     onChange(value);
-  };
+  }, [onChange]);
 
-  setTargetRef = c => {
-    this.target = c;
-  };
+  const handleOverlayEnter = useCallback(({ placement }) => {
+    setPlacement(placement);
+  }, [setPlacement]);
 
-  findTarget = () => {
-    return this.target;
-  };
+  return (
+    <div ref={targetRef}>
+      <button
+        type='button'
+        title={intl.formatMessage(messages.changeLanguage)}
+        aria-expanded={open}
+        onClick={handleToggle}
+        className={classNames('dropdown-button', { active: open, warning: guess !== '' && guess !== value })}
+      >
+        <Icon icon={TranslateIcon} />
+        <span className='dropdown-button__label'>{current[2] ?? value}</span>
+      </button>
 
-  handleOverlayEnter = (state) => {
-    this.setState({ placement: state.placement });
-  };
-
-  render () {
-    const { value, guess, intl, frequentlyUsedLanguages } = this.props;
-    const { open, placement } = this.state;
-    const current = preloadedLanguages.find(lang => lang[0] === value) ?? [];
-
-    return (
-      <div ref={this.setTargetRef} onKeyDown={this.handleKeyDown}>
-        <button
-          type='button'
-          title={intl.formatMessage(messages.changeLanguage)}
-          aria-expanded={open}
-          onClick={this.handleToggle}
-          onMouseDown={this.handleMouseDown}
-          onKeyDown={this.handleButtonKeyDown}
-          className={classNames('dropdown-button', { active: open, warning: guess !== '' && guess !== value })}
-        >
-          <Icon icon={TranslateIcon} />
-          <span className='dropdown-button__label'>{current[2] ?? value}</span>
-        </button>
-
-        <Overlay show={open} offset={[5, 5]} placement={placement} flip target={this.findTarget} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
-          {({ props, placement }) => (
-            <div {...props}>
-              <div className={`dropdown-animation language-dropdown__dropdown ${placement}`} >
-                <LanguageDropdownMenu
-                  value={value}
-                  guess={guess}
-                  frequentlyUsedLanguages={frequentlyUsedLanguages}
-                  onClose={this.handleClose}
-                  onChange={this.handleChange}
-                  intl={intl}
-                />
-              </div>
+      <Overlay show={open} offset={[5, 5]} placement={placement} flip target={targetRef} popperConfig={{ strategy: 'fixed', onFirstUpdate: handleOverlayEnter }}>
+        {({ props, placement }) => (
+          <div {...props}>
+            <div className={`dropdown-animation language-dropdown__dropdown ${placement}`} >
+              <LanguageDropdownMenu
+                value={value}
+                guess={guess}
+                frequentlyUsedLanguages={frequentlyUsedLanguages}
+                onClose={handleClose}
+                onChange={handleChange}
+                intl={intl}
+              />
             </div>
-          )}
-        </Overlay>
-      </div>
-    );
-  }
+          </div>
+        )}
+      </Overlay>
+    </div>
+  );
+};
 
-}
-
-export default injectIntl(LanguageDropdown);
+LanguageDropdown.propTypes = {
+  value: PropTypes.string,
+  frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string),
+  guess: PropTypes.string,
+  onChange: PropTypes.func,
+};
