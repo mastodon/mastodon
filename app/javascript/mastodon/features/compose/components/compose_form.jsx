@@ -14,7 +14,6 @@ import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import { Button } from '../../../components/button';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
-import LanguageDropdown from '../containers/language_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
@@ -24,6 +23,7 @@ import { countableText } from '../util/counter';
 
 import { CharacterCounter } from './character_counter';
 import { EditIndicator } from './edit_indicator';
+import { LanguageDropdown } from './language_dropdown';
 import { NavigationBar } from './navigation_bar';
 import { PollForm } from "./poll_form";
 import { ReplyIndicator } from './reply_indicator';
