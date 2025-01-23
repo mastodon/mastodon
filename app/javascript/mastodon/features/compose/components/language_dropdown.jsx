@@ -30,10 +30,21 @@ const messages = defineMessages({
 
 const listenerOptions = supportsPassiveEvents ? { passive: true, capture: true } : true;
 
-const LanguageDropdownMenu = ({ value, guess, frequentlyUsedLanguages, onClose, onChange, languages = preloadedLanguages, intl }) => {
+const getFrequentlyUsedLanguages = createSelector([
+  state => state.getIn(['settings', 'frequentlyUsedLanguages'], ImmutableMap()),
+], languageCounters => (
+  languageCounters.keySeq()
+    .sort((a, b) => languageCounters.get(a) - languageCounters.get(b))
+    .reverse()
+    .toArray()
+));
+
+const LanguageDropdownMenu = ({ value, guess, onClose, onChange, languages = preloadedLanguages, intl }) => {
   const [searchValue, setSearchValue] = useState('');
   const nodeRef = useRef(null);
   const listNodeRef = useRef(null);
+
+  const frequentlyUsedLanguages = useAppSelector(getFrequentlyUsedLanguages);
 
   const handleDocumentClick = useCallback((e) => {
     if (nodeRef.current && !nodeRef.current.contains(e.target)) {
@@ -42,58 +53,9 @@ const LanguageDropdownMenu = ({ value, guess, frequentlyUsedLanguages, onClose, 
     }
   }, [nodeRef, onClose]);
 
-  useEffect(() => {
-    document.addEventListener('click', handleDocumentClick, { capture: true });
-    document.addEventListener('touchend', handleDocumentClick, listenerOptions);
-
-    // Because of https://github.com/react-bootstrap/react-bootstrap/issues/2614 we need
-    // to wait for a frame before focusing
-    requestAnimationFrame(() => {
-      if (nodeRef.current) {
-        const element = nodeRef.current.querySelector('input[type="search"]');
-        if (element) element.focus();
-      }
-    });
-
-    return () => {
-      document.removeEventListener('click', handleDocumentClick, { capture: true });
-      document.removeEventListener('touchend', handleDocumentClick, listenerOptions);
-    };
-  }, [nodeRef, handleDocumentClick]);
-
   const handleSearchChange = useCallback(({ target }) => {
     setSearchValue(target.value);
   }, [setSearchValue]);
-
-  const results = useMemo(() => {
-    if (searchValue === '') {
-      return [...languages].sort((a, b) => {
-
-        if (guess && a[0] === guess) { // Push guessed language higher than current selection
-          return -1;
-        } else if (guess && b[0] === guess) {
-          return 1;
-        } else if (a[0] === value) { // Push current selection to the top of the list
-          return -1;
-        } else if (b[0] === value) {
-          return 1;
-        } else {
-          // Sort according to frequently used languages
-
-          const indexOfA = frequentlyUsedLanguages.indexOf(a[0]);
-          const indexOfB = frequentlyUsedLanguages.indexOf(b[0]);
-
-          return ((indexOfA > -1 ? indexOfA : Infinity) - (indexOfB > -1 ? indexOfB : Infinity));
-        }
-      });
-    }
-
-    return fuzzysort.go(searchValue, languages, {
-      keys: ['0', '1', '2'],
-      limit: 5,
-      threshold: -10000,
-    }).map(result => result.obj);
-  }, [searchValue, languages, guess, frequentlyUsedLanguages, value]);
 
   const handleClick = useCallback((e) => {
     const value = e.currentTarget.getAttribute('data-index');
@@ -184,6 +146,55 @@ const LanguageDropdownMenu = ({ value, guess, frequentlyUsedLanguages, onClose, 
 
   const isSearching = searchValue !== '';
 
+  useEffect(() => {
+    document.addEventListener('click', handleDocumentClick, { capture: true });
+    document.addEventListener('touchend', handleDocumentClick, listenerOptions);
+
+    // Because of https://github.com/react-bootstrap/react-bootstrap/issues/2614 we need
+    // to wait for a frame before focusing
+    requestAnimationFrame(() => {
+      if (nodeRef.current) {
+        const element = nodeRef.current.querySelector('input[type="search"]');
+        if (element) element.focus();
+      }
+    });
+
+    return () => {
+      document.removeEventListener('click', handleDocumentClick, { capture: true });
+      document.removeEventListener('touchend', handleDocumentClick, listenerOptions);
+    };
+  }, [nodeRef, handleDocumentClick]);
+
+  const results = useMemo(() => {
+    if (searchValue === '') {
+      return [...languages].sort((a, b) => {
+
+        if (guess && a[0] === guess) { // Push guessed language higher than current selection
+          return -1;
+        } else if (guess && b[0] === guess) {
+          return 1;
+        } else if (a[0] === value) { // Push current selection to the top of the list
+          return -1;
+        } else if (b[0] === value) {
+          return 1;
+        } else {
+          // Sort according to frequently used languages
+
+          const indexOfA = frequentlyUsedLanguages.indexOf(a[0]);
+          const indexOfB = frequentlyUsedLanguages.indexOf(b[0]);
+
+          return ((indexOfA > -1 ? indexOfA : Infinity) - (indexOfB > -1 ? indexOfB : Infinity));
+        }
+      });
+    }
+
+    return fuzzysort.go(searchValue, languages, {
+      keys: ['0', '1', '2'],
+      limit: 5,
+      threshold: -10000,
+    }).map(result => result.obj);
+  }, [searchValue, languages, guess, frequentlyUsedLanguages, value]);
+
   return (
     <div ref={nodeRef}>
       <div className='emoji-mart-search'>
@@ -205,21 +216,11 @@ const LanguageDropdownMenu = ({ value, guess, frequentlyUsedLanguages, onClose, 
 LanguageDropdownMenu.propTypes = {
   value: PropTypes.string.isRequired,
   guess: PropTypes.string,
-  frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string).isRequired,
   onClose: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   languages: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
   intl: PropTypes.object,
 };
-
-const getFrequentlyUsedLanguages = createSelector([
-  state => state.getIn(['settings', 'frequentlyUsedLanguages'], ImmutableMap()),
-], languageCounters => (
-  languageCounters.keySeq()
-    .sort((a, b) => languageCounters.get(a) - languageCounters.get(b))
-    .reverse()
-    .toArray()
-));
 
 export const LanguageDropdown = () => {
   const [open, setOpen] = useState(false);
@@ -231,7 +232,6 @@ export const LanguageDropdown = () => {
   const intl = useIntl();
 
   const dispatch = useAppDispatch();
-  const frequentlyUsedLanguages = useAppSelector(getFrequentlyUsedLanguages);
   const value = useAppSelector((state) => state.compose.get('language'));
   const text = useAppSelector((state) => state.compose.get('text'));
 
@@ -287,10 +287,8 @@ export const LanguageDropdown = () => {
               <LanguageDropdownMenu
                 value={value}
                 guess={guess}
-                frequentlyUsedLanguages={frequentlyUsedLanguages}
                 onClose={handleClose}
                 onChange={handleChange}
-                intl={intl}
               />
             </div>
           </div>
