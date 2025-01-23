@@ -14,7 +14,7 @@ module Status::FetchRepliesConcern
     scope :created_recently, -> { where(created_at: FETCH_REPLIES_INITIAL_WAIT_MINUTES.ago..) }
     scope :not_created_recently, -> { where(created_at: ..FETCH_REPLIES_INITIAL_WAIT_MINUTES.ago) }
     scope :fetched_recently, -> { where(fetched_replies_at: FETCH_REPLIES_COOLDOWN_MINUTES.ago..) }
-    scope :not_fetched_recently, -> { where(fetched_replies_at: ..FETCH_REPLIES_COOLDOWN_MINUTES.ago).or(where(fetched_replies_at: nil)) }
+    scope :not_fetched_recently, -> { where(fetched_replies_at: [nil, ..FETCH_REPLIES_COOLDOWN_MINUTES.ago]) }
 
     scope :should_not_fetch_replies, -> { local.merge(created_recently).merge(fetched_recently) }
     scope :should_fetch_replies, -> { local.invert_where.merge(not_created_recently).merge(not_fetched_recently) }
@@ -25,8 +25,8 @@ module Status::FetchRepliesConcern
     # a) has only remote followers
     # b) has local follows that were created after the last update time, or
     # c) has no known followers
-    scope :unsubscribed, lambda {
-      local.invert_where.merge(
+    scope :unsubscribed, -> {
+      remote.merge(
         Status.left_outer_joins(account: :followers).where.not(followers_accounts: { domain: nil })
               .or(where.not('follows.created_at < statuses.updated_at'))
               .or(where(follows: { id: nil }))
