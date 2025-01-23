@@ -8,6 +8,7 @@ import { debounce } from 'lodash';
 import { changeComposeLanguage } from 'mastodon/actions/compose';
 
 import LanguageDropdown from '../components/language_dropdown';
+import { urlRegex } from '../util/url_regex';
 
 const getFrequentlyUsedLanguages = createSelector([
   state => state.getIn(['settings', 'frequentlyUsedLanguages'], ImmutableMap()),
@@ -71,7 +72,16 @@ const ISO_639_MAP = {
   vie: 'vi', // Vietnamese
 };
 
-const debouncedLande = debounce((text) => lande(text), 500, { trailing: true });
+const debouncedLande = debounce((text) => {
+  text = text
+    .replace(urlRegex, '')
+    .replace(/(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/ig, '');
+
+  if (text.length <= 20)
+    return undefined;
+
+  return lande(text);
+}, 500, { trailing: true });
 
 const detectedLanguage = createSelector([
   state => state.getIn(['compose', 'text']),
