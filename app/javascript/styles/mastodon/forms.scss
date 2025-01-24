@@ -564,11 +564,14 @@ code {
   }
 
   .stacked-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     margin-top: 30px;
     margin-bottom: 15px;
   }
 
-  button:not(.button, .link-button, .help-button) {
+  .btn {
     display: block;
     width: 100%;
     border: 0;
@@ -585,8 +588,6 @@ code {
     cursor: pointer;
     font-weight: 500;
     outline: 0;
-    margin-bottom: 10px;
-    margin-inline-end: 10px;
 
     &:last-child {
       margin-inline-end: 0;
