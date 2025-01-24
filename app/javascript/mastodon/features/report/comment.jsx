@@ -59,12 +59,7 @@ const Comment = ({ comment, domain, statusIds, isRemote, isSubmitting, selectedD
 
     loadedRef.current = true;
 
-    // First, pre-select known domains
-    availableDomains.forEach((domain) => {
-      onToggleDomain(domain, true);
-    });
-
-    // Then, fetch missing replied-to accounts
+    // Fetch missing replied-to accounts
     const unknownAccounts = OrderedSet(accountIds.filter(accountId => accountId && !accountsMap.has(accountId)));
     unknownAccounts.forEach((accountId) => {
       dispatch(fetchAccount(accountId));
