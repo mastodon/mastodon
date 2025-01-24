@@ -46,13 +46,6 @@ const LanguageDropdownMenu = ({ value, guess, onClose, onChange, languages = pre
 
   const frequentlyUsedLanguages = useAppSelector(getFrequentlyUsedLanguages);
 
-  const handleDocumentClick = useCallback((e) => {
-    if (nodeRef.current && !nodeRef.current.contains(e.target)) {
-      onClose();
-      e.stopPropagation();
-    }
-  }, [nodeRef, onClose]);
-
   const handleSearchChange = useCallback(({ target }) => {
     setSearchValue(target.value);
   }, [setSearchValue]);
@@ -105,7 +98,7 @@ const LanguageDropdownMenu = ({ value, guess, onClose, onChange, languages = pre
       e.preventDefault();
       e.stopPropagation();
     }
-  }, [listNodeRef, onClose, handleClick]);
+  }, [onClose, handleClick]);
 
   const handleSearchKeyDown = useCallback(e => {
     let element = null;
@@ -138,7 +131,7 @@ const LanguageDropdownMenu = ({ value, guess, onClose, onChange, languages = pre
 
       break;
     }
-  }, [listNodeRef, onChange, onClose, searchValue]);
+  }, [onChange, onClose, searchValue]);
 
   const handleClear = useCallback(() => {
     setSearchValue('');
@@ -147,6 +140,13 @@ const LanguageDropdownMenu = ({ value, guess, onClose, onChange, languages = pre
   const isSearching = searchValue !== '';
 
   useEffect(() => {
+    const handleDocumentClick = (e) => {
+      if (nodeRef.current && !nodeRef.current.contains(e.target)) {
+        onClose();
+        e.stopPropagation();
+      }
+    };
+
     document.addEventListener('click', handleDocumentClick, { capture: true });
     document.addEventListener('touchend', handleDocumentClick, listenerOptions);
 
@@ -163,7 +163,7 @@ const LanguageDropdownMenu = ({ value, guess, onClose, onChange, languages = pre
       document.removeEventListener('click', handleDocumentClick, { capture: true });
       document.removeEventListener('touchend', handleDocumentClick, listenerOptions);
     };
-  }, [nodeRef, handleDocumentClick]);
+  }, [onClose]);
 
   const results = useMemo(() => {
     if (searchValue === '') {
