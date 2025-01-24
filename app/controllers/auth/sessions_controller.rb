@@ -73,7 +73,7 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :otp_attempt, credential: {})
+    params.expect(user: [:email, :password, :otp_attempt, credential: {}])
   end
 
   def after_sign_in_path_for(resource)
