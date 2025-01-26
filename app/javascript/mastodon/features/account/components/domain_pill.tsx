@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -16,6 +16,7 @@ export const DomainPill: React.FC<{
   username: string;
   isSelf: boolean;
 }> = ({ domain, username, isSelf }) => {
+  const accessibilityId = useId();
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const triggerRef = useRef(null);
@@ -34,6 +35,8 @@ export const DomainPill: React.FC<{
         className={classNames('account__domain-pill', { active: open })}
         ref={triggerRef}
         onClick={handleClick}
+        aria-expanded={open}
+        aria-controls={accessibilityId}
       >
         {domain}
       </button>
@@ -48,6 +51,8 @@ export const DomainPill: React.FC<{
         {({ props }) => (
           <div
             {...props}
+            role='region'
+            id={accessibilityId}
             className='account__domain-pill__popout dropdown-animation'
           >
             <div className='account__domain-pill__popout__header'>
