@@ -55,11 +55,11 @@ export const Card = ({ id, source }) => {
       </div>
 
       <div className='explore__suggestions__card__body'>
-        <Link to={`/@${account.get('acct')}`}><Avatar account={account} size={48} /></Link>
+        <Link to={`/@${account.get('acct')}`} data-hover-card-account={account.id}><Avatar account={account} size={48} /></Link>
 
         <div className='explore__suggestions__card__body__main'>
           <div className='explore__suggestions__card__body__main__name-button'>
-            <Link className='explore__suggestions__card__body__main__name-button__name' to={`/@${account.get('acct')}`}><DisplayName account={account} /></Link>
+            <Link className='explore__suggestions__card__body__main__name-button__name' to={`/@${account.get('acct')}`} data-hover-card-account={account.id}><DisplayName account={account} /></Link>
             <IconButton iconComponent={CloseIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
             <FollowButton accountId={account.get('id')} />
           </div>
