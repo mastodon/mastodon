@@ -451,6 +451,15 @@
   background: darken($ui-base-color, 10%);
 }
 
+.dropdown-button.warning {
+  border-color: #b3261e;
+  color: #b3261e;
+
+  &.active {
+    background-color: #f9dedc;
+  }
+}
+
 .search__popout__menu__item {
   &:hover,
   &:active,
