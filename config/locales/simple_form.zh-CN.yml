@@ -3,6 +3,7 @@ zh-CN:
   simple_form:
     hints:
       account:
+        attribution_domains: 每行一个域名。这样就可以保护作品免受虚假署名。
         discoverable: 你的公开嘟文和个人资料可能会在 Mastodon 的多个位置展示，你的个人资料可能会被推荐给其他用户。
         display_name: 你的全名或昵称。
         fields: 你的主页、人称代词、年龄，以及任何你想要添加的内容。
@@ -46,7 +47,7 @@ zh-CN:
         current_username: 请输入当前账号的用户名以确认
         digest: 仅在你长时间未登录，且收到了私信时发送
         email: 我们会向你发送一封确认邮件
-        header: 支持WEBP、PNG、GIF 或 JPG。最大 %{size}。分辨率将被压缩至 %{dimensions}px
+        header: 支持 WEBP、PNG、GIF 或 JPG。最大 %{size}。分辨率将被压缩至 %{dimensions}px
         inbox_url: 从你想要使用的中继站的主页上复制 URL
         irreversible: 被过滤的嘟文会永久消失，移除过滤规则后也不会恢复
         locale: 在用户界面、电子邮件和推送通知中使用的语言
@@ -155,6 +156,7 @@ zh-CN:
         url: 事件将被发往的目的地
     labels:
       account:
+        attribution_domains: 授权展示你的署名的网站
         discoverable: 在发现算法中展示你的账号与嘟文
         fields:
           name: 标签
