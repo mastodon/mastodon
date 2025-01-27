@@ -145,7 +145,6 @@ class Item extends PureComponent {
             srcSet={srcSet}
             sizes={sizes}
             alt={description}
-            title={description}
             lang={lang}
             style={{ objectPosition: `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
@@ -167,7 +166,6 @@ class Item extends PureComponent {
           <video
             className='media-gallery__item-gifv-thumbnail'
             aria-label={description}
-            title={description}
             lang={lang}
             role='application'
             src={attachment.get('url')}
