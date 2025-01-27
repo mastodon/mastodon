@@ -36,7 +36,7 @@ class RelationshipsController < ApplicationController
   end
 
   def form_account_batch_params
-    params.require(:form_account_batch).permit(:action, account_ids: [])
+    params.expect(form_account_batch: [:action, account_ids: []])
   end
 
   def following_relationship?
