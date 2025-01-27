@@ -58,11 +58,9 @@ RSpec.describe Admin::EmailDomainBlocksController do
         post :create, params: { email_domain_block: { domain: 'example.com' }, save: '' }
       end
 
-      it 'blocks the domain' do
+      it 'blocks the domain and redirects to email domain blocks' do
         expect(EmailDomainBlock.find_by(domain: 'example.com')).to_not be_nil
-      end
 
-      it 'redirects to e-mail domain blocks' do
         expect(response).to redirect_to(admin_email_domain_blocks_path)
       end
     end
