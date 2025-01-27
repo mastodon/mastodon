@@ -34,7 +34,8 @@ module Admin
     end
 
     def resource_params
-      params.require(:admin_account_action).permit(:type, :report_id, :warning_preset_id, :text, :send_email_notification, :include_statuses)
+      params
+        .expect(admin_account_action: [:type, :report_id, :warning_preset_id, :text, :send_email_notification, :include_statuses])
     end
   end
 end
