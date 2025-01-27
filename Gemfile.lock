@@ -580,6 +580,8 @@ GEM
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
     prettyprint (0.2.0)
+    prometheus_exporter (2.2.0)
+      webrick
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -984,6 +986,7 @@ DEPENDENCIES
   pg (~> 1.5)
   pghero
   premailer-rails
+  prometheus_exporter (~> 2.2)
   propshaft
   public_suffix (~> 6.0)
   puma (~> 6.3)
