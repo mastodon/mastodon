@@ -2398,9 +2398,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/ts-transformer@npm:3.13.30":
-  version: 3.13.30
-  resolution: "@formatjs/ts-transformer@npm:3.13.30"
+"@formatjs/ts-transformer@npm:3.13.31":
+  version: 3.13.31
+  resolution: "@formatjs/ts-transformer@npm:3.13.31"
   dependencies:
     "@formatjs/icu-messageformat-parser": "npm:2.11.0"
     "@types/json-stable-stringify": "npm:1"
@@ -2410,11 +2410,11 @@ __metadata:
     tslib: "npm:2"
     typescript: "npm:5"
   peerDependencies:
-    ts-jest: ">=27"
+    ts-jest: 27 || 28 || 29
   peerDependenciesMeta:
     ts-jest:
       optional: true
-  checksum: 10c0/ef828b477863b8205390ed42d94c4a8d4fcab10d4982e27dc3feaa85c1e2da317b73108f8d3b32f6191d1c5c41eb34d6909a53ba734dfca9146842992268d95c
+  checksum: 10c0/bfd7a41203c2b1691d883b3c306f3ae413b94c4875dec75df2be0e62da22625f673e41ecdc3257be40fe4a5b22a311365c2462d00a98f9bac59f00488543add0
   languageName: node
   linkType: hard
 
@@ -5309,8 +5309,8 @@ __metadata:
   linkType: hard
 
 "babel-plugin-formatjs@npm:^10.5.1":
-  version: 10.5.33
-  resolution: "babel-plugin-formatjs@npm:10.5.33"
+  version: 10.5.34
+  resolution: "babel-plugin-formatjs@npm:10.5.34"
   dependencies:
     "@babel/core": "npm:^7.25.0"
     "@babel/helper-plugin-utils": "npm:^7.25.0"
@@ -5318,12 +5318,12 @@ __metadata:
     "@babel/traverse": "npm:^7.25.0"
     "@babel/types": "npm:^7.25.0"
     "@formatjs/icu-messageformat-parser": "npm:2.11.0"
-    "@formatjs/ts-transformer": "npm:3.13.30"
+    "@formatjs/ts-transformer": "npm:3.13.31"
     "@types/babel__core": "npm:^7.20.5"
     "@types/babel__helper-plugin-utils": "npm:^7.10.3"
     "@types/babel__traverse": "npm:^7.20.6"
     tslib: "npm:2"
-  checksum: 10c0/57c0477c576fbf717a11f0ca15d3f18990264a36f20d8d7e2b66461ed1e6b6880bb4b7847b7f4289a81b45f36b7ec2687becb2dde5006b53f97953b3cc3bc39b
+  checksum: 10c0/6e6c67db41044427a7f182e7c18a8519e5aca96645de094244b332cb8c82ed498c56a4634e4e4ed1a4ef85c8e996669ef5bddd63ee9c45d6e512cbbf782af2a2
   languageName: node
   linkType: hard
 
@@ -14590,24 +14590,24 @@ __metadata:
   linkType: hard
 
 "react-intl@npm:^7.0.0":
-  version: 7.1.3
-  resolution: "react-intl@npm:7.1.3"
+  version: 7.1.5
+  resolution: "react-intl@npm:7.1.5"
   dependencies:
     "@formatjs/ecma402-abstract": "npm:2.3.2"
     "@formatjs/icu-messageformat-parser": "npm:2.11.0"
     "@formatjs/intl": "npm:3.1.3"
     "@types/hoist-non-react-statics": "npm:3"
-    "@types/react": "npm:16 || 17 || 18"
+    "@types/react": "npm:16 || 17 || 18 || 19"
     hoist-non-react-statics: "npm:3"
     intl-messageformat: "npm:10.7.14"
     tslib: "npm:2"
   peerDependencies:
-    react: ^16.6.0 || 17 || 18
+    react: ^16.6.0 || 17 || 18 || 19
     typescript: 5
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/64d635819f4bdd09325ca4f7479c7b0254b45da76cc1cb70c4b51a404bf1cf2976125d4df5874fe34527e84813703ac6ff707e06e0e96616951fae1f20f9d246
+  checksum: 10c0/9d8d5afae16d26466f82fc1c0b8c4afd7559a8faa5b3ef31983a0af540b1b225fa89208b48bf9ec83056c0a27f2972fb86f2717422f788efdc819fb0e0846134
   languageName: node
   linkType: hard
 
