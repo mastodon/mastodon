@@ -24,8 +24,10 @@ module Admin
       flash[:alert] = I18n.t('admin.domain_blocks.no_domain_block_selected')
     rescue Mastodon::NotPermittedError
       flash[:alert] = I18n.t('admin.domain_blocks.not_permitted')
+    else
+      flash[:notice] = I18n.t('admin.domain_blocks.created_msg')
     ensure
-      redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+      redirect_to admin_instances_path(limited: '1')
     end
 
     def new
