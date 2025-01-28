@@ -72,6 +72,21 @@ RSpec.describe 'Reports' do
       end
     end
 
+    context 'when reporting yourself' do
+      let(:status)         { Fabricate(:status, account: user.account) }
+
+      it 'returns 422' do
+        subject
+
+        expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body).to match(a_hash_including(
+          error: "You cannot report your own posts."
+        ))
+      end
+    end
+
     context 'when a category is chosen' do
       let(:category) { 'spam' }
 

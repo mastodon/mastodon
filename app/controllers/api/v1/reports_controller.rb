@@ -7,6 +7,8 @@ class Api::V1::ReportsController < Api::BaseController
   override_rate_limit_headers :create, family: :reports
 
   def create
+    raise Mastodon::ValidationError, I18n.t('reports.errors.cannot_report_yourself') if current_account == reported_account
+
     @report = ReportService.new.call(
       current_account,
       reported_account,
