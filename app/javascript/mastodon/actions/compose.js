@@ -83,7 +83,6 @@ export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
 
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
-  uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
   open: { id: 'compose.published.open', defaultMessage: 'Open' },
   published: { id: 'compose.published.body', defaultMessage: 'Post published.' },
   saved: { id: 'compose.saved.body', defaultMessage: 'Post saved.' },
@@ -307,11 +306,6 @@ export function uploadCompose(files) {
 
     if (files.length + media.size + pending > uploadLimit) {
       dispatch(showAlert({ message: messages.uploadErrorLimit }));
-      return;
-    }
-
-    if (getState().getIn(['compose', 'poll'])) {
-      dispatch(showAlert({ message: messages.uploadErrorPoll }));
       return;
     }
 

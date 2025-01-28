@@ -13,7 +13,7 @@ const mapStateToProps = state => {
   const hasVideoOrAudio = state.getIn(['compose', 'media_attachments']).some(m => ['video', 'audio'].includes(m.get('type')));
 
   return {
-    disabled: isPoll || isUploading || isOverLimit || hasVideoOrAudio,
+    disabled:  isUploading || isOverLimit || hasVideoOrAudio,
     resetFileKey: state.getIn(['compose', 'resetFileKey']),
   };
 };
