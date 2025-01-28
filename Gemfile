@@ -100,6 +100,8 @@ gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
+gem 'prometheus_exporter', '~> 2.2', require: false
+
 gem 'opentelemetry-api', '~> 1.4.0'
 
 group :opentelemetry do

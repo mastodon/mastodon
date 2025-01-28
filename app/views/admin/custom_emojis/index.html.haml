@@ -35,7 +35,7 @@
 
     .actions
       %button.button= t('admin.accounts.search')
-      = link_to t('admin.accounts.reset'), admin_custom_emojis_path, class: 'button negative'
+      = link_to t('admin.accounts.reset'), admin_custom_emojis_path, class: 'button button--dangerous'
 
 = form_with model: @form, url: batch_admin_custom_emojis_path do |f|
   = hidden_field_tag :page, params[:page] || 1
@@ -72,7 +72,7 @@
             .input.select.optional
               .label_input
                 = f.select :category_id,
-                           options_from_collection_for_select(CustomEmojiCategory.all, 'id', 'name'),
+                           options_from_collection_for_select(CustomEmojiCategory.alphabetic.all, 'id', 'name'),
                            'aria-label': t('admin.custom_emojis.assign_category'),
                            class: 'select optional',
                            prompt: t('admin.custom_emojis.assign_category')

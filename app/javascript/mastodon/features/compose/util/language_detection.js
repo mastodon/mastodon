@@ -1,22 +1,7 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { Map as ImmutableMap } from 'immutable';
-import { connect } from 'react-redux';
-
 import lande from 'lande';
 import { debounce } from 'lodash';
 
-import { changeComposeLanguage } from 'mastodon/actions/compose';
-
-import LanguageDropdown from '../components/language_dropdown';
-
-const getFrequentlyUsedLanguages = createSelector([
-  state => state.getIn(['settings', 'frequentlyUsedLanguages'], ImmutableMap()),
-], languageCounters => (
-  languageCounters.keySeq()
-    .sort((a, b) => languageCounters.get(a) - languageCounters.get(b))
-    .reverse()
-    .toArray()
-));
+import { urlRegex } from './url_regex';
 
 const ISO_639_MAP = {
   afr: 'af', // Afrikaans
@@ -71,35 +56,21 @@ const ISO_639_MAP = {
   vie: 'vi', // Vietnamese
 };
 
-const debouncedLande = debounce((text) => lande(text), 500, { trailing: true });
+const guessLanguage = (text) => {
+  text = text
+    .replace(urlRegex, '')
+    .replace(/(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/ig, '');
 
-const detectedLanguage = createSelector([
-  state => state.getIn(['compose', 'text']),
-], text => {
   if (text.length > 20) {
-    const guesses = debouncedLande(text);
-    const [lang, confidence] = guesses[0];
-
-    if (confidence > 0.8) {
+    const [lang, confidence] = lande(text)[0];
+  
+    if (confidence > 0.8)
       return ISO_639_MAP[lang];
-    }
   }
 
   return '';
-});
+};
 
-const mapStateToProps = state => ({
-  frequentlyUsedLanguages: getFrequentlyUsedLanguages(state),
-  value: state.getIn(['compose', 'language']),
-  guess: detectedLanguage(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-
-  onChange (value) {
-    dispatch(changeComposeLanguage(value));
-  },
-
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(LanguageDropdown);
+export const debouncedGuess = debounce((text, setGuess) => {
+  setGuess(guessLanguage(text));
+}, 500, { leading: true, trailing: true });

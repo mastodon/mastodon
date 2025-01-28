@@ -17,6 +17,27 @@ workers     ENV.fetch('WEB_CONCURRENCY') { 2 }.to_i
 
 preload_app!
 
+if ENV['MASTODON_PROMETHEUS_EXPORTER_ENABLED'] == 'true'
+  require 'prometheus_exporter'
+  require 'prometheus_exporter/instrumentation'
+
+  on_worker_boot do
+    # Ruby process metrics (memory, GC, etc)
+    PrometheusExporter::Instrumentation::Process.start(type: 'puma')
+
+    # ActiveRecord metrics (connection pool usage)
+    PrometheusExporter::Instrumentation::ActiveRecord.start(
+      custom_labels: { type: 'puma' }, # optional params
+      config_labels: [:database, :host] # optional params
+    )
+  end
+
+  after_worker_boot do
+    # Puma metrics
+    PrometheusExporter::Instrumentation::Puma.start unless PrometheusExporter::Instrumentation::Puma.started?
+  end
+end
+
 on_worker_boot do
   ActiveSupport.on_load(:active_record) do
     ActiveRecord::Base.establish_connection

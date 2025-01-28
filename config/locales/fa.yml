@@ -388,7 +388,7 @@ fa:
       website: پایگاه وب
     disputes:
       appeals:
-        empty: هیچ درخواست تجدیدنظری یافت نشد
+        empty: هیچ درخواست تجدیدنظری یافت نشد.
         title: درخواست‌های تجدیدنظر
     domain_allows:
       add_new: مجاز کردن دامنه
@@ -672,7 +672,7 @@ fa:
         actions:
           delete_html: پست های توهین آمیز را حذف کنید
           mark_as_sensitive_html: رسانه پست های توهین آمیز را به عنوان حساس علامت گذاری کنید
-          silence_html: دسترسی <strong>@%{acct}</strong> را به شدت محدود کنید و نمایه و محتویات آنها را فقط برای افرادی که قبلاً آنها را دنبال می‌کنند قابل مشاهده کنید یا به صورت دستی نمایه آن را جستجو کنید.
+          silence_html: دسترسی <strong>@%{acct}</strong> را به شدت محدود کنید و نمایه و محتویات آنها را فقط برای افرادی که قبلاً آنها را دنبال می‌کنند قابل مشاهده کنید یا به صورت دستی نمایه آن را جستجو کنید
           suspend_html: تعلیق <strong>@%{acct}</strong>، غیرقابل دسترس کردن نمایه و محتوای آنها و تعامل با آنها غیر ممکن
         close_report: 'علامت گذاری گزارش #%{id} به عنوان حل شده است'
         close_reports_html: "<strong>همه</strong> گزارش‌ها در برابر <strong>@%{acct}</strong> را به‌عنوان حل‌وفصل علامت‌گذاری کنید"
@@ -1209,6 +1209,7 @@ fa:
     too_fast: فرم با سرعت بسیار زیادی فرستاده شد، دوباره تلاش کنید.
     use_security_key: استفاده از کلید امنیتی
     user_agreement_html: من خوانده ام و موافقم <a href="%{terms_of_service_path}" target="_blank">شرایط خدمات</a> و <a href="%{privacy_policy_path}" target="_blank">سیاست حفظ حریم خصوصی</a>
+    user_privacy_agreement_html: من <a href="%{privacy_policy_path}" target="_blank">خط‌مشی رازداری</a> را خوانده‌ام و با آن موافقم
   author_attribution:
     example_title: متن نمونه
     hint_html: آیا در خارج از ماستودون اخبار یا مقالات وبلاگ می نویسید؟ نحوه دریافت اعتبار زمانی که آنها در ماستودون به اشتراک گذاشته می شوند را کنترل کنید.
@@ -1434,8 +1435,8 @@ fa:
         other: شما می‌خواهید <strong>لیست حساب‌های بی‌صدا را جایگزین کنید</strong> با حداکثر <strong>%{count} حساب</strong> از <strong>%{filename}</strong>.
     preambles:
       blocking_html:
-        one: شما در شرف <strong>مسدود کردن</strong> حداکثر <strong>%{count} حساب</string> از <string>%{filename}</strong> هستید.
-        other: شما در شرف <strong>مسدود کردن</strong> حداکثر <strong>%{count} حساب</string> از <string>%{filename}</string> هستید.
+        one: شما در شرف <strong>مسدود کردن</strong> حداکثر <strong>%{count} حساب</strong> از <strong>%{filename}</strong> هستید.
+        other: شما در شرف <strong>مسدود کردن</strong> حداکثر <strong>%{count} حساب</strong> از <strong>%{filename}</strong> هستید.
       bookmarks_html:
         one: شما می‌خواهید تا <strong>%{count} پست</strong> را از <strong>%{filename}</strong> به <strong>نشانک‌ها</strong> خود اضافه کنید.
         other: شما می‌خواهید تا <strong>%{count} پست</strong> را از <strong>%{filename}</strong> به <strong>نشانک‌ها</strong> خود اضافه کنید.
@@ -1449,10 +1450,8 @@ fa:
         one: شما در حال افزودن <strong>%{count} حساب</strong> از <strong>%{filename}</strong> به <strong>لیست‌های</strong> خود هستید. اگر لیستی برای افزودن وجود نداشته باشد، لیست های جدیدی ایجاد می شود.
         other: شما می‌خواهید تا <strong>%{count} حساب</strong> از <strong>%{filename}</strong> را به <strong>فهرست‌های</strong> خود اضافه کنید. اگر لیستی برای افزودن وجود نداشته باشد، لیست های جدیدی ایجاد می شود.
       muting_html:
-        one: 'شما در حال انجام <strong>بی صدا</strong> تا <strong>%{count} حساب کاربری</strong> از <strong>%{filename}</strong>.
-
-          '
-        other:
+        one: شما در حال <strong>بی صدا کردن</strong> تا <strong>%{count} حساب</strong> از <strong>%{filename}</strong> هستید.
+        other: شما در حال <strong>بی صدا کردن</strong> تا <strong>%{count} حساب</strong> از <strong>%{filename}</strong> هستید.
     preface: می‌توانید داده‌هایی را که از کارسازی دیگر برون‌ریخته‌اید، چون سیاهه‌ای از افرادی که پی گرفته یا مسدود می‌کنید را درون‌ریزی کنید.
     recent_imports: واردشده‌های اخیر
     states:
@@ -1883,7 +1882,7 @@ fa:
     formats:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
-      time: "%OH:%OM"
+      time: "%H:%M"
       with_time_zone: "%b %d, %Y, %H:%M %Z"
   translation:
     errors:
@@ -1965,7 +1964,7 @@ fa:
         none: هشدار برای %{acct}
         sensitive: فرسته‌هایتان روی %{acct} از اکنون به عنوان حسّاس علامت خواهند خورد
         silence: حساب %{acct} شما محدود شده است
-        suspend: حساب %{acct}  شما معلق شده است
+        suspend: حساب %{acct} شما معلق شده است
       title:
         delete_statuses: فرسته‌ها برداشته شدند
         disable: حساب متوقف شده است

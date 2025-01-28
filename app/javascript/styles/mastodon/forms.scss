@@ -76,6 +76,21 @@ code {
     margin-bottom: 16px;
     overflow: hidden;
 
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &__toolbar {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .character-counter {
+        flex: 0 0 auto;
+      }
+    }
+
     &.hidden {
       margin: 0;
     }
@@ -540,6 +555,7 @@ code {
   .actions {
     margin-top: 30px;
     display: flex;
+    gap: 10px;
 
     &.actions--top {
       margin-top: 0;
@@ -548,13 +564,14 @@ code {
   }
 
   .stacked-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     margin-top: 30px;
     margin-bottom: 15px;
   }
 
-  button,
-  .button,
-  .block-button {
+  .btn {
     display: block;
     width: 100%;
     border: 0;
@@ -571,8 +588,6 @@ code {
     cursor: pointer;
     font-weight: 500;
     outline: 0;
-    margin-bottom: 10px;
-    margin-inline-end: 10px;
 
     &:last-child {
       margin-inline-end: 0;
@@ -629,6 +644,18 @@ code {
   }
 
   .label_input {
+    position: relative;
+
+    &__loading-indicator {
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      inset-inline-start: 0;
+      border: 1px solid transparent;
+      padding: 10px 16px;
+      width: 100%;
+    }
+
     &__wrapper {
       position: relative;
     }

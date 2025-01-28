@@ -33,5 +33,14 @@ RSpec.describe 'Auth Challenges' do
           .to be_nil
       end
     end
+
+    context 'with invalid params' do
+      it 'gracefully handles invalid nested params' do
+        post auth_challenge_path(form_challenge: 'invalid')
+
+        expect(response)
+          .to have_http_status(400)
+      end
+    end
   end
 end

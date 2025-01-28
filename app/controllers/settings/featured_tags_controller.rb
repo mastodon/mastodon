@@ -44,6 +44,6 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   def featured_tag_params
-    params.require(:featured_tag).permit(:name)
+    params.expect(featured_tag: [:name])
   end
 end

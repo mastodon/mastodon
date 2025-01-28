@@ -34,7 +34,7 @@ class Filters::StatusesController < ApplicationController
   end
 
   def status_filter_batch_action_params
-    params.require(:form_status_filter_batch_action).permit(status_filter_ids: [])
+    params.expect(form_status_filter_batch_action: [status_filter_ids: []])
   end
 
   def action_from_button

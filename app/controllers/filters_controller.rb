@@ -48,7 +48,7 @@ class FiltersController < ApplicationController
   end
 
   def resource_params
-    params.require(:custom_filter).permit(:title, :expires_in, :filter_action, context: [], keywords_attributes: [:id, :keyword, :whole_word, :_destroy])
+    params.expect(custom_filter: [:title, :expires_in, :filter_action, context: [], keywords_attributes: [[:id, :keyword, :whole_word, :_destroy]]])
   end
 
   def set_cache_headers

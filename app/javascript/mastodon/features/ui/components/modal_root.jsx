@@ -4,6 +4,7 @@ import { PureComponent } from 'react';
 import { Helmet } from 'react-helmet';
 
 import Base from 'mastodon/components/modal_root';
+import { AltTextModal } from 'mastodon/features/alt_text_modal';
 import {
   MuteModal,
   BlockModal,
@@ -37,7 +38,6 @@ import {
   ConfirmLogOutModal,
   ConfirmFollowToListModal,
 } from './confirmation_modals';
-import FocalPointModal from './focal_point_modal';
 import ImageModal from './image_modal';
 import MediaModal from './media_modal';
 import { ModalPlaceholder } from './modal_placeholder';
@@ -64,7 +64,7 @@ export const MODAL_COMPONENTS = {
   'REPORT': ReportModal,
   'ACTIONS': () => Promise.resolve({ default: ActionsModal }),
   'EMBED': EmbedModal,
-  'FOCAL_POINT': () => Promise.resolve({ default: FocalPointModal }),
+  'FOCAL_POINT': () => Promise.resolve({ default: AltTextModal }),
   'LIST_ADDER': ListAdder,
   'COMPARE_HISTORY': CompareHistoryModal,
   'FILTER': FilterModal,
@@ -139,8 +139,7 @@ export default class ModalRoot extends PureComponent {
           <>
             <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading} error={this.renderError} renderDelay={200}>
               {(SpecificComponent) => {
-                const ref = typeof SpecificComponent !== 'function' ? this.setModalRef : undefined;
-                return <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={ref} />;
+                return <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={this.setModalRef} />;
               }}
             </BundleContainer>
 
