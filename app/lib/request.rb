@@ -61,8 +61,6 @@ class PerOperationWithDeadline < HTTP::Timeout::PerOperation
 end
 
 class Request
-  REQUEST_TARGET = '(request-target)'
-
   # We enforce a 5s timeout on DNS resolving, 5s timeout on socket opening
   # and 5s timeout on the TLS handshake, meaning the worst case should take
   # about 15s in total
@@ -83,6 +81,8 @@ class Request
     @options     = @options.merge(proxy_url) if use_proxy?
     @headers     = {}
 
+    @signing = nil
+
     raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
 
     set_common_headers!
@@ -92,8 +92,9 @@ class Request
   def on_behalf_of(actor, sign_with: nil)
     raise ArgumentError, 'actor must not be nil' if actor.nil?
 
-    @actor         = actor
-    @keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : @actor.keypair
+    key_id = ActivityPub::TagManager.instance.key_uri_for(actor)
+    keypair = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : actor.keypair
+    @signing = HttpSignatureDraft.new(keypair, key_id, full_path: @full_path)
 
     self
   end
@@ -119,7 +120,7 @@ class Request
   end
 
   def headers
-    (@actor ? @headers.merge('Signature' => signature) : @headers).without(REQUEST_TARGET)
+    (@signing ? @headers.merge('Signature' => signature) : @headers)
   end
 
   class << self
@@ -141,7 +142,6 @@ class Request
   private
 
   def set_common_headers!
-    @headers[REQUEST_TARGET]    = request_target
     @headers['User-Agent']      = Mastodon::Version.user_agent
     @headers['Host']            = @url.host
     @headers['Date']            = Time.now.utc.httpdate
@@ -152,31 +152,8 @@ class Request
     @headers['Digest'] = "SHA-256=#{Digest::SHA256.base64digest(@options[:body])}"
   end
 
-  def request_target
-    if @url.query.nil? || !@full_path
-      "#{@verb} #{@url.path}"
-    else
-      "#{@verb} #{@url.path}?#{@url.query}"
-    end
-  end
-
   def signature
-    algorithm = 'rsa-sha256'
-    signature = Base64.strict_encode64(@keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
-
-    "keyId=\"#{key_id}\",algorithm=\"#{algorithm}\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
-  end
-
-  def signed_string
-    signed_headers.map { |key, value| "#{key.downcase}: #{value}" }.join("\n")
-  end
-
-  def signed_headers
-    @headers.without('User-Agent', 'Accept-Encoding')
-  end
-
-  def key_id
-    ActivityPub::TagManager.instance.key_uri_for(@actor)
+    @signing.sign(@headers.without('User-Agent', 'Accept-Encoding'), @verb, @url)
   end
 
   def http_client
