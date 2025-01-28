@@ -44,11 +44,9 @@ RSpec.describe Admin::Users::RolesController do
       let(:permissions) { UserRole::FLAGS[:manage_roles] }
       let(:position) { 1 }
 
-      it 'updates user role' do
+      it 'updates user role and redirects' do
         expect(user.reload.role_id).to eq selected_role&.id
-      end
 
-      it 'redirects back to account page' do
         expect(response).to redirect_to(admin_account_path(user.account_id))
       end
     end
@@ -57,11 +55,9 @@ RSpec.describe Admin::Users::RolesController do
       let(:permissions) { UserRole::FLAGS[:administrator] }
       let(:position) { 100 }
 
-      it 'does not update user role' do
+      it 'does not update user role and renders edit' do
         expect(user.reload.role_id).to eq previous_role&.id
-      end
 
-      it 'renders edit form' do
         expect(response).to render_template(:show)
       end
     end
@@ -71,11 +67,9 @@ RSpec.describe Admin::Users::RolesController do
       let(:permissions) { UserRole::FLAGS[:manage_roles] }
       let(:position) { 1 }
 
-      it 'does not update user role' do
+      it 'does not update user role and returns http forbidden' do
         expect(user.reload.role_id).to eq previous_role&.id
-      end
 
-      it 'returns http forbidden' do
         expect(response).to have_http_status(403)
       end
     end

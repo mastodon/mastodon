@@ -22,7 +22,7 @@ module Devise
       protected
 
       def valid_params?
-        params[scope].respond_to?(:[]) && params[scope][:password].present?
+        params[scope].is_a?(Hash) && params[scope][:password].present?
       end
     end
   end
