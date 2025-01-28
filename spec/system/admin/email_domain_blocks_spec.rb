@@ -8,9 +8,8 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
   before { sign_in current_user }
 
   describe 'Managing email domain blocks' do
-    before { stub_resolve }
+    before { configure_dns(domain: 'example.com', results: []) }
 
-    let(:resolver) { instance_double(Resolv::DNS) }
     let!(:email_domain_block) { Fabricate :email_domain_block }
 
     it 'views and creates new blocks' do
@@ -42,20 +41,6 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
 
     def submit_create
       click_on I18n.t('admin.email_domain_blocks.new.create')
-    end
-
-    def stub_resolve
-      allow(resolver).to receive(:getresources)
-        .with('example.com', Resolv::DNS::Resource::IN::MX)
-        .and_return([])
-      allow(resolver)
-        .to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::A).and_return([])
-      allow(resolver)
-        .to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
-      allow(resolver)
-        .to receive(:timeouts=).and_return(nil)
-      allow(Resolv::DNS)
-        .to receive(:open).and_yield(resolver)
     end
   end
 
