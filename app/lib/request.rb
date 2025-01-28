@@ -76,8 +76,13 @@ class Request
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
     @full_path   = !options.delete(:omit_query_string)
-    @options     = options.merge(socket_class: use_proxy? || @allow_local ? ProxySocket : Socket)
-    @options     = @options.merge(timeout_class: PerOperationWithDeadline, timeout_options: TIMEOUT)
+    @options     = {
+      follow: {
+        max_hops: 3,
+        on_redirect: ->(response, request) { re_sign_on_redirect(response, request) },
+      },
+      socket_class: use_proxy? || @allow_local ? ProxySocket : Socket,
+    }.merge(options)
     @options     = @options.merge(proxy_url) if use_proxy?
     @headers     = {}
 
@@ -135,7 +140,7 @@ class Request
     end
 
     def http_client
-      HTTP.use(:auto_inflate).follow(max_hops: 3)
+      HTTP.use(:auto_inflate)
     end
   end
 
@@ -154,6 +159,26 @@ class Request
 
   def signature
     @signing.sign(@headers.without('User-Agent', 'Accept-Encoding'), @verb, @url)
+  end
+
+  def re_sign_on_redirect(_response, request)
+    # Delete existing signature if there is one, since it will be invalid
+    request.headers.delete('Signature')
+
+    return unless @signing.present? && @verb == :get
+
+    signed_headers = request.headers.to_h.slice(*@headers.keys)
+    unless @headers.keys.all? { |key| signed_headers.key?(key) }
+      # We have lost some headers in the process, so don't sign the new
+      # request, in order to avoid issuing a valid signature with fewer
+      # conditions than expected.
+
+      Rails.logger.warn { "Some headers (#{@headers.keys - signed_headers.keys}) have been lost on redirect from {@uri} to #{request.uri}, this should not happen. Skipping signatures" }
+      return
+    end
+
+    signature_value = @signing.sign(signed_headers.without('User-Agent', 'Accept-Encoding'), @verb, Addressable::URI.parse(request.uri))
+    request.headers['Signature'] = signature_value
   end
 
   def http_client
