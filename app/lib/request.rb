@@ -81,8 +81,11 @@ class Request
         max_hops: 3,
         on_redirect: ->(response, request) { re_sign_on_redirect(response, request) },
       },
+    }.merge(options).merge(
       socket_class: use_proxy? || @allow_local ? ProxySocket : Socket,
-    }.merge(options)
+      timeout_class: PerOperationWithDeadline,
+      timeout_options: TIMEOUT
+    )
     @options     = @options.merge(proxy_url) if use_proxy?
     @headers     = {}
 
