@@ -7,6 +7,43 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
 
   before { sign_in current_user }
 
+  describe 'Managing email domain blocks' do
+    before { configure_dns(domain: 'example.com', results: []) }
+
+    let!(:email_domain_block) { Fabricate :email_domain_block }
+
+    it 'views and creates new blocks' do
+      visit admin_email_domain_blocks_path
+      expect(page)
+        .to have_content(I18n.t('admin.email_domain_blocks.title'))
+        .and have_content(email_domain_block.domain)
+
+      click_on I18n.t('admin.email_domain_blocks.add_new')
+      expect(page)
+        .to have_content(I18n.t('admin.email_domain_blocks.new.title'))
+
+      fill_in I18n.t('admin.email_domain_blocks.domain'), with: 'example.com'
+      expect { submit_resolve }
+        .to_not change(EmailDomainBlock, :count)
+      expect(page)
+        .to have_content(I18n.t('admin.email_domain_blocks.new.title'))
+
+      expect { submit_create }
+        .to change(EmailDomainBlock.where(domain: 'example.com'), :count).by(1)
+      expect(page)
+        .to have_content(I18n.t('admin.email_domain_blocks.title'))
+        .and have_content(I18n.t('admin.email_domain_blocks.created_msg'))
+    end
+
+    def submit_resolve
+      click_on I18n.t('admin.email_domain_blocks.new.resolve')
+    end
+
+    def submit_create
+      click_on I18n.t('admin.email_domain_blocks.new.create')
+    end
+  end
+
   describe 'Performing batch updates' do
     before do
       visit admin_email_domain_blocks_path
