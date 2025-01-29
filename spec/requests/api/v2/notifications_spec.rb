@@ -153,7 +153,7 @@ RSpec.describe 'Notifications' do
         it 'returns a notification group covering all notifications' do
           subject
 
-          notification_ids = user.account.notifications.reload.pluck(:id)
+          notification_ids = user.account.notifications.order(id: :asc).pluck(:id)
 
           expect(response).to have_http_status(200)
           expect(response.content_type)
@@ -175,7 +175,7 @@ RSpec.describe 'Notifications' do
         it 'returns a notification group covering all notifications' do
           subject
 
-          notification_ids = user.account.notifications.reload.pluck(:id)
+          notification_ids = user.account.notifications.order(id: :asc).pluck(:id)
 
           expect(response).to have_http_status(200)
           expect(response.content_type)
