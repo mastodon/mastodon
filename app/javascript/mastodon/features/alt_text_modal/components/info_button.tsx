@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import Overlay from 'react-overlays/Overlay';
 
+import { useSelectableClick } from '@/hooks/useSelectableClick';
 import QuestionMarkIcon from '@/material-icons/400-24px/question_mark.svg?react';
 import { Icon } from 'mastodon/components/icon';
 
@@ -22,6 +23,8 @@ export const InfoButton: React.FC = () => {
   const handleClick = useCallback(() => {
     setOpen(!open);
   }, [open, setOpen]);
+
+  const [handleMouseDown, handleMouseUp] = useSelectableClick(handleClick);
 
   return (
     <>
@@ -46,10 +49,13 @@ export const InfoButton: React.FC = () => {
         target={triggerRef}
       >
         {({ props }) => (
-          <div
+          <div // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
             {...props}
             className='dialog-modal__popout prose dropdown-animation'
+            role='region'
             id={accessibilityId}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
           >
             <FormattedMessage
               id='info_button.what_is_alt_text'
