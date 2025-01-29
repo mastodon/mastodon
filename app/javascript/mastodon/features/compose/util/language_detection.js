@@ -73,4 +73,4 @@ const guessLanguage = (text) => {
 
 export const debouncedGuess = debounce((text, setGuess) => {
   setGuess(guessLanguage(text));
-}, 500, { leading: true, trailing: true });
+}, 500, { maxWait: 1500, leading: true, trailing: true });
