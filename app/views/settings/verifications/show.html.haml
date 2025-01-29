@@ -17,7 +17,7 @@
   .input-copy.lead
     .input-copy__wrapper
       = copyable_input value: link_to('Mastodon', ActivityPub::TagManager.instance.url_for(@account), rel: :me)
-    %button{ type: :button }= t('generic.copy')
+    %button.button{ type: :button }= t('generic.copy')
 
   %p.lead= t('verification.extra_instructions_html')
 
@@ -60,7 +60,7 @@
   .input-copy.lead
     .input-copy__wrapper
       = copyable_input value: tag.meta(name: 'fediverse:creator', content: "@#{@account.local_username_and_domain}")
-    %button{ type: :button }= t('generic.copy')
+    %button.button{ type: :button }= t('generic.copy')
 
   %p.lead= t('author_attribution.then_instructions')
 
