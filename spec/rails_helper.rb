@@ -162,26 +162,15 @@ RSpec.configure do |config|
   end
 
   config.before do |example|
-<<<<<<< HEAD
     unless example.metadata[:attachment_processing]
       # rubocop:disable RSpec/AnyInstance
       allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true)
       allow_any_instance_of(Paperclip::MediaTypeSpoofDetector).to receive(:spoofed?).and_return(false)
       # rubocop:enable RSpec/AnyInstance
-=======
-<<<<<<< Updated upstream
     unless example.metadata[:paperclip_processing]
       allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true) # rubocop:disable RSpec/AnyInstance
->>>>>>> dcc1d8d89 (misc applications of vladimir's railsconf talk)
     end
-=======
-    # unless example.metadata[:attachment_processing]
-    #   # rubocop:disable RSpec/AnyInstance
-    #   allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true)
-    #   allow_any_instance_of(Paperclip::MediaTypeSpoofDetector).to receive(:spoofed?).and_return(false)
-    #   # rubocop:enable RSpec/AnyInstance
-    # end
->>>>>>> Stashed changes
+
   end
 
   config.before :each, type: :request do

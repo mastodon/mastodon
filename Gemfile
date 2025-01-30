@@ -210,8 +210,6 @@ group :development, :test do
   gem 'ruby-prof', require: false
   gem 'stackprof', require: false
   gem 'test-prof'
-  gem 'vernier', require: false
-
   
 
   # RSpec runner for rails
