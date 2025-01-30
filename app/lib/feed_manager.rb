@@ -301,6 +301,38 @@ class FeedManager
     end
   end
 
+  # Populate list feed of account from scratch
+  # @param [List] list
+  # @return [void]
+  def populate_list(list)
+    limit        = FeedManager::MAX_ITEMS / 2
+    aggregate    = list.account.user&.aggregates_reblogs?
+    timeline_key = key(:list, list.id)
+
+    list.active_accounts.includes(:account_stat).reorder(nil).find_each do |target_account|
+      if redis.zcard(timeline_key) >= limit
+        oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
+        last_status_score = Mastodon::Snowflake.id_at(target_account.last_status_at)
+
+        # If the feed is full and this account has not posted more recently
+        # than the last item on the feed, then we can skip the whole account
+        # because none of its statuses would stay on the feed anyway
+        next if last_status_score < oldest_home_score
+      end
+
+      statuses = target_account.statuses.list_eligible_visibility.includes(:preloadable_poll, :media_attachments, :account, reblog: :account).limit(limit)
+      crutches = build_crutches(list.account_id, statuses)
+
+      statuses.each do |status|
+        next if filter_from_home(status, list.account_id, crutches) || filter_from_list?(status, list)
+
+        add_to_feed(:list, list.id, status, aggregate_reblogs: aggregate)
+      end
+
+      trim(:list, list.id)
+    end
+  end
+
   # Completely clear multiple feeds at once
   # @param [Symbol] type
   # @param [Array<Integer>] ids

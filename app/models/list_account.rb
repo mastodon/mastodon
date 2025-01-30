@@ -20,6 +20,8 @@ class ListAccount < ApplicationRecord
   validates :account_id, uniqueness: { scope: :list_id }
   validate :validate_relationship
 
+  scope :active, -> { where.not(follow_id: nil) }
+
   before_validation :set_follow, unless: :list_owner_account_is_account?
 
   private
