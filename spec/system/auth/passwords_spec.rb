@@ -11,6 +11,8 @@ RSpec.describe 'Auth Passwords' do
   describe 'Resetting a password', :inline_jobs do
     let(:new_password) { 'New.Pass.123' }
 
+    before { allow(Devise).to receive(:pam_authentication).and_return(false) } # Avoid the "seamless external" path
+
     it 'initiates reset, sends link, resets password from form, clears data' do
       visit new_user_password_path
       expect(page)
