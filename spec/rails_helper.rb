@@ -5,7 +5,6 @@ ENV['RAILS_ENV'] ||= 'test'
 # This needs to be defined before Rails is initialized
 RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
 
-
 if ENV['COVERAGE'] == 'true'
   require 'simplecov'
 
@@ -163,10 +162,11 @@ RSpec.configure do |config|
       allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true)
       allow_any_instance_of(Paperclip::MediaTypeSpoofDetector).to receive(:spoofed?).and_return(false)
       # rubocop:enable RSpec/AnyInstance
+    end
+    
     unless example.metadata[:paperclip_processing]
       allow_any_instance_of(Paperclip::Attachment).to receive(:post_process).and_return(true) # rubocop:disable RSpec/AnyInstance
     end
-
   end
 
   config.before :each, type: :request do
