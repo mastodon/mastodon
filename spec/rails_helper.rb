@@ -4,11 +4,7 @@ ENV['RAILS_ENV'] ||= 'test'
 
 # This needs to be defined before Rails is initialized
 RUN_SYSTEM_SPECS = ENV.fetch('RUN_SYSTEM_SPECS', false)
-TestProf::EventProf.monitor(
-  Paperclip::Attachment,
-  'paperclip.process_file',
-  :process_file
-)
+
 
 if ENV['COVERAGE'] == 'true'
   require 'simplecov'
