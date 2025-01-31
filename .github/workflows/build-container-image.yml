@@ -19,7 +19,12 @@ on:
       file_to_build:
         type: string
 
+# This builds multiple images with one runner each, allowing us to build for multiple architectures
+# using Github's runners.
+# The two-step process is adapted form:
+# https://docs.docker.com/build/ci/github-actions/multi-platform/#distribute-build-across-multiple-runners
 jobs:
+  # Build each (amd64 and arm64) image separately
   build-image:
     runs-on: ${{ startsWith(matrix.platform, 'linux/arm') && 'ubuntu-24.04-arm' || 'ubuntu-24.04' }}
     strategy:
@@ -38,8 +43,9 @@ jobs:
         run: |
           platform=${{ matrix.platform }}
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
-          image_names=$(echo "$PUSH_TO_IMAGES" | sed -E '$!s/\n?$/,/' | tr -d '\n' | sed -E 's/,+$//')
-          echo "IMAGE_NAMES=${image_names}" >> $GITHUB_ENV
+          # Transform multi-line variable into comma-separated variable
+          image_names=${PUSH_TO_IMAGES//$'\n'/,}
+          echo "IMAGE_NAMES=${image_names%,}" >> $GITHUB_ENV
 
       - uses: docker/setup-buildx-action@v3
         id: buildx
@@ -98,11 +104,13 @@ jobs:
         if: ${{ inputs.push_to_images != '' }}
         uses: actions/upload-artifact@v4
         with:
+          # `hashFiles` is used to disambiguate between streaming and non-streaming images
           name: digests-${{ hashFiles(inputs.file_to_build) }}-${{ env.PLATFORM_PAIR }}
           path: ${{ runner.temp }}/digests/*
           if-no-files-found: error
           retention-days: 1
 
+  # Then merge the docker images into a single one
   merge-images:
     if: ${{ inputs.push_to_images != '' }}
     runs-on: ubuntu-24.04
@@ -119,6 +127,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: ${{ runner.temp }}/digests
+          # `hashFiles` is used to disambiguate between streaming and non-streaming images
           pattern: digests-${{ hashFiles(inputs.file_to_build) }}-*
           merge-multiple: true
 
