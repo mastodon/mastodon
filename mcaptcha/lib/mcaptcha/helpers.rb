@@ -23,10 +23,7 @@ module Mcaptcha
         raise(McaptchaError, "SSL is now always true. Please remove 'ssl' from your calls to mcaptcha_tags.")
       end
 
-      html = generate_tags(options)
-      # rubocop:disable Rails/OutputSafety
-      html.respond_to?(:html_safe) ? html.html_safe : html
-      # rubocop:enable Rails/OutputSafety
+      generate_tags(options)
     end
 
     def self.to_error_message(key)
@@ -66,13 +63,13 @@ module Mcaptcha
       # Forge additional attributes
       nonce = options.delete(:nonce)
       nonce_attr = " nonce='#{nonce}'" if nonce
-      async_attr = "async" if options.delete(:script_async)
-      defer_attr = "defer" if options.delete(:script_defer)
+      async_attr = "async" if options[:script_async]
+      defer_attr = "defer" if options[:script_defer]
       additional_attributes = [async_attr, defer_attr, nonce_attr].compact.join(" ")
 
-      return "" if options.delete(:script) == false || options.delete(:external_script) == false
+      return "" if !options[:script] || !options[:external_script]
 
-      %(<script src="#{url}" #{additional_attributes}></script>)
+      tag.script(additional_attributes src: url)
     end
 
     private_class_method def self.generate_placeholder_tag(options)
@@ -83,16 +80,16 @@ module Mcaptcha
         callback close_callback error_callback chalexpired_callback
         expired_callback open_callback size tabindex theme
       ].each do |data_attribute|
-        value = options.delete(data_attribute)
+        value = options[data_attribute]
         attributes["data-#{data_attribute.to_s.tr('_', '-')}"] = value if value
       end
-      attributes["data-sitekey"] = options.delete(:site_key) || Mcaptcha.configuration.site_key!
+      attributes["data-sitekey"] = options[:site_key] || Mcaptcha.configuration.site_key!
 
       # Forge CSS classes
-      attributes["class"] = "m-captcha #{options.delete(:class)}"
+      attributes["class"] = "m-captcha #{options[:class]}"
 
       # Remaining options will be added as attributes on the tag.
-      %(<div #{html_attributes(attributes)} #{html_attributes(options)}></div>)
+      tag.div(html_attributes(attributes) html_attributes(options))
     end
 
     private_class_method def self.hash_to_query(hash)
