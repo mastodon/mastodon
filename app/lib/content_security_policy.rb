@@ -36,7 +36,7 @@ class ContentSecurityPolicy
   end
 
   def cdn_host_value
-    s3_alias_host || s3_cloudfront_host || azure_alias_host || s3_hostname_host || swift_object_url
+    [s3_alias_host, s3_cloudfront_host, azure_alias_host, s3_hostname_host, swift_object_url].compact
   end
 
   def paperclip_root_url
