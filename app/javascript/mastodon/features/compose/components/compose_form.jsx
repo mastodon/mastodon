@@ -10,6 +10,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
 
+import { missingAltTextModal } from 'mastodon/initial_state';
+
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import { Button } from '../../../components/button';
@@ -65,6 +67,7 @@ class ComposeForm extends ImmutablePureComponent {
     autoFocus: PropTypes.bool,
     withoutNavigation: PropTypes.bool,
     anyMedia: PropTypes.bool,
+    missingAltText: PropTypes.bool,
     isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
@@ -117,7 +120,7 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
-    this.props.onSubmit();
+    this.props.onSubmit(missingAltTextModal && this.props.missingAltText);
 
     if (e) {
       e.preventDefault();

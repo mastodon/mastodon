@@ -4028,22 +4028,26 @@ a.status-card {
 }
 
 .load-more {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: $dark-text-color;
   background-color: transparent;
   border: 0;
   font-size: inherit;
-  text-align: center;
   line-height: inherit;
-  margin: 0;
+  width: 100%;
   padding: 15px;
   box-sizing: border-box;
-  width: 100%;
-  clear: both;
   text-decoration: none;
 
   &:hover {
     background: var(--on-surface-color);
+  }
+
+  .icon {
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -4421,6 +4425,7 @@ a.status-card {
   justify-content: center;
 }
 
+.load-more .loading-indicator,
 .button .loading-indicator {
   position: static;
   transform: none;
@@ -4430,6 +4435,10 @@ a.status-card {
     width: 22px;
     height: 22px;
   }
+}
+
+.load-more .loading-indicator .circular-progress {
+  color: lighten($ui-base-color, 26%);
 }
 
 .circular-progress {

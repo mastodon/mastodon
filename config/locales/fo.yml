@@ -948,6 +948,9 @@ fo:
       preview:
         explanation_html: 'Teldubrævið verður sent til <strong>%{display_count} brúkarar</strong>, sum hava stovna kontu áðrenn %{date}. Fylgjandi tekstur kemur við í teldubrævið:'
         send_preview: Send undanvísing til %{email}
+        send_to_all:
+          one: Send %{display_count} teldubræv
+          other: Send %{display_count} teldubrøv
         title: Undanvís fráboðan um tænastutreytir
       publish: Útgev
       published_on_html: Útgivið %{date}
