@@ -4,24 +4,20 @@ module Mcaptcha
   module Helpers
     DEFAULT_ERRORS = {
       mcaptcha_unreachable: 'Oops, we failed to validate your mCaptcha response. Please try again.',
-      verification_failed: 'mCaptcha verification failed, please try again.'
+      verification_failed: 'mCaptcha verification failed, please try again.',
     }.freeze
     DEFAULT_OPTIONS = {
       external_script: true,
       script: true,
       script_async: true,
       script_defer: true,
-      theme: :dark
+      theme: :dark,
     }.freeze
 
     def self.mcaptcha(options)
       # TODO: understand if `Secure Token` and `SSL` options are relevant for mCaptcha
-      if options.key?(:stoken)
-        raise(McaptchaError, "Secure Token is deprecated. Please remove 'stoken' from your calls to mcaptcha_tags.")
-      end
-      if options.key?(:ssl)
-        raise(McaptchaError, "SSL is now always true. Please remove 'ssl' from your calls to mcaptcha_tags.")
-      end
+      raise(McaptchaError, "Secure Token is deprecated. Please remove 'stoken' from your calls to mcaptcha_tags.") if options.key?(:stoken)
+      raise(McaptchaError, "SSL is now always true. Please remove 'ssl' from your calls to mcaptcha_tags.") if options.key?(:ssl)
 
       generate_tags(options)
     end
@@ -33,7 +29,7 @@ module Mcaptcha
 
     if defined?(I18n)
       def self.to_message(key, default)
-        I18n.translate(key, default: default)
+        I18n.t(key, default: default)
       end
     else
       def self.to_message(_key, default)
@@ -63,41 +59,41 @@ module Mcaptcha
       # Forge additional attributes
       nonce = options.delete(:nonce)
       nonce_attr = " nonce='#{nonce}'" if nonce
-      async_attr = "async" if options[:script_async]
-      defer_attr = "defer" if options[:script_defer]
-      additional_attributes = [async_attr, defer_attr, nonce_attr].compact.join(" ")
+      async_attr = 'async' if options[:script_async]
+      defer_attr = 'defer' if options[:script_defer]
+      [async_attr, defer_attr, nonce_attr].compact.join(' ')
 
-      return "" if !options[:script] || !options[:external_script]
+      return '' if !options[:script] || !options[:external_script]
 
-      tag.script(additional_attributes src: url)
+      tag.script(additional_attributes(src: url))
     end
 
     private_class_method def self.generate_placeholder_tag(options)
       attributes = {}
 
       # Forge data-* attributes
-      %i[
+      %i(
         callback close_callback error_callback chalexpired_callback
         expired_callback open_callback size tabindex theme
-      ].each do |data_attribute|
+      ).each do |data_attribute|
         value = options[data_attribute]
         attributes["data-#{data_attribute.to_s.tr('_', '-')}"] = value if value
       end
-      attributes["data-sitekey"] = options[:site_key] || Mcaptcha.configuration.site_key!
+      attributes['data-sitekey'] = options[:site_key] || Mcaptcha.configuration.site_key!
 
       # Forge CSS classes
-      attributes["class"] = "m-captcha #{options[:class]}"
+      attributes['class'] = "m-captcha #{options[:class]}"
 
       # Remaining options will be added as attributes on the tag.
-      tag.div(html_attributes(attributes) html_attributes(options))
+      %(<div #{html_attributes(attributes)} #{html_attributes(options)}></div>)
     end
 
     private_class_method def self.hash_to_query(hash)
-      hash.delete_if { |_, val| val.nil? || val.empty? }.to_a.map { |pair| pair.join('=') }.join('&')
+      hash.compact_blank!.to_a.map { |pair| pair.join('=') }.join('&')
     end
 
     private_class_method def self.html_attributes(hash)
-      hash.map { |k, v| %(#{k}="#{v}") }.join(" ")
+      hash.map { |k, v| %(#{k}="#{v}") }.join(' ')
     end
   end
 end
