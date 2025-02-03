@@ -112,7 +112,7 @@ const emojifyTextNode = (node, customEmojis) => {
 };
 
 const emojifyNode = (node, customEmojis) => {
-  for (const child of node.childNodes) {
+  for (const child of Array.from(node.childNodes)) {
     switch(child.nodeType) {
     case Node.TEXT_NODE:
       emojifyTextNode(child, customEmojis);
