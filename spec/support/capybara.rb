@@ -10,6 +10,7 @@ def common_chrome_options
   options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument '--window-size=1680,1050'
   options.add_argument '--disable-search-engine-choice-screen'
+  options.browser_version = '131'
   options
 end
 
