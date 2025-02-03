@@ -59,10 +59,6 @@ class Settings::ApplicationsController < Settings::BaseController
   end
 
   def application_params
-    params
-      .expect(doorkeeper_application: [:name, :redirect_uri, :website, scopes: []])
-      .tap do |params|
-      params[:scopes] = params[:scopes]&.join(' ')
-    end
+    params.expect(doorkeeper_application: [:name, :redirect_uri, :website, scopes: []])
   end
 end
