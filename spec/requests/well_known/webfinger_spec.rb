@@ -116,19 +116,13 @@ RSpec.describe 'The /.well-known/webfinger endpoint' do
       perform_request!
     end
 
-    it 'returns http success' do
+    it 'returns http success with expect headers and media type' do
       expect(response).to have_http_status(200)
-    end
 
-    it 'sets only a Vary Origin header' do
       expect(response.headers['Vary']).to eq('Origin')
-    end
 
-    it 'returns application/jrd+json' do
       expect(response.media_type).to eq 'application/jrd+json'
-    end
 
-    it 'returns links for the internal account' do
       expect(response.parsed_body)
         .to include(
           subject: 'acct:mastodon.internal@cb6e6126.ngrok.io',
