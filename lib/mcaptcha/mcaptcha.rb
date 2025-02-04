@@ -17,7 +17,7 @@ module Mcaptcha
   class McaptchaError < StandardError
   end
 
-  class VerifyError < HcaptchaError
+  class VerifyError < McaptchaError
   end
 
   # Gives access to the current Configuration.
