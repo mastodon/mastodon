@@ -948,6 +948,9 @@ ca:
       preview:
         explanation_html: 'Aquest correu-e s''enviarà a <strong>%{display_count} usuaris</strong> que han signat abans de %{date}. S''hi inclourà aquest text:'
         send_preview: Envia una vista prèvia a %{email}
+        send_to_all:
+          one: Envia %{display_count} correu-e
+          other: Envia %{display_count} correus-e
         title: Vista prèvia de la notificació de les condicions de servei
       publish: Publica
       published_on_html: Publicada el %{date}
@@ -1411,6 +1414,22 @@ ca:
       merge_long: Mantenir els registres existents i afegir-ne de nous
       overwrite: Sobreescriu
       overwrite_long: Reemplaça els registres actuals amb els nous
+    overwrite_preambles:
+      blocking_html:
+        one: Esteu a punt de <strong>reemplaçar la vostra llista de blocats</strong> amb fins a <strong>%{count} compte</strong> des de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>reemplaçar la vostra llista de blocats</strong> amb fins a <strong>%{count} comptes</strong> des de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Esteu a punt de <strong>reemplaçar els vostres marcadors</strong> amb fins a <strong>%{count} publicació</strong> des de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>reemplaçar els vostres marcadors</strong> amb fins a <strong>%{count} publicacions</strong> des de <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Esteu a punt de <strong>reemplaçar la vostra llista de dominis blocats</strong> amb fins a <strong>%{count} domini</strong> des de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>reemplaçar la vostra llista de dominis blocats</strong> amb fins a <strong>%{count} dominis</strong> des de <strong>%{filename}</strong>.
+      following_html:
+        one: Esteu a punt de <strong>seguir</strong> fins a <strong>%{count} compte</strong> des de <strong>%{filename}</strong> i <strong>deixar de seguir la resta</strong>.
+        other: Esteu a punt de <strong>seguir</strong> fins a <strong>%{count} comptes</strong> des de <strong>%{filename}</strong> i <strong>deixar de seguir la resta</strong>.
+      lists_html:
+        one: Esteu a punt de <strong>reemplaçar les vostres llistes</strong> amb contactes de <strong>%{filename}</strong>. S'afegirà <strong>%{count} compte</strong> a les noves llistes.
+        other: Esteu a punt de <strong>reemplaçar les vostres llistes</strong> amb contactes de <strong>%{filename}</strong>. S'afegiran fins a <strong>%{count} comptes</strong> a les noves llistes.
     preface: Pots importar algunes les dades que has exportat des d'un altre servidor, com ara el llistat de les persones que estàs seguint o bloquejant.
     recent_imports: Importacions recents
     states:

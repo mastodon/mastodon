@@ -2,7 +2,6 @@
 
 class Settings::ApplicationsController < Settings::BaseController
   before_action :set_application, only: [:show, :update, :destroy, :regenerate]
-  before_action :prepare_scopes, only: [:create, :update]
 
   def index
     @applications = current_user.applications.order(id: :desc).page(params[:page])
@@ -60,12 +59,6 @@ class Settings::ApplicationsController < Settings::BaseController
   end
 
   def application_params
-    params
-      .expect(doorkeeper_application: [:name, :redirect_uri, :scopes, :website])
-  end
-
-  def prepare_scopes
-    scopes = application_params.fetch(:doorkeeper_application, {}).fetch(:scopes, nil)
-    params[:doorkeeper_application][:scopes] = scopes.join(' ') if scopes.is_a? Array
+    params.expect(doorkeeper_application: [:name, :redirect_uri, :website, scopes: []])
   end
 end
