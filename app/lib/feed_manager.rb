@@ -42,7 +42,7 @@ class FeedManager
     when :home
       filter_from_home(status, receiver.id, build_crutches(receiver.id, [status]), :home)
     when :list
-      (filter_from_list?(status, receiver) ? :filter : nil) || filter_from_home(status, receiver.account_id, build_crutches(receiver.account_id, [status]), :list)
+      (filter_from_list?(status, receiver) ? :filter : nil) || filter_from_home(status, receiver.account_id, build_crutches(receiver.account_id, [status], list: list), :list)
     when :mentions
       filter_from_mentions?(status, receiver.id) ? :filter : nil
     when :tags
@@ -157,10 +157,10 @@ class FeedManager
     end
 
     statuses = query.to_a
-    crutches = build_crutches(list.account_id, statuses)
+    crutches = build_crutches(list.account_id, statuses, list: list)
 
     statuses.each do |status|
-      next if filter_from_home(status, list.account_id, crutches) || filter_from_list?(status, list)
+      next if filter_from_home(status, list.account_id, crutches, :list)
 
       add_to_feed(:list, list.id, status, aggregate_reblogs: aggregate)
     end
@@ -339,10 +339,10 @@ class FeedManager
       statuses = query.to_a
       next if statuses.empty?
 
-      crutches = build_crutches(list.account_id, statuses)
+      crutches = build_crutches(list.account_id, statuses, list: list)
 
       statuses.each do |status|
-        next if filter_from_home(status, list.account_id, crutches) || filter_from_list?(status, list)
+        next if filter_from_home(status, list.account_id, crutches, :list)
 
         add_to_feed(:list, list.id, status, aggregate_reblogs: aggregate)
       end
@@ -610,8 +610,9 @@ class FeedManager
   # are going to be checked by the filtering methods
   # @param [Integer] receiver_id
   # @param [Array<Status>] statuses
+  # @param [List] list
   # @return [Hash]
-  def build_crutches(receiver_id, statuses)
+  def build_crutches(receiver_id, statuses, list: nil)
     crutches = {}
 
     crutches[:active_mentions] = crutches_active_mentions(statuses)
@@ -628,16 +629,26 @@ class FeedManager
       arr
     end
 
-    lists = List.where(account_id: receiver_id, exclusive: true)
-
-    crutches[:following]            = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
+    crutches[:following] = begin
+      if list.blank? || list.show_followed?
+        Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
+      elsif list.show_list?
+        ListAccount.where(list_id: list.id, account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:account_id).index_with(true)
+      else
+        {}
+      end
+    end
     crutches[:languages]            = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:account_id)).pluck(:target_account_id, :languages).to_h
     crutches[:hiding_reblogs]       = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map { |s| s.account_id if s.reblog? }, show_reblogs: false).pluck(:target_account_id).index_with(true)
     crutches[:blocking]             = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
     crutches[:muting]               = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
     crutches[:domain_blocking]      = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
     crutches[:blocked_by]           = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
-    crutches[:exclusive_list_users] = ListAccount.where(list: lists, account_id: statuses.map(&:account_id)).pluck(:account_id).index_with(true)
+
+    if list.blank?
+      lists = List.where(account_id: receiver_id, exclusive: true)
+      crutches[:exclusive_list_users] = ListAccount.where(list: lists, account_id: statuses.map(&:account_id)).pluck(:account_id).index_with(true)
+    end
 
     crutches
   end
