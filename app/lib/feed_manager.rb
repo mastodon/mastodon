@@ -296,6 +296,8 @@ class FeedManager
       end
 
       statuses = query.to_a
+      next if statuses.empty?
+
       crutches = build_crutches(account.id, statuses)
 
       statuses.each do |status|
@@ -335,6 +337,8 @@ class FeedManager
       end
 
       statuses = query.to_a
+      next if statuses.empty?
+
       crutches = build_crutches(list.account_id, statuses)
 
       statuses.each do |status|
