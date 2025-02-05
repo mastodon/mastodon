@@ -42,7 +42,7 @@ class FeedManager
     when :home
       filter_from_home(status, receiver.id, build_crutches(receiver.id, [status]), :home)
     when :list
-      (filter_from_list?(status, receiver) ? :filter : nil) || filter_from_home(status, receiver.account_id, build_crutches(receiver.account_id, [status], list: list), :list)
+      (filter_from_list?(status, receiver) ? :filter : nil) || filter_from_home(status, receiver.account_id, build_crutches(receiver.account_id, [status], list: receiver), :list)
     when :mentions
       filter_from_mentions?(status, receiver.id) ? :filter : nil
     when :tags
