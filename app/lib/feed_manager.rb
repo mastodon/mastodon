@@ -272,6 +272,7 @@ class FeedManager
     limit        = FeedManager::MAX_ITEMS / 2
     aggregate    = account.user&.aggregates_reblogs?
     timeline_key = key(:home, account.id)
+    over_limit = false
 
     account.statuses.limit(limit).each do |status|
       add_to_feed(:home, account.id, status, aggregate_reblogs: aggregate)
@@ -280,7 +281,8 @@ class FeedManager
     account.following.includes(:account_stat).reorder(nil).find_each do |target_account|
       query = target_account.statuses.list_eligible_visibility.includes(reblog: :account).limit(limit)
 
-      if redis.zcard(timeline_key) >= limit
+      over_limit ||= redis.zcard(timeline_key) >= limit
+      if over_limit
         oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
         last_status_score = Mastodon::Snowflake.id_at(target_account.last_status_at, with_random: false)
 
@@ -313,11 +315,13 @@ class FeedManager
     limit        = FeedManager::MAX_ITEMS / 2
     aggregate    = list.account.user&.aggregates_reblogs?
     timeline_key = key(:list, list.id)
+    over_limit = false
 
     list.active_accounts.includes(:account_stat).reorder(nil).find_each do |target_account|
       query = target_account.statuses.list_eligible_visibility.includes(reblog: :account).limit(limit)
 
-      if redis.zcard(timeline_key) >= limit
+      over_limit ||= redis.zcard(timeline_key) >= limit
+      if over_limit
         oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
         last_status_score = Mastodon::Snowflake.id_at(target_account.last_status_at, with_random: false)
 
