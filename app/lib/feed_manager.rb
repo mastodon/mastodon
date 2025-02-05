@@ -278,6 +278,8 @@ class FeedManager
     end
 
     account.following.includes(:account_stat).reorder(nil).find_each do |target_account|
+      query = target_account.statuses.list_eligible_visibility.includes(reblog: :account).limit(limit)
+
       if redis.zcard(timeline_key) >= limit
         oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
         last_status_score = Mastodon::Snowflake.id_at(target_account.last_status_at)
@@ -286,9 +288,12 @@ class FeedManager
         # than the last item on the feed, then we can skip the whole account
         # because none of its statuses would stay on the feed anyway
         next if last_status_score < oldest_home_score
+
+        # No need to get older statuses
+        query = query.where(id: oldest_home_score...)
       end
 
-      statuses = target_account.statuses.list_eligible_visibility.includes(reblog: :account).limit(limit)
+      statuses = query.to_a
       crutches = build_crutches(account.id, statuses)
 
       statuses.each do |status|
@@ -310,6 +315,8 @@ class FeedManager
     timeline_key = key(:list, list.id)
 
     list.active_accounts.includes(:account_stat).reorder(nil).find_each do |target_account|
+      query = target_account.statuses.list_eligible_visibility.includes(reblog: :account).limit(limit)
+
       if redis.zcard(timeline_key) >= limit
         oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
         last_status_score = Mastodon::Snowflake.id_at(target_account.last_status_at)
@@ -318,9 +325,12 @@ class FeedManager
         # than the last item on the feed, then we can skip the whole account
         # because none of its statuses would stay on the feed anyway
         next if last_status_score < oldest_home_score
+
+        # No need to get older statuses
+        query = query.where(id: oldest_home_score...)
       end
 
-      statuses = target_account.statuses.list_eligible_visibility.includes(reblog: :account).limit(limit)
+      statuses = query.to_a
       crutches = build_crutches(list.account_id, statuses)
 
       statuses.each do |status|
