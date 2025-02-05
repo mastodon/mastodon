@@ -2,6 +2,7 @@
 
 if ENV['MASTODON_PROMETHEUS_EXPORTER_ENABLED'] == 'true'
   if ENV['MASTODON_PROMETHEUS_EXPORTER_LOCAL'] == 'true'
+    require 'prometheus_exporter'
     require 'prometheus_exporter/server'
     require 'prometheus_exporter/client'
 
