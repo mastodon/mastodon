@@ -629,28 +629,31 @@ class FeedManager
       arr
     end
 
-    crutches[:following] = begin
-      if list.blank? || list.show_followed?
-        Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
-      elsif list.show_list?
-        ListAccount.where(list_id: list.id, account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:account_id).index_with(true)
-      else
-        {}
-      end
-    end
+    crutches[:following]            = crutches_following(receiver_id, statuses, list)
     crutches[:languages]            = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:account_id)).pluck(:target_account_id, :languages).to_h
     crutches[:hiding_reblogs]       = Follow.where(account_id: receiver_id, target_account_id: statuses.filter_map { |s| s.account_id if s.reblog? }, show_reblogs: false).pluck(:target_account_id).index_with(true)
     crutches[:blocking]             = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
     crutches[:muting]               = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
     crutches[:domain_blocking]      = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.flat_map { |s| [s.account.domain, s.reblog&.account&.domain] }.compact).pluck(:domain).index_with(true)
     crutches[:blocked_by]           = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| [s.account_id, s.reblog&.account_id] }.flatten.compact).pluck(:account_id).index_with(true)
-
-    if list.blank?
-      lists = List.where(account_id: receiver_id, exclusive: true)
-      crutches[:exclusive_list_users] = ListAccount.where(list: lists, account_id: statuses.map(&:account_id)).pluck(:account_id).index_with(true)
-    end
+    crutches[:exclusive_list_users] = crutches_exclusive_list_users(receiver_id, statuses) if list.blank?
 
     crutches
+  end
+
+  def crutches_exclusive_list_users(recipient_id, statuses)
+    lists = List.where(account_id: recipient_id, exclusive: true)
+    ListAccount.where(list: lists, account_id: statuses.map(&:account_id)).pluck(:account_id).index_with(true)
+  end
+
+  def crutches_following(recipient_id, statuses, list)
+    if list.blank? || list.show_followed?
+      Follow.where(account_id: recipient_id, target_account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:target_account_id).index_with(true)
+    elsif list.show_list?
+      ListAccount.where(list_id: list.id, account_id: statuses.filter_map(&:in_reply_to_account_id)).pluck(:account_id).index_with(true)
+    else
+      {}
+    end
   end
 
   def crutches_active_mentions(statuses)
