@@ -77,7 +77,6 @@ jobs:
       - name: Build and push by digest
         id: build
         uses: docker/build-push-action@v6
-        if: ${{ inputs.push_to_images != '' }}
         with:
           context: .
           file: ${{ inputs.file_to_build }}
@@ -88,10 +87,9 @@ jobs:
           platforms: ${{ matrix.platform }}
           provenance: false
           push: ${{ inputs.push_to_images != '' }}
-          # TODO: double-check this
           cache-from: ${{ inputs.cache && 'type=gha' || '' }}
           cache-to: ${{ inputs.cache && 'type=gha,mode=max' || '' }}
-          outputs: type=image,"name=${{ env.IMAGE_NAMES }}",push-by-digest=true,name-canonical=true,push=true
+          outputs: type=image,"name=${{ env.IMAGE_NAMES }}",push-by-digest=true,name-canonical=true,push=${{ inputs.push_to_images != '' }}
 
       - name: Export digest
         if: ${{ inputs.push_to_images != '' }}
