@@ -160,7 +160,7 @@ module JsonLdHelper
   # @param id_is_known [Boolean]
   # @param on_behalf_of [nil, Account]
   # @param raise_on_error [Boolean, Symbol<:all, :temporary>] See {#fetch_resource_without_id_validation} for possible values
-  def fetch_resource(uri, id_is_known, on_behalf_of = nil, raise_on_error = false, request_options: {})
+  def fetch_resource(uri, id_is_known, on_behalf_of = nil, raise_on_error: false, request_options: {})
     unless id_is_known
       json = fetch_resource_without_id_validation(uri, on_behalf_of, raise_on_error)
 
