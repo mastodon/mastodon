@@ -21,6 +21,11 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def create
+    user = warden.authenticate(scope: :user)
+    unless user
+      log_failed_authentication(email)
+    end
+    
     super do |resource|
       # We only need to call this if this hasn't already been
       # called from one of the two-factor or sign-in token
@@ -184,6 +189,12 @@ class Auth::SessionsController < Devise::SessionsController
     UserMailer.failed_2fa(user, request.remote_ip, request.user_agent, Time.now.utc).deliver_later!
   end
 
+  def log_failed_authentication(user)
+    ip_address = request.remote_ip
+    auth_logger = Logger.new(Rails.root.join('log', 'authentication.log'))
+    auth_logger.warn("Failed login attempt for user: #{user || 'Unknown'}, IP: #{ip_address}")
+  end
+  
   def second_factor_attempts_key(user)
     "2fa_auth_attempts:#{user.id}:#{Time.now.utc.hour}"
   end
