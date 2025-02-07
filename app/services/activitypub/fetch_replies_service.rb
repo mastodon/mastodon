@@ -6,10 +6,9 @@ class ActivityPub::FetchRepliesService < BaseService
   # Limit of fetched replies
   MAX_REPLIES = 5
 
-  def call(parent_status, collection_or_uri, allow_synchronous_requests: true, request_id: nil, filter_by_host: true)
+  def call(parent_status, collection_or_uri, allow_synchronous_requests: true, request_id: nil)
     @account = parent_status.account
     @allow_synchronous_requests = allow_synchronous_requests
-    @filter_by_host = filter_by_host
 
     @items, = collection_items(collection_or_uri)
     return if @items.nil?
@@ -53,7 +52,7 @@ class ActivityPub::FetchRepliesService < BaseService
   def fetch_collection(collection_or_uri)
     return collection_or_uri if collection_or_uri.is_a?(Hash)
     return unless @allow_synchronous_requests
-    return if @filter_by_host && non_matching_uri_hosts?(@account.uri, collection_or_uri)
+    return if filter_by_host? && non_matching_uri_hosts?(@account.uri, collection_or_uri)
 
     # NOTE: For backward compatibility reasons, Mastodon signs outgoing
     # queries incorrectly by default.
@@ -72,7 +71,7 @@ class ActivityPub::FetchRepliesService < BaseService
   end
 
   def filtered_replies
-    if @filter_by_host
+    if filter_by_host?
       # Only fetch replies to the same server as the original status to avoid
       # amplification attacks.
 
@@ -81,5 +80,10 @@ class ActivityPub::FetchRepliesService < BaseService
     else
       @items.map { |item| value_or_id(item) }.take(MAX_REPLIES)
     end
+  end
+
+  # Whether replies with a different domain than the replied_to post should be rejected
+  def filter_by_host?
+    true
   end
 end
