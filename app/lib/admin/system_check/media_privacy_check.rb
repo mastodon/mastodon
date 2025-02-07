@@ -76,7 +76,7 @@ class Admin::SystemCheck::MediaPrivacyCheck < Admin::SystemCheck::BaseCheck
 
   def media_attachment
     @media_attachment ||= begin
-      attachment = Account.representative.media_attachments.first
+      attachment = Account.representative.media_attachments.take
       if attachment.present?
         attachment.touch
         attachment
