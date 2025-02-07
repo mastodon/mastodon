@@ -2,7 +2,6 @@
 
 class Auth::ConfirmationsController < Devise::ConfirmationsController
   include Auth::CaptchaConcern
-  include Auth::CaptchaConcern::Mcaptcha
 
   layout 'auth'
 
