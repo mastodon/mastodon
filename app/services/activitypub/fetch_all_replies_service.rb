@@ -8,7 +8,6 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
 
   def call(collection_or_uri, status_uri, max_pages = nil, request_id: nil)
     @allow_synchronous_requests = true
-    @filter_by_host = false
     @collection_or_uri = collection_or_uri
     @status_uri = status_uri
 
@@ -61,5 +60,9 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
 
     Rails.logger.debug { "FetchAllRepliesService - #{@collection_or_uri}: Fetching filtered statuses: #{uris}" }
     uris
+  end
+
+  def filter_by_host?
+    false
   end
 end
