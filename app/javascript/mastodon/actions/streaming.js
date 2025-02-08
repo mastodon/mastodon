@@ -196,9 +196,9 @@ export const connectListStream = listId =>
 /**
  * @param {string} accountId
  * @param {Object} options
- * @param {boolean} options.withReplies
- * @param {string} options.tagged
- * @param {boolean} options.onlyMedia
+ * @param {boolean} [options.withReplies]
+ * @param {string} [options.tagged]
+ * @param {boolean} [options.onlyMedia]
  * @returns {function(): void}
  */
 export const connectProfileStream = (accountId, { withReplies, tagged, onlyMedia }) =>

@@ -18,11 +18,11 @@ import { TimelineHint } from 'mastodon/components/timeline_hint';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import Column from 'mastodon/features/ui/components/column';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
-import { getAccountHidden } from 'mastodon/selectors';
+import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector } from 'mastodon/store';
 
+import { Header } from './components/header';
 import { LimitedAccountHint } from './components/limited_account_hint';
-import HeaderContainer from './containers/header_container';
 
 const emptyList = ImmutableList();
 
@@ -195,7 +195,7 @@ class AccountTimeline extends ImmutablePureComponent {
         <ColumnBackButton />
 
         <StatusList
-          prepend={<HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />}
+          prepend={<Header accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />}
           alwaysPrepend
           append={remoteMessage}
           scrollKey='account_timeline'
