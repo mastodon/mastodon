@@ -3,6 +3,7 @@ ja:
   simple_form:
     hints:
       account:
+        attribution_domains: 1行につき1つずつ入力してください。この設定は関わりのないwebサイトに対して虚偽の帰属表示が行われることを防止する役割があります。
         discoverable: プロフィールと公開投稿をMastodonのおすすめやハイライトとしてほかのユーザーに表示することを許可します。
         display_name: フルネーム、ハンドルネームなど
         fields: ホームページ、代名詞、年齢など何でも構いません。
@@ -155,6 +156,7 @@ ja:
         url: イベントの送信先
     labels:
       account:
+        attribution_domains: あなたの著者表示を許可するwebサイト
         discoverable: アカウントを見つけやすくする
         fields:
           name: ラベル
@@ -231,6 +233,7 @@ ja:
         setting_display_media_show_all: 表示
         setting_expand_spoilers: 閲覧注意としてマークされた投稿を常に展開する
         setting_hide_network: 繋がりを隠す
+        setting_missing_alt_text_modal: 代替テキストなしでメディアを投稿する前に確認ダイアログを表示する
         setting_reduce_motion: アニメーションの動きを減らす
         setting_system_font_ui: システムのデフォルトフォントを使う
         setting_system_scrollbars_ui: システムのデフォルトのスクロールバーを使う
