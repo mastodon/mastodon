@@ -5,7 +5,7 @@ eo:
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
     hosted_on: "%{domain} estas nodo de Mastodon"
-    title: Pri
+    title: Prio
   accounts:
     followers:
       one: Sekvanto
@@ -41,7 +41,7 @@ eo:
       by_domain: Domajno
       change_email:
         changed_msg: Retpoŝta adreso sukcese ŝanĝita!
-        current_email: Nuna retadreso
+        current_email: Aktuala retadreso
         label: Ŝanĝi retadreson
         new_email: Nova retadreso
         submit: Ŝanĝi retadreson
@@ -102,7 +102,7 @@ eo:
       moderation_notes: Notoj de moderigado
       most_recent_activity: Lastaj afiŝoj
       most_recent_ip: Lasta IP
-      no_account_selected: Neniu konto estis ŝanĝita ĉar neniu estis selektita
+      no_account_selected: Neniu konto estis ŝanĝita kial neniu estis selektita
       no_limits_imposed: Neniu limito trudita
       no_role_assigned: Sen rolo
       not_subscribed: Ne abonita
@@ -142,7 +142,7 @@ eo:
         only_password: Nur pasvorto
         password_and_2fa: Pasvorto kaj 2FA
       sensitive: Tikla
-      sensitized: markita tikla
+      sensitized: Markita kiel tikla
       shared_inbox_url: URL de kunhavigita leterkesto
       show:
         created_reports: Faritaj raportoj
@@ -204,7 +204,7 @@ eo:
         destroy_unavailable_domain: Forigi Nehaveblan Domajnon
         destroy_user_role: Detrui Rolon
         disable_2fa_user: Malebligi 2FA
-        disable_custom_emoji: Malebligi proprajn emoĝiojn
+        disable_custom_emoji: Malŝalti Proprajn Bildosignojn
         disable_relay: Malebligi Relajson
         disable_sign_in_token_auth_user: Malebligi aŭtentigon per retpoŝta ĵetono por la uzanto
         disable_user: Neebligi la uzanton
@@ -220,14 +220,14 @@ eo:
         remove_avatar_user: Forigi la profilbildon
         reopen_report: Remalfermi signalon
         resend_user: Resendi konfirman retmesaĝon
-        reset_password_user: Restarigi pasvorton
+        reset_password_user: Restarigi Pasvorton
         resolve_report: Solvitaj reporto
         sensitive_account: Marki tikla la aŭdovidaĵojn de via konto
-        silence_account: Silentigi konton
-        suspend_account: Suspendi la konton
+        silence_account: Silentigi Konton
+        suspend_account: Suspendi Konton
         unassigned_report: Malatribui Raporton
         unblock_email_account: Malbloki retpoŝtadreson
-        unsensitive_account: Malmarku la amaskomunikilojn en via konto kiel sentemaj
+        unsensitive_account: Malmarki Konton kiel Sentime Tikla
         unsilence_account: Malsilentigi konton
         unsuspend_account: Malsuspendi la konton
         update_announcement: Ĝisdatigi anoncon
@@ -235,19 +235,19 @@ eo:
         update_domain_block: Ĝigdatigi domajnan blokadon
         update_ip_block: Krei IP-regulon
         update_report: Ĝisdatigo de Raporto
-        update_status: Ĝisdatigi afiŝon
+        update_status: Ĝisdatigi Afiŝon
         update_user_role: Ĝisdatigi rolon
       actions:
-        approve_appeal_html: "%{name} aprobis apelacion kontraŭ moderiga decido de %{target}"
-        approve_user_html: "%{name} aprobis registriĝon de %{target}"
+        approve_appeal_html: "%{name} aprobis apelacion kontraŭ reguliga decido de %{target}"
+        approve_user_html: "%{name} aprobis la registriĝon de %{target}"
         assigned_to_self_report_html: "%{name} asignis signalon %{target} al si mem"
-        change_email_user_html: "%{name} ŝanĝis retadreson de uzanto %{target}"
+        change_email_user_html: "%{name} ŝanĝis la retadreson de uzanto %{target}"
         change_role_user_html: "%{name} ŝanĝis rolon de %{target}"
         confirm_user_html: "%{name} konfirmis retadreson de uzanto %{target}"
         create_account_warning_html: "%{name} sendis averton al %{target}"
         create_announcement_html: "%{name} kreis novan anoncon %{target}"
         create_canonical_email_block_html: "%{name} blokis retpoŝtadreson per krado %{target}"
-        create_custom_emoji_html: "%{name} alŝutis novan emoĝion %{target}"
+        create_custom_emoji_html: "%{name} alŝutis novan bildosignon %{target}"
         create_domain_allow_html: "%{name} aldonis domajnon %{target} al la blanka listo"
         create_domain_block_html: "%{name} blokis domajnon %{target}"
         create_email_domain_block_html: "%{name} blokis retpoŝtan domajnon %{target}"
@@ -258,7 +258,7 @@ eo:
         demote_user_html: "%{name} degradis uzanton %{target}"
         destroy_announcement_html: "%{name} forigis anoncon %{target}"
         destroy_canonical_email_block_html: "%{name} malblokis retpoŝtadreson per krado %{target}"
-        destroy_custom_emoji_html: "%{name} forigis emoĝion %{target}"
+        destroy_custom_emoji_html: "%{name} forigis la bildosignon %{target}"
         destroy_domain_allow_html: "%{name} forigis domajnon %{target} el la blanka listo"
         destroy_domain_block_html: "%{name} malblokis domajnon %{target}"
         destroy_email_domain_block_html: "%{name} malblokis retpoŝtan domajnon %{target}"
@@ -269,11 +269,11 @@ eo:
         destroy_unavailable_domain_html: "%{name} restartigis sendon al domajno %{target}"
         destroy_user_role_html: "%{name} forigis rolon de %{target}"
         disable_2fa_user_html: "%{name} malebligis dufaktoran aŭtentigon por uzanto %{target}"
-        disable_custom_emoji_html: "%{name} malebligis la emoĝion %{target}"
+        disable_custom_emoji_html: "%{name} malebligis la bildosignon %{target}"
         disable_relay_html: "%{name} malebligis la relajson %{target}"
         disable_sign_in_token_auth_user_html: "%{name} malebligis la aŭtentigon de retpoŝta ĵetono por %{target}"
         disable_user_html: "%{name} malebligis ensaluton por uzanto %{target}"
-        enable_custom_emoji_html: "%{name} ebligis la emoĝion %{target}"
+        enable_custom_emoji_html: "%{name} ebligis la bildosignon %{target}"
         enable_relay_html: "%{name} ebligis la relajson %{target}"
         enable_sign_in_token_auth_user_html: "%{name} ebligis la aŭtentigon de retpoŝta ĵetono por %{target}"
         enable_user_html: "%{name} ebligis ensaluton por uzanto %{target}"
@@ -296,7 +296,7 @@ eo:
         unsilence_account_html: "%{name} malfaris limon al konto de %{target}"
         unsuspend_account_html: "%{name} malsuspendis la konton de %{target}"
         update_announcement_html: "%{name} ĝisdatigis la anoncon %{target}"
-        update_custom_emoji_html: "%{name} ĝisdatigis la emoĝion %{target}"
+        update_custom_emoji_html: "%{name} ĝisdatigis la bildosignon %{target}"
         update_domain_block_html: "%{name} ĝisdatigis domajnblokon por %{target}"
         update_ip_block_html: "%{name} ŝanĝis regulon por IP %{target}"
         update_report_html: "%{name} ĝisdatigis la raporton %{target}"
@@ -309,17 +309,17 @@ eo:
       title: Ĵurnalo de revizo
       unavailable_instance: "(domajna nomo nedisponebla)"
     announcements:
-      destroyed_msg: Anonco sukcese forigita!
+      destroyed_msg: La anonco sukcese forigita!
       edit:
         title: Redakti anoncon
-      empty: Neniu anonco trovita.
+      empty: Neniu anonco troviĝas.
       live: Publikigita
       new:
         create: Krei anoncon
         title: Nova anonco
       publish: Publikigi
       published_msg: Anonco sukcese publikigita!
-      scheduled_for: Planigita je %{time}
+      scheduled_for: Planigota je %{time}
       scheduled_msg: Anonco planigita por publikigo!
       title: Anoncoj
       unpublish: Malpublikigi
@@ -341,7 +341,7 @@ eo:
       disabled_msg: Emoĝio sukcese malebligita
       emoji: Emoĝio
       enable: Ebligi
-      enabled: Ebligita
+      enabled: Ŝaltita
       enabled_msg: Emoĝio sukcese ebligita
       image_hint: PNG aŭ GIF malpli granda ol %{size}
       list: Listo
@@ -1313,8 +1313,8 @@ eo:
       Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la
       <a href="%{apps_path}">operaciumaj aplikaĵoj</a> por Mastodon por via platformo.
   existing_username_validator:
-    not_found: Ne povas trovi lokaj uzanto kun tiu uzantnomo
-    not_found_multiple: Ne povas trovi %{usernames}
+    not_found: ne povas trovi lokaj uzanto kun tiu uzantnomo
+    not_found_multiple: ne povas trovi %{usernames}
   exports:
     archive_takeout:
       date: Dato
@@ -1539,7 +1539,7 @@ eo:
     validations:
       images_and_video: Aldoni videon al mesaĝo, kiu jam havas bildojn ne eblas
       not_found: Dosiero %{ids} ne trovis aŭ jam alteniĝis al alia afiŝo
-      not_ready: Ne povas aldoni dosieron kiu ne finas procezitis.
+      not_ready: Ne povas aldoni dosieron kiu ne finis procezitis.
       too_many: Aldoni pli ol 4 dosierojn ne eblas
   migrations:
     acct: Movigita al

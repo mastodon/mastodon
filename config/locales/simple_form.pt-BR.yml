@@ -3,6 +3,7 @@ pt-BR:
   simple_form:
     hints:
       account:
+        attribution_domains: Um por linha. Protege contra atribuições falsas.
         discoverable: Suas publicações e perfil públicos podem ser destaques ou recomendados em várias áreas de Mastodon, e seu perfil pode ser sugerido a outros usuários.
         display_name: Seu nome completo ou apelido.
         fields: Sua página inicial, pronomes, idade ou qualquer coisa que quiser.
@@ -129,8 +130,17 @@ pt-BR:
         show_application: Você sempre conseguirá ver qual aplicativo realizou sua publicação independentemente disso.
       tag:
         name: Você pode mudar a capitalização das letras, por exemplo, para torná-la mais legível
+      terms_of_service:
+        changelog: Pode ser estruturado com a sintaxe Markdown.
+        text: Pode ser estruturado com a sintaxe Markdown.
       terms_of_service_generator:
+        admin_email: Avisos legais incluem contra-notificações, ordens judiciais, solicitações de remoção e solicitações de órgãos de fiscalização.
+        arbitration_address: Pode ser o mesmo que o endereço físico acima, ou "N/A" se estiver usando e-mail.
+        arbitration_website: Pode ser um formulário na web, ou "N/A" se estiver usando e-mail.
+        dmca_address: Para operadores dos EUA, utilize o endereço registrado no Diretório de Agentes Designados pela DMCA. Um endereço de Caixa Postal está disponível mediante solicitação direta; use a Solicitação de Isenção de Caixa Postal de Agente Designado pela DMCA para enviar um e-mail ao Escritório de Direitos Autorais, explicando que você é um moderador de conteúdo que trabalha em casa e teme vingança ou retaliação por suas ações, precisando usar uma Caixa Postal para remover seu endereço residencial da visualização pública.
         dmca_email: Pode ser o mesmo e-mail utilizado para "Endereço de e-mail para avisos legais" acima
+        domain: Identificação única do serviço online que você está fornecendo.
+        jurisdiction: Liste o país onde quem paga as contas reside. Se for uma empresa ou outra entidade, liste o país onde ela está incorporada, e a cidade, região, território ou estado, conforme apropriado.
       user:
         chosen_languages: Apenas as publicações dos idiomas selecionados serão exibidas nas linhas públicas
         role: A função controla quais permissões o usuário tem.
@@ -146,6 +156,7 @@ pt-BR:
         url: Aonde os eventos serão enviados
     labels:
       account:
+        attribution_domains: Sites autorizados a creditar você.
         discoverable: Destacar perfil e publicações nos algoritmos de descoberta
         fields:
           name: Rótulo
@@ -222,6 +233,7 @@ pt-BR:
         setting_display_media_show_all: Mostrar tudo
         setting_expand_spoilers: Sempre expandir toots com Aviso de Conteúdo
         setting_hide_network: Ocultar suas relações
+        setting_missing_alt_text_modal: Mostrar caixa de diálogo de confirmação antes de postar mídia sem texto alternativo.
         setting_reduce_motion: Reduzir animações
         setting_system_font_ui: Usar fonte padrão do sistema
         setting_system_scrollbars_ui: Usar barra de rolagem padrão do sistema
@@ -319,6 +331,17 @@ pt-BR:
         name: Hashtag
         trendable: Permitir que esta hashtag fique em alta
         usable: Permitir que as publicações usem esta hashtag localmente
+      terms_of_service:
+        changelog: O que mudou?
+        text: Termos de Serviço
+      terms_of_service_generator:
+        admin_email: Endereço de e-mail para avisos legais.
+        arbitration_address: Endereço físico para avisos de arbitragem.
+        arbitration_website: Site para submissão de notificações de arbitragem
+        dmca_address: Endereço físico para notificações de DMCA/direitos autorais
+        dmca_email: Endereço de e-mail para notificações de DMCA/direitos autorais
+        domain: Domínio
+        jurisdiction: Jurisdicação legal
       user:
         role: Cargo
         time_zone: Fuso horário
