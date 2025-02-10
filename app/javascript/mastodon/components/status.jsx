@@ -333,7 +333,7 @@ class Status extends ImmutablePureComponent {
     const { onToggleHidden } = this.props;
     const status = this._properStatus();
 
-    if (status.get('matched_filters')) {
+    if (this.props.status.get('matched_filters')) {
       const expandedBecauseOfCW = !status.get('hidden') || status.get('spoiler_text').length === 0;
       const expandedBecauseOfFilter = this.state.showDespiteFilter;
 
@@ -527,7 +527,7 @@ class Status extends ImmutablePureComponent {
           </Bundle>
         );
       }
-    } else if (status.get('spoiler_text').length === 0 && status.get('card')) {
+    } else if (status.get('card')) {
       media = (
         <Card
           onOpenMedia={this.handleOpenMedia}

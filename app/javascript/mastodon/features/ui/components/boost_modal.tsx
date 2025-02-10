@@ -28,7 +28,6 @@ export const BoostModal: React.FC<{
   const intl = useIntl();
 
   const defaultPrivacy = useAppSelector(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     (state) => state.compose.get('default_privacy') as StatusVisibility,
   );
 

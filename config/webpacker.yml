@@ -13,8 +13,8 @@ default: &default
   # ['app/assets', 'engine/foo/app/assets']
   resolved_paths: []
 
-  # Reload manifest.json on all requests so we reload latest compiled packs
-  cache_manifest: false
+  # Cache manifest.json for performance
+  cache_manifest: true
 
   # Extract and emit a css file
   extract_css: true
@@ -55,6 +55,9 @@ development:
 
   compile: true
 
+  # Reload manifest in development environment so we pick up changes
+  cache_manifest: false
+
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
     https: false
@@ -89,6 +92,3 @@ production:
 
   # Production depends on precompilation of packs prior to booting for performance.
   compile: false
-
-  # Cache manifest.json for performance
-  cache_manifest: true

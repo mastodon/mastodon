@@ -4,7 +4,6 @@ class SeveredRelationshipsController < ApplicationController
   layout 'admin'
 
   before_action :authenticate_user!
-  before_action :set_cache_headers
 
   before_action :set_event, only: [:following, :followers]
 
@@ -48,9 +47,5 @@ class SeveredRelationshipsController < ApplicationController
 
   def acct(account)
     account.local? ? account.local_username_and_domain : account.acct
-  end
-
-  def set_cache_headers
-    response.cache_control.replace(private: true, no_store: true)
   end
 end

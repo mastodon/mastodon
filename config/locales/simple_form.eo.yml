@@ -3,6 +3,7 @@ eo:
   simple_form:
     hints:
       account:
+        attribution_domains: Unu por linio. Protektas kontraŭ falsaj atribuoj.
         discoverable: Viaj publikaj afiŝoj kaj profilo povas esti prezentitaj aŭ rekomenditaj en diversaj lokoj de Mastodon kaj via profilo povas esti proponita al aliaj uzantoj.
         display_name: Via plena nomo aŭ via kromnomo.
         fields: Via retpaĝo, pronomoj, aĝo, ĉio, kion vi volas.
@@ -55,10 +56,10 @@ eo:
         scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
         setting_aggregate_reblogs: Ne montri novajn plusendojn de mesaĝoj lastatempe plusenditaj (nur efikas al nove ricevitaj plusendoj)
         setting_always_send_emails: Normale, la sciigoj per retpoŝto ne estos senditaj kiam vi uzas Mastodon aktive
-        setting_default_sensitive: Tiklaj plurmedioj estas kaŝitaj implicite, kaj povas esti montritaj per klako
+        setting_default_sensitive: Tiklaj vidaŭdaĵoj estas kaŝitaj implicite, kaj povas esti montritaj per klako
         setting_display_media_default: Kaŝi plurmediojn markitajn kiel tiklaj
-        setting_display_media_hide_all: Ĉiam kaŝi la plurmediojn
-        setting_display_media_show_all: Ĉiam montri la plurmediojn
+        setting_display_media_hide_all: Ĉiam kaŝi la vidaŭdaĵojn
+        setting_display_media_show_all: Ĉiam montri la vidaŭdaĵojn
         setting_system_scrollbars_ui: Aplikas nur por surtablaj retumiloj baziĝas de Safari kaj Chrome
         setting_use_blurhash: Transirojn estas bazita sur la koloroj de la kaŝitaj aŭdovidaĵoj sed ne montri iun ajn detalon
         setting_use_pending_items: Kaŝi tempoliniajn ĝisdatigojn malantaŭ klako anstataŭ aŭtomate rulumi la fluon
@@ -155,6 +156,7 @@ eo:
         url: Kien eventoj sendotas
     labels:
       account:
+        attribution_domains: Retejoj permesitaj krediti vin
         discoverable: Elstarigi profilon kaj afiŝojn en eltrovantaj algoritmoj
         fields:
           name: Etikedo
@@ -221,16 +223,17 @@ eo:
         setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
         setting_default_language: Publikada lingvo
         setting_default_privacy: Privateco de afiŝado
-        setting_default_sensitive: Ĉiam marki plurmediojn kiel tiklaj
+        setting_default_sensitive: Ĉiam marki la vidaŭdaĵojn kiel tiklaj
         setting_delete_modal: Montri konfirman fenestron antaŭ ol forigi mesaĝon
         setting_disable_hover_cards: Malebligi profilan antaŭmontron kiam oni musumas
         setting_disable_swiping: Malebligi svingajn movojn
-        setting_display_media: Montrado de plurmedioj
+        setting_display_media: Vidigo de vidaŭdaĵoj
         setting_display_media_default: Implicita
         setting_display_media_hide_all: Kaŝi ĉiujn
         setting_display_media_show_all: Montri ĉiujn
         setting_expand_spoilers: Ĉiam malfoldas mesaĝojn markitajn per averto pri enhavo
         setting_hide_network: Kaŝi viajn sekvantojn kaj sekvatojn
+        setting_missing_alt_text_modal: Montru konfirman dialogon antaŭ afiŝado de amaskomunikiloj sen altteksto
         setting_reduce_motion: Redukti la movecojn de la animacioj
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
         setting_system_scrollbars_ui: Uzu la defaŭltan rulumilon de la sistemo

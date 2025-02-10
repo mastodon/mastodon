@@ -60,16 +60,12 @@ RSpec.describe Request do
         expect(a_request(:get, 'http://example.com')).to have_been_made.once
       end
 
-      it 'sets headers' do
-        expect { |block| subject.perform(&block) }.to yield_control
-        expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made
-      end
-
-      it 'closes underlying connection' do
+      it 'makes a request with expected headers, yields, and closes the underlying connection' do
         allow(subject.send(:http_client)).to receive(:close)
 
         expect { |block| subject.perform(&block) }.to yield_control
 
+        expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made
         expect(subject.send(:http_client)).to have_received(:close)
       end
 
@@ -77,6 +73,29 @@ RSpec.describe Request do
         subject.perform do |response|
           expect(response.body_with_limit).to eq 'lorem ipsum'
         end
+      end
+    end
+
+    context 'with a redirect and HTTP signatures' do
+      let(:account) { Fabricate(:account) }
+
+      before do
+        stub_request(:get, 'http://example.com').to_return(status: 301, headers: { Location: 'http://redirected.example.com/foo' })
+        stub_request(:get, 'http://redirected.example.com/foo').to_return(body: 'lorem ipsum')
+      end
+
+      it 'makes a request with expected headers and follows redirects' do
+        expect { |block| subject.on_behalf_of(account).perform(&block) }.to yield_control
+
+        # request.headers includes the `Signature` sent for the first request
+        expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made.once
+
+        # request.headers includes the `Signature`, but it has changed
+        expect(a_request(:get, 'http://redirected.example.com/foo').with(headers: subject.headers.merge({ 'Host' => 'redirected.example.com' }))).to_not have_been_made
+
+        # `with(headers: )` matching tests for inclusion, so strip `Signature`
+        # This doesn't actually test that there is a signature, but it tests that the original signature is not passed
+        expect(a_request(:get, 'http://redirected.example.com/foo').with(headers: subject.headers.without('Signature').merge({ 'Host' => 'redirected.example.com' }))).to have_been_made.once
       end
     end
 
