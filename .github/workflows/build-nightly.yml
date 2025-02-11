@@ -24,8 +24,6 @@ jobs:
     needs: compute-suffix
     uses: ./.github/workflows/build-container-image.yml
     with:
-      platforms: linux/amd64,linux/arm64
-      use_native_arm64_builder: true
       cache: false
       push_to_images: |
         tootsuite/mastodon
