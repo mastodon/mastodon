@@ -3,40 +3,54 @@
 require 'rails_helper'
 
 RSpec.describe Admin::BaseController do
+  render_views
+
   controller do
     def success
       authorize :dashboard, :index?
-      render 'admin/reports/show'
+      render html: '<p>success</p>', layout: true
     end
   end
 
-  it 'requires administrator or moderator' do
-    routes.draw { get 'success' => 'admin/base#success' }
-    sign_in(Fabricate(:user))
-    get :success
+  before { routes.draw { get 'success' => 'admin/base#success' } }
 
-    expect(response).to have_http_status(403)
+  context 'when signed in as regular user' do
+    before { sign_in Fabricate(:user) }
+
+    it 'responds with unauthorized' do
+      get :success
+
+      expect(response).to have_http_status(403)
+    end
   end
 
-  it 'returns private cache control headers' do
-    routes.draw { get 'success' => 'admin/base#success' }
-    sign_in(Fabricate(:moderator_user))
-    get :success
+  context 'when signed in as moderator' do
+    before { sign_in Fabricate(:moderator_user) }
 
-    expect(response.headers['Cache-Control']).to include('private, no-store')
+    it 'returns success with private headers and admin layout' do
+      get :success
+
+      expect(response)
+        .to have_http_status(200)
+      expect(response.headers['Cache-Control'])
+        .to include('private, no-store')
+      expect(response.parsed_body)
+        .to have_css('body.admin')
+    end
   end
 
-  it 'renders admin layout as a moderator' do
-    routes.draw { get 'success' => 'admin/base#success' }
-    sign_in(Fabricate(:moderator_user))
-    get :success
-    expect(response).to render_template layout: 'admin'
-  end
+  context 'when signed in as admin' do
+    before { sign_in Fabricate(:admin_user) }
 
-  it 'renders admin layout as an admin' do
-    routes.draw { get 'success' => 'admin/base#success' }
-    sign_in(Fabricate(:admin_user))
-    get :success
-    expect(response).to render_template layout: 'admin'
+    it 'returns success with private headers and admin layout' do
+      get :success
+
+      expect(response)
+        .to have_http_status(200)
+      expect(response.headers['Cache-Control'])
+        .to include('private, no-store')
+      expect(response.parsed_body)
+        .to have_css('body.admin')
+    end
   end
 end
