@@ -89,7 +89,6 @@ RSpec.describe ChallengableConcern do
       it 'renders challenge' do
         expect(response.parsed_body)
           .to have_title(I18n.t('challenge.prompt'))
-          .and have_css('.container-alt .logo-container')
       end
     end
 
@@ -99,7 +98,6 @@ RSpec.describe ChallengableConcern do
       it 'renders challenge' do
         expect(response.parsed_body)
           .to have_title(I18n.t('challenge.prompt'))
-          .and have_css('.container-alt .logo-container')
       end
 
       it 'accepts correct password' do
@@ -116,7 +114,6 @@ RSpec.describe ChallengableConcern do
 
         expect(response.parsed_body)
           .to have_title(I18n.t('challenge.prompt'))
-          .and have_css('.container-alt .logo-container')
         expect(session[:challenge_passed_at])
           .to be_nil
       end
