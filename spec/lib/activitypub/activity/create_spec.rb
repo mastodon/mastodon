@@ -37,10 +37,16 @@ RSpec.describe ActivityPub::Activity::Create do
         content: '@bob lorem ipsum',
         published: 1.hour.ago.utc.iso8601,
         updated: 1.hour.ago.utc.iso8601,
-        tag: {
-          type: 'Mention',
-          href: ActivityPub::TagManager.instance.uri_for(follower),
-        },
+        tag: [
+          {
+            type: 'Mention',
+            href: ActivityPub::TagManager.instance.uri_for(follower),
+          },
+          {
+            type: 'Mention',
+            href: ActivityPub::TagManager.instance.uri_for(follower),
+          },
+        ],
       }
     end
 

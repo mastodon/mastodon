@@ -18,6 +18,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       tag: [
         { type: 'Hashtag', name: 'hoge' },
         { type: 'Mention', href: ActivityPub::TagManager.instance.uri_for(alice) },
+        { type: 'Mention', href: ActivityPub::TagManager.instance.uri_for(alice) },
         { type: 'Mention', href: bogus_mention },
       ],
     }
