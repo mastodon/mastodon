@@ -46,6 +46,6 @@ module WebAppControllerConcern
   protected
 
   def set_referer_header
-    response.set_header('Referrer-Policy', Setting.allow_referrer_origin ? 'origin' : 'same-origin')
+    response.set_header('Referrer-Policy', Setting.allow_referrer_origin ? 'strict-origin-when-cross-origin' : 'same-origin')
   end
 end
