@@ -5,8 +5,12 @@ require 'rails_helper'
 RSpec.describe 'Settings TwoFactorAuthentication RecoveryCodes' do
   describe 'Generating recovery codes' do
     let(:user) { Fabricate :user, otp_required_for_login: true }
+    let(:backup_code) { +'147e7284c95bd260b91ed17820860019' }
 
-    before { sign_in(user) }
+    before do
+      stub_code_generator
+      sign_in(user)
+    end
 
     it 'updates the codes and includes them in the view' do
       # Attempt to generate codes
@@ -23,6 +27,11 @@ RSpec.describe 'Settings TwoFactorAuthentication RecoveryCodes' do
         .to have_content(I18n.t('two_factor_authentication.recovery_codes_regenerated'))
         .and have_title(I18n.t('settings.two_factor_authentication'))
         .and have_css('ol.recovery-codes')
+        .and have_content(backup_code)
+    end
+
+    def stub_code_generator
+      allow(SecureRandom).to receive(:hex).and_return(backup_code)
     end
   end
 end
