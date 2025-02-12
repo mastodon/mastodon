@@ -227,7 +227,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       nil
     end
 
-    @status.mentions.upsert_all(currently_mentioned_account_ids.map { |id| { account_id: id, silent: false } }, unique_by: %w(status_id account_id))
+    @status.mentions.upsert_all(currently_mentioned_account_ids.uniq.map { |id| { account_id: id, silent: false } }, unique_by: %w(status_id account_id))
 
     # If previous mentions are no longer contained in the text, convert them
     # to silent mentions, since withdrawing access from someone who already
