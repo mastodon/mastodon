@@ -45,6 +45,72 @@ RSpec.describe 'Statuses' do
             .to redirect_to(original_status.url)
         end
       end
+
+      context 'when status visibility is public' do
+        subject { get short_account_status_path(account_username: account.username, id: status.id, format: format) }
+
+        let(:status) { Fabricate(:status, account: account, visibility: :public) }
+
+        context 'with HTML' do
+          let(:format) { 'html' }
+
+          it 'renders status successfully', :aggregate_failures do
+            subject
+
+            expect(response)
+              .to have_http_status(200)
+              .and render_template(:show)
+            expect(response.headers).to include(
+              'Vary' => 'Accept, Accept-Language, Cookie',
+              'Cache-Control' => include('public'),
+              'Link' => include('activity+json')
+            )
+            expect(response.body)
+              .to include(status.text)
+          end
+        end
+
+        context 'with JSON' do
+          let(:format) { 'json' }
+
+          it 'renders ActivityPub Note object successfully', :aggregate_failures do
+            subject
+
+            expect(response)
+              .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+
+            expect(response.headers).to include(
+              'Content-Type' => include('application/activity+json'),
+              'Link' => include('activity+json')
+            )
+            expect(response.parsed_body)
+              .to include(content: include(status.text))
+          end
+        end
+      end
+
+      context 'when status visibility is private' do
+        let(:status) { Fabricate(:status, account: account, visibility: :private) }
+
+        it 'returns http not found' do
+          get short_account_status_path(account_username: account.username, id: status.id)
+
+          expect(response)
+            .to have_http_status(404)
+        end
+      end
+
+      context 'when status visibility is direct' do
+        let(:status) { Fabricate(:status, account: account, visibility: :direct) }
+
+        it 'returns http not found' do
+          get short_account_status_path(account_username: account.username, id: status.id)
+
+          expect(response)
+            .to have_http_status(404)
+        end
+      end
     end
 
     context 'when signed in' do
