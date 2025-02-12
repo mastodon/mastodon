@@ -63,5 +63,185 @@ RSpec.describe 'Statuses' do
         end
       end
     end
+
+    context 'with "HTTP Signature" access signed by a remote account' do
+      subject do
+        get short_account_status_path(account_username: status.account.username, id: status.id, format: format),
+            headers: nil,
+            sign_with: remote_account
+      end
+
+      let(:format) { 'html' }
+      let(:remote_account) { Fabricate(:account, domain: 'host.example') }
+
+      context 'when account blocks the remote account' do
+        before { account.block!(remote_account) }
+
+        it 'returns http not found' do
+          subject
+
+          expect(response)
+            .to have_http_status(404)
+        end
+      end
+
+      context 'when account domain blocks the domain of the remote account' do
+        before { account.block_domain!(remote_account.domain) }
+
+        it 'returns http not found' do
+          subject
+
+          expect(response)
+            .to have_http_status(404)
+        end
+      end
+
+      context 'when status has public visibility' do
+        context 'with HTML' do
+          let(:format) { 'html' }
+
+          it 'renders status successfully', :aggregate_failures do
+            subject
+
+            expect(response)
+              .to have_http_status(200)
+            expect(response.headers).to include(
+              'Vary' => 'Accept, Accept-Language, Cookie',
+              'Cache-Control' => include('private'),
+              'Link' => include('activity+json')
+            )
+            expect(response.body)
+              .to include(status.text)
+          end
+        end
+
+        context 'with JSON' do
+          let(:format) { 'json' }
+
+          it 'renders ActivityPub Note object successfully', :aggregate_failures do
+            subject
+
+            expect(response)
+              .to have_http_status(200)
+              .and have_cacheable_headers.with_vary('Accept, Accept-Language, Cookie')
+            expect(response.headers).to include(
+              'Content-Type' => include('application/activity+json'),
+              'Link' => include('activity+json')
+            )
+            expect(response.parsed_body)
+              .to include(content: include(status.text))
+          end
+        end
+      end
+
+      context 'when status has private visibility' do
+        let(:status) { Fabricate(:status, account: account, visibility: :private) }
+
+        context 'when user is authorized to see it' do
+          before { remote_account.follow!(account) }
+
+          context 'with HTML' do
+            let(:format) { 'html' }
+
+            it 'renders status successfully', :aggregate_failures do
+              subject
+
+              expect(response)
+                .to have_http_status(200)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Link' => include('activity+json')
+              )
+              expect(response.body)
+                .to include(status.text)
+            end
+          end
+
+          context 'with JSON' do
+            let(:format) { 'json' }
+
+            it 'renders ActivityPub Note object successfully' do
+              subject
+
+              expect(response)
+                .to have_http_status(200)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Content-Type' => include('application/activity+json'),
+                'Link' => include('activity+json')
+              )
+
+              expect(response.parsed_body)
+                .to include(content: include(status.text))
+            end
+          end
+        end
+
+        context 'when user is not authorized to see it' do
+          it 'returns http not found' do
+            subject
+
+            expect(response)
+              .to have_http_status(404)
+          end
+        end
+      end
+
+      context 'when status is direct' do
+        let(:status) { Fabricate(:status, account: account, visibility: :direct) }
+
+        context 'when user is authorized to see it' do
+          before { Fabricate(:mention, account: remote_account, status: status) }
+
+          context 'with HTML' do
+            let(:format) { 'html' }
+
+            it 'renders status successfully', :aggregate_failures do
+              subject
+
+              expect(response)
+                .to have_http_status(200)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Link' => include('activity+json')
+              )
+              expect(response.body)
+                .to include(status.text)
+            end
+          end
+
+          context 'with JSON' do
+            let(:format) { 'json' }
+
+            it 'renders ActivityPub Note object', :aggregate_failures do
+              subject
+
+              expect(response)
+                .to have_http_status(200)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Content-Type' => include('application/activity+json'),
+                'Link' => include('activity+json')
+              )
+              expect(response.parsed_body)
+                .to include(content: include(status.text))
+            end
+          end
+        end
+
+        context 'when user is not authorized to see it' do
+          it 'returns http not found' do
+            subject
+
+            expect(response)
+              .to have_http_status(404)
+          end
+        end
+      end
+    end
   end
 end
