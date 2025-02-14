@@ -184,7 +184,26 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_tags!
-    @status.tags = Tag.find_or_create_by_names(@raw_tags)
+    previous_tags = @status.tags.to_a
+    current_tags = @status.tags = Tag.find_or_create_by_names(@raw_tags)
+
+    return unless @status.distributable?
+
+    added_tags = current_tags - previous_tags
+
+    unless added_tags.empty?
+      @account.featured_tags.where(tag_id: added_tags.pluck(:id)).find_each do |featured_tag|
+        featured_tag.increment(@status.created_at)
+      end
+    end
+
+    removed_tags = previous_tags - current_tags
+
+    unless removed_tags.empty?
+      @account.featured_tags.where(tag_id: removed_tags.pluck(:id)).find_each do |featured_tag|
+        featured_tag.decrement(@status)
+      end
+    end
   end
 
   def update_mentions!
@@ -206,7 +225,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       nil
     end
 
-    @status.mentions.upsert_all(currently_mentioned_account_ids.map { |id| { account_id: id, silent: false } }, unique_by: %w(status_id account_id))
+    @status.mentions.upsert_all(currently_mentioned_account_ids.uniq.map { |id| { account_id: id, silent: false } }, unique_by: %w(status_id account_id))
 
     # If previous mentions are no longer contained in the text, convert them
     # to silent mentions, since withdrawing access from someone who already

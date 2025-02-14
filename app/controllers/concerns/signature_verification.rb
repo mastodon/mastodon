@@ -117,7 +117,7 @@ module SignatureVerification
 
   def verify_signature_strength!
     raise SignatureVerificationError, 'Mastodon requires the Date header or (created) pseudo-header to be signed' unless signed_headers.include?('date') || signed_headers.include?('(created)')
-    raise SignatureVerificationError, 'Mastodon requires the Digest header or (request-target) pseudo-header to be signed' unless signed_headers.include?(Request::REQUEST_TARGET) || signed_headers.include?('digest')
+    raise SignatureVerificationError, 'Mastodon requires the Digest header or (request-target) pseudo-header to be signed' unless signed_headers.include?(HttpSignatureDraft::REQUEST_TARGET) || signed_headers.include?('digest')
     raise SignatureVerificationError, 'Mastodon requires the Host header to be signed when doing a GET request' if request.get? && !signed_headers.include?('host')
     raise SignatureVerificationError, 'Mastodon requires the Digest header to be signed when doing a POST request' if request.post? && !signed_headers.include?('digest')
   end
@@ -155,14 +155,14 @@ module SignatureVerification
   def build_signed_string(include_query_string: true)
     signed_headers.map do |signed_header|
       case signed_header
-      when Request::REQUEST_TARGET
+      when HttpSignatureDraft::REQUEST_TARGET
         if include_query_string
-          "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.original_fullpath}"
+          "#{HttpSignatureDraft::REQUEST_TARGET}: #{request.method.downcase} #{request.original_fullpath}"
         else
           # Current versions of Mastodon incorrectly omit the query string from the (request-target) pseudo-header.
           # Therefore, temporarily support such incorrect signatures for compatibility.
           # TODO: remove eventually some time after release of the fixed version
-          "#{Request::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
+          "#{HttpSignatureDraft::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
         end
       when '(created)'
         raise SignatureVerificationError, 'Invalid pseudo-header (created) for rsa-sha256' unless signature_algorithm == 'hs2019'

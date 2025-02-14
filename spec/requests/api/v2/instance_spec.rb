@@ -56,7 +56,7 @@ RSpec.describe 'Instances' do
             max_media_attachments: Status::MEDIA_ATTACHMENTS_LIMIT
           ),
           polls: include(
-            max_options: PollValidator::MAX_OPTIONS
+            max_options: PollOptionsValidator::MAX_OPTIONS
           )
         )
       )
