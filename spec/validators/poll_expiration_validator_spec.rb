@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PollValidator, type: :validator do
+RSpec.describe PollExpirationValidator, type: :validator do
   describe '#validate' do
     before do
       validator.validate(poll)
@@ -14,15 +14,23 @@ RSpec.describe PollValidator, type: :validator do
     let(:options) { %w(foo bar) }
     let(:expires_at) { 1.day.from_now }
 
-    it 'have no errors' do
+    it 'has no errors' do
       expect(errors).to_not have_received(:add)
     end
 
-    context 'when expires is just 5 min ago' do
+    context 'when the poll expires in 5 min from now' do
       let(:expires_at) { 5.minutes.from_now }
 
-      it 'not calls errors add' do
+      it 'has no errors' do
         expect(errors).to_not have_received(:add)
+      end
+    end
+
+    context 'when the poll expires in the past' do
+      let(:expires_at) { 5.minutes.ago }
+
+      it 'has errors' do
+        expect(errors).to have_received(:add)
       end
     end
   end

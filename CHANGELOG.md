@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.16] - UNRELEASED
+
+### Fixed
+
+- Fix emoji rewrite adding unnecessary curft to the DOM for most emoji (#33818 by @ClearlyClaire)
+- Fix incorrect signature after HTTP redirect (#33757 and #33769 by @ClearlyClaire)
+- Fix polls not being validated on edition (#33755 by @ClearlyClaire)
+- Fix featured tags for remote accounts not being kept up to date (#33372, #33406, and #33425 by @ClearlyClaire and @mjankowski)
+- Fix exclusive lists interfering with notifications (#28162 by @ShadowJonathan)
+
 ## [4.2.15] - 2025-01-16
 
 ### Security

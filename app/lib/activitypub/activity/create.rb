@@ -85,6 +85,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     ApplicationRecord.transaction do
       @status = Status.create!(@params)
       attach_tags(@status)
+      attach_mentions(@status)
     end
 
     resolve_thread(@status)
@@ -188,6 +189,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     # not a big deal
     Trends.tags.register(status)
 
+    # Update featured tags
+    return if @tags.empty? || !status.distributable?
+
+    @account.featured_tags.where(tag_id: @tags.pluck(:id)).find_each do |featured_tag|
+      featured_tag.increment(status.created_at)
+    end
+  end
+
+  def attach_mentions(status)
     @mentions.each do |mention|
       mention.status = status
       mention.save

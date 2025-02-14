@@ -292,16 +292,22 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
           updated: '2021-09-08T22:39:25Z',
           tag: [
             { type: 'Hashtag', name: 'foo' },
+            { type: 'Hashtag', name: 'bar' },
           ],
         }
       end
 
       before do
-        subject.call(status, json, json)
+        status.account.featured_tags.create!(name: 'bar')
+        status.account.featured_tags.create!(name: 'test')
       end
 
-      it 'updates tags' do
-        expect(status.tags.reload.map(&:name)).to eq %w(foo)
+      it 'updates tags and featured tags' do
+        expect { subject.call(status, json, json) }
+          .to change { status.tags.reload.pluck(:name) }.from(%w(test foo)).to(%w(foo bar))
+          .and change { status.account.featured_tags.find_by(name: 'test').statuses_count }.by(-1)
+          .and change { status.account.featured_tags.find_by(name: 'bar').statuses_count }.by(1)
+          .and change { status.account.featured_tags.find_by(name: 'bar').last_status_at }.from(nil).to(be_present)
       end
     end
 
