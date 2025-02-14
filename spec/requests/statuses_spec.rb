@@ -117,7 +117,7 @@ RSpec.describe 'Statuses' do
 
       let(:user) { Fabricate(:user) }
 
-      before { sign_in(user) }
+      before { sign_in_with_session(user) }
 
       context 'when account blocks user' do
         before { account.block!(user.account) }
@@ -153,7 +153,6 @@ RSpec.describe 'Statuses' do
           let(:format) { 'json' }
 
           it 'renders ActivityPub Note object successfully', :aggregate_failures do
-            cookies['session_id'] = '123' # TODO: this triggers private cache control via CacheConcern ... extract to integration helpers?
             subject
 
             expect(response)
@@ -281,6 +280,15 @@ RSpec.describe 'Statuses' do
               .to have_http_status(404)
           end
         end
+      end
+
+      private
+
+      def sign_in_with_session(user)
+        # The regular `sign_in` helper does not actually set session cookies
+        # The endpoint responses here rely on cookie/session checks to set cache privacy headers
+        # To enable that, perform a full sign in which will establish those cookies for subsequent spec requests
+        post user_session_path, params: { user: { email: user.email, password: user.password } }
       end
     end
 
