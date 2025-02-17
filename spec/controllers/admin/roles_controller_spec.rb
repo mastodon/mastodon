@@ -34,19 +34,6 @@ RSpec.describe Admin::RolesController do
           expect(UserRole.find_by(name: 'Bar')).to be_nil
         end
       end
-
-      context 'when user has administrator permission' do
-        let(:permissions) { UserRole::FLAGS[:administrator] }
-
-        let(:selected_position) { 1 }
-        let(:selected_permissions_as_keys) { %w(manage_roles manage_users manage_reports) }
-
-        it 'redirects to roles page and creates new role' do
-          expect(response).to redirect_to(admin_roles_path)
-
-          expect(UserRole.find_by(name: 'Bar')).to_not be_nil
-        end
-      end
     end
   end
 

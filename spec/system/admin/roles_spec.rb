@@ -3,6 +3,26 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin::Roles' do
+  context 'when user has administrator permissions' do
+    let(:user_role) { Fabricate(:user_role, permissions: UserRole::FLAGS[:administrator], position: 10) }
+
+    before { sign_in Fabricate(:user, role: user_role) }
+
+    it 'creates new user role' do
+      visit new_admin_role_path
+
+      fill_in 'user_role_name', with: 'Baz'
+      fill_in 'user_role_position', with: '1'
+      check 'user_role_permissions_as_keys_manage_reports'
+      check 'user_role_permissions_as_keys_manage_roles'
+
+      expect { click_on I18n.t('admin.roles.add_new') }
+        .to change(UserRole, :count)
+      expect(page)
+        .to have_title(I18n.t('admin.roles.title'))
+    end
+  end
+
   context 'when user has permissions to manage roles' do
     let(:user_role) { Fabricate(:user_role, permissions: UserRole::FLAGS[:manage_roles], position: 10) }
 
