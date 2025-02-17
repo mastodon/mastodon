@@ -1,1 +1,46 @@
+---
 az:
+  devise:
+    confirmations:
+      confirmed: E-poçt ünvanınız uğurla təsdiqləndi.
+      send_instructions: Bir neçə dəqiqə ərzində e-poçt ünvanınızı necə təsdiqləyəcəyinizə dair təlimatları olan bir e-məktub alacaqsınız. Bu e-məktubu almamısınızsa, spam qovluğunuzu yoxlayın.
+      send_paranoid_instructions: E-poçt ünvanınız verilənlər bazamızda varsa, bir neçə dəqiqədən sonra e-poçt ünvanınızı necə təsdiqləyəcəyinizə dair təlimatları olan bir e-məktub alacaqsınız. Bu e-məktubu almamısınızsa, spam qovluğunuzu yoxlayın.
+    failure:
+      already_authenticated: Siz artıq daxil olmusunuz.
+      inactive: Hesabınız hələ aktivləşdirilməyib.
+      invalid: Səhv %{authentication_keys} və ya parol.
+      last_attempt: Hesabınız blok olmamışdan əvvəl bir dəfə də cəhdiniz var.
+      locked: Hesabınız bloklandı.
+      not_found_in_database: Səhv %{authentication_keys} və ya parol.
+      omniauth_user_creation_failure: Bu kimlik üçün hesab yaradarkən xəta.
+      pending: Hesabınız hələ yoxlanışdadır.
+      timeout: Sessiyanın vaxtı bitdi. Xahiş edirik davam etmək üçün yenidən daxil olun.
+      unauthenticated: Davam etmək üçün daxil olmaq və ya qeydiyyatdan keçmək lazımdır.
+      unconfirmed: Davam etmək üçün e-poçt ünvanınızı təsdiqləməlisiniz.
+    mailer:
+      confirmation_instructions:
+        action: E-poçt ünvanını təsdiqlə
+        action_with_app: Təsdiqlə və %{app}-a geri qayıt
+        explanation: Siz %{host} saytında bu e-poçt ilə hesab yaratmısınız. Onu aktivləşdirməkdən bir klik uzaqlıqdasınız. Əgər bu siz olmamısınızsa, zəhmət olmasa, bu e-məktuba məhəl qoymayın.
+        explanation_when_pending: Bu e-poçt ünvanı ilə %{host} saytına dəvət üçün müraciət etmisiniz. Siz e-poçt ünvanınızı təsdiqlədikdən sonra müraciətinizi nəzərdən keçirəcəyik. Siz məlumatlarınızı dəyişdirmək və ya hesabınızı silmək üçün daxil ola bilərsiniz, lakin hesabınız təsdiqlənənə qədər əksər funksiyaları istifadə edə bilməzsiniz. Müraciətiniz rədd edilərsə, məlumatlarınız silinəcək, buna görə də sizdən heç bir tədbir tələb olunmayacaq. Əgər bu siz deyildinizsə, zəhmət, bu e-məktuba məhəl qoymayın.
+        extra_html: Həmçinin zəhmət olmasa, <a href="%{terms_path}">serverin qaydalarını</a> və <a href="%{policy_path}">istifadə şərtlərini</a> oxuyun.
+        subject: 'Mastodon: %{instance} üçün təsdiqlənmə təlimatları'
+        title: E-poçt ünvanını təsdiqlə
+      email_changed:
+        explanation: 'Hesabınız üçün e-poçt ünvanı buna dəyişdirilir:'
+        extra: E-poçtunuzu dəyişməmisinizsə, çox güman ki, kimsə hesabınıza giriş əldə edib. Zəhmət olmasa, parolunuzu dərhal dəyişdirin və ya hesabınıza daxil ola bilməyəcəksinizsə, server admini ilə əlaqə saxlayın.
+        subject: 'Mastodon: E-poçt dəyişdirildi'
+        title: Yeni e-poçt ünvanı
+      password_change:
+        explanation: Hesabınızın parolu dəyişdirilib.
+        extra: Parolunuzu dəyişməmisinizsə, çox güman ki, kimsə hesabınıza giriş əldə edib. Zəhmət olmasa, parolunuzu dərhal dəyişdirin və ya hesabınıza daxil ola bilməyəcəksinizsə, server admini ilə əlaqə saxlayın.
+        subject: 'Mastodon: Parol dəyişdirildi'
+        title: Parol dəyişdirildi
+      reconfirmation_instructions:
+        explanation: E-poçtunuzu dəyişdirmək üçün yeni ünvanı təsdiqləyin.
+        extra: Əgər bu dəyişiklik sizin tərəfinizdən deyilsə, zəhmət olmasa, bu e-məktuba məhəl qoymayın. Siz yuxarıdakı linkə daxil olana qədər Mastodon hesabının e-poçt ünvanı dəyişməyəcək.
+        subject: 'Mastodon: %{instance} üçün e-poçtu təsdiqlə'
+        title: E-poçt ünvanını təsdiqlə
+      reset_password_instructions:
+        action: Parolu dəyiş
+        explanation: Siz hesabınız üçün yeni parol tələb etmisiniz.
