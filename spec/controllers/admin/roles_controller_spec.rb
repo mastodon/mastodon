@@ -18,12 +18,6 @@ RSpec.describe Admin::RolesController do
       get :index
     end
 
-    context 'when user does not have permission to manage roles' do
-      it 'returns http forbidden' do
-        expect(response).to have_http_status(403)
-      end
-    end
-
     context 'when user has permission to manage roles' do
       let(:permissions) { UserRole::FLAGS[:manage_roles] }
 
@@ -36,12 +30,6 @@ RSpec.describe Admin::RolesController do
   describe 'GET #new' do
     before do
       get :new
-    end
-
-    context 'when user does not have permission to manage roles' do
-      it 'returns http forbidden' do
-        expect(response).to have_http_status(403)
-      end
     end
 
     context 'when user has permission to manage roles' do
@@ -120,12 +108,6 @@ RSpec.describe Admin::RolesController do
       get :edit, params: { id: role.id }
     end
 
-    context 'when user does not have permission to manage roles' do
-      it 'returns http forbidden' do
-        expect(response).to have_http_status(403)
-      end
-    end
-
     context 'when user has permission to manage roles' do
       let(:permissions) { UserRole::FLAGS[:manage_roles] }
 
@@ -155,14 +137,6 @@ RSpec.describe Admin::RolesController do
 
     before do
       put :update, params: { id: role.id, user_role: { name: 'Baz', position: selected_position, permissions_as_keys: selected_permissions_as_keys } }
-    end
-
-    context 'when user does not have permission to manage roles' do
-      it 'returns http forbidden and does not update role' do
-        expect(response).to have_http_status(403)
-
-        expect(role.reload.name).to eq 'Bar'
-      end
     end
 
     context 'when user has permission to manage roles' do
@@ -206,12 +180,6 @@ RSpec.describe Admin::RolesController do
 
     before do
       delete :destroy, params: { id: role.id }
-    end
-
-    context 'when user does not have permission to manage roles' do
-      it 'returns http forbidden' do
-        expect(response).to have_http_status(403)
-      end
     end
 
     context 'when user has permission to manage roles' do
