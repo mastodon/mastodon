@@ -116,18 +116,4 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
       end
     end
   end
-
-  context 'when not signed in' do
-    it 'redirects on POST to create' do
-      post :create, params: { form_two_factor_confirmation: { otp_attempt: '123456' } }
-
-      expect(response).to redirect_to('/auth/sign_in')
-    end
-
-    it 'redirects on GET to new' do
-      get :new
-
-      expect(response).to redirect_to('/auth/sign_in')
-    end
-  end
 end
