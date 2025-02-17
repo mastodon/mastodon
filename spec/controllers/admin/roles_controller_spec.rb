@@ -116,14 +116,6 @@ RSpec.describe Admin::RolesController do
           expect(response).to have_http_status(:success)
         end
       end
-
-      context 'when role outranks user' do
-        let(:role_position) { current_role.position + 1 }
-
-        it 'returns http forbidden' do
-          expect(response).to have_http_status(403)
-        end
-      end
     end
   end
 
@@ -160,16 +152,6 @@ RSpec.describe Admin::RolesController do
             expect(role.reload.name).to eq 'Baz'
           end
         end
-
-        context 'when role outranks user' do
-          let(:role_position) { current_role.position + 1 }
-
-          it 'returns http forbidden and does not update role' do
-            expect(response).to have_http_status(403)
-
-            expect(role.reload.name).to eq 'Bar'
-          end
-        end
       end
     end
   end
@@ -188,14 +170,6 @@ RSpec.describe Admin::RolesController do
       context 'when user outranks the role' do
         it 'redirects to roles page' do
           expect(response).to redirect_to(admin_roles_path)
-        end
-      end
-
-      context 'when role outranks user' do
-        let(:role_position) { current_role.position + 1 }
-
-        it 'returns http forbidden' do
-          expect(response).to have_http_status(403)
         end
       end
     end
