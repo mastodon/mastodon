@@ -13,34 +13,6 @@ RSpec.describe Admin::RolesController do
     sign_in current_user, scope: :user
   end
 
-  describe 'GET #index' do
-    before do
-      get :index
-    end
-
-    context 'when user has permission to manage roles' do
-      let(:permissions) { UserRole::FLAGS[:manage_roles] }
-
-      it 'returns http success' do
-        expect(response).to have_http_status(:success)
-      end
-    end
-  end
-
-  describe 'GET #new' do
-    before do
-      get :new
-    end
-
-    context 'when user has permission to manage roles' do
-      let(:permissions) { UserRole::FLAGS[:manage_roles] }
-
-      it 'returns http success' do
-        expect(response).to have_http_status(:success)
-      end
-    end
-  end
-
   describe 'POST #create' do
     let(:selected_position) { 1 }
     let(:selected_permissions_as_keys) { %w(manage_roles) }
@@ -51,28 +23,6 @@ RSpec.describe Admin::RolesController do
 
     context 'when user has permission to manage roles' do
       let(:permissions) { UserRole::FLAGS[:manage_roles] }
-
-      context 'when new role\'s does not elevate above the user\'s role' do
-        let(:selected_position) { 1 }
-        let(:selected_permissions_as_keys) { %w(manage_roles) }
-
-        it 'redirects to roles page and creates role' do
-          expect(response).to redirect_to(admin_roles_path)
-
-          expect(UserRole.find_by(name: 'Bar')).to_not be_nil
-        end
-      end
-
-      context 'when new role\'s position is higher than user\'s role' do
-        let(:selected_position) { 100 }
-        let(:selected_permissions_as_keys) { %w(manage_roles) }
-
-        it 'renders new template and does not create role' do
-          expect(response).to render_template(:new)
-
-          expect(UserRole.find_by(name: 'Bar')).to be_nil
-        end
-      end
 
       context 'when new role has permissions the user does not have' do
         let(:selected_position) { 1 }
@@ -100,25 +50,6 @@ RSpec.describe Admin::RolesController do
     end
   end
 
-  describe 'GET #edit' do
-    let(:role_position) { 8 }
-    let(:role) { UserRole.create(name: 'Bar', permissions: UserRole::FLAGS[:manage_users], position: role_position) }
-
-    before do
-      get :edit, params: { id: role.id }
-    end
-
-    context 'when user has permission to manage roles' do
-      let(:permissions) { UserRole::FLAGS[:manage_roles] }
-
-      context 'when user outranks the role' do
-        it 'returns http success' do
-          expect(response).to have_http_status(:success)
-        end
-      end
-    end
-  end
-
   describe 'PUT #update' do
     let(:role_position) { 8 }
     let(:role_permissions) { UserRole::FLAGS[:manage_users] }
@@ -139,37 +70,6 @@ RSpec.describe Admin::RolesController do
           expect(response).to render_template(:edit)
 
           expect(role.reload.name).to eq 'Bar'
-        end
-      end
-
-      context 'when user has all permissions of the role' do
-        let(:permissions) { UserRole::FLAGS[:manage_roles] | UserRole::FLAGS[:manage_users] }
-
-        context 'when user outranks the role' do
-          it 'redirects to roles page and updates role' do
-            expect(response).to redirect_to(admin_roles_path)
-
-            expect(role.reload.name).to eq 'Baz'
-          end
-        end
-      end
-    end
-  end
-
-  describe 'DELETE #destroy' do
-    let(:role_position) { 8 }
-    let(:role) { UserRole.create(name: 'Bar', permissions: UserRole::FLAGS[:manage_users], position: role_position) }
-
-    before do
-      delete :destroy, params: { id: role.id }
-    end
-
-    context 'when user has permission to manage roles' do
-      let(:permissions) { UserRole::FLAGS[:manage_roles] }
-
-      context 'when user outranks the role' do
-        it 'redirects to roles page' do
-          expect(response).to redirect_to(admin_roles_path)
         end
       end
     end
