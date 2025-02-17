@@ -4,7 +4,9 @@ require 'rails_helper'
 
 RSpec.describe 'Admin Roles' do
   context 'when signed in as lower permissions user' do
-    before { sign_in Fabricate(:user, role: Fabricate(:user_role, permissions: UserRole::Flags::NONE)) }
+    let(:user_role) { Fabricate(:user_role, permissions: UserRole::Flags::NONE) }
+
+    before { sign_in Fabricate(:user, role: user_role) }
 
     describe 'GET /admin/roles' do
       it 'returns http forbidden' do
@@ -54,6 +56,43 @@ RSpec.describe 'Admin Roles' do
 
         expect(response)
           .to have_http_status(403)
+      end
+    end
+  end
+
+  context 'when user has permissions to manage roles' do
+    let(:user_role) { Fabricate(:user_role, permissions: UserRole::FLAGS[:manage_users]) }
+
+    before { sign_in Fabricate(:user, role: user_role) }
+
+    context 'when target role permission outranks user' do
+      let(:role) { Fabricate :user_role, position: user_role.position + 1 }
+
+      describe 'GET /admin/roles/:id/edit' do
+        it 'returns http forbidden' do
+          get edit_admin_role_path(role)
+
+          expect(response)
+            .to have_http_status(403)
+        end
+      end
+
+      describe 'PUT /admin/roles/:id' do
+        it 'returns http forbidden' do
+          put admin_role_path(role)
+
+          expect(response)
+            .to have_http_status(403)
+        end
+      end
+
+      describe 'DELETE /admin/roles/:id' do
+        it 'returns http forbidden' do
+          delete admin_role_path(role)
+
+          expect(response)
+            .to have_http_status(403)
+        end
       end
     end
   end
