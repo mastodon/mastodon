@@ -17,7 +17,7 @@ import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 import { getAccountGallery } from 'mastodon/selectors';
 
 import { expandAccountMediaTimeline } from '../../actions/timelines';
-import HeaderContainer from '../account_timeline/containers/header_container';
+import { Header } from '../account_timeline/components/header';
 import Column from '../ui/components/column';
 
 import { MediaItem } from './components/media_item';
@@ -207,7 +207,7 @@ class AccountGallery extends ImmutablePureComponent {
 
         <ScrollContainer scrollKey='account_gallery'>
           <div className='scrollable scrollable--flex' onScroll={this.handleScroll}>
-            <HeaderContainer accountId={this.props.accountId} />
+            <Header accountId={this.props.accountId} />
 
             {(suspended || blockedBy) ? (
               <div className='empty-column-indicator'>
