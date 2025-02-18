@@ -26,9 +26,11 @@ inherit_mode:
   merge:
     - Exclude
 
-require:
+plugins:
   - rubocop-rails
   - rubocop-rspec
-  - rubocop-rspec_rails
   - rubocop-performance
+
+require:
+  - rubocop-rspec_rails
   - rubocop-capybara

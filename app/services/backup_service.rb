@@ -6,6 +6,8 @@ class BackupService < BaseService
   include Payloadable
   include ContextHelper
 
+  CHUNK_SIZE = 1.megabyte
+
   attr_reader :account, :backup
 
   def call(backup)
@@ -180,8 +182,6 @@ class BackupService < BaseService
       adapter: ActivityPub::Adapter
     ).as_json
   end
-
-  CHUNK_SIZE = 1.megabyte
 
   def download_to_zip(zipfile, attachment, filename)
     adapter = Paperclip.io_adapters.for(attachment)
