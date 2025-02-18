@@ -69,7 +69,8 @@ RSpec.describe Admin::DomainBlocksController do
 
         expect(DomainBlockWorker).to_not have_received(:perform_async)
 
-        expect(response).to render_template :new
+        expect(response.parsed_body.title)
+          .to match(I18n.t('admin.domain_blocks.new.title'))
       end
     end
 
@@ -84,7 +85,8 @@ RSpec.describe Admin::DomainBlocksController do
 
           expect(DomainBlockWorker).to_not have_received(:perform_async)
 
-          expect(response).to render_template :confirm_suspension
+          expect(response.parsed_body.title)
+            .to match(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
         end
       end
 
@@ -119,7 +121,8 @@ RSpec.describe Admin::DomainBlocksController do
 
           expect(DomainBlockWorker).to_not have_received(:perform_async)
 
-          expect(response).to render_template :confirm_suspension
+          expect(response.parsed_body.title)
+            .to match(I18n.t('admin.domain_blocks.confirm_suspension.title', domain: 'example.com'))
         end
       end
 
