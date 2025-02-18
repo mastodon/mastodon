@@ -25,20 +25,27 @@ class Fasp::Provider < ApplicationRecord
   has_many :fasp_debug_callbacks, inverse_of: :fasp_provider, class_name: 'Fasp::DebugCallback', dependent: :delete_all
 
   before_create :create_keypair
+  after_commit :update_remote_capabilities
 
   def enabled_capabilities=(hash)
     capabilities.each do |capability|
       capability['enabled'] = hash[capability['id']] == '1'
     end
-    save!
   end
 
-  def capability?(capability_name, only_enabled: true)
+  def capability?(capability_name)
     return false unless confirmed?
 
     capabilities.present? && capabilities.any? do |capability|
-      capability['id'] == capability_name &&
-        (only_enabled ? capability['enabled'] : true)
+      capability['id'] == capability_name
+    end
+  end
+
+  def capability_enabled?(capability_name)
+    return false unless confirmed?
+
+    capabilities.present? && capabilities.any? do |capability|
+      capability['id'] == capability_name && capability['enabled']
     end
   end
 
@@ -94,5 +101,25 @@ class Fasp::Provider < ApplicationRecord
   def create_keypair
     self.server_private_key_pem =
       OpenSSL::PKey.generate_key('ed25519').private_to_pem
+  end
+
+  def update_remote_capabilities
+    return unless saved_change_to_attribute?(:capabilities)
+
+    old, current = saved_change_to_attribute(:capabilities)
+    old ||= []
+    current.each do |capability|
+      update_remote_capability(capability) if capability.key?('enabled') && !old.include?(capability)
+    end
+  end
+
+  def update_remote_capability(capability)
+    version, = capability['version'].split('.')
+    path = "/capabilities/#{capability['id']}/#{version}/activation"
+    if capability['enabled']
+      Fasp::Request.new(self).post(path)
+    else
+      Fasp::Request.new(self).delete(path)
+    end
   end
 end

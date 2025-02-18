@@ -21,6 +21,14 @@ class Fasp::Request
     response.parse if response.body.present?
   end
 
+  def delete(path, body: nil)
+    url = @provider.url(path)
+    body = body.to_json
+    response = HTTP.headers(headers('DELETE', url, body)).delete(url, body:)
+
+    response.parse if response.body.present?
+  end
+
   private
 
   def headers(verb, url, body = '')
