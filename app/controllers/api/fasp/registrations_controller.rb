@@ -20,7 +20,7 @@ class Api::Fasp::RegistrationsController < Api::Fasp::BaseController
     {
       faspId: current_provider.id.to_s,
       publicKey: current_provider.server_public_key_base64,
-      registrationCompletionUri: admin_fasp_provider_url(current_provider),
+      registrationCompletionUri: new_admin_fasp_provider_registration_url(current_provider),
     }
   end
 end

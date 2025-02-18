@@ -38,7 +38,7 @@ class Admin::Fasp::ProvidersController < Admin::BaseController
   private
 
   def provider_params
-    params.require(:provider).permit(enabled_capabilities: {})
+    params.expect(provider: [enabled_capabilities: {}])
   end
 
   def set_provider
