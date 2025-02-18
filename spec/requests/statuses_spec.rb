@@ -59,7 +59,6 @@ RSpec.describe 'Statuses' do
 
             expect(response)
               .to have_http_status(200)
-              .and render_template(:show)
             expect(response.headers).to include(
               'Vary' => 'Accept, Accept-Language, Cookie',
               'Cache-Control' => include('public'),
@@ -114,9 +113,11 @@ RSpec.describe 'Statuses' do
     end
 
     context 'when signed in' do
+      subject { get short_account_status_path(account_username: account.username, id: status.id, format: format) }
+
       let(:user) { Fabricate(:user) }
 
-      before { sign_in(user) }
+      before { sign_in_with_session(user) }
 
       context 'when account blocks user' do
         before { account.block!(user.account) }
@@ -127,6 +128,167 @@ RSpec.describe 'Statuses' do
           expect(response)
             .to have_http_status(404)
         end
+      end
+
+      context 'when status is public' do
+        context 'with HTML' do
+          let(:format) { 'html' }
+
+          it 'renders status successfully', :aggregate_failures do
+            subject
+
+            expect(response)
+              .to have_http_status(200)
+            expect(response.headers).to include(
+              'Vary' => 'Accept, Accept-Language, Cookie',
+              'Cache-Control' => include('private'),
+              'Link' => include('activity+json')
+            )
+            expect(response.body)
+              .to include(status.text)
+          end
+        end
+
+        context 'with JSON' do
+          let(:format) { 'json' }
+
+          it 'renders ActivityPub Note object successfully', :aggregate_failures do
+            subject
+
+            expect(response)
+              .to have_http_status(200)
+            expect(response.headers).to include(
+              'Vary' => 'Accept, Accept-Language, Cookie',
+              'Cache-Control' => include('private'),
+              'Content-Type' => include('application/activity+json'),
+              'Link' => include('activity+json')
+            )
+            expect(response.parsed_body)
+              .to include(content: include(status.text))
+          end
+        end
+      end
+
+      context 'when status is private' do
+        let(:status) { Fabricate(:status, account: account, visibility: :private) }
+
+        context 'when user is authorized to see it' do
+          before { user.account.follow!(account) }
+
+          context 'with HTML' do
+            let(:format) { 'html' }
+
+            it 'renders status successfully', :aggregate_failures do
+              subject
+
+              expect(response)
+                .to have_http_status(200)
+
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Link' => include('activity+json')
+              )
+              expect(response.body)
+                .to include(status.text)
+            end
+          end
+
+          context 'with JSON' do
+            let(:format) { 'json' }
+
+            it 'renders ActivityPub Note object successfully', :aggregate_failures do
+              subject
+
+              expect(response)
+                .to have_http_status(200)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Content-Type' => include('application/activity+json'),
+                'Link' => include('activity+json')
+              )
+              expect(response.parsed_body)
+                .to include(content: include(status.text))
+            end
+          end
+        end
+
+        context 'when user is not authorized to see it' do
+          let(:format) { 'html' }
+
+          it 'returns http not found' do
+            subject
+
+            expect(response)
+              .to have_http_status(404)
+          end
+        end
+      end
+
+      context 'when status is direct' do
+        let(:status) { Fabricate(:status, account: account, visibility: :direct) }
+
+        context 'when user is authorized to see it' do
+          before { Fabricate(:mention, account: user.account, status: status) }
+
+          context 'with HTML' do
+            let(:format) { 'html' }
+
+            it 'renders status successfully', :aggregate_failures do
+              subject
+
+              expect(response)
+                .to have_http_status(200)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Link' => include('activity+json')
+              )
+              expect(response.body)
+                .to include(status.text)
+            end
+          end
+
+          context 'with JSON' do
+            let(:format) { 'json' }
+
+            it 'renders ActivityPub Note object successfully' do
+              subject
+
+              expect(response)
+                .to have_http_status(200)
+              expect(response.headers).to include(
+                'Vary' => 'Accept, Accept-Language, Cookie',
+                'Cache-Control' => include('private'),
+                'Content-Type' => include('application/activity+json'),
+                'Link' => include('activity+json')
+              )
+              expect(response.parsed_body)
+                .to include(content: include(status.text))
+            end
+          end
+        end
+
+        context 'when user is not authorized to see it' do
+          let(:format) { 'html' }
+
+          it 'returns http not found' do
+            subject
+
+            expect(response)
+              .to have_http_status(404)
+          end
+        end
+      end
+
+      private
+
+      def sign_in_with_session(user)
+        # The regular `sign_in` helper does not actually set session cookies
+        # The endpoint responses here rely on cookie/session checks to set cache privacy headers
+        # To enable that, perform a full sign in which will establish those cookies for subsequent spec requests
+        post user_session_path, params: { user: { email: user.email, password: user.password } }
       end
     end
 
