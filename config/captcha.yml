@@ -1,3 +1,5 @@
 shared:
-  secret_key: <%= ENV.fetch('HCAPTCHA_SECRET_KEY', nil) %>
-  site_key: <%= ENV.fetch('HCAPTCHA_SITE_KEY', nil) %>
+  hcaptcha_secret_key: <%= ENV.fetch('HCAPTCHA_SECRET_KEY', nil) %>
+  hcaptcha_site_key: <%= ENV.fetch('HCAPTCHA_SITE_KEY', nil) %>
+  mcaptcha_secret_key: <%= ENV.fetch('MCAPTCHA_SECRET_KEY', nil) %>
+  mcaptcha_site_key: <%= ENV.fetch('MCAPTCHA_SITE_KEY', nil) %>
