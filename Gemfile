@@ -100,8 +100,6 @@ gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
-gem 'prometheus_exporter', '~> 2.2', require: false
-
 gem 'opentelemetry-api', '~> 1.4.0'
 
 group :opentelemetry do
@@ -116,7 +114,7 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-net_http', '~> 0.23.0', require: false
   gem 'opentelemetry-instrumentation-pg', '~> 0.30.0', require: false
   gem 'opentelemetry-instrumentation-rack', '~> 0.26.0', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.36.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.35.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.26.0', require: false
   gem 'opentelemetry-instrumentation-sidekiq', '~> 0.26.0', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false
@@ -156,7 +154,7 @@ group :test do
 
   gem 'shoulda-matchers'
 
-  # Coverage formatter for RSpec
+  # Coverage formatter for RSpec test if DISABLE_SIMPLECOV is false
   gem 'simplecov', '~> 0.22', require: false
   gem 'simplecov-lcov', '~> 0.8', require: false
 
@@ -174,7 +172,7 @@ group :development do
   gem 'rubocop-rspec_rails', require: false
 
   # Annotates modules with schema
-  gem 'annotaterb', '~> 4.13', require: false
+  gem 'annotaterb', '~> 4.13'
 
   # Enhanced error message pages for development
   gem 'better_errors', '~> 2.9'
@@ -197,7 +195,7 @@ end
 
 group :development, :test do
   # Interactive Debugging tools
-  gem 'debug', '~> 1.8', require: false
+  gem 'debug', '~> 1.8'
 
   # Generate fake data values
   gem 'faker', '~> 3.2'
@@ -209,7 +207,7 @@ group :development, :test do
   gem 'memory_profiler', require: false
   gem 'ruby-prof', require: false
   gem 'stackprof', require: false
-  gem 'test-prof', require: false
+  gem 'test-prof'
 
   # RSpec runner for rails
   gem 'rspec-rails', '~> 7.0'
