@@ -5,16 +5,19 @@ import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
 import type { ModalType } from '../actions/modal';
 import { openModal, closeModal } from '../actions/modal';
+import { uuid } from '../uuid';
 
 export type ModalProps = Record<string, unknown>;
 interface Modal {
   modalType: ModalType;
   modalProps: ModalProps;
+  modalKey: string;
 }
 
 const Modal = ImmutableRecord<Modal>({
   modalType: 'ACTIONS',
   modalProps: ImmutableRecord({})(),
+  modalKey: '',
 });
 
 interface ModalState {
@@ -52,35 +55,11 @@ const pushModal = (
   state: State,
   modalType: ModalType,
   modalProps: ModalProps,
-  previousModalProps?: ModalProps,
 ): State => {
   return state.withMutations((record) => {
     record.set('ignoreFocus', false);
     record.update('stack', (stack) => {
-      let tmp = stack;
-
-      // With this option, we update the previously opened modal, so that when the
-      // current (new) modal is closed, the previous modal is re-opened with different
-      // props. Specifically, this is useful for the confirmation modal.
-      if (previousModalProps) {
-        const previousModal = tmp.first() as Modal | undefined;
-
-        if (previousModal) {
-          tmp = tmp.shift().unshift(
-            Modal({
-              modalType: previousModal.modalType,
-              modalProps: {
-                ...previousModal.modalProps,
-                ...previousModalProps,
-              },
-            }),
-          );
-        }
-      }
-
-      tmp = tmp.unshift(Modal({ modalType, modalProps }));
-
-      return tmp;
+      return stack.unshift(Modal({ modalType, modalProps, modalKey: uuid() }));
     });
   });
 };
@@ -91,7 +70,6 @@ export const modalReducer: Reducer<State> = (state = initialState, action) => {
       state,
       action.payload.modalType,
       action.payload.modalProps,
-      action.payload.previousModalProps,
     );
   else if (closeModal.match(action)) return popModal(state, action.payload);
   // TODO: type those actions
