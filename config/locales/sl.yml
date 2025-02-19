@@ -840,6 +840,7 @@ sl:
       batch:
         remove_from_report: Odstrani iz prijave
         report: Poročaj
+      contents: Vsebina
       deleted: Izbrisano
       favourites: Priljubljeni
       history: Zgodovina različic
@@ -926,6 +927,13 @@ sl:
       search: Išči
       title: Ključniki
       updated_msg: Nastavitve ključnikov uspešno posodobljene
+    terms_of_service:
+      draft: Osnutek
+      generate: Uporabi predlogo
+      history: Zgodovina
+      publish: Objavi
+      save_draft: Shrani osnutek
+      title: Pogoji uporabe
     title: Upravljanje
     trends:
       allow: Dovoli
@@ -1141,7 +1149,6 @@ sl:
     migrate_account: Premakni se na drug račun
     migrate_account_html: Če želite ta račun preusmeriti na drugega, ga lahko <a href="%{path}">nastavite tukaj</a>.
     or_log_in_with: Ali se prijavite z
-    privacy_policy_agreement_html: Prebral_a sem in se strinjam s <a href="%{privacy_policy_path}" target="_blank">pravilnikom o zasebnosti</a>.
     progress:
       confirm: Potrdi e-pošto
       details: Vaši podatki
@@ -1166,7 +1173,6 @@ sl:
     set_new_password: Nastavi novo geslo
     setup:
       email_below_hint_html: Poglejte v mapo neželene pošte ali zaprosite za novega. Če ste podali napačen e-naslov, ga lahko popravite.
-      email_settings_hint_html: Kliknite povezavo, ki smo vam jo poslali, da overite %{email}. Počakali bomo.
       link_not_received: Ali ste prejeli povezavo?
       new_confirmation_instructions_sent: Čez nekaj minut boste prejeli novo e-sporočilo s potrditveno povezavo!
       title: Preverite svojo dohodno e-pošto
@@ -1175,7 +1181,6 @@ sl:
       title: Vpiši se v %{domain}
     sign_up:
       manual_review: Registracije na %{domain} ročno pregledajo naši moderatorji. Da nam olajšate obdelavo vaše prijave, zapišite kaj o sebi in zakaj si želite račun na %{domain}.
-      preamble: Z računom na strežniku Mastodon boste lahko sledili vsem drugim v tem omrežju, ne glede na to, kje gostuje njihov račun.
       title: Naj vas namestimo na %{domain}.
     status:
       account_status: Stanje računa
@@ -1187,6 +1192,8 @@ sl:
       view_strikes: Pokaži pretekle ukrepe proti mojemu računu
     too_fast: Obrazec oddan prehitro, poskusite znova.
     use_security_key: Uporabi varnostni ključ
+  author_attribution:
+    example_title: Vzorčno besedilo
   challenge:
     confirm: Nadaljuj
     hint_html: "<strong>Namig:</strong> naslednjo uro vas ne bomo več vprašali po vašem geslu."
@@ -1654,7 +1661,6 @@ sl:
   scheduled_statuses:
     over_daily_limit: Za ta dan ste presegli omejitev %{limit} načrtovanih objav
     over_total_limit: Presegli ste omejitev %{limit} načrtovanih objav
-    too_soon: Načrtovani datum mora biti v prihodnosti
   self_destruct:
     lead_html: Na žalost se <strong>%{domain}</strong> za vedno zapira. Če ste tu imeli svoj račun, ga v prihodnje ne boste mogli več uporabljati. Zahtevate lahko kopijo svojih podatkov.
     title: Ta strežnik se zapira
@@ -1714,6 +1720,7 @@ sl:
     delete: Brisanje računa
     development: Razvoj
     edit_profile: Uredi profil
+    export: Izvozi
     featured_tags: Vključeni ključniki
     import: Uvozi
     import_and_export: Uvoz in izvoz
@@ -1824,6 +1831,8 @@ sl:
       too_late: Prepozno je, da bi se pritožili na ta ukrep
   tags:
     does_not_match_previous_name: se ne ujema s prejšnjim imenom
+  terms_of_service:
+    title: Pogoji uporabe
   themes:
     contrast: Mastodon (Visok kontrast)
     default: Mastodon (Temna)
@@ -1884,6 +1893,8 @@ sl:
       further_actions_html: Če to niste bili vi, priporočamo da takoj ukrepate (%{action}) in omogočite dvo-ravensko overjanje (2FA), da ohranite račun varen.
       subject: Do vašega računa je bil opravljen dostop z novega naslova IP
       title: Nova prijava
+    terms_of_service_changed:
+      title: Pomembna posodobitev
     warning:
       appeal: Pošlji pritožbo
       appeal_description: Če menite, da gre za napako, lahko pošljete pritožbo osebju %{instance}.

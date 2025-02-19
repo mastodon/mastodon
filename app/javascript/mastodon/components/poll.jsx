@@ -33,15 +33,10 @@ const messages = defineMessages({
   },
 });
 
-const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
-  obj[`:${emoji.get('shortcode')}:`] = emoji.toJS();
-  return obj;
-}, {});
-
 class Poll extends ImmutablePureComponent {
   static propTypes = {
     identity: identityContextPropShape,
-    poll: ImmutablePropTypes.map.isRequired,
+    poll: ImmutablePropTypes.record.isRequired,
     status: ImmutablePropTypes.map.isRequired,
     lang: PropTypes.string,
     intl: PropTypes.object.isRequired,
@@ -150,7 +145,7 @@ class Poll extends ImmutablePureComponent {
     let titleHtml = option.getIn(['translation', 'titleHtml']) || option.get('titleHtml');
 
     if (!titleHtml) {
-      const emojiMap = makeEmojiMap(poll);
+      const emojiMap = emojiMap(poll);
       titleHtml = emojify(escapeTextContentForBrowser(title), emojiMap);
     }
 

@@ -2,6 +2,8 @@ import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { useIdentity } from '@/mastodon/identity_context';
 import { fetchRelationships, followAccount } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
@@ -20,7 +22,8 @@ const messages = defineMessages({
 
 export const FollowButton: React.FC<{
   accountId?: string;
-}> = ({ accountId }) => {
+  compact?: boolean;
+}> = ({ accountId, compact }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
@@ -88,8 +91,10 @@ export const FollowButton: React.FC<{
       <a
         href='/settings/profile'
         target='_blank'
-        rel='noreferrer noopener'
-        className='button button-secondary'
+        rel='noopener'
+        className={classNames('button button-secondary', {
+          'button--compact': compact,
+        })}
       >
         {label}
       </a>
@@ -106,6 +111,7 @@ export const FollowButton: React.FC<{
           (account?.suspended || !!account?.moved))
       }
       secondary={following}
+      compact={compact}
       className={following ? 'button--destructive' : undefined}
     >
       {label}

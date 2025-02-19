@@ -15,6 +15,9 @@ sl:
       user/invite_request:
         text: Razlog
     errors:
+      attributes:
+        domain:
+          invalid: ni veljavno ime domene
       models:
         account:
           attributes:
@@ -33,6 +36,10 @@ sl:
           attributes:
             data:
               malformed: je napačno oblikovan
+        list_account:
+          attributes:
+            account_id:
+              taken: je že na seznamu
         status:
           attributes:
             reblog:

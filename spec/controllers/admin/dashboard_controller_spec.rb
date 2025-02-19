@@ -6,7 +6,7 @@ RSpec.describe Admin::DashboardController do
   render_views
 
   describe 'GET #index' do
-    let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Owner')) }
+    let(:user) { Fabricate(:owner_user) }
 
     before do
       stub_system_checks

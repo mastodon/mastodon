@@ -3,6 +3,12 @@
 
 .simple_form .button.button-tertiary {
   color: $highlight-text-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white;
+  }
 }
 
 .status-card__actions button,
@@ -121,9 +127,7 @@
 .actions-modal ul li:not(:empty) a:focus button,
 .actions-modal ul li:not(:empty) a:hover,
 .actions-modal ul li:not(:empty) a:hover button,
-.simple_form .block-button,
-.simple_form .button,
-.simple_form button {
+.simple_form button:not(.button, .link-button) {
   color: $white;
 }
 
@@ -134,6 +138,11 @@
 
 .report-dialog-modal__container {
   border-top-color: lighten($ui-base-color, 4%);
+}
+
+.dialog-modal__content__preview {
+  background: #fff;
+  border-bottom: 1px solid var(--modal-border-color);
 }
 
 .reactions-bar__item:hover,
@@ -440,6 +449,15 @@
 .language-dropdown__dropdown .emoji-mart-search input,
 .poll__option input[type='text'] {
   background: darken($ui-base-color, 10%);
+}
+
+.dropdown-button.warning {
+  border-color: #b3261e;
+  color: #b3261e;
+
+  &.active {
+    background-color: #f9dedc;
+  }
 }
 
 .search__popout__menu__item {

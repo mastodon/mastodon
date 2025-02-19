@@ -20,10 +20,11 @@ sv:
           invalid: är inte ett giltigt domännamn
       messages:
         invalid_domain_on_line: "%{value} Är inte ett giltigt domännamn"
-        too_many_lines: överskrider gränsen på %{limit} rader
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: innehåller värden med saknade etiketter
             username:
               invalid: endast bokstäver, siffror och understrykning
               reserved: är reserverat
@@ -39,6 +40,11 @@ sv:
           attributes:
             data:
               malformed: är felformad
+        list_account:
+          attributes:
+            account_id:
+              taken: finns redan i listan
+          must_be_following: måste vara ett följt konto
         status:
           attributes:
             reblog:

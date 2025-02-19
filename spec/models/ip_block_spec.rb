@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe IpBlock do
+  include_examples 'Expireable'
+
   describe 'Validations' do
     subject { Fabricate.build :ip_block }
 
@@ -10,6 +12,8 @@ RSpec.describe IpBlock do
     it { is_expected.to validate_presence_of(:severity) }
 
     it { is_expected.to validate_uniqueness_of(:ip) }
+
+    it { is_expected.to allow_values(:sign_up_requires_approval, :sign_up_block, :no_access).for(:severity) }
   end
 
   describe '#to_log_human_identifier' do

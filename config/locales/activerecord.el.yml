@@ -20,10 +20,11 @@ el:
           invalid: δεν είναι έγκυρο όνομα τομέα
       messages:
         invalid_domain_on_line: το %{value} δεν είναι έγκυρο όνομα τομέα
-        too_many_lines: υπερβαίνει το όριο των %{limit} γραμμών
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: περιέχει τιμές με ετικέτες που λείπουν
             username:
               invalid: μόνο γράμματα, αριθμοί και κάτω παύλες
               reserved: είναι δεσμευμένο
@@ -39,6 +40,11 @@ el:
           attributes:
             data:
               malformed: δεν είναι έγκυρα
+        list_account:
+          attributes:
+            account_id:
+              taken: είναι ήδη στη λίστα
+          must_be_following: πρέπει να είναι ένας λογαριασμός που ακολουθείς
         status:
           attributes:
             reblog:

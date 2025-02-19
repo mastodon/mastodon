@@ -204,7 +204,7 @@ RSpec.describe ImportService, :inline_jobs do
     subject { described_class.new }
 
     let(:csv) { attachment_fixture('bookmark-imports.txt') }
-    let(:local_account)  { Fabricate(:account, username: 'foo', domain: '') }
+    let(:local_account)  { Fabricate(:account, username: 'foo', domain: nil) }
     let!(:remote_status) { Fabricate(:status, uri: 'https://example.com/statuses/1312') }
     let!(:direct_status) { Fabricate(:status, uri: 'https://example.com/statuses/direct', visibility: :direct) }
 

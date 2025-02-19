@@ -24,6 +24,7 @@ class List < ApplicationRecord
 
   has_many :list_accounts, inverse_of: :list, dependent: :destroy
   has_many :accounts, through: :list_accounts
+  has_many :active_accounts, -> { merge(ListAccount.active) }, through: :list_accounts, source: :account
 
   validates :title, presence: true
 

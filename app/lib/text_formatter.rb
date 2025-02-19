@@ -7,7 +7,7 @@ class TextFormatter
 
   URL_PREFIX_REGEX = %r{\A(https?://(www\.)?|xmpp:)}
 
-  DEFAULT_REL = %w(nofollow noopener noreferrer).freeze
+  DEFAULT_REL = %w(nofollow noopener).freeze
 
   DEFAULT_OPTIONS = {
     multiline: true,
@@ -67,6 +67,12 @@ class TextFormatter
       display_url = url[prefix.length, 30]
       suffix      = url[prefix.length + 30..]
       cutoff      = url[prefix.length..].length > 30
+
+      if suffix && suffix.length == 1 # revert truncation to account for ellipsis
+        display_url += suffix
+        suffix = nil
+        cutoff = false
+      end
 
       tag.a href: url, target: '_blank', rel: rel.join(' '), translate: 'no' do
         tag.span(prefix, class: 'invisible') +

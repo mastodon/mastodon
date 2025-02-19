@@ -214,6 +214,7 @@ ca:
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
+        publish_terms_of_service: Publicar les condicions de servei
         reject_appeal: Rebutja l'apel·lació
         reject_user: Rebutja l'usuari
         remove_avatar_user: Eliminar avatar
@@ -278,6 +279,7 @@ ca:
         enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
         memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
         promote_user_html: "%{name} ha promogut l'usuari %{target}"
+        publish_terms_of_service_html: "%{name} ha publicat actualitzacions a les condicions de servei"
         reject_appeal_html: "%{name} ha rebutjat l'apel·lació a la decisió de moderació de %{target}"
         reject_user_html: "%{name} ha rebutjat el registre de %{target}"
         remove_avatar_user_html: "%{name} ha eliminat l'avatar de %{target}"
@@ -925,6 +927,35 @@ ca:
       search: Cerca
       title: Etiquetes
       updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
+    terms_of_service:
+      back: Tornar a les condicions de servei
+      changelog: Què ha canviat
+      create: Feu servir el vostre
+      current: Actual
+      draft: Esborrany
+      generate: Fer servir la plantilla
+      generates:
+        action: Generar
+        chance_to_review_html: "<strong>Les condicions de servei generades no es publicaran automàticament.</strong> Tindreu l'oportunitat de revisar-ne els resultats. Empleneu els detalls necessaris per a procedir."
+        explanation_html: La plantilla de condicions de servei proveïda ho és només a títol informatiu i no s'ha d'interpretar com a consell jurídic en cap cas. Consulteu el vostre propi servei legal sobre la vostra situació i les qüestions legals específiques que tingueu.
+        title: Configuració de les condicions de servei
+      history: Historial
+      live: En ús
+      no_history: Encara no hi ha enregistrats canvis en les condicions de servei.
+      no_terms_of_service_html: Ara no teniu cap condició de servei configurada. Aquestes tenen per objectiu clarificar drets i obligacions i protegir-vos de responsabilitats potencials en disputes amb els vostres usuaris.
+      notified_on_html: Usuaris notificats el %{date}
+      notify_users: Notifica els usuaris
+      preview:
+        explanation_html: 'Aquest correu-e s''enviarà a <strong>%{display_count} usuaris</strong> que han signat abans de %{date}. S''hi inclourà aquest text:'
+        send_preview: Envia una vista prèvia a %{email}
+        send_to_all:
+          one: Envia %{display_count} correu-e
+          other: Envia %{display_count} correus-e
+        title: Vista prèvia de la notificació de les condicions de servei
+      publish: Publica
+      published_on_html: Publicada el %{date}
+      save_draft: Desa l'esborrany
+      title: Condicions de servei
     title: Administració
     trends:
       allow: Permet
@@ -1132,7 +1163,6 @@ ca:
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots <a href="%{path}">configurar aquí</a>.
     or_log_in_with: O inicia sessió amb
-    privacy_policy_agreement_html: He llegit i estic d'acord amb la <a href="%{privacy_policy_path}" target="_blank">política de privacitat</a>
     progress:
       confirm: Confirmar email
       details: Els teus detalls
@@ -1157,7 +1187,7 @@ ca:
     set_new_password: Estableix una contrasenya nova
     setup:
       email_below_hint_html: Verifiqueu la carpeta de correu brossa o demaneu-ne un altre. Podeu corregir l'adreça de correu-e si no és correcta.
-      email_settings_hint_html: Toca l'enllaç que t'hem enviat per a verificar %{email}. Esperarem aquí mateix.
+      email_settings_hint_html: Feu clic a l'enllaç que us hem enviat a %{email} per a començar a utilitzar Mastodon. Us esperem.
       link_not_received: No has rebut l'enllaç?
       new_confirmation_instructions_sent: Rebràs un nou correu amb l'enllaç de confirmació en pocs minuts!
       title: Comprova la teva safata d'entrada
@@ -1166,7 +1196,7 @@ ca:
       title: Inicia sessió a %{domain}
     sign_up:
       manual_review: Els registres a %{domain} passen per una revisió manual dels nostres moderadors. Per ajudar-nos a processar el teu registre, escriu-nos quelcom sobre tu i perquè vols un compte a %{domain}.
-      preamble: Amb un compte en aquest servidor Mastodon podràs seguir qualsevol altra persona de la xarxa, independentment d'on tingui el compte.
+      preamble: Amb un compte en aquest servidor de Mastodon podreu seguir qualsevol altra persona al Fedivers, sense importar a quin servidor tingui el compte.
       title: Configurem-te a %{domain}.
     status:
       account_status: Estat del compte
@@ -1178,6 +1208,8 @@ ca:
       view_strikes: Veure accions del passat contra el teu compte
     too_fast: Formulari enviat massa ràpid, torna a provar-ho.
     use_security_key: Usa clau de seguretat
+    user_agreement_html: He llegit i estic d'acord amb les <a href="%{terms_of_service_path}" target="_blank">condicions de servei</a> i la <a href="%{privacy_policy_path}" target="_blank">política de privadesa</a>
+    user_privacy_agreement_html: He llegit i estic d'acord amb la <a href="%{privacy_policy_path}" target="_blank">política de privacitat</a>
   author_attribution:
     example_title: Text d'exemple
     hint_html: Escriviu notícies o un blog fora de Mastodon? Controleu quin crèdit rebeu quan es comparteixen aquí.
@@ -1382,6 +1414,22 @@ ca:
       merge_long: Mantenir els registres existents i afegir-ne de nous
       overwrite: Sobreescriu
       overwrite_long: Reemplaça els registres actuals amb els nous
+    overwrite_preambles:
+      blocking_html:
+        one: Esteu a punt de <strong>reemplaçar la vostra llista de blocats</strong> amb fins a <strong>%{count} compte</strong> des de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>reemplaçar la vostra llista de blocats</strong> amb fins a <strong>%{count} comptes</strong> des de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Esteu a punt de <strong>reemplaçar els vostres marcadors</strong> amb fins a <strong>%{count} publicació</strong> des de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>reemplaçar els vostres marcadors</strong> amb fins a <strong>%{count} publicacions</strong> des de <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Esteu a punt de <strong>reemplaçar la vostra llista de dominis blocats</strong> amb fins a <strong>%{count} domini</strong> des de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>reemplaçar la vostra llista de dominis blocats</strong> amb fins a <strong>%{count} dominis</strong> des de <strong>%{filename}</strong>.
+      following_html:
+        one: Esteu a punt de <strong>seguir</strong> fins a <strong>%{count} compte</strong> des de <strong>%{filename}</strong> i <strong>deixar de seguir la resta</strong>.
+        other: Esteu a punt de <strong>seguir</strong> fins a <strong>%{count} comptes</strong> des de <strong>%{filename}</strong> i <strong>deixar de seguir la resta</strong>.
+      lists_html:
+        one: Esteu a punt de <strong>reemplaçar les vostres llistes</strong> amb contactes de <strong>%{filename}</strong>. S'afegirà <strong>%{count} compte</strong> a les noves llistes.
+        other: Esteu a punt de <strong>reemplaçar les vostres llistes</strong> amb contactes de <strong>%{filename}</strong>. S'afegiran fins a <strong>%{count} comptes</strong> a les noves llistes.
     preface: Pots importar algunes les dades que has exportat des d'un altre servidor, com ara el llistat de les persones que estàs seguint o bloquejant.
     recent_imports: Importacions recents
     states:
@@ -1638,7 +1686,7 @@ ca:
   scheduled_statuses:
     over_daily_limit: Has superat el límit de %{limit} tuts programats per a avui
     over_total_limit: Has superat el límit de %{limit} tuts programats
-    too_soon: La data programada ha de ser futura
+    too_soon: la data ha de ser al futur
   self_destruct:
     lead_html: Lamentablement, <strong>%{domain}</strong> tanca de forma definitiva. Si hi teníeu un compte, no el podreu continuar utilitzant, però podeu demanar una còpia de les vostres dades.
     title: Aquest servidor tancarà
@@ -1801,6 +1849,8 @@ ca:
       too_late: És massa tard per a apel·lar aquesta acció
   tags:
     does_not_match_previous_name: no coincideix amb el nom anterior
+  terms_of_service:
+    title: Condicions de servei
   themes:
     contrast: Mastodon (alt contrast)
     default: Mastodon (fosc)
@@ -1861,6 +1911,11 @@ ca:
       further_actions_html: Si no has estat tu, %{action} immediatament i activa l'autenticació de dos-factors per a mantenir el teu compte segur.
       subject: S'ha accedit al teu compte des d'una adreça IP nova
       title: Un inici de sessió nou
+    terms_of_service_changed:
+      sign_off: L'equip de %{domain}
+      subject: Actualitzacions de les condicions de servei
+      subtitle: Les condicions de servei de %{domain} canvien
+      title: Actualització important
     warning:
       appeal: Envia una apel·lació
       appeal_description: Si creus que això és un error, pots enviar una apel·lació a l'equip de %{instance}.

@@ -39,7 +39,8 @@ module Admin
     helper_method :batched_ordered_status_edits
 
     def admin_status_batch_action_params
-      params.require(:admin_status_batch_action).permit(status_ids: [])
+      params
+        .expect(admin_status_batch_action: [status_ids: []])
     end
 
     def after_create_redirect_path

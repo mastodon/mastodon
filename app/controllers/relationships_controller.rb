@@ -6,7 +6,6 @@ class RelationshipsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_accounts, only: :show
   before_action :set_relationships, only: :show
-  before_action :set_cache_headers
 
   helper_method :following_relationship?, :followed_by_relationship?, :mutual_relationship?
 
@@ -36,7 +35,7 @@ class RelationshipsController < ApplicationController
   end
 
   def form_account_batch_params
-    params.require(:form_account_batch).permit(:action, account_ids: [])
+    params.expect(form_account_batch: [:action, account_ids: []])
   end
 
   def following_relationship?
@@ -65,9 +64,5 @@ class RelationshipsController < ApplicationController
     elsif params[:block_domains] || params[:remove_domains_from_followers]
       'remove_domains_from_followers'
     end
-  end
-
-  def set_cache_headers
-    response.cache_control.replace(private: true, no_store: true)
   end
 end

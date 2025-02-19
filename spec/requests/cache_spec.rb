@@ -10,6 +10,7 @@ module TestEndpoints
     /.well-known/nodeinfo
     /nodeinfo/2.0
     /manifest
+    /css/custom-1a2s3d4f.css
     /custom.css
     /actor
     /api/v1/instance/extended_description
@@ -172,7 +173,7 @@ RSpec.describe 'Caching behavior' do
 
   before_all do
     alice = Fabricate(:account, username: 'alice')
-    user = Fabricate(:user, email: 'user@host.example', role: UserRole.find_by(name: 'Moderator'))
+    user = Fabricate(:moderator_user, email: 'user@host.example')
     status = Fabricate(:status, account: alice, id: 110_224_538_612_341_312)
     Fabricate(:status, account: alice, id: 110_224_538_643_211_312, visibility: :private)
     Fabricate(:invite, code: 'abcdef')

@@ -121,6 +121,6 @@ RSpec.describe 'Admin::Announcements' do
   end
 
   def admin_user
-    Fabricate(:user, role: UserRole.find_by(name: 'Admin'))
+    Fabricate(:admin_user)
   end
 end

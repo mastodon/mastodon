@@ -8,12 +8,12 @@
 
       %br/
 
-      = link_to tag_path(tag), target: '_blank', rel: 'noopener noreferrer' do
+      = link_to tag_path(tag), target: '_blank', rel: 'noopener' do
         = t('admin.trends.tags.used_by_over_week', count: tag.history.reduce(0) { |sum, day| sum + day.accounts })
 
-      - if tag.trendable? && (rank = Trends.tags.rank(tag.id))
+      - if tag.trendable?
         ·
-        %abbr{ title: t('admin.trends.tags.current_score', score: Trends.tags.score(tag.id)) }= t('admin.trends.tags.trending_rank', rank: rank + 1)
+        %abbr{ title: t('admin.trends.tags.current_score', score: tag.trend.score) }= t('admin.trends.tags.trending_rank', rank: tag.trend.rank + 1)
 
         - if tag.decaying?
           ·

@@ -64,6 +64,10 @@ module FormattingHelper
     end
   end
 
+  def markdown(text)
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML, escape_html: true, no_images: true).render(text).html_safe # rubocop:disable Rails/OutputSafety
+  end
+
   private
 
   def wrapped_status_content_format(status)

@@ -28,7 +28,7 @@
 
     .actions
       %button.button= t('admin.accounts.search')
-      = link_to t('admin.accounts.reset'), admin_reports_path, class: 'button negative'
+      = link_to t('admin.accounts.reset'), admin_reports_path, class: 'button button--dangerous'
 
 - @reports.group_by(&:target_account_id).each_value do |reports|
   - target_account = reports.first.target_account

@@ -19,11 +19,11 @@
         = media_attachment.file_file_name
 
     .detailed-status__meta
-      = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'name-tag', target: '_blank', rel: 'noopener noreferrer' do
+      = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'name-tag', target: '_blank', rel: 'noopener' do
         = image_tag(status.account.avatar.url, width: 15, height: 15, alt: '', class: 'avatar')
         .username= status.account.acct
       ·
-      = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime', rel: 'noopener noreferrer' do
+      = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime', rel: 'noopener' do
         %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       - if status.edited?
         ·

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe SoftwareUpdatePolicy do
   subject { described_class }
 
-  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Owner')).account }
+  let(:admin)   { Fabricate(:owner_user).account }
   let(:john)    { Fabricate(:account) }
 
   permissions :index? do

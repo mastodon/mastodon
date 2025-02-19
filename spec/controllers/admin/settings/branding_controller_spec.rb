@@ -7,7 +7,7 @@ RSpec.describe Admin::Settings::BrandingController do
 
   describe 'When signed in as an admin' do
     before do
-      sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
+      sign_in Fabricate(:admin_user), scope: :user
     end
 
     describe 'PUT #update' do
@@ -16,7 +16,8 @@ RSpec.describe Admin::Settings::BrandingController do
 
         patch :update, params: { form_admin_settings: { new_setting_key: 'New key value' } }
 
-        expect(response).to redirect_to(admin_settings_branding_path)
+        expect(response)
+          .to have_http_status(400)
         expect(Setting.new_setting_key).to be_nil
       end
     end

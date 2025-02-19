@@ -4,7 +4,7 @@
   .report-notes__item__header
     %span.username
       = link_to report_note.account.username, admin_account_path(report_note.account_id)
-    %time.relative-formatted{ datetime: report_note.created_at.iso8601 }
+    %time.relative-formatted{ datetime: report_note.created_at.iso8601, title: report_note.created_at }
       = l report_note.created_at.to_date
 
   .report-notes__item__content

@@ -77,19 +77,20 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       },
 
       media_attachments: {
-        supported_mime_types: MediaAttachment.supported_mime_types,
-        image_size_limit: MediaAttachment::IMAGE_LIMIT,
+        description_limit: MediaAttachment::MAX_DESCRIPTION_LENGTH,
         image_matrix_limit: Attachmentable::MAX_MATRIX_LIMIT,
-        video_size_limit: MediaAttachment::VIDEO_LIMIT,
+        image_size_limit: MediaAttachment::IMAGE_LIMIT,
+        supported_mime_types: MediaAttachment.supported_mime_types,
         video_frame_rate_limit: MediaAttachment::MAX_VIDEO_FRAME_RATE,
         video_matrix_limit: MediaAttachment::MAX_VIDEO_MATRIX_LIMIT,
+        video_size_limit: MediaAttachment::VIDEO_LIMIT,
       },
 
       polls: {
-        max_options: PollValidator::MAX_OPTIONS,
-        max_characters_per_option: PollValidator::MAX_OPTION_CHARS,
-        min_expiration: PollValidator::MIN_EXPIRATION,
-        max_expiration: PollValidator::MAX_EXPIRATION,
+        max_options: PollOptionsValidator::MAX_OPTIONS,
+        max_characters_per_option: PollOptionsValidator::MAX_OPTION_CHARS,
+        min_expiration: PollExpirationValidator::MIN_EXPIRATION,
+        max_expiration: PollExpirationValidator::MAX_EXPIRATION,
       },
 
       translation: {

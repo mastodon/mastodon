@@ -28,7 +28,8 @@ module Admin
     end
 
     def settings_params
-      params.require(:form_admin_settings).permit(*Form::AdminSettings::KEYS)
+      params
+        .expect(form_admin_settings: [*Form::AdminSettings::KEYS])
     end
   end
 end

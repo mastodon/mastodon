@@ -189,6 +189,7 @@ be:
         create_domain_block: Стварыць даменны блок
         create_email_domain_block: Стварыць даменны блок электроннай пошты
         create_ip_block: Стварыць IP правіла
+        create_relay: Стварыць паўтор
         create_unavailable_domain: Стварыць недаступны Дамен
         create_user_role: Стварыць ролю
         demote_user: Панізіць карыстальніка
@@ -200,18 +201,22 @@ be:
         destroy_email_domain_block: Выдаліць даменны блок электроннай пошты
         destroy_instance: Вычысціць дамен
         destroy_ip_block: Выдаліць IP правіла
+        destroy_relay: Выдаліць паўтор
         destroy_status: Выдаліць допіс
         destroy_unavailable_domain: Выдаліць недаступны дамен
         destroy_user_role: Выдаліць ролю
         disable_2fa_user: Адключыць двухэтапнае спраўджанне
         disable_custom_emoji: Адключыць адвольныя эмодзі
+        disable_relay: Выключыць паўтор
         disable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для карыстальніка
         disable_user: Адключыць карыстальніка
         enable_custom_emoji: Уключыць адвольныя эмодзі
+        enable_relay: Уключыць паўтор
         enable_sign_in_token_auth_user: Уключыць аўтарызацыю праз электронную пошту для карыстальніка
         enable_user: Уключыць карыстальніка
         memorialize_account: Запомніць уліковы запіс
         promote_user: Павысіць правы Карыстальніка
+        publish_terms_of_service: Апублікаваць Умовы выкарыстаньня
         reject_appeal: Адхіліць абскарджанне
         reject_user: Адмовіць карыстальніку
         remove_avatar_user: Выдаліць аватар
@@ -249,6 +254,7 @@ be:
         create_domain_block_html: "%{name} заблакіраваў дамен %{target}"
         create_email_domain_block_html: "%{name} заблакіраваў дамен эл. пошты %{target}"
         create_ip_block_html: "%{name} стварыў правіла для IP %{target}"
+        create_relay_html: "%{name} стварыў(-а) паўтор %{target}"
         create_unavailable_domain_html: "%{name} прыпыніў дастаўку да дамена %{target}"
         create_user_role_html: "%{name} зрабіў ролю %{target}"
         demote_user_html: "%{name} прыбраў карыстальніка %{target}"
@@ -260,18 +266,22 @@ be:
         destroy_email_domain_block_html: "%{name} разблакіраваў дамен эл. пошты %{target}"
         destroy_instance_html: "%{name} цалкам прыбраў дамен %{target}"
         destroy_ip_block_html: "%{name} выдаліў правіла для IP %{target}"
+        destroy_relay_html: "%{name} выдаліў(-ла) паўтор %{target}"
         destroy_status_html: "%{name} выдаліў допіс %{target}"
         destroy_unavailable_domain_html: "%{name} дазволіў працягнуць адпраўку на дамен %{target}"
         destroy_user_role_html: "%{name} выдаліў ролю %{target}"
         disable_2fa_user_html: "%{name} амяніў абавязковую двухфактарную верыфікацыю для карыстальніка %{target}"
         disable_custom_emoji_html: "%{name} заблакіраваў эмодзі %{target}"
+        disable_relay_html: "%{name} выключыў(-ла) паўтор %{target}"
         disable_sign_in_token_auth_user_html: "%{name} адключыў уваход праз эл. пошту для %{target}"
         disable_user_html: "%{name} адключыў уваход для карыстальніка %{target}"
         enable_custom_emoji_html: "%{name} уключыў эмодзі %{target}"
+        enable_relay_html: "%{name} уключыў(-ла) паўтор %{target}"
         enable_sign_in_token_auth_user_html: "%{name} уключыў уваход праз эл. пошту для %{target}"
         enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
         memorialize_account_html: Карыстальнік %{name} пераключыў уліковы запіс %{target} у старонку памяці
         promote_user_html: "%{name} павысіў карыстальніка %{target}"
+        publish_terms_of_service_html: "%{name} апублікаваў абнаўленьне ўмоваў абслугоўваньня"
         reject_appeal_html: "%{name} адхіліў запыт на абскарджанне %{target}"
         reject_user_html: "%{name} адхіліў рэгістрацыю з %{target}"
         remove_avatar_user_html: "%{name} выдаліў аватар %{target}"
@@ -625,6 +635,7 @@ be:
         suspend_description_html: Уліковы запіс і ўсё яго змесціва будзе недаступна і ў далейшым выдалены, узаемадзеянне з ім будзе немагчыма. Магчыма адмяніць на працягу 30 дзён. Закрывае ўсе скаргі на гэты ўліковы запіс.
       actions_description_html: Вырашыце, якія дзеянні распачаць, каб вырашыць гэтую скаргу. Калі вы прымеце меры пакарання ў дачыненні да ўліковага запісу, пра які паведамляецца, ім будзе адпраўлена апавяшчэнне па электроннай пошце, за выключэннем выпадкаў, калі выбрана катэгорыя <strong>Спам</strong>.
       actions_description_remote_html: Вырашыце як паступіць з гэтай скаргай. Гэта паўплывае толькі на тое як <strong>ваш</strong> сервер звязваецца з аддалёным уліковым запісам і апрацоўвае яго кантэнт.
+      actions_no_posts: У гэтай скаргі няма зьвязаных паведамленьняў для выдаленьня
       add_to_report: Дадаць яшчэ дэталяў да скаргі
       already_suspended_badges:
         local: Ужо прыпынена на гэтым сэрвэры
@@ -841,8 +852,10 @@ be:
       back_to_account: Назад да старонкі ўліковага запісу
       back_to_report: Назад да старонкі справаздачы
       batch:
+        add_to_report: 'Дадаць да скаргі #%{id}'
         remove_from_report: Выдаліць са справаздачы
         report: Справаздача
+      contents: Зьмест
       deleted: Выдалены
       favourites: Упадабаныя
       history: Гісторыя версій
@@ -851,12 +864,17 @@ be:
       media:
         title: Медыя
       metadata: Метаданыя
+      no_history: Гэты пост не рэдагаваўся
       no_status_selected: Ніводная публікацыя не была зменена, бо ніводная не была выбрана
       open: Адкрыць допіс
       original_status: Зыходны допіс
       reblogs: Рэпосты
+      replied_to_html: Адказ карыстальніку %{acct_link}
       status_changed: Допіс зменены
+      status_title: Допіс карыстальніка @%{name}
+      title: Допісы карыстальніка - @%{name}
       trending: Папулярныя
+      view_publicly: Глядзець публічна
       visibility: Бачнасць
       with_media: З медыя
     strikes:
@@ -898,6 +916,9 @@ be:
         message_html: Вы не вызначылі ніякіх правілаў сервера.
       sidekiq_process_check:
         message_html: Не працуе працэс Sidekiq для %{value} чаргі. Калі ласка праверце вашу канфігурацыю Sidekiq
+      software_version_check:
+        action: Праверыць наяўнасьць абнаўленьняў
+        message_html: Даступна абнаўленьне Mastodon.
       software_version_critical_check:
         action: Прагледзець даступныя абнаўленні
         message_html: Даступна крытычнае абнаўленне Mastodon, калі ласка, зрабіце абнаўленне як мага хутчэй.
@@ -924,11 +945,21 @@ be:
       name: Назва
       newest: Спачатку новыя
       oldest: Спачатку старыя
+      open: Глядзець публічна
       reset: Скінуць
       review: Стан праверкі
       search: Пошук
       title: Хэштэгі
       updated_msg: Налады хэштэгаў паспяхова змененыя
+    terms_of_service:
+      back: Вернуцца да ўмоваў абслугоўваньня
+      changelog: Што зьмянілася
+      create: Выкарыстоўвайце свой уласны
+      current: Цякучы
+      draft: Чарнавік
+      generate: Выкарыстаць шаблон
+      generates:
+        action: Зґенераваць
     title: Адміністрацыя
     trends:
       allow: Дазволіць
@@ -1082,7 +1113,7 @@ be:
     localization:
       body: Mastodon перакладаецца добраахвотнікамі.
       guide_link: https://be.crowdin.com/project/mastodon/be
-      guide_link_text: Кожны і кожная можа зрабіць унёсак.
+      guide_link_text: Кожны можа зрабіць унёсак.
     sensitive_content: Далікатны змест
   application_mailer:
     notification_preferences: Змяніць налады эл. пошты
@@ -1134,7 +1165,6 @@ be:
     migrate_account: Пераехаць на іншы ўліковы запіс
     migrate_account_html: Калі вы хочаце перанакіраваць гэты ўліковы запіс на іншы, то можаце <a href="%{path}">наладзіць яго тут</a>.
     or_log_in_with: Або ўвайсці з дапамогай
-    privacy_policy_agreement_html: Я азнаёміўся і пагаджаюся з <a href="%{privacy_policy_path}" target="_blank">палітыкай канфідэнцыйнасці</a>
     progress:
       confirm: Пацвердзіць email
       details: Вашы дадзеныя
@@ -1159,7 +1189,6 @@ be:
     set_new_password: Прызначыць новы пароль
     setup:
       email_below_hint_html: Праверце папку са спамам або зрабіце новы запыт. Вы можаце выправіць свой email, калі ён няправільны.
-      email_settings_hint_html: Націсніце на спасылку, якую мы адправілі, каб спраўдзіць %{email}. Мы вас пачакаем тут.
       link_not_received: Не атрымалі спасылку?
       new_confirmation_instructions_sent: Праз некалькі хвілін вы атрымаеце новы ліст на email са спасылкай для пацверджання!
       title: Праверце вашу пошту
@@ -1168,7 +1197,6 @@ be:
       title: Уваход у %{domain}
     sign_up:
       manual_review: Рэгістрацыі на %{domain} праходзяць ручную праверку нашымі мадэратарамі. Каб дапамагчы нам апрацаваць вашу рэгістрацыю, напішыце крыху пра сябе і чаму вы хочаце мець уліковы запіс на %{domain}.
-      preamble: Маючы ўліковы запіс на гэтым серверы Mastodon, вы будзеце мець магчымасць падпісацца на кожнага чалавека ў сетцы, незалежна ад таго, на якім серверы размешчаны ягоны ўліковы запіс.
       title: Наладзьма вас на %{domain}.
     status:
       account_status: Стан уліковага запісу
@@ -1647,7 +1675,6 @@ be:
   scheduled_statuses:
     over_daily_limit: Вы перавысілі ліміт ў %{limit} запланаваных на сёння допісаў
     over_total_limit: Вы перавысілі ліміт ў %{limit} запланаваных допісаў
-    too_soon: Запланаваная дата мусіць быць у будучыні
   self_destruct:
     lead_html: На жаль, дамен <strong>%{domain}</strong> зачыняецца назаўсёды. Калі ў вас быў уліковы запіс, вы не зможаце працягваць выкарыстоўваць яго, але вы ўсё яшчэ можаце запытаць рэзервовае капіраванне вашых даных.
     title: Гэты сервер зачыняецца
@@ -1707,6 +1734,7 @@ be:
     delete: Выдаленне ўліковага запісу
     development: Распрацоўка
     edit_profile: Рэдагаваць профіль
+    export: Экспарт
     featured_tags: Выбраныя хэштэгі
     import: Імпарт
     import_and_export: Імпарт і экспарт
@@ -1817,6 +1845,8 @@ be:
       too_late: Запозна абскарджваць гэтае папярэджанне
   tags:
     does_not_match_previous_name: не супадае з папярэднім імям
+  terms_of_service:
+    title: Умовы абслугоўваньня
   themes:
     contrast: Mastodon (высокі кантраст)
     default: Mastodon (цёмная)

@@ -57,7 +57,8 @@ module Admin
     end
 
     def resource_params
-      params.require(:relay).permit(:inbox_url)
+      params
+        .expect(relay: [:inbox_url])
     end
 
     def warn_signatures_not_enabled!

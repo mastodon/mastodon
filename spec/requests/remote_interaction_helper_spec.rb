@@ -9,7 +9,6 @@ RSpec.describe 'Remote Interaction Helper' do
 
       expect(response)
         .to have_http_status(200)
-        .and render_template(:index, layout: 'helper_frame')
         .and have_attributes(
           headers: include(
             'X-Frame-Options' => 'SAMEORIGIN',
@@ -17,6 +16,8 @@ RSpec.describe 'Remote Interaction Helper' do
             'Content-Security-Policy' => expected_csp_headers
           )
         )
+      expect(response.body)
+        .to match(/remote_interaction_helper/)
     end
   end
 

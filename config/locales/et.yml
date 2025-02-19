@@ -335,7 +335,7 @@ et:
       enabled_msg: Selle emotikoni lubamine õnnestus
       image_hint: PNG või GIF suurusega kuni %{size}
       list: Loend
-      listed: Nimekirjastatud
+      listed: Loetletud
       new:
         title: Lisa uus emotikon
       no_emoji_selected: Emotikone ei muudetud, kuna ühtegi polnud valitud
@@ -345,8 +345,8 @@ et:
       shortcode_hint: Vähemalt 2 tähemärki, ainult tähted, numbrid ja alakriipsud
       title: Emotikonid
       uncategorized: Kategoriseerimata
-      unlist: Kirjendamata
-      unlisted: Kirjendamata
+      unlist: Loetlemata
+      unlisted: Loetlemata
       update_failed_msg: Ei saanud seda emotikoni uuendada
       updated_msg: Emotikoni uuendamine õnnestus!
       upload: Lae üles
@@ -828,12 +828,17 @@ et:
       media:
         title: Meedia
       metadata: Metaandmed
+      no_history: Seda postitust pole muudetud
       no_status_selected: Ühtegi postitust ei muudetud, sest ühtegi polnud valitud
       open: Ava postitus
       original_status: Algne postitus
       reblogs: Jagamised
+      replied_to_html: Vastatud %{acct_link}
       status_changed: Muudetud postitus
+      status_title: Postitajaks @%{name}
+      title: Postitus kontolt - @%{name}
       trending: Populaarne
+      view_publicly: Nähtav avalikult
       visibility: Nähtavus
       with_media: Meediaga
     strikes:
@@ -910,6 +915,19 @@ et:
       search: Otsi
       title: Märksõnad
       updated_msg: Sildi sätted edukalt uuendatud
+    terms_of_service:
+      back: Tagasi teenuse tingimustesse
+      changelog: Mis on muutunud
+      create: Kasuta enda oma
+      current: Praegune
+      draft: Mustand
+      generate: Kasuta malli
+      generates:
+        action: Genereeri
+        chance_to_review_html: "<strong>Loodud teenusetingimusi ei avaldata automaatselt.</strong> Sul on võimalus tulemused üle vaadata. Palun täida vajalikud andmed, et jätkata."
+        explanation_html: Esitatud teenusetingimuste näidis on mõeldud ainult teavitamise eesmärgil ja seda ei tohiks tõlgendada kui juriidilist nõuannet mis tahes küsimuses. Palun konsulteeri olukorra ja konkreetsete juriidiliste küsimuste osas oma õigusnõustajaga.
+        title: Teenuse tingimuste seadistamine
+      history: Ajalugu
     title: Administreerimine
     trends:
       allow: Luba
@@ -1117,7 +1135,6 @@ et:
     migrate_account: Teisele kontole ära kolimine
     migrate_account_html: Kui soovid konto siit ära kolida, <a href="%{path}">saad seda teha siin</a>.
     or_log_in_with: Või logi sisse koos
-    privacy_policy_agreement_html: Olen tutvunud <a href="%{privacy_policy_path}" target="_blank">isikuandmete kaitse põhimõtetega</a> ja nõustun nendega
     progress:
       confirm: E-posti kinnitamine
       details: Sinu üksikasjad
@@ -1142,7 +1159,6 @@ et:
     set_new_password: Uue salasõna määramine
     setup:
       email_below_hint_html: Kontrolli rämpsposti kausta või taotle uut. Saad oma e-posti aadressi parandada, kui see on vale.
-      email_settings_hint_html: Klõpsa linki, mis saadeti sulle, et kinnitada %{email}. Seni me ootame.
       link_not_received: Kas ei saanud linki?
       new_confirmation_instructions_sent: Saad mõne minuti pärast uue kinnituslingiga e-kirja!
       title: Kontrolli sisendkasti
@@ -1151,7 +1167,6 @@ et:
       title: Logi sisse kohta %{domain}
     sign_up:
       manual_review: Liitumised kohas %{domain} vaadatakse meie moderaatorite poolt käsitsi läbi. Aitamaks meil sinu taotlust läbi vaadata, kirjuta palun natuke endast ja miks soovid kontot kohas %{domain}.
-      preamble: Selle kontoga saad jälgida ja suhelda kõigi teiste kasutajatega erinevates Mastodoni serverites.
       title: Loo konto serverisse  %{domain}.
     status:
       account_status: Konto olek
@@ -1278,7 +1293,7 @@ et:
     bookmarks: Järjehoidjad
     csv: CSV
     domain_blocks: Domeeni blokeeringud
-    lists: Nimekirjad
+    lists: Loetelud
     mutes: Oled vaigistanud
     storage: Meedia hoidla
   featured_tags:
@@ -1661,7 +1676,6 @@ et:
   scheduled_statuses:
     over_daily_limit: Lubatud ajastatud postituste arv %{limit} päevas on tänaseks ületatud
     over_total_limit: Oled jõudnud ajastatud postituste lubatud maksimumarvuni %{limit}
-    too_soon: Ajastatud kuupäev peab olema tukevikus
   self_destruct:
     lead_html: Kahjuks suletakse <strong>%{domain}</strong> lõplikult. Kui sul oli seal konto, ei saa sa seda enam kasutada, kuid siiski võid taotleda oma andmete varukoopiat.
     title: See server suletakse
@@ -1780,7 +1794,7 @@ et:
       private_long: Näevad ainult jälgijad
       public: Avalik
       public_long: Postitused on kõigile näha
-      unlisted: Kirjendamata
+      unlisted: Loetlemata
       unlisted_long: Kõigile näha, kuid ei näidata avalikel ajajoontel
   statuses_cleanup:
     enabled: Vanade postituste automaatne kustutamine

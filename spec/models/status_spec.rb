@@ -9,6 +9,8 @@ RSpec.describe Status do
   let(:bob)   { Fabricate(:account, username: 'bob') }
   let(:other) { Fabricate(:status, account: bob, text: 'Skulls for the skull god! The enemy\'s gates are sideways!') }
 
+  include_examples 'Status::Visibility'
+
   describe '#local?' do
     it 'returns true when no remote URI is set' do
       expect(subject.local?).to be true
@@ -81,36 +83,6 @@ RSpec.describe Status do
     it 'is comment when the status replies to another' do
       subject.thread = other
       expect(subject.object_type).to be :comment
-    end
-  end
-
-  describe '#hidden?' do
-    context 'when private_visibility?' do
-      it 'returns true' do
-        subject.visibility = :private
-        expect(subject.hidden?).to be true
-      end
-    end
-
-    context 'when direct_visibility?' do
-      it 'returns true' do
-        subject.visibility = :direct
-        expect(subject.hidden?).to be true
-      end
-    end
-
-    context 'when public_visibility?' do
-      it 'returns false' do
-        subject.visibility = :public
-        expect(subject.hidden?).to be false
-      end
-    end
-
-    context 'when unlisted_visibility?' do
-      it 'returns false' do
-        subject.visibility = :unlisted
-        expect(subject.hidden?).to be false
-      end
     end
   end
 

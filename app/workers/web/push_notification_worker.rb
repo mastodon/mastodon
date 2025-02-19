@@ -19,7 +19,19 @@ class Web::PushNotificationWorker
     # in the meantime, so we have to double-check before proceeding
     return unless @notification.activity.present? && @subscription.pushable?(@notification)
 
-    payload = web_push_request.encrypt(push_notification_json)
+    if web_push_request.legacy
+      perform_legacy_request
+    else
+      perform_standard_request
+    end
+  rescue ActiveRecord::RecordNotFound
+    true
+  end
+
+  private
+
+  def perform_legacy_request
+    payload = web_push_request.legacy_encrypt(push_notification_json)
 
     request_pool.with(web_push_request.audience) do |http_client|
       request = Request.new(:post, web_push_request.endpoint, body: payload.fetch(:ciphertext), http_client: http_client)
@@ -31,28 +43,48 @@ class Web::PushNotificationWorker
         'Content-Encoding' => 'aesgcm',
         'Encryption' => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
         'Crypto-Key' => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{web_push_request.crypto_key_header}",
-        'Authorization' => web_push_request.authorization_header,
+        'Authorization' => web_push_request.legacy_authorization_header,
         'Unsubscribe-URL' => subscription_url
       )
 
-      request.perform do |response|
-        # If the server responds with an error in the 4xx range
-        # that isn't about rate-limiting or timeouts, we can
-        # assume that the subscription is invalid or expired
-        # and must be removed
-
-        if (400..499).cover?(response.code) && ![408, 429].include?(response.code)
-          @subscription.destroy!
-        elsif !(200...300).cover?(response.code)
-          raise Mastodon::UnexpectedResponseError, response
-        end
-      end
+      send(request)
     end
-  rescue ActiveRecord::RecordNotFound
-    true
   end
 
-  private
+  def perform_standard_request
+    payload = web_push_request.standard_encrypt(push_notification_json)
+
+    request_pool.with(web_push_request.audience) do |http_client|
+      request = Request.new(:post, web_push_request.endpoint, body: payload, http_client: http_client)
+
+      request.add_headers(
+        'Content-Type' => 'application/octet-stream',
+        'Ttl' => TTL.to_s,
+        'Urgency' => URGENCY,
+        'Content-Encoding' => 'aes128gcm',
+        'Authorization' => web_push_request.standard_authorization_header,
+        'Unsubscribe-URL' => subscription_url,
+        'Content-Length' => payload.length.to_s
+      )
+
+      send(request)
+    end
+  end
+
+  def send(request)
+    request.perform do |response|
+      # If the server responds with an error in the 4xx range
+      # that isn't about rate-limiting or timeouts, we can
+      # assume that the subscription is invalid or expired
+      # and must be removed
+
+      if (400..499).cover?(response.code) && ![408, 429].include?(response.code)
+        @subscription.destroy!
+      elsif !(200...300).cover?(response.code)
+        raise Mastodon::UnexpectedResponseError, response
+      end
+    end
+  end
 
   def web_push_request
     @web_push_request || WebPushRequest.new(@subscription)

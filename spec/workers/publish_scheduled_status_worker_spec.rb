@@ -13,11 +13,9 @@ RSpec.describe PublishScheduledStatusWorker do
     end
 
     context 'when the account is not disabled' do
-      it 'creates a status' do
+      it 'creates a status and removes scheduled record' do
         expect(scheduled_status.account.statuses.first.text).to eq 'Hello world, future!'
-      end
 
-      it 'removes the scheduled status' do
         expect(ScheduledStatus.find_by(id: scheduled_status.id)).to be_nil
       end
     end
@@ -25,11 +23,9 @@ RSpec.describe PublishScheduledStatusWorker do
     context 'when the account is disabled' do
       let(:scheduled_status) { Fabricate(:scheduled_status, account: Fabricate(:account, user: Fabricate(:user, disabled: true))) }
 
-      it 'does not create a status' do
+      it 'does not create a status and removes scheduled record' do
         expect(Status.count).to eq 0
-      end
 
-      it 'removes the scheduled status' do
         expect(ScheduledStatus.find_by(id: scheduled_status.id)).to be_nil
       end
     end

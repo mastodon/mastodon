@@ -10,6 +10,7 @@ services:
       RAILS_ENV: development
       NODE_ENV: development
       BIND: 0.0.0.0
+      BOOTSNAP_CACHE_DIR: /tmp
       REDIS_HOST: redis
       REDIS_PORT: '6379'
       DB_HOST: db
