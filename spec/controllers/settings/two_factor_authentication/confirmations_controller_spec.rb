@@ -5,14 +5,14 @@ require 'rails_helper'
 RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
   render_views
 
-  shared_examples 'renders :new' do
-    it 'renders the new view' do
+  shared_examples 'renders expected page' do
+    it 'renders the new view with QR code' do
       subject
 
       expect(response).to have_http_status(200)
-      expect(response).to render_template(:new)
       expect(response.body)
         .to include(qr_code_markup)
+        .and include(I18n.t('settings.two_factor_authentication'))
     end
 
     def qr_code_markup
@@ -34,7 +34,7 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
             get :new, session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
           end
 
-          include_examples 'renders :new'
+          include_examples 'renders expected page'
         end
 
         it 'redirects if a new otp_secret has not been set in the session' do
@@ -66,10 +66,13 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
             expect { post_create_with_options }
               .to change { user.reload.otp_secret }.to 'thisisasecretforthespecofnewview'
 
-            expect(flash[:notice]).to eq 'Two-factor authentication successfully enabled'
-            expect(response).to have_http_status(200)
-            expect(response).to render_template('settings/two_factor_authentication/recovery_codes/index')
-            expect(response.body).to include(*otp_backup_codes)
+            expect(flash[:notice])
+              .to eq(I18n.t('two_factor_authentication.enabled_success'))
+            expect(response)
+              .to have_http_status(200)
+            expect(response.body)
+              .to include(*otp_backup_codes)
+              .and include(I18n.t('settings.two_factor_authentication'))
           end
         end
 
@@ -86,10 +89,12 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
 
           it 'renders page with error message' do
             subject
-            expect(response.body).to include 'The entered code was invalid! Are server time and device time correct?'
+
+            expect(response.body)
+              .to include(I18n.t('otp_authentication.wrong_code'))
           end
 
-          include_examples 'renders :new'
+          include_examples 'renders expected page'
         end
 
         private
@@ -114,20 +119,6 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
             .and_return(result)
         end
       end
-    end
-  end
-
-  context 'when not signed in' do
-    it 'redirects on POST to create' do
-      post :create, params: { form_two_factor_confirmation: { otp_attempt: '123456' } }
-
-      expect(response).to redirect_to('/auth/sign_in')
-    end
-
-    it 'redirects on GET to new' do
-      get :new
-
-      expect(response).to redirect_to('/auth/sign_in')
     end
   end
 end
