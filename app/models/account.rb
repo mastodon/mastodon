@@ -184,6 +184,11 @@ class Account < ApplicationRecord
 
   update_index('accounts', :self)
 
+  def numeric_ap_id?
+    # TODO: this is a placeholder for now
+    false
+  end
+
   def local?
     domain.nil?
   end
