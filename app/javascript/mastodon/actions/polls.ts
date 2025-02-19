@@ -15,7 +15,7 @@ export const importFetchedPoll = createAppAsyncThunk(
 
     dispatch(
       importPolls({
-        polls: [createPollFromServerJSON(poll, getState().polls.get(poll.id))],
+        polls: [createPollFromServerJSON(poll, getState().polls[poll.id])],
       }),
     );
   },
