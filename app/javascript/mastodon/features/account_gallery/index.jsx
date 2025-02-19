@@ -8,11 +8,13 @@ import { connect } from 'react-redux';
 
 import { lookupAccount, fetchAccount } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
+import { connectProfileStream } from 'mastodon/actions/streaming';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import { LoadMore } from 'mastodon/components/load_more';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 import { getAccountGallery } from 'mastodon/selectors';
 
@@ -80,6 +82,7 @@ class AccountGallery extends ImmutablePureComponent {
     blockedBy: PropTypes.bool,
     suspended: PropTypes.bool,
     multiColumn: PropTypes.bool,
+    identity: identityContextPropShape,
   };
 
   state = {
@@ -88,9 +91,20 @@ class AccountGallery extends ImmutablePureComponent {
 
   _load () {
     const { accountId, isAccount, dispatch } = this.props;
+    const { signedIn } = this.props.identity;
 
     if (!isAccount) dispatch(fetchAccount(accountId));
+
     dispatch(expandAccountMediaTimeline(accountId));
+
+    if (this.disconnect) {
+      this.disconnect();
+      this.disconnect = null;
+    }
+
+    if (signedIn) {
+      this.disconnect = dispatch(connectProfileStream(accountId, { onlyMedia: true }));
+    }
   }
 
   componentDidMount () {
@@ -100,6 +114,13 @@ class AccountGallery extends ImmutablePureComponent {
       this._load();
     } else {
       dispatch(lookupAccount(acct));
+    }
+  }
+
+  componentWillUnmount () {
+    if (this.disconnect) {
+      this.disconnect();
+      this.disconnect = null;
     }
   }
 
@@ -238,4 +259,4 @@ class AccountGallery extends ImmutablePureComponent {
 
 }
 
-export default connect(mapStateToProps)(AccountGallery);
+export default withIdentity(connect(mapStateToProps)(AccountGallery));
