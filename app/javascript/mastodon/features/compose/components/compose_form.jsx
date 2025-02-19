@@ -69,6 +69,7 @@ class ComposeForm extends ImmutablePureComponent {
     anyMedia: PropTypes.bool,
     missingAltText: PropTypes.bool,
     isInReply: PropTypes.bool,
+    isInReplyToSelf: PropTypes.bool,
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
     maxChars: PropTypes.number,
@@ -120,7 +121,7 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
-    this.props.onSubmit(missingAltTextModal && this.props.missingAltText);
+    this.props.onSubmit(missingAltTextModal && this.props.missingAltText && this.props.privacy !== 'direct' && (!this.props.isInReply || this.props.isInReplyToSelf));
 
     if (e) {
       e.preventDefault();

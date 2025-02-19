@@ -11,6 +11,7 @@ import {
   uploadCompose,
 } from 'mastodon/actions/compose';
 import { openModal } from 'mastodon/actions/modal';
+import { me } from 'mastodon/initial_state';
 
 import ComposeForm from '../components/compose_form';
 
@@ -30,6 +31,7 @@ const mapStateToProps = state => ({
   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
   missingAltText: state.getIn(['compose', 'media_attachments']).some(media => ['image', 'gifv'].includes(media.get('type')) && (media.get('description') ?? '').length === 0),
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
+  isInReplyToSelf: me === state.getIn(['statuses', state.getIn(['compose', 'in_reply_to']), 'account']),
   lang: state.getIn(['compose', 'language']),
   maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 500),
 });
