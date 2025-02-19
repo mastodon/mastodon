@@ -317,6 +317,13 @@ en:
       new:
         create: Create announcement
         title: New announcement
+      preview:
+        explanation_html: 'The email will be sent to <strong>%{display_count} users</strong>. The following text will be included in the e-mail:'
+        send_preview: Send preview to %{email}
+        send_to_all:
+          one: Send %{display_count} email
+          other: Send %{display_count} emails
+        title: Preview announcement notification
       publish: Publish
       published_msg: Announcement successfully published!
       scheduled_for: Scheduled for %{time}
@@ -1905,6 +1912,10 @@ en:
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
     webauthn: Security keys
   user_mailer:
+    announcement_published:
+      description: 'The administrators of %{domain} are making an announcement:'
+      subject: Service announcement
+      title: "%{domain} service announcement"
     appeal_approved:
       action: Account Settings
       explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been approved. Your account is once again in good standing.

@@ -16,4 +16,9 @@ class AnnouncementPolicy < ApplicationPolicy
   def destroy?
     role.can?(:manage_announcements)
   end
+
+  def distribute?
+    # TODO: notification_sent?
+    record.published? && role.can?(:manage_settings)
+  end
 end

@@ -86,6 +86,10 @@ class Announcement < ApplicationRecord
     end
   end
 
+  def scope_for_notification
+    User.confirmed.joins(:account).merge(Account.without_suspended)
+  end
+
   private
 
   def grouped_ordered_announcement_reactions
