@@ -73,8 +73,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def find_existing_status
-    status   = status_from_uri(object_uri)
-    status ||= Status.find_by(uri: @object['atomUri']) if @object['atomUri'].present?
+    status = status_from_uri(object_uri)
     status if status&.account_id == @account.id
   end
 
@@ -364,8 +363,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     if in_reply_to_uri.blank?
       @replied_to_status = nil
     else
-      @replied_to_status   = status_from_uri(in_reply_to_uri)
-      @replied_to_status ||= status_from_uri(@object['inReplyToAtomUri']) if @object['inReplyToAtomUri'].present?
+      @replied_to_status = status_from_uri(in_reply_to_uri)
       @replied_to_status
     end
   end
