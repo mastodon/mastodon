@@ -145,9 +145,6 @@ group :test do
   # Used to mock environment variables
   gem 'climate_control'
 
-  # Add back helpers functions removed in Rails 5.1
-  gem 'rails-controller-testing', '~> 1.0'
-
   # Validate schemas in specs
   gem 'json-schema', '~> 5.0'
 
