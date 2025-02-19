@@ -20,6 +20,7 @@ class MoveWorker
     copy_account_notes!
     carry_blocks_over!
     carry_mutes_over!
+    carry_follows_over!
 
     raise @deferred_error unless @deferred_error.nil?
   rescue ActiveRecord::RecordNotFound
@@ -117,6 +118,14 @@ class MoveWorker
     @source_account.muted_by_relationships.where(account: Account.local).find_each do |mute|
       MuteService.new.call(mute.account, @target_account, notifications: mute.hide_notifications) unless mute.account.muting?(@target_account) || mute.account.following?(@target_account)
       add_account_note_if_needed!(mute.account, 'move_handler.carry_mutes_over_text')
+    rescue => e
+      @deferred_error = e
+    end
+  end
+
+  def carry_follows_over!
+    @source_account.followers.local.reorder(nil).find_each do |follower|
+      add_account_note_if_needed!(follower, 'move_handler.carry_follows_over_text')
     rescue => e
       @deferred_error = e
     end
