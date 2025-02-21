@@ -33,18 +33,18 @@ RSpec.describe 'Settings preferences appearance page' do
   end
 
   def confirm_delete_field
-    I18n.t('simple_form.labels.defaults.setting_delete_modal')
+    form_label('defaults.setting_delete_modal')
   end
 
   def confirm_reblog_field
-    I18n.t('simple_form.labels.defaults.setting_boost_modal')
+    form_label('defaults.setting_boost_modal')
   end
 
   def theme_selection_field
-    I18n.t('simple_form.labels.defaults.setting_theme')
+    form_label('defaults.setting_theme')
   end
 
   def advanced_layout_field
-    I18n.t('simple_form.labels.defaults.setting_advanced_layout')
+    form_label('defaults.setting_advanced_layout')
   end
 end

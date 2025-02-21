@@ -29,7 +29,7 @@ RSpec.describe 'Settings preferences other page' do
   end
 
   def mark_sensitive_field
-    I18n.t('simple_form.labels.defaults.setting_default_sensitive')
+    form_label('defaults.setting_default_sensitive')
   end
 
   def language_field(key)
