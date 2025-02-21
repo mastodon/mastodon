@@ -96,7 +96,7 @@ RSpec.describe 'Settings applications page' do
     end
 
     def submit_form
-      click_on I18n.t('generic.save_changes')
+      click_on(submit_button)
     end
   end
 
