@@ -44,6 +44,6 @@ RSpec.describe 'Settings verification page' do
   end
 
   def attribution_field
-    I18n.t('simple_form.labels.account.attribution_domains')
+    form_label('account.attribution_domains')
   end
 end
