@@ -27,7 +27,7 @@ RSpec.describe 'Admin Roles' do
     end
 
     describe 'GET /admin/roles/:id/edit' do
-      let(:role) { Fabricate :user_role }
+      let(:role) { Fabricate(:user_role) }
 
       it 'returns http forbidden' do
         get edit_admin_role_path(role)
@@ -38,7 +38,7 @@ RSpec.describe 'Admin Roles' do
     end
 
     describe 'PUT /admin/roles/:id' do
-      let(:role) { Fabricate :user_role }
+      let(:role) { Fabricate(:user_role) }
 
       it 'returns http forbidden' do
         put admin_role_path(role)
@@ -49,7 +49,7 @@ RSpec.describe 'Admin Roles' do
     end
 
     describe 'DELETE /admin/roles/:id' do
-      let(:role) { Fabricate :user_role }
+      let(:role) { Fabricate(:user_role) }
 
       it 'returns http forbidden' do
         delete admin_role_path(role)
@@ -66,7 +66,7 @@ RSpec.describe 'Admin Roles' do
     before { sign_in Fabricate(:user, role: user_role) }
 
     context 'when target role permission outranks user' do
-      let(:role) { Fabricate :user_role, position: user_role.position + 1 }
+      let(:role) { Fabricate(:user_role, position: user_role.position + 1) }
 
       describe 'GET /admin/roles/:id/edit' do
         it 'returns http forbidden' do
@@ -98,7 +98,7 @@ RSpec.describe 'Admin Roles' do
   end
 
   context 'when attempting to add permissions the user does not have' do
-    let(:user_role) { Fabricate :user_role, permissions: UserRole::FLAGS[:manage_roles], position: 5 }
+    let(:user_role) { Fabricate(:user_role, permissions: UserRole::FLAGS[:manage_roles], position: 5) }
 
     before { sign_in Fabricate(:user, role: user_role) }
 
@@ -117,7 +117,7 @@ RSpec.describe 'Admin Roles' do
     describe 'PUT /admin/roles/:id' do
       subject { put admin_role_path(role), params: { user_role: { position: 2, permissions_as_keys: %w(manage_roles manage_users manage_reports) } } }
 
-      let(:role) { Fabricate :user_role, name: 'Bar' }
+      let(:role) { Fabricate(:user_role, name: 'Bar') }
 
       it 'does not create role' do
         expect { subject }
