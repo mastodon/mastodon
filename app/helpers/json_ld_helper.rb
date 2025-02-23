@@ -162,14 +162,14 @@ module JsonLdHelper
   # @param raise_on_error [Boolean, Symbol<:all, :temporary>] See {#fetch_resource_without_id_validation} for possible values
   def fetch_resource(uri, id_is_known, on_behalf_of = nil, raise_on_error: false, request_options: {})
     unless id_is_known
-      json = fetch_resource_without_id_validation(uri, on_behalf_of, raise_on_error)
+      json = fetch_resource_without_id_validation(uri, on_behalf_of, raise_on_error: raise_on_error)
 
       return if !json.is_a?(Hash) || unsupported_uri_scheme?(json['id'])
 
       uri = json['id']
     end
 
-    json = fetch_resource_without_id_validation(uri, on_behalf_of, raise_on_error, request_options: request_options)
+    json = fetch_resource_without_id_validation(uri, on_behalf_of, raise_on_error: raise_on_error, request_options: request_options)
     json.present? && json['id'] == uri ? json : nil
   end
 
@@ -190,7 +190,7 @@ module JsonLdHelper
   #   - +:temporary+ - raise if the response code is not an "unsalvageable error" like a 404
   #     (see {#response_error_unsalvageable} )
   #   - +false+ - do not raise, return +nil+
-  def fetch_resource_without_id_validation(uri, on_behalf_of = nil, raise_on_error = false, request_options: {})
+  def fetch_resource_without_id_validation(uri, on_behalf_of = nil, raise_on_error: false, request_options: {})
     on_behalf_of ||= Account.representative
 
     build_request(uri, on_behalf_of, options: request_options).perform do |response|
