@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::RepliesController do
+RSpec.describe 'ActivityPub Replies' do
   let(:status) { Fabricate(:status, visibility: parent_visibility) }
   let(:remote_account) { Fabricate(:account, domain: 'foobar.com') }
   let(:remote_reply_id) { 'https://foobar.com/statuses/1234' }
