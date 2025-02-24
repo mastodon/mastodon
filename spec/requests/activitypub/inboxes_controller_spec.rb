@@ -5,24 +5,23 @@ require 'rails_helper'
 RSpec.describe ActivityPub::InboxesController do
   let(:remote_account) { nil }
 
-  before do
-    allow(controller).to receive(:signed_request_actor).and_return(remote_account)
-  end
-
   describe 'POST #create' do
     context 'with signature' do
       let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub) }
 
-      before do
-        post :create, body: '{}'
-      end
+      context 'without a named account' do
+        subject { post inbox_path, headers: { 'RAW_POST_DATA' => '{}' }, sign_with: remote_account }
 
-      it 'returns http accepted' do
-        expect(response).to have_http_status(202)
+        it 'returns http accepted' do
+          subject
+
+          expect(response)
+            .to have_http_status(202)
+        end
       end
 
       context 'with a specific account' do
-        subject(:response) { post :create, params: { account_username: account.username }, body: '{}' }
+        subject { post account_inbox_path(account_username: account.username), headers: { 'RAW_POST_DATA' => '{}' }, sign_with: remote_account }
 
         let(:account) { Fabricate(:account) }
 
@@ -33,42 +32,50 @@ RSpec.describe ActivityPub::InboxesController do
           end
 
           it 'returns http gone' do
-            expect(response).to have_http_status(410)
+            subject
+
+            expect(response)
+              .to have_http_status(410)
           end
         end
 
         context 'when account is temporarily suspended' do
-          before do
-            account.suspend!
-          end
+          before { account.suspend! }
 
           it 'returns http accepted' do
-            expect(response).to have_http_status(202)
+            subject
+
+            expect(response)
+              .to have_http_status(202)
           end
         end
       end
     end
 
     context 'with Collection-Synchronization header' do
-      let(:remote_account)             { Fabricate(:account, followers_url: 'https://example.com/followers', domain: 'example.com', uri: 'https://example.com/actor', protocol: :activitypub) }
+      subject { post inbox_path, headers: { 'RAW_POST_DATA' => '{}', 'Collection-Synchronization' => synchronization_header }, sign_with: remote_account }
+
+      let(:remote_account) { Fabricate(:account, followers_url: 'https://example.com/followers', domain: 'example.com', uri: 'https://example.com/actor', protocol: :activitypub) }
       let(:synchronization_collection) { remote_account.followers_url }
-      let(:synchronization_url)        { 'https://example.com/followers-for-domain' }
-      let(:synchronization_hash)       { 'somehash' }
-      let(:synchronization_header)     { "collectionId=\"#{synchronization_collection}\", digest=\"#{synchronization_hash}\", url=\"#{synchronization_url}\"" }
+      let(:synchronization_url) { 'https://example.com/followers-for-domain' }
+      let(:synchronization_hash) { 'somehash' }
+      let(:synchronization_header) { "collectionId=\"#{synchronization_collection}\", digest=\"#{synchronization_hash}\", url=\"#{synchronization_url}\"" }
 
       before do
-        allow(ActivityPub::FollowersSynchronizationWorker).to receive(:perform_async).and_return(nil)
-        allow(remote_account).to receive(:local_followers_hash).and_return('somehash')
-
-        request.headers['Collection-Synchronization'] = synchronization_header
-        post :create, body: '{}'
+        stub_follow_sync_worker
+        stub_followers_hash
       end
 
       context 'with mismatching target collection' do
         let(:synchronization_collection) { 'https://example.com/followers2' }
 
         it 'does not start a synchronization job' do
-          expect(ActivityPub::FollowersSynchronizationWorker).to_not have_received(:perform_async)
+          subject
+
+          expect(response)
+            .to have_http_status(202)
+          expect(ActivityPub::FollowersSynchronizationWorker)
+            .to_not have_received(:perform_async)
         end
       end
 
@@ -76,13 +83,23 @@ RSpec.describe ActivityPub::InboxesController do
         let(:synchronization_url) { 'https://example.org/followers' }
 
         it 'does not start a synchronization job' do
-          expect(ActivityPub::FollowersSynchronizationWorker).to_not have_received(:perform_async)
+          subject
+
+          expect(response)
+            .to have_http_status(202)
+          expect(ActivityPub::FollowersSynchronizationWorker)
+            .to_not have_received(:perform_async)
         end
       end
 
       context 'with matching digest' do
         it 'does not start a synchronization job' do
-          expect(ActivityPub::FollowersSynchronizationWorker).to_not have_received(:perform_async)
+          subject
+
+          expect(response)
+            .to have_http_status(202)
+          expect(ActivityPub::FollowersSynchronizationWorker)
+            .to_not have_received(:perform_async)
         end
       end
 
@@ -90,22 +107,41 @@ RSpec.describe ActivityPub::InboxesController do
         let(:synchronization_hash) { 'wronghash' }
 
         it 'starts a synchronization job' do
-          expect(ActivityPub::FollowersSynchronizationWorker).to have_received(:perform_async)
+          subject
+
+          expect(response)
+            .to have_http_status(202)
+          expect(ActivityPub::FollowersSynchronizationWorker)
+            .to have_received(:perform_async)
         end
       end
 
       it 'returns http accepted' do
-        expect(response).to have_http_status(202)
+        subject
+
+        expect(response)
+          .to have_http_status(202)
+      end
+
+      def stub_follow_sync_worker
+        allow(ActivityPub::FollowersSynchronizationWorker)
+          .to receive(:perform_async)
+          .and_return(nil)
+      end
+
+      def stub_followers_hash
+        Rails.cache.write("followers_hash:#{remote_account.id}:local", 'somehash') # Populate value to match request
       end
     end
 
     context 'without signature' do
-      before do
-        post :create, body: '{}'
-      end
+      subject { post inbox_path, headers: { 'RAW_POST_DATA' => '{}' } }
 
       it 'returns http not authorized' do
-        expect(response).to have_http_status(401)
+        subject
+
+        expect(response)
+          .to have_http_status(401)
       end
     end
   end
