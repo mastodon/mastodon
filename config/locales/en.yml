@@ -18,9 +18,9 @@ en:
     pin_errors:
       following: You must be already following the person you want to endorse
     posts:
-      one: Post
-      other: Posts
-    posts_tab_heading: Posts
+      one: Pulse
+      other: Pulses
+    posts_tab_heading: Pulses
     self_follow_error: Following your own account is not allowed
   admin:
     account_actions:
@@ -200,7 +200,7 @@ en:
         destroy_instance: Purge Domain
         destroy_ip_block: Delete IP rule
         destroy_relay: Delete Relay
-        destroy_status: Delete Post
+        destroy_status: Delete Pulse
         destroy_unavailable_domain: Delete Unavailable Domain
         destroy_user_role: Destroy Role
         disable_2fa_user: Disable 2FA
@@ -235,7 +235,7 @@ en:
         update_domain_block: Update Domain Block
         update_ip_block: Update IP rule
         update_report: Update Report
-        update_status: Update Post
+        update_status: Update Pulse
         update_user_role: Update Role
       actions:
         approve_appeal_html: "%{name} approved moderation decision appeal from %{target}"
@@ -265,7 +265,7 @@ en:
         destroy_instance_html: "%{name} purged domain %{target}"
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
         destroy_relay_html: "%{name} deleted the relay %{target}"
-        destroy_status_html: "%{name} removed post by %{target}"
+        destroy_status_html: "%{name} removed Pulse by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
         destroy_user_role_html: "%{name} deleted %{target} role"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
@@ -300,7 +300,7 @@ en:
         update_domain_block_html: "%{name} updated domain block for %{target}"
         update_ip_block_html: "%{name} changed rule for IP %{target}"
         update_report_html: "%{name} updated report %{target}"
-        update_status_html: "%{name} updated post by %{target}"
+        update_status_html: "%{name} updated Pulse by %{target}"
         update_user_role_html: "%{name} changed %{target} role"
       deleted_account: deleted account
       empty: No logs found.
@@ -523,7 +523,7 @@ en:
         instance_languages_dimension: Top languages
         instance_media_attachments_measure: stored media attachments
         instance_reports_measure: reports about them
-        instance_statuses_measure: stored posts
+        instance_statuses_measure: stored Pulses
       delivery:
         all: All
         clear: Clear delivery errors
@@ -633,7 +633,7 @@ en:
       confirm: Confirm
       confirm_action: Confirm moderation action against @%{acct}
       created_at: Reported
-      delete_and_resolve: Delete posts
+      delete_and_resolve: Delete Pulses
       forwarded: Forwarded
       forwarded_replies_explanation: This report is from a remote user and about remote content. It has been forwarded to you because the reported content is in reply to one of your users.
       forwarded_to: Forwarded to %{domain}
@@ -670,7 +670,7 @@ en:
           silence_html: 'You are about to <strong>limit</strong> <strong>@%{acct}</strong>''s account. This will:'
           suspend_html: 'You are about to <strong>suspend</strong> <strong>@%{acct}</strong>''s account. This will:'
         actions:
-          delete_html: Remove the offending posts
+          delete_html: Remove the offending Pulses
           mark_as_sensitive_html: Mark the offending posts' media as sensitive
           silence_html: Severely limit <strong>@%{acct}</strong>'s reach by making their profile and contents only visible to people already following them or manually looking it profile up
           suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
@@ -842,8 +842,8 @@ en:
       metadata: Metadata
       no_history: This post hasn't been edited
       no_status_selected: No posts were changed as none were selected
-      open: Open post
-      original_status: Original post
+      open: Open Pulse
+      original_status: Original Pulse
       reblogs: Reblogs
       replied_to_html: Replied to %{acct_link}
       status_changed: Post changed
@@ -991,7 +991,7 @@ en:
         title: Publishers
       rejected: Rejected
       statuses:
-        allow: Allow post
+        allow: Allow Pulse
         allow_account: Allow author
         confirm_allow: Are you sure you want to allow selected statuses?
         confirm_allow_account: Are you sure you want to allow selected accounts?
@@ -1120,7 +1120,7 @@ en:
     unsubscribe: Unsubscribe
     view: 'View:'
     view_profile: View profile
-    view_status: View post
+    view_status: View Pulse
   applications:
     created: Application successfully created
     destroyed: Application successfully deleted
