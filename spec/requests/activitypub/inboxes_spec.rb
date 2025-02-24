@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::InboxesController do
+RSpec.describe 'ActivityPub Inboxes' do
   let(:remote_account) { nil }
 
   describe 'POST #create' do
