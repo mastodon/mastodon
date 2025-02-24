@@ -16,4 +16,20 @@ RSpec.describe 'Settings 2FA Confirmations' do
         .to have_http_status(400)
     end
   end
+
+  context 'when not signed in' do
+    it 'redirects on POST to create' do
+      post settings_two_factor_authentication_confirmation_path(form_two_factor_confirmation: { otp_attempt: '123456' })
+
+      expect(response)
+        .to redirect_to(new_user_session_path)
+    end
+
+    it 'redirects on GET to new' do
+      get new_settings_two_factor_authentication_confirmation_path
+
+      expect(response)
+        .to redirect_to(new_user_session_path)
+    end
+  end
 end
