@@ -9,7 +9,7 @@
       %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
           %td.email-inner-card-td.email-prose
-            %p= t('user_mailer.terms_of_service_changed.description_html', path: terms_of_service_url, domain: site_hostname)
+            %p= t('user_mailer.terms_of_service_changed.description_html', path: terms_of_service_version_url(date: @terms_of_service.effective_date), domain: site_hostname, date: l(@terms_of_service.effective_date || Time.zone.today))
             %p
               %strong= t('user_mailer.terms_of_service_changed.changelog')
             = markdown(@terms_of_service.changelog)

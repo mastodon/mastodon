@@ -205,7 +205,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
             <WrappedRoute path='/about' component={About} content={children} />
             <WrappedRoute path='/privacy-policy' component={PrivacyPolicy} content={children} />
-            <WrappedRoute path='/terms-of-service' component={TermsOfService} content={children} />
+            <WrappedRoute path='/terms-of-service/:date?' component={TermsOfService} content={children} />
 
             <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
             <Redirect from='/timelines/public' to='/public' exact />
