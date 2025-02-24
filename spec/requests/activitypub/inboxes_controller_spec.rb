@@ -123,6 +123,7 @@ RSpec.describe ActivityPub::InboxesController, :sidekiq_inline do
           },
           status: 200
         )
+      Sidekiq::Testing.inline!
     end
 
     context 'with a create note' do
