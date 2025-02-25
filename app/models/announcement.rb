@@ -4,17 +4,18 @@
 #
 # Table name: announcements
 #
-#  id           :bigint(8)        not null, primary key
-#  text         :text             default(""), not null
-#  published    :boolean          default(FALSE), not null
-#  all_day      :boolean          default(FALSE), not null
-#  scheduled_at :datetime
-#  starts_at    :datetime
-#  ends_at      :datetime
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  published_at :datetime
-#  status_ids   :bigint(8)        is an Array
+#  id                   :bigint(8)        not null, primary key
+#  all_day              :boolean          default(FALSE), not null
+#  ends_at              :datetime
+#  notification_sent_at :datetime
+#  published            :boolean          default(FALSE), not null
+#  published_at         :datetime
+#  scheduled_at         :datetime
+#  starts_at            :datetime
+#  status_ids           :bigint(8)        is an Array
+#  text                 :text             default(""), not null
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #
 
 class Announcement < ApplicationRecord
@@ -54,6 +55,10 @@ class Announcement < ApplicationRecord
     update!(published: false, scheduled_at: nil)
   end
 
+  def notification_sent?
+    notification_sent_at.present?
+  end
+
   def mentions
     @mentions ||= Account.from_text(text)
   end
@@ -84,6 +89,10 @@ class Announcement < ApplicationRecord
     ).to_a.tap do |records|
       ActiveRecord::Associations::Preloader.new(records: records, associations: :custom_emoji).call
     end
+  end
+
+  def scope_for_notification
+    User.confirmed.joins(:account).merge(Account.without_suspended)
   end
 
   private
