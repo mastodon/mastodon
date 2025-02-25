@@ -11,11 +11,15 @@ import { Icon } from 'mastodon/components/icon';
 import { formatTime } from 'mastodon/features/video';
 import { autoPlayGif, displayMedia, useBlurhash } from 'mastodon/initial_state';
 import type { Status, MediaAttachment } from 'mastodon/models/status';
+import { useAppSelector } from 'mastodon/store';
 
 export const MediaItem: React.FC<{
   attachment: MediaAttachment;
   onOpenMedia: (arg0: MediaAttachment) => void;
 }> = ({ attachment, onOpenMedia }) => {
+  const account = useAppSelector((state) =>
+    state.accounts.get(attachment.getIn(['status', 'account']) as string),
+  );
   const [visible, setVisible] = useState(
     (displayMedia !== 'hide_all' &&
       !attachment.getIn(['status', 'sensitive'])) ||
@@ -70,7 +74,6 @@ export const MediaItem: React.FC<{
   const lang = status.get('language') as string;
   const blurhash = attachment.get('blurhash') as string;
   const statusId = status.get('id') as string;
-  const acct = status.getIn(['account', 'acct']) as string;
   const type = attachment.get('type') as string;
 
   let thumbnail;
@@ -181,7 +184,7 @@ export const MediaItem: React.FC<{
 
       <a
         className='media-gallery__item-thumbnail'
-        href={`/@${acct}/${statusId}`}
+        href={`/@${account?.acct}/${statusId}`}
         onClick={handleClick}
         target='_blank'
         rel='noopener noreferrer'
