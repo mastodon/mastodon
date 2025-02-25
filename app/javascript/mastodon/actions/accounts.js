@@ -142,6 +142,13 @@ export function fetchAccountFail(id, error) {
   };
 }
 
+/**
+ * @param {string} id
+ * @param {Object} options
+ * @param {boolean} [options.reblogs]
+ * @param {boolean} [options.notify]
+ * @returns {function(): void}
+ */
 export function followAccount(id, options = { reblogs: true }) {
   return (dispatch, getState) => {
     const alreadyFollowing = getState().getIn(['relationships', id, 'following']);
