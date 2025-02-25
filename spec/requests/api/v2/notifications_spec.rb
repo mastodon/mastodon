@@ -365,6 +365,18 @@ RSpec.describe 'Notifications' do
         .to start_with('application/json')
     end
 
+    context 'with an ungrouped notification' do
+      let(:notification) { Fabricate(:notification, account: user.account, type: :favourite) }
+
+      it 'returns http success' do
+        get "/api/v2/notifications/ungrouped-#{notification.id}", headers: headers
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+      end
+    end
+
     context 'when notification belongs to someone else' do
       let(:notification) { Fabricate(:notification, group_key: 'foobar') }
 
@@ -394,6 +406,19 @@ RSpec.describe 'Notifications' do
       expect(response.content_type)
         .to start_with('application/json')
       expect { notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    context 'with an ungrouped notification' do
+      let(:notification) { Fabricate(:notification, account: user.account, type: :favourite) }
+
+      it 'destroys the notification' do
+        post "/api/v2/notifications/ungrouped-#{notification.id}/dismiss", headers: headers
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect { notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
 
     context 'when notification belongs to someone else' do

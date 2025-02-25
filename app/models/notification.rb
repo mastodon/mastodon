@@ -106,6 +106,7 @@ class Notification < ApplicationRecord
   validates :type, inclusion: { in: TYPES }
 
   scope :without_suspended, -> { joins(:from_account).merge(Account.without_suspended) }
+  scope :by_group_key, ->(group_key) { group_key&.start_with?('ungrouped-') ? where(id: group_key.delete_prefix('ungrouped-')) : where(group_key: group_key) }
 
   def type
     @type ||= (super || LEGACY_TYPE_CLASS_MAP[activity_type]).to_sym
