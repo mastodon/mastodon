@@ -249,7 +249,7 @@ individual basis.
 ## Choice of Law
 
 Any and all claims related to or arising out of your use of, or access to the
-Instance shall be governed by internal substantive laws of New York in all
+Instance shall be governed by internal substantive laws of %{choice_of_law} in all
 respects, without regard for the jurisdiction or forum in which you are
 domiciled, reside, or located at the time of such access or use.
 
