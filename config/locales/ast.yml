@@ -9,8 +9,8 @@ ast:
     last_active: última actividá
     nothing_here: "¡Equí nun hai nada!"
     posts:
-      one: Artículu
-      other: Artículos
+      one: Publicación
+      other: Publicaciones
     posts_tab_heading: Artículos
   admin:
     account_actions:
@@ -76,7 +76,7 @@ ast:
         destroy_announcement_html: "%{name} desanició l'anunciu «%{target}»"
         destroy_custom_emoji_html: "%{name} desanició'l fustaxe %{target}"
         destroy_domain_block_html: "%{name} desbloquió'l dominiu %{target}"
-        destroy_status_html: "%{name} quitó l'artículu de: %{target}"
+        destroy_status_html: "%{name} quitó la publicación de: %{target}"
         destroy_user_role_html: "%{name} desanició'l rol %{target}"
         disable_custom_emoji_html: "%{name} desactivó'l fustaxe «%{target}»"
         enable_custom_emoji_html: "%{name} activó'l fustaxe «%{target}»"
@@ -87,7 +87,7 @@ ast:
         unblock_email_account_html: "%{name} desbloquió la direición de corréu electrónicu de: %{target}"
         update_announcement_html: "%{name} anovó l'anunciu «%{target}»"
         update_custom_emoji_html: "%{name} anovó'l fustaxe «%{target}»"
-        update_status_html: "%{name} anovó l'artículu de: %{target}"
+        update_status_html: "%{name} anovó la publicación de: %{target}"
         update_user_role_html: "%{name} camudó'l rol %{target}"
       empty: Nun s'atopó nengún rexistru.
     announcements:
@@ -100,7 +100,7 @@ ast:
         create: Crear l'anunciu
         title: Anunciu nuevu
       publish: Espublizar
-      published_msg: "¡L'anunciu espublizóse correutamente!"
+      published_msg: "¡L'anunciu publicóse correutamente!"
       scheduled_msg: "¡Programóse l'espublizamientu del anunciu!"
       title: Anuncios
       unpublish: Dexar d'espublizar
@@ -347,14 +347,14 @@ ast:
       back_to_account: Volver a la páxina de la cuenta
       language: Llingua
       metadata: Metadatos
-      original_status: Artículu orixinal
+      original_status: Publicación orixinal
       visibility: Visibilidá
       with_media: Con elementos multimedia
     strikes:
       actions:
-        delete_statuses: "%{name} desanició l'artículu de: %{target}"
+        delete_statuses: "%{name} desanició la publicación de: %{target}"
         disable: "%{name} conxeló la cuenta de: %{target}"
-        mark_statuses_as_sensitive: "%{name} marcó l'artículu de %{target} como sensible"
+        mark_statuses_as_sensitive: "%{name} marcó la publicación de %{target} como sensible"
         none: "%{name} unvió una alvertencia a %{target}"
         sensitive: "%{name} marcó la cuenta de %{target} como sensible"
         suspend: "%{name} suspendió la cuenta de: %{target}"
@@ -375,8 +375,8 @@ ast:
       preview_card_providers:
         title: Espublizadores
       statuses:
-        allow: Permitir l'artículu
-        disallow: Refugar l'artículu
+        allow: Permitir la publicación
+        disallow: Refugar la publicación
         title: Artículos en tendencia
       tags:
         current_score: 'Puntuación total: %{score}'
@@ -459,6 +459,10 @@ ast:
     logout: Zarrar la sesión
     migrate_account: Cambéu de cuenta
     migrate_account_html: Si quies redirixir esta cuenta a otra diferente, pues <a href="%{path}">configurar esta opción equí</a>.
+    progress:
+      confirm: Confirmación del corréu electrónicu
+      details: Los tos detalles
+      rules: Aceptación de normes
     providers:
       cas: CAS
       saml: SAML
@@ -470,6 +474,8 @@ ast:
     security: Seguranza
     setup:
       link_not_received: "¿Nun consiguiesti l'enllaz?"
+    sign_in:
+      preamble_html: Anicia la sesión coles credenciales del dominiu <strong>%{domain}</strong>. Si la to cuenta ta agospiada n'otru sirvidor, nun vas ser a aniciar la sesión equí.
     sign_up:
       title: 'Creación d''una cuenta en: %{domain}.'
     status:
@@ -515,8 +521,8 @@ ast:
       created_at: Data
       recipient: Dirixóse a
       reject_appeal: Refugar l'apellación
-      status: 'Artículu #%{id}'
-      status_removed: L'artículu yá se quitó del sistema
+      status: 'Publicación #%{id}'
+      status_removed: La publicación yá se quitó del sistema
       your_appeal_approved: Aprobóse la to apellación
       your_appeal_pending: Unviesti una apellación
       your_appeal_rejected: Refugóse la to apellación
@@ -572,8 +578,8 @@ ast:
         one: "%{count} pallabra clave"
         other: "%{count} pallabres claves"
       statuses:
-        one: "%{count} artículu"
-        other: "%{count} artículos"
+        one: "%{count} publicación"
+        other: "%{count} publicaciones"
       title: Peñeres
     new:
       title: Amestar una peñera
@@ -637,7 +643,7 @@ ast:
     successful_sign_in_html: Anicióse correutamente la sesión col métodu «%{method}» dende %{ip} (%{browser})
   media_attachments:
     validations:
-      images_and_video: Nun se pue axuntar nengún videu a un artículu que yá contién imáxenes
+      images_and_video: Nun se pue axuntar nengún videu a una publicación que yá contién imáxenes
       too_many: Nun se puen axuntar más de 4 ficheros
   migrations:
     errors:
@@ -654,7 +660,7 @@ ast:
       sign_up:
         subject: "%{name} rexistróse"
     favourite:
-      subject: "%{name} marcó'l to artículu como favoritu"
+      subject: "%{name} marcó la to publicación como favorita"
     follow:
       body: "¡Agora %{name} siguete!"
       subject: "%{name} ta siguiéndote"
@@ -666,10 +672,10 @@ ast:
       subject: "%{name} mentóte"
       title: Mención nueva
     reblog:
-      body: "%{name} compartió'l to artículu:"
-      subject: "%{name} compartió'l to artículu"
+      body: "%{name} compartió la to publicación:"
+      subject: "%{name} compartió la to publicación"
     update:
-      subject: "%{name} editó un artículu"
+      subject: "%{name} editó una publicación"
   notifications:
     email_events_hint: 'Seleiciona los eventos de los que quies recibir avisos:'
   number:
@@ -798,12 +804,12 @@ ast:
         other: "%{count} vídeos"
     default_language: La mesma que la de la interfaz
     errors:
-      in_reply_not_found: L'artículu al que tentes de responder paez que nun esiste.
+      in_reply_not_found: La publicación a la que tentes de responder paez que nun esiste.
     pin_errors:
       direct: Nun se puen fixar los artículos que son visibles namás pa los usuarios mentaos
       limit: Yá fixesti'l númberu máximu d'artículos
-      ownership: Nun se pue fixar l'artículu d'otru perfil
-      reblog: Nun se pue fixar un artículu compartíu
+      ownership: Nun se pue fixar la publicación d'otru perfil
+      reblog: Nun se pue fixar una publicación compartida
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Mensaxe direutu
@@ -817,12 +823,12 @@ ast:
     keep_direct: Caltener los mensaxes direutos
     keep_direct_hint: Nun desanicia nengún mensaxe direutu
     keep_media: Caltener los artículos con elementos multimedia
-    keep_media_hint: Nun desanicia nengún artículu de to que contenta elementos multimedia
+    keep_media_hint: Nun desanicia nenguna publicación de to que contenta elementos multimedia
     keep_pinned: Caltener los artículos fixaos
     keep_polls: Caltener les encuestes
     keep_polls_hint: Nun desanicia nenguna encuesta de to
     keep_self_bookmark: Caltener los artículos que metieres en Marcadores
-    keep_self_bookmark_hint: Nun desanicia nengún artículu que metieres en Marcadores
+    keep_self_bookmark_hint: Nun desanicia nenguna publicación que metieres en Marcadores
     min_age:
       '1209600': 2 selmanes
       '15778476': 6 meses
