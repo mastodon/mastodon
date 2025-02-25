@@ -87,6 +87,7 @@ const PUBLIC_CHANNELS = [
   'public:remote:media',
   'hashtag',
   'hashtag:local',
+  'profile',
 ];
 
 // Used for priming the counters/gauges for the various metrics that are
@@ -420,6 +421,8 @@ const startServer = async () => {
       return 'direct';
     case '/api/v1/streaming/list':
       return 'list';
+    case '/api/v1/streaming/profile':
+      return 'profile';
     default:
       return undefined;
     }
@@ -590,6 +593,21 @@ const startServer = async () => {
 
     if (result.rows.length === 0) {
       throw new AuthenticationError('List not found');
+    }
+  };
+
+  /**
+   * @param {string} targetAccountId
+   * @param {http.IncomingMessage & ResolvedAccount} req
+   * @returns {Promise.<void>}
+   */
+  const authorizeProfileAccess = async (targetAccountId, req) => {
+    const { accountId } = req;
+
+    const result = await pgPool.query('SELECT 1 FROM blocks WHERE account_id = $1 AND target_account_id = $2 LIMIT 1', [targetAccountId, accountId]);
+
+    if (result.rows.length > 0) {
+      throw new AuthenticationError('Forbidden');
     }
   };
 
@@ -972,6 +990,7 @@ const startServer = async () => {
    * @property {string} [tag]
    * @property {string} [list]
    * @property {string} [only_media]
+   * @property {string} [account_id]
    */
 
   /**
@@ -1094,6 +1113,22 @@ const startServer = async () => {
         });
       }).catch(() => {
         reject(new AuthenticationError('Not authorized to stream this list'));
+      });
+
+      break;
+    case 'profile':
+      if (!params.account_id) {
+        reject(new RequestError('Missing account id parameter'));
+        return;
+      }
+
+      authorizeProfileAccess(params.account_id, req).then(() => {
+        resolve({
+          channelIds: [`timeline:profile:${params.account_id}:public`],
+          options: { needsFiltering: true },
+        });
+      }).catch(() => {
+        reject(new AuthenticationError('Not authorized to stream this profile'));
       });
 
       break;
