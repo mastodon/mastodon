@@ -257,13 +257,30 @@ RSpec.describe '/api/v1/statuses' do
 
       it_behaves_like 'forbidden for wrong scope', 'read read:statuses'
 
-      it 'removes the status', :aggregate_failures do
+      it 'discards the status and schedules removal as a redraft', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
         expect(Status.find_by(id: status.id)).to be_nil
+        expect(RemovalWorker).to have_enqueued_sidekiq_job(status.id, { 'redraft' => true })
+      end
+
+      context 'when called with truthy delete_media' do
+        subject do
+          delete "/api/v1/statuses/#{status.id}?delete_media=true", headers: headers
+        end
+
+        it 'discards the status and schedules removal without the redraft flag', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(Status.find_by(id: status.id)).to be_nil
+          expect(RemovalWorker).to have_enqueued_sidekiq_job(status.id, { 'redraft' => false })
+        end
       end
     end
 

@@ -111,7 +111,7 @@ class Api::V1::StatusesController < Api::BaseController
     @status.account.statuses_count = @status.account.statuses_count - 1
     json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: true
 
-    RemovalWorker.perform_async(@status.id, { 'redraft' => true })
+    RemovalWorker.perform_async(@status.id, { 'redraft' => !truthy_param?(:delete_media) })
 
     render json: json
   end
