@@ -46,7 +46,7 @@ class Api::V2::NotificationsController < Api::BaseController
   end
 
   def show
-    @notification = current_account.notifications.without_suspended.find_by!(group_key: params[:group_key])
+    @notification = current_account.notifications.without_suspended.by_group_key(params[:group_key]).take!
     presenter = GroupedNotificationsPresenter.new(NotificationGroup.from_notifications([@notification]))
     render json: presenter, serializer: REST::DedupNotificationGroupSerializer
   end
@@ -57,7 +57,7 @@ class Api::V2::NotificationsController < Api::BaseController
   end
 
   def dismiss
-    current_account.notifications.where(group_key: params[:group_key]).destroy_all
+    current_account.notifications.by_group_key(params[:group_key]).destroy_all
     render_empty
   end
 
