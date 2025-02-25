@@ -15,6 +15,9 @@ sl:
       user/invite_request:
         text: Razlog
     errors:
+      attributes:
+        domain:
+          invalid: ni veljavno ime domene
       models:
         account:
           attributes:

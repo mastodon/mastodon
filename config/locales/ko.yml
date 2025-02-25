@@ -193,7 +193,7 @@ ko:
         destroy_domain_allow: 도메인 허용 삭제
         destroy_domain_block: 도메인 차단 삭제
         destroy_email_domain_block: 이메일 도메인 차단 삭제
-        destroy_instance: 도메인 퍼지하기
+        destroy_instance: 도메인 제거
         destroy_ip_block: IP 규칙 삭제
         destroy_status: 게시물 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
@@ -291,8 +291,8 @@ ko:
         update_user_role_html: "%{name} 님이 %{target} 역할을 수정했습니다"
       deleted_account: 계정을 삭제했습니다
       empty: 로그를 찾을 수 없습니다
-      filter_by_action: 행동으로 거르기
-      filter_by_user: 사용자로 거르기
+      filter_by_action: 동작 별 필터
+      filter_by_user: 사용자 기준으로 필터
       title: 감사 로그
       unavailable_instance: "(도메인네임 사용불가)"
     announcements:
@@ -526,7 +526,7 @@ ko:
         title: 중재
       private_comment: 비공개 주석
       public_comment: 공개 주석
-      purge: 퍼지
+      purge: 제거
       purge_description_html: 이 도메인이 영구적으로 오프라인 상태라고 생각되면, 스토리지에서 이 도메인의 모든 계정 레코드와 관련 데이터를 삭제할 수 있습니다. 이 작업은 시간이 좀 걸릴 수 있습니다.
       title: 연합
       total_blocked_by_us: 우리에게 차단 됨
@@ -1616,7 +1616,7 @@ ko:
     over_total_limit: 예약 게시물 제한 %{limit}을 초과합니다
     too_soon: 예약 날짜는 미래여야 합니다
   self_destruct:
-    lead_html: 안타깝게도,  <strong>%{domain}</strong> 도메인을 영구히 폐쇄합니다. 이곳의 계정을 가졌다면, 이제 이용할 수 없으며, 당분간 백업 데이터를 요청할 수 있습니다.
+    lead_html: 안타깝게도, <strong>%{domain}</strong>은 영구적으로 폐쇄됩니다. 이곳의 계정을 가지고 있었다면, 이제 이용할 수 없지만 백업 데이터는 요청할 수 있습니다.
     title: 이 서버는 폐쇄중입니다
   sessions:
     activity: 최근 활동
@@ -1697,7 +1697,7 @@ ko:
     lost_followers: 잃은 팔로워
     lost_follows: 잃은 팔로우
     preamble: 내가 도메인을 차단하거나 중재진이 다른 서버를 정지하기로 결정했다면 내 팔로우와 팔로워를 잃게 됩니다. 그런 일이 일어났다면 그로 인해 단절된 관계들의 목록을 다운로드 받아 확인하고 다른 서버에서 불러올 수 있습니다.
-    purged: 이 서버의 정보는 관리자가 퍼지하였습니다.
+    purged: 이 서버에 대한 정보는 관리자에 의해 제거되었습니다.
     type: 이벤트
   statuses:
     attached:

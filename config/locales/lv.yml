@@ -637,7 +637,7 @@ lv:
         create_and_resolve: Atrisināt ar piezīmi
         create_and_unresolve: Atvērt atkārtoti ar piezīmi
         delete: Dzēst
-        placeholder: Apraksti veiktās darbības vai citus saistītus atjauninājumus...
+        placeholder: Jāapraksta veiktās darbības vai jebkuri citi saistītie atjauninājumi...
         title: Piezīmes
       notes_description_html: Skati un atstāj piezīmes citiem moderatoriem un sev nākotnei
       processed_msg: 'Pārskats #%{id} veiksmīgi apstrādāts'
@@ -742,13 +742,13 @@ lv:
     rules:
       add_new: Pievienot noteikumu
       delete: Dzēst
-      description_html: Lai gan lielākā daļa apgalvo, ka ir izlasījuši pakalpojumu sniegšanas noteikumus un piekrīt tiem, parasti cilvēki to izlasa tikai pēc problēmas rašanās. <strong>Padariet vienkāršāku sava servera noteikumu uztveršanu, veidojot tos vienkāršā sarakstā pa punktiem.</strong> Centieties, lai atsevišķi noteikumi būtu īsi un vienkārši, taču arī nesadaliet tos daudzos atsevišķos vienumos.
+      description_html: Kaut arī lielākā daļa apgalvo, ka ir lasījuši un piekrīt pakalpojuma izmantošanas noteikumiem, parasti cilvēki tos neizlasa, līdz rodas sarežģījumi. <strong>Padari vienkāršāku sava servera noteikumu pārskatīšanu, sniedzot tos vienkāršā uzsvēruma punktu sarakstā!</strong> Jāmēģina atsevišķus noteikumus veidot īsus un vienkāršus, bet jāmēģina arī tos nesadalīt daudzos atsevišķos vienumos.
       edit: Labot nosacījumu
-      empty: Servera noteikumi vēl nav definēti.
+      empty: Vēl nav pievienots neviens servera noteikums.
       title: Servera noteikumi
     settings:
       about:
-        manage_rules: Pārvaldīt servera nosacījumus
+        manage_rules: Pārvaldīt servera noteikumus
         preamble: Sniedz padziļinātu informāciju par to, kā serveris tiek darbināts, moderēts un finansēts.
         rules_hint: Noteikumiem, kas taviem lietotājiem ir jāievēro, ir īpaša sadaļa.
         title: Par
@@ -871,8 +871,8 @@ lv:
         message_html: 'Nesaderīga Elasticsearch versija: %{value}'
         version_comparison: Darbojas Elasticsearch %{running_version}, tomēr ir nepieciešama %{required_version}
       rules_check:
-        action: Pārvaldīt servera nosacījumus
-        message_html: Tu neesi definējis nevienu servera nosacījumu.
+        action: Pārvaldīt servera noteikumus
+        message_html: Nav pievienots neviens servera noteikums.
       sidekiq_process_check:
         message_html: Rindā(s) %{value} nedarbojas neviens Sidekiq process. Lūdzu, pārskati savu Sidekiq konfigurāciju
       software_version_check:
@@ -902,6 +902,7 @@ lv:
       name: Nosaukums
       newest: Jaunākie
       oldest: Vecākie
+      open: Apskatīt publiski
       reset: Atiestatīt
       review: Pārskatīt stāvokli
       search: Meklēt
@@ -1130,7 +1131,7 @@ lv:
     set_new_password: Iestatīt jaunu paroli
     setup:
       email_below_hint_html: Jāpārbauda sava surogātpasta mape vai jāpieprasa vēl vienu! Savu e-pasta adresi var labot, ja tā ir nepareiza.
-      email_settings_hint_html: Noklikšķini uz saites, kuru mēs tev nosūtījām, lai apstiprinātu %{email}. Mēs tepat pagaidīsim.
+      email_settings_hint_html: Jāatver saite, kuru mēs nosūtījām, lai apliecinātu %{email}. Mēs pagaidīsim tepat.
       link_not_received: Vai nesaņēmi sati?
       new_confirmation_instructions_sent: Pēc dažām minūtēm saņemsi jaunu e-pasta ziņojumu ar apstiprinājuma saiti.
       title: Pārbaudi savu iesūtni
@@ -1139,7 +1140,7 @@ lv:
       title: Pieteikties %{domain}
     sign_up:
       manual_review: Reģistrācijas domēnā %{domain} manuāli pārbauda mūsu moderatori. Lai palīdzētu mums apstrādāt tavu reģistrāciju, uzraksti mazliet par sevi un to, kāpēc vēlies kontu %{domain}.
-      preamble: Ar kontu šajā Mastodon serverī varēsi sekot jebkuram citam tīklā esošam cilvēkam neatkarīgi no tā, kur tiek mitināts viņa konts.
+      preamble: Ar kontu šajā Mastodon serverī varēsi sekot jebkuram citam tīklā esošam cilvēkam neatkarīgi no tā, kur tiek mitināts tā konts.
       title: Atļauj tevi iestatīt %{domain}.
     status:
       account_status: Konta statuss

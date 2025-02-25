@@ -15,6 +15,12 @@ eu:
       user/invite_request:
         text: Arrazoia
     errors:
+      attributes:
+        domain:
+          invalid: ez da domeinu izen baliogarria
+      messages:
+        invalid_domain_on_line: "%{value} ez da domeinu izen baliogarria"
+        too_many_lines: "%{limit} lerroko muga gainditzen du"
       models:
         account:
           attributes:

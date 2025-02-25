@@ -28,6 +28,7 @@ sk:
   admin:
     account_actions:
       action: Vykonaj
+      already_silenced: Tento účet už bol obmedzený.
       title: Vykonaj moderovací úkon voči %{acct}
     account_moderation_notes:
       create: Zanechaj poznámku
@@ -182,11 +183,13 @@ sk:
         create_custom_emoji: Vytvor vlastné emotikony
         create_domain_allow: Vytvor povolenie pre doménu
         create_domain_block: Vytvor zákaz domény
+        create_email_domain_block: Vytvor zákaz emailovej domény
         create_ip_block: Vytvor IP pravidlo
         create_unavailable_domain: Vytvor nedostupnú doménu
         create_user_role: Vytvoriť rolu
         demote_user: Zniž užívateľskú rolu
         destroy_announcement: Vymaž oboznámenie
+        destroy_canonical_email_block: Zruš blokovanie emailu
         destroy_custom_emoji: Vymaž vlastné emotikony
         destroy_domain_allow: Zmaž povolenie pre doménu
         destroy_domain_block: Zruš blokovanie domény
@@ -242,6 +245,7 @@ sk:
         destroy_custom_emoji_html: "%{name} vymazal/a emotikonu %{target}"
         destroy_domain_allow_html: "%{name} zakázal/a federáciu s doménou %{target}"
         destroy_domain_block_html: "%{name} odblokoval/i doménu %{target}"
+        destroy_email_domain_block_html: "%{name} odblokoval/a emailovú doménu %{target}"
         destroy_ip_block_html: "%{name} vymazal/a pravidlo pre IP %{target}"
         destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
         destroy_unavailable_domain_html: "%{name} znova spustil/a doručovanie pre doménu %{target}"
@@ -387,6 +391,7 @@ sk:
     email_domain_blocks:
       add_new: Pridaj nový
       allow_registrations_with_approval: Povoľ registrovanie so schválením
+      created_msg: Úspešne zablokovaná emailová doména
       delete: Vymaž
       dns:
         types:
@@ -395,6 +400,7 @@ sk:
       new:
         create: Pridaj doménu
         resolve: Preveď doménu
+        title: Blokovať novú emailovú doménu
       not_permitted: Nepovolená
       resolved_through_html: Prevedená cez %{domain}
       title: Blokované e-mailové domény
@@ -1363,6 +1369,7 @@ sk:
       explanation: Tu nájdeš nejaké tipy do začiatku
       feature_action: Zisti viac
       follow_action: Nasleduj
+      follow_title: Prispôsob svoj domáci kanál
       follows_title: Koho nasledovať
       post_title: Vytvor svoj prvý príspevok
       share_action: Zdieľaj

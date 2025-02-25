@@ -842,7 +842,17 @@
         action: Sjekk her for mer informasjon
         message_html: "<strong>Objektlagringen din er feilkonfigurert. Personvernet til brukerne dine er i fare.</strong>"
     tags:
+      moderation:
+        pending_review: Avventer gjennomgang
+        reviewed: Gjennomgått
+        title: Status
+      name: Navn
+      newest: Nyeste
+      oldest: Eldst
+      reset: Tilbakestill
       review: Gjennomgangsstatus
+      search: Søk
+      title: Emneknagger
       updated_msg: Emneknagg innstillinger vellykket oppdatert
     title: Administrasjon
     trends:
@@ -1036,6 +1046,7 @@
     or_log_in_with: Eller logg inn med
     privacy_policy_agreement_html: Jeg har lest og godtar <a href="%{privacy_policy_path}" target="_blank">retningslinjer for personvern</a>
     progress:
+      confirm: Bekreft E-postadressen
       details: Dine opplysninger
       review: Vår gjennomgang
       rules: Godta regler
@@ -1588,6 +1599,7 @@
     import: Importér
     import_and_export: Importer og eksporter
     migrate: Kontomigrering
+    notifications: E-postbeskjeder
     preferences: Innstillinger
     profile: Profil
     relationships: Følginger og følgere
@@ -1595,6 +1607,8 @@
     strikes: Modereringsadvarsler
     two_factor_authentication: Tofaktorautentisering
     webauthn_authentication: Sikkerhetsnøkler
+  severed_relationships:
+    type: Hendelse
   statuses:
     attached:
       audio:
@@ -1781,6 +1795,7 @@
       follows_view_more: Vis flere personer å følge
       hashtags_title: Populære emneknagger
       hashtags_view_more: Vis flere populære emneknagger
+      post_action: Sett sammen
       post_step: Si hallo til verdenen med tekst, bilder, videoer, eller meningsmålinger.
       post_title: Lag ditt første innlegg
       share_action: Del

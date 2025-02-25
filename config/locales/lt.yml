@@ -446,8 +446,8 @@ lt:
       availability:
         title: Prieinamumas
         warning: Paskutinis bandymas prisijungti prie šio serverio buvo nesėkmingas
-      back_to_all: Visi
-      back_to_limited: Apribotas
+      back_to_all: Viskas
+      back_to_limited: Apribota
       back_to_warning: Įspėjimas
       by_domain: Domenas
       content_policies:
@@ -804,12 +804,14 @@ lt:
     security: Apsauga
     set_new_password: Nustatyti naują slaptažodį
     setup:
-      email_settings_hint_html: Spustelėk mūsų atsiųstą nuorodą, kad patikrintum %{email}. Mes lauksime čia.
+      email_settings_hint_html: Spustelėkite mūsų atsiųstą nuorodą, kad patvirtintumėte %{email}. Mes lauksime čia.
       link_not_received: Negavai nuorodos?
       title: Patikrinti pašto dėžutę
     sign_in:
       preamble_html: Prisijunk su savo <strong>%{domain}</strong> kredencialais. Jei tavo yra kitame serveryje, čia prisijungti negalėsi.
       title: Prisijungti prie %{domain}
+    sign_up:
+      preamble: Su paskyra šiame „Mastodon“ serveryje galėsite sekti bet kurį kitą tinkle esantį asmenį, nepriklausomai nuo to, kur yra jų paskyra.
     status:
       account_status: Paskyros būsena
       redirecting_to: Tavo paskyra yra neaktyvi, nes šiuo metu ji nukreipiama į %{acct}.
@@ -924,6 +926,13 @@ lt:
     overwrite_preambles:
       blocking_html: Ketinate <strong>pakeisti savo blokavimo sąrašą</strong> iki <strong>%{total_items} paskyrų</strong> iš <strong>%{filename}</strong>.
       bookmarks_html: Ketinate <strong>pakeisti savo žymes</strong> iki <strong>%{total_items} įrašų</strong> iš <strong>%{filename}</strong>.
+      domain_blocking_html: Ketinate <strong>pakeisti savo domeno blokavimo sąrašą</strong> iki <strong>%{total_items} domenų</strong> iš <strong>%{filename}</strong>.
+      following_html: Ketinate <strong>sekti</strong> iki <strong>%{total_items} paskyrų</strong> iš <strong>%{filename}</strong> ir <strong>nustoti sekti kitus</strong>.
+    preambles:
+      domain_blocking_html: Ketinate <strong>užblokuoti</strong> iki <strong>%{total_items} domenų</strong> iš <strong>%{filename}</strong>.
+      following_html: Ketinate <strong>sekti</strong> iki <strong>%{total_items} paskyrų</strong> iš <strong>%{filename}</strong>.
+      lists_html: Ketinate įtraukti iki <strong>%{total_items} paskyrų</strong> iš <strong>%{filename}</strong> į savo <strong>sąrašus</strong>. Nauji sąrašai bus sukurti, jei nėra sąrašo, į kurį būtų galima įtraukti.
+      muting_html: Ketinate <strong>nutildyti</strong> iki <strong>%{total_items} paskyrų</strong> iš <strong>%{filename}</strong>.
     preface: Gali importuoti duomenis, kuriuos eksportavai iš kito serverio, pavyzdžiui, sekamų arba blokuojamų žmonių sąrašą.
     success: Jūsų informacija sėkmingai įkelta ir bus apdorota kaip įmanoma greičiau
     types:
@@ -1059,7 +1068,7 @@ lt:
   scheduled_statuses:
     over_daily_limit: Jūs pasieketė limitą (%{limit}) galimų toot'ų per dieną
     over_total_limit: Jūs pasieketė %{limit} limitą galimų toot'ų
-    too_soon: Planuota data privalo būti ateityje
+    too_soon: Suplanuota data turi būti ateityje.
   sessions:
     activity: Paskutinė veikla
     browser: Naršyklė
