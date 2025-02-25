@@ -3,6 +3,7 @@ fr:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Un par ligne. Protège contre les fausses attributions.
         discoverable: Vos messages publics et votre profil peuvent être mis en avant ou recommandés dans diverses parties de Mastodon et votre profil peut être suggéré à d’autres utilisateurs.
         display_name: Votre nom complet ou votre nom rigolo.
         fields: Votre page personnelle, vos pronoms, votre âge, ce que vous voulez.
@@ -20,7 +21,7 @@ fr:
       admin_account_action:
         include_statuses: L’utilisateur·rice verra quels messages sont la source de l’action de modération ou de l’avertissement
         send_email_notification: L’utilisateur recevra une explication de ce qu’il s’est passé avec son compte
-        text_html: Facultatif. Vous pouvez utiliser la syntaxe des publications. Vous pouvez <a href="%{path}">ajouter des présélections d'attention</a> pour gagner du temps
+        text_html: Facultatif. Vous pouvez utiliser la syntaxe des messages. Vous pouvez <a href="%{path}">ajouter des avertissements préconfigurés</a> pour gagner du temps
         type_html: Choisir que faire avec <strong>%{acct}</strong>
         types:
           disable: Empêcher l’utilisateur·rice d’utiliser son compte, mais ne pas supprimer ou masquer son contenu.
@@ -42,7 +43,7 @@ fr:
         avatar: WEBP, PNG, GIF ou JPG. Au plus %{size}. Sera réduit à %{dimensions}px
         bot: Signale aux autres que ce compte exécute principalement des actions automatisées et pourrait ne pas être surveillé
         context: Un ou plusieurs contextes où le filtre devrait s’appliquer
-        current_password: Par mesure de sécurité, veuillez saisir le mot de passe de ce compte
+        current_password: Par mesure de sécurité, veuillez saisir le mot de passe du compte actuel
         current_username: Pour confirmer, veuillez saisir l’identifiant de ce compte
         digest: Uniquement envoyé après une longue période d’inactivité en cas de messages personnels reçus pendant votre absence
         email: Vous recevrez un courriel de confirmation
@@ -100,7 +101,7 @@ fr:
         thumbnail: Une image d'environ 2:1 affichée à côté des informations de votre serveur.
         timeline_preview: Les utilisateur⋅rice⋅s déconnecté⋅e⋅s pourront parcourir les derniers messages publics disponibles sur le serveur.
         trendable_by_default: Ignorer l'examen manuel du contenu tendance. Des éléments individuels peuvent toujours être supprimés des tendances après coup.
-        trends: Les tendances montrent quelles publications, hashtags et actualités gagnent en ampleur sur votre serveur.
+        trends: Les tendances montrent quels messages, hashtags et actualités gagnent en popularité sur votre serveur.
         trends_as_landing_page: Afficher le contenu tendance au lieu d'une description de ce serveur pour les comptes déconnectés et les non-inscrit⋅e⋅s. Nécessite que les tendances soient activées.
       form_challenge:
         current_password: Vous entrez une zone sécurisée
@@ -143,6 +144,7 @@ fr:
         url: Là où les événements seront envoyés
     labels:
       account:
+        attribution_domains_as_text: Sites web autorisés à vous citer
         discoverable: Autoriser des algorithmes de découverte à mettre en avant votre profil et vos messages
         fields:
           name: Étiquette
@@ -160,7 +162,7 @@ fr:
       admin_account_action:
         include_statuses: Inclure les messages signalés dans le courriel
         send_email_notification: Notifier l’utilisateur par courriel
-        text: Attention personnalisée
+        text: Avertissement personnalisé
         type: Action
         types:
           disable: Désactiver

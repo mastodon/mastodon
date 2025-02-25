@@ -429,6 +429,8 @@ ro:
       discovery:
         follow_recommendations: Urmează recomandările
         profile_directory: Catalogul de profiluri
+    statuses:
+      title: Postări cont
   aliases:
     add_new: Creează un alias
     created_msg: A fost creat cu succes un alias nou. Acum puteţi iniţia mutarea din vechiul cont.
@@ -465,11 +467,16 @@ ro:
     migrate_account: Transfer către un alt cont
     migrate_account_html: Dacă dorești să redirecționezi acest cont către un altul, poți <a href="%{path}">configura asta aici</a>.
     or_log_in_with: Sau conectează-te cu
+    privacy_policy_agreement_html: Am citit și sunt de acord cu <a href="%{privacy_policy_path}" target="_blank">Politica de confidențialitate</a>
     register: Înregistrare
     registration_closed: "%{instance} nu acceptă membri noi"
     reset_password: Resetare parolă
     security: Securitate
     set_new_password: Setează o nouă parolă
+    setup:
+      email_settings_hint_html: Faceți clic pe link-ul pe care vi l-am trimis pentru a verifica %{email}. Vom aștepta chiar aici.
+    sign_up:
+      preamble: Cu un cont pe acest server Mastodon, veți putea urmări orice altă persoană din rețea, indiferent de locul unde este găzduit contul lor.
     status:
       account_status: Starea contului
       redirecting_to: Contul dvs. este inactiv deoarece în prezent se redirecționează către %{acct}.

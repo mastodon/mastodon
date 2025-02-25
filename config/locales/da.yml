@@ -9,12 +9,12 @@ da:
   accounts:
     followers:
       one: Følger
-      other: tilhængere
+      other: Følgere
     following: Følger
     instance_actor_flash: Denne konto er en virtuel aktør repræsenterende selve serveren og ikke en individuel bruger. Den anvendes til fællesformål og bør ikke suspenderes.
     last_active: senest aktiv
     link_verified_on: Ejerskab af dette link blev tjekket %{date}
-    nothing_here: Der er intet hér!
+    nothing_here: Der er intet her!
     pin_errors:
       following: Man skal allerede følge den person, man ønsker at støtte
     posts:
@@ -108,11 +108,11 @@ da:
       not_subscribed: Abonnerer ikke
       pending: Afventende vurdering
       perform_full_suspension: Suspendér
-      previous_strikes: Tidligere anmeldelser (strikes)
+      previous_strikes: Tidligere anmeldelser
       previous_strikes_description_html:
         one: Denne konto har <strong>en</strong> anmeldelse.
         other: Denne konto har <strong>%{count}</strong> anmeldelser.
-      promote: Fremhæv
+      promote: Forfrem
       protocol: Protokol
       public: Offentlig
       push_subscription_expires: PuSH-abonnement udløber
@@ -123,9 +123,9 @@ da:
       remote_suspension_irreversible: Denne kontos data er slettet permanent.
       remote_suspension_reversible_hint_html: Kontoen er suspenderet på den pågældende server, og kontodata fjernes fuldstændig pr. %{date}. Indtil da vil fjernserveren kunne foretage en komplet reetablering af kontoen. Ønskes alle kontodata fjernet straks, kan dette gøres nedenfor.
       remove_avatar: Fjern profilbillede
-      remove_header: Fjern overskrift
+      remove_header: Fjern banner
       removed_avatar_msg: "%{username}s profilbillede fjernet"
-      removed_header_msg: "%{username}s overskriftsbillede fjernet"
+      removed_header_msg: "%{username}s banner fjernet"
       resend_confirmation:
         already_confirmed: Denne bruger er allerede bekræftet
         send: Gensend bekræftelseslink
@@ -141,8 +141,8 @@ da:
       security_measures:
         only_password: Kun adgangskode
         password_and_2fa: Adgangskode og 2FA
-      sensitive: Gennemtving sensitiv
-      sensitized: Markeret som sensitiv
+      sensitive: Gennemtving følsom
+      sensitized: Markeret som følsom
       shared_inbox_url: Delt indbakke-URL
       show:
         created_reports: Indsendte anmeldelser
@@ -160,7 +160,7 @@ da:
       unblock_email: Afblokér e-mailadresse
       unblocked_email_msg: "%{username}s e-mail-adresse afblokeret"
       unconfirmed_email: Ubekræftet e-mail
-      undo_sensitized: Fortryd gennemtving sensitiv
+      undo_sensitized: Fortryd gennemtving-følsom
       undo_silenced: Fortryd begrænsning
       undo_suspension: Fortryd suspendering
       unsilenced_msg: "%{username}s kontobegrænsning er fjernet"
@@ -169,8 +169,8 @@ da:
       username: Brugernavn
       view_domain: Vis domæneoversigt
       warn: Advar
-      web: Web
-      whitelisted: Tilladt for federering
+      web: Net
+      whitelisted: Tilladt for føderation
     action_logs:
       action_types:
         approve_appeal: Godkend appel
@@ -220,8 +220,8 @@ da:
         sensitive_account: Gennemtving sensitiv konto
         silence_account: Begræns konto
         suspend_account: Suspendér konto
-        unassigned_report: Fjer anmeldelsestildeling
-        unblock_email_account: Afblokér e-mailadresse
+        unassigned_report: Fjern anmeldelsestildeling
+        unblock_email_account: Fjern blokering af e-mailadresse
         unsensitive_account: Fjern Gennemtving sensitiv konto
         unsilence_account: Fjern kontobegrænselse
         unsuspend_account: Afsuspendér konto
@@ -364,7 +364,7 @@ da:
         other: "<strong>%{count}</strong> verserende anmeldelser"
       pending_tags_html:
         one: "<strong>%{count}</strong> afventende hashtag"
-        other: "<strong>%{count}</strong> afventende hashtags"
+        other: "<strong>%{count}</strong> afventende etiketter"
       pending_users_html:
         one: "<strong>%{count}</strong> afventende bruger"
         other: "<strong>%{count}</strong> afventende brugere"
@@ -725,7 +725,7 @@ da:
         manage_settings: Håndtere indstillinger
         manage_settings_description: Tillader brugere at ændre webstedsindstillinger
         manage_taxonomies: Håndtere taksonomier
-        manage_taxonomies_description: Tillader brugere at gennemse tenderende indhold og opdatere hashtag-indstillinger
+        manage_taxonomies_description: Tillader brugere at gennemse tenderende indhold og opdatere etiket-indstillinger
         manage_user_access: Håndtere brugeradgang
         manage_user_access_description: Tillader brugere at deaktivere andre brugeres tofaktorgodkendelse, skifte deres e-mailadresse og nulstille deres adgangskode
         manage_users: Håndtere brugere
@@ -909,7 +909,7 @@ da:
       reset: Nulstil
       review: Gennmgangsstatus
       search: Søg
-      title: Hashtags
+      title: Etiketter
       updated_msg: Hashtag-indstillinger opdateret
     title: Administration
     trends:
@@ -969,14 +969,14 @@ da:
           tag_servers_dimension: Topservere
           tag_servers_measure: forskellige servere
           tag_uses_measure: anvendelser i alt
-        description_html: Disse er hashtags, som pt. vises i en masse indlæg, som serveren ser. Det kan hjælpe brugerne til at finde ud af, hvad folk taler mest om pt. Ingen hashtags vises offentligt, før man godkender dem.
+        description_html: Disse er etiketter, som pt. vises i en masse indlæg, som serveren ser. Det kan hjælpe brugerne til at finde ud af, hvad folk taler mest om pt. Ingen etiketter vises offentligt, før man godkender dem.
         listable: Kan foreslås
         no_tag_selected: Intet tag ændret (da intet var valgt)
         not_listable: Foreslås ikke
         not_trendable: Vises ikke under tendenser
         not_usable: Kan ikke anvendes
         peaked_on_and_decaying: Toppede pr. %{date}, nu for nedadgående
-        title: Populære hashtags
+        title: Populære etiketter
         trendable: Kan vises under tendenser
         trending_rank: 'Populær #%{rank}'
         usable: Kan anvendes
@@ -1048,7 +1048,7 @@ da:
       new_trending_statuses:
         title: Populære opslag
       new_trending_tags:
-        title: Populære hashtags
+        title: Populære etiketter
       subject: Nye tendenser klar til gennemgang på %{instance}
   aliases:
     add_new: Opret alias
@@ -1059,7 +1059,7 @@ da:
     remove: Fjern aliaslinkning
   appearance:
     advanced_web_interface: Avanceret webgrænseflade
-    advanced_web_interface_hint: 'Ønsker du udnytte hele skærmbredden, lader den avancerede webgrænseflade dig opsætte mange forskellige kolonner for at se så meget information på samme tid som ønsket: Hjem, notifikationer, federeret tidslinje, et hvilket som helst antal lister og hashtags.'
+    advanced_web_interface_hint: 'Ønsker du udnytte hele skærmbredden, lader den avancerede netgrænseflade dig opsætte mange forskellige kolonner for at se så meget information på samme tid som ønsket: Hjem, notifikationer, fødereret tidslinje, et hvilket som helst antal lister og etiketter.'
     animations_and_accessibility: Animationer og tilgængelighed
     confirmation_dialogs: Bekræftelsesdialoger
     discovery: Opdagelse
@@ -1280,13 +1280,13 @@ da:
     csv: CSV
     domain_blocks: Domæneblokeringer
     lists: Lister
-    mutes: Du tavsgør
+    mutes: Du skjuler
     storage: Medielagerplads
   featured_tags:
     add_new: Tilføj nyt
     errors:
-      limit: Det maksimale antal hashtags er allerede fremhævet
-    hint_html: "<strong>Hvad er fremhævede hashtags?</strong> De vises i en fremtrædende position på din offentlige profil og giver folk mulighed for at gennemse dine offentlige indlæg specifikt under disse hashtags. De er et fantastisk værktøj til at holde styr på kreative værker eller langsigtede projekter."
+      limit: Det maksimale antal etiketter er allerede fremhævet
+    hint_html: "<strong>Hvad er fremhævede etiketter?</strong> De vises i en fremtrædende position på din offentlige profil og giver folk mulighed for at gennemse dine offentlige indlæg specifikt under disse etiketter. De er et fantastisk værktøj til at holde styr på kreative værker eller langsigtede projekter."
   filters:
     contexts:
       account: Profiler
@@ -1374,14 +1374,14 @@ da:
       domain_blocking_html: Du er ved at <strong>erstatte domæneblokeringslisten</strong> med op til <strong>%{total_items} domæner</strong> fra <strong>%{filename}</strong>.
       following_html: Du er ved at <strong>følge</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong> og <strong>stoppe med at følge alle andre</strong>.
       lists_html: Du er ved at <strong>erstatte dine lister</strong> med indholdet af <strong>%{filename}</strong>. Op til <strong>%{total_items} konti</strong> tilføjes nye lister.
-      muting_html: Du er ved at <strong>erstatte listen over tavsgjorte konti</strong> med op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
+      muting_html: Du er ved at <strong>erstatte din liste over skjulte konti</strong> med op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
     preambles:
       blocking_html: Du er ved at <strong>blokere</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
       bookmarks_html: Du er ved at føje op til <strong>%{total_items} indlæg</strong> fra <strong>%{filename}</strong> til <strong>bogmærkelisten</strong>.
       domain_blocking_html: Du er ved at <strong>blokere</strong> op til <strong>%{total_items} domæner</strong> fra <strong>%{filename}</strong>.
       following_html: Du er ved at <strong>følge</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
       lists_html: Du er ved at tilføje op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong> til dine <strong>lister</strong>. Nye lister oprettes, hvis der ikke er nogen liste at føje konti til.
-      muting_html: Du er ved at <strong>tavsgøre</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
+      muting_html: Du er ved at <strong>skjule</strong> op til <strong>%{total_items} konti</strong> fra <strong>%{filename}</strong>.
     preface: Du kan importere data, du har eksporteret fra en anden server, såsom en liste over folk du følger eller blokerer.
     recent_imports: Seneste importer
     states:
@@ -1398,11 +1398,11 @@ da:
       domain_blocking: Importerer blokerede konti
       following: Importerer fulgte konti
       lists: Import af lister
-      muting: Importerer tavsgjorte konti
+      muting: Importerer skjulte kontoer
     type: Importtype
     type_groups:
       constructive: Følger og Bogmærker
-      destructive: Blokeringer og tavsgjorte
+      destructive: Blokerede og skjulte kontoer
     types:
       blocking: Blokeringsliste
       bookmarks: Bogmærker
@@ -1459,7 +1459,7 @@ da:
           follow: e-mailnotifikationer om nye følgere
           follow_request: e-mailnotifikationer om følgeanmodninger
           mention: e-mailnotifikationer om omtaler
-          reblog: e-mailnotifikationer om boosts
+          reblog: e-mailnotifikationer om fremhævelser
       resubscribe_html: Har man afmeldt sig ved en fejl, kan man gentilmelde sig via <a href="%{settings_path}">indstillingerne E-mailnotifikationer</a>.
       success_html: Man vil ikke længere modtage %{type} for Mastodon på %{domain} til e-mailen %{email}.
       title: Opsig abonnement
@@ -1504,7 +1504,7 @@ da:
     title: Moderation
   move_handler:
     carry_blocks_over_text: Denne bruger er flyttet fra %{acct}, som du har haft blokeret.
-    carry_mutes_over_text: Denne bruger er flyttet fra %{acct}, som du har haft tavsgjort.
+    carry_mutes_over_text: Denne bruger er flyttet fra %{acct}, som du har haft skjult.
     copy_account_note_text: 'Denne bruger er flyttet fra %{acct}, hvor dine tidligere noter om dem var:'
   navigation:
     toggle_menu: Åbn/luk menu
@@ -1535,9 +1535,9 @@ da:
     poll:
       subject: En afstemning fra %{name} er afsluttet
     reblog:
-      body: 'Dit indlæg blev boostet af %{name}:'
-      subject: "%{name} boostede dit indlæg"
-      title: Nyt boost
+      body: 'Dit indlæg blev fremhævet af %{name}:'
+      subject: "%{name} fremhævede dit indlæg"
+      title: Ny fremhævelse
     status:
       subject: "%{name} har netop postet"
     update:
@@ -1634,7 +1634,7 @@ da:
     content_warning: 'Indholdsadvarsel:'
     descriptions:
       account: Offentlige indlæg fra @%{acct}
-      tag: 'Offentlige indlæg tagget #%{hashtag}'
+      tag: 'Offentlige indlæg etiketteret #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Den daglige grænse på %{limit} planlagte indlæg er nået
     over_total_limit: Grænsen på %{limit} planlagte indlæg er nået
@@ -1699,7 +1699,7 @@ da:
     development: Udvikling
     edit_profile: Redigér profil
     export: Eksport
-    featured_tags: Udvalgte hashtags
+    featured_tags: Udvalgte etiketter
     import: Import
     import_and_export: Import og eksport
     migrate: Kontomigrering
@@ -1735,12 +1735,12 @@ da:
       video:
         one: "%{count} video"
         other: "%{count} videoer"
-    boosted_from_html: Boostet fra %{acct_link}
+    boosted_from_html: Fremhævet fra %{acct_link}
     content_warning: 'Indholdsadvarsel: %{warning}'
     default_language: Samme som UI-sproget
     disallowed_hashtags:
-      one: 'indeholdte et ikke tilladt hashtag: %{tags}'
-      other: 'indeholdte de ikke tilladte hashtags: %{tags}'
+      one: 'indeholdte en ikke tilladt etiket: %{tags}'
+      other: 'indeholdte de ikke tilladte etiketter: %{tags}'
     edited_at_html: Redigeret %{date}
     errors:
       in_reply_not_found: Indlægget, der forsøges besvaret, ser ikke ud til at eksistere.
@@ -1749,7 +1749,7 @@ da:
       direct: Indlæg, som kun kan ses af omtalte brugere, kan ikke fastgøres
       limit: Maksimalt antal indlæg allerede fastgjort
       ownership: Andres indlæg kan ikke fastgøres
-      reblog: Et boost kan ikke fastgøres
+      reblog: En fremhævelse kan ikke fastgøres
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkte
@@ -1765,9 +1765,9 @@ da:
     exceptions: Undtagelser
     explanation: Sletning af indlæg er en ressourcekrævende operation, hvorfor dette sker gradvist over tid, når serveren ellers ikke er optaget. Indlæg kan derfor blive slettet efter, at de reelt har passeret aldersgrænsen.
     ignore_favs: Ignorér favoritter
-    ignore_reblogs: Ignorér boosts
+    ignore_reblogs: Ignorér fremhævelser
     interaction_exceptions: Undtagelser baseret på interaktioner
-    interaction_exceptions_explanation: Bemærk, at det ikke garanteres, at indlæg slettes, hvis de når under favorit- eller boost-tærsklerne efter én gang at været nået over dem.
+    interaction_exceptions_explanation: Bemærk, at det ikke garanteres, at indlæg slettes, hvis de når under favorit- eller fremhævelses-tærsklerne efter én gang at været nået over dem.
     keep_direct: Behold direkte besked
     keep_direct_hint: Sletter ingen af dine direkte beskeder
     keep_media: Behold indlæg med medievedhæftninger
@@ -1792,8 +1792,8 @@ da:
     min_age_label: Alderstærskel
     min_favs: Behold indlæg favoritmarkeret mindst
     min_favs_hint: Sletter ingen egne indlæg, som har modtaget minimum dette antal favoritmarkeringer. Lad stå tomt for at slette indlæg uanset favoritmarkeringer
-    min_reblogs: Behold indlæg boostet mindst
-    min_reblogs_hint: Sletter ingen egne indlæg, som er boostet flere end dette antal gange. Lad stå tomt for at ignorere denne tærskel under sletning
+    min_reblogs: Behold indlæg fremhævet mindst
+    min_reblogs_hint: Sletter ingen af egne indlæg, som er fremhævet flere end dette antal gange. Lad stå tomt for at ignorere denne tærskel under sletning
   stream_entries:
     sensitive_content: Sensitivt indhold
   strikes:
@@ -1922,8 +1922,8 @@ da:
         one: "%{people} person de seneste 2 dage"
         other: "%{people} personer de seneste 2 dage"
       hashtags_subtitle: Udforsk de seneste 2 dages tendenser
-      hashtags_title: Populære hashtags
-      hashtags_view_more: Se flere populære hashtags
+      hashtags_title: Populære etiketter
+      hashtags_view_more: Se flere populære etiketter
       post_action: Skriv
       post_step: Sig hej til verden med tekst, fotos, videoer eller afstemninger.
       post_title: Opret det første indlæg

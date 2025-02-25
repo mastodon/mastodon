@@ -10,7 +10,7 @@ fi:
     followers:
       one: seuraaja
       other: seuraajaa
-    following: seurattu(a)
+    following: Seurattavat
     instance_actor_flash: Tämä tili on virtuaalinen toimija, jota käytetään edustamaan itse palvelinta eikä yksittäistä käyttäjää. Sitä käytetään federointitarkoituksiin, eikä sitä tule jäädyttää.
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
@@ -74,7 +74,7 @@ fi:
       enabled: Käytössä
       enabled_msg: Käyttäjän %{username} tilin jäädytys kumottiin onnistuneesti
       followers: Seuraajat
-      follows: Seuratut
+      follows: Seurattavat
       header: Otsakekuva
       inbox_url: Postilaatikon osoite
       invite_request_text: Syitä liittymiseen
@@ -273,7 +273,7 @@ fi:
         reject_appeal_html: "%{name} hylkäsi käyttäjän %{target} valituksen moderointipäätöksestä"
         reject_user_html: "%{name} hylkäsi käyttäjän %{target} rekisteröitymisen"
         remove_avatar_user_html: "%{name} poisti käyttäjän %{target} profiilikuvan"
-        reopen_report_html: "%{name} avasi uudelleen raportin %{target}"
+        reopen_report_html: "%{name} avasi raportin %{target} uudelleen"
         resend_user_html: "%{name} lähetti vahvistussähköpostiviestin uudelleen käyttäjälle %{target}"
         reset_password_user_html: "%{name} palautti käyttäjän %{target} salasanan"
         resolve_report_html: "%{name} ratkaisi raportin %{target}"
@@ -819,7 +819,7 @@ fi:
       back_to_report: Takaisin raporttisivulle
       batch:
         remove_from_report: Poista raportista
-        report: Raportti
+        report: Raportoi
       deleted: Poistettu
       favourites: Suosikit
       history: Versiohistoria
@@ -1171,7 +1171,7 @@ fi:
     more_from_html: Lisää tekijältä %{name}
     s_blog: Käyttäjän %{name} blogi
     then_instructions: Lisää sitten julkaisun verkkotunnus seuraavaan tekstikenttään.
-    title: Tekijän tunnustus
+    title: Tekijän nimeäminen
   challenge:
     confirm: Jatka
     hint_html: "<strong>Vihje:</strong> Emme pyydä sinulta salasanaa uudelleen seuraavan tunnin aikana."
@@ -1396,18 +1396,18 @@ fi:
       blocking: Tuodaan estettyjä tilejä
       bookmarks: Tuodaan kirjanmerkkejä
       domain_blocking: Tuodaan estettyjä verkkotunnuksia
-      following: Tuodaan seurattuja tilejä
+      following: Tuodaan seurattavia tilejä
       lists: Tuodaan listoja
       muting: Tuodaan mykistettyjä tilejä
     type: Tuontityyppi
     type_groups:
-      constructive: Seuratut ja kirjanmerkit
+      constructive: Seurattavat ja kirjanmerkit
       destructive: Estot ja mykistykset
     types:
       blocking: Estoluettelo
       bookmarks: Kirjanmerkit
       domain_blocking: Verkkotunnusten estoluettelo
-      following: Seurattujen luettelo
+      following: Seurattavien luettelo
       lists: Listat
       muting: Mykistysluettelo
     upload: Lähetä
@@ -1613,7 +1613,7 @@ fi:
     follow_failure: Joitain valittuja tilejä ei voitu seurata.
     follow_selected_followers: Seuraa valittuja seuraajia
     followers: Seuraajat
-    following: Seuratut
+    following: Seurattavat
     invited: Kutsutut
     last_active: Viimeksi aktiivinen
     most_recent: Tuorein
@@ -1706,7 +1706,7 @@ fi:
     notifications: Sähköposti-ilmoitukset
     preferences: Asetukset
     profile: Julkinen profiili
-    relationships: Seuratut ja seuraajat
+    relationships: Seurattavat ja seuraajat
     severed_relationships: Katkenneet suhteet
     statuses_cleanup: Julkaisujen automaattipoisto
     strikes: Moderointivaroitukset
@@ -1719,8 +1719,8 @@ fi:
       domain_block: Palvelimen jäädytys (%{target_name})
       user_domain_block: Estit käyttäjän %{target_name}
     lost_followers: Menetetyt seuraajat
-    lost_follows: Menetetyt seuratut
-    preamble: Voit menettää seurattusi ja seuraajasi, kun estät verkkotunnuksen tai kun moderaattorisi päättävät jäädyttää etäpalvelimen. Kun näin tapahtuu, voit ladata luetteloita katkenneista seurantasuhteista, jotta voit tarkastella niitä ja mahdollisesti viedä ne toiselle palvelimelle.
+    lost_follows: Menetetyt seurattavat
+    preamble: Voit menettää seurattavasi ja seuraajasi, kun estät verkkotunnuksen tai kun moderaattorisi päättävät jäädyttää etäpalvelimen. Kun näin tapahtuu, voit ladata luetteloita katkenneista seurantasuhteista, jotta voit tarkastella niitä ja mahdollisesti viedä ne toiselle palvelimelle.
     purged: Palvelimesi ylläpitäjät ovat tyhjentäneet tämän palvelimen tiedot.
     type: Tapahtuma
   statuses:

@@ -3,6 +3,7 @@ eu:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Lerroko bat. Atribuzio faltsuetatik babesten ditu.
         discoverable: Zure bidalketa publikoak eta profila nabarmendu edo gomendatu egin daitezke Mastodon-go hainbat eremutan eta zure profila beste erabiltzaile batzuei iradoki dakieke.
         display_name: Zure izena edo ezizena.
         fields: Zure webgunea, izenordainak, adina, nahi duzun guztia.
@@ -142,6 +143,7 @@ eu:
         url: Nora bidaliko diren gertaerak
     labels:
       account:
+        attribution_domains_as_text: Akreditatzeko baimendutako webguneak
         discoverable: Ezagutarazi profila eta bidalketak bilaketa algoritmoetan
         fields:
           name: Etiketa
@@ -241,11 +243,13 @@ eu:
           warn: Ezkutatu ohar batekin
       form_admin_settings:
         activity_api_enabled: Argitaratu erabiltzaile-jardueraren guztizko estatistikak APIan
+        app_icon: Aplikazio ikonoa
         backups_retention_period: Erabiltzailearen artxiboa gordetzeko epea
         bootstrap_timeline_accounts: Gomendatu beti kontu hauek erabiltzaile berriei
         closed_registrations_message: Izen-emateak itxita daudenerako mezu pertsonalizatua
         content_cache_retention_period: Urruneko edukiaren atxikipen-aldia
         custom_css: CSS pertsonalizatua
+        favicon: Gune-ikurra
         mascot: Maskota pertsonalizatua (zaharkitua)
         media_cache_retention_period: Multimediaren cachea atxikitzeko epea
         peers_api_enabled: Argitaratu aurkitutako zerbitzarien zerrenda APIan
@@ -310,6 +314,7 @@ eu:
         listable: Baimendu traola hau bilaketetan agertzea eta profilen direktorioan
         name: Traola
         trendable: Baimendu traola hau joeretan agertzea
+        usable: Baimendu bidalketek traola lokal hau erabiltzea
       user:
         role: Rola
         time_zone: Ordu zona
