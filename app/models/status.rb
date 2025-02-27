@@ -74,6 +74,7 @@ class Status < ApplicationRecord
   has_many :mentions, dependent: :destroy, inverse_of: :status
   has_many :mentioned_accounts, through: :mentions, source: :account, class_name: 'Account'
   has_many :media_attachments, dependent: :nullify
+  has_many :fasp_status_trends, class_name: 'Fasp::StatusTrend', dependent: :delete_all
 
   # The `dependent` option is enabled by the initial `mentions` association declaration
   has_many :active_mentions, -> { active }, class_name: 'Mention', inverse_of: :status # rubocop:disable Rails/HasManyOrHasOneDependent

@@ -27,9 +27,13 @@ class Api::V1::Trends::TagsController < Api::BaseController
   end
 
   def tags_from_trends
-    scope = Trends.tags.query.allowed.in_locale(content_locale)
-    scope = scope.filtered_for(current_account) if user_signed_in?
-    scope
+    if Fasp.capability_enabled?('trends')
+      Fasp::TagTrend.tags(language: user_signed_in? ? current_user.chosen_languages : content_locale)
+    else
+      scope = Trends.tags.query.allowed.in_locale(content_locale)
+      scope = scope.filtered_for(current_account) if user_signed_in?
+      scope
+    end
   end
 
   def next_path

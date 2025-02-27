@@ -16,4 +16,17 @@
 class Fasp::StatusTrend < ApplicationRecord
   belongs_to :status
   belongs_to :fasp_provider, class_name: 'Fasp::Provider'
+
+  scope :allowed, -> { where(allowed: true) }
+  scope :in_language, ->(language) { where(language:) }
+  scope :ranked, -> { order(rank: :desc) }
+
+  def self.statuses(language:, filtered_for: nil)
+    scope = Status.joins(:fasp_status_trends)
+                  .merge(allowed)
+                  .merge(ranked)
+    scope = scope.not_excluded_by_account(filtered_for).not_domain_blocked_by_account(filtered_for) if filtered_for
+    scope = scope.merge(in_language(language)) if language
+    scope
+  end
 end

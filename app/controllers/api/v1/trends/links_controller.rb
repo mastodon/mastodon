@@ -29,9 +29,13 @@ class Api::V1::Trends::LinksController < Api::BaseController
   end
 
   def links_from_trends
-    scope = Trends.links.query.allowed.in_locale(content_locale)
-    scope = scope.filtered_for(current_account) if user_signed_in?
-    scope
+    if Fasp.capability_enabled?('trends')
+      Fasp::PreviewCardTrend.preview_cards(language: user_signed_in? ? current_user.chosen_languages : content_locale)
+    else
+      scope = Trends.links.query.allowed.in_locale(content_locale)
+      scope = scope.filtered_for(current_account) if user_signed_in?
+      scope
+    end
   end
 
   def next_path

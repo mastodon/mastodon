@@ -16,4 +16,16 @@
 class Fasp::TagTrend < ApplicationRecord
   belongs_to :tag
   belongs_to :fasp_provider, class_name: 'Fasp::Provider'
+
+  scope :allowed, -> { where(allowed: true) }
+  scope :in_language, ->(language) { where(language:) }
+  scope :ranked, -> { order(rank: :desc) }
+
+  def self.tags(language:)
+    scope = Tag.joins(:fasp_tag_trends)
+               .merge(allowed)
+               .merge(ranked)
+    scope = scope.merge(in_language(language)) if language
+    scope
+  end
 end
