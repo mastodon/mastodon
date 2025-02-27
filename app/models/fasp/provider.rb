@@ -29,6 +29,10 @@ class Fasp::Provider < ApplicationRecord
   before_create :create_keypair
   after_commit :update_remote_capabilities
 
+  scope :with_capability, lambda { |capability_name|
+    where('fasp_providers.capabilities @> ?::jsonb', "[{\"id\": \"#{capability_name}\", \"enabled\": true}]")
+  }
+
   def enabled_capabilities=(hash)
     capabilities.each do |capability|
       capability['enabled'] = hash[capability['id']] == '1'

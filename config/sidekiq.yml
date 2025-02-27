@@ -68,3 +68,15 @@
       interval: 1 hour
       class: Scheduler::AutoCloseRegistrationsScheduler
       queue: scheduler
+    refresh_tag_trends_from_fasp:
+      interval: 1 hour
+      class: Scheduler::Fasp::RefreshTagTrendsScheduler
+      queue: scheduler
+    refresh_preview_card_trends_from_fasp:
+      interval: 1 hour
+      class: Scheduler::Fasp::RefreshPreviewCardTrendsScheduler
+      queue: scheduler
+    refresh_status_trends_from_fasp:
+      interval: 1 hour
+      class: Scheduler::Fasp::RefreshStatusTrendsScheduler
+      queue: scheduler

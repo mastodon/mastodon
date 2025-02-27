@@ -464,6 +464,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_074104) do
     t.index ["fasp_provider_id"], name: "index_fasp_debug_callbacks_on_fasp_provider_id"
   end
 
+  create_table "fasp_preview_card_trends", force: :cascade do |t|
+    t.bigint "preview_card_id", null: false
+    t.bigint "fasp_provider_id", null: false
+    t.integer "rank", null: false
+    t.string "language", null: false
+    t.boolean "allowed", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fasp_provider_id"], name: "index_fasp_preview_card_trends_on_fasp_provider_id"
+    t.index ["preview_card_id"], name: "index_fasp_preview_card_trends_on_preview_card_id"
+  end
+
   create_table "fasp_providers", force: :cascade do |t|
     t.boolean "confirmed", default: false, null: false
     t.string "name", null: false
@@ -481,6 +493,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_074104) do
     t.index ["base_url"], name: "index_fasp_providers_on_base_url", unique: true
   end
 
+  create_table "fasp_status_trends", force: :cascade do |t|
+    t.bigint "status_id", null: false
+    t.bigint "fasp_provider_id", null: false
+    t.integer "rank", null: false
+    t.string "language", null: false
+    t.boolean "allowed", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fasp_provider_id"], name: "index_fasp_status_trends_on_fasp_provider_id"
+    t.index ["status_id"], name: "index_fasp_status_trends_on_status_id"
+  end
+
   create_table "fasp_subscriptions", force: :cascade do |t|
     t.string "category", null: false
     t.string "subscription_type", null: false
@@ -493,6 +517,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_074104) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["fasp_provider_id"], name: "index_fasp_subscriptions_on_fasp_provider_id"
+  end
+
+  create_table "fasp_tag_trends", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "fasp_provider_id", null: false
+    t.integer "rank", null: false
+    t.string "language", null: false
+    t.boolean "allowed", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fasp_provider_id"], name: "index_fasp_tag_trends_on_fasp_provider_id"
+    t.index ["tag_id"], name: "index_fasp_tag_trends_on_tag_id"
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -1340,7 +1376,13 @@ e", unique: true, where: "(effective_date IS NOT NULL)"
   add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
   add_foreign_key "fasp_backfill_requests", "fasp_providers"
   add_foreign_key "fasp_debug_callbacks", "fasp_providers"
+  add_foreign_key "fasp_preview_card_trends", "fasp_providers"
+  add_foreign_key "fasp_preview_card_trends", "preview_cards"
+  add_foreign_key "fasp_status_trends", "fasp_providers"
+  add_foreign_key "fasp_status_trends", "statuses"
   add_foreign_key "fasp_subscriptions", "fasp_providers"
+  add_foreign_key "fasp_tag_trends", "fasp_providers"
+  add_foreign_key "fasp_tag_trends", "tags"
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
   add_foreign_key "featured_tags", "accounts", on_delete: :cascade
