@@ -40,15 +40,11 @@ RSpec.describe Api::RateLimitHeaders do
         end
       end
 
-      it 'applies rate limiting limit header' do
+      it 'provides rate limit information in headers' do
         expect(response.headers['X-RateLimit-Limit']).to eq '100'
-      end
 
-      it 'applies rate limiting remaining header' do
         expect(response.headers['X-RateLimit-Remaining']).to eq '80'
-      end
 
-      it 'applies rate limiting reset header' do
         expect(response.headers['X-RateLimit-Reset']).to eq (start_time + 10.seconds).iso8601(6)
       end
     end

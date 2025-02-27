@@ -33,6 +33,7 @@ RSpec.describe Admin::TermsOfService::GeneratesController do
             dmca_email: 'dmca@host.example',
             domain: 'host.example',
             jurisdiction: 'Europe',
+            choice_of_law: 'New York',
           },
         }
       end

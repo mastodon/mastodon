@@ -6,7 +6,6 @@ class InvitesController < ApplicationController
   layout 'admin'
 
   before_action :authenticate_user!
-  before_action :set_cache_headers
 
   def index
     authorize :invite, :create?
@@ -44,9 +43,5 @@ class InvitesController < ApplicationController
 
   def resource_params
     params.expect(invite: [:max_uses, :expires_in, :autofollow, :comment])
-  end
-
-  def set_cache_headers
-    response.cache_control.replace(private: true, no_store: true)
   end
 end

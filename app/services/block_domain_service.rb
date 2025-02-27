@@ -47,10 +47,14 @@ class BlockDomainService < BaseService
   def notify_of_severed_relationships!
     return if @domain_block_event.nil?
 
-    # TODO: check how efficient that query is, also check `push_bulk`/`perform_bulk`
-    @domain_block_event.affected_local_accounts.reorder(nil).find_each do |account|
-      event = AccountRelationshipSeveranceEvent.create!(account: account, relationship_severance_event: @domain_block_event)
-      LocalNotificationWorker.perform_async(account.id, event.id, 'AccountRelationshipSeveranceEvent', 'severed_relationships')
+    # find_in_batches and perform_bulk both default to batches of 1000
+    @domain_block_event.affected_local_accounts.reorder(nil).find_in_batches do |accounts|
+      notification_jobs_args = accounts.map do |account|
+        event = AccountRelationshipSeveranceEvent.create!(account:, relationship_severance_event: @domain_block_event)
+        [account.id, event.id, 'AccountRelationshipSeveranceEvent', 'severed_relationships']
+      end
+
+      LocalNotificationWorker.perform_bulk(notification_jobs_args)
     end
   end
 

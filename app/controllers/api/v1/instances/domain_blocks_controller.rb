@@ -31,7 +31,7 @@ class Api::V1::Instances::DomainBlocksController < Api::V1::Instances::BaseContr
   end
 
   def show_domain_blocks_to_user?
-    Setting.show_domain_blocks == 'users' && user_signed_in?
+    Setting.show_domain_blocks == 'users' && user_signed_in? && current_user.functional_or_moved?
   end
 
   def set_domain_blocks
@@ -47,6 +47,6 @@ class Api::V1::Instances::DomainBlocksController < Api::V1::Instances::BaseContr
   end
 
   def show_rationale_for_user?
-    Setting.show_domain_blocks_rationale == 'users' && user_signed_in?
+    Setting.show_domain_blocks_rationale == 'users' && user_signed_in? && current_user.functional_or_moved?
   end
 end

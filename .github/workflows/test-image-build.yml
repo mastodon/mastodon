@@ -20,7 +20,6 @@ jobs:
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: Dockerfile
-      platforms: linux/amd64 # Testing only on native platform so it is performant
       cache: true
 
   build-image-streaming:
@@ -31,5 +30,4 @@ jobs:
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: streaming/Dockerfile
-      platforms: linux/amd64 # Testing only on native platform so it is performant
       cache: true

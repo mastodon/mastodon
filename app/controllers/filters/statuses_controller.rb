@@ -6,7 +6,6 @@ class Filters::StatusesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_filter
   before_action :set_status_filters
-  before_action :set_cache_headers
 
   PER_PAGE = 20
 
@@ -39,9 +38,5 @@ class Filters::StatusesController < ApplicationController
 
   def action_from_button
     'remove' if params[:remove]
-  end
-
-  def set_cache_headers
-    response.cache_control.replace(private: true, no_store: true)
   end
 end

@@ -7,6 +7,10 @@ module Notification::Groups
   GROUPABLE_NOTIFICATION_TYPES = %i(favourite reblog follow).freeze
   MAXIMUM_GROUP_SPAN_HOURS = 12
 
+  included do
+    scope :by_group_key, ->(group_key) { group_key&.start_with?('ungrouped-') ? where(id: group_key.delete_prefix('ungrouped-')) : where(group_key: group_key) }
+  end
+
   def set_group_key!
     return if filtered? || GROUPABLE_NOTIFICATION_TYPES.exclude?(type)
 

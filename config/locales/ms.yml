@@ -756,7 +756,7 @@ ms:
         remove_from_report: Alih keluar daripada laporan
         report: Laporan
       deleted: Dipadamkan
-      favourites: Gemaran
+      favourites: Sukaan
       history: Sejarah versi
       in_reply_to: Membalas kepada
       language: Bahasa
@@ -861,7 +861,7 @@ ms:
         no_status_selected: Tiada pos sohor kini ditukar kerana tiada yang dipilih
         not_discoverable: Pengarang tidak mengikut serta untuk dapat ditemui
         shared_by:
-          other: Dikongsi dan digemari %{friendly_count} kali
+          other: Dikongsi atau disukai %{friendly_count} kali
         title: Hantaran hangat
       tags:
         current_score: Markah semasa %{score}
@@ -1283,6 +1283,9 @@ ms:
     unsubscribe:
       action: Ya, nyahlanggan
       complete: Menyahlanggan
+      emails:
+        notification_emails:
+          favourite: emel pemberitahuan sukaan
       title: Hentikan langganan
   media_attachments:
     validations:
@@ -1334,9 +1337,9 @@ ms:
       sign_up:
         subject: "%{name} telah mendaftar"
     favourite:
-      body: 'Pos anda telah digemari oleh %{name}:'
-      subject: "%{name} menggemari siaran anda"
-      title: Kegemaran baru
+      body: 'Hantaran anda disukai oleh %{name}:'
+      subject: "%{name} menyukai hantaran anda"
+      title: Sukaan baharu
     follow:
       body: "%{name} kini mengikuti anda!"
       subject: "%{name} kini mengikuti anda"
@@ -1558,7 +1561,7 @@ ms:
     enabled_hint: Memadamkan pos anda secara automatik setelah mereka mencapai ambang umur yang ditentukan, melainkan ia sepadan dengan salah satu pengecualian di bawah
     exceptions: Pengecualian
     explanation: Oleh kerana pemadaman pos adalah operasi yang mahal, ini dilakukan perlahan-lahan dari semasa ke semasa apabila server tidak sibuk. Atas sebab ini, pos anda mungkin dipadamkan seketika selepas ia mencapai ambang umur.
-    ignore_favs: Abaikan kegemaran
+    ignore_favs: Abaikan sukaan
     ignore_reblogs: Abaikan rangsangan
     interaction_exceptions: Pengecualian berdasarkan interaksi
     interaction_exceptions_explanation: Sila ambil perhatian bahawa tiada jaminan untuk pos dipadamkan jika ia berada di bawah ambang kegemaran atau tingkatkan selepas sekali melepasinya.

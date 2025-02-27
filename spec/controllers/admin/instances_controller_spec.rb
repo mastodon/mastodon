@@ -49,23 +49,11 @@ RSpec.describe Admin::InstancesController do
 
       expect(response).to have_http_status(200)
 
-      instance = assigns(:instance)
-      expect(instance).to_not be_new_record
+      expect(response.body)
+        .to include(I18n.t('admin.instances.totals_time_period_hint_html'))
+        .and include(I18n.t('accounts.nothing_here'))
 
       expect(Admin::ActionLogFilter).to have_received(:new).with(target_domain: account_popular_main.domain)
-
-      action_logs = assigns(:action_logs).to_a
-      expect(action_logs.size).to eq 0
-    end
-
-    context 'with an unknown domain' do
-      it 'returns http success' do
-        get :show, params: { id: 'unknown.example' }
-        expect(response).to have_http_status(200)
-
-        instance = assigns(:instance)
-        expect(instance).to be_new_record
-      end
     end
   end
 
