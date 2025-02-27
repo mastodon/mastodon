@@ -12,10 +12,11 @@ class Scheduler::Fasp::RefreshPreviewCardTrendsScheduler
     return if trends_providers.none?
 
     languages = User.signed_in_recently.pluck(Arel.sql('DISTINCT(unnest(chosen_languages))'))
+    languages << I18n.default_locale.to_s
 
     service = Fasp::RefreshPreviewCardTrendsService.new
 
-    languages.each do |language|
+    languages.uniq.each do |language|
       trends_providers.each do |provider|
         service.call(provider, language)
       end
