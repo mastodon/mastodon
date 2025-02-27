@@ -118,7 +118,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.0'
           - '3.1'
           - '.ruby-version'
         ci_job:
@@ -197,7 +196,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.0'
           - '3.1'
           - '.ruby-version'
 
@@ -310,10 +308,8 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - '3.0'
           - '3.1'
           - '.ruby-version'
-          - '3.3'
 
     steps:
       - uses: actions/checkout@v4
