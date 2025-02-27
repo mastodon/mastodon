@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.17] - 2025-02-27
+
+### Security
+
+- Update dependencies
+
+### Removed
+
+- Remove support for Ruby 3.0
+
 ## [4.2.16] - 2025-02-27
 
 ### Security
