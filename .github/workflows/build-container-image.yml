@@ -73,10 +73,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          build-args: |
-            MASTODON_VERSION_PRERELEASE=${{ inputs.version_prerelease }}
-            MASTODON_VERSION_METADATA=${{ inputs.version_metadata }}
-            SOURCE_COMMIT=${{ github.sha }}
           platforms: ${{ matrix.platform }}
           provenance: false
           push: ${{ inputs.push_to_images != '' }}

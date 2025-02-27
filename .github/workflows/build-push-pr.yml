@@ -31,7 +31,6 @@ jobs:
     with:
       push_to_images: |
         ghcr.io/mastodon/mastodon
-      version_metadata: ${{ needs.compute-suffix.outputs.metadata }}
       flavor: |
         latest=auto
       tags: |
