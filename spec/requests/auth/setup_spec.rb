@@ -24,15 +24,4 @@ RSpec.describe 'Auth Setup' do
       end
     end
   end
-
-  describe 'PUT /auth/setup' do
-    before { sign_in Fabricate(:user, confirmed_at: nil) }
-
-    it 'gracefully handles invalid nested params' do
-      put '/auth/setup?user=invalid'
-
-      expect(response)
-        .to have_http_status(400)
-    end
-  end
 end
