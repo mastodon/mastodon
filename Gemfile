@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 3.0.0'
+ruby '>= 3.1.0'
 
 gem 'puma', '~> 6.3'
 gem 'rails', '~> 7.0'
