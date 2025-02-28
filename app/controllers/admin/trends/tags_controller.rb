@@ -31,7 +31,8 @@ class Admin::Trends::TagsController < Admin::BaseController
   end
 
   def trends_tag_batch_params
-    params.require(:trends_tag_batch).permit(:action, tag_ids: [])
+    params
+      .expect(trends_tag_batch: [:action, tag_ids: []])
   end
 
   def action_from_button

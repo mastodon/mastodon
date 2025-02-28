@@ -8,7 +8,7 @@ import accounts_map from './accounts_map';
 import alerts from './alerts';
 import announcements from './announcements';
 import instance_stats from './instance_stats';
-import compose from './compose';
+import { composeReducer } from './compose';
 import contexts from './contexts';
 import conversations from './conversations';
 import custom_emojis from './custom_emojis';
@@ -61,7 +61,7 @@ const reducers = {
   server,
   instance_stats,
   contexts,
-  compose,
+  compose: composeReducer,
   search: searchReducer,
   media_attachments,
   notifications,

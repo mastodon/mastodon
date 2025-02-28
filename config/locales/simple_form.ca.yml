@@ -3,7 +3,7 @@ ca:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Un per línia. Protegeix de falses atribucions.
+        attribution_domains: Un per línia. Protegeix de falses atribucions.
         discoverable: El teu perfil i els teus tuts públics poden aparèixer o ser recomanats en diverses àreas de Mastodon i el teu perfil pot ser suggerit a altres usuaris.
         display_name: El teu nom complet o el teu nom divertit.
         fields: La teva pàgina d'inici, pronoms, edat, el que vulguis.
@@ -131,6 +131,7 @@ ca:
       tag:
         name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       terms_of_service_generator:
+        choice_of_law: Ciutat, regió, territori o estat els jutjats del qual hauran de dirimir qualsevol disputa legal.
         domain: Identificació única del servei en línia que oferiu.
         jurisdiction: Indiqueu el país on resideix qui paga les factures. Si és una empresa o una altra entitat, indiqueu el país en què està registrada, així com la ciutat, regió, territori o estat, segons calqui.
       user:
@@ -148,7 +149,7 @@ ca:
         url: On els esdeveniments seran enviats
     labels:
       account:
-        attribution_domains_as_text: Webs que us poden donar crèdit
+        attribution_domains: Llocs web que us poden donar crèdit
         discoverable: Permet el perfil i el tuts en els algorismes de descobriment
         fields:
           name: Etiqueta
@@ -225,6 +226,7 @@ ca:
         setting_display_media_show_all: Mostra-ho tot
         setting_expand_spoilers: Desplega sempre els tuts marcats amb advertències de contingut
         setting_hide_network: Amaga la teva xarxa
+        setting_missing_alt_text_modal: Mostra un diàleg de confirmació abans de publicar contingut sense text alternatiu
         setting_reduce_motion: Redueix el moviment de les animacions
         setting_system_font_ui: Usa la lletra predeterminada del sistema
         setting_system_scrollbars_ui: Usa la barra de desplaçament predeterminada del sistema
@@ -329,6 +331,7 @@ ca:
         admin_email: Adreça-e per a les notificacions legals
         arbitration_address: Adreça física per a les notificacions d'arbitratge
         arbitration_website: Lloc web per a enviar les notificacions d'arbitratge
+        choice_of_law: Legislació aplicable
         dmca_address: Adreça física per a les notificacions de copyright/DMCA
         dmca_email: Adreça-e per a les notificacions de copyright/DMCA
         domain: Domini

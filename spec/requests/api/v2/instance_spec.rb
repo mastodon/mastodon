@@ -59,7 +59,7 @@ RSpec.describe 'Instances' do
             description_limit: MediaAttachment::MAX_DESCRIPTION_LENGTH
           ),
           polls: include(
-            max_options: PollValidator::MAX_OPTIONS
+            max_options: PollOptionsValidator::MAX_OPTIONS
           )
         )
       )

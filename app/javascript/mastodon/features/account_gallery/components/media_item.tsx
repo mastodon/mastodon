@@ -93,7 +93,6 @@ export const MediaItem: React.FC<{
         <img
           src={previewUrl || avatarUrl}
           alt={description}
-          title={description}
           lang={lang}
           onLoad={handleImageLoad}
         />
@@ -113,7 +112,6 @@ export const MediaItem: React.FC<{
       <img
         src={previewUrl}
         alt={description}
-        title={description}
         lang={lang}
         style={{ objectPosition: `${x}% ${y}%` }}
         onLoad={handleImageLoad}
@@ -131,7 +129,6 @@ export const MediaItem: React.FC<{
         <video
           className='media-gallery__item-gifv-thumbnail'
           aria-label={description}
-          title={description}
           lang={lang}
           src={fullUrl}
           onMouseEnter={handleMouseEnter}

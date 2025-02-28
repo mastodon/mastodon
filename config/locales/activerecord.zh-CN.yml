@@ -20,10 +20,11 @@ zh-CN:
           invalid: 不是有效的域名
       messages:
         invalid_domain_on_line: "%{value} 不是有效的域名"
-        too_many_lines: 超出 %{limit} 行的长度限制
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: 包含缺失标签的值
             username:
               invalid: 只能使用字母、数字和下划线
               reserved: 是保留关键字
@@ -43,7 +44,7 @@ zh-CN:
           attributes:
             account_id:
               taken: 已经被加入到列表了
-          must_be_following: 需要是你关注的账户
+          must_be_following: 需要是你关注的账号
         status:
           attributes:
             reblog:
@@ -58,7 +59,7 @@ zh-CN:
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: 包含对基本角色而言不安全的权限
+              dangerous: 包含对基本角色不安全的权限
               elevated: 不能包含你当前身份未有的权限
               own_role: 你当前的角色无权执行此更改
             position:

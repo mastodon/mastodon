@@ -16,7 +16,8 @@ RSpec.describe Admin::Settings::BrandingController do
 
         patch :update, params: { form_admin_settings: { new_setting_key: 'New key value' } }
 
-        expect(response).to redirect_to(admin_settings_branding_path)
+        expect(response)
+          .to have_http_status(400)
         expect(Setting.new_setting_key).to be_nil
       end
     end

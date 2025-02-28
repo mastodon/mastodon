@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -8,12 +8,15 @@ import type {
   UsePopperOptions,
 } from 'react-overlays/esm/usePopper';
 
+import { useSelectableClick } from '@/hooks/useSelectableClick';
+
 const offset = [0, 4] as OffsetValue;
 const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
 export const AltTextBadge: React.FC<{
   description: string;
 }> = ({ description }) => {
+  const accessibilityId = useId();
   const anchorRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
 
@@ -25,12 +28,16 @@ export const AltTextBadge: React.FC<{
     setOpen(false);
   }, [setOpen]);
 
+  const [handleMouseDown, handleMouseUp] = useSelectableClick(handleClose);
+
   return (
     <>
       <button
         ref={anchorRef}
         className='media-gallery__alt__label'
         onClick={handleClick}
+        aria-expanded={open}
+        aria-controls={accessibilityId}
       >
         ALT
       </button>
@@ -47,9 +54,12 @@ export const AltTextBadge: React.FC<{
       >
         {({ props }) => (
           <div {...props} className='hover-card-controller'>
-            <div
+            <div // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions
               className='media-gallery__alt__popover dropdown-animation'
-              role='tooltip'
+              role='region'
+              id={accessibilityId}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
             >
               <h4>
                 <FormattedMessage

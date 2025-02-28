@@ -249,6 +249,44 @@ RSpec.describe LinkDetailsExtractor do
         expect(subject.author_name).to eq 'Author 1, Author 2'
       end
     end
+
+    context 'with embedded arrays' do
+      let(:ld_json) do
+        {
+          '@context' => 'https://schema.org',
+          '@type' => 'NewsArticle',
+          'headline' => 'A lot of authors',
+          'description' => 'But we decided to cram them into one',
+          'author' => [[{
+            '@type' => 'Person',
+            'name' => ['Author 1'],
+          }]],
+          'publisher' => [[{
+            '@type' => 'NewsMediaOrganization',
+            'name' => 'Pet News',
+            'url' => 'https://example.com',
+          }]],
+        }.to_json
+      end
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      it 'gives correct author_name' do
+        expect(subject.author_name).to eq 'Author 1'
+      end
+
+      it 'gives provider_name' do
+        expect(subject.provider_name).to eq 'Pet News'
+      end
+    end
   end
 
   context 'when Open Graph protocol data is present' do

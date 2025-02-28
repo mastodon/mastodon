@@ -11,6 +11,8 @@ RSpec.describe 'Admin::Trends::Statuses' do
     context 'without selecting any records' do
       it 'displays a notice about selection' do
         visit admin_trends_statuses_path
+        expect(page)
+          .to have_title(I18n.t('admin.trends.statuses.title'))
 
         click_on button_for_allow
 

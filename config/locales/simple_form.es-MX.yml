@@ -3,7 +3,7 @@ es-MX:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Uno por línea. Protege contra atribuciones falsas.
+        attribution_domains: Uno por línea. Protege contra atribuciones falsas.
         discoverable: Tu perfil y las publicaciones públicas pueden ser destacadas o recomendadas en varias áreas de Mastodon y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu apodo.
         fields: Tu página de inicio, pronombres, edad, lo que quieras.
@@ -137,6 +137,7 @@ es-MX:
         admin_email: Las notificaciones legales incluyen contraavisos, órdenes judiciales, solicitudes de retirada y solicitudes de aplicación de la ley.
         arbitration_address: Puede ser la misma que la dirección física anterior, o “N/A” si se utiliza el correo electrónico
         arbitration_website: Puede ser un formulario web, o “N/A” si se utiliza el correo electrónico
+        choice_of_law: Ciudad, región, territorio o estado de las leyes de sustancia interna de las que se regirán todas y cada una de las reclamaciones.
         dmca_address: Para los operadores de EE. UU., utilice la dirección registrada en el Directorio de Agentes Designados de la DMCA. Un listado de apartados de correos está disponible bajo petición directa, utilice la Solicitud de Renuncia de Apartado de Correos de Agente Designado de la DMCA para enviar un correo electrónico a la Oficina de Derechos de Autor y describa que usted es un moderador de contenidos desde su casa que teme venganza o represalias por sus acciones y necesita utilizar un apartado de correos para eliminar su dirección particular de la vista del público.
         dmca_email: Puede ser la misma dirección de correo electrónico usada en “Dirección de correo electrónico para notificaciones legales”
         domain: Identificación única del servicio en línea que presta.
@@ -156,7 +157,7 @@ es-MX:
         url: Donde los eventos serán enviados
     labels:
       account:
-        attribution_domains_as_text: Sitios web autorizados para acreditarte
+        attribution_domains: Sitios web autorizados para acreditarte
         discoverable: Destacar el perfil y las publicaciones en el algoritmo de descubrimiento
         fields:
           name: Etiqueta
@@ -233,6 +234,7 @@ es-MX:
         setting_display_media_show_all: Mostrar todo
         setting_expand_spoilers: Siempre expandir las publicaciones marcadas con advertencias de contenido
         setting_hide_network: Ocultar tu red
+        setting_missing_alt_text_modal: Mostrar cuadro de diálogo de confirmación antes de publicar contenido multimedia sin texto alternativo
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_system_font_ui: Usar la fuente por defecto del sistema
         setting_system_scrollbars_ui: Usar la barra de desplazamiento por defecto del sistema
@@ -337,6 +339,7 @@ es-MX:
         admin_email: Dirección de correo electrónico para notificaciones legales
         arbitration_address: Dirección física para notificaciones de arbitraje
         arbitration_website: Sitio web para presentar notificaciones de arbitraje
+        choice_of_law: Elección de la ley
         dmca_address: Dirección física para avisos de DMCA/derechos de autor
         dmca_email: Dirección de correo electrónico para avisos de DMCA/derechos de autor
         domain: Dominio

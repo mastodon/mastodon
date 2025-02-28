@@ -58,16 +58,18 @@ attempt to):
   or limit the functionality of the Instance, launch a denial of service attack,
   or in any other way attempt to interfere with the functioning and availability
   of the Instance;
-- Except as may be the result of standard search engine or Internet browser
-  usage, use, launch, develop, or distribute any automated system, including
-  without limitation, any spider, robot, cheat utility, scraper, offline reader,
-  or any data mining or similar data gathering extraction tools to access the
-  Instance, or use or launch any unauthorized script or other software;
+- Use, launch, develop, or distribute any automated system, including without
+  limitation, any spider, robot, cheat utility, scraper, offline reader, or any
+  data mining or similar data gathering extraction tools to access the Instance,
+  except in each case as may be the result of standard search engine or Internet
+  browser and local caching or for human review and interaction with Content on
+  the Instance;
+- Use or launch any unauthorized script or other software;
 - Interfere with, disable, vandalize or disrupt the Instance or servers or
   networks connected to the Instance;
 - Hack into, penetrate, disable, or otherwise circumvent the security measures
   of the Instance or servers or networks connected to the Instance;
-- or otherwise use the Instance in any way that violates any applicable
+- Otherwise use the Instance in any way that violates any applicable
   national, federal, state, local or international law or regulation.
 
 ## Intellectual Property
@@ -247,7 +249,7 @@ individual basis.
 ## Choice of Law
 
 Any and all claims related to or arising out of your use of, or access to the
-Instance shall be governed by internal substantive laws of New York in all
+Instance shall be governed by internal substantive laws of %{choice_of_law} in all
 respects, without regard for the jurisdiction or forum in which you are
 domiciled, reside, or located at the time of such access or use.
 

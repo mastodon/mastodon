@@ -46,7 +46,7 @@ class LinkDetailsExtractor
     end
 
     def image
-      obj = first_of_value(json['image'])
+      obj = first_of_hash(json['image'])
 
       return obj['url'] if obj.is_a?(Hash)
 
@@ -85,15 +85,15 @@ class LinkDetailsExtractor
     private
 
     def author
-      first_of_value(json['author']) || {}
+      first_of_hash(json['author']) || {}
     end
 
     def publisher
-      first_of_value(json['publisher']) || {}
+      first_of_hash(json['publisher']) || {}
     end
 
-    def first_of_value(arr)
-      arr.is_a?(Array) ? arr.first : arr
+    def first_of_hash(arr)
+      arr.is_a?(Array) ? arr.flatten.find { |item| item.is_a?(Hash) } : arr
     end
 
     def root_array(root)

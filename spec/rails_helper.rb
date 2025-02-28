@@ -2,7 +2,7 @@
 
 ENV['RAILS_ENV'] ||= 'test'
 
-unless ENV['DISABLE_SIMPLECOV'] == 'true'
+if ENV.fetch('COVERAGE', false)
   require 'simplecov'
 
   SimpleCov.start 'rails' do

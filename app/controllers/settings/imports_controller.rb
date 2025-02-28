@@ -90,7 +90,7 @@ class Settings::ImportsController < Settings::BaseController
   private
 
   def import_params
-    params.require(:form_import).permit(:data, :type, :mode)
+    params.expect(form_import: [:data, :type, :mode])
   end
 
   def set_bulk_import

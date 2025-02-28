@@ -32,6 +32,7 @@ class Admin::TermsOfService::GeneratesController < Admin::BaseController
   end
 
   def resource_params
-    params.require(:terms_of_service_generator).permit(*TermsOfService::Generator::VARIABLES)
+    params
+      .expect(terms_of_service_generator: [*TermsOfService::Generator::VARIABLES])
   end
 end

@@ -12,7 +12,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
   has_one :role, serializer: REST::RoleSerializer
 
-  def meta
+  def meta # rubocop:disable Metrics/AbcSize
     store = default_meta_store
 
     if object.current_account
@@ -106,6 +106,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       me: object.current_account.id.to_s,
       boost_modal: object_account_user.setting_boost_modal,
       delete_modal: object_account_user.setting_delete_modal,
+      missing_alt_text_modal: object_account_user.settings['web.missing_alt_text_modal'],
       auto_play_gif: object_account_user.setting_auto_play_gif,
       display_media: object_account_user.setting_display_media,
       expand_spoilers: object_account_user.setting_expand_spoilers,

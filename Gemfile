@@ -100,23 +100,25 @@ gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
+gem 'prometheus_exporter', '~> 2.2', require: false
+
 gem 'opentelemetry-api', '~> 1.4.0'
 
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.29.0', require: false
-  gem 'opentelemetry-instrumentation-active_job', '~> 0.7.1', require: false
-  gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.21.0', require: false
-  gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.21.2', require: false
-  gem 'opentelemetry-instrumentation-excon', '~> 0.22.0', require: false
-  gem 'opentelemetry-instrumentation-faraday', '~> 0.25.0', require: false
-  gem 'opentelemetry-instrumentation-http', '~> 0.23.2', require: false
-  gem 'opentelemetry-instrumentation-http_client', '~> 0.22.3', require: false
-  gem 'opentelemetry-instrumentation-net_http', '~> 0.22.4', require: false
-  gem 'opentelemetry-instrumentation-pg', '~> 0.29.0', require: false
-  gem 'opentelemetry-instrumentation-rack', '~> 0.25.0', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.34.0', require: false
-  gem 'opentelemetry-instrumentation-redis', '~> 0.25.3', require: false
-  gem 'opentelemetry-instrumentation-sidekiq', '~> 0.25.2', require: false
+  gem 'opentelemetry-instrumentation-active_job', '~> 0.8.0', require: false
+  gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.22.0', require: false
+  gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.22.0', require: false
+  gem 'opentelemetry-instrumentation-excon', '~> 0.23.0', require: false
+  gem 'opentelemetry-instrumentation-faraday', '~> 0.26.0', require: false
+  gem 'opentelemetry-instrumentation-http', '~> 0.24.0', require: false
+  gem 'opentelemetry-instrumentation-http_client', '~> 0.23.0', require: false
+  gem 'opentelemetry-instrumentation-net_http', '~> 0.23.0', require: false
+  gem 'opentelemetry-instrumentation-pg', '~> 0.30.0', require: false
+  gem 'opentelemetry-instrumentation-rack', '~> 0.26.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.36.0', require: false
+  gem 'opentelemetry-instrumentation-redis', '~> 0.26.0', require: false
+  gem 'opentelemetry-instrumentation-sidekiq', '~> 0.26.0', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false
 end
 
@@ -143,9 +145,6 @@ group :test do
   # Used to mock environment variables
   gem 'climate_control'
 
-  # Add back helpers functions removed in Rails 5.1
-  gem 'rails-controller-testing', '~> 1.0'
-
   # Validate schemas in specs
   gem 'json-schema', '~> 5.0'
 
@@ -154,7 +153,7 @@ group :test do
 
   gem 'shoulda-matchers'
 
-  # Coverage formatter for RSpec test if DISABLE_SIMPLECOV is false
+  # Coverage formatter for RSpec
   gem 'simplecov', '~> 0.22', require: false
   gem 'simplecov-lcov', '~> 0.8', require: false
 
@@ -172,7 +171,7 @@ group :development do
   gem 'rubocop-rspec_rails', require: false
 
   # Annotates modules with schema
-  gem 'annotaterb', '~> 4.13'
+  gem 'annotaterb', '~> 4.13', require: false
 
   # Enhanced error message pages for development
   gem 'better_errors', '~> 2.9'
@@ -195,7 +194,7 @@ end
 
 group :development, :test do
   # Interactive Debugging tools
-  gem 'debug', '~> 1.8'
+  gem 'debug', '~> 1.8', require: false
 
   # Generate fake data values
   gem 'faker', '~> 3.2'
@@ -207,7 +206,7 @@ group :development, :test do
   gem 'memory_profiler', require: false
   gem 'ruby-prof', require: false
   gem 'stackprof', require: false
-  gem 'test-prof'
+  gem 'test-prof', require: false
 
   # RSpec runner for rails
   gem 'rspec-rails', '~> 7.0'

@@ -31,6 +31,7 @@ class Admin::TermsOfService::DraftsController < Admin::BaseController
   end
 
   def resource_params
-    params.require(:terms_of_service).permit(:text, :changelog)
+    params
+      .expect(terms_of_service: [:text, :changelog])
   end
 end

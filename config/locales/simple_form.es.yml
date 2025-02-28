@@ -3,7 +3,7 @@ es:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Una por línea. Protege de falsas atribuciones.
+        attribution_domains: Una por línea. Protege de falsas atribuciones.
         discoverable: Tu perfil y publicaciones públicas pueden ser destacadas o recomendadas en varias áreas de Mastodon y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu apodo.
         fields: Tu carta de presentación, pronombres, edad, lo que quieras.
@@ -137,6 +137,7 @@ es:
         admin_email: Los avisos legales incluyen devoluciones, órdenes judiciales, solicitudes de retiro y solicitudes de cumplimiento de la ley.
         arbitration_address: Puede ser la misma que la dirección física anterior, o "N/A" si utiliza correo electrónico
         arbitration_website: Puede ser un formulario web, o “N/A” si utiliza correo electrónico
+        choice_of_law: Ciudad, región, territorio o declaración de las leyes de sustancia interna de las que se regirán todas y cada una de las reclamaciones.
         dmca_address: Para operadores estadounidenses, utilice la dirección registrada en el DMCA Designated Agent Directory. Un listado P.O. Box está disponible bajo petición directa, use la DMCA Designated Agent Post Office Box Waiver Request para enviar un correo electrónico a la Oficina de Derechos de Autor y describir que usted es un moderador de contenido basado en el hogar que teme venganza o represalia por sus acciones y que necesita usar un P.O. Box para eliminar su dirección postal de la vista pública.
         dmca_email: Puede ser el mismo correo electrónico utilizado para "Dirección de correo electrónico para avisos legales" de arriba
         domain: Identificación única del servicio en línea que estás proporcionando.
@@ -156,7 +157,7 @@ es:
         url: Donde los eventos serán enviados
     labels:
       account:
-        attribution_domains_as_text: Sitios web autorizados a acreditarte
+        attribution_domains: Sitios web autorizados a acreditarte
         discoverable: Destacar perfil y publicaciones en algoritmos de descubrimiento
         fields:
           name: Etiqueta
@@ -233,6 +234,7 @@ es:
         setting_display_media_show_all: Mostrar todo
         setting_expand_spoilers: Siempre expandir las publicaciones marcadas con advertencias de contenido
         setting_hide_network: Ocultar tu red
+        setting_missing_alt_text_modal: Mostrar diálogo de confirmación antes de publicar medios sin texto alternativo
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_system_font_ui: Utilizar la tipografía por defecto del sistema
         setting_system_scrollbars_ui: Utilizar barra de desplazamiento predeterminada del sistema
@@ -337,6 +339,7 @@ es:
         admin_email: Dirección de correo electrónico para avisos legales
         arbitration_address: Dirección física para avisos de arbitraje
         arbitration_website: Sitio web para enviar avisos de arbitraje
+        choice_of_law: Elección de la ley
         dmca_address: Dirección física para avisos de DMCA/derechos de autor
         dmca_email: Dirección de correo electrónico para avisos de DMCA/derechos de autor
         domain: Dominio

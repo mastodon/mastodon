@@ -3,7 +3,7 @@ lt:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Po vieną eilutėje. Apsaugo nuo klaidingų atributų.
+        attribution_domains: Po vieną eilutėje. Apsaugo nuo klaidingų atributų.
         discoverable: Tavo vieši įrašai ir profilis gali būti rodomi arba rekomenduojami įvairiose Mastodon vietose, o profilis gali būti siūlomas kitiems naudotojams.
         display_name: Tavo pilnas vardas arba smagus vardas.
         fields: Tavo pagrindinis puslapis, įvardžiai, amžius, bet kas, ko tik nori.
@@ -110,6 +110,7 @@ lt:
         admin_email: Teisiniai pranešimai įtraukia priešpriešinius pranešimus, teismo įsakymus, pašalinimo prašymus ir teisėsaugos institucijų prašymus.
         arbitration_address: Gali būti toks pat kaip aukščiau nurodytas fizinis adresas arba „N/A“ (netaikoma), jei naudojamas el. paštas.
         arbitration_website: Gali būti interneto forma arba „N/A“ (netaikoma), jei naudojamas el. paštas.
+        choice_of_law: Miestas, regionas, teritorija ar valstija, kurių vidaus materialinė teisė reglamentuoja visus reikalavimus.
         dmca_address: JAV operatoriams naudokite DMCA paskirtojo agento kataloge užregistruotą adresą. Pašto dėžutės sąrašą galima sudaryti pateikus tiesioginį prašymą, naudokite DMCA paskirtojo agento pašto dėžutės atsisakymo prašymą, kad parašytumėte el. laišką Autorinių teisių tarnybai ir aprašytumėte, kad esate namuose įsikūręs turinio moderatorius, kuris baiminasi keršto ar bausmės už savo veiksmus ir kuriam reikia naudoti pašto dėžutę, kad jo namų adresas nebūtų viešai matomas.
         dmca_email: Gali būti tas pats aukščiau nurodytas el. pašto adresas, naudojamas „El. pašto adresas, skirtas teisiniams pranešimams“.
         domain: Unikalus jūsų teikiamos internetinės paslaugos identifikavimas.
@@ -119,7 +120,7 @@ lt:
         role: Vaidmuo valdo, kokius leidimus naudotojas turi.
     labels:
       account:
-        attribution_domains_as_text: Svetainės, kuriuose leidžiama jus nurodyti
+        attribution_domains: Svetainės, kuriuose leidžiama jus įvardyti
         discoverable: Rekomenduoti profilį ir įrašus į atradimo algoritmus
         indexable: Įtraukti viešus įrašus į paieškos rezultatus
         show_collections: Rodyti sekimus ir sekėjus profilyje
@@ -160,6 +161,7 @@ lt:
         setting_display_media_show_all: Rodyti viską
         setting_expand_spoilers: Visada išplėsti įrašus, pažymėtus turinio įspėjimais
         setting_hide_network: Slėpti savo socialinę diagramą
+        setting_missing_alt_text_modal: Rodyti patvirtinimo dialogo langą prieš skelbiant mediją be alternatyvaus teksto.
         setting_reduce_motion: Sumažinti judėjimą animacijose
         setting_system_font_ui: Naudoti numatytąjį sistemos šriftą
         setting_system_scrollbars_ui: Naudoti numatytąją sistemos slankjuostę
@@ -233,6 +235,7 @@ lt:
         admin_email: El. pašto adresas, skirtas teisiniams pranešimams
         arbitration_address: Fizinis adresas pranešimams apie arbitražą
         arbitration_website: Svetainė pranešimams apie arbitražą
+        choice_of_law: Teisės pasirinkimas
         dmca_address: Fizinis adresas, skirtas DMCA / autorinių teisių pranešimams
         dmca_email: El. pašto adresas, skirtas DMCA / autorinių teisių pranešimams
         domain: Domenas

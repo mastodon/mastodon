@@ -12,6 +12,8 @@
   = opengraph 'og:title', "#{display_name(@account)} (#{acct(@account)})"
   = opengraph 'og:url', short_account_status_url(@account, @status)
   = opengraph 'og:published_time', @status.created_at.iso8601
+  - if @status.language.present?
+    = opengraph 'og:locale', @status.language
   = opengraph 'profile:username', acct(@account)[1..]
 
   = render 'og_description', activity: @status

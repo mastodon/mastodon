@@ -3,7 +3,7 @@ en:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: One per line. Protects from false attributions.
+        attribution_domains: One per line. Protects from false attributions.
         discoverable: Your public posts and profile may be featured or recommended in various areas of Mastodon and your profile may be suggested to other users.
         display_name: Your full name or your fun name.
         fields: Your homepage, pronouns, age, anything you want.
@@ -145,6 +145,7 @@ en:
         admin_email: Legal notices include counternotices, court orders, takedown requests, and law enforcement requests.
         arbitration_address: Can be the same as Physical address above, or “N/A” if using email
         arbitration_website: Can be a web form, or “N/A” if using email
+        choice_of_law: City, region, territory or state the internal substantive laws of which shall govern any and all claims.
         dmca_address: For US operators, use the address registered in the DMCA Designated Agent Directory. A P.O. Box listing is available upon direct request, use the DMCA Designated Agent Post Office Box Waiver Request to email the Copyright Office and describe that you are a home-based content moderator who fears revenge or retribution for your actions and need to use a P.O. Box to remove your home address from public view.
         dmca_email: Can be the same email used for “Email address for legal notices” above
         domain: Unique identification of the online service you are providing.
@@ -164,7 +165,7 @@ en:
         url: Where events will be sent to
     labels:
       account:
-        attribution_domains_as_text: Websites allowed to credit you
+        attribution_domains: Websites allowed to credit you
         discoverable: Feature profile and posts in discovery algorithms
         fields:
           name: Label
@@ -243,6 +244,7 @@ en:
         setting_expand_spoilers: Always expand posts marked with content warnings
         setting_hide_network: Hide your social graph
         setting_hide_translate_button: Hide translation button
+        setting_missing_alt_text_modal: Show confirmation dialog before posting media without alt text
         setting_reduce_motion: Reduce motion in animations
         setting_system_font_ui: Use system's default font
         setting_system_scrollbars_ui: Use system's default scrollbar
@@ -351,6 +353,7 @@ en:
         admin_email: Email address for legal notices
         arbitration_address: Physical address for arbitration notices
         arbitration_website: Website for submitting arbitration notices
+        choice_of_law: Choice of Law
         dmca_address: Physical address for DMCA/copyright notices
         dmca_email: Email address for DMCA/copyright notices
         domain: Domain

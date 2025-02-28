@@ -47,10 +47,8 @@ module Admin
     end
 
     def resource_params
-      params.require(:report_note).permit(
-        :content,
-        :report_id
-      )
+      params
+        .expect(report_note: [:content, :report_id])
     end
 
     def set_report_note

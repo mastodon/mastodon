@@ -3,7 +3,7 @@ pt-PT:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Um por linha. Protege contra falsas atribuições.
+        attribution_domains: Um por linha. Protege contra falsas atribuições.
         discoverable: As suas publicações e perfil públicos podem ser destacados ou recomendados em várias áreas do Mastodon e o seu perfil pode ser sugerido a outros utilizadores.
         display_name: O seu nome completo ou o seu nome divertido.
         fields: A sua página inicial, os seus pronomes, idade e tudo o que quiser.
@@ -63,7 +63,7 @@ pt-PT:
         setting_system_scrollbars_ui: Aplica-se apenas a navegadores de desktop baseados no Safari e Chrome
         setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer pormenores
         setting_use_pending_items: Ocultar as atualizações da cronologia após um clique em vez de percorrer automaticamente a cronologia
-        username: Pode utilizar letras, números e traços inferiores (_)
+        username: Podes utilizar letras, números e traços inferiores (_)
         whole_word: Quando a palavra-chave ou expressão-chave é somente alfanumérica, ela só será aplicada se corresponder à palavra completa
       domain_allow:
         domain: Este domínio será capaz de obter dados desta instância e os dados dele recebidos serão processados e armazenados
@@ -137,6 +137,7 @@ pt-PT:
         admin_email: Os avisos legais incluem contra-avisos, ordens judiciais, pedidos de remoção e pedidos de aplicação da lei.
         arbitration_address: Pode ser o mesmo que o endereço físico acima ou “N/A” se utilizar e-mail
         arbitration_website: Pode ser um formulário web ou “N/A” se for utilizado o e-mail
+        choice_of_law: A legislação interna do estado, território, região ou cidade que deve regular qualquer conflito.
         dmca_address: Para operadores dos EUA, utilize o endereço registado no Diretório de Agentes Designados DMCA. A listagem de uma caixa postal está disponível mediante pedido direto. Utilize o DMCA Designated Agent Post Office Box Waiver Request para enviar uma mensagem de correio eletrónico ao Copyright Office e descreva que é um moderador de conteúdos baseado em casa que receia vingança ou represálias pelas suas ações e que necessita de utilizar uma caixa postal para retirar o seu endereço de casa da vista do público.
         dmca_email: Pode ser o mesmo e-mail utilizado para “Endereço de e-mail para avisos legais” acima
         domain: Identificação única do serviço online que está a prestar.
@@ -156,7 +157,7 @@ pt-PT:
         url: Para onde os eventos serão enviados
     labels:
       account:
-        attribution_domains_as_text: Sites autorizados a atribuir-lhe crédito
+        attribution_domains: Websites autorizados a atribuir-lhe crédito
         discoverable: Destacar perfil e publicações nos algoritmos de descoberta
         fields:
           name: Rótulo
@@ -233,6 +234,7 @@ pt-PT:
         setting_display_media_show_all: Mostrar todos
         setting_expand_spoilers: Expandir sempre as publicações marcadas com avisos de conteúdo
         setting_hide_network: Esconder a tua rede
+        setting_missing_alt_text_modal: Mostrar janela de confirmação antes de publicar multimédia sem texto alternativo
         setting_reduce_motion: Reduzir movimento em animações
         setting_system_font_ui: Usar o tipo de letra padrão do sistema
         setting_system_scrollbars_ui: Utilizar a barra de deslocação predefinida do sistema
@@ -337,6 +339,7 @@ pt-PT:
         admin_email: Endereço de e-mail para avisos legais
         arbitration_address: Endereço físico para avisos de arbitragem
         arbitration_website: Website para enviar avisos de arbitragem
+        choice_of_law: Escolha da legislação
         dmca_address: Endereço físico para avisos DMCA / direitos autorais
         dmca_email: Endereço de e-mail para avisos DMCA/direitos autorais
         domain: Domínio
