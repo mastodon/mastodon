@@ -210,7 +210,7 @@ module LanguagesHelper
     tok: ['Toki Pona', 'toki pona'].freeze,
     vai: ['Vai', 'ꕙꔤ'].freeze,
     xal: ['Kalmyk', 'Хальмг келн'].freeze,
-    xmc: ['Mingrelian', 'მარგალური ნინა'].freeze,
+    xmf: ['Mingrelian', 'მარგალური ნინა'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
