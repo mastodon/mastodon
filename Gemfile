@@ -5,7 +5,7 @@ ruby '>= 3.2.0', '< 3.5.0'
 
 gem 'propshaft'
 gem 'puma', '~> 7.0'
-gem 'rails', '~> 8.0'
+gem 'rails', github: 'rails/rails'
 gem 'thor', '~> 1.2'
 
 gem 'dotenv'
