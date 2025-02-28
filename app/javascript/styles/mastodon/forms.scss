@@ -340,10 +340,17 @@ code {
     columns: unset;
   }
 
-  .input.datetime .label_input select {
-    display: inline-block;
-    width: auto;
-    flex: 0;
+  .input.datetime .label_input,
+  .input.date .label_input {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+    select {
+      display: inline-block;
+      width: auto;
+      flex: 0;
+    }
   }
 
   .input.select.select--languages {

@@ -49,6 +49,10 @@ en:
           attributes:
             reblog:
               taken: of post already exists
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: is too soon, must be later than %{date}
         user:
           attributes:
             email:
