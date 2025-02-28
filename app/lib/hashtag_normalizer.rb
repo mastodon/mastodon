@@ -16,7 +16,7 @@ class HashtagNormalizer
   end
 
   def lowercase(str)
-    str.mb_chars.downcase.to_s
+    str.downcase.to_s
   end
 
   def cjk_width(str)
