@@ -13,7 +13,7 @@
 
       - if tag.trendable?
         ·
-        %abbr{ title: t('admin.trends.tags.current_score', score: tag.trend.score) }= t('admin.trends.tags.trending_rank', rank: tag.trend.rank + 1)
+        %abbr{ title: t('admin.trends.tags.current_score', score: tag.trend.score) }= t('admin.trends.tags.trending_rank', rank: tag.trend.rank)
 
         - if tag.decaying?
           ·
