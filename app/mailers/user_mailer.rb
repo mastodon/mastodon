@@ -219,6 +219,15 @@ class UserMailer < Devise::Mailer
     end
   end
 
+  def announcement_published(user, announcement)
+    @resource = user
+    @announcement = announcement
+
+    I18n.with_locale(locale) do
+      mail subject: default_i18n_subject
+    end
+  end
+
   private
 
   def default_devise_subject
