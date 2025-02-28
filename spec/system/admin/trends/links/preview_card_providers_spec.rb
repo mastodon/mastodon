@@ -11,6 +11,8 @@ RSpec.describe 'Admin::Trends::Links::PreviewCardProviders' do
     context 'without selecting any records' do
       it 'displays a notice about selection' do
         visit admin_trends_links_preview_card_providers_path
+        expect(page)
+          .to have_title(I18n.t('admin.trends.preview_card_providers.title'))
 
         click_on button_for_allow
 
