@@ -21,3 +21,4 @@ runs:
       with:
         ruby-version: ${{ inputs.ruby-version }}
         bundler-cache: true
+        cache-version: 4.3
