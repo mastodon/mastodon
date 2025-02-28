@@ -201,6 +201,7 @@ module LanguagesHelper
     lzz: ['Lazuri', 'ლაზური ნენა'].freeze,
     moh: ['Mohawk', 'Kanienʼkéha'].freeze,
     nds: ['Low German', 'Plattdüütsch'].freeze,
+    ota: ['Ottoman Turkish', 'لسان عثمانی'].freeze,
     pdc: ['Pennsylvania Dutch', 'Pennsilfaani-Deitsch'].freeze,
     sco: ['Scots', 'Scots'].freeze,
     sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,
