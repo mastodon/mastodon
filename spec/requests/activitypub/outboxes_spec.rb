@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::OutboxesController do
+RSpec.describe 'ActivityPub Outboxes' do
   let!(:account) { Fabricate(:account) }
 
   before do
@@ -11,13 +11,11 @@ RSpec.describe ActivityPub::OutboxesController do
     Fabricate(:status, account: account, visibility: :private)
     Fabricate(:status, account: account, visibility: :direct)
     Fabricate(:status, account: account, visibility: :limited)
-
-    allow(controller).to receive(:signed_request_actor).and_return(remote_account)
   end
 
   describe 'GET #show' do
     context 'without signature' do
-      subject(:response) { get :show, params: { account_username: account.username, page: page } }
+      subject { get account_outbox_path(account_username: account.username, page: page) }
 
       let(:remote_account) { nil }
 
@@ -25,13 +23,18 @@ RSpec.describe ActivityPub::OutboxesController do
         let(:page) { nil }
 
         it 'returns http success and correct media type and headers and items count' do
+          subject
+
           expect(response)
             .to have_http_status(200)
             .and have_cacheable_headers
 
-          expect(response.media_type).to eq 'application/activity+json'
-          expect(response.headers['Vary']).to be_nil
-          expect(response.parsed_body[:totalItems]).to eq 4
+          expect(response.media_type)
+            .to eq 'application/activity+json'
+          expect(response.headers['Vary'])
+            .to be_nil
+          expect(response.parsed_body[:totalItems])
+            .to eq 4
         end
 
         context 'when account is permanently suspended' do
@@ -41,17 +44,21 @@ RSpec.describe ActivityPub::OutboxesController do
           end
 
           it 'returns http gone' do
-            expect(response).to have_http_status(410)
+            subject
+
+            expect(response)
+              .to have_http_status(410)
           end
         end
 
         context 'when account is temporarily suspended' do
-          before do
-            account.suspend!
-          end
+          before { account.suspend! }
 
           it 'returns http forbidden' do
-            expect(response).to have_http_status(403)
+            subject
+
+            expect(response)
+              .to have_http_status(403)
           end
         end
       end
@@ -60,12 +67,16 @@ RSpec.describe ActivityPub::OutboxesController do
         let(:page) { 'true' }
 
         it 'returns http success and correct media type and vary header and items' do
+          subject
+
           expect(response)
             .to have_http_status(200)
             .and have_cacheable_headers
 
-          expect(response.media_type).to eq 'application/activity+json'
-          expect(response.headers['Vary']).to include 'Signature'
+          expect(response.media_type)
+            .to eq 'application/activity+json'
+          expect(response.headers['Vary'])
+            .to include 'Signature'
 
           expect(response.parsed_body)
             .to include(
@@ -82,35 +93,42 @@ RSpec.describe ActivityPub::OutboxesController do
           end
 
           it 'returns http gone' do
-            expect(response).to have_http_status(410)
+            subject
+
+            expect(response)
+              .to have_http_status(410)
           end
         end
 
         context 'when account is temporarily suspended' do
-          before do
-            account.suspend!
-          end
+          before { account.suspend! }
 
           it 'returns http forbidden' do
-            expect(response).to have_http_status(403)
+            subject
+
+            expect(response)
+              .to have_http_status(403)
           end
         end
       end
     end
 
     context 'with signature' do
+      subject { get account_outbox_path(account_username: account.username, page: page), headers: nil, sign_with: remote_account }
+
       let(:remote_account) { Fabricate(:account, domain: 'example.com') }
       let(:page) { 'true' }
 
       context 'when signed request account does not follow account' do
-        before do
-          get :show, params: { account_username: account.username, page: page }
-        end
-
         it 'returns http success and correct media type and headers and items' do
-          expect(response).to have_http_status(200)
-          expect(response.media_type).to eq 'application/activity+json'
-          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
+          subject
+
+          expect(response)
+            .to have_http_status(200)
+          expect(response.media_type)
+            .to eq 'application/activity+json'
+          expect(response.headers['Cache-Control'])
+            .to eq 'private, no-store'
 
           expect(response.parsed_body)
             .to include(
@@ -122,15 +140,17 @@ RSpec.describe ActivityPub::OutboxesController do
       end
 
       context 'when signed request account follows account' do
-        before do
-          remote_account.follow!(account)
-          get :show, params: { account_username: account.username, page: page }
-        end
+        before { remote_account.follow!(account) }
 
         it 'returns http success and correct media type and headers and items' do
-          expect(response).to have_http_status(200)
-          expect(response.media_type).to eq 'application/activity+json'
-          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
+          subject
+
+          expect(response)
+            .to have_http_status(200)
+          expect(response.media_type)
+            .to eq 'application/activity+json'
+          expect(response.headers['Cache-Control'])
+            .to eq 'private, no-store'
 
           expect(response.parsed_body)
             .to include(
@@ -142,15 +162,17 @@ RSpec.describe ActivityPub::OutboxesController do
       end
 
       context 'when signed request account is blocked' do
-        before do
-          account.block!(remote_account)
-          get :show, params: { account_username: account.username, page: page }
-        end
+        before { account.block!(remote_account) }
 
         it 'returns http success and correct media type and headers and items' do
-          expect(response).to have_http_status(200)
-          expect(response.media_type).to eq 'application/activity+json'
-          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
+          subject
+
+          expect(response)
+            .to have_http_status(200)
+          expect(response.media_type)
+            .to eq 'application/activity+json'
+          expect(response.headers['Cache-Control'])
+            .to eq 'private, no-store'
 
           expect(response.parsed_body)
             .to include(
@@ -160,15 +182,17 @@ RSpec.describe ActivityPub::OutboxesController do
       end
 
       context 'when signed request account is domain blocked' do
-        before do
-          account.block_domain!(remote_account.domain)
-          get :show, params: { account_username: account.username, page: page }
-        end
+        before { account.block_domain!(remote_account.domain) }
 
         it 'returns http success and correct media type and headers and items' do
-          expect(response).to have_http_status(200)
-          expect(response.media_type).to eq 'application/activity+json'
-          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
+          subject
+
+          expect(response)
+            .to have_http_status(200)
+          expect(response.media_type)
+            .to eq 'application/activity+json'
+          expect(response.headers['Cache-Control'])
+            .to eq 'private, no-store'
 
           expect(response.parsed_body)
             .to include(
