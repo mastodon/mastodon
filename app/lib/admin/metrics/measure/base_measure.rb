@@ -94,7 +94,7 @@ class Admin::Metrics::Measure::BaseMeasure
   end
 
   def length_of_period
-    @length_of_period ||= @end_at - @start_at
+    @length_of_period ||= @end_at.to_date - @start_at.to_date
   end
 
   def params
