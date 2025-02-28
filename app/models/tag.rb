@@ -31,6 +31,7 @@ class Tag < ApplicationRecord
   has_many :passive_relationships, class_name: 'TagFollow', inverse_of: :tag, dependent: :destroy
   has_many :featured_tags, dependent: :destroy, inverse_of: :tag
   has_many :followers, through: :passive_relationships, source: :account
+  has_many :fasp_tag_trends, class_name: 'Fasp::TagTrend', dependent: :delete_all
 
   has_one :trend, class_name: 'TagTrend', inverse_of: :tag, dependent: :destroy
 
