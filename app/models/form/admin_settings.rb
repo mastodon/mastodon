@@ -14,7 +14,8 @@ class Form::AdminSettings
     site_terms
     registrations_mode
     closed_registrations_message
-    timeline_preview
+    timeline_preview_local
+    timeline_preview_remote
     bootstrap_timeline_accounts
     theme
     activity_api_enabled
@@ -48,7 +49,8 @@ class Form::AdminSettings
   ).freeze
 
   BOOLEAN_KEYS = %i(
-    timeline_preview
+    timeline_preview_local
+    timeline_preview_remote
     activity_api_enabled
     peers_api_enabled
     preview_sensitive_media
