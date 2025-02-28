@@ -18,7 +18,7 @@ class StatusLengthValidator < ActiveModel::Validator
   end
 
   def countable_length(str)
-    str.mb_chars.grapheme_length
+    str.length
   end
 
   def combined_text(status)
