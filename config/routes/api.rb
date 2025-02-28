@@ -77,7 +77,7 @@ namespace :api, format: false do
       end
     end
 
-    resources :media, only: [:create, :update, :show]
+    resources :media, only: [:create, :update, :show, :destroy]
     resources :blocks, only: [:index]
     resources :mutes, only: [:index]
     resources :favourites, only: [:index]
