@@ -5,8 +5,8 @@ const config = ({ env }) => ({
   plugins: [
     postcssPresetEnv({
       features: {
-        'logical-properties-and-values': false
-      }
+        'logical-properties-and-values': false,
+      },
     }),
     env === 'production' ? require('cssnano') : '',
   ],
