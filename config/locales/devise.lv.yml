@@ -3,8 +3,8 @@ lv:
   devise:
     confirmations:
       confirmed: Tava e-pasta adrese ir veiksmīgi apstiprināta.
-      send_instructions: Pēc dažām minūtēm saņemsi e-pastu ar norādījumiem, kā apstiprināt savu e-pasta adresi. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
-      send_paranoid_instructions: Ja tava e-pasta adrese ir mūsu datu bāzē, pēc dažām minūtēm saņemsi e-pastu ar norādījumiem, kā apstiprināt savu e-pasta adresi. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
+      send_instructions: Pēc dažām minūtēm saņemsi e-pasta ziņojum ar norādēm, kā apstiprināt savu e-pasta adresi. Lūgums pārbaudīt mēstuļu mapi, ja nesaņēmi šo e-pasta ziņojumu.
+      send_paranoid_instructions: Ja Tava e-pasta adrese ir mūsu datubāzē, pēc dažām minūtēm saņemsi e-pasta ziņojumu ar norādēm, kā apstiprināt savu e-pasta adresi. Lūgums pārbaudīt mēstuļu mapi, ja nesaņēmi šo e-pasta ziņojumu.
     failure:
       already_authenticated: Tu jau esi pieteicies.
       inactive: Tavs konts vēl nav aktivizēts.
@@ -58,10 +58,10 @@ lv:
         subtitle: Tavam kontam tika iespējota divpakāpju autentifikācija.
         title: 2FA iespējota
       two_factor_recovery_codes_changed:
-        explanation: Iepriekšējie atkopšanas kodi ir atzīti par nederīgiem un ģenerēti jauni.
-        subject: 'Mastodon: Divfaktoru atkopšanas kodi pārģenerēti'
-        subtitle: Iepriekšējie atkopšanas kodi tika padarīti par nederīgiem, un tika izveidoti jauni.
-        title: 2FA atkopšanas kodi mainīti
+        explanation: Iepriekšējie atkopes kodi ir padarīt nederīgi, un ir izveidoti jauni.
+        subject: 'Mastodon: atkārtoti izveidoti divpakāpju atkopes kodi'
+        subtitle: Iepriekšējie atkopes kodi tika padarīti par nederīgiem, un tika izveidoti jauni.
+        title: 2FA atkopes kodi nomainīti
       unlock_instructions:
         subject: 'Mastodon: Norādījumi atbloķēšanai'
       webauthn_credential:
@@ -88,21 +88,21 @@ lv:
       success: Veiksmīgi autentificēts no %{kind} konta.
     passwords:
       no_token: Tu nevari piekļūt šai lapai, ja neesi saņēmis paroles atiestatīšanas e-pasta ziņojumu. Ja ienāci no paroles atiestatīšanas e-pasta, lūdzu, pārliecinies, vai izmanto visu norādīto URL.
-      send_instructions: Ja tava e-pasta adrese ir mūsu datu bāzē, pēc dažām minūtēm uz savu e-pasta adresi saņemsi paroles atkopšanas saiti. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
-      send_paranoid_instructions: Ja tava e-pasta adrese ir mūsu datu bāzē, pēc dažām minūtēm uz savu e-pasta adresi saņemsi paroles atkopšanas saiti. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
+      send_instructions: Ja Tava e-pasta adrese ir mūsu datubāzē, pēc dažām minūtēm savā e-pasta adresē saņemsi paroles atkopes saiti. Lūgums pārbaudīt mēstuļu mapi, ja nesaņēmi šo e-pasta ziņojumu.
+      send_paranoid_instructions: Ja Tava e-pasta adrese ir mūsu datubāzē, pēc dažām minūtēm savā e-pasta adresē saņemsi paroles atkopes saiti. Lūgums pārbaudīt mēstuļu mapi, ja nesaņēmi šo e-pasta ziņojumu.
       updated: Tava parole tika veiksmīgi nomainīta. Tagad esi pieteicies.
       updated_not_active: Tava parole ir veiksmīgi nomainīta.
     registrations:
       destroyed: Visu labu! Tavs konts ir veiksmīgi atcelts. Mēs ceram tevi drīz atkal redzēt.
-      update_needs_confirmation: Tu veiksmīgi atjaunināji savu kontu, taču mums ir jāverificē teva jaunā e-pasta adrese. Lūdzu, pārbaudi savu e-pastu un seko apstiprinājuma saitei, lai apstiprinātu savu jauno e-pasta adresi. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
+      update_needs_confirmation: Tu veiksmīgi atjaunināji savu kontu, taču mums ir jāapliecina Tava jaunā e-pasta adrese. Lūgums pārbaudīt savu e-pastu un sekot apstiprinājuma saitei, lai apstiprinātu savu jauno e-pasta adresi. Lūgums pārbaudīt mēstuļu mapi, ja nesaņēmi šo e-pasta ziņojumu.
       updated: Tavs konts ir veiksmīgi atjaunināts.
     sessions:
       already_signed_out: Veiksmīgi izrakstījies.
       signed_in: Veiksmīgi pieteicies.
       signed_out: Veiksmīgi izrakstījies.
     unlocks:
-      send_instructions: Pēc dažām minūtēm tu saņemsi e-pastu ar norādījumiem, kā atbloķēt savu kontu. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
-      send_paranoid_instructions: Ja tavs konts eksistē, dažu minūšu laikā tu saņemsi e-pastu ar norādījumiem, kā to atbloķēt. Lūdzu, pārbaudi spama mapi, ja neesi saņēmis šo e-pastu.
+      send_instructions: Pēc dažām minūtēm Tu saņemsi e-pasta ziņojumu ar norādēm, kā atslēgt savu kontu. Lūgums pārbaudīt mēstuļu mapi, ja nesaņēmi šo e-pasta ziņojumu.
+      send_paranoid_instructions: Ja Tavs konts pastāv, dažu minūšu laikā saņemsi e-pasta ziņojumu ar norādēm, kā to atslēgt. Lūgums pārbaudīt mēstuļu mapi, ja nesaņēmi šo e-pasta ziņojumu.
       unlocked: Konts tika veiksmīgi atbloķēts. Lūgums pieteikties, lai turpinātu.
   errors:
     messages:
