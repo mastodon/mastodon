@@ -88,10 +88,6 @@ class REST::AccountSerializer < ActiveModel::Serializer
     full_asset_url(object.unavailable? ? object.header.default_url : object.header_static_url)
   end
 
-  def test_benoit
-    'he ouais ' + Time.now.to_s
-  end
-
   def created_at
     object.created_at.midnight.as_json
   end

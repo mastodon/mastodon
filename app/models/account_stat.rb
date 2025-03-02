@@ -30,8 +30,6 @@ class AccountStat < ApplicationRecord
   end
 
   def followers_count
-    puts 'call followers_count'
-    puts caller
     [attributes['followers_count'], 0].max
   end
 
@@ -41,7 +39,6 @@ class AccountStat < ApplicationRecord
 
   def used_languages
     list = Status.select(:language).reorder(:language).where(account_id: attributes['account_id']).distinct(:language).pluck(:language)
-    #list.push('de')
     list
   end
 end

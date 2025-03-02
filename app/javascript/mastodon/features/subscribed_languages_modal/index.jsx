@@ -19,32 +19,11 @@ const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
 
-/*
-const getAccountLanguages = createSelector([
-  (state, accountId) => state.getIn(['timelines', `account:${accountId}`, 'items'], ImmutableList()),
-  state => state.get('statuses'),
-], (statusIds, statuses) =>
-  ImmutableSet(statusIds.map(statusId => statuses.get(statusId)).filter(status => !status.get('reblog')).map(status => status.get('language'))));
-*/
-
 const getAccountLanguages = createSelector([
   (state, accountId) => state.getIn(['accounts', accountId, 'used_languages']),
 ], (used_languages) => {
-  console.log('used_languages', used_languages);
   return ImmutableSet(used_languages);
 });
-
-//dispatch(fetchAccount(accountId));
-/*const getAccountLanguages = (state, accountId) => {
-  const account =
-  console.log('account', account)
-  const list = (account.used_languages ? account.used_languages : []);
-  list.push('de');
-  return ImmutableSet(list);
-};*/
-/*const account = useAppSelector((state) =>
-  accountId ? state.accounts.get(accountId) : undefined,
-);*/
 
 const mapStateToProps = (state, { accountId }) => ({
   acct: state.getIn(['accounts', accountId, 'acct']),
@@ -76,7 +55,6 @@ class SubscribedLanguagesModal extends ImmutablePureComponent {
   static defaultProps = {
     languages: preloadedLanguages,
   };
-
 
   state = {
     selectedLanguages: this.props.selectedLanguages,
