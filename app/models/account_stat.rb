@@ -38,7 +38,10 @@ class AccountStat < ApplicationRecord
   end
 
   def used_languages
-    list = Status.select(:language).reorder(:language).where(account_id: attributes['account_id']).distinct(:language).pluck(:language)
+    list = Status.where(account_id: attributes['account_id'])
+          .distinct
+          .reorder(:language)
+          .pluck(:language)
     list
   end
 end
