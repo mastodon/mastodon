@@ -123,8 +123,8 @@ class RemoveStatusService < BaseService
     return if skip_streaming?
 
     @status.tags.map(&:name).each do |hashtag|
-      redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}", @payload)
-      redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:local", @payload) if @status.local?
+      redis.publish("timeline:hashtag:#{hashtag.downcase}", @payload)
+      redis.publish("timeline:hashtag:#{hashtag.downcase}:local", @payload) if @status.local?
     end
   end
 
