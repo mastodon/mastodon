@@ -12,7 +12,7 @@ class VideoMetadataExtractor
   rescue Terrapin::ExitStatusError, Oj::ParseError
     @invalid = true
   rescue Terrapin::CommandNotFoundError
-    raise Paperclip::Errors::CommandNotFoundError, 'Could not run the `ffprobe` command. Please install ffmpeg.'
+    raise Paperclip::Errors::CommandNotFoundError, I18n.t('ffmpeg.errors.command_not_found')
   end
 
   def valid?

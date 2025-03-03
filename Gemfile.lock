@@ -734,6 +734,8 @@ GEM
       parser (>= 3.3.1.0)
     rubocop-capybara (2.21.0)
       rubocop (~> 1.41)
+    rubocop-i18n (3.1.0)
+      rubocop (~> 1.0)
     rubocop-performance (1.24.0)
       lint_roller (~> 1.1)
       rubocop (>= 1.72.1, < 2.0)
@@ -1016,6 +1018,7 @@ DEPENDENCIES
   rspec-sidekiq (~> 5.0)
   rubocop
   rubocop-capybara
+  rubocop-i18n (= 3.1.0)
   rubocop-performance
   rubocop-rails
   rubocop-rspec

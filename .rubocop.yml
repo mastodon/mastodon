@@ -18,6 +18,7 @@ inherit_from:
   - .rubocop/rspec_rails.yml
   - .rubocop/rspec.yml
   - .rubocop/style.yml
+  - .rubocop/i18n.yml
   - .rubocop/custom.yml
   - .rubocop_todo.yml
   - .rubocop/strict.yml
@@ -34,3 +35,4 @@ plugins:
 require:
   - rubocop-rspec_rails
   - rubocop-capybara
+  - rubocop-i18n
