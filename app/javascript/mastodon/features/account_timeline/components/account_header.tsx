@@ -58,8 +58,8 @@ import {
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import MemorialNote from './memorial_note';
-import MovedNote from './moved_note';
+import { MemorialNote } from './memorial_note';
+import { MovedNote } from './moved_note';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -833,7 +833,7 @@ export const AccountHeader: React.FC<{
     <div className='account-timeline__header'>
       {!hidden && account.memorial && <MemorialNote />}
       {!hidden && account.moved && (
-        <MovedNote from={account} to={account.moved} />
+        <MovedNote accountId={account.id} targetAccountId={account.moved} />
       )}
 
       <div
