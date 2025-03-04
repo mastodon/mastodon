@@ -8,8 +8,8 @@ RSpec.describe 'Admin TermsOfService Distributions' do
 
   before { sign_in(user) }
 
-  describe 'Sending test TOS email', :inline_jobs do
-    it 'generates the test email' do
+  describe 'Sending a TOS change notification', :inline_jobs do
+    it 'marks the TOS as notified and sends the email' do
       visit admin_terms_of_service_preview_path(terms_of_service)
       expect(page)
         .to have_title(I18n.t('admin.terms_of_service.preview.title'))
