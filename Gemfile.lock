@@ -719,7 +719,7 @@ GEM
       rspec-mocks (~> 3.0)
       sidekiq (>= 5, < 8)
     rspec-support (3.13.2)
-    rubocop (1.73.1)
+    rubocop (1.73.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -734,8 +734,9 @@ GEM
       parser (>= 3.3.1.0)
     rubocop-capybara (2.21.0)
       rubocop (~> 1.41)
-    rubocop-i18n (3.1.0)
-      rubocop (~> 1.0)
+    rubocop-i18n (3.2.3)
+      lint_roller (~> 1.1)
+      rubocop (>= 1.72.1)
     rubocop-performance (1.24.0)
       lint_roller (~> 1.1)
       rubocop (>= 1.72.1, < 2.0)
@@ -1018,7 +1019,7 @@ DEPENDENCIES
   rspec-sidekiq (~> 5.0)
   rubocop
   rubocop-capybara
-  rubocop-i18n (= 3.1.0)
+  rubocop-i18n
   rubocop-performance
   rubocop-rails
   rubocop-rspec
