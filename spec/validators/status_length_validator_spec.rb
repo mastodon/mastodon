@@ -80,6 +80,22 @@ RSpec.describe StatusLengthValidator do
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
+
+    it 'counts multi byte emoji as single character' do
+      text = '✨' * 500
+      status = status_double(text: text)
+
+      subject.validate(status)
+      expect(status.errors).to_not have_received(:add)
+    end
+
+    it 'counts ZWJ sequence emoji as single character' do
+      text = '🏳️‍⚧️' * 500
+      status = status_double(text: text)
+
+      subject.validate(status)
+      expect(status.errors).to_not have_received(:add)
+    end
   end
 
   private
