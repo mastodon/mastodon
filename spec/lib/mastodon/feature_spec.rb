@@ -4,9 +4,10 @@ require 'rails_helper'
 
 RSpec.describe Mastodon::Feature do
   around do |example|
-    ClimateControl.modify EXPERIMENTAL_FEATURES: 'fasp,fetch_all_replies' do
-      example.run
-    end
+    original_value = Rails.configuration.x.mastodon.experimental_features
+    Rails.configuration.x.mastodon.experimental_features = 'fasp,fetch_all_replies'
+    example.run
+    Rails.configuration.x.mastodon.experimental_features = original_value
   end
 
   describe '::fasp_enabled?' do
