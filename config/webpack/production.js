@@ -48,7 +48,7 @@ module.exports = merge(sharedConfig, {
       logLevel: 'silent', // do not bother Webpacker, who runs with --json and parses stdout
     }),
     new InjectManifest({
-      additionalManifestEntries: ['1f602.svg', 'sheet_13.png'].map((filename) => {
+      additionalManifestEntries: ['1f602.svg', 'sheet_15.png'].map((filename) => {
         const path = resolve(root, 'public', 'emoji', filename);
         const body = readFileSync(path);
         const md5  = createHash('md5');
