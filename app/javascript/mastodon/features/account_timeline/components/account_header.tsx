@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
-import { useLinks } from '@/hooks/useLinks';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
@@ -46,6 +45,7 @@ import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { DomainPill } from 'mastodon/features/account/components/domain_pill';
 import AccountNoteContainer from 'mastodon/features/account/containers/account_note_container';
 import FollowRequestNoteContainer from 'mastodon/features/account/containers/follow_request_note_container';
+import { useLinks } from 'mastodon/hooks/useLinks';
 import { useIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';

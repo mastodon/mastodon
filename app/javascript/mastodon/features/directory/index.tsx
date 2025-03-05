@@ -22,9 +22,8 @@ import { LoadMore } from 'mastodon/components/load_more';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RadioButton } from 'mastodon/components/radio_button';
 import ScrollContainer from 'mastodon/containers/scroll_container';
+import { useSearchParam } from 'mastodon/hooks/useSearchParam';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
-
-import { useSearchParam } from '../../../hooks/useSearchParam';
 
 import { AccountCard } from './components/account_card';
 
