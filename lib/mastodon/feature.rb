@@ -4,7 +4,7 @@ module Mastodon::Feature
   class << self
     def enabled_features
       @enabled_features ||=
-        (ENV['EXPERIMENTAL_FEATURES'] || '').split(',').map(&:strip)
+        ENV.fetch('EXPERIMENTAL_FEATURES', '').split(',').map(&:strip)
     end
 
     def method_missing(name)
