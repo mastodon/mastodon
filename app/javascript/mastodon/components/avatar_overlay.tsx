@@ -1,6 +1,6 @@
 import type { Account } from 'mastodon/models/account';
 
-import { useHovering } from '../../hooks/useHovering';
+import { useHovering } from '../hooks/useHovering';
 import { autoPlayGif } from '../initial_state';
 
 interface Props {

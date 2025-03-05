@@ -24,7 +24,7 @@ import { RadioButton } from 'mastodon/components/radio_button';
 import ScrollContainer from 'mastodon/containers/scroll_container';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { useSearchParam } from '../../../hooks/useSearchParam';
+import { useSearchParam } from '../../hooks/useSearchParam';
 
 import { AccountCard } from './components/account_card';
 

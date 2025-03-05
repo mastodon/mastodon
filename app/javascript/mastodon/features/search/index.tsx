@@ -4,7 +4,6 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
-import { useSearchParam } from '@/hooks/useSearchParam';
 import FindInPageIcon from '@/material-icons/400-24px/find_in_page.svg?react';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
@@ -20,6 +19,7 @@ import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import Status from 'mastodon/containers/status_container';
 import { Search } from 'mastodon/features/compose/components/search';
+import { useSearchParam } from 'mastodon/hooks/useSearchParam';
 import type { Hashtag as HashtagType } from 'mastodon/models/tags';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
