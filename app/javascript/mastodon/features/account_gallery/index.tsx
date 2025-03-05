@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { useParams } from 'react-router-dom';
 
+import type { ThunkAction, UnknownAction } from '@reduxjs/toolkit';
 import { createSelector } from '@reduxjs/toolkit';
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
@@ -160,8 +161,16 @@ export const AccountGallery: React.FC<{
 
       if (signedIn) {
         disconnect = dispatch(
-          connectProfileStream(accountId, { onlyMedia: true }),
-        ) as unknown as () => void;
+          // The `as` is needed because `typescript-eslint` is confused by the types defined
+          // in JSDoc, it forces the type to be correct here, otherwise we get a
+          // `@typescript-eslint/no-confusing-void-expression` error
+          connectProfileStream(accountId, { onlyMedia: true }) as ThunkAction<
+            () => void,
+            RootState,
+            undefined,
+            UnknownAction
+          >,
+        );
       }
     }
 
