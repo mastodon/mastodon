@@ -23,7 +23,7 @@ class Admin::TermsOfService::DraftsController < Admin::BaseController
   private
 
   def set_terms_of_service
-    @terms_of_service = TermsOfService.draft.first || TermsOfService.new(text: current_terms_of_service&.text)
+    @terms_of_service = TermsOfService.draft.first || TermsOfService.new(text: current_terms_of_service&.text, effective_date: 10.days.from_now)
   end
 
   def current_terms_of_service
@@ -32,6 +32,6 @@ class Admin::TermsOfService::DraftsController < Admin::BaseController
 
   def resource_params
     params
-      .expect(terms_of_service: [:text, :changelog])
+      .expect(terms_of_service: [:text, :changelog, :effective_date])
   end
 end
