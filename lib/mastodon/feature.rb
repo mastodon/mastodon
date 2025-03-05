@@ -9,7 +9,7 @@ module Mastodon::Feature
 
     def method_missing(name)
       if respond_to_missing?(name)
-        feature = name.to_s.sub(/_enabled\?$/, '')
+        feature = name.to_s.delete_suffix('_enabled?')
         enabled = enabled_features.include?(feature)
         define_singleton_method(name) { enabled }
 
