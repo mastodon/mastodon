@@ -58,6 +58,7 @@ class PreviewCard < ApplicationRecord
 
   has_many :preview_cards_statuses, dependent: :delete_all, inverse_of: :preview_card
   has_many :statuses, through: :preview_cards_statuses
+  has_many :fasp_preview_card_trends, class_name: 'Fasp::PreviewCardTrend', dependent: :delete_all
 
   has_one :trend, class_name: 'PreviewCardTrend', inverse_of: :preview_card, dependent: :destroy
   belongs_to :author_account, class_name: 'Account', optional: true

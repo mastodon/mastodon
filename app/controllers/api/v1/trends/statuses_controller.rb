@@ -27,9 +27,16 @@ class Api::V1::Trends::StatusesController < Api::BaseController
   end
 
   def statuses_from_trends
-    scope = Trends.statuses.query.allowed.in_locale(content_locale)
-    scope = scope.filtered_for(current_account) if user_signed_in?
-    scope
+    if Fasp.capability_enabled?('trends')
+      Fasp::StatusTrend.statuses(
+        language: user_signed_in? ? current_user.chosen_languages : content_locale,
+        filtered_for: current_account
+      )
+    else
+      scope = Trends.statuses.query.allowed.in_locale(content_locale)
+      scope = scope.filtered_for(current_account) if user_signed_in?
+      scope
+    end
   end
 
   def next_path
