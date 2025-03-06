@@ -16,7 +16,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
       subscription: {
         endpoint: endpoint,
         keys: keys,
-        standard: 1,
+        standard: standard,
       },
     }.with_indifferent_access
   end
@@ -37,6 +37,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
       },
     }.with_indifferent_access
   end
+  let(:standard) { '1' }
   let(:scopes) { 'push' }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
@@ -65,14 +66,25 @@ RSpec.describe 'API V1 Push Subscriptions' do
           key_p256dh: eq(create_payload[:subscription][:keys][:p256dh]),
           key_auth: eq(create_payload[:subscription][:keys][:auth]),
           user_id: eq(user.id),
-          access_token_id: eq(token.id),
-          standard: true
+          access_token_id: eq(token.id)
         )
+        .and be_standard
 
       expect(response.parsed_body.with_indifferent_access)
         .to include(
           { endpoint: create_payload[:subscription][:endpoint], alerts: {}, policy: 'all' }
         )
+    end
+
+    context 'when standard is provided as false value' do
+      let(:standard) { '0' }
+
+      it 'saves push subscription with standard as false' do
+        subject
+
+        expect(endpoint_push_subscription)
+          .to_not be_standard
+      end
     end
 
     it 'replaces old subscription on repeat calls' do
