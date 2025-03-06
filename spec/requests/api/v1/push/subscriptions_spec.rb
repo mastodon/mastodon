@@ -16,6 +16,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
       subscription: {
         endpoint: endpoint,
         keys: keys,
+        standard: 1,
       },
     }.with_indifferent_access
   end
@@ -64,7 +65,8 @@ RSpec.describe 'API V1 Push Subscriptions' do
           key_p256dh: eq(create_payload[:subscription][:keys][:p256dh]),
           key_auth: eq(create_payload[:subscription][:keys][:auth]),
           user_id: eq(user.id),
-          access_token_id: eq(token.id)
+          access_token_id: eq(token.id),
+          standard: true
         )
 
       expect(response.parsed_body.with_indifferent_access)
