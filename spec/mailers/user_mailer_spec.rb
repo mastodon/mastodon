@@ -317,4 +317,16 @@ RSpec.describe UserMailer do
         .and(have_body_text(I18n.t('user_mailer.terms_of_service_changed.changelog')))
     end
   end
+
+  describe '#announcement_published' do
+    let(:announcement) { Fabricate :announcement }
+    let(:mail) { described_class.announcement_published(receiver, announcement) }
+
+    it 'renders announcement_published mail' do
+      expect(mail)
+        .to be_present
+        .and(have_subject(I18n.t('user_mailer.announcement_published.subject')))
+        .and(have_body_text(I18n.t('user_mailer.announcement_published.description', domain: Rails.configuration.x.local_domain)))
+    end
+  end
 end
