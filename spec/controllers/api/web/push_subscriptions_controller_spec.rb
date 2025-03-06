@@ -15,6 +15,7 @@ RSpec.describe Api::Web::PushSubscriptionsController do
           p256dh: 'BEm_a0bdPDhf0SOsrnB2-ategf1hHoCnpXgQsFj5JCkcoMrMt2WHoPfEYOYPzOIs9mZE8ZUaD7VA5vouy0kEkr8=',
           auth: 'eH_C8rq2raXqlcBVDa1gLg==',
         },
+        standard: 1,
       },
     }
   end
@@ -54,7 +55,8 @@ RSpec.describe Api::Web::PushSubscriptionsController do
       expect(created_push_subscription).to have_attributes(
         endpoint: eq(create_payload[:subscription][:endpoint]),
         key_p256dh: eq(create_payload[:subscription][:keys][:p256dh]),
-        key_auth: eq(create_payload[:subscription][:keys][:auth])
+        key_auth: eq(create_payload[:subscription][:keys][:auth]),
+        standard: true
       )
       expect(user.session_activations.first.web_push_subscription).to eq(created_push_subscription)
     end
