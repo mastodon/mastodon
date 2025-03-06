@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin Announcements Mail Previews' do
+  let(:admin_user) { Fabricate(:admin_user) }
   let(:announcement) { Fabricate(:announcement, notification_sent_at: nil) }
 
   before { sign_in(admin_user) }
