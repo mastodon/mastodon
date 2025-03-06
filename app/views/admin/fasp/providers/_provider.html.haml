@@ -16,4 +16,4 @@
     - if provider.capability_enabled?('callback')
       = table_link_to 'repeat', t('admin.fasp.providers.callback'), admin_fasp_provider_debug_calls_path(provider), data: { method: :post }
 
-    = table_link_to 'close', t('admin.providers.delete'), admin_fasp_provider_path(provider), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
+    = table_link_to 'close', t('admin.fasp.providers.delete'), admin_fasp_provider_path(provider), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }
