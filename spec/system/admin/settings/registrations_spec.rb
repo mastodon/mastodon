@@ -9,6 +9,8 @@ RSpec.describe 'Admin::Settings::Registrations' do
 
   it 'Saves changes to registrations settings' do
     visit admin_settings_registrations_path
+    expect(page)
+      .to have_title(I18n.t('admin.settings.registrations.title'))
 
     select open_mode_option,
            from: registrations_mode_field

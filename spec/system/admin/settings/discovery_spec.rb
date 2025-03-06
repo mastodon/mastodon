@@ -9,6 +9,8 @@ RSpec.describe 'Admin::Settings::Discovery' do
 
   it 'Saves changes to discovery settings' do
     visit admin_settings_discovery_path
+    expect(page)
+      .to have_title(I18n.t('admin.settings.discovery.title'))
 
     check trends_box
 

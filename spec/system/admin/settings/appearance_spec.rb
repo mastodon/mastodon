@@ -9,6 +9,8 @@ RSpec.describe 'Admin::Settings::Appearance' do
 
   it 'Saves changes to appearance settings' do
     visit admin_settings_appearance_path
+    expect(page)
+      .to have_title(I18n.t('admin.settings.appearance.title'))
 
     fill_in custom_css_field,
             with: 'html { display: inline; }'
