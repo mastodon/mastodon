@@ -128,13 +128,6 @@ RUN \
 # Create temporary build layer from base image
 FROM ruby AS build
 
-# Copy Node package configuration files into working directory
-COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
-COPY .yarn /opt/mastodon/.yarn
-
-COPY --from=node /usr/local/bin /usr/local/bin
-COPY --from=node /usr/local/lib /usr/local/lib
-
 ARG TARGETPLATFORM
 
 # hadolint ignore=DL3008
@@ -187,12 +180,6 @@ RUN \
   libx264-dev \
   libx265-dev \
   ;
-
-RUN \
-  # Configure Corepack
-  rm /usr/local/bin/yarn*; \
-  corepack enable; \
-  corepack prepare --activate;
 
 # Create temporary libvips specific build layer from build layer
 FROM build AS libvips
@@ -293,6 +280,15 @@ ARG TARGETPLATFORM
 COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
 COPY streaming/package.json /opt/mastodon/streaming/
 COPY .yarn /opt/mastodon/.yarn
+# Copy node binaries/libraries to layer
+COPY --from=node /usr/local/bin /usr/local/bin
+COPY --from=node /usr/local/lib /usr/local/lib
+
+RUN \
+  # Configure Corepack
+  rm /usr/local/bin/yarn*; \
+  corepack enable; \
+  corepack prepare --activate;
 
 # hadolint ignore=DL3008
 RUN \
@@ -311,9 +307,15 @@ COPY . /opt/mastodon/
 COPY --from=yarn /opt/mastodon /opt/mastodon/
 COPY --from=bundler /opt/mastodon /opt/mastodon/
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
-# Copy libvips components to layer for precompiler
-COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
-COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
+# Copy node binaries/libraries to layer
+COPY --from=node /usr/local/bin /usr/local/bin
+COPY --from=node /usr/local/lib /usr/local/lib
+
+RUN \
+  # Configure Corepack
+  rm /usr/local/bin/yarn*; \
+  corepack enable; \
+  corepack prepare --activate;
 
 ARG TARGETPLATFORM
 
