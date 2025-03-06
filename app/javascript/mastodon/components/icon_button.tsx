@@ -149,6 +149,7 @@ export class IconButton extends PureComponent<Props, States> {
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onKeyDown={this.handleKeyDown}
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         onKeyPress={this.handleKeyPress}
         style={style}
         tabIndex={tabIndex}
