@@ -77,6 +77,18 @@ jobs:
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
 
+      - name: Ensure no errors with `db:prepare`
+        run: |
+          bin/rails db:drop
+          bin/rails db:prepare
+          bin/rails db:migrate
+
+      - name: Ensure no errors with `db:prepare` and SKIP_POST_DEPLOYMENT_MIGRATIONS
+        run: |
+          bin/rails db:drop
+          SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails db:prepare
+          bin/rails db:migrate
+
       - name: Test "one step migration" flow
         run: |
           bin/rails db:drop
