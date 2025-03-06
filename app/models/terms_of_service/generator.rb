@@ -13,6 +13,7 @@ class TermsOfService::Generator
     dmca_email
     domain
     jurisdiction
+    choice_of_law
   ).freeze
 
   attr_accessor(*VARIABLES)

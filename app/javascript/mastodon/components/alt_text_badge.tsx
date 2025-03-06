@@ -8,7 +8,7 @@ import type {
   UsePopperOptions,
 } from 'react-overlays/esm/usePopper';
 
-import { useSelectableClick } from '@/hooks/useSelectableClick';
+import { useSelectableClick } from 'mastodon/hooks/useSelectableClick';
 
 const offset = [0, 4] as OffsetValue;
 const popperConfig = { strategy: 'fixed' } as UsePopperOptions;

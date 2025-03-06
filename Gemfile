@@ -39,7 +39,7 @@ gem 'net-ldap', '~> 0.18'
 
 gem 'omniauth', '~> 2.0'
 gem 'omniauth-cas', '~> 3.0.0.beta.1'
-gem 'omniauth_openid_connect', '~> 0.6.1'
+gem 'omniauth_openid_connect', '~> 0.8.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'omniauth-saml', '~> 2.0'
 
@@ -145,9 +145,6 @@ group :test do
   # Used to mock environment variables
   gem 'climate_control'
 
-  # Add back helpers functions removed in Rails 5.1
-  gem 'rails-controller-testing', '~> 1.0'
-
   # Validate schemas in specs
   gem 'json-schema', '~> 5.0'
 
@@ -168,6 +165,7 @@ group :development do
   # Code linting CLI and plugins
   gem 'rubocop', require: false
   gem 'rubocop-capybara', require: false
+  gem 'rubocop-i18n', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false

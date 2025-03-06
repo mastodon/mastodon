@@ -91,29 +91,6 @@ export const makeGetReport = () => createSelector([
   (state, _, targetAccountId) => state.getIn(['accounts', targetAccountId]),
 ], (base, targetAccount) => base.set('target_account', targetAccount));
 
-export const getAccountGallery = createSelector([
-  (state, id) => state.getIn(['timelines', `account:${id}:media`, 'items'], ImmutableList()),
-  state       => state.get('statuses'),
-  (state, id) => state.getIn(['accounts', id]),
-], (statusIds, statuses, account) => {
-  let medias = ImmutableList();
-
-  statusIds.forEach(statusId => {
-    const status = statuses.get(statusId).set('account', account);
-    medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status)));
-  });
-
-  return medias;
-});
-
-export const getAccountHidden = createSelector([
-  (state, id) => state.getIn(['accounts', id, 'hidden']),
-  (state, id) => state.getIn(['relationships', id, 'following']) || state.getIn(['relationships', id, 'requested']),
-  (state, id) => id === me,
-], (hidden, followingOrRequested, isSelf) => {
-  return hidden && !(isSelf || followingOrRequested);
-});
-
 export const getStatusList = createSelector([
   (state, type) => state.getIn(['status_lists', type, 'items']),
 ], (items) => items.toList());

@@ -5,4 +5,5 @@ Fabricator(:terms_of_service) do
   changelog { Faker::Lorem.paragraph }
   published_at { Time.zone.now }
   notification_sent_at { Time.zone.now }
+  effective_date { Faker::Date.forward }
 end

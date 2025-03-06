@@ -1,4 +1,4 @@
-import { useHovering } from '@/hooks/useHovering';
+import { useHovering } from 'mastodon/hooks/useHovering';
 import { autoPlayGif } from 'mastodon/initial_state';
 
 export const GIF: React.FC<{

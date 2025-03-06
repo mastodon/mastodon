@@ -50,6 +50,10 @@ namespace :admin do
       post :publish
       post :unpublish
     end
+
+    resource :preview, only: [:show], module: :announcements
+    resource :test, only: [:create], module: :announcements
+    resource :distribution, only: [:create], module: :announcements
   end
 
   with_options to: redirect('/admin/settings/branding') do
