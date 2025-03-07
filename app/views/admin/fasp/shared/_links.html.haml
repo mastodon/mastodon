@@ -1,0 +1,5 @@
+.content__heading__tabs
+  = render_navigation renderer: :links do |primary|
+    :ruby
+      primary.item :providers, safe_join([material_symbol('database'), t('admin.fasp.providers.providers')]), admin_fasp_providers_path
+      primary.item :debug_callbacks, safe_join([material_symbol('repeat'), t('admin.fasp.debug.callbacks.title')]), admin_fasp_debug_callbacks_path
