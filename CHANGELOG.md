@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.5] - 2025-03-10
+
+### Changed
+
+- Change hashtag suggestion to prefer personal history capitalization (#34070 by @ClearlyClaire)
+
+### Fixed
+
+- Fix processing errors for some HEIF images from iOS 18 (#34086 by @renchap)
+- Fix streaming server not filtering unknown-language posts from public timelines (#33774 by @ClearlyClaire)
+- Fix preview cards under Content Warnings not being shown in detailed statuses (#34068 by @ClearlyClaire)
+- Fix username and display name being hidden on narrow screens in moderation interface (#33064 by @ClearlyClaire)
+
 ## [4.3.4] - 2025-02-27
 
 ### Security

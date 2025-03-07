@@ -92,6 +92,9 @@ RUN \
 # Set /opt/mastodon as working directory
 WORKDIR /opt/mastodon
 
+# Add backport repository for some specific packages where we need the latest version
+RUN echo 'deb http://deb.debian.org/debian bookworm-backports main' >> /etc/apt/sources.list
+
 # hadolint ignore=DL3008,DL3005
 RUN \
 # Mount Apt cache and lib directories from Docker buildx caches
@@ -161,7 +164,7 @@ RUN \
     libexif-dev \
     libexpat1-dev \
     libgirepository1.0-dev \
-    libheif-dev \
+    libheif-dev/bookworm-backports \
     libimagequant-dev \
     libjpeg62-turbo-dev \
     liblcms2-dev \
@@ -344,7 +347,7 @@ RUN \
   # libvips components
     libcgif0 \
     libexif12 \
-    libheif1 \
+    libheif1/bookworm-backports \
     libimagequant0 \
     libjpeg62-turbo \
     liblcms2-2 \
