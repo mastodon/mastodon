@@ -85,6 +85,19 @@ RSpec.describe 'Admin Webhooks' do
       end
     end
 
+    describe 'Rotate a webhook secret' do
+      let!(:webhook) { Fabricate :webhook, events: [Webhook::EVENTS.first] }
+
+      it 'rotates secret and returns to page' do
+        visit admin_webhook_path(webhook)
+
+        expect { click_on I18n.t('admin.webhooks.rotate_secret') }
+          .to(change { webhook.reload.secret })
+        expect(page)
+          .to have_title(I18n.t('admin.webhooks.title'))
+      end
+    end
+
     describe 'Destroy a webhook' do
       let!(:webhook) { Fabricate :webhook, events: [Webhook::EVENTS.first] }
 
