@@ -18,6 +18,7 @@ class FanOutOnWriteService < BaseService
     warm_payload_cache!
 
     fan_out_to_local_recipients!
+    fan_out_to_profile_streams! if distributable?
     fan_out_to_public_recipients! if broadcastable?
     fan_out_to_public_streams! if broadcastable?
   end
@@ -145,6 +146,10 @@ class FanOutOnWriteService < BaseService
     end
   end
 
+  def fan_out_to_profile_streams!
+    redis.publish("timeline:profile:#{@status.account_id}:public", anonymous_payload)
+  end
+
   def deliver_to_conversation!
     AccountConversation.add_status(@account, @status) unless update?
   end
@@ -166,6 +171,10 @@ class FanOutOnWriteService < BaseService
 
   def update?
     @options[:update]
+  end
+
+  def distributable?
+    @status.distributable?
   end
 
   def broadcastable?
