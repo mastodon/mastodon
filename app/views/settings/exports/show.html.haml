@@ -13,6 +13,10 @@
         %td= number_with_delimiter @export_summary.total_statuses
         %td
       %tr
+        %th= t('exports.account_notes')
+        %td= number_with_delimiter @export_summary.total_account_notes
+        %td= table_link_to 'download', t('exports.csv'), settings_exports_account_notes_path(format: :csv)
+      %tr
         %th= t('admin.accounts.follows')
         %td= number_with_delimiter @export_summary.total_follows
         %td= table_link_to 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
