@@ -1,4 +1,5 @@
-import { apiRequestPost } from 'mastodon/api';
+import { apiRequestPost, apiRequestGet } from 'mastodon/api';
+import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
 
 export const apiSubmitAccountNote = (id: string, value: string) =>
@@ -18,3 +19,6 @@ export const apiFollowAccount = (
 
 export const apiUnfollowAccount = (id: string) =>
   apiRequestPost<ApiRelationshipJSON>(`v1/accounts/${id}/unfollow`);
+
+export const apiLookupAccount = (acct: string) =>
+  apiRequestGet<ApiAccountJSON>('v1/accounts/lookup', { acct });
