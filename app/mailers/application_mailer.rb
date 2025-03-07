@@ -11,8 +11,10 @@ class ApplicationMailer < ActionMailer::Base
 
   protected
 
-  def locale_for_account(account, &block)
-    I18n.with_locale(account.user_locale || I18n.default_locale, &block)
+  def with_user_settings(user, &block)
+    I18n.with_locale(user.locale || I18n.default_locale) do
+      Time.use_zone(user.time_zone || Rails.configuration.x.default_time_zone, &block)
+    end
   end
 
   def set_autoreply_headers!
