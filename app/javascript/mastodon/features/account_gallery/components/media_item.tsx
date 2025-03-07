@@ -70,7 +70,7 @@ export const MediaItem: React.FC<{
     attachment.get('description')) as string | undefined;
   const previewUrl = attachment.get('preview_url') as string;
   const fullUrl = attachment.get('url') as string;
-  const avatarUrl = status.getIn(['account', 'avatar_static']) as string;
+  const avatarUrl = account?.avatar_static;
   const lang = status.get('language') as string;
   const blurhash = attachment.get('blurhash') as string;
   const statusId = status.get('id') as string;
