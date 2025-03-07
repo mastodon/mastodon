@@ -271,16 +271,15 @@ RUN \
   # Download and install required Gems
   bundle install -j"$(nproc)";
 
-# Create temporary Node.js specific build layer from build layer
-FROM build AS yarn
+# Create temporary assets build layer from build layer
+FROM build AS precompiler
 
 ARG TARGETPLATFORM
 
-# Copy Node.js package configuration files into working directory
-COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
-COPY streaming/package.json /opt/mastodon/streaming/
-COPY .yarn /opt/mastodon/.yarn
-# Copy Node.js binaries/libraries to layer
+# Copy Mastodon sources into layer
+COPY . /opt/mastodon/
+
+# Copy Node.js binaries/libraries into layer
 COPY --from=node /usr/local/bin /usr/local/bin
 COPY --from=node /usr/local/lib /usr/local/lib
 
@@ -297,30 +296,12 @@ RUN \
   # Install Node.js packages
   yarn workspaces focus --production @mastodon/mastodon;
 
-# Create temporary assets build layer from build layer
-FROM build AS precompiler
-
-# Copy Mastodon sources into precompiler layer
-COPY . /opt/mastodon/
-
-# Copy libvips components to layer for precompiler
+# Copy libvips components into layer for precompiler
 COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
 COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
-# Copy bundler and Node.js packages from build layer to container
-COPY --from=yarn /opt/mastodon /opt/mastodon/
+# Copy bundler packages into layer for precompiler
 COPY --from=bundler /opt/mastodon /opt/mastodon/
 COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
-# Copy Node.js binaries/libraries to layer
-COPY --from=node /usr/local/bin /usr/local/bin
-COPY --from=node /usr/local/lib /usr/local/lib
-
-RUN \
-  # Configure Corepack
-  rm /usr/local/bin/yarn*; \
-  corepack enable; \
-  corepack prepare --activate;
-
-ARG TARGETPLATFORM
 
 RUN \
   ldconfig; \
