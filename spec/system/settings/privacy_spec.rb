@@ -27,7 +27,7 @@ RSpec.describe 'Settings Privacy' do
           .to change { user.account.reload.discoverable }.to(true)
         expect(page)
           .to have_content(I18n.t('privacy.title'))
-          .and have_content(I18n.t('generic.changes_saved_msg'))
+          .and have_content(success_message)
         expect(ActivityPub::UpdateDistributionWorker)
           .to have_received(:perform_async).with(user.account.id)
       end

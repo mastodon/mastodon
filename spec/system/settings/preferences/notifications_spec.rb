@@ -22,6 +22,6 @@ RSpec.describe 'Settings preferences notifications page' do
   end
 
   def notifications_follow_field
-    I18n.t('simple_form.labels.notification_emails.follow')
+    form_label('notification_emails.follow')
   end
 end
