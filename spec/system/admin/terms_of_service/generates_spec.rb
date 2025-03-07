@@ -29,6 +29,8 @@ RSpec.describe 'Admin TermsOfService Generates' do
       fill_in 'terms_of_service_generator_domain', with: 'host.example'
       fill_in 'terms_of_service_generator_jurisdiction', with: 'Europe'
       fill_in 'terms_of_service_generator_choice_of_law', with: 'New York'
+      fill_in 'terms_of_service_generator_min_age', with: '16'
+
       expect { submit_form }
         .to change(TermsOfService, :count).by(1)
       expect(page)
