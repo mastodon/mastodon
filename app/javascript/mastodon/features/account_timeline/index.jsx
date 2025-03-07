@@ -7,6 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
+import { lookupAccount } from 'mastodon/actions/accounts_typed';
 import { TimelineHint } from 'mastodon/components/timeline_hint';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import { me } from 'mastodon/initial_state';
@@ -14,7 +15,7 @@ import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector } from 'mastodon/store';
 
-import { lookupAccount, fetchAccount } from '../../actions/accounts';
+import { fetchAccount } from '../../actions/accounts';
 import { fetchFeaturedTags } from '../../actions/featured_tags';
 import { expandAccountFeaturedTimeline, expandAccountTimeline, connectTimeline, disconnectTimeline } from '../../actions/timelines';
 import { ColumnBackButton } from '../../components/column_back_button';
@@ -125,7 +126,7 @@ class AccountTimeline extends ImmutablePureComponent {
     if (accountId) {
       this._load();
     } else {
-      dispatch(lookupAccount(acct));
+      dispatch(lookupAccount({ acct }));
     }
   }
 
@@ -135,7 +136,7 @@ class AccountTimeline extends ImmutablePureComponent {
     if (prevProps.accountId !== accountId && accountId) {
       this._load();
     } else if (prevProps.params.acct !== acct) {
-      dispatch(lookupAccount(acct));
+      dispatch(lookupAccount({ acct }));
     } else if (prevProps.params.tagged !== tagged) {
       if (!withReplies) {
         dispatch(expandAccountFeaturedTimeline(accountId, { tagged }));

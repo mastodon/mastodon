@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import { lookupAccount } from 'mastodon/actions/accounts_typed';
 import { Account } from 'mastodon/components/account';
 import { TimelineHint } from 'mastodon/components/timeline_hint';
 import { AccountHeader } from 'mastodon/features/account_timeline/components/account_header';
@@ -17,7 +18,6 @@ import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector } from 'mastodon/store';
 
 import {
-  lookupAccount,
   fetchAccount,
   fetchFollowing,
   expandFollowing,
@@ -104,7 +104,7 @@ class Following extends ImmutablePureComponent {
     if (accountId) {
       this._load();
     } else {
-      dispatch(lookupAccount(acct));
+      dispatch(lookupAccount({ acct }));
     }
   }
 
@@ -114,7 +114,7 @@ class Following extends ImmutablePureComponent {
     if (prevProps.accountId !== accountId && accountId) {
       this._load();
     } else if (prevProps.params.acct !== acct) {
-      dispatch(lookupAccount(acct));
+      dispatch(lookupAccount({ acct }));
     }
   }
 

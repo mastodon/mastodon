@@ -8,7 +8,8 @@ import { createSelector } from '@reduxjs/toolkit';
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
-import { lookupAccount, fetchAccount } from 'mastodon/actions/accounts';
+import { fetchAccount } from 'mastodon/actions/accounts';
+import { lookupAccount } from 'mastodon/actions/accounts_typed';
 import { openModal } from 'mastodon/actions/modal';
 import { expandAccountMediaTimeline } from 'mastodon/actions/timelines';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
@@ -101,7 +102,10 @@ export const AccountGallery: React.FC<{
   const accountId = useAppSelector(
     (state) =>
       id ??
-      (state.accounts_map.get(normalizeForLookup(acct)) as string | undefined),
+      (acct &&
+        (state.accounts_map.get(normalizeForLookup(acct)) as
+          | string
+          | undefined)),
   );
   const attachments = useAppSelector((state) =>
     accountId
@@ -140,8 +144,8 @@ export const AccountGallery: React.FC<{
     | undefined;
 
   useEffect(() => {
-    if (!accountId) {
-      dispatch(lookupAccount(acct));
+    if (!accountId && acct) {
+      void dispatch(lookupAccount({ acct }));
     }
   }, [dispatch, accountId, acct]);
 
