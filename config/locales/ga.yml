@@ -318,6 +318,7 @@ ga:
       title: Loga iniúchta
       unavailable_instance: "(ainm fearainn ar fáil)"
     announcements:
+      back: Ar ais chuig fógraí
       destroyed_msg: D'éirigh leis an bhfógra a scriosadh!
       edit:
         title: Cuir fógra in eagar
@@ -326,6 +327,9 @@ ga:
       new:
         create: Cruthaigh fógra
         title: Fógra nua
+      preview:
+        explanation_html: 'Seolfar an ríomhphost chuig <strong>%{display_count} úsáideoir</strong>. Beidh an téacs seo a leanas san áireamh sa ríomhphost:'
+        title: Fógra réamhamhairc na fógraíochta
       publish: Foilsigh
       published_msg: D’éirigh leis an bhfógra a fhoilsiú!
       scheduled_for: Sceidealta le haghaidh %{time}
@@ -981,6 +985,7 @@ ga:
         chance_to_review_html: "<strong>Ní fhoilseofar na téarmaí seirbhíse ginte go huathoibríoch.</strong> Beidh deis agat na torthaí a athbhreithniú. Líon isteach na sonraí riachtanacha le leanúint ar aghaidh."
         explanation_html: Is chun críocha faisnéise amháin atá an teimpléad téarmaí seirbhíse a chuirtear ar fáil, agus níor cheart é a fhorléiriú mar chomhairle dlí ar aon ábhar. Téigh i gcomhairle le do chomhairle dlí féin maidir le do chás agus ceisteanna dlí ar leith atá agat.
         title: Téarmaí Socrú Seirbhíse
+      going_live_on_html: Beo, éifeachtach %{date}
       history: Stair
       live: Beo
       no_history: Níl aon athruithe taifeadta ar théarmaí seirbhíse fós.
@@ -2033,6 +2038,10 @@ ga:
     recovery_instructions_html: Má chailleann tú rochtain ar do ghuthán riamh, is féidir leat ceann de na cóid athshlánaithe thíos a úsáid chun rochtain a fháil ar do chuntas arís. <strong>Coinnigh na cóid athshlánaithe slán</strong>. Mar shampla, is féidir leat iad a phriontáil agus iad a stóráil le doiciméid thábhachtacha eile.
     webauthn: Eochracha slándála
   user_mailer:
+    announcement_published:
+      description: 'Tá riarthóirí %{domain} ag déanamh fógra:'
+      subject: Fógra seirbhíse
+      title: "%{domain} fógra seirbhíse"
     appeal_approved:
       action: Socruithe cuntas
       explanation: Ceadaíodh achomharc na stailce i gcoinne do chuntais ar %{strike_date} a chuir tú isteach ar %{appeal_date}. Tá seasamh maith ag do chuntas arís.
@@ -2065,6 +2074,8 @@ ga:
     terms_of_service_changed:
       agreement: Má leanann tú ar aghaidh ag úsáid %{domain}, tá tú ag aontú leis na téarmaí seo. Mura n-aontaíonn tú leis na téarmaí nuashonraithe, is féidir leat do chomhaontú le %{domain} a fhoirceannadh am ar bith trí do chuntas a scriosadh.
       changelog: 'Sracfhéachaint, seo é a chiallaíonn an nuashonrú seo duit:'
+      description: 'Tá an ríomhphost seo á fháil agat toisc go bhfuil roinnt athruithe á ndéanamh againn ar ár dtéarmaí seirbhíse ag %{domain}. Beidh na nuashonruithe seo i bhfeidhm ar %{date}. Molaimid duit athbhreithniú iomlán a dhéanamh ar na téarmaí nuashonraithe anseo:'
+      description_html: Tá an ríomhphost seo á fháil agat toisc go bhfuil roinnt athruithe á ndéanamh againn ar ár dtéarmaí seirbhíse ag %{domain}. Tiocfaidh na nuashonruithe seo i bhfeidhm ar <strong>%{date}</strong>. Molaimid duit athbhreithniú a dhéanamh ar na <a href="%{path}" target="_blank">téarmaí nuashonraithe ina n-iomláine anseo</a>.
       sign_off: Foireann %{domain}
       subject: Nuashonruithe ar ár dtéarmaí seirbhíse
       subtitle: Tá téarmaí seirbhíse %{domain} ag athrú

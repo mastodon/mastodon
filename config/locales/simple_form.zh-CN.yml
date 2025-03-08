@@ -135,13 +135,11 @@ zh-CN:
         text: 可以使用 Markdown 语法。
       terms_of_service_generator:
         admin_email: 法务通知包括反通知、法院命令、内容下架要求与执法机关的要求。
-        arbitration_address: 可以与上面的实际地址相同，若使用邮箱，则填写“N/A”
-        arbitration_website: 可以为网页表单，若使用邮箱，则填写“N/A”
         choice_of_law: 适用内部实质法律以管辖任何及所有索赔的城市、地区、领土或州。
         dmca_address: 如果你是位于美国的运营者，请使用在 DMCA 指定代表名录中注册的地址。如果你需要使用邮政信箱，可以直接申请。请使用 DMCA 指定代表邮政信箱豁免申请表，通过电子邮件联系版权办公室，并声明你是居家内容审核员，因担心审核操作会招致报复或打击报复，需要使用邮政信箱以避免公开家庭住址。
-        dmca_email: 可使用与上方“法务通知接收邮箱地址”相同的邮箱地址。
         domain: 你所提供的在线服务的唯一标识。
         jurisdiction: 请列出支付运营费用者所在的国家/地区。如果为公司或其他实体，请列出其注册的国家/地区以及相应的城市、地区、领地或州。
+        min_age: 不应低于您所在地法律管辖权要求的最低年龄。
       user:
         chosen_languages: 仅选中语言的嘟文会出现在公共时间线上（全不选则显示所有语言的嘟文）
         role: 角色用于控制用户拥有的权限。
@@ -334,6 +332,7 @@ zh-CN:
         usable: 允许本站嘟文使用此话题
       terms_of_service:
         changelog: 变更说明
+        effective_date: 生效日期
         text: 服务条款
       terms_of_service_generator:
         admin_email: 接收法务通知的邮箱地址
@@ -344,6 +343,7 @@ zh-CN:
         dmca_email: 接收DMCA/版权通知的邮箱地址
         domain: 域名
         jurisdiction: 法律管辖区
+        min_age: 最低年龄
       user:
         role: 角色
         time_zone: 时区

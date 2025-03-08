@@ -431,7 +431,7 @@ lv:
       private_comment: Privāts komentārs
       private_comment_hint: Atstāj komentāru par šo domēna ierobežojumu moderatoru iekšējai lietošanai.
       public_comment: Publisks komentārs
-      public_comment_hint: Atstāj komentāru par šo domēna ierobežojumu plašai sabiedrībai, ja ir iespējota domēnu ierobežojumu saraksta reklamēšana.
+      public_comment_hint: Piebilde par šo domēna ierobežojumu vispārējai sabiedrībai, ja ir iespējota domēnu ierobežojumu saraksta reklamēšana.
       reject_media: Noraidīt multivides failus
       reject_media_hint: Noņem lokāli saglabātos multivides failus un atsaka tos lejupielādēt nākotnē. Nav nozīmes apturēšanai
       reject_reports: Noraidīt ziņojumus
@@ -771,7 +771,7 @@ lv:
         title: Pieprasīt jaunajiem lietotājiem atrisināt CAPTCHA, lai apstiprinātu savu kontu
       content_retention:
         danger_zone: Bīstama sadaļa
-        preamble: Kontrolē, kā Mastodon tiek glabāts lietotāju ģenerēts saturs.
+        preamble: Pārraugi, kā Mastodon tiek glabāts lietotāju izveidots saturs!
         title: Satura saglabāšana
       default_noindex:
         desc_html: Ietekmē visus lietotājus, kuri paši nav mainījuši šo iestatījumu
@@ -931,7 +931,7 @@ lv:
       generate: Izmantot sagatavi
       generates:
         action: Izveidot
-        chance_to_review_html: "<strong>Izveidotie pakalpojuma izmantošanas noteikumi netiks automātiski publicēti.</strong> Būs iespēja izskatīt iznākumu. Lūgums norādīt nepieciešamo informāciju, lai turpinātu."
+        chance_to_review_html: "<strong>Izveidotie pakalpojuma izmantošanas noteikumi netiks laisti klajā automātiski.</strong> Būs iespēja izskatīt iznākumu. Lūgums norādīt nepieciešamo informāciju, lai turpinātu."
         explanation_html: Pakalpojuma izmantošanas noteikumu sagatave tiek piedāvāta tikai izzināšanas nolūkam, un to nevajadzētu izmantot kā juridisku padomu jebkurā jautājumā. Lūgums sazināties ar savu juridisko padomdevēju par saviem apstākļiem un noteiktiem juridiskiem jautājumiem.
         title: Pakalpojuma izmantošānas noteikumu uzstādīšana
       history: Vēsture
@@ -1112,8 +1112,8 @@ lv:
     created: Lietojumprogramma ir veiksmīgi izveidota
     destroyed: Lietojumprogramma ir veiksmīgi dzēsta
     logout: Iziet
-    regenerate_token: Atjaunot piekļuves marķieri
-    token_regenerated: Piekļuves marķieris veiksmīgi atjaunots
+    regenerate_token: Atkārtoti izveidot piekļuves pilnvaru
+    token_regenerated: Piekļuves pilnvara veiksmīgi izveidota atkārtoti
     warning: Esi ļoti uzmanīgs ar šiem datiem. Nekad nedalies ne ar vienu ar tiem!
     your_token: Tavs piekļuves marķieris
   auth:
@@ -1142,7 +1142,7 @@ lv:
     dont_have_your_security_key: Vai tev nav drošības atslēgas?
     forgot_password: Aizmirsi paroli?
     invalid_reset_password_token: Paroles atiestatīšanas pilnvara nav derīga, vai tai ir beidzies derīgums. Lūdzu, pieprasi jaunu.
-    link_to_otp: Jāievada divpakāpju kods no tālruņa vai atkopšanas kods
+    link_to_otp: Jāievada divpakāpju kods no tālruņa vai atkpes kods
     link_to_webauth: Lieto savu drošības atslēgas iekārtu
     log_in_with: Pieslēgties ar
     login: Pieteikties
@@ -1441,7 +1441,7 @@ lv:
       '604800': 1 nedēļa
       '86400': 1 diena
     expires_in_prompt: Nekad
-    generate: Ģenerēt uzaicinājuma saiti
+    generate: Izveidot uzaicinājuma saiti
     invalid: Šis uzaicinājums nav derīgs
     invited_by: 'Tevi uzaicināja:'
     max_uses:
@@ -1449,7 +1449,7 @@ lv:
       other: "%{count} lietojumi"
       zero: "%{count} lietojumu"
     max_uses_prompt: Nav ierobežojuma
-    prompt: Izveido un kopīgo saites ar citiem, lai piešķirtu piekļuvi šim serverim
+    prompt: Jāizveido un jākopīgo saites ar citiem, lai nodrošinātu piekļuvi šim serverim
     table:
       expires_at: Beidzas
       uses: Lieto
@@ -1572,10 +1572,10 @@ lv:
           thousand: K
           trillion: T
   otp_authentication:
-    code_hint: Lai apstiprinātu, ievadi autentifikācijas lietotnes ģenerēto kodu
-    description_html: Jā iespējo <strong>divpakāpju autentifikāciju</strong> ar autentificēšanas lietotni, pieteikšanās laikā būs nepieciešams tālrunis, kurā tiks izveidoti ievadāmie kodi.
+    code_hint: Jāievada autentificētājlietotnes izveidotais kods, lai apstiprinātu
+    description_html: Jā iespējo <strong>divpakāpju autentifikāciju</strong> ar autentificētājlietotni, pieteikšanās laikā būs nepieciešams tālrunis, kurā tiks izveidoti ievadāmie kodi.
     enable: Iespējot
-    instructions_html: "<strong>Skenē šo QR kodu Google Authenticator vai līdzīgā TOTP lietotnē savā tālrunī</strong>. No šī brīža šī lietotne ģenerēs marķierus, kas tev būs jāievada, piesakoties."
+    instructions_html: "<strong>Šis kvadrātods savā tālrunī jānolasa ar Google Authenticator vai līdzīgu TOTP lietotni</strong>. No šī brīža šī lietotne veidos ciparvienības, kas būs jāievada piesakoties."
     manual_instructions: 'Ja nevari noskenēt QR kodu un tas ir jāievada manuāli, šeit ir noslēpums vienkāršā tekstā:'
     setup: Iestatīt
     wrong_code: Ievadītais kods bija nederīgs. Vai servera un ierīces laiks ir pareizs?
@@ -1758,10 +1758,10 @@ lv:
       in_reply_not_found: Šķiet, ka ziņa, uz kuru tu mēģini atbildēt, nepastāv.
     over_character_limit: pārsniegts %{max} rakstzīmju ierobežojums
     pin_errors:
-      direct: Ziņojumus, kas ir redzami tikai minētajiem lietotājiem, nevar piespraust
-      limit: Tu jau esi piespraudis maksimālo ziņu skaitu
+      direct: Ierakstus, kas ir redzami tikai pieminētajiem lietotājiem, nevar piespraust
+      limit: Jau ir piesprausts lielākais iespējamais ierakstu skaits
       ownership: Kāda cita ierakstu nevar piespraust
-      reblog: Izceltu ierakstu nevar piespraust
+      reblog: Pastiprinātu ierakstu nevar piespraust
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Tiešs
@@ -1784,8 +1784,8 @@ lv:
     keep_direct_hint: Nedzēš nevienu tavu tiešo ziņojumu
     keep_media: Saglabāt ziņas ar multivides pielikumiem
     keep_media_hint: Neizdzēš nevienu no tavām ziņām, kurām ir multivides pielikumi
-    keep_pinned: Saglabāt piespraustās ziņas
-    keep_pinned_hint: Nedzēš nevienu tavis piesprausto ziņu
+    keep_pinned: Paturēt piespraustos ierakstus
+    keep_pinned_hint: Neizdzēš nevienu no Tevis piespraustajiem ierakstiem
     keep_polls: Saglabāt aptaujas
     keep_polls_hint: Nedzēš nevienu tavu aptauju
     keep_self_bookmark: Saglabāt ziņas, kuras esi pievienojis grāmatzīmēm
@@ -1836,13 +1836,13 @@ lv:
     edit: Labot
     enabled: Divpakāpju autentifikācija ir iespējota
     enabled_success: Divpakāpju autentifikācija veiksmīgi iespējota
-    generate_recovery_codes: Ģenerēt atkopšanas kodus
-    lost_recovery_codes: Atkopšanas kodi ļauj atgūt piekļuvi tavam kontam, ja pazaudē tālruni. Ja esi pazaudējis atkopšanas kodus, tu vari tos ģenerēt šeit. Tavi vecie atkopšanas kodi tiks anulēti.
+    generate_recovery_codes: Izveidot atkopes kodus
+    lost_recovery_codes: Atkopes kodi ļauj atgūt piekļuvi savam kontam, ja ir pazaudēts tālrunis. Ja ir pazaudēti atkopes kodi, tos var izveidot šeit. Iepriekšējie atkopšanas kodi kļūs nederīgi.
     methods: Divpakāpju veidi
     otp: Autentifikātora lietotne
-    recovery_codes: Veidot atkopšanas kodu rezerves kopijas
-    recovery_codes_regenerated: Atkopšanas kodi veiksmīgi atjaunoti
-    recovery_instructions_html: Ja kādreiz zaudēsi piekļuvi savam tālrunim, vari izmantot kādu no tālāk norādītajiem atkopšanas kodiem, lai atgūtu piekļuvi savam kontam. <strong>Glabā atkopšanas kodus drošībā</strong>. Piemēram, tu vari tos izdrukāt un uzglabāt kopā ar citiem svarīgiem dokumentiem.
+    recovery_codes: Veidot atkopes kodu rezerves kopijas
+    recovery_codes_regenerated: Atkopes kodi veiksmīgi izveidoti no jauna
+    recovery_instructions_html: Ja kādreiz zaudēsi piekļuvi savam tālrunim, vari izmantot kādu no zemāk norādītajiem atkopes kodiem, lai atgūtu piekļuvi savam kontam. <strong>Atkpes kodi jātur drošībā</strong>. Piemēram, tos var izdrukāt un glabāt kopā ar citiem svarīgiem dokumentiem.
     webauthn: Drošības atslēgas
   user_mailer:
     appeal_approved:

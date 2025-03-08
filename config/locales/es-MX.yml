@@ -309,6 +309,7 @@ es-MX:
       title: Log de auditoría
       unavailable_instance: "(nombre de dominio no disponible)"
     announcements:
+      back: Volver a la sección de anuncios
       destroyed_msg: "¡Anuncio eliminado con éxito!"
       edit:
         title: Editar anuncio
@@ -317,6 +318,9 @@ es-MX:
       new:
         create: Crear anuncio
         title: Nuevo anuncio
+      preview:
+        explanation_html: 'El correo electrónico se enviará a <strong>%{display_count} usuarios</strong>. En el correo electrónico se incluirá el siguiente texto:'
+        title: Vista previa de la notificación del anuncio
       publish: Publicar
       published_msg: "¡Anuncio publicado con éxito!"
       scheduled_for: Programado para %{time}
@@ -939,6 +943,7 @@ es-MX:
         chance_to_review_html: "<strong>Las condiciones de servicio generadas no se publicarán automáticamente.</strong> Tendrás la oportunidad de revisar los resultados. Por favor, rellena los datos necesarios para continuar."
         explanation_html: La plantilla de condiciones de servicio que se proporciona tiene únicamente fines informativos y no debe interpretarse como asesoramiento jurídico sobre ningún tema. Por favor, consulte con su propio asesor legal sobre su situación y las cuestiones legales específicas que tenga.
         title: Configuración de las condiciones del servicio
+      going_live_on_html: En vigor desde %{date}
       history: Historial
       live: Actual
       no_history: No se han registrado cambios en las condiciones del servicio hasta el momento.
@@ -1904,6 +1909,10 @@ es-MX:
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
     webauthn: Claves de seguridad
   user_mailer:
+    announcement_published:
+      description: 'Los administradores de %{domain} están haciendo un anuncio:'
+      subject: Anuncio
+      title: Anuncio de %{domain}
     appeal_approved:
       action: Ajustes de la cuenta
       explanation: La apelación de la amonestación contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue aprobada. Tu cuenta se encuentra de nuevo en buen estado.
@@ -1936,6 +1945,8 @@ es-MX:
     terms_of_service_changed:
       agreement: Al seguir usando %{domain}, aceptas estas condiciones. Si no estás de acuerdo con las condiciones actualizadas, puedes cancelar tu acuerdo con %{domain} en cualquier momento eliminando tu cuenta.
       changelog: 'En pocas palabras, esto es lo que esta actualización implica para ti:'
+      description: 'Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos de servicio en %{domain}. Estas actualizaciones entrarán en vigor en %{date}. Te animamos a revisar los términos actualizados en su totalidad aquí:'
+      description_html: Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos de servicio en %{domain}. Estas actualizaciones entrarán en vigor en <strong>%{date}</strong>. Te animamos a revisar los <a href="%{path}" target="_blank"> términos actualizados en su totalidad aquí</a>.
       sign_off: El equipo de %{domain}
       subject: Actualizaciones en nuestras condiciones del servicio
       subtitle: Las condiciones del servicio de %{domain} han cambiado

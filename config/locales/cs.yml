@@ -315,6 +315,7 @@ cs:
       title: Protokol auditu
       unavailable_instance: "(doména není k dispozici)"
     announcements:
+      back: Zpět na oznámení
       destroyed_msg: Oznámení bylo úspěšně odstraněno!
       edit:
         title: Upravit oznámení
@@ -323,6 +324,9 @@ cs:
       new:
         create: Vytvořit oznámení
         title: Nové oznámení
+      preview:
+        explanation_html: 'E-mail bude odeslán <strong>%{display_count} uživatelům</strong>. Následující text bude zahrnut do onoho e-mailu:'
+        title: Náhled oznámení
       publish: Zveřejnit
       published_msg: Oznámení bylo úspěšně zveřejněno!
       scheduled_for: Naplánováno na %{time}
@@ -967,6 +971,7 @@ cs:
         chance_to_review_html: "<strong>Vygenerované podmínky služby nebudou zveřejněny automaticky.</strong> Výsledky budete mít možnost zkontrolovat. Pro pokračování vyplňte potřebné podrobnosti."
         explanation_html: Poskytovaná šablona služeb je určena pouze pro informační účely a neměla by být vykládána jako právní poradenství v jakékoli věci. Prosíme, konzultujte Vaši situaci a konkrétní právní otázky s Vaším pravním zástupcem.
         title: Nastavení podmínek služby
+      going_live_on_html: Publikováno, platné od %{date}
       history: Historie
       live: Živě
       no_history: Zatím nejsou zaznamenány žádné změny podmínek služby.
@@ -1990,6 +1995,10 @@ cs:
     recovery_instructions_html: Ztratíte-li někdy přístup ke svému telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
     webauthn: Bezpečnostní klíče
   user_mailer:
+    announcement_published:
+      description: 'Správci %{domain} oznamují:'
+      subject: Oznámení služby
+      title: Oznámení služby %{domain}
     appeal_approved:
       action: Možnosti Účtu
       explanation: Odvolání proti prohřešku vašeho účtu ze dne %{strike_date}, které jste podali %{appeal_date}, bylo schváleno. Váš účet je opět v pořádku.
@@ -2022,6 +2031,8 @@ cs:
     terms_of_service_changed:
       agreement: Pokračováním v používání %{domain} souhlasíte s těmito podmínkami. Pokud nesouhlasíte s aktualizovanými podmínkami, můžete svůj souhlas s %{domain} kdykoliv ukončit odstraněním vašeho účtu.
       changelog: 'Ve zkratce, zde je to, co tato změna znamená pro vás:'
+      description: 'Tento e-mail jste obdrželi, protože na %{domain} provádíme určité změny našich smluvních podmínek. Tyto aktualizace budou platné od %{date}. Doporučujeme vám zkontrolovat aktualizované podmínky v celém znění zde:'
+      description_html: Tento e-mail jste obdrželi, protože na %{domain} provádíme určité změny našich smluvních podmínek. Tyto aktualizace budou platné od <strong>%{date}</strong>. Doporučujeme vám zkontrolovat <a href="%{path}" target="_blank">aktualizované podmínky v celém znění zde</a>.
       sign_off: Tým %{domain}
       subject: Aktualizace našich podmínek služby
       subtitle: Podmínky služby %{domain} se mění
