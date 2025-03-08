@@ -306,6 +306,7 @@ zh-TW:
       title: 營運日誌
       unavailable_instance: "（該域名無法使用）"
     announcements:
+      back: 回到公告
       destroyed_msg: 成功刪除公告！
       edit:
         title: 編輯公告
@@ -314,6 +315,9 @@ zh-TW:
       new:
         create: 新增公告
         title: 新增公告
+      preview:
+        explanation_html: 此 email 將寄至 <strong>%{display_count} 名使用者</strong>。以下文字將被包含於 e-mail 中：
+        title: 預覽公告通知
       publish: 發布
       published_msg: 成功發布公告！
       scheduled_for: 排定 %{time}
@@ -927,6 +931,7 @@ zh-TW:
         chance_to_review_html: "<strong>所產生之服務條款將不會自動發佈。</strong> 您將能檢視所產生之結果。請填寫必要細節以繼續。"
         explanation_html: 提供之服務條款模板僅供參考資訊使用，不應將其作為任何法律建議。請依照您的具體情形與特定法律議題諮詢您的法律顧問。
         title: 設定服務條款
+      going_live_on_html: 目前條款，自 %{date} 起生效
       history: 歷史
       live: 目前版本
       no_history: 未有任何服務條款變更紀錄。
@@ -1863,6 +1868,10 @@ zh-TW:
     recovery_instructions_html: 若您的手機無法使用，您可以使用下列任意一個備用驗證碼來重新獲得帳號的存取權。<strong>請妥善保管好您的備用驗證碼</strong>（例如，可以將它們列印出來，與您的其他重要文件放在一起）。
     webauthn: 安全金鑰
   user_mailer:
+    announcement_published:
+      description: "%{domain} 之管理員正在進行公告："
+      subject: 服務公告
+      title: "%{domain} 服務公告"
     appeal_approved:
       action: 帳號設定
       explanation: 您於 %{appeal_date} 遞交的針對您帳號的 %{strike_date} 警示之申訴已獲批准。您的帳號再次享有良好的信譽。
@@ -1895,6 +1904,12 @@ zh-TW:
     terms_of_service_changed:
       agreement: 透過繼續使用 %{domain}，您將同意這些條款。若您不同意此條款異動，您能隨時終止與 %{domain} 之協議並刪除您的帳號。
       changelog: 簡而言之，此次更新對您將意味著：
+      description: |-
+        您收到此 e-mail 係因我們正在更新 %{domain} 之服務條款。
+        這些異動將於 %{date} 起生效。我們鼓勵您審視此處之服務條款更新全文：
+      description_html: |-
+        您收到此 e-mail 係因我們正在更新 %{domain} 之服務條款。
+        這些異動將於 <strong>%{date} 起</strong> 生效。我們鼓勵您審視 <a href="%{path}" target="_blank">此處之服務條款更新全文</a>。
       sign_off: "%{domain} 團隊"
       subject: 我們的服務條款更新
       subtitle: "%{domain} 之服務條款正在悄悄發生變化"
