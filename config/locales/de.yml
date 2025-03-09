@@ -309,6 +309,7 @@ de:
       title: Audit-Log
       unavailable_instance: "(Server nicht verfügbar)"
     announcements:
+      back: Zurück zu den Ankündigungen
       destroyed_msg: Ankündigung erfolgreich gelöscht!
       edit:
         title: Ankündigung bearbeiten
@@ -317,6 +318,9 @@ de:
       new:
         create: Ankündigung erstellen
         title: Neue Ankündigung
+      preview:
+        explanation_html: 'Die E-Mail wird an <strong>%{display_count} Nutzer*innen</strong> gesendet. Folgendes wird in der E-Mail enthalten sein:'
+        title: Vorschau der Ankündigung
       publish: Veröffentlichen
       published_msg: Ankündigung erfolgreich veröffentlicht!
       scheduled_for: Geplant für %{time}
@@ -939,6 +943,7 @@ de:
         chance_to_review_html: "<strong>Die durch diese Vorlage erstellten Nutzungsbedingungen werden nicht automatisch veröffentlicht.</strong> Du wirst alles noch einmal überprüfen können. Bitte fülle alle Felder mit den notwendigen Informationen aus, um fortzufahren."
         explanation_html: Die Vorlage für die Nutzungsbedingungen dient ausschließlich zu Informationszwecken und sollte nicht als Rechtsberatung zu einem bestimmten Thema verstanden werden. Bei rechtlichen Fragen, konsultiere bitte deinen Rechtsbeistand.
         title: Nutzungsbedingungen festlegen
+      going_live_on_html: Aktuell gültig (ab %{date})
       history: Verlauf
       live: Aktuell gültig
       no_history: Es wurden noch keine Änderungen an den Nutzungsbedingungen aufgezeichnet.
@@ -946,7 +951,7 @@ de:
       notified_on_html: Nutzer*innen wurden am %{date} benachrichtigt
       notify_users: Nutzer*innen benachrichtigen
       preview:
-        explanation_html: 'Diese E-Mail wird an <strong>%{display_count} Nutzer*innen</strong> gesendet, die sich vor dem %{date} registriert haben. Der nachfolgende Text wird in der E-Mail enthalten sein:'
+        explanation_html: 'Die E-Mail wird an <strong>%{display_count} Nutzer*innen</strong> gesendet, die sich vor dem %{date} registriert haben. Folgendes wird in der E-Mail enthalten sein:'
         send_preview: Vorschau an %{email} senden
         send_to_all:
           one: "%{display_count} E-Mail senden"
@@ -1904,6 +1909,10 @@ de:
     recovery_instructions_html: Falls du jemals den Zugang zu deinem Smartphone verlierst, kannst du einen der unten aufgeführten Wiederherstellungscodes verwenden, um wieder Zugang zu deinem Konto zu erhalten. <strong>Bewahre die Wiederherstellungscodes sicher auf</strong>. Du kannst sie zum Beispiel ausdrucken und zusammen mit anderen wichtigen Dokumenten aufbewahren.
     webauthn: Sicherheitsschlüssel
   user_mailer:
+    announcement_published:
+      description: 'Ankündigung der Administrator*innen von %{domain}:'
+      subject: Ankündigung
+      title: Ankündigung von %{domain}
     appeal_approved:
       action: Kontoeinstellungen
       explanation: Der Einspruch gegen deinen Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in Ordnung.
@@ -1936,6 +1945,8 @@ de:
     terms_of_service_changed:
       agreement: Wenn du %{domain} weiterhin verwendest, stimmst du den neuen Nutzungsbedingungen automatisch zu. Falls du mit diesen nicht einverstanden bist, kannst du die Vereinbarung mit %{domain} jederzeit widerrufen, indem du dein Konto dort löschst.
       changelog: 'Hier siehst du, was sich geändert hat:'
+      description: 'Du erhältst diese E-Mail, weil wir einige Änderungen an unseren Nutzungsbedingungen für %{domain} vorgenommen haben. Diese Änderungen gelten ab %{date}. Wir empfehlen, die vollständig aktualisierte Fassung hier zu lesen:'
+      description_html: Du erhältst diese E-Mail, weil wir einige Änderungen an unseren Nutzungsbedingungen für %{domain} vorgenommen haben. Diese Änderungen gelten ab <strong>%{date}</strong>. Wir empfehlen, die <a href="%{path}" target="_blank">vollständig aktualisierte Fassung hier zu lesen</a>.
       sign_off: Das Team von %{domain}
       subject: Aktualisierungen unserer Nutzungsbedingungen
       subtitle: Die Nutzungsbedingungen von %{domain} ändern sich

@@ -49,6 +49,10 @@ pt-PT:
           attributes:
             reblog:
               taken: da publicação já existe
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: é muito cedo, deve ser após %{date}
         user:
           attributes:
             email:

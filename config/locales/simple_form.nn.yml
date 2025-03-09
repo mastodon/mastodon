@@ -135,12 +135,13 @@ nn:
         text: Du kan bruka Markdown-syntaks for struktur.
       terms_of_service_generator:
         admin_email: Juridiske merknader kan vera motsegner, rettsavgjerder, orskurdar eller førespurnader om sletting.
-        arbitration_address: Kan vera lik den fysiske adressa over, eller "N/A" viss du bruker epost
-        arbitration_website: Kan vera eit nettskjema, eller "N/A" viss du bruker epost
+        arbitration_address: Kan vere lik den fysiske adressa over, eller "N/A" viss du bruker epost.
+        arbitration_website: Kan vere eit nettskjema eller "N/A" viss du bruker e-post.
         dmca_address: For US operators, use the address registered in the DMCA Designated Agent Directory. A P.O. Box listing is available upon direct request, use the DMCA Designated Agent Post Office Box Waiver Request to email the Copyright Office and describe that you are a home-based content moderator who fears revenge or retribution for your actions and need to use a P.O. Box to remove your home address from public view.
-        dmca_email: Kan vera den same epostadressa som adressa for juridiske merknader over
+        dmca_email: Kan vere same e-post som brukast i "E-postadresse for juridiske meldingar" ovanfor.
         domain: Noko som identifiserer den nettenesta du tilbyr.
         jurisdiction: Skriv kva land den som betaler rekningane bur i. Viss det er eit firma eller ein annan organisasjon, skriv du landet der organisasjonen held til, samt adressa som trengst.
+        min_age: Skal ikkje vere under minstealder som krevst av lover i jurisdiksjonen din.
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
         role: Rolla kontrollerer kva løyve brukaren har.
@@ -342,6 +343,7 @@ nn:
         dmca_email: Epostadresse for opphavsrettsvarsel
         domain: Domene
         jurisdiction: Rettskrins
+        min_age: Minstealder
       user:
         role: Rolle
         time_zone: Tidssone

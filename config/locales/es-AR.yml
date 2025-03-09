@@ -309,6 +309,7 @@ es-AR:
       title: Registro de auditoría
       unavailable_instance: "[nombre de dominio no disponible]"
     announcements:
+      back: Volver a los anuncios
       destroyed_msg: "¡Anuncio eliminado exitosamente!"
       edit:
         title: Editar anuncio
@@ -317,6 +318,9 @@ es-AR:
       new:
         create: Crear anuncio
         title: Nuevo anuncio
+      preview:
+        explanation_html: 'El correo electrónico se enviará a <strong>%{display_count} usuarios</strong>. En el correo electrónico se incluirá el siguiente texto:'
+        title: Previsualizar la notificación del anuncio
       publish: Publicar
       published_msg: "¡Anuncio publicado exitosamente!"
       scheduled_for: Programado para %{time}
@@ -939,6 +943,7 @@ es-AR:
         chance_to_review_html: "<strong>Los términos del servicio generados no se publicarán automáticamente.</strong> Vas a tener la oportunidad de revisar el resultado. Por favor, rellená los detalles necesarios para continuar."
         explanation_html: La plantilla de términos de servicio ofrecida es únicamente para propósito informativo, y no debería ser considerada asesoramiento legal sobre ningún tema. Por favor, consultá con tu propio asesor legal sobre tu situación y las cuestiones legales específicas que tengás.
         title: Configuración de los términos del servicio
+      going_live_on_html: Actual, efectivo desde %{date}
       history: Historial
       live: En vivo
       no_history: Aún no se han registrado cambios en los términos del servicio.
@@ -1904,6 +1909,10 @@ es-AR:
     recovery_instructions_html: Si alguna vez perdés el acceso a tu aplicación de 2FA, podés usar uno de los siguientes códigos de recuperación para recuperar el acceso a tu cuenta. <strong>Mantenelos a salvo</strong>. Por ejemplo, podés imprimirlos y guardarlos con otros documentos importantes.
     webauthn: Llaves de seguridad
   user_mailer:
+    announcement_published:
+      description: 'Los administradores de %{domain} están haciendo un anuncio:'
+      subject: Anuncio del servicio
+      title: Anuncio del servicio %{domain}
     appeal_approved:
       action: Configuración de la cuenta
       explanation: La apelación del incumplimiento contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue aprobada. Tu cuenta se encuentra de nuevo en buen estado.
@@ -1936,6 +1945,8 @@ es-AR:
     terms_of_service_changed:
       agreement: Si seguís usando %{domain}, aceptás estos términos. Si no estás de acuerdo con los términos actualizados, podés cancelar tu acuerdo con %{domain} en cualquier momento, eliminando tu cuenta.
       changelog: 'A modo de pantallazo general, esto es lo que esta actualización significa para vos:'
+      description: 'Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos de servicio en %{domain}. Estas actualizaciones serán efectivas el %{date}. Te alentamos a revisar los términos actualizados en su totalidad aquí:'
+      description_html: Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos de servicio en %{domain}. Estas actualizaciones serán efectivas el <strong>%{date}</strong>. Te alentamos a revisar los <a href="%{path}" target="_blank"> términos actualizados en su totalidad aquí</a>.
       sign_off: El equipo de %{domain}
       subject: Actualizaciones en nuestros términos del servicio
       subtitle: Los términos del servicio de %{domain} están cambiando

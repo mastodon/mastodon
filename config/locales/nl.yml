@@ -309,6 +309,7 @@ nl:
       title: Auditlog
       unavailable_instance: "(domeinnaam niet beschikbaar)"
     announcements:
+      back: Terug naar mededelingen
       destroyed_msg: Verwijderen van mededeling geslaagd!
       edit:
         title: Mededeling bewerken
@@ -317,6 +318,9 @@ nl:
       new:
         create: Mededeling aanmaken
         title: Nieuwe mededeling
+      preview:
+        explanation_html: 'De e-mail wordt verzonden naar <strong>%{display_count} gebruikers</strong>. De volgende tekst wordt in het bericht opgenomen:'
+        title: Voorbeeld aankondiging notificatie
       publish: Inschakelen
       published_msg: Publiceren van mededeling geslaagd!
       scheduled_for: Ingepland voor %{time}
@@ -939,6 +943,7 @@ nl:
         chance_to_review_html: "<strong>De gegenereerde gebruiksvoorwaarden worden niet automatisch gepubliceerd.</strong> Je krijgt de gelegenheid om de resultaten eerst te bekijken. Vul de benodigde gegevens in om verder te gaan."
         explanation_html: Het sjabloon voor de gebruiksvoorwaarden is uitsluitend bedoeld voor informatieve doeleinden en mag niet worden opgevat als juridisch advies over welk onderwerp dan ook. Raadpleeg een eigen juridisch adviseur over jouw situatie en voor specifieke juridische vragen.
         title: Gebruiksvoorwaarden instellen
+      going_live_on_html: Actueel, met ingang van %{date}
       history: Geschiedenis
       live: Actueel
       no_history: Er zijn nog geen opgeslagen wijzigingen van de gebruiksvoorwaarden.
@@ -1904,6 +1909,10 @@ nl:
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaart</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
     webauthn: Beveiligingssleutels
   user_mailer:
+    announcement_published:
+      description: 'De beheerders van %{domain} doen een mededeling:'
+      subject: Service aankondiging
+      title: "%{domain} service aankondiging"
     appeal_approved:
       action: Accountinstellingen
       explanation: Het bezwaar tegen een door een moderator vastgestelde overtreding van jou op %{strike_date}, ingediend op %{appeal_date}, is goedgekeurd. De eerder vastgestelde overtreding is hierbij niet langer geldig.
@@ -1936,6 +1945,8 @@ nl:
     terms_of_service_changed:
       agreement: Door %{domain} te blijven gebruiken, ga je akkoord met deze voorwaarden. Als je het niet eens bent met de bijgewerkte voorwaarden, kun je je overeenkomst met %{domain} op elk gewenst moment beëindigen door je account te verwijderen.
       changelog: 'In een oogopslag betekent deze update voor jou:'
+      description: 'Je ontvangt dit bericht, omdat we enkele wijzigingen aanbrengen in onze gebruiksvoorwaarden bij %{domain}. Deze aanpassingen komen van kracht op %{date}. We raden je aan om de bijgewerkte voorwaarden hier volledig te bekijken:'
+      description_html: Je ontvangt dit bericht, omdat we enkele wijzigingen aanbrengen in onze gebruiksvoorwaarden bij %{domain}. Deze aanpassingen komen van kracht op <strong>%{date}</strong>. We raden je aan om de <a href="%{path}" target="_blank">bijgewerkte voorwaarden hier</a> volledig te bestuderen.
       sign_off: Het %{domain}-team
       subject: Onze bijgewerkte gebruiksvoorwaarden
       subtitle: De gebruiksvoorwaarden van %{domain} veranderen

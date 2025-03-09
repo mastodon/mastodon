@@ -309,6 +309,7 @@ it:
       title: Registro di controllo
       unavailable_instance: "(nome di dominio non disponibile)"
     announcements:
+      back: Torna agli annunci
       destroyed_msg: Annuncio eliminato!
       edit:
         title: Modifica annuncio
@@ -317,6 +318,9 @@ it:
       new:
         create: Crea annuncio
         title: Nuovo annuncio
+      preview:
+        explanation_html: 'L''e-mail verrà inviata a <strong>%{display_count} utenti</strong>. Il seguente testo sarà incluso nell''e-mail:'
+        title: Anteprima della notifica dell'annuncio
       publish: Pubblica
       published_msg: Annuncio pubblicato!
       scheduled_for: Programmato per %{time}
@@ -939,6 +943,7 @@ it:
         chance_to_review_html: "<strong>I termini di servizio generati non verranno pubblicati automaticamente.</strong> Avrai la possibilità di esaminare i risultati. Si prega di inserire i dettagli necessari per procedere."
         explanation_html: Il modello di termini di servizio fornito è solo a scopo informativo e non deve essere interpretato come consulenza legale su alcun argomento. Si prega di consultare il proprio consulente legale, in merito alla propria situazione e alle specifiche questioni legali che si hanno.
         title: Impostazione dei Termini di Servizio
+      going_live_on_html: In vigore il %{date}
       history: Cronologia
       live: In uso
       no_history: Non sono ancora state registrate modifiche ai termini di servizio.
@@ -1906,6 +1911,10 @@ it:
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
     webauthn: Chiavi di sicurezza
   user_mailer:
+    announcement_published:
+      description: 'Gli amministratori di %{domain} stanno facendo un annuncio:'
+      subject: Annuncio di servizio
+      title: Annuncio di servizio da %{domain}
     appeal_approved:
       action: Impostazioni account
       explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato approvato. Il tuo account ha riottenuto la buona reputazione.
@@ -1938,6 +1947,8 @@ it:
     terms_of_service_changed:
       agreement: Continuando a usare %{domain}, accetti questi termini. Se non sei d'accordo con i termini aggiornati, puoi terminare il tuo accordo con %{domain} in qualsiasi momento eliminando il tuo account.
       changelog: 'Ecco, in sintesi, cosa significa per te questo aggiornamento:'
+      description: 'Stai ricevendo questa e-mail perché stiamo apportando alcune modifiche ai nostri termini di servizio su %{domain}. Questi aggiornamenti entreranno in vigore il %{date}. Ti invitiamo a leggere i termini aggiornati per intero qui:'
+      description_html: Stai ricevendo questa e-mail perché stiamo apportando alcune modifiche ai nostri termini di servizio su %{domain}. Questi aggiornamenti entreranno in vigore il <strong>%{date}</strong>. Ti invitiamo a leggere i <a href="%{path}" target="_blank">termini aggiornati per intero qui</a>.
       sign_off: Il team di %{domain}
       subject: Aggiornamenti ai nostri termini di servizio
       subtitle: I termini di servizio di %{domain} stanno cambiando

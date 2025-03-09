@@ -309,6 +309,7 @@ tr:
       title: Denetim günlüğü
       unavailable_instance: "(alan adı mevcut değil)"
     announcements:
+      back: Duyurulara geri dön
       destroyed_msg: Duyuru başarıyla silindi!
       edit:
         title: Duyuruyu düzenle
@@ -317,6 +318,9 @@ tr:
       new:
         create: Duyuru oluştur
         title: Yeni duyuru
+      preview:
+        explanation_html: 'E-posta, <strong>%{display_count} kullanıcıya</strong> gönderilecektir. E-posta içerisinde aşağıdaki metin yer alacaktır:'
+        title: Duyuru bildiriminin önizlemesine bak
       publish: Yayınla
       published_msg: Duyuru başarıyla yayınlandı!
       scheduled_for: "%{time} için zamanlandı"
@@ -939,6 +943,7 @@ tr:
         chance_to_review_html: "<strong>Üretilmiş hizmet şartları otomatik olarak yayınlanmayacaktır.</strong> Sonucu gözden geçirme şansınız olacaktır. Devam etmek için lütfen gerekli ayrıntıları doldurun."
         explanation_html: Sağlanan hizmet şartları şablonu yalnızca bilgilendirme amaçlıdır ve herhangi bir konuda yasal tavsiye olarak yorumlanmamalıdır. Lütfen durumunuz ve belirli yasal sorularınız hakkında kendi hukuk müşavirinize danışın.
         title: Hizmet Şartları Kurulumu
+      going_live_on_html: Canlı, %{date} tarihinden beri yürürlükte
       history: Tarihçe
       live: Canlı
       no_history: Henüz kaydedilmiş hizmet şartları değişikliği yok.
@@ -1904,6 +1909,10 @@ tr:
     recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. <strong>Kurtarma kodlarınızı güvenli halde tutunuz.</strong> Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
     webauthn: Güvenlik anahtarları
   user_mailer:
+    announcement_published:
+      description: "%{domain} yöneticileri bir duyuru yapıyorlar:"
+      subject: Hizmet duyurusu
+      title: "%{domain} hizmet duyurusu"
     appeal_approved:
       action: Hesap Ayarları
       explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız onaylandı. Hesabınız artık tekrar iyi durumda."
@@ -1936,6 +1945,8 @@ tr:
     terms_of_service_changed:
       agreement: "%{domain} sunucusunu kullanmaya devam ederek bu şartları kabul etmiş olursunuz. Güncellenen şartları kabul etmiyorsanız, %{domain} ile olan sözleşmenizi istediğiniz zaman hesabınızı silerek feshedebilirsiniz."
       changelog: 'Bir bakışta, bu güncellemenin sizin için anlamı şudur:'
+      description: 'Bu e-postayı alıyorsunuz çünkü %{domain} adresindeki hizmet şartlarımızda bazı değişiklikler yapıyoruz. Bu değişiklikler %{date} tarihinde geçerli olacak. Aşağıda tümü yer alan güncellenen şartları incelemenizi öneriyoruz:'
+      description_html: Bu e-postayı alıyorsunuz çünkü %{domain} adresindeki hizmet şartlarımızda bazı değişiklikler yapıyoruz. Bu değişiklikler <strong>%{date}</strong> tarihinde geçerli olacak. <a href="%{path}" target="_blank">Tüm güncellenen şartları</a> incelemenizi öneriyoruz.
       sign_off: "%{domain} Ekibi"
       subject: Şimdiki hizmet şartlarımıza güncellemeler
       subtitle: "%{domain} adresindeki hizmet şartları değişiyor"
