@@ -872,8 +872,6 @@ io:
         message_html: Elastiksercharo es nekapabla, serchtraiti es nedisponebla
       elasticsearch_health_yellow:
         message_html: Elastiksercharo es nekapabla, vu darfas volar inquestar la motivo
-      elasticsearch_index_mismatch:
-        message_html: Elastikserchindexmapigi es destildatigita.
       elasticsearch_preset:
         action: Videz la dokumentajo
         message_html: Vua elastiksercharo havas plu kam un nodo, ma Mastodon ne povas uzar ili.
@@ -1133,7 +1131,6 @@ io:
       hint_html: Nur un plusa kozo! Ni postulas ke vu konfirmez ke vu esas homo (co es por ke ni povas preventar mesajachi!). Solvez la suba CAPTCHA e pulsez "Avancez".
       title: Sekuresokontrolo
     confirmations:
-      awaiting_review: Vua retpostoadreso es konfirmita! Vu recevos retposto se lu aprobas vua konto!
       awaiting_review_title: Vua apliko vartas revuo
       clicking_this_link: pulsante ca ligilo
       login_link: enirar
@@ -1303,7 +1300,6 @@ io:
       content: Regreto, ma evas nefuncionas che nia latero.
       title: Ca pagino ne esas korekta
     '503': La pagino ne povas montresas pro tempala servilfalio.
-    noscript_html: Por uzar Mastodon-retaplikajo, ebligez JavaScript.
   existing_username_validator:
     not_found: ne povas trovar lokala uzanti kun ta uzantonomo
     not_found_multiple: ne povas trovar %{usernames}
