@@ -49,6 +49,10 @@ cs:
           attributes:
             reblog:
               taken: příspěvku již existuje
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: je příliš brzy, musí být později než %{date}
         user:
           attributes:
             email:

@@ -49,6 +49,10 @@ fi:
           attributes:
             reblog:
               taken: tästä julkaisusta on jo tehty
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: on liian pian, täytyy olla myöhemmin kuin %{date}
         user:
           attributes:
             email:

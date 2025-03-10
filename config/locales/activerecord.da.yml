@@ -49,6 +49,10 @@ da:
           attributes:
             reblog:
               taken: af status findes allerede
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: er for tidligt, skal være efter %{date}
         user:
           attributes:
             email:

@@ -132,16 +132,18 @@ cs:
         name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
       terms_of_service:
         changelog: Může být strukturováno pomocí Markdown syntaxu.
+        effective_date: Rozumné časové rozpětí může být kdykoliv od 10 do 30 dnů od doby, kdy upozorníte své uživatele.
         text: Může být strukturováno pomocí Markdown syntaxu.
       terms_of_service_generator:
         admin_email: Právní oznámení zahrnují protioznámení, soudní příkazy, žádosti o stáhnutí příspěvků a žádosti od právních vymahačů.
-        arbitration_address: Může být stejné jako výše uvedená fyzická adresa, nebo „N/A“, pokud používáte e-mail
-        arbitration_website: Může být webový formulář nebo „N/A“, pokud používáte e-mail
-        choice_of_law: Město, region, území nebo stát, jehož vnitřní hmotné právo se řídí všemi nároky.
-        dmca_address: V případě provozovatelů v USA použijte adresu zapsanou v DMCA Designated Agent Directory. Na přímou žádost je možné použít namísto domovské adresy PO box, použijte DMCA Designated Agent Post Office Box Waiver Request k e-mailovaní Copyright Office a řekněte jim, že jste malým moderátorem obsahu, který se obavá pomsty nabo odplaty za Vaši práci a potřebujete použít PO box, abyste schovali Vaši domovskou adresu před širokou veřejností.
-        dmca_email: Může být stejný e-mail použitý pro „E-mail adresy pro právní upozornění“
+        arbitration_address: Může být stejné jako výše uvedená fyzická adresa, nebo „N/A“, pokud používáte e-mail.
+        arbitration_website: Může být webový formulář nebo „N/A“, pokud používáte email.
+        choice_of_law: Město, region, území nebo stát, jehož vnitřní hmotné právo stanovuje povinnosti pro veškeré nároky.
+        dmca_address: V případě provozovatelů v USA použijte adresu zapsanou v DMCA Designated Agent Directory. Na přímou žádost je možné použít namísto domovské adresy PO box. V tomto případě použijte DMCA Designated Agent Post Office Box Waiver Request k zaslání emailu Copyright Office a řekněte jim, že jste malým moderátorem obsahu, který se obavá pomsty nabo odplaty za Vaši práci a potřebujete použít PO box, abyste schovali Vaši domovskou adresu před širokou veřejností.
+        dmca_email: Může být stejný e-mail použitý pro „E-mailová adresa pro právní upozornění.“
         domain: Jedinečná identifikace online služby, kterou poskytujete.
         jurisdiction: Uveďte zemi, kde žije ten, kdo platí účty. Pokud je to společnost nebo jiný subjekt, uveďte zemi, v níž je zapsán do obchodního rejstříku, a město, region, území, případně stát, pokud je to povinné.
+        min_age: Neměla by být pod minimálním věkem požadovaným zákony vaší jurisdikce.
       user:
         chosen_languages: Po zaškrtnutí budou ve veřejných časových osách zobrazeny pouze příspěvky ve zvolených jazycích
         role: Role určuje, která oprávnění uživatel má.
@@ -334,6 +336,7 @@ cs:
         usable: Povolit příspěvkům používat tento hashtag lokálně
       terms_of_service:
         changelog: Co se změnilo?
+        effective_date: Datum platnosti
         text: Podmínky užití
       terms_of_service_generator:
         admin_email: E-mailová adresa pro právní upozornění
@@ -344,6 +347,7 @@ cs:
         dmca_email: E-mailová adresa pro oznámení DMCA/porušení autorských práv
         domain: Doména
         jurisdiction: Právní příslušnost
+        min_age: Věková hranice
       user:
         role: Role
         time_zone: Časové pásmo

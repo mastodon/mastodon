@@ -49,6 +49,10 @@ ko:
           attributes:
             reblog:
               taken: 이미 게시물이 존재합니다
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: 너무 이릅니다. %{date} 이후로 지정해야 합니다
         user:
           attributes:
             email:

@@ -2,7 +2,7 @@
 es:
   about:
     about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
-    contact_missing: No especificado
+    contact_missing: No establecido
     contact_unavailable: No disponible
     hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
@@ -11,7 +11,7 @@ es:
       one: Seguidor
       other: Seguidores
     following: Siguiendo
-    instance_actor_flash: Esta cuenta es un actor virtual utilizado para representar al servidor en sí mismo y no a ningún usuario individual. Se utiliza para propósitos de la federación y no se debe suspender.
+    instance_actor_flash: Esta cuenta es un actor virtual utilizado para representar al propio servidor y no a ningún usuario individual. Se utiliza con fines de federación y no debe suspenderse.
     last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
     nothing_here: "¡No hay nada aquí!"
@@ -40,7 +40,7 @@ es:
       avatar: Avatar
       by_domain: Dominio
       change_email:
-        changed_msg: "¡Email cambiado con éxito!"
+        changed_msg: "¡Correo electrónico cambiado con éxito!"
         current_email: Correo electrónico actual
         label: Cambiar el correo electrónico
         new_email: Nuevo correo electrónico
@@ -64,7 +64,7 @@ es:
       disable_sign_in_token_auth: Deshabilitar la autenticación por token de correo electrónico
       disable_two_factor_authentication: Desactivar autenticación de dos factores
       disabled: Deshabilitada
-      display_name: Nombre
+      display_name: Nombre para mostrar
       domain: Dominio
       edit: Editar
       email: Correo electrónico
@@ -102,7 +102,7 @@ es:
       moderation_notes: Notas de moderación
       most_recent_activity: Actividad más reciente
       most_recent_ip: IP más reciente
-      no_account_selected: Ninguna cuenta se cambió, ya que ninguna fue seleccionada
+      no_account_selected: No se ha modificado ninguna cuenta porque no se ha seleccionado ninguna
       no_limits_imposed: Sin límites impuestos
       no_role_assigned: Ningún rol asignado
       not_subscribed: No se está suscrito
@@ -309,6 +309,7 @@ es:
       title: Registro de auditoría
       unavailable_instance: "(nombre de dominio no disponible)"
     announcements:
+      back: Volver a la sección de anuncios
       destroyed_msg: "¡Anuncio eliminado con éxito!"
       edit:
         title: Editar anuncio
@@ -317,6 +318,9 @@ es:
       new:
         create: Crear anuncio
         title: Nuevo anuncio
+      preview:
+        explanation_html: 'El correo electrónico se enviará a <strong>%{display_count} usuarios</strong>. En el correo electrónico se incluirá el siguiente texto:'
+        title: Vista previa de la notificación del anuncio
       publish: Publicar
       published_msg: "¡Anuncio publicado con éxito!"
       scheduled_for: Programado para %{time}
@@ -939,6 +943,7 @@ es:
         chance_to_review_html: "<strong>Los términos del servicio generados no se publicarán automáticamente..</strong> Tendrás la oportunidad de revisar el resultado. Por favor, rellena los detalles necesarios para continuar."
         explanation_html: La plantilla de términos de servicio ofrecida es únicamente para propósito informativo, y no debería ser considerada asesoramiento legal sobre ningún tema. Por favor, consulta con tu propio consejo legal sobre tu situación y las cuestiones legales específicas que tengas.
         title: Configuración de términos del servicio
+      going_live_on_html: En vigor desde %{date}
       history: Historial
       live: En vivo
       no_history: Aún no se han registrado cambios en los términos del servicio.
@@ -1904,6 +1909,10 @@ es:
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
     webauthn: Claves de seguridad
   user_mailer:
+    announcement_published:
+      description: 'Los administradores de %{domain} están haciendo un anuncio:'
+      subject: Anuncio
+      title: Anuncio de %{domain}
     appeal_approved:
       action: Ajustes de la cuenta
       explanation: La apelación de la amonestación contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue aprobada. Tu cuenta se encuentra de nuevo en buen estado.
@@ -1936,6 +1945,8 @@ es:
     terms_of_service_changed:
       agreement: Al seguir usando %{domain}, aceptas estos términos. Si no estás de acuerdo con los términos actualizados, puedes cancelar tu acuerdo con %{domain} en cualquier momento eliminando tu cuenta.
       changelog: 'En resumen, esto es lo que esta actualización significa para ti:'
+      description: 'Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos de servicio en %{domain}. Estas actualizaciones entrarán en vigor en %{date}. Te animamos a revisar los términos actualizados en su totalidad aquí:'
+      description_html: Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos de servicio en %{domain}. Estas actualizaciones entrarán en vigor en <strong>%{date}</strong>. Te animamos a revisar los <a href="%{path}" target="_blank"> términos actualizados en su totalidad aquí</a>.
       sign_off: El equipo de %{domain}
       subject: Actualizaciones en nuestros términos del servicio
       subtitle: Los términos del servicio de %{domain} están cambiando

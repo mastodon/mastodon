@@ -306,6 +306,7 @@ ko:
       title: 감사 로그
       unavailable_instance: "(도메인네임 사용불가)"
     announcements:
+      back: 공지사항으로 돌아가기
       destroyed_msg: 공지가 성공적으로 삭제되었습니다!
       edit:
         title: 공지사항 편집
@@ -314,6 +315,9 @@ ko:
       new:
         create: 공지사항 생성
         title: 새 공지사항
+      preview:
+        explanation_html: "<strong>%{display_count} 명의 사용자</strong>에게 이메일이 발송됩니다. 다음 내용이 이메일에 포함됩니다:"
+        title: 공지사항 알림 미리보기
       publish: 게시
       published_msg: 공지사항이 성공적으로 발행되었습니다!
       scheduled_for: "%{time}에 예약됨"
@@ -1863,6 +1867,10 @@ ko:
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
     webauthn: 보안 키
   user_mailer:
+    announcement_published:
+      description: "%{domain}의 관리자가 공지사항을 게시했습니다:"
+      subject: 서비스 공지사항
+      title: "%{domain} 서비스 공지사항"
     appeal_approved:
       action: 계정 설정
       explanation: "%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했으며 승낙되었습니다. 당신의 계정은 정상적인 상태로 돌아왔습니다."

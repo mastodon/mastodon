@@ -309,6 +309,7 @@ hu:
       title: Audit napló
       unavailable_instance: "(domain név nem elérhető)"
     announcements:
+      back: Vissza a bejelentésekhez
       destroyed_msg: A közlemény sikeresen törölve!
       edit:
         title: Közlemény szerkesztése
@@ -317,6 +318,9 @@ hu:
       new:
         create: Közlemény létrehozása
         title: Új közlemény
+      preview:
+        explanation_html: 'Az e-mail <strong>%{display_count} felhasználónak</strong> lesz elküldve. A következő szöveg fog szerepelni a levélben:'
+        title: Közleményértesítés előnézete
       publish: Közzététel
       published_msg: A közlemény sikeresen publikálva!
       scheduled_for: Ekkorra ütemezve %{time}
@@ -939,6 +943,7 @@ hu:
         chance_to_review_html: "<strong>Az előállított felhasználási feltételek nem lesznek automatikusan közzétéve.</strong> Előtte áttekintheted az eredményt. A folytatáshoz töltsd ki a szükséges részleteket."
         explanation_html: A felhasználási feltételek sablonja csak információs célokat szolgál, és semmilyen témában nem tekinthető jogi tanácsadásnak. Konzultálj a saját jogi tanácsadóddal a helyzetedről és a felmerülő konkrét jogi kérdésekről.
         title: Felhasználási feltételek beállítása
+      going_live_on_html: 'Éles, hatálybalépés dátuma: %{date}'
       history: Előzmények
       live: Élő
       no_history: Még nincsenek változtatások a szolgáltatási feltételekben.
@@ -1904,6 +1909,10 @@ hu:
     recovery_instructions_html: A visszaállítási kódok egyikének segítségével tudsz majd belépni, ha elveszítenéd a telefonod. <strong>Tartsd biztos helyen a visszaállítási kódjaid</strong>! Például nyomtasd ki őket és tárold a többi fontos iratoddal együtt.
     webauthn: Biztonsági kulcsok
   user_mailer:
+    announcement_published:
+      description: 'A(z) %{domain} adminisztrátorai a következő bejelentést teszik:'
+      subject: Szolgáltatási közlemény
+      title: A(z) %{domain} szolgáltatási közleménye
     appeal_approved:
       action: Fiók Beállításai
       explanation: A fiókod %{appeal_date}-i fellebbezése, mely a %{strike_date}-i vétségeddel kapcsolatos, jóváhagyásra került. A fiókod megint makulátlan.
@@ -1936,6 +1945,8 @@ hu:
     terms_of_service_changed:
       agreement: A(z) %{domain} használatának folytatásával beleegyezel ezekbe a feltételekbe. Ha nem értesz egyet a frissített feltételekkel, akkor a fiókod törlésével megszakíthatod a(z) %{domain} weboldallal való megállapodásodat.
       changelog: 'Dióhéjban ez a frissítés ezt jelenti számodra:'
+      description: 'Azért kapod ezt az e-mailt, mert változtatunk a(z) %{domain} felhasználási feltételein. A változások ekkor lépnek életbe: %{date}. Javasoljuk, hogy tekintsd át a frissített feltételeket teljes egészében itt:'
+      description_html: 'Azért kapod ezt az e-mailt, mert változtatunk a(z) %{domain} felhasználási feltételein. A változások ekkor lépnek életbe: <strong>%{date}</strong>. Javasoljuk, hogy tekintsd át a <a href="%{path}" target="_blank">frissített feltételeket teljes egészében itt</a>.'
       sign_off: A(z) %{domain} csapata
       subject: A felhasználási feltételei frissítései
       subtitle: A(z) %{domain} felhasználási feltételei megváltoznak

@@ -271,11 +271,11 @@ gl:
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
         disable_relay_html: "%{name} desactivou o repetidor %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} desactivou a autenticación por token no email para %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} desactivou a autenticación por token no correo para %{target}"
         disable_user_html: "%{name} desactivou as credenciais para a usuaria %{target}"
         enable_custom_emoji_html: "%{name} activou o emoji %{target}"
         enable_relay_html: "%{name} activou o repetidor %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} activou a autenticación con token no email para %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} activou a autenticación con token no correo para %{target}"
         enable_user_html: "%{name} activou as credenciais para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
         promote_user_html: "%{name} promocionou a usuaria %{target}"
@@ -309,6 +309,7 @@ gl:
       title: Rexistro de auditoría
       unavailable_instance: "(nome de dominio non dispoñible)"
     announcements:
+      back: Anuncios anteriores
       destroyed_msg: Anuncio eliminado de xeito correcto!
       edit:
         title: Editar anuncio
@@ -317,6 +318,9 @@ gl:
       new:
         create: Crear anuncio
         title: Novo anuncio
+      preview:
+        explanation_html: 'Vaise enviar o correo a <strong>%{display_count} usuarias</strong>. Incluirase o seguinte texto no correo:'
+        title: Previsualización da notificación do anuncio
       publish: Publicar
       published_msg: Anuncio publicado de xeito correcto!
       scheduled_for: Programado para %{time}
@@ -939,6 +943,7 @@ gl:
         chance_to_review_html: "<strong>Vanse publicar automaticamente os termos do servizo creados.</strong> Terás a oportunidade de revisar o resultado. Por favor completa os detalles precisos para continuar."
         explanation_html: O modelo dos termos do servizo proporcionados é soamente informativo, e en ningún caso constitúe un consello legal. Por favor realiza unha consulta legal sobre a túa situación concreta e posibles cuestións legais que debas afrontar.
         title: Configurar os Termos do Servizo
+      going_live_on_html: Aplicados, con efecto desde %{date}
       history: Historial
       live: Actuais
       no_history: Non hai rexistrados cambios nos termos do servizo.
@@ -1904,6 +1909,10 @@ gl:
     recovery_instructions_html: Se perdeses o acceso ao teu teléfono, podes utilizar un dos códigos de recuperación inferiores para recuperar o acceso á conta. <strong>Garda os códigos nun lugar seguro</strong>. Por exemplo, podes imprimilos e gardalos xunto con outros documentos importantes.
     webauthn: Chaves de seguridade
   user_mailer:
+    announcement_published:
+      description: A administración de %{domain} publicou un anuncio
+      subject: Información de servizo
+      title: Información de servizo de %{domain}
     appeal_approved:
       action: Axustes da conta
       explanation: A apelación da acción contra a túa conta o %{strike_date} que enviaches o %{appeal_date} foi aprobada. A túa conta volve ao estado normal de uso.
@@ -1936,6 +1945,8 @@ gl:
     terms_of_service_changed:
       agreement: Se continúas a usar %{domain} aceptas estas condicións. Se non aceptas as condicións actualizadas podería rematar o acordo con %{domain} en calquera momento e eliminarse a túa conta.
       changelog: 'Dunha ollada, aquí tes o que implican os cambios para ti:'
+      description: 'Estás a recibir este correo porque fixemos cambios nos termos do servizo en %{domain}. Estas actualizacións terán efecto desde o %{date}. Convidámoste a que revises os termos ao completo aquí:'
+      description_html: 'Estás a recibir este correo porque fixemos algúns cambios nos nosos termos do servizo en %{domain}. Estas actualizacións terán efecto desde o <strong>%{date}</strong>. Convidámoste a que leas <a href="%{path}" target="_blank">aquí as condicións actualizadas ao completo</a>:'
       sign_off: O equipo de %{domain}
       subject: Actualización dos nosos termos do servizo
       subtitle: Cambiaron os termos do servizo de %{domain}

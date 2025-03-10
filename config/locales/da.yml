@@ -309,6 +309,7 @@ da:
       title: Revisionslog
       unavailable_instance: "(domænenavn utilgængeligt)"
     announcements:
+      back: Retur til annonceringer
       destroyed_msg: Bekendtgørelsen er slettet!
       edit:
         title: Redigér bekendtgørelse
@@ -317,6 +318,9 @@ da:
       new:
         create: Opret bekendtgørelse
         title: Ny bekendtgørelse
+      preview:
+        explanation_html: 'E-mailen sendes til <strong>%{display_count} brugere</strong>. Flg. tekst medtages i e-mailen:'
+        title: Forhåndsvis annonceringsnotifikation
       publish: Publicér
       published_msg: Bekendtgørelsen er publiceret!
       scheduled_for: Planlagt til %{time}
@@ -939,6 +943,7 @@ da:
         chance_to_review_html: "<strong>De genererede Tjenestevilkår offentliggøres ikke automatisk.</strong> Man vil have mulighed for at gennemgå resultaterne. Udfyld venligst de nødvendige oplysninger for at fortsætte."
         explanation_html: Tjenestevilkår-skabelonen er alene til orientering og bør ikke fortolkes som juridisk rådgivning om noget emne. Kontakt en juridiske rådgiver vedr. den aktuelle situation samt specifikke juridiske spørgsmål, man måtte have.
         title: Opsætning af Tjenestevilkår
+      going_live_on_html: Ikrafttræden pr. %{date}
       history: Historik
       live: Live
       no_history: Der er endnu ingen registrerede ændringer af vilkårene for tjenesten.
@@ -1904,6 +1909,10 @@ da:
     recovery_instructions_html: Mister du nogensinde adgang til din mobil, kan en af gendannelseskoderne nedenfor bruges til at opnå adgang til din konto. <strong>Opbevar disse et sikkert sted</strong>. De kan f.eks. udskrives og gemmes sammen med andre vigtige dokumenter.
     webauthn: Sikkerhedsnøgler
   user_mailer:
+    announcement_published:
+      description: 'Administratorerne på %{domain} udsender en annoncering:'
+      subject: Tjenesteannoncering
+      title: "%{domain}-tjenesteannoncering"
     appeal_approved:
       action: Kontoindstillinger
       explanation: Appellen af kontoadvarslen fra %{strike_date}, indsendt af dig pr. %{appeal_date}, er blevet godkendt. Din kontostatus er igen god.
@@ -1936,6 +1945,8 @@ da:
     terms_of_service_changed:
       agreement: Ved at fortsætte med at bruge %{domain}, accepteres disse vilkår. Kan du ikke acceptere de opdaterede vilkår, kan din aftale med %{domain} til enhver tid opsiges ved at slette din konto.
       changelog: 'Med ét blik er her, hvad denne opdatering rent praktisk betyder:'
+      description: 'Man modtager denne e-mail, idet vi foretager nogle ændringer i vores Tjenestevilkår på %{domain}. Disse opdateringer træder i kraft pr. %{date}. Man opfordres til at gennemgå de opdaterede vilkår til fulde her:'
+      description_html: Man modtager denne e-mail, idet vi foretager nogle ændringer i vores Tjenestevilkår på %{domain}. Disse opdateringer træder i kraft pr. <strong>%{date}</strong>. Man opfordres til at gennemgå de <a href="%{path}" target="_blank">opdaterede vilkår til fulde her</a>.
       sign_off: "%{domain}-teamet"
       subject: Opdatering af Tjenestevilkår
       subtitle: Tjenestevilkår for %{domain} ændres

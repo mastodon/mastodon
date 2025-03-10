@@ -132,16 +132,18 @@ tr:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
       terms_of_service:
         changelog: Markdown sözdizimiyle yapılandırılabilir.
+        effective_date: Kullanıcıları bilgilendirmek için mantıklı bir tarih aralığı 10 ile 30 gün arasında olabilir.
         text: Markdown sözdizimiyle yapılandırılabilir.
       terms_of_service_generator:
         admin_email: Yasal bildirimler arasında karşı bildirimler, mahkeme kararları, yayından kaldırma talepleri ve kolluk kuvvetleri talepleri yer alır.
-        arbitration_address: Yukarıdaki fiziksel adresle aynı olabilir, veya e-posta kullanıyorsanız "N/A"
-        arbitration_website: Web formu olabilir, veya e-posta kullanıyorsanız "N/A"
+        arbitration_address: Yukarıdaki fiziksel adresle aynı olabilir, veya e-posta kullanıyorsanız "N/A".
+        arbitration_website: Web formu olabilir, veya e-posta kullanıyorsanız "N/A".
         choice_of_law: Her türlü iddiayı yönetecek olan iç maddi yasalara ilişkin şehir, bölge, eyalet veya ülke.
         dmca_address: ABD operatörleri için DMCA Atanmış Temsilci Dizininde kayıtlı adresi kullanın. Doğrudan taleple Posta Kutusu kullanımı mümkündür, Telif Hakkı Ofisine e-posta göndermek için DMCA Atanmış Temsilci Posta Kutusu Feragat Talebini kullanın ve eylemleriniz nedeniyle intikam veya cezalandırılmaktan çekinen ve herkese açık ev adresini kullanmamak için Posta Kutusu kullanması gereken ev tabanlı bir içerik moderatörü olduğunuzu açıklayın.
-        dmca_email: Yukarıdaki "Yasal bildirimler için e-posta adresi" için kullanılan e-posta ile aynı olabilir
+        dmca_email: Yukarıdaki "Yasal bildirimler için e-posta adresi" için kullanılan e-posta ile aynı olabilir.
         domain: Sağladığınız çevrimiçi hizmetin benzersiz tanımlaması.
         jurisdiction: Faturaları ödeyen kişinin yaşadığı ülkeyi listeleyin. Bir şirket veya başka bir kuruluş ise, kurulduğu ülkeyi ve uygun şekilde şehri, bölgeyi, yöreyi veya eyaleti listeleyin.
+        min_age: Tabi olduğunuz yasaların gerektirdiği yaştan düşük olmamalıdır.
       user:
         chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki gönderiler genel zaman çizelgelerinde görüntülenir
         role: Rol, kullanıcıların sahip olduğu izinleri denetler.
@@ -334,6 +336,7 @@ tr:
         usable: Gönderilerin yerelde bu etiketi kullanmasına izin ver
       terms_of_service:
         changelog: Ne Değişti?
+        effective_date: Yürürlük tarihi
         text: Hizmet Şartları
       terms_of_service_generator:
         admin_email: Yasal bildirimler için e-posta adresi
@@ -344,6 +347,7 @@ tr:
         dmca_email: DMCA/telif hakkı bildirimleri için e-posta adresi
         domain: Alan adı
         jurisdiction: Yasal yetki alanı
+        min_age: Minimum yaş
       user:
         role: Rol
         time_zone: Zaman dilimi

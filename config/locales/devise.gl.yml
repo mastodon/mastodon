@@ -2,8 +2,8 @@
 gl:
   devise:
     confirmations:
-      confirmed: O teu enderezo de email foi confirmado.
-      send_instructions: Vas recibir un email coas instrucións para confirmar o teu enderezo de email dentro dalgúns minutos. Por favor, comproba o cartafol de spam se non recibiches o correo.
+      confirmed: Confirmouse correctamente o teu enderezo de correo.
+      send_instructions: Nuns minutos vas recibir un correo coas instrucións para confirmar o teu enderezo de correo. Por favor, comproba o cartafol de spam se non recibiches o correo.
       send_paranoid_instructions: Se o teu enderezo de email xa existira na nosa base de datos, vas recibir un correo coas instrucións de confirmación dentro dalgúns minutos. Por favor, comproba o cartafol de spam se non recibiches o correo.
     failure:
       already_authenticated: Xa estás conectada.
@@ -16,31 +16,31 @@ gl:
       pending: A túa conta aínda está baixo revisión.
       timeout: A túa sesión caducou. Accede outra vez para continuar.
       unauthenticated: Precisas iniciar sesión ou rexistrarte antes de continuar.
-      unconfirmed: Tes que confirmar o teu enderezo de email antes de continuar.
+      unconfirmed: Tes que confirmar o teu enderezo de correo antes de continuar.
     mailer:
       confirmation_instructions:
-        action: Verificar o enderezo de email
+        action: Verificar o enderezo de correo
         action_with_app: Confirmar e volver a %{app}
-        explanation: Creaches unha conta en %{host} con este enderezo de email. Estás a un clic de activala. Se non foches ti o que fixeches este rexisto, por favor ignora esta mensaxe.
-        explanation_when_pending: Solicitaches un convite para %{host} con este enderezo de email. Logo de que confirmes o teu enderezo de email, imos revisar a túa inscrición. Podes iniciar sesión para mudar os teus datos ou eliminar a túa conta, mais non poderás aceder á meirande parte das funcións até que a túa conta sexa aprobada. Se a túa inscrición for rexeitada, os teus datos serán eliminados, polo que non será necesaria calquera acción adicional da túa parte. Se non solicitaches este convite, por favor, ignora este correo.
+        explanation: Creaches unha conta en %{host} con este enderezo de correo. Estás a un clic de activala. Se non foches ti quen fixo esta solicitude, por favor ignora esta mensaxe.
+        explanation_when_pending: Solicitaches un convite para %{host} con este enderezo de correo. Logo confirmes o teu enderezo de correo, imos revisar a túa inscrición. Podes iniciar sesión para mudar os teus datos ou eliminar a túa conta, mais non poderás aceder á meirande parte das funcións até que a túa conta sexa aprobada. Se a túa inscrición for rexeitada, os teus datos serán eliminados, polo que non será necesaria calquera acción adicional da túa parte. Se non solicitaches este convite, por favor, ignora este correo.
         extra_html: Por favor, le <a href="%{terms_path}">as regras do servidor</a> e os <a href="%{policy_path}">nosos termos do servizo</a>.
         subject: 'Mastodon: Instrucións de confirmación para %{instance}'
-        title: Verificar o enderezo de email
+        title: Verificar o enderezo de correo
       email_changed:
         explanation: 'O email asociado á túa conta será mudado a:'
         extra: Se non mudaches o teu email é posíbel que alguén teña conseguido acceder á túa conta. Por favor muda o teu contrasinal de xeito imediato ou entra en contacto cun administrador do servidor se non podes acceder a túa conta.
         subject: 'Mastodon: Email mudado'
-        title: Novo enderezo de email
+        title: Novo enderezo de correo
       password_change:
         explanation: O contrasinal da túa conta foi mudado.
         extra: Se non mudaches o teu contrasinal, é posíbel que alguén teña conseguido acceder á túa conta. Por favor muda o teu contrasinal de xeito imediato ou entra en contato cun administrador do servidor se non podes acceder a túa conta.
         subject: 'Mastodon: Contrasinal mudado'
         title: Contrasinal mudado
       reconfirmation_instructions:
-        explanation: Confirma o teu novo enderezo para mudar o email.
-        extra: Se esta mudanza non foi comezada por ti, por favor ignora este email. O enderezo de email para a túa conta do Mastodon non mudará mentres non accedas á ligazón de enriba.
+        explanation: Confirma o teu novo enderezo para mudar o correo.
+        extra: Se esta mudanza non foi iniciada por ti, por favor ignora este correo. O enderezo de correo para a túa conta do Mastodon non mudará mentres non accedas á ligazón de enriba.
         subject: 'Mastodon: Confirmar email para %{instance}'
-        title: Verificar o enderezo de email
+        title: Verificar o enderezo de correo
       reset_password_instructions:
         action: Mudar contrasinal
         explanation: Solicitaches un novo contrasinal para a túa conta.
@@ -87,14 +87,14 @@ gl:
       failure: Non foi posible autenticarte desde %{kind} debido a "%{reason}".
       success: Autenticado con éxito na conta %{kind}.
     passwords:
-      no_token: Non podes acceder a esta páxina se non vés a través da ligazón enviada por email para o mudado do teu contrasinal. Se empregaches esa ligazón para chegar aquí, por favor verifica que o enderezo URL actual é o mesmo do que foi enviado no email.
-      send_instructions: Se o teu enderezo de email existe na nosa base de datos, vas recibir un email coas instrucións para mudar o contrasinal dentro duns minutos. Por favor, comproba o teu cartafol de correo lixo (spam) se ves que non recibiches o email.
-      send_paranoid_instructions: Se o teu enderezo de email existe na nosa base de datos, vas recibir unha ligazón para recuperar o contrasinal dentro duns minutos. Por favor, comproba o teu cartafol de correo lixo (spam) se ves que non recibiches o email.
+      no_token: Non podes acceder a esta páxina se non vés a través da ligazón enviada por correo para o cambio do contrasinal. Se empregaches esa ligazón para chegar aquí, por favor verifica que o enderezo URL actual é o mesmo do que foi enviado no correo.
+      send_instructions: Se o teu enderezo de correo existe na nosa base de datos, vas recibir un email coas instrucións para mudar o contrasinal dentro duns minutos. Por favor, comproba o teu cartafol de correo lixo (spam) se ves que non recibiches o correo.
+      send_paranoid_instructions: Se o teu enderezo de correo existe na nosa base de datos, vas recibir un email coas instrucións para mudar o contrasinal dentro duns minutos. Por favor, comproba o teu cartafol de correo lixo (spam) se ves que non recibiches o correo.
       updated: O teu contrasinal foi mudado. Estás xa autenticado na túa conta.
       updated_not_active: O teu contrasinal foi mudado de xeito correcto.
     registrations:
       destroyed: Adeus! A túa conta foi cancelada de xeito correcto. Agardamos verte de novo.
-      update_needs_confirmation: Actualizaches a túa conta de xeito correcto, pero precisamos verificar o teu novo enderezo de email. Por favor, revisa o teu email e segue a ligazón para confirmar o teu novo enderezo de email. Comproba o teu cartafol de correo lixo (spam) se ves que non recibiches o correo.
+      update_needs_confirmation: Actualizaches a túa conta de xeito correcto, pero precisamos verificar o teu novo enderezo de correo. Por favor, revisa o teu correo e segue a ligazón para confirmar o teu novo enderezo de correo. Comproba o cartafol de correo lixo (spam) se ves que non recibiches o correo.
       updated: A túa conta foi actualizada de xeito correcto.
     sessions:
       already_signed_out: Pechouse a sesión de xeito correcto.
