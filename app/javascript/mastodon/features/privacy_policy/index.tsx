@@ -13,6 +13,7 @@ import { apiGetPrivacyPolicy } from 'mastodon/api/instance';
 import type { ApiPrivacyPolicyJSON } from 'mastodon/api_types/instance';
 import { Column } from 'mastodon/components/column';
 import { Skeleton } from 'mastodon/components/skeleton';
+import { Time } from 'mastodon/utils/time';
 
 const messages = defineMessages({
   title: { id: 'privacy_policy.title', defaultMessage: 'Privacy Policy' },
@@ -63,7 +64,9 @@ const PrivacyPolicy: React.FC<{
                     year='numeric'
                     month='short'
                     day='2-digit'
-                  />
+                  >
+                    {(date) => <Time dateTime={date}>{date}</Time>}
+                  </FormattedDate>
                 ),
               }}
             />

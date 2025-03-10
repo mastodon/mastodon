@@ -21,6 +21,7 @@ import { Icon } from 'mastodon/components/icon';
 import { IconLogo } from 'mastodon/components/logo';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
+import { Time } from 'mastodon/utils/time';
 
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
@@ -373,7 +374,13 @@ export const DetailedStatus: React.FC<{
                 day='2-digit'
                 hour='2-digit'
                 minute='2-digit'
-              />
+              >
+                {(date) => (
+                  <Time dateTime={status.get('created_at') as string}>
+                    {date}
+                  </Time>
+                )}
+              </FormattedDate>
             </a>
 
             {visibilityLink}

@@ -57,6 +57,7 @@ import {
 } from 'mastodon/permissions';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
+import { Time } from 'mastodon/utils/time';
 
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
@@ -938,11 +939,13 @@ export const AccountHeader: React.FC<{
                       />
                     </dt>
                     <dd>
-                      {intl.formatDate(account.created_at, {
-                        year: 'numeric',
-                        month: 'short',
-                        day: '2-digit',
-                      })}
+                      <Time dateTime={account.created_at}>
+                        {intl.formatDate(account.created_at, {
+                          year: 'numeric',
+                          month: 'short',
+                          day: '2-digit',
+                        })}
+                      </Time>
                     </dd>
                   </dl>
 
