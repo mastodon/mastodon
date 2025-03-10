@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::FollowersSynchronizationsController do
+RSpec.describe 'ActivityPub Follower Synchronizations' do
   let!(:account) { Fabricate(:account) }
   let!(:follower_example_com_user_a) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/users/a') }
   let!(:follower_example_com_user_b) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/users/b') }
@@ -14,32 +14,34 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController do
     follower_example_com_user_b.follow!(account)
     follower_foo_com_user_a.follow!(account)
     follower_example_com_instance_actor.follow!(account)
-
-    allow(controller).to receive(:signed_request_actor).and_return(remote_account)
   end
 
   describe 'GET #show' do
     context 'without signature' do
-      let(:remote_account) { nil }
-
-      before do
-        get :show, params: { account_username: account.username }
-      end
+      subject { get account_followers_synchronization_path(account_username: account.username) }
 
       it 'returns http not authorized' do
-        expect(response).to have_http_status(401)
+        subject
+
+        expect(response)
+          .to have_http_status(401)
       end
     end
 
     context 'with signature from example.com' do
-      subject(:response) { get :show, params: { account_username: account.username } }
+      subject { get account_followers_synchronization_path(account_username: account.username), headers: nil, sign_with: remote_account }
 
       let(:remote_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/instance') }
 
       it 'returns http success and cache control and activity json types and correct items' do
-        expect(response).to have_http_status(200)
-        expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
-        expect(response.media_type).to eq 'application/activity+json'
+        subject
+
+        expect(response)
+          .to have_http_status(200)
+        expect(response.headers['Cache-Control'])
+          .to eq 'max-age=0, private'
+        expect(response.media_type)
+          .to eq 'application/activity+json'
 
         expect(response.parsed_body[:orderedItems])
           .to be_an(Array)
@@ -57,17 +59,21 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController do
         end
 
         it 'returns http gone' do
-          expect(response).to have_http_status(410)
+          subject
+
+          expect(response)
+            .to have_http_status(410)
         end
       end
 
       context 'when account is temporarily suspended' do
-        before do
-          account.suspend!
-        end
+        before { account.suspend! }
 
         it 'returns http forbidden' do
-          expect(response).to have_http_status(403)
+          subject
+
+          expect(response)
+            .to have_http_status(403)
         end
       end
     end
