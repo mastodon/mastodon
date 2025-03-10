@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Fabricator(:web_push_subscription, from: Web::PushSubscription) do
-  endpoint   Faker::Internet.url
+  endpoint   'https://host.example/endpoint'
   key_p256dh do
     curve = OpenSSL::PKey::EC.generate('prime256v1')
     ecdh_key = curve.public_key.to_bn.to_s(2)
