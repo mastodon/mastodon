@@ -49,6 +49,10 @@ nl:
           attributes:
             reblog:
               taken: van bericht bestaat al
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: is te vroeg, moet later zijn dan %{date}
         user:
           attributes:
             email:

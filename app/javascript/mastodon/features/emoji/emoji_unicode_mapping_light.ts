@@ -9,12 +9,13 @@ import type {
 import emojiCompressed from './emoji_compressed';
 import { unicodeToFilename } from './unicode_to_filename';
 
-type UnicodeMapping = {
-  [key in FilenameData[number][0]]: {
+type UnicodeMapping = Record<
+  FilenameData[number][0],
+  {
     shortCode: ShortCodesToEmojiDataKey;
     filename: FilenameData[number][number];
-  };
-};
+  }
+>;
 
 const [
   shortCodesToEmojiData,

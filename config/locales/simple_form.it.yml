@@ -132,16 +132,18 @@ it:
         name: Puoi cambiare solo il minuscolo/maiuscolo delle lettere, ad esempio, per renderlo più leggibile
       terms_of_service:
         changelog: Può essere strutturato con la sintassi Markdown.
+        effective_date: Un lasso di tempo ragionevole può variare da 10 a 30 giorni dalla data di notifica agli utenti.
         text: Può essere strutturato con la sintassi Markdown.
       terms_of_service_generator:
         admin_email: Gli avvisi legali includono controavvisi, ordinanze del tribunale, richieste di rimozione e richieste delle forze dell'ordine.
-        arbitration_address: Può essere lo stesso dell'indirizzo fisico sopra o "N/A" se si utilizza l'email
-        arbitration_website: Può essere un modulo web o "N/A" se si utilizza l'email
+        arbitration_address: Può essere uguale all'indirizzo fisico sopra indicato oppure "N/D" se si utilizza l'e-mail.
+        arbitration_website: Può essere un modulo web oppure "N/D" se si utilizza l'e-mail.
         choice_of_law: Città, regione, territorio o Stato le cui leggi sostanziali interne regoleranno tutti i reclami.
         dmca_address: Per gli operatori statunitensi, utilizzare l'indirizzo registrato nella DMCA Designated Agent Directory. L'elenco delle caselle postali è disponibile su richiesta diretta, utilizzando il DMCA Designated Agent Post Office Box Waiver Request per inviare un'email al Copyright Office e descrivendo di essere un moderatore di contenuti che lavora da casa e che teme vendette o punizioni per le proprie azioni e che hai bisogno di usare una casella postale per rimuovere il tuo indirizzo di casa dalla vista pubblica.
-        dmca_email: Può essere lo stesso indirizzo email utilizzato per "Indirizzo email per avvisi legali" sopra
+        dmca_email: Può essere la stessa e-mail utilizzata per "Indirizzo e-mail per avvisi legali" sopra.
         domain: Identificazione univoca del servizio online che stai fornendo.
         jurisdiction: Indica il Paese in cui risiede il soggetto che paga le fatture. Se si tratta di un'azienda o di un altro ente, indicare il Paese in cui è costituito, nonché la città, la regione, il territorio o lo Stato, a seconda dei casi.
+        min_age: Non si dovrebbe avere un'età inferiore a quella minima richiesta, dalle leggi della tua giurisdizione.
       user:
         chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline pubbliche vengono mostrati solo i toot nelle lingue selezionate
         role: Il ruolo controlla quali permessi ha l'utente.
@@ -334,6 +336,7 @@ it:
         usable: Permetti ai post di utilizzare questo hashtag localmente
       terms_of_service:
         changelog: Cosa è cambiato?
+        effective_date: Data di decorrenza
         text: Termini di Servizio
       terms_of_service_generator:
         admin_email: Indirizzo email per avvisi legali
@@ -344,6 +347,7 @@ it:
         dmca_email: Indirizzo email per gli avvisi DMCA/copyright
         domain: Dominio
         jurisdiction: Giurisdizione legale
+        min_age: Età minima
       user:
         role: Ruolo
         time_zone: Fuso orario

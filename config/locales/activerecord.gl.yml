@@ -7,7 +7,7 @@ gl:
         options: Opcións
       user:
         agreement: Acordo do Servizo
-        email: Enderezo de email
+        email: Enderezo de correo
         locale: Locale
         password: Contrasinal
       user/account:
@@ -49,6 +49,10 @@ gl:
           attributes:
             reblog:
               taken: do estado xa existe
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: é demasiado axiña, debería ser posterior a %{date}
         user:
           attributes:
             email:

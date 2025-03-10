@@ -39,7 +39,7 @@ gem 'net-ldap', '~> 0.18'
 
 gem 'omniauth', '~> 2.0'
 gem 'omniauth-cas', '~> 3.0.0.beta.1'
-gem 'omniauth_openid_connect', '~> 0.6.1'
+gem 'omniauth_openid_connect', '~> 0.8.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'omniauth-saml', '~> 2.0'
 
@@ -102,10 +102,10 @@ gem 'rdf-normalize', '~> 0.5'
 
 gem 'prometheus_exporter', '~> 2.2', require: false
 
-gem 'opentelemetry-api', '~> 1.4.0'
+gem 'opentelemetry-api', '~> 1.5.0'
 
 group :opentelemetry do
-  gem 'opentelemetry-exporter-otlp', '~> 0.29.0', require: false
+  gem 'opentelemetry-exporter-otlp', '~> 0.30.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.8.0', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.22.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.22.0', require: false

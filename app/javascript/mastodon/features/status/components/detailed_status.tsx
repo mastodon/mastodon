@@ -221,12 +221,12 @@ export const DetailedStatus: React.FC<{
         />
       );
     }
-  } else if (status.get('spoiler_text').length === 0) {
+  } else if (status.get('card')) {
     media = (
       <Card
         sensitive={status.get('sensitive')}
         onOpenMedia={onOpenMedia}
-        card={status.get('card', null)}
+        card={status.get('card')}
       />
     );
   }

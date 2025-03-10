@@ -8,6 +8,7 @@ on:
       - .github/workflows/test-image-build.yml
       - Dockerfile
       - streaming/Dockerfile
+      - .dockerignore
 permissions:
   contents: read
 

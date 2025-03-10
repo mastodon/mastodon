@@ -12,5 +12,9 @@
     - @terms_of_service.each do |terms_of_service|
       %li
         .admin__terms-of-service__history__item
-          %h5= l(terms_of_service.published_at)
+          %h5
+            - if terms_of_service.effective_date.present?
+              = link_to l(terms_of_service.published_at), terms_of_service_version_path(date: terms_of_service.effective_date)
+            - else
+              = l(terms_of_service.published_at)
           .prose= markdown(terms_of_service.changelog)

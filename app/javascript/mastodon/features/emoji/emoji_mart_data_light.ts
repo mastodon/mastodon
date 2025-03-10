@@ -8,14 +8,15 @@ import type { Search, ShortCodesToEmojiData } from './emoji_compressed';
 import emojiCompressed from './emoji_compressed';
 import { unicodeToUnifiedName } from './unicode_to_unified_name';
 
-type Emojis = {
-  [key in NonNullable<keyof ShortCodesToEmojiData>]: {
+type Emojis = Record<
+  NonNullable<keyof ShortCodesToEmojiData>,
+  {
     native: BaseEmoji['native'];
     search: Search;
     short_names: Emoji['short_names'];
     unified: Emoji['unified'];
-  };
-};
+  }
+>;
 
 const [
   shortCodesToEmojiData,

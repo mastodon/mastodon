@@ -60,6 +60,7 @@ io:
       error:
         title: Eroro eventis
       new:
+        prompt_html: "%{client_name} volas permiso por adirar vua konto."
         review_permissions: Kontrolez permisi
         title: Yurizo bezonesas
       show:
@@ -82,6 +83,7 @@ io:
         access_denied: Moyenproprietanto o yurizservilo refuzis la demando.
         credential_flow_not_configured: Moyenproprietantpasvortidentesesofluo faliis pro ke Doorkeeper.configure.resource_owner_from_credentials ne ajustesis.
         invalid_client: Klientpermiso falias pro nesavita kliento, neinkluzita klientpermiso o nesuportita permismetodo.
+        invalid_code_challenge_method: La kodexchalenjmetodo mustas esar S256.
         invalid_grant: Provizita yurizo esis nevalida, expiris, deaprobesis, ne parigas uzita ridirektoligilo dum yurizdemando o facesis a altra kliento.
         invalid_redirect_uri: La inkluzita ridirektoligilo esas nevalida.
         invalid_request:
@@ -123,7 +125,7 @@ io:
         admin/reports: Administro di raporti
         all: Kompleta aceso a vua Mastodon-konto
         blocks: Restriktita
-        bookmarks: Libromarki
+        bookmarks: Lektosigni
         conversations: Konversi
         crypto: Intersequanta chifro
         favourites: Favoriziti
@@ -131,9 +133,10 @@ io:
         follow: Sequati, silencigati e blokusati
         follows: Sequati
         lists: Listi
-        media: Mediatachaji
+        media: Audvidajaddonaji
         mutes: Silencigati
         notifications: Avizi
+        profile: Vua Mastodon-profilo
         push: Pulsavizi
         reports: Raporti
         search: Trovez
@@ -148,17 +151,28 @@ io:
     scopes:
       admin:read: lektez omna informi di la servilo
       admin:read:accounts: lektez privata informo di omna konti
+      admin:read:canonical_email_blocks: lektar trublema informo di omna retpostoblokusi
+      admin:read:domain_allows: lektar trublema informo di omna domenpermisi
+      admin:read:domain_blocks: lektar trublema informo di omna domenblokusi
+      admin:read:email_domain_blocks: lektar trublema informo di omna retpostodomenblokusi
+      admin:read:ip_blocks: lektar trublema informo di omna IP-blokusi
       admin:read:reports: lektez privata informo di omna raporti e raportizita konti
-      admin:write: modifikez omna informi di la servilo
+      admin:write: redaktar omna informi di la servilo
       admin:write:accounts: jerez konti
+      admin:write:canonical_email_blocks: agar jeri ad retpostoblokusi
+      admin:write:domain_allows: agar jeri ad domenpermisi
+      admin:write:domain_blocks: agar jeri ad domenblokusi
+      admin:write:email_domain_blocks: agar jeri ad retpostodomenblokusi
+      admin:write:ip_blocks: agar jeri ad IP-blokusi
       admin:write:reports: jerez raporti
       crypto: uzas intersequanta chifro
       follow: follow, block, unblock and unfollow accounts
+      profile: lektar nur profilinformo di vua konto
       push: ganez vua pulsavizi
       read: read your account's data
       read:accounts: videz kontinformo
       read:blocks: videz restrikti
-      read:bookmarks: videz vua libromarki
+      read:bookmarks: vidar vua lektosigni
       read:favourites: videz vua favoriziti
       read:filters: videz vua filtrili
       read:follows: videz vua sequinti
@@ -169,15 +183,15 @@ io:
       read:search: trovez por vu
       read:statuses: videz omna posti
       write: post on your behalf
-      write:accounts: modifikez vua porfilo
+      write:accounts: redaktar vua porfilo
       write:blocks: restriktez konti e domeni
-      write:bookmarks: libromarkez posti
+      write:bookmarks: lektosignar afishi
       write:conversations: silencigez e efacez konversi
       write:favourites: favorizita posti
       write:filters: kreez filtrili
       write:follows: sequez personi
       write:lists: kreez listi
-      write:media: adchargez mediifaili
+      write:media: adkargar audvidajdoseri
       write:mutes: silencigez personi e konversi
       write:notifications: efacez vua avizi
       write:reports: raportizez altra omni

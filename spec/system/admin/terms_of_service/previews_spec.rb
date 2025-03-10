@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin TermsOfService Previews' do
   let(:terms_of_service) { Fabricate(:terms_of_service, notification_sent_at: nil) }
+  let(:admin_user) { Fabricate(:admin_user) }
 
   before { sign_in(admin_user) }
 

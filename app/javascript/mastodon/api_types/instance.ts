@@ -1,5 +1,7 @@
 export interface ApiTermsOfServiceJSON {
-  updated_at: string;
+  effective_date: string;
+  effective: boolean;
+  succeeded_by: string | null;
   content: string;
 }
 

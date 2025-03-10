@@ -108,6 +108,6 @@ RSpec.describe 'Filters' do
   end
 
   def filter_title_field
-    I18n.t('simple_form.labels.defaults.title')
+    form_label('defaults.title')
   end
 end

@@ -14,6 +14,9 @@
   .fields-group
     = form.input :changelog, wrapper: :with_block_label, input_html: { rows: 8 }
 
+  .fields-group
+    = form.input :effective_date, wrapper: :with_block_label, as: :date, start_year: Time.zone.today.year
+
   .actions
     = form.button :button, t('admin.terms_of_service.save_draft'), type: :submit, name: :action_type, value: :save_draft, class: 'button button-secondary'
     = form.button :button, t('admin.terms_of_service.publish'), type: :submit, name: :action_type, value: :publish
