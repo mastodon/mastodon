@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Fabricator(:preview_card) do
-  url { Faker::Internet.url }
-  title { Faker::Lorem.sentence }
-  description { Faker::Lorem.paragraph }
+  url { sequence(:url) { |i| "https://host.example/pages/#{i}" } }
+  title { 'Preview Card title' }
+  description { 'Preview Card description text' }
   type 'link'
   image { attachment_fixture('attachment.jpg') }
 end
