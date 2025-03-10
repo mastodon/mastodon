@@ -8,7 +8,7 @@ class Api::V1::Timelines::BaseController < Api::BaseController
   private
 
   def require_auth?
-    !Setting.timeline_preview
+    !(Setting.timeline_preview_local && Setting.timeline_preview_remote)
   end
 
   def pagination_collection
