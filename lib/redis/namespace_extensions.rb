@@ -5,6 +5,10 @@ class Redis
     def exists?(*args, &block)
       call_with_namespace('exists?', *args, &block)
     end
+
+    def with
+      yield self
+    end
   end
 end
 
