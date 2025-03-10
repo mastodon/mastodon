@@ -198,8 +198,10 @@ module LanguagesHelper
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,
     lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
+    lzz: ['Lazuri', 'ლაზური ნენა'].freeze,
     moh: ['Mohawk', 'Kanienʼkéha'].freeze,
     nds: ['Low German', 'Plattdüütsch'].freeze,
+    ota: ['Ottoman Turkish', 'لسان عثمانی'].freeze,
     pdc: ['Pennsylvania Dutch', 'Pennsilfaani-Deitsch'].freeze,
     sco: ['Scots', 'Scots'].freeze,
     sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,
@@ -208,6 +210,7 @@ module LanguagesHelper
     tok: ['Toki Pona', 'toki pona'].freeze,
     vai: ['Vai', 'ꕙꔤ'].freeze,
     xal: ['Kalmyk', 'Хальмг келн'].freeze,
+    xmf: ['Mingrelian', 'მარგალური ნინა'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
