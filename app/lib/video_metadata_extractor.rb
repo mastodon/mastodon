@@ -6,10 +6,10 @@ class VideoMetadataExtractor
 
   def initialize(path)
     @path     = path
-    @metadata = Oj.load(ffmpeg_command_output, mode: :strict, symbol_keys: true)
+    @metadata = JSON.parse(ffmpeg_command_output, symbolize_names: true)
 
     parse_metadata
-  rescue Terrapin::ExitStatusError, Oj::ParseError
+  rescue Terrapin::ExitStatusError, JSON::ParserError
     @invalid = true
   rescue Terrapin::CommandNotFoundError
     raise Paperclip::Errors::CommandNotFoundError, 'Could not run the `ffprobe` command. Please install ffmpeg.' # rubocop:disable I18n/RailsI18n/DecorateString -- This error is not user-facing
