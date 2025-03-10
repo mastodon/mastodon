@@ -306,6 +306,7 @@ vi:
       title: Nhật ký kiểm duyệt
       unavailable_instance: "(tên máy chủ không khả dụng)"
     announcements:
+      back: Quay về thông báo
       destroyed_msg: Xóa thông báo thành công!
       edit:
         title: Sửa thông báo
@@ -314,6 +315,9 @@ vi:
       new:
         create: Tạo thông báo
         title: Tạo thông báo mới
+      preview:
+        explanation_html: 'Gửi email tới <strong>%{display_count} thành viên</strong>. Nội dung sau đây sẽ được đưa vào email:'
+        title: Xem trước thông báo sẽ gửi
       publish: Đăng
       published_msg: Truyền đi thông báo thành công!
       scheduled_for: Đã lên lịch %{time}
@@ -925,6 +929,7 @@ vi:
         chance_to_review_html: "<strong>Các điều khoản dịch vụ đã tạo sẽ không được tự động công bố.</strong> Bạn sẽ cần xem lại trước. Vui lòng điền thông tin cần thiết để tiếp tục."
         explanation_html: Mẫu điều khoản dịch vụ được cung cấp chỉ nhằm mục đích cung cấp thông tin và không được hiểu là tư vấn pháp lý về bất kỳ vấn đề nào. Vui lòng tham khảo ý kiến ​​cố vấn pháp lý của riêng bạn về tình huống của bạn và các câu hỏi pháp lý cụ thể mà bạn có.
         title: Thiết lập Điều khoản Dịch vụ
+      going_live_on_html: Chính thức áp dụng từ %{date}
       history: Lịch sử
       live: Đang hiển thị
       no_history: Hiện tại chưa có ghi nhận thay đổi nào về các điều khoản dịch vụ.
@@ -1861,6 +1866,10 @@ vi:
     recovery_instructions_html: Nếu bạn bị mất điện thoại, hãy dùng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong>. Ví dụ, bạn có thể in chúng ra giấy.
     webauthn: Khóa bảo mật
   user_mailer:
+    announcement_published:
+      description: 'Quản trị viên %{domain} gửi một thông báo:'
+      subject: Thông báo dịch vụ
+      title: "%{domain} thông báo dịch vụ"
     appeal_approved:
       action: Cài đặt tài khoản
       explanation: Khiếu nại về tài khoản của bạn vào %{strike_date}, được gửi lúc %{appeal_date} đã được chấp nhận. Tài khoản của bạn đã có thể sử dụng bình thường.
@@ -1893,6 +1902,8 @@ vi:
     terms_of_service_changed:
       agreement: Tiếp tục sử dụng %{domain}, đồng nghĩa bạn đồng ý điều khoản dịch vụ. Nếu bạn không đồng ý với các điều khoản đã cập nhật, hãy xóa tài khoản %{domain} của bạn.
       changelog: 'Nhìn sơ qua, bản cập nhật này:'
+      description: 'Bạn nhận được email này vì chúng tôi đang thực hiện một số thay đổi đối với các điều khoản dịch vụ tại %{domain}. Thay đổi sẽ có hiệu lực từ %{date}. Hãy xem lại đầy đủ các điều khoản đã cập nhật tại đây:'
+      description_html: Bạn nhận được email này vì chúng tôi đang thực hiện một số thay đổi đối với các điều khoản dịch vụ tại %{domain}. Thay đổi sẽ có hiệu lực từ <strong>%{date}</strong>. Hãy xem lại <a href="%{path}" target="_blank">đầy đủ các điều khoản được cập nhật ở đây</a>.
       sign_off: Đội ngũ %{domain}
       subject: Cập nhật điều khoản dịch vụ
       subtitle: Điều khoản dịch vụ tại %{domain} đã thay đổi

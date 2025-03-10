@@ -132,16 +132,18 @@ gl:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       terms_of_service:
         changelog: Pode usarse sintaxe Markdown.
+        effective_date: Un prazo razonable podería estar entre 10 e 30 días desde que envías a notificación ás usuarias.
         text: Pode usarse sintaxe Markdown.
       terms_of_service_generator:
         admin_email: Os avisos legais inclúen ordes xudiciais, solicitudes de retirada de contido e requerimentos do cumprimento da lei.
-        arbitration_address: Pode ser o mesmo enderezo Físico de máis arriba, ou "N/A" se usas o correo electrónico
-        arbitration_website: Pode ser un formulario web ou "N/A" se usas o correo electrónico
+        arbitration_address: Pode ser igual ao enderezo Físico de arriba, ou "N/A" se usas correo electrónico.
+        arbitration_website: Pode ser un formulario web, ou "N/A" se usas o correo electrónico.
         choice_of_law: Cidade, rexión, territorio ou estado cuxas leis rexirán sobre as reclamacións e disputas.
         dmca_address: Para operadores de USA, utiliza o mesmo enderezo rexistrado no DMCA Designated Agent Directory. Está dispoñible a opción de usar P.O. Box facendo a solicitude baixo a DMCA Designated Agent Post Office Box Waiver Request pedíndoa á Copyright Office e indicando que es un moderador de contidos na túa casa e temes ameazas ou violencia polas medidas que tomas e precisas usar un P.O. Box para que non sexa público o enderezo da túa casa.
-        dmca_email: Pode ser o mesmo enderezo de correo usado para "Enderezo para avisos legais"
+        dmca_email: Pode ser o mesmo correo usado para "Enderezo de correo para avisos legais".
         domain: Identificador único do servizo en liña que proporcionas.
         jurisdiction: Informa sobre o país onde vive quen paga as facturas. Se é unha empresa ou outra entidade, indica o país onde está establecida e é axeitado escribir a cidade, rexión, territorio ou estado.
+        min_age: Non debería ser inferior á idade mínima requerida polas leis da túa xurisdición.
       user:
         chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
         role: Os roles establecen os permisos que ten a usuaria.
@@ -203,7 +205,7 @@ gl:
         current_password: Contrasinal actual
         data: Datos
         display_name: Nome mostrado
-        email: Enderezo de email
+        email: Enderezo de correo
         expires_in: Caduca tras
         fields: Metadatos do perfil
         header: Cabeceira
@@ -334,6 +336,7 @@ gl:
         usable: Permitir que as publicacións usen este cancelo localmente
       terms_of_service:
         changelog: Que cambios se fixeron?
+        effective_date: Data efectiva
         text: Termos do Servizo
       terms_of_service_generator:
         admin_email: Enderezo de correo para avisos legais
@@ -344,6 +347,7 @@ gl:
         dmca_email: Enderezo de correo electrónico para avisos sobre DMCA/copyright
         domain: Dominio
         jurisdiction: Xurisdición legal
+        min_age: Idade mínima
       user:
         role: Rol
         time_zone: Fuso horario

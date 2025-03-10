@@ -49,6 +49,10 @@ lt:
           attributes:
             reblog:
               taken: įrašas jau egzistuoja.
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: yra per anksti, turi būti vėliau nei %{date}.
         user:
           attributes:
             email:

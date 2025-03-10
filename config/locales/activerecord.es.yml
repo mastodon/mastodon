@@ -49,6 +49,10 @@ es:
           attributes:
             reblog:
               taken: de la publicación ya existe
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: es demasiado pronto, debe ser posterior a %{date}
         user:
           attributes:
             email:

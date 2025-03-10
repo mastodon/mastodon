@@ -309,6 +309,7 @@ fi:
       title: Tarkastusloki
       unavailable_instance: "(verkkotunnus ei saatavilla)"
     announcements:
+      back: Takaisin tiedotteisiin
       destroyed_msg: Tiedotteen poisto onnistui!
       edit:
         title: Muokkaa tiedotetta
@@ -317,6 +318,9 @@ fi:
       new:
         create: Luo tiedote
         title: Uusi tiedote
+      preview:
+        explanation_html: 'Sähköposti lähetetään <strong>%{display_count} käyttäjälle</strong>. Seuraava teksti sisällytetään sähköpostiviestiin:'
+        title: Esikatsele tiedoteilmoitus
       publish: Julkaise
       published_msg: Tiedotteen julkaisu onnistui!
       scheduled_for: Ajoitettu %{time}
@@ -939,6 +943,7 @@ fi:
         chance_to_review_html: "<strong>Luotuja käyttöehtoja ei julkaista automaattisesti.</strong> Sinulla on mahdollisuus tarkistaa lopputulos. Jatka täyttämällä tarvittavat tiedot."
         explanation_html: Tarjottu käyttöehtomalli on tarkoitettu vain tiedoksi, eikä sitä pidä tulkita oikeudellisena neuvontana missään yhteydessä. Käänny oman oikeusavustajasi puoleen tilanteessasi ja erityisissä oikeudellisissa kysymyksissäsi.
         title: Käyttöehtojen määritys
+      going_live_on_html: Voimassa %{date} alkaen
       history: Historia
       live: Julki
       no_history: Käyttöehtoihin ei ole vielä tehty muutoksia.
@@ -1904,6 +1909,10 @@ fi:
     recovery_instructions_html: Jos menetät puhelimesi, voit kirjautua tilillesi jollakin alla olevista palautuskoodeista. <strong>Pidä palautuskoodit hyvässä tallessa</strong>. Voit esimerkiksi tulostaa ne ja säilyttää muiden tärkeiden papereiden joukossa.
     webauthn: Suojausavaimet
   user_mailer:
+    announcement_published:
+      description: 'Palvelimen %{domain} ylläpito tiedottaa:'
+      subject: Palvelutiedote
+      title: Palvelimen %{domain} palvelutiedote
     appeal_approved:
       action: Tilin asetukset
       explanation: "%{appeal_date} lähettämäsi valitus tiliisi kohdistuvasta varoituksesta %{strike_date} on hyväksytty. Tilisi on jälleen hyvässä kunnossa."
@@ -1936,6 +1945,8 @@ fi:
     terms_of_service_changed:
       agreement: Jatkamalla palvelun %{domain} käyttöä hyväksyt nämä ehdot. Jos et hyväksy päivitettyjä ehtoja, voit milloin tahansa päättää sopimuksesi palvelun %{domain} kanssa poistamalla tilisi.
       changelog: 'Lyhyesti, mitä tämä päivitys tarkoittaa sinulle:'
+      description: 'Sait tämän sähköpostiviestin, koska teemme muutoksia palvelun %{domain} käyttöehtoihin. Muutokset tulevat voimaan %{date}. Kehotamme sinua tutustumaan päivitettyihin ehtoihin kokonaisuudessaan täällä:'
+      description_html: Sait tämän sähköpostiviestin, koska teemme muutoksia palvelun %{domain} käyttöehtoihin. Muutokset tulevat voimaan <strong>%{date}</strong>. Kehotamme sinua tutustumaan <a href="%{path}" target="_blank">päivitettyihin ehtoihin kokonaisuudessaan täällä</a>.
       sign_off: Palvelimen %{domain} tiimi
       subject: Käyttöehtojemme päivitykset
       subtitle: Palvelimen %{domain} käyttöehdot muuttuvat

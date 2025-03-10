@@ -81,7 +81,7 @@ lv:
         activity_api_enabled: Vietēji publicēto ziņu, aktīvo lietotāju un jauno reģistrāciju skaits nedēļas kopās
         app_icon: WEBP, PNG, GIF vai JPG. Mobilajās ierīcēs aizstāj noklusējuma lietotnes ikonu ar pielāgotu.
         backups_retention_period: Lietotājiem ir iespēja izveidot savu ierakstu arhīvu lejupielādēšanai vēlāk. Kad iestatīta pozitīva vērtība, šie arhīvi tiks automātiski izdzēsti no krātuves pēc norādītā dienu skaita.
-        bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju ieteikumu augšdaļā.
+        bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju sekošanas ieteikumu augšdaļā.
         closed_registrations_message: Tiek rādīts, kad reģistrēšanās ir slēgta
         content_cache_retention_period: Visi ieraksti no citiem serveriem (tajā skaitā pastiprinājumi un atbildes) tiks izdzēsti pēc norādītā dienu skaita, neņemot vērā vietēja lietotāja mijiedarbību ar šādiem ierakstiem. Tas ietver ierakstus, kurus vietējs lietotājs ir atzīmējis kā grāmatzīmi vai pievienojis izlasē. Tiks zaudēti arī privāti pieminējumi starp lietotājiem no dažādiem serveriem, un tos nebūs iespējams atgūt. Šī iestatījuma izmantošana ir paredzēta īpašam nolūkam paredzētiem serveriem un neatbilst tam, ko sagaida vairums lietotāju, kad pielietots vispārējas izmantošanas serveros.
         custom_css: Vari lietot pielāgotus stilus Mastodon tīmekļa versijā.
@@ -123,7 +123,7 @@ lv:
         hint: Izvēles. Sniedz vairāk informācijas par noteikumu
         text: Jāapraksta nosacījums vai prasība šī servera lietotājiem. Jāmēģina to veidot īsu un vienkāršu
       sessions:
-        otp: 'Ievadi divfaktoru kodu, ko ģenerējusi tava tālruņa lietotne, vai izmanto kādu no atkopšanas kodiem:'
+        otp: 'Jāievada tālruņa lietotnes izveidots divpakāpju kods vai jāizmanto viens no saviem atkopes kodie:'
         webauthn: Ja tā ir USB atslēga, noteikti ievieto to un, ja nepieciešams, pieskaries tai.
       settings:
         indexable: Tava profila lapa var tikt parādīta Google, Bing un citu meklēšanas dzinēju rezultātos.
@@ -133,6 +133,8 @@ lv:
       terms_of_service:
         changelog: Var veidot ar Markdown pierakstu.
         text: Var veidot ar Markdown pierakstu.
+      terms_of_service_generator:
+        domain: Sniegtā tiešsaistas pakalpojuma neatkārtojama identifikācija.
       user:
         chosen_languages: Ja ieķeksēts, publiskos laika grafikos tiks parādītas tikai ziņas noteiktajās valodās
         role: Loma nosaka, kādas lietotājam ir atļaujas.
@@ -148,6 +150,7 @@ lv:
         url: Kur notikumi tiks nosūtīti
     labels:
       account:
+        attribution_domains: Tīmekļvietnes, kurām ir tiesības uzskaitīt Tevi
         discoverable: Funkcijas profils un ziņas atklāšanas algoritmos
         fields:
           name: Marķējums
@@ -224,8 +227,10 @@ lv:
         setting_display_media_show_all: Parādīt visu
         setting_expand_spoilers: Vienmēr izvērst ziņas, kas apzīmētas ar brīdinājumiem par saturu
         setting_hide_network: Slēpt savu sociālo grafu
+        setting_missing_alt_text_modal: Rādīt apstiprināšanas lodziņu pirms informācijas nesēju bez aprakstošā teksta iesūtīšanas
         setting_reduce_motion: Ierobežot kustību animācijās
         setting_system_font_ui: Lietot sistēmas noklusējuma fontu
+        setting_system_scrollbars_ui: Lietot sistēmas noklusējuma ritjoslu
         setting_theme: Vietnes motīvs
         setting_trends: Parādīt šodienas tendences
         setting_unfollow_modal: Parādīt apstiprinājuma dialogu pirms pārtraukt kādam sekot
@@ -324,6 +329,8 @@ lv:
         changelog: Kas ir mainījies?
         text: Pakalpojuma izmantošanas nosacījumi
       terms_of_service_generator:
+        admin_email: E-pasta adrese juridiskiem paziņojumiem
+        choice_of_law: Likuma izvēle
         domain: Domēna vārds
       user:
         role: Loma

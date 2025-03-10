@@ -132,16 +132,18 @@ es:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       terms_of_service:
         changelog: Se puede estructurar con sintaxis Markdown.
+        effective_date: Un plazo razonable puede oscilar entre 10 y 30 días a partir de la fecha de notificación a los usuarios.
         text: Se puede estructurar con sintaxis Markdown.
       terms_of_service_generator:
         admin_email: Los avisos legales incluyen devoluciones, órdenes judiciales, solicitudes de retiro y solicitudes de cumplimiento de la ley.
-        arbitration_address: Puede ser la misma que la dirección física anterior, o "N/A" si utiliza correo electrónico
-        arbitration_website: Puede ser un formulario web, o “N/A” si utiliza correo electrónico
-        choice_of_law: Ciudad, región, territorio o declaración de las leyes de sustancia interna de las que se regirán todas y cada una de las reclamaciones.
+        arbitration_address: Puede ser la misma que la dirección física anterior, o "N/A" si utiliza correo electrónico.
+        arbitration_website: Puede ser un formulario web, o “N/A” si utiliza correo electrónico.
+        choice_of_law: Ciudad, región, territorio o estado de los juzgados que regirán todas y cada una de las disputas legales.
         dmca_address: Para operadores estadounidenses, utilice la dirección registrada en el DMCA Designated Agent Directory. Un listado P.O. Box está disponible bajo petición directa, use la DMCA Designated Agent Post Office Box Waiver Request para enviar un correo electrónico a la Oficina de Derechos de Autor y describir que usted es un moderador de contenido basado en el hogar que teme venganza o represalia por sus acciones y que necesita usar un P.O. Box para eliminar su dirección postal de la vista pública.
-        dmca_email: Puede ser el mismo correo electrónico utilizado para "Dirección de correo electrónico para avisos legales" de arriba
+        dmca_email: Puede ser el mismo correo electrónico utilizado para "Dirección de correo electrónico para avisos legales" de arriba.
         domain: Identificación única del servicio en línea que estás proporcionando.
         jurisdiction: Lista el país donde vive quien paga las facturas. Si es una empresa u otra entidad, enumere el país donde está basada y la ciudad, región, territorio o estado según corresponda.
+        min_age: No debería estar por debajo de la edad mínima requerida por las leyes de su jurisdicción.
       user:
         chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
         role: El rol controla qué permisos tiene el usuario.
@@ -334,16 +336,18 @@ es:
         usable: Permitir a las publicaciones usar esta etiqueta localmente
       terms_of_service:
         changelog: "¿Qué ha cambiado?"
+        effective_date: Fecha de entrada en vigor
         text: Términos del servicio
       terms_of_service_generator:
         admin_email: Dirección de correo electrónico para avisos legales
         arbitration_address: Dirección física para avisos de arbitraje
         arbitration_website: Sitio web para enviar avisos de arbitraje
-        choice_of_law: Elección de la ley
+        choice_of_law: Legislación aplicable
         dmca_address: Dirección física para avisos de DMCA/derechos de autor
         dmca_email: Dirección de correo electrónico para avisos de DMCA/derechos de autor
         domain: Dominio
         jurisdiction: Jurisdicción legal
+        min_age: Edad mínima
       user:
         role: Rol
         time_zone: Zona horaria

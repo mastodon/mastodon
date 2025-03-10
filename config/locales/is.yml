@@ -309,6 +309,7 @@ is:
       title: Atvikaskrá
       unavailable_instance: "(heiti léns ekki tiltækt)"
     announcements:
+      back: Til baka í auglýsingar
       destroyed_msg: Það tókst að eyða auglýsingunni!
       edit:
         title: Breyta auglýsingu
@@ -317,6 +318,9 @@ is:
       new:
         create: Búa til auglýsingu
         title: Ný auglýsing
+      preview:
+        explanation_html: 'Tölvupósturinn verður sendur til <strong>%{display_count} notenda</strong>. Eftirfarandi texti verður í meginmáli póstsins:'
+        title: Forskoða tilkynninguna
       publish: Birta
       published_msg: Það tókst að birta auglýsinguna!
       scheduled_for: Áætlað %{time}
@@ -941,6 +945,7 @@ is:
         chance_to_review_html: "<strong>Sjálfvirkt útbúnu þjónustuskilmálarnir verða ekki birtir sjálfkrafa.</strong> Þú munt geta yfirfarið textann. Fylltu inn nauðsynlegar upplýsingar til að halda áfram to proceed."
         explanation_html: Sniðmátið fyrir þjónustuskilmála sem hér fylgir er einungis hugsat til upplýsingar og ætti ekki að taska sem lögfræðilegt álit varðandi hin ýmsu efni. Þú skalt endilega ráðfæra þig við löglærða í þínu umdæmi varðandi þau atriði sem eiga við um stöðu þína auk annarra spurninga um lögfræðileg mál sem þú gætir haft.
         title: Uppsetning þjónustuskilmála
+      going_live_on_html: Í beinni, þann %{date}
       history: Ferill
       live: Í beinni
       no_history: Það eru engar breytingar ennþá á þjónustuskilmálunum.
@@ -1908,6 +1913,10 @@ is:
     recovery_instructions_html: Ef þú tapar símanum þínum geturðu notað einn af endurheimtukóðunum hér fyrir neðan til að fá aftur samband við notandaaðganginn þinn. <strong>Geymdu endurheimtukóðana á öruggum stað</strong>. Sem dæmi gætirðu prentað þá út og geymt með öðrum mikilvægum skjölum.
     webauthn: Öryggislyklar
   user_mailer:
+    announcement_published:
+      description: 'Stjórnendur %{domain} eru að senda frá sér yfirlýsingu:'
+      subject: Auglýsing vegna þjónustu
+      title: Auglýsing vegna þjónustu %{domain}
     appeal_approved:
       action: Stillingar notandaaðgangs
       explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið samþykkt. Notandaaðgangurinn þinn er aftur í góðu lagi.
@@ -1940,6 +1949,8 @@ is:
     terms_of_service_changed:
       agreement: Með því að halda áfram að nota %{domain}, ert þú þar með að samþykkja þessa skilmála. Ef þú ert ósammála þessum uppfærðu skilmálum, geturðu hvenær sem er sagt upp samþykki þínu gagnvart %{domain} með því að eyða notandaaðgangi þínum.
       changelog: 'Í stuttu máli er það þetta sem þessi uppfærsla þýðir fyrir þig:'
+      description: 'Þú ert að fá þennan tölvupóst vegna þess að við erum að gera breytingar á þjónustuskilmálum á %{domain}. Þessar breytingar taka gildi þann %{date}. Við hvetjum þig til að kynna þér þessar breytingar hér:'
+      description_html: Þú ert að fá þennan tölvupóst vegna þess að við erum að gera breytingar á þjónustuskilmálum á %{domain}. Þessar breytingar taka gildi þann <strong>%{date}</strong>. Við hvetjum þig til að kynna þér <a href="%{path}" target="_blank">þessar breytingar hér</a>.
       sign_off: "%{domain}-teymið"
       subject: Breytingar á þjónustuskilmálum okkar
       subtitle: Þjónustuskilmálar eru að breytast á %{domain}

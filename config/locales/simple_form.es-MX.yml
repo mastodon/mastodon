@@ -132,16 +132,18 @@ es-MX:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       terms_of_service:
         changelog: Puede estructurarse con la sintaxis Markdown.
+        effective_date: Un plazo razonable puede oscilar entre 10 y 30 días a partir de la fecha en que notifica a sus usuarios.
         text: Puede estructurarse con la sintaxis Markdown.
       terms_of_service_generator:
         admin_email: Las notificaciones legales incluyen contraavisos, órdenes judiciales, solicitudes de retirada y solicitudes de aplicación de la ley.
-        arbitration_address: Puede ser la misma que la dirección física anterior, o “N/A” si se utiliza el correo electrónico
-        arbitration_website: Puede ser un formulario web, o “N/A” si se utiliza el correo electrónico
+        arbitration_address: Puede ser la misma que la dirección física anterior, o "N/A" si utiliza correo electrónico.
+        arbitration_website: Puede ser un formulario web, o “N/A” si utiliza correo electrónico.
         choice_of_law: Ciudad, región, territorio o estado de las leyes de sustancia interna de las que se regirán todas y cada una de las reclamaciones.
         dmca_address: Para los operadores de EE. UU., utilice la dirección registrada en el Directorio de Agentes Designados de la DMCA. Un listado de apartados de correos está disponible bajo petición directa, utilice la Solicitud de Renuncia de Apartado de Correos de Agente Designado de la DMCA para enviar un correo electrónico a la Oficina de Derechos de Autor y describa que usted es un moderador de contenidos desde su casa que teme venganza o represalias por sus acciones y necesita utilizar un apartado de correos para eliminar su dirección particular de la vista del público.
-        dmca_email: Puede ser la misma dirección de correo electrónico usada en “Dirección de correo electrónico para notificaciones legales”
+        dmca_email: Puede ser el mismo correo electrónico utilizado para "Dirección de correo electrónico para avisos legales" de arriba.
         domain: Identificación única del servicio en línea que presta.
         jurisdiction: Indique el país de residencia de quien paga las facturas. Si se trata de una empresa u otra entidad, indique el país en el que está constituida y la ciudad, región, territorio o estado, según proceda.
+        min_age: No debería estar por debajo de la edad mínima requerida por las leyes de su jurisdicción.
       user:
         chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
         role: El rol controla qué permisos tiene el usuario.
@@ -334,6 +336,7 @@ es-MX:
         usable: Permitir a las publicaciones usar esta etiqueta localmente
       terms_of_service:
         changelog: "¿Qué es lo que ha cambiado?"
+        effective_date: Fecha de entrada en vigor
         text: Condiciones del servicio
       terms_of_service_generator:
         admin_email: Dirección de correo electrónico para notificaciones legales
@@ -344,6 +347,7 @@ es-MX:
         dmca_email: Dirección de correo electrónico para avisos de DMCA/derechos de autor
         domain: Dominio
         jurisdiction: Jurisdicción legal
+        min_age: Edad mínima
       user:
         role: Rol
         time_zone: Zona horaria
