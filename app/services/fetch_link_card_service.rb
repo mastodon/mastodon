@@ -16,55 +16,24 @@ class FetchLinkCardService < BaseService
   }iox
 
   def call(status)
-    @status       = status
+    @status = status
+    return if @status.with_preview_card?
+
     @original_url = parse_urls
 
-    return if @original_url.nil? || @status.with_preview_card?
+    return if @original_url.nil?
 
     @url = @original_url.to_s
 
-    with_redis_lock("fetch:#{@original_url}") do
-      @card = PreviewCard.find_by(url: @url)
-      process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
-    end
+    @card = FetchLinkCardForURLService.new.call(@url)
 
     attach_card if @card&.persisted?
-  rescue *Mastodon::HTTP_CONNECTION_ERRORS, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, Encoding::UndefinedConversionError, ActiveRecord::RecordInvalid => e
-    Rails.logger.debug { "Error fetching link #{@original_url}: #{e}" }
+  rescue ActiveRecord::RecordInvalid => e
+    Rails.logger.debug { "Error attching preview card for #{@original_url}: #{e}" }
     nil
   end
 
   private
-
-  def process_url
-    @card ||= PreviewCard.new(url: @url)
-
-    attempt_oembed || attempt_opengraph
-  end
-
-  def html
-    return @html if defined?(@html)
-
-    headers = {
-      'Accept' => 'text/html',
-      'Accept-Language' => "#{I18n.default_locale}, *;q=0.5",
-      'User-Agent' => "#{Mastodon::Version.user_agent} Bot",
-    }
-
-    @html = Request.new(:get, @url).add_headers(headers).perform do |res|
-      next unless res.code == 200 && res.mime_type == 'text/html'
-
-      # We follow redirects, and ideally we want to save the preview card for
-      # the destination URL and not any link shortener in-between, so here
-      # we set the URL to the one of the last response in the redirect chain
-      @url  = res.request.uri.to_s
-      @card = PreviewCard.find_or_initialize_by(url: @url) if @card.url != @url
-
-      @html_charset = res.charset
-
-      res.truncated_body
-    end
-  end
 
   def attach_card
     with_redis_lock("attach_card:#{@status.id}") do
@@ -103,63 +72,5 @@ class FetchLinkCardService < BaseService
   def skip_link?(anchor)
     # Avoid links for hashtags and mentions (microformats)
     anchor['rel']&.include?('tag') || anchor['class']&.match?(/u-url|h-card/) || mention_link?(anchor)
-  end
-
-  def attempt_oembed
-    service         = FetchOEmbedService.new
-    url_domain      = Addressable::URI.parse(@url).normalized_host
-    cached_endpoint = Rails.cache.read("oembed_endpoint:#{url_domain}")
-
-    embed   = service.call(@url, cached_endpoint: cached_endpoint) unless cached_endpoint.nil?
-    embed ||= service.call(@url, html: html) unless html.nil?
-
-    return false if embed.nil?
-
-    url = Addressable::URI.parse(service.endpoint_url)
-
-    @card.type          = embed[:type]
-    @card.title         = embed[:title]         || ''
-    @card.author_name   = embed[:author_name]   || ''
-    @card.author_url    = embed[:author_url].present? ? (url + embed[:author_url]).to_s : ''
-    @card.provider_name = embed[:provider_name] || ''
-    @card.provider_url  = embed[:provider_url].present? ? (url + embed[:provider_url]).to_s : ''
-    @card.width         = 0
-    @card.height        = 0
-
-    case @card.type
-    when 'link'
-      @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
-    when 'photo'
-      return false if embed[:url].blank?
-
-      @card.embed_url        = (url + embed[:url]).to_s
-      @card.image_remote_url = (url + embed[:url]).to_s
-      @card.width            = embed[:width].presence  || 0
-      @card.height           = embed[:height].presence || 0
-    when 'video'
-      @card.width            = embed[:width].presence  || 0
-      @card.height           = embed[:height].presence || 0
-      @card.html             = Sanitize.fragment(embed[:html], Sanitize::Config::MASTODON_OEMBED)
-      @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
-    when 'rich'
-      # Most providers rely on <script> tags, which is a no-no
-      return false
-    end
-
-    @card.save_with_optional_image!
-  end
-
-  def attempt_opengraph
-    return if html.nil?
-
-    link_details_extractor = LinkDetailsExtractor.new(@url, @html, @html_charset)
-    domain = Addressable::URI.parse(link_details_extractor.canonical_url).normalized_host
-    provider = PreviewCardProvider.matching_domain(domain)
-    linked_account = ResolveAccountService.new.call(link_details_extractor.author_account, suppress_errors: true) if link_details_extractor.author_account.present?
-
-    @card = PreviewCard.find_or_initialize_by(url: link_details_extractor.canonical_url) if link_details_extractor.canonical_url != @card.url
-    @card.assign_attributes(link_details_extractor.to_preview_card_attributes)
-    @card.author_account = linked_account if linked_account&.can_be_attributed_from?(domain) || provider&.trendable?
-    @card.save_with_optional_image! unless @card.title.blank? && @card.html.blank?
   end
 end

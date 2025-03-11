@@ -13,6 +13,7 @@
 
 class Favourite < ApplicationRecord
   include Paginable
+  include Favourite::FaspConcern if Mastodon::Feature.fasp_enabled?
 
   update_index('statuses', :status)
 
