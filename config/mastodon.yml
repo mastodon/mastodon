@@ -10,3 +10,5 @@ shared:
   version:
     metadata: <%= ENV.fetch('MASTODON_VERSION_METADATA', nil) %>
     prerelease: <%= ENV.fetch('MASTODON_VERSION_PRERELEASE', nil) %>
+test:
+  experimental_features: <%= [ENV.fetch('EXPERIMENTAL_FEATURES', nil), 'testing_only'].compact.join(',') %>
