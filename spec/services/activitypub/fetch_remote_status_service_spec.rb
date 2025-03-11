@@ -259,8 +259,16 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
           expect(existing_status.edits).to_not be_empty
         end
 
-        context 'when the status has been deleted at source' do
+        context 'when the status appears to have been deleted at source' do
           let(:response) { { status: 404, body: '' } }
+
+          shared_examples 'no delete' do
+            it 'does not delete the status' do
+              existing_status.reload
+              expect(existing_status.text).to eq 'Foo'
+              expect(existing_status.edits).to be_empty
+            end
+          end
 
           context 'when the status is orphaned/unsubscribed' do
             it 'deletes the orphaned status' do
@@ -275,16 +283,24 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
             it 'deletes the orphaned status' do
               expect { existing_status.reload }.to raise_error(ActiveRecord::RecordNotFound)
             end
+
+            context 'when the status is private' do
+              let(:existing_status) { Fabricate(:status, account: sender, text: 'Foo', uri: note[:id], visibility: :private) }
+
+              it_behaves_like 'no delete'
+            end
+
+            context 'when the status is direct' do
+              let(:existing_status) { Fabricate(:status, account: sender, text: 'Foo', uri: note[:id], visibility: :direct) }
+
+              it_behaves_like 'no delete'
+            end
           end
 
           context 'when the status is from an account with local followers' do
             let(:follow) { Fabricate(:follow, account: follower, target_account: sender, created_at: 2.days.ago) }
 
-            it 'does not delete the status' do
-              existing_status.reload
-              expect(existing_status.text).to eq 'Foo'
-              expect(existing_status.edits).to be_empty
-            end
+            it_behaves_like 'no delete'
           end
         end
       end
