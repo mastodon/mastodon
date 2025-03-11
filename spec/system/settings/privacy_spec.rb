@@ -11,8 +11,6 @@ RSpec.describe 'Settings Privacy' do
     before { user.account.update(discoverable: false) }
 
     context 'with a successful update' do
-      before { allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async) }
-
       it 'updates user profile information' do
         # View settings page
         visit settings_privacy_path
@@ -29,14 +27,13 @@ RSpec.describe 'Settings Privacy' do
           .to have_content(I18n.t('privacy.title'))
           .and have_content(success_message)
         expect(ActivityPub::UpdateDistributionWorker)
-          .to have_received(:perform_async).with(user.account.id)
+          .to have_enqueued_sidekiq_job(user.account.id)
       end
     end
 
     context 'with a failed update' do
       before do
         allow(UpdateAccountService).to receive(:new).and_return(failing_update_service)
-        allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
       end
 
       it 'updates user profile information' do
@@ -54,7 +51,7 @@ RSpec.describe 'Settings Privacy' do
         expect(page)
           .to have_content(I18n.t('privacy.title'))
         expect(ActivityPub::UpdateDistributionWorker)
-          .to_not have_received(:perform_async)
+          .to_not have_enqueued_sidekiq_job(anything)
       end
 
       private

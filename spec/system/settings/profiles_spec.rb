@@ -7,7 +7,6 @@ RSpec.describe 'Settings profile page' do
   let(:account) { user.account }
 
   before do
-    allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
     sign_in user
   end
 
@@ -24,7 +23,7 @@ RSpec.describe 'Settings profile page' do
       .to change { account.reload.display_name }.to('New name')
       .and(change { account.reload.avatar.instance.avatar_file_name }.from(nil).to(be_present))
     expect(ActivityPub::UpdateDistributionWorker)
-      .to have_received(:perform_async).with(account.id)
+      .to have_enqueued_sidekiq_job(account.id)
   end
 
   def display_name_field
