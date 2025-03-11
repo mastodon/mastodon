@@ -22,7 +22,11 @@ module ProfileStories
   def as_a_logged_in_user
     as_a_registered_user
     visit new_user_session_path
+    expect(page)
+      .to have_title(I18n.t('auth.login'))
     fill_in_auth_details(email, password)
+    expect(page)
+      .to have_css('.app-holder')
   end
 
   def as_a_logged_in_admin
