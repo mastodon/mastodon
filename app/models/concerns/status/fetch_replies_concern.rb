@@ -17,7 +17,7 @@ module Status::FetchRepliesConcern
     scope :not_fetched_recently, -> { where(fetched_replies_at: [nil, ..FETCH_REPLIES_COOLDOWN_MINUTES.ago]) }
 
     scope :should_not_fetch_replies, -> { local.or(created_recently.or(fetched_recently)) }
-    scope :should_fetch_replies, -> { remote.merge(not_created_recently).merge(not_fetched_recently) }
+    scope :should_fetch_replies, -> { remote.not_created_recently.not_fetched_recently }
 
     # statuses for which we won't receive update or deletion actions,
     # and should update when fetching replies
@@ -44,10 +44,10 @@ module Status::FetchRepliesConcern
   def unsubscribed?
     return false if local?
 
-    Follow.joins(:account).where(
+    !Follow.joins(:account).exists?(
       target_account: account.id,
       account: { domain: nil },
       created_at: ..updated_at
-    ).count.zero?
+    )
   end
 end
