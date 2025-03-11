@@ -34,11 +34,11 @@ require_relative '../lib/paperclip/transcoder'
 require_relative '../lib/paperclip/type_corrector'
 require_relative '../lib/paperclip/response_with_limit_adapter'
 require_relative '../lib/terrapin/multi_pipe_extensions'
+require_relative '../lib/mastodon/middleware/public_file_server'
+require_relative '../lib/mastodon/middleware/socket_cleanup'
 require_relative '../lib/mastodon/snowflake'
 require_relative '../lib/mastodon/feature'
 require_relative '../lib/mastodon/version'
-require_relative '../lib/mastodon/rack_middleware'
-require_relative '../lib/public_file_server_middleware'
 require_relative '../lib/devise/strategies/two_factor_ldap_authenticatable'
 require_relative '../lib/devise/strategies/two_factor_pam_authenticatable'
 require_relative '../lib/elasticsearch/client_extensions'
@@ -88,9 +88,9 @@ module Mastodon
     # We use our own middleware for this
     config.public_file_server.enabled = false
 
-    config.middleware.use PublicFileServerMiddleware if Rails.env.local? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true'
+    config.middleware.use Mastodon::Middleware::PublicFileServer if Rails.env.local? || ENV['RAILS_SERVE_STATIC_FILES'] == 'true'
     config.middleware.use Rack::Attack
-    config.middleware.use Mastodon::RackMiddleware
+    config.middleware.use Mastodon::Middleware::SocketCleanup
 
     config.before_configuration do
       require 'mastodon/redis_configuration'
