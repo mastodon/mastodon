@@ -16,8 +16,8 @@ class ActivityPub::FetchAllRepliesWorker
   MAX_PAGES = (ENV['FETCH_REPLIES_MAX_PAGES'] || 500).to_i
 
   def perform(root_status_id, options = {})
-    @root_status = Status.find(root_status_id)
-    return unless @root_status.should_fetch_replies?
+    @root_status = Status.remote.find_by(id: root_status_id)
+    return unless @root_status&.should_fetch_replies?
 
     @root_status.touch(:fetched_replies_at)
     Rails.logger.debug { "FetchAllRepliesWorker - #{@root_status.uri}: Fetching all replies for status: #{@root_status}" }
