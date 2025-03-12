@@ -40,14 +40,4 @@ module Status::FetchRepliesConcern
       fetched_replies_at.nil? || fetched_replies_at <= FETCH_REPLIES_COOLDOWN_MINUTES.ago
     )
   end
-
-  def unsubscribed?
-    return false if local?
-
-    !Follow.joins(:account).exists?(
-      target_account: account.id,
-      account: { domain: nil },
-      created_at: ..updated_at
-    )
-  end
 end
