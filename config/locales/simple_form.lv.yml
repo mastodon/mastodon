@@ -132,8 +132,11 @@ lv:
         name: Tu vari mainīt tikai burtu lielumu, piemēram, lai tie būtu vieglāk lasāmi
       terms_of_service:
         changelog: Var veidot ar Markdown pierakstu.
+        effective_date: Saprātīgs laika logs var būt no 10 līdz 30 dienām no dienas, kad lietotāji tiek apziņoti.
         text: Var veidot ar Markdown pierakstu.
       terms_of_service_generator:
+        arbitration_address: Var būt tāda pati kā augstāk esošā fiziskā adrese vai "N/A", ja tiek izmantota e-pasta adrese.
+        arbitration_website: Var būt tīmekļa veidlapa vai "N/A", ja tiek izmantots e-pasts.
         domain: Sniegtā tiešsaistas pakalpojuma neatkārtojama identifikācija.
       user:
         chosen_languages: Ja ieķeksēts, publiskos laika grafikos tiks parādītas tikai ziņas noteiktajās valodās
@@ -327,11 +330,13 @@ lv:
         usable: Ļaut ierakstos vietēji izmantot šo tēmturi
       terms_of_service:
         changelog: Kas ir mainījies?
+        effective_date: Spēkā stāšanās datums
         text: Pakalpojuma izmantošanas nosacījumi
       terms_of_service_generator:
         admin_email: E-pasta adrese juridiskiem paziņojumiem
         choice_of_law: Likuma izvēle
         domain: Domēna vārds
+        min_age: Mazākais pieļaujamais vecums
       user:
         role: Loma
         time_zone: Laika josla
