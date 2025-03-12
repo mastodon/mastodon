@@ -55,23 +55,12 @@ class ActivityPub::FetchAllRepliesWorker
   end
 
   def get_replies_uri(parent_status_uri)
-    begin
-      json_status = fetch_resource(parent_status_uri, true)
-      if json_status.nil?
-        Rails.logger.debug { "FetchAllRepliesWorker - #{@root_status.uri}: Could not get replies URI for #{parent_status_uri}, returned nil" }
-        nil
-      elsif !json_status.key?('replies')
-        Rails.logger.debug { "FetchAllRepliesWorker - #{@root_status.uri}: No replies collection found in ActivityPub object: #{json_status}" }
-        nil
-      else
-        json_status['replies']
-      end
-    rescue => e
-      Rails.logger.error { "FetchAllRepliesWorker - #{@root_status.uri}: Caught exception while resolving replies URI #{parent_status_uri}: #{e} - #{e.message}" }
-      # Raise if we can't get the collection for top-level status to trigger retry
-      raise e if parent_status_uri == @root_status.uri
+    fetch_resource(parent_status_uri, true)&.fetch('replies', nil)
+  rescue => e
+    Rails.logger.error { "FetchAllRepliesWorker - #{@root_status.uri}: Caught exception while resolving replies URI #{parent_status_uri}: #{e} - #{e.message}" }
+    # Raise if we can't get the collection for top-level status to trigger retry
+    raise e if parent_status_uri == @root_status.uri
 
-      nil
-    end
+    nil
   end
 end
