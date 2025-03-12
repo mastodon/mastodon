@@ -14,12 +14,12 @@ ARG BASE_REGISTRY="docker.io"
 # Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.4.x"]
 # renovate: datasource=docker depName=docker.io/ruby
 ARG RUBY_VERSION="3.4.2"
-# # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
+# # Node.js version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 # renovate: datasource=node-version depName=node
 ARG NODE_MAJOR_VERSION="22"
 # Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
 ARG DEBIAN_VERSION="bookworm"
-# Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
+# Node.js image to use for base image based on combined variables (ex: 20-bookworm-slim)
 FROM ${BASE_REGISTRY}/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim AS node
 # Ruby image to use for base image based on combined variables (ex: 3.4.x-slim-bookworm)
 FROM ${BASE_REGISTRY}/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} AS ruby
@@ -61,7 +61,7 @@ ENV \
 ENV \
   # Configure the IP to bind Mastodon to when serving traffic
   BIND="0.0.0.0" \
-  # Use production settings for Yarn, Node and related nodejs based tools
+  # Use production settings for Yarn, Node.js and related tools
   NODE_ENV="production" \
   # Use production settings for Ruby on Rails
   RAILS_ENV="production" \
@@ -128,13 +128,6 @@ RUN \
 # Create temporary build layer from base image
 FROM ruby AS build
 
-# Copy Node package configuration files into working directory
-COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
-COPY .yarn /opt/mastodon/.yarn
-
-COPY --from=node /usr/local/bin /usr/local/bin
-COPY --from=node /usr/local/lib /usr/local/lib
-
 ARG TARGETPLATFORM
 
 # hadolint ignore=DL3008
@@ -187,12 +180,6 @@ RUN \
   libx264-dev \
   libx265-dev \
   ;
-
-RUN \
-  # Configure Corepack
-  rm /usr/local/bin/yarn*; \
-  corepack enable; \
-  corepack prepare --activate;
 
 # Create temporary libvips specific build layer from build layer
 FROM build AS libvips
@@ -284,38 +271,37 @@ RUN \
   # Download and install required Gems
   bundle install -j"$(nproc)";
 
-# Create temporary node specific build layer from build layer
-FROM build AS yarn
+# Create temporary assets build layer from build layer
+FROM build AS precompiler
 
 ARG TARGETPLATFORM
 
-# Copy Node package configuration files into working directory
-COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
-COPY streaming/package.json /opt/mastodon/streaming/
-COPY .yarn /opt/mastodon/.yarn
+# Copy Mastodon sources into layer
+COPY . /opt/mastodon/
+
+# Copy Node.js binaries/libraries into layer
+COPY --from=node /usr/local/bin /usr/local/bin
+COPY --from=node /usr/local/lib /usr/local/lib
+
+RUN \
+  # Configure Corepack
+  rm /usr/local/bin/yarn*; \
+  corepack enable; \
+  corepack prepare --activate;
 
 # hadolint ignore=DL3008
 RUN \
   --mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
   --mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
-  # Install Node packages
+  # Install Node.js packages
   yarn workspaces focus --production @mastodon/mastodon;
 
-# Create temporary assets build layer from build layer
-FROM build AS precompiler
-
-# Copy Mastodon sources into precompiler layer
-COPY . /opt/mastodon/
-
-# Copy bundler and node packages from build layer to container
-COPY --from=yarn /opt/mastodon /opt/mastodon/
-COPY --from=bundler /opt/mastodon /opt/mastodon/
-COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
-# Copy libvips components to layer for precompiler
+# Copy libvips components into layer for precompiler
 COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
 COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
-
-ARG TARGETPLATFORM
+# Copy bundler packages into layer for precompiler
+COPY --from=bundler /opt/mastodon /opt/mastodon/
+COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 
 RUN \
   ldconfig; \
