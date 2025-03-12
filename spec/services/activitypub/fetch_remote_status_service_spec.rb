@@ -296,12 +296,6 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
               it_behaves_like 'no delete'
             end
           end
-
-          context 'when the status is from an account with local followers' do
-            let(:follow) { Fabricate(:follow, account: follower, target_account: sender, created_at: 2.days.ago) }
-
-            it_behaves_like 'no delete'
-          end
         end
       end
 

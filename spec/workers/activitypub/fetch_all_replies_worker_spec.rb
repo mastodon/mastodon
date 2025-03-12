@@ -123,6 +123,7 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
   end
 
   before do
+    stub_const('Status::FetchRepliesConcern::FETCH_REPLIES_ENABLED', true)
     allow(FetchReplyWorker).to receive(:push_bulk)
     all_items.each do |item|
       next if [top_note_uri, reply_note_uri].include? item

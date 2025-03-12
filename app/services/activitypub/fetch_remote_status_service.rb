@@ -83,13 +83,13 @@ class ActivityPub::FetchRemoteStatusService < BaseService
 
   def fetch_status(uri, id_is_known, on_behalf_of = nil)
     begin
-      fetch_resource(uri, id_is_known, on_behalf_of, raise_on_error: true)
+      fetch_resource(uri, id_is_known, on_behalf_of, raise_on_error: :all)
     rescue Mastodon::UnexpectedResponseError => e
       return unless e.response.code == 404
 
-      # If this is a 404 from a status from an account that has no local followers, delete it
-      existing_status = Status.find_by(uri: uri)
-      if !existing_status.nil? && existing_status.unsubscribed? && existing_status.distributable?
+      # If this is a 404 from a public status from a remote account, delete it
+      existing_status = Status.remote.find_by(uri: uri)
+      if existing_status&.distributable?
         Rails.logger.debug { "FetchRemoteStatusService - Got 404 for orphaned status with URI #{uri}, deleting" }
         Tombstone.find_or_create_by(uri: uri, account: existing_status.account)
         RemoveStatusService.new.call(existing_status, redraft: false)

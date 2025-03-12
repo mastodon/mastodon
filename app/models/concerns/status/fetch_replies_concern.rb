@@ -4,7 +4,7 @@ module Status::FetchRepliesConcern
   extend ActiveSupport::Concern
 
   # enable/disable fetching all replies
-  FETCH_REPLIES_ENABLED = ENV.key?('FETCH_REPLIES_ENABLED') ? ENV['FETCH_REPLIES_ENABLED'] == 'true' : true
+  FETCH_REPLIES_ENABLED = ENV['FETCH_REPLIES_ENABLED'] == 'true'
 
   # debounce fetching all replies to minimize DoS
   FETCH_REPLIES_COOLDOWN_MINUTES = (ENV['FETCH_REPLIES_COOLDOWN_MINUTES'] || 15).to_i.minutes
@@ -38,16 +38,6 @@ module Status::FetchRepliesConcern
     # we aren't brand new, and we haven't fetched replies since the debounce window
     FETCH_REPLIES_ENABLED && !local? && created_at <= FETCH_REPLIES_INITIAL_WAIT_MINUTES.ago && (
       fetched_replies_at.nil? || fetched_replies_at <= FETCH_REPLIES_COOLDOWN_MINUTES.ago
-    )
-  end
-
-  def unsubscribed?
-    return false if local?
-
-    !Follow.joins(:account).exists?(
-      target_account: account.id,
-      account: { domain: nil },
-      created_at: ..updated_at
     )
   end
 end
