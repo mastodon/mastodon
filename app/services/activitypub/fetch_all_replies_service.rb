@@ -9,7 +9,7 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
   def call(status_uri, collection_or_uri, max_pages: 1, request_id: nil)
     @status_uri = status_uri
 
-    super(status_uri, collection_or_uri, max_pages: max_pages, request_id: request_id)
+    super
   end
 
   private
