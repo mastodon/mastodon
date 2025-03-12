@@ -6,19 +6,10 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
   # Limit of replies to fetch per status
   MAX_REPLIES = (ENV['FETCH_REPLIES_MAX_SINGLE'] || 500).to_i
 
-  def call(status_uri, collection_or_uri, max_pages = nil, request_id: nil)
-    @reference_uri = status_uri
-    @allow_synchronous_requests = true
-    @collection_or_uri = collection_or_uri
+  def call(status_uri, collection_or_uri, max_pages: 1, request_id: nil)
     @status_uri = status_uri
 
-    @items, n_pages = collection_items(collection_or_uri, max_pages: max_pages)
-    return if @items.nil?
-
-    @items = filter_replies(@items)
-    FetchReplyWorker.push_bulk(@items) { |reply_uri| [reply_uri, { 'request_id' => request_id }] }
-
-    [@items, n_pages]
+    super(status_uri, collection_or_uri, max_pages: max_pages, request_id: request_id)
   end
 
   private
