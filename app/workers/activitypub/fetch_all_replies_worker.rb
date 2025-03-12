@@ -42,6 +42,8 @@ class ActivityPub::FetchAllRepliesWorker
     end
 
     Rails.logger.debug { "FetchAllRepliesWorker - #{@root_status.uri}: fetched #{fetched_uris.length} replies" }
+
+    # Workers shouldn't be returning anything, but this is used in tests
     fetched_uris
   end
 
