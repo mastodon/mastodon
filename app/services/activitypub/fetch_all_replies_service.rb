@@ -6,25 +6,15 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
   # Limit of replies to fetch per status
   MAX_REPLIES = (ENV['FETCH_REPLIES_MAX_SINGLE'] || 500).to_i
 
-  def call(collection_or_uri, status_uri, max_pages = nil, request_id: nil)
-    @allow_synchronous_requests = true
-    @collection_or_uri = collection_or_uri
+  def call(status_uri, collection_or_uri, max_pages: 1, request_id: nil)
     @status_uri = status_uri
 
-    @items, n_pages = collection_items(collection_or_uri, max_pages)
-    @items = filtered_replies
-    return if @items.nil?
-
-    FetchReplyWorker.push_bulk(@items) { |reply_uri| [reply_uri, { 'request_id' => request_id }] }
-
-    [@items, n_pages]
+    super
   end
 
   private
 
-  def filtered_replies
-    return if @items.nil?
-
+  def filter_replies(items)
     # Find all statuses that we *shouldn't* update the replies for, and use that as a filter.
     # We don't assume that we have the statuses before they're created,
     # hence the negative filter -
@@ -34,7 +24,7 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
     #
     # Typically we assume the number of replies we *shouldn't* fetch is smaller than the
     # replies we *should* fetch, so we also minimize the number of uris we should load here.
-    uris = @items.map { |item| value_or_id(item) }
+    uris = items.map { |item| value_or_id(item) }
 
     # Expand collection to get replies in the DB that were
     # - not included in the collection,
@@ -60,9 +50,5 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
 
     Rails.logger.debug { "FetchAllRepliesService - #{@collection_or_uri}: Fetching filtered statuses: #{uris}" }
     uris
-  end
-
-  def filter_by_host?
-    false
   end
 end

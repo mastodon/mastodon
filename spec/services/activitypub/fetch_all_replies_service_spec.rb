@@ -10,17 +10,17 @@ RSpec.describe ActivityPub::FetchAllRepliesService do
   let(:collection_uri) { 'http://example.com/replies/1' }
 
   let(:items) do
-    [
-      'http://example.com/self-reply-1',
-      'http://example.com/self-reply-2',
-      'http://example.com/self-reply-3',
-      'http://other.com/other-reply-1',
-      'http://other.com/other-reply-2',
-      'http://other.com/other-reply-3',
-      'http://example.com/self-reply-4',
-      'http://example.com/self-reply-5',
-      'http://example.com/self-reply-6',
-    ]
+    %w(
+      http://example.com/self-reply-1
+      http://example.com/self-reply-2
+      http://example.com/self-reply-3
+      http://other.com/other-reply-1
+      http://other.com/other-reply-2
+      http://other.com/other-reply-3
+      http://example.com/self-reply-4
+      http://example.com/self-reply-5
+      http://example.com/self-reply-6
+    )
   end
 
   let(:payload) do
@@ -36,10 +36,21 @@ RSpec.describe ActivityPub::FetchAllRepliesService do
     it 'fetches more than the default maximum and from multiple domains' do
       allow(FetchReplyWorker).to receive(:push_bulk)
 
-      subject.call(payload, status.uri)
+      subject.call(status.uri, payload)
 
-      expect(FetchReplyWorker).to have_received(:push_bulk).with(%w(http://example.com/self-reply-1 http://example.com/self-reply-2 http://example.com/self-reply-3 http://other.com/other-reply-1 http://other.com/other-reply-2 http://other.com/other-reply-3 http://example.com/self-reply-4
-                                                                    http://example.com/self-reply-5 http://example.com/self-reply-6))
+      expect(FetchReplyWorker).to have_received(:push_bulk).with(
+        %w(
+          http://example.com/self-reply-1
+          http://example.com/self-reply-2
+          http://example.com/self-reply-3
+          http://other.com/other-reply-1
+          http://other.com/other-reply-2
+          http://other.com/other-reply-3
+          http://example.com/self-reply-4
+          http://example.com/self-reply-5
+          http://example.com/self-reply-6
+        )
+      )
     end
 
     context 'with a recent status' do
@@ -50,9 +61,20 @@ RSpec.describe ActivityPub::FetchAllRepliesService do
       it 'skips statuses that have been updated recently' do
         allow(FetchReplyWorker).to receive(:push_bulk)
 
-        subject.call(payload, status.uri)
+        subject.call(status.uri, payload)
 
-        expect(FetchReplyWorker).to have_received(:push_bulk).with(%w(http://example.com/self-reply-1 http://example.com/self-reply-3 http://other.com/other-reply-1 http://other.com/other-reply-2 http://other.com/other-reply-3 http://example.com/self-reply-4 http://example.com/self-reply-5 http://example.com/self-reply-6))
+        expect(FetchReplyWorker).to have_received(:push_bulk).with(
+          %w(
+            http://example.com/self-reply-1
+            http://example.com/self-reply-3
+            http://other.com/other-reply-1
+            http://other.com/other-reply-2
+            http://other.com/other-reply-3
+            http://example.com/self-reply-4
+            http://example.com/self-reply-5
+            http://example.com/self-reply-6
+          )
+        )
       end
     end
 
@@ -64,7 +86,7 @@ RSpec.describe ActivityPub::FetchAllRepliesService do
       it 'updates the time that fetched statuses were last fetched' do
         allow(FetchReplyWorker).to receive(:push_bulk)
 
-        subject.call(payload, status.uri)
+        subject.call(status.uri, payload)
 
         expect(Status.find_by(uri: 'http://other.com/other-reply-1').fetched_replies_at).to be >= 1.minute.ago
       end
@@ -80,10 +102,22 @@ RSpec.describe ActivityPub::FetchAllRepliesService do
       it 'updates the unsubscribed replies' do
         allow(FetchReplyWorker).to receive(:push_bulk)
 
-        subject.call(payload, status.uri)
+        subject.call(status.uri, payload)
 
-        expect(FetchReplyWorker).to have_received(:push_bulk).with(%w(http://example.com/self-reply-1 http://example.com/self-reply-2 http://example.com/self-reply-3 http://other.com/other-reply-1 http://other.com/other-reply-2 http://other.com/other-reply-3 http://example.com/self-reply-4
-                                                                      http://example.com/self-reply-5 http://example.com/self-reply-6 http://other.com/account/unsubscribed))
+        expect(FetchReplyWorker).to have_received(:push_bulk).with(
+          %w(
+            http://example.com/self-reply-1
+            http://example.com/self-reply-2
+            http://example.com/self-reply-3
+            http://other.com/other-reply-1
+            http://other.com/other-reply-2
+            http://other.com/other-reply-3
+            http://example.com/self-reply-4
+            http://example.com/self-reply-5
+            http://example.com/self-reply-6
+            http://other.com/account/unsubscribed
+          )
+        )
       end
     end
   end
