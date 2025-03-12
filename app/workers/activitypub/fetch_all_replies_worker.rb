@@ -15,14 +15,14 @@ class ActivityPub::FetchAllRepliesWorker
   MAX_REPLIES = (ENV['FETCH_REPLIES_MAX_GLOBAL'] || 1000).to_i
   MAX_PAGES = (ENV['FETCH_REPLIES_MAX_PAGES'] || 500).to_i
 
-  def perform(parent_status_id, options = {})
-    @parent_status = Status.find(parent_status_id)
-    return unless @parent_status.should_fetch_replies?
+  def perform(root_status_id, options = {})
+    @root_status = Status.remote.find_by(id: root_status_id)
+    return unless @root_status&.should_fetch_replies?
 
-    @parent_status.touch(:fetched_replies_at)
-    Rails.logger.debug { "FetchAllRepliesWorker - #{@parent_status.uri}: Fetching all replies for status: #{@parent_status}" }
+    @root_status.touch(:fetched_replies_at)
+    Rails.logger.debug { "FetchAllRepliesWorker - #{@root_status.uri}: Fetching all replies for status: #{@root_status}" }
 
-    uris_to_fetch, n_pages = get_replies(@parent_status.uri, MAX_PAGES, options)
+    uris_to_fetch, n_pages = get_replies(@root_status.uri, MAX_PAGES, options)
     return if uris_to_fetch.nil?
 
     fetched_uris = uris_to_fetch.clone.to_set
@@ -41,7 +41,9 @@ class ActivityPub::FetchAllRepliesWorker
       n_pages += new_n_pages
     end
 
-    Rails.logger.debug { "FetchAllRepliesWorker - #{parent_status_id}: fetched #{fetched_uris.length} replies" }
+    Rails.logger.debug { "FetchAllRepliesWorker - #{@root_status.uri}: fetched #{fetched_uris.length} replies" }
+
+    # Workers shouldn't be returning anything, but this is used in tests
     fetched_uris
   end
 
@@ -55,23 +57,12 @@ class ActivityPub::FetchAllRepliesWorker
   end
 
   def get_replies_uri(parent_status_uri)
-    begin
-      json_status = fetch_resource(parent_status_uri, true)
-      if json_status.nil?
-        Rails.logger.debug { "FetchAllRepliesWorker - #{@parent_status.uri}: Could not get replies URI for #{parent_status_uri}, returned nil" }
-        nil
-      elsif !json_status.key?('replies')
-        Rails.logger.debug { "FetchAllRepliesWorker - #{@parent_status.uri}: No replies collection found in ActivityPub object: #{json_status}" }
-        nil
-      else
-        json_status['replies']
-      end
-    rescue => e
-      Rails.logger.error { "FetchAllRepliesWorker - #{@parent_status.uri}: Caught exception while resolving replies URI #{parent_status_uri}: #{e} - #{e.message}" }
-      # Raise if we can't get the collection for top-level status to trigger retry
-      raise e if parent_status_uri == @parent_status.uri
+    fetch_resource(parent_status_uri, true)&.fetch('replies', nil)
+  rescue => e
+    Rails.logger.info { "FetchAllRepliesWorker - #{@root_status.uri}: Caught exception while resolving replies URI #{parent_status_uri}: #{e} - #{e.message}" }
+    # Raise if we can't get the collection for top-level status to trigger retry
+    raise e if parent_status_uri == @root_status.uri
 
-      nil
-    end
+    nil
   end
 end
