@@ -57,7 +57,7 @@ class ActivityPub::FetchAllRepliesWorker
   def get_replies_uri(parent_status_uri)
     fetch_resource(parent_status_uri, true)&.fetch('replies', nil)
   rescue => e
-    Rails.logger.error { "FetchAllRepliesWorker - #{@root_status.uri}: Caught exception while resolving replies URI #{parent_status_uri}: #{e} - #{e.message}" }
+    Rails.logger.info { "FetchAllRepliesWorker - #{@root_status.uri}: Caught exception while resolving replies URI #{parent_status_uri}: #{e} - #{e.message}" }
     # Raise if we can't get the collection for top-level status to trigger retry
     raise e if parent_status_uri == @root_status.uri
 
