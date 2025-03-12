@@ -28,26 +28,28 @@ class ActivityPub::FetchRepliesService < BaseService
     collection = fetch_collection(collection['first']) if collection['first'].present?
     return unless collection.is_a?(Hash)
 
-    all_items = []
+    items = []
     n_pages = 1
     while collection.is_a?(Hash)
-      items = case collection['type']
-              when 'Collection', 'CollectionPage'
-                collection['items']
-              when 'OrderedCollection', 'OrderedCollectionPage'
-                collection['orderedItems']
-              end
+      items.concat(as_array(collection_page_items(collection)))
 
-      all_items.concat(as_array(items))
-
-      break if all_items.size >= MAX_REPLIES
+      break if items.size >= MAX_REPLIES
       break if n_pages >= max_pages
 
       collection = collection['next'].present? ? fetch_collection(collection['next']) : nil
       n_pages += 1
     end
 
-    [all_items, n_pages]
+    [items, n_pages]
+  end
+
+  def collection_page_items(collection)
+    case collection['type']
+    when 'Collection', 'CollectionPage'
+      collection['items']
+    when 'OrderedCollection', 'OrderedCollectionPage'
+      collection['orderedItems']
+    end
   end
 
   def fetch_collection(collection_or_uri)
