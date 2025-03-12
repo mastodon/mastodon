@@ -12,7 +12,7 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
     @collection_or_uri = collection_or_uri
     @status_uri = status_uri
 
-    @items, n_pages = collection_items(collection_or_uri, max_pages)
+    @items, n_pages = collection_items(collection_or_uri, max_pages: max_pages)
     return if @items.nil?
 
     @items = filter_replies(@items)

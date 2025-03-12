@@ -21,7 +21,7 @@ class ActivityPub::FetchRepliesService < BaseService
 
   private
 
-  def collection_items(collection_or_uri, max_pages = nil)
+  def collection_items(collection_or_uri, max_pages: 1)
     collection = fetch_collection(collection_or_uri)
     return unless collection.is_a?(Hash)
 
@@ -41,7 +41,7 @@ class ActivityPub::FetchRepliesService < BaseService
       all_items.concat(as_array(items))
 
       break if all_items.size >= MAX_REPLIES
-      break if !max_pages.nil? && n_pages >= max_pages
+      break if n_pages >= max_pages
 
       collection = collection['next'].present? ? fetch_collection(collection['next']) : nil
       n_pages += 1
