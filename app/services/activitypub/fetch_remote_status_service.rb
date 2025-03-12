@@ -83,7 +83,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
 
   def fetch_status(uri, id_is_known, on_behalf_of = nil)
     begin
-      fetch_resource(uri, id_is_known, on_behalf_of, raise_on_error: true)
+      fetch_resource(uri, id_is_known, on_behalf_of, raise_on_error: :all)
     rescue Mastodon::UnexpectedResponseError => e
       return unless e.response.code == 404
 

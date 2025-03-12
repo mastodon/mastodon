@@ -159,8 +159,8 @@ module JsonLdHelper
   # @param uri [String]
   # @param id_is_known [Boolean]
   # @param on_behalf_of [nil, Account]
-  # @param raise_on_error [Boolean, Symbol<:all, :temporary>] See {#fetch_resource_without_id_validation} for possible values
-  def fetch_resource(uri, id_is_known, on_behalf_of = nil, raise_on_error: false, request_options: {})
+  # @param raise_on_error [Symbol<:all, :temporary, :none>] See {#fetch_resource_without_id_validation} for possible values
+  def fetch_resource(uri, id_is_known, on_behalf_of = nil, raise_on_error: :none, request_options: {})
     unless id_is_known
       json = fetch_resource_without_id_validation(uri, on_behalf_of, raise_on_error: raise_on_error)
 
@@ -185,17 +185,17 @@ module JsonLdHelper
   #
   # @param uri [String]
   # @param on_behalf_of [nil, Account]
-  # @param raise_on_error [Boolean, Symbol<:all, :temporary>]
-  #   - +true+, +:all+ - raise if response code is not in the 2** range
+  # @param raise_on_error [Symbol<:all, :temporary, :none>]
+  #   - +:all+ - raise if response code is not in the 2xx range
   #   - +:temporary+ - raise if the response code is not an "unsalvageable error" like a 404
   #     (see {#response_error_unsalvageable} )
-  #   - +false+ - do not raise, return +nil+
-  def fetch_resource_without_id_validation(uri, on_behalf_of = nil, raise_on_error: false, request_options: {})
+  #   - +:none+ - do not raise, return +nil+
+  def fetch_resource_without_id_validation(uri, on_behalf_of = nil, raise_on_error: :none, request_options: {})
     on_behalf_of ||= Account.representative
 
     build_request(uri, on_behalf_of, options: request_options).perform do |response|
       raise Mastodon::UnexpectedResponseError, response if !response_successful?(response) && (
-        [true, :all].include?(raise_on_error) ||
+        raise_on_error == :all ||
         (!response_error_unsalvageable?(response) && raise_on_error == :temporary)
       )
 
