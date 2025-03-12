@@ -7,6 +7,7 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
   MAX_REPLIES = (ENV['FETCH_REPLIES_MAX_SINGLE'] || 500).to_i
 
   def call(collection_or_uri, status_uri, max_pages = nil, request_id: nil)
+    @reference_uri = status_uri
     @allow_synchronous_requests = true
     @collection_or_uri = collection_or_uri
     @status_uri = status_uri
@@ -60,9 +61,5 @@ class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
 
     Rails.logger.debug { "FetchAllRepliesService - #{@collection_or_uri}: Fetching filtered statuses: #{uris}" }
     uris
-  end
-
-  def filter_by_host?
-    false
   end
 end
