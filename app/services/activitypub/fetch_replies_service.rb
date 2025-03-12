@@ -13,7 +13,8 @@ class ActivityPub::FetchRepliesService < BaseService
     @items, = collection_items(collection_or_uri)
     return if @items.nil?
 
-    FetchReplyWorker.push_bulk(filtered_replies) { |reply_uri| [reply_uri, { 'request_id' => request_id }] }
+    @items = filter_replies(@items)
+    FetchReplyWorker.push_bulk(@items) { |reply_uri| [reply_uri, { 'request_id' => request_id }] }
 
     @items
   end
@@ -70,11 +71,11 @@ class ActivityPub::FetchRepliesService < BaseService
     end
   end
 
-  def filtered_replies
+  def filter_replies(items)
     # Only fetch replies to the same server as the original status to avoid
     # amplification attacks.
 
     # Also limit to 5 fetched replies to limit potential for DoS.
-    @items.map { |item| value_or_id(item) }.reject { |uri| non_matching_uri_hosts?(@reference_uri, uri) }.take(MAX_REPLIES)
+    items.map { |item| value_or_id(item) }.reject { |uri| non_matching_uri_hosts?(@reference_uri, uri) }.take(MAX_REPLIES)
   end
 end
