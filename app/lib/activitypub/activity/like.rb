@@ -6,6 +6,8 @@ class ActivityPub::Activity::Like < ActivityPub::Activity
 
     return if original_status.nil? || !original_status.account.local? || delete_arrived_first?(@json['id']) || @account.favourited?(original_status)
 
+    @account.schedule_suspension_recheck!
+
     favourite = original_status.favourites.create!(account: @account)
 
     LocalNotificationWorker.perform_async(original_status.account_id, favourite.id, 'Favourite', 'favourite')

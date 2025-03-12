@@ -64,6 +64,7 @@ class Account < ApplicationRecord
     trust_level
   )
 
+  SUSPENSION_REFRESH_INTERVAL = 1.day.freeze
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
   REFRESH_DEADLINE = 6.hours
   STALE_THRESHOLD = 1.day
@@ -248,6 +249,14 @@ class Account < ApplicationRecord
     return unless last_webfingered_at.present? && last_webfingered_at <= BACKGROUND_REFRESH_INTERVAL.ago
 
     AccountRefreshWorker.perform_in(rand(REFRESH_DEADLINE), id)
+  end
+
+  def schedule_suspension_recheck!(interaction_time: nil)
+    return unless suspended? && suspension_origin_remote?
+    return if last_webfingered_at.present? && last_webfingered_at >= SUSPENSION_REFRESH_INTERVAL.ago
+    return if interaction_time.present? && interaction_time < suspended_at
+
+    RemoteAccountRefreshWorker.perform_async(id)
   end
 
   def refresh!

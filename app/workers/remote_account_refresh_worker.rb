@@ -8,17 +8,11 @@ class RemoteAccountRefreshWorker
   sidekiq_options queue: 'pull', retry: 3
 
   def perform(id)
-    account = Account.find_by(id: id)
-    return if account.nil? || account.local?
+    account = Account.remote.find_by(id: id)
+    return if account.nil?
 
     ActivityPub::FetchRemoteAccountService.new.call(account.uri)
   rescue Mastodon::UnexpectedResponseError => e
-    response = e.response
-
-    if response_error_unsalvageable?(response)
-      # Give up
-    else
-      raise e
-    end
+    raise e unless response_error_unsalvageable?(e.response)
   end
 end
