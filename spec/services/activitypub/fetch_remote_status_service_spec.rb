@@ -11,7 +11,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
 
   let(:follower) { Fabricate(:account, username: 'alice') }
   let(:follow) { nil }
-  let(:response) { { body: Oj.dump(object), headers: { 'content-type': 'application/activity+json' } } }
+  let(:response) { { body: JSON.dump(object), headers: { 'content-type': 'application/activity+json' } } }
   let(:existing_status) { nil }
 
   let(:note) do
