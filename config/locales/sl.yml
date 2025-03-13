@@ -1492,6 +1492,47 @@ sl:
         one: Kaže, da želite <strong>slediti</strong> do <strong>%{count} računu</strong> iz <strong>%{filename}</strong> in <strong>nehati slediti komur koli drugemu</strong>.
         other: Kaže, da želite <strong>slediti</strong> do <strong>%{count} računom</strong> iz <strong>%{filename}</strong> in <strong>nehati slediti komur koli drugemu</strong>.
         two: Kaže, da želite <strong>slediti</strong> do <strong>%{count} računoma</strong> iz <strong>%{filename}</strong> in <strong>nehati slediti komur koli drugemu</strong>.
+      lists_html:
+        few: Kaže, da nameravate <strong>zamenjati svoje sezname</strong> z vsebino iz <strong>%{filename}</strong>. V nove sezname bodo dodani do <strong>%{count} računi</strong>.
+        one: Kaže, da nameravate <strong>zamenjati svoje sezname</strong> z vsebino iz <strong>%{filename}</strong>. V nove sezname bo dodan do <strong>%{count} račun</strong>.
+        other: Kaže, da nameravate <strong>zamenjati svoje sezname</strong> z vsebino iz <strong>%{filename}</strong>. V nove sezname bo dodanih do <strong>%{count} računov</strong>.
+        two: Kaže, da nameravate <strong>zamenjati svoje sezname</strong> z vsebino iz <strong>%{filename}</strong>. V nove sezname bosta dodana do <strong>%{count} računa</strong>.
+      muting_html:
+        few: Kaže, da nameravate <strong>zamenjati svoj seznam utišanih računov</strong> z do <strong>%{count} računi</strong> iz <strong>%{filename}</strong>.
+        one: Kaže, da nameravate <strong>zamenjati svoj seznam utišanih računov</strong> z do <strong>%{count} računom</strong> iz <strong>%{filename}</strong>.
+        other: Kaže, da nameravate <strong>zamenjati svoj seznam utišanih računov</strong> z do <strong>%{count} računi</strong> iz <strong>%{filename}</strong>.
+        two: Kaže, da nameravate <strong>zamenjati svoj seznam utišanih računov</strong> z do <strong>%{count} računoma</strong> iz <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        few: Kaže, da nameravate <strong>blokirati</strong> <strong>%{count} račune</strong> iz <strong>%{filename}</strong>.
+        one: Kaže, da nameravate <strong>blokirati</strong> <strong>%{count} račun</strong> iz <strong>%{filename}</strong>.
+        other: Kaže, da nameravate <strong>blokirati</strong> <strong>%{count} računov</strong> iz <strong>%{filename}</strong>.
+        two: Kaže, da nameravate <strong>blokirati</strong> <strong>%{count} računa</strong> iz <strong>%{filename}</strong>.
+      bookmarks_html:
+        few: V svoje <strong>zaznamke</strong> boste dodali <strong>%{count} objave</strong> iz <strong>%{filename}</strong>.
+        one: V svoje <strong>zaznamke</strong> boste dodali <strong>%{count} objavo</strong> iz <strong>%{filename}</strong>.
+        other: V svoje <strong>zaznamke</strong> boste dodali <strong>%{count} objav</strong> iz <strong>%{filename}</strong>.
+        two: V svoje <strong>zaznamke</strong> boste dodali <strong>%{count} objavi</strong> iz <strong>%{filename}</strong>.
+      domain_blocking_html:
+        few: "<strong>Blokirali</strong> boste <strong>%{count} domene</strong> iz <strong>%{filename}</strong>."
+        one: "<strong>Blokirali</strong> boste <strong>%{count} domeno</strong> iz <strong>%{filename}</strong>."
+        other: "<strong>Blokirali</strong> boste <strong>%{count} domen</strong> iz <strong>%{filename}</strong>."
+        two: "<strong>Blokirali</strong> boste <strong>%{count} domeni</strong> iz <strong>%{filename}</strong>."
+      following_html:
+        few: Začeli boste <strong>slediti</strong> <strong>%{count} računom</strong> iz <strong>%{filename}</strong>.
+        one: Začeli boste <strong>slediti</strong> <strong>%{count} računu</strong> iz <strong>%{filename}</strong>.
+        other: Začeli boste <strong>slediti</strong> <strong>%{count} računom</strong> iz <strong>%{filename}</strong>.
+        two: Začeli boste <strong>slediti</strong> <strong>%{count} računoma</strong> iz <strong>%{filename}</strong>.
+      lists_html:
+        few: V svoje <strong>sezname</strong> boste dodali <strong>%{count} račune</strong> iz <strong>%{filename}</strong>. Če seznami manjkajo, bodo ustvarjeni.
+        one: V svoje <strong>sezname</strong> boste dodali <strong>%{count} račun</strong> iz <strong>%{filename}</strong>. Če seznami manjkajo, bodo ustvarjeni.
+        other: V svoje <strong>sezname</strong> boste dodali <strong>%{count} računov</strong> iz <strong>%{filename}</strong>. Če seznami manjkajo, bodo ustvarjeni.
+        two: V svoje <strong>sezname</strong> boste dodali <strong>%{count} računa</strong> iz <strong>%{filename}</strong>. Če seznami manjkajo, bodo ustvarjeni.
+      muting_html:
+        few: "<strong>Utišali</strong> boste <strong>%{count} račune</strong> iz <strong>%{filename}</strong>."
+        one: "<strong>Utišali</strong> boste <strong>%{count} račun</strong> iz <strong>%{filename}</strong>."
+        other: "<strong>Utišali</strong> boste <strong>%{count} računov</strong> iz <strong>%{filename}</strong>."
+        two: "<strong>Utišali</strong> boste <strong>%{count} računa</strong> iz <strong>%{filename}</strong>."
     preface: Podatke, ki ste jih izvozili iz drugega strežnika, lahko uvozite. Na primer seznam oseb, ki jih spremljate ali blokirate.
     recent_imports: Nedavni uvozi
     states:

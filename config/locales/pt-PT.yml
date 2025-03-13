@@ -309,6 +309,7 @@ pt-PT:
       title: Registo de auditoria
       unavailable_instance: "(nome de domínio indisponível)"
     announcements:
+      back: Voltar às mensagem de manutenção
       destroyed_msg: Mensagem de manutenção eliminada com sucesso!
       edit:
         title: Editar mensagem de manutenção
@@ -317,6 +318,9 @@ pt-PT:
       new:
         create: Criar mensagem de manutenção
         title: Nova mensagem de manutenção
+      preview:
+        explanation_html: 'O e-mail será enviado para <strong>%{display_count} utilizadores</strong>. O texto seguinte será incluído na mensagem de e-mail:'
+        title: Pré-visualização da mensagem de manutenção
       publish: Publicar
       published_msg: Mensagem de manutenção publicada com sucesso!
       scheduled_for: Agendado para %{time}
@@ -1905,6 +1909,10 @@ pt-PT:
     recovery_instructions_html: Se perderes o seu telemóvel, poderás usar um dos códigos de recuperação para voltares a ter acesso à tua conta. <strong>Guarda os códigos de recuperação em lugar seguro</strong>. Por exemplo, podes imprimi-los e guardá-los junto a outros documentos importantes.
     webauthn: Chaves de segurança
   user_mailer:
+    announcement_published:
+      description: 'Os administradores do %{domain} estão a fazer um anúncio:'
+      subject: Mensagem de manutenção do serviço
+      title: 'Mensagem de manutenção de %{domain} '
     appeal_approved:
       action: Configurações da conta
       explanation: A contestação à reprimenda contra a tua conta em %{strike_date}, enviada a %{appeal_date}, foi aceite. A tua conta encontra-se novamente em situação regular.

@@ -321,6 +321,7 @@ cy:
       title: Cofnod archwilio
       unavailable_instance: "(nid yw enw'r parth ar gael)"
     announcements:
+      back: Nôl i'r cyhoeddiadau
       destroyed_msg: Cyhoeddiad wedi'i ddileu'n llwyddiannus!
       edit:
         title: Golygu cyhoeddiad
@@ -329,6 +330,9 @@ cy:
       new:
         create: Creu cyhoeddiad
         title: Cyhoeddiad newydd
+      preview:
+        explanation_html: 'Bydd yr e-bost yn cael ei anfon at <strong>%{display_count} defnyddiwr</strong> . Bydd y testun canlynol yn cael ei gynnwys yn yr e-bost:'
+        title: Hysbysiad rhagolwg cyhoeddiad
       publish: Cyhoeddi
       published_msg: Cyhoeddiad wedi'i gyhoeddi'n llwyddiannus!
       scheduled_for: Wedi'i amserlenni ar gyfer %{time}
@@ -995,6 +999,7 @@ cy:
         chance_to_review_html: "<strong>Ni fydd y telerau gwasanaeth sy'n cael eu cynhyrchu'n cael eu cyhoeddi'n awtomatig.</strong> Bydd cyfle i chi adolygu'r canlyniadau. Cwblhewch y manylion angenrheidiol i symud ymlaen."
         explanation_html: Mae'r templed telerau gwasanaeth sy'n cael eu darparu at ddibenion gwybodaeth yn unig, ac ni ddylid ei ddehongli fel cyngor cyfreithiol ar unrhyw bwnc. Ymgynghorwch â'ch cyngor cyfreithiol eich hun ar eich sefyllfa ag unrhyw gwestiynau cyfreithiol penodol sydd gennych.
         title: Telerau Gosod Gwasanaeth
+      going_live_on_html: Byw, effeithiol %{date}
       history: Hanes
       live: Byw
       no_history: Nid oes unrhyw newidiadau i delerau gwasanaeth wedi'u cofnodi eto.
@@ -2076,6 +2081,10 @@ cy:
     recovery_instructions_html: Os ydych chi'n colli mynediad i'ch ffôn, mae modd i chi ddefnyddio un o'r codau adfer isod i gael mynediad at eich cyfrif. <strong>Cadwch y codau adfer yn breifat</strong>. Er enghraifft, gallwch chi eu argraffu a'u cadw gyda dogfennau eraill pwysig.
     webauthn: Allweddi diogelwch
   user_mailer:
+    announcement_published:
+      description: 'Mae gweinyddwyr %{domain} yn gwneud cyhoeddiad:'
+      subject: Cyhoeddiad gwasanaeth
+      title: Cyhoeddiad gwasanaeth %{domain}
     appeal_approved:
       action: Gosodiadau Cyfrif
       explanation: Mae apêl y rhybudd yn erbyn eich cyfrif ar %{strike_date} a gyflwynwyd gennych ar %{appeal_date} wedi'i chymeradwyo. Mae eich cyfrif unwaith eto yn gadarnhaol.
@@ -2108,6 +2117,8 @@ cy:
     terms_of_service_changed:
       agreement: Drwy barhau i ddefnyddio %{domain}, rydych yn cytuno i'r telerau hyn. Os ydych yn anghytuno â'r telerau a ddiweddarwyd, gallwch derfynu eich cytundeb â %{domain} ar unrhyw adeg drwy ddileu eich cyfrif.
       changelog: 'Yn fyr, dyma beth mae''r diweddariad hwn yn ei olygu i chi:'
+      description: 'Rydych yn derbyn yr e-bost hwn oherwydd ein bod yn gwneud rhai newidiadau i''n telerau gwasanaeth yn %{domain}. Bydd y diweddariadau hyn yn dod i rym ar %{date}. Rydym yn eich annog i adolygu''r telerau diweddaraf yn llawn yma:'
+      description_html: Rydych yn derbyn yr e-bost hwn oherwydd ein bod yn gwneud rhai newidiadau i'n telerau gwasanaeth yn %{domain}. Bydd y diweddariadau hyn yn dod i rym ar <strong>%{date}</strong> . Rydym yn eich annog i adolygu'r <a href="%{path}" target="_blank">telerau diweddaraf yn llawn yma</a> .
       sign_off: Tîm %{domain}
       subject: Diweddariadau i'n telerau gwasanaeth
       subtitle: Mae telerau gwasanaeth %{domain} yn newid
