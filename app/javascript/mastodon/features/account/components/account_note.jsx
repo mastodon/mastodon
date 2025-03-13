@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { useEffect, useState } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
@@ -12,38 +12,27 @@ const messages = defineMessages({
   placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
 });
 
-class InlineAlert extends PureComponent {
+const InlineAlert = ({ show }) => {
+  const [mountMessage, setMountMessage] = useState(false);
 
-  static propTypes = {
-    show: PropTypes.bool,
-  };
-
-  state = {
-    mountMessage: false,
-  };
-
-  static TRANSITION_DELAY = 200;
-
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    if (!this.props.show && nextProps.show) {
-      this.setState({ mountMessage: true });
-    } else if (this.props.show && !nextProps.show) {
-      setTimeout(() => this.setState({ mountMessage: false }), InlineAlert.TRANSITION_DELAY);
+  useEffect(() => {
+    if (show) {
+      setMountMessage(true);
+    } else {
+      setTimeout(() => setMountMessage(false), 200);
     }
-  }
+  }, [show, setMountMessage]);
 
-  render () {
-    const { show } = this.props;
-    const { mountMessage } = this.state;
+  return (
+    <span aria-live='polite' role='status' className='inline-alert' style={{ opacity: show ? 1 : 0 }}>
+      {mountMessage && <FormattedMessage id='generic.saved' defaultMessage='Saved' />}
+    </span>
+  );
+};
 
-    return (
-      <span aria-live='polite' role='status' className='inline-alert' style={{ opacity: show ? 1 : 0 }}>
-        {mountMessage && <FormattedMessage id='generic.saved' defaultMessage='Saved' />}
-      </span>
-    );
-  }
-
-}
+InlineAlert.propTypes = {
+  show: PropTypes.bool,
+};
 
 class AccountNote extends ImmutablePureComponent {
 
