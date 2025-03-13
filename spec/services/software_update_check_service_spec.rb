@@ -82,7 +82,7 @@ RSpec.describe SoftwareUpdateCheckService do
       end
 
       before do
-        stub_request(:get, full_update_check_url).to_return(body: Oj.dump(server_json))
+        stub_request(:get, full_update_check_url).to_return(body: JSON.dump(server_json))
       end
 
       it 'updates the list of known updates' do

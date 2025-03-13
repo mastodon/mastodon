@@ -38,8 +38,8 @@ RSpec.describe ActivityPub::FetchRemoteActorService do
       before do
         actor[:inbox] = nil
 
-        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://example.com/alice').to_return(body: JSON.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
       end
 
       it 'fetches resource and looks up webfinger and returns nil' do
@@ -54,8 +54,8 @@ RSpec.describe ActivityPub::FetchRemoteActorService do
       let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/activity+json' }] } }
 
       before do
-        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://example.com/alice').to_return(body: JSON.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
       end
 
       it 'fetches resource and looks up webfinger and sets values' do
@@ -75,9 +75,9 @@ RSpec.describe ActivityPub::FetchRemoteActorService do
       let!(:webfinger) { { subject: 'acct:alice@iscool.af', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/activity+json' }] } }
 
       before do
-        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
-        stub_request(:get, 'https://iscool.af/.well-known/webfinger?resource=acct:alice@iscool.af').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://example.com/alice').to_return(body: JSON.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://iscool.af/.well-known/webfinger?resource=acct:alice@iscool.af').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
       end
 
       it 'fetches resource and looks up webfinger and follows redirect and sets values' do
@@ -98,8 +98,8 @@ RSpec.describe ActivityPub::FetchRemoteActorService do
       let!(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/bob', type: 'application/activity+json' }] } }
 
       before do
-        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://example.com/alice').to_return(body: JSON.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
       end
 
       it 'fetches resource and looks up webfinger and does not create account' do
@@ -114,9 +114,9 @@ RSpec.describe ActivityPub::FetchRemoteActorService do
       let!(:webfinger) { { subject: 'acct:alice@iscool.af', links: [{ rel: 'self', href: 'https://example.com/bob', type: 'application/activity+json' }] } }
 
       before do
-        stub_request(:get, 'https://example.com/alice').to_return(body: Oj.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
-        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
-        stub_request(:get, 'https://iscool.af/.well-known/webfinger?resource=acct:alice@iscool.af').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://example.com/alice').to_return(body: JSON.dump(actor), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:alice@example.com').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+        stub_request(:get, 'https://iscool.af/.well-known/webfinger?resource=acct:alice@iscool.af').to_return(body: JSON.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
       end
 
       it 'fetches resource and looks up webfinger and follows redirect and does not create account' do
