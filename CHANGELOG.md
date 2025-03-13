@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.19] - 2025-03-13
+
+### Security
+
+- Update dependency `omniauth-saml`
+- Update dependency `rack`
+
+### Fixed
+
+- Fix Stoplight errors when using `REDIS_NAMESPACE` ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/34126))
+
 ## [4.2.18] - 2025-03-10
 
 ### Changed
