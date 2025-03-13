@@ -138,8 +138,14 @@ sl:
         admin_email: Pravna obvestila vključujejo odgovore na obvestila, sodne naloge, zahteve za odstranitev in zahteve organov pregona.
         arbitration_address: Lahko je enak kot fizični naslov zgoraj ali „N/A“, če uporabljate e-pošto.
         arbitration_website: Lahko je spletni obrazec ali „N/A“, če uporabljate e-pošto.
+        choice_of_law: Mesto, regija, teritorij ali zvezna država, katere področni zakoni urejajo vse tožbene zahtevke.
+        dmca_email: Lahko je enak e-poštni naslov kot v polju „E-poštni naslov za pravna obvestila“ zgoraj.
+        domain: Edinstvena identifikacija spletne storitve, ki jo ponujate.
+        jurisdiction: Navedite državo, kjer živi tisti, ki plačuje račune. Če je to podjetje ali druga entiteta, navedite državo, kjer je bila ustanovljena. Po potrebi dopišite tudi mesto, regijo, teritorij ali zvezno državo.
+        min_age: Ne smete biti mlajši od starostne omejitve, ki jo postavljajo zakoni vašega pravosodnega sistema.
       user:
         chosen_languages: Ko je označeno, bodo v javnih časovnicah prikazane samo objave v izbranih jezikih
+        role: Vloga določa, katera dovoljenja ima uporabnik.
       user_role:
         color: Barva, uporabljena za vlogo po celem up. vmesniku, podana v šestnajstiškem zapisu RGB
         highlighted: S tem je vloga javno vidna
@@ -152,6 +158,7 @@ sl:
         url: Kam bodo poslani dogodki
     labels:
       account:
+        attribution_domains: Spletna mesta, ki vas smejo navajati kot avtorja/ico
         discoverable: Izpostavljaj profile in objave v algoritmih odkrivanja
         fields:
           name: Oznaka
@@ -228,8 +235,10 @@ sl:
         setting_display_media_show_all: Prikaži vse
         setting_expand_spoilers: Vedno razširi objave, označene z opozorili o vsebini
         setting_hide_network: Skrij svoje omrežje
+        setting_missing_alt_text_modal: Pred objavo predstavnosti brez nadomestnega besedila pokaži potrditveno okno
         setting_reduce_motion: Zmanjšanje premikanja v animacijah
         setting_system_font_ui: Uporabi privzeto pisavo sistema
+        setting_system_scrollbars_ui: Uporabi privzeti drsni trak sistema
         setting_theme: Tema strani
         setting_trends: Pokaži današnje trende
         setting_unfollow_modal: Pokaži potrditveno okno, preden nekoga prenehamo slediti
@@ -335,6 +344,7 @@ sl:
         dmca_address: Fizični naslov za obvestila DMCA ali o avtorskih pravicah
         dmca_email: E-poštni naslov za obvestila DMCA ali o avtorskih pravicah
         domain: Domena
+        jurisdiction: Pravna pristojnost
         min_age: Najmanjša starost
       user:
         role: Vloga
