@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.6] - 2025-03-13
+
+### Security
+
+- Update dependency `omniauth-saml`
+- Update dependency `rack`
+
+### Fixed
+
+- Fix Stoplight errors when using `REDIS_NAMESPACE` (#34126 by @ClearlyClaire)
+
 ## [4.3.5] - 2025-03-10
 
 ### Changed
