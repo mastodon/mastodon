@@ -55,18 +55,7 @@ const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
   const [value, setValue] = useState<string>(initialValue ?? '');
   const [saved, setSaved] = useState(false);
 
-  // We need to access the value on unmount
-  const valueRef = useRef<string>(value);
   const dirtyRef = useRef(false);
-
-  // Keep the valueRef in sync with the state
-  useEffect(() => {
-    valueRef.current = value;
-  }, [value]);
-
-  useEffect(() => {
-    if (initialValue !== valueRef.current) setValue(initialValue ?? '');
-  }, [initialValue, setValue]);
 
   useEffect(() => {
     dirtyRef.current = initialValue !== undefined && initialValue !== value;
@@ -83,13 +72,6 @@ const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
     },
     [accountId, dispatch, setSaved],
   );
-
-  // Save changes on unmount
-  useEffect(() => {
-    return () => {
-      if (dirtyRef.current) onSave(valueRef.current);
-    };
-  }, [onSave]);
 
   const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
     (e) => {
@@ -119,6 +101,24 @@ const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
   const handleBlur = useCallback(() => {
     if (dirtyRef.current) onSave(value);
   }, [onSave, value]);
+
+  // To save the changes on unmount, we need to synchronize the state in a ref
+  const valueRef = useRef<string>(value);
+
+  useEffect(() => {
+    valueRef.current = value;
+  }, [value]);
+
+  useEffect(() => {
+    return () => {
+      if (dirtyRef.current) onSave(valueRef.current);
+    };
+  }, [onSave]);
+
+  // Handle `initialValue` changes
+  useEffect(() => {
+    if (initialValue !== valueRef.current) setValue(initialValue ?? '');
+  }, [initialValue, setValue]);
 
   return (
     <div className='account__header__account-note'>
