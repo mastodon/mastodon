@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import type { ChangeEventHandler, KeyboardEventHandler } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
@@ -12,14 +12,16 @@ const messages = defineMessages({
   placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
 });
 
-const InlineAlert = ({ show }) => {
+const InlineAlert: React.FC<{ show: boolean }> = ({ show }) => {
   const [mountMessage, setMountMessage] = useState(false);
 
   useEffect(() => {
     if (show) {
       setMountMessage(true);
     } else {
-      setTimeout(() => setMountMessage(false), 200);
+      setTimeout(() => {
+        setMountMessage(false);
+      }, 200);
     }
   }, [show, setMountMessage]);
 
@@ -30,19 +32,19 @@ const InlineAlert = ({ show }) => {
   );
 };
 
-InlineAlert.propTypes = {
-  show: PropTypes.bool,
-};
+interface Props {
+  accountId: string;
+}
 
-const InnerAccountNote = ({ accountId }) => {
+const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const initialValue = useAppSelector(state => state.relationships.get(accountId)?.get('note'));
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState<string>(initialValue ?? '');
   const [saved, setSaved] = useState(false);
 
   // We need to access the value on unmount
-  const valueRef = useRef(value);
+  const valueRef = useRef<string>(value);
   const dirtyRef = useRef(false);
 
   // Keep the valueRef in sync with the state
@@ -51,18 +53,20 @@ const InnerAccountNote = ({ accountId }) => {
   }, [value]);
 
   useEffect(() => {
-    if (initialValue !== valueRef.current) setValue(initialValue);
+    if (initialValue !== valueRef.current) setValue(initialValue ?? '');
   }, [initialValue, setValue]);
 
   useEffect(() => {
-    dirtyRef.current = initialValue !== value;
+    dirtyRef.current = initialValue !== undefined && initialValue !== value;
   }, [initialValue, value]);
 
-  const onSave = useCallback((value) => {
-    dispatch(submitAccountNote({ accountId, note: value }));
+  const onSave = useCallback((value: string) => {
+    void dispatch(submitAccountNote({ accountId, note: value }));
 
     setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+    setTimeout(() => {
+      setSaved(false);
+    }, 2000);
   }, [accountId, dispatch, setSaved]);
 
   // Save changes on unmount
@@ -72,22 +76,22 @@ const InnerAccountNote = ({ accountId }) => {
     };
   }, [onSave]);
 
-  const handleChange = useCallback((e) => {
+  const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>((e) => {
     setValue(e.target.value);
   }, [setValue]);
 
-  const handleKeyDown = useCallback((e) => {
-    if (e.keyCode === 27) {
+  const handleKeyDown = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>((e) => {
+    if (e.key === 'Escape') {
       e.preventDefault();
 
-      setValue(initialValue);
-      e.target.blur();
-    } else if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
+      setValue(initialValue ?? '');
+      e.currentTarget.blur();
+    } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
       e.preventDefault();
 
       onSave(valueRef.current);
 
-      e.target.blur();
+      e.currentTarget.blur();
     }
   }, [onSave, initialValue]);
 
@@ -104,7 +108,7 @@ const InnerAccountNote = ({ accountId }) => {
       <Textarea
         id={`account-note-${accountId}`}
         className='account__header__account-note__content'
-        disabled={initialValue === null || value === null}
+        disabled={initialValue === undefined}
         placeholder={intl.formatMessage(messages.placeholder)}
         value={value || ''}
         onChange={handleChange}
@@ -115,14 +119,4 @@ const InnerAccountNote = ({ accountId }) => {
   );
 };
 
-InnerAccountNote.propTypes = {
-  accountId: PropTypes.string,
-};
-
-const AccountNote = ({ accountId }) => (<InnerAccountNote accountId={accountId} key={`account-note-{accountId}`} />);
-
-AccountNote.propTypes = {
-  accountId: PropTypes.string,
-};
-
-export default AccountNote;
+export const AccountNote: React.FC<Props> = ({ accountId }) => (<InnerAccountNote accountId={accountId} key={`account-note-{accountId}`} />);

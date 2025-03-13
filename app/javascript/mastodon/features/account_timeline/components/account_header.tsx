@@ -42,7 +42,7 @@ import { IconButton } from 'mastodon/components/icon_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ShortNumber } from 'mastodon/components/short_number';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
-import AccountNote from 'mastodon/features/account/components/account_note';
+import { AccountNote } from 'mastodon/features/account/components/account_note';
 import { DomainPill } from 'mastodon/features/account/components/domain_pill';
 import FollowRequestNoteContainer from 'mastodon/features/account/containers/follow_request_note_container';
 import { useLinks } from 'mastodon/hooks/useLinks';
