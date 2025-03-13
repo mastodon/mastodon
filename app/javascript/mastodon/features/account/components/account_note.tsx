@@ -9,7 +9,10 @@ import { submitAccountNote } from 'mastodon/actions/account_notes';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
-  placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
+  placeholder: {
+    id: 'account_note.placeholder',
+    defaultMessage: 'Click to add a note',
+  },
 });
 
 const InlineAlert: React.FC<{ show: boolean }> = ({ show }) => {
@@ -26,8 +29,15 @@ const InlineAlert: React.FC<{ show: boolean }> = ({ show }) => {
   }, [show, setMountMessage]);
 
   return (
-    <span aria-live='polite' role='status' className='inline-alert' style={{ opacity: show ? 1 : 0 }}>
-      {mountMessage && <FormattedMessage id='generic.saved' defaultMessage='Saved' />}
+    <span
+      aria-live='polite'
+      role='status'
+      className='inline-alert'
+      style={{ opacity: show ? 1 : 0 }}
+    >
+      {mountMessage && (
+        <FormattedMessage id='generic.saved' defaultMessage='Saved' />
+      )}
     </span>
   );
 };
@@ -39,7 +49,9 @@ interface Props {
 const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const initialValue = useAppSelector(state => state.relationships.get(accountId)?.get('note'));
+  const initialValue = useAppSelector((state) =>
+    state.relationships.get(accountId)?.get('note'),
+  );
   const [value, setValue] = useState<string>(initialValue ?? '');
   const [saved, setSaved] = useState(false);
 
@@ -60,14 +72,17 @@ const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
     dirtyRef.current = initialValue !== undefined && initialValue !== value;
   }, [initialValue, value]);
 
-  const onSave = useCallback((value: string) => {
-    void dispatch(submitAccountNote({ accountId, note: value }));
+  const onSave = useCallback(
+    (value: string) => {
+      void dispatch(submitAccountNote({ accountId, note: value }));
 
-    setSaved(true);
-    setTimeout(() => {
-      setSaved(false);
-    }, 2000);
-  }, [accountId, dispatch, setSaved]);
+      setSaved(true);
+      setTimeout(() => {
+        setSaved(false);
+      }, 2000);
+    },
+    [accountId, dispatch, setSaved],
+  );
 
   // Save changes on unmount
   useEffect(() => {
@@ -76,33 +91,43 @@ const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
     };
   }, [onSave]);
 
-  const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>((e) => {
-    setValue(e.target.value);
-  }, [setValue]);
+  const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
+    (e) => {
+      setValue(e.target.value);
+    },
+    [setValue],
+  );
 
-  const handleKeyDown = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>((e) => {
-    if (e.key === 'Escape') {
-      e.preventDefault();
+  const handleKeyDown = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>(
+    (e) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
 
-      setValue(initialValue ?? '');
-      e.currentTarget.blur();
-    } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
+        setValue(initialValue ?? '');
+        e.currentTarget.blur();
+      } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
 
-      onSave(valueRef.current);
+        onSave(value);
 
-      e.currentTarget.blur();
-    }
-  }, [onSave, initialValue]);
+        e.currentTarget.blur();
+      }
+    },
+    [onSave, initialValue, value, setValue],
+  );
 
   const handleBlur = useCallback(() => {
-    if (dirtyRef.current) onSave(valueRef.current);
-  }, [onSave]);
+    if (dirtyRef.current) onSave(value);
+  }, [onSave, value]);
 
   return (
     <div className='account__header__account-note'>
       <label htmlFor={`account-note-${accountId}`}>
-        <FormattedMessage id='account.account_note_header' defaultMessage='Personal note' /> <InlineAlert show={saved} />
+        <FormattedMessage
+          id='account.account_note_header'
+          defaultMessage='Personal note'
+        />{' '}
+        <InlineAlert show={saved} />
       </label>
 
       <Textarea
@@ -119,4 +144,6 @@ const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
   );
 };
 
-export const AccountNote: React.FC<Props> = ({ accountId }) => (<InnerAccountNote accountId={accountId} key={`account-note-{accountId}`} />);
+export const AccountNote: React.FC<Props> = ({ accountId }) => (
+  <InnerAccountNote accountId={accountId} key={`account-note-{accountId}`} />
+);
