@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Obtaining OAuth Tokens' do
+RSpec.describe 'Managing OAuth Tokens' do
   describe 'POST /oauth/token' do
     subject do
       post '/oauth/token', params: params
@@ -102,6 +102,25 @@ RSpec.describe 'Obtaining OAuth Tokens' do
           end
         end
       end
+    end
+  end
+
+  describe 'POST /oauth/revoke' do
+    subject { post '/oauth/revoke', params: { client_id: application.uid, token: access_token.token } }
+
+    let!(:user) { Fabricate(:user) }
+    let!(:application) { Fabricate(:application, confidential: false) }
+    let!(:access_token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, application: application) }
+    let!(:web_push_subscription) { Fabricate(:web_push_subscription, user: user, access_token: access_token) }
+
+    it 'revokes the token and removes subscriptions' do
+      expect { subject }
+        .to change { access_token.reload.revoked_at }.from(nil).to(be_present)
+
+      expect(Web::PushSubscription.where(access_token: access_token).count)
+        .to eq(0)
+      expect { web_push_subscription.reload }
+        .to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end
