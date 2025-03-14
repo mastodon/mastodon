@@ -4,14 +4,14 @@ import { submitAccountNote } from 'mastodon/actions/account_notes';
 
 import AccountNote from '../components/account_note';
 
-const mapStateToProps = (state, { account }) => ({
-  value: account.getIn(['relationship', 'note']),
+const mapStateToProps = (state, { accountId }) => ({
+  value: state.relationships.getIn([accountId, 'note']),
 });
 
-const mapDispatchToProps = (dispatch, { account }) => ({
+const mapDispatchToProps = (dispatch, { accountId }) => ({
 
   onSave (value) {
-    dispatch(submitAccountNote({ accountId: account.get('id'), note: value }));
+    dispatch(submitAccountNote({ accountId: accountId, note: value }));
   },
 
 });

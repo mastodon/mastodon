@@ -919,7 +919,7 @@ export const AccountHeader: React.FC<{
                 onClickCapture={handleLinkClick}
               >
                 {account.id !== me && signedIn && (
-                  <AccountNoteContainer account={account} />
+                  <AccountNoteContainer accountId={accountId} />
                 )}
 
                 {account.note.length > 0 && account.note !== '<p></p>' && (
