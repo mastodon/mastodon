@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import {
-  FormattedMessage,
-  FormattedDate,
-  useIntl,
-  defineMessages,
-} from 'react-intl';
+import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
@@ -13,6 +8,7 @@ import { apiGetPrivacyPolicy } from 'mastodon/api/instance';
 import type { ApiPrivacyPolicyJSON } from 'mastodon/api_types/instance';
 import { Column } from 'mastodon/components/column';
 import { Skeleton } from 'mastodon/components/skeleton';
+import { FormattedDateWrapper } from 'mastodon/utils/time';
 
 const messages = defineMessages({
   title: { id: 'privacy_policy.title', defaultMessage: 'Privacy Policy' },
@@ -58,7 +54,7 @@ const PrivacyPolicy: React.FC<{
                 date: loading ? (
                   <Skeleton width='10ch' />
                 ) : (
-                  <FormattedDate
+                  <FormattedDateWrapper
                     value={response?.updated_at}
                     year='numeric'
                     month='short'
