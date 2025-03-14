@@ -1,15 +1,14 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
+import { apiLookupAccount } from 'mastodon/api/accounts';
 import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
+import { createDataLoadingThunk } from 'mastodon/store/typed_functions';
+
+import { importFetchedAccount } from './importer';
 
 export const revealAccount = createAction<{
   id: string;
 }>('accounts/revealAccount');
-
-export const importAccounts = createAction<{ accounts: ApiAccountJSON[] }>(
-  'accounts/importAccounts',
-);
 
 function actionWithSkipLoadingTrue<Args extends object>(args: Args) {
   return {
@@ -94,4 +93,15 @@ export const unpinAccountSuccess = createAction<{
 export const fetchRelationshipsSuccess = createAction(
   'relationships/fetch/SUCCESS',
   actionWithSkipLoadingTrue<{ relationships: ApiRelationshipJSON[] }>,
+);
+
+export const lookupAccount = createDataLoadingThunk(
+  'accounts/lookup',
+  ({ acct }: { acct: string }) => apiLookupAccount(acct),
+  (data, { dispatch }) => {
+    dispatch(importFetchedAccount(data));
+    //dispatch(fetchRelationships([data.id]));
+
+    return data;
+  },
 );

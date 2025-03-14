@@ -92,34 +92,6 @@ export function fetchAccount(id) {
   };
 }
 
-export const lookupAccount = acct => (dispatch) => {
-  dispatch(lookupAccountRequest(acct));
-
-  api().get('/api/v1/accounts/lookup', { params: { acct } }).then(response => {
-    dispatch(fetchRelationships([response.data.id]));
-    dispatch(importFetchedAccount(response.data));
-    dispatch(lookupAccountSuccess());
-  }).catch(error => {
-    dispatch(lookupAccountFail(acct, error));
-  });
-};
-
-export const lookupAccountRequest = (acct) => ({
-  type: ACCOUNT_LOOKUP_REQUEST,
-  acct,
-});
-
-export const lookupAccountSuccess = () => ({
-  type: ACCOUNT_LOOKUP_SUCCESS,
-});
-
-export const lookupAccountFail = (acct, error) => ({
-  type: ACCOUNT_LOOKUP_FAIL,
-  acct,
-  error,
-  skipAlert: true,
-});
-
 export function fetchAccountRequest(id) {
   return {
     type: ACCOUNT_FETCH_REQUEST,
