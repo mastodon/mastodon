@@ -5,41 +5,42 @@
 # Table name: users
 #
 #  id                        :bigint(8)        not null, primary key
-#  email                     :string           default(""), not null
-#  created_at                :datetime         not null
-#  updated_at                :datetime         not null
-#  encrypted_password        :string           default(""), not null
-#  reset_password_token      :string
-#  reset_password_sent_at    :datetime
-#  sign_in_count             :integer          default(0), not null
-#  current_sign_in_at        :datetime
-#  last_sign_in_at           :datetime
+#  age_verified_at           :datetime
+#  approved                  :boolean          default(TRUE), not null
+#  chosen_languages          :string           is an Array
+#  confirmation_sent_at      :datetime
 #  confirmation_token        :string
 #  confirmed_at              :datetime
-#  confirmation_sent_at      :datetime
-#  unconfirmed_email         :string
-#  locale                    :string
+#  consumed_timestep         :integer
+#  current_sign_in_at        :datetime
+#  disabled                  :boolean          default(FALSE), not null
+#  email                     :string           default(""), not null
 #  encrypted_otp_secret      :string
 #  encrypted_otp_secret_iv   :string
 #  encrypted_otp_secret_salt :string
-#  consumed_timestep         :integer
-#  otp_required_for_login    :boolean          default(FALSE), not null
+#  encrypted_password        :string           default(""), not null
 #  last_emailed_at           :datetime
+#  last_sign_in_at           :datetime
+#  locale                    :string
 #  otp_backup_codes          :string           is an Array
-#  account_id                :bigint(8)        not null
-#  disabled                  :boolean          default(FALSE), not null
-#  invite_id                 :bigint(8)
-#  chosen_languages          :string           is an Array
-#  created_by_application_id :bigint(8)
-#  approved                  :boolean          default(TRUE), not null
+#  otp_required_for_login    :boolean          default(FALSE), not null
+#  otp_secret                :string
+#  reset_password_sent_at    :datetime
+#  reset_password_token      :string
+#  settings                  :text
+#  sign_in_count             :integer          default(0), not null
 #  sign_in_token             :string
 #  sign_in_token_sent_at     :datetime
-#  webauthn_id               :string
 #  sign_up_ip                :inet
-#  role_id                   :bigint(8)
-#  settings                  :text
 #  time_zone                 :string
-#  otp_secret                :string
+#  unconfirmed_email         :string
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  account_id                :bigint(8)        not null
+#  created_by_application_id :bigint(8)
+#  invite_id                 :bigint(8)
+#  role_id                   :bigint(8)
+#  webauthn_id               :string
 #
 
 class User < ApplicationRecord
@@ -111,6 +112,7 @@ class User < ApplicationRecord
   validates_with RegistrationFormTimeValidator, on: :create
   validates :website, absence: true, on: :create
   validates :confirm_password, absence: true, on: :create
+  validates :date_of_birth, presence: true, date_of_birth: true, on: :create, if: -> { Setting.min_age.present? }
   validate :validate_role_elevation
 
   scope :account_not_suspended, -> { joins(:account).merge(Account.without_suspended) }
@@ -129,6 +131,7 @@ class User < ApplicationRecord
 
   before_validation :sanitize_role
   before_create :set_approved
+  before_create :set_age_verified_at
   after_commit :send_pending_devise_notifications
   after_create_commit :trigger_webhooks
 
@@ -140,7 +143,7 @@ class User < ApplicationRecord
 
   delegate :can?, to: :role
 
-  attr_reader :invite_code
+  attr_reader :invite_code, :date_of_birth
   attr_writer :external, :bypass_invite_request_check, :current_account
 
   def self.those_who_can(*any_of_privileges)
@@ -155,6 +158,17 @@ class User < ApplicationRecord
 
   def self.skip_mx_check?
     Rails.env.local?
+  end
+
+  def date_of_birth=(hash_or_string)
+    @date_of_birth = begin
+      if hash_or_string.is_a?(Hash)
+        day, month, year = hash_or_string.values_at(1, 2, 3)
+        "#{day}.#{month}.#{year}"
+      else
+        hash_or_string
+      end
+    end
   end
 
   def role
@@ -430,6 +444,10 @@ class User < ApplicationRecord
         open_registrations? || valid_invitation? || external?
       end
     end
+  end
+
+  def set_age_verified_at
+    self.age_verified_at = Time.now.utc if Setting.min_age.present?
   end
 
   def grant_approval_on_confirmation?

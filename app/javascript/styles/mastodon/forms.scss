@@ -353,6 +353,22 @@ code {
     }
   }
 
+  .input.date_of_birth .label_input {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    input {
+      box-sizing: content-box;
+      width: 32px;
+      flex: 0;
+
+      &:last-child {
+        width: 64px;
+      }
+    }
+  }
+
   .input.select.select--languages {
     min-width: 32ch;
   }

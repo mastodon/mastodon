@@ -88,6 +88,7 @@ en:
         favicon: WEBP, PNG, GIF or JPG. Overrides the default Mastodon favicon with a custom icon.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Media files from posts made by remote users are cached on your server. When set to a positive value, media will be deleted after the specified number of days. If the media data is requested after it is deleted, it will be re-downloaded, if the source content is still available. Due to restrictions on how often link preview cards poll third-party sites, it is recommended to set this value to at least 14 days, or link preview cards will not be updated on demand before that time.
+        min_age: Users will be asked to confirm their date of birth during sign-up
         peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: The profile directory lists all users who have opted-in to be discoverable.
         require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
@@ -146,6 +147,7 @@ en:
         min_age: Should not be below the minimum age required by the laws of your jurisdiction.
       user:
         chosen_languages: When checked, only posts in selected languages will be displayed in public timelines
+        date_of_birth: We have to make sure you're at least %{age} to use Mastodon. We won't store this.
         role: The role controls which permissions the user has.
       user_role:
         color: Color to be used for the role throughout the UI, as RGB in hex format
@@ -271,6 +273,7 @@ en:
         favicon: Favicon
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period
+        min_age: Minimum age requirement
         peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Enable profile directory
         registrations_mode: Who can sign-up
@@ -349,6 +352,9 @@ en:
         jurisdiction: Legal jurisdiction
         min_age: Minimum age
       user:
+        date_of_birth_1i: Day
+        date_of_birth_2i: Month
+        date_of_birth_3i: Year
         role: Role
         time_zone: Time zone
       user_role:
