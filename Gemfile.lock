@@ -93,23 +93,24 @@ GEM
     annotaterb (4.14.0)
     ast (2.4.2)
     attr_required (1.0.2)
-    aws-eventstream (1.3.0)
-    aws-partitions (1.1032.0)
-    aws-sdk-core (3.214.1)
+    aws-eventstream (1.3.2)
+    aws-partitions (1.1066.0)
+    aws-sdk-core (3.220.1)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
+      base64
       jmespath (~> 1, >= 1.6.1)
-    aws-sdk-kms (1.96.0)
-      aws-sdk-core (~> 3, >= 3.210.0)
+    aws-sdk-kms (1.99.0)
+      aws-sdk-core (~> 3, >= 3.216.0)
       aws-sigv4 (~> 1.5)
     aws-sdk-s3 (1.177.0)
       aws-sdk-core (~> 3, >= 3.210.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
-    aws-sigv4 (1.10.1)
+    aws-sigv4 (1.11.0)
       aws-eventstream (~> 1, >= 1.0.2)
-    azure-blob (0.5.4)
+    azure-blob (0.5.7)
       rexml
     base64 (0.2.0)
     bcp47_spec (0.2.1)
@@ -168,7 +169,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    css_parser (1.21.0)
+    css_parser (1.21.1)
       addressable
     csv (3.3.2)
     database_cleaner-active_record (2.2.0)
@@ -222,7 +223,8 @@ GEM
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
-    excon (1.2.3)
+    excon (1.2.5)
+      logger
     fabrication (2.31.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
@@ -265,7 +267,9 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    google-protobuf (3.25.6)
+    google-protobuf (4.30.1)
+      bigdecimal
+      rake (>= 13)
     googleapis-common-protos-types (1.18.0)
       google-protobuf (>= 3.18, < 5.a)
     haml (6.3.0)
@@ -302,7 +306,8 @@ GEM
       domain_name (~> 0.5)
     http-form_data (2.3.0)
     http_accept_language (2.1.1)
-    httpclient (2.8.3)
+    httpclient (2.9.0)
+      mutex_m
     httplog (1.7.0)
       rack (>= 2.0)
       rainbow (>= 2.0.0)
@@ -378,7 +383,7 @@ GEM
       mime-types
       terrapin (>= 0.6.0, < 2.0)
     language_server-protocol (3.17.0.4)
-    launchy (3.1.0)
+    launchy (3.1.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
       logger (~> 1.6)
@@ -391,7 +396,7 @@ GEM
       rexml
     link_header (0.0.8)
     lint_roller (1.1.0)
-    llhttp-ffi (0.5.0)
+    llhttp-ffi (0.5.1)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
     logger (1.6.6)
@@ -416,10 +421,10 @@ GEM
     mime-types (3.6.0)
       logger
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2025.0220)
+    mime-types-data (3.2025.0304)
     mini_mime (1.1.5)
     mini_portile2 (2.8.8)
-    minitest (5.25.4)
+    minitest (5.25.5)
     msgpack (1.8.0)
     multi_json (1.15.0)
     mutex_m (0.3.0)
@@ -1069,4 +1074,4 @@ RUBY VERSION
    ruby 3.4.1p0
 
 BUNDLED WITH
-   2.6.5
+   2.6.6
