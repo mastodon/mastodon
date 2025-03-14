@@ -4,7 +4,7 @@ import { debounce } from 'lodash';
 
 import { openModal } from 'mastodon/actions/modal';
 import { fetchPoll, vote } from 'mastodon/actions/polls';
-import Poll from 'mastodon/components/poll';
+import { Poll } from 'mastodon/components/poll';
 
 const mapDispatchToProps = (dispatch, { pollId }) => ({
   refresh: debounce(
@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch, { pollId }) => ({
 });
 
 const mapStateToProps = (state, { pollId }) => ({
-  poll: state.polls.get(pollId),
+  poll: state.polls[pollId],
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Poll);

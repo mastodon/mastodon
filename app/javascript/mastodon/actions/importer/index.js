@@ -71,7 +71,7 @@ export function importFetchedStatuses(statuses) {
       }
 
       if (status.poll?.id) {
-        pushUnique(polls, createPollFromServerJSON(status.poll, getState().polls.get(status.poll.id)));
+        pushUnique(polls, createPollFromServerJSON(status.poll, getState().polls[status.poll.id]));
       }
 
       if (status.card) {
