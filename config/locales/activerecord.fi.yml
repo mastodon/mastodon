@@ -55,6 +55,8 @@ fi:
               too_soon: on liian pian, täytyy olla myöhemmin kuin %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: alittaa alaikärajan
             email:
               blocked: käyttää kiellettyä sähköpostipalveluntarjoajaa
               unreachable: ei näytä olevan olemassa

@@ -88,6 +88,7 @@ sq:
         favicon: WEBP, PNG, GIF, ose JPG. Anashkalon favikonën parazgjedhje Mastodon me një ikonë vetjake.
         mascot: Anashkalon ilustrimin te ndërfaqja web e thelluar.
         media_cache_retention_period: Kartela media nga postime të bëra nga përdorues të largët ruhen në një fshehtinë në shërbyesin tuaj. Kur i jepet një vlerë pozitive, media do të fshihet pas numrit të dhënë të ditëve. Nëse të dhënat e medias duhen pas fshirjes, do të rishkarkohen, nëse lënda burim mund të kihet ende. Për shkak kufizimesh mbi sa shpesh skeda paraparjesh lidhjesh ndërveprojnë me sajte palësh të treta, rekomandohet të vihet kjo vlerë të paktën 14 ditë, ose skedat e paraparjes së lidhje s’do të përditësohen duke e kërkuar para asaj kohe.
+        min_age: Përdoruesve do t’ju kërkohet gjatë regjistrimit të ripohojnë datën e lindjes
         peers_api_enabled: Një listë emrash përkatësish që ky shërbyes ka hasur në fedivers. Këtu s’jepen të dhëna nëse jeni i federuar me shërbyesin e dhënë, thjesht tregohet se shërbyesi juaj e njeh. Kjo përdoret nga shërbime që mbledhin statistika mbi federimin në kuptimin e përgjithshëm.
         profile_directory: Drejtoria e profileve paraqet krejt përdoruesit që kanë zgjedhur të jenë të zbulueshëm.
         require_invite_text: Kur regjistrimet lypin miratim dorazi, bëje tekstin “Përse doni të bëheni pjesë?” të detyrueshëm, në vend se opsional
@@ -145,6 +146,7 @@ sq:
         min_age: S’duhet të jetë nën moshën minimum të domosdoshme nga ligjet në juridiksionin tuaj.
       user:
         chosen_languages: Në iu vëntë shenjë, te rrjedha kohore publike do të shfaqen vetëm mesazhe në gjuhët e përzgjedhura
+        date_of_birth: Na duhet të sigurohemi se jeni të paktën %{age}, që të përdorni Mastodon-in. Këtë s’e depozitojmë.
         role: Roli kontrollon cilat leje ka përdoruesi.
       user_role:
         color: Ngjyrë për t’u përdorur për rolin nëpër UI, si RGB në format gjashtëmbëdhjetësh
@@ -270,6 +272,7 @@ sq:
         favicon: Favikonë
         mascot: Simbol vetjak (e dikurshme)
         media_cache_retention_period: Periudhë mbajtjeje lënde media
+        min_age: Domosdosmëri moshe minimum
         peers_api_enabled: Publiko te API listë shërbyesish të zbuluar
         profile_directory: Aktivizo drejtori profilesh
         registrations_mode: Kush mund të regjistrohet
@@ -348,6 +351,9 @@ sq:
         jurisdiction: Juridiksion ligjor
         min_age: Mosha minimale
       user:
+        date_of_birth_1i: Ditë
+        date_of_birth_2i: Muaj
+        date_of_birth_3i: Vit
         role: Rol
         time_zone: Zonë kohore
       user_role:
