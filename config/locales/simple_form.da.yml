@@ -88,6 +88,7 @@ da:
         favicon: WEBP, PNG, GIF eller JPG. Tilsidesætter standard Mastodon favikonet på mobilenheder med et tilpasset ikon.
         mascot: Tilsidesætter illustrationen i den avancerede webgrænseflade.
         media_cache_retention_period: Mediefiler fra indlæg oprettet af eksterne brugere er cachet på din server. Når sat til positiv værdi, slettes medier efter det angivne antal dage. Anmodes om mediedata efter de er slettet, gendownloades de, hvis kildeindholdet stadig er tilgængeligt. Grundet begrænsninger på, hvor ofte linkforhåndsvisningskort forespørger tredjeparts websteder, anbefales det at sætte denne værdi til mindst 14 dage, ellers opdateres linkforhåndsvisningskort ikke efter behov før det tidspunkt.
+        min_age: Brugere anmodes om at bekræfte deres fødselsdato under tilmelding
         peers_api_enabled: En liste med domænenavne, som denne server har stødt på i fediverset. Ingen data inkluderes her om, hvorvidt der fødereres med en given server, blot at din server kender til det. Dette bruges af tjenester, som indsamler generelle føderationsstatistikker.
         profile_directory: Profilmappen oplister alle brugere, som har valgt at kunne opdages.
         require_invite_text: Når tilmelding kræver manuel godkendelse, så gør “Hvorfor ønsker du at deltage?” tekstinput obligatorisk i stedet for valgfrit
@@ -146,6 +147,7 @@ da:
         min_age: Bør ikke være under den iht. lovgivningen i det aktuelle retsområde krævede minimumsalder.
       user:
         chosen_languages: Når markeret, vil kun indlæg på de valgte sprog fremgå på offentlige tidslinjer
+        date_of_birth: Vi er nødt til at sikre, at man er fyldt %{age} for at bruge Mastodon. Vi gemmer ikke denne information.
         role: Rollen styrer, hvilke tilladelser brugeren er tildelt.
       user_role:
         color: Farven, i RGB hex-format, der skal bruges til rollen i hele UI'en
@@ -271,6 +273,7 @@ da:
         favicon: Favikon
         mascot: Tilpasset maskot (ældre funktion)
         media_cache_retention_period: Media-cache opbevaringsperiode
+        min_age: Minimums alderskrav
         peers_api_enabled: Udgiv liste over fundne server i API'en
         profile_directory: Aktivér profiloversigt
         registrations_mode: Hvem, der kan tilmelde sig
@@ -349,6 +352,9 @@ da:
         jurisdiction: Juridisk jurisdiktion
         min_age: Minimumsalder
       user:
+        date_of_birth_1i: Dag
+        date_of_birth_2i: Måned
+        date_of_birth_3i: År
         role: Rolle
         time_zone: Tidszone
       user_role:
