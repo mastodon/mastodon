@@ -89,6 +89,7 @@ Devise.setup do |config|
     oidc_options[:send_scope_to_token_endpoint] = ENV['OIDC_SEND_SCOPE_TO_TOKEN_ENDPOINT'] == 'true' if ENV['OIDC_SEND_SCOPE_TO_TOKEN_ENDPOINT'] # OPTIONAL (default: true)
     oidc_options[:post_logout_redirect_uri] = ENV['OIDC_IDP_LOGOUT_REDIRECT_URI'] if ENV['OIDC_IDP_LOGOUT_REDIRECT_URI'] # OPTIONAL
     oidc_options[:uid_field] = ENV['OIDC_UID_FIELD'] if ENV['OIDC_UID_FIELD'] # NEED
+    oidc_options[:display_name_claim] = ENV['OIDC_DISPLAY_NAME_CLAIM'] if ENV['OIDC_DISPLAY_NAME_CLAIM'] # OPTIONAL
     oidc_options[:client_options] = {}
     oidc_options[:client_options][:identifier] = ENV['OIDC_CLIENT_ID'] if ENV['OIDC_CLIENT_ID'] # NEED
     oidc_options[:client_options][:secret] = ENV['OIDC_CLIENT_SECRET'] if ENV['OIDC_CLIENT_SECRET'] # NEED

@@ -93,13 +93,22 @@ module User::Omniauthable
     end
 
     def user_params_from_auth(email, auth)
+      strategy = Devise.omniauth_configs[auth.provider.to_sym].strategy
+
+      display_name = if strategy.respond_to?(:options) && strategy.options[:display_name_claim].present?
+                       display_name_claim = strategy.options[:display_name_claim]
+                       auth.extra.try(:raw_info).try(display_name_claim) || auth.info.try(display_name_claim)
+                     else
+                       auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' ')
+                     end
+
       {
         email: email || "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
         agreement: true,
         external: true,
         account_attributes: {
           username: ensure_unique_username(ensure_valid_username(auth.uid)),
-          display_name: auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' '),
+          display_name: display_name,
         },
       }
     end
