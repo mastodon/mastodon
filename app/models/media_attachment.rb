@@ -421,7 +421,7 @@ class MediaAttachment < ApplicationRecord
     @paths_to_cache_bust = MediaAttachment.attachment_definitions.keys.flat_map do |attachment_name|
       attachment = public_send(attachment_name)
       styles = DEFAULT_STYLES | attachment.styles.keys
-      styles.map { |style| attachment.path(style) }
+      styles.map { |style| attachment.url(style) }
     end.compact
   rescue => e
     # We really don't want any error here preventing media deletion
