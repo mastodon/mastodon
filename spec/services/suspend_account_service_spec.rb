@@ -11,6 +11,7 @@ RSpec.describe SuspendAccountService do
 
     before do
       allow(FeedManager.instance).to receive_messages(unmerge_from_home: nil, unmerge_from_list: nil)
+      allow(Rails.configuration.x).to receive(:cache_buster_enabled).and_return(true)
 
       local_follower.follow!(account)
       list.accounts << account
@@ -23,6 +24,7 @@ RSpec.describe SuspendAccountService do
     it 'unmerges from feeds of local followers and changes file mode and preserves suspended flag' do
       expect { subject }
         .to change_file_mode
+        .and enqueue_sidekiq_job(CacheBusterWorker).with(account.media_attachments.first.file.url(:original))
         .and not_change_suspended_flag
       expect(FeedManager.instance).to have_received(:unmerge_from_home).with(account, local_follower)
       expect(FeedManager.instance).to have_received(:unmerge_from_list).with(account, list)
