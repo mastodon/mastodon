@@ -53,6 +53,9 @@ module Mastodon::CLI
               ensure
                 RedisConnection.pool.checkin if Thread.current[:redis]
                 Thread.current[:redis] = nil
+
+                RedisConnection.streaming_pool.checkin if Thread.current[:streaming_redis]
+                Thread.current[:streaming_redis] = nil
               end
 
               aggregate.increment(result) if result.is_a?(Integer)

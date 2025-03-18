@@ -245,6 +245,7 @@ RSpec.describe ResolveAccountService do
         fail_occurred = true
       ensure
         RedisConnection.pool.checkin if Thread.current[:redis]
+        RedisConnection.streaming_pool.checkin if Thread.current[:streaming_redis]
       end
     end
 
