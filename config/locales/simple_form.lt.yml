@@ -82,6 +82,7 @@ lt:
         favicon: WEBP, PNG, GIF arba JPG. Pakeičia numatytąją Mastodon svetaines piktogramą pasirinktine piktograma.
         mascot: Pakeičia išplėstinės žiniatinklio sąsajos iliustraciją.
         media_cache_retention_period: Nuotolinių naudotojų įrašytų įrašų medijos failai talpinami tavo serveryje. Nustačius teigiamą reikšmę, medijos bus ištrinamos po nurodyto dienų skaičiaus. Jei medijos duomenų bus paprašyta po to, kai jie bus ištrinti, jie bus atsiųsti iš naujo, jei šaltinio turinys vis dar prieinamas. Dėl apribojimų, susijusių su nuorodų peržiūros kortelių apklausos dažnumu trečiųjų šalių svetainėse, rekomenduojama nustatyti šią reikšmę ne trumpesnę kaip 14 dienų, kitaip nuorodų peržiūros kortelės nebus atnaujinamos pagal pareikalavimą iki to laiko.
+        min_age: Registracijos metu naudotojai bus paprašyti patvirtinti savo gimimo datą.
         peers_api_enabled: Domenų pavadinimų sąrašas, su kuriais šis serveris susidūrė fediverse. Čia nėra duomenų apie tai, ar tu bendrauji su tam tikru serveriu, tik apie tai, kad tavo serveris apie jį žino. Tai naudojama tarnybose, kurios renka federacijos statistiką bendrąja prasme.
         require_invite_text: Kai registraciją reikia patvirtinti rankiniu būdu, teksto įvesties laukelį „Kodėl nori prisijungti?“ padaryk privalomą, o ne pasirenkamą
         site_contact_email: Kaip žmonės gali su tavimi susisiekti teisiniais ar pagalbos užklausimais.
@@ -108,12 +109,17 @@ lt:
         text: Gali būti struktūrizuota su ženklinimo sintakse.
       terms_of_service_generator:
         admin_email: Teisiniai pranešimai įtraukia priešpriešinius pranešimus, teismo įsakymus, pašalinimo prašymus ir teisėsaugos institucijų prašymus.
+        arbitration_address: Gali būti toks pat kaip aukščiau nurodytas fizinis adresas arba „N/A“ (netaikoma), jei naudojamas el. paštas.
+        arbitration_website: Gali būti interneto forma arba „N/A“ (netaikoma), jei naudojamas el. paštas.
         choice_of_law: Miestas, regionas, teritorija ar valstija, kurių vidaus materialinė teisė reglamentuoja visus reikalavimus.
         dmca_address: JAV operatoriams naudokite DMCA paskirtojo agento kataloge užregistruotą adresą. Pašto dėžutės sąrašą galima sudaryti pateikus tiesioginį prašymą, naudokite DMCA paskirtojo agento pašto dėžutės atsisakymo prašymą, kad parašytumėte el. laišką Autorinių teisių tarnybai ir aprašytumėte, kad esate namuose įsikūręs turinio moderatorius, kuris baiminasi keršto ar bausmės už savo veiksmus ir kuriam reikia naudoti pašto dėžutę, kad jo namų adresas nebūtų viešai matomas.
+        dmca_email: Gali būti tas pats aukščiau nurodytas el. pašto adresas, naudojamas „El. pašto adresas, skirtas teisiniams pranešimams“.
         domain: Unikalus jūsų teikiamos internetinės paslaugos identifikavimas.
         jurisdiction: Nurodykite šalį, kurioje gyvena tas, kas apmoka sąskaitas. Jei tai bendrovė ar kita esybė, nurodykite šalį, kurioje jis įregistruotas, ir atitinkamai miestą, regioną, teritoriją ar valstiją.
+        min_age: Neturėtų būti žemiau mažiausio amžiaus, reikalaujamo pagal jūsų jurisdikcijos įstatymus.
       user:
         chosen_languages: Kai pažymėta, viešose laiko skalėse bus rodomi tik įrašai pasirinktomis kalbomis.
+        date_of_birth: Turime įsitikinti, kad esate bent %{age}, kad naudotumėte „Mastodon“. Mes to neišsaugosime.
         role: Vaidmuo valdo, kokius leidimus naudotojas turi.
     labels:
       account:
@@ -187,6 +193,7 @@ lt:
         custom_css: Pasirinktinis CSS
         favicon: Svetainės piktograma
         mascot: Pasirinktinis talismanas (pasenęs)
+        min_age: Mažiausias amžiaus reikalavimas
         registrations_mode: Kas gali užsiregistruoti
         require_invite_text: Reikalauti priežasties prisijungti
         show_domain_blocks_rationale: Rodyti, kodėl domenai buvo užblokuoti
@@ -237,7 +244,11 @@ lt:
         dmca_email: El. pašto adresas, skirtas DMCA / autorinių teisių pranešimams
         domain: Domenas
         jurisdiction: Teisinis teismingumas
+        min_age: Mažiausias amžius
       user:
+        date_of_birth_1i: Diena
+        date_of_birth_2i: Mėnuo
+        date_of_birth_3i: Metai
         role: Vaidmuo
         time_zone: Laiko juosta
       user_role:

@@ -55,6 +55,8 @@ tr:
               too_soon: çok erken, %{date} tarihinden sonra olmalıdır
         user:
           attributes:
+            date_of_birth:
+              below_limit: yaş sınırının altında
             email:
               blocked: izin verilmeyen bir e-posta sağlayıcı kullanıyor
               unreachable: mevcut gözükmüyor

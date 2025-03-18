@@ -88,6 +88,7 @@ lv:
         favicon: WEBP, PNG, GIF vai JPG. Aizstāj noklusējuma Mastodon favikonu ar pielāgotu.
         mascot: Ignorē ilustrāciju uzlabotajā tīmekļa saskarnē.
         media_cache_retention_period: Informācijas nesēju datnes no ierakstiem, kurus ir veikuši attālie lietotāji, tiek kešoti šajā serverī. Kad ir iestatīta apstiprinoša vērtība, informācijas nesēji tiks izdzēsti pēc norādītā dienu skaita. Ja informācijas nesēju dati tiks pieprasīti pēc tam, kad tie tika izdzēsti, tie tiks atkārtoti lejupielādēti, ja avota saturs joprojām būs pieejams. Saišu priekšskatījuma karšu vaicājumu biežuma ierobežojumu dēļ ir ieteicams iestatīt šo vērtību vismaz 14 dienas vai saišu priekšskatījuma kartes netiks atjauninātas pēc pieprasījuma pirms tā laika.
+        min_age: Lietotājiem tiks lūgts apstiprināt viņu dzimšanas datumu reģistrācijas laikā
         peers_api_enabled: Domēna vārdu saraksts, ar kuriem šis serveris ir saskāries fediversā. Šeit nav iekļauti dati par to, vai tu veic federāciju ar noteiktu serveri, tikai tavs serveris par to zina. To izmanto dienesti, kas apkopo statistiku par federāciju vispārīgā nozīmē.
         profile_directory: Profilu direktorijā ir uzskaitīti visi lietotāji, kuri ir izvēlējušies būt atklājami.
         require_invite_text: Ja nepieciešama pašrocīga apstiprināšana, lai pierakstītos, teksta “Kāpēc vēlies pievienoties?” ievade jāpadara par nepieciešamu, nevis izvēles
@@ -140,6 +141,7 @@ lv:
         domain: Sniegtā tiešsaistas pakalpojuma neatkārtojama identifikācija.
       user:
         chosen_languages: Ja ieķeksēts, publiskos laika grafikos tiks parādītas tikai ziņas noteiktajās valodās
+        date_of_birth: Mums jāpārliecinās, ka jums ir vismaz %{age} gadi, lai varētu izmantot Mastodonu. Mēs neuzglabāsim šo informāciju.
         role: Loma nosaka, kādas lietotājam ir atļaujas.
       user_role:
         color: Krāsa, kas jāizmanto lomai visā lietotāja saskarnē, kā RGB hex formātā
@@ -265,6 +267,7 @@ lv:
         favicon: Favikona
         mascot: Pielāgots talismans (mantots)
         media_cache_retention_period: Multivides kešatmiņas saglabāšanas periods
+        min_age: Nepieciešamais minimālais vecums
         peers_api_enabled: Publicēt API atklāto serveru sarakstu
         profile_directory: Iespējot profila direktoriju
         registrations_mode: Kurš drīkst pieteikties
@@ -338,6 +341,9 @@ lv:
         domain: Domēna vārds
         min_age: Mazākais pieļaujamais vecums
       user:
+        date_of_birth_1i: Diena
+        date_of_birth_2i: Mēnesis
+        date_of_birth_3i: Gads
         role: Loma
         time_zone: Laika josla
       user_role:
