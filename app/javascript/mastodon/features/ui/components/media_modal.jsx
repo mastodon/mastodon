@@ -22,7 +22,7 @@ import Footer from 'mastodon/features/picture_in_picture/components/footer';
 import Video from 'mastodon/features/video';
 import { disableSwiping } from 'mastodon/initial_state';
 
-import ImageLoader from './image_loader';
+import ZoomableImage from './zoomable_image';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -172,8 +172,7 @@ class MediaModal extends ImmutablePureComponent {
 
       if (image.get('type') === 'image') {
         return (
-          <ImageLoader
-            previewSrc={image.get('preview_url')}
+          <ZoomableImage
             src={image.get('url')}
             width={width}
             height={height}
