@@ -38,6 +38,13 @@ Paperclip::Attachment.default_options.merge!(
 if ENV['S3_ENABLED'] == 'true'
   require 'aws-sdk-s3'
 
+  # https://docs.aws.amazon.com/sdkref/latest/guide/feature-dataintegrity.html
+  # These values default to `WHEN_SUPPORTED` in newer SDK versions, which breaks
+  # integration with S3-compatible hosts. Instead, default to `WHEN_REQUIRED`
+  # when not set (requires opt in from real S3 who want to enable)
+  ENV['AWS_REQUEST_CHECKSUM_CALCULATION'] ||= 'WHEN_REQUIRED'
+  ENV['AWS_REQUEST_CHECKSUM_VALIDATION'] ||= 'WHEN_REQUIRED'
+
   s3_region   = ENV.fetch('S3_REGION')   { 'us-east-1' }
   s3_protocol = ENV.fetch('S3_PROTOCOL') { 'https' }
   s3_hostname = ENV.fetch('S3_HOSTNAME') { "s3-#{s3_region}.amazonaws.com" }
