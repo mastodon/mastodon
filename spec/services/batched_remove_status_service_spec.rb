@@ -14,7 +14,7 @@ RSpec.describe BatchedRemoveStatusService, :inline_jobs do
   let(:status_alice_other) { PostStatusService.new.call(alice, text: 'Another status') }
 
   before do
-    allow(redis).to receive_messages(publish: nil)
+    allow(streaming_redis).to receive_messages(publish: nil)
 
     stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
 

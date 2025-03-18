@@ -104,7 +104,7 @@ RSpec.describe 'Settings applications page' do
     let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
     let!(:access_token) { Fabricate(:accessible_access_token, application: application) }
 
-    before { stub_redis_pipeline }
+    before { stub_streaming_redis_pipeline }
 
     it 'destroys the record and tells the broader universe about that' do
       visit settings_applications_path
@@ -121,7 +121,7 @@ RSpec.describe 'Settings applications page' do
       click_on I18n.t('doorkeeper.applications.index.delete')
     end
 
-    def stub_redis_pipeline
+    def stub_streaming_redis_pipeline
       allow(streaming_redis)
         .to receive(:pipelined)
         .and_yield(redis_pipeline_stub)

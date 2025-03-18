@@ -198,7 +198,7 @@ RSpec.describe 'Filters' do
       let(:params) { { keywords_attributes: [{ id: keyword.id, keyword: 'updated' }] } }
 
       before do
-        allow(redis).to receive_messages(publish: nil)
+        allow(streaming_redis).to receive_messages(publish: nil)
       end
 
       it 'returns http success and updates keyword and sends a filters_changed event' do
