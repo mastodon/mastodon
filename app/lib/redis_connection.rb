@@ -19,7 +19,7 @@ class RedisConnection
     end
 
     def streaming_pool
-      @streaming_pool ||= establish_pool(2)
+      @streaming_pool ||= establish_streaming_pool(2)
     end
 
     def pool_size
