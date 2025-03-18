@@ -4,7 +4,6 @@ import { PureComponent } from 'react';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 import { is } from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import Textarea from 'react-textarea-autosize';
@@ -49,7 +48,7 @@ class InlineAlert extends PureComponent {
 class AccountNote extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.record.isRequired,
+    accountId: PropTypes.string.isRequired,
     value: PropTypes.string,
     onSave: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -66,7 +65,7 @@ class AccountNote extends ImmutablePureComponent {
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
-    const accountWillChange = !is(this.props.account, nextProps.account);
+    const accountWillChange = !is(this.props.accountId, nextProps.accountId);
     const newState = {};
 
     if (accountWillChange && this._isDirty()) {
@@ -141,21 +140,21 @@ class AccountNote extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, intl } = this.props;
+    const { accountId, intl } = this.props;
     const { value, saved } = this.state;
 
-    if (!account) {
+    if (!accountId) {
       return null;
     }
 
     return (
       <div className='account__header__account-note'>
-        <label htmlFor={`account-note-${account.get('id')}`}>
+        <label htmlFor={`account-note-${accountId}`}>
           <FormattedMessage id='account.account_note_header' defaultMessage='Personal note' /> <InlineAlert show={saved} />
         </label>
 
         <Textarea
-          id={`account-note-${account.get('id')}`}
+          id={`account-note-${accountId}`}
           className='account__header__account-note__content'
           disabled={this.props.value === null || value === null}
           placeholder={intl.formatMessage(messages.placeholder)}
