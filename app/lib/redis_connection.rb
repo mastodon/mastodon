@@ -19,6 +19,8 @@ class RedisConnection
     end
 
     def streaming_pool
+      return pool if REDIS_CONFIGURATION.streaming == REDIS_CONFIGURATION.base
+
       @streaming_pool ||= establish_streaming_pool(2)
     end
 
