@@ -24,7 +24,15 @@ class EmojiFormatter
   def to_s
     return html if custom_emojis.empty? || html.blank?
 
-    tree = Nokogiri::HTML5.fragment(html)
+    begin
+      tree = Nokogiri::HTML5.fragment(html)
+    rescue ArgumentError
+      # This can happen if one of the Nokogumbo limits is encountered
+      # Unfortunately, it does not use a more precise error class
+      # nor allows more graceful handling
+      return ''
+    end
+
     tree.xpath('./text()|.//text()[not(ancestor[@class="invisible"])]').to_a.each do |node|
       i                     = -1
       inside_shortname      = false
