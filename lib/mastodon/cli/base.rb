@@ -41,6 +41,7 @@ module Mastodon
             .tap { |config| config['pool'] = options[:concurrency] + 1 }
         )
         RedisConnection.establish_pool(options[:concurrency])
+        RedisConnection.establish_streaming_pool(2)
       end
     end
   end

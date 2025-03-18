@@ -18,7 +18,7 @@ class Mastodon::RedisConfiguration
   end
 
   def streaming
-    @sidekiq ||= setup_config(prefix: 'STREAMING_')
+    @streaming ||= setup_config(prefix: 'STREAMING_')
                    .merge(namespace: sidekiq_namespace)
   end
 

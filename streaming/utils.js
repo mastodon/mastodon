@@ -86,5 +86,5 @@ export function parseIntFromEnvValue(value, defaultValue, variableName) {
  * @returns {boolean}
  */
 export function stringPresent(value) {
-  return typeof value === 'string' && value.length > 0
+  return typeof value === 'string' && value.length > 0;
 }

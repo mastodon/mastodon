@@ -75,9 +75,9 @@ function getStreamingOrBaseConfiguration(env) {
       REDIS_HOST: env.REDIS_HOST,
       REDIS_PORT: env.REDIS_PORT,
       REDIS_DB: env.REDIS_DB,
-    }
+    };
   } else {
-    return env
+    return env;
   }
 }
 
@@ -86,7 +86,7 @@ function getStreamingOrBaseConfiguration(env) {
  * @returns {RedisConfiguration} configuration for the Redis connection
  */
 export function configFromEnv(realEnv) {
-  const env = getStreamingOrBaseConfiguration(realEnv)
+  const env = getStreamingOrBaseConfiguration(realEnv);
 
   const redisNamespace = env.REDIS_NAMESPACE;
 

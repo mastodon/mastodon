@@ -2,19 +2,24 @@
 
 class RedisConnection
   class << self
-    def establish_pool(new_pool_size, config)
+    def establish_pool(new_pool_size)
       @pool&.shutdown(&:close)
-      @pool = ConnectionPool.new(size: new_pool_size) { new(config).connection }
+      @pool = ConnectionPool.new(size: new_pool_size) { new.connection }
+    end
+
+    def establish_streaming_pool(new_pool_size)
+      @streaming_pool&.shutdown(&:close)
+      @streaming_pool = ConnectionPool.new(size: new_pool_size) { new(REDIS_CONFIGURATION.streaming).connection }
     end
 
     delegate :with, to: :pool
 
     def pool
-      @pool ||= establish_pool(pool_size, REDIS_CONFIGURATION.base)
+      @pool ||= establish_pool(pool_size)
     end
 
     def streaming_pool
-      @pool ||= establish_pool(2, REDIS_CONFIGURATION.streaming)
+      @streaming_pool ||= establish_pool(2)
     end
 
     def pool_size
@@ -28,8 +33,8 @@ class RedisConnection
 
   attr_reader :config
 
-  def initialize(config)
-    @config = config
+  def initialize(config = nil)
+    @config = config || REDIS_CONFIGURATION.base
   end
 
   def connection
