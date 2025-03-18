@@ -11,7 +11,7 @@
       .dot-indicator.success
         .dot-indicator__indicator
         %span
-          - if @terms_of_service.effective?
+          - if @terms_of_service.effective? || @terms_of_service.effective_date.nil?
             = t('admin.terms_of_service.live')
           - else
             = t('admin.terms_of_service.going_live_on_html', date: tag.time(l(@terms_of_service.effective_date), class: 'formatted', date: @terms_of_service.effective_date.iso8601))
