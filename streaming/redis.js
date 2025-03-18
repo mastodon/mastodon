@@ -1,6 +1,6 @@
 import { Redis } from 'ioredis';
 
-import { parseIntFromEnvValue } from './utils.js';
+import { parseIntFromEnvValue, stringPresent } from './utils.js';
 
 /**
  * @typedef RedisConfiguration
@@ -60,10 +60,34 @@ function getSentinelConfiguration(env, commonOptions) {
 }
 
 /**
- * @param {NodeJS.ProcessEnv} env the `process.env` value to read configuration from
+ *
+ * @param {NodeJS.ProcessEnv} env
+ * @returns { {[ key: string ]: string} | NodeJS.ProcessEnv}
+ */
+function getStreamingOrBaseConfiguration(env) {
+  if (stringPresent(env.STREAMING_REDIS_URL) || stringPresent(env.STREAMING_REDIS_HOST)) {
+    return {
+      REDIS_NAMESPACE: env.REDIS_NAMESPACE,
+
+      REDIS_URL: env.STREAMING_REDIS_URL,
+      REDIS_USER: env.STREAMING_REDIS_USER,
+      REDIS_PASSWORD: env.STREAMING_REDIS_PASSWORD,
+      REDIS_HOST: env.REDIS_HOST,
+      REDIS_PORT: env.REDIS_PORT,
+      REDIS_DB: env.REDIS_DB,
+    }
+  } else {
+    return env
+  }
+}
+
+/**
+ * @param {NodeJS.ProcessEnv} realEnv the `process.env` value to read configuration from
  * @returns {RedisConfiguration} configuration for the Redis connection
  */
-export function configFromEnv(env) {
+export function configFromEnv(realEnv) {
+  const env = getStreamingOrBaseConfiguration(realEnv)
+
   const redisNamespace = env.REDIS_NAMESPACE;
 
   // These options apply for both REDIS_URL based connections and connections
@@ -79,7 +103,7 @@ export function configFromEnv(env) {
 
   // If we receive REDIS_URL, don't continue parsing any other REDIS_*
   // environment variables:
-  if (typeof env.REDIS_URL === 'string' && env.REDIS_URL.length > 0) {
+  if (stringPresent(env.REDIS_URL)) {
     return {
       url: env.REDIS_URL,
       options: commonOptions,

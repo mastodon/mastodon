@@ -79,3 +79,12 @@ export function parseIntFromEnvValue(value, defaultValue, variableName) {
     return defaultValue;
   }
 }
+
+/**
+ * Takes a value, and tests if it is a non-empty string.
+ * @param {string|undefined} value
+ * @returns {boolean}
+ */
+export function stringPresent(value) {
+  return typeof value === 'string' && value.length > 0
+}
