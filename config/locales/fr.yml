@@ -309,6 +309,7 @@ fr:
       title: Journal d’audit
       unavailable_instance: "(nom de domaine indisponible)"
     announcements:
+      back: Retour aux annonces
       destroyed_msg: Annonce supprimée avec succès !
       edit:
         title: Modifier l’annonce
@@ -317,6 +318,9 @@ fr:
       new:
         create: Créer une annonce
         title: Nouvelle annonce
+      preview:
+        explanation_html: 'L''e-mail sera envoyé à <strong>%{display_count} utilisateurs</strong>. Le texte suivant sera inclus :'
+        title: Aperçu de la notification d'annonce
       publish: Publier
       published_msg: Annonce publiée avec succès !
       scheduled_for: Planifiée pour %{time}
@@ -942,6 +946,7 @@ fr:
         chance_to_review_html: "<strong>Les conditions d'utilisation générées ne seront pas publiées automatiquement.</strong> Vous aurez la possibilité de vérifier les résultats. Veuillez remplir les informations nécessaires pour continuer."
         explanation_html: Le modèle de conditions d'utilisation fourni l'est uniquement à titre informatif et ne doit pas être interprété comme un conseil juridique sur quelque sujet que ce soit. Veuillez consulter votre propre conseiller juridique sur votre situation et les questions juridiques spécifiques que vous vous posez.
         title: Configuration des Conditions d'Utilisation
+      going_live_on_html: En direct, à compter du %{date}
       history: Historique
       live: En cours d'utilisation
       no_history: Il n'y a pas encore de modifications enregistrées des conditions d'utilisation.
@@ -1907,6 +1912,10 @@ fr:
     recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour retrouver l’accès à votre compte. <strong>Conservez les codes de récupération en sécurité</strong>. Par exemple, en les imprimant et en les stockant avec vos autres documents importants.
     webauthn: Clés de sécurité
   user_mailer:
+    announcement_published:
+      description: 'Les administrateurs de %{domain} font une annonce :'
+      subject: Annonce de service
+      title: Annonce de service de %{domain}
     appeal_approved:
       action: Paramètres du compte
       explanation: L'appel de la sanction contre votre compte mise en place le %{strike_date} que vous avez soumis le %{appeal_date} a été approuvé. Votre compte est de nouveau en règle.
@@ -1939,6 +1948,8 @@ fr:
     terms_of_service_changed:
       agreement: En continuant d'utiliser %{domain}, vous acceptez ces conditions. Si vous n'êtes pas d'accord avec les conditions mises à jour, vous pouvez résilier votre accord avec %{domain} à tout moment en supprimant votre compte.
       changelog: 'En un coup d''œil, voici ce que cette mise à jour signifie pour vous :'
+      description: 'Vous recevez cet e-mail parce que nous apportons des modifications à nos conditions de service à %{domain}. Ces modifications entreront en vigueur le %{date}. Nous vous encourageons à consulter l''intégralité des conditions mises à jour ici :'
+      description_html: Vous recevez cet e-mail parce que nous apportons des modifications à nos conditions de service à %{domain}. Ces mises à jour entreront en vigueur le <strong>%{date}</strong>. Nous vous encourageons à consulter l'intégralité des <a href="%{path}" target="_blank">conditions mises à jour ici</a>.
       sign_off: L'équipe %{domain}
       subject: Mises à jour de nos conditions d'utilisation
       subtitle: Les conditions d'utilisation de `%{domain}` changent
