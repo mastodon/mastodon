@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { IconButton } from 'mastodon/components/icon_button';
 
-import ZoomableImage from './zoomable_image';
+import { ZoomableImage } from './zoomable_image';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

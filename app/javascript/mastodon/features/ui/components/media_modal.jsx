@@ -22,7 +22,7 @@ import Footer from 'mastodon/features/picture_in_picture/components/footer';
 import Video from 'mastodon/features/video';
 import { disableSwiping } from 'mastodon/initial_state';
 
-import ZoomableImage from './zoomable_image';
+import { ZoomableImage } from './zoomable_image';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

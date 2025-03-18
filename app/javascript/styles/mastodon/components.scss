@@ -2455,18 +2455,18 @@ a.account__display-name {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  &--zoomed-in {
-    align-items: flex-start;
-    justify-content: start;
-  }
+  scrollbar-width: none;
+  overflow: scroll;
 
   img {
     max-width: $media-modal-media-max-width;
     max-height: $media-modal-media-max-height;
     width: auto;
     height: auto;
-    object-fit: contain;
+  }
+
+  &--zoomed-in {
+    z-index: 9999;
   }
 
   &__preview {
