@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
+import classNames from 'classnames';
+
+import { Blurhash } from 'mastodon/components/blurhash';
+
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
 const NAV_BAR_HEIGHT = 66;
@@ -93,7 +97,9 @@ class ZoomableImage extends PureComponent {
     width: PropTypes.number,
     height: PropTypes.number,
     onClick: PropTypes.func,
+    onDoubleClick: PropTypes.func,
     zoomedIn: PropTypes.bool,
+    blurhash: PropTypes.string,
   };
 
   static defaultProps = {
@@ -123,6 +129,7 @@ class ZoomableImage extends PureComponent {
     dragged: false,
     lockScroll: { x: 0, y: 0 },
     lockTranslate: { x: 0, y: 0 },
+    loaded: false,
   };
 
   removers = [];
@@ -285,8 +292,18 @@ class ZoomableImage extends PureComponent {
     if (handler) handler();
   };
 
+  handleDoubleClick = e => {
+    e.stopPropagation();
+    const handler = this.props.onDoubleClick;
+    if (handler) handler();
+  };
+
   handleMouseDown = e => {
     e.preventDefault();
+  };
+
+  handleLoad = () => {
+    this.setState({ loaded: true });
   };
 
   _initZoomMatrix = () => {
@@ -366,17 +383,24 @@ class ZoomableImage extends PureComponent {
   };
 
   render () {
-    const { alt, lang, src, width, height } = this.props;
+    const { alt, lang, src, width, height, blurhash } = this.props;
     const { scale, lockTranslate, dragged } = this.state;
     const overflow = scale === MIN_SCALE ? 'hidden' : 'scroll';
     const cursor = scale === MIN_SCALE ? null : (dragged ? 'grabbing' : 'grab');
 
     return (
       <div
-        className='zoomable-image'
+        className={classNames('zoomable-image', { 'zoomable-image--zoomed-in': scale !== MIN_SCALE })}
         ref={this.setContainerRef}
         style={{ overflow, cursor, userSelect: 'none' }}
       >
+        {!this.state.loaded && <Blurhash
+          hash={blurhash}
+          className='zoomable-image__preview'
+          width={32}
+          height={Math.floor(32 * (height / width))}
+        />}
+
         <img
           role='presentation'
           ref={this.setImageRef}
@@ -391,7 +415,9 @@ class ZoomableImage extends PureComponent {
             transformOrigin: '0 0',
           }}
           draggable={false}
+          onLoad={this.handleLoad}
           onClick={this.handleClick}
+          onDoubleClick={this.handleDoubleClick}
           onMouseDown={this.handleMouseDown}
         />
       </div>

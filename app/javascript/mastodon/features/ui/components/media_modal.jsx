@@ -174,12 +174,14 @@ class MediaModal extends ImmutablePureComponent {
         return (
           <ZoomableImage
             src={image.get('url')}
+            blurhash={image.get('blurhash')}
             width={width}
             height={height}
             alt={description}
             lang={lang}
             key={image.get('url')}
             onClick={this.handleToggleNavigation}
+            onDoubleClick={this.handleZoomClick}
             zoomedIn={zoomedIn}
           />
         );
