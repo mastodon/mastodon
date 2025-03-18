@@ -82,7 +82,7 @@ class RemoveStatusService < BaseService
     return if skip_streaming?
 
     @status.active_mentions.find_each do |mention|
-      redis.publish("timeline:#{mention.account_id}", @payload)
+      streaming_redis.publish("timeline:#{mention.account_id}", @payload)
     end
   end
 
@@ -123,8 +123,8 @@ class RemoveStatusService < BaseService
     return if skip_streaming?
 
     @status.tags.map(&:name).each do |hashtag|
-      redis.publish("timeline:hashtag:#{hashtag.downcase}", @payload)
-      redis.publish("timeline:hashtag:#{hashtag.downcase}:local", @payload) if @status.local?
+      streaming_redis.publish("timeline:hashtag:#{hashtag.downcase}", @payload)
+      streaming_redis.publish("timeline:hashtag:#{hashtag.downcase}:local", @payload) if @status.local?
     end
   end
 
@@ -133,8 +133,8 @@ class RemoveStatusService < BaseService
 
     return if skip_streaming?
 
-    redis.publish('timeline:public', @payload)
-    redis.publish(@status.local? ? 'timeline:public:local' : 'timeline:public:remote', @payload)
+    streaming_redis.publish('timeline:public', @payload)
+    streaming_redis.publish(@status.local? ? 'timeline:public:local' : 'timeline:public:remote', @payload)
   end
 
   def remove_from_media
@@ -142,8 +142,8 @@ class RemoveStatusService < BaseService
 
     return if skip_streaming?
 
-    redis.publish('timeline:public:media', @payload)
-    redis.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', @payload)
+    streaming_redis.publish('timeline:public:media', @payload)
+    streaming_redis.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', @payload)
   end
 
   def remove_media

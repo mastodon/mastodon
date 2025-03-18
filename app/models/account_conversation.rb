@@ -123,7 +123,7 @@ class AccountConversation < ApplicationRecord
   end
 
   def subscribed_to_timeline?
-    redis.exists?("subscribed:#{streaming_channel}")
+    streaming_redis.exists?("subscribed:#{streaming_channel}")
   end
 
   def streaming_channel

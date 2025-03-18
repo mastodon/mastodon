@@ -17,6 +17,11 @@ class Mastodon::RedisConfiguration
                  .merge(namespace: sidekiq_namespace)
   end
 
+  def streaming
+    @sidekiq ||= setup_config(prefix: 'STREAMING_')
+                   .merge(namespace: sidekiq_namespace)
+  end
+
   def cache
     @cache ||= setup_config(prefix: 'CACHE_')
                .merge({

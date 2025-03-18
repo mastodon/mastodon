@@ -122,7 +122,7 @@ RSpec.describe 'Settings applications page' do
     end
 
     def stub_redis_pipeline
-      allow(redis)
+      allow(streaming_redis)
         .to receive(:pipelined)
         .and_yield(redis_pipeline_stub)
     end

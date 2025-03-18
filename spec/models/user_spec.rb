@@ -491,7 +491,7 @@ RSpec.describe User do
 
     let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
 
-    before { stub_redis }
+    before { stub_streaming_redis }
 
     it 'changes the password immediately and revokes related access' do
       expect { user.reset_password! }
@@ -521,8 +521,8 @@ RSpec.describe User do
       change { Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count }.to(0)
     end
 
-    def stub_redis
-      allow(redis)
+    def stub_streaming_redis
+      allow(streaming_redis)
         .to receive(:pipelined)
         .and_yield(redis_pipeline_stub)
     end

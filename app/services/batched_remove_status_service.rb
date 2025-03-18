@@ -54,7 +54,7 @@ class BatchedRemoveStatusService < BaseService
 
     # Cannot be batched
     @status_id_cutoff = Mastodon::Snowflake.id_at(2.weeks.ago)
-    redis.pipelined do |pipeline|
+    streaming_redis.pipelined do |pipeline|
       statuses.each do |status|
         unpush_from_public_timelines(status, pipeline)
       end

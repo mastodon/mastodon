@@ -22,7 +22,7 @@ RSpec.describe FanOutOnWriteService do
 
     Fabricate(:media_attachment, status: status, account: alice)
 
-    allow(redis).to receive(:publish)
+    allow(streaming_redis).to receive(:publish)
 
     subject.call(status)
   end
@@ -40,11 +40,11 @@ RSpec.describe FanOutOnWriteService do
         .and be_in(home_feed_of(bob))
         .and be_in(home_feed_of(tom))
 
-      expect(redis).to have_received(:publish).with('timeline:hashtag:hoge', anything)
-      expect(redis).to have_received(:publish).with('timeline:hashtag:hoge:local', anything)
-      expect(redis).to have_received(:publish).with('timeline:public', anything)
-      expect(redis).to have_received(:publish).with('timeline:public:local', anything)
-      expect(redis).to have_received(:publish).with('timeline:public:media', anything)
+      expect(streaming_redis).to have_received(:publish).with('timeline:hashtag:hoge', anything)
+      expect(streaming_redis).to have_received(:publish).with('timeline:hashtag:hoge:local', anything)
+      expect(streaming_redis).to have_received(:publish).with('timeline:public', anything)
+      expect(streaming_redis).to have_received(:publish).with('timeline:public:local', anything)
+      expect(streaming_redis).to have_received(:publish).with('timeline:public:media', anything)
     end
   end
 
@@ -96,7 +96,7 @@ RSpec.describe FanOutOnWriteService do
         status.update!(text: 'Hello @bob @eve #hoge (edited)')
         status.snapshot!(account_id: status.account_id)
 
-        redis.set("subscribed:timeline:#{eve.id}:notifications", '1')
+        streaming_redis.set("subscribed:timeline:#{eve.id}:notifications", '1')
       end
 
       it 'pushes the update to mentioned users through the notifications streaming channel' do
@@ -107,10 +107,10 @@ RSpec.describe FanOutOnWriteService do
   end
 
   def expect_no_broadcasting
-    expect(redis)
+    expect(streaming_redis)
       .to_not have_received(:publish)
       .with('timeline:hashtag:hoge', anything)
-    expect(redis)
+    expect(streaming_redis)
       .to_not have_received(:publish)
       .with('timeline:public', anything)
   end

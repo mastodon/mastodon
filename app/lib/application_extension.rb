@@ -39,7 +39,7 @@ module ApplicationExtension
     scope = access_tokens
     scope = scope.where(resource_owner_id: resource_owner.id) unless resource_owner.nil?
     scope.in_batches do |tokens|
-      redis.pipelined do |pipeline|
+      streaming_redis.pipelined do |pipeline|
         tokens.ids.each do |id|
           pipeline.publish("timeline:access_token:#{id}", payload)
         end

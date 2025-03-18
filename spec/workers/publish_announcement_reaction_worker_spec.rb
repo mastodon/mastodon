@@ -12,21 +12,21 @@ RSpec.describe PublishAnnouncementReactionWorker do
     let(:name) { 'name value' }
 
     it 'sends the announcement and name to the service when subscribed' do
-      allow(redis).to receive(:exists?).and_return(true)
-      allow(redis).to receive(:publish)
+      allow(streaming_redis).to receive(:exists?).and_return(true)
+      allow(streaming_redis).to receive(:publish)
 
       worker.perform(announcement.id, name)
 
-      expect(redis).to have_received(:publish)
+      expect(streaming_redis).to have_received(:publish)
     end
 
     it 'does not send the announcement and name to the service when not subscribed' do
-      allow(redis).to receive(:exists?).and_return(false)
-      allow(redis).to receive(:publish)
+      allow(streaming_redis).to receive(:exists?).and_return(false)
+      allow(streaming_redis).to receive(:publish)
 
       worker.perform(announcement.id, name)
 
-      expect(redis).to_not have_received(:publish)
+      expect(streaming_redis).to_not have_received(:publish)
     end
 
     it 'returns true for non-existent record' do

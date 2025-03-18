@@ -16,13 +16,13 @@ RSpec.describe PushConversationWorker do
     context 'with valid records' do
       let(:account_conversation) { Fabricate :account_conversation }
 
-      before { allow(redis).to receive(:publish) }
+      before { allow(streaming_redis).to receive(:publish) }
 
       it 'pushes message to timeline' do
         expect { worker.perform(account_conversation.id) }
           .to_not raise_error
 
-        expect(redis)
+        expect(streaming_redis)
           .to have_received(:publish)
           .with(redis_key, anything)
       end

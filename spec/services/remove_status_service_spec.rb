@@ -29,7 +29,7 @@ RSpec.describe RemoveStatusService, :inline_jobs do
     end
 
     it 'removes status from notifications and from author and local follower home feeds, publishes to media timeline, sends delete activities' do
-      allow(redis).to receive(:publish).with(any_args)
+      allow(streaming_redis).to receive(:publish).with(any_args)
 
       expect { subject.call(status) }
         .to remove_status_from_notifications
@@ -39,7 +39,7 @@ RSpec.describe RemoveStatusService, :inline_jobs do
       expect(home_feed_ids(jeff))
         .to_not include(status.id)
 
-      expect(redis)
+      expect(streaming_redis)
         .to have_received(:publish).with('timeline:public:media', Oj.dump(event: :delete, payload: status.id.to_s))
 
       expect(delete_delivery(hank, status))
