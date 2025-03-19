@@ -10,12 +10,12 @@ const MAX_SCALE = 4;
 const MAX_CLICK_DELTA = 5;
 const DOUBLE_CLICK_THRESHOLD = 300;
 
-const getMidpoint = (p1: React.Touch, p2: React.Touch) => ({
+const getMidpoint = (p1: Touch, p2: Touch) => ({
   x: (p1.clientX + p2.clientX) / 2,
   y: (p1.clientY + p2.clientY) / 2,
 });
 
-const getDistance = (p1: React.Touch, p2: React.Touch) =>
+const getDistance = (p1: Touch, p2: Touch) =>
   Math.sqrt(
     Math.pow(p1.clientX - p2.clientX, 2) + Math.pow(p1.clientY - p2.clientY, 2),
   );
@@ -101,6 +101,7 @@ export const ZoomableImage: React.FC<{
   height: number;
   onClick?: () => void;
   onDoubleClick?: () => void;
+  onZoomChange?: (zoomedIn: boolean) => void;
   zoomedIn?: boolean;
   blurhash?: string;
 }> = ({
@@ -111,6 +112,7 @@ export const ZoomableImage: React.FC<{
   height,
   onClick,
   onDoubleClick,
+  onZoomChange,
   zoomedIn,
   blurhash,
 }) => {
@@ -197,10 +199,19 @@ export const ZoomableImage: React.FC<{
     }
   }, [setScale, setLockTranslate, zoomedIn, width, height, loaded]);
 
+  useEffect(() => {
+    if (scale === MIN_SCALE) {
+      onZoomChange?.(false);
+    } else if (scale >= zoomMatrix.current.rate) {
+      onZoomChange?.(true);
+    }
+  }, [scale, onZoomChange]);
+
   const handleTouchStart = useCallback(
-    (e: React.TouchEvent) => {
+    (e: TouchEvent) => {
       // Pan
       if (e.touches.length === 1 && scale !== MIN_SCALE) {
+        e.preventDefault();
         e.stopPropagation();
 
         const p1 = e.touches[0];
@@ -222,6 +233,7 @@ export const ZoomableImage: React.FC<{
 
       // Pinch to zoom
       if (e.touches.length === 2) {
+        e.preventDefault();
         e.stopPropagation();
 
         const p1 = e.touches[0];
@@ -236,13 +248,14 @@ export const ZoomableImage: React.FC<{
   );
 
   const handleTouchMove = useCallback(
-    (e: React.TouchEvent) => {
+    (e: TouchEvent) => {
       if (!containerRef.current) {
         return;
       }
 
       // Pan
       if (e.touches.length === 1 && dragging) {
+        e.preventDefault();
         e.stopPropagation();
 
         const { left, top, x, y } = dragPosition.current;
@@ -267,6 +280,7 @@ export const ZoomableImage: React.FC<{
 
       // Pinch to zoom
       if (e.touches.length === 2) {
+        e.preventDefault();
         e.stopPropagation();
 
         const { scrollTop, scrollLeft } = containerRef.current;
@@ -325,14 +339,63 @@ export const ZoomableImage: React.FC<{
   );
 
   const handleTouchEnd = useCallback(
-    (e: React.TouchEvent) => {
+    (e: TouchEvent) => {
       if (dragging) {
+        e.preventDefault();
         e.stopPropagation();
+
+        const { x, y } = dragPosition.current;
+        const p1 = e.changedTouches[0];
+
+        if (!p1) {
+          return;
+        }
+
+        const deltaX = Math.abs(p1.clientX - x);
+        const deltaY = Math.abs(p1.clientY - y);
+
+        if (deltaX + deltaY < MAX_CLICK_DELTA) {
+          if (!doubleClickTimeout.current) {
+            doubleClickTimeout.current = setTimeout(() => {
+              onClick?.();
+              doubleClickTimeout.current = null;
+            }, DOUBLE_CLICK_THRESHOLD);
+          } else {
+            clearTimeout(doubleClickTimeout.current);
+            doubleClickTimeout.current = null;
+            onDoubleClick?.();
+          }
+        }
+
         setDragging(false);
       }
     },
-    [dragging, setDragging],
+    [dragging, setDragging, onClick, onDoubleClick],
   );
+
+  useEffect(() => {
+    if (!containerRef.current) {
+      return;
+    }
+
+    const element = containerRef.current;
+
+    element.addEventListener('touchstart', handleTouchStart, {
+      passive: false,
+    });
+    element.addEventListener('touchmove', handleTouchMove, {
+      passive: false,
+    });
+    element.addEventListener('touchend', handleTouchEnd, {
+      passive: false,
+    });
+
+    return () => {
+      element.removeEventListener('touchstart', handleTouchStart);
+      element.removeEventListener('touchmove', handleTouchMove);
+      element.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
 
   const handleClick = useCallback((e: React.MouseEvent) => {
     // This handler exists to cancel the onClick handler on the media modal which would
@@ -478,9 +541,6 @@ export const ZoomableImage: React.FC<{
         onLoad={handleLoad}
         onError={handleError}
         onClickCapture={handleClick}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}

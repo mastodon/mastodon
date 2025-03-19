@@ -59,6 +59,12 @@ class MediaModal extends ImmutablePureComponent {
     }));
   };
 
+  handleZoomChange = (zoomedIn) => {
+    this.setState({
+      zoomedIn,
+    });
+  };
+
   handleSwipe = (index) => {
     this.setState({
       index: index % this.props.media.size,
@@ -182,6 +188,7 @@ class MediaModal extends ImmutablePureComponent {
             key={image.get('url')}
             onClick={this.handleToggleNavigation}
             onDoubleClick={this.handleZoomClick}
+            onZoomChange={this.handleZoomChange}
             zoomedIn={zoomedIn}
           />
         );
