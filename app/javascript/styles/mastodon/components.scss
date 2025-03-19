@@ -2463,20 +2463,46 @@ a.account__display-name {
     max-height: $media-modal-media-max-height;
     width: auto;
     height: auto;
+    outline: 1px solid var(--media-outline-color);
+    outline-offset: -1px;
+    border-radius: 8px;
   }
 
   &--zoomed-in {
     z-index: 9999;
+
+    img {
+      outline: none;
+      border-radius: 0;
+    }
+  }
+
+  &--error img {
+    visibility: hidden;
   }
 
   &__preview {
-    width: 100%;
-    height: 100%;
     max-width: $media-modal-media-max-width;
     max-height: $media-modal-media-max-height;
-    object-fit: contain;
     position: absolute;
     z-index: 1;
+    outline: 1px solid var(--media-outline-color);
+    outline-offset: -1px;
+    border-radius: 8px;
+    overflow: hidden;
+
+    canvas {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+  }
+
+  .loading-indicator {
+    z-index: 2;
+    mix-blend-mode: luminosity;
   }
 }
 

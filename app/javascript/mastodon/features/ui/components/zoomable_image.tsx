@@ -3,6 +3,7 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 
 import { Blurhash } from 'mastodon/components/blurhash';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
@@ -116,6 +117,7 @@ export const ZoomableImage: React.FC<{
   const [scale, setScale] = useState(MIN_SCALE);
   const [dragging, setDragging] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
   const [lockTranslate, setLockTranslate] = useState<Position>({ x: 0, y: 0 });
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -145,6 +147,10 @@ export const ZoomableImage: React.FC<{
   const doubleClickTimeout = useRef<ReturnType<typeof setTimeout> | null>();
 
   useEffect(() => {
+    if (!loaded) {
+      return;
+    }
+
     zoomMatrix.current = initZoomMatrix({
       width,
       height,
@@ -189,7 +195,7 @@ export const ZoomableImage: React.FC<{
         }
       }, 0);
     }
-  }, [setScale, setLockTranslate, zoomedIn, width, height]);
+  }, [setScale, setLockTranslate, zoomedIn, width, height, loaded]);
 
   const handleTouchStart = useCallback(
     (e: React.TouchEvent) => {
@@ -427,6 +433,10 @@ export const ZoomableImage: React.FC<{
     setLoaded(true);
   }, [setLoaded]);
 
+  const handleError = useCallback(() => {
+    setError(true);
+  }, [setError]);
+
   const cursor =
     scale === MIN_SCALE ? undefined : dragging ? 'grabbing' : 'grab';
 
@@ -434,17 +444,21 @@ export const ZoomableImage: React.FC<{
     <div
       className={classNames('zoomable-image', {
         'zoomable-image--zoomed-in': scale !== MIN_SCALE,
+        'zoomable-image--error': error,
       })}
       ref={containerRef}
       style={{ cursor, userSelect: 'none' }}
     >
       {!loaded && blurhash && (
-        <Blurhash
-          hash={blurhash}
+        <div
           className='zoomable-image__preview'
-          width={32}
-          height={Math.floor(32 * (height / width))}
-        />
+          style={{
+            aspectRatio: `${width}/${height}`,
+            height: `min(${height}px, 100%)`,
+          }}
+        >
+          <Blurhash hash={blurhash} />
+        </div>
       )}
 
       <img
@@ -462,6 +476,7 @@ export const ZoomableImage: React.FC<{
         }}
         draggable={false}
         onLoad={handleLoad}
+        onError={handleError}
         onClickCapture={handleClick}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -470,6 +485,8 @@ export const ZoomableImage: React.FC<{
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       />
+
+      {!loaded && !error && <LoadingIndicator />}
     </div>
   );
 };
