@@ -2,10 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::DashboardController do
-  render_views
-
-  describe 'GET #index' do
+RSpec.describe 'Admin Dashboard' do
+  describe 'Viewing the dashboard page' do
     let(:user) { Fabricate(:owner_user) }
 
     before do
@@ -14,14 +12,12 @@ RSpec.describe Admin::DashboardController do
       sign_in(user)
     end
 
-    it 'returns http success and body with system check messages' do
-      get :index
+    it 'returns page with system check messages' do
+      visit admin_dashboard_path
 
-      expect(response)
-        .to have_http_status(200)
-        .and have_attributes(
-          body: include(I18n.t('admin.system_checks.software_version_patch_check.message_html'))
-        )
+      expect(page)
+        .to have_title(I18n.t('admin.dashboard.title'))
+        .and have_content(I18n.t('admin.system_checks.software_version_patch_check.message_html'))
     end
 
     private
