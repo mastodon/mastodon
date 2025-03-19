@@ -46,7 +46,7 @@ class Fasp::Request
   def signature_headers(verb, url, headers)
     linzer_request = Linzer.new_request(verb, url, {}, headers)
     message = Linzer::Message.new(linzer_request)
-    key = Linzer.new_ed25519_key(@provider.server_private_key.raw_private_key, @provider.remote_identifier)
+    key = Linzer.new_ed25519_key(@provider.server_private_key_pem, @provider.remote_identifier)
     signature = Linzer.sign(key, message, %w(@method @target-uri content-digest))
     Linzer::Signer.send(:populate_parameters, key, {})
 
@@ -71,7 +71,7 @@ class Fasp::Request
       }
     )
     message = Linzer::Message.new(linzer_response)
-    key = Linzer.new_ed25519_public_key(@provider.provider_public_key_raw)
+    key = Linzer.new_ed25519_public_key(@provider.provider_public_key_pem)
     signature = Linzer::Signature.build(message.headers)
     Linzer.verify(key, message, signature)
   end

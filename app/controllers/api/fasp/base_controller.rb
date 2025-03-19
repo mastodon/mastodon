@@ -57,7 +57,7 @@ class Api::Fasp::BaseController < ApplicationController
       }
     )
     message = Linzer::Message.new(linzer_request)
-    key = Linzer.new_ed25519_public_key(provider.provider_public_key_raw, keyid)
+    key = Linzer.new_ed25519_public_key(provider.provider_public_key_pem, keyid)
     signature = Linzer::Signature.build(message.headers)
     Linzer.verify(key, message, signature)
     @current_provider = provider
@@ -68,7 +68,7 @@ class Api::Fasp::BaseController < ApplicationController
 
     linzer_response = Linzer.new_response(response.body, response.status, { 'content-digest' => response.headers['content-digest'] })
     message = Linzer::Message.new(linzer_response)
-    key = Linzer.new_ed25519_key(current_provider.server_private_key.raw_private_key)
+    key = Linzer.new_ed25519_key(current_provider.server_private_key_pem)
     signature = Linzer.sign(key, message, %w(@status content-digest))
 
     response.headers.merge!(signature.to_h)

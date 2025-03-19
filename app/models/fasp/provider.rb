@@ -99,7 +99,7 @@ class Fasp::Provider < ApplicationRecord
   private
 
   def create_keypair
-    self.server_private_key_pem =
+    self.server_private_key_pem ||=
       OpenSSL::PKey.generate_key('ed25519').private_to_pem
   end
 
