@@ -88,6 +88,7 @@ vi:
         favicon: WEBP, PNG, GIF hoặc JPG. Dùng favicon Maston tùy chỉnh.
         mascot: Ghi đè hình minh họa trong giao diện web nâng cao.
         media_cache_retention_period: Các tệp phương tiện từ các tút do người dùng máy chủ khác thực hiện sẽ được lưu vào bộ đệm trên máy chủ của bạn. Khi được đặt thành giá trị dương, phương tiện sẽ bị xóa sau số ngày được chỉ định. Nếu dữ liệu phương tiện được yêu cầu sau khi bị xóa, dữ liệu đó sẽ được tải xuống lại nếu nội dung nguồn vẫn còn. Do những hạn chế về tần suất thẻ xem trước liên kết thăm dò ý kiến ​​các trang web của bên thứ ba, bạn nên đặt giá trị này thành ít nhất 14 ngày, nếu không thẻ xem trước liên kết sẽ không được cập nhật theo yêu cầu trước thời gian đó.
+        min_age: Thành viên sẽ được yêu cầu xác nhận ngày sinh của họ trong quá trình đăng ký
         peers_api_enabled: Danh sách các máy chủ khác mà máy chủ này đã liên hợp. Không có dữ liệu nào được đưa vào đây về việc bạn có liên kết với một máy chủ nhất định hay không, chỉ là máy chủ của bạn biết về nó. Điều này được sử dụng bởi các dịch vụ thu thập số liệu thống kê về liên kết theo nghĩa chung.
         profile_directory: Liệt kê tất cả người đã chọn tham gia để có thể khám phá.
         require_invite_text: Khi đăng ký yêu cầu phê duyệt thủ công, hãy đặt câu hỏi "Tại sao bạn muốn tham gia?" nhập văn bản bắt buộc thay vì tùy chọn
@@ -146,6 +147,7 @@ vi:
         min_age: Không được dưới độ tuổi tối thiểu theo quy định của luật pháp tại khu vực của bạn.
       user:
         chosen_languages: Chỉ hiển thị những tút viết bằng các ngôn ngữ sau
+        date_of_birth: Chúng tôi phải đảm bảo rằng bạn ít nhất %{age} tuổi để sử dụng Mastodon. Chúng tôi không lưu trữ thông tin này.
         role: Vai trò kiểm soát những quyền mà người dùng có.
       user_role:
         color: Màu được sử dụng cho vai trò trong toàn bộ giao diện người dùng, dưới dạng RGB ở định dạng hex
@@ -271,6 +273,7 @@ vi:
         favicon: Favicon
         mascot: Tùy chỉnh linh vật (kế thừa)
         media_cache_retention_period: Thời hạn lưu trữ cache media
+        min_age: Độ tuổi tối thiểu
         peers_api_enabled: Công khai danh sách các máy chủ được phát hiện trong API
         profile_directory: Cho phép hiện danh sách thành viên
         registrations_mode: Ai có thể đăng ký
@@ -349,6 +352,9 @@ vi:
         jurisdiction: Quyền tài phán pháp lý
         min_age: Độ tuổi tối thiểu
       user:
+        date_of_birth_1i: Ngày
+        date_of_birth_2i: Tháng
+        date_of_birth_3i: Năm
         role: Vai trò
         time_zone: Múi giờ
       user_role:

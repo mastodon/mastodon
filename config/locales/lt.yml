@@ -294,6 +294,7 @@ lt:
       title: Audito žurnalas
       unavailable_instance: "(domeno pavadinimas neprieinamas)"
     announcements:
+      back: Atgal į skelbimus
       destroyed_msg: Skelbimas sėkmingai ištrintas.
       edit:
         title: Redaguoti skelbimą
@@ -302,6 +303,9 @@ lt:
       new:
         create: Sukurti skelbimą
         title: Naujas skelbimas
+      preview:
+        explanation_html: 'El. laiškas bus išsiųstas <strong>%{display_count} naudotojams</strong>. Į el. laišką bus įtrauktas toliau nurodytas tekstas:'
+        title: Peržiūrėti skelbimo pranešimą
       publish: Skelbti
       published_msg: Skelbimas sėkmingai paskelbtas.
       scheduled_for: Suplanuota %{time}
@@ -1219,6 +1223,10 @@ lt:
     recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
     webauthn: Saugumo raktai
   user_mailer:
+    announcement_published:
+      description: "%{domain} administratoriai daro skelbimą:"
+      subject: Paslaugos skelbimas
+      title: "%{domain} paslaugos skelbimas"
     appeal_approved:
       action: Paskyros nustatymai
       subtitle: Tavo paskyros būklė vėl yra gera.

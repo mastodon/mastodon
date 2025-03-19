@@ -88,6 +88,7 @@ hu:
         favicon: WEBP, PNG, GIF vagy JPG. Az alapértelmezett Mastodon favicont felülírja egy egyéni ikonnal.
         mascot: Felülbírálja a speciális webes felületen található illusztrációt.
         media_cache_retention_period: A távoli felhasználók bejegyzéseinek médiatartalmait a kiszolgálód gyorsítótárazza. Ha pozitív értékre állítják, ezek a médiatartalmak a megadott számú nap után törölve lesznek. Ha a médiát újra lekérik, miután törlődött, újra le fogjuk tölteni, ha az eredeti még elérhető. A hivatkozások előnézeti kártyáinak harmadik fél weboldalai felé történő hivatkozásaira alkalmazott megkötései miatt javasolt, hogy ezt az értéket legalább 14 napra állítsuk, ellenkező esetben a hivatkozások előnézeti kártyái szükség esetén nem fognak tudni frissülni ezen idő előtt.
+        min_age: A felhasználók a regisztráció során arra lesznek kérve, hogy erősítsek meg a születési dátumukat
         peers_api_enabled: Azon domainek listája, melyekkel ez a kiszolgáló találkozott a fediverzumban. Nem csatolunk adatot arról, hogy föderált kapcsolatban vagy-e az adott kiszolgálóval, csak arról, hogy a kiszolgálód tud a másikról. Ezt olyan szolgáltatások használják, melyek általában a föderációról készítenek statisztikákat.
         profile_directory: A profilok jegyzéke minden olyan felhasználót felsorol, akik engedélyezték a felfedezhetőségüket.
         require_invite_text: Ha a regisztrációhoz manuális jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
@@ -146,6 +147,7 @@ hu:
         min_age: Nem lehet a joghatóság által meghatározott minimális kor alatt.
       user:
         chosen_languages: Ha aktív, csak a kiválasztott nyelvű bejegyzések jelennek majd meg a nyilvános idővonalon
+        date_of_birth: Legalább %{age} évesnek kell lenniük, hogy használhassák a Mastodont. Ezt nem tároljuk.
         role: A szerep szabályozza, hogy a felhasználó milyen jogosultságokkal rendelkezik.
       user_role:
         color: A szerephez használandó szín mindenhol a felhasználói felületen, hexa RGB formátumban
@@ -271,6 +273,7 @@ hu:
         favicon: Könyvjelzőikon
         mascot: Egyéni kabala (örökölt)
         media_cache_retention_period: Média-gyorsítótár megtartási időszaka
+        min_age: Minimális korhatár
         peers_api_enabled: Felfedezett kiszolgálók listájának közzététele az API-ban
         profile_directory: Profiladatbázis engedélyezése
         registrations_mode: Ki regisztrálhat
@@ -349,6 +352,9 @@ hu:
         jurisdiction: Joghatóság
         min_age: Minimális életkor
       user:
+        date_of_birth_1i: Nap
+        date_of_birth_2i: Hónap
+        date_of_birth_3i: Év
         role: Szerep
         time_zone: Időzóna
       user_role:

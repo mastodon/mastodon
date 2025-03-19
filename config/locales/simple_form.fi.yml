@@ -88,6 +88,7 @@ fi:
         favicon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen Mastodonin sivustokuvakkeen haluamallasi kuvakkeella.
         mascot: Korvaa kuvituksen edistyneessä selainkäyttöliittymässä.
         media_cache_retention_period: Etäkäyttäjien tekemien julkaisujen mediatiedostot ovat välimuistissa palvelimellasi. Kun kentän arvo on positiivinen, media poistuu, kun määritetty määrä päiviä on kulunut. Jos mediaa pyydetään sen poistamisen jälkeen, se ladataan uudelleen, jos lähdesisältö on vielä saatavilla. Koska linkkien esikatselun kyselyitä kolmansien osapuolien sivustoille on rajoitettu, on suositeltavaa asettaa tämä arvo vähintään 14 päivään, tai linkkien kortteja ei päivitetä pyynnöstä ennen tätä ajankohtaa.
+        min_age: Käyttäjiä pyydetään rekisteröitymisen aikana vahvistamaan heidän syntymäpäivänsä
         peers_api_enabled: Luettelo verkkotunnuksista, jotka tämä palvelin on kohdannut fediversumissa. Se ei kerro, federoitko tietyn palvelimen kanssa, vaan että palvelimesi on ylipäätään tietoinen siitä. Tätä tietoa käytetään palveluissa, jotka keräävät tilastoja federoinnista yleisellä tasolla.
         profile_directory: Profiilihakemisto luetteloi kaikki käyttäjät, jotka ovat valinneet olla löydettävissä.
         require_invite_text: Kun rekisteröityminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” -tekstikentästä pakollinen vapaaehtoisen sijaan
@@ -132,16 +133,20 @@ fi:
         name: Voit esimerkiksi vaihtaa suur- ja pienaakkosten kesken helppolukuistaaksesi tekstiäsi
       terms_of_service:
         changelog: Voidaan jäsentää Markdown-syntaksilla.
+        effective_date: Sopiva aika on 10–30 päivää siitä, kun olet ilmoittanut ehdoista käyttäjillesi.
         text: Voidaan jäsentää Markdown-syntaksilla.
       terms_of_service_generator:
         admin_email: Oikeudellisiin ilmoituksiin kuuluvat vastailmoitukset, oikeuden määräykset, poistopyynnöt ja lainvalvontaviranomaisten pyynnöt.
         arbitration_address: Voi olla sama kuin edellä mainittu Fyysinen osoite tai ”N/A”, jos käytät sähköpostia.
         arbitration_website: Voi olla verkkolomake tai ”N/A”, jos käytät sähköpostia.
         dmca_address: Yhdysvaltalaisten operaattoreiden on käytettävä DMCA Designated Agent Directory -luetteloon rekisteröityä osoitetta. Postilokeroluettelo on saatavissa suoralla pyynnöllä, joten käytä DMCA Designated Agent Post Office Box Waiver Request -lomaketta lähettääksesi sähköpostia tekijänoikeusvirastolle ja kuvaile, että olet kotona toimiva sisältömoderaattori, joka pelkää kostoa tai rangaistusta toimistaan ja tarvitsee postilokeroa pitääkseen kotiosoitteensa poissa julkisuudesta.
+        dmca_email: Voi olla sama kuin edellä mainittu ”Sähköpostiosoite oikeudellisille ilmoituksille”.
         domain: Tarjoamasi verkkopalvelun yksilöllinen tunniste.
         jurisdiction: Mainitse valtio, jossa laskujen maksaja asuu. Jos kyseessä on yritys tai muu yhteisö, mainitse valtio, johon se on rekisteröity, ja tarvittaessa kaupunki, alue, territorio tai osavaltio.
+        min_age: Ei pidä alittaa lainkäyttöalueesi lakien vaatimaa vähimmäisikää.
       user:
         chosen_languages: Jos valitset kieliä oheisesta luettelosta, vain niidenkieliset julkaisut näkyvät sinulle julkisilla aikajanoilla
+        date_of_birth: Meidän on varmistettava, että olet vähintään %{age} vuotta vanha, jotta voit käyttää Mastodonia. Emme tallenna tätä.
         role: Rooli määrää, millaiset käyttöoikeudet käyttäjällä on.
       user_role:
         color: Väri, jota käytetään roolille kaikkialla käyttöliittymässä, RGB-heksadesimaalimuodossa
@@ -267,6 +272,7 @@ fi:
         favicon: Sivustokuvake
         mascot: Mukautettu maskotti (vanhentunut)
         media_cache_retention_period: Mediasisällön välimuistin säilytysaika
+        min_age: Vähimmäisikävaatimus
         peers_api_enabled: Julkaise löydettyjen palvelinten luettelo ohjelmointirajapinnassa
         profile_directory: Ota profiilihakemisto käyttöön
         registrations_mode: Kuka voi rekisteröityä
@@ -344,6 +350,9 @@ fi:
         jurisdiction: Lainkäyttöalue
         min_age: Vähimmäisikä
       user:
+        date_of_birth_1i: Päivä
+        date_of_birth_2i: Kuukausi
+        date_of_birth_3i: Vuosi
         role: Rooli
         time_zone: Aikavyöhyke
       user_role:

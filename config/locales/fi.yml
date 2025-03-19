@@ -319,7 +319,7 @@ fi:
         create: Luo tiedote
         title: Uusi tiedote
       preview:
-        explanation_html: 'Sähköposti lähetetään <strong>%{display_count} käyttäjälle</strong>. Seuraava teksti sisällytetään sähköpostiviestiin:'
+        explanation_html: "<strong>%{display_count} käyttäjälle</strong> lähetetään sähköpostia. Sähköpostiviestiin sisällytetään seuraava teksti:"
         title: Esikatsele tiedoteilmoitus
       publish: Julkaise
       published_msg: Tiedotteen julkaisu onnistui!
@@ -1945,8 +1945,8 @@ fi:
     terms_of_service_changed:
       agreement: Jatkamalla palvelun %{domain} käyttöä hyväksyt nämä ehdot. Jos et hyväksy päivitettyjä ehtoja, voit milloin tahansa päättää sopimuksesi palvelun %{domain} kanssa poistamalla tilisi.
       changelog: 'Lyhyesti, mitä tämä päivitys tarkoittaa sinulle:'
-      description: 'Sait tämän sähköpostiviestin, koska teemme muutoksia palvelun %{domain} käyttöehtoihin. Muutokset tulevat voimaan %{date}. Kehotamme sinua tutustumaan päivitettyihin ehtoihin kokonaisuudessaan täällä:'
-      description_html: Sait tämän sähköpostiviestin, koska teemme muutoksia palvelun %{domain} käyttöehtoihin. Muutokset tulevat voimaan <strong>%{date}</strong>. Kehotamme sinua tutustumaan <a href="%{path}" target="_blank">päivitettyihin ehtoihin kokonaisuudessaan täällä</a>.
+      description: 'Sait tämän sähköpostiviestin, koska muutamme palvelun %{domain} käyttöehtoja. Muutokset tulevat voimaan %{date}. Kehotamme tutustumaan päivitettyihin ehtoihin kokonaisuudessaan täällä:'
+      description_html: Sait tämän sähköpostiviestin, koska muutamme palvelun %{domain} käyttöehtoja. Muutokset tulevat voimaan <strong>%{date}</strong>. Kehotamme tutustumaan <a href="%{path}" target="_blank">päivitettyihin ehtoihin kokonaisuudessaan täällä</a>.
       sign_off: Palvelimen %{domain} tiimi
       subject: Käyttöehtojemme päivitykset
       subtitle: Palvelimen %{domain} käyttöehdot muuttuvat

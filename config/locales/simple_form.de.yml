@@ -88,6 +88,7 @@ de:
         favicon: WEBP, PNG, GIF oder JPG. Überschreibt das Standard-Mastodon-Favicon mit einem eigenen Symbol.
         mascot: Überschreibt die Abbildung in der erweiterten Weboberfläche.
         media_cache_retention_period: Mediendateien aus Beiträgen von externen Nutzer*innen werden auf deinem Server zwischengespeichert. Wenn ein positiver Wert gesetzt ist, werden die Medien nach der festgelegten Anzahl von Tagen gelöscht. Sollten die Medien nach dem Löschvorgang wieder angefragt werden, werden sie erneut heruntergeladen, sofern der ursprüngliche Inhalt noch vorhanden ist. Es wird empfohlen, diesen Wert auf mindestens 14 Tage festzulegen, da die Häufigkeit der Abfrage von Linkvorschaukarten für Websites von Dritten begrenzt ist und die Linkvorschaukarten sonst nicht vor Ablauf dieser Zeit aktualisiert werden.
+        min_age: Nutzer*innen werden bei der Registrierung aufgefordert, ihr Geburtsdatum zu bestätigen
         peers_api_enabled: Eine Liste von Domains, die diesem Server im Fediverse begegnet sind. Hierbei werden keine Angaben darüber gemacht, ob du mit einem bestimmten Server föderierst, sondern nur, dass dein Server davon weiß. Dies wird von Diensten verwendet, die allgemein Statistiken übers Ferdiverse sammeln.
         profile_directory: Dieses Verzeichnis zeigt alle Profile an, die sich dafür entschieden haben, entdeckt zu werden.
         require_invite_text: Wenn Registrierungen eine manuelle Genehmigung erfordern, dann werden Nutzer einen Grund für ihre Registrierung angeben müssen
@@ -146,6 +147,7 @@ de:
         min_age: Sollte nicht unter dem gesetzlich vorgeschriebenen Mindestalter liegen.
       user:
         chosen_languages: Wenn du hier eine oder mehrere Sprachen auswählst, werden ausschließlich Beiträge in diesen Sprachen in deinen öffentlichen Timelines angezeigt
+        date_of_birth: Wir müssen sicherstellen, dass du mindestens %{age} Jahre alt bist, um Mastodon verwenden zu können. Das Alter wird nicht gespeichert.
         role: Die Rolle bestimmt, welche Berechtigungen das Konto hat.
       user_role:
         color: Farbe, die für diese Rolle in der gesamten Benutzerschnittstelle verwendet wird, als RGB im Hexadezimalsystem
@@ -271,6 +273,7 @@ de:
         favicon: Favicon
         mascot: Benutzerdefiniertes Maskottchen (Legacy)
         media_cache_retention_period: Aufbewahrungsfrist für Medien im Cache
+        min_age: Erforderliches Mindestalter
         peers_api_enabled: Die entdeckten Server im Fediverse über die API veröffentlichen
         profile_directory: Profilverzeichnis aktivieren
         registrations_mode: Wer darf ein neues Konto registrieren?
@@ -349,6 +352,9 @@ de:
         jurisdiction: Gerichtsstand
         min_age: Mindestalter
       user:
+        date_of_birth_1i: Tag
+        date_of_birth_2i: Monat
+        date_of_birth_3i: Jahr
         role: Rolle
         time_zone: Zeitzone
       user_role:
