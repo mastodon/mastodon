@@ -3,7 +3,7 @@ ru:
   activerecord:
     attributes:
       poll:
-        expires_at: Крайний срок
+        expires_at: Срок окончания голосования
         options: Варианты
       user:
         agreement: Соглашение с условиями сервиса
@@ -49,8 +49,14 @@ ru:
           attributes:
             reblog:
               taken: пост уже существует
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: должна быть не ранее %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: ниже возрастного ограничения
             email:
               blocked: использует запрещённого провайдера эл. почты
               unreachable: не существует

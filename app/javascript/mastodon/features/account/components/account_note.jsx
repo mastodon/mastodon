@@ -101,10 +101,10 @@ class AccountNote extends ImmutablePureComponent {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       e.preventDefault();
 
-      this._save();
-
       if (this.textarea) {
         this.textarea.blur();
+      } else {
+        this._save();
       }
     } else if (e.keyCode === 27) {
       e.preventDefault();
