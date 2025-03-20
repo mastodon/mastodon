@@ -14,10 +14,8 @@ module Mastodon
         obj = {
           type: 'web',
           queue_time: queue_time,
-          default_labels: default_labels(env, result),
+          default_labels: {},
         }
-        labels = custom_labels(env)
-        obj = obj.merge(custom_labels: labels) if labels
 
         @client.send_json(obj)
       end
