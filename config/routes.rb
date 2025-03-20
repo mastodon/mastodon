@@ -196,7 +196,7 @@ Rails.application.routes.draw do
 
   draw(:api)
 
-  draw(:fasp) if Mastodon::Feature.fasp_enabled?
+  draw(:fasp)
 
   draw(:web_app)
 

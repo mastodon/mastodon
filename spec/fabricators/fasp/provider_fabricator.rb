@@ -9,3 +9,11 @@ Fabricator(:fasp_provider, from: 'Fasp::Provider') do
   server_private_key_pem  "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEICDjlajhVb8XfzyTchQWKraMKwtQW+r4opoAg7V3kw1Q\n-----END PRIVATE KEY-----\n"
   capabilities            []
 end
+
+Fabricator(:confirmed_fasp, from: :fasp_provider) do
+  confirmed    true
+  capabilities [
+    { id: 'debug', version: '0.1' },
+    { id: 'data_sharing', version: '0.1' },
+  ]
+end

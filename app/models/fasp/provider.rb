@@ -24,6 +24,11 @@ class Fasp::Provider < ApplicationRecord
 
   has_many :fasp_debug_callbacks, inverse_of: :fasp_provider, class_name: 'Fasp::DebugCallback', dependent: :delete_all
 
+  validates :name, presence: true
+  validates :base_url, presence: true, url: true
+  validates :provider_public_key_pem, presence: true
+  validates :remote_identifier, presence: true
+
   before_create :create_keypair
   after_commit :update_remote_capabilities
 
@@ -58,6 +63,8 @@ class Fasp::Provider < ApplicationRecord
   end
 
   def provider_public_key_base64=(string)
+    return if string.blank?
+
     self.provider_public_key_pem =
       OpenSSL::PKey.new_raw_public_key(
         'ed25519',

@@ -10,6 +10,7 @@ class Api::Fasp::BaseController < ApplicationController
 
   skip_forgery_protection
 
+  before_action :check_fasp_enabled
   before_action :require_authentication
   after_action :sign_response
 
@@ -72,5 +73,9 @@ class Api::Fasp::BaseController < ApplicationController
     signature = Linzer.sign(key, message, %w(@status content-digest))
 
     response.headers.merge!(signature.to_h)
+  end
+
+  def check_fasp_enabled
+    raise ActionController::RoutingError unless Mastodon::Feature.fasp_enabled?
   end
 end
