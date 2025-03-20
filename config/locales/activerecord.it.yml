@@ -55,6 +55,8 @@ it:
               too_soon: è troppo presto, deve essere successivo alla data %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: è inferiore al limite di età
             email:
               blocked: utilizza un provider di posta elettronica non autorizzato
               unreachable: non sembra esistere
