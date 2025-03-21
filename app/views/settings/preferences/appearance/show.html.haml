@@ -18,7 +18,7 @@
       = f.input :time_zone,
                 collection: ActiveSupport::TimeZone.all.map { |tz| ["(GMT#{tz.formatted_offset}) #{tz.name}", tz.tzinfo.name] },
                 hint: false,
-                selected: current_user.time_zone || Time.zone.tzinfo.name,
+                selected: current_user.time_zone || Rails.configuration.x.default_time_zone,
                 wrapper: :with_label
 
   .fields-group
