@@ -479,6 +479,36 @@ en:
       new:
         title: Import domain blocks
       no_file: No file selected
+    fasp:
+      debug:
+        callbacks:
+          created_at: Created at
+          delete: Delete
+          ip: IP address
+          request_body: Request body
+          title: Debug Callbacks
+      providers:
+        active: Active
+        base_url: Base URL
+        callback: Callback
+        delete: Delete
+        edit: Edit Provider
+        finish_registration: Finish registration
+        name: Name
+        providers: Providers
+        public_key_fingerprint: Public key fingerprint
+        registration_requested: Registration requested
+        registrations:
+          confirm: Confirm
+          description: You received a registration from a FASP. Reject it if you did not initiate this. If you initiated this, carefully compare name and key fingerprint before confirming the registration.
+          reject: Reject
+          title: Confirm FASP Registration
+        save: Save
+        select_capabilities: Select Capabilities
+        sign_in: Sign In
+        status: Status
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Follow recommendations help new users quickly find interesting content</strong>. When a user has not interacted with others enough to form personalized follow recommendations, these accounts are recommended instead. They are re-calculated on a daily basis from a mix of accounts with the highest recent engagements and highest local follower counts for a given language."
       language: For language
