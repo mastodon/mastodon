@@ -171,7 +171,7 @@ class MediaModal extends ImmutablePureComponent {
     const leftNav  = media.size > 1 && <button tabIndex={0} className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' icon={ChevronLeftIcon} /></button>;
     const rightNav = media.size > 1 && <button tabIndex={0} className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' icon={ChevronRightIcon} /></button>;
 
-    const content = media.map((image) => {
+    const content = media.map((image, idx) => {
       const width  = image.getIn(['meta', 'original', 'width']) || null;
       const height = image.getIn(['meta', 'original', 'height']) || null;
       const description = image.getIn(['translation', 'description']) || image.get('description');
@@ -188,8 +188,9 @@ class MediaModal extends ImmutablePureComponent {
             key={image.get('url')}
             onClick={this.handleToggleNavigation}
             onDoubleClick={this.handleZoomClick}
+            onClose={onClose}
             onZoomChange={this.handleZoomChange}
-            zoomedIn={zoomedIn}
+            zoomedIn={zoomedIn && idx === index}
           />
         );
       } else if (image.get('type') === 'video') {
@@ -270,7 +271,7 @@ class MediaModal extends ImmutablePureComponent {
             onChangeIndex={this.handleSwipe}
             onTransitionEnd={this.handleTransitionEnd}
             index={index}
-            disabled={disableSwiping}
+            disabled={disableSwiping || zoomedIn}
           >
             {content}
           </ReactSwipeableViews>
