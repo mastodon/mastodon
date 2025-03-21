@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-Fabricator('Fasp::BackfillRequest') do
-  category      'MyString'
-  max_count     1
-  cursor        'MyString'
+Fabricator(:fasp_backfill_request, from: 'Fasp::BackfillRequest') do
+  category      'content'
+  max_count     10
+  cursor        nil
   fulfilled     false
-  fasp_provider nil
+  fasp_provider
 end
