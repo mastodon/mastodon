@@ -38,11 +38,23 @@ class ActivityPub::TagManager
 
     case target.object_type
     when :person
-      target.instance_actor? ? instance_actor_url : account_url(target)
+      if target.instance_actor?
+        instance_actor_url
+      elsif target.numeric_ap_id?
+        ap_account_url(target.id)
+      else
+        account_url(target)
+      end
     when :note, :comment, :activity
-      return activity_account_status_url(target.account, target) if target.reblog?
+      if target.account.numeric_ap_id?
+        return activity_ap_status_url(target.account, target) if target.reblog?
 
-      account_status_url(target.account, target)
+        ap_status_url(target)
+      else
+        return activity_account_status_url(target.account, target) if target.reblog?
+
+        account_status_url(target.account, target)
+      end
     when :emoji
       emoji_url(target)
     when :flag
@@ -58,6 +70,10 @@ class ActivityPub::TagManager
     account_url(username: username)
   end
 
+  def uri_for_account_id(id)
+    ap_account_url(id: id)
+  end
+
   def generate_uri_for(_target)
     URI.join(root_url, 'payloads', SecureRandom.uuid)
   end
@@ -65,55 +81,67 @@ class ActivityPub::TagManager
   def activity_uri_for(target)
     raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
-    activity_account_status_url(target.account, target)
+    target.account.numeric_ap_id? ? activity_ap_status_url(target) : activity_account_status_url(target.account, target)
   end
 
   def replies_uri_for(target, page_params = nil)
     raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
-    account_status_replies_url(target.account, target, page_params)
+    target.account.numeric_ap_id? ? ap_status_replies_url(target, page_params) : account_status_replies_url(target.account, target, page_params)
   end
 
   def likes_uri_for(target)
     raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
-    account_status_likes_url(target.account, target)
+    target.account.numeric_ap_id? ? ap_status_likes_url(target) : account_status_likes_url(target.account, target)
   end
 
   def shares_uri_for(target)
     raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
-    account_status_shares_url(target.account, target)
+    target.account.numeric_ap_id? ? ap_status_shares_url(target) : account_status_shares_url(target.account, target)
   end
 
   def following_uri_for(target, ...)
     raise ArgumentError, 'target must be a local account' unless target.local?
 
-    account_following_index_url(target, ...)
+    target.numeric_ap_id? ? ap_account_following_index_url(target.id, ...) : account_following_index_url(target, ...)
   end
 
   def followers_uri_for(target, ...)
     return target.followers_url.presence unless target.local?
 
-    account_followers_url(target, ...)
+    target.numeric_ap_id? ? ap_account_followers_url(target.id, ...) : account_followers_url(target, ...)
   end
 
   def collection_uri_for(target, ...)
-    raise NotImplementedError unless target.local?
+    raise ArgumentError, 'target must be a local account' unless target.local?
 
-    account_collection_url(target, ...)
+    target.numeric_ap_id? ? ap_account_collection_url(target.id, ...) : account_collection_url(target, ...)
   end
 
   def inbox_uri_for(target)
-    raise NotImplementedError unless target.local?
+    raise ArgumentError, 'target must be a local account' unless target.local?
 
-    target.instance_actor? ? instance_actor_inbox_url : account_inbox_url(target)
+    if target.instance_actor?
+      instance_actor_inbox_url
+    elsif target.numeric_ap_id?
+      ap_account_inbox_url(target.id)
+    else
+      account_inbox_url(target)
+    end
   end
 
   def outbox_uri_for(target, ...)
-    raise NotImplementedError unless target.local?
+    raise ArgumentError, 'target must be a local account' unless target.local?
 
-    target.instance_actor? ? instance_actor_outbox_url(...) : account_outbox_url(target, ...)
+    if target.instance_actor?
+      instance_actor_outbox_url(...)
+    elsif target.numeric_ap_id?
+      ap_account_outbox_url(target.id, ...)
+    else
+      account_outbox_url(target, ...)
+    end
   end
 
   # Primary audience of a status
