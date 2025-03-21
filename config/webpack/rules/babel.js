@@ -4,7 +4,7 @@ const { env, settings } = require('../configuration');
 
 // Those modules contain modern ES code that need to be transpiled for Webpack to process it
 const nodeModulesToProcess = [
-  '@reduxjs', 'fuzzysort', 'toygrad'
+  '@reduxjs', 'fuzzysort', 'toygrad', '@react-spring'
 ];
 
 module.exports = {
