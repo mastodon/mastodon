@@ -5,25 +5,30 @@ require 'rails_helper'
 RSpec.describe Admin::Fasp::ProviderPolicy, type: :policy do
   subject { described_class }
 
-  let(:user) { User.new }
+  let(:admin) { Fabricate(:admin_user).account }
+  let(:user) { Fabricate(:account) }
 
-  permissions '.scope' do
-    pending "add some examples to (or delete) #{__FILE__}"
+  shared_examples 'admin only' do |target|
+    let(:provider) { target.is_a?(Symbol) ? Fabricate(target) : target }
+
+    context 'with an admin' do
+      it 'permits' do
+        expect(subject).to permit(admin, provider)
+      end
+    end
+
+    context 'with a non-admin' do
+      it 'denies' do
+        expect(subject).to_not permit(user, provider)
+      end
+    end
   end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  permissions :index?, :create? do
+    include_examples 'admin only', Fasp::Provider
   end
 
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+  permissions :show?, :create?, :update?, :destroy? do
+    include_examples 'admin only', :fasp_provider
   end
 end
