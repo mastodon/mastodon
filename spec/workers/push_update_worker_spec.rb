@@ -17,13 +17,13 @@ RSpec.describe PushUpdateWorker do
       let(:account) { Fabricate :account }
       let(:status) { Fabricate :status }
 
-      before { allow(redis).to receive(:publish) }
+      before { allow(streaming_redis).to receive(:publish) }
 
       it 'pushes message to timeline' do
         expect { worker.perform(account.id, status.id) }
           .to_not raise_error
 
-        expect(redis)
+        expect(streaming_redis)
           .to have_received(:publish)
           .with(redis_key, anything)
       end

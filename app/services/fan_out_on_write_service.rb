@@ -128,20 +128,20 @@ class FanOutOnWriteService < BaseService
 
   def broadcast_to_hashtag_streams!
     @status.tags.map(&:name).each do |hashtag|
-      redis.publish("timeline:hashtag:#{hashtag.downcase}", anonymous_payload)
-      redis.publish("timeline:hashtag:#{hashtag.downcase}:local", anonymous_payload) if @status.local?
+      streaming_redis.publish("timeline:hashtag:#{hashtag.downcase}", anonymous_payload)
+      streaming_redis.publish("timeline:hashtag:#{hashtag.downcase}:local", anonymous_payload) if @status.local?
     end
   end
 
   def broadcast_to_public_streams!
     return if @status.reply? && @status.in_reply_to_account_id != @account.id
 
-    redis.publish('timeline:public', anonymous_payload)
-    redis.publish(@status.local? ? 'timeline:public:local' : 'timeline:public:remote', anonymous_payload)
+    streaming_redis.publish('timeline:public', anonymous_payload)
+    streaming_redis.publish(@status.local? ? 'timeline:public:local' : 'timeline:public:remote', anonymous_payload)
 
     if @status.with_media?
-      redis.publish('timeline:public:media', anonymous_payload)
-      redis.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', anonymous_payload)
+      streaming_redis.publish('timeline:public:media', anonymous_payload)
+      streaming_redis.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', anonymous_payload)
     end
   end
 
@@ -173,6 +173,6 @@ class FanOutOnWriteService < BaseService
   end
 
   def subscribed_to_streaming_api?(account_id)
-    redis.exists?("subscribed:timeline:#{account_id}") || redis.exists?("subscribed:timeline:#{account_id}:notifications")
+    streaming_redis.exists?("subscribed:timeline:#{account_id}") || streaming_redis.exists?("subscribed:timeline:#{account_id}:notifications")
   end
 end

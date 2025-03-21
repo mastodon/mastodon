@@ -198,7 +198,7 @@ RSpec.describe 'Filters' do
       let(:params) { { keywords_attributes: [{ id: keyword.id, keyword: 'updated' }] } }
 
       before do
-        allow(redis).to receive_messages(publish: nil)
+        allow(streaming_redis).to receive_messages(publish: nil)
       end
 
       it 'returns http success and updates keyword and sends a filters_changed event' do
@@ -210,7 +210,7 @@ RSpec.describe 'Filters' do
 
         expect(keyword.reload.keyword).to eq 'updated'
 
-        expect(redis).to have_received(:publish).with("timeline:#{user.account.id}", Oj.dump(event: :filters_changed)).once
+        expect(streaming_redis).to have_received(:publish).with("timeline:#{user.account.id}", Oj.dump(event: :filters_changed)).once
       end
     end
 

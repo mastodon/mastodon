@@ -30,7 +30,7 @@ class PushUpdateWorker
   end
 
   def publish!
-    redis.publish(@timeline_id, message)
+    streaming_redis.publish(@timeline_id, message)
   end
 
   def update?

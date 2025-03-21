@@ -260,11 +260,11 @@ class NotifyService < BaseService
   end
 
   def push_to_streaming_api!
-    redis.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
+    streaming_redis.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
   end
 
   def subscribed_to_streaming_api?
-    redis.exists?("subscribed:timeline:#{@recipient.id}") || redis.exists?("subscribed:timeline:#{@recipient.id}:notifications")
+    streaming_redis.exists?("subscribed:timeline:#{@recipient.id}") || streaming_redis.exists?("subscribed:timeline:#{@recipient.id}:notifications")
   end
 
   def push_to_conversation!

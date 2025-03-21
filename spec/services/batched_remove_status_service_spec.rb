@@ -14,7 +14,7 @@ RSpec.describe BatchedRemoveStatusService, :inline_jobs do
   let(:status_alice_other) { PostStatusService.new.call(alice, text: 'Another status') }
 
   before do
-    allow(redis).to receive_messages(publish: nil)
+    allow(streaming_redis).to receive_messages(publish: nil)
 
     stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
 
@@ -40,11 +40,11 @@ RSpec.describe BatchedRemoveStatusService, :inline_jobs do
     expect(feed_ids_for(jeff))
       .to_not include(status_alice_hello.id, status_alice_other.id)
 
-    expect(redis)
+    expect(streaming_redis)
       .to have_received(:publish)
       .with("timeline:#{jeff.id}", any_args).at_least(:once)
 
-    expect(redis)
+    expect(streaming_redis)
       .to have_received(:publish)
       .with('timeline:public', any_args).at_least(:once)
 

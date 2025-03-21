@@ -47,7 +47,7 @@ RSpec.describe Oauth::AuthorizedApplicationsController do
 
     before do
       sign_in user, scope: :user
-      allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
+      allow(streaming_redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
     end
 
     it 'revokes access tokens for the application and removes subscriptions and sends kill payload to streaming' do
