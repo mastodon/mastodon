@@ -146,6 +146,20 @@ class MediaAttachment < ApplicationRecord
     original: VIDEO_FORMAT.merge(passthrough_options: VIDEO_PASSTHROUGH_OPTIONS).freeze,
   }.freeze
 
+  AUDIO_PASSTHROUGH_OPTIONS = {
+    audio_codecs: ['acc'].freeze,
+    options: {
+      format: 'mp3',
+      convert_options: {
+        output: {
+          'loglevel' => 'fatal',
+          'map_metadata' => '-1',
+          'c:a' => 'copy',
+        }.freeze,
+      }.freeze,
+    }.freeze,
+  }.freeze
+
   AUDIO_STYLES = {
     original: {
       format: 'mp3',
@@ -156,6 +170,8 @@ class MediaAttachment < ApplicationRecord
           'q:a' => 2,
         }.freeze,
       }.freeze,
+
+      passthrough_options: AUDIO_PASSTHROUGH_OPTIONS,
     }.freeze,
   }.freeze
 
