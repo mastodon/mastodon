@@ -19,11 +19,11 @@ module ProviderRequestHelper
       end
   end
 
-  def request_authentication_headers(provider, verb, uri, params)
-    params = encode_body(params)
+  def request_authentication_headers(provider, url: root_url, method: :get, body: '')
+    body = encode_body(body)
     headers = {}
-    headers['content-digest'] = content_digest(params)
-    request = Linzer.new_request(verb, uri, {}, headers)
+    headers['content-digest'] = content_digest(body)
+    request = Linzer.new_request(method, url, {}, headers)
     key = private_key_for(provider)
     signature = sign(request, key, %w(@method @target-uri content-digest))
     headers.merge(signature.to_h)

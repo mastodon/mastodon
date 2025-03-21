@@ -13,7 +13,19 @@ end
 Fabricator(:confirmed_fasp, from: :fasp_provider) do
   confirmed    true
   capabilities [
-    { id: 'debug', version: '0.1' },
+    { id: 'callback', version: '0.1' },
     { id: 'data_sharing', version: '0.1' },
   ]
+end
+
+Fabricator(:debug_fasp, from: :fasp_provider) do
+  confirmed    true
+  capabilities [
+    { id: 'callback', version: '0.1', enabled: true },
+  ]
+
+  after_build do |fasp|
+    # Prevent fabrication from attempting an HTTP call to the provider
+    def fasp.update_remote_capabilities = true
+  end
 end
