@@ -14,7 +14,7 @@ class Api::V1::Accounts::CredentialsController < Api::BaseController
     @account = current_account
     UpdateAccountService.new.call(@account, account_params, raise_error: true)
     current_user.update(user_params) if user_params
-    ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
+    ActivityPub::UpdateDistributionWorker.perform_in(ActivityPub::UpdateDistributionWorker::DEBOUNCE_DELAY, @account.id)
     render json: @account, serializer: REST::CredentialAccountSerializer
   rescue ActiveRecord::RecordInvalid => e
     render json: ValidationErrorFormatter.new(e).as_json, status: 422

@@ -9,11 +9,12 @@ class TermsOfService::Generator
     admin_email
     arbitration_address
     arbitration_website
+    choice_of_law
     dmca_address
     dmca_email
     domain
     jurisdiction
-    choice_of_law
+    min_age
   ).freeze
 
   attr_accessor(*VARIABLES)

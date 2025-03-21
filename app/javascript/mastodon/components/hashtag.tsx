@@ -151,7 +151,7 @@ export const Hashtag: React.FC<HashtagProps> = ({
           <Sparklines
             width={50}
             height={28}
-            data={history ? history : Array.from(Array(7)).map(() => 0)}
+            data={history ?? Array.from(Array(7)).map(() => 0)}
           >
             <SparklinesCurve style={{ fill: 'none' }} />
           </Sparklines>

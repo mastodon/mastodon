@@ -49,8 +49,14 @@ fr-CA:
           attributes:
             reblog:
               taken: de la publication existe déjà
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: est trop tôt, doit être plus tard que %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: est en dessous de la limite d'âge
             email:
               blocked: utilise un fournisseur de courriel interdit
               unreachable: ne semble pas exister

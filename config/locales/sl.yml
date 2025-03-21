@@ -25,9 +25,12 @@ sl:
       other: Objav
       two: Objavi
     posts_tab_heading: Objave
+    self_follow_error: Ni dovoljeno slediti lastnemu računu
   admin:
     account_actions:
       action: Izvedi dejanje
+      already_silenced: Ta račun je že omejen.
+      already_suspended: Ta račun je že suspendiran.
       title: Izvedi moderirano dejanje za %{acct}
     account_moderation_notes:
       create: Pusti opombo
@@ -49,6 +52,7 @@ sl:
         title: Spremeni e-naslov za %{username}
       change_role:
         changed_msg: Vloga uspešno spremenjena!
+        edit_roles: Upravljaj z uporabniškimi vlogami
         label: Spremeni vlogo
         no_role: Brez vloge
         title: Spremeni vlogo za %{username}
@@ -189,6 +193,7 @@ sl:
         create_domain_block: Ustvari blokado domene
         create_email_domain_block: Ustvari blokado domene e-pošte
         create_ip_block: Ustvari pravilo IP
+        create_relay: Ustvari rele
         create_unavailable_domain: Ustvari domeno, ki ni na voljo
         create_user_role: Ustvari vlogo
         demote_user: Ponižaj uporabnika
@@ -200,18 +205,22 @@ sl:
         destroy_email_domain_block: Izbriši blokado domene e-pošte
         destroy_instance: Očisti domeno
         destroy_ip_block: Izbriši pravilo IP
+        destroy_relay: Izbriši rele
         destroy_status: Izbriši objavo
         destroy_unavailable_domain: Izbriši nedosegljivo domeno
         destroy_user_role: Uniči vlogo
         disable_2fa_user: Onemogoči
         disable_custom_emoji: Onemogoči emotikon po meri
+        disable_relay: Onemogoči rele
         disable_sign_in_token_auth_user: Onemogoči overjanje z žetonom po e-pošti za uporabnika
         disable_user: Onemogoči uporabnika
         enable_custom_emoji: Omogoči emotikon po meri
+        enable_relay: Omogoči rele
         enable_sign_in_token_auth_user: Omogoči overjanje z žetonom po e-pošti za uporabnika
         enable_user: Omogoči uporabnika
         memorialize_account: Spomenificiraj račun
         promote_user: Povišaj uporabnika
+        publish_terms_of_service: Objavi pogoje uporabe
         reject_appeal: Zavrni pritožbo
         reject_user: Zavrni uporabnika
         remove_avatar_user: Odstrani avatar
@@ -249,6 +258,7 @@ sl:
         create_domain_block_html: "%{name} je blokiral/a domeno %{target}"
         create_email_domain_block_html: "%{name} je dal/a na črni seznam e-pošto domene %{target}"
         create_ip_block_html: "%{name} je ustvaril/a pravilo za IP %{target}"
+        create_relay_html: "%{name} je ustvaril/a rele %{target}"
         create_unavailable_domain_html: "%{name} je prekinil/a dostavo v domeno %{target}"
         create_user_role_html: "%{name} je ustvaril/a vlogo %{target}"
         demote_user_html: "%{name} je ponižal/a uporabnika %{target}"
@@ -260,18 +270,22 @@ sl:
         destroy_email_domain_block_html: "%{name} je odblokiral/a e-pošto domene %{target}"
         destroy_instance_html: "%{name} je očistil/a domeno %{target}"
         destroy_ip_block_html: "%{name} je izbrisal/a pravilo za IP %{target}"
+        destroy_relay_html: "%{name} je izbrisal/a rele %{target}"
         destroy_status_html: "%{name} je odstranil/a objavo uporabnika %{target}"
         destroy_unavailable_domain_html: "%{name} je nadaljeval/a dostav v domeno %{target}"
         destroy_user_role_html: "%{name} je izbrisal/a vlogo %{target}"
         disable_2fa_user_html: "%{name} je onemogočil/a dvofaktorsko zahtevo za uporabnika %{target}"
         disable_custom_emoji_html: "%{name} je onemogočil/a emotikone %{target}"
+        disable_relay_html: "%{name} je onemogočil/a rele %{target}"
         disable_sign_in_token_auth_user_html: "%{name} je onemogočil/a overjanje z žetonom po e-pošti za uporabnika %{target}"
         disable_user_html: "%{name} je onemogočil/a prijavo za uporabnika %{target}"
         enable_custom_emoji_html: "%{name} je omogočil/a emotikone %{target}"
+        enable_relay_html: "%{name} je omogočil rele %{target}"
         enable_sign_in_token_auth_user_html: "%{name} je omogočil/a overjanje z žetonom po e-pošti za uporabnika %{target}"
         enable_user_html: "%{name} je omogočil/a prijavo za uporabnika %{target}"
         memorialize_account_html: "%{name} je spremenil/a račun uporabnika %{target} v spominsko stran"
         promote_user_html: "%{name} je povišal/a uporabnika %{target}"
+        publish_terms_of_service_html: "%{name} je posodobil/a pogoje uporabe"
         reject_appeal_html: "%{name} je zavrnil/a pritožbo uporabnika %{target} na moderatorsko odločitev"
         reject_user_html: "%{name} je zavrnil/a registracijo iz %{target}"
         remove_avatar_user_html: "%{name} je odstranil podobo (avatar) uporabnika %{target}"
@@ -301,6 +315,7 @@ sl:
       title: Dnevnik revizije
       unavailable_instance: "(ime domene ni na voljo)"
     announcements:
+      back: Nazaj na oznanila
       destroyed_msg: Obvestilo je bilo uspešno izbrisano!
       edit:
         title: Uredi obvestilo
@@ -309,6 +324,9 @@ sl:
       new:
         create: Ustvari obvestilo
         title: Novo obvestilo
+      preview:
+        explanation_html: 'E-poštno sporočilo bo poslano <strong>%{display_count} uporabnikom</strong>. Priloženo bo naslednje besedilo:'
+        title: Pokaži predogled oznanila
       publish: Objavi
       published_msg: Obvestilo je bilo uspešno objavljeno!
       scheduled_for: Načrtovano ob %{time}
@@ -486,6 +504,9 @@ sl:
       title: Sledi priporočilom
       unsuppress: Obnovi sledenje priporočilom
     instances:
+      audit_log:
+        title: Nedavni revizijski zapisi
+        view_all: Prikaži ves revizijski dnevnik
       availability:
         description_html:
           few: Če dostava v domeno spodleti <strong>%{count} različne dni</strong> brez uspeha, ne bo nadaljnjih poskusov dostopa, razen če je prejeta dostava <em>iz</em> domene.
@@ -622,6 +643,7 @@ sl:
         suspend_description_html: Račun in vsa njegova vsebina ne bo dostopna in bo postopoma izbrisana, interakcija z njim pa ne bo več možna. Dejanje je moč povrniti v roku 30 dni. Zaključi vse prijave zoper ta račun.
       actions_description_html: Odločite se, katere ukrepe boste sprejeli za rešitev te prijave. Če sprejmete kazenski ukrep proti prijavljenemu računu, mu bo poslano e-poštno obvestilo, razen če je izbrana kategorija <strong>Neželena pošta</strong>.
       actions_description_remote_html: Odločite se za dejanje, ki bo odločilo o tej prijavi. To bo vplivalo le na to, kako <strong>vaš</strong> strežnik komunicira s tem oddaljenim računom in obravnava njegovo vsebino.
+      actions_no_posts: To poročilo ni vezano na nobene objave, ki bi jih lahko izbrisali
       add_to_report: Dodaj več v prijavo
       already_suspended_badges:
         local: Že suspendiran na tem strežniku
@@ -838,6 +860,7 @@ sl:
       back_to_account: Nazaj na stran računa
       back_to_report: Nazaj na stran prijave
       batch:
+        add_to_report: 'Dodaj poročilu #%{id}'
         remove_from_report: Odstrani iz prijave
         report: Poročaj
       contents: Vsebina
@@ -849,12 +872,17 @@ sl:
       media:
         title: Mediji
       metadata: Metapodatki
+      no_history: Ta objava ni bila spremenjena
       no_status_selected: Nobena objava ni bila spremenjena, ker ni bila nobena izbrana
       open: Odpri objavo
       original_status: Izvorna objava
       reblogs: Ponovljeni blogi
+      replied_to_html: V odgovor %{acct_link}
       status_changed: Objava spremenjena
+      status_title: Avtor/ica objave @%{name}
+      title: Objave računa - @%{name}
       trending: V trendu
+      view_publicly: Prikaži javno
       visibility: Vidnost
       with_media: Z mediji
     strikes:
@@ -896,6 +924,9 @@ sl:
         message_html: Nobenih pravil strežnika niste določili.
       sidekiq_process_check:
         message_html: Noben proces Sidekiq ne poteka za %{value} vrst. Preglejte svojo prilagoditev Sidekiq
+      software_version_check:
+        action: Oglejte si razpoložljive posodobitve
+        message_html: Na voljo je posodobitev Mastodona.
       software_version_critical_check:
         action: Glejte razpoložljive posodobitve
         message_html: Na voljo je kritična posodobitev Mastodona. Posodobite čim prej.
@@ -922,16 +953,42 @@ sl:
       name: Ime
       newest: Najnovejše
       oldest: Najstarejše
+      open: Prikaži javno
       reset: Ponastavi
       review: Stanje pregleda
       search: Išči
       title: Ključniki
       updated_msg: Nastavitve ključnikov uspešno posodobljene
     terms_of_service:
+      back: Nazaj na pogoje uporabe
+      changelog: Kaj je novega
+      create: Uporabi svoje
+      current: Trenutni
       draft: Osnutek
       generate: Uporabi predlogo
+      generates:
+        action: Generiraj
+        chance_to_review_html: "<strong>Generirani pogoji uporabe ne bodo objavljeni samodejno,</strong> tako da jih boste imeli čas preveriti. Vnesite vse potrebne podatke."
+        explanation_html: Predloga pogojev uporabe je informativne narave in naj ne služi kot pravno vodilo. O pravnih vprašanjih in specifikah se posvetujte s pravnim strokovnjakom.
+        title: Postavitev pogojev uporabe
+      going_live_on_html: Objavljeni, začnejo veljati %{date}
       history: Zgodovina
+      live: Objavljeni
+      no_history: V pogojih uporabe še ni zabeleženih sprememb.
+      no_terms_of_service_html: Trenutno nimate nastavljenih pogojev uporabe. Ti naj bi razjasnili pravno razmerje in dodeljevanje odgovornosti med vami in vašimi uporabniki v primeru spora.
+      notified_on_html: Uporabniki so obveščeni %{date}
+      notify_users: Obvesti uporabnike
+      preview:
+        explanation_html: 'E-poštno sporočilo bo poslano <strong>%{display_count} uporabnikom</strong>, ki so se registrirali pred %{date}. Priloženo bo naslednje besedilo:'
+        send_preview: Pošlji predogled na %{email}
+        send_to_all:
+          few: Pošlji %{display_count} e-poštna sporočila
+          one: Pošlji %{display_count} e-poštno sporočilo
+          other: Pošlji %{display_count} e-poštnih sporočil
+          two: Pošlji %{display_count} e-poštni sporočili
+        title: Prikaži predogled obvestila pogojev uporabe
       publish: Objavi
+      published_on_html: Objavljeno %{date}
       save_draft: Shrani osnutek
       title: Pogoji uporabe
     title: Upravljanje
@@ -1173,6 +1230,7 @@ sl:
     set_new_password: Nastavi novo geslo
     setup:
       email_below_hint_html: Poglejte v mapo neželene pošte ali zaprosite za novega. Če ste podali napačen e-naslov, ga lahko popravite.
+      email_settings_hint_html: Kliknite na povezavo, ki smo vam jo poslali na %{email}, pa boste lahko začeli uporabljati Mastodon. Tukajle bomo počakali.
       link_not_received: Ali ste prejeli povezavo?
       new_confirmation_instructions_sent: Čez nekaj minut boste prejeli novo e-sporočilo s potrditveno povezavo!
       title: Preverite svojo dohodno e-pošto
@@ -1181,6 +1239,7 @@ sl:
       title: Vpiši se v %{domain}
     sign_up:
       manual_review: Registracije na %{domain} ročno pregledajo naši moderatorji. Da nam olajšate obdelavo vaše prijave, zapišite kaj o sebi in zakaj si želite račun na %{domain}.
+      preamble: Če ustvarite račun na tem strežniku Mastodona, boste lahko sledili komur koli v fediverzumu, ne glede na to, kje gostuje njegov/njen račun.
       title: Naj vas namestimo na %{domain}.
     status:
       account_status: Stanje računa
@@ -1192,8 +1251,16 @@ sl:
       view_strikes: Pokaži pretekle ukrepe proti mojemu računu
     too_fast: Obrazec oddan prehitro, poskusite znova.
     use_security_key: Uporabi varnostni ključ
+    user_agreement_html: Prebral/a sem <a href="%{terms_of_service_path}" target="_blank">pogoje uporabe</a> in <a href="%{privacy_policy_path}" target="_blank">politiko zasebnosti</a> in z obojim soglašam
+    user_privacy_agreement_html: Prebral sem <a href="%{privacy_policy_path}" target="_blank">politiko zasebnosti</a> in soglašam z njo
   author_attribution:
     example_title: Vzorčno besedilo
+    hint_html: Ali pišete novičke ali spletni dnevnik kje drugje poleg Mastodona? Poskrbite, da bo vaše avtorstvo pravilno navedeno, ko bo kdo delil vaše delo na Mastodonu.
+    instructions: 'Poskrbite, da bo v dokumentu HTML vašega prispevka naslednja koda:'
+    more_from_html: Več od %{name}
+    s_blog: Spletni dnevnik %{name}
+    then_instructions: Nato dodajte ime domene, kamor objavljate, v spodnje polje.
+    title: Priznanje avtorstva
   challenge:
     confirm: Nadaljuj
     hint_html: "<strong>Namig:</strong> naslednjo uro vas ne bomo več vprašali po vašem geslu."
@@ -1404,6 +1471,68 @@ sl:
       merge_long: Ohrani obstoječe zapise in dodaj nove
       overwrite: Prepiši
       overwrite_long: Zamenjaj trenutne zapise z novimi
+    overwrite_preambles:
+      blocking_html:
+        few: Kaže, da želite <strong>zamenjati svoj seznam blokiranih</strong> z do <strong>%{count} računi</strong> iz <strong>%{filename}</strong>.
+        one: Kaže, da želite <strong>zamenjati svoj seznam blokiranih</strong> z do <strong>%{count} računom</strong> iz <strong>%{filename}</strong>.
+        other: Kaže, da želite <strong>zamenjati svoj seznam blokiranih</strong> z do <strong>%{count} računi</strong> iz <strong>%{filename}</strong>.
+        two: Kaže, da želite <strong>zamenjati svoj seznam blokiranih</strong> z do <strong>%{count} računoma</strong> iz <strong>%{filename}</strong>.
+      bookmarks_html:
+        few: Kaže, da želite <strong>zamenjati svoje zaznamke</strong> z do <strong>%{count} objavami</strong> iz <strong>%{filename}</strong>.
+        one: Kaže, da želite <strong>zamenjati svoje zaznamke</strong> z do <strong>%{count} objavo</strong> iz <strong>%{filename}</strong>.
+        other: Kaže, da želite <strong>zamenjati svoje zaznamke</strong> z do <strong>%{count} objavami</strong> iz <strong>%{filename}</strong>.
+        two: Kaže, da želite <strong>zamenjati svoje zaznamke</strong> z do <strong>%{count} objavama</strong> iz <strong>%{filename}</strong>.
+      domain_blocking_html:
+        few: Kaže, da želite <strong>zamenjati svoj seznam blokiranih domen</strong> z do <strong>%{count} domenami</strong> iz <strong>%{filename}</strong>.
+        one: Kaže, da želite <strong>zamenjati svoj seznam blokiranih domen</strong> z do <strong>%{count} domeno</strong> iz <strong>%{filename}</strong>.
+        other: Kaže, da želite <strong>zamenjati svoj seznam blokiranih domen</strong> z do <strong>%{count} domenami</strong> iz <strong>%{filename}</strong>.
+        two: Kaže, da želite <strong>zamenjati svoj seznam blokiranih domen</strong> z do <strong>%{count} domenama</strong> iz <strong>%{filename}</strong>.
+      following_html:
+        few: Kaže, da želite <strong>slediti</strong> do <strong>%{count} računom</strong> iz <strong>%{filename}</strong> in <strong>nehati slediti komur koli drugemu</strong>.
+        one: Kaže, da želite <strong>slediti</strong> do <strong>%{count} računu</strong> iz <strong>%{filename}</strong> in <strong>nehati slediti komur koli drugemu</strong>.
+        other: Kaže, da želite <strong>slediti</strong> do <strong>%{count} računom</strong> iz <strong>%{filename}</strong> in <strong>nehati slediti komur koli drugemu</strong>.
+        two: Kaže, da želite <strong>slediti</strong> do <strong>%{count} računoma</strong> iz <strong>%{filename}</strong> in <strong>nehati slediti komur koli drugemu</strong>.
+      lists_html:
+        few: Kaže, da nameravate <strong>zamenjati svoje sezname</strong> z vsebino iz <strong>%{filename}</strong>. V nove sezname bodo dodani do <strong>%{count} računi</strong>.
+        one: Kaže, da nameravate <strong>zamenjati svoje sezname</strong> z vsebino iz <strong>%{filename}</strong>. V nove sezname bo dodan do <strong>%{count} račun</strong>.
+        other: Kaže, da nameravate <strong>zamenjati svoje sezname</strong> z vsebino iz <strong>%{filename}</strong>. V nove sezname bo dodanih do <strong>%{count} računov</strong>.
+        two: Kaže, da nameravate <strong>zamenjati svoje sezname</strong> z vsebino iz <strong>%{filename}</strong>. V nove sezname bosta dodana do <strong>%{count} računa</strong>.
+      muting_html:
+        few: Kaže, da nameravate <strong>zamenjati svoj seznam utišanih računov</strong> z do <strong>%{count} računi</strong> iz <strong>%{filename}</strong>.
+        one: Kaže, da nameravate <strong>zamenjati svoj seznam utišanih računov</strong> z do <strong>%{count} računom</strong> iz <strong>%{filename}</strong>.
+        other: Kaže, da nameravate <strong>zamenjati svoj seznam utišanih računov</strong> z do <strong>%{count} računi</strong> iz <strong>%{filename}</strong>.
+        two: Kaže, da nameravate <strong>zamenjati svoj seznam utišanih računov</strong> z do <strong>%{count} računoma</strong> iz <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        few: Kaže, da nameravate <strong>blokirati</strong> <strong>%{count} račune</strong> iz <strong>%{filename}</strong>.
+        one: Kaže, da nameravate <strong>blokirati</strong> <strong>%{count} račun</strong> iz <strong>%{filename}</strong>.
+        other: Kaže, da nameravate <strong>blokirati</strong> <strong>%{count} računov</strong> iz <strong>%{filename}</strong>.
+        two: Kaže, da nameravate <strong>blokirati</strong> <strong>%{count} računa</strong> iz <strong>%{filename}</strong>.
+      bookmarks_html:
+        few: V svoje <strong>zaznamke</strong> boste dodali <strong>%{count} objave</strong> iz <strong>%{filename}</strong>.
+        one: V svoje <strong>zaznamke</strong> boste dodali <strong>%{count} objavo</strong> iz <strong>%{filename}</strong>.
+        other: V svoje <strong>zaznamke</strong> boste dodali <strong>%{count} objav</strong> iz <strong>%{filename}</strong>.
+        two: V svoje <strong>zaznamke</strong> boste dodali <strong>%{count} objavi</strong> iz <strong>%{filename}</strong>.
+      domain_blocking_html:
+        few: "<strong>Blokirali</strong> boste <strong>%{count} domene</strong> iz <strong>%{filename}</strong>."
+        one: "<strong>Blokirali</strong> boste <strong>%{count} domeno</strong> iz <strong>%{filename}</strong>."
+        other: "<strong>Blokirali</strong> boste <strong>%{count} domen</strong> iz <strong>%{filename}</strong>."
+        two: "<strong>Blokirali</strong> boste <strong>%{count} domeni</strong> iz <strong>%{filename}</strong>."
+      following_html:
+        few: Začeli boste <strong>slediti</strong> <strong>%{count} računom</strong> iz <strong>%{filename}</strong>.
+        one: Začeli boste <strong>slediti</strong> <strong>%{count} računu</strong> iz <strong>%{filename}</strong>.
+        other: Začeli boste <strong>slediti</strong> <strong>%{count} računom</strong> iz <strong>%{filename}</strong>.
+        two: Začeli boste <strong>slediti</strong> <strong>%{count} računoma</strong> iz <strong>%{filename}</strong>.
+      lists_html:
+        few: V svoje <strong>sezname</strong> boste dodali <strong>%{count} račune</strong> iz <strong>%{filename}</strong>. Če seznami manjkajo, bodo ustvarjeni.
+        one: V svoje <strong>sezname</strong> boste dodali <strong>%{count} račun</strong> iz <strong>%{filename}</strong>. Če seznami manjkajo, bodo ustvarjeni.
+        other: V svoje <strong>sezname</strong> boste dodali <strong>%{count} računov</strong> iz <strong>%{filename}</strong>. Če seznami manjkajo, bodo ustvarjeni.
+        two: V svoje <strong>sezname</strong> boste dodali <strong>%{count} računa</strong> iz <strong>%{filename}</strong>. Če seznami manjkajo, bodo ustvarjeni.
+      muting_html:
+        few: "<strong>Utišali</strong> boste <strong>%{count} račune</strong> iz <strong>%{filename}</strong>."
+        one: "<strong>Utišali</strong> boste <strong>%{count} račun</strong> iz <strong>%{filename}</strong>."
+        other: "<strong>Utišali</strong> boste <strong>%{count} računov</strong> iz <strong>%{filename}</strong>."
+        two: "<strong>Utišali</strong> boste <strong>%{count} računa</strong> iz <strong>%{filename}</strong>."
     preface: Podatke, ki ste jih izvozili iz drugega strežnika, lahko uvozite. Na primer seznam oseb, ki jih spremljate ali blokirate.
     recent_imports: Nedavni uvozi
     states:
@@ -1490,6 +1619,7 @@ sl:
   media_attachments:
     validations:
       images_and_video: Videoposnetka ni mogoče priložiti objavi, ki že vsebuje slike
+      not_found: Predstavnosti %{ids} ne najdem ali pa je že pripeta k drugi objavi
       not_ready: Datotek, katerih obdelava ni dokončana, ni mogoče pripeti. Poskusite znova kmalu!
       too_many: Ni možno priložiti več kot 4 datoteke
   migrations:
@@ -1661,6 +1791,7 @@ sl:
   scheduled_statuses:
     over_daily_limit: Za ta dan ste presegli omejitev %{limit} načrtovanih objav
     over_total_limit: Presegli ste omejitev %{limit} načrtovanih objav
+    too_soon: datum mora biti v prihodnosti
   self_destruct:
     lead_html: Na žalost se <strong>%{domain}</strong> za vedno zapira. Če ste tu imeli svoj račun, ga v prihodnje ne boste mogli več uporabljati. Zahtevate lahko kopijo svojih podatkov.
     title: Ta strežnik se zapira
@@ -1864,6 +1995,10 @@ sl:
     recovery_instructions_html: Če kdaj izgubite dostop do telefona, lahko uporabite eno od spodnjih obnovitvenih kod, da ponovno pridobite dostop do svojega računa. <strong>Shranite obnovitvene kode</strong>. Lahko jih natisnete in shranite z drugimi pomembnimi dokumenti.
     webauthn: Varnostni ključi
   user_mailer:
+    announcement_published:
+      description: 'Skrbniki domene %{domain} oznanjajo:'
+      subject: Storitveno oznanilo
+      title: Storitveno oznanilo %{domain}
     appeal_approved:
       action: Nastavitve računa
       explanation: Pritožbi na ukrep proti vašemu računu z dne %{strike_date}, ki ste jo oddali dne %{appeal_date}, je bilo ugodeno. Vaš račun je znova nesporen.
@@ -1894,6 +2029,13 @@ sl:
       subject: Do vašega računa je bil opravljen dostop z novega naslova IP
       title: Nova prijava
     terms_of_service_changed:
+      agreement: Če boste še naprej uporabljali %{domain}, se strinjate s temi pogoji. Če se ne, lahko kadarkoli odstopite od dogovora z domeno %{domain} tako, da izbrišete svoj račun.
+      changelog: 'Kratek povzetek tega, kaj ta posodobitev pomeni za vas:'
+      description: 'To e-poštno sporočilo ste prejeli, ker smo spremenili pogoje uporabe v domeni %{domain}. Posodobitve bodo začele veljati %{date}. Vabimo vas, da si posodobljene pogoje preberete tukaj:'
+      description_html: To e-poštno sporočilo ste prejeli, ker smo spremenili pogoje uporabe v domeni %{domain}. Posodobitve bodo začele veljati <strong>%{date}</strong>. Vabimo vas, da si posodobljene pogoje preberete <a href="%{path}" target="_blank">na tej povezavi</a>.
+      sign_off: Ekipa %{domain}
+      subject: Posodobitve naših pogojev uporabe
+      subtitle: Spreminjajo se pogoji uporabe domene %{domain}
       title: Pomembna posodobitev
     warning:
       appeal: Pošlji pritožbo
@@ -1984,6 +2126,7 @@ sl:
     instructions_html: Spodnjo kodo kopirajte in prilepite v HTML svojega spletnega mesta. Nato dodajte naslov svoje spletne strani v eno od dodatnih polj v svojem profilu v zavihku »Uredi profil« in shranite spremembe.
     verification: Potrditev
     verified_links: Vaše preverjene povezave
+    website_verification: Overitev spletišča
   webauthn_credentials:
     add: Dodaj nov varnostni ključ
     create:

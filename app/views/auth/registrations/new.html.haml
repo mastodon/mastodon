@@ -21,20 +21,19 @@
     = f.simple_fields_for :account do |ff|
       = ff.input :username,
                  append: "@#{site_hostname}",
-                 input_html: { 'aria-label': t('simple_form.labels.defaults.username'), autocomplete: 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-zA-Z0-9_]+', maxlength: Account::USERNAME_LENGTH_LIMIT },
-                 label: false,
+                 input_html: { autocomplete: 'off', pattern: '[a-zA-Z0-9_]+', maxlength: Account::USERNAME_LENGTH_LIMIT, placeholder: ' ' },
                  required: true,
                  wrapper: :with_label
     = f.input :email,
               hint: false,
-              input_html: { 'aria-label': t('simple_form.labels.defaults.email'), autocomplete: 'username' },
-              placeholder: t('simple_form.labels.defaults.email'),
-              required: true
+              input_html: { autocomplete: 'username', placeholder: ' ' },
+              required: true,
+              wrapper: :with_label
     = f.input :password,
               hint: false,
-              input_html: { 'aria-label': t('simple_form.labels.defaults.password'), autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last },
-              placeholder: t('simple_form.labels.defaults.password'),
-              required: true
+              input_html: { autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last, placeholder: ' ' },
+              required: true,
+              wrapper: :with_label
     = f.input :password_confirmation,
               hint: false,
               input_html: { 'aria-label': t('simple_form.labels.defaults.confirm_password'), autocomplete: 'new-password', maxlength: User.password_length.last },
@@ -52,6 +51,14 @@
               label: t('simple_form.labels.defaults.honeypot', label: 'Website'),
               required: false,
               wrapper: :with_label
+
+  - if Setting.min_age.present?
+    .fields-group
+      = f.input :date_of_birth,
+                as: :date_of_birth,
+                hint: t('simple_form.hints.user.date_of_birth', age: Setting.min_age.to_i),
+                required: true,
+                wrapper: :with_block_label
 
   - if approved_registrations? && @invite.blank?
     %p.lead= t('auth.sign_up.manual_review', domain: site_hostname)

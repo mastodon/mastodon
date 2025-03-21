@@ -1,7 +1,7 @@
 import './public-path';
 import { createRoot } from 'react-dom/client';
 
-import { afterInitialRender } from 'mastodon/../hooks/useRenderSignal';
+import { afterInitialRender } from 'mastodon/hooks/useRenderSignal';
 
 import { start } from '../mastodon/common';
 import { Status } from '../mastodon/features/standalone/status';

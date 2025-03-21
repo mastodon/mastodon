@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 
 import classNames from 'classnames';
 
-import { useHovering } from 'mastodon/../hooks/useHovering';
+import { useHovering } from 'mastodon/hooks/useHovering';
 import { autoPlayGif } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 

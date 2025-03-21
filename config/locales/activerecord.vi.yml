@@ -49,8 +49,14 @@ vi:
           attributes:
             reblog:
               taken: của tút đã tồn tại
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: là quá sớm, cần phải sau %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: dưới độ tuổi tối thiểu
             email:
               blocked: sử dụng dịch vụ email bị cấm
               unreachable: không tồn tại

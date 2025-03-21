@@ -88,6 +88,7 @@ zh-TW:
         favicon: WEBP、PNG、GIF、或 JPG。使用自訂圖示替代預設 Mastodon favicon 圖示。
         mascot: 覆寫進階網頁介面中的圖例。
         media_cache_retention_period: 來自遠端伺服器嘟文中之多媒體內容將快取於您的伺服器。當設定為正值時，這些多媒體內容將於指定之天數後自您的儲存空間中自動刪除。若多媒體資料於刪除後被請求，且原始內容仍可存取，它們將被重新下載。由於連結預覽中第三方網站查詢頻率限制，建議將其設定為至少 14 日，否則於此之前連結預覽將不被即時更新。
+        min_age: 使用者將於註冊時被要求確認他們的生日
         peers_api_enabled: 浩瀚聯邦宇宙中與此伺服器曾經擦肩而過的網域列表。不包含關於您是否與此伺服器是否有與之串連，僅僅表示您的伺服器已知此網域。這是供收集聯邦宇宙中一般性統計資料服務使用。
         profile_directory: 個人檔案目錄將會列出那些有選擇被發現的使用者。
         require_invite_text: 如果已設定為手動審核註冊，請將「為什麼想要加入呢？」設定為必填項目。
@@ -132,18 +133,21 @@ zh-TW:
         name: 您只能變更大小寫，例如，以使其更易讀。
       terms_of_service:
         changelog: 能以 Markdown 語法撰寫。
+        effective_date: 合理時間範圍可為自您通知使用者之日起的 10 至 30 天。
         text: 能以 Markdown 語法撰寫。
       terms_of_service_generator:
         admin_email: 法律通知包含反駁通知、法院命令、刪除請求和執法單位請求。
-        arbitration_address: 能與上述相同之實體地址，或「N/A」如使用 email
-        arbitration_website: 能為網路表單，或「N/A」如使用 email
+        arbitration_address: 能與上述相同之實體地址，或「N/A」如使用 email。
+        arbitration_website: 能為網路表單，或「N/A」如使用 email。
         choice_of_law: 城市、區域、領土或州的內部實體法律應規範任何及所有權利。
         dmca_address: 位於美國的運營團隊，請使用於 DMCA 指定代理目錄中註冊之地址。可直接請求 PO Box 清單，使用 DMCA 指定代理郵局信箱豁免請求向版權局發送電子郵件，並描述您是一名在家工作之內容管理員，擔心您的行為將遭報復，需要使用 PO Box 保護您的私人住址。
-        dmca_email: 能使用上述用於「法律通知用途電子郵件」之相同電子郵件
+        dmca_email: 能使用上述用於「法律通知用途電子郵件」之相同電子郵件。
         domain: 您所提供線上服務之唯一識別。
         jurisdiction: 列出帳單支付人之居住國家。若為公司或其他實體，請列出其註冊地所在的國家，及城市、地區、領土、或州別等。
+        min_age: 不應低於您所屬法律管轄區要求之最低年齡。
       user:
         chosen_languages: 當選取時，只有選取語言之嘟文會於公開時間軸中顯示
+        date_of_birth: 我們必須確認您至少年滿 %{age} 以使用 Mastodon。我們不會儲存此資料。
         role: 角色控制使用者有哪些權限。
       user_role:
         color: 於整個使用者介面中用於角色的顏色，十六進位格式的 RGB
@@ -269,6 +273,7 @@ zh-TW:
         favicon: 網站圖示 (Favicon)
         mascot: 自訂吉祥物 (legacy)
         media_cache_retention_period: 多媒體快取資料保留期間
+        min_age: 最低年齡要求
         peers_api_enabled: 於 API 中公開已知伺服器的列表
         profile_directory: 啟用個人檔案目錄
         registrations_mode: 誰能註冊
@@ -334,6 +339,7 @@ zh-TW:
         usable: 允許嘟文使用此主題標籤
       terms_of_service:
         changelog: 有何異動？
+        effective_date: 生效日期
         text: 服務條款
       terms_of_service_generator:
         admin_email: 法律通知用途電子郵件
@@ -344,7 +350,11 @@ zh-TW:
         dmca_email: DMCA 或版權通知之電子郵件地址
         domain: 網域
         jurisdiction: 司法管轄區
+        min_age: 最低年齡
       user:
+        date_of_birth_1i: 日
+        date_of_birth_2i: 月
+        date_of_birth_3i: 年
         role: 角色
         time_zone: 時區
       user_role:

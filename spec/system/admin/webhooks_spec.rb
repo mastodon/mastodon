@@ -81,7 +81,20 @@ RSpec.describe 'Admin Webhooks' do
       end
 
       def submit_form
-        click_on I18n.t('generic.save_changes')
+        click_on(submit_button)
+      end
+    end
+
+    describe 'Rotate a webhook secret' do
+      let!(:webhook) { Fabricate :webhook, events: [Webhook::EVENTS.first] }
+
+      it 'rotates secret and returns to page' do
+        visit admin_webhook_path(webhook)
+
+        expect { click_on I18n.t('admin.webhooks.rotate_secret') }
+          .to(change { webhook.reload.secret })
+        expect(page)
+          .to have_title(I18n.t('admin.webhooks.title'))
       end
     end
 

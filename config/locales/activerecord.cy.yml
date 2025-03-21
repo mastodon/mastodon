@@ -3,7 +3,7 @@ cy:
   activerecord:
     attributes:
       poll:
-        expires_at: Terfyn amser
+        expires_at: Dyddiad cau
         options: Dewisiadau
       user:
         agreement: Cytundeb gwasanaeth
@@ -49,8 +49,14 @@ cy:
           attributes:
             reblog:
               taken: o'r statws yn bodoli'n barod
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: yn rhy fuan, rhaid iddo fod yn hwyrach na %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: yn iau na'r terfyn oedran
             email:
               blocked: yn defnyddio darparwr e-bost nad yw'n cael ei ganiatáu
               unreachable: nid yw i weld yn bodoli
@@ -59,7 +65,7 @@ cy:
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: yn cynnwys caniatâd nad ydynt yn ddiogel ar gyfer rôl sail
+              dangerous: yn cynnwys caniatâd nad ydyn nhw'n ddiogel ar gyfer rôl sail
               elevated: yn methu a chynnwys caniatâd nad yw eich rôl cyfredol yn ei gynnwys
               own_role: nid oes modd ei newid gyda'ch rôl cyfredol
             position:
@@ -68,4 +74,4 @@ cy:
         webhook:
           attributes:
             events:
-              invalid_permissions: ni ellir cynnwys digwyddiadau nad oes gennych yr hawl iddynt
+              invalid_permissions: nid oes modd cynnwys digwyddiadau nad oes gennych yr hawl iddyn nhw

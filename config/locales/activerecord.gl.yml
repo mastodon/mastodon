@@ -7,7 +7,7 @@ gl:
         options: Opcións
       user:
         agreement: Acordo do Servizo
-        email: Enderezo de email
+        email: Enderezo de correo
         locale: Locale
         password: Contrasinal
       user/account:
@@ -49,8 +49,14 @@ gl:
           attributes:
             reblog:
               taken: do estado xa existe
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: é demasiado axiña, debería ser posterior a %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: é inferior ao límite de idade
             email:
               blocked: utiliza un provedor de email non autorizado
               unreachable: semella que non existe

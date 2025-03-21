@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useMemo } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -28,28 +28,30 @@ export const ActionBar = () => {
   const dispatch = useDispatch();
   const intl = useIntl();
 
-  const handleLogoutClick = useCallback(() => {
-    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT' }));
-  }, [dispatch]);
+  const menu = useMemo(() => {
+    const handleLogoutClick = () => {
+      dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT' }));
+    };
 
-  let menu = [];
-
-  menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
-  menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });
-  menu.push({ text: intl.formatMessage(messages.pins), to: '/pinned' });
-  menu.push(null);
-  menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });
-  menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites' });
-  menu.push({ text: intl.formatMessage(messages.bookmarks), to: '/bookmarks' });
-  menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
-  menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags' });
-  menu.push(null);
-  menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
-  menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
-  menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
-  menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
-  menu.push(null);
-  menu.push({ text: intl.formatMessage(messages.logout), action: handleLogoutClick });
+    return ([
+      { text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' },
+      { text: intl.formatMessage(messages.preferences), href: '/settings/preferences' },
+      { text: intl.formatMessage(messages.pins), to: '/pinned' },
+      null,
+      { text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' },
+      { text: intl.formatMessage(messages.favourites), to: '/favourites' },
+      { text: intl.formatMessage(messages.bookmarks), to: '/bookmarks' },
+      { text: intl.formatMessage(messages.lists), to: '/lists' },
+      { text: intl.formatMessage(messages.followed_tags), to: '/followed_tags' },
+      null,
+      { text: intl.formatMessage(messages.mutes), to: '/mutes' },
+      { text: intl.formatMessage(messages.blocks), to: '/blocks' },
+      { text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' },
+      { text: intl.formatMessage(messages.filters), href: '/filters' },
+      null,
+      { text: intl.formatMessage(messages.logout), action: handleLogoutClick },
+    ]);
+  }, [intl, dispatch]);
 
   return (
     <DropdownMenuContainer

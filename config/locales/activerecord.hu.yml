@@ -49,8 +49,14 @@ hu:
           attributes:
             reblog:
               taken: már létezik ehhez a bejegyzéshez
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: túl korán van, később kellene lennie, mint %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: a korhatár alatt van
             email:
               blocked: egy letiltott email szolgáltatót használ
               unreachable: úgy tűnik, hogy nem létezik

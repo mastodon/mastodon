@@ -309,6 +309,7 @@ ca:
       title: Registre d'auditoria
       unavailable_instance: "(nom de domini no disponible)"
     announcements:
+      back: Torna als anuncis
       destroyed_msg: L’anunci s’ha esborrat amb èxit!
       edit:
         title: Edita l'anunci
@@ -317,6 +318,9 @@ ca:
       new:
         create: Crea un anunci
         title: Nou anunci
+      preview:
+        explanation_html: 'S''enviarà el correu-e a <strong>%{display_count} usuaris</strong>. S''hi inclourà el text següent:'
+        title: Vista prèvia de la notificació d'anunci
       publish: Publica
       published_msg: L’anunci s’ha publicat amb èxit!
       scheduled_for: Programat per a %{time}
@@ -939,6 +943,7 @@ ca:
         chance_to_review_html: "<strong>Les condicions de servei generades no es publicaran automàticament.</strong> Tindreu l'oportunitat de revisar-ne els resultats. Empleneu els detalls necessaris per a procedir."
         explanation_html: La plantilla de condicions de servei proveïda ho és només a títol informatiu i no s'ha d'interpretar com a consell jurídic en cap cas. Consulteu el vostre propi servei legal sobre la vostra situació i les qüestions legals específiques que tingueu.
         title: Configuració de les condicions de servei
+      going_live_on_html: En vigor; des de %{date}
       history: Historial
       live: En ús
       no_history: Encara no hi ha enregistrats canvis en les condicions de servei.
@@ -1882,6 +1887,10 @@ ca:
     recovery_instructions_html: Si mai perds l'accés al teu telèfon, pots fer servir un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
     webauthn: Claus de seguretat
   user_mailer:
+    announcement_published:
+      description: 'L''administració de %{domain} fa un anunci:'
+      subject: Anunci de servei
+      title: Anunci de servei de %{domain}
     appeal_approved:
       action: Configuració del compte
       explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat aprovada. El teu compte torna a estar en bon estat.
@@ -1912,6 +1921,8 @@ ca:
       subject: S'ha accedit al teu compte des d'una adreça IP nova
       title: Un inici de sessió nou
     terms_of_service_changed:
+      agreement: En continuar fent servir %{domain} accepteu aquestes condicions. Si no esteu d'acord amb els nous termes, podeu acabar el vostre acord amb %{domain} tot esborrant el vostre compte.
+      changelog: 'En un cop d''ull, això és el que aquest canvi us implica:'
       sign_off: L'equip de %{domain}
       subject: Actualitzacions de les condicions de servei
       subtitle: Les condicions de servei de %{domain} canvien

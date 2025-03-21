@@ -155,24 +155,49 @@ module JsonLdHelper
     end
   end
 
-  def fetch_resource(uri, id_is_known, on_behalf_of = nil, request_options: {})
+  # Fetch the resource given by uri.
+  # @param uri [String]
+  # @param id_is_known [Boolean]
+  # @param on_behalf_of [nil, Account]
+  # @param raise_on_error [Symbol<:all, :temporary, :none>] See {#fetch_resource_without_id_validation} for possible values
+  def fetch_resource(uri, id_is_known, on_behalf_of = nil, raise_on_error: :none, request_options: {})
     unless id_is_known
-      json = fetch_resource_without_id_validation(uri, on_behalf_of)
+      json = fetch_resource_without_id_validation(uri, on_behalf_of, raise_on_error: raise_on_error)
 
       return if !json.is_a?(Hash) || unsupported_uri_scheme?(json['id'])
 
       uri = json['id']
     end
 
-    json = fetch_resource_without_id_validation(uri, on_behalf_of, request_options: request_options)
+    json = fetch_resource_without_id_validation(uri, on_behalf_of, raise_on_error: raise_on_error, request_options: request_options)
     json.present? && json['id'] == uri ? json : nil
   end
 
-  def fetch_resource_without_id_validation(uri, on_behalf_of = nil, raise_on_temporary_error = false, request_options: {})
+  # Fetch the resource given by uri
+  #
+  # If an error is raised, it contains the response and can be captured for handling like
+  #
+  #     begin
+  #       fetch_resource_without_id_validation(uri, nil, true)
+  #     rescue Mastodon::UnexpectedResponseError => e
+  #       e.response
+  #     end
+  #
+  # @param uri [String]
+  # @param on_behalf_of [nil, Account]
+  # @param raise_on_error [Symbol<:all, :temporary, :none>]
+  #   - +:all+ - raise if response code is not in the 2xx range
+  #   - +:temporary+ - raise if the response code is not an "unsalvageable error" like a 404
+  #     (see {#response_error_unsalvageable} )
+  #   - +:none+ - do not raise, return +nil+
+  def fetch_resource_without_id_validation(uri, on_behalf_of = nil, raise_on_error: :none, request_options: {})
     on_behalf_of ||= Account.representative
 
     build_request(uri, on_behalf_of, options: request_options).perform do |response|
-      raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response) || !raise_on_temporary_error
+      raise Mastodon::UnexpectedResponseError, response if !response_successful?(response) && (
+        raise_on_error == :all ||
+        (!response_error_unsalvageable?(response) && raise_on_error == :temporary)
+      )
 
       body_to_json(response.body_with_limit) if response.code == 200 && valid_activitypub_content_type?(response)
     end

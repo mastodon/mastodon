@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
-import { useLinks } from '@/hooks/useLinks';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
@@ -46,6 +45,7 @@ import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { DomainPill } from 'mastodon/features/account/components/domain_pill';
 import AccountNoteContainer from 'mastodon/features/account/containers/account_note_container';
 import FollowRequestNoteContainer from 'mastodon/features/account/containers/follow_request_note_container';
+import { useLinks } from 'mastodon/hooks/useLinks';
 import { useIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
@@ -58,8 +58,8 @@ import {
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import MemorialNote from './memorial_note';
-import MovedNote from './moved_note';
+import { MemorialNote } from './memorial_note';
+import { MovedNote } from './moved_note';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -833,7 +833,7 @@ export const AccountHeader: React.FC<{
     <div className='account-timeline__header'>
       {!hidden && account.memorial && <MemorialNote />}
       {!hidden && account.moved && (
-        <MovedNote from={account} to={account.moved} />
+        <MovedNote accountId={account.id} targetAccountId={account.moved} />
       )}
 
       <div
@@ -919,7 +919,7 @@ export const AccountHeader: React.FC<{
                 onClickCapture={handleLinkClick}
               >
                 {account.id !== me && signedIn && (
-                  <AccountNoteContainer account={account} />
+                  <AccountNoteContainer accountId={accountId} />
                 )}
 
                 {account.note.length > 0 && account.note !== '<p></p>' && (

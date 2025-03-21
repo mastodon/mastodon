@@ -69,6 +69,6 @@ class ActivityPub::SynchronizeFollowersService < BaseService
     return collection_or_uri if collection_or_uri.is_a?(Hash)
     return if non_matching_uri_hosts?(@account.uri, collection_or_uri)
 
-    fetch_resource_without_id_validation(collection_or_uri, nil, true)
+    fetch_resource_without_id_validation(collection_or_uri, nil, raise_on_error: :temporary)
   end
 end

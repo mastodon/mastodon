@@ -81,13 +81,14 @@ lv:
         activity_api_enabled: Vietēji publicēto ziņu, aktīvo lietotāju un jauno reģistrāciju skaits nedēļas kopās
         app_icon: WEBP, PNG, GIF vai JPG. Mobilajās ierīcēs aizstāj noklusējuma lietotnes ikonu ar pielāgotu.
         backups_retention_period: Lietotājiem ir iespēja izveidot savu ierakstu arhīvu lejupielādēšanai vēlāk. Kad iestatīta pozitīva vērtība, šie arhīvi tiks automātiski izdzēsti no krātuves pēc norādītā dienu skaita.
-        bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju ieteikumu augšdaļā.
+        bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju sekošanas ieteikumu augšdaļā.
         closed_registrations_message: Tiek rādīts, kad reģistrēšanās ir slēgta
         content_cache_retention_period: Visi ieraksti no citiem serveriem (tajā skaitā pastiprinājumi un atbildes) tiks izdzēsti pēc norādītā dienu skaita, neņemot vērā vietēja lietotāja mijiedarbību ar šādiem ierakstiem. Tas ietver ierakstus, kurus vietējs lietotājs ir atzīmējis kā grāmatzīmi vai pievienojis izlasē. Tiks zaudēti arī privāti pieminējumi starp lietotājiem no dažādiem serveriem, un tos nebūs iespējams atgūt. Šī iestatījuma izmantošana ir paredzēta īpašam nolūkam paredzētiem serveriem un neatbilst tam, ko sagaida vairums lietotāju, kad pielietots vispārējas izmantošanas serveros.
         custom_css: Vari lietot pielāgotus stilus Mastodon tīmekļa versijā.
         favicon: WEBP, PNG, GIF vai JPG. Aizstāj noklusējuma Mastodon favikonu ar pielāgotu.
         mascot: Ignorē ilustrāciju uzlabotajā tīmekļa saskarnē.
         media_cache_retention_period: Informācijas nesēju datnes no ierakstiem, kurus ir veikuši attālie lietotāji, tiek kešoti šajā serverī. Kad ir iestatīta apstiprinoša vērtība, informācijas nesēji tiks izdzēsti pēc norādītā dienu skaita. Ja informācijas nesēju dati tiks pieprasīti pēc tam, kad tie tika izdzēsti, tie tiks atkārtoti lejupielādēti, ja avota saturs joprojām būs pieejams. Saišu priekšskatījuma karšu vaicājumu biežuma ierobežojumu dēļ ir ieteicams iestatīt šo vērtību vismaz 14 dienas vai saišu priekšskatījuma kartes netiks atjauninātas pēc pieprasījuma pirms tā laika.
+        min_age: Lietotājiem tiks lūgts apstiprināt viņu dzimšanas datumu reģistrācijas laikā
         peers_api_enabled: Domēna vārdu saraksts, ar kuriem šis serveris ir saskāries fediversā. Šeit nav iekļauti dati par to, vai tu veic federāciju ar noteiktu serveri, tikai tavs serveris par to zina. To izmanto dienesti, kas apkopo statistiku par federāciju vispārīgā nozīmē.
         profile_directory: Profilu direktorijā ir uzskaitīti visi lietotāji, kuri ir izvēlējušies būt atklājami.
         require_invite_text: Ja nepieciešama pašrocīga apstiprināšana, lai pierakstītos, teksta “Kāpēc vēlies pievienoties?” ievade jāpadara par nepieciešamu, nevis izvēles
@@ -123,7 +124,7 @@ lv:
         hint: Izvēles. Sniedz vairāk informācijas par noteikumu
         text: Jāapraksta nosacījums vai prasība šī servera lietotājiem. Jāmēģina to veidot īsu un vienkāršu
       sessions:
-        otp: 'Ievadi divfaktoru kodu, ko ģenerējusi tava tālruņa lietotne, vai izmanto kādu no atkopšanas kodiem:'
+        otp: 'Jāievada tālruņa lietotnes izveidots divpakāpju kods vai jāizmanto viens no saviem atkopes kodie:'
         webauthn: Ja tā ir USB atslēga, noteikti ievieto to un, ja nepieciešams, pieskaries tai.
       settings:
         indexable: Tava profila lapa var tikt parādīta Google, Bing un citu meklēšanas dzinēju rezultātos.
@@ -132,9 +133,15 @@ lv:
         name: Tu vari mainīt tikai burtu lielumu, piemēram, lai tie būtu vieglāk lasāmi
       terms_of_service:
         changelog: Var veidot ar Markdown pierakstu.
+        effective_date: Saprātīgs laika logs var būt no 10 līdz 30 dienām no dienas, kad lietotāji tiek apziņoti.
         text: Var veidot ar Markdown pierakstu.
+      terms_of_service_generator:
+        arbitration_address: Var būt tāda pati kā augstāk esošā fiziskā adrese vai "N/A", ja tiek izmantota e-pasta adrese.
+        arbitration_website: Var būt tīmekļa veidlapa vai "N/A", ja tiek izmantots e-pasts.
+        domain: Sniegtā tiešsaistas pakalpojuma neatkārtojama identifikācija.
       user:
         chosen_languages: Ja ieķeksēts, publiskos laika grafikos tiks parādītas tikai ziņas noteiktajās valodās
+        date_of_birth: Mums jāpārliecinās, ka jums ir vismaz %{age} gadi, lai varētu izmantot Mastodonu. Mēs neuzglabāsim šo informāciju.
         role: Loma nosaka, kādas lietotājam ir atļaujas.
       user_role:
         color: Krāsa, kas jāizmanto lomai visā lietotāja saskarnē, kā RGB hex formātā
@@ -148,6 +155,7 @@ lv:
         url: Kur notikumi tiks nosūtīti
     labels:
       account:
+        attribution_domains: Tīmekļvietnes, kurām ir tiesības uzskaitīt Tevi
         discoverable: Funkcijas profils un ziņas atklāšanas algoritmos
         fields:
           name: Marķējums
@@ -224,8 +232,10 @@ lv:
         setting_display_media_show_all: Parādīt visu
         setting_expand_spoilers: Vienmēr izvērst ziņas, kas apzīmētas ar brīdinājumiem par saturu
         setting_hide_network: Slēpt savu sociālo grafu
+        setting_missing_alt_text_modal: Rādīt apstiprināšanas lodziņu pirms informācijas nesēju bez aprakstošā teksta iesūtīšanas
         setting_reduce_motion: Ierobežot kustību animācijās
         setting_system_font_ui: Lietot sistēmas noklusējuma fontu
+        setting_system_scrollbars_ui: Lietot sistēmas noklusējuma ritjoslu
         setting_theme: Vietnes motīvs
         setting_trends: Parādīt šodienas tendences
         setting_unfollow_modal: Parādīt apstiprinājuma dialogu pirms pārtraukt kādam sekot
@@ -257,6 +267,7 @@ lv:
         favicon: Favikona
         mascot: Pielāgots talismans (mantots)
         media_cache_retention_period: Multivides kešatmiņas saglabāšanas periods
+        min_age: Nepieciešamais minimālais vecums
         peers_api_enabled: Publicēt API atklāto serveru sarakstu
         profile_directory: Iespējot profila direktoriju
         registrations_mode: Kurš drīkst pieteikties
@@ -322,10 +333,17 @@ lv:
         usable: Ļaut ierakstos vietēji izmantot šo tēmturi
       terms_of_service:
         changelog: Kas ir mainījies?
+        effective_date: Spēkā stāšanās datums
         text: Pakalpojuma izmantošanas nosacījumi
       terms_of_service_generator:
+        admin_email: E-pasta adrese juridiskiem paziņojumiem
+        choice_of_law: Likuma izvēle
         domain: Domēna vārds
+        min_age: Mazākais pieļaujamais vecums
       user:
+        date_of_birth_1i: Diena
+        date_of_birth_2i: Mēnesis
+        date_of_birth_3i: Gads
         role: Loma
         time_zone: Laika josla
       user_role:

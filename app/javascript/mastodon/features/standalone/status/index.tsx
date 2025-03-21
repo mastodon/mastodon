@@ -6,11 +6,11 @@ import { useEffect, useCallback } from 'react';
 
 import { Provider } from 'react-redux';
 
-import { useRenderSignal } from 'mastodon/../hooks/useRenderSignal';
 import { fetchStatus, toggleStatusSpoilers } from 'mastodon/actions/statuses';
 import { hydrateStore } from 'mastodon/actions/store';
 import { Router } from 'mastodon/components/router';
 import { DetailedStatus } from 'mastodon/features/status/components/detailed_status';
+import { useRenderSignal } from 'mastodon/hooks/useRenderSignal';
 import initialState from 'mastodon/initial_state';
 import { IntlProvider } from 'mastodon/locales';
 import { makeGetStatus, makeGetPictureInPicture } from 'mastodon/selectors';

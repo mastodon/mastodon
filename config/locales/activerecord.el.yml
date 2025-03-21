@@ -49,6 +49,10 @@ el:
           attributes:
             reblog:
               taken: της ανάρτησης υπάρχει ήδη
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: είναι πολύ σύντομα, πρέπει να είναι μετά από %{date}
         user:
           attributes:
             email:

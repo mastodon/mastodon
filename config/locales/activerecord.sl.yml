@@ -18,9 +18,13 @@ sl:
       attributes:
         domain:
           invalid: ni veljavno ime domene
+      messages:
+        invalid_domain_on_line: "%{value} ni veljavno ime domene"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: vsebuje vrednosti, ki niso kategorizirane
             username:
               invalid: samo črke, številke in podčrtaji
               reserved: je rezerviran
@@ -40,10 +44,15 @@ sl:
           attributes:
             account_id:
               taken: je že na seznamu
+          must_be_following: mora biti račun, ki mu sledite
         status:
           attributes:
             reblog:
               taken: od objave že obstajajo
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: je prekmalu, naj bo kasneje od %{date}
         user:
           attributes:
             email:

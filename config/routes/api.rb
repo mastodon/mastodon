@@ -121,6 +121,8 @@ namespace :api, format: false do
         resource :translation_languages, only: [:show]
         resource :languages, only: [:show]
         resource :activity, only: [:show], controller: :activity
+
+        get '/terms_of_service/:date', to: 'terms_of_services#show'
       end
     end
 

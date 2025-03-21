@@ -88,6 +88,7 @@ fo:
         favicon: WEBP, PNG, GIF ella JPG. Býtir vanligu Mastodon fav-ikonina um við eina ser-ikon.
         mascot: Skúgvar til viks myndprýðingina í framkomna vev-markamótinum.
         media_cache_retention_period: Miðlafílur frá postum, sum fjarbrúkarar hava gjørt, verða goymdir á tínum ambætara. Tá hetta er sett til eitt virði størri enn 0, so verða miðlafílurnar strikaðar eftir ásetta talið av døgum. Um miðladátur verða umbidnar eftir at tær eru strikaðar, verða tær tiknar innaftur á ambætaran, um keldutilfarið enn er tøkt. Vegna avmarkingar á hvussu ofta undanvísingarkort til leinki spyrja triðjapartsstøð, so verður mælt til at seta hetta virðið til í minsta lagi 14 dagar. Annars verða umbønir um dagføringar av undanvísingarkortum til leinki ikki gjørdar áðrenn hetta.
+        min_age: Brúkarar verða spurdir um at vátta teirra føðingardag, tá tey skráseta seg
         peers_api_enabled: Ein listi við navnaøkjum, sum hesin ambætarin er komin framat í fediversinum. Ongar dátur eru tiknar við her um tú er sameind/ur við ein givnan ambætara, einans at tín ambætari veit um hann. Hetta verður brúkt av tænastum, sum gera hagtøl um sameining yvirhøvur.
         profile_directory: Vangaskráin listar allar brúkarar, sum hava valt at kunna uppdagast.
         require_invite_text: Tá tilmeldingar krevja serskilda góðkenning, set so "Hví vil tú vera við?" tekstateigin til at vera kravdan heldur enn valfrían
@@ -132,18 +133,21 @@ fo:
         name: Tú kanst einans broyta millum stórar og smáar stavir, til dømis fyri at gera tað meira lesiligt
       terms_of_service:
         changelog: Kunnu vera uppbygdar við Markdown syntaksi.
+        effective_date: Ein rímulig tíðarfreist kann vera alt millum 10 og 30 dagar frá degnum, tú gevur boð til brúkararnar hjá tær.
         text: Kunnu vera uppbygdar við Markdown syntaksi.
       terms_of_service_generator:
         admin_email: Løgfrøðisligar fráboðanir fata um rættarligar mótfráboðanir, úrskurðir, áheitanir um at taka niður og løgfrøðisligar áheitanir.
-        arbitration_address: Kann vera tann sami sum fysiski bústaðurin omanfyri ella "N/A", um teldupostur verður brúktur
-        arbitration_website: Kann vera ein vevformularur ella "N/A", um teldupostur verður brúktur
+        arbitration_address: Kann vera tann sami sum fysiski bústaðurin omanfyri ella "N/A", um teldupostur verður brúktur.
+        arbitration_website: Kann vera ein vevformularur ella "N/A", um teldupostur verður brúktur.
         choice_of_law: Býur, øki, landspartur ella statur, hvørs innanhýsis lógir skulu stýra øllum krøvum.
         dmca_address: Fyristøðufólk og -feløg í USA brúka bústaðin, ið er skrásettur í DMCA Designated Agent Directory. Ein postsmoguskráseting er tøk, um biðið verður um hana beinleiðis. Brúka DMCA Designated Agent Post Office Box Waiver Request fyri at senda teldubræv til Copyright Office og greið frá, at tú er ein kjakleiðari, sum virkar heimanifrá, og at tú er bangin fyri hevnd ella afturløning fyri tí, tú ger, og at tú hevur tørv á at brúka eina postsmogu fyri at fjala heimabústaðin fyri almenninginum.
-        dmca_email: Kann vera sami teldupoststaður, sum er brúktur til "Teldupoststaður fyri løgfrøðisligar fráboðanir" omanfyri
+        dmca_email: Kann vera sami teldupoststaður, sum er brúktur til "Teldupoststaður fyri løgfrøðisligar fráboðanir" omanfyri.
         domain: Makaleys eyðmerking av nettænastuni, sum tú veitir.
         jurisdiction: Lista landið, har sum tann, ið rindar rokningarnar, livir. Er tað eitt felag ella ein onnur eind, lista landið, har tað er skrásett, umframt býin, økið, umveldið ella statin, alt eftir hvat er hóskandi.
+        min_age: Eigur ikki at vera undir lægsta aldri, sum lógirnar í tínum rættarøki krevja.
       user:
         chosen_languages: Tá hetta er valt, verða einans postar í valdum málum vístir á almennum tíðarlinjum
+        date_of_birth: Vit mugu tryggja okkum, at tú er í minsta lagi %{age} ár fyri at brúka Mastodon. Vit goyma ikki hesar upplýsingar.
         role: Leikluturin stýrir hvørji rættindi, brúkarin hevur.
       user_role:
         color: Litur, sum leikluturin hevur í øllum brúkaramarkamótinum, sum RGB og upplýst sum sekstandatal
@@ -269,6 +273,7 @@ fo:
         favicon: Favikon
         mascot: Serskildur maskottur (arvur)
         media_cache_retention_period: Tíðarskeið, har miðlagoymslur verða varðveittar
+        min_age: Aldursmark
         peers_api_enabled: Kunnger lista við uppdagaðum ambætarum í API'num
         profile_directory: Ger vangaskrá virkna
         registrations_mode: Hvør kann tilmelda seg
@@ -334,6 +339,7 @@ fo:
         usable: Loyv postum at brúka hetta frámerki lokalt
       terms_of_service:
         changelog: Hvat er broytt?
+        effective_date: Galdandi frá
         text: Tænastutreytir
       terms_of_service_generator:
         admin_email: Teldupoststaður fyri løgfrøðisligar fráboðanir
@@ -344,7 +350,11 @@ fo:
         dmca_email: Teldubústaður fyri DMCA/copyright fráboðanir
         domain: Navnaøki
         jurisdiction: Løgdømi
+        min_age: Lægsti aldur
       user:
+        date_of_birth_1i: Dagur
+        date_of_birth_2i: Mánaði
+        date_of_birth_3i: Ár
         role: Leiklutur
         time_zone: Tíðarsona
       user_role:
