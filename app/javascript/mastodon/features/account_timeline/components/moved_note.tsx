@@ -1,6 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 
-import { Link } from 'react-router-dom';
+
+import Permalink from '../../../components/permalink';
 
 import { AvatarOverlay } from 'mastodon/components/avatar_overlay';
 import { DisplayName } from 'mastodon/components/display_name';
@@ -34,19 +35,19 @@ export const MovedNote: React.FC<{
       </div>
 
       <div className='moved-account-banner__action'>
-        <Link to={`/@${to?.acct}`} className='detailed-status__display-name'>
+        <Permalink href={to.get('url')} to={`/@${to?.acct}`} className='detailed-status__display-name'>
           <div className='detailed-status__display-avatar'>
             <AvatarOverlay account={to} friend={from} />
           </div>
           <DisplayName account={to} />
-        </Link>
+        </Permalink>
 
-        <Link to={`/@${to?.acct}`} className='button'>
+        <Permalink href={to.get('url')} to={`/@${to?.acct}`} className='button'>
           <FormattedMessage
             id='account.go_to_profile'
             defaultMessage='Go to profile'
           />
-        </Link>
+        </Permalink>
       </div>
     </div>
   );
