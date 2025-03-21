@@ -6,7 +6,7 @@
 import type { CSSProperties } from 'react';
 import { useState, useRef, useCallback } from 'react';
 
-import { FormattedDate, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
@@ -21,6 +21,7 @@ import { Icon } from 'mastodon/components/icon';
 import { IconLogo } from 'mastodon/components/logo';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
+import { FormattedDateWrapper } from 'mastodon/utils/time';
 
 import { Avatar } from '../../../components/avatar';
 import { DisplayName } from '../../../components/display_name';
@@ -366,7 +367,7 @@ export const DetailedStatus: React.FC<{
               target='_blank'
               rel='noopener noreferrer'
             >
-              <FormattedDate
+              <FormattedDateWrapper
                 value={new Date(status.get('created_at') as string)}
                 year='numeric'
                 month='short'
