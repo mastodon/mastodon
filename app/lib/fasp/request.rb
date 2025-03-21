@@ -6,32 +6,30 @@ class Fasp::Request
   end
 
   def get(path)
-    url = @provider.url(path)
-    response = HTTP.headers(headers('GET', url)).get(url)
-    validate!(response)
-
-    response.parse
+    perform_request(:get, path)
   end
 
   def post(path, body: nil)
-    url = @provider.url(path)
-    body = body.to_json
-    response = HTTP.headers(headers('POST', url, body)).post(url, body:)
-
-    response.parse if response.body.present?
+    perform_request(:post, path, body:)
   end
 
   def delete(path, body: nil)
-    url = @provider.url(path)
-    body = body.to_json
-    response = HTTP.headers(headers('DELETE', url, body)).delete(url, body:)
-
-    response.parse if response.body.present?
+    perform_request(:delete, path, body:)
   end
 
   private
 
-  def headers(verb, url, body = '')
+  def perform_request(verb, path, body: nil)
+    url = @provider.url(path)
+    body = body.present? ? body.to_json : ''
+    headers = request_headers(verb, url, body)
+    response = HTTP.headers(headers).send(verb, url, body:)
+    validate!(response)
+
+    response.parse if response.body.present?
+  end
+
+  def request_headers(verb, url, body = '')
     result = {
       'accept' => 'application/json',
       'content-digest' => content_digest(body),
@@ -55,11 +53,11 @@ class Fasp::Request
 
   def validate!(response)
     content_digest_header = response.headers['content-digest']
-    raise 'content-digest missing' if content_digest_header.blank?
-    raise 'content-digest does not match' if content_digest_header != content_digest(response.body)
+    raise SignatureVerification::SignatureVerificationError, 'content-digest missing' if content_digest_header.blank?
+    raise SignatureVerification::SignatureVerificationError, 'content-digest does not match' if content_digest_header != content_digest(response.body)
 
-    signature_input = response.headers['signature-input'].encode('UTF-8')
-    raise 'signature-input is missing' if signature_input.blank?
+    signature_input = response.headers['signature-input']&.encode('UTF-8')
+    raise SignatureVerification::SignatureVerificationError, 'signature-input is missing' if signature_input.blank?
 
     linzer_response = Linzer.new_response(
       response.body,
