@@ -80,6 +80,7 @@ namespace :api, format: false do
     resources :media, only: [:create, :update, :show, :destroy] do
       scope module: :media do
         resources :alt_text, only: [:create]
+        post 'alt_text/ai', to: 'alt_text#create'
       end
     end
     resources :blocks, only: [:index]
