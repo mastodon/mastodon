@@ -77,7 +77,11 @@ namespace :api, format: false do
       end
     end
 
-    resources :media, only: [:create, :update, :show, :destroy]
+    resources :media, only: [:create, :update, :show, :destroy] do
+      scope module: :media do
+        resources :alt_text, only: [:create]
+      end
+    end
     resources :blocks, only: [:index]
     resources :mutes, only: [:index]
     resources :favourites, only: [:index]

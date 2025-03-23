@@ -7,6 +7,14 @@ module Mastodon::Feature
         (Rails.configuration.x.mastodon.experimental_features || '').split(',').map(&:strip)
     end
 
+    def alt_text_ai_enabled?
+      ENV['ALT_TEXT_AI_PROMPT'].present? && ENV['ALT_TEXT_AI_API_BASE'].present?
+    end
+
+    def alt_text_ai_model
+      ENV.fetch('ALT_TEXT_AI_MODEL', 'gpt-4-vision-preview')
+    end
+
     def method_missing(name)
       if respond_to_missing?(name)
         feature = name.to_s.delete_suffix('_enabled?')

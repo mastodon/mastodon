@@ -111,6 +111,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       trends_enabled: Setting.trends,
       version: instance_presenter.version,
       terms_of_service_enabled: TermsOfService.live.exists?,
+      alt_text_ai_enabled: Mastodon::Feature.alt_text_ai_enabled?,
     }
   end
 

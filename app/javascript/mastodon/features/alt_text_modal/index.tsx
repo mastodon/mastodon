@@ -31,12 +31,13 @@ import Audio from 'mastodon/features/audio';
 import { CharacterCounter } from 'mastodon/features/compose/components/character_counter';
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
 import Video, { getPointerPosition } from 'mastodon/features/video';
-import { me } from 'mastodon/initial_state';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 import { assetHost } from 'mastodon/utils/config';
 
+import { AiButton } from './components/ai_button';
 import { InfoButton } from './components/info_button';
+import { me, features } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   placeholderVisual: {
@@ -523,6 +524,13 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
                     defaultMessage='Add text from image'
                   />
                 </button>
+
+                {features?.alt_text_ai && type === 'image' && (
+                  <AiButton
+                    mediaId={mediaId}
+                    onSuccess={setDescription}
+                  />
+                )}
 
                 <InfoButton />
               </div>

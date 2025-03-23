@@ -46,6 +46,7 @@
  * @property {string} sso_redirect
  * @property {string} status_page_url
  * @property {boolean} terms_of_service_enabled
+ * @property {boolean} alt_text_ai_enabled
  */
 
 /**
@@ -121,6 +122,11 @@ export const criticalUpdatesPending = initialState?.critical_updates_pending;
 export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
 export const termsOfServiceEnabled = getMeta('terms_of_service_enabled');
+
+// Feature flags
+export const features = {
+  alt_text_ai: getMeta('alt_text_ai_enabled'),
+};
 
 const displayNames = Intl.DisplayNames && new Intl.DisplayNames(getMeta('locale'), {
   type: 'language',
