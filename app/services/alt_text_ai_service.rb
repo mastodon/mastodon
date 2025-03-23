@@ -6,6 +6,7 @@ class AltTextAiService
   def initialize
     @prompt = ENV.fetch('ALT_TEXT_AI_PROMPT', 'Describe this image in detail for someone who cannot see it.')
     @api_base = ENV.fetch('ALT_TEXT_AI_API_BASE', nil)
+    @api_key = ENV.fetch('ALT_TEXT_AI_API_KEY', nil)
     @model = ENV.fetch('ALT_TEXT_AI_MODEL', 'google/gemma-3-4b-it')
   end
 
@@ -36,6 +37,7 @@ class AltTextAiService
     
     request = Net::HTTP::Post.new(uri.request_uri)
     request['Content-Type'] = 'application/json'
+    request['Authorization'] = "Bearer #{@api_key}" if @api_key.present?
     
     request.body = {
       model: @model,

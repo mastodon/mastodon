@@ -8,7 +8,7 @@ module Mastodon::Feature
     end
 
     def alt_text_ai_enabled?
-      ENV['ALT_TEXT_AI_PROMPT'].present? && ENV['ALT_TEXT_AI_API_BASE'].present?
+      ENV['ALT_TEXT_AI_PROMPT'].present? && ENV['ALT_TEXT_AI_API_BASE'].present? && ENV['ALT_TEXT_AI_API_KEY'].present?
     end
 
     def alt_text_ai_model

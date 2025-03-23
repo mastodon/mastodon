@@ -13,11 +13,14 @@ ALT_TEXT_AI_PROMPT="Describe this image in detail for someone who cannot see it.
 # The base URL for the OpenAI-compatible API
 ALT_TEXT_AI_API_BASE="https://openrouter.ai/api/v1"
 
+# The API key for authentication
+ALT_TEXT_AI_API_KEY="your-api-key-here"
+
 # The AI model to use (optional, defaults to google/gemma-3-4b-it)
 ALT_TEXT_AI_MODEL="google/gemma-3-4b-it"
 ```
 
-The `ALT_TEXT_AI_PROMPT` and `ALT_TEXT_AI_API_BASE` environment variables must be set for the feature to be enabled. If either is missing, the feature will be completely hidden from the user interface. The `ALT_TEXT_AI_MODEL` variable is optional and defaults to "google/gemma-3-4b-it", which is available for free on OpenRouter at the time of creating this documentation.
+The `ALT_TEXT_AI_PROMPT`, `ALT_TEXT_AI_API_BASE`, and `ALT_TEXT_AI_API_KEY` environment variables must be set for the feature to be enabled. If any of these is missing, the feature will be completely hidden from the user interface. The `ALT_TEXT_AI_MODEL` variable is optional and defaults to "google/gemma-3-4b-it", which is available for free on OpenRouter at the time of creating this documentation.
 
 ## How It Works
 
@@ -33,7 +36,6 @@ The generated description is then automatically populated in the alt text field,
 ## Customization
 
 You can customize the system prompt by changing the `ALT_TEXT_AI_PROMPT` environment variable. A good prompt should instruct the AI to focus on the most important aspects of the image and provide clear, concise descriptions suitable for screen readers.
-
 ## Using OpenRouter
 
 The default configuration uses [OpenRouter](https://openrouter.ai/) as the API provider, which offers access to various AI models including the default "google/gemma-3-4b-it" model that is free to use (as of the time this documentation was created). To use OpenRouter:
@@ -41,8 +43,9 @@ The default configuration uses [OpenRouter](https://openrouter.ai/) as the API p
 1. Sign up for an account at [OpenRouter](https://openrouter.ai/)
 2. Get your API key from the dashboard
 3. Set `ALT_TEXT_AI_API_BASE` to "https://openrouter.ai/api/v1"
-4. Add your API key to the request headers in the service implementation if needed
+4. Set `ALT_TEXT_AI_API_KEY` to your OpenRouter API key
 
+OpenRouter provides a cost-effective way to access various AI models without having to set up separate accounts with each provider.
 OpenRouter provides a cost-effective way to access various AI models without having to set up separate accounts with each provider.
 You can customize the system prompt by changing the `ALT_TEXT_AI_PROMPT` environment variable. A good prompt should instruct the AI to focus on the most important aspects of the image and provide clear, concise descriptions suitable for screen readers.
 
