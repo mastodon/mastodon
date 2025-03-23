@@ -12,7 +12,7 @@ module Mastodon::Feature
     end
 
     def alt_text_ai_model
-      ENV.fetch('ALT_TEXT_AI_MODEL', 'gpt-4-vision-preview')
+      ENV.fetch('ALT_TEXT_AI_MODEL', 'google/gemma-3-4b-it')
     end
 
     def method_missing(name)

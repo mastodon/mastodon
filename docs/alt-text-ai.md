@@ -10,14 +10,14 @@ This feature is optional and disabled by default. To enable it, you need to set 
 # The system prompt to send to the OpenAI API
 ALT_TEXT_AI_PROMPT="Describe this image in detail for someone who cannot see it. Focus on the main subjects, actions, and important details. Be concise but thorough."
 
-# The base URL for the OpenAI API
-ALT_TEXT_AI_API_BASE="https://api.openai.com/v1/chat/completions"
+# The base URL for the OpenAI-compatible API
+ALT_TEXT_AI_API_BASE="https://openrouter.ai/api/v1"
 
-# The AI model to use (optional, defaults to gpt-4-vision-preview)
-ALT_TEXT_AI_MODEL="gpt-4-vision-preview"
+# The AI model to use (optional, defaults to google/gemma-3-4b-it)
+ALT_TEXT_AI_MODEL="google/gemma-3-4b-it"
 ```
 
-The `ALT_TEXT_AI_PROMPT` and `ALT_TEXT_AI_API_BASE` environment variables must be set for the feature to be enabled. If either is missing, the feature will be completely hidden from the user interface. The `ALT_TEXT_AI_MODEL` variable is optional and defaults to "gpt-4-vision-preview".
+The `ALT_TEXT_AI_PROMPT` and `ALT_TEXT_AI_API_BASE` environment variables must be set for the feature to be enabled. If either is missing, the feature will be completely hidden from the user interface. The `ALT_TEXT_AI_MODEL` variable is optional and defaults to "google/gemma-3-4b-it", which is available for free on OpenRouter at the time of creating this documentation.
 
 ## How It Works
 
@@ -30,9 +30,20 @@ The generated description is then automatically populated in the alt text field,
 - Image data is only sent to the external API if the instance admin has explicitly enabled this feature by setting both required environment variables.
 - The feature is designed to work with OpenAI's API, but it can be configured to work with any compatible API endpoint that follows the same request/response format.
 - Users should always review the generated alt text before publishing to ensure it accurately describes the image.
-
 ## Customization
 
+You can customize the system prompt by changing the `ALT_TEXT_AI_PROMPT` environment variable. A good prompt should instruct the AI to focus on the most important aspects of the image and provide clear, concise descriptions suitable for screen readers.
+
+## Using OpenRouter
+
+The default configuration uses [OpenRouter](https://openrouter.ai/) as the API provider, which offers access to various AI models including the default "google/gemma-3-4b-it" model that is free to use (as of the time this documentation was created). To use OpenRouter:
+
+1. Sign up for an account at [OpenRouter](https://openrouter.ai/)
+2. Get your API key from the dashboard
+3. Set `ALT_TEXT_AI_API_BASE` to "https://openrouter.ai/api/v1"
+4. Add your API key to the request headers in the service implementation if needed
+
+OpenRouter provides a cost-effective way to access various AI models without having to set up separate accounts with each provider.
 You can customize the system prompt by changing the `ALT_TEXT_AI_PROMPT` environment variable. A good prompt should instruct the AI to focus on the most important aspects of the image and provide clear, concise descriptions suitable for screen readers.
 
 ## Troubleshooting

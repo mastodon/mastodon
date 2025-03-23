@@ -6,7 +6,7 @@ class AltTextAiService
   def initialize
     @prompt = ENV.fetch('ALT_TEXT_AI_PROMPT', 'Describe this image in detail for someone who cannot see it.')
     @api_base = ENV.fetch('ALT_TEXT_AI_API_BASE', nil)
-    @model = ENV.fetch('ALT_TEXT_AI_MODEL', 'gpt-4-vision-preview')
+    @model = ENV.fetch('ALT_TEXT_AI_MODEL', 'google/gemma-3-4b-it')
   end
 
   def generate_alt_text(media_attachment)
