@@ -30,16 +30,12 @@ RSpec.describe 'Account notes', :inline_jobs, :js, :streaming do
     expect(page)
       .to have_css('.account__header__account-note__content', text: note_text)
 
-    # This is extra awkward because the “Saved” message is actually shown before the API request
-    # returns. Maybe we should change that?
-    sleep 0.1
-
-    expect(AccountNote.find_by(account: bob.account, target_account: other_account).comment)
-      .to eq note_text
-
     # Navigate back and forth and ensure the comment is still here
     visit root_url
     visit_profile(other_account)
+
+    expect(AccountNote.find_by(account: bob.account, target_account: other_account).comment)
+      .to eq note_text
 
     expect(page)
       .to have_css('.account__header__account-note__content', text: note_text)
