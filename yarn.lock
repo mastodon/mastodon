@@ -2748,6 +2748,7 @@ __metadata:
     "@gamestdio/websocket": "npm:^0.3.2"
     "@github/webauthn-json": "npm:^2.1.1"
     "@rails/ujs": "npm:7.1.501"
+    "@react-spring/web": "npm:^9.7.5"
     "@reduxjs/toolkit": "npm:^2.0.1"
     "@svgr/webpack": "npm:^5.5.0"
     "@testing-library/dom": "npm:^10.2.0"
@@ -2783,6 +2784,7 @@ __metadata:
     "@types/webpack-env": "npm:^1.18.4"
     "@typescript-eslint/eslint-plugin": "npm:^8.0.0"
     "@typescript-eslint/parser": "npm:^8.0.0"
+    "@use-gesture/react": "npm:^10.3.1"
     arrow-key-navigation: "npm:^1.2.0"
     async-mutex: "npm:^0.5.0"
     axios: "npm:^1.4.0"
@@ -3195,6 +3197,72 @@ __metadata:
   version: 7.1.501
   resolution: "@rails/ujs@npm:7.1.501"
   checksum: 10c0/b75a30f36ff219264e0926da1ffcd14c2a5d6aee5be29da4dc81f9a45843875da79ac19cf7ed9a3f11a39084398d0ae4a75a8edb28ba94907db3081572af62b0
+  languageName: node
+  linkType: hard
+
+"@react-spring/animated@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/animated@npm:9.7.5"
+  dependencies:
+    "@react-spring/shared": "npm:~9.7.5"
+    "@react-spring/types": "npm:~9.7.5"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/f8c2473c60f39a878c7dd0fdfcfcdbc720521e1506aa3f63c9de64780694a0a73d5ccc535a5ccec3520ddb70a71cf43b038b32c18e99531522da5388c510ecd7
+  languageName: node
+  linkType: hard
+
+"@react-spring/core@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/core@npm:9.7.5"
+  dependencies:
+    "@react-spring/animated": "npm:~9.7.5"
+    "@react-spring/shared": "npm:~9.7.5"
+    "@react-spring/types": "npm:~9.7.5"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/5bfd83dfe248cd91889f215f015d908c7714ef445740fd5afa054b27ebc7d5a456abf6c309e2459d9b5b436e78d6fda16b62b9601f96352e9130552c02270830
+  languageName: node
+  linkType: hard
+
+"@react-spring/rafz@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/rafz@npm:9.7.5"
+  checksum: 10c0/8bdad180feaa9a0e870a513043a5e98a4e9b7292a9f887575b7e6fadab2677825bc894b7ff16c38511b35bfe6cc1072df5851c5fee64448d67551559578ca759
+  languageName: node
+  linkType: hard
+
+"@react-spring/shared@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/shared@npm:9.7.5"
+  dependencies:
+    "@react-spring/rafz": "npm:~9.7.5"
+    "@react-spring/types": "npm:~9.7.5"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/0207eacccdedd918a2fc55e78356ce937f445ce27ad9abd5d3accba8f9701a39349b55115641dc2b39bb9d3a155b058c185b411d292dc8cc5686bfa56f73b94f
+  languageName: node
+  linkType: hard
+
+"@react-spring/types@npm:~9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/types@npm:9.7.5"
+  checksum: 10c0/85c05121853cacb64f7cf63a4855e9044635e1231f70371cd7b8c78bc10be6f4dd7c68f592f92a2607e8bb68051540989b4677a2ccb525dba937f5cd95dc8bc1
+  languageName: node
+  linkType: hard
+
+"@react-spring/web@npm:^9.7.5":
+  version: 9.7.5
+  resolution: "@react-spring/web@npm:9.7.5"
+  dependencies:
+    "@react-spring/animated": "npm:~9.7.5"
+    "@react-spring/core": "npm:~9.7.5"
+    "@react-spring/shared": "npm:~9.7.5"
+    "@react-spring/types": "npm:~9.7.5"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/bcd1e052e1b16341a12a19bf4515f153ca09d1fa86ff7752a5d02d7c4db58e8baf80e6283e64411f1e388c65340dce2254b013083426806b5dbae38bd151e53e
   languageName: node
   linkType: hard
 
@@ -4411,6 +4479,24 @@ __metadata:
   version: 1.2.0
   resolution: "@ungap/structured-clone@npm:1.2.0"
   checksum: 10c0/8209c937cb39119f44eb63cf90c0b73e7c754209a6411c707be08e50e29ee81356dca1a848a405c8bdeebfe2f5e4f831ad310ae1689eeef65e7445c090c6657d
+  languageName: node
+  linkType: hard
+
+"@use-gesture/core@npm:10.3.1":
+  version: 10.3.1
+  resolution: "@use-gesture/core@npm:10.3.1"
+  checksum: 10c0/2e3b5c0f7fe26cdb47be3a9c2a58a6a9edafc5b2895b07d2898eda9ab5a2b29fb0098b15597baa0856907b593075cd44cc69bba4785c9cfb7b6fabaa3b52cd3e
+  languageName: node
+  linkType: hard
+
+"@use-gesture/react@npm:^10.3.1":
+  version: 10.3.1
+  resolution: "@use-gesture/react@npm:10.3.1"
+  dependencies:
+    "@use-gesture/core": "npm:10.3.1"
+  peerDependencies:
+    react: ">= 16.8.0"
+  checksum: 10c0/978da66e4e7c424866ad52eba8fdf0ce93a4c8fc44f8837c7043e68c6a6107cd67e817fffb27f7db2ae871ef2f6addb0c8ddf1586f24c67b7e6aef1646c668cf
   languageName: node
   linkType: hard
 
