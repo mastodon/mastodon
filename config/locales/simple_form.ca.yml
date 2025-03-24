@@ -88,6 +88,7 @@ ca:
         favicon: WEBP, PNG, GIF o JPG. Canvia la icona per defecte de Mastodon a la pestanya del navegador per una de personalitzada.
         mascot: Anul·la la il·lustració en la interfície web avançada.
         media_cache_retention_period: El vostre servidor conserva una còpia dels fitxers multimèdia de les publicacions dels usuaris remots. Si s'indica un valor positiu, s'esborraran passats els dies indicats. Si el fitxer es torna a demanar un cop esborrat, es tornarà a baixar si el contingut origen segueix disponible. Per causa de les restriccions en la freqüència amb què es poden demanar les targetes de previsualització d'altres servidors, es recomana definir aquest valor com a mínim a 14 dies, o les targetes de previsualització no s'actualizaran a demanda abans d'aquest termini.
+        min_age: Es demanarà als usuaris la data de naixement durant la inscripció
         peers_api_enabled: Una llista de noms de domini que aquest servidor ha trobat al fedivers. No inclou cap dada sobre si estàs federat amb un servidor determinat, només si el teu en sap res. La fan servir, en un sentit general, serveis que recol·lecten estadístiques sobre la federació.
         profile_directory: El directori de perfils llista tots els usuaris que tenen activat ser descoberts.
         require_invite_text: Quan el registre requereixi aprovació manual, fes que sigui obligatori en lloc d'opcional d'escriure el text de la sol·licitud d'invitació "Per què vols unir-te?"
@@ -143,6 +144,7 @@ ca:
         min_age: No hauria de ser inferior a l'edat mínima exigida per la llei de la vostra jurisdicció.
       user:
         chosen_languages: Quan estigui marcat, només es mostraran els tuts de les llengües seleccionades en les línies de temps públiques
+        date_of_birth: Ens hem d'assegurar que teniu %{age} anys com a mínim. No desarem aquesta dada.
         role: El rol controla quins permisos té l'usuari.
       user_role:
         color: Color que s'usarà per al rol a tota la interfície d'usuari, com a RGB en format hexadecimal
@@ -268,6 +270,7 @@ ca:
         favicon: Icona de preferits
         mascot: Mascota personalitzada (llegat)
         media_cache_retention_period: Període de retenció del cau multimèdia
+        min_age: Edat mínima requerida
         peers_api_enabled: Publica a l'API la llista de servidors descoberts
         profile_directory: Habilita el directori de perfils
         registrations_mode: Qui es pot registrar
@@ -346,6 +349,9 @@ ca:
         jurisdiction: Jurisdicció
         min_age: Edat mínima
       user:
+        date_of_birth_1i: Dia
+        date_of_birth_2i: Mes
+        date_of_birth_3i: Any
         role: Rol
         time_zone: Zona horària
       user_role:

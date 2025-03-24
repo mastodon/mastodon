@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -19,6 +19,7 @@ import VolumeOffIcon from '@/material-icons/400-24px/volume_off-fill.svg?react';
 import VolumeUpIcon from '@/material-icons/400-24px/volume_up-fill.svg?react';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon }  from 'mastodon/components/icon';
+import { SpoilerButton } from 'mastodon/components/spoiler_button';
 import { playerSettings } from 'mastodon/settings';
 
 import { displayMedia, useBlurhash } from '../../initial_state';
@@ -549,14 +550,6 @@ class Video extends PureComponent {
       preload = 'none';
     }
 
-    let warning;
-
-    if (sensitive) {
-      warning = <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />;
-    } else {
-      warning = <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />;
-    }
-
     // The outer wrapper is necessary to avoid reflowing the layout when going into full screen
     return (
       <div style={{ aspectRatio }}>
@@ -599,14 +592,7 @@ class Video extends PureComponent {
             style={{ width: '100%' }}
           />}
 
-          <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>
-            <button type='button' className='spoiler-button__overlay' onClick={this.toggleReveal}>
-              <span className='spoiler-button__overlay__label'>
-                {warning}
-                <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
-              </span>
-            </button>
-          </div>
+          <SpoilerButton hidden={revealed || editable} sensitive={sensitive} onClick={this.toggleReveal} />
 
           <div className={classNames('video-player__controls', { active: paused || hovered })}>
             <div className='video-player__seek' onMouseDown={this.handleMouseDown} ref={this.setSeekRef}>

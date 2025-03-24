@@ -88,6 +88,7 @@ gl:
         favicon: WEBP, PNG, GIF ou JPG. Sobrescribe a icona de favoritos de Mastodon por defecto cunha icona personalizada.
         mascot: Sobrescribe a ilustración na interface web avanzada.
         media_cache_retention_period: Os ficheiros multimedia de publicacións de usuarias remotas están almacenados no teu servidor. Ao establecer un valor positivo, o multimedia vaise eliminar despois do número de días establecido. Se o multimedia fose requerido após ser eliminado entón descargaríase outra vez, se aínda está dispoñible na orixe. Debido a restricións sobre a frecuencia en que o servizo de vista previa trae recursos de terceiras partes, é recomendable establecer este valor polo menos en 14 días, ou as tarxetas de vista previa non se actualizarán baixo demanda para casos anteriores a ese prazo.
+        min_age: Váiselle pedir ás usuarias que confirmen a súa data de nacemento cando creen a conta
         peers_api_enabled: Unha lista dos nomes de dominio que este servidor atopou no fediverso. Non se inclúen aquí datos acerca de se estás a federar con eles ou non, só que o teu servidor os recoñeceu. Ten utilidade para servizos que recollen estatísticas acerca da federación nun amplo senso.
         profile_directory: O directorio de perfís inclúe a tódalas usuarias que optaron por ser descubribles.
         require_invite_text: Cando os rexistros requiren aprobación manual, facer que o texto "Por que te queres rexistrar?" do convite sexa obrigatorio en lugar de optativo
@@ -146,6 +147,7 @@ gl:
         min_age: Non debería ser inferior á idade mínima requerida polas leis da túa xurisdición.
       user:
         chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
+        date_of_birth: Temos que ter certeza de que tes %{age} como mínimo para usar Mastodon. Non gardamos este dato.
         role: Os roles establecen os permisos que ten a usuaria.
       user_role:
         color: Cor que se usará para o rol a través da IU, como RGB en formato hex
@@ -271,6 +273,7 @@ gl:
         favicon: Favicon
         mascot: Mascota propia (herdado)
         media_cache_retention_period: Período de retención da caché multimedia
+        min_age: Idade mínima requerida
         peers_api_enabled: Publicar na API unha lista dos servidores descubertos
         profile_directory: Activar o directorio de perfís
         registrations_mode: Quen se pode rexistrar
@@ -349,6 +352,9 @@ gl:
         jurisdiction: Xurisdición legal
         min_age: Idade mínima
       user:
+        date_of_birth_1i: Día
+        date_of_birth_2i: Mes
+        date_of_birth_3i: Ano
         role: Rol
         time_zone: Fuso horario
       user_role:

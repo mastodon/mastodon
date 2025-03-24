@@ -88,6 +88,7 @@ pt-PT:
         favicon: WEBP, PNG, GIF ou JPG. Substitui o ícone de favorito padrão do Mastodon por um ícone personalizado.
         mascot: Sobrepõe-se à ilustração na interface web avançada.
         media_cache_retention_period: Os ficheiros multimédia de publicações feitas por utilizadores remotos são armazenados em cache no seu servidor. Quando definido para um valor positivo, os ficheiros multimédia serão eliminados após o número de dias especificado. Se os ficheiros multimédia forem solicitados depois de terem sido eliminados, serão transferidos novamente, se o conteúdo de origem ainda estiver disponível. Devido a restrições sobre a frequência com que os cartões de pré-visualização de links pesquisam sites de terceiros, recomenda-se que este valor seja definido para, pelo menos, 14 dias, ou os cartões de pré-visualização de links não serão atualizados a pedido antes desse período.
+        min_age: Os utilizadores serão convidados a confirmar a sua data de nascimento durante o processo de inscrição
         peers_api_enabled: Uma lista de nomes de domínio que este servidor encontrou no fediverso. Nenhum dado é incluído aqui sobre se você federa com um determinado servidor, apenas que o seu servidor o conhece. Este serviço é utilizado por serviços que recolhem estatísticas na federação, em termos gerais.
         profile_directory: O diretório de perfis lista todos os utilizadores que optaram por ter a sua conta a ser sugerida a outros.
         require_invite_text: Quando as incrições exigirem aprovação manual, faça o texto "Por que se quer juntar a nós?" da solicitação de convite ser obrigatório, em vez de opcional
@@ -146,6 +147,7 @@ pt-PT:
         min_age: Não deve ter menos do que a idade mínima exigida pela legislação da sua jurisdição.
       user:
         chosen_languages: Quando selecionado, só serão mostradas nas cronologias públicas as publicações nos idiomas escolhidos
+        date_of_birth: Temos de ter a certeza de que tens pelo menos %{age} para usar o Mastodon. Não vamos guardar esta informação.
         role: A função controla as permissões que o utilizador tem.
       user_role:
         color: Cor a ser utilizada para a função em toda a interface de utilizador, como RGB no formato hexadecimal
@@ -271,6 +273,7 @@ pt-PT:
         favicon: Ícone de favoritos
         mascot: Mascote personalizada (legado)
         media_cache_retention_period: Período de retenção de ficheiros multimédia em cache
+        min_age: Idade mínima requerida
         peers_api_enabled: Publicar lista de servidores descobertos na API
         profile_directory: Ativar o diretório de perfis
         registrations_mode: Quem se pode inscrever
@@ -349,6 +352,9 @@ pt-PT:
         jurisdiction: Jurisdição legal
         min_age: Idade mínima
       user:
+        date_of_birth_1i: Dia
+        date_of_birth_2i: Mês
+        date_of_birth_3i: Ano
         role: Função
         time_zone: Fuso horário
       user_role:

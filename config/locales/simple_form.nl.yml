@@ -88,6 +88,7 @@ nl:
         favicon: WEBP, PNG, GIF of JPG. Vervangt de standaard Mastodon favicon met een aangepast pictogram.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
         media_cache_retention_period: Mediabestanden van berichten van externe gebruikers worden op jouw server in de cache opgeslagen. Indien ingesteld op een positieve waarde, worden media verwijderd na het opgegeven aantal dagen. Als de mediagegevens worden opgevraagd nadat ze zijn verwijderd, worden ze opnieuw gedownload wanneer de originele inhoud nog steeds beschikbaar is. Vanwege beperkingen op hoe vaak linkvoorbeelden sites van derden raadplegen, wordt aanbevolen om deze waarde in te stellen op ten minste 14 dagen. Anders worden linkvoorbeelden niet op aanvraag bijgewerkt.
+        min_age: Gebruikers krijgen tijdens hun inschrijving de vraag om hun geboortedatum te bevestigen
         peers_api_enabled: Een lijst met domeinnamen die deze server heeft aangetroffen in de fediverse. Er zijn hier geen gegevens inbegrepen over de vraag of je verbonden bent met een bepaalde server, alleen dat je server er van weet. Dit wordt gebruikt door diensten die statistieken over de federatie in algemene zin verzamelen.
         profile_directory: De gebruikersgids bevat een lijst van alle gebruikers die ervoor gekozen hebben om ontdekt te kunnen worden.
         require_invite_text: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
@@ -146,6 +147,7 @@ nl:
         min_age: Mag niet lager zijn dan de minimale vereiste leeftijd volgens de wetten van jouw jurisdictie.
       user:
         chosen_languages: Alleen berichten in de aangevinkte talen worden op de openbare tijdlijnen getoond
+        date_of_birth: We moeten ervoor zorgen dat je tenminste %{age} bent om Mastodon te gebruiken. Dit wordt niet opgeslagen.
         role: De rol bepaalt welke rechten de gebruiker heeft.
       user_role:
         color: Kleur die gebruikt wordt voor de rol in de UI, als RGB in hexadecimale formaat
@@ -271,6 +273,7 @@ nl:
         favicon: Favicon
         mascot: Aangepaste mascotte (legacy)
         media_cache_retention_period: Bewaartermijn mediacache
+        min_age: Vereiste minimumleeftijd
         peers_api_enabled: Lijst van bekende servers via de API publiceren
         profile_directory: Gebruikersgids inschakelen
         registrations_mode: Wie kan zich registreren
@@ -349,6 +352,9 @@ nl:
         jurisdiction: Jurisdictie
         min_age: Minimumleeftijd
       user:
+        date_of_birth_1i: Dag
+        date_of_birth_2i: Maand
+        date_of_birth_3i: Jaar
         role: Rol
         time_zone: Tijdzone
       user_role:

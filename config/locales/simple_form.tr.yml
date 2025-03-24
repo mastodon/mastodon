@@ -88,6 +88,7 @@ tr:
         favicon: WEBP, PNG, GIF veya JPG. Varsayılan Mastodon simgesini isteğe bağlı bir simgeyle değiştirir.
         mascot: Gelişmiş web arayüzündeki illüstrasyonu geçersiz kılar.
         media_cache_retention_period: Uzak kullanıcıların gönderilerindeki ortam dosyaları sunucunuzda önbelleklenir. Pozitif bir değer verildiğinde, ortam dosyaları belirlenen gün sonunda silinecektir. Eğer ortam dosyaları silindikten sonra istenirse, kaynak içerik hala mevcutsa, tekrar indirilecektir. Bağlantı önizleme kartlarının üçüncü parti siteleri yoklamasına ilişkin kısıtlamalar nedeniyle, bu değeri en azından 14 gün olarak ayarlamanız önerilir, yoksa bağlantı önizleme kartları bu süreden önce isteğe bağlı olarak güncellenmeyecektir.
+        min_age: Kullanıcılardan kayıt olurken doğum tarihlerini doğrulamaları istenecektir
         peers_api_enabled: Bu sunucunun fediverse'te karşılaştığı alan adlarının bir listesi. İlgili sunucuyla birleştirme mi yapıyorsunuz yoksa sunucunuz sadece onu biliyor mu hakkında bir bilgi burada yok. Bu blgi genel olarak federasyın hakkında istatistik toplamak isteyen hizmetler tarafından kullanılıyor.
         profile_directory: Profil dizini keşfedilebilir olmayı kabul eden tüm kullanıcıları listeler.
         require_invite_text: Kayıt olmak elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
@@ -146,6 +147,7 @@ tr:
         min_age: Tabi olduğunuz yasaların gerektirdiği yaştan düşük olmamalıdır.
       user:
         chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki gönderiler genel zaman çizelgelerinde görüntülenir
+        date_of_birth: Mastodon kullanmak için en az %{age} yaşında olduğunuzdan emin olmalıyız. Bu bilgiyi saklamıyoruz.
         role: Rol, kullanıcıların sahip olduğu izinleri denetler.
       user_role:
         color: Arayüz boyunca rol için kullanılacak olan renk, hex biçiminde RGB
@@ -271,6 +273,7 @@ tr:
         favicon: Yer imi simgesi
         mascot: Özel maskot (eski)
         media_cache_retention_period: Medya önbelleği saklama süresi
+        min_age: Azami yaş gereksinimi
         peers_api_enabled: API'de keşfedilen sunucuların listesini yayınla
         profile_directory: Profil dizinini etkinleştir
         registrations_mode: Kim kaydolabilir
@@ -349,6 +352,9 @@ tr:
         jurisdiction: Yasal yetki alanı
         min_age: Minimum yaş
       user:
+        date_of_birth_1i: Gün
+        date_of_birth_2i: Ay
+        date_of_birth_3i: Yıl
         role: Rol
         time_zone: Zaman dilimi
       user_role:

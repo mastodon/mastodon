@@ -88,6 +88,7 @@ cs:
         favicon: WEBP, PNG, GIF nebo JPG. Nahradí výchozí favicon Mastodonu vlastní ikonou.
         mascot: Přepíše ilustraci v pokročilém webovém rozhraní.
         media_cache_retention_period: Mediální soubory z příspěvků vzdálených uživatelů se ukládají do mezipaměti na vašem serveru. Pokud je nastaveno na kladnou hodnotu, budou média po zadaném počtu dní odstraněna. Pokud jsou mediální data vyžádána po jejich odstranění, budou znovu stažena, pokud je zdrojový obsah stále k dispozici. Vzhledem k omezením týkajícím se četnosti dotazů karet náhledů odkazů na weby třetích stran se doporučuje nastavit tuto hodnotu alespoň na 14 dní, jinak nebudou karty náhledů odkazů na vyžádání aktualizovány dříve.
+        min_age: Uživatelé budou požádáni, aby při registraci potvrdili datum svého narození
         peers_api_enabled: Seznam názvů domén se kterými se tento server setkal ve fediversu. Neobsahuje žádná data o tom, zda jste federovali s daným serverem, pouze že o něm váš server ví. Toto je využíváno službami, které sbírají o federování statistiku v obecném smyslu.
         profile_directory: Adresář profilu obsahuje seznam všech uživatelů, kteří se přihlásili, aby mohli být nalezeni.
         require_invite_text: Pokud přihlášení vyžaduje ruční schválení, měl by být textový vstup „Proč se chcete připojit?“ povinný spíše než volitelný
@@ -146,6 +147,7 @@ cs:
         min_age: Neměla by být pod minimálním věkem požadovaným zákony vaší jurisdikce.
       user:
         chosen_languages: Po zaškrtnutí budou ve veřejných časových osách zobrazeny pouze příspěvky ve zvolených jazycích
+        date_of_birth: Musíme se ujistit, že je Vám alespoň %{age}, abyste mohli používat Mastodon. Nebudeme to ukládat.
         role: Role určuje, která oprávnění uživatel má.
       user_role:
         color: Barva, která má být použita pro roli v celém UI, jako RGB v hex formátu
@@ -271,6 +273,7 @@ cs:
         favicon: Favicon
         mascot: Vlastní maskot (zastaralé)
         media_cache_retention_period: Doba uchovávání mezipaměti médií
+        min_age: Minimální věková hranice
         peers_api_enabled: Zveřejnit seznam nalezených serverů v API
         profile_directory: Povolit adresář profilů
         registrations_mode: Kdo se může přihlásit
@@ -349,6 +352,9 @@ cs:
         jurisdiction: Právní příslušnost
         min_age: Věková hranice
       user:
+        date_of_birth_1i: Den
+        date_of_birth_2i: Měsíc
+        date_of_birth_3i: Rok
         role: Role
         time_zone: Časové pásmo
       user_role:

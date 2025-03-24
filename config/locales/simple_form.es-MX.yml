@@ -88,6 +88,7 @@ es-MX:
         favicon: WEBP, PNG, GIF o JPG. Reemplaza el icono predeterminado de Mastodon con un icono personalizado.
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
         media_cache_retention_period: Los archivos multimedia de las publicaciones realizadas por usuarios remotos se almacenan en caché en su servidor. Si se establece en un valor positivo, los archivos multimedia se eliminarán tras el número de días especificado. Si los datos multimedia se solicitan después de haber sido eliminados, se volverán a descargar, si el contenido de origen sigue estando disponible. Debido a las restricciones sobre la frecuencia con la que las tarjetas de previsualización de enlaces sondean sitios de terceros, se recomienda establecer este valor en al menos 14 días, o las tarjetas de previsualización de enlaces no se actualizarán bajo demanda antes de ese tiempo.
+        min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento durante el registro
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el fediverso. Aquí no se incluye ningún dato sobre si usted federa con un servidor determinado, sólo que su servidor lo sabe. Esto es utilizado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado por que su cuenta pueda ser descubierta.
         require_invite_text: Cuando los registros requieren aprobación manual, hace obligatoria la entrada de texto "¿Por qué quieres unirte?" en lugar de opcional
@@ -146,6 +147,7 @@ es-MX:
         min_age: No debería estar por debajo de la edad mínima requerida por las leyes de su jurisdicción.
       user:
         chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
+        date_of_birth: Tenemos que asegurarnos de que al menos tienes %{age} años para usar Mastodon. No almacenaremos esta información.
         role: El rol controla qué permisos tiene el usuario.
       user_role:
         color: Color que se usará para el rol en toda la interfaz de usuario, como RGB en formato hexadecimal
@@ -271,6 +273,7 @@ es-MX:
         favicon: Favicon
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de caché multimedia
+        min_age: Edad mínima requerida
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
         profile_directory: Habilitar directorio de perfiles
         registrations_mode: Quién puede registrarse
@@ -349,6 +352,9 @@ es-MX:
         jurisdiction: Jurisdicción legal
         min_age: Edad mínima
       user:
+        date_of_birth_1i: Día
+        date_of_birth_2i: Mes
+        date_of_birth_3i: Año
         role: Rol
         time_zone: Zona horaria
       user_role:

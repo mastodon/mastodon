@@ -88,6 +88,7 @@ it:
         favicon: WEBP, PNG, GIF o JPG. Sostituisce la favicon predefinita di Mastodon con un'icona personalizzata.
         mascot: Sostituisce l'illustrazione nell'interfaccia web avanzata.
         media_cache_retention_period: I file multimediali da post fatti da utenti remoti sono memorizzati nella cache sul tuo server. Quando impostato a un valore positivo, i media verranno eliminati dopo il numero specificato di giorni. Se i dati multimediali sono richiesti dopo che sono stati eliminati, saranno nuovamente scaricati, se il contenuto sorgente è ancora disponibile. A causa di restrizioni su quanto spesso link anteprima carte sondaggio siti di terze parti, si consiglia di impostare questo valore ad almeno 14 giorni, o le schede di anteprima link non saranno aggiornate su richiesta prima di quel tempo.
+        min_age: Gli utenti saranno invitati a confermare la loro data di nascita durante la registrazione
         peers_api_enabled: Un elenco di nomi di dominio che questo server ha incontrato nel fediverse. Qui non sono inclusi dati sul fatto se si federano con un dato server, solo che il server ne è a conoscenza. Questo viene utilizzato dai servizi che raccolgono statistiche sulla federazione in senso generale.
         profile_directory: La directory del profilo elenca tutti gli utenti che hanno acconsentito ad essere individuabili.
         require_invite_text: 'Quando le iscrizioni richiedono l''approvazione manuale, rendi la domanda: "Perché vuoi unirti?" obbligatoria anziché facoltativa'
@@ -146,6 +147,7 @@ it:
         min_age: Non si dovrebbe avere un'età inferiore a quella minima richiesta, dalle leggi della tua giurisdizione.
       user:
         chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline pubbliche vengono mostrati solo i toot nelle lingue selezionate
+        date_of_birth: Dobbiamo verificare che tu abbia almeno %{age} anni per usare Mastodon. Non archivieremo questa informazione.
         role: Il ruolo controlla quali permessi ha l'utente.
       user_role:
         color: Colore da usare per il ruolo in tutta l'UI, come RGB in formato esadecimale
@@ -271,6 +273,7 @@ it:
         favicon: Favicon
         mascot: Personalizza mascotte (legacy)
         media_cache_retention_period: Periodo di conservazione della cache multimediale
+        min_age: Età minima richiesta
         peers_api_enabled: Pubblica l'elenco dei server scoperti nell'API
         profile_directory: Abilita directory del profilo
         registrations_mode: Chi può iscriversi
@@ -349,6 +352,9 @@ it:
         jurisdiction: Giurisdizione legale
         min_age: Età minima
       user:
+        date_of_birth_1i: Giorno
+        date_of_birth_2i: Mese
+        date_of_birth_3i: Anno
         role: Ruolo
         time_zone: Fuso orario
       user_role:

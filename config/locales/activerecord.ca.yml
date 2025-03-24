@@ -55,6 +55,8 @@ ca:
               too_soon: és massa aviat, ha de ser després de %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: és inferior a l'edat mínima
             email:
               blocked: utilitza un proveïdor de correu-e no autoritzat
               unreachable: sembla que no existeix

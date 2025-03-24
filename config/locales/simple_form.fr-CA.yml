@@ -88,6 +88,7 @@ fr-CA:
         favicon: WEBP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
         mascot: Remplace l'illustration dans l'interface Web avancée.
         media_cache_retention_period: Les fichiers médias des messages publiés par des utilisateurs distants sont mis en cache sur votre serveur. Lorsque cette valeur est positive, les médias sont supprimés au terme du nombre de jours spécifié. Si les données des médias sont demandées après leur suppression, elles seront téléchargées à nouveau, dans la mesure où le contenu source est toujours disponible. En raison des restrictions concernant la fréquence à laquelle les cartes de prévisualisation des liens interrogent des sites tiers, il est recommandé de fixer cette valeur à au moins 14 jours, faute de quoi les cartes de prévisualisation des liens ne seront pas mises à jour à la demande avant cette échéance.
+        min_age: Les utilisateurs seront invités à confirmer leur date de naissance lors de l'inscription
         peers_api_enabled: Une liste de noms de domaine que ce serveur a rencontrés dans le fédiverse. Aucune donnée indiquant si vous vous fédérez ou non avec un serveur particulier n'est incluse ici, seulement l'information que votre serveur connaît un autre serveur. Cette option est utilisée par les services qui collectent des statistiques sur la fédération en général.
         profile_directory: L'annuaire des profils répertorie tous les utilisateurs qui ont opté pour être découverts.
         require_invite_text: Lorsque les inscriptions nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
@@ -132,14 +133,21 @@ fr-CA:
         name: Vous ne pouvez modifier que la casse des lettres, par exemple, pour le rendre plus lisible
       terms_of_service:
         changelog: Peut être structuré avec la syntaxe Markdown.
+        effective_date: Un délai raisonnable peut varier entre 10 et 30 jours à compter de la date à laquelle vous informez vos utilisateurs.
         text: Peut être structuré avec la syntaxe Markdown.
       terms_of_service_generator:
         admin_email: Les avis juridiques comprennent les contre-avis, les ordonnances judiciaires, les demandes de retrait et les demandes des forces de l'ordre.
+        arbitration_address: Il peut s'agir de la même que l'adresse physique ci-dessus, ou « N/A » si vous utilisez une adresse e-mail.
+        arbitration_website: Il peut s'agir d'un formulaire web ou de « N/A » s'il s'agit d'un courrier électronique.
+        choice_of_law: Ville, région, territoire ou État dont le droit matériel interne régit toute réclamation.
         dmca_address: Pour les opérateurs américains, utilisez l'adresse enregistrée dans le répertoire des agents désignés du DMCA Designated Agent Directory. Une boîte postale est disponible sur demande directe. Utilisez le formulaire de demande de dérogation pour l'utilisation d'une boîte postale par un agent désigné du Designated Agent Post Office Box Waiver Request pour envoyer un e-mail au Bureau du droit d'auteur (Copyright Office) et expliquer que vous êtes un modérateur de contenu à domicile qui craint des représailles ou une vengeance pour ses actions et que vous avez besoin d'utiliser une boîte postale afin de masquer votre adresse personnelle au public.
+        dmca_email: Il peut s'agir du même courriel que celui utilisé pour l'« Adresse électronique pour les avis juridiques » ci-dessus.
         domain: Identification unique du service en ligne que vous offrez.
         jurisdiction: Indiquez le pays dans lequel réside la personne qui paie les factures. S'il s'agit d'une entreprise ou d'une autre entité, indiquez le pays dans lequel elle est enregistrée, ainsi que la ville, la région, le territoire ou l'État, le cas échéant.
+        min_age: Ne doit pas être en dessous de l’âge minimum requis par les lois de votre juridiction.
       user:
         chosen_languages: Lorsque coché, seuls les messages dans les langues sélectionnées seront affichés sur les fils publics
+        date_of_birth: Nous devons nous assurer que vous avez au moins %{age} pour utiliser Mastodon. Nous ne conserverons pas ces informations.
         role: Le rôle définit quelles autorisations a l'utilisateur⋅rice.
       user_role:
         color: Couleur à attribuer au rôle dans l'interface, au format hexadécimal RVB
@@ -265,6 +273,7 @@ fr-CA:
         favicon: Favicon
         mascot: Mascotte personnalisée (héritée)
         media_cache_retention_period: Durée de rétention des médias dans le cache
+        min_age: Âge minimum requis
         peers_api_enabled: Publie la liste des serveurs découverts dans l'API
         profile_directory: Activer l’annuaire des profils
         registrations_mode: Qui peut s’inscrire
@@ -330,16 +339,22 @@ fr-CA:
         usable: Autoriser les messages à utiliser ce hashtag localement
       terms_of_service:
         changelog: Nouveautés?
+        effective_date: Date effective
         text: Conditions d'utilisation
       terms_of_service_generator:
         admin_email: Adresse électronique pour les notifications légales
         arbitration_address: Adresse physique pour les notifications d'arbitrage
         arbitration_website: Site Web pour soumettre les notifications d'arbitrage
+        choice_of_law: Choix de la loi
         dmca_address: Adresse physique pour les avis DMCA/copyright
         dmca_email: Adresse e-mail pour les avis DMCA/copyright
         domain: Domaine
         jurisdiction: Juridiction
+        min_age: Âge minimum
       user:
+        date_of_birth_1i: Jour
+        date_of_birth_2i: Mois
+        date_of_birth_3i: Année
         role: Rôle
         time_zone: Fuseau horaire
       user_role:
