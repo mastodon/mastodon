@@ -62,6 +62,7 @@ class Audio extends PureComponent {
     volume: PropTypes.number,
     muted: PropTypes.bool,
     deployPictureInPicture: PropTypes.func,
+    matchedFilters: PropTypes.arrayOf(PropTypes.string),
   };
 
   state = {
@@ -472,7 +473,7 @@ class Audio extends PureComponent {
   };
 
   render () {
-    const { src, intl, alt, lang, editable, autoPlay, sensitive, blurhash } = this.props;
+    const { src, intl, alt, lang, editable, autoPlay, sensitive, blurhash, matchedFilters } = this.props;
     const { paused, volume, currentTime, duration, buffer, dragging, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const muted = this.state.muted || volume === 0;
@@ -514,7 +515,7 @@ class Audio extends PureComponent {
           lang={lang}
         />
 
-        <SpoilerButton hidden={revealed || editable} sensitive={sensitive} onClick={this.toggleReveal} />
+        <SpoilerButton hidden={revealed || editable} sensitive={sensitive} onClick={this.toggleReveal} matchedFilters={matchedFilters} />
 
         {(revealed || editable) && <img
           src={this.props.poster}

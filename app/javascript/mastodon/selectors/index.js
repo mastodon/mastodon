@@ -29,12 +29,19 @@ export const makeGetStatus = () => {
       }
 
       let filtered = false;
+      let mediaFiltered = false;
       if ((accountReblog || accountBase).get('id') !== me && filters) {
         let filterResults = statusReblog?.get('filtered') || statusBase.get('filtered') || ImmutableList();
         if (filterResults.some((result) => filters.getIn([result.get('filter'), 'filter_action']) === 'hide')) {
           return null;
         }
-        filterResults = filterResults.filter(result => filters.has(result.get('filter')));
+
+        let mediaFilters = filterResults.filter(result => filters.getIn([result.get('filter'), 'filter_action']) === 'blur_media');
+        if (!mediaFilters.isEmpty()) {
+          mediaFiltered = mediaFilters.map(result => filters.getIn([result.get('filter'), 'title']));
+        }
+
+        filterResults = filterResults.filter(result => filters.has(result.get('filter')) && filters.getIn([result.get('filter'), 'filter_action']) !== 'blur_media');
         if (!filterResults.isEmpty()) {
           filtered = filterResults.map(result => filters.getIn([result.get('filter'), 'title']));
         }
@@ -44,6 +51,7 @@ export const makeGetStatus = () => {
         map.set('reblog', statusReblog);
         map.set('account', accountBase);
         map.set('matched_filters', filtered);
+        map.set('matched_media_filters', mediaFiltered);
       });
     },
   );

@@ -226,6 +226,7 @@ class MediaGallery extends PureComponent {
     visible: PropTypes.bool,
     autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
+    matchedFilters: PropTypes.arrayOf(PropTypes.string),
   };
 
   state = {
@@ -296,7 +297,7 @@ class MediaGallery extends PureComponent {
   }
 
   render () {
-    const { media, lang, sensitive, defaultWidth, autoplay } = this.props;
+    const { media, lang, sensitive, defaultWidth, autoplay, matchedFilters } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
 
@@ -323,7 +324,7 @@ class MediaGallery extends PureComponent {
       <div className={`media-gallery media-gallery--layout-${size}`} style={style} ref={this.handleRef}>
         {children}
 
-        {(!visible || uncached) && <SpoilerButton uncached={uncached} sensitive={sensitive} onClick={this.handleOpen} />}
+        {(!visible || uncached) && <SpoilerButton uncached={uncached} sensitive={sensitive} onClick={this.handleOpen} matchedFilters={matchedFilters} />}
 
         {(visible && !uncached) && (
           <div className='media-gallery__actions'>
