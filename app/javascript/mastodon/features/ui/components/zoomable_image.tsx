@@ -71,7 +71,7 @@ const getBounds = (zoomMatrix: ZoomMatrix | null, scale: number) => {
   return bounds;
 };
 
-export const ZoomableImage: React.FC<{
+interface ZoomableImageProps {
   alt?: string;
   lang?: string;
   src: string;
@@ -83,7 +83,9 @@ export const ZoomableImage: React.FC<{
   onZoomChange?: (zoomedIn: boolean) => void;
   zoomedIn?: boolean;
   blurhash?: string;
-}> = ({
+}
+
+export const ZoomableImage: React.FC<ZoomableImageProps> = ({
   alt = '',
   lang = '',
   src,
@@ -125,11 +127,23 @@ export const ZoomableImage: React.FC<{
     x: 0,
     y: 0,
     scale: 1,
+    onRest: {
+      scale({ value }) {
+        if (!onZoomChange) {
+          return;
+        }
+        if (value === MIN_SCALE) {
+          onZoomChange(false);
+        } else {
+          onZoomChange(true);
+        }
+      },
+    },
   }));
 
   useGesture(
     {
-      onDrag: ({
+      onDrag({
         pinching,
         cancel,
         active,
@@ -138,7 +152,7 @@ export const ZoomableImage: React.FC<{
         velocity: [, vy],
         direction: [, dy],
         tap,
-      }) => {
+      }) {
         if (tap) {
           if (!doubleClickTimeoutRef.current) {
             doubleClickTimeoutRef.current = setTimeout(() => {
@@ -186,14 +200,7 @@ export const ZoomableImage: React.FC<{
         void api.start({ x, y });
       },
 
-      onPinch: ({
-        origin: [ox, oy],
-        first,
-        last,
-        movement: [ms],
-        offset: [s],
-        memo,
-      }) => {
+      onPinch({ origin: [ox, oy], first, movement: [ms], offset: [s], memo }) {
         if (!imageRef.current) {
           return;
         }
@@ -209,15 +216,6 @@ export const ZoomableImage: React.FC<{
 
         const x = memo[0] - (ms - 1) * memo[2]; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
         const y = memo[1] - (ms - 1) * memo[3]; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
-
-        if (last) {
-          // Once the gesture is done, update the parent about zoom status
-          if (s === MIN_SCALE) {
-            onZoomChange?.(false);
-          } else {
-            onZoomChange?.(true);
-          }
-        }
 
         void api.start({ scale: s, x, y });
 
