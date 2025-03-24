@@ -281,7 +281,7 @@ export const ZoomableImage: React.FC<{
   return (
     <div
       className={classNames('zoomable-image', {
-        'zoomable-image--zoomed-in': style.scale.get() > MIN_SCALE,
+        'zoomable-image--zoomed-in': zoomedIn,
         'zoomable-image--error': error,
         'zoomable-image--dragging': dragging,
       })}
