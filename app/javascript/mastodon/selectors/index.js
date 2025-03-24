@@ -36,12 +36,12 @@ export const makeGetStatus = () => {
           return null;
         }
 
-        let mediaFilters = filterResults.filter(result => filters.getIn([result.get('filter'), 'filter_action']) === 'blur_media');
+        let mediaFilters = filterResults.filter(result => filters.getIn([result.get('filter'), 'filter_action']) === 'blur');
         if (!mediaFilters.isEmpty()) {
           mediaFiltered = mediaFilters.map(result => filters.getIn([result.get('filter'), 'title']));
         }
 
-        filterResults = filterResults.filter(result => filters.has(result.get('filter')) && filters.getIn([result.get('filter'), 'filter_action']) !== 'blur_media');
+        filterResults = filterResults.filter(result => filters.has(result.get('filter')) && filters.getIn([result.get('filter'), 'filter_action']) !== 'blur');
         if (!filterResults.isEmpty()) {
           filtered = filterResults.map(result => filters.getIn([result.get('filter'), 'title']));
         }
