@@ -34,10 +34,8 @@ function processEmojiMapData(
 ) {
   const [native, _filename] = emojiMapData;
   let filename = emojiMapData[1];
-  if (!filename) {
-    // filename name can be derived from unicodeToFilename
-    filename = unicodeToFilename(native);
-  }
+  // filename name can be derived from unicodeToFilename
+  filename ??= unicodeToFilename(native);
   unicodeMapping[native] = {
     shortCode,
     filename,
