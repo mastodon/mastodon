@@ -2,15 +2,15 @@
 
 require 'rails_helper'
 
-RSpec.describe IntentsController do
-  render_views
-
+RSpec.describe 'Intents' do
   let(:user) { Fabricate(:user) }
 
   before { sign_in user, scope: :user }
 
-  describe 'GET #show' do
-    subject { get :show, params: { uri: uri } }
+  describe 'GET /intent' do
+    subject { response }
+
+    before { get intent_path(uri: uri) }
 
     context 'when schema is web+mastodon' do
       context 'when host is follow' do
