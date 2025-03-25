@@ -447,8 +447,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_13_123400) do
 
   create_table "fasp_debug_callbacks", force: :cascade do |t|
     t.bigint "fasp_provider_id", null: false
-    t.string "ip"
-    t.text "request_body"
+    t.string "ip", null: false
+    t.text "request_body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["fasp_provider_id"], name: "index_fasp_debug_callbacks_on_fasp_provider_id"
@@ -462,7 +462,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_13_123400) do
     t.string "remote_identifier", null: false
     t.string "provider_public_key_pem", null: false
     t.string "server_private_key_pem", null: false
-    t.jsonb "capabilities"
+    t.jsonb "capabilities", default: [], null: false
     t.jsonb "privacy_policy"
     t.string "contact_email"
     t.string "fediverse_account"

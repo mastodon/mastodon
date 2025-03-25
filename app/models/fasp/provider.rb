@@ -6,7 +6,7 @@
 #
 #  id                      :bigint(8)        not null, primary key
 #  base_url                :string           not null
-#  capabilities            :jsonb
+#  capabilities            :jsonb            not null
 #  confirmed               :boolean          default(FALSE), not null
 #  contact_email           :string
 #  fediverse_account       :string

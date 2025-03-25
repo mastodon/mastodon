@@ -10,7 +10,7 @@ class CreateFaspProviders < ActiveRecord::Migration[7.2]
       t.string :remote_identifier, null: false
       t.string :provider_public_key_pem, null: false
       t.string :server_private_key_pem, null: false
-      t.jsonb :capabilities
+      t.jsonb :capabilities, null: false, default: []
       t.jsonb :privacy_policy
       t.string :contact_email
       t.string :fediverse_account
