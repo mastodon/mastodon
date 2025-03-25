@@ -15,6 +15,7 @@ import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?re
 import { AnimatedNumber } from 'mastodon/components/animated_number';
 import { ContentWarning } from 'mastodon/components/content_warning';
 import EditedTimestamp from 'mastodon/components/edited_timestamp';
+import { FilterWarning } from 'mastodon/components/filter_warning';
 import type { StatusLike } from 'mastodon/components/hashtag_bar';
 import { getHashtagBarForStatus } from 'mastodon/components/hashtag_bar';
 import { Icon } from 'mastodon/components/icon';
@@ -70,6 +71,7 @@ export const DetailedStatus: React.FC<{
 }) => {
   const properStatus = status?.get('reblog') ?? status;
   const [height, setHeight] = useState(0);
+  const [showDespiteFilter, setShowDespiteFilter] = useState(false);
   const nodeRef = useRef<HTMLDivElement>();
 
   const handleOpenVideo = useCallback(
@@ -81,6 +83,10 @@ export const DetailedStatus: React.FC<{
     },
     [onOpenVideo, status],
   );
+
+  const handleFilterToggle = useCallback(() => {
+    setShowDespiteFilter(!showDespiteFilter);
+  }, [showDespiteFilter, setShowDespiteFilter]);
 
   const handleExpandedToggle = useCallback(() => {
     if (onToggleHidden) onToggleHidden(status);
@@ -292,8 +298,12 @@ export const DetailedStatus: React.FC<{
   const { statusContentProps, hashtagBar } = getHashtagBarForStatus(
     status as StatusLike,
   );
+
+  const matchedFilters = status.get('matched_filters');
+
   const expanded =
-    !status.get('hidden') || status.get('spoiler_text').length === 0;
+    (!matchedFilters || showDespiteFilter) &&
+    (!status.get('hidden') || status.get('spoiler_text').length === 0);
 
   return (
     <div style={outerStyle}>
@@ -334,16 +344,25 @@ export const DetailedStatus: React.FC<{
           )}
         </Link>
 
-        {status.get('spoiler_text').length > 0 && (
-          <ContentWarning
-            text={
-              status.getIn(['translation', 'spoilerHtml']) ||
-              status.get('spoilerHtml')
-            }
-            expanded={expanded}
-            onClick={handleExpandedToggle}
+        {matchedFilters && (
+          <FilterWarning
+            title={matchedFilters.join(', ')}
+            expanded={showDespiteFilter}
+            onClick={handleFilterToggle}
           />
         )}
+
+        {status.get('spoiler_text').length > 0 &&
+          (!matchedFilters || showDespiteFilter) && (
+            <ContentWarning
+              text={
+                status.getIn(['translation', 'spoilerHtml']) ||
+                status.get('spoilerHtml')
+              }
+              expanded={expanded}
+              onClick={handleExpandedToggle}
+            />
+          )}
 
         {expanded && (
           <>
