@@ -12,10 +12,12 @@ import type { AsyncThunkRejectValue } from '../typed_functions';
 const defaultFailSuffix = 'FAIL';
 const isFailedAction = new RegExp(`${defaultFailSuffix}$`, 'g');
 
-interface ActionWithMaybeAlertParams extends Action, AsyncThunkRejectValue {}
-
 interface RejectedAction extends Action {
   payload: AsyncThunkRejectValue;
+}
+
+interface ActionWithMaybeAlertParams extends Action, AsyncThunkRejectValue {
+  payload?: AsyncThunkRejectValue;
 }
 
 function isRejectedActionWithPayload(
@@ -24,7 +26,7 @@ function isRejectedActionWithPayload(
   return isAsyncThunkAction(action) && isRejectedWithValue(action);
 }
 
-function isActionWithmaybeAlertParams(
+function isActionWithMaybeAlertParams(
   action: unknown,
 ): action is ActionWithMaybeAlertParams {
   return isAction(action);
@@ -40,11 +42,12 @@ export const errorsMiddleware: Middleware<{}, RootState> =
         showAlertForError(action.payload.error, action.payload.skipNotFound),
       );
     } else if (
-      isActionWithmaybeAlertParams(action) &&
-      !action.skipAlert &&
+      isActionWithMaybeAlertParams(action) &&
+      !(action.payload?.skipAlert || action.skipAlert) &&
       action.type.match(isFailedAction)
     ) {
-      dispatch(showAlertForError(action.error, action.skipNotFound));
+      const { error, skipNotFound } = action.payload ?? action;
+      dispatch(showAlertForError(error, skipNotFound));
     }
 
     return next(action);

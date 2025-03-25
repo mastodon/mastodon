@@ -60,28 +60,6 @@ export const makeGetPictureInPicture = () => {
   }));
 };
 
-const ALERT_DEFAULTS = {
-  dismissAfter: 5000,
-  style: false,
-};
-
-const formatIfNeeded = (intl, message, values) => {
-  if (typeof message === 'object') {
-    return intl.formatMessage(message, values);
-  }
-
-  return message;
-};
-
-export const getAlerts = createSelector([state => state.get('alerts'), (_, { intl }) => intl], (alerts, intl) =>
-  alerts.map(item => ({
-    ...ALERT_DEFAULTS,
-    ...item,
-    action: formatIfNeeded(intl, item.action, item.values),
-    title: formatIfNeeded(intl, item.title, item.values),
-    message: formatIfNeeded(intl, item.message, item.values),
-  })).toArray());
-
 export const makeGetNotification = () => createSelector([
   (_, base)             => base,
   (state, _, accountId) => state.getIn(['accounts', accountId]),
