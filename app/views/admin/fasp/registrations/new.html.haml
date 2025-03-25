@@ -13,8 +13,7 @@
       %td
         %code= @provider.provider_public_key_fingerprint
 
-= form_with url: admin_fasp_provider_registration_path(@provider), class: :simple_form do |_form|
-  .fields-group
-    .actions
-      = link_to t('admin.fasp.providers.registrations.reject'), admin_fasp_provider_path(@provider), data: { method: :delete }, class: 'button negative'
-      %button.button= t('admin.fasp.providers.registrations.confirm')
+= form_with url: admin_fasp_provider_registration_path(@provider), class: :simple_form do |f|
+  .actions
+    = link_to t('admin.fasp.providers.registrations.reject'), admin_fasp_provider_path(@provider), data: { method: :delete }, class: 'btn negative'
+    = f.button t('admin.fasp.providers.registrations.confirm'), type: :submit, class: 'btn'
