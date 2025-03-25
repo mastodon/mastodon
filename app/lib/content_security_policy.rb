@@ -32,7 +32,7 @@ class ContentSecurityPolicy
   private
 
   def extra_data_hosts
-    ENV.fetch('EXTRA_DATA_HOSTS', '').split(',')
+    ENV.fetch('EXTRA_DATA_HOSTS', '').split(/(?:\s*,\s*|\s+)/)
   end
 
   def url_from_configured_asset_host
