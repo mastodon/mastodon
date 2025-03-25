@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.describe 'API V1 Trends Tags' do
-  describe 'GET /api/v1/trends/tags' do
+RSpec.describe 'deprecated API V1 Trends Tags' do
+  describe 'GET /api/v1/trends' do
     context 'when trends are disabled' do
       before { Setting.trends = false }
 
       it 'returns http success' do
-        get '/api/v1/trends/tags'
+        get '/api/v1/trends'
 
         expect(response)
           .to have_http_status(200)
@@ -16,7 +16,7 @@ RSpec.describe 'API V1 Trends Tags' do
         expect(response.content_type)
           .to start_with('application/json')
         expect(response.headers['Deprecation'])
-          .to be_nil
+          .to start_with '@'
       end
     end
 
@@ -26,7 +26,7 @@ RSpec.describe 'API V1 Trends Tags' do
       it 'returns http success' do
         prepare_trends
         stub_const('Api::V1::Trends::TagsController::DEFAULT_TAGS_LIMIT', 2)
-        get '/api/v1/trends/tags'
+        get '/api/v1/trends'
 
         expect(response)
           .to have_http_status(200)
@@ -34,7 +34,7 @@ RSpec.describe 'API V1 Trends Tags' do
         expect(response.content_type)
           .to start_with('application/json')
         expect(response.headers['Deprecation'])
-          .to be_nil
+          .to start_with '@'
       end
 
       def prepare_trends
