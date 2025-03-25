@@ -9,7 +9,7 @@ module DeprecationConcern
       sunset = sunset&.to_date&.httpdate
 
       before_action(**kwargs) do
-        response.headers['Deprecatation'] = deprecation_timestamp
+        response.headers['Deprecation'] = deprecation_timestamp
         response.headers['Sunset'] = sunset if sunset
       end
     end
