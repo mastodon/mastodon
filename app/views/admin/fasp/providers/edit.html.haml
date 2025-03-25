@@ -6,17 +6,11 @@
 
   %h4= t('admin.fasp.providers.select_capabilities')
 
-  - f.object.capabilities.each do |capability|
-    - enabled = @provider.capability_enabled?(capability['id'])
-    .fields-group
-      .input.with_label.boolean.optional.field_with_hint
-        .label_input
-          %label.boolean.optional{ for: "provider_enabled_capabilities_#{capability['id']}" }
-            = capability['id']
-        .label_input__wrapper
-          = hidden_field_tag "provider[enabled_capabilities][#{capability['id']}]", '0', id: false
-          %label.checkbox
-            = check_box_tag "provider[enabled_capabilities][#{capability['id']}]", checked: enabled, class: 'optional boolean'
+  .fields_group
+    = f.fields_for :capabilities do |cf|
+      = cf.input :id, as: :hidden
+      = cf.input :version, as: :hidden
+      = cf.input :enabled, as: :boolean, label: cf.object.id, wrapper: :with_label
 
   .actions
     = f.button :button, t('admin.fasp.providers.save'), type: :submit

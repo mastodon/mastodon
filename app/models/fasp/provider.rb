@@ -32,17 +32,26 @@ class Fasp::Provider < ApplicationRecord
   before_create :create_keypair
   after_commit :update_remote_capabilities
 
-  def enabled_capabilities=(hash)
-    capabilities.each do |capability|
-      capability['enabled'] = hash[capability['id']] == '1'
+  def capabilities
+    read_attribute(:capabilities).map do |attributes|
+      Fasp::Capability.new(attributes)
     end
+  end
+
+  def capabilities_attributes=(attributes)
+    capability_objects = attributes.values.map { |a| Fasp::Capability.new(a) }
+    self[:capabilities] = capability_objects.map(&:attributes)
+  end
+
+  def enabled_capabilities
+    capabilities.select(&:enabled).map(&:id)
   end
 
   def capability?(capability_name)
     return false unless confirmed?
 
     capabilities.present? && capabilities.any? do |capability|
-      capability['id'] == capability_name
+      capability.id == capability_name
     end
   end
 
@@ -50,7 +59,7 @@ class Fasp::Provider < ApplicationRecord
     return false unless confirmed?
 
     capabilities.present? && capabilities.any? do |capability|
-      capability['id'] == capability_name && capability['enabled']
+      capability.id == capability_name && capability.enabled
     end
   end
 

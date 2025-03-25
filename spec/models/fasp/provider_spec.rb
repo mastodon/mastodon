@@ -5,26 +5,39 @@ require 'rails_helper'
 RSpec.describe Fasp::Provider do
   include ProviderRequestHelper
 
-  describe '#enabled_capabilities=' do
+  describe '#capabilities' do
     subject { described_class.new(confirmed: true, capabilities:) }
 
     let(:capabilities) do
       [
         { 'id' => 'one', 'enabled' => false },
         { 'id' => 'two' },
-        { 'id' => 'three', 'enabled' => true },
-        { 'id' => 'four' },
       ]
     end
 
-    it 'enables the given capabilities' do
-      subject.enabled_capabilities = {
-        'one' => '1',
-        'four' => '1',
-      }
+    it 'returns an array of `Fasp::Capability` objects' do
+      expect(subject.capabilities).to all(be_a(Fasp::Capability))
+    end
+  end
 
+  describe '#capabilities_attributes=' do
+    subject { described_class.new(confirmed: true) }
+
+    let(:capabilities_params) do
+      {
+        '0' => { 'id' => 'one', 'enabled' => '1' },
+        '1' => { 'id' => 'two', 'enabled' => '0' },
+        '2' => { 'id' => 'three' },
+      }
+    end
+
+    it 'sets capabilities from nested form style hash' do
+      subject.capabilities_attributes = capabilities_params
+
+      expect(subject).to be_capability('one')
+      expect(subject).to be_capability('two')
+      expect(subject).to be_capability('three')
       expect(subject).to be_capability_enabled('one')
-      expect(subject).to be_capability_enabled('four')
       expect(subject).to_not be_capability_enabled('two')
       expect(subject).to_not be_capability_enabled('three')
     end
