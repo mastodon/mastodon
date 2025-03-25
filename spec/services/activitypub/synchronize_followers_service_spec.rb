@@ -27,14 +27,14 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
     }.with_indifferent_access
   end
 
+  before do
+    alice.follow!(actor)
+    bob.follow!(actor)
+    mallory.request_follow!(actor)
+  end
+
   shared_examples 'synchronizes followers' do
     before do
-      alice.follow!(actor)
-      bob.follow!(actor)
-      mallory.request_follow!(actor)
-
-      allow(ActivityPub::DeliveryWorker).to receive(:perform_async)
-
       subject.call(actor, collection_uri)
     end
 
@@ -46,7 +46,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       expect(mallory)
         .to be_following(actor) # Convert follow request to follow when accepted
       expect(ActivityPub::DeliveryWorker)
-        .to have_received(:perform_async).with(anything, eve.id, actor.inbox_url) # Send Undo Follow to actor
+        .to have_enqueued_sidekiq_job(anything, eve.id, actor.inbox_url) # Send Undo Follow to actor
     end
   end
 
@@ -76,7 +76,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       it_behaves_like 'synchronizes followers'
     end
 
-    context 'when the endpoint is a paginated Collection of actor URIs' do
+    context 'when the endpoint is a single-page paginated Collection of actor URIs' do
       let(:payload) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
@@ -95,6 +95,31 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       end
 
       it_behaves_like 'synchronizes followers'
+    end
+
+    context 'when the endpoint is a paginated Collection of actor URIs with a next page' do
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          type: 'Collection',
+          id: collection_uri,
+          first: {
+            type: 'CollectionPage',
+            partOf: collection_uri,
+            items: items,
+            next: "#{collection_uri}/page2",
+          },
+        }.with_indifferent_access
+      end
+
+      before do
+        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+      end
+
+      it 'does not change followers' do
+        expect { subject.call(actor, collection_uri) }
+          .to_not(change { actor.followers.reload.reorder(id: :asc).pluck(:id) })
+      end
     end
   end
 end
