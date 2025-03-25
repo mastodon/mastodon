@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
+import PackageIcon from '@/material-icons/400-24px/package_2.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { fetchLists } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
@@ -16,6 +17,8 @@ import { ColumnHeader } from 'mastodon/components/column_header';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import type { MenuItems } from 'mastodon/models/dropdown_menu';
+import type { List } from 'mastodon/models/list';
 import { getOrderedLists } from 'mastodon/selectors/lists';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
@@ -25,12 +28,12 @@ const messages = defineMessages({
   edit: { id: 'lists.edit', defaultMessage: 'Edit list' },
   delete: { id: 'lists.delete', defaultMessage: 'Delete list' },
   more: { id: 'status.more', defaultMessage: 'More' },
+  copyLink: { id: '', defaultMessage: 'Copy link' },
 });
 
 const ListItem: React.FC<{
-  id: string;
-  title: string;
-}> = ({ id, title }) => {
+  list: List;
+}> = ({ list }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
 
@@ -39,25 +42,54 @@ const ListItem: React.FC<{
       openModal({
         modalType: 'CONFIRM_DELETE_LIST',
         modalProps: {
-          listId: id,
+          listId: list.id,
         },
       }),
     );
-  }, [dispatch, id]);
+  }, [dispatch, list]);
 
-  const menu = useMemo(
-    () => [
-      { text: intl.formatMessage(messages.edit), to: `/lists/${id}/edit` },
-      { text: intl.formatMessage(messages.delete), action: handleDeleteClick },
-    ],
-    [intl, id, handleDeleteClick],
-  );
+  const handleCopyClick = useCallback(() => {
+    void navigator.clipboard.writeText(list.url);
+  }, [list]);
+
+  const menu = useMemo(() => {
+    const tmp: MenuItems = [
+      { text: intl.formatMessage(messages.edit), to: `/lists/${list.id}/edit` },
+      {
+        text: intl.formatMessage(messages.delete),
+        action: handleDeleteClick,
+        dangerous: true,
+      },
+    ];
+
+    if (list.type === 'public_list') {
+      tmp.unshift(
+        {
+          text: intl.formatMessage(messages.copyLink),
+          action: handleCopyClick,
+        },
+        null,
+      );
+    }
+
+    return tmp;
+  }, [intl, list, handleDeleteClick, handleCopyClick]);
 
   return (
     <div className='lists__item'>
-      <Link to={`/lists/${id}`} className='lists__item__title'>
-        <Icon id='list-ul' icon={ListAltIcon} />
-        <span>{title}</span>
+      <Link
+        to={
+          list.type === 'public_list'
+            ? `/starter-pack/${list.id}-${list.slug}`
+            : `/lists/${list.id}`
+        }
+        className='lists__item__title'
+      >
+        <Icon
+          id={list.type === 'public_list' ? 'package' : 'list-ul'}
+          icon={list.type === 'public_list' ? PackageIcon : ListAltIcon}
+        />
+        <span>{list.title}</span>
       </Link>
 
       <DropdownMenuContainer
@@ -129,7 +161,7 @@ const Lists: React.FC<{
         bindToDocument={!multiColumn}
       >
         {lists.map((list) => (
-          <ListItem key={list.id} id={list.id} title={list.title} />
+          <ListItem key={list.id} list={list} />
         ))}
       </ScrollableList>
 

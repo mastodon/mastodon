@@ -7,6 +7,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   layout :determine_layout
 
   before_action :set_invite, only: [:new, :create]
+  before_action :set_list, only: [:new, :create]
   before_action :check_enabled_registrations, only: [:new, :create]
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
@@ -107,6 +108,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
       invite = Invite.find_by(code: invite_code) if invite_code.present?
       invite if invite&.valid_for_use?
     end
+  end
+
+  def set_list
+    @list = List.where(type: :public_list).find_by(id: params[:list_id])
   end
 
   def determine_layout

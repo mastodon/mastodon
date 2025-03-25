@@ -61,6 +61,7 @@ import {
   Lists,
   ListEdit,
   ListMembers,
+  PublicList,
   Blocks,
   DomainBlocks,
   Mutes,
@@ -220,6 +221,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/lists/:id/edit' component={ListEdit} content={children} />
             <WrappedRoute path='/lists/:id/members' component={ListMembers} content={children} />
             <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
+            <WrappedRoute path={['/starter-pack/:id(\\d+)', '/starter-pack/:id(\\d+)-:slug']} component={PublicList} content={children} />
             <WrappedRoute path='/notifications' component={Notifications} content={children} exact />
             <WrappedRoute path='/notifications/requests' component={NotificationRequests} content={children} exact />
             <WrappedRoute path='/notifications/requests/:id' component={NotificationRequest} content={children} exact />
