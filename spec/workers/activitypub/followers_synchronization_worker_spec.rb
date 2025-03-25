@@ -15,7 +15,13 @@ RSpec.describe ActivityPub::FollowersSynchronizationWorker do
     it 'sends the status to the service' do
       worker.perform(account.id, url)
 
-      expect(service).to have_received(:call).with(account, url)
+      expect(service).to have_received(:call).with(account, url, nil)
+    end
+
+    it 'sends the status to the service with the passed digest' do
+      worker.perform(account.id, url, 'digest-123')
+
+      expect(service).to have_received(:call).with(account, url, 'digest-123')
     end
 
     it 'returns nil for non-existent record' do
