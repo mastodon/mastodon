@@ -158,14 +158,13 @@ RSpec.describe 'Notifications' do
           expect(response).to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
-          expect(response.parsed_body[:notification_groups]).to contain_exactly(
-            a_hash_including(
-              type: 'favourite',
-              sample_account_ids: have_attributes(size: 5),
-              page_min_id: notification_ids.first.to_s,
-              page_max_id: notification_ids.last.to_s
-            )
-          )
+          expect(response.parsed_body[:notification_groups].size)
+            .to eq(1)
+          expect(response.parsed_body.dig(:notification_groups, 0))
+            .to include(type: 'favourite')
+            .and(include(sample_account_ids: have_attributes(size: 5)))
+            .and(include(page_max_id: notification_ids.last.to_s))
+            .and(include(page_min_id: notification_ids.first.to_s))
         end
       end
 
@@ -180,14 +179,13 @@ RSpec.describe 'Notifications' do
           expect(response).to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
-          expect(response.parsed_body[:notification_groups]).to contain_exactly(
-            a_hash_including(
-              type: 'favourite',
-              sample_account_ids: have_attributes(size: 5),
-              page_min_id: notification_ids.first.to_s,
-              page_max_id: notification_ids.last.to_s
-            )
-          )
+          expect(response.parsed_body[:notification_groups].size)
+            .to eq(1)
+          expect(response.parsed_body.dig(:notification_groups, 0))
+            .to include(type: 'favourite')
+            .and(include(sample_account_ids: have_attributes(size: 5)))
+            .and(include(page_max_id: notification_ids.last.to_s))
+            .and(include(page_min_id: notification_ids.first.to_s))
         end
       end
     end
