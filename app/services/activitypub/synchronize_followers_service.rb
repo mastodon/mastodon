@@ -18,14 +18,22 @@ class ActivityPub::SynchronizeFollowersService < BaseService
   private
 
   def process_page!(items)
-    # There could be unresolved accounts (hence the call to .compact) but this
-    # should never happen in practice, since in almost all cases we keep an
-    # Account record, and should we not do that, we should have sent a Delete.
-    # In any case there is not much we can do if that occurs.
-    page_expected_followers = items.filter_map { |uri| ActivityPub::TagManager.instance.uri_to_resource(uri, Account) }
+    page_expected_followers = extract_local_followers(items)
     @expected_followers_ids.concat(page_expected_followers.pluck(:id))
 
     handle_unexpected_outgoing_follows!(page_expected_followers)
+  end
+
+  def extract_local_followers(items)
+    # There could be unresolved accounts (hence the call to .filter_map) but this
+    # should never happen in practice, since in almost all cases we keep an
+    # Account record, and should we not do that, we should have sent a Delete.
+    # In any case there is not much we can do if that occurs.
+
+    # TODO: this will need changes when switching to numeric IDs
+
+    usernames = items.filter_map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username)&.downcase }
+    Account.local.with_username(usernames)
   end
 
   def remove_unexpected_local_followers!
