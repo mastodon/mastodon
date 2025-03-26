@@ -6,6 +6,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 
 import { openModal } from 'mastodon/actions/modal';
+import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import InlineAccount from 'mastodon/components/inline_account';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 
@@ -60,12 +61,12 @@ class EditedTimestamp extends PureComponent {
   };
 
   render () {
-    const { timestamp, intl, statusId } = this.props;
+    const { timestamp, statusId } = this.props;
 
     return (
       <DropdownMenu statusId={statusId} renderItem={this.renderItem} scrollable renderHeader={this.renderHeader} onItemClick={this.handleItemClick}>
         <button className='dropdown-menu__text-button'>
-          <FormattedMessage id='status.edited' defaultMessage='Edited {date}' values={{ date: <span className='animated-number'>{intl.formatDate(timestamp, { month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</span> }} />
+          <FormattedMessage id='status.edited' defaultMessage='Edited {date}' values={{ date: <FormattedDateWrapper className='animated-number' value={timestamp} month='short' day='2-digit' hour='2-digit' minute='2-digit' /> }} />
         </button>
       </DropdownMenu>
     );
