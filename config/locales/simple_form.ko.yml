@@ -153,7 +153,7 @@ ko:
         position: 특정 상황에서 충돌이 발생할 경우 더 높은 역할이 충돌을 해결합니다. 특정 작업은 우선순위가 낮은 역할에 대해서만 수행될 수 있습니다
       webhook:
         events: 전송할 이벤트를 선택하세요
-        template: 원하는 JSON 페이로드를 변수와 함께 작성하거나, 그냥 냅둬서 기본 JSON을 사용할 수 있습니다.
+        template: 원하는 JSON 페이로드를 변수와 함께 작성하거나, 그대로 두어 기본 JSON을 사용할 수 있습니다.
         url: 이벤트가 어디로 전송될 지
     labels:
       account:
@@ -269,6 +269,7 @@ ko:
         favicon: 파비콘
         mascot: 사용자 정의 마스코트 (legacy)
         media_cache_retention_period: 미디어 캐시 유지 기한
+        min_age: 최소 연령 제한
         peers_api_enabled: API에 발견 된 서버들의 목록 발행
         profile_directory: 프로필 책자 활성화
         registrations_mode: 누가 가입할 수 있는지
@@ -347,6 +348,9 @@ ko:
         jurisdiction: 법적 관할권
         min_age: 최소 연령
       user:
+        date_of_birth_1i: 일
+        date_of_birth_2i: 월
+        date_of_birth_3i: 년
         role: 역할
         time_zone: 시간대
       user_role:
