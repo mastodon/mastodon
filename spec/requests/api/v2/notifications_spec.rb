@@ -169,7 +169,7 @@ RSpec.describe 'Notifications' do
       end
 
       context 'with min_id param' do
-        let(:params) { { min_id: user.account.notifications.reload.first.id - 1 } }
+        let(:params) { { min_id: user.account.notifications.order(id: :asc).first.id - 1 } }
 
         it 'returns a notification group covering all notifications' do
           subject
