@@ -97,7 +97,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       it_behaves_like 'synchronizes followers'
     end
 
-    context 'when the endpoint is a paginated Collection of actor URIs with a next page' do
+    context 'when the endpoint is a paginated Collection of actor URIs with more pages than we allow' do
       let(:payload) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
@@ -113,13 +113,22 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       end
 
       before do
+        stub_const('ActivityPub::SynchronizeFollowersService::MAX_COLLECTION_PAGES', 1)
         stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
-      it 'does not change followers' do
-        expect { subject.call(actor, collection_uri) }
-          .to_not(change { actor.followers.reload.reorder(id: :asc).pluck(:id) })
+      it 'confirms pending follow request but does not remove extra followers' do
+        previous_follower_ids = actor.followers.pluck(:id)
+
+        subject.call(actor, collection_uri)
+
+        expect(previous_follower_ids - actor.followers.reload.pluck(:id))
+          .to be_empty
+        expect(mallory)
+          .to be_following(actor)
       end
     end
+
+    # TODO: add two-pages test
   end
 end
