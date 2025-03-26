@@ -27,6 +27,7 @@ export default tseslint.config([
   ]),
   js.configs.recommended,
   react.configs.flat.recommended,
+  react.configs.flat['jsx-runtime'],
   reactHooks.configs['recommended-latest'],
   jsxA11Y.flatConfigs.recommended,
   importPlugin.flatConfigs.recommended,
