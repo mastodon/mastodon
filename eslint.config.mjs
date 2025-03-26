@@ -43,7 +43,6 @@ export default tseslint.config([
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.node,
       },
 
       parser: tseslint.parser,
@@ -272,6 +271,11 @@ export default tseslint.config([
   },
   {
     files: [
+      'app/javascript/mastodon/common.js',
+      'app/javascript/mastodon/features/emoji/unicode_to_unified_name.js',
+      'app/javascript/mastodon/features/emoji/emoji_compressed.js',
+      'app/javascript/mastodon/features/emoji/unicode_to_filename.js',
+      'app/javascript/mastodon/service_worker/web_push_locales.js',
       '**/*.config.js',
       '**/.*rc.js',
       '**/ide-helper.js',
@@ -282,10 +286,11 @@ export default tseslint.config([
     languageOptions: {
       globals: {
         ...globals.commonjs,
+        ...globals.node,
       },
 
       ecmaVersion: 5,
-      sourceType: 'script',
+      sourceType: 'commonjs',
     },
 
     rules: {

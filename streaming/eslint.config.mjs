@@ -12,6 +12,7 @@ export default tseslint.config([
     languageOptions: {
       globals: {
         ...globals.browser,
+        ...globals.node,
       },
 
       ecmaVersion: 2021,
