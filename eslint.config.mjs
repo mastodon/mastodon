@@ -23,6 +23,7 @@ export default defineConfig([
     'spec/**/*',
     'tmp/**/*',
     'vendor/**/*',
+    'streaming/**/*',
   ]),
   {
     linterOptions: {
