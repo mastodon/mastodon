@@ -175,6 +175,7 @@ export const DetailedStatus: React.FC<{
           onOpenMedia={onOpenMedia}
           visible={showMedia}
           onToggleVisibility={onToggleMediaVisibility}
+          matchedFilters={status.get('matched_media_filters')}
         />
       );
     } else if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
@@ -201,6 +202,7 @@ export const DetailedStatus: React.FC<{
           blurhash={attachment.get('blurhash')}
           height={150}
           onToggleVisibility={onToggleMediaVisibility}
+          matchedFilters={status.get('matched_media_filters')}
         />
       );
     } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
@@ -224,6 +226,7 @@ export const DetailedStatus: React.FC<{
           sensitive={status.get('sensitive')}
           visible={showMedia}
           onToggleVisibility={onToggleMediaVisibility}
+          matchedFilters={status.get('matched_media_filters')}
         />
       );
     }

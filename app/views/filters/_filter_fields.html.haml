@@ -26,7 +26,7 @@
 .fields-group
   = f.input :filter_action,
             as: :radio_buttons,
-            collection: %i(warn hide),
+            collection: %i(warn blur hide),
             hint: t('simple_form.hints.filters.action'),
             include_blank: false,
             label_method: ->(action) { filter_action_label(action) },

@@ -6,6 +6,7 @@ interface Props {
   hidden?: boolean;
   sensitive: boolean;
   uncached?: boolean;
+  matchedFilters?: string[];
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -13,6 +14,7 @@ export const SpoilerButton: React.FC<Props> = ({
   hidden = false,
   sensitive,
   uncached = false,
+  matchedFilters,
   onClick,
 }) => {
   let warning;
@@ -27,6 +29,20 @@ export const SpoilerButton: React.FC<Props> = ({
     );
     action = (
       <FormattedMessage id='status.media.open' defaultMessage='Click to open' />
+    );
+  } else if (matchedFilters) {
+    warning = (
+      <FormattedMessage
+        id='filter_warning.matches_filter'
+        defaultMessage='Matches filter “<span>{title}</span>”'
+        values={{
+          title: matchedFilters.join(', '),
+          span: (chunks) => <span className='filter-name'>{chunks}</span>,
+        }}
+      />
+    );
+    action = (
+      <FormattedMessage id='status.media.show' defaultMessage='Click to show' />
     );
   } else if (sensitive) {
     warning = (

@@ -136,6 +136,7 @@ class Video extends PureComponent {
     muted: PropTypes.bool,
     componentIndex: PropTypes.number,
     autoFocus: PropTypes.bool,
+    matchedFilters: PropTypes.arrayOf(PropTypes.string),
   };
 
   static defaultProps = {
@@ -535,7 +536,7 @@ class Video extends PureComponent {
   }
 
   render () {
-    const { preview, src, aspectRatio, onOpenVideo, onCloseVideo, intl, alt, lang, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
+    const { preview, src, aspectRatio, onOpenVideo, onCloseVideo, intl, alt, lang, detailed, sensitive, editable, blurhash, autoFocus, matchedFilters } = this.props;
     const { currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const muted = this.state.muted || volume === 0;
@@ -592,7 +593,7 @@ class Video extends PureComponent {
             style={{ width: '100%' }}
           />}
 
-          <SpoilerButton hidden={revealed || editable} sensitive={sensitive} onClick={this.toggleReveal} />
+          <SpoilerButton hidden={revealed || editable} sensitive={sensitive} onClick={this.toggleReveal} matchedFilters={matchedFilters} />
 
           <div className={classNames('video-player__controls', { active: paused || hovered })}>
             <div className='video-player__seek' onMouseDown={this.handleMouseDown} ref={this.setSeekRef}>
