@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 @function hex-color($color) {
   @if type-of($color) == 'color' {
     $color: str-slice(ie-hex-str($color), 4);
@@ -205,7 +207,7 @@ button {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.7;
-  color: lighten($error-red, 4%);
+  color: color.adjust($error-red, $lightness: 4%, $space: hsl);
   text-align: center;
 
   & > div {

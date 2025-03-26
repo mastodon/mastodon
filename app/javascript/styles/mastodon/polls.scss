@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .poll {
   margin-top: 16px;
   font-size: 14px;
@@ -10,7 +12,7 @@
   &__chart {
     border-radius: 4px;
     display: block;
-    background: darken($ui-primary-color, 5%);
+    background: color.adjust($ui-primary-color, $lightness: -5%, $space: hsl);
     height: 5px;
     min-width: 1%;
 
@@ -35,12 +37,12 @@
     // duplication
     &::-moz-progress-bar {
       border-radius: 4px;
-      background: darken($ui-primary-color, 5%);
+      background: color.adjust($ui-primary-color, $lightness: -5%, $space: hsl);
     }
 
     &::-webkit-progress-value {
       border-radius: 4px;
-      background: darken($ui-primary-color, 5%);
+      background: color.adjust($ui-primary-color, $lightness: -5%, $space: hsl);
     }
   }
 
@@ -121,7 +123,11 @@
     &:active,
     &:focus,
     &:hover {
-      border-color: lighten($valid-value-color, 15%);
+      border-color: color.adjust(
+        $valid-value-color,
+        $lightness: 15%,
+        $space: hsl
+      );
       border-width: 4px;
     }
 
@@ -219,7 +225,10 @@
   color: $dark-text-color;
 
   &__chart {
-    background: rgba(darken($ui-primary-color, 14%), 0.7);
+    background: rgba(
+      color.adjust($ui-primary-color, $lightness: -14%, $space: hsl),
+      0.7
+    );
 
     &.leading {
       background: rgba($ui-highlight-color, 0.5);

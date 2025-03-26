@@ -35,9 +35,10 @@ $error-value-color: $error-red !default;
 
 // Tell UI to use selected colors
 $ui-base-color: $classic-base-color !default; // Darkest
-$ui-base-lighter-color: lighten(
+$ui-base-lighter-color: color.adjust(
   $ui-base-color,
-  26%
+  $lightness: 26%,
+  $space: hsl
 ) !default; // Lighter darkest
 $ui-primary-color: $classic-primary-color !default; // Lighter
 $ui-secondary-color: $classic-secondary-color !default; // Lightest
@@ -74,9 +75,17 @@ $primary-text-color: $white !default;
 $darker-text-color: $ui-primary-color !default;
 $dark-text-color: $ui-base-lighter-color !default;
 $secondary-text-color: $ui-secondary-color !default;
-$highlight-text-color: lighten($ui-highlight-color, 8%) !default;
+$highlight-text-color: color.adjust(
+  $ui-highlight-color,
+  $lightness: 8%,
+  $space: hsl
+) !default;
 $action-button-color: $ui-base-lighter-color !default;
-$action-button-focus-color: lighten($ui-base-lighter-color, 4%) !default;
+$action-button-focus-color: color.adjust(
+  $ui-base-lighter-color,
+  $lightness: 4%,
+  $space: hsl
+) !default;
 $passive-text-color: $gold-star !default;
 $active-passive-text-color: $success-green !default;
 
@@ -102,26 +111,67 @@ $font-display: 'mastodon-font-display' !default;
 $font-monospace: 'mastodon-font-monospace' !default;
 
 :root {
-  --dropdown-border-color: #{lighten($ui-base-color, 4%)};
-  --dropdown-background-color: #{rgba(darken($ui-base-color, 8%), 0.9)};
+  --dropdown-border-color: #{color.adjust(
+      $ui-base-color,
+      $lightness: 4%,
+      $space: hsl
+    )};
+  --dropdown-background-color: #{rgba(
+      color.adjust($ui-base-color, $lightness: -8%, $space: hsl),
+      0.9
+    )};
   --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
     0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
-  --modal-background-color: #{rgba(darken($ui-base-color, 8%), 0.7)};
+  --modal-background-color: #{rgba(
+      color.adjust($ui-base-color, $lightness: -8%, $space: hsl),
+      0.7
+    )};
   --modal-background-variant-color: #{rgba($ui-base-color, 0.7)};
-  --modal-border-color: #{lighten($ui-base-color, 4%)};
-  --background-border-color: #{lighten($ui-base-color, 4%)};
+  --modal-border-color: #{color.adjust(
+      $ui-base-color,
+      $lightness: 4%,
+      $space: hsl
+    )};
+  --background-border-color: #{color.adjust(
+      $ui-base-color,
+      $lightness: 4%,
+      $space: hsl
+    )};
   --background-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
-  --background-color: #{darken($ui-base-color, 8%)};
-  --background-color-tint: #{rgba(darken($ui-base-color, 8%), 0.9)};
-  --surface-background-color: #{darken($ui-base-color, 4%)};
+  --background-color: #{color.adjust(
+      $ui-base-color,
+      $lightness: -8%,
+      $space: hsl
+    )};
+  --background-color-tint: #{rgba(
+      color.adjust($ui-base-color, $lightness: -8%, $space: hsl),
+      0.9
+    )};
+  --surface-background-color: #{color.adjust(
+      $ui-base-color,
+      $lightness: -4%,
+      $space: hsl
+    )};
   --surface-variant-background-color: #{$ui-base-color};
-  --surface-variant-active-background-color: #{lighten($ui-base-color, 4%)};
-  --on-surface-color: #{transparentize($ui-base-color, 0.5)};
+  --surface-variant-active-background-color: #{color.adjust(
+      $ui-base-color,
+      $lightness: 4%,
+      $space: hsl
+    )};
+  --on-surface-color: #{color.adjust($ui-base-color, $alpha: -0.5)};
   --avatar-border-radius: 8px;
   --media-outline-color: #{rgba(#fcf8ff, 0.15)};
   --overlay-icon-shadow: drop-shadow(0 0 8px #{rgba($base-shadow-color, 0.25)});
-  --error-background-color: #{darken($error-red, 16%)};
-  --error-active-background-color: #{darken($error-red, 12%)};
+  --error-background-color: #{color.adjust(
+      $error-red,
+      $lightness: -16%,
+      $space: hsl
+    )};
+  --error-active-background-color: #{color.adjust(
+      $error-red,
+      $lightness: -12%,
+      $space: hsl
+    )};
   --on-error-color: #fff;
   --rich-text-container-color: rgba(87, 24, 60, 100%);
   --rich-text-text-color: rgba(255, 175, 212, 100%);
