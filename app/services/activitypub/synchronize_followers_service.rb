@@ -10,7 +10,7 @@ class ActivityPub::SynchronizeFollowersService < BaseService
     @account = account
     @expected_followers_ids = []
 
-    return unless process_collection(partial_collection_url) { |items| process_page!(items) }
+    return unless process_collection!(partial_collection_url)
 
     remove_unexpected_local_followers!
   end
@@ -64,9 +64,8 @@ class ActivityPub::SynchronizeFollowersService < BaseService
     Oj.dump(serialize_payload(follow, ActivityPub::UndoFollowSerializer))
   end
 
-  # Yields to the block on each page
   # Only returns true if the whole collection has been processed
-  def process_collection(collection_or_uri, max_pages: MAX_COLLECTION_PAGES)
+  def process_collection!(collection_or_uri, max_pages: MAX_COLLECTION_PAGES)
     collection = fetch_collection(collection_or_uri)
     return false unless collection.is_a?(Hash)
 
@@ -79,7 +78,7 @@ class ActivityPub::SynchronizeFollowersService < BaseService
       collection = fetch_collection(collection)
       return false unless collection.is_a?(Hash)
 
-      yield as_array(collection_page_items(collection))
+      process_page!(as_array(collection_page_items(collection)))
 
       collection = collection['next'].presence
     end
