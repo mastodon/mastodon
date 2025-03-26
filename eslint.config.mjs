@@ -10,7 +10,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export default defineConfig([
+export default tseslint.config([
   globalIgnores([
     'build/**/*',
     'coverage/**/*',
@@ -24,22 +24,19 @@ export default defineConfig([
     'tmp/**/*',
     'vendor/**/*',
   ]),
+  js.configs.recommended,
+  react.configs.flat.recommended,
+  reactHooks.configs['recommended-latest'],
+  jsxA11Y.flatConfigs.recommended,
+  importPlugin.flatConfigs.recommended,
+  promisePlugin.configs['flat/recommended'],
+  formatjs.configs.strict,
+  jsdoc.configs['flat/recommended'],
   {
     linterOptions: {
       reportUnusedDisableDirectives: 'error',
       reportUnusedInlineConfigs: 'error',
     },
-
-    extends: [
-      js.configs.recommended,
-      react.configs.flat.recommended,
-      reactHooks.configs['recommended-latest'],
-      jsxA11Y.flatConfigs.recommended,
-      importPlugin.flatConfigs.recommended,
-      promisePlugin.configs['flat/recommended'],
-      formatjs.configs.strict,
-      jsdoc.configs['flat/recommended'],
-    ],
 
     languageOptions: {
       globals: {
@@ -50,17 +47,6 @@ export default defineConfig([
       parser: tseslint.parser,
       ecmaVersion: 2021,
       sourceType: 'module',
-
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-        },
-
-        babelOptions: {
-          configFile: false,
-          presets: ['@babel/react', '@babel/env'],
-        },
-      },
     },
 
     settings: {
@@ -323,9 +309,6 @@ export default defineConfig([
     ],
 
     languageOptions: {
-      ecmaVersion: 5,
-      sourceType: 'script',
-
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
