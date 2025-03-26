@@ -48,21 +48,8 @@ $light-text-color: hsl(240deg, 16%, 32%);
 $account-background-color: $white !default;
 
 // Invert darkened and lightened colors
-@function darken($color, $amount) {
-  @return hsl(
-    hue($color),
-    color.channel($color, 'saturation', $space: hsl),
-    color.channel($color, 'lightness', $space: hsl) + $amount
-  );
-}
-
-@function lighten($color, $amount) {
-  @return hsl(
-    hue($color),
-    color.channel($color, 'saturation', $space: hsl),
-    color.channel($color, 'lightness', $space: hsl) - $amount
-  );
-}
+$darken-multiplier: 1;
+$lighten-multiplier: -1;
 
 $emojis-requiring-inversion: 'chains';
 
