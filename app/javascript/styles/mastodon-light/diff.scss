@@ -3,7 +3,6 @@
 @use 'sass:color';
 @use '../mastodon/functions' as *;
 @use '../mastodon/variables' as *;
-@use 'variables' as v;
 
 .simple_form .button.button-tertiary {
   color: $highlight-text-color;
@@ -250,7 +249,7 @@
 
 // Change the default colors used on some parts of the profile pages
 .activity-stream-tabs {
-  background: v.$account-background-color;
+  background: $white;
   border-bottom-color: lighten($ui-base-color, 8%);
 }
 
@@ -292,7 +291,7 @@
   }
 
   .entry {
-    background: v.$account-background-color;
+    background: $white;
 
     .detailed-status.light,
     .more.light,
