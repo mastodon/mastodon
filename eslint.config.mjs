@@ -37,7 +37,7 @@ export default tseslint.config([
   jsdoc.configs['flat/recommended'],
   {
     linterOptions: {
-      reportUnusedDisableDirectives: 'off',
+      reportUnusedDisableDirectives: 'error',
       reportUnusedInlineConfigs: 'error',
     },
 
