@@ -1,6 +1,3 @@
-/* eslint-disable import/no-commonjs --
-   We need to use CommonJS here as its imported into a preval file (`emoji_compressed.js`) */
-
 /* @preval */
 
 const fs   = require('fs');
