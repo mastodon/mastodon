@@ -1,0 +1,21 @@
+@use 'sass:color';
+
+$darken-multiplier: -1 !default;
+$lighten-multiplier: 1 !default;
+
+// Invert darkened and lightened colors
+@function darken($color, $amount) {
+  @return color.adjust(
+    $color,
+    $lightness: $amount * $darken-multiplier,
+    $space: hsl
+  );
+}
+
+@function lighten($color, $amount) {
+  @return color.adjust(
+    $color,
+    $lightness: $amount * $lighten-multiplier,
+    $space: hsl
+  );
+}

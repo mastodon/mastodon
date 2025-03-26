@@ -1,4 +1,4 @@
-@use 'sass:color';
+@use 'variables' as *;
 
 @mixin search-input {
   outline: 0;
@@ -44,26 +44,4 @@
     font-weight: 500;
     color: $inverted-text-color;
   }
-}
-
-$darken-multiplier: -1 !default;
-$lighten-multiplier: 1 !default;
-
-// Invert darkened and lightened colors
-@function darken($color, $amount) {
-  @return hsl(
-    color.hue($color),
-    color.channel($color, 'saturation', $space: hsl),
-    color.channel($color, 'lightness', $space: hsl) +
-      ($amount * $darken-multiplier)
-  );
-}
-
-@function lighten($color, $amount) {
-  @return hsl(
-    color.hue($color),
-    color.channel($color, 'saturation', $space: hsl),
-    color.channel($color, 'lightness', $space: hsl) +
-      ($amount * $lighten-multiplier)
-  );
 }

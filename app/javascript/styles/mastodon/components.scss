@@ -1,3 +1,8 @@
+@use 'sass:color';
+@use 'variables' as *;
+@use 'functions' as *;
+@use 'mixins' as *;
+
 .app-body {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -1841,18 +1846,22 @@ body > [data-popper-placement] {
 .detailed-status__wrapper-direct {
   .detailed-status,
   .detailed-status__action-bar {
-    background: mix($ui-base-color, $ui-highlight-color, 95%);
+    background: color.mix($ui-base-color, $ui-highlight-color, 95%);
   }
 
   &:focus {
     .detailed-status,
     .detailed-status__action-bar {
-      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+      background: color.mix(
+        lighten($ui-base-color, 4%),
+        $ui-highlight-color,
+        95%
+      );
     }
   }
 
   .detailed-status__action-bar {
-    border-top-color: mix(
+    border-top-color: color.mix(
       lighten($ui-base-color, 8%),
       $ui-highlight-color,
       95%
@@ -8404,7 +8413,7 @@ noscript {
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: mix(
+      background-color: color.mix(
         lighten($ui-base-color, 12%),
         $ui-highlight-color,
         80%

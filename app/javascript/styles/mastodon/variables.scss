@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use 'functions' as *;
 
 // Commonly used web colors
 $black: #000000; // Black
@@ -96,6 +97,7 @@ $media-modal-media-max-height: 80%;
 
 $no-gap-breakpoint: 1175px;
 $mobile-breakpoint: 630px;
+$no-columns-breakpoint: 600px;
 
 $font-sans-serif: 'mastodon-font-sans-serif' !default;
 $font-display: 'mastodon-font-display' !default;
@@ -116,7 +118,7 @@ $font-monospace: 'mastodon-font-monospace' !default;
   --surface-background-color: #{darken($ui-base-color, 4%)};
   --surface-variant-background-color: #{$ui-base-color};
   --surface-variant-active-background-color: #{lighten($ui-base-color, 4%)};
-  --on-surface-color: #{transparentize($ui-base-color, 0.5)};
+  --on-surface-color: color.adjust($ui-base-color, $alpha: 0.5);
   --avatar-border-radius: 8px;
   --media-outline-color: #{rgba(#fcf8ff, 0.15)};
   --overlay-icon-shadow: drop-shadow(0 0 8px #{rgba($base-shadow-color, 0.25)});
