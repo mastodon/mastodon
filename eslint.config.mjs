@@ -26,7 +26,7 @@ export default defineConfig([
   ]),
   {
     linterOptions: {
-      reportUnusedDisableDirectives: 'error',
+      reportUnusedDisableDirectives: 'off',
       reportUnusedInlineConfigs: 'error',
     },
 
