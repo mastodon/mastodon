@@ -1,5 +1,5 @@
 import js from '@eslint/js';
-import { defineConfig, globalIgnores } from 'eslint/config';
+import { globalIgnores } from 'eslint/config';
 import formatjs from 'eslint-plugin-formatjs';
 import importPlugin from 'eslint-plugin-import';
 import jsdoc from 'eslint-plugin-jsdoc';
@@ -23,7 +23,6 @@ export default tseslint.config([
     'spec/**/*',
     'tmp/**/*',
     'vendor/**/*',
-    'streaming/**/*',
   ]),
   js.configs.recommended,
   react.configs.flat.recommended,

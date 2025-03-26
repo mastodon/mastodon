@@ -1,41 +1,21 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-import { FlatCompat } from '@eslint/eslintrc';
-import js from '@eslint/js';
-import { defineConfig } from 'eslint/config';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import globals from 'globals';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import tseslint from 'typescript-eslint';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
+// eslint-disable-next-line import/no-relative-packages
+import mastodonEslintConfig from '../eslint.config.mjs';
 
-export default defineConfig([
+export default tseslint.config([
+  mastodonEslintConfig,
   {
-    extends: compat.extends('../eslint.config.mjs'),
-
     languageOptions: {
       globals: {
-        ...Object.fromEntries(
-          Object.entries(globals.browser).map(([key]) => [key, 'off']),
-        ),
+        ...globals.browser,
       },
 
       ecmaVersion: 2021,
       sourceType: 'script',
-
-      parserOptions: {
-        project: true,
-        tsconfigRootDir: import.meta.dirname,
-
-        ecmaFeatures: {
-          jsx: false,
-        },
-      },
     },
 
     rules: {
@@ -44,7 +24,7 @@ export default defineConfig([
       'import/no-extraneous-dependencies': [
         'error',
         {
-          devDependencies: ['**/eslint.config.mjs'],
+          devDependencies: ['streaming/eslint.config.mjs'],
           optionalDependencies: false,
           peerDependencies: false,
           includeTypes: true,
