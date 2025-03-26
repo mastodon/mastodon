@@ -10,7 +10,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
   let(:bob)            { Fabricate(:account, username: 'bob') }
   let(:eve)            { Fabricate(:account, username: 'eve') }
   let(:mallory)        { Fabricate(:account, username: 'mallory') }
-  let(:collection_uri) { 'http://example.com/partial-followers' }
+  let(:collection_uri) { 'https://example.com/partial-followers' }
 
   let(:items) do
     [alice, eve, mallory].map do |account|
@@ -97,6 +97,39 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       it_behaves_like 'synchronizes followers'
     end
 
+    context 'when the endpoint is a paginated Collection of actor URIs split across multiple pages' do
+      before do
+        stub_request(:get, 'https://example.com/partial-followers')
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'Collection',
+            id: 'https://example.com/partial-followers',
+            first: 'https://example.com/partial-followers/1',
+          }))
+
+        stub_request(:get, 'https://example.com/partial-followers/1')
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'CollectionPage',
+            id: 'https://example.com/partial-followers/1',
+            partOf: 'https://example.com/partial-followers',
+            next: 'https://example.com/partial-followers/2',
+            items: [alice, eve].map { |account| ActivityPub::TagManager.instance.uri_for(account) },
+          }))
+
+        stub_request(:get, 'https://example.com/partial-followers/2')
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'CollectionPage',
+            id: 'https://example.com/partial-followers/2',
+            partOf: 'https://example.com/partial-followers',
+            items: ActivityPub::TagManager.instance.uri_for(mallory),
+          }))
+      end
+
+      it_behaves_like 'synchronizes followers'
+    end
+
     context 'when the endpoint is a paginated Collection of actor URIs with more pages than we allow' do
       let(:payload) do
         {
@@ -128,7 +161,5 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
           .to be_following(actor)
       end
     end
-
-    # TODO: add two-pages test
   end
 end
