@@ -266,9 +266,7 @@ export default tseslint.config([
         },
       ],
       'react/jsx-tag-spacing': 'error',
-      'react/jsx-uses-react': 'off',
       'react/jsx-wrap-multilines': 'error',
-      'react/react-in-jsx-scope': 'off',
       'react/self-closing-comp': 'error',
     },
   },
@@ -302,6 +300,7 @@ export default tseslint.config([
       tseslint.configs.strictTypeChecked,
       tseslint.configs.stylisticTypeChecked,
       react.configs.flat.recommended,
+      react.configs.flat['jsx-runtime'],
       reactHooks.configs['recommended-latest'],
       jsxA11Y.flatConfigs.recommended,
       importPlugin.flatConfigs.recommended,
@@ -339,8 +338,6 @@ export default tseslint.config([
           namedComponents: 'arrow-function',
         },
       ],
-      'react/jsx-uses-react': 'off', // not needed with new JSX transform
-      'react/react-in-jsx-scope': 'off', // not needed with new JSX transform
       'react/prop-types': 'off',
 
       '@typescript-eslint/consistent-type-definitions': ['warn', 'interface'],
