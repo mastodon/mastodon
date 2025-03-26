@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { removePictureInPicture } from 'mastodon/actions/picture_in_picture';
 import Audio from 'mastodon/features/audio';
-import Video from 'mastodon/features/video';
+import { Video } from 'mastodon/features/video';
 import { useAppDispatch, useAppSelector } from 'mastodon/store/typed_functions';
 
 import Footer from './components/footer';
@@ -35,6 +35,10 @@ export const PictureInPicture: React.FC = () => {
     accentColor,
   } = pipState;
 
+  if (!src) {
+    return null;
+  }
+
   let player;
 
   switch (type) {
@@ -42,11 +46,10 @@ export const PictureInPicture: React.FC = () => {
       player = (
         <Video
           src={src}
-          currentTime={currentTime}
-          volume={volume}
-          muted={muted}
-          autoPlay
-          inline
+          startTime={currentTime}
+          startVolume={volume}
+          startMuted={muted}
+          startPlaying
           alwaysVisible
         />
       );
