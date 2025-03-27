@@ -30,7 +30,7 @@ import initialState, { me, owner, singleUserMode, trendsEnabled, trendsAsLanding
 
 import BundleColumnError from './components/bundle_column_error';
 import Header from './components/header';
-import UploadArea from './components/upload_area';
+import { UploadArea } from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
 import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
