@@ -4,7 +4,7 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { useSpring, animated } from '@react-spring/web';
+import { useSpring, animated, config } from '@react-spring/web';
 import { throttle } from 'lodash';
 
 import Forward5Icon from '@/material-icons/400-24px/forward_5-fill.svg?react';
@@ -339,6 +339,30 @@ export const Video: React.FC<{
   }, [setPaused]);
 
   useEffect(() => {
+    let nextFrame: ReturnType<typeof requestAnimationFrame>;
+
+    const updateProgress = () => {
+      nextFrame = requestAnimationFrame(() => {
+        if (videoRef.current) {
+          void api.start({
+            progress: `${(videoRef.current.currentTime / videoRef.current.duration) * 100}%`,
+            immediate: reduceMotion,
+            config: config.stiff,
+          });
+        }
+
+        updateProgress();
+      });
+    };
+
+    updateProgress();
+
+    return () => {
+      cancelAnimationFrame(nextFrame);
+    };
+  }, [api]);
+
+  useEffect(() => {
     if (!videoRef.current) {
       return;
     }
@@ -411,11 +435,7 @@ export const Video: React.FC<{
     }
 
     setCurrentTime(videoRef.current.currentTime);
-    void api.start({
-      progress: `${(videoRef.current.currentTime / videoRef.current.duration) * 100}%`,
-      immediate: reduceMotion,
-    });
-  }, [api]);
+  }, [setCurrentTime]);
 
   const handleVolumeMouseDown = useCallback(
     (e: React.MouseEvent) => {
