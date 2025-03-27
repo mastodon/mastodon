@@ -73,15 +73,30 @@ module Status::ThreadingConcern
     limit += 1 if limit.present?
 
     descendants_with_self = Status.find_by_sql([<<-SQL.squish, id: id, limit: limit, depth: depth])
-      WITH RECURSIVE search_tree(id, path) AS (
-        SELECT id, ARRAY[id]
-        FROM statuses
-        WHERE id = :id
+      WITH RECURSIVE search_tree(id, path, authors) AS (
+        SELECT
+          id, ARRAY[id], ARRAY[account_id]
+        FROM
+          statuses
+        WHERE
+          id = :id
+
       UNION ALL
-        SELECT statuses.id, path || statuses.id
-        FROM search_tree
-        JOIN statuses ON statuses.in_reply_to_id = search_tree.id
-        WHERE COALESCE(array_length(path, 1) < :depth, TRUE) AND NOT statuses.id = ANY(path)
+
+        SELECT
+          statuses.id, path || statuses.id, (CASE
+            WHEN array_length(authors, 1) >= 30 THEN authors
+            WHEN statuses.account_id = ANY(authors) THEN authors
+            ELSE authors || statuses.account_id
+          END)
+        FROM
+          search_tree
+        JOIN
+          statuses ON statuses.in_reply_to_id = search_tree.id
+        WHERE
+          COALESCE(array_length(path, 1) < :depth, TRUE) AND NOT statuses.id = ANY(path)
+          AND NOT EXISTS (SELECT 1 FROM blocks WHERE target_account_id = statuses.account_id AND account_id = any(authors))
+          AND NOT EXISTS (SELECT 1 FROM account_domain_blocks b JOIN accounts a ON a.domain = b.domain WHERE a.id = statuses.account_id AND b.account_id = any(authors))
       )
       SELECT id
       FROM search_tree
