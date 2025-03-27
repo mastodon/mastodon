@@ -1,84 +1,46 @@
 @use 'sass:color';
 
-// Dependent colors
-$black: #000000;
-$white: #ffffff;
+@use '../mastodon/functions' with (
+  $darken-multiplier: 1,
+  $lighten-multiplier: -1
+);
 
-$classic-base-color: hsl(240deg, 16%, 19%);
-$classic-primary-color: hsl(240deg, 29%, 70%);
-$classic-secondary-color: hsl(255deg, 25%, 88%);
-$classic-highlight-color: hsl(240deg, 100%, 69%);
-
-$blurple-600: hsl(252deg, 59%, 51%); // Iris
-$blurple-500: hsl(240deg, 100%, 69%); // Brand purple
-$blurple-300: hsl(237deg, 92%, 75%); // Faded Blue
+$black: #000000; // Black
+$white: #ffffff; // White
+$blurple-500: #6364ff; // Brand purple
 $grey-600: hsl(240deg, 8%, 33%); // Trout
 $grey-100: hsl(240deg, 51%, 90%); // Topaz
 
-// Differences
-$success-green: lighten(hsl(138deg, 32%, 35%), 8%);
+$classic-base-color: hsl(240deg, 16%, 19%);
+$classic-secondary-color: hsl(255deg, 25%, 88%);
+$classic-highlight-color: $blurple-500;
 
-$base-overlay-background: $white !default;
-$valid-value-color: $success-green !default;
+@use '../mastodon/variables' with (
+  $success-green: color.adjust(
+      hsl(138deg, 32%, 35%),
+      $lightness: 8%,
+      $space: hsl
+    ),
+  $base-overlay-background: $white,
 
-$ui-base-color: $classic-secondary-color !default;
-$ui-base-lighter-color: hsl(250deg, 24%, 75%);
-$ui-primary-color: $classic-primary-color !default;
-$ui-secondary-color: $classic-base-color !default;
-$ui-highlight-color: $classic-highlight-color !default;
+  $ui-base-color: $classic-secondary-color,
+  $ui-base-lighter-color: hsl(250deg, 24%, 75%),
+  $ui-secondary-color: $classic-base-color,
 
-$ui-button-secondary-color: $grey-600 !default;
-$ui-button-secondary-border-color: $grey-600 !default;
-$ui-button-secondary-focus-color: $white !default;
+  $ui-button-secondary-color: $grey-600,
+  $ui-button-secondary-border-color: $grey-600,
+  $ui-button-secondary-focus-color: $white,
+  $ui-button-tertiary-color: $blurple-500,
+  $ui-button-tertiary-border-color: $blurple-500,
 
-$ui-button-tertiary-color: $blurple-500 !default;
-$ui-button-tertiary-border-color: $blurple-500 !default;
+  $primary-text-color: $black,
+  $darker-text-color: $classic-base-color,
+  $lighter-text-color: $classic-base-color,
+  $highlight-text-color: $classic-highlight-color,
+  $dark-text-color: hsl(240deg, 16%, 32%),
+  $light-text-color: hsl(240deg, 16%, 32%),
+  $inverted-text-color: $black,
 
-$primary-text-color: $black !default;
-$darker-text-color: $classic-base-color !default;
-$highlight-text-color: $ui-highlight-color !default;
-$dark-text-color: hsl(240deg, 16%, 32%);
-$action-button-color: hsl(240deg, 16%, 45%);
-
-$inverted-text-color: $black !default;
-$lighter-text-color: $classic-base-color !default;
-$light-text-color: hsl(240deg, 16%, 32%);
-
-// Newly added colors
-$account-background-color: $white !default;
-
-// Invert darkened and lightened colors
-@function darken($color, $amount) {
-  @return hsl(
-    hue($color),
-    color.channel($color, 'saturation', $space: hsl),
-    color.channel($color, 'lightness', $space: hsl) + $amount
-  );
-}
-
-@function lighten($color, $amount) {
-  @return hsl(
-    hue($color),
-    color.channel($color, 'saturation', $space: hsl),
-    color.channel($color, 'lightness', $space: hsl) - $amount
-  );
-}
-
-$emojis-requiring-inversion: 'chains';
-
-body {
-  --dropdown-border-color: hsl(240deg, 25%, 88%);
-  --dropdown-background-color: #fff;
-  --modal-border-color: hsl(240deg, 25%, 88%);
-  --modal-background-color: var(--background-color-tint);
-  --background-border-color: hsl(240deg, 25%, 88%);
-  --background-color: #fff;
-  --background-color-tint: rgba(255, 255, 255, 80%);
-  --background-filter: blur(10px);
-  --on-surface-color: #{transparentize($ui-base-color, 0.65)};
-  --rich-text-container-color: rgba(255, 216, 231, 100%);
-  --rich-text-text-color: rgba(114, 47, 83, 100%);
-  --rich-text-decorations-color: rgba(255, 175, 212, 100%);
-  --input-placeholder-color: #{transparentize($dark-text-color, 0.5)};
-  --input-background-color: #{darken($ui-base-color, 10%)};
-}
+  $action-button-color: hsl(240deg, 16%, 45%),
+  $emojis-requiring-inversion: 'chains'
+);
