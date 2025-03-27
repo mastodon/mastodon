@@ -24,8 +24,10 @@ RSpec.describe 'Account notes', :inline_jobs, :js, :streaming do
     # The easiest way is to send ctrl+enter ourselves
     find_field(class: 'account__header__account-note__content').send_keys [:control, :enter]
 
-    expect(page)
-      .to have_css('.account__header__account-note .inline-alert', text: 'SAVED')
+    within('.account__header__account-note .inline-alert') do
+      expect(page)
+        .to have_content('SAVED')
+    end
 
     expect(page)
       .to have_css('.account__header__account-note__content', text: note_text)
