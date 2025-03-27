@@ -7,11 +7,14 @@ import classNames from 'classnames';
 import { useSpring, animated } from '@react-spring/web';
 import { throttle } from 'lodash';
 
+import Forward5Icon from '@/material-icons/400-24px/forward_5-fill.svg?react';
 import FullscreenIcon from '@/material-icons/400-24px/fullscreen.svg?react';
 import FullscreenExitIcon from '@/material-icons/400-24px/fullscreen_exit.svg?react';
 import PauseIcon from '@/material-icons/400-24px/pause-fill.svg?react';
 import PlayArrowIcon from '@/material-icons/400-24px/play_arrow-fill.svg?react';
 import RectangleIcon from '@/material-icons/400-24px/rectangle.svg?react';
+import Replay5Icon from '@/material-icons/400-24px/replay_5-fill.svg?react';
+import VolumeDownIcon from '@/material-icons/400-24px/volume_down-fill.svg?react';
 import VolumeOffIcon from '@/material-icons/400-24px/volume_off-fill.svg?react';
 import VolumeUpIcon from '@/material-icons/400-24px/volume_up-fill.svg?react';
 import { Blurhash } from 'mastodon/components/blurhash';
@@ -27,11 +30,14 @@ import {
 import { displayMedia, useBlurhash } from 'mastodon/initial_state';
 import { playerSettings } from 'mastodon/settings';
 
+import { HotkeyIndicator } from './components/hotkey_indicator';
+import type { HotkeyEvent } from './components/hotkey_indicator';
+
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
   pause: { id: 'video.pause', defaultMessage: 'Pause' },
-  mute: { id: 'video.mute', defaultMessage: 'Mute sound' },
-  unmute: { id: 'video.unmute', defaultMessage: 'Unmute sound' },
+  mute: { id: 'video.mute', defaultMessage: 'Mute' },
+  unmute: { id: 'video.unmute', defaultMessage: 'Unmute' },
   hide: { id: 'video.hide', defaultMessage: 'Hide video' },
   expand: { id: 'video.expand', defaultMessage: 'Expand video' },
   close: { id: 'video.close', defaultMessage: 'Close video' },
@@ -40,6 +46,10 @@ const messages = defineMessages({
     id: 'video.exit_fullscreen',
     defaultMessage: 'Exit full screen',
   },
+  volumeUp: { id: 'video.volume_up', defaultMessage: 'Volume up' },
+  volumeDown: { id: 'video.volume_down', defaultMessage: 'Volume down' },
+  skipForward: { id: 'video.skip_forward', defaultMessage: 'Skip forward' },
+  skipBackward: { id: 'video.skip_backward', defaultMessage: 'Skip backward' },
 });
 
 const DOUBLE_CLICK_THRESHOLD = 250;
@@ -135,6 +145,15 @@ const restoreVolume = (video: HTMLVideoElement) => {
   video.muted = muted;
 };
 
+let hotkeyEventId = 0;
+
+const registerHotkeyEvent = (
+  setHotkeyEvents: React.Dispatch<React.SetStateAction<HotkeyEvent[]>>,
+  event: Omit<HotkeyEvent, 'key'>,
+) => {
+  setHotkeyEvents(() => [{ key: hotkeyEventId++, ...event }]);
+};
+
 export const Video: React.FC<{
   preview?: string;
   frameRate?: string;
@@ -202,6 +221,7 @@ export const Video: React.FC<{
   const [hovered, setHovered] = useState(false);
   const [muted, setMuted] = useState(false);
   const [revealed, setRevealed] = useState(false);
+  const [hotkeyEvents, setHotkeyEvents] = useState<HotkeyEvent[]>([]);
 
   const playerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -483,10 +503,14 @@ export const Video: React.FC<{
       if (e.key === ' ') {
         e.preventDefault();
         e.stopPropagation();
+        registerHotkeyEvent(setHotkeyEvents, {
+          icon: videoRef.current?.paused ? PlayArrowIcon : PauseIcon,
+          label: videoRef.current?.paused ? messages.play : messages.pause,
+        });
         togglePlay();
       }
     },
-    [togglePlay],
+    [setHotkeyEvents, togglePlay],
   );
 
   const handleKeyDown = useCallback(
@@ -498,29 +522,51 @@ export const Video: React.FC<{
         case ' ':
           e.preventDefault();
           e.stopPropagation();
+          registerHotkeyEvent(setHotkeyEvents, {
+            icon: videoRef.current?.paused ? PlayArrowIcon : PauseIcon,
+            label: videoRef.current?.paused ? messages.play : messages.pause,
+          });
           togglePlay();
           break;
         case 'm':
           e.preventDefault();
           e.stopPropagation();
+          registerHotkeyEvent(setHotkeyEvents, {
+            icon: videoRef.current?.muted ? VolumeUpIcon : VolumeOffIcon,
+            label: videoRef.current?.muted ? messages.unmute : messages.mute,
+          });
           toggleMute();
           break;
         case 'f':
           e.preventDefault();
           e.stopPropagation();
+          registerHotkeyEvent(setHotkeyEvents, {
+            icon: isFullscreen() ? FullscreenExitIcon : FullscreenIcon,
+            label: isFullscreen()
+              ? messages.exit_fullscreen
+              : messages.fullscreen,
+          });
           toggleFullscreen();
           break;
         case 'j':
         case 'ArrowLeft':
           e.preventDefault();
           e.stopPropagation();
-          seekBy(-10);
+          registerHotkeyEvent(setHotkeyEvents, {
+            icon: Replay5Icon,
+            label: messages.skipBackward,
+          });
+          seekBy(-5);
           break;
         case 'l':
         case 'ArrowRight':
           e.preventDefault();
           e.stopPropagation();
-          seekBy(10);
+          registerHotkeyEvent(setHotkeyEvents, {
+            icon: Forward5Icon,
+            label: messages.skipForward,
+          });
+          seekBy(5);
           break;
         case ',':
           e.preventDefault();
@@ -535,11 +581,19 @@ export const Video: React.FC<{
         case 'ArrowUp':
           e.preventDefault();
           e.stopPropagation();
+          registerHotkeyEvent(setHotkeyEvents, {
+            icon: VolumeUpIcon,
+            label: messages.volumeUp,
+          });
           updateVolumeBy(0.15);
           break;
         case 'ArrowDown':
           e.preventDefault();
           e.stopPropagation();
+          registerHotkeyEvent(setHotkeyEvents, {
+            icon: VolumeDownIcon,
+            label: messages.volumeDown,
+          });
           updateVolumeBy(-0.15);
           break;
       }
@@ -552,11 +606,26 @@ export const Video: React.FC<{
         e.stopPropagation();
 
         if (e.key === 'Escape') {
+          setHotkeyEvents((events) => [
+            ...events,
+            {
+              key: hotkeyEventId++,
+              icon: FullscreenExitIcon,
+              label: messages.exit_fullscreen,
+            },
+          ]);
           exitFullscreen();
         }
       }
     },
-    [togglePlay, toggleFullscreen, toggleMute, fullscreen, frameRate],
+    [
+      setHotkeyEvents,
+      togglePlay,
+      toggleFullscreen,
+      toggleMute,
+      fullscreen,
+      frameRate,
+    ],
   );
 
   const handleMouseEnter = useCallback(() => {
@@ -654,6 +723,13 @@ export const Video: React.FC<{
     onCloseVideo?.();
   }, [onCloseVideo]);
 
+  const handleHotkeyEventDismiss = useCallback(
+    ({ key }: HotkeyEvent) => {
+      setHotkeyEvents((events) => events.filter((e) => e.key !== key));
+    },
+    [setHotkeyEvents],
+  );
+
   const progress = Math.min((currentTime / duration) * 100, 100);
   const effectivelyMuted = muted || volume === 0;
 
@@ -718,6 +794,11 @@ export const Video: React.FC<{
             style={{ width: '100%' }}
           />
         )}
+
+        <HotkeyIndicator
+          events={hotkeyEvents}
+          onDismiss={handleHotkeyEventDismiss}
+        />
 
         <SpoilerButton
           hidden={revealed || editable}

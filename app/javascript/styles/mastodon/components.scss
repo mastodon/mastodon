@@ -7359,6 +7359,28 @@ a.status-card {
     }
   }
 
+  &__hotkey-indicator {
+    position: absolute;
+    top: 50%;
+    inset-inline-start: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba($base-shadow-color, 0.45);
+    backdrop-filter: var(--background-filter);
+    color: $white;
+    border-radius: 8px;
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &__label {
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
+
   &.detailed,
   &.fullscreen {
     .video-player__buttons {
