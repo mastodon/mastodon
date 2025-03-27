@@ -10,7 +10,7 @@ RSpec.describe 'ActivityPub Inboxes' do
       let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub) }
 
       context 'without a named account' do
-        subject { post inbox_path, headers: { 'RAW_POST_DATA' => '{}' }, sign_with: remote_account }
+        subject { post inbox_path, params: {}.to_json, sign_with: remote_account }
 
         it 'returns http accepted' do
           subject
@@ -21,7 +21,7 @@ RSpec.describe 'ActivityPub Inboxes' do
       end
 
       context 'with a specific account' do
-        subject { post account_inbox_path(account_username: account.username), headers: { 'RAW_POST_DATA' => '{}' }, sign_with: remote_account }
+        subject { post account_inbox_path(account_username: account.username), params: {}.to_json, sign_with: remote_account }
 
         let(:account) { Fabricate(:account) }
 
@@ -53,7 +53,7 @@ RSpec.describe 'ActivityPub Inboxes' do
     end
 
     context 'with Collection-Synchronization header' do
-      subject { post inbox_path, headers: { 'RAW_POST_DATA' => '{}', 'Collection-Synchronization' => synchronization_header }, sign_with: remote_account }
+      subject { post inbox_path, params: {}.to_json, headers: { 'Collection-Synchronization' => synchronization_header }, sign_with: remote_account }
 
       let(:remote_account) { Fabricate(:account, followers_url: 'https://example.com/followers', domain: 'example.com', uri: 'https://example.com/actor', protocol: :activitypub) }
       let(:synchronization_collection) { remote_account.followers_url }
@@ -135,7 +135,7 @@ RSpec.describe 'ActivityPub Inboxes' do
     end
 
     context 'without signature' do
-      subject { post inbox_path, headers: { 'RAW_POST_DATA' => '{}' } }
+      subject { post inbox_path, params: {}.to_json }
 
       it 'returns http not authorized' do
         subject

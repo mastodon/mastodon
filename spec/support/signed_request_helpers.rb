@@ -25,7 +25,7 @@ module SignedRequestHelpers
     headers ||= {}
     headers['Date'] = Time.now.utc.httpdate
     headers['Host'] = Rails.configuration.x.local_domain
-    headers['Digest'] = "SHA-256=#{Digest::SHA256.base64digest(headers['RAW_POST_DATA'])}"
+    headers['Digest'] = "SHA-256=#{Digest::SHA256.base64digest(args[:params].to_s)}"
 
     signed_headers = headers.merge('(request-target)' => "post #{path}").slice('(request-target)', 'Host', 'Date', 'Digest')
 
