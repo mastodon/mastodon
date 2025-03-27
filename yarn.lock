@@ -2755,7 +2755,7 @@ __metadata:
     "@testing-library/jest-dom": "npm:^6.0.0"
     "@testing-library/react": "npm:^16.0.0"
     "@types/babel__core": "npm:^7.20.1"
-    "@types/emoji-mart": "npm:^3.0.9"
+    "@types/emoji-mart": "npm:^5.0.0"
     "@types/escape-html": "npm:^1.0.2"
     "@types/hoist-non-react-statics": "npm:^3.3.1"
     "@types/http-link-header": "npm:^1.0.3"
@@ -3714,12 +3714,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/emoji-mart@npm:^3.0.9":
-  version: 3.0.14
-  resolution: "@types/emoji-mart@npm:3.0.14"
+"@types/emoji-mart@npm:^5.0.0":
+  version: 5.3.0
+  resolution: "@types/emoji-mart@npm:5.3.0"
   dependencies:
-    "@types/react": "npm:*"
-  checksum: 10c0/23ded65fce9b3355fbe903d3971cb67cc827a5d587464bb7e3f349615527ef4a9197b3bb59fa84c4391d1b901e7f200f686a7fc83f649ae2a51a0fb948cbadfb
+    emoji-mart: "npm:*"
+  checksum: 10c0/751ba65bc9bf0f4a372bbfef22979db4c667d225fcbb4126a667d8b4130e7d2b5ed3b724b1abb0bb784d00a226bc04a50637c4bf102cec680f31b542bd4e5b8e
   languageName: node
   linkType: hard
 
@@ -7633,6 +7633,13 @@ __metadata:
   version: 0.13.1
   resolution: "emittery@npm:0.13.1"
   checksum: 10c0/1573d0ae29ab34661b6c63251ff8f5facd24ccf6a823f19417ae8ba8c88ea450325788c67f16c99edec8de4b52ce93a10fe441ece389fd156e88ee7dab9bfa35
+  languageName: node
+  linkType: hard
+
+"emoji-mart@npm:*":
+  version: 5.6.0
+  resolution: "emoji-mart@npm:5.6.0"
+  checksum: 10c0/23e68ab10984f101b696d8f8e103e553ffa8e4d644e9a315190a9657903f71b833db09aac51b05de20f33bb9eef5bc1425eecdb2437042b25aff2dad0231f029
   languageName: node
   linkType: hard
 
