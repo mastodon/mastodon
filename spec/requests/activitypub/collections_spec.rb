@@ -2,22 +2,19 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::CollectionsController do
+RSpec.describe 'ActivityPub Collections' do
   let!(:account) { Fabricate(:account) }
   let!(:private_pinned) { Fabricate(:status, account: account, text: 'secret private stuff', visibility: :private) }
   let(:remote_account) { nil }
 
   before do
-    allow(controller).to receive(:signed_request_actor).and_return(remote_account)
-
-    Fabricate(:status_pin, account: account)
-    Fabricate(:status_pin, account: account)
+    Fabricate.times(2, :status_pin, account: account)
     Fabricate(:status_pin, account: account, status: private_pinned)
     Fabricate(:status, account: account, visibility: :private)
   end
 
   describe 'GET #show' do
-    subject(:response) { get :show, params: { id: id, account_username: account.username } }
+    subject { get account_collection_path(id: id, account_username: account.username), headers: nil, sign_with: remote_account }
 
     context 'when id is "featured"' do
       let(:id) { 'featured' }
@@ -26,10 +23,13 @@ RSpec.describe ActivityPub::CollectionsController do
         let(:remote_account) { nil }
 
         it 'returns http success and correct media type and correct items' do
+          subject
+
           expect(response)
             .to have_http_status(200)
             .and have_cacheable_headers
-          expect(response.media_type).to eq 'application/activity+json'
+          expect(response.media_type)
+            .to eq 'application/activity+json'
 
           expect(response.parsed_body[:orderedItems])
             .to be_an(Array)
@@ -45,17 +45,21 @@ RSpec.describe ActivityPub::CollectionsController do
           end
 
           it 'returns http gone' do
-            expect(response).to have_http_status(410)
+            subject
+
+            expect(response)
+              .to have_http_status(410)
           end
         end
 
         context 'when account is temporarily suspended' do
-          before do
-            account.suspend!
-          end
+          before { account.suspend! }
 
           it 'returns http forbidden' do
-            expect(response).to have_http_status(403)
+            subject
+
+            expect(response)
+              .to have_http_status(403)
           end
         end
       end
@@ -65,11 +69,14 @@ RSpec.describe ActivityPub::CollectionsController do
 
         context 'when getting a featured resource' do
           it 'returns http success and correct media type and expected items' do
+            subject
+
             expect(response)
               .to have_http_status(200)
               .and have_cacheable_headers
 
-            expect(response.media_type).to eq 'application/activity+json'
+            expect(response.media_type)
+              .to eq 'application/activity+json'
 
             expect(response.parsed_body[:orderedItems])
               .to be_an(Array)
@@ -80,39 +87,45 @@ RSpec.describe ActivityPub::CollectionsController do
         end
 
         context 'with authorized fetch mode' do
-          before do
-            allow(controller).to receive(:authorized_fetch_mode?).and_return(true)
-          end
+          before { Setting.authorized_fetch = true }
 
           context 'when signed request account is blocked' do
-            before do
-              account.block!(remote_account)
-            end
+            before { account.block!(remote_account) }
 
             it 'returns http success and correct media type and cache headers and empty items' do
-              expect(response).to have_http_status(200)
-              expect(response.media_type).to eq 'application/activity+json'
-              expect(response.headers['Cache-Control']).to include 'private'
+              subject
 
-              expect(response.parsed_body[:orderedItems])
-                .to be_an(Array)
-                .and be_empty
+              expect(response)
+                .to have_http_status(200)
+              expect(response.media_type)
+                .to eq('application/activity+json')
+              expect(response.headers['Cache-Control'])
+                .to include('private')
+
+              expect(response.parsed_body)
+                .to include(
+                  orderedItems: be_an(Array).and(be_empty)
+                )
             end
           end
 
           context 'when signed request account is domain blocked' do
-            before do
-              account.block_domain!(remote_account.domain)
-            end
+            before { account.block_domain!(remote_account.domain) }
 
             it 'returns http success and correct media type and cache headers and empty items' do
-              expect(response).to have_http_status(200)
-              expect(response.media_type).to eq 'application/activity+json'
-              expect(response.headers['Cache-Control']).to include 'private'
+              subject
 
-              expect(response.parsed_body[:orderedItems])
-                .to be_an(Array)
-                .and be_empty
+              expect(response)
+                .to have_http_status(200)
+              expect(response.media_type)
+                .to eq('application/activity+json')
+              expect(response.headers['Cache-Control'])
+                .to include('private')
+
+              expect(response.parsed_body)
+                .to include(
+                  orderedItems: be_an(Array).and(be_empty)
+                )
             end
           end
         end
@@ -123,7 +136,10 @@ RSpec.describe ActivityPub::CollectionsController do
       let(:id) { 'hoge' }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(404)
+        subject
+
+        expect(response)
+          .to have_http_status(404)
       end
     end
   end
