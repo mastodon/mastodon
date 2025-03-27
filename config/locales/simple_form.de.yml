@@ -75,6 +75,7 @@ de:
       filters:
         action: Gib an, welche Aktion ausgeführt werden soll, wenn ein Beitrag dem Filter entspricht
         actions:
+          blur: Medien mit einer Warnung ausblenden, ohne den Text selbst auszublenden
           hide: Den gefilterten Beitrag vollständig ausblenden, als hätte er nie existiert
           warn: Den gefilterten Beitrag hinter einer Warnung, die den Filtertitel beinhaltet, ausblenden
       form_admin_settings:
@@ -260,8 +261,9 @@ de:
         name: Hashtag
       filters:
         actions:
+          blur: Medien mit einer Warnung ausblenden
           hide: Vollständig ausblenden
-          warn: Mit einer Inhaltswarnung ausblenden
+          warn: Mit einer Warnung ausblenden
       form_admin_settings:
         activity_api_enabled: Aggregierte Nutzungsdaten über die API veröffentlichen
         app_icon: App-Symbol

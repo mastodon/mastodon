@@ -55,6 +55,8 @@ ko:
               too_soon: 너무 이릅니다. %{date} 이후로 지정해야 합니다
         user:
           attributes:
+            date_of_birth:
+              below_limit: 나이 제한보다 아래입니다
             email:
               blocked: 허용되지 않은 이메일 제공자입니다
               unreachable: 존재하지 않는 것 같습니다

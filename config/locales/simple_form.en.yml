@@ -75,6 +75,7 @@ en:
       filters:
         action: Chose which action to perform when a post matches the filter
         actions:
+          blur: Hide media behind a warning, without hiding the text itself
           hide: Completely hide the filtered content, behaving as if it did not exist
           warn: Hide the filtered content behind a warning mentioning the filter's title
       form_admin_settings:
@@ -260,6 +261,7 @@ en:
         name: Hashtag
       filters:
         actions:
+          blur: Hide media with a warning
           hide: Hide completely
           warn: Hide with a warning
       form_admin_settings:

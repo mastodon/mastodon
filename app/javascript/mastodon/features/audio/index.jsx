@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -16,6 +16,7 @@ import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?reac
 import VolumeOffIcon from '@/material-icons/400-24px/volume_off-fill.svg?react';
 import VolumeUpIcon from '@/material-icons/400-24px/volume_up-fill.svg?react';
 import { Icon }  from 'mastodon/components/icon';
+import { SpoilerButton } from 'mastodon/components/spoiler_button';
 import { formatTime, getPointerPosition, fileNameFromURL } from 'mastodon/features/video';
 
 import { Blurhash } from '../../components/blurhash';
@@ -61,6 +62,7 @@ class Audio extends PureComponent {
     volume: PropTypes.number,
     muted: PropTypes.bool,
     deployPictureInPicture: PropTypes.func,
+    matchedFilters: PropTypes.arrayOf(PropTypes.string),
   };
 
   state = {
@@ -471,18 +473,10 @@ class Audio extends PureComponent {
   };
 
   render () {
-    const { src, intl, alt, lang, editable, autoPlay, sensitive, blurhash } = this.props;
+    const { src, intl, alt, lang, editable, autoPlay, sensitive, blurhash, matchedFilters } = this.props;
     const { paused, volume, currentTime, duration, buffer, dragging, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const muted = this.state.muted || volume === 0;
-
-    let warning;
-
-    if (sensitive) {
-      warning = <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />;
-    } else {
-      warning = <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />;
-    }
 
     return (
       <div className={classNames('audio-player', { editable, inactive: !revealed })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), aspectRatio: '16 / 9' }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} tabIndex={0} onKeyDown={this.handleKeyDown}>
@@ -521,14 +515,7 @@ class Audio extends PureComponent {
           lang={lang}
         />
 
-        <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed || editable })}>
-          <button type='button' className='spoiler-button__overlay' onClick={this.toggleReveal}>
-            <span className='spoiler-button__overlay__label'>
-              {warning}
-              <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
-            </span>
-          </button>
-        </div>
+        <SpoilerButton hidden={revealed || editable} sensitive={sensitive} onClick={this.toggleReveal} matchedFilters={matchedFilters} />
 
         {(revealed || editable) && <img
           src={this.props.poster}

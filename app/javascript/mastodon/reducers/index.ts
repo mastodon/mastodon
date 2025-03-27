@@ -5,7 +5,7 @@ import { combineReducers } from 'redux-immutable';
 
 import { accountsReducer } from './accounts';
 import accounts_map from './accounts_map';
-import alerts from './alerts';
+import { alertsReducer } from './alerts';
 import announcements from './announcements';
 import { composeReducer } from './compose';
 import contexts from './contexts';
@@ -45,7 +45,7 @@ const reducers = {
   dropdownMenu: dropdownMenuReducer,
   timelines,
   meta,
-  alerts,
+  alerts: alertsReducer,
   loadingBar: loadingBarReducer,
   modal: modalReducer,
   user_lists,

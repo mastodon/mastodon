@@ -15,6 +15,8 @@ RSpec.describe 'API V1 Trends Tags' do
           .and not_have_http_link_header
         expect(response.content_type)
           .to start_with('application/json')
+        expect(response.headers['Deprecation'])
+          .to be_nil
       end
     end
 
@@ -31,6 +33,8 @@ RSpec.describe 'API V1 Trends Tags' do
           .and have_http_link_header(api_v1_trends_tags_url(offset: 2)).for(rel: 'next')
         expect(response.content_type)
           .to start_with('application/json')
+        expect(response.headers['Deprecation'])
+          .to be_nil
       end
 
       def prepare_trends
