@@ -312,15 +312,23 @@ export const Video: React.FC<{
   const handleClick = useCallback(() => {
     if (!doubleClickTimeoutRef.current) {
       doubleClickTimeoutRef.current = setTimeout(() => {
+        registerHotkeyEvent(setHotkeyEvents, {
+          icon: videoRef.current?.paused ? PlayArrowIcon : PauseIcon,
+          label: videoRef.current?.paused ? messages.play : messages.pause,
+        });
         togglePlay();
         doubleClickTimeoutRef.current = null;
       }, DOUBLE_CLICK_THRESHOLD);
     } else {
       clearTimeout(doubleClickTimeoutRef.current);
       doubleClickTimeoutRef.current = null;
+      registerHotkeyEvent(setHotkeyEvents, {
+        icon: isFullscreen() ? FullscreenExitIcon : FullscreenIcon,
+        label: isFullscreen() ? messages.exit_fullscreen : messages.fullscreen,
+      });
       toggleFullscreen();
     }
-  }, [togglePlay, toggleFullscreen]);
+  }, [setHotkeyEvents, togglePlay, toggleFullscreen]);
 
   const handlePlay = useCallback(() => {
     setPaused(false);
