@@ -7,7 +7,7 @@ import { fromJS } from 'immutable';
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import MediaGallery from 'mastodon/components/media_gallery';
 import ModalRoot from 'mastodon/components/modal_root';
-import Poll from 'mastodon/components/poll';
+import { Poll } from 'mastodon/components/poll';
 import Audio from 'mastodon/features/audio';
 import Card from 'mastodon/features/status/components/card';
 import MediaModal from 'mastodon/features/ui/components/media_modal';
