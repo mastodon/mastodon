@@ -37,7 +37,11 @@ class AccountReachFinder
 
   def oldest_status_id
     Mastodon::Snowflake
-      .id_at(STATUS_SINCE.ago, with_random: false)
+      .id_at(oldest_status_date, with_random: false)
+  end
+
+  def oldest_status_date
+    @account.suspended? && @account.suspension_origin_local? ? @account.suspended_at - STATUS_SINCE : STATUS_SINCE.ago
   end
 
   def recent_statuses
