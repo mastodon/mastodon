@@ -145,7 +145,7 @@ lv:
         only_password: Tikai parole
         password_and_2fa: Parole un 2FA
       sensitive: Uzspiest atzīmēšanu kā jūtīgu
-      sensitized: Atzīmēts kā jūtīgu
+      sensitized: Atzīmēts kā jūtīgs
       shared_inbox_url: Koplietotās iesūtnes URL
       show:
         created_reports: Sastādītie ziņojumi
@@ -282,12 +282,12 @@ lv:
         resend_user_html: "%{name} atkārtoti nosūtīja %{target} apstiprinājuma e-pasta ziņojumu"
         reset_password_user_html: "%{name} atiestatīja paroli lietotājam %{target}"
         resolve_report_html: "%{name} atrisināja ziņojumu %{target}"
-        sensitive_account_html: "%{name} atzīmēja %{target} multividi kā sensitīvu"
+        sensitive_account_html: "%{name} atzīmēja %{target} informācijas nesēju kā jūtīgu"
         silence_account_html: "%{name} ierobežoja %{target} kontu"
         suspend_account_html: "%{name} apturēja %{target} kontu"
         unassigned_report_html: "%{name} nepiešķīra ziņojumu %{target}"
         unblock_email_account_html: "%{name} atbloķēja %{target} e-pasta adresi"
-        unsensitive_account_html: "%{name} atmarķēja %{target} multividi kā sensitīvu"
+        unsensitive_account_html: "%{name} atcēla %{target} informācijas nesēja atzīmēšanu kā jūtīgu"
         unsilence_account_html: "%{name} atcēla ierobežojumu %{target} kontam"
         unsuspend_account_html: "%{name} neapturēja %{target} kontu"
         update_announcement_html: "%{name} atjaunināja paziņojumu %{target}"
@@ -429,7 +429,7 @@ lv:
       obfuscate: Apslēpt domēna vārdu
       obfuscate_hint: Daļēji apslēpt domēna nosaukumu sarakstā, ja ir iespējota domēna ierobežojumu saraksta reklamēšana
       private_comment: Privāts komentārs
-      private_comment_hint: Atstāj komentāru par šo domēna ierobežojumu moderatoru iekšējai lietošanai.
+      private_comment_hint: Atstāt piebildi par šo domēna ierobežojumu satura pārraudzītāju iekšējai lietošanai.
       public_comment: Publisks komentārs
       public_comment_hint: Piebilde par šo domēna ierobežojumu vispārējai sabiedrībai, ja ir iespējota domēnu ierobežojumu saraksta reklamēšana.
       reject_media: Noraidīt multivides failus
@@ -610,7 +610,7 @@ lv:
       action_taken_by: Veiktā darbība
       actions:
         delete_description_html: Raksti, par kurām ziņots, tiks dzēsti, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākos pārkāpumus saistībā ar to pašu kontu.
-        mark_as_sensitive_description_html: Multividesu faili ziņojumos, par kuriem ziņots, tiks atzīmēti kā sensitīvi, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākus pārkāpumus saistībā ar to pašu kontu.
+        mark_as_sensitive_description_html: Informācijas nesēji ierakstos, par kuriem ziņots, tiks atzīmēti kā jūtīgi, un tiks iegrāmatots brīdinājums, lai palīdzētu ziņot par turpmākiem tā paša konta pārkāpumiem.
         other_description_html: Skatīt vairāk iespēju kontrolēt konta uzvedību un pielāgot saziņu ar paziņoto kontu.
         resolve_description_html: Pret norādīto kontu netiks veiktas nekādas darbības, netiks reģistrēts brīdinājums, un ziņojums tiks slēgts.
         silence_description_html: Konts būs redzams tikai tiem, kas tam jau seko vai meklē to manuāli, ievērojami ierobežojot tā sasniedzamību. To vienmēr var atgriezt. Tiek aizvērti visi šī konta pārskati.
@@ -637,7 +637,7 @@ lv:
       forwarded_replies_explanation: Šis ziņojums ir no attāla lietotāja un par attālu saturu. Tas tika pārvirzīts šeit, jo saturs, par kuru tika ziņots, ir atbilde vienam no šī servera lietotājiem.
       forwarded_to: Pārsūtīti %{domain}
       mark_as_resolved: Atzīmēt kā atrisinātu
-      mark_as_sensitive: Atzīmēt kā sensitīvu
+      mark_as_sensitive: Atzīmēt kā jūtīgu
       mark_as_unresolved: Atzīmēt kā neatrisinātu
       no_one_assigned: Neviena
       notes:
@@ -647,7 +647,7 @@ lv:
         delete: Dzēst
         placeholder: Jāapraksta veiktās darbības vai jebkuri citi saistītie atjauninājumi...
         title: Piezīmes
-      notes_description_html: Skati un atstāj piezīmes citiem moderatoriem un sev nākotnei
+      notes_description_html: Apskatīt un atstāt piezīmes citiem satura pārraudzītājiem un sev nākotnei
       processed_msg: 'Pārskats #%{id} veiksmīgi apstrādāts'
       quick_actions_description_html: 'Veic ātro darbību vai ritini uz leju, lai skatītu saturu, par kuru ziņots:'
       remote_user_placeholder: attālais lietotājs no %{instance}
@@ -665,12 +665,12 @@ lv:
       summary:
         action_preambles:
           delete_html: 'Jūs gatavojaties <strong>noņemt</strong> dažas no lietotāja <strong>@%{acct}</strong> ziņām. Tas:'
-          mark_as_sensitive_html: 'Jūs gatavojaties <strong>atzīmēt</strong> dažas no lietotāja <strong>@%{acct}</strong> ziņām kā <strong>sensitīvas</strong>. Tas:'
+          mark_as_sensitive_html: 'Tu gatavojies <strong>atzīmēt</strong> dažus no lietotāja <strong>@%{acct}</strong> ierakstiem kā <strong>jūtīgus</strong>. Tas:'
           silence_html: 'Jūs gatavojaties <strong>ierobežot</strong> <strong>@%{acct}</strong> kontu. Tas:'
           suspend_html: 'Jūs gatavojaties <strong>apturēt</strong> <strong>@%{acct}</strong> kontu. Tas:'
         actions:
           delete_html: Noņemt aizskarošās ziņas
-          mark_as_sensitive_html: Atzīmēt aizskarošo ziņu multivides saturu kā sensitīvu
+          mark_as_sensitive_html: Atzīmēt aizskarošo ierakstu informācijas nesējus kā jūtīgus
           silence_html: Ievērojami ierobežo <strong>@%{acct}</strong> sasniedzamību, padarot viņa profilu un saturu redzamu tikai cilvēkiem, kas jau seko tam vai pašrocīgi uzmeklē profilu
           suspend_html: Apturēt <strong>@%{acct}</strong>, padarot viņu profilu un saturu nepieejamu un neiespējamu mijiedarbību ar
         close_report: 'Atzīmēt ziņojumu #%{id} kā atrisinātu'
@@ -854,9 +854,9 @@ lv:
       actions:
         delete_statuses: "%{name} izdzēsa %{target} publikācijas"
         disable: "%{name} iesaldēja %{target} kontu"
-        mark_statuses_as_sensitive: "%{name} atzīmēja %{target} ziņu kā sensitīvu"
+        mark_statuses_as_sensitive: "%{name} atzīmēja %{target} ierakstu kā jūtīgu"
         none: "%{name} nosūtīja brīdinājumu %{target}"
-        sensitive: "%{name} atzīmēja %{target} kontu kā sensitīvu"
+        sensitive: "%{name} atzīmēja %{target} kontu kā jūtīgu"
         silence: "%{name} ierobežoja %{target} kontu"
         suspend: "%{name} apturēja %{target} kontu"
       appeal_approved: Pārsūdzēts
@@ -1048,13 +1048,15 @@ lv:
       title: Tīmekļa āķi
       webhook: Tīmekļa āķis
   admin_mailer:
+    auto_close_registrations:
+      body: Nesenu satura pārraudzības darbību trūkuma dēļ reģistrācija %{instance} ir automātiski pārslēgta nepieciešamība pēc pašrocīgas izskatīšanas, lai novērstu %{instance} izmantošana kā platformu iespējami sliktiem dalībniekiem. Jebkurā brīdī var ieslēgt atpakaļ atvērtu reģistrēšanos.
     new_appeal:
       actions:
         delete_statuses: lai izdzēstu viņu ierakstus
         disable: lai iesaldētu viņu kontu
-        mark_statuses_as_sensitive: lai atzīmētu viņu ziņas kā sensitīvas
+        mark_statuses_as_sensitive: lai atzīmētu viņu ierakstus kā jūtīgus
         none: brīdinājums
-        sensitive: lai atzīmētu viņu kontu kā sensitīvu
+        sensitive: lai atzīmētu viņu kontu kā jūtīgu
         silence: lai ierobežotu viņu kontu
         suspend: lai apturētu viņu kontu
       body: "%{target} iebilst %{action_taken_by} satura pārraudzības lēmumam no %{date}, kas bija %{type}. Viņi rakstīja:"
@@ -1099,7 +1101,7 @@ lv:
       body: Mastodon ir tulkojuši brīvprātīgie.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Ikviens var piedalīties.
-    sensitive_content: Sensitīvs saturs
+    sensitive_content: Jūtīgs saturs
   application_mailer:
     notification_preferences: Mainīt e-pasta uztādījumus
     salutation: "%{name},"
@@ -1166,8 +1168,8 @@ lv:
       accept: Pieņemt
       back: Atpakaļ
       invited_by: 'Tu vari pievienoties %{domain}, pateicoties uzaicinājumam, ko saņēmi no:'
-      preamble: Tos iestata un ievieš %{domain} moderatori.
-      preamble_invited: Pirms turpināt, lūdzu, apsver galvenos noteikumus, ko noteikuši %{domain} moderatori.
+      preamble: Tos iestata un ievieš %{domain} satura pārraudzītāji.
+      preamble_invited: Pirms turpināt, lūgums apsvērt pamatnoteikumus, kurus norādījuši %{domain} satura pārraudzītāji.
       title: Daži pamatnoteikumi.
       title_invited: Tu esi uzaicināts.
     security: Drošība
@@ -1181,7 +1183,7 @@ lv:
       preamble_html: Jāpiesakās ar saviem <strong>%{domain}</strong> piekļuves datiem. Ja konts tiek mitināts citā serverī, šeit nevarēs pieteikties.
       title: Pieteikties %{domain}
     sign_up:
-      manual_review: Reģistrācijas domēnā %{domain} manuāli pārbauda mūsu moderatori. Lai palīdzētu mums apstrādāt tavu reģistrāciju, uzraksti mazliet par sevi un to, kāpēc vēlies kontu %{domain}.
+      manual_review: Reģistrāciju %{domain} pašrocīgi izskata mūsu satura pārraudzītāji. Lai palīdzētu mums apstrādāt Tavu reģistrāciju, uzraksti mazliet par sevi un to, kāpēc vēlies kontu %{domain}!
       title: Atļauj tevi iestatīt %{domain}.
     status:
       account_status: Konta statuss
@@ -1263,9 +1265,9 @@ lv:
       title_actions:
         delete_statuses: Ziņas noņemšana
         disable: Konta iesaldēšana
-        mark_statuses_as_sensitive: Ziņu atzīmēšana kā sensitīvas
+        mark_statuses_as_sensitive: Ierakstu atzīmēšana kā jūtīgus
         none: Brīdinājums
-        sensitive: Konta atzīmēšana kā sensitīvs
+        sensitive: Konta atzīmēšana kā jūtīgu
         silence: Konta ierobežošana
         suspend: Konta apturēšana
       your_appeal_approved: Jūsu apelācija ir apstiprināta
@@ -1730,6 +1732,7 @@ lv:
       user_domain_block: Jūs bloķējāt %{target_name}
     lost_followers: Zaudētie sekotāji
     lost_follows: Zaudētie sekojumi
+    preamble: Tu vari zaudēt sekojamos un sekotājus, kad liedz domēnu vai kad satura pārraudzītāji izlemj apturēt attālu serveri. Kad t as notiek, būs iespējams lejupielādēt sarakstus ar pārtrauktajām saiknēm, kurus tad var izpētīt un, iespējams, ievietot citā serverī.
     type: Notikums
   statuses:
     attached:
@@ -1807,7 +1810,7 @@ lv:
     min_reblogs: Saglabāt ziņas izceltas vismaz
     min_reblogs_hint: Neizdzēš nevienu no tavām ziņām, kas ir izceltas vismaz tik reižu. Atstāj tukšu, lai dzēstu ziņas neatkarīgi no to izcēlumu skaita
   stream_entries:
-    sensitive_content: Sensitīvs saturs
+    sensitive_content: Jūtīgs saturs
   strikes:
     errors:
       too_late: Brīdinājuma apstrīdēšanas laiks ir nokavēts
@@ -1878,10 +1881,10 @@ lv:
         spam: Spams
         violation: Saturs pārkāpj šādas kopienas pamatnostādnes
       explanation:
-        delete_statuses: Tika konstatēts, ka dažas no tavām ziņām pārkāpj vienu vai vairākas kopienas vadlīnijas, un rezultātā %{instance} moderatori tās noņēma.
+        delete_statuses: Tika noteikts, ka daži no Taviem ierakstiem pārkāpj vienu vai vairākas kopienas vadlīnijas, tādējādi tos noņēma %{instance} satura pārraudzītāji.
         disable: Tu vairs nevari izmantot savu kontu, taču tavs profils un citi dati paliek neskarti. Tu vari pieprasīt savu datu dublējumu, mainīt konta iestatījumus vai dzēst kontu.
-        mark_statuses_as_sensitive: "%{instance} moderatori dažus no Taviem ierakstiem ir atzīmējuši kā jutīgus. Tas nozīmē, ka cilvēkiem būs jāpiesit ierakstos esošajiem informāijas nesējiem, pirms tiek attēlots priekšskatījums. Tu arī pats vari atzīmēt informācijas nesēju kā jutīgu, kad nākotnē tādu ievietosi."
-        sensitive: No šī brīža visi augšupielādētie multivides faili tiks atzīmēti kā sensitīvi un paslēpti aiz klikšķa brīdinājuma.
+        mark_statuses_as_sensitive: "%{instance} satura pārraudzītāji dažus no Taviem ierakstiem ir atzīmējuši kā jūtīgus. Tas nozīmē, ka cilvēkiem būs jāpiesit ierakstos esošajiem informāijas nesējiem, pirms tiek attēlots to priekšskatījums. Tu pats vari atzīmēt informācijas nesēju kā jūtīgu, kad nākotnē tādu ievietosi."
+        sensitive: Turpmāk visi augšupielādētās informācijas nesēju datnes tiks atzīmētas kā jūtīgas un paslēptas aiz klikšķināma brīdinājuma.
         silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau tev seko, redzēs tavas ziņas šajā serverī, un tev var tikt liegtas dažādas atklāšanas funkcijas. Tomēr citi joprojām var tev manuāli sekot.
         suspend: Tu vairs nevari izmantot savu kontu, un tavs profils un citi dati vairs nav pieejami. Tu joprojām vari pieteikties, lai pieprasītu savu datu dublēšanu, līdz dati tiks pilnībā noņemti aptuveni 30 dienu laikā, taču mēs saglabāsim dažus pamata datus, lai neļautu tev izvairīties no apturēšanas.
       reason: 'Iemesls:'
@@ -1889,17 +1892,17 @@ lv:
       subject:
         delete_statuses: Tavas ziņas %{acct} tika noņemtas
         disable: Tavs konts %{acct} tika iesaldēts
-        mark_statuses_as_sensitive: Tavas ziņas vietnē %{acct} ir atzīmētas kā sensitīvas
+        mark_statuses_as_sensitive: Tavi ieraksti %{acct} ir atzīmēti kā jūtīgi
         none: Brīdinājums par %{acct}
-        sensitive: Tavas ziņas vietnē %{acct} turpmāk tiks atzīmētas kā sensitīvas
+        sensitive: Tavi ieraksti %{acct} turpmāk tiks atzīmēti kā jūtīgi
         silence: Tavs konts %{acct} tika ierobežots
         suspend: Tava konta %{acct} darbība ir apturēta
       title:
         delete_statuses: Izdzēstās ziņas
         disable: Konts iesaldēts
-        mark_statuses_as_sensitive: Ziņas ir atzīmēts kā sensitīvas
+        mark_statuses_as_sensitive: Ieraksti atzīmēti kā jūtīgi
         none: Brīdinājums
-        sensitive: Konts ir atzīmēts kā sensitīvs
+        sensitive: Konts ir atzīmēts kā jūtīgs
         silence: Konts ierobežots
         suspend: Konts apturēts
     welcome:

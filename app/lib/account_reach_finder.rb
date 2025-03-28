@@ -10,7 +10,7 @@ class AccountReachFinder
   end
 
   def inboxes
-    (followers_inboxes + reporters_inboxes + recently_mentioned_inboxes + relay_inboxes).uniq
+    (followers_inboxes + reporters_inboxes + recently_mentioned_inboxes + recently_followed_inboxes + recently_requested_inboxes + relay_inboxes).uniq
   end
 
   private
@@ -31,13 +31,32 @@ class AccountReachFinder
       .take(RECENT_LIMIT)
   end
 
+  def recently_followed_inboxes
+    @account
+      .following
+      .where(follows: { created_at: recent_date_cutoff... })
+      .inboxes
+      .take(RECENT_LIMIT)
+  end
+
+  def recently_requested_inboxes
+    Account
+      .where(id: @account.follow_requests.where({ created_at: recent_date_cutoff... }).select(:target_account_id))
+      .inboxes
+      .take(RECENT_LIMIT)
+  end
+
   def relay_inboxes
     Relay.enabled.pluck(:inbox_url)
   end
 
   def oldest_status_id
     Mastodon::Snowflake
-      .id_at(STATUS_SINCE.ago, with_random: false)
+      .id_at(recent_date_cutoff, with_random: false)
+  end
+
+  def recent_date_cutoff
+    @account.suspended? && @account.suspension_origin_local? ? @account.suspended_at - STATUS_SINCE : STATUS_SINCE.ago
   end
 
   def recent_statuses

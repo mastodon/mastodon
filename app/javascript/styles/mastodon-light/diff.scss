@@ -1,5 +1,8 @@
 // Notes!
 // Sass color functions, "darken" and "lighten" are automatically replaced.
+@use 'sass:color';
+@use '../mastodon/functions' as *;
+@use '../mastodon/variables' as *;
 
 .simple_form .button.button-tertiary {
   color: $highlight-text-color;
@@ -152,8 +155,12 @@
 }
 
 .reactions-bar__item.active {
-  background-color: mix($white, $ui-highlight-color, 80%);
-  border-color: mix(lighten($ui-base-color, 8%), $ui-highlight-color, 80%);
+  background-color: color.mix($white, $ui-highlight-color, 80%);
+  border-color: color.mix(
+    lighten($ui-base-color, 8%),
+    $ui-highlight-color,
+    80%
+  );
 }
 
 .media-modal__overlay .picture-in-picture__footer {
@@ -242,7 +249,7 @@
 
 // Change the default colors used on some parts of the profile pages
 .activity-stream-tabs {
-  background: $account-background-color;
+  background: $white;
   border-bottom-color: lighten($ui-base-color, 8%);
 }
 
@@ -284,7 +291,7 @@
   }
 
   .entry {
-    background: $account-background-color;
+    background: $white;
 
     .detailed-status.light,
     .more.light,

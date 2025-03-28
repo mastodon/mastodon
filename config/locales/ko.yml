@@ -931,6 +931,7 @@ ko:
         chance_to_review_html: "<strong>생성된 이용 약관은 자동으로 게시되지 않을 것입니다.</strong> 결과를 확인할 기회가 있습니다. 진행하려면 필요한 정보들을 입력하세요."
         explanation_html: 제공되는 이용약관 틀은 정보 제공만을 목적으로 하며 법률 조언으로 해석하면 안 됩니다. 귀하의 상황에 맞는 법률 자문을 받아주시기 바랍니다.
         title: 이용 약관 설정
+      going_live_on_html: "%{date} 시행중"
       history: 역사
       live: 활성
       no_history: 기록된 이용약관 변경이 아직 없습니다.
@@ -1903,6 +1904,8 @@ ko:
     terms_of_service_changed:
       agreement: "%{domain}을 계속 사용하는 것으로 약관에 동의하는 것으로 간주합니다. 약관에 동의하지 않는 경우 계정을 삭제함으로써 언제든 동의를 철회할 수 있습니다."
       changelog: '이번 변경사항의 주요 내용입니다:'
+      description: "%{domain}의 이용 약관이 변경되었기 때문에 발송된 이메일입니다. 이 변경사항은 %{date}부터 효력을 발휘합니다. 변경된 전체 약관을 확인하시길 권합니다:"
+      description_html: '%{domain}의 이용 약관이 변경되었기 때문에 발송된 이메일입니다. 이 변경사항은 <strong>%{date}</strong>부터 효력을 발휘합니다. <a href="%{path}" target="_blank">변경된 전체 약관</a>을 확인하시길 권합니다.'
       sign_off: "%{domain} 팀"
       subject: 변경된 이용 약관
       subtitle: "%{domain}의 이용 약관이 변경됩니다"

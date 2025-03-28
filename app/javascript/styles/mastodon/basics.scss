@@ -1,3 +1,6 @@
+@use 'variables' as *;
+@use 'functions' as *;
+
 @function hex-color($color) {
   @if type-of($color) == 'color' {
     $color: str-slice(ie-hex-str($color), 4);

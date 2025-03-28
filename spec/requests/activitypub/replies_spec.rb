@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::RepliesController do
+RSpec.describe 'ActivityPub Replies' do
   let(:status) { Fabricate(:status, visibility: parent_visibility) }
-  let(:remote_account)  { Fabricate(:account, domain: 'foobar.com') }
+  let(:remote_account) { Fabricate(:account, domain: 'foobar.com') }
   let(:remote_reply_id) { 'https://foobar.com/statuses/1234' }
   let(:remote_querier) { nil }
 
@@ -13,7 +13,10 @@ RSpec.describe ActivityPub::RepliesController do
       let(:parent_visibility) { :private }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(404)
+        subject
+
+        expect(response)
+          .to have_http_status(404)
       end
     end
 
@@ -21,7 +24,10 @@ RSpec.describe ActivityPub::RepliesController do
       let(:parent_visibility) { :direct }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(404)
+        subject
+
+        expect(response)
+          .to have_http_status(404)
       end
     end
   end
@@ -31,7 +37,10 @@ RSpec.describe ActivityPub::RepliesController do
       let(:parent_visibility) { :public }
 
       it 'returns http not found' do
-        expect(response).to have_http_status(404)
+        subject
+
+        expect(response)
+          .to have_http_status(404)
       end
     end
 
@@ -48,19 +57,23 @@ RSpec.describe ActivityPub::RepliesController do
       end
 
       it 'returns http gone' do
-        expect(response).to have_http_status(410)
+        subject
+
+        expect(response)
+          .to have_http_status(410)
       end
     end
 
     context 'when account is temporarily suspended' do
       let(:parent_visibility) { :public }
 
-      before do
-        status.account.suspend!
-      end
+      before { status.account.suspend! }
 
       it 'returns http forbidden' do
-        expect(response).to have_http_status(403)
+        subject
+
+        expect(response)
+          .to have_http_status(403)
       end
     end
 
@@ -68,15 +81,20 @@ RSpec.describe ActivityPub::RepliesController do
       let(:parent_visibility) { :public }
 
       it 'returns http success and correct media type' do
+        subject
+
         expect(response)
           .to have_http_status(200)
           .and have_cacheable_headers
 
-        expect(response.media_type).to eq 'application/activity+json'
+        expect(response.media_type)
+          .to eq 'application/activity+json'
       end
 
-      context 'without only_other_accounts' do
+      context 'without `only_other_accounts` param' do
         it "returns items with thread author's replies" do
+          subject
+
           expect(response.parsed_body)
             .to include(
               first: be_a(Hash).and(
@@ -91,6 +109,8 @@ RSpec.describe ActivityPub::RepliesController do
 
         context 'when there are few self-replies' do
           it 'points next to replies from other people' do
+            subject
+
             expect(response.parsed_body)
               .to include(
                 first: be_a(Hash).and(
@@ -108,6 +128,8 @@ RSpec.describe ActivityPub::RepliesController do
           end
 
           it 'points next to other self-replies' do
+            subject
+
             expect(response.parsed_body)
               .to include(
                 first: be_a(Hash).and(
@@ -120,31 +142,33 @@ RSpec.describe ActivityPub::RepliesController do
         end
       end
 
-      context 'with only_other_accounts' do
+      context 'with `only_other_accounts` param' do
         let(:only_other_accounts) { 'true' }
 
-        it 'returns items with other public or unlisted replies' do
+        it 'returns items with other public or unlisted replies and correctly inlines replies and uses IDs' do
+          subject
+
           expect(response.parsed_body)
             .to include(
               first: be_a(Hash).and(
                 include(items: be_an(Array).and(have_attributes(size: 3)))
               )
             )
-        end
 
-        it 'only inlines items that are local and public or unlisted replies' do
+          # Only inline replies that are local and public, or unlisted
           expect(inlined_replies)
             .to all(satisfy { |item| targets_public_collection?(item) })
             .and all(satisfy { |item| ActivityPub::TagManager.instance.local_uri?(item[:id]) })
-        end
 
-        it 'uses ids for remote toots' do
+          # Use ids for remote replies
           expect(remote_replies)
             .to all(satisfy { |item| item.is_a?(String) && !ActivityPub::TagManager.instance.local_uri?(item) })
         end
 
         context 'when there are few replies' do
           it 'does not have a next page' do
+            subject
+
             expect(response.parsed_body)
               .to include(
                 first: be_a(Hash).and(not_include(next: be_present))
@@ -158,6 +182,8 @@ RSpec.describe ActivityPub::RepliesController do
           end
 
           it 'points next to other replies' do
+            subject
+
             expect(response.parsed_body)
               .to include(
                 first: be_a(Hash).and(
@@ -176,10 +202,8 @@ RSpec.describe ActivityPub::RepliesController do
 
   before do
     stub_const 'ActivityPub::RepliesController::DESCENDANTS_LIMIT', 5
-    allow(controller).to receive(:signed_request_actor).and_return(remote_querier)
 
-    Fabricate(:status, thread: status, visibility: :public)
-    Fabricate(:status, thread: status, visibility: :public)
+    Fabricate.times(2, :status, thread: status, visibility: :public)
     Fabricate(:status, thread: status, visibility: :private)
     Fabricate(:status, account: status.account, thread: status, visibility: :public)
     Fabricate(:status, account: status.account, thread: status, visibility: :private)
@@ -188,31 +212,29 @@ RSpec.describe ActivityPub::RepliesController do
   end
 
   describe 'GET #index' do
-    subject(:response) { get :index, params: { account_username: status.account.username, status_id: status.id, only_other_accounts: only_other_accounts } }
-
     let(:only_other_accounts) { nil }
 
     context 'with no signature' do
+      subject { get account_status_replies_path(account_username: status.account.username, status_id: status.id, only_other_accounts: only_other_accounts) }
+
       it_behaves_like 'allowed access'
     end
 
     context 'with signature' do
+      subject { get account_status_replies_path(account_username: status.account.username, status_id: status.id, only_other_accounts: only_other_accounts), headers: nil, sign_with: remote_querier }
+
       let(:remote_querier) { Fabricate(:account, domain: 'example.com') }
 
       it_behaves_like 'allowed access'
 
       context 'when signed request account is blocked' do
-        before do
-          status.account.block!(remote_querier)
-        end
+        before { status.account.block!(remote_querier) }
 
         it_behaves_like 'disallowed access'
       end
 
       context 'when signed request account is domain blocked' do
-        before do
-          status.account.block_domain!(remote_querier.domain)
-        end
+        before { status.account.block_domain!(remote_querier.domain) }
 
         it_behaves_like 'disallowed access'
       end
