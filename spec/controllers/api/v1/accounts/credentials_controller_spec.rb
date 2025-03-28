@@ -27,7 +27,7 @@ describe Api::V1::Accounts::CredentialsController do
 
       describe 'with valid data' do
         before do
-          allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
+          allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
 
           patch :update, params: {
             display_name: "Alice Isn't Dead",
@@ -58,7 +58,7 @@ describe Api::V1::Accounts::CredentialsController do
         end
 
         it 'queues up an account update distribution' do
-          expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(user.account_id)
+          expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, user.account_id)
         end
       end
 
