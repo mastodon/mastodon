@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::UpdateDistributionWorker < ActivityPub::RawDistributionWorker
+  DEBOUNCE_DELAY = 5.seconds
+
   sidekiq_options queue: 'push', lock: :until_executed, lock_ttl: 1.day.to_i
 
   # Distribute an profile update to servers that might have a copy
