@@ -1,22 +1,18 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// @ts-check
+
 import globals from 'globals';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import tseslint from 'typescript-eslint';
 
-// eslint-disable-next-line import/no-relative-packages
-import mastodonEslintConfig from '../eslint.config.mjs';
+import { baseConfig } from '../eslint.config.mjs';
 
 export default tseslint.config([
-  mastodonEslintConfig,
+  baseConfig,
   {
     languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
+      globals: globals.node,
 
       ecmaVersion: 2021,
-      sourceType: 'script',
+      sourceType: 'module',
     },
 
     rules: {
@@ -34,6 +30,9 @@ export default tseslint.config([
       ],
 
       'import/extensions': ['error', 'always'],
+
+      // TODO: Fix resolution of imports
+      'import/no-unresolved': 'off',
     },
   },
 ]);

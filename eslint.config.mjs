@@ -1,6 +1,9 @@
+// @ts-check
+
 import js from '@eslint/js';
 import { globalIgnores } from 'eslint/config';
 import formatjs from 'eslint-plugin-formatjs';
+// @ts-expect-error -- No typings
 import importPlugin from 'eslint-plugin-import';
 import jsdoc from 'eslint-plugin-jsdoc';
 import jsxA11Y from 'eslint-plugin-jsx-a11y';
@@ -10,7 +13,14 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
+/** @type {import('typescript-eslint').ConfigArray} */
+export const baseConfig = [
+  js.configs.recommended,
+  importPlugin.flatConfigs.recommended,
+];
+
 export default tseslint.config([
+  baseConfig,
   globalIgnores([
     'build/**/*',
     'coverage/**/*',
@@ -23,15 +33,15 @@ export default tseslint.config([
     'spec/**/*',
     'tmp/**/*',
     'vendor/**/*',
+    'streaming/**/*',
   ]),
-  js.configs.recommended,
   react.configs.flat.recommended,
   react.configs.flat['jsx-runtime'],
   reactHooks.configs['recommended-latest'],
   jsxA11Y.flatConfigs.recommended,
-  importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.react,
   promisePlugin.configs['flat/recommended'],
+  // @ts-expect-error -- For some reason the formatjs package exports an empty object?
   formatjs.configs.strict,
   jsdoc.configs['flat/recommended'],
   {
