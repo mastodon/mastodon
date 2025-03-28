@@ -429,7 +429,7 @@ lv:
       obfuscate: Apslēpt domēna vārdu
       obfuscate_hint: Daļēji apslēpt domēna nosaukumu sarakstā, ja ir iespējota domēna ierobežojumu saraksta reklamēšana
       private_comment: Privāts komentārs
-      private_comment_hint: Atstāj komentāru par šo domēna ierobežojumu moderatoru iekšējai lietošanai.
+      private_comment_hint: Atstāt piebildi par šo domēna ierobežojumu satura pārraudzītāju iekšējai lietošanai.
       public_comment: Publisks komentārs
       public_comment_hint: Piebilde par šo domēna ierobežojumu vispārējai sabiedrībai, ja ir iespējota domēnu ierobežojumu saraksta reklamēšana.
       reject_media: Noraidīt multivides failus
@@ -647,7 +647,7 @@ lv:
         delete: Dzēst
         placeholder: Jāapraksta veiktās darbības vai jebkuri citi saistītie atjauninājumi...
         title: Piezīmes
-      notes_description_html: Skati un atstāj piezīmes citiem moderatoriem un sev nākotnei
+      notes_description_html: Apskatīt un atstāt piezīmes citiem satura pārraudzītājiem un sev nākotnei
       processed_msg: 'Pārskats #%{id} veiksmīgi apstrādāts'
       quick_actions_description_html: 'Veic ātro darbību vai ritini uz leju, lai skatītu saturu, par kuru ziņots:'
       remote_user_placeholder: attālais lietotājs no %{instance}
@@ -1048,6 +1048,8 @@ lv:
       title: Tīmekļa āķi
       webhook: Tīmekļa āķis
   admin_mailer:
+    auto_close_registrations:
+      body: Nesenu satura pārraudzības darbību trūkuma dēļ reģistrācija %{instance} ir automātiski pārslēgta nepieciešamība pēc pašrocīgas izskatīšanas, lai novērstu %{instance} izmantošana kā platformu iespējami sliktiem dalībniekiem. Jebkurā brīdī var ieslēgt atpakaļ atvērtu reģistrēšanos.
     new_appeal:
       actions:
         delete_statuses: lai izdzēstu viņu ierakstus
@@ -1166,8 +1168,8 @@ lv:
       accept: Pieņemt
       back: Atpakaļ
       invited_by: 'Tu vari pievienoties %{domain}, pateicoties uzaicinājumam, ko saņēmi no:'
-      preamble: Tos iestata un ievieš %{domain} moderatori.
-      preamble_invited: Pirms turpināt, lūdzu, apsver galvenos noteikumus, ko noteikuši %{domain} moderatori.
+      preamble: Tos iestata un ievieš %{domain} satura pārraudzītāji.
+      preamble_invited: Pirms turpināt, lūgums apsvērt pamatnoteikumus, kurus norādījuši %{domain} satura pārraudzītāji.
       title: Daži pamatnoteikumi.
       title_invited: Tu esi uzaicināts.
     security: Drošība
@@ -1181,7 +1183,7 @@ lv:
       preamble_html: Jāpiesakās ar saviem <strong>%{domain}</strong> piekļuves datiem. Ja konts tiek mitināts citā serverī, šeit nevarēs pieteikties.
       title: Pieteikties %{domain}
     sign_up:
-      manual_review: Reģistrācijas domēnā %{domain} manuāli pārbauda mūsu moderatori. Lai palīdzētu mums apstrādāt tavu reģistrāciju, uzraksti mazliet par sevi un to, kāpēc vēlies kontu %{domain}.
+      manual_review: Reģistrāciju %{domain} pašrocīgi izskata mūsu satura pārraudzītāji. Lai palīdzētu mums apstrādāt Tavu reģistrāciju, uzraksti mazliet par sevi un to, kāpēc vēlies kontu %{domain}!
       title: Atļauj tevi iestatīt %{domain}.
     status:
       account_status: Konta statuss
@@ -1730,6 +1732,7 @@ lv:
       user_domain_block: Jūs bloķējāt %{target_name}
     lost_followers: Zaudētie sekotāji
     lost_follows: Zaudētie sekojumi
+    preamble: Tu vari zaudēt sekojamos un sekotājus, kad liedz domēnu vai kad satura pārraudzītāji izlemj apturēt attālu serveri. Kad t as notiek, būs iespējams lejupielādēt sarakstus ar pārtrauktajām saiknēm, kurus tad var izpētīt un, iespējams, ievietot citā serverī.
     type: Notikums
   statuses:
     attached:
@@ -1878,9 +1881,9 @@ lv:
         spam: Spams
         violation: Saturs pārkāpj šādas kopienas pamatnostādnes
       explanation:
-        delete_statuses: Tika konstatēts, ka dažas no tavām ziņām pārkāpj vienu vai vairākas kopienas vadlīnijas, un rezultātā %{instance} moderatori tās noņēma.
+        delete_statuses: Tika noteikts, ka daži no Taviem ierakstiem pārkāpj vienu vai vairākas kopienas vadlīnijas, tādējādi tos noņēma %{instance} satura pārraudzītāji.
         disable: Tu vairs nevari izmantot savu kontu, taču tavs profils un citi dati paliek neskarti. Tu vari pieprasīt savu datu dublējumu, mainīt konta iestatījumus vai dzēst kontu.
-        mark_statuses_as_sensitive: "%{instance} satura pārraudzītāji dažus no Taviem ierakstiem ir atzīmējuši kā jūtīgus. Tas nozīmē, ka cilvēkiem būs jāpiesit ierakstos esošajiem informāijas nesējiem, pirms tiek attēlots priekšskatījums. Tu pats vari atzīmēt informācijas nesēju kā jūtīgu, kad nākotnē tādu ievietosi."
+        mark_statuses_as_sensitive: "%{instance} satura pārraudzītāji dažus no Taviem ierakstiem ir atzīmējuši kā jūtīgus. Tas nozīmē, ka cilvēkiem būs jāpiesit ierakstos esošajiem informāijas nesējiem, pirms tiek attēlots to priekšskatījums. Tu pats vari atzīmēt informācijas nesēju kā jūtīgu, kad nākotnē tādu ievietosi."
         sensitive: Turpmāk visi augšupielādētās informācijas nesēju datnes tiks atzīmētas kā jūtīgas un paslēptas aiz klikšķināma brīdinājuma.
         silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau tev seko, redzēs tavas ziņas šajā serverī, un tev var tikt liegtas dažādas atklāšanas funkcijas. Tomēr citi joprojām var tev manuāli sekot.
         suspend: Tu vairs nevari izmantot savu kontu, un tavs profils un citi dati vairs nav pieejami. Tu joprojām vari pieteikties, lai pieprasītu savu datu dublēšanu, līdz dati tiks pilnībā noņemti aptuveni 30 dienu laikā, taču mēs saglabāsim dažus pamata datus, lai neļautu tev izvairīties no apturēšanas.
