@@ -57,6 +57,9 @@ class ActivityPub::SynchronizeFollowersService < BaseService
     collection = fetch_collection(collection['first']) if collection['first'].present?
     return unless collection.is_a?(Hash)
 
+    # Abort if we'd have to paginate through more than one page of followers
+    return if collection['next'].present?
+
     case collection['type']
     when 'Collection', 'CollectionPage'
       as_array(collection['items'])
