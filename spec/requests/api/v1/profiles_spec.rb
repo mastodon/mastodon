@@ -16,7 +16,7 @@ RSpec.describe 'Deleting profile images' do
 
   describe 'DELETE /api/v1/profile' do
     before do
-      allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
+      allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
     end
 
     context 'when deleting an avatar' do
@@ -48,12 +48,7 @@ RSpec.describe 'Deleting profile images' do
         account.reload
 
         expect(account.header).to exist
-      end
-
-      it 'queues up an account update distribution' do
-        delete '/api/v1/profile/avatar', headers: headers
-
-        expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
+        expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id)
       end
     end
 
@@ -86,12 +81,7 @@ RSpec.describe 'Deleting profile images' do
         account.reload
 
         expect(account.header).to_not exist
-      end
-
-      it 'queues up an account update distribution' do
-        delete '/api/v1/profile/header', headers: headers
-
-        expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
+        expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id)
       end
     end
   end
