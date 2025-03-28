@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { getAverageFromBlurhash } from 'mastodon/blurhash';
 import Footer from 'mastodon/features/picture_in_picture/components/footer';
-import Video from 'mastodon/features/video';
+import { Video } from 'mastodon/features/video';
 
 const mapStateToProps = (state, { statusId }) => ({
   status: state.getIn(['statuses', statusId]),
@@ -56,9 +56,9 @@ class VideoModal extends ImmutablePureComponent {
             aspectRatio={`${media.getIn(['meta', 'original', 'width'])} / ${media.getIn(['meta', 'original', 'height'])}`}
             blurhash={media.get('blurhash')}
             src={media.get('url')}
-            currentTime={options.startTime}
-            autoPlay={options.autoPlay}
-            volume={options.defaultVolume}
+            startTime={options.startTime}
+            startPlaying={options.autoPlay}
+            startVolume={options.defaultVolume}
             onCloseVideo={onClose}
             autoFocus
             detailed

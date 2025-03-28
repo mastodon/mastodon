@@ -27,8 +27,8 @@ import Visualizer from './visualizer';
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
   pause: { id: 'video.pause', defaultMessage: 'Pause' },
-  mute: { id: 'video.mute', defaultMessage: 'Mute sound' },
-  unmute: { id: 'video.unmute', defaultMessage: 'Unmute sound' },
+  mute: { id: 'video.mute', defaultMessage: 'Mute' },
+  unmute: { id: 'video.unmute', defaultMessage: 'Unmute' },
   download: { id: 'video.download', defaultMessage: 'Download file' },
   hide: { id: 'audio.hide', defaultMessage: 'Hide audio' },
 });

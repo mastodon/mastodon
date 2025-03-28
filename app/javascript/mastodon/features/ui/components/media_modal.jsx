@@ -19,7 +19,7 @@ import { GIFV } from 'mastodon/components/gifv';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 import Footer from 'mastodon/features/picture_in_picture/components/footer';
-import Video from 'mastodon/features/video';
+import { Video } from 'mastodon/features/video';
 import { disableSwiping } from 'mastodon/initial_state';
 
 import { ZoomableImage } from './zoomable_image';
@@ -205,9 +205,9 @@ class MediaModal extends ImmutablePureComponent {
             height={image.get('height')}
             frameRate={image.getIn(['meta', 'original', 'frame_rate'])}
             aspectRatio={`${image.getIn(['meta', 'original', 'width'])} / ${image.getIn(['meta', 'original', 'height'])}`}
-            currentTime={currentTime || 0}
-            autoPlay={autoPlay || false}
-            volume={volume || 1}
+            startTime={currentTime || 0}
+            startPlaying={autoPlay || false}
+            startVolume={volume || 1}
             onCloseVideo={onClose}
             detailed
             alt={description}
