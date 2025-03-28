@@ -196,6 +196,8 @@ Rails.application.routes.draw do
 
   draw(:api)
 
+  draw(:fasp)
+
   draw(:web_app)
 
   get '/web/(*any)', to: redirect('/%{any}', status: 302), as: :web, defaults: { any: '' }, format: false
