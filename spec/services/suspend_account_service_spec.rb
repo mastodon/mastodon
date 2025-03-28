@@ -8,17 +8,23 @@ RSpec.describe SuspendAccountService, type: :service do
     subject { described_class.new.call(account) }
 
     before do
-      allow(FeedManager.instance).to receive(:unmerge_from_home).and_return(nil)
-      allow(FeedManager.instance).to receive(:unmerge_from_list).and_return(nil)
+      allow(FeedManager.instance).to receive_messages(unmerge_from_home: nil, unmerge_from_list: nil)
+      allow(Rails.configuration.x).to receive(:cache_buster_enabled).and_return(true)
+      allow(CacheBusterWorker).to receive(:perform_async)
 
       local_follower.follow!(account)
       list.accounts << account
 
       account.suspend!
+
+      Fabricate(:media_attachment, file: attachment_fixture('boop.ogg'), account: account)
     end
 
-    it "unmerges from local followers' feeds" do
-      subject
+    it 'unmerges from feeds of local followers and changes file mode' do
+      expect { subject }
+        .to change { File.stat(account.media_attachments.first.file.path).mode }
+
+      expect(CacheBusterWorker).to have_received(:perform_async).with(account.media_attachments.first.file.url(:original))
       expect(FeedManager.instance).to have_received(:unmerge_from_home).with(account, local_follower)
       expect(FeedManager.instance).to have_received(:unmerge_from_list).with(account, list)
     end
@@ -52,6 +58,7 @@ RSpec.describe SuspendAccountService, type: :service do
 
       it 'sends an update actor to followers and reporters' do
         subject
+
         expect(a_request(:post, remote_follower.inbox_url).with { |req| match_update_actor_request(req, account) }).to have_been_made.once
         expect(a_request(:post, remote_reporter.inbox_url).with { |req| match_update_actor_request(req, account) }).to have_been_made.once
       end
@@ -78,6 +85,7 @@ RSpec.describe SuspendAccountService, type: :service do
 
       it 'sends a reject follow' do
         subject
+
         expect(a_request(:post, account.inbox_url).with { |req| match_reject_follow_request(req, account, local_followee) }).to have_been_made.once
       end
     end
