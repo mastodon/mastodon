@@ -2771,7 +2771,6 @@ __metadata:
     "@types/react-dom": "npm:^18.2.4"
     "@types/react-helmet": "npm:^6.1.6"
     "@types/react-immutable-proptypes": "npm:^2.1.0"
-    "@types/react-motion": "npm:^0.0.40"
     "@types/react-router": "npm:^5.1.20"
     "@types/react-router-dom": "npm:^5.3.3"
     "@types/react-sparklines": "npm:^1.7.2"
@@ -2850,7 +2849,6 @@ __metadata:
     react-immutable-proptypes: "npm:^2.2.0"
     react-immutable-pure-component: "npm:^2.2.2"
     react-intl: "npm:^7.0.0"
-    react-motion: "npm:^0.5.2"
     react-overlays: "npm:^5.2.1"
     react-redux: "npm:^9.0.4"
     react-redux-loading-bar: "npm:^5.0.8"
@@ -4047,15 +4045,6 @@ __metadata:
     "@types/prop-types": "npm:*"
     immutable: "npm:^3.8.2"
   checksum: 10c0/4dab74a43a2dde9bea6299a999dd600ae82f00082fe2b8865b11e5154e658f72fbb117132fa3753dd9a280dd8032a2574d8e7c94de5e268afdadd50d720086da
-  languageName: node
-  linkType: hard
-
-"@types/react-motion@npm:^0.0.40":
-  version: 0.0.40
-  resolution: "@types/react-motion@npm:0.0.40"
-  dependencies:
-    "@types/react": "npm:*"
-  checksum: 10c0/8a560051be917833fdbe051185b53aeafbe8657968ac8e073ac874b9a55c6f16e3793748b13cfb9bd6d9a3d27aba116d6f8f296ec1950f4175dc94d17c5e8470
   languageName: node
   linkType: hard
 
@@ -13189,20 +13178,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"performance-now@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "performance-now@npm:0.2.0"
-  checksum: 10c0/d7f3824e443491208f7124b45d3280dbff889f8f048c3aee507109c24644d51a226eb07fd7ac51dd0eef144639590c57410c2d167bd4fdf0c5caa0101a449c3d
-  languageName: node
-  linkType: hard
-
-"performance-now@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "performance-now@npm:2.1.0"
-  checksum: 10c0/22c54de06f269e29f640e0e075207af57de5052a3d15e360c09b9a8663f393f6f45902006c1e71aa8a5a1cdfb1a47fe268826f8496d6425c362f00f5bc3e85d9
-  languageName: node
-  linkType: hard
-
 "pg-cloudflare@npm:^1.1.1":
   version: 1.1.1
   resolution: "pg-cloudflare@npm:1.1.1"
@@ -14465,7 +14440,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.5.10, prop-types@npm:^15.5.4, prop-types@npm:^15.5.8, prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.5.10, prop-types@npm:^15.5.4, prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -14593,15 +14568,6 @@ __metadata:
   version: 4.0.4
   resolution: "quick-format-unescaped@npm:4.0.4"
   checksum: 10c0/fe5acc6f775b172ca5b4373df26f7e4fd347975578199e7d74b2ae4077f0af05baa27d231de1e80e8f72d88275ccc6028568a7a8c9ee5e7368ace0e18eff93a4
-  languageName: node
-  linkType: hard
-
-"raf@npm:^3.1.0":
-  version: 3.4.1
-  resolution: "raf@npm:3.4.1"
-  dependencies:
-    performance-now: "npm:^2.1.0"
-  checksum: 10c0/337f0853c9e6a77647b0f499beedafea5d6facfb9f2d488a624f88b03df2be72b8a0e7f9118a3ff811377d534912039a3311815700d2b6d2313f82f736f9eb6e
   languageName: node
   linkType: hard
 
@@ -14774,19 +14740,6 @@ __metadata:
   version: 3.0.4
   resolution: "react-lifecycles-compat@npm:3.0.4"
   checksum: 10c0/1d0df3c85af79df720524780f00c064d53a9dd1899d785eddb7264b378026979acbddb58a4b7e06e7d0d12aa1494fd5754562ee55d32907b15601068dae82c27
-  languageName: node
-  linkType: hard
-
-"react-motion@npm:^0.5.2":
-  version: 0.5.2
-  resolution: "react-motion@npm:0.5.2"
-  dependencies:
-    performance-now: "npm:^0.2.0"
-    prop-types: "npm:^15.5.8"
-    raf: "npm:^3.1.0"
-  peerDependencies:
-    react: ^0.14.9 || ^15.3.0 || ^16.0.0
-  checksum: 10c0/4ea6f1cc7079f0161fd786cc755133a822d87d9c0510369b8fb348d9ad602111efa2e3496dbcc390c967229e39e3eb5f6dd5dd6d3d124289443de31d6035a6c8
   languageName: node
   linkType: hard
 

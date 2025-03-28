@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import { Icon }  from 'mastodon/components/icon';
-import PollContainer from 'mastodon/containers/poll_container';
+import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
 
@@ -245,7 +245,7 @@ class StatusContent extends PureComponent {
     );
 
     const poll = !!status.get('poll') && (
-      <PollContainer pollId={status.get('poll')} status={status} lang={language} />
+      <Poll pollId={status.get('poll')} status={status} lang={language} />
     );
 
     if (this.props.onClick) {
