@@ -29,31 +29,33 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
     }.with_indifferent_access
   end
 
+  around do |example|
+    Sidekiq::Testing.fake! do
+      example.run
+      Sidekiq::Worker.clear_all
+    end
+  end
+
+  before do
+    alice.follow!(actor)
+    bob.follow!(actor)
+    mallory.request_follow!(actor)
+  end
+
   shared_examples 'synchronizes followers' do
     before do
-      alice.follow!(actor)
-      bob.follow!(actor)
-      mallory.request_follow!(actor)
-
-      allow(ActivityPub::DeliveryWorker).to receive(:perform_async)
-
       subject.call(actor, collection_uri)
     end
 
-    it 'keeps expected followers' do
-      expect(alice.following?(actor)).to be true
-    end
-
-    it 'removes local followers not in the remote list' do
-      expect(bob.following?(actor)).to be false
-    end
-
-    it 'converts follow requests to follow relationships when they have been accepted' do
-      expect(mallory.following?(actor)).to be true
-    end
-
-    it 'sends an Undo Follow to the actor' do
-      expect(ActivityPub::DeliveryWorker).to have_received(:perform_async).with(anything, eve.id, actor.inbox_url)
+    it 'maintains following records and sends Undo Follow to actor' do
+      expect(alice)
+        .to be_following(actor) # Keep expected followers
+      expect(bob)
+        .to_not be_following(actor) # Remove local followers not in remote list
+      expect(mallory)
+        .to be_following(actor) # Convert follow request to follow when accepted
+      expect(ActivityPub::DeliveryWorker)
+        .to have_enqueued_sidekiq_job(anything, eve.id, actor.inbox_url) # Send Undo Follow to actor
     end
   end
 
@@ -83,7 +85,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
       it_behaves_like 'synchronizes followers'
     end
 
-    context 'when the endpoint is a paginated Collection of actor URIs' do
+    context 'when the endpoint is a single-page paginated Collection of actor URIs' do
       let(:payload) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
@@ -102,6 +104,31 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
       end
 
       it_behaves_like 'synchronizes followers'
+    end
+
+    context 'when the endpoint is a paginated Collection of actor URIs with a next page' do
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          type: 'Collection',
+          id: collection_uri,
+          first: {
+            type: 'CollectionPage',
+            partOf: collection_uri,
+            items: items,
+            next: "#{collection_uri}/page2",
+          },
+        }.with_indifferent_access
+      end
+
+      before do
+        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+      end
+
+      it 'does not change followers' do
+        expect { subject.call(actor, collection_uri) }
+          .to_not(change { actor.followers.reload.reorder(id: :asc).pluck(:id) })
+      end
     end
   end
 end
