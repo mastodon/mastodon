@@ -31,7 +31,7 @@ RSpec.describe Settings::PrivacyController do
   describe 'PUT #update' do
     context 'when update succeeds' do
       before do
-        allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
+        allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
       end
 
       it 'updates the user profile' do
@@ -44,14 +44,14 @@ RSpec.describe Settings::PrivacyController do
           .to redirect_to(settings_privacy_path)
 
         expect(ActivityPub::UpdateDistributionWorker)
-          .to have_received(:perform_async).with(account.id)
+          .to have_received(:perform_in).with(anything, account.id)
       end
     end
 
     context 'when update fails' do
       before do
         allow(UpdateAccountService).to receive(:new).and_return(failing_update_service)
-        allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
+        allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
       end
 
       it 'updates the user profile' do
@@ -61,7 +61,7 @@ RSpec.describe Settings::PrivacyController do
           .to render_template(:show)
 
         expect(ActivityPub::UpdateDistributionWorker)
-          .to_not have_received(:perform_async)
+          .to_not have_received(:perform_in)
       end
 
       private
