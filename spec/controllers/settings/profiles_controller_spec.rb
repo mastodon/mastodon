@@ -29,23 +29,23 @@ RSpec.describe Settings::ProfilesController do
     end
 
     it 'updates the user profile' do
-      allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
+      allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
       put :update, params: { account: { display_name: 'New name' } }
       expect(account.reload.display_name).to eq 'New name'
       expect(response).to redirect_to(settings_profile_path)
-      expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
+      expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id)
     end
   end
 
   describe 'PUT #update with new profile image' do
     it 'updates profile image' do
-      allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
+      allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_in)
       expect(account.avatar.instance.avatar_file_name).to be_nil
 
       put :update, params: { account: { avatar: fixture_file_upload('avatar.gif', 'image/gif') } }
       expect(response).to redirect_to(settings_profile_path)
       expect(account.reload.avatar.instance.avatar_file_name).to_not be_nil
-      expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
+      expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_in).with(anything, account.id)
     end
   end
 end
