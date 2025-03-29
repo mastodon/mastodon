@@ -49,7 +49,7 @@ export const Poll: React.FC<PollProps> = (props) => {
   const { pollId, status } = props;
 
   // Third party hooks
-  const poll = useAppSelector((state) => state.polls.get(pollId));
+  const poll = useAppSelector((state) => state.polls[pollId]);
   const identity = useIdentity();
   const intl = useIntl();
   const dispatch = useAppDispatch();
@@ -63,8 +63,8 @@ export const Poll: React.FC<PollProps> = (props) => {
     if (!poll) {
       return false;
     }
-    const expiresAt = poll.get('expires_at');
-    return poll.get('expired') || new Date(expiresAt).getTime() < Date.now();
+    const expiresAt = poll.expires_at;
+    return poll.expired || new Date(expiresAt).getTime() < Date.now();
   }, [poll]);
   const timeRemaining = useMemo(() => {
     if (!poll) {
@@ -73,18 +73,18 @@ export const Poll: React.FC<PollProps> = (props) => {
     if (expired) {
       return intl.formatMessage(messages.closed);
     }
-    return <RelativeTimestamp timestamp={poll.get('expires_at')} futureDate />;
+    return <RelativeTimestamp timestamp={poll.expires_at} futureDate />;
   }, [expired, intl, poll]);
   const votesCount = useMemo(() => {
     if (!poll) {
       return null;
     }
-    if (poll.get('voters_count')) {
+    if (poll.voters_count) {
       return (
         <FormattedMessage
           id='poll.total_people'
           defaultMessage='{count, plural, one {# person} other {# people}}'
-          values={{ count: poll.get('voters_count') }}
+          values={{ count: poll.voters_count }}
         />
       );
     }
@@ -92,7 +92,7 @@ export const Poll: React.FC<PollProps> = (props) => {
       <FormattedMessage
         id='poll.total_votes'
         defaultMessage='{count, plural, one {# vote} other {# votes}}'
-        values={{ count: poll.get('votes_count') }}
+        values={{ count: poll.votes_count }}
       />
     );
   }, [poll]);
@@ -144,7 +144,7 @@ export const Poll: React.FC<PollProps> = (props) => {
       if (!poll) {
         return;
       }
-      if (poll.get('multiple')) {
+      if (poll.multiple) {
         setSelected((prev) => ({
           ...prev,
           [choiceIndex]: !prev[choiceIndex],
@@ -159,14 +159,14 @@ export const Poll: React.FC<PollProps> = (props) => {
   if (!poll) {
     return null;
   }
-  const showResults = poll.get('voted') || revealed || expired;
+  const showResults = poll.voted || revealed || expired;
 
   return (
     <div className='poll'>
       <ul>
-        {poll.get('options').map((option, i) => (
+        {poll.options.map((option, i) => (
           <PollOption
-            key={option.get('title') || i}
+            key={option.title || i}
             index={i}
             poll={poll}
             option={option}
@@ -204,7 +204,7 @@ export const Poll: React.FC<PollProps> = (props) => {
           </>
         )}
         {votesCount}
-        {poll.get('expires_at') && <> · {timeRemaining}</>}
+        {poll.expires_at && <> · {timeRemaining}</>}
       </div>
     </div>
   );
@@ -222,36 +222,30 @@ type PollOptionProps = Pick<PollProps, 'disabled' | 'lang'> & {
 const PollOption: React.FC<PollOptionProps> = (props) => {
   const { active, lang, disabled, poll, option, index, showResults, onChange } =
     props;
-  const voted = option.get('voted') || poll.get('own_votes')?.includes(index);
-  const title =
-    (option.getIn(['translation', 'title']) as string) || option.get('title');
+  const voted = option.voted || poll.own_votes?.includes(index);
+  const title = option.translation?.title ?? option.title;
 
   const intl = useIntl();
 
   // Derived values
   const percent = useMemo(() => {
-    const pollVotesCount = poll.get('voters_count') || poll.get('votes_count');
+    const pollVotesCount = poll.voters_count ?? poll.votes_count;
     return pollVotesCount === 0
       ? 0
-      : (option.get('votes_count') / pollVotesCount) * 100;
+      : (option.votes_count / pollVotesCount) * 100;
   }, [option, poll]);
   const isLeading = useMemo(
     () =>
-      poll
-        .get('options')
-        .filterNot((other) => other.get('title') === option.get('title'))
-        .every(
-          (other) => option.get('votes_count') >= other.get('votes_count'),
-        ),
+      poll.options
+        .filter((other) => other.title !== option.title)
+        .every((other) => option.votes_count >= other.votes_count),
     [poll, option],
   );
   const titleHtml = useMemo(() => {
-    let titleHtml =
-      (option.getIn(['translation', 'titleHtml']) as string) ||
-      option.get('titleHtml');
+    let titleHtml = option.translation?.titleHtml ?? option.titleHtml;
 
     if (!titleHtml) {
-      const emojiMap = makeEmojiMap(poll.get('emojis'));
+      const emojiMap = makeEmojiMap(poll.emojis);
       titleHtml = emojify(escapeTextContentForBrowser(title), emojiMap);
     }
 
@@ -290,7 +284,7 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
       >
         <input
           name='vote-options'
-          type={poll.get('multiple') ? 'checkbox' : 'radio'}
+          type={poll.multiple ? 'checkbox' : 'radio'}
           value={index}
           checked={active}
           onChange={handleOptionChange}
@@ -300,11 +294,11 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
         {!showResults && (
           <span
             className={classNames('poll__input', {
-              checkbox: poll.get('multiple'),
+              checkbox: poll.multiple,
               active,
             })}
             tabIndex={0}
-            role={poll.get('multiple') ? 'checkbox' : 'radio'}
+            role={poll.multiple ? 'checkbox' : 'radio'}
             onKeyDown={handleOptionKeyPress}
             aria-checked={active}
             aria-label={title}
@@ -316,7 +310,7 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
           <span
             className='poll__number'
             title={intl.formatMessage(messages.votes, {
-              votes: option.get('votes_count'),
+              votes: option.votes_count,
             })}
           >
             {Math.round(percent)}%

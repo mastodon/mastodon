@@ -1,5 +1,4 @@
 import type { Reducer } from '@reduxjs/toolkit';
-import { Map as ImmutableMap } from 'immutable';
 
 import { importPolls } from 'mastodon/actions/importer/polls';
 import { makeEmojiMap } from 'mastodon/models/custom_emoji';
@@ -11,57 +10,48 @@ import {
   STATUS_TRANSLATE_UNDO,
 } from '../actions/statuses';
 
-const initialState = ImmutableMap<string, Poll>();
+const initialState: Record<string, Poll> = {};
 type PollsState = typeof initialState;
 
-const statusTranslateSuccess = (
-  state: PollsState,
-  pollTranslation: Poll | undefined,
-) => {
-  if (!pollTranslation) return state;
+const statusTranslateSuccess = (state: PollsState, pollTranslation?: Poll) => {
+  if (!pollTranslation) return;
 
-  return state.withMutations((map) => {
-    const poll = state.get(pollTranslation.id);
+  const poll = state[pollTranslation.id];
 
-    if (!poll) return;
+  if (!poll) return;
 
-    const emojiMap = makeEmojiMap(poll.emojis);
+  const emojiMap = makeEmojiMap(poll.emojis);
 
-    pollTranslation.options.forEach((item, index) => {
-      map.setIn(
-        [pollTranslation.id, 'options', index, 'translation'],
-        createPollOptionTranslationFromServerJSON(item, emojiMap),
-      );
-    });
+  pollTranslation.options.forEach((item, index) => {
+    const option = poll.options[index];
+    if (!option) return;
+
+    option.translation = createPollOptionTranslationFromServerJSON(
+      item,
+      emojiMap,
+    );
   });
 };
 
 const statusTranslateUndo = (state: PollsState, id: string) => {
-  return state.withMutations((map) => {
-    const options = map.get(id)?.options;
-
-    if (options) {
-      options.forEach((item, index) =>
-        map.deleteIn([id, 'options', index, 'translation']),
-      );
-    }
+  state[id]?.options.forEach((option) => {
+    option.translation = null;
   });
 };
 
 export const pollsReducer: Reducer<PollsState> = (
-  state = initialState,
+  draft = initialState,
   action,
 ) => {
   if (importPolls.match(action)) {
-    return state.withMutations((polls) => {
-      action.payload.polls.forEach((poll) => polls.set(poll.id, poll));
+    action.payload.polls.forEach((poll) => {
+      draft[poll.id] = poll;
     });
   } else if (action.type === STATUS_TRANSLATE_SUCCESS)
-    return statusTranslateSuccess(
-      state,
-      (action.translation as { poll?: Poll }).poll,
-    );
-  else if (action.type === STATUS_TRANSLATE_UNDO)
-    return statusTranslateUndo(state, action.pollId as string);
-  else return state;
+    statusTranslateSuccess(draft, (action.translation as { poll?: Poll }).poll);
+  else if (action.type === STATUS_TRANSLATE_UNDO) {
+    statusTranslateUndo(draft, action.pollId as string);
+  }
+
+  return draft;
 };
