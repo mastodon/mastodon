@@ -14,5 +14,14 @@ RSpec.describe 'Admin Instances' do
           .to have_http_status(200)
       end
     end
+
+    context 'with an invalid domain' do
+      it 'returns http success' do
+        get admin_instance_path(id: ' ')
+
+        expect(response)
+          .to have_http_status(400)
+      end
+    end
   end
 end

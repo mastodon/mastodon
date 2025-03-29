@@ -1,11 +1,12 @@
-.report-notes__item
+.report-notes__item{ id: dom_id(report_note) }
   = image_tag report_note.account.avatar.url, class: 'report-notes__item__avatar'
 
   .report-notes__item__header
     %span.username
       = link_to report_note.account.username, admin_account_path(report_note.account_id)
-    %time.relative-formatted{ datetime: report_note.created_at.iso8601, title: report_note.created_at }
-      = l report_note.created_at.to_date
+    %a.timestamp{ href: "##{dom_id(report_note)}" }
+      %time.relative-formatted{ datetime: report_note.created_at.iso8601, title: report_note.created_at }
+        = l report_note.created_at.to_date
 
   .report-notes__item__content
     = linkify(report_note.content)
@@ -14,5 +15,7 @@
     .report-notes__item__actions
       - if report_note.is_a?(AccountModerationNote)
         = table_link_to 'delete', t('admin.reports.notes.delete'), admin_account_moderation_note_path(report_note), method: :delete
+      - elsif report_note.is_a?(InstanceModerationNote)
+        = table_link_to 'delete', t('admin.reports.notes.delete'), admin_instance_moderation_note_path(instance_id: report_note.domain, id: report_note.id), method: :delete
       - else
         = table_link_to 'delete', t('admin.reports.notes.delete'), admin_report_note_path(report_note), method: :delete
