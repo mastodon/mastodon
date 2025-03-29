@@ -11,7 +11,7 @@ import { HASHTAG_PATTERN_REGEX } from 'mastodon/utils/hashtags';
 
 const selector = createSelector(
   (state: RootState) => state.compose.get('privacy') as string,
-  (state: RootState) => !!state.compose.getIn(['accounts', me, 'locked']),
+  (state: RootState) => !!state.accounts.getIn([me, 'locked']),
   (state: RootState) => state.compose.get('text') as string,
   (privacy, locked, text) => ({
     needsLockWarning: privacy === 'private' && !locked,
