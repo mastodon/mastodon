@@ -506,7 +506,7 @@ RSpec.describe User do
       expect { web_push_subscription.reload }
         .to raise_error(ActiveRecord::RecordNotFound)
       expect(redis_pipeline_stub)
-        .to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
+        .to have_received(:publish).with("timeline:access_token:#{access_token.id}", JSON.dump(event: :kill)).once
     end
 
     def remove_activated_sessions
