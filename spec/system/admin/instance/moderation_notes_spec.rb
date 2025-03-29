@@ -43,7 +43,7 @@ RSpec.describe 'Admin::Instances::ModerationNotesController' do
     end
 
     def delete_note
-      within('.report-notes__item__actions') do
+      within('.report-notes__item:first-child .report-notes__item__actions') do
         click_on I18n.t('admin.reports.notes.delete')
       end
     end
