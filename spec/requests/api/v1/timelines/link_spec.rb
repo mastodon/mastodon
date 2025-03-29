@@ -19,6 +19,14 @@ RSpec.describe 'Link' do
     end
   end
 
+  # The default settings are that timeline_preview_local is true but
+  # timeline_preview_remote is false, which caused this spec to fail because it
+  # assumes the default visibility is true.
+  before do
+    Form::AdminSettings.new(timeline_preview_local: true).save
+    Form::AdminSettings.new(timeline_preview_remote: true).save
+  end
+
   describe 'GET /api/v1/timelines/link' do
     subject do
       get '/api/v1/timelines/link', headers: headers, params: params
@@ -87,7 +95,8 @@ RSpec.describe 'Link' do
 
     context 'when the instance does not allow public preview' do
       before do
-        Form::AdminSettings.new(timeline_preview: false).save
+        Form::AdminSettings.new(timeline_preview_local: false).save
+        Form::AdminSettings.new(timeline_preview_remote: false).save
       end
 
       it_behaves_like 'forbidden for wrong scope', 'profile'
@@ -122,6 +131,11 @@ RSpec.describe 'Link' do
     end
 
     context 'when the instance allows public preview' do
+      before do
+        Form::AdminSettings.new(timeline_preview_local: true).save
+        Form::AdminSettings.new(timeline_preview_remote: true).save
+      end
+
       context 'with an authorized user' do
         it_behaves_like 'a successful request to the link timeline'
       end
