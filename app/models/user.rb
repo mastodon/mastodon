@@ -374,7 +374,7 @@ class User < ApplicationRecord
       # doesn't trigger ActiveRecord Callbacks:
       # TODO: #28793 Combine into a single topic
       payload = Oj.dump(event: :kill)
-      redis.pipelined do |pipeline|
+      streaming_redis.pipelined do |pipeline|
         batch.ids.each do |id|
           pipeline.publish("timeline:access_token:#{id}", payload)
         end
