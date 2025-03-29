@@ -53,7 +53,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
   describe '#call' do
     context 'when the endpoint is a Collection of actor URIs' do
       before do
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, collection_uri).to_return(status: 200, body: JSON.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'synchronizes followers'
@@ -70,7 +70,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       end
 
       before do
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, collection_uri).to_return(status: 200, body: JSON.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'synchronizes followers'
@@ -91,7 +91,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       end
 
       before do
-        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, collection_uri).to_return(status: 200, body: JSON.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it_behaves_like 'synchronizes followers'
