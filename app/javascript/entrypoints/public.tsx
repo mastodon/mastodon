@@ -68,7 +68,7 @@ function loaded() {
 
     if (id) message = localeData[id];
 
-    if (!message) message = defaultMessage as string;
+    message ??= defaultMessage as string;
 
     const messageFormat = new IntlMessageFormat(message, locale);
     return messageFormat.format(values) as string;
