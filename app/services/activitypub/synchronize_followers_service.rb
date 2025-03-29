@@ -9,6 +9,7 @@ class ActivityPub::SynchronizeFollowersService < BaseService
   def call(account, partial_collection_url)
     @account = account
     @expected_followers_ids = []
+    @partial_collection_url = partial_collection_url
 
     return unless process_collection!(partial_collection_url)
 
@@ -38,6 +39,7 @@ class ActivityPub::SynchronizeFollowersService < BaseService
 
   def remove_unexpected_local_followers!
     @account.followers.local.where.not(id: @expected_followers_ids).reorder(nil).find_each do |unexpected_follower|
+      Rails.logger.warn "ActivityPub::SynchronizeFollowersService: Removing follower #{unexpected_follower.acct} for #{@account.acct} based on #{@partial_collection_url}" if @account.domain == 'activitypub.ghost.org'
       UnfollowService.new.call(unexpected_follower, @account)
     end
   end
