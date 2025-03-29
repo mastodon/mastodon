@@ -27,8 +27,8 @@ RSpec.describe NotificationMailer do
 
   let(:receiver)       { Fabricate(:user, account_attributes: { username: 'alice' }) }
   let(:sender)         { Fabricate(:account, username: 'bob') }
-  let(:foreign_status) { Fabricate(:status, account: sender, text: 'The body of the foreign status') }
-  let(:own_status)     { Fabricate(:status, account: receiver.account, text: 'The body of the own status') }
+  let(:foreign_status) { Fabricate(:status, account: sender, text: 'The body of the foreign status', created_at: '2021-01-01 01:01Z') }
+  let(:own_status)     { Fabricate(:status, account: receiver.account, text: 'The body of the own status', created_at: '2022-02-02 02:02Z') }
 
   describe 'mention' do
     let(:mention) { Mention.create!(account: receiver.account, status: foreign_status) }
@@ -36,6 +36,7 @@ RSpec.describe NotificationMailer do
     let(:mail) { prepared_mailer_for(receiver.account).mention }
 
     include_examples 'localized subject', 'notification_mailer.mention.subject', name: 'bob'
+    include_examples 'timestamp in time zone', '2021-01-01 01:01Z'.to_datetime
 
     it 'renders the email' do
       expect(mail)
@@ -75,6 +76,7 @@ RSpec.describe NotificationMailer do
     let(:mail) { prepared_mailer_for(own_status.account).favourite }
 
     include_examples 'localized subject', 'notification_mailer.favourite.subject', name: 'bob'
+    include_examples 'timestamp in time zone', '2022-02-02 02:02Z'.to_datetime
 
     it 'renders the email' do
       expect(mail)
@@ -96,6 +98,7 @@ RSpec.describe NotificationMailer do
     let(:mail) { prepared_mailer_for(own_status.account).reblog }
 
     include_examples 'localized subject', 'notification_mailer.reblog.subject', name: 'bob'
+    include_examples 'timestamp in time zone', '2022-02-02 02:02Z'.to_datetime
 
     it 'renders the email' do
       expect(mail)
