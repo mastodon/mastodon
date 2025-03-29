@@ -479,6 +479,36 @@ da:
       new:
         title: Import af domæneblokeringer
       no_file: Ingen fill udvalgt
+    fasp:
+      debug:
+        callbacks:
+          created_at: Oprettet d.
+          delete: Slet
+          ip: IP-adresse
+          request_body: Anmodningsbrødtekst
+          title: Fejlfindingstilbagekald
+      providers:
+        active: Aktiv
+        base_url: Basis-URL
+        callback: Tilbagekald
+        delete: Slet
+        edit: Redigér udbyder
+        finish_registration: Færdiggør registrering
+        name: Navn
+        providers: Udbydere
+        public_key_fingerprint: Offentlig nøgle-fingeraftryk
+        registration_requested: Registrering kræves
+        registrations:
+          confirm: Bekræft
+          description: Er en registrering er modtaget fra en FASP, så afvis den, hvis man ikke startede pocessen. Startede man processen, tjek omhyggeligt navn og nøglefingeraftryk, før registreringen bekræftes.
+          reject: Afvis
+          title: Bekræft FASP-registrering
+        save: Gem
+        select_capabilities: Vælg kapaciteter
+        sign_in: Log ind
+        status: Status
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Følg-anbefalinger hjælpe nye brugere til hurtigt at finde interessant indhold</strong>. Når en bruger ikke har interageret nok med andre til at generere personlige følg-anbefalinger, anbefales disse konti i stedet. De revurderes dagligt baseret på en blanding af konti med de flest nylige engagementer og fleste lokale følger-antal for et givet sprog."
       language: For sprog

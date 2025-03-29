@@ -479,6 +479,36 @@ is:
       new:
         title: Flytja inn útilokanir léna
       no_file: Engin skrá valin
+    fasp:
+      debug:
+        callbacks:
+          created_at: Búið til
+          delete: Eyða
+          ip: IP-vistfang
+          request_body: Biðja um meginmál
+          title: Villuleita bakrakningar (callbacks)
+      providers:
+        active: Virkt
+        base_url: Grunnslóð
+        callback: Bakrakning (callback)
+        delete: Eyða
+        edit: Breyta þjónustuaðila
+        finish_registration: Ljúka skráningu
+        name: Nafn
+        providers: Þjónustuaðilar
+        public_key_fingerprint: Fingrafar dreifilykils
+        registration_requested: Beðið um skráningu
+        registrations:
+          confirm: Staðfesta
+          description: Þú fékkst skráningu frá FASP-þjónustuaðila. Hafnaðu þessu ef þú baðst ekki um þetta. Ef þú baðst um þetta, skaltu bera vandlega saman nöfn og fingraför lykla áður en þú staðfestir skráninguna.
+          reject: Hafna
+          title: Staðfesta FASP-skráningu
+        save: Vista
+        select_capabilities: Veldu eiginleika
+        sign_in: Skrá inn
+        status: Staða
+        title: Fediverse Auxiliary Service Providers þjónustuaðilar
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Að fylgja meðmælum hjálpar nýjum notendum að finna áhugavert efni á einfaldan máta</strong>. Þegar notandi hefur ekki átt í nægilegum samskiptum við aðra til að vera farinn að móta sér skoðanir á hverju hann vill fylgjast með, er mælt með að fylgjast með þessum aðgöngum. Þeir eru endurreiknaðir daglega út frá blöndu þeirra aðganga sem eru með hvað mestri þáttöku í umræðum og mesta fylgjendafjölda út frá hverju tungumáli."
       language: Fyrir tungumálið

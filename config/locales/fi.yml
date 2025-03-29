@@ -479,6 +479,24 @@ fi:
       new:
         title: Tuo verkkotunnusten estoja
       no_file: Yhtäkään tiedostoa ei ole valittu
+    fasp:
+      debug:
+        callbacks:
+          created_at: Luotu
+          delete: Poista
+          ip: IP-osoite
+      providers:
+        delete: Poista
+        finish_registration: Viimeistele rekisteröinti
+        name: Nimi
+        public_key_fingerprint: Julkisen avaimen sormenjälki
+        registration_requested: Rekisteröintiä pyydetty
+        registrations:
+          confirm: Vahvista
+          reject: Hylkää
+        save: Tallenna
+        sign_in: Kirjaudu sisään
+        status: Tila
     follow_recommendations:
       description_html: "<strong>Seurantasuositukset auttavat uusia käyttäjiä löytämään nopeasti kiinnostavaa sisältöä</strong>. Kun käyttäjä ei ole ollut tarpeeksi vuorovaikutuksessa muiden kanssa, jotta hänelle olisi muodostunut henkilökohtaisia seuraamissuosituksia, suositellaan niiden sijaan näitä tilejä. Ne lasketaan päivittäin uudelleen yhdistelmästä tilejä, jotka ovat viime aikoina olleet aktiivisimmin sitoutuneita ja joilla on suurimmat paikalliset seuraajamäärät tietyllä kielellä."
       language: Kielelle
