@@ -783,7 +783,7 @@ export const Video: React.FC<{
 
   // The outer wrapper is necessary to avoid reflowing the layout when going into full screen
   return (
-    <div style={{ aspectRatio }}>
+    <div>
       <div
         role='menuitem'
         className={classNames('video-player', {
