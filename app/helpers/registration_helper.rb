@@ -7,6 +7,14 @@ module RegistrationHelper
     !Rails.configuration.x.single_user_mode && !omniauth_only? && (registrations_open? || invite&.valid_for_use?) && !ip_blocked?(remote_ip)
   end
 
+  def registration_agreement_label
+    if TermsOfService.live.exists?
+      t('auth.user_agreement_html', privacy_policy_path: privacy_policy_path, terms_of_service_path: terms_of_service_path)
+    else
+      t('auth.user_privacy_agreement_html', privacy_policy_path: privacy_policy_path)
+    end
+  end
+
   def registrations_open?
     Setting.registrations_mode != 'none'
   end
