@@ -23,8 +23,7 @@ export const UploadProgress: React.FC<UploadProgressProps> = ({
   const styles = useSpring({
     from: { width: `${currentProgress}%` },
     to: { width: `${progress}%` },
-    reset: true,
-    immediate: reduceMotion,
+    immediate: reduceMotion || !active, // If this is not active, update the UI immediately.
     onResolve() {
       setCurrentProgress(progress);
     },
