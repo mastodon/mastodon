@@ -4,4 +4,4 @@ const config = {
   '**/*.ts': () => 'tsc -p tsconfig.json --noEmit',
 };
 
-module.exports = config;
+export default config;

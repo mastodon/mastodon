@@ -17,61 +17,9 @@ import tseslint from 'typescript-eslint';
 export const baseConfig = [
   js.configs.recommended,
   importPlugin.flatConfigs.recommended,
-];
-
-export default tseslint.config([
-  baseConfig,
-  globalIgnores([
-    'build/**/*',
-    'coverage/**/*',
-    'db/**/*',
-    'lib/**/*',
-    'log/**/*',
-    'node_modules/**/*',
-    'public/**/*',
-    '!public/embed.js',
-    'spec/**/*',
-    'tmp/**/*',
-    'vendor/**/*',
-    'streaming/**/*',
-  ]),
-  react.configs.flat.recommended,
-  react.configs.flat['jsx-runtime'],
-  reactHooks.configs['recommended-latest'],
-  jsxA11Y.flatConfigs.recommended,
-  importPlugin.flatConfigs.react,
-  promisePlugin.configs['flat/recommended'],
-  // @ts-expect-error -- For some reason the formatjs package exports an empty object?
-  formatjs.configs.strict,
   jsdoc.configs['flat/recommended'],
+  promisePlugin.configs['flat/recommended'],
   {
-    linterOptions: {
-      reportUnusedDisableDirectives: 'error',
-      reportUnusedInlineConfigs: 'error',
-    },
-
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-      },
-
-      parser: tseslint.parser,
-      ecmaVersion: 2021,
-      sourceType: 'module',
-    },
-
-    settings: {
-      react: {
-        version: 'detect',
-      },
-
-      'import/ignore': ['node_modules', '\\.(css|scss|json)$'],
-
-      'import/resolver': {
-        typescript: {},
-      },
-    },
-
     rules: {
       'consistent-return': 'error',
       'dot-notation': 'error',
@@ -85,7 +33,6 @@ export default tseslint.config([
       ],
 
       indent: ['error', 2],
-      'jsx-quotes': ['error', 'prefer-single'],
       semi: ['error', 'always'],
       'no-catch-shadow': 'error',
 
@@ -115,48 +62,10 @@ export default tseslint.config([
         },
       ],
 
-      'no-restricted-syntax': [
-        'error',
-        {
-          // eslint-disable-next-line no-restricted-syntax
-          selector: 'Literal[value=/•/], JSXText[value=/•/]',
-          // eslint-disable-next-line no-restricted-syntax
-          message: "Use '·' (middle dot) instead of '•' (bullet)",
-        },
-      ],
-
       'no-unused-expressions': 'error',
       'no-unused-vars': 'off',
 
       'valid-typeof': 'error',
-
-      'formatjs/enforce-description': 'off', // description values not currently used
-      'formatjs/enforce-id': 'off', // Explicit IDs are used in the project
-      'formatjs/enforce-placeholders': 'off', // Issues in short_number.jsx
-      'formatjs/no-invalid-icu': 'error',
-      'formatjs/no-literal-string-in-jsx': 'off', // Should be looked at, but mainly flagging punctuation outside of strings
-      'formatjs/no-multiple-plurals': 'off', // Should be looked at
-
-      'jsdoc/check-types': 'off',
-      'jsdoc/no-undefined-types': 'off',
-      'jsdoc/require-jsdoc': 'off',
-      'jsdoc/require-param-description': 'off',
-      'jsdoc/require-property-description': 'off',
-      'jsdoc/require-returns-description': 'off',
-      'jsdoc/require-returns': 'off',
-
-      'jsx-a11y/click-events-have-key-events': 'off',
-      'jsx-a11y/label-has-associated-control': 'off',
-      'jsx-a11y/media-has-caption': 'off',
-      'jsx-a11y/no-autofocus': 'off',
-      'jsx-a11y/no-interactive-element-to-noninteractive-role': 'off',
-      'jsx-a11y/no-noninteractive-tabindex': 'off',
-      'jsx-a11y/no-static-element-interactions': [
-        'warn',
-        {
-          handlers: ['onClick'],
-        },
-      ],
 
       'import/extensions': [
         'error',
@@ -173,25 +82,12 @@ export default tseslint.config([
       'import/first': 'error',
       'import/newline-after-import': 'error',
       'import/no-anonymous-default-export': 'error',
-      'import/no-extraneous-dependencies': [
-        'error',
-        {
-          devDependencies: [
-            'eslint.config.mjs',
-            'config/webpack/**',
-            'app/javascript/mastodon/performance.js',
-            'app/javascript/mastodon/test_setup.js',
-            'app/javascript/**/__tests__/**',
-          ],
-        },
-      ],
       'import/no-amd': 'error',
       'import/no-commonjs': 'error',
       'import/no-import-module-exports': 'error',
       'import/no-relative-packages': 'error',
       'import/no-self-import': 'error',
       'import/no-useless-path-segments': 'error',
-      'import/no-webpack-loader-syntax': 'error',
       'import/order': [
         'error',
         {
@@ -244,6 +140,14 @@ export default tseslint.config([
         },
       ],
 
+      'jsdoc/check-types': 'off',
+      'jsdoc/no-undefined-types': 'off',
+      'jsdoc/require-jsdoc': 'off',
+      'jsdoc/require-param-description': 'off',
+      'jsdoc/require-property-description': 'off',
+      'jsdoc/require-returns-description': 'off',
+      'jsdoc/require-returns': 'off',
+
       'promise/always-return': 'off',
       'promise/catch-or-return': [
         'error',
@@ -254,6 +158,107 @@ export default tseslint.config([
       'promise/no-callback-in-promise': 'off',
       'promise/no-nesting': 'off',
       'promise/no-promise-in-callback': 'off',
+    },
+  },
+];
+
+export default tseslint.config([
+  baseConfig,
+  globalIgnores([
+    'build/**/*',
+    'coverage/**/*',
+    'db/**/*',
+    'lib/**/*',
+    'log/**/*',
+    'node_modules/**/*',
+    'public/**/*',
+    '!public/embed.js',
+    'spec/**/*',
+    'tmp/**/*',
+    'vendor/**/*',
+    'streaming/**/*',
+  ]),
+  react.configs.flat.recommended,
+  react.configs.flat['jsx-runtime'],
+  reactHooks.configs['recommended-latest'],
+  jsxA11Y.flatConfigs.recommended,
+  importPlugin.flatConfigs.react,
+  // @ts-expect-error -- For some reason the formatjs package exports an empty object?
+  formatjs.configs.strict,
+  {
+    linterOptions: {
+      reportUnusedDisableDirectives: 'error',
+      reportUnusedInlineConfigs: 'error',
+    },
+
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+      },
+
+      parser: tseslint.parser,
+      ecmaVersion: 2021,
+      sourceType: 'module',
+    },
+
+    settings: {
+      react: {
+        version: 'detect',
+      },
+
+      'import/ignore': ['node_modules', '\\.(css|scss|json)$'],
+
+      'import/resolver': {
+        typescript: {},
+      },
+    },
+
+    rules: {
+      'jsx-quotes': ['error', 'prefer-single'],
+
+      'no-restricted-syntax': [
+        'error',
+        {
+          // eslint-disable-next-line no-restricted-syntax
+          selector: 'Literal[value=/•/], JSXText[value=/•/]',
+          // eslint-disable-next-line no-restricted-syntax
+          message: "Use '·' (middle dot) instead of '•' (bullet)",
+        },
+      ],
+
+      'formatjs/enforce-description': 'off', // description values not currently used
+      'formatjs/enforce-id': 'off', // Explicit IDs are used in the project
+      'formatjs/enforce-placeholders': 'off', // Issues in short_number.jsx
+      'formatjs/no-invalid-icu': 'error',
+      'formatjs/no-literal-string-in-jsx': 'off', // Should be looked at, but mainly flagging punctuation outside of strings
+      'formatjs/no-multiple-plurals': 'off', // Should be looked at
+
+      'jsx-a11y/click-events-have-key-events': 'off',
+      'jsx-a11y/label-has-associated-control': 'off',
+      'jsx-a11y/media-has-caption': 'off',
+      'jsx-a11y/no-autofocus': 'off',
+      'jsx-a11y/no-interactive-element-to-noninteractive-role': 'off',
+      'jsx-a11y/no-noninteractive-tabindex': 'off',
+      'jsx-a11y/no-static-element-interactions': [
+        'warn',
+        {
+          handlers: ['onClick'],
+        },
+      ],
+
+      'import/no-extraneous-dependencies': [
+        'error',
+        {
+          devDependencies: [
+            'eslint.config.mjs',
+            'config/webpack/**',
+            'app/javascript/mastodon/performance.js',
+            'app/javascript/mastodon/test_setup.js',
+            'app/javascript/**/__tests__/**',
+          ],
+        },
+      ],
+      'import/no-webpack-loader-syntax': 'error',
 
       'react/jsx-filename-extension': [
         'error',
