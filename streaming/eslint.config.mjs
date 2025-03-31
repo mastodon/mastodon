@@ -21,7 +21,7 @@ export default tseslint.config([
       'import/no-extraneous-dependencies': [
         'error',
         {
-          devDependencies: ['streaming/eslint.config.mjs'],
+          devDependencies: ['eslint.config.mjs'],
           optionalDependencies: false,
           peerDependencies: false,
           includeTypes: true,

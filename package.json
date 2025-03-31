@@ -19,7 +19,7 @@
     "format:check": "prettier --check --ignore-unknown .",
     "i18n:extract": "formatjs extract 'app/javascript/**/*.{js,jsx,ts,tsx}' --ignore '**/*.d.ts' --out-file app/javascript/mastodon/locales/en.json --format config/formatjs-formatter.js",
     "jest": "cross-env NODE_ENV=test jest",
-    "lint:js": "eslint --cache --report-unused-disable-directives",
+    "lint:js": "cd $INIT_CWD && eslint --cache --report-unused-disable-directives",
     "lint:css": "stylelint \"**/*.{css,scss}\"",
     "lint": "yarn lint:js && yarn lint:css",
     "postversion": "git push --tags",
