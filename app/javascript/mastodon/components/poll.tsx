@@ -45,9 +45,7 @@ interface PollProps {
   disabled?: boolean;
 }
 
-export const Poll: React.FC<PollProps> = (props) => {
-  const { pollId, status } = props;
-
+export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
   // Third party hooks
   const poll = useAppSelector((state) => state.polls[pollId]);
   const identity = useIdentity();
@@ -97,12 +95,12 @@ export const Poll: React.FC<PollProps> = (props) => {
     );
   }, [poll]);
 
-  const disabled =
-    props.disabled || Object.values(selected).every((item) => !item);
+  const voteDisabled =
+    disabled || Object.values(selected).every((item) => !item);
 
   // Event handlers
   const handleVote = useCallback(() => {
-    if (disabled) {
+    if (voteDisabled) {
       return;
     }
 
@@ -120,7 +118,7 @@ export const Poll: React.FC<PollProps> = (props) => {
         }),
       );
     }
-  }, [disabled, dispatch, identity, pollId, selected, status]);
+  }, [voteDisabled, dispatch, identity, pollId, selected, status]);
 
   const handleReveal = useCallback(() => {
     setRevealed(true);
@@ -181,7 +179,7 @@ export const Poll: React.FC<PollProps> = (props) => {
         {!showResults && (
           <button
             className='button button-secondary'
-            disabled={disabled}
+            disabled={voteDisabled}
             onClick={handleVote}
           >
             <FormattedMessage id='poll.vote' defaultMessage='Vote' />
