@@ -479,6 +479,36 @@ es:
       new:
         title: Importar bloqueos de dominio
       no_file: Ningún archivo seleccionado
+    fasp:
+      debug:
+        callbacks:
+          created_at: Creado el
+          delete: Eliminar
+          ip: Dirección IP
+          request_body: Cuerpo de la solicitud
+          title: Depurar devoluciones de llamada
+      providers:
+        active: Activo
+        base_url: URL base
+        callback: Devolución de llamada
+        delete: Eliminar
+        edit: Editar proveedor
+        finish_registration: Terminar el registro
+        name: Nombre
+        providers: Proveedores
+        public_key_fingerprint: Huella digital de clave pública
+        registration_requested: Se solicitó el registro
+        registrations:
+          confirm: Confirmar
+          description: Has recibido un registro de un FASP. Recházalo si no lo iniciaste tú. Si lo iniciaste tú, compara cuidadosamente el nombre y la huella de la clave antes de confirmar el registro.
+          reject: Rechazar
+          title: Confirmar registro FASP
+        save: Guardar
+        select_capabilities: Selecciona las capacidades
+        sign_in: Iniciar sesión
+        status: Estado
+        title: Fediverse Auxiliary Service Providers (Proveedores de Servicio Auxiliares del Fediverso)
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Las recomendaciones de cuentas ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para suscitar recomendaciones personalizadas de cuentas a las que seguir, en su lugar se le recomiendan estas cuentas. Se recalculan diariamente a partir de una mezcla de cuentas con el mayor número de interacciones recientes y con el mayor número de seguidores locales con un idioma determinado."
       language: Para el idioma

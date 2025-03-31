@@ -479,6 +479,36 @@ gl:
       new:
         title: Importar bloqueos de dominio
       no_file: Ningún ficheiro seleccionado
+    fasp:
+      debug:
+        callbacks:
+          created_at: Creado o
+          delete: Eliminar
+          ip: Enderezo IP
+          request_body: Corpo da solicitude
+          title: Datos para depuración
+      providers:
+        active: Activo
+        base_url: URL base
+        callback: Resposta
+        delete: Eliminar
+        edit: Editar provedor
+        finish_registration: Finalizar rexistro
+        name: Nome
+        providers: Provedores
+        public_key_fingerprint: Impresión dixital da chave pública
+        registration_requested: Solicitouse o rexistro
+        registrations:
+          confirm: Confirmar
+          description: Recibiches unha solicitude de rexistro desde un FASP. Rexeitaa se non iniciaches ti o proceso. Se foi iniciada por ti, compara con atención o nome e impresión dixital antes de confirmar o rexistro.
+          reject: Rexeitar
+          title: Confirmar o rexistro do FASP
+        save: Gardar
+        select_capabilities: Seleccionar funcións
+        sign_in: Acceder
+        status: Estado
+        title: Provedores de Servizos Auxiliares do Fediverso
+      title: FASP
     follow_recommendations:
       description_html: "<strong>As recomendacións de seguimento son útiles para que as novas usuarias atopen contidos interesantes</strong>. Cando unha usuaria aínda non interactuou con outras para obter recomendacións de seguimento, estas contas serán recomendadas. Variarán a diario xa que se escollen en base ao maior número de interaccións e ao contador local de seguimentos para un idioma dado."
       language: Para o idioma
@@ -1303,7 +1333,7 @@ gl:
   errors:
     '400': A solicitude que enviou non é válida ou ten formato incorrecto.
     '403': Non ten permiso para ver esta páxina.
-    '404': A páxina que está a buscar non está aquí.
+    '404': A páxina que buscas non está aquí.
     '406': Esta páxina non está dispoñible no formato solicitado.
     '410': A páxina que estaba a buscar xa non existe.
     '422':
