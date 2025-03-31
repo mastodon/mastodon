@@ -25,6 +25,11 @@ export default tseslint.config([
     },
 
     rules: {
+      // In the streaming server we need to delete some variables to ensure
+      // garbage collection takes place on the values referenced by those objects;
+      // The alternative is to declare the variable as nullable, but then we need
+      // to assert it's in existence before every use, which becomes much harder
+      // to maintain.
       'no-delete-var': 'off',
 
       'import/no-extraneous-dependencies': [
