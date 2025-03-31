@@ -20,6 +20,10 @@ export const baseConfig = [
   jsdoc.configs['flat/recommended'],
   promisePlugin.configs['flat/recommended'],
   {
+    linterOptions: {
+      reportUnusedDisableDirectives: 'error',
+      reportUnusedInlineConfigs: 'error',
+    },
     rules: {
       'consistent-return': 'error',
       'dot-notation': 'error',
@@ -186,11 +190,6 @@ export default tseslint.config([
   // @ts-expect-error -- For some reason the formatjs package exports an empty object?
   formatjs.configs.strict,
   {
-    linterOptions: {
-      reportUnusedDisableDirectives: 'error',
-      reportUnusedInlineConfigs: 'error',
-    },
-
     languageOptions: {
       globals: {
         ...globals.browser,

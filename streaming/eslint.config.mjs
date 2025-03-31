@@ -35,9 +35,6 @@ export default tseslint.config([
       ],
 
       'import/extensions': ['error', 'always'],
-
-      // TODO: Fix resolution of imports
-      // 'import/no-unresolved': ['error', { ignore: ['typescript-eslint'] }]
     },
   },
 ]);
