@@ -7,7 +7,6 @@ import classNames from 'classnames';
 
 import { animated, useSpring } from '@react-spring/web';
 import escapeTextContentForBrowser from 'escape-html';
-import { debounce } from 'lodash';
 
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import { openModal } from 'mastodon/actions/modal';
@@ -128,13 +127,7 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
     if (disabled) {
       return;
     }
-    debounce(
-      () => {
-        void dispatch(fetchPoll({ pollId }));
-      },
-      1000,
-      { leading: true },
-    );
+    void dispatch(fetchPoll({ pollId }));
   }, [disabled, dispatch, pollId]);
 
   const handleOptionChange = useCallback(
