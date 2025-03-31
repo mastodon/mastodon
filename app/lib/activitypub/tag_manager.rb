@@ -290,10 +290,9 @@ class ActivityPub::TagManager
 
     path_params = Rails.application.routes.recognize_path(uri)
 
-    # TODO: handle numeric IDs
     case path_params[:controller]
     when 'accounts'
-      [:username, path_params[:username]]
+      path_params.key?(:username) ? [:username, path_params[:username]] : [:id, path_params[:id]]
     when 'instance_actors'
       [:id, -99]
     end
