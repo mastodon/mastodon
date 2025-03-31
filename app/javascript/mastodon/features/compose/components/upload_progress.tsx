@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { FormattedMessage } from 'react-intl';
 
 import { animated, useSpring } from '@react-spring/web';
@@ -19,14 +17,10 @@ export const UploadProgress: React.FC<UploadProgressProps> = ({
   progress,
   isProcessing = false,
 }) => {
-  const [currentProgress, setCurrentProgress] = useState(progress);
   const styles = useSpring({
-    from: { width: `${currentProgress}%` },
+    from: { width: '0%' },
     to: { width: `${progress}%` },
     immediate: reduceMotion || !active, // If this is not active, update the UI immediately.
-    onResolve() {
-      setCurrentProgress(progress);
-    },
   });
   if (!active) {
     return null;
