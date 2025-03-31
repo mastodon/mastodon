@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { FormattedMessage } from 'react-intl';
 
 import { animated, useSpring } from '@react-spring/web';
@@ -9,40 +11,26 @@ import { reduceMotion } from 'mastodon/initial_state';
 interface UploadProgressProps {
   active: boolean;
   progress: number;
-  isProcessing: boolean;
+  isProcessing?: boolean;
 }
 
 export const UploadProgress: React.FC<UploadProgressProps> = ({
   active,
   progress,
-  isProcessing,
+  isProcessing = false,
 }) => {
+  const [currentProgress, setCurrentProgress] = useState(progress);
   const styles = useSpring({
-    from: { width: '0%' },
+    from: { width: `${currentProgress}%` },
     to: { width: `${progress}%` },
     reset: true,
     immediate: reduceMotion,
+    onResolve() {
+      setCurrentProgress(progress);
+    },
   });
   if (!active) {
     return null;
-  }
-
-  let message;
-
-  if (isProcessing) {
-    message = (
-      <FormattedMessage
-        id='upload_progress.processing'
-        defaultMessage='Processing…'
-      />
-    );
-  } else {
-    message = (
-      <FormattedMessage
-        id='upload_progress.label'
-        defaultMessage='Uploading…'
-      />
-    );
   }
 
   return (
@@ -50,7 +38,17 @@ export const UploadProgress: React.FC<UploadProgressProps> = ({
       <Icon id='upload' icon={UploadFileIcon} />
 
       <div className='upload-progress__message'>
-        {message}
+        {isProcessing ? (
+          <FormattedMessage
+            id='upload_progress.processing'
+            defaultMessage='Processing…'
+          />
+        ) : (
+          <FormattedMessage
+            id='upload_progress.label'
+            defaultMessage='Uploading…'
+          />
+        )}
 
         <div className='upload-progress__backdrop'>
           <animated.div className='upload-progress__tracker' style={styles} />
