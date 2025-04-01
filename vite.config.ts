@@ -13,6 +13,17 @@ export default defineConfig({
     emptyOutDir: true,
     manifest: 'manifest.json',
     rollupOptions: {
+      input: {
+        admin: path.resolve(__dirname, 'app/javascript/entrypoints/admin.tsx'),
+        application: path.resolve(
+          __dirname,
+          'app/javascript/entrypoints/application.ts',
+        ),
+        twoFactor: path.resolve(
+          __dirname,
+          'app/javascript/entrypoints/two_factor_authentication.ts',
+        ),
+      },
       output: {
         chunkFileNames: (chunkInfo) => {
           if (
