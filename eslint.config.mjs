@@ -309,17 +309,14 @@ export default tseslint.config([
     files: ['**/*.ts', '**/*.tsx'],
 
     extends: [
-      js.configs.recommended,
       tseslint.configs.strictTypeChecked,
       tseslint.configs.stylisticTypeChecked,
       react.configs.flat.recommended,
       react.configs.flat['jsx-runtime'],
       reactHooks.configs['recommended-latest'],
       jsxA11Y.flatConfigs.recommended,
-      importPlugin.flatConfigs.recommended,
       importPlugin.flatConfigs.react,
       importPlugin.flatConfigs.typescript,
-      promisePlugin.configs['flat/recommended'],
       jsdoc.configs['flat/recommended-typescript'],
     ],
 
