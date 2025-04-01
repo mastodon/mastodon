@@ -263,10 +263,10 @@ gl:
         destroy_user_role_html: "%{name} eliminou o rol %{target}"
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} desactivou a autenticación por token no email para %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} desactivou a autenticación por token no correo para %{target}"
         disable_user_html: "%{name} desactivou as credenciais para a usuaria %{target}"
         enable_custom_emoji_html: "%{name} activou o emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} activou a autenticación con token no email para %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} activou a autenticación con token no correo para %{target}"
         enable_user_html: "%{name} activou as credenciais para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
         promote_user_html: "%{name} promocionou a usuaria %{target}"
@@ -1252,7 +1252,7 @@ gl:
   errors:
     '400': A solicitude que enviou non é válida ou ten formato incorrecto.
     '403': Non ten permiso para ver esta páxina.
-    '404': A páxina que está a buscar non está aquí.
+    '404': A páxina que buscas non está aquí.
     '406': Esta páxina non está dispoñible no formato solicitado.
     '410': A páxina que estaba a buscar xa non existe.
     '422':

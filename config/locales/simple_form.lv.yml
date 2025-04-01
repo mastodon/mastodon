@@ -10,7 +10,7 @@ lv:
         indexable: Tavi publiskie ieraksti var tikt parādīti Mastodon meklēšanas iznākumā. Cilvēki, kuri ir mijiedarbojušies ar Taviem ierakstiem, var tos meklēt neatkarīgi no tā.
         note: 'Tu vari @minēt citus cilvēkus vai #mirkļbirkas.'
         show_collections: Cilvēki varēs pārlūkot Tavus sekotājus un sekojamos. Cilvēki, kuriem Tu seko, redzēs, ka Tu seko viņiem neatkarīgi no tā.
-        unlocked: Cilvēki varēs sekot jums, neprasot apstiprinājumu. Noņemiet atzīmi no izvēles rūtiņas, ja vēlaties skatīt sekošanas pieprasījumus un izvēlēties, pieņemt vai noraidīt jaunos abonentus.
+        unlocked: Cilvēki varēs Tev sekot bez apstiprinājuma pieprasīšanas. Jānoņem atzīme, ja vēlies pārskatīt sekošanas pieprasījumus un izvēlēties, vai apstiprināt vai noraidīt jaunus sekotājus.
       account_alias:
         acct: Norādi konta lietotājvārdu@domēnu, no kura vēlies pārvākties
       account_migration:
@@ -26,7 +26,7 @@ lv:
         types:
           disable: Neļauj lietotājam izmantot savu kontu, bet neizdzēs vai neslēp tā saturu.
           none: Izmanto šo, lai nosūtītu lietotājam brīdinājumu, neradot nekādas citas darbības.
-          sensitive: Piespiest visus šī lietotāja multivides pielikumus atzīmēt kā sensitīvus.
+          sensitive: Visus šī lietotāja informācijas nesēju pielikumus uzspiesti atzīmēt kā jūtīgus.
           silence: Neļaut lietotājam veikt ierakstus ar publisku redzamību, paslēpt viņa ierakstus un paziņojumus no cilvēkiem, kas tam neseko. Tiek aizvērti visi ziņojumi par šo kontu.
           suspend: Novērs jebkādu mijiedarbību no šī konta vai uz to un dzēs tā saturu. Atgriežams 30 dienu laikā. Tiek aizvērti visi šī konta pārskati.
         warning_preset_id: Neobligāts. Tu joprojām vari pievienot pielāgotu tekstu sākotnējās iestatīšanas beigās
@@ -56,8 +56,8 @@ lv:
         scopes: Kuriem API lietotnei būs ļauts piekļūt. Ja atlasa augstākā līmeņa tvērumu, nav nepieciešamas atlasīt atsevišķus.
         setting_aggregate_reblogs: Nerādīt jaunus izcēlumus ziņām, kas nesen tika palielinātas (ietekmē tikai nesen saņemtos palielinājumus)
         setting_always_send_emails: Parasti e-pasta paziņojumi netiek sūtīti, kad aktīvi izmantojat Mastodon
-        setting_default_sensitive: Sensitīva multivide pēc noklusējuma ir paslēpti, un tos var atklāt, noklikšķinot
-        setting_display_media_default: Paslēpt multividi, kas atzīmēta kā sensitīva
+        setting_default_sensitive: Pēc noklusējuma jūtīgi informācijas nesēji ir paslēpti, un tos var atklāt ar klikšķi
+        setting_display_media_default: Paslēpt informācijas nesējus, kas atzīmēti kā jūtīgi
         setting_display_media_hide_all: Vienmēr slēpt multividi
         setting_display_media_show_all: Vienmēr rādīt multividi
         setting_use_blurhash: Pāreju pamatā ir paslēpto uzskatāmo līdzekļu krāsas, bet saturs tiek padarīts neskaidrs
@@ -80,7 +80,7 @@ lv:
         activity_api_enabled: Vietēji publicēto ziņu, aktīvo lietotāju un jauno reģistrāciju skaits nedēļas kopās
         app_icon: WEBP, PNG, GIF vai JPG. Mobilajās ierīcēs aizstāj noklusējuma lietotnes ikonu ar pielāgotu.
         backups_retention_period: Lietotājiem ir iespēja izveidot savu ierakstu arhīvu lejupielādēšanai vēlāk. Kad iestatīta pozitīva vērtība, šie arhīvi tiks automātiski izdzēsti no krātuves pēc norādītā dienu skaita.
-        bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju ieteikumu augšdaļā.
+        bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju sekošanas ieteikumu augšdaļā.
         closed_registrations_message: Tiek rādīts, kad reģistrēšanās ir slēgta
         content_cache_retention_period: Visi ieraksti no citiem serveriem (tajā skaitā pastiprinājumi un atbildes) tiks izdzēsti pēc norādītā dienu skaita, neņemot vērā vietēja lietotāja mijiedarbību ar šādiem ierakstiem. Tas ietver ierakstus, kurus vietējs lietotājs ir atzīmējis kā grāmatzīmi vai pievienojis izlasē. Tiks zaudēti arī privāti pieminējumi starp lietotājiem no dažādiem serveriem, un tos nebūs iespējams atgūt. Šī iestatījuma izmantošana ir paredzēta īpašam nolūkam paredzētiem serveriem un neatbilst tam, ko sagaida vairums lietotāju, kad pielietots vispārējas izmantošanas serveros.
         custom_css: Vari lietot pielāgotus stilus Mastodon tīmekļa versijā.
@@ -122,7 +122,7 @@ lv:
         hint: Izvēles. Sniedz vairāk informācijas par noteikumu
         text: Jāapraksta nosacījums vai prasība šī servera lietotājiem. Jāmēģina to veidot īsu un vienkāršu
       sessions:
-        otp: 'Ievadi divfaktoru kodu, ko ģenerējusi tava tālruņa lietotne, vai izmanto kādu no atkopšanas kodiem:'
+        otp: 'Jāievada tālruņa lietotnes izveidots divpakāpju kods vai jāizmanto viens no saviem atkopes kodie:'
         webauthn: Ja tā ir USB atslēga, noteikti ievieto to un, ja nepieciešams, pieskaries tai.
       settings:
         indexable: Tava profila lapa var tikt parādīta Google, Bing un citu meklēšanas dzinēju rezultātos.
@@ -167,7 +167,7 @@ lv:
         types:
           disable: Iesaldēt
           none: Nosūtīt brīdinājumu
-          sensitive: Sensitīvs
+          sensitive: Jūtīgs
           silence: Ierobežot
           suspend: Apturēt
         warning_preset_id: Lietot iepriekš iestatītus brīdinājumus
@@ -211,7 +211,7 @@ lv:
         setting_boost_modal: Rādīt apstiprinājuma dialogu pirms izcelšanas
         setting_default_language: Publicēšanas valoda
         setting_default_privacy: Publicēšanas privātums
-        setting_default_sensitive: Atļaut atzīmēt multividi kā sensitīvu
+        setting_default_sensitive: Vienmēr atzīmēt informācijas nesējus kā jūtīgus
         setting_delete_modal: Parādīt apstiprinājuma dialogu pirms ziņas dzēšanas
         setting_disable_hover_cards: Atspējot profila priekšskatījumu pēc kursora novietošanas
         setting_disable_swiping: Atspējot vilkšanas kustības

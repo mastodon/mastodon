@@ -18,6 +18,9 @@ sl:
       attributes:
         domain:
           invalid: ni veljavno ime domene
+      messages:
+        invalid_domain_on_line: "%{value} ni veljavno ime domene"
+        too_many_lines: presega omejitev %{limit} vrstic
       models:
         account:
           attributes:

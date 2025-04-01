@@ -3,7 +3,7 @@ cy:
   activerecord:
     attributes:
       poll:
-        expires_at: Terfyn amser
+        expires_at: Dyddiad cau
         options: Dewisiadau
       user:
         agreement: Cytundeb gwasanaeth
@@ -53,7 +53,7 @@ cy:
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: yn cynnwys caniatâd nad ydynt yn ddiogel ar gyfer rôl sail
+              dangerous: yn cynnwys caniatâd nad ydyn nhw'n ddiogel ar gyfer rôl sail
               elevated: yn methu a chynnwys caniatâd nad yw eich rôl cyfredol yn ei gynnwys
               own_role: nid oes modd ei newid gyda'ch rôl cyfredol
             position:
@@ -62,4 +62,4 @@ cy:
         webhook:
           attributes:
             events:
-              invalid_permissions: ni ellir cynnwys digwyddiadau nad oes gennych yr hawl iddynt
+              invalid_permissions: nid oes modd cynnwys digwyddiadau nad oes gennych yr hawl iddyn nhw

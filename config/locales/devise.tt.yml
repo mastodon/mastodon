@@ -3,7 +3,19 @@ tt:
   devise:
     confirmations:
       confirmed: Сезнең э. почта адресыгыз уңышлы расланган.
+    failure:
+      already_authenticated: Сез кердегез инде.
+      inactive: Сезнең аккаунтыгыз әле активламаган.
+      invalid: "%{authentication_keys} яки серсүз дөрес кертелмәгән."
+      locked: Сезнең хисапъязмагыз блокланган.
+      not_found_in_database: "%{authentication_keys} яки серсүз дөрес кертелмәгән."
     mailer:
+      confirmation_instructions:
+        action: Email адресын расла
+        action_with_app: Расла һәм %{app} эченә кайт
+        title: Email адресын раслагыз
+      email_changed:
+        explanation: 'Сезнең аккаунтыгызның email адресы моңа үзгәртеләчәк:'
       reset_password_instructions:
         action: Серсүзне үзгәртү
         title: Серсүзне алыштыру

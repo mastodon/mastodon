@@ -8,9 +8,9 @@ pt-BR:
         display_name: Seu nome completo ou apelido.
         fields: Sua página inicial, pronomes, idade ou qualquer coisa que quiser.
         indexable: Suas publicações públicas podem aparecer nos resultados da pesquisa em Mastodon. As pessoas que interagiram com suas publicações podem conseguir pesquisá-las independentemente disso.
-        note: 'Você pode @mencionar outras pessoas ou #hashtags.'
-        show_collections: As pessoas poderão navegar entre os seus seguidores e seguidores. As pessoas que você segue verão que você as segue independentemente disso.
-        unlocked: As pessoas poderão te seguir sem pedir aprovação. Desmarque se você deseja revisar pedidos e escolher se aceita ou rejeita novos seguidores.
+        note: 'Você pode @mencionar outras pessoas ou usar #hashtags.'
+        show_collections: As pessoas podem ver seus seguidores e quem você está seguindo. Os perfis que você seguir saberão que você os segue independentemente do que selecionar.
+        unlocked: As pessoas poderão te seguir sem solicitar aprovação. Desmarque caso você queira revisar as solicitações.
       account_alias:
         acct: Especifique o usuário@domínio de onde veio
       account_migration:
@@ -27,8 +27,8 @@ pt-BR:
           disable: Impede o usuário de usar a conta, porém sem excluí-la ou suspendê-la.
           none: Use isto para enviar uma advertência ao usuário, sem nenhuma outra ação.
           sensitive: Marca todas as mídias do usuário como sensível.
-          silence: Impede o usuário de enviar postagens visualmente públicas, além de ocultar suas publicações e notificações dos que não o seguem. Ademais, fecha todas as denúncias contra esta conta.
-          suspend: Impede qualquer interação de ou para esta conta e exclui seu conteúdo. Reversível dentro de 30 dias. Ademais, fecha todas as denúncias contra esta conta.
+          silence: Impede o usuário de postar publicamente, restringe suas publicações e notificações a somente quem o segue. Encerra todas as denúncias contra esta conta.
+          suspend: Impede qualquer interação de ou para esta conta e exclui seu conteúdo. Reversível dentro de 30 dias. Encerra todas as denúncias contra esta conta.
         warning_preset_id: Opcional. Você pode adicionar texto personalizado no final da advertência pré-definida
       announcement:
         all_day: Quando marcada, apenas as datas do período serão mostradas
@@ -37,11 +37,11 @@ pt-BR:
         starts_at: Opcional. Caso o comunicado esteja vinculado a um período específico
         text: Você pode usar a sintaxe do toot. Considere o espaço que o comunicado ocupará na tela do usuário
       appeal:
-        text: Você só pode solicitar uma revisão uma vez
+        text: Você só pode recorrer uma vez
       defaults:
         autofollow: Pessoas que criarem conta através de seu convite te seguirão automaticamente
         avatar: WEBP, PNG, GIF ou JPG. No máximo %{size}. Será reduzido para %{dimensions}px
-        bot: Essa conta executa principalmente ações automatizadas e pode não ser monitorada
+        bot: Sinaliza aos outros de que essa conta executa principalmente ações automatizadas e pode não ser monitorada
         context: Um ou mais contextos onde o filtro deve atuar
         current_password: Para fins de segurança, digite a senha da conta atual
         current_username: Para confirmar, digite o nome de usuário da conta atual
@@ -54,7 +54,7 @@ pt-BR:
         password: Use pelo menos 8 caracteres
         phrase: Corresponderá independente de maiúsculas ou minúsculas, no texto ou no Aviso de Conteúdo de um toot
         scopes: Quais APIs o aplicativo vai ter permissão de acessar. Se você selecionar uma autorização de alto nível, você não precisa selecionar individualmente os outros.
-        setting_aggregate_reblogs: Não mostra novos impulsos para publicações já receberam recentemente (afeta somente os impulsos mais recentes)
+        setting_aggregate_reblogs: Não mostrar novos impulsos para publicações que já foram impulsionadas recentemente (afeta somente os impulsos mais recentes)
         setting_always_send_emails: Normalmente, as notificações por e-mail não serão enviadas enquanto você estiver usando ativamente o Mastodon
         setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
         setting_display_media_default: Sempre ocultar mídia sensível
@@ -79,7 +79,7 @@ pt-BR:
       form_admin_settings:
         activity_api_enabled: Contagem de publicações locais, usuários ativos e novos usuários semanais
         app_icon: WEBP, PNG, GIF ou JPG. Sobrescrever o ícone padrão do aplicativo em dispositivos móveis com um ícone personalizado.
-        backups_retention_period: Os usuários têm a capacidade de gerar arquivos de suas postagens para baixar mais tarde. Quando definido como um valor positivo, esses arquivos serão automaticamente excluídos do seu armazenamento após o número especificado de dias.
+        backups_retention_period: Os usuários podem gerar arquivos de suas postagens para baixar mais tarde. Quando definido como um valor positivo, esses arquivos serão automaticamente excluídos do seu armazenamento após o número especificado de dias.
         bootstrap_timeline_accounts: Estas contas serão fixadas no topo das recomendações de novos usuários para seguir.
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
         content_cache_retention_period: Todas as postagens de outros servidores (incluindo boosts e respostas) serão excluídas após o número especificado de dias, sem levar a qualquer interação do usuário local com esses posts. Isto inclui postagens onde um usuário local o marcou como favorito ou favoritos. Menções privadas entre usuários de diferentes instâncias também serão perdidas e impossíveis de restaurar. O uso desta configuração destina-se a instâncias especiais de propósitos e quebra muitas expectativas dos usuários quando implementadas para uso de propósito geral.
