@@ -495,6 +495,36 @@ cs:
       new:
         title: Importovat blokované domény
       no_file: Nebyl vybrán žádný soubor
+    fasp:
+      debug:
+        callbacks:
+          created_at: Vytvořeno
+          delete: Odstranit
+          ip: IP adresa
+          request_body: Tělo požadavku
+          title: Ladit callbacky
+      providers:
+        active: Aktivní
+        base_url: Základní URL
+        callback: Callback
+        delete: Smazat
+        edit: Upravit poskytovatele
+        finish_registration: Dokončit registraci
+        name: Jméno
+        providers: Poskytovatelé
+        public_key_fingerprint: Otisk veřejného klíče
+        registration_requested: Registrace požádána
+        registrations:
+          confirm: Potvrdit
+          description: Obdrželi jste registraci od FASP. Odmítněte ji, pokud jste ji neiniciovali. Pokud jste ji iniciovali, pečlivě porovnejte jméno a otisk klíče před jejím potvrzením.
+          reject: Zamítnout
+          title: Potvrdit registraci FASP
+        save: Uložit
+        select_capabilities: Vybrat možnosti
+        sign_in: Přihlásit se
+        status: Stav
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Doporučená sledování pomáhají novým uživatelům rychle najít zajímavý obsah</strong>. Pokud uživatel neinteragoval s ostatními natolik, aby mu byla vytvořena doporučená sledování na míru, jsou použity tyto účty. Jsou přepočítávány na denní bázi ze směsi účtů s největším nedávným zapojením a nejvyšším počtem místních sledovatelů pro daný jazyk."
       language: Pro jazyk

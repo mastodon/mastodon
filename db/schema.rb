@@ -445,6 +445,32 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_13_123400) do
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 
+  create_table "fasp_debug_callbacks", force: :cascade do |t|
+    t.bigint "fasp_provider_id", null: false
+    t.string "ip", null: false
+    t.text "request_body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fasp_provider_id"], name: "index_fasp_debug_callbacks_on_fasp_provider_id"
+  end
+
+  create_table "fasp_providers", force: :cascade do |t|
+    t.boolean "confirmed", default: false, null: false
+    t.string "name", null: false
+    t.string "base_url", null: false
+    t.string "sign_in_url"
+    t.string "remote_identifier", null: false
+    t.string "provider_public_key_pem", null: false
+    t.string "server_private_key_pem", null: false
+    t.jsonb "capabilities", default: [], null: false
+    t.jsonb "privacy_policy"
+    t.string "contact_email"
+    t.string "fediverse_account"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["base_url"], name: "index_fasp_providers_on_base_url", unique: true
+  end
+
   create_table "favourites", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
@@ -1289,6 +1315,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_13_123400) do
   add_foreign_key "custom_filter_statuses", "statuses", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
   add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
+  add_foreign_key "fasp_debug_callbacks", "fasp_providers"
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
   add_foreign_key "featured_tags", "accounts", on_delete: :cascade

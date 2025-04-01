@@ -1,3 +1,8 @@
+@use 'sass:color';
+@use 'variables' as *;
+@use 'functions' as *;
+@use 'mixins' as *;
+
 .app-body {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -1841,18 +1846,22 @@ body > [data-popper-placement] {
 .detailed-status__wrapper-direct {
   .detailed-status,
   .detailed-status__action-bar {
-    background: mix($ui-base-color, $ui-highlight-color, 95%);
+    background: color.mix($ui-base-color, $ui-highlight-color, 95%);
   }
 
   &:focus {
     .detailed-status,
     .detailed-status__action-bar {
-      background: mix(lighten($ui-base-color, 4%), $ui-highlight-color, 95%);
+      background: color.mix(
+        lighten($ui-base-color, 4%),
+        $ui-highlight-color,
+        95%
+      );
     }
   }
 
   .detailed-status__action-bar {
-    border-top-color: mix(
+    border-top-color: color.mix(
       lighten($ui-base-color, 8%),
       $ui-highlight-color,
       95%
@@ -7066,6 +7075,8 @@ a.status-card {
     height: 100% !important;
     margin: 0;
     aspect-ratio: auto !important;
+    outline: none;
+    border-radius: 0;
 
     video {
       width: 100% !important;
@@ -7089,6 +7100,15 @@ a.status-card {
       transparent
     );
     padding: 0 15px;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .media-gallery__actions {
     opacity: 0;
     transition: opacity 0.1s ease;
 
@@ -7247,7 +7267,7 @@ a.status-card {
       inset-inline-start: 0;
       top: 50%;
       transform: translate(0, -50%);
-      background: lighten($ui-highlight-color, 8%);
+      background: $white;
     }
 
     &__handle {
@@ -7260,7 +7280,7 @@ a.status-card {
       inset-inline-start: 0;
       margin-inline-start: -6px;
       transform: translate(0, -50%);
-      background: lighten($ui-highlight-color, 8%);
+      background: $white;
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
       opacity: 0;
 
@@ -7314,7 +7334,7 @@ a.status-card {
       height: 4px;
       border-radius: 4px;
       top: 14px;
-      background: lighten($ui-highlight-color, 8%);
+      background: $white;
     }
 
     &__buffer {
@@ -7330,7 +7350,7 @@ a.status-card {
       height: 12px;
       top: 10px;
       margin-inline-start: -6px;
-      background: lighten($ui-highlight-color, 8%);
+      background: $white;
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
 
       .no-reduce-motion & {
@@ -7339,6 +7359,7 @@ a.status-card {
 
       &.active {
         opacity: 1;
+        cursor: grabbing;
       }
     }
 
@@ -7346,6 +7367,28 @@ a.status-card {
       .video-player__seek__handle {
         opacity: 1;
       }
+    }
+  }
+
+  &__hotkey-indicator {
+    position: absolute;
+    top: 50%;
+    inset-inline-start: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba($base-shadow-color, 0.45);
+    backdrop-filter: var(--background-filter);
+    color: $white;
+    border-radius: 8px;
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &__label {
+      font-size: 15px;
+      font-weight: 500;
     }
   }
 
@@ -8404,7 +8447,7 @@ noscript {
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: mix(
+      background-color: color.mix(
         lighten($ui-base-color, 12%),
         $ui-highlight-color,
         80%

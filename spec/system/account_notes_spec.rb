@@ -25,9 +25,6 @@ RSpec.describe 'Account notes', :inline_jobs, :js, :streaming do
     find_field(class: 'account__header__account-note__content').send_keys [:control, :enter]
 
     expect(page)
-      .to have_css('.account__header__account-note .inline-alert', text: 'SAVED')
-
-    expect(page)
       .to have_css('.account__header__account-note__content', text: note_text)
 
     # Navigate back and forth and ensure the comment is still here

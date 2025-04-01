@@ -473,6 +473,36 @@ ko:
       new:
         title: 도메인 차단 불러오기
       no_file: 선택된 파일이 없습니다
+    fasp:
+      debug:
+        callbacks:
+          created_at: 생성일
+          delete: 삭제
+          ip: IP 주소
+          request_body: 요청 바디
+          title: 디버그 콜백
+      providers:
+        active: 활성
+        base_url: Base URL
+        callback: 콜백
+        delete: 삭제
+        edit: 제공자 편집
+        finish_registration: 등록 완료
+        name: 이름
+        providers: 제공자
+        public_key_fingerprint: 공개키 핑거프린트
+        registration_requested: 가입 요청됨
+        registrations:
+          confirm: 확인
+          description: FASP로부터 등록을 받았습니다. 본인이 시작하지 않았다면 거부하세요. 본인이 시작했다면 등록을 확인하기 전에 이름과 키 핑거프린트를 주의 깊게 비교하세요.
+          reject: 거부
+          title: FASP 가입 확인
+        save: 저장
+        select_capabilities: 권한 선택
+        sign_in: 가입
+        status: 상태
+        title: 연합우주 보조 서비스 제공자
+      title: FASP
     follow_recommendations:
       description_html: "<strong>팔로우 추천은 새 사용자들이 관심 가는 콘텐트를 빠르게 찾을 수 있도록 도와줍니다</strong>. 사용자가 개인화 된 팔로우 추천이 만들어지기 위한 충분한 상호작용을 하지 않은 경우, 이 계정들이 대신 추천 됩니다. 이들은 해당 언어에 대해 많은 관심을 갖거나 많은 로컬 팔로워를 가지고 있는 계정들을 섞어서 날마다 다시 계산 됩니다."
       language: 언어 필터
