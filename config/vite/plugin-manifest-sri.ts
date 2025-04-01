@@ -13,13 +13,6 @@ export interface Options {
    * @default ['sha384']
    */
   algorithms?: Algorithm[];
-
-  /**
-   * Path of the manifest files that should be read and augmented with the
-   * integrity hash, relative to `outDir`.
-   * @default ['manifest.json', 'manifest-assets.json']
-   */
-  manifestPaths?: string[];
 }
 
 declare module 'vite' {
@@ -29,26 +22,14 @@ declare module 'vite' {
 }
 
 export function manifestSRI(options: Options = {}): Plugin {
-  const {
-    algorithms = ['sha384'],
-    manifestPaths = [
-      '.vite/manifest.json',
-      '.vite/manifest-assets.json',
-      'manifest.json',
-      'manifest-assets.json',
-    ],
-  } = options;
+  const { algorithms = ['sha384'] } = options;
 
   return {
     name: 'vite-plugin-manifest-sri',
     apply: 'build',
     enforce: 'post',
     async writeBundle({ dir }) {
-      await Promise.all(
-        manifestPaths.map((path) =>
-          augmentManifest(path, algorithms, dir ?? ''),
-        ),
-      );
+      await augmentManifest('manifest.json', algorithms, dir ?? '');
     },
   };
 }
