@@ -36,10 +36,6 @@ export const baseConfig = [
         },
       ],
 
-      indent: ['error', 2],
-      semi: ['error', 'always'],
-      'no-catch-shadow': 'error',
-
       'no-console': [
         'warn',
         {
@@ -213,8 +209,6 @@ export default tseslint.config([
     },
 
     rules: {
-      'jsx-quotes': ['error', 'prefer-single'],
-
       'no-restricted-syntax': [
         'error',
         {
@@ -336,9 +330,6 @@ export default tseslint.config([
     },
 
     rules: {
-      // Disable formatting rules that have been enabled in the base config
-      indent: 'off',
-
       // This is not needed as we use noImplicitReturns, which handles this in addition to understanding types
       'consistent-return': 'off',
 
