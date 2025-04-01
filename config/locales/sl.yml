@@ -25,9 +25,12 @@ sl:
       other: Objav
       two: Objavi
     posts_tab_heading: Objave
+    self_follow_error: Ni dovoljeno slediti lastnemu računu
   admin:
     account_actions:
       action: Izvedi dejanje
+      already_silenced: Ta račun je že omejen.
+      already_suspended: Ta račun je že suspendiran.
       title: Izvedi moderirano dejanje za %{acct}
     account_moderation_notes:
       create: Pusti opombo
@@ -49,6 +52,7 @@ sl:
         title: Spremeni e-naslov za %{username}
       change_role:
         changed_msg: Vloga uspešno spremenjena!
+        edit_roles: Upravljaj z uporabniškimi vlogami
         label: Spremeni vlogo
         no_role: Brez vloge
         title: Spremeni vlogo za %{username}
@@ -486,6 +490,9 @@ sl:
       title: Sledi priporočilom
       unsuppress: Obnovi sledenje priporočilom
     instances:
+      audit_log:
+        title: Nedavni revizijski zapisi
+        view_all: Prikaži ves revizijski dnevnik
       availability:
         description_html:
           few: Če dostava v domeno spodleti <strong>%{count} različne dni</strong> brez uspeha, ne bo nadaljnjih poskusov dostopa, razen če je prejeta dostava <em>iz</em> domene.
@@ -622,6 +629,7 @@ sl:
         suspend_description_html: Račun in vsa njegova vsebina ne bo dostopna in bo postopoma izbrisana, interakcija z njim pa ne bo več možna. Dejanje je moč povrniti v roku 30 dni. Zaključi vse prijave zoper ta račun.
       actions_description_html: Odločite se, katere ukrepe boste sprejeli za rešitev te prijave. Če sprejmete kazenski ukrep proti prijavljenemu računu, mu bo poslano e-poštno obvestilo, razen če je izbrana kategorija <strong>Neželena pošta</strong>.
       actions_description_remote_html: Odločite se za dejanje, ki bo odločilo o tej prijavi. To bo vplivalo le na to, kako <strong>vaš</strong> strežnik komunicira s tem oddaljenim računom in obravnava njegovo vsebino.
+      actions_no_posts: To poročilo ni vezano na nobene objave, ki bi jih lahko izbrisali
       add_to_report: Dodaj več v prijavo
       already_suspended_badges:
         local: Že suspendiran na tem strežniku
@@ -896,6 +904,9 @@ sl:
         message_html: Nobenih pravil strežnika niste določili.
       sidekiq_process_check:
         message_html: Noben proces Sidekiq ne poteka za %{value} vrst. Preglejte svojo prilagoditev Sidekiq
+      software_version_check:
+        action: Oglejte si razpoložljive posodobitve
+        message_html: Na voljo je posodobitev Mastodona.
       software_version_critical_check:
         action: Glejte razpoložljive posodobitve
         message_html: Na voljo je kritična posodobitev Mastodona. Posodobite čim prej.
@@ -922,6 +933,7 @@ sl:
       name: Ime
       newest: Najnovejše
       oldest: Najstarejše
+      open: Prikaži javno
       reset: Ponastavi
       review: Stanje pregleda
       search: Išči
@@ -1190,6 +1202,12 @@ sl:
     use_security_key: Uporabi varnostni ključ
   author_attribution:
     example_title: Vzorčno besedilo
+    hint_html: Ali pišete novičke ali spletni dnevnik kje drugje poleg Mastodona? Poskrbite, da bo vaše avtorstvo pravilno navedeno, ko bo kdo delil vaše delo na Mastodonu.
+    instructions: 'Poskrbite, da bo v dokumentu HTML vašega prispevka naslednja koda:'
+    more_from_html: Več od %{name}
+    s_blog: Spletni dnevnik %{name}
+    then_instructions: Nato dodajte ime domene, kamor objavljate, v spodnje polje.
+    title: Priznanje avtorstva
   challenge:
     confirm: Nadaljuj
     hint_html: "<strong>Namig:</strong> naslednjo uro vas ne bomo več vprašali po vašem geslu."
@@ -1500,6 +1518,7 @@ sl:
   media_attachments:
     validations:
       images_and_video: Videoposnetka ni mogoče priložiti objavi, ki že vsebuje slike
+      not_found: Predstavnosti %{ids} ne najdem ali pa je že pripeta k drugi objavi
       not_ready: Datotek, katerih obdelava ni dokončana, ni mogoče pripeti. Poskusite znova kmalu!
       too_many: Ni možno priložiti več kot 4 datoteke
   migrations:
@@ -1991,6 +2010,7 @@ sl:
     instructions_html: Spodnjo kodo kopirajte in prilepite v HTML svojega spletnega mesta. Nato dodajte naslov svoje spletne strani v eno od dodatnih polj v svojem profilu v zavihku »Uredi profil« in shranite spremembe.
     verification: Potrditev
     verified_links: Vaše preverjene povezave
+    website_verification: Overitev spletišča
   webauthn_credentials:
     add: Dodaj nov varnostni ključ
     create:
