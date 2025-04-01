@@ -18,6 +18,7 @@ export interface Options {
 declare module 'vite' {
   interface ManifestChunk {
     integrity: string;
+    assetIntegrity: Record<string, string>;
   }
 }
 
@@ -46,17 +47,30 @@ async function augmentManifest(
     .readFile(manifestPath, 'utf-8')
     .then((file) => JSON.parse(file) as Manifest);
 
-  if (manifest) {
-    await Promise.all(
-      Object.values(manifest).map(async (chunk) => {
-        chunk.integrity = integrityForAsset(
-          await fs.readFile(resolveInOutDir(chunk.file)),
-          algorithms,
-        );
-      }),
-    );
-    await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2));
+  if (!manifest) {
+    throw new Error(`Manifest file not found at ${manifestPath}`);
   }
+  await Promise.all(
+    Object.values(manifest).map(async (chunk) => {
+      chunk.integrity = integrityForAsset(
+        await fs.readFile(resolveInOutDir(chunk.file)),
+        algorithms,
+      );
+      if (!chunk.assets && !chunk.css) {
+        return;
+      }
+      chunk.assetIntegrity = {};
+      await Promise.all(
+        (chunk.assets ?? []).concat(chunk.css ?? []).map(async (asset) => {
+          chunk.assetIntegrity[asset] = integrityForAsset(
+            await fs.readFile(resolveInOutDir(asset)),
+            algorithms,
+          );
+        }),
+      );
+    }),
+  );
+  await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2));
 }
 
 function integrityForAsset(source: Buffer, algorithms: string[]) {
