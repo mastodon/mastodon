@@ -10,18 +10,17 @@
 // version: 3
 
 // This json file contains the names of the categories.
-const emojiMart5LocalesData = require('@emoji-mart/data/i18n/en.json');
-const emojiMart5Data = require('@emoji-mart/data/sets/15/all.json');
-const { uncompress: emojiMartUncompress } = require('emoji-mart/dist/utils/data');
-const _ = require('lodash');
+import emojiMart5LocalesData from '@emoji-mart/data/i18n/en.json';
+import emojiMart5Data from '@emoji-mart/data/sets/15/all.json';
+import { uncompress as emojiMartUncompress } from 'emoji-mart/dist/utils/data';
+import _ from 'lodash';
 
-
-const emojiMap = require('./emoji_map.json');
+import emojiMap from './emoji_map.json';
 // This json file is downloaded from https://github.com/iamcal/emoji-data/
 // and is used to correct the sheet coordinates since we're using that repo's sheet
-const emojiSheetData = require('./emoji_sheet.json');
-const { unicodeToFilename } = require('./unicode_to_filename');
-const { unicodeToUnifiedName } = require('./unicode_to_unified_name');
+import emojiSheetData from './emoji_sheet.json';
+import { unicodeToFilename } from './unicode_to_filename';
+import { unicodeToUnifiedName } from './unicode_to_unified_name';
 
 // Grabbed from `emoji_utils` to avoid circular dependency
 function unifiedToNative(unified) {
@@ -181,7 +180,7 @@ Object.keys(emojiMartData.emojis).forEach(key => {
 
 // JSON.parse/stringify is to emulate what @preval is doing and avoid any
 // inconsistent behavior in dev mode
-module.exports = JSON.parse(JSON.stringify([
+export default JSON.parse(JSON.stringify([
   shortCodesToEmojiData,
   /*
    * The property `skins` is not found in the current context.
