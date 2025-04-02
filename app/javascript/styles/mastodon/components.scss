@@ -1882,27 +1882,19 @@ body > [data-popper-placement] {
 }
 
 .domain {
-  padding: 10px;
+  padding: 16px;
   border-bottom: 1px solid var(--background-border-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-  .domain__domain-name {
+  &__domain-name {
     flex: 1 1 auto;
-    display: block;
     color: $primary-text-color;
-    text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 21px;
     font-weight: 500;
   }
-}
-
-.domain__wrapper {
-  display: flex;
-}
-
-.domain_buttons {
-  height: 18px;
-  padding: 10px;
-  white-space: nowrap;
 }
 
 .account {
