@@ -203,20 +203,6 @@ class ActivityPub::TagManager
     path_params[param]
   end
 
-  def uri_to_local_account_params(uri)
-    return unless local_uri?(uri)
-
-    path_params = Rails.application.routes.recognize_path(uri)
-
-    # TODO: handle numeric IDs
-    case path_params[:controller]
-    when 'accounts'
-      [:username, path_params[:username]]
-    when 'instance_actors'
-      [:id, -99]
-    end
-  end
-
   def uri_to_local_account(uri)
     param, value = uri_to_local_account_params(uri)
 
@@ -257,5 +243,21 @@ class ActivityPub::TagManager
     end
   rescue ActiveRecord::RecordNotFound
     nil
+  end
+
+  private
+
+  def uri_to_local_account_params(uri)
+    return unless local_uri?(uri)
+
+    path_params = Rails.application.routes.recognize_path(uri)
+
+    # TODO: handle numeric IDs
+    case path_params[:controller]
+    when 'accounts'
+      [:username, path_params[:username]]
+    when 'instance_actors'
+      [:id, -99]
+    end
   end
 end
