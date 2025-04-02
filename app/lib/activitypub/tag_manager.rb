@@ -203,17 +203,6 @@ class ActivityPub::TagManager
     path_params[param]
   end
 
-  def uri_to_local_account(uri)
-    param, value = uri_to_local_account_params(uri)
-
-    case param
-    when :username
-      Account.find_local(value)
-    when :id
-      Account.find_by(id: value)
-    end
-  end
-
   def uris_to_local_accounts(uris)
     usernames = []
     ids = []
@@ -237,7 +226,7 @@ class ActivityPub::TagManager
     if local_uri?(uri)
       case klass.name
       when 'Account'
-        uri_to_local_account(uri)
+        uris_to_local_accounts([uri]).first
       else
         StatusFinder.new(uri).status
       end
