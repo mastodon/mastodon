@@ -215,9 +215,14 @@ class ActivityPub::TagManager
   end
 
   def uris_to_local_accounts(uris)
-    params = uris.filter_map { |uri| uri_to_local_account_params(uri) }
-    usernames = params.filter_map { |param, value| value.downcase if param == :username }
-    ids = params.filter_map { |param, value| value if param == :id }
+    usernames = []
+    ids = []
+
+    uris.each do |uri|
+      param, value = uri_to_local_account_params(uri)
+      usernames << value.downcase if param == :username
+      ids << value if param == :id
+    end
 
     Account.local.with_username(usernames).or(Account.local.where(id: ids))
   end
