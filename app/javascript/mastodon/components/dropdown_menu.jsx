@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { PureComponent, cloneElement, Children } from 'react';
 
 import classNames from 'classnames';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
@@ -120,13 +120,33 @@ class DropdownMenu extends PureComponent {
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
     }
 
-    const { text, href = '#', target = '_blank', method, dangerous } = option;
+    const { text, href, to, target = '_blank', method, dangerous } = option;
+
+    let element;
+
+    if (href) {
+      element = (
+        <a href={href} target={target} data-method={method} rel='noopener' ref={i === 0 ? this.setFocusRef : null} onKeyPress={this.handleItemKeyPress} data-index={i}>
+          {text}
+        </a>
+      );
+    } else if (to) {
+      element = (
+        <Link to={to} ref={i === 0 ? this.setFocusRef : null} onKeyPress={this.handleItemKeyPress} data-index={i}>
+          {text}
+        </Link>
+      );
+    } else {
+      element = (
+        <button ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
+          {text}
+        </button>
+      );
+    }
 
     return (
       <li className={classNames('dropdown-menu__item', { 'dropdown-menu__item--dangerous': dangerous })} key={`${text}-${i}`}>
-        <a href={href} target={target} data-method={method} rel='noopener' role='button' tabIndex={0} ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
-          {text}
-        </a>
+        {element}
       </li>
     );
   };
