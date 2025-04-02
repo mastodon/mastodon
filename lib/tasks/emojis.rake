@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'vips'
+
 def gen_border(codepoint, color)
   input = Rails.public_path.join('emoji', "#{codepoint}.svg")
   dest = Rails.public_path.join('emoji', "#{codepoint}_border.svg")
@@ -39,6 +41,16 @@ def codepoints_to_unicode(codepoints)
     codepoints.split.map(&:hex).pack('U*')
   else
     [codepoints.hex].pack('U')
+  end
+end
+
+def get_image(row, emoji_base, fallback)
+  path = emoji_base.join("#{row['unified'].downcase}.svg")
+  path = emoji_base.join("#{row['non_qualified'].downcase.sub(/^00/, '')}.svg") if !path.exist? && row['non_qualified']
+  if path.exist?
+    Vips::Image.new_from_file(path.to_s, dpi: 64)
+  else
+    fallback
   end
 end
 
@@ -117,6 +129,7 @@ namespace :emojis do
     filtered_data = data.map do |emoji|
       filtered_item = {
         'unified' => emoji['unified'],
+        'non_qualified' => emoji['non_qualified'],
         'sheet_x' => emoji['sheet_x'],
         'sheet_y' => emoji['sheet_y'],
         'skin_variations' => {},
@@ -125,6 +138,7 @@ namespace :emojis do
       emoji['skin_variations']&.each do |key, variation|
         filtered_item['skin_variations'][key] = {
           'unified' => variation['unified'],
+          'non_qualified' => variation['non_qualified'],
           'sheet_x' => variation['sheet_x'],
           'sheet_y' => variation['sheet_y'],
         }
@@ -134,5 +148,43 @@ namespace :emojis do
     end
 
     File.write(dest, JSON.generate(filtered_data))
+  end
+
+  desc 'Generate a spritesheet of emojis'
+  task :generate_emoji_sheet do
+    src = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_sheet.json')
+    sheet = Oj.load(File.read(src))
+
+    max = 0
+    sheet.each do |row|
+      max = [max, row['sheet_x'], row['sheet_y']].max
+      next if row['skin_variations'].empty?
+
+      row['skin_variations'].each_value do |variation|
+        max = [max, variation['sheet_x'], variation['sheet_y']].max
+      end
+    end
+
+    size = max + 1
+
+    puts 'Generating spritesheet...'
+
+    emoji_base = Rails.public_path.join('emoji')
+    fallback = Vips::Image.new_from_file(emoji_base.join('2753.svg').to_s, dpi: 64)
+    comp = Array.new(size) do
+      Array.new(size, 0)
+    end
+
+    sheet.each do |row|
+      comp[row['sheet_y']][row['sheet_x']] = get_image(row, emoji_base, fallback)
+      next if row['skin_variations'].empty?
+
+      row['skin_variations'].each_value do |variation|
+        comp[variation['sheet_y']][variation['sheet_x']] = get_image(variation, emoji_base, fallback)
+      end
+    end
+
+    joined = Vips::Image.arrayjoin(comp.flatten, across: size, hspacing: 34, halign: :centre, vspacing: 34, valign: :centre)
+    joined.write_to_file(emoji_base.join('sheet_15_1.png').to_s, palette: true, dither: 0, Q: 100)
   end
 end
