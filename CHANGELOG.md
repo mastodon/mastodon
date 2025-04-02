@@ -3,6 +3,16 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [4.1.25] - 2025-04-02
+
+### Add
+
+- Add support for paginating partial collections in `SynchronizeFollowersService` (#34272 and #34277 by @ClearlyClaire)
+
+### Fixed
+
+- Fix incorrect URL being used when cache busting (#34189 by @ClearlyClaire)
+
 ## [4.1.24] - 2025-03-13
 
 ### Security
