@@ -79,6 +79,8 @@ br:
       public: Publik
       reject: Nac'hañ
       remove_header: Dilemel an talbenn
+      resend_confirmation:
+        send: Adkas al liamm-kadarnaat
       reset: Adderaouekaat
       reset_password: Adderaouekaat ar ger-tremen
       resubscribe: Adkoumanantiñ
@@ -99,6 +101,12 @@ br:
       web: Web
     action_logs:
       action_types:
+        approve_user: Aprouiñ an implijer
+        change_role_user: Kemmañ perzh an implijer
+        confirm_user: Aprouiñ an implijer
+        create_ip_block: Krouiñ ur reolenn IP
+        create_user_role: Krouiñ ur perzh
+        destroy_ip_block: Dilemel ar reolenn IP
         destroy_status: Dilemel ar c'hannad
         reset_password_user: Adderaouekaat ar ger-tremen
         update_status: Hizivaat ar c'hannad
@@ -141,12 +149,15 @@ br:
       export: Ezporzhiañ
       import: Enporzhiañ
     domain_blocks:
+      confirm_suspension:
+        cancel: Nullañ
       domain: Domani
       new:
         create: Sevel ur stanker
         severity:
           noop: Hini ebet
           suspend: Astalañ
+      public_comment: Evezhiadenn foran
     email_domain_blocks:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
@@ -158,6 +169,18 @@ br:
         create: Ouzhpenniñ un domani
     export_domain_allows:
       no_file: Restr ebet diuzet
+    fasp:
+      debug:
+        callbacks:
+          delete: Dilemel
+          ip: Chomlec'h IP
+      providers:
+        active: Oberiant
+        delete: Dilemel
+        name: Anv
+        registrations:
+          confirm: Kadarnaat
+        status: Statud
     follow_recommendations:
       status: Statud
       suppressed: Dilamet
@@ -172,6 +195,7 @@ br:
           suspend: Astalañ
         policy: Reolennoù
       dashboard:
+        instance_languages_dimension: Yezhoù pennañ
         instance_statuses_measure: toudoù stoket
       delivery:
         all: Pep tra
@@ -182,6 +206,9 @@ br:
         title: Habaskadur
       purge: Spurjañ
       title: Kevread
+      total_blocked_by_us: Stanket ganeomp
+      total_followed_by_them: Heuliet ganto
+      total_followed_by_us: Heuliet ganeomp
       total_storage: Restroù media stag
     invites:
       filter:
@@ -191,6 +218,7 @@ br:
         title: Sil
       title: Pedadennoù
     ip_blocks:
+      add_new: Krouiñ ur reolenn
       delete: Dilemel
       expires_in:
         '1209600': 2 sizhunvezh
@@ -198,6 +226,9 @@ br:
         '31556952': 1 bloavezh
         '86400': 1 devezh
         '94670856': 3 bloavezh
+      new:
+        title: Krouiñ ur reolenn IP nevez
+      title: Reolennoù IP
     relays:
       delete: Dilemel
       disable: Diweredekaat
@@ -218,6 +249,7 @@ br:
       are_you_sure: Ha sur oc'h?
       comment:
         none: Hini ebet
+      confirm: Kadarnaat
       delete_and_resolve: Dilemel ar c'hannadoù
       forwarded: Treuzkaset
       no_one_assigned: Den ebet

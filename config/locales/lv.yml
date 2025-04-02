@@ -934,6 +934,7 @@ lv:
         chance_to_review_html: "<strong>Izveidotie pakalpojuma izmantošanas noteikumi netiks laisti klajā automātiski.</strong> Būs iespēja izskatīt iznākumu. Lūgums norādīt nepieciešamo informāciju, lai turpinātu."
         explanation_html: Pakalpojuma izmantošanas noteikumu sagatave tiek piedāvāta tikai izzināšanas nolūkam, un to nevajadzētu izmantot kā juridisku padomu jebkurā jautājumā. Lūgums sazināties ar savu juridisko padomdevēju par saviem apstākļiem un noteiktiem juridiskiem jautājumiem.
         title: Pakalpojuma izmantošānas noteikumu uzstādīšana
+      going_live_on_html: Darbībā, spēkā no %{date}
       history: Vēsture
       live: Darbībā
       no_history: Nav ierakstu par pakalpojuma izmantošanas noteikumu izmaiņām.
@@ -1060,6 +1061,7 @@ lv:
   admin_mailer:
     auto_close_registrations:
       body: Nesenu satura pārraudzības darbību trūkuma dēļ reģistrācija %{instance} ir automātiski pārslēgta nepieciešamība pēc pašrocīgas izskatīšanas, lai novērstu %{instance} izmantošana kā platformu iespējami sliktiem dalībniekiem. Jebkurā brīdī var ieslēgt atpakaļ atvērtu reģistrēšanos.
+      subject: Reģistrēšanās %{instance} tika automātiski pārslēgta, lai pieprasītu apstiprināšanu
     new_appeal:
       actions:
         delete_statuses: lai izdzēstu viņu ierakstus
@@ -1186,6 +1188,7 @@ lv:
     set_new_password: Iestatīt jaunu paroli
     setup:
       email_below_hint_html: Jāpārbauda sava surogātpasta mape vai jāpieprasa vēl vienu! Savu e-pasta adresi var labot, ja tā ir nepareiza.
+      email_settings_hint_html: Jāatver saite, kuru mēs nosūtījām uz %{email}, lai sāktu izmantot Mastodon. Mēs gaidīsim šeit pat.
       link_not_received: Vai nesaņēmi sati?
       new_confirmation_instructions_sent: Pēc dažām minūtēm saņemsi jaunu e-pasta ziņojumu ar apstiprinājuma saiti.
       title: Pārbaudi savu iesūtni
@@ -1194,21 +1197,27 @@ lv:
       title: Pieteikties %{domain}
     sign_up:
       manual_review: Reģistrāciju %{domain} pašrocīgi izskata mūsu satura pārraudzītāji. Lai palīdzētu mums apstrādāt Tavu reģistrāciju, uzraksti mazliet par sevi un to, kāpēc vēlies kontu %{domain}!
+      preamble: Ar kontu šajā Mastodon serverī varēsi sekot jebkuram citam cilvēkam fediversā, neatkarīgi no tā, kur tiek mitināts viņu konts.
       title: Atļauj tevi iestatīt %{domain}.
     status:
       account_status: Konta statuss
       confirming: Gaida e-pasta adreses apstiprināšanas pabeigšanu.
       functional: Tavs konts ir pilnā darba kārtībā.
+      pending: Tavs pieteikums ir rindā uz izskatīšanu, ko veic mūsu personāls. Tas var aizņemt kādu laiku. Tu saņemsi e-pasta ziņojumu, ja Tavs pieteikums tiks apstiprināts.
       redirecting_to: Tavs konts ir neaktīvs, jo pašlaik tas tiek novirzīts uz %{acct}.
       self_destruct: Tā kā %{domain} tiek slēgts, tu iegūsi tikai ierobežotu piekļuvi savam kontam.
       view_strikes: Skati iepriekšējos brīdinājumus par savu kontu
     too_fast: Veidlapa ir iesniegta pārāk ātri, mēģini vēlreiz.
     use_security_key: Lietot drošības atslēgu
     user_agreement_html: Es esmu izlasījis un piekrītu <a href="%{terms_of_service_path}" target="_blank">pakalpojuma izmantošanas noteikumiem</a> un <a href="%{privacy_policy_path}" target="_blank">privātuma nosacījumiem</a>
+    user_privacy_agreement_html: Es izlasīju un piekrītu <a href="%{privacy_policy_path}" target="_blank">privātuma pamatnostādnēm</a>
   author_attribution:
     example_title: Parauga teksts
+    hint_html: Vai Tu Raksti ziņu vai emuāra rakstus ārpus Mastodon? Pārraugi apliecinājumus, kad raksti tiek kopīgoti Mastodon.
+    instructions: 'Jāpārliecinās, ka šis kods ir raksta HTML:'
     more_from_html: Vairāk no %{name}
     s_blog: "%{name} emuāri"
+    then_instructions: Tad jāpievieno publicējuma domēna vārds zemāk esošajā laukā.
     title: Autora attiecinājums
   challenge:
     confirm: Turpināt

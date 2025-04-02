@@ -479,6 +479,36 @@ it:
       new:
         title: Importare i blocchi di dominio
       no_file: Nessun file selezionato
+    fasp:
+      debug:
+        callbacks:
+          created_at: Creato il
+          delete: Cancella
+          ip: Indirizzo IP
+          request_body: Request body
+          title: Debug Callbacks
+      providers:
+        active: Attivo
+        base_url: Url di base
+        callback: Callback
+        delete: Cancella
+        edit: Modifica Provider
+        finish_registration: Registrazione terminata
+        name: Nome
+        providers: Providers
+        public_key_fingerprint: Chiave pubblica fingerprint
+        registration_requested: Registrazione richiesta
+        registrations:
+          confirm: Conferma
+          description: Hai ricevuto una registrazione da un FASP. Rifiutala se non l'hai avviata tu. Se l'hai avviata tu, confronta attentamente nome e impronta della chiave prima di confermare la registrazione.
+          reject: Rifiuta
+          title: Conferma registrazione FASP
+        save: Salva
+        select_capabilities: Seleziona Capacità
+        sign_in: Connettiti
+        status: Stato
+        title: Fornitori di Servizi Ausiliari per il Fediverso
+      title: FASP
     follow_recommendations:
       description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di seguaci locali per una data lingua."
       language: Per lingua
