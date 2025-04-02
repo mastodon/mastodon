@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.20] - 2025-04-02
+
+### Add
+
+- Add delay to profile updates to debounce them (#34137 by @ClearlyClaire)
+- Add support for paginating partial collections in `SynchronizeFollowersService` (#34272 and #34277 by @ClearlyClaire)
+
+### Changed
+
+- Change account suspensions to be federated to recently-followed accounts as well (#34294 by @ClearlyClaire)
+- Change `AccountReachFinder` to consider statuses based on suspension date (#32805 and #34291 by @ClearlyClaire and @mjankowski)
+- Change user archive signed URL TTL from 10 seconds to 1 hour (#34254 by @ClearlyClaire)
+
+### Fixed
+
+- Fix incorrect URL being used when cache busting (#34189 by @ClearlyClaire)
+
 ## [4.2.19] - 2025-03-13
 
 ### Security
