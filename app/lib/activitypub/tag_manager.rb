@@ -203,6 +203,39 @@ class ActivityPub::TagManager
     path_params[param]
   end
 
+  def uri_to_local_account_params(uri)
+    return unless local_uri?(uri)
+
+    path_params = Rails.application.routes.recognize_path(uri)
+
+    # TODO: handle numeric IDs
+    case path_params[:controller]
+    when 'accounts'
+      [:username, path_params[:username]]
+    when 'instance_actors'
+      [:id, -99]
+    end
+  end
+
+  def uri_to_local_account(uri)
+    param, value = uri_to_local_account_params(uri)
+
+    case param
+    when :username
+      Account.find_local(value)
+    when :id
+      Account.find_by(id: value)
+    end
+  end
+
+  def uris_to_local_accounts(uris)
+    params = uris.filter_map { |uri| uri_to_local_account_params(uri) }
+    usernames = params.filter_map { |param, value| value.downcase if param == :username }
+    ids = params.filter_map { |param, value| value if param == :id }
+
+    Account.local.with_username(usernames).or(Account.local.where(id: ids))
+  end
+
   def uri_to_actor(uri)
     uri_to_resource(uri, Account)
   end
@@ -213,7 +246,7 @@ class ActivityPub::TagManager
     if local_uri?(uri)
       case klass.name
       when 'Account'
-        klass.find_local(uri_to_local_id(uri, :username))
+        uri_to_local_account(uri)
       else
         StatusFinder.new(uri).status
       end
