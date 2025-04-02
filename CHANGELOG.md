@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.7] - 2025-04-02
+
+### Add
+
+- Add delay to profile updates to debounce them (#34137 by @ClearlyClaire)
+- Add support for paginating partial collections in `SynchronizeFollowersService` (#34272 and #34277 by @ClearlyClaire)
+
+### Changed
+
+- Change account suspensions to be federated to recently-followed accounts as well (#34294 by @ClearlyClaire)
+- Change `AccountReachFinder` to consider statuses based on suspension date (#32805 and #34291 by @ClearlyClaire and @mjankowski)
+- Change user archive signed URL TTL from 10 seconds to 1 hour (#34254 by @ClearlyClaire)
+
+### Fixed
+
+- Fix static version of animated PNG emojis not being properly extracted (#34337 by @ClearlyClaire)
+- Fix filters not applying in detailed view, favourites and bookmarks (#34259 and #34260 by @ClearlyClaire)
+- Fix handling of malformed/unusual HTML (#34201 by @ClearlyClaire)
+- Fix `CacheBuster` being queued for missing media attachments (#34253 by @ClearlyClaire)
+- Fix incorrect URL being used when cache busting (#34189 by @ClearlyClaire)
+- Fix streaming server refusing unix socket path in `DATABASE_URL` (#34091 by @ClearlyClaire)
+- Fix “x” hotkey not working on boosted filtered posts (#33758 by @ClearlyClaire)
+
 ## [4.3.6] - 2025-03-13
 
 ### Security
