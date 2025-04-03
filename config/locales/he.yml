@@ -232,7 +232,7 @@ he:
         silence_account: הגבלת חשבון
         suspend_account: השעיית חשבון
         unassigned_report: ביטול הקצאת דו"ח
-        unblock_email_account: ביטול חסימת כתובת דוא"ל
+        unblock_email_account: הסרת חסימת כתובת דוא"ל
         unsensitive_account: ביטול Force-Sensitive לחשבון
         unsilence_account: ביטול השתקת חשבון
         unsuspend_account: ביטול השעיית חשבון
@@ -263,11 +263,11 @@ he:
         create_user_role_html: "%{name} יצר את התפקיד של %{target}"
         demote_user_html: "%{name} הוריד/ה בדרגה את המשתמש %{target}"
         destroy_announcement_html: "%{name} מחק/ה את ההכרזה %{target}"
-        destroy_canonical_email_block_html: "%{name} הסיר/ה חסימה מדואל %{target}"
+        destroy_canonical_email_block_html: "%{name} הסירו חסימה מדואל %{target}"
         destroy_custom_emoji_html: "%{name} מחק אמוג'י של %{target}"
         destroy_domain_allow_html: "%{name} לא התיר/ה פדרציה עם הדומיין %{target}"
-        destroy_domain_block_html: "%{name} הסיר/ה חסימה מהדומיין %{target}"
-        destroy_email_domain_block_html: '%{name} הסיר/ה חסימה מדומיין הדוא"ל %{target}'
+        destroy_domain_block_html: החסימה על מתחם %{target} הוסרה ע"י %{name}
+        destroy_email_domain_block_html: הוסרה חסימת מתחם דוא"ל %{target} בידי %{name}
         destroy_instance_html: "%{name} טיהר/ה את הדומיין %{target}"
         destroy_ip_block_html: "%{name} מחק/ה את הכלל עבור IP %{target}"
         destroy_relay_html: "%{name} מחקו את הממסר %{target}"
@@ -495,6 +495,36 @@ he:
       new:
         title: יבוא רשימת שרתים חסומים
       no_file: לא נבחר קובץ
+    fasp:
+      debug:
+        callbacks:
+          created_at: תאריך יצירה
+          delete: מחיקה
+          ip: כתובת IP
+          request_body: גוף הבקשה
+          title: ניפוי תקלות בקריאות חוזרות
+      providers:
+        active: פעילים
+        base_url: קישור בסיס
+        callback: קריאה חוזרת
+        delete: מחיקה
+        edit: עריכת ספק
+        finish_registration: סיום הרשמה
+        name: שם
+        providers: ספקים
+        public_key_fingerprint: טביעת האצבע של המפתח הציבורי
+        registration_requested: נדרשת הרשמה
+        registrations:
+          confirm: אישור
+          description: קיבלת הרשמה דרך FASP. יש לדחות אותה אם לא ביקשת את ההרשמה הזו מיוזמתך. אם זו בקשה מיוזמתך, יש להשוות בהקפדה אם השם וטביעת האצבע של המפתח הציבורי תואמים לפני אישור הרישום.
+          reject: דחיה
+          title: אישור הרשמת FASP
+        save: שמירה
+        select_capabilities: בחירת יכולות
+        sign_in: כניסה
+        status: מצב
+        title: ספקי משנה לפדיוורס
+      title: פרוטוקול FASP
     follow_recommendations:
       description_html: "<strong>עקבו אחר ההמלצות על מנת לעזור למשתמשים חדשים למצוא תוכן מעניין</strong>. במידה ומשתמש לא תקשר מספיק עם משתמשים אחרים כדי ליצור המלצות מעקב, חשבונות אלה יומלצו במקום. הם מחושבים מחדש על בסיסי יומיומי מתערובת של החשבונות הפעילים ביותר עם החשבונות הנעקבים ביותר עבור שפה נתונה."
       language: עבור שפה
