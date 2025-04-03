@@ -304,6 +304,7 @@ lv:
       title: Audita žurnāls
       unavailable_instance: "(domēna vārds nav pieejams)"
     announcements:
+      back: Atgriezties pie paziņojumiem
       destroyed_msg: Paziņojums sekmīgi izdzēsts.
       edit:
         title: Labot paziņojumu
@@ -312,6 +313,9 @@ lv:
       new:
         create: Izveidot paziņojumu
         title: Jauns paziņojums
+      preview:
+        explanation_html: 'E-pasta ziņojums tiks nosūtīts <strong>%{display_count} lietotājiem</strong>. Šis teksts tiks iekļauts e-pasta ziņojumā:'
+        title: Priekšskatīt paziņojumu
       publish: Publicēt
       published_msg: Paziņojums sekmīgi publicēts.
       scheduled_for: Plānots uz %{time}
@@ -1422,6 +1426,48 @@ lv:
       merge_long: Saglabāt esošos ierakstus un pievienot jaunus
       overwrite: Pārrakstīt
       overwrite_long: Nomainīt pašreizējos ierakstus ar jauniem
+    overwrite_preambles:
+      blocking_html:
+        one: Tu gatavojies <strong>aizstāt savu lieguma sarakstu</strong> ar līdz <strong>%{count} kontam</strong> no <strong>%{filename}</strong>.
+        other: Tu gatavojies <strong>aizstāt savu lieguma sarakstu</strong> ar līdz <strong>%{count} kontiem</strong> no <strong>%{filename}</strong>.
+        zero: Tu gatavojies <strong>aizstāt savu lieguma sarakstu</strong> ar līdz <strong>%{count} kontiem</strong> no <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Tu gatavojies <strong>aizstāt savas grāmatzīmes</strong> ar līdz <strong>%{count} ierakstam</strong> no <strong>%{filename}</strong>.
+        other: Tu gatavojies <strong>aizstāt savas grāmatzīmes</strong> ar līdz <strong>%{count} ierakstiem</strong> no <strong>%{filename}</strong>.
+        zero: Tu gatavojies <strong>aizstāt savas grāmatzīmes</strong> ar līdz <strong>%{count} ierakstiem</strong> no <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Tu gatavojies <strong>aizstāt savu liegto domēnu sarakstu</strong> ar līdz <strong>%{count} domēnam</strong> no <strong>%{filename}</strong>.
+        other: Tu gatavojies <strong>aizstāt savu liegto domēnu sarakstu</strong> ar līdz <strong>%{count} domēniem</strong> no <strong>%{filename}</strong>.
+        zero: Tu gatavojies <strong>aizstāt savu liegto domēnu sarakstu</strong> ar līdz <strong>%{count} domēniem</strong> no <strong>%{filename}</strong>.
+      following_html:
+        one: Tu gatavojies <strong>sekot</strong> līdz <strong>%{count} kontam</strong> no <strong>%{filename}</strong> un <strong>pārtrauksi sekot citiem</strong>.
+        other: Tu gatavojies <strong>sekot</strong> līdz <strong>%{count} kontiem</strong> no <strong>%{filename}</strong> un <strong>pārtrauksi sekot citiem</strong>.
+        zero: Tu gatavojies <strong>sekot</strong> līdz <strong>%{count} kontiem</strong> no <strong>%{filename}</strong> un <strong>pārtrauksi sekot citiem</strong>.
+      lists_html:
+        one: Tu gatavojies <strong>aizstāt savus sarakstus</strong> ar <strong>%{filename}</strong> saturu. Līdz <strong>%{count} kontam</strong> tiks pievienoti jaunajos sarakstos.
+        other: Tu gatavojies <strong>aizstāt savus sarakstus</strong> ar <strong>%{filename}</strong> saturu. Līdz <strong>%{count} kontiem</strong> tiks pievienoti jaunajos sarakstos.
+        zero: Tu gatavojies <strong>aizstāt savus sarakstus</strong> ar <strong>%{filename}</strong> saturu. Līdz <strong>%{count} kontiem</strong> tiks pievienoti jaunajos sarakstos.
+      muting_html:
+        one: Tu gatavojies <strong>aizstāt savu apklusināto kontu sarakstu</strong> ar līdz <strong>%{count} kontam</strong> no <strong>%{filename}</strong>.
+        other: Tu gatavojies <strong>aizstāt savu apklusināto kontu sarakstu</strong> ar līdz <strong>%{count} kontiem</strong> no <strong>%{filename}</strong>.
+        zero: Tu gatavojies <strong>aizstāt savu apklusināto kontu sarakstu</strong> ar līdz <strong>%{count} kontiem</strong> no <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        one: Tu gatavojies <strong>liegt</strong> līdz <strong>%{count} kontam</strong> no <strong>%{filename}</strong>.
+        other: Tu gatavojies <strong>liegt</strong> līdz <strong>%{count} kontiem</strong> no <strong>%{filename}</strong>.
+        zero: Tu gatavojies <strong>liegt</strong> līdz <strong>%{count} kontiem</strong> no <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Tu gatavojies pievienot līdz <strong>%{count} ierakstam</strong> no <strong>%{filename}</strong> savām <strong>grāmatzīmēm</strong>.
+        other: Tu gatavojies pievienot līdz <strong>%{count} ierakstiem</strong> no <strong>%{filename}</strong> savām <strong>grāmatzīmēm</strong>.
+        zero: Tu gatavojies pievienot līdz <strong>%{count} ierakstiem</strong> no <strong>%{filename}</strong> savām <strong>grāmatzīmēm</strong>.
+      domain_blocking_html:
+        one: Tu gatavojies <strong>liegt</strong> līdz <strong>%{count} domēnam</strong> no <strong>%{filename}</strong>.
+        other: Tu gatavojies <strong>liegt</strong> līdz <strong>%{count} domēniem</strong> no <strong>%{filename}</strong>.
+        zero: Tu gatavojies <strong>liegt</strong> līdz <strong>%{count} domēniem</strong> no <strong>%{filename}</strong>.
+      following_html:
+        one: Tu gatavojies <strong>sekot</strong> līdz <strong>%{count} kontam</strong> no <strong>%{filename}</strong>.
+        other: Tu gatavojies <strong>sekot</strong> līdz <strong>%{count} kontiem</strong> no <strong>%{filename}</strong>.
+        zero: Tu gatavojies <strong>sekot</strong> līdz <strong>%{count} kontiem</strong> no <strong>%{filename}</strong>.
     preface: Tu vari ievietot datus, kurus esi izguvis no cita servera, kā, piemēram, cilvēku sarakstu, kuriem Tu seko vai kurus bloķē.
     recent_imports: Nesen importēts
     states:
