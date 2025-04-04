@@ -459,7 +459,9 @@ lv:
         create: Pievienot domēnu
         resolve: Atrisināt domēnu
         title: Liegt jaunu e-pasta domēnu
+      no_email_domain_block_selected: Neviens e-pasta domēna bloks netika mainīts, jo neviens netika atlasīts
       not_permitted: Nav atļauta
+      resolved_dns_records_hint_html: Domēna vārds saistās ar zemāk norādītajiem MX domēniem, kuri beigās ir atbildīgi par e-pasta pieņemšana. MX domēna liegšana liegs reģistrēšanos no jebkuras e-pasta adreses, kas izmanto to pašu MX domēnu, pat ja redzamais domēna vārds ir atšķirīgs. <strong>Jāuzmanās, lai neliegtu galvenos e-pasta pakalpojuma sniedzējus.</strong>
       resolved_through_html: Atrisināts, izmantojot %{domain}
       title: Bloķētie e-pasta domēni
     export_domain_allows:
@@ -477,6 +479,13 @@ lv:
       new:
         title: Importēt bloķētos domēnus
       no_file: Nav atlasīts neviens fails
+    fasp:
+      debug:
+        callbacks:
+          created_at: Izveidots
+          delete: Izdzēst
+          ip: IP adrese
+          request_body: Pieprasījuma saturs
     follow_recommendations:
       description_html: "<strong>Sekošanas ieteikumi palīdz jauniem lietotājiem ātri arast saistošu saturu</strong>. Kad lietotājs nav pietiekami mijiedarbojies ar citiem, lai veidotos pielāgoti sekošanas iteikumi, tiek ieteikti šie konti. Tie tiek pārskaitļoti ik dienas, izmantojot kontu, kuriem ir augstākās nesenās iesaistīšanās un lielākais vietējo sekotāju skaits norādītajā valodā."
       language: Valodai
