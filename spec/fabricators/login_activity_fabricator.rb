@@ -5,6 +5,6 @@ Fabricator(:login_activity) do
   authentication_method 'password'
   success               true
   failure_reason        nil
-  ip                    { Faker::Internet.ip_v4_address }
-  user_agent            { Faker::Internet.user_agent }
+  ip                    { '192.168.1.1' }
+  user_agent            { 'Mozilla 1.0' }
 end
