@@ -1,14 +1,12 @@
+import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
 
 import { openModal, closeModal } from '../../../actions/modal';
 import ModalRoot from '../components/modal_root';
 
-const defaultProps = {};
-
 const mapStateToProps = state => ({
   ignoreFocus: state.getIn(['modal', 'ignoreFocus']),
-  type: state.getIn(['modal', 'stack', 0, 'modalType'], null),
-  props: state.getIn(['modal', 'stack', 0, 'modalProps'], defaultProps),
+  modals: state.getIn(['modal', 'stack'], ImmutableList()),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -16,7 +14,6 @@ const mapDispatchToProps = dispatch => ({
     if (confirmationMessage) {
       dispatch(
         openModal({
-          previousModalProps: confirmationMessage.props,
           modalType: 'CONFIRM',
           modalProps: {
             message: confirmationMessage.message,
