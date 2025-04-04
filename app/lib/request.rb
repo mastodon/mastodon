@@ -267,8 +267,9 @@ class Request
           Resolv::DNS.open do |dns|
             dns.timeouts = 5
             addresses = dns.getaddresses(host)
-            addresses = addresses.filter { |addr| addr.is_a?(Resolv::IPv6) }.take(2) + addresses.filter { |addr| !addr.is_a?(Resolv::IPv6) }.take(2)
           end
+          addresses.concat(Resolv::Hosts.new().getaddresses(host))
+          addresses = addresses.filter { |addr| addr.is_a?(Resolv::IPv6) }.take(2) + addresses.filter { |addr| !addr.is_a?(Resolv::IPv6) }.take(2)
         end
 
         socks = []
