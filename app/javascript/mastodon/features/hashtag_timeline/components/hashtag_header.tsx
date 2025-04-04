@@ -12,8 +12,8 @@ import {
 } from 'mastodon/actions/tags_typed';
 import type { ApiHashtagJSON } from 'mastodon/api_types/tags';
 import { Button } from 'mastodon/components/button';
+import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { ShortNumber } from 'mastodon/components/short_number';
-import DropdownMenu from 'mastodon/containers/dropdown_menu_container';
 import { useIdentity } from 'mastodon/identity_context';
 import { PERMISSION_MANAGE_TAXONOMIES } from 'mastodon/permissions';
 import { useAppDispatch } from 'mastodon/store';
@@ -153,13 +153,11 @@ export const HashtagHeader: React.FC<{
 
         <div className='hashtag-header__header__buttons'>
           {menu.length > 0 && (
-            <DropdownMenu
+            <Dropdown
               disabled={menu.length === 0}
               items={menu}
               icon='ellipsis-v'
               iconComponent={MoreHorizIcon}
-              size={24}
-              direction='right'
             />
           )}
 
