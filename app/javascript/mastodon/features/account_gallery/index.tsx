@@ -4,12 +4,14 @@ import { FormattedMessage } from 'react-intl';
 
 import { useParams } from 'react-router-dom';
 
+import type { ThunkAction, UnknownAction } from '@reduxjs/toolkit';
 import { createSelector } from '@reduxjs/toolkit';
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
 import { lookupAccount, fetchAccount } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
+import { connectProfileStream } from 'mastodon/actions/streaming';
 import { expandAccountMediaTimeline } from 'mastodon/actions/timelines';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import ScrollableList from 'mastodon/components/scrollable_list';
@@ -18,6 +20,7 @@ import { AccountHeader } from 'mastodon/features/account_timeline/components/acc
 import { LimitedAccountHint } from 'mastodon/features/account_timeline/components/limited_account_hint';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import Column from 'mastodon/features/ui/components/column';
+import { useIdentity } from 'mastodon/identity_context';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
@@ -96,6 +99,7 @@ const RemoteHint: React.FC<{
 export const AccountGallery: React.FC<{
   multiColumn: boolean;
 }> = ({ multiColumn }) => {
+  const { signedIn } = useIdentity();
   const { acct, id } = useParams<Params>();
   const dispatch = useAppDispatch();
   const accountId = useAppSelector(
@@ -146,14 +150,36 @@ export const AccountGallery: React.FC<{
   }, [dispatch, accountId, acct]);
 
   useEffect(() => {
+    let disconnect: (() => void) | undefined;
+
     if (accountId && !isAccount) {
       dispatch(fetchAccount(accountId));
     }
 
     if (accountId && isAccount) {
       void dispatch(expandAccountMediaTimeline(accountId));
+
+      if (signedIn) {
+        disconnect = dispatch(
+          // The `as` is needed because `typescript-eslint` is confused by the types defined
+          // in JSDoc, it forces the type to be correct here, otherwise we get a
+          // `@typescript-eslint/no-confusing-void-expression` error
+          connectProfileStream(accountId, { onlyMedia: true }) as ThunkAction<
+            () => void,
+            RootState,
+            undefined,
+            UnknownAction
+          >,
+        );
+      }
     }
-  }, [dispatch, accountId, isAccount]);
+
+    return () => {
+      if (disconnect) {
+        disconnect();
+      }
+    };
+  }, [dispatch, accountId, isAccount, signedIn]);
 
   const handleLoadMore = useCallback(() => {
     if (maxId) {

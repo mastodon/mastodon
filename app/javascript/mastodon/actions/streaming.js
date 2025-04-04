@@ -39,8 +39,7 @@ const randomUpTo = max =>
  * @param {Object} options
  * @param {function(Function, Function): Promise<void>} [options.fallback]
  * @param {function(): void} [options.fillGaps]
- * @param {function(object): boolean} [options.accept]
- * @returns {function(): void}
+ * @param {function(import("mastodon/api_types/statuses").ApiStatusJSON): boolean} [options.accept]
  */
 export const connectTimelineStream = (timelineId, channelName, params = {}, options = {}) => {
   const { messages } = getLocale();
@@ -147,16 +146,12 @@ async function refreshHomeTimelineAndNotification(dispatch) {
   await dispatch(fetchAnnouncements());
 }
 
-/**
- * @returns {function(): void}
- */
 export const connectUserStream = () =>
   connectTimelineStream('home', 'user', {}, { fallback: refreshHomeTimelineAndNotification, fillGaps: fillHomeTimelineGaps });
 
 /**
  * @param {Object} options
  * @param {boolean} [options.onlyMedia]
- * @returns {function(): void}
  */
 export const connectCommunityStream = ({ onlyMedia } = {}) =>
   connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia })) });
@@ -165,7 +160,6 @@ export const connectCommunityStream = ({ onlyMedia } = {}) =>
  * @param {Object} options
  * @param {boolean} [options.onlyMedia]
  * @param {boolean} [options.onlyRemote]
- * @returns {function(): void}
  */
 export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
   connectTimelineStream(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote }) });
@@ -175,20 +169,43 @@ export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
  * @param {string} tagName
  * @param {boolean} onlyLocal
  * @param {function(object): boolean} accept
- * @returns {function(): void}
  */
 export const connectHashtagStream = (columnId, tagName, onlyLocal, accept) =>
   connectTimelineStream(`hashtag:${columnId}${onlyLocal ? ':local' : ''}`, `hashtag${onlyLocal ? ':local' : ''}`, { tag: tagName }, { accept });
 
-/**
- * @returns {function(): void}
- */
 export const connectDirectStream = () =>
   connectTimelineStream('direct', 'direct');
 
 /**
  * @param {string} listId
- * @returns {function(): void}
  */
 export const connectListStream = listId =>
   connectTimelineStream(`list:${listId}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId) });
+
+/**
+ * @param {string} accountId
+ * @param {Object} options
+ * @param {boolean} [options.withReplies]
+ * @param {string} [options.tagged]
+ * @param {boolean} [options.onlyMedia]
+ */
+export const connectProfileStream = (accountId, { withReplies, tagged, onlyMedia }) =>
+  connectTimelineStream(`account:${accountId}${onlyMedia ? ':media' : ''}${withReplies ? ':with_replies' : ''}${tagged ? `:${tagged}` : ''}`, 'profile', { account_id: accountId }, {
+    accept (status) {
+      let passThrough = true;
+
+      if (!withReplies) {
+        passThrough = passThrough && (status.in_reply_to_id === null || status.in_reply_to_account_id === status.account.id);
+      }
+
+      if (tagged) {
+        passThrough = passThrough && status.tags.some(tag => tag.name === tagged);
+      }
+
+      if (onlyMedia) {
+        passThrough = passThrough && status.media_attachments.length > 0;
+      }
+
+      return passThrough;
+    },
+  });
