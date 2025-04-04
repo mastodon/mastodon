@@ -18,6 +18,7 @@ class Admin::Reports::ActionsController < Admin::BaseController
         status_ids: @report.status_ids,
         current_account: current_account,
         report_id: @report.id,
+        send_notification: !@report.spam?,
         send_email_notification: !@report.spam?,
         text: params[:text]
       )
@@ -29,6 +30,7 @@ class Admin::Reports::ActionsController < Admin::BaseController
         report_id: @report.id,
         target_account: @report.target_account,
         current_account: current_account,
+        send_notification: !@report.spam?,
         send_email_notification: !@report.spam?,
         text: params[:text]
       )
