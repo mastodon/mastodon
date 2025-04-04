@@ -96,6 +96,7 @@ const removeOneFromList = (state, listType, status) => {
   return state.updateIn([listType, 'items'], (list) => list.delete(status.get('id')));
 };
 
+/** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
 export default function statusLists(state = initialState, action) {
   switch(action.type) {
   case FAVOURITED_STATUSES_FETCH_REQUEST:
