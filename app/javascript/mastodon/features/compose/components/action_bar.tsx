@@ -4,7 +4,7 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import { openModal } from 'mastodon/actions/modal';
-import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { useAppDispatch } from 'mastodon/store';
 
 const messages = defineMessages({
@@ -79,13 +79,5 @@ export const ActionBar: React.FC = () => {
     ];
   }, [intl, dispatch]);
 
-  return (
-    <DropdownMenuContainer
-      items={menu}
-      icon='bars'
-      iconComponent={MoreHorizIcon}
-      size={24}
-      direction='right'
-    />
-  );
+  return <Dropdown items={menu} icon='bars' iconComponent={MoreHorizIcon} />;
 };
