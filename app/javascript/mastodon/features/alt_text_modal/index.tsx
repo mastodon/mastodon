@@ -13,6 +13,7 @@ import classNames from 'classnames';
 
 import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 
+import { useSpring, animated } from '@react-spring/web';
 import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
 // eslint-disable-next-line import/extensions
@@ -31,7 +32,7 @@ import Audio from 'mastodon/features/audio';
 import { CharacterCounter } from 'mastodon/features/compose/components/character_counter';
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
 import { Video, getPointerPosition } from 'mastodon/features/video';
-import { me } from 'mastodon/initial_state';
+import { me, reduceMotion } from 'mastodon/initial_state';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 import { assetHost } from 'mastodon/utils/config';
@@ -105,6 +106,11 @@ const Preview: React.FC<{
   position: FocalPoint;
   onPositionChange: (arg0: FocalPoint) => void;
 }> = ({ mediaId, position, onPositionChange }) => {
+  const [x, y] = position;
+  const [style, api] = useSpring(() => ({
+    left: `${x * 100}%`,
+    top: `${y * 100}%`,
+  }));
   const media = useAppSelector((state) =>
     (
       (state.compose as ImmutableMap<string, unknown>).get(
@@ -117,7 +123,6 @@ const Preview: React.FC<{
   );
 
   const [dragging, setDragging] = useState(false);
-  const [x, y] = position;
   const nodeRef = useRef<HTMLImageElement | HTMLVideoElement | null>(null);
   const draggingRef = useRef<boolean>(false);
 
@@ -138,8 +143,13 @@ const Preview: React.FC<{
       setDragging(true);
       draggingRef.current = true;
       onPositionChange([x, y]);
+      void api.start({
+        left: `${x * 100}%`,
+        top: `${y * 100}%`,
+        immediate: reduceMotion,
+      });
     },
-    [setDragging, onPositionChange],
+    [api, setDragging, onPositionChange],
   );
 
   useEffect(() => {
@@ -152,6 +162,11 @@ const Preview: React.FC<{
       if (draggingRef.current) {
         const { x, y } = getPointerPosition(nodeRef.current, e);
         onPositionChange([x, y]);
+        void api.start({
+          left: `${x * 100}%`,
+          top: `${y * 100}%`,
+          immediate: true,
+        });
       }
     };
 
@@ -162,7 +177,7 @@ const Preview: React.FC<{
       document.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [setDragging, onPositionChange]);
+  }, [api, setDragging, onPositionChange]);
 
   if (!media) {
     return null;
@@ -179,10 +194,7 @@ const Preview: React.FC<{
           role='presentation'
           onMouseDown={handleMouseDown}
         />
-        <div
-          className='focal-point__reticle'
-          style={{ top: `${y * 100}%`, left: `${x * 100}%` }}
-        />
+        <animated.div className='focal-point__reticle' style={style} />
       </div>
     );
   } else if (media.get('type') === 'gifv') {
@@ -194,10 +206,7 @@ const Preview: React.FC<{
           alt=''
           onMouseDown={handleMouseDown}
         />
-        <div
-          className='focal-point__reticle'
-          style={{ top: `${y * 100}%`, left: `${x * 100}%` }}
-        />
+        <animated.div className='focal-point__reticle' style={style} />
       </div>
     );
   } else if (media.get('type') === 'video') {
