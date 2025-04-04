@@ -45,6 +45,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @unresolved_mentions  = []
     @silenced_account_ids = []
     @params               = {}
+    @quote                = nil
+    @quote_uri            = nil
 
     process_status_params
     process_tags
@@ -55,6 +57,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       attach_tags(@status)
       attach_mentions(@status)
       attach_counts(@status)
+      attach_quote(@status)
     end
 
     resolve_thread(@status)
@@ -189,6 +192,14 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
   end
 
+  def attach_quote(status)
+    return if @quote.nil?
+
+    @quote.status = status
+    ActivityPub::VerifyQuoteService.new.call(@quote, expected_quoted_uri: @quote_uri)
+    @quote.save
+  end
+
   def process_tags
     return if @object['tag'].nil?
 
@@ -199,6 +210,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         process_mention tag
       elsif equals_or_includes?(tag['type'], 'Emoji')
         process_emoji tag
+      elsif equals_or_includes?(tag['type'], 'Link')
+        process_link tag
       end
     end
   end
@@ -243,6 +256,19 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       emoji.save
     rescue Seahorse::Client::NetworkingError => e
       Rails.logger.warn "Error storing emoji: #{e}"
+    end
+  end
+
+  def process_link(tag)
+    return if tag['href'].blank? || @quote.present?
+
+    if tag['mediaType'] == 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"' && tag['rel'] == 'https://misskey-hub.net/ns#_misskey_quote'
+      @quote = Quote.new(account: @account, approval_uri: tag['approvedBy'])
+      @quote_uri = tag['href']
+
+      # TODO: error handling
+      @quote.status = ActivityPub::TagManager.instance.uri_to_resource(tag['href'], Status)
+      @quote.status ||= ActivityPub::FetchRemoteStatusService.new.call(tag['href'], on_behalf_of: @account.followers.local.first, request_id: @options[:request_id])
     end
   end
 

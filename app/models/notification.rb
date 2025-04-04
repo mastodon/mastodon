@@ -43,6 +43,9 @@ class Notification < ApplicationRecord
     reblog: {
       filterable: true,
     }.freeze,
+    quote: {
+      filterable: true,
+    }.freeze,
     follow: {
       filterable: true,
     }.freeze,
@@ -80,6 +83,7 @@ class Notification < ApplicationRecord
   TARGET_STATUS_INCLUDES_BY_TYPE = {
     status: :status,
     reblog: [status: :reblog],
+    quote: [status: :quoted_status],
     mention: [mention: :status],
     favourite: [favourite: :status],
     poll: [poll: :status],
@@ -118,6 +122,8 @@ class Notification < ApplicationRecord
       status
     when :reblog
       status&.reblog
+    when :quote
+      status&.quoted_status
     when :favourite
       favourite&.status
     when :mention

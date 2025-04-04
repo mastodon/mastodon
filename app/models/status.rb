@@ -44,6 +44,13 @@ class Status < ApplicationRecord
 
   MEDIA_ATTACHMENTS_LIMIT = 4
 
+  QUOTE_APPROVAL_POLICY_FLAGS = {
+    public: (1 << 0),
+    followers: (1 << 1),
+    followed: (1 << 2),
+    unknown: (1 << 3),
+  }.freeze
+
   rate_limit by: :account, family: :statuses
 
   self.discard_column = :deleted_at
@@ -93,6 +100,7 @@ class Status < ApplicationRecord
   has_one :status_stat, inverse_of: :status, dependent: nil
   has_one :poll, inverse_of: :status, dependent: :destroy
   has_one :trend, class_name: 'StatusTrend', inverse_of: :status, dependent: nil
+  has_one :quote, inverse_of: :status, dependent: :destroy
 
   validates :uri, uniqueness: true, presence: true, unless: :local?
   validates :text, presence: true, unless: -> { with_media? || reblog? }
@@ -154,6 +162,7 @@ class Status < ApplicationRecord
                    :status_stat,
                    :tags,
                    :preloadable_poll,
+                   quote: { status: { account: [:account_stat, user: :role] } },
                    preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
                    account: [:account_stat, user: :role],
                    active_mentions: :account,
@@ -164,6 +173,7 @@ class Status < ApplicationRecord
                      :conversation,
                      :status_stat,
                      :preloadable_poll,
+                     :quote,
                      preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
                      account: [:account_stat, user: :role],
                      active_mentions: :account,
