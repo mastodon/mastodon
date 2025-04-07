@@ -38,7 +38,7 @@ zh-HK:
         current_email: 現時電郵
         label: 更改電郵
         new_email: 新的電郵
-        submit: 改變電郵
+        submit: 更改電郵
         title: 改變 %{username} 的電郵
       change_role:
         changed_msg: 成功更改身份！
@@ -182,6 +182,7 @@ zh-HK:
         destroy_domain_block: 刪除已封鎖的域名
         destroy_instance: 清除網域
         destroy_ip_block: 刪除 IP 規則
+        destroy_relay: 刪除中繼
         destroy_status: 刪除文章
         destroy_unavailable_domain: 刪除無效域名
         destroy_user_role: 刪除身份
@@ -425,6 +426,12 @@ zh-HK:
       new:
         title: 匯入封鎖的網域
       no_file: 未選擇檔案
+    fasp:
+      debug:
+        callbacks:
+          delete: 刪除
+      providers:
+        delete: 刪除
     follow_recommendations:
       description_html: "<strong>跟隨建議幫助新使用者快速找到有趣內容。</strong> 當使用者尚未和其他帳號足夠多的互動以產生個人化建議時，以下帳號將被推荐。這些是一句指定語言的近期參與度和本地粉絲數最高之帳戶組合每日重新計算。"
       language: 按語言
@@ -1549,6 +1556,7 @@ zh-HK:
     import: 匯入
     import_and_export: 匯入及匯出
     migrate: 帳戶遷移
+    notifications: 電郵通知
     preferences: 偏好設定
     profile: 個人資料
     relationships: 關注及追隨者
