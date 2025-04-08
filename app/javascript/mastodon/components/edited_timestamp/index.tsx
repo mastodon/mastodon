@@ -36,11 +36,11 @@ export const EditedTimestamp: React.FC<{
   }, [dispatch, statusId]);
 
   const handleItemClick = useCallback(
-    (_item: HistoryItem, i: number) => {
+    (_item: HistoryItem, index: number) => {
       dispatch(
         openModal({
           modalType: 'COMPARE_HISTORY',
-          modalProps: { index: i, statusId },
+          modalProps: { index, statusId },
         }),
       );
     },
