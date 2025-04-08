@@ -733,8 +733,10 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
     it 'updates the URI and unverifies the quote' do
       expect { subject.call(status, json, json) }
-        .to change(quote, :quoted_status).from(quoted_status).to(second_quoted_status)
-        .and change(quote, :state).from('accepted')
+        .to change { status.quote.quoted_status }.from(quoted_status).to(second_quoted_status)
+        .and change { status.quote.state }.from('accepted')
+
+      expect { quote.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
@@ -799,9 +801,11 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
     it 'updates the URI and unverifies the quote' do
       expect { subject.call(status, json, json) }
-        .to change(quote, :quoted_status).from(quoted_status).to(second_quoted_status)
-        .and change(quote, :approval_uri).from(approval_uri).to(second_approval_uri)
-        .and not_change(quote, :state)
+        .to change { status.quote.quoted_status }.from(quoted_status).to(second_quoted_status)
+        .and change { status.quote.approval_uri }.from(approval_uri).to(second_approval_uri)
+        .and(not_change { status.quote.state })
+
+      expect { quote.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
