@@ -16,6 +16,9 @@
 #  status_id         :bigint(8)        not null
 #
 class Quote < ApplicationRecord
+  BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
+  REFRESH_DEADLINE = 6.hours
+
   enum :state,
        { pending: 0, accepted: 1, rejected: 2, revoked: 3 },
        validate: true
@@ -41,6 +44,12 @@ class Quote < ApplicationRecord
     elsif !revoked?
       update!(state: :rejected)
     end
+  end
+
+  def schedule_refresh_if_stale!
+    return unless quoted_status_id.present? && approval_uri.present? && updated_at <= BACKGROUND_REFRESH_INTERVAL.ago
+
+    ActivityPub::QuoteRefreshWorker.perform_in(rand(REFRESH_DEADLINE), id)
   end
 
   private
