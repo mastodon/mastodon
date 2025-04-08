@@ -3,6 +3,11 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## End of life notice
+
+**The 4.1.x branch has reached its end of life and will not receive any further update.**
+This means that no security fix will be made available for this branch after this date, and you will need to update to a more recent version (such as the 4.3.x branch) to receive security fixes.
+
 ## [4.1.25] - 2025-04-02
 
 ### Add
