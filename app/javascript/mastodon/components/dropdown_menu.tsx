@@ -43,23 +43,23 @@ const isMenuItem = (item: unknown): item is MenuItem => {
     return true;
   }
 
-  return !!(item as MenuItem)?.text;
+  return typeof item === 'object' && 'text' in item;
 };
 
 const isActionItem = (item: unknown): item is ActionMenuItem => {
-  if (!item) {
+  if (!item || !isMenuItem(item)) {
     return false;
   }
 
-  return typeof (item as ActionMenuItem).action === 'function';
+  return 'action' in item;
 };
 
 const isExternalLinkItem = (item: unknown): item is ExternalLinkMenuItem => {
-  if (!item) {
+  if (!item || !isMenuItem(item)) {
     return false;
   }
 
-  return !!(item as ExternalLinkMenuItem).href;
+  return 'href' in item;
 };
 
 type RenderItemFn<Item = MenuItem> = (
