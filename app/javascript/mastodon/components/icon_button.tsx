@@ -1,4 +1,4 @@
-import { PureComponent, createRef } from 'react';
+import { useState, useEffect, useCallback, forwardRef } from 'react';
 
 import classNames from 'classnames';
 
@@ -15,99 +15,108 @@ interface Props {
   onMouseDown?: React.MouseEventHandler<HTMLButtonElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLButtonElement>;
   onKeyPress?: React.KeyboardEventHandler<HTMLButtonElement>;
-  active: boolean;
+  active?: boolean;
   expanded?: boolean;
   style?: React.CSSProperties;
   activeStyle?: React.CSSProperties;
-  disabled: boolean;
+  disabled?: boolean;
   inverted?: boolean;
-  animate: boolean;
-  overlay: boolean;
-  tabIndex: number;
+  animate?: boolean;
+  overlay?: boolean;
+  tabIndex?: number;
   counter?: number;
   href?: string;
-  ariaHidden: boolean;
+  ariaHidden?: boolean;
 }
-interface States {
-  activate: boolean;
-  deactivate: boolean;
-}
-export class IconButton extends PureComponent<Props, States> {
-  buttonRef = createRef<HTMLButtonElement>();
 
-  static defaultProps = {
-    active: false,
-    disabled: false,
-    animate: false,
-    overlay: false,
-    tabIndex: 0,
-    ariaHidden: false,
-  };
-
-  state = {
-    activate: false,
-    deactivate: false,
-  };
-
-  UNSAFE_componentWillReceiveProps(nextProps: Props) {
-    if (!nextProps.animate) return;
-
-    if (this.props.active && !nextProps.active) {
-      this.setState({ activate: false, deactivate: true });
-    } else if (!this.props.active && nextProps.active) {
-      this.setState({ activate: true, deactivate: false });
-    }
-  }
-
-  handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault();
-
-    if (!this.props.disabled && this.props.onClick != null) {
-      this.props.onClick(e);
-    }
-  };
-
-  handleKeyPress: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
-    if (this.props.onKeyPress && !this.props.disabled) {
-      this.props.onKeyPress(e);
-    }
-  };
-
-  handleMouseDown: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    if (!this.props.disabled && this.props.onMouseDown) {
-      this.props.onMouseDown(e);
-    }
-  };
-
-  handleKeyDown: React.KeyboardEventHandler<HTMLButtonElement> = (e) => {
-    if (!this.props.disabled && this.props.onKeyDown) {
-      this.props.onKeyDown(e);
-    }
-  };
-
-  render() {
-    const style = {
-      ...this.props.style,
-      ...(this.props.active ? this.props.activeStyle : {}),
-    };
-
-    const {
-      active,
+export const IconButton = forwardRef<HTMLButtonElement, Props>(
+  (
+    {
       className,
-      disabled,
       expanded,
       icon,
       iconComponent,
       inverted,
-      overlay,
-      tabIndex,
       title,
       counter,
       href,
-      ariaHidden,
-    } = this.props;
+      style,
+      activeStyle,
+      onClick,
+      onKeyDown,
+      onKeyPress,
+      onMouseDown,
+      active = false,
+      disabled = false,
+      animate = false,
+      overlay = false,
+      tabIndex = 0,
+      ariaHidden = false,
+    },
+    buttonRef,
+  ) => {
+    const [activate, setActivate] = useState(false);
+    const [deactivate, setDeactivate] = useState(false);
 
-    const { activate, deactivate } = this.state;
+    useEffect(() => {
+      if (!animate) {
+        return;
+      }
+
+      if (activate && !active) {
+        setActivate(false);
+        setDeactivate(true);
+      } else if (!activate && active) {
+        setActivate(true);
+        setDeactivate(false);
+      }
+    }, [setActivate, setDeactivate, animate, active, activate]);
+
+    const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
+      (e) => {
+        e.preventDefault();
+
+        if (!disabled) {
+          onClick?.(e);
+        }
+      },
+      [disabled, onClick],
+    );
+
+    const handleKeyPress: React.KeyboardEventHandler<HTMLButtonElement> =
+      useCallback(
+        (e) => {
+          if (!disabled) {
+            onKeyPress?.(e);
+          }
+        },
+        [disabled, onKeyPress],
+      );
+
+    const handleMouseDown: React.MouseEventHandler<HTMLButtonElement> =
+      useCallback(
+        (e) => {
+          if (!disabled) {
+            onMouseDown?.(e);
+          }
+        },
+        [disabled, onMouseDown],
+      );
+
+    const handleKeyDown: React.KeyboardEventHandler<HTMLButtonElement> =
+      useCallback(
+        (e) => {
+          if (!disabled) {
+            onKeyDown?.(e);
+          }
+        },
+        [disabled, onKeyDown],
+      );
+
+    const buttonStyle = {
+      ...style,
+      ...(active ? activeStyle : {}),
+    };
 
     const classes = classNames(className, 'icon-button', {
       active,
@@ -146,18 +155,19 @@ export class IconButton extends PureComponent<Props, States> {
         aria-hidden={ariaHidden}
         title={title}
         className={classes}
-        onClick={this.handleClick}
-        onMouseDown={this.handleMouseDown}
-        onKeyDown={this.handleKeyDown}
-        // eslint-disable-next-line @typescript-eslint/no-deprecated
-        onKeyPress={this.handleKeyPress}
-        style={style}
+        onClick={handleClick}
+        onMouseDown={handleMouseDown}
+        onKeyDown={handleKeyDown}
+        onKeyPress={handleKeyPress} // eslint-disable-line @typescript-eslint/no-deprecated
+        style={buttonStyle}
         tabIndex={tabIndex}
         disabled={disabled}
-        ref={this.buttonRef}
+        ref={buttonRef}
       >
         {contents}
       </button>
     );
-  }
-}
+  },
+);
+
+IconButton.displayName = 'IconButton';
