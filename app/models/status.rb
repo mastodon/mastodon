@@ -46,10 +46,10 @@ class Status < ApplicationRecord
   MEDIA_ATTACHMENTS_LIMIT = 4
 
   QUOTE_APPROVAL_POLICY_FLAGS = {
-    public: (1 << 0),
-    followers: (1 << 1),
-    followed: (1 << 2),
-    unknown: (1 << 3),
+    unknown: (1 << 0),
+    public: (1 << 1),
+    followers: (1 << 2),
+    followed: (1 << 3),
   }.freeze
 
   rate_limit by: :account, family: :statuses
