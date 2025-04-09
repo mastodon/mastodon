@@ -10,7 +10,7 @@ export const NavigationPortal: React.FC = () => (
   <div className='navigation-panel__portal'>
     <Switch>
       <Route path='/@:acct' exact component={AccountNavigation} />
-      <Route path='/@:acct/posts' exact component={AccountNavigation} />
+      <Route path='/@:acct/featured' exact component={AccountNavigation} />
       <Route
         path='/@:acct/tagged/:tagged?'
         exact
