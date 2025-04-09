@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 
+import { FormattedMessage } from 'react-intl';
+
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
@@ -17,12 +19,7 @@ import { AccountHeader } from '../account_timeline/components/account_header';
 import Column from '../ui/components/column';
 
 import { EmptyMessage } from './components/empty_message';
-import { FeaturedTag } from './components/featured_tag';
-
-export type TagMap = ImmutableMap<
-  'id' | 'name' | 'url' | 'statuses_count' | 'last_status_at' | 'accountId',
-  string | null
->;
+import { FeaturedTags } from './components/featured_tags';
 
 const AccountFeatured = () => {
   const accountId = useAccountId();
@@ -32,13 +29,12 @@ const AccountFeatured = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    void dispatch(expandAccountFeaturedTimeline(accountId));
-    dispatch(fetchFeaturedTags(accountId));
+    if (accountId) {
+      void dispatch(expandAccountFeaturedTimeline(accountId));
+      dispatch(fetchFeaturedTags(accountId));
+    }
   }, [accountId, dispatch]);
 
-  const account = useAppSelector(
-    (state) => state.accounts.get(accountId ?? '') ?? null,
-  );
   const isLoading = useAppSelector(
     (state) =>
       !accountId ||
@@ -55,13 +51,6 @@ const AccountFeatured = () => {
         ImmutableList(),
       ) as ImmutableList<string>,
   );
-  const featuredTags = useAppSelector(
-    (state) =>
-      state.user_lists.getIn(
-        ['featured_tags', accountId, 'items'],
-        ImmutableList(),
-      ) as ImmutableList<TagMap>,
-  );
 
   const hasMore = useAppSelector(
     (state) =>
@@ -75,45 +64,45 @@ const AccountFeatured = () => {
     <Column>
       <ColumnBackButton />
 
-      <ScrollableList
-        prepend={
-          accountId && (
-            <AccountHeader accountId={accountId} hideTabs={forceEmptyState} />
-          )
-        }
-        alwaysPrepend
-        append={<RemoteHint accountId={accountId} />}
-        scrollKey='account_featured'
-        emptyMessage={
-          <EmptyMessage
-            blockedBy={blockedBy}
-            hidden={hidden}
-            suspended={suspended}
-            accountId={accountId}
-          />
-        }
-        timelineId='account'
-        isLoading={isLoading}
-        showLoading={isLoading}
-        hasMore={hasMore}
-      >
-        {featuredTags.map((tag) => (
-          <FeaturedTag
-            key={tag.get('id')}
-            tag={tag}
-            account={account?.acct ?? ''}
-          />
-        ))}
-        {featuredStatusIds.map((statusId) => (
-          <StatusContainer
-            key={`f-${statusId}`}
-            // @ts-expect-error inferred props are wrong
-            id={statusId}
-            featured
-            contextType='account'
-          />
-        ))}
-      </ScrollableList>
+      <div className='account__featured'>
+        {accountId && (
+          <AccountHeader accountId={accountId} hideTabs={forceEmptyState} />
+        )}
+        <FeaturedTags accountId={accountId} />
+        {!featuredStatusIds.isEmpty() && !isLoading && (
+          <h4>
+            <FormattedMessage
+              id='account.featured.posts'
+              defaultMessage='Posts'
+            />
+          </h4>
+        )}
+        <ScrollableList
+          append={<RemoteHint accountId={accountId} />}
+          scrollKey='account_featured'
+          emptyMessage={
+            <EmptyMessage
+              blockedBy={blockedBy}
+              hidden={hidden}
+              suspended={suspended}
+              accountId={accountId}
+            />
+          }
+          timelineId='account'
+          isLoading={isLoading}
+          showLoading={isLoading}
+          hasMore={hasMore}
+        >
+          {featuredStatusIds.map((statusId) => (
+            <StatusContainer
+              key={`f-${statusId}`}
+              // @ts-expect-error inferred props are wrong
+              id={statusId}
+              contextType='account'
+            />
+          ))}
+        </ScrollableList>
+      </div>
     </Column>
   );
 };
