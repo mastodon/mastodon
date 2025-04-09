@@ -48,7 +48,6 @@ const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = fa
     accountId,
     isAccount: !!state.getIn(['accounts', accountId]),
     statusIds: state.getIn(['timelines', `account:${path}`, 'items'], emptyList),
-    featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned${tagged ? `:${tagged}` : ''}`, 'items'], emptyList),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
     hasMore: state.getIn(['timelines', `account:${path}`, 'hasMore']),
     suspended: state.getIn(['accounts', accountId, 'suspended'], false),
@@ -68,7 +67,6 @@ class AccountTimeline extends ImmutablePureComponent {
     accountId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     statusIds: ImmutablePropTypes.list,
-    featuredStatusIds: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     withReplies: PropTypes.bool,
@@ -138,7 +136,7 @@ class AccountTimeline extends ImmutablePureComponent {
   };
 
   render () {
-    const { accountId, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, suspended, isAccount, hidden, multiColumn, remote, remoteUrl } = this.props;
+    const { accountId, statusIds, isLoading, hasMore, blockedBy, suspended, isAccount, hidden, multiColumn, remote, remoteUrl } = this.props;
 
     if (isLoading && statusIds.isEmpty()) {
       return (
@@ -178,7 +176,6 @@ class AccountTimeline extends ImmutablePureComponent {
           append={<RemoteHint accountId={accountId} />}
           scrollKey='account_timeline'
           statusIds={forceEmptyState ? emptyList : statusIds}
-          featuredStatusIds={featuredStatusIds}
           isLoading={isLoading}
           hasMore={!forceEmptyState && hasMore}
           onLoadMore={this.handleLoadMore}
