@@ -17,6 +17,9 @@ class StatusRelationshipsPresenter
     else
       statuses            = statuses.compact
       status_ids          = statuses.flat_map { |s| [s.id, s.reblog_of_id] }.uniq.compact
+      quoted_ids          = Status.quoted_status_ids(status_ids)
+      status_ids          = (status_ids + quoted_ids).uniq
+      # TODO: pinnable_status_ids, conversation_ids, and filters_map are not built with quoted_ids at this point
       conversation_ids    = statuses.filter_map(&:conversation_id).uniq
       pinnable_status_ids = statuses.map(&:proper).filter_map { |s| s.id if s.account_id == current_account_id && PINNABLE_VISIBILITIES.include?(s.visibility) }
 
