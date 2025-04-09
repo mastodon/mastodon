@@ -12,8 +12,8 @@ import { lookupAccount, fetchAccount } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
 import { expandAccountMediaTimeline } from 'mastodon/actions/timelines';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
+import { RemoteHint } from 'mastodon/components/remote_hint';
 import ScrollableList from 'mastodon/components/scrollable_list';
-import { TimelineHint } from 'mastodon/components/timeline_hint';
 import { AccountHeader } from 'mastodon/features/account_timeline/components/account_header';
 import { LimitedAccountHint } from 'mastodon/features/account_timeline/components/limited_account_hint';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
@@ -61,38 +61,6 @@ interface Params {
   id?: string;
 }
 
-const RemoteHint: React.FC<{
-  accountId: string;
-}> = ({ accountId }) => {
-  const account = useAppSelector((state) => state.accounts.get(accountId));
-  const acct = account?.acct;
-  const url = account?.url;
-  const domain = acct ? acct.split('@')[1] : undefined;
-
-  if (!url) {
-    return null;
-  }
-
-  return (
-    <TimelineHint
-      url={url}
-      message={
-        <FormattedMessage
-          id='hints.profiles.posts_may_be_missing'
-          defaultMessage='Some posts from this profile may be missing.'
-        />
-      }
-      label={
-        <FormattedMessage
-          id='hints.profiles.see_more_posts'
-          defaultMessage='See more posts on {domain}'
-          values={{ domain: <strong>{domain}</strong> }}
-        />
-      }
-    />
-  );
-};
-
 export const AccountGallery: React.FC<{
   multiColumn: boolean;
 }> = ({ multiColumn }) => {
@@ -131,7 +99,6 @@ export const AccountGallery: React.FC<{
     (state) => state.accounts.getIn([accountId, 'suspended'], false) as boolean,
   );
   const isAccount = !!account;
-  const remote = account?.acct !== account?.username;
   const hidden = useAppSelector((state) =>
     accountId ? getAccountHidden(state, accountId) : false,
   );
@@ -233,7 +200,7 @@ export const AccountGallery: React.FC<{
           defaultMessage='Profile unavailable'
         />
       );
-    } else if (remote && attachments.isEmpty()) {
+    } else if (attachments.isEmpty()) {
       emptyMessage = <RemoteHint accountId={accountId} />;
     } else {
       emptyMessage = (
@@ -259,7 +226,7 @@ export const AccountGallery: React.FC<{
           )
         }
         alwaysPrepend
-        append={remote && accountId && <RemoteHint accountId={accountId} />}
+        append={accountId && <RemoteHint accountId={accountId} />}
         scrollKey='account_gallery'
         isLoading={isLoading}
         hasMore={!forceEmptyState && hasMore}
