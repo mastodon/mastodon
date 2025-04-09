@@ -1507,6 +1507,14 @@ lv:
         one: Tu gatavojies <strong>sekot</strong> līdz <strong>%{count} kontam</strong> no <strong>%{filename}</strong>.
         other: Tu gatavojies <strong>sekot</strong> līdz <strong>%{count} kontiem</strong> no <strong>%{filename}</strong>.
         zero: Tu gatavojies <strong>sekot</strong> līdz <strong>%{count} kontiem</strong> no <strong>%{filename}</strong>.
+      lists_html:
+        one: Tu gatavojies pievienot līdz pat <strong>%{count} kontam</strong> no <strong>%{filename}</strong> saviem <strong>sarakstiem</strong>. Tiks izveidoti jauni saraksti, ja nav saraksta, kurā pievienot.
+        other: Tu gatavojies pievienot līdz pat <strong>%{count} kontiem</strong> no <strong>%{filename}</strong> saviem <strong>sarakstiem</strong>. Tiks izveidoti jauni saraksti, ja nav saraksta, kurā pievienot.
+        zero: Tu gatavojies pievienot līdz pat <strong>%{count} kontiem</strong> no <strong>%{filename}</strong> saviem <strong>sarakstiem</strong>. Tiks izveidoti jauni saraksti, ja nav saraksta, kurā pievienot.
+      muting_html:
+        one: Tu gatavojies <strong>apklusināt</strong> līdz pat <strong>%{count} kontam</strong> no <strong>%{filename}</strong>.
+        other: Tu gatavojies <strong>apklusināt</strong> līdz pat <strong>%{count} kontiem</strong> no <strong>%{filename}</strong>.
+        zero: Tu gatavojies <strong>apklusināt</strong> līdz pat <strong>%{count} kontiem</strong> no <strong>%{filename}</strong>.
     preface: Tu vari ievietot datus, kurus esi izguvis no cita servera, kā, piemēram, cilvēku sarakstu, kuriem Tu seko vai kurus bloķē.
     recent_imports: Nesen importēts
     states:
@@ -1578,6 +1586,7 @@ lv:
     unsubscribe:
       action: Jā, atcelt abonēšanu
       complete: Anulēts
+      confirmation_html: Vai tiešām atteikties no %{type} saņemšanas savā e-pasta adresē %{email} par %{domain} esošo Mastodon? Vienmēr var abonēt no jauna savos <a href="%{settings_path}">e-pasta paziņojumu iestatījumos</a>.
       emails:
         notification_emails:
           favourite: izlases paziņojumu e-pasta ziņojumi
@@ -1585,10 +1594,13 @@ lv:
           follow_request: sekošanas pieprasījumu e-pasta ziņojumi
           mention: pieminēšanas paziņojumu e-pasta ziņojumi
           reblog: pastiprinājumu paziņojumu e-pasta ziņojumi
+      resubscribe_html: Ja abonements tika atcelts kļūdas dēļ, abonēt no jauna var savos <a href="%{settings_path}">e-pasta paziņojumu iestatījumos</a>.
+      success_html: Tu vairs savā e-pasta adresē %{email} nesaņemsi %{type} par %{domain} esošo Mastodon.
       title: Atcelt abonēšanu
   media_attachments:
     validations:
       images_and_video: Nevar pievienot videoklipu tādai ziņai, kura jau satur attēlus
+      not_found: Informācijas nesējs %{ids} nav atrasts vai jau pievienots citam ierakstam
       not_ready: Nevar pievienot failus, kuru apstrāde nav pabeigta. Pēc brīža mēģini vēlreiz!
       too_many: Nevar pievienot vairāk kā 4 failus
   migrations:
@@ -1666,6 +1678,7 @@ lv:
       subject: "%{name} laboja ierakstu"
   notifications:
     administration_emails: Pārvaldītāju e-pasta paziņojumi
+    email_events: E-pasta paziņojumu notikumi
     email_events_hint: 'Atlasi notikumus, par kuriem vēlies saņemt paziņojumus:'
   number:
     human:
@@ -1722,6 +1735,9 @@ lv:
     errors:
       limit_reached: Sasniegts dažādu reakciju limits
       unrecognized_emoji: nav atpazīta emocijzīme
+  redirects:
+    prompt: Ja uzticies šai saitei, jāklikšķina uz tās, lai turpinātu.
+    title: Tu atstāj %{instance}.
   relationships:
     activity: Konta aktivitāte
     confirm_follow_selected_followers: Vai tiešām vēlies sekot atlasītajiem sekotājiem?
@@ -1833,10 +1849,13 @@ lv:
   severed_relationships:
     download: Lejupielādēt (%{count})
     event_type:
+      account_suspension: Konta apturēšana (%{target_name})
+      domain_block: Servera apturēšana (%{target_name})
       user_domain_block: Jūs bloķējāt %{target_name}
     lost_followers: Zaudētie sekotāji
     lost_follows: Zaudētie sekojumi
     preamble: Tu vari zaudēt sekojamos un sekotājus, kad liedz domēnu vai kad satura pārraudzītāji izlemj apturēt attālu serveri. Kad t as notiek, būs iespējams lejupielādēt sarakstus ar pārtrauktajām saiknēm, kurus tad var izpētīt un, iespējams, ievietot citā serverī.
+    purged: Informāciju par šo serveri notīrīja Tava servera pārvaldītāji.
     type: Notikums
   statuses:
     attached:
@@ -1926,6 +1945,7 @@ lv:
     contrast: Mastodon (Augsts kontrasts)
     default: Mastodon (Tumšs)
     mastodon-light: Mastodon (Gaišs)
+    system: Automātisks (ievēro sistēmas izskatu)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1952,6 +1972,10 @@ lv:
     recovery_instructions_html: Ja kādreiz zaudēsi piekļuvi savam tālrunim, vari izmantot kādu no zemāk norādītajiem atkopes kodiem, lai atgūtu piekļuvi savam kontam. <strong>Atkpes kodi jātur drošībā</strong>. Piemēram, tos var izdrukāt un glabāt kopā ar citiem svarīgiem dokumentiem.
     webauthn: Drošības atslēgas
   user_mailer:
+    announcement_published:
+      description: "%{domain} pārvaldītāji veic paziņojumu:"
+      subject: Pakalpojuma paziņojums
+      title: "%{domain} pakalpojuma paziņojums"
     appeal_approved:
       action: Konta iestatījumi
       explanation: Apelācija par brīdinājumu jūsu kontam %{strike_date}, ko iesniedzāt %{appeal_date}, ir apstiprināta. Jūsu konts atkal ir labā stāvoklī.
@@ -1962,8 +1986,13 @@ lv:
       subject: Jūsu %{date} apelācija ir noraidīta
       title: Apelācija noraidīta
     backup_ready:
+      explanation: Tu pieprasīji pilnu sava Mastodon konta rezerves kopiju.
+      extra: Tā tagad ir gatava lejupielādei.
       subject: Tavs arhīvs ir gatavs lejupielādei
       title: Arhīva līdzņemšana
+    failed_2fa:
+      details: 'Šeit ir informācija par pieteikšanās mēģinājumu:'
+      explanation: Kāds mēģināja pieteikties Tavā kontā, bet norādīja nederīgu otro autentificēšanās soli.
     suspicious_sign_in:
       change_password: mainīt paroli
       details: 'Šeit ir pieteikšanās izvērsums:'
