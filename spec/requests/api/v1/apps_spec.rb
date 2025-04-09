@@ -36,6 +36,7 @@ RSpec.describe 'Apps' do
         expect(app).to be_present
         expect(app.scopes.to_s).to eq scopes
         expect(app.redirect_uris).to eq redirect_uris
+        expect(app.confidential).to be true
 
         expect(response.parsed_body).to match(
           a_hash_including(
@@ -52,6 +53,76 @@ RSpec.describe 'Apps' do
             vapid_key: Rails.configuration.x.vapid_public_key
           )
         )
+      end
+    end
+
+    context 'without being a confidential application' do
+      let(:client_name) { 'Test confidential app' }
+      let(:params) do
+        {
+          client_name: client_name,
+          redirect_uris: redirect_uris,
+          scopes: scopes,
+          website: website,
+          token_endpoint_auth_method: 'none',
+        }
+      end
+
+      it 'creates an public OAuth app', :aggregate_failures do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+
+        app = Doorkeeper::Application.find_by(name: client_name)
+
+        expect(app).to be_present
+        expect(app.scopes.to_s).to eq scopes
+        expect(app.redirect_uris).to eq redirect_uris
+        expect(app.confidential).to be false
+
+        expect(response.parsed_body).to match(
+          a_hash_including(
+            id: app.id.to_s,
+            client_id: app.uid,
+            client_secret: nil,
+            client_secret_expires_at: 0,
+            name: client_name,
+            website: website,
+            scopes: ['read', 'write'],
+            redirect_uris: redirect_uris,
+            # Deprecated properties as of 4.3:
+            redirect_uri: redirect_uri,
+            vapid_key: Rails.configuration.x.vapid_public_key
+          )
+        )
+      end
+    end
+
+    context 'when token_endpoint_auth_method is unknown' do
+      let(:client_name) { 'Test unknown auth app' }
+      let(:params) do
+        {
+          client_name: client_name,
+          redirect_uris: redirect_uris,
+          scopes: scopes,
+          website: website,
+          # Not yet supported:
+          token_endpoint_auth_method: 'private_key_jwt',
+        }
+      end
+
+      it 'does not create an OAuth app', :aggregate_failures do
+        subject
+
+        expect(response).to have_http_status(400)
+        expect(response.content_type)
+          .to start_with('application/json')
+
+        app = Doorkeeper::Application.find_by(name: client_name)
+
+        expect(app).to_not be_present
       end
     end
 
