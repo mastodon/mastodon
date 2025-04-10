@@ -12,6 +12,7 @@ module Account::FaspConcern
   private
 
   def announce_new_account_to_subscribed_fasp
+    return unless Mastodon::Feature.fasp_enabled?
     return unless discoverable?
 
     uri = ActivityPub::TagManager.instance.uri_for(self)
@@ -19,6 +20,7 @@ module Account::FaspConcern
   end
 
   def announce_updated_account_to_subscribed_fasp
+    return unless Mastodon::Feature.fasp_enabled?
     return unless discoverable? || saved_change_to_discoverable?
 
     uri = ActivityPub::TagManager.instance.uri_for(self)
@@ -26,6 +28,7 @@ module Account::FaspConcern
   end
 
   def announce_deleted_account_to_subscribed_fasp
+    return unless Mastodon::Feature.fasp_enabled?
     return unless discoverable?
 
     uri = ActivityPub::TagManager.instance.uri_for(self)

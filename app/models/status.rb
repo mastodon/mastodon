@@ -36,7 +36,7 @@ class Status < ApplicationRecord
   include Discard::Model
   include Paginable
   include RateLimitable
-  include Status::FaspConcern if Mastodon::Feature.fasp_enabled?
+  include Status::FaspConcern
   include Status::FetchRepliesConcern
   include Status::SafeReblogInsert
   include Status::SearchConcern

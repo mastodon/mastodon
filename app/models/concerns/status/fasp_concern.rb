@@ -13,6 +13,7 @@ module Status::FaspConcern
   private
 
   def announce_new_content_to_subscribed_fasp
+    return unless Mastodon::Feature.fasp_enabled?
     return unless account_indexable? && public_visibility?
 
     store_uri unless uri # TODO: solve this more elegantly
@@ -20,18 +21,21 @@ module Status::FaspConcern
   end
 
   def announce_updated_content_to_subscribed_fasp
+    return unless Mastodon::Feature.fasp_enabled?
     return unless account_indexable? && public_visibility_or_just_changed?
 
     Fasp::AnnounceContentLifecycleEventWorker.perform_async(uri, 'update')
   end
 
   def announce_deleted_content_to_subscribed_fasp
+    return unless Mastodon::Feature.fasp_enabled?
     return unless account_indexable? && public_visibility?
 
     Fasp::AnnounceContentLifecycleEventWorker.perform_async(uri, 'delete')
   end
 
   def announce_trends_to_subscribed_fasp
+    return unless Mastodon::Feature.fasp_enabled?
     return unless account_indexable?
 
     candidate_id, trend_source =

@@ -10,6 +10,8 @@ module Favourite::FaspConcern
   private
 
   def announce_trends_to_subscribed_fasp
+    return unless Mastodon::Feature.fasp_enabled?
+
     Fasp::AnnounceTrendWorker.perform_async(status_id, 'favourite')
   end
 end
