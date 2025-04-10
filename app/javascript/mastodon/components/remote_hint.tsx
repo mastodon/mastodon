@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import { FormattedMessage } from 'react-intl';
 
 import { useAppSelector } from 'mastodon/store';
@@ -42,8 +40,4 @@ export const RemoteHint: React.FC<RemoteHintProps> = ({ accountId }) => {
       }
     />
   );
-};
-
-RemoteHint.propTypes = {
-  accountId: PropTypes.string.isRequired,
 };
