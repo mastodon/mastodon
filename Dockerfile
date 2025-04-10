@@ -102,8 +102,8 @@ RUN echo 'deb http://deb.debian.org/debian bookworm-backports main' >> /etc/apt/
 # hadolint ignore=DL3008,DL3005
 RUN \
   # Mount Apt cache and lib directories from Docker buildx caches
-  --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
-  --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+  --mount=type=cache,id=node_modules/my-cache,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,id=node_modules/my-cache,target=/var/lib/apt,sharing=locked \
   # Apt update & upgrade to check for security updates to Debian image
   apt-get update; \
   apt-get dist-upgrade -yq; \
