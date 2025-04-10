@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { useParams } from 'react-router';
+
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
@@ -19,12 +21,19 @@ import { AccountHeader } from '../account_timeline/components/account_header';
 import Column from '../ui/components/column';
 
 import { EmptyMessage } from './components/empty_message';
-import { FeaturedTags } from './components/featured_tags';
+import { FeaturedTag } from './components/featured_tag';
+import type { TagMap } from './components/featured_tag';
+
+interface Params {
+  acct?: string;
+  id?: string;
+}
 
 const AccountFeatured = () => {
   const accountId = useAccountId();
   const { suspended, blockedBy, hidden } = useAccountVisibility(accountId);
   const forceEmptyState = suspended || blockedBy || hidden;
+  const { acct = '' } = useParams<Params>();
 
   const dispatch = useAppDispatch();
 
@@ -44,6 +53,13 @@ const AccountFeatured = () => {
       ]) ||
       !!state.user_lists.getIn(['featured_tags', accountId, 'isLoading']),
   );
+  const featuredTags = useAppSelector(
+    (state) =>
+      state.user_lists.getIn(
+        ['featured_tags', accountId, 'items'],
+        ImmutableList(),
+      ) as ImmutableList<TagMap>,
+  );
   const featuredStatusIds = useAppSelector(
     (state) =>
       (state.timelines as ImmutableMap<string, unknown>).getIn(
@@ -51,6 +67,30 @@ const AccountFeatured = () => {
         ImmutableList(),
       ) as ImmutableList<string>,
   );
+
+  if (isLoading) {
+    return (
+      <AccountFeaturedWrapper accountId={accountId}>
+        <div className='scrollable__append'>
+          <LoadingIndicator />
+        </div>
+      </AccountFeaturedWrapper>
+    );
+  }
+
+  if (featuredStatusIds.isEmpty() && featuredTags.isEmpty()) {
+    return (
+      <AccountFeaturedWrapper accountId={accountId}>
+        <EmptyMessage
+          blockedBy={blockedBy}
+          hidden={hidden}
+          suspended={suspended}
+          accountId={accountId}
+        />
+        <RemoteHint accountId={accountId} />
+      </AccountFeaturedWrapper>
+    );
+  }
 
   return (
     <Column>
@@ -60,13 +100,20 @@ const AccountFeatured = () => {
         {accountId && (
           <AccountHeader accountId={accountId} hideTabs={forceEmptyState} />
         )}
-        <FeaturedTags accountId={accountId} />
-        {isLoading && (
-          <div className='scrollable__append'>
-            <LoadingIndicator />
-          </div>
+        {!featuredTags.isEmpty() && (
+          <>
+            <h4 className='column-subheading'>
+              <FormattedMessage
+                id='account.featured.hashtags'
+                defaultMessage='Hashtags'
+              />
+            </h4>
+            {featuredTags.map((tag) => (
+              <FeaturedTag key={tag.get('id')} tag={tag} account={acct} />
+            ))}
+          </>
         )}
-        {!featuredStatusIds.isEmpty() && !isLoading && (
+        {!featuredStatusIds.isEmpty() && (
           <>
             <h4 className='column-subheading'>
               <FormattedMessage
@@ -84,15 +131,22 @@ const AccountFeatured = () => {
             ))}
           </>
         )}
-        {!isLoading && featuredStatusIds.isEmpty() && (
-          <EmptyMessage
-            blockedBy={blockedBy}
-            hidden={hidden}
-            suspended={suspended}
-            accountId={accountId}
-          />
-        )}
         <RemoteHint accountId={accountId} />
+      </div>
+    </Column>
+  );
+};
+
+const AccountFeaturedWrapper = ({
+  children,
+  accountId,
+}: React.PropsWithChildren<{ accountId?: string }>) => {
+  return (
+    <Column>
+      <ColumnBackButton />
+      <div className='scrollable scrollable--flex'>
+        {accountId && <AccountHeader accountId={accountId} />}
+        {children}
       </div>
     </Column>
   );

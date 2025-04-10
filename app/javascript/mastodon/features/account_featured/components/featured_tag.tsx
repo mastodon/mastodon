@@ -1,12 +1,10 @@
-import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
-import { List as ImmutableList } from 'immutable';
 import type { Map as ImmutableMap } from 'immutable';
 
 import { Hashtag } from 'mastodon/components/hashtag';
-import { useAppSelector } from 'mastodon/store';
 
-type TagMap = ImmutableMap<
+export type TagMap = ImmutableMap<
   'id' | 'name' | 'url' | 'statuses_count' | 'last_status_at' | 'accountId',
   string | null
 >;
@@ -26,39 +24,6 @@ const messages = defineMessages({
     defaultMessage: 'No posts',
   },
 });
-
-export const FeaturedTags: React.FC<{ accountId?: string }> = ({
-  accountId,
-}) => {
-  const account = useAppSelector(
-    (state) => state.accounts.get(accountId ?? '') ?? null,
-  );
-  const featuredTags = useAppSelector(
-    (state) =>
-      state.user_lists.getIn(
-        ['featured_tags', accountId, 'items'],
-        ImmutableList(),
-      ) as ImmutableList<TagMap>,
-  );
-
-  if (!accountId || !account || featuredTags.isEmpty()) {
-    return null;
-  }
-
-  return (
-    <>
-      <h4 className='column-subheading'>
-        <FormattedMessage
-          id='account.featured.hashtags'
-          defaultMessage='Hashtags'
-        />
-      </h4>
-      {featuredTags.map((tag) => (
-        <FeaturedTag key={tag.get('id')} tag={tag} account={account.acct} />
-      ))}
-    </>
-  );
-};
 
 export const FeaturedTag: React.FC<FeaturedTagProps> = ({ tag, account }) => {
   const intl = useIntl();
