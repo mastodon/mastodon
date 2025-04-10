@@ -5,8 +5,7 @@ require 'rails_helper'
 RSpec.describe Fasp::BackfillRequest do
   describe '#next_objects' do
     let(:account) { Fabricate(:account) }
-
-    before { Fabricate.times(3, :status, account:).sort_by(&:id) }
+    let!(:statuses) { Fabricate.times(3, :status, account:).sort_by(&:id) }
 
     context 'with a new backfill request' do
       subject { Fabricate(:fasp_backfill_request, max_count: 2) }
