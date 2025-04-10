@@ -35,10 +35,10 @@ Doorkeeper.configure do
   # context.client for client (Doorkeeper::Application)
   # context.scopes for scopes
   custom_access_token_expires_in do |context|
-    # If the client is confidential (all clients pre 4.3), then we don't want to
-    # expire access tokens. Applications created by users are also considered
-    # confidential.
-    if context.client.confidential?
+    # If the client is confidential (all clients pre 4.3) and it hasn't
+    # requested offline_access, then we don't want to expire access tokens.
+    # Applications created by users are also considered confidential.
+    if context.client.confidential? && !context.scopes.exists?('offline_access')
       nil
     else
       15.minutes.to_i
@@ -80,6 +80,7 @@ Doorkeeper.configure do
   # https://github.com/doorkeeper-gem/doorkeeper/wiki/Using-Scopes
   default_scopes  :read
   optional_scopes :profile,
+                  :offline_access,
                   :write,
                   :'write:accounts',
                   :'write:blocks',
