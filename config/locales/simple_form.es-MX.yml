@@ -51,7 +51,7 @@ es-MX:
         inbox_url: Copia la URL de la página principal del relé que deseas usar
         irreversible: Las publicaciones filtradas desaparecerán irreversiblemente, incluso si este filtro es eliminado más adelante
         locale: El idioma de la interfaz de usuario, correos y notificaciones push
-        password: Utiliza al menos 8 caracteres
+        password: Usa al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a las publicaciones recibidas recientemente)
@@ -68,10 +68,10 @@ es-MX:
       domain_allow:
         domain: Este dominio podrá obtener datos de este servidor y los datos entrantes serán procesados y archivados
       email_domain_block:
-        domain: Este puede ser el nombre de dominio que se muestra en al dirección de correo o el registro MX que utiliza. Se comprobarán al registrarse.
+        domain: Este puede ser el nombre de dominio que se muestra en la dirección de correo o el registro MX que utiliza. Se comprobarán al registrarse.
         with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en lista negra
       featured_tag:
-        name: 'Aquí están algunas de las etiquetas que más has utilizado recientemente:'
+        name: 'Aquí están algunas de las etiquetas que más has usado recientemente:'
       filters:
         action: Elegir qué acción realizar cuando una publicación coincide con el filtro
         actions:
@@ -90,14 +90,14 @@ es-MX:
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
         media_cache_retention_period: Los archivos multimedia de las publicaciones realizadas por usuarios remotos se almacenan en caché en su servidor. Si se establece en un valor positivo, los archivos multimedia se eliminarán tras el número de días especificado. Si los datos multimedia se solicitan después de haber sido eliminados, se volverán a descargar, si el contenido de origen sigue estando disponible. Debido a las restricciones sobre la frecuencia con la que las tarjetas de previsualización de enlaces sondean sitios de terceros, se recomienda establecer este valor en al menos 14 días, o las tarjetas de previsualización de enlaces no se actualizarán bajo demanda antes de ese tiempo.
         min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento al registrarse
-        peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el fediverso. Aquí no se incluye ningún dato sobre si usted federa con un servidor determinado, sólo que su servidor lo sabe. Esto es utilizado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
+        peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el fediverso. Aquí no se incluye ningún dato sobre si usted federa con un servidor determinado, solamente que su servidor lo sabe. Esto es usado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado por que su cuenta pueda ser descubierta.
         require_invite_text: Cuando los registros requieren aprobación manual, hace obligatoria la entrada de texto "¿Por qué quieres unirte?" en lugar de opcional
         site_contact_email: Cómo la gente puede ponerse en contacto contigo para consultas legales o de ayuda.
         site_contact_username: Cómo puede contactarte la gente en Mastodon.
         site_extended_description: Cualquier información adicional que pueda ser útil para los visitantes y sus usuarios. Se puede estructurar con formato Markdown.
         site_short_description: Una breve descripción para ayudar a identificar su servidor de forma única. ¿Quién lo administra, a quién va dirigido?
-        site_terms: Utiliza tu propia política de privacidad o déjala en blanco para usar la predeterminada Puede estructurarse con formato Markdown.
+        site_terms: Usa tu propia política de privacidad o déjala en blanco para usar la predeterminada Puede estructurarse con formato Markdown.
         site_title: Cómo puede referirse la gente a tu servidor además de por el nombre de dominio.
         status_page_url: URL de una página donde las personas pueden ver el estado de este servidor durante una interrupción
         theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
@@ -138,11 +138,11 @@ es-MX:
         text: Puede estructurarse con la sintaxis Markdown.
       terms_of_service_generator:
         admin_email: Las notificaciones legales incluyen contraavisos, órdenes judiciales, solicitudes de retirada y solicitudes de aplicación de la ley.
-        arbitration_address: Puede ser la misma que la dirección física anterior, o "N/A" si utiliza correo electrónico.
-        arbitration_website: Puede ser un formulario web, o “N/A” si utiliza correo electrónico.
+        arbitration_address: Puede ser la misma que la dirección física anterior, o "N/A" si usa correo electrónico.
+        arbitration_website: Puede ser un formulario web, o “N/A” si usa correo electrónico.
         choice_of_law: Ciudad, región, territorio o estado de las leyes de sustancia interna de las que se regirán todas y cada una de las reclamaciones.
         dmca_address: Para los operadores de EE. UU., utilice la dirección registrada en el Directorio de Agentes Designados de la DMCA. Un listado de apartados de correos está disponible bajo petición directa, utilice la Solicitud de Renuncia de Apartado de Correos de Agente Designado de la DMCA para enviar un correo electrónico a la Oficina de Derechos de Autor y describa que usted es un moderador de contenidos desde su casa que teme venganza o represalias por sus acciones y necesita utilizar un apartado de correos para eliminar su dirección particular de la vista del público.
-        dmca_email: Puede ser el mismo correo electrónico utilizado para "Dirección de correo electrónico para avisos legales" de arriba.
+        dmca_email: Puede ser el mismo correo electrónico usado para “Dirección de correo electrónico para avisos legales” de arriba.
         domain: Identificación única del servicio en línea que presta.
         jurisdiction: Indique el país de residencia de quien paga las facturas. Si se trata de una empresa u otra entidad, indique el país en el que está constituida y la ciudad, región, territorio o estado, según proceda.
         min_age: No debe ser menor de la edad mínima exigida por las leyes de su jurisdicción.

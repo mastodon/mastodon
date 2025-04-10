@@ -5271,6 +5271,9 @@ a.status-card {
 
     &__results {
       &__item {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
         cursor: pointer;
         color: $primary-text-color;
         font-size: 14px;
@@ -6275,7 +6278,7 @@ a.status-card {
 
     a {
       text-decoration: none;
-      color: $inverted-text-color;
+      color: $highlight-text-color;
       font-weight: 500;
 
       &:hover {
@@ -7569,14 +7572,11 @@ a.status-card {
 }
 
 .radio-button__input.checked::before {
-  position: absolute;
-  left: 2px;
-  top: 2px;
   content: '';
   display: block;
   border-radius: 50%;
-  width: 12px;
-  height: 12px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
   background: $ui-highlight-color;
 }
 
@@ -8110,13 +8110,9 @@ noscript {
   &__item {
     display: flex;
     align-items: center;
-    padding: 15px;
+    padding: 16px;
     border-bottom: 1px solid var(--background-border-color);
-    gap: 15px;
-
-    &:last-child {
-      border-bottom: 0;
-    }
+    gap: 8px;
 
     &__name {
       flex: 1 1 auto;
@@ -8223,7 +8219,7 @@ noscript {
   }
 
   &--compact &__item {
-    padding: 10px;
+    padding: 12px;
   }
 }
 

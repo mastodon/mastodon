@@ -320,6 +320,7 @@ pt-BR:
         title: Novo anúncio
       preview:
         explanation_html: 'Esse e-mail será enviado a <strong>%{display_count} usuários</strong>. O texto a seguir será incluído ao e-mail:'
+        title: Visualizar anúncio
       publish: Publicar
       published_msg: Anúncio publicado!
       scheduled_for: Agendado para %{time}
@@ -484,19 +485,30 @@ pt-BR:
           created_at: Criado em
           delete: Apagar
           ip: Endereço de IP
+          request_body: Corpo da solicitação
+          title: Depurar Callbacks
       providers:
+        active: Ativo
         base_url: URL Base
+        callback: Callback
         delete: Apagar
+        edit: Editar provedor
         finish_registration: Finalizar o cadastro
         name: Nome
+        providers: Provedores
         public_key_fingerprint: Impressão digital de chave pública
         registration_requested: Cadastro solicitado
         registrations:
           confirm: Confirmar
+          description: Você recebeu um registro de um FASP. Rejeite se você não tiver iniciado isso. Se você iniciou isso, compare cuidadosamente o nome e a impressão digital da chave antes de confirmar o registro.
           reject: Rejeitar
+          title: Confirmar o registro FASP
         save: Salvar
+        select_capabilities: Selecionar recursos
         sign_in: Entrar
         status: Estado
+        title: Provedores de serviços auxiliares do Fediverso
+      title: FASP
     follow_recommendations:
       description_html: "<strong>A recomendação de contas ajuda os novos usuários a encontrar rapidamente conteúdo interessante</strong>. Quando um usuário ainda não tiver interagido o suficiente para gerar recomendações de contas, essas contas serão recomendadas. Essas recomendações são recalculadas diariamente a partir de uma lista de contas com alto engajamento e maior número de seguidores locais em uma dada língua."
       language: Na língua
@@ -1927,6 +1939,10 @@ pt-BR:
     recovery_instructions_html: Se você perder acesso ao seu celular, você pode usar um dos códigos de recuperação abaixo para acessar a sua conta. <strong>Mantenha os códigos de recuperação em um local seguro</strong>. Por exemplo, você pode imprimi-los e guardá-los junto a outros documentos importantes.
     webauthn: Chaves de segurança
   user_mailer:
+    announcement_published:
+      description: 'Os administradores do %{domain} estão fazendo um anúncio:'
+      subject: Anúncio de serviço
+      title: Anúncio de serviço de %{domain}
     appeal_approved:
       action: Configurações da conta
       explanation: A revisão da punição na sua conta em %{strike_date} que você enviou em %{appeal_date} foi aprovada. Sua conta está novamente em situação regular.
