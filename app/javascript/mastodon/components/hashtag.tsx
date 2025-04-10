@@ -106,6 +106,7 @@ export interface HashtagProps {
   to: string;
   uses?: number;
   withGraph?: boolean;
+  children?: React.ReactNode;
 }
 
 export const Hashtag: React.FC<HashtagProps> = ({
@@ -117,6 +118,7 @@ export const Hashtag: React.FC<HashtagProps> = ({
   className,
   description,
   withGraph = true,
+  children,
 }) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
@@ -158,5 +160,7 @@ export const Hashtag: React.FC<HashtagProps> = ({
         </SilentErrorBoundary>
       </div>
     )}
+
+    {children && <div className='trends__item__buttons'>{children}</div>}
   </div>
 );

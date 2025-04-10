@@ -53,11 +53,11 @@ class Fasp::Request
 
   def validate!(response)
     content_digest_header = response.headers['content-digest']
-    raise SignatureVerification::SignatureVerificationError, 'content-digest missing' if content_digest_header.blank?
-    raise SignatureVerification::SignatureVerificationError, 'content-digest does not match' if content_digest_header != content_digest(response.body)
+    raise Mastodon::SignatureVerificationError, 'content-digest missing' if content_digest_header.blank?
+    raise Mastodon::SignatureVerificationError, 'content-digest does not match' if content_digest_header != content_digest(response.body)
 
     signature_input = response.headers['signature-input']&.encode('UTF-8')
-    raise SignatureVerification::SignatureVerificationError, 'signature-input is missing' if signature_input.blank?
+    raise Mastodon::SignatureVerificationError, 'signature-input is missing' if signature_input.blank?
 
     linzer_response = Linzer.new_response(
       response.body,

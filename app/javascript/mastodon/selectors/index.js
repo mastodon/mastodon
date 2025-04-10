@@ -6,6 +6,7 @@ import { me } from '../initial_state';
 import { getFilters } from './filters';
 
 export { makeGetAccount } from "./accounts";
+export { getStatusList } from "./statuses";
 
 export const makeGetStatus = () => {
   return createSelector(
@@ -77,7 +78,3 @@ export const makeGetReport = () => createSelector([
   (_, base) => base,
   (state, _, targetAccountId) => state.getIn(['accounts', targetAccountId]),
 ], (base, targetAccount) => base.set('target_account', targetAccount));
-
-export const getStatusList = createSelector([
-  (state, type) => state.getIn(['status_lists', type, 'items']),
-], (items) => items.toList());

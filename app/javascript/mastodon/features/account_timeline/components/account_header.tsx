@@ -37,12 +37,12 @@ import {
   FollowingCounter,
   StatusesCounter,
 } from 'mastodon/components/counters';
+import { Dropdown } from 'mastodon/components/dropdown_menu';
+import { FollowButton } from 'mastodon/components/follow_button';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ShortNumber } from 'mastodon/components/short_number';
-import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import { DomainPill } from 'mastodon/features/account/components/domain_pill';
 import AccountNoteContainer from 'mastodon/features/account/containers/account_note_container';
 import FollowRequestNoteContainer from 'mastodon/features/account/containers/follow_request_note_container';
@@ -50,8 +50,7 @@ import { useLinks } from 'mastodon/hooks/useLinks';
 import { useIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
-import type { DropdownMenu } from 'mastodon/models/dropdown_menu';
-import type { Relationship } from 'mastodon/models/relationship';
+import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import {
   PERMISSION_MANAGE_USERS,
   PERMISSION_MANAGE_FEDERATION,
@@ -179,20 +178,6 @@ const titleFromAccount = (account: Account) => {
   return `${prefix} (@${acct})`;
 };
 
-const messageForFollowButton = (relationship?: Relationship) => {
-  if (!relationship) return messages.follow;
-
-  if (relationship.get('following') && relationship.get('followed_by')) {
-    return messages.mutual;
-  } else if (relationship.get('following') || relationship.get('requested')) {
-    return messages.unfollow;
-  } else if (relationship.get('followed_by')) {
-    return messages.followBack;
-  } else {
-    return messages.follow;
-  }
-};
-
 const dateFormatOptions: Intl.DateTimeFormatOptions = {
   month: 'short',
   day: 'numeric',
@@ -214,20 +199,6 @@ export const AccountHeader: React.FC<{
   );
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
   const handleLinkClick = useLinks();
-
-  const handleFollow = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.following || relationship?.requested) {
-      dispatch(
-        openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
-      );
-    } else {
-      dispatch(followAccount(account.id));
-    }
-  }, [dispatch, account, relationship]);
 
   const handleBlock = useCallback(() => {
     if (!account) {
@@ -365,23 +336,6 @@ export const AccountHeader: React.FC<{
     );
   }, [dispatch, account]);
 
-  const handleInteractionModal = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(
-      openModal({
-        modalType: 'INTERACTION',
-        modalProps: {
-          type: 'follow',
-          accountId: account.id,
-          url: account.uri,
-        },
-      }),
-    );
-  }, [dispatch, account]);
-
   const handleOpenAvatar = useCallback(
     (e: React.MouseEvent) => {
       if (e.button !== 0 || e.ctrlKey || e.metaKey) {
@@ -416,10 +370,6 @@ export const AccountHeader: React.FC<{
       url: account.url,
     });
   }, [account]);
-
-  const handleEditProfile = useCallback(() => {
-    window.open('/settings/profile', '_blank');
-  }, []);
 
   const handleMouseEnter = useCallback(
     ({ currentTarget }: React.MouseEvent) => {
@@ -456,7 +406,7 @@ export const AccountHeader: React.FC<{
   const remoteDomain = isRemote ? account?.acct.split('@')[1] : null;
 
   const menu = useMemo(() => {
-    const arr: DropdownMenu = [];
+    const arr: MenuItem[] = [];
 
     if (!account) {
       return arr;
@@ -680,9 +630,12 @@ export const AccountHeader: React.FC<{
     return null;
   }
 
-  let actionBtn, bellBtn, lockedIcon, shareBtn;
+  let actionBtn: React.ReactNode,
+    bellBtn: React.ReactNode,
+    lockedIcon: React.ReactNode,
+    shareBtn: React.ReactNode;
 
-  const info = [];
+  const info: React.ReactNode[] = [];
 
   if (me !== account.id && relationship?.blocking) {
     info.push(
@@ -750,43 +703,17 @@ export const AccountHeader: React.FC<{
     );
   }
 
-  if (me !== account.id) {
-    if (signedIn && !relationship) {
-      // Wait until the relationship is loaded
-      actionBtn = (
-        <Button disabled>
-          <LoadingIndicator />
-        </Button>
-      );
-    } else if (!relationship?.blocking) {
-      actionBtn = (
-        <Button
-          disabled={relationship?.blocked_by}
-          className={classNames({
-            'button--destructive':
-              relationship?.following || relationship?.requested,
-          })}
-          text={intl.formatMessage(messageForFollowButton(relationship))}
-          onClick={signedIn ? handleFollow : handleInteractionModal}
-        />
-      );
-    } else {
-      actionBtn = (
-        <Button
-          text={intl.formatMessage(messages.unblock, {
-            name: account.username,
-          })}
-          onClick={handleBlock}
-        />
-      );
-    }
-  } else {
+  if (relationship?.blocking) {
     actionBtn = (
       <Button
-        text={intl.formatMessage(messages.edit_profile)}
-        onClick={handleEditProfile}
+        text={intl.formatMessage(messages.unblock, {
+          name: account.username,
+        })}
+        onClick={handleBlock}
       />
     );
+  } else {
+    actionBtn = <FollowButton accountId={accountId} />;
   }
 
   if (account.moved && !relationship?.following) {
@@ -879,13 +806,11 @@ export const AccountHeader: React.FC<{
             <div className='account__header__tabs__buttons'>
               {!hidden && bellBtn}
               {!hidden && shareBtn}
-              <DropdownMenuContainer
+              <Dropdown
                 disabled={menu.length === 0}
                 items={menu}
                 icon='ellipsis-v'
                 iconComponent={MoreHorizIcon}
-                size={24}
-                direction='right'
               />
               {!hidden && actionBtn}
             </div>

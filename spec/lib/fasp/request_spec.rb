@@ -38,7 +38,7 @@ RSpec.describe Fasp::Request do
       it 'raises an error' do
         expect do
           subject.send(method, '/test_path')
-        end.to raise_error(SignatureVerification::SignatureVerificationError)
+        end.to raise_error(Mastodon::SignatureVerificationError)
       end
     end
   end

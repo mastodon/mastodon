@@ -17,7 +17,7 @@ import { initReport } from 'mastodon/actions/reports';
 import { Avatar } from 'mastodon/components/avatar';
 import { CheckBox } from 'mastodon/components/check_box';
 import { IconButton } from 'mastodon/components/icon_button';
-import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { makeGetAccount } from 'mastodon/selectors';
 import { toCappedNumber } from 'mastodon/utils/numbers';
 

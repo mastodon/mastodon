@@ -15,6 +15,8 @@
   // to `null` after any other rule set it to something.
   dependencyDashboardHeader: 'This issue lists Renovate updates and detected dependencies. Read the [Dependency Dashboard](https://docs.renovatebot.com/key-concepts/dashboard/) docs to learn more. Before approving any upgrade: read the description and comments in the [`renovate.json5` file](https://github.com/mastodon/mastodon/blob/main/.github/renovate.json5).',
   postUpdateOptions: ['yarnDedupeHighest'],
+  // The types are now included in recent versions,we ignore them here until we upgrade and remove the dependency
+  ignoreDeps: ['@types/emoji-mart'],
   packageRules: [
     {
       // Require Dependency Dashboard Approval for major version bumps of these node packages
@@ -97,7 +99,13 @@
     {
       // Group all eslint-related packages with `eslint` in the same PR
       matchManagers: ['npm'],
-      matchPackageNames: ['eslint', 'eslint-*', '@typescript-eslint/*'],
+      matchPackageNames: [
+        'eslint',
+        'eslint-*',
+        'typescript-eslint',
+        '@eslint/*',
+        'globals',
+      ],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'eslint (non-major)',
     },

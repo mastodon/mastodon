@@ -187,6 +187,23 @@ RSpec.describe ActivityPub::TagManager do
     end
   end
 
+  describe '#uris_to_local_accounts' do
+    it 'returns the expected local accounts' do
+      account = Fabricate(:account)
+      expect(subject.uris_to_local_accounts([subject.uri_for(account), instance_actor_url])).to contain_exactly(account, Account.representative)
+    end
+
+    it 'does not return remote accounts' do
+      account = Fabricate(:account, uri: 'https://example.com/123', domain: 'example.com')
+      expect(subject.uris_to_local_accounts([subject.uri_for(account)])).to be_empty
+    end
+
+    it 'does not return an account for a local post' do
+      status = Fabricate(:status)
+      expect(subject.uris_to_local_accounts([subject.uri_for(status)])).to be_empty
+    end
+  end
+
   describe '#uri_to_resource' do
     it 'returns the local account' do
       account = Fabricate(:account)

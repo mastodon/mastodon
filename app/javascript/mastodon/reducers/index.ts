@@ -11,10 +11,8 @@ import { composeReducer } from './compose';
 import contexts from './contexts';
 import conversations from './conversations';
 import custom_emojis from './custom_emojis';
-import domain_lists from './domain_lists';
 import { dropdownMenuReducer } from './dropdown_menu';
 import filters from './filters';
-import followed_tags from './followed_tags';
 import height_cache from './height_cache';
 import history from './history';
 import { listsReducer } from './lists';
@@ -49,7 +47,6 @@ const reducers = {
   loadingBar: loadingBarReducer,
   modal: modalReducer,
   user_lists,
-  domain_lists,
   status_lists,
   accounts: accountsReducer,
   accounts_map,
@@ -75,7 +72,6 @@ const reducers = {
   markers: markersReducer,
   picture_in_picture: pictureInPictureReducer,
   history,
-  followed_tags,
   notificationPolicy: notificationPolicyReducer,
   notificationRequests: notificationRequestsReducer,
 };

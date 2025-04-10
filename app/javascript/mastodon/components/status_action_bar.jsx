@@ -25,7 +25,7 @@ import { identityContextPropShape, withIdentity } from 'mastodon/identity_contex
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
-import DropdownMenuContainer from '../containers/dropdown_menu_container';
+import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { me } from '../initial_state';
 
 import { IconButton } from './icon_button';
@@ -390,7 +390,7 @@ class StatusActionBar extends ImmutablePureComponent {
           <IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={bookmarkTitle} icon='bookmark' iconComponent={status.get('bookmarked') ? BookmarkIcon : BookmarkBorderIcon} onClick={this.handleBookmarkClick} />
         </div>
         <div className='status__action-bar__button-wrapper'>
-          <DropdownMenuContainer
+          <Dropdown
             scrollKey={scrollKey}
             status={status}
             items={menu}
