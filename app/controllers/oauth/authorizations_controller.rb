@@ -19,7 +19,13 @@ class Oauth::AuthorizationsController < Doorkeeper::AuthorizationsController
   end
 
   def render_success
-    if skip_authorization? || (matching_token? && !truthy_param?('force_login'))
+    # FIXME: Find a better way to apply this validation: if the scopes only
+    # includes offline_access, then it's not valid, since offline_access doesn't
+    # actually give access to resources:
+    if pre_auth.scopes.all?('offline_access')
+      error = Doorkeeper::OAuth::InvalidRequestResponse.new(reason: :offline_access_only, missing_param: nil)
+      render :error, locals: { error_response: error }, status: 400
+    elsif skip_authorization? || (matching_token? && !truthy_param?('force_login'))
       redirect_or_render authorize_response
     elsif Doorkeeper.configuration.api_only
       render json: pre_auth
