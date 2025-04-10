@@ -16,7 +16,11 @@ module Status::FaspConcern
     return unless Mastodon::Feature.fasp_enabled?
     return unless account_indexable? && public_visibility?
 
-    store_uri unless uri # TODO: solve this more elegantly
+    # We need the uri here, but it is set in another `after_commit`
+    # callback. Hooks included from modules are run before the ones
+    # in the class itself and can neither be reordered nor is there
+    # a way to declare dependencies.
+    store_uri if uri.nil?
     Fasp::AnnounceContentLifecycleEventWorker.perform_async(uri, 'new')
   end
 
