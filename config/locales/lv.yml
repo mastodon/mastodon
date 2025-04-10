@@ -259,6 +259,7 @@ lv:
         create_user_role_html: "%{name} nomainīja %{target} lomu"
         demote_user_html: "%{name} pazemināja lietotāju %{target}"
         destroy_announcement_html: "%{name} izdzēsa paziņojumu %{target}"
+        destroy_canonical_email_block_html: "%{name} atcēla e-pasta adreses liegumu ar jaucējvērtību %{target}"
         destroy_custom_emoji_html: "%{name} izdzēsa emocijzīmi %{target}"
         destroy_domain_allow_html: "%{name} neatļāva federāciju ar domēnu %{target}"
         destroy_domain_block_html: "%{name} atbloķēja domēnu %{target}"
@@ -409,7 +410,7 @@ lv:
         permanent_action: Apturēšanas atsaukšana neatjaunos nekādus datus vai attiecības.
         preamble_html: Tu gatavojies apturēt domēna <strong>%{domain}</strong> un tā apakšdomēnu darbību.
         remove_all_data: Tādējādi no tava servera tiks noņemts viss šī domēna kontu saturs, multivide un profila dati.
-        stop_communication: Jūsu serveris pārtrauks sazināties ar šiem serveriem.
+        stop_communication: Tavs serveris pārtrauks sazināties ar šiem serveriem.
         title: Apstiprināt domēna %{domain} bloķēšanu
         undo_relationships: Tādējādi tiks atsauktas jebkuras sekošanas attiecības starp šo un tavu serveru kontiem.
       created_msg: Domēna bloķēšana tagad tiek apstrādāta
@@ -949,11 +950,13 @@ lv:
         message_html: "<strong>Tava objektu krātuve ir nepareizi konfigurēta. Tavu lietotāju privātums ir apdraudēts.</strong>"
     tags:
       moderation:
+        not_trendable: Nav izplatīts
         not_usable: Nav izmantojams
         pending_review: Gaida pārskatīšanu
         review_requested: Pieprasīta pārskatīšana
         reviewed: Pārskatīts
         title: Stāvoklis
+        trendable: Izplatīts
         unreviewed: Nepārskatīts
         usable: Izmantojams
       name: Nosaukums
@@ -1312,7 +1315,7 @@ lv:
       appeal_approved: Šis brīdinājums tika sekmīgi pārsūdzēts un vairs nav spēkā
       appeal_rejected: Apelācija ir noraidīta
       appeal_submitted_at: Apelācija iesniegta
-      appealed_msg: Jūsu apelācija ir iesniegta. Ja tā tiks apstiprināta, jums tiks paziņots.
+      appealed_msg: Tava pārsūdzība ir iesniegta. Ja tā tiks apstiprināta, Tev tiks paziņots.
       appeals:
         submit: Iesniegt apelāciju
       approve_appeal: Apstiprināt apelāciju
@@ -1332,9 +1335,9 @@ lv:
         sensitive: Konta atzīmēšana kā jūtīgu
         silence: Konta ierobežošana
         suspend: Konta apturēšana
-      your_appeal_approved: Jūsu apelācija ir apstiprināta
+      your_appeal_approved: Tava pārsūdzība tika apstiprināta
       your_appeal_pending: Jūs esat iesniedzis apelāciju
-      your_appeal_rejected: Jūsu apelācija ir noraidīta
+      your_appeal_rejected: Tava pārsūdzība tika noraidīta
   edit_profile:
     basic_information: Pamata informācija
     hint_html: "<strong>Pielāgo, ko cilvēki redz Tavā publiskajā profilā un blakus Taviem ierakstiem.</strong> Ir lielāka iespējamība, ka citi clivēki sekos Tev un mijiedarbosies ar Tevi, ja Tev ir aizpildīts profils un profila attēls."
@@ -1929,7 +1932,7 @@ lv:
       '7889238': 3 mēneši
     min_age_label: Vecuma slieksnis
     min_favs: Saglabāt ziņas izlsasē vismaz
-    min_favs_hint: Nedzēš nevienu jūsu ziņu, kas ir saņēmusi vismaz tik daudz izcēlumu. Atstājiet tukšu, lai dzēstu ziņas neatkarīgi no to izcēlumu skaita
+    min_favs_hint: Neizdzēš nevienu no Taviem ierakstiem, kas ir pievienoti šādā daudzumā izlašu. Atstāt tukšu, lai izdzēstu ierakstus neatkarīgi no tā, cik izlasēs tie ir pievienoti
     min_reblogs: Saglabāt ziņas izceltas vismaz
     min_reblogs_hint: Neizdzēš nevienu no tavām ziņām, kas ir izceltas vismaz tik reižu. Atstāj tukšu, lai dzēstu ziņas neatkarīgi no to izcēlumu skaita
   stream_entries:
@@ -1978,12 +1981,13 @@ lv:
       title: "%{domain} pakalpojuma paziņojums"
     appeal_approved:
       action: Konta iestatījumi
-      explanation: Apelācija par brīdinājumu jūsu kontam %{strike_date}, ko iesniedzāt %{appeal_date}, ir apstiprināta. Jūsu konts atkal ir labā stāvoklī.
-      subject: Jūsu %{date} apelācija ir apstiprināta
+      explanation: Pārsūdzība par brīdinājumu Tavam kontam %{strike_date}, ko iesniedzi %{appeal_date}, ir apstiprināta. Tavs konts atkal ir labā stāvoklī.
+      subject: Tava %{date} iesniegtā pārsūdzība tika apstiprināta
       title: Apelācija apstiprināta
     appeal_rejected:
-      explanation: Apelācija par brīdinājumu jūsu kontam %{strike_date}, ko iesniedzāt %{appeal_date}, ir noraidīta.
-      subject: Jūsu %{date} apelācija ir noraidīta
+      explanation: Pārsūdzība par brīdinājumu Tavam kontam %{strike_date}, ko iesniedzi %{appeal_date}, tika noraidīta.
+      subject: Tava %{date} iesniegta pārsūdzība tika noraidīta
+      subtitle: Tava pārsūdzība tika noraidīta.
       title: Apelācija noraidīta
     backup_ready:
       explanation: Tu pieprasīji pilnu sava Mastodon konta rezerves kopiju.
@@ -1993,6 +1997,9 @@ lv:
     failed_2fa:
       details: 'Šeit ir informācija par pieteikšanās mēģinājumu:'
       explanation: Kāds mēģināja pieteikties Tavā kontā, bet norādīja nederīgu otro autentificēšanās soli.
+      further_actions_html: Ja tas nebiji Tu, mēs iesakām nekavējoties %{action}, jo var būt noticis drošības pārkāpums.
+      subject: Otrās pakāpes autentificēšanās atteice
+      title: Neizdevās otrās pakāpes autentificēšanās
     suspicious_sign_in:
       change_password: mainīt paroli
       details: 'Šeit ir pieteikšanās izvērsums:'
