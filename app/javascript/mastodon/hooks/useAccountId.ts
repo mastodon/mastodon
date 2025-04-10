@@ -28,7 +28,7 @@ export function useAccountId() {
   useEffect(() => {
     if (!accountId) {
       dispatch(lookupAccount(acct));
-    } else if (isAccount) {
+    } else if (!isAccount) {
       dispatch(fetchAccount(accountId));
     }
   }, [dispatch, accountId, acct, isAccount]);
