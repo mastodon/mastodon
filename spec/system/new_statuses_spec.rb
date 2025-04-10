@@ -17,7 +17,7 @@ RSpec.describe 'NewStatuses', :inline_jobs, :js, :streaming do
     status_text = 'This is a new status!'
 
     within('.compose-form') do
-      fill_in frontend_translations(:compose_form, :placeholder), with: status_text
+      fill_in frontend_translations('compose_form.placeholder'), with: status_text
       click_on 'Post'
     end
 

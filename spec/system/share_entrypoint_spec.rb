@@ -23,14 +23,14 @@ RSpec.describe 'Share page', :js, :streaming do
     fill_in_form
 
     expect(page)
-      .to have_css('.notification-bar-message', text: frontend_translations(:compose, :published, :body))
+      .to have_css('.notification-bar-message', text: frontend_translations('compose.published.body'))
   end
 
   def fill_in_form
     within('.compose-form') do
-      fill_in frontend_translations(:compose_form, :placeholder),
+      fill_in frontend_translations('compose_form.placeholder'),
               with: 'This is a new status!'
-      click_on frontend_translations(:compose_form, :publish)
+      click_on frontend_translations('compose_form.publish')
     end
   end
 end

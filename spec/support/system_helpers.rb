@@ -19,8 +19,7 @@ module SystemHelpers
     "##{dom_id(record)}"
   end
 
-  def frontend_translations(*args)
-    key = args.map(&:to_s).join('.')
+  def frontend_translations(key)
     FRONTEND_TRANSLATIONS[key]
   end
 end
