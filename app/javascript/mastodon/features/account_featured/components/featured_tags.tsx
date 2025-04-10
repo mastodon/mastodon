@@ -47,7 +47,7 @@ export const FeaturedTags: React.FC<{ accountId?: string }> = ({
 
   return (
     <>
-      <h4>
+      <h4 className='column-subheading'>
         <FormattedMessage
           id='account.featured.hashtags'
           defaultMessage='Hashtags'

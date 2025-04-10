@@ -10835,25 +10835,3 @@ noscript {
 .lists-scrollable {
   min-height: 50vh;
 }
-
-.account__featured {
-  contain: content;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--background-border-color);
-  border-top: 0;
-  border-radius: 0 0 4px 4px;
-
-  .account__section-headline {
-    border-left: 0;
-    border-right: 0;
-  }
-
-  > h4 {
-    border-bottom: 1px solid var(--background-border-color);
-    padding: 16px;
-    font-size: 14px;
-    font-weight: 500;
-    color: $darker-text-color;
-  }
-}

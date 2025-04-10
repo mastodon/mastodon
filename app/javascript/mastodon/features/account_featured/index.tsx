@@ -8,8 +8,8 @@ import { List as ImmutableList } from 'immutable';
 import { fetchFeaturedTags } from 'mastodon/actions/featured_tags';
 import { expandAccountFeaturedTimeline } from 'mastodon/actions/timelines';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RemoteHint } from 'mastodon/components/remote_hint';
-import ScrollableList from 'mastodon/components/scrollable_list';
 import StatusContainer from 'mastodon/containers/status_container';
 import { useAccountId } from 'mastodon/hooks/useAccountId';
 import { useAccountVisibility } from 'mastodon/hooks/useAccountVisibility';
@@ -52,56 +52,47 @@ const AccountFeatured = () => {
       ) as ImmutableList<string>,
   );
 
-  const hasMore = useAppSelector(
-    (state) =>
-      !!(state.timelines as ImmutableMap<string, unknown>).getIn(
-        [`account:${accountId}:pinned`, 'hasMore'],
-        false,
-      ),
-  );
-
   return (
     <Column>
       <ColumnBackButton />
 
-      <div className='account__featured'>
+      <div className='scrollable scrollable--flex'>
         {accountId && (
           <AccountHeader accountId={accountId} hideTabs={forceEmptyState} />
         )}
         <FeaturedTags accountId={accountId} />
-        {!featuredStatusIds.isEmpty() && !isLoading && (
-          <h4>
-            <FormattedMessage
-              id='account.featured.posts'
-              defaultMessage='Posts'
-            />
-          </h4>
+        {isLoading && (
+          <div className='scrollable__append'>
+            <LoadingIndicator />
+          </div>
         )}
-        <ScrollableList
-          append={<RemoteHint accountId={accountId} />}
-          scrollKey='account_featured'
-          emptyMessage={
-            <EmptyMessage
-              blockedBy={blockedBy}
-              hidden={hidden}
-              suspended={suspended}
-              accountId={accountId}
-            />
-          }
-          timelineId='account'
-          isLoading={isLoading}
-          showLoading={isLoading}
-          hasMore={hasMore}
-        >
-          {featuredStatusIds.map((statusId) => (
-            <StatusContainer
-              key={`f-${statusId}`}
-              // @ts-expect-error inferred props are wrong
-              id={statusId}
-              contextType='account'
-            />
-          ))}
-        </ScrollableList>
+        {!featuredStatusIds.isEmpty() && !isLoading && (
+          <>
+            <h4 className='column-subheading'>
+              <FormattedMessage
+                id='account.featured.posts'
+                defaultMessage='Posts'
+              />
+            </h4>
+            {featuredStatusIds.map((statusId) => (
+              <StatusContainer
+                key={`f-${statusId}`}
+                // @ts-expect-error inferred props are wrong
+                id={statusId}
+                contextType='account'
+              />
+            ))}
+          </>
+        )}
+        {!isLoading && featuredStatusIds.isEmpty() && (
+          <EmptyMessage
+            blockedBy={blockedBy}
+            hidden={hidden}
+            suspended={suspended}
+            accountId={accountId}
+          />
+        )}
+        <RemoteHint accountId={accountId} />
       </div>
     </Column>
   );
