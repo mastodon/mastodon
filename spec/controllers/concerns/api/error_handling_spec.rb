@@ -22,6 +22,7 @@ RSpec.describe Api::ErrorHandling do
       ActiveRecord::RecordInvalid => 422,
       ActiveRecord::RecordNotFound => 404,
       ActiveRecord::RecordNotUnique => 422,
+      ArgumentError => 422,
       Date::Error => 422,
       HTTP::Error => 503,
       Mastodon::InvalidParameterError => 400,

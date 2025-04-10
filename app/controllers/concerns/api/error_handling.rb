@@ -4,7 +4,7 @@ module Api::ErrorHandling
   extend ActiveSupport::Concern
 
   included do
-    rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
+    rescue_from ArgumentError, ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
       render json: { error: e.to_s }, status: 422
     end
 
