@@ -65,12 +65,22 @@ class SessionActivation < ApplicationRecord
   end
 
   def access_token_attributes
+    app = Doorkeeper::Application.find_by(superapp: true)
+    scopes = Doorkeeper::OAuth::Scopes.from_array(DEFAULT_SCOPES)
+
+    context = Doorkeeper::OAuth::Authorization::Token.build_context(
+      app,
+      Doorkeeper::OAuth::AUTHORIZATION_CODE,
+      scopes,
+      user_id
+    )
+
     {
-      application_id: Doorkeeper::Application.find_by(superapp: true)&.id,
-      resource_owner_id: user_id,
-      scopes: DEFAULT_SCOPES.join(' '),
-      expires_in: Doorkeeper.configuration.access_token_expires_in,
-      use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?,
+      application_id: context.client,
+      resource_owner_id: context.resource_owner,
+      scopes: context.scopes,
+      expires_in: Doorkeeper::OAuth::Authorization::Token.access_token_expires_in(Doorkeeper.config, context),
+      use_refresh_token: Doorkeeper::OAuth::Authorization::Token.refresh_token_enabled?(Doorkeeper.config, context),
     }
   end
 end
