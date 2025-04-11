@@ -886,14 +886,7 @@ RSpec.describe ActivityPub::Activity::Create do
           build_object(
             type: 'Note',
             content: 'woah what she said is amazing',
-            tag: [
-              {
-                type: 'Link',
-                mediaType: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
-                rel: 'https://misskey-hub.net/ns#_misskey_quote',
-                href: ActivityPub::TagManager.instance.uri_for(quoted_status),
-              },
-            ]
+            quoteUrl: ActivityPub::TagManager.instance.uri_for(quoted_status)
           )
         end
 
@@ -917,14 +910,7 @@ RSpec.describe ActivityPub::Activity::Create do
           build_object(
             type: 'Note',
             content: 'woah what she said is amazing',
-            tag: [
-              {
-                type: 'Link',
-                mediaType: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
-                rel: 'https://misskey-hub.net/ns#_misskey_quote',
-                href: unknown_post_uri,
-              },
-            ]
+            quoteUrl: unknown_post_uri
           )
         end
 
@@ -954,15 +940,8 @@ RSpec.describe ActivityPub::Activity::Create do
           build_object(
             type: 'Note',
             content: 'woah what she said is amazing',
-            tag: [
-              {
-                type: 'Link',
-                mediaType: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
-                rel: 'https://misskey-hub.net/ns#_misskey_quote',
-                href: ActivityPub::TagManager.instance.uri_for(quoted_status),
-                approvedBy: approval_uri,
-              },
-            ]
+            quoteUrl: ActivityPub::TagManager.instance.uri_for(quoted_status),
+            quoteAuthorization: approval_uri
           )
         end
 

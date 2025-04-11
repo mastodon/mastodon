@@ -127,6 +127,14 @@ class ActivityPub::Parser::StatusParser
     flags
   end
 
+  def quote_uri
+    as_array(@object['quoteUrl']).first
+  end
+
+  def quote_approval_uri
+    as_array(@object['quoteAuthorization']).first
+  end
+
   private
 
   def raw_language_code
