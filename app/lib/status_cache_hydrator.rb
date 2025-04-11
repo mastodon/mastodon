@@ -71,6 +71,23 @@ class StatusCacheHydrator
     payload[:bookmarked] = Bookmark.exists?(account_id: account_id, status_id: status.id)
     payload[:pinned]     = StatusPin.exists?(account_id: account_id, status_id: status.id) if status.account_id == account_id
     payload[:filtered]   = mapped_applied_custom_filter(account_id, status)
+    payload[:quote] = hydrate_quote_payload(payload[:quote], status.quote, account_id) if payload[:quote]
+  end
+
+  def hydrate_quote_payload(empty_payload, quote, account_id)
+    # TODO: properly handle quotes, including visibility and access control
+
+    empty_payload.tap do |payload|
+      # Nothing to do if we're in the shallow (depth limit) case
+      next unless payload.key?(:quoted_status)
+
+      # TODO: handle hiding a rendered status or showing a non-rendered status according to visibility
+      if quote&.quoted_status.nil?
+        payload[:quoted_status] = nil
+      elsif payload[:quoted_status].present?
+        payload[:quoted_status] = StatusCacheHydrator.new(quote.quoted_status).hydrate(account_id)
+      end
+    end
   end
 
   def mapped_applied_custom_filter(account_id, status)

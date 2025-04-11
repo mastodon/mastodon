@@ -40,9 +40,118 @@ RSpec.describe StatusCacheHydrator do
         end
       end
 
+      context 'when handling an unapproved quote' do
+        let(:quoted_status) { Fabricate(:status) }
+
+        before do
+          Fabricate(:quote, status: status, quoted_status: quoted_status, state: :pending)
+        end
+
+        it 'renders the same attributes as full render' do
+          expect(subject).to eql(compare_to_hash)
+          expect(subject[:quote]).to_not be_nil
+        end
+      end
+
+      context 'when handling an approved quote' do
+        let(:quoted_status) { Fabricate(:status) }
+
+        before do
+          Fabricate(:quote, status: status, quoted_status: quoted_status, state: :accepted)
+        end
+
+        it 'renders the same attributes as full render' do
+          expect(subject).to eql(compare_to_hash)
+          expect(subject[:quote]).to_not be_nil
+        end
+
+        context 'when the quoted post has been favourited' do
+          before do
+            FavouriteService.new.call(account, quoted_status)
+          end
+
+          it 'renders the same attributes as full render' do
+            expect(subject).to eql(compare_to_hash)
+            expect(subject[:quote]).to_not be_nil
+          end
+        end
+
+        context 'when the quoted post has been reblogged' do
+          before do
+            ReblogService.new.call(account, quoted_status)
+          end
+
+          it 'renders the same attributes as full render' do
+            expect(subject).to eql(compare_to_hash)
+            expect(subject[:quote]).to_not be_nil
+          end
+        end
+
+        context 'when the quoted post matches account filters' do
+          let(:quoted_status) { Fabricate(:status, text: 'this toot is about that banned word') }
+
+          before do
+            account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
+          end
+
+          it 'renders the same attributes as a full render' do
+            expect(subject).to eql(compare_to_hash)
+            expect(subject[:quote]).to_not be_nil
+          end
+        end
+      end
+
       context 'when handling a reblog' do
         let(:reblog) { Fabricate(:status) }
         let(:status) { Fabricate(:status, reblog: reblog) }
+
+        context 'when the reblog has an approved quote' do
+          let(:quoted_status) { Fabricate(:status) }
+
+          before do
+            Fabricate(:quote, status: reblog, quoted_status: quoted_status, state: :accepted)
+          end
+
+          it 'renders the same attributes as full render' do
+            expect(subject).to eql(compare_to_hash)
+            expect(subject[:reblog][:quote]).to_not be_nil
+          end
+
+          context 'when the quoted post has been favourited' do
+            before do
+              FavouriteService.new.call(account, quoted_status)
+            end
+
+            it 'renders the same attributes as full render' do
+              expect(subject).to eql(compare_to_hash)
+              expect(subject[:reblog][:quote]).to_not be_nil
+            end
+          end
+
+          context 'when the quoted post has been reblogged' do
+            before do
+              ReblogService.new.call(account, quoted_status)
+            end
+
+            it 'renders the same attributes as full render' do
+              expect(subject).to eql(compare_to_hash)
+              expect(subject[:reblog][:quote]).to_not be_nil
+            end
+          end
+
+          context 'when the quoted post matches account filters' do
+            let(:quoted_status) { Fabricate(:status, text: 'this toot is about that banned word') }
+
+            before do
+              account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
+            end
+
+            it 'renders the same attributes as a full render' do
+              expect(subject).to eql(compare_to_hash)
+              expect(subject[:reblog][:quote]).to_not be_nil
+            end
+          end
+        end
 
         context 'when it has been favourited' do
           before do

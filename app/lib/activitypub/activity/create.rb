@@ -45,9 +45,12 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @unresolved_mentions  = []
     @silenced_account_ids = []
     @params               = {}
+    @quote                = nil
+    @quote_uri            = nil
 
     process_status_params
     process_tags
+    process_quote
     process_audience
 
     ApplicationRecord.transaction do
@@ -55,6 +58,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       attach_tags(@status)
       attach_mentions(@status)
       attach_counts(@status)
+      attach_quote(@status)
     end
 
     resolve_thread(@status)
@@ -79,7 +83,12 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_status_params
-    @status_parser = ActivityPub::Parser::StatusParser.new(@json, followers_collection: @account.followers_url, object: @object)
+    @status_parser = ActivityPub::Parser::StatusParser.new(
+      @json,
+      followers_collection: @account.followers_url,
+      actor_uri: ActivityPub::TagManager.instance.uri_for(@account),
+      object: @object
+    )
 
     attachment_ids = process_attachments.take(Status::MEDIA_ATTACHMENTS_LIMIT).map(&:id)
 
@@ -101,6 +110,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       media_attachment_ids: attachment_ids,
       ordered_media_attachment_ids: attachment_ids,
       poll: process_poll,
+      quote_approval_policy: @status_parser.quote_policy,
     }
   end
 
@@ -189,6 +199,16 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
   end
 
+  def attach_quote(status)
+    return if @quote.nil?
+
+    @quote.status = status
+    @quote.save
+    ActivityPub::VerifyQuoteService.new.call(@quote, fetchable_quoted_uri: @quote_uri)
+  rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
+    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(30..600).seconds, @quote.id, @quote_uri)
+  end
+
   def process_tags
     return if @object['tag'].nil?
 
@@ -201,6 +221,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         process_emoji tag
       end
     end
+  end
+
+  def process_quote
+    @quote_uri = @status_parser.quote_uri
+    return if @quote_uri.blank?
+
+    approval_uri = @status_parser.quote_approval_uri
+    approval_uri = nil if unsupported_uri_scheme?(approval_uri)
+    @quote = Quote.new(account: @account, approval_uri: approval_uri)
   end
 
   def process_hashtag(tag)

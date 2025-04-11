@@ -8,6 +8,7 @@ class ActivityPub::Parser::StatusParser
   # @param [Hash] json
   # @param [Hash] options
   # @option options [String] :followers_collection
+  # @option options [String] :actor_uri
   # @option options [Hash]   :object
   def initialize(json, **options)
     @json    = json
@@ -99,6 +100,39 @@ class ActivityPub::Parser::StatusParser
 
   def reblogs_count
     @object.dig(:shares, :totalItems)
+  end
+
+  def quote_policy
+    flags = 0
+    policy = @object.dig('interactionPolicy', 'canQuote')
+    return flags if policy.blank?
+
+    allowed_actors = as_array(policy['automaticApproval']) + as_array(policy['manualApproval'])
+    allowed_actors.uniq!
+
+    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] if allowed_actors.delete('as:Public') || allowed_actors.delete('Public') || allowed_actors.delete('https://www.w3.org/ns/activitystreams#Public')
+    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] if allowed_actors.delete(@options[:followers_collection])
+    # TODO: we don't actually store that collection URI
+    # flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:followed]
+
+    # Remove the special-meaning actor URI
+    allowed_actors.delete(@options[:actor_uri])
+
+    # Tagged users are always allowed, so remove them
+    allowed_actors -= as_array(@object['tag']).filter_map { |tag| tag['href'] if equals_or_includes?(tag['type'], 'Mention') }
+
+    # Any unrecognized actor is marked as unknown
+    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:unknown] unless allowed_actors.empty?
+
+    flags
+  end
+
+  def quote_uri
+    as_array(@object['quoteUrl']).first
+  end
+
+  def quote_approval_uri
+    as_array(@object['quoteAuthorization']).first
   end
 
   private
