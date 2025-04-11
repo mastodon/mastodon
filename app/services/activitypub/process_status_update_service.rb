@@ -170,7 +170,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @raw_tags     = []
     @raw_mentions = []
     @raw_emojis   = []
-    @raw_links    = []
 
     as_array(@json['tag']).each do |tag|
       if equals_or_includes?(tag['type'], 'Hashtag')
@@ -179,15 +178,13 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         @raw_mentions << tag['href'] if tag['href'].present?
       elsif equals_or_includes?(tag['type'], 'Emoji')
         @raw_emojis << tag
-      elsif equals_or_includes?(tag['type'], 'Link')
-        @raw_links << tag
       end
     end
 
     update_tags!
     update_mentions!
     update_emojis!
-    update_links!
+    update_quote!
   end
 
   def update_tags!
@@ -267,31 +264,28 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     end
   end
 
-  def update_links!
+  def update_quote!
     quote = nil
-    quote_uri = nil
+    quote_uri = @status_parser.quote_uri
 
-    @raw_links.each do |tag|
-      next unless tag['href'].present? && tag['mediaType'] == 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"' && equals_or_includes_any?(tag['rel'], ActivityPub::Activity::QUOTE_REL_TYPES)
-
-      quote_uri = tag['href']
+    if quote_uri.present?
+      approval_uri = @status_parser.quote_approval_uri
+      approval_uri = nil if unsupported_uri_scheme?(approval_uri)
 
       if @status.quote.present?
         # If the quoted post has changed, discard the old object and create a new one
         if @status.quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(@status.quote.quoted_status) != quote_uri
           @status.quote.destroy
-          quote = Quote.create(status: @status, approval_uri: unsupported_uri_scheme?(tag['approvedBy']) ? nil : tag['approvedBy'])
+          quote = Quote.create(status: @status, approval_uri: approval_uri)
           @quote_changed = true
         else
           quote = @status.quote
-          quote.update(approval_uri: unsupported_uri_scheme?(tag['approvedBy']) ? nil : tag['approvedBy'], state: :pending) if quote.approval_uri != tag['approvedBy']
+          quote.update(approval_uri: approval_uri, state: :pending) if quote.approval_uri != @status_parser.quote_approval_uri
         end
       else
-        quote = Quote.create(status: @status, approval_uri: unsupported_uri_scheme?(tag['approvedBy']) ? nil : tag['approvedBy'])
+        quote = Quote.create(status: @status, approval_uri: approval_uri)
         @quote_changed = true
       end
-
-      break
     end
 
     if quote.present?

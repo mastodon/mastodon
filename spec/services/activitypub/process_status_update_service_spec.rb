@@ -435,7 +435,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status has an existing unverified embed and adds an approval link' do
+  context 'when the status has an existing unverified quote and adds an approval link' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: nil) }
@@ -443,21 +443,24 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
     let(:payload) do
       {
-        '@context': 'https://www.w3.org/ns/activitystreams',
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
         id: 'foo',
         type: 'Note',
         summary: 'Show more',
         content: 'Hello universe',
         updated: '2021-09-08T22:39:25Z',
-        tag: [
-          {
-            type: 'Link',
-            mediaType: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
-            rel: 'https://misskey-hub.net/ns#_misskey_quote',
-            href: ActivityPub::TagManager.instance.uri_for(quoted_status),
-            approvedBy: approval_uri,
-          },
-        ],
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
       }
     end
 
@@ -498,7 +501,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status has an existing verified embed and removes an approval link' do
+  context 'when the status has an existing verified quote and removes an approval link' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
@@ -506,20 +509,23 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
     let(:payload) do
       {
-        '@context': 'https://www.w3.org/ns/activitystreams',
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
         id: 'foo',
         type: 'Note',
         summary: 'Show more',
         content: 'Hello universe',
         updated: '2021-09-08T22:39:25Z',
-        tag: [
-          {
-            type: 'Link',
-            mediaType: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
-            rel: 'https://misskey-hub.net/ns#_misskey_quote',
-            href: ActivityPub::TagManager.instance.uri_for(quoted_status),
-          },
-        ],
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
       }
     end
 
@@ -530,28 +536,31 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status adds a verifiable embed' do
+  context 'when the status adds a verifiable quote' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
 
     let(:payload) do
       {
-        '@context': 'https://www.w3.org/ns/activitystreams',
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
         id: 'foo',
         type: 'Note',
         summary: 'Show more',
         content: 'Hello universe',
         updated: '2021-09-08T22:39:25Z',
-        tag: [
-          {
-            type: 'Link',
-            mediaType: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
-            rel: 'https://misskey-hub.net/ns#_misskey_quote',
-            href: ActivityPub::TagManager.instance.uri_for(quoted_status),
-            approvedBy: approval_uri,
-          },
-        ],
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
       }
     end
 
@@ -593,27 +602,30 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status adds a unverifiable embed' do
+  context 'when the status adds a unverifiable quote' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
 
     let(:payload) do
       {
-        '@context': 'https://www.w3.org/ns/activitystreams',
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
         id: 'foo',
         type: 'Note',
         summary: 'Show more',
         content: 'Hello universe',
         updated: '2021-09-08T22:39:25Z',
-        tag: [
-          {
-            type: 'Link',
-            mediaType: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
-            rel: 'https://misskey-hub.net/ns#_misskey_quote',
-            href: ActivityPub::TagManager.instance.uri_for(quoted_status),
-          },
-        ],
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
       }
     end
 
@@ -625,7 +637,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status removes a verified embed' do
+  context 'when the status removes a verified quote' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
@@ -650,7 +662,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status removes an unverified embed' do
+  context 'when the status removes an unverified quote' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: nil, state: :pending) }
@@ -674,7 +686,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status swaps a verified embed with an unverifiable embed' do
+  context 'when the status swaps a verified quote with an unverifiable quote' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let(:second_quoted_status) { Fabricate(:status, account: quoted_account) }
@@ -683,21 +695,24 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
     let(:payload) do
       {
-        '@context': 'https://www.w3.org/ns/activitystreams',
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
         id: 'foo',
         type: 'Note',
         summary: 'Show more',
         content: 'Hello universe',
         updated: '2021-09-08T22:39:25Z',
-        tag: [
-          {
-            type: 'Link',
-            mediaType: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
-            rel: 'https://misskey-hub.net/ns#_misskey_quote',
-            href: ActivityPub::TagManager.instance.uri_for(second_quoted_status),
-            approvedBy: approval_uri,
-          },
-        ],
+        quote: ActivityPub::TagManager.instance.uri_for(second_quoted_status),
+        quoteAuthorization: approval_uri,
       }
     end
 
@@ -740,7 +755,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status swaps a verified embed with another verifiable embed' do
+  context 'when the status swaps a verified quote with another verifiable quote' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:second_quoted_account) { Fabricate(:account, domain: 'second-quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
@@ -751,21 +766,24 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
     let(:payload) do
       {
-        '@context': 'https://www.w3.org/ns/activitystreams',
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
         id: 'foo',
         type: 'Note',
         summary: 'Show more',
         content: 'Hello universe',
         updated: '2021-09-08T22:39:25Z',
-        tag: [
-          {
-            type: 'Link',
-            mediaType: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
-            rel: 'https://misskey-hub.net/ns#_misskey_quote',
-            href: ActivityPub::TagManager.instance.uri_for(second_quoted_status),
-            approvedBy: second_approval_uri,
-          },
-        ],
+        quote: ActivityPub::TagManager.instance.uri_for(second_quoted_status),
+        quoteAuthorization: second_approval_uri,
       }
     end
 
