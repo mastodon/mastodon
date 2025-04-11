@@ -45,6 +45,10 @@ Doorkeeper.configure do
     end
   end
 
+  use_refresh_token do |context|
+    context.scopes.exists?('offline_access')
+  end
+
   # Use a custom class for generating the access token.
   # https://github.com/doorkeeper-gem/doorkeeper#custom-access-token-generator
   # access_token_generator "::Doorkeeper::JWT"
