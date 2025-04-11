@@ -115,6 +115,21 @@ RSpec.describe 'Filters' do
           .to start_with('application/json')
       end
     end
+
+    context 'when the given filter_action value is invalid' do
+      let(:params) { { title: 'magic', filter_action: 'imaginary_value', keywords_attributes: [keyword: 'magic'] } }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response)
+          .to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to include(error: /Action is not included/)
+      end
+    end
   end
 
   describe 'GET /api/v2/filters/:id' do
