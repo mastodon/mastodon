@@ -354,6 +354,28 @@ export const Dropdown = <Item = MenuItem,>({
     dispatch(closeDropdownMenu({ id: currentId }));
   }, [dispatch, currentId]);
 
+  const handleItemClick = useCallback(
+    (e: React.MouseEvent | React.KeyboardEvent) => {
+      const i = Number(e.currentTarget.getAttribute('data-index'));
+      const item = items?.[i];
+
+      handleClose();
+
+      if (!item) {
+        return;
+      }
+
+      if (typeof onItemClick === 'function') {
+        e.preventDefault();
+        onItemClick(item, i);
+      } else if (isActionItem(item)) {
+        e.preventDefault();
+        item.action();
+      }
+    },
+    [handleClose, onItemClick, items],
+  );
+
   const handleClick = useCallback(
     (e: React.MouseEvent | React.KeyboardEvent) => {
       const { type } = e;
@@ -374,7 +396,7 @@ export const Dropdown = <Item = MenuItem,>({
               modalProps: {
                 status,
                 actions: items,
-                onClick: onItemClick,
+                onClick: handleItemClick,
               },
             }),
           );
@@ -394,7 +416,7 @@ export const Dropdown = <Item = MenuItem,>({
       currentId,
       scrollKey,
       onOpen,
-      onItemClick,
+      handleItemClick,
       open,
       status,
       items,
@@ -432,28 +454,6 @@ export const Dropdown = <Item = MenuItem,>({
       }
     },
     [handleClick],
-  );
-
-  const handleItemClick = useCallback(
-    (e: React.MouseEvent | React.KeyboardEvent) => {
-      const i = Number(e.currentTarget.getAttribute('data-index'));
-      const item = items?.[i];
-
-      handleClose();
-
-      if (!item) {
-        return;
-      }
-
-      if (typeof onItemClick === 'function') {
-        e.preventDefault();
-        onItemClick(item, i);
-      } else if (isActionItem(item)) {
-        e.preventDefault();
-        item.action();
-      }
-    },
-    [handleClose, onItemClick, items],
   );
 
   useEffect(() => {
