@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_13_123400) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_10_144908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -553,19 +553,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_13_123400) do
     t.bigint "user_id"
     t.index ["uid", "provider"], name: "index_identities_on_uid_and_provider", unique: true
     t.index ["user_id"], name: "index_identities_on_user_id"
-  end
-
-  create_table "imports", force: :cascade do |t|
-    t.integer "type", null: false
-    t.boolean "approved", default: false, null: false
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.string "data_file_name"
-    t.string "data_content_type"
-    t.integer "data_file_size"
-    t.datetime "data_updated_at", precision: nil
-    t.bigint "account_id", null: false
-    t.boolean "overwrite", default: false, null: false
   end
 
   create_table "invites", force: :cascade do |t|
@@ -1329,7 +1316,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_13_123400) do
   add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
   add_foreign_key "generated_annual_reports", "accounts"
   add_foreign_key "identities", "users", name: "fk_bea040f377", on_delete: :cascade
-  add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
   add_foreign_key "invites", "users", on_delete: :cascade
   add_foreign_key "list_accounts", "accounts", on_delete: :cascade
   add_foreign_key "list_accounts", "follow_requests", on_delete: :cascade

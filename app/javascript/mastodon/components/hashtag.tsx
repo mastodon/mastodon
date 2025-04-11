@@ -102,7 +102,7 @@ export interface HashtagProps {
   description?: React.ReactNode;
   history?: number[];
   name: string;
-  people: number;
+  people?: number;
   to: string;
   uses?: number;
   withGraph?: boolean;
