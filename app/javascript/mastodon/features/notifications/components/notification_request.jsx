@@ -105,11 +105,10 @@ export const NotificationRequest = ({ id, accountId, notificationsCount, checked
 
       <div className='notification-request__actions'>
         <IconButton iconComponent={DeleteIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
-        <DropdownMenuContainer
+        <Dropdown
           items={menu}
-          icons='ellipsis-h'
+          icon='ellipsis-h'
           iconComponent={MoreHorizIcon}
-          direction='right'
           title={intl.formatMessage(messages.more)}
         />
       </div>
