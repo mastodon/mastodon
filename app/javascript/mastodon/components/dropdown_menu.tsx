@@ -71,6 +71,8 @@ type RenderItemFn<Item = MenuItem> = (
   },
 ) => React.ReactNode;
 
+type ItemClickFn<Item = MenuItem> = (item: Item, index: number) => void;
+
 type RenderHeaderFn<Item = MenuItem> = (items: Item[]) => React.ReactNode;
 
 interface DropdownMenuProps<Item = MenuItem> {
@@ -81,10 +83,10 @@ interface DropdownMenuProps<Item = MenuItem> {
   openedViaKeyboard: boolean;
   renderItem?: RenderItemFn<Item>;
   renderHeader?: RenderHeaderFn<Item>;
-  onItemClick: (e: React.MouseEvent | React.KeyboardEvent) => void;
+  onItemClick?: ItemClickFn<Item>;
 }
 
-const DropdownMenu = <Item = MenuItem,>({
+export const DropdownMenu = <Item = MenuItem,>({
   items,
   loading,
   scrollable,
@@ -176,20 +178,35 @@ const DropdownMenu = <Item = MenuItem,>({
     [],
   );
 
+  const handleItemClick = useCallback(
+    (e: React.MouseEvent | React.KeyboardEvent) => {
+      const i = Number(e.currentTarget.getAttribute('data-index'));
+      const item = items?.[i];
+
+      onClose();
+
+      if (!item) {
+        return;
+      }
+
+      if (typeof onItemClick === 'function') {
+        e.preventDefault();
+        onItemClick(item, i);
+      } else if (isActionItem(item)) {
+        e.preventDefault();
+        item.action();
+      }
+    },
+    [onClose, onItemClick, items],
+  );
+
   const handleItemKeyUp = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
-        onItemClick(e);
+        handleItemClick(e);
       }
     },
-    [onItemClick],
-  );
-
-  const handleClick = useCallback(
-    (e: React.MouseEvent | React.KeyboardEvent) => {
-      onItemClick(e);
-    },
-    [onItemClick],
+    [handleItemClick],
   );
 
   const nativeRenderItem = (option: Item, i: number) => {
@@ -209,7 +226,7 @@ const DropdownMenu = <Item = MenuItem,>({
       element = (
         <button
           ref={i === 0 ? handleFocusedItemRef : undefined}
-          onClick={handleClick}
+          onClick={handleItemClick}
           onKeyUp={handleItemKeyUp}
           data-index={i}
         >
@@ -224,7 +241,7 @@ const DropdownMenu = <Item = MenuItem,>({
           data-method={option.method}
           rel='noopener'
           ref={i === 0 ? handleFocusedItemRef : undefined}
-          onClick={handleClick}
+          onClick={handleItemClick}
           onKeyUp={handleItemKeyUp}
           data-index={i}
         >
@@ -236,7 +253,7 @@ const DropdownMenu = <Item = MenuItem,>({
         <Link
           to={option.to}
           ref={i === 0 ? handleFocusedItemRef : undefined}
-          onClick={handleClick}
+          onClick={handleItemClick}
           onKeyUp={handleItemKeyUp}
           data-index={i}
         >
@@ -282,7 +299,7 @@ const DropdownMenu = <Item = MenuItem,>({
         >
           {items.map((option, i) =>
             renderItemMethod(option, i, {
-              onClick: handleClick,
+              onClick: handleItemClick,
               onKeyUp: handleItemKeyUp,
             }),
           )}
@@ -306,7 +323,7 @@ interface DropdownProps<Item = MenuItem> {
   renderItem?: RenderItemFn<Item>;
   renderHeader?: RenderHeaderFn<Item>;
   onOpen?: () => void;
-  onItemClick?: (arg0: Item, arg1: number) => void;
+  onItemClick?: ItemClickFn<Item>;
 }
 
 const offset = [5, 5] as OffsetValue;
@@ -521,7 +538,7 @@ export const Dropdown = <Item = MenuItem,>({
                 openedViaKeyboard={openedViaKeyboard}
                 renderItem={renderItem}
                 renderHeader={renderHeader}
-                onItemClick={handleItemClick}
+                onItemClick={onItemClick}
               />
             </div>
           </div>
