@@ -50,6 +50,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     process_status_params
     process_tags
+    process_quote
     process_audience
 
     ApplicationRecord.transaction do
@@ -212,10 +213,17 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         process_mention tag
       elsif equals_or_includes?(tag['type'], 'Emoji')
         process_emoji tag
-      elsif equals_or_includes?(tag['type'], 'Link')
-        process_link tag
       end
     end
+  end
+
+  def process_quote
+    @quote_uri = @status_parser.quote_uri
+    return if @quote_uri.blank?
+
+    approval_uri = @status_parser.quote_approval_uri
+    approval_uri = nil if unsupported_uri_scheme?(approval_uri)
+    @quote = Quote.new(account: @account, approval_uri: approval_uri)
   end
 
   def process_hashtag(tag)
@@ -258,16 +266,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       emoji.save
     rescue Seahorse::Client::NetworkingError => e
       Rails.logger.warn "Error storing emoji: #{e}"
-    end
-  end
-
-  def process_link(tag)
-    # Only accept one quote
-    return if tag['href'].blank? || @quote.present?
-
-    if tag['mediaType'] == 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"' && equals_or_includes_any?(tag['rel'], QUOTE_REL_TYPES)
-      @quote = Quote.new(account: @account, approval_uri: unsupported_uri_scheme?(tag['approvedBy']) ? nil : tag['approvedBy'])
-      @quote_uri = tag['href']
     end
   end
 

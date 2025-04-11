@@ -7,7 +7,15 @@ RSpec.describe ActivityPub::Activity::Create do
 
   let(:json) do
     {
-      '@context': 'https://www.w3.org/ns/activitystreams',
+      '@context': [
+        'https://www.w3.org/ns/activitystreams',
+        {
+          quote: {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+        },
+      ],
       id: [ActivityPub::TagManager.instance.uri_for(sender), '#foo'].join,
       type: 'Create',
       actor: ActivityPub::TagManager.instance.uri_for(sender),
@@ -886,14 +894,7 @@ RSpec.describe ActivityPub::Activity::Create do
           build_object(
             type: 'Note',
             content: 'woah what she said is amazing',
-            tag: [
-              {
-                type: 'Link',
-                mediaType: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
-                rel: 'https://misskey-hub.net/ns#_misskey_quote',
-                href: ActivityPub::TagManager.instance.uri_for(quoted_status),
-              },
-            ]
+            quote: ActivityPub::TagManager.instance.uri_for(quoted_status)
           )
         end
 
@@ -917,14 +918,7 @@ RSpec.describe ActivityPub::Activity::Create do
           build_object(
             type: 'Note',
             content: 'woah what she said is amazing',
-            tag: [
-              {
-                type: 'Link',
-                mediaType: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
-                rel: 'https://misskey-hub.net/ns#_misskey_quote',
-                href: unknown_post_uri,
-              },
-            ]
+            quote: unknown_post_uri
           )
         end
 
@@ -954,15 +948,8 @@ RSpec.describe ActivityPub::Activity::Create do
           build_object(
             type: 'Note',
             content: 'woah what she said is amazing',
-            tag: [
-              {
-                type: 'Link',
-                mediaType: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
-                rel: 'https://misskey-hub.net/ns#_misskey_quote',
-                href: ActivityPub::TagManager.instance.uri_for(quoted_status),
-                approvedBy: approval_uri,
-              },
-            ]
+            quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+            quoteAuthorization: approval_uri
           )
         end
 
