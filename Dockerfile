@@ -97,7 +97,9 @@
  WORKDIR /opt/mastodon
  
  # Add backport repository for some specific packages where we need the latest version
- RUN echo 'deb http://deb.debian.org/debian bookworm-backports main' >> /etc/apt/sources.list
+ RUN --mount=type=cache,id=bundler:gems,target=/usr/local/bundle
+ RUN --mount=type=cache,id=yarn:node_modules,target=/app/node_modules
+ RUN --mount=type=cache,id=webpack:assets,target=/app/public/assets
  
  # hadolint ignore=DL3008,DL3005
  RUN \
