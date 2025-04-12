@@ -99,8 +99,8 @@ WORKDIR /opt/mastodon
 # hadolint ignore=DL3008,DL3005
 RUN \
   # Mount Apt cache and lib directories from Docker buildx caches
-  --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
-  --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+  --mount=type=cache,id=apt-cache:apt,target=/var/cache/ap,sharing=locked \
+  --mount=type=cache,id=apt-cache:apt,target=/var/cache/apt,sharing=locked \
   # Apt update & upgrade to check for security updates to Debian image
   apt-get update; \
   apt-get dist-upgrade -yq; \
@@ -137,8 +137,8 @@ ARG TARGETPLATFORM
 # hadolint ignore=DL3008
 RUN \
   # Mount Apt cache and lib directories from Docker buildx caches
-  --mount=type=cache,id=apt-cache-${TARGETPLATFORM},target=/var/cache/apt,sharing=locked \
-  --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
+  --mount=type=cache,id=apt-cache:apt,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,id=apt-cache:apt,target=/var/cache/apt,sharing=locked \
   # Install build tools and bundler dependencies from APT
   apt-get install -y --no-install-recommends \
   autoconf \
