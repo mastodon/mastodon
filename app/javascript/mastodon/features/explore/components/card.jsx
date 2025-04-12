@@ -25,7 +25,7 @@ export const Card = ({ id, source }) => {
   const dispatch = useDispatch();
 
   const handleDismiss = useCallback(() => {
-    dispatch(dismissSuggestion(id));
+    dispatch(dismissSuggestion({ accountId: id }));
   }, [id, dispatch]);
 
   let label;

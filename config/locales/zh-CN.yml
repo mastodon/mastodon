@@ -315,6 +315,9 @@ zh-CN:
       new:
         create: 创建公告
         title: 新公告
+      preview:
+        explanation_html: 此电子邮件将发送给 <strong>%{display_count} 用户</strong>。电子邮件将包含以下文本：
+        title: 预览公告通知
       publish: 发布
       published_msg: 公告已发布！
       scheduled_for: 定时在 %{time}
@@ -1862,6 +1865,10 @@ zh-CN:
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对账号的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
     webauthn: 安全密钥
   user_mailer:
+    announcement_published:
+      description: "%{domain}管理员发布了一则公告："
+      subject: 服务公告
+      title: "%{domain}服务公告"
     appeal_approved:
       action: 账号设置
       explanation: 你于 %{appeal_date} 对 %{strike_date} 在你账号上做出的处罚提出的申诉已被批准，你的账号已回到正常状态。

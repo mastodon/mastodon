@@ -471,6 +471,36 @@ zh-TW:
       new:
         title: 匯入網域黑名單
       no_file: 尚未選擇檔案
+    fasp:
+      debug:
+        callbacks:
+          created_at: 建立於
+          delete: 刪除
+          ip: IP 地址
+          request_body: Request body
+          title: 除錯 callback
+      providers:
+        active: 生效
+        base_url: Base URL
+        callback: Callback
+        delete: 刪除
+        edit: 編輯提供商
+        finish_registration: 完成註冊
+        name: 名稱
+        providers: 提供商
+        public_key_fingerprint: 公鑰指紋
+        registration_requested: 已請求註冊
+        registrations:
+          confirm: 確認
+          description: 您收到 FASP的註冊。若您未發起此請求，請拒絕它。若您發起了此請求，請仔細比較名稱與金鑰指紋再確認註冊。
+          reject: 拒絕
+          title: 確認 FASP 註冊
+        save: 儲存
+        select_capabilities: 選擇功能
+        sign_in: 登入
+        status: 狀態
+        title: 聯邦宇宙輔助服務提供商 (Fediverse Auxiliary Service Providers)
+      title: FASP
     follow_recommendations:
       description_html: "<strong>跟隨建議幫助新使用者們快速找到有趣的內容</strong>。當使用者沒有與其他帳號有足夠多的互動以建立個人化跟隨建議時，這些帳號將會被推薦。這些帳號將基於某選定語言之高互動與高本地跟隨者數量帳號而每日重新更新。"
       language: 對於語言

@@ -55,6 +55,8 @@ sl:
               too_soon: je prekmalu, naj bo kasneje od %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: ne dosega starostne meje
             email:
               blocked: uporablja nedovoljenega ponudnika e-poštnih storitev
               unreachable: kot kaže ne obstaja

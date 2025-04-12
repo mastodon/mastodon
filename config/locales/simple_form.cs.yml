@@ -3,7 +3,7 @@ cs:
   simple_form:
     hints:
       account:
-        attribution_domains: Jeden na řádek. Chrání před falešným připisování autorství.
+        attribution_domains: Jeden na řádek. Chrání před falešným připisováním autorství.
         discoverable: Vaše veřejné příspěvky a profil mohou být zobrazeny nebo doporučeny v různých oblastech Mastodonu a váš profil může být navrhován ostatním uživatelům.
         display_name: Vaše celé jméno nebo přezdívka.
         fields: Vaše domovská stránka, zájmena, věk, cokoliv chcete.
@@ -75,6 +75,7 @@ cs:
       filters:
         action: Vyberte, jakou akci provést, když příspěvek odpovídá filtru
         actions:
+          blur: Skrýt média za varováním, bez skrytí samotného textu
           hide: Úplně schovat filtrovaný obsah tak, jako by neexistoval
           warn: Schovat filtrovaný obsah za varováním zmiňujicím název filtru
       form_admin_settings:
@@ -260,6 +261,7 @@ cs:
         name: Hashtag
       filters:
         actions:
+          blur: Skrýt média za varováním
           hide: Zcela skrýt
           warn: Skrýt s varováním
       form_admin_settings:

@@ -88,6 +88,7 @@ sl:
         favicon: WEBP, PNG, GIF ali JPG. Zamenja privzeto ikono spletne strani Mastodon z ikono po meri.
         mascot: Preglasi ilustracijo v naprednem spletnem vmesniku.
         media_cache_retention_period: Predstavnostne datoteke iz objav uporabnikov na ostalih strežnikih se začasno hranijo na tem strežniku. Ko je nastavljeno na pozitivno vrednost, bodo predstavnostne datoteke izbrisane po nastavljenem številu dni. Če bo predstavnostna datoteka zahtevana po izbrisu, bo ponovno prenešena, če bo vir še vedno na voljo. Zaradi omejitev pogostosti prejemanja predogledov povezav z drugih strani je priporočljivo to vrednost nastaviti na vsaj 14 dni. V nasprotnem predogledi povezav pred tem časom ne bodo osveženi na zahtevo.
+        min_age: Med registracijo bodo morali uporabniki potrditi svoj datum rojstva
         peers_api_enabled: Seznam imen domen, na katere je ta strežnik naletel v fediverzumu. Sem niso vključeni podatki o tem, ali ste v federaciji z danim strežnikom, zgolj to, ali vaš strežnik ve zanj. To uporabljajo storitve, ki zbirajo statistične podatke o federaciji v splošnem smislu.
         profile_directory: Imenik profilov izpiše vse uporabnike, ki so dovolili, da so v njem navedeni.
         require_invite_text: Če registracije zahtevajo ročno potrditev, nastavite vnos besedila pod »Zakaj se želite pridružiti?« za obveznega.
@@ -145,6 +146,7 @@ sl:
         min_age: Ne smete biti mlajši od starostne omejitve, ki jo postavljajo zakoni vašega pravosodnega sistema.
       user:
         chosen_languages: Ko je označeno, bodo v javnih časovnicah prikazane samo objave v izbranih jezikih
+        date_of_birth: Prepričati se moramo, da so uporabniki Mastodona stari vsaj %{age} let. Tega podatka ne bomo shranili.
         role: Vloga določa, katera dovoljenja ima uporabnik.
       user_role:
         color: Barva, uporabljena za vlogo po celem up. vmesniku, podana v šestnajstiškem zapisu RGB
@@ -270,6 +272,7 @@ sl:
         favicon: Ikona spletne strani
         mascot: Maskota po meri (opuščeno)
         media_cache_retention_period: Obdobje hrambe predpomnilnika predstavnosti
+        min_age: Spodnja starostna meja
         peers_api_enabled: Objavi seznam odkritih strežnikov v API-ju
         profile_directory: Omogoči imenik profilov
         registrations_mode: Kdo se lahko registrira
@@ -341,12 +344,16 @@ sl:
         admin_email: E-poštni naslov za pravna obvestila
         arbitration_address: Fizični naslov za arbitražna obvestila
         arbitration_website: Spletišče za vložitev arbitražnih obvestil
+        choice_of_law: Izbira prava
         dmca_address: Fizični naslov za obvestila DMCA ali o avtorskih pravicah
         dmca_email: E-poštni naslov za obvestila DMCA ali o avtorskih pravicah
         domain: Domena
         jurisdiction: Pravna pristojnost
         min_age: Najmanjša starost
       user:
+        date_of_birth_1i: Dan
+        date_of_birth_2i: Mesec
+        date_of_birth_3i: Leto
         role: Vloga
         time_zone: Časovni pas
       user_role:

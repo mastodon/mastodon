@@ -10,8 +10,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
-import { Icon } from 'mastodon/components/icon';
-import PollContainer from 'mastodon/containers/poll_container';
+import { Icon }  from 'mastodon/components/icon';
+import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, languages as preloadedLanguages, hideTranslateButton } from 'mastodon/initial_state';
 
@@ -115,6 +115,7 @@ class StatusContent extends PureComponent {
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
         link.setAttribute('href', `/tags/${link.text.replace(/^#/, '')}`);
+        link.setAttribute('data-menu-hashtag', this.props.status.getIn(['account', 'id']));
       } else {
         link.setAttribute('title', link.href);
         link.classList.add('unhandled-link');
@@ -245,7 +246,7 @@ class StatusContent extends PureComponent {
     );
 
     const poll = !!status.get('poll') && (
-      <PollContainer pollId={status.get('poll')} status={status} lang={language} />
+      <Poll pollId={status.get('poll')} status={status} lang={language} />
     );
 
     if (this.props.onClick) {

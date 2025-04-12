@@ -7,12 +7,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import { TimelineHint } from 'mastodon/components/timeline_hint';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import { me } from 'mastodon/initial_state';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
-import { useAppSelector } from 'mastodon/store';
 
 import { lookupAccount, fetchAccount } from '../../actions/accounts';
 import { fetchFeaturedTags } from '../../actions/featured_tags';
@@ -21,6 +19,7 @@ import { ColumnBackButton } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import StatusList from '../../components/status_list';
 import Column from '../ui/components/column';
+import { RemoteHint } from 'mastodon/components/remote_hint';
 
 import { AccountHeader } from './components/account_header';
 import { LimitedAccountHint } from './components/limited_account_hint';
@@ -47,35 +46,14 @@ const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = fa
 
   return {
     accountId,
-    remote: !!(state.getIn(['accounts', accountId, 'acct']) !== state.getIn(['accounts', accountId, 'username'])),
-    remoteUrl: state.getIn(['accounts', accountId, 'url']),
     isAccount: !!state.getIn(['accounts', accountId]),
     statusIds: state.getIn(['timelines', `account:${path}`, 'items'], emptyList),
-    featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned${tagged ? `:${tagged}` : ''}`, 'items'], emptyList),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
     hasMore: state.getIn(['timelines', `account:${path}`, 'hasMore']),
     suspended: state.getIn(['accounts', accountId, 'suspended'], false),
     hidden: getAccountHidden(state, accountId),
     blockedBy: state.getIn(['relationships', accountId, 'blocked_by'], false),
   };
-};
-
-const RemoteHint = ({ accountId, url }) => {
-  const acct = useAppSelector(state => state.accounts.get(accountId)?.acct);
-  const domain = acct ? acct.split('@')[1] : undefined;
-
-  return (
-    <TimelineHint
-      url={url}
-      message={<FormattedMessage id='hints.profiles.posts_may_be_missing' defaultMessage='Some posts from this profile may be missing.' />}
-      label={<FormattedMessage id='hints.profiles.see_more_posts' defaultMessage='See more posts on {domain}' values={{ domain: <strong>{domain}</strong> }} />}
-    />
-  );
-};
-
-RemoteHint.propTypes = {
-  url: PropTypes.string.isRequired,
-  accountId: PropTypes.string.isRequired,
 };
 
 class AccountTimeline extends ImmutablePureComponent {
@@ -89,7 +67,6 @@ class AccountTimeline extends ImmutablePureComponent {
     accountId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     statusIds: ImmutablePropTypes.list,
-    featuredStatusIds: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     withReplies: PropTypes.bool,
@@ -97,8 +74,6 @@ class AccountTimeline extends ImmutablePureComponent {
     isAccount: PropTypes.bool,
     suspended: PropTypes.bool,
     hidden: PropTypes.bool,
-    remote: PropTypes.bool,
-    remoteUrl: PropTypes.string,
     multiColumn: PropTypes.bool,
   };
 
@@ -161,7 +136,7 @@ class AccountTimeline extends ImmutablePureComponent {
   };
 
   render () {
-    const { accountId, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, suspended, isAccount, hidden, multiColumn, remote, remoteUrl } = this.props;
+    const { accountId, statusIds, isLoading, hasMore, blockedBy, suspended, isAccount, hidden, multiColumn, remote, remoteUrl } = this.props;
 
     if (isLoading && statusIds.isEmpty()) {
       return (
@@ -191,8 +166,6 @@ class AccountTimeline extends ImmutablePureComponent {
       emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No posts found' />;
     }
 
-    const remoteMessage = remote ? <RemoteHint accountId={accountId} url={remoteUrl} /> : null;
-
     return (
       <Column>
         <ColumnBackButton />
@@ -200,10 +173,9 @@ class AccountTimeline extends ImmutablePureComponent {
         <StatusList
           prepend={<AccountHeader accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />}
           alwaysPrepend
-          append={remoteMessage}
+          append={<RemoteHint accountId={accountId} />}
           scrollKey='account_timeline'
           statusIds={forceEmptyState ? emptyList : statusIds}
-          featuredStatusIds={featuredStatusIds}
           isLoading={isLoading}
           hasMore={!forceEmptyState && hasMore}
           onLoadMore={this.handleLoadMore}

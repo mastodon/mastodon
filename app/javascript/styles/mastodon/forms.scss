@@ -1,4 +1,5 @@
-$no-columns-breakpoint: 600px;
+@use 'variables' as *;
+@use 'functions' as *;
 
 code {
   font-family: $font-monospace, monospace;

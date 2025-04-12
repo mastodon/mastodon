@@ -75,6 +75,7 @@ ga:
       filters:
         action: Roghnaigh an gníomh ba cheart a dhéanamh nuair a mheaitseálann postáil an scagaire
         actions:
+          blur: Folaigh na meáin taobh thiar de rabhadh, gan an téacs féin a cheilt
           hide: Cuir an t-ábhar scagtha i bhfolach go hiomlán, ag iompar amhail is nach raibh sé ann
           warn: Folaigh an t-ábhar scagtha taobh thiar de rabhadh a luann teideal an scagaire
       form_admin_settings:
@@ -88,6 +89,7 @@ ga:
         favicon: WEBP, PNG, GIF nó JPG. Sáraíonn sé an favicon Mastodon réamhshocraithe le deilbhín saincheaptha.
         mascot: Sáraíonn sé an léaráid san ardchomhéadan gréasáin.
         media_cache_retention_period: Déantar comhaid meán ó phoist a dhéanann cianúsáideoirí a thaisceadh ar do fhreastalaí. Nuair a bheidh luach dearfach socraithe, scriosfar na meáin tar éis an líon sonraithe laethanta. Má iarrtar na sonraí meán tar éis é a scriosadh, déanfar é a ath-íoslódáil, má tá an t-ábhar foinse fós ar fáil. Mar gheall ar shrianta ar cé chomh minic is atá cártaí réamhamhairc ag vótaíocht do shuíomhanna tríú páirtí, moltar an luach seo a shocrú go 14 lá ar a laghad, nó ní dhéanfar cártaí réamhamhairc naisc a nuashonrú ar éileamh roimh an am sin.
+        min_age: Iarrfar ar úsáideoirí a ndáta breithe a dhearbhú le linn clárúcháin
         peers_api_enabled: Liosta de na hainmneacha fearainn ar tháinig an freastalaí seo orthu sa choinbhleacht. Níl aon sonraí san áireamh anseo faoi cé acu an ndéanann tú cónascadh le freastalaí ar leith, díreach go bhfuil a fhios ag do fhreastalaí faoi. Úsáideann seirbhísí a bhailíonn staitisticí ar chónaidhm go ginearálta é seo.
         profile_directory: Liostaíonn an t-eolaire próifíle na húsáideoirí go léir a roghnaigh isteach le bheith in-aimsithe.
         require_invite_text: Nuair a bhíonn faomhadh láimhe ag teastáil le haghaidh clárúcháin, déan an "Cén fáth ar mhaith leat a bheith páirteach?" ionchur téacs éigeantach seachas roghnach
@@ -146,6 +148,7 @@ ga:
         min_age: Níor chóir go mbeidís faoi bhun na haoise íosta a éilíonn dlíthe do dhlínse.
       user:
         chosen_languages: Nuair a dhéantar iad a sheiceáil, ní thaispeánfar ach postálacha i dteangacha roghnaithe in amlínte poiblí
+        date_of_birth: Ní mór dúinn a chinntiú go bhfuil tú ar a laghad %{age} chun Mastodon a úsáid. Ní stórálfaimid é seo.
         role: Rialaíonn an ról na ceadanna atá ag an úsáideoir.
       user_role:
         color: Dath le húsáid don ról ar fud an Chomhéadain, mar RGB i bhformáid heicsidheachúlach
@@ -258,6 +261,7 @@ ga:
         name: Haischlib
       filters:
         actions:
+          blur: Folaigh na meáin le rabhadh
           hide: Cuir i bhfolach go hiomlán
           warn: Cuir i bhfolach le rabhadh
       form_admin_settings:
@@ -271,6 +275,7 @@ ga:
         favicon: Favicon
         mascot: Mascóg saincheaptha (oidhreacht)
         media_cache_retention_period: Tréimhse choinneála taisce meán
+        min_age: Riachtanas aoise íosta
         peers_api_enabled: Foilsigh liosta de na freastalaithe aimsithe san API
         profile_directory: Cumasaigh eolaire próifíle
         registrations_mode: Cé atá in ann clárú
@@ -349,6 +354,9 @@ ga:
         jurisdiction: Dlínse dhlíthiúil
         min_age: Aois íosta
       user:
+        date_of_birth_1i: Lá
+        date_of_birth_2i: Mí
+        date_of_birth_3i: Bliain
         role: Ról
         time_zone: Crios ama
       user_role:

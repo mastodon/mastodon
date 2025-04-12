@@ -10,7 +10,7 @@ class ContentSecurityPolicy
   end
 
   def media_hosts
-    [assets_host, cdn_host_value, paperclip_root_url].compact
+    [assets_host, cdn_host_value, paperclip_root_url].concat(extra_media_hosts).compact
   end
 
   def sso_host
@@ -30,6 +30,10 @@ class ContentSecurityPolicy
   end
 
   private
+
+  def extra_media_hosts
+    ENV.fetch('EXTRA_MEDIA_HOSTS', '').split(/(?:\s*,\s*|\s+)/)
+  end
 
   def url_from_configured_asset_host
     Rails.configuration.action_controller.asset_host

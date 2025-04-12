@@ -21,12 +21,13 @@ services:
       ES_HOST: es
       ES_PORT: '9200'
       LIBRE_TRANSLATE_ENDPOINT: http://libretranslate:5000
+      LOCAL_DOMAIN: ${LOCAL_DOMAIN:-localhost:3000}
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
     ports:
-      - '127.0.0.1:3000:3000'
-      - '127.0.0.1:3035:3035'
-      - '127.0.0.1:4000:4000'
+      - '3000:3000'
+      - '3035:3035'
+      - '4000:4000'
     networks:
       - external_network
       - internal_network

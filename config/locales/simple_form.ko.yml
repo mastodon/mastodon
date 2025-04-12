@@ -75,6 +75,7 @@ ko:
       filters:
         action: 게시물이 필터에 걸러질 때 어떤 동작을 수행할 지 고르세요
         actions:
+          blur: 텍스트는 숨기지 않고 그대로 둔 채 경고 뒤에 미디어를 숨김니다
           hide: 필터에 걸러진 글을 처음부터 없었던 것처럼 완전히 가리기
           warn: 필터 제목을 언급하는 경고 뒤에 걸러진 내용을 숨기기
       form_admin_settings:
@@ -88,6 +89,7 @@ ko:
         favicon: WEBP, PNG, GIF 또는 JPG. 기본 파비콘을 대체합니다.
         mascot: 고급 웹 인터페이스의 그림을 대체합니다.
         media_cache_retention_period: 원격 사용자가 작성한 글의 미디어 파일은 이 서버에 캐시됩니다. 양수로 설정하면 지정된 일수 후에 미디어가 삭제됩니다. 삭제된 후에 미디어 데이터를 요청하면 원본 콘텐츠를 사용할 수 있는 경우 다시 다운로드됩니다. 링크 미리 보기 카드가 타사 사이트를 폴링하는 빈도에 제한이 있으므로 이 값을 최소 14일로 설정하는 것이 좋으며, 그렇지 않으면 그 이전에는 링크 미리 보기 카드가 제때 업데이트되지 않을 것입니다.
+        min_age: 사용자들은 가입할 때 생일을 확인받게 됩니다
         peers_api_enabled: 이 서버가 연합우주에서 만났던 서버들에 대한 도메인 네임의 목록입니다. 해당 서버와 어떤 연합을 했는지에 대한 정보는 전혀 포함되지 않고, 단순히 그 서버를 알고 있는지에 대한 것입니다. 이것은 일반적으로 연합에 대한 통계를 수집할 때 사용됩니다.
         profile_directory: 프로필 책자는 발견되기를 희망하는 모든 사람들의 목록을 나열합니다.
         require_invite_text: 가입이 수동 승인을 필요로 할 때, "왜 가입하려고 하나요?" 항목을 선택사항으로 두는 것보다는 필수로 두는 것이 낫습니다
@@ -153,7 +155,7 @@ ko:
         position: 특정 상황에서 충돌이 발생할 경우 더 높은 역할이 충돌을 해결합니다. 특정 작업은 우선순위가 낮은 역할에 대해서만 수행될 수 있습니다
       webhook:
         events: 전송할 이벤트를 선택하세요
-        template: 원하는 JSON 페이로드를 변수와 함께 작성하거나, 그냥 냅둬서 기본 JSON을 사용할 수 있습니다.
+        template: 원하는 JSON 페이로드를 변수와 함께 작성하거나, 그대로 두어 기본 JSON을 사용할 수 있습니다.
         url: 이벤트가 어디로 전송될 지
     labels:
       account:
@@ -256,6 +258,7 @@ ko:
         name: 해시태그
       filters:
         actions:
+          blur: 경고와 함께 미디어 숨기기
           hide: 완전히 숨기기
           warn: 경고와 함께 숨기기
       form_admin_settings:
@@ -269,6 +272,7 @@ ko:
         favicon: 파비콘
         mascot: 사용자 정의 마스코트 (legacy)
         media_cache_retention_period: 미디어 캐시 유지 기한
+        min_age: 최소 연령 제한
         peers_api_enabled: API에 발견 된 서버들의 목록 발행
         profile_directory: 프로필 책자 활성화
         registrations_mode: 누가 가입할 수 있는지
@@ -347,6 +351,9 @@ ko:
         jurisdiction: 법적 관할권
         min_age: 최소 연령
       user:
+        date_of_birth_1i: 일
+        date_of_birth_2i: 월
+        date_of_birth_3i: 년
         role: 역할
         time_zone: 시간대
       user_role:

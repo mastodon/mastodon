@@ -88,6 +88,7 @@ zh-CN:
         favicon: WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖 Mastodon 的默认图标。
         mascot: 覆盖高级网页界面中的绘图形象。
         media_cache_retention_period: 来自外站用户嘟文的媒体文件将被缓存到你的实例上。当该值被设为正值时，缓存的媒体文件将在指定天数后被清除。如果媒体文件在被清除后重新被请求，且源站内容仍然可用，它将被重新下载。由于链接预览卡拉取第三方站点的频率受到限制，建议将此值设置为至少 14 天，如果小于该值，链接预览卡将不会按需更新。
+        min_age: 用户注册时必须确认出生日期
         peers_api_enabled: 本站在联邦宇宙中遇到的站点列表。 此处不包含关于您是否与给定站点联合的数据，只是您的实例知道它。 这由收集一般意义上的联合统计信息的服务使用。
         profile_directory: 个人资料目录会列出所有选择可被发现的用户。
         require_invite_text: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
@@ -132,16 +133,21 @@ zh-CN:
         name: 你只能改变字母的大小写，让它更易读
       terms_of_service:
         changelog: 可以使用 Markdown 语法。
+        effective_date: 合理的时间范围可以是从您通知用户之日起 10 到 30 天。
         text: 可以使用 Markdown 语法。
       terms_of_service_generator:
         admin_email: 法务通知包括反通知、法院命令、内容下架要求与执法机关的要求。
+        arbitration_address: 可以与上面的实际地址相同，如果使用电子邮件则为“N/A”。
+        arbitration_website: 可以是网页表单，如果使用电子邮件则为“N/A”。
         choice_of_law: 适用内部实质法律以管辖任何及所有索赔的城市、地区、领土或州。
         dmca_address: 如果你是位于美国的运营者，请使用在 DMCA 指定代表名录中注册的地址。如果你需要使用邮政信箱，可以直接申请。请使用 DMCA 指定代表邮政信箱豁免申请表，通过电子邮件联系版权办公室，并声明你是居家内容审核员，因担心审核操作会招致报复或打击报复，需要使用邮政信箱以避免公开家庭住址。
+        dmca_email: 可以与上面“法律声明的电子邮件地址”使用相同的电子邮件地址。
         domain: 你所提供的在线服务的唯一标识。
         jurisdiction: 请列出支付运营费用者所在的国家/地区。如果为公司或其他实体，请列出其注册的国家/地区以及相应的城市、地区、领地或州。
         min_age: 不应低于您所在地法律管辖权要求的最低年龄。
       user:
         chosen_languages: 仅选中语言的嘟文会出现在公共时间线上（全不选则显示所有语言的嘟文）
+        date_of_birth: 我们必须确认%{age}岁以上的用户才能使用Mastodon。我们不会存储该信息。
         role: 角色用于控制用户拥有的权限。
       user_role:
         color: 在界面各处用于标记该角色的颜色，以十六进制 RGB 格式表示
@@ -254,6 +260,7 @@ zh-CN:
         name: 话题
       filters:
         actions:
+          blur: 隐藏媒体并显示警告
           hide: 完全隐藏
           warn: 隐藏时显示警告
       form_admin_settings:

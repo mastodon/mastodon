@@ -479,6 +479,36 @@ tr:
       new:
         title: Domain bloklarını içe aktar
       no_file: Dosya seçilmedi
+    fasp:
+      debug:
+        callbacks:
+          created_at: Oluşturulma tarihi
+          delete: Sil
+          ip: IP adresi
+          request_body: İstek gövdesi
+          title: Hata ayıklama geri çağrıları
+      providers:
+        active: Etkin
+        base_url: Temel URL
+        callback: Geri çağırma
+        delete: Sil
+        edit: Sağlayıcıyı Düzenle
+        finish_registration: Kaydı tamamla
+        name: Ad
+        providers: Sağlayıcılar
+        public_key_fingerprint: Açık anahtar parmak izi
+        registration_requested: Kayıt istendi
+        registrations:
+          confirm: Onayla
+          description: FASP'tan bir kayıt aldınız. Eğer bunu siz başlatmadıysanız reddedin. Eğer siz başlattıysanız, kaydı onaylamadan önce ad ve anahtar parmak izini dikkatlice karşılaştırın.
+          reject: Reddet
+          title: FASP Kaydını Onayla
+        save: Kaydet
+        select_capabilities: Yetenekleri Seç
+        sign_in: Oturum Aç
+        status: Durum
+        title: Fediverse Yardımcı Hizmet Sağlayıcıları (FASP)
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Takip önerileri yeni kullanıcıların hızlı bir şekilde ilginç içerik bulmalarını sağlar</strong>. Eğer bir kullanıcı, kişisel takip önerileri almaya yetecek kadar başkalarıyla etkileşime girmediğinde, onun yerine bu hesaplar önerilir. Bu öneriler, verili bir dil için en yüksek takipçi sayısına ve en yüksek güncel meşguliyete sahip hesapların bir karışımdan günlük olarak hesaplanıyorlar."
       language: Dil için

@@ -4,32 +4,43 @@ class ActivityPub::SynchronizeFollowersService < BaseService
   include JsonLdHelper
   include Payloadable
 
+  MAX_COLLECTION_PAGES = 10
+
   def call(account, partial_collection_url)
     @account = account
+    @expected_followers_ids = []
 
-    items = collection_items(partial_collection_url)
-    return if items.nil?
-
-    # There could be unresolved accounts (hence the call to .compact) but this
-    # should never happen in practice, since in almost all cases we keep an
-    # Account record, and should we not do that, we should have sent a Delete.
-    # In any case there is not much we can do if that occurs.
-    @expected_followers = items.filter_map { |uri| ActivityPub::TagManager.instance.uri_to_resource(uri, Account) }
+    return unless process_collection!(partial_collection_url)
 
     remove_unexpected_local_followers!
-    handle_unexpected_outgoing_follows!
   end
 
   private
 
+  def process_page!(items)
+    page_expected_followers = extract_local_followers(items)
+    @expected_followers_ids.concat(page_expected_followers.pluck(:id))
+
+    handle_unexpected_outgoing_follows!(page_expected_followers)
+  end
+
+  def extract_local_followers(items)
+    # There could be unresolved accounts (hence the call to .filter_map) but this
+    # should never happen in practice, since in almost all cases we keep an
+    # Account record, and should we not do that, we should have sent a Delete.
+    # In any case there is not much we can do if that occurs.
+
+    ActivityPub::TagManager.instance.uris_to_local_accounts(items)
+  end
+
   def remove_unexpected_local_followers!
-    @account.followers.local.where.not(id: @expected_followers.map(&:id)).reorder(nil).find_each do |unexpected_follower|
+    @account.followers.local.where.not(id: @expected_followers_ids).reorder(nil).find_each do |unexpected_follower|
       UnfollowService.new.call(unexpected_follower, @account)
     end
   end
 
-  def handle_unexpected_outgoing_follows!
-    @expected_followers.each do |expected_follower|
+  def handle_unexpected_outgoing_follows!(expected_followers)
+    expected_followers.each do |expected_follower|
       next if expected_follower.following?(@account)
 
       if expected_follower.requested?(@account)
@@ -50,18 +61,33 @@ class ActivityPub::SynchronizeFollowersService < BaseService
     Oj.dump(serialize_payload(follow, ActivityPub::UndoFollowSerializer))
   end
 
-  def collection_items(collection_or_uri)
-    collection = fetch_collection(collection_or_uri)
-    return unless collection.is_a?(Hash)
+  # Only returns true if the whole collection has been processed
+  def process_collection!(collection_uri, max_pages: MAX_COLLECTION_PAGES)
+    collection = fetch_collection(collection_uri)
+    return false unless collection.is_a?(Hash)
 
     collection = fetch_collection(collection['first']) if collection['first'].present?
-    return unless collection.is_a?(Hash)
 
+    while collection.is_a?(Hash)
+      process_page!(as_array(collection_page_items(collection)))
+
+      max_pages -= 1
+
+      return true if collection['next'].blank? # We reached the end of the collection
+      return false if max_pages <= 0 # We reached our pages limit
+
+      collection = fetch_collection(collection['next'])
+    end
+
+    false
+  end
+
+  def collection_page_items(collection)
     case collection['type']
     when 'Collection', 'CollectionPage'
-      as_array(collection['items'])
+      collection['items']
     when 'OrderedCollection', 'OrderedCollectionPage'
-      as_array(collection['orderedItems'])
+      collection['orderedItems']
     end
   end
 

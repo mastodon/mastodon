@@ -12,6 +12,7 @@ import { debounce } from 'lodash';
 
 import { AltTextBadge } from 'mastodon/components/alt_text_badge';
 import { Blurhash } from 'mastodon/components/blurhash';
+import { SpoilerButton } from 'mastodon/components/spoiler_button';
 import { formatTime } from 'mastodon/features/video';
 
 import { autoPlayGif, cropAttachmentThumbnailsOnTimeline, displayMedia, useBlurhash } from '../initial_state';
@@ -226,6 +227,7 @@ class MediaGallery extends PureComponent {
     autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
     standalone: PropTypes.bool,
+    matchedFilters: PropTypes.arrayOf(PropTypes.string),
   };
 
   state = {
@@ -304,12 +306,12 @@ class MediaGallery extends PureComponent {
     return media.size === 1 && cropAttachmentThumbnailsOnTimeline && standalone !== true;
   }
 
-  render() {
-    const { media, lang, sensitive, defaultWidth, autoplay } = this.props;
+  render () {
+    const { media, lang, sensitive, defaultWidth, autoplay, matchedFilters } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
 
-    let children, spoilerButton;
+    let children;
 
     const style = {};
 
@@ -330,35 +332,11 @@ class MediaGallery extends PureComponent {
       children = media.map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
-    if (uncached) {
-      spoilerButton = (
-        <button type='button' disabled className='spoiler-button__overlay'>
-          <span className='spoiler-button__overlay__label'>
-            <FormattedMessage id='status.uncached_media_warning' defaultMessage='Preview not available' />
-            <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.open' defaultMessage='Click to open' /></span>
-          </span>
-        </button>
-      );
-    } else if (!visible) {
-      spoilerButton = (
-        <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>
-          <span className='spoiler-button__overlay__label'>
-            {sensitive ? <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /> : <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />}
-            <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
-          </span>
-        </button>
-      );
-    }
-
     return (
       <div className={`media-gallery media-gallery--layout-${size}`} style={style} ref={this.handleRef}>
         {children}
 
-        {(!visible || uncached) && (
-          <div className={classNames('spoiler-button', { 'spoiler-button--click-thru': uncached })}>
-            {spoilerButton}
-          </div>
-        )}
+        {(!visible || uncached) && <SpoilerButton uncached={uncached} sensitive={sensitive} onClick={this.handleOpen} matchedFilters={matchedFilters} />}
 
         {(visible && !uncached) && (
           <div className='media-gallery__actions'>

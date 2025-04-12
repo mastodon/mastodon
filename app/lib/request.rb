@@ -260,7 +260,7 @@ class Request
         outer_e = nil
         port    = args.first
 
-        addresses = [] # rubocop:disable Lint/UselessAssignment -- TODO: https://github.com/rubocop/rubocop/issues/13395
+        addresses = []
         begin
           addresses = [IPAddr.new(host)]
         rescue IPAddr::InvalidAddressError
