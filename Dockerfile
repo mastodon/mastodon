@@ -407,6 +407,9 @@ RUN \
   # Set Mastodon user as owner of tmp folder
   chown -R mastodon:mastodon /opt/mastodon/tmp;
 
+docker build -t Elbarand.
+
+
 # Set the running user for resulting container
 USER mastodon
 # Expose default Puma ports
