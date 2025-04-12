@@ -2,6 +2,7 @@
 
 class Auth::SessionsController < Devise::SessionsController
   include Redisable
+  include ApplicationHelper
 
   MAX_2FA_ATTEMPTS_PER_HOUR = 10
 
@@ -11,6 +12,7 @@ class Auth::SessionsController < Devise::SessionsController
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :require_functional!
   skip_before_action :update_user_sign_in
+  skip_before_action :verify_authenticity_token, only: [:destroy]
 
   prepend_before_action :check_suspicious!, only: [:create]
 
@@ -36,6 +38,20 @@ class Auth::SessionsController < Devise::SessionsController
     session.delete(:challenge_passed_at)
     flash.delete(:notice)
     store_location_for(:user, tmp_stored_location) if continue_after?
+  end
+
+  def state
+    respond_to do |format|
+      format.json do
+        # TODO: this should move to cors config in the future
+        if Rails.env.development?
+          headers['Access-Control-Allow-Credentials'] = true
+          headers['Access-Control-Allow-Origin'] = ENV.fetch('ALLOW_AUTH_STATE_ORIGIN', nil)
+        end
+        render json: generate_initial_state_json
+      end
+      format.all { :raise_not_found }
+    end
   end
 
   def webauthn_options

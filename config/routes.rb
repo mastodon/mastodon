@@ -101,6 +101,7 @@ Rails.application.routes.draw do
       resource :setup, only: [:show, :update], controller: :setup
       resource :challenge, only: [:create]
       get 'sessions/security_key_options', to: 'sessions#webauthn_options'
+      get 'state', to: 'sessions#state'
       post 'captcha_confirmation', to: 'confirmations#confirm_captcha', as: :captcha_confirmation
     end
   end
