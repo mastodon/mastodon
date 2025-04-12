@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.12
+`# syntax=docker/dockerfile:1.12
 
 # This file is designed for production server deployment, not local development work
 # For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/docs/DEVELOPMENT.md#docker
@@ -98,14 +98,14 @@ WORKDIR /opt/mastodon
 
 # hadolint ignore=DL3008,DL3005
 RUN \
-    # Mount Apt cache and lib directories from Docker buildx caches
-    --mount=type=cache,id=apt-cache:apt-update,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,id=apt-cache:apt-lib,target=/var/lib/apt,sharing=locked \
-    # Apt update & upgrade to check for security updates to Debian image
-    apt-get update; \
-    apt-get dist-upgrade -yq; \
-    # Install jemalloc, curl and other necessary components
-    ...
+# Mount Apt cache and lib directories from Docker buildx caches
+--mount=type=cache,id=apt-cache:apt-update,target=/var/cache/apt,sharing=locked \
+--mount=type=cache,id=apt-cache:apt-lib,target=/var/lib/apt,sharing=locked \
+# Apt update & upgrade to check for security updates to Debian image
+apt-get update; \
+apt-get dist-upgrade -yq; \
+# Install jemalloc, curl and other necessary components
+...
   apt-get install -y --no-install-recommends \
   curl \
   file \
@@ -137,14 +137,14 @@ ARG TARGETPLATFORM
 
 # hadolint ignore=DL3008
 RUN \
-    # Mount Apt cache and lib directories from Docker buildx caches
-    --mount=type=cache,id=apt-cache:apt-update,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,id=apt-cache:apt-lib,target=/var/lib/apt,sharing=locked \
-    # Apt update & upgrade to check for security updates to Debian image
-    apt-get update; \
-    apt-get dist-upgrade -yq; \
-    # Install jemalloc, curl and other necessary components
-    ...
+  # Mount Apt cache and lib directories from Docker buildx caches
+  --mount=type=cache,id=apt-cache:apt-update,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,id=apt-cache:apt-lib,target=/var/lib/apt,sharing=locked \
+  # Apt update & upgrade to check for security updates to Debian image
+  apt-get update; \
+  apt-get dist-upgrade -yq; \
+  # Install jemalloc, curl and other necessary components
+  ...
   apt-get install -y --no-install-recommends \
   autoconf \
   automake \
