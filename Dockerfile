@@ -98,13 +98,16 @@ WORKDIR /opt/mastodon
 
 # hadolint ignore=DL3008,DL3005
 RUN \
-    # Mount Apt cache and lib directories from Docker buildx caches
-    --mount=type=cache,id=apt-cache:apt-update,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,id=apt-cache:apt-lib,target=/var/lib/apt,sharing=locked \
-    # Apt update & upgrade to check for security updates to Debian image
-    apt-get update; \
-    apt-get dist-upgrade -yq; \
-    # Install jemalloc, curl and other necessary components
+    # Mount Apt cache for package lists
+   --mount=type=cache,id=apt-cache:lists,target=/var/cache/apt/lists,sharing=locked \
+   # Mount Apt cache for downloaded packages
+   --mount=type=cache,id=apt-cache:archives,target=/var/cache/apt/archives,sharing=locked \
+   # Mount Apt lib directory for installed packages
+   --mount=type=cache,id=apt-lib,target=/var/lib/apt,sharing=locked \
+   # Apt update & upgrade to check for security updates to Debian image
+   apt-get update; \
+   apt-get dist-upgrade -yq; \
+   # Install jemalloc, curl and other necessary components
     ...
   apt-get install -y --no-install-recommends \
   curl \
@@ -133,17 +136,28 @@ COPY .yarn /opt/mastodon/.yarn
 COPY --from=node /usr/local/bin /usr/local/bin
 COPY --from=node /usr/local/lib /usr/local/lib
 
-ARG TARGETPLATFORM
-
-# hadolint ignore=DL3008
 RUN \
-    # Mount Apt cache and lib directories from Docker buildx caches
-    --mount=type=cache,id=apt-cache:apt-update,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,id=apt-cache:apt-lib,target=/var/lib/apt,sharing=locked \
-    # Apt update & upgrade to check for security updates to Debian image
-    apt-get update; \
-    apt-get dist-upgrade -yq; \
-    # Install jemalloc, curl and other necessary components
+   # Mount Apt cache and lib directories from Docker buildx caches
+   --mount=type=cache,id=apt-cache:apt,target=/var/cache/apt,sharing=locked \
+   --mount=type=cache,id=apt-cache:apt,target=/var/cache/apt,sharing=locked \
+   # Install build tools and bundler dependencies from APT
+     # Mount Apt cache and lib directories from Docker buildx caches
+     --mount=type=cache,id=apt-cache:apt-update,target=/var/cache/apt,sharing=locked \
+     --mount=type=cache,id=apt-cache:apt-lib,target=/var/lib/apt,sharing=locked \
+     # Apt update & upgrade to check for security updates to Debian image
+     apt-get update; \
+     apt-get dist-upgrade -yq; \
+     # Install jemalloc, curl and other necessary components
+     ...
+     
+RUN \
+ # Mount Apt cache and lib directories from Docker buildx caches
+ --mount=type=cache,id=apt-cache:apt-update,target=/var/cache/apt,sharing=locked \
+ --mount=type=cache,id=apt-cache:apt-lib,target=/var/lib/apt,sharing=locked \
+ # Apt update & upgrade to check for security updates to Debian image
+ apt-get update; \
+ apt-get dist-upgrade -yq; \
+ # Install jemalloc, curl and other necessary components
     ...
   apt-get install -y --no-install-recommends \
   autoconf \
