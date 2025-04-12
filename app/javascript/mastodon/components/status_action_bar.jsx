@@ -274,9 +274,8 @@ class StatusActionBar extends ImmutablePureComponent {
 
       if (writtenByMe && pinnableStatus) {
         menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+        menu.push(null);
       }
-
-      menu.push(null);
 
       if (writtenByMe || withDismiss) {
         menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });

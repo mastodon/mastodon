@@ -19,10 +19,10 @@ lv:
     pin_errors:
       following: Tev ir jāseko personai, kuru vēlies atbalstīt
     posts:
-      one: Ziņa
-      other: Ziņas
-      zero: Ziņu
-    posts_tab_heading: Ziņas
+      one: Ieraksts
+      other: Ieraksti
+      zero: Ierakstu
+    posts_tab_heading: Ieraksti
     self_follow_error: Nav ļauts sekot savam kontam
   admin:
     account_actions:
@@ -120,7 +120,7 @@ lv:
       public: Publisks
       push_subscription_expires: PuSH abonements beidzas
       redownload: Atsvaidzināt profilu
-      redownloaded_msg: "%{username} profils sekmīgi atsvaidzināts no izcelsmes"
+      redownloaded_msg: "%{username} profils sekmīgi atsvaidzināts no pirmavota"
       reject: Noraidīt
       rejected_msg: "%{username} reģistrēšanās pieteikums sekmīgi noraidīts"
       remote_suspension_irreversible: Šī konta dati ir neatgriezeniski dzēsti.
@@ -152,7 +152,7 @@ lv:
         targeted_reports: Ziņojuši citi
       silence: Ierobežot
       silenced: Ierobežots
-      statuses: Ziņas
+      statuses: Ieraksti
       strikes: Iepriekšējie streiki
       subscribe: Abonēt
       suspend: Apturēt
@@ -176,7 +176,7 @@ lv:
       whitelisted: Atļauts federācijai
     action_logs:
       action_types:
-        approve_appeal: Apstiprināt Apelāciju
+        approve_appeal: Apstiprināt pārsūdzību
         approve_user: Apstiprināt lietotāju
         assigned_to_self_report: Piešķirt Pārskatu
         change_email_user: Mainīt lietotāja e-pasta adresi
@@ -218,11 +218,11 @@ lv:
         memorialize_account: Saglabāt Kontu Piemiņai
         promote_user: Izceltt Lietotāju
         publish_terms_of_service: Publicēt pakalpojuma izmantošanas noteikumus
-        reject_appeal: Noraidīt Apelāciju
+        reject_appeal: Noraidīt pārsūdzību
         reject_user: Noraidīt lietotāju
         remove_avatar_user: Noņemt profila attēlu
         reopen_report: Atkārtoti Atvērt Ziņojumu
-        resend_user: Atkārtoti nosūtīt Apstiprinājuma Pastu
+        resend_user: Atkārtoti nosūtīt apstiprinājuma e-pasta ziņojumu
         reset_password_user: Atiestatīt Paroli
         resolve_report: Atrisināt Ziņojumu
         sensitive_account: Uzspiesti atzimēt kontu kā jūtīgu
@@ -241,7 +241,7 @@ lv:
         update_status: Atjaunināt ziņu
         update_user_role: Atjaunināt lomu
       actions:
-        approve_appeal_html: "%{name} apstiprināja satura pārraudzības lēmuma iebildumu no %{target}"
+        approve_appeal_html: "%{name} apstiprināja satura pārraudzības lēmuma pārsūdzību no %{target}"
         approve_user_html: "%{name} apstiprināja reģistrēšanos no %{target}"
         assigned_to_self_report_html: "%{name} piešķīra pārskatu %{target} sev"
         change_email_user_html: "%{name} nomainīja lietotāja %{target} e-pasta adresi"
@@ -277,7 +277,7 @@ lv:
         memorialize_account_html: "%{name} pārvērta %{target} kontu par atmiņas lapu"
         promote_user_html: "%{name} paaugstināja lietotāju %{target}"
         publish_terms_of_service_html: "%{name} padarīja pieejamus pakalpojuma izmantošanas noteikumu atjauninājumus"
-        reject_appeal_html: "%{name} noraidīja satura pārraudzības lēmuma iebildumu no %{target}"
+        reject_appeal_html: "%{name} noraidīja satura pārraudzības lēmuma pārsūdzību no %{target}"
         reject_user_html: "%{name} noraidīja reģistrēšanos no %{target}"
         remove_avatar_user_html: "%{name} noņēma %{target} profila attēlu"
         reopen_report_html: "%{name} atkārtoti atvēra ziņojumu %{target}"
@@ -560,7 +560,7 @@ lv:
         instance_languages_dimension: Populārākās valodas
         instance_media_attachments_measure: saglabātie multivides pielikumi
         instance_reports_measure: ziņojumi par viņiem
-        instance_statuses_measure: saglabātās ziņas
+        instance_statuses_measure: saglabātie ieraksti
       delivery:
         all: Visas
         clear: Notīrīt piegādes kļūdas
@@ -625,7 +625,7 @@ lv:
       disable: Atspējot
       disabled: Atspējots
       enable: Iespējot
-      enable_hint: Kad tas būs iespējots, tavs serveris abonēs visas publiskās ziņas no šī releja un sāks tam sūtīt šī servera publiskās ziņas.
+      enable_hint: Tiklīdz iespējots, serveris abonēs visus šī releja publiskos ierakstus un sāks tam sūtīt šī iservera publiskos ierakstus.
       enabled: Iespējots
       inbox_url: Releja URL
       pending: Gaida apstiprinājumu no releja
@@ -709,7 +709,7 @@ lv:
           silence_html: 'Jūs gatavojaties <strong>ierobežot</strong> <strong>@%{acct}</strong> kontu. Tas:'
           suspend_html: 'Jūs gatavojaties <strong>apturēt</strong> <strong>@%{acct}</strong> kontu. Tas:'
         actions:
-          delete_html: Noņemt aizskarošās ziņas
+          delete_html: Noņemt aizskarošos ierakstus
           mark_as_sensitive_html: Atzīmēt aizskarošo ierakstu informācijas nesējus kā jūtīgus
           silence_html: Ievērojami ierobežo <strong>@%{acct}</strong> sasniedzamību, padarot viņa profilu un saturu redzamu tikai cilvēkiem, kas jau seko tam vai pašrocīgi uzmeklē profilu
           suspend_html: Apturēt <strong>@%{acct}</strong>, padarot viņu profilu un saturu nepieejamu un neiespējamu mijiedarbību ar
@@ -720,7 +720,7 @@ lv:
         record_strike_html: Ierakstiet brīdinājumu pret <strong>@%{acct}</strong>, lai palīdzētu jums izvērst turpmākus pārkāpumus no šī konta
         send_email_html: Nosūtīt <strong>@%{acct}</strong> brīdinājuma e-pasta ziņojumu
         warning_placeholder: Izvēles papildu pamatojums satura pārraudzības darbībai.
-      target_origin: Ziņotā konta izcelsme
+      target_origin: Konta, par kuru ziņots, izcelsme
       title: Ziņojumi
       unassign: Atsaukt
       unknown_action_msg: 'Nezināms konts: %{action}'
@@ -882,12 +882,12 @@ lv:
         title: Multivide
       metadata: Metadati
       no_history: Šis ieraksts nav bijis labots
-      no_status_selected: Neviena ziņa netika mainīta, jo neviena netika atlasīta
+      no_status_selected: Neviens ieraksts netika mainīts, jo nekas netika atlasīts
       open: Atvērt ziņu
-      original_status: Oriģinālā ziņa
+      original_status: Sākotnējais ieraksts
       reblogs: Reblogi
       replied_to_html: Atbildēja %{acct_link}
-      status_changed: Ziņa mainīta
+      status_changed: Ieraksts izmainīts
       status_title: Publicēja @%{name}
       title: Konta ieraksti - @%{name}
       trending: Aktuāli
@@ -1983,6 +1983,7 @@ lv:
       action: Konta iestatījumi
       explanation: Pārsūdzība par brīdinājumu Tavam kontam %{strike_date}, ko iesniedzi %{appeal_date}, ir apstiprināta. Tavs konts atkal ir labā stāvoklī.
       subject: Tava %{date} iesniegtā pārsūdzība tika apstiprināta
+      subtitle: Tavs konts atkal ir labā stāvoklī.
       title: Apelācija apstiprināta
     appeal_rejected:
       explanation: Pārsūdzība par brīdinājumu Tavam kontam %{strike_date}, ko iesniedzi %{appeal_date}, tika noraidīta.
@@ -2010,6 +2011,7 @@ lv:
     terms_of_service_changed:
       agreement: Ar %{domain} izmantošanas tuprināšanu tiek piekrists šiem noteikumiem. Ja ir iebildumi pret atjauninātajiem noteikumiem, savu piekrišanu var atcelt jebkurā laikā ar sava konta izdzēšanu.
       changelog: 'Šeit īsumā ir aprakstīts, ko šis atjauninājums nozīmē:'
+      description: 'Šis e-pasta ziņojums tika saņemts, jo mēs veicam dažas izmaiņas savos pakalpojuma izmantošanas noteikumos %{domain}. Šie atjauninājumi stāsies spēkā %{date}. Mēs aicinām pārskatīt pilnus atjauninātos noteikumus šeit:'
       sign_off: "%{domain} komanda"
       subject: Mūsu pakalpojuma izmantošanas noteikumu atjauninājumi
       subtitle: Mainās %{domain} pakalpojuma izmantošanas noteikumi
