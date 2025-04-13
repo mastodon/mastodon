@@ -17,8 +17,9 @@ RSpec.describe 'Log out' do
         click_on 'Logout'
       end
 
-      expect(page).to have_title(I18n.t('auth.login'))
-      expect(page).to have_current_path('/auth/sign_in')
+      expect(page)
+        .to have_title(I18n.t('auth.login'))
+        .and have_current_path('/auth/sign_in')
     end
   end
 
@@ -28,6 +29,8 @@ RSpec.describe 'Log out' do
       ignore_js_error(/Failed to load resource: the server responded with a status of 422/)
 
       visit root_path
+      expect(page)
+        .to have_css('body', class: 'app-body')
 
       within '.navigation-bar' do
         click_on 'Menu'
@@ -39,8 +42,9 @@ RSpec.describe 'Log out' do
 
       click_on 'Log out'
 
-      expect(page).to have_title(I18n.t('auth.login'))
-      expect(page).to have_current_path('/auth/sign_in')
+      expect(page)
+        .to have_title(I18n.t('auth.login'))
+        .and have_current_path('/auth/sign_in')
     end
   end
 end
