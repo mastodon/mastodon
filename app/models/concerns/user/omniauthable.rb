@@ -94,23 +94,21 @@ module User::Omniauthable
 
     def user_params_from_auth(email, auth)
       display_name = nil
-      
+
       provider_config = Devise.omniauth_configs[auth.provider.to_sym]
       display_name_claim = nil
-      
-      if provider_config.present? && provider_config.options.is_a?(Hash)
-        display_name_claim = provider_config.options[:display_name_claim]
-      end
-      
+
+      display_name_claim = provider_config.options[:display_name_claim] if provider_config.present? && provider_config.options.is_a?(Hash)
+
       if display_name_claim.present?
         if auth.extra.respond_to?(:raw_info) && auth.extra.raw_info.present?
           if auth.extra.raw_info.respond_to?(display_name_claim)
             display_name = auth.extra.raw_info.send(display_name_claim)
-          elsif auth.extra.raw_info.respond_to?(:[]) 
+          elsif auth.extra.raw_info.respond_to?(:[])
             display_name = auth.extra.raw_info[display_name_claim.to_s] || auth.extra.raw_info[display_name_claim.to_sym]
           end
         end
-        
+
         if display_name.blank? && auth.info.present?
           if auth.info.respond_to?(display_name_claim)
             display_name = auth.info.send(display_name_claim)
@@ -119,10 +117,8 @@ module User::Omniauthable
           end
         end
       end
-      
-      if display_name.blank?
-        display_name = auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' ')
-      end
+
+      display_name = auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' ') if display_name.blank?
 
       {
         email: email || "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
