@@ -387,9 +387,7 @@ export default tseslint.config([
     files: ['**/__tests__/*.js', '**/__tests__/*.jsx'],
 
     languageOptions: {
-      globals: {
-        ...globals.jest,
-      },
+      globals: globals.vitest,
     },
   },
 ]);
