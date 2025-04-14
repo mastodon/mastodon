@@ -68,11 +68,9 @@ async function loadIntlPluralRulesPolyfills(locale: string) {
 //   }
 //   // Load the polyfill 1st BEFORE loading data
 //   await import(
-//     /* webpackChunkName: "i18n-relativetimeformat-polyfill" */
 //     '@formatjs/intl-relativetimeformat/polyfill-force'
 //   );
 //   await import(
-//     /* webpackChunkName: "i18n-relativetimeformat-polyfill-[request]" */
 //     `@formatjs/intl-relativetimeformat/locale-data/${unsupportedLocale}`
 //   );
 // }

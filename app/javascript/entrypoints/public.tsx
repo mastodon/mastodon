@@ -149,9 +149,7 @@ function loaded() {
   const reactComponents = document.querySelectorAll('[data-component]');
 
   if (reactComponents.length > 0) {
-    import(
-      /* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container'
-    )
+    import('../mastodon/containers/media_container')
       .then(({ default: MediaContainer }) => {
         reactComponents.forEach((component) => {
           Array.from(component.children).forEach((child) => {
