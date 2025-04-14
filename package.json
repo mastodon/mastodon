@@ -10,8 +10,8 @@
     "streaming"
   ],
   "scripts": {
-    "build:development": "cross-env RAILS_ENV=development NODE_ENV=development ./bin/webpack",
-    "build:production": "cross-env RAILS_ENV=production NODE_ENV=production ./bin/webpack",
+    "build:development": "cross-env RAILS_ENV=development NODE_ENV=development ./bin/vite build",
+    "build:production": "cross-env RAILS_ENV=production NODE_ENV=production ./bin/vite build",
     "fix:js": "eslint . --cache --fix",
     "fix:css": "stylelint --fix \"**/*.{css,scss}\"",
     "fix": "yarn fix:js && yarn fix:css",
@@ -125,6 +125,7 @@
     "@types/hoist-non-react-statics": "^3.3.1",
     "@types/http-link-header": "^1.0.3",
     "@types/intl": "^1.2.0",
+    "@types/jest": "^29.5.14",
     "@types/js-yaml": "^4.0.5",
     "@types/lodash": "^4.14.195",
     "@types/object-assign": "^4.0.30",
@@ -163,6 +164,7 @@
     "stylelint": "^16.11.0",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-standard-scss": "^14.0.0",
+    "ts-jest": "^29.3.2",
     "typescript": "~5.7.3",
     "typescript-eslint": "^8.28.0",
     "vite-plugin-rails": "^0.5.0",
