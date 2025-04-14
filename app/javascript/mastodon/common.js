@@ -1,7 +1,8 @@
 import Rails from '@rails/ujs';
 
 export function start() {
-  require.context('../images/', true, /\.(jpg|png|svg)$/);
+  // TODO: Find alternative to this
+  // require.context('../images/', true, /\.(jpg|png|svg)$/);
 
   try {
     Rails.start();
