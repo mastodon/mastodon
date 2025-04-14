@@ -1,5 +1,6 @@
 import path from 'node:path';
 
+import postcssPresetEnv from 'postcss-preset-env';
 import { defineConfig } from 'vite';
 
 import { manifestSRI } from './config/vite/plugin-manifest-sri';
@@ -7,6 +8,17 @@ import { manifestSRI } from './config/vite/plugin-manifest-sri';
 // eslint-disable-next-line import/no-default-export
 export default defineConfig({
   root: './app/javascript/entrypoints',
+  css: {
+    postcss: {
+      plugins: [
+        postcssPresetEnv({
+          features: {
+            'logical-properties-and-values': false,
+          },
+        }),
+      ],
+    },
+  },
   build: {
     commonjsOptions: { transformMixedEsModules: true },
     outDir: path.resolve(__dirname, '.dist'),
