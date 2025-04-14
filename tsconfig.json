@@ -3,11 +3,12 @@
     "jsx": "react-jsx",
     "target": "esnext",
     "module": "ES2022",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "allowJs": true,
     "resolveJsonModule": true,
     "noEmit": true,
     "strict": true,
+    "isolatedModules": true, // Required by Vite
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
     "esModuleInterop": true,
