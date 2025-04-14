@@ -3,18 +3,9 @@ import { IntlProvider } from 'react-intl';
 import { MemoryRouter } from 'react-router';
 
 import type { RenderOptions } from '@testing-library/react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { render as rtlRender } from '@testing-library/react';
 
 import { IdentityContext } from './identity_context';
-
-beforeEach(() => {
-  global.requestIdleCallback = jest
-    .fn()
-    .mockImplementation((fn: () => void) => {
-      fn();
-    });
-});
 
 function render(
   ui: React.ReactElement,
@@ -46,7 +37,6 @@ function render(
 }
 
 // re-export everything
-// eslint-disable-next-line import/no-extraneous-dependencies
 export * from '@testing-library/react';
 
 // override render method

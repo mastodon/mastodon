@@ -247,6 +247,7 @@ export default tseslint.config([
             'config/webpack/**',
             'app/javascript/mastodon/performance.js',
             'app/javascript/mastodon/test_setup.js',
+            'app/javascript/mastodon/test_helpers.tsx',
             'app/javascript/**/__tests__/**',
           ],
         },
