@@ -28,6 +28,7 @@ ms:
       created_msg: Catatan penyederhanaan telah berjaya dicipta!
       destroyed_msg: Catatan penyederhanaan telah berjaya dipadam!
     accounts:
+      add_email_domain_block: Sekat domain e-mel
       approve: Luluskan
       approved_msg: Berjaya meluluskan permohonan pendaftaran %{username}
       are_you_sure: Adakah anda pasti?
@@ -146,7 +147,7 @@ ms:
       suspension_irreversible: Data akaun ini telah dipadam secara kekal. Anda boleh nyahgantungkannya untuk membuatkan akaun ini boleh digunakan semula tetapi data lama tidak akan diperolehi.
       suspension_reversible_hint_html: Akaun ini telah digantung, dan datanya akan dibuang pada %{date}. Sebelum tarikh itu, akaun ini boleh diperoleh semula tanpa kesan buruk. Jika anda mahu memadamkan kesemua data akaun ini serta-merta, anda boleh melakukannya di bawah.
       title: Akaun
-      unblock_email: Menyahsekat alamat e-mel
+      unblock_email: Nyahsekat alamat e-mel
       unblocked_email_msg: Alamat e-mel %{username} berjaya dinyahsekat
       unconfirmed_email: E-mel belum disahkan
       undo_sensitized: Nyahtanda sensitif
@@ -169,17 +170,21 @@ ms:
         confirm_user: Sahkan Pengguna
         create_account_warning: Cipta Amaran
         create_announcement: Cipta Pengumuman
+        create_canonical_email_block: Cipta Penyekatan E-mel
         create_custom_emoji: Cipta Emoji Tersendiri
         create_domain_allow: Cipta Pelepasan Domain
         create_domain_block: Cipta Penyekatan Domain
+        create_email_domain_block: Cipta Penyekatan Domain E-mel
         create_ip_block: Cipta peraturan alamat IP
         create_unavailable_domain: Cipta Domain Tidak Tersedia
         create_user_role: Cipta Peranan
         demote_user: Turunkan Taraf Pengguna
         destroy_announcement: Padam Pengumuman
+        destroy_canonical_email_block: Padam Penyekatan E-mel
         destroy_custom_emoji: Padam Emoji Tersendiri
         destroy_domain_allow: Padam Pelepasan Domain
         destroy_domain_block: Padam Penyekatan Domain
+        destroy_email_domain_block: Padam Penyekatan Domain E-mel
         destroy_instance: Padamkan Domain
         destroy_ip_block: Padam peraturan alamat IP
         destroy_status: Padam Hantaran
@@ -203,7 +208,7 @@ ms:
         silence_account: Diamkan Akaun
         suspend_account: Gantungkan Akaun
         unassigned_report: Menyahtugaskan Laporan
-        unblock_email_account: Menyahsekat alamat e-mel
+        unblock_email_account: Nyahsekat alamat e-mel
         unsensitive_account: Nyahtanda media di akaun anda sebagai sensitif
         unsilence_account: Nyahdiamkan Akaun
         unsuspend_account: Nyahgantungkan Akaun
@@ -1144,7 +1149,7 @@ ms:
     csv: CSV
     domain_blocks: Domain disekat
     lists: Senarai
-    mutes: Awak bisu
+    mutes: Redaman anda
     storage: Storan Media
   featured_tags:
     add_new: Tambah baharu
@@ -1235,10 +1240,11 @@ ms:
       domain_blocking: Mengimport domain yang disekat
       following: Mengimport akaun diikuti
       lists: Mengimport senarai
-      muting: Mengimport akaun diredam
+      muting: Mengimport akaun teredam
     type: Jenis import
     type_groups:
       constructive: Ikutan & Penanda Halaman
+      destructive: Sekatan dan redaman
     types:
       blocking: Senarai menyekat
       bookmarks: Penanda buku
