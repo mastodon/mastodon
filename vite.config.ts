@@ -38,22 +38,25 @@ export default defineConfig({
       },
       output: {
         chunkFileNames: (chunkInfo) => {
+          if (!chunkInfo.facadeModuleId) {
+            return '[name]-[hash].js';
+          }
           if (
-            chunkInfo.facadeModuleId?.match(
-              /mastodon\/locales\/[a-zA-Z-]+\.json/,
-            )
+            /mastodon\/locales\/[a-zA-Z-]+\.json/.exec(chunkInfo.facadeModuleId)
           ) {
             // put all locale files in `intl/`
             return `intl/[name]-[hash].js`;
           } else if (
-            chunkInfo.facadeModuleId?.match(/node_modules\/@formatjs\//)
+            /node_modules\/@formatjs\//.exec(chunkInfo.facadeModuleId)
           ) {
             // use a custom name for formatjs polyfill files
             const name = /node_modules\/@formatjs\/([^/]+)\//.exec(
               chunkInfo.facadeModuleId,
             );
 
-            if (name?.[1]) return `intl/[name]-${name[1]}-[hash].js`;
+            if (name?.[1]) {
+              return `intl/[name]-${name[1]}-[hash].js`;
+            }
           } else if (chunkInfo.name === 'index' && chunkInfo.facadeModuleId) {
             // Use a custom name for chunks, to avoid having too many of them called "index"
             const parts = chunkInfo.facadeModuleId.split('/');

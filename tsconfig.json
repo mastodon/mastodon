@@ -12,7 +12,6 @@
     "noUncheckedIndexedAccess": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "strictNullChecks": true,
     "types": ["vite/client", "vitest/globals", "@types/webpack-env"],
     "baseUrl": "./",
     "incremental": true,
@@ -26,7 +25,8 @@
     }
   },
   "include": [
-    "vite.config.mts",
+    "vite.config.ts",
+    "config/vite",
     "app/javascript/mastodon",
     "app/javascript/entrypoints",
     "app/javascript/types"
