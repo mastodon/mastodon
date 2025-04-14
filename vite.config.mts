@@ -1,43 +1,84 @@
 /// <reference types="vitest" />
 
-import fs from 'fs';
 import path from 'path';
 
 import react from '@vitejs/plugin-react';
-import RailsPlugin from 'vite-plugin-rails';
 import svgr from 'vite-plugin-svgr';
 import { defineConfig, configDefaults } from 'vitest/config';
+import postcssPresetEnv from 'postcss-preset-env';
 
-const sourceCodeDir = 'app/javascript';
-const items = fs.readdirSync(sourceCodeDir);
-const directories = items.filter((item) =>
-  fs.lstatSync(path.join(sourceCodeDir, item)).isDirectory(),
-);
-const aliasesFromJavascriptRoot: Record<string, string> = {};
-directories.forEach((directory) => {
-  aliasesFromJavascriptRoot[directory] = path.resolve(
-    __dirname,
-    sourceCodeDir,
-    directory,
-  );
-});
+import { manifestSRI } from './config/vite/plugin-manifest-sri';
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      ...aliasesFromJavascriptRoot,
+  root: './app/javascript/entrypoints',
+  css: {
+    postcss: {
+      plugins: [
+        postcssPresetEnv({
+          features: {
+            'logical-properties-and-values': false,
+          },
+        }),
+      ],
     },
   },
-  plugins: [
-    RailsPlugin(),
-    react({
-      include: ['**/*.jsx', '**/*.tsx'],
-      babel: {
-        plugins: ['formatjs', 'preval', 'transform-react-remove-prop-types'],
+  resolve: {
+    alias: {
+      mastodon: path.resolve(__dirname, 'app/javascript/mastodon'),
+      '@': path.resolve(__dirname, 'app/javascript'),
+    },
+  },
+  build: {
+    commonjsOptions: { transformMixedEsModules: true },
+    outDir: path.resolve(__dirname, '.dist'),
+    emptyOutDir: true,
+    manifest: 'manifest.json',
+    rollupOptions: {
+      input: {
+        admin: path.resolve(__dirname, 'app/javascript/entrypoints/admin.tsx'),
+        application: path.resolve(
+          __dirname,
+          'app/javascript/entrypoints/application.ts',
+        ),
+        twoFactor: path.resolve(
+          __dirname,
+          'app/javascript/entrypoints/two_factor_authentication.ts',
+        ),
       },
-    }),
-    svgr(),
-  ],
+      output: {
+        chunkFileNames(chunkInfo) {
+          if (
+            /mastodon\/locales\/[a-zA-Z-]+\.json/.exec(chunkInfo.facadeModuleId)
+          ) {
+            // put all locale files in `intl/`
+            return `intl/[name]-[hash].js`;
+          } else if (
+            /node_modules\/@formatjs\//.exec(chunkInfo.facadeModuleId)
+          ) {
+            // use a custom name for formatjs polyfill files
+            const name = /node_modules\/@formatjs\/([^/]+)\//.exec(
+              chunkInfo.facadeModuleId,
+            );
+
+            if (name?.[1]) {
+              return `intl/[name]-${name[1]}-[hash].js`;
+            }
+          } else if (chunkInfo.name === 'index' && chunkInfo.facadeModuleId) {
+            // Use a custom name for chunks, to avoid having too many of them called "index"
+            const parts = chunkInfo.facadeModuleId.split('/');
+
+            const parent = parts.at(-2);
+
+            if (parent) {
+              return `${parent}-[name]-[hash].js`;
+            }
+          }
+          return `[name]-[hash].js`;
+        },
+      },
+    },
+  },
+  plugins: [react(), svgr(), manifestSRI()],
   test: {
     environment: 'jsdom',
     include: [
