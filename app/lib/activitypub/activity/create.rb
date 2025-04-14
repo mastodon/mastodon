@@ -218,6 +218,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_quote
+    return unless Mastodon::Feature.inbound_quotes_enabled?
+
     @quote_uri = @status_parser.quote_uri
     return if @quote_uri.blank?
 
