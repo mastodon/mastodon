@@ -1,4 +1,3 @@
-import './public-path';
 import { createRoot } from 'react-dom/client';
 
 import { afterInitialRender } from 'mastodon/hooks/useRenderSignal';

@@ -1,4 +1,3 @@
-import './public-path';
 import { createRoot } from 'react-dom/client';
 
 import Rails from '@rails/ujs';
