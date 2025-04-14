@@ -3,12 +3,10 @@
 import fs from 'fs';
 import path from 'path';
 
-// import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import react from '@vitejs/plugin-react';
 import RailsPlugin from 'vite-plugin-rails';
 import svgr from 'vite-plugin-svgr';
 import { defineConfig, configDefaults } from 'vitest/config';
-import GithubActionsReporter from 'vitest-github-actions-reporter';
 
 const sourceCodeDir = 'app/javascript';
 const items = fs.readdirSync(sourceCodeDir);
@@ -28,7 +26,6 @@ export default defineConfig({
   resolve: {
     alias: {
       ...aliasesFromJavascriptRoot,
-      // images: path.resolve(__dirname, './app/javascript/images'),
     },
   },
   plugins: [
@@ -36,18 +33,10 @@ export default defineConfig({
     react({
       include: ['**/*.jsx', '**/*.tsx'],
       babel: {
-        plugins: [
-          //  ['@babel/proposal-decorators', { legacy: true }],
-          'formatjs',
-          'preval',
-          'transform-react-remove-prop-types',
-        ],
+        plugins: ['formatjs', 'preval', 'transform-react-remove-prop-types'],
       },
     }),
     svgr(),
-    // optimizeLodashImports(),
-    // !!process.env.ANALYZE_BUNDLE_SIZE &&
-    //   visualizer({ open: true, gzipSize: true, brotliSize: true }),
   ],
   test: {
     environment: 'jsdom',
@@ -64,9 +53,6 @@ export default defineConfig({
       'public/**',
       'tmp/**',
     ],
-    reporters: process.env.GITHUB_ACTIONS
-      ? ['default', new GithubActionsReporter()]
-      : 'default',
     globals: true,
   },
 });
