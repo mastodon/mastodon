@@ -114,8 +114,3 @@
     list-style-type: decimal;
   }
 }
-
-// Disable kerning for Japanese text to preserve monospaced alignment for readability
-.status__content__text[lang='ja'] {
-  font-feature-settings: normal;
-}
