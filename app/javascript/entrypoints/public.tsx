@@ -1,7 +1,5 @@
 import { createRoot } from 'react-dom/client';
 
-import './public-path';
-
 import { IntlMessageFormat } from 'intl-messageformat';
 import type { MessageDescriptor, PrimitiveType } from 'react-intl';
 import { defineMessages } from 'react-intl';
@@ -17,8 +15,6 @@ import loadKeyboardExtensions from '../mastodon/load_keyboard_extensions';
 import { loadLocale, getLocale } from '../mastodon/locales';
 import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
-
-import 'cocoon-js-vanilla';
 
 start();
 
@@ -153,9 +149,7 @@ function loaded() {
   const reactComponents = document.querySelectorAll('[data-component]');
 
   if (reactComponents.length > 0) {
-    import(
-      /* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container'
-    )
+    import('../mastodon/containers/media_container')
       .then(({ default: MediaContainer }) => {
         reactComponents.forEach((component) => {
           Array.from(component.children).forEach((child) => {
