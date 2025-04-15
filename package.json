@@ -10,6 +10,7 @@
     "streaming"
   ],
   "scripts": {
+    "dev": "vite dev",
     "build:development": "cross-env RAILS_ENV=development NODE_ENV=development ./bin/vite build",
     "build:production": "cross-env RAILS_ENV=production NODE_ENV=production ./bin/vite build",
     "fix:js": "eslint . --cache --fix",
