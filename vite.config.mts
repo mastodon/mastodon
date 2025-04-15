@@ -27,7 +27,7 @@ const config: UserConfigFnPromise = async () => {
     {} as Record<string, string>,
   );
   return {
-    root: entrypointRoot,
+    root: path.resolve(__dirname, 'app/javascript'),
     css: {
       postcss: {
         plugins: [
