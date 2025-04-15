@@ -29,6 +29,8 @@ import { PollForm } from "./poll_form";
 import { ReplyIndicator } from './reply_indicator';
 import { UploadForm } from './upload_form';
 
+import ScheduleButtonContainer from '../containers/schedule_button_container';
+
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
 const messages = defineMessages({
@@ -295,6 +297,7 @@ class ComposeForm extends ImmutablePureComponent {
                 <PollButtonContainer />
                 <SpoilerButtonContainer />
                 <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
+                <ScheduleButtonContainer />
                 <CharacterCounter max={maxChars} text={this.getFulltextForCharacterCounting()} />
               </div>
 
@@ -305,6 +308,12 @@ class ComposeForm extends ImmutablePureComponent {
                   disabled={!this.canSubmit()}
                 />
               </div>
+            </div>
+            <div>
+              <label>计划时间（UTC）</label>
+              <input 
+                type='datetime-local'
+              />
             </div>
           </div>
         </div>
