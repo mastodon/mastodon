@@ -251,6 +251,12 @@ export default tseslint.config([
           ],
         },
       ],
+      'import/no-unresolved': [
+        'error',
+        {
+          ignore: ['vite/modulepreload-polyfill'],
+        },
+      ],
 
       'react/jsx-filename-extension': [
         'error',
