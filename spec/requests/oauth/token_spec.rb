@@ -5,17 +5,19 @@ require 'rails_helper'
 RSpec.describe 'Managing OAuth Tokens' do
   describe 'POST /oauth/token' do
     subject do
-      post '/oauth/token', params: params
+      post '/oauth/token', params: params, headers: {
+        # This is using the OAuth client_secret_basic client authentication method
+        Authorization: ActionController::HttpAuthentication::Basic.encode_credentials(application.uid, application.secret),
+      }
     end
 
     let(:application) do
       Fabricate(:application, scopes: 'read write follow', redirect_uri: 'urn:ietf:wg:oauth:2.0:oob')
     end
+
     let(:params) do
       {
         grant_type: grant_type,
-        client_id: application.uid,
-        client_secret: application.secret,
         redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
         code: code,
         scope: scope,
