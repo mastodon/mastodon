@@ -80,8 +80,8 @@ class Web::PushSubscription < ApplicationRecord
     )
 
     Doorkeeper::AccessToken.find_or_create_for(
-      application: context.client,
-      resource_owner: context.resource_owner,
+      application: context.client.id,
+      resource_owner_id: context.resource_owner,
       scopes: context.scopes,
       expires_in: Doorkeeper::OAuth::Authorization::Token.access_token_expires_in(Doorkeeper.config, context),
       use_refresh_token: Doorkeeper::OAuth::Authorization::Token.refresh_token_enabled?(Doorkeeper.config, context)

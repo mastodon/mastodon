@@ -310,9 +310,9 @@ class User < ApplicationRecord
   def token_for_app(app)
     return nil if app.nil? || app.owner != self
 
-    context = Doorkeeper::OAuth::Authorization::Token.build_context(app, Doorkeeper::OAuth::AUTHORIZATION_CODE, app.scopes, app.owner)
+    context = Doorkeeper::OAuth::Authorization::Token.build_context(app, Doorkeeper::OAuth::AUTHORIZATION_CODE, app.scopes, app.owner.id)
 
-    Doorkeeper::AccessToken.find_or_create_by(application_id: context.client.id, resource_owner_id: context.resource_owner.id) do |t|
+    Doorkeeper::AccessToken.find_or_create_by(application_id: context.client.id, resource_owner_id: context.resource_owner) do |t|
       t.scopes            = context.scopes
       t.expires_in        = Doorkeeper::OAuth::Authorization::Token.access_token_expires_in(Doorkeeper.config, context)
       t.use_refresh_token = Doorkeeper::OAuth::Authorization::Token.refresh_token_enabled?(Doorkeeper.config, context)
