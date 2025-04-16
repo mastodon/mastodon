@@ -15,10 +15,6 @@ import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 import { useSpring, animated } from '@react-spring/web';
 import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
-// eslint-disable-next-line import/extensions
-import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js?url';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js?url';
 
 import { showAlertForError } from 'mastodon/actions/alerts';
 import { uploadThumbnail } from 'mastodon/actions/compose';
@@ -350,9 +346,15 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
 
       fetchTesseract()
         .then(async ({ createWorker }) => {
+          const [tesseractWorkerPath, tesseractCorePath] = await Promise.all([
+            // eslint-disable-next-line import/extensions
+            import('tesseract.js/dist/worker.min.js?url'),
+            // eslint-disable-next-line import/no-extraneous-dependencies
+            import('tesseract.js-core/tesseract-core.wasm.js?url'),
+          ]);
           const worker = await createWorker('eng', 1, {
-            workerPath: tesseractWorkerPath,
-            corePath: tesseractCorePath,
+            workerPath: tesseractWorkerPath.default,
+            corePath: tesseractCorePath.default,
             langPath: `${assetHost}/ocr/lang-data`,
             cacheMethod: 'write',
           });
