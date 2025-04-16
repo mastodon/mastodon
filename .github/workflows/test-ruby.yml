@@ -49,7 +49,6 @@ jobs:
             public/assets
             public/packs
             public/packs-test
-            tmp/cache/webpacker
           key: ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
           restore-keys: |
             ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
