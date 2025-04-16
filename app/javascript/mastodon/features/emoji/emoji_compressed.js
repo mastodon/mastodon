@@ -13,7 +13,7 @@
 import emojiMart5LocalesData from '@emoji-mart/data/i18n/en.json';
 import emojiMart5Data from '@emoji-mart/data/sets/15/all.json';
 import { uncompress as emojiMartUncompress } from 'emoji-mart/dist/utils/data';
-import {omit} from 'lodash';
+import _ from 'lodash';
 
 import emojiMap from './emoji_map.json';
 // This json file is downloaded from https://github.com/iamcal/emoji-data/
@@ -39,7 +39,7 @@ let data = {
     };
   }),
   aliases: emojiMart5Data.aliases,
-  emojis: Object.values(emojiMart5Data.emojis).map(emoji => {
+  emojis: _(emojiMart5Data.emojis).values().map(emoji => {
     let skin_variations = {};
     const unified = emoji.skins[0].unified.toUpperCase();
     const emojiFromRawData = emojiSheetData.find(e => e.unified === unified);
@@ -86,7 +86,7 @@ let data = {
       skin_variations,
       native: unifiedToNative(unified.toUpperCase())
     };
-  }).compact().keyBy(e => e.id).mapValues(e => omit(e, 'id')).value()
+  }).compact().keyBy(e => e.id).mapValues(e => _.omit(e, 'id')).value()
 };
 
 if (data.compressed) {
