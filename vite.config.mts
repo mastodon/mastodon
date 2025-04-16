@@ -1,22 +1,30 @@
-/// <reference types="vitest" />
+/// <reference types="vitest/config" />
 
-import path from 'node:path';
 import fs from 'node:fs/promises';
+import path from 'node:path';
 
+import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import react from '@vitejs/plugin-react';
+import { loadEnv, PluginOption } from 'vite';
 import svgr from 'vite-plugin-svgr';
+import { analyzer } from 'vite-bundle-analyzer';
+import RailsPlugin from 'vite-plugin-rails';
+import { VitePWA } from 'vite-plugin-pwa';
+
 import {
-  defineConfig,
   configDefaults,
+  defineConfig,
+  ViteUserConfig,
   UserConfigFnPromise,
 } from 'vitest/config';
 import postcssPresetEnv from 'postcss-preset-env';
 
-import { manifestSRI } from './config/vite/plugin-manifest-sri';
+import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 
-const entrypointRoot = path.resolve(__dirname, 'app/javascript/entrypoints');
+const jsRoot = path.resolve(__dirname, 'app/javascript');
+const entrypointRoot = path.resolve(jsRoot, 'entrypoints');
 
-const config: UserConfigFnPromise = async () => {
+const config: UserConfigFnPromise = async ({ mode }) => {
   const entrypointFiles = await fs.readdir(entrypointRoot);
   const entrypoints: Record<string, string> = entrypointFiles.reduce(
     (acc, file) => {
@@ -26,8 +34,9 @@ const config: UserConfigFnPromise = async () => {
     },
     {} as Record<string, string>,
   );
+  const env = loadEnv(mode, process.cwd());
   return {
-    root: path.resolve(__dirname, 'app/javascript'),
+    root: jsRoot,
     css: {
       postcss: {
         plugins: [
@@ -41,8 +50,18 @@ const config: UserConfigFnPromise = async () => {
     },
     resolve: {
       alias: {
-        mastodon: path.resolve(__dirname, 'app/javascript/mastodon'),
-        '@': path.resolve(__dirname, 'app/javascript'),
+        mastodon: path.resolve(jsRoot, 'mastodon'),
+        '@': jsRoot,
+      },
+    },
+    server: {
+      headers: {
+        // This is needed in dev environment because we load the worker from `/dev-sw/dev-sw.js`,
+        // but it needs to be scoped to the whole domain
+        'Service-Worker-Allowed': '/',
+      },
+      hmr: {
+        clientPort: parseInt(env.VITE_HMR_PORT ?? '3000'),
       },
     },
     build: {
@@ -90,7 +109,42 @@ const config: UserConfigFnPromise = async () => {
         },
       },
     },
-    plugins: [react(), svgr(), manifestSRI()],
+    plugins: [
+      RailsPlugin(),
+      react(),
+      MastodonServiceWorkerLocales(),
+      VitePWA({
+        srcDir: 'mastodon/service_worker',
+        filename: 'sw.js',
+        manifest: false,
+        injectRegister: null,
+        injectManifest: {
+          buildPlugins: {
+            vite: [
+              // Provide a virtual import with only the locales used in the ServiceWorker
+              MastodonServiceWorkerLocales(),
+            ],
+          },
+          globIgnores: [
+            // Do not preload those files
+            'intl/*.js',
+            'extra_polyfills-*.js',
+            'polyfill-force-*.js',
+            'assets/mailer-*.{js,css}',
+          ],
+          maximumFileSizeToCacheInBytes: 2 * 1_024 * 1_024, // 2 MiB
+        },
+        devOptions: {
+          enabled: true,
+          type: 'module',
+        },
+      }),
+      svgr(),
+      // manifestSRI(),
+      // Old library types need to be converted
+      optimizeLodashImports() as PluginOption,
+      !!process.env.ANALYZE_BUNDLE_SIZE && analyzer({ analyzerMode: 'static' }),
+    ],
     test: {
       environment: 'jsdom',
       include: [
@@ -108,7 +162,7 @@ const config: UserConfigFnPromise = async () => {
       ],
       globals: true,
     },
-  };
+  } satisfies ViteUserConfig;
 };
 
 export default defineConfig(config);

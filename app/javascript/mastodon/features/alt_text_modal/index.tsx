@@ -16,9 +16,9 @@ import { useSpring, animated } from '@react-spring/web';
 import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
 // eslint-disable-next-line import/extensions
-import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
+import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js?url';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
+import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js?url';
 
 import { showAlertForError } from 'mastodon/actions/alerts';
 import { uploadThumbnail } from 'mastodon/actions/compose';
@@ -351,8 +351,8 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
       fetchTesseract()
         .then(async ({ createWorker }) => {
           const worker = await createWorker('eng', 1, {
-            workerPath: tesseractWorkerPath as string,
-            corePath: tesseractCorePath as string,
+            workerPath: tesseractWorkerPath,
+            corePath: tesseractCorePath,
             langPath: `${assetHost}/ocr/lang-data`,
             cacheMethod: 'write',
           });
@@ -501,5 +501,4 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
     );
   },
 );
-
 AltTextModal.displayName = 'AltTextModal';
