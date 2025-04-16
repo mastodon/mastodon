@@ -1,0 +1,194 @@
+{RAILS_ENV=production bundle exec rails assets:precompile}
+
+// 기본 Mastodon 스타일 가져오기
+@use 'mastodon/variables' as *;
+@use 'mastodon/mixins' as *;
+
+// 커스텀 색상 변수 정의
+:root {
+  --brand-color: #E4A7B9;  // 부드러운 핑크
+  --primary-text-color: #5D4E51;  // 따뜻한 다크 그레이
+  --background-color: #FFF6F8;  // 매우 연한 핑크 배경
+  --accent-color: #F4C6D0;  // 밝은 코랄 핑크
+  --link-color: #D88A9A;  // 진한 로즈 핑크
+  --secondary-background: #FFF0F4;  // 연한 베이비 핑크
+  --border-color: #FFE4EA;  // 매우 연한 핑크
+  --shadow-color: rgba(228, 167, 185, 0.15);
+  
+  // 그라데이션 배경
+  --gradient-start: #FFF6F8;
+  --gradient-end: #FFE4EA;
+  --overlay-gradient: linear-gradient(135deg, rgba(255, 246, 248, 0.95), rgba(255, 228, 234, 0.95));
+}
+
+// 전체 배경 그라데이션
+body {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)) fixed;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+// 컬럼 스타일링
+.column {
+  background: var(--overlay-gradient);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px var(--shadow-color);
+  overflow: hidden;
+  margin: 10px;
+  max-width: 600px;
+  min-width: 350px;
+}
+
+// 상태 업데이트 카드
+.status {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+  border-radius: 16px;
+  margin: 12px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px var(--shadow-color);
+  }
+}
+
+// 버튼 스타일링
+.button {
+  background: var(--brand-color);
+  border-radius: 50px;
+  padding: 12px 24px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: var(--accent-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+  }
+}
+
+// 입력 필드
+.input {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 14px;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(228, 167, 185, 0.2);
+  }
+}
+
+// 아바타
+.account__avatar {
+  border: 3px solid #fff;
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+// 네비게이션
+.navigation {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+  border-radius: 16px;
+  margin: 10px;
+  
+  a {
+    color: var(--primary-text-color);
+    padding: 12px 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: var(--secondary-background);
+      color: var(--brand-color);
+    }
+  }
+}
+
+// 검색바
+.search__input {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50px;
+  border: 1px solid var(--border-color);
+  padding: 12px 20px;
+  
+  &:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--shadow-color);
+  }
+}
+
+// 미디어 첨부
+.media-gallery {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  
+  img {
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+// 툴팁
+.tooltip {
+  background: var(--overlay-gradient);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+// 레이아웃 설정
+.layout-multiple-columns {
+  display: grid;
+  grid-template-columns: 250px minmax(auto, 600px) minmax(auto, 600px);
+  gap: 10px;
+  padding: 10px;
+  height: 100vh;
+}
+
+.navigation-panel {
+  position: fixed;
+  width: 250px;
+  height: 100vh;
+  background: var(--overlay-gradient);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 20px;
+}
+
+.columns-area {
+  margin-left: 250px;
+  display: flex;
+  gap: 10px;
+}
+
+// 모바일 반응형
+@media screen and (max-width: 1174px) {
+  .layout-multiple-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .columns-area {
+    margin-left: 0;
+  }
+  
+  .navigation-panel {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+}
