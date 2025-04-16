@@ -1,8 +1,11 @@
 {
   "all": {
     "sourceCodeDir": "app/javascript",
-    "additionalEntrypoints": ["~/{icons,images}/**/*", "~/styles/*.scss"],
+    "additionalEntrypoints": ["~/{fonts,icons,images}/**/*", "~/styles/*.scss"],
     "watchAdditionalPaths": []
+  },
+  "production": {
+    "publicOutputDir": "packs"
   },
   "development": {
     "autoBuild": true,
