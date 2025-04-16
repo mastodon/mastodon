@@ -495,6 +495,8 @@ GEM
       opentelemetry-common (~> 0.20)
       opentelemetry-sdk (~> 1.2)
       opentelemetry-semantic_conventions
+    opentelemetry-helpers-sql (0.1.1)
+      opentelemetry-api (~> 1.0)
     opentelemetry-helpers-sql-obfuscation (0.3.0)
       opentelemetry-common (~> 0.21)
     opentelemetry-instrumentation-action_mailer (0.4.0)
@@ -548,8 +550,9 @@ GEM
     opentelemetry-instrumentation-net_http (0.23.0)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.23.0)
-    opentelemetry-instrumentation-pg (0.30.0)
+    opentelemetry-instrumentation-pg (0.30.1)
       opentelemetry-api (~> 1.0)
+      opentelemetry-helpers-sql
       opentelemetry-helpers-sql-obfuscation
       opentelemetry-instrumentation-base (~> 0.23.0)
     opentelemetry-instrumentation-rack (0.26.0)
