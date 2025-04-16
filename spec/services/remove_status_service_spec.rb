@@ -73,7 +73,6 @@ RSpec.describe RemoveStatusService, :inline_jobs do
         'object' => {
           'type' => 'Tombstone',
           'id' => ActivityPub::TagManager.instance.uri_for(status),
-          'atomUri' => OStatus::TagManager.instance.uri_for(status),
         }
       )
     end
