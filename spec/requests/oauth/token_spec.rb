@@ -1,21 +1,28 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'debug'
 
 RSpec.describe 'Managing OAuth Tokens' do
   describe 'POST /oauth/token' do
     subject do
-      post '/oauth/token', params: params
+      post '/oauth/token', params: params, headers: headers
     end
 
     let(:application) do
       Fabricate(:application, scopes: 'read write follow', redirect_uri: 'urn:ietf:wg:oauth:2.0:oob')
     end
+
+    # This is using the OAuth client_secret_basic client authentication method
+    let(:headers) do
+      {
+        Authorization: ActionController::HttpAuthentication::Basic.encode_credentials(application.uid, application.secret),
+      }
+    end
+
     let(:params) do
       {
         grant_type: grant_type,
-        client_id: application.uid,
-        client_secret: application.secret,
         redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
         code: code,
         scope: scope,
