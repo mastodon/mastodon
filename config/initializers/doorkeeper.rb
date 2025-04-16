@@ -181,7 +181,7 @@ Doorkeeper.configure do
   #   http://tools.ietf.org/html/rfc6819#section-4.4.3
   #
 
-  grant_flows %w(authorization_code client_credentials)
+  grant_flows %w(authorization_code client_credentials refresh_token)
 
   # If the client is not a confidential client, it should not be able to use the
   # client_credentials grant flow, since it cannot keep a secret.
