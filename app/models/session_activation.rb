@@ -76,7 +76,7 @@ class SessionActivation < ApplicationRecord
     )
 
     {
-      application_id: context.client,
+      application_id: context.client.id,
       resource_owner_id: context.resource_owner,
       scopes: context.scopes,
       expires_in: Doorkeeper::OAuth::Authorization::Token.access_token_expires_in(Doorkeeper.config, context),
