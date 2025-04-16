@@ -39,6 +39,39 @@ RSpec.describe REST::QuoteSerializer do
     end
   end
 
+  context 'with an accepted quote of a deleted post' do
+    let(:quote) { Fabricate(:quote, state: :accepted) }
+
+    before do
+      quote.quoted_status.destroy!
+      quote.reload
+    end
+
+    it 'returns expected values' do
+      expect(subject.deep_symbolize_keys)
+        .to include(
+          quoted_status: nil,
+          state: 'deleted'
+        )
+    end
+  end
+
+  context 'with an accepted quote of a blocked user' do
+    let(:quote) { Fabricate(:quote, state: :accepted) }
+
+    before do
+      quote.quoted_account.block!(current_user.account)
+    end
+
+    it 'returns expected values' do
+      expect(subject.deep_symbolize_keys)
+        .to include(
+          quoted_status: nil,
+          state: 'unauthorized'
+        )
+    end
+  end
+
   context 'with a recursive accepted quote' do
     let(:status) { Fabricate(:status) }
     let(:quote) { Fabricate(:quote, status: status, quoted_status: status, state: :accepted) }
