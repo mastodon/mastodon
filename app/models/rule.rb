@@ -19,6 +19,8 @@ class Rule < ApplicationRecord
 
   self.discard_column = :deleted_at
 
+  has_many :translations, inverse_of: :rule, class_name: 'RuleTranslation', dependent: :destroy
+
   validates :text, presence: true, length: { maximum: TEXT_SIZE_LIMIT }
 
   scope :ordered, -> { kept.order(priority: :asc, id: :asc) }
