@@ -3355,9 +3355,11 @@ __metadata:
   linkType: hard
 
 "@reduxjs/toolkit@npm:^2.0.1":
-  version: 2.6.1
-  resolution: "@reduxjs/toolkit@npm:2.6.1"
+  version: 2.7.0
+  resolution: "@reduxjs/toolkit@npm:2.7.0"
   dependencies:
+    "@standard-schema/spec": "npm:^1.0.0"
+    "@standard-schema/utils": "npm:^0.3.0"
     immer: "npm:^10.0.3"
     redux: "npm:^5.0.1"
     redux-thunk: "npm:^3.1.0"
@@ -3370,7 +3372,7 @@ __metadata:
       optional: true
     react-redux:
       optional: true
-  checksum: 10c0/6ae5db267f2b0a9da8b59080797c5adb1b92b50c0f2bdd933470206285d684b79ed2b1c4e2d7a0fb4aa9e3772d0e215fdcd3a8e4a4a2aac81400fcd790dbd6cd
+  checksum: 10c0/33b01093b6959625c0fb7da1fc69706d2c3fcc31d36cd4d36877a2f63d59b5474b641671f5876170812592a0d8e80f25da3ff7272202df520ef2e391b85b9592
   languageName: node
   linkType: hard
 
@@ -3507,6 +3509,20 @@ __metadata:
   dependencies:
     "@sinonjs/commons": "npm:^3.0.0"
   checksum: 10c0/2e2fb6cc57f227912814085b7b01fede050cd4746ea8d49a1e44d5a0e56a804663b0340ae2f11af7559ea9bf4d087a11f2f646197a660ea3cb04e19efc04aa63
+  languageName: node
+  linkType: hard
+
+"@standard-schema/spec@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@standard-schema/spec@npm:1.0.0"
+  checksum: 10c0/a1ab9a8bdc09b5b47aa8365d0e0ec40cc2df6437be02853696a0e377321653b0d3ac6f079a8c67d5ddbe9821025584b1fb71d9cc041a6666a96f1fadf2ece15f
+  languageName: node
+  linkType: hard
+
+"@standard-schema/utils@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@standard-schema/utils@npm:0.3.0"
+  checksum: 10c0/6eb74cd13e52d5fc74054df51e37d947ef53f3ab9e02c085665dcca3c38c60ece8d735cebbdf18fbb13c775fbcb9becb3f53109b0e092a63f0f7389ce0993fd0
   languageName: node
   linkType: hard
 
