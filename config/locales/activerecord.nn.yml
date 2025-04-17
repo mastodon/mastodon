@@ -49,8 +49,14 @@ nn:
           attributes:
             reblog:
               taken: av innlegg eksisterer allereie
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: er for snart, må vera seinare enn %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: er under aldersgrensa
             email:
               blocked: bruker ein forboden epostleverandør
               unreachable: ser ikkje ut til å eksistere
