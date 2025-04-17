@@ -7,7 +7,15 @@ RSpec.describe ActivityPub::Activity::Create do
 
   let(:json) do
     {
-      '@context': 'https://www.w3.org/ns/activitystreams',
+      '@context': [
+        'https://www.w3.org/ns/activitystreams',
+        {
+          quote: {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+        },
+      ],
       id: [ActivityPub::TagManager.instance.uri_for(sender), '#foo'].join,
       type: 'Create',
       actor: ActivityPub::TagManager.instance.uri_for(sender),
@@ -876,6 +884,115 @@ RSpec.describe ActivityPub::Activity::Create do
           expect(poll.status).to_not be_nil
           expect(poll.options).to eq %w(Yellow Blue)
           expect(poll.cached_tallies).to eq [10, 3]
+        end
+      end
+
+      context 'with an unverifiable quote of a known post', feature: :inbound_quotes do
+        let(:quoted_status) { Fabricate(:status) }
+
+        let(:object_json) do
+          build_object(
+            type: 'Note',
+            content: 'woah what she said is amazing',
+            quote: ActivityPub::TagManager.instance.uri_for(quoted_status)
+          )
+        end
+
+        it 'creates a status with an unverified quote' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+          expect(status.quote).to_not be_nil
+          expect(status.quote).to have_attributes(
+            state: 'pending',
+            approval_uri: nil
+          )
+        end
+      end
+
+      context 'with an unverifiable unknown post', feature: :inbound_quotes do
+        let(:unknown_post_uri) { 'https://unavailable.example.com/unavailable-post' }
+
+        let(:object_json) do
+          build_object(
+            type: 'Note',
+            content: 'woah what she said is amazing',
+            quote: unknown_post_uri
+          )
+        end
+
+        before do
+          stub_request(:get, unknown_post_uri).to_return(status: 404)
+        end
+
+        it 'creates a status with an unverified quote' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+          expect(status.quote).to_not be_nil
+          expect(status.quote).to have_attributes(
+            state: 'pending',
+            approval_uri: nil
+          )
+        end
+      end
+
+      context 'with a verifiable quote of a known post', feature: :inbound_quotes do
+        let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+        let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+        let(:approval_uri) { 'https://quoted.example.com/quote-approval' }
+
+        let(:object_json) do
+          build_object(
+            type: 'Note',
+            content: 'woah what she said is amazing',
+            quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+            quoteAuthorization: approval_uri
+          )
+        end
+
+        before do
+          stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+            '@context': [
+              'https://www.w3.org/ns/activitystreams',
+              {
+                toot: 'http://joinmastodon.org/ns#',
+                QuoteAuthorization: 'toot:QuoteAuthorization',
+                gts: 'https://gotosocial.org/ns#',
+                interactionPolicy: {
+                  '@id': 'gts:interactionPolicy',
+                  '@type': '@id',
+                },
+                interactingObject: {
+                  '@id': 'gts:interactingObject',
+                  '@type': '@id',
+                },
+                interactionTarget: {
+                  '@id': 'gts:interactionTarget',
+                  '@type': '@id',
+                },
+              },
+            ],
+            type: 'QuoteAuthorization',
+            id: approval_uri,
+            attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
+            interactingObject: object_json[:id],
+            interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
+          }))
+        end
+
+        it 'creates a status with a verified quote' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+          expect(status.quote).to_not be_nil
+          expect(status.quote).to have_attributes(
+            state: 'accepted',
+            approval_uri: approval_uri
+          )
         end
       end
 

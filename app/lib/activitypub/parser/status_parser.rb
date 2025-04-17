@@ -101,6 +101,16 @@ class ActivityPub::Parser::StatusParser
     @object.dig(:shares, :totalItems)
   end
 
+  def quote_uri
+    %w(quote _misskey_quote quoteUrl quoteUri).filter_map do |key|
+      value_or_id(as_array(@object[key]).first)
+    end.first
+  end
+
+  def quote_approval_uri
+    as_array(@object['quoteAuthorization']).first
+  end
+
   private
 
   def raw_language_code
