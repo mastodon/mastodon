@@ -62,18 +62,6 @@ import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 
 const messages = defineMessages({
-  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  followBack: { id: 'account.follow_back', defaultMessage: 'Follow back' },
-  mutual: { id: 'account.mutual', defaultMessage: 'Mutual' },
-  cancel_follow_request: {
-    id: 'account.cancel_follow_request',
-    defaultMessage: 'Withdraw follow request',
-  },
-  requested: {
-    id: 'account.requested',
-    defaultMessage: 'Awaiting approval. Click to cancel follow request',
-  },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
   linkVerifiedOn: {
@@ -635,29 +623,65 @@ export const AccountHeader: React.FC<{
 
   const info: React.ReactNode[] = [];
 
-  if (me !== account.id && relationship?.blocking) {
-    info.push(
-      <span key='blocked' className='relationship-tag'>
-        <FormattedMessage id='account.blocked' defaultMessage='Blocked' />
-      </span>,
-    );
-  }
+  if (me !== account.id && relationship) {
+    if (
+      relationship.followed_by &&
+      (relationship.following || relationship.requested)
+    ) {
+      info.push(
+        <span key='mutual' className='relationship-tag'>
+          <FormattedMessage
+            id='account.mutual'
+            defaultMessage='You follow each other'
+          />
+        </span>,
+      );
+    } else if (relationship.followed_by) {
+      info.push(
+        <span key='followed_by' className='relationship-tag'>
+          <FormattedMessage
+            id='account.follows_you'
+            defaultMessage='Follows you'
+          />
+        </span>,
+      );
+    } else if (relationship.requested_by) {
+      info.push(
+        <span key='requested_by' className='relationship-tag'>
+          <FormattedMessage
+            id='account.requests_to_follow_you'
+            defaultMessage='Requests to follow you'
+          />
+        </span>,
+      );
+    }
 
-  if (me !== account.id && relationship?.muting) {
-    info.push(
-      <span key='muted' className='relationship-tag'>
-        <FormattedMessage id='account.muted' defaultMessage='Muted' />
-      </span>,
-    );
-  } else if (me !== account.id && relationship?.domain_blocking) {
-    info.push(
-      <span key='domain_blocked' className='relationship-tag'>
-        <FormattedMessage
-          id='account.domain_blocked'
-          defaultMessage='Domain blocked'
-        />
-      </span>,
-    );
+    if (relationship.blocking) {
+      info.push(
+        <span key='blocking' className='relationship-tag'>
+          <FormattedMessage id='account.blocking' defaultMessage='Blocking' />
+        </span>,
+      );
+    }
+
+    if (relationship.muting) {
+      info.push(
+        <span key='muting' className='relationship-tag'>
+          <FormattedMessage id='account.muting' defaultMessage='Muting' />
+        </span>,
+      );
+    }
+
+    if (relationship.domain_blocking) {
+      info.push(
+        <span key='domain_blocking' className='relationship-tag'>
+          <FormattedMessage
+            id='account.domain_blocking'
+            defaultMessage='Blocking domain'
+          />
+        </span>,
+      );
+    }
   }
 
   if (relationship?.requested || relationship?.following) {
