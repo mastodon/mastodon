@@ -89,6 +89,7 @@ nn:
         favicon: WEBP, PNG, GIF eller JPG. Overstyrer det standarde Mastodon-favikonet med eit eigendefinert ikon.
         mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
         media_cache_retention_period: Mediafiler frå innlegg laga av eksterne brukarar blir bufra på serveren din. Når sett til ein positiv verdi, slettast media etter eit gitt antal dagar. Viss mediedata blir førespurt etter det er sletta, vil dei bli lasta ned på nytt viss kjelda sitt innhald framleis er tilgjengeleg. På grunn av restriksjonar på kor ofte lenkeførehandsvisningskort lastar tredjepart-nettstadar, rådast det til å setje denne verdien til minst 14 dagar, eller at førehandsvisningskort ikkje blir oppdatert på førespurnad før det tidspunktet.
+        min_age: Brukarane vil bli bedne om å stadfesta fødselsdatoen sin når dei registrerer seg
         peers_api_enabled: Ei liste over domenenamn denne tenaren har møtt på i allheimen. Det står ingenting om tenaren din samhandlar med ein annan tenar, berre om tenaren din veit om den andre. Dette blir brukt av tenester som samlar statistikk om føderering i det heile.
         profile_directory: Profilkatalogen viser alle brukarar som har valt å kunne bli oppdaga.
         require_invite_text: Når registrering krev manuell godkjenning, lyt du gjera tekstfeltet "Kvifor vil du bli med?" obligatorisk i staden for valfritt
@@ -133,11 +134,13 @@ nn:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
       terms_of_service:
         changelog: Du kan bruka Markdown-syntaks for struktur.
+        effective_date: Ei rimeleg ventetid kan variera frå 10 til 30 dagar frå den dagen du varsla folka som bruker denne tenaren.
         text: Du kan bruka Markdown-syntaks for struktur.
       terms_of_service_generator:
         admin_email: Juridiske merknader kan vera motsegner, rettsavgjerder, orskurdar eller førespurnader om sletting.
         arbitration_address: Kan vere lik den fysiske adressa over, eller "N/A" viss du bruker epost.
         arbitration_website: Kan vere eit nettskjema eller "N/A" viss du bruker e-post.
+        choice_of_law: Jurisdiksjon
         dmca_address: For US operators, use the address registered in the DMCA Designated Agent Directory. A P.O. Box listing is available upon direct request, use the DMCA Designated Agent Post Office Box Waiver Request to email the Copyright Office and describe that you are a home-based content moderator who fears revenge or retribution for your actions and need to use a P.O. Box to remove your home address from public view.
         dmca_email: Kan vere same e-post som brukast i "E-postadresse for juridiske meldingar" ovanfor.
         domain: Noko som identifiserer den nettenesta du tilbyr.
@@ -145,6 +148,7 @@ nn:
         min_age: Skal ikkje vere under minstealder som krevst av lover i jurisdiksjonen din.
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
+        date_of_birth: Me må syta for at du er minst %{age} for å bruka Masodon. Me lagrar ikkje dette.
         role: Rolla kontrollerer kva løyve brukaren har.
       user_role:
         color: Fargen som skal nyttast for denne rolla i heile brukargrensesnittet, som RGB i hex-format
@@ -165,7 +169,7 @@ nn:
           value: Innhald
         indexable: Ta med offentlege innlegg i søkjeresultat
         show_collections: Vis dei du fylgjer og dei som fylgjer deg på profilen din
-        unlocked: Godta nye følgjare automatisk
+        unlocked: Godta nye fylgjarar automatisk
       account_alias:
         acct: Brukarnamnet på den gamle kontoen
       account_migration:
@@ -271,6 +275,7 @@ nn:
         favicon: Favorittikon
         mascot: Eigendefinert maskot (eldre funksjon)
         media_cache_retention_period: Oppbevaringsperiode for mediebuffer
+        min_age: Minste aldersgrense
         peers_api_enabled: Legg ut ei liste over oppdaga tenarar i APIet
         profile_directory: Aktiver profilkatalog
         registrations_mode: Kven kan registrera seg
@@ -336,17 +341,22 @@ nn:
         usable: Godta at innlegga kan bruka denne emneknaggen lokalt
       terms_of_service:
         changelog: Kva er endra?
+        effective_date: I kraft frå
         text: Bruksvilkår
       terms_of_service_generator:
         admin_email: Epostadresse for juridiske merknader
         arbitration_address: Fysisk adresse for skilsdomsvarsel
         arbitration_website: Nettstad for å senda inn skilsdomsvarsel
+        choice_of_law: Jurisdiksjon
         dmca_address: Fysisk adresse for opphavsrettsvarsel
         dmca_email: Epostadresse for opphavsrettsvarsel
         domain: Domene
         jurisdiction: Rettskrins
         min_age: Minstealder
       user:
+        date_of_birth_1i: Dag
+        date_of_birth_2i: Månad
+        date_of_birth_3i: År
         role: Rolle
         time_zone: Tidssone
       user_role:
