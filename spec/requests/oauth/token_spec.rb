@@ -105,6 +105,53 @@ RSpec.describe 'Managing OAuth Tokens' do
         end
       end
     end
+
+    context "with grant_type 'refresh_token'" do
+      let(:grant_type) { 'refresh_token' }
+
+      let!(:user) { Fabricate(:user) }
+      let!(:application) { Fabricate(:application, scopes: 'read offline_access') }
+      let!(:access_token) do
+        Fabricate(
+          :accessible_access_token,
+          resource_owner_id: user.id,
+          application: application,
+          # Even though the `application` uses the `offline_access` scope, the
+          # generation of a refresh token only happens when the model is created
+          # with `use_refresh_token: true`.
+          #
+          # This is normally determined from the request to create the access
+          # token, but here we are just creating the access token model, so we
+          # need to force the `access_token` to have `use_refresh_token: true`
+          use_refresh_token: true
+        )
+      end
+
+      let!(:web_push_subscription) { Fabricate(:web_push_subscription, user: user, access_token: access_token) }
+
+      let(:params) do
+        {
+          grant_type: grant_type,
+          refresh_token: access_token.refresh_token,
+        }
+      end
+
+      it 'updates the Web::PushSubscription when refreshed' do
+        expect { subject }
+          .to change { access_token.reload.revoked_at }.from(nil).to(be_present)
+
+        expect(response).to have_http_status(200)
+
+        new_token = Doorkeeper::AccessToken.by_token(response.parsed_body[:access_token])
+
+        expect(web_push_subscription.reload.access_token_id).to eq(new_token.id)
+
+        # Assert that there are definitely no subscriptions left for the
+        # previous access token:
+        expect(Web::PushSubscription.where(access_token: access_token.id).count)
+          .to eq(0)
+      end
+    end
   end
 
   describe 'POST /oauth/revoke' do

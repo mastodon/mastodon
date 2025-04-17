@@ -49,6 +49,13 @@ Doorkeeper.configure do
     context.scopes.exists?('offline_access')
   end
 
+  after_successful_strategy_response do |request, _response|
+    if request.is_a? Doorkeeper::OAuth::RefreshTokenRequest
+      Web::PushSubscription.where(access_token_id: request.refresh_token.id).update!(access_token_id: request.access_token.id)
+      SessionActivation.where(access_token_id: request.refresh_token.id).update!(access_token_id: request.access_token.id)
+    end
+  end
+
   # Use a custom class for generating the access token.
   # https://github.com/doorkeeper-gem/doorkeeper#custom-access-token-generator
   # access_token_generator "::Doorkeeper::JWT"
