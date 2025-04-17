@@ -138,6 +138,9 @@ const config: UserConfigFnPromise = async ({ mode }) => {
           enabled: true,
           type: 'module',
         },
+        workbox: {
+          maximumFileSizeToCacheInBytes: 8 * 1_024 * 1_024, // 2 MiB
+        },
       }),
       svgr(),
       // manifestSRI(),

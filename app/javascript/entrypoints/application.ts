@@ -3,7 +3,8 @@ import { loadLocale } from 'mastodon/locales';
 import main from 'mastodon/main';
 import { loadPolyfills } from 'mastodon/polyfills';
 
-import '@/styles/application.scss';
+// TODO: remove this, for testing CSS imports
+import '@/styles/test.scss';
 
 start();
 
