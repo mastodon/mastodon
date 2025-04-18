@@ -6,6 +6,7 @@ class REST::TagSerializer < ActiveModel::Serializer
   attributes :id, :name, :url, :history
 
   attribute :following, if: :current_user?
+  attribute :featuring, if: :current_user?
 
   def id
     object.id.to_s
@@ -24,6 +25,14 @@ class REST::TagSerializer < ActiveModel::Serializer
       instance_options[:relationships].following_map[object.id] || false
     else
       TagFollow.exists?(tag_id: object.id, account_id: current_user.account_id)
+    end
+  end
+
+  def featuring
+    if instance_options && instance_options[:relationships]
+      instance_options[:relationships].featuring_map[object.id] || false
+    else
+      FeaturedTag.exists?(tag_id: object.id, account_id: current_user.account_id)
     end
   end
 
