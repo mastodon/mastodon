@@ -22,7 +22,9 @@
 class Fasp::Provider < ApplicationRecord
   include DebugConcern
 
+  has_many :fasp_backfill_requests, inverse_of: :fasp_provider, class_name: 'Fasp::BackfillRequest', dependent: :delete_all
   has_many :fasp_debug_callbacks, inverse_of: :fasp_provider, class_name: 'Fasp::DebugCallback', dependent: :delete_all
+  has_many :fasp_subscriptions, inverse_of: :fasp_provider, class_name: 'Fasp::Subscription', dependent: :delete_all
 
   validates :name, presence: true
   validates :base_url, presence: true, url: true
