@@ -15,5 +15,6 @@
 class RuleTranslation < ApplicationRecord
   belongs_to :rule
 
-  validates :language, uniqueness: { scope: :rule_id }
+  validates :language, presence: true, uniqueness: { scope: :rule_id }
+  validates :text, presence: true, length: { maximum: Rule::TEXT_SIZE_LIMIT }
 end
