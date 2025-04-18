@@ -28,28 +28,28 @@ RSpec.describe CacheBuster do
     end
 
     context 'when using default options' do
-      include_examples 'makes_request'
+      it_behaves_like 'makes_request'
     end
 
     context 'when specifying a secret header' do
       let(:secret_header) { 'X-Purge-Secret' }
       let(:secret) { SecureRandom.hex(20) }
 
-      include_examples 'makes_request'
+      it_behaves_like 'makes_request'
     end
 
     context 'when specifying a PURGE method' do
       let(:http_method) { 'purge' }
 
       context 'when not using headers' do
-        include_examples 'makes_request'
+        it_behaves_like 'makes_request'
       end
 
       context 'when specifying a secret header' do
         let(:secret_header) { 'X-Purge-Secret' }
         let(:secret) { SecureRandom.hex(20) }
 
-        include_examples 'makes_request'
+        it_behaves_like 'makes_request'
       end
     end
   end

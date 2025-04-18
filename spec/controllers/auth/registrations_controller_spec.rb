@@ -156,7 +156,7 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    include_examples 'checks for enabled registrations', :new
+    it_behaves_like 'checks for enabled registrations', :new
   end
 
   describe 'POST #create' do
@@ -378,7 +378,7 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    include_examples 'checks for enabled registrations', :create
+    it_behaves_like 'checks for enabled registrations', :create
   end
 
   describe 'DELETE #destroy' do
