@@ -20,6 +20,7 @@ class Rule < ApplicationRecord
   self.discard_column = :deleted_at
 
   has_many :translations, inverse_of: :rule, class_name: 'RuleTranslation', dependent: :destroy
+  accepts_nested_attributes_for :translations, reject_if: :all_blank, allow_destroy: true
 
   validates :text, presence: true, length: { maximum: TEXT_SIZE_LIMIT }
 

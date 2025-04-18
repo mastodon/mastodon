@@ -73,7 +73,7 @@ module Admin
 
     def resource_params
       params
-        .expect(rule: [:text, :hint, :priority])
+        .expect(rule: [:text, :hint, :priority, translations_attributes: [[:id, :language, :text, :hint, :_destroy]]])
     end
   end
 end
