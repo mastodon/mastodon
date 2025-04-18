@@ -251,6 +251,7 @@ namespace :api, format: false do
         end
 
         resource :action, only: [:create], controller: 'account_actions'
+        resources :notes, controller: 'accounts/notes', only: [:index, :show, :create, :destroy]
       end
 
       resources :reports, only: [:index, :update, :show] do
@@ -260,6 +261,8 @@ namespace :api, format: false do
           post :reopen
           post :resolve
         end
+
+        resources :notes, controller: 'reports/notes', only: [:index, :show, :create, :destroy]
       end
 
       resources :domain_allows, only: [:index, :show, :create, :destroy]
