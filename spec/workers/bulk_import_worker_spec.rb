@@ -14,13 +14,11 @@ RSpec.describe BulkImportWorker do
       allow(BulkImportService).to receive(:new).and_return(service_double)
     end
 
-    it 'changes the import\'s state as appropriate' do
-      expect { subject.perform(import.id) }.to change { import.reload.state.to_sym }.from(:scheduled).to(:in_progress)
-    end
-
-    it 'calls BulkImportService' do
-      subject.perform(import.id)
-      expect(service_double).to have_received(:call).with(import)
+    it 'calls the service and changes the import state' do
+      expect { subject.perform(import.id) }
+        .to change { import.reload.state.to_sym }.from(:scheduled).to(:in_progress)
+      expect(service_double)
+        .to have_received(:call).with(import)
     end
   end
 end
