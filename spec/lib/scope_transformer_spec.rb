@@ -23,6 +23,12 @@ RSpec.describe ScopeTransformer do
       it_behaves_like 'a scope', nil, 'profile', 'read'
     end
 
+    context 'with scope "offline_access"' do
+      let(:input) { 'offline_access' }
+
+      it_behaves_like 'a scope', nil, 'offline_access', 'offline'
+    end
+
     context 'with scope "read"' do
       let(:input) { 'read' }
 

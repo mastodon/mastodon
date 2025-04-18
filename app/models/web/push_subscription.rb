@@ -65,13 +65,26 @@ class Web::PushSubscription < ApplicationRecord
 
   private
 
+  # TODO: Figure out when this method would actually ever be called, because all
+  # the create's for push subscriptions pass an access token, so access_token_id
+  # should never be nil
   def find_or_create_access_token
+    app = Doorkeeper::Application.find_by(superapp: true)
+    scopes = Doorkeeper::OAuth::Scopes.from_string('read write follow push')
+
+    context = Doorkeeper::OAuth::Authorization::Token.build_context(
+      app,
+      Doorkeeper::OAuth::AUTHORIZATION_CODE,
+      scopes,
+      user_id || session_activation.user_id
+    )
+
     Doorkeeper::AccessToken.find_or_create_for(
-      application: Doorkeeper::Application.find_by(superapp: true),
-      resource_owner: user_id || session_activation.user_id,
-      scopes: Doorkeeper::OAuth::Scopes.from_string('read write follow push'),
-      expires_in: Doorkeeper.configuration.access_token_expires_in,
-      use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
+      application: context.client.id,
+      resource_owner_id: context.resource_owner,
+      scopes: context.scopes,
+      expires_in: Doorkeeper::OAuth::Authorization::Token.access_token_expires_in(Doorkeeper.config, context),
+      use_refresh_token: Doorkeeper::OAuth::Authorization::Token.refresh_token_enabled?(Doorkeeper.config, context)
     )
   end
 
