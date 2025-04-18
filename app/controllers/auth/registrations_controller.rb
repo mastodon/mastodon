@@ -126,7 +126,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_rules
-    @rules = Rule.ordered
+    @rules = Rule.ordered.includes(:translations)
   end
 
   def require_rules_acceptance!
