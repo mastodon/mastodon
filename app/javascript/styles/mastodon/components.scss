@@ -1491,34 +1491,34 @@ body > [data-popper-placement] {
     }
   }
 
+  $thread-margin: 46px + 8px;
+
   &--in-thread {
-    $thread-margin: 46px + 10px;
-
     border-bottom: 0;
+  }
 
-    .status__content,
-    .status__action-bar,
-    .media-gallery,
-    .video-player,
-    .audio-player,
-    .attachment-list,
-    .picture-in-picture-placeholder,
-    .more-from-author,
-    .status-card,
-    .hashtag-bar,
-    .content-warning,
-    .filter-warning {
-      margin-inline-start: $thread-margin;
-      width: calc(100% - $thread-margin);
-    }
+  .status__content,
+  .status__action-bar,
+  .media-gallery,
+  .video-player,
+  .audio-player,
+  .attachment-list,
+  .picture-in-picture-placeholder,
+  .more-from-author,
+  .status-card,
+  .hashtag-bar,
+  .content-warning,
+  .filter-warning {
+    margin-inline-start: $thread-margin;
+    width: calc(100% - $thread-margin);
+  }
 
-    .more-from-author {
-      width: calc(100% - $thread-margin + 2px);
-    }
+  .more-from-author {
+    width: calc(100% - $thread-margin + 2px);
+  }
 
-    .status__content__read-more-button {
-      margin-inline-start: $thread-margin;
-    }
+  .status__content__read-more-button {
+    margin-inline-start: $thread-margin;
   }
 
   &__action-bar__button-wrapper {
@@ -1571,8 +1571,6 @@ body > [data-popper-placement] {
 
 .status__relative-time {
   display: block;
-  font-size: 15px;
-  line-height: 22px;
   height: 40px;
   order: 2;
   flex: 0 0 auto;
@@ -1603,10 +1601,8 @@ body > [data-popper-placement] {
 .status__info .status__display-name {
   max-width: 100%;
   display: flex;
-  font-size: 15px;
-  line-height: 22px;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   overflow: hidden;
 
   .display-name {
@@ -1630,7 +1626,7 @@ body > [data-popper-placement] {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
   cursor: pointer;
 }
 
@@ -1674,7 +1670,7 @@ body > [data-popper-placement] {
   padding-bottom: 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   font-size: 15px;
   line-height: 22px;
   font-weight: 500;
@@ -1685,6 +1681,7 @@ body > [data-popper-placement] {
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
+    margin-inline-start: 30px;
 
     .icon {
       width: 16px;
@@ -10402,6 +10399,7 @@ noscript {
 
       .account__avatar {
         flex: 0 0 auto;
+        --avatar-border-radius: 4px;
       }
     }
 
@@ -10834,4 +10832,44 @@ noscript {
 
 .lists-scrollable {
   min-height: 50vh;
+}
+
+.status__quote {
+  padding-inline-start: 46px + 8px;
+  position: relative;
+  margin-bottom: 16px;
+
+  & > div {
+    background: var(--rich-text-container-color);
+    padding: 8px;
+    border-radius: 8px;
+    color: var(--rich-text-text-color);
+  }
+
+  .notification-group__embedded-status__account bdi,
+  .notification-group__embedded-status__content,
+  .notification-group__embedded-status__content a {
+    color: var(--rich-text-text-color);
+  }
+
+  .notification-group__embedded-status__account .display-name__account {
+    color: var(--rich-text-text-color);
+    opacity: 0.7;
+  }
+
+  .notification-group__embedded-status__account {
+    margin-bottom: 4px;
+  }
+
+  &::before {
+    display: block;
+    content: '';
+    width: 24px;
+    height: 20px;
+    mask-image: url('../images/quote.svg');
+    background-color: var(--rich-text-decorations-color);
+    position: absolute;
+    inset-inline-start: 20px;
+    top: 4px;
+  }
 }
