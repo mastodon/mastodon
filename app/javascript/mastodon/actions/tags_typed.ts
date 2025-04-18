@@ -1,4 +1,10 @@
-import { apiGetTag, apiFollowTag, apiUnfollowTag } from 'mastodon/api/tags';
+import {
+  apiGetTag,
+  apiFollowTag,
+  apiUnfollowTag,
+  apiFeatureTag,
+  apiUnfeatureTag,
+} from 'mastodon/api/tags';
 import { createDataLoadingThunk } from 'mastodon/store/typed_functions';
 
 export const fetchHashtag = createDataLoadingThunk(
@@ -14,4 +20,14 @@ export const followHashtag = createDataLoadingThunk(
 export const unfollowHashtag = createDataLoadingThunk(
   'tags/unfollow',
   ({ tagId }: { tagId: string }) => apiUnfollowTag(tagId),
+);
+
+export const featureHashtag = createDataLoadingThunk(
+  'tags/feature',
+  ({ tagId }: { tagId: string }) => apiFeatureTag(tagId),
+);
+
+export const unfeatureHashtag = createDataLoadingThunk(
+  'tags/unfeature',
+  ({ tagId }: { tagId: string }) => apiUnfeatureTag(tagId),
 );
