@@ -128,11 +128,37 @@ class AccountSearchService < BaseService
 
     def core_query
       {
-        multi_match: {
-          query: @query,
-          type: 'best_fields',
-          fields: %w(username^2 display_name^2 text text.*),
-          operator: 'and',
+        dis_max: {
+          queries: [
+            {
+              match: {
+                username: {
+                  query: @query,
+                  analyzer: 'word_join_analyzer',
+                },
+              },
+            },
+
+            {
+              match: {
+                display_name: {
+                  query: @query,
+                  analyzer: 'word_join_analyzer',
+                },
+              },
+            },
+
+            {
+              multi_match: {
+                query: @query,
+                type: 'best_fields',
+                fields: %w(text text.*),
+                operator: 'and',
+              },
+            },
+          ],
+
+          tie_breaker: 0.5,
         },
       }
     end
