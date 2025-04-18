@@ -49,7 +49,7 @@ RSpec.describe RelationshipsController do
     context 'when select parameter is not provided' do
       subject { patch :update }
 
-      include_examples 'redirects back to followers page'
+      it_behaves_like 'redirects back to followers page'
     end
 
     context 'when select parameter is provided' do
@@ -83,7 +83,7 @@ RSpec.describe RelationshipsController do
         end
       end
 
-      include_examples 'redirects back to followers page'
+      it_behaves_like 'redirects back to followers page'
     end
   end
 end

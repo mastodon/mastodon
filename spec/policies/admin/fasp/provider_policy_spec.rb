@@ -25,10 +25,10 @@ RSpec.describe Admin::Fasp::ProviderPolicy, type: :policy do
   end
 
   permissions :index?, :create? do
-    include_examples 'admin only', Fasp::Provider
+    it_behaves_like 'admin only', Fasp::Provider
   end
 
   permissions :show?, :create?, :update?, :destroy? do
-    include_examples 'admin only', :fasp_provider
+    it_behaves_like 'admin only', :fasp_provider
   end
 end

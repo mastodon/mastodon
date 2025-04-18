@@ -46,7 +46,7 @@ RSpec.describe SuspendAccountService do
       json['type'] == 'Update' && json['actor'] == actor_id && json['object']['id'] == actor_id && json['object']['suspended']
     end
 
-    include_examples 'common behavior' do
+    it_behaves_like 'common behavior' do
       let!(:account)         { Fabricate(:account) }
       let!(:remote_follower) { Fabricate(:account, uri: 'https://alice.com', inbox_url: 'https://alice.com/inbox', protocol: :activitypub, domain: 'alice.com') }
       let!(:remote_reporter) { Fabricate(:account, uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
@@ -72,7 +72,7 @@ RSpec.describe SuspendAccountService do
       json['type'] == 'Reject' && json['actor'] == ActivityPub::TagManager.instance.uri_for(followee) && json['object']['actor'] == account.uri
     end
 
-    include_examples 'common behavior' do
+    it_behaves_like 'common behavior' do
       let!(:account)        { Fabricate(:account, domain: 'bob.com', uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
       let!(:local_followee) { Fabricate(:account) }
 

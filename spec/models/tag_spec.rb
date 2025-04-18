@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Tag do
-  include_examples 'Reviewable'
+  it_behaves_like 'Reviewable'
 
   describe 'Validations' do
     describe 'name' do
