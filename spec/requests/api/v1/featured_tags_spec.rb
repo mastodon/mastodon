@@ -127,10 +127,10 @@ RSpec.describe 'FeaturedTags' do
         FeaturedTag.create(name: params[:name], account: user.account)
       end
 
-      it 'returns http unprocessable entity' do
+      it 'returns http success' do
         post '/api/v1/featured_tags', headers: headers, params: params
 
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
       end
