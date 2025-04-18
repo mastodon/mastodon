@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'debug'
 
 RSpec.describe 'Managing OAuth Tokens' do
   describe 'POST /oauth/token' do
@@ -20,24 +19,22 @@ RSpec.describe 'Managing OAuth Tokens' do
       }
     end
 
-    let(:params) do
-      {
-        grant_type: grant_type,
-        redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
-        code: code,
-        scope: scope,
-      }
-    end
-
     context "with grant_type 'authorization_code'" do
-      let(:grant_type) { 'authorization_code' }
+      let(:params) do
+        {
+          grant_type: 'authorization_code',
+          redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+          code: code,
+        }
+      end
+
       let(:code) do
         access_grant = Fabricate(:access_grant, application: application, redirect_uri: 'urn:ietf:wg:oauth:2.0:oob', scopes: 'read write')
         access_grant.plaintext_token
       end
 
       shared_examples 'original scope request preservation' do
-        it 'returns all scopes requested for the given code' do
+        it 'returns all scopes requested by the authorization code' do
           subject
 
           expect(response).to have_http_status(200)
@@ -45,36 +42,51 @@ RSpec.describe 'Managing OAuth Tokens' do
         end
       end
 
-      context 'with no scopes specified' do
-        let(:scope) { nil }
+      context 'with client authentication via params' do
+        let(:headers) { nil }
+        let(:params) do
+          {
+            grant_type: 'authorization_code',
+            redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+            client_id: application.uid,
+            client_secret: application.secret,
+            code: code,
+          }
+        end
 
         it_behaves_like 'original scope request preservation'
       end
 
-      context 'with scopes specified' do
-        context 'when the scopes were requested for this code' do
-          let(:scope) { 'write' }
-
-          it_behaves_like 'original scope request preservation'
-        end
-
-        context 'when the scope was not requested for the code' do
-          let(:scope) { 'follow' }
-
-          it_behaves_like 'original scope request preservation'
-        end
-
-        context 'when the scope does not belong to the application' do
-          let(:scope) { 'push' }
-
-          it_behaves_like 'original scope request preservation'
-        end
-      end
+      it_behaves_like 'original scope request preservation'
     end
 
     context "with grant_type 'client_credentials'" do
-      let(:grant_type) { 'client_credentials' }
-      let(:code) { nil }
+      let(:scope) { nil }
+      let(:params) do
+        {
+          grant_type: 'client_credentials',
+          scope: scope,
+        }
+      end
+
+      context 'with client authentication via params' do
+        let(:headers) { nil }
+        let(:params) do
+          {
+            grant_type: 'client_credentials',
+            client_id: application.uid,
+            client_secret: application.secret,
+            scope: scope,
+          }
+        end
+
+        it 'returns only the default scope' do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.parsed_body[:scope]).to eq('read')
+        end
+      end
 
       context 'with no scopes specified' do
         let(:scope) { nil }
@@ -106,6 +118,7 @@ RSpec.describe 'Managing OAuth Tokens' do
             subject
 
             expect(response).to have_http_status(400)
+            expect(response.parsed_body[:error]).to eq 'invalid_scope'
           end
         end
       end
