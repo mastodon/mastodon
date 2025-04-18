@@ -47,7 +47,7 @@ class InstancePresenter < ActiveModelSerializers::Model
   end
 
   def rules
-    Rule.ordered
+    Rule.ordered.includes(:translations)
   end
 
   def user_count
