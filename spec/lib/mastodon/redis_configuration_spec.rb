@@ -207,18 +207,18 @@ RSpec.describe Mastodon::RedisConfiguration do
       end
     end
 
-    include_examples 'setting a different driver'
-    include_examples 'setting a namespace'
-    include_examples 'sentinel support'
+    it_behaves_like 'setting a different driver'
+    it_behaves_like 'setting a namespace'
+    it_behaves_like 'sentinel support'
   end
 
   describe '#sidekiq' do
     subject { redis_environment.sidekiq }
 
-    include_examples 'secondary configuration', 'SIDEKIQ'
-    include_examples 'setting a different driver'
-    include_examples 'setting a namespace'
-    include_examples 'sentinel support', 'SIDEKIQ'
+    it_behaves_like 'secondary configuration', 'SIDEKIQ'
+    it_behaves_like 'setting a different driver'
+    it_behaves_like 'setting a namespace'
+    it_behaves_like 'sentinel support', 'SIDEKIQ'
   end
 
   describe '#cache' do
@@ -256,8 +256,8 @@ RSpec.describe Mastodon::RedisConfiguration do
       end
     end
 
-    include_examples 'secondary configuration', 'CACHE'
-    include_examples 'setting a different driver'
-    include_examples 'sentinel support', 'CACHE'
+    it_behaves_like 'secondary configuration', 'CACHE'
+    it_behaves_like 'setting a different driver'
+    it_behaves_like 'sentinel support', 'CACHE'
   end
 end

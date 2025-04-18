@@ -59,10 +59,10 @@ RSpec.describe Localized do
       sign_in(user)
     end
 
-    include_examples 'default locale'
+    it_behaves_like 'default locale'
   end
 
   context 'with a user who has not signed in' do
-    include_examples 'default locale'
+    it_behaves_like 'default locale'
   end
 end

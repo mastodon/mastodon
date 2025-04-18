@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Auth::RegistrationsController do
   render_views
 
-  shared_examples 'checks for enabled registrations' do |path|
+  shared_examples 'registration mode based responses' do |path|
     context 'when in single user mode and open for registration' do
       before do
         Setting.registrations_mode = 'open'
@@ -156,7 +156,7 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    include_examples 'checks for enabled registrations', :new
+    it_behaves_like 'registration mode based responses', :new
   end
 
   describe 'POST #create' do
@@ -378,7 +378,7 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    include_examples 'checks for enabled registrations', :create
+    it_behaves_like 'registration mode based responses', :create
   end
 
   describe 'DELETE #destroy' do

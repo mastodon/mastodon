@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PreviewCardProvider do
-  include_examples 'Reviewable'
+  it_behaves_like 'Reviewable'
 
   describe 'scopes' do
     let(:trendable_and_reviewed) { Fabricate(:preview_card_provider, trendable: true, reviewed_at: 5.days.ago) }

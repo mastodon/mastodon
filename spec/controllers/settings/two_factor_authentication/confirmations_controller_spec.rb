@@ -34,7 +34,7 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
             get :new, session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
           end
 
-          include_examples 'renders expected page'
+          it_behaves_like 'renders expected page'
         end
 
         it 'redirects if a new otp_secret has not been set in the session' do
@@ -94,7 +94,7 @@ RSpec.describe Settings::TwoFactorAuthentication::ConfirmationsController do
               .to include(I18n.t('otp_authentication.wrong_code'))
           end
 
-          include_examples 'renders expected page'
+          it_behaves_like 'renders expected page'
         end
 
         private
