@@ -23,7 +23,7 @@ RSpec.describe ApplicationController do
     end
   end
 
-  shared_examples 'respond_with_error' do |code|
+  shared_examples 'error response' do |code|
     it "returns http #{code} for http and renders template" do
       subject
 
@@ -51,7 +51,7 @@ RSpec.describe ApplicationController do
       post 'success'
     end
 
-    it_behaves_like 'respond_with_error', 422
+    it_behaves_like 'error response', 422
   end
 
   describe 'helper_method :current_account' do
@@ -123,7 +123,7 @@ RSpec.describe ApplicationController do
       get 'routing_error'
     end
 
-    it_behaves_like 'respond_with_error', 404
+    it_behaves_like 'error response', 404
   end
 
   context 'with ActiveRecord::RecordNotFound' do
@@ -132,7 +132,7 @@ RSpec.describe ApplicationController do
       get 'record_not_found'
     end
 
-    it_behaves_like 'respond_with_error', 404
+    it_behaves_like 'error response', 404
   end
 
   context 'with ActionController::InvalidAuthenticityToken' do
@@ -141,7 +141,7 @@ RSpec.describe ApplicationController do
       get 'invalid_authenticity_token'
     end
 
-    it_behaves_like 'respond_with_error', 422
+    it_behaves_like 'error response', 422
   end
 
   describe 'before_action :check_suspension' do
@@ -186,7 +186,7 @@ RSpec.describe ApplicationController do
       get 'route_forbidden'
     end
 
-    it_behaves_like 'respond_with_error', 403
+    it_behaves_like 'error response', 403
   end
 
   describe 'not_found' do
@@ -201,7 +201,7 @@ RSpec.describe ApplicationController do
       get 'route_not_found'
     end
 
-    it_behaves_like 'respond_with_error', 404
+    it_behaves_like 'error response', 404
   end
 
   describe 'gone' do
@@ -216,7 +216,7 @@ RSpec.describe ApplicationController do
       get 'route_gone'
     end
 
-    it_behaves_like 'respond_with_error', 410
+    it_behaves_like 'error response', 410
   end
 
   describe 'unprocessable_entity' do
@@ -231,6 +231,6 @@ RSpec.describe ApplicationController do
       get 'route_unprocessable_entity'
     end
 
-    it_behaves_like 'respond_with_error', 422
+    it_behaves_like 'error response', 422
   end
 end
