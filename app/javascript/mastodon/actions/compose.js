@@ -82,6 +82,7 @@ export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
 export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
 
 export const COMPOSE_CHANGE_IS_SCHEDULED = 'COMPOSE_CHANGE_IS_SCHEDULED';
+export const COMPOSE_CHANGE_SCHEDULE_TIME = 'COMPOSE_CHANGE_SCHEDULE_TIME';
 
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
@@ -841,5 +842,12 @@ export const changeMediaOrder = (a, b) => ({
 export function changeIsScheduled() {
   return {
     type: COMPOSE_CHANGE_IS_SCHEDULED,
+  };
+}
+
+export function changeScheduleTime(value) {
+  return {
+    type: COMPOSE_CHANGE_SCHEDULE_TIME,
+    value,
   };
 }
