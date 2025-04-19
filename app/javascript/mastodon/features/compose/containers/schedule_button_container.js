@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import ScheduleIcon from '@/material-icons/400-20px/schedule.svg?react';
 import { IconButton } from "@/mastodon/components/icon_button";
 
-import { changeIsScheduled } from '../../actions/compose';
+import { changeIsScheduled } from '../../../actions/compose';
 
 
 
