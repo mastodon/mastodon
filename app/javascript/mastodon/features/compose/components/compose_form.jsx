@@ -319,6 +319,7 @@ class ComposeForm extends ImmutablePureComponent {
               <input 
                 className='search__input'
                 type='datetime-local'
+                value={this.props.schedule_time}
               />
             </div>
           </div>

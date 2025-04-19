@@ -1,6 +1,6 @@
 import { injectIntl, defineMessages } from "react-intl";
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 import ScheduleIcon from '@/material-icons/400-20px/schedule.svg?react';
 import { IconButton } from "@/mastodon/components/icon_button";

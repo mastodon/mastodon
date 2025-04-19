@@ -96,7 +96,7 @@ const initialState = ImmutableMap({
     dirty: false,
   }),
 
-  schedule_time: new Date().toLocaleString('zh-CN').split('/').join('-').split(' ').join('T')+'.0',
+  schedule_time: new Date().toISOString().substring(0,16),
   schedule_timezone: new Date().getTimezoneOffset() > 0?'-':'+' + (0 - new Date().getTimezoneOffset() / 60) + ':' + ((0 - new Date().getTimezoneOffset() % 60) === 30 ? '30' :'00'),
   is_scheduled: false,
   scheduled_at: null,
@@ -569,7 +569,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_CHANGE_IS_SCHEDULED:
     return state.withMutations(map => {
       map.set('is_scheduled', !state.get('is_scheduled'));
-      map.set('scheduled_at', state.get('schedule_time') + state.get('schedule_timezone'));
+      map.set('scheduled_at', state.get('schedule_time') + ':00.0' + state.get('schedule_timezone'));
       map.set('idempotencyKey', uuid());      
     });
   default:

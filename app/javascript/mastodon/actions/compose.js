@@ -840,6 +840,6 @@ export const changeMediaOrder = (a, b) => ({
 
 export function changeIsScheduled() {
   return {
-    type: COMPOSE_IS_SCHEDULED_CHANGE,
+    type: COMPOSE_CHANGE_IS_SCHEDULED,
   };
 }
