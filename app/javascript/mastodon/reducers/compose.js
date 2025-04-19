@@ -96,8 +96,8 @@ const initialState = ImmutableMap({
     dirty: false,
   }),
 
-  schedule_time: new Date().toISOString().substring(0,16),
-  schedule_timezone: new Date().getTimezoneOffset() > 0?'-':'+' + (0 - new Date().getTimezoneOffset() / 60) + ':' + ((0 - new Date().getTimezoneOffset() % 60) === 30 ? '30' :'00'),
+  schedule_time: null,
+  schedule_timezone: null,
   is_scheduled: false,
   scheduled_at: null,
 });
