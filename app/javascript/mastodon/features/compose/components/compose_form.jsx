@@ -71,6 +71,11 @@ class ComposeForm extends ImmutablePureComponent {
     singleColumn: PropTypes.bool,
     lang: PropTypes.string,
     maxChars: PropTypes.number,
+
+    schedule_time: PropTypes.string,
+    schedule_timezone: PropTypes.string,
+    is_scheduled: PropTypes.bool.isRequired,
+    scheduled_at: PropTypes.string,
   };
 
   static defaultProps = {
@@ -312,6 +317,7 @@ class ComposeForm extends ImmutablePureComponent {
             <div>
               <label>计划时间（UTC）</label>
               <input 
+                className='search__input'
                 type='datetime-local'
               />
             </div>

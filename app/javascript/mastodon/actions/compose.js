@@ -81,6 +81,8 @@ export const COMPOSE_CHANGE_MEDIA_ORDER       = 'COMPOSE_CHANGE_MEDIA_ORDER';
 export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
 export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
 
+export const COMPOSE_CHANGE_IS_SCHEDULED = 'COMPOSE_CHANGE_IS_SCHEDULED';
+
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
   uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
@@ -835,3 +837,9 @@ export const changeMediaOrder = (a, b) => ({
   a,
   b,
 });
+
+export function changeIsScheduled() {
+  return {
+    type: COMPOSE_IS_SCHEDULED_CHANGE,
+  };
+}

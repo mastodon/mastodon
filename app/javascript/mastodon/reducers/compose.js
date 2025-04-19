@@ -50,6 +50,7 @@ import {
   COMPOSE_CHANGE_MEDIA_ORDER,
   COMPOSE_SET_STATUS,
   COMPOSE_FOCUS,
+  COMPOSE_CHANGE_IS_SCHEDULED,
 } from '../actions/compose';
 import { REDRAFT } from '../actions/statuses';
 import { STORE_HYDRATE } from '../actions/store';
@@ -94,6 +95,11 @@ const initialState = ImmutableMap({
     focusY: 0,
     dirty: false,
   }),
+
+  schedule_time: new Date().toLocaleString('zh-CN').split('/').join('-').split(' ').join('T')+'.0',
+  schedule_timezone: new Date().getTimezoneOffset() > 0?'-':'+' + (0 - new Date().getTimezoneOffset() / 60) + ':' + ((0 - new Date().getTimezoneOffset() % 60) === 30 ? '30' :'00'),
+  is_scheduled: false,
+  scheduled_at: null,
 });
 
 const initialPoll = ImmutableMap({
@@ -559,6 +565,12 @@ export default function compose(state = initialState, action) {
       const indexB = list.findIndex(x => x.get('id') === action.b);
 
       return list.splice(indexA, 1).splice(indexB, 0, moveItem);
+    });
+  case COMPOSE_CHANGE_IS_SCHEDULED:
+    return state.withMutations(map => {
+      map.set('is_scheduled', !state.get('is_scheduled'));
+      map.set('scheduled_at', state.get('schedule_time') + state.get('schedule_timezone'));
+      map.set('idempotencyKey', uuid());      
     });
   default:
     return state;

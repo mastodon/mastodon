@@ -1,31 +1,26 @@
-import { injectIntl,defineMessages } from "react-intl";
+import { injectIntl, defineMessages } from "react-intl";
 
 import { connect } from "react-redux";
 
 import ScheduleIcon from '@/material-icons/400-20px/schedule.svg?react';
 import { IconButton } from "@/mastodon/components/icon_button";
 
+import { changeIsScheduled } from '../../actions/compose';
 
 
 
-
-const mapStateToProps = () => ({
+const mapStateToProps = (state) => ({
     iconComponent: ScheduleIcon,
-    title: defineMessages({
-        title: {
-            id: 'compose.schedule_button.title',
-            defaultMessage: 'Schedule',
-        },
-    }),
-    active: false,
-    ariaControls: 'schedule-compose-form',
+    title: 'schedule',
+    active: state.getIn(['compose', 'is_scheduled']),
+    
     size: 18,
     inverted: true,
 });
 
 const mapDispatchToProps = dispatch => ({
     onClick () {
-        dispatch({ type: 'SCHEDULE_COMPOSE' });
+        dispatch(changeIsScheduled());
     },
 });
 
