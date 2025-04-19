@@ -191,6 +191,7 @@ export function submitCompose() {
     const status   = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
     const statusId = getState().getIn(['compose', 'id'], null);
+    const is_scheduled = getState().getIn(['compose', 'is_scheduled']);
 
     if ((!status || !status.length) && media.size === 0) {
       return;
@@ -231,6 +232,7 @@ export function submitCompose() {
         visibility: getState().getIn(['compose', 'privacy']),
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        scheduled_at: is_scheduled ? getState().getIn(['compose', 'scheduled_at']) : null,
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
