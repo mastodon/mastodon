@@ -242,8 +242,21 @@ export function submitCompose() {
         browserHistory.goBack();
       }
 
+      
+      if ('scheduled_at' in response.data) {
+        dispatch(showAlert({
+          message: messages.saved,
+          dismissAfter: 10000,
+        }));
+        dispatch(submitComposeSuccess({ ...response.data.params}));
+        return;
+      }
+      
       dispatch(insertIntoTagHistory(response.data.tags, status));
       dispatch(submitComposeSuccess({ ...response.data }));
+
+      
+      
 
       // To make the app more responsive, immediately push the status
       // into the columns

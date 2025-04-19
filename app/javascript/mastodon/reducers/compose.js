@@ -134,6 +134,8 @@ function clearAll(state) {
     map.update('media_attachments', list => list.clear());
     map.set('poll', null);
     map.set('idempotencyKey', uuid());
+    map.set('schedule_time', null);
+    map.set('is_scheduled', false);
   });
 }
 
