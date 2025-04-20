@@ -136,6 +136,7 @@ function clearAll(state) {
     map.set('idempotencyKey', uuid());
     map.set('schedule_time', null);
     map.set('is_scheduled', false);
+    map.set('scheduled_at', null);
   });
 }
 
@@ -578,7 +579,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_CHANGE_SCHEDULE_TIME:
     return state.withMutations(map => {
       map.set('schedule_time', action.value);
-      map.set('scheduled_at', state.get('schedule_time') + ':00.0' + state.get('schedule_timezone'));
+      map.set('scheduled_at', action.value + ':00.0' + state.get('schedule_timezone'));
       map.set('idempotencyKey', uuid());
     });
   default:
