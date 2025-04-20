@@ -9,12 +9,15 @@ import { useDispatch, useSelector} from 'react-redux';
 
 import { changeScheduleTime } from 'mastodon/actions/compose';
 
-
+const messages = defineMessages({
+    schedule_time: { id: 'compose_form.schedule_time', defaultMessage: '计划发文时间（北京时间）' },
+});
 
 export const ScheduleForm = () => {
     const is_scheduled = useSelector(state => state.getIn(['compose', 'is_scheduled']));
     const schedule_time = useSelector(state => state.getIn(['compose', 'schedule_time']));
     const dispatch = useDispatch();
+    const intl = useIntl();
 
     const handleChange = useCallback(({ target: { value } }) => {
         dispatch(changeScheduleTime(value));
@@ -26,7 +29,7 @@ export const ScheduleForm = () => {
         
     return (
         <div>
-            <label>计划发文时间（北京时间）</label>
+            <label>{intl.formatMessage(messages.schedule_time)}</label>
             <input 
                 className='search__input'
                 type='datetime-local'

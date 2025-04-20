@@ -7,13 +7,16 @@ import { IconButton } from "@/mastodon/components/icon_button";
 
 import { changeIsScheduled } from '../../../actions/compose';
 
+const messages = defineMessages({
+    marked: { id: 'compose_form.schedule.marked', defaultMessage: '本文将在以下时间发布'},
+    unmarked: { id: 'compose_form.schedule.unmarked', defaultMessage: '文本将立即发布'},
+})
 
-
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, { intl }) => ({
     iconComponent: ScheduleIcon,
-    title: 'schedule',
+    title: intl.formatMessage(state.getIn(['compose', 'is_scheduled']) ? messages.marked : messages.unmarked),
     active: state.getIn(['compose', 'is_scheduled']),
-    
+    ariaControls: 'schedule-publish',
     size: 18,
     inverted: true,
 });
