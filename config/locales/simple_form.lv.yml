@@ -25,7 +25,7 @@ lv:
         type_html: Izvēlies, ko darīt ar <strong>%{acct}</strong>
         types:
           disable: Neļauj lietotājam izmantot savu kontu, bet neizdzēs vai neslēp tā saturu.
-          none: Izmanto šo, lai nosūtītu lietotājam brīdinājumu, neradot nekādas citas darbības.
+          none: Šis ir izmantojams, lai nosūtītu lietotājam brīdinājumu bez jebkādu citu darbību izraisīšanas.
           sensitive: Visus šī lietotāja informācijas nesēju pielikumus uzspiesti atzīmēt kā jūtīgus.
           silence: Neļaut lietotājam veikt ierakstus ar publisku redzamību, paslēpt viņa ierakstus un paziņojumus no cilvēkiem, kas tam neseko. Tiek aizvērti visi ziņojumi par šo kontu.
           suspend: Novērs jebkādu mijiedarbību no šī konta vai uz to un dzēs tā saturu. Atgriežams 30 dienu laikā. Tiek aizvērti visi šī konta pārskati.
@@ -45,8 +45,8 @@ lv:
         context: Viens vai vairāki konteksti, kur jāpiemēro filtrs
         current_password: Drošības nolūkos, lūdzu, ievadi pašreizējā konta paroli
         current_username: Lai apstiprinātu, lūdzu, ievadi pašreizējā konta paroli
-        digest: Tiek nosūtīts tikai pēc ilgstošas bezdarbības un tikai tad, ja savas prombūtnes laikā esi saņēmis jebkādas personīgas ziņas
-        email: Tev tiks nosūtīts apstiprinājuma e-pasts
+        digest: Tiek nosūtīts tikai pēc ilgstošas bezdarbības un tikai tad, ja savas prombūtnes laikā saņēmi jebkādas personīgas ziņas
+        email: Tev tiks nosūtīts apstiprinājuma e-pasta ziņojums
         header: WEBP, PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
         inbox_url: Nokopē URL no tā releja sākumlapas, kuru vēlies izmantot
         irreversible: Filtrētās ziņas neatgriezeniski pazudīs, pat ja filtrs vēlāk tiks noņemts
@@ -125,7 +125,7 @@ lv:
         hint: Izvēles. Sniedz vairāk informācijas par noteikumu
         text: Jāapraksta nosacījums vai prasība šī servera lietotājiem. Jāmēģina to veidot īsu un vienkāršu
       sessions:
-        otp: 'Jāievada tālruņa lietotnes izveidots divpakāpju kods vai jāizmanto viens no saviem atkopes kodie:'
+        otp: 'Jāievada tālruņa lietotnes izveidots divpakāpju kods vai jāizmanto viens no saviem atkopes kodiem:'
         webauthn: Ja tā ir USB atslēga, noteikti ievieto to un, ja nepieciešams, pieskaries tai.
       settings:
         indexable: Tava profila lapa var tikt parādīta Google, Bing un citu meklēšanas dzinēju rezultātos.
@@ -213,7 +213,7 @@ lv:
         max_uses: Maksimālais lietojumu skaits
         new_password: Jauna parole
         note: Par sevi
-        otp_attempt: Divfaktoru kods
+        otp_attempt: Divpakāpju kods
         password: Parole
         phrase: Atslēgvārds vai frāze
         setting_advanced_layout: Iespējot paplašināto tīmekļa saskarni

@@ -18,3 +18,8 @@ export const apiFollowAccount = (
 
 export const apiUnfollowAccount = (id: string) =>
   apiRequestPost<ApiRelationshipJSON>(`v1/accounts/${id}/unfollow`);
+
+export const apiRemoveAccountFromFollowers = (id: string) =>
+  apiRequestPost<ApiRelationshipJSON>(
+    `v1/accounts/${id}/remove_from_followers`,
+  );

@@ -4781,19 +4781,6 @@ a.status-card {
   }
 }
 
-.relationship-tag {
-  color: $white;
-  margin-bottom: 4px;
-  display: block;
-  background-color: rgba($black, 0.45);
-  backdrop-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
-  font-size: 11px;
-  text-transform: uppercase;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
 .setting-toggle {
   display: flex;
   align-items: center;
@@ -6679,7 +6666,8 @@ a.status-card {
   pointer-events: none;
 }
 
-.media-gallery__alt__label {
+.media-gallery__alt__label,
+.relationship-tag {
   display: block;
   text-align: center;
   color: $white;
@@ -6698,6 +6686,11 @@ a.status-card {
   &--non-interactive {
     pointer-events: none;
   }
+}
+
+.relationship-tag {
+  text-transform: uppercase;
+  cursor: default;
 }
 
 .media-gallery__alt__popover {
@@ -7774,8 +7767,11 @@ noscript {
 
   &__info {
     position: absolute;
-    top: 10px;
-    inset-inline-start: 10px;
+    top: 20px;
+    inset-inline-end: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
   }
 
   &__image {

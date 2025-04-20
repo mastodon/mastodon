@@ -316,6 +316,7 @@ zh-CN:
         create: 创建公告
         title: 新公告
       preview:
+        disclaimer: 由于用户无法选择退出，电子邮件通知应仅限于重要公告，例如个人数据泄露或服务器关闭通知。
         explanation_html: 此电子邮件将发送给 <strong>%{display_count} 用户</strong>。电子邮件将包含以下文本：
         title: 预览公告通知
       publish: 发布
@@ -471,6 +472,31 @@ zh-CN:
       new:
         title: 导入域名列表
       no_file: 没有选择文件
+    fasp:
+      debug:
+        callbacks:
+          created_at: 创建于
+          delete: 刪除
+          ip: IP 地址
+          request_body: 请求正文
+          title: 调试回调
+      providers:
+        active: 有效
+        base_url: 基础 URL
+        callback: 回调
+        delete: 刪除
+        edit: 编辑提供商
+        finish_registration: 完成注册
+        name: 名称
+        providers: 提供商
+        public_key_fingerprint: 公钥指纹
+        registrations:
+          confirm: 确认
+          reject: 拒绝
+        save: 保存
+        sign_in: 登录
+        status: 状态
+      title: FASP
     follow_recommendations:
       description_html: "<strong>“关注推荐”可帮助新用户快速找到有趣的内容</strong>。 当用户与他人的互动不足以形成个性化的建议时，就会推荐关注这些账号。推荐会每日更新，基于选定语言的近期最高互动数和最多本站关注者数综合评估得出。"
       language: 选择语言
@@ -929,6 +955,7 @@ zh-CN:
         chance_to_review_html: "<strong>服务条款生成后不会自动发布。</strong>你可以审核生成的草稿，填写必要的信息后继续操作。"
         explanation_html: 此服务条款模板仅供参考，不构成法律意见。如有任何法律问题，请咨询法律顾问。
         title: 设置服务条款
+      going_live_on_html: 目前条款，自 %{date} 生效
       history: 历史记录
       live: 生效中
       no_history: 尚无服务条款变更记录。
@@ -1901,6 +1928,7 @@ zh-CN:
     terms_of_service_changed:
       agreement: 继续使用你在 %{domain} 的账号即表示您同意这些条款。如果你不同意更新后的条款，你可以随时删除账号以终止与 %{domain} 的协议。
       changelog: 本次更新的要点如下：
+      description: 你收到此邮件是因为我们更新了 %{domain} 的服务条款。这些更新将于 %{date} 生效。我们建议你在此查看变更后的服务条款：
       sign_off: "%{domain} 运营团队"
       subject: 服务条款变更
       subtitle: "%{domain} 更新了服务条款"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_10_144908) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_11_095859) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -871,6 +871,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_144908) do
     t.string "url"
   end
 
+  create_table "quotes", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "status_id", null: false
+    t.bigint "quoted_status_id"
+    t.bigint "quoted_account_id"
+    t.integer "state", default: 0, null: false
+    t.string "approval_uri"
+    t.string "activity_uri"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "quoted_account_id"], name: "index_quotes_on_account_id_and_quoted_account_id"
+    t.index ["activity_uri"], name: "index_quotes_on_activity_uri", unique: true, where: "(activity_uri IS NOT NULL)"
+    t.index ["approval_uri"], name: "index_quotes_on_approval_uri", where: "(approval_uri IS NOT NULL)"
+    t.index ["quoted_account_id"], name: "index_quotes_on_quoted_account_id"
+    t.index ["quoted_status_id"], name: "index_quotes_on_quoted_status_id"
+    t.index ["status_id"], name: "index_quotes_on_status_id", unique: true
+  end
+
   create_table "relationship_severance_events", force: :cascade do |t|
     t.integer "type", null: false
     t.string "target_name", null: false
@@ -1007,6 +1025,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_144908) do
     t.text "media_descriptions", array: true
     t.string "poll_options", array: true
     t.boolean "sensitive"
+    t.bigint "quote_id"
     t.index ["account_id"], name: "index_status_edits_on_account_id"
     t.index ["status_id"], name: "index_status_edits_on_status_id"
   end
@@ -1350,6 +1369,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_144908) do
   add_foreign_key "polls", "statuses", on_delete: :cascade
   add_foreign_key "preview_card_trends", "preview_cards", on_delete: :cascade
   add_foreign_key "preview_cards", "accounts", column: "author_account_id", on_delete: :nullify
+  add_foreign_key "quotes", "accounts", column: "quoted_account_id", on_delete: :nullify
+  add_foreign_key "quotes", "accounts", on_delete: :cascade
+  add_foreign_key "quotes", "statuses", column: "quoted_status_id", on_delete: :nullify
+  add_foreign_key "quotes", "statuses", on_delete: :cascade
   add_foreign_key "report_notes", "accounts", on_delete: :cascade
   add_foreign_key "report_notes", "reports", on_delete: :cascade
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", name: "fk_bca45b75fd", on_delete: :nullify

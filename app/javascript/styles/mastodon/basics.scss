@@ -17,7 +17,12 @@ body {
   font-weight: 400;
   color: $primary-text-color;
   text-rendering: optimizelegibility;
-  font-feature-settings: 'kern';
+
+  // Disable kerning for Japanese text to preserve monospaced alignment for readability
+  &:not(:lang(ja)) {
+    font-feature-settings: 'kern';
+  }
+
   text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0%);
   -webkit-tap-highlight-color: transparent;

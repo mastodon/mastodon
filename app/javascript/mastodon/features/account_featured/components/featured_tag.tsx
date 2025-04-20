@@ -42,6 +42,7 @@ export const FeaturedTag: React.FC<FeaturedTagProps> = ({ tag, account }) => {
               date: intl.formatDate(tag.get('last_status_at') ?? '', {
                 month: 'short',
                 day: '2-digit',
+                year: 'numeric',
               }),
             })
           : intl.formatMessage(messages.empty)

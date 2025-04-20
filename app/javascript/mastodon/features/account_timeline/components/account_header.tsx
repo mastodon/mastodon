@@ -18,6 +18,7 @@ import {
   unmuteAccount,
   pinAccount,
   unpinAccount,
+  removeAccountFromFollowers,
 } from 'mastodon/actions/accounts';
 import { initBlockModal } from 'mastodon/actions/blocks';
 import { mentionCompose, directCompose } from 'mastodon/actions/compose';
@@ -62,18 +63,6 @@ import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 
 const messages = defineMessages({
-  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  followBack: { id: 'account.follow_back', defaultMessage: 'Follow back' },
-  mutual: { id: 'account.mutual', defaultMessage: 'Mutual' },
-  cancel_follow_request: {
-    id: 'account.cancel_follow_request',
-    defaultMessage: 'Withdraw follow request',
-  },
-  requested: {
-    id: 'account.requested',
-    defaultMessage: 'Awaiting approval. Click to cancel follow request',
-  },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
   linkVerifiedOn: {
@@ -163,6 +152,23 @@ const messages = defineMessages({
   openOriginalPage: {
     id: 'account.open_original_page',
     defaultMessage: 'Open original page',
+  },
+  removeFromFollowers: {
+    id: 'account.remove_from_followers',
+    defaultMessage: 'Remove {name} from followers',
+  },
+  confirmRemoveFromFollowersTitle: {
+    id: 'confirmations.remove_from_followers.title',
+    defaultMessage: 'Remove follower?',
+  },
+  confirmRemoveFromFollowersMessage: {
+    id: 'confirmations.remove_from_followers.message',
+    defaultMessage:
+      '{name} will stop following you. Are you sure you want to proceed?',
+  },
+  confirmRemoveFromFollowersButton: {
+    id: 'confirmations.remove_from_followers.confirm',
+    defaultMessage: 'Remove follower',
   },
 });
 
@@ -495,9 +501,7 @@ export const AccountHeader: React.FC<{
 
         arr.push({
           text: intl.formatMessage(
-            account.getIn(['relationship', 'endorsed'])
-              ? messages.unendorse
-              : messages.endorse,
+            relationship.endorsed ? messages.unendorse : messages.endorse,
           ),
           action: handleEndorseToggle,
         });
@@ -506,6 +510,39 @@ export const AccountHeader: React.FC<{
           action: handleAddToList,
         });
         arr.push(null);
+      }
+
+      if (relationship?.followed_by) {
+        const handleRemoveFromFollowers = () => {
+          dispatch(
+            openModal({
+              modalType: 'CONFIRM',
+              modalProps: {
+                title: intl.formatMessage(
+                  messages.confirmRemoveFromFollowersTitle,
+                ),
+                message: intl.formatMessage(
+                  messages.confirmRemoveFromFollowersMessage,
+                  { name: <strong>{account.acct}</strong> },
+                ),
+                confirm: intl.formatMessage(
+                  messages.confirmRemoveFromFollowersButton,
+                ),
+                onConfirm: () => {
+                  void dispatch(removeAccountFromFollowers({ accountId }));
+                },
+              },
+            }),
+          );
+        };
+
+        arr.push({
+          text: intl.formatMessage(messages.removeFromFollowers, {
+            name: account.username,
+          }),
+          action: handleRemoveFromFollowers,
+          dangerous: true,
+        });
       }
 
       if (relationship?.muting) {
@@ -606,6 +643,8 @@ export const AccountHeader: React.FC<{
 
     return arr;
   }, [
+    dispatch,
+    accountId,
     account,
     relationship,
     permissions,
@@ -637,29 +676,65 @@ export const AccountHeader: React.FC<{
 
   const info: React.ReactNode[] = [];
 
-  if (me !== account.id && relationship?.blocking) {
-    info.push(
-      <span key='blocked' className='relationship-tag'>
-        <FormattedMessage id='account.blocked' defaultMessage='Blocked' />
-      </span>,
-    );
-  }
+  if (me !== account.id && relationship) {
+    if (
+      relationship.followed_by &&
+      (relationship.following || relationship.requested)
+    ) {
+      info.push(
+        <span key='mutual' className='relationship-tag'>
+          <FormattedMessage
+            id='account.mutual'
+            defaultMessage='You follow each other'
+          />
+        </span>,
+      );
+    } else if (relationship.followed_by) {
+      info.push(
+        <span key='followed_by' className='relationship-tag'>
+          <FormattedMessage
+            id='account.follows_you'
+            defaultMessage='Follows you'
+          />
+        </span>,
+      );
+    } else if (relationship.requested_by) {
+      info.push(
+        <span key='requested_by' className='relationship-tag'>
+          <FormattedMessage
+            id='account.requests_to_follow_you'
+            defaultMessage='Requests to follow you'
+          />
+        </span>,
+      );
+    }
 
-  if (me !== account.id && relationship?.muting) {
-    info.push(
-      <span key='muted' className='relationship-tag'>
-        <FormattedMessage id='account.muted' defaultMessage='Muted' />
-      </span>,
-    );
-  } else if (me !== account.id && relationship?.domain_blocking) {
-    info.push(
-      <span key='domain_blocked' className='relationship-tag'>
-        <FormattedMessage
-          id='account.domain_blocked'
-          defaultMessage='Domain blocked'
-        />
-      </span>,
-    );
+    if (relationship.blocking) {
+      info.push(
+        <span key='blocking' className='relationship-tag'>
+          <FormattedMessage id='account.blocking' defaultMessage='Blocking' />
+        </span>,
+      );
+    }
+
+    if (relationship.muting) {
+      info.push(
+        <span key='muting' className='relationship-tag'>
+          <FormattedMessage id='account.muting' defaultMessage='Muting' />
+        </span>,
+      );
+    }
+
+    if (relationship.domain_blocking) {
+      info.push(
+        <span key='domain_blocking' className='relationship-tag'>
+          <FormattedMessage
+            id='account.domain_blocking'
+            defaultMessage='Blocking domain'
+          />
+        </span>,
+      );
+    }
   }
 
   if (relationship?.requested || relationship?.following) {
@@ -746,7 +821,7 @@ export const AccountHeader: React.FC<{
     badges.push(<GroupBadge key='group-badge' />);
   }
 
-  account.get('roles', []).forEach((role) => {
+  account.roles.forEach((role) => {
     badges.push(
       <Badge
         key={`role-badge-${role.get('id')}`}
