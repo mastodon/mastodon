@@ -144,6 +144,9 @@ const config: UserConfigFnPromise = async ({ mode, command }) => {
           enabled: true,
           type: 'module',
         },
+        workbox: {
+          globIgnores: ['assets/tesseract-core*'],
+        },
       }),
       svgr(),
       // manifestSRI(),
