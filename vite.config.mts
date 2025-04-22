@@ -24,7 +24,7 @@ import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 const jsRoot = path.resolve(__dirname, 'app/javascript');
 const entrypointRoot = path.resolve(jsRoot, 'entrypoints');
 
-const config: UserConfigFnPromise = async ({ mode }) => {
+const config: UserConfigFnPromise = async ({ mode, command }) => {
   const entrypointFiles = await fs.readdir(entrypointRoot);
   const entrypoints: Record<string, string> = entrypointFiles.reduce(
     (acc, file) => {
@@ -69,6 +69,7 @@ const config: UserConfigFnPromise = async ({ mode }) => {
       outDir: path.resolve(__dirname, '.dist'),
       emptyOutDir: true,
       manifest: 'manifest.json',
+      sourcemap: true,
       rollupOptions: {
         input: entrypoints,
         output: {
@@ -110,7 +111,9 @@ const config: UserConfigFnPromise = async ({ mode }) => {
       },
     },
     plugins: [
-      RailsPlugin(),
+      RailsPlugin({
+        compress: mode !== 'production' && command === 'build',
+      }),
       react(),
       MastodonServiceWorkerLocales(),
       VitePWA({

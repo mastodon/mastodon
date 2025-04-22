@@ -28,7 +28,7 @@ function main() {
     if (isProduction() && me && 'serviceWorker' in navigator) {
       const { Workbox } = await import('workbox-window');
       const wb = new Workbox(
-        isDevelopment() ? '/vite-dev/dev-sw.js?dev-sw' : '/sw.js',
+        isDevelopment() ? '/packs-dev/dev-sw.js?dev-sw' : '/sw.js',
         { type: 'module', scope: '/' },
       );
       let registration;
