@@ -9,5 +9,5 @@ Fabricator(:web_push_subscription, from: Web::PushSubscription) do
   end
   key_auth { Base64.urlsafe_encode64(Random.new.bytes(16)) }
   user { Fabricate(:user) }
-  access_token { |attrs| Fabricate.build(:access_token, resource_owner_id: attrs[:user].id) }
+  access_token { |attrs| Fabricate.build(:accessible_access_token, resource_owner_id: attrs[:user].id) }
 end
