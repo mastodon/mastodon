@@ -66,8 +66,6 @@ const config: UserConfigFnPromise = async ({ mode, command }) => {
     },
     build: {
       commonjsOptions: { transformMixedEsModules: true },
-      outDir: path.resolve(__dirname, '.dist'),
-      emptyOutDir: true,
       manifest: 'manifest.json',
       sourcemap: true,
       rollupOptions: {
@@ -118,7 +116,9 @@ const config: UserConfigFnPromise = async ({ mode, command }) => {
       MastodonServiceWorkerLocales(),
       VitePWA({
         srcDir: 'mastodon/service_worker',
-        filename: 'sw.js',
+        strategies: 'injectManifest',
+        // Force output in the prod directory so the symlink works.
+        outDir: path.resolve(__dirname, 'public/packs'),
         manifest: false,
         injectRegister: null,
         injectManifest: {
@@ -128,6 +128,8 @@ const config: UserConfigFnPromise = async ({ mode, command }) => {
               MastodonServiceWorkerLocales(),
             ],
           },
+          // Because we move the output dir, we need to scan for assets in the original output directory.
+          globDirectory: env.VITE_RUBY_PUBLIC_OUTPUT_DIR ?? 'public',
           globIgnores: [
             // Do not preload those files
             'intl/*.js',
