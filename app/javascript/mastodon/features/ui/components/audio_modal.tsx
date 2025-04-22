@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { getAverageFromBlurhash } from 'mastodon/blurhash';
 import type { RGB } from 'mastodon/blurhash';
 import { Audio } from 'mastodon/features/audio';
-import Footer from 'mastodon/features/picture_in_picture/components/footer';
+import { Footer } from 'mastodon/features/picture_in_picture/components/footer';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
 import { useAppSelector } from 'mastodon/store';
 
@@ -64,8 +64,7 @@ const AudioModal: React.FC<{
       <div className='media-modal__overlay'>
         {status && (
           <Footer
-            statusId={status.get('id')}
-            // @ts-expect-error Component needs to be refactored
+            statusId={status.get('id') as string}
             withOpenButton
             onClose={onClose}
           />

@@ -8542,22 +8542,32 @@ noscript {
   bottom: 20px;
   inset-inline-end: 20px;
   width: 300px;
+  box-shadow: var(--dropdown-shadow);
 
   &__footer {
     border-radius: 0 0 4px 4px;
-    background: lighten($ui-base-color, 4%);
-    padding: 10px;
-    padding-top: 12px;
+    background: var(--modal-background-variant-color);
+    backdrop-filter: var(--background-filter);
+    border: 1px solid var(--modal-border-color);
+    border-top: 0;
+    padding: 12px;
     display: flex;
     justify-content: space-between;
   }
 
   &__header {
     border-radius: 4px 4px 0 0;
-    background: lighten($ui-base-color, 4%);
-    padding: 10px;
+    background: var(--modal-background-variant-color);
+    backdrop-filter: var(--background-filter);
+    border: 1px solid var(--modal-border-color);
+    border-bottom: 0;
+    padding: 12px;
     display: flex;
     justify-content: space-between;
+
+    .icon-button {
+      padding: 6px;
+    }
 
     &__account {
       display: flex;
@@ -8566,7 +8576,7 @@ noscript {
     }
 
     .account__avatar {
-      margin-inline-end: 10px;
+      margin-inline-end: 8px;
     }
 
     .display-name {
