@@ -12,8 +12,8 @@
 #  standard        :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  access_token_id :bigint(8)
-#  user_id         :bigint(8)
+#  access_token_id :bigint(8)        not null
+#  user_id         :bigint(8)        not null
 #
 
 class Web::PushSubscription < ApplicationRecord
