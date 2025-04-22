@@ -306,6 +306,7 @@ ja:
       title: 操作履歴
       unavailable_instance: "(ドメイン名が利用できません)"
     announcements:
+      back: アナウンスに戻る
       destroyed_msg: お知らせが削除されました
       edit:
         title: お知らせを編集
@@ -314,6 +315,10 @@ ja:
       new:
         create: お知らせを作成
         title: お知らせを追加
+      preview:
+        disclaimer: メール通知はユーザーがオプトアウトできないため、個人データの漏洩やサーバー閉鎖の通知など重要なアナウンスに限定されるべきです。
+        explanation_html: このメールは<strong>%{display_count}ユーザー</strong>へ送られます。次の文章がメールに含まれます：
+        title: アナウンスの通知のプレビュー
       publish: 公開する
       published_msg: お知らせを掲載しました
       scheduled_for: "%{time}に予約"
@@ -470,14 +475,33 @@ ja:
     fasp:
       debug:
         callbacks:
+          created_at: 作成元
           delete: 削除
           ip: IPアドレス
+          request_body: リクエスト本文
+          title: デバッグ　コールバック
       providers:
+        active: アクティブ
+        base_url: 基本URL
+        callback: コールバック
         delete: 削除
+        edit: プロバイダーの編集
+        finish_registration: 登録を完了
         name: 名前
         providers: プロバイダ
         public_key_fingerprint: 公開キーのフィンガープリント
+        registration_requested: 登録がリクエストされました
+        registrations:
+          confirm: 確定
+          description: FASPから登録を受け取りました。自分で登録していないなら拒否してください。自分で登録した場合は、登録を確定する前に名前と鍵のフィンガープリントを慎重に比較してください。
+          reject: 拒否
+          title: FASP登録を確認
         save: 保存
+        select_capabilities: 機能選択
+        sign_in: サインイン
+        status: ステータス
+        title: フェディバース補助サービスプロバイダ
+      title: FASP
     follow_recommendations:
       description_html: "<strong>おすすめフォローは、新規ユーザーが興味のあるコンテンツをすばやく見つけるのに役立ちます。</strong>ユーザーが他のユーザーとの交流を十分にしていない場合、パーソナライズされたおすすめフォローを生成する代わりに、これらのアカウントが表示されます。最近のエンゲージメントが最も高いアカウントと、特定の言語のローカルフォロワー数が最も多いアカウントを組み合わせて､毎日再計算されます。"
       language: 言語
@@ -936,6 +960,7 @@ ja:
         chance_to_review_html: "<strong>生成された利用規約は自動的には公開されません。</strong>結果を確認する機会があります。手続きに必要な詳細を記入してください。"
         explanation_html: 提供された利用規約のテンプレートは情報提供のみを目的としており、いかなる主題に関しても法的助言と見なされるべきではありません。ご自身の状況や具体的な法的質問については、必ずご自身の弁護士に相談してください。
         title: 利用規約の設定
+      going_live_on_html: "%{date}より有効"
       history: 履歴
       live: 公開中
       no_history: 利用規約の変更はまだ記録されていません。
@@ -1872,6 +1897,10 @@ ja:
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
     webauthn: セキュリティキー
   user_mailer:
+    announcement_published:
+      description: "%{domain}の管理者からの告知："
+      subject: サービスに関する告知
+      title: "%{domain}のサービスに関する告知"
     appeal_approved:
       action: アカウント設定
       explanation: "%{strike_date}のストライクに対して、あなたが%{appeal_date}に行った申し立ては承認されました。アカウントは正常な状態に戻りました。"
@@ -1904,6 +1933,8 @@ ja:
     terms_of_service_changed:
       agreement: "%{domain} を引き続き使用することで、これらの条件に同意したことになります。更新された条件に同意しない場合は、アカウントを削除することでいつでも %{domain} との契約を終了することができます。"
       changelog: 一目で分かる、この更新があなたにとって意味することは次の通りです：
+      description: このメールは、%{domain} の利用規約にいくつかの変更が加えられているため発信されました。これらの変更は %{date}より有効です。更新された利用規約をこちらで全てご確認いただくことをお勧めします：
+      description_html: このメールは、%{domain} の利用規約にいくつかの変更が加えられているため発信されました。これらの変更は <strong>%{date}</strong>より有効です。<a href="%{path}" target="_blank">更新された利用規約をこちらで全て</a>ご確認いただくことをお勧めします。
       sign_off: "%{domain} チーム"
       subject: 利用規約の更新
       subtitle: "%{domain} の利用規約が変更されています"

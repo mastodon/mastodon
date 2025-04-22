@@ -49,8 +49,14 @@ fy:
           attributes:
             reblog:
               taken: fan berjocht bestiet al
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: is te betiid, moat nei %{date} wêze
         user:
           attributes:
+            date_of_birth:
+              below_limit: is ûnder de leeftiidsgrins
             email:
               blocked: brûkt in net tastiene e-mailprovider
               unreachable: liket net te bestean

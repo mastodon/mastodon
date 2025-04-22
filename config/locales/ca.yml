@@ -319,6 +319,7 @@ ca:
         create: Crea un anunci
         title: Nou anunci
       preview:
+        disclaimer: Com els usuaris no poden ometre-les, les notificacions per correu-e s'han de limitar a anuncis importants, com de violacions de dades personals o de tancament del servidor.
         explanation_html: 'S''enviarà el correu-e a <strong>%{display_count} usuaris</strong>. S''hi inclourà el text següent:'
         title: Vista prèvia de la notificació d'anunci
       publish: Publica
@@ -486,19 +487,29 @@ ca:
           delete: Elimina
           ip: Adreça IP
           request_body: Solicita el cos
+          title: Depuració de les trucades
       providers:
         active: Actiu
         base_url: URL base
         callback: Torna la trucada
         delete: Elimina
         edit: Editeu el perfil
+        finish_registration: Final del registre
         name: Nom
+        providers: Proveïdors
+        public_key_fingerprint: Empremta de clau pública
+        registration_requested: Petició de registre
         registrations:
           confirm: Confirma
+          description: Heu rebut un registre d'un FASP. Rebutgeu-lo si no l'heu iniciat. Si ho heu fet, compareu amb cura el nom i la clau d'empremta abans de confirmar el registre.
           reject: Rebutja
+          title: Confirmeu el registre a FASP
         save: Desa
+        select_capabilities: Seleccioneu les capacitats
         sign_in: Inicieu la sessió
         status: Estat
+        title: Proveïdors de Serveis Auxiliars del Fedivers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb altres per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen diàriament a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
       language: Per idioma
