@@ -15,12 +15,7 @@ module PremailerBundledAssetStrategy
         headers
       ).presence
     else
-      # Read the file from filesystem
-      vite_path = ViteRuby.instance.manifest.path_for(url)
-
-      return unless vite_path
-
-      path = Rails.public_path.join(vite_path.delete_prefix('/'))
+      path = Rails.public_path.join(url.delete_prefix('/'))
       return unless path.exist?
 
       path.read
