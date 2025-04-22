@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 import { removePictureInPicture } from 'mastodon/actions/picture_in_picture';
-import Audio from 'mastodon/features/audio';
+import { Audio } from 'mastodon/features/audio';
 import { Video } from 'mastodon/features/video';
 import { useAppDispatch, useAppSelector } from 'mastodon/store/typed_functions';
 
@@ -58,14 +58,14 @@ export const PictureInPicture: React.FC = () => {
       player = (
         <Audio
           src={src}
-          currentTime={currentTime}
-          volume={volume}
-          muted={muted}
+          startTime={currentTime}
+          startVolume={volume}
+          startMuted={muted}
+          startPlaying
           poster={poster}
           backgroundColor={backgroundColor}
           foregroundColor={foregroundColor}
           accentColor={accentColor}
-          autoPlay
         />
       );
   }

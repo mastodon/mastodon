@@ -1,0 +1,67 @@
+import { useState, useEffect } from 'react';
+
+const normalizeFrequencies = (arr: Float32Array): number[] => {
+  return new Array(...arr).map((value: number) => {
+    if (value === -Infinity) {
+      return 0;
+    }
+
+    return Math.sqrt(1 - (Math.max(-100, Math.min(-10, value)) * -1) / 100);
+  });
+};
+
+export const useAudioVisualizer = (
+  ref: React.MutableRefObject<HTMLAudioElement | null>,
+  numBands: number,
+) => {
+  const [frequencyBands, setFrequencyBands] = useState<number[]>(
+    new Array(numBands).fill(0),
+  );
+
+  useEffect(() => {
+    if (!ref.current) {
+      return;
+    }
+
+    const context = new AudioContext();
+    const source = context.createMediaElementSource(ref.current);
+    const analyzer = context.createAnalyser();
+
+    analyzer.smoothingTimeConstant = 0.6;
+    analyzer.fftSize = 2048;
+
+    const bufferLength = analyzer.frequencyBinCount;
+    const frequencyData = new Float32Array(bufferLength);
+
+    source.connect(analyzer);
+    source.connect(context.destination);
+
+    const updateProgress = () => {
+      analyzer.getFloatFrequencyData(frequencyData);
+
+      const normalizedFrequencies = normalizeFrequencies(
+        frequencyData.slice(100, 600),
+      );
+      const bands: number[] = [];
+      const chunkSize = Math.ceil(normalizedFrequencies.length / numBands);
+
+      for (let i = 0; i < numBands; i++) {
+        const sum = normalizedFrequencies
+          .slice(i * chunkSize, (i + 1) * chunkSize)
+          .reduce((sum, cur) => sum + cur, 0);
+        bands.push(sum / chunkSize);
+      }
+
+      setFrequencyBands(bands);
+    };
+
+    const updateInterval = setInterval(updateProgress, 15);
+
+    return () => {
+      void context.close();
+      clearInterval(updateInterval);
+    };
+  }, [ref, ref.current?.src, numBands]);
+
+  return frequencyBands;
+};
