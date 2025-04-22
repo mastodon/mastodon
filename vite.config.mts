@@ -131,6 +131,7 @@ const config: UserConfigFnPromise = async ({ mode }) => {
             'extra_polyfills-*.js',
             'polyfill-force-*.js',
             'assets/mailer-*.{js,css}',
+            '**/*tesseract*',
           ],
           maximumFileSizeToCacheInBytes: 2 * 1_024 * 1_024, // 2 MiB
         },
