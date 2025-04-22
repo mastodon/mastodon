@@ -18,7 +18,7 @@ function fetchRoot() {
 precacheAndRoute(self.__WB_MANIFEST);
 
 registerRoute(
-  /locale_.*\.js$/,
+  /intl\/.*\.js$/,
   new CacheFirst({
     cacheName: `${CACHE_NAME_PREFIX}locales`,
     plugins: [
