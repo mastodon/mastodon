@@ -307,6 +307,8 @@ RUN \
   ldconfig; \
   # Use Ruby on Rails to create Mastodon assets
   SECRET_KEY_BASE_DUMMY=1 \
+  # Do not run `yarn` when precompiling assets, we already ran it before
+  VITE_RUBY_SKIP_ASSETS_PRECOMPILE_INSTALL=true \
   bundle exec rails assets:precompile; \
   # Cleanup temporary files
   rm -fr /opt/mastodon/tmp;
