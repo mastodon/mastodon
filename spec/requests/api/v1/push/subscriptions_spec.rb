@@ -207,7 +207,8 @@ RSpec.describe 'API V1 Push Subscriptions' do
     Fabricate(
       :web_push_subscription,
       endpoint: create_payload[:subscription][:endpoint],
-      access_token_id: token.id
+      access_token: token,
+      user: user
     )
   end
 end

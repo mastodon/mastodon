@@ -12,13 +12,13 @@
 #  standard        :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  access_token_id :bigint(8)
-#  user_id         :bigint(8)
+#  access_token_id :bigint(8)        not null
+#  user_id         :bigint(8)        not null
 #
 
 class Web::PushSubscription < ApplicationRecord
-  belongs_to :user, optional: true
-  belongs_to :access_token, class_name: 'Doorkeeper::AccessToken', optional: true
+  belongs_to :user
+  belongs_to :access_token, class_name: 'Doorkeeper::AccessToken'
 
   has_one :session_activation, foreign_key: 'web_push_subscription_id', inverse_of: :web_push_subscription, dependent: nil
 
@@ -28,7 +28,7 @@ class Web::PushSubscription < ApplicationRecord
 
   validates_with WebPushKeyValidator
 
-  delegate :locale, to: :associated_user
+  delegate :locale, to: :user
 
   generates_token_for :unsubscribe, expires_in: Web::PushNotificationWorker::TTL
 
@@ -36,24 +36,8 @@ class Web::PushSubscription < ApplicationRecord
     policy_allows_notification?(notification) && alert_enabled_for_notification_type?(notification)
   end
 
-  def associated_user
-    return @associated_user if defined?(@associated_user)
-
-    @associated_user = if user_id.nil?
-                         session_activation.user
-                       else
-                         user
-                       end
-  end
-
   def associated_access_token
-    return @associated_access_token if defined?(@associated_access_token)
-
-    @associated_access_token = if access_token_id.nil?
-                                 find_or_create_access_token.token
-                               else
-                                 access_token.token
-                               end
+    access_token.token
   end
 
   class << self
@@ -64,16 +48,6 @@ class Web::PushSubscription < ApplicationRecord
   end
 
   private
-
-  def find_or_create_access_token
-    Doorkeeper::AccessToken.find_or_create_for(
-      application: Doorkeeper::Application.find_by(superapp: true),
-      resource_owner: user_id || session_activation.user_id,
-      scopes: Doorkeeper::OAuth::Scopes.from_string('read write follow push'),
-      expires_in: Doorkeeper.configuration.access_token_expires_in,
-      use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
-    )
-  end
 
   def alert_enabled_for_notification_type?(notification)
     truthy?(data&.dig('alerts', notification.type.to_s))
