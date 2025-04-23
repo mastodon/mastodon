@@ -58,8 +58,6 @@ jobs:
             ${{ matrix.mode }}-assets
 
       - name: Precompile assets
-        env:
-          VITE_RUBY_SKIP_ASSETS_PRECOMPILE_INSTALL: true
         run: |-
           bin/rails assets:precompile
 
