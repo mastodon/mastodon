@@ -6,5 +6,26 @@
 
   = render form
 
+  %hr.spacer/
+
+  %h4= t('admin.rules.translations')
+
+  %p.hint= t('admin.rules.translations_explanation')
+
+  .table-wrapper
+    %table.table.keywords-table
+      %thead
+        %tr
+          %th= t('admin.rules.translation')
+          %th
+      %tbody
+        = form.simple_fields_for :translations do |translation|
+          = render 'translation_fields', f: translation
+      %tfoot
+        %tr
+          %td{ colspan: 3 }
+            = link_to_add_association form, :translations, class: 'table-action-link', partial: 'translation_fields', 'data-association-insertion-node': '.keywords-table tbody', 'data-association-insertion-method': 'append' do
+              = safe_join([material_symbol('add'), t('admin.rules.add_translation')])
+
   .actions
     = form.button :button, t('generic.save_changes'), type: :submit
