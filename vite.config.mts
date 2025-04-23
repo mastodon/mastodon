@@ -1,5 +1,3 @@
-/// <reference types="vitest/config" />
-
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -11,12 +9,7 @@ import { analyzer } from 'vite-bundle-analyzer';
 import RailsPlugin from 'vite-plugin-rails';
 import { VitePWA } from 'vite-plugin-pwa';
 
-import {
-  configDefaults,
-  defineConfig,
-  ViteUserConfig,
-  UserConfigFnPromise,
-} from 'vitest/config';
+import { defineConfig, UserConfigFnPromise, UserConfig } from 'vite';
 import postcssPresetEnv from 'postcss-preset-env';
 
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
@@ -24,7 +17,7 @@ import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 const jsRoot = path.resolve(__dirname, 'app/javascript');
 const entrypointRoot = path.resolve(jsRoot, 'entrypoints');
 
-const config: UserConfigFnPromise = async ({ mode, command }) => {
+export const config: UserConfigFnPromise = async ({ mode, command }) => {
   const entrypointFiles = await fs.readdir(entrypointRoot);
   const entrypoints: Record<string, string> = entrypointFiles.reduce(
     (acc, file) => {
@@ -143,24 +136,7 @@ const config: UserConfigFnPromise = async ({ mode, command }) => {
       optimizeLodashImports() as PluginOption,
       !!process.env.ANALYZE_BUNDLE_SIZE && analyzer({ analyzerMode: 'static' }),
     ],
-    test: {
-      environment: 'jsdom',
-      include: [
-        ...configDefaults.include,
-        '**/__tests__/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-      ],
-      exclude: [
-        ...configDefaults.exclude,
-        '**/node_modules/**',
-        'vendor/**',
-        'config/**',
-        'log/**',
-        'public/**',
-        'tmp/**',
-      ],
-      globals: true,
-    },
-  } satisfies ViteUserConfig;
+  } satisfies UserConfig;
 };
 
 export default defineConfig(config);
