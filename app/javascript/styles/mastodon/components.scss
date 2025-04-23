@@ -8603,30 +8603,36 @@ noscript {
 }
 
 .picture-in-picture-placeholder {
+  border-radius: 8px;
   box-sizing: border-box;
-  border: 2px dashed var(--background-border-color);
-  background: $base-shadow-color;
+  border: 1px dashed var(--background-border-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
-  font-size: 16px;
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 21px;
   font-weight: 500;
   cursor: pointer;
-  color: $darker-text-color;
+  color: $dark-text-color;
   aspect-ratio: 16 / 9;
 
   .icon {
-    width: 24px;
-    height: 24px;
-    margin-bottom: 10px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
   }
 
   &:hover,
-  &:focus,
-  &:active {
-    border-color: lighten($ui-base-color, 12%);
+  &:active,
+  &:focus {
+    color: $darker-text-color;
+  }
+
+  &:focus-visible {
+    outline: $ui-button-focus-outline;
+    border-color: transparent;
   }
 }
 

@@ -24,7 +24,7 @@ import { getHashtagBarForStatus } from 'mastodon/components/hashtag_bar';
 import { Icon } from 'mastodon/components/icon';
 import { IconLogo } from 'mastodon/components/logo';
 import MediaGallery from 'mastodon/components/media_gallery';
-import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
+import { PictureInPicturePlaceholder } from 'mastodon/components/picture_in_picture_placeholder';
 import StatusContent from 'mastodon/components/status_content';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
 import { Audio } from 'mastodon/features/audio';
