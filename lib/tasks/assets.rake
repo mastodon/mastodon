@@ -17,3 +17,6 @@ if Rake::Task.task_defined?('assets:precompile')
     Rake::Task['assets:generate_static_pages'].invoke
   end
 end
+
+# We don't want vite_ruby to run yarn, we do that in a separate step
+Rake::Task['vite:install_dependencies'].clear

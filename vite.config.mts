@@ -1,5 +1,3 @@
-/// <reference types="vitest/config" />
-
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -11,12 +9,7 @@ import { analyzer } from 'vite-bundle-analyzer';
 import RailsPlugin from 'vite-plugin-rails';
 import { VitePWA } from 'vite-plugin-pwa';
 
-import {
-  configDefaults,
-  defineConfig,
-  ViteUserConfig,
-  UserConfigFnPromise,
-} from 'vitest/config';
+import { defineConfig, UserConfigFnPromise, UserConfig } from 'vite';
 import postcssPresetEnv from 'postcss-preset-env';
 
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
@@ -24,7 +17,7 @@ import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 const jsRoot = path.resolve(__dirname, 'app/javascript');
 const entrypointRoot = path.resolve(jsRoot, 'entrypoints');
 
-const config: UserConfigFnPromise = async ({ mode, command }) => {
+export const config: UserConfigFnPromise = async ({ mode, command }) => {
   const entrypointFiles = await fs.readdir(entrypointRoot);
   const entrypoints: Record<string, string> = entrypointFiles.reduce(
     (acc, file) => {
@@ -66,6 +59,7 @@ const config: UserConfigFnPromise = async ({ mode, command }) => {
     },
     build: {
       commonjsOptions: { transformMixedEsModules: true },
+      chunkSizeWarningLimit: 1 * 1024 * 1024, // 1MB
       manifest: 'manifest.json',
       sourcemap: true,
       rollupOptions: {
@@ -112,33 +106,29 @@ const config: UserConfigFnPromise = async ({ mode, command }) => {
       RailsPlugin({
         compress: mode !== 'production' && command === 'build',
       }),
-      react(),
+      react({
+        babel: {
+          plugins: ['formatjs', 'transform-react-remove-prop-types'],
+        },
+      }),
       MastodonServiceWorkerLocales(),
       VitePWA({
         srcDir: 'mastodon/service_worker',
+        // We need to use injectManifest because we use our own service worker
         strategies: 'injectManifest',
-        // Force output in the prod directory so the symlink works.
-        outDir: path.resolve(__dirname, 'public/packs'),
         manifest: false,
-        injectRegister: null,
+        injectRegister: false,
         injectManifest: {
+          // Do not inject a manifest, we dont use precache
+          injectionPoint: undefined,
           buildPlugins: {
             vite: [
               // Provide a virtual import with only the locales used in the ServiceWorker
               MastodonServiceWorkerLocales(),
             ],
           },
-          // Because we move the output dir, we need to scan for assets in the original output directory.
-          globDirectory: env.VITE_RUBY_PUBLIC_OUTPUT_DIR ?? 'public',
-          globIgnores: [
-            // Do not preload those files
-            'intl/*.js',
-            'extra_polyfills-*.js',
-            'polyfill-force-*.js',
-            'assets/mailer-*.{js,css}',
-            '**/*tesseract*',
-          ],
-          maximumFileSizeToCacheInBytes: 2 * 1_024 * 1_024, // 2 MiB
+          // Force the output location, because we have a symlink in `public/sw.js`
+          swDest: path.resolve(__dirname, 'public/packs/sw.js'),
         },
         devOptions: {
           enabled: true,
@@ -151,24 +141,7 @@ const config: UserConfigFnPromise = async ({ mode, command }) => {
       optimizeLodashImports() as PluginOption,
       !!process.env.ANALYZE_BUNDLE_SIZE && analyzer({ analyzerMode: 'static' }),
     ],
-    test: {
-      environment: 'jsdom',
-      include: [
-        ...configDefaults.include,
-        '**/__tests__/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-      ],
-      exclude: [
-        ...configDefaults.exclude,
-        '**/node_modules/**',
-        'vendor/**',
-        'config/**',
-        'log/**',
-        'public/**',
-        'tmp/**',
-      ],
-      globals: true,
-    },
-  } satisfies ViteUserConfig;
+  } satisfies UserConfig;
 };
 
 export default defineConfig(config);

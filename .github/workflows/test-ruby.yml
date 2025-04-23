@@ -49,6 +49,7 @@ jobs:
             public/assets
             public/packs
             public/packs-test
+            tmp/cache/vite
           key: ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
           restore-keys: |
             ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
@@ -62,7 +63,7 @@ jobs:
 
       - name: Archive asset artifacts
         run: |
-          tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs*
+          tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs* tmp/cache/vite/last-build*.json
 
       - uses: actions/upload-artifact@v4
         if: matrix.mode == 'test'
