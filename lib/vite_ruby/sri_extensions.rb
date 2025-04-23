@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
 module ViteRuby::ManifestIntegrityExtension
-  @@integrity_cache = {} # rubocop:disable Style/ClassVars -- We want ClassVars in this case
+  def path_and_integrity_for(name, **)
+    entry = lookup!(name, **)
 
-  def integrity_hash_for(name)
-    lookup(name)&.fetch('integrity', nil)
+    { path: entry.fetch('file'), integrity: entry.fetch('integrity', nil) }
   end
 
   # Find a manifest entry by the *final* file name
   def integrity_hash_for_file(file_name)
-    @@integrity_cache[file_name] ||= begin
+    @integrity_cache ||= {}
+    @integrity_cache[file_name] ||= begin
       entry = manifest.find { |_key, entry| entry['file'] == file_name }
 
       entry[1].fetch('integrity', nil) if entry
