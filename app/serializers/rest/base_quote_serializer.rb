@@ -20,6 +20,6 @@ class REST::BaseQuoteSerializer < ActiveModel::Serializer
   private
 
   def status_filter
-    @status_filter ||= StatusFilter.new(object.quoted_status, current_user&.account, instance_options[:relationships] || {})
+    @status_filter ||= StatusFilter.new(object.quoted_status, current_user&.account, instance_options[:relationships]&.preloaded_account_relations || {})
   end
 end
