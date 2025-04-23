@@ -106,7 +106,11 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       RailsPlugin({
         compress: mode !== 'production' && command === 'build',
       }),
-      react(),
+      react({
+        babel: {
+          plugins: ['formatjs', 'transform-react-remove-prop-types'],
+        },
+      }),
       MastodonServiceWorkerLocales(),
       VitePWA({
         srcDir: 'mastodon/service_worker',
