@@ -1,14 +1,15 @@
 import pg from 'pg';
-import pgConnectionString from 'pg-connection-string';
+import { parse, toClientConfig } from 'pg-connection-string';
 
 import { parseIntFromEnvValue } from './utils.js';
 
 /**
  * @param {NodeJS.ProcessEnv} env the `process.env` value to read configuration from
  * @param {string} environment
+ * @param {import('pino').Logger} logger
  * @returns {pg.PoolConfig} the configuration for the PostgreSQL connection
  */
-export function configFromEnv(env, environment) {
+export function configFromEnv(env, environment, logger) {
   /** @type {Record<string, pg.PoolConfig>} */
   const pgConfigs = {
     development: {
@@ -16,7 +17,11 @@ export function configFromEnv(env, environment) {
       password: env.DB_PASS || pg.defaults.password,
       database: env.DB_NAME || 'mastodon_development',
       host: env.DB_HOST || pg.defaults.host,
-      port: parseIntFromEnvValue(env.DB_PORT, pg.defaults.port ?? 5432, 'DB_PORT')
+      port: parseIntFromEnvValue(
+        env.DB_PORT,
+        pg.defaults.port ?? 5432,
+        'DB_PORT',
+      ),
     },
 
     production: {
@@ -24,76 +29,55 @@ export function configFromEnv(env, environment) {
       password: env.DB_PASS || '',
       database: env.DB_NAME || 'mastodon_production',
       host: env.DB_HOST || 'localhost',
-      port: parseIntFromEnvValue(env.DB_PORT, 5432, 'DB_PORT')
+      port: parseIntFromEnvValue(env.DB_PORT, 5432, 'DB_PORT'),
     },
   };
 
   /**
    * @type {pg.PoolConfig}
    */
-  let baseConfig = {};
+  let config = {};
 
   if (env.DATABASE_URL) {
-    const parsedUrl = pgConnectionString.parse(env.DATABASE_URL);
-
-    // The result of dbUrlToConfig from pg-connection-string is not type
-    // compatible with pg.PoolConfig, since parts of the connection URL may be
-    // `null` when pg.PoolConfig expects `undefined`, as such we have to
-    // manually create the baseConfig object from the properties of the
-    // parsedUrl.
-    //
-    // For more information see:
-    // https://github.com/brianc/node-postgres/issues/2280
-    //
-    // FIXME: clean up once brianc/node-postgres#3128 lands
-    if (typeof parsedUrl.password === 'string') baseConfig.password = parsedUrl.password;
-    if (typeof parsedUrl.host === 'string') baseConfig.host = parsedUrl.host;
-    if (typeof parsedUrl.user === 'string') baseConfig.user = parsedUrl.user;
-    if (typeof parsedUrl.port === 'string' && parsedUrl.port) {
-      const parsedPort = parseInt(parsedUrl.port, 10);
-      if (isNaN(parsedPort)) {
-        throw new Error('Invalid port specified in DATABASE_URL environment variable');
-      }
-      baseConfig.port = parsedPort;
-    }
-    if (typeof parsedUrl.database === 'string') baseConfig.database = parsedUrl.database;
-    if (typeof parsedUrl.options === 'string') baseConfig.options = parsedUrl.options;
-
-    // The pg-connection-string type definition isn't correct, as parsedUrl.ssl
-    // can absolutely be an Object, this is to work around these incorrect
-    // types, including the casting of parsedUrl.ssl to Record<string, any>
-    if (typeof parsedUrl.ssl === 'boolean') {
-      baseConfig.ssl = parsedUrl.ssl;
-    } else if (typeof parsedUrl.ssl === 'object' && !Array.isArray(parsedUrl.ssl) && parsedUrl.ssl !== null) {
-      /** @type {Record<string, any>} */
-      const sslOptions = parsedUrl.ssl;
-      baseConfig.ssl = {};
-
-      baseConfig.ssl.cert = sslOptions.cert;
-      baseConfig.ssl.key = sslOptions.key;
-      baseConfig.ssl.ca = sslOptions.ca;
-      baseConfig.ssl.rejectUnauthorized = sslOptions.rejectUnauthorized;
+    // parse will throw if both useLibpqCompat option is true and the
+    // DATABASE_URL includes uselibpqcompat, so we're handling that case ahead
+    // of time to give a more specific error message:
+    if (env.DATABASE_URL.includes('uselibpqcompat')) {
+      throw new Error(
+        'SECURITY WARNING: Mastodon forces uselibpqcompat mode, do not include it in DATABASE_URL',
+      );
     }
 
-    // Support overriding the database password in the connection URL
-    if (!baseConfig.password && env.DB_PASS) {
-      baseConfig.password = env.DB_PASS;
-    }
+    config = toClientConfig(parse(env.DATABASE_URL, { useLibpqCompat: true }));
   } else if (Object.hasOwn(pgConfigs, environment)) {
-    baseConfig = pgConfigs[environment];
+    config = pgConfigs[environment];
 
     if (env.DB_SSLMODE) {
-      switch(env.DB_SSLMODE) {
-      case 'disable':
-      case '':
-        baseConfig.ssl = false;
-        break;
-      case 'no-verify':
-        baseConfig.ssl = { rejectUnauthorized: false };
-        break;
-      default:
-        baseConfig.ssl = {};
-        break;
+      logger.warn(
+        'Using DB_SSLMODE is not recommended, instead use DATABASE_URL with SSL options',
+      );
+
+      switch (env.DB_SSLMODE) {
+        case 'disable': {
+          config.ssl = false;
+          break;
+        }
+        case 'prefer': {
+          config.ssl.rejectUnauthorized = false;
+          break;
+        }
+        case 'require': {
+          config.ssl.rejectUnauthorized = false;
+          break;
+        }
+        case 'verify-ca': {
+          throw new Error(
+            'SECURITY WARNING: Using sslmode=verify-ca requires specifying a CA with sslrootcert. If a public CA is used, verify-ca allows connections to a server that somebody else may have registered with the CA, making you vulnerable to Man-in-the-Middle attacks. Either specify a custom CA certificate with sslrootcert parameter or use sslmode=verify-full for proper security. This can only be configured using DATABASE_URL.',
+          );
+        }
+        case 'verify-full': {
+          break;
+        }
       }
     }
   } else {
@@ -101,7 +85,7 @@ export function configFromEnv(env, environment) {
   }
 
   return {
-    ...baseConfig,
+    ...config,
     max: parseIntFromEnvValue(env.DB_POOL, 10, 'DB_POOL'),
     connectionTimeoutMillis: 15000,
     // Deliberately set application_name to an empty string to prevent excessive
@@ -134,16 +118,23 @@ export function getPool(config, environment, logger) {
       return async (queryTextOrConfig, values, ...rest) => {
         const start = process.hrtime();
 
-        const result = await originalQuery.apply(pool, [queryTextOrConfig, values, ...rest]);
+        const result = await originalQuery.apply(pool, [
+          queryTextOrConfig,
+          values,
+          ...rest,
+        ]);
 
         const duration = process.hrtime(start);
         const durationInMs = (duration[0] * 1000000000 + duration[1]) / 1000000;
 
-        logger.debug({
-          query: queryTextOrConfig,
-          values,
-          duration: durationInMs
-        }, 'Executed database query');
+        logger.debug(
+          {
+            query: queryTextOrConfig,
+            values,
+            duration: durationInMs,
+          },
+          'Executed database query',
+        );
 
         return result;
       };
