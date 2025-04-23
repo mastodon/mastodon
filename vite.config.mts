@@ -116,36 +116,25 @@ const config: UserConfigFnPromise = async ({ mode, command }) => {
       MastodonServiceWorkerLocales(),
       VitePWA({
         srcDir: 'mastodon/service_worker',
+        // We need to use injectManifest because we use our own service worker
         strategies: 'injectManifest',
-        // Force output in the prod directory so the symlink works.
-        outDir: path.resolve(__dirname, 'public/packs'),
         manifest: false,
-        injectRegister: null,
+        injectRegister: false,
         injectManifest: {
+          // Do not inject a manifest, we dont use precache
+          injectionPoint: undefined,
           buildPlugins: {
             vite: [
               // Provide a virtual import with only the locales used in the ServiceWorker
               MastodonServiceWorkerLocales(),
             ],
           },
-          // Because we move the output dir, we need to scan for assets in the original output directory.
-          globDirectory: env.VITE_RUBY_PUBLIC_OUTPUT_DIR ?? 'public',
-          globIgnores: [
-            // Do not preload those files
-            'intl/*.js',
-            'extra_polyfills-*.js',
-            'polyfill-force-*.js',
-            'assets/mailer-*.{js,css}',
-            '**/*tesseract*',
-          ],
-          maximumFileSizeToCacheInBytes: 2 * 1_024 * 1_024, // 2 MiB
+          // Force the output location, because we have a symlink in `public/sw.js`
+          swDest: path.resolve(__dirname, 'public/packs/sw.js'),
         },
         devOptions: {
           enabled: true,
           type: 'module',
-        },
-        workbox: {
-          globIgnores: ['assets/tesseract-core*'],
         },
       }),
       svgr(),
