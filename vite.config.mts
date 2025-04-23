@@ -128,8 +128,8 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
             ],
           },
           // Force the output location, because we have a symlink in `public/sw.js`
-          swDest: path.resolve(__dirname, 'public/packs/sw.js'),
         },
+        outDir: path.resolve(__dirname, 'public/packs'),
         devOptions: {
           enabled: true,
           type: 'module',
