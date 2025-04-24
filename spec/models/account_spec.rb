@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Account do
-  include_examples 'Account::Search'
-  include_examples 'Reviewable'
+  it_behaves_like 'Account::Search'
+  it_behaves_like 'Reviewable'
 
   context 'with an account record' do
     subject { Fabricate(:account) }
@@ -806,8 +806,8 @@ RSpec.describe Account do
     end
   end
 
-  include_examples 'AccountAvatar', :account
-  include_examples 'AccountHeader', :account
+  it_behaves_like 'AccountAvatar', :account
+  it_behaves_like 'AccountHeader', :account
 
   describe '#increment_count!' do
     subject { Fabricate(:account) }

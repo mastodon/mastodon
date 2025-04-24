@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe LoginActivity do
-  include_examples 'BrowserDetection'
+  it_behaves_like 'BrowserDetection'
 
   describe 'Associations' do
     it { is_expected.to belong_to(:user).required }
