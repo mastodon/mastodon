@@ -68,7 +68,7 @@ RSpec.describe ActivityPub::FetchRemoteAccountService do
         expect(account.domain).to eq 'example.com'
       end
 
-      include_examples 'sets profile data'
+      it_behaves_like 'sets profile data'
     end
 
     context 'when WebFinger presents different domain than URI' do
@@ -91,7 +91,7 @@ RSpec.describe ActivityPub::FetchRemoteAccountService do
         expect(account.domain).to eq 'iscool.af'
       end
 
-      include_examples 'sets profile data'
+      it_behaves_like 'sets profile data'
     end
 
     context 'when WebFinger returns a different URI' do

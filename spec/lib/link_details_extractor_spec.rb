@@ -118,7 +118,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with the first tag is invalid JSON' do
@@ -136,7 +136,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with the first tag is null' do
@@ -154,7 +154,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with preceding block of unsupported LD+JSON' do
@@ -194,7 +194,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with unsupported in same block LD+JSON' do
@@ -218,7 +218,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with author names as array' do
