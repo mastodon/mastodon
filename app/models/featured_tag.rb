@@ -19,7 +19,7 @@ class FeaturedTag < ApplicationRecord
   belongs_to :tag, inverse_of: :featured_tags, optional: true # Set after validation
 
   validates :name, presence: true, on: :create, if: -> { tag_id.nil? }
-  validates :name, format: { with: Tag::HASHTAG_NAME_RE }, on: :create, unless: -> { name.blank? }
+  validates :name, format: { with: Tag::HASHTAG_NAME_RE }, on: :create, allow_blank: true
   validates :tag_id, uniqueness: { scope: :account_id }
 
   validate :validate_featured_tags_limit, on: :create
