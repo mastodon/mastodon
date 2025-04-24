@@ -31,7 +31,8 @@ Rails.application.config.content_security_policy do |p|
   p.worker_src :self, :blob, assets_host
 
   if Rails.env.development?
-    front_end_build_urls = %w(ws http).map { |protocol| "#{protocol}#{ViteRuby.config.https ? 's' : ''}://#{ViteRuby.config.host_with_port}" }
+    # Hacky solution to force CSP to correctly allow localhost, even if ViteRuby is bound to 0.0.0.0.
+    front_end_build_urls = %w(ws http).map { |protocol| "#{protocol}#{ViteRuby.config.https ? 's' : ''}://localhost:#{ViteRuby.config.port}" }
 
     p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url, *front_end_build_urls
     p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host

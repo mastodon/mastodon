@@ -9,6 +9,7 @@ services:
     environment:
       RAILS_ENV: development
       NODE_ENV: development
+      VITE_RUBY_HOST: 0.0.0.0
       BIND: 0.0.0.0
       BOOTSNAP_CACHE_DIR: /tmp
       REDIS_HOST: redis
@@ -27,6 +28,7 @@ services:
     ports:
       - '3000:3000'
       - '3035:3035'
+      - '3036:3036'
       - '4000:4000'
     networks:
       - external_network

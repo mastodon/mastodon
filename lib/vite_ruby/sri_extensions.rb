@@ -22,7 +22,8 @@ module ViteRuby::ManifestIntegrityExtension
     script_paths = entries.map do |entry|
       {
         file: entry.fetch('file'),
-        integrity: entry.fetch('integrity'),
+        # TODO: Secure this so we require the integrity hash outside of dev
+        integrity: entry['integrity'],
       }
     end
 

@@ -53,9 +53,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         // but it needs to be scoped to the whole domain
         'Service-Worker-Allowed': '/',
       },
-      hmr: {
-        clientPort: parseInt(env.VITE_HMR_PORT ?? '3000'),
-      },
     },
     build: {
       commonjsOptions: { transformMixedEsModules: true },
