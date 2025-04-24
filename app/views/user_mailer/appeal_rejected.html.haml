@@ -10,6 +10,6 @@
         %tr
           %td.email-inner-card-td.email-prose
             %p= t 'user_mailer.appeal_rejected.explanation',
-                  appeal_date: l(@appeal.created_at.in_time_zone(@resource.time_zone.presence), format: :with_time_zone),
-                  strike_date: l(@appeal.strike.created_at.in_time_zone(@resource.time_zone.presence), format: :with_time_zone)
+                  appeal_date: l(@appeal.created_at, format: :with_time_zone),
+                  strike_date: l(@appeal.strike.created_at, format: :with_time_zone)
             = render 'application/mailer/button', text: t('user_mailer.appeal_approved.action'), url: root_url

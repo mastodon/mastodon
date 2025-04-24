@@ -22,13 +22,13 @@ class NotificationMailer < ApplicationMailer
   def mention
     return if @status.blank?
 
-    locale_for_account(@me) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(name: @status.account.acct)
     end
   end
 
   def follow
-    locale_for_account(@me) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(name: @account.acct)
     end
   end
@@ -36,7 +36,7 @@ class NotificationMailer < ApplicationMailer
   def favourite
     return if @status.blank?
 
-    locale_for_account(@me) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(name: @account.acct)
     end
   end
@@ -44,13 +44,13 @@ class NotificationMailer < ApplicationMailer
   def reblog
     return if @status.blank?
 
-    locale_for_account(@me) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(name: @account.acct)
     end
   end
 
   def follow_request
-    locale_for_account(@me) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(name: @account.acct)
     end
   end

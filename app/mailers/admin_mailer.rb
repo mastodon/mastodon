@@ -16,7 +16,7 @@ class AdminMailer < ApplicationMailer
   def new_report(report)
     @report = report
 
-    locale_for_account(@me) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance, id: @report.id)
     end
   end
@@ -24,7 +24,7 @@ class AdminMailer < ApplicationMailer
   def new_appeal(appeal)
     @appeal = appeal
 
-    locale_for_account(@me) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance, username: @appeal.account.username)
     end
   end
@@ -32,7 +32,7 @@ class AdminMailer < ApplicationMailer
   def new_pending_account(user)
     @account = user.account
 
-    locale_for_account(@me) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance, username: @account.username)
     end
   end
@@ -42,7 +42,7 @@ class AdminMailer < ApplicationMailer
     @tags                   = tags
     @statuses               = statuses
 
-    locale_for_account(@me) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance)
     end
   end
@@ -50,7 +50,7 @@ class AdminMailer < ApplicationMailer
   def new_software_updates
     @software_updates = SoftwareUpdate.by_version
 
-    locale_for_account(@me) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance)
     end
   end
@@ -58,13 +58,13 @@ class AdminMailer < ApplicationMailer
   def new_critical_software_updates
     @software_updates = SoftwareUpdate.urgent.by_version
 
-    locale_for_account(@me) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance)
     end
   end
 
   def auto_close_registrations
-    locale_for_account(@me) do
+    with_user_settings(@user) do
       mail subject: default_i18n_subject(instance: @instance)
     end
   end
@@ -73,6 +73,7 @@ class AdminMailer < ApplicationMailer
 
   def process_params
     @me = params[:recipient]
+    @user = @me.user
   end
 
   def set_instance
