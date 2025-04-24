@@ -49,8 +49,14 @@ ja:
           attributes:
             reblog:
               taken: は既にブーストされています
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: 早すぎます、%{date}より後でなくてはなりません
         user:
           attributes:
+            date_of_birth:
+              below_limit: 年齢制限を下回っています
             email:
               blocked: は禁止されているメールプロバイダを使用しています
               unreachable: は存在しないようです

@@ -18,7 +18,7 @@ class List < ApplicationRecord
 
   PER_ACCOUNT_LIMIT = 50
 
-  enum :replies_policy, { list: 0, followed: 1, none: 2 }, prefix: :show
+  enum :replies_policy, { list: 0, followed: 1, none: 2 }, prefix: :show, validate: true
 
   belongs_to :account
 

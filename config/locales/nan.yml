@@ -10,17 +10,32 @@ nan:
     followers:
       other: 跟tuè ê
     following: Leh跟tuè
+    instance_actor_flash: Tsit ê口座是虛ê，用來代表tsit臺服侍器，毋是個人用者ê。伊用來做聯邦ê路用，毋好kā停權。
     last_active: 頂kái活動ê時間
     link_verified_on: Tsit ê連結ê所有權佇 %{date} 受檢查
+    nothing_here: Tsia內底無物件！
+    pin_errors:
+      following: Lí著tāi先跟tuè想beh推薦ê用者。
     posts:
       other: PO文
     posts_tab_heading: PO文
+    self_follow_error: 跟tuè家己ê口座無允准
   admin:
+    account_actions:
+      action: 執行動作
+      already_silenced: Tsit ê口座有受著限制。
+      already_suspended: Tsit ê口座已經受停權。
+      title: Kā %{acct} 做審核ê動作
     account_moderation_notes:
       create: 留記錄
       created_msg: 管理記錄成功建立！
       destroyed_msg: 管理記錄成功thâi掉！
     accounts:
+      add_email_domain_block: 封鎖電子phue ê網域
+      approve: 允准
+      approved_msg: 成功審核 %{username} ê註冊申請ah
+      are_you_sure: Lí kám確定？
+      avatar: 標頭
       deleted: Thâi掉ah
       demote: 降級
       destroyed_msg: Teh-beh thâi掉 %{username} ê資料
@@ -39,6 +54,13 @@ nan:
         local: 本地
         remote: 別ê站
         title: 位置
+      remove_avatar: Thâi掉標頭
+      removed_avatar_msg: 成功thâi掉 %{username} ê 標頭影像
+    action_logs:
+      action_types:
+        remove_avatar_user: Thâi掉標頭
+      actions:
+        remove_avatar_user_html: "%{name} thâi掉 %{target} ê標頭"
     instances:
       dashboard:
         instance_languages_dimension: Tsia̍p用ê語言
@@ -54,4 +76,5 @@ nan:
     default_language: Kap界面ê語言sio kâng
   user_mailer:
     welcome:
+      feature_creativity: Mastodon支持聲音、影kap圖片êPO文、容易使用性ê描述、投票、內容ê警告、動畫ê標頭、自訂ê繪文字kap裁縮小圖ê控制等等，幫tsān lí展現家己。無論beh發表藝術作品、音樂，á是podcast，Mastodon佇tsia為lí服務。
       sign_in_action: 登入

@@ -21,7 +21,7 @@ nn:
       one: Tut
       other: Tut
     posts_tab_heading: Tut
-    self_follow_error: Det er ikkje tillate å følgje din eigen konto
+    self_follow_error: Du kan ikkje fylgja deg sjølv
   admin:
     account_actions:
       action: Utfør
@@ -309,6 +309,7 @@ nn:
       title: Revisionslogg
       unavailable_instance: "(domenenamn er utilgjengeleg)"
     announcements:
+      back: Tilbake til kunngjeringane
       destroyed_msg: Kunngjøringen er slettet!
       edit:
         title: Rediger kunngjøring
@@ -317,6 +318,10 @@ nn:
       new:
         create: Lag kunngjøring
         title: Ny kunngjøring
+      preview:
+        disclaimer: Av di folk ikkje kan velja bort epostvarsel, bør du avgrensa dei til viktige kunngjeringar som datainnbrot eller varsel om at tenaren skal stengja.
+        explanation_html: 'Denne eposten blir send til <strong>%{display_count} folk</strong>. Denne teksten vil stå i eposten:'
+        title: Førehandsvis kunngjeringa
       publish: Publiser
       published_msg: Kunngjøring publisert!
       scheduled_for: Planlagt for %{time}
@@ -475,11 +480,41 @@ nn:
       new:
         title: Importer domeneblokkeringar
       no_file: Inga fil vald
+    fasp:
+      debug:
+        callbacks:
+          created_at: Oppretta
+          delete: Slett
+          ip: IP-adresse
+          request_body: Meldingskropp i førespurnaden
+          title: Avlusingstilbakekall
+      providers:
+        active: Aktiv
+        base_url: Basisadresse
+        callback: Tilbakekall
+        delete: Slett
+        edit: Rediger leverandør
+        finish_registration: Fullfør registrering
+        name: Namn
+        providers: Leverandørar
+        public_key_fingerprint: Offentleg nøkkelavtrykk
+        registration_requested: Nokon vil registrera seg
+        registrations:
+          confirm: Stadfest
+          description: Du har fått ei registrering frå ein tenesteleverandør. Avslå registreringa viss du ikkje sette i gang dette. Viss du sette i gang registreringa, må du samanlikna namnet og nøkkelavtrykket nøye før du stadfestar registreringa.
+          reject: Avslå
+          title: Stadfest registrering via tenestetilbydar
+        save: Lagre
+        select_capabilities: Vel eigenskapar
+        sign_in: Logg inn
+        status: Status
+        title: Tilleggstenesteleverandørar for allheimen
+      title: Tenestleverandør
     follow_recommendations:
       description_html: "<strong>Fylgjeforslag hjelper nye brukarar å finna interessant innhald raskt</strong>. Om ein brukar ikkje har samhandla nok med andre til å få tilpassa fylgjeforslag, blir desse kontoane føreslått i staden. Dei blir rekna ut på nytt kvar dag ut frå ei blanding av kva kontoar som har mykje nyleg aktivitet og høgast tal på fylgjarar på eit bestemt språk."
       language: For språk
       status: Status
-      suppress: Demp følgjeforslag
+      suppress: Demp fylgjeforslag
       suppressed: Dempa
       title: Fylgjeforslag
       unsuppress: Nullstill fylgjeforslag
@@ -939,6 +974,7 @@ nn:
         chance_to_review_html: "<strong>Dei genererte bruksvilkåra blir ikkje lagde ut automatisk</strong> Du får høve til å sjå gjennom resultatet og fylla inn dei detaljane som trengst."
         explanation_html: Malen for bruksvilkår er berre til informasjon, og du bør ikkje gå ut frå han som juridiske råd. Viss du har spørsmål om lovverk, bør du spørja ein advokat.
         title: Oppsett for bruksvilkår
+      going_live_on_html: I bruk frå %{date}
       history: Historikk
       live: Direkte
       no_history: Det er ikkje registrert nokon endringar i bruksvilkåra enno.
@@ -1681,9 +1717,9 @@ nn:
     confirm_remove_selected_follows: Er du sikker på at du ikkje vil fylgja desse?
     dormant: I dvale
     follow_failure: Greidde ikkje fylgja alle kontoane du valde.
-    follow_selected_followers: Følg valgte tilhengere
+    follow_selected_followers: Fylg desse som fylgjer deg
     followers: Fylgjarar
-    following: Følginger
+    following: Folk du fylgjer
     invited: Innboden
     last_active: Sist aktiv
     most_recent: Sist
@@ -1904,6 +1940,10 @@ nn:
     recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. <strong>Oppbevar gjenopprettingskodene sikkert</strong>, for eksempel ved å skrive dem ut og gjemme dem på et lurt sted bare du vet om.
     webauthn: Sikkerhetsnøkler
   user_mailer:
+    announcement_published:
+      description: 'Styrarane på %{domain} har ei kunngjering:'
+      subject: Kunngjering om tenesta
+      title: Kunngjering frå %{domain}
     appeal_approved:
       action: Kontoinnstillingar
       explanation: Apellen på prikken mot din kontor på %{strike_date} som du la inn på %{appeal_date} har blitt godkjend. Din konto er nok ein gong i god stand.
@@ -1936,6 +1976,8 @@ nn:
     terms_of_service_changed:
       agreement: Viss du held fram å bruka %{domain}, seier du deg einig i vilkåra. Viss du er usamd i dei oppdaterte vilkåra, kan du slutta å bruka %{domain} når du vil ved å sletta brukarkontoen din.
       changelog: 'Denne oppdateringa, kort fortalt:'
+      description: 'Du får denne eposten fordi me har endra tenestvilkåra på %{domain}. Desse endringane kjem i kraft %{date}. Me oppmodar deg til å sjå på dei oppdaterte vilkåra her:'
+      description_html: Du får denne eposten fordi me har endra tenestvilkåra på %{domain}. Desse endringane kjem i kraft <strong>%{date}</strong>. Me oppmodar deg til å sjå på <a href="%{path}" target="_blank">dei oppdaterte vilkåra her</a>.
       sign_off: Folka på %{domain}
       subject: Endra bruksvilkår
       subtitle: Bruksvilkåra på %{domain} er endra
@@ -1945,7 +1987,7 @@ nn:
       appeal_description: Om du meiner dette er ein feil, kan du sende inn ei klage til gjengen i %{instance}.
       categories:
         spam: Søppelpost
-        violation: Innhald bryter følgjande retningslinjer
+        violation: Innhaldet bryt med desse retningslinene
       explanation:
         delete_statuses: Nokre av innlegga dine er bryt éin eller fleire retningslinjer, og har så blitt fjerna av moderatorene på %{instance}.
         disable: Du kan ikkje lenger bruke kontoen, men profilen din og andre data er intakt. Du kan be om ein sikkerhetskopi av dine data, endre kontoinnstillingar eller slette din konto.

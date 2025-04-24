@@ -132,9 +132,12 @@ RSpec.describe 'Lists' do
       it 'returns http unprocessable entity' do
         subject
 
-        expect(response).to have_http_status(422)
+        expect(response)
+          .to have_http_status(422)
         expect(response.content_type)
           .to start_with('application/json')
+        expect(response.parsed_body)
+          .to include(error: /Replies policy is not included/)
       end
     end
   end

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ActivityPub::ProcessStatusUpdateService do
   subject { described_class.new }
 
-  let!(:status) { Fabricate(:status, text: 'Hello world', account: Fabricate(:account, domain: 'example.com')) }
+  let!(:status) { Fabricate(:status, text: 'Hello world', uri: 'https://example.com/statuses/1234', account: Fabricate(:account, domain: 'example.com')) }
   let(:bogus_mention) { 'https://example.com/users/erroringuser' }
   let(:payload) do
     {
@@ -432,6 +432,394 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         .to eq ['Hello world', 'Hello universe']
       expect(status.reload.edited_at.to_s)
         .to eq '2021-09-08 22:39:25 UTC'
+    end
+  end
+
+  context 'when the status has an existing unverified quote and adds an approval link', feature: :inbound_quotes do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: nil) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    before do
+      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            QuoteAuthorization: 'https://w3id.org/fep/044f#QuoteAuthorization',
+            gts: 'https://gotosocial.org/ns#',
+            interactionPolicy: {
+              '@id': 'gts:interactionPolicy',
+              '@type': '@id',
+            },
+            interactingObject: {
+              '@id': 'gts:interactingObject',
+              '@type': '@id',
+            },
+            interactionTarget: {
+              '@id': 'gts:interactionTarget',
+              '@type': '@id',
+            },
+          },
+        ],
+        type: 'QuoteAuthorization',
+        id: approval_uri,
+        attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
+        interactingObject: ActivityPub::TagManager.instance.uri_for(status),
+        interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
+      }))
+    end
+
+    it 'updates the approval URI and verifies the quote' do
+      expect { subject.call(status, json, json) }
+        .to change(quote, :approval_uri).to(approval_uri)
+        .and change(quote, :state).to('accepted')
+    end
+  end
+
+  context 'when the status has an existing verified quote and removes an approval link', feature: :inbound_quotes do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+      }
+    end
+
+    it 'removes the approval URI and unverifies the quote' do
+      expect { subject.call(status, json, json) }
+        .to change(quote, :approval_uri).to(nil)
+        .and change(quote, :state).to('pending')
+    end
+  end
+
+  context 'when the status adds a verifiable quote', feature: :inbound_quotes do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    before do
+      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            QuoteAuthorization: 'https://w3id.org/fep/044f#QuoteAuthorization',
+            gts: 'https://gotosocial.org/ns#',
+            interactionPolicy: {
+              '@id': 'gts:interactionPolicy',
+              '@type': '@id',
+            },
+            interactingObject: {
+              '@id': 'gts:interactingObject',
+              '@type': '@id',
+            },
+            interactionTarget: {
+              '@id': 'gts:interactionTarget',
+              '@type': '@id',
+            },
+          },
+        ],
+        type: 'QuoteAuthorization',
+        id: approval_uri,
+        attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
+        interactingObject: ActivityPub::TagManager.instance.uri_for(status),
+        interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
+      }))
+    end
+
+    it 'updates the approval URI and verifies the quote' do
+      expect { subject.call(status, json, json) }
+        .to change(status, :quote).from(nil)
+      expect(status.quote.approval_uri).to eq approval_uri
+      expect(status.quote.state).to eq 'accepted'
+    end
+  end
+
+  context 'when the status adds a unverifiable quote', feature: :inbound_quotes do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+      }
+    end
+
+    it 'updates the approval URI but does not verify the quote' do
+      expect { subject.call(status, json, json) }
+        .to change(status, :quote).from(nil)
+      expect(status.quote.approval_uri).to be_nil
+      expect(status.quote.state).to eq 'pending'
+    end
+  end
+
+  context 'when the status removes a verified quote', feature: :inbound_quotes do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': 'https://www.w3.org/ns/activitystreams',
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+      }
+    end
+
+    it 'removes the quote' do
+      expect { subject.call(status, json, json) }
+        .to change { status.reload.quote }.to(nil)
+
+      expect { quote.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
+  context 'when the status removes an unverified quote', feature: :inbound_quotes do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: nil, state: :pending) }
+
+    let(:payload) do
+      {
+        '@context': 'https://www.w3.org/ns/activitystreams',
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+      }
+    end
+
+    it 'removes the quote' do
+      expect { subject.call(status, json, json) }
+        .to change { status.reload.quote }.to(nil)
+
+      expect { quote.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
+  context 'when the status swaps a verified quote with an unverifiable quote', feature: :inbound_quotes do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let(:second_quoted_status) { Fabricate(:status, account: quoted_account) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(second_quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    before do
+      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            QuoteAuthorization: 'https://w3id.org/fep/044f#QuoteAuthorization',
+            gts: 'https://gotosocial.org/ns#',
+            interactionPolicy: {
+              '@id': 'gts:interactionPolicy',
+              '@type': '@id',
+            },
+            interactingObject: {
+              '@id': 'gts:interactingObject',
+              '@type': '@id',
+            },
+            interactionTarget: {
+              '@id': 'gts:interactionTarget',
+              '@type': '@id',
+            },
+          },
+        ],
+        type: 'QuoteAuthorization',
+        id: approval_uri,
+        attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
+        interactingObject: ActivityPub::TagManager.instance.uri_for(status),
+        interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
+      }))
+    end
+
+    it 'updates the URI and unverifies the quote' do
+      expect { subject.call(status, json, json) }
+        .to change { status.quote.quoted_status }.from(quoted_status).to(second_quoted_status)
+        .and change { status.quote.state }.from('accepted')
+
+      expect { quote.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
+  context 'when the status swaps a verified quote with another verifiable quote', feature: :inbound_quotes do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:second_quoted_account) { Fabricate(:account, domain: 'second-quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let(:second_quoted_status) { Fabricate(:status, account: second_quoted_account) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+    let(:second_approval_uri) { 'https://second-quoted.example.com/approvals/2' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(second_quoted_status),
+        quoteAuthorization: second_approval_uri,
+      }
+    end
+
+    before do
+      stub_request(:get, second_approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            QuoteAuthorization: 'https://w3id.org/fep/044f#QuoteAuthorization',
+            gts: 'https://gotosocial.org/ns#',
+            interactionPolicy: {
+              '@id': 'gts:interactionPolicy',
+              '@type': '@id',
+            },
+            interactingObject: {
+              '@id': 'gts:interactingObject',
+              '@type': '@id',
+            },
+            interactionTarget: {
+              '@id': 'gts:interactionTarget',
+              '@type': '@id',
+            },
+          },
+        ],
+        type: 'QuoteAuthorization',
+        id: second_approval_uri,
+        attributedTo: ActivityPub::TagManager.instance.uri_for(second_quoted_status.account),
+        interactingObject: ActivityPub::TagManager.instance.uri_for(status),
+        interactionTarget: ActivityPub::TagManager.instance.uri_for(second_quoted_status),
+      }))
+    end
+
+    it 'updates the URI and unverifies the quote' do
+      expect { subject.call(status, json, json) }
+        .to change { status.quote.quoted_status }.from(quoted_status).to(second_quoted_status)
+        .and change { status.quote.approval_uri }.from(approval_uri).to(second_approval_uri)
+        .and(not_change { status.quote.state })
+
+      expect { quote.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 

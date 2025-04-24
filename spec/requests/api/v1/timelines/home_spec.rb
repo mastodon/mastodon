@@ -26,8 +26,13 @@ RSpec.describe 'Home', :inline_jobs do
       before do
         user.account.follow!(bob)
         user.account.follow!(ana)
-        PostStatusService.new.call(bob, text: 'New toot from bob.')
+        quoted = PostStatusService.new.call(bob, text: 'New toot from bob.')
         PostStatusService.new.call(tim, text: 'New toot from tim.')
+        reblogged = PostStatusService.new.call(tim, text: 'New toot from tim, which will end up boosted.')
+        ReblogService.new.call(bob, reblogged)
+        # TODO: use PostStatusService argument when available rather than manually creating quote
+        quoting = PostStatusService.new.call(bob, text: 'Self-quote from bob.')
+        Quote.create!(status: quoting, quoted_status: quoted, state: :accepted)
         PostStatusService.new.call(ana, text: 'New toot from ana.')
       end
 

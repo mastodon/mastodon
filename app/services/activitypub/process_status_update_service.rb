@@ -16,6 +16,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @account                   = status.account
     @media_attachments_changed = false
     @poll_changed              = false
+    @quote_changed             = false
     @request_id                = request_id
 
     # Only native types can be updated at the moment
@@ -158,7 +159,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
     @status.language     = @status_parser.language
 
-    @significant_changes = text_significantly_changed? || @status.spoiler_text_changed? || @media_attachments_changed || @poll_changed
+    @significant_changes = text_significantly_changed? || @status.spoiler_text_changed? || @media_attachments_changed || @poll_changed || @quote_changed
 
     @status.edited_at = @status_parser.edited_at if significant_changes?
 
@@ -183,6 +184,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     update_tags!
     update_mentions!
     update_emojis!
+    update_quote!
   end
 
   def update_tags!
@@ -259,6 +261,45 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       rescue Seahorse::Client::NetworkingError => e
         Rails.logger.warn "Error storing emoji: #{e}"
       end
+    end
+  end
+
+  def update_quote!
+    return unless Mastodon::Feature.inbound_quotes_enabled?
+
+    quote = nil
+    quote_uri = @status_parser.quote_uri
+
+    if quote_uri.present?
+      approval_uri = @status_parser.quote_approval_uri
+      approval_uri = nil if unsupported_uri_scheme?(approval_uri)
+
+      if @status.quote.present?
+        # If the quoted post has changed, discard the old object and create a new one
+        if @status.quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(@status.quote.quoted_status) != quote_uri
+          @status.quote.destroy
+          quote = Quote.create(status: @status, approval_uri: approval_uri)
+          @quote_changed = true
+        else
+          quote = @status.quote
+          quote.update(approval_uri: approval_uri, state: :pending) if quote.approval_uri != @status_parser.quote_approval_uri
+        end
+      else
+        quote = Quote.create(status: @status, approval_uri: approval_uri)
+        @quote_changed = true
+      end
+    end
+
+    if quote.present?
+      begin
+        quote.save
+        ActivityPub::VerifyQuoteService.new.call(quote, fetchable_quoted_uri: quote_uri, request_id: @request_id)
+      rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
+        ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(30..600).seconds, quote.id, quote_uri, { 'request_id' => @request_id })
+      end
+    elsif @status.quote.present?
+      @status.quote.destroy!
+      @quote_changed = true
     end
   end
 
