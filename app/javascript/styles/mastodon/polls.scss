@@ -1,3 +1,6 @@
+@use 'variables' as *;
+@use 'functions' as *;
+
 .poll {
   margin-top: 16px;
   font-size: 14px;
@@ -34,11 +37,6 @@
     // Those rules need to be entirely separate or they won't work, hence the
     // duplication
     &::-moz-progress-bar {
-      border-radius: 4px;
-      background: darken($ui-primary-color, 5%);
-    }
-
-    &::-ms-fill {
       border-radius: 4px;
       background: darken($ui-primary-color, 5%);
     }

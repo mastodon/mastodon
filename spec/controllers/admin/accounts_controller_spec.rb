@@ -8,7 +8,7 @@ RSpec.describe Admin::AccountsController do
   before { sign_in current_user, scope: :user }
 
   describe 'GET #index' do
-    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let(:current_user) { Fabricate(:admin_user) }
     let(:params) do
       {
         origin: 'local',
@@ -40,19 +40,36 @@ RSpec.describe Admin::AccountsController do
 
       expect(response)
         .to have_http_status(200)
-      expect(assigns(:accounts))
-        .to have_attributes(
-          count: eq(1),
-          klass: be(Account)
-        )
+      expect(accounts_table_rows.size)
+        .to eq(1)
       expect(AccountFilter)
         .to have_received(:new)
         .with(hash_including(params))
     end
+
+    def accounts_table_rows
+      response.parsed_body.css('table.accounts-table tr')
+    end
   end
 
   describe 'GET #show' do
-    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let(:current_user) { Fabricate(:admin_user) }
+
+    describe 'account moderation notes' do
+      let(:account) { Fabricate(:account) }
+
+      it 'includes moderation notes' do
+        note1 = Fabricate(:account_moderation_note, target_account: account, content: 'Note 1 remarks')
+        note2 = Fabricate(:account_moderation_note, target_account: account, content: 'Note 2 remarks')
+
+        get :show, params: { id: account.id }
+        expect(response).to have_http_status(200)
+
+        expect(response.body)
+          .to include(note1.content)
+          .and include(note2.content)
+      end
+    end
 
     context 'with a remote account' do
       let(:account) { Fabricate(:account, domain: 'example.com') }

@@ -6,7 +6,6 @@ br:
     hosted_on: Servijer Mastodon herberc'hiet war %{domain}
     title: Diwar-benn
   accounts:
-    follow: Heuliañ
     followers:
       few: Heulier·ez
       many: Heulier·ez
@@ -27,7 +26,6 @@ br:
     account_moderation_notes:
       create: Leuskel un notenn
     accounts:
-      add_email_domain_block: Stankañ an domani postel
       approve: Aprouiñ
       are_you_sure: Ha sur oc'h?
       avatar: Avatar
@@ -49,6 +47,7 @@ br:
       demote: Argilañ
       disable: Skornañ
       disabled: Skornet
+      display_name: Anv diskouezet
       domain: Domani
       edit: Kemmañ
       email: Postel
@@ -68,6 +67,7 @@ br:
       moderation:
         active: Oberiant
         all: Pep tra
+        disabled: Diweredekaet
         pending: War ober
         silenced: Bevennet
         suspended: Astalet
@@ -79,6 +79,8 @@ br:
       public: Publik
       reject: Nac'hañ
       remove_header: Dilemel an talbenn
+      resend_confirmation:
+        send: Adkas al liamm-kadarnaat
       reset: Adderaouekaat
       reset_password: Adderaouekaat ar ger-tremen
       resubscribe: Adkoumanantiñ
@@ -99,7 +101,14 @@ br:
       web: Web
     action_logs:
       action_types:
+        approve_user: Aprouiñ an implijer
+        change_role_user: Kemmañ perzh an implijer
+        confirm_user: Aprouiñ an implijer
+        create_ip_block: Krouiñ ur reolenn IP
+        create_user_role: Krouiñ ur perzh
+        destroy_ip_block: Dilemel ar reolenn IP
         destroy_status: Dilemel ar c'hannad
+        reset_password_user: Adderaouekaat ar ger-tremen
         update_status: Hizivaat ar c'hannad
       actions:
         destroy_status_html: Dilamet eo bet toud %{target} gant %{name}
@@ -140,12 +149,15 @@ br:
       export: Ezporzhiañ
       import: Enporzhiañ
     domain_blocks:
+      confirm_suspension:
+        cancel: Nullañ
       domain: Domani
       new:
         create: Sevel ur stanker
         severity:
           noop: Hini ebet
           suspend: Astalañ
+      public_comment: Evezhiadenn foran
     email_domain_blocks:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
@@ -157,6 +169,18 @@ br:
         create: Ouzhpenniñ un domani
     export_domain_allows:
       no_file: Restr ebet diuzet
+    fasp:
+      debug:
+        callbacks:
+          delete: Dilemel
+          ip: Chomlec'h IP
+      providers:
+        active: Oberiant
+        delete: Dilemel
+        name: Anv
+        registrations:
+          confirm: Kadarnaat
+        status: Statud
     follow_recommendations:
       status: Statud
       suppressed: Dilamet
@@ -171,6 +195,7 @@ br:
           suspend: Astalañ
         policy: Reolennoù
       dashboard:
+        instance_languages_dimension: Yezhoù pennañ
         instance_statuses_measure: toudoù stoket
       delivery:
         all: Pep tra
@@ -181,6 +206,9 @@ br:
         title: Habaskadur
       purge: Spurjañ
       title: Kevread
+      total_blocked_by_us: Stanket ganeomp
+      total_followed_by_them: Heuliet ganto
+      total_followed_by_us: Heuliet ganeomp
       total_storage: Restroù media stag
     invites:
       filter:
@@ -190,6 +218,7 @@ br:
         title: Sil
       title: Pedadennoù
     ip_blocks:
+      add_new: Krouiñ ur reolenn
       delete: Dilemel
       expires_in:
         '1209600': 2 sizhunvezh
@@ -197,6 +226,9 @@ br:
         '31556952': 1 bloavezh
         '86400': 1 devezh
         '94670856': 3 bloavezh
+      new:
+        title: Krouiñ ur reolenn IP nevez
+      title: Reolennoù IP
     relays:
       delete: Dilemel
       disable: Diweredekaat
@@ -217,6 +249,7 @@ br:
       are_you_sure: Ha sur oc'h?
       comment:
         none: Hini ebet
+      confirm: Kadarnaat
       delete_and_resolve: Dilemel ar c'hannadoù
       forwarded: Treuzkaset
       no_one_assigned: Den ebet
@@ -265,7 +298,7 @@ br:
       original_status: Toud orin
       reblogs: Skignadennoù
       status_changed: Toud kemmet
-      title: Toudoù ar gont
+      status_title: Embannadenn gant @%{name}
       visibility: Gwelusted
       with_media: Gant mediaoù
     strikes:
@@ -286,7 +319,6 @@ br:
           tag_uses_measure: implijoù hollek
         not_usable: N'haller ket en implijout
         title: Hashtagoù diouzh ar c'hiz
-      title: Luskadoù
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
@@ -521,9 +553,6 @@ br:
         two: "%{count} skeudenn"
     pin_errors:
       ownership: N'hallit ket spilhennañ embannadurioù ar re all
-    poll:
-      vote: Mouezhiañ
-    show_more: Diskouez muioc'h
     visibilities:
       direct: War-eeun
       public: Publik

@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -53,43 +55,32 @@ table {
   border-spacing: 0;
 }
 
-html {
-  scrollbar-color: lighten($ui-base-color, 4%) rgba($base-overlay-background, 0.1);
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: $action-button-color var(--background-border-color);
+  }
 }
 
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
+.custom-scrollbars {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
 
-::-webkit-scrollbar-thumb {
-  background: lighten($ui-base-color, 4%);
-  border: 0px none $base-border-color;
-  border-radius: 50px;
-}
+  ::-webkit-scrollbar-thumb {
+    background-color: $action-button-color;
+    border: 2px var(--background-border-color);
+    border-radius: 12px;
+    width: 6px;
+    box-shadow: inset 0 0 0 2px var(--background-border-color);
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: lighten($ui-base-color, 6%);
-}
+  ::-webkit-scrollbar-track {
+    background-color: var(--background-border-color);
+    border-radius: 0px;
+  }
 
-::-webkit-scrollbar-thumb:active {
-  background: lighten($ui-base-color, 4%);
-}
-
-::-webkit-scrollbar-track {
-  border: 0px none $base-border-color;
-  border-radius: 0;
-  background: rgba($base-overlay-background, 0.1);
-}
-
-::-webkit-scrollbar-track:hover {
-  background: $ui-base-color;
-}
-
-::-webkit-scrollbar-track:active {
-  background: $ui-base-color;
-}
-
-::-webkit-scrollbar-corner {
-  background: transparent;
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
 }

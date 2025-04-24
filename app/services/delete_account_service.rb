@@ -13,7 +13,6 @@ class DeleteAccountService < BaseService
     conversation_mutes
     conversations
     custom_filters
-    devices
     domain_blocks
     featured_tags
     follow_requests
@@ -40,7 +39,6 @@ class DeleteAccountService < BaseService
     conversation_mutes
     conversations
     custom_filters
-    devices
     domain_blocks
     featured_tags
     follow_requests
@@ -52,7 +50,8 @@ class DeleteAccountService < BaseService
     owned_lists
     scheduled_statuses
     status_pins
-  )
+    tag_follows
+  ).freeze
 
   ASSOCIATIONS_ON_DESTROY = %w(
     reports

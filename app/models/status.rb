@@ -27,6 +27,7 @@
 #  edited_at                    :datetime
 #  trendable                    :boolean
 #  ordered_media_attachment_ids :bigint(8)        is an Array
+#  fetched_replies_at           :datetime
 #
 
 class Status < ApplicationRecord
@@ -34,10 +35,12 @@ class Status < ApplicationRecord
   include Discard::Model
   include Paginable
   include RateLimitable
+  include Status::FetchRepliesConcern
   include Status::SafeReblogInsert
   include Status::SearchConcern
   include Status::SnapshotConcern
   include Status::ThreadingConcern
+  include Status::Visibility
 
   MEDIA_ATTACHMENTS_LIMIT = 4
 
@@ -51,8 +54,6 @@ class Status < ApplicationRecord
 
   update_index('statuses', :proper)
   update_index('public_statuses', :proper)
-
-  enum :visibility, { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
@@ -92,13 +93,13 @@ class Status < ApplicationRecord
   has_one :status_stat, inverse_of: :status, dependent: nil
   has_one :poll, inverse_of: :status, dependent: :destroy
   has_one :trend, class_name: 'StatusTrend', inverse_of: :status, dependent: nil
+  has_one :quote, inverse_of: :status, dependent: :destroy
 
   validates :uri, uniqueness: true, presence: true, unless: :local?
   validates :text, presence: true, unless: -> { with_media? || reblog? }
   validates_with StatusLengthValidator
   validates_with DisallowedHashtagsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
-  validates :visibility, exclusion: { in: %w(direct limited) }, if: :reblog?
 
   accepts_nested_attributes_for :poll
 
@@ -125,8 +126,6 @@ class Status < ApplicationRecord
   scope :tagged_with_none, lambda { |tag_ids|
     where('NOT EXISTS (SELECT * FROM statuses_tags forbidden WHERE forbidden.status_id = statuses.id AND forbidden.tag_id IN (?))', tag_ids)
   }
-  scope :distributable_visibility, -> { where(visibility: %i(public unlisted)) }
-  scope :list_eligible_visibility, -> { where(visibility: %i(public unlisted private)) }
 
   after_create_commit :trigger_create_webhooks
   after_update_commit :trigger_update_webhooks
@@ -139,7 +138,6 @@ class Status < ApplicationRecord
 
   before_validation :prepare_contents, if: :local?
   before_validation :set_reblog
-  before_validation :set_visibility
   before_validation :set_conversation
   before_validation :set_local
 
@@ -157,21 +155,23 @@ class Status < ApplicationRecord
                    :status_stat,
                    :tags,
                    :preloadable_poll,
-                   preview_cards_status: [:preview_card],
+                   quote: { status: { account: [:account_stat, user: :role] } },
+                   preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
                    account: [:account_stat, user: :role],
-                   active_mentions: { account: :account_stat },
+                   active_mentions: :account,
                    reblog: [
                      :application,
-                     :tags,
                      :media_attachments,
                      :conversation,
                      :status_stat,
+                     :tags,
                      :preloadable_poll,
-                     preview_cards_status: [:preview_card],
+                     quote: { status: { account: [:account_stat, user: :role] } },
+                     preview_cards_status: { preview_card: { author_account: [:account_stat, user: :role] } },
                      account: [:account_stat, user: :role],
-                     active_mentions: { account: :account_stat },
+                     active_mentions: :account,
                    ],
-                   thread: { account: :account_stat }
+                   thread: :account
 
   delegate :domain, to: :account, prefix: true
 
@@ -241,16 +241,6 @@ class Status < ApplicationRecord
     PreviewCardsStatus.where(status_id: id).delete_all
   end
 
-  def hidden?
-    !distributable?
-  end
-
-  def distributable?
-    public_visibility? || unlisted_visibility?
-  end
-
-  alias sign? distributable?
-
   def with_media?
     ordered_media_attachments.any?
   end
@@ -288,7 +278,7 @@ class Status < ApplicationRecord
     else
       map = media_attachments.index_by(&:id)
       ordered_media_attachment_ids.filter_map { |media_attachment_id| map[media_attachment_id] }
-    end
+    end.take(MEDIA_ATTACHMENTS_LIMIT)
   end
 
   def replies_count
@@ -303,12 +293,34 @@ class Status < ApplicationRecord
     status_stat&.favourites_count || 0
   end
 
+  # Reblogs count received from an external instance
+  def untrusted_reblogs_count
+    status_stat&.untrusted_reblogs_count unless local?
+  end
+
+  # Favourites count received from an external instance
+  def untrusted_favourites_count
+    status_stat&.untrusted_favourites_count unless local?
+  end
+
   def increment_count!(key)
-    update_status_stat!(key => public_send(key) + 1)
+    if key == :favourites_count && !untrusted_favourites_count.nil?
+      update_status_stat!(favourites_count: favourites_count + 1, untrusted_favourites_count: untrusted_favourites_count + 1)
+    elsif key == :reblogs_count && !untrusted_reblogs_count.nil?
+      update_status_stat!(reblogs_count: reblogs_count + 1, untrusted_reblogs_count: untrusted_reblogs_count + 1)
+    else
+      update_status_stat!(key => public_send(key) + 1)
+    end
   end
 
   def decrement_count!(key)
-    update_status_stat!(key => [public_send(key) - 1, 0].max)
+    if key == :favourites_count && !untrusted_favourites_count.nil?
+      update_status_stat!(favourites_count: [favourites_count - 1, 0].max, untrusted_favourites_count: [untrusted_favourites_count - 1, 0].max)
+    elsif key == :reblogs_count && !untrusted_reblogs_count.nil?
+      update_status_stat!(reblogs_count: [reblogs_count - 1, 0].max, untrusted_reblogs_count: [untrusted_reblogs_count - 1, 0].max)
+    else
+      update_status_stat!(key => [public_send(key) - 1, 0].max)
+    end
   end
 
   def trendable?
@@ -328,28 +340,24 @@ class Status < ApplicationRecord
   end
 
   class << self
-    def selectable_visibilities
-      visibilities.keys - %w(direct limited)
-    end
-
     def favourites_map(status_ids, account_id)
-      Favourite.select('status_id').where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |f, h| h[f.status_id] = true }
+      Favourite.select(:status_id).where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |f, h| h[f.status_id] = true }
     end
 
     def bookmarks_map(status_ids, account_id)
-      Bookmark.select('status_id').where(status_id: status_ids).where(account_id: account_id).map { |f| [f.status_id, true] }.to_h
+      Bookmark.select(:status_id).where(status_id: status_ids).where(account_id: account_id).to_h { |f| [f.status_id, true] }
     end
 
     def reblogs_map(status_ids, account_id)
-      unscoped.select('reblog_of_id').where(reblog_of_id: status_ids).where(account_id: account_id).each_with_object({}) { |s, h| h[s.reblog_of_id] = true }
+      unscoped.select(:reblog_of_id).where(reblog_of_id: status_ids).where(account_id: account_id).each_with_object({}) { |s, h| h[s.reblog_of_id] = true }
     end
 
     def mutes_map(conversation_ids, account_id)
-      ConversationMute.select('conversation_id').where(conversation_id: conversation_ids).where(account_id: account_id).each_with_object({}) { |m, h| h[m.conversation_id] = true }
+      ConversationMute.select(:conversation_id).where(conversation_id: conversation_ids).where(account_id: account_id).each_with_object({}) { |m, h| h[m.conversation_id] = true }
     end
 
     def pins_map(status_ids, account_id)
-      StatusPin.select('status_id').where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |p, h| h[p.status_id] = true }
+      StatusPin.select(:status_id).where(status_id: status_ids).where(account_id: account_id).each_with_object({}) { |p, h| h[p.status_id] = true }
     end
 
     def from_text(text)
@@ -411,11 +419,6 @@ class Status < ApplicationRecord
 
   def set_poll_id
     update_column(:poll_id, poll.id) if association(:poll).loaded? && poll.present?
-  end
-
-  def set_visibility
-    self.visibility = reblog.visibility if reblog? && visibility.nil?
-    self.visibility = (account.locked? ? :private : :public) if visibility.nil?
   end
 
   def set_conversation

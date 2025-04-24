@@ -8,37 +8,24 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import { followAccount, unfollowAccount } from 'mastodon/actions/accounts';
 import { dismissSuggestion } from 'mastodon/actions/suggestions';
 import { Avatar } from 'mastodon/components/avatar';
-import { Button } from 'mastodon/components/button';
 import { DisplayName } from 'mastodon/components/display_name';
+import { FollowButton } from 'mastodon/components/follow_button';
 import { IconButton } from 'mastodon/components/icon_button';
 import { domain } from 'mastodon/initial_state';
 
 const messages = defineMessages({
-  follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   dismiss: { id: 'follow_suggestions.dismiss', defaultMessage: "Don't show again" },
 });
 
 export const Card = ({ id, source }) => {
   const intl = useIntl();
   const account = useSelector(state => state.getIn(['accounts', id]));
-  const relationship = useSelector(state => state.getIn(['relationships', id]));
   const dispatch = useDispatch();
-  const following = relationship?.get('following') ?? relationship?.get('requested');
-
-  const handleFollow = useCallback(() => {
-    if (following) {
-      dispatch(unfollowAccount(id));
-    } else {
-      dispatch(followAccount(id));
-    }
-  }, [id, following, dispatch]);
 
   const handleDismiss = useCallback(() => {
-    dispatch(dismissSuggestion(id));
+    dispatch(dismissSuggestion({ accountId: id }));
   }, [id, dispatch]);
 
   let label;
@@ -68,13 +55,13 @@ export const Card = ({ id, source }) => {
       </div>
 
       <div className='explore__suggestions__card__body'>
-        <Link to={`/@${account.get('acct')}`}><Avatar account={account} size={48} /></Link>
+        <Link to={`/@${account.get('acct')}`} data-hover-card-account={account.id}><Avatar account={account} size={48} /></Link>
 
         <div className='explore__suggestions__card__body__main'>
           <div className='explore__suggestions__card__body__main__name-button'>
-            <Link className='explore__suggestions__card__body__main__name-button__name' to={`/@${account.get('acct')}`}><DisplayName account={account} /></Link>
+            <Link className='explore__suggestions__card__body__main__name-button__name' to={`/@${account.get('acct')}`} data-hover-card-account={account.id}><DisplayName account={account} /></Link>
             <IconButton iconComponent={CloseIcon} onClick={handleDismiss} title={intl.formatMessage(messages.dismiss)} />
-            <Button text={intl.formatMessage(following ? messages.unfollow : messages.follow)} secondary={following} onClick={handleFollow} />
+            <FollowButton accountId={account.get('id')} />
           </div>
         </div>
       </div>

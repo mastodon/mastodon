@@ -39,12 +39,14 @@ class Form::AdminSettings
     authorized_fetch
     app_icon
     favicon
+    min_age
   ).freeze
 
   INTEGER_KEYS = %i(
     media_cache_retention_period
     content_cache_retention_period
     backups_retention_period
+    min_age
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -69,9 +71,15 @@ class Form::AdminSettings
     favicon
   ).freeze
 
+  DIGEST_KEYS = %i(
+    custom_css
+  ).freeze
+
   OVERRIDEN_SETTINGS = {
     authorized_fetch: :authorized_fetch_mode?,
   }.freeze
+
+  DESCRIPTION_LIMIT = 200
 
   attr_accessor(*KEYS)
 
@@ -82,7 +90,8 @@ class Form::AdminSettings
   validates :show_domain_blocks, inclusion: { in: %w(disabled users all) }, if: -> { defined?(@show_domain_blocks) }
   validates :show_domain_blocks_rationale, inclusion: { in: %w(disabled users all) }, if: -> { defined?(@show_domain_blocks_rationale) }
   validates :media_cache_retention_period, :content_cache_retention_period, :backups_retention_period, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@media_cache_retention_period) || defined?(@content_cache_retention_period) || defined?(@backups_retention_period) }
-  validates :site_short_description, length: { maximum: 200 }, if: -> { defined?(@site_short_description) }
+  validates :min_age, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@min_age) }
+  validates :site_short_description, length: { maximum: DESCRIPTION_LIMIT }, if: -> { defined?(@site_short_description) }
   validates :status_page_url, url: true, allow_blank: true
   validate :validate_site_uploads
 
@@ -120,6 +129,8 @@ class Form::AdminSettings
     KEYS.each do |key|
       next unless instance_variable_defined?(:"@#{key}")
 
+      cache_digest_value(key) if DIGEST_KEYS.include?(key)
+
       if UPLOAD_KEYS.include?(key)
         public_send(key).save
       else
@@ -130,6 +141,18 @@ class Form::AdminSettings
   end
 
   private
+
+  def cache_digest_value(key)
+    Rails.cache.delete(:"setting_digest_#{key}")
+
+    key_value = instance_variable_get(:"@#{key}")
+    if key_value.present?
+      Rails.cache.write(
+        :"setting_digest_#{key}",
+        Digest::SHA256.hexdigest(key_value)
+      )
+    end
+  end
 
   def typecast_value(key, value)
     if BOOLEAN_KEYS.include?(key)

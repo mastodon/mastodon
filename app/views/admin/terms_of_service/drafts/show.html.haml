@@ -1,0 +1,22 @@
+- content_for :page_title do
+  = t('admin.terms_of_service.title')
+
+- content_for :heading do
+  %h2= t('admin.terms_of_service.title')
+  = render partial: 'admin/terms_of_service/links'
+
+= simple_form_for @terms_of_service, url: admin_terms_of_service_draft_path, method: :put do |form|
+  = render 'shared/error_messages', object: @terms_of_service
+
+  .fields-group
+    = form.input :text, wrapper: :with_block_label, input_html: { rows: 8 }
+
+  .fields-group
+    = form.input :changelog, wrapper: :with_block_label, input_html: { rows: 8 }
+
+  .fields-group
+    = form.input :effective_date, wrapper: :with_block_label, as: :date, start_year: Time.zone.today.year
+
+  .actions
+    = form.button :button, t('admin.terms_of_service.save_draft'), type: :submit, name: :action_type, value: :save_draft, class: 'button button-secondary'
+    = form.button :button, t('admin.terms_of_service.publish'), type: :submit, name: :action_type, value: :publish

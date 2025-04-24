@@ -15,9 +15,16 @@ eu:
       user/invite_request:
         text: Arrazoia
     errors:
+      attributes:
+        domain:
+          invalid: ez da domeinu izen baliogarria
+      messages:
+        invalid_domain_on_line: "%{value} ez da domeinu izen baliogarria"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: falta diren etiketak dituzten balioak ditu
             username:
               invalid: letrak, zenbakiak eta azpimarrak soilik izan behar ditu
               reserved: erreserbatuta dago
@@ -33,6 +40,11 @@ eu:
           attributes:
             data:
               malformed: gaizki eratua dago
+        list_account:
+          attributes:
+            account_id:
+              taken: dagoeneko zerrendan dago
+          must_be_following: jarraitutako kontua izan behar da
         status:
           attributes:
             reblog:

@@ -97,30 +97,30 @@ const emojifyTextNode = (node, customEmojis) => {
       const { filename, shortCode } = unicodeMapping[unicode_emoji];
       const title = shortCode ? `:${shortCode}:` : '';
 
-      replacement = document.createElement('picture');
-
       const isSystemTheme = !!document.body?.classList.contains('theme-system');
 
-      if(isSystemTheme) {
-        let source = document.createElement('source');
-        source.setAttribute('media', '(prefers-color-scheme: dark)');
-        source.setAttribute('srcset', `${assetHost}/emoji/${emojiFilename(filename, "dark")}.svg`);
-        replacement.appendChild(source);
-      }
+      const theme = (isSystemTheme || document.body?.classList.contains('theme-mastodon-light')) ? 'light' : 'dark';
 
-      let img = document.createElement('img');
+      const imageFilename = emojiFilename(filename, theme);
+
+      const img = document.createElement('img');
       img.setAttribute('draggable', 'false');
       img.setAttribute('class', 'emojione');
       img.setAttribute('alt', unicode_emoji);
       img.setAttribute('title', title);
+      img.setAttribute('src', `${assetHost}/emoji/${imageFilename}.svg`);
 
-      let theme = "light";
+      if (isSystemTheme && imageFilename !== emojiFilename(filename, 'dark')) {
+        replacement = document.createElement('picture');
 
-      if(!isSystemTheme && !document.body?.classList.contains('theme-mastodon-light'))
-        theme = "dark";
-
-      img.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename, theme)}.svg`);
-      replacement.appendChild(img);
+        const source = document.createElement('source');
+        source.setAttribute('media', '(prefers-color-scheme: dark)');
+        source.setAttribute('srcset', `${assetHost}/emoji/${emojiFilename(filename, 'dark')}.svg`);
+        replacement.appendChild(source);
+        replacement.appendChild(img);
+      } else {
+        replacement = img;
+      }
     }
 
     // Add the processed-up-to-now string and the emoji replacement
@@ -135,7 +135,7 @@ const emojifyTextNode = (node, customEmojis) => {
 };
 
 const emojifyNode = (node, customEmojis) => {
-  for (const child of node.childNodes) {
+  for (const child of Array.from(node.childNodes)) {
     switch(child.nodeType) {
     case Node.TEXT_NODE:
       emojifyTextNode(child, customEmojis);

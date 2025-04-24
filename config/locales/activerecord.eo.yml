@@ -15,11 +15,18 @@ eo:
       user/invite_request:
         text: Kialo
     errors:
+      attributes:
+        domain:
+          invalid: ne estas valida domajna nomo
+      messages:
+        invalid_domain_on_line: "%{value} ne estas valida domajna nomo"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: enhavas valorojn kun mankantaj etikedoj
             username:
-              invalid: nur literoj, ciferoj kaj substrekoj
+              invalid: devas enhavi nur literojn, ciferojn kaj substrekojn
               reserved: rezervita
         admin/webhook:
           attributes:
@@ -33,10 +40,19 @@ eo:
           attributes:
             data:
               malformed: estas misformita
+        list_account:
+          attributes:
+            account_id:
+              taken: jam estas sur la listo
+          must_be_following: devas esti sekvata konto
         status:
           attributes:
             reblog:
               taken: de afiŝo jam ekzistas
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: estas tro frue, devas esti pli malfrue ol %{date}
         user:
           attributes:
             email:

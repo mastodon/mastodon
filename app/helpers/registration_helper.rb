@@ -16,6 +16,6 @@ module RegistrationHelper
   end
 
   def ip_blocked?(remote_ip)
-    IpBlock.where(severity: :sign_up_block).exists?(['ip >>= ?', remote_ip.to_s])
+    IpBlock.severity_sign_up_block.containing(remote_ip.to_s).exists?
   end
 end

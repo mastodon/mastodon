@@ -4,7 +4,7 @@ class Admin::Trends::LinksController < Admin::BaseController
   def index
     authorize :preview_card, :review?
 
-    @locales       = PreviewCardTrend.pluck('distinct language')
+    @locales       = PreviewCardTrend.locales
     @preview_cards = filtered_preview_cards.page(params[:page])
     @form          = Trends::PreviewCardBatch.new
   end
@@ -31,7 +31,8 @@ class Admin::Trends::LinksController < Admin::BaseController
   end
 
   def trends_preview_card_batch_params
-    params.require(:trends_preview_card_batch).permit(:action, preview_card_ids: [])
+    params
+      .expect(trends_preview_card_batch: [:action, preview_card_ids: []])
   end
 
   def action_from_button

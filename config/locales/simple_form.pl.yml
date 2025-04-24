@@ -3,10 +3,11 @@ pl:
   simple_form:
     hints:
       account:
+        attribution_domains: Jedna na linię.
         discoverable: Twój profil i publiczne wpisy mogą być promowane lub polecane na Mastodonie i twój profil może być sugerowany innym użytkownikom.
         display_name: Twoje imię lub pseudonim.
         fields: Co ci się tylko podoba – twoja strona domowa, zaimki, wiek…
-        indexable: Twoje publiczne wpisy mogą pojawiać się w wynikach wyszukiwania w Mastodonie. Użytkownicy, którzy wchodzili w interakcje z twoimi wpisami będą mogli je znaleźć niezależnie od tego ustawienia.
+        indexable: Twoje publiczne wpisy mogą pojawiać się w wynikach wyszukiwania w Mastodonie. Użytkownicy, którzy reagowali na Twoje wpisy, będą mogli je znaleźć niezależnie od tego ustawienia.
         note: 'Możesz @wspomnieć użytkowników albo #hasztagi.'
         show_collections: Twoja lista obserwowanych i obserwujących będzie widoczna dla wszystkich. Użytkownicy których obserwujesz będą jednak o tym wiedzieli.
         unlocked: Inni użytkownicy będą mogli cię obserwować bez proszenia o zgodę. Odznacz, jeżeli chcesz aprobować obserwujących ręcznie po przejrzeniu próśb o obserwowanie.
@@ -59,6 +60,7 @@ pl:
         setting_display_media_default: Ukrywaj zawartość multimedialną oznaczoną jako wrażliwa
         setting_display_media_hide_all: Zawsze ukrywaj zawartość multimedialną
         setting_display_media_show_all: Zawsze pokazuj zawartość multimedialną
+        setting_system_scrollbars_ui: Stosuje się tylko do przeglądarek komputerowych opartych na Safari i Chrome
         setting_use_blurhash: Gradienty są oparte na kolorach ukrywanej zawartości, ale uniewidaczniają wszystkie szczegóły
         setting_use_pending_items: Ukryj aktualizacje osi czasu za kliknięciem, zamiast automatycznego przewijania strumienia
         username: Możesz używać liter, cyfr i podkreślników
@@ -128,9 +130,18 @@ pl:
         show_application: Ty zawsze widzisz program użyty do zamieszczenia.
       tag:
         name: Możesz zmieniać tylko wielkość liter, np. aby były bardziej widoczne
+      terms_of_service:
+        changelog: Może być stworzony przy pomocy składni Markdown.
+        text: Może być stworzony przy pomocy składni Markdown.
+      terms_of_service_generator:
+        admin_email: Zawiadomienia prawne obejmują środki zapobiegawcze, nakazy sądowe, wnioski o popełnienie sprawy oraz wnioski organów ścigania.
+        choice_of_law: Miasto, region, terytorium lub stan, którego wewnętrzne prawo będzie regulowało wszelkie roszczenia.
+        dmca_address: W przypadku operatorów z USA należy użyć adresu zarejestrowanego w DMCA Designated Agent Directory. Lista skrytek pocztowych dostępna jest na bezpośrednią prośbę użytkownika. Użyj DMCA Agent Post Office Box Waiver Request, aby wysłać email do Copyright Office z informacją, że jesteś domowym administratorm treści i z powodu obawy o zemstę lub odwetu za swoje działania, musisz użyć skrytki pocztowej, żeby usunąć swój adres domowy z dostępu publicznego.
+        domain: Unikalny numer identyfikacji świadczonej przez Ciebie usługi online.
+        jurisdiction: Wymień państwo, w którym mieszkają osoby płacące rachunki. Jeżeli jest to spółka lub inny zarejestrowany podmiot, w zależności od przypadku podaj państwo, w którym jest zarejestrowany, a także miasto, region czy województwo.
       user:
         chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
-        role: Rola kontroluje uprawnienia użytkownika
+        role: Rola kontroluje uprawnienia użytkownika.
       user_role:
         color: Kolor używany dla roli w całym interfejsie użytkownika, wyrażony jako RGB w formacie szesnastkowym
         highlighted: To sprawia, że rola jest widoczna publicznie
@@ -143,6 +154,7 @@ pl:
         url: Dokąd będą wysłane zdarzenia
     labels:
       account:
+        attribution_domains: Strony które mogą ci przypisywać autorstwo
         discoverable: Udostępniaj profil i wpisy funkcjom odkrywania
         fields:
           name: Nazwa
@@ -211,6 +223,7 @@ pl:
         setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_delete_modal: Pytaj o potwierdzenie przed usunięciem wpisu
+        setting_disable_hover_cards: Wyłącz podgląd profilu po najechaniu
         setting_disable_swiping: Wyłącz ruchy przesuwania
         setting_display_media: Wyświetlanie zawartości multimedialnej
         setting_display_media_default: Domyślne
@@ -218,8 +231,10 @@ pl:
         setting_display_media_show_all: Pokaż wszystko
         setting_expand_spoilers: Zawsze rozwijaj wpisy oznaczone ostrzeżeniem o zawartości
         setting_hide_network: Ukryj swoją sieć
+        setting_missing_alt_text_modal: Pokaż okno potwierdzenia przed opublikowaniem materiałów bez pomocniczego opisu obrazów
         setting_reduce_motion: Ogranicz ruch w animacjach
         setting_system_font_ui: Używaj domyślnej czcionki systemu
+        setting_system_scrollbars_ui: Używaj domyślnego paska przewijania systemu
         setting_theme: Motyw strony
         setting_trends: Pokazuj dzisiejsze „Na czasie”
         setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem obserwacji
@@ -242,11 +257,13 @@ pl:
           warn: Ukryj z ostrzeżeniem
       form_admin_settings:
         activity_api_enabled: Publikuj zagregowane statystyki dotyczące aktywności użytkownika w API
+        app_icon: Ikona aplikacji
         backups_retention_period: Okres przechowywania archiwum użytkownika
         bootstrap_timeline_accounts: Zawsze rekomenduj te konta nowym użytkownikom
         closed_registrations_message: Niestandardowa wiadomość, gdy rejestracje nie są dostępne
         content_cache_retention_period: Okres zachowywania zdalnych treści
         custom_css: Niestandardowy CSS
+        favicon: Favicon
         mascot: Własna ikona
         media_cache_retention_period: Okres przechowywania pamięci podręcznej
         peers_api_enabled: Opublikuj listę odkrytych serwerów w API
@@ -311,7 +328,19 @@ pl:
         listable: Pozwól, aby ten hashtag pojawiał się w wynikach wyszukiwania i katalogu profilów
         name: Hasztag
         trendable: Pozwól na wyświetlanie tego hashtagu w „Na czasie”
-        usable: Pozwól na umieszczanie tego hashtagu we wpisach
+        usable: Pozwól na umieszczanie tego hashtagu w lokalnych wpisach
+      terms_of_service:
+        changelog: Co się zmieniło?
+        text: Warunki korzystania z usługi
+      terms_of_service_generator:
+        admin_email: Adres e-mail przeznaczony do celów prawnych
+        arbitration_address: Adres fizyczny powiadomień arbitrażowych
+        arbitration_website: Strona internetowa do składania zgłoszeń arbitrażowych
+        choice_of_law: Wybór prawa
+        dmca_address: Adres fizyczny dla zgłoszeń naruszenia DMCA/praw autorskich
+        dmca_email: Adres e-mail dla zgłoszeń naruszenia DMCA/praw autorskich
+        domain: Domena
+        jurisdiction: Jurysdykcja
       user:
         role: Rola
         time_zone: Strefa czasowa

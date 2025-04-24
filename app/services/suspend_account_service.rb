@@ -20,7 +20,7 @@ class SuspendAccountService < BaseService
   private
 
   def reject_remote_follows!
-    return if @account.local? || !@account.activitypub?
+    return if @account.local? || !@account.activitypub? || @account.suspension_origin_remote?
 
     # When suspending a remote account, the account obviously doesn't
     # actually become suspended on its origin server, i.e. unlike a
@@ -95,7 +95,7 @@ class SuspendAccountService < BaseService
             end
           end
 
-          CacheBusterWorker.perform_async(attachment.path(style)) if Rails.configuration.x.cache_buster_enabled
+          CacheBusterWorker.perform_async(attachment.url(style)) if Rails.configuration.x.cache_buster_enabled
         end
       end
     end

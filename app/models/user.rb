@@ -5,41 +5,42 @@
 # Table name: users
 #
 #  id                        :bigint(8)        not null, primary key
-#  email                     :string           default(""), not null
-#  created_at                :datetime         not null
-#  updated_at                :datetime         not null
-#  encrypted_password        :string           default(""), not null
-#  reset_password_token      :string
-#  reset_password_sent_at    :datetime
-#  sign_in_count             :integer          default(0), not null
-#  current_sign_in_at        :datetime
-#  last_sign_in_at           :datetime
+#  age_verified_at           :datetime
+#  approved                  :boolean          default(TRUE), not null
+#  chosen_languages          :string           is an Array
+#  confirmation_sent_at      :datetime
 #  confirmation_token        :string
 #  confirmed_at              :datetime
-#  confirmation_sent_at      :datetime
-#  unconfirmed_email         :string
-#  locale                    :string
+#  consumed_timestep         :integer
+#  current_sign_in_at        :datetime
+#  disabled                  :boolean          default(FALSE), not null
+#  email                     :string           default(""), not null
 #  encrypted_otp_secret      :string
 #  encrypted_otp_secret_iv   :string
 #  encrypted_otp_secret_salt :string
-#  consumed_timestep         :integer
-#  otp_required_for_login    :boolean          default(FALSE), not null
+#  encrypted_password        :string           default(""), not null
 #  last_emailed_at           :datetime
+#  last_sign_in_at           :datetime
+#  locale                    :string
 #  otp_backup_codes          :string           is an Array
-#  account_id                :bigint(8)        not null
-#  disabled                  :boolean          default(FALSE), not null
-#  invite_id                 :bigint(8)
-#  chosen_languages          :string           is an Array
-#  created_by_application_id :bigint(8)
-#  approved                  :boolean          default(TRUE), not null
+#  otp_required_for_login    :boolean          default(FALSE), not null
+#  otp_secret                :string
+#  reset_password_sent_at    :datetime
+#  reset_password_token      :string
+#  settings                  :text
+#  sign_in_count             :integer          default(0), not null
 #  sign_in_token             :string
 #  sign_in_token_sent_at     :datetime
-#  webauthn_id               :string
 #  sign_up_ip                :inet
-#  role_id                   :bigint(8)
-#  settings                  :text
 #  time_zone                 :string
-#  otp_secret                :string
+#  unconfirmed_email         :string
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  account_id                :bigint(8)        not null
+#  created_by_application_id :bigint(8)
+#  invite_id                 :bigint(8)
+#  role_id                   :bigint(8)
+#  webauthn_id               :string
 #
 
 class User < ApplicationRecord
@@ -71,7 +72,8 @@ class User < ApplicationRecord
   ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days.freeze
 
   devise :two_factor_authenticatable,
-         otp_secret_encryption_key: Rails.configuration.x.otp_secret
+         otp_secret_encryption_key: Rails.configuration.x.otp_secret,
+         otp_secret_length: 32
 
   include LegacyOtpSecret # Must be after the above `devise` line in order to override the legacy method
 
@@ -100,7 +102,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, email_address: true
 
-  validates_with BlacklistedEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
+  validates_with UserEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
@@ -110,6 +112,7 @@ class User < ApplicationRecord
   validates_with RegistrationFormTimeValidator, on: :create
   validates :website, absence: true, on: :create
   validates :confirm_password, absence: true, on: :create
+  validates :date_of_birth, presence: true, date_of_birth: true, on: :create, if: -> { Setting.min_age.present? }
   validate :validate_role_elevation
 
   scope :account_not_suspended, -> { joins(:account).merge(Account.without_suspended) }
@@ -117,16 +120,18 @@ class User < ApplicationRecord
   scope :pending, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :unconfirmed, -> { where(confirmed_at: nil) }
   scope :enabled, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
   scope :active, -> { confirmed.signed_in_recently.account_not_suspended }
   scope :signed_in_recently, -> { where(current_sign_in_at: ACTIVE_DURATION.ago..) }
   scope :not_signed_in_recently, -> { where(current_sign_in_at: ...ACTIVE_DURATION.ago) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
-  scope :matches_ip, ->(value) { left_joins(:ips).where('user_ips.ip <<= ?', value).group('users.id') }
+  scope :matches_ip, ->(value) { left_joins(:ips).merge(IpBlock.contained_by(value)).group(users: [:id]) }
 
   before_validation :sanitize_role
   before_create :set_approved
+  before_create :set_age_verified_at
   after_commit :send_pending_devise_notifications
   after_create_commit :trigger_webhooks
 
@@ -138,7 +143,7 @@ class User < ApplicationRecord
 
   delegate :can?, to: :role
 
-  attr_reader :invite_code
+  attr_reader :invite_code, :date_of_birth
   attr_writer :external, :bypass_invite_request_check, :current_account
 
   def self.those_who_can(*any_of_privileges)
@@ -155,12 +160,27 @@ class User < ApplicationRecord
     Rails.env.local?
   end
 
+  def date_of_birth=(hash_or_string)
+    @date_of_birth = begin
+      if hash_or_string.is_a?(Hash)
+        day, month, year = hash_or_string.values_at(1, 2, 3)
+        "#{day}.#{month}.#{year}"
+      else
+        hash_or_string
+      end
+    end
+  end
+
   def role
     if role_id.nil?
       UserRole.everyone
     else
       super
     end
+  end
+
+  def signed_in_recently?
+    current_sign_in_at.present? && current_sign_in_at >= ACTIVE_DURATION.ago
   end
 
   def confirmed?
@@ -245,10 +265,6 @@ class User < ApplicationRecord
     unconfirmed? || pending?
   end
 
-  def inactive_message
-    approved? ? super : :pending
-  end
-
   def approve!
     return if approved?
 
@@ -280,6 +296,15 @@ class User < ApplicationRecord
     webauthn_credentials.destroy_all if webauthn_enabled?
 
     save!
+  end
+
+  def applications_last_used
+    Doorkeeper::AccessToken
+      .where(resource_owner_id: id)
+      .where.not(last_used_at: nil)
+      .group(:application_id)
+      .maximum(:last_used_at)
+      .to_h
   end
 
   def token_for_app(app)
@@ -339,10 +364,10 @@ class User < ApplicationRecord
   end
 
   def revoke_access!
-    Doorkeeper::AccessGrant.by_resource_owner(self).update_all(revoked_at: Time.now.utc)
+    Doorkeeper::AccessGrant.by_resource_owner(self).touch_all(:revoked_at)
 
     Doorkeeper::AccessToken.by_resource_owner(self).in_batches do |batch|
-      batch.update_all(revoked_at: Time.now.utc)
+      batch.touch_all(:revoked_at)
       Web::PushSubscription.where(access_token_id: batch).delete_all
 
       # Revoke each access token for the Streaming API, since `update_all``
@@ -407,8 +432,8 @@ class User < ApplicationRecord
     @pending_devise_notifications ||= []
   end
 
-  def render_and_send_devise_message(notification, *args, **kwargs)
-    devise_mailer.send(notification, self, *args, **kwargs).deliver_later
+  def render_and_send_devise_message(notification, *, **)
+    devise_mailer.send(notification, self, *, **).deliver_later
   end
 
   def set_approved
@@ -419,6 +444,10 @@ class User < ApplicationRecord
         open_registrations? || valid_invitation? || external?
       end
     end
+  end
+
+  def set_age_verified_at
+    self.age_verified_at = Time.now.utc if Setting.min_age.present?
   end
 
   def grant_approval_on_confirmation?
@@ -446,7 +475,7 @@ class User < ApplicationRecord
   end
 
   def sign_up_from_ip_requires_approval?
-    sign_up_ip.present? && IpBlock.severity_sign_up_requires_approval.exists?(['ip >>= ?', sign_up_ip.to_s])
+    sign_up_ip.present? && IpBlock.severity_sign_up_requires_approval.containing(sign_up_ip.to_s).exists?
   end
 
   def sign_up_email_requires_approval?
@@ -459,13 +488,7 @@ class User < ApplicationRecord
 
     # Doing this conditionally is not very satisfying, but this is consistent
     # with the MX records validations we do and keeps the specs tractable.
-    unless self.class.skip_mx_check?
-      Resolv::DNS.open do |dns|
-        dns.timeouts = 5
-
-        records = dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }.compact_blank
-      end
-    end
+    records = DomainResource.new(domain).mx unless self.class.skip_mx_check?
 
     EmailDomainBlock.requires_approval?(records + [domain], attempt_ip: sign_up_ip)
   end

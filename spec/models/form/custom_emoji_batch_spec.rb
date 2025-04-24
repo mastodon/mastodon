@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-describe Form::CustomEmojiBatch do
+RSpec.describe Form::CustomEmojiBatch do
   describe '#save' do
     subject { described_class.new({ current_account: account }.merge(options)) }
 
     let(:options) { {} }
-    let(:account) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+    let(:account) { Fabricate(:admin_user).account }
 
     context 'with empty custom_emoji_ids' do
       let(:options) { { custom_emoji_ids: [] } }

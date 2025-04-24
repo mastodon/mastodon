@@ -15,12 +15,63 @@ ga:
       user/invite_request:
         text: Fáth
     errors:
+      attributes:
+        domain:
+          invalid: nach ainm fearainn bailí é
+      messages:
+        invalid_domain_on_line: Ní ainm fearainn bailí é %{value}
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: ina bhfuil luachanna a bhfuil lipéid in easnamh orthu
             username:
+              invalid: ní mór go mbeadh litreacha, uimhreacha agus pointí béime amháin
               reserved: in áirithe
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nach URL bailí é
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nach URL bailí é
         import:
           attributes:
             data:
               malformed: míchumtha
+        list_account:
+          attributes:
+            account_id:
+              taken: cheana féin ar an liosta
+          must_be_following: ní mór cuntas a leanúint
+        status:
+          attributes:
+            reblog:
+              taken: den phost cheana féin
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: róluath, caithfidh sé bheith níos déanaí ná %{date}
+        user:
+          attributes:
+            date_of_birth:
+              below_limit: faoi ​​bhun na teorann aoise
+            email:
+              blocked: úsáideann soláthraí ríomhphoist dícheadaithe
+              unreachable: ní cosúil go bhfuil sé ann
+            role_id:
+              elevated: ní féidir leat a bheith níos airde ná do ról reatha
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: cuir san áireamh ceadanna nach bhfuil sábháilte don ról bunúsach
+              elevated: ní féidir ceadanna nach bhfuil ag do ról reatha a áireamh
+              own_role: ní féidir é a athrú le do ról reatha
+            position:
+              elevated: ní féidir leat a bheith níos airde ná do ról reatha
+              own_role: ní féidir é a athrú le do ról reatha
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: ní féidir imeachtaí nach bhfuil na cearta agat ina leith a chur san áireamh

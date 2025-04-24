@@ -80,6 +80,8 @@ class ScrollableList extends PureComponent {
     children: PropTypes.node,
     bindToDocument: PropTypes.bool,
     preventScroll: PropTypes.bool,
+    footer: PropTypes.node,
+    className: PropTypes.string,
   };
 
   static defaultProps = {
@@ -324,7 +326,7 @@ class ScrollableList extends PureComponent {
   };
 
   render () {
-    const { children, scrollKey, trackScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, append, emptyMessage, onLoadMore } = this.props;
+    const { children, scrollKey, className, trackScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, append, footer, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
     const childrenCount = Children.count(children);
 
@@ -335,21 +337,23 @@ class ScrollableList extends PureComponent {
     if (showLoading) {
       scrollableArea = (
         <div className='scrollable scrollable--flex' ref={this.setRef}>
-          <div role='feed' className='item-list'>
-            {prepend}
-          </div>
+          {prepend}
+
+          <div role='feed' className='item-list' />
 
           <div className='scrollable__append'>
             <LoadingIndicator />
           </div>
+
+          {footer}
         </div>
       );
     } else if (isLoading || childrenCount > 0 || numPending > 0 || hasMore || !emptyMessage) {
       scrollableArea = (
-        <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
-          <div role='feed' className='item-list'>
-            {prepend}
+        <div className={classNames('scrollable scrollable--flex', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
+          {prepend}
 
+          <div role='feed' className={classNames('item-list', className)}>
             {loadPending}
 
             {Children.map(this.props.children, (child, index) => (
@@ -375,6 +379,8 @@ class ScrollableList extends PureComponent {
 
             {!hasMore && append}
           </div>
+
+          {footer}
         </div>
       );
     } else {
@@ -385,6 +391,8 @@ class ScrollableList extends PureComponent {
           <div className='empty-column-indicator'>
             {emptyMessage}
           </div>
+
+          {footer}
         </div>
       );
     }

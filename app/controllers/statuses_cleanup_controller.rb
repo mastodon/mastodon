@@ -5,8 +5,6 @@ class StatusesCleanupController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_policy
-  before_action :set_body_classes
-  before_action :set_cache_headers
 
   def show; end
 
@@ -16,8 +14,6 @@ class StatusesCleanupController < ApplicationController
     else
       render :show
     end
-  rescue ActionController::ParameterMissing
-    # Do nothing
   end
 
   def require_functional!
@@ -31,14 +27,6 @@ class StatusesCleanupController < ApplicationController
   end
 
   def resource_params
-    params.require(:account_statuses_cleanup_policy).permit(:enabled, :min_status_age, :keep_direct, :keep_pinned, :keep_polls, :keep_media, :keep_self_fav, :keep_self_bookmark, :min_favs, :min_reblogs)
-  end
-
-  def set_body_classes
-    @body_classes = 'admin'
-  end
-
-  def set_cache_headers
-    response.cache_control.replace(private: true, no_store: true)
+    params.expect(account_statuses_cleanup_policy: [:enabled, :min_status_age, :keep_direct, :keep_pinned, :keep_polls, :keep_media, :keep_self_fav, :keep_self_bookmark, :min_favs, :min_reblogs])
   end
 end

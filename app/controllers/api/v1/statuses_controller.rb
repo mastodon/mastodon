@@ -58,6 +58,8 @@ class Api::V1::StatusesController < Api::BaseController
     statuses = [@status] + @context.ancestors + @context.descendants
 
     render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
+
+    ActivityPub::FetchAllRepliesWorker.perform_async(@status.id) if !current_account.nil? && @status.should_fetch_replies?
   end
 
   def create
@@ -111,7 +113,7 @@ class Api::V1::StatusesController < Api::BaseController
     @status.account.statuses_count = @status.account.statuses_count - 1
     json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: true
 
-    RemovalWorker.perform_async(@status.id, { 'redraft' => true })
+    RemovalWorker.perform_async(@status.id, { 'redraft' => !truthy_param?(:delete_media) })
 
     render json: json
   end
@@ -141,11 +143,11 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def status_ids
-    Array(statuses_params[:ids]).uniq.map(&:to_i)
+    Array(statuses_params[:id]).uniq.map(&:to_i)
   end
 
   def statuses_params
-    params.permit(ids: [])
+    params.permit(id: [])
   end
 
   def status_params
@@ -187,9 +189,5 @@ class Api::V1::StatusesController < Api::BaseController
 
   def serialized_accounts(accounts)
     ActiveModel::Serializer::CollectionSerializer.new(accounts, serializer: REST::AccountSerializer)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
   end
 end

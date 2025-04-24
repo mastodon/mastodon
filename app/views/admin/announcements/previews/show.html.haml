@@ -1,0 +1,22 @@
+- content_for :page_title do
+  = t('admin.announcements.preview.title')
+
+- content_for :heading_actions do
+  .back-link
+    = link_to admin_announcements_path do
+      = material_symbol 'chevron_left'
+      = t('admin.announcements.back')
+
+.flash-message.info= t('admin.announcements.preview.disclaimer')
+
+%p.lead
+  = t('admin.announcements.preview.explanation_html', count: @user_count, display_count: number_with_delimiter(@user_count))
+
+.prose
+  = linkify(@announcement.text)
+
+%hr.spacer/
+
+.content__heading__actions
+  = link_to t('admin.terms_of_service.preview.send_preview', email: current_user.email), admin_announcement_test_path(@announcement), method: :post, class: 'button button-secondary'
+  = link_to t('admin.terms_of_service.preview.send_to_all', count: @user_count, display_count: number_with_delimiter(@user_count)), admin_announcement_distribution_path(@announcement), method: :post, class: 'button', data: { confirm: t('admin.reports.are_you_sure') }

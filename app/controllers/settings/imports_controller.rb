@@ -24,6 +24,8 @@ class Settings::ImportsController < Settings::BaseController
     lists: false,
   }.freeze
 
+  RECENT_IMPORTS_LIMIT = 10
+
   def index
     @import = Form::Import.new(current_account: current_account)
   end
@@ -88,7 +90,7 @@ class Settings::ImportsController < Settings::BaseController
   private
 
   def import_params
-    params.require(:form_import).permit(:data, :type, :mode)
+    params.expect(form_import: [:data, :type, :mode])
   end
 
   def set_bulk_import
@@ -96,6 +98,6 @@ class Settings::ImportsController < Settings::BaseController
   end
 
   def set_recent_imports
-    @recent_imports = current_account.bulk_imports.reorder(id: :desc).limit(10)
+    @recent_imports = current_account.bulk_imports.reorder(id: :desc).limit(RECENT_IMPORTS_LIMIT)
   end
 end

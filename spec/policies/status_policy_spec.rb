@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pundit/rspec'
 
 RSpec.describe StatusPolicy, type: :model do
   subject { described_class }
 
-  let(:admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:admin) { Fabricate(:admin_user) }
   let(:alice) { Fabricate(:account, username: 'alice') }
   let(:bob) { Fabricate(:account, username: 'bob') }
   let(:status) { Fabricate(:status, account: alice) }

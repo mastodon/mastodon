@@ -32,7 +32,7 @@ class Admin::StatusFilter
   def scope_for(key, _value)
     case key.to_s
     when 'media'
-      Status.joins(:media_attachments).merge(@account.media_attachments).group(:id).reorder('statuses.id desc')
+      Status.joins(:media_attachments).merge(@account.media_attachments).group(:id).recent
     else
       raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end

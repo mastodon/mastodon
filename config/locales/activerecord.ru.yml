@@ -3,7 +3,7 @@ ru:
   activerecord:
     attributes:
       poll:
-        expires_at: Крайний срок
+        expires_at: Срок окончания голосования
         options: Варианты
       user:
         agreement: Соглашение с условиями сервиса
@@ -15,9 +15,16 @@ ru:
       user/invite_request:
         text: Причина
     errors:
+      attributes:
+        domain:
+          invalid: не является действующим доменным именем
+      messages:
+        invalid_domain_on_line: "%{value} Не является действительным доменным именем"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: содержит значения с отсутствующими ключами
             username:
               invalid: только буквы, цифры и символ подчёркивания
               reserved: зарезервировано
@@ -33,12 +40,23 @@ ru:
           attributes:
             data:
               malformed: неверный формат
+        list_account:
+          attributes:
+            account_id:
+              taken: уже в списке
+          must_be_following: должен быть пользователем, на которого вы подписаны
         status:
           attributes:
             reblog:
               taken: пост уже существует
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: должна быть не ранее %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: ниже возрастного ограничения
             email:
               blocked: использует запрещённого провайдера эл. почты
               unreachable: не существует

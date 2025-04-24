@@ -13,7 +13,7 @@ def gen_border(codepoint, color)
     view_box[3] += 4
     svg['viewBox'] = view_box.join(' ')
   end
-  g = Nokogiri::XML::Node.new 'g', doc
+  g = doc.create_element('g')
   doc.css('svg > *').each do |elem|
     border_elem = elem.dup
 
@@ -102,5 +102,37 @@ namespace :emojis do
     emojis_dark.each_grapheme_cluster do |emoji|
       gen_border map[emoji], 'white'
     end
+  end
+
+  desc 'Download the JSON sheet data of emojis'
+  task :download_sheet_json do
+    source = 'https://raw.githubusercontent.com/iamcal/emoji-data/refs/tags/v15.1.2/emoji.json'
+    dest   = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_sheet.json')
+
+    puts "Downloading emoji data from source... (#{source})"
+
+    res = HTTP.get(source).to_s
+    data = JSON.parse(res)
+
+    filtered_data = data.map do |emoji|
+      filtered_item = {
+        'unified' => emoji['unified'],
+        'sheet_x' => emoji['sheet_x'],
+        'sheet_y' => emoji['sheet_y'],
+        'skin_variations' => {},
+      }
+
+      emoji['skin_variations']&.each do |key, variation|
+        filtered_item['skin_variations'][key] = {
+          'unified' => variation['unified'],
+          'sheet_x' => variation['sheet_x'],
+          'sheet_y' => variation['sheet_y'],
+        }
+      end
+
+      filtered_item
+    end
+
+    File.write(dest, JSON.generate(filtered_data))
   end
 end

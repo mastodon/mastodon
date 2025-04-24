@@ -5,7 +5,6 @@ class Auth::SetupController < ApplicationController
 
   before_action :authenticate_user!
   before_action :require_unconfirmed_or_pending!
-  before_action :set_body_classes
   before_action :set_user
 
   skip_before_action :require_functional!
@@ -19,7 +18,7 @@ class Auth::SetupController < ApplicationController
 
     if @user.update(user_params)
       @user.resend_confirmation_instructions unless @user.confirmed?
-      redirect_to auth_setup_path, notice: I18n.t('auth.setup.new_confirmation_instructions_sent')
+      redirect_to auth_setup_path, notice: t('auth.setup.new_confirmation_instructions_sent')
     else
       render :show
     end
@@ -35,11 +34,7 @@ class Auth::SetupController < ApplicationController
     @user = current_user
   end
 
-  def set_body_classes
-    @body_classes = 'lighter'
-  end
-
   def user_params
-    params.require(:user).permit(:email)
+    params.expect(user: [:email])
   end
 end

@@ -13,7 +13,7 @@ class ActivityPub::TagManager
   }.freeze
 
   def public_collection?(uri)
-    uri == COLLECTIONS[:public] || uri == 'as:Public' || uri == 'Public'
+    uri == COLLECTIONS[:public] || %w(as:Public Public).include?(uri)
   end
 
   def url_for(target)
@@ -74,8 +74,46 @@ class ActivityPub::TagManager
     account_status_replies_url(target.account, target, page_params)
   end
 
-  def followers_uri_for(target)
-    target.local? ? account_followers_url(target) : target.followers_url.presence
+  def likes_uri_for(target)
+    raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
+
+    account_status_likes_url(target.account, target)
+  end
+
+  def shares_uri_for(target)
+    raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
+
+    account_status_shares_url(target.account, target)
+  end
+
+  def following_uri_for(target, ...)
+    raise ArgumentError, 'target must be a local account' unless target.local?
+
+    account_following_index_url(target, ...)
+  end
+
+  def followers_uri_for(target, ...)
+    return target.followers_url.presence unless target.local?
+
+    account_followers_url(target, ...)
+  end
+
+  def collection_uri_for(target, ...)
+    raise NotImplementedError unless target.local?
+
+    account_collection_url(target, ...)
+  end
+
+  def inbox_uri_for(target)
+    raise NotImplementedError unless target.local?
+
+    target.instance_actor? ? instance_actor_inbox_url : account_inbox_url(target)
+  end
+
+  def outbox_uri_for(target, ...)
+    raise NotImplementedError unless target.local?
+
+    target.instance_actor? ? instance_actor_outbox_url(...) : account_outbox_url(target, ...)
   end
 
   # Primary audience of a status
@@ -87,7 +125,7 @@ class ActivityPub::TagManager
     when 'public'
       [COLLECTIONS[:public]]
     when 'unlisted', 'private'
-      [account_followers_url(status.account)]
+      [followers_uri_for(status.account)]
     when 'direct', 'limited'
       if status.account.silenced?
         # Only notify followers if the account is locally silenced
@@ -121,7 +159,7 @@ class ActivityPub::TagManager
 
     case status.visibility
     when 'public'
-      cc << account_followers_url(status.account)
+      cc << followers_uri_for(status.account)
     when 'unlisted'
       cc << COLLECTIONS[:public]
     end
@@ -165,6 +203,19 @@ class ActivityPub::TagManager
     path_params[param]
   end
 
+  def uris_to_local_accounts(uris)
+    usernames = []
+    ids = []
+
+    uris.each do |uri|
+      param, value = uri_to_local_account_params(uri)
+      usernames << value.downcase if param == :username
+      ids << value if param == :id
+    end
+
+    Account.local.with_username(usernames).or(Account.local.where(id: ids))
+  end
+
   def uri_to_actor(uri)
     uri_to_resource(uri, Account)
   end
@@ -175,7 +226,7 @@ class ActivityPub::TagManager
     if local_uri?(uri)
       case klass.name
       when 'Account'
-        klass.find_local(uri_to_local_id(uri, :username))
+        uris_to_local_accounts([uri]).first
       else
         StatusFinder.new(uri).status
       end
@@ -186,5 +237,21 @@ class ActivityPub::TagManager
     end
   rescue ActiveRecord::RecordNotFound
     nil
+  end
+
+  private
+
+  def uri_to_local_account_params(uri)
+    return unless local_uri?(uri)
+
+    path_params = Rails.application.routes.recognize_path(uri)
+
+    # TODO: handle numeric IDs
+    case path_params[:controller]
+    when 'accounts'
+      [:username, path_params[:username]]
+    when 'instance_actors'
+      [:id, -99]
+    end
   end
 end

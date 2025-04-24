@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class REST::NotificationSerializer < ActiveModel::Serializer
-  attributes :id, :type, :created_at
+  # Please update app/javascript/api_types/notification.ts when making changes to the attributes
+  attributes :id, :type, :created_at, :group_key
+
+  attribute :filtered, if: :filtered?
 
   belongs_to :from_account, key: :account, serializer: REST::AccountSerializer
   belongs_to :target_status, key: :status, if: :status_type?, serializer: REST::StatusSerializer
@@ -11,6 +14,10 @@ class REST::NotificationSerializer < ActiveModel::Serializer
 
   def id
     object.id.to_s
+  end
+
+  def group_key
+    object.group_key || "ungrouped-#{object.id}"
   end
 
   def status_type?
@@ -28,4 +35,6 @@ class REST::NotificationSerializer < ActiveModel::Serializer
   def moderation_warning_event?
     object.type == :moderation_warning
   end
+
+  delegate :filtered?, to: :object
 end

@@ -15,9 +15,16 @@ sq:
       user/invite_request:
         text: Arsye
     errors:
+      attributes:
+        domain:
+          invalid: s’është emër i vlefshëm përkatësie
+      messages:
+        invalid_domain_on_line: "%{value} s’është emër i vlefshëm përkatësie"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: përmban vlera me etiketa që mungojnë
             username:
               invalid: duhet të përmbajë vetëm shkronja, numra dhe nënvija
               reserved: është i rezervuar
@@ -33,12 +40,23 @@ sq:
           attributes:
             data:
               malformed: janë të keqformuara
+        list_account:
+          attributes:
+            account_id:
+              taken: gjendet tashmë në listë
+          must_be_following: duhet të jetë një llogari e ndjekur
         status:
           attributes:
             reblog:
               taken: e gjendjes ekziston tashmë
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: është shumë herët, duhet të jetë më vonë se %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: është nën kufirin e moshave
             email:
               blocked: përdor një shërbim email të palejuar
               unreachable: s’duket se ekziston

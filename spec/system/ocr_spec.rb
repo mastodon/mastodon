@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'OCR', :js, :paperclip_processing, :sidekiq_inline, :streaming do
+RSpec.describe 'OCR', :attachment_processing, :inline_jobs, :js, :streaming do
   include ProfileStories
 
   let(:email)               { 'test@example.com' }
@@ -26,8 +26,8 @@ describe 'OCR', :js, :paperclip_processing, :sidekiq_inline, :streaming do
       end
     end
 
-    click_on('Detect text from picture')
+    click_on('Add text from image')
 
-    expect(page).to have_css('#upload-modal__description', text: /Hello Mastodon\s*/, wait: 10)
+    expect(page).to have_css('#description', text: /Hello Mastodon\s*/, wait: 10)
   end
 end

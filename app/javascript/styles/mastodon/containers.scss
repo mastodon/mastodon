@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 .container-alt {
   width: 700px;
   margin: 0 auto;
@@ -63,7 +65,7 @@
   padding: 20px 0;
   margin-top: 40px;
   margin-bottom: 10px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--background-border-color);
 
   @media screen and (width <= 440px) {
     width: 100%;
@@ -81,7 +83,7 @@
       height: 100%;
       display: block;
       margin: 0;
-      border-radius: 4px;
+      border-radius: var(--avatar-border-radius);
     }
   }
 

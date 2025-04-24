@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -10,16 +10,12 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { debounce } from 'lodash';
 
-import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
+import { AltTextBadge } from 'mastodon/components/alt_text_badge';
 import { Blurhash } from 'mastodon/components/blurhash';
+import { SpoilerButton } from 'mastodon/components/spoiler_button';
+import { formatTime } from 'mastodon/features/video';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
-
-import { IconButton } from './icon_button';
-
-const messages = defineMessages({
-  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: '{number, plural, one {Hide image} other {Hide images}}' },
-});
 
 class Item extends PureComponent {
 
@@ -43,6 +39,7 @@ class Item extends PureComponent {
 
   state = {
     loaded: false,
+    error: false,
   };
 
   handleMouseEnter = (e) => {
@@ -64,7 +61,7 @@ class Item extends PureComponent {
 
   hoverToPlay () {
     const { attachment } = this.props;
-    return !this.getAutoPlay() && attachment.get('type') === 'gifv';
+    return !this.getAutoPlay() && ['gifv', 'video'].includes(attachment.get('type'));
   }
 
   handleClick = (e) => {
@@ -86,6 +83,10 @@ class Item extends PureComponent {
     this.setState({ loaded: true });
   };
 
+  handleImageError = () => {
+    this.setState({ error: true });
+  };
+
   render () {
     const { attachment, lang, index, size, standalone, displayWidth, visible } = this.props;
 
@@ -102,16 +103,16 @@ class Item extends PureComponent {
       height = 50;
     }
 
-    if (attachment.get('description')?.length > 0) {
-      badges.push(<span key='alt' className='media-gallery__alt__label'>ALT</span>);
-    }
-
     const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
+
+    if (description?.length > 0) {
+      badges.push(<AltTextBadge key='alt' description={description} />);
+    }
 
     if (attachment.get('type') === 'unknown') {
       return (
         <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
-          <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={description} lang={lang} target='_blank' rel='noopener noreferrer'>
+          <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={description} lang={lang} target='_blank' rel='noopener'>
             <Blurhash
               hash={attachment.get('blurhash')}
               className='media-gallery__preview'
@@ -143,37 +144,42 @@ class Item extends PureComponent {
           href={attachment.get('remote_url') || originalUrl}
           onClick={this.handleClick}
           target='_blank'
-          rel='noopener noreferrer'
+          rel='noopener'
         >
           <img
             src={previewUrl}
             srcSet={srcSet}
             sizes={sizes}
             alt={description}
-            title={description}
             lang={lang}
             style={{ objectPosition: `${x}% ${y}%` }}
             onLoad={this.handleImageLoad}
+            onError={this.handleImageError}
           />
         </a>
       );
-    } else if (attachment.get('type') === 'gifv') {
+    } else if (['gifv', 'video'].includes(attachment.get('type'))) {
       const autoPlay = this.getAutoPlay();
+      const duration = attachment.getIn(['meta', 'original', 'duration']);
 
-      badges.push(<span key='gif' className='media-gallery__gifv__label'>GIF</span>);
+      if (attachment.get('type') === 'gifv') {
+        badges.push(<span key='gif' className='media-gallery__alt__label media-gallery__alt__label--non-interactive'>GIF</span>);
+      } else {
+        badges.push(<span key='video' className='media-gallery__alt__label media-gallery__alt__label--non-interactive'>{formatTime(Math.floor(duration))}</span>);
+      }
 
       thumbnail = (
         <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
           <video
             className='media-gallery__item-gifv-thumbnail'
             aria-label={description}
-            title={description}
             lang={lang}
             role='application'
             src={attachment.get('url')}
             onClick={this.handleClick}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
+            onLoadedData={this.handleImageLoad}
             autoPlay={autoPlay}
             playsInline
             loop
@@ -184,7 +190,7 @@ class Item extends PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
+      <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--error': this.state.error, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
         <Blurhash
           hash={attachment.get('blurhash')}
           dummy={!useBlurhash}
@@ -195,7 +201,7 @@ class Item extends PureComponent {
 
         {visible && thumbnail}
 
-        {badges && (
+        {visible && badges && (
           <div className='media-gallery__item__badges'>
             {badges}
           </div>
@@ -215,12 +221,12 @@ class MediaGallery extends PureComponent {
     size: PropTypes.object,
     height: PropTypes.number.isRequired,
     onOpenMedia: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
     defaultWidth: PropTypes.number,
     cacheWidth: PropTypes.func,
     visible: PropTypes.bool,
     autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
+    matchedFilters: PropTypes.arrayOf(PropTypes.string),
   };
 
   state = {
@@ -291,11 +297,11 @@ class MediaGallery extends PureComponent {
   }
 
   render () {
-    const { media, lang, intl, sensitive, defaultWidth, autoplay } = this.props;
+    const { media, lang, sensitive, defaultWidth, autoplay, matchedFilters } = this.props;
     const { visible } = this.state;
     const width = this.state.width || defaultWidth;
 
-    let children, spoilerButton;
+    let children;
 
     const style = {};
 
@@ -305,48 +311,30 @@ class MediaGallery extends PureComponent {
       style.aspectRatio = '3 / 2';
     }
 
-    const size     = media.take(4).size;
+    const size     = media.size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
     if (this.isFullSizeEligible()) {
       children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} lang={lang} displayWidth={width} visible={visible} />;
     } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
-    }
-
-    if (uncached) {
-      spoilerButton = (
-        <button type='button' disabled className='spoiler-button__overlay'>
-          <span className='spoiler-button__overlay__label'>
-            <FormattedMessage id='status.uncached_media_warning' defaultMessage='Preview not available' />
-            <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.open' defaultMessage='Click to open' /></span>
-          </span>
-        </button>
-      );
-    } else if (visible) {
-      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible, { number: size })} icon='eye-slash' iconComponent={VisibilityOffIcon} overlay onClick={this.handleOpen} ariaHidden />;
-    } else {
-      spoilerButton = (
-        <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>
-          <span className='spoiler-button__overlay__label'>
-            {sensitive ? <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' /> : <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />}
-            <span className='spoiler-button__overlay__action'><FormattedMessage id='status.media.show' defaultMessage='Click to show' /></span>
-          </span>
-        </button>
-      );
+      children = media.map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} lang={lang} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
     return (
-      <div className='media-gallery' style={style} ref={this.handleRef}>
-        <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible && !uncached, 'spoiler-button--click-thru': uncached })}>
-          {spoilerButton}
-        </div>
-
+      <div className={`media-gallery media-gallery--layout-${size}`} style={style} ref={this.handleRef}>
         {children}
+
+        {(!visible || uncached) && <SpoilerButton uncached={uncached} sensitive={sensitive} onClick={this.handleOpen} matchedFilters={matchedFilters} />}
+
+        {(visible && !uncached) && (
+          <div className='media-gallery__actions'>
+            <button className='media-gallery__actions__pill' onClick={this.handleOpen}><FormattedMessage id='media_gallery.hide' defaultMessage='Hide' /></button>
+          </div>
+        )}
       </div>
     );
   }
 
 }
 
-export default injectIntl(MediaGallery);
+export default MediaGallery;

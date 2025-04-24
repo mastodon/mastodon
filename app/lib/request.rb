@@ -61,8 +61,6 @@ class PerOperationWithDeadline < HTTP::Timeout::PerOperation
 end
 
 class Request
-  REQUEST_TARGET = '(request-target)'
-
   # We enforce a 5s timeout on DNS resolving, 5s timeout on socket opening
   # and 5s timeout on the TLS handshake, meaning the worst case should take
   # about 15s in total
@@ -77,11 +75,21 @@ class Request
     @url         = Addressable::URI.parse(url).normalize
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
-    @full_path   = options.delete(:with_query_string)
-    @options     = options.merge(socket_class: use_proxy? || @allow_local ? ProxySocket : Socket)
-    @options     = @options.merge(timeout_class: PerOperationWithDeadline, timeout_options: TIMEOUT)
+    @full_path   = !options.delete(:omit_query_string)
+    @options     = {
+      follow: {
+        max_hops: 3,
+        on_redirect: ->(response, request) { re_sign_on_redirect(response, request) },
+      },
+    }.merge(options).merge(
+      socket_class: use_proxy? || @allow_local ? ProxySocket : Socket,
+      timeout_class: PerOperationWithDeadline,
+      timeout_options: TIMEOUT
+    )
     @options     = @options.merge(proxy_url) if use_proxy?
     @headers     = {}
+
+    @signing = nil
 
     raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
 
@@ -92,8 +100,9 @@ class Request
   def on_behalf_of(actor, sign_with: nil)
     raise ArgumentError, 'actor must not be nil' if actor.nil?
 
-    @actor         = actor
-    @keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : @actor.keypair
+    key_id = ActivityPub::TagManager.instance.key_uri_for(actor)
+    keypair = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : actor.keypair
+    @signing = HttpSignatureDraft.new(keypair, key_id, full_path: @full_path)
 
     self
   end
@@ -111,21 +120,15 @@ class Request
     end
 
     begin
-      # If we are using a persistent connection, we have to
-      # read every response to be able to move forward at all.
-      # However, simply calling #to_s or #flush may not be safe,
-      # as the response body, if malicious, could be too big
-      # for our memory. So we use the #body_with_limit method
-      response.body_with_limit if http_client.persistent?
-
       yield response if block_given?
     ensure
-      http_client.close unless http_client.persistent?
+      response.truncated_body if http_client.persistent? && !response.connection.finished_request?
+      http_client.close unless http_client.persistent? && response.connection.finished_request?
     end
   end
 
   def headers
-    (@actor ? @headers.merge('Signature' => signature) : @headers).without(REQUEST_TARGET)
+    (@signing ? @headers.merge('Signature' => signature) : @headers)
   end
 
   class << self
@@ -140,14 +143,13 @@ class Request
     end
 
     def http_client
-      HTTP.use(:auto_inflate).follow(max_hops: 3)
+      HTTP.use(:auto_inflate)
     end
   end
 
   private
 
   def set_common_headers!
-    @headers[REQUEST_TARGET]    = request_target
     @headers['User-Agent']      = Mastodon::Version.user_agent
     @headers['Host']            = @url.host
     @headers['Date']            = Time.now.utc.httpdate
@@ -158,31 +160,28 @@ class Request
     @headers['Digest'] = "SHA-256=#{Digest::SHA256.base64digest(@options[:body])}"
   end
 
-  def request_target
-    if @url.query.nil? || !@full_path
-      "#{@verb} #{@url.path}"
-    else
-      "#{@verb} #{@url.path}?#{@url.query}"
-    end
-  end
-
   def signature
-    algorithm = 'rsa-sha256'
-    signature = Base64.strict_encode64(@keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
-
-    "keyId=\"#{key_id}\",algorithm=\"#{algorithm}\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
+    @signing.sign(@headers.without('User-Agent', 'Accept-Encoding'), @verb, @url)
   end
 
-  def signed_string
-    signed_headers.map { |key, value| "#{key.downcase}: #{value}" }.join("\n")
-  end
+  def re_sign_on_redirect(_response, request)
+    # Delete existing signature if there is one, since it will be invalid
+    request.headers.delete('Signature')
 
-  def signed_headers
-    @headers.without('User-Agent', 'Accept-Encoding')
-  end
+    return unless @signing.present? && @verb == :get
 
-  def key_id
-    ActivityPub::TagManager.instance.key_uri_for(@actor)
+    signed_headers = request.headers.to_h.slice(*@headers.keys)
+    unless @headers.keys.all? { |key| signed_headers.key?(key) }
+      # We have lost some headers in the process, so don't sign the new
+      # request, in order to avoid issuing a valid signature with fewer
+      # conditions than expected.
+
+      Rails.logger.warn { "Some headers (#{@headers.keys - signed_headers.keys}) have been lost on redirect from {@uri} to #{request.uri}, this should not happen. Skipping signatures" }
+      return
+    end
+
+    signature_value = @signing.sign(signed_headers.without('User-Agent', 'Accept-Encoding'), @verb, Addressable::URI.parse(request.uri))
+    request.headers['Signature'] = signature_value
   end
 
   def http_client
@@ -234,12 +233,16 @@ class Request
     end
 
     def body_with_limit(limit = 1.megabyte)
-      raise Mastodon::LengthValidationError if content_length.present? && content_length > limit
+      require_limit_not_exceeded!(limit)
 
       contents = truncated_body(limit)
-      raise Mastodon::LengthValidationError if contents.bytesize > limit
+      raise Mastodon::LengthValidationError, "Body size exceeds limit of #{limit}" if contents.bytesize > limit
 
       contents
+    end
+
+    def require_limit_not_exceeded!(limit)
+      raise Mastodon::LengthValidationError, "Content-Length #{content_length} exceeds limit of #{limit}" if content_length.present? && content_length > limit
     end
   end
 
@@ -330,13 +333,9 @@ class Request
       def check_private_address(address, host)
         addr = IPAddr.new(address.to_s)
 
-        return if Rails.env.development? || private_address_exceptions.any? { |range| range.include?(addr) }
+        return if Rails.env.development? || Rails.configuration.x.private_address_exceptions.any? { |range| range.include?(addr) }
 
         raise Mastodon::PrivateNetworkAddressError, host if PrivateAddressCheck.private_address?(addr)
-      end
-
-      def private_address_exceptions
-        @private_address_exceptions = (ENV['ALLOWED_PRIVATE_ADDRESSES'] || '').split(/(?:\s*,\s*|\s+)/).map { |addr| IPAddr.new(addr) }
       end
     end
   end

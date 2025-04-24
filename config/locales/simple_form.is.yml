@@ -3,6 +3,7 @@ is:
   simple_form:
     hints:
       account:
+        attribution_domains: Eitt á hverja línu. Ver fyrir röngum tilvísunum.
         discoverable: Opinberar færslur og notandasnið þitt geta birst eða verið mælt með á hinum ýmsu svæðum í Mastodon auk þess sem hægt er að mæla með þér við aðra notendur.
         display_name: Fullt nafn þitt eða eitthvað til gamans.
         fields: Heimasíðan þín, fornöfn, aldur eða eitthvað sem þú vilt koma á framfæri.
@@ -59,6 +60,7 @@ is:
         setting_display_media_default: Fela myndefni sem merkt er viðkvæmt
         setting_display_media_hide_all: Alltaf fela allt myndefni
         setting_display_media_show_all: Alltaf birta myndefni sem merkt er viðkvæmt
+        setting_system_scrollbars_ui: Á einungis við um vafra fyrir vinnutölvur sem byggjast á Safari og Chrome
         setting_use_blurhash: Litstiglarnir byggja á litunum í földu myndunum, en gera öll smáatriði óskýr
         setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er, í stað þess að hún skruni streyminu sjálfvirkt
         username: Þú mátt nota bókstafi, tölur og undirstrik
@@ -73,6 +75,7 @@ is:
       filters:
         action: Veldu hvaða aðgerð á að framkvæma þegar færsla samsvarar síunni
         actions:
+          blur: Fela myndefni á bakvið aðvörun, án þess að fela sjálfann textann
           hide: Fela síað efni algerlega, rétt eins og það sé ekki til staðar
           warn: Fela síað efni á bakvið aðvörun sem tekur fram titil síunnar
       form_admin_settings:
@@ -86,6 +89,7 @@ is:
         favicon: WEBP, PNG, GIF eða JPG. Tekur yfir sjálfgefna Mastodon favicon-táknmynd með sérsniðinni táknmynd.
         mascot: Þetta tekyr yfir myndskreytinguna í ítarlega vefviðmótinu.
         media_cache_retention_period: Myndefnisskrár úr færslum sem gerðar eru af fjartengdum notendum eru geymdar á netþjóninum þínum. Þegar þetta er stillt á jákvætt gildi, verður þessum skrám eytt sjáfkrafa eftir þeim tiltekna fjölda daga. Ef beðið er um myndefnið eftir að því er eytt, mun það verða sótt aftur ef frumgögnin eru ennþá aðgengileg. Vegna takmarkana á hversu oft forskoðunarspjöld tengla eru sótt á utanaðkomandi netþjóna, þá er mælt með því að setja þetta gildi á að minnsta kosti 14 daga, annars gæti mistekist að uppfæra forskoðunarspjöld tengla eftir þörfum fyrir þann tíma.
+        min_age: Notendur verða beðnir um að staðfesta fæðingardag sinn við nýskráningu
         peers_api_enabled: Listi yfir þau lénaheiti sem þessi netþjónn hefur rekist á í skýjasambandinu. Engin gögn eru hér sem gefa til kynna hvort þú sért í sambandi við tiltekinn netþjón, bara að netþjónninn þinn viti um hann. Þetta er notað af þjónustum sem safna tölfræði um skýjasambönd á almennan hátt.
         profile_directory: Notendamappan telur upp alla þá notendur sem hafa valið að vera uppgötvanlegir.
         require_invite_text: Þegar nýskráningar krefjast handvirks samþykkis, þá skal gera textann í “Hvers vegna viltu taka þátt?” að kröfu en ekki valkvæðan
@@ -128,9 +132,24 @@ is:
         show_application: Þú munt alltaf geta séð hvaða forrit birti færsluna þína.
       tag:
         name: Þú getur aðeins breytt stafstöði mill há-/lágstafa, til gæmis til að gera þetta læsilegra
+      terms_of_service:
+        changelog: Er hægt að sníða með Markdown-málskipan.
+        effective_date: Ásættanlegur tímarammi getur verið frá 10 til 30 dagar eftir að þú hefur látið notendurna þína vita.
+        text: Er hægt að sníða með Markdown-málskipan.
+      terms_of_service_generator:
+        admin_email: Löglegar tilkynningar ná yfir andsvör, dómsúrskurði, lokunarbeiðnir og beiðnir frá lögregluembættum.
+        arbitration_address: Má vera það sama og raunverulegt heimilisfang eða “N/A” ef tölvupóstur er notaður.
+        arbitration_website: Má vera innfyllingarform á vefsíðu eða “N/A” ef tölvupóstur er notaður.
+        choice_of_law: Sveitarfélög, héruð eða ríki þar sem ríkjandi lög og reglugerðir skulu stýra meðhöndlun á öllum kröfum.
+        dmca_address: Fyrir rekstraraðila í BNA ætti að nota heimilisfang sem skráð er í DMCA Designated Agent Directory. Hægt er að verða sér úti um A P.O. pósthólfsskráningu með beinni beiðni; notaðu DMCA Designated Agent Post Office Box Waiver Request til að senda tölvupóst á Copyright Office og lýstu því yfir að þú sért heimavinnandi efnismiðlari (home-based content moderator) sem átt á hættu refsingar eða hefndir vegna þess sem þú miðlar og þurfir því á slíku pósthólfi að halda svo þitt eigið heimilisfang sé ekki gert opinbert.
+        dmca_email: Má vera sama tölvupóstfang og það sem notað er í “Tölvupóstfang vegna löglegra tilkynninga” hér að ofan.
+        domain: Einstakt auðkenni á netþjónustunni sem þú býður.
+        jurisdiction: Settu inn landið þar sem sá býr sem borgar reikningana. Ef það er fyrirtæki eða samtök, skaltu hafa það landið þar sem lögheimili þess er, auk borgar, héraðs, svæðis eða fylkis eins og við á.
+        min_age: Ætti ekki að vera lægri en sá lágmarksaldur sek kveðið er á um í lögum þíns lögsagnarumdæmis.
       user:
         chosen_languages: Þegar merkt er við þetta, birtast einungis færslur á völdum tungumálum á opinberum tímalínum
-        role: Hlutverk stýrir hvaða heimildir notandinn hefur
+        date_of_birth: Við verðum að ganga úr skugga um að þú hafir náð %{age} aldri til að nota Mastodon. Við munum ekki geyma þessar upplýsingar.
+        role: Hlutverk stýrir hvaða heimildir notandinn hefur.
       user_role:
         color: Litur sem notaður er fyrir hlutverkið allsstaðar í viðmótinu, sem RGB-gildi á hex-sniði
         highlighted: Þetta gerir hlutverk sýnilegt opinberlega
@@ -143,6 +162,7 @@ is:
         url: Hvert atburðir verða sendir
     labels:
       account:
+        attribution_domains: Vefsvæði sem mega vitna í þig
         discoverable: Hafa notandasnið og færslur með í reikniritum leitar
         fields:
           name: Skýring
@@ -211,6 +231,7 @@ is:
         setting_default_privacy: Gagnaleynd færslna
         setting_default_sensitive: Alltaf merkja myndefni sem viðkvæmt
         setting_delete_modal: Birta staðfestingarglugga áður en færslu er eytt
+        setting_disable_hover_cards: Gera óvirka forskoðun notandasniðs við yfirsvif
         setting_disable_swiping: Gera strokuhreyfingar óvirkar
         setting_display_media: Birting myndefnis
         setting_display_media_default: Sjálfgefið
@@ -218,8 +239,10 @@ is:
         setting_display_media_show_all: Birta allt
         setting_expand_spoilers: Alltaf útfella færslur sem eru með aðvörun vegna efnisins
         setting_hide_network: Fela félagsnetið þitt
+        setting_missing_alt_text_modal: Birta staðfestingarglugga áður en myndefni án ALT-hjálpartexta er birt
         setting_reduce_motion: Minnka hreyfingu í hreyfimyndum
         setting_system_font_ui: Nota sjálfgefið letur kerfisins
+        setting_system_scrollbars_ui: Nota sjálfgefna skrunstiku kerfisins
         setting_theme: Þema vefsvæðis
         setting_trends: Birta það sem er efst á baugi í dag
         setting_unfollow_modal: Birta staðfestingarglugga áður en hætt er að fylgjast með einhverjum
@@ -238,17 +261,21 @@ is:
         name: Myllumerki
       filters:
         actions:
+          blur: Fela myndefni með aðvörun
           hide: Fela alveg
           warn: Fela með aðvörun
       form_admin_settings:
         activity_api_enabled: Birta samantektartölfræði um virkni notanda í API-kerfisviðmótinu
+        app_icon: Táknmynd forrits
         backups_retention_period: Tímalengd sem safni notandans er haldið eftir
         bootstrap_timeline_accounts: Alltaf mæla með þessum notendaaðgöngum fyrir nýja notendur
         closed_registrations_message: Sérsniðin skilaboð þegar ekki er hægt að nýskrá
         content_cache_retention_period: Tímabil sem á að geyma fjartengt efni
         custom_css: Sérsniðið CSS
+        favicon: Auðkennismynd
         mascot: Sérsniðið gæludýr (eldra)
         media_cache_retention_period: Tímalengd sem myndefni haldið
+        min_age: Kröfur um lágmarksaldur
         peers_api_enabled: Birta lista yfir uppgötvaða netþjóna í API-kerfisviðmótinu
         profile_directory: Virkja notendamöppu
         registrations_mode: Hverjir geta nýskráð sig
@@ -311,8 +338,25 @@ is:
         listable: Leyfa þessu myllumerki að birtast í leitum og í persónusniðamöppunni
         name: Myllumerki
         trendable: Leyfa þessu myllumerki að birtast undir vinsælu efni
-        usable: Leyfa færslum að nota þetta myllumerki
+        usable: Leyfa færslum að nota þetta myllumerki staðvært
+      terms_of_service:
+        changelog: Hvað breyttist?
+        effective_date: Gildistími
+        text: Þjónustuskilmálar
+      terms_of_service_generator:
+        admin_email: Tölvupóstfang vegna löglegra tilkynninga
+        arbitration_address: Raunverulegt heimilisfang fyrir tilkynningar um úrskurði
+        arbitration_website: Vefsvæði til að senda inn tilkynningar um úrskurði
+        choice_of_law: Val á lagaumgjörð
+        dmca_address: Raunverulegt heimilisfang fyrir kröfur vegna DMCA/höfundarréttar
+        dmca_email: Tölvupóstfang tilkynninga vegna DMCA/höfundaréttar
+        domain: Lén
+        jurisdiction: Lögsagnarumdæmi
+        min_age: Lágmarksaldur
       user:
+        date_of_birth_1i: Dagur
+        date_of_birth_2i: Mánuður
+        date_of_birth_3i: Ár
         role: Hlutverk
         time_zone: Tímabelti
       user_role:

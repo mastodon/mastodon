@@ -3,13 +3,14 @@ sl:
   simple_form:
     hints:
       account:
+        attribution_domains: Ena na vrstico. Ščiti pred napačno navedbo avtorstva.
         discoverable: Vaše javne objave in profil so lahko predstavljeni ali priporočeni v različnih delih Mastodona, vaš profil pa je lahko predlagan drugim uporabnikom.
         display_name: Vaše polno ime ali lažno ime.
         fields: Vaša domača stran, starost, kar koli.
         indexable: Vaše javne objave se lahko pojavijo v rezultatih iskanja na Mastodonu. Ljudje, ki so bili v interakciji z vašimi objavami, jih bodo lahko iskali ne glede na to.
         note: 'Druge osebe lahko @omenite ali #ključnite.'
         show_collections: Ljudje bodo lahko brskali po vaših sledilcih in sledenih. Ljudje, ki jim sledite, bodo videli, da jim sledite ne glede na to.
-        unlocked: Ljudje vam bodo lahko sledili, ne da bi zahtevali odobritev. Ne potrdite, če želite pregledati prošnje za sledenje, in izbirajte, ali želite nove sledilce sprejeti ali zavrniti.
+        unlocked: Ljudje vam bodo lahko sledili, ne da bi zahtevali odobritev. Ne potrdite, če želite pregledati prošnje za sledenje in izbrati, ali želite nove sledilce sprejeti ali zavrniti.
       account_alias:
         acct: Določite uporabniškoime@domena računa, od katerega se želite preseliti
       account_migration:
@@ -59,6 +60,7 @@ sl:
         setting_display_media_default: Skrij medij, ki je označen kot občutljiv
         setting_display_media_hide_all: Vedno skrij vse medije
         setting_display_media_show_all: Vedno pokaži medij, ki je označen kot občutljiv
+        setting_system_scrollbars_ui: Velja zgolj za namizne brskalnike, ki temeljijo na Safariju in Chromeu
         setting_use_blurhash: Prelivi temeljijo na barvah skrite vizualne slike, vendar zakrivajo vse podrobnosti
         setting_use_pending_items: Skrij posodobitev časovnice za klikom namesto samodejnega posodabljanja
         username: Uporabite lahko črke, števke in podčrtaje.
@@ -86,6 +88,7 @@ sl:
         favicon: WEBP, PNG, GIF ali JPG. Zamenja privzeto ikono spletne strani Mastodon z ikono po meri.
         mascot: Preglasi ilustracijo v naprednem spletnem vmesniku.
         media_cache_retention_period: Predstavnostne datoteke iz objav uporabnikov na ostalih strežnikih se začasno hranijo na tem strežniku. Ko je nastavljeno na pozitivno vrednost, bodo predstavnostne datoteke izbrisane po nastavljenem številu dni. Če bo predstavnostna datoteka zahtevana po izbrisu, bo ponovno prenešena, če bo vir še vedno na voljo. Zaradi omejitev pogostosti prejemanja predogledov povezav z drugih strani je priporočljivo to vrednost nastaviti na vsaj 14 dni. V nasprotnem predogledi povezav pred tem časom ne bodo osveženi na zahtevo.
+        min_age: Med registracijo bodo morali uporabniki potrditi svoj datum rojstva
         peers_api_enabled: Seznam imen domen, na katere je ta strežnik naletel v fediverzumu. Sem niso vključeni podatki o tem, ali ste v federaciji z danim strežnikom, zgolj to, ali vaš strežnik ve zanj. To uporabljajo storitve, ki zbirajo statistične podatke o federaciji v splošnem smislu.
         profile_directory: Imenik profilov izpiše vse uporabnike, ki so dovolili, da so v njem navedeni.
         require_invite_text: Če registracije zahtevajo ročno potrditev, nastavite vnos besedila pod »Zakaj se želite pridružiti?« za obveznega.
@@ -128,9 +131,23 @@ sl:
         show_application: Ne glede na to boste vedno lahko pogledali, katera aplikacija je objavila vašo objavo.
       tag:
         name: Spremenite lahko le npr. velikost črk (velike/male), da je bolj berljivo
+      terms_of_service:
+        changelog: Uporabite lahko oblikovanje z Markdown.
+        effective_date: Razumen čas do uveljavitve je navadno nekje med 10 in 30 dni od datuma, ko ste obvestili svoje uporabnike.
+        text: Uporabite lahko oblikovanje z Markdown.
+      terms_of_service_generator:
+        admin_email: Pravna obvestila vključujejo odgovore na obvestila, sodne naloge, zahteve za odstranitev in zahteve organov pregona.
+        arbitration_address: Lahko je enak kot fizični naslov zgoraj ali „N/A“, če uporabljate e-pošto.
+        arbitration_website: Lahko je spletni obrazec ali „N/A“, če uporabljate e-pošto.
+        choice_of_law: Mesto, regija, teritorij ali zvezna država, katere področni zakoni urejajo vse tožbene zahtevke.
+        dmca_email: Lahko je enak e-poštni naslov kot v polju „E-poštni naslov za pravna obvestila“ zgoraj.
+        domain: Edinstvena identifikacija spletne storitve, ki jo ponujate.
+        jurisdiction: Navedite državo, kjer živi tisti, ki plačuje račune. Če je to podjetje ali druga entiteta, navedite državo, kjer je bila ustanovljena. Po potrebi dopišite tudi mesto, regijo, teritorij ali zvezno državo.
+        min_age: Ne smete biti mlajši od starostne omejitve, ki jo postavljajo zakoni vašega pravosodnega sistema.
       user:
         chosen_languages: Ko je označeno, bodo v javnih časovnicah prikazane samo objave v izbranih jezikih
-        role: Vloga nadzira, katere pravice ima uporabnik
+        date_of_birth: Prepričati se moramo, da so uporabniki Mastodona stari vsaj %{age} let. Tega podatka ne bomo shranili.
+        role: Vloga določa, katera dovoljenja ima uporabnik.
       user_role:
         color: Barva, uporabljena za vlogo po celem up. vmesniku, podana v šestnajstiškem zapisu RGB
         highlighted: S tem je vloga javno vidna
@@ -143,6 +160,7 @@ sl:
         url: Kam bodo poslani dogodki
     labels:
       account:
+        attribution_domains: Spletna mesta, ki vas smejo navajati kot avtorja/ico
         discoverable: Izpostavljaj profile in objave v algoritmih odkrivanja
         fields:
           name: Oznaka
@@ -211,6 +229,7 @@ sl:
         setting_default_privacy: Zasebnost objave
         setting_default_sensitive: Vedno označi medije kot občutljive
         setting_delete_modal: Pred brisanjem objave prikaži okno za pritrditev
+        setting_disable_hover_cards: Onemogoči predogled profila pod kazalcem
         setting_disable_swiping: Onemogoči poteze drsanja
         setting_display_media: Prikaz medijev
         setting_display_media_default: Privzeto
@@ -218,8 +237,10 @@ sl:
         setting_display_media_show_all: Prikaži vse
         setting_expand_spoilers: Vedno razširi objave, označene z opozorili o vsebini
         setting_hide_network: Skrij svoje omrežje
+        setting_missing_alt_text_modal: Pred objavo predstavnosti brez nadomestnega besedila pokaži potrditveno okno
         setting_reduce_motion: Zmanjšanje premikanja v animacijah
         setting_system_font_ui: Uporabi privzeto pisavo sistema
+        setting_system_scrollbars_ui: Uporabi privzeti drsni trak sistema
         setting_theme: Tema strani
         setting_trends: Pokaži današnje trende
         setting_unfollow_modal: Pokaži potrditveno okno, preden nekoga prenehamo slediti
@@ -242,13 +263,16 @@ sl:
           warn: Skrij z opozorilom
       form_admin_settings:
         activity_api_enabled: Objavi združeno statistiko o dejavnosti uporabnikov v API-ju
+        app_icon: Ikona programa
         backups_retention_period: Obdobje hrambe arhivov uporabnikov
         bootstrap_timeline_accounts: Vedno priporočaj te račune novim uporabnikom
         closed_registrations_message: Sporočilo po meri, ko registracije niso na voljo
         content_cache_retention_period: Obdobje hranjenja vsebine z ostalih strežnikov
         custom_css: CSS po meri
+        favicon: Ikona spletne strani
         mascot: Maskota po meri (opuščeno)
         media_cache_retention_period: Obdobje hrambe predpomnilnika predstavnosti
+        min_age: Spodnja starostna meja
         peers_api_enabled: Objavi seznam odkritih strežnikov v API-ju
         profile_directory: Omogoči imenik profilov
         registrations_mode: Kdo se lahko registrira
@@ -311,8 +335,25 @@ sl:
         listable: Dovoli, da se ta ključnik pojavi v iskanjih in predlogih
         name: Ključnik
         trendable: Dovoli, da se ta ključnik pojavi med trendi
-        usable: Dovoli, da objave uporabljajo ta ključnik
+        usable: Dovoli, da objave krajevno uporabljajo ta ključnik
+      terms_of_service:
+        changelog: Kaj je novega?
+        effective_date: Datum začetka veljavnosti
+        text: Pogoji uporabe
+      terms_of_service_generator:
+        admin_email: E-poštni naslov za pravna obvestila
+        arbitration_address: Fizični naslov za arbitražna obvestila
+        arbitration_website: Spletišče za vložitev arbitražnih obvestil
+        choice_of_law: Izbira prava
+        dmca_address: Fizični naslov za obvestila DMCA ali o avtorskih pravicah
+        dmca_email: E-poštni naslov za obvestila DMCA ali o avtorskih pravicah
+        domain: Domena
+        jurisdiction: Pravna pristojnost
+        min_age: Najmanjša starost
       user:
+        date_of_birth_1i: Dan
+        date_of_birth_2i: Mesec
+        date_of_birth_3i: Leto
         role: Vloga
         time_zone: Časovni pas
       user_role:

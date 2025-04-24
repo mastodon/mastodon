@@ -15,9 +15,16 @@ el:
       user/invite_request:
         text: Αιτιολογία
     errors:
+      attributes:
+        domain:
+          invalid: δεν είναι έγκυρο όνομα τομέα
+      messages:
+        invalid_domain_on_line: το %{value} δεν είναι έγκυρο όνομα τομέα
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: περιέχει τιμές με ετικέτες που λείπουν
             username:
               invalid: μόνο γράμματα, αριθμοί και κάτω παύλες
               reserved: είναι δεσμευμένο
@@ -33,17 +40,28 @@ el:
           attributes:
             data:
               malformed: δεν είναι έγκυρα
+        list_account:
+          attributes:
+            account_id:
+              taken: είναι ήδη στη λίστα
+          must_be_following: πρέπει να είναι ένας λογαριασμός που ακολουθείς
         status:
           attributes:
             reblog:
-              taken: της κατάστασης ήδη υπάρχει
+              taken: της ανάρτησης υπάρχει ήδη
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: είναι πολύ σύντομα, πρέπει να είναι μετά από %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: είναι κάτω από το όριο ηλικίας
             email:
               blocked: χρησιμοποιεί μη επιτρεπόμενο πάροχο e-mail
               unreachable: δεν φαίνεται να υπάρχει
             role_id:
-              elevated: δεν μπορεί να είναι μεγαλύτερο από τον τρέχοντα ρόλο σας
+              elevated: δεν μπορεί να είναι υψηλότερο από τον τρέχοντα ρόλο σου
         user_role:
           attributes:
             permissions_as_keys:

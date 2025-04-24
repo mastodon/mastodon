@@ -30,14 +30,14 @@ sv:
         explanation: 'E-postadressen för ditt konto ändras till:'
         extra: Om du inte ändrade din e-post är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta serveradministratören om du är utelåst från ditt konto.
         subject: 'Mastodon: e-post ändrad'
-        title: Ny e-post adress
+        title: Ny e-postadress
       password_change:
         explanation: Lösenordet för ditt konto har ändrats.
         extra: Om du inte ändrade ditt lösenord är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta serveradministratören om du är utelåst från ditt konto.
         subject: 'Mastodon: Lösenordet har ändrats'
         title: Lösenordet har ändrats
       reconfirmation_instructions:
-        explanation: Bekräfta den nya adressen för att ändra din e-post adress.
+        explanation: Bekräfta den nya adressen för att ändra din e-postadress.
         extra: Om den här ändringen inte initierades av dig kan du ignorera det här e-postmeddelandet. E-postadressen för Mastodon-kontot ändras inte förrän du klickar på länken ovan.
         subject: 'Mastodon: Bekräfta e-post för %{instance}'
         title: Verifiera e-postadress
@@ -63,7 +63,7 @@ sv:
         subtitle: De tidigare återhämtningskoderna har ogiltigförklarats och nya har skapats.
         title: 2FA-återställningskoder ändrades
       unlock_instructions:
-        subject: 'Mastodon: Lås upp instruktioner'
+        subject: 'Mastodon: Instruktioner för upplåsning'
       webauthn_credential:
         added:
           explanation: Följande säkerhetsnyckel har lagts till i ditt konto
@@ -94,11 +94,6 @@ sv:
       updated_not_active: Ditt lösenord har ändrats. Du är nu inloggad.
     registrations:
       destroyed: Adjö! Ditt konto har blivit nedstängt. Vi hoppas att vi snart ses igen.
-      signed_up: Välkommen! Du har nu registrerat dig.
-      signed_up_but_inactive: Du har nu registrerat dig. Vi kunde dock inte logga in dig eftersom ditt konto ännu inte är aktiverat.
-      signed_up_but_locked: Du har nu registrerat dig. Vi kunde dock inte logga in eftersom ditt konto är låst.
-      signed_up_but_pending: Ett meddelande med en bekräftelselänk har skickats till din e-postadress. När du klickar på länken kommer vi att granska din ansökan. Du kommer att meddelas om den godkänns.
-      signed_up_but_unconfirmed: Ett meddelande med en bekräftelselänk har skickats till din e-postadress. Vänligen följ länken för att aktivera ditt konto. Kontrollera din skräppostmapp om du inte fick det här e-postmeddelandet.
       update_needs_confirmation: Du har uppdaterat ditt konto, men vi måste verifiera din nya e-postadress. Vänligen kolla din e-post och följ bekräfta-länken för att bekräfta din nya e-postadress. Kontrollera din skräppost om du inte fick e-postmeddelandet.
       updated: Ditt konto har uppdaterats utan problem.
     sessions:

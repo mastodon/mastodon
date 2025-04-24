@@ -15,9 +15,16 @@ fa:
       user/invite_request:
         text: دلیل
     errors:
+      attributes:
+        domain:
+          invalid: نام دامنهٔ معتبری نیست
+      messages:
+        invalid_domain_on_line: "%{value} نام دامنهٔ معتبری نیست"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: حاوی مقادیری با برچسب های گم شده
             username:
               invalid: تنها حروف، اعداد، و زیرخط
               reserved: محفوظ است
@@ -33,10 +40,19 @@ fa:
           attributes:
             data:
               malformed: بدریخت است
+        list_account:
+          attributes:
+            account_id:
+              taken: در حال حاضر در لیست است
+          must_be_following: باید یک حساب دنبال شده باشد
         status:
           attributes:
             reblog:
               taken: تا از وضعیت‌ها هنوز وجود دارند
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: بیش از حد زود است. باید بعد از %{date} باشد
         user:
           attributes:
             email:

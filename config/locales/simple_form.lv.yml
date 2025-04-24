@@ -3,13 +3,14 @@ lv:
   simple_form:
     hints:
       account:
+        attribution_domains: Viens katrā līnijā. Aizsargā no nepatiesa attiecinājuma.
         discoverable: Tavas publiskās ziņas un profils var tikt piedāvāti vai ieteikti dažādās Mastodon vietās, un tavs profils var tikt ieteikts citiem lietotājiem.
         display_name: Tavs pilnais vārds vai tavs joku vārds.
         fields: Tava mājas lapa, vietniekvārdi, vecums, viss, ko vēlies.
         indexable: Tavi publiskie ieraksti var tikt parādīti Mastodon meklēšanas iznākumā. Cilvēki, kuri ir mijiedarbojušies ar Taviem ierakstiem, var tos meklēt neatkarīgi no tā.
         note: 'Tu vari @minēt citus cilvēkus vai #mirkļbirkas.'
         show_collections: Cilvēki varēs pārlūkot Tavus sekotājus un sekojamos. Cilvēki, kuriem Tu seko, redzēs, ka Tu seko viņiem neatkarīgi no tā.
-        unlocked: Cilvēki varēs tev sekot, neprasot apstiprinājumu. Noņem atzīmi, ja vēlies pārskatīt sekošanas pieprasījumus un izvēlēties, pieņemt vai noraidīt jaunus sekotājus.
+        unlocked: Cilvēki varēs Tev sekot bez apstiprinājuma pieprasīšanas. Jānoņem atzīme, ja vēlies pārskatīt sekošanas pieprasījumus un izvēlēties, vai apstiprināt vai noraidīt jaunus sekotājus.
       account_alias:
         acct: Norādi konta lietotājvārdu@domēnu, no kura vēlies pārvākties
       account_migration:
@@ -18,14 +19,14 @@ lv:
         text: Vari izmantot ziņu sintaksi, piemēram, URL, atsauces un pieminējumus
         title: Neobligāts. Saņēmējam nav redzams
       admin_account_action:
-        include_statuses: Lietotājs redzēs, kuras ziņas izraisījušas moderācijas darbību vai brīdinājumu
+        include_statuses: Lietotājs redzēs, kuras ziņas izraisījušas satura pārraudzības darbību vai brīdinājumu
         send_email_notification: Lietotājs saņems paskaidrojumu par to, kas notika ar viņa kontu
         text_html: Neobligāts. Tu vari lietot ziņu sintaksi. Lai ietaupītu laiku, tu vari <a href="%{path}">pievienot brīdinājuma sākotnējos iestatījumus</a>
         type_html: Izvēlies, ko darīt ar <strong>%{acct}</strong>
         types:
           disable: Neļauj lietotājam izmantot savu kontu, bet neizdzēs vai neslēp tā saturu.
-          none: Izmanto šo, lai nosūtītu lietotājam brīdinājumu, neradot nekādas citas darbības.
-          sensitive: Piespiest visus šī lietotāja multivides pielikumus atzīmēt kā sensitīvus.
+          none: Šis ir izmantojams, lai nosūtītu lietotājam brīdinājumu bez jebkādu citu darbību izraisīšanas.
+          sensitive: Visus šī lietotāja informācijas nesēju pielikumus uzspiesti atzīmēt kā jūtīgus.
           silence: Neļaut lietotājam veikt ierakstus ar publisku redzamību, paslēpt viņa ierakstus un paziņojumus no cilvēkiem, kas tam neseko. Tiek aizvērti visi ziņojumi par šo kontu.
           suspend: Novērs jebkādu mijiedarbību no šī konta vai uz to un dzēs tā saturu. Atgriežams 30 dienu laikā. Tiek aizvērti visi šī konta pārskati.
         warning_preset_id: Neobligāts. Tu joprojām vari pievienot pielāgotu tekstu sākotnējās iestatīšanas beigās
@@ -44,23 +45,24 @@ lv:
         context: Viens vai vairāki konteksti, kur jāpiemēro filtrs
         current_password: Drošības nolūkos, lūdzu, ievadi pašreizējā konta paroli
         current_username: Lai apstiprinātu, lūdzu, ievadi pašreizējā konta paroli
-        digest: Tiek nosūtīts tikai pēc ilgstošas bezdarbības un tikai tad, ja savas prombūtnes laikā esi saņēmis jebkādas personīgas ziņas
-        email: Tev tiks nosūtīts apstiprinājuma e-pasts
+        digest: Tiek nosūtīts tikai pēc ilgstošas bezdarbības un tikai tad, ja savas prombūtnes laikā saņēmi jebkādas personīgas ziņas
+        email: Tev tiks nosūtīts apstiprinājuma e-pasta ziņojums
         header: WEBP, PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
         inbox_url: Nokopē URL no tā releja sākumlapas, kuru vēlies izmantot
         irreversible: Filtrētās ziņas neatgriezeniski pazudīs, pat ja filtrs vēlāk tiks noņemts
         locale: Lietotāja saskarnes, e-pasta ziņojumu un push paziņojumu valoda
         password: Izmanto vismaz 8 rakstzīmes
         phrase: Tiks saskaņots neatkarīgi no ziņas teksta reģistra vai satura brīdinājuma
-        scopes: Kuriem API lietojumprogrammai būs atļauta piekļuve. Ja izvēlies augstākā līmeņa tvērumu, tev nav jāatlasa atsevišķi vienumi.
+        scopes: Kuriem API lietotnei būs ļauts piekļūt. Ja atlasa augstākā līmeņa tvērumu, nav nepieciešamas atlasīt atsevišķus.
         setting_aggregate_reblogs: Nerādīt jaunus izcēlumus ziņām, kas nesen tika palielinātas (ietekmē tikai nesen saņemtos palielinājumus)
         setting_always_send_emails: Parasti e-pasta paziņojumi netiek sūtīti, kad aktīvi izmantojat Mastodon
-        setting_default_sensitive: Sensitīva multivide pēc noklusējuma ir paslēpti, un tos var atklāt, noklikšķinot
-        setting_display_media_default: Paslēpt multividi, kas atzīmēta kā sensitīva
+        setting_default_sensitive: Pēc noklusējuma jūtīgi informācijas nesēji ir paslēpti, un tos var atklāt ar klikšķi
+        setting_display_media_default: Paslēpt informācijas nesējus, kas atzīmēti kā jūtīgi
         setting_display_media_hide_all: Vienmēr slēpt multividi
         setting_display_media_show_all: Vienmēr rādīt multividi
+        setting_system_scrollbars_ui: Attiecas tikai uz darbvirsmas pārlūkiem, kuru pamatā ir Safari vai Chrome
         setting_use_blurhash: Pāreju pamatā ir paslēpto uzskatāmo līdzekļu krāsas, bet saturs tiek padarīts neskaidrs
-        setting_use_pending_items: Paslēpt laika skalas atjauninājumus aiz klikšķa, nevis automātiski ritini plūsmu
+        setting_use_pending_items: Paslēpt laika skalas atjauninājumus aiz klikšķa, nevis ar automātisku plūsmas ritināšanu
         username: Tu vari lietot burtus, ciparus un zemsvītras
         whole_word: Ja atslēgvārds vai frāze ir tikai burtciparu, tas tiks lietots tikai tad, ja tas atbilst visam vārdam
       domain_allow:
@@ -73,17 +75,24 @@ lv:
       filters:
         action: Izvēlies, kuru darbību veikt, ja ziņa atbilst filtram
         actions:
+          blur: Paslēpt informācijas nesējus aiz brīdinājuma, nepaslēpjot tekstu
           hide: Paslēp filtrēto saturu pilnībā, izturoties tā, it kā tas neeksistētu
           warn: Paslēp filtrēto saturu aiz brīdinājuma, kurā minēts filtra nosaukums
       form_admin_settings:
         activity_api_enabled: Vietēji publicēto ziņu, aktīvo lietotāju un jauno reģistrāciju skaits nedēļas kopās
-        bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju ieteikumu augšdaļā.
+        app_icon: WEBP, PNG, GIF vai JPG. Mobilajās ierīcēs aizstāj noklusējuma lietotnes ikonu ar pielāgotu.
+        backups_retention_period: Lietotājiem ir iespēja izveidot savu ierakstu arhīvu lejupielādēšanai vēlāk. Kad iestatīta pozitīva vērtība, šie arhīvi tiks automātiski izdzēsti no krātuves pēc norādītā dienu skaita.
+        bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju sekošanas ieteikumu augšdaļā.
         closed_registrations_message: Tiek rādīts, kad reģistrēšanās ir slēgta
+        content_cache_retention_period: Visi ieraksti no citiem serveriem (tajā skaitā pastiprinājumi un atbildes) tiks izdzēsti pēc norādītā dienu skaita, neņemot vērā vietēja lietotāja mijiedarbību ar šādiem ierakstiem. Tas ietver ierakstus, kurus vietējs lietotājs ir atzīmējis kā grāmatzīmi vai pievienojis izlasē. Tiks zaudēti arī privāti pieminējumi starp lietotājiem no dažādiem serveriem, un tos nebūs iespējams atgūt. Šī iestatījuma izmantošana ir paredzēta īpašam nolūkam paredzētiem serveriem un neatbilst tam, ko sagaida vairums lietotāju, kad pielietots vispārējas izmantošanas serveros.
         custom_css: Vari lietot pielāgotus stilus Mastodon tīmekļa versijā.
+        favicon: WEBP, PNG, GIF vai JPG. Aizstāj noklusējuma Mastodon favikonu ar pielāgotu.
         mascot: Ignorē ilustrāciju uzlabotajā tīmekļa saskarnē.
+        media_cache_retention_period: Informācijas nesēju datnes no ierakstiem, kurus ir veikuši attālie lietotāji, tiek kešoti šajā serverī. Kad ir iestatīta apstiprinoša vērtība, informācijas nesēji tiks izdzēsti pēc norādītā dienu skaita. Ja informācijas nesēju dati tiks pieprasīti pēc tam, kad tie tika izdzēsti, tie tiks atkārtoti lejupielādēti, ja avota saturs joprojām būs pieejams. Saišu priekšskatījuma karšu vaicājumu biežuma ierobežojumu dēļ ir ieteicams iestatīt šo vērtību vismaz 14 dienas vai saišu priekšskatījuma kartes netiks atjauninātas pēc pieprasījuma pirms tā laika.
+        min_age: Lietotājiem tiks lūgts apstiprināt viņu dzimšanas datumu reģistrācijas laikā
         peers_api_enabled: Domēna vārdu saraksts, ar kuriem šis serveris ir saskāries fediversā. Šeit nav iekļauti dati par to, vai tu veic federāciju ar noteiktu serveri, tikai tavs serveris par to zina. To izmanto dienesti, kas apkopo statistiku par federāciju vispārīgā nozīmē.
         profile_directory: Profilu direktorijā ir uzskaitīti visi lietotāji, kuri ir izvēlējušies būt atklājami.
-        require_invite_text: 'Ja pierakstīšanai nepieciešama manuāla apstiprināšana, izdari tā, lai teksta: “Kāpēc vēlaties pievienoties?” ievade ir obligāta, nevis opcionāla'
+        require_invite_text: Ja nepieciešama pašrocīga apstiprināšana, lai pierakstītos, teksta “Kāpēc vēlies pievienoties?” ievade jāpadara par nepieciešamu, nevis izvēles
         site_contact_email: Kā cilvēki var sazināties ar tevi par juridiskiem vai atbalsta jautājumiem.
         site_contact_username: Tagad cilvēki var tevi sasniegt Mastodon.
         site_extended_description: Jebkura papildu informācija, kas var būt noderīga apmeklētājiem un lietotājiem. Var strukturēt ar Markdown sintaksi.
@@ -113,18 +122,28 @@ lv:
           sign_up_requires_approval: Jaunām reģistrācijām būs nepieciešams tavs apstiprinājums
         severity: Izvēlies, kas notiks ar pieprasījumiem no šīs IP adreses
       rule:
-        text: Apraksti nosacījumus vai prasības šī servera lietotājiem. Centies, lai tas būtu īss un vienkāršs
+        hint: Izvēles. Sniedz vairāk informācijas par noteikumu
+        text: Jāapraksta nosacījums vai prasība šī servera lietotājiem. Jāmēģina to veidot īsu un vienkāršu
       sessions:
-        otp: 'Ievadi divfaktoru kodu, ko ģenerējusi tava tālruņa lietotne, vai izmanto kādu no atkopšanas kodiem:'
+        otp: 'Jāievada tālruņa lietotnes izveidots divpakāpju kods vai jāizmanto viens no saviem atkopes kodiem:'
         webauthn: Ja tā ir USB atslēga, noteikti ievieto to un, ja nepieciešams, pieskaries tai.
       settings:
         indexable: Tava profila lapa var tikt parādīta Google, Bing un citu meklēšanas dzinēju rezultātos.
         show_application: Tu vienmēr varēsi redzēt, kura lietotne publicēja tavu ziņu.
       tag:
         name: Tu vari mainīt tikai burtu lielumu, piemēram, lai tie būtu vieglāk lasāmi
+      terms_of_service:
+        changelog: Var veidot ar Markdown pierakstu.
+        effective_date: Saprātīgs laika logs var būt no 10 līdz 30 dienām no dienas, kad lietotāji tiek apziņoti.
+        text: Var veidot ar Markdown pierakstu.
+      terms_of_service_generator:
+        arbitration_address: Var būt tāda pati kā augstāk esošā fiziskā adrese vai "N/A", ja tiek izmantota e-pasta adrese.
+        arbitration_website: Var būt tīmekļa veidlapa vai "N/A", ja tiek izmantots e-pasts.
+        domain: Sniegtā tiešsaistas pakalpojuma neatkārtojama identifikācija.
       user:
         chosen_languages: Ja ieķeksēts, publiskos laika grafikos tiks parādītas tikai ziņas noteiktajās valodās
-        role: Loma kontrolē, kādas atļaujas ir lietotājam
+        date_of_birth: Mums jāpārliecinās, ka jums ir vismaz %{age} gadi, lai varētu izmantot Mastodonu. Mēs neuzglabāsim šo informāciju.
+        role: Loma nosaka, kādas lietotājam ir atļaujas.
       user_role:
         color: Krāsa, kas jāizmanto lomai visā lietotāja saskarnē, kā RGB hex formātā
         highlighted: Tas padara lomu publiski redzamu
@@ -137,6 +156,7 @@ lv:
         url: Kur notikumi tiks nosūtīti
     labels:
       account:
+        attribution_domains: Tīmekļvietnes, kurām ir tiesības uzskaitīt Tevi
         discoverable: Funkcijas profils un ziņas atklāšanas algoritmos
         fields:
           name: Marķējums
@@ -159,7 +179,7 @@ lv:
         types:
           disable: Iesaldēt
           none: Nosūtīt brīdinājumu
-          sensitive: Sensitīvs
+          sensitive: Jūtīgs
           silence: Ierobežot
           suspend: Apturēt
         warning_preset_id: Lietot iepriekš iestatītus brīdinājumus
@@ -175,7 +195,7 @@ lv:
         autofollow: Uzaicini sekot tavam kontam
         avatar: Profila attēls
         bot: Šis ir automatizēts konts
-        chosen_languages: Filtrēt valodas
+        chosen_languages: Atlasīt valodas
         confirm_new_password: Apstiprināt jauno paroli
         confirm_password: Apstiprināt paroli
         context: Filtrēt kontekstus
@@ -193,7 +213,7 @@ lv:
         max_uses: Maksimālais lietojumu skaits
         new_password: Jauna parole
         note: Par sevi
-        otp_attempt: Divfaktoru kods
+        otp_attempt: Divpakāpju kods
         password: Parole
         phrase: Atslēgvārds vai frāze
         setting_advanced_layout: Iespējot paplašināto tīmekļa saskarni
@@ -203,8 +223,9 @@ lv:
         setting_boost_modal: Rādīt apstiprinājuma dialogu pirms izcelšanas
         setting_default_language: Publicēšanas valoda
         setting_default_privacy: Publicēšanas privātums
-        setting_default_sensitive: Atļaut atzīmēt multividi kā sensitīvu
+        setting_default_sensitive: Vienmēr atzīmēt informācijas nesējus kā jūtīgus
         setting_delete_modal: Parādīt apstiprinājuma dialogu pirms ziņas dzēšanas
+        setting_disable_hover_cards: Atspējot profila priekšskatījumu pēc kursora novietošanas
         setting_disable_swiping: Atspējot vilkšanas kustības
         setting_display_media: Multivides rādīšana
         setting_display_media_default: Noklusējums
@@ -212,8 +233,10 @@ lv:
         setting_display_media_show_all: Parādīt visu
         setting_expand_spoilers: Vienmēr izvērst ziņas, kas apzīmētas ar brīdinājumiem par saturu
         setting_hide_network: Slēpt savu sociālo grafu
+        setting_missing_alt_text_modal: Rādīt apstiprināšanas lodziņu pirms informācijas nesēju bez aprakstošā teksta iesūtīšanas
         setting_reduce_motion: Ierobežot kustību animācijās
         setting_system_font_ui: Lietot sistēmas noklusējuma fontu
+        setting_system_scrollbars_ui: Lietot sistēmas noklusējuma ritjoslu
         setting_theme: Vietnes motīvs
         setting_trends: Parādīt šodienas tendences
         setting_unfollow_modal: Parādīt apstiprinājuma dialogu pirms pārtraukt kādam sekot
@@ -236,12 +259,16 @@ lv:
           warn: Paslēpt ar brīdinājumu
       form_admin_settings:
         activity_api_enabled: Publicējiet apkopotu statistiku par lietotāju darbībām API
+        app_icon: Lietotnes ikona
         backups_retention_period: Lietotāja arhīva glabāšanas periods
         bootstrap_timeline_accounts: Vienmēr iesaki šos kontus jaunajiem lietotājiem
         closed_registrations_message: Pielāgots ziņojums, ja reģistrēšanās nav pieejama
+        content_cache_retention_period: Attālā satura paturēšanas laika posms
         custom_css: Pielāgots CSS
+        favicon: Favikona
         mascot: Pielāgots talismans (mantots)
         media_cache_retention_period: Multivides kešatmiņas saglabāšanas periods
+        min_age: Nepieciešamais minimālais vecums
         peers_api_enabled: Publicēt API atklāto serveru sarakstu
         profile_directory: Iespējot profila direktoriju
         registrations_mode: Kurš drīkst pieteikties
@@ -295,6 +322,7 @@ lv:
           patch: Paziņot par novērsto kļūdu atjauninājumiem
         trending_tag: Jaunā tendence ir jāpārskata
       rule:
+        hint: Papildu informācija
         text: Noteikumi
       settings:
         indexable: Ietvert profila lapu meklēšanas dzinējos
@@ -303,8 +331,20 @@ lv:
         listable: Atļaut šim tēmturim parādīties meklējumos un ieteikumos
         name: Tēmturis
         trendable: Atļaut šim tēmturim parādīties zem tendencēm
-        usable: Atļaut lietot ziņās šo tēmturi
+        usable: Ļaut ierakstos vietēji izmantot šo tēmturi
+      terms_of_service:
+        changelog: Kas ir mainījies?
+        effective_date: Spēkā stāšanās datums
+        text: Pakalpojuma izmantošanas nosacījumi
+      terms_of_service_generator:
+        admin_email: E-pasta adrese juridiskiem paziņojumiem
+        choice_of_law: Likuma izvēle
+        domain: Domēna vārds
+        min_age: Mazākais pieļaujamais vecums
       user:
+        date_of_birth_1i: Diena
+        date_of_birth_2i: Mēnesis
+        date_of_birth_3i: Gads
         role: Loma
         time_zone: Laika josla
       user_role:
@@ -326,5 +366,5 @@ lv:
       text: nepieciešams
     title:
       sessions:
-        webauthn: Lai pierakstītos, izmanto vienu no savām drošības atslēgām
+        webauthn: Lai pieteiktos, jāizmanto viena no savām drošības atslēgām
     'yes': Jā

@@ -33,6 +33,11 @@ be:
           attributes:
             data:
               malformed: дэфармаваны
+        list_account:
+          attributes:
+            account_id:
+              taken: ужо ў спісе
+          must_be_following: мусіць быць падпісаным уліковым запісам
         status:
           attributes:
             reblog:

@@ -2,29 +2,31 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
 
+import { openModal } from 'mastodon/actions/modal';
+import { fetchNotifications , setNotificationsFilter } from 'mastodon/actions/notification_groups';
+
 import { showAlert } from '../../../actions/alerts';
-import { openModal } from '../../../actions/modal';
-import { setFilter, clearNotifications, requestBrowserPermission, updateNotificationsPolicy } from '../../../actions/notifications';
+import { requestBrowserPermission } from '../../../actions/notifications';
 import { changeAlerts as changePushNotifications } from '../../../actions/push_notifications';
 import { changeSetting } from '../../../actions/settings';
 import ColumnSettings from '../components/column_settings';
 
 const messages = defineMessages({
-  clearMessage: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all your notifications?' },
-  clearConfirm: { id: 'notifications.clear', defaultMessage: 'Clear notifications' },
   permissionDenied: { id: 'notifications.permission_denied_alert', defaultMessage: 'Desktop notifications can\'t be enabled, as browser permission has been denied before' },
 });
 
+/**
+ * @param {import('mastodon/store').RootState} state
+ */
 const mapStateToProps = state => ({
   settings: state.getIn(['settings', 'notifications']),
   pushSettings: state.get('push_notifications'),
   alertsEnabled: state.getIn(['settings', 'notifications', 'alerts']).includes(true),
   browserSupport: state.getIn(['notifications', 'browserSupport']),
   browserPermission: state.getIn(['notifications', 'browserPermission']),
-  notificationPolicy: state.get('notificationPolicy'),
 });
 
-const mapDispatchToProps = (dispatch, { intl }) => ({
+const mapDispatchToProps = (dispatch) => ({
 
   onChange (path, checked) {
     if (path[0] === 'push') {
@@ -41,7 +43,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       }
     } else if (path[0] === 'quickFilter') {
       dispatch(changeSetting(['notifications', ...path], checked));
-      dispatch(setFilter('all'));
+      dispatch(setNotificationsFilter('all'));
     } else if (path[0] === 'alerts' && checked && typeof window.Notification !== 'undefined' && Notification.permission !== 'granted') {
       if (checked && typeof window.Notification !== 'undefined' && Notification.permission !== 'granted') {
         dispatch(requestBrowserPermission((permission) => {
@@ -56,28 +58,19 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       }
     } else {
       dispatch(changeSetting(['notifications', ...path], checked));
+
+      if(path[0] === 'group' && path[1] === 'follow') {
+        dispatch(fetchNotifications());
+      }
     }
   },
 
   onClear () {
-    dispatch(openModal({
-      modalType: 'CONFIRM',
-      modalProps: {
-        message: intl.formatMessage(messages.clearMessage),
-        confirm: intl.formatMessage(messages.clearConfirm),
-        onConfirm: () => dispatch(clearNotifications()),
-      },
-    }));
+    dispatch(openModal({ modalType: 'CONFIRM_CLEAR_NOTIFICATIONS' }));
   },
 
   onRequestNotificationPermission () {
     dispatch(requestBrowserPermission());
-  },
-
-  onChangePolicy (param, checked) {
-    dispatch(updateNotificationsPolicy({
-      [param]: checked,
-    }));
   },
 
 });

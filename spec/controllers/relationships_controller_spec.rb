@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RelationshipsController do
+RSpec.describe RelationshipsController do
   render_views
 
   let(:user) { Fabricate(:user) }
@@ -14,11 +14,9 @@ describe RelationshipsController do
         get :show, params: { page: 2, relationship: 'followed_by' }
       end
 
-      it 'returns http success' do
+      it 'returns http success and private cache control headers' do
         expect(response).to have_http_status(200)
-      end
 
-      it 'returns private cache control headers' do
         expect(response.headers['Cache-Control']).to include('private, no-store')
       end
     end
@@ -37,7 +35,7 @@ describe RelationshipsController do
   describe 'PATCH #update' do
     let(:alice) { Fabricate(:account, username: 'alice', domain: 'example.com') }
 
-    shared_examples 'redirects back to followers page' do
+    shared_examples 'general behavior for followed user' do
       it 'redirects back to followers page' do
         alice.follow!(user.account)
 
@@ -51,7 +49,7 @@ describe RelationshipsController do
     context 'when select parameter is not provided' do
       subject { patch :update }
 
-      include_examples 'redirects back to followers page'
+      it_behaves_like 'general behavior for followed user'
     end
 
     context 'when select parameter is provided' do
@@ -85,7 +83,7 @@ describe RelationshipsController do
         end
       end
 
-      include_examples 'redirects back to followers page'
+      it_behaves_like 'general behavior for followed user'
     end
   end
 end

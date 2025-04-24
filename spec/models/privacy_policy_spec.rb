@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe PrivacyPolicy do
+RSpec.describe PrivacyPolicy do
   describe '.current' do
     context 'with the default values' do
       it 'has the privacy text' do

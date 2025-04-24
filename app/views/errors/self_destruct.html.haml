@@ -3,7 +3,7 @@
 
 .simple_form
   %h1.title= t('self_destruct.title')
-  %p.lead= t('self_destruct.lead_html', domain: ENV.fetch('LOCAL_DOMAIN'))
+  %p.lead= t('self_destruct.lead_html', domain: Rails.configuration.x.local_domain)
 
 .form-footer
   %ul.no-list

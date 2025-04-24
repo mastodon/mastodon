@@ -9,7 +9,6 @@ ms:
         indexable: Kiriman awam anda mungkin muncul dalam hasil carian di Mastodon. Orang yang telah berinteraksi dengan kiriman anda mungkin boleh mencarinya.
         note: 'Anda boleh @menyebut orang lain atau #hashtags.'
         show_collections: Orang akan dapat menyemak imbas ikutan dan pengikut anda. Orang yang anda ikuti akan melihat bahawa anda tetap mengikuti mereka.
-        unlocked: Orang akan dapat mengikuti anda tanpa meminta kelulusan. Nyahtanda jika anda ingin menyemak permintaan ikutan dan pilih sama ada untuk menerima atau menolak pengikut baharu.
       account_alias:
         acct: Tentukan namapengguna@domain akaun yang ingin anda alihkan daripada
       account_migration:
@@ -78,6 +77,7 @@ ms:
         bootstrap_timeline_accounts: Akaun ini akan disematkan pada bahagian atas cadangan ikutan pengguna baharu.
         closed_registrations_message: Dipaparkan semasa pendaftaran ditutup
         custom_css: Anda boleh menggunakan gaya tersuai pada versi web Mastodon.
+        favicon: WEBP, PNG, GIF, atau JPG. Arca tersuai diutamakan dari arca kegemaran Mastodon lalai.
         mascot: Mengatasi ilustrasi dalam antara muka web lanjutan.
         peers_api_enabled: Senarai nama domain yang pernah ditemui oleh server ini dalam fediverse. Tiada data disertakan di sini tentang sama ada anda bersekutu dengan server tertentu, cuma server anda mengetahuinya. Ini digunakan oleh perkhidmatan yang mengumpul statistik mengenai persekutuan dalam pengertian umum.
         profile_directory: Direktori profil menyenaraikan semua pengguna yang telah mengikut serta untuk ditemui.
@@ -120,9 +120,10 @@ ms:
         show_application: Anda akan sentiasa dapat melihat apl yang menerbitkan siaran anda tanpa mengira.
       tag:
         name: Anda hanya boleh menukar selongsong huruf, sebagai contoh, untuk menjadikannya lebih mudah dibaca
+      terms_of_service_generator:
+        choice_of_law: City, region, territory or state the internal substantive laws of which shall govern any and all claims.
       user:
         chosen_languages: Apabila disemak, hanya siaran dalam bahasa terpilih akan dipaparkan dalam garis masa awam
-        role: Peranan mengawal kebenaran yang dimiliki oleh pengguna
       user_role:
         color: Warna yang akan digunakan untuk peranan ini dalam seluruh UI, sebagai RGB dalam format hex
         highlighted: Ini menjadikan peranan ini dipaparkan secara umum
@@ -238,6 +239,7 @@ ms:
         bootstrap_timeline_accounts: Sentiasa mengesyorkan akaun ini kepada pengguna baharu
         closed_registrations_message: Mesej tersuai apabila pendaftaran tidak tersedia
         custom_css: CSS tersuai
+        favicon: Arca kegemaran
         mascot: Maskot tersuai (warisan)
         media_cache_retention_period: Tempoh pengekalan cache media
         peers_api_enabled: Terbitkan senarai pelayan yang ditemui dalam API
@@ -278,7 +280,7 @@ ms:
       notification_emails:
         appeal: Seseorang merayu keputusan moderator
         digest: Hantar e-mel ringkasan
-        favourite: Seorang menggemarkan hantaran anda
+        favourite: Seseorang menyukai hantaran anda
         follow: Seorang mengikuti anda
         follow_request: Seorang meminta untuk mengikuti anda
         mention: Seorang menyebut anda
@@ -301,7 +303,6 @@ ms:
         listable: Benarkan hashtag ini muncul dalam carian dan cadangan
         name: Tanda pagar
         trendable: Benarkan hashtag ini muncul di bawah aliran
-        usable: Benarkan siaran untuk menggunakan tanda pagar ini
       user:
         role: Peranan
         time_zone: Zon masa

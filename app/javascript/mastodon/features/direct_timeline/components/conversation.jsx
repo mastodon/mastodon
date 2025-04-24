@@ -18,13 +18,13 @@ import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { replyCompose } from 'mastodon/actions/compose';
 import { markConversationRead, deleteConversation } from 'mastodon/actions/conversations';
 import { openModal } from 'mastodon/actions/modal';
-import { muteStatus, unmuteStatus, revealStatus, hideStatus } from 'mastodon/actions/statuses';
+import { muteStatus, unmuteStatus, toggleStatusSpoilers } from 'mastodon/actions/statuses';
 import AttachmentList from 'mastodon/components/attachment_list';
 import AvatarComposite from 'mastodon/components/avatar_composite';
 import { IconButton } from 'mastodon/components/icon_button';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import StatusContent from 'mastodon/components/status_content';
-import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { autoPlayGif } from 'mastodon/initial_state';
 import { makeGetStatus } from 'mastodon/selectors';
 
@@ -36,8 +36,6 @@ const messages = defineMessages({
   delete: { id: 'conversation.delete', defaultMessage: 'Delete conversation' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
-  replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
-  replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
 });
 
 const getAccounts = createSelector(
@@ -103,19 +101,12 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
       let state = getState();
 
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: intl.formatMessage(messages.replyMessage),
-            confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: () => dispatch(replyCompose(lastStatus, history)),
-          },
-        }));
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status: lastStatus } }));
       } else {
-        dispatch(replyCompose(lastStatus, history));
+        dispatch(replyCompose(lastStatus));
       }
     });
-  }, [dispatch, lastStatus, history, intl]);
+  }, [dispatch, lastStatus]);
 
   const handleDelete = useCallback(() => {
     dispatch(deleteConversation(id));
@@ -138,11 +129,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
   }, [dispatch, lastStatus]);
 
   const handleShowMore = useCallback(() => {
-    if (lastStatus.get('hidden')) {
-      dispatch(revealStatus(lastStatus.get('id')));
-    } else {
-      dispatch(hideStatus(lastStatus.get('id')));
-    }
+    dispatch(toggleStatusSpoilers(lastStatus.get('id')));
   }, [dispatch, lastStatus]);
 
   if (!lastStatus) {
@@ -163,7 +150,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
   menu.push({ text: intl.formatMessage(messages.delete), action: handleDelete });
 
   const names = accounts.map(a => (
-    <Link to={`/@${a.get('acct')}`} key={a.get('id')} title={a.get('acct')}>
+    <Link to={`/@${a.get('acct')}`} key={a.get('id')} data-hover-card-account={a.get('id')}>
       <bdi>
         <strong
           className='display-name__html'
@@ -183,7 +170,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
 
   return (
     <HotKeys handlers={handlers}>
-      <div className={classNames('conversation focusable muted', { 'conversation--unread': unread })} tabIndex={0}>
+      <div className={classNames('conversation focusable muted', { unread })} tabIndex={0}>
         <div className='conversation__avatar' onClick={handleClick} role='presentation'>
           <AvatarComposite accounts={accounts} size={48} />
         </div>
@@ -218,7 +205,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
             <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' iconComponent={ReplyIcon} onClick={handleReply} />
 
             <div className='status__action-bar-dropdown'>
-              <DropdownMenuContainer
+              <Dropdown
                 scrollKey={scrollKey}
                 status={lastStatus}
                 items={menu}

@@ -3,6 +3,7 @@ eu:
   simple_form:
     hints:
       account:
+        attribution_domains: Lerroko bat. Atribuzio faltsuetatik babesten ditu.
         discoverable: Zure bidalketa publikoak eta profila nabarmendu edo gomendatu egin daitezke Mastodon-go hainbat eremutan eta zure profila beste erabiltzaile batzuei iradoki dakieke.
         display_name: Zure izena edo ezizena.
         fields: Zure webgunea, izenordainak, adina, nahi duzun guztia.
@@ -59,6 +60,7 @@ eu:
         setting_display_media_default: Ezkutatu hunkigarri gisa markatutako multimedia
         setting_display_media_hide_all: Ezkutatu multimedia guztia beti
         setting_display_media_show_all: Erakutsi beti hunkigarri gisa markatutako multimedia
+        setting_system_scrollbars_ui: Safari eta Chrome-n oinarritutako mahaigaineko nabigatzaileei bakarrik aplikatzen zaie
         setting_use_blurhash: Gradienteak ezkutatutakoaren koloreetan oinarritzen dira, baina xehetasunak ezkutatzen dituzte
         setting_use_pending_items: Ezkutatu denbora-lerroko eguneraketak klik baten atzean jarioa automatikoki korritu ordez
         username: Hizkiak, zenbakiak eta azpimarrak erabil ditzakezu
@@ -128,9 +130,13 @@ eu:
         show_application: Dena dela, beti ikusi ahal izango duzu zein aplikaziok argitaratu zuen zure bidalketa.
       tag:
         name: Letrak maiuskula/minuskulara aldatu ditzakezu besterik ez, adibidez irakurterrazago egiteko
+      terms_of_service:
+        changelog: Markdown-en sintaxiarekin egitura daiteke.
+        text: Markdown-en sintaxiarekin egitura daiteke.
+      terms_of_service_generator:
+        admin_email: Legezko abisuak, kontraindikazioak, agindu judizialak, erretiratzeko eskaerak eta legea betetzeko eskaerak barne.
       user:
         chosen_languages: Markatzean, hautatutako hizkuntzetan dauden tutak besterik ez dira erakutsiko.
-        role: Rolak erabiltzaileak dituen baimenak kontrolatzen ditu
       user_role:
         color: Rolarentzat erabiltzaile interfazean erabiliko den kolorea, formatu hamaseitarreko RGB bezala
         highlighted: Honek rola publikoki ikusgai jartzen du
@@ -143,6 +149,7 @@ eu:
         url: Nora bidaliko diren gertaerak
     labels:
       account:
+        attribution_domains: Akreditatzeko baimendutako webguneak
         discoverable: Ezagutarazi profila eta bidalketak bilaketa algoritmoetan
         fields:
           name: Etiketa
@@ -242,11 +249,13 @@ eu:
           warn: Ezkutatu ohar batekin
       form_admin_settings:
         activity_api_enabled: Argitaratu erabiltzaile-jardueraren guztizko estatistikak APIan
+        app_icon: Aplikazio ikonoa
         backups_retention_period: Erabiltzailearen artxiboa gordetzeko epea
         bootstrap_timeline_accounts: Gomendatu beti kontu hauek erabiltzaile berriei
         closed_registrations_message: Izen-emateak itxita daudenerako mezu pertsonalizatua
         content_cache_retention_period: Urruneko edukiaren atxikipen-aldia
         custom_css: CSS pertsonalizatua
+        favicon: Gune-ikurra
         mascot: Maskota pertsonalizatua (zaharkitua)
         media_cache_retention_period: Multimediaren cachea atxikitzeko epea
         peers_api_enabled: Argitaratu aurkitutako zerbitzarien zerrenda APIan
@@ -311,7 +320,12 @@ eu:
         listable: Baimendu traola hau bilaketetan agertzea eta profilen direktorioan
         name: Traola
         trendable: Baimendu traola hau joeretan agertzea
-        usable: Baimendu tootek traola hau erabiltzea
+        usable: Baimendu bidalketek traola lokal hau erabiltzea
+      terms_of_service:
+        changelog: Zer aldatu da?
+        text: Zerbitzuaren baldintzak
+      terms_of_service_generator:
+        domain: Domeinua
       user:
         role: Rola
         time_zone: Ordu zona

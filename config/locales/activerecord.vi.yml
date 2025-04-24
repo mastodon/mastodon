@@ -15,9 +15,16 @@ vi:
       user/invite_request:
         text: Lý do
     errors:
+      attributes:
+        domain:
+          invalid: không phải là một tên miền hợp lệ
+      messages:
+        invalid_domain_on_line: "%{value} không phải là một tên miền hợp lệ"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: chứa giá trị thiếu nhãn
             username:
               invalid: chỉ chấp nhận ký tự, số và dấu gạch dưới
               reserved: bị cấm sử dụng
@@ -33,12 +40,23 @@ vi:
           attributes:
             data:
               malformed: bị hỏng
+        list_account:
+          attributes:
+            account_id:
+              taken: đã có trong danh sách
+          must_be_following: phải theo dõi từ trước
         status:
           attributes:
             reblog:
               taken: của tút đã tồn tại
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: là quá sớm, cần phải sau %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: dưới độ tuổi tối thiểu
             email:
               blocked: sử dụng dịch vụ email bị cấm
               unreachable: không tồn tại

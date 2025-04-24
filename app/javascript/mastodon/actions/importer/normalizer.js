@@ -1,14 +1,11 @@
 import escapeTextContentForBrowser from 'escape-html';
 
+import { makeEmojiMap } from 'mastodon/models/custom_emoji';
+
 import emojify from '../../features/emoji/emoji';
 import { expandSpoilers } from '../../initial_state';
 
 const domParser = new DOMParser();
-
-const makeEmojiMap = emojis => emojis.reduce((obj, emoji) => {
-  obj[`:${emoji.shortcode}:`] = emoji;
-  return obj;
-}, {});
 
 export function searchTextFromRawStatus (status) {
   const spoilerText   = status.spoiler_text || '';
@@ -34,6 +31,17 @@ export function normalizeStatus(status, normalOldStatus) {
 
   if (status.poll && status.poll.id) {
     normalStatus.poll = status.poll.id;
+  }
+
+  if (status.card) {
+    normalStatus.card = {
+      ...status.card,
+      authors: status.card.authors.map(author => ({
+        ...author,
+        accountId: author.account?.id,
+        account: undefined,
+      })),
+    };
   }
 
   if (status.filtered) {
@@ -96,38 +104,6 @@ export function normalizeStatusTranslation(translation, status) {
     contentHtml: emojify(translation.content, emojiMap),
     spoilerHtml: emojify(escapeTextContentForBrowser(translation.spoiler_text), emojiMap),
     spoiler_text: translation.spoiler_text,
-  };
-
-  return normalTranslation;
-}
-
-export function normalizePoll(poll, normalOldPoll) {
-  const normalPoll = { ...poll };
-  const emojiMap = makeEmojiMap(poll.emojis);
-
-  normalPoll.options = poll.options.map((option, index) => {
-    const normalOption = {
-      ...option,
-      voted: poll.own_votes && poll.own_votes.includes(index),
-      titleHtml: emojify(escapeTextContentForBrowser(option.title), emojiMap),
-    };
-
-    if (normalOldPoll && normalOldPoll.getIn(['options', index, 'title']) === option.title) {
-      normalOption.translation = normalOldPoll.getIn(['options', index, 'translation']);
-    }
-
-    return normalOption;
-  });
-
-  return normalPoll;
-}
-
-export function normalizePollOptionTranslation(translation, poll) {
-  const emojiMap = makeEmojiMap(poll.get('emojis').toJS());
-
-  const normalTranslation = {
-    ...translation,
-    titleHtml: emojify(escapeTextContentForBrowser(translation.title), emojiMap),
   };
 
   return normalTranslation;

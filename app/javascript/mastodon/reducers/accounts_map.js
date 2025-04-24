@@ -4,11 +4,10 @@ import { ACCOUNT_LOOKUP_FAIL } from '../actions/accounts';
 import { importAccounts } from '../actions/accounts_typed';
 import { domain } from '../initial_state';
 
-export const normalizeForLookup = str => {
-  str = str.toLowerCase();
-  const trailingIndex = str.indexOf(`@${domain.toLowerCase()}`);
-  return (trailingIndex > 0) ? str.slice(0, trailingIndex) : str;
-};
+const pattern = new RegExp(`@${domain}$`, 'gi');
+
+export const normalizeForLookup = str =>
+  str.toLowerCase().replace(pattern, '');
 
 const initialState = ImmutableMap();
 

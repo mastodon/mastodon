@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren, JSX } from 'react';
 import { useCallback } from 'react';
 
 import classNames from 'classnames';
@@ -7,6 +7,8 @@ interface BaseProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   block?: boolean;
   secondary?: boolean;
+  compact?: boolean;
+  dangerous?: boolean;
 }
 
 interface PropsChildren extends PropsWithChildren<BaseProps> {
@@ -26,6 +28,8 @@ export const Button: React.FC<Props> = ({
   disabled,
   block,
   secondary,
+  compact,
+  dangerous,
   className,
   title,
   text,
@@ -45,7 +49,9 @@ export const Button: React.FC<Props> = ({
     <button
       className={classNames('button', className, {
         'button-secondary': secondary,
+        'button--compact': compact,
         'button--block': block,
+        'button--dangerous': dangerous,
       })}
       disabled={disabled}
       onClick={handleClick}

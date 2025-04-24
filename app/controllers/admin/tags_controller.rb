@@ -2,7 +2,15 @@
 
 module Admin
   class TagsController < BaseController
-    before_action :set_tag
+    before_action :set_tag, except: [:index]
+
+    PER_PAGE = 20
+
+    def index
+      authorize :tag, :index?
+
+      @tags = filtered_tags.page(params[:page]).per(PER_PAGE)
+    end
 
     def show
       authorize @tag, :show?
@@ -29,7 +37,16 @@ module Admin
     end
 
     def tag_params
-      params.require(:tag).permit(:name, :display_name, :trendable, :usable, :listable)
+      params
+        .expect(tag: [:name, :display_name, :trendable, :usable, :listable])
+    end
+
+    def filtered_tags
+      TagFilter.new(filter_params.with_defaults(order: 'newest')).results
+    end
+
+    def filter_params
+      params.slice(:page, *TagFilter::KEYS).permit(:page, *TagFilter::KEYS)
     end
   end
 end

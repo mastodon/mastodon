@@ -115,7 +115,7 @@ class RemoveStatusService < BaseService
 
   def remove_from_hashtags
     @account.featured_tags.where(tag_id: @status.tags.map(&:id)).find_each do |featured_tag|
-      featured_tag.decrement(@status.id)
+      featured_tag.decrement(@status)
     end
 
     return unless @status.public_visibility?
@@ -123,8 +123,8 @@ class RemoveStatusService < BaseService
     return if skip_streaming?
 
     @status.tags.map(&:name).each do |hashtag|
-      redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}", @payload)
-      redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:local", @payload) if @status.local?
+      redis.publish("timeline:hashtag:#{hashtag.downcase}", @payload)
+      redis.publish("timeline:hashtag:#{hashtag.downcase}:local", @payload) if @status.local?
     end
   end
 

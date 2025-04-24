@@ -3,13 +3,14 @@ es-AR:
   simple_form:
     hints:
       account:
+        attribution_domains: Uno por línea. Protege de falsas atribuciones.
         discoverable: Tu perfil y publicaciones pueden ser destacadas o recomendadas en varias áreas de Mastodon, y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu pseudónimo.
         fields: Tu sitio web, pronombres, edad, o lo que quieras.
         indexable: Tus mensajes públicos pueden aparecer en los resultados de la búsqueda en Mastodon. La gente que interactuó con tus mensajes puede ser capaz de buscarlos sin importar el momento.
         note: 'Podés @mencionar otras cuentas o usar #etiquetas.'
         show_collections: La gente podrá navegar a través de tus seguidos y seguidores. Sin embargo, la gente que sigás, sabrá que lo estás haciendo.
-        unlocked: La gente podrá seguirte sin solicitar aprobación. Desmarcá si querés revisar las solicitudes de seguimiento y elegir si aceptar o rechazar nuevos seguidores.
+        unlocked: Las personas podrán seguirte sin solicitar aprobación. Desmarcá si querés revisar las solicitudes de seguimiento y elegir si querés aceptar o rechazar nuevos seguidores.
       account_alias:
         acct: Especificá el nombredeusuario@dominio de la cuenta desde la que querés mudarte
       account_migration:
@@ -59,6 +60,7 @@ es-AR:
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Siempre ocultar todos los medios
         setting_display_media_show_all: Siempre mostrar todos los medios
+        setting_system_scrollbars_ui: Solo aplica para navegadores web de escritorio basados en Safari y Chrome
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar actualizaciones de la línea temporal detrás de un clic en lugar de desplazar automáticamente el flujo
         username: Podés usar letras, números y subguiones ("_")
@@ -73,6 +75,7 @@ es-AR:
       filters:
         action: Elegir qué acción realizar cuando un mensaje coincide con el filtro
         actions:
+          blur: Ocultar medios detrás de una advertencia, sin ocultar el texto en sí mismo
           hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
           warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
       form_admin_settings:
@@ -86,6 +89,7 @@ es-AR:
         favicon: WEBP, PNG, GIF o JPG. Reemplaza el favicón predeterminado de Mastodon con uno personalizado.
         mascot: Reemplaza la ilustración en la interface web avanzada.
         media_cache_retention_period: Los archivos de medios de mensajes publicados por usuarios remotos se almacenan en la memoria caché en tu servidor. Cuando se establece un valor positivo, los medios se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si es que el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlace consultan a sitios web de terceros, se recomienda establecer este valor a, al menos, 14 días, o las tarjetas de previsualización de enlaces no se actualizarán a pedido antes de ese momento.
+        min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento durante el registro
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Acá no se incluye ningún dato sobre si federás con un servidor determinado, sólo que tu servidor lo conoce. Esto es usado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado a que su cuenta pueda ser descubierta.
         require_invite_text: Cuando registros aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
@@ -128,9 +132,24 @@ es-AR:
         show_application: Sin embargo, siempre podrás ver desde qué aplicación se envió tu mensaje.
       tag:
         name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
+      terms_of_service:
+        changelog: Se puede estructurar con sintaxis Markdown.
+        effective_date: Un plazo razonable puede oscilar entre 10 y 30 días a partir de la fecha de notificación a tus usuarios.
+        text: Se puede estructurar con sintaxis Markdown.
+      terms_of_service_generator:
+        admin_email: Los avisos legales incluyen devoluciones, órdenes judiciales, solicitudes de retiro y solicitudes de cumplimiento de la ley.
+        arbitration_address: Puede ser la misma que la dirección física anterior, o «N.D.» si usa correo electrónico.
+        arbitration_website: Puede ser un formulario web, o «N.D.» si usa correo electrónico.
+        choice_of_law: Ciudad, región, territorio o declaración de las leyes de sustancia interna de las que se regirán todas y cada una de las reclamaciones.
+        dmca_address: Para operadores estadounidenses, usen la dirección registrada en el Directorio de Agente Designado del DMCA. Una lista de casillas de correo está disponible bajo petición directa, usen la solicitud de exención del apartado postal del agente designado de la DMCA para enviar un correo electrónico a la Oficina de Derechos de Autor y describir que ustedes son moderadores de contenido basado en el hogar que temen venganza o represalia por sus acciones y que necesitan usar una casilla de correo para eliminar su dirección postal de la vista pública.
+        dmca_email: Puede ser el mismo correo electrónico utilizado para «Dirección de correo electrónico para avisos legales» de arriba.
+        domain: Identificación única del servicio en línea que estás proporcionando.
+        jurisdiction: Listá el país donde vive quien paga las facturas. Si es una empresa u otra entidad, enumerá el país donde está basada y la ciudad, región, territorio o provincia/estado, según corresponda.
+        min_age: No debería estar por debajo de la edad mínima requerida por las leyes de su jurisdicción.
       user:
         chosen_languages: Cuando estén marcados, sólo se mostrarán los mensajes en los idiomas seleccionados en las líneas temporales públicas
-        role: El rol controla qué permisos tiene el usuario
+        date_of_birth: Tenemos que asegurarnos de que al menos tenés %{age} años de edad para usar Mastodon. No almacenaremos esta información.
+        role: El rol controla qué permisos tiene el usuario.
       user_role:
         color: Color que se utilizará para el rol a lo largo de la interface de usuario, como RGB en formato hexadecimal
         highlighted: Esto hace que el rol sea públicamente visible
@@ -143,6 +162,7 @@ es-AR:
         url: Adónde serán enviados los eventos
     labels:
       account:
+        attribution_domains: Sitios web autorizados a acreditarte
         discoverable: Destacar perfil y mensajes en algoritmos de descubrimiento
         fields:
           name: Nombre de campo
@@ -211,6 +231,7 @@ es-AR:
         setting_default_privacy: Privacidad de mensajes
         setting_default_sensitive: Siempre marcar medios como sensibles
         setting_delete_modal: Mostrar diálogo de confirmación antes de eliminar un mensaje
+        setting_disable_hover_cards: Deshabilitar previsualización del perfil al pasar el cursor
         setting_disable_swiping: Deshabilitar movimientos de deslizamiento
         setting_display_media: Visualización de medios
         setting_display_media_default: Predeterminada
@@ -218,8 +239,10 @@ es-AR:
         setting_display_media_show_all: Mostrar todo
         setting_expand_spoilers: Siempre expandir los mensajes marcados con advertencias de contenido
         setting_hide_network: Ocultá tu gráfica social
+        setting_missing_alt_text_modal: Mostrar diálogo de confirmación antes de enviar medios sin texto alternativo
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_system_font_ui: Utilizar la tipografía predeterminada del sistema
+        setting_system_scrollbars_ui: Usar la barra de desplazamiento predeterminada del sistema operativo
         setting_theme: Tema del sitio
         setting_trends: Mostrar las tendencias de hoy
         setting_unfollow_modal: Mostrar diálogo de confirmación antes de dejar de seguir a una cuenta
@@ -238,17 +261,21 @@ es-AR:
         name: Etiqueta
       filters:
         actions:
+          blur: Ocultar medios con una advertencia
           hide: Ocultar completamente
           warn: Ocultar con una advertencia
       form_admin_settings:
         activity_api_enabled: Publicar estadísticas agregadas sobre la actividad de la cuenta en la API
+        app_icon: Ícono de la aplicación
         backups_retention_period: Período de retención del archivo historial del usuario
         bootstrap_timeline_accounts: Siempre recomendar estas cuentas a usuarios nuevos
         closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
         content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
+        favicon: Favicón
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de la caché de medios
+        min_age: Edad mínima requerida
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
         profile_directory: Habilitar directorio de perfiles
         registrations_mode: Quién puede registrarse
@@ -311,8 +338,25 @@ es-AR:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en las sugerencias
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
-        usable: Permitir a los mensajes usar esta etiqueta
+        usable: Permitir que los mensajes usen esta etiqueta localmente
+      terms_of_service:
+        changelog: "¿Qué cambió?"
+        effective_date: Fecha efectiva
+        text: Términos del servicio
+      terms_of_service_generator:
+        admin_email: Dirección de correo electrónico para avisos legales
+        arbitration_address: Dirección física para avisos de arbitraje
+        arbitration_website: Sitio web para enviar avisos de arbitraje
+        choice_of_law: Elección de ley
+        dmca_address: Dirección física para avisos de DMCA/derechos de autor
+        dmca_email: Dirección de correo electrónico para avisos de DMCA/derechos de autor
+        domain: Dominio
+        jurisdiction: Jurisdicción legal
+        min_age: Edad mínima
       user:
+        date_of_birth_1i: Día
+        date_of_birth_2i: Mes
+        date_of_birth_3i: Año
         role: Rol
         time_zone: Zona horaria
       user_role:

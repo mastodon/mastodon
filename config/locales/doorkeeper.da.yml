@@ -60,7 +60,7 @@ da:
       error:
         title: En fejl opstod
       new:
-        prompt_html: "%{client_name} ønsker tilladelse til at tilgå din konto. Den er en tredjepartsapplikation. <strong>Har du ikke tillid til den, bør den ikke godkendes.</strong>"
+        prompt_html: "%{client_name} vil ønsker tilladelse til at tilgå din konto. <strong>Godkend kun denne anmodning, hvis kilden genkendes, og man stoler på den.</strong>"
         review_permissions: Gennemgå tilladelser
         title: Godkendelse kræves
       show:
@@ -83,6 +83,7 @@ da:
         access_denied: Ressourceejeren eller godkendelsesserveren afviste anmodningen.
         credential_flow_not_configured: Ressourceejeradgangskodeakkreditiver-flow mislykkedes grundet ikke-opsat Doorkeeper.configure.resource_owner_from_credentials.
         invalid_client: Klientgodkendelse mislykkedes grundet en ukendt klient, ingen inkluderet klientgodkendelse eller uunderstøttet godkendelsesmetode.
+        invalid_code_challenge_method: Kodeudfordringsmetoden skal være S256, simpel (plain) er uunderstøttet.
         invalid_grant: Den leverede godkendelse er ugyldig, udløbet, ophævet, matcher ikke omdirigerings-URI'en brugt i godkendelsesanmodningen eller er udstedt til en anden klient.
         invalid_redirect_uri: Inkluderede ormdirigerings-URI er ugyldig.
         invalid_request:
@@ -129,12 +130,13 @@ da:
         crypto: Ende-til-ende kryptering
         favourites: Favoritter
         filters: Filtre
-        follow: Følger, Tavsgør og Blokerer
+        follow: Fulgte, skjjulte og blokerede kontoer
         follows: Følger
         lists: Lister
         media: Medievedhæftninger
-        mutes: Tavsgørelser
+        mutes: Skjulte kontoer
         notifications: Notifikationer
+        profile: Din Mastodon-profil
         push: Push-notifikationer
         reports: Anmeldelser
         search: Søgning
@@ -165,6 +167,7 @@ da:
       admin:write:reports: udfør modereringshandlinger på anmeldelser
       crypto: benyt ende-til-ende kryptering
       follow: ændre kontorelationer
+      profile: læs kun kontoprofiloplysningerne
       push: modtag dine push-notifikationer
       read: læs alle dine kontodata
       read:accounts: se kontooplysninger
@@ -174,8 +177,7 @@ da:
       read:filters: se dine filtre
       read:follows: se dine følger
       read:lists: se dine lister
-      read:me: læs kun kontoens basisoplysninger
-      read:mutes: se dine tavsgørelser
+      read:mutes: se dine skjulte kontoer
       read:notifications: se dine notifikationer
       read:reports: se dine anmeldelser
       read:search: søg på dine vegne
@@ -184,13 +186,13 @@ da:
       write:accounts: ændre din profil
       write:blocks: blokere konti og domæner
       write:bookmarks: bogmærke indlæg
-      write:conversations: tavsgøre og slette konversationer
+      write:conversations: skjul og slet samtaler
       write:favourites: favoritmarkere indlæg
       write:filters: oprette filtre
       write:follows: følge personer
       write:lists: oprette lister
       write:media: uploade mediefiler
-      write:mutes: tavsgøre personer og konversationer
+      write:mutes: skjul personer og samtaler
       write:notifications: rydde dine notifikationer
       write:reports: anmelde personer
       write:statuses: udgive indlæg

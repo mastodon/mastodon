@@ -1,10 +1,10 @@
 import type { Reducer } from '@reduxjs/toolkit';
 import { Record as ImmutableRecord, Stack } from 'immutable';
 
-import { COMPOSE_UPLOAD_CHANGE_SUCCESS } from '../actions/compose';
+import { timelineDelete } from 'mastodon/actions/timelines_typed';
+
 import type { ModalType } from '../actions/modal';
 import { openModal, closeModal } from '../actions/modal';
-import { TIMELINE_DELETE } from '../actions/timelines';
 
 export type ModalProps = Record<string, unknown>;
 interface Modal {
@@ -52,12 +52,36 @@ const pushModal = (
   state: State,
   modalType: ModalType,
   modalProps: ModalProps,
+  previousModalProps?: ModalProps,
 ): State => {
   return state.withMutations((record) => {
     record.set('ignoreFocus', false);
-    record.update('stack', (stack) =>
-      stack.unshift(Modal({ modalType, modalProps })),
-    );
+    record.update('stack', (stack) => {
+      let tmp = stack;
+
+      // With this option, we update the previously opened modal, so that when the
+      // current (new) modal is closed, the previous modal is re-opened with different
+      // props. Specifically, this is useful for the confirmation modal.
+      if (previousModalProps) {
+        const previousModal = tmp.first() as Modal | undefined;
+
+        if (previousModal) {
+          tmp = tmp.shift().unshift(
+            Modal({
+              modalType: previousModal.modalType,
+              modalProps: {
+                ...previousModal.modalProps,
+                ...previousModalProps,
+              },
+            }),
+          );
+        }
+      }
+
+      tmp = tmp.unshift(Modal({ modalType, modalProps }));
+
+      return tmp;
+    });
   });
 };
 
@@ -67,15 +91,14 @@ export const modalReducer: Reducer<State> = (state = initialState, action) => {
       state,
       action.payload.modalType,
       action.payload.modalProps,
+      action.payload.previousModalProps,
     );
   else if (closeModal.match(action)) return popModal(state, action.payload);
   // TODO: type those actions
-  else if (action.type === COMPOSE_UPLOAD_CHANGE_SUCCESS)
-    return popModal(state, { modalType: 'FOCAL_POINT', ignoreFocus: false });
-  else if (action.type === TIMELINE_DELETE)
+  else if (timelineDelete.match(action))
     return state.update('stack', (stack) =>
       stack.filterNot(
-        (modal) => modal.get('modalProps').statusId === action.id,
+        (modal) => modal.get('modalProps').statusId === action.payload.statusId,
       ),
     );
   else return state;

@@ -3,6 +3,7 @@ gl:
   simple_form:
     hints:
       account:
+        attribution_domains: Un por liña. Como protección para falsas atribucións.
         discoverable: As túas publicacións públicas e perfil poden mostrarse ou recomendarse en varias zonas de Mastodon e o teu perfil ser suxerido a outras usuarias.
         display_name: O teu nome completo ou un nome divertido.
         fields: Páxina web, pronome, idade, o que ti queiras.
@@ -59,6 +60,7 @@ gl:
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Ocultar sempre os medios
         setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
+        setting_system_scrollbars_ui: Aplícase só en navegadores de escritorio baseados en Safari e Chrome
         setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esvaecendo tódolos detalles
         setting_use_pending_items: Agochar actualizacións da cronoloxía tras un click no lugar de desprazar automáticamente os comentarios
         username: Podes usar letras, números e trazos baixos
@@ -73,6 +75,7 @@ gl:
       filters:
         action: Elixe a acción a realizar cando algunha publicación coincida co filtro
         actions:
+          blur: Ocultar multimedia detrás dun aviso, sen ocultar o texto que se inclúa
           hide: Agochar todo o contido filtrado, facer coma se non existise
           warn: Agochar o contido filtrado tras un aviso que conteña o nome do filtro
       form_admin_settings:
@@ -86,6 +89,7 @@ gl:
         favicon: WEBP, PNG, GIF ou JPG. Sobrescribe a icona de favoritos de Mastodon por defecto cunha icona personalizada.
         mascot: Sobrescribe a ilustración na interface web avanzada.
         media_cache_retention_period: Os ficheiros multimedia de publicacións de usuarias remotas están almacenados no teu servidor. Ao establecer un valor positivo, o multimedia vaise eliminar despois do número de días establecido. Se o multimedia fose requerido após ser eliminado entón descargaríase outra vez, se aínda está dispoñible na orixe. Debido a restricións sobre a frecuencia en que o servizo de vista previa trae recursos de terceiras partes, é recomendable establecer este valor polo menos en 14 días, ou as tarxetas de vista previa non se actualizarán baixo demanda para casos anteriores a ese prazo.
+        min_age: Váiselle pedir ás usuarias que confirmen a súa data de nacemento cando creen a conta
         peers_api_enabled: Unha lista dos nomes de dominio que este servidor atopou no fediverso. Non se inclúen aquí datos acerca de se estás a federar con eles ou non, só que o teu servidor os recoñeceu. Ten utilidade para servizos que recollen estatísticas acerca da federación nun amplo senso.
         profile_directory: O directorio de perfís inclúe a tódalas usuarias que optaron por ser descubribles.
         require_invite_text: Cando os rexistros requiren aprobación manual, facer que o texto "Por que te queres rexistrar?" do convite sexa obrigatorio en lugar de optativo
@@ -99,9 +103,9 @@ gl:
         theme: Decorado que verán visitantes e novas usuarias.
         thumbnail: Imaxe con proporcións 2:1 mostrada xunto á información sobre o servidor.
         timeline_preview: Visitantes e usuarias non conectadas poderán ver as publicacións públicas máis recentes do servidor.
-        trendable_by_default: Omitir a revisión manual das tendencias. Poderás igualmente eliminar manualmente os elementos que vaian aparecendo.
+        trendable_by_default: Omitir a revisión manual dos contidos populares. Poderás igualmente eliminar manualmente os elementos que vaian aparecendo.
         trends: As tendencias mostran publicacións, cancelos e novas historias que teñen popularidade no teu servidor.
-        trends_as_landing_page: Mostrar contidos en voga para as persoas sen sesión iniciada e visitantes no lugar dunha descrición deste servidor. Require ter activado Tendencias.
+        trends_as_landing_page: Mostrar contidos en voga para as persoas sen sesión iniciada e visitantes no lugar dunha descrición deste servidor. Require ter activado Popularidade.
       form_challenge:
         current_password: Estás entrando nun área segura
       imports:
@@ -128,9 +132,24 @@ gl:
         show_application: Independentemente, ti sempre poderás ver a app coa que publicaches a túa publicación.
       tag:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
+      terms_of_service:
+        changelog: Pode usarse sintaxe Markdown.
+        effective_date: Un prazo razonable podería estar entre 10 e 30 días desde que envías a notificación ás usuarias.
+        text: Pode usarse sintaxe Markdown.
+      terms_of_service_generator:
+        admin_email: Os avisos legais inclúen ordes xudiciais, solicitudes de retirada de contido e requerimentos do cumprimento da lei.
+        arbitration_address: Pode ser igual ao enderezo Físico de arriba, ou "N/A" se usas correo electrónico.
+        arbitration_website: Pode ser un formulario web, ou "N/A" se usas o correo electrónico.
+        choice_of_law: Cidade, rexión, territorio ou estado cuxas leis rexirán sobre as reclamacións e disputas.
+        dmca_address: Para operadores de USA, utiliza o mesmo enderezo rexistrado no DMCA Designated Agent Directory. Está dispoñible a opción de usar P.O. Box facendo a solicitude baixo a DMCA Designated Agent Post Office Box Waiver Request pedíndoa á Copyright Office e indicando que es un moderador de contidos na túa casa e temes ameazas ou violencia polas medidas que tomas e precisas usar un P.O. Box para que non sexa público o enderezo da túa casa.
+        dmca_email: Pode ser o mesmo correo usado para "Enderezo de correo para avisos legais".
+        domain: Identificador único do servizo en liña que proporcionas.
+        jurisdiction: Informa sobre o país onde vive quen paga as facturas. Se é unha empresa ou outra entidade, indica o país onde está establecida e é axeitado escribir a cidade, rexión, territorio ou estado.
+        min_age: Non debería ser inferior á idade mínima requerida polas leis da túa xurisdición.
       user:
         chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
-        role: O control dos roles adxudicados ás usuarias
+        date_of_birth: Temos que ter certeza de que tes %{age} como mínimo para usar Mastodon. Non gardamos este dato.
+        role: Os roles establecen os permisos que ten a usuaria.
       user_role:
         color: Cor que se usará para o rol a través da IU, como RGB en formato hex
         highlighted: Isto fai o rol publicamente visible
@@ -138,11 +157,12 @@ gl:
         permissions_as_keys: As usuarias con este rol terán acceso a...
         position: O rol superior decide nos conflitos en certas situacións. Algunhas accións só poden aplicarse sobre roles cunha prioridade menor
       webhook:
-        events: Elixir eventos a enviar
+        events: Escoller eventos a enviar
         template: Crea o teu propio JSON interpolando variables. Déixao en branco para usar o JSON predeterminado.
         url: A onde se enviarán os eventos
     labels:
       account:
+        attribution_domains: Sitios web que dan fe sobre ti
         discoverable: Perfil destacado e publicacións nos algoritmos de descubrimento
         fields:
           name: Etiqueta
@@ -188,7 +208,7 @@ gl:
         current_password: Contrasinal actual
         data: Datos
         display_name: Nome mostrado
-        email: Enderezo de email
+        email: Enderezo de correo
         expires_in: Caduca tras
         fields: Metadatos do perfil
         header: Cabeceira
@@ -211,6 +231,7 @@ gl:
         setting_default_privacy: Privacidade da publicación
         setting_default_sensitive: Marcar sempre multimedia como sensible
         setting_delete_modal: Solicitar confirmación antes de eliminar unha publicación
+        setting_disable_hover_cards: Desactivar vista previa do perfil ao poñerse enriba
         setting_disable_swiping: Desactivar opcións de desprazamento
         setting_display_media: Mostrar multimedia
         setting_display_media_default: Por defecto
@@ -218,8 +239,10 @@ gl:
         setting_display_media_show_all: Mostrar todo
         setting_expand_spoilers: Despregar sempre as publicacións marcadas con avisos de contido
         setting_hide_network: Non mostrar contactos
+        setting_missing_alt_text_modal: Mostrar mensaxe de confirmación antes de publicar multimedia sen texto descritivo
         setting_reduce_motion: Reducir o movemento nas animacións
         setting_system_font_ui: Utilizar a tipografía por defecto do sistema
+        setting_system_scrollbars_ui: Usar barras de desprazamento predeterminadas no sistema
         setting_theme: Decorado da instancia
         setting_trends: Mostrar as tendencias de hoxe
         setting_unfollow_modal: Solicitar confirmación antes de deixar de seguir alguén
@@ -238,31 +261,35 @@ gl:
         name: Cancelo
       filters:
         actions:
+          blur: Ocultar multimedia cun aviso
           hide: Agochar completamente
           warn: Agochar tras un aviso
       form_admin_settings:
         activity_api_enabled: Publicar na API estatísticas agregadas acerca da actividade das usuarias
+        app_icon: Icona da app
         backups_retention_period: Período de retención do arquivo da usuaria
         bootstrap_timeline_accounts: Recomendar sempre estas contas ás novas usuarias
         closed_registrations_message: Mensaxe personalizada para cando o rexistro está pechado
         content_cache_retention_period: Período de retención de contido remoto
         custom_css: CSS personalizado
+        favicon: Favicon
         mascot: Mascota propia (herdado)
         media_cache_retention_period: Período de retención da caché multimedia
+        min_age: Idade mínima requerida
         peers_api_enabled: Publicar na API unha lista dos servidores descubertos
         profile_directory: Activar o directorio de perfís
         registrations_mode: Quen se pode rexistrar
         require_invite_text: Pedir unha razón para unirse
         show_domain_blocks: Amosar dominios bloqueados
         show_domain_blocks_rationale: Explicar porque están bloqueados os dominios
-        site_contact_email: Email de contacto
+        site_contact_email: Correo de contacto
         site_contact_username: Nome do contacto
         site_extended_description: Descrición ampla
         site_short_description: Descrición do servidor
         site_terms: Política de Privacidade
         site_title: Nome do servidor
         status_page_url: URL da páxina do estado
-        theme: Decorado por defecto
+        theme: Decorado predeterminado
         thumbnail: Icona do servidor
         timeline_preview: Permitir acceso á cronoloxía pública sen autenticación
         trendable_by_default: Permitir tendencias sen aprobación previa
@@ -300,7 +327,7 @@ gl:
           label: Hai unha nova versión de Mastodon dispoñible
           none: Non notificar nunca as actualizacións (non se aconsella)
           patch: Notificar as actualizacións de arranxos
-        trending_tag: Hai que revisar unha nova tendencia
+        trending_tag: Hai que revisar un novo tema popular
       rule:
         hint: Información adicional
         text: Regra
@@ -311,8 +338,25 @@ gl:
         listable: Permitir que este cancelo apareza en buscas e no directorio de perfil
         name: Cancelo
         trendable: Permitir que este cancelo apareza en tendencias
-        usable: Permitir que as publicacións utilicen este cancelo
+        usable: Permitir que as publicacións usen este cancelo localmente
+      terms_of_service:
+        changelog: Que cambios se fixeron?
+        effective_date: Data efectiva
+        text: Termos do Servizo
+      terms_of_service_generator:
+        admin_email: Enderezo de correo para avisos legais
+        arbitration_address: Enderezo físico para avisos de arbitraxe
+        arbitration_website: Páxina web para enviar avisos de arbitraxe
+        choice_of_law: Xurisdición
+        dmca_address: Enderezo físico para avisos sobre DMCA/copyright
+        dmca_email: Enderezo de correo electrónico para avisos sobre DMCA/copyright
+        domain: Dominio
+        jurisdiction: Xurisdición legal
+        min_age: Idade mínima
       user:
+        date_of_birth_1i: Día
+        date_of_birth_2i: Mes
+        date_of_birth_3i: Ano
         role: Rol
         time_zone: Fuso horario
       user_role:

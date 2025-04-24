@@ -15,9 +15,16 @@ it:
       user/invite_request:
         text: Motivo
     errors:
+      attributes:
+        domain:
+          invalid: non è un nome di dominio valido
+      messages:
+        invalid_domain_on_line: "%{value} non è un nome di dominio valido"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: contiene valori con label mancanti
             username:
               invalid: deve contenere solo lettere, numeri e trattini bassi
               reserved: è riservato
@@ -33,12 +40,23 @@ it:
           attributes:
             data:
               malformed: è malformato
+        list_account:
+          attributes:
+            account_id:
+              taken: è già nella lista
+          must_be_following: deve essere un account seguito
         status:
           attributes:
             reblog:
               taken: del post esiste già
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: è troppo presto, deve essere successivo alla data %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: è inferiore al limite di età
             email:
               blocked: utilizza un provider di posta elettronica non autorizzato
               unreachable: non sembra esistere

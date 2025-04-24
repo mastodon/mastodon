@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-describe Localized do
+RSpec.describe Localized do
   controller(ApplicationController) do
-    include Localized
+    include Localized # rubocop:disable RSpec/DescribedClass
 
     def success
       render plain: I18n.locale, status: 200
@@ -59,10 +59,10 @@ describe Localized do
       sign_in(user)
     end
 
-    include_examples 'default locale'
+    it_behaves_like 'default locale'
   end
 
   context 'with a user who has not signed in' do
-    include_examples 'default locale'
+    it_behaves_like 'default locale'
   end
 end

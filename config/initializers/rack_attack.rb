@@ -37,6 +37,10 @@ class Rack::Attack
       authenticated_token&.id
     end
 
+    def warden_user_id
+      @env['warden']&.user&.id
+    end
+
     def unauthenticated?
       !authenticated_user_id
     end
@@ -56,10 +60,6 @@ class Rack::Attack
     def paging_request?
       params['page'].present? || params['min_id'].present? || params['max_id'].present? || params['since_id'].present?
     end
-  end
-
-  Rack::Attack.safelist('allow from localhost') do |req|
-    req.remote_ip == '127.0.0.1' || req.remote_ip == '::1'
   end
 
   Rack::Attack.blocklist('deny from blocklist') do |req|
@@ -109,6 +109,10 @@ class Rack::Attack
     req.authenticated_user_id if (req.post? && req.path.match?(API_DELETE_REBLOG_REGEX)) || (req.delete? && req.path.match?(API_DELETE_STATUS_REGEX))
   end
 
+  throttle('throttle_oauth_application_registrations/ip', limit: 5, period: 10.minutes) do |req|
+    req.throttleable_remote_ip if req.post? && req.path == '/api/v1/apps'
+  end
+
   throttle('throttle_sign_up_attempts/ip', limit: 25, period: 5.minutes) do |req|
     req.throttleable_remote_ip if req.post? && req.path_matches?('/auth')
   end
@@ -122,7 +126,7 @@ class Rack::Attack
   end
 
   throttle('throttle_email_confirmations/ip', limit: 25, period: 5.minutes) do |req|
-    req.throttleable_remote_ip if req.post? && (req.path_matches?('/auth/confirmation') || req.path == '/api/v1/emails/confirmations')
+    req.throttleable_remote_ip if (req.post? && (req.path_matches?('/auth/confirmation') || req.path == '/api/v1/emails/confirmations')) || ((req.put? || req.patch?) && req.path_matches?('/auth/setup'))
   end
 
   throttle('throttle_email_confirmations/email', limit: 5, period: 30.minutes) do |req|
@@ -133,12 +137,24 @@ class Rack::Attack
     end
   end
 
+  throttle('throttle_auth_setup/email', limit: 5, period: 10.minutes) do |req|
+    req.params.dig('user', 'email').presence if (req.put? || req.patch?) && req.path_matches?('/auth/setup')
+  end
+
+  throttle('throttle_auth_setup/account', limit: 5, period: 10.minutes) do |req|
+    req.warden_user_id if (req.put? || req.patch?) && req.path_matches?('/auth/setup')
+  end
+
   throttle('throttle_login_attempts/ip', limit: 25, period: 5.minutes) do |req|
     req.throttleable_remote_ip if req.post? && req.path_matches?('/auth/sign_in')
   end
 
   throttle('throttle_login_attempts/email', limit: 25, period: 1.hour) do |req|
     req.session[:attempt_user_id] || req.params.dig('user', 'email').presence if req.post? && req.path_matches?('/auth/sign_in')
+  end
+
+  throttle('throttle_password_change/account', limit: 10, period: 10.minutes) do |req|
+    req.warden_user_id if (req.put? || req.patch?) && (req.path_matches?('/auth') || req.path_matches?('/auth/password'))
   end
 
   self.throttled_responder = lambda do |request|

@@ -15,9 +15,16 @@ lt:
       user/invite_request:
         text: Priežastis
     errors:
+      attributes:
+        domain:
+          invalid: nėra tinkamas domeno vardas.
+      messages:
+        invalid_domain_on_line: "%{value} nėra tinkamas domeno vardas."
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: turi reikšmių su trūkstamomis etiketėmis.
             username:
               invalid: turi būti tik raidės, skaičiai ir pabraukimai.
               reserved: užimtas.
@@ -33,12 +40,23 @@ lt:
           attributes:
             data:
               malformed: yra netaisyklinga.
+        list_account:
+          attributes:
+            account_id:
+              taken: jau yra sąraše.
+          must_be_following: turi būti sekama paskyra.
         status:
           attributes:
             reblog:
               taken: įrašas jau egzistuoja.
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: yra per anksti, turi būti vėliau nei %{date}.
         user:
           attributes:
+            date_of_birth:
+              below_limit: yra žemiau amžiaus ribos.
             email:
               blocked: naudoja neleidžiamą el. laiško paslaugų teikėją.
               unreachable: neatrodo, kad egzistuoja.

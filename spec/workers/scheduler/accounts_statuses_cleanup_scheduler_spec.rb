@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::AccountsStatusesCleanupScheduler do
+RSpec.describe Scheduler::AccountsStatusesCleanupScheduler do
   subject { described_class.new }
 
   let!(:account_alice) { Fabricate(:account, domain: nil, username: 'alice') }
@@ -108,7 +108,7 @@ describe Scheduler::AccountsStatusesCleanupScheduler do
 
     context 'when the budget is lower than the number of toots to delete' do
       it 'deletes the appropriate statuses' do
-        expect(Status.count).to be > (subject.compute_budget) # Data check
+        expect(Status.count).to be > subject.compute_budget # Data check
 
         expect { subject.perform }
           .to change(Status, :count).by(-subject.compute_budget) # Cleanable statuses

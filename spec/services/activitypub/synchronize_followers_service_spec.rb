@@ -10,14 +10,12 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
   let(:bob)            { Fabricate(:account, username: 'bob') }
   let(:eve)            { Fabricate(:account, username: 'eve') }
   let(:mallory)        { Fabricate(:account, username: 'mallory') }
-  let(:collection_uri) { 'http://example.com/partial-followers' }
+  let(:collection_uri) { 'https://example.com/partial-followers' }
 
   let(:items) do
-    [
-      ActivityPub::TagManager.instance.uri_for(alice),
-      ActivityPub::TagManager.instance.uri_for(eve),
-      ActivityPub::TagManager.instance.uri_for(mallory),
-    ]
+    [alice, eve, mallory].map do |account|
+      ActivityPub::TagManager.instance.uri_for(account)
+    end
   end
 
   let(:payload) do
@@ -29,31 +27,26 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
     }.with_indifferent_access
   end
 
+  before do
+    alice.follow!(actor)
+    bob.follow!(actor)
+    mallory.request_follow!(actor)
+  end
+
   shared_examples 'synchronizes followers' do
     before do
-      alice.follow!(actor)
-      bob.follow!(actor)
-      mallory.request_follow!(actor)
-
-      allow(ActivityPub::DeliveryWorker).to receive(:perform_async)
-
       subject.call(actor, collection_uri)
     end
 
-    it 'keeps expected followers' do
-      expect(alice.following?(actor)).to be true
-    end
-
-    it 'removes local followers not in the remote list' do
-      expect(bob.following?(actor)).to be false
-    end
-
-    it 'converts follow requests to follow relationships when they have been accepted' do
-      expect(mallory.following?(actor)).to be true
-    end
-
-    it 'sends an Undo Follow to the actor' do
-      expect(ActivityPub::DeliveryWorker).to have_received(:perform_async).with(anything, eve.id, actor.inbox_url)
+    it 'maintains following records and sends Undo Follow to actor' do
+      expect(alice)
+        .to be_following(actor) # Keep expected followers
+      expect(bob)
+        .to_not be_following(actor) # Remove local followers not in remote list
+      expect(mallory)
+        .to be_following(actor) # Convert follow request to follow when accepted
+      expect(ActivityPub::DeliveryWorker)
+        .to have_enqueued_sidekiq_job(anything, eve.id, actor.inbox_url) # Send Undo Follow to actor
     end
   end
 
@@ -83,7 +76,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       it_behaves_like 'synchronizes followers'
     end
 
-    context 'when the endpoint is a paginated Collection of actor URIs' do
+    context 'when the endpoint is a single-page paginated Collection of actor URIs' do
       let(:payload) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
@@ -102,6 +95,107 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
       end
 
       it_behaves_like 'synchronizes followers'
+    end
+
+    context 'when the endpoint is a paginated Collection of actor URIs split across multiple pages' do
+      before do
+        stub_request(:get, 'https://example.com/partial-followers')
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'Collection',
+            id: 'https://example.com/partial-followers',
+            first: 'https://example.com/partial-followers/1',
+          }))
+
+        stub_request(:get, 'https://example.com/partial-followers/1')
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'CollectionPage',
+            id: 'https://example.com/partial-followers/1',
+            partOf: 'https://example.com/partial-followers',
+            next: 'https://example.com/partial-followers/2',
+            items: [alice, eve].map { |account| ActivityPub::TagManager.instance.uri_for(account) },
+          }))
+
+        stub_request(:get, 'https://example.com/partial-followers/2')
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'CollectionPage',
+            id: 'https://example.com/partial-followers/2',
+            partOf: 'https://example.com/partial-followers',
+            items: ActivityPub::TagManager.instance.uri_for(mallory),
+          }))
+      end
+
+      it_behaves_like 'synchronizes followers'
+    end
+
+    context 'when the endpoint is a paginated Collection of actor URIs split across, but one page errors out' do
+      before do
+        stub_request(:get, 'https://example.com/partial-followers')
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'Collection',
+            id: 'https://example.com/partial-followers',
+            first: 'https://example.com/partial-followers/1',
+          }))
+
+        stub_request(:get, 'https://example.com/partial-followers/1')
+          .to_return(status: 200, headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'CollectionPage',
+            id: 'https://example.com/partial-followers/1',
+            partOf: 'https://example.com/partial-followers',
+            next: 'https://example.com/partial-followers/2',
+            items: [mallory].map { |account| ActivityPub::TagManager.instance.uri_for(account) },
+          }))
+
+        stub_request(:get, 'https://example.com/partial-followers/2')
+          .to_return(status: 404)
+      end
+
+      it 'confirms pending follow request but does not remove extra followers' do
+        previous_follower_ids = actor.followers.pluck(:id)
+
+        subject.call(actor, collection_uri)
+
+        expect(previous_follower_ids - actor.followers.reload.pluck(:id))
+          .to be_empty
+        expect(mallory)
+          .to be_following(actor)
+      end
+    end
+
+    context 'when the endpoint is a paginated Collection of actor URIs with more pages than we allow' do
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          type: 'Collection',
+          id: collection_uri,
+          first: {
+            type: 'CollectionPage',
+            partOf: collection_uri,
+            items: items,
+            next: "#{collection_uri}/page2",
+          },
+        }.with_indifferent_access
+      end
+
+      before do
+        stub_const('ActivityPub::SynchronizeFollowersService::MAX_COLLECTION_PAGES', 1)
+        stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+      end
+
+      it 'confirms pending follow request but does not remove extra followers' do
+        previous_follower_ids = actor.followers.pluck(:id)
+
+        subject.call(actor, collection_uri)
+
+        expect(previous_follower_ids - actor.followers.reload.pluck(:id))
+          .to be_empty
+        expect(mallory)
+          .to be_following(actor)
+      end
     end
   end
 end

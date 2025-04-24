@@ -26,12 +26,7 @@ class StatusCacheHydrator
 
   def hydrate_non_reblog_payload(empty_payload, account_id)
     empty_payload.tap do |payload|
-      payload[:favourited] = Favourite.exists?(account_id: account_id, status_id: @status.id)
-      payload[:reblogged]  = Status.exists?(account_id: account_id, reblog_of_id: @status.id)
-      payload[:muted]      = ConversationMute.exists?(account_id: account_id, conversation_id: @status.conversation_id)
-      payload[:bookmarked] = Bookmark.exists?(account_id: account_id, status_id: @status.id)
-      payload[:pinned]     = StatusPin.exists?(account_id: account_id, status_id: @status.id) if @status.account_id == account_id
-      payload[:filtered]   = mapped_applied_custom_filter(account_id, @status)
+      fill_status_payload(payload, @status, account_id)
 
       if payload[:poll]
         payload[:poll][:voted] = @status.account_id == account_id
@@ -45,18 +40,12 @@ class StatusCacheHydrator
       payload[:muted]      = false
       payload[:bookmarked] = false
       payload[:pinned]     = false if @status.account_id == account_id
-      payload[:filtered]   = mapped_applied_custom_filter(account_id, @status.reblog)
 
       # If the reblogged status is being delivered to the author who disabled the display of the application
       # used to create the status, we need to hydrate it here too
       payload[:reblog][:application] = payload_reblog_application if payload[:reblog][:application].nil? && @status.reblog.account_id == account_id
 
-      payload[:reblog][:favourited] = Favourite.exists?(account_id: account_id, status_id: @status.reblog_of_id)
-      payload[:reblog][:reblogged]  = Status.exists?(account_id: account_id, reblog_of_id: @status.reblog_of_id)
-      payload[:reblog][:muted]      = ConversationMute.exists?(account_id: account_id, conversation_id: @status.reblog.conversation_id)
-      payload[:reblog][:bookmarked] = Bookmark.exists?(account_id: account_id, status_id: @status.reblog_of_id)
-      payload[:reblog][:pinned]     = StatusPin.exists?(account_id: account_id, status_id: @status.reblog_of_id) if @status.reblog.account_id == account_id
-      payload[:reblog][:filtered]   = payload[:filtered]
+      fill_status_payload(payload[:reblog], @status.reblog, account_id)
 
       if payload[:reblog][:poll]
         if @status.reblog.account_id == account_id
@@ -69,8 +58,35 @@ class StatusCacheHydrator
         end
       end
 
+      payload[:filtered]   = payload[:reblog][:filtered]
       payload[:favourited] = payload[:reblog][:favourited]
       payload[:reblogged]  = payload[:reblog][:reblogged]
+    end
+  end
+
+  def fill_status_payload(payload, status, account_id)
+    payload[:favourited] = Favourite.exists?(account_id: account_id, status_id: status.id)
+    payload[:reblogged]  = Status.exists?(account_id: account_id, reblog_of_id: status.id)
+    payload[:muted]      = ConversationMute.exists?(account_id: account_id, conversation_id: status.conversation_id)
+    payload[:bookmarked] = Bookmark.exists?(account_id: account_id, status_id: status.id)
+    payload[:pinned]     = StatusPin.exists?(account_id: account_id, status_id: status.id) if status.account_id == account_id
+    payload[:filtered]   = mapped_applied_custom_filter(account_id, status)
+    payload[:quote] = hydrate_quote_payload(payload[:quote], status.quote, account_id) if payload[:quote]
+  end
+
+  def hydrate_quote_payload(empty_payload, quote, account_id)
+    # TODO: properly handle quotes, including visibility and access control
+
+    empty_payload.tap do |payload|
+      # Nothing to do if we're in the shallow (depth limit) case
+      next unless payload.key?(:quoted_status)
+
+      # TODO: handle hiding a rendered status or showing a non-rendered status according to visibility
+      if quote&.quoted_status.nil?
+        payload[:quoted_status] = nil
+      elsif payload[:quoted_status].present?
+        payload[:quoted_status] = StatusCacheHydrator.new(quote.quoted_status).hydrate(account_id)
+      end
     end
   end
 

@@ -12,6 +12,7 @@ module Mastodon
   class RateLimitExceededError < Error; end
   class SyntaxError < Error; end
   class InvalidParameterError < Error; end
+  class SignatureVerificationError < Error; end
 
   class UnexpectedResponseError < Error
     attr_reader :response
@@ -35,4 +36,11 @@ module Mastodon
       super()
     end
   end
+
+  HTTP_CONNECTION_ERRORS = [
+    HTTP::ConnectionError,
+    HTTP::Error,
+    HTTP::TimeoutError,
+    OpenSSL::SSL::SSLError,
+  ].freeze
 end

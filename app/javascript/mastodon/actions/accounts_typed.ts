@@ -1,7 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
 
+import { apiRemoveAccountFromFollowers } from 'mastodon/api/accounts';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
+import { createDataLoadingThunk } from 'mastodon/store/typed_functions';
 
 export const revealAccount = createAction<{
   id: string;
@@ -94,4 +96,11 @@ export const unpinAccountSuccess = createAction<{
 export const fetchRelationshipsSuccess = createAction(
   'relationships/fetch/SUCCESS',
   actionWithSkipLoadingTrue<{ relationships: ApiRelationshipJSON[] }>,
+);
+
+export const removeAccountFromFollowers = createDataLoadingThunk(
+  'accounts/remove_from_followers',
+  ({ accountId }: { accountId: string }) =>
+    apiRemoveAccountFromFollowers(accountId),
+  (relationship) => ({ relationship }),
 );

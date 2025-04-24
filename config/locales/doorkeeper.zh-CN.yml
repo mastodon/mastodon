@@ -60,7 +60,7 @@ zh-CN:
       error:
         title: 发生错误
       new:
-        prompt_html: "%{client_name} 希望得到访问你账号的许可。这是一个第三方应用。<strong>如果你不信任它，那么你不应该授权它。</strong>"
+        prompt_html: "%{client_name} 请求获得访问你账号的权限。 <strong>请在确保自己了解并信任此来源后再批准该请求。</strong>"
         review_permissions: 检查权限
         title: 需要授权
       show:
@@ -83,8 +83,9 @@ zh-CN:
         access_denied: 资源所有者或验证服务器拒绝了此请求
         credential_flow_not_configured: 由于 Doorkeeper.configure.resource_owner_from_credentials 尚未配置，应用验证授权流程失败。
         invalid_client: 由于应用信息未知、未提交认证信息或使用了不支持的认证方式，认证失败
+        invalid_code_challenge_method: 代码验证方法必须是 S256，不支持明文。
         invalid_grant: 授权方式无效、过期或已被撤销、与授权请求中的回调地址不一致，或使用了其他应用的回调地址
-        invalid_redirect_uri: 无效的登录回调地址
+        invalid_redirect_uri: 登录回调地址无效。
         invalid_request:
           missing_param: 缺少必需的参数：%{value}
           request_not_authorized: 请求需要被授权。授权请求所需的参数缺失或无效。
@@ -122,19 +123,20 @@ zh-CN:
         admin/accounts: 账号管理
         admin/all: 所有管理功能
         admin/reports: 举报管理
-        all: 完全访问您的Mastodon账户
+        all: 完全访问你的Mastodon账号
         blocks: 屏蔽
-        bookmarks: 书签
+        bookmarks: 收藏
         conversations: 会话
         crypto: 端到端加密
         favourites: 喜欢
-        filters: 过滤器
-        follow: 关注者，隐藏与屏蔽
+        filters: 过滤规则
+        follow: 关注，隐藏与屏蔽
         follows: 关注
         lists: 列表
         media: 媒体文件
         mutes: 已被隐藏的
         notifications: 通知
+        profile: 你的 Mastodon 个人资料
         push: 推送通知
         reports: 举报
         search: 搜索
@@ -149,32 +151,32 @@ zh-CN:
     scopes:
       admin:read: 读取服务器上的所有数据
       admin:read:accounts: 读取所有账号的敏感信息
-      admin:read:canonical_email_blocks: 读取所有标准电子邮件块的敏感信息
-      admin:read:domain_allows: 读取所有域的敏感信息
-      admin:read:domain_blocks: 读取所有域块的敏感信息
-      admin:read:email_domain_blocks: 读取所有电子邮件域块的敏感信息
+      admin:read:canonical_email_blocks: 读取所有已屏蔽邮箱的敏感信息
+      admin:read:domain_allows: 读取敏感信息 - 站点允许列表
+      admin:read:domain_blocks: 读取敏感信息 - 站点屏蔽列表
+      admin:read:email_domain_blocks: 读取敏感信息 - 邮箱域名屏蔽列表
       admin:read:ip_blocks: 读取所有IP块的敏感信息
       admin:read:reports: 读取所有举报和被举报账号的敏感信息
       admin:write: 修改服务器上的所有数据
       admin:write:accounts: 对账号执行管理操作
-      admin:write:canonical_email_blocks: 在标准电子邮件块上执行管理操作
-      admin:write:domain_allows: 在域上执行管理操作
-      admin:write:domain_blocks: 在域块上执行管理操作
-      admin:write:email_domain_blocks: 在电子邮件域块上执行管理操作
-      admin:write:ip_blocks: 在 IP 块上执行管理操作
+      admin:write:canonical_email_blocks: 对已屏蔽邮箱执行管理操作
+      admin:write:domain_allows: 修改站点允许列表
+      admin:write:domain_blocks: 修改站点屏蔽列表
+      admin:write:email_domain_blocks: 修改邮箱域名屏蔽列表
+      admin:write:ip_blocks: 针对 IP 段执行管理操作
       admin:write:reports: 对举报执行管理操作
       crypto: 使用端到端加密
       follow: 关注或屏蔽用户
-      push: 接收你的账户的推送通知
-      read: 读取你的账户数据
+      profile: 仅读取你账号的个人资料信息
+      push: 接收你的账号的推送通知
+      read: 读取你的账号数据
       read:accounts: 查看账号信息
       read:blocks: 查看你的屏蔽列表
       read:bookmarks: 查看你的书签
       read:favourites: 查看喜欢的嘟文
-      read:filters: 查看你的过滤器
+      read:filters: 查看你的过滤规则
       read:follows: 查看你的关注
       read:lists: 查看你的列表
-      read:me: 只读取你账户的基本信息
       read:mutes: 查看你的隐藏列表
       read:notifications: 查看你的通知
       read:reports: 查看你的举报
@@ -182,11 +184,11 @@ zh-CN:
       read:statuses: 查看所有嘟文
       write: 修改你的账号数据
       write:accounts: 修改你的个人资料
-      write:blocks: 屏蔽账号和域名
-      write:bookmarks: 为嘟文添加书签
+      write:blocks: 屏蔽账号与站点
+      write:bookmarks: 将嘟文加入书签
       write:conversations: 静音并删除会话
       write:favourites: 喜欢嘟文
-      write:filters: 创建过滤器
+      write:filters: 创建过滤规则
       write:follows: 关注其他人
       write:lists: 创建列表
       write:media: 上传媒体文件

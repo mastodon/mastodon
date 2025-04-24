@@ -7,19 +7,14 @@ module Admin
 
     layout 'admin'
 
-    before_action :set_body_classes
-    before_action :set_cache_headers
+    before_action :set_referrer_policy_header
 
     after_action :verify_authorized
 
     private
 
-    def set_body_classes
-      @body_classes = 'admin'
-    end
-
-    def set_cache_headers
-      response.cache_control.replace(private: true, no_store: true)
+    def set_referrer_policy_header
+      response.headers['Referrer-Policy'] = 'same-origin'
     end
 
     def set_user

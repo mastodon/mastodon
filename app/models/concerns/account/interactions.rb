@@ -80,13 +80,16 @@ module Account::Interactions
       has_many :passive_relationships, foreign_key: 'target_account_id', inverse_of: :target_account
     end
 
-    has_many :following, -> { order('follows.id desc') }, through: :active_relationships,  source: :target_account
-    has_many :followers, -> { order('follows.id desc') }, through: :passive_relationships, source: :account
+    has_many :following, -> { order(follows: { id: :desc }) }, through: :active_relationships,  source: :target_account
+    has_many :followers, -> { order(follows: { id: :desc }) }, through: :passive_relationships, source: :account
 
     with_options class_name: 'SeveredRelationship', dependent: :destroy do
       has_many :severed_relationships, foreign_key: 'local_account_id', inverse_of: :local_account
       has_many :remote_severed_relationships, foreign_key: 'remote_account_id', inverse_of: :remote_account
     end
+
+    # Hashtag follows
+    has_many :tag_follows, inverse_of: :account, dependent: :destroy
 
     # Account notes
     has_many :account_notes, dependent: :destroy
@@ -96,23 +99,23 @@ module Account::Interactions
       has_many :block_relationships, foreign_key: 'account_id', inverse_of: :account
       has_many :blocked_by_relationships, foreign_key: :target_account_id, inverse_of: :target_account
     end
-    has_many :blocking, -> { order('blocks.id desc') }, through: :block_relationships, source: :target_account
-    has_many :blocked_by, -> { order('blocks.id desc') }, through: :blocked_by_relationships, source: :account
+    has_many :blocking, -> { order(blocks: { id: :desc }) }, through: :block_relationships, source: :target_account
+    has_many :blocked_by, -> { order(blocks: { id: :desc }) }, through: :blocked_by_relationships, source: :account
 
     # Mute relationships
     with_options class_name: 'Mute', dependent: :destroy do
       has_many :mute_relationships, foreign_key: 'account_id', inverse_of: :account
       has_many :muted_by_relationships, foreign_key: :target_account_id, inverse_of: :target_account
     end
-    has_many :muting, -> { order('mutes.id desc') }, through: :mute_relationships, source: :target_account
-    has_many :muted_by, -> { order('mutes.id desc') }, through: :muted_by_relationships, source: :account
+    has_many :muting, -> { order(mutes: { id: :desc }) }, through: :mute_relationships, source: :target_account
+    has_many :muted_by, -> { order(mutes: { id: :desc }) }, through: :muted_by_relationships, source: :account
     has_many :conversation_mutes, dependent: :destroy
     has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
     has_many :announcement_mutes, dependent: :destroy
   end
 
   def follow!(other_account, reblogs: nil, notify: nil, languages: nil, uri: nil, rate_limit: false, bypass_limit: false)
-    rel = active_relationships.create_with(show_reblogs: reblogs.nil? ? true : reblogs, notify: notify.nil? ? false : notify, languages: languages, uri: uri, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
+    rel = active_relationships.create_with(show_reblogs: reblogs.nil? || reblogs, notify: notify.nil? ? false : notify, languages: languages, uri: uri, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
                               .find_or_create_by!(target_account: other_account)
 
     rel.show_reblogs = reblogs   unless reblogs.nil?
@@ -125,7 +128,7 @@ module Account::Interactions
   end
 
   def request_follow!(other_account, reblogs: nil, notify: nil, languages: nil, uri: nil, rate_limit: false, bypass_limit: false)
-    rel = follow_requests.create_with(show_reblogs: reblogs.nil? ? true : reblogs, notify: notify.nil? ? false : notify, uri: uri, languages: languages, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
+    rel = follow_requests.create_with(show_reblogs: reblogs.nil? || reblogs, notify: notify.nil? ? false : notify, uri: uri, languages: languages, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
                          .find_or_create_by!(target_account: other_account)
 
     rel.show_reblogs = reblogs   unless reblogs.nil?

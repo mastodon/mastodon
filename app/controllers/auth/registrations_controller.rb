@@ -11,9 +11,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
   before_action :set_strikes, only: [:edit, :update]
-  before_action :set_body_classes, only: [:new, :create, :edit, :update]
   before_action :require_not_suspended!, only: [:update]
-  before_action :set_cache_headers, only: [:edit, :update]
   before_action :set_rules, only: :new
   before_action :require_rules_acceptance!, only: :new
   before_action :set_registration_form_time, only: :new
@@ -23,6 +21,14 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def new
     super(&:build_invite_request)
+  end
+
+  def edit # rubocop:disable Lint/UselessMethodDefinition
+    super
+  end
+
+  def create # rubocop:disable Lint/UselessMethodDefinition
+    super
   end
 
   def update
@@ -56,7 +62,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-      user_params.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password)
+      user_params.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password, :date_of_birth)
     end
   end
 
@@ -96,10 +102,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def set_body_classes
-    @body_classes = %w(edit update).include?(action_name) ? 'admin' : 'lighter'
-  end
-
   def set_invite
     @invite = begin
       invite = Invite.find_by(code: invite_code) if invite_code.present?
@@ -136,7 +138,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     set_locale { render :rules }
   end
 
-  def set_cache_headers
-    response.cache_control.replace(private: true, no_store: true)
+  def is_flashing_format? # rubocop:disable Naming/PredicateName
+    if params[:action] == 'create'
+      false # Disable flash messages for sign-up
+    else
+      super
+    end
   end
 end

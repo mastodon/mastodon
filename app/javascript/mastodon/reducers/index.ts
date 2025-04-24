@@ -5,39 +5,35 @@ import { combineReducers } from 'redux-immutable';
 
 import { accountsReducer } from './accounts';
 import accounts_map from './accounts_map';
-import alerts from './alerts';
+import { alertsReducer } from './alerts';
 import announcements from './announcements';
-import compose from './compose';
+import { composeReducer } from './compose';
 import contexts from './contexts';
 import conversations from './conversations';
 import custom_emojis from './custom_emojis';
-import domain_lists from './domain_lists';
 import { dropdownMenuReducer } from './dropdown_menu';
 import filters from './filters';
-import followed_tags from './followed_tags';
 import height_cache from './height_cache';
 import history from './history';
-import listAdder from './list_adder';
-import listEditor from './list_editor';
-import lists from './lists';
+import { listsReducer } from './lists';
 import { markersReducer } from './markers';
 import media_attachments from './media_attachments';
 import meta from './meta';
 import { modalReducer } from './modal';
+import { notificationGroupsReducer } from './notification_groups';
 import { notificationPolicyReducer } from './notification_policy';
 import { notificationRequestsReducer } from './notification_requests';
 import notifications from './notifications';
 import { pictureInPictureReducer } from './picture_in_picture';
-import polls from './polls';
+import { pollsReducer } from './polls';
 import push_notifications from './push_notifications';
 import { relationshipsReducer } from './relationships';
-import search from './search';
+import { searchReducer } from './search';
 import server from './server';
 import settings from './settings';
 import status_lists from './status_lists';
 import statuses from './statuses';
-import suggestions from './suggestions';
-import tags from './tags';
+import { suggestionsReducer } from './suggestions';
 import timelines from './timelines';
 import trends from './trends';
 import user_lists from './user_lists';
@@ -47,11 +43,10 @@ const reducers = {
   dropdownMenu: dropdownMenuReducer,
   timelines,
   meta,
-  alerts,
+  alerts: alertsReducer,
   loadingBar: loadingBarReducer,
   modal: modalReducer,
   user_lists,
-  domain_lists,
   status_lists,
   accounts: accountsReducer,
   accounts_map,
@@ -61,25 +56,22 @@ const reducers = {
   push_notifications,
   server,
   contexts,
-  compose,
-  search,
+  compose: composeReducer,
+  search: searchReducer,
   media_attachments,
   notifications,
+  notificationGroups: notificationGroupsReducer,
   height_cache,
   custom_emojis,
-  lists,
-  listEditor,
-  listAdder,
+  lists: listsReducer,
   filters,
   conversations,
-  suggestions,
-  polls,
+  suggestions: suggestionsReducer,
+  polls: pollsReducer,
   trends,
   markers: markersReducer,
   picture_in_picture: pictureInPictureReducer,
   history,
-  tags,
-  followed_tags,
   notificationPolicy: notificationPolicyReducer,
   notificationRequests: notificationRequestsReducer,
 };

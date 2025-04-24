@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::Metrics::Dimension::TagServersDimension do
+RSpec.describe Admin::Metrics::Dimension::TagServersDimension do
   subject { described_class.new(start_at, end_at, limit, params) }
 
   let(:start_at) { 2.days.ago }

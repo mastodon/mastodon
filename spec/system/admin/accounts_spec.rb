@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-describe 'Admin::Accounts' do
-  let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+RSpec.describe 'Admin::Accounts' do
+  let(:current_user) { Fabricate(:admin_user) }
 
   before do
     sign_in current_user
@@ -48,7 +48,7 @@ describe 'Admin::Accounts' do
       end
     end
 
-    context 'with action of `reject`', :sidekiq_inline do
+    context 'with action of `reject`', :inline_jobs do
       it 'rejects and removes the account' do
         batch_checkbox_for(unapproved_user_account).check
 

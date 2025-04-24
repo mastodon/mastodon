@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::SystemCheck::MediaPrivacyCheck do
+RSpec.describe Admin::SystemCheck::MediaPrivacyCheck do
   subject(:check) { described_class.new(user) }
 
   let(:user) { Fabricate(:user) }

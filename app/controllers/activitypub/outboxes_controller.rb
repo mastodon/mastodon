@@ -41,12 +41,8 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
     end
   end
 
-  def outbox_url(**kwargs)
-    if params[:account_username].present?
-      account_outbox_url(@account, **kwargs)
-    else
-      instance_actor_outbox_url(**kwargs)
-    end
+  def outbox_url(...)
+    ActivityPub::TagManager.instance.outbox_uri_for(@account, ...)
   end
 
   def next_page

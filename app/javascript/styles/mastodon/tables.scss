@@ -1,3 +1,6 @@
+@use 'variables' as *;
+@use 'functions' as *;
+
 .table {
   width: 100%;
   max-width: 100%;
@@ -9,9 +12,9 @@
     padding: 8px;
     line-height: 18px;
     vertical-align: top;
-    border-top: 1px solid $ui-base-color;
+    border-bottom: 1px solid var(--background-border-color);
     text-align: start;
-    background: darken($ui-base-color, 4%);
+    background: var(--background-color);
 
     &.critical {
       font-weight: 700;
@@ -21,8 +24,6 @@
 
   & > thead > tr > th {
     vertical-align: bottom;
-    border-bottom: 2px solid $ui-base-color;
-    border-top: 0;
     font-weight: 500;
   }
 
@@ -32,15 +33,20 @@
 
   & > tbody > tr:nth-child(odd) > td,
   & > tbody > tr:nth-child(odd) > th {
-    background: $ui-base-color;
+    background: var(--background-color);
+  }
+
+  & > tbody > tr:last-child > td,
+  & > tbody > tr:last-child > th {
+    border-bottom: 0;
   }
 
   a {
-    color: $highlight-text-color;
-    text-decoration: underline;
+    color: $darker-text-color;
+    text-decoration: none;
 
     &:hover {
-      text-decoration: none;
+      color: $highlight-text-color;
     }
   }
 
@@ -78,7 +84,7 @@
     & > tbody > tr > td {
       padding: 11px 10px;
       background: transparent;
-      border: 1px solid lighten($ui-base-color, 8%);
+      border: 1px solid var(--background-border-color);
       color: $secondary-text-color;
     }
 
@@ -90,18 +96,18 @@
 
   &.batch-table {
     & > thead > tr > th {
-      background: $ui-base-color;
-      border-top: 1px solid darken($ui-base-color, 8%);
-      border-bottom: 1px solid darken($ui-base-color, 8%);
+      background: var(--background-color);
+      border-top: 1px solid var(--background-border-color);
+      border-bottom: 1px solid var(--background-border-color);
 
       &:first-child {
         border-radius: 4px 0 0;
-        border-inline-start: 1px solid darken($ui-base-color, 8%);
+        border-inline-start: 1px solid var(--background-border-color);
       }
 
       &:last-child {
         border-radius: 0 4px 0 0;
-        border-inline-end: 1px solid darken($ui-base-color, 8%);
+        border-inline-end: 1px solid var(--background-border-color);
       }
     }
   }
@@ -134,14 +140,10 @@ a.table-action-link {
   padding: 0 10px;
   color: $darker-text-color;
   font-weight: 500;
+  white-space: nowrap;
 
   &:hover {
-    color: $primary-text-color;
-  }
-
-  i.fa {
-    font-weight: 400;
-    margin-inline-end: 5px;
+    color: $highlight-text-color;
   }
 
   &:first-child {
@@ -150,6 +152,14 @@ a.table-action-link {
 }
 
 .batch-table {
+  &--no-toolbar {
+    .batch-table__toolbar {
+      position: static;
+      height: 4px;
+      border-bottom: none;
+    }
+  }
+
   &__toolbar,
   &__row {
     display: flex;
@@ -186,9 +196,9 @@ a.table-action-link {
     position: sticky;
     top: 0;
     z-index: 1;
-    border: 1px solid darken($ui-base-color, 8%);
-    background: $ui-base-color;
-    border-radius: 4px 0 0;
+    border: 1px solid var(--background-border-color);
+    background: var(--background-color);
+    border-radius: 4px 4px 0 0;
     height: 47px;
     align-items: center;
 
@@ -199,11 +209,11 @@ a.table-action-link {
   }
 
   &__select-all {
-    background: $ui-base-color;
+    background: var(--background-color);
     height: 47px;
     align-items: center;
     justify-content: center;
-    border: 1px solid darken($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-top: 0;
     color: $secondary-text-color;
     display: none;
@@ -249,9 +259,9 @@ a.table-action-link {
 
   &__form {
     padding: 16px;
-    border: 1px solid darken($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-top: 0;
-    background: $ui-base-color;
+    background: var(--background-color);
 
     .fields-row {
       padding-top: 0;
@@ -260,26 +270,18 @@ a.table-action-link {
   }
 
   &__row {
-    border: 1px solid darken($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-top: 0;
-    background: darken($ui-base-color, 4%);
+    background: var(--background-color);
 
     @media screen and (max-width: $no-gap-breakpoint) {
       .optional &:first-child {
-        border-top: 1px solid darken($ui-base-color, 8%);
+        border-top: 1px solid var(--background-border-color);
       }
     }
 
-    &:hover {
-      background: darken($ui-base-color, 2%);
-    }
-
-    &:nth-child(even) {
-      background: $ui-base-color;
-
-      &:hover {
-        background: lighten($ui-base-color, 2%);
-      }
+    &:last-child {
+      border-radius: 0 0 4px 4px;
     }
 
     &__content {
@@ -289,6 +291,10 @@ a.table-action-link {
 
       &--unpadded {
         padding: 0;
+      }
+
+      &--padded {
+        padding: 12px 16px 16px;
       }
 
       &--with-image {
@@ -344,25 +350,26 @@ a.table-action-link {
     }
   }
 
-  .status__content {
-    padding-top: 0;
-
-    summary {
-      display: list-item;
-    }
-
-    strong {
-      font-weight: 700;
-    }
+  // Reset the status card to not have borders, background or padding when
+  // inline in the table of statuses
+  .status__card {
+    border: none;
+    background: none;
+    padding: 0;
   }
 
   .nothing-here {
-    border: 1px solid darken($ui-base-color, 8%);
+    border: 1px solid var(--background-border-color);
     border-top: 0;
     box-shadow: none;
+    background: var(--background-color);
 
     @media screen and (max-width: $no-gap-breakpoint) {
-      border-top: 1px solid darken($ui-base-color, 8%);
+      border-top: 1px solid var(--background-border-color);
+    }
+
+    &--no-toolbar {
+      border-top: 1px solid var(--background-border-color);
     }
   }
 

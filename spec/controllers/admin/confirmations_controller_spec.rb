@@ -6,12 +6,12 @@ RSpec.describe Admin::ConfirmationsController do
   render_views
 
   before do
-    sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
+    sign_in Fabricate(:admin_user), scope: :user
   end
 
   describe 'POST #create' do
     it 'confirms the user' do
-      user = Fabricate(:user, confirmed_at: false)
+      user = Fabricate(:user, confirmed_at: nil)
       post :create, params: { account_id: user.account.id }
 
       expect(response).to redirect_to(admin_accounts_path)

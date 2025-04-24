@@ -12,18 +12,20 @@ class InitialStateSerializer < ActiveModel::Serializer
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
   has_one :role, serializer: REST::RoleSerializer
 
-  def meta
+  def meta # rubocop:disable Metrics/AbcSize
     store = default_meta_store
 
     if object.current_account
       store[:me]                = object.current_account.id.to_s
       store[:boost_modal]       = object_account_user.setting_boost_modal
       store[:delete_modal]      = object_account_user.setting_delete_modal
+      store[:missing_alt_text_modal] = object_account_user.settings['web.missing_alt_text_modal']
       store[:auto_play_gif]     = object_account_user.setting_auto_play_gif
       store[:display_media]     = object_account_user.setting_display_media
       store[:expand_spoilers]   = object_account_user.setting_expand_spoilers
       store[:reduce_motion]     = object_account_user.setting_reduce_motion
       store[:disable_swiping]   = object_account_user.setting_disable_swiping
+      store[:disable_hover_cards] = object_account_user.setting_disable_hover_cards
       store[:advanced_layout]   = object_account_user.setting_advanced_layout
       store[:use_blurhash]      = object_account_user.setting_use_blurhash
       store[:use_pending_items] = object_account_user.setting_use_pending_items
@@ -108,6 +110,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       trends_as_landing_page: Setting.trends_as_landing_page,
       trends_enabled: Setting.trends,
       version: instance_presenter.version,
+      terms_of_service_enabled: TermsOfService.live.exists?,
     }
   end
 

@@ -3,6 +3,8 @@
 Paperclip::DataUriAdapter.register
 Paperclip::ResponseWithLimitAdapter.register
 
+PATH = ':prefix_url:class/:attachment/:id_partition/:style/:filename'
+
 Paperclip.interpolates :filename do |attachment, style|
   if style == :original
     attachment.original_filename
@@ -29,7 +31,7 @@ end
 
 Paperclip::Attachment.default_options.merge!(
   use_timestamp: false,
-  path: ':prefix_url:class/:attachment/:id_partition/:style/:filename',
+  path: PATH,
   storage: :fog
 )
 
@@ -39,6 +41,8 @@ if ENV['S3_ENABLED'] == 'true'
   s3_region   = ENV.fetch('S3_REGION')   { 'us-east-1' }
   s3_protocol = ENV.fetch('S3_PROTOCOL') { 'https' }
   s3_hostname = ENV.fetch('S3_HOSTNAME') { "s3-#{s3_region}.amazonaws.com" }
+
+  Paperclip::Attachment.default_options[:path] = ENV.fetch('S3_KEY_PREFIX') + "/#{PATH}" if ENV.has_key?('S3_KEY_PREFIX')
 
   Paperclip::Attachment.default_options.merge!(
     storage: :s3,
@@ -64,11 +68,11 @@ if ENV['S3_ENABLED'] == 'true'
       http_open_timeout: ENV.fetch('S3_OPEN_TIMEOUT') { '5' }.to_i,
       http_read_timeout: ENV.fetch('S3_READ_TIMEOUT') { '5' }.to_i,
       http_idle_timeout: 5,
-      retry_limit: 0,
+      retry_limit: ENV.fetch('S3_RETRY_LIMIT') { '0' }.to_i,
     }
   )
 
-  Paperclip::Attachment.default_options[:s3_permissions] = ->(*) { nil } if ENV['S3_PERMISSION'] == ''
+  Paperclip::Attachment.default_options[:s3_permissions] = ->(*) {} if ENV['S3_PERMISSION'] == ''
 
   if ENV.has_key?('S3_ENDPOINT')
     Paperclip::Attachment.default_options[:s3_options].merge!(
@@ -156,15 +160,16 @@ elsif ENV['AZURE_ENABLED'] == 'true'
     )
   end
 else
+  Rails.configuration.x.file_storage_root_path = ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system'))
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
-    path: File.join(ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')), ':prefix_path:class', ':attachment', ':id_partition', ':style', ':filename'),
-    url: "#{ENV.fetch('PAPERCLIP_ROOT_URL', '/system')}/:prefix_url:class/:attachment/:id_partition/:style/:filename"
+    path: File.join(Rails.configuration.x.file_storage_root_path, ':prefix_path:class', ':attachment', ':id_partition', ':style', ':filename'),
+    url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + "/#{PATH}"
   )
 end
 
 Rails.application.reloader.to_prepare do
-  Paperclip.options[:content_type_mappings] = { csv: Import::FILE_TYPES }
+  Paperclip.options[:content_type_mappings] = { csv: %w(text/plain text/csv application/csv) }
 end
 
 # In some places in the code, we rescue this exception, but we don't always

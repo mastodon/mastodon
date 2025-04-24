@@ -3,6 +3,7 @@ sq:
   simple_form:
     hints:
       account:
+        attribution_domains: Një për rresht. Kjo mbron nga atribuime të rreme.
         discoverable: Postimet dhe profili juaj publik mund të shfaqen, ose rekomandohen në zona të ndryshme të Mastodon-it dhe profili juaj mund të sugjerohet përdoruesve të tjerë.
         display_name: Emri juaj i plotë, ose emri juaj lojcak.
         fields: Faqja juaj hyrëse, përemra, moshë, ç’të keni qejf.
@@ -59,6 +60,7 @@ sq:
         setting_display_media_default: Fshih media me shenjën rezervat
         setting_display_media_hide_all: Fshih përherë mediat
         setting_display_media_show_all: Mediat shfaqi përherë
+        setting_system_scrollbars_ui: Ka vend vetëm për shfletues desktop bazuar në Safari dhe Chrome
         setting_use_blurhash: Gradientët bazohen në ngjyrat e elementëve pamorë të fshehur, por errësojnë çfarëdo hollësie
         setting_use_pending_items: Fshihi përditësimet e rrjedhës kohore pas një klikimi, në vend të rrëshqitjes automatike nëpër prurje
         username: Mund të përdorni shkronja, numra dhe nënvija
@@ -73,6 +75,7 @@ sq:
       filters:
         action: Zgjidhni cili veprim të kryhet, kur një postim ka përputhje me një filtër
         actions:
+          blur: Fshihe median pas një sinjalizimi, pa fshehur vetë tekstin
           hide: Fshihe plotësisht lëndën e filtruar, duke u sjellë sikur të mos ekzistonte
           warn: Fshihe lëndën e filtruar pas një sinjalizimi që përmend titullin e filtrit
       form_admin_settings:
@@ -86,6 +89,7 @@ sq:
         favicon: WEBP, PNG, GIF, ose JPG. Anashkalon favikonën parazgjedhje Mastodon me një ikonë vetjake.
         mascot: Anashkalon ilustrimin te ndërfaqja web e thelluar.
         media_cache_retention_period: Kartela media nga postime të bëra nga përdorues të largët ruhen në një fshehtinë në shërbyesin tuaj. Kur i jepet një vlerë pozitive, media do të fshihet pas numrit të dhënë të ditëve. Nëse të dhënat e medias duhen pas fshirjes, do të rishkarkohen, nëse lënda burim mund të kihet ende. Për shkak kufizimesh mbi sa shpesh skeda paraparjesh lidhjesh ndërveprojnë me sajte palësh të treta, rekomandohet të vihet kjo vlerë të paktën 14 ditë, ose skedat e paraparjes së lidhje s’do të përditësohen duke e kërkuar para asaj kohe.
+        min_age: Përdoruesve do t’ju kërkohet gjatë regjistrimit të ripohojnë datën e lindjes
         peers_api_enabled: Një listë emrash përkatësish që ky shërbyes ka hasur në fedivers. Këtu s’jepen të dhëna nëse jeni i federuar me shërbyesin e dhënë, thjesht tregohet se shërbyesi juaj e njeh. Kjo përdoret nga shërbime që mbledhin statistika mbi federimin në kuptimin e përgjithshëm.
         profile_directory: Drejtoria e profileve paraqet krejt përdoruesit që kanë zgjedhur të jenë të zbulueshëm.
         require_invite_text: Kur regjistrimet lypin miratim dorazi, bëje tekstin “Përse doni të bëheni pjesë?” të detyrueshëm, në vend se opsional
@@ -128,9 +132,23 @@ sq:
         show_application: Pavarësisht nga kjo, do të jeni përherë në gjendje të shihni cili aplikacion botoi postimin tuaj.
       tag:
         name: Mund të ndryshoni shkronjat vetëm nga të mëdha në të vogla ose anasjelltas, për shembull, për t’i bërë më të lexueshme
+      terms_of_service:
+        changelog: Mund të strukturohet me sintaksë Markdown.
+        effective_date: Një kuadër kohor i arsyeshëm mund të shtrihet nga 10 deri në 30 ditë nga data që njoftoni përdoruesit tuaj.
+        text: Mund të strukturohet me sintaksë Markdown.
+      terms_of_service_generator:
+        admin_email: Njoftimet ligjore përfshijnë kundërnjoftime, vendime gjyqi, kërkesa për për nxjerrje sajti jashtë shërbimit dhe kërkesa nga organe ligjore.
+        arbitration_address: Mund të jetë e njëjtë me adresën Fizike më sipër, ose “N/A”, nëse përdoret email.
+        arbitration_website: Mund të jetë një formular web, ose “N/A”, nëse përdoret email.
+        choice_of_law: Qytet, rajon, territor ose shtet, ligjet e brendshme të të cilit do të administrojnë çfarëdo dhe tërë pretendimet.
+        dmca_email: Mund të jetë i njëjti email i përdorur për “Adresë email për njoftime ligjore” më sipër.
+        domain: Identifikues unik për shërbimin internetor që po ofroni.
+        jurisdiction: Vendosni vendin ku jeton cilido që paguan faturat. Nëse është një shoqëri apo tjetër njësi, vendosni vendin ku është regjistruar, si dhe qytetin, rajonin, territorin apo shtetin përkatës.
+        min_age: S’duhet të jetë nën moshën minimum të domosdoshme nga ligjet në juridiksionin tuaj.
       user:
         chosen_languages: Në iu vëntë shenjë, te rrjedha kohore publike do të shfaqen vetëm mesazhe në gjuhët e përzgjedhura
-        role: Roli kontrollon cilat leje ka përdoruesi
+        date_of_birth: Na duhet të sigurohemi se jeni të paktën %{age}, që të përdorni Mastodon-in. Këtë s’e depozitojmë.
+        role: Roli kontrollon cilat leje ka përdoruesi.
       user_role:
         color: Ngjyrë për t’u përdorur për rolin nëpër UI, si RGB në format gjashtëmbëdhjetësh
         highlighted: Kjo e bën rolin të dukshëm publikisht
@@ -143,6 +161,7 @@ sq:
         url: Ku do të dërgohen aktet
     labels:
       account:
+        attribution_domains: Sajte të lejuar t’ju japin hakë
         discoverable: Profilin dhe postimet bëji objekt të algoritmeve të zbulimit
         fields:
           name: Etiketë
@@ -211,6 +230,7 @@ sq:
         setting_default_privacy: Privatësi postimi
         setting_default_sensitive: Mediave vëru përherë shenjë si rezervat
         setting_delete_modal: Shfaq dialog ripohimi përpara fshirjes së një mesazhi
+        setting_disable_hover_cards: Çaktivizo paraparje profili, kur i kalohet kursori përsipër
         setting_disable_swiping: Çaktivizo lëvizje me fërkim
         setting_display_media: Shfaqje mediash
         setting_display_media_default: Parazgjedhje
@@ -218,8 +238,10 @@ sq:
         setting_display_media_show_all: Shfaqi krejt
         setting_expand_spoilers: Mesazhet me sinjalizime mbi lëndën, zgjeroji përherë
         setting_hide_network: Fshiheni rrjetin tuaj
+        setting_missing_alt_text_modal: Shfaq dialog ripohimi, para postimi mediash pa tekst alternativ
         setting_reduce_motion: Zvogëlo lëvizjen në animacione
         setting_system_font_ui: Përdor shkronja parazgjedhje të sistemit
+        setting_system_scrollbars_ui: Përdor shtyllë rrëshqitjesh parazgjedhje të sistemit
         setting_theme: Temë sajti
         setting_trends: Shfaq prirjet sot
         setting_unfollow_modal: Shfaq dialog ripohimi përpara heqjes së ndjekjes për dikë
@@ -238,17 +260,21 @@ sq:
         name: Hashtag
       filters:
         actions:
+          blur: Fshihe median me një sinjalizim
           hide: Fshihe plotësisht
           warn: Fshihe me një sinjalizim
       form_admin_settings:
         activity_api_enabled: Publikoni te API statistika përmbledhëse rreth veprimtarisë së përdoruesve
+        app_icon: Ikonë aplikacioni
         backups_retention_period: Periudhë mbajtjeje arkivash përdoruesish
         bootstrap_timeline_accounts: Rekomandoju përherë këto llogari përdoruesve të rinj
         closed_registrations_message: Mesazh vetjak për pamundësi regjistrimesh të reja
         content_cache_retention_period: Periudhë mbajtjeje lënde të largët
         custom_css: CSS Vetjake
+        favicon: Favikonë
         mascot: Simbol vetjak (e dikurshme)
         media_cache_retention_period: Periudhë mbajtjeje lënde media
+        min_age: Domosdosmëri moshe minimum
         peers_api_enabled: Publiko te API listë shërbyesish të zbuluar
         profile_directory: Aktivizo drejtori profilesh
         registrations_mode: Kush mund të regjistrohet
@@ -311,8 +337,25 @@ sq:
         listable: Lejoje këtë hashtag të shfaqet në kërkime dhe në drejtori profilesh
         name: Hashtag
         trendable: Lejoje këtë hashtag të shfaqet në prirje
-        usable: Lejoji mesazhet të përdorin këtë hashtag
+        usable: Lejoji postimet të përdorin lokalisht këtë hashtag
+      terms_of_service:
+        changelog: Ç’ka ndryshuar?
+        effective_date: Datë efektive
+        text: Kushte Shërbimi
+      terms_of_service_generator:
+        admin_email: Adresë email për njoftime ligjore
+        arbitration_address: Adresë fizike për njoftime arbitrazhi
+        arbitration_website: Sajtin për parashtrim njoftime arbitrazhi
+        choice_of_law: Zgjedhje Ligji
+        dmca_address: Adresë fizike për njoftime DMCA/të drejtash kopjimi
+        dmca_email: Adresë email për njoftime DMCA/të drejtash kopjimi
+        domain: Përkatësi
+        jurisdiction: Juridiksion ligjor
+        min_age: Mosha minimale
       user:
+        date_of_birth_1i: Ditë
+        date_of_birth_2i: Muaj
+        date_of_birth_3i: Vit
         role: Rol
         time_zone: Zonë kohore
       user_role:

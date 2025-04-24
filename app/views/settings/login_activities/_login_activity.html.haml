@@ -2,7 +2,7 @@
   .log-entry__header
     .log-entry__avatar
       .indicator-icon{ class: login_activity.success? ? 'success' : 'failure' }
-        = fa_icon login_activity.success? ? 'check' : 'times'
+        = material_symbol login_activity.success? ? 'check' : 'close'
     .log-entry__content
       .log-entry__title
         = login_activity_title(login_activity)

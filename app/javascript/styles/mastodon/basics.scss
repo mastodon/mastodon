@@ -1,3 +1,6 @@
+@use 'variables' as *;
+@use 'functions' as *;
+
 @function hex-color($color) {
   @if type-of($color) == 'color' {
     $color: str-slice(ie-hex-str($color), 4);
@@ -14,7 +17,12 @@ body {
   font-weight: 400;
   color: $primary-text-color;
   text-rendering: optimizelegibility;
-  font-feature-settings: 'kern';
+
+  // Disable kerning for Japanese text to preserve monospaced alignment for readability
+  &:not(:lang(ja)) {
+    font-feature-settings: 'kern';
+  }
+
   text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0%);
   -webkit-tap-highlight-color: transparent;
@@ -63,11 +71,8 @@ body {
 
     &.with-modals--active {
       overflow-y: hidden;
+      overscroll-behavior: none;
     }
-  }
-
-  &.lighter {
-    background: $ui-base-color;
   }
 
   &.with-modals {
@@ -109,28 +114,18 @@ body {
   }
 
   &.embed {
-    background: lighten($ui-base-color, 4%);
     margin: 0;
     padding-bottom: 0;
-
-    .container {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
+    overflow: hidden;
   }
 
   &.admin {
-    background: darken($ui-base-color, 4%);
     padding: 0;
   }
 
   &.error {
     position: absolute;
     text-align: center;
-    color: $darker-text-color;
-    background: $ui-base-color;
     width: 100%;
     height: 100%;
     padding: 0;
@@ -149,6 +144,7 @@ body {
           width: 100%;
           height: auto;
           margin-top: -120px;
+          margin-bottom: -45px;
         }
       }
 

@@ -8,10 +8,13 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import { Account } from 'mastodon/components/account';
 import { TimelineHint } from 'mastodon/components/timeline_hint';
+import { AccountHeader } from 'mastodon/features/account_timeline/components/account_header';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
-import { getAccountHidden } from 'mastodon/selectors';
+import { getAccountHidden } from 'mastodon/selectors/accounts';
+import { useAppSelector } from 'mastodon/store';
 
 import {
   lookupAccount,
@@ -22,9 +25,7 @@ import {
 import { ColumnBackButton } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
 import ScrollableList from '../../components/scrollable_list';
-import AccountContainer from '../../containers/account_container';
 import { LimitedAccountHint } from '../account_timeline/components/limited_account_hint';
-import HeaderContainer from '../account_timeline/containers/header_container';
 import Column from '../ui/components/column';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
@@ -51,12 +52,22 @@ const mapStateToProps = (state, { params: { acct, id } }) => {
   };
 };
 
-const RemoteHint = ({ url }) => (
-  <TimelineHint url={url} resource={<FormattedMessage id='timeline_hint.resources.follows' defaultMessage='Follows' />} />
-);
+const RemoteHint = ({ accountId, url }) => {
+  const acct = useAppSelector(state => state.accounts.get(accountId)?.acct);
+  const domain = acct ? acct.split('@')[1] : undefined;
+
+  return (
+    <TimelineHint
+      url={url}
+      message={<FormattedMessage id='hints.profiles.follows_may_be_missing' defaultMessage='Follows for this profile may be missing.' />}
+      label={<FormattedMessage id='hints.profiles.see_more_follows' defaultMessage='See more follows on {domain}' values={{ domain: <strong>{domain}</strong> }} />}
+    />
+  );
+};
 
 RemoteHint.propTypes = {
   url: PropTypes.string.isRequired,
+  accountId: PropTypes.string.isRequired,
 };
 
 class Following extends ImmutablePureComponent {
@@ -141,12 +152,12 @@ class Following extends ImmutablePureComponent {
     } else if (hideCollections && accountIds.isEmpty()) {
       emptyMessage = <FormattedMessage id='empty_column.account_hides_collections' defaultMessage='This user has chosen to not make this information available' />;
     } else if (remote && accountIds.isEmpty()) {
-      emptyMessage = <RemoteHint url={remoteUrl} />;
+      emptyMessage = <RemoteHint accountId={accountId} url={remoteUrl} />;
     } else {
       emptyMessage = <FormattedMessage id='account.follows.empty' defaultMessage="This user doesn't follow anyone yet." />;
     }
 
-    const remoteMessage = remote ? <RemoteHint url={remoteUrl} /> : null;
+    const remoteMessage = remote ? <RemoteHint accountId={accountId} url={remoteUrl} /> : null;
 
     return (
       <Column>
@@ -157,14 +168,14 @@ class Following extends ImmutablePureComponent {
           hasMore={!forceEmptyState && hasMore}
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
-          prepend={<HeaderContainer accountId={this.props.accountId} hideTabs />}
+          prepend={<AccountHeader accountId={this.props.accountId} hideTabs />}
           alwaysPrepend
           append={remoteMessage}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >
           {forceEmptyState ? [] : accountIds.map(id =>
-            <AccountContainer key={id} id={id} withNote={false} />,
+            <Account key={id} id={id} />,
           )}
         </ScrollableList>
       </Column>

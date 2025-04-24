@@ -20,9 +20,9 @@ class ActivityPub::Activity
   end
 
   class << self
-    def factory(json, account, **options)
+    def factory(json, account, **)
       @json = json
-      klass&.new(json, account, **options)
+      klass&.new(json, account, **)
     end
 
     private
@@ -130,12 +130,7 @@ class ActivityPub::Activity
 
   def first_mentioned_local_account
     audience = (as_array(@json['to']) + as_array(@json['cc'])).map { |x| value_or_id(x) }.uniq
-    local_usernames = audience.select { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }
-                              .map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username) }
-
-    return if local_usernames.empty?
-
-    Account.local.where(username: local_usernames).first
+    ActivityPub::TagManager.instance.uris_to_local_accounts(audience).first
   end
 
   def first_local_follower

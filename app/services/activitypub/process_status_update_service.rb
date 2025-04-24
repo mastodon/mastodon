@@ -16,6 +16,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @account                   = status.account
     @media_attachments_changed = false
     @poll_changed              = false
+    @quote_changed             = false
     @request_id                = request_id
 
     # Only native types can be updated at the moment
@@ -43,6 +44,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         update_poll!
         update_immediate_attributes!
         update_metadata!
+        update_counts!
         create_edits!
       end
 
@@ -62,6 +64,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     with_redis_lock("create:#{@uri}") do
       update_poll!(allow_significant_changes: false)
       queue_poll_notifications!
+      update_counts!
     end
   end
 
@@ -109,7 +112,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       media_attachment.download_file! if media_attachment.remote_url_previously_changed?
       media_attachment.download_thumbnail! if media_attachment.thumbnail_remote_url_previously_changed?
       media_attachment.save
-    rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+    rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
     rescue Seahorse::Client::NetworkingError => e
       Rails.logger.warn "Error storing media attachment: #{e}"
@@ -156,7 +159,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
     @status.language     = @status_parser.language
 
-    @significant_changes = text_significantly_changed? || @status.spoiler_text_changed? || @media_attachments_changed || @poll_changed
+    @significant_changes = text_significantly_changed? || @status.spoiler_text_changed? || @media_attachments_changed || @poll_changed || @quote_changed
 
     @status.edited_at = @status_parser.edited_at if significant_changes?
 
@@ -181,40 +184,62 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     update_tags!
     update_mentions!
     update_emojis!
+    update_quote!
   end
 
   def update_tags!
-    @status.tags = Tag.find_or_create_by_names(@raw_tags)
+    previous_tags = @status.tags.to_a
+    current_tags = @status.tags = Tag.find_or_create_by_names(@raw_tags)
+
+    return unless @status.distributable?
+
+    added_tags = current_tags - previous_tags
+
+    unless added_tags.empty?
+      @account.featured_tags.where(tag_id: added_tags.pluck(:id)).find_each do |featured_tag|
+        featured_tag.increment(@status.created_at)
+      end
+    end
+
+    removed_tags = previous_tags - current_tags
+
+    unless removed_tags.empty?
+      @account.featured_tags.where(tag_id: removed_tags.pluck(:id)).find_each do |featured_tag|
+        featured_tag.decrement(@status)
+      end
+    end
   end
 
   def update_mentions!
-    previous_mentions = @status.active_mentions.includes(:account).to_a
-    current_mentions  = []
+    unresolved_mentions = []
 
-    @raw_mentions.each do |href|
+    currently_mentioned_account_ids = @raw_mentions.filter_map do |href|
       next if href.blank?
 
       account   = ActivityPub::TagManager.instance.uri_to_resource(href, Account)
       account ||= ActivityPub::FetchRemoteAccountService.new.call(href, request_id: @request_id)
 
-      next if account.nil?
-
-      mention   = previous_mentions.find { |x| x.account_id == account.id }
-      mention ||= account.mentions.new(status: @status)
-
-      current_mentions << mention
+      account&.id
+    rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
+      # Since previous mentions are about already-known accounts,
+      # they don't try to resolve again and won't fall into this case.
+      # In other words, this failure case is only for new mentions and won't
+      # affect `removed_mentions` so they can safely be retried asynchronously
+      unresolved_mentions << href
+      nil
     end
 
-    current_mentions.each do |mention|
-      mention.save if mention.new_record?
-    end
+    @status.mentions.upsert_all(currently_mentioned_account_ids.uniq.map { |id| { account_id: id, silent: false } }, unique_by: %w(status_id account_id))
 
     # If previous mentions are no longer contained in the text, convert them
     # to silent mentions, since withdrawing access from someone who already
     # received a notification might be more confusing
-    removed_mentions = previous_mentions - current_mentions
+    @status.mentions.where.not(account_id: currently_mentioned_account_ids).update_all(silent: true)
 
-    Mention.where(id: removed_mentions.map(&:id)).update_all(silent: true) unless removed_mentions.empty?
+    # Queue unresolved mentions for later
+    unresolved_mentions.uniq.each do |uri|
+      MentionResolveWorker.perform_in(rand(30...600).seconds, @status.id, uri, { 'request_id' => @request_id })
+    end
   end
 
   def update_emojis!
@@ -236,6 +261,58 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       rescue Seahorse::Client::NetworkingError => e
         Rails.logger.warn "Error storing emoji: #{e}"
       end
+    end
+  end
+
+  def update_quote!
+    return unless Mastodon::Feature.inbound_quotes_enabled?
+
+    quote = nil
+    quote_uri = @status_parser.quote_uri
+
+    if quote_uri.present?
+      approval_uri = @status_parser.quote_approval_uri
+      approval_uri = nil if unsupported_uri_scheme?(approval_uri)
+
+      if @status.quote.present?
+        # If the quoted post has changed, discard the old object and create a new one
+        if @status.quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(@status.quote.quoted_status) != quote_uri
+          @status.quote.destroy
+          quote = Quote.create(status: @status, approval_uri: approval_uri)
+          @quote_changed = true
+        else
+          quote = @status.quote
+          quote.update(approval_uri: approval_uri, state: :pending) if quote.approval_uri != @status_parser.quote_approval_uri
+        end
+      else
+        quote = Quote.create(status: @status, approval_uri: approval_uri)
+        @quote_changed = true
+      end
+    end
+
+    if quote.present?
+      begin
+        quote.save
+        ActivityPub::VerifyQuoteService.new.call(quote, fetchable_quoted_uri: quote_uri, request_id: @request_id)
+      rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
+        ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(30..600).seconds, quote.id, quote_uri, { 'request_id' => @request_id })
+      end
+    elsif @status.quote.present?
+      @status.quote.destroy!
+      @quote_changed = true
+    end
+  end
+
+  def update_counts!
+    likes = @status_parser.favourites_count
+    shares =  @status_parser.reblogs_count
+    return if likes.nil? && shares.nil?
+
+    @status.status_stat.tap do |status_stat|
+      status_stat.untrusted_reblogs_count = shares unless shares.nil?
+      status_stat.untrusted_favourites_count = likes unless likes.nil?
+
+      status_stat.save if status_stat.changed?
     end
   end
 

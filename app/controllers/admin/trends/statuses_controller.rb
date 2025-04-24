@@ -4,7 +4,7 @@ class Admin::Trends::StatusesController < Admin::BaseController
   def index
     authorize [:admin, :status], :review?
 
-    @locales  = StatusTrend.pluck('distinct language')
+    @locales  = StatusTrend.locales
     @statuses = filtered_statuses.page(params[:page])
     @form     = Trends::StatusBatch.new
   end
@@ -31,7 +31,8 @@ class Admin::Trends::StatusesController < Admin::BaseController
   end
 
   def trends_status_batch_params
-    params.require(:trends_status_batch).permit(:action, status_ids: [])
+    params
+      .expect(trends_status_batch: [:action, status_ids: []])
   end
 
   def action_from_button

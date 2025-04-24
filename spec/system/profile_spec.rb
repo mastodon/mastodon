@@ -2,22 +2,21 @@
 
 require 'rails_helper'
 
-describe 'Profile' do
+RSpec.describe 'Profile' do
   include ProfileStories
 
-  subject { page }
-
-  let(:local_domain) { ENV['LOCAL_DOMAIN'] }
+  let(:local_domain) { Rails.configuration.x.local_domain }
 
   before do
     as_a_logged_in_user
-    with_alice_as_local_user
+    Fabricate(:user, account: Fabricate(:account, username: 'alice'))
   end
 
-  it 'I can view Annes public account' do
+  it 'I can view public account page for Alice' do
     visit account_path('alice')
 
-    expect(subject).to have_title("alice (@alice@#{local_domain})")
+    expect(page)
+      .to have_title("alice (@alice@#{local_domain})")
   end
 
   it 'I can change my account' do
@@ -26,8 +25,31 @@ describe 'Profile' do
     fill_in 'Display name', with: 'Bob'
     fill_in 'Bio', with: 'Bob is silent'
 
-    first('button[type=submit]').click
+    fill_in 'account_fields_attributes_0_name', with: 'Personal Website'
+    fill_in 'account_fields_attributes_0_value', with: 'https://host.example/personal'
 
-    expect(subject).to have_content 'Changes successfully saved!'
+    fill_in 'account_fields_attributes_1_name', with: 'Professional Biography'
+    fill_in 'account_fields_attributes_1_value', with: 'https://host.example/pro'
+
+    expect { submit_form }
+      .to change { bob.account.reload.display_name }.to('Bob')
+      .and(change_account_fields)
+    expect(page)
+      .to have_content 'Changes successfully saved!'
+  end
+
+  def submit_form
+    first('button[type=submit]').click
+  end
+
+  def change_account_fields
+    change { bob.account.reload.fields }
+      .from([])
+      .to(
+        contain_exactly(
+          be_a(Account::Field),
+          be_a(Account::Field)
+        )
+      )
   end
 end

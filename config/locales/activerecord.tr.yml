@@ -15,9 +15,16 @@ tr:
       user/invite_request:
         text: Gerekçe
     errors:
+      attributes:
+        domain:
+          invalid: geçerli bir alan adı değil
+      messages:
+        invalid_domain_on_line: "%{value} geçerli bir alan adı değil"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: etiketleri eksik değerler içeriyor
             username:
               invalid: sadece harfler, sayılar ve alt çizgiler
               reserved: kullanılamaz
@@ -33,12 +40,23 @@ tr:
           attributes:
             data:
               malformed: bozulmuştur
+        list_account:
+          attributes:
+            account_id:
+              taken: zaten listede var
+          must_be_following: takip edilen bir hesap olmalı
         status:
           attributes:
             reblog:
               taken: durum zaten var
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: çok erken, %{date} tarihinden sonra olmalıdır
         user:
           attributes:
+            date_of_birth:
+              below_limit: yaş sınırının altında
             email:
               blocked: izin verilmeyen bir e-posta sağlayıcı kullanıyor
               unreachable: mevcut gözükmüyor

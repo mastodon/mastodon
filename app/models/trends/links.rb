@@ -14,18 +14,9 @@ class Trends::Links < Trends::Base
   }
 
   class Query < Trends::Query
-    def filtered_for!(account)
-      @account = account
-      self
-    end
-
-    def filtered_for(account)
-      clone.filtered_for!(account)
-    end
-
     def to_arel
       scope = PreviewCard.joins(:trend).reorder(score: :desc)
-      scope = scope.reorder(language_order_clause.desc, score: :desc) if preferred_languages.present?
+      scope = scope.reorder(language_order_clause, score: :desc) if preferred_languages.present?
       scope = scope.merge(PreviewCardTrend.allowed) if @allowed
       scope = scope.offset(@offset) if @offset.present?
       scope = scope.limit(@limit) if @limit.present?
@@ -34,23 +25,16 @@ class Trends::Links < Trends::Base
 
     private
 
-    def language_order_clause
-      Arel::Nodes::Case.new.when(PreviewCardTrend.arel_table[:language].in(preferred_languages)).then(1).else(0)
-    end
-
-    def preferred_languages
-      if @account&.chosen_languages.present?
-        @account.chosen_languages
-      else
-        @locale
-      end
+    def trend_class
+      PreviewCardTrend
     end
   end
 
   def register(status, at_time = Time.now.utc)
     original_status = status.proper
 
-    return unless (original_status.public_visibility? && status.public_visibility?) &&
+    return unless original_status.public_visibility? &&
+                  status.public_visibility? &&
                   !(original_status.account.silenced? || status.account.silenced?) &&
                   !(original_status.spoiler_text? || original_status.sensitive?)
 
@@ -85,7 +69,7 @@ class Trends::Links < Trends::Base
   end
 
   def request_review
-    PreviewCardTrend.pluck('distinct language').flat_map do |language|
+    PreviewCardTrend.locales.flat_map do |language|
       score_at_threshold  = PreviewCardTrend.where(language: language).allowed.by_rank.ranked_below(options[:review_threshold]).first&.score || 0
       preview_card_trends = PreviewCardTrend.where(language: language).not_allowed.joins(:preview_card)
 

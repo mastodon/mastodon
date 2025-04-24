@@ -21,6 +21,7 @@ RSpec.describe AccountSuggestions::Source do
       let!(:moved_account) { Fabricate(:account, moved_to_account: Fabricate(:account), discoverable: true) }
       let!(:silenced_account) { Fabricate(:account, silenced: true, discoverable: true) }
       let!(:undiscoverable_account) { Fabricate(:account, discoverable: false) }
+      let!(:memorial_account) { Fabricate(:account, memorial: true, discoverable: true) }
 
       before do
         Fabricate :account_domain_block, account: account, domain: account_domain_blocked_account.domain
@@ -44,6 +45,7 @@ RSpec.describe AccountSuggestions::Source do
           .and not_include(moved_account)
           .and not_include(silenced_account)
           .and not_include(undiscoverable_account)
+          .and not_include(memorial_account)
       end
     end
   end

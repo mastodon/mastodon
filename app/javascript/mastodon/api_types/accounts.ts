@@ -13,13 +13,13 @@ export interface ApiAccountRoleJSON {
 }
 
 // See app/serializers/rest/account_serializer.rb
-export interface ApiAccountJSON {
+export interface BaseApiAccountJSON {
   acct: string;
   avatar: string;
   avatar_static: string;
   bot: boolean;
   created_at: string;
-  discoverable: boolean;
+  discoverable?: boolean;
   indexable: boolean;
   display_name: string;
   emojis: ApiCustomEmojiJSON[];
@@ -45,3 +45,12 @@ export interface ApiAccountJSON {
   memorial?: boolean;
   hide_collections: boolean;
 }
+
+// See app/serializers/rest/muted_account_serializer.rb
+export interface ApiMutedAccountJSON extends BaseApiAccountJSON {
+  mute_expires_at?: string | null;
+}
+
+// For now, we have the same type representing both `Account` and `MutedAccount`
+// objects, but we should refactor this in the future.
+export type ApiAccountJSON = ApiMutedAccountJSON;

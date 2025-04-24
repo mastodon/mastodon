@@ -1,0 +1,40 @@
+- content_for :page_title do
+  = t('admin.tags.title')
+
+= form_with url: admin_tags_url, method: :get, class: :simple_form do |form|
+  .filters
+    .filter-subset.filter-subset--with-select
+      %strong= t('admin.tags.moderation.title')
+      .input.select.optional
+        = form.select :status,
+                      options_for_select(admin_tags_moderation_options, params[:status]),
+                      prompt: t('generic.all')
+
+    .filter-subset.filter-subset--with-select
+      %strong= t 'generic.order_by'
+      .input.select
+        = form.select :order,
+                      options_for_select([[t('admin.tags.newest'), 'newest'], [t('admin.tags.oldest'), 'oldest']], params[:order])
+
+  .fields-group
+    .input.string.optional
+      = form.text_field :name,
+                        value: params[:name],
+                        class: 'string optional',
+                        placeholder: t('admin.tags.name')
+
+  .actions
+    %button.button= t('admin.tags.search')
+    = link_to t('admin.tags.reset'), admin_tags_path, class: 'button button--dangerous'
+
+%hr.spacer/
+
+.batch-table.batch-table--no-toolbar
+  .batch-table__toolbar
+  .batch-table__body
+    - if @tags.empty?
+      = nothing_here 'nothing-here--under-tabs nothing-here--no-toolbar'
+    - else
+      = render partial: 'tag', collection: @tags
+
+= paginate @tags

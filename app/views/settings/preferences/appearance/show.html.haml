@@ -4,7 +4,7 @@
 - content_for :heading_actions do
   = button_tag t('generic.save_changes'), class: 'button', form: 'edit_user'
 
-= simple_form_for current_user, url: settings_preferences_appearance_path, html: { method: :put, id: 'edit_user' } do |f|
+= simple_form_for current_user, url: settings_preferences_appearance_path, html: { id: :edit_user } do |f|
   .fields-row
     .fields-group.fields-row__column.fields-row__column-6
       = f.input :locale,
@@ -18,6 +18,7 @@
       = f.input :time_zone,
                 collection: ActiveSupport::TimeZone.all.map { |tz| ["(GMT#{tz.formatted_offset}) #{tz.name}", tz.tzinfo.name] },
                 hint: false,
+                selected: current_user.time_zone || Time.zone.tzinfo.name,
                 wrapper: :with_label
 
   .fields-group
@@ -56,7 +57,9 @@
       = ff.input :'web.auto_play', wrapper: :with_label, recommended: true, label: I18n.t('simple_form.labels.defaults.setting_auto_play_gif')
       = ff.input :'web.reduce_motion', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_reduce_motion')
       = ff.input :'web.disable_swiping', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_disable_swiping')
+      = ff.input :'web.disable_hover_cards', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_disable_hover_cards')
       = ff.input :'web.use_system_font', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_system_font_ui')
+      = ff.input :'web.use_system_scrollbars', wrapper: :with_label, hint: I18n.t('simple_form.hints.defaults.setting_system_scrollbars_ui'), label: I18n.t('simple_form.labels.defaults.setting_system_scrollbars_ui')
 
     %h4= t 'appearance.discovery'
 
@@ -68,6 +71,7 @@
     .fields-group
       = ff.input :'web.reblog_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_boost_modal')
       = ff.input :'web.delete_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_delete_modal')
+      = ff.input :'web.missing_alt_text_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_missing_alt_text_modal')
 
     %h4= t 'appearance.sensitive_content'
 

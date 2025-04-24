@@ -6,6 +6,11 @@ export const toServerSideType = (columnType: string) => {
     case 'thread':
     case 'account':
       return columnType;
+    case 'detailed':
+      return 'thread';
+    case 'bookmarks':
+    case 'favourites':
+      return 'home';
     default:
       if (columnType.includes('list:')) {
         return 'home';

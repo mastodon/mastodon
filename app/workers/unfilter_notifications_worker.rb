@@ -2,36 +2,47 @@
 
 class UnfilterNotificationsWorker
   include Sidekiq::Worker
+  include Redisable
 
-  def perform(notification_request_id)
-    @notification_request = NotificationRequest.find(notification_request_id)
+  def perform(account_id, from_account_id)
+    @from_account = Account.find_by(id: from_account_id)
+    @recipient    = Account.find_by(id: account_id)
+
+    return if @from_account.nil? || @recipient.nil?
 
     push_to_conversations!
     unfilter_notifications!
-    remove_request!
-  rescue ActiveRecord::RecordNotFound
-    true
+    decrement_worker_count!
   end
 
   private
 
   def push_to_conversations!
-    notifications_with_private_mentions.find_each { |notification| AccountConversation.add_status(@notification_request.account, notification.target_status) }
+    notifications_with_private_mentions.reorder(nil).find_each(order: :desc) { |notification| AccountConversation.add_status(@recipient, notification.target_status) }
   end
 
   def unfilter_notifications!
     filtered_notifications.in_batches.update_all(filtered: false)
   end
 
-  def remove_request!
-    @notification_request.destroy!
-  end
-
   def filtered_notifications
-    Notification.where(account: @notification_request.account, from_account: @notification_request.from_account, filtered: true)
+    Notification.where(account: @recipient, from_account: @from_account, filtered: true)
   end
 
   def notifications_with_private_mentions
-    filtered_notifications.joins(mention: :status).merge(Status.where(visibility: :direct)).includes(mention: :status)
+    filtered_notifications.where(type: :mention).joins(mention: :status).merge(Status.where(visibility: :direct)).includes(mention: :status)
+  end
+
+  def decrement_worker_count!
+    value = redis.decr("notification_unfilter_jobs:#{@recipient.id}")
+    push_streaming_event! if value <= 0 && subscribed_to_streaming_api?
+  end
+
+  def push_streaming_event!
+    redis.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notifications_merged, payload: '1'))
+  end
+
+  def subscribed_to_streaming_api?
+    redis.exists?("subscribed:timeline:#{@recipient.id}") || redis.exists?("subscribed:timeline:#{@recipient.id}:notifications")
   end
 end

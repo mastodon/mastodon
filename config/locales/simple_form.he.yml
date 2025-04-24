@@ -3,6 +3,7 @@ he:
   simple_form:
     hints:
       account:
+        attribution_domains: אחד בכל שורה. יגן מפני יחוסים מטעים.
         discoverable: הפוסטים והפרופיל שלך עשויים להיות מוצגים או מומלצים באזורים שונים באתר וייתכן שהפרופיל שלך יוצע למשתמשים אחרים.
         display_name: שמך המלא או שם הכיף שלך.
         fields: עמוד הבית שלך, לשון הפנייה, גיל, וכל מידע אחר לפי העדפתך האישית.
@@ -59,6 +60,7 @@ he:
         setting_display_media_default: הסתרת מדיה המסומנת כרגישה
         setting_display_media_hide_all: הסתר מדיה תמיד
         setting_display_media_show_all: גלה מדיה תמיד
+        setting_system_scrollbars_ui: נוגע רק לגבי דפדפני דסקטופ מבוססים ספארי וכרום
         setting_use_blurhash: הגראדיינטים מבוססים על תוכן התמונה המוסתרת, אבל מסתירים את כל הפרטים
         setting_use_pending_items: הסתר עדכוני פיד מאחורי קליק במקום לגלול את הפיד אוטומטית
         username: ניתן להשתמש בספרות, אותיות לטיניות ומקף תחתון
@@ -73,8 +75,9 @@ he:
       filters:
         action: בחרו איזו פעולה לבצע כאשר הודעה מתאימה למסנן
         actions:
-          hide: הסתר את התוכן המסונן, כאילו לא היה קיים
-          warn: הסתר את התוכן המסונן מאחורי אזהרה עם כותרת המסנן
+          blur: החבאת וידאו ותמונות מאחורי אזהרה, ללא החבאת המלל עצמו
+          hide: הסתרת התוכן המסונן, כאילו לא היה קיים
+          warn: הסתרת התוכן המסונן מאחורי אזהרה עם כותרת המסנן
       form_admin_settings:
         activity_api_enabled: מספר ההודעות שפורסמו מקומית, משתמשים פעילים, והרשמות חדשות בדליים שבועיים
         app_icon: WEBP, PNG, GIF או JPG. גובר על אייקון ברירת המחדל ביישומון על מכשירים ניידים ומחליף אותו באייקון נבחר.
@@ -86,6 +89,7 @@ he:
         favicon: WEBP, PNG, GIF או JPG. גובר על "פאבאייקון" ברירת המחדל ומחליף אותו באייקון נבחר בדפדפן.
         mascot: בחירת ציור למנשק הווב המתקדם.
         media_cache_retention_period: קבצי מדיה מהודעות שהגיעו משרתים רחוקים נשמרות על השרת שלך. כאשר יבחר פה מספר חיובי, המדיה תמחק לאחר מספר ימים כמצוין. אם המידע יבוקש שוב לאחר שנמחק, הוא יורד מחדש, אם המידע עדיין זמין בצד הרחוק. עקב מגבלות על תכיפות שליפת כרטיסי קדימון מאתרים מרוחקים, מומלץ לכוון את הערך ל־14 יום לפחות, או שכרטיסי קדימונים לא יעודכנו לפי דרישה לפני חלוף חלון הזמן הזה.
+        min_age: משתמשיםות יתבקשו לאשר את תאריך הלידה בתהליך ההרשמה
         peers_api_enabled: רשימת השרתים ששרת זה פגש בפדיוורס. לא כולל מידע לגבי קשר ישיר עם שרת נתון, אלא רק שידוע לשרת זה על קיומו. מידע זה משמש שירותים האוספים סטטיסטיקות כלליות על הפדרציה.
         profile_directory: ספריית הפרופילים מציגה ברשימה את כל המשתמשים שביקשו להיות ניתנים לגילוי.
         require_invite_text: כאשר הרשמות דורשות אישור ידני, הפיכת טקסט ה"מדוע את/ה רוצה להצטרף" להכרחי במקום אופציונלי
@@ -128,9 +132,24 @@ he:
         show_application: תמיד ניתן לראות איזו אפליקציה פרסמה את הפוסט שלך בכל מקרה.
       tag:
         name: ניתן רק להחליף בין אותיות קטנות וגדולות, למשל כדי לשפר את הקריאות
+      terms_of_service:
+        changelog: ניתן לעצב בעזרת תחביר מארקדאון.
+        effective_date: לוח זמנים סביר יהיה בין 10-30 ימים מיום ההודעה למשתמשיםות שלך.
+        text: ניתן לעצב בעזרת תחביר מארקדאון.
+      terms_of_service_generator:
+        admin_email: מזכרים חוקיים כוללים הוראות בימ"ש, בקשות הסרה, תשובות להתראות ובקשות ציות לאכיפה.
+        arbitration_address: יכול להיות כתובת פיזית זהה לעיל, או “N/A” אם משתמשים בדואל.
+        arbitration_website: יכול להיות טופס בדפדפן או “N/A” אם משתמשים בדואל.
+        choice_of_law: עיר, מחוז, טריטוריה או מדינה שחוקיה חלים על כל התביעות והתלונות.
+        dmca_address: For US operators, use the address registered in the DMCA Designated Agent Directory. A P.O. Box listing is available upon direct request, use the DMCA Designated Agent Post Office Box Waiver Request to email the Copyright Office and describe that you are a home-based content moderator who fears revenge or retribution for your actions and need to use a P.O. Box to remove your home address from public view.
+        dmca_email: ניתן להשתמש באותה כתובת הדואל שעבור "כתובת דואל להודעות משפטיות" לעיל.
+        domain: זיהוי ייחודי של השירות המקוון שאתה מספק.
+        jurisdiction: פרט את המדינה שבה גר משלם החשבונות. אם מדובר בחברה או גוף אחר, פרטו את המדינה שבה הוקם התאגיד, העיר, האזור, או המדינה בהתאם לצורך.
+        min_age: על הערך להיות לפחות בגיל המינימלי הדרוש בחוק באיזור השיפוט שלך.
       user:
         chosen_languages: אם פעיל, רק הודעות בשפות הנבחרות יוצגו לפידים הפומביים
-        role: התפקיד שולט על אילו הרשאות יש למשתמש
+        date_of_birth: עלינו לוודא שגילך לפחות %{age} כדי להשתמש במסטודון. המידע לא ישמר בשרת שלנו.
+        role: התפקיד שולט על אילו הרשאות יש למשתמש.
       user_role:
         color: צבע לתפקיד בממשק המשתמש, כ RGB בפורמט הקסדצימלי
         highlighted: מאפשר נראות ציבורית של התפקיד
@@ -143,6 +162,7 @@ he:
         url: היעד שאליו יישלחו אירועים
     labels:
       account:
+        attribution_domains: אתרים המורשים לייחס אליך מאמרים
         discoverable: הצג משתמש ופוסטים בעמוד התגליות
         fields:
           name: תווית
@@ -211,6 +231,7 @@ he:
         setting_default_privacy: פרטיות ההודעות
         setting_default_sensitive: תמיד לתת סימון "רגיש" למדיה
         setting_delete_modal: להראות תיבת אישור לפני מחיקת חיצרוץ
+        setting_disable_hover_cards: כבה הצצה מקדימה לפרופיל בעת מעבר עכבר מעליו
         setting_disable_swiping: ביטול החלקת-צד
         setting_display_media: תצוגת מדיה
         setting_display_media_default: ברירת מחדל
@@ -218,8 +239,10 @@ he:
         setting_display_media_show_all: להציג הכול
         setting_expand_spoilers: להרחיב תמיד הודעות מסומנות באזהרת תוכן
         setting_hide_network: להחביא את הגרף החברתי שלך
+        setting_missing_alt_text_modal: הצג כרטיס אישור לפני פרסום קובץ גרפי ללא תיאור מילולי
         setting_reduce_motion: הפחתת תנועה בהנפשות
         setting_system_font_ui: להשתמש בגופן ברירת המחדל של המערכת
+        setting_system_scrollbars_ui: להשתמש בפס הגלילה שהוא ברירת המחדל של המערכת
         setting_theme: ערכת העיצוב של האתר
         setting_trends: הצגת הנושאים החמים
         setting_unfollow_modal: להראות תיבת אישור לפני הפסקת מעקב אחרי אחרים
@@ -238,17 +261,21 @@ he:
         name: תגית
       filters:
         actions:
+          blur: הסתרת מדיה עם אזהרה
           hide: הסתרה כוללת
           warn: הסתרה עם אזהרה
       form_admin_settings:
         activity_api_enabled: פרסום סטטיסטיקות מקובצות עבור פעילות משתמשים באמצעות מנשק התוכנה
+        app_icon: אייקון יישומון
         backups_retention_period: תקופת השמירה של ארכיון המשתמש
         bootstrap_timeline_accounts: המלצה על חשבונות אלה למשתמשים חדשים
         closed_registrations_message: הודעה מיוחדת כשההרשמה לא מאופשרת
         content_cache_retention_period: תקופת השמירה על תוכן חיצוני
         custom_css: CSS בהתאמה אישית
+        favicon: סמל מועדפים (Favicon)
         mascot: סמל השרת (ישן)
         media_cache_retention_period: תקופת שמירת מטמון מדיה
+        min_age: דרישת גיל מינימלי
         peers_api_enabled: פרסם רשימה של שרתים שנתגלו באמצעות ה-API
         profile_directory: הפעלת ספריית פרופילים
         registrations_mode: מי יכולים לפתוח חשבון
@@ -311,8 +338,25 @@ he:
         listable: הרשה/י לתגית זו להופיע בחיפושים והצעות
         name: תגית
         trendable: הרשה/י לתגית זו להופיע תחת נושאים חמים
-        usable: הרשה/י להודעות להכיל תגית זו
+        usable: הרשה/י להודעות להכיל תגית זו באופן מקומי
+      terms_of_service:
+        changelog: מה נשתנה?
+        effective_date: תאריך תחולה
+        text: תנאי השירות
+      terms_of_service_generator:
+        admin_email: כתובת דוא"ל להודעות משפטיות
+        arbitration_address: כתובת פיזית להודעות גישור
+        arbitration_website: אתר רשת להגשת הודעות גישור
+        choice_of_law: בחירת אזור שיפוט
+        dmca_address: כתובת פיזית לשליחת התראות זכויות יוצרים/DMCA
+        dmca_email: כתובת דואל לשליחת התראות זכויות יוצרים/DMCA
+        domain: מתחם (דומיין)
+        jurisdiction: איזור השיפוט
+        min_age: גיל מינימלי
       user:
+        date_of_birth_1i: יום
+        date_of_birth_2i: חודש
+        date_of_birth_3i: שנה
         role: תפקיד
         time_zone: אזור זמן
       user_role:

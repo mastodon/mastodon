@@ -7,7 +7,7 @@ gl:
         options: Opcións
       user:
         agreement: Acordo do Servizo
-        email: Enderezo de email
+        email: Enderezo de correo
         locale: Locale
         password: Contrasinal
       user/account:
@@ -15,9 +15,16 @@ gl:
       user/invite_request:
         text: Razón
     errors:
+      attributes:
+        domain:
+          invalid: non é un nome de dominio válido
+      messages:
+        invalid_domain_on_line: "%{value} non é un nome de dominio válido"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: contén valores aos que lle faltan etiquetas
             username:
               invalid: só letras, números e trazo baixo
               reserved: está reservado
@@ -33,12 +40,23 @@ gl:
           attributes:
             data:
               malformed: ten formato incorrecto
+        list_account:
+          attributes:
+            account_id:
+              taken: xa está na lista
+          must_be_following: ten que ser unha conta que segues
         status:
           attributes:
             reblog:
               taken: do estado xa existe
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: é demasiado axiña, debería ser posterior a %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: é inferior ao límite de idade
             email:
               blocked: utiliza un provedor de email non autorizado
               unreachable: semella que non existe
