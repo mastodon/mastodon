@@ -22,9 +22,9 @@ export async function loadLocale() {
     if (isLocaleLoaded()) return;
 
     // If there is no locale file, then fallback to english
-    const localeFile = Object.hasOwn(localeFiles, '`./${locale}.json`')
+    const localeFile = Object.hasOwn(localeFiles, `./${locale}.json`)
       ? localeFiles[`./${locale}.json`]
-      : localeFiles[`./en.json`];
+      : localeFiles['./en.json'];
 
     if (!localeFile) throw new Error('Could not load the locale JSON file');
 
