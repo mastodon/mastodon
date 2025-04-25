@@ -43,14 +43,18 @@ interface EmojiSheetDataItem {
   >;
 }
 
-interface ExtendedEmoji extends Emoji {
+interface ExtendedEmoji extends Omit<Emoji, 'skin_variations'> {
   search?: Search;
   native?: string;
+  skin_variations?: Record<string, ExtendedSkinVariation>;
 }
 
-interface ExtendedSkinVariation extends SkinVariation {
+type ExtendedSkinVariation = {
   native?: string;
-}
+} & Pick<
+  SkinVariation,
+  'unified' | 'non_qualified' | 'sheet_x' | 'sheet_y' | 'has_img_twitter'
+>;
 
 type ImportTypes = [
   typeof import('@emoji-mart/data/i18n/en.json'),
@@ -164,7 +168,7 @@ async function main() {
       compressed: false,
       categories,
       aliases,
-      emojis,
+      emojis: emojis as Record<string, Emoji>, // Suppress errors with differences with skin_variations
     },
   ];
 
@@ -217,12 +221,7 @@ function extractEmojiData(
             sheet_x: matchingRawEmoji.sheet_x,
             sheet_y: matchingRawEmoji.sheet_y,
             has_img_twitter: true,
-            has_img_apple: false,
-            has_img_facebook: false,
-            has_img_google: false,
             native: unifiedToNative(matchingRawEmoji.unified.toUpperCase()),
-            image: '',
-            added_in: '',
           };
         }
       }
