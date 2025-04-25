@@ -1,5 +1,7 @@
-import type { BaseEmoji, EmojiData, NimbleEmojiIndex } from 'emoji-mart';
+import type { BaseEmoji } from 'emoji-mart';
 import type { Category, Data, Emoji } from 'emoji-mart/dist-es/utils/data';
+
+import compressed from './emoji_compressed.json';
 
 /*
  * The 'search' property, although not defined in the [`Emoji`]{@link node_modules/@types/emoji-mart/dist-es/utils/data.d.ts#Emoji} type,
@@ -17,42 +19,33 @@ type Skins = null;
 
 type Filename = string;
 type UnicodeFilename = string;
-export type FilenameData = [
+export type FilenameTuple = [
   filename: Filename,
   unicodeFilename?: UnicodeFilename,
-][];
-export type ShortCodesToEmojiDataKey =
-  | EmojiData['id']
-  | BaseEmoji['native']
-  | keyof NimbleEmojiIndex['emojis'];
+];
+export type FilenameData = FilenameTuple[];
 
-type SearchData = [
+export type SearchData = [
   BaseEmoji['native'],
   Emoji['short_names'],
   Search,
   Emoji['unified'],
 ];
 
-export type ShortCodesToEmojiData = Record<
-  ShortCodesToEmojiDataKey,
+export type ShortCodesToEmojiKey = string;
+export type ShortCodesToEmojiMap = Record<
+  ShortCodesToEmojiKey,
   [FilenameData, SearchData]
 >;
-type EmojisWithoutShortCodes = FilenameData;
 
-type EmojiCompressed = [
-  ShortCodesToEmojiData,
+export type EmojiCompressed = [
+  ShortCodesToEmojiMap,
   Skins,
   Category[],
   Data['aliases'],
-  EmojisWithoutShortCodes,
+  FilenameData,
   Data,
 ];
 
-/*
- * `emoji_compressed.js` uses `babel-plugin-preval`, which makes it difficult to convert to TypeScript.
- * As a temporary solution, we are allowing a default export here to apply the TypeScript type `EmojiCompressed` to the JS file export.
- * - {@link app/javascript/mastodon/features/emoji/emoji_compressed.js}
- */
-declare const emojiCompressed: EmojiCompressed;
-
-export default emojiCompressed; // eslint-disable-line import/no-default-export
+// eslint-disable-next-line import/no-default-export
+export default compressed as EmojiCompressed;

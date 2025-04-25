@@ -4,12 +4,12 @@
 import type { BaseEmoji } from 'emoji-mart';
 import type { Emoji } from 'emoji-mart/dist-es/utils/data';
 
-import type { Search, ShortCodesToEmojiData } from './emoji_compressed';
+import type { Search, ShortCodesToEmojiKey } from './emoji_compressed';
 import emojiCompressed from './emoji_compressed';
 import { unicodeToUnifiedName } from './unicode_to_unified_name';
 
 type Emojis = Record<
-  NonNullable<keyof ShortCodesToEmojiData>,
+  NonNullable<ShortCodesToEmojiKey>,
   {
     native: BaseEmoji['native'];
     search: Search;
@@ -18,13 +18,7 @@ type Emojis = Record<
   }
 >;
 
-const [
-  shortCodesToEmojiData,
-  skins,
-  categories,
-  short_names,
-  _emojisWithoutShortCodes,
-] = emojiCompressed;
+const [shortCodesToEmojiData, skins, categories, short_names] = emojiCompressed;
 
 const emojis: Emojis = {};
 

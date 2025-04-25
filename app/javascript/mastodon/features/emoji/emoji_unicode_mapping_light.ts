@@ -4,7 +4,8 @@
 
 import type {
   FilenameData,
-  ShortCodesToEmojiDataKey,
+  FilenameTuple,
+  ShortCodesToEmojiKey,
 } from './emoji_compressed';
 import emojiCompressed from './emoji_compressed';
 import { unicodeToFilename } from './unicode_to_filename';
@@ -12,7 +13,7 @@ import { unicodeToFilename } from './unicode_to_filename';
 type UnicodeMapping = Record<
   FilenameData[number][0],
   {
-    shortCode: ShortCodesToEmojiDataKey;
+    shortCode?: ShortCodesToEmojiKey;
     filename: FilenameData[number][number];
   }
 >;
@@ -29,8 +30,8 @@ const [
 const unicodeMapping: UnicodeMapping = {};
 
 function processEmojiMapData(
-  emojiMapData: FilenameData[number],
-  shortCode?: ShortCodesToEmojiDataKey,
+  emojiMapData: FilenameTuple,
+  shortCode?: ShortCodesToEmojiKey,
 ) {
   const [native, _filename] = emojiMapData;
   // filename name can be derived from unicodeToFilename
@@ -42,9 +43,7 @@ function processEmojiMapData(
 }
 
 Object.keys(shortCodesToEmojiData).forEach(
-  (shortCode: ShortCodesToEmojiDataKey) => {
-    if (shortCode === undefined) return;
-
+  (shortCode: ShortCodesToEmojiKey) => {
     const emojiData = shortCodesToEmojiData[shortCode];
     if (!emojiData) return;
     const [filenameData, _searchData] = emojiData;
