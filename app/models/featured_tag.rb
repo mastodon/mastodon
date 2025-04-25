@@ -59,7 +59,11 @@ class FeaturedTag < ApplicationRecord
   private
 
   def set_tag
-    self.tag = Tag.find_or_create_by_names(name)&.first if tag.nil?
+    if tag.nil?
+      self.tag = Tag.find_or_create_by_names(name)&.first
+    elsif tag&.new_record?
+      tag.save
+    end
   end
 
   def reset_data
