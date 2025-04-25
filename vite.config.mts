@@ -3,7 +3,7 @@ import path from 'node:path';
 
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import react from '@vitejs/plugin-react';
-import { loadEnv, PluginOption } from 'vite';
+import { PluginOption } from 'vite';
 import svgr from 'vite-plugin-svgr';
 import { analyzer } from 'vite-bundle-analyzer';
 import RailsPlugin from 'vite-plugin-rails';
@@ -27,7 +27,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     },
     {} as Record<string, string>,
   );
-  const env = loadEnv(mode, process.cwd());
   return {
     root: jsRoot,
     css: {
