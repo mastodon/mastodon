@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_22_085303) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_25_134654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -871,7 +871,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_22_085303) do
     t.string "url"
   end
 
-  create_table "quotes", force: :cascade do |t|
+  create_table "quotes", id: :bigint, default: -> { "timestamp_id('quotes'::text)" }, force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "status_id", null: false
     t.bigint "quoted_status_id"
