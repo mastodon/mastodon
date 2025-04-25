@@ -3,18 +3,24 @@
 class CreateFeaturedTagService < BaseService
   include Payloadable
 
-  def call(account, name, force: true)
+  def call(account, name_or_tag, raise_error: true)
+    raise ArgumentError unless account.local?
+
     @account = account
 
-    FeaturedTag.create!(account: account, name: name).tap do |featured_tag|
-      ActivityPub::AccountRawDistributionWorker.perform_async(build_json(featured_tag), account.id) if @account.local?
+    @featured_tag = begin
+      if name_or_tag.is_a?(Tag)
+        account.featured_tags.find_or_initialize_by(tag: name_or_tag)
+      else
+        account.featured_tags.find_or_initialize_by(name: name_or_tag)
+      end
     end
-  rescue ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid => e
-    if force && e.is_a(ActiveRecord::RecordNotUnique)
-      FeaturedTag.by_name(name).find_by!(account: account)
-    else
-      account.featured_tags.new(name: name)
-    end
+
+    create_method = raise_error ? :save! : :save
+
+    ActivityPub::AccountRawDistributionWorker.perform_async(build_json(@featured_tag), @account.id) if @featured_tag.new_record? && @featured_tag.public_send(create_method)
+
+    @featured_tag
   end
 
   private
