@@ -19,9 +19,16 @@ class AccountsIndex < Chewy::Index
         type: 'stemmer',
         language: 'possessive_english',
       },
+
+      word_joiner: {
+        type: 'shingle',
+        output_unigrams: true,
+        token_separator: '',
+      },
     },
 
     analyzer: {
+      # "The FOOING's bar" becomes "foo bar"
       natural: {
         tokenizer: 'standard',
         filter: %w(
@@ -35,11 +42,20 @@ class AccountsIndex < Chewy::Index
         ),
       },
 
+      # "FOO bar" becomes "foo bar"
       verbatim: {
         tokenizer: 'standard',
         filter: %w(lowercase asciifolding cjk_width),
       },
 
+      # "Foo bar" becomes "foo bar foobar"
+      word_join_analyzer: {
+        type: 'custom',
+        tokenizer: 'standard',
+        filter: %w(lowercase asciifolding cjk_width word_joiner),
+      },
+
+      # "Foo bar" becomes "f fo foo b ba bar"
       edge_ngram: {
         tokenizer: 'edge_ngram',
         filter: %w(lowercase asciifolding cjk_width),
