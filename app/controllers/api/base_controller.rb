@@ -72,6 +72,13 @@ class Api::BaseController < ApplicationController
     end
   end
 
+  # Redefine `require_functional!` to properly output JSON instead of HTML redirects
+  def require_functional!
+    return if current_user.functional?
+
+    require_user!
+  end
+
   def render_empty
     render json: {}, status: 200
   end
