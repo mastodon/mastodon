@@ -18,9 +18,7 @@ class CreateFeaturedTagService < BaseService
 
     create_method = raise_error ? :save! : :save
 
-    if @featured_tag.new_record?
-      ActivityPub::AccountRawDistributionWorker.perform_async(build_json(@featured_tag), @account.id) if @featured_tag.public_send(create_method)
-    end
+    ActivityPub::AccountRawDistributionWorker.perform_async(build_json(@featured_tag), @account.id) if @featured_tag.new_record? && @featured_tag.public_send(create_method)
 
     @featured_tag
   end
