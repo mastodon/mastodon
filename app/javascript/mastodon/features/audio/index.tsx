@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback, useState, useId } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -119,7 +119,7 @@ export const Audio: React.FC<{
   const frequencyBands = useAudioVisualizer(audioRef, 3);
   const accessibilityId = useId();
 
-  const [style, api] = useSpring(() => ({
+  const [style, spring] = useSpring(() => ({
     progress: '0%',
     buffer: '0%',
     volume: '0%',
@@ -146,14 +146,14 @@ export const Audio: React.FC<{
         restoreVolume(audioRef.current);
         setVolume(audioRef.current.volume);
         setMuted(audioRef.current.muted);
-        void api.start({
+        void spring.start({
           volume: `${audioRef.current.volume * 100}%`,
           immediate: reduceMotion,
         });
       }
     },
     [
-      api,
+      spring,
       setVolume,
       setMuted,
       src,
@@ -197,7 +197,7 @@ export const Audio: React.FC<{
     const updateProgress = () => {
       nextFrame = requestAnimationFrame(() => {
         if (audioRef.current && audioRef.current.duration > 0) {
-          void api.start({
+          void spring.start({
             progress: `${(audioRef.current.currentTime / audioRef.current.duration) * 100}%`,
             immediate: reduceMotion,
             config: config.stiff,
@@ -213,7 +213,7 @@ export const Audio: React.FC<{
     return () => {
       cancelAnimationFrame(nextFrame);
     };
-  }, [api]);
+  }, [spring]);
 
   const togglePlay = useCallback(() => {
     if (!audioRef.current) {
@@ -243,12 +243,12 @@ export const Audio: React.FC<{
     const lastTimeRange = audioRef.current.buffered.length - 1;
 
     if (lastTimeRange > -1) {
-      void api.start({
+      void spring.start({
         buffer: `${Math.ceil(audioRef.current.buffered.end(lastTimeRange) / audioRef.current.duration) * 100}%`,
         immediate: reduceMotion,
       });
     }
-  }, [api]);
+  }, [spring]);
 
   const handleVolumeChange = useCallback(() => {
     if (!audioRef.current) {
@@ -258,13 +258,13 @@ export const Audio: React.FC<{
     setVolume(audioRef.current.volume);
     setMuted(audioRef.current.muted);
 
-    void api.start({
+    void spring.start({
       volume: `${audioRef.current.muted ? 0 : audioRef.current.volume * 100}%`,
       immediate: reduceMotion,
     });
 
     persistVolume(audioRef.current.volume, audioRef.current.muted);
-  }, [api, setVolume, setMuted]);
+  }, [spring, setVolume, setMuted]);
 
   const handleTimeUpdate = useCallback(() => {
     if (!audioRef.current) {
@@ -318,7 +318,7 @@ export const Audio: React.FC<{
         if (!isNaN(x)) {
           audioRef.current.volume = x;
           audioRef.current.muted = x > 0 ? false : true;
-          void api.start({ volume: `${x * 100}%`, immediate: true });
+          void spring.start({ volume: `${x * 100}%`, immediate: true });
         }
       };
 
@@ -330,7 +330,7 @@ export const Audio: React.FC<{
       e.preventDefault();
       e.stopPropagation();
     },
-    [api],
+    [spring],
   );
 
   const handleSeekMouseDown = useCallback(
@@ -353,7 +353,7 @@ export const Audio: React.FC<{
 
         if (!isNaN(newTime)) {
           audioRef.current.currentTime = newTime;
-          void api.start({ progress: `${x * 100}%`, immediate: true });
+          void spring.start({ progress: `${x * 100}%`, immediate: true });
         }
       };
 
@@ -367,7 +367,7 @@ export const Audio: React.FC<{
       e.preventDefault();
       e.stopPropagation();
     },
-    [setDragging, api],
+    [setDragging, spring],
   );
 
   const handleMouseEnter = useCallback(() => {
@@ -438,6 +438,19 @@ export const Audio: React.FC<{
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
+      const updateVolumeBy = (step: number) => {
+        if (!audioRef.current) {
+          return;
+        }
+
+        const newVolume = audioRef.current.volume + step;
+
+        if (!isNaN(newVolume)) {
+          audioRef.current.volume = newVolume;
+          audioRef.current.muted = newVolume > 0 ? false : true;
+        }
+      };
+
       switch (e.key) {
         case 'k':
         case ' ':
@@ -462,21 +475,31 @@ export const Audio: React.FC<{
           e.stopPropagation();
           seekBy(5);
           break;
+        case 'ArrowUp':
+          e.preventDefault();
+          e.stopPropagation();
+          updateVolumeBy(0.15);
+          break;
+        case 'ArrowDown':
+          e.preventDefault();
+          e.stopPropagation();
+          updateVolumeBy(-0.15);
+          break;
       }
     },
     [togglePlay, toggleMute],
   );
 
   const springForBand0 = useSpring({
-    to: { r: 50 + (frequencyBands[0] ?? 0) * 8 },
+    to: { r: 50 + (frequencyBands[0] ?? 0) * 10 },
     config: config.wobbly,
   });
   const springForBand1 = useSpring({
-    to: { r: 50 + (frequencyBands[1] ?? 0) * 8 },
+    to: { r: 50 + (frequencyBands[1] ?? 0) * 10 },
     config: config.wobbly,
   });
   const springForBand2 = useSpring({
-    to: { r: 50 + (frequencyBands[2] ?? 0) * 8 },
+    to: { r: 50 + (frequencyBands[2] ?? 0) * 10 },
     config: config.wobbly,
   });
 
@@ -498,7 +521,7 @@ export const Audio: React.FC<{
       onMouseLeave={handleMouseLeave}
       role='button'
       tabIndex={0}
-      onKeyDown={handleKeyDown}
+      onKeyDownCapture={handleKeyDown}
       aria-label={alt}
       lang={lang}
     >
@@ -531,7 +554,7 @@ export const Audio: React.FC<{
         aria-valuenow={progress}
         aria-valuemax={100}
         onMouseDown={handleSeekMouseDown}
-        onKeyDown={handleAudioKeyDown}
+        onKeyDownCapture={handleAudioKeyDown}
         ref={seekRef}
         role='slider'
         tabIndex={0}
@@ -599,6 +622,14 @@ export const Audio: React.FC<{
                 width={96}
                 height={96}
                 fill={`url(#${accessibilityId}-pattern)`}
+              />
+              <rect
+                x={14}
+                y={14}
+                width={96}
+                height={96}
+                fill='var(--player-background-color'
+                opacity={0.45}
               />
             </g>
 
@@ -690,9 +721,7 @@ export const Audio: React.FC<{
             </button>
 
             <div
-              className={classNames('video-player__volume', {
-                active: hovered,
-              })}
+              className='video-player__volume active'
               ref={volumeRef}
               onMouseDown={handleVolumeMouseDown}
               role='slider'
@@ -725,15 +754,28 @@ export const Audio: React.FC<{
 
           <div className='video-player__buttons right'>
             {!editable && (
-              <a
-                title={intl.formatMessage(messages.download)}
-                aria-label={intl.formatMessage(messages.download)}
-                className='video-player__download__icon player-button'
-                href={src}
-                download
-              >
-                <Icon id='download' icon={DownloadIcon} />
-              </a>
+              <>
+                <button
+                  type='button'
+                  className='player-button'
+                  onClick={toggleReveal}
+                >
+                  <FormattedMessage
+                    id='media_gallery.hide'
+                    defaultMessage='Hide'
+                  />
+                </button>
+
+                <a
+                  title={intl.formatMessage(messages.download)}
+                  aria-label={intl.formatMessage(messages.download)}
+                  className='video-player__download__icon player-button'
+                  href={src}
+                  download
+                >
+                  <Icon id='download' icon={DownloadIcon} />
+                </a>
+              </>
             )}
           </div>
         </div>

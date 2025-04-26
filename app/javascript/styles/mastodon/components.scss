@@ -6987,6 +6987,10 @@ a.status-card {
         inset-inline-start: 50%;
         transform: translate(-50%, -50%);
       }
+
+      .icon {
+        filter: var(--overlay-icon-shadow);
+      }
     }
 
     .player-button {
@@ -7217,6 +7221,7 @@ a.status-card {
       background: transparent;
       border: 0;
       color: rgba($white, 0.75);
+      font-weight: 500;
 
       &:active,
       &:hover,
