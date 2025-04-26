@@ -15,16 +15,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(changeComposeVisibility(value));
   },
 
-  isUserTouching,
-  onModalOpen: props => dispatch(openModal({
-    modalType: 'ACTIONS',
-    modalProps: props,
-  })),
-  onModalClose: () => dispatch(closeModal({
-    modalType: undefined,
-    ignoreFocus: false,
-  })),
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrivacyDropdown);
