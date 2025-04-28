@@ -56,7 +56,7 @@ module Mastodon::CLI
       if options[:only_mapping]
         indices.select { |index| index.specification.changed? }.each do |index|
           progress.title = "Updating mapping for #{index} "
-          index.update_mapping
+          index.update_specification
           index.specification.lock!
         end
 
