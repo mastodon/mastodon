@@ -64,6 +64,7 @@ const statusTranslateUndo = (state, id) => {
   });
 };
 
+/** @type {ImmutableMap<string, ImmutableMap<string, any>>} */
 const initialState = ImmutableMap();
 
 /** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
