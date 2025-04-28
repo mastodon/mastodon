@@ -6484,55 +6484,38 @@ a.status-card {
 }
 
 .actions-modal {
+  border-radius: 8px 8px 0 0;
+  background: var(--dropdown-background-color);
+  backdrop-filter: var(--background-filter);
+  border-color: var(--dropdown-border-color);
+  box-shadow: var(--dropdown-shadow);
   max-height: 80vh;
   max-width: 80vw;
-
-  .actions-modal__item-label {
-    font-weight: 500;
-  }
 
   ul {
     overflow-y: auto;
     flex-shrink: 0;
-    max-height: 80vh;
+    padding-bottom: 8px;
+  }
 
-    &.with-status {
-      max-height: calc(80vh - 75px);
-    }
+  a,
+  button {
+    color: inherit;
+    display: flex;
+    padding: 16px;
+    font-size: 15px;
+    line-height: 21px;
+    background: transparent;
+    border: none;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
 
-    li:empty {
-      margin: 0;
-    }
-
-    li:not(:empty) {
-      a {
-        color: $primary-text-color;
-        display: flex;
-        padding: 12px 16px;
-        font-size: 15px;
-        align-items: center;
-        text-decoration: none;
-
-        &,
-        button {
-          transition: none;
-        }
-
-        &.active,
-        &:hover,
-        &:active,
-        &:focus {
-          &,
-          button {
-            background: $ui-highlight-color;
-            color: $primary-text-color;
-          }
-        }
-
-        button:first-child {
-          margin-inline-end: 10px;
-        }
-      }
+    &:hover,
+    &:active,
+    &:focus {
+      background: var(--dropdown-border-color);
     }
   }
 }
