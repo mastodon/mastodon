@@ -147,7 +147,7 @@ export const AccountGallery: React.FC<{
     [dispatch],
   );
 
-  if (accountId && !isAccount) {
+  if (accountId === null) {
     return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
   }
 
