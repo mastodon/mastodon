@@ -320,6 +320,7 @@ interface DropdownProps<Item = MenuItem> {
   scrollable?: boolean;
   scrollKey?: string;
   status?: ImmutableMap<string, unknown>;
+  forceDropdown?: boolean;
   renderItem?: RenderItemFn<Item>;
   renderHeader?: RenderHeaderFn<Item>;
   onOpen?: () => void;
@@ -339,6 +340,7 @@ export const Dropdown = <Item = MenuItem,>({
   disabled,
   scrollable,
   status,
+  forceDropdown = false,
   renderItem,
   renderHeader,
   onOpen,
@@ -406,7 +408,7 @@ export const Dropdown = <Item = MenuItem,>({
           dispatch(fetchRelationships([status.getIn(['account', 'id'])]));
         }
 
-        if (isUserTouching()) {
+        if (isUserTouching() && !forceDropdown) {
           dispatch(
             openModal({
               modalType: 'ACTIONS',
@@ -437,6 +439,7 @@ export const Dropdown = <Item = MenuItem,>({
       open,
       status,
       items,
+      forceDropdown,
       handleClose,
     ],
   );
