@@ -619,6 +619,8 @@ lt:
     system_checks:
       database_schema_check:
         message_html: Laukiama duomenų bazės perkėlimo. Paleisk juos, kad įsitikintum, jog programa veikia taip, kaip tikimasi.
+      elasticsearch_analysis_index_mismatch:
+        message_html: "„Elasticsearch“ indekso analizatoriaus nustatymai pasenę. Vykdykite <code>tootctl search deploy --only-mapping --only=%{value}</code>."
       elasticsearch_health_yellow:
         message_html: Elasticsearch klasteris yra nesveikas (geltona būsena), galbūt norėsi išsiaiškinti priežastį
       elasticsearch_preset:

@@ -75,6 +75,7 @@ fy:
       filters:
         action: Kies hokker aksjes útfierd wurde moatte, wannear’t in berjocht oerienkomt mei it filter
         actions:
+          blur: Media ferstopje efter in warskôging, sûnder de tekst sels te ferstopjen
           hide: Ferstopje de filtere ynhâld folslein, as oft it net bestiet
           warn: Ferstopje de filtere ynhâld efter in warskôging, mei de titel fan it filter as warskôgingstekst
       form_admin_settings:
@@ -88,6 +89,7 @@ fy:
         favicon: WEBP, PNG, GIF of JPG. Ferfangt de standert Mastodon-favicon mei in oanpast piktogram.
         mascot: Oerskriuwt de yllustraasje yn de avansearre webomjouwing.
         media_cache_retention_period: Mediabestannen fan berjochten fan eksterne brûkers wurde op jo server yn de buffer bewarre. Wannear ynsteld op in positive wearde, wurde media fuortsmiten nei it opjûne oantal dagen. As de mediagegevens opfrege wurde neidat se fuortsmiten binne, wurde se opnij download wannear de orizjinele ynhâld noch hieltyd beskikber is. Fanwegen beheiningen op hoe faak keppelingsfoarbylden websites fan tredden rieplachtsje, wurdt oanrekommandearre om dizze wearde yn te stellen op op syn minste 14 dagen. Oars wurde keppelingsfoarbylden net op oanfraach bywurke.
+        min_age: Brûkers krije wylst harren registraasje de fraach om harren bertedatum te befêstigjen
         peers_api_enabled: In list mei domeinnammen, dêr’t dizze server yn fediverse kontakt hân mei hat. Hjir wurdt gjin data dield, oft jo mei in bepaalde server federearrest, mar alinnich, dat jo server dat wit. Dit wurdt foar tsjinsten brûkt, dy’t statistiken oer federaasje yn algemiene sin sammelet.
         profile_directory: De brûkersgids befettet in list fan alle brûkers dy¥t derfoar keazen hawwe om ûntdekt wurde te kinnen.
         require_invite_text: Meitsje it ynfoljen fan ‘Wêrom wolle jo jo hjir registrearje?’ ferplicht yn stee fan opsjoneel, wannear’t registraasjes hânmjittich goedkard wurde moatte
@@ -132,14 +134,21 @@ fy:
         name: Jo kinne elk wurd mei in haadletter begjinne, om sa bygelyks de tekst mear lêsber te meitsjen
       terms_of_service:
         changelog: Kin strukturearre wurde mei Markdown-syntaksis.
+        effective_date: In reedlike perioade kin fariearje fan 10 oant 30 dagen fan de datum ôf wêrop jo jo brûkers op de hichte stelle.
         text: Kin strukturearre wurde mei Markdown-syntaksis.
       terms_of_service_generator:
         admin_email: Juridyske meidielingen binne û.o. tsjinoantekeningen, rjochterlike befelen, ferwiderfersiken en fersiken om wetshanthaving.
+        arbitration_address: Kin itselde wêze as boppesteande strjitteof ‘N/A’ by gebrûk fan e-mail.
+        arbitration_website: Kin in webformulier wêze, of ‘N/A’ as e-mail brûkt wurdt.
+        choice_of_law: Stêd, regio, grûngebiet of steat dêr’t de ynterne materiële wetten fan tapassing binne op alle oanspraken.
         dmca_address: 'Brûk foar behearders yn de FS: it adres dat registrearre is yn de DMCA Designated Agent Directory. Op fersyk is der in postbuslist beskikber. Brûk it DMCA Designated Agent Post Office Box Waiver Request om it Copyright Office te e-mailen en te beskriuwen dat jo in thúsbasearre ynhâldsmoderator binne dy’t wraak of fergelding frezet foar jo dieden en in postbus brûke moat om jo húsadres út it publike domein te hâlden.'
+        dmca_email: Kin itselde e-mailadres wêze as ‘E-mailadres foar juridyske berjochten’ hjirboppe.
         domain: In unike identifikaasje fan de online tsjinst dy’t ferliend wurdt.
         jurisdiction: Fermeld it lân wêr’t de persoan wennet dy’t de rekkeningen betellet. As it in bedriuw of in oare entiteit is, fermeld it lân wêr’t it opnommen is en de stêd, regio, grûngebiet of steat, foar safier fan tapassing.
+        min_age: Mei net leger wêze as de minimale fereaske leeftiid neffens de wetten fan jo jurisdiksje.
       user:
         chosen_languages: Allinnich berjochten yn de selektearre talen wurde op de iepenbiere tiidline toand
+        date_of_birth: Wy moatte derfoar soargje dat jo op syn minst %{age} binne om Mastodon te brûken. Dit wurdt net bewarre.
         role: De rol bepaalt hokker rjochten in brûker hat.
       user_role:
         color: Kleur dy’t brûkt wurdt foar de rol yn de UI, as RGB yn heksadesimaal formaat
@@ -230,6 +239,7 @@ fy:
         setting_display_media_show_all: Alles toane
         setting_expand_spoilers: Berjochten mei ynhâldswarskôgingen altyd útklappe
         setting_hide_network: Jo folgers en wa’t jo folget ferstopje
+        setting_missing_alt_text_modal: Befêstigingsfinster toane foar it pleatsen fan media sûnder alt-tekst
         setting_reduce_motion: Stadigere animaasjes
         setting_system_font_ui: Standertlettertype fan jo systeem brûke
         setting_system_scrollbars_ui: Standert skowbalke fan jo systeem brûke
