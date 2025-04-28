@@ -891,6 +891,8 @@ zh-TW:
     system_checks:
       database_schema_check:
         message_html: 發現尚待處理的資料庫遷移 (database migration)。請執行它們以確保應用程式如期運行。
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch 索引分析器設定 (index analyzer) 已過期。請執行 <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch 叢集健康狀態異常 (紅色)，無法提供搜尋功能
       elasticsearch_health_yellow:

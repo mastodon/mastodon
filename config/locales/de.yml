@@ -844,7 +844,7 @@ de:
       destroyed_msg: Upload erfolgreich gelöscht!
     software_updates:
       critical_update: Kritisch — bitte zügig aktualisieren
-      description: Es wird empfohlen, deine Mastodon-Installation auf dem aktuellen Stand zu halten, um von den neuesten Fehlerbehebungen und Funktionen zu profitieren. Darüber hinaus ist es wichtig, Mastodon zeitnah zu aktualisieren, um Sicherheitslücken zu schließen. Aus diesen Gründen prüft Mastodon alle 30 Minuten auf Updates und du wirst entsprechend deiner Einstellungen per E-Mail informiert.
+      description: Es wird empfohlen, deine Mastodon-Installation auf dem aktuellen Stand zu halten, um von den neuesten Fehlerkorrekturen und Funktionen zu profitieren. Darüber hinaus ist es wichtig, Mastodon zeitnah zu aktualisieren, um Sicherheitslücken zu schließen. Aus diesen Gründen prüft Mastodon alle 30 Minuten auf Updates und du wirst deinen Einstellungen entsprechend per E-Mail informiert.
       documentation_link: Mehr erfahren
       release_notes: Versionshinweise
       title: Verfügbare Updates
@@ -852,7 +852,7 @@ de:
       types:
         major: Hauptversion
         minor: Nebenversion
-        patch: Revision — Fehlerbehebungen und einfach zu implementierende Änderungen
+        patch: Revision — Fehlerkorrekturen und einfach zu implementierende Änderungen
       version: Version
     statuses:
       account: Autor*in
@@ -900,6 +900,8 @@ de:
     system_checks:
       database_schema_check:
         message_html: Es gibt ausstehende Datenbankmigrationen. Bitte führe sie aus, um sicherzustellen, dass sich die Anwendung wie erwartet verhält
+      elasticsearch_analysis_index_mismatch:
+        message_html: 'Die Einstellungen für die Indexanalyse von Elasticsearch sind veraltet. Bitte führe diesen Code aus: <code>tootctl search deploy --only-mapping --only=%{value}</code>'
       elasticsearch_health_red:
         message_html: Elasticsearch-Cluster ist fehlerhaft (roter Status) – Suchfunktionen sind nicht verfügbar
       elasticsearch_health_yellow:
@@ -932,7 +934,7 @@ de:
         message_html: Ein kritisches Mastodon-Update ist verfügbar – bitte aktualisiere so schnell wie möglich.
       software_version_patch_check:
         action: Verfügbare Updates ansehen
-        message_html: Ein Mastodon-Update für Fehlerbehebungen ist verfügbar.
+        message_html: Ein Mastodon-Update für Fehlerkorrekturen ist verfügbar.
       upload_check_privacy_error:
         action: Für weitere Informationen hier klicken
         message_html: "<strong>Die Konfiguration deines Servers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
