@@ -889,6 +889,8 @@ vi:
     system_checks:
       database_schema_check:
         message_html: Có cơ sở dữ liệu đang chờ xử lý. Xin khởi động nó để ứng dụng có thể hoạt động một cách ổn định nhất
+      elasticsearch_analysis_index_mismatch:
+        message_html: Chuẩn đoán chỉ mục Elasticsearch đã lỗi thời. Hãy chạy <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Cụm Elaticsearch không tốt (trạng thái đỏ), tính năng tìm kiếm không khả dụng
       elasticsearch_health_yellow:

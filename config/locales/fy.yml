@@ -309,6 +309,7 @@ fy:
       title: Auditlogboek
       unavailable_instance: "(domeinnamme net beskikber)"
     announcements:
+      back: Tebek nei meidielingen
       destroyed_msg: Fuortsmiten fan meidieling slagge!
       edit:
         title: Meidieling bewurkje
@@ -317,6 +318,10 @@ fy:
       new:
         create: Meidieling oanmeitsje
         title: Nije meidieling
+      preview:
+        disclaimer: Omdat brûkers harren net foar dizze e-mailberjochten ôfmelde kinne, moatte e-mailmeldingen beheind wurde ta wichtige oankundigingen, lykas it lekken fan brûkersgegevens of meldingen oer it sluten fan dizze server.
+        explanation_html: 'It e-mailberjocht wurdt ferstjoerd nei <strong>%{display_count} brûkers</strong>. De folgjende tekst sil yn it e-mailberjocht opnommen wurde:'
+        title: Foarbyld fan meidieling
       publish: Publisearje
       published_msg: Publisearjen fan meidieling slagge!
       scheduled_for: Ynpland foar %{time}
@@ -475,6 +480,36 @@ fy:
       new:
         title: Domeinblokkaden ymportearje
       no_file: Gjin bestân selektearre
+    fasp:
+      debug:
+        callbacks:
+          created_at: Oanmakke op
+          delete: Fuortsmite
+          ip: IP-adres
+          request_body: Kearntekst opfreegje
+          title: Callbacks debugge
+      providers:
+        active: Aktyf
+        base_url: Basis-URL
+        callback: Callback
+        delete: Fuortsmite
+        edit: Provider bewurkje
+        finish_registration: Registraasje foltôgje
+        name: Namme
+        providers: Providers
+        public_key_fingerprint: Fingerôfdruk fan publike kaai
+        registration_requested: Registraasje oanfrege
+        registrations:
+          confirm: Befêstigje
+          description: Jo hawwe in registraasje ûntfongen fan in FASP. Wegerje dizze as jo dit net oanfrege hawwe. Hawwe jo dit wol oanfrege, fergelykje dan soarchfuldich de namme en de fingerôfdruk fan de kaai eardat jo de registraasje befêstigje.
+          reject: Wegerje
+          title: FASP-registraasje befêstigje
+        save: Bewarje
+        select_capabilities: Mooglikheden selektearje
+        sign_in: Oanmelde
+        status: Status
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Dizze oanrekommandearre accounts helpe nije brûkers fluch ynteressante ynhâld</strong>te finen. Wannear’t in brûker net mei oare brûkers genôch ynteraksje hân hat om personalisearre oanrekommandaasjes te krijen, wurde yn stee dêrfan dizze accounts oanrekommandearre. Dizze accounts wurde deistich opnij berekkene mei help fan accounts mei it heechste tal resinte ynteraksjes en it heechste tal lokale folgers yn in bepaalde taal."
       language: Foar taal
@@ -868,6 +903,8 @@ fy:
     system_checks:
       database_schema_check:
         message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch-yndeksanalysearynstellingen binne ferâldere. Fier <code>tootctl search deploy --only-mapping --only=%{value}</code> út
       elasticsearch_health_red:
         message_html: Elasticsearch-cluster is net sûn (reade status), sykfunksjes binne net beskikber
       elasticsearch_health_yellow:
@@ -939,6 +976,7 @@ fy:
         chance_to_review_html: "<strong>De generearre gebrûksbetingsten wurde net automatysk publisearre.</strong> Jo krije gelegenheid om de resultaten te besjen. Folje de nedige gegevens yn om troch te gean."
         explanation_html: It sjabloan foar de gebrûksbetingsten is útslutend bedoeld foar ynformative doeleinen en mei net opfette wurde as juridysk advys oer hokker ûnderwerp dan ek. Freegje in eigen juridysk adviseur oer jo situaasje en foar spesifike juridyske fragen.
         title: Gebrûksbetingsten ynstelle
+      going_live_on_html: Aktueel mei yngong fan %{date}
       history: Skiednis
       live: Aktueel
       no_history: Der binne noch gjin bewarre wizigingen fan de gebrûksbetingsten.
@@ -1904,6 +1942,10 @@ fy:
     recovery_instructions_html: Wannear’t jo ea de tagong ta jo telefoan ferlieze, kinne jo mei help fan ien fan de werstelkoaden hjirûnder opnij tagong krije ta jo account. <strong>Soargje derfoar dat jo de werstelkoaden op in feilich plak bewarje</strong>. Jo kinne se bygelyks ôfdrukke en se tegearre mei oare wichtige dokuminten bewarje.
     webauthn: Befeiligingskaaien
   user_mailer:
+    announcement_published:
+      description: 'De behearders fan %{domain} dogge in meidieling:'
+      subject: Service-oankundiging
+      title: Service-oankundiging %{domain}
     appeal_approved:
       action: Accountynstellingen
       explanation: It beswier tsjin in troch in moderator fêststelde skeining fan jo op %{strike_date}, yntsjinne op %{appeal_date}, is goedkard. De earder fêststelde skeining is hjirby net langer jildich.
@@ -1936,6 +1978,8 @@ fy:
     terms_of_service_changed:
       agreement: Troch %{domain} brûke te bliuwen, geane jo akkoard mei dizze betingsten. As jo it net iens binne mei de bywurke betingsten, kinne jo jo oerienkomst mei %{domain} op elk winske momint beëinigje troch jo account fuort te smiten.
       changelog: 'Yn ien eachopslach betsjut dizze update foar jo:'
+      description: 'Jo ûntfange dit berjocht, omdat wy inkelde wizigingen oanbringe yn ús gebrûksbetingsten by %{domain}. Dizze oanpassingen wurde fan krêft op %{date}. Wy riede jo oan om de bywurke betingsten hjir folslein te besjen:'
+      description_html: Jo ûntfange dit e-mailberjocht, omdat wy inkelde wizigingen oanbringe yn ús gebrûksbetingsten by %{domain}. Dizze oanpassingen wurde fan krêft op <strong>%{date}</strong>. Wy riede jo oan om de <a href="%{path}" target="_blank">bywurke betingsten hjir folslein te besjen</a>.
       sign_off: It %{domain}-team
       subject: Aktualisaasje fan ús tsjinstbetingsten
       subtitle: De gebrûksbetingsten fan %{domain} wizigje
