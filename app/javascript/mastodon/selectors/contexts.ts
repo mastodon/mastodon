@@ -41,7 +41,7 @@ export const getDescendantsIds = createAppSelector(
       }
 
       if (replies) {
-        replies.reverse().forEach((replyId) => {
+        replies.toReversed().forEach((replyId) => {
           if (
             !visitIds.includes(replyId) &&
             !descendantsIds.includes(replyId) &&
