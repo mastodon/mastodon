@@ -116,6 +116,7 @@ export const EditedTimestamp: React.FC<{
       renderHeader={renderHeader}
       onOpen={handleOpen}
       onItemClick={handleItemClick}
+      forceDropdown
     >
       <button className='dropdown-menu__text-button'>
         <FormattedMessage
