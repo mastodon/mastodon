@@ -13,7 +13,6 @@ import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 
 import { lookupAccount, fetchAccount } from '../../actions/accounts';
-import { fetchFeaturedTags } from '../../actions/featured_tags';
 import { expandAccountFeaturedTimeline, expandAccountTimeline, connectTimeline, disconnectTimeline } from '../../actions/timelines';
 import { ColumnBackButton } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
@@ -27,7 +26,7 @@ import { LimitedAccountHint } from './components/limited_account_hint';
 const emptyList = ImmutableList();
 
 const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = false }) => {
-  const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
+  const accountId = id || state.accounts_map[normalizeForLookup(acct)];
 
   if (accountId === null) {
     return {
@@ -86,7 +85,6 @@ class AccountTimeline extends ImmutablePureComponent {
       dispatch(expandAccountFeaturedTimeline(accountId, { tagged }));
     }
 
-    dispatch(fetchFeaturedTags(accountId));
     dispatch(expandAccountTimeline(accountId, { withReplies, tagged }));
 
     if (accountId === me) {

@@ -9,7 +9,6 @@ import { useAppDispatch } from 'mastodon/store';
 
 const messages = defineMessages({
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
-  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   preferences: {
     id: 'navigation_bar.preferences',
     defaultMessage: 'Preferences',
@@ -53,7 +52,6 @@ export const ActionBar: React.FC = () => {
         text: intl.formatMessage(messages.preferences),
         href: '/settings/preferences',
       },
-      { text: intl.formatMessage(messages.pins), to: '/pinned' },
       null,
       {
         text: intl.formatMessage(messages.follow_requests),
