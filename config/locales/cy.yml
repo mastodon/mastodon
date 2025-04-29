@@ -959,6 +959,8 @@ cy:
     system_checks:
       database_schema_check:
         message_html: Mae mudo cronfa ddata ar fin digwydd. Rhedwch nhw i sicrhau bod y rhaglen yn ymddwyn yn ôl y disgwyl
+      elasticsearch_analysis_index_mismatch:
+        message_html: Mae gosodiadau dadansoddwr mynegai Elasticsearch wedi dyddio. Rhedwch <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Mae clwstwr Elasticsearch yn afiach (statws coch), nid yw'r nodweddion chwilio ar gael
       elasticsearch_health_yellow:
