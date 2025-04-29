@@ -1,17 +1,17 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { apiRemoveAccountFromFollowers } from 'mastodon/api/accounts';
-import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
+import {
+  apiRemoveAccountFromFollowers,
+  apiGetEndorsedAccounts,
+} from 'mastodon/api/accounts';
 import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
 import { createDataLoadingThunk } from 'mastodon/store/typed_functions';
+
+import { importFetchedAccounts } from './importer';
 
 export const revealAccount = createAction<{
   id: string;
 }>('accounts/revealAccount');
-
-export const importAccounts = createAction<{ accounts: ApiAccountJSON[] }>(
-  'accounts/importAccounts',
-);
 
 function actionWithSkipLoadingTrue<Args extends object>(args: Args) {
   return {
@@ -103,4 +103,13 @@ export const removeAccountFromFollowers = createDataLoadingThunk(
   ({ accountId }: { accountId: string }) =>
     apiRemoveAccountFromFollowers(accountId),
   (relationship) => ({ relationship }),
+);
+
+export const fetchEndorsedAccounts = createDataLoadingThunk(
+  'accounts/endorsements',
+  ({ accountId }: { accountId: string }) => apiGetEndorsedAccounts(accountId),
+  (data, { dispatch }) => {
+    dispatch(importFetchedAccounts(data));
+    return data;
+  },
 );

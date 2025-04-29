@@ -7,18 +7,20 @@ import { useParams } from 'react-router';
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
+import { fetchEndorsedAccounts } from 'mastodon/actions/accounts';
 import { fetchFeaturedTags } from 'mastodon/actions/featured_tags';
 import { expandAccountFeaturedTimeline } from 'mastodon/actions/timelines';
+import { Account } from 'mastodon/components/account';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RemoteHint } from 'mastodon/components/remote_hint';
 import StatusContainer from 'mastodon/containers/status_container';
+import { AccountHeader } from 'mastodon/features/account_timeline/components/account_header';
+import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
+import Column from 'mastodon/features/ui/components/column';
 import { useAccountId } from 'mastodon/hooks/useAccountId';
 import { useAccountVisibility } from 'mastodon/hooks/useAccountVisibility';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
-
-import { AccountHeader } from '../account_timeline/components/account_header';
-import Column from '../ui/components/column';
 
 import { EmptyMessage } from './components/empty_message';
 import { FeaturedTag } from './components/featured_tag';
@@ -29,7 +31,9 @@ interface Params {
   id?: string;
 }
 
-const AccountFeatured = () => {
+const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
+  multiColumn,
+}) => {
   const accountId = useAccountId();
   const { suspended, blockedBy, hidden } = useAccountVisibility(accountId);
   const forceEmptyState = suspended || blockedBy || hidden;
@@ -40,7 +44,8 @@ const AccountFeatured = () => {
   useEffect(() => {
     if (accountId) {
       void dispatch(expandAccountFeaturedTimeline(accountId));
-      dispatch(fetchFeaturedTags(accountId));
+      void dispatch(fetchFeaturedTags({ accountId }));
+      void dispatch(fetchEndorsedAccounts({ accountId }));
     }
   }, [accountId, dispatch]);
 
@@ -67,6 +72,17 @@ const AccountFeatured = () => {
         ImmutableList(),
       ) as ImmutableList<string>,
   );
+  const featuredAccountIds = useAppSelector(
+    (state) =>
+      state.user_lists.getIn(
+        ['featured_accounts', accountId, 'items'],
+        ImmutableList(),
+      ) as ImmutableList<string>,
+  );
+
+  if (accountId === null) {
+    return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
+  }
 
   if (isLoading) {
     return (
@@ -78,7 +94,11 @@ const AccountFeatured = () => {
     );
   }
 
-  if (featuredStatusIds.isEmpty() && featuredTags.isEmpty()) {
+  if (
+    featuredStatusIds.isEmpty() &&
+    featuredTags.isEmpty() &&
+    featuredAccountIds.isEmpty()
+  ) {
     return (
       <AccountFeaturedWrapper accountId={accountId}>
         <EmptyMessage
@@ -128,6 +148,19 @@ const AccountFeatured = () => {
                 id={statusId}
                 contextType='account'
               />
+            ))}
+          </>
+        )}
+        {!featuredAccountIds.isEmpty() && (
+          <>
+            <h4 className='column-subheading'>
+              <FormattedMessage
+                id='account.featured.accounts'
+                defaultMessage='Profiles'
+              />
+            </h4>
+            {featuredAccountIds.map((featuredAccountId) => (
+              <Account key={featuredAccountId} id={featuredAccountId} />
             ))}
           </>
         )}
