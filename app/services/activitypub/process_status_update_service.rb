@@ -304,9 +304,22 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def fetch_and_verify_quote!(quote, quote_uri)
-    ActivityPub::VerifyQuoteService.new.call(quote, fetchable_quoted_uri: quote_uri, request_id: @request_id)
+    ActivityPub::VerifyQuoteService.new.call(quote, fetchable_quoted_uri: quote_uri, prefetched_quoted_object: safe_prefetched_quoted_object, request_id: @request_id)
   rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
     ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(30..600).seconds, quote.id, quote_uri, { 'request_id' => @request_id })
+  end
+
+  def safe_prefetched_quoted_object
+    object = @status_parser.quoted_object
+    return unless object.is_a?(Hash)
+
+    # NOTE: Replacing the object's context by that of the parent activity is
+    # not sound, but it's consistent with the rest of the codebase
+    object = object.merge({ '@context' => @activity_json['@context'] })
+
+    return if value_or_id(first_of_value(object['attributedTo'])) != @account.uri || non_matching_uri_hosts?(@account.uri, object['id'])
+
+    object
   end
 
   def update_counts!
