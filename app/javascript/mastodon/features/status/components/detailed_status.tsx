@@ -194,9 +194,18 @@ export const DetailedStatus: React.FC<{
             status.getIn(['account', 'avatar_static'])
           }
           duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
-          backgroundColor={attachment.getIn(['meta', 'colors', 'background'])}
-          foregroundColor={attachment.getIn(['meta', 'colors', 'foreground'])}
-          accentColor={attachment.getIn(['meta', 'colors', 'accent'])}
+          backgroundColor={
+            attachment.getIn(['meta', 'colors', 'background']) ??
+            status.getIn(['account', 'avatar_meta', 'colors', 'background'])
+          }
+          foregroundColor={
+            attachment.getIn(['meta', 'colors', 'foreground']) ??
+            status.getIn(['account', 'avatar_meta', 'colors', 'foreground'])
+          }
+          accentColor={
+            attachment.getIn(['meta', 'colors', 'accent']) ??
+            status.getIn(['account', 'avatar_meta', 'colors', 'accent'])
+          }
           sensitive={status.get('sensitive')}
           visible={showMedia}
           blurhash={attachment.get('blurhash')}

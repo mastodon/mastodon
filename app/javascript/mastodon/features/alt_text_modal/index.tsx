@@ -214,12 +214,19 @@ const Preview: React.FC<{
         }
         duration={media.getIn(['meta', 'original', 'duration'], 0) as number}
         backgroundColor={
-          media.getIn(['meta', 'colors', 'background']) as string
+          (media.getIn(['meta', 'colors', 'background']) as
+            | string
+            | undefined) ?? account?.avatar_meta.colors?.background
         }
         foregroundColor={
-          media.getIn(['meta', 'colors', 'foreground']) as string
+          (media.getIn(['meta', 'colors', 'foreground']) as
+            | string
+            | undefined) ?? account?.avatar_meta.colors?.foreground
         }
-        accentColor={media.getIn(['meta', 'colors', 'accent']) as string}
+        accentColor={
+          (media.getIn(['meta', 'colors', 'accent']) as string | undefined) ??
+          account?.avatar_meta.colors?.accent
+        }
         editable
       />
     );

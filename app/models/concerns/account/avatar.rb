@@ -11,7 +11,14 @@ module Account::Avatar
   class_methods do
     def avatar_styles(file)
       styles = { original: { geometry: "#{AVATAR_GEOMETRY}#", file_geometry_parser: FastGeometryParser } }
-      styles[:static] = { geometry: "#{AVATAR_GEOMETRY}#", format: 'png', convert_options: '-coalesce', file_geometry_parser: FastGeometryParser } if file.content_type == 'image/gif'
+
+      # Color and blurhash extraction must only be run on non-animated files
+      if file.content_type == 'image/gif'
+        styles[:static] = { geometry: "#{AVATAR_GEOMETRY}#", format: 'png', convert_options: '-coalesce', file_geometry_parser: FastGeometryParser, blurhash: { x_comp: 3, y_comp: 3, attribute_name: :avatar_blurhash }, extract_colors: { meta_attribute_name: :avatar_meta } }
+      else
+        styles[:original].merge!(blurhash: { x_comp: 3, y_comp: 3, attribute_name: :avatar_blurhash }, extract_colors: { meta_attribute_name: :avatar_meta })
+      end
+
       styles
     end
 
@@ -20,7 +27,7 @@ module Account::Avatar
 
   included do
     # Avatar upload
-    has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '+profile "!icc,*" +set date:modify +set date:create +set date:timestamp' }, processors: [:lazy_thumbnail]
+    has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '+profile "!icc,*" +set date:modify +set date:create +set date:timestamp' }, processors: [:lazy_thumbnail, :blurhash_transcoder, :color_extractor]
     validates_attachment_content_type :avatar, content_type: AVATAR_IMAGE_MIME_TYPES
     validates_attachment_size :avatar, less_than: AVATAR_LIMIT
     remotable_attachment :avatar, AVATAR_LIMIT, suppress_errors: false
