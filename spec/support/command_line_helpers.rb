@@ -6,4 +6,10 @@ module CommandLineHelpers
       include(*)
     ).to_stdout
   end
+
+  def not_output_results(*)
+    output(
+      not_include(*)
+    ).to_stdout
+  end
 end
