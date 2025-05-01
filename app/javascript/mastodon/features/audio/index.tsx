@@ -49,6 +49,8 @@ const restoreVolume = (audio: HTMLAudioElement) => {
   audio.muted = muted;
 };
 
+const HOVER_FADE_DELAY = 4000;
+
 export const Audio: React.FC<{
   src: string;
   alt?: string;
@@ -116,6 +118,7 @@ export const Audio: React.FC<{
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const seekRef = useRef<HTMLDivElement>(null);
   const volumeRef = useRef<HTMLDivElement>(null);
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>();
   const frequencyBands = useAudioVisualizer(audioRef, 3);
   const accessibilityId = useId();
 
@@ -372,10 +375,46 @@ export const Audio: React.FC<{
 
   const handleMouseEnter = useCallback(() => {
     setHovered(true);
+
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHovered(false);
+    }, HOVER_FADE_DELAY);
+  }, [setHovered]);
+
+  const handleMouseMove = useCallback(() => {
+    setHovered(true);
+
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHovered(false);
+    }, HOVER_FADE_DELAY);
   }, [setHovered]);
 
   const handleMouseLeave = useCallback(() => {
     setHovered(false);
+
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+  }, [setHovered]);
+
+  const handleTouchEnd = useCallback(() => {
+    setHovered(true);
+
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHovered(false);
+    }, HOVER_FADE_DELAY);
   }, [setHovered]);
 
   const handleLoadedData = useCallback(() => {
@@ -518,7 +557,9 @@ export const Audio: React.FC<{
         } as React.CSSProperties
       }
       onMouseEnter={handleMouseEnter}
+      onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onTouchEnd={handleTouchEnd}
       role='button'
       tabIndex={0}
       onKeyDownCapture={handleKeyDown}
@@ -577,15 +618,17 @@ export const Audio: React.FC<{
       </div>
 
       <div className='audio-player__controls'>
-        <button
-          type='button'
-          title={intl.formatMessage(messages.skipBackward)}
-          aria-label={intl.formatMessage(messages.skipBackward)}
-          className='player-button'
-          onClick={handleSkipBackward}
-        >
-          <Icon id='' icon={Replay5Icon} />
-        </button>
+        <div className='audio-player__controls__play'>
+          <button
+            type='button'
+            title={intl.formatMessage(messages.skipBackward)}
+            aria-label={intl.formatMessage(messages.skipBackward)}
+            className='player-button'
+            onClick={handleSkipBackward}
+          >
+            <Icon id='' icon={Replay5Icon} />
+          </button>
+        </div>
 
         <div className='audio-player__controls__play'>
           <svg
@@ -680,15 +723,17 @@ export const Audio: React.FC<{
           </button>
         </div>
 
-        <button
-          type='button'
-          title={intl.formatMessage(messages.skipForward)}
-          aria-label={intl.formatMessage(messages.skipForward)}
-          className='player-button'
-          onClick={handleSkipForward}
-        >
-          <Icon id='' icon={Forward5Icon} />
-        </button>
+        <div className='audio-player__controls__play'>
+          <button
+            type='button'
+            title={intl.formatMessage(messages.skipForward)}
+            aria-label={intl.formatMessage(messages.skipForward)}
+            className='player-button'
+            onClick={handleSkipForward}
+          >
+            <Icon id='' icon={Forward5Icon} />
+          </button>
+        </div>
       </div>
 
       <SpoilerButton

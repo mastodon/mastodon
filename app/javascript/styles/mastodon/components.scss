@@ -6969,6 +6969,7 @@ a.status-card {
   outline: 1px solid var(--media-outline-color);
   outline-offset: -1px;
   aspect-ratio: 16 / 9;
+  container: audio-player / inline-size;
 
   &__controls {
     display: grid;
@@ -7065,6 +7066,13 @@ a.status-card {
     color: currentColor;
   }
 
+  @container audio-player (max-width: 400px) {
+    .video-player__time,
+    .player-button.video-player__download__icon {
+      display: none;
+    }
+  }
+
   .video-player__seek::before,
   .video-player__seek__buffer,
   .video-player__seek__progress {
@@ -7132,10 +7140,12 @@ a.status-card {
     );
     padding: 0 15px;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.1s ease;
 
     &.active {
       opacity: 1;
+      pointer-events: auto;
     }
   }
 
