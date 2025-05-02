@@ -24,13 +24,13 @@ import { IconLogo } from 'mastodon/components/logo';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
 import { Video } from 'mastodon/features/video';
-
-import { Avatar } from '../../../components/avatar';
-import { DisplayName } from '../../../components/display_name';
-import MediaGallery from '../../../components/media_gallery';
-import StatusContent from '../../../components/status_content';
-import Audio from '../../audio';
-import scheduleIdleTask from '../../ui/util/schedule_idle_task';
+import { Avatar } from 'mastodon/components/avatar';
+import { DisplayName } from 'mastodon/components/display_name';
+import MediaGallery from 'mastodon/components/media_gallery';
+import StatusContent from 'mastodon/components/status_content';
+import Audio from 'mastodon/features/audio';
+import scheduleIdleTask from 'mastodon/features/ui/util/schedule_idle_task';
+import { Quote } from 'mastodon/components/quote';
 
 import Card from './card';
 
@@ -367,6 +367,8 @@ export const DetailedStatus: React.FC<{
 
         {expanded && (
           <>
+            {status.get('quote') && <Quote quote={status.get('quote')} />}
+
             <StatusContent
               status={status}
               onTranslate={handleTranslate}
