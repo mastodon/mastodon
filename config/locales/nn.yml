@@ -903,6 +903,8 @@ nn:
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
+      elasticsearch_analysis_index_mismatch:
+        message_html: Indeksanalyseinnstillingane til Elasticsearch er utdaterte. Køyr <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch-klynga er usunn (raud status), og søkjefunksjonane er utilgjengelege
       elasticsearch_health_yellow:
@@ -1367,8 +1369,8 @@ nn:
   featured_tags:
     add_new: Legg til ny
     errors:
-      limit: Du har allereie framheva så mange emneknaggar som det går an å gjera
-    hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
+      limit: Du har allereie valt ut så mange emneknaggar som det går an å gjera
+    hint_html: "<strong>Vel ut dei viktigaste emneknaggane på profilen din.</strong> Utvalde emneknaggar er eit flott verkty for å halda oversikt over kreativt arbeid og langtidsprosjekt. Dei er lette å sjå på profilen din, og gjev deg rask tilgang til dine eigne innlegg."
   filters:
     contexts:
       account: Profiler
@@ -1805,7 +1807,7 @@ nn:
     development: Utvikling
     edit_profile: Endr profil
     export: Eksporter
-    featured_tags: Utvalgte emneknagger
+    featured_tags: Utvalde emneknaggar
     import: Hent inn
     import_and_export: Importer og eksporter
     migrate: Kontoflytting
