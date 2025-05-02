@@ -119,7 +119,10 @@ export const Audio: React.FC<{
   const seekRef = useRef<HTMLDivElement>(null);
   const volumeRef = useRef<HTMLDivElement>(null);
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>();
-  const frequencyBands = useAudioVisualizer(audioRef, 3);
+  const [resumeAudio, suspendAudio, frequencyBands] = useAudioVisualizer(
+    audioRef,
+    3,
+  );
   const accessibilityId = useId();
 
   const [style, spring] = useSpring(() => ({
@@ -191,8 +194,9 @@ export const Audio: React.FC<{
   useEffect(() => {
     if (!revealed && audioRef.current) {
       audioRef.current.pause();
+      suspendAudio();
     }
-  }, [revealed]);
+  }, [suspendAudio, revealed]);
 
   useEffect(() => {
     let nextFrame: ReturnType<typeof requestAnimationFrame>;
@@ -224,11 +228,13 @@ export const Audio: React.FC<{
     }
 
     if (audioRef.current.paused) {
+      resumeAudio();
       void audioRef.current.play();
     } else {
       audioRef.current.pause();
+      suspendAudio();
     }
-  }, []);
+  }, [resumeAudio, suspendAudio]);
 
   const handlePlay = useCallback(() => {
     setPaused(false);
@@ -343,6 +349,7 @@ export const Audio: React.FC<{
         document.removeEventListener('mouseup', handleSeekMouseUp, true);
 
         setDragging(false);
+        resumeAudio();
         void audioRef.current?.play();
       };
 
@@ -370,7 +377,7 @@ export const Audio: React.FC<{
       e.preventDefault();
       e.stopPropagation();
     },
-    [setDragging, spring],
+    [setDragging, spring, resumeAudio],
   );
 
   const handleMouseEnter = useCallback(() => {

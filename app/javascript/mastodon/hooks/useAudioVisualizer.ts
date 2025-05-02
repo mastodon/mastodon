@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 const normalizeFrequencies = (arr: Float32Array): number[] => {
   return new Array(...arr).map((value: number) => {
@@ -14,27 +14,61 @@ export const useAudioVisualizer = (
   ref: React.MutableRefObject<HTMLAudioElement | null>,
   numBands: number,
 ) => {
+  const audioContextRef = useRef<AudioContext>();
+  const sourceRef = useRef<MediaElementAudioSourceNode>();
+  const analyzerRef = useRef<AnalyserNode>();
+
   const [frequencyBands, setFrequencyBands] = useState<number[]>(
     new Array(numBands).fill(0),
   );
 
   useEffect(() => {
-    if (!ref.current) {
+    if (!audioContextRef.current) {
+      audioContextRef.current = new AudioContext();
+      analyzerRef.current = audioContextRef.current.createAnalyser();
+      analyzerRef.current.smoothingTimeConstant = 0.6;
+      analyzerRef.current.fftSize = 2048;
+    }
+
+    return () => {
+      if (audioContextRef.current) {
+        void audioContextRef.current.close();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (
+      audioContextRef.current &&
+      analyzerRef.current &&
+      !sourceRef.current &&
+      ref.current
+    ) {
+      sourceRef.current = audioContextRef.current.createMediaElementSource(
+        ref.current,
+      );
+      sourceRef.current.connect(analyzerRef.current);
+      sourceRef.current.connect(audioContextRef.current.destination);
+    }
+
+    return () => {
+      if (sourceRef.current) {
+        sourceRef.current.disconnect();
+      }
+    };
+  }, [ref]);
+
+  useEffect(() => {
+    const source = sourceRef.current;
+    const analyzer = analyzerRef.current;
+    const context = audioContextRef.current;
+
+    if (!source || !analyzer || !context) {
       return;
     }
 
-    const context = new AudioContext();
-    const source = context.createMediaElementSource(ref.current);
-    const analyzer = context.createAnalyser();
-
-    analyzer.smoothingTimeConstant = 0.6;
-    analyzer.fftSize = 2048;
-
     const bufferLength = analyzer.frequencyBinCount;
     const frequencyData = new Float32Array(bufferLength);
-
-    source.connect(analyzer);
-    source.connect(context.destination);
 
     const updateProgress = () => {
       analyzer.getFloatFrequencyData(frequencyData);
@@ -58,10 +92,21 @@ export const useAudioVisualizer = (
     const updateInterval = setInterval(updateProgress, 15);
 
     return () => {
-      void context.close();
       clearInterval(updateInterval);
     };
-  }, [ref, ref.current?.src, numBands]);
+  }, [numBands]);
 
-  return frequencyBands;
+  const resume = useCallback(() => {
+    if (audioContextRef.current) {
+      void audioContextRef.current.resume();
+    }
+  }, []);
+
+  const suspend = useCallback(() => {
+    if (audioContextRef.current) {
+      void audioContextRef.current.suspend();
+    }
+  }, []);
+
+  return [resume, suspend, frequencyBands] as const;
 };
