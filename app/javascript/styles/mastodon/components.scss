@@ -6958,15 +6958,69 @@ a.status-card {
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
-  background: var(--background-color);
+  background: var(--player-background-color, var(--background-color));
+  color: var(--player-foreground-color);
   border-radius: 8px;
   padding-bottom: 44px;
   width: 100%;
   outline: 1px solid var(--media-outline-color);
   outline-offset: -1px;
+  aspect-ratio: 16 / 9;
+  container: audio-player / inline-size;
+
+  &__controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 100%;
+
+    &__play {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      .player-button {
+        position: absolute;
+        top: 50%;
+        inset-inline-start: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .icon {
+        filter: var(--overlay-icon-shadow);
+      }
+    }
+
+    .player-button {
+      display: inline-block;
+      outline: 0;
+      padding: 5px;
+      flex: 0 0 auto;
+      background: transparent;
+      border: 0;
+      color: var(--player-foreground-color);
+      opacity: 0.75;
+
+      .icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      &:active,
+      &:hover,
+      &:focus {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__visualizer {
+    max-width: 200px;
+  }
 
   &.inactive {
-    audio,
+    .video-player__seek,
+    .audio-player__controls,
     .video-player__controls {
       visibility: hidden;
     }
@@ -6981,6 +7035,13 @@ a.status-card {
   .video-player__seek__buffer {
     background: currentColor;
     opacity: 0.2;
+  }
+
+  .video-player__seek__progress,
+  .video-player__seek__handle,
+  .video-player__volume__current,
+  .video-player__volume__handle {
+    background-color: var(--player-accent-color);
   }
 
   .video-player__buttons button,
@@ -7000,6 +7061,13 @@ a.status-card {
   .video-player__time-total,
   .video-player__time-current {
     color: currentColor;
+  }
+
+  @container audio-player (max-width: 400px) {
+    .video-player__time,
+    .player-button.video-player__download__icon {
+      display: none;
+    }
   }
 
   .video-player__seek::before,
@@ -7069,10 +7137,12 @@ a.status-card {
     );
     padding: 0 15px;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.1s ease;
 
     &.active {
       opacity: 1;
+      pointer-events: auto;
     }
   }
 
@@ -7158,6 +7228,7 @@ a.status-card {
       background: transparent;
       border: 0;
       color: rgba($white, 0.75);
+      font-weight: 500;
 
       &:active,
       &:hover,
@@ -8483,22 +8554,32 @@ noscript {
   bottom: 20px;
   inset-inline-end: 20px;
   width: 300px;
+  box-shadow: var(--dropdown-shadow);
 
   &__footer {
     border-radius: 0 0 4px 4px;
-    background: lighten($ui-base-color, 4%);
-    padding: 10px;
-    padding-top: 12px;
+    background: var(--modal-background-variant-color);
+    backdrop-filter: var(--background-filter);
+    border: 1px solid var(--modal-border-color);
+    border-top: 0;
+    padding: 12px;
     display: flex;
     justify-content: space-between;
   }
 
   &__header {
     border-radius: 4px 4px 0 0;
-    background: lighten($ui-base-color, 4%);
-    padding: 10px;
+    background: var(--modal-background-variant-color);
+    backdrop-filter: var(--background-filter);
+    border: 1px solid var(--modal-border-color);
+    border-bottom: 0;
+    padding: 12px;
     display: flex;
     justify-content: space-between;
+
+    .icon-button {
+      padding: 6px;
+    }
 
     &__account {
       display: flex;
@@ -8507,7 +8588,7 @@ noscript {
     }
 
     .account__avatar {
-      margin-inline-end: 10px;
+      margin-inline-end: 8px;
     }
 
     .display-name {
@@ -8534,30 +8615,36 @@ noscript {
 }
 
 .picture-in-picture-placeholder {
+  border-radius: 8px;
   box-sizing: border-box;
-  border: 2px dashed var(--background-border-color);
-  background: $base-shadow-color;
+  border: 1px dashed var(--background-border-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
-  font-size: 16px;
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 21px;
   font-weight: 500;
   cursor: pointer;
-  color: $darker-text-color;
+  color: $dark-text-color;
   aspect-ratio: 16 / 9;
 
   .icon {
-    width: 24px;
-    height: 24px;
-    margin-bottom: 10px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
   }
 
   &:hover,
-  &:focus,
-  &:active {
-    border-color: lighten($ui-base-color, 12%);
+  &:active,
+  &:focus {
+    color: $darker-text-color;
+  }
+
+  &:focus-visible {
+    outline: $ui-button-focus-outline;
+    border-color: transparent;
   }
 }
 

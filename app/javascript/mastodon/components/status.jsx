@@ -17,7 +17,7 @@ import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import { ContentWarning } from 'mastodon/components/content_warning';
 import { FilterWarning } from 'mastodon/components/filter_warning';
 import { Icon }  from 'mastodon/components/icon';
-import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
+import { PictureInPicturePlaceholder } from 'mastodon/components/picture_in_picture_placeholder';
 import { withOptionalRouter, WithOptionalRouterPropTypes } from 'mastodon/utils/react_router';
 
 import Card from '../features/status/components/card';
@@ -485,9 +485,6 @@ class Status extends ImmutablePureComponent {
                 foregroundColor={attachment.getIn(['meta', 'colors', 'foreground'])}
                 accentColor={attachment.getIn(['meta', 'colors', 'accent'])}
                 duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
-                width={this.props.cachedMediaWidth}
-                height={110}
-                cacheWidth={this.props.cacheMediaWidth}
                 deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}
                 sensitive={status.get('sensitive')}
                 blurhash={attachment.get('blurhash')}
