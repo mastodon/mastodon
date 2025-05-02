@@ -13,7 +13,9 @@ import { Link } from 'react-router-dom';
 
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import { AnimatedNumber } from 'mastodon/components/animated_number';
+import { Avatar } from 'mastodon/components/avatar';
 import { ContentWarning } from 'mastodon/components/content_warning';
+import { DisplayName } from 'mastodon/components/display_name';
 import { EditedTimestamp } from 'mastodon/components/edited_timestamp';
 import { FilterWarning } from 'mastodon/components/filter_warning';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
@@ -21,16 +23,13 @@ import type { StatusLike } from 'mastodon/components/hashtag_bar';
 import { getHashtagBarForStatus } from 'mastodon/components/hashtag_bar';
 import { Icon } from 'mastodon/components/icon';
 import { IconLogo } from 'mastodon/components/logo';
-import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
+import MediaGallery from 'mastodon/components/media_gallery';
+import { PictureInPicturePlaceholder } from 'mastodon/components/picture_in_picture_placeholder';
+import StatusContent from 'mastodon/components/status_content';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
+import { Audio } from 'mastodon/features/audio';
+import scheduleIdleTask from 'mastodon/features/ui/util/schedule_idle_task';
 import { Video } from 'mastodon/features/video';
-
-import { Avatar } from '../../../components/avatar';
-import { DisplayName } from '../../../components/display_name';
-import MediaGallery from '../../../components/media_gallery';
-import StatusContent from '../../../components/status_content';
-import Audio from '../../audio';
-import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 
 import Card from './card';
 
@@ -189,18 +188,17 @@ export const DetailedStatus: React.FC<{
           src={attachment.get('url')}
           alt={description}
           lang={language}
-          duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
           poster={
             attachment.get('preview_url') ||
             status.getIn(['account', 'avatar_static'])
           }
+          duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
           backgroundColor={attachment.getIn(['meta', 'colors', 'background'])}
           foregroundColor={attachment.getIn(['meta', 'colors', 'foreground'])}
           accentColor={attachment.getIn(['meta', 'colors', 'accent'])}
           sensitive={status.get('sensitive')}
           visible={showMedia}
           blurhash={attachment.get('blurhash')}
-          height={150}
           onToggleVisibility={onToggleMediaVisibility}
           matchedFilters={status.get('matched_media_filters')}
         />
