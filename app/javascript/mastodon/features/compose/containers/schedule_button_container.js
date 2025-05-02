@@ -8,8 +8,8 @@ import { IconButton } from "@/mastodon/components/icon_button";
 import { changeIsScheduled } from '../../../actions/compose';
 
 const messages = defineMessages({
-    marked: { id: 'compose_form.schedule.marked', defaultMessage: '本文将在以下时间发布'},
-    unmarked: { id: 'compose_form.schedule.unmarked', defaultMessage: '文本将立即发布'},
+    marked: { id: 'compose_form.schedule.marked', defaultMessage: 'This post will be published at the time chosen below'},
+    unmarked: { id: 'compose_form.schedule.unmarked', defaultMessage: 'This post will be published at once'},
 })
 
 const mapStateToProps = (state, { intl }) => ({

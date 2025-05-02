@@ -10,7 +10,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import { changeScheduleTime } from 'mastodon/actions/compose';
 
 const messages = defineMessages({
-    schedule_time: { id: 'compose_form.schedule_time', defaultMessage: '计划发文时间（北京时间）' },
+    schedule_time: { id: 'compose_form.schedule_time', defaultMessage: 'This post is scheduled to be published at (UTC+8)' },
 });
 
 export const ScheduleForm = () => {
