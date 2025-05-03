@@ -255,8 +255,8 @@ module JsonLdHelper
     while collection.is_a?(Hash)
       items.concat(as_array(collection_page_items(collection)))
 
-      break if !max_items.nil? & items.size >= max_items
-      break if !max_pages.nil? & n_pages >= max_pages
+      break if !max_items.nil? && items.size >= max_items
+      break if !max_pages.nil? && n_pages >= max_pages
 
       collection = collection['next'].present? ? fetch_collection(collection['next'], reference_uri: reference_uri, on_behalf_of: on_behalf_of) : nil
       n_pages += 1
@@ -287,7 +287,7 @@ module JsonLdHelper
   # @return [Hash, nil]
   def fetch_collection(collection_or_uri, reference_uri: nil, on_behalf_of: nil)
     return collection_or_uri if collection_or_uri.is_a?(Hash)
-    return if !reference_uri.nil? & non_matching_uri_hosts?(reference_uri, collection_or_uri)
+    return if !reference_uri.nil? && non_matching_uri_hosts?(reference_uri, collection_or_uri)
 
     # NOTE: For backward compatibility reasons, Mastodon signs outgoing
     # queries incorrectly by default.

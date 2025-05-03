@@ -8,11 +8,11 @@ class ActivityPub::FetchRepliesService < BaseService
 
   def call(reference_uri, collection_or_uri, max_pages: 1, allow_synchronous_requests: true, batch_id: nil, request_id: nil)
     @reference_uri = reference_uri
-    return if !allow_synchronous_requests & !collection_or_uri.is_a?(Hash)
+    return if !allow_synchronous_requests && !collection_or_uri.is_a?(Hash)
 
     # if given a prefetched collection while forbidding synchronous requests,
     # process it and return without fetching additional pages
-    max_pages = 1 if !allow_synchronous_requests & collection_or_uri.is_a?(Hash)
+    max_pages = 1 if !allow_synchronous_requests && collection_or_uri.is_a?(Hash)
 
     @items, n_pages = collection_items(collection_or_uri, max_pages: max_pages, max_items: MAX_REPLIES, reference_uri: @reference_uri)
     return if @items.nil?
