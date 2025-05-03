@@ -95,11 +95,11 @@ class ActivityPub::Parser::StatusParser
   end
 
   def favourites_count
-    @object.dig(:likes, :totalItems)
+    @object.dig('likes', 'totalItems')
   end
 
   def reblogs_count
-    @object.dig(:shares, :totalItems)
+    @object.dig('shares', 'totalItems')
   end
 
   def quote_policy
