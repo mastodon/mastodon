@@ -32,6 +32,7 @@ class FollowRequest < ApplicationRecord
   validates :languages, language: true
 
   def authorize!
+    is_first_follow = first_follow?
     follow = account.follow!(target_account, reblogs: show_reblogs, notify: notify, languages: languages, uri: uri, bypass_limit: true)
 
     if account.local?
@@ -40,6 +41,7 @@ class FollowRequest < ApplicationRecord
       MergeWorker.push_bulk(account.owned_lists.with_list_account(target_account).pluck(:id)) do |list_id|
         [target_account.id, list_id, 'list']
       end
+      ActivityPub::AccountBackfillWorker.perform_async(target_account.id) if is_first_follow & ActivityPub::AccountBackfillService.ENABLED
     end
 
     destroy!
@@ -49,6 +51,10 @@ class FollowRequest < ApplicationRecord
 
   def local?
     false # Force uri_for to use uri attribute
+  end
+
+  def first_follow?
+    !target_account.followers.local.exists?
   end
 
   before_validation :set_uri, only: :create
