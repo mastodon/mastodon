@@ -5,8 +5,11 @@ import ready from '../mastodon/ready';
 
 ready(() => {
   setInterval(() => {
-    axios.get('/api/v1/emails/check_confirmation').then((response) => {
-      if (response.data) {
+    axios.get('/api/v1/emails/check_confirmation', {
+      headers: { Accept: 'application/json' },
+      withCredentials: true,
+    }).then((response) => {
+      if (response.status === 200 && response.data === true) {
         window.location = '/start';
       }
     }).catch(error => {
