@@ -273,7 +273,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   def update_quote!
     return unless Mastodon::Feature.inbound_quotes_enabled?
 
-    quote = nil
     quote_uri = @status_parser.quote_uri
 
     if quote_uri.present?
@@ -294,19 +293,21 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         quote = Quote.create(status: @status, approval_uri: approval_uri)
         @quote_changed = true
       end
-    end
 
-    if quote.present?
-      begin
-        quote.save
-        ActivityPub::VerifyQuoteService.new.call(quote, fetchable_quoted_uri: quote_uri, request_id: @request_id)
-      rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-        ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(30..600).seconds, quote.id, quote_uri, { 'request_id' => @request_id })
-      end
+      quote.save
+
+      fetch_and_verify_quote!(quote, quote_uri)
     elsif @status.quote.present?
       @status.quote.destroy!
       @quote_changed = true
     end
+  end
+
+  def fetch_and_verify_quote!(quote, quote_uri)
+    embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @activity_json['context'])
+    ActivityPub::VerifyQuoteService.new.call(quote, fetchable_quoted_uri: quote_uri, prefetched_quoted_object: embedded_quote, request_id: @request_id)
+  rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
+    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(30..600).seconds, quote.id, quote_uri, { 'request_id' => @request_id })
   end
 
   def update_counts!
