@@ -36,6 +36,25 @@ nan:
       approved_msg: 成功審核 %{username} ê註冊申請ah
       are_you_sure: Lí kám確定？
       avatar: 標頭
+      by_domain: 域名
+      change_email:
+        changed_msg: Email改成功ah！
+        current_email: 現在ê email
+        label: 改email
+        new_email: 新ê email
+        submit: 改email
+        title: 替 %{username} 改email
+      change_role:
+        changed_msg: 角色改成功ah！
+        edit_roles: 管理用者ê角色
+        label: 改角色
+        no_role: 無角色
+        title: 替 %{username} 改角色
+      confirm: 確認
+      confirmed: 確認ah
+      confirming: Teh確認
+      custom: 自訂
+      delete: Thâi資料
       deleted: Thâi掉ah
       demote: 降級
       destroyed_msg: Teh-beh thâi掉 %{username} ê資料
@@ -49,15 +68,61 @@ nan:
       email: 電子phue箱
       email_status: 電子phue ê狀態
       enable: 取消冷凍
+      enable_sign_in_token_auth: 啟用電子phue ê token認證
+      enabled: 啟用ah
+      enabled_msg: 成功kā %{username} ê口座退冰
+      followers: 跟tuè lí ê
+      follows: Lí跟tuè ê
+      header: 封面ê圖
+      inbox_url: 收件kheh-á ê URL
+      invite_request_text: 加入ê理由
+      invited_by: 邀請ê lâng
+      ip: IP
+      joined: 加入ê時
       location:
         all: Kui ê
         local: 本地
         remote: 別ê站
         title: 位置
+      login_status: 登入ê狀態
+      media_attachments: 媒體ê附件
+      memorialize: 變做故人ê口座
+      memorialized: 變做故人ê口座ah
+      memorialized_msg: 成功kā %{username} 變做故人ê口座ah
+      moderation:
+        active: 活ê
+        all: 全部
+        disabled: 停止使用ah
+        pending: Teh審核
+        silenced: 受限制
+        suspended: 權限中止ah
+        title: 管理
+      moderation_notes: 管理ê註釋
+      most_recent_activity: 最近ê活動時間
+      most_recent_ip: 最近ê IP
+      no_account_selected: 因為無揀任何口座，所以lóng無改變
+      no_limits_imposed: 無受著限制
+      no_role_assigned: 無分著角色
+      not_subscribed: 無訂
+      pending: Teh等審核
+      perform_full_suspension: 中止權限
+      previous_strikes: Khah早ê處份
       remove_avatar: Thâi掉標頭
       removed_avatar_msg: 成功thâi掉 %{username} ê 標頭影像
+      username: 用者ê名
+      view_domain: 看域名ê摘要
+      warn: 警告
+      web: 網頁
+      whitelisted: 允准佇聯邦傳資料
     action_logs:
       action_types:
+        approve_appeal: 批准投訴
+        approve_user: 批准用者
+        assigned_to_self_report: 分配檢舉
+        change_email_user: 替用者改email
+        change_role_user: 改用者ê角色
+        confirm_user: 確認用者
+        create_account_warning: 建立警告
         remove_avatar_user: Thâi掉標頭
       actions:
         remove_avatar_user_html: "%{name} thâi掉 %{target} ê標頭"
