@@ -6,14 +6,13 @@
 class HttpSignatureDraft
   REQUEST_TARGET = '(request-target)'
 
-  def initialize(keypair, key_id, full_path: true)
+  def initialize(keypair, key_id)
     @keypair = keypair
     @key_id = key_id
-    @full_path = full_path
   end
 
   def request_target(verb, url)
-    if url.query.nil? || !@full_path
+    if url.query.nil?
       "#{verb} #{url.path}"
     else
       "#{verb} #{url.path}?#{url.query}"
