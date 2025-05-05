@@ -72,6 +72,18 @@ module JsonLdHelper
     !haystack.casecmp(needle).zero?
   end
 
+  def safe_prefetched_embed(account, object, context)
+    return unless object.is_a?(Hash)
+
+    # NOTE: Replacing the object's context by that of the parent activity is
+    # not sound, but it's consistent with the rest of the codebase
+    object = object.merge({ '@context' => context })
+
+    return if value_or_id(first_of_value(object['attributedTo'])) != account.uri || non_matching_uri_hosts?(account.uri, object['id'])
+
+    object
+  end
+
   def canonicalize(json)
     graph = RDF::Graph.new << JSON::LD::API.toRdf(json, documentLoader: method(:load_jsonld_context))
     graph.dump(:normalize)

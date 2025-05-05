@@ -89,6 +89,37 @@ RSpec.describe ActivityPub::VerifyQuoteService do
       end
     end
 
+    context 'with a valid activity for a post that cannot be fetched but is passed as fetched_quoted_object' do
+      let(:quoted_status) { nil }
+
+      let(:approval_interaction_target) { 'https://b.example.com/unknown-quoted' }
+      let(:prefetched_object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          type: 'Note',
+          id: 'https://b.example.com/unknown-quoted',
+          to: 'https://www.w3.org/ns/activitystreams#Public',
+          attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_account),
+          content: 'previously unknown post',
+        }.with_indifferent_access
+      end
+
+      before do
+        stub_request(:get, 'https://b.example.com/unknown-quoted')
+          .to_return(status: 404)
+      end
+
+      it 'updates the status' do
+        expect { subject.call(quote, fetchable_quoted_uri: 'https://b.example.com/unknown-quoted', prefetched_quoted_object: prefetched_object) }
+          .to change(quote, :state).to('accepted')
+
+        expect(a_request(:get, approval_uri))
+          .to have_been_made.once
+
+        expect(quote.reload.quoted_status.content).to eq 'previously unknown post'
+      end
+    end
+
     context 'with a valid activity for a post that cannot be fetched but is inlined' do
       let(:quoted_status) { nil }
 
@@ -148,7 +179,7 @@ RSpec.describe ActivityPub::VerifyQuoteService do
 
     context 'with a valid activity for already-fetched posts, with a pre-fetched approval' do
       it 'updates the status without fetching the activity' do
-        expect { subject.call(quote, prefetched_body: Oj.dump(json)) }
+        expect { subject.call(quote, prefetched_approval: Oj.dump(json)) }
           .to change(quote, :state).to('accepted')
 
         expect(a_request(:get, approval_uri))
