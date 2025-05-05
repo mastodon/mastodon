@@ -57,20 +57,7 @@ class ActivityPub::FetchRepliesService < BaseService
     return unless @allow_synchronous_requests
     return if non_matching_uri_hosts?(@reference_uri, collection_or_uri)
 
-    # NOTE: For backward compatibility reasons, Mastodon signs outgoing
-    # queries incorrectly by default.
-    #
-    # While this is relevant for all URLs with query strings, this is
-    # the only code path where this happens in practice.
-    #
-    # Therefore, retry with correct signatures if this fails.
-    begin
-      fetch_resource_without_id_validation(collection_or_uri, nil, raise_on_error: :temporary)
-    rescue Mastodon::UnexpectedResponseError => e
-      raise unless e.response && e.response.code == 401 && Addressable::URI.parse(collection_or_uri).query.present?
-
-      fetch_resource_without_id_validation(collection_or_uri, nil, raise_on_error: :temporary, request_options: { omit_query_string: false })
-    end
+    fetch_resource_without_id_validation(collection_or_uri, nil, raise_on_error: :temporary)
   end
 
   def filter_replies(items)
