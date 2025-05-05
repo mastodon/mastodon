@@ -47,7 +47,7 @@ module WebAppControllerConcern
   protected
 
   def redirect_to_tos_interstitial!
-    return unless current_user&.require_tos_interstitial
+    return unless current_user&.require_tos_interstitial?
 
     redirect_to(terms_of_service_interstitial_url)
   end

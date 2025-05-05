@@ -6,7 +6,8 @@
 .simple_form
   %h1.title= t('terms_of_service_interstitial.title', domain: site_hostname)
 
-  %p.lead= t('terms_of_service_interstitial.preamble_html', date: l(@terms_of_service.effective_date || Time.zone.today))
+  - effective_date = @terms_of_service.effective_date || Time.zone.today
+  %p.lead= effective_date.past? ? t('terms_of_service_interstitial.past_preamble_html') : t('terms_of_service_interstitial.future_preamble_html', date: l(effective_date))
 
   %p.lead= t('user_mailer.terms_of_service_changed.agreement', domain: site_hostname)
 

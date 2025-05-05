@@ -28,8 +28,8 @@ RSpec.describe Admin::DistributeTermsOfServiceNotificationWorker do
             subject: I18n.t('user_mailer.terms_of_service_changed.subject')
           )
 
-        expect(user.reload.require_tos_interstitial).to be false
-        expect(old_user.reload.require_tos_interstitial).to be true
+        expect(user.reload.require_tos_interstitial?).to be false
+        expect(old_user.reload.require_tos_interstitial?).to be true
       end
     end
   end
