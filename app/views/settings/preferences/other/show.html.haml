@@ -38,6 +38,17 @@
                    required: false,
                    wrapper: :with_label
 
+    .fields-row
+      .fields-group.fields-row__column.fields-row__column-6
+        = ff.input :default_quote_policy,
+                   collection: %w(public followers nobody),
+                   include_blank: false,
+                   label_method: ->(policy) { I18n.t("statuses.quote_policies.#{policy}") },
+                   label: I18n.t('simple_form.labels.defaults.setting_default_quote_policy'),
+                   hint: I18n.t('simple_form.hints.defaults.setting_default_quote_policy'),
+                   required: false,
+                   wrapper: :with_label
+
     .fields-group
       = ff.input :default_sensitive,
                  hint: I18n.t('simple_form.hints.defaults.setting_default_sensitive'),
