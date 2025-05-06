@@ -22,14 +22,14 @@ emojiMartUncompress(data);
 const emojiMartData = data;
 const emojiIndex = new NimbleEmojiIndex(emojiMartData);
 
-const excluded       = ['®', '©', '™'];
-const skinTones      = ['🏻', '🏼', '🏽', '🏾', '🏿'];
-const shortcodeMap   = {};
+const excluded = ['®', '©', '™'];
+const skinTones = ['🏻', '🏼', '🏽', '🏾', '🏿'];
+const shortcodeMap = {};
 
 const shortCodesToEmojiData = {};
 const emojisWithoutShortCodes = [];
 
-Object.keys(emojiIndex.emojis).forEach(key => {
+Object.keys(emojiIndex.emojis).forEach((key) => {
   let emoji = emojiIndex.emojis[key];
 
   // Emojis with skin tone modifiers are stored like this
@@ -40,22 +40,22 @@ Object.keys(emojiIndex.emojis).forEach(key => {
   shortcodeMap[emoji.native] = emoji.id;
 });
 
-const stripModifiers = unicode => {
-  skinTones.forEach(tone => {
+const stripModifiers = (unicode) => {
+  skinTones.forEach((tone) => {
     unicode = unicode.replace(tone, '');
   });
 
   return unicode;
 };
 
-Object.keys(emojiMap).forEach(key => {
+Object.keys(emojiMap).forEach((key) => {
   if (excluded.includes(key)) {
     delete emojiMap[key];
     return;
   }
 
   const normalizedKey = stripModifiers(key);
-  let shortcode       = shortcodeMap[normalizedKey];
+  let shortcode = shortcodeMap[normalizedKey];
 
   if (!shortcode) {
     shortcode = shortcodeMap[normalizedKey + '\uFE0F'];
@@ -81,7 +81,7 @@ Object.keys(emojiMap).forEach(key => {
   }
 });
 
-Object.keys(emojiIndex.emojis).forEach(key => {
+Object.keys(emojiIndex.emojis).forEach((key) => {
   let emoji = emojiIndex.emojis[key];
 
   // Emojis with skin tone modifiers are stored like this
@@ -93,9 +93,11 @@ Object.keys(emojiIndex.emojis).forEach(key => {
   let { short_names, search, unified } = emojiMartData.emojis[key];
 
   if (short_names[0] !== key) {
-    throw new Error('The compressor expects the first short_code to be the ' +
-      'key. It may need to be rewritten if the emoji change such that this ' +
-      'is no longer the case.');
+    throw new Error(
+      'The compressor expects the first short_code to be the ' +
+        'key. It may need to be rewritten if the emoji change such that this ' +
+        'is no longer the case.',
+    );
   }
 
   short_names = short_names.slice(1); // first short name can be inferred from the key
