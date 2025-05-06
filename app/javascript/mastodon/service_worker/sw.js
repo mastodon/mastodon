@@ -1,5 +1,5 @@
 import { ExpirationPlugin } from 'workbox-expiration';
-import { precacheAndRoute } from 'workbox-precaching';
+// import { precacheAndRoute } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { CacheFirst } from 'workbox-strategies';
 
@@ -15,10 +15,10 @@ function fetchRoot() {
   return fetch('/', { credentials: 'include', redirect: 'manual' });
 }
 
-precacheAndRoute(self.__WB_MANIFEST);
+// precacheAndRoute(self.__WB_MANIFEST);
 
 registerRoute(
-  /locale_.*\.js$/,
+  /intl\/.*\.js$/,
   new CacheFirst({
     cacheName: `${CACHE_NAME_PREFIX}locales`,
     plugins: [
