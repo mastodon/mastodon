@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'vips'
-
 def gen_border(codepoint, color)
   input = Rails.public_path.join('emoji', "#{codepoint}.svg")
   dest = Rails.public_path.join('emoji', "#{codepoint}_border.svg")
@@ -191,6 +189,8 @@ namespace :emojis do
 
   desc 'Generate a spritesheet of emojis'
   task :generate_emoji_sheet do
+    require 'vips'
+
     src = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_data.json')
     sheet = Oj.load(File.read(src))
 
