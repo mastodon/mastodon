@@ -104,7 +104,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       }),
       react({
         babel: {
-          plugins: ['formatjs', 'transform-react-remove-prop-types'],
+          plugins: ['formatjs', 'transform-react-remove-prop-types', 'preval'],
         },
       }),
       MastodonServiceWorkerLocales(),
@@ -132,7 +132,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         },
       }),
       svgr(),
-      // manifestSRI(),
       // Old library types need to be converted
       optimizeLodashImports() as PluginOption,
       !!process.env.ANALYZE_BUNDLE_SIZE && analyzer({ analyzerMode: 'static' }),

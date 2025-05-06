@@ -5,8 +5,8 @@
 import type {
   FilenameData,
   ShortCodesToEmojiDataKey,
-} from './emoji_compressed';
-import emojiCompressed from './emoji_compressed';
+} from './emoji_compressed.mjs';
+import emojiCompressed from './emoji_compressed.mjs';
 import { unicodeToFilename } from './unicode_to_filename';
 
 type UnicodeMapping = Record<

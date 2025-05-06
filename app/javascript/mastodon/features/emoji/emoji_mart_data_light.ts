@@ -4,8 +4,8 @@
 import type { BaseEmoji } from 'emoji-mart';
 import type { Emoji } from 'emoji-mart/dist-es/utils/data';
 
-import type { Search, ShortCodesToEmojiData } from './emoji_compressed';
-import emojiCompressed from './emoji_compressed';
+import type { Search, ShortCodesToEmojiData } from './emoji_compressed.mjs';
+import emojiCompressed from './emoji_compressed.mjs';
 import { unicodeToUnifiedName } from './unicode_to_unified_name';
 
 type Emojis = Record<

@@ -12,7 +12,7 @@ import Overlay from 'react-overlays/Overlay';
 
 import MoodIcon from '@/material-icons/400-20px/mood.svg?react';
 import { IconButton } from 'mastodon/components/icon_button';
-import emojiCompressed from 'mastodon/features/emoji/emoji_compressed';
+import emojiCompressed from '@/mastodon/features/emoji/emoji_compressed.mjs';
 import { assetHost } from 'mastodon/utils/config';
 
 import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
