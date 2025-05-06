@@ -4,6 +4,7 @@ require 'singleton'
 
 class ActivityPub::TagManager
   include Singleton
+  include JsonLdHelper
   include RoutingHelper
 
   CONTEXT = 'https://www.w3.org/ns/activitystreams'
@@ -17,7 +18,7 @@ class ActivityPub::TagManager
   end
 
   def url_for(target)
-    return target.url if target.respond_to?(:local?) && !target.local?
+    return unsupported_uri_scheme?(target.url) ? nil : target.url if target.respond_to?(:local?) && !target.local?
 
     return unless target.respond_to?(:object_type)
 
