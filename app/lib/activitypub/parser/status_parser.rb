@@ -28,7 +28,10 @@ class ActivityPub::Parser::StatusParser
   end
 
   def url
-    url_to_href(@object['url'], 'text/html') if @object['url'].present?
+    return if @object['url'].blank?
+
+    url = url_to_href(@object['url'], 'text/html')
+    url unless unsupported_uri_scheme?(url)
   end
 
   def text
