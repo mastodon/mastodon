@@ -66,7 +66,7 @@ Example:
 Pull requests that do not pass automated checks on CI may not be reviewed. In
 particular, please keep in mind:
 
-- Unit and integration tests (rspec, vitest)
+- Unit and integration tests (rspec, jest)
 - Code style rules (rubocop, eslint)
 - Normalization of locale files (i18n-tasks)
 - Relevant accessibility or performance concerns
