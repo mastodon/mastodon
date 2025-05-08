@@ -149,8 +149,8 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
     end
 
     it 'fetches the top status only once' do
-      _ = subject.perform(status.id)
-      expect(FetchReplyWorker).to have_received(:perform_async).with(top_note_uri, { prefetched_body: top_object.deep_stringify_keys })
+      _ = subject.perform(status.id, { request_id: 0 })
+      expect(FetchReplyWorker).to have_received(:perform_async).with(top_note_uri, { prefetched_body: top_object.deep_stringify_keys, request_id: 0 })
       expect(a_request(:get, top_note_uri)).to have_been_made.once
     end
   end
