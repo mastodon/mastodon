@@ -2,11 +2,13 @@
 // (i.e. the svg filename) and a shortCode intended to be shown
 // as a "title" attribute in an HTML element (aka tooltip).
 
+// eslint-disable-next-line import/no-unresolved
+import emojiCompressed from 'virtual:mastodon-emoji-compressed';
 import type {
   FilenameData,
   ShortCodesToEmojiDataKey,
-} from './emoji_compressed.mjs';
-import emojiCompressed from './emoji_compressed.mjs';
+} from 'virtual:mastodon-emoji-compressed';
+
 import { unicodeToFilename } from './unicode_to_filename';
 
 type UnicodeMapping = Record<
