@@ -7,17 +7,19 @@ import * as perf from 'mastodon/performance';
 import ready from 'mastodon/ready';
 import { store } from 'mastodon/store';
 
-import { isProduction } from './utils/environment';
+import { isProduction, isDevelopment } from './utils/environment';
 
-/**
- * @returns {Promise<void>}
- */
 function main() {
   perf.start('main()');
 
   return ready(async () => {
     const mountNode = document.getElementById('mastodon');
-    const props = JSON.parse(mountNode.getAttribute('data-props'));
+    if (!mountNode) {
+      throw new Error('Mount node not found');
+    }
+    const props = JSON.parse(
+      mountNode.getAttribute('data-props') ?? '{}',
+    ) as Record<string, unknown>;
 
     const root = createRoot(mountNode);
     root.render(<Mastodon {...props} />);
@@ -25,8 +27,10 @@ function main() {
 
     if (isProduction() && me && 'serviceWorker' in navigator) {
       const { Workbox } = await import('workbox-window');
-      const wb = new Workbox('/sw.js');
-      /** @type {ServiceWorkerRegistration} */
+      const wb = new Workbox(
+        isDevelopment() ? '/packs-dev/dev-sw.js?dev-sw' : '/sw.js',
+        { type: 'module', scope: '/' },
+      );
       let registration;
 
       try {
@@ -35,8 +39,14 @@ function main() {
         console.error(err);
       }
 
-      if (registration && 'Notification' in window && Notification.permission === 'granted') {
-        const registerPushNotifications = await import('mastodon/actions/push_notifications');
+      if (
+        registration &&
+        'Notification' in window &&
+        Notification.permission === 'granted'
+      ) {
+        const registerPushNotifications = await import(
+          'mastodon/actions/push_notifications'
+        );
 
         store.dispatch(registerPushNotifications.register());
       }
@@ -46,4 +56,5 @@ function main() {
   });
 }
 
+// eslint-disable-next-line import/no-default-export
 export default main;

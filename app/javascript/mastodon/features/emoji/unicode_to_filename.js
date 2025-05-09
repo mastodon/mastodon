@@ -1,6 +1,6 @@
 // taken from:
 // https://github.com/twitter/twemoji/blob/47732c7/twemoji-generator.js#L848-L866
-exports.unicodeToFilename = (str) => {
+export const unicodeToFilename = (str) => {
   let result = '';
   let charCode = 0;
   let p = 0;

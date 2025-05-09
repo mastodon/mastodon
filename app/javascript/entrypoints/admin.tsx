@@ -1,4 +1,3 @@
-import './public-path';
 import { createRoot } from 'react-dom/client';
 
 import Rails from '@rails/ujs';
@@ -273,7 +272,7 @@ async function mountReactComponent(element: Element) {
   );
 
   const { default: Component } = (await import(
-    `@/mastodon/components/admin/${componentName}`
+    `@/mastodon/components/admin/${componentName}.jsx`
   )) as { default: React.ComponentType };
 
   const root = createRoot(element);
