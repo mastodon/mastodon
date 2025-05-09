@@ -2,13 +2,17 @@
 
 module Admin
   class RulesController < BaseController
-    before_action :set_rule, except: [:index, :create]
+    before_action :set_rule, except: [:index, :new, :create]
 
     def index
       authorize :rule, :index?
 
       @rules = Rule.ordered
-      @rule  = Rule.new
+    end
+
+    def new
+      authorize :rule, :create?
+      @rule = Rule.new
     end
 
     def edit
@@ -24,7 +28,7 @@ module Admin
         redirect_to admin_rules_path
       else
         @rules = Rule.ordered
-        render :index
+        render :new
       end
     end
 

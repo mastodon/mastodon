@@ -1,20 +1,11 @@
 - content_for :page_title do
   = t('admin.rules.title')
 
-%p= t('admin.rules.description_html')
+- content_for :heading_actions do
+  - if can? :create, :rule
+    = link_to t('admin.rules.add_new'), new_admin_rule_path, class: 'button'
 
 %hr.spacer/
-
-- if can? :create, :rule
-  = simple_form_for @rule, url: admin_rules_path do |form|
-    = render 'shared/error_messages', object: @rule
-
-    = render form
-
-    .actions
-      = form.button :button, t('admin.rules.add_new'), type: :submit
-
-  %hr.spacer/
 
 - if @rules.empty?
   .muted-hint.center-text

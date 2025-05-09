@@ -93,7 +93,7 @@ namespace :admin do
     end
   end
 
-  resources :rules, only: [:index, :create, :edit, :update, :destroy]
+  resources :rules, only: [:index, :new, :create, :edit, :update, :destroy]
 
   resources :webhooks do
     member do
