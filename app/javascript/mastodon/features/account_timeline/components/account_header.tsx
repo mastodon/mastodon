@@ -61,6 +61,7 @@ import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
+import { FamiliarFollowers } from './familiar_followers';
 
 const messages = defineMessages({
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
@@ -1022,6 +1023,7 @@ export const AccountHeader: React.FC<{
                   />
                 </NavLink>
               </div>
+              <FamiliarFollowers accountId={accountId} />
             </div>
           )}
         </div>
