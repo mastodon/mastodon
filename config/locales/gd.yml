@@ -220,6 +220,7 @@ gd:
         enable_user: Cuir an cleachdaiche an comas
         memorialize_account: Dèan cuimhneachan dhen chunntas
         promote_user: Àrdaich an cleachdaiche
+        publish_terms_of_service: Foillsich teirmichean na seirbheise
         reject_appeal: Diùlt an t-ath-thagradh
         reject_user: Diùlt an cleachdaiche
         remove_avatar_user: Thoir air falbh an t-avatar
@@ -284,6 +285,7 @@ gd:
         enable_user_html: Chuir %{name} an clàradh a-steach an comas dhan chleachdaiche %{target}
         memorialize_account_html: Rinn %{name} duilleag cuimhneachain dhen chunntas aig %{target}
         promote_user_html: Dh’àrdaich %{name} an cleachdaiche %{target}
+        publish_terms_of_service_html: Dh’fhoillsich %{name} ùrachadh air teirmichean na seirbheise
         reject_appeal_html: Dhiùlt %{name} an t-ath-thagradh air co-dhùnadh na maorsainneachd o %{target}
         reject_user_html: Dhiùlt %{name} an clàradh o %{target}
         remove_avatar_user_html: Thug %{name} avatar aig %{target} air falbh
@@ -313,6 +315,7 @@ gd:
       title: Sgrùd an loga
       unavailable_instance: "(chan eil ainm na h-àrainn ri fhaighinn)"
     announcements:
+      back: Air ais gu na brathan
       destroyed_msg: Chaidh am brath-fios a sguabadh às!
       edit:
         title: Deasaich am brath-fios
@@ -321,6 +324,9 @@ gd:
       new:
         create: Cruthaich brath-fios
         title: Brath-fios ùr
+      preview:
+        disclaimer: Air sgàth ’s nach urrainn dhan luchd-cleachdaidh an diùltadh, bu chòir dhut na brathan air a’ phost-d a chuingeachadh air brathan-fios cudromach mar briseadh a-steach air dàta pearsanta no brath-fios mu dhùnadh an fhrithealaiche.
+        title: Ro-shealladh air a’ bhrath-fhios
       publish: Foillsich
       published_msg: Chaidh am brath-fios fhoillseachadh!
       scheduled_for: Chaidh a chur air an sgeideal %{time}
@@ -489,6 +495,34 @@ gd:
       new:
         title: Ion-phortaich bacaidhean àrainne
       no_file: Cha deach faidhle a thaghadh
+    fasp:
+      debug:
+        callbacks:
+          created_at: Air a chruthachadh
+          delete: Sguab às
+          ip: Seòladh IP
+          request_body: Bodhaig an iarrtais
+          title: Gairmean air ais dì-bhugachaidh
+      providers:
+        active: Gnìomhach
+        base_url: URL bunaiteach
+        callback: Gairm air ais
+        delete: Sguab às
+        edit: Deasaich an solaraiche
+        finish_registration: Crìochnaich an clàradh
+        name: Ainm
+        providers: Solaraichean
+        public_key_fingerprint: Lorg-meòir na h-iuchrach poblaiche
+        registration_requested: Chaidh clàradh iarraidh
+        registrations:
+          confirm: Dearbh
+          description: Fhuair thu clàradh o FASP. Diùlt e mur an do chuir thu fhèin seo a’ dol. Mas e tusa a bh’ ann, dèan coimeas cùramach air ainm agus lorg-meòir na h-iuchraiche mus dearbh thu an clàradh.
+          reject: Diùlt
+          title: Dearbh an clàradh FASP
+        save: Sàbhail
+        select_capabilities: Tagh comasan
+        sign_in: Clàraich a-steach
+        status: Staid
     follow_recommendations:
       description_html: "<strong>Cuidichidh molaidhean leantainn an luchd-cleachdaidh ùr ach an lorg iad susbaint inntinneach gu luath</strong>. Mur an do ghabh cleachdaiche conaltradh gu leòr le càch airson molaidhean leantainn gnàthaichte fhaighinn, mholamaid na cunntasan seo ’nan àite. Thèid an àireamhachadh às ùr gach latha, stèidhichte air na cunntasan air an robh an conaltradh as trice ’s an luchd-leantainn ionadail as motha sa chànan."
       language: Dhan chànan
@@ -894,6 +928,8 @@ gd:
     system_checks:
       database_schema_check:
         message_html: Tha imrichean stòir-dhàta ri dhèiligeadh ann. Ruith iad a dhèanamh cinnteach gum bi giùlan na h-aplacaid mar a bhiodhte ’n dùil
+      elasticsearch_analysis_index_mismatch:
+        message_html: Tha roghainnean anailis an inneacs Elasticsearch ro shean. Ruith <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Tha droch-shlàinte air bagaid Elasticsearch (staid dhearg), chan eil gleusan an luirg ri fhaighinn
       elasticsearch_health_yellow:
@@ -953,6 +989,35 @@ gd:
       search: Lorg
       title: Tagaichean hais
       updated_msg: Chaidh roghainnean an taga hais ùrachadh
+    terms_of_service:
+      back: Air ais gu teirmichean na seirbheise
+      changelog: Na chaidh atharrachadh
+      create: Cleachd feadhainn agad fhèin
+      current: Làithreach
+      draft: Dreachd
+      generate: Cleachd teamplaid
+      generates:
+        action: Gin
+        chance_to_review_html: "<strong>Cha dèid na teirmichean na seirbheise air an gintinn fhoillseachadh gu fèin-obrachail.</strong> Bidh teans agad gus lèirmheas a dhèanamh air an toradh. Lean am fiosrachadh riatanach airson leantainn air adhart."
+        title: Suidheachadh teirmichean na seirbheise
+      going_live_on_html: Beò, èifeachdach on %{date}
+      history: Eachdraidh
+      live: Beò
+      no_history: Cha deach atharrachadh sam bith air teirmichean na seirbheise a chlàradh fhathast.
+      notified_on_html: Fhuair an luchd-cleachdaidh brath %{date}
+      notify_users: Cuir brath dhan luchd-chleachdaidh
+      preview:
+        send_preview: Cuir ro-shealladh gu %{email}
+        send_to_all:
+          few: Cuir %{display_count} puist-d
+          one: Cuir %{display_count} phost-d
+          other: Cuir %{display_count} post-d
+          two: Cuir %{display_count} phost-d
+        title: Ro-shealladh air brath-fios mu theirmichean na seirbheise
+      publish: Foillsich
+      published_on_html: Air fhoillseachadh %{date}
+      save_draft: Sàbhail dreachd
+      title: Teirmichean na seirbheise
     title: Rianachd
     trends:
       allow: Ceadaich
@@ -1192,6 +1257,7 @@ gd:
     set_new_password: Suidhich facal-faire ùr
     setup:
       email_below_hint_html: Thoir sùil air pasgan an spama agad no iarr fear eile. ’S urrainn dhut an seòladh puist-d agad a chur ceart ma tha e ceàrr.
+      email_settings_hint_html: Briog air a’ cheangal a chuir sinn gu %{email} airson tòiseachadh air Mastodon a chleachdadh. Fuirichidh sinn ort an-seo.
       link_not_received: Nach d’fhuair thu ceangal?
       new_confirmation_instructions_sent: Gheibh thu post-d ùr le ceangal dearbhaidh an ceann corra mionaid!
       title: Thoir sùil air a’ bhogsa a-steach agad
@@ -1200,6 +1266,7 @@ gd:
       title: Clàraich a-steach gu %{domain}
     sign_up:
       manual_review: Nì na maoir againn lèirmheas a làimh air clàraidhean air %{domain}. Airson ar cuideachadh le làimhseachadh do chlàraidh, sgrìobh beagan mu do dhèidhinn agus carson a tha thu ag iarraidh cunntas air %{domain}.
+      preamble: Le cunntas air an fhrithealaiche Mastodon seo, ’s urrainn dhut neach sam bith a leantainn air a’ cho-shaoghal, ge b’ e càit a bheil an cunntas aca-san ’ga òstadh.
       title: Suidhicheamaid %{domain} dhut.
     status:
       account_status: Staid a’ chunntais
@@ -1211,6 +1278,8 @@ gd:
       view_strikes: Seall na rabhaidhean a fhuair an cunntas agad roimhe
     too_fast: Chaidh am foirm a chur a-null ro luath, feuch ris a-rithist.
     use_security_key: Cleachd iuchair tèarainteachd
+    user_agreement_html: Leugh mi agus tha mi ag aontachadh ri <a href="%{terms_of_service_path}" target="_blank">teirmichean na seirbheise</a> agus am <a href="%{privacy_policy_path}" target="_blank">poileasaidh prìobhaideachd</a>
+    user_privacy_agreement_html: Leugh mi is tha mi ag aontachadh ris a’ <a href="%{privacy_policy_path}" target="_blank">phoileasaidh prìobhaideachd</a>
   author_attribution:
     example_title: Ball-sampaill teacsa
     hint_html: An sgrìobh thu naidheachdan no bloga taobh a-muigh Mhastodon? Stiùirich mar a thèid iomradh a thoirt ort nuair a bhios na h-artaigilean agad ’gan co-roinneadh air Mastodon.
@@ -1749,6 +1818,7 @@ gd:
   scheduled_statuses:
     over_daily_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte an-diugh
     over_total_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte
+    too_soon: feumaidh an ceann-latha a bhith san àm ri teachd
   self_destruct:
     lead_html: Gu mì-fhortanach, thèid <strong>%{domain}</strong> a dhùnadh gu buan. Ma tha cunntas agad ann, chan urrainn dhut cumail a’ gol ’ga chleachdadh ach ’s urrainn dhut lethbhreac-glèidhidh dhen dàta agad iarraidh fhathast.
     title: Tha am frithealaiche seo gu bhith dùnadh
@@ -1919,6 +1989,8 @@ gd:
       too_late: Tha e ro anmoch airson an rabhadh seo ath-thagradh
   tags:
     does_not_match_previous_name: "– chan eil seo a-rèir an ainm roimhe"
+  terms_of_service:
+    title: Teirmichean na seirbheise
   themes:
     contrast: Mastodon (iomsgaradh àrd)
     default: Mastodon (dorcha)
@@ -1950,6 +2022,10 @@ gd:
     recovery_instructions_html: Ma chailleas tu an t-inntrigeadh dhan fhòn agad, ’s urrainn dhut fear dhe na còdan aisig gu h-ìosal a chleachdadh airson faighinn a-steach dhan chunntas agad a-rithist. <strong>Cùm na còdan aisig sàbhailte</strong>. Mar eisimpleir, ’s urrainn dhut an clò-bhualadh ’s a chumail far a bheil thu a’ cumail na sgrìobhainnean cudromach eile agad.
     webauthn: Iuchraichean tèarainteachd
   user_mailer:
+    announcement_published:
+      description: 'Tha na rianairean aig %{domain} a’ dèanamh brath-fios:'
+      subject: Brath-fios na seirbheise
+      title: Brath-fios na seirbheise %{domain}
     appeal_approved:
       action: Roghainnean a’ chunntais
       explanation: Chaidh aontachadh ris an ath-thagradh agad air an rabhadh o %{strike_date} a chuir thu a-null %{appeal_date}. Tha an cunntas agad ann an deagh-chor a-rithist.
@@ -1979,6 +2055,11 @@ gd:
       further_actions_html: Mur e thu fhèin a bh’ ann, mholamaid gun %{action} sa bhad agus gun cuir thu an dearbhadh dà-cheumnach an comas airson an cunntas agad a chumail tèarainte.
       subject: Chaidh an cunntas agad inntrigeadh o sheòladh IP ùr
       title: Clàradh a-steach ùr
+    terms_of_service_changed:
+      sign_off: Sgioba %{domain}
+      subject: Ùrachaidhean air teirmichean na seirbheise againn
+      subtitle: Tha teirmichean na seirbheise aig %{domain} gan atharrachadh
+      title: Naidheachd cudromach
     warning:
       appeal: Cuir ath-thagradh a-null
       appeal_description: Ma tha thu dhen bheachd gur e mearachd a th’ ann, ’s urrainn dhut ath-thagradh a chur a-null gun sgioba aig %{instance}.
