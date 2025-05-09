@@ -8,6 +8,7 @@ import svgr from 'vite-plugin-svgr';
 import { visualizer } from 'rollup-plugin-visualizer';
 import RailsPlugin from 'vite-plugin-rails';
 import { VitePWA } from 'vite-plugin-pwa';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 import { defineConfig, UserConfigFnPromise, UserConfig } from 'vite';
 import postcssPresetEnv from 'postcss-preset-env';
@@ -39,12 +40,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
             },
           }),
         ],
-      },
-    },
-    resolve: {
-      alias: {
-        mastodon: path.resolve(jsRoot, 'mastodon'),
-        '@': jsRoot,
       },
     },
     server: {
@@ -100,6 +95,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       },
     },
     plugins: [
+      tsconfigPaths(),
       RailsPlugin({
         compress: mode !== 'production' && command === 'build',
       }),
