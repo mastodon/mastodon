@@ -35,6 +35,16 @@ module ViteRuby::ManifestIntegrityExtension
       stylesheets: dev_server_running? ? [] : (entries + imports).flat_map { |entry| entry['css'] }.compact.uniq,
     }
   end
+
+  # We need to override this method to not include the manifest, as in our case it is too large and will cause a JSON max nesting error rather than raising the expected exception
+  def missing_entry_error(name, **)
+    raise ViteRuby::MissingEntrypointError.new(
+      file_name: resolve_entry_name(name, **),
+      last_build: builder.last_build_metadata,
+      manifest: '',
+      config: config
+    )
+  end
 end
 
 ViteRuby::Manifest.prepend ViteRuby::ManifestIntegrityExtension
@@ -94,6 +104,20 @@ module ViteRails::TagHelpers::IntegrityExtension
         tags << stylesheet_link_tag(entry[:path], integrity: entry[:integrity], **options)
       end
     end
+  end
+
+  def vite_preload_file_tag(name,
+                            asset_type: :javascript,
+                            crossorigin: 'anonymous', **options)
+    ''.html_safe.tap do |tags|
+      entries = vite_manifest.resolve_entries_with_integrity(name, type: asset_type)
+
+      entries.fetch(:scripts).each do |script|
+        tags << vite_preload_tag(script[:file], integrity: script[:integrity], crossorigin: crossorigin, **options)
+      end
+    end
+  rescue ViteRuby::MissingEntrypointError
+    # Ignore this error, it is not critical if the file is not preloaded
   end
 end
 
