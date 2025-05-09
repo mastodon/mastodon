@@ -49,7 +49,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   def usage
     {
       users: {
-        active_month: object.active_user_count(4),
+        active_month: limited_federation? ? 0 : object.active_user_count(4),
       },
     }
   end
@@ -99,6 +99,8 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       translation: {
         enabled: TranslationService.configured?,
       },
+
+      limited_federation: limited_federation?,
     }
   end
 
@@ -125,6 +127,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def registrations_message
     markdown.render(Setting.closed_registrations_message) if Setting.closed_registrations_message.present?
+  end
+
+  def limited_federation?
+    Rails.configuration.x.limited_federation_mode
   end
 
   def markdown
