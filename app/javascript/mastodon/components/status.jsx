@@ -480,9 +480,9 @@ class Status extends ImmutablePureComponent {
                 alt={description}
                 lang={language}
                 poster={attachment.get('preview_url') || status.getIn(['account', 'avatar_static'])}
-                backgroundColor={attachment.getIn(['meta', 'colors', 'background'])}
-                foregroundColor={attachment.getIn(['meta', 'colors', 'foreground'])}
-                accentColor={attachment.getIn(['meta', 'colors', 'accent'])}
+                backgroundColor={attachment.getIn(['meta', 'colors', 'background']) ?? status.getIn(['account', 'meta', 'colors', 'background'])}
+                foregroundColor={attachment.getIn(['meta', 'colors', 'foreground']) ?? status.getIn(['account', 'meta', 'colors', 'foreground'])}
+                accentColor={attachment.getIn(['meta', 'colors', 'accent']) ?? status.getIn(['account', 'meta', 'colors', 'accent'])}
                 duration={attachment.getIn(['meta', 'original', 'duration'], 0)}
                 deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}
                 sensitive={status.get('sensitive')}

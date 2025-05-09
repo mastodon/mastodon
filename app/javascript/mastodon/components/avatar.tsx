@@ -2,8 +2,9 @@ import { useState, useCallback } from 'react';
 
 import classNames from 'classnames';
 
+import { Blurhash } from 'mastodon/components/blurhash';
 import { useHovering } from 'mastodon/hooks/useHovering';
-import { autoPlayGif } from 'mastodon/initial_state';
+import { autoPlayGif, useBlurhash } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 
 interface Props {
@@ -58,6 +59,14 @@ export const Avatar: React.FC<Props> = ({
       onMouseLeave={handleMouseLeave}
       style={style}
     >
+      {(loading || error) && account?.blurhash && (
+        <Blurhash
+          hash={account.blurhash}
+          className='account__avatar__preview'
+          dummy={!useBlurhash}
+        />
+      )}
+
       {src && !error && (
         <img src={src} alt='' onLoad={handleLoad} onError={handleError} />
       )}
