@@ -23,6 +23,8 @@ class TermsOfService < ApplicationRecord
 
   validate :effective_date_cannot_be_in_the_past
 
+  NOTIFICATION_ACTIVITY_CUTOFF = 1.year.freeze
+
   def published?
     published_at.present?
   end
@@ -39,8 +41,20 @@ class TermsOfService < ApplicationRecord
     notification_sent_at.present?
   end
 
+  def base_user_scope
+    User.confirmed.where(created_at: ..published_at).joins(:account)
+  end
+
+  def email_notification_cutoff
+    published_at - NOTIFICATION_ACTIVITY_CUTOFF
+  end
+
+  def scope_for_interstitial
+    base_user_scope.merge(Account.suspended).or(base_user_scope.where(current_sign_in_at: [nil, ...email_notification_cutoff]))
+  end
+
   def scope_for_notification
-    User.confirmed.joins(:account).merge(Account.without_suspended).where(created_at: (..published_at))
+    base_user_scope.merge(Account.without_suspended).where(current_sign_in_at: email_notification_cutoff...)
   end
 
   private

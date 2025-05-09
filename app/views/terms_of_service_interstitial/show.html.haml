@@ -1,0 +1,15 @@
+- content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex, noarchive' }/
+
+- content_for :body_classes, 'app-body'
+
+.simple_form
+  %h1.title= t('terms_of_service_interstitial.title', domain: site_hostname)
+
+  - effective_date = @terms_of_service.effective_date || Time.zone.today
+  %p.lead= effective_date.past? ? t('terms_of_service_interstitial.past_preamble_html') : t('terms_of_service_interstitial.future_preamble_html', date: l(effective_date))
+
+  %p.lead= t('user_mailer.terms_of_service_changed.agreement', domain: site_hostname)
+
+  .stacked-actions
+    = link_to t('terms_of_service_interstitial.review_link'), terms_of_service_path, class: 'button'
