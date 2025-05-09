@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { useIntl, defineMessages } from 'react-intl';
 
 import { fetchAccountsFamiliarFollowers } from '@/mastodon/actions/accounts_familiar_followers';
