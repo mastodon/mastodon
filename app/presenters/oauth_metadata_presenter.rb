@@ -61,7 +61,7 @@ class OauthMetadataPresenter < ActiveModelSerializers::Model
   end
 
   def token_endpoint_auth_methods_supported
-    %w(client_secret_basic client_secret_post)
+    %w(none client_secret_basic client_secret_post)
   end
 
   def code_challenge_methods_supported
