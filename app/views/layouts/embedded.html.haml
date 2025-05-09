@@ -14,7 +14,7 @@
     = vite_client_tag
     = vite_react_refresh_tag
     = theme_style_tags 'mastodon-light'
-    -# = vite_preload_tag "mastodon/locales/#{I18n.locale}.json", :crossorigin => 'anonymous'
+    = vite_preload_file_tag "mastodon/locales/#{I18n.locale}.json"
     = render_initial_state
     = vite_typescript_tag 'embed.tsx', integrity: true, crossorigin: 'anonymous'
   %body.embed
