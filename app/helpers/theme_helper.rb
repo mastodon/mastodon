@@ -7,6 +7,8 @@ module ThemeHelper
         tags << vite_stylesheet_tag('styles/mastodon-light.scss', media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
         tags << vite_stylesheet_tag('styles/application.scss', media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
       end
+    elsif theme == 'default'
+      vite_stylesheet_tag 'styles/application.scss', media: 'all', crossorigin: 'anonymous'
     else
       vite_stylesheet_tag "styles/#{theme}.scss", media: 'all', crossorigin: 'anonymous'
     end
