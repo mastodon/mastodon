@@ -59,6 +59,7 @@ import {
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
+import { FamiliarFollowers } from './familiar_followers';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 
@@ -1022,6 +1023,7 @@ export const AccountHeader: React.FC<{
                   />
                 </NavLink>
               </div>
+              <FamiliarFollowers accountId={accountId} />
             </div>
           )}
         </div>
