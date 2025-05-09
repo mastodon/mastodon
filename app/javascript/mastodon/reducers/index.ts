@@ -4,8 +4,8 @@ import { loadingBarReducer } from 'react-redux-loading-bar';
 import { combineReducers } from 'redux-immutable';
 
 import { accountsReducer } from './accounts';
-import { accountsMapReducer } from './accounts_map';
 import { accountsFamiliarFollowersReducer } from './accounts_familiar_followers';
+import { accountsMapReducer } from './accounts_map';
 import { alertsReducer } from './alerts';
 import announcements from './announcements';
 import { composeReducer } from './compose';
