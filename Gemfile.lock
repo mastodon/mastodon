@@ -423,10 +423,10 @@ GEM
       redis (>= 3.0.5)
     matrix (0.4.2)
     memory_profiler (1.1.0)
-    mime-types (3.6.2)
+    mime-types (3.7.0)
       logger
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2025.0408)
+      mime-types-data (~> 3.2025, >= 3.2025.0507)
+    mime-types-data (3.2025.0507)
     mini_mime (1.1.5)
     mini_portile2 (2.8.8)
     minitest (5.25.5)
@@ -996,7 +996,7 @@ DEPENDENCIES
   mail (~> 2.8)
   mario-redis-lock (~> 1.2)
   memory_profiler
-  mime-types (~> 3.6.0)
+  mime-types (~> 3.7.0)
   mutex_m
   net-http (~> 0.6.0)
   net-ldap (~> 0.18)
