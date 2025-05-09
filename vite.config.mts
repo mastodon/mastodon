@@ -5,7 +5,7 @@ import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import react from '@vitejs/plugin-react';
 import { PluginOption } from 'vite';
 import svgr from 'vite-plugin-svgr';
-import { analyzer } from 'vite-bundle-analyzer';
+import { visualizer } from 'rollup-plugin-visualizer';
 import RailsPlugin from 'vite-plugin-rails';
 import { VitePWA } from 'vite-plugin-pwa';
 
@@ -123,8 +123,8 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
               MastodonServiceWorkerLocales(),
             ],
           },
-          // Force the output location, because we have a symlink in `public/sw.js`
         },
+        // Force the output location, because we have a symlink in `public/sw.js`
         outDir: path.resolve(__dirname, 'public/packs'),
         devOptions: {
           enabled: true,
@@ -134,7 +134,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       svgr(),
       // Old library types need to be converted
       optimizeLodashImports() as PluginOption,
-      !!process.env.ANALYZE_BUNDLE_SIZE && analyzer({ analyzerMode: 'static' }),
+      !!process.env.ANALYZE_BUNDLE_SIZE && (visualizer() as PluginOption),
     ],
   } satisfies UserConfig;
 };
