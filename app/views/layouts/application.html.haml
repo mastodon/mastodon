@@ -31,7 +31,7 @@
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
     = vite_stylesheet_tag 'styles/inert.scss', media: 'all', id: 'inert-style'
 
-    -# = preload_pack_asset "locale/#{I18n.locale}-json.js"
+    -# = vite_preload_tag "mastodon/locales/#{I18n.locale}.json", :crossorigin => 'anonymous'
     = csrf_meta_tags unless skip_csrf_meta_tags?
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 

@@ -15,7 +15,6 @@ function fetchRoot() {
   return fetch('/', { credentials: 'include', redirect: 'manual' });
 }
 
-// precacheAndRoute(self.__WB_MANIFEST);
 
 registerRoute(
   /intl\/.*\.js$/,
