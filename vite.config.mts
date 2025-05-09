@@ -13,6 +13,7 @@ import { defineConfig, UserConfigFnPromise, UserConfig } from 'vite';
 import postcssPresetEnv from 'postcss-preset-env';
 
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
+import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
 
 const jsRoot = path.resolve(__dirname, 'app/javascript');
 const entrypointRoot = path.resolve(jsRoot, 'entrypoints');
@@ -104,10 +105,11 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       }),
       react({
         babel: {
-          plugins: ['formatjs', 'transform-react-remove-prop-types', 'preval'],
+          plugins: ['formatjs', 'transform-react-remove-prop-types'],
         },
       }),
       MastodonServiceWorkerLocales(),
+      MastodonEmojiCompressed(),
       VitePWA({
         srcDir: 'mastodon/service_worker',
         // We need to use injectManifest because we use our own service worker
@@ -115,12 +117,13 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         manifest: false,
         injectRegister: false,
         injectManifest: {
-          // Do not inject a manifest, we dont use precache
+          // Do not inject a manifest, we don't use precache
           injectionPoint: undefined,
           buildPlugins: {
             vite: [
               // Provide a virtual import with only the locales used in the ServiceWorker
               MastodonServiceWorkerLocales(),
+              MastodonEmojiCompressed(),
             ],
           },
         },
