@@ -9,7 +9,11 @@ fallback_prefix = ENV.fetch('REDIS_NAMESPACE', nil).presence
 prefix          = ENV.fetch('ES_PREFIX') { fallback_prefix }
 ca_file         = ENV.fetch('ES_CA_FILE', nil).presence
 
-transport_options = { ssl: { ca_file: ca_file } } if ca_file.present?
+# While Faraday ignore http_proxy env var when Faraday.ignore_env_proxy eqals true, elasticsearch-transport will use proxy. This is a workaround to avoid this.
+transport_options = {
+  proxy: {},
+}
+transport_options[:ssl] = { ca_file: ca_file } if ca_file.present?
 
 Chewy.settings = {
   host: "#{host}:#{port}",
