@@ -44,7 +44,7 @@ export function configFromEnv(env, environment, logger) {
     // of time to give a more specific error message:
     if (env.DATABASE_URL.includes('uselibpqcompat')) {
       throw new Error(
-        'SECURITY WARNING: Mastodon forces uselibpqcompat mode, do not include it in DATABASE_URL',
+        'Mastodon forces uselibpqcompat mode, do not include it in DATABASE_URL',
       );
     }
 
