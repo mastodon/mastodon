@@ -2174,7 +2174,7 @@ a .account__avatar {
 }
 
 .avatar-group--compact {
-  gap: 0px;
+  gap: 0;
   flex-wrap: nowrap;
 
   & > :not(:first-child) {
@@ -8144,7 +8144,6 @@ noscript {
     align-items: center;
     gap: 10px;
     margin-block-end: 16px;
-
     color: $darker-text-color;
 
     a:any-link {
