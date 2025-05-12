@@ -2167,6 +2167,25 @@ a .account__avatar {
   cursor: pointer;
 }
 
+.avatar-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.avatar-group--compact {
+  gap: 0px;
+  flex-wrap: nowrap;
+
+  & > :not(:first-child) {
+    margin-inline-start: -8px;
+
+    .account__avatar {
+      box-shadow: 0 0 0 2px var(--background-color);
+    }
+  }
+}
+
 .account__avatar-overlay {
   position: relative;
 
