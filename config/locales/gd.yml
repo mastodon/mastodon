@@ -326,6 +326,7 @@ gd:
         title: Brath-fios ùr
       preview:
         disclaimer: Air sgàth ’s nach urrainn dhan luchd-cleachdaidh an diùltadh, bu chòir dhut na brathan air a’ phost-d a chuingeachadh air brathan-fios cudromach mar briseadh a-steach air dàta pearsanta no brath-fios mu dhùnadh an fhrithealaiche.
+        explanation_html: 'Thèid am post-d seo a chur gu <strong>%{display_count} luchd-cleachdaidh</strong>. Thèid an teacsa seo a ghabhail a-staigh sa phost-d:'
         title: Ro-shealladh air a’ bhrath-fhios
       publish: Foillsich
       published_msg: Chaidh am brath-fios fhoillseachadh!
@@ -523,6 +524,8 @@ gd:
         select_capabilities: Tagh comasan
         sign_in: Clàraich a-steach
         status: Staid
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Cuidichidh molaidhean leantainn an luchd-cleachdaidh ùr ach an lorg iad susbaint inntinneach gu luath</strong>. Mur an do ghabh cleachdaiche conaltradh gu leòr le càch airson molaidhean leantainn gnàthaichte fhaighinn, mholamaid na cunntasan seo ’nan àite. Thèid an àireamhachadh às ùr gach latha, stèidhichte air na cunntasan air an robh an conaltradh as trice ’s an luchd-leantainn ionadail as motha sa chànan."
       language: Dhan chànan
@@ -999,14 +1002,17 @@ gd:
       generates:
         action: Gin
         chance_to_review_html: "<strong>Cha dèid na teirmichean na seirbheise air an gintinn fhoillseachadh gu fèin-obrachail.</strong> Bidh teans agad gus lèirmheas a dhèanamh air an toradh. Lean am fiosrachadh riatanach airson leantainn air adhart."
+        explanation_html: Tha an teamplaid airson teirmichean na seirbheise ’ga sholar a chùm fiosrachaidh a-mhàin agus cha bu chòir a mheas mar chomhairle laghail air cuspair sam bith. Gabh comhairle o neach-lagha agad fhèin air an t-suidheachadh agad ’s air ceistean sam bith agad mun lagh.
         title: Suidheachadh teirmichean na seirbheise
       going_live_on_html: Beò, èifeachdach on %{date}
       history: Eachdraidh
       live: Beò
       no_history: Cha deach atharrachadh sam bith air teirmichean na seirbheise a chlàradh fhathast.
+      no_terms_of_service_html: Cha do rèitich thu teirmichean na seirbheise aig an àm seo. Tha teirmichean seirbheise ag amas nithean a dhèanamh soilleir agus do dhìon o uallaichean ann an connspaidean leis an luchd-cleachdaidh agad a dh’èireas ma dh’fhaoidte.
       notified_on_html: Fhuair an luchd-cleachdaidh brath %{date}
       notify_users: Cuir brath dhan luchd-chleachdaidh
       preview:
+        explanation_html: 'Thèid am post-d seo a chur gu <strong>%{display_count} luchd-cleachdaidh</strong> a chlàraich ro %{date}. Thèid an teacsa seo a ghabhail a-staigh sa phost-d:'
         send_preview: Cuir ro-shealladh gu %{email}
         send_to_all:
           few: Cuir %{display_count} puist-d
@@ -2056,6 +2062,10 @@ gd:
       subject: Chaidh an cunntas agad inntrigeadh o sheòladh IP ùr
       title: Clàradh a-steach ùr
     terms_of_service_changed:
+      agreement: Ma chumas tu a’ dol a chleachdadh %{domain}, aontaichidh tu ris na teirmichean seo. Mur aontaich thu ris na teirmichean ùra, ’s urrainn dhut crìoch a chur air d’ aonta le %{domain} uair sam bith le sguabadh às a’ chunntais agad.
+      changelog: 'Ann am priobadh na sùla, seo na tha an t-ùrachadh seo a’ ciallachadh dhut:'
+      description: 'Tha thu a’ faighinn a’ phuist-d seo air sgàth ’s gu bheil sinn ag atharrachadh teirmichean na seirbheise againn airson %{domain}. Bidh na h-ùrachaidhean seo èifeachdach an %{date}. Mholamaid gun dèan thu lèirmheas air na teirmichean ùra slàna an-seo:'
+      description_html: Tha thu a’ faighinn a’ phuist-d seo air sgàth ’s gu bheil sinn ag atharrachadh teirmichean na seirbheise againn airson %{domain}. Bidh na h-ùrachaidhean seo èifeachdach an <strong>%{date}</strong>. Mholamaid gun dèan thu lèirmheas air <a href="%{path}" target="_blank">na teirmichean ùra slàna an-seo</a>.
       sign_off: Sgioba %{domain}
       subject: Ùrachaidhean air teirmichean na seirbheise againn
       subtitle: Tha teirmichean na seirbheise aig %{domain} gan atharrachadh
