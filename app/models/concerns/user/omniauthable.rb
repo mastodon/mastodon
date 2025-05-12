@@ -99,7 +99,7 @@ module User::Omniauthable
         external: true,
         account_attributes: {
           username: ensure_unique_username(ensure_valid_username(auth.uid)),
-          display_name: auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' '),
+          display_name: display_name_from_auth(auth),
         },
       }
     end
@@ -120,6 +120,11 @@ module User::Omniauthable
       starting_username = starting_username.split('@')[0]
       temp_username = starting_username.gsub(/[^a-z0-9_]+/i, '')
       temp_username.truncate(30, omission: '')
+    end
+
+    def display_name_from_auth(auth)
+      display_name = auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' ')
+      display_name.truncate(Account::DISPLAY_NAME_LENGTH_LIMIT, omission: '')
     end
   end
 end
