@@ -8138,6 +8138,24 @@ noscript {
       }
     }
   }
+
+  &__familiar-followers {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-block-end: 16px;
+
+    color: $darker-text-color;
+
+    a:any-link {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .account__contents {
@@ -10456,14 +10474,6 @@ noscript {
       font-size: 15px;
       line-height: 22px;
     }
-  }
-
-  &__avatar-group {
-    display: flex;
-    gap: 8px;
-    height: 28px;
-    overflow-y: hidden;
-    flex-wrap: wrap;
   }
 
   .status {

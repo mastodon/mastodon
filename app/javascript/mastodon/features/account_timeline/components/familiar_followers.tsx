@@ -4,6 +4,8 @@ import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import { AvatarGroup } from '../../../components/avatar_group';
+
 import { fetchAccountsFamiliarFollowers } from '@/mastodon/actions/accounts_familiar_followers';
 import type { Account } from '@/mastodon/models/account';
 import { getAccountFamiliarFollowers } from '@/mastodon/selectors/accounts';
@@ -11,7 +13,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 const AccountLink: React.FC<{ account?: Account }> = ({ account }) => (
   <Link to={`/@${account?.username}`} data-hover-card-account={account?.id}>
-    {account?.display_name_html}
+    {account?.display_name}
   </Link>
 );
 
@@ -72,9 +74,12 @@ export const FamiliarFollowers: React.FC<{ accountId: string }> = ({
   }
 
   return (
-    <>
-      🤸‍♂️
+    <div className='account__header__familiar-followers'>
+      <AvatarGroup
+        compact
+        accountIds={familiarFollowers.slice(0, 3).map((account) => account.id)}
+      />
       <FamiliarFollowersReadout familiarFollowers={familiarFollowers} />
-    </>
+    </div>
   );
 };
