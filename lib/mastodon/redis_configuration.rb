@@ -43,7 +43,7 @@ class Mastodon::RedisConfiguration
     password = ENV.fetch("#{prefix}PASSWORD", nil)
     host     = ENV.fetch("#{prefix}HOST", defaults[:host])
     port     = ENV.fetch("#{prefix}PORT", defaults[:port])
-    db       = ENV.fetch("#{prefix}DB", defaults[:db])
+    db       = Rails.env.test? ? ENV.fetch('TEST_ENV_NUMBER', defaults[:db]).to_i + 1 : ENV.fetch("#{prefix}DB", defaults[:db])
 
     return { url:, driver: } if url
 
