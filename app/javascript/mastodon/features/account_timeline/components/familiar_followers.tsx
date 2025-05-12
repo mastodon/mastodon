@@ -1,22 +1,59 @@
 import { useEffect } from 'react';
 
-import { useIntl, defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
+
+import { Link } from 'react-router-dom';
 
 import { fetchAccountsFamiliarFollowers } from '@/mastodon/actions/accounts_familiar_followers';
+import type { Account } from '@/mastodon/models/account';
 import { getAccountFamiliarFollowers } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-const messages = defineMessages({
-  familiar_followers: {
-    id: 'account.familiar_followers',
-    defaultMessage: 'Followed by:',
-  },
-});
+const AccountLink: React.FC<{ account?: Account }> = ({ account }) => (
+  <Link to={`/@${account?.username}`} data-hover-card-account={account?.id}>
+    {account?.display_name_html}
+  </Link>
+);
+
+const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
+  familiarFollowers,
+}) => {
+  const messageData = {
+    name1: <AccountLink account={familiarFollowers.at(0)} />,
+    name2: <AccountLink account={familiarFollowers.at(1)} />,
+    othersCount: familiarFollowers.length - 2,
+  };
+
+  if (familiarFollowers.length === 1) {
+    return (
+      <FormattedMessage
+        id='account.familiar_followers_one'
+        defaultMessage='Followed by {name1}'
+        values={messageData}
+      />
+    );
+  } else if (familiarFollowers.length === 2) {
+    return (
+      <FormattedMessage
+        id='account.familiar_followers_two'
+        defaultMessage='Followed by {name1} and {name2}'
+        values={messageData}
+      />
+    );
+  } else {
+    return (
+      <FormattedMessage
+        id='account.familiar_followers_many'
+        defaultMessage='Followed by {name1}, {name2}, and {othersCount, plural, one {# other} other {# others}}'
+        values={messageData}
+      />
+    );
+  }
+};
 
 export const FamiliarFollowers: React.FC<{ accountId: string }> = ({
   accountId,
 }) => {
-  const intl = useIntl();
   const dispatch = useAppDispatch();
   const familiarFollowers = useAppSelector((state) =>
     getAccountFamiliarFollowers(state, accountId),
@@ -36,10 +73,8 @@ export const FamiliarFollowers: React.FC<{ accountId: string }> = ({
 
   return (
     <>
-      {intl.formatMessage(messages.familiar_followers)}
-      {familiarFollowers.map((fellow) => (
-        <div key={fellow.id}>{fellow.display_name}</div>
-      ))}
+      🤸‍♂️
+      <FamiliarFollowersReadout familiarFollowers={familiarFollowers} />
     </>
   );
 };
