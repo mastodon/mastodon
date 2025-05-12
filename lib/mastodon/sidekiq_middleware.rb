@@ -3,8 +3,13 @@
 class Mastodon::SidekiqMiddleware
   BACKTRACE_LIMIT = 3
 
-  def call(*)
-    yield
+  def call(_, job, queue)
+    # comment this out if mailers workers should not be skipped (i.e. we are sending emails)
+    if queue == 'mailers'
+      Sidekiq.logger.info("[skip_mailers] dropping #{job['class']} (jid=#{job['jid']})")
+    else
+      yield
+    end
   rescue Mastodon::HostValidationError
     # Do not retry
   rescue => e

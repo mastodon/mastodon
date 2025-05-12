@@ -1,6 +1,7 @@
 ---
 :concurrency: <%= ENV.fetch('SIDEKIQ_CONCURRENCY', 5) %>
 :queues:
+  - [emergency, 100]
   - [default, 8]
   - [push, 6]
   - [ingress, 4]

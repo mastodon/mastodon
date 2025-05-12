@@ -17,6 +17,7 @@ const output = {
 };
 
 module.exports = {
+  watch:true,
   settings,
   themes,
   env: {

@@ -2,6 +2,11 @@
 
 require 'singleton'
 
+# for score api?
+require 'net/http'
+require 'uri'
+require 'json'
+
 class FeedManager
   include Singleton
   include Redisable
@@ -57,8 +62,41 @@ class FeedManager
   # @param [Status] status
   # @param [Boolean] update
   # @return [Boolean]
-  def push_to_home(account, status, update: false)
-    return false unless add_to_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
+  def push_to_home(account, status, update: false, score: nil)
+    #return false unless add_to_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
+
+    #code to get score:
+    status_id = status.id
+    user_id = account.id
+
+    Rails.logger.info "feed_manager test log: push_to_home canary"
+    Rails.logger.info "push_to_home canary account.id: #{user_id}, status.id: #{status_id}"
+
+    Rails.logger.info "push_to_home canary Current status text is #{status.text}"
+
+    # Define the URL and request data
+    if score.nil?
+      url = URI.parse("http://67.207.93.201:5001/get-score")
+      http = Net::HTTP.new(url.host, url.port)  
+
+      # Prepare the request
+      request_text = url.path + "?status_id=#{status_id.to_s}&user_id=#{user_id.to_s}"
+      #log request_text
+      Rails.logger.info "push_to_home canary request_text is #{request_text}"
+      request = Net::HTTP::Get.new(request_text)
+
+      # Send the request
+      response = http.request(request)
+
+      # Print the response
+      Rails.logger.info "push_to_home canary response.body is #{response.body}"
+
+      # extract the score from the response
+      score = JSON.parse(response.body)["score"]
+      puts "push_to_home canary score is #{score}"
+    end
+
+    return false unless add_to_feed_with_score(:home, account.id, status, score)
 
     trim(:home, account.id)
     PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}", { 'update' => update }) if push_update_required?("timeline:#{account.id}")
@@ -238,33 +276,70 @@ class FeedManager
     aggregate    = account.user&.aggregates_reblogs?
     timeline_key = key(:home, account.id)
 
+    Rails.logger.info "populate_home test log: populate_home canary"
+
     account.statuses.limit(limit).each do |status|
       add_to_feed(:home, account.id, status, aggregate_reblogs: aggregate)
     end
 
     account.following.includes(:account_stat).find_each do |target_account|
-      if redis.zcard(timeline_key) >= limit
-        oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
-        last_status_score = Mastodon::Snowflake.id_at(target_account.last_status_at)
+      # This below optimization is actually invalid for us, as it relies on chronological order.
+      # Since we rank status based on their scores, we shouldn't use the hueristic that oldest status
+      # is the one that will be at the bottom of the feed and prune accordingly. We would somehow
+      # need to keep track of the highest score froms the target account's eligible statuses
+      # and compare it to the lowest scored status in the feed. This is not worth the complexity for now
+      # and we actually might want as many statuses as possible from the target account to make
+      # the feed more infinite, but it's a good idea to keep in mind for the future.
 
-        # If the feed is full and this account has not posted more recently
-        # than the last item on the feed, then we can skip the whole account
-        # because none of its statuses would stay on the feed anyway
-        next if last_status_score < oldest_home_score
-      end
+
+      # if redis.zcard(timeline_key) >= limit
+      #   # should be first value (id) of the first element (status) of the sorted set
+      #   oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.first.to_i
+      #   last_status_score = Mastodon::Snowflake.id_at(target_account.last_status_at)
+
+      #   # If the feed is full and this account has not posted more recently
+      #   # than the last item on the feed, then we can skip the whole account
+      #   # because none of its statuses would stay on the feed anyway
+      #   Rails.logger.info "populate_home oldest_home score or: #{oldest_home_score}, last_status_score: #{last_status_score}"
+      #   next if last_status_score < oldest_home_score
+      # end
 
       statuses = target_account.statuses.where(visibility: [:public, :unlisted, :private]).includes(:preloadable_poll, :media_attachments, :account, reblog: :account).limit(limit)
       crutches = build_crutches(account.id, statuses)
 
-      statuses.each do |status|
-        next if filter_from_home?(status, account.id, crutches)
-
-        add_to_feed(:home, account.id, status, aggregate_reblogs: aggregate)
+      Locutus::FetchScoresService.call(
+        status_ids: statuses.map(&:id),
+        user_ids: [account.id]
+      ).tap do |scores|
+        Rails.logger.info "Received batch scores: #{scores.inspect}"
+        statuses.each do |status|
+          score = scores[status.id] || 0
+          add_to_feed_with_score(:home, account.id, status, score)
+        end
       end
 
       trim(:home, account.id)
     end
   end
+
+
+  # # Populate home feed of account from scratch
+  # # @param [Account] account
+  # # @return [void]
+  # def populate_home(account)
+  #   limit        = FeedManager::MAX_ITEMS / 2
+  #   aggregate    = account.user&.aggregates_reblogs?
+  #   timeline_key = key(:home, account.id)
+
+  #   Rails.logger.info "Populating home feed for account #{account.id}"
+
+  #   best_statuses = AlgoStatusScores.get_sentiment_rev_chron(limit)
+  #   Rails.logger.info "Best statuses: #{best_statuses}"
+  #   best_statuses.each do |status|
+  #     Rails.logger.info "Adding status #{status.id} to home feed"
+  #     add_to_feed_with_score(:home, account.id, status, status.negative_sentiment_rev_chron)
+  #   end
+  # end
 
   # Completely clear multiple feeds at once
   # @param [Symbol] type
@@ -475,6 +550,12 @@ class FeedManager
       redis.zadd(timeline_key, status.id, status.id)
     end
 
+    true
+  end
+
+  def add_to_feed_with_score(timeline_type, account_id, status, score)
+    timeline_key = key(timeline_type, account_id)
+    redis.zadd(timeline_key, score, status.id)
     true
   end
 

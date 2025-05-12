@@ -1,3 +1,4 @@
+#to do: modify this to fix pagination
 # frozen_string_literal: true
 
 class Api::V1::Timelines::HomeController < Api::BaseController
@@ -6,8 +7,13 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
   def show
+    Rails.logger.info "home_feed.rb Entering show action with params: #{params.inspect}"
+  
     @statuses = load_statuses
+    Rails.logger.info "home_feed.rb Loaded statuses: #{@statuses.map(&:id).inspect} #{@statuses}" unless @statuses.nil?
 
+    Rails.logger.info "home_feed.rb Rendered statuses with status code: #{account_home_feed.regenerating? ? 206 : 200}"
+  
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
            relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id),
@@ -17,14 +23,28 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   private
 
   def load_statuses
-    cached_home_statuses
+    x = cached_home_statuses
+    Rails.logger.info "home_feed.rb home_controller load_statuses #{x}"
+    x
   end
 
   def cached_home_statuses
-    cache_collection home_statuses, Status
+
+    x = cache_collection home_statuses, Status
+
+    Rails.logger.info "home_feed.rb home_controller cached_home_statuses #{x}"
+    x
   end
 
   def home_statuses
+    x = account_home_feed.get(
+      limit_param(DEFAULT_STATUSES_LIMIT),
+      params[:max_id],
+      params[:since_id],
+      params[:min_id]
+    )
+    Rails.logger.info "home_feed.rb home_controller home_statuses #{x}"
+
     account_home_feed.get(
       limit_param(DEFAULT_STATUSES_LIMIT),
       params[:max_id],

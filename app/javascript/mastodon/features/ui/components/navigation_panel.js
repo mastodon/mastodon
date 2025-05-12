@@ -15,13 +15,13 @@ import NavigationPortal from 'mastodon/components/navigation_portal';
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
   notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
-  explore: { id: 'explore.title', defaultMessage: 'Explore' },
-  local: { id: 'tabs_bar.local_timeline', defaultMessage: 'Local' },
-  federated: { id: 'tabs_bar.federated_timeline', defaultMessage: 'Federated' },
-  direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
-  bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
-  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
+  //explore: { id: 'explore.title', defaultMessage: 'Explore' },
+  //local: { id: 'tabs_bar.local_timeline', defaultMessage: 'Local' },
+  //federated: { id: 'tabs_bar.federated_timeline', defaultMessage: 'Federated' },
+  //direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Likes' },
+  //bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
+  //lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   followsAndFollowers: { id: 'navigation_bar.follows_and_followers', defaultMessage: 'Follows and followers' },
   about: { id: 'navigation_bar.about', defaultMessage: 'About' },
@@ -59,19 +59,6 @@ class NavigationPanel extends React.Component {
           </React.Fragment>
         )}
 
-        {showTrends ? (
-          <ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} />
-        ) : (
-          <ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} />
-        )}
-
-        {(signedIn || timelinePreview) && (
-          <>
-            <ColumnLink transparent to='/public/local' icon='users' text={intl.formatMessage(messages.local)} />
-            <ColumnLink transparent exact to='/public' icon='globe' text={intl.formatMessage(messages.federated)} />
-          </>
-        )}
-
         {!signedIn && (
           <div className='navigation-panel__sign-in-banner'>
             <hr />
@@ -81,10 +68,7 @@ class NavigationPanel extends React.Component {
 
         {signedIn && (
           <React.Fragment>
-            <ColumnLink transparent to='/conversations' icon='at' text={intl.formatMessage(messages.direct)} />
-            <ColumnLink transparent to='/favourites' icon='star' text={intl.formatMessage(messages.favourites)} />
-            <ColumnLink transparent to='/bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} />
-            <ColumnLink transparent to='/lists' icon='list-ul' text={intl.formatMessage(messages.lists)} />
+            <ColumnLink transparent to='/favourites' icon='heart' text={intl.formatMessage(messages.favourites)} />
 
             <ListPanel />
 

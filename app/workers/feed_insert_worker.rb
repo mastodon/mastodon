@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+# require 'net/http'
+# require 'uri'
+# require 'json'
+
+
 class FeedInsertWorker
   include Sidekiq::Worker
 
@@ -52,7 +57,7 @@ class FeedInsertWorker
   def perform_push
     case @type
     when :home, :tags
-      FeedManager.instance.push_to_home(@follower, @status, update: update?)
+      FeedManager.instance.push_to_home(@follower, @status, update: update?, score: score)
     when :list
       FeedManager.instance.push_to_list(@list, @status, update: update?)
     end
@@ -73,5 +78,9 @@ class FeedInsertWorker
 
   def update?
     @options[:update]
+  end
+
+  def score
+    @options[:score] || nil
   end
 end

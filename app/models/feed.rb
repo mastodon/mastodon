@@ -1,3 +1,5 @@
+# To do: modify to fix pagination
+# from_redis is already sorting by score it seems, but maybe we need to make it consult the scores rather than the ids, or manage rounding/type/other issues with comparing scores
 # frozen_string_literal: true
 
 class Feed

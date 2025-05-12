@@ -26,10 +26,21 @@ test:
   port: <%= ENV['DB_PORT'] %>
 
 production:
-  <<: *default
-  database: <%= ENV['DB_NAME'] || 'mastodon_production' %>
-  username: <%= ENV['DB_USER'] || 'mastodon' %>
-  password: <%= (ENV['DB_PASS'] || '').to_json %>
-  host: <%= ENV['DB_HOST'] || 'localhost' %>
-  port: <%= ENV['DB_PORT'] || 5432 %>
-  prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
+  primary:
+    <<: *default
+    database: <%= ENV['DB_NAME'] || 'mastodon_production' %>
+    username: <%= ENV['DB_USER'] || 'mastodon' %>
+    password: <%= (ENV['DB_PASS'] || '').to_json %>
+    host: <%= ENV['DB_HOST'] || 'localhost' %>
+    port: <%= ENV['DB_PORT'] || 5432 %>
+    prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
+  # ext:
+  #   adapter: mysql2
+  #   encoding: utf8mb4
+  #   pool: 5
+  #   sslmode: require
+  #   database: <%= ENV['EXT_DB_DATABASE'] || 'defaultdb' %>
+  #   username: <%= ENV['EXT_DB_USERNAME'] || 'doadmin_leg' %>
+  #   password: <%= (ENV['EXT_DB_PASSWORD'] || '').to_json %>
+  #   host: <%= ENV['EXT_DB_HOST'] || 'db-mysql-nyc1-06729-do-user-13224616-0.b.db.ondigitalocean.com' %>
+  #   port: <%= ENV['EXT_DB_PORT'] || 25060 %>

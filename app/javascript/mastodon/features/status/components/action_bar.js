@@ -13,7 +13,7 @@ const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   edit: { id: 'status.edit', defaultMessage: 'Edit' },
-  direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
+  //direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
@@ -65,7 +65,7 @@ class ActionBar extends React.PureComponent {
     onBookmark: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,
-    onDirect: PropTypes.func.isRequired,
+    //onDirect: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
     onMute: PropTypes.func,
     onUnmute: PropTypes.func,
@@ -108,9 +108,9 @@ class ActionBar extends React.PureComponent {
     this.props.onEdit(this.props.status, this.context.router.history);
   };
 
-  handleDirectClick = () => {
-    this.props.onDirect(this.props.status.get('account'), this.context.router.history);
-  };
+  //handleDirectClick = () => {
+  //  this.props.onDirect(this.props.status.get('account'), this.context.router.history);
+  //}
 
   handleMentionClick = () => {
     this.props.onMention(this.props.status.get('account'), this.context.router.history);
@@ -283,10 +283,10 @@ class ActionBar extends React.PureComponent {
 
     return (
       <div className='detailed-status__action-bar'>
-        <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} /></div>
-        <div className='detailed-status__button' ><IconButton className={classNames({ reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} /></div>
-        <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} /></div>
-        <div className='detailed-status__button'><IconButton className='bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} /></div>
+        <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} /></div>
+        {/*<div className='detailed-status__button' ><IconButton className={classNames({ reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} /></div>*/}
+        <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='heart' onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} /></div>
+        {/*<div className='detailed-status__button'><IconButton className='bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} /></div>*/}
 
         {shareButton}
 

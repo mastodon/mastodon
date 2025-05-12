@@ -1,4 +1,7 @@
 # frozen_string_literal: true
+require 'net/http'
+require 'uri'
+require 'json'
 
 class FanOutOnWriteService < BaseService
   include Redisable
@@ -16,6 +19,23 @@ class FanOutOnWriteService < BaseService
     check_race_condition!
     warm_payload_cache!
 
+    # we should send the status text to ext for content analysis here
+    Rails.logger.info "FanOutTest: Current status text is #{@status.inspect}"
+    # Define the URL and request data
+
+    url = URI.parse('http://67.207.93.201:5001/submit')
+
+    http = Net::HTTP.new(url.host, url.port)
+
+    # Prepare the request
+    request = Net::HTTP::Post.new(url.path, { 'Content-Type' => 'application/json' })
+    request.body = { text: @status.text, id: @status.id.to_s, created_at: @status.created_at }.to_json
+
+    # Send the request
+    http.request(request)
+
+    # then, feed_insert_worker goes and calculates the actual score for each status-user pair
+    # this is where we should intervene
     fan_out_to_local_recipients!
     fan_out_to_public_recipients! if broadcastable?
     fan_out_to_public_streams! if broadcastable?
@@ -37,10 +57,12 @@ class FanOutOnWriteService < BaseService
 
   def fan_out_to_local_recipients!
     deliver_to_self!
+    # notification events that shouldn't happen until post is scored and in feeds
     notify_mentioned_accounts!
     notify_about_update! if update?
 
     case @status.visibility.to_sym
+    # if we want a "FYP", we'd need a broader type of "delivery" (could be computationally costly, but maybe do async?)
     when :public, :unlisted, :private
       deliver_to_all_followers!
       deliver_to_lists!
@@ -62,6 +84,7 @@ class FanOutOnWriteService < BaseService
   end
 
   def deliver_to_self!
+    # this probably determines own feed cache, can investigate later according to how we want ranking to work in author's feed
     FeedManager.instance.push_to_home(@account, @status, update: update?) if @account.local?
   end
 
@@ -83,8 +106,15 @@ class FanOutOnWriteService < BaseService
 
   def deliver_to_all_followers!
     @account.followers_for_local_distribution.select(:id).reorder(nil).find_in_batches do |followers|
-      FeedInsertWorker.push_bulk(followers) do |follower|
-        [@status.id, follower.id, 'home', { 'update' => update? }]
+      Locutus::FetchScoresService.call(
+        status_ids: [@status.id],
+        user_ids: followers.map(&:id)
+      ).tap do |scores|
+        Rails.logger.info "Received batch scores: #{scores.inspect}"
+        FeedInsertWorker.push_bulk(followers) do |follower|
+          [ @status.id, follower.id, 'home',
+            { update: update?, score: scores.dig(@status.id.to_s, follower.id.to_s) } ]
+        end
       end
     end
   end
@@ -113,6 +143,7 @@ class FanOutOnWriteService < BaseService
     end
   end
 
+  # let's not worry about this for now
   def broadcast_to_hashtag_streams!
     @status.tags.map(&:name).each do |hashtag|
       redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}", anonymous_payload)
@@ -120,6 +151,7 @@ class FanOutOnWriteService < BaseService
     end
   end
 
+  # investigate relationship between this and the timeline-loading code we previously hacked for reranking
   def broadcast_to_public_streams!
     return if @status.reply? && @status.in_reply_to_account_id != @account.id
 

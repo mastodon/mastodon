@@ -1,3 +1,4 @@
+//hello world!
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -14,7 +15,7 @@ const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   edit: { id: 'status.edit', defaultMessage: 'Edit' },
-  direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
+  //direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
@@ -69,7 +70,7 @@ class StatusActionBar extends ImmutablePureComponent {
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
     onDelete: PropTypes.func,
-    onDirect: PropTypes.func,
+    //onDirect: PropTypes.func,
     onMention: PropTypes.func,
     onMute: PropTypes.func,
     onUnmute: PropTypes.func,
@@ -162,9 +163,9 @@ class StatusActionBar extends ImmutablePureComponent {
     this.props.onMention(this.props.status.get('account'), this.context.router.history);
   };
 
-  handleDirectClick = () => {
-    this.props.onDirect(this.props.status.get('account'), this.context.router.history);
-  };
+  //handleDirectClick = () => {
+  //  this.props.onDirect(this.props.status.get('account'), this.context.router.history);
+  //}
 
   handleMuteClick = () => {
     const { status, relationship, onMute, onUnmute } = this.props;
@@ -278,7 +279,7 @@ class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.handleMentionClick });
-      menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.handleDirectClick });
+      //menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.handleDirectClick });
       menu.push(null);
 
       if (relationship && relationship.get('muting')) {
@@ -359,10 +360,12 @@ class StatusActionBar extends ImmutablePureComponent {
 
     return (
       <div className='status__action-bar'>
-        <IconButton className='status__action-bar__button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount />
-        <IconButton className={classNames('status__action-bar__button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
-        <IconButton className='status__action-bar__button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
-        <IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />
+        <IconButton className='status__action-bar__button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} />
+        {/* <IconButton className={classNames('status__action-bar__button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} /> */}
+	{/* <IconButton className={classNames('status__action-bar__button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={status.get('reblogs_count')} /> */}
+        {/* <IconButton className='status__action-bar__button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} /> */}
+        <IconButton className='status__action-bar__button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='heart' onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} />
+	{/* <IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} /> */}
 
         {shareButton}
 

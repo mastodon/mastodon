@@ -524,6 +524,11 @@ class User < ApplicationRecord
     RegenerationWorker.perform_async(account_id) if redis.set("account:#{account_id}:regeneration", true, nx: true, ex: 1.day.seconds)
   end
 
+  def regenerate_feed_override!
+    Rails.logger.info "Regenerating feed for user #{account_id} due to override"
+    RegenerationWorkerPrio.perform_async(account_id)
+  end
+
   def needs_feed_update?
     last_sign_in_at < ACTIVE_DURATION.ago
   end

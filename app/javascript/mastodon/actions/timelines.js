@@ -1,3 +1,4 @@
+// need to modify the "items" entered into the redux state in this file, so that the "items" list contains the calculated scores, instead of the status ids
 import { importFetchedStatus, importFetchedStatuses } from './importer';
 import { submitMarkers } from './markers';
 import api, { getLinks } from 'mastodon/api';

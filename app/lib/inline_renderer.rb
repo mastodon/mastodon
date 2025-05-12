@@ -8,6 +8,7 @@ class InlineRenderer
   end
 
   def render
+    #could add logging here to debug pagination
     case @template
     when :status
       serializer = REST::StatusSerializer
