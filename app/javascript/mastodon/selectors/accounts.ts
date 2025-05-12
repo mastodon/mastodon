@@ -66,7 +66,7 @@ export const getAccountFamiliarFollowers = createSelector(
     (state: RootState, id: string) => state.accounts_familiar_followers[id],
   ],
   (accounts, accounts_familiar_followers) => {
-    if (!accounts_familiar_followers) return [];
+    if (!accounts_familiar_followers) return null;
     return accounts_familiar_followers
       .map((id) => accounts.get(id))
       .filter((f) => !!f);

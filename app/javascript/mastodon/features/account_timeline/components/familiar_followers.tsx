@@ -22,11 +22,15 @@ export const FamiliarFollowers: React.FC<{ accountId: string }> = ({
     getAccountFamiliarFollowers(state, accountId),
   );
 
-  useEffect(() => {
-    void dispatch(fetchAccountsFamiliarFollowers({ id: accountId }));
-  }, [dispatch, accountId]);
+  const hasNoData = familiarFollowers === null;
 
-  if (familiarFollowers.length === 0) {
+  useEffect(() => {
+    if (hasNoData) {
+      void dispatch(fetchAccountsFamiliarFollowers({ id: accountId }));
+    }
+  }, [dispatch, accountId, hasNoData]);
+
+  if (hasNoData || familiarFollowers.length === 0) {
     return null;
   }
 
