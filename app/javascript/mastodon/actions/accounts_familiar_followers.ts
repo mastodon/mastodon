@@ -8,7 +8,15 @@ export const fetchAccountsFamiliarFollowers = createDataLoadingThunk(
   'accounts_familiar_followers/fetch',
   ({ id }: { id: string }) => apiGetFamiliarFollowers(id),
   ([data], { dispatch }) => {
-    dispatch(importFetchedAccounts(data?.accounts));
-    return data;
+    if (!data) {
+      return null;
+    }
+
+    dispatch(importFetchedAccounts(data.accounts));
+
+    return {
+      id: data.id,
+      accountIds: data.accounts.map((account) => account.id),
+    };
   },
 );

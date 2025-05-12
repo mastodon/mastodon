@@ -11,7 +11,7 @@ export const accountsFamiliarFollowersReducer = createReducer(
       fetchAccountsFamiliarFollowers.fulfilled,
       (state, { payload }) => {
         if (payload) {
-          state[payload.id] = payload.accounts.map((account) => account.id);
+          state[payload.id] = payload.accountIds;
         }
       },
     );
