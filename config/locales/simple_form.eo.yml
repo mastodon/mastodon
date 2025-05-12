@@ -56,7 +56,7 @@ eo:
         scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
         setting_aggregate_reblogs: Ne montri novajn plusendojn de mesaĝoj lastatempe plusenditaj (nur efikas al nove ricevitaj plusendoj)
         setting_always_send_emails: Normale, la sciigoj per retpoŝto ne estos senditaj kiam vi uzas Mastodon aktive
-        setting_default_sensitive: Tiklaj vidaŭdaĵoj estas implicite kaŝitaj kaj povas esti montritaj per alklako
+        setting_default_sensitive: La tiklaj vidaŭdaĵoj estas implicite kaŝitaj kaj povas esti malkaŝitaj per alklako
         setting_display_media_default: Kaŝi plurmediojn markitajn kiel tiklaj
         setting_display_media_hide_all: Ĉiam kaŝi la vidaŭdaĵojn
         setting_display_media_show_all: Ĉiam montri la vidaŭdaĵojn
@@ -89,6 +89,7 @@ eo:
         favicon: WEBP, PNG, GIF aŭ JPG. Anstataŭigas la defaŭltan Mastodon-favikono kun propra bildsimbolo.
         mascot: Anstatauigi la ilustraĵon en la altnivela retinterfaco.
         media_cache_retention_period: Amaskomunikilaj dosieroj de afiŝoj faritaj de foraj uzantoj estas konservitaj en kaŝmemoro en via servilo. Kiam agordita al pozitiva valoro, amaskomunikilaro estos forigita post la specifita nombro da tagoj. Se la amaskomunikilaro-datumoj estas petitaj post kiam ĝi estas forigita, ĝi estos re-elŝutita, se la fonta enhavo ankoraŭ disponeblas. Pro limigoj pri kiom ofte ligaj antaŭrigardaj kartoj enketas retejojn de ekstera liveranto, oni rekomendas agordi ĉi tiun valoron al almenaŭ 14 tagoj, aŭ ligaj antaŭrigardaj kartoj ne estos ĝisdatigitaj laŭpostule antaŭ tiu tempo.
+        min_age: Uzantoj demandos konfirmi siajn naskiĝtagon dum registrado
         peers_api_enabled: Listo de domajnaj nomoj kiujn ĉi tiu servilo renkontis en la fediverso. Neniuj datumoj estas inkluditaj ĉi tie pri ĉu vi federacias kun donita servilo, nur ke via servilo scias pri ĝi. Ĉi tio estas uzata de servoj kiuj kolektas statistikojn pri federacio en ĝenerala signifo.
         profile_directory: La profilujo listigas ĉiujn uzantojn kiu volonte malkovrebli.
         require_invite_text: Kiam registroj bezonas permanan aprobon, igi la "Kial vi volas aliĝi?" tekstoenigon deviga anstau nedeviga
@@ -137,10 +138,14 @@ eo:
         text: Povas esti strukturita per sintakso Markdown-a.
       terms_of_service_generator:
         admin_email: Legalaj sciigoj povas esti kontraŭsciigoj, postulaĵoj de tribunalo, postulaĵoj pri forigo, kaj postulaĵoj de la policaro.
+        arbitration_address: Povas esti la sama kiel fizika adreso supre, aŭ "N/A" se oni uzas retpoŝton.
+        arbitration_website: Povas esti retformularo, aŭ "N/A" se oni uzas retpoŝton.
         choice_of_law: Urbo, regiono, teritorio aŭ ŝtato, kies internaj substantivaj leĝoj regos iujn kaj ĉiujn asertojn.
         dmca_address: Por tenantoj en Usono, uzu la adreson registritan en la DMCA Designated Agenŭ Directory. Registrolibro de poŝtskatoloj haveblas per direkta postulo, uzu la DMCA Designated Agent Post Office Box Waiver Request por retpoŝti la Ofico de Kopirajto kaj priskribu, ke vi estas hejm-trovigita administranto por enhavo kaj devas uzi Poŝtskatolon por forigi vian hejmadreson de publika vido.
+        dmca_email: Povas esti la sama retpoŝtadreso uzita en "Retpoŝtadreso por legalaj sciigoj" supre.
         domain: Unika identigilo de la retaj servicoj, ke vi provizas.
         jurisdiction: Enlistigu la landon, kie loĝas kiu pagas la fakturojn. Se ĝi estas kompanio aŭ alia ento, listigu la landon, kie ĝi estas enkorpigita, kaj la urbon, regionon, teritorion aŭ ŝtaton laŭeble.
+        min_age: Ne devus esti malsupre la minimuma aĝo postulita de la leĝoj de via jurisdikcio.
       user:
         chosen_languages: Kun tio markita nur mesaĝoj en elektitaj lingvoj aperos en publikaj tempolinioj
         date_of_birth: Ni devas certigi, ke vi estas almenaŭ %{age} por uzi Mastodon. Ni ne konservos ĉi tion.
