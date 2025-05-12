@@ -4,9 +4,8 @@ import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
-import { AvatarGroup } from '../../../components/avatar_group';
-
 import { fetchAccountsFamiliarFollowers } from '@/mastodon/actions/accounts_familiar_followers';
+import { AvatarGroup } from '@/mastodon/components/avatar_group';
 import type { Account } from '@/mastodon/models/account';
 import { getAccountFamiliarFollowers } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
