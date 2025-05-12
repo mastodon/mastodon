@@ -8,7 +8,20 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { defineMessages } from 'react-intl';
+
 import type { Plugin, ResolvedConfig } from 'vite';
+
+const translations = defineMessages({
+  mentioned_you: {
+    id: 'notification.mentioned_you',
+    defaultMessage: '{name} mentioned you',
+  },
+});
+
+const CUSTOM_TRANSLATIONS = {
+  'notification.mention': translations.mentioned_you.id,
+};
 
 const KEEP_KEYS = [
   'notification.favourite',
@@ -67,7 +80,14 @@ export function MastodonServiceWorkerLocales(): Plugin {
             const filteredLocale: Record<string, string> = {};
 
             Object.entries(full).forEach(([key, value]) => {
-              if (KEEP_KEYS.includes(key)) filteredLocale[key] = value;
+              if (KEEP_KEYS.includes(key)) {
+                filteredLocale[key] = value;
+              }
+            });
+
+            Object.entries(CUSTOM_TRANSLATIONS).forEach(([key, value]) => {
+              const translation = full[value];
+              if (translation) filteredLocale[key] = translation;
             });
 
             filteredLocales[locale] = filteredLocale;
