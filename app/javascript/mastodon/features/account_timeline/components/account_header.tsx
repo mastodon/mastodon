@@ -1023,7 +1023,7 @@ export const AccountHeader: React.FC<{
                   />
                 </NavLink>
               </div>
-              <FamiliarFollowers accountId={accountId} />
+              {signedIn && <FamiliarFollowers accountId={accountId} />}
             </div>
           )}
         </div>
