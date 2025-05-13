@@ -6,7 +6,6 @@ import { assetHost } from 'mastodon/utils/config';
 
 import EmojiData from './emoji_data.json';
 
-
 const backgroundImageFnDefault = () => `${assetHost}/emoji/sheet_15_1.png`;
 
 const Emoji = ({
@@ -28,11 +27,13 @@ const Emoji = ({
       {...props}
     />
   );
-}
+};
 
 const Picker = ({
   set = 'twitter',
   sheetSize = 32,
+  sheetColumns = 62,
+  sheetRows = 62,
   backgroundImageFn = backgroundImageFnDefault,
   ...props
 }: PickerProps) => {
@@ -41,10 +42,12 @@ const Picker = ({
       data={EmojiData}
       set={set}
       sheetSize={sheetSize}
+      sheetColumns={sheetColumns}
+      sheetRows={sheetRows}
       backgroundImageFn={backgroundImageFn}
       {...props}
     />
   );
-}
+};
 
 export { Picker, Emoji };
