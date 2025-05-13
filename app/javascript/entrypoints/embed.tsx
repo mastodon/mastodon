@@ -2,12 +2,9 @@ import { createRoot } from 'react-dom/client';
 
 import { afterInitialRender } from 'mastodon/hooks/useRenderSignal';
 
-import { start } from '../mastodon/common';
 import { Status } from '../mastodon/features/standalone/status';
 import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
-
-start();
 
 function loaded() {
   const mountNode = document.getElementById('mastodon-status');

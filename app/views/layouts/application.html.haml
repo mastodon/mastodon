@@ -30,6 +30,7 @@
     = vite_react_refresh_tag
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
     = vite_stylesheet_tag 'styles/inert.scss', media: 'all', id: 'inert-style'
+    = vite_typescript_tag 'common.ts', crossorigin: 'anonymous'
 
     = vite_preload_file_tag "mastodon/locales/#{I18n.locale}.json"
     = csrf_meta_tags unless skip_csrf_meta_tags?
