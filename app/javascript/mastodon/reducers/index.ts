@@ -4,6 +4,7 @@ import { loadingBarReducer } from 'react-redux-loading-bar';
 import { combineReducers } from 'redux-immutable';
 
 import { accountsReducer } from './accounts';
+import { accountsFamiliarFollowersReducer } from './accounts_familiar_followers';
 import { accountsMapReducer } from './accounts_map';
 import { alertsReducer } from './alerts';
 import announcements from './announcements';
@@ -50,6 +51,7 @@ const reducers = {
   status_lists,
   accounts: accountsReducer,
   accounts_map: accountsMapReducer,
+  accounts_familiar_followers: accountsFamiliarFollowersReducer,
   statuses,
   relationships: relationshipsReducer,
   settings,

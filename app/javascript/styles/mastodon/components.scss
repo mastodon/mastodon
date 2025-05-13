@@ -2164,6 +2164,25 @@ a .account__avatar {
   cursor: pointer;
 }
 
+.avatar-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.avatar-group--compact {
+  gap: 0;
+  flex-wrap: nowrap;
+
+  & > :not(:first-child) {
+    margin-inline-start: -8px;
+
+    .account__avatar {
+      box-shadow: 0 0 0 2px var(--background-color);
+    }
+  }
+}
+
 .account__avatar-overlay {
   position: relative;
 
@@ -8116,6 +8135,23 @@ noscript {
       }
     }
   }
+
+  &__familiar-followers {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-block-end: 16px;
+    color: $darker-text-color;
+
+    a:any-link {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .account__contents {
@@ -10434,14 +10470,6 @@ noscript {
       font-size: 15px;
       line-height: 22px;
     }
-  }
-
-  &__avatar-group {
-    display: flex;
-    gap: 8px;
-    height: 28px;
-    overflow-y: hidden;
-    flex-wrap: wrap;
   }
 
   .status {

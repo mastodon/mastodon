@@ -59,3 +59,16 @@ export const getAccountHidden = createSelector(
     return hidden && !(isSelf || followingOrRequested);
   },
 );
+
+export const getAccountFamiliarFollowers = createSelector(
+  [
+    (state: RootState) => state.accounts,
+    (state: RootState, id: string) => state.accounts_familiar_followers[id],
+  ],
+  (accounts, accounts_familiar_followers) => {
+    if (!accounts_familiar_followers) return null;
+    return accounts_familiar_followers
+      .map((id) => accounts.get(id))
+      .filter((f) => !!f);
+  },
+);
