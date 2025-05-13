@@ -132,6 +132,5 @@ module.exports = JSON.parse(JSON.stringify([
   emojiMartData.skins,
   emojiMartData.categories,
   emojiMartData.aliases,
-  emojisWithoutShortCodes,
-  emojiMartData
+  emojisWithoutShortCodes
 ]));
