@@ -7,12 +7,13 @@ import { HotKeys } from 'react-hotkeys';
 
 import { replyComposeById } from 'mastodon/actions/compose';
 import { navigateToStatus } from 'mastodon/actions/statuses';
+import { AvatarGroup } from 'mastodon/components/avatar_group';
 import type { IconProp } from 'mastodon/components/icon';
 import { Icon } from 'mastodon/components/icon';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
+import { NOTIFICATIONS_GROUP_MAX_AVATARS } from 'mastodon/models/notification_group';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { AvatarGroup } from './avatar_group';
 import { DisplayedName } from './displayed_name';
 import { EmbeddedStatus } from './embedded_status';
 
@@ -98,7 +99,12 @@ export const NotificationGroupWithStatus: React.FC<{
         <div className='notification-group__main'>
           <div className='notification-group__main__header'>
             <div className='notification-group__main__header__wrapper'>
-              <AvatarGroup accountIds={accountIds} />
+              <AvatarGroup
+                accountIds={accountIds.slice(
+                  0,
+                  NOTIFICATIONS_GROUP_MAX_AVATARS,
+                )}
+              />
 
               {actions && (
                 <div className='notification-group__actions'>{actions}</div>
