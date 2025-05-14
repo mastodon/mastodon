@@ -11,11 +11,15 @@ import type { Account } from '@/mastodon/models/account';
 import { getAccountFamiliarFollowers } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-const AccountLink: React.FC<{ account?: Account }> = ({ account }) => (
-  <Link to={`/@${account?.username}`} data-hover-card-account={account?.id}>
-    {account?.display_name}
-  </Link>
-);
+const AccountLink: React.FC<{ account?: Account }> = ({ account }) => {
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  const name = account?.display_name || `@${account?.acct}`;
+  return (
+    <Link to={`/@${account?.acct}`} data-hover-card-account={account?.id}>
+      {name}
+    </Link>
+  );
+};
 
 const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
   familiarFollowers,
