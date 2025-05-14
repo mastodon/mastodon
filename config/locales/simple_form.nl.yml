@@ -56,6 +56,7 @@ nl:
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor berichten die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
         setting_always_send_emails: Normaliter worden er geen e-mailmeldingen verstuurd wanneer je actief Mastodon gebruikt
+        setting_default_quote_policy: Het is voor gebruikers die vermeld worden altijd toegestaan om te citeren. Deze instelling is alleen van kracht voor berichten die gemaakt zijn met de volgende Mastodon-versie, maar je kunt je voorkeur nu alvast instellen
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
@@ -148,7 +149,9 @@ nl:
         min_age: Mag niet lager zijn dan de minimale vereiste leeftijd volgens de wetten van jouw jurisdictie.
       user:
         chosen_languages: Alleen berichten in de aangevinkte talen worden op de openbare tijdlijnen getoond
-        date_of_birth: We moeten ervoor zorgen dat je tenminste %{age} bent om Mastodon te gebruiken. Dit wordt niet opgeslagen.
+        date_of_birth:
+          one: We moeten er zeker van zijn dat je tenminste %{count} bent om Mastodon te mogen gebruiken. Deze informatie wordt niet door ons opgeslagen.
+          other: We moeten er zeker van zijn dat je tenminste %{count} bent om Mastodon te mogen gebruiken. Deze informatie wordt niet door ons opgeslagen.
         role: De rol bepaalt welke rechten de gebruiker heeft.
       user_role:
         color: Kleur die gebruikt wordt voor de rol in de UI, als RGB in hexadecimale formaat
@@ -229,6 +232,7 @@ nl:
         setting_boost_modal: Vraag voor het boosten van een bericht een bevestiging
         setting_default_language: Taal van jouw berichten
         setting_default_privacy: Zichtbaarheid van nieuwe berichten
+        setting_default_quote_policy: Wie kan citeren
         setting_default_sensitive: Media altijd als gevoelig markeren
         setting_delete_modal: Vraag voor het verwijderen van een bericht een bevestiging
         setting_disable_hover_cards: Hover-kaarten met profielvoorbeelden uitschakelen

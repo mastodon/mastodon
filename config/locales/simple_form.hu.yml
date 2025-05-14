@@ -148,7 +148,9 @@ hu:
         min_age: Nem lehet a joghatóság által meghatározott minimális kor alatt.
       user:
         chosen_languages: Ha aktív, csak a kiválasztott nyelvű bejegyzések jelennek majd meg a nyilvános idővonalon
-        date_of_birth: Legalább %{age} évesnek kell lenniük, hogy használhassák a Mastodont. Ezt nem tároljuk.
+        date_of_birth:
+          one: Ahhoz, hogy a Mastodont használd, meg kell győződnünk arról, hogy legalább %{count} éves vagy. Ezt nem tároljuk.
+          other: Ahhoz, hogy a Mastodont használd, meg kell győződnünk arról, hogy legalább %{count} éves vagy. Ezt nem tároljuk.
         role: A szerep szabályozza, hogy a felhasználó milyen jogosultságokkal rendelkezik.
       user_role:
         color: A szerephez használandó szín mindenhol a felhasználói felületen, hexa RGB formátumban

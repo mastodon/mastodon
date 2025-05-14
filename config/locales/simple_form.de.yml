@@ -56,6 +56,7 @@ de:
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
         setting_aggregate_reblogs: Beiträge, die erst kürzlich geteilt wurden, werden nicht noch einmal angezeigt (wirkt sich nur auf zukünftige geteilte Beiträge aus)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail versendet, wenn du gerade auf Mastodon aktiv bist
+        setting_default_quote_policy: Erwähnte Profile dürfen immer zitieren. Diese Einstellung wirkt sich nur für Beiträge aus, die mit der zukünftigen Mastodon-Version erstellt wurden. Als Vorbereitung darauf kannst du bereits jetzt die Einstellung vornehmen.
         setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
         setting_display_media_default: Medien mit Inhaltswarnung ausblenden
         setting_display_media_hide_all: Medien immer ausblenden
@@ -148,7 +149,9 @@ de:
         min_age: Sollte nicht unter dem gesetzlich vorgeschriebenen Mindestalter liegen.
       user:
         chosen_languages: Wenn du hier eine oder mehrere Sprachen auswählst, werden ausschließlich Beiträge in diesen Sprachen in deinen öffentlichen Timelines angezeigt
-        date_of_birth: Wir müssen sicherstellen, dass du mindestens %{age} Jahre alt bist, um Mastodon verwenden zu können. Das Alter wird nicht gespeichert.
+        date_of_birth:
+          one: Wir müssen sicherstellen, dass du mindestens %{count} Jahre alt bist, um Mastodon nutzen zu können. Wir werden diese Information nicht aufbewahren.
+          other: Wir müssen sicherstellen, dass du mindestens %{count} Jahre alt bist, um Mastodon nutzen zu können. Wir werden diese Information nicht aufbewahren.
         role: Die Rolle bestimmt, welche Berechtigungen das Konto hat.
       user_role:
         color: Farbe, die für diese Rolle in der gesamten Benutzerschnittstelle verwendet wird, als RGB im Hexadezimalsystem
@@ -229,6 +232,7 @@ de:
         setting_boost_modal: Bestätigungsdialog beim Teilen eines Beitrags anzeigen
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
+        setting_default_quote_policy: Wer darf zitieren
         setting_default_sensitive: Medien immer mit einer Inhaltswarnung versehen
         setting_delete_modal: Bestätigungsdialog beim Löschen eines Beitrags anzeigen
         setting_disable_hover_cards: Profilvorschau deaktivieren, wenn die Maus über das Profil bewegt wird
