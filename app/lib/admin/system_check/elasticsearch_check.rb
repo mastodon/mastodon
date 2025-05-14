@@ -17,7 +17,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
     return true unless Chewy.enabled?
 
     running_version.present? && compatible_version? && cluster_health['status'] == 'green' && indexes_match? && specifications_match? && preset_matches?
-  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
+  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error, HTTPClient::KeepAliveDisconnected
     false
   end
 
@@ -54,7 +54,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
     else
       Admin::SystemCheck::Message.new(:elasticsearch_preset, nil, 'https://docs.joinmastodon.org/admin/elasticsearch/#scaling')
     end
-  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
+  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error, HTTPClient::KeepAliveDisconnected
     Admin::SystemCheck::Message.new(:elasticsearch_running_check)
   end
 
