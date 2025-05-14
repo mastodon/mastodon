@@ -56,6 +56,7 @@ da:
         scopes: De API'er, som applikationen vil kunne tilgå. Vælges en topniveaudstrækning, vil detailvalg være unødvendige.
         setting_aggregate_reblogs: Vis ikke nye fremhævelser for nyligt fremhævede indlæg (påvirker kun nyligt modtagne fremhævelser)
         setting_always_send_emails: Normalt sendes ingen e-mailnotifikationer under aktivt brug af Mastodon
+        setting_default_quote_policy: Nævnte brugere har altid lov til at citere. Denne indstilling vil kun træde i kraft for indlæg oprettet med den næste Mastodon-version, men man kan som forberedelse vælge sin præference
         setting_default_sensitive: Sensitive medier er som standard skjult og kan vises med et klik
         setting_display_media_default: Skjul medier med sensitiv-markering
         setting_display_media_hide_all: Skjul altid medier
@@ -148,7 +149,6 @@ da:
         min_age: Bør ikke være under den iht. lovgivningen i det aktuelle retsområde krævede minimumsalder.
       user:
         chosen_languages: Når markeret, vil kun indlæg på de valgte sprog fremgå på offentlige tidslinjer
-        date_of_birth: Vi er nødt til at sikre, at man er fyldt %{age} for at bruge Mastodon. Vi gemmer ikke denne information.
         role: Rollen styrer, hvilke tilladelser brugeren er tildelt.
       user_role:
         color: Farven, i RGB hex-format, der skal bruges til rollen i hele UI'en
@@ -229,6 +229,7 @@ da:
         setting_boost_modal: Vis bekræftelsesdialog inden fremhævelse
         setting_default_language: Sprog for indlæg
         setting_default_privacy: Fortrolighed for indlæg
+        setting_default_quote_policy: Hvem, som kan citere
         setting_default_sensitive: Markér altid medier som sensitive
         setting_delete_modal: Vis bekræftelsesdialog før et indlæg slettes
         setting_disable_hover_cards: Deaktivér profilforhåndsvisning ved svæv (hover)

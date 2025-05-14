@@ -56,6 +56,7 @@ vi:
         scopes: Ứng dụng sẽ được phép truy cập những API nào. Nếu bạn chọn quyền cấp cao nhất, không cần chọn quyền nhỏ.
         setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì những lượt đăng lại sau sẽ không hiện trên bảng tin nữa
         setting_always_send_emails: Bình thường thì sẽ không gửi khi bạn đang dùng Mastodon
+        setting_default_quote_policy: Thiết lập này chỉ hiệu lực đối với các tút được tạo bằng phiên bản Mastodon tiếp theo, nhưng bạn có thể chọn trước tùy chọn của mình trong quá trình chuẩn bị
         setting_default_sensitive: Bắt buộc nhấn vào mới có thể xem
         setting_display_media_default: Click để xem
         setting_display_media_hide_all: Luôn ẩn
@@ -148,7 +149,8 @@ vi:
         min_age: Không được dưới độ tuổi tối thiểu theo quy định của luật pháp tại khu vực của bạn.
       user:
         chosen_languages: Chỉ hiển thị những tút viết bằng các ngôn ngữ sau
-        date_of_birth: Chúng tôi phải đảm bảo rằng bạn ít nhất %{age} tuổi để sử dụng Mastodon. Chúng tôi không lưu trữ thông tin này.
+        date_of_birth:
+          other: Chúng tôi cần đảm bảo rằng bạn lớn hơn %{count} tuổi để sử dụng Mastodon. Chúng tôi không lưu trữ thông tin này.
         role: Vai trò kiểm soát những quyền mà người dùng có.
       user_role:
         color: Màu được sử dụng cho vai trò trong toàn bộ giao diện người dùng, dưới dạng RGB ở định dạng hex
@@ -229,6 +231,7 @@ vi:
         setting_boost_modal: Hỏi trước khi đăng lại tút
         setting_default_language: Ngôn ngữ đăng
         setting_default_privacy: Kiểu đăng
+        setting_default_quote_policy: Ai có thể trích dẫn
         setting_default_sensitive: Đánh dấu media nhạy cảm
         setting_delete_modal: Hỏi trước khi xóa tút
         setting_disable_hover_cards: Tắt thẻ xem trước hồ sơ
