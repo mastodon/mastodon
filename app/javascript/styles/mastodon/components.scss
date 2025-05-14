@@ -2179,10 +2179,18 @@ a .account__avatar {
 
   & > :not(:first-child) {
     margin-inline-start: -8px;
+  }
 
-    .account__avatar {
-      box-shadow: 0 0 0 2px var(--background-color);
-    }
+  & > :first-child {
+    transform: rotate(-4deg);
+  }
+
+  & > :nth-child(2) {
+    transform: rotate(-2deg);
+  }
+
+  .account__avatar {
+    box-shadow: 0 0 0 2px var(--background-color);
   }
 }
 

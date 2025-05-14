@@ -13,7 +13,10 @@ import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import { fetchList } from 'mastodon/actions/lists';
 import { createList, updateList } from 'mastodon/actions/lists_typed';
 import { apiGetAccounts } from 'mastodon/api/lists';
+import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import type { RepliesPolicyType } from 'mastodon/api_types/lists';
+import { Avatar } from 'mastodon/components/avatar';
+import { AvatarGroup } from 'mastodon/components/avatar_group';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
@@ -27,20 +30,19 @@ const messages = defineMessages({
 const MembersLink: React.FC<{
   id: string;
 }> = ({ id }) => {
-  const [count, setCount] = useState(0);
-  const [avatars, setAvatars] = useState<string[]>([]);
+  const [avatarCount, setAvatarCount] = useState(0);
+  const [avatarAccounts, setAvatarAccounts] = useState<ApiAccountJSON[]>([]);
 
   useEffect(() => {
     void apiGetAccounts(id)
       .then((data) => {
-        setCount(data.length);
-        setAvatars(data.slice(0, 3).map((a) => a.avatar));
-        return '';
+        setAvatarCount(data.length);
+        setAvatarAccounts(data.slice(0, 3));
       })
       .catch(() => {
         // Nothing
       });
-  }, [id, setCount, setAvatars]);
+  }, [id]);
 
   return (
     <Link to={`/lists/${id}/members`} className='app-form__link'>
@@ -54,15 +56,15 @@ const MembersLink: React.FC<{
         <FormattedMessage
           id='lists.list_members_count'
           defaultMessage='{count, plural, one {# member} other {# members}}'
-          values={{ count }}
+          values={{ count: avatarCount }}
         />
       </div>
 
-      <div className='avatar-pile'>
-        {avatars.map((url) => (
-          <img key={url} src={url} alt='' />
+      <AvatarGroup compact>
+        {avatarAccounts.map((a) => (
+          <Avatar key={a.id} account={a} size={30} />
         ))}
-      </div>
+      </AvatarGroup>
     </Link>
   );
 };

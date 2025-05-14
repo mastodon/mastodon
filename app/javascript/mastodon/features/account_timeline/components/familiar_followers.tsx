@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 import { fetchAccountsFamiliarFollowers } from '@/mastodon/actions/accounts_familiar_followers';
+import { Avatar } from '@/mastodon/components/avatar';
 import { AvatarGroup } from '@/mastodon/components/avatar_group';
 import type { Account } from '@/mastodon/models/account';
 import { getAccountFamiliarFollowers } from '@/mastodon/selectors/accounts';
@@ -74,10 +75,11 @@ export const FamiliarFollowers: React.FC<{ accountId: string }> = ({
 
   return (
     <div className='account__header__familiar-followers'>
-      <AvatarGroup
-        compact
-        accountIds={familiarFollowers.slice(0, 3).map((account) => account.id)}
-      />
+      <AvatarGroup compact>
+        {familiarFollowers.map((account) => (
+          <Avatar withLink key={account.id} account={account} size={28} />
+        ))}
+      </AvatarGroup>
       <FamiliarFollowersReadout familiarFollowers={familiarFollowers} />
     </div>
   );
