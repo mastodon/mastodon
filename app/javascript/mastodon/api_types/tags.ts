@@ -10,4 +10,5 @@ export interface ApiHashtagJSON {
   url: string;
   history: [ApiHistoryJSON, ...ApiHistoryJSON[]];
   following?: boolean;
+  featuring?: boolean;
 }

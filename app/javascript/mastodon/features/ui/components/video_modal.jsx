@@ -5,7 +5,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
 import { getAverageFromBlurhash } from 'mastodon/blurhash';
-import Footer from 'mastodon/features/picture_in_picture/components/footer';
+import { Footer } from 'mastodon/features/picture_in_picture/components/footer';
 import { Video } from 'mastodon/features/video';
 
 const mapStateToProps = (state, { statusId }) => ({

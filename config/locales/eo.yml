@@ -319,6 +319,7 @@ eo:
         create: Krei anoncon
         title: Nova anonco
       preview:
+        disclaimer: Pro uzantoj ne povas elekti ne ricevi ilin, retpoŝtaj sciigoj devus esti uzata nur por gravaj anoncoj kiel memaj breĉoj de datumo aŭ sciigoj pri la fermado de la servilo.
         explanation_html: 'La retpoŝto estos sendita al <strong>%{display_count} uzantoj</strong>. La jena teksto estos inkluzivita en la retmesaĝon:'
         title: Antaŭrigardu sciigan anoncon
       publish: Publikigi
@@ -482,13 +483,33 @@ eo:
     fasp:
       debug:
         callbacks:
+          created_at: Kreita je
           delete: Forigi
+          ip: IP-adreso
+          request_body: Enhavo de la peto
+          title: Revokoj de ĝustigado
       providers:
+        active: Aktivaj
+        base_url: Funda URL
+        callback: Revoko
         delete: Forigi
+        edit: Donanto de ŝanĝo
+        finish_registration: Fini registradon
         name: Nomo
+        providers: Donantoj
+        public_key_fingerprint: Publikoŝloŝila fingrospuro
+        registration_requested: Registrado postulita
         registrations:
           confirm: Konfirmi
+          description: Vi ricevis registradon de FASP. Malakcepti ĝin se vi ne komencis ĉi tiun. Se vi ja, zorge kompari nomon kaj ŝloŝilafingrospuron antaŭ ol konfirmas la registradon.
+          reject: Malakcepti
+          title: Konfirmi registradon de FASP
+        save: Konservi
+        select_capabilities: Elekti mandatojn
         sign_in: Ensaluti
+        status: Stato
+        title: Fediversaj helpaj servicaj donantoj
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Sekvorekomendoj helpi novajn uzantojn rapide trovi interesa enhavo</strong>. Ili rekalkulitas ĉiutage lau interagoj kaj sekvantokvantoj."
       language: Por la lingvo
@@ -778,7 +799,7 @@ eo:
         title: Pri
       appearance:
         preamble: Personecigi retinterfaco de Mastodon.
-        title: Apero
+        title: Aspekto
       branding:
         preamble: Via markeco de servilo malsamigas ĝin de aliaj servilojn en la reto. Do, la informo devus esti simpla kaj mallonga.
         title: Markeco
@@ -882,6 +903,8 @@ eo:
     system_checks:
       database_schema_check:
         message_html: Estas pritraktataj datumbazaj migradoj. Bonvolu ekzekuti ilin por certigi, ke la apliko kondutas kiel atendite
+      elasticsearch_analysis_index_mismatch:
+        message_html: Agordoj de la indeksa analizilo estas malmodernaj. Bonvolu plenumi <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch peniko estas malsana (ruĝa statuso), trajtoj de serĉo malhaveblas
       elasticsearch_health_yellow:

@@ -896,6 +896,8 @@ sq:
     system_checks:
       database_schema_check:
         message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
+      elasticsearch_analysis_index_mismatch:
+        message_html: Rregulliemt për analizues treguesi Elasticsearch janë të vjetruara. Ju lutemi, ekzekutoni <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Grupi juaj i instancave Elasticsearch s’është i shëndetshëm (gjendje e verdhë), s’mund të përdoren veçoritë e kërkimit
       elasticsearch_health_yellow:

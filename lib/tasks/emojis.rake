@@ -42,10 +42,24 @@ def codepoints_to_unicode(codepoints)
   end
 end
 
+def get_image(row, emoji_base, fallback, compressed)
+  path = emoji_base.join("#{row[compressed ? 'b' : 'unified'].downcase}.svg")
+  path = emoji_base.join("#{row[compressed ? 'c' : 'non_qualified'].downcase.sub(/^00/, '')}.svg") if !path.exist? && row[compressed ? 'c' : 'non_qualified']
+  if path.exist?
+    Vips::Image.new_from_file(path.to_s, dpi: 64)
+  else
+    fallback
+  end
+end
+
+def titleize(string)
+  string.humanize.gsub(/\b(?<!['’`()])(?!(and|the|or|with|a)\b)[a-z]/, &:capitalize)
+end
+
 namespace :emojis do
   desc 'Generate a unicode to filename mapping'
   task :generate do
-    source = 'http://www.unicode.org/Public/emoji/15.0/emoji-test.txt'
+    source = 'http://www.unicode.org/Public/emoji/15.1/emoji-test.txt'
     codes  = []
     dest   = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_map.json')
 
@@ -104,35 +118,112 @@ namespace :emojis do
     end
   end
 
-  desc 'Download the JSON sheet data of emojis'
-  task :download_sheet_json do
-    source = 'https://raw.githubusercontent.com/iamcal/emoji-data/refs/tags/v15.1.2/emoji.json'
-    dest   = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_sheet.json')
+  desc 'Generate the JSON emoji data'
+  task :generate_json do
+    data_source = 'https://raw.githubusercontent.com/iamcal/emoji-data/refs/tags/v15.1.2/emoji.json'
+    keyword_source = 'https://raw.githubusercontent.com/muan/emojilib/refs/tags/v3.0.12/dist/emoji-en-US.json'
+    data_dest = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_data.json')
 
-    puts "Downloading emoji data from source... (#{source})"
-
-    res = HTTP.get(source).to_s
+    puts "Downloading emoji data from source... (#{data_source})"
+    res = HTTP.get(data_source).to_s
     data = JSON.parse(res)
 
-    filtered_data = data.map do |emoji|
-      filtered_item = {
-        'unified' => emoji['unified'],
-        'sheet_x' => emoji['sheet_x'],
-        'sheet_y' => emoji['sheet_y'],
-        'skin_variations' => {},
+    puts "Downloading keyword data from source... (#{keyword_source})"
+    res = HTTP.get(keyword_source).to_s
+    keywords = JSON.parse(res)
+
+    puts 'Generating JSON emoji data...'
+
+    emoji_data = {
+      compressed: true,
+      categories: [
+        { id: 'smileys', name: 'Smileys & Emotion', emojis: [] },
+        { id: 'people', name: 'People & Body', emojis: [] },
+        { id: 'nature', name: 'Animals & Nature', emojis: [] },
+        { id: 'foods', name: 'Food & Drink', emojis: [] },
+        { id: 'activity', name: 'Activities', emojis: [] },
+        { id: 'places', name: 'Travel & Places', emojis: [] },
+        { id: 'objects', name: 'Objects', emojis: [] },
+        { id: 'symbols', name: 'Symbols', emojis: [] },
+        { id: 'flags', name: 'Flags', emojis: [] },
+      ],
+      emojis: {},
+      aliases: {},
+    }
+
+    sorted = data.sort { |a, b| (a['sort_order'] || a['short_name']) - (b['sort_order'] || b['sort_name']) }
+    category_map = emoji_data[:categories].each_with_index.to_h { |c, i| [c[:name], i] }
+
+    sorted.each do |emoji|
+      emoji_keywords = keywords[codepoints_to_unicode(emoji['unified'].downcase)]
+
+      single_emoji = {
+        a: titleize(emoji['name']), # name
+        b: emoji['unified'], # unified
+        f: true, # has_img_twitter
+        k: [emoji['sheet_x'], emoji['sheet_y']], # sheet
       }
 
-      emoji['skin_variations']&.each do |key, variation|
-        filtered_item['skin_variations'][key] = {
-          'unified' => variation['unified'],
-          'sheet_x' => variation['sheet_x'],
-          'sheet_y' => variation['sheet_y'],
-        }
-      end
+      single_emoji[:c] = emoji['non_qualified'] unless emoji['non_qualified'].nil? # non_qualified
+      single_emoji[:j] = emoji_keywords.filter { |k| k != emoji['short_name'] } if emoji_keywords.present? # keywords
+      single_emoji[:l] = emoji['texts'] if emoji['texts'].present? # emoticons
+      single_emoji[:m] = emoji['text'] if emoji['text'].present? # text
+      single_emoji[:skin_variations] = emoji['skin_variations'] if emoji['skin_variations'].present?
 
-      filtered_item
+      emoji_data[:emojis][emoji['short_name']] = single_emoji
+      emoji_data[:categories][category_map[emoji['category']]][:emojis].push(emoji['short_name']) if emoji['category'] != 'Component'
+
+      emoji['short_names'].each do |name|
+        emoji_data[:aliases][name] = emoji['short_name'] unless name == emoji['short_name']
+      end
     end
 
-    File.write(dest, JSON.generate(filtered_data))
+    smileys = emoji_data[:categories][0]
+    people = emoji_data[:categories][1]
+    smileys_and_people = { id: 'people', name: 'Smileys & People', emojis: [*smileys[:emojis][..128], *people[:emojis], *smileys[:emojis][129..]] }
+    emoji_data[:categories].unshift(smileys_and_people)
+    emoji_data[:categories] -= emoji_data[:categories][1, 2]
+
+    File.write(data_dest, JSON.generate(emoji_data))
+  end
+
+  desc 'Generate a spritesheet of emojis'
+  task :generate_emoji_sheet do
+    require 'vips'
+
+    src = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_data.json')
+    sheet = Oj.load(File.read(src))
+
+    max = 0
+    sheet['emojis'].each_value do |row|
+      max = [max, row['k'][0], row['k'][1]].max
+      next if row['skin_variations'].blank?
+
+      row['skin_variations'].each_value do |variation|
+        max = [max, variation['sheet_x'], variation['sheet_y']].max
+      end
+    end
+
+    size = max + 1
+
+    puts 'Generating spritesheet...'
+
+    emoji_base = Rails.public_path.join('emoji')
+    fallback = Vips::Image.new_from_file(emoji_base.join('2753.svg').to_s, dpi: 64)
+    comp = Array.new(size) do
+      Array.new(size, 0)
+    end
+
+    sheet['emojis'].each_value do |row|
+      comp[row['k'][1]][row['k'][0]] = get_image(row, emoji_base, fallback, true)
+      next if row['skin_variations'].blank?
+
+      row['skin_variations'].each_value do |variation|
+        comp[variation['sheet_y']][variation['sheet_x']] = get_image(variation, emoji_base, fallback, false)
+      end
+    end
+
+    joined = Vips::Image.arrayjoin(comp.flatten, across: size, hspacing: 34, halign: :centre, vspacing: 34, valign: :centre)
+    joined.write_to_file(emoji_base.join('sheet_15_1.png').to_s, palette: true, dither: 0, Q: 100)
   end
 end

@@ -16,7 +16,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
   def pass?
     return true unless Chewy.enabled?
 
-    running_version.present? && compatible_version? && cluster_health['status'] == 'green' && indexes_match? && preset_matches?
+    running_version.present? && compatible_version? && cluster_health['status'] == 'green' && indexes_match? && specifications_match? && preset_matches?
   rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
     false
   end
@@ -37,6 +37,11 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
       Admin::SystemCheck::Message.new(
         :elasticsearch_index_mismatch,
         mismatched_indexes.join(' ')
+      )
+    elsif !specifications_match?
+      Admin::SystemCheck::Message.new(
+        :elasticsearch_analysis_index_mismatch,
+        mismatched_specifications_indexes.join(' ')
       )
     elsif cluster_health['status'] == 'red'
       Admin::SystemCheck::Message.new(:elasticsearch_health_red)
@@ -111,8 +116,18 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
     end
   end
 
+  def mismatched_specifications_indexes
+    @mismatched_specifications_indexes ||= INDEXES.filter_map do |klass|
+      klass.base_name if klass.specification.changed?
+    end
+  end
+
   def indexes_match?
     mismatched_indexes.empty?
+  end
+
+  def specifications_match?
+    mismatched_specifications_indexes.empty?
   end
 
   def es_preset

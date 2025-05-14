@@ -26,41 +26,18 @@ import {
 import { openModal, closeModal } from 'mastodon/actions/modal';
 import { CircularProgress } from 'mastodon/components/circular_progress';
 import { isUserTouching } from 'mastodon/is_mobile';
-import type {
-  MenuItem,
-  ActionMenuItem,
-  ExternalLinkMenuItem,
+import {
+  isMenuItem,
+  isActionItem,
+  isExternalLinkItem,
 } from 'mastodon/models/dropdown_menu';
+import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import type { IconProp } from './icon';
 import { IconButton } from './icon_button';
 
 let id = 0;
-
-const isMenuItem = (item: unknown): item is MenuItem => {
-  if (item === null) {
-    return true;
-  }
-
-  return typeof item === 'object' && 'text' in item;
-};
-
-const isActionItem = (item: unknown): item is ActionMenuItem => {
-  if (!item || !isMenuItem(item)) {
-    return false;
-  }
-
-  return 'action' in item;
-};
-
-const isExternalLinkItem = (item: unknown): item is ExternalLinkMenuItem => {
-  if (!item || !isMenuItem(item)) {
-    return false;
-  }
-
-  return 'href' in item;
-};
 
 type RenderItemFn<Item = MenuItem> = (
   item: Item,
@@ -320,6 +297,7 @@ interface DropdownProps<Item = MenuItem> {
   scrollable?: boolean;
   scrollKey?: string;
   status?: ImmutableMap<string, unknown>;
+  forceDropdown?: boolean;
   renderItem?: RenderItemFn<Item>;
   renderHeader?: RenderHeaderFn<Item>;
   onOpen?: () => void;
@@ -339,6 +317,7 @@ export const Dropdown = <Item = MenuItem,>({
   disabled,
   scrollable,
   status,
+  forceDropdown = false,
   renderItem,
   renderHeader,
   onOpen,
@@ -354,6 +333,9 @@ export const Dropdown = <Item = MenuItem,>({
   const open = currentId === openDropdownId;
   const activeElement = useRef<HTMLElement | null>(null);
   const targetRef = useRef<HTMLButtonElement | null>(null);
+  const prefetchAccountId = status
+    ? status.getIn(['account', 'id'])
+    : undefined;
 
   const handleClose = useCallback(() => {
     if (activeElement.current) {
@@ -402,16 +384,15 @@ export const Dropdown = <Item = MenuItem,>({
       } else {
         onOpen?.();
 
-        if (status) {
-          dispatch(fetchRelationships([status.getIn(['account', 'id'])]));
+        if (prefetchAccountId) {
+          dispatch(fetchRelationships([prefetchAccountId]));
         }
 
-        if (isUserTouching()) {
+        if (isUserTouching() && !forceDropdown) {
           dispatch(
             openModal({
               modalType: 'ACTIONS',
               modalProps: {
-                status,
                 actions: items,
                 onClick: handleItemClick,
               },
@@ -431,12 +412,13 @@ export const Dropdown = <Item = MenuItem,>({
     [
       dispatch,
       currentId,
+      prefetchAccountId,
       scrollKey,
       onOpen,
       handleItemClick,
       open,
-      status,
       items,
+      forceDropdown,
       handleClose,
     ],
   );

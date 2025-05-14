@@ -57,6 +57,7 @@ en:
         scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
         setting_aggregate_reblogs: Do not show new boosts for posts that have been recently boosted (only affects newly-received boosts)
         setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using Mastodon
+        setting_default_quote_policy: Mentioned users are always allowed to quote. This setting will only take effect for posts created with the next Mastodon version, but you can select your preference in preparation
         setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Hide media marked as sensitive
         setting_display_media_hide_all: Always hide media
@@ -156,7 +157,9 @@ en:
         min_age: Should not be below the minimum age required by the laws of your jurisdiction.
       user:
         chosen_languages: When checked, only posts in selected languages will be displayed in public timelines
-        date_of_birth: We have to make sure you're at least %{age} to use Mastodon. We won't store this.
+        date_of_birth:
+          one: We have to make sure you're at least %{count} to use Mastodon. We won't store this.
+          other: We have to make sure you're at least %{count} to use Mastodon. We won't store this.
         role: The role controls which permissions the user has.
       user_role:
         color: Color to be used for the role throughout the UI, as RGB in hex format
@@ -238,6 +241,7 @@ en:
         setting_boost_modal: Show confirmation dialog before boosting
         setting_default_language: Posting language
         setting_default_privacy: Posting privacy
+        setting_default_quote_policy: Who can quote
         setting_default_sensitive: Always mark media as sensitive
         setting_delete_modal: Show confirmation dialog before deleting a post
         setting_disable_hover_cards: Disable profile preview on hover

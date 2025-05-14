@@ -45,7 +45,6 @@ type EmojiCompressed = [
   Category[],
   Data['aliases'],
   EmojisWithoutShortCodes,
-  Data,
 ];
 
 /*

@@ -17,7 +17,7 @@ RSpec.describe FeaturedTag do
 
       let(:account) { Fabricate :account }
 
-      it { is_expected.to_not allow_value('Test').for(:name) }
+      it { is_expected.to_not allow_value('Test').for(:name).against(:tag_id) }
 
       context 'when account has hit limit' do
         before { stub_const 'FeaturedTag::LIMIT', 1 }

@@ -17,7 +17,7 @@ lv:
     link_verified_on: Šīs saites piederība tika pārbaudīta %{date}
     nothing_here: Šeit nekā nav.
     pin_errors:
-      following: Tev ir jāseko personai, kuru vēlies atbalstīt
+      following: Tev ir jāseko cilvēkam, kuru vēlies atbalstīt
     posts:
       one: Ieraksts
       other: Ieraksti
@@ -316,6 +316,7 @@ lv:
         create: Izveidot paziņojumu
         title: Jauns paziņojums
       preview:
+        disclaimer: Tā kā lietotāji nevar atteikties no e-pasta paziņojumiem, tos vajadzētu izmantot tikai svarīgiem paziņojumiem, piemēram, personīgo datu noplūdi vai servera aizvēršanas paziņojumiem.
         explanation_html: 'E-pasta ziņojums tiks nosūtīts <strong>%{display_count} lietotājiem</strong>. Šis teksts tiks iekļauts e-pasta ziņojumā:'
         title: Priekšskatīt paziņojumu
       publish: Publicēt
@@ -474,7 +475,7 @@ lv:
       import:
         description_html: Tu gatavojies importēt domēna bloku sarakstu. Lūdzu, ļoti rūpīgi pārskati šo sarakstu, it īpaši, ja tu pats neesi to veidojis.
         existing_relationships_warning: Esošās sekošanas attiecības
-        private_comment_description_html: 'Lai palīdzētu tev izsekot, no kurienes nāk importētie bloki, tiks izveidoti importētie bloki ar šādu privātu komentāru: <q>%{comment}</q>'
+        private_comment_description_html: 'Lai palīdzētu Tev izsekot ievietoto bloku izcelsmei, tiks izveidoti ievietotie bloki ar šādu privātu piebildi: <q>%{comment}</q>'
         private_comment_template: Importēt no %{source} %{date}
         title: Importēt bloķētos domēnus
       invalid_domain_block: 'Viens vai vairāki domēna bloķi tika izlaisti šādas kļūdas(-u) dēļ: %{error}'
@@ -909,6 +910,8 @@ lv:
     system_checks:
       database_schema_check:
         message_html: Ir nepabeigtas datubāzes migrācijas. Lūgums palaist tās, lai nodrošinātu, ka lietotne darbojas, kā paredzēts
+      elasticsearch_analysis_index_mismatch:
+        message_html: 'Elasticsearch indeksa analizatora iestatījumi ir novecojuši. Lūdzu, izpildiet šo komandu: <code>tootctl search deploy --only-mapping --only=%{value}</code>'
       elasticsearch_health_red:
         message_html: Elasticsearch klasteris ir neveselīgs (sarkans statuss), meklēšanas līdzekļi nav pieejami
       elasticsearch_health_yellow:
@@ -1656,12 +1659,12 @@ lv:
       subject: "%{name} pievienoja tavu ziņu izlasei"
       title: Jauna izlase
     follow:
-      body: "%{name} tagad tev seko!"
-      subject: "%{name} tagad tev seko"
+      body: "%{name} tagad seko Tev."
+      subject: "%{name} tagad seko Tev"
       title: Jauns sekotājs
     follow_request:
       action: Pārvaldīt sekošanas pieprasījumus
-      body: "%{name} vēlas tev sekot"
+      body: "%{name} vēlas Tev sekot"
       subject: 'Gaidošs sekotājs: %{name}'
       title: Jauns sekotāja pieprasījums
     mention:
@@ -1728,7 +1731,7 @@ lv:
     privacy: Privātums
     privacy_hint_html: Kontrolē, cik daudz vēlies izpaust citu labā. Cilvēki atklāj interesantus profilus un lieliskas lietotnes, pārlūkojot citu cilvēku sekotājus un redzot, no kurām lietotnēm viņi izliek ziņas, taču tu, iespējams, vēlēsies to slēpt.
     reach: Sasniedzamība
-    reach_hint_html: Kontrolē, vai vēlies, lai tevi atklātu un sekotu jauni cilvēki. Vai vēlies, lai tavas ziņas tiktu parādītas ekrānā Izpēte? Vai vēlies, lai citi cilvēki tevi redzētu savos ieteikumos? Vai vēlies automātiski pieņemt visus jaunos sekotājus vai arī tev ir pilnīga kontrole pār katru?
+    reach_hint_html: Pārvaldi, vai vēlies, lai Tevi atklātu un sekotu jauni cilvēki. Vai vēlies, lai Tavas ziņas tiktu parādītas skatā "Izpēte"? Vai vēlies, lai citi cilvēki Tevi redzētu savos ieteikumos? Vai vēlies automātiski pieņemt visus jaunos sekotājus vai iegūt izvērstu pārvaldību par katru atsevišķi?
     search: Meklēt
     search_hint_html: Nosaki, kā vēlies tikt atrasts! Vai vēlies, lai cilvēki Tevi atrod pēc tā, par ko esi veicis visiem redzamus ierakstus? Vai vēlies, lai cilvēki ārpus Mastodon atrastu Tavu profilu, meklējot tīmeklī? Lūdzu, ņem vērā, ka nevar nodrošināt visiem redzamas informācijas pilnīgu izslēgšanu no visām meklētājiem!
     title: Privātums un sasniedzamība
@@ -2027,7 +2030,7 @@ lv:
         disable: Tu vairs nevari izmantot savu kontu, taču tavs profils un citi dati paliek neskarti. Tu vari pieprasīt savu datu dublējumu, mainīt konta iestatījumus vai dzēst kontu.
         mark_statuses_as_sensitive: "%{instance} satura pārraudzītāji dažus no Taviem ierakstiem ir atzīmējuši kā jūtīgus. Tas nozīmē, ka cilvēkiem būs jāpiesit ierakstos esošajiem informāijas nesējiem, pirms tiek attēlots to priekšskatījums. Tu pats vari atzīmēt informācijas nesēju kā jūtīgu, kad nākotnē tādu ievietosi."
         sensitive: Turpmāk visi augšupielādētās informācijas nesēju datnes tiks atzīmētas kā jūtīgas un paslēptas aiz klikšķināma brīdinājuma.
-        silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau tev seko, redzēs tavas ziņas šajā serverī, un tev var tikt liegtas dažādas atklāšanas funkcijas. Tomēr citi joprojām var tev manuāli sekot.
+        silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau seko Tev, redzēs Tavas ziņas šajā serverī, un Tevi var neiekļaut dažādās atklāšanas iespējās. Tomēr citi joprojām var pašrocīgi sekot Tev.
         suspend: Tu vairs nevari izmantot savu kontu, un tavs profils un citi dati vairs nav pieejami. Tu joprojām vari pieteikties, lai pieprasītu savu datu dublēšanu, līdz dati tiks pilnībā noņemti aptuveni 30 dienu laikā, taču mēs saglabāsim dažus pamata datus, lai neļautu tev izvairīties no apturēšanas.
       reason: 'Iemesls:'
       statuses: 'Citētās ziņas:'

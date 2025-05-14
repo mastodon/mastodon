@@ -6,7 +6,6 @@ import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?re
 import ReplyIcon from '@/material-icons/400-24px/reply-fill.svg?react';
 import { me } from 'mastodon/initial_state';
 import type { NotificationGroupMention } from 'mastodon/models/notification_group';
-import type { Status } from 'mastodon/models/status';
 import { useAppSelector } from 'mastodon/store';
 
 import type { LabelRenderer } from './notification_group_with_status';
@@ -39,9 +38,9 @@ export const NotificationMention: React.FC<{
   unread: boolean;
 }> = ({ notification, unread }) => {
   const [isDirect, isReply] = useAppSelector((state) => {
-    const status = state.statuses.get(notification.statusId) as
-      | Status
-      | undefined;
+    const status = notification.statusId
+      ? state.statuses.get(notification.statusId)
+      : undefined;
 
     if (!status) return [false, false] as const;
 

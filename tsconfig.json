@@ -5,22 +5,27 @@
     "module": "CommonJS",
     "moduleResolution": "node",
     "allowJs": true,
+    "resolveJsonModule": true,
     "noEmit": true,
     "strict": true,
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "types": ["vitest/globals", "@types/webpack-env"],
     "baseUrl": "./",
     "incremental": true,
     "tsBuildInfoFile": "tmp/cache/tsconfig.tsbuildinfo",
     "paths": {
+      "@/*": ["app/javascript/*"],
       "mastodon": ["app/javascript/mastodon"],
       "mastodon/*": ["app/javascript/mastodon/*"],
-      "@/*": ["app/javascript/*"]
+      "images/*": ["app/javascript/images/*"],
+      "styles/*": ["app/javascript/styles/*"]
     }
   },
   "include": [
+    "vite.config.mts",
     "app/javascript/mastodon",
     "app/javascript/entrypoints",
     "app/javascript/types"

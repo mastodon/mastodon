@@ -903,6 +903,8 @@ tr:
     system_checks:
       database_schema_check:
         message_html: Beklemede olan veritabanı güncellemeleri mevcut. Uygulamanın beklenildiği gibi çalışması için lütfen onları çalıştırın
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch indeks çözümleyici ayarları artık güncel değil. Lütfen <code>tootctl search deploy --only-mapping --only=%{value}</code> komutunu çalıştırın
       elasticsearch_health_red:
         message_html: Elasticsearch kümesi sağlıksız (kırmızı durum), arama özellikleri mevcut değil
       elasticsearch_health_yellow:

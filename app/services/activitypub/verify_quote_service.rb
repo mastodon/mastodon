@@ -4,15 +4,15 @@ class ActivityPub::VerifyQuoteService < BaseService
   include JsonLdHelper
 
   # Optionally fetch quoted post, and verify the quote is authorized
-  def call(quote, fetchable_quoted_uri: nil, prefetched_body: nil, request_id: nil)
+  def call(quote, fetchable_quoted_uri: nil, prefetched_quoted_object: nil, prefetched_approval: nil, request_id: nil)
     @request_id = request_id
     @quote = quote
     @fetching_error = nil
 
-    fetch_quoted_post_if_needed!(fetchable_quoted_uri)
+    fetch_quoted_post_if_needed!(fetchable_quoted_uri, prefetched_body: prefetched_quoted_object)
     return if fast_track_approval! || quote.approval_uri.blank?
 
-    @json = fetch_approval_object(quote.approval_uri, prefetched_body:)
+    @json = fetch_approval_object(quote.approval_uri, prefetched_body: prefetched_approval)
     return quote.reject! if @json.nil?
 
     return if non_matching_uri_hosts?(quote.approval_uri, value_or_id(@json['attributedTo']))
@@ -68,11 +68,11 @@ class ActivityPub::VerifyQuoteService < BaseService
     ActivityPub::TagManager.instance.uri_for(@quote.status) == value_or_id(@json['interactingObject'])
   end
 
-  def fetch_quoted_post_if_needed!(uri)
+  def fetch_quoted_post_if_needed!(uri, prefetched_body: nil)
     return if uri.nil? || @quote.quoted_status.present?
 
     status = ActivityPub::TagManager.instance.uri_to_resource(uri, Status)
-    status ||= ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: @quote.account.followers.local.first, request_id: @request_id)
+    status ||= ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: @quote.account.followers.local.first, prefetched_body:, request_id: @request_id)
 
     @quote.update(quoted_status: status) if status.present?
   rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS => e

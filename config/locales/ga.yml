@@ -328,6 +328,7 @@ ga:
         create: Cruthaigh fógra
         title: Fógra nua
       preview:
+        disclaimer: Ós rud é nach féidir le húsáideoirí rogha an diúltaithe a dhéanamh dóibh, ba cheart fógraí ríomhphoist a theorannú do fhógraí tábhachtacha amhail fógraí maidir le sárú sonraí pearsanta nó dúnadh freastalaí.
         explanation_html: 'Seolfar an ríomhphost chuig <strong>%{display_count} úsáideoir</strong>. Beidh an téacs seo a leanas san áireamh sa ríomhphost:'
         title: Fógra réamhamhairc na fógraíochta
       publish: Foilsigh
@@ -944,6 +945,8 @@ ga:
     system_checks:
       database_schema_check:
         message_html: Tá aistrithe bunachar sonraí ar feitheamh. Rith iad le do thoil chun a chinntiú go n-iompraíonn an t-iarratas mar a bhíothas ag súil leis
+      elasticsearch_analysis_index_mismatch:
+        message_html: Tá socruithe anailíseora innéacs Elasticsearch as dáta. Rith <code>tootctl search deploy --only-mapping --only=%{value}</code>le do thoil
       elasticsearch_health_red:
         message_html: Tá braisle Elasticsearch míshláintiúil (stádas dearg), níl gnéithe cuardaigh ar fáil
       elasticsearch_health_yellow:

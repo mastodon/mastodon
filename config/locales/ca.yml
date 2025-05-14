@@ -903,6 +903,8 @@ ca:
     system_checks:
       database_schema_check:
         message_html: Hi ha pendents migracions de la base de dades. Executeu-les per a assegurar que l'aplicació es comporta com s'espera
+      elasticsearch_analysis_index_mismatch:
+        message_html: La configuració de l'índex de l'analitzador d'Elasticsearch està desactualizada. Executa <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: El cluster de Elasticsearch no es saludable (estat vermell), les funcions de cerca no estan disponibles
       elasticsearch_health_yellow:

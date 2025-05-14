@@ -906,6 +906,8 @@ en:
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch index analyzer settings are outdated. Please run <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch cluster is unhealthy (red status), search features are unavailable
       elasticsearch_health_yellow:
@@ -1861,6 +1863,10 @@ en:
       limit: You have already pinned the maximum number of posts
       ownership: Someone else's post cannot be pinned
       reblog: A boost cannot be pinned
+    quote_policies:
+      followers: Followers and mentioned users
+      nobody: Only mentioned users
+      public: Everyone
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direct

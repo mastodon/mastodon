@@ -113,27 +113,27 @@ RSpec.describe MoveWorker do
   end
 
   shared_examples 'common tests' do
-    include_examples 'user note handling'
-    include_examples 'block and mute handling'
-    include_examples 'followers count handling'
-    include_examples 'lists handling'
+    it_behaves_like 'user note handling'
+    it_behaves_like 'block and mute handling'
+    it_behaves_like 'followers count handling'
+    it_behaves_like 'lists handling'
 
     context 'when a local user already follows both source and target' do
       before do
         local_follower.request_follow!(target_account)
       end
 
-      include_examples 'user note handling'
-      include_examples 'block and mute handling'
-      include_examples 'followers count handling'
-      include_examples 'lists handling'
+      it_behaves_like 'user note handling'
+      it_behaves_like 'block and mute handling'
+      it_behaves_like 'followers count handling'
+      it_behaves_like 'lists handling'
 
       context 'when the local user already has the target in a list' do
         before do
           list.accounts << target_account
         end
 
-        include_examples 'lists handling'
+        it_behaves_like 'lists handling'
       end
     end
 
@@ -142,17 +142,17 @@ RSpec.describe MoveWorker do
         local_follower.follow!(target_account)
       end
 
-      include_examples 'user note handling'
-      include_examples 'block and mute handling'
-      include_examples 'followers count handling'
-      include_examples 'lists handling'
+      it_behaves_like 'user note handling'
+      it_behaves_like 'block and mute handling'
+      it_behaves_like 'followers count handling'
+      it_behaves_like 'lists handling'
 
       context 'when the local user already has the target in a list' do
         before do
           list.accounts << target_account
         end
 
-        include_examples 'lists handling'
+        it_behaves_like 'lists handling'
       end
     end
   end
@@ -164,7 +164,7 @@ RSpec.describe MoveWorker do
         expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, false)
       end
 
-      include_examples 'common tests'
+      it_behaves_like 'common tests'
     end
 
     context 'when target account is local' do
@@ -175,7 +175,7 @@ RSpec.describe MoveWorker do
         expect(UnfollowFollowWorker).to have_enqueued_sidekiq_job(local_follower.id, source_account.id, target_account.id, true)
       end
 
-      include_examples 'common tests'
+      it_behaves_like 'common tests'
     end
 
     context 'when both target and source accounts are local' do
@@ -187,7 +187,7 @@ RSpec.describe MoveWorker do
         expect(local_follower.following?(target_account)).to be true
       end
 
-      include_examples 'common tests'
+      it_behaves_like 'common tests'
 
       it 'does not allow the moved account to follow themselves' do
         source_account.follow!(target_account)

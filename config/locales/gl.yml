@@ -903,6 +903,8 @@ gl:
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
+      elasticsearch_analysis_index_mismatch:
+        message_html: Os axustes do analizador do índice Elasticsearch están obsoletos. Por favor executa <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: O grupo Elasticsearch non está ben (en vermello), as ferramentas de busca non están dispoñibles
       elasticsearch_health_yellow:

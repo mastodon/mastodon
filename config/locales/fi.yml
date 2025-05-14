@@ -486,7 +486,10 @@ fi:
           created_at: Luotu
           delete: Poista
           ip: IP-osoite
+          title: Aloita takaisinkutsujen vianetsintä
       providers:
+        base_url: Perus-URL
+        callback: Takaisinkutsu
         delete: Poista
         finish_registration: Viimeistele rekisteröinti
         name: Nimi
@@ -894,6 +897,8 @@ fi:
     system_checks:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch-indeksin analysaattoriasetukset ovat vanhentuneet. Suorita <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch-klusteri on vikatilassa (punainen tila), joten hakuominaisuudet eivät ole käytettävissä
       elasticsearch_health_yellow:

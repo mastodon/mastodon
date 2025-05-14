@@ -18,7 +18,7 @@ import { getAverageFromBlurhash } from 'mastodon/blurhash';
 import { GIFV } from 'mastodon/components/gifv';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
-import Footer from 'mastodon/features/picture_in_picture/components/footer';
+import { Footer } from 'mastodon/features/picture_in_picture/components/footer';
 import { Video } from 'mastodon/features/video';
 import { disableSwiping } from 'mastodon/initial_state';
 

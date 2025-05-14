@@ -27,7 +27,7 @@ import { Button } from 'mastodon/components/button';
 import { GIFV } from 'mastodon/components/gifv';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { Skeleton } from 'mastodon/components/skeleton';
-import Audio from 'mastodon/features/audio';
+import { Audio } from 'mastodon/features/audio';
 import { CharacterCounter } from 'mastodon/features/compose/components/character_counter';
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
 import { Video, getPointerPosition } from 'mastodon/features/video';
@@ -212,11 +212,11 @@ const Preview: React.FC<{
     return (
       <Audio
         src={media.get('url') as string}
-        duration={media.getIn(['meta', 'original', 'duration'], 0) as number}
         poster={
           (media.get('preview_url') as string | undefined) ??
           account?.avatar_static
         }
+        duration={media.getIn(['meta', 'original', 'duration'], 0) as number}
         backgroundColor={
           media.getIn(['meta', 'colors', 'background']) as string
         }

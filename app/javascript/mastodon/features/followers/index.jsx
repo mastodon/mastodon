@@ -29,7 +29,7 @@ import { LimitedAccountHint } from '../account_timeline/components/limited_accou
 import Column from '../ui/components/column';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
-  const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
+  const accountId = id || state.accounts_map[normalizeForLookup(acct)];
 
   if (!accountId) {
     return {

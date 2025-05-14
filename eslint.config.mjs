@@ -1,5 +1,7 @@
 // @ts-check
 
+import path from 'node:path';
+
 import js from '@eslint/js';
 import { globalIgnores } from 'eslint/config';
 import formatjs from 'eslint-plugin-formatjs';
@@ -204,7 +206,9 @@ export default tseslint.config([
       'import/ignore': ['node_modules', '\\.(css|scss|json)$'],
 
       'import/resolver': {
-        typescript: {},
+        typescript: {
+          project: path.resolve(import.meta.dirname, './tsconfig.json'),
+        },
       },
     },
 
@@ -247,6 +251,7 @@ export default tseslint.config([
             'config/webpack/**',
             'app/javascript/mastodon/performance.js',
             'app/javascript/mastodon/test_setup.js',
+            'app/javascript/mastodon/test_helpers.tsx',
             'app/javascript/**/__tests__/**',
           ],
         },
@@ -387,9 +392,7 @@ export default tseslint.config([
     files: ['**/__tests__/*.js', '**/__tests__/*.jsx'],
 
     languageOptions: {
-      globals: {
-        ...globals.jest,
-      },
+      globals: globals.vitest,
     },
   },
 ]);

@@ -901,6 +901,8 @@ uk:
     system_checks:
       database_schema_check:
         message_html: Існують відкладені перенесення бази даних. Запустіть їх, щоб забезпечити очікувану роботу програми
+      elasticsearch_analysis_index_mismatch:
+        message_html: Налаштування індексу Elasticsearch застарілі. Будь ласка, запустіть <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Кластер Elasticsearch нездоровий (червоний статус), функції пошуку недоступні
       elasticsearch_health_yellow:

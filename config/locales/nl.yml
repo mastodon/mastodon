@@ -903,6 +903,8 @@ nl:
     system_checks:
       database_schema_check:
         message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch index analyser-instellingen zijn verouderd. Voer <code>tootctl search deploy --only-mapping --only=%{value}</code> uit
       elasticsearch_health_red:
         message_html: Elasticsearch-cluster is ongezond (rode status), zoekfuncties zijn niet beschikbaar
       elasticsearch_health_yellow:

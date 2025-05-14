@@ -304,6 +304,7 @@ lt:
         create: Sukurti skelbimą
         title: Naujas skelbimas
       preview:
+        disclaimer: Kadangi naudotojai negali jų atsisakyti, el. pašto pranešimai turėtų būti siunčiami tik svarbiems pranešimams, pavyzdžiui, asmeninių duomenų pažeidimo ar serverio uždarymo pranešimams.
         explanation_html: 'El. laiškas bus išsiųstas <strong>%{display_count} naudotojams</strong>. Į el. laišką bus įtrauktas toliau nurodytas tekstas:'
         title: Peržiūrėti skelbimo pranešimą
       publish: Skelbti
@@ -619,6 +620,8 @@ lt:
     system_checks:
       database_schema_check:
         message_html: Laukiama duomenų bazės perkėlimo. Paleisk juos, kad įsitikintum, jog programa veikia taip, kaip tikimasi.
+      elasticsearch_analysis_index_mismatch:
+        message_html: "„Elasticsearch“ indekso analizatoriaus nustatymai pasenę. Vykdykite <code>tootctl search deploy --only-mapping --only=%{value}</code>."
       elasticsearch_health_yellow:
         message_html: Elasticsearch klasteris yra nesveikas (geltona būsena), galbūt norėsi išsiaiškinti priežastį
       elasticsearch_preset:
