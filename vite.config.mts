@@ -9,6 +9,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import RailsPlugin from 'vite-plugin-rails';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import yaml from 'js-yaml';
 
 import { defineConfig, UserConfigFnPromise, UserConfig } from 'vite';
 import postcssPresetEnv from 'postcss-preset-env';
@@ -17,18 +18,34 @@ import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
 
 const jsRoot = path.resolve(__dirname, 'app/javascript');
-const entrypointRoot = path.resolve(jsRoot, 'entrypoints');
+const themesFile = path.resolve(__dirname, 'config/themes.yml');
 
 export const config: UserConfigFnPromise = async ({ mode, command }) => {
-  const entrypointFiles = await fs.readdir(entrypointRoot);
-  const entrypoints: Record<string, string> = entrypointFiles.reduce(
-    (acc, file) => {
-      const name = path.basename(file).replace(/\.tsx?$/, '');
-      acc[name] = path.resolve(entrypointRoot, file);
-      return acc;
-    },
-    {} as Record<string, string>,
-  );
+  const entrypoints: Record<string, string> = {}; // All JS entrypoints are taken care of by Vite Ruby
+
+  // Get all files mentioned in the themes.yml file.
+  const themesString = await fs.readFile(themesFile, 'utf8');
+  const themes = yaml.load(themesString, {
+    filename: 'themes.yml',
+    schema: yaml.FAILSAFE_SCHEMA,
+  });
+
+  if (!themes || typeof themes !== 'object') {
+    throw new Error('Invalid themes.yml file');
+  }
+
+  for (const themePath of Object.values(themes)) {
+    if (
+      typeof themePath !== 'string' ||
+      themePath.split('.').length !== 2 || // Ensure it has exactly one period
+      !themePath.endsWith('css')
+    ) {
+      console.warn(`Invalid theme path "${themePath}" in themes.yml, skipping`);
+      continue;
+    }
+    entrypoints[path.basename(themePath)] = path.resolve(jsRoot, themePath);
+  }
+
   return {
     root: jsRoot,
     css: {
@@ -57,31 +74,25 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       rollupOptions: {
         input: entrypoints,
         output: {
-          chunkFileNames(chunkInfo) {
-            if (!chunkInfo.facadeModuleId) {
+          chunkFileNames({ facadeModuleId, name }) {
+            if (!facadeModuleId) {
               return '[name]-[hash].js';
             }
-            if (
-              /mastodon\/locales\/[a-zA-Z-]+\.json/.exec(
-                chunkInfo.facadeModuleId,
-              )
-            ) {
+            if (/mastodon\/locales\/[a-zA-Z\-]+\.json/.exec(facadeModuleId)) {
               // put all locale files in `intl/`
-              return `intl/[name]-[hash].js`;
-            } else if (
-              /node_modules\/@formatjs\//.exec(chunkInfo.facadeModuleId)
-            ) {
+              return 'intl/[name]-[hash].js';
+            } else if (/node_modules\/@formatjs\//.exec(facadeModuleId)) {
               // use a custom name for formatjs polyfill files
-              const name = /node_modules\/@formatjs\/([^/]+)\//.exec(
-                chunkInfo.facadeModuleId,
+              const newName = /node_modules\/@formatjs\/([^/]+)\//.exec(
+                facadeModuleId,
               );
 
-              if (name?.[1]) {
-                return `intl/[name]-${name[1]}-[hash].js`;
+              if (newName?.[1]) {
+                return `intl/[name]-${newName[1]}-[hash].js`;
               }
-            } else if (chunkInfo.name === 'index' && chunkInfo.facadeModuleId) {
+            } else if (name === 'index') {
               // Use a custom name for chunks, to avoid having too many of them called "index"
-              const parts = chunkInfo.facadeModuleId.split('/');
+              const parts = facadeModuleId.split('/');
 
               const parent = parts.at(-2);
 
@@ -89,7 +100,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
                 return `${parent}-[name]-[hash].js`;
               }
             }
-            return `[name]-[hash].js`;
+            return '[name]-[hash].js';
           },
         },
       },
@@ -97,7 +108,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     plugins: [
       tsconfigPaths(),
       RailsPlugin({
-        compress: mode !== 'production' && command === 'build',
+        compress: mode === 'production' && command === 'build',
       }),
       react({
         babel: {

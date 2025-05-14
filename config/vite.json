@@ -1,7 +1,10 @@
 {
   "all": {
     "sourceCodeDir": "app/javascript",
-    "additionalEntrypoints": ["~/{fonts,icons,images}/**/*", "~/styles/*.scss"],
+    "additionalEntrypoints": [
+      "~/{fonts,icons,images}/**/*",
+      "~/styles/entrypoints/*.scss"
+    ],
     "watchAdditionalPaths": []
   },
   "production": {
