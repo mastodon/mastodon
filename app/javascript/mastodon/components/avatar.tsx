@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useHovering } from 'mastodon/hooks/useHovering';
 import { autoPlayGif } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
+import { immutableToJSIfNeeded } from 'mastodon/utils/immutable';
 
 interface Props {
   account:
@@ -21,7 +22,7 @@ interface Props {
 }
 
 export const Avatar: React.FC<Props> = ({
-  account,
+  account: accountProp,
   animate = autoPlayGif,
   size = 20,
   inline = false,
@@ -30,6 +31,8 @@ export const Avatar: React.FC<Props> = ({
   counter,
   counterBorderColor,
 }) => {
+  const account = immutableToJSIfNeeded(accountProp);
+
   const { hovering, handleMouseEnter, handleMouseLeave } = useHovering(animate);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
