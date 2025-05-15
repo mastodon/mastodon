@@ -69,7 +69,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     build: {
       commonjsOptions: { transformMixedEsModules: true },
       chunkSizeWarningLimit: 1 * 1024 * 1024, // 1MB
-      manifest: 'manifest.json',
       sourcemap: true,
       rollupOptions: {
         input: entrypoints,
@@ -109,6 +108,9 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       tsconfigPaths(),
       RailsPlugin({
         compress: mode === 'production' && command === 'build',
+        sri: {
+          manifestPaths: ['.vite/manifest.json', '.vite/manifest-assets.json'],
+        },
       }),
       react({
         babel: {
