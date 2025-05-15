@@ -12,12 +12,16 @@ import { getAccountFamiliarFollowers } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 const AccountLink: React.FC<{ account?: Account }> = ({ account }) => {
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-  const name = account?.display_name || `@${account?.acct}`;
+  if (!account) {
+    return null;
+  }
+
   return (
-    <Link to={`/@${account?.acct}`} data-hover-card-account={account?.id}>
-      {name}
-    </Link>
+    <Link
+      to={`/@${account.acct}`}
+      data-hover-card-account={account.id}
+      dangerouslySetInnerHTML={{ __html: account.display_name_html }}
+    />
   );
 };
 
@@ -50,7 +54,7 @@ const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
     return (
       <FormattedMessage
         id='account.familiar_followers_many'
-        defaultMessage='Followed by {name1}, {name2}, and {othersCount, plural, one {# other} other {# others}}'
+        defaultMessage='Followed by {name1}, {name2}, and {othersCount, plural, one {one other you know} other {# others you know}}'
         values={messageData}
       />
     );
@@ -80,7 +84,7 @@ export const FamiliarFollowers: React.FC<{ accountId: string }> = ({
   return (
     <div className='account__header__familiar-followers'>
       <AvatarGroup compact>
-        {familiarFollowers.map((account) => (
+        {familiarFollowers.slice(0, 3).map((account) => (
           <Avatar withLink key={account.id} account={account} size={28} />
         ))}
       </AvatarGroup>

@@ -2091,6 +2091,7 @@ body > [data-popper-placement] {
   display: block;
   position: relative;
   border-radius: var(--avatar-border-radius);
+  background: var(--surface-background-color);
 
   img {
     width: 100%;
@@ -8151,16 +8152,13 @@ noscript {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-block-end: 16px;
+    margin-block: 16px;
     color: $darker-text-color;
 
     a:any-link {
-      color: inherit;
-      text-decoration: underline;
-    }
-
-    a:hover {
+      font-weight: 500;
       text-decoration: none;
+      color: $primary-text-color;
     }
   }
 }
