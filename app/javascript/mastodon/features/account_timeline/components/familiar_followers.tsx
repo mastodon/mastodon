@@ -82,7 +82,7 @@ export const FamiliarFollowers: React.FC<{ accountId: string }> = ({
   return (
     <div className='account__header__familiar-followers'>
       <AvatarGroup compact>
-        {familiarFollowers.map((account) => (
+        {familiarFollowers.slice(0, 3).map((account) => (
           <Avatar withLink key={account.id} account={account} size={28} />
         ))}
       </AvatarGroup>
