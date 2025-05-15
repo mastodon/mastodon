@@ -52,7 +52,7 @@ const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
     return (
       <FormattedMessage
         id='account.familiar_followers_many'
-        defaultMessage='Followed by {name1}, {name2}, and {othersCount, plural, one {# other} other {# others}}'
+        defaultMessage='Followed by {name1}, {name2}, and {othersCount, plural, one {one other you know} other {# others you know}}'
         values={messageData}
       />
     );
