@@ -8155,12 +8155,9 @@ noscript {
     color: $darker-text-color;
 
     a:any-link {
-      color: inherit;
-      text-decoration: underline;
-    }
-
-    a:hover {
+      font-weight: 500;
       text-decoration: none;
+      color: $primary-text-color;
     }
   }
 }
