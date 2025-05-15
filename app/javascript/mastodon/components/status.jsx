@@ -1,3 +1,5 @@
+import { createRef } from 'react';
+
 import PropTypes from 'prop-types';
 
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
@@ -175,13 +177,24 @@ class Status extends ImmutablePureComponent {
     }
   };
 
-  handleMouseUp = e => {
-    // Only handle clicks on the empty space above the content
+  wasClickStartedWithinStatusInfo = createRef(false);
 
-    if (e.target !== e.currentTarget && e.detail >= 1) {
+  handleMouseDown = e => {    
+    this.wasClickStartedWithinStatusInfo.current = e.currentTarget === e.target ||
+      e.currentTarget.contains(e.target);
+  };
+
+  handleMouseUp = e => {
+    const wasClickStartedWithin = this.wasClickStartedWithinStatusInfo.current;
+    this.wasClickStartedWithinStatusInfo.current = false;
+
+    console.log('up', wasClickStartedWithin)
+
+    // Only handle clicks on the empty space above the content,
+    // bail out if the click was initialised outside
+    if (!wasClickStartedWithin || e.detail > 0) {
       return;
     }
-
     this.handleClick(e);
   };
 
@@ -547,7 +560,7 @@ class Status extends ImmutablePureComponent {
           <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), 'status--in-thread': !!rootId, 'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted })} data-id={status.get('id')}>
             {(connectReply || connectUp || connectToRoot) && <div className={classNames('status__line', { 'status__line--full': connectReply, 'status__line--first': !status.get('in_reply_to_id') && !connectToRoot })} />}
 
-            <div onMouseUp={this.handleMouseUp} className='status__info'>
+            <div onMouseUp={this.handleMouseUp} onMouseDown={this.handleMouseDown} className='status__info'>
               <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} className='status__relative-time'>
                 <span className='status__visibility-icon'><VisibilityIcon visibility={status.get('visibility')} /></span>
                 <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
