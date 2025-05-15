@@ -13,11 +13,13 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 const AccountLink: React.FC<{ account?: Account }> = ({ account }) => {
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-  const name = account?.display_name || `@${account?.acct}`;
+  const name = account?.display_name_html || `@${account?.acct}`;
   return (
-    <Link to={`/@${account?.acct}`} data-hover-card-account={account?.id}>
-      {name}
-    </Link>
+    <Link
+      to={`/@${account?.acct}`}
+      data-hover-card-account={account?.id}
+      dangerouslySetInnerHTML={{ __html: name }}
+    />
   );
 };
 
