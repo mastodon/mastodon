@@ -49,7 +49,8 @@ module WebAppControllerConcern
   def redirect_to_tos_interstitial!
     return unless current_user&.require_tos_interstitial?
 
-    redirect_to(terms_of_service_interstitial_url)
+    @terms_of_service = TermsOfService.published.first
+    render 'terms_of_service_interstitial/show', layout: 'auth'
   end
 
   def set_referer_header
