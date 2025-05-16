@@ -80,7 +80,7 @@ class ActivityPub::FetchAllRepliesWorker
     root_status_body = fetch_resource(root_status_uri, true)
     return if root_status_body.nil?
 
-    FetchReplyWorker.perform_async(root_status_uri, { **options, prefetched_body: root_status_body })
+    FetchReplyWorker.perform_async(root_status_uri, { **options.deep_stringify_keys, 'prefetched_body' => root_status_body })
 
     get_replies(root_status_body, MAX_PAGES, options)
   end
