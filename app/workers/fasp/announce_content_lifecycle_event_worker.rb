@@ -6,7 +6,7 @@ class Fasp::AnnounceContentLifecycleEventWorker
   sidekiq_options queue: 'fasp', retry: 5
 
   def perform(uri, event_type)
-    Fasp::Subscription.includes(:fasp_provider).content.lifecycle.each do |subscription|
+    Fasp::Subscription.includes(:fasp_provider).category_content.lifecycle.each do |subscription|
       announce(subscription, uri, event_type)
     end
   end

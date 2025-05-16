@@ -9,7 +9,7 @@ class Fasp::AnnounceTrendWorker
     status = ::Status.includes(:account).find(status_id)
     return unless status.account.indexable?
 
-    Fasp::Subscription.includes(:fasp_provider).content.trends.each do |subscription|
+    Fasp::Subscription.includes(:fasp_provider).category_content.trends.each do |subscription|
       announce(subscription, status.uri) if trending?(subscription, status, trend_source)
     end
   rescue ActiveRecord::RecordNotFound

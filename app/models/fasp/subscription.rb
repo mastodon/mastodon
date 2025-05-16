@@ -25,8 +25,8 @@ class Fasp::Subscription < ApplicationRecord
   validates :subscription_type, presence: true,
                                 inclusion: TYPES
 
-  scope :content, -> { where(category: 'content') }
-  scope :account, -> { where(category: 'account') }
+  scope :category_content, -> { where(category: 'content') }
+  scope :category_account, -> { where(category: 'account') }
   scope :lifecycle, -> { where(subscription_type: 'lifecycle') }
   scope :trends, -> { where(subscription_type: 'trends') }
 
