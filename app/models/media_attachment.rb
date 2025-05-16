@@ -165,7 +165,7 @@ class MediaAttachment < ApplicationRecord
   }.freeze
 
   THUMBNAIL_STYLES = {
-    original: IMAGE_STYLES[:small].freeze,
+    original: IMAGE_STYLES[:small].merge(extract_colors: { meta_attribute_name: :file_meta }.freeze).freeze,
   }.freeze
 
   DEFAULT_STYLES = [:original].freeze

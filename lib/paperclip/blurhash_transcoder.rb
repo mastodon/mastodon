@@ -3,7 +3,7 @@
 module Paperclip
   class BlurhashTranscoder < Paperclip::Processor
     def make
-      return @file unless options[:style] == :small || options[:blurhash]
+      return @file unless options[:blurhash]
 
       width, height, data = blurhash_params
       # Guard against segfaults if data has unexpected size
