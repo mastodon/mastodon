@@ -1,7 +1,11 @@
 export function isDevelopment() {
-  return process.env.NODE_ENV === 'development';
+  if (typeof process !== 'undefined')
+    return process.env.NODE_ENV === 'development';
+  else return import.meta.env.DEV;
 }
 
 export function isProduction() {
-  return process.env.NODE_ENV === 'production';
+  if (typeof process !== 'undefined')
+    return process.env.NODE_ENV === 'production';
+  else return import.meta.env.PROD;
 }

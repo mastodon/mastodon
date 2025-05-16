@@ -1,4 +1,4 @@
-@use 'fonts/inter';
+@use '../fonts/inter';
 
 body {
   accent-color: #6364ff;
@@ -259,7 +259,7 @@ table + p {
 .email-header-td {
   padding: 16px 32px;
   background-color: #1b001f;
-  background-image: url('../images/mailer-new/common/header-bg-start.png');
+  background-image: url('../../images/mailer-new/common/header-bg-start.png');
   background-position: left top;
   background-repeat: repeat;
 }
@@ -426,7 +426,7 @@ table + p {
 
 // Body content
 .email-body-td {
-  background-image: url('../images/mailer-new/common/header-bg-end.png');
+  background-image: url('../../images/mailer-new/common/header-bg-end.png');
   background-position: left top;
   background-repeat: no-repeat;
 }
@@ -922,7 +922,7 @@ table + p {
 // Extra content on light purple background
 .email-extra-wave {
   height: 42px;
-  background-image: url('../images/mailer-new/welcome/purple-extra-soft-wave.png');
+  background-image: url('../../images/mailer-new/welcome/purple-extra-soft-wave.png');
   background-position: bottom center;
   background-repeat: no-repeat;
 }
@@ -930,7 +930,7 @@ table + p {
 .email-extra-td {
   padding: 32px 32px 24px;
   background-color: #f0f0ff;
-  background-image: url('../images/mailer-new/welcome/purple-extra-soft-spacer.png'); // Using an image to maintain the color even in forced dark modes
+  background-image: url('../../images/mailer-new/welcome/purple-extra-soft-spacer.png'); // Using an image to maintain the color even in forced dark modes
 
   .email-column-td {
     padding-top: 8px;

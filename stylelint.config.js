@@ -31,7 +31,7 @@ module.exports = {
   },
   overrides: [
     {
-      'files': ['app/javascript/styles/mailer.scss'],
+      'files': ['app/javascript/styles/entrypoints/mailer.scss'],
       rules: {
         'property-no-unknown': [
           true,
