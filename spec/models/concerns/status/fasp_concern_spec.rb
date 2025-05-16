@@ -73,16 +73,6 @@ RSpec.describe Status::FaspConcern, feature: :fasp do
         end
       end
 
-      context 'when status just switched to non-public' do
-        let(:visibility) { :public }
-
-        it 'queues a job to notify provider' do
-          expect do
-            status.update(visibility: :unlisted)
-          end.to enqueue_sidekiq_job(Fasp::AnnounceContentLifecycleEventWorker)
-        end
-      end
-
       context 'when status has not been public' do
         let(:visibility) { :unlisted }
 

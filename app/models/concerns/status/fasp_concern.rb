@@ -26,7 +26,7 @@ module Status::FaspConcern
 
   def announce_updated_content_to_subscribed_fasp
     return unless Mastodon::Feature.fasp_enabled?
-    return unless account_indexable? && public_visibility_or_just_changed?
+    return unless account_indexable? && public_visibility?
 
     Fasp::AnnounceContentLifecycleEventWorker.perform_async(uri, 'update')
   end
@@ -49,9 +49,5 @@ module Status::FaspConcern
         [in_reply_to_id, 'reply']
       end
     Fasp::AnnounceTrendWorker.perform_async(candidate_id, trend_source) if candidate_id
-  end
-
-  def public_visibility_or_just_changed?
-    public_visibility? || visibility_previously_was == 'public'
   end
 end
