@@ -75,9 +75,16 @@ module Attachmentable
   end
 
   def calculated_content_type(attachment)
-    Paperclip.run('file', '-b --mime :file', file: attachment.queued_for_write[:original].path).split(/[:;\s]+/).first.chomp
-  rescue Terrapin::CommandLineError
-    ''
+    begin
+      Timeout.timeout(10) do
+        Paperclip.run('file', '-b --mime :file', file: attachment.queued_for_write[:original].path).split(/[:;\s]+/).first.chomp
+      end
+    rescue Timeout::Error
+      Rails.logger.error "file command timed out for #{attachment.queued_for_write[:original].path}"
+      ''
+    rescue Terrapin::CommandLineError
+      ''
+    end
   end
 
   def obfuscate_file_name(attachment)
