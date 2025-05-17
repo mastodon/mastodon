@@ -973,7 +973,7 @@ fi:
       going_live_on_html: Voimassa %{date} alkaen
       history: Historia
       live: Julki
-      no_history: Käyttöehtoihin ei ole vielä tehty muutoksia.
+      no_history: Käyttöehtoja ei ole vielä muutettu.
       no_terms_of_service_html: Sinulla ei ole tällä hetkellä määritettyjä käyttöehtoja. Käyttöehtojen tarkoituksena on antaa selvyyttä ja suojata sinua mahdollisilta vastuilta riitatilanteissa käyttäjiesi kanssa.
       notified_on_html: Ilmoitettu käyttäjille %{date}
       notify_users: Ilmoita käyttäjille
@@ -1909,6 +1909,11 @@ fi:
     does_not_match_previous_name: ei vastaa edellistä nimeä
   terms_of_service:
     title: Käyttöehdot
+  terms_of_service_interstitial:
+    future_preamble_html: Teemme käyttöehtoihimme muutoksia, jotka tulevat voimaan <strong>%{date}</strong>. Kehotamme sinua käymään päivitetyt ehdot läpi.
+    past_preamble_html: Olemme muuttaneet käyttöehtojamme viimeisen käyntisi jälkeen. Kehotamme sinua käymään päivitetyt ehdot läpi.
+    review_link: Käy käyttöehdot läpi
+    title: Palvelimen %{domain} käyttöehdot muuttuvat
   themes:
     contrast: Mastodon (suuri kontrasti)
     default: Mastodon (tumma)
