@@ -3,7 +3,7 @@
 @use 'variables' as *;
 
 $no-columns-breakpoint: 890px;
-$sidebar-width: 300px;
+$sidebar-width: 360px;
 $content-width: 840px;
 
 .admin-wrapper {
@@ -180,8 +180,8 @@ $content-width: 840px;
   .content {
     padding-top: 55px;
     padding-bottom: 20px;
-    padding-inline-start: 25px;
-    padding-inline-end: 15px;
+    padding-inline-start: 15px;
+    padding-inline-end: 5px;
 
     @media screen and (max-width: $no-columns-breakpoint) {
       max-width: none;
