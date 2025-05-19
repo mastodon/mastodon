@@ -48,6 +48,29 @@ RSpec.describe 'Admin Rules' do
       end
     end
 
+    describe 'Moving down an existing rule' do
+      let!(:first_rule) { Fabricate(:rule, text: 'This is another rule') }
+      let!(:second_rule) { Fabricate(:rule, text: 'This is a rule') }
+
+      it 'moves the rule down' do
+        visit admin_rules_path
+
+        expect(page)
+          .to have_content(I18n.t('admin.rules.title'))
+
+        expect(Rule.ordered.pluck(:text)).to eq ['This is another rule', 'This is a rule']
+
+        click_on(I18n.t('admin.rules.move_down'))
+
+        expect(page)
+          .to have_content(I18n.t('admin.rules.title'))
+          .and have_content(first_rule.text)
+          .and have_content(second_rule.text)
+
+        expect(Rule.ordered.pluck(:text)).to eq ['This is a rule', 'This is another rule']
+      end
+    end
+
     describe 'Editing an existing rule' do
       let!(:rule) { Fabricate :rule, text: 'Rule text' }
 
