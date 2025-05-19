@@ -29,6 +29,7 @@ class Form::AdminSettings
     trendable_by_default
     show_domain_blocks
     show_domain_blocks_rationale
+    allow_referrer_origin
     noindex
     require_invite_text
     media_cache_retention_period
@@ -50,6 +51,7 @@ class Form::AdminSettings
   ).freeze
 
   BOOLEAN_KEYS = %i(
+    allow_referrer_origin
     timeline_preview
     activity_api_enabled
     peers_api_enabled
