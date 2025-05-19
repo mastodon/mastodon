@@ -797,6 +797,9 @@ en:
         preamble: Provide in-depth information about how the server is operated, moderated, funded.
         rules_hint: There is a dedicated area for rules that your users are expected to adhere to.
         title: About
+      allow_referrer_origin:
+        desc: When your users click links to external sites, their browser may send the address of your Mastodon server as the referrer. Disable this if this would uniquely identify your users, e.g. if this is a personal Mastodon server.
+        title: Allow external sites to see your Mastodon server as a traffic source
       appearance:
         preamble: Customize Mastodon's web interface.
         title: Appearance
@@ -816,6 +819,7 @@ en:
       discovery:
         follow_recommendations: Follow recommendations
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
+        privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
         publish_discovered_servers: Publish discovered servers
