@@ -127,7 +127,7 @@ export const Account: React.FC<{
             }),
           );
         };
-        if (relationship?.following || id === me) {
+        if (relationship?.following || relationship?.requested || id === me) {
           openAddToListModal();
         } else {
           dispatch(
