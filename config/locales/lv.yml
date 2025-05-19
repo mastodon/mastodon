@@ -491,6 +491,7 @@ lv:
           request_body: Pieprasījuma saturs
           title: Atkļūdošanas atpakaļsaukumi
       providers:
+        active: Aktīvs
         base_url: Pamata URL
         callback: Atpakaļsaukums
         delete: Izdzēst
@@ -1894,6 +1895,10 @@ lv:
       limit: Jau ir piesprausts lielākais iespējamais ierakstu skaits
       ownership: Kāda cita ierakstu nevar piespraust
       reblog: Pastiprinātu ierakstu nevar piespraust
+    quote_policies:
+      followers: Sekotāji un pieminētie lietotāji
+      nobody: Tikai pieminētie lietotāji
+      public: Visi
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Tiešs
@@ -1947,6 +1952,11 @@ lv:
     does_not_match_previous_name: nesakrīt ar iepriekšējo nosaukumu
   terms_of_service:
     title: Pakalpojuma izmantošanas noteikumi
+  terms_of_service_interstitial:
+    future_preamble_html: Mēs veicām dažas izmaiņas mūsu pakalpojumu izmantošanas noteikumos, kas stāsies spēkā <strong>%{date}</strong>. Iesakām pārskatīt atjauninātos noteikumus.
+    past_preamble_html: Kopš jūsu pēdējā apmeklējuma esam veikuši dažas izmaiņas pakalpojumu izmantošanas noteikumus. Iesakām pārskatīt atjauninātos noteikumus.
+    review_link: Pārskatīt pakalpojumu izmantošanas noteikumus
+    title: Mainās %{domain} pakalpojuma izmantošanas noteikumi
   themes:
     contrast: Mastodon (Augsts kontrasts)
     default: Mastodon (Tumšs)
