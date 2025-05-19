@@ -11,9 +11,12 @@ import {
   unblockAccount,
   muteAccount,
   unmuteAccount,
+  followAccountSuccess,
 } from 'mastodon/actions/accounts';
+import { showAlertForError } from 'mastodon/actions/alerts';
 import { openModal } from 'mastodon/actions/modal';
 import { initMuteModal } from 'mastodon/actions/mutes';
+import { apiFollowAccount } from 'mastodon/api/accounts';
 import { Avatar } from 'mastodon/components/avatar';
 import { Button } from 'mastodon/components/button';
 import { FollowersCounter } from 'mastodon/components/counters';
@@ -24,6 +27,7 @@ import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
 import { VerifiedBadge } from 'mastodon/components/verified_badge';
+import { me } from 'mastodon/initial_state';
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
@@ -113,14 +117,43 @@ export const Account: React.FC<{
       ];
     } else if (defaultAction !== 'block') {
       const handleAddToLists = () => {
-        dispatch(
-          openModal({
-            modalType: 'LIST_ADDER',
-            modalProps: {
-              accountId: id,
-            },
-          }),
-        );
+        const openAddToListModal = () => {
+          dispatch(
+            openModal({
+              modalType: 'LIST_ADDER',
+              modalProps: {
+                accountId: id,
+              },
+            }),
+          );
+        };
+        if (relationship?.following || relationship?.requested || id === me) {
+          openAddToListModal();
+        } else {
+          dispatch(
+            openModal({
+              modalType: 'CONFIRM_FOLLOW_TO_LIST',
+              modalProps: {
+                accountId: id,
+                onConfirm: () => {
+                  apiFollowAccount(id)
+                    .then((relationship) => {
+                      dispatch(
+                        followAccountSuccess({
+                          relationship,
+                          alreadyFollowing: false,
+                        }),
+                      );
+                      openAddToListModal();
+                    })
+                    .catch((err: unknown) => {
+                      dispatch(showAlertForError(err));
+                    });
+                },
+              },
+            }),
+          );
+        }
       };
 
       arr = [
