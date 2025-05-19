@@ -11,7 +11,8 @@ namespace :dev do
       password: SecureRandom.hex,
       email: ENV.fetch('TEST_DATA_SHOWCASE_EMAIL', 'showcase_account@joinmastodon.org'),
       confirmed_at: Time.now.utc,
-      approved: true
+      approved: true,
+      bypass_registration_checks: true
     ).find_or_create_by!(id: 10_000_000)
     showcase_user.mark_email_as_confirmed!
     showcase_user.approve!
