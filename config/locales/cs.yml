@@ -825,6 +825,9 @@ cs:
         preamble: Uveďte podrobné informace o tom, jak je server provozován, moderován, financován.
         rules_hint: Existuje vyhrazená oblast pro pravidla, u nichž se očekává, že je budou uživatelé dodržovat.
         title: O aplikaci
+      allow_referrer_origin:
+        desc: Když vaši uživatelé kliknou na odkazy na externí stránky, jejich prohlížeč může odeslat adresu vašeho Mastodon serveru, jako odkazujícího serveru. Zakažte tuto možnost, pokud by to jednoznačně identifikovalo vaše uživatele, např. pokud se jedná o osobní Mastodon server.
+        title: Povolit externím stránkám vidět váš Mastodon server, jako zdroj, ze kterého jdou návštěvníci
       appearance:
         preamble: Přizpůsobte si webové rozhraní Mastodon.
         title: Vzhled
@@ -844,6 +847,7 @@ cs:
       discovery:
         follow_recommendations: Doporučená sledování
         preamble: Povrchový zajímavý obsah je užitečný pro zapojení nových uživatelů, kteří možná neznají žádného Mastodona. Mějte pod kontrolou, jak různé objevovací funkce fungují na vašem serveru.
+        privacy: Soukromí
         profile_directory: Adresář profilů
         public_timelines: Veřejné časové osy
         publish_statistics: Zveřejnit statistiku
