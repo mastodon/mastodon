@@ -37,10 +37,8 @@ Rails.application.configure do
 
   config.action_controller.forgery_protection_origin_check = ENV['DISABLE_FORGERY_REQUEST_PROTECTION'].nil?
 
-  ActiveSupport::Logger.new($stdout).tap do |logger|
-    logger.formatter = config.log_formatter
-    config.logger = ActiveSupport::TaggedLogging.new(logger)
-  end
+  # Override default file logging in favor of STDOUT logging in dev environment
+  config.logger = ActiveSupport::TaggedLogging.logger($stdout, formatter: config.log_formatter)
 
   # Generate random VAPID keys
   Webpush.generate_key.tap do |vapid_key|
