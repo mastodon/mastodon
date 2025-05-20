@@ -42,8 +42,10 @@ import {
   undoStatusTranslation,
 } from '../actions/statuses';
 import Status from '../components/status';
+import { QuotedStatus } from '../components/status_quoted';
 import { deleteModal } from '../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
+import { useAppSelector } from '../store';
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();

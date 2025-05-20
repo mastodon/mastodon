@@ -5,14 +5,12 @@ import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { HotKeys } from 'react-hotkeys';
 
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
-import PushPinIcon from '@/material-icons/400-24px/push_pin.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import { ContentWarning } from 'mastodon/components/content_warning';
 import { FilterWarning } from 'mastodon/components/filter_warning';
@@ -37,7 +35,6 @@ import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
 import { StatusThreadLabel } from './status_thread_label';
 import { VisibilityIcon } from './visibility_icon';
-import { Quote } from './quote';
 
 const domParser = new DOMParser();
 
@@ -89,6 +86,7 @@ class Status extends ImmutablePureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map,
     account: ImmutablePropTypes.record,
+    children: PropTypes.node,
     previousId: PropTypes.string,
     nextInReplyToId: PropTypes.string,
     rootId: PropTypes.string,
@@ -116,6 +114,7 @@ class Status extends ImmutablePureComponent {
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
     showThread: PropTypes.bool,
+    showActionBar: PropTypes.bool,
     getScrollPosition: PropTypes.func,
     updateScrollBottom: PropTypes.func,
     cacheMediaWidth: PropTypes.func,
@@ -373,7 +372,7 @@ class Status extends ImmutablePureComponent {
   };
 
   render () {
-    const { intl, hidden, featured, unfocusable, unread, showThread, scrollKey, pictureInPicture, previousId, nextInReplyToId, rootId, skipPrepend, avatarSize = 46 } = this.props;
+    const { intl, hidden, featured, unfocusable, unread, showThread, showActionBar = true, scrollKey, pictureInPicture, previousId, nextInReplyToId, rootId, skipPrepend, avatarSize = 46, children } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -568,8 +567,6 @@ class Status extends ImmutablePureComponent {
 
             {expanded && (
               <>
-                {status.get('quote') && <Quote quote={status.get('quote')} />}
-
                 <StatusContent
                   status={status}
                   onClick={this.handleClick}
@@ -579,12 +576,16 @@ class Status extends ImmutablePureComponent {
                   {...statusContentProps}
                 />
 
+                {children}
+
                 {media}
                 {hashtagBar}
               </>
             )}
 
-            <StatusActionBar scrollKey={scrollKey} status={status} account={account}  {...other} />
+            {showActionBar &&
+              <StatusActionBar scrollKey={scrollKey} status={status} account={account}  {...other} />
+            }
           </div>
         </div>
       </HotKeys>

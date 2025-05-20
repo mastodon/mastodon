@@ -1492,7 +1492,7 @@ body > [data-popper-placement] {
   }
 
   &--in-thread {
-    $thread-margin: 46px + 10px;
+    --thread-margin: calc(46px + 8px);
 
     border-bottom: 0;
 
@@ -1508,16 +1508,16 @@ body > [data-popper-placement] {
     .hashtag-bar,
     .content-warning,
     .filter-warning {
-      margin-inline-start: $thread-margin;
-      width: calc(100% - $thread-margin);
+      margin-inline-start: var(--thread-margin);
+      width: calc(100% - var(--thread-margin));
     }
 
     .more-from-author {
-      width: calc(100% - $thread-margin + 2px);
+      width: calc(100% - var(--thread-margin) + 2px);
     }
 
     .status__content__read-more-button {
-      margin-inline-start: $thread-margin;
+      margin-inline-start: var(--thread-margin);
     }
   }
 
