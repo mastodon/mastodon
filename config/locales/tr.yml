@@ -797,6 +797,9 @@ tr:
         preamble: Sunucunun nasıl işletildiği, yönetildiği ve fonlandığı hakkında ayrıntılı bilgi verin.
         rules_hint: Kullanıcılarınızın uyması beklenen kurallar için özel bir alan var.
         title: Hakkında
+      allow_referrer_origin:
+        desc: Kullanıcılarınız harici sitelere giden bağlantılara tıkladığında, tarayıcıları Mastodon sunucunuzun adresini yönlendiren olarak gönderebilir. Bu, kullanıcılarınızı benzersiz bir şekilde tanımlayacaksa, örneğin bu kişisel bir Mastodon sunucusuysa, bunu devre dışı bırakın.
+        title: Harici sitelerin Mastodon sunucunuzu bir trafik kaynağı olarak görmesine izin verin
       appearance:
         preamble: Mastodon'un web arayüzünü düzenleyin.
         title: Görünüm
@@ -816,6 +819,7 @@ tr:
       discovery:
         follow_recommendations: Takip önerileri
         preamble: İlginç içeriği gezinmek, Mastodon'da kimseyi tanımayan yeni kullanıcıları alıştırmak için oldukça etkilidir. Sunucunuzdaki çeşitli keşif özelliklerinin nasıl çalıştığını denetleyin.
+        privacy: Gizlilik
         profile_directory: Profil dizini
         public_timelines: Genel zaman çizelgeleri
         publish_statistics: İstatistikleri yayınla

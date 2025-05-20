@@ -797,6 +797,9 @@ da:
         preamble: Giv dybdegående oplysninger om, hvordan serveren opereres, modereres, finansieres.
         rules_hint: Der er et dedikeret område for regler, som forventes overholdt af brugerne.
         title: Om
+      allow_referrer_origin:
+        desc: Når brugerne klikker på links til eksterne websteder, sender deres webbrowser muligvis adressen på Mastodon-serveren som referrer. Deaktivér dette, hvis det entydigt kan identificere brugerne, f.eks. hvis dette er en personlig Mastodon-server.
+        title: Tillad eksterne websteder at se Mastodon-serveren som en trafikkilde
       appearance:
         preamble: Tilpas Mastodon-webgrænsefladen.
         title: Udseende
@@ -816,6 +819,7 @@ da:
       discovery:
         follow_recommendations: Følg-anbefalinger
         preamble: At vise interessant indhold er vitalt ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
+        privacy: Fortrolighed
         profile_directory: Profiloversigt
         public_timelines: Offentlige tidslinjer
         publish_statistics: Udgiv statistik
