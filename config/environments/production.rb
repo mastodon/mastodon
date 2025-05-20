@@ -52,15 +52,15 @@ Rails.application.configure do
     },
   }
 
+  # Use default logging formatter so that PID and timestamp are not suppressed.
+  config.log_formatter = Logger::Formatter.new
+
   # Log to STDOUT with the current request id as a default log tag.
   config.log_tags = [:request_id]
   config.logger = ActiveSupport::TaggedLogging.logger($stdout, formatter: config.log_formatter)
 
   # Change to "debug" to log everything (including potentially personally-identifiable information!)
   config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info')
-
-  # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = Logger::Formatter.new
 
   # Use a different cache store in production.
   config.cache_store = :redis_cache_store, REDIS_CONFIGURATION.cache
