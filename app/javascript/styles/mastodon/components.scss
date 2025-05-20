@@ -1880,6 +1880,7 @@ body > [data-popper-placement] {
 .status__quote {
   position: relative;
   margin-block-start: 16px;
+  margin-inline-start: 56px;
   border-radius: 8px;
   border: 1px solid var(--background-border-color);
   background: var(--background-color-shade);
@@ -1894,19 +1895,17 @@ body > [data-popper-placement] {
 
 .status__quote-icon {
   position: absolute;
-  inset-inline-start: 8px;
-  inset-block-start: 8px;
+  inset-inline-start: -50px;
+  inset-block-start: 16px;
   display: block;
-  width: 16px;
-  height: 16px;
+  width: 26px;
+  height: 26px;
   padding: 5px;
-  color: white;
-  background-color: #6a49ba;
-  border-radius: 6px;
+  color: #6a49ba;
   z-index: 10;
 
   .status__quote--error & {
-    position: static;
+    inset-block-start: 0;
   }
 }
 
@@ -10552,6 +10551,7 @@ noscript {
       line-height: 22px;
       color: $darker-text-color;
       -webkit-line-clamp: 4;
+      line-clamp: 4;
       -webkit-box-orient: vertical;
       max-height: none;
       overflow: hidden;
