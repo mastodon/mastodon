@@ -797,6 +797,9 @@ nl:
         preamble: Geef uitgebreide informatie over hoe de server wordt beheerd, gemodereerd en gefinancierd.
         rules_hint: Er is een speciaal gebied voor regels waaraan uw gebruikers zich dienen te houden.
         title: Over
+      allow_referrer_origin:
+        desc: Wanneer je gebruikers op links naar externe sites klikken, kan hun browser het adres van jouw Mastodon-server als de verwijzer verzenden. Zet dit uit als dit jouw gebruikers uniek zou identificeren, bijvoorbeeld als dit een persoonlijke Mastodon-server is.
+        title: Externe sites toestaan om je Mastodon-server te zien als een verkeersbron
       appearance:
         preamble: Mastodons webomgeving aanpassen.
         title: Weergave
@@ -816,6 +819,7 @@ nl:
       discovery:
         follow_recommendations: Aanbevolen accounts
         preamble: Het tonen van interessante inhoud is van essentieel belang voor het aan boord halen van nieuwe gebruikers, die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
+        privacy: Privacy
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
         publish_statistics: Statistieken publiceren
