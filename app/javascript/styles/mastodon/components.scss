@@ -11037,13 +11037,14 @@ noscript {
 }
 
 .featured-carousel {
-  display: flex;
-  flex-wrap: nowrap;
-  background: lighten($ui-base-color, 8%);
-  position: relative;
-  padding-bottom: 56px;
+  background: var(--surface-background-color);
   overflow: hidden;
-  touch-action: pan-x;
+
+  &__slides {
+    display: flex;
+    flex-wrap: nowrap;
+    touch-action: pan-x;
+  }
 
   &__slide {
     flex: 0 0 auto;
@@ -11054,14 +11055,19 @@ noscript {
     border-bottom: 0;
   }
 
-  &__carousel {
-    padding: 16px;
+  &__header {
+    padding: 8px 16px;
     color: $darker-text-color;
-    position: absolute;
-    bottom: 0;
     inset-inline-end: 0;
     display: flex;
     align-items: center;
     gap: 4px;
+  }
+
+  &__title {
+    flex-grow: 1;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
   }
 }

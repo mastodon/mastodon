@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
@@ -73,14 +73,15 @@ export const FeaturedCarousel: React.FC<{
 
   // Handle wrapper height animation
   const [wrapperStyles, wrapperSpringApi] = useSpring(() => ({
-    height: 100,
+    height: 0,
   }));
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const wrapperEle = wrapperRef.current;
   useEffect(() => {
-    if (!wrapperRef.current) {
+    if (!wrapperEle) {
       return;
     }
-    const currentSlideEle = wrapperRef.current.querySelector(
+    const currentSlideEle = wrapperEle.querySelector(
       `[data-index="${slideIndex}"] > div`,
     );
 
@@ -89,52 +90,61 @@ export const FeaturedCarousel: React.FC<{
     }
 
     void wrapperSpringApi.start({ height: currentSlideEle.scrollHeight });
-  }, [slideIndex, wrapperSpringApi]);
+  }, [slideIndex, wrapperSpringApi, wrapperEle]);
 
   if (!accountId || pinnedStatuses.isEmpty()) {
     return null;
   }
 
   return (
-    <animated.div
-      className='featured-carousel'
-      ref={wrapperRef}
-      style={wrapperStyles}
-      {...bind()}
-    >
-      {pinnedStatuses.map((statusId, index) => (
-        <animated.div
-          key={`f-${statusId}`}
-          style={{ x }}
-          className='featured-carousel__slide'
-          data-index={index}
-        >
-          <StatusContainer
-            // @ts-expect-error inferred props are wrong
-            id={statusId}
-            contextType='account'
+    <div className='featured-carousel' {...bind()}>
+      <div className='featured-carousel__header'>
+        <h4 className='featured-carousel__title'>
+          <FormattedMessage
+            id='pinned_carousel.header'
+            defaultMessage='Pinned Posts'
           />
-        </animated.div>
-      ))}
-      {pinnedStatuses.size > 1 && (
-        <div className='common__pagination featured-carousel__pagination'>
-          <IconButton
-            title={intl.formatMessage(messages.previous)}
-            icon='chevron-left'
-            iconComponent={ChevronLeftIcon}
-            onClick={handlePrev}
-          />
-          <span>
-            {slideIndex + 1} / {pinnedStatuses.size}
-          </span>
-          <IconButton
-            title={intl.formatMessage(messages.next)}
-            icon='chevron-right'
-            iconComponent={ChevronRightIcon}
-            onClick={handleNext}
-          />
-        </div>
-      )}
-    </animated.div>
+        </h4>
+        {pinnedStatuses.size > 1 && (
+          <>
+            <IconButton
+              title={intl.formatMessage(messages.previous)}
+              icon='chevron-left'
+              iconComponent={ChevronLeftIcon}
+              onClick={handlePrev}
+            />
+            <span>
+              {slideIndex + 1} / {pinnedStatuses.size}
+            </span>
+            <IconButton
+              title={intl.formatMessage(messages.next)}
+              icon='chevron-right'
+              iconComponent={ChevronRightIcon}
+              onClick={handleNext}
+            />
+          </>
+        )}
+      </div>
+      <animated.div
+        className='featured-carousel__slides'
+        ref={wrapperRef}
+        style={wrapperStyles}
+      >
+        {pinnedStatuses.map((statusId, index) => (
+          <animated.div
+            key={`f-${statusId}`}
+            style={{ x }}
+            className='featured-carousel__slide'
+            data-index={index}
+          >
+            <StatusContainer
+              // @ts-expect-error inferred props are wrong
+              id={statusId}
+              contextType='account'
+            />
+          </animated.div>
+        ))}
+      </animated.div>
+    </div>
   );
 };
