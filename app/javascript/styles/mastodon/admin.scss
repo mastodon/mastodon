@@ -1127,6 +1127,15 @@ a.name-tag,
   }
 }
 
+.rule-actions {
+  display: flex;
+  flex-direction: column;
+
+  a.table-action-link {
+    padding-inline-start: 0;
+  }
+}
+
 .dashboard__counters.admin-account-counters {
   margin-top: 10px;
 }

@@ -22,4 +22,18 @@ class Rule < ApplicationRecord
   validates :text, presence: true, length: { maximum: TEXT_SIZE_LIMIT }
 
   scope :ordered, -> { kept.order(priority: :asc, id: :asc) }
+
+  def move!(offset)
+    rules = Rule.ordered.to_a
+    position = rules.index(self)
+
+    rules.delete_at(position)
+    rules.insert(position + offset, self)
+
+    transaction do
+      rules.each.with_index do |rule, index|
+        rule.update!(priority: index)
+      end
+    end
+  end
 end

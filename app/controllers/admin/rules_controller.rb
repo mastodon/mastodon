@@ -50,6 +50,22 @@ module Admin
       redirect_to admin_rules_path
     end
 
+    def move_up
+      authorize @rule, :update?
+
+      @rule.move!(-1)
+
+      redirect_to admin_rules_path
+    end
+
+    def move_down
+      authorize @rule, :update?
+
+      @rule.move!(+1)
+
+      redirect_to admin_rules_path
+    end
+
     private
 
     def set_rule
