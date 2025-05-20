@@ -39,33 +39,36 @@ export const QuotedStatus: React.FC<{ quote: QuoteMap }> = ({ quote }) => {
 
   if (!status || !quotedStatusId) {
     quoteError = (
-      <FormattedMessage id='' defaultMessage='This post cannot be displayed.' />
+      <FormattedMessage
+        id='status.quote_error.not_found'
+        defaultMessage='This post cannot be displayed.'
+      />
     );
   } else if (state === 'deleted') {
     quoteError = (
       <FormattedMessage
-        id=''
+        id='status.quote_error.removed'
         defaultMessage='This post was removed by its author.'
       />
     );
   } else if (state === 'unauthorized') {
     quoteError = (
       <FormattedMessage
-        id=''
+        id='status.quote_error.unauthorized'
         defaultMessage='This post cannot be displayed as you are not authorized to view it.'
       />
     );
   } else if (state === 'pending') {
     quoteError = (
       <FormattedMessage
-        id=''
+        id='status.quote_error.pending_approval'
         defaultMessage='This post is pending approval from the original author.'
       />
     );
   } else if (state === 'rejected' || state === 'revoked') {
     quoteError = (
       <FormattedMessage
-        id=''
+        id='status.quote_error.rejected'
         defaultMessage='This post cannot be displayed as the original author does not allow it to be quoted.'
       />
     );
