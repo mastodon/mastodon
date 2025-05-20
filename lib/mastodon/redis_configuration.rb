@@ -9,7 +9,6 @@ class Mastodon::RedisConfiguration
 
   def base
     @base ||= setup_config(prefix: nil, defaults: DEFAULTS)
-              .merge(namespace: nil)
   end
 
   def sidekiq
