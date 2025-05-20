@@ -1,9 +1,30 @@
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
 import type { Map as ImmutableMap } from 'immutable';
 
+import { Icon } from 'mastodon/components/icon';
 import StatusContainer from 'mastodon/containers/status_container';
 import { useAppSelector } from 'mastodon/store';
+
+import QuoteIcon from '../../images/quote.svg?react';
+
+const QuoteWrapper: React.FC<{
+  isError?: boolean;
+  children: React.ReactNode;
+}> = ({ isError, children }) => {
+  return (
+    <div
+      className={classNames('status__quote', {
+        'status__quote--error': isError,
+      })}
+    >
+      <Icon id='quote' icon={QuoteIcon} className='status__quote-icon' />
+      {children}
+    </div>
+  );
+};
 
 type QuoteMap = ImmutableMap<'state' | 'quoted_status', string | null>;
 
@@ -14,33 +35,35 @@ export const QuotedStatus: React.FC<{ quote: QuoteMap }> = ({ quote }) => {
     quotedStatusId ? state.statuses.get(quotedStatusId) : undefined,
   );
 
+  let quoteError: React.ReactNode | null = null;
+
   if (!status || !quotedStatusId) {
-    return (
+    quoteError = (
       <FormattedMessage id='' defaultMessage='This post cannot be displayed.' />
     );
   } else if (state === 'deleted') {
-    return (
+    quoteError = (
       <FormattedMessage
         id=''
         defaultMessage='This post was removed by its author.'
       />
     );
   } else if (state === 'unauthorized') {
-    return (
+    quoteError = (
       <FormattedMessage
         id=''
         defaultMessage='This post cannot be displayed as you are not authorized to view it.'
       />
     );
   } else if (state === 'pending') {
-    return (
+    quoteError = (
       <FormattedMessage
         id=''
         defaultMessage='This post is pending approval from the original author.'
       />
     );
   } else if (state === 'rejected' || state === 'revoked') {
-    return (
+    quoteError = (
       <FormattedMessage
         id=''
         defaultMessage='This post cannot be displayed as the original author does not allow it to be quoted.'
@@ -48,13 +71,19 @@ export const QuotedStatus: React.FC<{ quote: QuoteMap }> = ({ quote }) => {
     );
   }
 
+  if (quoteError) {
+    return <QuoteWrapper isError>{quoteError}</QuoteWrapper>;
+  }
+
   return (
-    <StatusContainer
-      // @ts-expect-error Status isn't typed yet
-      showActionBar={false}
-      id={quotedStatusId}
-      avatarSize={40}
-    />
+    <QuoteWrapper>
+      <StatusContainer
+        // @ts-expect-error Status isn't typed yet
+        isQuotePost
+        id={quotedStatusId}
+        avatarSize={40}
+      />
+    </QuoteWrapper>
   );
 };
 
@@ -76,9 +105,7 @@ export const StatusQuoteManager = (props: StatusQuoteManagerProps) => {
   if (quote) {
     return (
       <StatusContainer {...props}>
-        <div className='status__quote'>
-          <QuotedStatus quote={quote} />
-        </div>
+        <QuotedStatus quote={quote} />
       </StatusContainer>
     );
   }

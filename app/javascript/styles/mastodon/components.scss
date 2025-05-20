@@ -1491,6 +1491,10 @@ body > [data-popper-placement] {
     }
   }
 
+  &--is-quote {
+    border: none;
+  }
+
   &--in-thread {
     --thread-margin: calc(46px + 8px);
 
@@ -1870,6 +1874,39 @@ body > [data-popper-placement] {
 
   .status__prepend {
     color: $highlight-text-color;
+  }
+}
+
+.status__quote {
+  position: relative;
+  margin-block-start: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--background-border-color);
+  background: var(--background-color-shade);
+}
+
+.status__quote--error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+}
+
+.status__quote-icon {
+  position: absolute;
+  inset-inline-start: 8px;
+  inset-block-start: 8px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  padding: 5px;
+  color: white;
+  background-color: #6a49ba;
+  border-radius: 6px;
+  z-index: 10;
+
+  .status__quote--error & {
+    position: static;
   }
 }
 

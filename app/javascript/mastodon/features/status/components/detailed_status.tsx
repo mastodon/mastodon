@@ -373,9 +373,7 @@ export const DetailedStatus: React.FC<{
             />
 
             {status.get('quote') && (
-              <div className='status__quote'>
-                <QuotedStatus quote={status.get('quote')} />
-              </div>
+              <QuotedStatus quote={status.get('quote')} />
             )}
 
             {media}
