@@ -11,12 +11,11 @@ body {
   --background-border-color: hsl(240deg, 25%, 88%);
   --background-color: #fff;
   --background-color-tint: rgba(255, 255, 255, 80%);
-  --background-color-shade: #{darken($ui-base-color, 10%)};
   --background-filter: blur(10px);
   --on-surface-color: #{color.adjust($ui-base-color, $alpha: -0.65)};
   --rich-text-container-color: rgba(255, 216, 231, 100%);
   --rich-text-text-color: rgba(114, 47, 83, 100%);
   --rich-text-decorations-color: rgba(255, 175, 212, 100%);
   --input-placeholder-color: #{color.adjust($dark-text-color, $alpha: -0.5)};
-  --input-background-color: var(--background-color-shade);
+  --input-background-color: #{darken($ui-base-color, 10%)};
 }

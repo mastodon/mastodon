@@ -1882,15 +1882,17 @@ body > [data-popper-placement] {
   margin-block-start: 16px;
   margin-inline-start: 56px;
   border-radius: 8px;
-  border: 1px solid var(--background-border-color);
-  background: var(--background-color-shade);
+  color: var(--nested-card-text);
+  background: var(--nested-card-background);
+  border: var(--nested-card-border);
 }
 
 .status__quote--error {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px;
+  padding: 12px;
+  font-size: 15px;
 }
 
 .status__quote-icon {
@@ -1905,7 +1907,7 @@ body > [data-popper-placement] {
   z-index: 10;
 
   .status__quote--error & {
-    inset-block-start: 0;
+    inset-block-start: 2px;
   }
 }
 
@@ -10855,9 +10857,9 @@ noscript {
 .content-warning {
   display: block;
   box-sizing: border-box;
-  background: rgba($ui-highlight-color, 0.05);
-  color: $secondary-text-color;
-  border: 1px solid rgba($ui-highlight-color, 0.15);
+  background: var(--nested-card-background);
+  color: var(--nested-card-text);
+  border: var(--nested-card-border);
   border-radius: 8px;
   padding: 8px (5px + 8px);
   position: relative;
