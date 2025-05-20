@@ -29,7 +29,7 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
     message = (
       <FormattedMessage
         id='empty_column.account_featured.me'
-        defaultMessage='You have not featured anything yet. Did you know that you can feature your posts, hashtags you use the most, and even your friend’s accounts on your profile?'
+        defaultMessage='You have not featured anything yet. Did you know that you can feature your hashtags you use the most, and even your friend’s accounts on your profile?'
       />
     );
   } else if (suspended) {
@@ -52,7 +52,7 @@ export const EmptyMessage: React.FC<EmptyMessageProps> = ({
     message = (
       <FormattedMessage
         id='empty_column.account_featured.other'
-        defaultMessage='{acct} has not featured anything yet. Did you know that you can feature your posts, hashtags you use the most, and even your friend’s accounts on your profile?'
+        defaultMessage='{acct} has not featured anything yet. Did you know that you can feature your hashtags you use the most, and even your friend’s accounts on your profile?'
         values={{ acct }}
       />
     );
