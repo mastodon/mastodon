@@ -56,6 +56,7 @@ ga:
         scopes: Cé na APIanna a mbeidh cead ag an bhfeidhmchlár rochtain a fháil orthu. Má roghnaíonn tú raon feidhme barrleibhéil, ní gá duit cinn aonair a roghnú.
         setting_aggregate_reblogs: Ná taispeáin treisithe nua do phoist a treisíodh le déanaí (ní dhéanann difear ach do threisithe nuafhaighte)
         setting_always_send_emails: Go hiondúil ní sheolfar fógraí ríomhphoist agus tú ag úsáid Mastodon go gníomhach
+        setting_default_quote_policy: Ceadaítear d’úsáideoirí luaite lua a dhéanamh i gcónaí. Ní bheidh an socrú seo i bhfeidhm ach amháin maidir le poist a cruthaíodh leis an gcéad leagan eile de Mastodon, ach is féidir leat do rogha féin a roghnú agus tú ag ullmhú
         setting_default_sensitive: Tá meáin íogair i bhfolach de réir réamhshocraithe agus is féidir iad a nochtadh le cliceáil
         setting_display_media_default: Folaigh meáin atá marcáilte mar íogair
         setting_display_media_hide_all: Folaigh meáin i gcónaí
@@ -148,6 +149,12 @@ ga:
         min_age: Níor chóir go mbeidís faoi bhun na haoise íosta a éilíonn dlíthe do dhlínse.
       user:
         chosen_languages: Nuair a dhéantar iad a sheiceáil, ní thaispeánfar ach postálacha i dteangacha roghnaithe in amlínte poiblí
+        date_of_birth:
+          few: Caithfimid a chinntiú go bhfuil tú %{count} ar a laghad chun Mastodon a úsáid. Ní stórálfaimid é seo.
+          many: Caithfimid a chinntiú go bhfuil tú %{count} ar a laghad chun Mastodon a úsáid. Ní stórálfaimid é seo.
+          one: Caithfimid a chinntiú go bhfuil tú %{count} ar a laghad chun Mastodon a úsáid. Ní stórálfaimid é seo.
+          other: Caithfimid a chinntiú go bhfuil tú %{count} ar a laghad chun Mastodon a úsáid. Ní stórálfaimid é seo.
+          two: Caithfimid a chinntiú go bhfuil tú %{count} ar a laghad chun Mastodon a úsáid. Ní stórálfaimid é seo.
         role: Rialaíonn an ról na ceadanna atá ag an úsáideoir.
       user_role:
         color: Dath le húsáid don ról ar fud an Chomhéadain, mar RGB i bhformáid heicsidheachúlach
@@ -228,6 +235,7 @@ ga:
         setting_boost_modal: Taispeáin dialóg deimhnithe roimh threisiú
         setting_default_language: Teanga postála
         setting_default_privacy: Postáil príobháideachta
+        setting_default_quote_policy: Cé a fhéadfaidh lua
         setting_default_sensitive: Marcáil na meáin mar íogair i gcónaí
         setting_delete_modal: Taispeáin dialóg deimhnithe sula scriostar postáil
         setting_disable_hover_cards: Díchumasaigh réamhamharc próifíle ar ainlíon

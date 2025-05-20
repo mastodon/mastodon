@@ -794,6 +794,9 @@ de:
         preamble: Schildere ausführlich, wie dein Server betrieben, moderiert und finanziert wird.
         rules_hint: Es gibt einen eigenen Bereich für Regeln, die deine Benutzer*innen einhalten müssen.
         title: Über
+      allow_referrer_origin:
+        desc: Klicken Nutzer*innen auf Links zu externen Seiten, kann der Browser die Adresse deines Mastodon-Servers als Referrer (Verweis) übermitteln. Diese Option sollte deaktiviert werden, wenn Nutzer*innen dadurch eindeutig identifiziert würden – z. B. wenn es sich um einen privaten Mastodon-Server handelt.
+        title: Externen Seiten erlauben, diesen Mastodon-Server als Traffic-Quelle zu sehen
       appearance:
         preamble: Passe das Webinterface von Mastodon an.
         title: Design
@@ -813,6 +816,7 @@ de:
       discovery:
         follow_recommendations: Follower-Empfehlungen
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
+        privacy: Datenschutz
         profile_directory: Profilverzeichnis
         public_timelines: Öffentliche Timeline
         publish_statistics: Statistiken veröffentlichen

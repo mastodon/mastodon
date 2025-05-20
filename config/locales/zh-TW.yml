@@ -783,6 +783,9 @@ zh-TW:
         preamble: 提供關於此伺服器如何運作、管理、及金援之供詳細資訊。
         rules_hint: 這是關於您的使用者應遵循規則之專有區域。
         title: 關於
+      allow_referrer_origin:
+        desc: 當您的使用者點擊連結至外部網站時，他們的瀏覽器可能會將您 Mastodon 伺服器網址作為流量來源送出。若這將唯一識別您的使用者，請停用此選項，例如這是一個個人 Mastodon 伺服器。
+        title: 允許外部網站視您的 Mastodon 伺服器為流量來源
       appearance:
         preamble: 客製化 Mastodon 網頁介面。
         title: 外觀設定
@@ -804,6 +807,7 @@ zh-TW:
       discovery:
         follow_recommendations: 跟隨建議
         preamble: 呈現有趣的內容有助於 Mastodon 上一人不識的新手上路。控制各種不同的分類於您伺服器上如何被探索到。
+        privacy: 隱私權
         profile_directory: 個人檔案目錄
         public_timelines: 公開時間軸
         publish_statistics: 公開統計資料

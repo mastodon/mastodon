@@ -797,6 +797,9 @@ it:
         preamble: Fornire informazioni approfondite su come, il server, venga gestito, moderato e finanziato.
         rules_hint: C'è un'area dedicata per le regole che i tuoi utenti dovrebbero rispettare.
         title: Info
+      allow_referrer_origin:
+        desc: Quando i tuoi utenti cliccano su link a siti esterni, il loro browser potrebbe inviare l'indirizzo del tuo server Mastodon come referente. Disattiva questa opzione se ciò identificherebbe in modo univoco i tuoi utenti, ad esempio se si tratta di un server Mastodon personale.
+        title: Consenti ai siti esterni di vedere il tuo server Mastodon come fonte di traffico
       appearance:
         preamble: Personalizza l'interfaccia web di Mastodon.
         title: Aspetto
@@ -816,6 +819,7 @@ it:
       discovery:
         follow_recommendations: Segui le raccomandazioni
         preamble: La comparsa di contenuti interessanti è determinante per l'arrivo di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla in che modo varie funzionalità di scoperta funzionano sul tuo server.
+        privacy: Privacy
         profile_directory: Directory del profilo
         public_timelines: Timeline pubbliche
         publish_statistics: Pubblica le statistiche
@@ -1916,6 +1920,11 @@ it:
     does_not_match_previous_name: non corrisponde al nome precedente
   terms_of_service:
     title: Termini di Servizio
+  terms_of_service_interstitial:
+    future_preamble_html: Stiamo apportando alcune modifiche ai nostri termini di servizio, che entreranno in vigore in data <strong>%{date}</strong>. Ti invitiamo a consultare i termini aggiornati.
+    past_preamble_html: Abbiamo modificato i nostri termini di servizio dalla tua ultima visita. Ti invitiamo a consultare i termini aggiornati.
+    review_link: Rivedi i termini di servizio
+    title: I termini di servizio di %{domain} stanno cambiando
   themes:
     contrast: Mastodon (contrasto elevato)
     default: Mastodon (scuro)

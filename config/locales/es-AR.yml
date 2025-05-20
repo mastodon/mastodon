@@ -797,6 +797,9 @@ es-AR:
         preamble: Proveé información en profundidad sobre cómo el servidor es operado, moderado y financiado.
         rules_hint: Hay un área dedicada para las reglas a las que se espera que tus usuarios se adhieran.
         title: Información
+      allow_referrer_origin:
+        desc: Cuando tus usuarios hagan clic en enlaces a sitios externos, sus navegadores pueden enviar la dirección de tu servidor de Mastodon como la referencia. Deshabilitá esto si significase identificar inequívocamente a tus usuarios; por ejemplo, si se trata de un servidor personal de Mastodon.
+        title: Permitir a los sitios externos ver tu servidor de Mastodon como fuente de tráfico
       appearance:
         preamble: Personalizá la interface web de Mastodon.
         title: Apariencia
@@ -816,6 +819,7 @@ es-AR:
       discovery:
         follow_recommendations: Recom. de cuentas a seguir
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controlá cómo funcionan varias opciones de descubrimiento en tu servidor.
+        privacy: Privacidad
         profile_directory: Directorio de perfiles
         public_timelines: Líneas temporales públicas
         publish_statistics: Publicar estadísticas
