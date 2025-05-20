@@ -37,6 +37,7 @@ import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
 import { StatusThreadLabel } from './status_thread_label';
 import { VisibilityIcon } from './visibility_icon';
+import { Quote } from './quote';
 
 const domParser = new DOMParser();
 
@@ -567,6 +568,8 @@ class Status extends ImmutablePureComponent {
 
             {expanded && (
               <>
+                {status.get('quote') && <Quote quote={status.get('quote')} />}
+
                 <StatusContent
                   status={status}
                   onClick={this.handleClick}

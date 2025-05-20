@@ -25,6 +25,7 @@ import { Icon } from 'mastodon/components/icon';
 import { IconLogo } from 'mastodon/components/logo';
 import MediaGallery from 'mastodon/components/media_gallery';
 import { PictureInPicturePlaceholder } from 'mastodon/components/picture_in_picture_placeholder';
+import { Quote } from 'mastodon/components/quote';
 import StatusContent from 'mastodon/components/status_content';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
 import { Audio } from 'mastodon/features/audio';
@@ -365,6 +366,8 @@ export const DetailedStatus: React.FC<{
 
         {expanded && (
           <>
+            {status.get('quote') && <Quote quote={status.get('quote')} />}
+
             <StatusContent
               status={status}
               onTranslate={handleTranslate}
