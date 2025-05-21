@@ -82,7 +82,7 @@ export const QuotedStatus: React.FC<{ quote: QuoteMap }> = ({ quote }) => {
     <QuoteWrapper>
       <StatusContainer
         // @ts-expect-error Status isn't typed yet
-        isQuotePost
+        isQuotedPost
         id={quotedStatusId}
         avatarSize={40}
       />
