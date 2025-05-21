@@ -114,17 +114,11 @@ export const FeaturedCarousel: React.FC<{
     >
       <div className='featured-carousel__header'>
         <h4 className='featured-carousel__title' id='featured-carousel-title'>
-          {pinnedStatuses.size > 1 ? (
-            <FormattedMessage
-              id='featured_carousel.header.plural'
-              defaultMessage='Pinned Posts'
-            />
-          ) : (
-            <FormattedMessage
-              id='featured_carousel.header.single'
-              defaultMessage='Pinned Post'
-            />
-          )}
+          <FormattedMessage
+            id='featured_carousel.header'
+            defaultMessage='{count, plural, one {Pinned Post} other {Pinned Posts}}'
+            values={{ count: pinnedStatuses.size }}
+          />
         </h4>
         {pinnedStatuses.size > 1 && (
           <>
