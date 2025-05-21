@@ -135,7 +135,10 @@ export const FeaturedCarousel: React.FC<{
               onClick={handlePrev}
             />
             <span aria-live='polite'>
-              <FormattedMessage id='featured_carousel.post' defaultMessage='Post'>
+              <FormattedMessage
+                id='featured_carousel.post'
+                defaultMessage='Post'
+              >
                 {(text) => <span className='sr-only'>{text}</span>}
               </FormattedMessage>
               {slideIndex + 1} / {pinnedStatuses.size}
@@ -162,6 +165,8 @@ export const FeaturedCarousel: React.FC<{
             style={{ x }}
             className='featured-carousel__slide'
             data-index={index}
+            // @ts-expect-error Inert is not supported in this version of React
+            inert={index !== slideIndex ? 'true' : undefined}
             aria-label={intl.formatMessage(messages.slide, {
               index: index + 1,
               total: pinnedStatuses.size,
