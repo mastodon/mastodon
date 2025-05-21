@@ -37,7 +37,7 @@ complete the following steps:
 To set up **macOS** for native development, complete the following steps:
 
 - Install [Homebrew] and run:
-  `brew install postgresql@14 redis imagemagick libidn nvm vips`
+  `brew install postgresql@14 redis libidn nvm vips`
   to install the required project dependencies
 - Use a Ruby version manager to activate the ruby in `.ruby-version` and run
   `nvm use` to activate the node version from `.nvmrc`
