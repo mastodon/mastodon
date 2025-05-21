@@ -134,10 +134,10 @@ export const FeaturedCarousel: React.FC<{
               iconComponent={ChevronLeftIcon}
               onClick={handlePrev}
             />
-            <FormattedMessage id='featured_carousel.post' defaultMessage='Post'>
-              {(text) => <span className='sr-only'>{text}</span>}
-            </FormattedMessage>
             <span aria-live='polite'>
+              <FormattedMessage id='featured_carousel.post' defaultMessage='Post'>
+                {(text) => <span className='sr-only'>{text}</span>}
+              </FormattedMessage>
               {slideIndex + 1} / {pinnedStatuses.size}
             </span>
             <IconButton
