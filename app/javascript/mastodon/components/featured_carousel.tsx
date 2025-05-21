@@ -100,10 +100,17 @@ export const FeaturedCarousel: React.FC<{
     <div className='featured-carousel' {...bind()}>
       <div className='featured-carousel__header'>
         <h4 className='featured-carousel__title'>
-          <FormattedMessage
-            id='pinned_carousel.header'
-            defaultMessage='Pinned Posts'
-          />
+          {pinnedStatuses.size > 1 ? (
+            <FormattedMessage
+              id='pinned_carousel.header.plural'
+              defaultMessage='Pinned Posts'
+            />
+          ) : (
+            <FormattedMessage
+              id='pinned_carousel.header.single'
+              defaultMessage='Pinned Post'
+            />
+          )}
         </h4>
         {pinnedStatuses.size > 1 && (
           <>
