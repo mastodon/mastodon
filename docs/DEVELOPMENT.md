@@ -37,7 +37,7 @@ complete the following steps:
 To set up **macOS** for native development, complete the following steps:
 
 - Install [Homebrew] and run:
-  `brew install postgresql@14 redis imagemagick libidn nvm`
+  `brew install postgresql@14 redis libidn nvm vips`
   to install the required project dependencies
 - Use a Ruby version manager to activate the ruby in `.ruby-version` and run
   `nvm use` to activate the node version from `.nvmrc`
@@ -45,6 +45,9 @@ To set up **macOS** for native development, complete the following steps:
   `brew services start redis`
 - Run `RAILS_ENV=development bin/setup`, which will install the required ruby gems and node
   packages and prepare the database for local development
+
+  (Note: If you are on Apple Silicon and get an error related to `libidn`, you should be able to fix this by running `gem install idn-ruby -- --with-idn-dir=$(brew --prefix libidn)`, then re-running the command above.)
+
 - Finally, run the `bin/dev` script which will launch services via `overmind`
   (if installed) or `foreman`
 
