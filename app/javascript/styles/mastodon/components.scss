@@ -1897,8 +1897,8 @@ body > [data-popper-placement] {
 
 .status__quote-icon {
   position: absolute;
+  inset-block-start: 18px;
   inset-inline-start: -50px;
-  inset-block-start: 16px;
   display: block;
   width: 26px;
   height: 26px;
@@ -1907,7 +1907,8 @@ body > [data-popper-placement] {
   z-index: 10;
 
   .status__quote--error & {
-    inset-block-start: 2px;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
   }
 }
 
