@@ -12,7 +12,7 @@ import QuoteIcon from '../../images/quote.svg?react';
 
 const QuoteWrapper: React.FC<{
   isError?: boolean;
-  children: React.ReactNode;
+  children: React.ReactElement;
 }> = ({ isError, children }) => {
   return (
     <div
@@ -35,7 +35,7 @@ export const QuotedStatus: React.FC<{ quote: QuoteMap }> = ({ quote }) => {
     quotedStatusId ? state.statuses.get(quotedStatusId) : undefined,
   );
 
-  let quoteError: React.ReactNode | null = null;
+  let quoteError: React.ReactNode = null;
 
   if (state === 'deleted') {
     quoteError = (
