@@ -790,6 +790,8 @@ hu:
       description_html: Bár a többség azt állítja, hogy elolvasták és egyetértenek a felhasználói feltételekkel, általában ez nem teljesül, amíg egy probléma elő nem jön. <strong>Tedd könnyebbé a kiszolgálód szabályainak áttekintését azzal, hogy pontokba foglalod azt egy listában.</strong> Az egyes szabályok legyenek rövidek és egyszerűek. Próbáld meg nem túl sok önálló pontra darabolni őket.
       edit: Szabály szerkesztése
       empty: Még nincsenek meghatározva a kiszolgáló szabályai.
+      move_down: Mozgás lefelé
+      move_up: Mozgatás felfelé
       title: Kiszolgáló szabályai
     settings:
       about:
@@ -797,6 +799,9 @@ hu:
         preamble: Adj meg részletes információkat arról, hogy a kiszolgáló hogyan működik, miként moderálják és finanszírozzák.
         rules_hint: Van egy helyünk a szabályoknak, melyeket a felhasználóidnak be kellene tartani.
         title: Névjegy
+      allow_referrer_origin:
+        desc: Amikor a felhasználók külső webhelyekre mutató hivatkozásokra kattintanak, a böngészőjük elküldheti a Mastodon kiszolgálócímét hivatkozóként (Referer fejléc). Kapcsold ki a funkciót, ha ez egyértelműen azonosítaná a felhasználókat, például ha ez egy személyes Mastodon-kiszolgáló.
+        title: Engedélyezés, hogy külső oldalak a Mastodon-kiszolgálódat lássák a forgalom forrásaként
       appearance:
         preamble: A Mastodon webes felületének testreszabása.
         title: Megjelenés
@@ -816,6 +821,7 @@ hu:
       discovery:
         follow_recommendations: Ajánlottak követése
         preamble: Az érdekes tartalmak felszínre hozása fontos szerepet játszik az új felhasználók bevonásában, akik esetleg nem ismerik a Mastodont. Szabályozd, hogy a különböző felfedezési funkciók hogyan működjenek a kiszolgálón.
+        privacy: Adatvédelem
         profile_directory: Profiladatbázis
         public_timelines: Nyilvános idővonalak
         publish_statistics: Statisztikák közzététele
@@ -1916,6 +1922,9 @@ hu:
     title: Felhasználási feltételek
   terms_of_service_interstitial:
     future_preamble_html: A használati feltételekben módosításokat végzünk, amely <strong>%{date}</strong> dátummal lép életbe. Ajánljuk a frissített feltételek elolvasását.
+    past_preamble_html: A legutóbbi látogatásod óta módosítottunk a felhasználási feltétleinken. Azt javasoljuk, hogy tekintsd át a frissített feltételeket.
+    review_link: Felhasználási feltételek áttekintése
+    title: A(z) %{domain} felhasználási feltételei megváltoznak
   themes:
     contrast: Mastodon (nagy kontrasztú)
     default: Mastodon (sötét)
