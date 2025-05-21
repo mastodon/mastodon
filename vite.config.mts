@@ -10,6 +10,7 @@ import RailsPlugin from 'vite-plugin-rails';
 import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import yaml from 'js-yaml';
+import legacy from '@vitejs/plugin-legacy';
 
 import { defineConfig, UserConfigFnPromise, UserConfig } from 'vite';
 import postcssPresetEnv from 'postcss-preset-env';
@@ -119,6 +120,10 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       }),
       MastodonServiceWorkerLocales(),
       MastodonEmojiCompressed(),
+      legacy({
+        renderLegacyChunks: false,
+        modernPolyfills: true,
+      }),
       VitePWA({
         srcDir: 'mastodon/service_worker',
         // We need to use injectManifest because we use our own service worker
