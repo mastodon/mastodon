@@ -171,8 +171,8 @@ class About extends PureComponent {
             ) : (
               <ol className='rules-list'>
                 {server.get('rules').map(rule => {
-                  const text = rule.getIn(['translations', locale, 'text']) || rule.get('text');
-                  const hint = rule.getIn(['translations', locale, 'hint']) || rule.get('hint');
+                  const text = rule.getIn(['translations', locale, 'text']) || rule.getIn(['translations', locale.split('-')[0], 'text']) || rule.get('text');
+                  const hint = rule.getIn(['translations', locale, 'hint']) || rule.getIn(['translations', locale.split('-')[0], 'hint']) || rule.get('hint');
                   return (
                     <li key={rule.get('id')}>
                       <div className='rules-list__text'>{text}</div>

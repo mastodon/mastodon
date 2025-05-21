@@ -51,7 +51,7 @@ class Rules extends PureComponent {
               value={item.get('id')}
               checked={selectedRuleIds.includes(item.get('id'))}
               onToggle={this.handleRulesToggle}
-              label={item.getIn(['translations', locale, 'text']) || item.get('text')}
+              label={item.getIn(['translations', locale, 'text']) || item.getIn(['translations', locale.split('-')[0], 'text']) || item.get('text')}
               multiple
             />
           ))}
