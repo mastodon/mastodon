@@ -23,6 +23,11 @@ Bug reports and feature suggestions must use descriptive and concise titles and
 be submitted to [GitHub Issues]. Please use the search function to make sure
 there are not duplicate bug reports or feature requests.
 
+## Security Issues
+
+If you believe you have identified a security issue in Mastodon or our own apps,
+check [SECURITY].
+
 ## Translations
 
 Translations are community contributed via [Crowdin]. They are periodically
@@ -83,3 +88,4 @@ and API docs. Improvements are made via PRs to the [documentation repository].
 [GitHub Issues]: https://github.com/mastodon/mastodon/issues
 [keepachangelog]: https://keepachangelog.com/en/1.0.0/
 [Mastodon documentation]: https://docs.joinmastodon.org
+[SECURITY]: SECURITY.md
