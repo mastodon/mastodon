@@ -36,4 +36,15 @@ RSpec.describe Rule do
         .to change { described_class.ordered.pluck(:text) }.from(%w(foo baz bar)).to(%w(foo bar baz))
     end
   end
+
+  describe '#translation_for' do
+    let!(:rule) { Fabricate(:rule, text: 'This is a rule', hint: 'This is an explanation of the rule') }
+    let!(:translation) { Fabricate(:rule_translation, rule: rule, text: 'Ceci est une règle', hint: 'Ceci est une explication de la règle', language: 'fr') }
+
+    it 'returns the expected translation, including fallbacks' do
+      expect(rule.translation_for(:en)).to have_attributes(text: rule.text, hint: rule.hint)
+      expect(rule.translation_for(:fr)).to have_attributes(text: translation.text, hint: translation.hint)
+      expect(rule.translation_for(:'fr-CA')).to have_attributes(text: translation.text, hint: translation.hint)
+    end
+  end
 end
