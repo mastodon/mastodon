@@ -39,4 +39,9 @@ class Rule < ApplicationRecord
       end
     end
   end
+
+  def translation_for(locale)
+    @cached_translations ||= {}
+    @cached_translations[locale] ||= translations.find_by(language: locale) || RuleTranslation.new(language: locale, text: text, hint: hint)
+  end
 end
