@@ -18,6 +18,10 @@ import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react'
 const messages = defineMessages({
   previous: { id: 'featured_carousel.previous', defaultMessage: 'Previous' },
   next: { id: 'featured_carousel.next', defaultMessage: 'Next' },
+  slide: {
+    id: 'featured_carousel.slide',
+    defaultMessage: '{index} of {total}',
+  },
 });
 
 export const FeaturedCarousel: React.FC<{
@@ -73,7 +77,7 @@ export const FeaturedCarousel: React.FC<{
 
   // Handle wrapper height animation
   const [wrapperStyles, wrapperSpringApi] = useSpring(() => ({
-    height: 0,
+    height: 100,
   }));
   const wrapperRef = useRef<HTMLDivElement>(null);
   const wrapperEle = wrapperRef.current;
@@ -88,8 +92,12 @@ export const FeaturedCarousel: React.FC<{
     if (!currentSlideEle) {
       return;
     }
+    const height = currentSlideEle.scrollHeight;
+    if (!height) {
+      return;
+    }
 
-    void wrapperSpringApi.start({ height: currentSlideEle.scrollHeight });
+    void wrapperSpringApi.start({ height });
   }, [slideIndex, wrapperSpringApi, wrapperEle]);
 
   if (!accountId || pinnedStatuses.isEmpty()) {
@@ -97,17 +105,23 @@ export const FeaturedCarousel: React.FC<{
   }
 
   return (
-    <div className='featured-carousel' {...bind()}>
+    <div
+      className='featured-carousel'
+      {...bind()}
+      aria-roledescription='carousel'
+      aria-labelledby='featured-carousel-title'
+      role='region'
+    >
       <div className='featured-carousel__header'>
-        <h4 className='featured-carousel__title'>
+        <h4 className='featured-carousel__title' id='featured-carousel-title'>
           {pinnedStatuses.size > 1 ? (
             <FormattedMessage
-              id='pinned_carousel.header.plural'
+              id='featured_carousel.header.plural'
               defaultMessage='Pinned Posts'
             />
           ) : (
             <FormattedMessage
-              id='pinned_carousel.header.single'
+              id='featured_carousel.header.single'
               defaultMessage='Pinned Post'
             />
           )}
@@ -120,7 +134,10 @@ export const FeaturedCarousel: React.FC<{
               iconComponent={ChevronLeftIcon}
               onClick={handlePrev}
             />
-            <span>
+            <FormattedMessage id='featured_carousel.post' defaultMessage='Post'>
+              {(text) => <span className='sr-only'>{text}</span>}
+            </FormattedMessage>
+            <span aria-live='polite'>
               {slideIndex + 1} / {pinnedStatuses.size}
             </span>
             <IconButton
@@ -136,6 +153,8 @@ export const FeaturedCarousel: React.FC<{
         className='featured-carousel__slides'
         ref={wrapperRef}
         style={wrapperStyles}
+        aria-atomic='false'
+        aria-live='polite'
       >
         {pinnedStatuses.map((statusId, index) => (
           <animated.div
@@ -143,6 +162,12 @@ export const FeaturedCarousel: React.FC<{
             style={{ x }}
             className='featured-carousel__slide'
             data-index={index}
+            aria-label={intl.formatMessage(messages.slide, {
+              index: index + 1,
+              total: pinnedStatuses.size,
+            })}
+            aria-roledescription='slide'
+            role='group'
           >
             <StatusContainer
               // @ts-expect-error inferred props are wrong

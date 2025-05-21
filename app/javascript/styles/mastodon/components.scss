@@ -3674,7 +3674,8 @@ $ui-header-logo-wordmark-width: 99px;
   -webkit-tap-highlight-color: transparent;
 }
 
-.react-toggle-screenreader-only {
+.react-toggle-screenreader-only,
+.sr-only {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -11040,11 +11041,11 @@ noscript {
   background: var(--surface-background-color);
   overflow: hidden;
   border-bottom: 1px solid var(--background-border-color);
+  touch-action: pan-x;
 
   &__slides {
     display: flex;
     flex-wrap: nowrap;
-    touch-action: pan-x;
   }
 
   &__slide {
