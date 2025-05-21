@@ -23,7 +23,7 @@ module Mastodon::CLI
     def list
       fail_with_message 'Cannot specify both --only-blocked and --only-with-approval' if options[:only_blocked] && options[:only_with_approval]
 
-      base_query = EmailDomainBlock.where(parent_id: nil)
+      base_query = EmailDomainBlock.parents
 
       if options[:only_blocked]
         base_query = base_query.where(allow_with_approval: false)
