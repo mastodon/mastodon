@@ -790,6 +790,8 @@ is:
       description_html: Þó að flestir segist hafa lesið og samþykkt þjónustuskilmála, er fólk samt gjarnt á að lesa slíkar upplýsingar ekki til enda fyrr en upp koma einhver vandamál. <strong>Gerðu fólki auðvelt að sjá mikilvægustu reglurnar með því að setja þær fram í flötum punktalista.</strong> Reyndu að hafa hverja reglu stutta og skýra, en ekki vera heldur að skipta þeim upp í mörg aðskilin atriði.
       edit: Breyta reglu
       empty: Engar reglur fyrir netþjón hafa ennþá verið skilgreindar.
+      move_down: Færa niður
+      move_up: Færa upp
       title: Reglur netþjónsins
     settings:
       about:
@@ -797,6 +799,9 @@ is:
         preamble: Gefðu nánari upplýsingar um hvernig þessi netþjónn er rekinn, hvernig umsjón fer fram með efni á honum eða hann fjármagnaður.
         rules_hint: Það er sérstakt svæði með þeim reglum sem ætlast er til að notendur þínir fari eftir.
         title: Um hugbúnaðinn
+      allow_referrer_origin:
+        desc: Þegar notendurnir þínir smella á tengla á utanaðkomandi vefsvæði, gæti vafrinn þeirra sent vistfang Mastodon-þjónsins þíns sem tilvísanda (referrer). Gerðu þetta óvirkt ef slíkt myndi berskjalda notendurna, t.d. ef þetta er einkanetþjónn í Mastodon-sambandi.
+        title: Leyfa utanaðkomandi vefsvæðum að líta á Mastodon-þjóninn þinn sem efnisveitu
       appearance:
         preamble: Sérsníddu vefviðmót Mastodon.
         title: Útlit
@@ -818,6 +823,7 @@ is:
       discovery:
         follow_recommendations: Meðmæli um að fylgjast með
         preamble: Að láta áhugavert efni koma skýrt fram er sérstaklega mikilvægt til að nálgast nýja notendur sem ekki þekkja neinn sem er á Mastodon. Stýrðu því hvernig hinir ýmsu eiginleikar við uppgötvun efnis virka á netþjóninum þínum.
+        privacy: Persónuvernd
         profile_directory: Notendamappa
         public_timelines: Opinberar tímalínur
         publish_statistics: Birta tölfræði
@@ -1918,6 +1924,11 @@ is:
     does_not_match_previous_name: samsvarar ekki fyrra nafni
   terms_of_service:
     title: Þjónustuskilmálar
+  terms_of_service_interstitial:
+    future_preamble_html: Við erum að gera nokkrar breytingar á þjónustuskilmálum okkar, og taka þær gildi <strong>%{date}</strong>. Við hvetjum þig til að yfirfara uppfærðu skilmálana í heild hér.
+    past_preamble_html: Við höfum breytt þjónustuskilmálum okkar síðan þú leist við síðast. Við hvetjum þig til að yfirfara uppfærðu skilmálana.
+    review_link: Yfirfara þjónustuskilmála
+    title: Þjónustuskilmálar eru að breytast á %{domain}
   themes:
     contrast: Mastodon (mikil birtuskil)
     default: Mastodon (dökkt)

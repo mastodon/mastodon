@@ -790,6 +790,8 @@ nl:
       description_html: Hoewel de meeste mensen zeggen dat ze de gebruiksvoorwaarden hebben gelezen en er mee akkoord gaan, lezen mensen deze meestal niet totdat er een probleem optreedt. <strong>Maak het eenvoudiger om de regels van deze server in één oogopslag te zien, door ze puntsgewijs in een lijst te zetten.</strong> Probeer de verschillende regels kort en simpel te houden, maar probeer ze ook niet in verschillende items onder te verdelen.
       edit: Regel bewerken
       empty: Voor deze server zijn nog geen regels opgesteld.
+      move_down: Omlaag verplaatsen
+      move_up: Omhoog verplaatsen
       title: Serverregels
     settings:
       about:
@@ -798,8 +800,8 @@ nl:
         rules_hint: Er is een speciaal gebied voor regels waaraan uw gebruikers zich dienen te houden.
         title: Over
       allow_referrer_origin:
-        desc: Wanneer je gebruikers op links naar externe sites klikken, kan hun browser het adres van jouw Mastodon-server als de verwijzer verzenden. Zet dit uit als dit jouw gebruikers uniek zou identificeren, bijvoorbeeld als dit een persoonlijke Mastodon-server is.
-        title: Externe sites toestaan om je Mastodon-server te zien als een verkeersbron
+        desc: Wanneer je gebruikers op links naar externe sites klikken, kan hun browser het adres van jouw Mastodon-server als de referrer verzenden. Zet dit uit als dit jouw gebruikers uniek zou identificeren, bijvoorbeeld als dit een persoonlijke Mastodon-server is.
+        title: Externe sites toestaan om jouw Mastodon-server te zien als de bron
       appearance:
         preamble: Mastodons webomgeving aanpassen.
         title: Weergave
@@ -1919,10 +1921,10 @@ nl:
   terms_of_service:
     title: Gebruiksvoorwaarden
   terms_of_service_interstitial:
-    future_preamble_html: We brengen enkele wijzigingen aan in onze servicevoorwaarden, die van kracht worden op <strong>%{date}</strong>. We raden je aan om de bijgewerkte voorwaarden door te nemen.
-    past_preamble_html: We hebben onze servicevoorwaarden gewijzigd sinds je laatste bezoek. We raden je aan om de bijgewerkte voorwaarden door te nemen.
-    review_link: Bekijk de servicevoorwaarden
-    title: De servicevoorwaarden van %{domain} worden gewijzigd
+    future_preamble_html: We brengen enkele wijzigingen aan in onze gebruiksvoorwaarden, die van kracht worden op <strong>%{date}</strong>. We raden je aan om de bijgewerkte voorwaarden door te nemen.
+    past_preamble_html: We hebben onze gebruiksvoorwaarden gewijzigd sinds je laatste bezoek. We raden je aan om de bijgewerkte voorwaarden door te nemen.
+    review_link: De gebruiksvoorwaarden bekijken
+    title: De gebruiksvoorwaarden van %{domain} worden gewijzigd
   themes:
     contrast: Mastodon (hoog contrast)
     default: Mastodon (donker)
