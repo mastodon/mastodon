@@ -119,6 +119,12 @@ module ViteRails::TagHelpers::IntegrityExtension
   rescue ViteRuby::MissingEntrypointError
     # Ignore this error, it is not critical if the file is not preloaded
   end
+
+  def vite_polyfill_tag(**)
+    entry = vite_manifest.path_and_integrity_for('polyfill', type: :virtual)
+
+    javascript_include_tag(type: 'module', src: entry[:path], integrity: entry[:integrity], **)
+  end
 end
 
 ViteRails::TagHelpers.prepend ViteRails::TagHelpers::IntegrityExtension
