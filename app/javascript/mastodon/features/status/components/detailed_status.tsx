@@ -26,6 +26,7 @@ import { IconLogo } from 'mastodon/components/logo';
 import MediaGallery from 'mastodon/components/media_gallery';
 import { PictureInPicturePlaceholder } from 'mastodon/components/picture_in_picture_placeholder';
 import StatusContent from 'mastodon/components/status_content';
+import { QuotedStatus } from 'mastodon/components/status_quoted';
 import { VisibilityIcon } from 'mastodon/components/visibility_icon';
 import { Audio } from 'mastodon/features/audio';
 import scheduleIdleTask from 'mastodon/features/ui/util/schedule_idle_task';
@@ -370,6 +371,10 @@ export const DetailedStatus: React.FC<{
               onTranslate={handleTranslate}
               {...(statusContentProps as any)}
             />
+
+            {status.get('quote') && (
+              <QuotedStatus quote={status.get('quote')} />
+            )}
 
             {media}
             {hashtagBar}
