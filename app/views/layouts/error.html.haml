@@ -7,7 +7,7 @@
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
     = vite_client_tag
     = vite_react_refresh_tag
-    = vite_polyfills_tag crossorigin: 'anonymous'
+    = vite_polyfills_tag
     = theme_style_tags Setting.default_settings['theme']
     = vite_typescript_tag 'error.ts', crossorigin: 'anonymous'
   %body.error
