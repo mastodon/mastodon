@@ -783,11 +783,17 @@ de:
       title: Rollen
     rules:
       add_new: Regel hinzufügen
+      add_translation: Übersetzung hinzufügen
       delete: Löschen
       description_html: Während die meisten behaupten, die Nutzungsbedingungen tatsächlich gelesen zu haben, bekommen viele sie erst nach einem Problem mit. <strong>Vereinfache und reduziere daher die Serverregeln mit Stichpunkten.</strong> Versuche dabei, die einzelnen Vorgaben kurz und einfach zu halten, aber vermeide, sie in viele verschiedene Elemente aufzuteilen.
       edit: Regel bearbeiten
       empty: Es wurden bisher keine Serverregeln definiert.
+      move_down: Abwärts
+      move_up: Aufwärts
       title: Serverregeln
+      translation: Übersetzung
+      translations: Übersetzungen
+      translations_explanation: Du kannst Serverregeln übersetzen. Der Standardwert wird angezeigt, wenn keine übersetzte Version verfügbar ist. Bitte vergewissere dich, dass jede Übersetzung mit dem Standardwert übereinstimmt.
     settings:
       about:
         manage_rules: Serverregeln verwalten
@@ -796,7 +802,7 @@ de:
         title: Über
       allow_referrer_origin:
         desc: Klicken Nutzer*innen auf Links zu externen Seiten, kann der Browser die Adresse deines Mastodon-Servers als Referrer (Verweis) übermitteln. Diese Option sollte deaktiviert werden, wenn Nutzer*innen dadurch eindeutig identifiziert würden – z. B. wenn es sich um einen privaten Mastodon-Server handelt.
-        title: Externen Seiten erlauben, diesen Mastodon-Server als Traffic-Quelle zu sehen
+        title: Externen Seiten erlauben, diesen Mastodon-Server als Quelle zu sehen
       appearance:
         preamble: Passe das Webinterface von Mastodon an.
         title: Design
