@@ -121,6 +121,8 @@ module ViteRails::TagHelpers::IntegrityExtension
   end
 
   def vite_polyfills_tag(**)
+    return if ViteRuby.instance.dev_server_running?
+
     entry = vite_manifest.path_and_integrity_for('polyfills', type: :virtual)
 
     javascript_include_tag(entry[:path], type: 'module', integrity: entry[:integrity], **)
