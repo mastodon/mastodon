@@ -10745,7 +10745,15 @@ noscript {
     color: inherit;
   }
 
-  &__number {
+  &__numbers,
+  &__familiar-followers {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  &__numbers {
     font-size: 15px;
     line-height: 22px;
     color: $secondary-text-color;
