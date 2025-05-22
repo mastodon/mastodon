@@ -120,10 +120,10 @@ module ViteRails::TagHelpers::IntegrityExtension
     # Ignore this error, it is not critical if the file is not preloaded
   end
 
-  def vite_polyfill_tag(**)
-    entry = vite_manifest.path_and_integrity_for('polyfill', type: :virtual)
+  def vite_polyfills_tag(**)
+    entry = vite_manifest.path_and_integrity_for('polyfills', type: :virtual)
 
-    javascript_include_tag(type: 'module', src: entry[:path], integrity: entry[:integrity], **)
+    javascript_include_tag(entry[:path], type: 'module', integrity: entry[:integrity], **)
   end
 end
 
