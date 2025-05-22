@@ -158,7 +158,11 @@ interface StatusQuoteManagerProps {
  */
 
 export const StatusQuoteManager = (props: StatusQuoteManagerProps) => {
-  const status = useAppSelector((state) => state.statuses.get(props.id));
+  const status = useAppSelector((state) => {
+    const status = state.statuses.get(props.id);
+    const reblogId = status?.get('reblog') as string | undefined;
+    return reblogId ? state.statuses.get(reblogId) : status;
+  });
   const quote = status?.get('quote') as QuoteMap | undefined;
 
   if (quote) {
