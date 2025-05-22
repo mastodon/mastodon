@@ -2249,14 +2249,18 @@ a .account__avatar {
 
 .avatar-group {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+
+  --avatar-height: 28px;
+
+  &:not(.avatar-group--compact) {
+    gap: 8px;
+    flex-wrap: wrap;
+    height: var(--avatar-height);
+    overflow-y: clip;
+  }
 }
 
 .avatar-group--compact {
-  gap: 0;
-  flex-wrap: nowrap;
-
   & > :not(:first-child) {
     margin-inline-start: -12px;
   }
@@ -10520,7 +10524,8 @@ noscript {
 
       &__label {
         display: flex;
-        gap: 8px;
+        flex-wrap: wrap;
+        gap: 2px 8px;
         font-size: 15px;
         line-height: 22px;
         color: $darker-text-color;
