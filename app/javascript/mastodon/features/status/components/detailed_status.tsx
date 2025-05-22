@@ -307,7 +307,12 @@ export const DetailedStatus: React.FC<{
 
   return (
     <div style={outerStyle}>
-      <div ref={handleRef} className={classNames('detailed-status')}>
+      <div
+        ref={handleRef}
+        className={classNames('detailed-status', {
+          'status--has-quote': !!status.get('quote'),
+        })}
+      >
         {status.get('visibility') === 'direct' && (
           <div className='status__prepend'>
             <div className='status__prepend-icon-wrapper'>
