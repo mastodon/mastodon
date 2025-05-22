@@ -1,16 +1,12 @@
-import { useEffect } from 'react';
-
 import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
-import { fetchAccountsFamiliarFollowers } from '@/mastodon/actions/accounts_familiar_followers';
 import { Avatar } from '@/mastodon/components/avatar';
 import { AvatarGroup } from '@/mastodon/components/avatar_group';
 import type { Account } from '@/mastodon/models/account';
-import { getAccountFamiliarFollowers } from '@/mastodon/selectors/accounts';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import { me } from 'mastodon/initial_state';
+
+import { useFetchFamiliarFollowers } from '../hooks/familiar_followers';
 
 const AccountLink: React.FC<{ account?: Account }> = ({ account }) => {
   if (!account) {
@@ -60,30 +56,6 @@ const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
       />
     );
   }
-};
-
-export const useFetchFamiliarFollowers = ({
-  accountId,
-}: {
-  accountId?: string;
-}) => {
-  const dispatch = useAppDispatch();
-  const familiarFollowers = useAppSelector((state) =>
-    accountId ? getAccountFamiliarFollowers(state, accountId) : null,
-  );
-
-  const hasNoData = familiarFollowers === null;
-
-  useEffect(() => {
-    if (hasNoData && accountId && accountId !== me) {
-      void dispatch(fetchAccountsFamiliarFollowers({ id: accountId }));
-    }
-  }, [dispatch, accountId, hasNoData]);
-
-  return {
-    familiarFollowers: hasNoData ? [] : familiarFollowers,
-    isLoading: hasNoData,
-  };
 };
 
 export const FamiliarFollowers: React.FC<{ accountId: string }> = ({

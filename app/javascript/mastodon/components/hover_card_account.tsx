@@ -18,7 +18,7 @@ import { DisplayName } from 'mastodon/components/display_name';
 import { FollowButton } from 'mastodon/components/follow_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ShortNumber } from 'mastodon/components/short_number';
-import { useFetchFamiliarFollowers } from 'mastodon/features/account_timeline/components/familiar_followers';
+import { useFetchFamiliarFollowers } from 'mastodon/features/account_timeline/hooks/familiar_followers';
 import { domain } from 'mastodon/initial_state';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
