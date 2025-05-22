@@ -1,18 +1,24 @@
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import ArticleIcon from '@/material-icons/400-24px/article.svg?react';
+import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import { Icon } from 'mastodon/components/icon';
 import StatusContainer from 'mastodon/containers/status_container';
+import type { Status } from 'mastodon/models/status';
 import { useAppSelector } from 'mastodon/store';
 
 import QuoteIcon from '../../images/quote.svg?react';
 
+const MAX_QUOTE_POSTS_NESTING_LEVEL = 1;
+
 const QuoteWrapper: React.FC<{
   isError?: boolean;
-  children: React.ReactNode;
+  children: React.ReactElement;
 }> = ({ isError, children }) => {
   return (
     <div
@@ -26,16 +32,52 @@ const QuoteWrapper: React.FC<{
   );
 };
 
+const QuoteLink: React.FC<{
+  status: Status;
+}> = ({ status }) => {
+  const accountId = status.get('account') as string;
+  const account = useAppSelector((state) =>
+    accountId ? state.accounts.get(accountId) : undefined,
+  );
+
+  const quoteAuthorName = account?.display_name_html;
+
+  if (!quoteAuthorName) {
+    return null;
+  }
+
+  const quoteAuthorElement = (
+    <span dangerouslySetInnerHTML={{ __html: quoteAuthorName }} />
+  );
+  const quoteUrl = `/@${account.get('acct')}/${status.get('id') as string}`;
+
+  return (
+    <Link to={quoteUrl} className='status__quote-author-button'>
+      <FormattedMessage
+        id='status.quote_post_author'
+        defaultMessage='Post by {name}'
+        values={{ name: quoteAuthorElement }}
+      />
+      <Icon id='chevron_right' icon={ChevronRightIcon} />
+      <Icon id='article' icon={ArticleIcon} />
+    </Link>
+  );
+};
+
 type QuoteMap = ImmutableMap<'state' | 'quoted_status', string | null>;
 
-export const QuotedStatus: React.FC<{ quote: QuoteMap }> = ({ quote }) => {
+export const QuotedStatus: React.FC<{
+  quote: QuoteMap;
+  variant?: 'full' | 'link';
+  nestingLevel?: number;
+}> = ({ quote, nestingLevel = 1, variant = 'full' }) => {
   const quotedStatusId = quote.get('quoted_status');
   const state = quote.get('state');
   const status = useAppSelector((state) =>
     quotedStatusId ? state.statuses.get(quotedStatusId) : undefined,
   );
 
-  let quoteError: React.ReactNode | null = null;
+  let quoteError: React.ReactNode = null;
 
   if (state === 'deleted') {
     quoteError = (
@@ -78,14 +120,28 @@ export const QuotedStatus: React.FC<{ quote: QuoteMap }> = ({ quote }) => {
     return <QuoteWrapper isError>{quoteError}</QuoteWrapper>;
   }
 
+  if (variant === 'link' && status) {
+    return <QuoteLink status={status} />;
+  }
+
+  const childQuote = status?.get('quote') as QuoteMap | undefined;
+  const canRenderChildQuote =
+    childQuote && nestingLevel <= MAX_QUOTE_POSTS_NESTING_LEVEL;
+
   return (
     <QuoteWrapper>
-      <StatusContainer
-        // @ts-expect-error Status isn't typed yet
-        isQuotedPost
-        id={quotedStatusId}
-        avatarSize={40}
-      />
+      {/* @ts-expect-error Status is not yet typed */}
+      <StatusContainer isQuotedPost id={quotedStatusId} avatarSize={40}>
+        {canRenderChildQuote && (
+          <QuotedStatus
+            quote={childQuote}
+            variant={
+              nestingLevel === MAX_QUOTE_POSTS_NESTING_LEVEL ? 'link' : 'full'
+            }
+            nestingLevel={nestingLevel + 1}
+          />
+        )}
+      </StatusContainer>
     </QuoteWrapper>
   );
 };

@@ -1880,11 +1880,15 @@ body > [data-popper-placement] {
 .status__quote {
   position: relative;
   margin-block-start: 16px;
-  margin-inline-start: 56px;
+  margin-inline-start: 36px;
   border-radius: 8px;
   color: var(--nested-card-text);
   background: var(--nested-card-background);
   border: var(--nested-card-border);
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    margin-inline-start: 56px;
+  }
 }
 
 .status__quote--error {
@@ -1895,10 +1899,42 @@ body > [data-popper-placement] {
   font-size: 15px;
 }
 
+.status__quote-author-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  width: auto;
+  margin-block-start: 10px;
+  padding: 5px 12px;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0;
+  text-decoration: none;
+  color: $highlight-text-color;
+  background: var(--nested-card-background);
+  border: var(--nested-card-border);
+  border-radius: 4px;
+
+  &:active,
+  &:focus,
+  &:hover {
+    border-color: lighten($highlight-text-color, 4%);
+    color: lighten($highlight-text-color, 4%);
+  }
+
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
+  }
+}
+
 .status__quote-icon {
   position: absolute;
   inset-block-start: 18px;
-  inset-inline-start: -50px;
+  inset-inline-start: -40px;
   display: block;
   width: 26px;
   height: 26px;
@@ -1909,6 +1945,10 @@ body > [data-popper-placement] {
   .status__quote--error & {
     inset-block-start: 50%;
     transform: translateY(-50%);
+  }
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    inset-inline-start: -50px;
   }
 }
 
