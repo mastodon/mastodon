@@ -519,7 +519,7 @@ class Status extends ImmutablePureComponent {
           </Bundle>
         );
       }
-    } else if (status.get('card')) {
+    } else if (status.get('card') && !status.get('quote')) {
       media = (
         <Card
           onOpenMedia={this.handleOpenMedia}
