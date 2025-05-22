@@ -1,6 +1,6 @@
 default: &default
   adapter: postgresql
-  pool: <%= ENV["DB_POOL"] || (if Sidekiq.server? then Sidekiq[:concurrency] else ENV['MAX_THREADS'] end) || 5 %>
+  pool: <%= ENV["DB_POOL"] || (if Sidekiq.server? then Sidekiq.default_configuration[:concurrency] else ENV['MAX_THREADS'] end) || 5 %>
   timeout: 5000
   connect_timeout: 15
   encoding: unicode
