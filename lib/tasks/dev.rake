@@ -351,5 +351,21 @@ namespace :dev do
       display_name: 'Mastodon test/showcase account',
       note: 'Test account to showcase many Mastodon features. Most of its posts are public, but some are private!'
     )
+
+    remote_quote = Status.create_with(
+      text: <<~HTML,
+        <p>This is a self-quote of a remote formatted post</p>
+        <p class="quote-inline">RE: <a href="https://example.org/foo/bar/baz">https://example.org/foo/bar/baz</a></p>
+      HTML
+      account: remote_account,
+      uri: 'https://example.org/foo/bar/quote',
+      url: 'https://example.org/foo/bar/quote'
+    ).find_or_create_by!(id: 10_000_023)
+    Quote.create_with(
+      status: remote_quote,
+      quoted_status: remote_formatted_post,
+      state: :accepted
+    ).find_or_create_by!(id: 10_000_010)
+    Status.create_with(account: showcase_account, reblog: remote_quote).find_or_create_by!(id: 10_000_024)
   end
 end
