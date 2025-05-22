@@ -774,17 +774,26 @@ ko:
       title: 역할
     rules:
       add_new: 규칙 추가
+      add_translation: 번역 추가
       delete: 삭제
       description_html: 대부분의 사람들은 서비스 약관을 읽고 동의한다고 밝힙니다만, 대개 문제가 발생하기 전까지는 약관을 자세히 읽어보지 않습니다. <strong>서버의 운영원칙을 단일한 글머리 기호 목록으로 제공하여 한 눈에 쉽게 확인할 수 있도록 하세요.</strong> 각 규칙을 짧고 간결하게 유지하되, 많은 항목으로 나누지 않도록 하세요.
       edit: 규칙 수정
       empty: 아직 정의된 서버 규칙이 없습니다.
+      move_down: 아래로 이동
+      move_up: 위로 이동
       title: 서버 규칙
+      translation: 번역
+      translations: 번역
+      translations_explanation: 규칙에 대한 번역을 추가할 수 있습니다. 번역된 버전이 없다면 원문이 보여질 것입니다. 항상 원문과 번역본의 내용이 일치하는지 확인하세요.
     settings:
       about:
         manage_rules: 서버 규칙 관리
         preamble: 이 서버가 어떻게 운영되고, 중재되고, 자금을 조달하는지 등에 관한 자세한 정보를 기입하세요.
         rules_hint: 사용자들이 준수해야 할 규칙들을 위한 전용 공간입니다.
         title: 정보
+      allow_referrer_origin:
+        desc: 사용자가 외부 사이트 링크를 클릭한 경우 브라우저는 마스토돈 서버 주소를 리퍼러로 보내게 됩니다. 이 서버가 개인 서버인 경우 등 사용자를 식별할 수 있는 경우 이 기능을 비활성화하세요.
+        title: 외부 사이트가 이 마스토돈 서버를 트래픽 소스로 볼 수 있도록 허용
       appearance:
         preamble: 마스토돈의 웹 인터페이스를 변경
         title: 외관
@@ -804,6 +813,7 @@ ko:
       discovery:
         follow_recommendations: 팔로우 추천
         preamble: 흥미로운 콘텐츠를 노출하는 것은 마스토돈을 알지 못할 수도 있는 신규 사용자를 유입시키는 데 중요합니다. 이 서버에서 작동하는 다양한 발견하기 기능을 제어합니다.
+        privacy: 개인정보
         profile_directory: 프로필 책자
         public_timelines: 공개 타임라인
         publish_statistics: 통계 발행
@@ -890,6 +900,8 @@ ko:
     system_checks:
       database_schema_check:
         message_html: 대기 중인 데이터베이스 마이그레이션이 있습니다. 애플리케이션이 예상대로 동작할 수 있도록 마이그레이션을 실행해 주세요
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch 인덱스 아날라이저 설정이 업데이트되지 않았습니다. <code>tootctl search deploy --only-mapping --only=%{value}</code> 명령을 실행해주세요
       elasticsearch_health_red:
         message_html: Elasticsearch 클러스터가 비정상(red)상태입니다. 검색 기능이 동작하지 않습니다
       elasticsearch_health_yellow:
@@ -1814,6 +1826,10 @@ ko:
       limit: 이미 너무 많은 게시물을 고정했습니다
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
+    quote_policies:
+      followers: 팔로워와 멘션된 사람들만
+      nobody: 멘션된 사람들만
+      public: 모두
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: 다이렉트
