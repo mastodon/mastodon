@@ -23,19 +23,27 @@ module ProviderRequestHelper
     body = encode_body(body)
     headers = {}
     headers['content-digest'] = content_digest(body)
-    request = Linzer.new_request(method, url, {}, headers)
+    request = "Net::HTTP::#{method.to_s.classify}".constantize.new(URI(url), headers)
     key = private_key_for(provider)
-    signature = sign(request, key, %w(@method @target-uri content-digest))
-    headers.merge(signature.to_h)
+    Linzer.sign!(request, key:, components: %w(@method @target-uri content-digest))
+    signature_headers(request)
   end
 
   def response_authentication_headers(provider, status, body)
-    headers = {}
-    headers['content-digest'] = content_digest(body)
-    response = Linzer.new_response(body, status, headers)
+    response = Net::HTTPResponse::CODE_TO_OBJ[status.to_s].new('1.1', status, Rack::Utils::HTTP_STATUS_CODES[status])
+    response.body = body
+    response['content-digest'] = content_digest(body)
     key = private_key_for(provider)
-    signature = sign(response, key, %w(@status content-digest))
-    headers.merge(signature.to_h)
+    Linzer.sign!(response, key:, components: %w(@status content-digest))
+    signature_headers(response)
+  end
+
+  def signature_headers(operation)
+    {
+      'content-digest' => operation['content-digest'],
+      'signature-input' => operation['signature-input'],
+      'signature' => operation['signature'],
+    }
   end
 
   def private_key_for(provider)
@@ -47,16 +55,7 @@ module ProviderRequestHelper
         key
       end
 
-    {
-      id: provider.id.to_s,
-      private_key: @cached_provider_keys[provider].private_to_pem,
-    }
-  end
-
-  def sign(request_or_response, key, components)
-    message = Linzer::Message.new(request_or_response)
-    linzer_key = Linzer.new_ed25519_key(key[:private_key], key[:id])
-    Linzer.sign(linzer_key, message, components)
+    Linzer.new_ed25519_key(@cached_provider_keys[provider].private_to_pem, provider.id.to_s)
   end
 
   def encode_body(body)
