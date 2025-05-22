@@ -10,6 +10,7 @@ import { AvatarGroup } from '@/mastodon/components/avatar_group';
 import type { Account } from '@/mastodon/models/account';
 import { getAccountFamiliarFollowers } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { me } from 'mastodon/initial_state';
 
 const AccountLink: React.FC<{ account?: Account }> = ({ account }) => {
   if (!account) {
@@ -61,23 +62,38 @@ const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
   }
 };
 
-export const FamiliarFollowers: React.FC<{ accountId: string }> = ({
+export const useFetchFamiliarFollowers = ({
   accountId,
+}: {
+  accountId?: string;
 }) => {
   const dispatch = useAppDispatch();
   const familiarFollowers = useAppSelector((state) =>
-    getAccountFamiliarFollowers(state, accountId),
+    accountId ? getAccountFamiliarFollowers(state, accountId) : null,
   );
 
   const hasNoData = familiarFollowers === null;
 
   useEffect(() => {
-    if (hasNoData) {
+    if (hasNoData && accountId && accountId !== me) {
       void dispatch(fetchAccountsFamiliarFollowers({ id: accountId }));
     }
   }, [dispatch, accountId, hasNoData]);
 
-  if (hasNoData || familiarFollowers.length === 0) {
+  return {
+    familiarFollowers: hasNoData ? [] : familiarFollowers,
+    isLoading: hasNoData,
+  };
+};
+
+export const FamiliarFollowers: React.FC<{ accountId: string }> = ({
+  accountId,
+}) => {
+  const { familiarFollowers, isLoading } = useFetchFamiliarFollowers({
+    accountId,
+  });
+
+  if (isLoading || familiarFollowers.length === 0) {
     return null;
   }
 
