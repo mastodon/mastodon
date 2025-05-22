@@ -101,7 +101,7 @@ RSpec.describe 'Settings applications page' do
   end
 
   describe 'Destroying an application' do
-    let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
+    let(:redis_pipeline_stub) { instance_double(Redis::PipelinedConnection, publish: nil) }
     let!(:access_token) { Fabricate(:accessible_access_token, application: application) }
 
     before { stub_redis_pipeline }

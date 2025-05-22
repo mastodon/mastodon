@@ -797,6 +797,8 @@ es:
         preamble: Proporciona información detallada sobre cómo el servidor es operado, moderado y financiado.
         rules_hint: Hay un área dedicada para las reglas a las que se espera que tus usuarios se adhieran.
         title: Acerca de
+      allow_referrer_origin:
+        desc: Cuando tus usuarios cliquen en enlaces a sitios externos, su navegador podría enviar la dirección de su servidor de Mastodon como referencia. Deshabilita esto si identifica a tus usuarios unívocamente, por ejemplo, si este es un servidor de Mastodon personal.
       appearance:
         preamble: Personalizar la interfaz web de Mastodon.
         title: Apariencia
@@ -816,9 +818,9 @@ es:
       discovery:
         follow_recommendations: Recomendaciones de cuentas
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controla cómo funcionan varias opciones de descubrimiento en tu servidor.
+        privacy: Privacidad
         profile_directory: Directorio de perfiles
         public_timelines: Lineas de tiempo públicas
-        publish_discovered_servers: Publicar servidores descubiertos
         publish_statistics: Publicar estadísticas
         title: Descubrimiento
         trends: Tendencias
@@ -1858,6 +1860,10 @@ es:
       limit: Ya has fijado el número máximo de publicaciones
       ownership: La publicación de otra persona no puede fijarse
       reblog: Una publicación impulsada no puede fijarse
+    quote_policies:
+      followers: Seguidores y usuarios mencionados
+      nobody: Solo usuarios mencionados
+      public: Cualquiera
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Directa
@@ -1911,6 +1917,11 @@ es:
     does_not_match_previous_name: no coincide con el nombre anterior
   terms_of_service:
     title: Términos del Servicio
+  terms_of_service_interstitial:
+    future_preamble_html: Estamos realizando cambios en nuestros términos de servicio, que serán aplicados el <strong>%{date}</strong>. Te recomendamos que revises los términos actualizados.
+    past_preamble_html: Hemos cambiado nuestros términos de servicio desde tu última visita. Te animamos a que revises los términos actualizados.
+    review_link: Revisar los términos de servicio
+    title: Los términos de servicio de %{domain} van a cambiar
   themes:
     contrast: Mastodon (alto contraste)
     default: Mastodon (oscuro)

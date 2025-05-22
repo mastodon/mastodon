@@ -78,7 +78,6 @@ gem 'rack-cors', '~> 2.0', require: 'rack/cors'
 gem 'rails-i18n', '~> 8.0'
 gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
-gem 'redis-namespace', '~> 1.10'
 gem 'rqrcode', '~> 3.0'
 gem 'ruby-progressbar', '~> 1.13'
 gem 'sanitize', '~> 7.0'
@@ -95,7 +94,6 @@ gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2023'
 gem 'webauthn', '~> 3.0'
-gem 'webpacker', '~> 5.4'
 gem 'webpush', github: 'mastodon/webpush', ref: '9631ac63045cfabddacc69fc06e919b4c13eb913'
 
 gem 'json-ld'
@@ -230,3 +228,5 @@ gem 'rubyzip', '~> 2.3'
 gem 'hcaptcha', '~> 7.1'
 
 gem 'mail', '~> 2.8'
+
+gem 'vite_rails', '~> 3.0.19'

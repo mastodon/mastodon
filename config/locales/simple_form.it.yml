@@ -56,6 +56,7 @@ it:
         scopes: A quali API l'applicazione potrà avere accesso. Se selezionate un ambito di alto livello, non c'è bisogno di selezionare quelle singole.
         setting_aggregate_reblogs: Non mostrare nuove condivisioni per toot che sono stati condivisi di recente (ha effetto solo sulle nuove condivisioni)
         setting_always_send_emails: Normalmente le notifiche e-mail non vengono inviate quando si utilizza attivamente Mastodon
+        setting_default_quote_policy: Gli utenti menzionati sono sempre in grado di citare. Questa impostazione avrà effetto solo per i post che verranno creati con la prossima versione di Mastodon, ma puoi selezionare le tue preferenze in preparazione del rilascio della prossima versione
         setting_default_sensitive: Media con contenuti sensibili sono nascosti in modo predefinito e possono essere rivelati con un click
         setting_display_media_default: Nascondi media segnati come sensibili
         setting_display_media_hide_all: Nascondi sempre tutti i media
@@ -148,7 +149,9 @@ it:
         min_age: Non si dovrebbe avere un'età inferiore a quella minima richiesta, dalle leggi della tua giurisdizione.
       user:
         chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline pubbliche vengono mostrati solo i toot nelle lingue selezionate
-        date_of_birth: Dobbiamo verificare che tu abbia almeno %{age} anni per usare Mastodon. Non archivieremo questa informazione.
+        date_of_birth:
+          one: Dobbiamo verificare che tu abbia almeno %{count} anno per usare Mastodon. Non archivieremo questa informazione.
+          other: Dobbiamo verificare che tu abbia almeno %{count} anni per usare Mastodon. Non archivieremo questa informazione.
         role: Il ruolo controlla quali permessi ha l'utente.
       user_role:
         color: Colore da usare per il ruolo in tutta l'UI, come RGB in formato esadecimale
@@ -229,6 +232,7 @@ it:
         setting_boost_modal: Mostra dialogo di conferma prima del boost
         setting_default_language: Lingua dei post
         setting_default_privacy: Privacy dei post
+        setting_default_quote_policy: Chi può citare
         setting_default_sensitive: Segna sempre i media come sensibili
         setting_delete_modal: Mostra dialogo di conferma prima di eliminare un post
         setting_disable_hover_cards: Disabilita l'anteprima del profilo al passaggio del mouse

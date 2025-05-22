@@ -114,15 +114,14 @@ $content-width: 840px;
 
       a {
         font-size: 14px;
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 6px;
         padding: 15px;
         color: $darker-text-color;
         text-decoration: none;
         transition: all 200ms linear;
         transition-property: color, background-color;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
 
         &:hover {
           color: $primary-text-color;
@@ -1105,7 +1104,7 @@ a.name-tag,
     display: flex;
     justify-content: space-between;
     margin-bottom: 0;
-    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   &__permissions {
@@ -1125,6 +1124,15 @@ a.name-tag,
     .permissions-list__item__icon {
       color: $dark-text-color;
     }
+  }
+}
+
+.rule-actions {
+  display: flex;
+  flex-direction: column;
+
+  a.table-action-link {
+    padding-inline-start: 0;
   }
 }
 

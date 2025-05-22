@@ -786,17 +786,26 @@ es-AR:
       title: Roles
     rules:
       add_new: Agregar regla
+      add_translation: Agregar traducción
       delete: Eliminar
       description_html: Aunque la mayoría afirma haber leído y aceptado los términos del servicio, normalmente la gente no los revisa hasta después de que surge un problema. <strong>Hacé que sea más fácil ver las reglas de tu servidor, de un vistazo, disponiéndolas en una lista por puntos.</strong> Tratá de hacer cada regla corta y sencilla, pero no de dividirlas en muchos temas individuales.
       edit: Editar regla
       empty: Aún no se han definido las reglas del servidor.
+      move_down: Bajar
+      move_up: Subir
       title: Reglas del servidor
+      translation: Traducción
+      translations: Traducciones
+      translations_explanation: Opcionalmente, podés agregar traducciones para las reglas. El valor predeterminado se mostrará si no hay una versión traducida disponible. Por favor, asegurate siempre de que cualquier traducción proporcionada esté sincronizada con el valor predeterminado.
     settings:
       about:
         manage_rules: Administrar reglas del servidor
         preamble: Proveé información en profundidad sobre cómo el servidor es operado, moderado y financiado.
         rules_hint: Hay un área dedicada para las reglas a las que se espera que tus usuarios se adhieran.
         title: Información
+      allow_referrer_origin:
+        desc: Cuando tus usuarios hagan clic en enlaces a sitios externos, sus navegadores pueden enviar la dirección de tu servidor de Mastodon como la referencia. Deshabilitá esto si significase identificar inequívocamente a tus usuarios; por ejemplo, si se trata de un servidor personal de Mastodon.
+        title: Permitir a los sitios externos ver tu servidor de Mastodon como fuente de tráfico
       appearance:
         preamble: Personalizá la interface web de Mastodon.
         title: Apariencia
@@ -816,9 +825,9 @@ es-AR:
       discovery:
         follow_recommendations: Recom. de cuentas a seguir
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controlá cómo funcionan varias opciones de descubrimiento en tu servidor.
+        privacy: Privacidad
         profile_directory: Directorio de perfiles
         public_timelines: Líneas temporales públicas
-        publish_discovered_servers: Publicar servidores descubiertos
         publish_statistics: Publicar estadísticas
         title: Descubrí
         trends: Tendencias
@@ -1858,6 +1867,10 @@ es-AR:
       limit: Ya fijaste el número máximo de mensajes
       ownership: No se puede fijar el mensaje de otra cuenta
       reblog: No se puede fijar una adhesión
+    quote_policies:
+      followers: Seguidores y usuarios mencionados
+      nobody: Solo usuarios mencionados
+      public: Todos
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Directo
@@ -1911,6 +1924,11 @@ es-AR:
     does_not_match_previous_name: no coincide con el nombre anterior
   terms_of_service:
     title: Términos del servicio
+  terms_of_service_interstitial:
+    future_preamble_html: Estamos haciendo algunos cambios a nuestros términos de servicio, que serán efectivos en <strong>%{date}</strong>. Te invitamos a revisar los términos actualizados.
+    past_preamble_html: Hemos cambiado nuestros términos de servicio desde tu última visita. Te invitamos a revisar los términos actualizados.
+    review_link: Revisar los términos del servicio
+    title: Los términos del servicio de %{domain} están cambiando
   themes:
     contrast: Alto contraste
     default: Oscuro

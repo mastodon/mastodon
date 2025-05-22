@@ -23,10 +23,18 @@ export function normalizeFilterResult(result) {
 
 export function normalizeStatus(status, normalOldStatus) {
   const normalStatus   = { ...status };
+
   normalStatus.account = status.account.id;
 
   if (status.reblog && status.reblog.id) {
     normalStatus.reblog = status.reblog.id;
+  }
+
+  if (status.quote?.quoted_status ?? status.quote?.quoted_status_id) {
+    normalStatus.quote = {
+      ...status.quote,
+      quoted_status: status.quote.quoted_status?.id ?? status.quote?.quoted_status_id,
+    };
   }
 
   if (status.poll && status.poll.id) {

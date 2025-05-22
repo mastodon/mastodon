@@ -319,6 +319,7 @@ fa:
         create: ساختن اعلامیه
         title: اعلامیهٔ تازه
       preview:
+        disclaimer: از آن‌جا که کاربران نمی‌توانند درخواست نگرفتن آگاهی‌های رایانامه‌ای را بدهند، باید محدود به اعلامیه‌های مهم چون آگاهی از نشت داده‌های شخصی یا بسته شدن کارساز باشد.
         explanation_html: 'رایانامه برای <strong>%{display_count} کاربر</strong> فرستاده خواهد شد. متن زیر در رایانامه قرار خواهد گرفت:'
         title: پیش‌نمایش آگاهی اعلامیه
       publish: انتشار
@@ -486,19 +487,29 @@ fa:
           delete: حذف
           ip: نشانی آی‌پی
           request_body: بدنهٔ درخواست
+          title: فراخوان‌های بازگشتی اشکال‌زدایی
       providers:
         active: فعال
         base_url: نشانی پایه
+        callback: فراخوان‌های بازگشتی
         delete: حذف
+        edit: ویرایش ارائه‌دهنده
         finish_registration: تکمیل ثبت‌نام
         name: نام
         providers: ارائه دهندگان
+        public_key_fingerprint: اثر انگشت کلید عمومی
+        registration_requested: درخواست ثبت‌نام داده شد
         registrations:
           confirm: تایید
+          description: ثبت‌نامی از FASP دریافت کرده‌اید. اگر خودتان آغازش نکرده‌اید ردش کنید. اگر خودتان آغازش کرده‌اید، نام و اثر انگشت کلید را پیش از ادامهٔ‌ثبت‌نام با دقّت مقایسه کنید.
           reject: رد کردن
+          title: تأیید ثبت‌نام FASP
         save: ذخیره
+        select_capabilities: گزینش قابلیت‌ها
         sign_in: ورود
         status: وضعیت
+        title: ارائه‌دهندگان خدمات کمکی وب اجتماعی
+      title: FASP
     follow_recommendations:
       description_html: "<strong>پیشنهادات پیگیری به کاربران جدید کک می‌کند تا سریع‌تر محتوای جالب را پیدا کنند</strong>. زمانی که کاربری هنوز به اندازه کافی با دیگران تعامل نداشته است تا پیشنهادات پیگیری شخصی‌سازی‌شده دریافت کند، این حساب‌ها را به جای آن فهرست مشاهده خواهد کرد. این حساب‌ها به صورت روزانه و در ترکیب با بیشتری تعاملات و بالاترین دنبال‌کنندگان محلی برای یک زبان مشخص بازمحاسبه می‌شوند."
       language: برای زبان
@@ -807,7 +818,6 @@ fa:
         preamble: ارائه محتوای جالب در جذب کاربران جدیدی که ممکن است کسی ماستودون را نشناسند، مفید است. نحوه عملکرد ویژگی‌های کشف مختلف روی سرور خود را کنترل کنید.
         profile_directory: شاخهٔ نمایه
         public_timelines: خط زمانی‌های عمومی
-        publish_discovered_servers: انتشار کارسازهای کشف شده
         publish_statistics: انتشار آمار
         title: کشف
         trends: پرطرفدارها
@@ -892,6 +902,8 @@ fa:
     system_checks:
       database_schema_check:
         message_html: تعداد مهاجرت پایگاه داده در انتظار انجام هستند. لطفا آن‌ها را اجرا کنید تا اطمینان یابید که برنامه مطابق انتظار رفتار خواهد کرد
+      elasticsearch_analysis_index_mismatch:
+        message_html: تنظیمات تحلیلگر اندیس Elasticsearch منقضی شده. لطفاً <code>tootctl search deploy --only-mapping --only=%{value}</code> را اجرا کنید
       elasticsearch_health_red:
         message_html: خوشه Elasticsearch ناسالم است (وضعیت قرمز)، ویژگی های جستجو در دسترس نیستند
       elasticsearch_health_yellow:
@@ -1845,6 +1857,10 @@ fa:
       limit: از این بیشتر نمی‌شود نوشته‌های ثابت داشت
       ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
       reblog: تقویت نمی‌تواند سنجاق شود
+    quote_policies:
+      followers: پی‌گیران و کاربران اشاره شده
+      nobody: فقط کاربران اشاره شده
+      public: هرکسی
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: مستقیم
@@ -1898,6 +1914,11 @@ fa:
     does_not_match_previous_name: با نام پیشین مطابق نیست
   terms_of_service:
     title: شرایط خدمات
+  terms_of_service_interstitial:
+    future_preamble_html: داریم تغییراتی در شرایط خدماتمان می‌دهیم که از <strong>%{date}</strong> اجرایی می‌شود. تشویقتان می‌کنیم که شرایط به‌روز شده را بازبینی کنید.
+    past_preamble_html: شرایط خدماتمان را تغییر داده‌ایم. تشویقتان می‌کنیم که شرایط به‌روز شده را بازبینی کنید.
+    review_link: بازبینی شرایط استفاده
+    title: شرایط خدمات %{domain} در حال تغییر است
   themes:
     contrast: ماستودون (سایه‌روشن بالا)
     default: ماستودون (تیره)

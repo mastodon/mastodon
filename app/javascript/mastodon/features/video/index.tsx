@@ -346,8 +346,10 @@ export const Video: React.FC<{
     const updateProgress = () => {
       nextFrame = requestAnimationFrame(() => {
         if (videoRef.current) {
+          const progress =
+            videoRef.current.currentTime / videoRef.current.duration;
           void api.start({
-            progress: `${(videoRef.current.currentTime / videoRef.current.duration) * 100}%`,
+            progress: isNaN(progress) ? '0%' : `${progress * 100}%`,
             immediate: reduceMotion,
             config: config.stiff,
           });

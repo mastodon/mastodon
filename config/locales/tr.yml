@@ -1,7 +1,7 @@
 ---
 tr:
   about:
-    about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezi olmayan</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir!
+    about_mastodon_html: Jetub Max<em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezi olmayan</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Jetub Max sunucusunu kurabilir ve sorunsuz bir şekilde Jetub Max<em>sosyal ağına</em> dahil edebilir!
     contact_missing: Ayarlanmadı
     contact_unavailable: Bulunamadı
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
@@ -786,17 +786,26 @@ tr:
       title: Roller
     rules:
       add_new: Kural ekle
+      add_translation: Çeviri ekle
       delete: Sil
       description_html: Her ne kadar çoğu hizmet kullanım şartlarını okuyup kabul ettiğini söylese de, insanlar onu ancak bir sorun çıktığında gözden geçiriyorlar. <strong>Sunucunuzun kurallarını bir bakışta kolayca görülecek şekilde düz bir madde listesi şeklinde sunun</strong>. Tekil kuralları kısa ve yalın tutmaya çalışan ama onları çok sayıda maddeye bölmemeye de çalışın.
       edit: Kuralı düzenle
       empty: Henüz bir sunucu kuralı tanımlanmadı.
+      move_down: Aşağı taşı
+      move_up: Yukarı taşı
       title: Sunucu kuralları
+      translation: Çeviri
+      translations: Çeviriler
+      translations_explanation: İsteğe bağlı olarak kurallar için çeviriler ekleyebilirsiniz. Çevrilmiş bir sürüm mevcut değilse varsayılan değer gösterilecektir. Lütfen her zaman sağlanan çevirinin varsayılan değerle senkronize olduğundan emin olun.
     settings:
       about:
         manage_rules: Sunucu kurallarını yönet
         preamble: Sunucunun nasıl işletildiği, yönetildiği ve fonlandığı hakkında ayrıntılı bilgi verin.
         rules_hint: Kullanıcılarınızın uyması beklenen kurallar için özel bir alan var.
         title: Hakkında
+      allow_referrer_origin:
+        desc: Kullanıcılarınız harici sitelere giden bağlantılara tıkladığında, tarayıcıları Mastodon sunucunuzun adresini yönlendiren olarak gönderebilir. Bu, kullanıcılarınızı benzersiz bir şekilde tanımlayacaksa, örneğin bu kişisel bir Mastodon sunucusuysa, bunu devre dışı bırakın.
+        title: Harici sitelerin Mastodon sunucunuzu bir trafik kaynağı olarak görmesine izin verin
       appearance:
         preamble: Mastodon'un web arayüzünü düzenleyin.
         title: Görünüm
@@ -816,9 +825,9 @@ tr:
       discovery:
         follow_recommendations: Takip önerileri
         preamble: İlginç içeriği gezinmek, Mastodon'da kimseyi tanımayan yeni kullanıcıları alıştırmak için oldukça etkilidir. Sunucunuzdaki çeşitli keşif özelliklerinin nasıl çalıştığını denetleyin.
+        privacy: Gizlilik
         profile_directory: Profil dizini
         public_timelines: Genel zaman çizelgeleri
-        publish_discovered_servers: Keşfedilen sunucuları yayınla
         publish_statistics: İstatistikleri yayınla
         title: Keşfet
         trends: Öne çıkanlar
@@ -1858,6 +1867,10 @@ tr:
       limit: Halihazırda maksimum sayıda gönderi sabitlediniz
       ownership: Başkasının gönderisi sabitlenemez
       reblog: Bir gönderi sabitlenemez
+    quote_policies:
+      followers: Takipçiler ve bahsedilen kullanıcılar
+      nobody: Sadece bahsedilen kullanıcılar
+      public: Herkes
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Doğrudan
@@ -1911,6 +1924,11 @@ tr:
     does_not_match_previous_name: önceki adla eşleşmiyor
   terms_of_service:
     title: Hizmet Şartları
+  terms_of_service_interstitial:
+    future_preamble_html: Hizmet şartlarımızda <strong>%{date}</strong> tarihinden itibaren geçerli olacak bazı değişiklikler yapıyoruz. Güncellenen şartları incelemenizi öneririz.
+    past_preamble_html: Son ziyaretinizden bu yana hizmet şartlarımızı değiştirdik. Güncellenen şartları incelemenizi öneririz.
+    review_link: Hizmet şartlarını incele
+    title: "%{domain} adresindeki hizmet şartları değişiyor"
   themes:
     contrast: Mastodon (Yüksek karşıtlık)
     default: Mastodon (Karanlık)

@@ -32,6 +32,7 @@ class Fasp::Request
   def request_headers(verb, url, body = '')
     result = {
       'accept' => 'application/json',
+      'content-type' => 'application/json',
       'content-digest' => content_digest(body),
     }
     result.merge(signature_headers(verb, url, result))

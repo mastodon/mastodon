@@ -332,7 +332,7 @@ lv:
       assign_category: Piešķirt kategoriju
       by_domain: Domēns
       copied_msg: Emocijzīmes vietējā kopija ir sekmīgi izveidota
-      copy: Kopēt
+      copy: Ievietot starpliktuvē
       copy_failed_msg: Nevarēja izveidot šīs emocijzīmes vietējo kopiju
       create_new_category: Izveidot jaunu kategoriju
       created_msg: Emocijzīme sekmīgi izveidota.
@@ -491,6 +491,7 @@ lv:
           request_body: Pieprasījuma saturs
           title: Atkļūdošanas atpakaļsaukumi
       providers:
+        active: Aktīvs
         base_url: Pamata URL
         callback: Atpakaļsaukums
         delete: Izdzēst
@@ -793,11 +794,17 @@ lv:
       title: Lomas
     rules:
       add_new: Pievienot noteikumu
+      add_translation: Pievienot tulkojumu
       delete: Dzēst
       description_html: Kaut arī lielākā daļa apgalvo, ka ir lasījuši un piekrīt pakalpojuma izmantošanas noteikumiem, parasti cilvēki tos neizlasa, līdz rodas sarežģījumi. <strong>Padari vienkāršāku sava servera noteikumu pārskatīšanu, sniedzot tos vienkāršā uzsvēruma punktu sarakstā!</strong> Jāmēģina atsevišķus noteikumus veidot īsus un vienkāršus, bet jāmēģina arī tos nesadalīt daudzos atsevišķos vienumos.
       edit: Labot nosacījumu
       empty: Vēl nav pievienots neviens servera noteikums.
+      move_down: Pārvietot lejup
+      move_up: Pārvietot augšup
       title: Servera noteikumi
+      translation: Tulkojums
+      translations: Tulkojumi
+      translations_explanation: Jūs variet pēc izvēles pievienot noteikumu tulkojumus. Ja nav iztulkots, rādīs noklusējuma vērtību. Lūdzu, vienmēr pārliecinieties, ka sniegtais tulkojums atbilst, ir konkrētai noklusējuma vērtībai.
     settings:
       about:
         manage_rules: Pārvaldīt servera noteikumus
@@ -823,9 +830,9 @@ lv:
       discovery:
         follow_recommendations: Sekotšanas rekomendācijas
         preamble: Interesanta satura parādīšana palīdz piesaistīt jaunus lietotājus, kuri, iespējams, nepazīst nevienu Mastodon. Kontrolē, kā tavā serverī darbojas dažādi atklāšanas līdzekļi.
+        privacy: Konfidencialitāte
         profile_directory: Profila direktorija
         public_timelines: Publiskās ziņu lentas
-        publish_discovered_servers: Publicēt atklātos serverus
         publish_statistics: Publicēt statistiku
         title: Atklāt
         trends: Tendences
@@ -1441,7 +1448,7 @@ lv:
     cancel: Atcelt
     changes_saved_msg: Izmaiņas sekmīgi saglabātas.
     confirm: Apstiprināt
-    copy: Kopēt
+    copy: Ievietot starpliktuvē
     delete: Dzēst
     deselect: Atcelt visu atlasi
     none: Neviens
@@ -1833,7 +1840,7 @@ lv:
     account_settings: Konta iestatījumi
     aliases: Konta aizstājvārdi
     appearance: Izskats
-    authorized_apps: Autorizētās lietotnes
+    authorized_apps: Pilnvarotās lietotnes
     back: Atgriezties Mastodon
     delete: Konta dzēšana
     development: Izstrāde
@@ -1894,6 +1901,10 @@ lv:
       limit: Jau ir piesprausts lielākais iespējamais ierakstu skaits
       ownership: Kāda cita ierakstu nevar piespraust
       reblog: Pastiprinātu ierakstu nevar piespraust
+    quote_policies:
+      followers: Sekotāji un pieminētie lietotāji
+      nobody: Tikai pieminētie lietotāji
+      public: Visi
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Tiešs
@@ -1947,6 +1958,11 @@ lv:
     does_not_match_previous_name: nesakrīt ar iepriekšējo nosaukumu
   terms_of_service:
     title: Pakalpojuma izmantošanas noteikumi
+  terms_of_service_interstitial:
+    future_preamble_html: Mēs veicām dažas izmaiņas mūsu pakalpojumu izmantošanas noteikumos, kas stāsies spēkā <strong>%{date}</strong>. Iesakām pārskatīt atjauninātos noteikumus.
+    past_preamble_html: Kopš jūsu pēdējā apmeklējuma esam veikuši dažas izmaiņas pakalpojumu izmantošanas noteikumus. Iesakām pārskatīt atjauninātos noteikumus.
+    review_link: Pārskatīt pakalpojumu izmantošanas noteikumus
+    title: Mainās %{domain} pakalpojuma izmantošanas noteikumi
   themes:
     contrast: Mastodon (Augsts kontrasts)
     default: Mastodon (Tumšs)
@@ -2006,7 +2022,7 @@ lv:
       title: Neizdevās otrās pakāpes autentificēšanās
     suspicious_sign_in:
       change_password: mainīt paroli
-      details: 'Šeit ir pieteikšanās izvērsums:'
+      details: 'Šeit ir informācija par pieteikšanos:'
       explanation: Esam noteikuši pieteikšanos Tavā kontā no jaunas IP adreses.
       further_actions_html: Ja tas nebiji tu, iesakām nekavējoties %{action} un iespējot divu faktoru autentifikāciju, lai tavs konts būtu drošībā.
       subject: Tavam kontam ir piekļūts no jaunas IP adreses
@@ -2099,7 +2115,7 @@ lv:
     extra_instructions_html: <strong>Padoms:</strong> saite Tavā vietnē var būt neredzama. Svarīga daļa ir <code>rel="me"</code>, kas novērš uzdošanos vietnēs ar lietotāju izveidotu saturu. Tu pat vari lapas galvenē izmantot tagu <code>link</code>, nevis <code>a</code>, taču HTML ir jābūt pieejamam bez JavaScript izpildīšanas.
     here_is_how: Lūk, kā
     hint_html: "<strong>Ikviens var apliecināt savu identitāti Mastodon.</strong> Balstīts uz atvērtiem tīmekļa standartiem, tagad un uz visiem laikiem bez maksas. Viss, kas Tev nepieciešams, ir personīga vietne, pēc kuras cilvēki Tevi atpazīst. Kad savā profilu sasaistīsi ar šo tīmekļvietni, mēs pārbaudīsim, vai tīmekļvietnei ir saite uz Tavu profilu, un tajā tiks parādīts redzama norāde."
-    instructions_html: Ievieto starpliktuvē un ielīmē tālāk norādīto kodu savas tīmekļvietnes HTML! Tad pievieno savas tīmekļvietnes adresi vienā no papildu laukiem savā profila cilnē "Labot profilu" un saglabā izmaiņas!
+    instructions_html: Ievieto starpliktuvē un ielīmē zemāk norādīto kodu savas tīmekļvietnes HTML! Tad pievieno savas tīmekļvietnes adresi vienā no papildu laukiem savā profila cilnē "Labot profilu" un saglabā izmaiņas!
     verification: Pārbaude
     verified_links: Tavas verifikācijas saites
     website_verification: Tīmekļvietnes apliecināšana

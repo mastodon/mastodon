@@ -214,7 +214,7 @@ gl:
         enable_user: Activar usuaria
         memorialize_account: Transformar en conta conmemorativa
         promote_user: Promover usuaria
-        publish_terms_of_service: Publicar os Termos do Servizo
+        publish_terms_of_service: Publicar as Condicións do Servizo
         reject_appeal: Rexeitar apelación
         reject_user: Rexeitar Usuaria
         remove_avatar_user: Eliminar avatar
@@ -279,7 +279,7 @@ gl:
         enable_user_html: "%{name} activou as credenciais para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
         promote_user_html: "%{name} promocionou a usuaria %{target}"
-        publish_terms_of_service_html: "%{name} actualizou os termos do servizo"
+        publish_terms_of_service_html: "%{name} actualizou as condicións do servizo"
         reject_appeal_html: "%{name} rexeitou a apelación da decisión da moderación de %{target}"
         reject_user_html: "%{name} rexeitou o rexistro de %{target}"
         remove_avatar_user_html: "%{name} eliminou o avatar de %{target}"
@@ -786,17 +786,26 @@ gl:
       title: Roles
     rules:
       add_new: Engadir regra
+      add_translation: Engadir tradución
       delete: Eliminar
-      description_html: Aínda que a maioría di que leu e acepta os termos de servizo, normalmente non os lemos ata que xurde un problema. <strong>Facilita a visualización das regras do servidor mostrándoas nunha lista de puntos.</strong> Intenta manter as regras individuais curtas e simples, mais non dividilas en demasiados elementos separados.
+      description_html: Aínda que a maioría di que leu e acepta as condicións do servizo, normalmente non as lemos ata que xurde un problema. <strong>Facilita a visualización das regras do servidor mostrándoas nunha lista de puntos.</strong> Intenta manter as regras individuais curtas e simples, mais non dividilas en demasiados elementos separados.
       edit: Editar regra
       empty: Aínda non se definiron as regras do servidor.
+      move_down: Baixar
+      move_up: Subir
       title: Regras do servidor
+      translation: Tradución
+      translations: Traducións
+      translations_explanation: De xeito optativo podes engadir traducións das normas. Mostrarase o valor por defecto se non hai unha tradución dispoñible. Pon coidado en que a versión traducida estea ao día respecto da versión por defecto.
     settings:
       about:
         manage_rules: Xestionar regras do servidor
         preamble: Proporciona información detallada acerca do xeito en que se xestiona, modera e financia o servidor.
         rules_hint: Hai un espazo dedicado para as normas que é de agardar as usuarias acaten.
         title: Sobre
+      allow_referrer_origin:
+        desc: 'Cando as túas usuarias premen en ligazóns a sitios web externos o seu navegador pode enviar o enderezo do teu servidor Mastodon como «referrer». Destactiva esta opción se isto permitiría identificar de xeito único ás túas usuarias. Ex.: un servidor persoal de Mastodon.'
+        title: Permitir a sitios web externos ver o teu servidor Mastodon como orixe do tráfico
       appearance:
         preamble: Personalizar a interface web de Mastodon.
         title: Aparencia
@@ -816,9 +825,9 @@ gl:
       discovery:
         follow_recommendations: Recomendacións de seguimento
         preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en Mastodon. Xestiona os diferentes xeitos de promocionar contidos.
+        privacy: Privacidade
         profile_directory: Directorio de perfís
         public_timelines: Cronoloxías públicas
-        publish_discovered_servers: Publicar os servidores descubertos
         publish_statistics: Publicar estatísticas
         title: Descubrir
         trends: Tendencias
@@ -965,22 +974,22 @@ gl:
       title: Cancelos
       updated_msg: Actualizaronse os axustes dos cancelos
     terms_of_service:
-      back: Volver aos termos do servizo
+      back: Volver ás condicións do servizo
       changelog: Que cambios se fixeron
-      create: Usa os teus propios
+      create: Usa as túas propias
       current: Actuais
       draft: Borrador
       generate: Usar un modelo
       generates:
         action: Crear
-        chance_to_review_html: "<strong>Vanse publicar automaticamente os termos do servizo creados.</strong> Terás a oportunidade de revisar o resultado. Por favor completa os detalles precisos para continuar."
+        chance_to_review_html: "<strong>Vanse publicar automaticamente as condicións do servizo creadas.</strong> Terás a oportunidade de revisar o resultado. Por favor completa os detalles precisos para continuar."
         explanation_html: O modelo dos termos do servizo proporcionados é soamente informativo, e en ningún caso constitúe un consello legal. Por favor realiza unha consulta legal sobre a túa situación concreta e posibles cuestións legais que debas afrontar.
-        title: Configurar os Termos do Servizo
-      going_live_on_html: Aplicados, con efecto desde %{date}
+        title: Configurar as Condicións do Servizo
+      going_live_on_html: Aplicadas, con efecto desde %{date}
       history: Historial
       live: Actuais
-      no_history: Non hai rexistrados cambios nos termos do servizo.
-      no_terms_of_service_html: Actualmente non tes configurados ningúns termos do servizo. Os Termos do servizo están pensados para dar claridade e protexerte de responsabilidades potenciais nas disputas coas túas usuarias.
+      no_history: Non hai rexistrados cambios nas condicións do servizo.
+      no_terms_of_service_html: Actualmente non tes configurados ningunhas condicións do servizo. As Condicións do Servizo están pensadas para dar claridade e protexerte de responsabilidades potenciais nas disputas coas túas usuarias.
       notified_on_html: Informouse ás usuarias o %{date}
       notify_users: Informar ás usuarias
       preview:
@@ -993,7 +1002,7 @@ gl:
       publish: Publicar
       published_on_html: Publicados o %{date}
       save_draft: Gardar borrador
-      title: Termos do Servizo
+      title: Condicións do Servizo
     title: Administración
     trends:
       allow: Permitir
@@ -1246,7 +1255,7 @@ gl:
       view_strikes: Ver avisos anteriores respecto da túa conta
     too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
     use_security_key: Usa chave de seguridade
-    user_agreement_html: Lin e acepto os <a href="%{terms_of_service_path}" target="_blank">termos do servizo</a> e a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
+    user_agreement_html: Lin e acepto as <a href="%{terms_of_service_path}" target="_blank">condicións do servizo</a> e a <a href="%{privacy_policy_path}" target="_blank">directiva de privacidade</a>
     user_privacy_agreement_html: Lin e acepto a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
   author_attribution:
     example_title: Texto de mostra
@@ -1296,7 +1305,7 @@ gl:
       email_contact_html: Se non o recibes, podes escribir a <a href="mailto:%{email}">%{email}</a> pedindo axuda
       email_reconfirmation_html: Se non recibes o correo de confirmación, podes <a href="%{path}">solicitalo de novo</a>
       irreversible: Non poderás restaurar ou reactivar a conta
-      more_details_html: Para máis detalles, mira a <a href="%{terms_path}">política de privacidade</a>.
+      more_details_html: Para máis detalles, mira a <a href="%{terms_path}">directiva de privacidade</a>.
       username_available: O nome de usuaria estará dispoñible novamente
       username_unavailable: O nome de usuaria non estará dispoñible
   disputes:
@@ -1858,6 +1867,10 @@ gl:
       limit: Xa fixaches o número máximo permitido de publicacións
       ownership: Non podes fixar a publicación doutra usuaria
       reblog: Non se poden fixar as mensaxes promovidas
+    quote_policies:
+      followers: Seguidoras e usuarias mencionadas
+      nobody: Só usuarias mencionadas
+      public: Calquera
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Directa
@@ -1910,7 +1923,12 @@ gl:
   tags:
     does_not_match_previous_name: non concorda co nome anterior
   terms_of_service:
-    title: Termos do Servizo
+    title: Condicións do Servizo
+  terms_of_service_interstitial:
+    future_preamble_html: Estamos a facer cambios nas condicións do servizo, que terán efecto o <strong>%{date}</strong>. Cremos que debes revisar as condicións actualizados.
+    past_preamble_html: Cambiamos as condicións do servizo desde a túa última visita. Recomendámosche revisar estas condicións actualizadas.
+    review_link: Revisar as condicións do sevizo
+    title: Cambios nas condicións do servizo de %{domain}
   themes:
     contrast: Mastodon (Alto contraste)
     default: Mastodon (Escuro)
@@ -1978,11 +1996,11 @@ gl:
     terms_of_service_changed:
       agreement: Se continúas a usar %{domain} aceptas estas condicións. Se non aceptas as condicións actualizadas podería rematar o acordo con %{domain} en calquera momento e eliminarse a túa conta.
       changelog: 'Dunha ollada, aquí tes o que implican os cambios para ti:'
-      description: 'Estás a recibir este correo porque fixemos cambios nos termos do servizo en %{domain}. Estas actualizacións terán efecto desde o %{date}. Convidámoste a que revises os termos ao completo aquí:'
-      description_html: 'Estás a recibir este correo porque fixemos algúns cambios nos nosos termos do servizo en %{domain}. Estas actualizacións terán efecto desde o <strong>%{date}</strong>. Convidámoste a que leas <a href="%{path}" target="_blank">aquí as condicións actualizadas ao completo</a>:'
+      description: 'Estás a recibir este correo porque fixemos cambios nas condicións do servizo en %{domain}. Estas actualizacións terán efecto desde o %{date}. Convidámoste a que revises os termos ao completo aquí:'
+      description_html: 'Estás a recibir este correo porque fixemos algúns cambios nas nósas condicións do servizo en %{domain}. Estas actualizacións terán efecto desde o <strong>%{date}</strong>. Convidámoste a que leas <a href="%{path}" target="_blank">aquí as condicións actualizadas ao completo</a>:'
       sign_off: O equipo de %{domain}
-      subject: Actualización dos nosos termos do servizo
-      subtitle: Cambiaron os termos do servizo de %{domain}
+      subject: Actualización das condicións do servizo
+      subtitle: Cambiaron as condicións do servizo de %{domain}
       title: Notificación importante
     warning:
       appeal: Enviar unha apelación

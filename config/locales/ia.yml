@@ -309,6 +309,7 @@ ia:
       title: Registro de inspection
       unavailable_instance: "(nomine de dominio non disponibile)"
     announcements:
+      back: Retornar al annuncios
       destroyed_msg: Annuncio delite con successo!
       edit:
         title: Modificar annuncio
@@ -317,6 +318,10 @@ ia:
       new:
         create: Crear annuncio
         title: Nove annuncio
+      preview:
+        disclaimer: Proque le usatores non pote optar pro non reciper los, le notificationes per e-mail debe limitar se a annuncios importante tal como le notificationes de violation de datos personal o de clausura de servitores.
+        explanation_html: 'Le e-mail essera inviate a <strong>%{display_count} usatores</strong>. Le sequente texto essera includite in le e-mail:'
+        title: Previder le notification de annuncio
       publish: Publicar
       published_msg: Annuncio publicate con successo!
       scheduled_for: Programmate pro %{time}
@@ -762,6 +767,9 @@ ia:
         preamble: Fornir information detaliate sur le functionamento, moderation e financiamento del servitor.
         rules_hint: Il ha un area dedicate al regulas que tu usatores debe acceptar.
         title: A proposito
+      allow_referrer_origin:
+        desc: Quando tu usatores clicca sur ligamines a sitos externe, lor navigator pote inviar le adresse de tu servitor Mastodon como le referente. Disactiva iste option si illo pote identificar univocamente tu usatores, p. ex., si isto es un servitor Mastodon personal.
+        title: Permiter que sitos externe vide tu servitor Mastodon como un fonte de traffico
       appearance:
         preamble: Personalisar le interfacie web de Mastodon.
         title: Apparentia
@@ -781,9 +789,9 @@ ia:
       discovery:
         follow_recommendations: Recommendationes de contos a sequer
         preamble: Presentar contento interessante es essential pro attraher e retener nove usatores qui pote non cognoscer alcun persona sur Mastodon. Controla como varie optiones de discoperta functiona sur tu servitor.
+        privacy: Confidentialitate
         profile_directory: Directorio de profilos
         public_timelines: Chronologias public
-        publish_discovered_servers: Publicar servitores discoperite
         publish_statistics: Publicar statisticas
         title: Discoperta
         trends: Tendentias
@@ -868,6 +876,8 @@ ia:
     system_checks:
       database_schema_check:
         message_html: Il ha migrationes de base de datos pendente. Per favor exeque los pro assecurar que le application se comporta como expectate
+      elasticsearch_analysis_index_mismatch:
+        message_html: Le parametros del analisator del indice de Elasticsearch es obsolete. Executa <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Le aggregation Elasticsearch es malsan (stato rubie), le functiones de recerca es indisponibile
       elasticsearch_health_yellow:
@@ -939,6 +949,7 @@ ia:
         chance_to_review_html: "<strong>Le conditiones de servicio generate non essera publicate automaticamente.</strong> Tu habera le opportunitate de revider le resultatos. Per favor completa le detalios necessari pro continuar."
         explanation_html: Le modello de conditiones de servicio es fornite solmente pro fines informative e non debe esser interpretate como consilio juridic sur alcun subjecto. Per favor consulta tu proprie consiliero juridic pro omne questiones juridic concrete concernente tu situation.
         title: Configuration del conditiones de servicio
+      going_live_on_html: In vigor a partir de %{date}
       history: Historia
       live: In uso
       no_history: Il non ha ancora modificationes registrate del conditiones de servicio.
@@ -1820,6 +1831,10 @@ ia:
       limit: Tu ha jam appunctate le maxime numero de messages
       ownership: Le message de alcuno altere non pote esser appunctate
       reblog: Un impulso non pote esser affixate
+    quote_policies:
+      followers: Sequitores e usatores mentionate
+      nobody: Solmente usatores mentionate
+      public: Omnes
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Directe
@@ -1873,6 +1888,11 @@ ia:
     does_not_match_previous_name: non corresponde al nomine precedente
   terms_of_service:
     title: Conditiones de servicio
+  terms_of_service_interstitial:
+    future_preamble_html: Nos face alcun cambios a nostre conditiones de servicio, que entrara in vigor in <strong>%{date}</strong>. Nos te invita a revider le conditiones actualisate.
+    past_preamble_html: Nos ha cambiate nostre conditiones de servicio desde tu ultime visita. Nos te invita a revider le conditiones actualisate.
+    review_link: Revider le conditiones de servicio
+    title: Le conditiones de servicio de %{domain} cambia
   themes:
     contrast: Mastodon (Alte contrasto)
     default: Mastodon (Obscur)
@@ -1904,6 +1924,10 @@ ia:
     recovery_instructions_html: Si tu perde le accesso a tu telephono, tu pote usar un del codices de recuperation hic infra pro reganiar le accesso a tu conto. <strong>Mantene le codices de recuperation secur.</strong> Per exemplo, tu pote imprimer los e guardar los con altere documentos importante.
     webauthn: Claves de securitate
   user_mailer:
+    announcement_published:
+      description: 'Le administratores de %{domain} face un annuncio:'
+      subject: Annuncio de servicio
+      title: Annuncio de servicio de %{domain}
     appeal_approved:
       action: Parametros de conto
       explanation: Le appello contra le sanction del %{strike_date} contra tu conto, que tu ha submittite le %{appeal_date}, ha essite approbate. Tu conto es de bon reputation de novo.
@@ -1936,6 +1960,8 @@ ia:
     terms_of_service_changed:
       agreement: Si tu continua a usar %{domain}, tu accepta iste conditiones. Si tu non es de accordo con le conditiones actualisate, tu pote sempre eliminar tu conto pro terminar tu accordo con %{domain}.
       changelog: 'In summario, ecce lo que iste actualisation significa pro te:'
+      description: 'Tu recipe iste e-mail proque nos face alcun cambios al nostre conditiones de servicio a %{domain}. Iste actualisationes entrara in vigor in %{date}. Nos te invita a revider integralmente le conditiones actualisate hic:'
+      description_html: Tu recipe iste e-mail proque nos face alcun cambios al nostre conditiones de servicio a %{domain}. Iste actualisationes entrara in vigor in <strong>%{date}</strong>. Nos te invita a revider <a href="%{path}" target="_blank">integralmente le conditiones actualisate hic</a>.
       sign_off: Le equipa de %{domain}
       subject: Actualisationes de nostre conditiones de servicio
       subtitle: Le conditiones de servicio de %{domain} ha cambiate

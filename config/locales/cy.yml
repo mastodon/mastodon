@@ -853,6 +853,9 @@ cy:
         preamble: Darparu gwybodaeth fanwl am sut mae'r gweinydd yn cael ei weithredu, ei gymedroli a'i ariannu.
         rules_hint: Mae maes penodol ar gyfer rheolau y disgwylir i'ch defnyddwyr gadw ato.
         title: Ynghylch
+      allow_referrer_origin:
+        desc: Pan fydd eich defnyddwyr yn clicio ar ddolenni i wefannau allanol, gall eu porwr anfon cyfeiriad eich gweinydd Mastodon fel y cyfeiriwr. Gallwch analluogi hyn os byddai hyn yn amlygu pwy yw eich defnyddwyr, e.e. os yw hwn yn weinydd Mastodon personol.
+        title: Caniatáu i wefannau allanol weld eich gweinydd Mastodon fel ffynhonnell traffig
       appearance:
         preamble: Cyfaddasu rhyngwyneb gwe Mastodon.
         title: Golwg
@@ -872,9 +875,9 @@ cy:
       discovery:
         follow_recommendations: Dilyn yr argymhellion
         preamble: Mae amlygu cynnwys diddorol yn allweddol ar gyfer derbyn defnyddwyr newydd nad ydynt efallai'n gyfarwydd ag unrhyw un Mastodon. Rheolwch sut mae nodweddion darganfod amrywiol yn gweithio ar eich gweinydd.
+        privacy: Preifatrwydd
         profile_directory: Cyfeiriadur proffiliau
         public_timelines: Ffrydiau cyhoeddus
-        publish_discovered_servers: Cyhoeddi gweinyddion a ddarganfuwyd
         publish_statistics: Cyhoeddi ystadegau
         title: Darganfod
         trends: Tueddiadau
@@ -2030,6 +2033,10 @@ cy:
       limit: Rydych chi eisoes wedi pinio uchafswm nifer y postiadau
       ownership: Nid oes modd pinio postiad rhywun arall
       reblog: Nid oes modd pinio hwb
+    quote_policies:
+      followers: Dilynwyr a defnyddwyr wedi'u crybwyll
+      nobody: Dim ond defnyddwyr wedi'u crybwyll
+      public: Pawb
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Uniongyrchol
@@ -2083,6 +2090,11 @@ cy:
     does_not_match_previous_name: ddim yn cyfateb i'r enw blaenorol
   terms_of_service:
     title: Telerau Gwasanaeth
+  terms_of_service_interstitial:
+    future_preamble_html: Rydym yn gwneud rhai newidiadau i'n telerau gwasanaeth, a fydd yn weithredol ar <strong>%{date}</strong>. Rydym yn eich annog i ddarllen y telerau wedi'u diweddaru.
+    past_preamble_html: Rydym wedi newid ein telerau gwasanaeth ers eich ymweliad diwethaf. Rydym yn eich annog i ddarllen y telerau wedi'u diweddaru.
+    review_link: Darllen y telerau gwasanaeth
+    title: Mae telerau gwasanaeth %{domain} yn newid
   themes:
     contrast: Mastodon (Cyferbyniad uchel)
     default: Mastodon (Tywyll)

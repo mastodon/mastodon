@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 interface Props
   extends React.PropsWithChildren<React.HTMLAttributes<HTMLAnchorElement>> {
   className?: string;
-  href: string;
+  href?: string;
   to: string;
   onInterceptClick?: () => boolean;
 }

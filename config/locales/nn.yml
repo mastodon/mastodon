@@ -797,6 +797,9 @@ nn:
         preamble: Gje grundig informasjon om korleis tenaren blir drifta, moderert og finansiert.
         rules_hint: Det er eit eige område for reglar som brukarar må retta seg etter.
         title: Om
+      allow_referrer_origin:
+        desc: Når medlemene dine klikkar på lenker til eksterne sider, kan nettlesaren deira òg senda adressa til Mastodon-tenaren som referanse. Skru av dette viss det ville identifisera medlemene dine, til dømes viss dette er ein personleg Mastodon-tenar.
+        title: Gje eksterne sider lov til å sjå at Mastodon-tenaren din er kjelde til trafikken
       appearance:
         preamble: Tilpasse web-grensesnittet.
         title: Utsjånad
@@ -816,9 +819,9 @@ nn:
       discovery:
         follow_recommendations: Fylgjeforslag
         preamble: Å framheva interessant innhald er vitalt i mottakinga av nye brukarar som ikkje nødvendigvis kjenner nokon på Mastodon. Kontroller korleis oppdagingsfunksjonane på tenaren din fungerar.
+        privacy: Personvern
         profile_directory: Profilkatalog
         public_timelines: Offentlege tidsliner
-        publish_discovered_servers: Publiser oppdaga tenarar
         publish_statistics: Publiser statistikk
         title: Oppdaging
         trends: Trender
@@ -1858,6 +1861,10 @@ nn:
       limit: Du har allereie festa så mange tut som det går an å festa
       ownership: Du kan ikkje festa andre sine tut
       reblog: Ei framheving kan ikkje festast
+    quote_policies:
+      followers: Tilhengjarar og nemnde folk
+      nobody: Berre nemnde folk
+      public: Alle
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Direkte
@@ -1911,6 +1918,11 @@ nn:
     does_not_match_previous_name: stemmar ikkje med det førre namnet
   terms_of_service:
     title: Bruksvilkår
+  terms_of_service_interstitial:
+    future_preamble_html: Me gjer nokre endringar i brukarvilkåra våre, og dei blir tekne i bruk <strong>%{date}</strong>. Det er fint viss du ser på dei nye vilkåra.
+    past_preamble_html: Me har endra brukarvilkåra våre sidan du var her sist. Det er fint viss du ser på dei oppdaterte vilkåra.
+    review_link: Les gjennom brukarvilkåra
+    title: Brukarvilkåra på %{domain} er endra
   themes:
     contrast: Mastodon (Høg kontrast)
     default: Mastodon (Mørkt)

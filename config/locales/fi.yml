@@ -486,13 +486,17 @@ fi:
           created_at: Luotu
           delete: Poista
           ip: IP-osoite
+          request_body: Pyynnön sisältö
           title: Aloita takaisinkutsujen vianetsintä
       providers:
+        active: Käytössä
         base_url: Perus-URL
         callback: Takaisinkutsu
         delete: Poista
+        edit: Muokkaa palveluntarjoajaa
         finish_registration: Viimeistele rekisteröinti
         name: Nimi
+        providers: Palveluntarjoajat
         public_key_fingerprint: Julkisen avaimen sormenjälki
         registration_requested: Rekisteröintiä pyydetty
         registrations:
@@ -780,17 +784,26 @@ fi:
       title: Roolit
     rules:
       add_new: Lisää sääntö
+      add_translation: Lisää käännös
       delete: Poista
       description_html: Vaikka useimmat väittävät, että ovat lukeneet ja hyväksyneet käyttöehdot, niin yleensä ihmiset eivät lue niitä läpi ennen kuin ilmenee ongelma. <strong>Helpota palvelimen sääntöjen näkemistä yhdellä silmäyksellä tarjoamalla ne tiiviissä luettelossa.</strong> Yritä pitää säännöt lyhyinä ja yksinkertaisina, mutta yritä olla jakamatta niitä useisiin erillisiin kohtiin.
       edit: Muokkaa sääntöä
       empty: Palvelimen sääntöjä ei ole vielä määritelty.
+      move_down: Siirrä alaspäin
+      move_up: Siirrä ylöspäin
       title: Palvelimen säännöt
+      translation: Käännös
+      translations: Käännökset
+      translations_explanation: Voit halutessasi lisätä säännöille käännöksiä. Jos käännettyä versiota ei ole saatavilla, näytetään oletusarvo. Varmista aina, että tarjoamasi käännös on linjassa oletusarvon kanssa.
     settings:
       about:
         manage_rules: Hallitse palvelimen sääntöjä
         preamble: Kerro syventävästi siitä, kuinka palvelinta käytetään, moderoidaan ja rahoitetaan.
         rules_hint: On olemassa erityinen alue sääntöjä, joita käyttäjien odotetaan noudattavan.
         title: Tietoja
+      allow_referrer_origin:
+        desc: Kun käyttäjät napsauttavat ulkoisille sivustoille johtavia linkkejä, heidän selaimensa saattaa lähettää Mastodon-palvelimesi osoitteen viittauksena. Poista tämä käytöstä, jos se yksilöi käyttäjäsi, esimerkiksi jos tämä on henkilökohtainen Mastodon-palvelin.
+        title: Salli ulkoisten sivustojen nähdä Mastodon-palvelin liikenteen lähteenä
       appearance:
         preamble: Mukauta Mastodonin selainkäyttöliittymää.
         title: Ulkoasu
@@ -810,9 +823,9 @@ fi:
       discovery:
         follow_recommendations: Seurantasuositukset
         preamble: Mielenkiintoisen sisällön esille tuominen auttaa saamaan uusia käyttäjiä, jotka eivät ehkä tunne ketään Mastodonista. Määrittele, kuinka erilaiset löytämisominaisuudet toimivat palvelimellasi.
+        privacy: Yksityisyys
         profile_directory: Profiilihakemisto
         public_timelines: Julkiset aikajanat
-        publish_discovered_servers: Julkaise löydetyt palvelimet
         publish_statistics: Julkaise tilastot
         title: Löytäminen
         trends: Trendit
@@ -973,7 +986,7 @@ fi:
       going_live_on_html: Voimassa %{date} alkaen
       history: Historia
       live: Julki
-      no_history: Käyttöehtoihin ei ole vielä tehty muutoksia.
+      no_history: Käyttöehtoja ei ole vielä muutettu.
       no_terms_of_service_html: Sinulla ei ole tällä hetkellä määritettyjä käyttöehtoja. Käyttöehtojen tarkoituksena on antaa selvyyttä ja suojata sinua mahdollisilta vastuilta riitatilanteissa käyttäjiesi kanssa.
       notified_on_html: Ilmoitettu käyttäjille %{date}
       notify_users: Ilmoita käyttäjille
@@ -1852,6 +1865,10 @@ fi:
       limit: Olet jo kiinnittänyt enimmäismäärän julkaisuja
       ownership: Muiden julkaisuja ei voi kiinnittää
       reblog: Tehostusta ei voi kiinnittää
+    quote_policies:
+      followers: Seuraajat ja mainitut käyttäjät
+      nobody: Vain mainitut käyttäjät
+      public: Kaikki
     title: "%{name}: ”%{quote}”"
     visibilities:
       direct: Suoraan
@@ -1905,6 +1922,11 @@ fi:
     does_not_match_previous_name: ei vastaa edellistä nimeä
   terms_of_service:
     title: Käyttöehdot
+  terms_of_service_interstitial:
+    future_preamble_html: Teemme käyttöehtoihimme muutoksia, jotka tulevat voimaan <strong>%{date}</strong>. Kehotamme sinua käymään päivitetyt ehdot läpi.
+    past_preamble_html: Olemme muuttaneet käyttöehtojamme viimeisen käyntisi jälkeen. Kehotamme sinua käymään päivitetyt ehdot läpi.
+    review_link: Käy käyttöehdot läpi
+    title: Palvelimen %{domain} käyttöehdot muuttuvat
   themes:
     contrast: Mastodon (suuri kontrasti)
     default: Mastodon (tumma)

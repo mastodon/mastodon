@@ -393,7 +393,7 @@ code {
       max-width: 100%;
       height: auto;
       border-radius: var(--avatar-border-radius);
-      background: url('images/void.png');
+      background: url('@/images/void.png');
 
       &[src$='missing.png'] {
         visibility: hidden;
@@ -1156,7 +1156,7 @@ code {
 
       &__type {
         color: $darker-text-color;
-        word-break: break-word;
+        overflow-wrap: anywhere;
       }
     }
 
@@ -1440,34 +1440,12 @@ code {
         display: block;
         color: $primary-text-color;
       }
-    }
-  }
-}
 
-.avatar-pile {
-  display: flex;
-  align-items: center;
-
-  img {
-    display: block;
-    border-radius: 8px;
-    width: 32px;
-    height: 32px;
-    border: 2px solid var(--background-color);
-    background: var(--surface-background-color);
-    margin-inline-end: -16px;
-    transform: rotate(0);
-
-    &:first-child {
-      transform: rotate(-4deg);
-    }
-
-    &:nth-child(2) {
-      transform: rotate(-2deg);
-    }
-
-    &:last-child {
-      margin-inline-end: 0;
+      .icon {
+        vertical-align: -5px;
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 }

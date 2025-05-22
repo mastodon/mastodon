@@ -56,6 +56,7 @@ gl:
         scopes: A que APIs terá acceso a aplicación. Se escolles un ámbito de alto nivel, non precisas seleccionar elementos individuais.
         setting_aggregate_reblogs: Non mostrar novas promocións de publicacións que foron promovidas recentemente (só afecta a promocións recén recibidas)
         setting_always_send_emails: Como norma xeral non che enviamos correos electrónicos se usas activamente Mastodon
+        setting_default_quote_policy: As usuarias mencionadas sempre teñen permiso para citar. Este axuste só ten efecto para publicacións creadas coa próxima versión de Mastodon, pero xa podes ir preparando o axuste.
         setting_default_sensitive: Medios sensibles marcados como ocultos por defecto e móstranse cun click
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Ocultar sempre os medios
@@ -97,7 +98,7 @@ gl:
         site_contact_username: De que xeito se pode contactar contigo en Mastodon.
         site_extended_description: Calquera información adicional que poida ser útil para visitantes e usuarias. Pode utilizarse sintaxe Markdown.
         site_short_description: Breve descrición que axuda a identificar de xeito único o teu servidor. Quen o xestiona, a quen vai dirixido?
-        site_terms: Escribe a túa propia política de privacidade ou usa o valor por defecto. Podes usar sintaxe Markdow.
+        site_terms: Escribe a túa propia directiva de privacidade ou usa o valor por defecto. Podes usar sintaxe Markdown.
         site_title: De que xeito se pode referir o teu servidor ademáis do seu nome de dominio.
         status_page_url: URL dunha páxina onde se pode ver o estado deste servidor cando non está a funcionar
         theme: Decorado que verán visitantes e novas usuarias.
@@ -148,7 +149,9 @@ gl:
         min_age: Non debería ser inferior á idade mínima requerida polas leis da túa xurisdición.
       user:
         chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
-        date_of_birth: Temos que ter certeza de que tes %{age} como mínimo para usar Mastodon. Non gardamos este dato.
+        date_of_birth:
+          one: Temos que confirmar que tes %{count} anos polo menos para usar Mastodon. Non gardamos este dato.
+          other: Temos que confirmar que tes %{count} anos polo menos para usar Mastodon. Non gardamos este dato.
         role: Os roles establecen os permisos que ten a usuaria.
       user_role:
         color: Cor que se usará para o rol a través da IU, como RGB en formato hex
@@ -229,6 +232,7 @@ gl:
         setting_boost_modal: Solicitar confirmación antes de promover
         setting_default_language: Idioma de publicación
         setting_default_privacy: Privacidade da publicación
+        setting_default_quote_policy: Quen pode citar
         setting_default_sensitive: Marcar sempre multimedia como sensible
         setting_delete_modal: Solicitar confirmación antes de eliminar unha publicación
         setting_disable_hover_cards: Desactivar vista previa do perfil ao poñerse enriba
@@ -286,7 +290,7 @@ gl:
         site_contact_username: Nome do contacto
         site_extended_description: Descrición ampla
         site_short_description: Descrición do servidor
-        site_terms: Política de Privacidade
+        site_terms: Directiva de Privacidade
         site_title: Nome do servidor
         status_page_url: URL da páxina do estado
         theme: Decorado predeterminado

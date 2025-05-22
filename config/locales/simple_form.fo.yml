@@ -56,6 +56,7 @@ fo:
         scopes: Hvørji API nýtsluskipanin fær atgongd til. Velur tú eitt vav á hægsta stigi, so er ikki neyðugt at velja tey einstøku.
         setting_aggregate_reblogs: Vís ikki nýggjar stimbranir fyri postar, sum nýliga eru stimbraðir (ávirkar einans stimbranir, ið eru móttiknar fyri kortum)
         setting_always_send_emails: Vanliga vera teldupostfráboðanir ikki sendar, tá tú virkin brúkar Mastodon
+        setting_default_quote_policy: Nevndir brúkarar hava altíð loyvi at sitera. Hendan stillingin verður bara virkin fyri postar, sum verða stovnaðir í næstu Mastodon útgávuni, men sum fyrireiking til tað, kanst tú velja tína stilling longu nú
         setting_default_sensitive: Viðkvæmar miðlafílur eru fjaldar og kunnu avdúkast við einum klikki
         setting_display_media_default: Fjal miðlafílur, sum eru merktar sum viðkvæmar
         setting_display_media_hide_all: Fjal altíð miðlafílur
@@ -148,7 +149,9 @@ fo:
         min_age: Eigur ikki at vera undir lægsta aldri, sum lógirnar í tínum rættarøki krevja.
       user:
         chosen_languages: Tá hetta er valt, verða einans postar í valdum málum vístir á almennum tíðarlinjum
-        date_of_birth: Vit mugu tryggja okkum, at tú er í minsta lagi %{age} ár fyri at brúka Mastodon. Vit goyma ikki hesar upplýsingar.
+        date_of_birth:
+          one: Vit mugu tryggja okkum, at tú er í minsta lagi %{count} fyri at brúka Mastodon. Vit goyma ikki hesar upplýsingar.
+          other: Vit mugu tryggja okkum, at tú er í minsta lagi %{count} fyri at brúka Mastodon. Vit goyma ikki hesar upplýsingar.
         role: Leikluturin stýrir hvørji rættindi, brúkarin hevur.
       user_role:
         color: Litur, sum leikluturin hevur í øllum brúkaramarkamótinum, sum RGB og upplýst sum sekstandatal
@@ -229,6 +232,7 @@ fo:
         setting_boost_modal: Vís váttanarmynd, áðrenn tú stimbrar postar
         setting_default_language: Mál, sum verður brúkt til postar
         setting_default_privacy: Hvussu privatir eru postar?
+        setting_default_quote_policy: Hvør kann sitera
         setting_default_sensitive: Merk altíð miðlafílur sum viðkvæmar
         setting_delete_modal: Vís váttanarmynd, áðrenn postar verða strikaðir
         setting_disable_hover_cards: Ger undanvísing, tá músin verður flutt yvir vangan, óvirkna

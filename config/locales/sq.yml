@@ -783,6 +783,8 @@ sq:
       description_html: Edhe pse shumica pretendon se kanë lexuar dhe pajtohen me kushtet e shërbimit, zakonisht njerëzit nuk e lexojnë nga fillimi në fund, deri kur del një problem. <strong>Bëjeni më të lehtë parjen e rregullave të shërbyesit tuaj me një vështrim, duke i dhënë në një listë të thjeshtë me pika.</strong> Përpiquni që rregullat të jenë secili të shkurtër dhe të thjeshtë, por as mos u përpiqni t’i ndani në shumë zëra të veçantë.
       edit: Përpunoni rregull
       empty: S’janë përcaktuar ende rregulla shërbyesi.
+      move_down: Lëvize poshtë
+      move_up: Lëvize sipër
       title: Rregulla shërbyesi
     settings:
       about:
@@ -790,6 +792,9 @@ sq:
         preamble: Jepni informacion të hollësishëm rreth se si mbahet në punë, si moderohet dhe si financohet shërbyesi.
         rules_hint: Ka një zonë enkas për rregulla me të cilat pritet që përdoruesit tuaj të pajtohen.
         title: Mbi
+      allow_referrer_origin:
+        desc: Kur përdoruesit tuaj klikojnë lidhje në sajte të jashtëm, shfletuesi i tyre mund të dërgojë si referues adresën e shërbyesit tuaj Mastodon. Çaktivizojeni këtë, nëse kjo do të lejonte identifikim unik të përdoruesve tuaj, për shembull, nëse është një shërbyes personal Mastodon.
+        title: Lejoni sajte të jashtëm të shohin shërbyesin tuaj Mastodon si burim traffiku
       appearance:
         preamble: Përshtatni ndërfaqen web të Mastodon-it.
         title: Dukje
@@ -809,9 +814,9 @@ sq:
       discovery:
         follow_recommendations: Rekomandime ndjekjeje
         preamble: Shpërfaqja e lëndës interesante është me rëndësi kyçe për mirëseardhjen e përdoruesve të rinj që mund të mos njohin njeri në Mastodon. Kontrolloni se si funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi.
+        privacy: Privatësi
         profile_directory: Drejtori profilesh
         public_timelines: Rrjedha kohore publike
-        publish_discovered_servers: Publiko shërbyes të njohur
         publish_statistics: Publiko statistika
         title: Zbulim
         trends: Në modë
@@ -1848,6 +1853,10 @@ sq:
       limit: Keni fiksuar tashmë numrin maksimum të mesazheve
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       reblog: S’mund të fiksohet një përforcim
+    quote_policies:
+      followers: Ndjekës dhe përdorues të përmendur
+      nobody: Vetëm përdorues të përmendur
+      public: Këdo
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: I drejtpërdrejtë
@@ -1901,6 +1910,11 @@ sq:
     does_not_match_previous_name: s’përputhet me emrin e mëparshëm
   terms_of_service:
     title: Kushte Shërbimi
+  terms_of_service_interstitial:
+    future_preamble_html: Po bëjmë disa ndryshime te termat e shërbimit tonë, që do të hyjnë në fuqi më <strong>%{date}</strong>. Ju nxisim të shqyrtoni termat e përditësuar.
+    past_preamble_html: Kemi ndryshuar termat tanë të shërbimit, që prej vizitës tuaj të fundit. Ju nxisim të shqyrtoni termat e përditësuar.
+    review_link: Shqyrtoni termat e shërbimit
+    title: Termat e shërbimit të %{domain} po ndryshojnë
   themes:
     contrast: Mastodon (Me shumë kontrast)
     default: Mastodon (I errët)

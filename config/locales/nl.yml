@@ -786,17 +786,26 @@ nl:
       title: Rollen
     rules:
       add_new: Regel toevoegen
+      add_translation: Vertaling toevoegen
       delete: Verwijderen
       description_html: Hoewel de meeste mensen zeggen dat ze de gebruiksvoorwaarden hebben gelezen en er mee akkoord gaan, lezen mensen deze meestal niet totdat er een probleem optreedt. <strong>Maak het eenvoudiger om de regels van deze server in één oogopslag te zien, door ze puntsgewijs in een lijst te zetten.</strong> Probeer de verschillende regels kort en simpel te houden, maar probeer ze ook niet in verschillende items onder te verdelen.
       edit: Regel bewerken
       empty: Voor deze server zijn nog geen regels opgesteld.
+      move_down: Omlaag verplaatsen
+      move_up: Omhoog verplaatsen
       title: Serverregels
+      translation: Vertaling
+      translations: Vertalingen
+      translations_explanation: Je kunt eventueel vertalingen toevoegen voor de regels. De standaardwaarde wordt getoond als er geen vertaalde versie beschikbaar is. Zorg er altijd voor dat aanvullende vertalingen bijgewerkt blijven.
     settings:
       about:
         manage_rules: Serverregels beheren
         preamble: Geef uitgebreide informatie over hoe de server wordt beheerd, gemodereerd en gefinancierd.
         rules_hint: Er is een speciaal gebied voor regels waaraan uw gebruikers zich dienen te houden.
         title: Over
+      allow_referrer_origin:
+        desc: Wanneer je gebruikers op links naar externe sites klikken, kan hun browser het adres van jouw Mastodon-server als de referrer verzenden. Zet dit uit als dit jouw gebruikers uniek zou identificeren, bijvoorbeeld als dit een persoonlijke Mastodon-server is.
+        title: Externe sites toestaan om jouw Mastodon-server te zien als de bron
       appearance:
         preamble: Mastodons webomgeving aanpassen.
         title: Weergave
@@ -816,9 +825,9 @@ nl:
       discovery:
         follow_recommendations: Aanbevolen accounts
         preamble: Het tonen van interessante inhoud is van essentieel belang voor het aan boord halen van nieuwe gebruikers, die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
+        privacy: Privacy
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
-        publish_discovered_servers: Ontdekte servers publiceren
         publish_statistics: Statistieken publiceren
         title: Ontdekken
         trends: Trends
@@ -1858,6 +1867,10 @@ nl:
       limit: Je hebt het maximaal aantal bericht al vastgemaakt
       ownership: Een bericht van iemand anders kan niet worden vastgemaakt
       reblog: Een boost kan niet worden vastgezet
+    quote_policies:
+      followers: Volgers en vermelde gebruikers
+      nobody: Alleen vermelde gebruikers
+      public: Iedereen
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privébericht
@@ -1911,6 +1924,11 @@ nl:
     does_not_match_previous_name: komt niet overeen met de vorige naam
   terms_of_service:
     title: Gebruiksvoorwaarden
+  terms_of_service_interstitial:
+    future_preamble_html: We brengen enkele wijzigingen aan in onze gebruiksvoorwaarden, die van kracht worden op <strong>%{date}</strong>. We raden je aan om de bijgewerkte voorwaarden door te nemen.
+    past_preamble_html: We hebben onze gebruiksvoorwaarden gewijzigd sinds je laatste bezoek. We raden je aan om de bijgewerkte voorwaarden door te nemen.
+    review_link: De gebruiksvoorwaarden bekijken
+    title: De gebruiksvoorwaarden van %{domain} worden gewijzigd
   themes:
     contrast: Mastodon (hoog contrast)
     default: Mastodon (donker)

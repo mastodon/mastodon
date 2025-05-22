@@ -1491,8 +1491,12 @@ body > [data-popper-placement] {
     }
   }
 
+  &--is-quote {
+    border: none;
+  }
+
   &--in-thread {
-    $thread-margin: 46px + 10px;
+    --thread-margin: calc(46px + 8px);
 
     border-bottom: 0;
 
@@ -1508,16 +1512,16 @@ body > [data-popper-placement] {
     .hashtag-bar,
     .content-warning,
     .filter-warning {
-      margin-inline-start: $thread-margin;
-      width: calc(100% - $thread-margin);
+      margin-inline-start: var(--thread-margin);
+      width: calc(100% - var(--thread-margin));
     }
 
     .more-from-author {
-      width: calc(100% - $thread-margin + 2px);
+      width: calc(100% - var(--thread-margin) + 2px);
     }
 
     .status__content__read-more-button {
-      margin-inline-start: $thread-margin;
+      margin-inline-start: var(--thread-margin);
     }
   }
 
@@ -1873,6 +1877,81 @@ body > [data-popper-placement] {
   }
 }
 
+.status__quote {
+  position: relative;
+  margin-block-start: 16px;
+  margin-inline-start: 36px;
+  border-radius: 8px;
+  color: var(--nested-card-text);
+  background: var(--nested-card-background);
+  border: var(--nested-card-border);
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    margin-inline-start: 56px;
+  }
+}
+
+.status__quote--error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  font-size: 15px;
+}
+
+.status__quote-author-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  width: auto;
+  margin-block-start: 10px;
+  padding: 5px 12px;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0;
+  text-decoration: none;
+  color: $highlight-text-color;
+  background: var(--nested-card-background);
+  border: var(--nested-card-border);
+  border-radius: 4px;
+
+  &:active,
+  &:focus,
+  &:hover {
+    border-color: lighten($highlight-text-color, 4%);
+    color: lighten($highlight-text-color, 4%);
+  }
+
+  &:focus-visible {
+    outline: $ui-button-icon-focus-outline;
+  }
+}
+
+.status__quote-icon {
+  position: absolute;
+  inset-block-start: 18px;
+  inset-inline-start: -40px;
+  display: block;
+  width: 26px;
+  height: 26px;
+  padding: 5px;
+  color: #6a49ba;
+  z-index: 10;
+
+  .status__quote--error & {
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+  }
+
+  @media screen and (min-width: $mobile-breakpoint) {
+    inset-inline-start: -50px;
+  }
+}
+
 .detailed-status__link {
   display: inline-flex;
   align-items: center;
@@ -2091,6 +2170,7 @@ body > [data-popper-placement] {
   display: block;
   position: relative;
   border-radius: var(--avatar-border-radius);
+  background: var(--surface-background-color);
 
   img {
     width: 100%;
@@ -2178,11 +2258,19 @@ a .account__avatar {
   flex-wrap: nowrap;
 
   & > :not(:first-child) {
-    margin-inline-start: -8px;
+    margin-inline-start: -12px;
+  }
 
-    .account__avatar {
-      box-shadow: 0 0 0 2px var(--background-color);
-    }
+  & > :first-child {
+    transform: rotate(-4deg);
+  }
+
+  & > :nth-child(2) {
+    transform: rotate(-2deg);
+  }
+
+  .account__avatar {
+    box-shadow: 0 0 0 2px var(--background-color);
   }
 }
 
@@ -2295,11 +2383,6 @@ a.account__display-name {
   strong {
     color: $primary-text-color;
   }
-}
-
-.status__avatar {
-  width: 46px;
-  height: 46px;
 }
 
 .muted {
@@ -8142,16 +8225,13 @@ noscript {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-block-end: 16px;
+    margin-block: 16px;
     color: $darker-text-color;
 
     a:any-link {
-      color: inherit;
-      text-decoration: underline;
-    }
-
-    a:hover {
+      font-weight: 500;
       text-decoration: none;
+      color: $primary-text-color;
     }
   }
 }
@@ -8378,7 +8458,7 @@ noscript {
     }
 
     a {
-      word-break: break-word;
+      overflow-wrap: anywhere;
     }
   }
 }
@@ -10508,6 +10588,7 @@ noscript {
       line-height: 22px;
       color: $darker-text-color;
       -webkit-line-clamp: 4;
+      line-clamp: 4;
       -webkit-box-orient: vertical;
       max-height: none;
       overflow: hidden;
@@ -10811,9 +10892,9 @@ noscript {
 .content-warning {
   display: block;
   box-sizing: border-box;
-  background: rgba($ui-highlight-color, 0.05);
-  color: $secondary-text-color;
-  border: 1px solid rgba($ui-highlight-color, 0.15);
+  background: var(--nested-card-background);
+  color: var(--nested-card-text);
+  border: var(--nested-card-border);
   border-radius: 8px;
   padding: 8px (5px + 8px);
   position: relative;
