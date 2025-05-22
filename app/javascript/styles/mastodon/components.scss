@@ -10507,12 +10507,6 @@ noscript {
     overflow: hidden;
     container-type: inline-size;
 
-    @container (width < 350px) {
-      &__header time {
-        display: none;
-      }
-    }
-
     &__header {
       display: flex;
       flex-direction: column;
@@ -10543,6 +10537,13 @@ noscript {
 
         time {
           color: $dark-text-color;
+        }
+
+        @container (width < 350px) {
+          time,
+          &-separator {
+            display: none;
+          }
         }
       }
     }
