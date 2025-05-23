@@ -786,11 +786,17 @@ es-MX:
       title: Roles
     rules:
       add_new: Añadir norma
+      add_translation: Añadir traducción
       delete: Eliminar
       description_html: Aunque la mayoría afirma haber leído y estar de acuerdo con los términos de servicio, la gente normalmente no los lee hasta después de que surja algún problema. <strong>Haz que sea más fácil ver las normas de tu servidor de un vistazo estipulándolas en una lista de puntos.</strong> Intenta que cada norma sea corta y sencilla, pero sin estar divididas en muchos puntos.
       edit: Editar norma
       empty: Aún no se han definido las normas del servidor.
+      move_down: Mover hacia abajo
+      move_up: Mover hacia arriba
       title: Normas del servidor
+      translation: Traducción
+      translations: Traducciones
+      translations_explanation: Opcionalmente, puedes añadir traducciones para las reglas. Se mostrará el valor por defecto si no hay ninguna versión traducida disponible. Por favor, asegúrate siempre de que cualquier traducción proporcionada esté sincronizada con el valor por defecto.
     settings:
       about:
         manage_rules: Administrar reglas del servidor
@@ -799,6 +805,7 @@ es-MX:
         title: Acerca de
       allow_referrer_origin:
         desc: Cuando tus usuarios cliquen en enlaces a sitios externos, su navegador podría enviar la dirección de su servidor de Mastodon como referencia. Deshabilita esto si identifica a tus usuarios unívocamente, por ejemplo, si este es un servidor de Mastodon personal.
+        title: Permitir que sitios externos vean su servidor Mastodon como fuente de tráfico
       appearance:
         preamble: Personalizar la interfaz web de Mastodon.
         title: Apariencia
