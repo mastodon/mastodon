@@ -69,10 +69,10 @@ class FeedManager
     status_id = status.id
     user_id = account.id
 
-    Rails.logger.info "feed_manager test log: push_to_home canary"
-    Rails.logger.info "push_to_home canary account.id: #{user_id}, status.id: #{status_id}"
+    # Rails.logger.info "feed_manager test log: push_to_home canary"
+    # Rails.logger.info "push_to_home canary account.id: #{user_id}, status.id: #{status_id}"
 
-    Rails.logger.info "push_to_home canary Current status text is #{status.text}"
+    # Rails.logger.info "push_to_home canary Current status text is #{status.text}"
 
     # Define the URL and request data
     if score.nil?
