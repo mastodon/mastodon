@@ -519,7 +519,7 @@ class Status extends ImmutablePureComponent {
           </Bundle>
         );
       }
-    } else if (status.get('card')) {
+    } else if (status.get('card') && !status.get('quote')) {
       media = (
         <Card
           onOpenMedia={this.handleOpenMedia}
@@ -543,7 +543,19 @@ class Status extends ImmutablePureComponent {
         <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), unread, focusable: !this.props.muted })} tabIndex={this.props.muted || unfocusable ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText)} ref={this.handleRef} data-nosnippet={status.getIn(['account', 'noindex'], true) || undefined}>
           {!skipPrepend && prepend}
 
-          <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), 'status--in-thread': !!rootId, 'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted, 'status--is-quote': isQuotedPost })} data-id={status.get('id')}>
+          <div
+            className={
+              classNames('status', `status-${status.get('visibility')}`,
+              {
+                'status-reply': !!status.get('in_reply_to_id'),
+                'status--in-thread': !!rootId,
+                'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted,
+                'status--is-quote': isQuotedPost,
+                'status--has-quote': !!status.get('quote'),
+              })
+            }
+            data-id={status.get('id')}
+          >
             {(connectReply || connectUp || connectToRoot) && <div className={classNames('status__line', { 'status__line--full': connectReply, 'status__line--first': !status.get('in_reply_to_id') && !connectToRoot })} />}
 
             <div onClick={this.handleHeaderClick} onAuxClick={this.handleHeaderClick} className='status__info'>
