@@ -68,15 +68,15 @@ type QuoteMap = ImmutableMap<'state' | 'quoted_status', string | null>;
 
 export const QuotedStatus: React.FC<{
   quote: QuoteMap;
+  contextType?: string;
   variant?: 'full' | 'link';
   nestingLevel?: number;
-}> = ({ quote, nestingLevel = 1, variant = 'full' }) => {
+}> = ({ quote, contextType, nestingLevel = 1, variant = 'full' }) => {
   const quotedStatusId = quote.get('quoted_status');
   const state = quote.get('state');
   const status = useAppSelector((state) =>
     quotedStatusId ? state.statuses.get(quotedStatusId) : undefined,
   );
-
   let quoteError: React.ReactNode = null;
 
   if (state === 'deleted') {
@@ -131,10 +131,16 @@ export const QuotedStatus: React.FC<{
   return (
     <QuoteWrapper>
       {/* @ts-expect-error Status is not yet typed */}
-      <StatusContainer isQuotedPost id={quotedStatusId} avatarSize={40}>
+      <StatusContainer
+        isQuotedPost
+        id={quotedStatusId}
+        contextType={contextType}
+        avatarSize={40}
+      >
         {canRenderChildQuote && (
           <QuotedStatus
             quote={childQuote}
+            contextType={contextType}
             variant={
               nestingLevel === MAX_QUOTE_POSTS_NESTING_LEVEL ? 'link' : 'full'
             }
@@ -148,6 +154,7 @@ export const QuotedStatus: React.FC<{
 
 interface StatusQuoteManagerProps {
   id: string;
+  contextType?: string;
   [key: string]: unknown;
 }
 
@@ -168,7 +175,7 @@ export const StatusQuoteManager = (props: StatusQuoteManagerProps) => {
   if (quote) {
     return (
       <StatusContainer {...props}>
-        <QuotedStatus quote={quote} />
+        <QuotedStatus quote={quote} contextType={props.contextType} />
       </StatusContainer>
     );
   }
