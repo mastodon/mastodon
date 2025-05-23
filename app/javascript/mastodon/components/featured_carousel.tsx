@@ -1,3 +1,4 @@
+import type { ComponentPropsWithRef } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
@@ -5,6 +6,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
+import type { AnimatedProps } from '@react-spring/web';
 import { animated, useSpring } from '@react-spring/web';
 import { useDrag } from '@use-gesture/react';
 
@@ -48,13 +50,6 @@ export const FeaturedCarousel: React.FC<{
   // Handle slide change
   const [slideIndex, setSlideIndex] = useState(0);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [currentSlideHeight, setCurrentSlideHeight] = useState(
-    wrapperRef.current?.scrollHeight ?? 0,
-  );
-  const wrapperStyles = useSpring({
-    x: `-${slideIndex * 100}%`,
-    height: currentSlideHeight,
-  });
   const handleSlideChange = useCallback(
     (direction: number) => {
       const max = pinnedStatuses.size - 1;
@@ -72,8 +67,35 @@ export const FeaturedCarousel: React.FC<{
     },
     [pinnedStatuses.size, slideIndex],
   );
-  // Update slide height when the component mounts
+
+  // Handle slide heights
+  const [currentSlideHeight, setCurrentSlideHeight] = useState(
+    wrapperRef.current?.scrollHeight ?? 0,
+  );
+  const handleHeightChange: ResizeObserverCallback = useCallback(
+    (entries) => {
+      for (const entry of entries) {
+        const slideEle = entry.target;
+        if (!(slideEle instanceof HTMLDivElement) || !slideEle.dataset.index) {
+          continue;
+        }
+        const slideHeight = slideEle.scrollHeight;
+        const index = Number.parseInt(slideEle.dataset.index);
+        // Update the height only if the slide is the current one
+        if (slideIndex === index) {
+          setCurrentSlideHeight(slideHeight);
+        }
+      }
+    },
+    [slideIndex],
+  );
+  const observer = useRef(new ResizeObserver(handleHeightChange));
+  const wrapperStyles = useSpring({
+    x: `-${slideIndex * 100}%`,
+    height: currentSlideHeight,
+  });
   useEffect(() => {
+    // Update slide height when the component mounts
     if (currentSlideHeight === 0) {
       handleSlideChange(0);
     }
@@ -144,28 +166,57 @@ export const FeaturedCarousel: React.FC<{
         aria-live='polite'
       >
         {pinnedStatuses.map((statusId, index) => (
-          <animated.div
+          <FeaturedCarouselItem
             key={`f-${statusId}`}
-            className='featured-carousel__slide'
             data-index={index}
-            // @ts-expect-error Inert is not supported in this version of React
-            inert={index !== slideIndex ? 'true' : undefined}
             aria-label={intl.formatMessage(messages.slide, {
               index: index + 1,
               total: pinnedStatuses.size,
             })}
-            aria-roledescription='slide'
-            role='group'
-          >
-            <StatusContainer
-              // @ts-expect-error inferred props are wrong
-              id={statusId}
-              contextType='account'
-              withCounters
-            />
-          </animated.div>
+            statusId={statusId}
+            observer={observer.current}
+            active={index === slideIndex}
+          />
         ))}
       </animated.div>
     </div>
+  );
+};
+
+interface FeaturedCarouselItemProps {
+  statusId: string;
+  active: boolean;
+  observer: ResizeObserver;
+}
+
+const FeaturedCarouselItem: React.FC<
+  FeaturedCarouselItemProps & AnimatedProps<ComponentPropsWithRef<'div'>>
+> = ({ statusId, active, observer, ...props }) => {
+  const handleRef = useCallback(
+    (instance: HTMLDivElement | null) => {
+      if (instance) {
+        observer.observe(instance);
+      }
+    },
+    [observer],
+  );
+
+  return (
+    <animated.div
+      className='featured-carousel__slide'
+      // @ts-expect-error inert in not in this version of React
+      inert={!active ? 'true' : undefined}
+      aria-roledescription='slide'
+      role='group'
+      ref={handleRef}
+      {...props}
+    >
+      <StatusContainer
+        // @ts-expect-error inferred props are wrong
+        id={statusId}
+        contextType='account'
+        withCounters
+      />
+    </animated.div>
   );
 };
