@@ -12,6 +12,7 @@ import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react'
 import { Icon } from 'mastodon/components/icon';
 import StatusContainer from 'mastodon/containers/status_container';
 import type { Status } from 'mastodon/models/status';
+import type { RootState } from 'mastodon/store';
 import { useAppSelector } from 'mastodon/store';
 
 import QuoteIcon from '../../images/quote.svg?react';
@@ -68,6 +69,10 @@ const QuoteLink: React.FC<{
 };
 
 type QuoteMap = ImmutableMap<'state' | 'quoted_status', string | null>;
+type GetStatusSelector = (
+  state: RootState,
+  props: { id?: string | null; contextType?: string },
+) => Status | null;
 
 export const QuotedStatus: React.FC<{
   quote: QuoteMap;
@@ -85,11 +90,9 @@ export const QuotedStatus: React.FC<{
   // In order to find out whether the quoted post should be completely hidden
   // due to a matching filter, we run it through the selector used by `status_container`.
   // If this returns null even though `status` exists, it's because it's filtered.
-  const getStatus = useMemo(() => makeGetStatus(), []);
-  const statusWithExtraData = useAppSelector(
-    (state) =>
-      // @ts-expect-error getStatus types aren't inferred correctly
-      getStatus(state, { id: quotedStatusId, contextType }) as Status | null,
+  const getStatus = useMemo(() => makeGetStatus(), []) as GetStatusSelector;
+  const statusWithExtraData = useAppSelector((state) =>
+    getStatus(state, { id: quotedStatusId, contextType }),
   );
   const isFilteredAndHidden = status && statusWithExtraData === null;
 
