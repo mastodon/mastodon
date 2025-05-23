@@ -27,6 +27,7 @@ import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
 import { VerifiedBadge } from 'mastodon/components/verified_badge';
+import { useIdentity } from 'mastodon/identity_context';
 import { me } from 'mastodon/initial_state';
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
@@ -70,10 +71,12 @@ export const Account: React.FC<{
   withBio?: boolean;
 }> = ({ id, size = 46, hidden, minimal, defaultAction, withBio }) => {
   const intl = useIntl();
+  const { signedIn } = useIdentity();
   const account = useAppSelector((state) => state.accounts.get(id));
   const relationship = useAppSelector((state) => state.relationships.get(id));
   const dispatch = useAppDispatch();
   const accountUrl = account?.url;
+  const isRemote = account?.acct !== account?.username;
 
   const handleBlock = useCallback(() => {
     if (relationship?.blocking) {
@@ -116,66 +119,74 @@ export const Account: React.FC<{
         },
       ];
     } else if (defaultAction !== 'block') {
-      const handleAddToLists = () => {
-        const openAddToListModal = () => {
-          dispatch(
-            openModal({
-              modalType: 'LIST_ADDER',
-              modalProps: {
-                accountId: id,
-              },
-            }),
-          );
-        };
-        if (relationship?.following || relationship?.requested || id === me) {
-          openAddToListModal();
-        } else {
-          dispatch(
-            openModal({
-              modalType: 'CONFIRM_FOLLOW_TO_LIST',
-              modalProps: {
-                accountId: id,
-                onConfirm: () => {
-                  apiFollowAccount(id)
-                    .then((relationship) => {
-                      dispatch(
-                        followAccountSuccess({
-                          relationship,
-                          alreadyFollowing: false,
-                        }),
-                      );
-                      openAddToListModal();
-                    })
-                    .catch((err: unknown) => {
-                      dispatch(showAlertForError(err));
-                    });
-                },
-              },
-            }),
-          );
-        }
-      };
+      arr = [];
 
-      arr = [
-        {
+      if (isRemote && accountUrl) {
+        arr.push({
+          text: intl.formatMessage(messages.openOriginalPage),
+          href: accountUrl,
+        });
+      }
+
+      if (signedIn) {
+        const handleAddToLists = () => {
+          const openAddToListModal = () => {
+            dispatch(
+              openModal({
+                modalType: 'LIST_ADDER',
+                modalProps: {
+                  accountId: id,
+                },
+              }),
+            );
+          };
+          if (relationship?.following || relationship?.requested || id === me) {
+            openAddToListModal();
+          } else {
+            dispatch(
+              openModal({
+                modalType: 'CONFIRM_FOLLOW_TO_LIST',
+                modalProps: {
+                  accountId: id,
+                  onConfirm: () => {
+                    apiFollowAccount(id)
+                      .then((relationship) => {
+                        dispatch(
+                          followAccountSuccess({
+                            relationship,
+                            alreadyFollowing: false,
+                          }),
+                        );
+                        openAddToListModal();
+                      })
+                      .catch((err: unknown) => {
+                        dispatch(showAlertForError(err));
+                      });
+                  },
+                },
+              }),
+            );
+          }
+        };
+
+        arr.push({
           text: intl.formatMessage(messages.addToLists),
           action: handleAddToLists,
-        },
-      ];
-
-      if (accountUrl) {
-        arr.unshift(
-          {
-            text: intl.formatMessage(messages.openOriginalPage),
-            href: accountUrl,
-          },
-          null,
-        );
+        });
       }
     }
 
     return arr;
-  }, [dispatch, intl, id, accountUrl, relationship, defaultAction]);
+  }, [
+    dispatch,
+    intl,
+    id,
+    accountUrl,
+    relationship,
+    defaultAction,
+    isRemote,
+    signedIn,
+  ]);
 
   if (hidden) {
     return (
