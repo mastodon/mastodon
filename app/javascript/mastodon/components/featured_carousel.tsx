@@ -47,24 +47,39 @@ export const FeaturedCarousel: React.FC<{
 
   // Handle slide change
   const [slideIndex, setSlideIndex] = useState(0);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [currentSlideHeight, setCurrentSlideHeight] = useState(
+    wrapperRef.current?.scrollHeight ?? 0,
+  );
+  const wrapperStyles = useSpring({
+    x: `-${slideIndex * 100}%`,
+    height: currentSlideHeight,
+  });
   const handleSlideChange = useCallback(
     (direction: number) => {
       const max = pinnedStatuses.size - 1;
-      setSlideIndex((prev) => {
-        const newIndex = prev + direction;
-        if (newIndex < 0) {
-          return max;
-        } else if (newIndex > max) {
-          return 0;
-        }
-        return newIndex;
-      });
+      let newIndex = slideIndex + direction;
+      if (newIndex < 0) {
+        newIndex = max;
+      } else if (newIndex > max) {
+        newIndex = 0;
+      }
+      setSlideIndex(newIndex);
+      const slide = wrapperRef.current?.children[newIndex];
+      if (slide) {
+        setCurrentSlideHeight(slide.scrollHeight);
+      }
     },
-    [pinnedStatuses.size],
+    [pinnedStatuses.size, slideIndex],
   );
+  // Update slide height when the component mounts
+  useEffect(() => {
+    if (currentSlideHeight === 0) {
+      handleSlideChange(0);
+    }
+  }, [currentSlideHeight, handleSlideChange]);
 
   // Handle swiping animations
-  const { x } = useSpring({ x: `-${slideIndex * 100}%` });
   const bind = useDrag(({ swipe: [swipeX] }) => {
     handleSlideChange(swipeX * -1); // Invert swipe as swiping left loads the next slide.
   });
@@ -74,31 +89,6 @@ export const FeaturedCarousel: React.FC<{
   const handleNext = useCallback(() => {
     handleSlideChange(1);
   }, [handleSlideChange]);
-
-  // Handle wrapper height animation
-  const [wrapperStyles, wrapperSpringApi] = useSpring(() => ({
-    height: 100,
-  }));
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const wrapperEle = wrapperRef.current;
-  useEffect(() => {
-    if (!wrapperEle) {
-      return;
-    }
-    const currentSlideEle = wrapperEle.querySelector(
-      `[data-index="${slideIndex}"] > div`,
-    );
-
-    if (!currentSlideEle) {
-      return;
-    }
-    const height = currentSlideEle.scrollHeight;
-    if (!height) {
-      return;
-    }
-
-    void wrapperSpringApi.start({ height });
-  }, [slideIndex, wrapperSpringApi, wrapperEle]);
 
   if (!accountId || pinnedStatuses.isEmpty()) {
     return null;
@@ -156,7 +146,6 @@ export const FeaturedCarousel: React.FC<{
         {pinnedStatuses.map((statusId, index) => (
           <animated.div
             key={`f-${statusId}`}
-            style={{ x }}
             className='featured-carousel__slide'
             data-index={index}
             // @ts-expect-error Inert is not supported in this version of React
@@ -172,6 +161,7 @@ export const FeaturedCarousel: React.FC<{
               // @ts-expect-error inferred props are wrong
               id={statusId}
               contextType='account'
+              withCounters
             />
           </animated.div>
         ))}
