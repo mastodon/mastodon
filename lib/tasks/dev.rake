@@ -263,6 +263,24 @@ namespace :dev do
       state: :accepted
     ).find_or_create_by!(id: 10_000_002)
 
+    media_attachment = MediaAttachment.create_with(
+      account: showcase_account,
+      file: File.open('spec/fixtures/files/attachment.jpg')
+    ).find_or_create_by!(id: 10_000_007)
+    quote_post_with_media = Status.create_with(
+      text: "This is a status with a picture and tags which also quotes a status with a picture.\n\n#Mastodon #Test",
+      ordered_media_attachment_ids: [media_attachment.id],
+      account: showcase_account,
+      visibility: :public
+    ).find_or_create_by!(id: 10_000_024)
+    media_attachment.update(status_id: quote_post_with_media.id)
+    ProcessHashtagsService.new.call(quote_post_with_media)
+    Quote.create_with(
+      status: quote_post_with_media,
+      quoted_status: status_with_media,
+      state: :accepted
+    ).find_or_create_by!(id: 10_000_025)
+
     recursive_self_quote = Status.create_with(
       text: 'This is a recursive self-quote; no real reason for it to exist, but just to make sure we handle them gracefuly',
       account: showcase_account,
