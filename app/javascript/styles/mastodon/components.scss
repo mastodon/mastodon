@@ -2253,14 +2253,18 @@ a .account__avatar {
 
 .avatar-group {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+
+  --avatar-height: 28px;
+
+  &:not(.avatar-group--compact) {
+    gap: 8px;
+    flex-wrap: wrap;
+    height: var(--avatar-height);
+    overflow-y: clip;
+  }
 }
 
 .avatar-group--compact {
-  gap: 0;
-  flex-wrap: nowrap;
-
   & > :not(:first-child) {
     margin-inline-start: -12px;
   }
@@ -10412,7 +10416,8 @@ noscript {
   padding: 15px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 4px 8px;
 
   .logo {
     width: 16px;
@@ -10506,12 +10511,6 @@ noscript {
     overflow: hidden;
     container-type: inline-size;
 
-    @container (width < 350px) {
-      &__header time {
-        display: none;
-      }
-    }
-
     &__header {
       display: flex;
       flex-direction: column;
@@ -10524,7 +10523,8 @@ noscript {
 
       &__label {
         display: flex;
-        gap: 8px;
+        flex-wrap: wrap;
+        gap: 2px 8px;
         font-size: 15px;
         line-height: 22px;
         color: $darker-text-color;
@@ -10541,6 +10541,13 @@ noscript {
 
         time {
           color: $dark-text-color;
+        }
+
+        @container (width < 350px) {
+          time,
+          &-separator {
+            display: none;
+          }
         }
       }
     }
