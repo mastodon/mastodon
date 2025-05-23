@@ -28,6 +28,9 @@
         // react-router: Requires manual upgrade
         'history',
         'react-router-dom',
+
+        // react-spring: Requires manual upgrade when upgrading react
+        '@react-spring/web',
       ],
       matchUpdateTypes: ['major'],
       dependencyDashboardApproval: true,
