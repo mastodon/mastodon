@@ -22,6 +22,7 @@ import { RemoteHint } from 'mastodon/components/remote_hint';
 
 import { AccountHeader } from './components/account_header';
 import { LimitedAccountHint } from './components/limited_account_hint';
+import { FeaturedCarousel } from '@/mastodon/components/featured_carousel';
 
 const emptyList = ImmutableList();
 
@@ -169,7 +170,12 @@ class AccountTimeline extends ImmutablePureComponent {
         <ColumnBackButton />
 
         <StatusList
-          prepend={<AccountHeader accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />}
+          prepend={
+            <>
+              <AccountHeader accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
+              <FeaturedCarousel accountId={this.props.accountId} />
+            </>
+        }
           alwaysPrepend
           append={<RemoteHint accountId={accountId} />}
           scrollKey='account_timeline'
