@@ -49,7 +49,14 @@ export const HoverCardAccount = forwardRef<
     accountId ? state.relationships.get(accountId) : undefined,
   );
   const isMutual = relationship?.followed_by && relationship.following;
-  const isFollower = relationship?.following;
+  const isFollower = relationship?.followed_by;
+  const hasRelationshipLoaded = !!relationship;
+
+  const shouldDisplayFamiliarFollowers =
+    familiarFollowers.length > 0 &&
+    hasRelationshipLoaded &&
+    !isMutual &&
+    !isFollower;
 
   return (
     <div
@@ -91,7 +98,7 @@ export const HoverCardAccount = forwardRef<
               value={account.followers_count}
               renderer={FollowersCounter}
             />
-            {familiarFollowers.length > 0 && !isMutual && (
+            {shouldDisplayFamiliarFollowers && (
               <>
                 &middot;
                 <div className='hover-card__familiar-followers'>
