@@ -474,6 +474,7 @@ Rails.application.routes.draw do
         resources :tag, only: :show
         resources :list, only: :show
         resource :regenerate, only: :create, controller: :regenerate
+        resource :add_to_feed, only: :create, controller: :add_to_feed
       end
 
       resources :streaming, only: [:index]

@@ -26,6 +26,6 @@ class Api::V1::Timelines::RegenerateController < Api::BaseController
         # end
 
         user.regenerate_feed!
-        render json: { message: "Feed regeneration started for user #{account.id}" }, status: :accepted
+        render json: { message: "Feed regeneration started for account #{account.id}" }, status: :accepted
     end
 end
