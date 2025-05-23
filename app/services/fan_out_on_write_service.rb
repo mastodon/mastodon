@@ -113,7 +113,7 @@ class FanOutOnWriteService < BaseService
         Rails.logger.info "Received batch scores: #{scores.inspect}"
         FeedInsertWorker.push_bulk(followers) do |follower|
           [ @status.id, follower.id, 'home',
-            { update: update?, score: scores.dig(@status.id.to_s, follower.id.to_s) } ]
+            { update: update?, score: scores.dig(@status.id, follower.id) } ]
         end
       end
     end

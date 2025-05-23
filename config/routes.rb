@@ -473,6 +473,7 @@ Rails.application.routes.draw do
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
         resources :list, only: :show
+        resource :regenerate, only: :create, controller: :regenerate
       end
 
       resources :streaming, only: [:index]

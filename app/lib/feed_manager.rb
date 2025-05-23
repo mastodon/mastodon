@@ -307,14 +307,16 @@ class FeedManager
       statuses = target_account.statuses.where(visibility: [:public, :unlisted, :private]).includes(:preloadable_poll, :media_attachments, :account, reblog: :account).limit(limit)
       crutches = build_crutches(account.id, statuses)
 
+      # @type [Hash<Integer, Hash<Integer, Float>>] scores
       Locutus::FetchScoresService.call(
         status_ids: statuses.map(&:id),
         user_ids: [account.id]
       ).tap do |scores|
         Rails.logger.info "Received batch scores: #{scores.inspect}"
         statuses.each do |status|
-          score = scores[status.id] || 0
-          add_to_feed_with_score(:home, account.id, status, score)
+          if scores[status.id] && scores[status.id][account.id]
+            add_to_feed_with_score(:home, account.id, status, scores[status.id][account.id])
+          end
         end
       end
 

@@ -424,6 +424,15 @@ class User < ApplicationRecord
     setting_display_media == 'hide_all'
   end
 
+  def regenerate_feed!
+    RegenerationWorker.perform_async(account_id) if redis.set("account:#{account_id}:regeneration", true, nx: true, ex: 1.day.seconds)
+  end
+
+  def regenerate_feed_override!
+    Rails.logger.info "Regenerating feed for user #{account_id} due to override"
+    RegenerationWorkerPrio.perform_async(account_id)
+  end
+
   protected
 
   def send_devise_notification(notification, *args, **kwargs)
@@ -518,15 +527,6 @@ class User < ApplicationRecord
       next unless u.allows_pending_account_emails?
       AdminMailer.new_pending_account(u.account, self).deliver_later
     end
-  end
-
-  def regenerate_feed!
-    RegenerationWorker.perform_async(account_id) if redis.set("account:#{account_id}:regeneration", true, nx: true, ex: 1.day.seconds)
-  end
-
-  def regenerate_feed_override!
-    Rails.logger.info "Regenerating feed for user #{account_id} due to override"
-    RegenerationWorkerPrio.perform_async(account_id)
   end
 
   def needs_feed_update?
