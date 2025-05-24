@@ -33,6 +33,10 @@ const messages = defineMessages({
     id: 'search.search_or_paste',
     defaultMessage: 'Search or paste URL',
   },
+  clearAllRecent: {
+    id: 'search.clear_all_recent',
+    defaultMessage: 'Clear all recent searches',
+  },
 });
 
 const labelForRecentSearch = (search: RecentSearch) => {
@@ -224,6 +228,17 @@ export const Search: React.FC<{
       void dispatch(forgetSearchResult(search.q));
     },
   }));
+
+  const forgetAll = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      recent.forEach((search) => {
+        void dispatch(forgetSearchResult(search.q));
+      });
+    },
+    [dispatch, recent],
+  );
 
   const navigableOptions = hasValue
     ? quickActions.concat(searchOptions)
@@ -451,6 +466,18 @@ export const Search: React.FC<{
     setSelectedOption(-1);
   }, [setExpanded, setSelectedOption]);
 
+  const clearAllRecentButton =
+    recentOptions.length === 0 ? null : (
+      <button
+        className='icon-button'
+        onMouseDown={forgetAll}
+        aria-label={intl.formatMessage(messages.clearAllRecent)}
+        title={intl.formatMessage(messages.clearAllRecent)}
+      >
+        <Icon id='times' icon={CloseIcon} />
+      </button>
+    );
+
   return (
     <form className={classNames('search', { active: expanded })}>
       <input
@@ -492,6 +519,7 @@ export const Search: React.FC<{
                 id='search_popout.recent'
                 defaultMessage='Recent searches'
               />
+              {clearAllRecentButton}
             </h4>
 
             <div className='search__popout__menu'>
