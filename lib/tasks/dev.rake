@@ -388,5 +388,35 @@ namespace :dev do
       quoted_status: status_with_media,
       state: :accepted
     ).find_or_create_by!(id: 10_000_011)
+
+    showcase_sidekick_account = Account.create_with(username: 'showcase_sidekick').find_or_create_by!(id: 10_000_002)
+    sidekick_user = User.create_with(
+      account_id: showcase_sidekick_account.id,
+      agreement: true,
+      password: SecureRandom.hex,
+      email: ENV.fetch('TEST_DATA_SHOWCASE_SIDEKICK_EMAIL', 'showcase_sidekick@joinmastodon.org'),
+      confirmed_at: Time.now.utc,
+      approved: true,
+      bypass_registration_checks: true
+    ).find_or_create_by!(id: 10_000_001)
+    sidekick_user.mark_email_as_confirmed!
+    sidekick_user.approve!
+
+    sidekick_post = Status.create_with(
+      text: 'This post only exists to be quoted.',
+      account: showcase_sidekick_account,
+      visibility: :public
+    ).find_or_create_by!(id: 10_000_026)
+    sidekick_quote_post = Status.create_with(
+      text: 'This is a quote of a different user.',
+      account: showcase_account,
+      visibility: :public
+    ).find_or_create_by!(id: 10_000_027)
+    Quote.create_with(
+      status: sidekick_quote_post,
+      quoted_status: sidekick_post,
+      activity_uri: 'https://foo/cross-account-quote',
+      state: :accepted
+    ).find_or_create_by!(id: 10_000_012)
   end
 end
