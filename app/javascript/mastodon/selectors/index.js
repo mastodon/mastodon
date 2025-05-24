@@ -5,8 +5,8 @@ import { me } from '../initial_state';
 
 import { getFilters } from './filters';
 
-export { makeGetAccount } from "./accounts";
-export { getStatusList } from "./statuses";
+export { makeGetAccount } from './accounts';
+export { getStatusList } from './statuses';
 
 export const makeGetStatus = () => {
   return createSelector(
