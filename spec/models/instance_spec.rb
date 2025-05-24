@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Instance do
-  describe 'Scopes' do
-    before { described_class.refresh }
+  before { described_class.refresh }
 
+  describe 'Scopes' do
     describe '#searchable' do
       let(:expected_domain) { 'host.example' }
       let(:blocked_domain) { 'other.example' }
@@ -98,6 +98,48 @@ RSpec.describe Instance do
           .to include(example_domain)
           .and include(other_domain)
           .and not_include(none_domain)
+      end
+    end
+  end
+
+  describe 'find_or_initialize_by_domain' do
+    let(:domain) { 'mastodon.example' }
+
+    describe 'for a known domain' do
+      before do
+        Fabricate :account, domain: domain
+      end
+
+      it 'returns a persisted instance record' do
+        instance = described_class.find_or_initialize_by_domain(domain)
+
+        expect(instance).to be_persisted
+      end
+    end
+
+    describe 'for an unknown domain' do
+      it 'returns a not persisted instance record' do
+        instance = described_class.find_or_initialize_by_domain('unknown.example')
+
+        expect(instance).to_not be_persisted
+      end
+    end
+
+    describe 'ensures domains are normalized' do
+      it 'returns an instance record with the normalized punycode domain' do
+        instance = described_class.find_or_initialize_by_domain(' nörmaLized.example ')
+
+        expect(instance.domain).to eq('xn--nrmalized-07a.example')
+      end
+
+      it 'returns an instance record for the punycode domain' do
+        instance = described_class.find_or_initialize_by_domain('xn--nrmalized-07a.example')
+
+        expect(instance.domain).to eq('xn--nrmalized-07a.example')
+      end
+
+      it 'throws an error if the normalized domain is blank' do
+        expect { described_class.find_or_initialize_by_domain(' ') }.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
   end
