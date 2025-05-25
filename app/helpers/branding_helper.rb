@@ -11,7 +11,7 @@ module BrandingHelper
   end
 
   def _logo_as_symbol_wordmark
-    image_pack_tag('logo_wordmark.png', class: 'logo logo--wordmark', height: '24px')
+    image_tag(frontend_asset_path('images/logo_wordmark.png'), class: 'logo logo--wordmark', height: '24px')
   end
 
   def _logo_as_symbol_icon
