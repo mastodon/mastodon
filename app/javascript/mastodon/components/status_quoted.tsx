@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
@@ -10,9 +12,11 @@ import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react'
 import { Icon } from 'mastodon/components/icon';
 import StatusContainer from 'mastodon/containers/status_container';
 import type { Status } from 'mastodon/models/status';
+import type { RootState } from 'mastodon/store';
 import { useAppSelector } from 'mastodon/store';
 
 import QuoteIcon from '../../images/quote.svg?react';
+import { makeGetStatus } from '../selectors';
 
 const MAX_QUOTE_POSTS_NESTING_LEVEL = 1;
 
@@ -65,42 +69,62 @@ const QuoteLink: React.FC<{
 };
 
 type QuoteMap = ImmutableMap<'state' | 'quoted_status', string | null>;
+type GetStatusSelector = (
+  state: RootState,
+  props: { id?: string | null; contextType?: string },
+) => Status | null;
 
 export const QuotedStatus: React.FC<{
   quote: QuoteMap;
+  contextType?: string;
   variant?: 'full' | 'link';
   nestingLevel?: number;
-}> = ({ quote, nestingLevel = 1, variant = 'full' }) => {
+}> = ({ quote, contextType, nestingLevel = 1, variant = 'full' }) => {
   const quotedStatusId = quote.get('quoted_status');
-  const state = quote.get('state');
+  const quoteState = quote.get('state');
   const status = useAppSelector((state) =>
     quotedStatusId ? state.statuses.get(quotedStatusId) : undefined,
   );
-
   let quoteError: React.ReactNode = null;
 
-  if (state === 'deleted') {
+  // In order to find out whether the quoted post should be completely hidden
+  // due to a matching filter, we run it through the selector used by `status_container`.
+  // If this returns null even though `status` exists, it's because it's filtered.
+  const getStatus = useMemo(() => makeGetStatus(), []) as GetStatusSelector;
+  const statusWithExtraData = useAppSelector((state) =>
+    getStatus(state, { id: quotedStatusId, contextType }),
+  );
+  const isFilteredAndHidden = status && statusWithExtraData === null;
+
+  if (isFilteredAndHidden) {
+    quoteError = (
+      <FormattedMessage
+        id='status.quote_error.filtered'
+        defaultMessage='Hidden due to one of your filters'
+      />
+    );
+  } else if (quoteState === 'deleted') {
     quoteError = (
       <FormattedMessage
         id='status.quote_error.removed'
         defaultMessage='This post was removed by its author.'
       />
     );
-  } else if (state === 'unauthorized') {
+  } else if (quoteState === 'unauthorized') {
     quoteError = (
       <FormattedMessage
         id='status.quote_error.unauthorized'
         defaultMessage='This post cannot be displayed as you are not authorized to view it.'
       />
     );
-  } else if (state === 'pending') {
+  } else if (quoteState === 'pending') {
     quoteError = (
       <FormattedMessage
         id='status.quote_error.pending_approval'
         defaultMessage='This post is pending approval from the original author.'
       />
     );
-  } else if (state === 'rejected' || state === 'revoked') {
+  } else if (quoteState === 'rejected' || quoteState === 'revoked') {
     quoteError = (
       <FormattedMessage
         id='status.quote_error.rejected'
@@ -131,10 +155,16 @@ export const QuotedStatus: React.FC<{
   return (
     <QuoteWrapper>
       {/* @ts-expect-error Status is not yet typed */}
-      <StatusContainer isQuotedPost id={quotedStatusId} avatarSize={40}>
+      <StatusContainer
+        isQuotedPost
+        id={quotedStatusId}
+        contextType={contextType}
+        avatarSize={40}
+      >
         {canRenderChildQuote && (
           <QuotedStatus
             quote={childQuote}
+            contextType={contextType}
             variant={
               nestingLevel === MAX_QUOTE_POSTS_NESTING_LEVEL ? 'link' : 'full'
             }
@@ -148,6 +178,7 @@ export const QuotedStatus: React.FC<{
 
 interface StatusQuoteManagerProps {
   id: string;
+  contextType?: string;
   [key: string]: unknown;
 }
 
@@ -158,13 +189,17 @@ interface StatusQuoteManagerProps {
  */
 
 export const StatusQuoteManager = (props: StatusQuoteManagerProps) => {
-  const status = useAppSelector((state) => state.statuses.get(props.id));
+  const status = useAppSelector((state) => {
+    const status = state.statuses.get(props.id);
+    const reblogId = status?.get('reblog') as string | undefined;
+    return reblogId ? state.statuses.get(reblogId) : status;
+  });
   const quote = status?.get('quote') as QuoteMap | undefined;
 
   if (quote) {
     return (
       <StatusContainer {...props}>
-        <QuotedStatus quote={quote} />
+        <QuotedStatus quote={quote} contextType={props.contextType} />
       </StatusContainer>
     );
   }

@@ -351,5 +351,72 @@ namespace :dev do
       display_name: 'Mastodon test/showcase account',
       note: 'Test account to showcase many Mastodon features. Most of its posts are public, but some are private!'
     )
+
+    remote_quote = Status.create_with(
+      text: <<~HTML,
+        <p>This is a self-quote of a remote formatted post</p>
+        <p class="quote-inline">RE: <a href="https://example.org/foo/bar/baz">https://example.org/foo/bar/baz</a></p>
+      HTML
+      account: remote_account,
+      uri: 'https://example.org/foo/bar/quote',
+      url: 'https://example.org/foo/bar/quote'
+    ).find_or_create_by!(id: 10_000_023)
+    Quote.create_with(
+      status: remote_quote,
+      quoted_status: remote_formatted_post,
+      state: :accepted
+    ).find_or_create_by!(id: 10_000_010)
+    Status.create_with(
+      account: showcase_account,
+      reblog: remote_quote
+    ).find_or_create_by!(id: 10_000_024)
+
+    media_attachment = MediaAttachment.create_with(
+      account: showcase_account,
+      file: File.open('spec/fixtures/files/attachment.jpg')
+    ).find_or_create_by!(id: 10_000_010)
+    quote_post_with_media = Status.create_with(
+      text: "This is a status with a picture and tags which also quotes a status with a picture.\n\n#Mastodon #Test",
+      ordered_media_attachment_ids: [media_attachment.id],
+      account: showcase_account,
+      visibility: :public
+    ).find_or_create_by!(id: 10_000_025)
+    media_attachment.update(status_id: quote_post_with_media.id)
+    ProcessHashtagsService.new.call(quote_post_with_media)
+    Quote.create_with(
+      status: quote_post_with_media,
+      quoted_status: status_with_media,
+      state: :accepted
+    ).find_or_create_by!(id: 10_000_011)
+
+    showcase_sidekick_account = Account.create_with(username: 'showcase_sidekick').find_or_create_by!(id: 10_000_002)
+    sidekick_user = User.create_with(
+      account_id: showcase_sidekick_account.id,
+      agreement: true,
+      password: SecureRandom.hex,
+      email: ENV.fetch('TEST_DATA_SHOWCASE_SIDEKICK_EMAIL', 'showcase_sidekick@joinmastodon.org'),
+      confirmed_at: Time.now.utc,
+      approved: true,
+      bypass_registration_checks: true
+    ).find_or_create_by!(id: 10_000_001)
+    sidekick_user.mark_email_as_confirmed!
+    sidekick_user.approve!
+
+    sidekick_post = Status.create_with(
+      text: 'This post only exists to be quoted.',
+      account: showcase_sidekick_account,
+      visibility: :public
+    ).find_or_create_by!(id: 10_000_026)
+    sidekick_quote_post = Status.create_with(
+      text: 'This is a quote of a different user.',
+      account: showcase_account,
+      visibility: :public
+    ).find_or_create_by!(id: 10_000_027)
+    Quote.create_with(
+      status: sidekick_quote_post,
+      quoted_status: sidekick_post,
+      activity_uri: 'https://foo/cross-account-quote',
+      state: :accepted
+    ).find_or_create_by!(id: 10_000_012)
   end
 end

@@ -6,7 +6,7 @@ class ActivityPub::SynchronizeFeaturedCollectionWorker
   sidekiq_options queue: 'pull', lock: :until_executed, lock_ttl: 1.day.to_i
 
   def perform(account_id, options = {})
-    options = { note: true, hashtag: false }.deep_merge(options.deep_symbolize_keys)
+    options = { note: true, hashtag: false }.deep_merge(options.symbolize_keys)
 
     ActivityPub::FetchFeaturedCollectionService.new.call(Account.find(account_id), **options)
   rescue ActiveRecord::RecordNotFound

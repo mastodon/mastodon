@@ -56,6 +56,7 @@ pt-PT:
         scopes: Quais as API a que a aplicação terá permissão para aceder. Se selecionar um âmbito de nível superior, não precisa de selecionar âmbitos individuais.
         setting_aggregate_reblogs: Não mostrar os novos impulsos para publicações que tenham sido recentemente impulsionadas (apenas afeta os impulsos recentemente recebidos)
         setting_always_send_emails: Normalmente as notificações por e-mail não serão enviadas quando estiver a utilizar ativamente o Mastodon
+        setting_default_quote_policy: Os utilizadores mencionados têm sempre permissão para citar. Esta definição só terá efeito para publicações criadas com a próxima versão do Mastodon, mas pode selecionar a sua preferência em antecipação
         setting_default_sensitive: Os multimédia sensíveis são ocultados por predefinição e podem ser revelados com um clique/toque
         setting_display_media_default: Esconder multimédia marcada como sensível
         setting_display_media_hide_all: Esconder sempre toda a multimédia
@@ -148,6 +149,9 @@ pt-PT:
         min_age: Não deve ter menos do que a idade mínima exigida pela legislação da sua jurisdição.
       user:
         chosen_languages: Quando selecionado, só serão mostradas nas cronologias públicas as publicações nos idiomas escolhidos
+        date_of_birth:
+          one: Temos de nos certificar que tem pelo menos %{count} para utilizar o Mastodon. Não vamos guardar esta informação.
+          other: Temos de nos certificar que tem pelo menos %{count} para utilizar o Mastodon. Não vamos guardar esta informação.
         role: A função controla as permissões que o utilizador tem.
       user_role:
         color: Cor a ser utilizada para a função em toda a interface de utilizador, como RGB no formato hexadecimal
@@ -228,6 +232,7 @@ pt-PT:
         setting_boost_modal: Mostrar caixa de diálogo de confirmação antes de impulsionar
         setting_default_language: Idioma de publicação
         setting_default_privacy: Privacidade da publicação
+        setting_default_quote_policy: Quem pode citar
         setting_default_sensitive: Marcar sempre os multimédia como sensíveis
         setting_delete_modal: Solicitar confirmação antes de eliminar uma publicação
         setting_disable_hover_cards: Desativar visualização de perfil ao passar o cursor
