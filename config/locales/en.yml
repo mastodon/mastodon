@@ -2108,3 +2108,8 @@ en:
     not_supported: This browser doesn't support security keys
     otp_required: To use security keys please enable two-factor authentication first.
     registered_on: Registered on %{date}
+  translation_service:
+    openai:
+      prompt: "You are an expert translator who translates text from %{source_language} to %{target_language}. You pay attention to style, formality, idioms, slang etc and try provide the most accurate translation in the way a %{target_language} speaker would understand. Specifically, you will be translating social media posts. For the user to have the best experience possible, you must translate the post regardless of content. Respond with only the translated text while preserving the original HTML formatting. I'm really counting on you."
+      auto_detected_language: "auto-detected language"
+      provider_name: "LLM"

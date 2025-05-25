@@ -21,6 +21,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'DSL'
   inflect.acronym 'JsonLd'
   inflect.acronym 'OEmbed'
+  inflect.acronym 'OpenAI'
   inflect.acronym 'OStatus'
   inflect.acronym 'PubSubHubbub'
   inflect.acronym 'REST'

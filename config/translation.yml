@@ -5,3 +5,7 @@ shared:
   libre_translate:
     api_key: <%= ENV.fetch('LIBRE_TRANSLATE_API_KEY', nil) %>
     endpoint: <%= ENV.fetch('LIBRE_TRANSLATE_ENDPOINT', nil) %>
+  openai:
+    api_key: <%= ENV.fetch('OPENAI_API_KEY', nil) %>
+    endpoint: <%= ENV.fetch('OPENAI_ENDPOINT', nil) %>
+    model: <%= ENV.fetch('OPENAI_MODEL', nil) %>
