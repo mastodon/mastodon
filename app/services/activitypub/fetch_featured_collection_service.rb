@@ -9,6 +9,7 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
     @account = account
     @options = options
     @json    = fetch_collection(options[:collection].presence || @account.featured_collection_url)
+    return if @json.blank?
 
     process_items(collection_items(@json))
   end
