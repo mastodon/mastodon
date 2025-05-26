@@ -15,7 +15,9 @@ module PremailerBundledAssetStrategy
         headers
       ).presence
     else
-      path = Rails.public_path.join(url.delete_prefix('/'))
+      url = url.delete_prefix(Rails.configuration.action_controller.asset_host) if Rails.configuration.action_controller.asset_host.present?
+      url = url.delete_prefix('/')
+      path = Rails.public_path.join(url)
       return unless path.exist?
 
       path.read
