@@ -11040,6 +11040,7 @@ noscript {
 .featured-carousel {
   background: var(--surface-background-color);
   overflow: hidden;
+  flex-shrink: 0;
   border-bottom: 1px solid var(--background-border-color);
   touch-action: pan-x;
 
