@@ -85,7 +85,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
           manifestPaths: ['.vite/manifest.json', '.vite/manifest-assets.json'],
         },
       }),
-      MastodonThemes(__dirname),
+      MastodonThemes(),
       react({
         babel: {
           plugins: ['formatjs', 'transform-react-remove-prop-types'],

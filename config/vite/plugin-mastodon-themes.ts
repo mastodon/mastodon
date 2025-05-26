@@ -5,14 +5,17 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import yaml from 'js-yaml';
-import type { Plugin } from 'vite';
+import type { Plugin, UserConfig } from 'vite';
 
-export function MastodonThemes(projectRoot: string): Plugin {
+export function MastodonThemes(): Plugin {
   return {
     name: 'mastodon-themes',
-    config: async () => {
-      const jsRoot = path.resolve(projectRoot, 'app/javascript');
-      const themesFile = path.resolve(projectRoot, 'config/themes.yml');
+    config: async (userConfig: UserConfig) => {
+      if (!userConfig.root || !userConfig.envDir) {
+        throw new Error('Unknown project directory');
+      }
+
+      const themesFile = path.resolve(userConfig.envDir, 'config/themes.yml');
       const entrypoints: Record<string, string> = {};
 
       // Get all files mentioned in the themes.yml file.
@@ -37,7 +40,10 @@ export function MastodonThemes(projectRoot: string): Plugin {
           );
           continue;
         }
-        entrypoints[path.basename(themePath)] = path.resolve(jsRoot, themePath);
+        entrypoints[path.basename(themePath)] = path.resolve(
+          userConfig.root,
+          themePath,
+        );
       }
 
       return {
