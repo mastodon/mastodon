@@ -5,7 +5,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import yaml from 'js-yaml';
-import type { Plugin, UserConfig } from 'vite';
+import type { Plugin } from 'vite';
 
 export function MastodonThemes(): Plugin {
   return {
