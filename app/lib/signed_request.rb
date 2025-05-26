@@ -7,6 +7,8 @@ class SignedRequest
   CLOCK_SKEW_MARGIN       = 1.hour
 
   class HttpSignature
+    REQUIRED_PARAMETERS = %w(keyId signature).freeze
+
     def initialize(request)
       @request = request
     end
@@ -15,20 +17,15 @@ class SignedRequest
       signature_params['keyId']
     end
 
-    def verified?(actor)
-      verify(actor)
+    def missing_signature_parameters
+      REQUIRED_PARAMETERS if REQUIRED_PARAMETERS.any? { |p| signature_params[p].blank? }
     end
 
-    private
+    def algorithm_supported?
+      %w(rsa-sha256 hs2019).include?(signature_algorithm)
+    end
 
-    def verify(actor)
-      raise Mastodon::SignatureVerificationError, 'Incompatible request signature. keyId and signature are required' if missing_required_signature_parameters?
-      raise Mastodon::SignatureVerificationError, 'Unsupported signature algorithm (only rsa-sha256 and hs2019 are supported)' unless %w(rsa-sha256 hs2019).include?(signature_algorithm)
-      raise Mastodon::SignatureVerificationError, 'Signed request date outside acceptable time window' unless matches_time_window?
-
-      verify_signature_strength!
-      verify_body_digest!
-
+    def verified?(actor)
       signature = Base64.decode64(signature_params['signature'])
       compare_signed_string = build_signed_string(include_query_string: true)
 
@@ -40,22 +37,20 @@ class SignedRequest
       false
     end
 
-    def request_body
-      @request_body ||= @request.raw_post
+    def created_time
+      if signature_algorithm == 'hs2019' && signature_params['created'].present?
+        Time.at(signature_params['created'].to_i).utc
+      elsif @request.headers['Date'].present?
+        Time.httpdate(@request.headers['Date']).utc
+      end
+    rescue ArgumentError => e
+      raise Mastodon::SignatureVerificationError, "Invalid Date header: #{e.message}"
     end
 
-    def signature_params
-      @signature_params ||= SignatureParser.parse(@request.headers['Signature'])
-    rescue SignatureParser::ParsingError
-      raise Mastodon::SignatureVerificationError, 'Error parsing signature parameters'
-    end
-
-    def signature_algorithm
-      signature_params.fetch('algorithm', 'hs2019')
-    end
-
-    def signed_headers
-      signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split
+    def expires_time
+      Time.at(signature_params['expires'].to_i).utc if signature_params['expires'].present?
+    rescue ArgumentError => e
+      raise Mastodon::SignatureVerificationError, "Invalid Date header: #{e.message}"
     end
 
     def verify_signature_strength!
@@ -84,6 +79,26 @@ class SignedRequest
       raise Mastodon::SignatureVerificationError, "Invalid Digest value. The provided Digest value is not a SHA-256 digest. Given digest: #{sha256[1]}" if digest_size != 32
 
       raise Mastodon::SignatureVerificationError, "Invalid Digest value. Computed SHA-256 digest: #{body_digest}; given: #{sha256[1]}"
+    end
+
+    private
+
+    def request_body
+      @request_body ||= @request.raw_post
+    end
+
+    def signature_params
+      @signature_params ||= SignatureParser.parse(@request.headers['Signature'])
+    rescue SignatureParser::ParsingError
+      raise Mastodon::SignatureVerificationError, 'Error parsing signature parameters'
+    end
+
+    def signature_algorithm
+      signature_params.fetch('algorithm', 'hs2019')
+    end
+
+    def signed_headers
+      signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split
     end
 
     def verify_signature(actor, signature, compare_signed_string)
@@ -120,31 +135,6 @@ class SignedRequest
       end.join("\n")
     end
 
-    def matches_time_window?
-      created_time = nil
-      expires_time = nil
-
-      begin
-        if signature_algorithm == 'hs2019' && signature_params['created'].present?
-          created_time = Time.at(signature_params['created'].to_i).utc
-        elsif @request.headers['Date'].present?
-          created_time = Time.httpdate(@request.headers['Date']).utc
-        end
-
-        expires_time = Time.at(signature_params['expires'].to_i).utc if signature_params['expires'].present?
-      rescue ArgumentError => e
-        raise Mastodon::SignatureVerificationError, "Invalid Date header: #{e.message}"
-      end
-
-      expires_time ||= created_time + 5.minutes unless created_time.nil?
-      expires_time = [expires_time, created_time + EXPIRATION_WINDOW_LIMIT].min unless created_time.nil?
-
-      return false if created_time.present? && created_time > Time.now.utc + CLOCK_SKEW_MARGIN
-      return false if expires_time.present? && Time.now.utc > expires_time + CLOCK_SKEW_MARGIN
-
-      true
-    end
-
     def body_digest
       @body_digest ||= Digest::SHA256.base64digest(request_body)
     end
@@ -152,13 +142,11 @@ class SignedRequest
     def to_header_name(name)
       name.split('-').map(&:capitalize).join('-')
     end
-
-    def missing_required_signature_parameters?
-      signature_params['keyId'].blank? || signature_params['signature'].blank?
-    end
   end
 
   class HttpMessageSignature
+    REQUIRED_PARAMETERS = %w(keyid created).freeze
+
     def initialize(request)
       @request = request
       @signature = Linzer::Signature.build({
@@ -171,21 +159,58 @@ class SignedRequest
       @signature.parameters['keyid']
     end
 
+    def missing_signature_parameters
+      REQUIRED_PARAMETERS if REQUIRED_PARAMETERS.any? { |p| @signature.parameters[p].blank? }
+    end
+
+    # This method can lie as we only support one specific algorith for now.
+    # But HTTP Message Signatures do not need to specify an algorithm (as
+    # this can be inferred from the key used). Using an unsupported
+    # algorithm will fail anyway further down the line.
+    def algorithm_supported?
+      true
+    end
+
     def verified?(actor)
-      verify(actor)
+      key = Linzer.new_rsa_v1_5_sha256_public_key(actor.public_key)
+
+      Linzer.verify!(@request.rack_request, key:)
+    rescue Linzer::VerifyError
+      false
+    end
+
+    def verify_signature_strength!
+      raise Mastodon::SignatureVerificationError, 'Mastodon requires the (created) parameter to be signed' if @signature.parameters['created'].blank?
+      raise Mastodon::SignatureVerificationError, 'Mastodon requires the @method and @target-uri derived components to be signed' unless @signature.components.include?('@method') && @signature.components.include?('@target-uri')
+      raise Mastodon::SignatureVerificationError, 'Mastodon requires the Content-Digest header to be signed when doing a POST request' if @request.post? && !signed_headers.include?('content-digest')
+    end
+
+    def verify_body_digest!
+      return unless signed_headers.include?('content-digest')
+      raise Mastodon::SignatureVerificationError, 'Content-Digest header missing' unless @request.headers.key?('content-digest')
+
+      digests = Starry.parse_dictionary(@request.headers['content-digest'])
+      raise Mastodon::SignatureVerificationError, "Mastodon only supports SHA-256 in Content-Digest header. Offered algorithms: #{digests.keys.join(', ')}" unless digests.key?('sha-256')
+
+      received_digest = Base64.strict_encode64(digests['sha-256'].value)
+      return if body_digest == received_digest
+
+      raise Mastodon::SignatureVerificationError, "Invalid Digest value. Computed SHA-256 digest: #{body_digest}; given: #{received_digest}"
+    end
+
+    def created_time
+      Time.at(@signature.parameters['created'].to_i).utc
+    rescue ArgumentError => e
+      raise Mastodon::SignatureVerificationError, "Invalid Date header: #{e.message}"
+    end
+
+    def expires_time
+      Time.at(@signature.parameters['expires'].to_i).utc if @signature.parameters['expires'].present?
+    rescue ArgumentError => e
+      raise Mastodon::SignatureVerificationError, "Invalid Date header: #{e.message}"
     end
 
     private
-
-    def verify(actor)
-      raise Mastodon::SignatureVerificationError, 'Incompatible request signature. keyid is required' if missing_required_signature_parameters?
-      raise Mastodon::SignatureVerificationError, 'Signed request date outside acceptable time window' unless matches_time_window?
-
-      verify_signature_strength!
-      verify_content_digest!
-
-      verify_signature(actor)
-    end
 
     def request_body
       @request_body ||= @request.raw_post
@@ -199,55 +224,6 @@ class SignedRequest
       signed_headers.index_with { |h| @request.headers[h] }
     end
 
-    def verify_signature_strength!
-      raise Mastodon::SignatureVerificationError, 'Mastodon requires the (created) parameter to be signed' if @signature.parameters['created'].blank?
-      raise Mastodon::SignatureVerificationError, 'Mastodon requires the @method and @target-uri derived components to be signed' unless @signature.components.include?('@method') && @signature.components.include?('@target-uri')
-      raise Mastodon::SignatureVerificationError, 'Mastodon requires the Content-Digest header to be signed when doing a POST request' if @request.post? && !signed_headers.include?('content-digest')
-    end
-
-    def verify_content_digest!
-      return unless signed_headers.include?('content-digest')
-      raise Mastodon::SignatureVerificationError, 'Content-Digest header missing' unless @request.headers.key?('content-digest')
-
-      digests = Starry.parse_dictionary(@request.headers['content-digest'])
-      raise Mastodon::SignatureVerificationError, "Mastodon only supports SHA-256 in Content-Digest header. Offered algorithms: #{digests.keys.join(', ')}" unless digests.key?('sha-256')
-
-      received_digest = Base64.strict_encode64(digests['sha-256'].value)
-      return if body_digest == received_digest
-
-      raise Mastodon::SignatureVerificationError, "Invalid Digest value. Computed SHA-256 digest: #{body_digest}; given: #{received_digest}"
-    end
-
-    def verify_signature(actor)
-      message = Linzer::Message.new(@request.rack_request)
-      key = Linzer.new_rsa_v1_5_sha256_public_key(actor.public_key)
-
-      Linzer.verify(key, message, @signature)
-    rescue Linzer::Error
-      false
-    end
-
-    def matches_time_window?
-      created_time = nil
-      expires_time = nil
-
-      begin
-        created_time = Time.at(@signature.parameters['created'].to_i).utc
-
-        expires_time = Time.at(@signature.parameters['expires'].to_i).utc if @signature.parameters['expires'].present?
-      rescue ArgumentError => e
-        raise Mastodon::SignatureVerificationError, "Invalid Date header: #{e.message}"
-      end
-
-      expires_time ||= created_time + 5.minutes unless created_time.nil?
-      expires_time = [expires_time, created_time + EXPIRATION_WINDOW_LIMIT].min unless created_time.nil?
-
-      return false if created_time.present? && created_time > Time.now.utc + CLOCK_SKEW_MARGIN
-      return false if expires_time.present? && Time.now.utc > expires_time + CLOCK_SKEW_MARGIN
-
-      true
-    end
-
     def body_digest
       @body_digest ||= Digest::SHA256.base64digest(request_body)
     end
@@ -259,7 +235,7 @@ class SignedRequest
 
   attr_reader :signature
 
-  delegate :key_id, :verified?, to: :signature
+  delegate :key_id, to: :signature
 
   def initialize(request)
     @signature =
@@ -268,5 +244,31 @@ class SignedRequest
       else
         HttpSignature.new(request)
       end
+  end
+
+  def verified?(actor)
+    missing_signature_parameters = @signature.missing_signature_parameters
+    raise Mastodon::SignatureVerificationError, "Incompatible request signature. #{missing_signature_parameters.to_sentence} are required" if missing_signature_parameters
+    raise Mastodon::SignatureVerificationError, 'Unsupported signature algorithm (only rsa-sha256 and hs2019 are supported)' unless @signature.algorithm_supported?
+    raise Mastodon::SignatureVerificationError, 'Signed request date outside acceptable time window' unless matches_time_window?
+
+    @signature.verify_signature_strength!
+    @signature.verify_body_digest!
+    @signature.verified?(actor)
+  end
+
+  private
+
+  def matches_time_window?
+    created_time = @signature.created_time
+    expires_time = @signature.expires_time
+
+    expires_time ||= created_time + 5.minutes unless created_time.nil?
+    expires_time = [expires_time, created_time + EXPIRATION_WINDOW_LIMIT].min unless created_time.nil?
+
+    return false if created_time.present? && created_time > Time.now.utc + CLOCK_SKEW_MARGIN
+    return false if expires_time.present? && Time.now.utc > expires_time + CLOCK_SKEW_MARGIN
+
+    true
   end
 end
