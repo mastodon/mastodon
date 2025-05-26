@@ -1021,31 +1021,31 @@ lv:
       disallow: Neatļaut
       links:
         allow: Atļaut saiti
-        allow_provider: Atļaut publicētāju
+        allow_provider: Atļaut ievietotāju
         confirm_allow: Vai tiešām atļaut atlasītās saites?
         confirm_allow_provider: Vai tiešām atļaut atlasītos nodrošinātājus?
         confirm_disallow: Vai tiešām neatļaut atlasītās saites?
         confirm_disallow_provider: Vai tiešām neatļaut atlasītos nodrošinātājus?
         description_html: Šīs ir saites, kuras pašlaik bieži koplieto konti, no kuriem Tavs serveris redz ziņas. Tas var palīdzēt Taviem lietotājiem uzzināt, kas notiek pasaulē. Neviena saite netiek publiski rādīta, līdz tu apstiprini izdevēju. Tu vari arī atļaut vai noraidīt atsevišķas saites.
         disallow: Neatļaut saiti
-        disallow_provider: Neatļaut publicētāju
+        disallow_provider: Neatļaut ievietotāju
         no_link_selected: Neviena saite netika mainīta, jo neviena netika atlasīta
         publishers:
-          no_publisher_selected: Neviens publicētājs netika mainīts, jo neviens netika atlasīts
+          no_publisher_selected: Neviens ievietotājs netika mainīts, jo neviens netika atlasīts
         shared_by_over_week:
           one: Pēdējās nedēļas laikā kopīgoja viens cilvēks
           other: Pēdējās nedēļas laikā kopīgoja %{count} cilvēki
           zero: Pēdējās nedēļas laikā kopīgoja %{count} cilvēku
         title: Populārākās saites
-        usage_comparison: Šodien kopīgots %{today} reizes, salīdzinot ar %{yesterday} vakar
+        usage_comparison: Šodien kopīgota %{today} reizes, salīdzinot ar %{yesterday} vakar
       not_allowed_to_trend: Popularizešana nav atļauta
       only_allowed: Tikai atļautās
       pending_review: Gaida pārskatīšanu
       preview_card_providers:
-        allowed: Šī publicētāja saites var mainīties
+        allowed: Šī ievietotāja saites var kļūt izplatītas
         description_html: Tie ir domēni, no kuriem tavā serverī bieži tiek koplietotas saites. Saites nebūs publiski pieejamas, ja vien saites domēns netiks apstiprināts. Tavs apstiprinājums (vai noraidījums) attiecas arī uz apakšdomēniem.
-        rejected: Saites no šī publicētāja nebūs tendence
-        title: Publicētāji
+        rejected: Saites no šī ievietotāja nekļūs izplatītas
+        title: Ievietotāji
       rejected: Noraidīts
       statuses:
         allow: Ļaut veikt ierakstus
@@ -1060,12 +1060,12 @@ lv:
         no_status_selected: Neviena populāra ziņa netika mainīta, jo neviena netika atlasīta
         not_discoverable: Autors nav izvēlējies būt atklājams
         shared_by:
-          one: Vienreiz kopīgots vai pievienots izlasei
-          other: Kopīgots un pievienots izlasei %{friendly_count} reizes
-          zero: "%{friendly_count} reižu kopīgots vai pievienots izlasei"
+          one: "%{friendly_count} reizi kopīgots un pievienots izlasei"
+          other: "%{friendly_count} reizes kopīgots un pievienots izlasei"
+          zero: "%{friendly_count} reižu kopīgots un pievienots izlasei"
         title: Populārākās ziņas
       tags:
-        current_score: Pašreizējais rezultāts %{score}
+        current_score: Pašreizējais novērtējums %{score}
         dashboard:
           tag_accounts_measure: unikāli lietojumi
           tag_languages_dimension: Populārākās valodas
@@ -1147,7 +1147,7 @@ lv:
       body: Ir izlaistas jaunas Mastodon versijas, iespējams, vēlēsies atjaunināt!
       subject: "%{instance} ir pieejamas jaunas Mastodon versijas!"
     new_trends:
-      body: 'Tālāk norādītie vienumi ir jāpārskata, lai tos varētu parādīt publiski:'
+      body: 'Zemāk norādītie vienumi ir jāpārskata, lai tos varētu padarīt redzamus visiem:'
       new_trending_links:
         title: Populārākās saites
       new_trending_statuses:
@@ -1193,7 +1193,7 @@ lv:
     apply_for_account: Pieprasīt kontu
     captcha_confirmation:
       help_html: Ja Tev ir sarežģījumi ar CAPTCHA risināšanu, Tu vari sazināties ar mums e-pasta adresē %{email}, un mēs varēsim Tev palīdzēt.
-      hint_html: Vēl tikai viena lieta! Mums ir jāapstiprina, ka tu esi cilvēks (tas ir tāpēc, lai mēs varētu nepieļaut surogātpasta izsūtīšanu!). Atrisini tālāk norādīto CAPTCHA un noklikšķini uz "Turpināt".
+      hint_html: Vēl tikai viena lieta. Mums ir jāapstiprina, ka Tu esi cilvēks (tas ir tāpēc, lai mēs novērst mēstuļu sūtīšanu). Atrisini CAPTCHA un klikšķini uz "Turpināt"!
       title: Drošības pārbaude
     confirmations:
       awaiting_review: E-pasta adrese ir apstiprināta. %{domain} personāls tagad pārskata reģistrāciju. Tiks saņemts e-pasta ziņojums, ja viņi apstiprinās kontu.
@@ -1404,7 +1404,7 @@ lv:
       add_keyword: Pievienot atslēgvārdu
       keywords: Atslēgvārdi
       statuses: Individuālās ziņas
-      statuses_hint_html: Šis filtrs attiecas uz atsevišķām ziņām neatkarīgi no tā, vai tās atbilst tālāk norādītajiem atslēgvārdiem. <a href="%{path}">Pārskatīt vai noņemt ziņas no filtra</a>.
+      statuses_hint_html: Šis atlase attiecas uz atsevišķiem ierakstiem neatkarīgi no tā, vai tie atbilst zemāk norādītajiem atslēgvārdiem. <a href="%{path}">Pārskatīt vai noņemt ierakstus no atlasītāja</a>.
       title: Labot atlasi
     errors:
       deprecated_api_multiple_keywords: Šos parametrus šajā lietojumprogrammā nevar mainīt, jo tie attiecas uz vairāk nekā vienu filtra atslēgvārdu. Izmanto jaunāku lietojumprogrammu vai tīmekļa saskarni.
@@ -1919,7 +1919,7 @@ lv:
       unlisted_long: Redzams visiem, bet nav uzskaitīts visiem pieejamās laika joslās
   statuses_cleanup:
     enabled: Automātiski dzēst vecās ziņas
-    enabled_hint: Automātiski izdzēš tavas ziņas, tiklīdz tās sasniedz noteiktu vecuma slieksni, ja vien tās neatbilst kādam no tālāk norādītajiem izņēmumiem
+    enabled_hint: Automātiski izdzēš Tavus ierakstus, tiklīdz tie sasniedz noteiktu vecuma slieksni, ja vien tie neatbilst kādam no zemāk norādītajiem izņēmumiem
     exceptions: Izņēmumi
     explanation: Tā kā ziņu dzēšana ir dārga darbība, tā tiek veikta lēnām laika gaitā, kad serveris nav citādi aizņemts. Šī iemesla dēļ tavas ziņas var tikt izdzēstas kādu laiku pēc vecuma sliekšņa sasniegšanas.
     ignore_favs: Ignorēt izlasi
