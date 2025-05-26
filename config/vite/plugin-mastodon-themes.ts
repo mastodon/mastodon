@@ -10,7 +10,7 @@ import type { Plugin, UserConfig } from 'vite';
 export function MastodonThemes(): Plugin {
   return {
     name: 'mastodon-themes',
-    config: async (userConfig: UserConfig) => {
+    async config(userConfig) {
       if (!userConfig.root || !userConfig.envDir) {
         throw new Error('Unknown project directory');
       }
