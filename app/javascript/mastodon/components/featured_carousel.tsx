@@ -52,44 +52,33 @@ export const FeaturedCarousel: React.FC<{
   const wrapperRef = useRef<HTMLDivElement>(null);
   const handleSlideChange = useCallback(
     (direction: number) => {
-      const max = pinnedStatuses.size - 1;
-      let newIndex = slideIndex + direction;
-      if (newIndex < 0) {
-        newIndex = max;
-      } else if (newIndex > max) {
-        newIndex = 0;
-      }
-      setSlideIndex(newIndex);
-      const slide = wrapperRef.current?.children[newIndex];
-      if (slide) {
-        setCurrentSlideHeight(slide.scrollHeight);
-      }
+      setSlideIndex((prev) => {
+        const max = pinnedStatuses.size - 1;
+        let newIndex = prev + direction;
+        if (newIndex < 0) {
+          newIndex = max;
+        } else if (newIndex > max) {
+          newIndex = 0;
+        }
+        const slide = wrapperRef.current?.children[newIndex];
+        if (slide) {
+          setCurrentSlideHeight(slide.scrollHeight);
+        }
+        return newIndex;
+      });
     },
-    [pinnedStatuses.size, slideIndex],
+    [pinnedStatuses.size],
   );
 
   // Handle slide heights
   const [currentSlideHeight, setCurrentSlideHeight] = useState(
     wrapperRef.current?.scrollHeight ?? 0,
   );
-  const handleHeightChange: ResizeObserverCallback = useCallback(
-    (entries) => {
-      for (const entry of entries) {
-        const slideEle = entry.target;
-        if (!(slideEle instanceof HTMLDivElement) || !slideEle.dataset.index) {
-          continue;
-        }
-        const slideHeight = slideEle.scrollHeight;
-        const index = Number.parseInt(slideEle.dataset.index);
-        // Update the height only if the slide is the current one
-        if (slideIndex === index) {
-          setCurrentSlideHeight(slideHeight);
-        }
-      }
-    },
-    [slideIndex],
+  const observerRef = useRef<ResizeObserver>(
+    new ResizeObserver(() => {
+      handleSlideChange(0);
+    }),
   );
-  const observer = useRef(new ResizeObserver(handleHeightChange));
   const wrapperStyles = useSpring({
     x: `-${slideIndex * 100}%`,
     height: currentSlideHeight,
@@ -174,7 +163,7 @@ export const FeaturedCarousel: React.FC<{
               total: pinnedStatuses.size,
             })}
             statusId={statusId}
-            observer={observer.current}
+            observer={observerRef.current}
             active={index === slideIndex}
           />
         ))}
