@@ -89,6 +89,8 @@ Sidekiq.configure_server do |config|
     end
   end
 
+  config.logger.level = Logger.const_get(ENV.fetch('RAILS_LOG_LEVEL', 'info').upcase.to_s)
+
   SidekiqUniqueJobs::Server.configure(config)
 end
 
@@ -98,9 +100,9 @@ Sidekiq.configure_client do |config|
   config.client_middleware do |chain|
     chain.add SidekiqUniqueJobs::Middleware::Client
   end
-end
 
-Sidekiq.logger.level = ::Logger.const_get(ENV.fetch('RAILS_LOG_LEVEL', 'info').upcase.to_s)
+  config.logger.level = Logger.const_get(ENV.fetch('RAILS_LOG_LEVEL', 'info').upcase.to_s)
+end
 
 SidekiqUniqueJobs.configure do |config|
   config.enabled         = !Rails.env.test?
