@@ -25,7 +25,7 @@ class Api::V1::Timelines::RegenerateController < Api::BaseController
         #   render json: { error: "Forbidden" }, status: :forbidden and return
         # end
 
-        user.regenerate_feed!
+        user.regenerate_feed_override!
         render json: { message: "Feed regeneration started for account #{account.id}" }, status: :accepted
     end
 end
