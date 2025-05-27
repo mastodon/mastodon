@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'functions' as *;
 
 $maximum-width: 1235px;
 $fluid-breakpoint: $maximum-width + 20px;
@@ -129,8 +130,6 @@ $fluid-breakpoint: $maximum-width + 20px;
   }
 
   &::after {
-    --lighten: 12;
-
     display: block;
     position: absolute;
     width: 15px;
@@ -140,11 +139,7 @@ $fluid-breakpoint: $maximum-width + 20px;
       no-repeat 50% 50%;
     mask-size: contain;
     right: 8px;
-    background-color: hsl(from $ui-base-color h s calc(l + var(--lighten)));
+    background-color: lighten($ui-base-color, 12%);
     pointer-events: none;
-
-    .theme-mastodon-light & {
-      --lighten: -12;
-    }
   }
 }
