@@ -1,6 +1,7 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import type { ChangeEventHandler, FC } from 'react';
 
+import type { IntlShape } from 'react-intl';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { createSelector } from '@reduxjs/toolkit';
@@ -31,42 +32,13 @@ interface Rule extends BaseRule {
   translations: Record<string, BaseRule>;
 }
 
-const rulesSelector = createSelector(
-  [
-    (state: RootState) =>
-      state.server.getIn(['server', 'rules']) as ImmutableList<Rule> | null,
-  ],
-  (rules) => (rules?.toJS() ?? []) as Rule[],
-);
-
 export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
   const intl = useIntl();
-  const rules = useAppSelector(rulesSelector);
   const [locale, setLocale] = useState(intl.locale);
-  const localeOptions: SelectItem[] = useMemo(() => {
-    const langs: Record<string, SelectItem> = {
-      default: {
-        value: 'default',
-        text: intl.formatMessage(messages.defaultLocale),
-      },
-    };
-    // Use the default locale as a target to translate language names.
-    const intlLocale = new Intl.DisplayNames(intl.locale, {
-      type: 'language',
-    });
-    for (const { translations } of rules) {
-      for (const locale in translations) {
-        if (langs[locale]) {
-          continue; // Skip if already added
-        }
-        langs[locale] = {
-          value: locale,
-          text: intlLocale.of(locale) ?? locale,
-        };
-      }
-    }
-    return Object.values(langs);
-  }, [intl, rules]);
+  const rules = useAppSelector((state) => rulesSelector(state, locale));
+  const localeOptions = useAppSelector((state) =>
+    localeOptionsSelector(state, intl),
+  );
   const handleLocaleChange: ChangeEventHandler<HTMLSelectElement> = useCallback(
     (e) => {
       setLocale(e.currentTarget.value);
@@ -94,25 +66,12 @@ export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
   return (
     <Section title={intl.formatMessage(messages.rules)}>
       <ol className='rules-list'>
-        {rules.map((rule) => {
-          const firstLocale = locale.split('-')[0] ?? '';
-          /* eslint-disable @typescript-eslint/prefer-nullish-coalescing -- Safer to use conditionals. */
-          const text =
-            rule.translations[locale]?.text ||
-            rule.translations[firstLocale]?.text ||
-            rule.text;
-          const hint =
-            rule.translations[locale]?.hint ||
-            rule.translations[firstLocale]?.hint ||
-            rule.hint;
-          /* eslint-enable */
-          return (
-            <li key={rule.id}>
-              <div className='rules-list__text'>{text}</div>
-              {!!hint && <div className='rules-list__hint'>{hint}</div>}
-            </li>
-          );
-        })}
+        {rules.map((rule) => (
+          <li key={rule.id}>
+            <div className='rules-list__text'>{rule.text}</div>
+            {!!rule.hint && <div className='rules-list__hint'>{rule.hint}</div>}
+          </li>
+        ))}
       </ol>
 
       <div className='rules-languages'>
@@ -137,3 +96,61 @@ export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
     </Section>
   );
 };
+
+const selectRules = (state: RootState) => {
+  const rules = state.server.getIn([
+    'server',
+    'rules',
+  ]) as ImmutableList<Rule> | null;
+  if (!rules) {
+    return [];
+  }
+  return rules.toJS() as Rule[];
+};
+
+const rulesSelector = createSelector(
+  [selectRules, (_state, locale: string) => locale],
+  (rules, locale): Rule[] => {
+    return rules.map((rule) => {
+      const translations = rule.translations;
+      if (translations[locale]) {
+        rule.text = translations[locale].text;
+        rule.hint = translations[locale].hint;
+      }
+      const partialLocale = locale.split('-')[0];
+      if (partialLocale && translations[partialLocale]) {
+        rule.text = translations[partialLocale].text;
+        rule.hint = translations[partialLocale].hint;
+      }
+      return rule;
+    });
+  },
+);
+
+const localeOptionsSelector = createSelector(
+  [selectRules, (_state, intl: IntlShape) => intl],
+  (rules, intl): SelectItem[] => {
+    const langs: Record<string, SelectItem> = {
+      default: {
+        value: 'default',
+        text: intl.formatMessage(messages.defaultLocale),
+      },
+    };
+    // Use the default locale as a target to translate language names.
+    const intlLocale = new Intl.DisplayNames(intl.locale, {
+      type: 'language',
+    });
+    for (const { translations } of rules) {
+      for (const locale in translations) {
+        if (langs[locale]) {
+          continue; // Skip if already added
+        }
+        langs[locale] = {
+          value: locale,
+          text: intlLocale.of(locale) ?? locale,
+        };
+      }
+    }
+    return Object.values(langs);
+  },
+);
