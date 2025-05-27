@@ -880,6 +880,8 @@ sv:
     system_checks:
       database_schema_check:
         message_html: Det finns väntande databasmigreringar. Vänligen kör dem för att säkerställa att programmet beter sig som förväntat
+      elasticsearch_analysis_index_mismatch:
+        message_html: Inställningarna för indexanalys med elastisk sökning är inte uppdaterade. Var god kör <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch kluster är ohälsosamt (röd status), sökfunktioner är otillgängliga
       elasticsearch_health_yellow:
