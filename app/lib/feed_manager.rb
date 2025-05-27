@@ -278,9 +278,9 @@ class FeedManager
 
     Rails.logger.info "populate_home test log: populate_home canary"
 
-    account.statuses.limit(limit).each do |status|
-      add_to_feed(:home, account.id, status, aggregate_reblogs: aggregate)
-    end
+    # account.statuses.limit(limit).each do |status|
+    #   add_to_feed(:home, account.id, status, aggregate_reblogs: aggregate)
+    # end
 
     account.following.includes(:account_stat).find_each do |target_account|
       # This below optimization is actually invalid for us, as it relies on chronological order.
