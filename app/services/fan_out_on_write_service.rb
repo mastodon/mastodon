@@ -36,9 +36,13 @@ class FanOutOnWriteService < BaseService
 
     # then, feed_insert_worker goes and calculates the actual score for each status-user pair
     # this is where we should intervene
-    fan_out_to_local_recipients!
-    fan_out_to_public_recipients! if broadcastable?
-    fan_out_to_public_streams! if broadcastable?
+    
+    # we need to get the scores for the statuses that we just pushed 
+    # so we do not fan out to users immediately
+
+    # fan_out_to_local_recipients!
+    # fan_out_to_public_recipients! if broadcastable?
+    # fan_out_to_public_streams! if broadcastable?
   end
 
   private
