@@ -103,6 +103,7 @@ module Mastodon
       end
     end
 
+    config.x.cache_buster = config_for(:cache_buster)
     config.x.captcha = config_for(:captcha)
     config.x.mastodon = config_for(:mastodon)
     config.x.translation = config_for(:translation)

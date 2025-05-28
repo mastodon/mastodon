@@ -11,7 +11,7 @@ RSpec.describe SuspendAccountService do
 
     before do
       allow(FeedManager.instance).to receive_messages(unmerge_from_home: nil, unmerge_from_list: nil)
-      allow(Rails.configuration.x).to receive(:cache_buster_enabled).and_return(true)
+      allow(Rails.configuration.x.cache_buster).to receive(:enabled).and_return(true)
 
       local_follower.follow!(account)
       list.accounts << account

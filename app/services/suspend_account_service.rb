@@ -95,7 +95,7 @@ class SuspendAccountService < BaseService
             end
           end
 
-          CacheBusterWorker.perform_async(attachment.url(style)) if Rails.configuration.x.cache_buster_enabled
+          CacheBusterWorker.perform_async(attachment.url(style)) if Rails.configuration.x.cache_buster.enabled
         end
       end
     end
