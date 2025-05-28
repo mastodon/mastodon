@@ -220,10 +220,6 @@ class SignedRequest
       @signed_headers ||= @signature.components.reject { |c| c.start_with?('@') }
     end
 
-    def signed_headers_from_request
-      signed_headers.index_with { |h| @request.headers[h] }
-    end
-
     def body_digest
       @body_digest ||= Digest::SHA256.base64digest(request_body)
     end
