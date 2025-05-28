@@ -46,7 +46,7 @@ class FollowService < BaseService
   private
 
   def mark_home_feed_as_partial!
-    redis.set("account:#{@source_account.id}:regeneration", true, nx: true, ex: 1.day.seconds)
+    HomeFeed.new(@source_account).regeneration_in_progress!
   end
 
   def following_not_possible?

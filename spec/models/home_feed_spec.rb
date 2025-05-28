@@ -42,4 +42,42 @@ RSpec.describe HomeFeed do
       end
     end
   end
+
+  describe '#regenerating?' do
+    context 'when feed is being generated' do
+      before do
+        redis.set("account:#{account.id}:regeneration", true)
+      end
+
+      it 'returns `true`' do
+        expect(subject.regenerating?).to be true
+      end
+    end
+
+    context 'when feed is not being generated' do
+      it 'returns `false`' do
+        expect(subject.regenerating?).to be false
+      end
+    end
+  end
+
+  describe '#regeneration_in_progress!' do
+    it 'sets the corresponding key in redis' do
+      expect(redis.exists?("account:#{account.id}:regeneration")).to be false
+
+      subject.regeneration_in_progress!
+
+      expect(redis.exists?("account:#{account.id}:regeneration")).to be true
+    end
+  end
+
+  describe '#regeneration_finished!' do
+    it 'removes the corresponding key from redis' do
+      redis.set("account:#{account.id}:regeneration", true)
+
+      subject.regeneration_finished!
+
+      expect(redis.exists?("account:#{account.id}:regeneration")).to be false
+    end
+  end
 end

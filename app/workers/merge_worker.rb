@@ -31,7 +31,7 @@ class MergeWorker
       FeedManager.instance.merge_into_home(@from_account, @into_account)
     end
   ensure
-    redis.del("account:#{into_account_id}:regeneration")
+    HomeFeed.new(@into_account).regeneration_finished!
   end
 
   def merge_into_list!(into_list_id)
