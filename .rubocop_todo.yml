@@ -32,8 +32,3 @@ Metrics/PerceivedComplexity:
 Style/FetchEnvVar:
   Exclude:
     - 'config/initializers/paperclip.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
-Style/GuardClause:
-  Enabled: false
