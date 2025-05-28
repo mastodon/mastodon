@@ -39,7 +39,6 @@
       // Require Dependency Dashboard Approval for major version bumps of these Ruby packages
       matchManagers: ['bundler'],
       matchPackageNames: [
-        'rack', // Needs to be synced with Rails version
         'strong_migrations', // Requires manual upgrade
         'sidekiq', // Requires manual upgrade
         'sidekiq-unique-jobs', // Requires manual upgrades and sync with Sidekiq version
