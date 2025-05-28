@@ -27,10 +27,6 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Max: 27
 
-Rails/OutputSafety:
-  Exclude:
-    - 'config/initializers/simple_form.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowedVars.
 Style/FetchEnvVar:
