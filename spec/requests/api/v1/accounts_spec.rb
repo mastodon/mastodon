@@ -78,9 +78,26 @@ RSpec.describe '/api/v1/accounts' do
     end
 
     let(:client_app) { Fabricate(:application) }
-    let(:token) { Doorkeeper::AccessToken.find_or_create_for(application: client_app, resource_owner: nil, scopes: 'read write', use_refresh_token: false) }
+    let(:token) { Fabricate(:client_credentials_token, application: client_app, scopes: 'read write') }
     let(:agreement) { nil }
     let(:date_of_birth) { nil }
+
+    context 'when not using client credentials token' do
+      let(:token) { Fabricate(:accessible_access_token, application: client_app, scopes: 'read write', resource_owner_id: user.id) }
+
+      it 'returns http forbidden error' do
+        subject
+
+        expect(response).to have_http_status(403)
+        expect(response.content_type)
+          .to start_with('application/json')
+
+        expect(response.parsed_body)
+          .to include(
+            error: 'This method requires an client credentials authentication'
+          )
+      end
+    end
 
     context 'when age verification is enabled' do
       before do

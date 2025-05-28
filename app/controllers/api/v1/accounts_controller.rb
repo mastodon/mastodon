@@ -10,6 +10,7 @@ class Api::V1::AccountsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:create]
 
   before_action :require_user!, except: [:index, :show, :create]
+  before_action :require_client_credentials!, only: [:create]
   before_action :set_account, except: [:index, :create]
   before_action :set_accounts, only: [:index]
   before_action :check_account_approval, except: [:index, :create]
