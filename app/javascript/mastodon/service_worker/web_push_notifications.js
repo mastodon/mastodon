@@ -3,7 +3,6 @@ import { IntlMessageFormat } from 'intl-messageformat';
 import { unescape } from 'lodash';
 // see config/vite/plugins/sw-locales
 // it needs to be updated when new locale keys are used in this file
-// eslint-disable-next-line import/no-unresolved
 import locales from "virtual:mastodon-sw-locales";
 
 const MAX_NOTIFICATIONS = 5;
