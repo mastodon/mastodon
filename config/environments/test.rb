@@ -48,10 +48,11 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  # Generate random VAPID keys
-  vapid_key = Webpush.generate_key
-  config.x.vapid_private_key = vapid_key.private_key
-  config.x.vapid_public_key = vapid_key.public_key
+  # Generate random VAPID keys when needed
+  Webpush.generate_key.tap do |vapid_key|
+    config.x.vapid.private_key ||= vapid_key.private_key
+    config.x.vapid.public_key ||= vapid_key.public_key
+  end
 
   # Raise exceptions when a reorder occurs in in_batches
   config.active_record.error_on_ignored_order = true

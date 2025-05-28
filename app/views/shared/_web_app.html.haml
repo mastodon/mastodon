@@ -3,7 +3,7 @@
   - if user_signed_in?
     %meta{ name: 'initialPath', content: request.path }
 
-  %meta{ name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key }
+  %meta{ name: 'applicationServerKey', content: Rails.configuration.x.vapid.public_key }
 
   = render_initial_state
   = vite_typescript_tag 'application.ts', crossorigin: 'anonymous'

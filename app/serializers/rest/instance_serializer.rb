@@ -65,7 +65,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       },
 
       vapid: {
-        public_key: Rails.configuration.x.vapid_public_key,
+        public_key: Rails.configuration.x.vapid.public_key,
       },
 
       accounts: {

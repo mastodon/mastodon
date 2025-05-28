@@ -10,7 +10,7 @@ class REST::WebPushSubscriptionSerializer < ActiveModel::Serializer
   end
 
   def server_key
-    Rails.configuration.x.vapid_public_key
+    Rails.configuration.x.vapid.public_key
   end
 
   def policy

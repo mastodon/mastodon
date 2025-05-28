@@ -40,10 +40,10 @@ Rails.application.configure do
   # Override default file logging in favor of STDOUT logging in dev environment
   config.logger = ActiveSupport::TaggedLogging.logger($stdout, formatter: config.log_formatter)
 
-  # Generate random VAPID keys
+  # Generate random VAPID keys when needed
   Webpush.generate_key.tap do |vapid_key|
-    config.x.vapid_private_key = vapid_key.private_key
-    config.x.vapid_public_key = vapid_key.public_key
+    config.x.vapid.private_key ||= vapid_key.private_key
+    config.x.vapid.public_key ||= vapid_key.public_key
   end
 
   # Don't care if the mailer can't send.
