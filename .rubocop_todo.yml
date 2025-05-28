@@ -35,11 +35,6 @@ Style/FetchEnvVar:
     - 'config/initializers/paperclip.rb'
     - 'lib/tasks/repo.rake'
 
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
-Style/GuardClause:
-  Enabled: false
-
 # Configuration parameters: AllowedMethods.
 # AllowedMethods: respond_to_missing?
 Style/OptionalBooleanParameter:
