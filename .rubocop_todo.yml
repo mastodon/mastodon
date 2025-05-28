@@ -35,7 +35,6 @@ Rails/OutputSafety:
 # Configuration parameters: AllowedVars.
 Style/FetchEnvVar:
   Exclude:
-    - 'config/environments/production.rb'
     - 'config/initializers/2_limited_federation_mode.rb'
     - 'config/initializers/3_omniauth.rb'
     - 'config/initializers/cache_buster.rb'

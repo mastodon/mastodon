@@ -113,7 +113,7 @@ Rails.application.configure do
   enable_starttls = nil
   enable_starttls_auto = nil
 
-  case ENV['SMTP_ENABLE_STARTTLS']
+  case ENV.fetch('SMTP_ENABLE_STARTTLS', nil)
   when 'always'
     enable_starttls = true
   when 'never'
@@ -125,14 +125,14 @@ Rails.application.configure do
   end
 
   config.action_mailer.smtp_settings = {
-    port: ENV['SMTP_PORT'],
-    address: ENV['SMTP_SERVER'],
+    port: ENV.fetch('SMTP_PORT', nil),
+    address: ENV.fetch('SMTP_SERVER', nil),
     user_name: ENV['SMTP_LOGIN'].presence,
     password: ENV['SMTP_PASSWORD'].presence,
-    domain: ENV['SMTP_DOMAIN'] || ENV['LOCAL_DOMAIN'],
+    domain: ENV['SMTP_DOMAIN'] || ENV.fetch('LOCAL_DOMAIN', nil),
     authentication: ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
     ca_file: ENV['SMTP_CA_FILE'].presence || '/etc/ssl/certs/ca-certificates.crt',
-    openssl_verify_mode: ENV['SMTP_OPENSSL_VERIFY_MODE'],
+    openssl_verify_mode: ENV.fetch('SMTP_OPENSSL_VERIFY_MODE', nil),
     enable_starttls: enable_starttls,
     enable_starttls_auto: enable_starttls_auto,
     tls: ENV['SMTP_TLS'].presence && ENV['SMTP_TLS'] == 'true',
