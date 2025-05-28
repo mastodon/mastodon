@@ -158,7 +158,7 @@ export default class Card extends PureComponent {
     };
 
     if (largeImage && card.get('type') === 'video') {
-      thumbnailStyle.aspectRatio = `16 / 9`;
+      thumbnailStyle.aspectRatio = '16 / 9';
     } else if (largeImage) {
       thumbnailStyle.aspectRatio = '1.91 / 1';
     } else {

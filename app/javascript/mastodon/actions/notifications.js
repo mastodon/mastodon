@@ -9,10 +9,10 @@ import {
   importFetchedAccount,
 } from './importer';
 import { submitMarkers } from './markers';
-import { notificationsUpdate } from "./notifications_typed";
+import { notificationsUpdate } from './notifications_typed';
 import { register as registerPushNotifications } from './push_notifications';
 
-export * from "./notifications_typed";
+export * from './notifications_typed';
 
 export const NOTIFICATIONS_FILTER_SET = 'NOTIFICATIONS_FILTER_SET';
 

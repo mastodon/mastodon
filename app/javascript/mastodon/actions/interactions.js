@@ -47,7 +47,7 @@ export const UNBOOKMARK_REQUEST = 'UNBOOKMARKED_REQUEST';
 export const UNBOOKMARK_SUCCESS = 'UNBOOKMARKED_SUCCESS';
 export const UNBOOKMARK_FAIL    = 'UNBOOKMARKED_FAIL';
 
-export * from "./interactions_typed";
+export * from './interactions_typed';
 
 export function favourite(status) {
   return function (dispatch) {
