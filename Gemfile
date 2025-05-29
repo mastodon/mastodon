@@ -201,7 +201,7 @@ group :development, :test do
   gem 'faker', '~> 3.2'
 
   # Generate factory objects
-  gem 'fabrication', '~> 2.30'
+  gem 'fabrication'
 
   # Profiling tools
   gem 'memory_profiler', require: false
