@@ -1,17 +1,6 @@
 - if status.ordered_media_attachments.first.video?
   = render_video_component(status, visible: false)
 - elsif status.ordered_media_attachments.first.audio?
-  - audio = status.ordered_media_attachments.first
-  = react_component :audio,
-                    alt: audio.description,
-                    duration: audio.file.meta.dig(:original, :duration),
-                    height: 110,
-                    lang: status.language,
-                    src: audio.file.url(:original)
+  = render_audio_component(status)
 - else
-  = react_component :media_gallery,
-                    height: 343,
-                    lang: status.language,
-                    media: serialized_media_attachments(status.ordered_media_attachments),
-                    sensitive: status.sensitive?,
-                    visible: false
+  = render_media_gallery_component(status, visible: false)
