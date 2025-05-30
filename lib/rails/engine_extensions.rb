@@ -10,4 +10,13 @@ module Rails
   end
 end
 
+module Capybara
+  module CapybaraErrorExtensions
+    def message
+      "DEBUG: #{Time.now.utc}"
+    end
+  end
+end
+
 Rails::Engine.prepend(Rails::EngineExtensions)
+Capybara::CapybaraError.prepend(Capybara::CapybaraErrorExtensions) if ENV['RAILS_ENV'] =='test'
