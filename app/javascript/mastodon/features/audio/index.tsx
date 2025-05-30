@@ -442,14 +442,14 @@ export const Audio: React.FC<{
     if (typeof startMuted !== 'undefined') {
       audioRef.current.muted = startMuted;
     }
-  }, [setDuration, startTime, startVolume, startMuted, startPlaying]);
+  }, [setDuration, startTime, startVolume, startMuted]);
 
   const handleCanPlayThrough = useCallback(() => {
     if (startPlaying) {
       resumeAudio();
       void audioRef.current?.play();
     }
-  }, [startPlaying]);
+  }, [startPlaying, resumeAudio]);
 
   const seekBy = (time: number) => {
     if (!audioRef.current) {
