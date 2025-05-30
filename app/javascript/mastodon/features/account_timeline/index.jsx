@@ -173,7 +173,7 @@ class AccountTimeline extends ImmutablePureComponent {
           prepend={
             <>
               <AccountHeader accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />
-              <FeaturedCarousel accountId={this.props.accountId} />
+              {!forceEmptyState && <FeaturedCarousel accountId={this.props.accountId} />}
             </>
         }
           alwaysPrepend

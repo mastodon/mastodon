@@ -912,7 +912,7 @@ export const AccountHeader: React.FC<{
             <div className='account__header__badges'>{badges}</div>
           )}
 
-          {account.id !== me && signedIn && (
+          {account.id !== me && signedIn && !(suspended || hidden) && (
             <FamiliarFollowers accountId={accountId} />
           )}
 
