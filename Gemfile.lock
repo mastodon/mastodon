@@ -636,8 +636,9 @@ GEM
     rack (3.1.15)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
-    rack-cors (2.0.2)
-      rack (>= 2.0.0)
+    rack-cors (3.0.0)
+      logger
+      rack (>= 3.0.14)
     rack-oauth2 (2.2.1)
       activesupport
       attr_required
@@ -1046,7 +1047,7 @@ DEPENDENCIES
   puma (~> 6.3)
   pundit (~> 2.3)
   rack-attack (~> 6.6)
-  rack-cors (~> 2.0)
+  rack-cors
   rack-test (~> 2.1)
   rails (~> 8.0)
   rails-i18n (~> 8.0)
