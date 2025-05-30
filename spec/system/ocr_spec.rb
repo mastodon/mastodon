@@ -17,18 +17,16 @@ RSpec.describe 'OCR', :attachment_processing, :inline_jobs, :js, :streaming do
     expect(page)
       .to have_css('div.app-holder')
 
-    within('.compose-form') do
-      attach_file('file-upload-input', file_fixture('text.png'), make_visible: true)
+    attach_file('file-upload-input', file_fixture('text.png'), make_visible: true)
+    expect(page)
+      .to have_css('.compose-form__upload__actions button', text: 'Edit')
 
-      within('.compose-form__upload') do
-        click_on('Edit')
-      end
-    end
+    within('.compose-form__upload') { click_on('Edit') }
     expect(page)
       .to have_content('Add alt text')
 
     click_on('Add text from image')
-
-    expect(page).to have_css('#description', text: /Hello Mastodon\s*/, wait: 10)
+    expect(page)
+      .to have_css('#description', text: /Hello Mastodon\s*/, wait: 10)
   end
 end
