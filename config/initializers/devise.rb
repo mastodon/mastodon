@@ -377,7 +377,7 @@ Devise.setup do |config|
     config.usernamefield          = nil
     config.emailfield             = 'email'
     config.check_at_sign          = true
-    config.pam_default_suffix     = ENV.fetch('PAM_EMAIL_DOMAIN') { ENV['LOCAL_DOMAIN'] }
+    config.pam_default_suffix     = ENV.fetch('PAM_EMAIL_DOMAIN') { ENV.fetch('LOCAL_DOMAIN', nil) }
     config.pam_default_service    = ENV.fetch('PAM_DEFAULT_SERVICE') { 'rpam' }
     config.pam_controlled_service = ENV.fetch('PAM_CONTROLLED_SERVICE', nil).presence
   end
