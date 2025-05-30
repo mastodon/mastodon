@@ -10,13 +10,12 @@ RSpec.describe 'OCR', :attachment_processing, :inline_jobs, :js, :streaming do
   let(:confirmed_at)        { Time.zone.now }
   let(:finished_onboarding) { true }
 
-  before do
-    as_a_logged_in_user
-    visit root_path
-  end
+  before { as_a_logged_in_user }
 
   it 'can recognize text in a media attachment' do
-    expect(page).to have_css('div.app-holder')
+    visit root_path
+    expect(page)
+      .to have_css('div.app-holder')
 
     within('.compose-form') do
       attach_file('file-upload-input', file_fixture('text.png'), make_visible: true)
@@ -25,6 +24,8 @@ RSpec.describe 'OCR', :attachment_processing, :inline_jobs, :js, :streaming do
         click_on('Edit')
       end
     end
+    expect(page)
+      .to have_content('Add alt text')
 
     click_on('Add text from image')
 
