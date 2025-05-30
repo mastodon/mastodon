@@ -35,13 +35,16 @@ RSpec.describe 'Log out' do
       within '.navigation-bar' do
         click_on 'Menu'
       end
+      expect(page)
+        .to have_content('Logout')
 
       within '.dropdown-menu' do
         click_on 'Logout'
       end
+      expect(page)
+        .to have_content('Are you sure')
 
       click_on 'Log out'
-
       expect(page)
         .to have_title(I18n.t('auth.login'))
         .and have_current_path('/auth/sign_in')
