@@ -1,5 +1,11 @@
 import type { ComponentPropsWithRef } from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -13,6 +19,7 @@ import { useDrag } from '@use-gesture/react';
 import { expandAccountFeaturedTimeline } from '@/mastodon/actions/timelines';
 import { IconButton } from '@/mastodon/components/icon_button';
 import StatusContainer from '@/mastodon/containers/status_container';
+import { usePrevious } from '@/mastodon/hooks/usePrevious';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
@@ -74,6 +81,7 @@ export const FeaturedCarousel: React.FC<{
   const [currentSlideHeight, setCurrentSlideHeight] = useState(
     wrapperRef.current?.scrollHeight ?? 0,
   );
+  const previousSlideHeight = usePrevious(currentSlideHeight);
   const observerRef = useRef<ResizeObserver>(
     new ResizeObserver(() => {
       handleSlideChange(0);
@@ -82,8 +90,10 @@ export const FeaturedCarousel: React.FC<{
   const wrapperStyles = useSpring({
     x: `-${slideIndex * 100}%`,
     height: currentSlideHeight,
+    // Don't animate from zero to the height of the initial slide
+    immediate: !previousSlideHeight,
   });
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Update slide height when the component mounts
     if (currentSlideHeight === 0) {
       handleSlideChange(0);
