@@ -291,7 +291,7 @@ RSpec.describe MediaAttachment, :attachment_processing do
     let(:media) { Fabricate(:media_attachment) }
 
     before do
-      allow(Rails.configuration.x).to receive(:cache_buster_enabled).and_return(true)
+      allow(Rails.configuration.x.cache_buster).to receive(:enabled).and_return(true)
     end
 
     it 'queues CacheBusterWorker jobs' do
