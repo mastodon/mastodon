@@ -50,6 +50,7 @@ RSpec.describe StatusCacheHydrator do
         it 'renders the same attributes as full render' do
           expect(subject).to eql(compare_to_hash)
           expect(subject[:quote]).to_not be_nil
+          expect(subject[:quote_status]).to be_nil
         end
       end
 
@@ -63,6 +64,48 @@ RSpec.describe StatusCacheHydrator do
         it 'renders the same attributes as full render' do
           expect(subject).to eql(compare_to_hash)
           expect(subject[:quote]).to_not be_nil
+        end
+
+        context 'when the quote post is recursive' do
+          let(:quoted_status) { status }
+
+          it 'renders the same attributes as full render' do
+            expect(subject).to eql(compare_to_hash)
+            expect(subject[:quote]).to_not be_nil
+          end
+        end
+
+        context 'when the quoted post has been deleted' do
+          let(:quoted_status) { nil }
+
+          it 'returns the same attributes as full render' do
+            expect(subject).to eql(compare_to_hash)
+            expect(subject[:quote]).to_not be_nil
+            expect(subject[:quote_status]).to be_nil
+          end
+        end
+
+        context 'when the quoted post author has blocked the viewer' do
+          before do
+            quoted_status.account.block!(account)
+          end
+
+          it 'returns the same attributes as full render' do
+            expect(subject).to eql(compare_to_hash)
+            expect(subject[:quote]).to_not be_nil
+            expect(subject[:quote_status]).to be_nil
+          end
+        end
+
+        context 'when the viewer has blocked the quoted post author' do
+          before do
+            account.block!(quoted_status.account)
+          end
+
+          it 'returns the same attributes as full render' do
+            expect(subject).to eql(compare_to_hash)
+            expect(subject[:quote]).to_not be_nil
+          end
         end
 
         context 'when the quoted post has been favourited' do
