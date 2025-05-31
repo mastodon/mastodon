@@ -17,6 +17,7 @@ module Account::Counters
            :followers_count,
            :followers_count=,
            :last_status_at,
+           :used_languages,
            to: :account_stat
 
   # @param [Symbol] key
