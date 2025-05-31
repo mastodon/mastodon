@@ -32,7 +32,7 @@ Capybara.javascript_driver = :headless_chrome
 
 # Some of the flaky tests seem to be caused by github runners being too slow for the
 # default timeout of 2 seconds
-Capybara.default_max_wait_time = 8
+Capybara.default_max_wait_time = 20
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do

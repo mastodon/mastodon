@@ -2,14 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Log out' do
+RSpec.describe 'Logging out' do
   include ProfileStories
 
-  before do
-    as_a_logged_in_user
-  end
+  before { as_a_logged_in_user }
 
-  describe 'Logging out from the preferences' do
+  context 'when using the preferences area' do
     it 'logs the user out' do
       visit settings_path
 
@@ -23,7 +21,7 @@ RSpec.describe 'Log out' do
     end
   end
 
-  describe 'Logging out from the JS app', :js, :streaming do
+  context 'when using the JS dropdown', :js, :streaming do
     it 'logs the user out' do
       # The frontend tries to load announcements after a short delay, but the session might be expired by then, and the browser will output an error.
       ignore_js_error(/Failed to load resource: the server responded with a status of 422/)
@@ -35,13 +33,16 @@ RSpec.describe 'Log out' do
       within '.navigation-bar' do
         click_on 'Menu'
       end
+      expect(page)
+        .to have_content('Logout')
 
       within '.dropdown-menu' do
         click_on 'Logout'
       end
+      expect(page)
+        .to have_content('Are you sure')
 
       click_on 'Log out'
-
       expect(page)
         .to have_title(I18n.t('auth.login'))
         .and have_current_path('/auth/sign_in')
