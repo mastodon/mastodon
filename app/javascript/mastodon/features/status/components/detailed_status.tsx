@@ -44,7 +44,8 @@ export const DetailedStatus: React.FC<{
   status: any;
   onOpenMedia?: (status: any, index: number, lang: string) => void;
   onOpenVideo?: (status: any, lang: string, options: VideoModalOptions) => void;
-  onTranslate?: (status: any) => void;
+  onTranslate?: (status: any, sourceLanguage?: string) => void;
+  onUndoStatusTranslation?: (status: any) => void;
   measureHeight?: boolean;
   onHeightChange?: () => void;
   domain: string;
@@ -59,6 +60,7 @@ export const DetailedStatus: React.FC<{
   onOpenMedia,
   onOpenVideo,
   onTranslate,
+  onUndoStatusTranslation,
   measureHeight,
   onHeightChange,
   domain,
@@ -116,9 +118,16 @@ export const DetailedStatus: React.FC<{
     [_measureHeight],
   );
 
-  const handleTranslate = useCallback(() => {
-    if (onTranslate) onTranslate(status);
-  }, [onTranslate, status]);
+  const handleTranslate = useCallback(
+    (sourceLanguage?: string) => {
+      if (onTranslate) onTranslate(status, sourceLanguage);
+    },
+    [onTranslate, status],
+  );
+
+  const handleUndoStatusTranslation = useCallback(() => {
+    if (onUndoStatusTranslation) onUndoStatusTranslation(status);
+  }, [onUndoStatusTranslation, status]);
 
   if (!properStatus) {
     return null;
@@ -374,6 +383,7 @@ export const DetailedStatus: React.FC<{
             <StatusContent
               status={status}
               onTranslate={handleTranslate}
+              onUndoStatusTranslation={handleUndoStatusTranslation}
               {...(statusContentProps as any)}
             />
 
