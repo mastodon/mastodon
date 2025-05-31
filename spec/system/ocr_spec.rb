@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'OCR', :attachment_processing, :inline_jobs, :js, :streaming do
+RSpec.describe 'Recognizing text', :attachment_processing, :inline_jobs, :js, :streaming do
   include ProfileStories
 
   let(:email)               { 'test@example.com' }
@@ -12,7 +12,7 @@ RSpec.describe 'OCR', :attachment_processing, :inline_jobs, :js, :streaming do
 
   before { as_a_logged_in_user }
 
-  it 'can recognize text in a media attachment' do
+  it 'uses text OCR during media attachment' do
     visit root_path
     expect(page)
       .to have_css('div.app-holder')
