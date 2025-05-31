@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -26,6 +26,7 @@ export const Upload: React.FC<{
   tall?: boolean;
   wide?: boolean;
 }> = ({ id, dragging, overlay, tall, wide }) => {
+  const [clicked, setClicked] = useState(false);
   const dispatch = useAppDispatch();
   const media = useAppSelector((state) =>
     (
@@ -46,7 +47,8 @@ export const Upload: React.FC<{
     dispatch(
       openModal({ modalType: 'FOCAL_POINT', modalProps: { mediaId: id } }),
     );
-  }, [dispatch, id]);
+    setClicked(true);
+  }, [dispatch, id, setClicked]);
 
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
@@ -109,7 +111,7 @@ export const Upload: React.FC<{
             className='icon-button'
             onClick={handleFocalPointClick}
           >
-            <Icon id='edit' icon={EditIcon} />{' '}
+            {!clicked && <Icon id='edit' icon={EditIcon} />}{' '}
             <FormattedMessage id='upload_form.edit' defaultMessage='Edit' />
           </button>
         </div>
