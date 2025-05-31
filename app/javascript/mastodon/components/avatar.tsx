@@ -3,13 +3,17 @@ import { useState, useCallback } from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { Blurhash } from 'mastodon/components/blurhash';
 import { useHovering } from 'mastodon/hooks/useHovering';
-import { autoPlayGif } from 'mastodon/initial_state';
+import { autoPlayGif, useBlurhash } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 
 interface Props {
   account:
-    | Pick<Account, 'id' | 'acct' | 'avatar' | 'avatar_static'>
+    | Pick<
+        Account,
+        'id' | 'acct' | 'avatar' | 'avatar_static' | 'avatar_blurhash'
+      >
     | undefined; // FIXME: remove `undefined` once we know for sure its always there
   size?: number;
   style?: React.CSSProperties;
@@ -60,6 +64,14 @@ export const Avatar: React.FC<Props> = ({
       onMouseLeave={handleMouseLeave}
       style={style}
     >
+      {(loading || error) && account?.avatar_blurhash && (
+        <Blurhash
+          hash={account.avatar_blurhash}
+          className='account__avatar__preview'
+          dummy={!useBlurhash}
+        />
+      )}
+
       {src && !error && (
         <img src={src} alt='' onLoad={handleLoad} onError={handleError} />
       )}
