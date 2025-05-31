@@ -50,7 +50,7 @@ module Mastodon
     end
 
     def repository
-      source_configuration[:repository]
+      source_configuration[:repository] || 'mastodon/mastodon'
     end
 
     def source_base_url
