@@ -10,7 +10,7 @@ nan:
     followers:
       other: 跟tuè ê
     following: Leh跟tuè
-    instance_actor_flash: Tsit ê口座是虛ê，用來代表tsit臺服侍器，毋是個人用者ê。伊用來做聯邦ê路用，毋好kā停權。
+    instance_actor_flash: Tsit ê口座是虛ê，用來代表tsit臺服侍器，毋是個人用者ê。伊用來做聯邦ê路用，毋好kā伊ê權限停止。
     last_active: 頂kái活動ê時間
     link_verified_on: Tsit ê連結ê所有權佇 %{date} 受檢查
     nothing_here: Tsia內底無物件！
@@ -24,7 +24,7 @@ nan:
     account_actions:
       action: 執行動作
       already_silenced: Tsit ê口座有受著限制。
-      already_suspended: Tsit ê口座已經受停權。
+      already_suspended: Tsit ê口座ê權限已經hōo lâng停止。
       title: Kā %{acct} 做審核ê動作
     account_moderation_notes:
       create: 留記錄
@@ -110,13 +110,30 @@ nan:
       previous_strikes_description_html:
         other: Tsit ê口座有 <strong>%{count}</strong> kái警告。
       promote: 權限the̍h懸
+      protocol: 協定
+      public: 公開ê
+      push_subscription_expires: 訂PuSH ê期間過ah
+      redownload: 重頭整理個人檔案
+      redownloaded_msg: Tuì來源站kā %{username} ê個人資料成功重頭整理
+      reject: 拒絕
+      rejected_msg: 成功拒絕 %{username} ê註冊申請ah
+      remote_suspension_irreversible: Tsit ê口座ê資料已經hōo lâng thâi掉，bē當復原。
+      remote_suspension_reversible_hint_html: Tsit ê口座ê權限佇tsit ê服侍器hōo lâng停止ah，資料ē佇 %{date} lóng總thâi掉。佇hit日前，遠距離ê服侍器ē當復原tsit ê口座，無任何pháinn作用。Nā lí想beh liâm-mī thâi掉tsit ê口座ê任何資料，ē當佇下跤操作。
       remove_avatar: Thâi掉標頭
+      remove_header: Thâi掉封面ê圖
       removed_avatar_msg: 成功thâi掉 %{username} ê 標頭影像
+      removed_header_msg: 成功thâi掉 %{username} ê封面ê圖
+      resend_confirmation:
+        already_confirmed: Tsit ê用者有受tio̍h確認
+        send: 重送確認ê連結
+        success: 確認連結傳成功ah！
       reset: 重頭設
       reset_password: Kā密碼重頭設
       resubscribe: 重頭訂
       role: 角色
       search: Tshiau-tshuē
+      search_same_email_domain: 其他電子phue域名相kâng ê用者
+      search_same_ip: 其他IP相kâng ê用者
       security: 安全
       security_measures:
         only_password: Kan-ta用密碼
@@ -126,13 +143,21 @@ nan:
       shared_inbox_url: 做伙用ê收件kheh-á (Shared Inbox) ê URL
       show:
         created_reports: 檢舉記錄
+        targeted_reports: Hōo別lâng檢舉
+      silence: 靜音
+      silenced: 受靜音
+      statuses: PO文
+      strikes: Khah早ê處份
+      subscribe: 訂
+      suspend: 中止權限
+      suspended: 權限中止ah
       unblocked_email_msg: 成功取消封鎖 %{username} ê電子phue地址
       unconfirmed_email: 無驗證ê電子phue
       undo_sensitized: 取消強制標做敏感ê
       undo_silenced: 取消限制
-      undo_suspension: 取消停權
+      undo_suspension: 取消停止權限
       unsubscribe: 取消訂
-      unsuspended_msg: 成功kā %{username} ê口座取消停權
+      unsuspended_msg: 成功kā %{username} ê口座取消停止權限
       username: 用者ê名
       view_domain: 看域名ê摘要
       warn: 警告
