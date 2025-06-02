@@ -26,6 +26,8 @@ class FeaturedTag < ApplicationRecord
 
   normalizes :name, with: ->(name) { name.strip.delete_prefix('#') }
 
+  scope :by_name, ->(name) { joins(:tag).where(tag: { name: HashtagNormalizer.new.normalize(name) }) }
+
   before_validation :set_tag
 
   before_create :reset_data
