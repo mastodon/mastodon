@@ -772,17 +772,26 @@ ja:
       title: ロール
     rules:
       add_new: ルールを追加
+      add_translation: 翻訳を追加
       delete: 削除
       description_html: たいていの人が利用規約を読んで同意したと言いますが、普通は問題が発生するまで読みません。<strong>箇条書きにして、サーバーのルールが一目で分かるようにしましょう</strong>。個々のルールは短くシンプルなものにし、多くの項目に分割しないようにしましょう。
       edit: ルールを編集
       empty: サーバーのルールが定義されていません。
+      move_down: 下へ移動
+      move_up: 上へ移動
       title: サーバーのルール
+      translation: 翻訳
+      translations: 翻訳
+      translations_explanation: オプションとしてルールに翻訳を追加できます。翻訳されたバージョンがない場合、デフォルトの値が表示されます。表示される翻訳がデフォルトの値と対応していることを常に確認しておいてください。
     settings:
       about:
         manage_rules: サーバーのルールを管理
         preamble: サーバーの運営、管理、資金調達の方法について、詳細な情報を提供します。
         rules_hint: ユーザーが守るべきルールのための専用エリアがあります。
         title: このサーバーについて
+      allow_referrer_origin:
+        desc: ユーザが外部サイトへのリンクをクリックする際、ユーザーのブラウザはあなたのMastodonサーバーのアドレスを紹介者として送信することがあります。 これによりあなたのユーザーが特定されてしまう場合、例えば個人用のMastodonサーバーなどである場合などは無効にしてください。
+        title: 外部サイトが Mastodon サーバーをトラフィックソースとして表示することを許可する
       appearance:
         preamble: ウェブインターフェースをカスタマイズします。
         title: 外観
@@ -802,6 +811,7 @@ ja:
       discovery:
         follow_recommendations: おすすめフォロー
         preamble: Mastodon を知らないユーザーを取り込むには、興味深いコンテンツを浮上させることが重要です。サーバー上で様々なディスカバリー機能がどのように機能するかを制御します。
+        privacy: プライバシー
         profile_directory: ディレクトリ
         public_timelines: 公開タイムライン
         publish_statistics: 統計情報を公開する
@@ -888,6 +898,8 @@ ja:
     system_checks:
       database_schema_check:
         message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch インデックスアナライザの設定が古くなっています。 <code>tootctl search deploy --only-mapping --only=%{value}</code>を実行してください
       elasticsearch_health_red:
         message_html: 'Elasticsearchクラスターに異常があります(status: red)。検索機能が利用できなくなっています'
       elasticsearch_health_yellow:
@@ -1812,6 +1824,10 @@ ja:
       limit: 固定できる投稿数の上限に達しました
       ownership: 他人の投稿を固定することはできません
       reblog: ブーストを固定することはできません
+    quote_policies:
+      followers: フォロワーとメンションされたユーザー
+      nobody: メンションされたユーザーのみ
+      public: 全員
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: ダイレクト
@@ -1865,6 +1881,11 @@ ja:
     does_not_match_previous_name: 以前の名前と一致しません
   terms_of_service:
     title: サービス利用規約
+  terms_of_service_interstitial:
+    future_preamble_html: サービス利用規約にいくつかの変更が加えられています。これは <strong>%{date}</strong>に適用されます。 更新された条件を確認することをお勧めします。
+    past_preamble_html: 前回の訪問時から利用規約が変更されました。更新された条件を確認することをお勧めします。
+    review_link: 利用規約を確認する
+    title: "%{domain} の利用規約が変更されています"
   themes:
     contrast: Mastodon (ハイコントラスト)
     default: Mastodon (ダーク)

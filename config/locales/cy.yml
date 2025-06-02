@@ -332,7 +332,7 @@ cy:
         title: Cyhoeddiad newydd
       preview:
         disclaimer: Gan nad oes modd i ddefnyddwyr eu hosgoi, dylai hysbysiadau e-bost gael eu cyfyngu i gyhoeddiadau pwysig fel tor-data personol neu hysbysiadau cau gweinydd.
-        explanation_html: 'Bydd yr e-bost yn cael ei anfon at <strong>%{display_count} defnyddiwr</strong> . Bydd y testun canlynol yn cael ei gynnwys yn yr e-bost:'
+        explanation_html: 'Bydd yr e-bost yn cael ei anfon at <strong>%{display_count} defnyddiwr</strong>. Bydd y testun canlynol yn cael ei gynnwys yn yr e-bost:'
         title: Hysbysiad rhagolwg cyhoeddiad
       publish: Cyhoeddi
       published_msg: Cyhoeddiad wedi'i gyhoeddi'n llwyddiannus!
@@ -1352,7 +1352,7 @@ cy:
   date:
     formats:
       default: "%b %d %Y"
-      with_month_name: "%b %d %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}a"
@@ -1725,7 +1725,7 @@ cy:
     unsubscribe:
       action: Iawn, dad-danysgrifio
       complete: Dad-danysgrifiwyd
-      confirmation_html: Ydych chi'n siŵr eich bod am ddad-danysgrifio rhag derbyn %{type} Mastodon ar %{domain} i'ch e-bost yn %{email}? Gallwch ail-danysgrifio o'ch <a href="%{settings_path}">gosodiadau hysbysu e-bost</a> rhywbryd eto .
+      confirmation_html: Ydych chi'n siŵr eich bod am ddad-danysgrifio rhag derbyn %{type} Mastodon ar %{domain} i'ch e-bost yn %{email}? Gallwch ail-danysgrifio o'ch <a href="%{settings_path}">gosodiadau hysbysu e-bost</a> rhywbryd eto.
       emails:
         notification_emails:
           favourite: e-bost hysbysu hoffi
@@ -2169,7 +2169,7 @@ cy:
       agreement: Drwy barhau i ddefnyddio %{domain}, rydych yn cytuno i'r telerau hyn. Os ydych yn anghytuno â'r telerau a ddiweddarwyd, gallwch derfynu eich cytundeb â %{domain} ar unrhyw adeg drwy ddileu eich cyfrif.
       changelog: 'Yn fyr, dyma beth mae''r diweddariad hwn yn ei olygu i chi:'
       description: 'Rydych yn derbyn yr e-bost hwn oherwydd ein bod yn gwneud rhai newidiadau i''n telerau gwasanaeth yn %{domain}. Bydd y diweddariadau hyn yn dod i rym ar %{date}. Rydym yn eich annog i adolygu''r telerau diweddaraf yn llawn yma:'
-      description_html: Rydych yn derbyn yr e-bost hwn oherwydd ein bod yn gwneud rhai newidiadau i'n telerau gwasanaeth yn %{domain}. Bydd y diweddariadau hyn yn dod i rym ar <strong>%{date}</strong> . Rydym yn eich annog i adolygu'r <a href="%{path}" target="_blank">telerau diweddaraf yn llawn yma</a> .
+      description_html: Rydych yn derbyn yr e-bost hwn oherwydd ein bod yn gwneud rhai newidiadau i'n telerau gwasanaeth yn %{domain}. Bydd y diweddariadau hyn yn dod i rym ar <strong>%{date}</strong>. Rydym yn eich annog i adolygu'r <a href="%{path}" target="_blank">telerau diweddaraf yn llawn yma</a>.
       sign_off: Tîm %{domain}
       subject: Diweddariadau i'n telerau gwasanaeth
       subtitle: Mae telerau gwasanaeth %{domain} yn newid
