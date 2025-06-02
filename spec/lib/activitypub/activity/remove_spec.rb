@@ -31,5 +31,33 @@ RSpec.describe ActivityPub::Activity::Remove do
           .to change { sender.pinned?(status) }.to(false)
       end
     end
+
+    context 'when removing a featured tag' do
+      let(:tag) { Fabricate(:tag) }
+
+      let(:json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Remove',
+          actor: ActivityPub::TagManager.instance.uri_for(sender),
+          object: {
+            type: 'Hashtag',
+            name: "##{tag.display_name}",
+            href: "https://example.com/tags/#{tag.name}",
+          },
+          target: sender.featured_collection_url,
+        }.deep_stringify_keys
+      end
+
+      before do
+        sender.featured_tags.find_or_create_by!(name: tag.name)
+      end
+
+      it 'removes a pin' do
+        expect { subject.perform }
+          .to change { sender.featured_tags.exists?(tag: tag) }.to(false)
+      end
+    end
   end
 end
