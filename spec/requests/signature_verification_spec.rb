@@ -352,7 +352,7 @@ RSpec.describe 'signature verification concern' do
     end
   end
 
-  context 'with an HTTP Message Signature (final RFC version)' do
+  context 'with an HTTP Message Signature (final RFC version)', feature: :http_message_signatures do
     context 'with a known account' do
       let!(:actor) { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, public_key: actor_keypair.public_key.to_pem) }
 
