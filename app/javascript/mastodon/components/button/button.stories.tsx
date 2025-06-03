@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { fn } from 'storybook/test';
+import { fn, expect } from 'storybook/test';
 
 import { Button } from '.';
 
@@ -34,31 +34,49 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const buttonTest: Story['play'] = async ({ args, canvas, userEvent }) => {
+  await userEvent.click(canvas.getByRole('button'));
+  await expect(args.onClick).toHaveBeenCalled();
+};
+
+const disabledButtonTest: Story['play'] = async ({
+  args,
+  canvas,
+  userEvent,
+}) => {
+  await userEvent.click(canvas.getByRole('button'));
+  await expect(args.onClick).not.toHaveBeenCalled();
+};
+
 export const Primary: Story = {
   args: {
-    children: 'Button',
+    children: 'Primary button',
   },
+  play: buttonTest,
 };
 
 export const Secondary: Story = {
   args: {
     secondary: true,
-    children: 'Button',
+    children: 'Secondary button',
   },
+  play: buttonTest,
 };
 
 export const Compact: Story = {
   args: {
     compact: true,
-    children: 'Button',
+    children: 'Compact button',
   },
+  play: buttonTest,
 };
 
 export const Dangerous: Story = {
   args: {
     dangerous: true,
-    children: 'Button',
+    children: 'Dangerous button',
   },
+  play: buttonTest,
 };
 
 export const PrimaryDisabled: Story = {
@@ -66,6 +84,7 @@ export const PrimaryDisabled: Story = {
     ...Primary.args,
     disabled: true,
   },
+  play: disabledButtonTest,
 };
 
 export const SecondaryDisabled: Story = {
@@ -73,4 +92,5 @@ export const SecondaryDisabled: Story = {
     ...Secondary.args,
     disabled: true,
   },
+  play: disabledButtonTest,
 };

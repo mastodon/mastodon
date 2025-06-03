@@ -256,6 +256,8 @@ export default tseslint.config([
             'app/javascript/**/__tests__/**',
             'app/javascript/**/*.stories.ts',
             'app/javascript/**/*.stories.tsx',
+            'app/javascript/**/*.test.ts',
+            'app/javascript/**/*.test.tsx',
             '.storybook/**/*.ts',
           ],
         },
