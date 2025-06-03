@@ -10,6 +10,7 @@ const meta = {
     secondary: false,
     compact: false,
     dangerous: false,
+    disabled: false,
     onClick: fn(),
   },
   argTypes: {
@@ -57,5 +58,19 @@ export const Dangerous: Story = {
   args: {
     dangerous: true,
     children: 'Button',
+  },
+};
+
+export const PrimaryDisabled: Story = {
+  args: {
+    ...Primary.args,
+    disabled: true,
+  },
+};
+
+export const SecondaryDisabled: Story = {
+  args: {
+    ...Secondary.args,
+    disabled: true,
   },
 };
