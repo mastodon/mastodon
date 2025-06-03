@@ -7,7 +7,7 @@ interface Props {
   id: string;
   icon: IconProp;
   count: number;
-  issueBadge: boolean;
+  issueBadge?: boolean;
   className: string;
 }
 export const IconWithBadge: React.FC<Props> = ({
