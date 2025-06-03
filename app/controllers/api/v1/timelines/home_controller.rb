@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
+  include BackgroundJobsConcern
+
   before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: [:show]
   before_action :require_user!, only: [:show]
 
@@ -11,6 +13,8 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
       @statuses = load_statuses
       @relationships = StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
     end
+
+    add_background_job_header_for("account:#{current_account.id}:regeneration", retry_seconds: 5)
 
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
