@@ -27,14 +27,7 @@ module FormattingHelper
   module_function :extract_status_plain_text
 
   def status_content_format(status)
-    MastodonOTELTracer.in_span('HtmlAwareFormatter rendering') do |span|
-      span.add_attributes(
-        'app.formatter.content.type' => 'status',
-        'app.formatter.content.origin' => status.local? ? 'local' : 'remote'
-      )
-
-      html_aware_format(status.text, status.local?, preloaded_accounts: [status.account] + (status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : []))
-    end
+    html_aware_format(status.text, status.local?, preloaded_accounts: [status.account] + (status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : []))
   end
 
   def rss_status_content_format(status)
@@ -46,14 +39,7 @@ module FormattingHelper
   end
 
   def account_bio_format(account)
-    MastodonOTELTracer.in_span('HtmlAwareFormatter rendering') do |span|
-      span.add_attributes(
-        'app.formatter.content.type' => 'account_bio',
-        'app.formatter.content.origin' => account.local? ? 'local' : 'remote'
-      )
-
-      html_aware_format(account.note, account.local?)
-    end
+    html_aware_format(account.note, account.local?)
   end
 
   def account_field_value_format(field, with_rel_me: true)
