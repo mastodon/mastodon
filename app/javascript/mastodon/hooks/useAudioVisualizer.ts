@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const normalizeFrequencies = (arr: Float32Array): number[] => {
   return new Array(...arr).map((value: number) => {
@@ -10,12 +10,17 @@ const normalizeFrequencies = (arr: Float32Array): number[] => {
   });
 };
 
-export const useAudioVisualizer = (
-  ref: React.MutableRefObject<HTMLAudioElement | null>,
-  numBands: number,
-) => {
-  const audioContextRef = useRef<AudioContext>();
-  const sourceRef = useRef<MediaElementAudioSourceNode>();
+interface AudioVisualiserOptions {
+  audioContextRef: React.MutableRefObject<AudioContext | undefined>;
+  sourceRef: React.MutableRefObject<MediaElementAudioSourceNode | undefined>;
+  numBands: number;
+}
+
+export const useAudioVisualizer = ({
+  audioContextRef,
+  sourceRef,
+  numBands,
+}: AudioVisualiserOptions) => {
   const analyzerRef = useRef<AnalyserNode>();
 
   const [frequencyBands, setFrequencyBands] = useState<number[]>(
@@ -23,47 +28,31 @@ export const useAudioVisualizer = (
   );
 
   useEffect(() => {
-    if (!audioContextRef.current) {
-      audioContextRef.current = new AudioContext();
+    if (audioContextRef.current) {
       analyzerRef.current = audioContextRef.current.createAnalyser();
       analyzerRef.current.smoothingTimeConstant = 0.6;
       analyzerRef.current.fftSize = 2048;
     }
-
-    return () => {
-      if (audioContextRef.current) {
-        void audioContextRef.current.close();
-      }
-    };
-  }, []);
+  }, [audioContextRef]);
 
   useEffect(() => {
-    if (
-      audioContextRef.current &&
-      analyzerRef.current &&
-      !sourceRef.current &&
-      ref.current
-    ) {
-      sourceRef.current = audioContextRef.current.createMediaElementSource(
-        ref.current,
-      );
+    if (analyzerRef.current && sourceRef.current) {
       sourceRef.current.connect(analyzerRef.current);
-      sourceRef.current.connect(audioContextRef.current.destination);
     }
+    const currentSource = sourceRef.current;
 
     return () => {
-      if (sourceRef.current) {
-        sourceRef.current.disconnect();
+      if (currentSource && analyzerRef.current) {
+        currentSource.disconnect(analyzerRef.current);
       }
     };
-  }, [ref]);
+  }, [audioContextRef, sourceRef]);
 
   useEffect(() => {
-    const source = sourceRef.current;
     const analyzer = analyzerRef.current;
     const context = audioContextRef.current;
 
-    if (!source || !analyzer || !context) {
+    if (!analyzer || !context) {
       return;
     }
 
@@ -94,19 +83,7 @@ export const useAudioVisualizer = (
     return () => {
       clearInterval(updateInterval);
     };
-  }, [numBands]);
+  }, [numBands, audioContextRef]);
 
-  const resume = useCallback(() => {
-    if (audioContextRef.current) {
-      void audioContextRef.current.resume();
-    }
-  }, []);
-
-  const suspend = useCallback(() => {
-    if (audioContextRef.current) {
-      void audioContextRef.current.suspend();
-    }
-  }, []);
-
-  return [resume, suspend, frequencyBands] as const;
+  return frequencyBands;
 };

@@ -17,6 +17,7 @@ import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon } from 'mastodon/components/icon';
 import { SpoilerButton } from 'mastodon/components/spoiler_button';
 import { formatTime, getPointerPosition } from 'mastodon/features/video';
+import { useAudioContext } from 'mastodon/hooks/useAudioContext';
 import { useAudioVisualizer } from 'mastodon/hooks/useAudioVisualizer';
 import {
   displayMedia,
@@ -119,11 +120,16 @@ export const Audio: React.FC<{
   const seekRef = useRef<HTMLDivElement>(null);
   const volumeRef = useRef<HTMLDivElement>(null);
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>();
-  const [resumeAudio, suspendAudio, frequencyBands] = useAudioVisualizer(
-    audioRef,
-    3,
-  );
   const accessibilityId = useId();
+
+  const { audioContextRef, sourceRef, gainNodeRef, playAudio, pauseAudio } =
+    useAudioContext({ audioElementRef: audioRef });
+
+  const frequencyBands = useAudioVisualizer({
+    audioContextRef,
+    sourceRef,
+    numBands: 3,
+  });
 
   const [style, spring] = useSpring(() => ({
     progress: '0%',
@@ -152,6 +158,9 @@ export const Audio: React.FC<{
         restoreVolume(audioRef.current);
         setVolume(audioRef.current.volume);
         setMuted(audioRef.current.muted);
+        if (gainNodeRef.current) {
+          gainNodeRef.current.gain.value = audioRef.current.volume;
+        }
         void spring.start({
           volume: `${audioRef.current.volume * 100}%`,
           immediate: reduceMotion,
@@ -159,15 +168,14 @@ export const Audio: React.FC<{
       }
     },
     [
-      spring,
-      setVolume,
-      setMuted,
+      deployPictureInPicture,
       src,
       poster,
       backgroundColor,
-      accentColor,
       foregroundColor,
-      deployPictureInPicture,
+      accentColor,
+      gainNodeRef,
+      spring,
     ],
   );
 
@@ -178,7 +186,11 @@ export const Audio: React.FC<{
 
     audioRef.current.volume = volume;
     audioRef.current.muted = muted;
-  }, [volume, muted]);
+
+    if (gainNodeRef.current) {
+      gainNodeRef.current.gain.value = muted ? 0 : volume;
+    }
+  }, [volume, muted, gainNodeRef]);
 
   useEffect(() => {
     if (typeof visible !== 'undefined') {
@@ -192,11 +204,10 @@ export const Audio: React.FC<{
   }, [visible, sensitive]);
 
   useEffect(() => {
-    if (!revealed && audioRef.current) {
-      audioRef.current.pause();
-      suspendAudio();
+    if (!revealed) {
+      pauseAudio();
     }
-  }, [suspendAudio, revealed]);
+  }, [pauseAudio, revealed]);
 
   useEffect(() => {
     let nextFrame: ReturnType<typeof requestAnimationFrame>;
@@ -228,13 +239,11 @@ export const Audio: React.FC<{
     }
 
     if (audioRef.current.paused) {
-      resumeAudio();
-      void audioRef.current.play();
+      playAudio();
     } else {
-      audioRef.current.pause();
-      suspendAudio();
+      pauseAudio();
     }
-  }, [resumeAudio, suspendAudio]);
+  }, [playAudio, pauseAudio]);
 
   const handlePlay = useCallback(() => {
     setPaused(false);
@@ -349,8 +358,7 @@ export const Audio: React.FC<{
         document.removeEventListener('mouseup', handleSeekMouseUp, true);
 
         setDragging(false);
-        resumeAudio();
-        void audioRef.current?.play();
+        playAudio();
       };
 
       const handleSeekMouseMove = (e: MouseEvent) => {
@@ -377,7 +385,7 @@ export const Audio: React.FC<{
       e.preventDefault();
       e.stopPropagation();
     },
-    [setDragging, spring, resumeAudio],
+    [playAudio, spring],
   );
 
   const handleMouseEnter = useCallback(() => {
@@ -446,10 +454,9 @@ export const Audio: React.FC<{
 
   const handleCanPlayThrough = useCallback(() => {
     if (startPlaying) {
-      resumeAudio();
-      void audioRef.current?.play();
+      playAudio();
     }
-  }, [startPlaying, resumeAudio]);
+  }, [startPlaying, playAudio]);
 
   const seekBy = (time: number) => {
     if (!audioRef.current) {
@@ -492,7 +499,7 @@ export const Audio: React.FC<{
           return;
         }
 
-        const newVolume = audioRef.current.volume + step;
+        const newVolume = Math.max(0, audioRef.current.volume + step);
 
         if (!isNaN(newVolume)) {
           audioRef.current.volume = newVolume;
