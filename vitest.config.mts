@@ -1,12 +1,14 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { configDefaults, defineConfig } from 'vitest/config';
+import {
+  configDefaults,
+  defineConfig,
+  TestProjectInlineConfiguration,
+} from 'vitest/config';
 
 import { config as viteConfig } from './vite.config.mjs';
 
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 
-const storybookTests = {
+const storybookTests: TestProjectInlineConfiguration = {
   extends: true,
   plugins: [
     // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
@@ -27,7 +29,7 @@ const storybookTests = {
   },
 };
 
-const legacyTests = {
+const legacyTests: TestProjectInlineConfiguration = {
   extends: true,
   test: {
     name: 'legacy-tests',
