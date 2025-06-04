@@ -233,6 +233,7 @@ module LanguagesHelper
     'es-AR': 'Español (Argentina)',
     'es-MX': 'Español (México)',
     'fr-CA': 'Français (Canadien)',
+    'nan-TW': '臺語 (Hô-ló話)',
     'pt-BR': 'Português (Brasil)',
     'pt-PT': 'Português (Portugal)',
     'sr-Latn': 'Srpski (latinica)',
