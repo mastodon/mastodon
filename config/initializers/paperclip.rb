@@ -58,9 +58,9 @@ if ENV['S3_ENABLED'] == 'true'
     s3_region: s3_region,
 
     s3_credentials: {
-      bucket: ENV['S3_BUCKET'],
-      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+      bucket: ENV.fetch('S3_BUCKET', nil),
+      access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID', nil),
+      secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY', nil),
     },
 
     s3_options: {
@@ -86,7 +86,7 @@ if ENV['S3_ENABLED'] == 'true'
   if ENV.key?('S3_ALIAS_HOST') || ENV.key?('S3_CLOUDFRONT_HOST')
     Paperclip::Attachment.default_options.merge!(
       url: ':s3_alias_url',
-      s3_host_alias: ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST']
+      s3_host_alias: ENV['S3_ALIAS_HOST'] || ENV.fetch('S3_CLOUDFRONT_HOST', nil)
     )
   end
 
@@ -121,22 +121,22 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
   Paperclip::Attachment.default_options.merge!(
     fog_credentials: {
       provider: 'OpenStack',
-      openstack_username: ENV['SWIFT_USERNAME'],
-      openstack_project_id: ENV['SWIFT_PROJECT_ID'],
-      openstack_project_name: ENV['SWIFT_TENANT'],
-      openstack_tenant: ENV['SWIFT_TENANT'], # Some OpenStack-v2 ignores project_name but needs tenant
-      openstack_api_key: ENV['SWIFT_PASSWORD'],
-      openstack_auth_url: ENV['SWIFT_AUTH_URL'],
+      openstack_username: ENV.fetch('SWIFT_USERNAME', nil),
+      openstack_project_id: ENV.fetch('SWIFT_PROJECT_ID', nil),
+      openstack_project_name: ENV.fetch('SWIFT_TENANT', nil),
+      openstack_tenant: ENV.fetch('SWIFT_TENANT', nil), # Some OpenStack-v2 ignores project_name but needs tenant
+      openstack_api_key: ENV.fetch('SWIFT_PASSWORD', nil),
+      openstack_auth_url: ENV.fetch('SWIFT_AUTH_URL', nil),
       openstack_domain_name: ENV.fetch('SWIFT_DOMAIN_NAME') { 'default' },
-      openstack_region: ENV['SWIFT_REGION'],
+      openstack_region: ENV.fetch('SWIFT_REGION', nil),
       openstack_cache_ttl: ENV.fetch('SWIFT_CACHE_TTL') { 60 },
-      openstack_temp_url_key: ENV['SWIFT_TEMP_URL_KEY'],
+      openstack_temp_url_key: ENV.fetch('SWIFT_TEMP_URL_KEY', nil),
     },
 
     fog_file: { 'Cache-Control' => 'public, max-age=315576000, immutable' },
 
-    fog_directory: ENV['SWIFT_CONTAINER'],
-    fog_host: ENV['SWIFT_OBJECT_URL'],
+    fog_directory: ENV.fetch('SWIFT_CONTAINER', nil),
+    fog_host: ENV.fetch('SWIFT_OBJECT_URL', nil),
     fog_public: true
   )
 elsif ENV['AZURE_ENABLED'] == 'true'
@@ -148,9 +148,9 @@ elsif ENV['AZURE_ENABLED'] == 'true'
       protocol: 'https',
     },
     azure_credentials: {
-      storage_account_name: ENV['AZURE_STORAGE_ACCOUNT'],
-      storage_access_key: ENV['AZURE_STORAGE_ACCESS_KEY'],
-      container: ENV['AZURE_CONTAINER_NAME'],
+      storage_account_name: ENV.fetch('AZURE_STORAGE_ACCOUNT', nil),
+      storage_access_key: ENV.fetch('AZURE_STORAGE_ACCESS_KEY', nil),
+      container: ENV.fetch('AZURE_CONTAINER_NAME', nil),
     }
   )
   if ENV.key?('AZURE_ALIAS_HOST')
