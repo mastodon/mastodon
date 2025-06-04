@@ -28,6 +28,7 @@ const meta = {
       },
     },
   },
+  tags: ['test'],
 } satisfies Meta<typeof Button>;
 
 export default meta;
