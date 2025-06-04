@@ -25,7 +25,7 @@ const storybookTests: TestProjectInlineConfiguration = {
       provider: 'playwright',
       instances: [{ browser: 'chromium' }],
     },
-    setupFiles: ['.storybook/vitest.setup.ts'],
+    setupFiles: ['./.storybook/vitest.setup.ts'],
   },
 };
 
