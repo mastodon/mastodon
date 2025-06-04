@@ -42,8 +42,8 @@ export const useAudioVisualizer = ({
     const currentSource = sourceRef.current;
 
     return () => {
-      if (currentSource) {
-        currentSource.disconnect();
+      if (currentSource && analyzerRef.current) {
+        currentSource.disconnect(analyzerRef.current);
       }
     };
   }, [audioContextRef, sourceRef]);
