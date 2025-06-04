@@ -44,6 +44,7 @@ const severityMessages = {
 
 const mapStateToProps = state => ({
   server: state.getIn(['server', 'server']),
+  locale: state.getIn(['meta', 'locale']),
   extendedDescription: state.getIn(['server', 'extendedDescription']),
   domainBlocks: state.getIn(['server', 'domainBlocks']),
 });
@@ -91,6 +92,7 @@ class About extends PureComponent {
 
   static propTypes = {
     server: ImmutablePropTypes.map,
+    locale: ImmutablePropTypes.string,
     extendedDescription: ImmutablePropTypes.map,
     domainBlocks: ImmutablePropTypes.contains({
       isLoading: PropTypes.bool,
@@ -114,7 +116,7 @@ class About extends PureComponent {
   };
 
   render () {
-    const { multiColumn, intl, server, extendedDescription, domainBlocks } = this.props;
+    const { multiColumn, intl, server, extendedDescription, domainBlocks, locale } = this.props;
     const isLoading = server.get('isLoading');
 
     return (
@@ -168,12 +170,15 @@ class About extends PureComponent {
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
             ) : (
               <ol className='rules-list'>
-                {server.get('rules').map(rule => (
-                  <li key={rule.get('id')}>
-                    <div className='rules-list__text'>{rule.get('text')}</div>
-                    {rule.get('hint').length > 0 && (<div className='rules-list__hint'>{rule.get('hint')}</div>)}
-                  </li>
-                ))}
+                {server.get('rules').map(rule => {
+                  const text = rule.getIn(['translations', locale, 'text']) || rule.getIn(['translations', locale.split('-')[0], 'text']) || rule.get('text');
+                  const hint = rule.getIn(['translations', locale, 'hint']) || rule.getIn(['translations', locale.split('-')[0], 'hint']) || rule.get('hint');
+                  return (
+                    <li key={rule.get('id')}>
+                      <div className='rules-list__text'>{text}</div>
+                      {hint.length > 0 && (<div className='rules-list__hint'>{hint}</div>)}
+                    </li>
+                  )})}
               </ol>
             ))}
           </Section>

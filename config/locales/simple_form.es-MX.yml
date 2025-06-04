@@ -56,6 +56,7 @@ es-MX:
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a las publicaciones recibidas recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
+        setting_default_quote_policy: Los usuarios mencionados siempre pueden citar. Esta configuración solo se aplicará a las publicaciones creadas con la próxima versión de Mastodon, pero puedes seleccionar tus preferencias anticipadamente
         setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un clic
         setting_display_media_default: Ocultar contenido multimedia marcado como sensible
         setting_display_media_hide_all: Siempre ocultar todo el contenido multimedia
@@ -148,7 +149,9 @@ es-MX:
         min_age: No debe ser menor de la edad mínima exigida por las leyes de su jurisdicción.
       user:
         chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
-        date_of_birth: Tenemos que asegurarnos de que tienes al menos %{age} para usar Mastodon. No almacenaremos esto.
+        date_of_birth:
+          one: Necesitamos asegurarnos de que tengas al menos %{count} para usar Mastodon. No guardaremos esta información.
+          other: Necesitamos asegurarnos de que tengas al menos %{count} para usar Mastodon. No guardaremos esta información.
         role: El rol controla qué permisos tiene el usuario.
       user_role:
         color: Color que se usará para el rol en toda la interfaz de usuario, como RGB en formato hexadecimal
@@ -229,6 +232,7 @@ es-MX:
         setting_boost_modal: Mostrar ventana de confirmación antes de impulsar
         setting_default_language: Idioma de publicación
         setting_default_privacy: Privacidad de publicaciones
+        setting_default_quote_policy: Quién puede citar
         setting_default_sensitive: Marcar siempre imágenes como sensibles
         setting_delete_modal: Mostrar diálogo de confirmación antes de borrar una publicación
         setting_disable_hover_cards: Desactivar vista previa del perfil al pasar el cursor

@@ -786,17 +786,26 @@ en:
       title: Roles
     rules:
       add_new: Add rule
+      add_translation: Add translation
       delete: Delete
       description_html: While most claim to have read and agree to the terms of service, usually people do not read through until after a problem arises. <strong>Make it easier to see your server's rules at a glance by providing them in a flat bullet point list.</strong> Try to keep individual rules short and simple, but try not to split them up into many separate items either.
       edit: Edit rule
       empty: No server rules have been defined yet.
+      move_down: Move down
+      move_up: Move up
       title: Server rules
+      translation: Translation
+      translations: Translations
+      translations_explanation: You can optionally add translations for the rules. The default value will be shown if no translated version is available. Please always ensure any provided translation is in sync with the default value.
     settings:
       about:
         manage_rules: Manage server rules
         preamble: Provide in-depth information about how the server is operated, moderated, funded.
         rules_hint: There is a dedicated area for rules that your users are expected to adhere to.
         title: About
+      allow_referrer_origin:
+        desc: When your users click links to external sites, their browser may send the address of your Mastodon server as the referrer. Disable this if this would uniquely identify your users, e.g. if this is a personal Mastodon server.
+        title: Allow external sites to see your Mastodon server as a traffic source
       appearance:
         preamble: Customize Mastodon's web interface.
         title: Appearance
@@ -816,9 +825,9 @@ en:
       discovery:
         follow_recommendations: Follow recommendations
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
+        privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
-        publish_discovered_servers: Publish discovered servers
         publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
@@ -1920,6 +1929,11 @@ en:
     does_not_match_previous_name: does not match the previous name
   terms_of_service:
     title: Terms of Service
+  terms_of_service_interstitial:
+    future_preamble_html: We're making some changes to our terms of service, which will be effective on <strong>%{date}</strong>. We encourage you to review the updated terms.
+    past_preamble_html: We have changed our terms of service since your last visit. We encourage you to review the updated terms.
+    review_link: Review terms of service
+    title: The terms of service of %{domain} are changing
   themes:
     contrast: Mastodon (High contrast)
     default: Mastodon (Dark)

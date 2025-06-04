@@ -319,6 +319,7 @@ pt-PT:
         create: Criar mensagem de manutenção
         title: Nova mensagem de manutenção
       preview:
+        disclaimer: Dado que os utilizadores não podem opor-se a elas, as notificações por e-mail devem ser limitadas a anúncios importantes, como notificações de violação de dados pessoais ou de encerramento de servidores.
         explanation_html: 'O e-mail será enviado para <strong>%{display_count} utilizadores</strong>. O texto seguinte será incluído na mensagem de e-mail:'
         title: Pré-visualização da mensagem de manutenção
       publish: Publicar
@@ -479,6 +480,36 @@ pt-PT:
       new:
         title: Importar bloqueios de domínio
       no_file: Nenhum ficheiro selecionado
+    fasp:
+      debug:
+        callbacks:
+          created_at: Criado em
+          delete: Eliminar
+          ip: Endereço de IP
+          request_body: Corpo do pedido
+          title: Depurar Callbacks
+      providers:
+        active: Ativo
+        base_url: URL base
+        callback: Callback
+        delete: Eliminar
+        edit: Editar Fornecedor
+        finish_registration: Terminar inscrição
+        name: Nome
+        providers: Fornecedores
+        public_key_fingerprint: Impressão digital da chave pública
+        registration_requested: Requerida inscrição
+        registrations:
+          confirm: Confirmar
+          description: Recebeu uma inscrição de um FASP. Rejeite-a se não foi você que a iniciou. Se foi você que a iniciou, compare cuidadosamente o nome e a impressão digital da chave antes de confirmar a inscrição.
+          reject: Rejeitar
+          title: Confirmar Inscrição no FASP
+        save: Guardar
+        select_capabilities: Selecionar Capacidades
+        sign_in: Iniciar Sessão
+        status: Estado
+        title: Fornecedores de Serviços Auxiliares no Fediverso
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Recomendações de quem seguir ajudam novos utilizadores a encontrar conteúdo interessante rapidamente.</strong>. Quando um utilizador não interage com outros o suficiente para formar recomendações personalizadas, estas contas são recomendadas. Elas são recalculadas diariamente a partir de uma mistura de contas com mais atividade recente e maior número de seguidores locais para um determinado idioma."
       language: Para o idioma
@@ -755,17 +786,26 @@ pt-PT:
       title: Funções
     rules:
       add_new: Adicionar regra
+      add_translation: Adicionar tradução
       delete: Eliminar
       description_html: Embora a maioria afirme ter lido e concordado com os termos de serviço, geralmente as pessoas só os leem depois de lhes surgir um problema. <strong>Torne fácil a leitura rápida das regras do seu servidor, apresentando-as numa lista de tópicos.</strong> Tente que cada regra seja sucinta e simples, mas tente também não dividi-las num número excessivo de tópicos separados.
       edit: Editar regra
       empty: Ainda não foi definida nenhuma regra do servidor.
+      move_down: Mover para baixo
+      move_up: Mover para cima
       title: Regras do servidor
+      translation: Tradução
+      translations: Traduções
+      translations_explanation: Opcionalmente, pode adicionar traduções para as regras do servidor. A versão predefinida será apresentada se não estiver disponível uma versão traduzida. Certifique-se sempre de que qualquer tradução fornecida está em sincronia com a versão predefinida.
     settings:
       about:
         manage_rules: Gerir regras do servidor
         preamble: Forneça informações aprofundadas sobre como o servidor é operado, moderado, financiado.
         rules_hint: Existe uma área dedicada às regras a que os teus utilizadores devem aderir.
         title: Sobre
+      allow_referrer_origin:
+        desc: Quando os seus utilizadores clicam em links para sites externos, o navegador deles pode enviar o endereço do seu servidor Mastodon como referenciador. Desative esta opção se isso identificar inequivocamente os seus utilizadores, por exemplo, se este for um servidor Mastodon pessoal.
+        title: Permitir que sites externos vejam o seu servidor Mastodon como uma fonte de tráfego
       appearance:
         preamble: Personaliza a interface web do Mastodon.
         title: Aparência
@@ -785,9 +825,9 @@ pt-PT:
       discovery:
         follow_recommendations: Recomendações de contas
         preamble: Revelar conteúdos interessantes é fundamental para a entrada de novos utilizadores que podem não conhecer ninguém no Mastodon. Controla como os vários recursos de descoberta funcionam no teu servidor.
+        privacy: Privacidade
         profile_directory: Diretório de perfis
         public_timelines: Cronologias públicas
-        publish_discovered_servers: Publicar servidores descobertos
         publish_statistics: Publicar estatísticas
         title: Descobrir
         trends: Tendências
@@ -872,6 +912,8 @@ pt-PT:
     system_checks:
       database_schema_check:
         message_html: Existem migrações de bases de dados pendentes. Execute-as para garantir que a aplicação se comporta como esperado
+      elasticsearch_analysis_index_mismatch:
+        message_html: As definições do analisador de índices do Elasticsearch estão desactualizadas. Por favor, execute <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: O cluster elasticsearch não está de boa saúde (estado vermelho), as funcionalidades de pesquisa não estão disponíveis
       elasticsearch_health_yellow:
@@ -1825,6 +1867,10 @@ pt-PT:
       limit: Já fixaste a quantidade máxima de publicações
       ownership: Não podem ser fixadas publicações de outras pessoas
       reblog: Não é possível fixar um impulso
+    quote_policies:
+      followers: Seguidores e utilizadores mencionados
+      nobody: Apenas utilizadores mencionados
+      public: Todos
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direto
@@ -1878,6 +1924,11 @@ pt-PT:
     does_not_match_previous_name: não coincide com o nome anterior
   terms_of_service:
     title: Termos de Serviço
+  terms_of_service_interstitial:
+    future_preamble_html: Estamos a fazer algumas alterações aos nossos termos de serviço, que entrarão em vigor a partir de <strong>%{date}</strong>. Recomendamos que reveja os termos atualizados.
+    past_preamble_html: Alterámos os nossos termos de serviço desde a sua última visita. Recomendamos que reveja os termos atualizados.
+    review_link: Rever termos de serviço
+    title: Os termos de serviço de %{domain} estão a ser alterados
   themes:
     contrast: Mastodon (alto contraste)
     default: Mastodon (escuro)

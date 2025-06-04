@@ -56,6 +56,7 @@ es-AR:
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionás el alcance de nivel más alto, no necesitás seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevas adhesiones de los mensajes que fueron recientemente adheridos (sólo afecta a las adhesiones recibidas recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
+        setting_default_quote_policy: Los usuarios mencionados siempre pueden citar. Este ajuste solo afecta a las publicaciones creadas con la próxima versión de Mastodon, pero podés seleccionar tus preferencias con antelación.
         setting_default_sensitive: El contenido de medios sensibles está oculto predeterminadamente y puede ser mostrado con un clic
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Siempre ocultar todos los medios
@@ -148,7 +149,9 @@ es-AR:
         min_age: No debería estar por debajo de la edad mínima requerida por las leyes de su jurisdicción.
       user:
         chosen_languages: Cuando estén marcados, sólo se mostrarán los mensajes en los idiomas seleccionados en las líneas temporales públicas
-        date_of_birth: Tenemos que asegurarnos de que al menos tenés %{age} años de edad para usar Mastodon. No almacenaremos esta información.
+        date_of_birth:
+          one: Tenemos que asegurarnos de que al menos tenés %{count} años de edad para usar Mastodon. No almacenaremos esta información.
+          other: Tenemos que asegurarnos de que al menos tenés %{count} años de edad para usar Mastodon. No almacenaremos esta información.
         role: El rol controla qué permisos tiene el usuario.
       user_role:
         color: Color que se utilizará para el rol a lo largo de la interface de usuario, como RGB en formato hexadecimal
@@ -229,6 +232,7 @@ es-AR:
         setting_boost_modal: Mostrar diálogo de confirmación antes de adherir
         setting_default_language: Idioma de tus mensajes
         setting_default_privacy: Privacidad de mensajes
+        setting_default_quote_policy: Quién puede citar
         setting_default_sensitive: Siempre marcar medios como sensibles
         setting_delete_modal: Mostrar diálogo de confirmación antes de eliminar un mensaje
         setting_disable_hover_cards: Deshabilitar previsualización del perfil al pasar el cursor

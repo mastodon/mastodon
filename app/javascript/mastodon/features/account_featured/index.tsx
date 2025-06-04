@@ -14,7 +14,7 @@ import { Account } from 'mastodon/components/account';
 import { ColumnBackButton } from 'mastodon/components/column_back_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { RemoteHint } from 'mastodon/components/remote_hint';
-import StatusContainer from 'mastodon/containers/status_container';
+import { StatusQuoteManager } from 'mastodon/components/status_quoted';
 import { AccountHeader } from 'mastodon/features/account_timeline/components/account_header';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import Column from 'mastodon/features/ui/components/column';
@@ -142,9 +142,8 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
               />
             </h4>
             {featuredStatusIds.map((statusId) => (
-              <StatusContainer
+              <StatusQuoteManager
                 key={`f-${statusId}`}
-                // @ts-expect-error inferred props are wrong
                 id={statusId}
                 contextType='account'
               />

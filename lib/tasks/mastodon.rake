@@ -32,7 +32,7 @@ namespace :mastodon do
       prompt.say('Single user mode disables registrations and redirects the landing page to your public profile.')
       env['SINGLE_USER_MODE'] = prompt.yes?('Do you want to enable single user mode?', default: false)
 
-      %w(SECRET_KEY_BASE OTP_SECRET).each do |key|
+      %w(SECRET_KEY_BASE).each do |key|
         env[key] = SecureRandom.hex(64)
       end
 

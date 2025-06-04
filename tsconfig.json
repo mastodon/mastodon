@@ -2,17 +2,18 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "target": "esnext",
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
     "allowJs": true,
     "resolveJsonModule": true,
     "noEmit": true,
     "strict": true,
+    "isolatedModules": true, // Required by Vite
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["vitest/globals", "@types/webpack-env"],
+    "types": ["vite/client", "vitest/globals"],
     "baseUrl": "./",
     "incremental": true,
     "tsBuildInfoFile": "tmp/cache/tsconfig.tsbuildinfo",
@@ -26,6 +27,7 @@
   },
   "include": [
     "vite.config.mts",
+    "config/vite",
     "app/javascript/mastodon",
     "app/javascript/entrypoints",
     "app/javascript/types"

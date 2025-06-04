@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_28_095029) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_20_204643) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -445,6 +445,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_095029) do
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 
+  create_table "fasp_backfill_requests", force: :cascade do |t|
+    t.string "category", null: false
+    t.integer "max_count", default: 100, null: false
+    t.string "cursor"
+    t.boolean "fulfilled", default: false, null: false
+    t.bigint "fasp_provider_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fasp_provider_id"], name: "index_fasp_backfill_requests_on_fasp_provider_id"
+  end
+
   create_table "fasp_debug_callbacks", force: :cascade do |t|
     t.bigint "fasp_provider_id", null: false
     t.string "ip", null: false
@@ -469,6 +480,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_095029) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["base_url"], name: "index_fasp_providers_on_base_url", unique: true
+  end
+
+  create_table "fasp_subscriptions", force: :cascade do |t|
+    t.string "category", null: false
+    t.string "subscription_type", null: false
+    t.integer "max_batch_size", null: false
+    t.integer "threshold_timeframe"
+    t.integer "threshold_shares"
+    t.integer "threshold_likes"
+    t.integer "threshold_replies"
+    t.bigint "fasp_provider_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fasp_provider_id"], name: "index_fasp_subscriptions_on_fasp_provider_id"
   end
 
   create_table "favourites", force: :cascade do |t|
@@ -937,6 +962,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_095029) do
     t.index ["target_account_id"], name: "index_reports_on_target_account_id"
   end
 
+  create_table "rule_translations", force: :cascade do |t|
+    t.text "text", default: "", null: false
+    t.text "hint", default: "", null: false
+    t.string "language", null: false
+    t.bigint "rule_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rule_id", "language"], name: "index_rule_translations_on_rule_id_and_language", unique: true
+  end
+
   create_table "rules", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.datetime "deleted_at", precision: nil
@@ -1199,9 +1234,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_095029) do
     t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
     t.string "locale"
-    t.string "encrypted_otp_secret"
-    t.string "encrypted_otp_secret_iv"
-    t.string "encrypted_otp_secret_salt"
     t.integer "consumed_timestep"
     t.boolean "otp_required_for_login", default: false, null: false
     t.datetime "last_emailed_at", precision: nil
@@ -1222,6 +1254,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_095029) do
     t.string "time_zone"
     t.string "otp_secret"
     t.datetime "age_verified_at"
+    t.boolean "require_tos_interstitial", default: false, null: false
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id", where: "(created_by_application_id IS NOT NULL)"
@@ -1322,7 +1355,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_095029) do
   add_foreign_key "custom_filter_statuses", "statuses", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
   add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
+  add_foreign_key "fasp_backfill_requests", "fasp_providers"
   add_foreign_key "fasp_debug_callbacks", "fasp_providers"
+  add_foreign_key "fasp_subscriptions", "fasp_providers"
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
   add_foreign_key "featured_tags", "accounts", on_delete: :cascade
@@ -1381,6 +1416,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_095029) do
   add_foreign_key "reports", "accounts", column: "target_account_id", name: "fk_eb37af34f0", on_delete: :cascade
   add_foreign_key "reports", "accounts", name: "fk_4b81f7522c", on_delete: :cascade
   add_foreign_key "reports", "oauth_applications", column: "application_id", on_delete: :nullify
+  add_foreign_key "rule_translations", "rules", on_delete: :cascade
   add_foreign_key "scheduled_statuses", "accounts", on_delete: :cascade
   add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", name: "fk_957e5bda89", on_delete: :cascade
   add_foreign_key "session_activations", "users", name: "fk_e5fda67334", on_delete: :cascade

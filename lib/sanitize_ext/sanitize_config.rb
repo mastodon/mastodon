@@ -31,6 +31,7 @@ class Sanitize
         next true if /^(h|p|u|dt|e)-/.match?(e) # microformats classes
         next true if /^(mention|hashtag)$/.match?(e) # semantic classes
         next true if /^(ellipsis|invisible)$/.match?(e) # link formatting classes
+        next true if e == 'quote-inline'
       end
 
       node['class'] = class_list.join(' ')
@@ -110,6 +111,7 @@ class Sanitize
         'span' => %w(class translate),
         'ol' => %w(start reversed),
         'li' => %w(value),
+        'p' => %w(class),
       },
 
       add_attributes: {

@@ -56,6 +56,7 @@ cs:
         scopes: Která API bude aplikace moct používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat jednotlivě.
         setting_aggregate_reblogs: Nezobrazovat nové boosty pro příspěvky, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
         setting_always_send_emails: Jinak nebudou e-mailové notifikace posílány, když Mastodon aktivně používáte
+        setting_default_quote_policy: Zmínení uživatelé mají vždy povoleno citovat. Toto nastavení se projeví pouze u příspěvků vytvořených s další verzí Mastodonu, ale můžete si vybrat vaše předvolby v předstihu
         setting_default_sensitive: Citlivá média jsou ve výchozím stavu skryta a mohou být zobrazena kliknutím
         setting_display_media_default: Skrývat média označená jako citlivá
         setting_display_media_hide_all: Vždy skrývat média
@@ -148,7 +149,11 @@ cs:
         min_age: Neměla by být pod minimálním věkem požadovaným zákony vaší jurisdikce.
       user:
         chosen_languages: Po zaškrtnutí budou ve veřejných časových osách zobrazeny pouze příspěvky ve zvolených jazycích
-        date_of_birth: Musíme se ujistit, že je Vám alespoň %{age}, abyste mohli používat Mastodon. Nebudeme to ukládat.
+        date_of_birth:
+          few: Musíme se ujistit, že je Vám alespoň %{count}, abyste mohli používat Mastodon. Nebudeme to ukládat.
+          many: Musíme se ujistit, že je Vám alespoň %{count} let, abyste mohli používat Mastodon. Nebudeme to ukládat.
+          one: Musíme se ujistit, že je Vám alespoň %{count} rok, abyste mohli používat Mastodon. Nebudeme to ukládat.
+          other: Musíme se ujistit, že je Vám alespoň %{count} let, abyste mohli používat Mastodon. Nebudeme to ukládat.
         role: Role určuje, která oprávnění uživatel má.
       user_role:
         color: Barva, která má být použita pro roli v celém UI, jako RGB v hex formátu
@@ -229,6 +234,7 @@ cs:
         setting_boost_modal: Před boostnutím zobrazovat potvrzovací okno
         setting_default_language: Jazyk příspěvků
         setting_default_privacy: Soukromí příspěvků
+        setting_default_quote_policy: Kdo může citovat
         setting_default_sensitive: Vždy označovat média jako citlivá
         setting_delete_modal: Před smazáním příspěvku zobrazovat potvrzovací dialog
         setting_disable_hover_cards: Zakázat náhled profilu při přejetí myší

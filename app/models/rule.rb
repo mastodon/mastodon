@@ -19,7 +19,29 @@ class Rule < ApplicationRecord
 
   self.discard_column = :deleted_at
 
+  has_many :translations, inverse_of: :rule, class_name: 'RuleTranslation', dependent: :destroy
+  accepts_nested_attributes_for :translations, reject_if: :all_blank, allow_destroy: true
+
   validates :text, presence: true, length: { maximum: TEXT_SIZE_LIMIT }
 
   scope :ordered, -> { kept.order(priority: :asc, id: :asc) }
+
+  def move!(offset)
+    rules = Rule.ordered.to_a
+    position = rules.index(self)
+
+    rules.delete_at(position)
+    rules.insert(position + offset, self)
+
+    transaction do
+      rules.each.with_index do |rule, index|
+        rule.update!(priority: index)
+      end
+    end
+  end
+
+  def translation_for(locale)
+    @cached_translations ||= {}
+    @cached_translations[locale] ||= translations.where(language: [locale, locale.to_s.split('-').first]).order('length(language) desc').first || RuleTranslation.new(language: locale, text: text, hint: hint)
+  end
 end

@@ -1,7 +1,8 @@
 import logo from '@/images/logo_icon.png';
+import wordmarkLogo from '@/images/logo_wordmark.png';
 
 export const WordmarkLogo: React.FC = () => (
-  <img src="https://s3-mstdn.maud.io/logo_wordmark.png" height="32px" />
+  <img src={wordmarkLogo} height="32px" />
 );
 
 export const IconLogo: React.FC = () => (

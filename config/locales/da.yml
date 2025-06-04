@@ -786,17 +786,26 @@ da:
       title: Roller
     rules:
       add_new: Tilføj regel
+      add_translation: Tilføj oversættelse
       delete: Slet
       description_html: Mens de fleste hævder at have læst og accepteret tjenestevilkårene, så læser folk normalt ikke disse, før et problem er opstået. <strong>Gør det lettere med ét blik at se din servers regler ved at opliste disse på en punktliste.</strong> Forsøg at holde individuelle regler korte og enkle, men undgå også at opdele dem i mange separate underpunkter.
       edit: Redigér regel
       empty: Ingen serverregler defineret endnu.
+      move_down: Flyt ned
+      move_up: Flyt op
       title: Serverregler
+      translation: Oversættelse
+      translations: Oversættelser
+      translations_explanation: Man kan valgfrit tilføje oversættelser af reglerne. Standardindholdet vil fremgå, såfremt ingen oversat version findes. Tilsikr venligst, at enhver given oversættelse er synket med standardindholdet.
     settings:
       about:
         manage_rules: Håndtér serverregler
         preamble: Giv dybdegående oplysninger om, hvordan serveren opereres, modereres, finansieres.
         rules_hint: Der er et dedikeret område for regler, som forventes overholdt af brugerne.
         title: Om
+      allow_referrer_origin:
+        desc: Når brugerne klikker på links til eksterne websteder, sender deres webbrowser muligvis adressen på Mastodon-serveren som referrer. Deaktivér dette, hvis det entydigt kan identificere brugerne, f.eks. hvis dette er en personlig Mastodon-server.
+        title: Tillad eksterne websteder at se Mastodon-serveren som en trafikkilde
       appearance:
         preamble: Tilpas Mastodon-webgrænsefladen.
         title: Udseende
@@ -816,9 +825,9 @@ da:
       discovery:
         follow_recommendations: Følg-anbefalinger
         preamble: At vise interessant indhold er vitalt ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
+        privacy: Fortrolighed
         profile_directory: Profiloversigt
         public_timelines: Offentlige tidslinjer
-        publish_discovered_servers: Udgiv fundne servere
         publish_statistics: Udgiv statistik
         title: Opdagelse
         trends: Trends
@@ -1858,6 +1867,10 @@ da:
       limit: Maksimalt antal indlæg allerede fastgjort
       ownership: Andres indlæg kan ikke fastgøres
       reblog: En fremhævelse kan ikke fastgøres
+    quote_policies:
+      followers: Følgere og nævnte brugere
+      nobody: Kun nævnte brugere
+      public: Alle
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkte
@@ -1911,6 +1924,11 @@ da:
     does_not_match_previous_name: matcher ikke det foregående navn
   terms_of_service:
     title: Tjenestevilkår
+  terms_of_service_interstitial:
+    future_preamble_html: Vi foretager nogle ændringer i tjenestevilkårene, som vil træde i kraft pr. <strong>%{date}</strong>. Man opfordres til at gennemgå de opdaterede vilkår.
+    past_preamble_html: Vi har ændret tjenestevilkårene siden sidste besøg. Man opfordres til at gennemgå de opdaterede vilkår.
+    review_link: Gennemgå Tjenestevilkår
+    title: Tjenestevilkårene for %{domain} ændres
   themes:
     contrast: Mastodon (høj kontrast)
     default: Mastodont (mørkt)

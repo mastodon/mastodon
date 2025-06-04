@@ -783,17 +783,26 @@ de:
       title: Rollen
     rules:
       add_new: Regel hinzufügen
+      add_translation: Übersetzung hinzufügen
       delete: Löschen
       description_html: Während die meisten behaupten, die Nutzungsbedingungen tatsächlich gelesen zu haben, bekommen viele sie erst nach einem Problem mit. <strong>Vereinfache und reduziere daher die Serverregeln mit Stichpunkten.</strong> Versuche dabei, die einzelnen Vorgaben kurz und einfach zu halten, aber vermeide, sie in viele verschiedene Elemente aufzuteilen.
       edit: Regel bearbeiten
       empty: Es wurden bisher keine Serverregeln definiert.
+      move_down: Abwärts
+      move_up: Aufwärts
       title: Serverregeln
+      translation: Übersetzung
+      translations: Übersetzungen
+      translations_explanation: Du kannst Serverregeln übersetzen. Der Standardwert wird angezeigt, wenn keine übersetzte Version verfügbar ist. Bitte vergewissere dich, dass jede Übersetzung mit dem Standardwert übereinstimmt.
     settings:
       about:
         manage_rules: Serverregeln verwalten
         preamble: Schildere ausführlich, wie dein Server betrieben, moderiert und finanziert wird.
         rules_hint: Es gibt einen eigenen Bereich für Regeln, die deine Benutzer*innen einhalten müssen.
         title: Über
+      allow_referrer_origin:
+        desc: Klicken Nutzer*innen auf Links zu externen Seiten, kann der Browser die Adresse deines Mastodon-Servers als Referrer (Verweis) übermitteln. Diese Option sollte deaktiviert werden, wenn Nutzer*innen dadurch eindeutig identifiziert würden – z. B. wenn es sich um einen privaten Mastodon-Server handelt.
+        title: Externen Seiten erlauben, diesen Mastodon-Server als Quelle zu sehen
       appearance:
         preamble: Passe das Webinterface von Mastodon an.
         title: Design
@@ -813,9 +822,9 @@ de:
       discovery:
         follow_recommendations: Follower-Empfehlungen
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
+        privacy: Datenschutz
         profile_directory: Profilverzeichnis
         public_timelines: Öffentliche Timeline
-        publish_discovered_servers: Entdeckte Server offenlegen
         publish_statistics: Statistiken veröffentlichen
         title: Entdecken
         trends: Trends
@@ -1855,6 +1864,10 @@ de:
       limit: Du hast bereits die maximale Anzahl an Beiträgen angeheftet
       ownership: Du kannst nur eigene Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
+    quote_policies:
+      followers: Follower und erwähnte Profile
+      nobody: Nur erwähnte Profile
+      public: Alle
     title: "%{name}: „%{quote}“"
     visibilities:
       direct: Direktnachricht
@@ -1908,6 +1921,11 @@ de:
     does_not_match_previous_name: entspricht nicht dem vorherigen Namen
   terms_of_service:
     title: Nutzungsbedingungen
+  terms_of_service_interstitial:
+    future_preamble_html: Wir aktualisieren unsere Nutzungsbedingungen, die am <strong>%{date}</strong> in Kraft treten. Bitte lies dir die aktualisierten Bedingungen sorgfältig durch.
+    past_preamble_html: Wir haben unsere Nutzungsbedingungen seit deinem letzten Besuch geändert. Bitte lies dir die aktualisierten Bedingungen sorgfältig durch.
+    review_link: Nutzungsbedingungen lesen
+    title: Die Nutzungsbedingungen von %{domain} ändern sich
   themes:
     contrast: Mastodon (Hoher Kontrast)
     default: Mastodon (Dunkel)

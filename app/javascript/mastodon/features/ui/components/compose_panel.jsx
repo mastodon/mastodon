@@ -9,7 +9,7 @@ import { Search } from 'mastodon/features/compose/components/search';
 import ComposeFormContainer from 'mastodon/features/compose/containers/compose_form_container';
 import { LinkFooter } from 'mastodon/features/ui/components/link_footer';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import ModsAnnouncements from 'mastodon/features/compose/components/mods_announcements';
+import ModsAnnouncements from '@/mastodon/features/compose/components/mods_announcements';
 
 class ComposePanel extends PureComponent {
   static propTypes = {
@@ -27,12 +27,12 @@ class ComposePanel extends PureComponent {
     dispatch(changeComposing(false));
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { dispatch } = this.props;
     dispatch(mountCompose());
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     const { dispatch } = this.props;
     dispatch(unmountCompose());
   }

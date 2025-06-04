@@ -83,6 +83,7 @@ export default function api(withAuthorization = true) {
   return instance;
 }
 
+type ApiUrl = `v${1 | 2}/${string}`;
 type RequestParamsOrData = Record<string, unknown>;
 
 export async function apiRequest<ApiResponse = unknown>(
@@ -105,28 +106,28 @@ export async function apiRequest<ApiResponse = unknown>(
 }
 
 export async function apiRequestGet<ApiResponse = unknown>(
-  url: string,
+  url: ApiUrl,
   params?: RequestParamsOrData,
 ) {
   return apiRequest<ApiResponse>('GET', url, { params });
 }
 
 export async function apiRequestPost<ApiResponse = unknown>(
-  url: string,
+  url: ApiUrl,
   data?: RequestParamsOrData,
 ) {
   return apiRequest<ApiResponse>('POST', url, { data });
 }
 
 export async function apiRequestPut<ApiResponse = unknown>(
-  url: string,
+  url: ApiUrl,
   data?: RequestParamsOrData,
 ) {
   return apiRequest<ApiResponse>('PUT', url, { data });
 }
 
 export async function apiRequestDelete<ApiResponse = unknown>(
-  url: string,
+  url: ApiUrl,
   params?: RequestParamsOrData,
 ) {
   return apiRequest<ApiResponse>('DELETE', url, { params });

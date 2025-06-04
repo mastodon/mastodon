@@ -4,13 +4,11 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
   include JsonLdHelper
 
   def call(account, **options)
-    return if account.featured_collection_url.blank? || account.suspended? || account.local?
+    return if (account.featured_collection_url.blank? && options[:collection].blank?) || account.suspended? || account.local?
 
     @account = account
     @options = options
-    @json    = fetch_resource(@account.featured_collection_url, true, local_follower)
-
-    return unless supported_context?(@json)
+    @json    = fetch_collection(options[:collection].presence || @account.featured_collection_url)
 
     process_items(collection_items(@json))
   end

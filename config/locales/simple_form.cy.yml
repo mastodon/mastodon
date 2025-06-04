@@ -56,6 +56,7 @@ cy:
         scopes: Pa APIs y bydd y rhaglen yn cael mynediad iddynt. Os dewiswch gwmpas lefel uchaf, nid oes angen i chi ddewis rhai unigol.
         setting_aggregate_reblogs: Peidiwch â dangos hybiau newydd ar bostiadau sydd wedi cael eu hybu'n ddiweddar (dim ond yn effeithio ar hybiau newydd ei dderbyn)
         setting_always_send_emails: Fel arfer ni fydd hysbysiadau e-bost yn cael eu hanfon pan fyddwch chi wrthi'n defnyddio Mastodon
+        setting_default_quote_policy: Mae defnyddwyr sy'n cael eu crybwyll yn cael dyfynnu bob amser. Dim ond ar gyfer postiadau a grëwyd gyda'r fersiwn nesaf o Mastodon y bydd y gosodiad hwn yn dod i rym, ond gallwch ddewis eich dewis wrth baratoi
         setting_default_sensitive: Mae cyfryngau sensitif wedi'u cuddio yn rhagosodedig a gellir eu datgelu trwy glicio
         setting_display_media_default: Cuddio cyfryngau wedi eu marcio'n sensitif
         setting_display_media_hide_all: Cuddio cyfryngau bob tro
@@ -148,7 +149,13 @@ cy:
         min_age: Ni ddylai fod yn is na'r isafswm oedran sy'n ofynnol gan gyfreithiau eich awdurdodaeth.
       user:
         chosen_languages: Wedi eu dewis, dim ond tŵtiau yn yr ieithoedd hyn bydd yn cael eu harddangos mewn ffrydiau cyhoeddus
-        date_of_birth: Mae'n rhaid i ni sicrhau eich bod o leiaf %{age} i ddefnyddio Mastodon. Fyddwn ni ddim yn storio hwn.
+        date_of_birth:
+          few: Mae'n rhai i ni wneud yn siŵr eich bod o leiaf yn %{count} i ddefnyddio Mastodon. Fyddwn ni ddim yn cadw hwn.
+          many: Mae'n rhai i ni wneud yn siŵr eich bod o leiaf yn %{count} i ddefnyddio Mastodon. Fyddwn ni ddim yn cadw hwn.
+          one: Mae'n rhai i ni wneud yn siŵr eich bod o leiaf yn %{count} i ddefnyddio Mastodon. Fyddwn ni ddim yn cadw hwn.
+          other: Mae'n rhai i ni wneud yn siŵr eich bod o leiaf yn %{count} i ddefnyddio Mastodon. Fyddwn ni ddim yn cadw hwn.
+          two: Mae'n rhai i ni wneud yn siŵr eich bod o leiaf yn %{count} i ddefnyddio Mastodon. Fyddwn ni ddim yn cadw hwn.
+          zero: Gwnewch yn siŵr eich bod o leiaf yn %{count} i ddefnyddio Mastodon. Fyddwn ni ddim yn cadw hwn.
         role: Mae'r rôl yn rheoli pa ganiatâd sydd gan y defnyddiwr.
       user_role:
         color: Lliw i'w ddefnyddio ar gyfer y rôl drwy'r UI, fel RGB mewn fformat hecs
@@ -229,6 +236,7 @@ cy:
         setting_boost_modal: Dangos deialog cadarnhau cyn rhoi hwb
         setting_default_language: Iaith postio
         setting_default_privacy: Preifatrwydd cyhoeddi
+        setting_default_quote_policy: Pwy sy'n gallu dyfynnu
         setting_default_sensitive: Marcio cyfryngau fel eu bod yn sensitif bob tro
         setting_delete_modal: Dangos deialog cadarnhau cyn dileu postiad
         setting_disable_hover_cards: Analluogi rhagolwg proffil ar lusgo

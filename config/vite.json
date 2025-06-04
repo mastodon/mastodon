@@ -1,17 +1,23 @@
 {
   "all": {
     "sourceCodeDir": "app/javascript",
-    "additionalEntrypoints": ["~/{icons,images}/**/*", "~/styles/*.scss"],
+    "additionalEntrypoints": [
+      "~/{fonts,icons,images}/**/*",
+      "~/styles/entrypoints/*.scss"
+    ],
     "watchAdditionalPaths": []
+  },
+  "production": {
+    "publicOutputDir": "packs"
   },
   "development": {
     "autoBuild": true,
-    "publicOutputDir": "vite-dev",
+    "publicOutputDir": "packs-dev",
     "port": 3036
   },
   "test": {
     "autoBuild": true,
-    "publicOutputDir": "vite-test",
+    "publicOutputDir": "packs-test",
     "port": 3037
   }
 }

@@ -70,13 +70,6 @@ Style/OptionalBooleanParameter:
     - 'app/workers/domain_block_worker.rb'
     - 'app/workers/unfollow_follow_worker.rb'
 
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: short, verbose
-Style/PreferredHashMethods:
-  Exclude:
-    - 'config/initializers/paperclip.rb'
-
 # This cop supports safe autocorrection (--autocorrect).
 Style/RedundantConstantBase:
   Exclude:

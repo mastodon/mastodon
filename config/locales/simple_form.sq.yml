@@ -56,6 +56,7 @@ sq:
         scopes: Cilat API do të lejohen të përdorin aplikacioni. Nëse përzgjidhni një shkallë të epërme, nuk ju duhet të përzgjidhni individualet një nga një.
         setting_aggregate_reblogs: Mos shfaq përforcime të reja për mesazhe që janë përforcuar tani së fundi (prek vetëm përforcime të marra rishtas)
         setting_always_send_emails: Normalisht s’do të dërgohen njoftime, kur përdorni aktivisht Mastodon-in
+        setting_default_quote_policy: Përdoruesit e përmendur lejohen përherë të citojnë. Ky rregullim do të ketë efekt vetëm për postime të krijuar me versionin pasues të Mastodon-it, por mund të përzgjidhni paraprakisht parapëlqimin tuaj
         setting_default_sensitive: Media rezervat fshihet, si parazgjedhje, dhe mund të shfaqet me një klikim
         setting_display_media_default: Fshih media me shenjën rezervat
         setting_display_media_hide_all: Fshih përherë mediat
@@ -147,7 +148,6 @@ sq:
         min_age: S’duhet të jetë nën moshën minimum të domosdoshme nga ligjet në juridiksionin tuaj.
       user:
         chosen_languages: Në iu vëntë shenjë, te rrjedha kohore publike do të shfaqen vetëm mesazhe në gjuhët e përzgjedhura
-        date_of_birth: Na duhet të sigurohemi se jeni të paktën %{age}, që të përdorni Mastodon-in. Këtë s’e depozitojmë.
         role: Roli kontrollon cilat leje ka përdoruesi.
       user_role:
         color: Ngjyrë për t’u përdorur për rolin nëpër UI, si RGB në format gjashtëmbëdhjetësh
@@ -228,6 +228,7 @@ sq:
         setting_boost_modal: Shfaq dialog ripohimi përpara përforcimi
         setting_default_language: Gjuhë postimi
         setting_default_privacy: Privatësi postimi
+        setting_default_quote_policy: Cilët mund të citojnë
         setting_default_sensitive: Mediave vëru përherë shenjë si rezervat
         setting_delete_modal: Shfaq dialog ripohimi përpara fshirjes së një mesazhi
         setting_disable_hover_cards: Çaktivizo paraparje profili, kur i kalohet kursori përsipër

@@ -141,14 +141,14 @@ eo:
       security_measures:
         only_password: Nur pasvorto
         password_and_2fa: Pasvorto kaj 2FA
-      sensitive: Tikla
+      sensitive: Devigite tikla
       sensitized: Markita kiel tikla
       shared_inbox_url: URL de kunhavigita leterkesto
       show:
         created_reports: Faritaj raportoj
         targeted_reports: Raporitaj de aliaj
       silence: Limigi
-      silenced: Silentigita
+      silenced: Limigita
       statuses: Afiŝoj
       strikes: Antaǔaj admonoj
       subscribe: Aboni
@@ -223,7 +223,7 @@ eo:
         reset_password_user: Restarigi Pasvorton
         resolve_report: Solvitaj reporto
         sensitive_account: Marki tikla la aŭdovidaĵojn de via konto
-        silence_account: Silentigi Konton
+        silence_account: Limigi Konton
         suspend_account: Suspendi Konton
         unassigned_report: Malatribui Raporton
         unblock_email_account: Malbloki retpoŝtadreson
@@ -586,7 +586,7 @@ eo:
       total_blocked_by_us: Blokitaj de ni
       total_followed_by_them: Sekvataj de ili
       total_followed_by_us: Sekvataj de ni
-      total_reported: Signaloj pri ili
+      total_reported: Raportoj pri ili
       total_storage: Aŭdovidaj kunsendaĵoj
       totals_time_period_hint_html: Sumo montritas malsupre inkluzivas datumo ekde komenco.
       unknown_instance: Nuntempe ne ekzistas registro pri ĉi tiu domajno sur ĉi tiu servilo.
@@ -667,7 +667,7 @@ eo:
       comment_description_html: 'Por doni pli da informo, %{name} skribis:'
       confirm: Konfirmi
       confirm_action: Konfirmi moderigadagon kontra @%{acct}
-      created_at: Signalita
+      created_at: Raportita
       delete_and_resolve: Forigi afiŝojn
       forwarded: Plusendita
       forwarded_replies_explanation: Ĉi tiu raporto estas de malproksima uzanto kaj estas pri malproksima enhavo. Ĝi plusendis al vi ĉar la raportita enhavo estas rediraĵo je unu el viaj uzantoj.
@@ -688,9 +688,9 @@ eo:
       quick_actions_description_html: 'Agu au movu malsupre por vidi raportitajn enhavojn:'
       remote_user_placeholder: la ekstera uzanto de %{instance}
       reopen: Remalfermi signalon
-      report: 'Signalo #%{id}'
-      reported_account: Signalita konto
-      reported_by: Signalita de
+      report: 'Raporto #%{id}'
+      reported_account: Raportita konto
+      reported_by: Raportita de
       reported_with_application: Raportita per aplikaĵo
       resolved: Solvitaj
       resolved_msg: Signalo sukcese solvita!
@@ -717,7 +717,7 @@ eo:
         send_email_html: Sendu <strong>@%{acct}</strong> retpoŝto de averto
         warning_placeholder: Nedeviga aldona kialo por la moderigadago.
       target_origin: Origino de raportita konto
-      title: Signaloj
+      title: Raportoj
       unassign: Malasigni
       unknown_action_msg: 'Nekonata ago: %{action}'
       unresolved: Nesolvitaj
@@ -818,7 +818,6 @@ eo:
         preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
         profile_directory: Profilujo
         public_timelines: Publikaj templinioj
-        publish_discovered_servers: Publikigi la malkovritajn servilojn
         publish_statistics: Publikigi statistikojn
         title: Eltrovado
         trends: Tendencoj
@@ -1137,7 +1136,7 @@ eo:
     add_new: Krei alinomon
     created_msg: Kreis novan alinomon sukcese. Vi povas inici la transloki el la malnovan konton nun.
     deleted_msg: Forigis la alinomon sukcese. Transloki el tiu konto al ĉi tiu ne plu eblos.
-    empty: Vi havas neniun kaŝnomon.
+    empty: Vi havas neniun alinomon.
     hint_html: Se vi volas translokiĝi de alia konto al ĉi tie, kreu alinomon. Ĝi estas <strong>sekura kaj inversebla</strong>. <strong>Ĝi komencitas de malnova konto</strong>.
     remove: Malligili alinomon
   appearance:
@@ -1166,7 +1165,7 @@ eo:
     regenerate_token: Regeneri aliran ĵetonon
     token_regenerated: Alira ĵetono sukcese regeneria
     warning: Estu tre atenta kun ĉi tiu datumo. Neniam diskonigu ĝin al iu ajn!
-    your_token: Via alira ĵetono
+    your_token: Via alirilo
   auth:
     apply_for_account: Peti konton
     captcha_confirmation:
@@ -1194,7 +1193,7 @@ eo:
     forgot_password: Pasvorto forgesita?
     invalid_reset_password_token: La ĵetono por restarigi la pasvorton estas nevalida aŭ eksvalida. Bonvolu peti novon.
     link_to_otp: Enigu 2-faktorkodo de via telefono au regajnkodo
-    link_to_webauth: Uzi vian sekurecan ŝlosilon
+    link_to_webauth: Uzi vian aparaton de sekuriga ŝlosilo
     log_in_with: Ensaluti per
     login: Ensaluti
     logout: Adiaŭi
@@ -1237,7 +1236,7 @@ eo:
       preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povos sekvi ajnan alian personon ĉe la fediverso, sendepende de kie ilia konto estas gastigita.
       title: Ni pretigu vin ĉe %{domain}.
     status:
-      account_status: Statuso de la konto
+      account_status: Stato de la konto
       confirming: Atendante ke retpoŝta konfirmo estos kompletigita.
       functional: Via konto estas tute funkcia.
       pending: Via apliko estas superrigardata de niaj teamo. Ĉi tiu povas bezoni iom da tempo. Vi ricevos retpoŝton, se via apliko estas konsentita.
@@ -1729,12 +1728,12 @@ eo:
     most_recent: Plej lasta
     moved: Moviĝita
     mutual: Reciproka
-    primary: Primara
+    primary: Ĉefa
     relationship: Rilato
     remove_selected_domains: Forigi ĉiujn sekvantojn el la selektitaj domajnoj
     remove_selected_followers: Forigi selektitajn sekvantojn
     remove_selected_follows: Ne plu sekvi elektitajn uzantojn
-    status: Statuso de la konto
+    status: Stato de la konto
   remote_follow:
     missing_resource: La bezonata URL de plusendado por via konto ne estis trovita
   reports:
@@ -1789,14 +1788,14 @@ eo:
       ios: iOS
       kai_os: KaiOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       unknown_platform: Nekonata platformo
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: Malvalidigi
     revoke_success: Seanco sukcese malvalidigita
-    title: Seancoj
+    title: Salutaĵoj
     view_authentication_history: Vidi autentighistorion de via konto
   settings:
     account: Konto
@@ -1814,7 +1813,7 @@ eo:
     import_and_export: Importi kaj eksporti
     migrate: Konta migrado
     notifications: Retpoŝtaj sciigoj
-    preferences: Preferoj
+    preferences: Agordoj
     profile: Publika profilo
     relationships: Sekvatoj kaj sekvantoj
     severed_relationships: Finitaj rilatoj
@@ -1860,6 +1859,10 @@ eo:
       limit: Vi jam atingis la maksimuman nombron de alpinglitaj mesaĝoj
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
+    quote_policies:
+      followers: Sekvantoj kaj menciitaj uzantoj
+      nobody: Nur menciitaj uzantoj
+      public: Ĉiuj
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Rekta

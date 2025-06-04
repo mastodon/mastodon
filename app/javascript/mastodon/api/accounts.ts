@@ -36,6 +36,6 @@ export const apiGetEndorsedAccounts = (id: string) =>
   apiRequestGet<ApiAccountJSON>(`v1/accounts/${id}/endorsements`);
 
 export const apiGetFamiliarFollowers = (id: string) =>
-  apiRequestGet<ApiFamiliarFollowersJSON>('/v1/accounts/familiar_followers', {
+  apiRequestGet<ApiFamiliarFollowersJSON>('v1/accounts/familiar_followers', {
     id,
   });

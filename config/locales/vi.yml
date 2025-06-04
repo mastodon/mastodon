@@ -776,6 +776,8 @@ vi:
       description_html: Mặc dù được yêu cầu chấp nhận điều khoản dịch vụ khi đăng ký, nhưng mọi người thường không đọc cho đến khi vấn đề gì đó xảy ra. <strong>Hãy làm điều này rõ ràng hơn bằng cách liệt kê nội quy máy chủ theo gạch đầu dòng.</strong> Cố gắng viết ngắn và đơn giản, nhưng đừng tách ra quá nhiều mục.
       edit: Sửa nội quy
       empty: Chưa có nội quy máy chủ.
+      move_down: Hạ cấp
+      move_up: Thăng cấp
       title: Nội quy máy chủ
     settings:
       about:
@@ -783,6 +785,9 @@ vi:
         preamble: Cung cấp thông tin chuyên sâu về cách máy chủ được vận hành, kiểm duyệt, tài trợ.
         rules_hint: Có một khu vực dành riêng cho các nội quy mà người tham gia máy chủ của bạn phải tuân thủ.
         title: Giới thiệu
+      allow_referrer_origin:
+        desc: 'Khi người dùng của bạn nhấn vào liên kết đến các trang web bên ngoài, trình duyệt của họ có thể gửi địa chỉ máy chủ Mastodon của bạn làm người giới thiệu. Tắt tùy chọn này nếu điều này sẽ xác định duy nhất người dùng của bạn, ví dụ: nếu đây là máy chủ Mastodon cá nhân.'
+        title: Cho phép các trang web bên ngoài xem máy chủ Mastodon của bạn như một nguồn lưu lượng truy cập
       appearance:
         preamble: Tùy chỉnh giao diện web của Mastodon.
         title: Giao diện
@@ -802,9 +807,9 @@ vi:
       discovery:
         follow_recommendations: Gợi ý theo dõi
         preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trong Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
+        privacy: Riêng tư
         profile_directory: Cộng đồng
         public_timelines: Bảng tin
-        publish_discovered_servers: Công khai các máy chủ được phát hiện
         publish_statistics: Công khai số liệu thống kê
         title: Khám phá
         trends: Xu hướng
@@ -1815,6 +1820,10 @@ vi:
       limit: Bạn đã ghim quá số lượng tút cho phép
       ownership: Không thể ghim tút của người khác
       reblog: Không thể ghim tút đăng lại
+    quote_policies:
+      followers: Người theo dõi và người được nhắc đến
+      nobody: Những người được nhắc đến
+      public: Mọi người
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Nhắn riêng
@@ -1868,6 +1877,11 @@ vi:
     does_not_match_previous_name: không khớp với tên trước
   terms_of_service:
     title: Điều khoản Dịch vụ
+  terms_of_service_interstitial:
+    future_preamble_html: Chúng tôi đang thay đổi một số điều khoản dịch vụ của mình, hiệu lực vào <strong>%{date}</strong>. Chúng tôi khuyến khích bạn xem lại các điều khoản đã cập nhật.
+    past_preamble_html: Chúng tôi đã thay đổi một số điều khoản dịch vụ của mình. Chúng tôi khuyến khích bạn xem lại các điều khoản đã cập nhật.
+    review_link: Xem lại điều khoản dịch vụ
+    title: Sửa đổi điều khoản dịch vụ %{domain}
   themes:
     contrast: Mastodon (Tương phản)
     default: Mastodon (Tối)
