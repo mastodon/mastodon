@@ -13,6 +13,7 @@ import {
   unmuteAccount,
   followAccountSuccess,
   unpinAccount,
+  pinAccount,
 } from 'mastodon/actions/accounts';
 import { showAlertForError } from 'mastodon/actions/alerts';
 import { openModal } from 'mastodon/actions/modal';
@@ -60,10 +61,6 @@ const messages = defineMessages({
   openOriginalPage: {
     id: 'account.open_original_page',
     defaultMessage: 'Open original page',
-  },
-  unendorse: {
-    id: 'account.unendorse',
-    defaultMessage: "Don't feature on profile",
   },
 });
 
@@ -186,17 +183,22 @@ export const Account: React.FC<AccountProps> = ({
           action: handleAddToLists,
         });
 
-        const handleUnendorse = () => {
+        const handleEndorseToggle = () => {
           if (relationship?.endorsed) {
             dispatch(unpinAccount(id));
+          } else {
+            dispatch(pinAccount(id));
           }
         };
-        if (relationship?.endorsed) {
-          arr.push({
-            text: intl.formatMessage(messages.unendorse),
-            action: handleUnendorse,
-          });
-        }
+        arr.push({
+          text: intl.formatMessage(
+            // Defined in features/account_timeline/components/account_header.tsx
+            relationship?.endorsed
+              ? { id: 'account.unendorse' }
+              : { id: 'account.endorse' },
+          ),
+          action: handleEndorseToggle,
+        });
       }
     }
 
