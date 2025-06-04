@@ -9,12 +9,12 @@ RSpec.describe 'NewStatuses', :inline_jobs, :js, :streaming do
   let(:password)            { 'password' }
   let(:confirmed_at)        { Time.zone.now }
   let(:finished_onboarding) { true }
+  let(:status_text) { 'This is a new status!' }
 
   before { as_a_logged_in_user }
 
   it 'can be posted' do
     visit_homepage
-    status_text = 'This is a new status!'
 
     within('.compose-form') do
       fill_in frontend_translations('compose_form.placeholder'), with: status_text
