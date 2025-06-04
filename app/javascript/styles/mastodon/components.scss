@@ -7068,18 +7068,19 @@ a.status-card {
 }
 
 .audio-player {
-  overflow: hidden;
   box-sizing: border-box;
+  container: audio-player / inline-size;
   position: relative;
-  background: var(--player-background-color, var(--background-color));
-  color: var(--player-foreground-color);
-  border-radius: 8px;
-  padding-bottom: 44px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  aspect-ratio: 16 / 9;
+  color: var(--player-foreground-color);
+  background: var(--player-background-color, var(--background-color));
+  border-radius: 8px;
   outline: 1px solid var(--media-outline-color);
   outline-offset: -1px;
-  aspect-ratio: 16 / 9;
-  container: audio-player / inline-size;
 
   &__controls {
     display: grid;
@@ -7128,7 +7129,15 @@ a.status-card {
   }
 
   &__visualizer {
+    width: 100%;
     max-width: 200px;
+  }
+
+  .video-player__seek {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 24px;
+    z-index: 1; /* Ensure this renders on top of audio player controls */
   }
 
   &.inactive {
