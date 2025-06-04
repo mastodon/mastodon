@@ -2,16 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.describe 'BackgroundJobs' do
+RSpec.describe 'AsyncRefreshes' do
   let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
-  let(:job) { BackgroundJob.new('test_job') }
+  let(:job) { AsyncRefresh.new('test_job') }
 
-  describe 'GET /api/v1_alpha/background_jobs/:id' do
+  describe 'GET /api/v1_alpha/async_refreshes/:id' do
     context 'when not authorized' do
       it 'returns http unauthorized' do
-        get api_v1_alpha_background_job_path(job.id)
+        get api_v1_alpha_async_refresh_path(job.id)
 
         expect(response)
           .to have_http_status(401)
@@ -22,7 +22,7 @@ RSpec.describe 'BackgroundJobs' do
 
     context 'with wrong scope' do
       before do
-        get api_v1_alpha_background_job_path(job.id), headers: headers
+        get api_v1_alpha_async_refresh_path(job.id), headers: headers
       end
 
       it_behaves_like 'forbidden for wrong scope', 'write write:accounts'
@@ -41,7 +41,7 @@ RSpec.describe 'BackgroundJobs' do
         end
 
         it 'returns http success' do
-          get api_v1_alpha_background_job_path(job.id), headers: headers
+          get api_v1_alpha_async_refresh_path(job.id), headers: headers
 
           expect(response)
             .to have_http_status(200)
@@ -52,14 +52,14 @@ RSpec.describe 'BackgroundJobs' do
           parsed_response = response.parsed_body
           expect(parsed_response)
             .to be_present
-          expect(parsed_response['background_job'])
+          expect(parsed_response['async_refresh'])
             .to include('status' => 'running', 'result_count' => 10)
         end
       end
 
       context 'when job does not exist' do
         it 'returns not found' do
-          get api_v1_alpha_background_job_path(job.id), headers: headers
+          get api_v1_alpha_async_refresh_path(job.id), headers: headers
 
           expect(response)
             .to have_http_status(404)

@@ -73,12 +73,12 @@ RSpec.describe 'Home', :inline_jobs do
       end
 
       it 'returns http partial content' do
-        background_job_id = BackgroundJob.new("account:#{user.account_id}:regeneration").id
+        async_refresh_id = AsyncRefresh.new("account:#{user.account_id}:regeneration").id
 
         subject
 
         expect(response).to have_http_status(206)
-        expect(response.headers['Mastodon-Background-Job']).to eq "id=\"#{background_job_id}\", retry=5"
+        expect(response.headers['Mastodon-Async-Refresh']).to eq "id=\"#{async_refresh_id}\", retry=5"
         expect(response.content_type)
           .to start_with('application/json')
       end

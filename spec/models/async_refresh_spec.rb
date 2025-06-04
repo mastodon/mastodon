@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BackgroundJob do
+RSpec.describe AsyncRefresh do
   subject { described_class.new(redis_key) }
 
   let(:redis_key) { 'testjob:key' }
@@ -16,16 +16,16 @@ RSpec.describe BackgroundJob do
       end
 
       it 'returns a new instance' do
-        id = Rails.application.message_verifier('background_jobs').generate(redis_key)
-        background_job = described_class.find(id)
+        id = Rails.application.message_verifier('async_refreshes').generate(redis_key)
+        async_refresh = described_class.find(id)
 
-        expect(background_job).to be_a described_class
+        expect(async_refresh).to be_a described_class
       end
     end
 
     context 'when no matching job in redis exists' do
       it 'returns `nil`' do
-        id = Rails.application.message_verifier('background_jobs').generate('non_existent')
+        id = Rails.application.message_verifier('async_refreshes').generate('non_existent')
         expect(described_class.find(id)).to be_nil
       end
     end

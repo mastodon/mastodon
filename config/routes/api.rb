@@ -6,7 +6,7 @@ namespace :api, format: false do
 
   # Experimental JSON / REST API
   namespace :v1_alpha do
-    resources :background_jobs, only: :show
+    resources :async_refreshes, only: :show
   end
 
   # JSON / REST API
