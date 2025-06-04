@@ -183,22 +183,24 @@ export const Account: React.FC<AccountProps> = ({
           action: handleAddToLists,
         });
 
-        const handleEndorseToggle = () => {
-          if (relationship?.endorsed) {
-            dispatch(unpinAccount(id));
-          } else {
-            dispatch(pinAccount(id));
-          }
-        };
-        arr.push({
-          text: intl.formatMessage(
-            // Defined in features/account_timeline/components/account_header.tsx
-            relationship?.endorsed
-              ? { id: 'account.unendorse' }
-              : { id: 'account.endorse' },
-          ),
-          action: handleEndorseToggle,
-        });
+        if (id !== me && (relationship?.following || relationship?.requested)) {
+          const handleEndorseToggle = () => {
+            if (relationship.endorsed) {
+              dispatch(unpinAccount(id));
+            } else {
+              dispatch(pinAccount(id));
+            }
+          };
+          arr.push({
+            text: intl.formatMessage(
+              // Defined in features/account_timeline/components/account_header.tsx
+              relationship.endorsed
+                ? { id: 'account.unendorse' }
+                : { id: 'account.endorse' },
+            ),
+            action: handleEndorseToggle,
+          });
+        }
       }
     }
 
