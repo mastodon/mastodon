@@ -2851,6 +2851,7 @@ __metadata:
     "@vitejs/plugin-react": "npm:^4.2.1"
     "@vitest/browser": "npm:^3.2.1"
     "@vitest/coverage-v8": "npm:3.2.0"
+    "@vitest/ui": "npm:3.2.1"
     arrow-key-navigation: "npm:^1.2.0"
     async-mutex: "npm:^0.5.0"
     axios: "npm:^1.4.0"
@@ -5024,6 +5025,23 @@ __metadata:
   dependencies:
     tinyspy: "npm:^4.0.3"
   checksum: 10c0/5b6e36c5e21cb8ed4b5f8e95c24379846168a719125cc189e53ccd9717bae8a6a63e16a04a57fb8736b6523b1b870df691a27a04e86c487f388d66af669672ca
+  languageName: node
+  linkType: hard
+
+"@vitest/ui@npm:3.2.1":
+  version: 3.2.1
+  resolution: "@vitest/ui@npm:3.2.1"
+  dependencies:
+    "@vitest/utils": "npm:3.2.1"
+    fflate: "npm:^0.8.2"
+    flatted: "npm:^3.3.3"
+    pathe: "npm:^2.0.3"
+    sirv: "npm:^3.0.1"
+    tinyglobby: "npm:^0.2.14"
+    tinyrainbow: "npm:^2.0.0"
+  peerDependencies:
+    vitest: 3.2.1
+  checksum: 10c0/406b88b657a89879bf7eb3b0337c82bf39871fab4a8066c53cdf2fca5f9d34c1e56f542557affb658aecd2acffe3bd0572a54fe17545ed74341c33d0585feebd
   languageName: node
   linkType: hard
 
@@ -7540,6 +7558,13 @@ __metadata:
     picomatch:
       optional: true
   checksum: 10c0/6ccc33be16945ee7bc841e1b4178c0b4cf18d3804894cb482aa514651c962a162f96da7ffc6ebfaf0df311689fb70091b04dd6caffe28d56b9ebdc0e7ccadfdd
+  languageName: node
+  linkType: hard
+
+"fflate@npm:^0.8.2":
+  version: 0.8.2
+  resolution: "fflate@npm:0.8.2"
+  checksum: 10c0/03448d630c0a583abea594835a9fdb2aaf7d67787055a761515bf4ed862913cfd693b4c4ffd5c3f3b355a70cf1e19033e9ae5aedcca103188aaff91b8bd6e293
   languageName: node
   linkType: hard
 

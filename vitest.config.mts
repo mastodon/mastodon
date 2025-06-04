@@ -1,8 +1,12 @@
+import { resolve } from 'node:path';
+
 import {
   configDefaults,
   defineConfig,
   TestProjectInlineConfiguration,
 } from 'vitest/config';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import react from '@vitejs/plugin-react';
 
 import { config as viteConfig } from './vite.config.mjs';
 
@@ -25,7 +29,7 @@ const storybookTests: TestProjectInlineConfiguration = {
       provider: 'playwright',
       instances: [{ browser: 'chromium' }],
     },
-    setupFiles: ['./.storybook/vitest.setup.ts'],
+    setupFiles: [resolve(__dirname, '.storybook/vitest.setup.ts')],
   },
 };
 
@@ -52,8 +56,19 @@ const legacyTests: TestProjectInlineConfiguration = {
 };
 
 export default defineConfig(async (context) => {
+  const baseConfig = await viteConfig(context);
+
   return {
-    ...(await viteConfig(context)),
+    ...baseConfig,
+    // Redeclare plugins as we don't need them all, and Ruby Vite is breaking the Vitest runner.
+    plugins: [
+      tsconfigPaths(),
+      react({
+        babel: {
+          plugins: ['formatjs', 'transform-react-remove-prop-types'],
+        },
+      }),
+    ],
     test: {
       projects: [legacyTests, storybookTests],
     },
