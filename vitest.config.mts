@@ -1,25 +1,27 @@
 import { resolve } from 'node:path';
 
+import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+import react from '@vitejs/plugin-react';
+import svgr from 'vite-plugin-svgr';
+import tsconfigPaths from 'vite-tsconfig-paths';
 import {
   configDefaults,
   defineConfig,
   TestProjectInlineConfiguration,
 } from 'vitest/config';
-import tsconfigPaths from 'vite-tsconfig-paths';
-import react from '@vitejs/plugin-react';
 
 import { config as viteConfig } from './vite.config.mjs';
 
-import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-
 const storybookTests: TestProjectInlineConfiguration = {
-  extends: true,
   plugins: [
     // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
     storybookTest({
       configDir: '.storybook',
       storybookScript: 'yarn run storybook',
     }),
+    react(),
+    svgr(),
+    tsconfigPaths(),
   ],
   test: {
     name: 'storybook',
@@ -60,15 +62,6 @@ export default defineConfig(async (context) => {
 
   return {
     ...baseConfig,
-    // Redeclare plugins as we don't need them all, and Ruby Vite is breaking the Vitest runner.
-    plugins: [
-      tsconfigPaths(),
-      react({
-        babel: {
-          plugins: ['formatjs', 'transform-react-remove-prop-types'],
-        },
-      }),
-    ],
     test: {
       projects: [legacyTests, storybookTests],
     },
