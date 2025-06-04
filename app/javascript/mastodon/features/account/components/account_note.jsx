@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-
-import { is } from 'immutable';
-import ImmutablePureComponent from 'react-immutable-pure-component';
+import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import Textarea from 'react-textarea-autosize';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import { submitAccountNote } from '@/mastodon/actions/account_notes';
 
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 
@@ -36,135 +35,120 @@ InlineAlert.propTypes = {
   show: PropTypes.bool,
 };
 
-class AccountNote extends ImmutablePureComponent {
+const InnerAccountNote = ({ accountId }) => {
+  const intl = useIntl();
+  const dispatch = useAppDispatch();
+  const initialValue = useAppSelector((state) =>
+    state.relationships.get(accountId)?.get('note') ?? ''
+  );
+  const [value, setValue] = useState(initialValue);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const valueRef = useRef(value);
 
-  static propTypes = {
-    accountId: PropTypes.string.isRequired,
-    value: PropTypes.string,
-    onSave: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
-  };
+  const onSave = useCallback(
+    () => {
+      setSaving(true);
 
-  state = {
-    value: null,
-    saving: false,
-    saved: false,
-  };
+      dispatch(submitAccountNote({ accountId, note: valueRef.current }));
 
-  UNSAFE_componentWillMount () {
-    this._reset();
-  }
+      setSaved(true);
+      setTimeout(() => {
+        setSaving(false);
+        setSaved(false);
+      }, 2000);
+    },
+    [accountId, setSaved, setSaving, dispatch],
+  );
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
-    const accountWillChange = !is(this.props.accountId, nextProps.accountId);
-    const newState = {};
+  const handleChange = useCallback(
+    (e) => {
+      setValue(e.target.value);
+      valueRef.current = e.target.value;
+    },
+    [setValue],
+  );
 
-    if (accountWillChange && this._isDirty()) {
-      this._save(false);
-    }
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
 
-    if (accountWillChange || nextProps.value === this.state.value) {
-      newState.saving = false;
-    }
+        setValue(initialValue);
+        valueRef.current = initialValue;
 
-    if (this.props.value !== nextProps.value) {
-      newState.value = nextProps.value;
-    }
+        e.currentTarget.blur();
+      } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
 
-    this.setState(newState);
-  }
+        onSave();
 
-  componentWillUnmount () {
-    if (this._isDirty()) {
-      this._save(false);
-    }
-  }
-
-  setTextareaRef = c => {
-    this.textarea = c;
-  };
-
-  handleChange = e => {
-    this.setState({ value: e.target.value, saving: false });
-  };
-
-  handleKeyDown = e => {
-    if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-
-      if (this.textarea) {
-        this.textarea.blur();
-      } else {
-        this._save();
+        e.currentTarget.blur();
       }
-    } else if (e.keyCode === 27) {
-      e.preventDefault();
+    },
+    [initialValue, setValue, onSave],
+  );
 
-      this._reset(() => {
-        if (this.textarea) {
-          this.textarea.blur();
-        }
-      });
-    }
-  };
+  const handleBlur = useCallback(
+    (e) => {
+      if (initialValue !== valueRef.current && !saved && !saving) {
+        onSave();
+      }
+    },
+    [onSave, saving, saved, initialValue]
+  );
 
-  handleBlur = () => {
-    if (this._isDirty()) {
-      this._save();
-    }
-  };
-
-  _save (showMessage = true) {
-    this.setState({ saving: true }, () => this.props.onSave(this.state.value));
-
-    if (showMessage) {
-      this.setState({ saved: true }, () => setTimeout(() => this.setState({ saved: false }), 2000));
-    }
-  }
-
-  _reset (callback) {
-    this.setState({ value: this.props.value }, callback);
-  }
-
-  _isDirty () {
-    return !this.state.saving && this.props.value !== null && this.state.value !== null && this.state.value !== this.props.value;
-  }
-
-  render () {
-    const { accountId, intl } = this.props;
-    const { value, saved } = this.state;
-
-    if (!accountId) {
-      return null;
+  useEffect(() => {
+    if (initialValue !== valueRef.current) {
+      setValue(initialValue);
+      valueRef.current = initialValue;
     }
 
-    return (
-      <div className='account__header__account-note'>
-        <label htmlFor={`account-note-${accountId}`}>
-          <FormattedMessage id='account.account_note_header' defaultMessage='Personal note' /> <InlineAlert show={saved} />
-        </label>
+    return () => {
+      if (initialValue !== valueRef.current) {
+        onSave(valueRef.current);
+      }
+    }
+  }, [initialValue, setValue, onSave]);
 
-        {this.props.value === undefined ? (
-          <div className='account__header__account-note__loading-indicator-wrapper'>
-            <LoadingIndicator />
-          </div>
-        ) : (
-          <Textarea
-            id={`account-note-${accountId}`}
-            className='account__header__account-note__content'
-            disabled={value === null}
-            placeholder={intl.formatMessage(messages.placeholder)}
-            value={value || ''}
-            onChange={this.handleChange}
-            onKeyDown={this.handleKeyDown}
-            onBlur={this.handleBlur}
-            ref={this.setTextareaRef}
-          />
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className='account__header__account-note'>
+      <label htmlFor={`account-note-${accountId}`}>
+        <FormattedMessage
+          id='account.account_note_header'
+          defaultMessage='Personal note'
+        />{' '}
+        <InlineAlert show={saved} />
+      </label>
+      {value === undefined ? (
+        <div className='account__header__account-note__loading-indicator-wrapper'>
+          <LoadingIndicator />
+        </div>
+      ) : (
+        <Textarea
+          id={`account-note-${accountId}`}
+          className='account__header__account-note__content'
+          disabled={initialValue === undefined}
+          placeholder={intl.formatMessage(messages.placeholder)}
+          value={value || ''}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          onBlur={handleBlur}
+        />
+      )}
+    </div>
+  );
+};
 
+InnerAccountNote.propTypes = {
+  accountId: PropTypes.string.isRequired,
 }
 
-export default injectIntl(AccountNote);
+export const AccountNote = ({ accountId }) => (
+  <InnerAccountNote accountId={accountId} key={`account-note-${accountId}`} />
+);
+
+AccountNote.propTypes = {
+  accountId: PropTypes.string.isRequired,
+}
+
