@@ -6,12 +6,12 @@ module Paperclip
       return @file unless options[:blurhash]
 
       width, height, data = blurhash_params
-      attribute_name = options[:blurhash].delete(:attribute_name) || :blurhash
+      attribute_name = options[:blurhash][:attribute_name] || :blurhash
 
       # Guard against segfaults if data has unexpected size
       raise RangeError, "Invalid image data size (expected #{width * height * 3}, got #{data.size})" if data.size != width * height * 3 # TODO: should probably be another exception type
 
-      attachment.instance.public_send("#{attribute_name}=", Blurhash.encode(width, height, data, **(options[:blurhash] || {})))
+      attachment.instance.public_send("#{attribute_name}=", Blurhash.encode(width, height, data, **(options[:blurhash]&.without(:attribute_name) || {})))
 
       @file
     rescue Vips::Error => e
