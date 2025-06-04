@@ -12,6 +12,7 @@ import {
   muteAccount,
   unmuteAccount,
   followAccountSuccess,
+  unpinAccount,
 } from 'mastodon/actions/accounts';
 import { showAlertForError } from 'mastodon/actions/alerts';
 import { openModal } from 'mastodon/actions/modal';
@@ -60,16 +61,29 @@ const messages = defineMessages({
     id: 'account.open_original_page',
     defaultMessage: 'Open original page',
   },
+  unendorse: {
+    id: 'account.unendorse',
+    defaultMessage: "Don't feature on profile",
+  },
 });
 
-export const Account: React.FC<{
+interface AccountProps {
   size?: number;
   id: string;
   hidden?: boolean;
   minimal?: boolean;
   defaultAction?: 'block' | 'mute';
   withBio?: boolean;
-}> = ({ id, size = 46, hidden, minimal, defaultAction, withBio }) => {
+}
+
+export const Account: React.FC<AccountProps> = ({
+  id,
+  size = 46,
+  hidden,
+  minimal,
+  defaultAction,
+  withBio,
+}) => {
   const intl = useIntl();
   const { signedIn } = useIdentity();
   const account = useAppSelector((state) => state.accounts.get(id));
@@ -119,8 +133,6 @@ export const Account: React.FC<{
         },
       ];
     } else if (defaultAction !== 'block') {
-      arr = [];
-
       if (isRemote && accountUrl) {
         arr.push({
           text: intl.formatMessage(messages.openOriginalPage),
@@ -173,6 +185,18 @@ export const Account: React.FC<{
           text: intl.formatMessage(messages.addToLists),
           action: handleAddToLists,
         });
+
+        const handleUnendorse = () => {
+          if (relationship?.endorsed) {
+            dispatch(unpinAccount(id));
+          }
+        };
+        if (relationship?.endorsed) {
+          arr.push({
+            text: intl.formatMessage(messages.unendorse),
+            action: handleUnendorse,
+          });
+        }
       }
     }
 
