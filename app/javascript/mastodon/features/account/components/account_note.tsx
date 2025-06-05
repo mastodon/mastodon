@@ -1,14 +1,13 @@
 import type { ChangeEventHandler, KeyboardEventHandler } from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useState, useRef, useCallback, useId } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import Textarea from 'react-textarea-autosize';
 
 import { submitAccountNote } from '@/mastodon/actions/account_notes';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 const messages = defineMessages({
   placeholder: {
@@ -17,66 +16,22 @@ const messages = defineMessages({
   },
 });
 
-const InlineAlert: React.FC<{ show: boolean }> = ({ show }) => {
-  const [mountMessage, setMountMessage] = useState(false);
-
-  useEffect(() => {
-    if (show) {
-      setMountMessage(true);
-    } else {
-      setTimeout(() => {
-        setMountMessage(false);
-      }, 200);
-    }
-  }, [show, setMountMessage]);
-
-  return (
-    <span
-      aria-live='polite'
-      role='status'
-      className='inline-alert'
-      style={{ opacity: show ? 1 : 0 }}
-    >
-      {mountMessage && (
-        <FormattedMessage id='generic.saved' defaultMessage='Saved' />
-      )}
-    </span>
-  );
-};
-
-interface Props {
-  accountId: string;
-}
-
-const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
+const AccountNoteUI: React.FC<{
+  initialValue: string | undefined;
+  onSubmit: (newNote: string) => void;
+  wasSaved: boolean;
+}> = ({ initialValue, onSubmit, wasSaved }) => {
   const intl = useIntl();
-  const dispatch = useAppDispatch();
-  const initialValue = useAppSelector((state) =>
-    state.relationships.get(accountId)?.get('note'),
-  );
+  const uniqueId = useId();
   const [value, setValue] = useState(initialValue ?? '');
-  const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
-  const valueRef = useRef(value);
-
-  const onSave = useCallback(() => {
-    setSaving(true);
-
-    void dispatch(submitAccountNote({ accountId, note: valueRef.current }));
-
-    setSaved(true);
-    setTimeout(() => {
-      setSaving(false);
-      setSaved(false);
-    }, 2000);
-  }, [accountId, setSaved, setSaving, dispatch]);
+  const isLoading = initialValue === undefined;
+  const canSubmitOnBlurRef = useRef(true);
 
   const handleChange = useCallback<ChangeEventHandler<HTMLTextAreaElement>>(
     (e) => {
       setValue(e.target.value);
-      valueRef.current = e.target.value;
     },
-    [setValue],
+    [],
   );
 
   const handleKeyDown = useCallback<KeyboardEventHandler<HTMLTextAreaElement>>(
@@ -85,65 +40,95 @@ const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
         e.preventDefault();
 
         setValue(initialValue ?? '');
-        valueRef.current = initialValue ?? '';
 
+        canSubmitOnBlurRef.current = false;
         e.currentTarget.blur();
       } else if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
 
-        onSave();
+        onSubmit(value);
 
+        canSubmitOnBlurRef.current = false;
         e.currentTarget.blur();
       }
     },
-    [initialValue, setValue, onSave],
+    [initialValue, onSubmit, value],
   );
 
   const handleBlur = useCallback(() => {
-    if (initialValue !== valueRef.current && !saved && !saving) {
-      onSave();
+    if (initialValue !== value && canSubmitOnBlurRef.current) {
+      onSubmit(value);
     }
-  }, [onSave, saving, saved, initialValue]);
-
-  useEffect(() => {
-    if (initialValue !== valueRef.current) {
-      setValue(initialValue ?? '');
-      valueRef.current = initialValue ?? '';
-    }
-
-    return () => {
-      if (initialValue !== undefined && initialValue !== valueRef.current) {
-        onSave();
-      }
-    };
-  }, [initialValue, setValue, onSave]);
+    canSubmitOnBlurRef.current = true;
+  }, [initialValue, onSubmit, value]);
 
   return (
     <div className='account__header__account-note'>
-      <label htmlFor={`account-note-${accountId}`}>
+      <label htmlFor={`account-note-${uniqueId}`}>
         <FormattedMessage
           id='account.account_note_header'
           defaultMessage='Personal note'
         />{' '}
-        <InlineAlert show={saved} />
+        <span
+          aria-live='polite'
+          role='status'
+          className='inline-alert'
+          style={{ opacity: wasSaved ? 1 : 0 }}
+        >
+          {wasSaved && (
+            <FormattedMessage id='generic.saved' defaultMessage='Saved' />
+          )}
+        </span>
       </label>
-      {value === undefined ? (
+      {isLoading ? (
         <div className='account__header__account-note__loading-indicator-wrapper'>
           <LoadingIndicator />
         </div>
       ) : (
         <Textarea
-          id={`account-note-${accountId}`}
+          id={`account-note-${uniqueId}`}
           className='account__header__account-note__content'
-          disabled={initialValue === undefined}
           placeholder={intl.formatMessage(messages.placeholder)}
-          value={value || ''}
+          value={value}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
           onBlur={handleBlur}
         />
       )}
     </div>
+  );
+};
+
+interface Props {
+  accountId: string;
+}
+
+const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
+  const dispatch = useAppDispatch();
+  const initialValue = useAppSelector((state) =>
+    state.relationships.get(accountId)?.get('note'),
+  );
+  const [wasSaved, setWasSaved] = useState(false);
+
+  const handleSubmit = useCallback(
+    (note: string) => {
+      setWasSaved(true);
+      void dispatch(submitAccountNote({ accountId, note }));
+
+      setTimeout(() => {
+        setWasSaved(false);
+      }, 2000);
+    },
+    [dispatch, accountId],
+  );
+
+  return (
+    <AccountNoteUI
+      key={initialValue}
+      initialValue={initialValue}
+      wasSaved={wasSaved}
+      onSubmit={handleSubmit}
+    />
   );
 };
 
