@@ -2858,6 +2858,7 @@ __metadata:
     babel-plugin-formatjs: "npm:^10.5.37"
     babel-plugin-transform-react-remove-prop-types: "npm:^0.4.24"
     blurhash: "npm:^2.0.5"
+    chromatic: "npm:^12.1.0"
     classnames: "npm:^2.3.2"
     cocoon-js-vanilla: "npm:^1.5.1"
     color-blend: "npm:^4.0.0"
@@ -5871,6 +5872,25 @@ __metadata:
   version: 2.0.0
   resolution: "chownr@npm:2.0.0"
   checksum: 10c0/594754e1303672171cc04e50f6c398ae16128eb134a88f801bf5354fd96f205320f23536a045d9abd8b51024a149696e51231565891d4efdab8846021ecf88e6
+  languageName: node
+  linkType: hard
+
+"chromatic@npm:^12.1.0":
+  version: 12.1.0
+  resolution: "chromatic@npm:12.1.0"
+  peerDependencies:
+    "@chromatic-com/cypress": ^0.*.* || ^1.0.0
+    "@chromatic-com/playwright": ^0.*.* || ^1.0.0
+  peerDependenciesMeta:
+    "@chromatic-com/cypress":
+      optional: true
+    "@chromatic-com/playwright":
+      optional: true
+  bin:
+    chroma: dist/bin.js
+    chromatic: dist/bin.js
+    chromatic-cli: dist/bin.js
+  checksum: 10c0/4acb70a4a84605f1963a823beed4f3062ec91e373104500f4295af2298b8d0b49f864d06ca81bc9389e44cae3a284332aac07c6cbfc123aa6457f3b52a4c4b78
   languageName: node
   linkType: hard
 
