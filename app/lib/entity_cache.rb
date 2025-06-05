@@ -37,6 +37,12 @@ class EntityCache
   end
 
   def to_key(type, *ids)
-    "#{type}:#{ids.compact.map(&:downcase).join(':')}"
+    if type == :emoji
+      # Preserve case sensitivity for emoji shortcodes
+      "#{type}:#{ids.compact.join(':')}"
+    else
+      # Maintain case-insensitive behavior for other cache types
+      "#{type}:#{ids.compact.map(&:downcase).join(':')}"
+    end
   end
 end
