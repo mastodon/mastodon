@@ -31,6 +31,36 @@ RSpec.describe AsyncRefresh do
     end
   end
 
+  describe '::create' do
+    it 'inserts the given key into redis' do
+      described_class.create(redis_key)
+
+      expect(redis.exists?(redis_key)).to be true
+    end
+
+    it 'sets the status to `running`' do
+      async_refresh = described_class.create(redis_key)
+
+      expect(async_refresh.status).to eq 'running'
+    end
+
+    context 'with `count_results`' do
+      it 'set `result_count` to 0' do
+        async_refresh = described_class.create(redis_key, count_results: true)
+
+        expect(async_refresh.result_count).to eq 0
+      end
+    end
+
+    context 'without `count_results`' do
+      it 'does not set `result_count`' do
+        async_refresh = described_class.create(redis_key)
+
+        expect(async_refresh.result_count).to be_nil
+      end
+    end
+  end
+
   describe '#id' do
     before do
       redis.hset(redis_key, job_hash)
@@ -61,6 +91,58 @@ RSpec.describe AsyncRefresh do
       it "returns 'finished'" do
         expect(subject.status).to eq 'finished'
       end
+    end
+  end
+
+  describe '#running?' do
+    before do
+      redis.hset(redis_key, job_hash)
+    end
+
+    context 'when the job is running' do
+      it 'returns `true`' do
+        expect(subject.running?).to be true
+      end
+    end
+
+    context 'when the job is finished' do
+      let(:status) { 'finished' }
+
+      it 'returns `false`' do
+        expect(subject.running?).to be false
+      end
+    end
+  end
+
+  describe '#finished?' do
+    before do
+      redis.hset(redis_key, job_hash)
+    end
+
+    context 'when the job is running' do
+      it 'returns `false`' do
+        expect(subject.finished?).to be false
+      end
+    end
+
+    context 'when the job is finished' do
+      let(:status) { 'finished' }
+
+      it 'returns `true`' do
+        expect(subject.finished?).to be true
+      end
+    end
+  end
+
+  describe '#finish!' do
+    before do
+      redis.hset(redis_key, job_hash)
+    end
+
+    it 'sets the status to `finished`' do
+      subject.finish!
+
+      expect(subject).to be_finished
     end
   end
 

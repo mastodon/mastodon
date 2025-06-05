@@ -6,22 +6,24 @@ class HomeFeed < Feed
     super(:home, account.id)
   end
 
+  def async_refresh
+    @async_refresh ||= AsyncRefresh.new(redis_regeneration_key)
+  end
+
   def regenerating?
-    redis.hget(redis_regeneration_key, 'status') == 'running'
+    async_refresh.running?
   rescue Redis::CommandError
     retry if upgrade_redis_key!
   end
 
   def regeneration_in_progress!
-    redis.hset(redis_regeneration_key, { 'status' => 'running' })
-    redis.expire(redis_regeneration_key, 1.day.seconds)
+    @async_refresh = AsyncRefresh.create(redis_regeneration_key)
   rescue Redis::CommandError
     upgrade_redis_key!
   end
 
   def regeneration_finished!
-    redis.hset(redis_regeneration_key, { 'status' => 'finished' })
-    redis.expire(redis_regeneration_key, 1.hour.seconds)
+    async_refresh.finish!
   rescue Redis::CommandError
     retry if upgrade_redis_key!
   end
