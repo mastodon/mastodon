@@ -25,6 +25,10 @@ jobs:
           fetch-depth: 0
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
+
+      - name: Build Storybook
+        run: yarn build-storybook
+
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
