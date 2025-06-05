@@ -43,6 +43,19 @@ export const ColumnSettings: React.FC = () => {
           <SettingToggle
             prefix='home_timeline'
             settings={settings}
+            settingPath={['shows', 'quote']}
+            onChange={onChange}
+            label={
+              <FormattedMessage
+                id='home.column_settings.show_quotes'
+                defaultMessage='Show quotes'
+              />
+            }
+          />
+
+          <SettingToggle
+            prefix='home_timeline'
+            settings={settings}
             settingPath={['shows', 'reply']}
             onChange={onChange}
             label={
