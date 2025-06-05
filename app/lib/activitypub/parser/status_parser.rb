@@ -123,6 +123,10 @@ class ActivityPub::Parser::StatusParser
     end.first
   end
 
+  def legacy_quote?
+    !@object.key?('quote')
+  end
+
   # The inlined quote; out of the attributes we support, only `https://w3id.org/fep/044f#quote` explicitly supports inlined objects
   def quoted_object
     as_array(@object['quote']).first

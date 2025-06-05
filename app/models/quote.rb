@@ -7,6 +7,7 @@
 #  id                :bigint(8)        not null, primary key
 #  activity_uri      :string
 #  approval_uri      :string
+#  legacy            :boolean          default(FALSE), not null
 #  state             :integer          default("pending"), not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
@@ -44,6 +45,10 @@ class Quote < ApplicationRecord
     elsif !revoked?
       update!(state: :rejected)
     end
+  end
+
+  def acceptable?
+    accepted? || !legacy?
   end
 
   def schedule_refresh_if_stale!
