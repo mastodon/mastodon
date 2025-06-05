@@ -8,7 +8,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import Textarea from 'react-textarea-autosize';
 
-import { Skeleton } from '@/mastodon/components/skeleton';
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 
 const messages = defineMessages({
   placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
@@ -156,7 +156,9 @@ class AccountNote extends ImmutablePureComponent {
         </label>
 
         {this.props.value === undefined ? (
-          <Skeleton width='20ch' height='35px' />
+          <div className='account__header__account-note__loading-indicator-wrapper'>
+            <LoadingIndicator />
+          </div>
         ) : (
           <Textarea
             id={`account-note-${accountId}`}
