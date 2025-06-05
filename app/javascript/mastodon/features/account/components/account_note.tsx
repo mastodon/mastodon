@@ -99,11 +99,9 @@ const AccountNoteUI: React.FC<{
   );
 };
 
-interface Props {
+export const AccountNote: React.FC<{
   accountId: string;
-}
-
-const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
+}> = ({ accountId }) => {
   const dispatch = useAppDispatch();
   const initialValue = useAppSelector((state) =>
     state.relationships.get(accountId)?.get('note'),
@@ -124,14 +122,10 @@ const InnerAccountNote: React.FC<Props> = ({ accountId }) => {
 
   return (
     <AccountNoteUI
-      key={initialValue}
+      key={`${accountId}-${initialValue}`}
       initialValue={initialValue}
       wasSaved={wasSaved}
       onSubmit={handleSubmit}
     />
   );
 };
-
-export const AccountNote: React.FC<Props> = ({ accountId }) => (
-  <InnerAccountNote accountId={accountId} key={`account-note-${accountId}`} />
-);
