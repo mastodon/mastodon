@@ -8203,6 +8203,20 @@ noscript {
     font-weight: 400;
     margin-bottom: 10px;
 
+    &__loading-indicator-wrapper {
+      position: relative;
+      height: 37px;
+
+      .loading-indicator {
+        left: 10px;
+      }
+
+      .circular-progress {
+        width: 14px;
+        height: 14px;
+      }
+    }
+
     label {
       display: block;
       font-size: 12px;
