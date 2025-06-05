@@ -283,14 +283,14 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         # If the quoted post has changed, discard the old object and create a new one
         if @status.quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(@status.quote.quoted_status) != quote_uri
           @status.quote.destroy
-          quote = Quote.create(status: @status, approval_uri: approval_uri)
+          quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
           @quote_changed = true
         else
           quote = @status.quote
-          quote.update(approval_uri: approval_uri, state: :pending) if quote.approval_uri != @status_parser.quote_approval_uri
+          quote.update(approval_uri: approval_uri, state: :pending, legacy: @status_parser.legacy_quote?) if quote.approval_uri != @status_parser.quote_approval_uri
         end
       else
-        quote = Quote.create(status: @status, approval_uri: approval_uri)
+        quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
         @quote_changed = true
       end
 
