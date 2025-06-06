@@ -271,8 +271,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_quote!
-    return unless Mastodon::Feature.inbound_quotes_enabled?
-
     quote_uri = @status_parser.quote_uri
 
     if quote_uri.present?
