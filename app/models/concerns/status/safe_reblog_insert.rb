@@ -16,7 +16,7 @@ module Status::SafeReblogInsert
     # The code is kept similar to ActiveRecord::Persistence code and calls it
     # directly when we are not handling a reblog.
     #
-    # https://github.com/rails/rails/blob/v7.2.1.1/activerecord/lib/active_record/persistence.rb#L238-L263
+    # https://github.com/rails/rails/blob/v8.0.2/activerecord/lib/active_record/persistence.rb#L238-L261
     def _insert_record(connection, values, returning)
       return super unless values.is_a?(Hash) && values['reblog_of_id']&.value.present?
 
@@ -36,15 +36,13 @@ module Status::SafeReblogInsert
       # Instead, we use a custom builder when a reblog is happening:
       im = _compile_reblog_insert(values)
 
-      with_connection do |_c|
-        connection.insert(
-          im, "#{self} Create", primary_key || false, primary_key_value,
-          returning: returning
-        ).tap do |result|
-          # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
-          # For our purposes, it's equivalent to a foreign key constraint violation
-          raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id'].value}) is not present in table \"statuses\"" if result.nil?
-        end
+      connection.insert(
+        im, "#{self} Create", primary_key || false, primary_key_value,
+        returning: returning
+      ).tap do |result|
+        # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
+        # For our purposes, it's equivalent to a foreign key constraint violation
+        raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id'].value}) is not present in table \"statuses\"" if result.nil?
       end
     end
 
