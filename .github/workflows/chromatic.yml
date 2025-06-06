@@ -20,6 +20,7 @@ jobs:
   chromatic:
     name: Run Chromatic
     runs-on: ubuntu-latest
+    if: github.repository == 'mastodon/mastodon'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
