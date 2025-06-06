@@ -49,8 +49,8 @@ body:
     attributes:
       label: Mastodon version
       description: |
-        This is displayed at the bottom of the About page, eg. `v4.4.0-alpha.1`
-      placeholder: v4.3.0
+        This is displayed at the bottom of the About page, eg. `v4.4.0-beta.1`
+      placeholder: v4.4.0-beta.1
     validations:
       required: false
   - type: textarea
@@ -60,7 +60,7 @@ body:
         Any additional technical details you may have, like logs or error traces
       value: |
         If this is happening on your own Mastodon server, please fill out those:
-        - Ruby version: (from `ruby --version`, eg. v3.4.1)
-        - Node.js version: (from `node --version`, eg. v20.18.0)
+        - Ruby version: (from `ruby --version`, eg. v3.4.4)
+        - Node.js version: (from `node --version`, eg. v22.16.0)
     validations:
       required: false
