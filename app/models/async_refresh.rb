@@ -22,6 +22,10 @@ class AsyncRefresh
     new(redis_key)
   end
 
+  def self.exists?(redis_key)
+    redis.exists?(redis_key)
+  end
+
   attr_reader :status, :result_count
 
   def initialize(redis_key)
@@ -45,6 +49,11 @@ class AsyncRefresh
     redis.hset(@redis_key, { 'status' => 'finished' })
     redis.expire(@redis_key, FINISHED_REFRESH_EXPIRATION)
     @status = 'finished'
+  end
+
+  def increment_result_count(by: 1)
+    redis.hincrby(@redis_key, 'result_count', by)
+    fetch_data_from_redis
   end
 
   def reload
