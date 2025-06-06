@@ -137,7 +137,7 @@ group :test do
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
-  gem 'selenium-webdriver'
+  gem 'capybara-playwright-driver'
 
   # Used to reset the database between system tests
   gem 'database_cleaner-active_record'
