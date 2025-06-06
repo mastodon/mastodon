@@ -20,6 +20,21 @@ module RoutingHelper
     URI.join(asset_host, source).to_s
   end
 
+  def expiring_asset_url(attachment, expires_in)
+    case Paperclip::Attachment.default_options[:storage]
+    when :s3, :azure
+      attachment.expiring_url(expires_in.to_i)
+    when :fog
+      if Paperclip::Attachment.default_options.dig(:fog_credentials, :openstack_temp_url_key).present?
+        attachment.expiring_url(expires_in.from_now)
+      else
+        full_asset_url(attachment.url)
+      end
+    when :filesystem
+      full_asset_url(attachment.url)
+    end
+  end
+
   def asset_host
     Rails.configuration.action_controller.asset_host || root_url
   end

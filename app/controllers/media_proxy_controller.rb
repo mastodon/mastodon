@@ -9,6 +9,7 @@ class MediaProxyController < ApplicationController
   skip_before_action :require_functional!
 
   before_action :authenticate_user!, if: :limited_federation_mode?
+  before_action :set_media_attachment
 
   rescue_from ActiveRecord::RecordInvalid, with: :not_found
   rescue_from Mastodon::UnexpectedResponseError, with: :not_found
@@ -16,25 +17,32 @@ class MediaProxyController < ApplicationController
   rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS, with: :internal_server_error)
 
   def show
-    with_redis_lock("media_download:#{params[:id]}") do
-      @media_attachment = MediaAttachment.remote.attached.find(params[:id])
-      authorize @media_attachment.status, :show?
-      redownload! if @media_attachment.needs_redownload? && !reject_media?
+    if @media_attachment.needs_redownload? && !reject_media?
+      with_redis_lock("media_download:#{params[:id]}") do
+        @media_attachment.reload # Reload once we have acquired a lock, in case the file was downloaded in the meantime
+        redownload! if @media_attachment.needs_redownload?
+      end
     end
 
-    redirect_to full_asset_url(@media_attachment.file.url(version)), allow_other_host: true
+    redirect_to media_attachment_file_path, allow_other_host: true
   end
 
   private
 
+  def set_media_attachment
+    @media_attachment = MediaAttachment.attached.find(params[:id])
+    authorize @media_attachment, :download?
+  end
+
   def redownload!
     @media_attachment.download_file!
+    @media_attachment.download_thumbnail!
     @media_attachment.created_at = Time.now.utc
     @media_attachment.save!
   end
 
-  def version
-    if request.path.end_with?('/small')
+  def attachment_style
+    if @media_attachment.thumbnail.nil? && preview_requested?
       :small
     else
       :original
@@ -43,5 +51,25 @@ class MediaProxyController < ApplicationController
 
   def reject_media?
     DomainBlock.reject_media?(@media_attachment.account.domain)
+  end
+
+  def media_attachment_file_path
+    if @media_attachment.status&.discarded?
+      expiring_asset_url(media_attachment_file, 10.minutes)
+    else
+      full_asset_url(media_attachment_file.url(attachment_style))
+    end
+  end
+
+  def media_attachment_file
+    if @media_attachment.thumbnail.present? && preview_requested?
+      @media_attachment.thumbnail
+    else
+      @media_attachment.file
+    end
+  end
+
+  def preview_requested?
+    request.path.end_with?('/small')
   end
 end
