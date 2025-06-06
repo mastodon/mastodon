@@ -92,35 +92,26 @@ export const Card: React.FC<{ id: string; source: SuggestionSource }> = ({
   }
 
   return (
-    <div className='explore__suggestions__card'>
-      <div className='explore__suggestions__card__source'>{label}</div>
+    <div className='explore-suggestions-card'>
+      <div className='explore-suggestions-card__source'>{label}</div>
 
-      <div className='explore__suggestions__card__body'>
-        <div className='explore__suggestions__card__body__main'>
-          <Link
-            to={`/@${account.get('acct')}`}
-            data-hover-card-account={account.id}
-          >
-            <Avatar account={account} size={48} />
-          </Link>
-
-          <div className='explore__suggestions__card__body__main__name-button'>
-            <Link
-              className='explore__suggestions__card__body__main__name-button__name'
-              to={`/@${account.get('acct')}`}
-              data-hover-card-account={account.id}
-            >
-              <DisplayName account={account} />
-            </Link>
-
-            <IconButton
-              icon='close'
-              iconComponent={CloseIcon}
-              onClick={handleDismiss}
-              title={intl.formatMessage(messages.dismiss)}
-            />
-            <FollowButton accountId={account.get('id')} />
-          </div>
+      <div className='explore-suggestions-card__body'>
+        <Link
+          to={`/@${account.get('acct')}`}
+          data-hover-card-account={account.id}
+          className='explore-suggestions-card__link'
+        >
+          <Avatar account={account} size={48} />
+          <DisplayName account={account} />
+        </Link>
+        <div className='explore-suggestions-card__actions'>
+          <IconButton
+            icon='close'
+            iconComponent={CloseIcon}
+            onClick={handleDismiss}
+            title={intl.formatMessage(messages.dismiss)}
+          />
+          <FollowButton accountId={account.get('id')} />
         </div>
       </div>
     </div>
