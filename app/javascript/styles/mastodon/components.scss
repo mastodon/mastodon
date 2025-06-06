@@ -2170,6 +2170,17 @@ body > [data-popper-placement] {
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: end;
+}
+
+.account__wrapper--with-bio {
+  align-items: start;
+}
+
+.account__info-wrapper {
+  flex: 1 1 auto;
+  min-width: 65%;
 }
 
 .account__avatar {
