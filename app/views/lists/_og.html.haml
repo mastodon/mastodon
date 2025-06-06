@@ -1,0 +1,7 @@
+%meta{ name: 'description', content: list.description }/
+
+= opengraph 'og:url', public_list_url(list.to_url_param)
+= opengraph 'og:site_name', site_title
+= opengraph 'og:title', yield(:page_title).strip
+= opengraph 'og:description', list.description
+= opengraph 'twitter:card', 'summary'

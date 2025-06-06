@@ -158,7 +158,7 @@ class FeedManager
 
     timeline_key = key(:list, list.id)
     aggregate    = list.account.user&.aggregates_reblogs?
-    query        = from_account.statuses.list_eligible_visibility.includes(reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
+    query        = from_account.statuses.list_eligible_visibility(list).includes(reblog: :account).limit(FeedManager::MAX_ITEMS / 4)
 
     if redis.zcard(timeline_key) >= FeedManager::MAX_ITEMS / 4
       oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
@@ -499,6 +499,8 @@ class FeedManager
   # @param [List] list
   # @return [Boolean]
   def filter_from_list?(status, list)
+    return true if list.public_list? && !status.distributable?
+
     if status.reply? && status.in_reply_to_account_id != status.account_id                                                       # Status is a reply to account other than status account
       should_filter = status.in_reply_to_account_id != list.account_id                                                           # Status replies to account id other than list account
       should_filter &&= !list.show_followed?                                                                                     # List show_followed? is false
