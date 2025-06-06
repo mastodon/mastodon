@@ -127,7 +127,7 @@ RSpec.describe Admin::SystemCheck::SoftwareVersionCheck do
         check.message
 
         expect(Admin::SystemCheck::Message).to have_received(:new)
-          .with(:software_version_critical_check, nil, admin_software_updates_path, true)
+          .with(:software_version_critical_check, nil, admin_software_updates_path, critical: true)
       end
     end
   end
