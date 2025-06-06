@@ -66,7 +66,8 @@ RSpec.describe 'Home', :inline_jobs do
     end
 
     context 'when the timeline is regenerating' do
-      let(:timeline) { instance_double(HomeFeed, regenerating?: true, get: []) }
+      let(:async_refresh) { AsyncRefresh.create("account:#{user.account_id}:regeneration") }
+      let(:timeline) { instance_double(HomeFeed, regenerating?: true, get: [], async_refresh:) }
 
       before do
         allow(HomeFeed).to receive(:new).and_return(timeline)
@@ -76,6 +77,7 @@ RSpec.describe 'Home', :inline_jobs do
         subject
 
         expect(response).to have_http_status(206)
+        expect(response.headers['Mastodon-Async-Refresh']).to eq "id=\"#{async_refresh.id}\", retry=5"
         expect(response.content_type)
           .to start_with('application/json')
       end
