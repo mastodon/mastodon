@@ -32,7 +32,7 @@ jobs:
         run: yarn build-storybook
 
       - name: Run Chromatic
-        uses: chromaui/action@latest
+        uses: chromaui/action@v12
         with:
           # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
