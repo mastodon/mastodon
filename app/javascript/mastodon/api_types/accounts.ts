@@ -12,11 +12,21 @@ export interface ApiAccountRoleJSON {
   name: string;
 }
 
+export interface ApiMetaJSON {
+  colors?: {
+    background: string;
+    foreground: string;
+    accent: string;
+  };
+}
+
 // See app/serializers/rest/account_serializer.rb
 export interface BaseApiAccountJSON {
   acct: string;
   avatar: string;
   avatar_static: string;
+  avatar_blurhash?: string;
+  avatar_meta?: ApiMetaJSON;
   bot: boolean;
   created_at: string;
   discoverable?: boolean;
