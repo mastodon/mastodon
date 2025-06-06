@@ -1,4 +1,4 @@
-import { useCallback, useState, useRef } from 'react';
+import { useCallback, useState, useRef, useMemo } from 'react';
 
 import {
   defineMessages,
@@ -252,6 +252,103 @@ export const Search: React.FC<{
     [dispatch, history],
   );
 
+  const QuickActionGenerators: {
+    couldBeURL: (url: string) => SearchOption;
+    couldBeHashtag: (tag: string) => SearchOption;
+    couldBeUsername: (username: string) => SearchOption;
+    couldBeStatusSearch: (status: string) => SearchOption;
+    accountSearch: (account: string) => SearchOption;
+  } = useMemo(
+    () => ({
+      couldBeURL: (url: string): SearchOption => ({
+        key: 'open-url',
+        label: (
+          <FormattedMessage
+            id='search.quick_action.open_url'
+            defaultMessage='Open URL in Mastodon'
+          />
+        ),
+        action: () => {
+          dispatch(openURL({ url: url }))
+            .then((result) => {
+              if (isFulfilled(result)) {
+                if (result.payload.accounts[0]) {
+                  history.push(`/@${result.payload.accounts[0].acct}`);
+                } else if (result.payload.statuses[0]) {
+                  history.push(
+                    `/@${result.payload.statuses[0].account.acct}/${result.payload.statuses[0].id}`,
+                  );
+                }
+              }
+              return void 0;
+            })
+            .catch((e: unknown) => {
+              console.error(e);
+            })
+            .finally(() => {
+              unfocus();
+            });
+        },
+      }),
+      couldBeHashtag: (tag: string): SearchOption => ({
+        key: 'go-to-hashtag',
+        label: (
+          <FormattedMessage
+            id='search.quick_action.go_to_hashtag'
+            defaultMessage='Go to hashtag {x}'
+            values={{ x: <mark>#{tag}</mark> }}
+          />
+        ),
+        action: () => {
+          history.push(`/tags/${tag}`);
+          void dispatch(clickSearchResult({ q: tag, type: 'hashtag' }));
+          unfocus();
+        },
+      }),
+      couldBeUsername: (username: string): SearchOption => ({
+        key: 'go-to-account',
+        label: (
+          <FormattedMessage
+            id='search.quick_action.go_to_account'
+            defaultMessage='Go to profile {x}'
+            values={{ x: <mark>@{username}</mark> }}
+          />
+        ),
+        action: () => {
+          history.push(`/@${username}`);
+          void dispatch(clickSearchResult({ q: username, type: 'account' }));
+          unfocus();
+        },
+      }),
+      couldBeStatusSearch: (status: string): SearchOption => ({
+        key: 'status-search',
+        label: (
+          <FormattedMessage
+            id='search.quick_action.status_search'
+            defaultMessage='Posts matching {x}'
+            values={{ x: <mark>{status}</mark> }}
+          />
+        ),
+        action: () => {
+          submit(status, 'statuses');
+        },
+      }),
+      accountSearch: (account: string): SearchOption => ({
+        key: 'account-search',
+        label: (
+          <FormattedMessage
+            id='search.quick_action.account_search'
+            defaultMessage='Profiles matching {x}'
+            values={{ x: <mark>{account}</mark> }}
+          />
+        ),
+        action: () => {
+          submit(account, 'accounts');
+        },
+      }),
+    }),
+    [dispatch, history, submit],
+  );
   const handleChange = useCallback(
     ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
       setValue(value);
@@ -263,113 +360,63 @@ export const Search: React.FC<{
         const couldBeURL =
           trimmedValue.startsWith('https://') && !trimmedValue.includes(' ');
 
+        let mastoPath;
         if (couldBeURL) {
-          newQuickActions.push({
-            key: 'open-url',
-            label: (
-              <FormattedMessage
-                id='search.quick_action.open_url'
-                defaultMessage='Open URL in Mastodon'
-              />
-            ),
-            action: async () => {
-              const result = await dispatch(openURL({ url: trimmedValue }));
+          newQuickActions.push(QuickActionGenerators.couldBeURL(trimmedValue));
 
-              if (isFulfilled(result)) {
-                if (result.payload.accounts[0]) {
-                  history.push(`/@${result.payload.accounts[0].acct}`);
-                } else if (result.payload.statuses[0]) {
-                  history.push(
-                    `/@${result.payload.statuses[0].account.acct}/${result.payload.statuses[0].id}`,
-                  );
-                }
-              }
-
-              unfocus();
-            },
-          });
+          // presume URL is from a mastodon server; not just some random web URL
+          mastoPath = new URL(trimmedValue).pathname.replace(/^\//, '');
+        } else {
+          mastoPath = '';
         }
 
         const couldBeHashtag =
           (trimmedValue.startsWith('#') && trimmedValue.length > 1) ||
-          trimmedValue.match(HASHTAG_REGEX);
+          trimmedValue.match(HASHTAG_REGEX) ||
+          (couldBeURL && mastoPath.startsWith('tags/'));
 
         if (couldBeHashtag) {
-          newQuickActions.push({
-            key: 'go-to-hashtag',
-            label: (
-              <FormattedMessage
-                id='search.quick_action.go_to_hashtag'
-                defaultMessage='Go to hashtag {x}'
-                values={{ x: <mark>#{trimmedValue.replace(/^#/, '')}</mark> }}
-              />
-            ),
-            action: () => {
-              const query = trimmedValue.replace(/^#/, '');
-              history.push(`/tags/${query}`);
-              void dispatch(clickSearchResult({ q: query, type: 'hashtag' }));
-              unfocus();
-            },
-          });
+          const hashtag = couldBeURL
+            ? mastoPath.replace(/^tags\//, '')
+            : trimmedValue.replace(/^#/, '');
+
+          newQuickActions.push(QuickActionGenerators.couldBeHashtag(hashtag));
         }
 
-        const couldBeUsername = /^@?[a-z0-9_-]+(@[^\s]+)?$/i.exec(trimmedValue);
-
+        const userRegexp = /^@?[a-z0-9_-]+(@[^\s]+)?$/i;
+        const couldBeUsername =
+          userRegexp.test(trimmedValue) ||
+          (couldBeURL && userRegexp.test(mastoPath));
         if (couldBeUsername) {
-          newQuickActions.push({
-            key: 'go-to-account',
-            label: (
-              <FormattedMessage
-                id='search.quick_action.go_to_account'
-                defaultMessage='Go to profile {x}'
-                values={{ x: <mark>@{trimmedValue.replace(/^@/, '')}</mark> }}
-              />
-            ),
-            action: () => {
-              const query = trimmedValue.replace(/^@/, '');
-              history.push(`/@${query}`);
-              void dispatch(clickSearchResult({ q: query, type: 'account' }));
-              unfocus();
-            },
-          });
+          const mastoUser = mastoPath.replace(/^@/, '');
+
+          const username = !couldBeURL
+            ? trimmedValue.replace(/^@/, '')
+            : // @ts-expect-error : mastoPath was tested against userRegexp above, meaning there must be at least one `@`:
+              // so match can't return null here
+              mastoPath.match(/@/g).length === 1
+              ? // if there's only 1 `@` in mastoPath, obtain domain from URL's FQDN & append to mastoUser
+                `${mastoUser}@${new URL(trimmedValue).hostname}`
+              : // otherwise there were at least (hopefully, only) 2, and it's a full masto identifier
+                mastoUser;
+
+          newQuickActions.push(QuickActionGenerators.couldBeUsername(username));
         }
 
         const couldBeStatusSearch = searchEnabled;
 
         if (couldBeStatusSearch && signedIn) {
-          newQuickActions.push({
-            key: 'status-search',
-            label: (
-              <FormattedMessage
-                id='search.quick_action.status_search'
-                defaultMessage='Posts matching {x}'
-                values={{ x: <mark>{trimmedValue}</mark> }}
-              />
-            ),
-            action: () => {
-              submit(trimmedValue, 'statuses');
-            },
-          });
+          newQuickActions.push(
+            QuickActionGenerators.couldBeStatusSearch(trimmedValue),
+          );
         }
 
-        newQuickActions.push({
-          key: 'account-search',
-          label: (
-            <FormattedMessage
-              id='search.quick_action.account_search'
-              defaultMessage='Profiles matching {x}'
-              values={{ x: <mark>{trimmedValue}</mark> }}
-            />
-          ),
-          action: () => {
-            submit(trimmedValue, 'accounts');
-          },
-        });
+        newQuickActions.push(QuickActionGenerators.accountSearch(trimmedValue));
       }
 
       setQuickActions(newQuickActions);
     },
-    [dispatch, history, signedIn, setValue, setQuickActions, submit],
+    [signedIn, setValue, setQuickActions, QuickActionGenerators],
   );
 
   const handleClear = useCallback(() => {
@@ -451,6 +498,33 @@ export const Search: React.FC<{
     setSelectedOption(-1);
   }, [setExpanded, setSelectedOption]);
 
+  const handleDragOver = useCallback(
+    (event: React.DragEvent<HTMLInputElement>) => {
+      event.preventDefault();
+    },
+    [],
+  );
+  const handleDrop = useCallback(
+    (event: React.DragEvent<HTMLInputElement>) => {
+      event.preventDefault();
+
+      handleClear();
+
+      const query =
+        event.dataTransfer.getData('URL') ||
+        event.dataTransfer.getData('text/plain');
+
+      Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value',
+      )?.set?.call(event.target, query);
+
+      event.currentTarget.focus();
+      event.target.dispatchEvent(new Event('change', { bubbles: true }));
+    },
+    [handleClear],
+  );
+
   return (
     <form className={classNames('search', { active: expanded })}>
       <input
@@ -468,6 +542,8 @@ export const Search: React.FC<{
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
       />
 
       <button type='button' className='search__icon' onClick={handleClear}>
