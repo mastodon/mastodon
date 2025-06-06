@@ -38,15 +38,3 @@ Style/FetchEnvVar:
 # Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
 Style/GuardClause:
   Enabled: false
-
-# Configuration parameters: AllowedMethods.
-# AllowedMethods: respond_to_missing?
-Style/OptionalBooleanParameter:
-  Exclude:
-    - 'app/lib/admin/system_check/message.rb'
-    - 'app/lib/request.rb'
-    - 'app/lib/webfinger.rb'
-    - 'app/services/block_domain_service.rb'
-    - 'app/services/fetch_resource_service.rb'
-    - 'app/workers/domain_block_worker.rb'
-    - 'app/workers/unfollow_follow_worker.rb'

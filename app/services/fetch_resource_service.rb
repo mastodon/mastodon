@@ -22,7 +22,7 @@ class FetchResourceService < BaseService
   def process(url, terminal: false)
     @url = url
 
-    perform_request { |response| process_response(response, terminal) }
+    perform_request { |response| process_response(response, terminal:) }
   end
 
   def perform_request(&block)
@@ -40,7 +40,7 @@ class FetchResourceService < BaseService
     end.perform(&block)
   end
 
-  def process_response(response, terminal = false)
+  def process_response(response, terminal: false)
     @response_code = response.code
     return nil if response.code != 200
 

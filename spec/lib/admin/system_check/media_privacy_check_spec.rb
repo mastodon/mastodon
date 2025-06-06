@@ -23,11 +23,11 @@ RSpec.describe Admin::SystemCheck::MediaPrivacyCheck do
 
   describe 'message' do
     it 'sends values to message instance' do
-      allow(Admin::SystemCheck::Message).to receive(:new).with(nil, nil, nil, true)
+      allow(Admin::SystemCheck::Message).to receive(:new).with(nil, nil, nil, critical: true)
 
       check.message
 
-      expect(Admin::SystemCheck::Message).to have_received(:new).with(nil, nil, nil, true)
+      expect(Admin::SystemCheck::Message).to have_received(:new).with(nil, nil, nil, critical: true)
     end
   end
 end

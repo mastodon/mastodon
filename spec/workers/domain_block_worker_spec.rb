@@ -14,7 +14,7 @@ RSpec.describe DomainBlockWorker do
       result = subject.perform(domain_block.id)
 
       expect(result).to be_nil
-      expect(service).to have_received(:call).with(domain_block, false)
+      expect(service).to have_received(:call).with(domain_block, update: false)
     end
 
     it 'returns true for non-existent domain block' do
