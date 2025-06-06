@@ -4,7 +4,6 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
   include Payloadable
 
   def perform
-    return unless Mastodon::Feature.inbound_quotes_enabled?
     return if non_matching_uri_hosts?(@account.uri, @json['id'])
 
     quoted_status = status_from_uri(object_uri)
