@@ -280,41 +280,63 @@ export const Account: React.FC<AccountProps> = ({
 
   return (
     <div className={classNames('account', { 'account--minimal': minimal })}>
-      <div className='account__wrapper'>
-        <Link
-          className='account__display-name'
-          title={account?.acct}
-          to={`/@${account?.acct}`}
-          data-hover-card-account={id}
-        >
-          <div className='account__avatar-wrapper'>
-            {account ? (
-              <Avatar account={account} size={size} />
+      <div
+        className={classNames('account__wrapper', {
+          'account__wrapper--with-bio': account && withBio,
+        })}
+      >
+        <div className='account__info-wrapper'>
+          <Link
+            className='account__display-name'
+            title={account?.acct}
+            to={`/@${account?.acct}`}
+            data-hover-card-account={id}
+          >
+            <div className='account__avatar-wrapper'>
+              {account ? (
+                <Avatar account={account} size={size} />
+              ) : (
+                <Skeleton width={size} height={size} />
+              )}
+            </div>
+
+            <div className='account__contents'>
+              <DisplayName account={account} />
+
+              {!minimal && (
+                <div className='account__details'>
+                  {account ? (
+                    <>
+                      <ShortNumber
+                        value={account.followers_count}
+                        renderer={FollowersCounter}
+                      />{' '}
+                      {verification} {muteTimeRemaining}
+                    </>
+                  ) : (
+                    <Skeleton width='7ch' />
+                  )}
+                </div>
+              )}
+            </div>
+          </Link>
+
+          {account &&
+            withBio &&
+            (account.note.length > 0 ? (
+              <div
+                className='account__note translate'
+                dangerouslySetInnerHTML={{ __html: account.note_emojified }}
+              />
             ) : (
-              <Skeleton width={size} height={size} />
-            )}
-          </div>
-
-          <div className='account__contents'>
-            <DisplayName account={account} />
-
-            {!minimal && (
-              <div className='account__details'>
-                {account ? (
-                  <>
-                    <ShortNumber
-                      value={account.followers_count}
-                      renderer={FollowersCounter}
-                    />{' '}
-                    {verification} {muteTimeRemaining}
-                  </>
-                ) : (
-                  <Skeleton width='7ch' />
-                )}
+              <div className='account__note account__note--missing'>
+                <FormattedMessage
+                  id='account.no_bio'
+                  defaultMessage='No description provided.'
+                />
               </div>
-            )}
-          </div>
-        </Link>
+            ))}
+        </div>
 
         {!minimal && (
           <div className='account__relationship'>
@@ -323,22 +345,6 @@ export const Account: React.FC<AccountProps> = ({
           </div>
         )}
       </div>
-
-      {account &&
-        withBio &&
-        (account.note.length > 0 ? (
-          <div
-            className='account__note translate'
-            dangerouslySetInnerHTML={{ __html: account.note_emojified }}
-          />
-        ) : (
-          <div className='account__note account__note--missing'>
-            <FormattedMessage
-              id='account.no_bio'
-              defaultMessage='No description provided.'
-            />
-          </div>
-        ))}
     </div>
   );
 };
