@@ -22,33 +22,34 @@ class AsyncRefresh
     new(redis_key)
   end
 
+  attr_reader :status, :result_count
+
   def initialize(redis_key)
     @redis_key = redis_key
+    fetch_data_from_redis
   end
 
   def id
     Rails.application.message_verifier('async_refreshes').generate(@redis_key)
   end
 
-  def status
-    redis.hget(@redis_key, 'status')
-  end
-
   def running?
-    status == 'running'
+    @status == 'running'
   end
 
   def finished?
-    status == 'finished'
+    @status == 'finished'
   end
 
   def finish!
     redis.hset(@redis_key, { 'status' => 'finished' })
     redis.expire(@redis_key, FINISHED_REFRESH_EXPIRATION)
+    @status = 'finished'
   end
 
-  def result_count
-    redis.hget(@redis_key, 'result_count')&.to_i
+  def reload
+    fetch_data_from_redis
+    self
   end
 
   def to_json(_options)
@@ -59,5 +60,12 @@ class AsyncRefresh
         result_count:,
       },
     }.to_json
+  end
+
+  private
+
+  def fetch_data_from_redis
+    @status = redis.hget(@redis_key, 'status')
+    @result_count = redis.hget(@redis_key, 'result_count').presence&.to_i
   end
 end

@@ -155,4 +155,20 @@ RSpec.describe AsyncRefresh do
       expect(subject.result_count).to eq 23
     end
   end
+
+  describe '#reload' do
+    before do
+      redis.hset(redis_key, job_hash)
+    end
+
+    it 'reloads the current data from redis and returns itself' do
+      expect(subject).to be_running
+      redis.hset(redis_key, { 'status' => 'finished' })
+      expect(subject).to be_running
+
+      expect(subject.reload).to eq subject
+
+      expect(subject).to be_finished
+    end
+  end
 end
