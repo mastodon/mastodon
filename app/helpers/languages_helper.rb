@@ -279,11 +279,9 @@ module LanguagesHelper
     return if str.blank?
     return str if valid_locale?(str)
 
-    code, = str.to_s.split(/[_-]/) # Strip out the region from e.g. en_US or ja-JP
-
-    return unless valid_locale?(code)
-
-    code
+    str.to_s.split(/[_-]/).first.tap do |code| # Strip out the region from e.g. en_US or ja-JP
+      return(nil) unless valid_locale?(code)
+    end
   end
 
   def valid_locale_cascade(*arr)
