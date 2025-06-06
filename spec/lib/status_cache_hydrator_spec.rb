@@ -56,9 +56,10 @@ RSpec.describe StatusCacheHydrator do
 
       context 'when handling an approved quote' do
         let(:quoted_status) { Fabricate(:status) }
+        let(:legacy) { false }
 
         before do
-          Fabricate(:quote, status: status, quoted_status: quoted_status, state: :accepted)
+          Fabricate(:quote, status: status, quoted_status: quoted_status, state: :accepted, legacy: legacy)
         end
 
         it 'renders the same attributes as full render' do
@@ -75,13 +76,46 @@ RSpec.describe StatusCacheHydrator do
           end
         end
 
+        context 'when the quote post is a legacy quote' do
+          let(:legacy) { true }
+
+          it 'renders the same attributes as full render' do
+            expect(subject).to eql(compare_to_hash)
+            expect(subject[:quote]).to_not be_nil
+          end
+        end
+
+        context 'when the quoted post is a private post the viewer is not authorized to see' do
+          let(:quoted_status) { Fabricate(:status, account: status.account, visibility: :private) }
+
+          it 'renders the same attributes as full render' do
+            expect(subject).to eql(compare_to_hash)
+            expect(subject[:quote]).to_not be_nil
+            expect(subject[:quote][:quoted_status]).to be_nil
+          end
+        end
+
+        context 'when the quoted post is a private post the viewer is authorized to see' do
+          let(:quoted_status) { Fabricate(:status, account: status.account, visibility: :private) }
+
+          before do
+            account.follow!(quoted_status.account)
+          end
+
+          it 'renders the same attributes as full render' do
+            expect(subject).to eql(compare_to_hash)
+            expect(subject[:quote]).to_not be_nil
+            expect(subject[:quote][:quoted_status]).to_not be_nil
+          end
+        end
+
         context 'when the quoted post has been deleted' do
           let(:quoted_status) { nil }
 
           it 'returns the same attributes as full render' do
             expect(subject).to eql(compare_to_hash)
             expect(subject[:quote]).to_not be_nil
-            expect(subject[:quote_status]).to be_nil
+            expect(subject[:quote][:quoted_status]).to be_nil
           end
         end
 
@@ -93,7 +127,7 @@ RSpec.describe StatusCacheHydrator do
           it 'returns the same attributes as full render' do
             expect(subject).to eql(compare_to_hash)
             expect(subject[:quote]).to_not be_nil
-            expect(subject[:quote_status]).to be_nil
+            expect(subject[:quote][:quoted_status]).to be_nil
           end
         end
 
