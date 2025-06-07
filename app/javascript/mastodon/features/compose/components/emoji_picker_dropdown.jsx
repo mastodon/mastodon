@@ -15,6 +15,7 @@ import { IconButton } from 'mastodon/components/icon_button';
 
 import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
 import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
+import { isMobile } from '../../is_mobile';
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
@@ -185,8 +186,9 @@ class EmojiPickerMenuImpl extends PureComponent {
     // Because of https://github.com/react-bootstrap/react-bootstrap/issues/2614 we need
     // to wait for a frame before focusing
     requestAnimationFrame(() => {
-      this.setState({ readyToFocus: true });
-      if (this.node) {
+      const shouldFocus = !isMobile(window.innerWidth);
+      this.setState({ readyToFocus: shouldFocus });
+      if (shouldFocus && this.node) {
         const element = this.node.querySelector('input[type="search"]');
         if (element) element.focus();
       }
