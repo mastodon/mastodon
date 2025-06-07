@@ -494,7 +494,9 @@ zh-CN:
         registrations:
           confirm: 确认
           reject: 拒绝
+          title: 确认FASP注册
         save: 保存
+        select_capabilities: 选择能力
         sign_in: 登录
         status: 状态
       title: FASP
@@ -768,17 +770,25 @@ zh-CN:
       title: 角色
     rules:
       add_new: 添加规则
+      add_translation: 添加翻译
       delete: 删除
       description_html: 虽然大多数人都声称已经阅读并同意服务条款，但通常人们只有在出现问题后才会阅读。<strong>所以写一个简单的要点列表吧，能让大家一目了然。</strong>试着让每条规则尽量简单明了，但也别分出太多条目来。
       edit: 编辑规则
       empty: 尚未定义服务器规则。
+      move_down: 下移
+      move_up: 上移
       title: 实例规则
+      translation: 翻译
+      translations: 翻译
     settings:
       about:
         manage_rules: 管理服务器规则
         preamble: 提供此服务器如何运营、审核及资金状况等详细信息。
         rules_hint: 有一个专门区域用于显示用户需要遵守的规则。
         title: 关于本站
+      allow_referrer_origin:
+        desc: 当您的用户点击指向外部网站的链接时，他们的浏览器可能会将您的 Mastodon 服务器地址作为referrer发送。如果这会唯一地识别出您的用户（例如，如果这是一个私人 Mastodon 服务器），请禁用此功能。
+        title: 允许外部网站将您的 Mastodon 服务器视为流量来源
       appearance:
         preamble: 自定义 Mastodon 的网页界面。
         title: 外观
@@ -798,6 +808,7 @@ zh-CN:
       discovery:
         follow_recommendations: 关注推荐
         preamble: 露出有趣的内容有助于新加入 Mastodon 的用户融入。可在这里控制多种发现功能如何在你的服务器上工作。
+        privacy: 隐私
         profile_directory: 个人资料目录
         public_timelines: 公共时间线
         publish_statistics: 发布统计数据
@@ -1808,6 +1819,10 @@ zh-CN:
       limit: 你置顶的嘟文数量已达上限
       ownership: 不能置顶别人的嘟文
       reblog: 不能置顶转嘟
+    quote_policies:
+      followers: 关注者和提及的用户
+      nobody: 仅提及的用户
+      public: 所有人
     title: "%{name}：“%{quote}”"
     visibilities:
       direct: 私信
@@ -1861,6 +1876,11 @@ zh-CN:
     does_not_match_previous_name: 和之前的名称不匹配
   terms_of_service:
     title: 服务条款
+  terms_of_service_interstitial:
+    future_preamble_html: 我们正修改服务条款，将在<strong>%{date}</strong>生效。我们建议您查看更新后的条款。
+    past_preamble_html: 自你上次访问起，我们改变了我们的服务条款。我们鼓励你查看更新后的条款。
+    review_link: 查看服务条款
+    title: "%{domain} 更新了服务条款"
   themes:
     contrast: Mastodon（高对比度）
     default: Mastodon（暗色主题）
@@ -1929,6 +1949,7 @@ zh-CN:
       agreement: 继续使用你在 %{domain} 的账号即表示您同意这些条款。如果你不同意更新后的条款，你可以随时删除账号以终止与 %{domain} 的协议。
       changelog: 本次更新的要点如下：
       description: 你收到此邮件是因为我们更新了 %{domain} 的服务条款。这些更新将于 %{date} 生效。我们建议你在此查看变更后的服务条款：
+      description_html: 你收到此邮件是因为我们更新了 %{domain} 的服务条款。这些更新将于 <strong>%{date}</strong> 生效。我们建议你在此查看 <a href="%{path}" target="_blank">更新后的条款</a>。
       sign_off: "%{domain} 运营团队"
       subject: 服务条款变更
       subtitle: "%{domain} 更新了服务条款"

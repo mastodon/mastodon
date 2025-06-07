@@ -319,6 +319,7 @@ pt-BR:
         create: Criar anúncio
         title: Novo anúncio
       preview:
+        disclaimer: Como os usuários não podem optar por não participar deles, as notificações por e-mail devem estar limitadas a anúncios importantes, como a violação de dados pessoais ou notificações de fechamento do servidor.
         explanation_html: 'Esse e-mail será enviado a <strong>%{display_count} usuários</strong>. O texto a seguir será incluído ao e-mail:'
         title: Visualizar anúncio
       publish: Publicar
@@ -785,17 +786,26 @@ pt-BR:
       title: Funções
     rules:
       add_new: Adicionar regra
+      add_translation: Adicionar tradução
       delete: Deletar
       description_html: Embora a maioria afirme ter lido e concordado com os termos de serviço, geralmente as pessoas só leem depois de surgir um problema. <strong>Faça com que seja mais fácil ver as regras do seu servidor rapidamente fornecendo-as em uma lista.</strong> Tente manter cada regra curta e simples, mas também tente não dividi-las em muitos itens separados.
       edit: Editar regra
       empty: Nenhuma regra do servidor foi definida.
+      move_down: Mover pra baixo
+      move_up: Mover para cima
       title: Regras do servidor
+      translation: Tradução
+      translations: Traduções
+      translations_explanation: Você pode opcionalmente adicionar traduções para as regras. O valor padrão será mostrado se nenhuma versão traduzida estiver disponível. Por favor, sempre se certifique de que qualquer tradução fornecida está em sincronia com o valor padrão.
     settings:
       about:
         manage_rules: Gerenciar regras do servidor
         preamble: Forneça informações detalhadas sobre como o servidor é operado, moderado e financiado.
         rules_hint: Existe uma área dedicada para as regras que os usuários devem aderir.
         title: Sobre
+      allow_referrer_origin:
+        desc: Quando os usuários clicam em links para sites externos, seu navegador pode enviar o endereço do servidor Mastodon como referente. Desative isto se isso identificaria exclusivamente seus usuários, por exemplo, se este for um servidor Mastodon pessoal.
+        title: Permitir que sites externos vejam seu servidor Mastodon como fonte de tráfego
       appearance:
         preamble: Personalize a interface web do Mastodon.
         title: Aparência
@@ -815,6 +825,7 @@ pt-BR:
       discovery:
         follow_recommendations: Seguir recomendações
         preamble: Navegar por um conteúdo interessante é fundamental para integrar novos usuários que podem não conhecer ninguém no Mastodon. Controle como várias características de descoberta funcionam no seu servidor.
+        privacy: Privacidade
         profile_directory: Diretório de perfis
         public_timelines: Timelines públicas
         publish_statistics: Publicar estatísticas
@@ -901,6 +912,8 @@ pt-BR:
     system_checks:
       database_schema_check:
         message_html: Existem migrações de banco de dados pendentes. Execute-as para garantir que o aplicativo se comporte como esperado
+      elasticsearch_analysis_index_mismatch:
+        message_html: Os mapeamentos de índice do Elasticsearch estão desatualizados. Por favor, execute <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: O agrupamento de Elasticsearch não é saudável (estado vermelho); os recursos de pesquisa não estão disponíveis
       elasticsearch_health_yellow:
@@ -1854,6 +1867,10 @@ pt-BR:
       limit: Você alcançou o número limite de publicações fixadas
       ownership: As publicações dos outros não podem ser fixadas
       reblog: Um impulso não pode ser fixado
+    quote_policies:
+      followers: Seguidores e usuários mencionados
+      nobody: Apenas usuários mencionados
+      public: Todos
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direto
@@ -1907,6 +1924,11 @@ pt-BR:
     does_not_match_previous_name: não corresponde ao nome anterior
   terms_of_service:
     title: Termos de Serviço
+  terms_of_service_interstitial:
+    future_preamble_html: Estamos fazendo algumas alterações nos termos de serviço, que entrarão em vigor em <strong>%{date}</strong>. Nós recomendamos que você reveja os termos atualizados.
+    past_preamble_html: Alteramos nossos termos de serviço desde a sua última visita. Recomendamos que você revise os termos atualizados.
+    review_link: Revisar os termos do serviço
+    title: Os termos de serviço do %{domain} estão mudando
   themes:
     contrast: Mastodon  (Alto contraste)
     default: Mastodon (Noturno)

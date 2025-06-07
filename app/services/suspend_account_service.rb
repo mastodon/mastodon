@@ -15,6 +15,7 @@ class SuspendAccountService < BaseService
     unmerge_from_home_timelines!
     unmerge_from_list_timelines!
     privatize_media_attachments!
+    remove_from_trends!
   end
 
   private
@@ -95,10 +96,14 @@ class SuspendAccountService < BaseService
             end
           end
 
-          CacheBusterWorker.perform_async(attachment.url(style)) if Rails.configuration.x.cache_buster_enabled
+          CacheBusterWorker.perform_async(attachment.url(style)) if Rails.configuration.x.cache_buster.enabled
         end
       end
     end
+  end
+
+  def remove_from_trends!
+    StatusTrend.where(account: @account).delete_all
   end
 
   def signed_activity_json

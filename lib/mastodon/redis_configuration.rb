@@ -9,7 +9,6 @@ class Mastodon::RedisConfiguration
 
   def base
     @base ||= setup_config(prefix: nil, defaults: DEFAULTS)
-              .merge(namespace: nil)
   end
 
   def sidekiq
@@ -23,7 +22,7 @@ class Mastodon::RedisConfiguration
                  expires_in: 10.minutes,
                  connect_timeout: 5,
                  pool: {
-                   size: Sidekiq.server? ? Sidekiq[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
+                   size: Sidekiq.server? ? Sidekiq.default_configuration[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
                    timeout: 5,
                  },
                })

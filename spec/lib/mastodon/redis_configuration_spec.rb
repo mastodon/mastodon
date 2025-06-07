@@ -156,7 +156,6 @@ RSpec.describe Mastodon::RedisConfiguration do
         expect(subject).to eq({
           url: 'redis://localhost:6379/0',
           driver: :hiredis,
-          namespace: nil,
         })
       end
     end
@@ -172,7 +171,6 @@ RSpec.describe Mastodon::RedisConfiguration do
         expect(subject).to eq({
           url: 'redis::/user@example.com/2',
           driver: :hiredis,
-          namespace: nil,
         })
       end
     end
@@ -188,7 +186,6 @@ RSpec.describe Mastodon::RedisConfiguration do
         expect(subject).to eq({
           url: 'redis://:testpass@redis.example.com:3333/3',
           driver: :hiredis,
-          namespace: nil,
         })
       end
     end

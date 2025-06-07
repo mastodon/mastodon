@@ -435,7 +435,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status has an existing unverified quote and adds an approval link', feature: :inbound_quotes do
+  context 'when the status has an existing unverified quote and adds an approval link' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: nil) }
@@ -500,7 +500,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status has an existing verified quote and removes an approval link', feature: :inbound_quotes do
+  context 'when the status has an existing verified quote and removes an approval link' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
@@ -535,7 +535,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status adds a verifiable quote', feature: :inbound_quotes do
+  context 'when the status adds a verifiable quote' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
@@ -600,7 +600,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status adds a unverifiable quote', feature: :inbound_quotes do
+  context 'when the status adds a unverifiable quote' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
@@ -635,7 +635,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status removes a verified quote', feature: :inbound_quotes do
+  context 'when the status removes a verified quote' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
@@ -660,7 +660,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status removes an unverified quote', feature: :inbound_quotes do
+  context 'when the status removes an unverified quote' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: nil, state: :pending) }
@@ -684,7 +684,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status swaps a verified quote with an unverifiable quote', feature: :inbound_quotes do
+  context 'when the status swaps a verified quote with an unverifiable quote' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }
     let(:second_quoted_status) { Fabricate(:status, account: quoted_account) }
@@ -752,7 +752,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
-  context 'when the status swaps a verified quote with another verifiable quote', feature: :inbound_quotes do
+  context 'when the status swaps a verified quote with another verifiable quote' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:second_quoted_account) { Fabricate(:account, domain: 'second-quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }

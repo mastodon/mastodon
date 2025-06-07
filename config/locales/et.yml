@@ -210,6 +210,7 @@ et:
         enable_user: Lubas kasutaja
         memorialize_account: Igaveselt lahkunuks märkimine
         promote_user: Edendas kasutaja
+        publish_terms_of_service: Avalda kasutustingimused
         reject_appeal: Lükka vaidlustus tagasi
         reject_user: Kasutaja tagasilükkamine
         remove_avatar_user: Kustutas profiilipildi
@@ -270,6 +271,7 @@ et:
         enable_user_html: "%{name} lubas %{target} sisenemise"
         memorialize_account_html: "%{name} märkis %{target} igaveselt lahkunuks"
         promote_user_html: "%{name} ülendas kasutajat %{target}"
+        publish_terms_of_service_html: "%{name} teatas kasutustingimuste muudatusest"
         reject_appeal_html: "%{name} lükkas %{target} modereerimisotsuse kaebuse tagasi"
         reject_user_html: "%{name} lükkas %{target} liitumissoovi tagasi"
         remove_avatar_user_html: "%{name} eemaldas %{target} avatari"
@@ -299,6 +301,7 @@ et:
       title: Auditilogi
       unavailable_instance: "(domeeni nimi pole saadaval)"
     announcements:
+      back: Tagasi teadaannete juurde
       destroyed_msg: Teadaande kustutamine õnnestus!
       edit:
         title: Teate muutmine
@@ -465,6 +468,10 @@ et:
       new:
         title: Domeenikeeldude import
       no_file: Faili pole valitud
+    fasp:
+      providers:
+        sign_in: Logi sisse
+        status: Olek
     follow_recommendations:
       description_html: "<strong>Jälgimissoovitused aitavad uutel kasutajatel kiirelt leida huvipakkuvat sisu</strong>. Kui kasutaja pole teistega piisavalt läbi käinud, et saaks luua personaalseid soovitusi, soovitatakse neid kontosid. Need arvutatakse ümber igapäevaselt konkreetse keele populaarseimate postituste ja enim jälgitavate kontode seast."
       language: Keel
@@ -741,11 +748,16 @@ et:
       title: Rollid
     rules:
       add_new: Lisa reegel
+      add_translation: Lisa tõlge
       delete: Kustuta
       description_html: Kuigi enamik väidab, et on teenusetingimused läbi lugenud ja nõustub nendega, loevad inimesed tavaliselt need läbi alles pärast probleemi tekkimist. <strong>Muuda oma serveri reeglite ühe pilguga haaramine hõlpsaks, esitades need lihtsa täpploendina.</strong> Püüa hoida reegli punktid lühikesed ja lihtsad, kuid ära jaga neid ka paljudeks eraldi üksusteks.
       edit: Reegli muutmine
       empty: Serveri reegleid pole veel defineeritud.
+      move_down: Liiguta alla
+      move_up: Liiguta üles
       title: Serveri reeglid
+      translation: Tõlge
+      translations: Tõlked
     settings:
       about:
         manage_rules: Halda serveri reegleid
@@ -771,6 +783,7 @@ et:
       discovery:
         follow_recommendations: Jälgi soovitusi
         preamble: Huvitava sisu esiletoomine on oluline uute kasutajate kaasamisel, kes ei pruugi Mastodonist kedagi tunda. Kontrolli, kuidas erinevad avastamisfunktsioonid serveris töötavad.
+        privacy: Privaatsus
         profile_directory: Kasutajate kataloog
         public_timelines: Avalikud ajajooned
         publish_statistics: Avalda statistika
@@ -819,6 +832,7 @@ et:
       batch:
         remove_from_report: Eemalda raportist
         report: Raport
+      contents: Sisu
       deleted: Kustutatud
       favourites: Lemmikud
       history: Versiooniajalugu
@@ -927,6 +941,9 @@ et:
         explanation_html: Esitatud teenusetingimuste näidis on mõeldud ainult teavitamise eesmärgil ja seda ei tohiks tõlgendada kui juriidilist nõuannet mis tahes küsimuses. Palun konsulteeri olukorra ja konkreetsete juriidiliste küsimuste osas oma õigusnõustajaga.
         title: Teenuse tingimuste seadistamine
       history: Ajalugu
+      publish: Postita
+      published_on_html: Postitatud %{date}
+      title: Kasutustingimused
     title: Administreerimine
     trends:
       allow: Luba
@@ -1163,8 +1180,8 @@ et:
       new_confirmation_instructions_sent: Saad mõne minuti pärast uue kinnituslingiga e-kirja!
       title: Kontrolli sisendkasti
     sign_in:
-      preamble_html: Logi sisse oma <strong>%{domain}</strong> volitustega. Kui konto asub teises serveris, ei saa siin sisse logida.
-      title: Logi sisse kohta %{domain}
+      preamble_html: Logi sisse oma kasutajakontoga serveris <strong>%{domain}</strong>. Kui konto asub teises serveris, siis sa ei saa siin sisse logida.
+      title: Logi sisse serverisse %{domain}
     sign_up:
       manual_review: Liitumised kohas %{domain} vaadatakse meie moderaatorite poolt käsitsi läbi. Aitamaks meil sinu taotlust läbi vaadata, kirjuta palun natuke endast ja miks soovid kontot kohas %{domain}.
       preamble: Selle Mastodoni serveri kontoga saad jälgida mistahes teist isikut fediversumis, sõltumata sellest, kus ta konto on majutatud.
@@ -1677,6 +1694,7 @@ et:
   scheduled_statuses:
     over_daily_limit: Lubatud ajastatud postituste arv %{limit} päevas on tänaseks ületatud
     over_total_limit: Oled jõudnud ajastatud postituste lubatud maksimumarvuni %{limit}
+    too_soon: kuupäev peab olema tulevikus
   self_destruct:
     lead_html: Kahjuks suletakse <strong>%{domain}</strong> lõplikult. Kui sul oli seal konto, ei saa sa seda enam kasutada, kuid siiski võid taotleda oma andmete varukoopiat.
     title: See server suletakse
@@ -1788,6 +1806,8 @@ et:
       limit: Kinnitatud on juba maksimaalne arv postitusi
       ownership: Kellegi teise postitust ei saa kinnitada
       reblog: Jagamist ei saa kinnitada
+    quote_policies:
+      followers: Jälgijad ja mainitud kasutajad
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Otsene
@@ -1841,6 +1861,8 @@ et:
       too_late: On hilja seda juhtumit vaidlustada
   tags:
     does_not_match_previous_name: ei ühti eelmise nimega
+  terms_of_service:
+    title: Kasutustingimused
   themes:
     contrast: Mastodon (Kõrge kontrast)
     default: Mastodon (Tume)
@@ -1864,7 +1886,7 @@ et:
     enabled: Kaheastmeline autentimine on lubatud
     enabled_success: Kaheastmeline autentimine lubatud
     generate_recovery_codes: Loo taastekoodid
-    lost_recovery_codes: Taastekoodide abil on võimalik telefoni kaotsimineku puhul kontole siseneda. Taastekoodide puudumisel saab need siin luua. Eelnevad taastekoodid kaotavad kehtivuse.
+    lost_recovery_codes: Taastekoodide abil on võimalik telefoni kaotsimineku puhul kontole sisse logida. Taastekoodide puudumisel saad need siin luua. Eelnevad taastekoodid kaotavad kehtivuse.
     methods: Kaheastmelised meetodid
     otp: Autentimisrakendus
     recovery_codes: Taastekoodide varundamine
@@ -1872,6 +1894,9 @@ et:
     recovery_instructions_html: Kui telefon peaks kaotsi minema, on võimalik kontole sisenemisel kasutada ühte järgnevatest taastekoodidest. <strong>Hoia taastekoode turvaliselt</strong>. Näiteks võib neid prindituna hoida koos teiste tähtsate dokumentidega.
     webauthn: Turvavõtmed
   user_mailer:
+    announcement_published:
+      subject: Saidi teadaanne teenuste kohta
+      title: "%{domain} saidi teadaanne teenuste kohta"
     appeal_approved:
       action: Konto seaded
       explanation: "%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on rahuldatud. Konto on ennistatud."
@@ -1901,6 +1926,11 @@ et:
       further_actions_html: Kui see tuleb üllatusena, soovitame viivitamata %{action} ja lülitada konto turvamiseks sisse kaheastmeline autentimine.
       subject: Kontole sisenemine uuelt IP-aadressilt
       title: Uus sisenemine
+    terms_of_service_changed:
+      sign_off: "%{domain} saidi tiim"
+      subject: Meie kasutustingimuste uuendused
+      subtitle: "%{domain} saidi kasutustingimused muutuvad"
+      title: Oluline uuendus
     warning:
       appeal: Vaidlustuse esitamine
       appeal_description: Kui see võib olla eksitus, on võimalik %{instance} haldajatele esitada vaidlustus.

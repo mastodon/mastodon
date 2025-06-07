@@ -814,17 +814,26 @@ gd:
       title: Dreuchdan
     rules:
       add_new: Cuir riaghailt ris
+      add_translation: Cuir eadar-theangachadh ris
       delete: Sguab às
       description_html: Ged a dh’innseas a’ mhòrchuid gun do leugh iad teirmichean na seirbheise is gu bheil iad ag aontachadh riutha, ’s ann mar as trice nach lean daoine orra ’gan leughadh gun deireadh nuair a thachras iad ri duilgheadas. <strong>Dèan e nas fhasa dhaibh gun tuig iad riaghailtean an fhrithealaiche ann am priobadh na sùla is tu a’ toirt liosta peilearaichte dhaibh.</strong> Feuch an cùm thu gach riaghailt goirid is sìmplidh ach feuch nach sgaoil thu ann an iomadh nì iad nas motha.
       edit: Deasaich an riaghailt
       empty: Cha deach riaghailtean an fhrithealaiche a mhìneachadh fhathast.
+      move_down: Gluais sìos
+      move_up: Gluais suas
       title: Riaghailtean an fhrithealaiche
+      translation: Eadar-theangachadh
+      translations: Eadar-theangachaidhean
+      translations_explanation: "’S urrainn dhut na riaghailtean eadar-theangachadh ma thogras tu. Thèid an luach bunaiteach a shealltainn mur eil eadar-theangachadh ann. Dèan cinnteach an-còmhnaidh gur ionnann an t-eadar-theangachadh ’s an luach bunaiteach."
     settings:
       about:
         manage_rules: Stiùirich riaghailtean an fhrithealaiche
         preamble: Solair fiosrachadh domhainn mu sholar, maorsainneachd is maoineachadh an fhrithealaiche seo.
         rules_hint: Tha roinn sònraichte ann dha na riaghailtean air am bu chòir an luchd-cleachdaidh agad a leantainn.
         title: Mu dhèidhinn
+      allow_referrer_origin:
+        desc: Nuair a bhriogas an luchd-cleachdaidh agad ceanglaichean gu làraichean air ann taobh a-muigh, dh’fhaoidte gun cuir am brabhsair aca seòladh an fhrithealaiche Mastodon agad thuca mar an referrer. Cuir seo à comas ma dh’aithnicheadh sin an luchd-cleachdaidh fa leth agad, can mas e frithealaiche Mastodon pearsanta a th’ ann.
+        title: Ceadaich gum faic làraichean air an taobh a-muigh an fhrithealaiche Mastodon agad mar thùs trafaige
       appearance:
         preamble: Gnàthaich eadar-aghaidh-lìn Mhastodon.
         title: Coltas
@@ -844,6 +853,7 @@ gd:
       discovery:
         follow_recommendations: Molaidhean leantainn
         preamble: Tha tighinn an uachdar susbainte inntinniche fìor-chudromach airson toiseach-tòiseachaidh an luchd-cleachdaidh ùr nach eil eòlach air duine sam bith air Mastodon, ma dh’fhaoidte. Stiùirich mar a dh’obraicheas gleusan an rùrachaidh air an fhrithealaiche agad.
+        privacy: Prìobhaideachd
         profile_directory: Eòlaire nam pròifil
         public_timelines: Loidhnichean-ama poblach
         publish_statistics: Foillsich an stadastaireachd
@@ -1943,6 +1953,10 @@ gd:
       limit: Tha an àireamh as motha de phostaichean prìnichte agad a tha ceadaichte
       ownership: Chan urrainn dhut post càich a phrìneachadh
       reblog: Chan urrainn dhut brosnachadh a phrìneachadh
+    quote_policies:
+      followers: Luchd-leantainn ’s cleachdaichean le iomradh orra
+      nobody: Cleachdaichean le iomradh orra a-mhàin
+      public: A h-uile duine
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Dìreach
@@ -1996,6 +2010,11 @@ gd:
     does_not_match_previous_name: "– chan eil seo a-rèir an ainm roimhe"
   terms_of_service:
     title: Teirmichean na seirbheise
+  terms_of_service_interstitial:
+    future_preamble_html: Tha sinn ag atharrachadh teirmichean na seirbheise againn a bhios èifeachdach on <strong>%{date}</strong> a-mach. Mholamaid gun dèan thu lèirmheas air na teirmichean ùra.
+    past_preamble_html: Dh’atharraich sinn teirmichean na seirbheise againn on turas mu dheireadh a thadhail thu oirnn. Mholamaid gun dèan thu lèirmheas air na teirmichean ùra.
+    review_link: Dèan lèirmheas air teirmichean na seirbheise
+    title: Tha teirmichean na seirbheise aig %{domain} gu bhith atharrachadh
   themes:
     contrast: Mastodon (iomsgaradh àrd)
     default: Mastodon (dorcha)

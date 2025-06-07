@@ -49,7 +49,7 @@ RSpec.describe 'Apps' do
             redirect_uris: redirect_uris,
             # Deprecated properties as of 4.3:
             redirect_uri: redirect_uri,
-            vapid_key: Rails.configuration.x.vapid_public_key
+            vapid_key: Rails.configuration.x.vapid.public_key
           )
         )
       end

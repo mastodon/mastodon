@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::Activity::QuoteRequest, feature: :inbound_quotes do
+RSpec.describe ActivityPub::Activity::QuoteRequest do
   let(:sender)    { Fabricate(:account, domain: 'example.com') }
   let(:recipient) { Fabricate(:account) }
   let(:quoted_post) { Fabricate(:status, account: recipient) }

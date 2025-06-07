@@ -22,18 +22,24 @@ module SignatureVerification
     request.headers['Signature'].present?
   end
 
+  def signature_key_id
+    signed_request.key_id
+  end
+
+  private
+
+  def signed_request
+    @signed_request ||= SignedRequest.new(request) if signed_request?
+  rescue SignatureVerificationError
+    nil
+  end
+
   def signature_verification_failure_reason
     @signature_verification_failure_reason
   end
 
   def signature_verification_failure_code
     @signature_verification_failure_code || 401
-  end
-
-  def signature_key_id
-    signature_params['keyId']
-  rescue Mastodon::SignatureVerificationError
-    nil
   end
 
   def signed_request_account
@@ -44,38 +50,20 @@ module SignatureVerification
     return @signed_request_actor if defined?(@signed_request_actor)
 
     raise Mastodon::SignatureVerificationError, 'Request not signed' unless signed_request?
-    raise Mastodon::SignatureVerificationError, 'Incompatible request signature. keyId and signature are required' if missing_required_signature_parameters?
-    raise Mastodon::SignatureVerificationError, 'Unsupported signature algorithm (only rsa-sha256 and hs2019 are supported)' unless %w(rsa-sha256 hs2019).include?(signature_algorithm)
-    raise Mastodon::SignatureVerificationError, 'Signed request date outside acceptable time window' unless matches_time_window?
 
-    verify_signature_strength!
-    verify_body_digest!
+    actor = actor_from_key_id
 
-    actor = actor_from_key_id(signature_params['keyId'])
+    raise Mastodon::SignatureVerificationError, "Public key not found for key #{signature_key_id}" if actor.nil?
 
-    raise Mastodon::SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if actor.nil?
-
-    signature             = Base64.decode64(signature_params['signature'])
-    compare_signed_string = build_signed_string(include_query_string: true)
-
-    return actor unless verify_signature(actor, signature, compare_signed_string).nil?
-
-    # Compatibility quirk with older Mastodon versions
-    compare_signed_string = build_signed_string(include_query_string: false)
-    return actor unless verify_signature(actor, signature, compare_signed_string).nil?
+    return (@signed_request_actor = actor) if signed_request.verified?(actor)
 
     actor = stoplight_wrapper.run { actor_refresh_key!(actor) }
 
-    raise Mastodon::SignatureVerificationError, "Could not refresh public key #{signature_params['keyId']}" if actor.nil?
+    raise Mastodon::SignatureVerificationError, "Could not refresh public key #{signature_key_id}" if actor.nil?
 
-    compare_signed_string = build_signed_string(include_query_string: true)
-    return actor unless verify_signature(actor, signature, compare_signed_string).nil?
+    return (@signed_request_actor = actor) if signed_request.verified?(actor)
 
-    # Compatibility quirk with older Mastodon versions
-    compare_signed_string = build_signed_string(include_query_string: false)
-    return actor unless verify_signature(actor, signature, compare_signed_string).nil?
-
-    fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)", signed_string: compare_signed_string, signature: signature_params['signature']
+    fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri}"
   rescue Mastodon::SignatureVerificationError => e
     fail_with! e.message
   rescue *Mastodon::HTTP_CONNECTION_ERRORS => e
@@ -86,12 +74,6 @@ module SignatureVerification
     fail_with! 'Fetching attempt skipped because of recent connection failure'
   end
 
-  def request_body
-    @request_body ||= request.raw_post
-  end
-
-  private
-
   def fail_with!(message, **options)
     Rails.logger.debug { "Signature verification failed: #{message}" }
 
@@ -99,123 +81,8 @@ module SignatureVerification
     @signed_request_actor = nil
   end
 
-  def signature_params
-    @signature_params ||= SignatureParser.parse(request.headers['Signature'])
-  rescue SignatureParser::ParsingError
-    raise Mastodon::SignatureVerificationError, 'Error parsing signature parameters'
-  end
-
-  def signature_algorithm
-    signature_params.fetch('algorithm', 'hs2019')
-  end
-
-  def signed_headers
-    signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split
-  end
-
-  def verify_signature_strength!
-    raise Mastodon::SignatureVerificationError, 'Mastodon requires the Date header or (created) pseudo-header to be signed' unless signed_headers.include?('date') || signed_headers.include?('(created)')
-    raise Mastodon::SignatureVerificationError, 'Mastodon requires the Digest header or (request-target) pseudo-header to be signed' unless signed_headers.include?(HttpSignatureDraft::REQUEST_TARGET) || signed_headers.include?('digest')
-    raise Mastodon::SignatureVerificationError, 'Mastodon requires the Host header to be signed when doing a GET request' if request.get? && !signed_headers.include?('host')
-    raise Mastodon::SignatureVerificationError, 'Mastodon requires the Digest header to be signed when doing a POST request' if request.post? && !signed_headers.include?('digest')
-  end
-
-  def verify_body_digest!
-    return unless signed_headers.include?('digest')
-    raise Mastodon::SignatureVerificationError, 'Digest header missing' unless request.headers.key?('Digest')
-
-    digests = request.headers['Digest'].split(',').map { |digest| digest.split('=', 2) }.map { |key, value| [key.downcase, value] }
-    sha256  = digests.assoc('sha-256')
-    raise Mastodon::SignatureVerificationError, "Mastodon only supports SHA-256 in Digest header. Offered algorithms: #{digests.map(&:first).join(', ')}" if sha256.nil?
-
-    return if body_digest == sha256[1]
-
-    digest_size = begin
-      Base64.strict_decode64(sha256[1].strip).length
-    rescue ArgumentError
-      raise Mastodon::SignatureVerificationError, "Invalid Digest value. The provided Digest value is not a valid base64 string. Given digest: #{sha256[1]}"
-    end
-
-    raise Mastodon::SignatureVerificationError, "Invalid Digest value. The provided Digest value is not a SHA-256 digest. Given digest: #{sha256[1]}" if digest_size != 32
-
-    raise Mastodon::SignatureVerificationError, "Invalid Digest value. Computed SHA-256 digest: #{body_digest}; given: #{sha256[1]}"
-  end
-
-  def verify_signature(actor, signature, compare_signed_string)
-    if actor.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), signature, compare_signed_string)
-      @signed_request_actor = actor
-      @signed_request_actor
-    end
-  rescue OpenSSL::PKey::RSAError
-    nil
-  end
-
-  def build_signed_string(include_query_string: true)
-    signed_headers.map do |signed_header|
-      case signed_header
-      when HttpSignatureDraft::REQUEST_TARGET
-        if include_query_string
-          "#{HttpSignatureDraft::REQUEST_TARGET}: #{request.method.downcase} #{request.original_fullpath}"
-        else
-          # Current versions of Mastodon incorrectly omit the query string from the (request-target) pseudo-header.
-          # Therefore, temporarily support such incorrect signatures for compatibility.
-          # TODO: remove eventually some time after release of the fixed version
-          "#{HttpSignatureDraft::REQUEST_TARGET}: #{request.method.downcase} #{request.path}"
-        end
-      when '(created)'
-        raise Mastodon::SignatureVerificationError, 'Invalid pseudo-header (created) for rsa-sha256' unless signature_algorithm == 'hs2019'
-        raise Mastodon::SignatureVerificationError, 'Pseudo-header (created) used but corresponding argument missing' if signature_params['created'].blank?
-
-        "(created): #{signature_params['created']}"
-      when '(expires)'
-        raise Mastodon::SignatureVerificationError, 'Invalid pseudo-header (expires) for rsa-sha256' unless signature_algorithm == 'hs2019'
-        raise Mastodon::SignatureVerificationError, 'Pseudo-header (expires) used but corresponding argument missing' if signature_params['expires'].blank?
-
-        "(expires): #{signature_params['expires']}"
-      else
-        "#{signed_header}: #{request.headers[to_header_name(signed_header)]}"
-      end
-    end.join("\n")
-  end
-
-  def matches_time_window?
-    created_time = nil
-    expires_time = nil
-
-    begin
-      if signature_algorithm == 'hs2019' && signature_params['created'].present?
-        created_time = Time.at(signature_params['created'].to_i).utc
-      elsif request.headers['Date'].present?
-        created_time = Time.httpdate(request.headers['Date']).utc
-      end
-
-      expires_time = Time.at(signature_params['expires'].to_i).utc if signature_params['expires'].present?
-    rescue ArgumentError => e
-      raise Mastodon::SignatureVerificationError, "Invalid Date header: #{e.message}"
-    end
-
-    expires_time ||= created_time + 5.minutes unless created_time.nil?
-    expires_time = [expires_time, created_time + EXPIRATION_WINDOW_LIMIT].min unless created_time.nil?
-
-    return false if created_time.present? && created_time > Time.now.utc + CLOCK_SKEW_MARGIN
-    return false if expires_time.present? && Time.now.utc > expires_time + CLOCK_SKEW_MARGIN
-
-    true
-  end
-
-  def body_digest
-    @body_digest ||= Digest::SHA256.base64digest(request_body)
-  end
-
-  def to_header_name(name)
-    name.split('-').map(&:capitalize).join('-')
-  end
-
-  def missing_required_signature_parameters?
-    signature_params['keyId'].blank? || signature_params['signature'].blank?
-  end
-
-  def actor_from_key_id(key_id)
+  def actor_from_key_id
+    key_id = signature_key_id
     domain = key_id.start_with?('acct:') ? key_id.split('@').last : key_id
 
     if domain_not_allowed?(domain)

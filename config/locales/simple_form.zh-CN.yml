@@ -56,6 +56,7 @@ zh-CN:
         scopes: 哪些 API 被允许使用。如果你勾选了更高一级的范围，就不用单独选中子项目了。
         setting_aggregate_reblogs: 不显示最近已经被转嘟过的嘟文(只会影响新收到的转嘟)
         setting_always_send_emails: 一般情况下，如果你活跃使用 Mastodon，我们不会向你发送电子邮件通知
+        setting_default_quote_policy: 总是允许引用被提及的用户。此设置将仅对下个Mastodon版本创建的帖子生效，但您可以在准备中选择您的偏好
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
         setting_display_media_default: 隐藏被标记为敏感内容的媒体
         setting_display_media_hide_all: 始终隐藏媒体
@@ -148,6 +149,8 @@ zh-CN:
         min_age: 不应低于您所在地法律管辖权要求的最低年龄。
       user:
         chosen_languages: 仅选中语言的嘟文会出现在公共时间线上（全不选则显示所有语言的嘟文）
+        date_of_birth:
+          other: 我们必须确认%{count}岁以上的用户才能使用Mastodon。我们不会存储该信息。
         role: 角色用于控制用户拥有的权限。
       user_role:
         color: 在界面各处用于标记该角色的颜色，以十六进制 RGB 格式表示
@@ -228,6 +231,7 @@ zh-CN:
         setting_boost_modal: 在转嘟前询问我
         setting_default_language: 发布语言
         setting_default_privacy: 嘟文默认可见范围
+        setting_default_quote_policy: 谁可以引用
         setting_default_sensitive: 始终标记媒体为敏感内容
         setting_delete_modal: 在删除嘟文前询问我
         setting_disable_hover_cards: 禁用悬停资料预览

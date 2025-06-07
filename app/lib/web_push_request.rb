@@ -79,8 +79,8 @@ class WebPushRequest
 
   def vapid_key
     @vapid_key ||= Webpush::VapidKey.from_keys(
-      Rails.configuration.x.vapid_public_key,
-      Rails.configuration.x.vapid_private_key
+      Rails.configuration.x.vapid.public_key,
+      Rails.configuration.x.vapid.private_key
     )
   end
 

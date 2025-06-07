@@ -56,6 +56,7 @@ sv:
         scopes: 'Vilka API: er applikationen kommer tillåtas åtkomst till. Om du väljer en omfattning på högstanivån behöver du inte välja individuella sådana.'
         setting_aggregate_reblogs: Visa inte nya boostar för inlägg som nyligen blivit boostade (påverkar endast nymottagna boostar)
         setting_always_send_emails: E-postnotiser kommer vanligtvis inte skickas när du aktivt använder Mastodon
+        setting_default_quote_policy: Nämnda användare får alltid citeras. Denna inställning kommer att träda i kraft för inlägg som skapats med nästa Mastodon-version, men förbereda dina inställningar för det redan nu
         setting_default_sensitive: Känslig media döljs som standard och kan visas med ett klick
         setting_display_media_default: Dölj media markerad som känslig
         setting_display_media_hide_all: Dölj alltid all media
@@ -75,6 +76,7 @@ sv:
       filters:
         action: Välj vilken åtgärd som ska utföras när ett inlägg matchar filtret
         actions:
+          blur: Dölj media bakom en varning utan att dölja själva texten
           hide: Dölj det filtrerade innehållet helt, beter sig som om det inte fanns
           warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
       form_admin_settings:
@@ -88,6 +90,7 @@ sv:
         favicon: WEBP, PNG, GIF eller JPG. Används på mobila enheter istället för appens egen ikon.
         mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
         media_cache_retention_period: Mediafiler från inlägg som gjorts av fjärranvändare cachas på din server. När inställd på ett positivt värde kommer media att raderas efter det angivna antalet dagar. Om mediadatat begärs efter att det har raderats, kommer det att laddas ned igen om källinnehållet fortfarande är tillgängligt. På grund av begränsningar för hur ofta förhandsgranskningskort för länkar hämtas från tredjepartswebbplatser, rekommenderas det att ange detta värde till minst 14 dagar, annars kommer förhandsgranskningskorten inte att uppdateras på begäran före den tiden.
+        min_age: Användare kommer att bli ombedda att bekräfta sitt födelsedatum under registreringen
         peers_api_enabled: En lista över domänen den här servern har stött på i fediversum. Ingen data inkluderas om du har federerat med servern, bara att din server känner till den. Detta används av tjänster som samlar statistik om federering i allmänhet.
         profile_directory: Profilkatalogen visar alla användare som har samtyckt till att bli upptäckbara.
         require_invite_text: Gör fältet "Varför vill du gå med?" obligatoriskt när nyregistreringar kräver manuellt godkännande
@@ -132,11 +135,23 @@ sv:
         name: Du kan bara ändra skriftläget av bokstäverna, till exempel, för att göra det mer läsbart
       terms_of_service:
         changelog: Kan struktureras med Markdown syntax.
+        effective_date: En rimlig tidsram kan vara allt från 10 till 30 dagar från det datum du meddelat dina användare.
         text: Kan struktureras med Markdown syntax.
       terms_of_service_generator:
+        admin_email: Juridiska meddelanden inkluderar motanmälningar, domstolsbeslut, begäran om borttagning och begäran från brottsbekämpande myndigheter.
+        arbitration_address: Ovan kan vara samma som fysisk adress, eller “N/A” om du använder e-post.
+        arbitration_website: Kan vara ett webbforum, eller ”N/A” om du använder e-post.
+        choice_of_law: Stad, region, territorium eller stat där det är de interna lagar som ska styra samtliga krav.
+        dmca_address: För amerikanska operatörer, använd den adress som är registrerad i DMCA:s katalog över utsedda agenter. En P.O. Box-lista finns tillgänglig på begäran; använd DMCA:s begäran om undantag för postbox för att mejla Copyright Office och förklara att du är en hembaserad innehållsmoderator som fruktar hämnd eller vedergällning för dina handlingar och behöver använda en P.O. Box för att ta bort din hemadress från offentlig visning.
+        dmca_email: Kan vara samma e-postadress som används för “E-postadress för juridiska meddelanden” ovan.
+        domain: Unik identifiering av onlinetjänsten du tillhandahåller.
         jurisdiction: Lista det land där vem som än betalar räkningarna bor. Om det är ett företag eller annan enhet, lista landet där det är inkorporerat, och staden, regionen, territoriet eller staten på lämpligt sätt.
+        min_age: Bör inte vara lägre än den minimiålder som krävs enligt lagarna i din jurisdiktion.
       user:
         chosen_languages: Vid aktivering visas bara inlägg på dina valda språk i offentliga tidslinjer
+        date_of_birth:
+          one: Vi måste se till att du är minst %{count} för att använda Mastodon. Vi lagrar inte denna information.
+          other: Vi måste se till att du är minst %{count} för att använda Mastodon. Vi lagrar inte denna information.
         role: Rollen styr vilka behörigheter användaren har.
       user_role:
         color: Färgen som ska användas för rollen i användargränssnittet, som RGB i hex-format
@@ -150,6 +165,7 @@ sv:
         url: Dit händelser kommer skickas
     labels:
       account:
+        attribution_domains: Webbplatser som är tillåtna att kreditera dig
         discoverable: Presentera profil och inlägg med upptäcktsalgoritmer
         fields:
           name: Etikett
@@ -216,6 +232,7 @@ sv:
         setting_boost_modal: Visa bekräftelsedialog innan boostning
         setting_default_language: Inläggsspråk
         setting_default_privacy: Inläggsintegritet
+        setting_default_quote_policy: Vem kan citera
         setting_default_sensitive: Markera alltid media som känsligt
         setting_delete_modal: Visa bekräftelsedialog innan radering av inlägg
         setting_disable_hover_cards: Inaktivera profilförhandsgranskning vid hovring
@@ -226,6 +243,7 @@ sv:
         setting_display_media_show_all: Visa alla
         setting_expand_spoilers: Utöka alltid tutningar markerade med innehållsvarningar
         setting_hide_network: Göm ditt nätverk
+        setting_missing_alt_text_modal: Visa bekräftelsedialog innan du skickar media utan alt-text
         setting_reduce_motion: Minska rörelser i animationer
         setting_system_font_ui: Använd systemets standardfont
         setting_system_scrollbars_ui: Använd systemets standardrullningsfält
@@ -247,6 +265,7 @@ sv:
         name: Hashtag
       filters:
         actions:
+          blur: Dölj media med en varning
           hide: Dölj helt
           warn: Dölj med en varning
       form_admin_settings:
@@ -260,6 +279,7 @@ sv:
         favicon: Favicon
         mascot: Anpassad maskot (tekniskt arv)
         media_cache_retention_period: Tid för bibehållande av mediecache
+        min_age: Åldersgräns
         peers_api_enabled: Publicera lista över upptäckta servrar i API:et
         profile_directory: Aktivera profilkatalog
         registrations_mode: Vem kan registrera sig
@@ -325,12 +345,17 @@ sv:
         usable: Tillåt inlägg att använda denna fyrkantstagg
       terms_of_service:
         changelog: Vad har ändrats?
+        effective_date: Datum för ikraftträdande
         text: Användarvillkor
       terms_of_service_generator:
         admin_email: E-postadress för juridiska meddelanden
+        arbitration_address: Fysisk adress för meddelanden om skiljeförfarande
+        arbitration_website: Webbplats för att skicka in skiljedomsmeddelanden
+        choice_of_law: Lagval
         dmca_address: Fysisk adress för meddelanden om DMCA/upphovsrätt
         dmca_email: Fysisk adress för meddelanden om DMCA/upphovsrätt
         domain: Domän
+        jurisdiction: Rättslig jurisdiktion
         min_age: Minimiålder
       user:
         date_of_birth_1i: Dag

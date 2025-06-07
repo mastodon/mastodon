@@ -3,7 +3,6 @@
 // emojiIndex.search functionality.
 import type { BaseEmoji } from 'emoji-mart';
 import type { Emoji } from 'emoji-mart/dist-es/utils/data';
-// eslint-disable-next-line import/no-unresolved
 import emojiCompressed from 'virtual:mastodon-emoji-compressed';
 import type {
   Search,
