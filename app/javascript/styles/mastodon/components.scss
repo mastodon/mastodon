@@ -1882,16 +1882,18 @@ body > [data-popper-placement] {
 }
 
 .status__quote {
+  --quote-margin: 36px;
+
   position: relative;
   margin-block-start: 16px;
-  margin-inline-start: 36px;
+  margin-inline-start: calc(var(--quote-margin) + var(--thread-margin, 0px));
   border-radius: 8px;
   color: var(--nested-card-text);
   background: var(--nested-card-background);
   border: var(--nested-card-border);
 
-  @media screen and (min-width: $mobile-breakpoint) {
-    margin-inline-start: 56px;
+  @container (width > 460px) {
+    --quote-margin: 56px;
   }
 }
 
@@ -1951,7 +1953,7 @@ body > [data-popper-placement] {
     transform: translateY(-50%);
   }
 
-  @media screen and (min-width: $mobile-breakpoint) {
+  @container (width > 460px) {
     inset-inline-start: -50px;
   }
 }
@@ -2878,6 +2880,7 @@ a.account__display-name {
       display: flex;
       flex-direction: column;
       contain: inline-size layout paint style;
+      container: column / inline-size;
 
       @media screen and (min-width: $no-gap-breakpoint) {
         max-width: 600px;

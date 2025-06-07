@@ -75,25 +75,29 @@ class StatusCacheHydrator
   end
 
   def hydrate_quote_payload(empty_payload, quote, account_id, nested: false)
-    empty_payload.tap do |payload|
-      # Nothing to do if we're in the shallow (depth limit) case
-      next unless payload.key?(:quoted_status)
+    return unless quote&.acceptable?
 
+    empty_payload.tap do |payload|
       payload.delete(:quoted_status) if nested
 
       # TODO: performance improvements
-      if quote&.quoted_status.nil?
-        payload[nested ? :quoted_status_id : :quoted_status] = nil
-        payload[:state] = 'deleted'
-      elsif StatusFilter.new(quote.quoted_status, Account.find_by(id: account_id)).filtered?
-        payload[nested ? :quoted_status_id : :quoted_status] = nil
-        payload[:state] = 'unauthorized'
-      elsif payload[:state] == 'accepted'
-        if nested
-          payload[:quoted_status_id] = quote.quoted_status_id&.to_s
+      if quote.accepted?
+        if quote.quoted_status.nil?
+          payload[nested ? :quoted_status_id : :quoted_status] = nil
+          payload[:state] = 'deleted'
+        elsif StatusFilter.new(quote.quoted_status, Account.find_by(id: account_id)).filtered?
+          payload[nested ? :quoted_status_id : :quoted_status] = nil
+          payload[:state] = 'unauthorized'
         else
-          payload[:quoted_status] = StatusCacheHydrator.new(quote.quoted_status).hydrate(account_id, nested: true)
+          payload[:state] = 'accepted'
+          if nested
+            payload[:quoted_status_id] = quote.quoted_status_id&.to_s
+          else
+            payload[:quoted_status] = StatusCacheHydrator.new(quote.quoted_status).hydrate(account_id, nested: true)
+          end
         end
+      else
+        payload[nested ? :quoted_status_id : :quoted_status] = nil
       end
     end
   end

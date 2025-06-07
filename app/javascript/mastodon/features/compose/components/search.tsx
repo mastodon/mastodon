@@ -1,4 +1,4 @@
-import { useCallback, useState, useRef } from 'react';
+import { useCallback, useState, useRef, useEffect } from 'react';
 
 import {
   defineMessages,
@@ -72,6 +72,10 @@ export const Search: React.FC<{
   const [expanded, setExpanded] = useState(false);
   const [selectedOption, setSelectedOption] = useState(-1);
   const [quickActions, setQuickActions] = useState<SearchOption[]>([]);
+  useEffect(() => {
+    setValue(initialValue ?? '');
+    setQuickActions([]);
+  }, [initialValue]);
   const searchOptions: SearchOption[] = [];
 
   if (searchEnabled) {
