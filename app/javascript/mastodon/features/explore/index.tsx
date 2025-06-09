@@ -5,7 +5,7 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { NavLink, Switch, Route } from 'react-router-dom';
 
-import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
+import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
 import { Column } from 'mastodon/components/column';
 import type { ColumnRef } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
@@ -20,7 +20,7 @@ import Suggestions from './suggestions';
 import Tags from './tags';
 
 const messages = defineMessages({
-  title: { id: 'explore.title', defaultMessage: 'Explore' },
+  title: { id: 'explore.title', defaultMessage: 'Trending' },
 });
 
 const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
@@ -41,7 +41,7 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     >
       <ColumnHeader
         icon={'explore'}
-        iconComponent={logoRequired ? SymbolLogo : ExploreIcon}
+        iconComponent={logoRequired ? SymbolLogo : TrendingUpIcon}
         title={intl.formatMessage(messages.title)}
         onClick={handleHeaderClick}
         multiColumn={multiColumn}

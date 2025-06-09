@@ -14,8 +14,6 @@ import AddIcon from '@/material-icons/400-24px/add.svg?react';
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import BookmarksActiveIcon from '@/material-icons/400-24px/bookmarks-fill.svg?react';
 import BookmarksIcon from '@/material-icons/400-24px/bookmarks.svg?react';
-import ExploreActiveIcon from '@/material-icons/400-24px/explore-fill.svg?react';
-import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
 import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home.svg?react';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
@@ -29,6 +27,7 @@ import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import StarActiveIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import StarIcon from '@/material-icons/400-24px/star.svg?react';
+import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
 import { openNavigation, closeNavigation } from 'mastodon/actions/navigation';
@@ -56,7 +55,7 @@ const messages = defineMessages({
     id: 'tabs_bar.notifications',
     defaultMessage: 'Notifications',
   },
-  explore: { id: 'explore.title', defaultMessage: 'Explore' },
+  explore: { id: 'explore.title', defaultMessage: 'Trending' },
   firehose: { id: 'column.firehose', defaultMessage: 'Live feeds' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Private mentions' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
@@ -184,8 +183,7 @@ const SearchLink: React.FC = () => {
       transparent
       to='/explore'
       icon='explore'
-      iconComponent={ExploreIcon}
-      activeIconComponent={ExploreActiveIcon}
+      iconComponent={TrendingUpIcon}
       text={intl.formatMessage(messages.explore)}
     />
   );
