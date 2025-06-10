@@ -42,8 +42,10 @@ class AsyncRefresh
   end
 
   def finish!
-    redis.hset(@redis_key, { 'status' => 'finished' })
-    redis.expire(@redis_key, FINISHED_REFRESH_EXPIRATION)
+    redis.pipelined do |pipeline|
+      pipeline.hset(@redis_key, { 'status' => 'finished' })
+      pipeline.expire(@redis_key, FINISHED_REFRESH_EXPIRATION)
+    end
     @status = 'finished'
   end
 
@@ -65,7 +67,10 @@ class AsyncRefresh
   private
 
   def fetch_data_from_redis
-    @status = redis.hget(@redis_key, 'status')
-    @result_count = redis.hget(@redis_key, 'result_count').presence&.to_i
+    @status, @result_count = redis.pipelined do |pipeline|
+      pipeline.hget(@redis_key, 'status')
+      pipeline.hget(@redis_key, 'result_count')
+    end
+    @result_count = @result_count.presence&.to_i
   end
 end
