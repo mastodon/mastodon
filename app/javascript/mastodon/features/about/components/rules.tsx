@@ -29,7 +29,7 @@ interface BaseRule {
 
 interface Rule extends BaseRule {
   id: string;
-  translations: Record<string, BaseRule>;
+  translations?: Record<string, BaseRule>;
 }
 
 export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
@@ -113,6 +113,12 @@ const rulesSelector = createSelector(
   (rules, locale): Rule[] => {
     return rules.map((rule) => {
       const translations = rule.translations;
+
+      // Handle cached responses from earlier versions
+      if (!translations) {
+        return rule;
+      }
+
       if (translations[locale]) {
         rule.text = translations[locale].text;
         rule.hint = translations[locale].hint;
