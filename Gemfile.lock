@@ -111,7 +111,7 @@ GEM
       aws-eventstream (~> 1, >= 1.0.2)
     azure-blob (0.5.8)
       rexml
-    base64 (0.2.0)
+    base64 (0.3.0)
     bcp47_spec (0.2.1)
     bcrypt (3.1.20)
     benchmark (0.4.0)
@@ -297,9 +297,8 @@ GEM
       redis-client (= 0.24.0)
     hkdf (0.3.0)
     htmlentities (4.3.4)
-    http (5.2.0)
+    http (5.3.1)
       addressable (~> 2.8)
-      base64 (~> 0.1)
       http-cookie (~> 1.0)
       http-form_data (~> 2.2)
       llhttp-ffi (~> 0.5.0)
@@ -692,7 +691,7 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
-    rake (13.2.1)
+    rake (13.3.0)
     rdf (3.3.2)
       bcp47_spec (~> 0.2)
       bigdecimal (~> 3.1, >= 3.1.5)
@@ -987,7 +986,7 @@ DEPENDENCIES
   hiredis (~> 0.6)
   hiredis-client
   htmlentities (~> 4.3)
-  http (~> 5.2.0)
+  http (~> 5.3.0)
   http_accept_language (~> 2.1)
   httplog (~> 1.7.0)
   i18n
