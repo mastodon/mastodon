@@ -29,7 +29,7 @@ interface BaseRule {
 
 interface Rule extends BaseRule {
   id: string;
-  translations: Record<string, BaseRule>;
+  translations?: Record<string, BaseRule>;
 }
 
 export const RulesSection: FC<RulesSectionProps> = ({ isLoading = false }) => {
@@ -113,15 +113,23 @@ const rulesSelector = createSelector(
   (rules, locale): Rule[] => {
     return rules.map((rule) => {
       const translations = rule.translations;
-      if (translations[locale]) {
-        rule.text = translations[locale].text;
-        rule.hint = translations[locale].hint;
+
+      // Handle cached responses from earlier versions
+      if (!translations) {
+        return rule;
       }
+
       const partialLocale = locale.split('-')[0];
       if (partialLocale && translations[partialLocale]) {
         rule.text = translations[partialLocale].text;
         rule.hint = translations[partialLocale].hint;
       }
+
+      if (translations[locale]) {
+        rule.text = translations[locale].text;
+        rule.hint = translations[locale].hint;
+      }
+
       return rule;
     });
   },
