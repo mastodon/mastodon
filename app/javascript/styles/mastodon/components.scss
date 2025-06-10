@@ -6351,6 +6351,7 @@ a.status-card {
   @media screen and (max-width: $no-columns-breakpoint) {
     border-bottom: 0;
     border-radius: 4px 4px 0 0;
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 

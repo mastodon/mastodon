@@ -16,12 +16,10 @@ import BookmarksActiveIcon from '@/material-icons/400-24px/bookmarks-fill.svg?re
 import BookmarksIcon from '@/material-icons/400-24px/bookmarks.svg?react';
 import ExploreActiveIcon from '@/material-icons/400-24px/explore-fill.svg?react';
 import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
-import ModerationIcon from '@/material-icons/400-24px/gavel.svg?react';
 import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home.svg?react';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
 import LogoutIcon from '@/material-icons/400-24px/logout.svg?react';
-import AdministrationIcon from '@/material-icons/400-24px/manufacturing.svg?react';
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import PersonAddActiveIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
@@ -43,13 +41,13 @@ import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'mastodon/identity_context';
 import { timelinePreview, trendsEnabled, me } from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
-import { canManageReports, canViewAdminDashboard } from 'mastodon/permissions';
 import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { ColumnLink } from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import { ListPanel } from './list_panel';
+import { MoreLink } from './more_link';
 import SignInBanner from './sign_in_banner';
 
 const messages = defineMessages({
@@ -67,11 +65,6 @@ const messages = defineMessages({
     id: 'navigation_bar.preferences',
     defaultMessage: 'Preferences',
   },
-  administration: {
-    id: 'navigation_bar.administration',
-    defaultMessage: 'Administration',
-  },
-  moderation: { id: 'navigation_bar.moderation', defaultMessage: 'Moderation' },
   followsAndFollowers: {
     id: 'navigation_bar.follows_and_followers',
     defaultMessage: 'Follows and followers',
@@ -227,7 +220,7 @@ const MENU_WIDTH = 284;
 
 export const NavigationPanel: React.FC = () => {
   const intl = useIntl();
-  const { signedIn, disabledAccountId, permissions } = useIdentity();
+  const { signedIn, disabledAccountId } = useIdentity();
   const open = useAppSelector((state) => state.navigation.open);
   const dispatch = useAppDispatch();
   const openable = useBreakpoint('openable');
@@ -450,31 +443,13 @@ export const NavigationPanel: React.FC = () => {
                   text={intl.formatMessage(messages.preferences)}
                 />
 
-                {canManageReports(permissions) && (
-                  <ColumnLink
-                    optional
-                    transparent
-                    href='/admin/reports'
-                    icon='flag'
-                    iconComponent={ModerationIcon}
-                    text={intl.formatMessage(messages.moderation)}
-                  />
-                )}
-                {canViewAdminDashboard(permissions) && (
-                  <ColumnLink
-                    optional
-                    transparent
-                    href='/admin/dashboard'
-                    icon='tachometer'
-                    iconComponent={AdministrationIcon}
-                    text={intl.formatMessage(messages.administration)}
-                  />
-                )}
+                <MoreLink />
               </>
             )}
 
             <div className='navigation-panel__legal'>
               <hr />
+
               <ColumnLink
                 transparent
                 to='/about'
