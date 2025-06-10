@@ -119,15 +119,17 @@ const rulesSelector = createSelector(
         return rule;
       }
 
-      if (translations[locale]) {
-        rule.text = translations[locale].text;
-        rule.hint = translations[locale].hint;
-      }
       const partialLocale = locale.split('-')[0];
       if (partialLocale && translations[partialLocale]) {
         rule.text = translations[partialLocale].text;
         rule.hint = translations[partialLocale].hint;
       }
+
+      if (translations[locale]) {
+        rule.text = translations[locale].text;
+        rule.hint = translations[locale].hint;
+      }
+
       return rule;
     });
   },
