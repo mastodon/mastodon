@@ -18,7 +18,7 @@ class InstanceModerationNote < ApplicationRecord
   CONTENT_SIZE_LIMIT = 2_000
 
   belongs_to :account
-  belongs_to :instance, inverse_of: :moderation_notes, class_name: 'InstanceModerationNote', foreign_key: :domain, primary_key: :domain, optional: true
+  belongs_to :instance, inverse_of: :moderation_notes, foreign_key: :domain, primary_key: :domain, optional: true
 
   scope :chronological, -> { reorder(id: :asc) }
 
