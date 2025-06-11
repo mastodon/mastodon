@@ -112,10 +112,10 @@ module ViteRails::TagHelpers::IntegrityExtension
     end
   end
 
-  def vite_stylesheet_tag(*names, **options)
+  def vite_stylesheet_tag(*names, type: :stylesheet, **options)
     ''.html_safe.tap do |tags|
       names.each do |name|
-        entry = vite_manifest.path_and_integrity_for(name, type: :stylesheet)
+        entry = vite_manifest.path_and_integrity_for(name, type:)
 
         options[:extname] = false if Rails::VERSION::MAJOR >= 7
 
