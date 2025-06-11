@@ -2133,6 +2133,16 @@ body > [data-popper-placement] {
   display: flex;
   gap: 10px;
   align-items: center;
+  justify-content: end;
+}
+
+.account__wrapper--with-bio {
+  align-items: start;
+}
+
+.account__info-wrapper {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .account__avatar {
@@ -2140,6 +2150,11 @@ body > [data-popper-placement] {
   position: relative;
   border-radius: var(--avatar-border-radius);
   background: var(--surface-background-color);
+
+  @container (width < 360px) {
+    width: 35px !important;
+    height: 35px !important;
+  }
 
   img {
     width: 100%;
@@ -2266,7 +2281,7 @@ a .account__avatar {
 }
 
 .account__relationship,
-.explore__suggestions__card {
+.explore-suggestions-card {
   .icon-button {
     border: 1px solid var(--background-border-color);
     border-radius: 4px;
@@ -3217,7 +3232,7 @@ a.account__display-name {
   }
 }
 
-.explore__suggestions__card {
+.explore-suggestions-card {
   padding: 12px 16px;
   gap: 8px;
   display: flex;
@@ -3229,59 +3244,76 @@ a.account__display-name {
   }
 
   &__source {
-    padding-inline-start: 60px;
     font-size: 13px;
     line-height: 16px;
     color: $dark-text-color;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+
+    @container (width >= 400px) {
+      padding-inline-start: 60px;
+    }
   }
 
   &__body {
     display: flex;
     gap: 12px;
     align-items: center;
+    justify-content: end;
+  }
 
-    &__main {
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      min-width: 0;
+  &__avatar {
+    flex-shrink: 0;
 
-      &__name-button {
-        display: flex;
-        align-items: center;
-        gap: 8px;
+    @container (width < 360px) {
+      width: 35px !important;
+      height: 35px !important;
+    }
+  }
 
-        &__name {
-          display: block;
-          color: inherit;
-          text-decoration: none;
-          flex: 1 1 auto;
-          min-width: 0;
-        }
+  &__link {
+    flex: 1 1 auto;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    text-decoration: none;
+    min-width: 0;
 
-        .button {
-          min-width: 80px;
-        }
-
-        .display-name {
-          font-size: 15px;
-          line-height: 20px;
-          color: $secondary-text-color;
-
-          strong {
-            font-weight: 700;
-          }
-
-          &__account {
-            color: $darker-text-color;
-            display: block;
-          }
-        }
+    &:hover,
+    &:focus-visible {
+      .display-name__html {
+        text-decoration: underline;
       }
+    }
+
+    .display-name {
+      font-size: 15px;
+      line-height: 20px;
+      color: $secondary-text-color;
+
+      strong {
+        font-weight: 700;
+      }
+
+      &__account {
+        color: $darker-text-color;
+        display: block;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: end;
+
+    .button {
+      min-width: 80px;
+    }
+  }
+
+  &__dismiss-button {
+    @container (width < 400px) {
+      display: none;
     }
   }
 }

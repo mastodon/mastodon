@@ -18,6 +18,7 @@ interface Props {
   withLink?: boolean;
   counter?: number | string;
   counterBorderColor?: string;
+  className?: string;
 }
 
 export const Avatar: React.FC<Props> = ({
@@ -27,6 +28,7 @@ export const Avatar: React.FC<Props> = ({
   inline = false,
   withLink = false,
   style: styleFromParent,
+  className,
   counter,
   counterBorderColor,
 }) => {
@@ -52,7 +54,7 @@ export const Avatar: React.FC<Props> = ({
 
   const avatar = (
     <div
-      className={classNames('account__avatar', {
+      className={classNames(className, 'account__avatar', {
         'account__avatar--inline': inline,
         'account__avatar--loading': loading,
       })}
