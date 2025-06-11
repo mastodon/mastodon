@@ -17,7 +17,7 @@ RSpec.describe ThemeHelper do
           )
         expect(html_links.last.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/application/)),
+            href: have_attributes(value: match(/default/)),
             media: have_attributes(value: '(prefers-color-scheme: dark)')
           )
       end
@@ -26,10 +26,10 @@ RSpec.describe ThemeHelper do
     context 'when using "default" theme' do
       let(:theme) { 'default' }
 
-      it 'returns the application stylesheet' do
+      it 'returns the default stylesheet' do
         expect(html_links.last.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/application/))
+            href: have_attributes(value: match(/default/))
           )
       end
     end
