@@ -101,7 +101,11 @@ export const Card: React.FC<{ id: string; source: SuggestionSource }> = ({
           data-hover-card-account={account.id}
           className='explore-suggestions-card__link'
         >
-          <Avatar account={account} size={48} />
+          <Avatar
+            account={account}
+            size={48}
+            className='explore-suggestions-card__avatar'
+          />
           <DisplayName account={account} />
         </Link>
         <div className='explore-suggestions-card__actions'>
@@ -110,6 +114,7 @@ export const Card: React.FC<{ id: string; source: SuggestionSource }> = ({
             iconComponent={CloseIcon}
             onClick={handleDismiss}
             title={intl.formatMessage(messages.dismiss)}
+            className='explore-suggestions-card__dismiss-button'
           />
           <FollowButton accountId={account.get('id')} />
         </div>

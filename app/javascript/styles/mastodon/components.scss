@@ -3277,18 +3277,29 @@ a.account__display-name {
   }
 
   &__source {
-    padding-inline-start: 60px;
     font-size: 13px;
     line-height: 16px;
     color: $dark-text-color;
+
+    @container (width >= 400px) {
+      padding-inline-start: 60px;
+    }
   }
 
   &__body {
     display: flex;
     gap: 12px;
     align-items: center;
-    flex-wrap: wrap;
     justify-content: end;
+  }
+
+  &__avatar {
+    flex-shrink: 0;
+
+    @container (width < 360px) {
+      width: 35px !important;
+      height: 35px !important;
+    }
   }
 
   &__link {
@@ -3326,11 +3337,16 @@ a.account__display-name {
     display: flex;
     align-items: center;
     gap: 8px;
-    flex-wrap: wrap;
     justify-content: end;
 
     .button {
       min-width: 80px;
+    }
+  }
+
+  &__dismiss-button {
+    @container (width < 400px) {
+      display: none;
     }
   }
 }
