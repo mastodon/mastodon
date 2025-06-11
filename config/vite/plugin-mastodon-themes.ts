@@ -29,7 +29,7 @@ export function MastodonThemes(): Plugin {
         throw new Error('Invalid themes.yml file');
       }
 
-      for (const themePath of Object.values(themes)) {
+      for (const [themeName, themePath] of Object.entries(themes)) {
         if (
           typeof themePath !== 'string' ||
           themePath.split('.').length !== 2 || // Ensure it has exactly one period
@@ -40,7 +40,7 @@ export function MastodonThemes(): Plugin {
           );
           continue;
         }
-        entrypoints[path.basename(themePath)] = path.resolve(
+        entrypoints[`themes/${themeName}`] = path.resolve(
           userConfig.root,
           themePath,
         );
