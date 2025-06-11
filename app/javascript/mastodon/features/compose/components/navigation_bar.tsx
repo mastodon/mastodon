@@ -9,8 +9,6 @@ import { IconButton } from 'mastodon/components/icon_button';
 import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import { ActionBar } from './action_bar';
-
 const messages = defineMessages({
   cancel: { id: 'reply_indicator.cancel', defaultMessage: 'Cancel' },
 });
@@ -33,15 +31,14 @@ export const NavigationBar: React.FC = () => {
   return (
     <div className='navigation-bar'>
       <Account id={me} minimal />
-      {isReplying ? (
+
+      {isReplying && (
         <IconButton
           title={intl.formatMessage(messages.cancel)}
           icon=''
           iconComponent={CloseIcon}
           onClick={handleCancelClick}
         />
-      ) : (
-        <ActionBar />
       )}
     </div>
   );

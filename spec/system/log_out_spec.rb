@@ -32,8 +32,8 @@ RSpec.describe 'Log out' do
       expect(page)
         .to have_css('body', class: 'app-body')
 
-      within '.navigation-bar' do
-        click_on 'Menu'
+      within '.navigation-panel' do
+        click_on 'More'
       end
 
       within '.dropdown-menu' do
