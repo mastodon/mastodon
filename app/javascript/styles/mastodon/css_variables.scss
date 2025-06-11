@@ -35,3 +35,12 @@
   --input-background-color: var(--surface-variant-background-color);
   --on-input-color: #{$secondary-text-color};
 }
+
+body {
+  // Variable for easily inverting directional UI elements,
+  --text-x-direction: 1;
+
+  &.rtl {
+    --text-x-direction: -1;
+  }
+}
