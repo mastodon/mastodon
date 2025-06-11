@@ -93,8 +93,8 @@ GEM
     annotaterb (4.15.0)
     ast (2.4.3)
     attr_required (1.0.2)
-    aws-eventstream (1.3.2)
-    aws-partitions (1.1103.0)
+    aws-eventstream (1.4.0)
+    aws-partitions (1.1115.0)
     aws-sdk-core (3.215.1)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -107,7 +107,7 @@ GEM
       aws-sdk-core (~> 3, >= 3.210.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
-    aws-sigv4 (1.11.0)
+    aws-sigv4 (1.12.1)
       aws-eventstream (~> 1, >= 1.0.2)
     azure-blob (0.5.8)
       rexml
@@ -142,10 +142,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    capybara-playwright-driver (0.5.6)
-      addressable
-      capybara
-      playwright-ruby-client (>= 1.16.0)
     case_transform (0.2)
       activesupport
     cbor (0.5.9.8)
@@ -301,8 +297,9 @@ GEM
       redis-client (= 0.24.0)
     hkdf (0.3.0)
     htmlentities (4.3.4)
-    http (5.3.1)
+    http (5.2.0)
       addressable (~> 2.8)
+      base64 (~> 0.1)
       http-cookie (~> 1.0)
       http-form_data (~> 2.2)
       llhttp-ffi (~> 0.5.0)
@@ -547,7 +544,7 @@ GEM
     opentelemetry-instrumentation-excon (0.23.0)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.23.0)
-    opentelemetry-instrumentation-faraday (0.27.0)
+    opentelemetry-instrumentation-faraday (0.26.0)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.23.0)
     opentelemetry-instrumentation-http (0.24.0)
@@ -607,9 +604,6 @@ GEM
     pg (1.5.9)
     pghero (3.7.0)
       activerecord (>= 7.1)
-    playwright-ruby-client (1.52.0)
-      concurrent-ruby (>= 1.1.6)
-      mime-types (>= 3.0)
     pp (0.6.2)
       prettyprint
     premailer (1.27.0)
@@ -815,6 +809,12 @@ GEM
       activerecord (>= 4.0.0)
       railties (>= 4.0.0)
     securerandom (0.4.1)
+    selenium-webdriver (4.33.0)
+      base64 (~> 0.2)
+      logger (~> 1.4)
+      rexml (~> 3.2, >= 3.2.5)
+      rubyzip (>= 1.2.2, < 3.0)
+      websocket (~> 1.0)
     shoulda-matchers (6.5.0)
       activesupport (>= 5.2.0)
     sidekiq (7.3.9)
@@ -928,6 +928,7 @@ GEM
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.9.1)
+    websocket (1.2.11)
     websocket-driver (0.7.7)
       base64
       websocket-extensions (>= 0.1.0)
@@ -955,7 +956,6 @@ DEPENDENCIES
   browser
   bundler-audit (~> 0.9)
   capybara (~> 3.39)
-  capybara-playwright-driver
   charlock_holmes (~> 0.7.7)
   chewy (~> 7.3)
   climate_control
@@ -987,7 +987,7 @@ DEPENDENCIES
   hiredis (~> 0.6)
   hiredis-client
   htmlentities (~> 4.3)
-  http (~> 5.3.0)
+  http (~> 5.2.0)
   http_accept_language (~> 2.1)
   httplog (~> 1.7.0)
   i18n
@@ -1026,7 +1026,7 @@ DEPENDENCIES
   opentelemetry-instrumentation-active_model_serializers (~> 0.22.0)
   opentelemetry-instrumentation-concurrent_ruby (~> 0.22.0)
   opentelemetry-instrumentation-excon (~> 0.23.0)
-  opentelemetry-instrumentation-faraday (~> 0.27.0)
+  opentelemetry-instrumentation-faraday (~> 0.26.0)
   opentelemetry-instrumentation-http (~> 0.24.0)
   opentelemetry-instrumentation-http_client (~> 0.23.0)
   opentelemetry-instrumentation-net_http (~> 0.23.0)
@@ -1071,6 +1071,7 @@ DEPENDENCIES
   rubyzip (~> 2.3)
   sanitize (~> 7.0)
   scenic (~> 1.7)
+  selenium-webdriver
   shoulda-matchers
   sidekiq (< 8)
   sidekiq-bulk (~> 0.2.0)
