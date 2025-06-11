@@ -3,7 +3,7 @@ import { relative, extname } from 'node:path';
 import type { Plugin } from 'vite';
 
 export function MastodonNameLookup(): Plugin {
-  const nameMap = new Map<string, string>();
+  const nameMap: Record<string, string> = {};
 
   let root = '';
 
@@ -39,21 +39,13 @@ export function MastodonNameLookup(): Plugin {
         );
         const ext = extname(relativePath);
         const name = chunk.name.replace(ext, '');
-        nameMap.set(name, relativePath);
+        nameMap[name] = relativePath;
       }
 
-      // Build the lookup object and emit it as an asset
-      const lookupObject: Record<string, string> = nameMap.entries().reduce(
-        (acc, [name, fileName]) => ({
-          ...acc,
-          [name]: fileName,
-        }),
-        {},
-      );
       this.emitFile({
         type: 'asset',
         fileName: '.vite/manifest-lookup.json',
-        source: JSON.stringify(lookupObject, null, 2),
+        source: JSON.stringify(nameMap, null, 2),
       });
     },
   };
