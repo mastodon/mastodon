@@ -1,6 +1,24 @@
 # frozen_string_literal: true
 
 module ViteRuby::ManifestIntegrityExtension
+  def load_manifest
+    @name_lookup_cache = nil
+
+    super
+  end
+
+  def lookup_by_name(name)
+    @name_lookup_cache ||= manifest.entries.filter_map { |key, value| [value['name'], key] if value['name'] && value['isEntry'] }.to_h
+
+    @name_lookup_cache.fetch(name)
+  end
+
+  def resolve_entry_name(name, type: nil)
+    return lookup_by_name(name) if type == :by_name
+
+    super
+  end
+
   def path_and_integrity_for(name, **)
     entry = lookup!(name, **)
 
@@ -123,7 +141,7 @@ module ViteRails::TagHelpers::IntegrityExtension
   def vite_polyfills_tag(crossorigin: 'anonymous', **)
     return if ViteRuby.instance.dev_server_running?
 
-    entry = vite_manifest.path_and_integrity_for('polyfills', type: :virtual)
+    entry = vite_manifest.path_and_integrity_for('polyfills', type: :by_name)
 
     javascript_include_tag(entry[:path], type: 'module', integrity: entry[:integrity], crossorigin: crossorigin, **)
   end
