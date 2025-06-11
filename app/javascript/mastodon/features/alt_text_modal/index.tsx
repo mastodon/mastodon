@@ -27,7 +27,7 @@ import { Audio } from 'mastodon/features/audio';
 import { CharacterCounter } from 'mastodon/features/compose/components/character_counter';
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
 import { Video, getPointerPosition } from 'mastodon/features/video';
-import { me, reduceMotion } from 'mastodon/initial_state';
+import { me } from 'mastodon/initial_state';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 import { assetHost } from 'mastodon/utils/config';
@@ -110,7 +110,7 @@ const Preview: React.FC<{
       left: `${x * 100}%`,
       top: `${y * 100}%`,
     },
-    immediate: reduceMotion || draggingRef.current,
+    immediate: draggingRef.current,
   });
   const media = useAppSelector((state) =>
     (

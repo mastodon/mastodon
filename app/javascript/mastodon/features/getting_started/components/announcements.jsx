@@ -270,7 +270,6 @@ const ReactionsBar = ({
     leave: {
       scale: 0,
     },
-    immediate: reduceMotion,
     keys: visibleReactions.map(x => x.get('name')),
   });
 
