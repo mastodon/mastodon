@@ -27,10 +27,10 @@ RSpec.describe 'account featured tags API' do
         .to start_with('application/json')
       expect(response.parsed_body).to contain_exactly(a_hash_including({
         name: 'bar',
-        url: "https://cb6e6126.ngrok.io/@#{account.username}/tagged/bar",
+        url: short_account_tag_url(username: account.username, tag: 'bar'),
       }), a_hash_including({
         name: 'foo',
-        url: "https://cb6e6126.ngrok.io/@#{account.username}/tagged/foo",
+        url: short_account_tag_url(username: account.username, tag: 'foo'),
       }))
     end
 
@@ -43,10 +43,10 @@ RSpec.describe 'account featured tags API' do
           .to start_with('application/json')
         expect(response.parsed_body).to contain_exactly(a_hash_including({
           name: 'bar',
-          url: "https://cb6e6126.ngrok.io/@#{account.pretty_acct}/tagged/bar",
+          url: short_account_tag_url(username: account.pretty_acct, tag: 'bar'),
         }), a_hash_including({
           name: 'foo',
-          url: "https://cb6e6126.ngrok.io/@#{account.pretty_acct}/tagged/foo",
+          url: short_account_tag_url(username: account.pretty_acct, tag: 'foo'),
         }))
       end
     end
