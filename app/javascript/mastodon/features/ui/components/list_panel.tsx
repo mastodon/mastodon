@@ -1,6 +1,8 @@
-import { useEffect, useState, useCallback, useId } from 'react';
+import { useEffect, useState, useCallback, useId, useRef } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
+
+import { useSpring, useResize, animated } from '@react-spring/web';
 
 import ArrowDropDownIcon from '@/material-icons/400-24px/arrow_drop_down.svg?react';
 import ArrowLeftIcon from '@/material-icons/400-24px/arrow_left.svg?react';
@@ -31,6 +33,15 @@ export const ListPanel: React.FC = () => {
   const lists = useAppSelector((state) => getOrderedLists(state));
   const [expanded, setExpanded] = useState(false);
   const accessibilityId = useId();
+  const ref = useRef<HTMLDivElement>(null);
+  const { height: viewHeight } = useResize({ container: ref });
+  const { height, opacity } = useSpring({
+    from: { height: 0, opacity: 0 },
+    to: {
+      height: expanded ? viewHeight : 0,
+      opacity: expanded ? 1 : 0,
+    },
+  });
 
   useEffect(() => {
     dispatch(fetchLists());
@@ -67,25 +78,28 @@ export const ListPanel: React.FC = () => {
         )}
       </div>
 
-      {lists.length > 0 && expanded && (
-        <div
+      {lists.length > 0 && (
+        <animated.div
           className='navigation-panel__list-panel__items'
           role='region'
           id={`${accessibilityId}-content`}
           aria-labelledby={`${accessibilityId}-title`}
+          style={{ height, opacity }}
         >
-          {lists.map((list) => (
-            <ColumnLink
-              icon='list-ul'
-              key={list.get('id')}
-              iconComponent={ListAltIcon}
-              activeIconComponent={ListAltActiveIcon}
-              text={list.get('title')}
-              to={`/lists/${list.get('id')}`}
-              transparent
-            />
-          ))}
-        </div>
+          <div ref={ref}>
+            {lists.map((list) => (
+              <ColumnLink
+                icon='list-ul'
+                key={list.get('id')}
+                iconComponent={ListAltIcon}
+                activeIconComponent={ListAltActiveIcon}
+                text={list.get('title')}
+                to={`/lists/${list.get('id')}`}
+                transparent
+              />
+            ))}
+          </div>
+        </animated.div>
       )}
     </div>
   );
