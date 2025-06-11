@@ -28,7 +28,7 @@ Sidekiq.configure_server do |config|
 
     if ENV['MASTODON_PROMETHEUS_EXPORTER_LOCAL'] == 'true'
       config.on :startup do
-        Mastodon::PrometheusExporterLocalServer.setup!
+        Mastodon::PrometheusExporter::LocalServer.setup!
       end
     end
 

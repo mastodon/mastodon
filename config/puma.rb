@@ -23,7 +23,7 @@ if ENV['MASTODON_PROMETHEUS_EXPORTER_ENABLED'] == 'true'
 
   if ENV['MASTODON_PROMETHEUS_EXPORTER_LOCAL'] == 'true'
     before_fork do
-      Mastodon::PrometheusExporterLocalServer.setup!
+      Mastodon::PrometheusExporter::LocalServer.setup!
     end
   end
 
