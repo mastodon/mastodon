@@ -27,6 +27,7 @@ interface Props {
   counter?: number;
   href?: string;
   ariaHidden?: boolean;
+  ariaControls?: string;
 }
 
 export const IconButton = forwardRef<HTMLButtonElement, Props>(
@@ -52,6 +53,7 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
       overlay = false,
       tabIndex = 0,
       ariaHidden = false,
+      ariaControls,
     },
     buttonRef,
   ) => {
@@ -153,6 +155,7 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
         aria-label={title}
         aria-expanded={expanded}
         aria-hidden={ariaHidden}
+        aria-controls={ariaControls}
         title={title}
         className={classes}
         onClick={handleClick}
