@@ -2170,7 +2170,6 @@ body > [data-popper-placement] {
   display: flex;
   gap: 10px;
   align-items: center;
-  flex-wrap: wrap;
   justify-content: end;
 }
 
@@ -2180,7 +2179,7 @@ body > [data-popper-placement] {
 
 .account__info-wrapper {
   flex: 1 1 auto;
-  min-width: 65%;
+  min-width: 0;
 }
 
 .account__avatar {
@@ -2188,6 +2187,11 @@ body > [data-popper-placement] {
   position: relative;
   border-radius: var(--avatar-border-radius);
   background: var(--surface-background-color);
+
+  @container (width < 360px) {
+    width: 35px !important;
+    height: 35px !important;
+  }
 
   img {
     width: 100%;
@@ -2311,6 +2315,12 @@ a .account__avatar {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.account__menu--hide-on-mobile {
+  @container (width < 400px) {
+    display: none;
+  }
 }
 
 .account__relationship,

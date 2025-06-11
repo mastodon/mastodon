@@ -71,6 +71,7 @@ interface AccountProps {
   minimal?: boolean;
   defaultAction?: 'block' | 'mute';
   withBio?: boolean;
+  hideMenuOnMobile?: boolean;
 }
 
 export const Account: React.FC<AccountProps> = ({
@@ -80,6 +81,7 @@ export const Account: React.FC<AccountProps> = ({
   minimal,
   defaultAction,
   withBio,
+  hideMenuOnMobile,
 }) => {
   const intl = useIntl();
   const { signedIn } = useIdentity();
@@ -225,16 +227,23 @@ export const Account: React.FC<AccountProps> = ({
     );
   }
 
-  let button: React.ReactNode, dropdown: React.ReactNode;
+  let button: React.ReactNode;
+  let dropdown: React.ReactNode;
 
   if (menu.length > 0) {
     dropdown = (
-      <Dropdown
-        items={menu}
-        icon='ellipsis-h'
-        iconComponent={MoreHorizIcon}
-        title={intl.formatMessage(messages.more)}
-      />
+      <div
+        className={classNames('account__menu', {
+          'account__menu--hide-on-mobile': hideMenuOnMobile,
+        })}
+      >
+        <Dropdown
+          items={menu}
+          icon='ellipsis-h'
+          iconComponent={MoreHorizIcon}
+          title={intl.formatMessage(messages.more)}
+        />
+      </div>
     );
   }
 
@@ -279,7 +288,11 @@ export const Account: React.FC<AccountProps> = ({
   }
 
   return (
-    <div className={classNames('account', { 'account--minimal': minimal })}>
+    <div
+      className={classNames('account', {
+        'account--minimal': minimal,
+      })}
+    >
       <div
         className={classNames('account__wrapper', {
           'account__wrapper--with-bio': account && withBio,
