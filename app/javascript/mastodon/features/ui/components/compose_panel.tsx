@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 
 import { useLayout } from '@/mastodon/hooks/useLayout';
-import { useAppDispatch } from '@/mastodon/store';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import {
   changeComposing,
   mountCompose,
@@ -19,6 +19,13 @@ export const ComposePanel: React.FC = () => {
     dispatch(changeComposing(true));
   }, [dispatch]);
   const { signedIn } = useIdentity();
+  const hideComposer = useAppSelector((state) => {
+    const mounted = state.compose.get('mounted');
+    if (typeof mounted === 'number') {
+      return mounted > 1;
+    }
+    return false;
+  });
 
   useEffect(() => {
     dispatch(mountCompose());
@@ -40,7 +47,7 @@ export const ComposePanel: React.FC = () => {
         </>
       )}
 
-      {signedIn && <ComposeFormContainer singleColumn />}
+      {signedIn && !hideComposer && <ComposeFormContainer singleColumn />}
 
       <LinkFooter multiColumn={!singleColumn} />
     </div>
