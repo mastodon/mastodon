@@ -43,17 +43,9 @@ class Links extends PureComponent {
   render () {
     const { isLoading, links } = this.props;
 
-    const banner = (
-      <DismissableBanner id='explore/links'>
-        <FormattedMessage id='dismissable_banner.explore_links' defaultMessage='These news stories are being shared the most on the fediverse today. Newer news stories posted by more different people are ranked higher.' />
-      </DismissableBanner>
-    );
-
     if (!isLoading && links.isEmpty()) {
       return (
         <div className='explore__links scrollable scrollable--flex'>
-          {banner}
-
           <div className='empty-column-indicator'>
             <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />
           </div>
@@ -63,8 +55,6 @@ class Links extends PureComponent {
 
     return (
       <div className='explore__links scrollable' data-nosnippet>
-        {banner}
-
         {isLoading ? (<LoadingIndicator />) : links.map((link, i) => (
           <Story
             key={link.get('id')}
