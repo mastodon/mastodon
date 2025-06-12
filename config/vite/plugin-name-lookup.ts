@@ -39,6 +39,13 @@ export function MastodonNameLookup(): Plugin {
         );
         const ext = extname(relativePath);
         const name = chunk.name.replace(ext, '');
+
+        if (nameMap[name]) {
+          throw new Error(
+            `Entrypoint ${relativePath} conflicts with ${nameMap[name]}`,
+          );
+        }
+
         nameMap[name] = relativePath;
       }
 
