@@ -19,7 +19,6 @@ import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
 import HomeActiveIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home.svg?react';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
-import LogoutIcon from '@/material-icons/400-24px/logout.svg?react';
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import PersonAddActiveIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
@@ -30,10 +29,8 @@ import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import StarActiveIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import StarIcon from '@/material-icons/400-24px/star.svg?react';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
-import { openModal } from 'mastodon/actions/modal';
 import { openNavigation, closeNavigation } from 'mastodon/actions/navigation';
 import { Account } from 'mastodon/components/account';
-import { IconButton } from 'mastodon/components/icon_button';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { WordmarkLogo } from 'mastodon/components/logo';
 import { NavigationPortal } from 'mastodon/components/navigation_portal';
@@ -192,13 +189,6 @@ const SearchLink: React.FC = () => {
 };
 
 const ProfileCard: React.FC = () => {
-  const intl = useIntl();
-  const dispatch = useAppDispatch();
-
-  const handleLogoutClick = useCallback(() => {
-    dispatch(openModal({ modalType: 'CONFIRM_LOG_OUT', modalProps: {} }));
-  }, [dispatch]);
-
   if (!me) {
     return null;
   }
@@ -206,12 +196,6 @@ const ProfileCard: React.FC = () => {
   return (
     <div className='navigation-bar'>
       <Account id={me} minimal size={36} />
-      <IconButton
-        icon='sign-out'
-        iconComponent={LogoutIcon}
-        title={intl.formatMessage(messages.logout)}
-        onClick={handleLogoutClick}
-      />
     </div>
   );
 };
