@@ -147,9 +147,13 @@ class RemoveStatusService < BaseService
   end
 
   def remove_media
-    return if @options[:redraft] || !permanently?
+    return if @options[:redraft]
 
-    @status.media_attachments.destroy_all
+    if permanently?
+      @status.media_attachments.destroy_all
+    else
+      UpdateMediaAttachmentsPermissionsService.new.call(@status.media_attachments, :private)
+    end
   end
 
   def permanently?
