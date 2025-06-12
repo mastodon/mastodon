@@ -89,7 +89,7 @@ export const QuotedStatus: React.FC<{
   );
 
   useEffect(() => {
-    if (!status) {
+    if (!status && quotedStatusId) {
       dispatch(fetchStatus(quotedStatusId));
     }
   }, [status, quotedStatusId, dispatch]);
