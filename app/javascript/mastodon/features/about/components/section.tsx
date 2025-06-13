@@ -4,8 +4,8 @@ import { useCallback, useState } from 'react';
 import classNames from 'classnames';
 
 import { Icon } from '@/mastodon/components/icon';
-import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
-import ExpandMoreIcon from '@/material-icons/400-24px/expand_more.svg?react';
+import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
+import KeyboardArrowUpIcon from '@/material-icons/400-24px/keyboard_arrow_up.svg?react';
 
 interface SectionProps {
   title: string;
@@ -33,8 +33,8 @@ export const Section: FC<SectionProps> = ({
         onClick={handleClick}
       >
         <Icon
-          id={collapsed ? 'chevron-right' : 'chevron-down'}
-          icon={collapsed ? ChevronRightIcon : ExpandMoreIcon}
+          id=''
+          icon={collapsed ? KeyboardArrowDownIcon : KeyboardArrowUpIcon}
         />{' '}
         {title}
       </button>
