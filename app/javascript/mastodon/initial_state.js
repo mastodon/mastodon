@@ -37,6 +37,7 @@
  * @property {string} source_url
  * @property {string} streaming_api_base_url
  * @property {boolean} timeline_preview
+ * @property {boolean} firehose_enabled
  * @property {string} title
  * @property {boolean} show_trends
  * @property {boolean} trends_as_landing_page
@@ -112,6 +113,7 @@ export const showTrends = getMeta('show_trends');
 export const singleUserMode = getMeta('single_user_mode');
 export const source_url = getMeta('source_url');
 export const timelinePreview = getMeta('timeline_preview');
+export const firehoseEnabled = getMeta('firehose_enabled');
 export const title = getMeta('title');
 export const trendsAsLanding = getMeta('trends_as_landing_page');
 export const useBlurhash = getMeta('use_blurhash');
