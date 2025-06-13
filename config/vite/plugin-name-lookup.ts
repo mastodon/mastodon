@@ -38,8 +38,7 @@ export function MastodonNameLookup(): Plugin {
           sanitizeFileName(chunk.facadeModuleId),
         );
         const ext = extname(relativePath);
-        const name =
-          chunk.name.replace(ext, '') + (ext.endsWith('css') ? '.css' : '.js');
+        const name = chunk.name.replace(ext, '');
 
         if (nameMap[name]) {
           throw new Error(

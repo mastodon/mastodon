@@ -24,7 +24,7 @@ module ViteRuby::ManifestIntegrityExtension
 
     @name_lookup_cache ||= load_name_lookup_cache
 
-    @name_lookup_cache.fetch(name)
+    @name_lookup_cache.fetch(name.delete_suffix('.css'))
   end
 
   # Find a manifest entry by the *final* file name
@@ -143,7 +143,7 @@ module ViteRails::TagHelpers::IntegrityExtension
   def vite_polyfills_tag(crossorigin: 'anonymous', **)
     return if ViteRuby.instance.dev_server_running?
 
-    entry = vite_manifest.path_and_integrity_for('polyfills.js', type: :virtual)
+    entry = vite_manifest.path_and_integrity_for('polyfills', type: :virtual)
 
     javascript_include_tag(entry[:path], type: 'module', integrity: entry[:integrity], crossorigin: crossorigin, **)
   end
