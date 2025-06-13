@@ -18,6 +18,6 @@ module DomainControlHelper
   end
 
   def limited_federation_mode?
-    Rails.configuration.x.limited_federation_mode
+    Rails.configuration.x.mastodon.limited_federation_mode
   end
 end
