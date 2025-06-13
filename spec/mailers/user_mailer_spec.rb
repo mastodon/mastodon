@@ -326,7 +326,7 @@ RSpec.describe UserMailer do
       expect(mail)
         .to be_present
         .and(have_subject(I18n.t('user_mailer.announcement_published.subject')))
-        .and(have_body_text(I18n.t('user_mailer.announcement_published.description', domain: Rails.configuration.x.local_domain)))
+        .and(have_body_text(I18n.t('user_mailer.announcement_published.description', domain: local_domain_uri.host)))
     end
   end
 end
