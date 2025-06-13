@@ -31,6 +31,11 @@
   %h4= t('admin.settings.discovery.public_timelines')
 
   .fields-group
+    = f.input :firehose_enabled,
+              as: :boolean,
+              wrapper: :with_label
+
+  .fields-group
     = f.input :timeline_preview,
               as: :boolean,
               wrapper: :with_label

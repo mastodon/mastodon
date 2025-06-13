@@ -35,7 +35,12 @@ import { WordmarkLogo } from 'mastodon/components/logo';
 import { NavigationPortal } from 'mastodon/components/navigation_portal';
 import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'mastodon/identity_context';
-import { timelinePreview, trendsEnabled, me } from 'mastodon/initial_state';
+import {
+  timelinePreview,
+  firehoseEnabled,
+  trendsEnabled,
+  me,
+} from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
 import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
@@ -365,7 +370,7 @@ export const NavigationPanel: React.FC = () => {
 
             <SearchLink />
 
-            {(signedIn || timelinePreview) && (
+            {firehoseEnabled && (signedIn || timelinePreview) && (
               <ColumnLink
                 transparent
                 to='/public/local'

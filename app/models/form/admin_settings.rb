@@ -15,6 +15,7 @@ class Form::AdminSettings
     registrations_mode
     closed_registrations_message
     timeline_preview
+    firehose_enabled
     bootstrap_timeline_accounts
     theme
     activity_api_enabled
@@ -53,6 +54,7 @@ class Form::AdminSettings
   BOOLEAN_KEYS = %i(
     allow_referrer_origin
     timeline_preview
+    firehose_enabled
     activity_api_enabled
     peers_api_enabled
     preview_sensitive_media
