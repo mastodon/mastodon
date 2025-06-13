@@ -3144,10 +3144,9 @@ a.account__display-name {
       height: 100vh;
     }
 
-    .navigation-panel__sign-in-banner,
     .navigation-panel__banner,
-    .getting-started__trends,
-    .navigation-panel__logo {
+    .navigation-panel__logo,
+    .getting-started__trends {
       display: none;
     }
   }
@@ -3481,15 +3480,24 @@ a.account__display-name {
     &__header {
       display: flex;
       align-items: center;
-      padding-inline-end: 12px;
+
+      &__sep {
+        width: 0;
+        height: 24px;
+        border-left: 1px solid var(--background-border-color);
+      }
 
       .column-link {
         flex: 1 1 auto;
       }
+
+      .icon-button {
+        padding: 8px;
+      }
     }
 
     &__items {
-      padding-inline-start: 24px + 5px;
+      padding-inline-start: 24px + 8px;
 
       .icon {
         display: none;
@@ -3500,14 +3508,16 @@ a.account__display-name {
   &__compose-button {
     display: flex;
     justify-content: flex-start;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-inline-start: 13px - 7px;
-    padding-inline-end: 13px;
-    gap: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-inline-start: 12px - 7px;
+    padding-inline-end: 12px;
+    gap: 8px;
     margin: 12px;
-    margin-bottom: 4px;
     border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
 
     .icon {
       width: 24px;
@@ -3517,7 +3527,11 @@ a.account__display-name {
 
   .navigation-bar {
     padding: 16px;
-    border-bottom: 1px solid var(--background-border-color);
+  }
+
+  .search {
+    margin: 16px;
+    margin-bottom: 12px;
   }
 
   .logo {
@@ -3529,26 +3543,36 @@ a.account__display-name {
     margin-bottom: 12px;
   }
 
-  @media screen and (height <= 710px) {
-    &__portal {
+  .getting-started__trends h4 {
+    padding: 10px 12px;
+    padding-inline-start: 16px;
+  }
+
+  .getting-started__trends .trends__item {
+    padding: 10px 12px;
+    padding-inline-start: 16px;
+  }
+
+  @media screen and (height <= 930px) {
+    &__portal .trends__item:nth-child(n + 5) {
       display: none;
     }
   }
 
-  @media screen and (height <= 765px) {
-    &__portal .trends__item:nth-child(n + 3) {
-      display: none;
-    }
-  }
-
-  @media screen and (height <= 820px) {
+  @media screen and (height <= 930px - 56px) {
     &__portal .trends__item:nth-child(n + 4) {
       display: none;
     }
   }
 
-  @media screen and (height <= 920px) {
-    .column-link.column-link--optional {
+  @media screen and (height <= 930px - (56px * 2)) {
+    &__portal .trends__item:nth-child(n + 3) {
+      display: none;
+    }
+  }
+
+  @media screen and (height <= 930px - (56px * 3)) {
+    &__portal {
       display: none;
     }
   }
@@ -3821,9 +3845,10 @@ a.account__display-name {
 .column-link {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   font-size: 16px;
-  padding: 13px;
+  font-weight: 400;
+  padding: 12px;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
@@ -4605,7 +4630,8 @@ a.status-card {
 }
 
 .load-more .loading-indicator,
-.button .loading-indicator {
+.button .loading-indicator,
+.icon-button .loading-indicator {
   position: static;
   transform: none;
 
@@ -4614,6 +4640,13 @@ a.status-card {
     width: 22px;
     height: 22px;
   }
+}
+
+.icon-button .loading-indicator .circular-progress {
+  color: lighten($ui-base-color, 26%);
+  width: 12px;
+  height: 12px;
+  margin: 6px;
 }
 
 .load-more .loading-indicator .circular-progress {

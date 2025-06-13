@@ -1,7 +1,11 @@
 import type { Reducer } from '@reduxjs/toolkit';
 import { Map as ImmutableMap } from 'immutable';
 
-import { createList, updateList } from 'mastodon/actions/lists_typed';
+import {
+  createList,
+  updateList,
+  fetchLists,
+} from 'mastodon/actions/lists_typed';
 import type { ApiListJSON } from 'mastodon/api_types/lists';
 import { createList as createListFromJSON } from 'mastodon/models/list';
 import type { List } from 'mastodon/models/list';
@@ -9,7 +13,6 @@ import type { List } from 'mastodon/models/list';
 import {
   LIST_FETCH_SUCCESS,
   LIST_FETCH_FAIL,
-  LISTS_FETCH_SUCCESS,
   LIST_DELETE_SUCCESS,
 } from '../actions/lists';
 
@@ -33,12 +36,12 @@ export const listsReducer: Reducer<State> = (state = initialState, action) => {
     updateList.fulfilled.match(action)
   ) {
     return normalizeList(state, action.payload);
+  } else if (fetchLists.fulfilled.match(action)) {
+    return normalizeLists(state, action.payload);
   } else {
     switch (action.type) {
       case LIST_FETCH_SUCCESS:
         return normalizeList(state, action.list as ApiListJSON);
-      case LISTS_FETCH_SUCCESS:
-        return normalizeLists(state, action.lists as ApiListJSON[]);
       case LIST_DELETE_SUCCESS:
       case LIST_FETCH_FAIL:
         return state.set(action.id as string, null);
