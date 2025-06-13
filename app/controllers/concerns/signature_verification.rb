@@ -24,14 +24,14 @@ module SignatureVerification
 
   def signature_key_id
     signed_request.key_id
+  rescue Mastodon::SignatureVerificationError
+    nil
   end
 
   private
 
   def signed_request
     @signed_request ||= SignedRequest.new(request) if signed_request?
-  rescue SignatureVerificationError
-    nil
   end
 
   def signature_verification_failure_reason
