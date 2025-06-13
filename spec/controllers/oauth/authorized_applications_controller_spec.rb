@@ -43,7 +43,7 @@ RSpec.describe Oauth::AuthorizedApplicationsController do
     let!(:application) { Fabricate(:application) }
     let!(:access_token) { Fabricate(:accessible_access_token, application: application, resource_owner_id: user.id) }
     let!(:web_push_subscription) { Fabricate(:web_push_subscription, user: user, access_token: access_token) }
-    let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
+    let(:redis_pipeline_stub) { instance_double(Redis::PipelinedConnection, publish: nil) }
 
     before do
       sign_in user, scope: :user

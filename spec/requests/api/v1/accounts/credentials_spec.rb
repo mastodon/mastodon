@@ -53,8 +53,6 @@ RSpec.describe 'credentials API' do
       patch '/api/v1/accounts/update_credentials', headers: headers, params: params
     end
 
-    before { allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async) }
-
     let(:params) do
       {
         avatar: fixture_file_upload('avatar.gif', 'image/gif'),
@@ -113,7 +111,7 @@ RSpec.describe 'credentials API' do
       })
 
       expect(ActivityPub::UpdateDistributionWorker)
-        .to have_received(:perform_async).with(user.account_id)
+        .to have_enqueued_sidekiq_job(user.account_id)
     end
 
     def expect_account_updates

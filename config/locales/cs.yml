@@ -5,7 +5,7 @@ cs:
     contact_missing: Nenastaveno
     contact_unavailable: Neuvedeno
     hosted_on: Mastodon na doméně %{domain}
-    title: O aplikaci
+    title: O službě
   accounts:
     followers:
       few: Sledující
@@ -99,7 +99,7 @@ cs:
         active: Aktivní
         all: Vše
         disabled: Deaktivován
-        pending: Čekající
+        pending: Nevyřízeno
         silenced: Omezeno
         suspended: Pozastavené
         title: Moderování
@@ -315,6 +315,7 @@ cs:
       title: Protokol auditu
       unavailable_instance: "(doména není k dispozici)"
     announcements:
+      back: Zpět na oznámení
       destroyed_msg: Oznámení bylo úspěšně odstraněno!
       edit:
         title: Upravit oznámení
@@ -323,6 +324,10 @@ cs:
       new:
         create: Vytvořit oznámení
         title: Nové oznámení
+      preview:
+        disclaimer: Vzhledem k tomu, že se od nich uživatelé nemohou odhlásit, měla by být e-mailová upozornění omezena na důležitá oznámení, jako je narušení osobních údajů nebo oznámení o uzavření serveru.
+        explanation_html: 'E-mail bude odeslán <strong>%{display_count} uživatelům</strong>. Následující text bude zahrnut do onoho e-mailu:'
+        title: Náhled oznámení
       publish: Zveřejnit
       published_msg: Oznámení bylo úspěšně zveřejněno!
       scheduled_for: Naplánováno na %{time}
@@ -491,6 +496,36 @@ cs:
       new:
         title: Importovat blokované domény
       no_file: Nebyl vybrán žádný soubor
+    fasp:
+      debug:
+        callbacks:
+          created_at: Vytvořeno
+          delete: Odstranit
+          ip: IP adresa
+          request_body: Tělo požadavku
+          title: Ladit callbacky
+      providers:
+        active: Aktivní
+        base_url: Základní URL
+        callback: Callback
+        delete: Smazat
+        edit: Upravit poskytovatele
+        finish_registration: Dokončit registraci
+        name: Jméno
+        providers: Poskytovatelé
+        public_key_fingerprint: Otisk veřejného klíče
+        registration_requested: Registrace požádána
+        registrations:
+          confirm: Potvrdit
+          description: Obdrželi jste registraci od FASP. Odmítněte ji, pokud jste ji neiniciovali. Pokud jste ji iniciovali, pečlivě porovnejte jméno a otisk klíče před jejím potvrzením.
+          reject: Zamítnout
+          title: Potvrdit registraci FASP
+        save: Uložit
+        select_capabilities: Vybrat možnosti
+        sign_in: Přihlásit se
+        status: Stav
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Doporučená sledování pomáhají novým uživatelům rychle najít zajímavý obsah</strong>. Pokud uživatel neinteragoval s ostatními natolik, aby mu byla vytvořena doporučená sledování na míru, jsou použity tyto účty. Jsou přepočítávány na denní bázi ze směsi účtů s největším nedávným zapojením a nejvyšším počtem místních sledovatelů pro daný jazyk."
       language: Pro jazyk
@@ -779,17 +814,26 @@ cs:
       title: Role
     rules:
       add_new: Přidat pravidlo
+      add_translation: Přidat překlad
       delete: Smazat
       description_html: Přestože většina tvrdí, že četla a souhlasí s podmínkami služby, lidé je obvykle nepročtou dříve, než vznikne problém. <strong>Usnadněte prohlížení pravidel vašeho serveru jejich poskytnutím v odrážkovém seznamu.</strong> Snažte se držet jednotlivá pravidla krátká a jednoduchá, ale zároveň je nerozdělovat do mnoha samostatných položek.
       edit: Upravit pravidlo
       empty: Zatím nebyla definována žádná pravidla serveru.
+      move_down: Posunout dolů
+      move_up: Přesunout nahoru
       title: Pravidla serveru
+      translation: Překlad
+      translations: Překlady
+      translations_explanation: Volitelně můžete též přidat překlady pravidel. Výchozí hodnota bude zobrazena, pokud není k dispozici žádná přeložená verze. Vždy se ujistěte, že jakýkoliv překlad je synchronizován s výchozí hodnotou.
     settings:
       about:
         manage_rules: Spravovat pravidla serveru
         preamble: Uveďte podrobné informace o tom, jak je server provozován, moderován, financován.
         rules_hint: Existuje vyhrazená oblast pro pravidla, u nichž se očekává, že je budou uživatelé dodržovat.
         title: O aplikaci
+      allow_referrer_origin:
+        desc: Když vaši uživatelé kliknou na odkazy na externí stránky, jejich prohlížeč může odeslat adresu vašeho Mastodon serveru, jako odkazujícího serveru. Zakažte tuto možnost, pokud by to jednoznačně identifikovalo vaše uživatele, např. pokud se jedná o osobní Mastodon server.
+        title: Povolit externím stránkám vidět váš Mastodon server, jako zdroj, ze kterého jdou návštěvníci
       appearance:
         preamble: Přizpůsobte si webové rozhraní Mastodon.
         title: Vzhled
@@ -809,9 +853,9 @@ cs:
       discovery:
         follow_recommendations: Doporučená sledování
         preamble: Povrchový zajímavý obsah je užitečný pro zapojení nových uživatelů, kteří možná neznají žádného Mastodona. Mějte pod kontrolou, jak různé objevovací funkce fungují na vašem serveru.
+        privacy: Soukromí
         profile_directory: Adresář profilů
         public_timelines: Veřejné časové osy
-        publish_discovered_servers: Zveřejnit objevené servery
         publish_statistics: Zveřejnit statistiku
         title: Objevujte
         trends: Trendy
@@ -896,6 +940,8 @@ cs:
     system_checks:
       database_schema_check:
         message_html: Na spuštění čekají databázové migrace. Nechte je prosím proběhnout pro zajištění očekávaného chování aplikace
+      elasticsearch_analysis_index_mismatch:
+        message_html: Nastavení analyzátoru Elasticsearch indexu je zastaralé. Prosím spusťte <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch cluster je nezdravý (červený stav), vyhledávací funkce jsou nedostupné
       elasticsearch_health_yellow:
@@ -967,6 +1013,7 @@ cs:
         chance_to_review_html: "<strong>Vygenerované podmínky služby nebudou zveřejněny automaticky.</strong> Výsledky budete mít možnost zkontrolovat. Pro pokračování vyplňte potřebné podrobnosti."
         explanation_html: Poskytovaná šablona služeb je určena pouze pro informační účely a neměla by být vykládána jako právní poradenství v jakékoli věci. Prosíme, konzultujte Vaši situaci a konkrétní právní otázky s Vaším pravním zástupcem.
         title: Nastavení podmínek služby
+      going_live_on_html: Publikováno, platné od %{date}
       history: Historie
       live: Živě
       no_history: Zatím nejsou zaznamenány žádné změny podmínek služby.
@@ -1906,6 +1953,10 @@ cs:
       limit: Už jste si připnuli maximální počet příspěvků
       ownership: Nelze připnout příspěvek někoho jiného
       reblog: Boosty nelze připnout
+    quote_policies:
+      followers: Sledující a zmínění uživatelé
+      nobody: Pouze zmínění uživatelé
+      public: Všichni
     title: "%{name}: „%{quote}“"
     visibilities:
       direct: Přímé
@@ -1959,6 +2010,11 @@ cs:
     does_not_match_previous_name: se neshoduje s předchozím názvem
   terms_of_service:
     title: Podmínky služby
+  terms_of_service_interstitial:
+    future_preamble_html: Provádíme určité změny v našich podmínkách služby, které nabydou účinnosti na <strong>%{date}</strong>. Doporučujeme vám zkontrolovat aktualizované podmínky.
+    past_preamble_html: Od vaší poslední návštěvy jsme změnili podmínky služby. Doporučujeme vám zkontrolovat aktualizované podmínky.
+    review_link: Zkontrolovat podmínky užívání služby
+    title: Podmínky služby %{domain} se mění
   themes:
     contrast: Mastodon (vysoký kontrast)
     default: Mastodon (tmavý)
@@ -1990,6 +2046,10 @@ cs:
     recovery_instructions_html: Ztratíte-li někdy přístup ke svému telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
     webauthn: Bezpečnostní klíče
   user_mailer:
+    announcement_published:
+      description: 'Správci %{domain} oznamují:'
+      subject: Oznámení služby
+      title: Oznámení služby %{domain}
     appeal_approved:
       action: Možnosti Účtu
       explanation: Odvolání proti prohřešku vašeho účtu ze dne %{strike_date}, které jste podali %{appeal_date}, bylo schváleno. Váš účet je opět v pořádku.
@@ -2022,6 +2082,8 @@ cs:
     terms_of_service_changed:
       agreement: Pokračováním v používání %{domain} souhlasíte s těmito podmínkami. Pokud nesouhlasíte s aktualizovanými podmínkami, můžete svůj souhlas s %{domain} kdykoliv ukončit odstraněním vašeho účtu.
       changelog: 'Ve zkratce, zde je to, co tato změna znamená pro vás:'
+      description: 'Tento e-mail jste obdrželi, protože na %{domain} provádíme určité změny našich smluvních podmínek. Tyto aktualizace budou platné od %{date}. Doporučujeme vám zkontrolovat aktualizované podmínky v celém znění zde:'
+      description_html: Tento e-mail jste obdrželi, protože na %{domain} provádíme určité změny našich smluvních podmínek. Tyto aktualizace budou platné od <strong>%{date}</strong>. Doporučujeme vám zkontrolovat <a href="%{path}" target="_blank">aktualizované podmínky v celém znění zde</a>.
       sign_off: Tým %{domain}
       subject: Aktualizace našich podmínek služby
       subtitle: Podmínky služby %{domain} se mění
@@ -2094,7 +2156,6 @@ cs:
       post_action: Sepsat
       post_step: Řekněte světu ahoj pomocí textu, fotografií, videí nebo anket.
       post_title: Vytvořte svůj první příspěvek
-      share_action: Sdílet
       share_step: Dejte přátelům vědět, jak vás mohou na Mastodonu najít.
       share_title: Sdílejte svůj Mastodon profil
       sign_in_action: Přihlásit se

@@ -21,7 +21,7 @@ nn:
       one: Tut
       other: Tut
     posts_tab_heading: Tut
-    self_follow_error: Det er ikkje tillate å følgje din eigen konto
+    self_follow_error: Du kan ikkje fylgja deg sjølv
   admin:
     account_actions:
       action: Utfør
@@ -309,6 +309,7 @@ nn:
       title: Revisionslogg
       unavailable_instance: "(domenenamn er utilgjengeleg)"
     announcements:
+      back: Tilbake til kunngjeringane
       destroyed_msg: Kunngjøringen er slettet!
       edit:
         title: Rediger kunngjøring
@@ -317,6 +318,10 @@ nn:
       new:
         create: Lag kunngjøring
         title: Ny kunngjøring
+      preview:
+        disclaimer: Av di folk ikkje kan velja bort epostvarsel, bør du avgrensa dei til viktige kunngjeringar som datainnbrot eller varsel om at tenaren skal stengja.
+        explanation_html: 'Denne eposten blir send til <strong>%{display_count} folk</strong>. Denne teksten vil stå i eposten:'
+        title: Førehandsvis kunngjeringa
       publish: Publiser
       published_msg: Kunngjøring publisert!
       scheduled_for: Planlagt for %{time}
@@ -475,11 +480,41 @@ nn:
       new:
         title: Importer domeneblokkeringar
       no_file: Inga fil vald
+    fasp:
+      debug:
+        callbacks:
+          created_at: Oppretta
+          delete: Slett
+          ip: IP-adresse
+          request_body: Meldingskropp i førespurnaden
+          title: Avlusingstilbakekall
+      providers:
+        active: Aktiv
+        base_url: Basisadresse
+        callback: Tilbakekall
+        delete: Slett
+        edit: Rediger leverandør
+        finish_registration: Fullfør registrering
+        name: Namn
+        providers: Leverandørar
+        public_key_fingerprint: Offentleg nøkkelavtrykk
+        registration_requested: Nokon vil registrera seg
+        registrations:
+          confirm: Stadfest
+          description: Du har fått ei registrering frå ein tenesteleverandør. Avslå registreringa viss du ikkje sette i gang dette. Viss du sette i gang registreringa, må du samanlikna namnet og nøkkelavtrykket nøye før du stadfestar registreringa.
+          reject: Avslå
+          title: Stadfest registrering via tenestetilbydar
+        save: Lagre
+        select_capabilities: Vel eigenskapar
+        sign_in: Logg inn
+        status: Status
+        title: Tilleggstenesteleverandørar for allheimen
+      title: Tenestleverandør
     follow_recommendations:
       description_html: "<strong>Fylgjeforslag hjelper nye brukarar å finna interessant innhald raskt</strong>. Om ein brukar ikkje har samhandla nok med andre til å få tilpassa fylgjeforslag, blir desse kontoane føreslått i staden. Dei blir rekna ut på nytt kvar dag ut frå ei blanding av kva kontoar som har mykje nyleg aktivitet og høgast tal på fylgjarar på eit bestemt språk."
       language: For språk
       status: Status
-      suppress: Demp følgjeforslag
+      suppress: Demp fylgjeforslag
       suppressed: Dempa
       title: Fylgjeforslag
       unsuppress: Nullstill fylgjeforslag
@@ -751,17 +786,26 @@ nn:
       title: Roller
     rules:
       add_new: Legg til regel
+      add_translation: Legg til omsetjing
       delete: Slett
       description_html: Mens de fleste hevder å ha lest og samtykket i tjenestevilkårene, leser de vanligvis ikke gjennom før etter et problem oppstår. <strong>Gjør det enklere å se serverens regler på et øyeblikk ved å gi dem i en flat kulepunktsliste.</strong> Prøv å holde individuelle regler korte og enkelt, men prøv å ikke dele dem opp i mange separate elementer heller.
       edit: Rediger regel
       empty: Ingen serverregler har blitt definert ennå.
+      move_down: Flytt ned
+      move_up: Flytt opp
       title: Server regler
+      translation: Omsetjing
+      translations: Omsetjingar
+      translations_explanation: Du kan leggja til omsetjingar av retningslinene for denne tenaren. Standardverdien vil syna dersom det ikkje finst noka omsetjing. Ver god å passa på at alle omsetjingar er i samsvar med standardverdien.
     settings:
       about:
         manage_rules: Handter tenarreglar
         preamble: Gje grundig informasjon om korleis tenaren blir drifta, moderert og finansiert.
         rules_hint: Det er eit eige område for reglar som brukarar må retta seg etter.
         title: Om
+      allow_referrer_origin:
+        desc: Når medlemene dine klikkar på lenker til eksterne sider, kan nettlesaren deira òg senda adressa til Mastodon-tenaren som referanse. Skru av dette viss det ville identifisera medlemene dine, til dømes viss dette er ein personleg Mastodon-tenar.
+        title: Gje eksterne sider lov til å sjå at Mastodon-tenaren din er kjelde til trafikken
       appearance:
         preamble: Tilpasse web-grensesnittet.
         title: Utsjånad
@@ -781,9 +825,9 @@ nn:
       discovery:
         follow_recommendations: Fylgjeforslag
         preamble: Å framheva interessant innhald er vitalt i mottakinga av nye brukarar som ikkje nødvendigvis kjenner nokon på Mastodon. Kontroller korleis oppdagingsfunksjonane på tenaren din fungerar.
+        privacy: Personvern
         profile_directory: Profilkatalog
         public_timelines: Offentlege tidsliner
-        publish_discovered_servers: Publiser oppdaga tenarar
         publish_statistics: Publiser statistikk
         title: Oppdaging
         trends: Trender
@@ -868,6 +912,8 @@ nn:
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
+      elasticsearch_analysis_index_mismatch:
+        message_html: Indeksanalyseinnstillingane til Elasticsearch er utdaterte. Køyr <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch-klynga er usunn (raud status), og søkjefunksjonane er utilgjengelege
       elasticsearch_health_yellow:
@@ -939,6 +985,7 @@ nn:
         chance_to_review_html: "<strong>Dei genererte bruksvilkåra blir ikkje lagde ut automatisk</strong> Du får høve til å sjå gjennom resultatet og fylla inn dei detaljane som trengst."
         explanation_html: Malen for bruksvilkår er berre til informasjon, og du bør ikkje gå ut frå han som juridiske råd. Viss du har spørsmål om lovverk, bør du spørja ein advokat.
         title: Oppsett for bruksvilkår
+      going_live_on_html: I bruk frå %{date}
       history: Historikk
       live: Direkte
       no_history: Det er ikkje registrert nokon endringar i bruksvilkåra enno.
@@ -1331,8 +1378,8 @@ nn:
   featured_tags:
     add_new: Legg til ny
     errors:
-      limit: Du har allereie framheva så mange emneknaggar som det går an å gjera
-    hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
+      limit: Du har allereie valt ut så mange emneknaggar som det går an å gjera
+    hint_html: "<strong>Vel ut dei viktigaste emneknaggane på profilen din.</strong> Utvalde emneknaggar er eit flott verkty for å halda oversikt over kreativt arbeid og langtidsprosjekt. Dei er lette å sjå på profilen din, og gjev deg rask tilgang til dine eigne innlegg."
   filters:
     contexts:
       account: Profiler
@@ -1681,9 +1728,9 @@ nn:
     confirm_remove_selected_follows: Er du sikker på at du ikkje vil fylgja desse?
     dormant: I dvale
     follow_failure: Greidde ikkje fylgja alle kontoane du valde.
-    follow_selected_followers: Følg valgte tilhengere
+    follow_selected_followers: Fylg desse som fylgjer deg
     followers: Fylgjarar
-    following: Følginger
+    following: Folk du fylgjer
     invited: Innboden
     last_active: Sist aktiv
     most_recent: Sist
@@ -1769,7 +1816,7 @@ nn:
     development: Utvikling
     edit_profile: Endr profil
     export: Eksporter
-    featured_tags: Utvalgte emneknagger
+    featured_tags: Utvalde emneknaggar
     import: Hent inn
     import_and_export: Importer og eksporter
     migrate: Kontoflytting
@@ -1820,6 +1867,10 @@ nn:
       limit: Du har allereie festa så mange tut som det går an å festa
       ownership: Du kan ikkje festa andre sine tut
       reblog: Ei framheving kan ikkje festast
+    quote_policies:
+      followers: Tilhengjarar og nemnde folk
+      nobody: Berre nemnde folk
+      public: Alle
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Direkte
@@ -1873,6 +1924,11 @@ nn:
     does_not_match_previous_name: stemmar ikkje med det førre namnet
   terms_of_service:
     title: Bruksvilkår
+  terms_of_service_interstitial:
+    future_preamble_html: Me gjer nokre endringar i brukarvilkåra våre, og dei blir tekne i bruk <strong>%{date}</strong>. Det er fint viss du ser på dei nye vilkåra.
+    past_preamble_html: Me har endra brukarvilkåra våre sidan du var her sist. Det er fint viss du ser på dei oppdaterte vilkåra.
+    review_link: Les gjennom brukarvilkåra
+    title: Brukarvilkåra på %{domain} er endra
   themes:
     contrast: Mastodon (Høg kontrast)
     default: Mastodon (Mørkt)
@@ -1904,6 +1960,10 @@ nn:
     recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. <strong>Oppbevar gjenopprettingskodene sikkert</strong>, for eksempel ved å skrive dem ut og gjemme dem på et lurt sted bare du vet om.
     webauthn: Sikkerhetsnøkler
   user_mailer:
+    announcement_published:
+      description: 'Styrarane på %{domain} har ei kunngjering:'
+      subject: Kunngjering om tenesta
+      title: Kunngjering frå %{domain}
     appeal_approved:
       action: Kontoinnstillingar
       explanation: Apellen på prikken mot din kontor på %{strike_date} som du la inn på %{appeal_date} har blitt godkjend. Din konto er nok ein gong i god stand.
@@ -1936,6 +1996,8 @@ nn:
     terms_of_service_changed:
       agreement: Viss du held fram å bruka %{domain}, seier du deg einig i vilkåra. Viss du er usamd i dei oppdaterte vilkåra, kan du slutta å bruka %{domain} når du vil ved å sletta brukarkontoen din.
       changelog: 'Denne oppdateringa, kort fortalt:'
+      description: 'Du får denne eposten fordi me har endra tenestvilkåra på %{domain}. Desse endringane kjem i kraft %{date}. Me oppmodar deg til å sjå på dei oppdaterte vilkåra her:'
+      description_html: Du får denne eposten fordi me har endra tenestvilkåra på %{domain}. Desse endringane kjem i kraft <strong>%{date}</strong>. Me oppmodar deg til å sjå på <a href="%{path}" target="_blank">dei oppdaterte vilkåra her</a>.
       sign_off: Folka på %{domain}
       subject: Endra bruksvilkår
       subtitle: Bruksvilkåra på %{domain} er endra
@@ -1945,7 +2007,7 @@ nn:
       appeal_description: Om du meiner dette er ein feil, kan du sende inn ei klage til gjengen i %{instance}.
       categories:
         spam: Søppelpost
-        violation: Innhald bryter følgjande retningslinjer
+        violation: Innhaldet bryt med desse retningslinene
       explanation:
         delete_statuses: Nokre av innlegga dine er bryt éin eller fleire retningslinjer, og har så blitt fjerna av moderatorene på %{instance}.
         disable: Du kan ikkje lenger bruke kontoen, men profilen din og andre data er intakt. Du kan be om ein sikkerhetskopi av dine data, endre kontoinnstillingar eller slette din konto.
@@ -2006,7 +2068,6 @@ nn:
       post_action: Skriv
       post_step: Sei hei til verda med tekst, bilete, filmar eller meiningsmålingar.
       post_title: Skriv ditt fyrste innlegg
-      share_action: Del
       share_step: Fortel venene dine korleis dei finn deg på Mastodon.
       share_title: Del Mastodon-profilen din
       sign_in_action: Logg inn

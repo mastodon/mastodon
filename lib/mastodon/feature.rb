@@ -19,8 +19,8 @@ module Mastodon::Feature
       super
     end
 
-    def respond_to_missing?(name)
-      name.to_s.end_with?('_enabled?')
+    def respond_to_missing?(name, include_all = false)
+      name.to_s.end_with?('_enabled?') || super
     end
   end
 end

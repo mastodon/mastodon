@@ -57,7 +57,7 @@ RSpec.describe 'Admin Invites' do
     end
 
     def max_use_field
-      I18n.t('simple_form.labels.defaults.max_uses')
+      form_label('defaults.max_uses')
     end
   end
 end

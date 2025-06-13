@@ -38,13 +38,13 @@ RSpec.describe Web::PushNotificationWorker do
 
   describe 'perform' do
     around do |example|
-      original_private = Rails.configuration.x.vapid_private_key
-      original_public = Rails.configuration.x.vapid_public_key
-      Rails.configuration.x.vapid_private_key = vapid_private_key
-      Rails.configuration.x.vapid_public_key = vapid_public_key
+      original_private = Rails.configuration.x.vapid.private_key
+      original_public = Rails.configuration.x.vapid.public_key
+      Rails.configuration.x.vapid.private_key = vapid_private_key
+      Rails.configuration.x.vapid.public_key = vapid_public_key
       example.run
-      Rails.configuration.x.vapid_private_key = original_private
-      Rails.configuration.x.vapid_public_key = original_public
+      Rails.configuration.x.vapid.private_key = original_private
+      Rails.configuration.x.vapid.public_key = original_public
     end
 
     before do

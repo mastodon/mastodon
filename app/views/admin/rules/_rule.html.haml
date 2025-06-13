@@ -7,5 +7,7 @@
     .announcements-list__item__meta
       = rule.hint
 
-    %div
+    .rule-actions
+      = table_link_to 'arrow_upward', t('admin.rules.move_up'), move_up_admin_rule_path(rule), method: :post if can?(:update, rule) && !rule_iteration.first?
       = table_link_to 'delete', t('admin.rules.delete'), admin_rule_path(rule), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, rule)
+      = table_link_to 'arrow_downward', t('admin.rules.move_down'), move_down_admin_rule_path(rule), method: :post if can?(:update, rule) && !rule_iteration.last?

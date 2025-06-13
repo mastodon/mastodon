@@ -74,12 +74,62 @@ RSpec.describe '/api/v1/accounts' do
 
   describe 'POST /api/v1/accounts' do
     subject do
-      post '/api/v1/accounts', headers: headers, params: { username: 'test', password: '12345678', email: 'hello@world.tld', agreement: agreement }
+      post '/api/v1/accounts', headers: headers, params: { username: 'test', password: '12345678', email: 'hello@world.tld', agreement: agreement, date_of_birth: date_of_birth }
     end
 
     let(:client_app) { Fabricate(:application) }
-    let(:token) { Doorkeeper::AccessToken.find_or_create_for(application: client_app, resource_owner: nil, scopes: 'read write', use_refresh_token: false) }
+    let(:token) { Fabricate(:client_credentials_token, application: client_app, scopes: 'read write') }
     let(:agreement) { nil }
+    let(:date_of_birth) { nil }
+
+    context 'when not using client credentials token' do
+      let(:token) { Fabricate(:accessible_access_token, application: client_app, scopes: 'read write', resource_owner_id: user.id) }
+
+      it 'returns http forbidden error' do
+        subject
+
+        expect(response).to have_http_status(403)
+        expect(response.content_type)
+          .to start_with('application/json')
+
+        expect(response.parsed_body)
+          .to include(
+            error: 'This method requires an client credentials authentication'
+          )
+      end
+    end
+
+    context 'when age verification is enabled' do
+      before do
+        Setting.min_age = 16
+      end
+
+      let(:agreement) { 'true' }
+
+      context 'when date of birth is below age limit' do
+        let(:date_of_birth) { 13.years.ago.strftime('%d.%m.%Y') }
+
+        it 'returns http unprocessable entity' do
+          subject
+
+          expect(response).to have_http_status(422)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
+      end
+
+      context 'when date of birth is over age limit' do
+        let(:date_of_birth) { 17.years.ago.strftime('%d.%m.%Y') }
+
+        it 'creates a user', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
+      end
+    end
 
     context 'when given truthy agreement' do
       let(:agreement) { 'true' }

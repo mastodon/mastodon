@@ -20,7 +20,7 @@ class PerOperationWithDeadline < HTTP::Timeout::PerOperation
     @read_deadline = options.fetch(:read_deadline, READ_DEADLINE)
   end
 
-  def connect(socket_class, host, port, nodelay = false)
+  def connect(socket_class, host, port, nodelay = false) # rubocop:disable Style/OptionalBooleanParameter
     @socket = socket_class.open(host, port)
     @socket.setsockopt(Socket::IPPROTO_TCP, Socket::TCP_NODELAY, 1) if nodelay
   end
@@ -75,7 +75,6 @@ class Request
     @url         = Addressable::URI.parse(url).normalize
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
-    @full_path   = !options.delete(:omit_query_string)
     @options     = {
       follow: {
         max_hops: 3,
@@ -102,7 +101,7 @@ class Request
 
     key_id = ActivityPub::TagManager.instance.key_uri_for(actor)
     keypair = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : actor.keypair
-    @signing = HttpSignatureDraft.new(keypair, key_id, full_path: @full_path)
+    @signing = HttpSignatureDraft.new(keypair, key_id)
 
     self
   end
@@ -260,7 +259,7 @@ class Request
         outer_e = nil
         port    = args.first
 
-        addresses = [] # rubocop:disable Lint/UselessAssignment -- TODO: https://github.com/rubocop/rubocop/issues/13395
+        addresses = []
         begin
           addresses = [IPAddr.new(host)]
         rescue IPAddr::InvalidAddressError

@@ -22,19 +22,23 @@ RSpec.describe 'Content-Security-Policy' do
   def expected_csp_headers
     <<~CSP.split("\n").map(&:strip)
       base-uri 'none'
-      child-src 'self' blob: https://cb6e6126.ngrok.io
-      connect-src 'self' data: blob: https://cb6e6126.ngrok.io #{Rails.configuration.x.streaming_api_base_url}
+      child-src 'self' blob: #{local_domain}
+      connect-src 'self' data: blob: #{local_domain} #{Rails.configuration.x.streaming_api_base_url}
       default-src 'none'
-      font-src 'self' https://cb6e6126.ngrok.io
+      font-src 'self' #{local_domain}
       form-action 'none'
       frame-ancestors 'none'
       frame-src 'self' https:
-      img-src 'self' data: blob: https://cb6e6126.ngrok.io
-      manifest-src 'self' https://cb6e6126.ngrok.io
-      media-src 'self' data: https://cb6e6126.ngrok.io
-      script-src 'self' https://cb6e6126.ngrok.io 'wasm-unsafe-eval'
-      style-src 'self' https://cb6e6126.ngrok.io 'nonce-ZbA+JmE7+bK8F5qvADZHuQ=='
-      worker-src 'self' blob: https://cb6e6126.ngrok.io
+      img-src 'self' data: blob: #{local_domain}
+      manifest-src 'self' #{local_domain}
+      media-src 'self' data: #{local_domain}
+      script-src 'self' #{local_domain} 'wasm-unsafe-eval'
+      style-src 'self' #{local_domain} 'nonce-ZbA+JmE7+bK8F5qvADZHuQ=='
+      worker-src 'self' blob: #{local_domain}
     CSP
+  end
+
+  def local_domain
+    root_url(host: Rails.configuration.x.local_domain).chop
   end
 end

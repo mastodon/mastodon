@@ -16,8 +16,7 @@ const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   followBack: { id: 'account.follow_back', defaultMessage: 'Follow back' },
-  mutual: { id: 'account.mutual', defaultMessage: 'Mutual' },
-  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
+  editProfile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
 });
 
 export const FollowButton: React.FC<{
@@ -73,11 +72,9 @@ export const FollowButton: React.FC<{
   if (!signedIn) {
     label = intl.formatMessage(messages.follow);
   } else if (accountId === me) {
-    label = intl.formatMessage(messages.edit_profile);
+    label = intl.formatMessage(messages.editProfile);
   } else if (!relationship) {
     label = <LoadingIndicator />;
-  } else if (relationship.following && relationship.followed_by) {
-    label = intl.formatMessage(messages.mutual);
   } else if (relationship.following || relationship.requested) {
     label = intl.formatMessage(messages.unfollow);
   } else if (relationship.followed_by) {

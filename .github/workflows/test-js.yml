@@ -40,4 +40,4 @@ jobs:
         uses: ./.github/actions/setup-javascript
 
       - name: JavaScript testing
-        run: yarn jest --reporters github-actions summary
+        run: yarn test:js

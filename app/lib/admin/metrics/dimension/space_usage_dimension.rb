@@ -45,7 +45,6 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
       PreviewCard.sum(:image_file_size),
       Account.sum(Arel.sql('COALESCE(avatar_file_size, 0) + COALESCE(header_file_size, 0)')),
       Backup.sum(:dump_file_size),
-      Import.sum(:data_file_size),
       SiteUpload.sum(:file_file_size),
     ].sum
 
@@ -59,11 +58,7 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
   end
 
   def redis_info
-    @redis_info ||= if redis.is_a?(Redis::Namespace)
-                      redis.redis.info
-                    else
-                      redis.info
-                    end
+    @redis_info ||= redis.info
   end
 
   def search_size

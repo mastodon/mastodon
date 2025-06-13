@@ -9,6 +9,7 @@ services:
     environment:
       RAILS_ENV: development
       NODE_ENV: development
+      VITE_RUBY_HOST: 0.0.0.0
       BIND: 0.0.0.0
       BOOTSNAP_CACHE_DIR: /tmp
       REDIS_HOST: redis
@@ -21,12 +22,14 @@ services:
       ES_HOST: es
       ES_PORT: '9200'
       LIBRE_TRANSLATE_ENDPOINT: http://libretranslate:5000
+      LOCAL_DOMAIN: ${LOCAL_DOMAIN:-localhost:3000}
+      VITE_DEV_SERVER_PUBLIC: ${VITE_DEV_SERVER_PUBLIC:-localhost:3036}
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
     ports:
-      - '127.0.0.1:3000:3000'
-      - '127.0.0.1:3035:3035'
-      - '127.0.0.1:4000:4000'
+      - '3000:3000'
+      - '3036:3036'
+      - '4000:4000'
     networks:
       - external_network
       - internal_network

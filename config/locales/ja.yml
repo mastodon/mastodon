@@ -306,6 +306,7 @@ ja:
       title: 操作履歴
       unavailable_instance: "(ドメイン名が利用できません)"
     announcements:
+      back: アナウンスに戻る
       destroyed_msg: お知らせが削除されました
       edit:
         title: お知らせを編集
@@ -314,6 +315,10 @@ ja:
       new:
         create: お知らせを作成
         title: お知らせを追加
+      preview:
+        disclaimer: メール通知はユーザーがオプトアウトできないため、個人データの漏洩やサーバー閉鎖の通知など重要なアナウンスに限定されるべきです。
+        explanation_html: このメールは<strong>%{display_count}ユーザー</strong>へ送られます。次の文章がメールに含まれます：
+        title: アナウンスの通知のプレビュー
       publish: 公開する
       published_msg: お知らせを掲載しました
       scheduled_for: "%{time}に予約"
@@ -467,6 +472,36 @@ ja:
       new:
         title: ドメインブロックをインポート
       no_file: ファイルが選択されていません
+    fasp:
+      debug:
+        callbacks:
+          created_at: 作成元
+          delete: 削除
+          ip: IPアドレス
+          request_body: リクエスト本文
+          title: デバッグ　コールバック
+      providers:
+        active: アクティブ
+        base_url: 基本URL
+        callback: コールバック
+        delete: 削除
+        edit: プロバイダーの編集
+        finish_registration: 登録を完了
+        name: 名前
+        providers: プロバイダ
+        public_key_fingerprint: 公開キーのフィンガープリント
+        registration_requested: 登録がリクエストされました
+        registrations:
+          confirm: 確定
+          description: FASPから登録を受け取りました。自分で登録していないなら拒否してください。自分で登録した場合は、登録を確定する前に名前と鍵のフィンガープリントを慎重に比較してください。
+          reject: 拒否
+          title: FASP登録を確認
+        save: 保存
+        select_capabilities: 機能選択
+        sign_in: サインイン
+        status: ステータス
+        title: フェディバース補助サービスプロバイダ
+      title: FASP
     follow_recommendations:
       description_html: "<strong>おすすめフォローは、新規ユーザーが興味のあるコンテンツをすばやく見つけるのに役立ちます。</strong>ユーザーが他のユーザーとの交流を十分にしていない場合、パーソナライズされたおすすめフォローを生成する代わりに、これらのアカウントが表示されます。最近のエンゲージメントが最も高いアカウントと、特定の言語のローカルフォロワー数が最も多いアカウントを組み合わせて､毎日再計算されます。"
       language: 言語
@@ -737,17 +772,26 @@ ja:
       title: ロール
     rules:
       add_new: ルールを追加
+      add_translation: 翻訳を追加
       delete: 削除
       description_html: たいていの人が利用規約を読んで同意したと言いますが、普通は問題が発生するまで読みません。<strong>箇条書きにして、サーバーのルールが一目で分かるようにしましょう</strong>。個々のルールは短くシンプルなものにし、多くの項目に分割しないようにしましょう。
       edit: ルールを編集
       empty: サーバーのルールが定義されていません。
+      move_down: 下へ移動
+      move_up: 上へ移動
       title: サーバーのルール
+      translation: 翻訳
+      translations: 翻訳
+      translations_explanation: オプションとしてルールに翻訳を追加できます。翻訳されたバージョンがない場合、デフォルトの値が表示されます。表示される翻訳がデフォルトの値と対応していることを常に確認しておいてください。
     settings:
       about:
         manage_rules: サーバーのルールを管理
         preamble: サーバーの運営、管理、資金調達の方法について、詳細な情報を提供します。
         rules_hint: ユーザーが守るべきルールのための専用エリアがあります。
         title: このサーバーについて
+      allow_referrer_origin:
+        desc: ユーザが外部サイトへのリンクをクリックする際、ユーザーのブラウザはあなたのMastodonサーバーのアドレスを紹介者として送信することがあります。 これによりあなたのユーザーが特定されてしまう場合、例えば個人用のMastodonサーバーなどである場合などは無効にしてください。
+        title: 外部サイトが Mastodon サーバーをトラフィックソースとして表示することを許可する
       appearance:
         preamble: ウェブインターフェースをカスタマイズします。
         title: 外観
@@ -767,9 +811,9 @@ ja:
       discovery:
         follow_recommendations: おすすめフォロー
         preamble: Mastodon を知らないユーザーを取り込むには、興味深いコンテンツを浮上させることが重要です。サーバー上で様々なディスカバリー機能がどのように機能するかを制御します。
+        privacy: プライバシー
         profile_directory: ディレクトリ
         public_timelines: 公開タイムライン
-        publish_discovered_servers: 接続しているサーバーを公開する
         publish_statistics: 統計情報を公開する
         title: 見つける
         trends: トレンド
@@ -854,6 +898,8 @@ ja:
     system_checks:
       database_schema_check:
         message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch インデックスアナライザの設定が古くなっています。 <code>tootctl search deploy --only-mapping --only=%{value}</code>を実行してください
       elasticsearch_health_red:
         message_html: 'Elasticsearchクラスターに異常があります(status: red)。検索機能が利用できなくなっています'
       elasticsearch_health_yellow:
@@ -925,6 +971,7 @@ ja:
         chance_to_review_html: "<strong>生成された利用規約は自動的には公開されません。</strong>結果を確認する機会があります。手続きに必要な詳細を記入してください。"
         explanation_html: 提供された利用規約のテンプレートは情報提供のみを目的としており、いかなる主題に関しても法的助言と見なされるべきではありません。ご自身の状況や具体的な法的質問については、必ずご自身の弁護士に相談してください。
         title: 利用規約の設定
+      going_live_on_html: "%{date}より有効"
       history: 履歴
       live: 公開中
       no_history: 利用規約の変更はまだ記録されていません。
@@ -1777,6 +1824,10 @@ ja:
       limit: 固定できる投稿数の上限に達しました
       ownership: 他人の投稿を固定することはできません
       reblog: ブーストを固定することはできません
+    quote_policies:
+      followers: フォロワーとメンションされたユーザー
+      nobody: メンションされたユーザーのみ
+      public: 全員
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: ダイレクト
@@ -1830,6 +1881,11 @@ ja:
     does_not_match_previous_name: 以前の名前と一致しません
   terms_of_service:
     title: サービス利用規約
+  terms_of_service_interstitial:
+    future_preamble_html: サービス利用規約にいくつかの変更が加えられています。これは <strong>%{date}</strong>に適用されます。 更新された条件を確認することをお勧めします。
+    past_preamble_html: 前回の訪問時から利用規約が変更されました。更新された条件を確認することをお勧めします。
+    review_link: 利用規約を確認する
+    title: "%{domain} の利用規約が変更されています"
   themes:
     contrast: Mastodon (ハイコントラスト)
     default: Mastodon (ダーク)
@@ -1861,6 +1917,10 @@ ja:
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
     webauthn: セキュリティキー
   user_mailer:
+    announcement_published:
+      description: "%{domain}の管理者からの告知："
+      subject: サービスに関する告知
+      title: "%{domain}のサービスに関する告知"
     appeal_approved:
       action: アカウント設定
       explanation: "%{strike_date}のストライクに対して、あなたが%{appeal_date}に行った申し立ては承認されました。アカウントは正常な状態に戻りました。"
@@ -1893,6 +1953,8 @@ ja:
     terms_of_service_changed:
       agreement: "%{domain} を引き続き使用することで、これらの条件に同意したことになります。更新された条件に同意しない場合は、アカウントを削除することでいつでも %{domain} との契約を終了することができます。"
       changelog: 一目で分かる、この更新があなたにとって意味することは次の通りです：
+      description: このメールは、%{domain} の利用規約にいくつかの変更が加えられているため発信されました。これらの変更は %{date}より有効です。更新された利用規約をこちらで全てご確認いただくことをお勧めします：
+      description_html: このメールは、%{domain} の利用規約にいくつかの変更が加えられているため発信されました。これらの変更は <strong>%{date}</strong>より有効です。<a href="%{path}" target="_blank">更新された利用規約をこちらで全て</a>ご確認いただくことをお勧めします。
       sign_off: "%{domain} チーム"
       subject: 利用規約の更新
       subtitle: "%{domain} の利用規約が変更されています"
@@ -1962,7 +2024,6 @@ ja:
       post_action: 作成
       post_step: 試しになにか書いてみましょう。写真、ビデオ、アンケートなど、なんでも大丈夫です.
       post_title: はじめての投稿
-      share_action: 共有
       share_step: Mastodon アカウントをほかの人に紹介しましょう。
       share_title: プロフィールをシェアする
       sign_in_action: ログイン

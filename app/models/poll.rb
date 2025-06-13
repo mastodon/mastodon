@@ -23,6 +23,8 @@
 class Poll < ApplicationRecord
   include Expireable
 
+  MAKE_FETCH_HAPPEN = 1.minute
+
   belongs_to :account
   belongs_to :status
 
@@ -113,7 +115,7 @@ class Poll < ApplicationRecord
   end
 
   def time_passed_since_last_fetch?
-    last_fetched_at.nil? || last_fetched_at < 1.minute.ago
+    last_fetched_at.nil? || last_fetched_at < MAKE_FETCH_HAPPEN.ago
   end
 
   def show_totals_now?

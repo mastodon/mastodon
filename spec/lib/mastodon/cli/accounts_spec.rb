@@ -70,6 +70,25 @@ RSpec.describe Mastodon::CLI::Accounts do
         end
       end
 
+      context 'with min_age setting' do
+        let(:options) { { email: 'tootctl@example.com', confirmed: true } }
+
+        before do
+          Setting.min_age = 42
+        end
+
+        it_behaves_like 'a new user with given email address and username'
+
+        it 'creates a new user with confirmed status' do
+          expect { subject }
+            .to output_results('New password')
+
+          user = User.find_by(email: options[:email])
+
+          expect(user.confirmed?).to be(true)
+        end
+      end
+
       context 'with --confirmed option' do
         let(:options) { { email: 'tootctl@example.com', confirmed: true } }
 

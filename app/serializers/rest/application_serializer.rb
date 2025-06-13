@@ -18,6 +18,6 @@ class REST::ApplicationSerializer < ActiveModel::Serializer
   end
 
   def vapid_key
-    Rails.configuration.x.vapid_public_key
+    Rails.configuration.x.vapid.public_key
   end
 end

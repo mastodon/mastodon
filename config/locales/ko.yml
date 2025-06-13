@@ -306,6 +306,7 @@ ko:
       title: 감사 로그
       unavailable_instance: "(도메인네임 사용불가)"
     announcements:
+      back: 공지사항으로 돌아가기
       destroyed_msg: 공지가 성공적으로 삭제되었습니다!
       edit:
         title: 공지사항 편집
@@ -314,6 +315,10 @@ ko:
       new:
         create: 공지사항 생성
         title: 새 공지사항
+      preview:
+        disclaimer: 사용자들은 수신설정을 끌 수 없기 때문에 이메일 알림은 개인정보 유출이나 서버 종료와 같은 중요한 공지사항에만 사용해야 합니다.
+        explanation_html: "<strong>%{display_count} 명의 사용자</strong>에게 이메일이 발송됩니다. 다음 내용이 이메일에 포함됩니다:"
+        title: 공지사항 알림 미리보기
       publish: 게시
       published_msg: 공지사항이 성공적으로 발행되었습니다!
       scheduled_for: "%{time}에 예약됨"
@@ -469,6 +474,36 @@ ko:
       new:
         title: 도메인 차단 불러오기
       no_file: 선택된 파일이 없습니다
+    fasp:
+      debug:
+        callbacks:
+          created_at: 생성일
+          delete: 삭제
+          ip: IP 주소
+          request_body: 요청 바디
+          title: 디버그 콜백
+      providers:
+        active: 활성
+        base_url: Base URL
+        callback: 콜백
+        delete: 삭제
+        edit: 제공자 편집
+        finish_registration: 등록 완료
+        name: 이름
+        providers: 제공자
+        public_key_fingerprint: 공개키 핑거프린트
+        registration_requested: 가입 요청됨
+        registrations:
+          confirm: 확인
+          description: FASP로부터 등록을 받았습니다. 본인이 시작하지 않았다면 거부하세요. 본인이 시작했다면 등록을 확인하기 전에 이름과 키 핑거프린트를 주의 깊게 비교하세요.
+          reject: 거부
+          title: FASP 가입 확인
+        save: 저장
+        select_capabilities: 권한 선택
+        sign_in: 가입
+        status: 상태
+        title: 연합우주 보조 서비스 제공자
+      title: FASP
     follow_recommendations:
       description_html: "<strong>팔로우 추천은 새 사용자들이 관심 가는 콘텐트를 빠르게 찾을 수 있도록 도와줍니다</strong>. 사용자가 개인화 된 팔로우 추천이 만들어지기 위한 충분한 상호작용을 하지 않은 경우, 이 계정들이 대신 추천 됩니다. 이들은 해당 언어에 대해 많은 관심을 갖거나 많은 로컬 팔로워를 가지고 있는 계정들을 섞어서 날마다 다시 계산 됩니다."
       language: 언어 필터
@@ -739,17 +774,26 @@ ko:
       title: 역할
     rules:
       add_new: 규칙 추가
+      add_translation: 번역 추가
       delete: 삭제
       description_html: 대부분의 사람들은 서비스 약관을 읽고 동의한다고 밝힙니다만, 대개 문제가 발생하기 전까지는 약관을 자세히 읽어보지 않습니다. <strong>서버의 운영원칙을 단일한 글머리 기호 목록으로 제공하여 한 눈에 쉽게 확인할 수 있도록 하세요.</strong> 각 규칙을 짧고 간결하게 유지하되, 많은 항목으로 나누지 않도록 하세요.
       edit: 규칙 수정
       empty: 아직 정의된 서버 규칙이 없습니다.
+      move_down: 아래로 이동
+      move_up: 위로 이동
       title: 서버 규칙
+      translation: 번역
+      translations: 번역
+      translations_explanation: 규칙에 대한 번역을 추가할 수 있습니다. 번역된 버전이 없다면 원문이 보여질 것입니다. 항상 원문과 번역본의 내용이 일치하는지 확인하세요.
     settings:
       about:
         manage_rules: 서버 규칙 관리
         preamble: 이 서버가 어떻게 운영되고, 중재되고, 자금을 조달하는지 등에 관한 자세한 정보를 기입하세요.
         rules_hint: 사용자들이 준수해야 할 규칙들을 위한 전용 공간입니다.
         title: 정보
+      allow_referrer_origin:
+        desc: 사용자가 외부 사이트 링크를 클릭한 경우 브라우저는 마스토돈 서버 주소를 리퍼러로 보내게 됩니다. 이 서버가 개인 서버인 경우 등 사용자를 식별할 수 있는 경우 이 기능을 비활성화하세요.
+        title: 외부 사이트가 이 마스토돈 서버를 트래픽 소스로 볼 수 있도록 허용
       appearance:
         preamble: 마스토돈의 웹 인터페이스를 변경
         title: 외관
@@ -769,9 +813,9 @@ ko:
       discovery:
         follow_recommendations: 팔로우 추천
         preamble: 흥미로운 콘텐츠를 노출하는 것은 마스토돈을 알지 못할 수도 있는 신규 사용자를 유입시키는 데 중요합니다. 이 서버에서 작동하는 다양한 발견하기 기능을 제어합니다.
+        privacy: 개인정보
         profile_directory: 프로필 책자
         public_timelines: 공개 타임라인
-        publish_discovered_servers: 발견 된 서버들 발행
         publish_statistics: 통계 발행
         title: 발견하기
         trends: 유행
@@ -856,6 +900,8 @@ ko:
     system_checks:
       database_schema_check:
         message_html: 대기 중인 데이터베이스 마이그레이션이 있습니다. 애플리케이션이 예상대로 동작할 수 있도록 마이그레이션을 실행해 주세요
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch 인덱스 아날라이저 설정이 업데이트되지 않았습니다. <code>tootctl search deploy --only-mapping --only=%{value}</code> 명령을 실행해주세요
       elasticsearch_health_red:
         message_html: Elasticsearch 클러스터가 비정상(red)상태입니다. 검색 기능이 동작하지 않습니다
       elasticsearch_health_yellow:
@@ -927,6 +973,7 @@ ko:
         chance_to_review_html: "<strong>생성된 이용 약관은 자동으로 게시되지 않을 것입니다.</strong> 결과를 확인할 기회가 있습니다. 진행하려면 필요한 정보들을 입력하세요."
         explanation_html: 제공되는 이용약관 틀은 정보 제공만을 목적으로 하며 법률 조언으로 해석하면 안 됩니다. 귀하의 상황에 맞는 법률 자문을 받아주시기 바랍니다.
         title: 이용 약관 설정
+      going_live_on_html: "%{date} 시행중"
       history: 역사
       live: 활성
       no_history: 기록된 이용약관 변경이 아직 없습니다.
@@ -1779,6 +1826,10 @@ ko:
       limit: 이미 너무 많은 게시물을 고정했습니다
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
+    quote_policies:
+      followers: 팔로워와 멘션된 사람들만
+      nobody: 멘션된 사람들만
+      public: 모두
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: 다이렉트
@@ -1832,6 +1883,11 @@ ko:
     does_not_match_previous_name: 이전 이름과 맞지 않습니다
   terms_of_service:
     title: 이용 약관
+  terms_of_service_interstitial:
+    future_preamble_html: 이용약관에 몇가지 변경사항이 있으며, <strong>%{date}</strong>부터 효력이 발생합니다. 변경된 약관을 확인하시기 바랍니다.
+    past_preamble_html: 마지막 방문으로부터 이용약관이 변경되었습니다. 변경된 약관을 확인하시기 바랍니다.
+    review_link: 이용 약관 검토하기
+    title: "%{domain} 도메인의 이용 약관에 변경 있음"
   themes:
     contrast: 마스토돈 (고대비)
     default: 마스토돈 (어두움)
@@ -1863,6 +1919,10 @@ ko:
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
     webauthn: 보안 키
   user_mailer:
+    announcement_published:
+      description: "%{domain}의 관리자가 공지사항을 게시했습니다:"
+      subject: 서비스 공지사항
+      title: "%{domain} 서비스 공지사항"
     appeal_approved:
       action: 계정 설정
       explanation: "%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했으며 승낙되었습니다. 당신의 계정은 정상적인 상태로 돌아왔습니다."
@@ -1895,6 +1955,8 @@ ko:
     terms_of_service_changed:
       agreement: "%{domain}을 계속 사용하는 것으로 약관에 동의하는 것으로 간주합니다. 약관에 동의하지 않는 경우 계정을 삭제함으로써 언제든 동의를 철회할 수 있습니다."
       changelog: '이번 변경사항의 주요 내용입니다:'
+      description: "%{domain}의 이용 약관이 변경되었기 때문에 발송된 이메일입니다. 이 변경사항은 %{date}부터 효력을 발휘합니다. 변경된 전체 약관을 확인하시길 권합니다:"
+      description_html: '%{domain}의 이용 약관이 변경되었기 때문에 발송된 이메일입니다. 이 변경사항은 <strong>%{date}</strong>부터 효력을 발휘합니다. <a href="%{path}" target="_blank">변경된 전체 약관</a>을 확인하시길 권합니다.'
       sign_off: "%{domain} 팀"
       subject: 변경된 이용 약관
       subtitle: "%{domain}의 이용 약관이 변경됩니다"
@@ -1964,7 +2026,6 @@ ko:
       post_action: 작성
       post_step: 글, 사진, 영상, 또는 투표로 세상에 인사해보세요.
       post_title: 첫번째 게시물 쓰기
-      share_action: 공유
       share_step: 친구에게 마스토돈에서 나를 찾을 수 있는 방법을 알려주세요.
       share_title: 마스토돈 프로필을 공유하세요
       sign_in_action: 로그인

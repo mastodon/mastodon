@@ -17,7 +17,7 @@ into these Terms. You should also read these policies before using the Instance.
 
 ## Age Requirements and Responsibility of Parents and Legal Guardians
 
-By accessing the Instance, you signify that you are at least thirteen years old
+By accessing the Instance, you signify that you are at least %{min_age} years old
 and that you meet the minimum age required by the laws in your country. If you
 are old enough to access the Instance in your country, but are not old enough to
 have the legal authority to consent to our Terms, please ask your parent or

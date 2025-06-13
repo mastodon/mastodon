@@ -7,6 +7,8 @@
       = material_symbol 'chevron_left'
       = t('admin.announcements.back')
 
+.flash-message.info= t('admin.announcements.preview.disclaimer')
+
 %p.lead
   = t('admin.announcements.preview.explanation_html', count: @user_count, display_count: number_with_delimiter(@user_count))
 

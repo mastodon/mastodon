@@ -28,11 +28,9 @@ inherit_mode:
     - Exclude
 
 plugins:
+  - rubocop-capybara
+  - rubocop-i18n
+  - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
-  - rubocop-performance
-  - rubocop-i18n
-
-require:
   - rubocop-rspec_rails
-  - rubocop-capybara

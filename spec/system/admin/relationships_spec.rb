@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin Relationships' do
+  let(:admin_user) { Fabricate(:admin_user) }
+
   before { sign_in(admin_user) }
 
   describe 'Viewing account relationships page' do

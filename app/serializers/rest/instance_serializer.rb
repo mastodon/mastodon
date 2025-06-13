@@ -49,7 +49,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   def usage
     {
       users: {
-        active_month: object.active_user_count(4),
+        active_month: limited_federation? ? 0 : object.active_user_count(4),
       },
     }
   end
@@ -65,7 +65,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       },
 
       vapid: {
-        public_key: Rails.configuration.x.vapid_public_key,
+        public_key: Rails.configuration.x.vapid.public_key,
       },
 
       accounts: {
@@ -99,6 +99,8 @@ class REST::InstanceSerializer < ActiveModel::Serializer
       translation: {
         enabled: TranslationService.configured?,
       },
+
+      limited_federation: limited_federation?,
     }
   end
 
@@ -106,7 +108,9 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     {
       enabled: registrations_enabled?,
       approval_required: Setting.registrations_mode == 'approved',
+      reason_required: Setting.registrations_mode == 'approved' && Setting.require_invite_text,
       message: registrations_enabled? ? nil : registrations_message,
+      min_age: Setting.min_age.presence,
       url: ENV.fetch('SSO_ACCOUNT_SIGN_UP', nil),
     }
   end
@@ -123,6 +127,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def registrations_message
     markdown.render(Setting.closed_registrations_message) if Setting.closed_registrations_message.present?
+  end
+
+  def limited_federation?
+    Rails.configuration.x.limited_federation_mode
   end
 
   def markdown

@@ -62,7 +62,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-      user_params.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password)
+      user_params.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password, :date_of_birth)
     end
   end
 
@@ -126,7 +126,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_rules
-    @rules = Rule.ordered
+    @rules = Rule.ordered.includes(:translations)
   end
 
   def require_rules_acceptance!
@@ -138,7 +138,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     set_locale { render :rules }
   end
 
-  def is_flashing_format? # rubocop:disable Naming/PredicateName
+  def is_flashing_format? # rubocop:disable Naming/PredicatePrefix
     if params[:action] == 'create'
       false # Disable flash messages for sign-up
     else

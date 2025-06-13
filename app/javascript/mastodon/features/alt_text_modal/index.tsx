@@ -2,7 +2,6 @@ import {
   useState,
   useCallback,
   useRef,
-  useEffect,
   useImperativeHandle,
   forwardRef,
 } from 'react';
@@ -13,12 +12,9 @@ import classNames from 'classnames';
 
 import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 
+import { useSpring, animated } from '@react-spring/web';
 import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
-// eslint-disable-next-line import/extensions
-import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
 
 import { showAlertForError } from 'mastodon/actions/alerts';
 import { uploadThumbnail } from 'mastodon/actions/compose';
@@ -27,10 +23,10 @@ import { Button } from 'mastodon/components/button';
 import { GIFV } from 'mastodon/components/gifv';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { Skeleton } from 'mastodon/components/skeleton';
-import Audio from 'mastodon/features/audio';
+import { Audio } from 'mastodon/features/audio';
 import { CharacterCounter } from 'mastodon/features/compose/components/character_counter';
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
-import Video, { getPointerPosition } from 'mastodon/features/video';
+import { Video, getPointerPosition } from 'mastodon/features/video';
 import { me } from 'mastodon/initial_state';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
@@ -105,6 +101,17 @@ const Preview: React.FC<{
   position: FocalPoint;
   onPositionChange: (arg0: FocalPoint) => void;
 }> = ({ mediaId, position, onPositionChange }) => {
+  const draggingRef = useRef<boolean>(false);
+  const nodeRef = useRef<HTMLImageElement | HTMLVideoElement | null>(null);
+
+  const [x, y] = position;
+  const style = useSpring({
+    to: {
+      left: `${x * 100}%`,
+      top: `${y * 100}%`,
+    },
+    immediate: draggingRef.current,
+  });
   const media = useAppSelector((state) =>
     (
       (state.compose as ImmutableMap<string, unknown>).get(
@@ -117,9 +124,6 @@ const Preview: React.FC<{
   );
 
   const [dragging, setDragging] = useState(false);
-  const [x, y] = position;
-  const nodeRef = useRef<HTMLImageElement | HTMLVideoElement | null>(null);
-  const draggingRef = useRef<boolean>(false);
 
   const setRef = useCallback(
     (e: HTMLImageElement | HTMLVideoElement | null) => {
@@ -134,61 +138,29 @@ const Preview: React.FC<{
         return;
       }
 
-      const { x, y } = getPointerPosition(nodeRef.current, e);
+      const handleMouseMove = (e: MouseEvent) => {
+        const { x, y } = getPointerPosition(nodeRef.current, e);
+        draggingRef.current = true; // This will disable the animation for quicker feedback, only do this if the mouse actually moves
+        onPositionChange([x, y]);
+      };
+
+      const handleMouseUp = () => {
+        setDragging(false);
+        draggingRef.current = false;
+        document.removeEventListener('mouseup', handleMouseUp);
+        document.removeEventListener('mousemove', handleMouseMove);
+      };
+
+      const { x, y } = getPointerPosition(nodeRef.current, e.nativeEvent);
+
       setDragging(true);
-      draggingRef.current = true;
       onPositionChange([x, y]);
+
+      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('mousemove', handleMouseMove);
     },
     [setDragging, onPositionChange],
   );
-
-  const handleTouchStart = useCallback(
-    (e: React.TouchEvent) => {
-      const { x, y } = getPointerPosition(nodeRef.current, e);
-      setDragging(true);
-      draggingRef.current = true;
-      onPositionChange([x, y]);
-    },
-    [setDragging, onPositionChange],
-  );
-
-  useEffect(() => {
-    const handleMouseUp = () => {
-      setDragging(false);
-      draggingRef.current = false;
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (draggingRef.current) {
-        const { x, y } = getPointerPosition(nodeRef.current, e);
-        onPositionChange([x, y]);
-      }
-    };
-
-    const handleTouchEnd = () => {
-      setDragging(false);
-      draggingRef.current = false;
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      if (draggingRef.current) {
-        const { x, y } = getPointerPosition(nodeRef.current, e);
-        onPositionChange([x, y]);
-      }
-    };
-
-    document.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('touchend', handleTouchEnd);
-    document.addEventListener('touchmove', handleTouchMove);
-
-    return () => {
-      document.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('touchend', handleTouchEnd);
-      document.removeEventListener('touchmove', handleTouchMove);
-    };
-  }, [setDragging, onPositionChange]);
 
   if (!media) {
     return null;
@@ -204,12 +176,8 @@ const Preview: React.FC<{
           alt=''
           role='presentation'
           onMouseDown={handleMouseDown}
-          onTouchStart={handleTouchStart}
         />
-        <div
-          className='focal-point__reticle'
-          style={{ top: `${y * 100}%`, left: `${x * 100}%` }}
-        />
+        <animated.div className='focal-point__reticle' style={style} />
       </div>
     );
   } else if (media.get('type') === 'gifv') {
@@ -220,12 +188,8 @@ const Preview: React.FC<{
           src={media.get('url') as string}
           alt=''
           onMouseDown={handleMouseDown}
-          onTouchStart={handleTouchStart}
         />
-        <div
-          className='focal-point__reticle'
-          style={{ top: `${y * 100}%`, left: `${x * 100}%` }}
-        />
+        <animated.div className='focal-point__reticle' style={style} />
       </div>
     );
   } else if (media.get('type') === 'video') {
@@ -233,10 +197,10 @@ const Preview: React.FC<{
       <Video
         preview={media.get('preview_url') as string}
         frameRate={media.getIn(['meta', 'original', 'frame_rate']) as string}
+        aspectRatio={`${media.getIn(['meta', 'original', 'width']) as number} / ${media.getIn(['meta', 'original', 'height']) as number}`}
         blurhash={media.get('blurhash') as string}
         src={media.get('url') as string}
         detailed
-        inline
         editable
       />
     );
@@ -244,11 +208,11 @@ const Preview: React.FC<{
     return (
       <Audio
         src={media.get('url') as string}
-        duration={media.getIn(['meta', 'original', 'duration'], 0) as number}
         poster={
           (media.get('preview_url') as string | undefined) ??
           account?.avatar_static
         }
+        duration={media.getIn(['meta', 'original', 'duration'], 0) as number}
         backgroundColor={
           media.getIn(['meta', 'colors', 'background']) as string
         }
@@ -382,9 +346,15 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
 
       fetchTesseract()
         .then(async ({ createWorker }) => {
+          const [tesseractWorkerPath, tesseractCorePath] = await Promise.all([
+            // eslint-disable-next-line import/extensions
+            import('tesseract.js/dist/worker.min.js?url'),
+            // eslint-disable-next-line import/no-extraneous-dependencies
+            import('tesseract.js-core/tesseract-core.wasm.js?url'),
+          ]);
           const worker = await createWorker('eng', 1, {
-            workerPath: tesseractWorkerPath as string,
-            corePath: tesseractCorePath as string,
+            workerPath: tesseractWorkerPath.default,
+            corePath: tesseractCorePath.default,
             langPath: `${assetHost}/ocr/lang-data`,
             cacheMethod: 'write',
           });
@@ -533,5 +503,4 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
     );
   },
 );
-
 AltTextModal.displayName = 'AltTextModal';

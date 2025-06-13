@@ -42,7 +42,7 @@ if ENV['S3_ENABLED'] == 'true'
   s3_protocol = ENV.fetch('S3_PROTOCOL') { 'https' }
   s3_hostname = ENV.fetch('S3_HOSTNAME') { "s3-#{s3_region}.amazonaws.com" }
 
-  Paperclip::Attachment.default_options[:path] = ENV.fetch('S3_KEY_PREFIX') + "/#{PATH}" if ENV.has_key?('S3_KEY_PREFIX')
+  Paperclip::Attachment.default_options[:path] = ENV.fetch('S3_KEY_PREFIX') + "/#{PATH}" if ENV.key?('S3_KEY_PREFIX')
 
   Paperclip::Attachment.default_options.merge!(
     storage: :s3,
@@ -74,7 +74,7 @@ if ENV['S3_ENABLED'] == 'true'
 
   Paperclip::Attachment.default_options[:s3_permissions] = ->(*) {} if ENV['S3_PERMISSION'] == ''
 
-  if ENV.has_key?('S3_ENDPOINT')
+  if ENV.key?('S3_ENDPOINT')
     Paperclip::Attachment.default_options[:s3_options].merge!(
       endpoint: ENV['S3_ENDPOINT'],
       force_path_style: ENV['S3_OVERRIDE_PATH_STYLE'] != 'true'
@@ -83,14 +83,14 @@ if ENV['S3_ENABLED'] == 'true'
     Paperclip::Attachment.default_options[:url] = ':s3_path_url'
   end
 
-  if ENV.has_key?('S3_ALIAS_HOST') || ENV.has_key?('S3_CLOUDFRONT_HOST')
+  if ENV.key?('S3_ALIAS_HOST') || ENV.key?('S3_CLOUDFRONT_HOST')
     Paperclip::Attachment.default_options.merge!(
       url: ':s3_alias_url',
       s3_host_alias: ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST']
     )
   end
 
-  Paperclip::Attachment.default_options[:s3_headers]['X-Amz-Storage-Class'] = ENV['S3_STORAGE_CLASS'] if ENV.has_key?('S3_STORAGE_CLASS')
+  Paperclip::Attachment.default_options[:s3_headers]['X-Amz-Storage-Class'] = ENV['S3_STORAGE_CLASS'] if ENV.key?('S3_STORAGE_CLASS')
 
   # Some S3-compatible providers might not actually be compatible with some APIs
   # used by kt-paperclip, see https://github.com/mastodon/mastodon/issues/16822
@@ -153,7 +153,7 @@ elsif ENV['AZURE_ENABLED'] == 'true'
       container: ENV['AZURE_CONTAINER_NAME'],
     }
   )
-  if ENV.has_key?('AZURE_ALIAS_HOST')
+  if ENV.key?('AZURE_ALIAS_HOST')
     Paperclip::Attachment.default_options.merge!(
       url: ':azure_alias_url',
       azure_host_alias: ENV['AZURE_ALIAS_HOST']
@@ -169,7 +169,7 @@ else
 end
 
 Rails.application.reloader.to_prepare do
-  Paperclip.options[:content_type_mappings] = { csv: Import::FILE_TYPES }
+  Paperclip.options[:content_type_mappings] = { csv: %w(text/plain text/csv application/csv) }
 end
 
 # In some places in the code, we rescue this exception, but we don't always

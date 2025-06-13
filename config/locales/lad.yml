@@ -462,6 +462,18 @@ lad:
       new:
         title: Importa blokos de domeno
       no_file: Dinguna dosya tiene sido eskojida
+    fasp:
+      debug:
+        callbacks:
+          delete: Efasa
+      providers:
+        name: Nombre
+        registrations:
+          confirm: Konfirma
+          reject: Refuza
+        save: Guadra
+        sign_in: Konektate
+        status: Estado
     follow_recommendations:
       description_html: "<strong>Las rekomendasyones de kuentos ayudan a los muevos utilizadores a topar presto kontenido enteresante</strong>. Kuando un utilizador no tiene enteraktuado kon otros lo sufisiente komo para djenerar rekomendasyones personalizadas de kuentos a las ke segir, en sus lugar se le rekomiendan estes kuentos. Se rekalkulan diariamente a partir de una mikstura de kuentos kon el mayor numero de enteraksyones rezientes i kon el mayor numero de suivantes lokales kon una lingua determinada."
       language: Para la lingua
@@ -765,7 +777,6 @@ lad:
         preamble: Ekspone kontenido enteresante a la superfisie es fundamental para inkorporar muevos utilizadores ke pueden no koneser a dinguno Mastodon. Kontrola komo fonksionan varias opsiones de diskuvrimiento en tu sirvidor.
         profile_directory: Katalogo de profiles
         public_timelines: Linyas de tiempo publikas
-        publish_discovered_servers: Publika sirvidores diskuviertos
         publish_statistics: Publika estatistikas
         title: Diskuvrimiento
         trends: Trendes
@@ -1877,7 +1888,6 @@ lad:
       post_action: Eskrive
       post_step: Puedes introdusirte al mundo kon teksto, fotos, videos o anketas.
       post_title: Eskrive tu primera publikasyon
-      share_action: Partaja
       share_step: Informa a tus amigos komo toparte en Mastodon.
       share_title: Partaja tu profil de Mastodon
       sign_in_action: Konektate

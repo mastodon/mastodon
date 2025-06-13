@@ -21,6 +21,12 @@ if ENV['MASTODON_PROMETHEUS_EXPORTER_ENABLED'] == 'true'
   require 'prometheus_exporter'
   require 'prometheus_exporter/instrumentation'
 
+  if ENV['MASTODON_PROMETHEUS_EXPORTER_LOCAL'] == 'true'
+    before_fork do
+      Mastodon::PrometheusExporter::LocalServer.setup!
+    end
+  end
+
   on_worker_boot do
     # Ruby process metrics (memory, GC, etc)
     PrometheusExporter::Instrumentation::Process.start(type: 'puma')

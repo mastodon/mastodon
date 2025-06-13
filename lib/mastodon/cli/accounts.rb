@@ -79,7 +79,14 @@ module Mastodon::CLI
 
       account  = Account.new(username: username)
       password = SecureRandom.hex
-      user     = User.new(email: options[:email], password: password, agreement: true, role_id: role_id, confirmed_at: options[:confirmed] ? Time.now.utc : nil, bypass_invite_request_check: true)
+      user = User.new(
+        email: options[:email],
+        password: password,
+        agreement: true,
+        role_id: role_id,
+        confirmed_at: options[:confirmed] ? Time.now.utc : nil,
+        bypass_registration_checks: true
+      )
 
       if options[:reattach]
         account = Account.find_local(username) || Account.new(username: username)

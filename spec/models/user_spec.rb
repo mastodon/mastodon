@@ -11,17 +11,6 @@ RSpec.describe User do
 
   it_behaves_like 'two_factor_backupable'
 
-  describe 'legacy_otp_secret' do
-    it 'is encrypted with OTP_SECRET environment variable' do
-      user = Fabricate(:user,
-                       encrypted_otp_secret: "Fttsy7QAa0edaDfdfSz094rRLAxc8cJweDQ4BsWH/zozcdVA8o9GLqcKhn2b\nGi/V\n",
-                       encrypted_otp_secret_iv: 'rys3THICkr60BoWC',
-                       encrypted_otp_secret_salt: '_LMkAGvdg7a+sDIKjI3mR2Q==')
-
-      expect(user.send(:legacy_otp_secret)).to eq 'anotpsecretthatshouldbeencrypted'
-    end
-  end
-
   describe 'otp_secret' do
     it 'encrypts the saved value' do
       user = Fabricate(:user, otp_secret: '123123123')
@@ -489,7 +478,7 @@ RSpec.describe User do
     let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
     let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
 
-    let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
+    let(:redis_pipeline_stub) { instance_double(Redis::PipelinedConnection, publish: nil) }
 
     before { stub_redis }
 

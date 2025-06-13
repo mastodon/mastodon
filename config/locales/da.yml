@@ -309,6 +309,7 @@ da:
       title: Revisionslog
       unavailable_instance: "(domænenavn utilgængeligt)"
     announcements:
+      back: Retur til annonceringer
       destroyed_msg: Bekendtgørelsen er slettet!
       edit:
         title: Redigér bekendtgørelse
@@ -317,6 +318,10 @@ da:
       new:
         create: Opret bekendtgørelse
         title: Ny bekendtgørelse
+      preview:
+        disclaimer: Da brugere ikke kan fravælge e-mailnotifikationer, bør disse begrænses til vigtige emner som f.eks. personlige databrud eller serverlukninger.
+        explanation_html: 'E-mailen sendes til <strong>%{display_count} brugere</strong>. Flg. tekst medtages i e-mailen:'
+        title: Forhåndsvis annonceringsnotifikation
       publish: Publicér
       published_msg: Bekendtgørelsen er publiceret!
       scheduled_for: Planlagt til %{time}
@@ -475,6 +480,36 @@ da:
       new:
         title: Import af domæneblokeringer
       no_file: Ingen fill udvalgt
+    fasp:
+      debug:
+        callbacks:
+          created_at: Oprettet d.
+          delete: Slet
+          ip: IP-adresse
+          request_body: Anmodningsbrødtekst
+          title: Fejlfindingstilbagekald
+      providers:
+        active: Aktiv
+        base_url: Basis-URL
+        callback: Tilbagekald
+        delete: Slet
+        edit: Redigér udbyder
+        finish_registration: Færdiggør registrering
+        name: Navn
+        providers: Udbydere
+        public_key_fingerprint: Offentlig nøgle-fingeraftryk
+        registration_requested: Registrering kræves
+        registrations:
+          confirm: Bekræft
+          description: Er en registrering er modtaget fra en FASP, så afvis den, hvis man ikke startede pocessen. Startede man processen, tjek omhyggeligt navn og nøglefingeraftryk, før registreringen bekræftes.
+          reject: Afvis
+          title: Bekræft FASP-registrering
+        save: Gem
+        select_capabilities: Vælg kapaciteter
+        sign_in: Log ind
+        status: Status
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Følg-anbefalinger hjælpe nye brugere til hurtigt at finde interessant indhold</strong>. Når en bruger ikke har interageret nok med andre til at generere personlige følg-anbefalinger, anbefales disse konti i stedet. De revurderes dagligt baseret på en blanding af konti med de flest nylige engagementer og fleste lokale følger-antal for et givet sprog."
       language: For sprog
@@ -751,17 +786,26 @@ da:
       title: Roller
     rules:
       add_new: Tilføj regel
+      add_translation: Tilføj oversættelse
       delete: Slet
       description_html: Mens de fleste hævder at have læst og accepteret tjenestevilkårene, så læser folk normalt ikke disse, før et problem er opstået. <strong>Gør det lettere med ét blik at se din servers regler ved at opliste disse på en punktliste.</strong> Forsøg at holde individuelle regler korte og enkle, men undgå også at opdele dem i mange separate underpunkter.
       edit: Redigér regel
       empty: Ingen serverregler defineret endnu.
+      move_down: Flyt ned
+      move_up: Flyt op
       title: Serverregler
+      translation: Oversættelse
+      translations: Oversættelser
+      translations_explanation: Man kan valgfrit tilføje oversættelser af reglerne. Standardindholdet vil fremgå, såfremt ingen oversat version findes. Tilsikr venligst, at enhver given oversættelse er synket med standardindholdet.
     settings:
       about:
         manage_rules: Håndtér serverregler
         preamble: Giv dybdegående oplysninger om, hvordan serveren opereres, modereres, finansieres.
         rules_hint: Der er et dedikeret område for regler, som forventes overholdt af brugerne.
         title: Om
+      allow_referrer_origin:
+        desc: Når brugerne klikker på links til eksterne websteder, sender deres webbrowser muligvis adressen på Mastodon-serveren som referrer. Deaktivér dette, hvis det entydigt kan identificere brugerne, f.eks. hvis dette er en personlig Mastodon-server.
+        title: Tillad eksterne websteder at se Mastodon-serveren som en trafikkilde
       appearance:
         preamble: Tilpas Mastodon-webgrænsefladen.
         title: Udseende
@@ -781,9 +825,9 @@ da:
       discovery:
         follow_recommendations: Følg-anbefalinger
         preamble: At vise interessant indhold er vitalt ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
+        privacy: Fortrolighed
         profile_directory: Profiloversigt
         public_timelines: Offentlige tidslinjer
-        publish_discovered_servers: Udgiv fundne servere
         publish_statistics: Udgiv statistik
         title: Opdagelse
         trends: Trends
@@ -868,6 +912,8 @@ da:
     system_checks:
       database_schema_check:
         message_html: Databasemigreringer afventer. Kør dem for at sikre den forventede adfærd fra applikationen
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch-indeksanalyseringsindstillinger er forældede. Kør <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch-klynge er syg (rød status), søgefunktioner er utilgængelige
       elasticsearch_health_yellow:
@@ -939,6 +985,7 @@ da:
         chance_to_review_html: "<strong>De genererede Tjenestevilkår offentliggøres ikke automatisk.</strong> Man vil have mulighed for at gennemgå resultaterne. Udfyld venligst de nødvendige oplysninger for at fortsætte."
         explanation_html: Tjenestevilkår-skabelonen er alene til orientering og bør ikke fortolkes som juridisk rådgivning om noget emne. Kontakt en juridiske rådgiver vedr. den aktuelle situation samt specifikke juridiske spørgsmål, man måtte have.
         title: Opsætning af Tjenestevilkår
+      going_live_on_html: Ikrafttræden pr. %{date}
       history: Historik
       live: Live
       no_history: Der er endnu ingen registrerede ændringer af vilkårene for tjenesten.
@@ -1820,6 +1867,10 @@ da:
       limit: Maksimalt antal indlæg allerede fastgjort
       ownership: Andres indlæg kan ikke fastgøres
       reblog: En fremhævelse kan ikke fastgøres
+    quote_policies:
+      followers: Følgere og nævnte brugere
+      nobody: Kun nævnte brugere
+      public: Alle
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkte
@@ -1873,6 +1924,11 @@ da:
     does_not_match_previous_name: matcher ikke det foregående navn
   terms_of_service:
     title: Tjenestevilkår
+  terms_of_service_interstitial:
+    future_preamble_html: Vi foretager nogle ændringer i tjenestevilkårene, som vil træde i kraft pr. <strong>%{date}</strong>. Man opfordres til at gennemgå de opdaterede vilkår.
+    past_preamble_html: Vi har ændret tjenestevilkårene siden sidste besøg. Man opfordres til at gennemgå de opdaterede vilkår.
+    review_link: Gennemgå Tjenestevilkår
+    title: Tjenestevilkårene for %{domain} ændres
   themes:
     contrast: Mastodon (høj kontrast)
     default: Mastodont (mørkt)
@@ -1904,6 +1960,10 @@ da:
     recovery_instructions_html: Mister du nogensinde adgang til din mobil, kan en af gendannelseskoderne nedenfor bruges til at opnå adgang til din konto. <strong>Opbevar disse et sikkert sted</strong>. De kan f.eks. udskrives og gemmes sammen med andre vigtige dokumenter.
     webauthn: Sikkerhedsnøgler
   user_mailer:
+    announcement_published:
+      description: 'Administratorerne på %{domain} udsender en annoncering:'
+      subject: Tjenesteannoncering
+      title: "%{domain}-tjenesteannoncering"
     appeal_approved:
       action: Kontoindstillinger
       explanation: Appellen af kontoadvarslen fra %{strike_date}, indsendt af dig pr. %{appeal_date}, er blevet godkendt. Din kontostatus er igen god.
@@ -1936,6 +1996,8 @@ da:
     terms_of_service_changed:
       agreement: Ved at fortsætte med at bruge %{domain}, accepteres disse vilkår. Kan du ikke acceptere de opdaterede vilkår, kan din aftale med %{domain} til enhver tid opsiges ved at slette din konto.
       changelog: 'Med ét blik er her, hvad denne opdatering rent praktisk betyder:'
+      description: 'Man modtager denne e-mail, idet vi foretager nogle ændringer i vores Tjenestevilkår på %{domain}. Disse opdateringer træder i kraft pr. %{date}. Man opfordres til at gennemgå de opdaterede vilkår til fulde her:'
+      description_html: Man modtager denne e-mail, idet vi foretager nogle ændringer i vores Tjenestevilkår på %{domain}. Disse opdateringer træder i kraft pr. <strong>%{date}</strong>. Man opfordres til at gennemgå de <a href="%{path}" target="_blank">opdaterede vilkår til fulde her</a>.
       sign_off: "%{domain}-teamet"
       subject: Opdatering af Tjenestevilkår
       subtitle: Tjenestevilkår for %{domain} ændres
@@ -2006,7 +2068,6 @@ da:
       post_action: Skriv
       post_step: Sig hej til verden med tekst, fotos, videoer eller afstemninger.
       post_title: Opret det første indlæg
-      share_action: Del
       share_step: Lad vennerne vide, hvor man kan findes på Mastodon.
       share_title: Del Mastodon-profilen
       sign_in_action: Log ind

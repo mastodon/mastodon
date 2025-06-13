@@ -32,7 +32,7 @@ namespace :mastodon do
       prompt.say('Single user mode disables registrations and redirects the landing page to your public profile.')
       env['SINGLE_USER_MODE'] = prompt.yes?('Do you want to enable single user mode?', default: false)
 
-      %w(SECRET_KEY_BASE OTP_SECRET).each do |key|
+      %w(SECRET_KEY_BASE).each do |key|
         env[key] = SecureRandom.hex(64)
       end
 
@@ -552,7 +552,7 @@ namespace :mastodon do
           password = SecureRandom.hex(16)
 
           owner_role = UserRole.find_by(name: 'Owner')
-          user = User.new(email: email, password: password, confirmed_at: Time.now.utc, account_attributes: { username: username }, bypass_invite_request_check: true, role: owner_role)
+          user = User.new(email: email, password: password, confirmed_at: Time.now.utc, account_attributes: { username: username }, bypass_registration_checks: true, role: owner_role)
           user.save(validate: false)
           user.approve!
 

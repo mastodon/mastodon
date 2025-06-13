@@ -35,11 +35,20 @@
               as: :boolean,
               wrapper: :with_label
 
+  %h4= t('admin.settings.discovery.privacy')
+
   .fields-group
     = f.input :noindex,
               as: :boolean,
               hint: t('admin.settings.default_noindex.desc_html'),
               label: t('admin.settings.default_noindex.title'),
+              wrapper: :with_label
+
+  .fields-group
+    = f.input :allow_referrer_origin,
+              as: :boolean,
+              hint: t('admin.settings.allow_referrer_origin.desc'),
+              label: t('admin.settings.allow_referrer_origin.title'),
               wrapper: :with_label
 
   %h4= t('admin.settings.discovery.publish_statistics')
@@ -49,8 +58,6 @@
               as: :boolean,
               wrapper: :with_label,
               recommended: :recommended
-
-  %h4= t('admin.settings.discovery.publish_discovered_servers')
 
   .fields-group
     = f.input :peers_api_enabled,

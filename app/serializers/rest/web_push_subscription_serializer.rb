@@ -6,11 +6,11 @@ class REST::WebPushSubscriptionSerializer < ActiveModel::Serializer
   delegate :standard, to: :object
 
   def alerts
-    (object.data&.dig('alerts') || {}).each_with_object({}) { |(k, v), h| h[k] = ActiveModel::Type::Boolean.new.cast(v) }
+    (object.data&.dig('alerts') || {}).transform_values { |v| ActiveModel::Type::Boolean.new.cast(v) }
   end
 
   def server_key
-    Rails.configuration.x.vapid_public_key
+    Rails.configuration.x.vapid.public_key
   end
 
   def policy

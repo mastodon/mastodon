@@ -15,10 +15,6 @@ RSpec.describe 'Deleting profile images' do
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   describe 'DELETE /api/v1/profile' do
-    before do
-      allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async)
-    end
-
     context 'when deleting an avatar' do
       context 'with wrong scope' do
         before do
@@ -38,7 +34,8 @@ RSpec.describe 'Deleting profile images' do
         account.reload
         expect(account.avatar).to_not exist
         expect(account.header).to exist
-        expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
+        expect(ActivityPub::UpdateDistributionWorker)
+          .to have_enqueued_sidekiq_job(account.id)
       end
     end
 
@@ -61,7 +58,8 @@ RSpec.describe 'Deleting profile images' do
         account.reload
         expect(account.avatar).to exist
         expect(account.header).to_not exist
-        expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(account.id)
+        expect(ActivityPub::UpdateDistributionWorker)
+          .to have_enqueued_sidekiq_job(account.id)
       end
     end
   end

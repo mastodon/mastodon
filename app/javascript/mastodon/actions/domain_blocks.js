@@ -12,14 +12,6 @@ export const DOMAIN_BLOCK_FAIL    = 'DOMAIN_BLOCK_FAIL';
 export const DOMAIN_UNBLOCK_REQUEST = 'DOMAIN_UNBLOCK_REQUEST';
 export const DOMAIN_UNBLOCK_FAIL    = 'DOMAIN_UNBLOCK_FAIL';
 
-export const DOMAIN_BLOCKS_FETCH_REQUEST = 'DOMAIN_BLOCKS_FETCH_REQUEST';
-export const DOMAIN_BLOCKS_FETCH_SUCCESS = 'DOMAIN_BLOCKS_FETCH_SUCCESS';
-export const DOMAIN_BLOCKS_FETCH_FAIL    = 'DOMAIN_BLOCKS_FETCH_FAIL';
-
-export const DOMAIN_BLOCKS_EXPAND_REQUEST = 'DOMAIN_BLOCKS_EXPAND_REQUEST';
-export const DOMAIN_BLOCKS_EXPAND_SUCCESS = 'DOMAIN_BLOCKS_EXPAND_SUCCESS';
-export const DOMAIN_BLOCKS_EXPAND_FAIL    = 'DOMAIN_BLOCKS_EXPAND_FAIL';
-
 export function blockDomain(domain) {
   return (dispatch, getState) => {
     dispatch(blockDomainRequest(domain));
@@ -75,80 +67,6 @@ export function unblockDomainFail(domain, error) {
   return {
     type: DOMAIN_UNBLOCK_FAIL,
     domain,
-    error,
-  };
-}
-
-export function fetchDomainBlocks() {
-  return (dispatch) => {
-    dispatch(fetchDomainBlocksRequest());
-
-    api().get('/api/v1/domain_blocks').then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(fetchDomainBlocksSuccess(response.data, next ? next.uri : null));
-    }).catch(err => {
-      dispatch(fetchDomainBlocksFail(err));
-    });
-  };
-}
-
-export function fetchDomainBlocksRequest() {
-  return {
-    type: DOMAIN_BLOCKS_FETCH_REQUEST,
-  };
-}
-
-export function fetchDomainBlocksSuccess(domains, next) {
-  return {
-    type: DOMAIN_BLOCKS_FETCH_SUCCESS,
-    domains,
-    next,
-  };
-}
-
-export function fetchDomainBlocksFail(error) {
-  return {
-    type: DOMAIN_BLOCKS_FETCH_FAIL,
-    error,
-  };
-}
-
-export function expandDomainBlocks() {
-  return (dispatch, getState) => {
-    const url = getState().getIn(['domain_lists', 'blocks', 'next']);
-
-    if (!url) {
-      return;
-    }
-
-    dispatch(expandDomainBlocksRequest());
-
-    api().get(url).then(response => {
-      const next = getLinks(response).refs.find(link => link.rel === 'next');
-      dispatch(expandDomainBlocksSuccess(response.data, next ? next.uri : null));
-    }).catch(err => {
-      dispatch(expandDomainBlocksFail(err));
-    });
-  };
-}
-
-export function expandDomainBlocksRequest() {
-  return {
-    type: DOMAIN_BLOCKS_EXPAND_REQUEST,
-  };
-}
-
-export function expandDomainBlocksSuccess(domains, next) {
-  return {
-    type: DOMAIN_BLOCKS_EXPAND_SUCCESS,
-    domains,
-    next,
-  };
-}
-
-export function expandDomainBlocksFail(error) {
-  return {
-    type: DOMAIN_BLOCKS_EXPAND_FAIL,
     error,
   };
 }

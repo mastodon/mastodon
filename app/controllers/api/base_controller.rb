@@ -50,6 +50,10 @@ class Api::BaseController < ApplicationController
     nil
   end
 
+  def require_client_credentials!
+    render json: { error: 'This method requires an client credentials authentication' }, status: 403 if doorkeeper_token.resource_owner_id.present?
+  end
+
   def require_authenticated_user!
     render json: { error: 'This method requires an authenticated user' }, status: 401 unless current_user
   end
@@ -70,6 +74,13 @@ class Api::BaseController < ApplicationController
     else
       update_user_sign_in
     end
+  end
+
+  # Redefine `require_functional!` to properly output JSON instead of HTML redirects
+  def require_functional!
+    return if current_user.functional?
+
+    require_user!
   end
 
   def render_empty

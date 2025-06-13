@@ -50,7 +50,7 @@ body:
       label: Mastodon version
       description: |
         This is displayed at the bottom of the About page, eg. `v4.4.0-alpha.1`
-      placeholder: v4.3.0
+      placeholder: v4.4.0-beta.1
     validations:
       required: false
   - type: textarea
@@ -60,9 +60,9 @@ body:
         Details about your environment, like how Mastodon is deployed, if containers are used, version numbers, etc.
       value: |
         Please at least include those informations:
-        - Operating system: (eg. Ubuntu 22.04)
-        - Ruby version: (from `ruby --version`, eg. v3.4.1)
-        - Node.js version: (from `node --version`, eg. v20.18.0)
+        - Operating system: (eg. Ubuntu 24.04.2)
+        - Ruby version: (from `ruby --version`, eg. v3.4.4)
+        - Node.js version: (from `node --version`, eg. v22.16.0)
     validations:
       required: false
   - type: textarea

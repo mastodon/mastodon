@@ -23,6 +23,8 @@ gd:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: "– tha luachan ann air a bheil leubail a dhìth"
             username:
               invalid: "– chan fhaod ach litrichean gun sràcan, àireamhan ’s fo-loidhnichean a bhith ’na bhroinn"
               reserved: "– tha e glèidhte"
@@ -38,12 +40,23 @@ gd:
           attributes:
             data:
               malformed: "– chan eil cruth dligheach air"
+        list_account:
+          attributes:
+            account_id:
+              taken: "– tha seo air an liosta mu thràth"
+          must_be_following: "– feumaidh e a bhith ’na chunntas ga leantainn"
         status:
           attributes:
             reblog:
               taken: "– tha seo aig a’ phost mu thràth"
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: "– tha seo ro aithghearr, feumaidh e a bhith nas anmoiche na %{date}"
         user:
           attributes:
+            date_of_birth:
+              below_limit: "– tha seo fo chrìoch na h-aoise"
             email:
               blocked: "– tha seo a’ chleachdadh solaraiche puist-d nach eil ceadaichte"
               unreachable: "– tha coltas nach eil seo ann"

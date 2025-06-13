@@ -105,7 +105,7 @@ class ReportReasonSelector extends PureComponent {
   };
 
   componentDidMount() {
-    api(false).get('/api/v1/instance').then(res => {
+    api(false).get('/api/v2/instance').then(res => {
       this.setState({
         rules: res.data.rules,
       });

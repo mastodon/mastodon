@@ -49,8 +49,14 @@ is:
           attributes:
             reblog:
               taken: af færslum er þegar fyrirliggjandi
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: er of snemmt, verður að vera síðar en %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: er undir aldurstakmörkum
             email:
               blocked: notar óleyfilega tölvupóstþjónustu
               unreachable: virðist ekki vera til

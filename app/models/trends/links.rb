@@ -33,7 +33,8 @@ class Trends::Links < Trends::Base
   def register(status, at_time = Time.now.utc)
     original_status = status.proper
 
-    return unless (original_status.public_visibility? && status.public_visibility?) &&
+    return unless original_status.public_visibility? &&
+                  status.public_visibility? &&
                   !(original_status.account.silenced? || status.account.silenced?) &&
                   !(original_status.spoiler_text? || original_status.sensitive?)
 

@@ -9,7 +9,7 @@ class Settings::ProfilesController < Settings::BaseController
 
   def update
     if UpdateAccountService.new.call(@account, account_params)
-      ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
+      ActivityPub::UpdateDistributionWorker.perform_in(ActivityPub::UpdateDistributionWorker::DEBOUNCE_DELAY, @account.id)
       redirect_to settings_profile_path, notice: I18n.t('generic.changes_saved_msg')
     else
       @account.build_fields

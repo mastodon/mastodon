@@ -10,12 +10,13 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     @activity_json             = activity_json
     @json                      = object_json
-    @status_parser             = ActivityPub::Parser::StatusParser.new(@json)
+    @status_parser             = ActivityPub::Parser::StatusParser.new(@json, followers_collection: status.account.followers_url, actor_uri: ActivityPub::TagManager.instance.uri_for(status.account))
     @uri                       = @status_parser.uri
     @status                    = status
     @account                   = status.account
     @media_attachments_changed = false
     @poll_changed              = false
+    @quote_changed             = false
     @request_id                = request_id
 
     # Only native types can be updated at the moment
@@ -40,6 +41,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       Status.transaction do
         record_previous_edit!
         update_media_attachments!
+        update_interaction_policies!
         update_poll!
         update_immediate_attributes!
         update_metadata!
@@ -61,10 +63,15 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
   def handle_implicit_update!
     with_redis_lock("create:#{@uri}") do
+      update_interaction_policies!
       update_poll!(allow_significant_changes: false)
       queue_poll_notifications!
       update_counts!
     end
+  end
+
+  def update_interaction_policies!
+    @status.quote_approval_policy = @status_parser.quote_policy
   end
 
   def update_media_attachments!
@@ -158,7 +165,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
     @status.language     = @status_parser.language
 
-    @significant_changes = text_significantly_changed? || @status.spoiler_text_changed? || @media_attachments_changed || @poll_changed
+    @significant_changes = text_significantly_changed? || @status.spoiler_text_changed? || @media_attachments_changed || @poll_changed || @quote_changed
 
     @status.edited_at = @status_parser.edited_at if significant_changes?
 
@@ -183,6 +190,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     update_tags!
     update_mentions!
     update_emojis!
+    update_quote!
   end
 
   def update_tags!
@@ -260,6 +268,44 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         Rails.logger.warn "Error storing emoji: #{e}"
       end
     end
+  end
+
+  def update_quote!
+    quote_uri = @status_parser.quote_uri
+
+    if quote_uri.present?
+      approval_uri = @status_parser.quote_approval_uri
+      approval_uri = nil if unsupported_uri_scheme?(approval_uri)
+
+      if @status.quote.present?
+        # If the quoted post has changed, discard the old object and create a new one
+        if @status.quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(@status.quote.quoted_status) != quote_uri
+          @status.quote.destroy
+          quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
+          @quote_changed = true
+        else
+          quote = @status.quote
+          quote.update(approval_uri: approval_uri, state: :pending, legacy: @status_parser.legacy_quote?) if quote.approval_uri != @status_parser.quote_approval_uri
+        end
+      else
+        quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
+        @quote_changed = true
+      end
+
+      quote.save
+
+      fetch_and_verify_quote!(quote, quote_uri)
+    elsif @status.quote.present?
+      @status.quote.destroy!
+      @quote_changed = true
+    end
+  end
+
+  def fetch_and_verify_quote!(quote, quote_uri)
+    embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @activity_json['context'])
+    ActivityPub::VerifyQuoteService.new.call(quote, fetchable_quoted_uri: quote_uri, prefetched_quoted_object: embedded_quote, request_id: @request_id)
+  rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
+    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(30..600).seconds, quote.id, quote_uri, { 'request_id' => @request_id })
   end
 
   def update_counts!

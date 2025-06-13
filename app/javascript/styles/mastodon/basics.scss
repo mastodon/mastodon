@@ -1,10 +1,5 @@
-@function hex-color($color) {
-  @if type-of($color) == 'color' {
-    $color: str-slice(ie-hex-str($color), 4);
-  }
-
-  @return '%23' + unquote($color);
-}
+@use 'variables' as *;
+@use 'functions' as *;
 
 body {
   font-family: $font-sans-serif, sans-serif;
@@ -14,7 +9,12 @@ body {
   font-weight: 400;
   color: $primary-text-color;
   text-rendering: optimizelegibility;
-  font-feature-settings: 'kern';
+
+  // Disable kerning for Japanese text to preserve monospaced alignment for readability
+  &:not(:lang(ja)) {
+    font-feature-settings: 'kern';
+  }
+
   text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0%);
   -webkit-tap-highlight-color: transparent;
@@ -48,6 +48,8 @@ body {
 
   &.app-body {
     padding: 0;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 
     &.layout-single-column {
       height: auto;
@@ -63,6 +65,7 @@ body {
 
     &.with-modals--active {
       overflow-y: hidden;
+      overscroll-behavior: none;
     }
   }
 

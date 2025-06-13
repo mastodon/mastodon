@@ -4,7 +4,7 @@ class REST::TermsOfServiceSerializer < ActiveModel::Serializer
   attributes :effective_date, :effective, :content, :succeeded_by
 
   def effective_date
-    object.effective_date.iso8601
+    (object.effective_date || object.published_at).iso8601
   end
 
   def effective

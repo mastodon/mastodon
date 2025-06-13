@@ -1,4 +1,4 @@
-import { useCallback, useState, useRef } from 'react';
+import { useCallback, useState, useRef, useEffect } from 'react';
 
 import {
   defineMessages,
@@ -72,6 +72,10 @@ export const Search: React.FC<{
   const [expanded, setExpanded] = useState(false);
   const [selectedOption, setSelectedOption] = useState(-1);
   const [quickActions, setQuickActions] = useState<SearchOption[]>([]);
+  useEffect(() => {
+    setValue(initialValue ?? '');
+    setQuickActions([]);
+  }, [initialValue]);
   const searchOptions: SearchOption[] = [];
 
   if (searchEnabled) {
@@ -221,7 +225,7 @@ export const Search: React.FC<{
     },
     forget: (e) => {
       e.stopPropagation();
-      void dispatch(forgetSearchResult(search.q));
+      void dispatch(forgetSearchResult(search));
     },
   }));
 
@@ -497,8 +501,10 @@ export const Search: React.FC<{
             <div className='search__popout__menu'>
               {recentOptions.length > 0 ? (
                 recentOptions.map(({ label, key, action, forget }, i) => (
-                  <button
+                  <div
                     key={key}
+                    tabIndex={0}
+                    role='button'
                     onMouseDown={action}
                     className={classNames(
                       'search__popout__menu__item search__popout__menu__item--flex',
@@ -509,7 +515,7 @@ export const Search: React.FC<{
                     <button className='icon-button' onMouseDown={forget}>
                       <Icon id='times' icon={CloseIcon} />
                     </button>
-                  </button>
+                  </div>
                 ))
               ) : (
                 <div className='search__popout__menu__message'>

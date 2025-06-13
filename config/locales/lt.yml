@@ -1,10 +1,10 @@
 ---
 lt:
   about:
-    about_mastodon_html: 'Ateities socialinis tinklas: jokių reklamų, jokių įmonių sekimo, etiškas dizainas ir decentralizacija! Turėk savo duomenis su Mastodon.'
+    about_mastodon_html: 'Ateities socialinis tinklas: jokių reklamų ir įmonių sekimo, etiškas dizainas bei decentralizacija! Turėkite savo duomenis su „Mastodon“.'
     contact_missing: Nenustatyta
     contact_unavailable: Nėra
-    hosted_on: Mastodon talpinamas %{domain}
+    hosted_on: "„Mastodon“ talpinamas domene %{domain}"
     title: Apie
   accounts:
     followers:
@@ -294,6 +294,7 @@ lt:
       title: Audito žurnalas
       unavailable_instance: "(domeno pavadinimas neprieinamas)"
     announcements:
+      back: Atgal į skelbimus
       destroyed_msg: Skelbimas sėkmingai ištrintas.
       edit:
         title: Redaguoti skelbimą
@@ -302,6 +303,10 @@ lt:
       new:
         create: Sukurti skelbimą
         title: Naujas skelbimas
+      preview:
+        disclaimer: Kadangi naudotojai negali jų atsisakyti, el. pašto pranešimai turėtų būti siunčiami tik svarbiems pranešimams, pavyzdžiui, asmeninių duomenų pažeidimo ar serverio uždarymo pranešimams.
+        explanation_html: 'El. laiškas bus išsiųstas <strong>%{display_count} naudotojams</strong>. Į el. laišką bus įtrauktas toliau nurodytas tekstas:'
+        title: Peržiūrėti skelbimo pranešimą
       publish: Skelbti
       published_msg: Skelbimas sėkmingai paskelbtas.
       scheduled_for: Suplanuota %{time}
@@ -615,6 +620,8 @@ lt:
     system_checks:
       database_schema_check:
         message_html: Laukiama duomenų bazės perkėlimo. Paleisk juos, kad įsitikintum, jog programa veikia taip, kaip tikimasi.
+      elasticsearch_analysis_index_mismatch:
+        message_html: "„Elasticsearch“ indekso analizatoriaus nustatymai pasenę. Vykdykite <code>tootctl search deploy --only-mapping --only=%{value}</code>."
       elasticsearch_health_yellow:
         message_html: Elasticsearch klasteris yra nesveikas (geltona būsena), galbūt norėsi išsiaiškinti priežastį
       elasticsearch_preset:
@@ -1219,6 +1226,10 @@ lt:
     recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
     webauthn: Saugumo raktai
   user_mailer:
+    announcement_published:
+      description: "%{domain} administratoriai daro skelbimą:"
+      subject: Paslaugos skelbimas
+      title: "%{domain} paslaugos skelbimas"
     appeal_approved:
       action: Paskyros nustatymai
       subtitle: Tavo paskyros būklė vėl yra gera.
@@ -1289,7 +1300,6 @@ lt:
       post_action: Sukurti
       post_step: Sakyk labas pasauliui tekstu, nuotraukomis, vaizdo įrašais arba apklausomis.
       post_title: Sukūrk savo pirmąjį įrašą
-      share_action: Bendrinti
       share_step: Leisk draugams sužinoti, kaip tave rasti Mastodon.
       share_title: Bendrink savo Mastodon profilį
       sign_in_action: Prisijungti

@@ -49,8 +49,14 @@ es-AR:
           attributes:
             reblog:
               taken: del mensaje ya existe
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: es demasiado pronto, debe ser posterior a %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: está por debajo de la edad mínima
             email:
               blocked: usa un proveedor de correo electrónico no permitido
               unreachable: no parece existir

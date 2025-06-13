@@ -5,7 +5,7 @@ class UnfollowFollowWorker
 
   sidekiq_options queue: 'pull'
 
-  def perform(follower_account_id, old_target_account_id, new_target_account_id, bypass_locked = false)
+  def perform(follower_account_id, old_target_account_id, new_target_account_id, bypass_locked = false) # rubocop:disable Style/OptionalBooleanParameter
     follower_account   = Account.find(follower_account_id)
     old_target_account = Account.find(old_target_account_id)
     new_target_account = Account.find(new_target_account_id)

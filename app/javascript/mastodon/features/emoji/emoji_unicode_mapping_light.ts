@@ -2,11 +2,12 @@
 // (i.e. the svg filename) and a shortCode intended to be shown
 // as a "title" attribute in an HTML element (aka tooltip).
 
+import emojiCompressed from 'virtual:mastodon-emoji-compressed';
 import type {
   FilenameData,
   ShortCodesToEmojiDataKey,
-} from './emoji_compressed';
-import emojiCompressed from './emoji_compressed';
+} from 'virtual:mastodon-emoji-compressed';
+
 import { unicodeToFilename } from './unicode_to_filename';
 
 type UnicodeMapping = Record<
@@ -33,11 +34,8 @@ function processEmojiMapData(
   shortCode?: ShortCodesToEmojiDataKey,
 ) {
   const [native, _filename] = emojiMapData;
-  let filename = emojiMapData[1];
-  if (!filename) {
-    // filename name can be derived from unicodeToFilename
-    filename = unicodeToFilename(native);
-  }
+  // filename name can be derived from unicodeToFilename
+  const filename = emojiMapData[1] ?? unicodeToFilename(native);
   unicodeMapping[native] = {
     shortCode,
     filename,

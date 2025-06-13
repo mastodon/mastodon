@@ -12,6 +12,9 @@
 
   .flash-message= t('admin.settings.registrations.moderation_recommandation')
 
+  .fields-group
+    = f.input :min_age, as: :string, wrapper: :with_block_label, input_html: { inputmode: 'numeric' }
+
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :registrations_mode,

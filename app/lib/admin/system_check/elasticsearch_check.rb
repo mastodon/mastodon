@@ -16,8 +16,8 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
   def pass?
     return true unless Chewy.enabled?
 
-    running_version.present? && compatible_version? && cluster_health['status'] == 'green' && indexes_match? && preset_matches?
-  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
+    running_version.present? && compatible_version? && cluster_health['status'] == 'green' && indexes_match? && specifications_match? && preset_matches?
+  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error, HTTPClient::KeepAliveDisconnected
     false
   end
 
@@ -38,6 +38,11 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
         :elasticsearch_index_mismatch,
         mismatched_indexes.join(' ')
       )
+    elsif !specifications_match?
+      Admin::SystemCheck::Message.new(
+        :elasticsearch_analysis_index_mismatch,
+        mismatched_specifications_indexes.join(' ')
+      )
     elsif cluster_health['status'] == 'red'
       Admin::SystemCheck::Message.new(:elasticsearch_health_red)
     elsif cluster_health['number_of_nodes'] < 2 && es_preset != 'single_node_cluster'
@@ -49,7 +54,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
     else
       Admin::SystemCheck::Message.new(:elasticsearch_preset, nil, 'https://docs.joinmastodon.org/admin/elasticsearch/#scaling')
     end
-  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error
+  rescue Faraday::ConnectionFailed, Elasticsearch::Transport::Transport::Error, HTTPClient::KeepAliveDisconnected
     Admin::SystemCheck::Message.new(:elasticsearch_running_check)
   end
 
@@ -111,8 +116,18 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
     end
   end
 
+  def mismatched_specifications_indexes
+    @mismatched_specifications_indexes ||= INDEXES.filter_map do |klass|
+      klass.base_name if klass.specification.changed?
+    end
+  end
+
   def indexes_match?
     mismatched_indexes.empty?
+  end
+
+  def specifications_match?
+    mismatched_specifications_indexes.empty?
   end
 
   def es_preset

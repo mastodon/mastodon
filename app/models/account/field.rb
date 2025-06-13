@@ -73,7 +73,14 @@ class Account::Field < ActiveModelSerializers::Model
   end
 
   def extract_url_from_html
-    doc = Nokogiri::HTML5.fragment(value)
+    begin
+      doc = Nokogiri::HTML5.fragment(value)
+    rescue ArgumentError
+      # This can happen if one of the Nokogumbo limits is encountered
+      # Unfortunately, it does not use a more precise error class
+      # nor allows more graceful handling
+      return
+    end
 
     return if doc.nil?
     return if doc.children.size != 1

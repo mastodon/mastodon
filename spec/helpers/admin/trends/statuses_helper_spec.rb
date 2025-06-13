@@ -28,6 +28,19 @@ RSpec.describe Admin::Trends::StatusesHelper do
       end
     end
 
+    context 'with a remote status that has excessive attributes' do
+      let(:attr_limit) { Nokogiri::Gumbo::DEFAULT_MAX_ATTRIBUTES * 2 }
+      let(:html) { "<html><body #{(1..attr_limit).map { |x| "attr-#{x}" }.join(' ')}><p>text</p></body></html>" }
+
+      let(:status) { Fabricate.build(:status, uri: 'https://host.example', text: html) }
+
+      it 'renders a correct preview text' do
+        result = helper.one_line_preview(status)
+
+        expect(result).to eq ''
+      end
+    end
+
     context 'with a status that has empty text' do
       let(:status) { Fabricate.build(:status, text: '') }
 

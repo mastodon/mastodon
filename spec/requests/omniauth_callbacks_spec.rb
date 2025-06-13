@@ -130,14 +130,14 @@ RSpec.describe 'OmniAuth callbacks' do
   end
 
   describe '#openid_connect', if: ENV['OIDC_ENABLED'] == 'true' && ENV['OIDC_SCOPE'].present? do
-    include_examples 'omniauth provider callbacks', :openid_connect
+    it_behaves_like 'omniauth provider callbacks', :openid_connect
   end
 
   describe '#cas', if: ENV['CAS_ENABLED'] == 'true' do
-    include_examples 'omniauth provider callbacks', :cas
+    it_behaves_like 'omniauth provider callbacks', :cas
   end
 
   describe '#saml', if: ENV['SAML_ENABLED'] == 'true' do
-    include_examples 'omniauth provider callbacks', :saml
+    it_behaves_like 'omniauth provider callbacks', :saml
   end
 end

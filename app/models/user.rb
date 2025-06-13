@@ -5,53 +5,55 @@
 # Table name: users
 #
 #  id                        :bigint(8)        not null, primary key
-#  email                     :string           default(""), not null
-#  created_at                :datetime         not null
-#  updated_at                :datetime         not null
-#  encrypted_password        :string           default(""), not null
-#  reset_password_token      :string
-#  reset_password_sent_at    :datetime
-#  sign_in_count             :integer          default(0), not null
-#  current_sign_in_at        :datetime
-#  last_sign_in_at           :datetime
+#  age_verified_at           :datetime
+#  approved                  :boolean          default(TRUE), not null
+#  chosen_languages          :string           is an Array
+#  confirmation_sent_at      :datetime
 #  confirmation_token        :string
 #  confirmed_at              :datetime
-#  confirmation_sent_at      :datetime
-#  unconfirmed_email         :string
-#  locale                    :string
-#  encrypted_otp_secret      :string
-#  encrypted_otp_secret_iv   :string
-#  encrypted_otp_secret_salt :string
 #  consumed_timestep         :integer
-#  otp_required_for_login    :boolean          default(FALSE), not null
-#  last_emailed_at           :datetime
-#  otp_backup_codes          :string           is an Array
-#  account_id                :bigint(8)        not null
+#  current_sign_in_at        :datetime
 #  disabled                  :boolean          default(FALSE), not null
-#  invite_id                 :bigint(8)
-#  chosen_languages          :string           is an Array
-#  created_by_application_id :bigint(8)
-#  approved                  :boolean          default(TRUE), not null
+#  email                     :string           default(""), not null
+#  encrypted_password        :string           default(""), not null
+#  last_emailed_at           :datetime
+#  last_sign_in_at           :datetime
+#  locale                    :string
+#  otp_backup_codes          :string           is an Array
+#  otp_required_for_login    :boolean          default(FALSE), not null
+#  otp_secret                :string
+#  require_tos_interstitial  :boolean          default(FALSE), not null
+#  reset_password_sent_at    :datetime
+#  reset_password_token      :string
+#  settings                  :text
+#  sign_in_count             :integer          default(0), not null
 #  sign_in_token             :string
 #  sign_in_token_sent_at     :datetime
-#  webauthn_id               :string
 #  sign_up_ip                :inet
-#  role_id                   :bigint(8)
-#  settings                  :text
 #  time_zone                 :string
-#  otp_secret                :string
+#  unconfirmed_email         :string
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  account_id                :bigint(8)        not null
+#  created_by_application_id :bigint(8)
+#  invite_id                 :bigint(8)
+#  role_id                   :bigint(8)
+#  webauthn_id               :string
 #
 
 class User < ApplicationRecord
   self.ignored_columns += %w(
+    admin
+    current_sign_in_ip
+    encrypted_otp_secret
+    encrypted_otp_secret_iv
+    encrypted_otp_secret_salt
+    filtered_languages
+    last_sign_in_ip
+    moderator
     remember_created_at
     remember_token
-    current_sign_in_ip
-    last_sign_in_ip
     skip_sign_in_token
-    filtered_languages
-    admin
-    moderator
   )
 
   include LanguagesHelper
@@ -71,10 +73,7 @@ class User < ApplicationRecord
   ACTIVE_DURATION = ENV.fetch('USER_ACTIVE_DAYS', 7).to_i.days.freeze
 
   devise :two_factor_authenticatable,
-         otp_secret_encryption_key: Rails.configuration.x.otp_secret,
          otp_secret_length: 32
-
-  include LegacyOtpSecret # Must be after the above `devise` line in order to override the legacy method
 
   devise :two_factor_backupable,
          otp_number_of_backup_codes: 10
@@ -111,6 +110,7 @@ class User < ApplicationRecord
   validates_with RegistrationFormTimeValidator, on: :create
   validates :website, absence: true, on: :create
   validates :confirm_password, absence: true, on: :create
+  validates :date_of_birth, presence: true, date_of_birth: true, on: :create, if: -> { Setting.min_age.present? && !bypass_registration_checks? }
   validate :validate_role_elevation
 
   scope :account_not_suspended, -> { joins(:account).merge(Account.without_suspended) }
@@ -129,6 +129,7 @@ class User < ApplicationRecord
 
   before_validation :sanitize_role
   before_create :set_approved
+  before_create :set_age_verified_at
   after_commit :send_pending_devise_notifications
   after_create_commit :trigger_webhooks
 
@@ -140,8 +141,8 @@ class User < ApplicationRecord
 
   delegate :can?, to: :role
 
-  attr_reader :invite_code
-  attr_writer :external, :bypass_invite_request_check, :current_account
+  attr_reader :invite_code, :date_of_birth
+  attr_writer :external, :bypass_registration_checks, :current_account
 
   def self.those_who_can(*any_of_privileges)
     matching_role_ids = UserRole.that_can(*any_of_privileges).map(&:id)
@@ -155,6 +156,17 @@ class User < ApplicationRecord
 
   def self.skip_mx_check?
     Rails.env.local?
+  end
+
+  def date_of_birth=(hash_or_string)
+    @date_of_birth = begin
+      if hash_or_string.is_a?(Hash)
+        day, month, year = hash_or_string.values_at(1, 2, 3)
+        "#{day}.#{month}.#{year}"
+      else
+        hash_or_string
+      end
+    end
   end
 
   def role
@@ -432,6 +444,10 @@ class User < ApplicationRecord
     end
   end
 
+  def set_age_verified_at
+    self.age_verified_at = Time.now.utc if Setting.min_age.present?
+  end
+
   def grant_approval_on_confirmation?
     # Re-check approval on confirmation if the server has switched to open registrations
     open_registrations? && !sign_up_from_ip_requires_approval? && !sign_up_email_requires_approval?
@@ -483,8 +499,8 @@ class User < ApplicationRecord
     !!@external
   end
 
-  def bypass_invite_request_check?
-    @bypass_invite_request_check
+  def bypass_registration_checks?
+    @bypass_registration_checks
   end
 
   def sanitize_role
@@ -515,7 +531,11 @@ class User < ApplicationRecord
   end
 
   def regenerate_feed!
-    RegenerationWorker.perform_async(account_id) if redis.set("account:#{account_id}:regeneration", true, nx: true, ex: 1.day.seconds)
+    home_feed = HomeFeed.new(account)
+    unless home_feed.regenerating?
+      home_feed.regeneration_in_progress!
+      RegenerationWorker.perform_async(account_id)
+    end
   end
 
   def needs_feed_update?
@@ -531,7 +551,7 @@ class User < ApplicationRecord
   end
 
   def invite_text_required?
-    Setting.require_invite_text && !open_registrations? && !invited? && !external? && !bypass_invite_request_check?
+    Setting.require_invite_text && !open_registrations? && !invited? && !external? && !bypass_registration_checks?
   end
 
   def trigger_webhooks

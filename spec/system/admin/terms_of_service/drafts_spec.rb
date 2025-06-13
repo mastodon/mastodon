@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin TermsOfService Drafts' do
+  let(:admin_user) { Fabricate(:admin_user) }
+
   before { sign_in(admin_user) }
 
   describe 'Managing TOS drafts' do

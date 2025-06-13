@@ -14,7 +14,7 @@ RSpec.describe 'The /.well-known/host-meta request' do
         )
 
       expect(xrd_link_template_value)
-        .to eq 'https://cb6e6126.ngrok.io/.well-known/webfinger?resource={uri}'
+        .to eq "https://#{Rails.configuration.x.local_domain}/.well-known/webfinger?resource={uri}"
     end
 
     def xrd_link_template_value
@@ -57,7 +57,7 @@ RSpec.describe 'The /.well-known/host-meta request' do
     {
       links: [
         'rel' => 'lrdd',
-        'template' => 'https://cb6e6126.ngrok.io/.well-known/webfinger?resource={uri}',
+        'template' => "https://#{Rails.configuration.x.local_domain}/.well-known/webfinger?resource={uri}",
       ],
     }
   end

@@ -15,6 +15,7 @@ class SuspendAccountService < BaseService
     unmerge_from_home_timelines!
     unmerge_from_list_timelines!
     privatize_media_attachments!
+    remove_from_trends!
   end
 
   private
@@ -63,42 +64,11 @@ class SuspendAccountService < BaseService
   end
 
   def privatize_media_attachments!
-    attachment_names = MediaAttachment.attachment_definitions.keys
+    UpdateMediaAttachmentsPermissionsService.new.call(@account.media_attachments, :private)
+  end
 
-    @account.media_attachments.find_each do |media_attachment|
-      attachment_names.each do |attachment_name|
-        attachment = media_attachment.public_send(attachment_name)
-        styles     = MediaAttachment::DEFAULT_STYLES | attachment.styles.keys
-
-        next if attachment.blank?
-
-        styles.each do |style|
-          case Paperclip::Attachment.default_options[:storage]
-          when :s3
-            # Prevent useless S3 calls if ACLs are disabled
-            next if ENV['S3_PERMISSION'] == ''
-
-            begin
-              attachment.s3_object(style).acl.put(acl: 'private')
-            rescue Aws::S3::Errors::NoSuchKey
-              Rails.logger.warn "Tried to change acl on non-existent key #{attachment.s3_object(style).key}"
-            rescue Aws::S3::Errors::NotImplemented => e
-              Rails.logger.error "Error trying to change ACL on #{attachment.s3_object(style).key}: #{e.message}"
-            end
-          when :fog, :azure
-            # Not supported
-          when :filesystem
-            begin
-              FileUtils.chmod(0o600 & ~File.umask, attachment.path(style)) unless attachment.path(style).nil?
-            rescue Errno::ENOENT
-              Rails.logger.warn "Tried to change permission on non-existent file #{attachment.path(style)}"
-            end
-          end
-
-          CacheBusterWorker.perform_async(attachment.path(style)) if Rails.configuration.x.cache_buster_enabled
-        end
-      end
-    end
+  def remove_from_trends!
+    StatusTrend.where(account: @account).delete_all
   end
 
   def signed_activity_json

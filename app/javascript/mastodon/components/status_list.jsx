@@ -9,7 +9,7 @@ import { TIMELINE_GAP, TIMELINE_SUGGESTIONS } from 'mastodon/actions/timelines';
 import { RegenerationIndicator } from 'mastodon/components/regeneration_indicator';
 import { InlineFollowSuggestions } from 'mastodon/features/home_timeline/components/inline_follow_suggestions';
 
-import StatusContainer from '../containers/status_container';
+import { StatusQuoteManager } from '../components/status_quoted';
 
 import { LoadGap } from './load_gap';
 import ScrollableList from './scrollable_list';
@@ -113,7 +113,7 @@ export default class StatusList extends ImmutablePureComponent {
           );
         default:
           return (
-            <StatusContainer
+            <StatusQuoteManager
               key={statusId}
               id={statusId}
               onMoveUp={this.handleMoveUp}
@@ -130,7 +130,7 @@ export default class StatusList extends ImmutablePureComponent {
 
     if (scrollableContent && featuredStatusIds) {
       scrollableContent = featuredStatusIds.map(statusId => (
-        <StatusContainer
+        <StatusQuoteManager
           key={`f-${statusId}`}
           id={statusId}
           featured

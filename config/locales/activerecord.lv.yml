@@ -49,8 +49,14 @@ lv:
           attributes:
             reblog:
               taken: ziņai jau pastāv
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: ir pārāk agri, jābūt vēlāk kā %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: ir mazāks par minimālo vecuma ierobežojumu
             email:
               blocked: lieto neatļautu e-pasta pakalpojuma sniedzēju
               unreachable: šķietami neeksistē

@@ -309,6 +309,7 @@ it:
       title: Registro di controllo
       unavailable_instance: "(nome di dominio non disponibile)"
     announcements:
+      back: Torna agli annunci
       destroyed_msg: Annuncio eliminato!
       edit:
         title: Modifica annuncio
@@ -317,6 +318,10 @@ it:
       new:
         create: Crea annuncio
         title: Nuovo annuncio
+      preview:
+        disclaimer: Poiché gli utenti non possono disattivarle, le notifiche e-mail dovrebbero essere limitate ad annunci importanti, come notifiche di violazione dei dati personali o di chiusura del server.
+        explanation_html: 'L''e-mail verrà inviata a <strong>%{display_count} utenti</strong>. Il seguente testo sarà incluso nell''e-mail:'
+        title: Anteprima della notifica dell'annuncio
       publish: Pubblica
       published_msg: Annuncio pubblicato!
       scheduled_for: Programmato per %{time}
@@ -475,6 +480,36 @@ it:
       new:
         title: Importare i blocchi di dominio
       no_file: Nessun file selezionato
+    fasp:
+      debug:
+        callbacks:
+          created_at: Creato il
+          delete: Cancella
+          ip: Indirizzo IP
+          request_body: Request body
+          title: Debug Callbacks
+      providers:
+        active: Attivo
+        base_url: Url di base
+        callback: Callback
+        delete: Cancella
+        edit: Modifica Provider
+        finish_registration: Registrazione terminata
+        name: Nome
+        providers: Providers
+        public_key_fingerprint: Chiave pubblica fingerprint
+        registration_requested: Registrazione richiesta
+        registrations:
+          confirm: Conferma
+          description: Hai ricevuto una registrazione da un FASP. Rifiutala se non l'hai avviata tu. Se l'hai avviata tu, confronta attentamente nome e impronta della chiave prima di confermare la registrazione.
+          reject: Rifiuta
+          title: Conferma registrazione FASP
+        save: Salva
+        select_capabilities: Seleziona Capacità
+        sign_in: Connettiti
+        status: Stato
+        title: Fornitori di Servizi Ausiliari per il Fediverso
+      title: FASP
     follow_recommendations:
       description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di seguaci locali per una data lingua."
       language: Per lingua
@@ -751,17 +786,26 @@ it:
       title: Ruoli
     rules:
       add_new: Aggiungi regola
+      add_translation: Aggiungi traduzione
       delete: Cancella
       description_html: Mentre la maggior parte degli utenti sostiene di aver letto e accettato i termini di servizio, di solito non li leggono fino a quando sorge un problema. <strong>Rendi più facile vedere le regole del server, fornendole in un semplice elenco</strong>. Cerca di mantenere le singole regole brevi e semplici, ma cerca anche di non dividerle in molti elementi separati.
       edit: Modifica regola
       empty: Non sono ancora state definite regole del server.
+      move_down: Sposta giu
+      move_up: Muovi su
       title: Regole del server
+      translation: Traduzione
+      translations: Traduzioni
+      translations_explanation: Puoi opzionalmente aggiungere delle traduzioni per le regole. Il valore predefinito verrà mostrato se non è disponibile nessuna versione tradotta. Assicurarsi sempre che qualsiasi traduzione fornita sia sincronizzata con il valore predefinito.
     settings:
       about:
         manage_rules: Gestisci le regole del server
         preamble: Fornire informazioni approfondite su come, il server, venga gestito, moderato e finanziato.
         rules_hint: C'è un'area dedicata per le regole che i tuoi utenti dovrebbero rispettare.
         title: Info
+      allow_referrer_origin:
+        desc: Quando i tuoi utenti cliccano su link a siti esterni, il loro browser potrebbe inviare l'indirizzo del tuo server Mastodon come referente. Disattiva questa opzione se ciò identificherebbe in modo univoco i tuoi utenti, ad esempio se si tratta di un server Mastodon personale.
+        title: Consenti ai siti esterni di vedere il tuo server Mastodon come fonte di traffico
       appearance:
         preamble: Personalizza l'interfaccia web di Mastodon.
         title: Aspetto
@@ -781,9 +825,9 @@ it:
       discovery:
         follow_recommendations: Segui le raccomandazioni
         preamble: La comparsa di contenuti interessanti è determinante per l'arrivo di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla in che modo varie funzionalità di scoperta funzionano sul tuo server.
+        privacy: Privacy
         profile_directory: Directory del profilo
         public_timelines: Timeline pubbliche
-        publish_discovered_servers: Pubblica i server scoperti
         publish_statistics: Pubblica le statistiche
         title: Scopri
         trends: Tendenze
@@ -868,6 +912,8 @@ it:
     system_checks:
       database_schema_check:
         message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
+      elasticsearch_analysis_index_mismatch:
+        message_html: Le impostazioni dell'analizzatore di indice Elasticsearch sono obsolete. Si prega di eseguire <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Il cluster Elasticsearch non è integro (stato rosso), le funzionalità di ricerca non sono disponibili
       elasticsearch_health_yellow:
@@ -939,6 +985,7 @@ it:
         chance_to_review_html: "<strong>I termini di servizio generati non verranno pubblicati automaticamente.</strong> Avrai la possibilità di esaminare i risultati. Si prega di inserire i dettagli necessari per procedere."
         explanation_html: Il modello di termini di servizio fornito è solo a scopo informativo e non deve essere interpretato come consulenza legale su alcun argomento. Si prega di consultare il proprio consulente legale, in merito alla propria situazione e alle specifiche questioni legali che si hanno.
         title: Impostazione dei Termini di Servizio
+      going_live_on_html: In vigore il %{date}
       history: Cronologia
       live: In uso
       no_history: Non sono ancora state registrate modifiche ai termini di servizio.
@@ -1182,7 +1229,7 @@ it:
       back: Indietro
       invited_by: 'Puoi unirti a %{domain} grazie all''invito che hai ricevuto da:'
       preamble: Questi sono impostati e applicati dai moderatori di %{domain}.
-      preamble_invited: Prima di procedere, si prega di considera le regole di base stabilite dai moderatori di %{domain}.
+      preamble_invited: Prima di procedere, si prega di considerare le regole di base stabilite dai moderatori di %{domain}.
       title: Alcune regole di base.
       title_invited: Sei stato/a invitato/a.
     security: Credenziali
@@ -1822,6 +1869,10 @@ it:
       limit: Hai già fissato in cima il massimo numero di post
       ownership: Non puoi fissare in cima un post di qualcun altro
       reblog: Un toot condiviso non può essere fissato in cima
+    quote_policies:
+      followers: Seguaci e utenti menzionati
+      nobody: Solo gli utenti menzionati
+      public: Tutti
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Diretto
@@ -1875,6 +1926,11 @@ it:
     does_not_match_previous_name: non corrisponde al nome precedente
   terms_of_service:
     title: Termini di Servizio
+  terms_of_service_interstitial:
+    future_preamble_html: Stiamo apportando alcune modifiche ai nostri termini di servizio, che entreranno in vigore in data <strong>%{date}</strong>. Ti invitiamo a consultare i termini aggiornati.
+    past_preamble_html: Abbiamo modificato i nostri termini di servizio dalla tua ultima visita. Ti invitiamo a consultare i termini aggiornati.
+    review_link: Rivedi i termini di servizio
+    title: I termini di servizio di %{domain} stanno cambiando
   themes:
     contrast: Mastodon (contrasto elevato)
     default: Mastodon (scuro)
@@ -1906,6 +1962,10 @@ it:
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
     webauthn: Chiavi di sicurezza
   user_mailer:
+    announcement_published:
+      description: 'Gli amministratori di %{domain} stanno facendo un annuncio:'
+      subject: Annuncio di servizio
+      title: Annuncio di servizio da %{domain}
     appeal_approved:
       action: Impostazioni account
       explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato approvato. Il tuo account ha riottenuto la buona reputazione.
@@ -1938,6 +1998,8 @@ it:
     terms_of_service_changed:
       agreement: Continuando a usare %{domain}, accetti questi termini. Se non sei d'accordo con i termini aggiornati, puoi terminare il tuo accordo con %{domain} in qualsiasi momento eliminando il tuo account.
       changelog: 'Ecco, in sintesi, cosa significa per te questo aggiornamento:'
+      description: 'Stai ricevendo questa e-mail perché stiamo apportando alcune modifiche ai nostri termini di servizio su %{domain}. Questi aggiornamenti entreranno in vigore il %{date}. Ti invitiamo a leggere i termini aggiornati per intero qui:'
+      description_html: Stai ricevendo questa e-mail perché stiamo apportando alcune modifiche ai nostri termini di servizio su %{domain}. Questi aggiornamenti entreranno in vigore il <strong>%{date}</strong>. Ti invitiamo a leggere i <a href="%{path}" target="_blank">termini aggiornati per intero qui</a>.
       sign_off: Il team di %{domain}
       subject: Aggiornamenti ai nostri termini di servizio
       subtitle: I termini di servizio di %{domain} stanno cambiando
@@ -2008,7 +2070,6 @@ it:
       post_action: Scrivi
       post_step: Salutate il mondo con testo, foto, video o sondaggi.
       post_title: Scrivi il tuo primo post
-      share_action: Condividi
       share_step: Fai sapere ai tuoi amici come trovarti su Mastodon.
       share_title: Condividi il tuo profilo Mastodon
       sign_in_action: Accedi

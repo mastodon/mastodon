@@ -5,7 +5,7 @@
 module AppendComponent
   def append(_wrapper_options = nil)
     @append ||= begin
-      options[:append].to_s.html_safe if options[:append].present?
+      options[:append].to_s.html_safe if options[:append].present? # rubocop:disable Rails/OutputSafety
     end
   end
 end
@@ -24,7 +24,7 @@ end
 module WarningHintComponent
   def warning_hint(_wrapper_options = nil)
     @warning_hint ||= begin
-      options[:warning_hint].to_s.html_safe if options[:warning_hint].present?
+      options[:warning_hint].to_s.html_safe if options[:warning_hint].present? # rubocop:disable Rails/OutputSafety
     end
   end
 end

@@ -56,7 +56,7 @@ eo:
         scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
         setting_aggregate_reblogs: Ne montri novajn plusendojn de mesaĝoj lastatempe plusenditaj (nur efikas al nove ricevitaj plusendoj)
         setting_always_send_emails: Normale, la sciigoj per retpoŝto ne estos senditaj kiam vi uzas Mastodon aktive
-        setting_default_sensitive: Tiklaj vidaŭdaĵoj estas implicite kaŝitaj kaj povas esti montritaj per alklako
+        setting_default_sensitive: La tiklaj vidaŭdaĵoj estas implicite kaŝitaj kaj povas esti malkaŝitaj per alklako
         setting_display_media_default: Kaŝi plurmediojn markitajn kiel tiklaj
         setting_display_media_hide_all: Ĉiam kaŝi la vidaŭdaĵojn
         setting_display_media_show_all: Ĉiam montri la vidaŭdaĵojn
@@ -75,6 +75,7 @@ eo:
       filters:
         action: Elekti ago kiam mesaĝo kongruas la filtrilon
         actions:
+          blur: Kaŝi amaskomunikilaron malantaŭ averto, sen kaŝi la tekston mem
           hide: Tute kaŝigi la filtritajn enhavojn, kvazau ĝi ne ekzistis
           warn: Kaŝi la enhavon filtritan malantaŭ averto mencianta la nomon de la filtro
       form_admin_settings:
@@ -88,6 +89,7 @@ eo:
         favicon: WEBP, PNG, GIF aŭ JPG. Anstataŭigas la defaŭltan Mastodon-favikono kun propra bildsimbolo.
         mascot: Anstatauigi la ilustraĵon en la altnivela retinterfaco.
         media_cache_retention_period: Amaskomunikilaj dosieroj de afiŝoj faritaj de foraj uzantoj estas konservitaj en kaŝmemoro en via servilo. Kiam agordita al pozitiva valoro, amaskomunikilaro estos forigita post la specifita nombro da tagoj. Se la amaskomunikilaro-datumoj estas petitaj post kiam ĝi estas forigita, ĝi estos re-elŝutita, se la fonta enhavo ankoraŭ disponeblas. Pro limigoj pri kiom ofte ligaj antaŭrigardaj kartoj enketas retejojn de ekstera liveranto, oni rekomendas agordi ĉi tiun valoron al almenaŭ 14 tagoj, aŭ ligaj antaŭrigardaj kartoj ne estos ĝisdatigitaj laŭpostule antaŭ tiu tempo.
+        min_age: Uzantoj demandos konfirmi siajn naskiĝtagon dum registrado
         peers_api_enabled: Listo de domajnaj nomoj kiujn ĉi tiu servilo renkontis en la fediverso. Neniuj datumoj estas inkluditaj ĉi tie pri ĉu vi federacias kun donita servilo, nur ke via servilo scias pri ĝi. Ĉi tio estas uzata de servoj kiuj kolektas statistikojn pri federacio en ĝenerala signifo.
         profile_directory: La profilujo listigas ĉiujn uzantojn kiu volonte malkovrebli.
         require_invite_text: Kiam registroj bezonas permanan aprobon, igi la "Kial vi volas aliĝi?" tekstoenigon deviga anstau nedeviga
@@ -132,16 +134,18 @@ eo:
         name: Vi povas ŝanĝi nur la majuskladon de la literoj, ekzemple, por igi ĝin pli legebla
       terms_of_service:
         changelog: Povas esti strukturita per sintakso Markdown-a.
+        effective_date: Racia tempodaŭro povas varii ie ajn de 10 ĝis 30 tagoj de la dato, kiam vi sciigas viajn uzantojn.
         text: Povas esti strukturita per sintakso Markdown-a.
       terms_of_service_generator:
         admin_email: Legalaj sciigoj povas esti kontraŭsciigoj, postulaĵoj de tribunalo, postulaĵoj pri forigo, kaj postulaĵoj de la policaro.
-        arbitration_address: Povas esti la sama kiel Fizika adreso supre, aŭ "N/A" se oni uzas retpoŝton
-        arbitration_website: Povas esti retformo, aŭ "N/A" se oni uzas retpoŝton
+        arbitration_address: Povas esti la sama kiel fizika adreso supre, aŭ "N/A" se oni uzas retpoŝton.
+        arbitration_website: Povas esti retformularo, aŭ "N/A" se oni uzas retpoŝton.
         choice_of_law: Urbo, regiono, teritorio aŭ ŝtato, kies internaj substantivaj leĝoj regos iujn kaj ĉiujn asertojn.
         dmca_address: Por tenantoj en Usono, uzu la adreson registritan en la DMCA Designated Agenŭ Directory. Registrolibro de poŝtskatoloj haveblas per direkta postulo, uzu la DMCA Designated Agent Post Office Box Waiver Request por retpoŝti la Ofico de Kopirajto kaj priskribu, ke vi estas hejm-trovigita administranto por enhavo kaj devas uzi Poŝtskatolon por forigi vian hejmadreson de publika vido.
-        dmca_email: Povas esti la sama retpoŝtadreso uzita por "Retpoŝtadreso por legalaj sciigoj" supre
+        dmca_email: Povas esti la sama retpoŝtadreso uzita en "Retpoŝtadreso por legalaj sciigoj" supre.
         domain: Unika identigilo de la retaj servicoj, ke vi provizas.
         jurisdiction: Enlistigu la landon, kie loĝas kiu pagas la fakturojn. Se ĝi estas kompanio aŭ alia ento, listigu la landon, kie ĝi estas enkorpigita, kaj la urbon, regionon, teritorion aŭ ŝtaton laŭeble.
+        min_age: Ne devus esti malsupre la minimuma aĝo postulita de la leĝoj de via jurisdikcio.
       user:
         chosen_languages: Kun tio markita nur mesaĝoj en elektitaj lingvoj aperos en publikaj tempolinioj
         role: La rolo kontrolas kiujn permesojn la uzanto havas.
@@ -234,7 +238,7 @@ eo:
         setting_display_media_show_all: Montri ĉiujn
         setting_expand_spoilers: Ĉiam malfoldas mesaĝojn markitajn per averto pri enhavo
         setting_hide_network: Kaŝi viajn sekvantojn kaj sekvatojn
-        setting_missing_alt_text_modal: Montru konfirman dialogon antaŭ afiŝado de amaskomunikiloj sen altteksto
+        setting_missing_alt_text_modal: Montru konfirman dialogon antaŭ afiŝado de aŭdvidaĵoj sen altteksto
         setting_reduce_motion: Redukti la movecojn de la animacioj
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
         setting_system_scrollbars_ui: Uzu la defaŭltan rulumilon de la sistemo
@@ -256,6 +260,7 @@ eo:
         name: Kradvorto
       filters:
         actions:
+          blur: Kaŝi amaskomunikilaron kun averto
           hide: Kaŝi komplete
           warn: Kaŝi malantaŭ averto
       form_admin_settings:
@@ -269,6 +274,7 @@ eo:
         favicon: Favorikono
         mascot: Propa maskoto
         media_cache_retention_period: Audovidaĵkaŝaĵretendauro
+        min_age: Minimuma aĝo postulo
         peers_api_enabled: Eldonu liston de malkovritaj serviloj en la API
         profile_directory: Ŝalti la profilujon
         registrations_mode: Kiu povas krei konton
@@ -334,6 +340,7 @@ eo:
         usable: Permesi afiŝojn uzi ĉi tiun kradvorton loke
       terms_of_service:
         changelog: Kio ŝanĝiĝis?
+        effective_date: Ekvalida dato
         text: Kondiĉoj de uzado
       terms_of_service_generator:
         admin_email: Retpoŝtadreso por laŭleĝaj avizoj
@@ -344,7 +351,11 @@ eo:
         dmca_email: Retpoŝtadreso por DMCA/kopirajto-avizoj
         domain: Domajno
         jurisdiction: Laŭleĝa jurisdikcio
+        min_age: Minimuma aĝo
       user:
+        date_of_birth_1i: Tago
+        date_of_birth_2i: Monato
+        date_of_birth_3i: Jaro
         role: Rolo
         time_zone: Horzono
       user_role:

@@ -378,6 +378,7 @@ export const LanguageDropdown: React.FC = () => {
     if (text.length > 20) {
       debouncedGuess(text, setGuess);
     } else {
+      debouncedGuess.cancel();
       setGuess('');
     }
   }, [text, setGuess]);

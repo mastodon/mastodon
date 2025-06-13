@@ -23,6 +23,8 @@ io:
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: enhavas valori kun mankanta etiketi
             username:
               invalid: mustas konsistar nur literi, nombri e sublinei
               reserved: rezervitas
@@ -38,6 +40,11 @@ io:
           attributes:
             data:
               malformed: esas misformaca
+        list_account:
+          attributes:
+            account_id:
+              taken: es ja en la listo
+          must_be_following: mustas esar sequinta konto
         status:
           attributes:
             reblog:

@@ -4,9 +4,9 @@ import { Map as ImmutableMap } from 'immutable';
 import {
   followAccountSuccess,
   unfollowAccountSuccess,
-  importAccounts,
   revealAccount,
 } from 'mastodon/actions/accounts_typed';
+import { importAccounts } from 'mastodon/actions/importer/accounts';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import { me } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';

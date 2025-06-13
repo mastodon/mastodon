@@ -28,7 +28,7 @@ RSpec.describe 'Admin Tags' do
     end
 
     def display_name_field
-      I18n.t('simple_form.labels.defaults.display_name')
+      form_label('defaults.display_name')
     end
 
     def match_error_text
