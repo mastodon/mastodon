@@ -29,7 +29,32 @@ class FanOutOnWriteService < BaseService
 
     # Prepare the request
     request = Net::HTTP::Post.new(url.path, { 'Content-Type' => 'application/json' })
-    request.body = { text: @status.text, id: @status.id.to_s, created_at: @status.created_at }.to_json
+    # TODO: add as much information as possible to the request
+    request.body = {
+      id: @status.id.to_s,
+      uri: @status.uri,
+      text: @status.text,
+      created_at: @status.created_at,
+      updated_at: @status.updated_at,
+      in_reply_to_id: @status.in_reply_to_id,
+      reblog_of_id: @status.reblog_of_id,
+      url: @status.url,
+      sensitive: @status.sensitive,
+      visibility: @status.visibility,
+      spoiler_text: @status.spoiler_text,
+      reply: @status.reply,
+      language: @status.language,
+      conversation_id: @status.conversation_id,
+      local: @status.local,
+      account_id: @status.account_id,
+      application_id: @status.application_id,
+      in_reply_to_account_id: @status.in_reply_to_account_id,
+      poll_id: @status.poll_id,
+      deleted_at: @status.deleted_at,
+      edited_at: @status.edited_at,
+      trendable: @status.trendable,
+      ordered_media_attachment_ids: @status.ordered_media_attachment_ids
+    }.to_json
 
     # Send the request
     http.request(request)
