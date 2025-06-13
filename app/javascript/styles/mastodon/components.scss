@@ -7309,6 +7309,7 @@ a.status-card {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.1s ease;
+    will-change: opacity, pointer-events;
 
     &.active {
       opacity: 1;
