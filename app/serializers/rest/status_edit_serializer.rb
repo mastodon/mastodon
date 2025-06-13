@@ -23,6 +23,6 @@ class REST::StatusEditSerializer < ActiveModel::Serializer
   end
 
   def quote
-    object.quote_id == status.quote&.id ? status.quote : Quote.new(state: :pending)
+    object.quote_id == object.status.quote&.id ? object.status.quote : Quote.new(state: :pending)
   end
 end
