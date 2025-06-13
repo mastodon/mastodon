@@ -297,6 +297,10 @@ $content-width: 840px;
       padding-bottom: 8px;
       margin-bottom: 8px;
       border-bottom: 1px solid var(--background-border-color);
+
+      &.no-border {
+        border-bottom: none;
+      }
     }
 
     h6 {
@@ -895,6 +899,15 @@ a.name-tag,
       justify-content: flex-start;
       border-top: 1px solid var(--background-border-color);
 
+      &__report-id {
+        text-decoration: none;
+        color: $darker-text-color;
+
+        &:hover {
+          color: $highlight-text-color;
+        }
+      }
+
       &__reported-by,
       &__assigned {
         padding: 15px;
@@ -918,6 +931,11 @@ a.name-tag,
         &__icon {
           margin-inline-end: 4px;
           font-weight: 500;
+
+          .name-tag {
+            color: inherit;
+            margin-inline-start: 4px;
+          }
         }
       }
 
