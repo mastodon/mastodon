@@ -61,7 +61,7 @@ RSpec.describe RemoteFollow do
     let(:account) { Fabricate(:account, username: 'alice') }
 
     it 'returns subscribe address' do
-      expect(subject).to eq 'https://quitter.no/main/ostatussub?profile=https%3A%2F%2Fcb6e6126.ngrok.io%2Fusers%2Falice'
+      expect(subject).to eq "https://quitter.no/main/ostatussub?profile=https%3A%2F%2F#{Rails.configuration.x.local_domain}%2Fusers%2Falice"
     end
   end
 end
