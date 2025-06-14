@@ -1611,7 +1611,7 @@ vi:
       subject: Bạn vừa được nhắc đến bởi %{name}
       title: Lượt nhắc mới
     poll:
-      subject: Cuộc bình chọn của %{name} kết thúc
+      subject: Vốt của %{name} đã kết thúc
     reblog:
       body: Tút của bạn vừa được %{name} đăng lại
       subject: "%{name} vừa đăng lại tút của bạn"
@@ -1650,14 +1650,14 @@ vi:
     truncate: "&hellip;"
   polls:
     errors:
-      already_voted: Bạn đã bình chọn xong rồi
+      already_voted: Bạn đã vốt xong rồi
       duplicate_options: chứa các lựa chọn trùng lặp
       duration_too_long: quá xa so với thời điểm hiện tại
       duration_too_short: quá sớm
-      expired: Cuộc bình chọn đã kết thúc
+      expired: Vốt đã kết thúc
       invalid_choice: Lựa chọn không tồn tại
       over_character_limit: độ dài tối đa %{max} ký tự
-      self_vote: Bạn không thể bình chọn cho tút của chính bạn
+      self_vote: Bạn không thể tự vốt cho tút của mình
       too_few_options: phải có nhiều hơn một mục
       too_many_options: tối đa %{max} lựa chọn
   preferences:
@@ -1776,7 +1776,7 @@ vi:
     delete: Xóa tài khoản
     development: Lập trình
     edit_profile: Sửa hồ sơ
-    export: Xuất
+    export: Xuất dữ liệu
     featured_tags: Hashtag thường dùng
     import: Nhập dữ liệu
     import_and_export: Dữ liệu
@@ -1785,7 +1785,7 @@ vi:
     preferences: Chung
     profile: Hồ sơ
     relationships: Quan hệ
-    severed_relationships: Quan hệ bị cắt đứt
+    severed_relationships: Quan hệ đứt gãy
     statuses_cleanup: Tự động xóa tút cũ
     strikes: Lần cảnh cáo
     two_factor_authentication: Xác minh 2 bước
@@ -1798,7 +1798,7 @@ vi:
       user_domain_block: Bạn đã chặn %{target_name}
     lost_followers: Mất người theo dõi
     lost_follows: Mất người đang theo dõi
-    preamble: Khi bạn hoặc kiểm duyệt viên máy chủ của bạn chặn một máy chủ, người bạn đang theo dõi và người theo dõi bạn có thể sẽ bị mất. Khi điều đó xảy ra, hãy vào đây tải xuống danh sách các mối quan hệ đã bị cắt đứt, và nhập thủ công.
+    preamble: Khi bạn hoặc kiểm duyệt viên máy chủ của bạn chặn một máy chủ, người bạn đang theo dõi và người theo dõi bạn có thể sẽ bị mất. Khi điều đó xảy ra, hãy vào đây tải xuống danh sách các mối quan hệ đứt gãy, và nhập thủ công.
     purged: Thông tin về máy chủ này đã bị quản trị viên máy chủ của bạn xóa sạch.
     type: Sự kiện
   statuses:
@@ -1852,8 +1852,8 @@ vi:
     keep_media_hint: Không xóa những tút có đính kèm media của bạn
     keep_pinned: Giữ lại những tút đã ghim
     keep_pinned_hint: Không xóa những tút đã ghim của bạn
-    keep_polls: Giữ lại những cuộc bình chọn
-    keep_polls_hint: Không xóa những tút dạng bình chọn
+    keep_polls: Giữ lại những vốt
+    keep_polls_hint: Không xóa bất kỳ vốt nào
     keep_self_bookmark: Giữ lại những tút đã lưu
     keep_self_bookmark_hint: Không xóa những tút của bạn nếu bạn có lưu chúng
     keep_self_fav: Giữ lại những tút yêu thích
