@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -13,9 +13,10 @@ import { Icon } from 'mastodon/components/icon';
 import StatusContainer from 'mastodon/containers/status_container';
 import type { Status } from 'mastodon/models/status';
 import type { RootState } from 'mastodon/store';
-import { useAppSelector } from 'mastodon/store';
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import QuoteIcon from '../../images/quote.svg?react';
+import { fetchStatus } from '../actions/statuses';
 import { makeGetStatus } from '../selectors';
 
 const MAX_QUOTE_POSTS_NESTING_LEVEL = 1;
@@ -36,7 +37,7 @@ const QuoteWrapper: React.FC<{
   );
 };
 
-const QuoteLink: React.FC<{
+const NestedQuoteLink: React.FC<{
   status: Status;
 }> = ({ status }) => {
   const accountId = status.get('account') as string;
@@ -80,12 +81,18 @@ export const QuotedStatus: React.FC<{
   variant?: 'full' | 'link';
   nestingLevel?: number;
 }> = ({ quote, contextType, nestingLevel = 1, variant = 'full' }) => {
+  const dispatch = useAppDispatch();
   const quotedStatusId = quote.get('quoted_status');
   const quoteState = quote.get('state');
   const status = useAppSelector((state) =>
     quotedStatusId ? state.statuses.get(quotedStatusId) : undefined,
   );
-  let quoteError: React.ReactNode = null;
+
+  useEffect(() => {
+    if (!status && quotedStatusId) {
+      dispatch(fetchStatus(quotedStatusId));
+    }
+  }, [status, quotedStatusId, dispatch]);
 
   // In order to find out whether the quoted post should be completely hidden
   // due to a matching filter, we run it through the selector used by `status_container`.
@@ -95,6 +102,8 @@ export const QuotedStatus: React.FC<{
     getStatus(state, { id: quotedStatusId, contextType }),
   );
   const isFilteredAndHidden = status && statusWithExtraData === null;
+
+  let quoteError: React.ReactNode = null;
 
   if (isFilteredAndHidden) {
     quoteError = (
@@ -145,7 +154,7 @@ export const QuotedStatus: React.FC<{
   }
 
   if (variant === 'link' && status) {
-    return <QuoteLink status={status} />;
+    return <NestedQuoteLink status={status} />;
   }
 
   const childQuote = status?.get('quote') as QuoteMap | undefined;

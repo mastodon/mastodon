@@ -7,6 +7,24 @@ module ViteRuby::ManifestIntegrityExtension
     { path: entry.fetch('file'), integrity: entry.fetch('integrity', nil) }
   end
 
+  def load_manifest
+    # Invalidate the name lookup cache when reloading manifest
+    @name_lookup_cache = load_name_lookup_cache
+
+    super
+  end
+
+  def load_name_lookup_cache
+    Oj.load(config.build_output_dir.join('.vite/manifest-lookup.json').read)
+  end
+
+  # Upstream's `virtual` type is a hack, re-implement it with efficient exact name lookup
+  def resolve_virtual_entry(name)
+    @name_lookup_cache ||= load_name_lookup_cache
+
+    @name_lookup_cache.fetch(name)
+  end
+
   # Find a manifest entry by the *final* file name
   def integrity_hash_for_file(file_name)
     @integrity_cache ||= {}
@@ -94,10 +112,10 @@ module ViteRails::TagHelpers::IntegrityExtension
     end
   end
 
-  def vite_stylesheet_tag(*names, **options)
+  def vite_stylesheet_tag(*names, type: :stylesheet, **options)
     ''.html_safe.tap do |tags|
       names.each do |name|
-        entry = vite_manifest.path_and_integrity_for(name, type: :stylesheet)
+        entry = vite_manifest.path_and_integrity_for(name, type:)
 
         options[:extname] = false if Rails::VERSION::MAJOR >= 7
 

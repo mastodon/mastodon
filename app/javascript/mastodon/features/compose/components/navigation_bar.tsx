@@ -11,27 +11,39 @@ import { cancelReplyCompose } from 'mastodon/actions/compose';
 import { Account } from 'mastodon/components/account';
 import { IconButton } from 'mastodon/components/icon_button';
 import { me } from 'mastodon/initial_state';
-
-import { ActionBar } from './action_bar';
-
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
   cancel: { id: 'reply_indicator.cancel', defaultMessage: 'Cancel' },
 });
 
-export const NavigationBar = () => {
-  const dispatch = useDispatch();
+export const NavigationBar: React.FC = () => {
+  const dispatch = useAppDispatch();
   const intl = useIntl();
-  const isReplying = useSelector(state => !!state.getIn(['compose', 'in_reply_to']));
+  const isReplying = useAppSelector(
+    (state) => !!state.compose.get('in_reply_to'),
+  );
 
   const handleCancelClick = useCallback(() => {
     dispatch(cancelReplyCompose());
   }, [dispatch]);
 
+  if (!me) {
+    return null;
+  }
+
   return (
     <div className='navigation-bar'>
       <Account id={me} minimal />
-      {isReplying ? <IconButton title={intl.formatMessage(messages.cancel)} iconComponent={CloseIcon} onClick={handleCancelClick} /> : <ActionBar />}
+
+      {isReplying && (
+        <IconButton
+          title={intl.formatMessage(messages.cancel)}
+          icon=''
+          iconComponent={CloseIcon}
+          onClick={handleCancelClick}
+        />
+      )}
     </div>
   );
 };

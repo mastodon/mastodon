@@ -53,7 +53,7 @@ gem 'fastimage'
 gem 'hiredis', '~> 0.6'
 gem 'hiredis-client'
 gem 'htmlentities', '~> 4.3'
-gem 'http', '~> 5.2.0'
+gem 'http', '~> 5.3.0'
 gem 'http_accept_language', '~> 2.1'
 gem 'httplog', '~> 1.7.0', require: false
 gem 'i18n'
@@ -137,7 +137,7 @@ group :test do
 
   # Browser integration testing
   gem 'capybara', '~> 3.39'
-  gem 'selenium-webdriver'
+  gem 'capybara-playwright-driver'
 
   # Used to reset the database between system tests
   gem 'database_cleaner-active_record'

@@ -14,7 +14,6 @@ import { fetchPoll, vote } from 'mastodon/actions/polls';
 import { Icon } from 'mastodon/components/icon';
 import emojify from 'mastodon/features/emoji/emoji';
 import { useIdentity } from 'mastodon/identity_context';
-import { reduceMotion } from 'mastodon/initial_state';
 import { makeEmojiMap } from 'mastodon/models/custom_emoji';
 import type * as Model from 'mastodon/models/poll';
 import type { Status } from 'mastodon/models/status';
@@ -265,7 +264,6 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
     to: {
       width: `${percent}%`,
     },
-    immediate: reduceMotion,
   });
 
   return (

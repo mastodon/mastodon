@@ -3,6 +3,7 @@ et:
   simple_form:
     hints:
       account:
+        attribution_domains: Üks rea kohta. See kaitseb pahatahtlike viidete eest.
         discoverable: Su profiili ja avalikke postitusi võidakse Mastodoni erinevates piirkondades esile tõsta või soovitada ning su profiili soovitada teistele kasutajatele.
         display_name: Su täisnimi või naljanimi.
         fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
@@ -254,6 +255,7 @@ et:
         favicon: Favicon
         mascot: Kohandatud maskott (kunagine)
         media_cache_retention_period: Meediapuhvri talletusperiood
+        min_age: Vanuse alampiiri nõue
         peers_api_enabled: Avalda avastatud serverite loetelu API kaudu
         profile_directory: Luba kasutajate kataloog
         registrations_mode: Kes saab liituda
@@ -323,8 +325,13 @@ et:
         text: Kasutustingimused
       terms_of_service_generator:
         admin_email: E-posti aadress juriidiliste teadete jaoks
+        domain: Domeen
         jurisdiction: Jurisdiktsioon
+        min_age: Vanuse alampiir
       user:
+        date_of_birth_1i: Päev
+        date_of_birth_2i: Kuu
+        date_of_birth_3i: Aasta
         role: Roll
         time_zone: Ajavöönd
       user_role:

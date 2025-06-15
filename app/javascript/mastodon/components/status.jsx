@@ -548,13 +548,13 @@ class Status extends ImmutablePureComponent {
           <div
             className={
               classNames('status', `status-${status.get('visibility')}`,
-              {
-                'status-reply': !!status.get('in_reply_to_id'),
-                'status--in-thread': !!rootId,
-                'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted,
-                'status--is-quote': isQuotedPost,
-                'status--has-quote': !!status.get('quote'),
-              })
+                {
+                  'status-reply': !!status.get('in_reply_to_id'),
+                  'status--in-thread': !!rootId,
+                  'status--first-in-thread': previousId && (!connectUp || connectToRoot), muted: this.props.muted,
+                  'status--is-quote': isQuotedPost,
+                  'status--has-quote': !!status.get('quote'),
+                })
             }
             data-id={status.get('id')}
           >
@@ -591,10 +591,10 @@ class Status extends ImmutablePureComponent {
                     {...statusContentProps}
                   />
 
-                  {children}
-
                   {media}
                   {hashtagBar}
+
+                  {children}
                 </>
               )}
 

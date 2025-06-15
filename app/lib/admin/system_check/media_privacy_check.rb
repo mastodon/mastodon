@@ -13,7 +13,7 @@ class Admin::SystemCheck::MediaPrivacyCheck < Admin::SystemCheck::BaseCheck
   end
 
   def message
-    Admin::SystemCheck::Message.new(@failure_message, @failure_value, @failure_action, true)
+    Admin::SystemCheck::Message.new(@failure_message, @failure_value, @failure_action, critical: true)
   end
 
   private

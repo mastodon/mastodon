@@ -1,14 +1,6 @@
 @use 'variables' as *;
 @use 'functions' as *;
 
-@function hex-color($color) {
-  @if type-of($color) == 'color' {
-    $color: str-slice(ie-hex-str($color), 4);
-  }
-
-  @return '%23' + unquote($color);
-}
-
 body {
   font-family: $font-sans-serif, sans-serif;
   background: var(--background-color);
@@ -56,6 +48,8 @@ body {
 
   &.app-body {
     padding: 0;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 
     &.layout-single-column {
       height: auto;

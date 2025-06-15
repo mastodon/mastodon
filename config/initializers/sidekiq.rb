@@ -26,6 +26,12 @@ Sidekiq.configure_server do |config|
     require 'prometheus_exporter'
     require 'prometheus_exporter/instrumentation'
 
+    if ENV['MASTODON_PROMETHEUS_EXPORTER_LOCAL'] == 'true'
+      config.on :startup do
+        Mastodon::PrometheusExporter::LocalServer.setup!
+      end
+    end
+
     config.on :startup do
       # Ruby process metrics (memory, GC, etc)
       PrometheusExporter::Instrumentation::Process.start type: 'sidekiq'

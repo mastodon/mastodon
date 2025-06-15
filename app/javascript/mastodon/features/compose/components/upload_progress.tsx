@@ -4,7 +4,6 @@ import { animated, useSpring } from '@react-spring/web';
 
 import UploadFileIcon from '@/material-icons/400-24px/upload_file.svg?react';
 import { Icon } from 'mastodon/components/icon';
-import { reduceMotion } from 'mastodon/initial_state';
 
 interface UploadProgressProps {
   active: boolean;
@@ -20,7 +19,7 @@ export const UploadProgress: React.FC<UploadProgressProps> = ({
   const styles = useSpring({
     from: { width: '0%' },
     to: { width: `${progress}%` },
-    immediate: reduceMotion || !active, // If this is not active, update the UI immediately.
+    immediate: !active, // If this is not active, update the UI immediately.
   });
   if (!active) {
     return null;

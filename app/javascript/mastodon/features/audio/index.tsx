@@ -19,11 +19,7 @@ import { SpoilerButton } from 'mastodon/components/spoiler_button';
 import { formatTime, getPointerPosition } from 'mastodon/features/video';
 import { useAudioContext } from 'mastodon/hooks/useAudioContext';
 import { useAudioVisualizer } from 'mastodon/hooks/useAudioVisualizer';
-import {
-  displayMedia,
-  useBlurhash,
-  reduceMotion,
-} from 'mastodon/initial_state';
+import { displayMedia, useBlurhash } from 'mastodon/initial_state';
 import { playerSettings } from 'mastodon/settings';
 
 const messages = defineMessages({
@@ -163,7 +159,6 @@ export const Audio: React.FC<{
         }
         void spring.start({
           volume: `${audioRef.current.volume * 100}%`,
-          immediate: reduceMotion,
         });
       }
     },
@@ -217,7 +212,6 @@ export const Audio: React.FC<{
         if (audioRef.current && audioRef.current.duration > 0) {
           void spring.start({
             progress: `${(audioRef.current.currentTime / audioRef.current.duration) * 100}%`,
-            immediate: reduceMotion,
             config: config.stiff,
           });
         }
@@ -263,7 +257,6 @@ export const Audio: React.FC<{
     if (lastTimeRange > -1) {
       void spring.start({
         buffer: `${Math.ceil(audioRef.current.buffered.end(lastTimeRange) / audioRef.current.duration) * 100}%`,
-        immediate: reduceMotion,
       });
     }
   }, [spring]);
@@ -278,7 +271,6 @@ export const Audio: React.FC<{
 
     void spring.start({
       volume: `${audioRef.current.muted ? 0 : audioRef.current.volume * 100}%`,
-      immediate: reduceMotion,
     });
 
     persistVolume(audioRef.current.volume, audioRef.current.muted);

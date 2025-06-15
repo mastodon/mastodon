@@ -4,13 +4,11 @@ module ThemeHelper
   def theme_style_tags(theme)
     if theme == 'system'
       ''.html_safe.tap do |tags|
-        tags << vite_stylesheet_tag('styles/mastodon-light.scss', media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
-        tags << vite_stylesheet_tag('styles/application.scss', media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
+        tags << vite_stylesheet_tag('themes/mastodon-light', type: :virtual, media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
+        tags << vite_stylesheet_tag('themes/default', type: :virtual, media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
       end
-    elsif theme == 'default'
-      vite_stylesheet_tag 'styles/application.scss', media: 'all', crossorigin: 'anonymous'
     else
-      vite_stylesheet_tag "styles/#{theme}.scss", media: 'all', crossorigin: 'anonymous'
+      vite_stylesheet_tag "themes/#{theme}", type: :virtual, media: 'all', crossorigin: 'anonymous'
     end
   end
 

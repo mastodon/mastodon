@@ -27,11 +27,7 @@ import {
   attachFullscreenListener,
   detachFullscreenListener,
 } from 'mastodon/features/ui/util/fullscreen';
-import {
-  displayMedia,
-  useBlurhash,
-  reduceMotion,
-} from 'mastodon/initial_state';
+import { displayMedia, useBlurhash } from 'mastodon/initial_state';
 import { playerSettings } from 'mastodon/settings';
 
 import { HotkeyIndicator } from './components/hotkey_indicator';
@@ -260,7 +256,6 @@ export const Video: React.FC<{
         setMuted(videoRef.current.muted);
         void api.start({
           volume: `${videoRef.current.volume * 100}%`,
-          immediate: reduceMotion,
         });
       }
     },
@@ -350,7 +345,6 @@ export const Video: React.FC<{
             videoRef.current.currentTime / videoRef.current.duration;
           void api.start({
             progress: isNaN(progress) ? '0%' : `${progress * 100}%`,
-            immediate: reduceMotion,
             config: config.stiff,
           });
         }
@@ -738,7 +732,6 @@ export const Video: React.FC<{
     if (lastTimeRange > -1) {
       void api.start({
         buffer: `${Math.ceil(videoRef.current.buffered.end(lastTimeRange) / videoRef.current.duration) * 100}%`,
-        immediate: reduceMotion,
       });
     }
   }, [api]);
@@ -753,7 +746,6 @@ export const Video: React.FC<{
 
     void api.start({
       volume: `${videoRef.current.muted ? 0 : videoRef.current.volume * 100}%`,
-      immediate: reduceMotion,
     });
 
     persistVolume(videoRef.current.volume, videoRef.current.muted);
