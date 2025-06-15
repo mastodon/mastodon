@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -32,7 +32,7 @@ import { openNavigation, closeNavigation } from 'mastodon/actions/navigation';
 import { Account } from 'mastodon/components/account';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { WordmarkLogo } from 'mastodon/components/logo';
-import { NavigationPortal } from 'mastodon/components/navigation_portal';
+import { ColumnLink } from 'mastodon/features/ui/components/column_link';
 import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'mastodon/identity_context';
 import { timelinePreview, trendsEnabled, me } from 'mastodon/initial_state';
@@ -40,11 +40,12 @@ import { transientSingleColumn } from 'mastodon/is_mobile';
 import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { ColumnLink } from './column_link';
-import DisabledAccountBanner from './disabled_account_banner';
-import { ListPanel } from './list_panel';
-import { MoreLink } from './more_link';
-import SignInBanner from './sign_in_banner';
+import { DisabledAccountBanner } from './components/disabled_account_banner';
+import { FollowedTagsPanel } from './components/followed_tags_panel';
+import { ListPanel } from './components/list_panel';
+import { MoreLink } from './components/more_link';
+import { SignInBanner } from './components/sign_in_banner';
+import { Trends } from './components/trends';
 
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -67,6 +68,10 @@ const messages = defineMessages({
   },
   about: { id: 'navigation_bar.about', defaultMessage: 'About' },
   search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
+  searchTrends: {
+    id: 'navigation_bar.search_trends',
+    defaultMessage: 'Search / Trending',
+  },
   advancedInterface: {
     id: 'navigation_bar.advanced_interface',
     defaultMessage: 'Open in advanced web interface',
@@ -161,16 +166,19 @@ const FollowRequestsLink: React.FC = () => {
 
 const SearchLink: React.FC = () => {
   const intl = useIntl();
+  const { signedIn } = useIdentity();
   const showAsSearch = useBreakpoint('full');
 
-  if (!trendsEnabled || showAsSearch) {
+  if (!trendsEnabled || (signedIn && showAsSearch)) {
     return (
       <ColumnLink
         transparent
         to={trendsEnabled ? '/explore' : '/search'}
         icon='search'
         iconComponent={SearchIcon}
-        text={intl.formatMessage(messages.search)}
+        text={intl.formatMessage(
+          trendsEnabled ? messages.searchTrends : messages.search,
+        )}
       />
     );
   }
@@ -275,13 +283,6 @@ export const NavigationPanel: React.FC = () => {
     },
   );
 
-  const isFirehoseActive = useCallback(
-    (match: unknown, location: { pathname: string }): boolean => {
-      return !!match || location.pathname.startsWith('/public');
-    },
-    [],
-  );
-
   const previouslyFocusedElementRef = useRef<HTMLElement | null>();
 
   useEffect(() => {
@@ -297,7 +298,7 @@ export const NavigationPanel: React.FC = () => {
     }
   }, [open]);
 
-  let banner = undefined;
+  let banner: React.ReactNode;
 
   if (transientSingleColumn) {
     banner = (
@@ -358,8 +359,6 @@ export const NavigationPanel: React.FC = () => {
                   activeIconComponent={HomeActiveIcon}
                   text={intl.formatMessage(messages.home)}
                 />
-                <NotificationsLink />
-                <FollowRequestsLink />
               </>
             )}
 
@@ -369,32 +368,31 @@ export const NavigationPanel: React.FC = () => {
               <ColumnLink
                 transparent
                 to='/public/local'
-                isActive={isFirehoseActive}
                 icon='globe'
                 iconComponent={PublicIcon}
                 text={intl.formatMessage(messages.firehose)}
               />
             )}
 
-            {!signedIn && (
-              <div className='navigation-panel__sign-in-banner'>
-                <hr />
-                {disabledAccountId ? (
-                  <DisabledAccountBanner />
-                ) : (
-                  <SignInBanner />
-                )}
-              </div>
-            )}
-
             {signedIn && (
               <>
+                <NotificationsLink />
+
+                <FollowRequestsLink />
+
+                <hr />
+
+                <ListPanel />
+
+                <FollowedTagsPanel />
+
                 <ColumnLink
                   transparent
-                  to='/conversations'
-                  icon='at'
-                  iconComponent={AlternateEmailIcon}
-                  text={intl.formatMessage(messages.direct)}
+                  to='/favourites'
+                  icon='star'
+                  iconComponent={StarIcon}
+                  activeIconComponent={StarActiveIcon}
+                  text={intl.formatMessage(messages.favourites)}
                 />
                 <ColumnLink
                   transparent
@@ -406,14 +404,11 @@ export const NavigationPanel: React.FC = () => {
                 />
                 <ColumnLink
                   transparent
-                  to='/favourites'
-                  icon='star'
-                  iconComponent={StarIcon}
-                  activeIconComponent={StarActiveIcon}
-                  text={intl.formatMessage(messages.favourites)}
+                  to='/conversations'
+                  icon='at'
+                  iconComponent={AlternateEmailIcon}
+                  text={intl.formatMessage(messages.direct)}
                 />
-
-                <ListPanel />
 
                 <hr />
 
@@ -430,8 +425,6 @@ export const NavigationPanel: React.FC = () => {
             )}
 
             <div className='navigation-panel__legal'>
-              <hr />
-
               <ColumnLink
                 transparent
                 to='/about'
@@ -440,11 +433,23 @@ export const NavigationPanel: React.FC = () => {
                 text={intl.formatMessage(messages.about)}
               />
             </div>
+
+            {!signedIn && (
+              <div className='navigation-panel__sign-in-banner'>
+                <hr />
+
+                {disabledAccountId ? (
+                  <DisabledAccountBanner />
+                ) : (
+                  <SignInBanner />
+                )}
+              </div>
+            )}
           </div>
 
           <div className='flex-spacer' />
 
-          <NavigationPortal />
+          <Trends />
         </div>
       </animated.div>
     </div>
