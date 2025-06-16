@@ -18,8 +18,13 @@ export const StatusBanner: React.FC<{
 
   const buttonRef = useRef<HTMLButtonElement>(null);
   const forwardClick = useCallback<MouseEventHandler>((e) => {
-    if (buttonRef.current && e.target !== buttonRef.current) {
+    if (
+      buttonRef.current &&
+      e.target !== buttonRef.current &&
+      !buttonRef.current.contains(e.target as Node)
+    ) {
       buttonRef.current.click();
+      buttonRef.current.focus();
     }
   }, []);
 
