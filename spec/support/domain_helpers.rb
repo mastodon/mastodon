@@ -48,7 +48,7 @@ module DomainHelpers
   end
 
   def local_domain_uri
-    Addressable::URI.parse("//#{Rails.configuration.x.local_domain}").display_uri
+    Addressable::URI.parse("//#{Rails.configuration.x.local_domain}")
   end
 
   private
