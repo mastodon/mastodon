@@ -708,7 +708,12 @@ body > [data-popper-placement] {
 
   &__upload {
     position: relative;
-    cursor: grab;
+
+    &.draggable {
+      will-change: transform, opacity;
+      touch-action: none;
+      cursor: grab;
+    }
 
     &.dragging {
       opacity: 0;
@@ -718,18 +723,6 @@ body > [data-popper-placement] {
       height: 100%;
       border-radius: 8px;
       pointer-events: none;
-    }
-
-    &__drag-handle {
-      position: absolute;
-      top: 50%;
-      inset-inline-start: 0;
-      transform: translateY(-50%);
-      color: $white;
-      background: transparent;
-      border: 0;
-      padding: 8px 3px;
-      cursor: grab;
     }
 
     &__actions {
