@@ -101,7 +101,7 @@ RSpec.describe HomeHelper do
         allow(helper).to receive(:closed_registrations?).and_return(true)
         result = helper.sign_up_message
 
-        expect(result).to eq t('auth.registration_closed', instance: Rails.configuration.x.local_domain)
+        expect(result).to eq t('auth.registration_closed', instance: local_domain_uri.host)
       end
     end
 
