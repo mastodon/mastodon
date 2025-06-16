@@ -24,7 +24,7 @@ module ViteRuby::ManifestIntegrityExtension
 
     @name_lookup_cache ||= load_name_lookup_cache
 
-    @name_lookup_cache.fetch(name.delete_suffix('.css'))
+    @name_lookup_cache.fetch(name)
   end
 
   # Find a manifest entry by the *final* file name

@@ -8,26 +8,7 @@ import yaml from 'js-yaml';
 import type { Plugin } from 'vite';
 
 export function MastodonThemes(): Plugin {
-  let themesFile: string | null = null;
-
-  const readThemes = async (): Promise<Record<string, string>> => {
-    if (!themesFile) {
-      throw new Error('Themes file must be defined.');
-    }
-
-    // Get all files mentioned in the themes.yml file.
-    const themesString = await fs.readFile(themesFile, 'utf8');
-    const themes = yaml.load(themesString, {
-      filename: 'themes.yml',
-      schema: yaml.FAILSAFE_SCHEMA,
-    });
-
-    if (!themes || typeof themes !== 'object') {
-      throw new Error('Invalid themes.yml file');
-    }
-
-    return themes as Record<string, string>;
-  };
+  const themes: Record<string, string> = {};
 
   return {
     name: 'mastodon-themes',
@@ -39,10 +20,21 @@ export function MastodonThemes(): Plugin {
       const entrypoints: Record<string, string> = {};
 
       // Get all files mentioned in the themes.yml file.
-      themesFile = path.resolve(userConfig.envDir, 'config/themes.yml');
-      const themes = await readThemes();
+      const themesFile = path.resolve(userConfig.envDir, 'config/themes.yml');
+      if (!themesFile) {
+        throw new Error('Themes file must be defined.');
+      }
+      const themesString = await fs.readFile(themesFile, 'utf8');
+      const themesObject = yaml.load(themesString, {
+        filename: 'themes.yml',
+        schema: yaml.FAILSAFE_SCHEMA,
+      });
 
-      for (const [themeName, themePath] of Object.entries(themes)) {
+      if (!themesObject || typeof themes !== 'object') {
+        throw new Error('Invalid themes.yml file');
+      }
+
+      for (const [themeName, themePath] of Object.entries(themesObject)) {
         if (
           typeof themePath !== 'string' ||
           themePath.split('.').length !== 2 || // Ensure it has exactly one period
@@ -53,6 +45,7 @@ export function MastodonThemes(): Plugin {
           );
           continue;
         }
+        themes[themeName] = themePath;
         entrypoints[`themes/${themeName}`] = path.resolve(
           userConfig.root,
           themePath,
@@ -67,20 +60,32 @@ export function MastodonThemes(): Plugin {
         },
       };
     },
-    async resolveId(source, importer, options) {
-      if (source.startsWith('/themes/')) {
-        const themes = await readThemes();
-        const themeName = source.slice(8).replace(path.extname(source), '');
-
-        if (themeName in themes && typeof themes[themeName] === 'string') {
-          return await this.resolve(
-            `/${themes[themeName]}?direct`,
-            importer,
-            Object.assign({ skipSelf: false, isEntry: true }, options),
-          );
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const basename = path.basename(req.url ?? '');
+        if (
+          req.url?.startsWith('/packs-dev/themes/') &&
+          Object.hasOwn(themes, basename)
+        ) {
+          req.url = `${req.url}.css`;
         }
+        next();
+      });
+    },
+    async resolveId(source, importer, options) {
+      if (!source.startsWith('/themes/')) {
+        return null;
       }
-      return await this.resolve(source, importer, options);
+      const themeName = source.slice(8).replace(path.extname(source), '');
+      const theme = themes[themeName];
+      if (typeof theme !== 'string') {
+        return null;
+      }
+      return await this.resolve(
+        `/${themes[themeName]}?direct`,
+        importer,
+        Object.assign({ skipSelf: false, isEntry: true }, options),
+      );
     },
   };
 }
