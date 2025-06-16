@@ -63,29 +63,15 @@ export function MastodonThemes(): Plugin {
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const basename = path.basename(req.url ?? '');
+        // Rewrite the URL to the entrypoint if it matches a theme.
         if (
           req.url?.startsWith('/packs-dev/themes/') &&
           Object.hasOwn(themes, basename)
         ) {
-          req.url = `${req.url}.css`;
+          req.url = `/packs-dev/${themes[basename]}`;
         }
         next();
       });
-    },
-    async resolveId(source, importer, options) {
-      if (!source.startsWith('/themes/')) {
-        return null;
-      }
-      const themeName = source.slice(8).replace(path.extname(source), '');
-      const theme = themes[themeName];
-      if (typeof theme !== 'string') {
-        return null;
-      }
-      return await this.resolve(
-        `/${themes[themeName]}?direct`,
-        importer,
-        Object.assign({ skipSelf: false, isEntry: true }, options),
-      );
     },
   };
 }
