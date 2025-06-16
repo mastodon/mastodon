@@ -41,7 +41,7 @@ class InitialStateSerializer < ActiveModel::Serializer
     store[:disabled_account_id] = object.disabled_account.id.to_s if object.disabled_account
     store[:moved_to_account_id] = object.moved_to_account.id.to_s if object.moved_to_account
 
-    store[:owner] = object.owner&.id&.to_s if Rails.configuration.x.single_user_mode
+    store[:owner] = object.owner&.id&.to_s if Rails.configuration.x.mastodon.single_user_mode
 
     store
   end
@@ -103,10 +103,10 @@ class InitialStateSerializer < ActiveModel::Serializer
       locale: I18n.locale,
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
-      registrations_open: Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode,
+      registrations_open: Setting.registrations_mode != 'none' && !Rails.configuration.x.mastodon.single_user_mode,
       repository: Mastodon::Version.repository,
       search_enabled: Chewy.enabled?,
-      single_user_mode: Rails.configuration.x.single_user_mode,
+      single_user_mode: Rails.configuration.x.mastodon.single_user_mode,
       source_url: instance_presenter.source_url,
       sso_redirect: sso_redirect,
       status_page_url: Setting.status_page_url,
