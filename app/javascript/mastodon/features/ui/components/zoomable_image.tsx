@@ -2,7 +2,7 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 
 import classNames from 'classnames';
 
-import { useSpring, animated, config } from '@react-spring/web';
+import { useSpring, animated, config, to } from '@react-spring/web';
 import { createUseGesture, dragAction, pinchAction } from '@use-gesture/react';
 
 import { Blurhash } from 'mastodon/components/blurhash';
@@ -276,6 +276,13 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({
     setError(true);
   }, [setError]);
 
+  // Convert the default style transform to a matrix transform to work around
+  // Safari bug https://github.com/mastodon/mastodon/issues/35042
+  const transform = to(
+    [style.scale, style.x, style.y],
+    (s, x, y) => `matrix(${s}, 0, 0, ${s}, ${x}, ${y})`,
+  );
+
   return (
     <div
       className={classNames('zoomable-image', {
@@ -298,7 +305,7 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({
       )}
 
       <animated.img
-        style={style}
+        style={{ transform }}
         role='presentation'
         ref={imageRef}
         alt={alt}
