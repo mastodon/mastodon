@@ -81,9 +81,6 @@ export function MastodonThemes(): Plugin {
       };
 
       for (const module of modules) {
-        if (module.type !== 'css') {
-          continue;
-        }
         if (!addIfMatches(module.file)) {
           for (const importer of module.importers) {
             addIfMatches(importer.file);
