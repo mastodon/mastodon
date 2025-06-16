@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Instance actor endpoint' do
   describe 'GET /actor' do
-    let!(:original_federation_mode) { Rails.configuration.x.limited_federation_mode }
+    let!(:original_federation_mode) { Rails.configuration.x.mastodon.limited_federation_mode }
 
     shared_examples 'instance actor endpoint' do
       before { get instance_actor_path(format: :json) }
@@ -31,8 +31,8 @@ RSpec.describe 'Instance actor endpoint' do
     end
 
     context 'with limited federation mode disabled' do
-      before { Rails.configuration.x.limited_federation_mode = false }
-      after { Rails.configuration.x.limited_federation_mode = original_federation_mode }
+      before { Rails.configuration.x.mastodon.limited_federation_mode = false }
+      after { Rails.configuration.x.mastodon.limited_federation_mode = original_federation_mode }
 
       it_behaves_like 'instance actor endpoint'
 
@@ -44,8 +44,8 @@ RSpec.describe 'Instance actor endpoint' do
     end
 
     context 'with limited federation mode enabled' do
-      before { Rails.configuration.x.limited_federation_mode = true }
-      after { Rails.configuration.x.limited_federation_mode = original_federation_mode }
+      before { Rails.configuration.x.mastodon.limited_federation_mode = true }
+      after { Rails.configuration.x.mastodon.limited_federation_mode = original_federation_mode }
 
       it_behaves_like 'instance actor endpoint'
 
