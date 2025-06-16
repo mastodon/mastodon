@@ -79,7 +79,7 @@ const Lists: React.FC<{
   const lists = useAppSelector((state) => getOrderedLists(state));
 
   useEffect(() => {
-    dispatch(fetchLists());
+    void dispatch(fetchLists());
   }, [dispatch]);
 
   const emptyMessage = (
