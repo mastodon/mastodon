@@ -9,7 +9,7 @@ module ViteRuby::ManifestIntegrityExtension
 
   def load_manifest
     # Invalidate the name lookup cache when reloading manifest
-    @name_lookup_cache = load_name_lookup_cache
+    @name_lookup_cache = load_name_lookup_cache unless dev_server_running?
 
     super
   end
@@ -20,6 +20,8 @@ module ViteRuby::ManifestIntegrityExtension
 
   # Upstream's `virtual` type is a hack, re-implement it with efficient exact name lookup
   def resolve_virtual_entry(name)
+    return name if dev_server_running?
+
     @name_lookup_cache ||= load_name_lookup_cache
 
     @name_lookup_cache.fetch(name)
