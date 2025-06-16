@@ -50,7 +50,7 @@ class SessionActivation < ApplicationRecord
     end
 
     def purge_old
-      latest.offset(Rails.configuration.x.max_session_activations).destroy_all
+      latest.offset(Rails.configuration.x.mastodon.max_session_activations).destroy_all
     end
 
     def exclusive(id)

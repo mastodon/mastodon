@@ -2,6 +2,7 @@
 shared:
   experimental_features: <%= ENV.fetch('EXPERIMENTAL_FEATURES', nil) %>
   limited_federation_mode: <%= (ENV.fetch('LIMITED_FEDERATION_MODE', nil) || ENV.fetch('WHITELIST_MODE', nil)) == 'true' %>
+  max_session_activations: <%= ENV.fetch('MAX_SESSION_ACTIVATIONS', 10) %>
   self_destruct_value: <%= ENV.fetch('SELF_DESTRUCT', nil)&.to_json %>
   software_update_url: <%= ENV.fetch('UPDATE_CHECK_URL', 'https://api.joinmastodon.org/update-check')&.to_json %>
   source:
