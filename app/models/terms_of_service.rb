@@ -20,6 +20,7 @@ class TermsOfService < ApplicationRecord
 
   validates :text, presence: true
   validates :changelog, :effective_date, presence: true, if: -> { published? }
+  validates :effective_date, uniqueness: true
 
   validate :effective_date_cannot_be_in_the_past
 
