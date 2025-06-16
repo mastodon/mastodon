@@ -104,9 +104,9 @@ pt-PT:
         theme: Tema que os visitantes e os novos utilizadores veem.
         thumbnail: Uma imagem de cerca de 2:1, apresentada ao lado da informação do seu servidor.
         timeline_preview: Os visitantes sem sessão iniciada poderão consultar as publicações públicas mais recentes disponíveis no servidor.
-        trendable_by_default: Ignorar a revisão manual do conteúdo de tendências. Os itens individuais ainda podem ser removidos das tendências após a apresentação.
+        trendable_by_default: Ignorar a revisão manual do conteúdo em destaque. Os itens individuais poderão ainda assim ser posteriormente removidos das tendências.
         trends: As tendências mostram quais as publicações, etiquetas e notícias que estão a ganhar destaque no seu servidor.
-        trends_as_landing_page: Mostrar conteúdo de tendências a utilizadores e visitantes com sessão terminada em vez de uma descrição deste servidor. Requer que as tendências estejam ativadas.
+        trends_as_landing_page: Mostrar conteúdo em destaque a utilizadores sem sessão iniciada e visitantes, ao invés de uma descrição deste servidor. Requer que os destaques estejam ativados.
       form_challenge:
         current_password: Está a entrar numa área segura
       imports:
@@ -297,8 +297,8 @@ pt-PT:
         thumbnail: Miniatura do servidor
         timeline_preview: Permitir acesso não autenticado às cronologias públicas
         trendable_by_default: Permitir tendências sem revisão prévia
-        trends: Ativar tendências
-        trends_as_landing_page: Usar tendências como página inicial
+        trends: Ativar destaques
+        trends_as_landing_page: Usar destaques como página de apresentação
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que não segues
@@ -331,7 +331,7 @@ pt-PT:
           label: Está disponível uma nova versão do Mastodon
           none: Nunca notificar atualizações (não recomendado)
           patch: Notificar sobre atualizações de correções de problemas
-        trending_tag: Uma nova publicação em tendência requer revisão
+        trending_tag: Um novo destaque requer revisão
       rule:
         hint: Informação Adicional
         text: Regra
@@ -341,7 +341,7 @@ pt-PT:
       tag:
         listable: Permitir que esta etiqueta apareça em pesquisas e no diretório de perfis
         name: Etiqueta
-        trendable: Permitir que esta etiqueta apareça nas tendências
+        trendable: Permitir que esta etiqueta apareça nos destaques
         usable: Permitir que as publicações usem esta etiqueta localmente
       terms_of_service:
         changelog: O que mudou?

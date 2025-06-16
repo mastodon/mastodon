@@ -152,6 +152,7 @@ nan:
       suspend: 中止權限
       suspended: 權限中止ah
       suspension_irreversible: Tsit ê口座ê資料已經thâi掉，bē當回復。Lí ē當取消停止tsit ê口座ê權限，予伊ē當使用，但是bē當回復任何khah早ê資料。
+      suspension_reversible_hint_html: Tsit ê口座ê權限hōo lâng停止ah，資料ē佇 %{date} lóng總thâi掉。佇hit日前，tsit ê口座ē當復原，無任何pháinn作用。Nā lí想beh liâm-mī thâi掉tsit ê口座ê任何資料，ē當佇下跤操作。
       title: 口座
       unblock_email: 取消封鎖電子phue ê地址
       unblocked_email_msg: 成功取消封鎖 %{username} ê電子phue地址
@@ -188,7 +189,45 @@ nan:
         create_user_role: 建立角色
         demote_user: Kā用者降級
         destroy_announcement: Thâi掉公告
+        destroy_canonical_email_block: Thâi掉電子phue ê封鎖
+        destroy_custom_emoji: Thâi掉自訂ê Emoji
+        destroy_domain_allow: Thâi掉允准ê域名
+        destroy_domain_block: Thâi掉封鎖ê域名
+        destroy_email_domain_block: Thâi掉電子phue域名ê封鎖
+        destroy_instance: 清掉域名
+        destroy_ip_block: Thâi掉IP規則
+        destroy_relay: Thâi掉中繼
+        destroy_status: Thâi掉PO文
+        destroy_unavailable_domain: Thâi掉bē當用ê域名
+        destroy_user_role: Thâi掉角色
+        disable_2fa_user: 停止用2FA
+        disable_custom_emoji: 停止用自訂ê Emoji
+        disable_relay: 停止用中繼
+        disable_sign_in_token_auth_user: 停止用使用者電子phue ê token認證
+        disable_user: 停止用口座
+        enable_custom_emoji: 啟用自訂ê Emoji
+        enable_relay: 啟用中繼
+        enable_sign_in_token_auth_user: 啟用使用者電子phue ê token認證
+        enable_user: 啟用口座
+        memorialize_account: 設做故人ê口座
+        promote_user: Kā用者升級
+        publish_terms_of_service: 公佈服務ê使用規則
+        reject_appeal: 拒絕申訴
+        reject_user: 拒絕用者
         remove_avatar_user: Thâi掉標頭
+        reopen_report: 重頭kā檢舉phah開
+        resend_user: 重送確認ê phue
+        reset_password_user: Kā密碼重頭設
+        resolve_report: Kā檢舉處理好ah
+        sensitive_account: Kā口座內底ê媒體強制標敏感內容
+        silence_account: Kā口座靜音
+        suspend_account: 停止口座ê權限
+        unassigned_report: 取消分配檢舉
+        unblock_email_account: 取消封鎖電子phue ê地址
+        unsensitive_account: 取消kā口座內底ê媒體強制標敏感內容
+        unsilence_account: 取消kā口座靜音
+        unsuspend_account: 取消停止口座ê權限
+        update_announcement: 更新公告
       actions:
         remove_avatar_user_html: "%{name} thâi掉 %{target} ê標頭"
     instances:
