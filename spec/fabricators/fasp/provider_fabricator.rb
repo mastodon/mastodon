@@ -29,3 +29,15 @@ Fabricator(:debug_fasp, from: :fasp_provider) do
     def fasp.update_remote_capabilities = true
   end
 end
+
+Fabricator(:follow_recommendation_fasp, from: :fasp_provider) do
+  confirmed    true
+  capabilities [
+    { id: 'follow_recommendation', version: '0.1', enabled: true },
+  ]
+
+  after_build do |fasp|
+    # Prevent fabrication from attempting an HTTP call to the provider
+    def fasp.update_remote_capabilities = true
+  end
+end
