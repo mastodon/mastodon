@@ -223,7 +223,11 @@ export const NavigationPanel: React.FC = () => {
 
   const [{ x }, spring] = useSpring(
     () => ({
-      x: open ? 0 : MENU_WIDTH,
+      x: open
+        ? 0
+        : getComputedStyle(document.body).direction === 'rtl'
+          ? -MENU_WIDTH
+          : MENU_WIDTH,
       onRest: {
         x({ value }: { value: number }) {
           if (value === 0) {
