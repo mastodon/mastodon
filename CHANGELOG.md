@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - **Add “Followers you know” widget to user profiles and hover cards** (#34652, #34678, #34681, #34697, #34699, #34769, #34774 and #34914 by @diondiondion)
-- **Add featured tab to profiles on web UI and rework pinned posts** (#34405, #34483, #34491, #34754, #34855, #34858, #34868, and #34869 by @ChaosExAnima, @ClearlyClaire, @Gargron, and @diondiondion)
+- **Add featured tab to profiles on web UI and rework pinned posts** (#34405, #34483, #34491, #34754, #34855, #34858, #34868, #34869, #34927, #34995, #35056 and #34931 by @ChaosExAnima, @ClearlyClaire, @Gargron, and @diondiondion)
 - Add endorsed accounts to featured tab in web UI (#34421 and #34568 by @Gargron)\
   This also includes the following new REST API endpoints:
   - `GET /api/v1/accounts/:id/endorsements`: https://docs.joinmastodon.org/methods/accounts/#endorsements
@@ -19,14 +19,14 @@ All notable changes to this project will be documented in this file.
   - `POST /api/v1/tags/:id/unfeature`: https://docs.joinmastodon.org/methods/tags/#unfeature
 - Add reminder when about to post without alt text in web UI (#33760 and #33784 by @Gargron)
 - Add a warning in Web UI when composing a post when the selected and detected language are different (#33042, #33683, #33700, #33724, #33770, and #34193 by @ClearlyClaire and @Gargron)
-- Add ability to reorder and translate server rules (#34637, #34737, #34494, #34756, and #34820 by @ChaosExAnima and @ClearlyClaire)\
+- Add support for verifying and displaying remote quote posts (#34370, #34481, #34510, #34551, #34480, #34479, #34553, #34584, #34623, #34738, #34766, #34770, #34772, #34773, #34786, #34790, #34864, #34957, #34961, #35016, #35022, #35036, #34946, #34945 and #34958 by @ClearlyClaire and @diondiondion)\
+  Support for verifying remote quotes according to [FEP-044f](https://codeberg.org/fediverse/fep/src/branch/main/fep/044f/fep-044f.md) and displaying them in the Web UI has been implemented.\
+  Quoting other people is not implemented yet, and it is currently not possible to mark your own posts as allowing quotes. However, a new “Who can quote” setting has been added to the “Posting defaults” section of the user settings. This setting allows you to set a default that will be used for new posts made on Mastodon 4.5 and newer, when quote posts will be fully implemented.\
+  In the REST API, quote posts are represented by a new `quote` attribute on `Status` and `StatusEdit` entities: https://docs.joinmastodon.org/entities/StatusEdit/#quote https://docs.joinmastodon.org/entities/Status/#quote
+- Add ability to reorder and translate server rules (#34637, #34737, #34494, #34756, #34820 and #34997 by @ChaosExAnima and @ClearlyClaire)\
   Rules are now shown in the user’s language, if a translation has been set.\
   In the REST API, `Rule` entities now have a new `translations` attribute: https://docs.joinmastodon.org/entities/Rule/#translations
 - Add emoji from Twemoji 15.1.0, including in the emoji picker/completion (#33395, #34321, #34620, and #34677 by @ChaosExAnima, @ClearlyClaire, @TheEssem, and @eramdam)
-- Add experimental support for verifying and displaying remote quote posts (#34370, #34481, #34510, #34551, #34480, #34479, #34553, #34584, #34623, #34738, #34766, #34770, #34772, #34773, #34786, #34790, and #34864 by @ClearlyClaire and @diondiondion)\
-  Support for verifying remote quotes according to [FEP-044f](https://codeberg.org/fediverse/fep/src/branch/main/fep/044f/fep-044f.md) and displaying them in the Web UI has been implemented. Such quotes are currently only processed if the `inbound_quotes` experimental feature is enabled (`EXPERIMENTAL_FEATURES=inbound_quotes`).\
-  Quoting other people is not implemented yet, and it is currently not possible to mark your own posts as allowing quotes. However, a new “Who can quote” setting has been added to the “Posting defaults” section of the user settings. This setting allows you to set a default that will be used for new posts made on Mastodon 4.5 and newer, when quote posts will be fully implemented.\
-  In the REST API, quote posts are represented by a new `quote` attribute on `Status` and `StatusEdit` entities: https://docs.joinmastodon.org/entities/StatusEdit/#quote https://docs.joinmastodon.org/entities/Status/#quote
 - Add option to remove account from followers in web UI (#34488 by @Gargron)
 - Add relationship tags to profiles and hover cards in web UI (#34467 and #34792 by @Gargron and @diondiondion)
 - Add ability to open posts in a new tab by middle-clicking in web UI (#32988, #33106, #33419, and #34700 by @ClearlyClaire, @Gargron, and @tribela)
@@ -38,7 +38,7 @@ All notable changes to this project will be documented in this file.
   Server administrators can now chose to opt in to transmit referrer information when following an external link. Only the domain name is transmitted, not the referrer path.
 - Add double tap to zoom and swipe to dismiss to media modal in web UI (#34210 by @Gargron)
 - Add link from Web UI for Hashtags to the Moderation UI (#31448 by @ThisIsMissEm)
-- **Add terms of service** (#33055, #33233, #33230, #33703, #33699, #33994, #33993, #34105, #34122, #34200, and #34527 by @ClearlyClaire, @Gargron, @mjankowski, and @oneiros)\
+- **Add terms of service** (#33055, #33233, #33230, #33703, #33699, #33994, #33993, #34105, #34122, #34200, #34527 and #35053 by @ClearlyClaire, @Gargron, @mjankowski, and @oneiros)\
   Server administrators can now fill in Terms of Service, optionally using a provided template.
 - **Add age verification on sign-up** (#34150, #34663, and #34636 by @ClearlyClaire and @Gargron)\
   Server administrators now have a setting to set a minimum age requirement for creating a new server, asking users for their date of birth. The date of birth is checked against the minimum age requirement server-side but not stored.\
@@ -48,7 +48,7 @@ All notable changes to this project will be documented in this file.
 - Add ability to dismiss alt text badge by tapping it in web UI (#33737 by @Gargron)
 - Add loading indicator to timeline gap indicators in web UI (#33762 by @Gargron)
 - Add interaction modal when trying to interact with a poll while logged out (#32609 by @ThisIsMissEm)
-- **Add experimental FASP support** (#34031, #34415, and #34765 by @oneiros)\
+- **Add experimental FASP support** (#34031, #34415, #34765, #34965, and #34964 by @oneiros)\
   This is a first step towards supporting “Fediverse Auxiliary Service Providers” (https://github.com/mastodon/fediverse_auxiliary_service_provider_specifications). This is mostly interesting to developers who would like to implement their own FASP, but also includes the capability to share data with a discovery provider (see https://www.fediscovery.org).
 - Add ability for admins to send announcements to all users via email (#33928 and #34411 by @ClearlyClaire)\
   This is meant for critical announcements only, as this will potentially send a lot of emails and cannot be opted out of by users.
@@ -59,8 +59,9 @@ All notable changes to this project will be documented in this file.
 - Add dropdown menu with quick actions to lists of accounts in web UI (#34391, #34709, and #34767 by @Gargron, @diondiondion, and @mkljczk)
 - Add support for displaying “year in review” notification in web UI (#32710, #32765, #32709, #32807, #32914, #33148, and #33882 by @Gargron and @mjankowski)\
   Note that the notification is currently not generated automatically, and at the moment requires a manual undocumented administrator action.
-- Add experimental support for receiving HTTP Message Signatures (RFC9421) (#34814 by @oneiros)\
+- Add experimental support for receiving HTTP Message Signatures (RFC9421) (#34814 and #35033 by @oneiros)\
   For now, this needs to be explicitly enabled through the `http_message_signatures` feature flag (`EXPERIMENTAL_FEATURES=http_message_signatures`). This currently only covers verifying such signatures (inbound HTTP requests), not issuing them (outbound HTTP requests).
+- Add experimental Async Refreshes API (#34918 by @oneiros)
 - Add experimental server-side feature to fetch remote replies (#32615, #34147, #34149, #34151, #34615, #34682, and #34702 by @ClearlyClaire and @sneakers-the-rat)\
   This experimental feature causes the server to recursively fetch replies in background tasks whenever a user opens a remote post. This happens asynchronously and the client is currently not notified of the existence of new replies, which will thus only be displayed the next time this post’s context gets requested.\
   This feature needs to be explicitly enabled server-side by setting `FETCH_REPLIES_ENABLED` environment variable to `true`.
@@ -85,7 +86,7 @@ All notable changes to this project will be documented in this file.
 - Add `og:locale` to expose status language in OpenGraph previews (#34012 by @ThisIsMissEm)
 - Add `-skip-filled-timeline` option to `tootctl feed build` to skip half-filled feeds (#33844 by @ClearlyClaire)
 - Add support for changing the base Docker registry with the `BASE_REGISTRY` `ARG` (#33712 by @wolfspyre)
-- Add an optional metric exporter (#33734, #33840, #34172, #34192, 34223)\
+- Add an optional metric exporter (#33734, #33840, #34172, #34192, #34223, and #35005 by @oneiros and @renchap)\
   Optionally enable the `prometheus_exporter` ruby gem (see https://github.com/discourse/prometheus_exporter) to collect and expose metrics. See the documentation for all the details: https://docs.joinmastodon.org/admin/config/#prometheus
 - Add `attribution_domains` attribute to `PATCH /api/v1/accounts/update_credentials` (#32730 by @c960657)\
   This is documented at https://docs.joinmastodon.org/methods/accounts/#update_credentials
@@ -111,16 +112,20 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- Change design of navigation panel in Web UI, change layout on narrow screens (#34910, #34987, #35017, #34986, #35029, #35065, #35067 and #35072 by @ClearlyClaire, @Gargron, and @diondiondion)
 - Change design of lists in web UI (#32881, #33054, and #33036 by @Gargron)
 - Change design of edit media modal in web UI (#33516, #33702, #33725, #33725, #33771, and #34345 by @Gargron)
-- Change design of audio player in web UI (#34520, #34740, and #34865 by @ClearlyClaire, @Gargron, and @diondiondion)
+- Change design of audio player in web UI (#34520, #34740, #34865, #34929, #34933, and #35034 by @ClearlyClaire, @Gargron, and @diondiondion)
 - Change design of interaction modal in web UI (#33278 by @Gargron)
 - Change list timelines to reflect added and removed users retroactively (#32930 by @Gargron)
 - Change account search to be more forgiving of spaces (#34455 by @Gargron)
 - Change unfollow button label from “Mutual” to “Unfollow” in web UI (#34392 by @Gargron)
 - Change “Specific people” to “Private mention” in menu in web UI (#33963 by @Gargron)
+- Change "Explore" to "Trending" and remove explanation banners (#34985 by @Gargron)
+- Change media attachments of moderated posts to not be accessible (#34872 by @Gargron)
+  Moderators will still be able to access them while they are kept, but they won't be accessible to the public in the meantime.
 - Change language names in compose box language picker to be localized (#33402 by @c960657)
-- Change onboarding flow in web UI (#32998, #33119, and #33471 by @ClearlyClaire and @Gargron)
+- Change onboarding flow in web UI (#32998, #33119, #33471 and #34962 by @ClearlyClaire and @Gargron)
 - Change emoji categories in admin interface to be ordered by name (#33630 by @ShadowJonathan)
 - Change design of rich text elements in web UI (#32633 by @Gargron)
 - Change wording of “single choice” to “pick one” in poll authoring form (#32397 by @ThisIsMissEm)
@@ -129,8 +134,7 @@ All notable changes to this project will be documented in this file.
 - Change `libvips` to be enabled by default in place of ImageMagick (#34741 and #34753 by @ClearlyClaire and @diondiondion)
 - Change avatar and header size limits from 2MB to 8MB when using libvips (#33002 by @Gargron)
 - Change search to use query params in web UI (#32949 and #33670 by @ClearlyClaire and @Gargron)
-- Change build system from Webpack to Vite (#34454, #34450, #34758, #34768, #34813, #34808, #34837, and #34732 by @ChaosExAnima, @ClearlyClaire, @mjankowski, and @renchap)\
-  One known limitation is that themes’ main style file needs to have a very specific file name: `app/javascript/styles/:name.scss` where `:name` is the name of the theme in `config/themes.yml`
+- Change build system from Webpack to Vite (#34454, #34450, #34758, #34768, #34813, #34808, #34837, #34732, #35007 and #35035 by @ChaosExAnima, @ClearlyClaire, @mjankowski, and @renchap)
 - Change account creation API to forbid creation from user tokens (#34828 by @ThisIsMissEm)
 - Change `/api/v2/instance` to be enabled without authentication when limited federation mode is enabled (#34576 by @ClearlyClaire)
 - Change `DEFAULT_LOCALE` to not override unauthenticated users’ browser language (#34535 by @ClearlyClaire)\
@@ -214,6 +218,22 @@ All notable changes to this project will be documented in this file.
 - Fix bugs with upload progress (#34325 by @ChaosExAnima)
 - Fix being unable to hide controls in full screen video in web UI (#34308 by @Gargron)
 - Fix extra space under left-indented vertical videos (#34313 by @ClearlyClaire)
+- Fix glitchy iOS media attachment drag interactions (#35057 by @diondiondion)
+- Fix zoomed images being blurry in Safari (#35052 by @diondiondion)
+- Fix redundant focus stop within status component in Web UI (#35037 and #35051 by @diondiondion)
+- Fix digits in media player time readout not having a consistent width (#35038 by @diondiondion)
+- Fix wrong text color for “Open in advanced web interface” banner in high-contrast theme (#35032 by @diondiondion)
+- Fix hover card for limited accounts not hiding information as expected (#35024 by @diondiondion)
+- Fix some animations not respecting the reduced animation preferences (#35018 by @ChaosExAnima)
+- Fix direction of media gallery arrows in RTL locales (#35014 by @diondiondion)
+- Fix cramped layout of follower recommendations on small viewports (#34967 and #35023 by @diondiondion)
+- Fix two composers being shown at the same time in some cases (#35006 by @ChaosExAnima)
+- Fix handling of remote attachments with multiple media types (#34996 by @ClearlyClaire)
+- Fix broken colors in some themed SVGs in web UI (#34988 by @Gargron)
+- Fix wrong dimensions on blurhash previews of news articles in web UI (#34990 by @Gargron)
+- Fix wrong styles on action bar in media modal in web UI (#34989 by @Gargron)
+- Fix search column input not updating on param change (#34951 by @PGrayCS)
+- Fix account note textarea being interactable before the relationship gets fetched (#34932 by @ClearlyClaire)
 - Fix SASS deprecation notices (#34278 by @ChaosExAnima)
 - Fix display of failed-to-load image attachments in web UI (#34217 by @Gargron)
 - Fix duplicate REST API requests on submitting account personal note with ctrl+enter (#34213 by @ClearlyClaire)
