@@ -221,14 +221,18 @@ export const NavigationPanel: React.FC = () => {
     };
   }, [dispatch]);
 
+  const isLtrDir = getComputedStyle(document.body).direction !== 'rtl';
+
+  const OPEN_MENU_OFFSET = isLtrDir ? MENU_WIDTH : -MENU_WIDTH;
+
   const [{ x }, spring] = useSpring(
     () => ({
-      x: open ? 0 : MENU_WIDTH,
+      x: open ? 0 : OPEN_MENU_OFFSET,
       onRest: {
         x({ value }: { value: number }) {
           if (value === 0) {
             dispatch(openNavigation());
-          } else if (value > 0) {
+          } else if (isLtrDir ? value > 0 : value < 0) {
             dispatch(closeNavigation());
           }
         },
@@ -238,25 +242,38 @@ export const NavigationPanel: React.FC = () => {
   );
 
   const bind = useDrag(
-    ({ last, offset: [ox], velocity: [vx], direction: [dx], cancel }) => {
-      if (ox < -70) {
+    ({
+      last,
+      offset: [xOffset],
+      velocity: [xVelocity],
+      direction: [xDirection],
+      cancel,
+    }) => {
+      const logicalXDirection = isLtrDir ? xDirection : -xDirection;
+      const logicalXOffset = isLtrDir ? xOffset : -xOffset;
+      const hasReachedDragThreshold = logicalXOffset < -70;
+
+      if (hasReachedDragThreshold) {
         cancel();
       }
 
       if (last) {
-        if (ox > MENU_WIDTH / 2 || (vx > 0.5 && dx > 0)) {
-          void spring.start({ x: MENU_WIDTH });
+        const isAboveOpenThreshold = logicalXOffset > MENU_WIDTH / 2;
+        const isQuickFlick = xVelocity > 0.5 && logicalXDirection > 0;
+
+        if (isAboveOpenThreshold || isQuickFlick) {
+          void spring.start({ x: OPEN_MENU_OFFSET });
         } else {
           void spring.start({ x: 0 });
         }
       } else {
-        void spring.start({ x: ox, immediate: true });
+        void spring.start({ x: xOffset, immediate: true });
       }
     },
     {
       from: () => [x.get(), 0],
       filterTaps: true,
-      bounds: { left: 0 },
+      bounds: isLtrDir ? { left: 0 } : { right: 0 },
       rubberband: true,
     },
   );
