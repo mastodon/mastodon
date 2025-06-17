@@ -34,9 +34,13 @@ class EmailMxValidator < ActiveModel::Validator
   end
 
   def on_allowlist?(domain)
-    return false if Rails.configuration.x.email_domains_allowlist.blank?
+    return false if allowed_email_domains.blank?
 
-    Rails.configuration.x.email_domains_allowlist.include?(domain)
+    allowed_email_domains.include?(domain)
+  end
+
+  def allowed_email_domains
+    Rails.configuration.x.email_domains.allowlist
   end
 
   def resolve_mx(domain)

@@ -139,13 +139,13 @@ RSpec.describe User do
 
   describe 'email domains denylist integration' do
     around do |example|
-      original = Rails.configuration.x.email_domains_denylist
+      original = Rails.configuration.x.email_domains.denylist
 
-      Rails.configuration.x.email_domains_denylist = 'mvrht.com'
+      Rails.configuration.x.email_domains.denylist = 'mvrht.com'
 
       example.run
 
-      Rails.configuration.x.email_domains_denylist = original
+      Rails.configuration.x.email_domains.denylist = original
     end
 
     it 'allows a user with an email domain that is not on the denylist to be created' do
@@ -392,13 +392,13 @@ RSpec.describe User do
 
   describe 'allowlist integration' do
     around do |example|
-      original = Rails.configuration.x.email_domains_allowlist
+      original = Rails.configuration.x.email_domains.allowlist
 
-      Rails.configuration.x.email_domains_allowlist = 'mastodon.space'
+      Rails.configuration.x.email_domains.allowlist = 'mastodon.space'
 
       example.run
 
-      Rails.configuration.x.email_domains_allowlist = original
+      Rails.configuration.x.email_domains.allowlist = original
     end
 
     it 'does not allow a user to be created when their email is not on the allowlist' do
@@ -418,13 +418,13 @@ RSpec.describe User do
 
     context 'with a subdomain on the denylist' do
       around do |example|
-        original = Rails.configuration.x.email_domains_denylist
+        original = Rails.configuration.x.email_domains.denylist
         example.run
-        Rails.configuration.x.email_domains_denylist = original
+        Rails.configuration.x.email_domains.denylist = original
       end
 
       it 'does not allow a user to be created with an email subdomain on the denylist even if the top domain is on the allowlist' do
-        Rails.configuration.x.email_domains_denylist = 'denylisted.mastodon.space'
+        Rails.configuration.x.email_domains.denylist = 'denylisted.mastodon.space'
 
         user = described_class.new(email: 'foo@denylisted.mastodon.space', account: account, password: password)
         expect(user).to_not be_valid
