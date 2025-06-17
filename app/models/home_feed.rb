@@ -35,7 +35,7 @@ class HomeFeed < Feed
     # Map unhydrated keys and their scores
     u_map = hydrated_with_scores.to_h { |key, score| [key.to_i, score.to_f] }
 
-    # Map unhydrated keys and sort them by scores in descending order
-    Status.where(id: u_map.keys).cache_ids.sort_by { |status| -u_map[status.id.to_s].to_f }
+    # Map unhydrated keys and sort them by scores in descending order, referencing integer keys directly
+    Status.where(id: u_map.keys).cache_ids.sort_by { |status| -u_map[status.id].to_f }
   end
 end
