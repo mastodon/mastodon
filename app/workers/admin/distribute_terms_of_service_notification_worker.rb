@@ -1,17 +1,22 @@
 # frozen_string_literal: true
 
 class Admin::DistributeTermsOfServiceNotificationWorker
-  include Sidekiq::Worker
+  include Sidekiq::IterableJob
+  include BulkMailer
 
-  def perform(terms_of_service_id)
-    terms_of_service = TermsOfService.find(terms_of_service_id)
+  def build_enumerator(terms_of_service_id, cursor:)
+    @terms_of_service = TermsOfService.find(terms_of_service_id)
 
-    terms_of_service.scope_for_interstitial.in_batches.update_all(require_tos_interstitial: true)
-
-    terms_of_service.scope_for_notification.find_each do |user|
-      UserMailer.terms_of_service_changed(user, terms_of_service).deliver_later!
-    end
+    active_record_batches_enumerator(@terms_of_service.scope_for_notification, cursor:)
   rescue ActiveRecord::RecordNotFound
-    true
+    nil
+  end
+
+  def each_iteration(batch_of_users, _terms_of_service_id)
+    push_bulk_mailer(UserMailer, :terms_of_service_changed, batch_of_users.map { |user| [user, @terms_of_service] })
+  end
+
+  def on_start
+    @terms_of_service.scope_for_interstitial.in_batches.update_all(require_tos_interstitial: true)
   end
 end
