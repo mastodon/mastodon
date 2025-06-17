@@ -249,15 +249,16 @@ export const NavigationPanel: React.FC = () => {
       direction: [xDirection],
       cancel,
     }) => {
-      const hasReachedDragThreshold = xOffset * xDirection > 70;
+      const logicalXDirection = isLtrDir ? xDirection : -xDirection;
+      const logicalXOffset = isLtrDir ? xOffset : -xOffset;
+      const hasReachedDragThreshold = logicalXOffset < -70;
 
       if (hasReachedDragThreshold) {
         cancel();
       }
 
       if (last) {
-        const isAboveOpenThreshold = xOffset > MENU_WIDTH / 2;
-        const logicalXDirection = isLtrDir ? xDirection : -xDirection;
+        const isAboveOpenThreshold = logicalXOffset > MENU_WIDTH / 2;
         const isQuickFlick = xVelocity > 0.5 && logicalXDirection > 0;
 
         if (isAboveOpenThreshold || isQuickFlick) {
