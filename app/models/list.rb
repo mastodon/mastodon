@@ -14,6 +14,8 @@
 #
 
 class List < ApplicationRecord
+  self.inheritance_column = nil
+
   include Paginable
 
   PER_ACCOUNT_LIMIT = 50

@@ -209,7 +209,7 @@ export default tseslint.config([
 
       'import/resolver': {
         typescript: {
-          project: path.resolve(import.meta.dirname, './tsconfig.json'),
+          project: path.resolve('./tsconfig.json'),
         },
       },
     },

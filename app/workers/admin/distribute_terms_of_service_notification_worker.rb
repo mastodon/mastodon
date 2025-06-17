@@ -3,6 +3,8 @@
 class Admin::DistributeTermsOfServiceNotificationWorker
   include Sidekiq::Worker
 
+  sidekiq_options retry: false
+
   def perform(terms_of_service_id)
     terms_of_service = TermsOfService.find(terms_of_service_id)
 
