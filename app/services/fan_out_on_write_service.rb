@@ -29,7 +29,6 @@ class FanOutOnWriteService < BaseService
 
     # Prepare the request
     request = Net::HTTP::Post.new(url.path, { 'Content-Type' => 'application/json' })
-    # TODO: add as much information as possible to the request
     request.body = {
       id: @status.id.to_s,
       uri: @status.uri,
