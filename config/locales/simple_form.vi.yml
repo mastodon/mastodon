@@ -42,7 +42,7 @@ vi:
         autofollow: Những người đăng ký sẽ tự động theo dõi bạn
         avatar: WEBP, PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         bot: Tài khoản này tự động thực hiện các hành động và không được quản lý bởi người thật
-        context: Chọn những nơi sẽ áp dụng bộ lọc
+        context: Chọn những nơi áp dụng bộ lọc
         current_password: Để bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
         digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
@@ -56,7 +56,7 @@ vi:
         scopes: Ứng dụng sẽ được phép truy cập những API nào. Nếu bạn chọn quyền cấp cao nhất, không cần chọn quyền nhỏ.
         setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì sẽ không hiện những lượt đăng lại khác trên bảng tin
         setting_always_send_emails: Bình thường thì sẽ không gửi khi bạn đang dùng Mastodon
-        setting_default_quote_policy: Thiết lập này chỉ hiệu lực đối với các tút được tạo bằng phiên bản Mastodon tiếp theo, nhưng bạn có thể chọn trước tùy chọn của mình trong quá trình chuẩn bị
+        setting_default_quote_policy: Thiết lập này chỉ hiệu lực đối với các tút được tạo bằng phiên bản Mastodon tiếp theo, nhưng bạn có thể chọn trước sẵn
         setting_default_sensitive: Bắt buộc nhấn vào mới có thể xem
         setting_display_media_default: Click để xem
         setting_display_media_hide_all: Luôn ẩn
@@ -74,7 +74,7 @@ vi:
       featured_tag:
         name: 'Các hashtag mà bạn đã sử dụng gần đây:'
       filters:
-        action: Chọn hành động sẽ thực hiện khi một tút khớp với bộ lọc
+        action: Chọn hành động áp dụng khi một tút khớp với bộ lọc
         actions:
           blur: Ẩn media sau một cảnh báo, mà không ảnh hưởng nội dung
           hide: Ẩn hoàn toàn, như thể nó không tồn tại
@@ -130,7 +130,7 @@ vi:
         webauthn: Nếu đây là USB key, hãy cắm vào và thử xoay chiều.
       settings:
         indexable: Trang của bạn có thể xuất hiện trong kết quả tìm kiếm trên Google, Bing và các nơi khác.
-        show_application: Bạn sẽ luôn có thể xem ứng dụng nào đã đăng tút của mình.
+        show_application: Bạn luôn có thể xem ứng dụng đã đăng tút của mình.
       tag:
         name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
       terms_of_service:
@@ -249,8 +249,8 @@ vi:
         setting_theme: Giao diện
         setting_trends: Hiện xu hướng trong ngày
         setting_unfollow_modal: Hỏi trước khi bỏ theo dõi ai đó
-        setting_use_blurhash: Làm mờ media nhạy cảm
-        setting_use_pending_items: Không tự động cập nhật bảng tin
+        setting_use_blurhash: Làm mờ media bị ẩn
+        setting_use_pending_items: Không tự động làm mới bảng tin
         severity: Mức độ nghiêm trọng
         sign_in_token_attempt: Mã an toàn
         title: Tựa đề
