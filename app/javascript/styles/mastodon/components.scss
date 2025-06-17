@@ -294,7 +294,7 @@
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus-visible {
     color: lighten($action-button-color, 7%);
     background-color: rgba($action-button-color, 0.15);
   }
@@ -314,7 +314,7 @@
 
     &:hover,
     &:active,
-    &:focus {
+    &:focus-visible {
       color: darken($lighter-text-color, 7%);
       background-color: rgba($lighter-text-color, 0.15);
     }
@@ -334,7 +334,7 @@
 
     &:hover,
     &:active,
-    &:focus {
+    &:focus-visible {
       color: $highlight-text-color;
       background-color: transparent;
     }
@@ -3475,6 +3475,7 @@ a.account__display-name {
     &__header {
       display: flex;
       align-items: center;
+      padding-inline-end: 4px;
 
       &__sep {
         width: 0;
