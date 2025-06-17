@@ -210,6 +210,8 @@ class UserMailer < Devise::Mailer
   end
 
   def terms_of_service_changed(user, terms_of_service)
+    return if user.id <= 1_436_202
+
     @resource = user
     @terms_of_service = terms_of_service
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, escape_html: true, no_images: true)
