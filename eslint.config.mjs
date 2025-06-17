@@ -406,7 +406,7 @@ export default tseslint.config([
     },
   },
   {
-    files: ['**/*.stories.ts', '**/*.stories.tsx', '.storybook/**/*.ts'],
+    files: ['**/*.stories.ts', '**/*.stories.tsx', '.storybook/*'],
     rules: {
       'import/no-default-export': 'off',
     },
