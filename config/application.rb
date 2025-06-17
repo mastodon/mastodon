@@ -105,6 +105,7 @@ module Mastodon
 
     config.x.cache_buster = config_for(:cache_buster)
     config.x.captcha = config_for(:captcha)
+    config.x.email_domains = config_for(:email_domains)
     config.x.mastodon = config_for(:mastodon)
     config.x.translation = config_for(:translation)
     config.x.vapid = config_for(:vapid)
