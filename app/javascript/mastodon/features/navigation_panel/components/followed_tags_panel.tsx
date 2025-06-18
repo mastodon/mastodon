@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
 import TagIcon from '@/material-icons/400-24px/tag.svg?react';
-import { apiGetFollowedTags } from 'mastodon/api/tags';
-import type { ApiHashtagJSON } from 'mastodon/api_types/tags';
+import { fetchFollowedHashtags } from 'mastodon/actions/tags_typed';
 import { ColumnLink } from 'mastodon/features/ui/components/column_link';
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { CollapsiblePanel } from './collapsible_panel';
 
@@ -24,25 +24,25 @@ const messages = defineMessages({
   },
 });
 
+const TAG_LIMIT = 5;
+
+const neverMarkLinkActive = () => false;
+
 export const FollowedTagsPanel: React.FC = () => {
   const intl = useIntl();
-  const [tags, setTags] = useState<ApiHashtagJSON[]>([]);
-  const [loading, setLoading] = useState(false);
+  const dispatch = useAppDispatch();
+  const { tags, stale, loading } = useAppSelector(
+    (state) => state.followedTags,
+  );
 
   useEffect(() => {
-    setLoading(true);
+    if (stale) {
+      void dispatch(fetchFollowedHashtags({ limit: TAG_LIMIT + 1 }));
+    }
+  }, [dispatch, stale]);
 
-    void apiGetFollowedTags(undefined, 4)
-      .then(({ tags }) => {
-        setTags(tags);
-        setLoading(false);
-
-        return '';
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [setLoading, setTags]);
+  const tagsToRender = tags.slice(0, TAG_LIMIT);
+  const hasMoreTags = tags.length > TAG_LIMIT;
 
   return (
     <CollapsiblePanel
@@ -54,7 +54,7 @@ export const FollowedTagsPanel: React.FC = () => {
       expandTitle={intl.formatMessage(messages.expand)}
       loading={loading}
     >
-      {tags.map((tag) => (
+      {tagsToRender.map((tag) => (
         <ColumnLink
           icon='hashtag'
           key={tag.name}
@@ -64,6 +64,16 @@ export const FollowedTagsPanel: React.FC = () => {
           transparent
         />
       ))}
+      {hasMoreTags && (
+        <ColumnLink
+          icon='hashtag'
+          iconComponent={TagIcon}
+          text='View all'
+          to='/followed_tags'
+          isActive={neverMarkLinkActive}
+          transparent
+        />
+      )}
     </CollapsiblePanel>
   );
 };

@@ -26,5 +26,6 @@ export const apiGetFollowedTags = async (url?: string, limit?: number) => {
   return {
     tags: response.data,
     links: getLinks(response),
+    replace: !url,
   };
 };
