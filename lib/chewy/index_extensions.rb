@@ -3,7 +3,7 @@
 module Chewy
   module IndexExtensions
     def index_preset(base_options = {})
-      case ENV['ES_PRESET'].presence
+      case Rails.configuration.x.search.preset
       when 'single_node_cluster', nil
         base_options.merge(number_of_replicas: 0)
       when 'small_cluster'

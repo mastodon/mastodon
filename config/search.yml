@@ -1,0 +1,9 @@
+shared:
+  ca_file: <%= ENV.fetch('ES_CA_FILE', nil).presence %>
+  enabled: <%= ENV.fetch('ES_ENABLED', nil) == 'true' %>
+  host: <%= ENV.fetch('ES_HOST') { 'localhost' } %>
+  password: <%= ENV.fetch('ES_PASS', nil).presence %>
+  port: <%= ENV.fetch('ES_PORT') { 9200 } %>
+  prefix: <%= ENV.fetch('ES_PREFIX', nil) %>
+  preset: <%= ENV.fetch('ES_PRESET', nil).presence %>
+  user: <%= ENV.fetch('ES_USER', nil).presence %>

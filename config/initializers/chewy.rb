@@ -1,26 +1,16 @@
 # frozen_string_literal: true
 
-enabled         = ENV['ES_ENABLED'] == 'true'
-host            = ENV.fetch('ES_HOST') { 'localhost' }
-port            = ENV.fetch('ES_PORT') { 9200 }
-user            = ENV.fetch('ES_USER', nil).presence
-password        = ENV.fetch('ES_PASS', nil).presence
-prefix          = ENV.fetch('ES_PREFIX', nil)
-ca_file         = ENV.fetch('ES_CA_FILE', nil).presence
-
-transport_options = { ssl: { ca_file: ca_file } } if ca_file.present?
-
 Chewy.settings = {
-  host: "#{host}:#{port}",
-  prefix: prefix,
-  enabled: enabled,
+  host: "#{Rails.configuration.x.search.host}:#{Rails.configuration.x.search.port}",
+  prefix: Rails.configuration.x.search.prefix,
+  enabled: Rails.configuration.x.search.enabled,
   journal: false,
-  user: user,
-  password: password,
+  user: Rails.configuration.x.search.user,
+  password: Rails.configuration.x.search.password,
   index: {
-    number_of_replicas: ['single_node_cluster', nil].include?(ENV['ES_PRESET'].presence) ? 0 : 1,
+    number_of_replicas: ['single_node_cluster', nil].include?(Rails.configuration.x.search.preset) ? 0 : 1,
   },
-  transport_options: transport_options,
+  transport_options: { ssl: { ca_file: Rails.configuration.x.search.ca_file }.compact.presence }.compact.presence,
 }
 
 # We use our own async strategy even outside the request-response
