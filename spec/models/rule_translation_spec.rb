@@ -15,4 +15,41 @@ RSpec.describe RuleTranslation do
     it { is_expected.to validate_length_of(:text).is_at_most(Rule::TEXT_SIZE_LIMIT) }
     it { is_expected.to validate_uniqueness_of(:language).scoped_to(:rule_id) }
   end
+
+  describe 'Scopes' do
+    describe '.for_locale' do
+      let!(:matching) { Fabricate :rule_translation, language: 'en' }
+      let!(:missing) { Fabricate :rule_translation, language: 'es' }
+
+      context 'when sent top-level string' do
+        it 'includes expected records' do
+          results = described_class.for_locale('en')
+
+          expect(results)
+            .to include(matching)
+            .and not_include(missing)
+        end
+      end
+
+      context 'when sent sub string' do
+        it 'includes expected records' do
+          results = described_class.for_locale('en-US')
+
+          expect(results)
+            .to include(matching)
+            .and not_include(missing)
+        end
+      end
+    end
+
+    describe '.by_language' do
+      let!(:top_level) { Fabricate :rule_translation, language: 'en' }
+      let!(:sub_level) { Fabricate :rule_translation, language: 'en-US' }
+
+      it 'returns results ordered by length' do
+        expect(described_class.by_language)
+          .to eq([sub_level, top_level])
+      end
+    end
+  end
 end
