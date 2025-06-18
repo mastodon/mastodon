@@ -6,7 +6,7 @@ Rake::Task['db:encryption:init'].clear
 namespace :db do
   namespace :encryption do
     desc 'Generate a set of keys for configuring Active Record encryption in a given environment'
-    task :init do # rubocop:disable Rails/RakeEnvironment
+    task :init do
       if %w(
         ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY
         ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT

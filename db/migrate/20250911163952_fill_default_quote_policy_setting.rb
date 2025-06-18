@@ -29,4 +29,8 @@ class FillDefaultQuotePolicySetting < ActiveRecord::Migration[8.0]
       user.update_column('settings', JSON.generate(settings)) if should_update_settings
     end
   end
+
+  def down
+    raise ActiveRecord::IrreversibleMigration
+  end
 end
