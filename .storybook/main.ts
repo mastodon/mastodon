@@ -11,7 +11,7 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
-  staticDirs: ['../public', './static'],
+  staticDirs: ['./static'],
 };
 
 export default config;
