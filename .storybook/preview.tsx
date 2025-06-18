@@ -2,13 +2,19 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
 import type { Preview } from '@storybook/react-vite';
+import { http, passthrough } from 'msw';
+import { initialize, mswLoader } from 'msw-storybook-addon';
 
 // If you want to run the dark theme during development,
 // you can change the below to `/application.scss`
 import '../app/javascript/styles/mastodon-light.scss';
 
+import { IntlProvider } from '@/mastodon/locales';
 import { reducerWithInitialState, rootReducer } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
+
+// Initialize MSW
+initialize();
 
 const preview: Preview = {
   // Auto-generate docs: https://storybook.js.org/docs/writing-docs/autodocs
@@ -32,7 +38,13 @@ const preview: Preview = {
         </Provider>
       );
     },
+    (Story) => (
+      <IntlProvider>
+        <Story />
+      </IntlProvider>
+    ),
   ],
+  loaders: [mswLoader],
   parameters: {
     layout: 'centered',
 
@@ -51,6 +63,13 @@ const preview: Preview = {
     },
 
     state: {},
+
+    msw: {
+      handlers: [
+        http.get('/index.json', passthrough),
+        http.get('/packs-dev/*', passthrough),
+      ],
+    },
   },
 };
 
