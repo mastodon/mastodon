@@ -1,11 +1,24 @@
+import { createAction } from '@reduxjs/toolkit';
+
 import {
   apiGetTag,
   apiFollowTag,
   apiUnfollowTag,
   apiFeatureTag,
   apiUnfeatureTag,
+  apiGetFollowedTags,
 } from 'mastodon/api/tags';
 import { createDataLoadingThunk } from 'mastodon/store/typed_functions';
+
+export const fetchFollowedHashtags = createDataLoadingThunk(
+  'tags/fetch-followed',
+  ({ limit, next }: { limit?: number; next?: string } = {}) =>
+    apiGetFollowedTags(next, limit),
+);
+
+export const markFollowedHashtagsStale = createAction(
+  'tags/mark-followed-stale',
+);
 
 export const fetchHashtag = createDataLoadingThunk(
   'tags/fetch',
@@ -15,11 +28,17 @@ export const fetchHashtag = createDataLoadingThunk(
 export const followHashtag = createDataLoadingThunk(
   'tags/follow',
   ({ tagId }: { tagId: string }) => apiFollowTag(tagId),
+  (_, { dispatch }) => {
+    void dispatch(markFollowedHashtagsStale());
+  },
 );
 
 export const unfollowHashtag = createDataLoadingThunk(
   'tags/unfollow',
   ({ tagId }: { tagId: string }) => apiUnfollowTag(tagId),
+  (_, { dispatch }) => {
+    void dispatch(markFollowedHashtagsStale());
+  },
 );
 
 export const featureHashtag = createDataLoadingThunk(
