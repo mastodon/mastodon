@@ -83,13 +83,24 @@ that you submit to the Instance, you may expose yourself to liability from third
 parties if you post or share such Content without all necessary rights.
 
 You retain all ownership rights you have in the Content that you submit to the
-Instance, but you grant us a limited, non-exclusive, irrevocable, transferable,
-royalty-free, perpetual license to use, copy, store, display, share, distribute,
-communicate and transfer the Content in ways that are consistent with your use
-of the Instance. To the fullest extent possible, you agree to waive or promise
-not to assert against the Administrator all moral rights you may have in the
-Content to the extent those rights are necessary for the Administrator to host
-the Content on the Instance.
+Instance, but you grant us a limited, non-exclusive, transferable, royalty-free,
+license to use, copy, store, display, share, distribute, communicate and
+transfer the Content in ways that are consistent with your use of the Instance.
+To the fullest extent possible, you agree to waive or promise not to assert
+against the Administrator all moral rights you may have in the Content to the
+extent those rights are necessary for the Administrator to host the Content on
+the Instance.
+
+This license grant will end when you remove your Content from the Instance.
+However, incidental copies may be stored in caches, backups, and other places
+for technical reasons for indefinite periods after your Content is removed, and
+you agree that the Instance may store these for whatever period is technically
+necessary for the operation of the Instance.
+
+Furthermore, by the nature of federation in which Content is propagated to other
+servers on the network, there may be copies of your Content stored on other
+instances outside the Administrator's control, which are not subject to the
+terms of this agreement.
 
 ## DMCA Copyright Infringement Notice
 
