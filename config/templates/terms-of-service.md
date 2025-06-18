@@ -83,7 +83,7 @@ that you submit to the Instance, you may expose yourself to liability from third
 parties if you post or share such Content without all necessary rights.
 
 You retain all ownership rights you have in the Content that you submit to the
-Instance, but you grant us a limited, non-exclusive, transferable, royalty-free,
+Instance, but you grant us a limited, non-exclusive, transferable, royalty-free
 license to use, copy, store, display, share, distribute, communicate and
 transfer the Content in ways that are consistent with your use of the Instance.
 To the fullest extent possible, you agree to waive or promise not to assert
