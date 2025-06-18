@@ -182,7 +182,7 @@ class AccountSearchService < BaseService
       # This will not return any immediate results but has the
       # potential to fill the local database with relevant
       # accounts for the next time the search is performed.
-      Fasp::AccountSearchWorker.perform_async(@query)
+      Fasp::AccountSearchWorker.perform_async(@query) if options[:query_fasp]
 
       search_service_results.compact.uniq.tap do |results|
         span.set_attribute('search.results.count', results.size)
