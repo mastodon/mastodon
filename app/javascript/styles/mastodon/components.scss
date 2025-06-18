@@ -2863,17 +2863,18 @@ a.account__display-name {
 }
 
 .ui__navigation-bar {
-  position: sticky;
+  position: fixed;
   bottom: 0;
-  background: var(--background-color);
-  backdrop-filter: var(--background-filter);
-  border-top: 1px solid var(--background-border-color);
   z-index: 3;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   gap: 8px;
   padding-bottom: env(safe-area-inset-bottom);
+  background: var(--background-color);
+  backdrop-filter: var(--background-filter);
+  border-top: 1px solid var(--background-border-color);
 
   .layout-multiple-columns & {
     display: none;
@@ -2984,11 +2985,20 @@ a.account__display-name {
 }
 
 .ui {
+  --mobile-bottom-nav-height: 55px;
+  --last-content-item-border-width: 2px;
+
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
+
+  @media (max-width: #{$mobile-menu-breakpoint - 1}) {
+    padding-bottom: calc(
+      var(--mobile-bottom-nav-height) - var(--last-content-item-border-width)
+    );
+  }
 }
 
 .drawer {
