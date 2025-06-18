@@ -133,32 +133,6 @@ class Report < ApplicationRecord
     id
   end
 
-  def history
-    subquery = [
-      Admin::ActionLog.where(
-        target_type: 'Report',
-        target_id: id
-      ).arel,
-
-      Admin::ActionLog.where(
-        target_type: 'Account',
-        target_id: target_account_id
-      ).arel,
-
-      Admin::ActionLog.where(
-        target_type: 'Status',
-        target_id: status_ids
-      ).arel,
-
-      Admin::ActionLog.where(
-        target_type: 'AccountWarning',
-        target_id: AccountWarning.where(report_id: id).select(:id)
-      ).arel,
-    ].reduce { |union, query| Arel::Nodes::UnionAll.new(union, query) }
-
-    Admin::ActionLog.latest.from(Arel::Nodes::As.new(subquery, Admin::ActionLog.arel_table))
-  end
-
   private
 
   def set_uri
