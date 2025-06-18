@@ -180,7 +180,7 @@ GEM
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
     date (3.4.1)
-    debug (1.10.0)
+    debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
     debug_inspector (1.2.0)
@@ -224,6 +224,7 @@ GEM
       mail (~> 2.7)
     email_validator (2.2.4)
       activemodel
+    erb (5.0.1)
     erubi (1.13.1)
     et-orbi (1.2.11)
       tzinfo
@@ -707,7 +708,8 @@ GEM
       link_header (~> 0.0, >= 0.0.8)
     rdf-normalize (0.7.0)
       rdf (~> 3.3)
-    rdoc (6.13.1)
+    rdoc (6.14.0)
+      erb
       psych (>= 4.0.0)
     redcarpet (3.6.1)
     redis (4.8.1)
