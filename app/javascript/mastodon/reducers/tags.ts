@@ -6,55 +6,79 @@ import {
 } from 'mastodon/actions/tags_typed';
 import type { ApiHashtagJSON } from 'mastodon/api_types/tags';
 
-const initialState: {
-  tags: ApiHashtagJSON[];
+export interface TagsQuery {
+  tags: string[];
   loading: boolean;
   stale: boolean;
   next: string | undefined;
-} = {
+}
+
+const initialTagsQuery: TagsQuery = {
   tags: [],
   loading: false,
   stale: true,
   next: undefined,
 };
 
+const initialState = {
+  tagsById: {} as Record<string, ApiHashtagJSON>,
+  sidebarList: initialTagsQuery,
+  fullList: initialTagsQuery,
+};
+
 export const followedTagsReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(fetchFollowedHashtags.pending, (state) => {
-      state.loading = true;
+    .addCase(fetchFollowedHashtags.pending, (state, action) => {
+      const { context } = action.meta.arg;
+
+      if (context === 'sidebar') {
+        state.sidebarList.loading = true;
+      } else {
+        state.fullList.loading = true;
+      }
     })
-    .addCase(fetchFollowedHashtags.rejected, (state) => {
-      state.loading = false;
+    .addCase(fetchFollowedHashtags.rejected, (state, action) => {
+      const { context } = action.meta.arg;
+
+      if (context === 'sidebar') {
+        state.sidebarList.loading = false;
+      } else {
+        state.fullList.loading = false;
+      }
     })
-    .addCase(
-      fetchFollowedHashtags.fulfilled,
-      (state, { payload: { tags, links, replace } }) => {
-        const next = links.refs.find((link) => link.rel === 'next');
-
-        if (replace) {
-          state.tags = tags;
-        } else {
-          const newTagsById = new Map(tags.map((tag) => [tag.id, tag]));
-
-          // Update existing items if needed
-          const updatedTags = state.tags
-            .map((item) =>
-              newTagsById.has(item.id) ? newTagsById.get(item.id) : item,
-            )
-            .filter((item) => !!item);
-
-          // Add new items
-          const existingIds = new Set(state.tags.map((item) => item.id));
-          const newItems = tags.filter((tag) => !existingIds.has(tag.id));
-
-          state.tags = [...updatedTags, ...newItems];
-        }
-        state.next = next?.uri;
-        state.stale = false;
-        state.loading = false;
-      },
-    )
     .addCase(markFollowedHashtagsStale, (state) => {
-      state.stale = true;
+      state.sidebarList.stale = true;
+      state.fullList.stale = true;
+    })
+    .addCase(fetchFollowedHashtags.fulfilled, (state, action) => {
+      const { tags, links, replace, context } = action.payload;
+
+      tags.forEach((tag) => {
+        state.tagsById[tag.id] = tag;
+      });
+
+      function getNewQueryState(prevTagIds: string[]) {
+        const next = links.refs.find((link) => link.rel === 'next');
+        const newTagIds = tags.map((tag) => tag.id);
+
+        return {
+          tags: replace ? newTagIds : [...prevTagIds, ...newTagIds],
+          next: next?.uri,
+          stale: false,
+          loading: false,
+        };
+      }
+
+      if (context === 'sidebar') {
+        const newSidebarList = getNewQueryState(state.sidebarList.tags);
+        state.sidebarList = newSidebarList;
+
+        // Pre-populate the full list with sidebar data
+        if (state.fullList.tags.length === 0) {
+          state.fullList.tags = newSidebarList.tags;
+        }
+      } else {
+        state.fullList = getNewQueryState(state.fullList.tags);
+      }
     });
 });

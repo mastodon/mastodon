@@ -16,6 +16,7 @@ export const ColumnLink: React.FC<{
   method?: string;
   badge?: React.ReactNode;
   transparent?: boolean;
+  small?: boolean;
   className?: string;
   id?: string;
 }> = ({
@@ -29,11 +30,13 @@ export const ColumnLink: React.FC<{
   method,
   badge,
   transparent,
+  small,
   ...other
 }) => {
   const match = useRouteMatch(to ?? '');
   const className = classNames('column-link', {
     'column-link--transparent': transparent,
+    'column-link--small': small,
   });
   const badgeElement =
     typeof badge !== 'undefined' ? (
