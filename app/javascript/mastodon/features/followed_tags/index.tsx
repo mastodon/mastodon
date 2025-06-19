@@ -18,6 +18,7 @@ import type { ColumnRef } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { Hashtag } from 'mastodon/components/hashtag';
 import ScrollableList from 'mastodon/components/scrollable_list';
+import { getFollowedTagsFull } from 'mastodon/selectors/tags';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
@@ -62,16 +63,20 @@ const FollowedTag: React.FC<{
 const FollowedTags: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const { tags, loading, next } = useAppSelector((state) => state.followedTags);
+  const { tags, loading, next, stale } = useAppSelector((state) =>
+    getFollowedTagsFull(state),
+  );
   const hasMore = !!next;
 
   useEffect(() => {
-    void dispatch(fetchFollowedHashtags());
-  }, [dispatch]);
+    if (stale) {
+      void dispatch(fetchFollowedHashtags({ context: 'full' }));
+    }
+  }, [dispatch, stale]);
 
   const handleLoadMore = useCallback(() => {
     if (next) {
-      void dispatch(fetchFollowedHashtags({ next }));
+      void dispatch(fetchFollowedHashtags({ next, context: 'full' }));
     }
   }, [dispatch, next]);
 

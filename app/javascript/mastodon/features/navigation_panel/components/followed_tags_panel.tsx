@@ -5,6 +5,7 @@ import { useIntl, defineMessages } from 'react-intl';
 import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { fetchFollowedHashtags } from 'mastodon/actions/tags_typed';
 import { ColumnLink } from 'mastodon/features/ui/components/column_link';
+import { getFollowedTagsSidebar } from 'mastodon/selectors/tags';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { CollapsiblePanel } from './collapsible_panel';
@@ -22,27 +23,29 @@ const messages = defineMessages({
     id: 'navigation_panel.collapse_followed_tags',
     defaultMessage: 'Collapse followed hashtags menu',
   },
+  viewAll: {
+    id: 'navigation_panel.view_all_followed_tags',
+    defaultMessage: 'View all',
+  },
 });
 
 const TAG_LIMIT = 5;
 
-const neverMarkLinkActive = () => false;
-
 export const FollowedTagsPanel: React.FC = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const { tags, stale, loading } = useAppSelector(
-    (state) => state.followedTags,
+  const { tags, stale, loading } = useAppSelector((state) =>
+    getFollowedTagsSidebar(state),
   );
+  const hasMoreTags = tags.length > TAG_LIMIT;
 
   useEffect(() => {
     if (stale) {
-      void dispatch(fetchFollowedHashtags({ limit: TAG_LIMIT + 1 }));
+      void dispatch(
+        fetchFollowedHashtags({ context: 'sidebar', limit: TAG_LIMIT + 1 }),
+      );
     }
   }, [dispatch, stale]);
-
-  const tagsToRender = tags.slice(0, TAG_LIMIT);
-  const hasMoreTags = tags.length > TAG_LIMIT;
 
   return (
     <CollapsiblePanel
@@ -54,24 +57,24 @@ export const FollowedTagsPanel: React.FC = () => {
       expandTitle={intl.formatMessage(messages.expand)}
       loading={loading}
     >
-      {tagsToRender.map((tag) => (
+      {tags.slice(0, TAG_LIMIT).map((tag) => (
         <ColumnLink
+          transparent
           icon='hashtag'
           key={tag.name}
           iconComponent={TagIcon}
           text={`#${tag.name}`}
           to={`/tags/${tag.name}`}
-          transparent
         />
       ))}
       {hasMoreTags && (
         <ColumnLink
+          small
+          transparent
           icon='hashtag'
           iconComponent={TagIcon}
-          text='View all'
+          text={intl.formatMessage(messages.viewAll)}
           to='/followed_tags'
-          isActive={neverMarkLinkActive}
-          transparent
         />
       )}
     </CollapsiblePanel>
