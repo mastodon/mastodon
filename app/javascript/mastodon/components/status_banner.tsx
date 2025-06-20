@@ -8,6 +8,10 @@ export enum BannerVariant {
   Filter = 'filter',
 }
 
+const stopPropagation: MouseEventHandler = (e) => {
+  e.stopPropagation();
+};
+
 export const StatusBanner: React.FC<{
   children: React.ReactNode;
   variant: BannerVariant;
@@ -38,6 +42,7 @@ export const StatusBanner: React.FC<{
           : 'content-warning content-warning--filter'
       }
       onClick={forwardClick}
+      onMouseUp={stopPropagation}
     >
       <p id={descriptionId}>{children}</p>
 
