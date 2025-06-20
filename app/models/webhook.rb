@@ -25,12 +25,15 @@ class Webhook < ApplicationRecord
     status.updated
   ).freeze
 
+  SECRET_LENGTH_MIN = 12
+  SECRET_SIZE = 20
+
   attr_writer :current_account
 
   scope :enabled, -> { where(enabled: true) }
 
   validates :url, presence: true, url: true
-  validates :secret, presence: true, length: { minimum: 12 }
+  validates :secret, presence: true, length: { minimum: SECRET_LENGTH_MIN }
   validates :events, presence: true
 
   validate :events_validation_error, if: :invalid_events?
@@ -41,7 +44,7 @@ class Webhook < ApplicationRecord
   before_validation :generate_secret
 
   def rotate_secret!
-    update!(secret: SecureRandom.hex(20))
+    update!(secret: random_secret)
   end
 
   def enable!
@@ -93,6 +96,10 @@ class Webhook < ApplicationRecord
   end
 
   def generate_secret
-    self.secret = SecureRandom.hex(20) if secret.blank?
+    self.secret = random_secret if secret.blank?
+  end
+
+  def random_secret
+    SecureRandom.hex(SECRET_SIZE)
   end
 end
