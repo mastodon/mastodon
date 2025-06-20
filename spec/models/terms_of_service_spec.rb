@@ -34,8 +34,10 @@ RSpec.describe TermsOfService do
 
     context 'when only unpublished terms exist' do
       before do
-        past_terms = described_class.new(Fabricate.attributes_for(:terms_of_service, published_at: nil, effective_date: Date.yesterday))
-        past_terms.save(validate: false)
+        yesterday = Date.yesterday
+        travel_to yesterday do
+          Fabricate(:terms_of_service, published_at: nil, effective_date: yesterday)
+        end
         Fabricate(:terms_of_service, published_at: nil, effective_date: Date.tomorrow)
       end
 
@@ -46,9 +48,10 @@ RSpec.describe TermsOfService do
 
     context 'when both effective and future terms exist' do
       let!(:effective_terms) do
-        effective_terms = described_class.new(Fabricate.attributes_for(:terms_of_service, effective_date: Date.yesterday))
-        effective_terms.save(validate: false)
-        effective_terms
+        yesterday = Date.yesterday
+        travel_to yesterday do
+          Fabricate(:terms_of_service, effective_date: yesterday)
+        end
       end
 
       before do

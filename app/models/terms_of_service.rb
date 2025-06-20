@@ -28,7 +28,7 @@ class TermsOfService < ApplicationRecord
   NOTIFICATION_ACTIVITY_CUTOFF = 1.year.freeze
 
   def self.current
-    TermsOfService.live.first || TermsOfService.upcoming.first # For the case when none of the published terms have become effective yet
+    live.first || upcoming.first # For the case when none of the published terms have become effective yet
   end
 
   def published?
