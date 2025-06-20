@@ -33,6 +33,7 @@ class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 
   include Attachmentable
+  include MediaAttachment::Extensions
 
   enum :type, { image: 0, gifv: 1, video: 2, unknown: 3, audio: 4 }
   enum :processing, { queued: 0, in_progress: 1, complete: 2, failed: 3 }, prefix: true
@@ -45,10 +46,6 @@ class MediaAttachment < ApplicationRecord
   MAX_VIDEO_MATRIX_LIMIT = 8_294_400 # 3840x2160px
   MAX_VIDEO_FRAME_RATE   = 120
   MAX_VIDEO_FRAMES       = 36_000 # Approx. 5 minutes at 120 fps
-
-  IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif .webp .heic .heif .avif).freeze
-  VIDEO_FILE_EXTENSIONS = %w(.webm .mp4 .m4v .mov).freeze
-  AUDIO_FILE_EXTENSIONS = %w(.ogg .oga .mp3 .wav .flac .opus .aac .m4a .3gp .wma).freeze
 
   META_KEYS = %i(
     focus
@@ -292,10 +289,6 @@ class MediaAttachment < ApplicationRecord
   class << self
     def supported_mime_types
       IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
-    end
-
-    def supported_file_extensions
-      IMAGE_FILE_EXTENSIONS + VIDEO_FILE_EXTENSIONS + AUDIO_FILE_EXTENSIONS
     end
 
     def combined_media_file_size
