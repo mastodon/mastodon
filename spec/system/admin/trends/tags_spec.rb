@@ -7,6 +7,21 @@ RSpec.describe 'Admin::Trends::Tags' do
 
   before { sign_in current_user }
 
+  describe 'Viewing tags lists' do
+    context 'with a tag that needs review but is not trending' do
+      before { Fabricate :tag, requested_review_at: 5.minutes.ago }
+
+      it 'includes a correct pending tag count in navigation' do
+        visit admin_trends_tags_path
+
+        within('.filter-subset') do
+          expect(page)
+            .to have_content("#{I18n.t('admin.accounts.moderation.pending')} (0)")
+        end
+      end
+    end
+  end
+
   describe 'Performing batch updates' do
     context 'without selecting any records' do
       it 'displays a notice about selection' do
