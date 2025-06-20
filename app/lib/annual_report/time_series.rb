@@ -21,16 +21,30 @@ class AnnualReport::TimeSeries < AnnualReport::Source
   end
 
   def following_per_month
-    @following_per_month ||= @account.active_relationships.where("date_part('year', created_at) = ?", @year).group(:period).pluck(date_part_month.as('period'), Arel.star.count).to_h
+    @following_per_month ||= annual_relationships_by_month(@account.active_relationships)
   end
 
   def followers_per_month
-    @followers_per_month ||= @account.passive_relationships.where("date_part('year', created_at) = ?", @year).group(:period).pluck(date_part_month.as('period'), Arel.star.count).to_h
+    @followers_per_month ||= annual_relationships_by_month(@account.passive_relationships)
   end
 
   def date_part_month
     Arel.sql(<<~SQL.squish)
       DATE_PART('month', created_at)::int
+    SQL
+  end
+
+  def annual_relationships_by_month(relationships)
+    relationships
+      .where(created_in_year, @year)
+      .group(:period)
+      .pluck(date_part_month.as('period'), Arel.star.count)
+      .to_h
+  end
+
+  def created_in_year
+    Arel.sql(<<~SQL.squish)
+      DATE_PART('year', created_at) = ?
     SQL
   end
 end
