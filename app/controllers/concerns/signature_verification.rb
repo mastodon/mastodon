@@ -82,7 +82,7 @@ module SignatureVerification
   end
 
   def actor_from_key_id
-    key_id = signature_key_id
+    key_id = signed_request.key_id
     domain = key_id.start_with?('acct:') ? key_id.split('@').last : key_id
 
     if domain_not_allowed?(domain)
