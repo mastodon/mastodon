@@ -15,7 +15,7 @@ import LogoutIcon from '@/material-icons/400-24px/logout.svg?react';
 import MenuIcon from '@/material-icons/400-24px/menu.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications-fill.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
-import SettingsIcon from '@/material-icons/400-24px/settings-fill.svg?react';
+import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import { mountCompose, unmountCompose } from 'mastodon/actions/compose';
 import { openModal } from 'mastodon/actions/modal';
 import { Column } from 'mastodon/components/column';
@@ -82,6 +82,11 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     [dispatch],
   );
 
+  const scrollNavbarIntoView = useCallback(() => {
+    const navbar = document.querySelector('.navigation-panel');
+    navbar?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
   if (multiColumn) {
     return (
       <div
@@ -95,6 +100,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
             className='drawer__tab'
             title={intl.formatMessage(messages.start)}
             aria-label={intl.formatMessage(messages.start)}
+            onClick={scrollNavbarIntoView}
           >
             <Icon id='bars' icon={MenuIcon} />
           </Link>
