@@ -112,17 +112,17 @@ namespace :tests do
         exit(1)
       end
 
-      unless Identity.where(provider: 'foo', uid: 0).count == 1
+      unless Identity.where(provider: 'foo', uid: 0).one?
         puts 'Identities not deduplicated as expected'
         exit(1)
       end
 
-      unless WebauthnCredential.where(user_id: 1, nickname: 'foo').count == 1
+      unless WebauthnCredential.where(user_id: 1, nickname: 'foo').one?
         puts 'Webauthn credentials not deduplicated as expected'
         exit(1)
       end
 
-      unless AccountAlias.where(account_id: 1, uri: 'https://example.com/users/foobar').count == 1
+      unless AccountAlias.where(account_id: 1, uri: 'https://example.com/users/foobar').one?
         puts 'Account aliases not deduplicated as expected'
         exit(1)
       end
