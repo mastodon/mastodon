@@ -11,6 +11,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 
 import { missingAltTextModal } from 'mastodon/initial_state';
+import { changeComposeLanguage } from 'mastodon/actions/compose';
 
 import AutosuggestInput from '../../../components/autosuggest_input';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
@@ -31,6 +32,8 @@ import { ReplyIndicator } from './reply_indicator';
 import { UploadForm } from './upload_form';
 import { Warning } from './warning';
 
+import { connect } from 'react-redux';
+
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
 const messages = defineMessages({
@@ -40,6 +43,28 @@ const messages = defineMessages({
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Update' },
   reply: { id: 'compose_form.reply', defaultMessage: 'Reply' },
 });
+
+const mapStateToProps = (state) => ({
+  currentLanguage: state.compose.get('language'),
+});
+
+const languageDetectorInGlobalThis = 'LanguageDetector' in globalThis;
+let supportsLanguageDetector = languageDetectorInGlobalThis && await globalThis.LanguageDetector.availability() === 'available';
+let languageDetector;
+// If the API is supported, but the model not loaded yet…
+if (languageDetectorInGlobalThis && !supportsLanguageDetector) {
+  // …trigger the model download
+  LanguageDetector.create().then((_languageDetector) => {
+    supportsLanguageDetector = true
+    languageDetector = _languageDetector
+  })
+}
+
+function countLetters(text) {
+  const segmenter = new Intl.Segmenter('und', { granularity: 'grapheme' })
+  const letters = [...segmenter.segment(text)]
+  return letters.length
+}
 
 class ComposeForm extends ImmutablePureComponent {
   static propTypes = {
@@ -96,6 +121,30 @@ class ComposeForm extends ImmutablePureComponent {
       this.handleSubmit();
     }
   };
+
+  handleKeyUp = async (e) => {
+    if (!supportsLanguageDetector) {
+      return;
+    }
+    if (!languageDetector) {
+      languageDetector = await globalThis.LanguageDetector.create();
+    }
+    const text = this.getFulltextForCharacterCounting();
+    const currentLanguage = this.props.currentLanguage;
+    if (!text || countLetters(text) <= 5) {
+      this.props.dispatch(changeComposeLanguage(currentLanguage));
+      return;
+    }
+
+    try {
+      let detectedLanguage = (await languageDetector.detect(text))[0].detectedLanguage
+      detectedLanguage = detectedLanguage === 'und' ? currentLanguage : detectedLanguage.substring(0, 2);
+      this.props.dispatch(changeComposeLanguage(detectedLanguage));
+    }
+    catch {
+      this.props.dispatch(changeComposeLanguage(currentLanguage));
+    }
+  }
 
   getFulltextForCharacterCounting = () => {
     return [this.props.spoiler? this.props.spoilerText: '', countableText(this.props.text)].join('');
@@ -274,6 +323,7 @@ class ComposeForm extends ImmutablePureComponent {
               suggestions={this.props.suggestions}
               onFocus={this.handleFocus}
               onKeyDown={this.handleKeyDown}
+              onKeyUp={this.handleKeyUp}
               onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
               onSuggestionsClearRequested={this.onSuggestionsClearRequested}
               onSuggestionSelected={this.onSuggestionSelected}
@@ -318,4 +368,4 @@ class ComposeForm extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(ComposeForm);
+export default injectIntl(connect(mapStateToProps)(ComposeForm));
