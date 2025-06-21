@@ -132,7 +132,6 @@ class ComposeForm extends ImmutablePureComponent {
     const text = this.getFulltextForCharacterCounting().trim();
     const currentLanguage = this.props.currentLanguage;
     if (!text || countLetters(text) <= 5) {
-      console.log('hier', currentLanguage)
       this.props.dispatch(changeComposeLanguage(currentLanguage));
       return;
     }
