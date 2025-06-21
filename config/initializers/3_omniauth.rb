@@ -10,7 +10,7 @@ end
 
 Devise.setup do |config|
   # CAS strategy
-  if ENV['CAS_ENABLED'] == 'true'
+  if Rails.configuration.x.omniauth.cas_enabled?
     cas_options = {}
     cas_options[:display_name] = ENV.fetch('CAS_DISPLAY_NAME', nil)
     cas_options[:url] = ENV['CAS_URL'] if ENV['CAS_URL']
@@ -39,7 +39,7 @@ Devise.setup do |config|
   end
 
   # SAML strategy
-  if ENV['SAML_ENABLED'] == 'true'
+  if Rails.configuration.x.omniauth.saml_enabled?
     saml_options = {}
     saml_options[:display_name] = ENV.fetch('SAML_DISPLAY_NAME', nil)
     saml_options[:assertion_consumer_service_url] = ENV['SAML_ACS_URL'] if ENV['SAML_ACS_URL']
@@ -71,7 +71,7 @@ Devise.setup do |config|
   end
 
   # OpenID Connect Strategy
-  if ENV['OIDC_ENABLED'] == 'true'
+  if Rails.configuration.x.omniauth.oidc_enabled?
     oidc_options = {}
     oidc_options[:display_name] = ENV.fetch('OIDC_DISPLAY_NAME', nil) # OPTIONAL
     oidc_options[:issuer] = ENV['OIDC_ISSUER'] if ENV['OIDC_ISSUER'] # NEED
