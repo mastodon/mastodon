@@ -3,6 +3,8 @@
 require 'stoplight'
 
 Rails.application.reloader.to_prepare do
-  Stoplight.default_data_store = Stoplight::DataStore::Redis.new(RedisConnection.new.connection)
-  Stoplight.default_notifiers  = [Stoplight::Notifier::Logger.new(Rails.logger)]
+  Stoplight.configure do |config|
+    config.data_store = Stoplight::DataStore::Redis.new(RedisConnection.new.connection)
+    config.notifiers = [Stoplight::Notifier::Logger.new(Rails.logger)]
+  end
 end
