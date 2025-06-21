@@ -110,7 +110,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       trends_as_landing_page: Setting.trends_as_landing_page,
       trends_enabled: Setting.trends,
       version: instance_presenter.version,
-      terms_of_service_enabled: TermsOfService.live.exists?,
+      terms_of_service_enabled: TermsOfService.current.present?,
     }
   end
 

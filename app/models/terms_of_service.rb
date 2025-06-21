@@ -16,6 +16,7 @@
 class TermsOfService < ApplicationRecord
   scope :published, -> { where.not(published_at: nil).order(Arel.sql('coalesce(effective_date, published_at) DESC')) }
   scope :live, -> { published.where('effective_date IS NULL OR effective_date < now()').limit(1) }
+  scope :upcoming, -> { published.reorder(effective_date: :asc).where('effective_date IS NOT NULL AND effective_date > now()').limit(1) }
   scope :draft, -> { where(published_at: nil).order(id: :desc).limit(1) }
 
   validates :text, presence: true
@@ -25,6 +26,10 @@ class TermsOfService < ApplicationRecord
   validate :effective_date_cannot_be_in_the_past
 
   NOTIFICATION_ACTIVITY_CUTOFF = 1.year.freeze
+
+  def self.current
+    live.first || upcoming.first # For the case when none of the published terms have become effective yet
+  end
 
   def published?
     published_at.present?
