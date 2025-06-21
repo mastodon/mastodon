@@ -135,6 +135,9 @@ class Status < ApplicationRecord
   scope :tagged_with_none, lambda { |tag_ids|
     where('NOT EXISTS (SELECT * FROM statuses_tags forbidden WHERE forbidden.status_id = statuses.id AND forbidden.tag_id IN (?))', tag_ids)
   }
+  scope :distributable_visibility, -> { where(visibility: %i(public unlisted)) }
+  scope :list_eligible_visibility, ->(list = nil) { where(visibility: list&.public_list? ? %i(public unlisted) : %i(public unlisted private)) }
+  scope :not_direct_visibility, -> { where.not(visibility: :direct) }
 
   after_create_commit :trigger_create_webhooks
   after_update_commit :trigger_update_webhooks
