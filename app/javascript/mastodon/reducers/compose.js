@@ -68,6 +68,7 @@ const initialState = ImmutableMap({
   is_submitting: false,
   is_changing_upload: false,
   is_uploading: false,
+  should_redirect_to_compose_page: false,
   progress: 0,
   isUploadingThumbnail: false,
   thumbnailProgress: 0,
@@ -322,11 +323,21 @@ export const composeReducer = (state = initialState, action) => {
   case STORE_HYDRATE:
     return hydrate(state, action.state.get('compose'));
   case COMPOSE_MOUNT:
-    return state.set('mounted', state.get('mounted') + 1);
+    return state
+      .set('mounted', state.get('mounted') + 1)
+      .set('should_redirect_to_compose_page', false);
   case COMPOSE_UNMOUNT:
     return state
       .set('mounted', Math.max(state.get('mounted') - 1, 0))
-      .set('is_composing', false);
+      .set('is_composing', false)
+      .set(
+        'should_redirect_to_compose_page',
+        (state.get('mounted') === 1 &&
+          state.get('is_composing') === true &&
+          (state.get('text').trim() !== '' ||
+          state.get('media_attachments').size > 0)
+        )
+      );
   case COMPOSE_SENSITIVITY_CHANGE:
     return state.withMutations(map => {
       if (!state.get('spoiler')) {
