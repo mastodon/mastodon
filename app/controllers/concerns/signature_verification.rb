@@ -104,10 +104,12 @@ module SignatureVerification
   end
 
   def stoplight_wrapper
-    Stoplight("source:#{request.remote_ip}")
-      .with_threshold(1)
-      .with_cool_off_time(5.minutes.seconds)
-      .with_tracked_errors([HTTP::Error, OpenSSL::SSL::SSLError])
+    Stoplight(
+      "source:#{request.remote_ip}",
+      threshold: 1,
+      cool_off_time: 5.minutes.seconds,
+      tracked_errors: [HTTP::Error, OpenSSL::SSL::SSLError]
+    )
   end
 
   def actor_refresh_key!(actor)
