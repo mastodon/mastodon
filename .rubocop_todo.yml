@@ -28,12 +28,6 @@ Metrics/PerceivedComplexity:
   Max: 27
 
 # This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowedVars.
-Style/FetchEnvVar:
-  Exclude:
-    - 'config/initializers/paperclip.rb'
-
-# This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: MinBodyLength, AllowConsecutiveConditionals.
 Style/GuardClause:
   Enabled: false
