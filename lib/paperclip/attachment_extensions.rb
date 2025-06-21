@@ -84,11 +84,12 @@ module Paperclip
       # Don't go through Stoplight if we don't have anything object-storage-oriented to do
       return super if @queued_for_delete.empty? && @queued_for_write.empty? && !dirty?
 
-      Stoplight('object-storage')
-        .with_threshold(STOPLIGHT_THRESHOLD)
-        .with_cool_off_time(STOPLIGHT_COOLDOWN)
-        .with_error_handler { |error, handle| error.is_a?(Seahorse::Client::NetworkingError) ? handle.call(error) : raise(error) }
-        .run { super }
+      Stoplight(
+        'object-storage',
+        threshold: STOPLIGHT_THRESHOLD,
+        cool_off_time: STOPLIGHT_COOLDOWN,
+        tracked_errors: [Seahorse::Client::NetworkingError]
+      ).run { super }
     end
   end
 end

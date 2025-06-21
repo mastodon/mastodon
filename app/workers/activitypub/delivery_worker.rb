@@ -75,9 +75,11 @@ class ActivityPub::DeliveryWorker
   end
 
   def stoplight_wrapper
-    Stoplight(@inbox_url)
-      .with_threshold(STOPLIGHT_FAILURE_THRESHOLD)
-      .with_cool_off_time(STOPLIGHT_COOLDOWN)
+    Stoplight(
+      @inbox_url,
+      threshold: STOPLIGHT_FAILURE_THRESHOLD,
+      cool_off_time: STOPLIGHT_COOLDOWN
+    )
   end
 
   def failure_tracker
