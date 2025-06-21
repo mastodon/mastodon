@@ -116,7 +116,7 @@ export const HashtagMenuController: React.FC = () => {
         text: intl.formatMessage(messages.muteHashtag, {
           hashtag,
         }),
-        href: `/filters?custom_filter[keywords_attributes][0][keyword]=${hashtag}&custom_filter[keywords_attributes][0][whole_word]=1`,
+        href: `/filters?custom_filter[keywords_attributes][0][keyword]=%23${hashtag}&custom_filter[keywords_attributes][0][whole_word]=1`,
         dangerous: true,
       },
     ],
