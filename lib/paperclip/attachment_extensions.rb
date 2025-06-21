@@ -87,7 +87,7 @@ module Paperclip
       Stoplight('object-storage')
         .with_threshold(STOPLIGHT_THRESHOLD)
         .with_cool_off_time(STOPLIGHT_COOLDOWN)
-        .with_error_handler { |error, handle| error.is_a?(Seahorse::Client::NetworkingError) ? handle.call(error) : raise(error) }
+        .with_tracked_errors([Seahorse::Client::NetworkingError])
         .run { super }
     end
   end
