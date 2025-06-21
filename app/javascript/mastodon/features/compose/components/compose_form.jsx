@@ -45,7 +45,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = (state) => ({
-  currentLanguage: state.compose.get('language'),
+  currentLanguage: state.meta.get('locale'),
 });
 
 const languageDetectorInGlobalThis = 'LanguageDetector' in globalThis;
@@ -129,9 +129,10 @@ class ComposeForm extends ImmutablePureComponent {
     if (!languageDetector) {
       languageDetector = await globalThis.LanguageDetector.create();
     }
-    const text = this.getFulltextForCharacterCounting();
+    const text = this.getFulltextForCharacterCounting().trim();
     const currentLanguage = this.props.currentLanguage;
     if (!text || countLetters(text) <= 5) {
+      console.log('hier', currentLanguage)
       this.props.dispatch(changeComposeLanguage(currentLanguage));
       return;
     }
