@@ -12,7 +12,7 @@ class FiltersController < ApplicationController
 
   def new
     @filter = current_account.custom_filters.build(action: :warn)
-    @filter.keywords.build(params[:keywords])
+    @filter.keywords.build(params.dig(:custom_filter, :keywords_attributes))
   end
 
   def edit; end
