@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import { translateStatusSuccess } from 'mastodon/actions/statuses';
+import { undoStatusTranslation } from 'mastodon/actions/statuses';
 import { Icon }  from 'mastodon/components/icon';
 import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
@@ -223,6 +224,12 @@ class StatusContent extends PureComponent {
     }
 
     const { intl, status, statusContent } = this.props;
+
+    if (status.get('translation')) {
+      this.props.dispatch(undoStatusTranslation(status.get('id'), status.get('poll')));
+      return;
+    }
+
     const sourceLanguage = status.get('language');
     const targetLanguage = intl.locale.replace(/[_-].*/, '');
     try {
