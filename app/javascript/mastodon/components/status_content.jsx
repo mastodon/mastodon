@@ -10,12 +10,16 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import { translateStatusSuccess } from 'mastodon/actions/statuses';
 import { Icon }  from 'mastodon/components/icon';
 import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
+
+const supportsTranslator = 'Translator' in globalThis;
+const supportedTranslationLanguages =  new Map(Object.entries({"ar":["en","pt","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"bg":["en","pt","ar","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"cs":["en","pt","ar","bg","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"da":["en","pt","ar","bg","cs","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"de":["en","pt","ar","bg","cs","da","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"el":["en","pt","ar","bg","cs","da","de","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"en":["pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"es":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"et":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"fi":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"fr":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"hu":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"id":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"it":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"ja":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"ko":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"lt":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"lv":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"nb":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"nl":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"pl":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"pt":["en","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"ro":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"ru":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"sk":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"],"sl":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sv","tr","uk","zh","zh-HANS","zh-HANT"],"sv":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","tr","uk","zh","zh-HANS","zh-HANT"],"tr":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","uk","zh","zh-HANS","zh-HANT"],"uk":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","zh","zh-HANS","zh-HANT"],"zh":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh-HANS","zh-HANT"],"und":["en","pt","ar","bg","cs","da","de","el","en-GB","en-US","es","et","fi","fr","hu","id","it","ja","ko","lt","lv","nb","nl","pl","pt-BR","pt-PT","ro","ru","sk","sl","sv","tr","uk","zh","zh-HANS","zh-HANT"]}));
 
 /**
  *
@@ -64,7 +68,7 @@ class TranslateButton extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  languages: state.getIn(['server', 'translationLanguages', 'items']),
+  languages: supportsTranslator ? supportedTranslationLanguages : state.getIn(['server', 'translationLanguages', 'items']),
 });
 
 class StatusContent extends PureComponent {
@@ -212,8 +216,31 @@ class StatusContent extends PureComponent {
     this.startXY = null;
   };
 
-  handleTranslate = () => {
-    this.props.onTranslate();
+  handleTranslate = async () => {
+    if (!supportsTranslator) {
+      this.props.onTranslate();
+      return;
+    }
+
+    const { intl, status, statusContent } = this.props;
+    const sourceLanguage = status.get('language');
+    const targetLanguage = intl.locale.replace(/[_-].*/, '');
+    try {
+      const translator = await Translator.create({
+        sourceLanguage,
+        targetLanguage,
+      });
+      const translatedText = await translator.translate(statusContent);
+      const translation = {
+        content: translatedText,
+        provider: 'Translator API',
+        detected_source_language: sourceLanguage,
+        language: targetLanguage,
+      };
+      this.props.dispatch(translateStatusSuccess(status.get('id'), translation));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   setRef = (c) => {
