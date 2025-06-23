@@ -77,7 +77,7 @@ export const StorybookTestComponent: React.FC<StorybookTestComponentProps> = ({
         )}
         {apiState === 'error' && (
           <FormattedMessage
-            id='test.error'
+            id='alert.unexpected.message'
             defaultMessage='Error getting the time!'
           />
         )}

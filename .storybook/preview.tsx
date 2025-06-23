@@ -1,3 +1,7 @@
+import { useEffect, useState } from 'react';
+
+import { IntlProvider } from 'react-intl';
+
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
@@ -5,13 +9,17 @@ import type { Preview } from '@storybook/react-vite';
 import { http, passthrough } from 'msw';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 
+import type { LocaleData } from '@/mastodon/locales';
+import { reducerWithInitialState, rootReducer } from '@/mastodon/reducers';
+import { defaultMiddleware } from '@/mastodon/store/store';
+
 // If you want to run the dark theme during development,
 // you can change the below to `/application.scss`
 import '../app/javascript/styles/mastodon-light.scss';
 
-import { IntlProvider } from '@/mastodon/locales';
-import { reducerWithInitialState, rootReducer } from '@/mastodon/reducers';
-import { defaultMiddleware } from '@/mastodon/store/store';
+const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
+  query: { as: 'json' },
+});
 
 // Initialize MSW
 initialize();
@@ -19,6 +27,22 @@ initialize();
 const preview: Preview = {
   // Auto-generate docs: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
+  globalTypes: {
+    locale: {
+      description: 'Locale for the story',
+      toolbar: {
+        title: 'Locale',
+        icon: 'globe',
+        items: Object.keys(localeFiles).map((path) =>
+          path.replace('/mastodon/locales/', '').replace('.json', ''),
+        ),
+        dynamicTitle: true,
+      },
+    },
+  },
+  initialGlobals: {
+    locale: 'en',
+  },
   decorators: [
     (Story, { parameters }) => {
       const { state = {} } = parameters;
@@ -38,11 +62,38 @@ const preview: Preview = {
         </Provider>
       );
     },
-    (Story) => (
-      <IntlProvider>
-        <Story />
-      </IntlProvider>
-    ),
+    (Story, { globals }) => {
+      const currentLocale = (globals.locale as string) || 'en';
+      const [messages, setMessages] = useState<
+        Record<string, Record<string, string>>
+      >({});
+      const currentLocaleData = messages[currentLocale];
+
+      useEffect(() => {
+        async function loadLocaleData() {
+          const { default: localeFile } = (await import(
+            `@/mastodon/locales/${currentLocale}.json`
+          )) as { default: LocaleData['messages'] };
+          setMessages((prevLocales) => ({
+            ...prevLocales,
+            [currentLocale]: localeFile,
+          }));
+        }
+        if (!currentLocaleData) {
+          void loadLocaleData();
+        }
+      }, [currentLocale, currentLocaleData]);
+
+      return (
+        <IntlProvider
+          locale={currentLocale}
+          messages={currentLocaleData}
+          textComponent='span'
+        >
+          <Story />
+        </IntlProvider>
+      );
+    },
   ],
   loaders: [mswLoader],
   parameters: {
