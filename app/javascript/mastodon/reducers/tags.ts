@@ -3,6 +3,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   fetchFollowedHashtags,
   markFollowedHashtagsStale,
+  unfollowHashtag,
 } from 'mastodon/actions/tags_typed';
 import type { ApiHashtagJSON } from 'mastodon/api_types/tags';
 
@@ -30,6 +31,10 @@ export const followedTagsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(markFollowedHashtagsStale, (state) => {
       state.stale = true;
+    })
+    .addCase(unfollowHashtag.fulfilled, (state, action) => {
+      const tagId = action.payload.id;
+      state.tags = state.tags.filter((tag) => tag.id !== tagId);
     })
     .addCase(fetchFollowedHashtags.fulfilled, (state, action) => {
       const { tags, links, replace } = action.payload;

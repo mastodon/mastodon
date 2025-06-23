@@ -41,9 +41,6 @@ export const followHashtag = createDataLoadingThunk(
 export const unfollowHashtag = createDataLoadingThunk(
   'tags/unfollow',
   ({ tagId }: { tagId: string }) => apiUnfollowTag(tagId),
-  (_, { dispatch }) => {
-    void dispatch(markFollowedHashtagsStale());
-  },
 );
 
 export const featureHashtag = createDataLoadingThunk(
