@@ -21,7 +21,7 @@ import { openModal } from 'mastodon/actions/modal';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { Icon } from 'mastodon/components/icon';
-import { mascot } from 'mastodon/initial_state';
+import { mascot, reduceMotion } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { messages as navbarMessages } from '../ui/components/navigation_bar';
@@ -79,11 +79,8 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
   const scrollNavbarIntoView = useCallback(() => {
     const navbar = document.querySelector('.navigation-panel');
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches;
     navbar?.scrollIntoView({
-      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      behavior: reduceMotion ? 'auto' : 'smooth',
     });
   }, []);
 
