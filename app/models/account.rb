@@ -89,6 +89,7 @@ class Account < ApplicationRecord
   include Account::FinderConcern
   include Account::Header
   include Account::Interactions
+  include Account::Mappings
   include Account::Merging
   include Account::Search
   include Account::Sensitizes
