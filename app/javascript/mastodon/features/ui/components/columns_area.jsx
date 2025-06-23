@@ -25,7 +25,7 @@ import BundleColumnError from './bundle_column_error';
 import { ColumnLoading } from './column_loading';
 import { ComposePanel, RedirectToMobileComposeIfNeeded } from './compose_panel';
 import DrawerLoading from './drawer_loading';
-import { NavigationPanel } from 'mastodon/features/navigation_panel';
+import { CollapsibleNavigationPanel } from 'mastodon/features/navigation_panel';
 
 const componentMap = {
   'COMPOSE': Compose,
@@ -133,7 +133,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
             <div className='columns-area columns-area--mobile'>{children}</div>
           </div>
 
-          <NavigationPanel />
+          <CollapsibleNavigationPanel />
         </div>
       );
     }
