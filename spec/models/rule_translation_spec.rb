@@ -42,12 +42,12 @@ RSpec.describe RuleTranslation do
       end
     end
 
-    describe '.by_language' do
+    describe '.by_language_length' do
       let!(:top_level) { Fabricate :rule_translation, language: 'en' }
       let!(:sub_level) { Fabricate :rule_translation, language: 'en-US' }
 
       it 'returns results ordered by length' do
-        expect(described_class.by_language)
+        expect(described_class.by_language_length)
           .to eq([sub_level, top_level])
       end
     end
