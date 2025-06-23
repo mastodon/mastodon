@@ -22,10 +22,6 @@ const messages = defineMessages({
     id: 'navigation_panel.collapse_followed_tags',
     defaultMessage: 'Collapse followed hashtags menu',
   },
-  viewAll: {
-    id: 'navigation_panel.view_all_followed_tags',
-    defaultMessage: 'View all',
-  },
 });
 
 const TAG_LIMIT = 4;
