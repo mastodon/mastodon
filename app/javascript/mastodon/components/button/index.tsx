@@ -3,12 +3,15 @@ import { useCallback } from 'react';
 
 import classNames from 'classnames';
 
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+
 interface BaseProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   block?: boolean;
   secondary?: boolean;
   compact?: boolean;
   dangerous?: boolean;
+  loading?: boolean;
 }
 
 interface PropsChildren extends PropsWithChildren<BaseProps> {
@@ -34,6 +37,7 @@ export const Button: React.FC<Props> = ({
   secondary,
   compact,
   dangerous,
+  loading,
   className,
   title,
   text,
@@ -49,6 +53,8 @@ export const Button: React.FC<Props> = ({
     [disabled, onClick],
   );
 
+  const label = text ?? children;
+
   return (
     <button
       className={classNames('button', className, {
@@ -56,14 +62,24 @@ export const Button: React.FC<Props> = ({
         'button--compact': compact,
         'button--block': block,
         'button--dangerous': dangerous,
+        loading,
       })}
-      disabled={disabled}
+      disabled={(disabled && !loading) || loading}
+      // If the loading prop is used, announce label changes
+      aria-live={loading !== undefined ? 'polite' : undefined}
       onClick={handleClick}
       title={title}
       type={type}
       {...props}
     >
-      {text ?? children}
+      {loading ? (
+        <>
+          <span className='button__label-wrapper'>{label}</span>
+          <LoadingIndicator role='none' />
+        </>
+      ) : (
+        label
+      )}
     </button>
   );
 };

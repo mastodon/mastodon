@@ -11,6 +11,7 @@ const meta = {
     compact: false,
     dangerous: false,
     disabled: false,
+    loading: false,
     onClick: fn(),
   },
   argTypes: {
@@ -39,16 +40,6 @@ const buttonTest: Story['play'] = async ({ args, canvas, userEvent }) => {
   const button = await canvas.findByRole('button');
   await userEvent.click(button);
   await expect(args.onClick).toHaveBeenCalled();
-};
-
-const disabledButtonTest: Story['play'] = async ({
-  args,
-  canvas,
-  userEvent,
-}) => {
-  const button = await canvas.findByRole('button');
-  await userEvent.click(button);
-  await expect(args.onClick).not.toHaveBeenCalled();
 };
 
 export const Primary: Story = {
@@ -82,6 +73,15 @@ export const Dangerous: Story = {
   play: buttonTest,
 };
 
+const disabledButtonTest: Story['play'] = async ({
+  args,
+  canvas,
+  userEvent,
+}) => {
+  await userEvent.click(canvas.getByRole('button'));
+  await expect(args.onClick).not.toHaveBeenCalled();
+};
+
 export const PrimaryDisabled: Story = {
   args: {
     ...Primary.args,
@@ -96,4 +96,24 @@ export const SecondaryDisabled: Story = {
     disabled: true,
   },
   play: disabledButtonTest,
+};
+
+const loadingButtonTest: Story['play'] = async ({
+  args,
+  canvas,
+  userEvent,
+}) => {
+  const button = await canvas.findByRole('button', {
+    name: 'Primary button Loading',
+  });
+  await userEvent.click(button);
+  await expect(args.onClick).not.toHaveBeenCalled();
+};
+
+export const Loading: Story = {
+  args: {
+    ...Primary.args,
+    loading: true,
+  },
+  play: loadingButtonTest,
 };
