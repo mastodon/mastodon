@@ -12,19 +12,10 @@ import { createDataLoadingThunk } from 'mastodon/store/typed_functions';
 
 export const fetchFollowedHashtags = createDataLoadingThunk(
   'tags/fetch-followed',
-  async ({
-    context,
-    limit,
-    next,
-  }: {
-    context: 'full' | 'sidebar';
-    limit?: number;
-    next?: string;
-  }) => {
-    const response = await apiGetFollowedTags(next, limit);
+  async ({ next }: { next?: string } = {}) => {
+    const response = await apiGetFollowedTags(next);
     return {
       ...response,
-      context,
       replace: !next,
     };
   },

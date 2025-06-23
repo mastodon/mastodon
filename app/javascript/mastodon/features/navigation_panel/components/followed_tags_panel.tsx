@@ -5,7 +5,6 @@ import { useIntl, defineMessages } from 'react-intl';
 import TagIcon from '@/material-icons/400-24px/tag.svg?react';
 import { fetchFollowedHashtags } from 'mastodon/actions/tags_typed';
 import { ColumnLink } from 'mastodon/features/ui/components/column_link';
-import { getFollowedTagsSidebar } from 'mastodon/selectors/tags';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { CollapsiblePanel } from './collapsible_panel';
@@ -29,21 +28,18 @@ const messages = defineMessages({
   },
 });
 
-const TAG_LIMIT = 5;
+const TAG_LIMIT = 4;
 
 export const FollowedTagsPanel: React.FC = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const { tags, stale, loading } = useAppSelector((state) =>
-    getFollowedTagsSidebar(state),
+  const { tags, stale, loading } = useAppSelector(
+    (state) => state.followedTags,
   );
-  const hasMoreTags = tags.length > TAG_LIMIT;
 
   useEffect(() => {
     if (stale) {
-      void dispatch(
-        fetchFollowedHashtags({ context: 'sidebar', limit: TAG_LIMIT + 1 }),
-      );
+      void dispatch(fetchFollowedHashtags());
     }
   }, [dispatch, stale]);
 
@@ -67,16 +63,6 @@ export const FollowedTagsPanel: React.FC = () => {
           to={`/tags/${tag.name}`}
         />
       ))}
-      {hasMoreTags && (
-        <ColumnLink
-          small
-          transparent
-          icon='hashtag'
-          iconComponent={TagIcon}
-          text={intl.formatMessage(messages.viewAll)}
-          to='/followed_tags'
-        />
-      )}
     </CollapsiblePanel>
   );
 };
