@@ -79,7 +79,12 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
   const scrollNavbarIntoView = useCallback(() => {
     const navbar = document.querySelector('.navigation-panel');
-    navbar?.scrollIntoView({ behavior: 'smooth' });
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    navbar?.scrollIntoView({
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    });
   }, []);
 
   if (multiColumn) {
