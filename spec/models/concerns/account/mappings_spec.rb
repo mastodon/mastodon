@@ -22,6 +22,13 @@ RSpec.describe Account::Mappings do
     context 'when Account is without Follow' do
       it { is_expected.to eq({}) }
     end
+
+    context 'when given empty values' do
+      let(:target_account_ids) { [] }
+      let(:account_id) { 1 }
+
+      it { is_expected.to be_a(Hash) }
+    end
   end
 
   describe '.followed_by_map' do
@@ -36,6 +43,13 @@ RSpec.describe Account::Mappings do
     context 'when Account is without Follow' do
       it { is_expected.to eq({}) }
     end
+
+    context 'when given empty values' do
+      let(:target_account_ids) { [] }
+      let(:account_id) { 1 }
+
+      it { is_expected.to be_a(Hash) }
+    end
   end
 
   describe '.blocking_map' do
@@ -49,6 +63,24 @@ RSpec.describe Account::Mappings do
 
     context 'when Account is without Block' do
       it { is_expected.to eq({}) }
+    end
+
+    context 'when given empty values' do
+      let(:target_account_ids) { [] }
+      let(:account_id) { 1 }
+
+      it { is_expected.to be_a(Hash) }
+    end
+  end
+
+  describe '.blocked_by_map' do
+    subject { Account.blocked_by_map(target_account_ids, account_id) }
+
+    context 'when given empty values' do
+      let(:target_account_ids) { [] }
+      let(:account_id) { 1 }
+
+      it { is_expected.to be_a(Hash) }
     end
   end
 
@@ -73,6 +105,57 @@ RSpec.describe Account::Mappings do
 
     context 'when Account without Mute' do
       it { is_expected.to eq({}) }
+    end
+
+    context 'when given empty values' do
+      let(:target_account_ids) { [] }
+      let(:account_id) { 1 }
+
+      it { is_expected.to be_a(Hash) }
+    end
+  end
+
+  describe '.requested_map' do
+    subject { Account.requested_map(target_account_ids, account_id) }
+
+    context 'when given empty values' do
+      let(:target_account_ids) { [] }
+      let(:account_id) { 1 }
+
+      it { is_expected.to be_a(Hash) }
+    end
+  end
+
+  describe '.requested_by_map' do
+    subject { Account.requested_by_map(target_account_ids, account_id) }
+
+    context 'when given empty values' do
+      let(:target_account_ids) { [] }
+      let(:account_id) { 1 }
+
+      it { is_expected.to be_a(Hash) }
+    end
+  end
+
+  describe '.endorsed_map' do
+    subject { Account.endorsed_map(target_account_ids, account_id) }
+
+    context 'when given empty values' do
+      let(:target_account_ids) { [] }
+      let(:account_id) { 1 }
+
+      it { is_expected.to be_a(Hash) }
+    end
+  end
+
+  describe '.account_note_map' do
+    subject { Account.account_note_map(target_account_ids, account_id) }
+
+    context 'when given empty values' do
+      let(:target_account_ids) { [] }
+      let(:account_id) { 1 }
+
+      it { is_expected.to be_a(Hash) }
     end
   end
 end
