@@ -64,10 +64,19 @@ const preview: Preview = {
 
     state: {},
 
+    // Force docs to use an iframe as it breaks MSW handlers.
+    // See: https://github.com/mswjs/msw-storybook-addon/issues/83
+    docs: {
+      story: {
+        inline: false,
+      },
+    },
+
     msw: {
       handlers: [
         http.get('/index.json', passthrough),
         http.get('/packs-dev/*', passthrough),
+        http.get('/sounds/*', passthrough),
       ],
     },
   },
