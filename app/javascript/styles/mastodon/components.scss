@@ -1410,9 +1410,10 @@ body > [data-popper-placement] {
 }
 
 .focusable {
-  &:focus {
+  &:focus-visible {
     outline: 0;
     background: rgba($ui-highlight-color, 0.05);
+    box-shadow: inset 0 0 0 2px $ui-button-focus-outline-color;
   }
 }
 
@@ -1815,7 +1816,7 @@ body > [data-popper-placement] {
     background: color.mix($ui-base-color, $ui-highlight-color, 95%);
   }
 
-  &:focus {
+  &:focus-visible {
     .detailed-status,
     .detailed-status__action-bar {
       background: color.mix(
