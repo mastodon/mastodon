@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Oauth::AuthorizationsController < Doorkeeper::AuthorizationsController
+class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
   skip_before_action :authenticate_resource_owner!
 
   before_action :store_current_location
