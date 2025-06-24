@@ -29,6 +29,7 @@ import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
+  clearSearch: { id: 'search.clear', defaultMessage: 'Clear search' },
   placeholderSignedIn: {
     id: 'search.search_or_paste',
     defaultMessage: 'Search or paste URL',
@@ -48,6 +49,34 @@ const labelForRecentSearch = (search: RecentSearch) => {
 
 const unfocus = () => {
   document.querySelector('.ui')?.parentElement?.focus();
+};
+
+const ClearButton: React.FC<{
+  onClick: () => void;
+  hasValue: boolean;
+}> = ({ onClick, hasValue }) => {
+  const intl = useIntl();
+
+  return (
+    <div
+      className={classNames('search__icon-wrapper', { 'has-value': hasValue })}
+    >
+      <Icon id='search' icon={SearchIcon} className='search__icon' />
+      <button
+        type='button'
+        onClick={onClick}
+        className='search__icon search__icon--clear-button'
+        tabIndex={hasValue ? undefined : -1}
+        aria-hidden={!hasValue}
+      >
+        <Icon
+          id='times-circle'
+          icon={CancelIcon}
+          aria-label={intl.formatMessage(messages.clearSearch)}
+        />
+      </button>
+    </div>
+  );
 };
 
 interface SearchOption {
@@ -380,6 +409,7 @@ export const Search: React.FC<{
     setValue('');
     setQuickActions([]);
     setSelectedOption(-1);
+    unfocus();
   }, [setValue, setQuickActions, setSelectedOption]);
 
   const handleKeyDown = useCallback(
@@ -474,19 +504,7 @@ export const Search: React.FC<{
         onBlur={handleBlur}
       />
 
-      <button type='button' className='search__icon' onClick={handleClear}>
-        <Icon
-          id='search'
-          icon={SearchIcon}
-          className={hasValue ? '' : 'active'}
-        />
-        <Icon
-          id='times-circle'
-          icon={CancelIcon}
-          className={hasValue ? 'active' : ''}
-          aria-label={intl.formatMessage(messages.placeholder)}
-        />
-      </button>
+      <ClearButton hasValue={hasValue} onClick={handleClear} />
 
       <div className='search__popout'>
         {!hasValue && (
