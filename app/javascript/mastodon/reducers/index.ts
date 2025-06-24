@@ -1,4 +1,4 @@
-import { Record as ImmutableRecord } from 'immutable';
+import { Record as ImmutableRecord, mergeDeep } from 'immutable';
 
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import { combineReducers } from 'redux-immutable';
@@ -98,6 +98,15 @@ const initialRootState = Object.fromEntries(
 
 const RootStateRecord = ImmutableRecord(initialRootState, 'RootState');
 
-const rootReducer = combineReducers(reducers, RootStateRecord);
+export const rootReducer = combineReducers(reducers, RootStateRecord);
 
-export { rootReducer };
+export function reducerWithInitialState(
+  stateOverrides: Record<string, unknown> = {},
+) {
+  const initialStateRecord = mergeDeep(initialRootState, stateOverrides);
+  const PatchedRootStateRecord = ImmutableRecord(
+    initialStateRecord,
+    'RootState',
+  );
+  return combineReducers(reducers, PatchedRootStateRecord);
+}
