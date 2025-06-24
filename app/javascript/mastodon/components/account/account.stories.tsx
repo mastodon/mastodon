@@ -2,8 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { http, HttpResponse } from 'msw';
 import { action } from 'storybook/actions';
 
-import { createAccountFromServerJSON } from '@/mastodon/models/account';
-import { accountFactory, relationshipsFactory } from '@/testing/factories';
+import { accountFactoryState, relationshipsFactory } from '@/testing/factories';
 
 import { Account } from './index';
 
@@ -54,7 +53,7 @@ const meta = {
   parameters: {
     state: {
       accounts: {
-        '1': createAccountFromServerJSON(accountFactory()),
+        '1': accountFactoryState(),
       },
     },
     msw: {
@@ -64,7 +63,7 @@ const meta = {
           ({ params }) => {
             action('muting account')(params);
             return HttpResponse.json(
-              relationshipsFactory({ id: params.id, data: { muting: true } }),
+              relationshipsFactory({ id: params.id, muting: true }),
             );
           },
         ),
@@ -73,7 +72,7 @@ const meta = {
           ({ params }) => {
             action('unmuting account')(params);
             return HttpResponse.json(
-              relationshipsFactory({ id: params.id, data: { muting: false } }),
+              relationshipsFactory({ id: params.id, muting: false }),
             );
           },
         ),
@@ -82,7 +81,7 @@ const meta = {
           ({ params }) => {
             action('blocking account')(params);
             return HttpResponse.json(
-              relationshipsFactory({ id: params.id, data: { blocking: true } }),
+              relationshipsFactory({ id: params.id, blocking: true }),
             );
           },
         ),
@@ -93,7 +92,7 @@ const meta = {
             return HttpResponse.json(
               relationshipsFactory({
                 id: params.id,
-                data: { blocking: false },
+                blocking: false,
               }),
             );
           },
@@ -145,10 +144,7 @@ export const Blocked: Story = {
     state: {
       relationships: {
         '1': relationshipsFactory({
-          id: '1',
-          data: {
-            blocking: true,
-          },
+          blocking: true,
         }),
       },
     },
@@ -161,10 +157,7 @@ export const Muted: Story = {
     state: {
       relationships: {
         '1': relationshipsFactory({
-          id: '1',
-          data: {
-            muting: true,
-          },
+          muting: true,
         }),
       },
     },

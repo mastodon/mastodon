@@ -1,16 +1,16 @@
 import type { ApiRelationshipJSON } from '@/mastodon/api_types/relationships';
+import { createAccountFromServerJSON } from '@/mastodon/models/account';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 
-interface FactoryOptions<T> {
+type FactoryOptions<T> = {
   id?: string;
-  data?: Partial<T>;
-}
+} & Partial<T>;
 
 type FactoryFunction<T> = (options?: FactoryOptions<T>) => T;
 
 export const accountFactory: FactoryFunction<ApiAccountJSON> = ({
   id,
-  data,
+  ...data
 } = {}) => ({
   id: id ?? '1',
   acct: 'testuser',
@@ -43,9 +43,13 @@ export const accountFactory: FactoryFunction<ApiAccountJSON> = ({
   ...data,
 });
 
+export const accountFactoryState = (
+  options: FactoryOptions<ApiAccountJSON> = {},
+) => createAccountFromServerJSON(accountFactory(options));
+
 export const relationshipsFactory: FactoryFunction<ApiRelationshipJSON> = ({
   id,
-  data,
+  ...data
 } = {}) => ({
   id: id ?? '1',
   following: false,
