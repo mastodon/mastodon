@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
-class AnnouncementFilter
+class AnnouncementFilter < BaseFilter
   KEYS = %i(
     published
     unpublished
   ).freeze
-
-  attr_reader :params
-
-  def initialize(params)
-    @params = params
-  end
 
   def results
     scope = Announcement.unscoped
