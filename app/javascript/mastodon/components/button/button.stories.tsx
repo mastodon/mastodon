@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { fn, expect, waitFor } from 'storybook/test';
+import { fn, expect } from 'storybook/test';
 
 import { Button } from '.';
 
@@ -36,8 +36,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const buttonTest: Story['play'] = async ({ args, canvas, userEvent }) => {
-  await waitFor(() => canvas.getByRole('button'));
-  await userEvent.click(canvas.getByRole('button'));
+  const button = await canvas.findByRole('button');
+  await userEvent.click(button);
   await expect(args.onClick).toHaveBeenCalled();
 };
 
@@ -46,8 +46,8 @@ const disabledButtonTest: Story['play'] = async ({
   canvas,
   userEvent,
 }) => {
-  await waitFor(() => canvas.getByRole('button'));
-  await userEvent.click(canvas.getByRole('button'));
+  const button = await canvas.findByRole('button');
+  await userEvent.click(button);
   await expect(args.onClick).not.toHaveBeenCalled();
 };
 
