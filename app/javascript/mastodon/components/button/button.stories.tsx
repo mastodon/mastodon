@@ -78,7 +78,10 @@ const disabledButtonTest: Story['play'] = async ({
   canvas,
   userEvent,
 }) => {
-  await userEvent.click(canvas.getByRole('button'));
+  const button = await canvas.findByRole('button');
+  await userEvent.click(button);
+  // Disabled controls can't be focused
+  await expect(button).not.toHaveFocus();
   await expect(args.onClick).not.toHaveBeenCalled();
 };
 
@@ -104,9 +107,10 @@ const loadingButtonTest: Story['play'] = async ({
   userEvent,
 }) => {
   const button = await canvas.findByRole('button', {
-    name: 'Primary button Loading',
+    name: 'Primary button Loading…',
   });
   await userEvent.click(button);
+  await expect(button).toHaveFocus();
   await expect(args.onClick).not.toHaveBeenCalled();
 };
 

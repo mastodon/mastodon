@@ -46,11 +46,14 @@ export const Button: React.FC<Props> = ({
 }) => {
   const handleClick = useCallback<React.MouseEventHandler<HTMLButtonElement>>(
     (e) => {
-      if (!disabled && onClick) {
+      if (disabled || loading) {
+        e.stopPropagation();
+        e.preventDefault();
+      } else if (onClick) {
         onClick(e);
       }
     },
-    [disabled, onClick],
+    [disabled, loading, onClick],
   );
 
   const label = text ?? children;
@@ -64,7 +67,10 @@ export const Button: React.FC<Props> = ({
         'button--dangerous': dangerous,
         loading,
       })}
-      disabled={(disabled && !loading) || loading}
+      // Disabled buttons can't have focus, so we don't really
+      // disable the button during loading
+      disabled={disabled && !loading}
+      aria-disabled={loading}
       // If the loading prop is used, announce label changes
       aria-live={loading !== undefined ? 'polite' : undefined}
       onClick={handleClick}

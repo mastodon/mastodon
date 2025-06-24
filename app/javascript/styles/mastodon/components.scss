@@ -250,8 +250,11 @@
   }
 
   &.loading {
+    cursor: wait;
+
     .button__label-wrapper {
-      // Hide the label so that it keeps its layout and accessibility
+      // Hide the label only visually, so that
+      // it keeps its layout and accessibility
       opacity: 0;
     }
 
