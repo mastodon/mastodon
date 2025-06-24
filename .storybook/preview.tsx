@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { IntlProvider } from 'react-intl';
 
+import { MemoryRouter } from 'react-router';
+
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
@@ -94,6 +96,11 @@ const preview: Preview = {
         </IntlProvider>
       );
     },
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
   ],
   loaders: [mswLoader],
   parameters: {
