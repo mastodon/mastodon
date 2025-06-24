@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Doorkeeper::AccessToken do
+RSpec.describe OAuth::AccessToken do
   describe 'Associations' do
     it { is_expected.to have_many(:web_push_subscriptions).class_name('Web::PushSubscription').inverse_of(:access_token) }
   end

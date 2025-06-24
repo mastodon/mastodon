@@ -27,7 +27,7 @@ class PostStatusService < BaseService
   # @option [String] :scheduled_at
   # @option [Hash] :poll Optional poll to attach
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
-  # @option [Doorkeeper::Application] :application
+  # @option [OAuth::Application] :application
   # @option [String] :idempotency Optional idempotency key
   # @option [Boolean] :with_rate_limit
   # @option [Enumerable] :allowed_mentions Optional array of expected mentioned account IDs, raises `UnexpectedMentionsError` if unexpected accounts end up in mentions

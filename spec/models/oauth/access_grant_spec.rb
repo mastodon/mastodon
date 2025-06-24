@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Doorkeeper::AccessGrant do
+RSpec.describe OAuth::AccessGrant do
   describe 'Validations' do
     subject { Fabricate :access_grant }
 

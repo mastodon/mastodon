@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe OAuth::AuthorizationsController do
   render_views
 
-  let(:app) { Doorkeeper::Application.create!(name: 'test', redirect_uri: 'http://localhost/', scopes: 'read') }
+  let(:app) { OAuth::Application.create!(name: 'test', redirect_uri: 'http://localhost/', scopes: 'read') }
 
   describe 'GET #new' do
     subject do
@@ -34,7 +34,7 @@ RSpec.describe OAuth::AuthorizationsController do
 
       context 'when app is already authorized' do
         before do
-          Doorkeeper::AccessToken.find_or_create_for(
+          OAuth::AccessToken.find_or_create_for(
             application: app,
             resource_owner: user.id,
             scopes: app.scopes,

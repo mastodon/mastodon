@@ -25,7 +25,7 @@ RSpec.describe 'Settings / Exports' do
 
     let(:params) do
       {
-        doorkeeper_application: {
+        oauth_application: {
           name: 'My New App',
           redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
           website: 'http://google.com',
@@ -36,13 +36,13 @@ RSpec.describe 'Settings / Exports' do
 
     it 'supports passing scope values as string' do
       expect { subject }
-        .to change(Doorkeeper::Application, :count).by(1)
+        .to change(OAuth::Application, :count).by(1)
       expect(response)
         .to redirect_to(settings_applications_path)
     end
 
     it 'gracefully handles invalid nested params' do
-      post settings_applications_path(doorkeeper_application: 'invalid')
+      post settings_applications_path(oauth_application: 'invalid')
 
       expect(response)
         .to have_http_status(400)
@@ -53,7 +53,7 @@ RSpec.describe 'Settings / Exports' do
     let(:application) { Fabricate :application, owner: user }
 
     it 'gracefully handles invalid nested params' do
-      put settings_application_path(application.id, doorkeeper_application: 'invalid')
+      put settings_application_path(application.id, oauth_application: 'invalid')
 
       expect(response)
         .to have_http_status(400)

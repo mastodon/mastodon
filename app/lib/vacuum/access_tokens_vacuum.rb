@@ -9,12 +9,12 @@ class Vacuum::AccessTokensVacuum
   private
 
   def vacuum_revoked_access_tokens!
-    Doorkeeper::AccessToken.expired.in_batches.delete_all
-    Doorkeeper::AccessToken.revoked.in_batches.delete_all
+    OAuth::AccessToken.expired.in_batches.delete_all
+    OAuth::AccessToken.revoked.in_batches.delete_all
   end
 
   def vacuum_revoked_access_grants!
-    Doorkeeper::AccessGrant.expired.in_batches.delete_all
-    Doorkeeper::AccessGrant.revoked.in_batches.delete_all
+    OAuth::AccessGrant.expired.in_batches.delete_all
+    OAuth::AccessGrant.revoked.in_batches.delete_all
   end
 end

@@ -34,7 +34,7 @@ RSpec.describe 'Settings applications page' do
       fill_in_form
 
       expect { submit_form }
-        .to change(Doorkeeper::Application, :count).by(1)
+        .to change(OAuth::Application, :count).by(1)
       expect(page)
         .to have_content(I18n.t('doorkeeper.applications.index.title'))
         .and have_content('My new app')
@@ -47,7 +47,7 @@ RSpec.describe 'Settings applications page' do
       visit new_settings_application_path
 
       expect { submit_form }
-        .to not_change(Doorkeeper::Application, :count)
+        .to not_change(OAuth::Application, :count)
       expect(page)
         .to have_content("can't be blank")
     end
@@ -60,9 +60,9 @@ RSpec.describe 'Settings applications page' do
       fill_in I18n.t('activerecord.attributes.doorkeeper/application.redirect_uri'),
               with: 'urn:ietf:wg:oauth:2.0:oob'
 
-      check 'read', id: :doorkeeper_application_scopes_read
-      check 'write', id: :doorkeeper_application_scopes_write
-      check 'follow', id: :doorkeeper_application_scopes_follow
+      check 'read', id: :oauth_application_scopes_read
+      check 'write', id: :oauth_application_scopes_write
+      check 'follow', id: :oauth_application_scopes_follow
     end
 
     def submit_form
@@ -76,12 +76,12 @@ RSpec.describe 'Settings applications page' do
 
       fill_in form_app_name_label,
               with: 'My new app name with a new value'
-      check 'push', id: :doorkeeper_application_scopes_push
+      check 'push', id: :oauth_application_scopes_push
       submit_form
 
       expect(page)
         .to have_content('My new app name with a new value')
-        .and have_checked_field('push', id: :doorkeeper_application_scopes_push)
+        .and have_checked_field('push', id: :oauth_application_scopes_push)
     end
 
     it 'does not update with wrong values' do
@@ -110,7 +110,7 @@ RSpec.describe 'Settings applications page' do
       visit settings_applications_path
 
       expect { destroy_application }
-        .to change(Doorkeeper::Application, :count).by(-1)
+        .to change(OAuth::Application, :count).by(-1)
       expect(page)
         .to have_no_content(application.name)
       expect(redis_pipeline_stub)

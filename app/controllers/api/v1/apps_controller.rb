@@ -4,7 +4,7 @@ class Api::V1::AppsController < Api::BaseController
   skip_before_action :require_authenticated_user!
 
   def create
-    @app = Doorkeeper::Application.create!(application_options)
+    @app = OAuth::Application.create!(application_options)
     render json: @app, serializer: REST::CredentialApplicationSerializer
   end
 

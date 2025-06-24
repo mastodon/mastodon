@@ -18,7 +18,7 @@
 
 class Web::PushSubscription < ApplicationRecord
   belongs_to :user
-  belongs_to :access_token, class_name: 'Doorkeeper::AccessToken'
+  belongs_to :access_token, class_name: 'OAuth::AccessToken'
 
   has_one :session_activation, foreign_key: 'web_push_subscription_id', inverse_of: :web_push_subscription, dependent: nil
 
@@ -42,7 +42,7 @@ class Web::PushSubscription < ApplicationRecord
 
   class << self
     def unsubscribe_for(application_id, resource_owner)
-      access_token_ids = Doorkeeper::AccessToken.where(application_id: application_id, resource_owner_id: resource_owner.id).not_revoked.pluck(:id)
+      access_token_ids = OAuth::AccessToken.where(application_id: application_id, resource_owner_id: resource_owner.id).not_revoked.pluck(:id)
       where(access_token_id: access_token_ids).delete_all
     end
   end

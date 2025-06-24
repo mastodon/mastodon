@@ -76,11 +76,11 @@ class User < ApplicationRecord
 
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
-  belongs_to :created_by_application, class_name: 'Doorkeeper::Application', optional: true
+  belongs_to :created_by_application, class_name: 'OAuth::Application', optional: true
   belongs_to :role, class_name: 'UserRole', optional: true
   accepts_nested_attributes_for :account
 
-  has_many :applications, class_name: 'Doorkeeper::Application', as: :owner, dependent: nil
+  has_many :applications, class_name: 'OAuth::Application', as: :owner, dependent: nil
   has_many :backups, inverse_of: :user, dependent: nil
   has_many :invites, inverse_of: :user, dependent: nil
   has_many :login_activities, inverse_of: :user, dependent: :destroy
@@ -273,7 +273,7 @@ class User < ApplicationRecord
   end
 
   def applications_last_used
-    Doorkeeper::AccessToken
+    OAuth::AccessToken
       .where(resource_owner_id: id)
       .where.not(last_used_at: nil)
       .group(:application_id)
@@ -284,7 +284,7 @@ class User < ApplicationRecord
   def token_for_app(app)
     return nil if app.nil? || app.owner != self
 
-    Doorkeeper::AccessToken.find_or_create_by(application_id: app.id, resource_owner_id: id) do |t|
+    OAuth::AccessToken.find_or_create_by(application_id: app.id, resource_owner_id: id) do |t|
       t.scopes            = app.scopes
       t.expires_in        = Doorkeeper.configuration.access_token_expires_in
       t.use_refresh_token = Doorkeeper.configuration.refresh_token_enabled?
@@ -338,9 +338,9 @@ class User < ApplicationRecord
   end
 
   def revoke_access!
-    Doorkeeper::AccessGrant.by_resource_owner(self).touch_all(:revoked_at)
+    OAuth::AccessGrant.by_resource_owner(self).touch_all(:revoked_at)
 
-    Doorkeeper::AccessToken.by_resource_owner(self).in_batches do |batch|
+    OAuth::AccessToken.by_resource_owner(self).in_batches do |batch|
       batch.touch_all(:revoked_at)
       Web::PushSubscription.where(access_token_id: batch).delete_all
 

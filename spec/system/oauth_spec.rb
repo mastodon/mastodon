@@ -7,7 +7,7 @@ RSpec.describe 'Using OAuth from an external app' do
 
   subject { visit "/oauth/authorize?#{params.to_query}" }
 
-  let(:client_app) { Doorkeeper::Application.create!(name: 'test', redirect_uri: about_url(host: Rails.application.config.x.local_domain), scopes: 'read') }
+  let(:client_app) { OAuth::Application.create!(name: 'test', redirect_uri: about_url(host: Rails.application.config.x.local_domain), scopes: 'read') }
   let(:params) do
     { client_id: client_app.uid, response_type: 'code', redirect_uri: client_app.redirect_uri, scope: 'read' }
   end
@@ -264,7 +264,7 @@ RSpec.describe 'Using OAuth from an external app' do
   end
 
   def user_has_grant_with_client_app?
-    Doorkeeper::AccessGrant
+    OAuth::AccessGrant
       .exists?(
         application: client_app,
         resource_owner_id: user.id

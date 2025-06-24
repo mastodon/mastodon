@@ -134,12 +134,12 @@ namespace :tests do
         exit(1)
       end
 
-      unless Doorkeeper::Application.find(2)[:scopes] == 'write:accounts profile'
+      unless OAuth::Application.find(2)[:scopes] == 'write:accounts profile'
         puts 'Application OAuth scopes not rewritten as expected'
         exit(1)
       end
 
-      unless Doorkeeper::Application.find(2).access_tokens.first[:scopes] == 'write:accounts profile'
+      unless OAuth::Application.find(2).access_tokens.first[:scopes] == 'write:accounts profile'
         puts 'OAuth access token scopes not rewritten as expected'
         exit(1)
       end

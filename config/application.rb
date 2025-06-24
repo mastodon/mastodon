@@ -117,9 +117,6 @@ module Mastodon
     end
 
     config.to_prepare do
-      Doorkeeper::Application.include ApplicationExtension
-      Doorkeeper::AccessGrant.include AccessGrantExtension
-      Doorkeeper::AccessToken.include AccessTokenExtension
       Devise::FailureApp.include AbstractController::Callbacks
       Devise::FailureApp.include Localized
     end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Doorkeeper::Application do
+RSpec.describe OAuth::Application do
   describe 'Associations' do
     it { is_expected.to have_many(:created_users).class_name('User').inverse_of(:created_by_application).with_foreign_key(:created_by_application_id) }
   end

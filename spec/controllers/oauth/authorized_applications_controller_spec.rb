@@ -55,7 +55,7 @@ RSpec.describe OAuth::AuthorizedApplicationsController do
     it 'revokes access tokens for the application and removes subscriptions and sends kill payload to streaming' do
       post :destroy, params: { id: application.id }
 
-      expect(Doorkeeper::AccessToken.where(application: application).first.revoked_at)
+      expect(OAuth::AccessToken.where(application: application).first.revoked_at)
         .to_not be_nil
       expect(Web::PushSubscription.where(user: user).count)
         .to eq(0)
