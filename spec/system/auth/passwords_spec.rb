@@ -68,7 +68,7 @@ RSpec.describe 'Auth Passwords' do
     end
 
     def user_token_count
-      Doorkeeper::AccessToken
+      OAuth::AccessToken
         .active_for(user)
         .count
     end
