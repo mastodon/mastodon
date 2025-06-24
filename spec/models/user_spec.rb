@@ -440,7 +440,7 @@ RSpec.describe User do
 
       it 'creates and returns a persisted token' do
         expect { user.token_for_app(app) }
-          .to change(Doorkeeper::AccessToken.where(resource_owner_id: user.id, application: app), :count).by(1)
+          .to change(OAuth::AccessToken.where(resource_owner_id: user.id, application: app), :count).by(1)
       end
     end
 
@@ -450,7 +450,7 @@ RSpec.describe User do
 
       it 'returns a persisted token' do
         expect(user.token_for_app(app))
-          .to be_a(Doorkeeper::AccessToken)
+          .to be_a(OAuth::AccessToken)
           .and eq(token)
       end
     end
@@ -532,7 +532,7 @@ RSpec.describe User do
     end
 
     def remove_active_user_tokens
-      change { Doorkeeper::AccessToken.active_for(user).count }.to(0)
+      change { OAuth::AccessToken.active_for(user).count }.to(0)
     end
 
     def remove_user_web_subscriptions

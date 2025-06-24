@@ -27,7 +27,7 @@ class AppSignUpService < BaseService
   end
 
   def create_access_token!
-    @access_token = Doorkeeper::AccessToken.create!(
+    @access_token = OAuth::AccessToken.create!(
       application: @app,
       resource_owner_id: @user.id,
       scopes: @app.scopes,
