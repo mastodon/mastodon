@@ -19,7 +19,7 @@ class SessionActivation < ApplicationRecord
   include BrowserDetection
 
   belongs_to :user, inverse_of: :session_activations
-  belongs_to :access_token, class_name: 'Doorkeeper::AccessToken', dependent: :destroy, optional: true
+  belongs_to :access_token, class_name: 'OAuth::AccessToken', dependent: :destroy, optional: true
   belongs_to :web_push_subscription, class_name: 'Web::PushSubscription', dependent: :destroy, optional: true
 
   delegate :token,
@@ -61,12 +61,12 @@ class SessionActivation < ApplicationRecord
   private
 
   def assign_access_token
-    self.access_token = Doorkeeper::AccessToken.create!(access_token_attributes)
+    self.access_token = OAuth::AccessToken.create!(access_token_attributes)
   end
 
   def access_token_attributes
     {
-      application_id: Doorkeeper::Application.find_by(superapp: true)&.id,
+      application_id: OAuth::Application.find_by(superapp: true)&.id,
       resource_owner_id: user_id,
       scopes: DEFAULT_SCOPES.join(' '),
       expires_in: Doorkeeper.configuration.access_token_expires_in,
