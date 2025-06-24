@@ -249,6 +249,21 @@
     width: 100%;
   }
 
+  &.loading {
+    cursor: wait;
+
+    .button__label-wrapper {
+      // Hide the label only visually, so that
+      // it keeps its layout and accessibility
+      opacity: 0;
+    }
+
+    .loading-indicator {
+      position: absolute;
+      inset: 0;
+    }
+  }
+
   .icon {
     width: 18px;
     height: 18px;
@@ -4645,12 +4660,18 @@ a.status-card {
 .icon-button .loading-indicator {
   position: static;
   transform: none;
+  color: inherit;
 
   .circular-progress {
-    color: $primary-text-color;
+    color: inherit;
     width: 22px;
     height: 22px;
   }
+}
+
+.button--compact .loading-indicator .circular-progress {
+  width: 17px;
+  height: 17px;
 }
 
 .icon-button .loading-indicator .circular-progress {
