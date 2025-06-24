@@ -8,13 +8,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
 import type { Preview } from '@storybook/react-vite';
-import { http, passthrough } from 'msw';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { action } from 'storybook/actions';
 
 import type { LocaleData } from '@/mastodon/locales';
 import { reducerWithInitialState, rootReducer } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
+import { mockHandlers } from '@/testing/api';
 
 // If you want to run the dark theme during development,
 // you can change the below to `/application.scss`
@@ -25,7 +25,17 @@ const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
 });
 
 // Initialize MSW
-initialize();
+initialize({
+  onUnhandledRequest: ({ url }) => {
+    const { pathname } = new URL(url);
+    if (pathname.startsWith('/api/v1/')) {
+      action(`unhandled request to ${pathname}`)(url);
+      console.warn(
+        `Unhandled request to ${pathname}. Please add a handler for this request in your storybook configuration.`,
+      );
+    }
+  },
+});
 
 const preview: Preview = {
   // Auto-generate docs: https://storybook.js.org/docs/writing-docs/autodocs
@@ -142,11 +152,7 @@ const preview: Preview = {
     },
 
     msw: {
-      handlers: [
-        http.get('/index.json', passthrough),
-        http.get('/packs-dev/*', passthrough),
-        http.get('/sounds/*', passthrough),
-      ],
+      handlers: mockHandlers,
     },
   },
 };

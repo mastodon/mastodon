@@ -253,6 +253,7 @@ export default tseslint.config([
             'app/javascript/mastodon/performance.js',
             'app/javascript/mastodon/test_setup.js',
             'app/javascript/mastodon/test_helpers.tsx',
+            'app/javascript/testing/**/*',
             'app/javascript/**/__tests__/**',
             'app/javascript/**/*.stories.ts',
             'app/javascript/**/*.stories.tsx',
