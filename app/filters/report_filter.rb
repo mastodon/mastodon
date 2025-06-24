@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ReportFilter
+class ReportFilter < BaseFilter
   KEYS = %i(
     resolved
     account_id
@@ -8,12 +8,6 @@ class ReportFilter
     by_target_domain
     target_origin
   ).freeze
-
-  attr_reader :params
-
-  def initialize(params)
-    @params = params
-  end
 
   def results
     scope = Report.unresolved

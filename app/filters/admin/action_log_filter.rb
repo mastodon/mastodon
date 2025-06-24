@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::ActionLogFilter
+class Admin::ActionLogFilter < BaseFilter
   KEYS = %i(
     action_type
     account_id
@@ -83,12 +83,6 @@ class Admin::ActionLogFilter
   }.freeze
 
   IGNORED_PARAMS = %w(page).freeze
-
-  attr_reader :params
-
-  def initialize(params)
-    @params = params
-  end
 
   def results
     scope = latest_action_logs.includes(:target, :account)
