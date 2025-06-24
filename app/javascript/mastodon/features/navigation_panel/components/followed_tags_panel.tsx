@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
 import TagIcon from '@/material-icons/400-24px/tag.svg?react';
-import { apiGetFollowedTags } from 'mastodon/api/tags';
-import type { ApiHashtagJSON } from 'mastodon/api_types/tags';
+import { fetchFollowedHashtags } from 'mastodon/actions/tags_typed';
 import { ColumnLink } from 'mastodon/features/ui/components/column_link';
+import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { CollapsiblePanel } from './collapsible_panel';
 
@@ -24,25 +24,20 @@ const messages = defineMessages({
   },
 });
 
+const TAG_LIMIT = 4;
+
 export const FollowedTagsPanel: React.FC = () => {
   const intl = useIntl();
-  const [tags, setTags] = useState<ApiHashtagJSON[]>([]);
-  const [loading, setLoading] = useState(false);
+  const dispatch = useAppDispatch();
+  const { tags, stale, loading } = useAppSelector(
+    (state) => state.followedTags,
+  );
 
   useEffect(() => {
-    setLoading(true);
-
-    void apiGetFollowedTags(undefined, 4)
-      .then(({ tags }) => {
-        setTags(tags);
-        setLoading(false);
-
-        return '';
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [setLoading, setTags]);
+    if (stale) {
+      void dispatch(fetchFollowedHashtags());
+    }
+  }, [dispatch, stale]);
 
   return (
     <CollapsiblePanel
@@ -54,14 +49,14 @@ export const FollowedTagsPanel: React.FC = () => {
       expandTitle={intl.formatMessage(messages.expand)}
       loading={loading}
     >
-      {tags.map((tag) => (
+      {tags.slice(0, TAG_LIMIT).map((tag) => (
         <ColumnLink
+          transparent
           icon='hashtag'
           key={tag.name}
           iconComponent={TagIcon}
           text={`#${tag.name}`}
           to={`/tags/${tag.name}`}
-          transparent
         />
       ))}
     </CollapsiblePanel>

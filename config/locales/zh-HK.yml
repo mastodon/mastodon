@@ -190,6 +190,7 @@ zh-HK:
         disable_custom_emoji: 停用自定的 Emoji 表情符號
         disable_user: 停用帳號
         enable_custom_emoji: 啟用自定的 Emoji 表情符號
+        enable_relay: 啟用中繼
         enable_user: 啟用帳號
         memorialize_account: 把帳號設定為悼念帳號
         promote_user: 提升帳號權限
@@ -430,8 +431,17 @@ zh-HK:
       debug:
         callbacks:
           delete: 刪除
+          ip: IP 地址
       providers:
         delete: 刪除
+        name: 名稱
+        registrations:
+          confirm: 確認
+          reject: 拒絕
+        save: 儲存
+        sign_in: 登入
+        status: 狀態
+      title: FASP
     follow_recommendations:
       description_html: "<strong>跟隨建議幫助新使用者快速找到有趣內容。</strong> 當使用者尚未和其他帳號足夠多的互動以產生個人化建議時，以下帳號將被推荐。這些是一句指定語言的近期參與度和本地粉絲數最高之帳戶組合每日重新計算。"
       language: 按語言
@@ -697,7 +707,11 @@ zh-HK:
       description_html: 通常大部份宣稱已經閱讀並同意服務條款的人，在出現事故之前都沒有仔細閱讀條款內文。<strong>為了讓人方便閱讀服務條款，請以條列的形式將伺服器規則盡可能地寫得簡短一點</strong>。嘗試把每一項規則寫得簡短易明，但又不要把它們拆得過份瑣碎。
       edit: 編輯規則
       empty: 尚未定義伺服器規則
+      move_down: 向下移
+      move_up: 向上移
       title: 伺服器守則
+      translation: 翻譯
+      translations: 翻譯
     settings:
       about:
         manage_rules: 管理伺服器規則
@@ -723,6 +737,7 @@ zh-HK:
       discovery:
         follow_recommendations: 追蹤建議
         preamble: 呈現有趣的內容有助於吸引不認識 Mastodon 的使用者新手上路。控制各種探索功能在你的伺服器上的運作方式。
+        privacy: 私隱
         profile_directory: 個人檔案目錄
         public_timelines: 公共時間軸
         publish_statistics: 公佈統計數據
@@ -838,8 +853,23 @@ zh-HK:
         action: 在此查看更多資訊
         message_html: "<strong>你的對象儲存配置錯誤。你的使用者的私隱有危險。</strong>"
     tags:
+      name: 名稱
+      newest: 最新
+      oldest: 最舊
+      reset: 重設
       review: 審核文章
+      search: 搜尋
       updated_msg: 成功更新主題標籤設定
+    terms_of_service:
+      current: 目前
+      draft: 草稿
+      generates:
+        action: 產生
+      history: 歷史
+      notify_users: 通知使用者
+      publish: 發佈
+      save_draft: 儲存草稿
+      title: 服務條款
     title: 管理
     trends:
       allow: 允許
@@ -1065,6 +1095,8 @@ zh-HK:
       view_strikes: 查看針對你的帳戶的過往警告
     too_fast: 你太快遞交了，請再試一次。
     use_security_key: 使用安全密鑰裝置
+  author_attribution:
+    example_title: 範例文字
   challenge:
     confirm: 繼續
     hint_html: "<strong>温馨提示</strong> 我們在未來一小時內不會再要求你填寫密碼。"
@@ -1551,6 +1583,7 @@ zh-HK:
     delete: 刪除帳戶
     development: 開發
     edit_profile: 修改個人資料
+    export: 匯出
     featured_tags: 推薦的標籤
     import: 匯入
     import_and_export: 匯入及匯出
@@ -1709,6 +1742,8 @@ zh-HK:
       further_actions_html: 如果這不是你，我們建議你立即 %{action} 並啟用雙重認證，以確保帳號安全。
       subject: 你的帳號被一個新的 IP 地址存取
       title: 新登入
+    terms_of_service_changed:
+      title: 重要更新
     warning:
       appeal: 提交申訴
       appeal_description: 如果你認為這個有誤，你可以向 %{instance} 的工作人員提出申訴。
@@ -1793,6 +1828,7 @@ zh-HK:
     instructions_html: 複製並貼上以下的程式碼到你網站的 HTML 中，然後在個人檔案的「修改個人檔案」頁籤中的額外欄位加入你該網址，並儲存變更。
     verification: 驗證
     verified_links: 已驗證的連結
+    website_verification: 網站驗證
   webauthn_credentials:
     add: 新增安全密鑰裝置
     create:

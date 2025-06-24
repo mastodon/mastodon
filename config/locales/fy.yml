@@ -786,17 +786,26 @@ fy:
       title: Rollen
     rules:
       add_new: Rigel tafoegje
+      add_translation: Oersetting tafoegje
       delete: Fuortsmite
       description_html: Hoewol de measte minsken sizze dat se de brûksbetingsten lêzen hawwe en der mei akkoard gean, lêze minsken dizze meastentiids net oant dat der in probleem bard. <strong>Meitsje it ienfâldiger om de regels fan dizze server yn ien eachwink te sjen, troch se punt foar punt yn in list te setten.</strong> Probearje de ferskate regels koart en simpel te hâlden, mar probearje se ek net yn ferskate items ûnder te ferdielen.
       edit: Rigel bewurkje
       empty: Foar dizze server binne noch gjin regels opsteld.
+      move_down: Omleech ferpleatse
+      move_up: Omheech ferpleatse
       title: Serverrigels
+      translation: Oersetting
+      translations: Oersettingen
+      translations_explanation: Jo kinne eventueel oersettingen tafoegje foar de regels. De standertwearde wurdt toand as der gjin oerstte ferzje beskikber is. Soargje der altyd foar dat oanfoljende oersettingen bywurke bliuwe.
     settings:
       about:
         manage_rules: Serverregels beheare
         preamble: Jou wiidweidige ynformaasje oer hoe’t de server beheard, modereare en finansiere wurdt.
         rules_hint: Der is in spesjaal gebied foar regels wêr’t jo brûkers harren oan hâlde moatte.
         title: Oer
+      allow_referrer_origin:
+        desc: Wannear’t jo brûkers op koppelingen nei eksterne websites klikke, kin harren browser it adres fan jo Mastodon-server as de referrer ferstjoere. Skeakelje dit út as dit jo brûkers unyk identifisearje soe, bygelyks as dit in persoanlike Mastodon-server is.
+        title: Eksterne websites tastean om jo Mastodon-server as de boarne te sjen
       appearance:
         preamble: Mastodon’s webomjouwing oanpasse.
         title: Werjefte
@@ -816,6 +825,7 @@ fy:
       discovery:
         follow_recommendations: Oanrekommandearre accounts
         preamble: It toanen fan ynteressante ynhâld is fan essinsjeel belang foar it oan board heljen fan nije brûkers dy’t mooglik net ien fan Mastodon kinne. Bepaal hoe’t ferskate funksjes foar it ûntdekken fan ynhâld en brûkers op jo server wurkje.
+        privacy: Privacy
         profile_directory: Profylmap
         public_timelines: Iepenbiere tiidlinen
         publish_statistics: Statistiken publisearje
@@ -1857,6 +1867,10 @@ fy:
       limit: Jo hawwe it maksimaal tal berjochten al fêstmakke
       ownership: In berjocht fan in oar kin net fêstmakke wurde
       reblog: In boost kin net fêstset wurde
+    quote_policies:
+      followers: Folgers en fermelde brûkers
+      nobody: Allinnich fermelde brûkers
+      public: Elkenien
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkt
@@ -1910,6 +1924,11 @@ fy:
     does_not_match_previous_name: komt net oerien mei de foarige namme
   terms_of_service:
     title: Gebrûksbetingsten
+  terms_of_service_interstitial:
+    future_preamble_html: Wy bringe inkelde wizigingen oan yn ús gebrûksbetingsten, dy’t fan krêft wurde op <strong>%{date}</strong>. Wy rekommandearje jo oan om de bywurke betingsten troch te nimmen.
+    past_preamble_html: Wy hawwe ús gebrûksbetingsten wizige sûnt jo lêste besite. Wy rekommandearje jo oan om de bywurke betingsten troch te nimmen.
+    review_link: Gebrûksbetingsten besjen
+    title: De gebrûksbetingsten fan %{domain} wizigje
   themes:
     contrast: Mastodon (heech kontrast)
     default: Mastodon (donker)
