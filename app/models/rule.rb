@@ -42,6 +42,6 @@ class Rule < ApplicationRecord
 
   def translation_for(locale)
     @cached_translations ||= {}
-    @cached_translations[locale] ||= translations.where(language: [locale, locale.to_s.split('-').first]).order('length(language) desc').first || RuleTranslation.new(language: locale, text: text, hint: hint)
+    @cached_translations[locale] ||= translations.for_locale(locale).by_language_length.first || translations.build(language: locale, text: text, hint: hint)
   end
 end
