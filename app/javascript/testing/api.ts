@@ -41,3 +41,13 @@ export const mockHandlers = {
     },
   ),
 };
+
+export const unhandledRequestHandler = ({ url }: Request) => {
+  const { pathname } = new URL(url);
+  if (pathname.startsWith('/api/v1/')) {
+    action(`unhandled request to ${pathname}`)(url);
+    console.warn(
+      `Unhandled request to ${pathname}. Please add a handler for this request in your storybook configuration.`,
+    );
+  }
+};
