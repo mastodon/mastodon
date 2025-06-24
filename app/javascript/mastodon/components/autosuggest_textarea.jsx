@@ -162,6 +162,14 @@ const AutosuggestTextarea = forwardRef(({
     }
   }, [suggestions, textareaRef, setSuggestionsHidden]);
 
+  // Hack to force Firefox to change language in autocorrect
+  useEffect(() => {
+    if (lang && textareaRef.current && textareaRef.current === document.activeElement) {
+      textareaRef.current.blur();
+      textareaRef.current.focus();
+    }
+  }, [lang]);
+
   const renderSuggestion = (suggestion, i) => {
     let inner, key;
 
