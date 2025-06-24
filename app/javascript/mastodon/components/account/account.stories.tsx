@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { http } from 'msw';
+import { action } from 'storybook/actions';
 
 import { createAccountFromServerJSON } from '@/mastodon/models/account';
-import { accountFactory } from '@/testing/factories';
+import { accountFactory, relationshipsFactory } from '@/testing/factories';
 
 import { Account } from './index';
 
@@ -55,6 +57,50 @@ const meta = {
         '1': createAccountFromServerJSON(accountFactory()),
       },
     },
+    msw: {
+      handlers: {
+        mute: http.post<{ id: string }>(
+          '/api/v1/accounts/:id/mute',
+          ({ params }) => {
+            action('muting account')(params);
+            return new Response(JSON.stringify({ success: true }), {
+              status: 200,
+              headers: { 'Content-Type': 'application/json' },
+            });
+          },
+        ),
+        unmute: http.post<{ id: string }>(
+          '/api/v1/accounts/:id/unmute',
+          ({ params }) => {
+            action('unmuting account')(params);
+            return new Response(JSON.stringify({ success: true }), {
+              status: 200,
+              headers: { 'Content-Type': 'application/json' },
+            });
+          },
+        ),
+        block: http.post<{ id: string }>(
+          '/api/v1/accounts/:id/block',
+          ({ params }) => {
+            action('blocking account')(params);
+            return new Response(JSON.stringify({ success: true }), {
+              status: 200,
+              headers: { 'Content-Type': 'application/json' },
+            });
+          },
+        ),
+        unblock: http.post<{ id: string }>(
+          '/api/v1/accounts/:id/unblock',
+          ({ params }) => {
+            action('unblocking account')(params);
+            return new Response(JSON.stringify({ success: true }), {
+              status: 200,
+              headers: { 'Content-Type': 'application/json' },
+            });
+          },
+        ),
+      },
+    },
   },
 } satisfies Meta<typeof Account>;
 
@@ -89,5 +135,39 @@ export const WithBio: Story = {
 export const NoMenu: Story = {
   args: {
     withMenu: false,
+  },
+};
+
+export const Blocked: Story = {
+  args: {
+    defaultAction: 'block',
+  },
+  parameters: {
+    state: {
+      relationships: {
+        '1': relationshipsFactory({
+          id: '1',
+          data: {
+            blocking: true,
+          },
+        }),
+      },
+    },
+  },
+};
+
+export const Muted: Story = {
+  args: {},
+  parameters: {
+    state: {
+      relationships: {
+        '1': relationshipsFactory({
+          id: '1',
+          data: {
+            muting: true,
+          },
+        }),
+      },
+    },
   },
 };

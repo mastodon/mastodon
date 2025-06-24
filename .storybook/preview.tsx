@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { IntlProvider } from 'react-intl';
 
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter, Route } from 'react-router';
 
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import type { Preview } from '@storybook/react-vite';
 import { http, passthrough } from 'msw';
 import { initialize, mswLoader } from 'msw-storybook-addon';
+import { action } from 'storybook/actions';
 
 import type { LocaleData } from '@/mastodon/locales';
 import { reducerWithInitialState, rootReducer } from '@/mastodon/reducers';
@@ -99,6 +100,16 @@ const preview: Preview = {
     (Story) => (
       <MemoryRouter>
         <Story />
+        <Route
+          path='*'
+          // eslint-disable-next-line react/jsx-no-bind
+          render={({ location }) => {
+            if (location.pathname !== '/') {
+              action(`route change to ${location.pathname}`)(location);
+            }
+            return null;
+          }}
+        />
       </MemoryRouter>
     ),
   ],
