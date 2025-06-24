@@ -318,7 +318,7 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
               id='check'
               icon={CheckIcon}
               className='poll__voted__mark'
-              title={intl.formatMessage(messages.voted)}
+              aria-label={intl.formatMessage(messages.voted)}
             />
           </span>
         )}

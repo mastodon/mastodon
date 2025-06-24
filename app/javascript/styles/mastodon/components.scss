@@ -249,6 +249,21 @@
     width: 100%;
   }
 
+  &.loading {
+    cursor: wait;
+
+    .button__label-wrapper {
+      // Hide the label only visually, so that
+      // it keeps its layout and accessibility
+      opacity: 0;
+    }
+
+    .loading-indicator {
+      position: absolute;
+      inset: 0;
+    }
+  }
+
   .icon {
     width: 18px;
     height: 18px;
@@ -4645,12 +4660,18 @@ a.status-card {
 .icon-button .loading-indicator {
   position: static;
   transform: none;
+  color: inherit;
 
   .circular-progress {
-    color: $primary-text-color;
+    color: inherit;
     width: 22px;
     height: 22px;
   }
+}
+
+.button--compact .loading-indicator .circular-progress {
+  width: 17px;
+  height: 17px;
 }
 
 .icon-button .loading-indicator .circular-progress {
@@ -5649,17 +5670,46 @@ a.status-card {
   }
 }
 
-.search__icon {
-  background: transparent;
-  border: 0;
-  padding: 0;
+.search__icon-wrapper {
   position: absolute;
-  top: 12px + 2px;
-  cursor: default;
-  pointer-events: none;
+  top: 14px;
+  display: grid;
   margin-inline-start: 16px - 2px;
   width: 20px;
   height: 20px;
+
+  .icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  &:not(.has-value) {
+    pointer-events: none;
+  }
+}
+
+.search__icon {
+  grid-area: 1 / 1;
+  transition: all 100ms linear;
+  transition-property: transform, opacity;
+  color: $darker-text-color;
+}
+
+.search__icon.icon-search {
+  .has-value & {
+    pointer-events: none;
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+}
+
+.search__icon--clear-button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
 
   &::-moz-focus-inner {
     border: 0;
@@ -5670,39 +5720,14 @@ a.status-card {
     outline: 0 !important;
   }
 
-  .icon {
-    position: absolute;
-    top: 0;
-    inset-inline-start: 0;
+  &:focus-visible {
+    box-shadow: 0 0 0 2px $ui-button-focus-outline-color;
+  }
+
+  &[aria-hidden='true'] {
+    pointer-events: none;
     opacity: 0;
-    transition: all 100ms linear;
-    transition-property: transform, opacity;
-    width: 20px;
-    height: 20px;
-    color: $darker-text-color;
-
-    &.active {
-      pointer-events: auto;
-      opacity: 1;
-    }
-  }
-
-  .icon-search {
-    transform: rotate(90deg);
-
-    &.active {
-      pointer-events: none;
-      transform: rotate(0deg);
-    }
-  }
-
-  .icon-times-circle {
-    transform: rotate(0deg);
-    cursor: pointer;
-
-    &.active {
-      transform: rotate(90deg);
-    }
+    transform: rotate(-90deg);
   }
 }
 
