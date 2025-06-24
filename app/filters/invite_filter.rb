@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
-class InviteFilter
+class InviteFilter < BaseFilter
   KEYS = %i(
     available
     expired
   ).freeze
-
-  attr_reader :params
-
-  def initialize(params)
-    @params = params
-  end
 
   def results
     scope = Invite.order(created_at: :desc)
