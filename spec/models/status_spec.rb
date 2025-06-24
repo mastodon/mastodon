@@ -352,6 +352,17 @@ RSpec.describe Status do
     end
   end
 
+  describe '.only_reblogs' do
+    let!(:status) { Fabricate :status }
+    let!(:reblog) { Fabricate :status, reblog: Fabricate(:status) }
+
+    it 'returns the expected statuses' do
+      expect(described_class.only_reblogs)
+        .to include(reblog)
+        .and not_include(status)
+    end
+  end
+
   describe '.tagged_with' do
     let(:tag_cats) { Fabricate(:tag, name: 'cats') }
     let(:tag_dogs) { Fabricate(:tag, name: 'dogs') }
