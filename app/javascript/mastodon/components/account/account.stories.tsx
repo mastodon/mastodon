@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { http } from 'msw';
+import { http, HttpResponse } from 'msw';
 import { action } from 'storybook/actions';
 
 import { createAccountFromServerJSON } from '@/mastodon/models/account';
@@ -63,40 +63,39 @@ const meta = {
           '/api/v1/accounts/:id/mute',
           ({ params }) => {
             action('muting account')(params);
-            return new Response(JSON.stringify({ success: true }), {
-              status: 200,
-              headers: { 'Content-Type': 'application/json' },
-            });
+            return HttpResponse.json(
+              relationshipsFactory({ id: params.id, data: { muting: true } }),
+            );
           },
         ),
         unmute: http.post<{ id: string }>(
           '/api/v1/accounts/:id/unmute',
           ({ params }) => {
             action('unmuting account')(params);
-            return new Response(JSON.stringify({ success: true }), {
-              status: 200,
-              headers: { 'Content-Type': 'application/json' },
-            });
+            return HttpResponse.json(
+              relationshipsFactory({ id: params.id, data: { muting: false } }),
+            );
           },
         ),
         block: http.post<{ id: string }>(
           '/api/v1/accounts/:id/block',
           ({ params }) => {
             action('blocking account')(params);
-            return new Response(JSON.stringify({ success: true }), {
-              status: 200,
-              headers: { 'Content-Type': 'application/json' },
-            });
+            return HttpResponse.json(
+              relationshipsFactory({ id: params.id, data: { blocking: true } }),
+            );
           },
         ),
         unblock: http.post<{ id: string }>(
           '/api/v1/accounts/:id/unblock',
           ({ params }) => {
             action('unblocking account')(params);
-            return new Response(JSON.stringify({ success: true }), {
-              status: 200,
-              headers: { 'Content-Type': 'application/json' },
-            });
+            return HttpResponse.json(
+              relationshipsFactory({
+                id: params.id,
+                data: { blocking: false },
+              }),
+            );
           },
         ),
       },
