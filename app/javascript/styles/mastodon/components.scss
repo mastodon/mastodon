@@ -2894,6 +2894,7 @@ a.account__display-name {
   background: var(--background-color);
   backdrop-filter: var(--background-filter);
   border-top: 1px solid var(--background-border-color);
+  box-sizing: border-box;
 
   .layout-multiple-columns & {
     display: none;
@@ -3105,7 +3106,7 @@ a.account__display-name {
   .search__input {
     line-height: 18px;
     font-size: 16px;
-    padding: 15px;
+    padding-block: 15px;
     padding-inline-end: 30px;
   }
 
@@ -3165,7 +3166,7 @@ a.account__display-name {
     .navigation-panel {
       margin: 0;
       border-inline-start: 1px solid var(--background-border-color);
-      height: 100vh;
+      height: 100dvh;
     }
 
     .navigation-panel__banner,
@@ -3223,6 +3224,7 @@ a.account__display-name {
     .navigation-panel {
       width: 284px;
       overflow-y: auto;
+      scrollbar-width: thin;
 
       &__menu {
         flex-shrink: 0;
@@ -8972,7 +8974,7 @@ noscript {
 
   .search__input {
     border: 1px solid var(--background-border-color);
-    padding: 12px;
+    padding-block: 12px;
     padding-inline-end: 30px;
   }
 

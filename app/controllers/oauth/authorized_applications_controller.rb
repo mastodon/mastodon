@@ -11,6 +11,8 @@ class OAuth::AuthorizedApplicationsController < Doorkeeper::AuthorizedApplicatio
 
   skip_before_action :require_functional!
 
+  layout 'admin'
+
   include Localized
 
   def destroy

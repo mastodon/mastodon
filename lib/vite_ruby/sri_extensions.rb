@@ -9,7 +9,7 @@ module ViteRuby::ManifestIntegrityExtension
 
   def load_manifest
     # Invalidate the name lookup cache when reloading manifest
-    @name_lookup_cache = load_name_lookup_cache unless dev_server_running?
+    @name_lookup_cache = nil unless dev_server_running?
 
     super
   end
