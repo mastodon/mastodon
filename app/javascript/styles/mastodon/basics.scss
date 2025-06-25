@@ -68,6 +68,7 @@ body {
     &.with-modals--active {
       overflow-y: hidden;
       overscroll-behavior: none;
+      margin-right: var(--root-scrollbar-width, 0);
     }
   }
 
