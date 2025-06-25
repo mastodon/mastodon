@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router';
 import type { RenderOptions } from '@testing-library/react';
 import { render as rtlRender } from '@testing-library/react';
 
-import { IdentityContext } from './identity_context';
+import { IdentityContext } from '@/mastodon/identity_context';
 
 beforeAll(() => {
   global.requestIdleCallback = vi.fn((cb: IdleRequestCallback) => {

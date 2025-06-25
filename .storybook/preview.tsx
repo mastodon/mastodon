@@ -2,16 +2,19 @@ import { useEffect, useState } from 'react';
 
 import { IntlProvider } from 'react-intl';
 
+import { MemoryRouter, Route } from 'react-router';
+
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
 import type { Preview } from '@storybook/react-vite';
-import { http, passthrough } from 'msw';
 import { initialize, mswLoader } from 'msw-storybook-addon';
+import { action } from 'storybook/actions';
 
 import type { LocaleData } from '@/mastodon/locales';
 import { reducerWithInitialState, rootReducer } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
+import { mockHandlers, unhandledRequestHandler } from '@/testing/api';
 
 // If you want to run the dark theme during development,
 // you can change the below to `/application.scss`
@@ -22,7 +25,9 @@ const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
 });
 
 // Initialize MSW
-initialize();
+initialize({
+  onUnhandledRequest: unhandledRequestHandler,
+});
 
 const preview: Preview = {
   // Auto-generate docs: https://storybook.js.org/docs/writing-docs/autodocs
@@ -94,6 +99,21 @@ const preview: Preview = {
         </IntlProvider>
       );
     },
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+        <Route
+          path='*'
+          // eslint-disable-next-line react/jsx-no-bind
+          render={({ location }) => {
+            if (location.pathname !== '/') {
+              action(`route change to ${location.pathname}`)(location);
+            }
+            return null;
+          }}
+        />
+      </MemoryRouter>
+    ),
   ],
   loaders: [mswLoader],
   parameters: {
@@ -115,20 +135,10 @@ const preview: Preview = {
 
     state: {},
 
-    // Force docs to use an iframe as it breaks MSW handlers.
-    // See: https://github.com/mswjs/msw-storybook-addon/issues/83
-    docs: {
-      story: {
-        inline: false,
-      },
-    },
+    docs: {},
 
     msw: {
-      handlers: [
-        http.get('/index.json', passthrough),
-        http.get('/packs-dev/*', passthrough),
-        http.get('/sounds/*', passthrough),
-      ],
+      handlers: mockHandlers,
     },
   },
 };
