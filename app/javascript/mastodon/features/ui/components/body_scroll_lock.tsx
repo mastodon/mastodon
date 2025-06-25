@@ -8,9 +8,8 @@ const getShouldLockBodyScroll = createAppSelector(
     (state) => state.navigation.open,
     (state) => state.modal.get('stack').size > 0,
   ],
-  (isMobileMenuOpen: boolean, isModalOpen: boolean) => {
-    return isMobileMenuOpen || isModalOpen;
-  },
+  (isMobileMenuOpen: boolean, isModalOpen: boolean) =>
+    isMobileMenuOpen || isModalOpen,
 );
 
 /**
