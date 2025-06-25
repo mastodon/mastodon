@@ -1,5 +1,6 @@
 ---
 shared:
+  disallow_unauthenticated_api_access: <%= ENV.fetch('DISALLOW_UNAUTHENTICATED_API_ACCESS', nil) == 'true' %>
   experimental_features: <%= ENV.fetch('EXPERIMENTAL_FEATURES', nil) %>
   limited_federation_mode: <%= (ENV.fetch('LIMITED_FEDERATION_MODE', nil) || ENV.fetch('WHITELIST_MODE', nil)) == 'true' %>
   self_destruct_value: <%= ENV.fetch('SELF_DESTRUCT', nil)&.to_json %>

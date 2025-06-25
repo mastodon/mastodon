@@ -189,9 +189,10 @@ RSpec.describe 'The /.well-known/webfinger endpoint' do
 
     context 'when enabling DISALLOW_UNAUTHENTICATED_API_ACCESS' do
       around do |example|
-        ClimateControl.modify DISALLOW_UNAUTHENTICATED_API_ACCESS: 'true' do
-          example.run
-        end
+        original = Rails.configuration.x.mastodon.disallow_unauthenticated_api_access
+        Rails.configuration.x.mastodon.disallow_unauthenticated_api_access = true
+        example.run
+        Rails.configuration.x.mastodon.disallow_unauthenticated_api_access = original
       end
 
       it 'does not return avatar in response' do
