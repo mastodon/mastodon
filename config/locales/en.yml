@@ -520,8 +520,8 @@ en:
       unsuppress: Restore follow recommendation
     instances:
       audit_log:
-        title: Audit Logs
         description: These are the 5 most recent audit log entries relating to this instance.
+        title: Audit Logs
         view_all: View all audit logs
       availability:
         description_html:
@@ -533,29 +533,15 @@ en:
           other: Failed attempts on %{count} different days.
         no_failures_recorded: No failures on record.
         period_description: The bars shown are for delivery status over the last %{count} days.
-        title: Availability
         subtitle: Instance availability measures how successfully we've been able to federate
-        warning: The last attempt to connect to this server has been unsuccessful
+        title: Availability
         unknown_instance: There is no data available for this instance as this server doesn't currently federate with it.
+        warning: The last attempt to connect to this server has been unsuccessful
       back_to_all: All
       back_to_limited: Limited
       back_to_warning: Warning
       by_domain: Domain
       confirm_purge: Are you sure you want to permanently delete data from this domain?
-      federation_policies:
-        comment: Private note
-        description_html: You can set a federation policy that will be applied to all accounts from this domain and any of its subdomains.
-        limited_federation_mode_description_html: You can chose whether to allow federation with this domain.
-        no_comment: None
-        policies:
-          reject_media: Reject media
-          reject_reports: Reject reports
-          silence: Limit
-          suspend: Suspend
-        policy: Policy
-        purge_data: Purge Data
-        reason: Public reason
-        title: Federation policy
       dashboard:
         instance_accounts_dimension: Most followed accounts
         instance_accounts_measure: stored accounts
@@ -577,8 +563,22 @@ en:
       delivery_error_hint: If delivery is not possible for %{count} days, it will be automatically marked as undeliverable.
       destroyed_msg: Data from %{domain} is now queued for imminent deletion.
       empty: No domains found.
+      federation_policies:
+        comment: Private note
+        description_html: You can set a federation policy that will be applied to all accounts from this domain and any of its subdomains.
+        limited_federation_mode_description_html: You can chose whether to allow federation with this domain.
+        no_comment: None
+        policies:
+          reject_media: Reject media
+          reject_reports: Reject reports
+          silence: Limit
+          suspend: Suspend
+        policy: Policy
+        purge_data: Purge Data
+        reason: Public reason
+        title: Federation policy
       instance:
-        title: "Federation with %{domain}"
+        title: Federation with %{domain}
       known_accounts:
         one: "%{count} known account"
         other: "%{count} known accounts"
@@ -596,11 +596,11 @@ en:
       private_comment: Private comment
       public_comment: Public comment
       purge: Purge Data
-      purge_title: Purge Data
       purge_description_html: If you believe this domain is offline for good, you can delete all account records and associated data from this domain from your storage. This may take a while.
+      purge_title: Purge Data
       statistics:
-        title: Statistics
         subtitle: Below are a few statistics about %{domain}, that you may find interesting.
+        title: Statistics
       title: Federation
       total_blocked_by_us: Blocked by us
       total_followed_by_them: Followed by them
