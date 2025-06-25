@@ -163,6 +163,7 @@ class Account < ApplicationRecord
   after_update_commit :trigger_update_webhooks
 
   delegate :email,
+           :email_domain,
            :unconfirmed_email,
            :current_sign_in_at,
            :created_at,

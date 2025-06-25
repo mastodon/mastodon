@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Oauth::AuthorizedApplicationsController do
+RSpec.describe OAuth::AuthorizedApplicationsController do
   render_views
 
   describe 'GET #index' do

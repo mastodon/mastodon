@@ -1632,6 +1632,17 @@ a.sparkline {
         }
       }
 
+      a.timestamp {
+        color: $darker-text-color;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: underline;
+        }
+      }
+
       time {
         margin-inline-start: 5px;
         vertical-align: baseline;
