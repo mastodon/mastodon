@@ -124,7 +124,7 @@ export const HashtagMenuController: React.FC = () => {
         dangerous: true,
       },
     ],
-    [intl, hashtag, account, hashtagUrl],
+    [intl, hashtag, account],
   );
 
   if (!open) {
