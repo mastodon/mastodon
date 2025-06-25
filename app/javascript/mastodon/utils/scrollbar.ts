@@ -1,8 +1,9 @@
 import { isMobile } from '../is_mobile';
 
-let cachedScrollbarWidth: number | null = null;
-
-const getActualScrollbarWidth = () => {
+export const getScrollbarWidth = () => {
+  if (isMobile(window.innerWidth)) {
+    return 0;
+  }
   const outer = document.createElement('div');
   outer.style.visibility = 'hidden';
   outer.style.overflow = 'scroll';
@@ -13,19 +14,6 @@ const getActualScrollbarWidth = () => {
 
   const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
   outer.remove();
-
-  return scrollbarWidth;
-};
-
-export const getScrollbarWidth = () => {
-  if (cachedScrollbarWidth !== null) {
-    return cachedScrollbarWidth;
-  }
-
-  const scrollbarWidth = isMobile(window.innerWidth)
-    ? 0
-    : getActualScrollbarWidth();
-  cachedScrollbarWidth = scrollbarWidth;
 
   return scrollbarWidth;
 };
