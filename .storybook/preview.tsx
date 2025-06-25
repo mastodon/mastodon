@@ -135,13 +135,7 @@ const preview: Preview = {
 
     state: {},
 
-    // Force docs to use an iframe as it breaks MSW handlers.
-    // See: https://github.com/mswjs/msw-storybook-addon/issues/83
-    docs: {
-      story: {
-        inline: false,
-      },
-    },
+    docs: {},
 
     msw: {
       handlers: mockHandlers,
