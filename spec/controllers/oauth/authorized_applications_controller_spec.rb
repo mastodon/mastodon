@@ -21,6 +21,8 @@ RSpec.describe OAuth::AuthorizedApplicationsController do
           .to have_http_status(200)
         expect(response.headers['Cache-Control'])
           .to include('private, no-store')
+        expect(response.parsed_body.at('body.admin'))
+          .to be_present
         expect(controller.stored_location_for(:user))
           .to eq '/oauth/authorized_applications'
       end
