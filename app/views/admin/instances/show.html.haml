@@ -3,7 +3,7 @@
 
 - content_for :heading do
   %h2= t('admin.instances.instance.title', domain: @instance.domain)
-  = render partial: 'admin/instances/shared/navigation', instance: @instance
+  = render partial: 'admin/instances/shared/links', locals: { instance: @instance }
 
 - if current_user.can?(:view_dashboard)
   - content_for :heading_actions do
