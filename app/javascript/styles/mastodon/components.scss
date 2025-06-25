@@ -2896,10 +2896,6 @@ a.account__display-name {
   border-top: 1px solid var(--background-border-color);
   box-sizing: border-box;
 
-  .with-modals--active & {
-    padding-right: var(--root-scrollbar-width);
-  }
-
   .layout-multiple-columns & {
     display: none;
   }
@@ -3170,7 +3166,7 @@ a.account__display-name {
     .navigation-panel {
       margin: 0;
       border-inline-start: 1px solid var(--background-border-color);
-      height: 100vh;
+      height: 100dvh;
     }
 
     .navigation-panel__banner,
@@ -3228,6 +3224,7 @@ a.account__display-name {
     .navigation-panel {
       width: 284px;
       overflow-y: auto;
+      scrollbar-width: thin;
 
       &__menu {
         flex-shrink: 0;
