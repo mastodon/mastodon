@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Oauth::AuthorizationsController do
+RSpec.describe OAuth::AuthorizationsController do
   let(:app) { Doorkeeper::Application.create!(name: 'test', redirect_uri: 'http://localhost/', scopes: 'read') }
 
   describe 'GET #new' do
