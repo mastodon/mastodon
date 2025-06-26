@@ -77,9 +77,9 @@ export const HashtagMenuController: React.FC = () => {
         return;
       }
 
-      const hashtagUrl: URL = new URL('/filters', document.location)
+      const hashtagUrl: URL = new URL('/filters', document.location.href)
       hashtagUrl.searchParams.set('custom_filter[keywords_attributes][0][keyword]', target.text)
-      hashtagUrl.searchParams.set('custom_filter[keywords_attributes][0][whole_word]', 1)
+      hashtagUrl.searchParams.set('custom_filter[keywords_attributes][0][whole_word]', '1')
 
       e.preventDefault();
       e.stopPropagation();
