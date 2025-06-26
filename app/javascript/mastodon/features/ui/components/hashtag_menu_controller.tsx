@@ -128,7 +128,7 @@ export const HashtagMenuController: React.FC = () => {
         text: intl.formatMessage(messages.muteHashtag, {
           hashtag,
         }),
-        href: hashtagUrl.toString(),
+        href: hashtagUrl?.toString(),
         dangerous: true,
       },
     ],
