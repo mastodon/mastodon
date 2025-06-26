@@ -112,7 +112,7 @@ module Paperclip
     def save_options
       case @format
       when 'jpg'
-        { Q: 90, interlace: true }
+        { Q: thumbnail? ? 100 : 90, interlace: true }
       else
         {}
       end
@@ -131,6 +131,10 @@ module Paperclip
       # input file formats is not trivial, and converting unconditionally is just
       # as simple for now
       options[:style] == :static
+    end
+
+    def thumbnail?
+      options[:style] == :small
     end
 
     def needs_different_geometry?
