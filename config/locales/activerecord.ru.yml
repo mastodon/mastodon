@@ -3,30 +3,30 @@ ru:
   activerecord:
     attributes:
       poll:
-        expires_at: Срок окончания голосования
-        options: Варианты
+        expires_at: Продолжительность опроса
+        options: Варианты ответа
       user:
-        agreement: Соглашение с условиями сервиса
-        email: Адрес эл. почты
+        agreement: Пользовательское соглашение
+        email: Адрес электронной почты
         locale: Язык
         password: Пароль
       user/account:
         username: Имя пользователя
       user/invite_request:
-        text: Причина
+        text: Текст заявки на регистрацию
     errors:
       attributes:
         domain:
-          invalid: не является действующим доменным именем
+          invalid: не является корректным доменным именем
       messages:
-        invalid_domain_on_line: "%{value} Не является действительным доменным именем"
+        invalid_domain_on_line: "%{value} не является корректным доменным именем"
       models:
         account:
           attributes:
             fields:
               fields_with_values_missing_labels: содержит значения с отсутствующими ключами
             username:
-              invalid: только буквы, цифры и символ подчёркивания
+              invalid: может содержать только буквы, цифры и символы подчёркивания
               reserved: зарезервировано
         admin/webhook:
           attributes:

@@ -99,7 +99,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # E-mails
-  outgoing_email_address = ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost')
+  outgoing_email_address = config.x.email.from_address
   outgoing_email_domain  = Mail::Address.new(outgoing_email_address).domain
 
   config.action_mailer.default_options = {
@@ -107,40 +107,12 @@ Rails.application.configure do
     message_id: -> { "<#{Mail.random_tag}@#{outgoing_email_domain}>" },
   }
 
-  config.action_mailer.default_options[:reply_to]    = ENV['SMTP_REPLY_TO'] if ENV['SMTP_REPLY_TO'].present?
-  config.action_mailer.default_options[:return_path] = ENV['SMTP_RETURN_PATH'] if ENV['SMTP_RETURN_PATH'].present?
+  config.action_mailer.default_options[:reply_to]    = config.x.email.reply_to if config.x.email.reply_to.present?
+  config.action_mailer.default_options[:return_path] = config.x.email.return_path if config.x.email.return_path.present?
 
-  enable_starttls = nil
-  enable_starttls_auto = nil
+  config.action_mailer.smtp_settings = Mastodon::EmailConfigurationHelper.smtp_settings(config.x.email.smtp_settings)
 
-  case ENV.fetch('SMTP_ENABLE_STARTTLS', nil)
-  when 'always'
-    enable_starttls = true
-  when 'never'
-    enable_starttls = false
-  when 'auto'
-    enable_starttls_auto = true
-  else
-    enable_starttls_auto = ENV['SMTP_ENABLE_STARTTLS_AUTO'] != 'false'
-  end
-
-  config.action_mailer.smtp_settings = {
-    port: ENV.fetch('SMTP_PORT', nil),
-    address: ENV.fetch('SMTP_SERVER', nil),
-    user_name: ENV['SMTP_LOGIN'].presence,
-    password: ENV['SMTP_PASSWORD'].presence,
-    domain: ENV['SMTP_DOMAIN'] || ENV.fetch('LOCAL_DOMAIN', nil),
-    authentication: ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
-    ca_file: ENV['SMTP_CA_FILE'].presence || '/etc/ssl/certs/ca-certificates.crt',
-    openssl_verify_mode: ENV.fetch('SMTP_OPENSSL_VERIFY_MODE', nil),
-    enable_starttls: enable_starttls,
-    enable_starttls_auto: enable_starttls_auto,
-    tls: ENV['SMTP_TLS'].presence && ENV['SMTP_TLS'] == 'true',
-    ssl: ENV['SMTP_SSL'].presence && ENV['SMTP_SSL'] == 'true',
-    read_timeout: 20,
-  }
-
-  config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
+  config.action_mailer.delivery_method = config.x.email.delivery_method.to_sym
 
   config.action_dispatch.default_headers = {
     'Server' => 'Mastodon',

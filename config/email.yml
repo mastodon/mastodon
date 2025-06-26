@@ -1,0 +1,21 @@
+# Note that these settings only apply in `production` even when other
+# keys are added here.
+production:
+  delivery_method: <%= ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp') %>
+  from_address: <%= ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost') %>
+  reply_to: <%= ENV.fetch('SMTP_REPLY_TO', nil) %>
+  return_path: <%= ENV.fetch('SMTP_RETURN_PATH', nil) %>
+  smtp_settings:
+    port: <%= ENV.fetch('SMTP_PORT', nil) %>
+    address: <%= ENV.fetch('SMTP_SERVER', nil) %>
+    user_name: <%= ENV.fetch('SMTP_LOGIN', nil) %>
+    password: <%= ENV.fetch('SMTP_PASSWORD', nil) %>
+    domain: <%= ENV.fetch('SMTP_DOMAIN', ENV.fetch('LOCAL_DOMAIN', nil)) %>
+    authentication: <%= ENV.fetch('SMTP_AUTH_METHOD', 'plain') %>
+    ca_file: <%= ENV.fetch('SMTP_CA_FILE', '/etc/ssl/certs/ca-certificates.crt') %>
+    openssl_verify_mode: <%= ENV.fetch('SMTP_OPENSSL_VERIFY_MODE', nil) %>
+    enable_starttls: <%= ENV.fetch('SMTP_ENABLE_STARTTLS', nil) %>
+    enable_starttls_auto: <%= ENV.fetch('SMTP_ENABLE_STARTTLS_AUTO', true) != 'false' %>
+    tls: <%= ENV.fetch('SMTP_TLS', false) == 'true' ? true : nil %>
+    ssl: <%= ENV.fetch('SMTP_SSL', false) == 'true' ? true : nil %>
+    read_timeout: 20
