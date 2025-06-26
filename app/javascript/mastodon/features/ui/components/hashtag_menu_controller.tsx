@@ -41,12 +41,13 @@ const isHashtagLink = (
 interface TargetParams {
   hashtag?: string;
   accountId?: string;
+  hashtagUrl?: URL;
 }
 
 export const HashtagMenuController: React.FC = () => {
   const intl = useIntl();
   const [open, setOpen] = useState(false);
-  const [{ accountId, hashtag }, setTargetParams] = useState<TargetParams>({});
+  const [{ accountId, hashtag, hashtagUrl }, setTargetParams] = useState<TargetParams>({});
   const targetRef = useRef<HTMLAnchorElement | null>(null);
   const location = useLocation();
   const account = useAppSelector((state) =>
@@ -85,7 +86,7 @@ export const HashtagMenuController: React.FC = () => {
       e.stopPropagation();
       targetRef.current = target;
       setOpen(true);
-      setTargetParams({ hashtag, accountId });
+      setTargetParams({ hashtag, accountId, hashtagUrl });
     };
 
     document.addEventListener('click', handleClick, { capture: true });
