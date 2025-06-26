@@ -10,28 +10,42 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
-const messages = defineMessages({
-  discardDraftTitle: {
-    id: 'confirmations.discard_draft.title',
-    defaultMessage: 'Discard your draft post?',
+const editMessages = defineMessages({
+  title: {
+    id: 'confirmations.discard_draft.edit.title',
+    defaultMessage: 'Discard changes to your post?',
   },
-  discardPostDraftMessage: {
-    id: 'confirmations.discard_draft.post_message',
-    defaultMessage:
-      'Continuing will discard the post you are currently composing.',
-  },
-  discardEditDraftMessage: {
-    id: 'confirmations.discard_draft.edit_message',
+  message: {
+    id: 'confirmations.discard_draft.edit.message',
     defaultMessage:
       'Continuing will discard any changes you have made to the post you are currently editing.',
   },
-  discardDraftConfirm: {
+  cancel: {
+    id: 'confirmations.discard_draft.edit.cancel',
+    defaultMessage: 'Resume editing',
+  },
+});
+
+const postMessages = defineMessages({
+  title: {
+    id: 'confirmations.discard_draft.post.title',
+    defaultMessage: 'Discard your draft post?',
+  },
+  message: {
+    id: 'confirmations.discard_draft.post.message',
+    defaultMessage:
+      'Continuing will discard the post you are currently composing.',
+  },
+  cancel: {
+    id: 'confirmations.discard_draft.post.cancel',
+    defaultMessage: 'Resume draft',
+  },
+});
+
+const messages = defineMessages({
+  confirm: {
     id: 'confirmations.discard_draft.confirm',
     defaultMessage: 'Discard and continue',
-  },
-  discardDraftCancel: {
-    id: 'confirmations.discard_draft.cancel',
-    defaultMessage: 'Resume draft',
   },
 });
 
@@ -43,16 +57,14 @@ const DiscardDraftConfirmationModal: React.FC<
   const intl = useIntl();
   const isEditing = useAppSelector((state) => !!state.compose.get('id'));
 
+  const contextualMessages = isEditing ? editMessages : postMessages;
+
   return (
     <ConfirmationModal
-      title={intl.formatMessage(messages.discardDraftTitle)}
-      message={intl.formatMessage(
-        isEditing
-          ? messages.discardEditDraftMessage
-          : messages.discardPostDraftMessage,
-      )}
-      confirm={intl.formatMessage(messages.discardDraftConfirm)}
-      cancel={intl.formatMessage(messages.discardDraftCancel)}
+      title={intl.formatMessage(contextualMessages.title)}
+      message={intl.formatMessage(contextualMessages.message)}
+      cancel={intl.formatMessage(contextualMessages.cancel)}
+      confirm={intl.formatMessage(messages.confirm)}
       onConfirm={onConfirm}
       onClose={onClose}
     />
