@@ -57,7 +57,7 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
 
   def process_collection_synchronization
     raw_params = request.headers['Collection-Synchronization']
-    return if raw_params.blank? || ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] == 'true' || signed_request_account.nil?
+    return if raw_params.blank? || Rails.configuration.x.mastodon.disable_followers_synchronization || signed_request_account.nil?
 
     # Re-using the syntax for signature parameters
     params = SignatureParser.parse(raw_params)
