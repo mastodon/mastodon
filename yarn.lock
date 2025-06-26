@@ -2680,6 +2680,7 @@ __metadata:
     eslint-plugin-react: "npm:^7.37.4"
     eslint-plugin-react-hooks: "npm:^5.2.0"
     eslint-plugin-storybook: "npm:^9.0.4"
+    fast-glob: "npm:^3.3.3"
     fuzzysort: "npm:^3.0.0"
     globals: "npm:^16.0.0"
     history: "npm:^4.10.1"
@@ -2724,6 +2725,7 @@ __metadata:
     redux-immutable: "npm:^4.0.0"
     regenerator-runtime: "npm:^0.14.0"
     requestidlecallback: "npm:^0.3.0"
+    rollup-plugin-gzip: "npm:^4.1.1"
     rollup-plugin-visualizer: "npm:^6.0.0"
     sass: "npm:^1.62.1"
     stacktrace-js: "npm:^2.0.2"
@@ -2740,6 +2742,7 @@ __metadata:
     typescript-eslint: "npm:^8.29.1"
     use-debounce: "npm:^10.0.0"
     vite: "npm:^6.3.5"
+    vite-plugin-manifest-sri: "npm:^0.2.0"
     vite-plugin-pwa: "npm:^1.0.0"
     vite-plugin-rails: "npm:^0.5.0"
     vite-plugin-ruby: "npm:^5.1.1"
@@ -11806,6 +11809,15 @@ __metadata:
   peerDependencies:
     rollup: ">=2.0.0"
   checksum: 10c0/5129d3970cca37bfb5a2fdeddb863bc76be12489ec0a6fcb2be2764902aa2f8548eb8e6532c4e15912d95e8baaa7391a5ed6b58790ed2529c86a98fa75467edc
+  languageName: node
+  linkType: hard
+
+"rollup-plugin-gzip@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "rollup-plugin-gzip@npm:4.1.1"
+  peerDependencies:
+    rollup: ">=2.0.0"
+  checksum: 10c0/0ad79a6eb84bb8d88db15a184ca661f44aa6fb3412c98d6a97f1dec365db37945a84c3a2d0bf709ae605ae305a40a0021b2e6d5494c537b029759f3695d9ac96
   languageName: node
   linkType: hard
 
