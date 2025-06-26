@@ -30,7 +30,11 @@ function hasSentinelConfiguration(env) {
  */
 function getSentinelConfiguration(env, commonOptions) {
   const redisDatabase = parseIntFromEnvValue(env.REDIS_DB, 0, 'REDIS_DB');
-  const sentinelPort = parseIntFromEnvValue(env.REDIS_SENTINEL_PORT, 26379, 'REDIS_SENTINEL_PORT');
+  const sentinelPort = parseIntFromEnvValue(
+    env.REDIS_SENTINEL_PORT,
+    26379,
+    'REDIS_SENTINEL_PORT',
+  );
 
   const sentinels = env.REDIS_SENTINELS.split(',').map((sentinel) => {
     const [host, port] = sentinel.split(':', 2);
@@ -42,7 +46,7 @@ function getSentinelConfiguration(env, commonOptions) {
       // Force support for both IPv6 and IPv4, by default ioredis sets this to 4,
       // only allowing IPv4 connections:
       // https://github.com/redis/ioredis/issues/1576
-      family: 0
+      family: 0,
     };
   });
 
@@ -69,7 +73,7 @@ export function configFromEnv(env) {
     // Force support for both IPv6 and IPv4, by default ioredis sets this to 4,
     // only allowing IPv4 connections:
     // https://github.com/redis/ioredis/issues/1576
-    family: 0
+    family: 0,
     // Note: we don't use auto-prefixing of keys since this doesn't apply to
     // subscribe/unsubscribe which have "channel" instead of "key" arguments
   };
@@ -79,14 +83,14 @@ export function configFromEnv(env) {
   if (typeof env.REDIS_URL === 'string' && env.REDIS_URL.length > 0) {
     return {
       url: env.REDIS_URL,
-      options: commonOptions
+      options: commonOptions,
     };
   }
 
   // If we have configuration for Redis Sentinel mode, prefer that:
   if (hasSentinelConfiguration(env)) {
     return {
-      options: getSentinelConfiguration(env, commonOptions)
+      options: getSentinelConfiguration(env, commonOptions),
     };
   }
 
@@ -105,7 +109,7 @@ export function configFromEnv(env) {
   };
 
   return {
-    options
+    options,
   };
 }
 

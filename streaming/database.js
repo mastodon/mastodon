@@ -16,7 +16,11 @@ export function configFromEnv(env, environment) {
       password: env.DB_PASS || pg.defaults.password,
       database: env.DB_NAME || 'mastodon_development',
       host: env.DB_HOST || pg.defaults.host,
-      port: parseIntFromEnvValue(env.DB_PORT, pg.defaults.port ?? 5432, 'DB_PORT')
+      port: parseIntFromEnvValue(
+        env.DB_PORT,
+        pg.defaults.port ?? 5432,
+        'DB_PORT',
+      ),
     },
 
     production: {
@@ -24,7 +28,7 @@ export function configFromEnv(env, environment) {
       password: env.DB_PASS || '',
       database: env.DB_NAME || 'mastodon_production',
       host: env.DB_HOST || 'localhost',
-      port: parseIntFromEnvValue(env.DB_PORT, 5432, 'DB_PORT')
+      port: parseIntFromEnvValue(env.DB_PORT, 5432, 'DB_PORT'),
     },
   };
 
@@ -46,25 +50,34 @@ export function configFromEnv(env, environment) {
     // https://github.com/brianc/node-postgres/issues/2280
     //
     // FIXME: clean up once brianc/node-postgres#3128 lands
-    if (typeof parsedUrl.password === 'string') baseConfig.password = parsedUrl.password;
+    if (typeof parsedUrl.password === 'string')
+      baseConfig.password = parsedUrl.password;
     if (typeof parsedUrl.host === 'string') baseConfig.host = parsedUrl.host;
     if (typeof parsedUrl.user === 'string') baseConfig.user = parsedUrl.user;
     if (typeof parsedUrl.port === 'string' && parsedUrl.port) {
       const parsedPort = parseInt(parsedUrl.port, 10);
       if (isNaN(parsedPort)) {
-        throw new Error('Invalid port specified in DATABASE_URL environment variable');
+        throw new Error(
+          'Invalid port specified in DATABASE_URL environment variable',
+        );
       }
       baseConfig.port = parsedPort;
     }
-    if (typeof parsedUrl.database === 'string') baseConfig.database = parsedUrl.database;
-    if (typeof parsedUrl.options === 'string') baseConfig.options = parsedUrl.options;
+    if (typeof parsedUrl.database === 'string')
+      baseConfig.database = parsedUrl.database;
+    if (typeof parsedUrl.options === 'string')
+      baseConfig.options = parsedUrl.options;
 
     // The pg-connection-string type definition isn't correct, as parsedUrl.ssl
     // can absolutely be an Object, this is to work around these incorrect
     // types, including the casting of parsedUrl.ssl to Record<string, any>
     if (typeof parsedUrl.ssl === 'boolean') {
       baseConfig.ssl = parsedUrl.ssl;
-    } else if (typeof parsedUrl.ssl === 'object' && !Array.isArray(parsedUrl.ssl) && parsedUrl.ssl !== null) {
+    } else if (
+      typeof parsedUrl.ssl === 'object' &&
+      !Array.isArray(parsedUrl.ssl) &&
+      parsedUrl.ssl !== null
+    ) {
       /** @type {Record<string, any>} */
       const sslOptions = parsedUrl.ssl;
       baseConfig.ssl = {};
@@ -83,17 +96,17 @@ export function configFromEnv(env, environment) {
     baseConfig = pgConfigs[environment];
 
     if (env.DB_SSLMODE) {
-      switch(env.DB_SSLMODE) {
-      case 'disable':
-      case '':
-        baseConfig.ssl = false;
-        break;
-      case 'no-verify':
-        baseConfig.ssl = { rejectUnauthorized: false };
-        break;
-      default:
-        baseConfig.ssl = {};
-        break;
+      switch (env.DB_SSLMODE) {
+        case 'disable':
+        case '':
+          baseConfig.ssl = false;
+          break;
+        case 'no-verify':
+          baseConfig.ssl = { rejectUnauthorized: false };
+          break;
+        default:
+          baseConfig.ssl = {};
+          break;
       }
     }
   } else {
@@ -134,16 +147,23 @@ export function getPool(config, environment, logger) {
       return async (queryTextOrConfig, values, ...rest) => {
         const start = process.hrtime();
 
-        const result = await originalQuery.apply(pool, [queryTextOrConfig, values, ...rest]);
+        const result = await originalQuery.apply(pool, [
+          queryTextOrConfig,
+          values,
+          ...rest,
+        ]);
 
         const duration = process.hrtime(start);
         const durationInMs = (duration[0] * 1000000000 + duration[1]) / 1000000;
 
-        logger.debug({
-          query: queryTextOrConfig,
-          values,
-          duration: durationInMs
-        }, 'Executed database query');
+        logger.debug(
+          {
+            query: queryTextOrConfig,
+            values,
+            duration: durationInMs,
+          },
+          'Executed database query',
+        );
 
         return result;
       };
