@@ -578,6 +578,13 @@ da:
         all: Alle
         limited: Begrænset
         title: Moderation
+      moderation_notes:
+        create: Tilføj moderationsnotat
+        created_msg: Instansmoderationsnotat oprettet!
+        description_html: Se og skriv notater til andre moderatorer og dit fremtidige jeg
+        destroyed_msg: Instansmoderationsnotat slettet!
+        placeholder: Oplysninger om denne instans, foretaget handlinger eller andet, som kan assistere ved fremtidige instansmoderationer.
+        title: Moderationsnotater
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
       purge: Udrens
@@ -770,7 +777,7 @@ da:
         manage_settings: Håndtere indstillinger
         manage_settings_description: Tillader brugere at ændre webstedsindstillinger
         manage_taxonomies: Håndtere taksonomier
-        manage_taxonomies_description: Tillader brugere at gennemse tenderende indhold og opdatere etiket-indstillinger
+        manage_taxonomies_description: Giver brugerne mulighed for at gennemgå trendende indhold og opdatere hashtag-indstillinger
         manage_user_access: Håndtere brugeradgang
         manage_user_access_description: Tillader brugere at deaktivere andre brugeres tofaktorgodkendelse, skifte deres e-mailadresse og nulstille deres adgangskode
         manage_users: Håndtere brugere
@@ -971,7 +978,7 @@ da:
       reset: Nulstil
       review: Gennmgangsstatus
       search: Søg
-      title: Etiketter
+      title: Hashtags
       updated_msg: Hashtag-indstillinger opdateret
     terms_of_service:
       back: Tilbage til Tjenestevilkår
@@ -1061,14 +1068,14 @@ da:
           tag_servers_dimension: Topservere
           tag_servers_measure: forskellige servere
           tag_uses_measure: anvendelser i alt
-        description_html: Disse er etiketter, som pt. vises i en masse indlæg, som serveren ser. Det kan hjælpe brugerne til at finde ud af, hvad folk taler mest om pt. Ingen etiketter vises offentligt, før man godkender dem.
+        description_html: Disse er hashtags, som pt. vises i en masse indlæg, som din server ser. Det kan hjælpe dine brugere til at finde ud af, hvad folk taler mest om pt. Ingen hashtags vises offentligt, før du godkender dem.
         listable: Kan foreslås
         no_tag_selected: Intet tag ændret (da intet var valgt)
         not_listable: Foreslås ikke
         not_trendable: Vises ikke under tendenser
         not_usable: Kan ikke anvendes
         peaked_on_and_decaying: Toppede pr. %{date}, nu for nedadgående
-        title: Populære etiketter
+        title: Populære hashtags
         trendable: Kan vises under tendenser
         trending_rank: 'Populær #%{rank}'
         usable: Kan anvendes
@@ -1140,7 +1147,7 @@ da:
       new_trending_statuses:
         title: Populære opslag
       new_trending_tags:
-        title: Populære etiketter
+        title: Populære hashtags
       subject: Nye tendenser klar til gennemgang på %{instance}
   aliases:
     add_new: Opret alias
@@ -1151,7 +1158,7 @@ da:
     remove: Fjern aliaslinkning
   appearance:
     advanced_web_interface: Avanceret webgrænseflade
-    advanced_web_interface_hint: 'Ønsker du udnytte hele skærmbredden, lader den avancerede netgrænseflade dig opsætte mange forskellige kolonner for at se så meget information på samme tid som ønsket: Hjem, notifikationer, fødereret tidslinje, et hvilket som helst antal lister og etiketter.'
+    advanced_web_interface_hint: 'Ønsker du udnytte hele skærmbredden, lader den avancerede webgrænseflade dig opsætte mange forskellige kolonner for at se så meget information på samme tid som ønsket: Hjem, notifikationer, federeret tidslinje, et hvilket som helst antal lister og hashtags.'
     animations_and_accessibility: Animationer og tilgængelighed
     confirmation_dialogs: Bekræftelsesdialoger
     discovery: Opdagelse
@@ -1378,8 +1385,8 @@ da:
   featured_tags:
     add_new: Tilføj nyt
     errors:
-      limit: Det maksimale antal etiketter er allerede fremhævet
-    hint_html: "<strong>Hvad er fremhævede etiketter?</strong> De vises i en fremtrædende position på din offentlige profil og giver folk mulighed for at gennemse dine offentlige indlæg specifikt under disse etiketter. De er et fantastisk værktøj til at holde styr på kreative værker eller langsigtede projekter."
+      limit: Det maksimale antal hashtags er allerede fremhævet
+    hint_html: "<strong>Hvad er fremhævede hashtags?</strong> De vises i en fremtrædende position på din offentlige profil og giver folk mulighed for at gennemse dine offentlige indlæg specifikt under disse hashtags. De er et fantastisk værktøj til at holde styr på kreative værker eller langsigtede projekter."
   filters:
     contexts:
       account: Profiler
@@ -1691,14 +1698,14 @@ da:
     errors:
       already_voted: Du har allerede stemt i denne afstemning
       duplicate_options: indeholder dubletvalg
-      duration_too_long: er for lang en varighed
-      duration_too_short: er for kort en varighed
+      duration_too_long: er for langt ude i fremtiden
+      duration_too_short: er for kort
       expired: Afstemningen er allerede afsluttet
       invalid_choice: Den valgte stemmemulighed findes ikke
       over_character_limit: må maks. udgøre %{max} tegn hver
       self_vote: Du kan ikke stemme i dine egne afstemninger
       too_few_options: skal have flere end ét valg
-      too_many_options: for mange svar (maks. %{max})
+      too_many_options: må maks. indeholde %{max} valg
   preferences:
     other: Andet
     posting_defaults: Standarder for indlæg
@@ -1751,7 +1758,7 @@ da:
     content_warning: 'Indholdsadvarsel:'
     descriptions:
       account: Offentlige indlæg fra @%{acct}
-      tag: 'Offentlige indlæg etiketteret #%{hashtag}'
+      tag: 'Offentlige indlæg tagget #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Den daglige grænse på %{limit} planlagte indlæg er nået
     over_total_limit: Grænsen på %{limit} planlagte indlæg er nået
@@ -1816,7 +1823,7 @@ da:
     development: Udvikling
     edit_profile: Redigér profil
     export: Eksport
-    featured_tags: Udvalgte etiketter
+    featured_tags: Fremhævede hashtags
     import: Import
     import_and_export: Import og eksport
     migrate: Kontomigrering
@@ -1856,7 +1863,7 @@ da:
     content_warning: 'Indholdsadvarsel: %{warning}'
     default_language: Samme som UI-sproget
     disallowed_hashtags:
-      one: 'indeholdte en ikke tilladt etiket: %{tags}'
+      one: 'indeholdte et ikke tilladt hashtag: %{tags}'
       other: 'indeholdte de ikke tilladte etiketter: %{tags}'
     edited_at_html: Redigeret %{date}
     errors:
@@ -2063,8 +2070,8 @@ da:
         one: "%{people} person de seneste 2 dage"
         other: "%{people} personer de seneste 2 dage"
       hashtags_subtitle: Udforsk de seneste 2 dages tendenser
-      hashtags_title: Populære etiketter
-      hashtags_view_more: Se flere populære etiketter
+      hashtags_title: Populære hashtags
+      hashtags_view_more: Se flere populære hashtags
       post_action: Skriv
       post_step: Sig hej til verden med tekst, fotos, videoer eller afstemninger.
       post_title: Opret det første indlæg

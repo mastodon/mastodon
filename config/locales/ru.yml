@@ -1733,15 +1733,15 @@ ru:
   polls:
     errors:
       already_voted: Вы уже голосовали в этом опросе
-      duplicate_options: содержит одинаковые варианты
-      duration_too_long: слишком далеко в будущем
-      duration_too_short: слишком короткий срок
+      duplicate_options: не должны повторяться
+      duration_too_long: слишком велика
+      duration_too_short: слишком мала
       expired: Опрос уже завершился
       invalid_choice: Выбранного варианта голосования не существует
-      over_character_limit: каждый не вариант не может быть длиннее %{max} символов
+      over_character_limit: не должны превышать %{max} символов
       self_vote: Вы не можете голосовать в своих опросах
-      too_few_options: должно быть больше 1 варианта
-      too_many_options: может содержать не больше %{max} вариантов
+      too_few_options: должны содержать не меньше двух опций
+      too_many_options: должны ограничиваться максимум %{max} опциями
   preferences:
     other: Остальное
     posting_defaults: Настройки отправки по умолчанию
