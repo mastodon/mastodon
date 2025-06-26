@@ -4,7 +4,7 @@ module RegistrationHelper
   extend ActiveSupport::Concern
 
   def allowed_registration?(remote_ip, invite)
-    !Rails.configuration.x.single_user_mode && !omniauth_only? && (registrations_open? || invite&.valid_for_use?) && !ip_blocked?(remote_ip)
+    !Rails.configuration.x.mastodon.single_user_mode && !omniauth_only? && (registrations_open? || invite&.valid_for_use?) && !ip_blocked?(remote_ip)
   end
 
   def registrations_open?
