@@ -16,12 +16,12 @@ da:
     link_verified_on: Ejerskab af dette link blev tjekket %{date}
     nothing_here: Der er intet her!
     pin_errors:
-      following: Man skal allerede følge den person, man ønsker at støtte
+      following: Du skal allerede følge den person, du ønsker at støtte
     posts:
       one: Indlæg
       other: Indlæg
     posts_tab_heading: Indlæg
-    self_follow_error: Det er ikke tilladt at følge sin egen konto
+    self_follow_error: Det er ikke tilladt at følge ens egen konto
   admin:
     account_actions:
       action: Udfør handling
@@ -75,7 +75,7 @@ da:
       enabled_msg: "%{username}s konto er optøet"
       followers: Følgere
       follows: Følger
-      header: Overskrift
+      header: Banner
       inbox_url: Indbakke-URL
       invite_request_text: Begrundelse for tilmelding
       invited_by: Inviteret af
@@ -125,7 +125,7 @@ da:
       remove_avatar: Fjern profilbillede
       remove_header: Fjern banner
       removed_avatar_msg: "%{username}s profilbillede fjernet"
-      removed_header_msg: "%{username}s banner fjernet"
+      removed_header_msg: "%{username}'s banner fjernet"
       resend_confirmation:
         already_confirmed: Denne bruger er allerede bekræftet
         send: Gensend bekræftelseslink
@@ -309,7 +309,7 @@ da:
       title: Revisionslog
       unavailable_instance: "(domænenavn utilgængeligt)"
     announcements:
-      back: Retur til annonceringer
+      back: Tilbage til annonceringer
       destroyed_msg: Bekendtgørelsen er slettet!
       edit:
         title: Redigér bekendtgørelse
@@ -651,7 +651,7 @@ da:
       actions:
         delete_description_html: De anmeldte indlæg slettes, og en advarsel (strike) registreres mhp. eskalering ved evt. fremtidige overtrædelser fra samme konto.
         mark_as_sensitive_description_html: Medierne i det anmeldte indlæg markeres som sensitive, og en advarsel (strike) registreres mhp. eskalering ved evt. fremtidige overtrædelser fra samme konto.
-        other_description_html: Se flere muligheder relateret til at adfærdshåndtering for, samt tilpasning af kommunikation til, den anmeldte konto.
+        other_description_html: Se flere muligheder for at kontrollere kontoens adfærd og tilpasse kommunikationen til den anmeldte konto.
         resolve_description_html: Ingen foranstaltninger træffes mod den anmeldte konto, ingen advarsel (strike) registreres og anmeldelsen lukkes.
         silence_description_html: Kontoen vil kun være synlig for følgerene eller dem, som manuelt slå den op, hvilket markant begrænser dens udbredelse. Kan altid omgøres. Lukker alle indrapporteringer af kontoen.
         suspend_description_html: Kontoen inkl. alt indhold utilgængeliggøres og interaktion umuliggøres, og den slettes på et tidspunkt. Kan omgøres inden for 30 dage. Lukker alle indrapporteringer af kontoen.
@@ -736,7 +736,7 @@ da:
         one: "%{count} bruger"
         other: "%{count} brugere"
       categories:
-        administration: Håndtering
+        administration: Administration
         devops: DevOps
         invites: Invitationer
         moderation: Moderering
@@ -756,33 +756,33 @@ da:
         delete_user_data_description: Tillader brugere at slette andre brugeres data straks
         invite_users: Invitér brugere
         invite_users_description: Tillader brugere at invitere nye personer til serveren
-        manage_announcements: Håndtere bekendtgørelser
-        manage_announcements_description: Tillader brugere at håndtere bekendtgørelser på serveren
-        manage_appeals: Håndtere appeller
+        manage_announcements: Administrer annonceringer
+        manage_announcements_description: Tillader brugere at administrere annonceringer på serveren
+        manage_appeals: Administrere appeller
         manage_appeals_description: Tillader brugere at vurdere appeller af modereringshandlinger
-        manage_blocks: Håndtere blokeringer
+        manage_blocks: Administrere blokeringer
         manage_blocks_description: Tillader brugere at blokere e-mailudbydere og IP-adresser
-        manage_custom_emojis: Håndtere tilpassede emojier
-        manage_custom_emojis_description: Tillader brugere at håndtere tilpassede emojier på serveren
-        manage_federation: Håndtere federation
+        manage_custom_emojis: Administrere tilpassede emojier
+        manage_custom_emojis_description: Tillader brugere at administrere tilpassede emojier på serveren
+        manage_federation: Administrere federation
         manage_federation_description: Tillader brugere at blokere eller tillade federation med andre domæner og styre leverbarhed
-        manage_invites: Administrér invitationer
+        manage_invites: Administrere invitationer
         manage_invites_description: Tillader brugere at gennemse og deaktivere invitationslinks
-        manage_reports: Håndtere rapporter
+        manage_reports: Administrere anmeldelser
         manage_reports_description: Tillader brugere at vurdere rapporter og, i overensstemmelse hermed, at udføre moderationshandlinger
-        manage_roles: Håndtere roller
+        manage_roles: Administrere roller
         manage_roles_description: Tillader brugere at håndtere og tildele roller under deres privilegiestatus
-        manage_rules: Håndtere regler
+        manage_rules: Administrere regler
         manage_rules_description: Tillad brugere at ændre serverregler
-        manage_settings: Håndtere indstillinger
+        manage_settings: Administrere indstillinger
         manage_settings_description: Tillader brugere at ændre webstedsindstillinger
-        manage_taxonomies: Håndtere taksonomier
+        manage_taxonomies: Administrere taksonomier
         manage_taxonomies_description: Giver brugerne mulighed for at gennemgå trendende indhold og opdatere hashtag-indstillinger
-        manage_user_access: Håndtere brugeradgang
+        manage_user_access: Administrere brugeradgang
         manage_user_access_description: Tillader brugere at deaktivere andre brugeres tofaktorgodkendelse, skifte deres e-mailadresse og nulstille deres adgangskode
-        manage_users: Håndtere brugere
+        manage_users: Administrere brugere
         manage_users_description: Tillader brugere at se andre brugeres oplysninger og underkaste dem moderationshandlinger
-        manage_webhooks: Håndtere Webhooks
+        manage_webhooks: Administrere Webhooks
         manage_webhooks_description: Tillader brugere at opsætte webhooks til administrative begivenheder
         view_audit_log: Vis revisionslog
         view_audit_log_description: Tillader brugere at se en historik over administrative handlinger på serveren
@@ -876,8 +876,8 @@ da:
     statuses:
       account: Forfatter
       application: Applikation
-      back_to_account: Retur til kontoside
-      back_to_report: Retur til anmeldelsesside
+      back_to_account: Tilbage til kontoside
+      back_to_report: Tilbage til anmeldelsesside
       batch:
         add_to_report: 'Føj til rapporten #%{id}'
         remove_from_report: Fjern fra anmeldelse
@@ -918,7 +918,7 @@ da:
       appeal_rejected: Appel afvist
     system_checks:
       database_schema_check:
-        message_html: Databasemigreringer afventer. Kør dem for at sikre den forventede adfærd fra applikationen
+        message_html: Der er afventende databasemigreringer. Kør dem venligst for at sikre, at applikationen opfører sig som forventet
       elasticsearch_analysis_index_mismatch:
         message_html: Elasticsearch-indeksanalyseringsindstillinger er forældede. Kør <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_health_red:
@@ -1083,7 +1083,7 @@ da:
         used_by_over_week:
           one: Brugt af én person den seneste uge
           other: Brugt af %{count} personer den seneste uge
-      title: Anbefalinger og Tendenser
+      title: Anbefalinger og trends
       trending: Populære
     warning_presets:
       add_new: Tilføj ny
@@ -1250,7 +1250,7 @@ da:
       title: Log ind på %{domain}
     sign_up:
       manual_review: Tilmeldinger på %{domain} undergår manuel moderatorgennemgang. For at hjælpe med behandlingen af tilmeldingen, så skriv en smule om dig selv, samt hvorfor du ønsker en konto på %{domain}.
-      preamble: Man vil med en konto på denne Mastodon-server kunne følge enhver anden bruger i fediverset, uanset hvor vedkommendes konto hostes.
+      preamble: Du vil med en konto på denne Mastodon-server kunne følge enhver anden bruger i fediverset, uanset hvor vedkommendes konto hostes.
       title: Lad os få dig sat op på %{domain}.
     status:
       account_status: Kontostatus
@@ -1371,7 +1371,7 @@ da:
     archive_takeout:
       date: Dato
       download: Download dit arkiv
-      hint_html: Du kan anmode om et arkiv af dine <strong>trut og oplagt medie</strong>. Den eksporterede data vil være i ActivityPub formattet, læseligt af enhvert kompatibelt program. Du kan anmode om et arkiv én gang om ugen.
+      hint_html: Du kan anmode om et arkiv over dine <strong>indlæg og uploadede medier</strong>. De eksporterede data vil være i ActivityPub-formatet, der kan læses af enhver kompatibel software. Du kan anmode om et arkiv hver 7. dag.
       in_progress: Forbereder dit arkiv...
       request: Anmod om dit arkiv
       size: Størrelse
@@ -1423,7 +1423,7 @@ da:
       save: Gem nye filter
       title: Tilføj nyt filter
     statuses:
-      back_to_filter: Returnér til filter
+      back_to_filter: Tilbage til filter
       batch:
         remove: Fjern fra filter
       index:
@@ -1473,8 +1473,8 @@ da:
         one: Man er ved at <strong>erstatte sin sortliste</strong> med <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
         other: Man er ved at <strong>erstatte sin sortliste</strong> med optil <strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Man er ved at <strong>erstatte sine bogmærker</strong> med <strong>%{count} post</strong> fra <strong>%{filename}</strong>.
-        other: Man er ved at <strong>erstatte sine bogmærker</strong> med op til <strong>%{count} poster</strong> fra <strong>%{filename}</strong>.
+        one: Du er ved at <strong>erstatte dine bogmærker</strong> med <strong>%{count} indlæg</strong> fra <strong>%{filename}</strong>.
+        other: Du er ved at <strong>erstatte dine bogmærker</strong> med op til <strong>%{count} indlæg</strong> fra <strong>%{filename}</strong>.
       domain_blocking_html:
         one: Man er ved at <strong>erstatte sin domænesortliste</strong> med <strong>%{count} domæne</strong> fra <strong>%{filename}</strong>.
         other: Man er ved at <strong>erstatte sin domænesortliste</strong> med op til <strong>%{count} domæner</strong> fra <strong>%{filename}</strong>.
@@ -1492,8 +1492,8 @@ da:
         one: Man er ved at <strong>blokere</strong> <strong>%{count} konto</strong> fra <strong>%{filename}</strong>.
         other: Man er ved at <strong>blokere</strong> op til <strong>%{count} konti</strong> fra <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Man er ved at tilføje <strong>%{count} post</strong> fra <strong>%{filename}</strong> til sine <strong>bogmærker</strong>.
-        other: Man er ved at tilføje <strong>%{count} poster</strong> fra <strong>%{filename}</strong> til sine <strong>bogmærker</strong>.
+        one: Du er ved at tilføje <strong>%{count} indlæg</strong> fra <strong>%{filename}</strong> til dine <strong>bogmærker</strong>.
+        other: Du er ved at tilføje <strong>%{count} indlæg</strong> fra <strong>%{filename}</strong> til dine <strong>bogmærker</strong>.
       domain_blocking_html:
         one: Man er ved at <strong>blokere</strong> <strong>%{count} domæne</strong> fra <strong>%{filename}</strong>.
         other: Man er ved at <strong>blokere</strong> op til <strong>%{count} domæner</strong> fra <strong>%{filename}</strong>.
@@ -1531,7 +1531,7 @@ da:
       blocking: Blokeringsliste
       bookmarks: Bogmærker
       domain_blocking: Domæneblokeringsliste
-      following: Følgningsliste
+      following: Liste over fulgte
       lists: Lister
       muting: Tavsgørelsesliste
     upload: Upload
@@ -1818,7 +1818,7 @@ da:
     aliases: Kontoaliaser
     appearance: Udseende
     authorized_apps: Godkendte apps
-    back: Retur til Mastodon
+    back: Tilbage til Mastodon
     delete: Kontosletning
     development: Udvikling
     edit_profile: Redigér profil
