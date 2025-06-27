@@ -20,7 +20,14 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
   def update_account
     return reject_payload! if @account.uri != object_uri
 
-    ActivityPub::ProcessAccountService.new.call(@account.username, @account.domain, @object, signed_with_known_key: true, request_id: @options[:request_id])
+    opts = {
+      signed_with_known_key: true,
+      request_id: @options[:request_id],
+    }
+
+    opts[:allow_username_update] = allow_username_update? if @account.username != @object['preferredUsername']
+
+    ActivityPub::ProcessAccountService.new.call(@account.username, @account.domain, @object, opts)
   end
 
   def update_status
@@ -31,5 +38,27 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
     return if @status.nil?
 
     ActivityPub::ProcessStatusUpdateService.new.call(@status, @json, @object, request_id: @options[:request_id])
+  end
+
+  def allow_username_update?
+    updated_username_unique? && updated_username_confirmed?
+  end
+
+  def updated_username_unique?
+    account_proxy = @account.dup
+    account_proxy.username = @object['preferredUsername']
+    UniqueUsernameValidator.new.validate(account_proxy)
+    account_proxy.errors.blank?
+  end
+
+  def updated_username_confirmed?
+    begin
+      webfinger = Webfinger.new("acct:#{@object['preferredUsername']}@#{@account.domain}").perform
+    rescue Webfinger::Error
+      return false
+    end
+
+    confirmed_username, confirmed_domain = webfinger.subject.delete_prefix('acct:').split('@')
+    confirmed_username == @object['preferredUsername'] && confirmed_domain == @account.domain
   end
 end
