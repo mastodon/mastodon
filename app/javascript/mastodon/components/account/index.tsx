@@ -39,7 +39,7 @@ const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   cancel_follow_request: {
     id: 'account.cancel_follow_request',
-    defaultMessage: 'Withdraw follow request',
+    defaultMessage: 'Cancel request',
   },
   unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
   unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },

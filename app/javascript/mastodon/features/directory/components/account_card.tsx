@@ -26,7 +26,7 @@ const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   cancel_follow_request: {
     id: 'account.cancel_follow_request',
-    defaultMessage: 'Withdraw follow request',
+    defaultMessage: 'Cancel request',
   },
   requested: {
     id: 'account.requested',

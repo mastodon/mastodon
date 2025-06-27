@@ -13,6 +13,10 @@ import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
+  cancel_follow_request: {
+    id: 'account.cancel_follow_request',
+    defaultMessage: 'Cancel request',
+  },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   followBack: { id: 'account.follow_back', defaultMessage: 'Follow back' },
@@ -75,7 +79,9 @@ export const FollowButton: React.FC<{
     label = intl.formatMessage(messages.editProfile);
   } else if (!relationship) {
     label = <LoadingIndicator />;
-  } else if (relationship.following || relationship.requested) {
+  } else if (relationship.requested) {
+    label = intl.formatMessage(messages.cancel_follow_request);
+  } else if (relationship.following) {
     label = intl.formatMessage(messages.unfollow);
   } else if (relationship.followed_by) {
     label = intl.formatMessage(messages.followBack);
