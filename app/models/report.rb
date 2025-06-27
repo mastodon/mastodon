@@ -32,7 +32,7 @@ class Report < ApplicationRecord
   rate_limit by: :account, family: :reports
 
   belongs_to :account
-  belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
+  belongs_to :application, class_name: 'OAuth::Application', optional: true
 
   with_options class_name: 'Account' do
     belongs_to :target_account
