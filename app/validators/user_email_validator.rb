@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserEmailValidator < ActiveModel::Validator
+  SEPARATOR = '|'
+
   def validate(user)
     return if user.valid_invitation? || user.email.blank?
 
@@ -23,20 +25,42 @@ class UserEmailValidator < ActiveModel::Validator
   end
 
   def not_allowed_through_configuration?(email)
-    return false if Rails.configuration.x.email_domains_allowlist.blank?
+    return false if allowed_email_domains.blank?
 
-    domains = Rails.configuration.x.email_domains_allowlist.gsub('.', '\.')
-    regexp  = Regexp.new("@(.+\\.)?(#{domains})$", true)
+    domains = escaped_domains(allowed_email_domains)
 
-    email !~ regexp
+    email !~ allowed_domain_pattern(domains)
   end
 
   def disallowed_through_configuration?(email)
-    return false if Rails.configuration.x.email_domains_denylist.blank?
+    return false if denied_email_domains.blank?
 
-    domains = Rails.configuration.x.email_domains_denylist.gsub('.', '\.')
-    regexp  = Regexp.new("@(.+\\.)?(#{domains})", true)
+    domains = escaped_domains(denied_email_domains)
 
-    regexp.match?(email)
+    denied_domain_pattern(domains).match?(email)
+  end
+
+  def allowed_domain_pattern(domains)
+    Regexp.new("@(.+\\.)?(#{domains})$", true)
+  end
+
+  def denied_domain_pattern(domains)
+    Regexp.new("@(.+\\.)?(#{domains})", true)
+  end
+
+  def escaped_domains(domains)
+    domains
+      .split(SEPARATOR)
+      .map { |domain| Regexp.escape(domain) }
+      .join(SEPARATOR)
+      .to_s
+  end
+
+  def allowed_email_domains
+    Rails.configuration.x.email_domains.allowlist
+  end
+
+  def denied_email_domains
+    Rails.configuration.x.email_domains.denylist
   end
 end
