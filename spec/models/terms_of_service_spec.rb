@@ -3,6 +3,33 @@
 require 'rails_helper'
 
 RSpec.describe TermsOfService do
+  describe 'Validations' do
+    subject { Fabricate.build :terms_of_service }
+
+    it { is_expected.to validate_presence_of(:text) }
+    it { is_expected.to validate_uniqueness_of(:effective_date) }
+
+    it { is_expected.to allow_values(2.days.from_now).for(:effective_date) }
+    it { is_expected.to_not allow_values(2.days.ago).for(:effective_date) }
+
+    context 'with an existing published effective TOS' do
+      before do
+        travel_to 5.days.ago do
+          Fabricate :terms_of_service, published_at: 2.days.ago, effective_date: 1.day.from_now
+        end
+      end
+
+      it { is_expected.to allow_values(1.day.ago).for(:effective_date) }
+    end
+
+    context 'when published' do
+      subject { Fabricate.build :terms_of_service, published_at: Time.zone.today }
+
+      it { is_expected.to validate_presence_of(:changelog) }
+      it { is_expected.to validate_presence_of(:effective_date) }
+    end
+  end
+
   describe '#scope_for_notification' do
     subject { terms_of_service.scope_for_notification }
 
