@@ -188,6 +188,11 @@ Rails.application.routes.draw do
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy, format: false
   get '/backups/:id/download', to: 'backups#download', as: :download_backup, format: false
 
+  constraints(id: /[\d]+/) do
+    get '/starter-pack/:id(-:slug)', to: 'lists#show', as: :public_list
+    get '/starter-pack/:id(-:slug)/posts', to: 'lists#show', format: false
+  end
+
   resource :authorize_interaction, only: [:show]
   resource :share, only: [:show]
 
